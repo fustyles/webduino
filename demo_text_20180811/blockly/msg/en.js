@@ -1,0 +1,1 @@
+MSG.catDemoText = "Show Text";

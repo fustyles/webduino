@@ -1,0 +1,1 @@
+MSG.catImage = "Game Image";
