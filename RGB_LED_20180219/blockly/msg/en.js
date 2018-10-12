@@ -1,0 +1,1 @@
+MSG.catrgbled = "RGB LED";

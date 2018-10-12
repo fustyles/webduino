@@ -1,0 +1,1 @@
+MSG.catCreateButton = "Web Demo";

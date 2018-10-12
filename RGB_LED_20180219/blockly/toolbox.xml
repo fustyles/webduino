@@ -1,0 +1,22 @@
+<category id="catrgbled">
+  <block type="rgb_led">
+    <field name="PIN_RED">3</field>
+    <field name="PIN_GREEN">5</field>
+    <field name="PIN_BLUE">6</field>
+    <value name="VALUE_RED">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="VALUE_GREEN">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="VALUE_BLUE">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+  </block>
+ </category>

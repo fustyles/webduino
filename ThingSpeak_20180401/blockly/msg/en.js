@@ -1,0 +1,1 @@
+MSG.catthingspeak = "ThingSpeak";
