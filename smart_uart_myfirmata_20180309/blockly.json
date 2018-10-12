@@ -1,0 +1,14 @@
+{
+    "types": ["uart_car","uart_system","uart_custom"],
+    "category": "catPlus",
+    "scripts": [
+        "blockly/blocks.js",
+        "blockly/javascript.js"
+    ],
+    "dependencies": [
+        "uartmyfirmata.js"
+    ],
+    "msg": "blockly/msg",
+    "blocksMsg": "blockly/msg/blocks",
+    "toolbox": "blockly/toolbox.xml"
+}

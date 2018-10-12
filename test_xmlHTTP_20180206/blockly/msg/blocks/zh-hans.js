@@ -1,0 +1,1 @@
+Blockly.Msg.XMLHTTP_RESPONSEDATA = "XMLHTTP 取得回应资料";

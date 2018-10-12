@@ -1,0 +1,6 @@
+<category id="teachable_machine">
+  <block type="teachable_machine_open">  
+  </block>
+  <block type="teachable_machine_proportion">
+  </block>
+ </category>
