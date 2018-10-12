@@ -1,0 +1,14 @@
+{
+  "types": ["matrix_led_backcolor","matrix_led_verticalflip","matrix_led_horizontalflip","matrix_led_invert","matrix_led_getcolor","matrix_led_color","matrix_led_code","matrix_led_texttocode","matrix_led_indentcode","matrix_led_showstate","matrix_led_sample","matrix_led_matrix","matrix_led_matrix_color","matrix_led_matrixcode","matrix_led_clear","matrix_led_on","matrix_led_color_on","matrix_led_off","matrix_led_reverse","matrix_led_state","matrix_led_marquee","matrix_led_marquee_once","matrix_led_marquee_degree","matrix_led_marquee_time","matrix_led_marquee_stop","matrix_led_marquee_reverse","matrix_led_marquee_resume","matrix_led_char","matrix_led_linechart","matrix_led_barchart","matrix_led_clockwise","matrix_led_counterclockwise"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "matrixled.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
