@@ -1,16 +1,16 @@
-<category id="catlinenotify">
-  <block type="line_notify">
-    <value name="notify_token">
+<category id="catlinebot">
+  <block type="line_bot">
+    <value name="bot_token">
       <block type="text">
         <field name="TEXT"></field>
       </block>
     </value>   
-    <value name="notify_userid">
+    <value name="bot_userid">
       <block type="text">
         <field name="TEXT"></field>
       </block>
     </value>
-    <value name="notify_msg">
+    <value name="bot_msg">
       <block type="text">
         <field name="TEXT"></field>
       </block>
