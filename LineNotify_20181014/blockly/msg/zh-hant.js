@@ -1,1 +1,0 @@
-MSG.catlinenotify = "Line Bot";
