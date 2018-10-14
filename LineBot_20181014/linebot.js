@@ -4,9 +4,9 @@
 
   'use strict';
 
-  function createIframe(notify_token,notify_userid,notify_msg) {
+  function createIframe(bot_token,bot_userid,bot_msg) {
     
-    var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?USERID="+notify_userid+"&MESSAGE="+notify_msg+"&TOKEN="+notify_token;
+    var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?USERID="+bot_userid+"&MESSAGE="+bot_msg+"&TOKEN="+bot_token;
     var src = '<iframe src="' + input_url + '" style="width:0px;height:0px"></iframe>';
     
     if (document.getElementById("notify_iframe"))
