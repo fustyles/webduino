@@ -35,6 +35,7 @@
 
 /*
 // Google Apps Script
+// https://script.google.com/macros/s/xxxxx/exec?USERID=xxxxx&MESSAGE=xxxxx&TOKEN=xxxxx
 
 function doGet(e) {
   var token = e.parameter.TOKEN.replace(/\s+/g,"+");
@@ -64,5 +65,4 @@ function doGet(e) {
   var textOutput = ContentService.createTextOutput(msg)
   return textOutput
 }
-
 */
