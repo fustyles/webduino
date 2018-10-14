@@ -1,5 +1,5 @@
 <category id="catlinebot">
-  <block type="line_bot">
+  <block type="linebot_notify">
     <value name="bot_token">
       <block type="text">
         <field name="TEXT"></field>
