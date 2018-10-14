@@ -9,7 +9,7 @@ Blockly.Blocks['line_notify'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("USERID");
-  this.appendValueInput("ifttt_msg")
+  this.appendValueInput("notify_msg")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("MESSAGE");
