@@ -1,15 +1,15 @@
-Blockly.Blocks['line_notify'] = {
+Blockly.Blocks['line_bot'] = {
   init: function() {
-  this.appendValueInput("notify_token")
+  this.appendValueInput("bot_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Line Bot   ")
       .appendField("CHANNEL ACCESS TOKEN");    
-  this.appendValueInput("notify_userid")
+  this.appendValueInput("bot_userid")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("USERID");
-  this.appendValueInput("notify_msg")
+  this.appendValueInput("bot_msg")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("MESSAGE");
