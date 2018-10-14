@@ -1,4 +1,4 @@
-<category id="catifttt">
+<category id="catlinenotify">
   <block type="line_notify">
     <value name="notify_token">
       <block type="text">
