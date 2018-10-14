@@ -6,7 +6,7 @@
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "linenotify.js"    
+    "linebot.js"    
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
