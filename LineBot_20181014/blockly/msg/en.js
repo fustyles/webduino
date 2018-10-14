@@ -1,1 +1,1 @@
-MSG.catlinenotify = "Line Bot";
+MSG.catlinebot = "Line Bot";
