@@ -3,8 +3,8 @@ Blockly.Blocks['line_notify'] = {
   this.appendValueInput("notify_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("CHANNEL ACCESS TOKEN")
-      .appendField("Event");    
+      .appendField("Line Nofity   ")
+      .appendField("CHANNEL ACCESS TOKEN");    
   this.appendValueInput("notify_userid")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
