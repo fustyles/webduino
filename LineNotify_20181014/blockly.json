@@ -1,12 +1,12 @@
 {
-  "types": ["ifttt_open"],
+  "types": ["line_notify"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "ifttt.js"    
+    "linenotify.js"    
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
