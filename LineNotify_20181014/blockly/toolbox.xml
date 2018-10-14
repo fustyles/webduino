@@ -1,26 +1,16 @@
 <category id="catifttt">
-  <block type="ifttt_open">
-    <value name="ifttt_event">
+  <block type="line_notify">
+    <value name="notify_token">
       <block type="text">
         <field name="TEXT"></field>
       </block>
     </value>   
-    <value name="ifttt_key">
+    <value name="notify_userid">
       <block type="text">
         <field name="TEXT"></field>
       </block>
     </value>
-    <value name="ifttt_value1">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
-    <value name="ifttt_value2">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
-    <value name="ifttt_value3">
+    <value name="notify_msg">
       <block type="text">
         <field name="TEXT"></field>
       </block>
