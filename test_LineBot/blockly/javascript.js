@@ -14,15 +14,15 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   var value_paramter4 = Blockly.JavaScript.valueToCode(block, 'value_paramter4', Blockly.JavaScript.ORDER_ATOMIC);
   var value_paramter5 = Blockly.JavaScript.valueToCode(block, 'value_paramter5', Blockly.JavaScript.ORDER_ATOMIC);
   if (value_type=='text')
-    var code = '';
+    var code = '&';
   else if (value_type=='sticker')
-    var code = '';
+    var code = '&';
   else if (value_type=='image')
-    var code = '';
+    var code = '&';
   else if (value_type=='video')
-    var code = '';
+    var code = '&';
   else if (value_type=='audio')
-    var code = '';  
+    var code = '&';  
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
