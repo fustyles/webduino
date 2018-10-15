@@ -10,9 +10,6 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   var value_type = block.getFieldValue('value_type');
   var value_paramter1 = Blockly.JavaScript.valueToCode(block, 'value_paramter1', Blockly.JavaScript.ORDER_ATOMIC);
   var value_paramter2 = Blockly.JavaScript.valueToCode(block, 'value_paramter2', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_paramter3 = Blockly.JavaScript.valueToCode(block, 'value_paramter3', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_paramter4 = Blockly.JavaScript.valueToCode(block, 'value_paramter4', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_paramter5 = Blockly.JavaScript.valueToCode(block, 'value_paramter5', Blockly.JavaScript.ORDER_ATOMIC);
   
   if (value_type=='text')
     var code = '&MESSAGE='+value_paramter1;
