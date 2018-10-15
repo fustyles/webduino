@@ -26,7 +26,7 @@ Blockly.Blocks['linebot_type'] = {
         .appendField("Message (bot)");    
     this.appendDummyInput()
         .appendField("Type")
-        .appendField(new Blockly.FieldDropdown([["text, text","text"], ["sticker, packageId, stickerId","sticker"], ["image, originalContentUrl, previewImageUrl","image"], ["video, originalContentUrl, previewImageUrl","video"], ["audio, originalContentUrl, duration","audio"]]), "value_type");
+        .appendField(new Blockly.FieldDropdown([["text (text,)","text"], ["sticker (packageId, stickerId)","sticker"], ["image (originalContentUrl, previewImageUrl)","image"], ["video (originalContentUrl, previewImageUrl)","video"], ["audio (originalContentUrl, duration)","audio"]]), "value_type");
     this.appendValueInput("value_paramter1")
         .setCheck(null)
         .appendField("Paramter1");
