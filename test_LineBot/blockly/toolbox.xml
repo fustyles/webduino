@@ -25,16 +25,4 @@
       </block>  
     </value>
   </block>
-  <block type="linenotify">
-    <value name="notify_token">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>  
-    <value name="notify_msg">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
-  </block>
 </category>
