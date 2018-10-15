@@ -12,15 +12,15 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   var value_paramter2 = Blockly.JavaScript.valueToCode(block, 'value_paramter2', Blockly.JavaScript.ORDER_ATOMIC);
   
   if (value_type=='text')
-    var code = '"&type='+value_type+'&text="+(typeof('+value_paramter1+')=="undefined"?("'+value_paramter1+'"):'+value_paramter1+')';
+    var code = '"&type='+value_type+'&text="+(typeof('+value_paramter1+')=="undefined"?"'+value_paramter1+'":'+value_paramter1+')';
   else if (value_type=='sticker')
-    var code = '"&type='+value_type+'&packageId="+(typeof('+value_paramter1+')=="undefined"?("'+value_paramter1+'"):'+value_paramter1+')'+'+"&stickerId="+(typeof('+value_paramter2+')=="undefined"?("'+value_paramter2+'"):'+value_paramter2+')';
+    var code = '"&type='+value_type+'&packageId="+(typeof('+value_paramter1+')=="undefined"?"'+value_paramter1+'":'+value_paramter1+')'+'+"&stickerId="+(typeof('+value_paramter2+')=="undefined"?"'+value_paramter2+'":'+value_paramter2+')';
   else if (value_type=='image')
-    var code = '"&type='+value_type+'&originalContentUrl="+(typeof('+value_paramter1+')=="undefined"?("'+value_paramter1+'"):'+value_paramter1+')'+'+"&previewImageUrl="+(typeof('+value_paramter2+')=="undefined"?("'+value_paramter2+'"):'+value_paramter2+')';
+    var code = '"&type='+value_type+'&originalContentUrl="+(typeof('+value_paramter1+')=="undefined"?"'+value_paramter1+'":'+value_paramter1+')'+'+"&previewImageUrl="+(typeof('+value_paramter2+')=="undefined"?"'+value_paramter2+'":'+value_paramter2+')';
   else if (value_type=='video')
-    var code = '"&type='+value_type+'&originalContentUrl="+(typeof('+value_paramter1+')=="undefined"?("'+value_paramter1+'"):'+value_paramter1+')'+'+"&previewImageUrl="+(typeof('+value_paramter2+')=="undefined"?("'+value_paramter2+'"):'+value_paramter2+')';
+    var code = '"&type='+value_type+'&originalContentUrl="+(typeof('+value_paramter1+')=="undefined"?"'+value_paramter1+'":'+value_paramter1+')'+'+"&previewImageUrl="+(typeof('+value_paramter2+')=="undefined"?"'+value_paramter2+'":'+value_paramter2+')';
   else if (value_type=='audio')
-    var code = '"&type='+value_type+'&originalContentUrl="+(typeof('+value_paramter1+')=="undefined"?("'+value_paramter1+'"):'+value_paramter1+')'+'+"&duration="+(typeof('+value_paramter2+')=="undefined"?("'+value_paramter2+'"):'+value_paramter2+')';
+    var code = '"&type='+value_type+'&originalContentUrl="+(typeof('+value_paramter1+')=="undefined"?"'+value_paramter1+'":'+value_paramter1+')'+'+"&duration="+(typeof('+value_paramter2+')=="undefined"?"'+value_paramter2+'":'+value_paramter2+')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
