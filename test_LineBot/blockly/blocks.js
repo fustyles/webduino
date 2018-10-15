@@ -19,3 +19,21 @@ Blockly.Blocks['linebot_notify'] = {
   this.setColour(65);
   }
 };
+
+Blockly.Blocks['linebot_picture'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.MATRIXLED_STATE_SHOW);
+    this.appendValueInput("packageId")
+        .setCheck("Number")
+        .appendField("packageId");
+    this.appendValueInput("stickerId")
+        .setCheck("Number")
+        .appendField("stickerId");
+    this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(300);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }  
+};
