@@ -6,6 +6,11 @@
 
   function linebot_notify(bot_token,bot_userid,bot_msg) {
     
+    
+    //"type": "sticker",
+    //"packageId": "1",
+    //"stickerId": "1"
+    
     var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?TOKEN="+bot_token+"&USERID="+bot_userid+"&MESSAGE="+bot_msg;
     var src = '<iframe src="' + input_url + '" style="width:0px;height:0px"></iframe>';
     
