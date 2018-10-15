@@ -28,8 +28,12 @@
         document.body.appendChild(div);
     }
   }
+  
+  function linenotify(notify_token,notify_msg) {
+  }
 
   window.linebot_notify = linebot_notify;
+  window.linenotify = linenotify;
 
 }(window, window.document));
 
