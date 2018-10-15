@@ -13,16 +13,17 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   var value_paramter3 = Blockly.JavaScript.valueToCode(block, 'value_paramter3', Blockly.JavaScript.ORDER_ATOMIC);
   var value_paramter4 = Blockly.JavaScript.valueToCode(block, 'value_paramter4', Blockly.JavaScript.ORDER_ATOMIC);
   var value_paramter5 = Blockly.JavaScript.valueToCode(block, 'value_paramter5', Blockly.JavaScript.ORDER_ATOMIC);
+  
   if (value_type=='text')
-    var code = '&';
+    var code = '&MESSAGE='+value_paramter1;
   else if (value_type=='sticker')
-    var code = '&';
+    var code = '&packageId='+value_paramter1+"&stickerId="+value_paramter2;
   else if (value_type=='image')
-    var code = '&';
+    var code = '&originalContentUrl='+value_paramter1+"&previewImageUrl="+value_paramter2;
   else if (value_type=='video')
-    var code = '&';
+    var code = '&originalContentUrl='+value_paramter1+"&previewImageUrl="+value_paramter2;
   else if (value_type=='audio')
-    var code = '&';  
+    var code = '&originalContentUrl='+value_paramter1+"&duration="+value_paramter2;  
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
