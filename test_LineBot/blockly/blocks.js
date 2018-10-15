@@ -24,7 +24,7 @@ Blockly.Blocks['linebot_type'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Type")
-        .appendField(new Blockly.FieldDropdown([["text","text"], ["sticker","sticker"]["image","image"], ["video","video"], ["audio","audio"], ]), "value_type")
+        .appendField(new Blockly.FieldDropdown([["text,text","text"], ["sticker,packageId,stickerId","sticker"]["image,originalContentUrl,previewImageUrl","image"], ["video,originalContentUrl,previewImageUrl","video"], ["audio,originalContentUrl,duration","audio"], ]), "value_type")
     this.appendValueInput("value_paramter1")
         .setCheck(null)
         .appendField("Paramter1");
@@ -39,8 +39,7 @@ Blockly.Blocks['linebot_type'] = {
         .appendField("Paramter4");    
     this.appendValueInput("value_paramter5")
         .setCheck(null)
-        .appendField("Paramter5");       
-    this.setInputsInline(true);
+        .appendField("Paramter5"); 
     this.setOutput(true, null);  
     this.setColour(300);
     this.setTooltip("");
