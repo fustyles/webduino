@@ -27,8 +27,8 @@ Blockly.JavaScript['linebot_type'] = function(block) {
 };
 
 Blockly.JavaScript['linenotify'] = function (block) {
-  var bot_token = Blockly.JavaScript.valueToCode(block, 'bot_token', Blockly.JavaScript.ORDER_ATOMIC);  
-  var bot_msg = Blockly.JavaScript.valueToCode(block, 'bot_msg', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'linenotify('+bot_token+','+bot_msg+');\n';
+  var notify_token = Blockly.JavaScript.valueToCode(block, 'notify_token', Blockly.JavaScript.ORDER_ATOMIC);  
+  var notify_msg = Blockly.JavaScript.valueToCode(block, 'notify_msg', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'linenotify('+notify_token+','+notify_msg+');\n';
   return code; 
 };
