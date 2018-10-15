@@ -12,7 +12,7 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   var value_paramter2 = Blockly.JavaScript.valueToCode(block, 'value_paramter2', Blockly.JavaScript.ORDER_ATOMIC);
   
   if (value_type=='text')
-    var code = '&MESSAGE='+value_paramter1;
+    var code = '&text='+value_paramter1;
   else if (value_type=='sticker')
     var code = '&packageId='+value_paramter1+"&stickerId="+value_paramter2;
   else if (value_type=='image')
