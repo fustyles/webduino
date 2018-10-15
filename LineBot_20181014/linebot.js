@@ -6,7 +6,7 @@
 
   function createIframe(bot_token,bot_userid,bot_msg) {
     
-    var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?TOKEN="+bot_token+"&USERID="+bot_userid+"&MESSAGE="+bot_msg;
+    var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?token="+bot_token+"&userid="+bot_userid+"&text="+bot_msg;
     var src = '<iframe src="' + input_url + '" style="width:0px;height:0px"></iframe>';
     
     if (document.getElementById("bot_iframe"))
@@ -35,16 +35,15 @@
 
 /*
 // Google Apps Script
-// https://script.google.com/macros/s/xxxxx/exec?USERID=xxxxx&MESSAGE=xxxxx&TOKEN=xxxxx
 
 function doGet(e) {
-  var token = e.parameter.TOKEN.replace(/\s+/g,"+");
-  var userid = e.parameter.USERID;
-  var msg = e.parameter.MESSAGE;
+  var token = e.parameter.token.replace(/\s+/g,"+");
+  var userid = e.parameter.userid;
+  var text = e.parameter.text;
   
   //console.log("token="+token);
   //console.log("userid="+userid);
-  //console.log("msg="+msg);    
+  //console.log("text="+text);    
   
   var url = 'https://api.line.me/v2/bot/message/push';
   UrlFetchApp.fetch(url, {
@@ -57,12 +56,12 @@ function doGet(e) {
       'to':  userid,
       'messages': [{
         type:'text',
-        text: msg
+        text: text
       }]
     }),
   });  
   
-  var textOutput = ContentService.createTextOutput(msg)
+  var textOutput = ContentService.createTextOutput(text)
   return textOutput
 }
 */
