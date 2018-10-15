@@ -16,11 +16,11 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   else if (value_type=='sticker')
     var code = '"&type='+value_type+'&packageId="+(typeof('+value_paramter1+')=="undefined"?("'+value_paramter1+'"):'+value_paramter1+')'+'+"&stickerId="+(typeof('+value_paramter2+')=="undefined"?("'+value_paramter2+'"):'+value_paramter2+')';
   else if (value_type=='image')
-    var code = '"&type='+value_type+'&originalContentUrl="+(typeof('+value_paramter1+')=="undefined"?("'+value_paramter1+'"):'+value_paramter1+')'+'+"&previewImageUrl="+(typeof('+value_paramter2+')=="undefined"?("'+value_paramter2+'"):'+value_paramter2+')';
+    var code = '"&type='+value_type+'&originalContentUrl="+(typeof('+value_paramter1+')=="undefined"?("'+value_paramter1+'"):'+value_paramter1+')'+'+"&previewImageUrl="+(typeof('+value_paramter2+')=="undefined"?("'+value_paramter2+'"):'+value_paramter2;
   else if (value_type=='video')
-    var code = '"&type='+value_type+'&originalContentUrl="+(typeof('+value_paramter1+')=="undefined"?("'+value_paramter1+'"):'+value_paramter1+')'+'+"&previewImageUrl="+(typeof('+value_paramter2+')=="undefined"?("'+value_paramter2+'"):'+value_paramter2+')';
+    var code = '"&type='+value_type+'&originalContentUrl="+(typeof('+value_paramter1+')=="undefined"?("'+value_paramter1+'"):'+value_paramter1+')'+'+"&previewImageUrl="+(typeof('+value_paramter2+')=="undefined"?("'+value_paramter2+'"):'+value_paramter2;
   else if (value_type=='audio')
-    var code = '"&type='+value_type+'&originalContentUrl="+(typeof('+value_paramter1+')=="undefined"?("'+value_paramter1+'"):'+value_paramter1+')'+'+"&duration="+(typeof('+value_paramter2+')=="undefined"?("'+value_paramter2+'"):'+value_paramter2+')';
+    var code = '"&type='+value_type+'&originalContentUrl="+(typeof('+value_paramter1+')=="undefined"?("'+value_paramter1+'"):'+value_paramter1+')'+'+"&duration="+(typeof('+value_paramter2+')=="undefined"?("'+value_paramter2+'"):'+value_paramter2)';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
