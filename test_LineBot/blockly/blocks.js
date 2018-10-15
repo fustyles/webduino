@@ -20,20 +20,48 @@ Blockly.Blocks['linebot_notify'] = {
   }
 };
 
-Blockly.Blocks['linebot_picture'] = {
+Blockly.Blocks['linebot_type'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.MATRIXLED_STATE_SHOW);
-    this.appendValueInput("packageId")
-        .setCheck("Number")
-        .appendField("packageId");
-    this.appendValueInput("stickerId")
-        .setCheck("Number")
-        .appendField("stickerId");
+        .appendField("Type")
+        .appendField(new Blockly.FieldDropdown([["text","text"], ["sticker","sticker"]["image","image"], ["video","video"], ["audio","audio"], ]), "value_type")
+    this.appendValueInput("value_paramter1")
+        .setCheck(null)
+        .appendField("Paramter1");
+    this.appendValueInput("value_paramter2")
+        .setCheck(null)
+        .appendField("Paramter2");
+    this.appendValueInput("value_paramter3")
+        .setCheck(null)
+        .appendField("Paramter3");
+    this.appendValueInput("value_paramter4")
+        .setCheck(null)
+        .appendField("Paramter4");    
+    this.appendValueInput("value_paramter5")
+        .setCheck(null)
+        .appendField("Paramter5");       
     this.setInputsInline(true);
     this.setOutput(true, null);  
     this.setColour(300);
     this.setTooltip("");
     this.setHelpUrl("");
   }  
+};
+
+Blockly.Blocks['linenotify'] = {
+  init: function() {
+  this.appendValueInput("notify_token")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Line Notify   ")
+      .appendField("CHANNEL ACCESS TOKEN");   
+  this.appendValueInput("notify_msg")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("MESSAGE");
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setTooltip('');
+  this.setColour(65);
+  }
 };
