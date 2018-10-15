@@ -36,37 +36,3 @@
   window.linenotify = linenotify;
 
 }(window, window.document));
-
-/*
-// Google Apps Script
-// https://script.google.com/macros/s/xxxxx/exec?USERID=xxxxx&MESSAGE=xxxxx&TOKEN=xxxxx
-
-function doGet(e) {
-  var token = e.parameter.TOKEN.replace(/\s+/g,"+");
-  var userid = e.parameter.USERID;
-  var msg = e.parameter.MESSAGE;
-  
-  //console.log("token="+token);
-  //console.log("userid="+userid);
-  //console.log("msg="+msg);    
-  
-  var url = 'https://api.line.me/v2/bot/message/push';
-  UrlFetchApp.fetch(url, {
-    'headers': {
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer ' + token,
-    },
-    'method': 'post',
-    'payload': JSON.stringify({
-      'to':  userid,
-      'messages': [{
-        type:'text',
-        text: msg
-      }]
-    }),
-  });  
-  
-  var textOutput = ContentService.createTextOutput(msg)
-  return textOutput
-}
-*/
