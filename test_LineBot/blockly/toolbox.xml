@@ -26,22 +26,7 @@
       <block type="text">
         <field name="TEXT"></field>
       </block>
-    </value>
-    <value name="value_paramter3">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
-    <value name="value_paramter4">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
-    <value name="value_paramter5">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>  
+    </value> 
   </block>   
   <block type="linenotify">
     <value name="notify_token">
