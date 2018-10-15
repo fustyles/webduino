@@ -28,10 +28,10 @@ Blockly.Blocks['linebot_type'] = {
         .appendField("Type")
         .appendField(new Blockly.FieldDropdown([["text (text,)","text"], ["sticker (packageId, stickerId)","sticker"], ["image (originalContentUrl, previewImageUrl)","image"], ["video (originalContentUrl, previewImageUrl)","video"], ["audio (originalContentUrl, duration)","audio"]]), "value_type");
     this.appendValueInput("value_paramter1")
-        .setCheck(null)
+        .setCheck("String")
         .appendField("Paramter1");
     this.appendValueInput("value_paramter2")
-        .setCheck(null)
+        .setCheck("String")
         .appendField("Paramter2");
     this.setOutput(true, null);  
     this.setColour(300);

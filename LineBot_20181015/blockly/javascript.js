@@ -11,16 +11,21 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   var value_paramter1 = Blockly.JavaScript.valueToCode(block, 'value_paramter1', Blockly.JavaScript.ORDER_ATOMIC);
   var value_paramter2 = Blockly.JavaScript.valueToCode(block, 'value_paramter2', Blockly.JavaScript.ORDER_ATOMIC);
   
+  if (value_paramter1.toLowerCase().indexOf(":")!=-1)
+    value_paramter1 = '"'+value_paramter1+'"';
+  if (value_paramter2.toLowerCase().indexOf(":")!=-1)
+    value_paramter2 = '"'+value_paramter2+'"';
+  
   if (value_type=='text')
-    var code = '"&type='+value_type+'&text='+value_paramter1+'"';
+    var code = '"&type='+value_type+'&text="+'+value_paramter1;
   else if (value_type=='sticker')
-    var code = '"&type='+value_type+'&packageId='+value_paramter1+"&stickerId="+value_paramter2+'"';
+    var code = '"&type='+value_type+'&packageId="+'+value_paramter1+'+"&stickerId="+'+value_paramter2;
   else if (value_type=='image')
-    var code = '"&type='+value_type+'&originalContentUrl='+value_paramter1+"&previewImageUrl="+value_paramter2+'"';
+    var code = '"&type='+value_type+'&originalContentUrl="+'+value_paramter1+'+"&previewImageUrl="+'+value_paramter2;
   else if (value_type=='video')
-    var code = '"&type='+value_type+'&originalContentUrl='+value_paramter1+"&previewImageUrl="+value_paramter2+'"';
+    var code = '"&type='+value_type+'&originalContentUrl="+'+value_paramter1+'+"&previewImageUrl="+'+value_paramter2;
   else if (value_type=='audio')
-    var code = '"&type='+value_type+'&originalContentUrl='+value_paramter1+"&duration="+value_paramter2+'"';  
+    var code = '"&type='+value_type+'&originalContentUrl="+'+value_paramter1+'+"&duration="+'+value_paramter2;
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 

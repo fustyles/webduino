@@ -13,13 +13,13 @@
     <value name="bot_msg">
       <block type="linebot_type">
         <value name="value_paramter1">
-          <block type="text">
-            <field name="TEXT"></field>
+          <block type="variables_get">     
+            <field name="VAR">paramter1</field>
           </block>
         </value>
         <value name="value_paramter2">
-          <block type="text">
-            <field name="TEXT"></field>
+          <block type="variables_get">     
+            <field name="VAR">paramter2</field>
           </block>
         </value> 
       </block>  
