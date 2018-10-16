@@ -1,1 +1,0 @@
-MSG.catGameElements = "Game Elements";
