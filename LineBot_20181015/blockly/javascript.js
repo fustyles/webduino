@@ -26,6 +26,8 @@ Blockly.JavaScript['linebot_type'] = function(block) {
     var code = '"&type='+value_type+'&originalContentUrl="+'+value_paramter1+'+"&previewImageUrl="+'+value_paramter2;
   else if (value_type=='audio')
     var code = '"&type='+value_type+'&originalContentUrl="+'+value_paramter1+'+"&duration="+'+value_paramter2;
+  else if (value_type=='location')
+    var code = '"&type='+value_type+'&title="+'+value_paramter1+'+"&address="+'+value_paramter2;
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
