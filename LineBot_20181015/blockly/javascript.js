@@ -44,7 +44,6 @@ Blockly.JavaScript['linebot_type'] = function(block) {
     var code = '"&type='+value_type+'&originalContentUrl="+'+value_parameter1+'+"&duration="+'+value_parameter2;
   else if (value_type=='location')
     var code = '"&type='+value_type+'&title="+'+value_parameter1+'+"&address="+'+value_parameter2+'+"&latitude="+'+value_parameter3+'+"&longitude="+'+value_parameter4;
-  console.log(code);
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
