@@ -30,7 +30,7 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   if ((escape(value_parameter1).indexOf("%27")==0)&&(escape(value_parameter1).lastIndexOf("%27")==escape(value_parameter1).length-3))
   {
     value_parameter1 = '"'+value_parameter1.substr(1,value_parameter1.length-2)+'"';
-    value_parameter1 = escape(value_parameter1).replace(/\%26/g," ").replace(/\%23/g," ").replace(/\%22/g,'"').replace(/\+/g,"%2B");
+    value_parameter1 = escape(value_parameter1).replace(/\%26/g," ").replace(/\\%23/g," ").replace(/\\%22/g,'"').replace(/\\+/g,"%2B");
   }
   else
     value_parameter1 = 'escape('+value_parameter1+').replace(/\%26/g," ").replace(/\%23/g," ").replace(/\+/g,"%2B")';
