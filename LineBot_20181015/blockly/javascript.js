@@ -20,10 +20,10 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   
   console.log(value_parameter1);
   
-  value_parameter1 = value_parameter1.replace(/\\\'/g,"'").replace(/\"/g,"'");
-  value_parameter2 = value_parameter2.replace(/\\\'/g,"'").replace(/\"/g,"'");
-  value_parameter3 = value_parameter3.replace(/\\\'/g,"'").replace(/\"/g,"'");
-  value_parameter4 = value_parameter4.replace(/\\\'/g,"'").replace(/\"/g,"'");
+  value_parameter1 = value_parameter1.replace(/\\\'/g,"'");
+  value_parameter2 = value_parameter2.replace(/\\\'/g,"'");
+  value_parameter3 = value_parameter3.replace(/\\\'/g,"'");
+  value_parameter4 = value_parameter4.replace(/\\\'/g,"'");
   
   console.log(value_parameter1);
   
