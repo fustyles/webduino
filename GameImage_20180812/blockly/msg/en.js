@@ -1,1 +1,0 @@
-MSG.catImage = "Game E";
