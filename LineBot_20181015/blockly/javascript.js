@@ -31,10 +31,10 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   
   console.log(value_parameter1);
   
-  value_parameter1 = escape(value_parameter1).replace(/\%26/g," ").replace(/\%23/g," ").replace(/\%22/g,'"');
-  value_parameter2 = escape(value_parameter2).replace(/\%26/g," ").replace(/\%23/g," ").replace(/\%22/g,'"');
-  value_parameter3 = escape(value_parameter3).replace(/\%26/g," ").replace(/\%23/g," ").replace(/\%22/g,'"');
-  value_parameter4 = escape(value_parameter4).replace(/\%26/g," ").replace(/\%23/g," ").replace(/\%22/g,'"');
+  value_parameter1 = escape(value_parameter1).replace(/\%26/g," ").replace(/\%23/g," ").replace(/\%22/g,'"').replace(/\\\'/g,"'");
+  value_parameter2 = escape(value_parameter2).replace(/\%26/g," ").replace(/\%23/g," ").replace(/\%22/g,'"').replace(/\\\'/g,"'");
+  value_parameter3 = escape(value_parameter3).replace(/\%26/g," ").replace(/\%23/g," ").replace(/\%22/g,'"').replace(/\\\'/g,"'");
+  value_parameter4 = escape(value_parameter4).replace(/\%26/g," ").replace(/\%23/g," ").replace(/\%22/g,'"').replace(/\\\'/g,"'");
   
   if (value_type=='text')
     var code = '"&type='+value_type+'&text="+'+value_parameter1;
