@@ -19,10 +19,13 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   if (!value_parameter4) value_parameter4='""';
   
   console.log(escape(value_parameter1).replace(/\%26/g,"^"));
+  console.log(unescape(value_parameter1));
   console.log(escape(value_parameter2).replace(/\%26/g,"^"));
+  console.log(unescape(value_parameter2));
   console.log(escape(value_parameter3).replace(/\%26/g,"^"));
+  console.log(unescape(value_parameter3));
   console.log(escape(value_parameter4).replace(/\%26/g,"^"));
-  
+  console.log(unescape(value_parameter4));
   
   if ((value_parameter1.indexOf(" ")!=-1)||(value_parameter1.indexOf(":")!=-1)||(value_parameter1.indexOf("/")!=-1)||(value_parameter1.indexOf("+")!=-1)||(value_parameter1.indexOf(".")!=-1))
     value_parameter1 = '"'+value_parameter1+'"';
