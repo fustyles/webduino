@@ -13,10 +13,10 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   var value_parameter3 = Blockly.JavaScript.valueToCode(block, 'value_parameter3', Blockly.JavaScript.ORDER_ATOMIC);
   var value_parameter4 = Blockly.JavaScript.valueToCode(block, 'value_parameter4', Blockly.JavaScript.ORDER_ATOMIC);  
   
-  if (!value_parameter1) value_parameter1="";
-  if (!value_parameter2) value_parameter2="";
-  if (!value_parameter3) value_parameter3="";
-  if (!value_parameter4) value_parameter4="";
+  if (!value_parameter1) value_parameter1='""';
+  if (!value_parameter2) value_parameter2='""';
+  if (!value_parameter3) value_parameter3='""';
+  if (!value_parameter4) value_parameter4='""';
   
   if ((value_parameter1.indexOf(":")!=-1)||(value_parameter1.indexOf("/")!=-1)||(value_parameter1.indexOf("+")!=-1))
     value_parameter1 = '"'+value_parameter1+'"';
