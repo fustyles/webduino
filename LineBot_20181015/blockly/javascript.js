@@ -55,6 +55,8 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   if (value_parameter4.indexOf("escape(")==-1)
     value_parameter4 = escape(value_parameter4).replace(/\%26/g," ").replace(/\%23/g," ").replace(/\%22/g,'"').replace(/\+/g,"%2B");
   
+  console.log(value_parameter1);
+  
   if (value_type=='text')
     var code = '"&type='+value_type+'&text="+'+value_parameter1;
   else if (value_type=='sticker')
