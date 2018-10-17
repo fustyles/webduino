@@ -33,6 +33,12 @@ Blockly.Blocks['linebot_type'] = {
     this.appendValueInput("value_paramter2")
         .setCheck("String")
         .appendField("Paramter2");
+    this.appendValueInput("value_paramter3")
+        .setCheck("String")
+        .appendField("Paramter3");
+    this.appendValueInput("value_paramter4")
+        .setCheck("String")
+        .appendField("Paramter4");    
     this.setOutput(true, null);  
     this.setColour(300);
     this.setTooltip("");
