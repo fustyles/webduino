@@ -18,13 +18,13 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   if (!value_parameter3) value_parameter3='""';
   if (!value_parameter4) value_parameter4='""';
   
-  if ((value_parameter1.indexOf(":")!=-1)||(value_parameter1.indexOf("/")!=-1)||(value_parameter1.indexOf("+")!=-1))
+  if ((value_parameter1.indexOf(":")!=-1)||(value_parameter1.indexOf("/")!=-1)||(value_parameter1.indexOf("+")!=-1)||(value_parameter1.indexOf(".")!=-1))
     value_parameter1 = '"'+value_parameter1+'"';
-  if ((value_parameter2.indexOf(":")!=-1)||(value_parameter2.indexOf("/")!=-1)||(value_parameter2.indexOf("+")!=-1))
+  if ((value_parameter2.indexOf(":")!=-1)||(value_parameter2.indexOf("/")!=-1)||(value_parameter2.indexOf("+")!=-1)||(value_parameter2.indexOf(".")!=-1))
     value_parameter2 = '"'+value_parameter2+'"';
-  if ((value_parameter3.indexOf(":")!=-1)||(value_parameter3.indexOf("/")!=-1)||(value_parameter3.indexOf("+")!=-1))
+  if ((value_parameter3.indexOf(":")!=-1)||(value_parameter3.indexOf("/")!=-1)||(value_parameter3.indexOf("+")!=-1)||(value_parameter3.indexOf(".")!=-1))
     value_parameter3 = '"'+value_parameter3+'"';
-  if ((value_parameter4.indexOf(":")!=-1)||(value_parameter4.indexOf("/")!=-1)||(value_parameter4.indexOf("+")!=-1))
+  if ((value_parameter4.indexOf(":")!=-1)||(value_parameter4.indexOf("/")!=-1)||(value_parameter4.indexOf("+")!=-1)||(value_parameter4.indexOf(".")!=-1))
     value_parameter4 = '"'+value_parameter4+'"';  
   
   if (value_type=='text')
