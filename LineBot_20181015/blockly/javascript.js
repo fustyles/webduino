@@ -19,9 +19,6 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   if (!value_parameter4) value_parameter4='""';
   
   console.log(value_parameter1);
-  console.log(escape(value_parameter1).indexOf("%27"));
-  console.log(escape(value_parameter1).lastIndexOf("%27"));
-  console.log(escape(value_parameter1).length);
   
   if ((escape(value_parameter1).indexOf("%27")==0)&&(escape(value_parameter1).lastIndexOf("%27")==escape(value_parameter1).length-3))
     value_parameter1 = '"'+value_parameter1.substr(1,value_parameter1.length-2)+'"';
@@ -31,6 +28,8 @@ Blockly.JavaScript['linebot_type'] = function(block) {
     value_parameter3 = '"'+value_parameter3.substr(1,value_parameter3.length-2)+'"';
   if ((escape(value_parameter4).indexOf("%27")==0)&&(escape(value_parameter4).lastIndexOf("%27")==escape(value_parameter4).length-3))
     value_parameter4 = '"'+value_parameter4.substr(1,value_parameter4.length-2)+'"';
+  
+  console.log(value_parameter1);
   
   value_parameter1 = escape(value_parameter1).replace(/\%26/g," ").replace(/\%23/g," ").replace(/\%22/g,'"');
   value_parameter2 = escape(value_parameter2).replace(/\%26/g," ").replace(/\%23/g," ").replace(/\%22/g,'"');
