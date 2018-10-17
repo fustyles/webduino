@@ -10,11 +10,17 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   var value_type = block.getFieldValue('value_type');
   var value_paramter1 = Blockly.JavaScript.valueToCode(block, 'value_paramter1', Blockly.JavaScript.ORDER_ATOMIC);
   var value_paramter2 = Blockly.JavaScript.valueToCode(block, 'value_paramter2', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_paramter3 = Blockly.JavaScript.valueToCode(block, 'value_paramter3', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_paramter4 = Blockly.JavaScript.valueToCode(block, 'value_paramter4', Blockly.JavaScript.ORDER_ATOMIC);  
   
   if ((value_paramter1.indexOf(":")!=-1)||(value_paramter1.indexOf("/")!=-1)||(value_paramter1.indexOf("+")!=-1))
     value_paramter1 = '"'+value_paramter1+'"';
   if ((value_paramter2.indexOf(":")!=-1)||(value_paramter2.indexOf("/")!=-1)||(value_paramter2.indexOf("+")!=-1))
     value_paramter2 = '"'+value_paramter2+'"';
+  if ((value_paramter3.indexOf(":")!=-1)||(value_paramter3.indexOf("/")!=-1)||(value_paramter3.indexOf("+")!=-1))
+    value_paramter3 = '"'+value_paramter3+'"';
+  if ((value_paramter4.indexOf(":")!=-1)||(value_paramter4.indexOf("/")!=-1)||(value_paramter4.indexOf("+")!=-1))
+    value_paramter4 = '"'+value_paramter4+'"';  
   
   if (value_type=='text')
     var code = '"&type='+value_type+'&text="+'+value_paramter1;
