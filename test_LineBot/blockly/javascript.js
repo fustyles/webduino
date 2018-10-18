@@ -18,10 +18,10 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   var parameter3 = Blockly.JavaScript.valueToCode(block, 'value_parameter3', Blockly.JavaScript.ORDER_ATOMIC);
   var parameter4 = Blockly.JavaScript.valueToCode(block, 'value_parameter4', Blockly.JavaScript.ORDER_ATOMIC);  
   
-  if (!parameter1) parameter1='';
-  if (!parameter2) parameter2='';
-  if (!parameter3) parameter3='';
-  if (!parameter4) parameter4='';
+  if (!parameter1) parameter1='""';
+  if (!parameter2) parameter2='""';
+  if (!parameter3) parameter3='""';
+  if (!parameter4) parameter4='""';
   
   var code = 'linebot_url_escape("'+type+'",'+parameter1+','+parameter2+','+parameter3+','+parameter4+')';
   return [code, Blockly.JavaScript.ORDER_NONE];
