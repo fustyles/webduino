@@ -6,7 +6,7 @@
 
   function linebot_push_message(bot_token,bot_userid,bot_msg) {
     
-    var url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?token="+escape(bot_token)+"&userid="+escape(bot_userid)+bot_msg;
+    var url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?token="+bot_token+"&userid="+bot_userid+bot_msg;
     console.log(url);
     var src = '<iframe src="' + url + '" style="width:0px;height:0px"></iframe>';
     
