@@ -6,8 +6,8 @@
 
   function linebot_push_message(bot_token,bot_userid,bot_msg) {
     
-    bot_token = escape(bot_token).replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
-    bot_userid = escape(bot_userid).replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+    bot_token = escape(bot_token).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+    bot_userid = escape(bot_userid).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
     var url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?token="+bot_token+"&userid="+bot_userid+bot_msg;
     var src = '<iframe src="' + url + '" style="width:0px;height:0px"></iframe>';
     
@@ -33,10 +33,10 @@
   
   function linebot_url_escape(type,parameter1,parameter2,parameter3,parameter4) {
 
-    parameter1 = escape(parameter1).replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
-    parameter2 = escape(parameter2).replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
-    parameter3 = escape(parameter3).replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
-    parameter4 = escape(parameter4).replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+    parameter1 = escape(parameter1).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+    parameter2 = escape(parameter2).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+    parameter3 = escape(parameter3).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+    parameter4 = escape(parameter4).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
 
     console.log(parameter1);
 
