@@ -1,5 +1,5 @@
 function doGet(e) {
-  var token = ((!e.parameter.token)?"":e.parameter.token);
+  var token = ((!e.parameter.token)?"":e.parameter.token).replace(/\s+/g,"+");
   var userid = ((!e.parameter.userid)?"":e.parameter.userid);
   var type = ((!e.parameter.type)?"":e.parameter.type);  
   var text = ((!e.parameter.text)?"":e.parameter.text);
@@ -13,10 +13,8 @@ function doGet(e) {
   var latitude = ((!e.parameter.latitude)?"":e.parameter.latitude);
   var longitude = ((!e.parameter.longitude)?"":e.parameter.longitude);
   
-  //token = token.replace(/\s+/g,"+");
-  
   //Webduino blockly : .replace(/fu02fu/g,"&").replace(/fu03fu/g,"#")
-  token = token.replace(/\s+/g,"+").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  token = token.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
   userid = userid.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
   type = type.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");  
   text = text.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
