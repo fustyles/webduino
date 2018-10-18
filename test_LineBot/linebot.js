@@ -6,10 +6,11 @@
 
   function linebot_push_message(bot_token,bot_userid,bot_msg) {
     
-    console.log(bot_msg);
     
-    var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?token="+escape(bot_token)+"&userid="+escape(bot_userid)+bot_msg;
-    var src = '<iframe src="' + input_url + '" style="width:0px;height:0px"></iframe>';
+    
+    var url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?token="+escape(bot_token)+"&userid="+escape(bot_userid)+bot_msg;
+    console.log(url);
+    var src = '<iframe src="' + url + '" style="width:0px;height:0px"></iframe>';
     
     if (document.getElementById("bot_iframe"))
     {
