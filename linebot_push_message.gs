@@ -1,5 +1,5 @@
 function doGet(e) {
-  var token = ((!e.parameter.token)?"":e.parameter.token).replace(/\s+/g,"+");
+  var token = ((!e.parameter.token)?"":e.parameter.token);
   var userid = ((!e.parameter.userid)?"":e.parameter.userid);
   var type = ((!e.parameter.type)?"":e.parameter.type);  
   var text = ((!e.parameter.text)?"":e.parameter.text);
@@ -13,20 +13,22 @@ function doGet(e) {
   var latitude = ((!e.parameter.latitude)?"":e.parameter.latitude);
   var longitude = ((!e.parameter.longitude)?"":e.parameter.longitude);
   
-  //Webduino blockly : .replace(/fu02fu/g,"&").replace(/fu03fu/g,"#")
-  token = token.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  userid = userid.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  type = type.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");  
-  text = text.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  packageId = packageId.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  stickerId = stickerId.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  originalContentUrl = originalContentUrl.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  previewImageUrl = previewImageUrl.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  duration = duration.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  title = title.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  address = address.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  latitude = latitude.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  longitude = longitude.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");  
+  token = token.replace(/\s+/g,"+");
+  
+  // Webduino Blockly : .replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  token = token.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  userid = userid.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  type = type.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");  
+  text = text.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  packageId = packageId.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  stickerId = stickerId.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  originalContentUrl = originalContentUrl.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  previewImageUrl = previewImageUrl.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  duration = duration.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  title = title.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  address = address.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  latitude = latitude.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  longitude = longitude.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");  
   
   //console.log("token="+token);
   //console.log("userid="+userid);
