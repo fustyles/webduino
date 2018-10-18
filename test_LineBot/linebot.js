@@ -6,8 +6,9 @@
 
   function linebot_push_message(bot_token,bot_userid,bot_msg) {
     
+    bot_token = escape(bot_token).replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+    bot_userid = escape(bot_userid).replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
     var url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?token="+bot_token+"&userid="+bot_userid+bot_msg;
-    console.log(url);
     var src = '<iframe src="' + url + '" style="width:0px;height:0px"></iframe>';
     
     if (document.getElementById("bot_iframe"))
