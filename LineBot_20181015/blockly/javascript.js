@@ -3,6 +3,7 @@ Blockly.JavaScript['linebot_notify'] = function (block) {
   var bot_userid = Blockly.JavaScript.valueToCode(block, 'bot_userid', Blockly.JavaScript.ORDER_ATOMIC);
   var bot_msg = Blockly.JavaScript.valueToCode(block, 'bot_msg', Blockly.JavaScript.ORDER_ATOMIC);
   var code = 'linebot_notify('+bot_token+','+bot_userid+','+bot_msg+');\n';
+  //var code = 'linebot_notify('+bot_token+','+bot_userid+','+bot_msg.replace(/\'/g,"")+');\n';
   return code; 
 };
 
