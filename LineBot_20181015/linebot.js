@@ -4,12 +4,12 @@
 
   'use strict';
 
-  function linebot_notify(bot_token,bot_userid,bot_msg) {
+  function linebot_push_message(bot_token,bot_userid,bot_msg) {
     
-    console.log(bot_msg);
-    
-    var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?token="+bot_token+"&userid="+bot_userid+bot_msg;
-    var src = '<iframe src="' + input_url + '" style="width:0px;height:0px"></iframe>';
+    bot_token = escape(bot_token).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+    bot_userid = escape(bot_userid).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+    var url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?token="+bot_token+"&userid="+bot_userid+bot_msg;
+    var src = '<iframe src="' + url + '" style="width:0px;height:0px"></iframe>';
     
     if (document.getElementById("bot_iframe"))
     {
@@ -31,10 +31,36 @@
     }
   }
   
+  function linebot_url_escape(type,parameter1,parameter2,parameter3,parameter4) {
+
+    parameter1 = escape(parameter1).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+    parameter2 = escape(parameter2).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+    parameter3 = escape(parameter3).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+    parameter4 = escape(parameter4).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+
+    console.log(parameter1);
+
+    if (type=="text")
+      return "&type="+type+"&text="+parameter1;
+    else if (type=="sticker")
+      return "&type="+type+"&packageId="+parameter1+"&stickerId="+parameter2;
+    else if (type=="image")
+      return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
+    else if (type=="video")
+      return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
+    else if (type=="audio")
+      return "&type="+type+"&originalContentUrl="+parameter1+"&duration="+parameter2;
+    else if (type=="location")
+      return "&type="+type+"&title="+parameter1+"&address="+parameter2+"&latitude="+parameter3+"&longitude="+parameter4;
+    else
+      return "";
+  }
+  
   function linenotify(notify_token,notify_msg) {
   }
 
-  window.linebot_notify = linebot_notify;
+  window.linebot_push_message = linebot_push_message;
+  window.linebot_url_escape = linebot_url_escape;
   window.linenotify = linenotify;
 
 }(window, window.document));

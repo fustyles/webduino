@@ -4,9 +4,11 @@
 
   'use strict';
 
-  function createIframe(bot_token,bot_userid,bot_msg) {
+  function linebot_notify(bot_token,bot_userid,bot_msg) {
     
-    var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?token="+bot_token+"&userid="+bot_userid+"&type=text&text="+bot_msg;
+    console.log(bot_msg);
+    
+    var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?token="+bot_token+"&userid="+bot_userid+bot_msg;
     var src = '<iframe src="' + input_url + '" style="width:0px;height:0px"></iframe>';
     
     if (document.getElementById("bot_iframe"))
@@ -28,40 +30,11 @@
         document.body.appendChild(div);
     }
   }
+  
+  function linenotify(notify_token,notify_msg) {
+  }
 
-  window.createIframe = createIframe;
+  window.linebot_notify = linebot_notify;
+  window.linenotify = linenotify;
 
 }(window, window.document));
-
-/*
-// Google Apps Script
-
-function doGet(e) {
-  var token = e.parameter.token.replace(/\s+/g,"+");
-  var userid = e.parameter.userid;
-  var text = e.parameter.text;
-  
-  //console.log("token="+token);
-  //console.log("userid="+userid);
-  //console.log("text="+text);    
-  
-  var url = 'https://api.line.me/v2/bot/message/push';
-  UrlFetchApp.fetch(url, {
-    'headers': {
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer ' + token,
-    },
-    'method': 'post',
-    'payload': JSON.stringify({
-      'to':  userid,
-      'messages': [{
-        type:'text',
-        text: text
-      }]
-    }),
-  });  
-  
-  var textOutput = ContentService.createTextOutput(text)
-  return textOutput
-}
-*/
