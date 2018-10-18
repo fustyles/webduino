@@ -37,7 +37,7 @@
     parameter3 = escape(parameter3).replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
     parameter4 = escape(parameter4).replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
 
-    //console.log(parameter1);
+    console.log(parameter1);
 
     if (type=='text')
       return '"&type='+type+'&text="+'+parameter1;
@@ -51,7 +51,8 @@
       return '"&type='+type+'&originalContentUrl="+'+parameter1+'+"&duration="+'+parameter2;
     else if (type=='location')
       return '"&type='+type+'&title="+'+parameter1+'+"&address="+'+parameter2+'+"&latitude="+'+parameter3+'+"&longitude="+'+parameter4;
-    console.log(code);
+    else
+      return "";
   }
   
   function linenotify(notify_token,notify_msg) {
