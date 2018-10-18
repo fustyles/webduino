@@ -23,7 +23,7 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   if (!parameter3) parameter3='';
   if (!parameter4) parameter4='';
   
-  var code = 'linebot_url_escape('+type+','+parameter1+','+parameter2+','+parameter3+','+parameter4+')';
+  var code = 'linebot_url_escape("'+type+'",'+parameter1+','+parameter2+','+parameter3+','+parameter4+')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
