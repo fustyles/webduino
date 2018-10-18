@@ -29,7 +29,7 @@ function doGet(e) {
   
   //token = token.replace(/\s+/g,"+");
   
-  //Webduino : .replace(/fu02fu/g,"&").replace(/fu03fu/g,"#")
+  //Webduino blockly : .replace(/fu02fu/g,"&").replace(/fu03fu/g,"#")
   token = token.replace(/\s+/g,"+").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
   userid = userid.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
   type = type.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");  
