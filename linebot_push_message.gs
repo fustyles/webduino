@@ -1,17 +1,45 @@
-﻿function doGet(e) {
-  var token = e.parameter.token.replace(/\s+/g,"+");
+function doGet(e) {
+  var token = e.parameter.token;
   var userid = e.parameter.userid;
   var type = e.parameter.type;  
-  var text = e.parameter.text+"";
-  var packageId = e.parameter.packageId+"";
-  var stickerId = e.parameter.stickerId+"";
-  var originalContentUrl = e.parameter.originalContentUrl+"";
-  var previewImageUrl = e.parameter.previewImageUrl+"";
+  var text = e.parameter.text;
+  var packageId = e.parameter.packageId;
+  var stickerId = e.parameter.stickerId;
+  var originalContentUrl = e.parameter.originalContentUrl;
+  var previewImageUrl = e.parameter.previewImageUrl;
   var duration = e.parameter.duration;
-  var title = e.parameter.title+"";
-  var address = e.parameter.address+"";
-  var latitude = e.parameter.latitude+"";
-  var longitude = e.parameter.longitude+"";
+  var title = e.parameter.title;
+  var address = e.parameter.address;
+  var latitude = e.parameter.latitude;
+  var longitude = e.parameter.longitude;
+  
+  if (!token) token = "";
+  if (!userid) userid = "";
+  if (!type) type = "";  
+  if (!text) text = "";
+  if (!packageId) packageId = "";
+  if (!stickerId) stickerId = "";
+  if (!originalContentUrl) originalContentUrl = "";
+  if (!previewImageUrl) previewImageUrl = "";
+  if (!duration) duration = "";
+  if (!title) title = "";
+  if (!address) address = "";
+  if (!latitude) latitude = "";
+  if (!longitude) longitude = "";
+  
+  token = token.replace(/\s+/g,"+").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  userid = userid.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  type = type.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");  
+  text = text.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  packageId = packageId.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  stickerId = stickerId.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  originalContentUrl = originalContentUrl.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  previewImageUrl = previewImageUrl.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  duration = duration.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  title = title.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  address = address.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  latitude = latitude.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
+  longitude = longitude.replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");  
   
   //console.log("token="+token);
   //console.log("userid="+userid);
