@@ -39,18 +39,18 @@
 
     console.log(parameter1);
 
-    if (type=='text')
-      return '"&type='+type+'&text="+'+parameter1;
-    else if (type=='sticker')
-      return '"&type='+type+'&packageId="+'+parameter1+'+"&stickerId="+'+parameter2;
-    else if (type=='image')
-      return '"&type='+type+'&originalContentUrl="+'+parameter1+'+"&previewImageUrl="+'+parameter2;
-    else if (type=='video')
-      return '"&type='+type+'&originalContentUrl="+'+parameter1+'+"&previewImageUrl="+'+parameter2;
-    else if (type=='audio')
-      return '"&type='+type+'&originalContentUrl="+'+parameter1+'+"&duration="+'+parameter2;
-    else if (type=='location')
-      return '"&type='+type+'&title="+'+parameter1+'+"&address="+'+parameter2+'+"&latitude="+'+parameter3+'+"&longitude="+'+parameter4;
+    if (type=="text")
+      return "&type="+type+"&text="+parameter1;
+    else if (type=="sticker")
+      return "&type="+type+"&packageId="+parameter1+"&stickerId="+parameter2;
+    else if (type=="image")
+      return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
+    else if (type=="video")
+      return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
+    else if (type=="audio")
+      return "&type="+type+"&originalContentUrl="+parameter1+"&duration="+parameter2;
+    else if (type=="location")
+      return "&type="+type+"&title="+parameter1+"&address="+parameter2+"&latitude="+parameter3+"&longitude="+parameter4;
     else
       return "";
   }
