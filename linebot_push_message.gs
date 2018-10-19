@@ -47,108 +47,76 @@ function doGet(e) {
   var url = 'https://api.line.me/v2/bot/message/push';
   
   if (type=="text") {
-    UrlFetchApp.fetch(url, {
-      'headers': {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer ' + token,
-      },
-      'method': 'post',
-      'payload': JSON.stringify({
-        'to':  userid,
-        'messages': [{
-          type:'text',
-          text:text
-        }]
-      }),
-    });  
+    var payload= JSON.stringify({
+      'to':  userid,
+      'messages': [{
+        type:'text',
+        text:text
+      }]
+    });
   }
   else if (type=="sticker") {
-    UrlFetchApp.fetch(url, {
-      'headers': {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer ' + token,
-      },
-      'method': 'post',
-      'payload': JSON.stringify({
-        'to':  userid,
-        'messages': [{
-          type:'sticker',
-          packageId:packageId,
-          stickerId:stickerId
-        }]
-      }),
-    });  
+    var payload= JSON.stringify({
+      'to':  userid,
+      'messages': [{
+        type:'sticker',
+        packageId:packageId,
+        stickerId:stickerId
+      }]
+    });
   } 
   else if (type=="image") {
-    UrlFetchApp.fetch(url, {
-      'headers': {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer ' + token,
-      },
-      'method': 'post',
-      'payload': JSON.stringify({
-        'to':  userid,
-        'messages': [{
-          type:'image',
-          originalContentUrl:originalContentUrl,
-          previewImageUrl:previewImageUrl
-        }]
-      }),
-    });  
+    var payload= JSON.stringify({
+      'to':  userid,
+      'messages': [{
+        type:'image',
+        originalContentUrl:originalContentUrl,
+        previewImageUrl:previewImageUrl
+      }]
+    });
   }   
   else if (type=="video") {
-    UrlFetchApp.fetch(url, {
-      'headers': {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer ' + token,
-      },
-      'method': 'post',
-      'payload': JSON.stringify({
-        'to':  userid,
-        'messages': [{
-          type:'video',
-          originalContentUrl:originalContentUrl,
-          previewImageUrl:previewImageUrl
-        }]
-      }),
-    });  
+    var payload= JSON.stringify({
+      'to':  userid,
+      'messages': [{
+        type:'video',
+        originalContentUrl:originalContentUrl,
+        previewImageUrl:previewImageUrl
+      }]
+    });
   }   
   else if (type=="audio") {
-    UrlFetchApp.fetch(url, {
-      'headers': {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer ' + token,
-      },
-      'method': 'post',
-      'payload': JSON.stringify({
-        'to':  userid,
-        'messages': [{
-          type:'audio',
-          originalContentUrl:originalContentUrl,
-          duration:duration
-        }]
-      }),
-    });  
+    var payload= JSON.stringify({
+      'to':  userid,
+      'messages': [{
+        type:'audio',
+        originalContentUrl:originalContentUrl,
+        duration:duration
+      }]
+    });
   }    
   else if (type=="location") {
-    UrlFetchApp.fetch(url, {
-      'headers': {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer ' + token,
-      },
-      'method': 'post',
-      'payload': JSON.stringify({
-        'to':  userid,
-        'messages': [{
-          type:'location',
-          title:title,
-          address:address,
-          latitude:latitude,
-          longitude:longitude
-        }]
-      }),
-    });  
+    var payload= JSON.stringify({
+      'to':  userid,
+      'messages': [{
+        type:'location',
+        title:title,
+        address:address,
+        latitude:latitude,
+        longitude:longitude
+      }]
+    });
   }    
+  
+  // Send a push message
+  UrlFetchApp.fetch(url, {
+    'headers': {
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer ' + token,
+    },
+    'method': 'post',
+    'payload': payload
+  });  
   
   var textOutput = ContentService.createTextOutput("OK");
   return textOutput;
