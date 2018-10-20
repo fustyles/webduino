@@ -84,6 +84,7 @@
           if (x[i].getElementsByTagName("WindSpeed")[0].childNodes.length==1)
             PM_data += x[i].getElementsByTagName("WindSpeed")[0].childNodes[0].nodeValue; 
           PM_data += ";"; 
+          console.log(PM_data);
         }
       }
     };
