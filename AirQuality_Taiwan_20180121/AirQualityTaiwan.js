@@ -84,7 +84,6 @@
           if (x[i].getElementsByTagName("WindSpeed")[0].childNodes.length==1)
             PM_data += x[i].getElementsByTagName("WindSpeed")[0].childNodes[0].nodeValue; 
           PM_data += ";"; 
-          console.log(PM_data);
         }
       }
     };
@@ -100,6 +99,7 @@
         url: target,
         success: function(json)
         {
+          console.log(json);
           PM_data = "";
           $.each(json, function(index, element) {
             PM_data += "County,";
