@@ -1,1 +1,1 @@
-MSG.catMatrixLed = "法蘭斯全彩點矩陣";
+MSG.catMatrixLed = "法蘭斯點矩陣";
