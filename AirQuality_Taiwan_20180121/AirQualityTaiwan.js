@@ -114,7 +114,7 @@
           console.log(json);
           PM_data = "";
           $.each(json, function(index, element) {
-            PM_data += ",SiteName,";
+            PM_data += "SiteName,";
             PM_data += element["SiteName"];            
             PM_data += ",County,";
             PM_data += element["County"];
