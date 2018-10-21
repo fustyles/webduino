@@ -226,7 +226,7 @@
           else if (input_type=="Longitude")
             return value[43];       
           else
-            return "undefined";
+            return "";
         }
     }
     else
