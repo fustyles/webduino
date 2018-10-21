@@ -115,11 +115,11 @@
           PM_data = "";
           for (var i = 0; i < json.records.length; i++) {
             PM_data += "SiteName,";
-            PM_data += json.records[i]["SiteName"];            
+            PM_data += json[i]["SiteName"];            
             PM_data += ",County,";
-            PM_data += json.records[i]["County"];
+            PM_data += json[i]["County"];
             PM_data += ",AQI,";
-            PM_data += json.records[i]["AQI"];
+            PM_data += json[i]["AQI"];
             PM_data += ",Pollutant,";
             PM_data += json[i]["Pollutant"];   
             PM_data += ",Status,";
