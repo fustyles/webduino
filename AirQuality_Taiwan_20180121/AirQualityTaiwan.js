@@ -114,7 +114,7 @@
           console.log(json);
           PM_data = "";
           json = eval(json);
-          for (var i in json) 
+          for (var i in json.records) 
           {
             PM_data += "SiteName,";
             PM_data += json[i][0];            
