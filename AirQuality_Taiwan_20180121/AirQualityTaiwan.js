@@ -111,7 +111,7 @@
         url: target,
         success: function(json)
         {
-          console.log(json.result.records);
+          //console.log(json.result.records);
           PM_data = "";
           json = eval(json.result.records);
           for (var i in json) 
@@ -168,7 +168,6 @@
           console.log('fail');
         }
      });
-    console.log(PM_data);
   }
 
   function pmgov_get(input_site,input_type) 
