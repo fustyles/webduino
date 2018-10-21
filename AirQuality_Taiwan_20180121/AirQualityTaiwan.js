@@ -111,13 +111,13 @@
         url: target,
         success: function(json)
         {
-          console.log(json);
+          console.log(json.result.records);
           PM_data = "";
-          json = eval(json);
+          json = eval(json.result.records);
           for (var i in json) 
           {
             PM_data += "SiteName,";
-            PM_data += json[0][1][i]["SiteName"];            
+            PM_data += json[0]["SiteName"];            
             PM_data += ",County,";
             PM_data += json[i]["County"];
             PM_data += ",AQI,";
