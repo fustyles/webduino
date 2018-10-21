@@ -159,7 +159,46 @@
       for (var i = 0; i <(x.length-1); i++) 
         if ((x[i].indexOf(s[0])!=-1)&&(x[i].indexOf(s[1])!=-1)) {
           var value = x[i].split(",");
-          return x[i];
+          
+          
+          if (input_type=="Count")
+            return value[1];
+          else if (input_type=="SiteName")
+            return value[3];         
+          else if (input_type=="PublishTime")
+            return value[5];         
+          else if (input_type=="Statu")
+            return value[7];         
+          else if (input_type=="PM10")
+            return value[9];         
+          else if (input_type=="PM10_AVG")
+            return value[11];         
+          else if (input_type=="PM2.5")
+            return value[13];         
+          else if (input_type=="PM2.5_AVG")
+            return value[15];         
+          else if (input_type=="CO")
+            return value[17];         
+          else if (input_type=="CO_8hr")
+            return value[19];         
+          else if (input_type=="NO")
+            return value[21];         
+          else if (input_type=="NO2")
+            return value[23];         
+          else if (input_type=="NOx")
+            return value[25];         
+          else if (input_type=="O3")
+            return value[27];         
+          else if (input_type=="O3_8hr")
+            return value[29];         
+          else if (input_type=="SO2")
+            return value[31];         
+          else if (input_type=="WindDirec")
+            return value[33];         
+          else if (input_type=="WindSpeed")
+            return value[35];         
+          else
+            return "null";  
         }
     }
     else
