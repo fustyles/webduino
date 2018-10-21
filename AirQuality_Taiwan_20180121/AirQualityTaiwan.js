@@ -145,11 +145,11 @@
             PM_data += ",NOx (ppb),";
             PM_data += json[i]["NOx"];
             PM_data += ",NO (ppb),";
-            PM_data += json[i]["NO"];            
+            PM_data += json[i]["NO"];    
+            PM_data += ",WindDirec (degrees),";
+            PM_data += json[i]["WindDirec"];            
             PM_data += ",WindSpeed (m/sec),";
             PM_data += json[i]["WindSpeed"];
-            PM_data += ",WindDirec (degrees),";
-            PM_data += json[i]["WindDirec"];
             PM_data += ",PublishTime,";
             PM_data += json[i]["PublishTime"];
             PM_data += ",PM2.5_AVG (μg/m3),";
