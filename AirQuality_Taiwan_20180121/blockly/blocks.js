@@ -100,8 +100,6 @@ Blockly.Blocks['pmgov_get'] = {
           ["澎湖縣-馬公","澎湖縣-馬公"]
         ]), "value_site")
           .appendField(new Blockly.FieldDropdown([
-          ["County","County"], 
-          ["SiteName","SiteName"], 
           ["PublishTime","PublishTime"], 
           ["Status","Status"], 
           ["PM10 (μg/m3)","PM10"], 
