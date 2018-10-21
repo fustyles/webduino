@@ -117,7 +117,7 @@
           for (var i in json) 
           {
             PM_data += "SiteName,";
-            PM_data += json[i]["SiteName"];            
+            PM_data += json[0][1][i]["SiteName"];            
             PM_data += ",County,";
             PM_data += json[i]["County"];
             PM_data += ",AQI,";
