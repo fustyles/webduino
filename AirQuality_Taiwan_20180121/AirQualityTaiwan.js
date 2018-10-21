@@ -113,7 +113,9 @@
         {
           console.log(json);
           PM_data = "";
-          $.each(json, function(index, element) {
+          var json = $.parseJSON(json);
+          for (var i in json) 
+          {
             PM_data += "SiteName,";
             PM_data += json[i]["SiteName"];            
             PM_data += ",County,";
@@ -160,7 +162,7 @@
             PM_data += json[i]["Longitude"];
             PM_data += ";";
             console.log(PM_data);
-          });
+          )
         },
         error: function(exception)
         {
