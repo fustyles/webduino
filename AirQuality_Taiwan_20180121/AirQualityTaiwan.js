@@ -117,7 +117,7 @@
             PM_data += "SiteName,";
             PM_data += json[i]["SiteName"];            
             PM_data += ",County,";
-            PM_data += json[i]["County);
+            PM_data += json[i]["County"];;
             PM_data += ",AQI,";
             PM_data += json[i]["AQI"];
             PM_data += ",Pollutant,";
