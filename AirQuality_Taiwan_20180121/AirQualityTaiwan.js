@@ -6,7 +6,7 @@
   
   var PM_data="";
   
-  function PM_gov_link(input_url_,input_format_) 
+  function pmgov_link(input_url_,input_format_) 
   {
     if (input_format_=="JSON")
       getJSON(input_url_);
@@ -149,7 +149,7 @@
      });
   }
 
-  function PM_gov_get(input_site_) 
+  function pmgov_get(input_site,input_type) 
   {
     if (PM_data!="")
     {
@@ -163,8 +163,8 @@
        return "";
   } 
     
-  window.PM_gov_link = PM_gov_link;
-  window.PM_gov_get = PM_gov_get;
+  window.pmgov_link = pmgov_link;
+  window.pmgov_get = pmgov_get;
   window.getXML = getXML;
   window.getJSON = getJSON;
   
