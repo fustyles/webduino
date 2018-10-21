@@ -103,9 +103,9 @@
           PM_data = "";
           $.each(json, function(index, element) {
             PM_data += "County,";
-            PM_data += element.County;
+            PM_data += json.element[index].County;
             PM_data += ",SiteName,";
-            PM_data += element["SiteName"];
+            PM_data += element[index].SiteName;
             PM_data += ",PublishTime,";
             PM_data += element["PublishTime"];
             PM_data += ",Status,";
