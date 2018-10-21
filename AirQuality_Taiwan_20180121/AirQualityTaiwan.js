@@ -117,7 +117,7 @@
             PM_data += "SiteName,";
             PM_data += String(element["SiteName"]);            
             PM_data += ",County,";
-            PM_data += String(json[i].element.County);
+            PM_data += String(element.County);
             PM_data += ",AQI,";
             PM_data += element["AQI"];
             PM_data += ",Pollutant,";
