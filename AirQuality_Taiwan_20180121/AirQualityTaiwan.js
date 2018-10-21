@@ -29,60 +29,72 @@
         PM_data = "";
         for (var i = 0; i <x.length; i++) 
         { 
-          PM_data += "County,";
-          if (x[i].getElementsByTagName("County")[0].childNodes.length==1)                      
-            PM_data += x[i].getElementsByTagName("County")[0].childNodes[0].nodeValue;
-          PM_data += ",SiteName,";
+          PM_data += "SiteName,";
           if (x[i].getElementsByTagName("SiteName")[0].childNodes.length==1)
             PM_data += x[i].getElementsByTagName("SiteName")[0].childNodes[0].nodeValue;
-          PM_data += ",PublishTime,";
-          if (x[i].getElementsByTagName("PublishTime")[0].childNodes.length==1)                      
-            PM_data += x[i].getElementsByTagName("PublishTime")[0].childNodes[0].nodeValue;
+          PM_data += ",County,";          
+          if (x[i].getElementsByTagName("County")[0].childNodes.length==1)                      
+            PM_data += x[i].getElementsByTagName("County")[0].childNodes[0].nodeValue;
+          PM_data += ",AQI,";
+          if (x[i].getElementsByTagName("AQI")[0].childNodes.length==1)                      
+            PM_data += x[i].getElementsByTagName("AQI")[0].childNodes[0].nodeValue;
+          PM_data += ",Pollutant,";
+          if (x[i].getElementsByTagName("Pollutant")[0].childNodes.length==1)                      
+            PM_data += x[i].getElementsByTagName("Pollutant")[0].childNodes[0].nodeValue;
           PM_data += ",Status,";
           if (x[i].getElementsByTagName("Status")[0].childNodes.length==1)                      
-            PM_data += x[i].getElementsByTagName("Status")[0].childNodes[0].nodeValue;               
-          PM_data += ",PM10 (μg/m3),";
-          if (x[i].getElementsByTagName("PM10")[0].childNodes.length==1)                      
-            PM_data += x[i].getElementsByTagName("PM10")[0].childNodes[0].nodeValue;
-          PM_data += ",PM10_AVG (μg/m3),";
-          if (x[i].getElementsByTagName("PM10_AVG")[0].childNodes.length==1)                      
-            PM_data += x[i].getElementsByTagName("PM10_AVG")[0].childNodes[0].nodeValue;                    
-          PM_data += ",PM2.5 (μg/m3),";
-          if (x[i].getElementsByTagName("PM2.5")[0].childNodes.length==1)                      
-            PM_data += x[i].getElementsByTagName("PM2.5")[0].childNodes[0].nodeValue;
-          PM_data += ",PM2.5_AVG (μg/m3),";
-          if (x[i].getElementsByTagName("PM2.5_AVG")[0].childNodes.length==1)                      
-            PM_data += x[i].getElementsByTagName("PM2.5_AVG")[0].childNodes[0].nodeValue; 
+            PM_data += x[i].getElementsByTagName("Status")[0].childNodes[0].nodeValue;            
+          PM_data += ",SO2 (ppb),";
+          if (x[i].getElementsByTagName("SO2")[0].childNodes.length==1)                      
+            PM_data += x[i].getElementsByTagName("SO2")[0].childNodes[0].nodeValue;
           PM_data += ",CO (ppm),";
           if (x[i].getElementsByTagName("CO")[0].childNodes.length==1)                      
             PM_data += x[i].getElementsByTagName("CO")[0].childNodes[0].nodeValue;
           PM_data += ",CO_8hr (ppm),";
           if (x[i].getElementsByTagName("CO_8hr")[0].childNodes.length==1)                      
-            PM_data += x[i].getElementsByTagName("CO_8hr")[0].childNodes[0].nodeValue;
-          PM_data += ",NO (ppb),";
-          if (x[i].getElementsByTagName("NO")[0].childNodes.length==1)                      
-            PM_data += x[i].getElementsByTagName("NO")[0].childNodes[0].nodeValue;
-          PM_data += ",NO2 (ppb),";
-          if (x[i].getElementsByTagName("NO2")[0].childNodes.length==1)                      
-            PM_data += x[i].getElementsByTagName("NO2")[0].childNodes[0].nodeValue;  
-          PM_data += ",NOx (ppb),";
-          if (x[i].getElementsByTagName("NOx")[0].childNodes.length==1)                      
-            PM_data += x[i].getElementsByTagName("NOx")[0].childNodes[0].nodeValue;
+            PM_data += x[i].getElementsByTagName("CO_8hr")[0].childNodes[0].nodeValue;          
           PM_data += ",O3 (ppb),";
           if (x[i].getElementsByTagName("O3")[0].childNodes.length==1)                      
             PM_data += x[i].getElementsByTagName("O3")[0].childNodes[0].nodeValue;
           PM_data += ",O3_8hr (ppb),";
           if (x[i].getElementsByTagName("O3_8hr")[0].childNodes.length==1)                      
             PM_data += x[i].getElementsByTagName("O3_8hr")[0].childNodes[0].nodeValue;
-          PM_data += ",SO2 (ppb),";
-          if (x[i].getElementsByTagName("SO2")[0].childNodes.length==1)                      
-            PM_data += x[i].getElementsByTagName("SO2")[0].childNodes[0].nodeValue;
+          PM_data += ",PM10 (μg/m3),";
+          if (x[i].getElementsByTagName("PM10")[0].childNodes.length==1)                      
+            PM_data += x[i].getElementsByTagName("PM10")[0].childNodes[0].nodeValue;          
+          PM_data += ",PM2.5 (μg/m3),";
+          if (x[i].getElementsByTagName("PM2.5")[0].childNodes.length==1)                      
+            PM_data += x[i].getElementsByTagName("PM2.5")[0].childNodes[0].nodeValue;          
+          PM_data += ",NO2 (ppb),";
+          if (x[i].getElementsByTagName("NO2")[0].childNodes.length==1)                      
+            PM_data += x[i].getElementsByTagName("NO2")[0].childNodes[0].nodeValue;  
+          PM_data += ",NOx (ppb),";
+          if (x[i].getElementsByTagName("NOx")[0].childNodes.length==1)                      
+            PM_data += x[i].getElementsByTagName("NOx")[0].childNodes[0].nodeValue;          
+          PM_data += ",NO (ppb),";
+          if (x[i].getElementsByTagName("NO")[0].childNodes.length==1)                      
+            PM_data += x[i].getElementsByTagName("NO")[0].childNodes[0].nodeValue;          
           PM_data += ",WindDirec (degrees),";
           if (x[i].getElementsByTagName("WindDirec")[0].childNodes.length==1)
             PM_data += x[i].getElementsByTagName("WindDirec")[0].childNodes[0].nodeValue;
           PM_data += ",WindSpeed (m/sec),";
           if (x[i].getElementsByTagName("WindSpeed")[0].childNodes.length==1)
             PM_data += x[i].getElementsByTagName("WindSpeed")[0].childNodes[0].nodeValue; 
+          PM_data += ",PublishTime,";
+          if (x[i].getElementsByTagName("PublishTime")[0].childNodes.length==1)                      
+            PM_data += x[i].getElementsByTagName("PublishTime")[0].childNodes[0].nodeValue;          
+          PM_data += ",PM2.5_AVG (μg/m3),";
+          if (x[i].getElementsByTagName("PM2.5_AVG")[0].childNodes.length==1)                      
+            PM_data += x[i].getElementsByTagName("PM2.5_AVG")[0].childNodes[0].nodeValue; 
+          PM_data += ",PM10_AVG (μg/m3),";
+          if (x[i].getElementsByTagName("PM10_AVG")[0].childNodes.length==1)                      
+            PM_data += x[i].getElementsByTagName("PM10_AVG")[0].childNodes[0].nodeValue;  
+          PM_data += ",Latitude,";
+          if (x[i].getElementsByTagName("Latitude")[0].childNodes.length==1)                      
+            PM_data += x[i].getElementsByTagName("Latitude")[0].childNodes[0].nodeValue;   
+          PM_data += ",Longitude,";
+          if (x[i].getElementsByTagName("Longitude")[0].childNodes.length==1)                      
+            PM_data += x[i].getElementsByTagName("Longitude")[0].childNodes[0].nodeValue;   
           PM_data += ";"; 
         }
       }
@@ -160,45 +172,52 @@
         if ((x[i].indexOf(s[0])!=-1)&&(x[i].indexOf(s[1])!=-1)) {
           var value = x[i].split(",");
           
-          
-          if (input_type=="Count")
+          if (input_type=="SiteName")
             return value[1];
-          else if (input_type=="SiteName")
-            return value[3];         
-          else if (input_type=="PublishTime")
-            return value[5];         
-          else if (input_type=="Statu")
-            return value[7];         
-          else if (input_type=="PM10")
-            return value[9];         
-          else if (input_type=="PM10_AVG")
-            return value[11];         
-          else if (input_type=="PM2.5")
-            return value[13];         
-          else if (input_type=="PM2.5_AVG")
-            return value[15];         
-          else if (input_type=="CO")
-            return value[17];         
-          else if (input_type=="CO_8hr")
-            return value[19];         
-          else if (input_type=="NO")
-            return value[21];         
-          else if (input_type=="NO2")
-            return value[23];         
-          else if (input_type=="NOx")
-            return value[25];         
-          else if (input_type=="O3")
-            return value[27];         
-          else if (input_type=="O3_8hr")
-            return value[29];         
+          else if (input_type=="County")
+            return value[3];
+          else if (input_type=="AQI")
+            return value[5];
+          else if (input_type=="Pollutant")
+            return value[7];
+          else if (input_type=="Status")
+            return value[9];
           else if (input_type=="SO2")
-            return value[31];         
-          else if (input_type=="WindDirec")
-            return value[33];         
+            return value[11];
+          else if (input_type=="CO")
+            return value[13];
+          else if (input_type=="CO_8hr")
+            return value[15];
+          else if (input_type=="O3")
+            return value[17];
+          else if (input_type=="O3_8hr")
+            return value[19];
+          else if (input_type=="PM10")
+            return value[21];
+          else if (input_type=="PM2.5")
+            return value[23];
+          else if (input_type=="NO2")
+            return value[25];
+          else if (input_type=="NOx")
+            return value[27];
+          else if (input_type=="NO")
+            return value[29];
           else if (input_type=="WindSpeed")
-            return value[35];         
+            return value[31];
+          else if (input_type=="WindDirec")
+            return value[33];
+          else if (input_type=="PublishTime")
+            return value[35];
+          else if (input_type=="PM2.5_AVG")
+            return value[37];
+          else if (input_type=="PM10_AVG")
+            return value[39];
+          else if (input_type=="Latitude")
+            return value[41];
+          else if (input_type=="Longitude")
+            return value[43];       
           else
-            return "null";  
+            return "undefined";
         }
     }
     else
