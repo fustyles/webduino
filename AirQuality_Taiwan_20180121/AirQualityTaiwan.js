@@ -154,10 +154,13 @@
     if (PM_data!="")
     {
       var x = PM_data.split(";");
-      var s = input_site_.split("-");
+      var s = input_site.split("-");
 
       for (var i = 0; i <(x.length-1); i++) 
-        if ((x[i].indexOf(s[0])!=-1)&&(x[i].indexOf(s[1])!=-1)) return x[i];
+        if ((x[i].indexOf(s[0])!=-1)&&(x[i].indexOf(s[1])!=-1)) {
+          var value = x[i].split(",");
+          return x[i];
+        }
     }
     else
        return "";
