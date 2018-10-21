@@ -103,7 +103,7 @@
           PM_data = "";
           $.each(json, function(index, element) {
             PM_data += "County,";
-            PM_data += JSON.parse(element["County"]);
+            PM_data += $.parseJSON(element["County"]);
             PM_data += ",SiteName,";
             PM_data += element["SiteName"];
             PM_data += ",PublishTime,";
