@@ -211,9 +211,9 @@
             return value[27];
           else if (input_type=="NO")
             return value[29];
-          else if (input_type=="WindSpeed")
-            return value[31];
           else if (input_type=="WindDirec")
+            return value[31];
+          else if (input_type=="WindSpeed")
             return value[33];
           else if (input_type=="PublishTime")
             return value[35];
