@@ -7,7 +7,6 @@
       </block>
     </value>
   </block>  
-  <block type="pmgov_get">
-    <field name="value_site_"></field>
+  <block type="pmgov_get">   
   </block> 
  </category>
