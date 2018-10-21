@@ -161,7 +161,6 @@
             PM_data += ",Longitude,";
             PM_data += json[i]["Longitude"];
             PM_data += ";";
-            console.log(PM_data);
           }
         },
         error: function(exception)
@@ -169,6 +168,7 @@
           console.log('fail');
         }
      });
+    console.log(PM_data);
   }
 
   function pmgov_get(input_site,input_type) 
