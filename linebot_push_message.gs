@@ -108,7 +108,7 @@ function doGet(e) {
     });
   }    
   
-  // Send a push message
+  // Send a push message to Line Bot
   UrlFetchApp.fetch(url, {
     'headers': {
       'Content-Type': 'application/json; charset=UTF-8',
