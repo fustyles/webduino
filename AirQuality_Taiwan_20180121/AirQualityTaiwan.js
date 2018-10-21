@@ -95,7 +95,7 @@
   {
     var data = $.ajax({
         type: "get",
-        dataType: "jsonp",
+        dataType: "text jsonp",
         url: target,
         success: function(json)
         {
