@@ -8,6 +8,6 @@ Blockly.JavaScript['pmgov_link'] = function(block) {
 Blockly.JavaScript['pmgov_get'] = function(block) {
   var value_site = block.getFieldValue('value_site');  
   var value_type = block.getFieldValue('value_type');
-  var code = 'PM_gov_get("'+value_site+'")';
+  var code = 'pm_gov_get("'+value_site+'","'+value_type+'")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
