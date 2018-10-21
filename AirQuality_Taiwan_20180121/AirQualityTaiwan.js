@@ -117,7 +117,7 @@
           for (var i in json.result.records) 
           {
             PM_data += "SiteName,";
-            PM_data += json[i][0];            
+            PM_data += json[i]["SiteName"];            
             PM_data += ",County,";
             PM_data += json[i]["County"];
             PM_data += ",AQI,";
