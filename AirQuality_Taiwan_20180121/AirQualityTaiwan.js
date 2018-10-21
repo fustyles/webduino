@@ -107,7 +107,7 @@
             PM_data += ",SiteName,";
             PM_data += eval(element.SiteName);
             PM_data += ",PublishTime,";
-            PM_data += element["PublishTime"];
+            PM_data += element["PublishTime"].toString();
             PM_data += ",Status,";
             PM_data += element["Status"];
             PM_data += ",PM10 (μg/m3),";
