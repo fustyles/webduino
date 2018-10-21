@@ -99,12 +99,12 @@ Blockly.Blocks['pmgov_get'] = {
           ["金門縣-金門","金門縣-金門"],
           ["澎湖縣-馬公","澎湖縣-馬公"]
         ]), "value_site_");
+    this.appendDummyInput()
+        .appendField("Type")
+        .appendField(new Blockly.FieldDropdown([["County","County"], ["SiteName","SiteName"], ["PublishTime","PublishTime"], ["Status","Status"], ["PM10 (μg/m3)","PM10"], ["PM10_AVG (μg/m3)","PM10_AVG"], ["PM2.5 (μg/m3)","PM2.5"], ["PM2.5_AVG (μg/m3)","PM2.5_AVG"], ["CO (ppm)","CO"], ["CO_8hr (ppm)","CO_8hr"], ["NO (ppb)","NO"], ["NO2 (ppb)","NO2"], ["NOx (ppb)","NOx"], ["O3 (ppb)","O3"], ["O3_8hr (ppb)","O3_8hr"], ["SO2 (ppb)","SO2"], ["WindDirec (degrees)","WindDirec"], ["WindSpeed (m/sec)","WindSpeed"]]), "value_type");
     this.setOutput(true, null);  
     this.setColour(300);
     this.setTooltip("");
     this.setHelpUrl("");
   }  
 };
-
-
-
