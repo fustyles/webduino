@@ -113,7 +113,7 @@
         {
           console.log(json);
           PM_data = "";
-          for (var i = 0; i < json.length; i++) {
+          for (var i = 0; i < json.records.length; i++) {
             PM_data += "SiteName,";
             PM_data += json[i]["SiteName"];            
             PM_data += ",County,";
