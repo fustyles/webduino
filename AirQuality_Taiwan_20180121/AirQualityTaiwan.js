@@ -113,11 +113,11 @@
         {
           console.log(json);
           PM_data = "";
-          $.each(json, function(index, element) {
+          $.each(json, function(i, element) {
             PM_data += "SiteName,";
             PM_data += String(element["SiteName"]);            
             PM_data += ",County,";
-            PM_data += element["County"];
+            PM_data += String(json[i].element.County);
             PM_data += ",AQI,";
             PM_data += element["AQI"];
             PM_data += ",Pollutant,";
