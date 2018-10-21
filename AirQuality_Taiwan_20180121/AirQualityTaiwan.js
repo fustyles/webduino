@@ -160,7 +160,7 @@
             PM_data += json[i]["Longitude"];
             PM_data += ";";
             console.log(PM_data);
-          });
+          }
         },
         error: function(exception)
         {
