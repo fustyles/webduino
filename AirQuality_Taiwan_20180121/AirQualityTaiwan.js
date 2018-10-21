@@ -131,7 +131,7 @@
             PM_data += ",CO_8hr (ppm),";
             PM_data += json[i]["CO_8hr"];            
             PM_data += ",O3 (ppb),";
-            PM_data += json[i]t["O3"];
+            PM_data += json[i]["O3"];
             PM_data += ",O3_8hr (ppb),";
             PM_data += json[i]["O3_8hr"];            
             PM_data += ",PM10 (μg/m3),";
