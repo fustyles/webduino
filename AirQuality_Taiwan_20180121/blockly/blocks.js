@@ -101,6 +101,7 @@ Blockly.Blocks['pmgov_get'] = {
         ]), "value_site")
           .appendField(new Blockly.FieldDropdown([
           ["PublishTime","PublishTime"], 
+          ["AQI","AQI"],       
           ["Status","Status"], 
           ["PM10 (μg/m3)","PM10"], 
           ["PM10_AVG (μg/m3)","PM10_AVG"], 
@@ -115,7 +116,9 @@ Blockly.Blocks['pmgov_get'] = {
           ["O3_8hr (ppb)","O3_8hr"], 
           ["SO2 (ppb)","SO2"], 
           ["WindDirec (degrees)","WindDirec"], 
-          ["WindSpeed (m/sec)","WindSpeed"]
+          ["WindSpeed (m/sec)","WindSpeed"],
+          ["Latitude","Latitude"], 
+          ["Longitude","Longitude"]
         ]), "value_type");
     this.setOutput(true, null);  
     this.setColour(300);
