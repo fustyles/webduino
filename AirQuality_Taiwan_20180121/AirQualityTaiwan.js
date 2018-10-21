@@ -177,7 +177,7 @@
       var x = PM_data.split(";");
       var s = input_site.split("-");
 
-      for (var i = 0; i <(x.length-1); i++) 
+      for (var i = 0; i <(x.length-1); i++) {
         if ((x[i].indexOf(s[0])!=-1)&&(x[i].indexOf(s[1])!=-1)) {
           var value = x[i].split(",");
           
@@ -228,6 +228,8 @@
           else
             return "";
         }
+      }
+      return "";
     }
     else
        return "";
