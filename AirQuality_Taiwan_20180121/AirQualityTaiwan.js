@@ -113,7 +113,7 @@
         {
           console.log(json);
           PM_data = "";
-          json = $.parseJSON(json);
+          json = eval(json);
           for (var i in json) 
           {
             PM_data += "SiteName,";
