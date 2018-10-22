@@ -14,8 +14,8 @@ function doGet(e) {
   var longitude = ((!e.parameter.longitude)?"":e.parameter.longitude);
   
   token = token.replace(/\s+/g,"+");
-  text = text.replace(/\<br\>/g,"\n").replace(/\<br\/\>/g,"\n").replace(/\<br \/\>/g,"\n").replace(/\<BR\>/g,"\n");
-  
+  text = text.replace(/\<br\>/g,"\n").replace(/\<br\/\>/g,"\n").replace(/\<br \/\>/g,"\n").replace(/\<BR\>/g,"\n").replace(/\<BR\/\>/g,"\n").replace(/\<BR \/\>/g,"\n");
+
   // Webduino Blockly : .replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
   token = token.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
   userid = userid.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
