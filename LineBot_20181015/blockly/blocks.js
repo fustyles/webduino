@@ -46,13 +46,13 @@ Blockly.Blocks['linebot_type'] = {
   }  
 };
 
-Blockly.Blocks['linenotify_notify'] = {
+Blockly.Blocks['linenotify'] = {
   init: function() {
   this.appendValueInput("notify_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Line Notify   ")
-      .appendField("ACCESS TOKEN");  
+      .appendField("CHANNEL ACCESS TOKEN");   
   this.appendValueInput("notify_msg")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
