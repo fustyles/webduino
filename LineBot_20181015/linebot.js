@@ -31,6 +31,32 @@
     }
   }
   
+  function linenotify_push_message(bot_token,bot_msg) {
+    
+    bot_token = escape(bot_token).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+    var url="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec?token="+bot_token+bot_msg;
+    var src = '<iframe src="' + url + '" style="width:0px;height:0px"></iframe>';
+    
+    if (document.getElementById("bot_iframe"))
+    {
+          document.getElementById("bot_iframe").style.left = '0px';
+          document.getElementById("bot_iframe").style.top = '0px';
+          document.getElementById("bot_iframe").style.display = 'block';
+          document.getElementById("bot_iframe").innerHTML = src;
+    }
+    else
+    {
+        var div = document.createElement('div');
+        div.id = "bot_iframe";
+        div.style.position = 'absolute';      
+        div.style.left = '0px';
+        div.style.top = '0px';
+        div.style.zindex='9999';      
+        div.innerHTML = src;
+        document.body.appendChild(div);
+    }
+  }  
+  
   function linebot_url_escape(type,parameter1,parameter2,parameter3,parameter4) {
 
     parameter1 = escape(parameter1+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
@@ -58,6 +84,7 @@
   }
 
   window.linebot_push_message = linebot_push_message;
+  window.linenotify_push_message = linenotify_push_message;
   window.linebot_url_escape = linebot_url_escape;
   window.linenotify = linenotify;
 
