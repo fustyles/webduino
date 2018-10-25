@@ -57,7 +57,7 @@
     }
   }  
   
-  function linebot_url_escape(type,parameter1,parameter2,parameter3,parameter4) {
+  function line_url_escape(type,parameter1,parameter2,parameter3,parameter4) {
 
     parameter1 = escape(parameter1+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
     parameter2 = escape(parameter2+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
@@ -67,9 +67,9 @@
     if (type=="text")
       return "&type="+type+"&text="+parameter1;
     else if (type=="sticker")
-      return "&type="+type+"&packageId="+parameter1+"&stickerId="+parameter2;
+      return "&type="+type+"&packageId="+parameter1+"&stickerId="+parameter2+"&stickerPackageId="+parameter1;
     else if (type=="image")
-      return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
+      return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2+"&imageFullsize="+parameter1+"&imageThumbnail="+parameter2;
     else if (type=="video")
       return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
     else if (type=="audio")
@@ -79,22 +79,7 @@
     else
       return "";
   }
-  
-  function linenotify_url_escape(type,parameter1,parameter2) {
 
-    parameter1 = escape(parameter1+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
-    parameter2 = escape(parameter2+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
-
-    if (type=="text")
-      return "&type="+type+"&text="+parameter1;
-    else if (type=="sticker")
-      return "&type="+type+"&stickerPackageId="+parameter1+"&stickerId="+parameter2;
-    else if (type=="image")
-      return "&type="+type+"&imageFullsize="+parameter1+"&imageThumbnail="+parameter2;
-    else
-      return "";
-  }
- 
 
   window.linebot_push_message = linebot_push_message;
   window.linenotify_push_message = linenotify_push_message;
