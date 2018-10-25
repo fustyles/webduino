@@ -37,17 +37,17 @@
     var url="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec?token="+bot_token+bot_msg;
     var src = '<iframe src="' + url + '" style="width:0px;height:0px"></iframe>';
     
-    if (document.getElementById("bot_iframe"))
+    if (document.getElementById("notify_iframe"))
     {
-          document.getElementById("bot_iframe").style.left = '0px';
-          document.getElementById("bot_iframe").style.top = '0px';
-          document.getElementById("bot_iframe").style.display = 'block';
-          document.getElementById("bot_iframe").innerHTML = src;
+          document.getElementById("notify_iframe").style.left = '0px';
+          document.getElementById("notify_iframe").style.top = '0px';
+          document.getElementById("notify_iframe").style.display = 'block';
+          document.getElementById("notify_iframe").innerHTML = src;
     }
     else
     {
         var div = document.createElement('div');
-        div.id = "bot_iframe";
+        div.id = "notify_iframe";
         div.style.position = 'absolute';      
         div.style.left = '0px';
         div.style.top = '0px';
