@@ -94,14 +94,11 @@
     else
       return "";
   }
-  
-  function linenotify(notify_token,notify_msg) {
-  }
+ 
 
   window.linebot_push_message = linebot_push_message;
   window.linenotify_push_message = linenotify_push_message;
   window.linebot_url_escape = linebot_url_escape;
   window.linenotify_url_escape = linenotify_url_escape;
-  window.linenotify = linenotify;
 
 }(window, window.document));
