@@ -37,10 +37,3 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   var code = 'line_url_escape("'+type+'",'+parameter1+','+parameter2+','+parameter3+','+parameter4+')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
-
-Blockly.JavaScript['linenotify'] = function (block) {
-  var notify_token = Blockly.JavaScript.valueToCode(block, 'notify_token', Blockly.JavaScript.ORDER_ATOMIC);  
-  var notify_msg = Blockly.JavaScript.valueToCode(block, 'notify_msg', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'linenotify('+notify_token+','+notify_msg+');\n';
-  return code; 
-};
