@@ -11,7 +11,7 @@ Blockly.JavaScript['linebot_notify'] = function (block) {
   return code; 
 };
 
-Blockly.JavaScript['linenotify_notify'] = function (block) {
+Blockly.JavaScript['linenotify'] = function (block) {
   var notify_token = Blockly.JavaScript.valueToCode(block, 'notify_token', Blockly.JavaScript.ORDER_ATOMIC);  
   var notify_msg = Blockly.JavaScript.valueToCode(block, 'notify_msg', Blockly.JavaScript.ORDER_ATOMIC);
   
