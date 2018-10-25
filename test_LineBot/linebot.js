@@ -70,7 +70,7 @@
     else if (type=="sticker")
       return "&type="+type+"&packageId="+parameter1+"&stickerId="+parameter2+"&stickerPackageId="+parameter1;
     else if (type=="image")
-      return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2+"&imageFullsize="+parameter1+"&imageThumbnail="+parameter2;
+      return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
     else if (type=="video")
       return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
     else if (type=="audio")
