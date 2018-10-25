@@ -46,7 +46,7 @@ Blockly.Blocks['linebot_type'] = {
   }  
 };
 
-Blockly.Blocks['linenotify'] = {
+Blockly.Blocks['linenotify_notify'] = {
   init: function() {
   this.appendValueInput("notify_token")
       .setCheck("String")
