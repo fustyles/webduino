@@ -1,1 +1,1 @@
-MSG.catlinebot = "Linet";
+MSG.catlinebot = "Line";
