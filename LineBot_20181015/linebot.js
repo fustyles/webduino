@@ -88,9 +88,9 @@
     if (type=="text")
       return "&type="+type+"&text="+parameter1;
     else if (type=="sticker")
-      return "&type="+type+"&packageId="+parameter1+"&stickerId="+parameter2;
+      return "&type="+type+"&stickerPackageId="+parameter1+"&stickerId="+parameter2;
     else if (type=="image")
-      return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
+      return "&type="+type+"&imageFullsize="+parameter1+"&imageThumbnail="+parameter2;
     else
       return "";
   }
