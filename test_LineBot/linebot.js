@@ -35,6 +35,7 @@
     
     bot_token = escape(bot_token).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
     var url="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec?token="+bot_token+bot_msg;
+    console.log(url);
     var src = '<iframe src="' + url + '" style="width:0px;height:0px"></iframe>';
     
     if (document.getElementById("notify_iframe"))
