@@ -35,8 +35,6 @@
       </block>  
     </value>
   </block>
-  
-  
   <block type="linenotify">
     <value name="notify_token">
       <block type="text">
