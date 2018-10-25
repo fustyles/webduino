@@ -83,7 +83,6 @@
 
   window.linebot_push_message = linebot_push_message;
   window.linenotify_push_message = linenotify_push_message;
-  window.linebot_url_escape = linebot_url_escape;
-  window.linenotify_url_escape = linenotify_url_escape;
+  window.line_url_escape = line_url_escape;
 
 }(window, window.document));
