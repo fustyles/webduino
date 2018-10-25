@@ -68,9 +68,9 @@
     if (type=="text")
       return "&type="+type+"&text="+parameter1;
     else if (type=="sticker")
-      return "&type="+type+"&packageId="+parameter1+"&stickerId="+parameter2+"&stickerPackageId="+parameter1;
+      return "&type="+type+"&packageId="+parameter1+"&stickerId="+parameter2+"&text="+parameter3;
     else if (type=="image")
-      return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
+      return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2+"&text="+parameter3;
     else if (type=="video")
       return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
     else if (type=="audio")
