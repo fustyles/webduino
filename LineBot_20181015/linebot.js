@@ -80,12 +80,28 @@
       return "";
   }
   
+  function linenotify_url_escape(type,parameter1,parameter2) {
+
+    parameter1 = escape(parameter1+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+    parameter2 = escape(parameter2+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
+
+    if (type=="text")
+      return "&type="+type+"&text="+parameter1;
+    else if (type=="sticker")
+      return "&type="+type+"&packageId="+parameter1+"&stickerId="+parameter2;
+    else if (type=="image")
+      return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
+    else
+      return "";
+  }
+  
   function linenotify(notify_token,notify_msg) {
   }
 
   window.linebot_push_message = linebot_push_message;
   window.linenotify_push_message = linenotify_push_message;
   window.linebot_url_escape = linebot_url_escape;
+  window.linenotify_url_escape = linenotify_url_escape;
   window.linenotify = linenotify;
 
 }(window, window.document));
