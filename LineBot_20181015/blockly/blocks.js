@@ -4,7 +4,7 @@ Blockly.Blocks['linebot_notify'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Line Bot   ")
-      .appendField("CHANNEL ACCESS TOKEN");    
+      .appendField("TOKEN");    
   this.appendValueInput("bot_userid")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -23,7 +23,7 @@ Blockly.Blocks['linebot_notify'] = {
 Blockly.Blocks['linebot_type'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Message (bot)");    
+        .appendField("Message");    
     this.appendDummyInput()
         .appendField("Type")
         .appendField(new Blockly.FieldDropdown([["text (text)","text"], ["sticker (packageId, stickerId)","sticker"], ["image (originalContentUrl, previewImageUrl)","image"], ["video (originalContentUrl, previewImageUrl)","video"], ["audio (originalContentUrl, duration)","audio"], ["location (title, address, latitude, longitude)","location"]]), "value_type");
