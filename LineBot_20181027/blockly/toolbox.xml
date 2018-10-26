@@ -42,7 +42,7 @@
       </block>
     </value>   
     <value name="notify_msg">
-      <block type="linebot_type">
+      <block type="linenotify_type">
         <value name="value_parameter1">
           <block type="text">
             <field name="TEXT"></field>
