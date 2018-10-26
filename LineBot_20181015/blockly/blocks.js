@@ -38,8 +38,7 @@ Blockly.Blocks['linebot_type'] = {
         .appendField("Parameter3");
     this.appendValueInput("value_parameter4")
         .setCheck(null)
-        .appendField("Parameter4");   
-    this.setInputsInline(true);
+        .appendField("Parameter4"); 
     this.setOutput(true, null);  
     this.setColour(300);
     this.setTooltip("");
