@@ -57,11 +57,6 @@
           <block type="text">
             <field name="TEXT"></field>
           </block>
-        </value> 
-        <value name="value_parameter4">
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
         </value>         
       </block>  
     </value>
