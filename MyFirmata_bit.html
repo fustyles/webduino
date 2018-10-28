@@ -101,7 +101,7 @@
   let button2 = document.createElement('button');
   button2.textContent = "執行";
   button2.onclick = function() {
-      document.getElementById("cmd").value="marquee="+document.getElementById("interval").value+";"+document.getElementById("marquee").value.replace(/;/g,". ");
+      document.getElementById("cmd").value="marquee="+document.getElementById("interval").value+";"+document.getElementById("marquee").value.replace(/;/g,".");
   };
   document.getElementById("btn2").appendChild(button2).setAttribute('id','btn_marquee');    
   
