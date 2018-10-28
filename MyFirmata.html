@@ -13,12 +13,12 @@
   <script src="https://bit.webduino.io/blockly/dist/lib/runtime.min.js"></script>
   <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-led-matrix/BitLedMatrix-blockly.js"></script>
   <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-led-matrix/BitLedMatrix.js"></script>
+  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-photocell/BitPhotocell-blockly.js"></script>
 <style id="jsbin-css">
 #demo-area-01-show { font-size: 60px; pointer-events: auto!important; }
 </style>
 </head>
 <body>
-  
 
 <div><span id="demo-area-01-show">123</span></div>
 <input type="text" name="cmd" id="cmd">
@@ -72,14 +72,17 @@
       var matrix = getMatrix(board, 4, 25);
       var photocell_l = getPhotocell(board, 0);
       var photocell_r = getPhotocell(board, 3);
-      
-      var cmd = '?photocell_l';
+      var cmd="";
       
       photocell_l.measure(async function (val){
         photocell_l.detectedVal = val;
       });
+      photocell_r.measure(async function (val){
+        photocell_r.detectedVal = val;
+      });
       
       while (true) {
+        var cmd = document.getElementById("cmd").value;
         if (cmd == '?metrixled=1;on') {
           matrix.setColor((1 - 1), '#ff0000');
           cmd ="";
@@ -88,6 +91,9 @@
           cmd ="";
         } else if (cmd== '?photocell_l') {
           document.getElementById("demo-area-01-show").innerHTML = photocell_l.detectedVal;
+          cmd ="";
+        } else if (cmd== '?photocell_r') {
+          document.getElementById("demo-area-01-show").innerHTML = photocell_r.detectedVal;
           cmd ="";
         }
       }
