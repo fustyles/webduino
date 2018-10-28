@@ -30,6 +30,7 @@
   if (strUrl.indexOf("?")!=-1) {
     var getCmd = strUrl.split("?");
     var getPara = getCmd[1].split("&");
+    document.getElementById("demo-area-01-show").innerHTML = getPara[0];
     
     var matrix;
     var photocell_l;
