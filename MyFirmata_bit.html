@@ -123,9 +123,9 @@
       var matrix = getMatrix(board, 4, 25);
       
       var fuTimer = setInterval(function(){
-        var cmd = document.getElementById("cmd");
-        if (cmd.value!="") {
-          var getCmd = cmd.value.split("=");
+        var cmd = document.getElementById("cmd").value;
+        if (cmd!="") {
+          var getCmd = cmd.split("=");
           
           if (getCmd[0] == 'matrixled') {
             var Para = getCmd[1].split(";");
@@ -133,8 +133,8 @@
               matrix.setColor((Number(Para[0]) - 1), '#ff0000');
             else
               matrix.setColor((Number(Para[0]) - 1), '#000000');
-            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
-            cmd.value ="";
+            document.getElementById("demo-area-01-show").innerHTML = cmd+" (OK)";
+            cmd ="";
           } else if (getCmd[0] == 'photocell_left') {
             document.getElementById("demo-area-01-show").innerHTML = "";
             var photocell_left = getPhotocell(board, 0);
@@ -142,7 +142,7 @@
               photocell_left.detectedVal = val;
             });
             document.getElementById("demo-area-01-show").innerHTML = photocell_left.detectedVal;
-            cmd.value ="";
+            cmd ="";
           } else if (getCmd[0] == 'photocell_right') {
             document.getElementById("demo-area-01-show").innerHTML = "";
             var photocell_right = getPhotocell(board, 3);
@@ -150,12 +150,12 @@
               photocell_right.detectedVal = val;
             });
             document.getElementById("demo-area-01-show").innerHTML = photocell_right.detectedVal;
-            cmd.value ="";
+            cmd ="";
           } else if (getCmd[0] == 'marquee') {
             var Para = getCmd[1].split(";");
             matrix.setString(Para[1], '#ff0000', Number(Para[0]));
-            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
-            cmd.value ="";
+            document.getElementById("demo-area-01-show").innerHTML = cmd+" (OK)";
+            cmd ="";
           }
         }
       },100);
