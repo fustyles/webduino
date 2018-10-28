@@ -133,7 +133,7 @@
               matrix.setColor((Number(Para[0]) - 1), '#ff0000');
             else
               matrix.setColor((Number(Para[0]) - 1), '#000000');
-            document.getElementById("demo-area-01-show").innerHTML = cmd+" (OK)";
+            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } else if (getCmd[0] == 'photocell_left') {
             document.getElementById("demo-area-01-show").innerHTML = "";
@@ -154,7 +154,7 @@
           } else if (getCmd[0] == 'marquee') {
             var Para = getCmd[1].split(";");
             matrix.setString(Para[1], '#ff0000', Number(Para[0]));
-            document.getElementById("demo-area-01-show").innerHTML = cmd+" (OK)";
+            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           }
         }
