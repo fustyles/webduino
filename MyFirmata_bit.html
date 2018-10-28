@@ -173,7 +173,7 @@
             cmd.value ="";
           } else if (getCmd[0] == 'thermistor') {
             document.getElementById("demo-area-01-show").innerHTML = "";
-            thermistor = getThermistor(board, 6);
+            var thermistor = getThermistor(board, 6);
             thermistor.measure(function (val) {
               thermistor.detectedVal = val;
             });
