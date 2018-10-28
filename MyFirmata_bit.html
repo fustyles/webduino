@@ -60,6 +60,15 @@
 <td id="btn1">  
 </td>
 </tr>
+  
+<tr>
+<td>Marquee：
+<input type="text" name="marquee" id="marquee">
+</td>
+<td id="btn2">  
+</td>
+</tr> 
+  
 <tr>
 <td>Photocell：
 <select name="photocell" id="photocell">  
@@ -67,16 +76,9 @@
   <option value="photocell_right">right</option>
 </select>
 </td>
-<td id="btn2">  
-</td>
-</tr>
-<tr>
-<td>Marquee：
-<input type="text" name="marquee" id="marquee">
-</td>
 <td id="btn3">  
 </td>
-</tr>  
+</tr>
 </table>  
 
   <script id="jsbin-javascript">
@@ -87,21 +89,21 @@
   button1.onclick = function() {
       document.getElementById("cmd").value="matrixled="+document.getElementById("led").value+";"+document.getElementById("state").value;
   };
-  document.getElementById("btn1").appendChild(button1).setAttribute('id','btn_matrixled');
+  document.getElementById("btn1").appendChild(button1).setAttribute('id','btn_matrixled');  
   
   let button2 = document.createElement('button');
   button2.textContent = "執行";
   button2.onclick = function() {
-      document.getElementById("cmd").value=document.getElementById("photocell").value;
+      document.getElementById("cmd").value="marquee="+document.getElementById("marquee").value;
   };
-  document.getElementById("btn2").appendChild(button2).setAttribute('id','btn_photocell');  
+  document.getElementById("btn2").appendChild(button2).setAttribute('id','btn_marquee');    
   
   let button3 = document.createElement('button');
   button3.textContent = "執行";
   button3.onclick = function() {
-      document.getElementById("cmd").value="marquee="+document.getElementById("marquee").value;
+      document.getElementById("cmd").value=document.getElementById("photocell").value;
   };
-  document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_marquee');    
+  document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_photocell');
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
