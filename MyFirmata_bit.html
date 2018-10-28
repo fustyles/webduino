@@ -128,10 +128,11 @@
           var getPara = cmd.value.split("=");
           
           if (getPara[0] == 'matrixled') {
-            if (getPara[1].split(";")[1]=="1")
-              matrix.setColor((Number(getPara[1].split(";")[0]) - 1), '#ff0000');
+            var Para = getPara[1].split(";");
+            if (Para[1]=="1")
+              matrix.setColor((Number(Para[0]) - 1), '#ff0000');
             else
-              matrix.setColor((Number(getPara[1].split(";")[0]) - 1), '#000000');
+              matrix.setColor((Number(Para[0]) - 1), '#000000');
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } else if (getPara[0] == 'photocell_left') {
@@ -151,7 +152,8 @@
             document.getElementById("demo-area-01-show").innerHTML = photocell_right.detectedVal;
             cmd.value ="";
           } else if (getPara[0] == 'marquee') {
-            matrix.setString(getPara[1].split(";")[1], '#ff0000', Number(getPara[1].split(";")[0]));
+            var Para = getPara[1].split(";");
+            matrix.setString(Para[1], '#ff0000', Number(Para[0]));
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           }
