@@ -81,7 +81,7 @@
         photocell_r.detectedVal = val;
       });
       
-      //while (true) {
+      fuTimer = setInterval(function(){
         cmd = document.getElementById("cmd").value;
         if (cmd == '?metrixled=1;on') {
           matrix.setColor((1 - 1), '#ff0000');
@@ -96,8 +96,7 @@
           document.getElementById("demo-area-01-show").innerHTML = photocell_r.detectedVal;
           cmd ="";
         }
-        //await delay(0.1);
-      //}
+      },100);
     });
   }
 }());
