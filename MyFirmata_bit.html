@@ -158,18 +158,16 @@
             var photocell_left = getPhotocell(board, 0);
             photocell_left.measure(async function (val){
               photocell_left.detectedVal = val;
-              Sensor_photocell_left = val;
+              document.getElementById("demo-area-01-show").innerHTML = photocell_left.detectedVal;
             });
-            document.getElementById("demo-area-01-show").innerHTML = Sensor_photocell_left;
             cmd.value ="";
           } else if (getCmd[0] == 'photocell_right') {
             document.getElementById("demo-area-01-show").innerHTML = "";
             var photocell_right = getPhotocell(board, 3);
             photocell_right.measure(async function (val){
               photocell_right.detectedVal = val;
-              Sensor_photocell_right = val;
+              document.getElementById("demo-area-01-show").innerHTML = photocell_right.detectedVal;
             });
-            document.getElementById("demo-area-01-show").innerHTML = Sensor_photocell_right;
             cmd.value ="";
           } else if (getCmd[0] == 'marquee') {
             var Para = getCmd[1].split(";");
@@ -181,9 +179,9 @@
             var thermistor = getThermistor(board, 6);
             thermistor.measure(function (val) {
               thermistor.detectedVal = val;
-              Sensor_thermistor = val;
+              document.getElementById("demo-area-01-show").innerHTML = thermistor.detectedVal;
+              thermistor.off();
             });
-            document.getElementById("demo-area-01-show").innerHTML =Sensor_thermistor;
             cmd.value ="";
           }
         }
