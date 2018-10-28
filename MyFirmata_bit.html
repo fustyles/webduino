@@ -127,6 +127,7 @@
               matrix.setColor((Number(getPara[1].split(";")[0]) - 1), '#000000');
             cmd.value ="";
           } else if (getPara[0] == 'photocell_left') {
+            document.getElementById("demo-area-01-show").innerHTML = "";
             var photocell_l = getPhotocell(board, 0);
             photocell_l.measure(async function (val){
               photocell_l.detectedVal = val;
@@ -134,6 +135,7 @@
             document.getElementById("demo-area-01-show").innerHTML = photocell_l.detectedVal;
             cmd.value ="";
           } else if (getPara[0] == 'photocell_right') {
+            document.getElementById("demo-area-01-show").innerHTML = "";
             var photocell_r = getPhotocell(board, 3);
             photocell_r.measure(async function (val){
               photocell_r.detectedVal = val;
