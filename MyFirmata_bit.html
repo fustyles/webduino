@@ -56,6 +56,7 @@
   <option value="1">on</option>
   <option value="0">off</option>
 </select>
+<input type="color" id="color" name="color" value="#ff0000">
 </td>
 <td id="btn1">  
 </td>
@@ -94,7 +95,7 @@
   let button1 = document.createElement('button');
   button1.textContent = "執行";
   button1.onclick = function() {
-      document.getElementById("cmd").value="matrixled="+document.getElementById("led").value+";"+document.getElementById("state").value;
+      document.getElementById("cmd").value="matrixled="+document.getElementById("led").value+";"+document.getElementById("state").value+";"+document.getElementById("color").value;
   };
   document.getElementById("btn1").appendChild(button1).setAttribute('id','btn_matrixled');  
   
@@ -130,7 +131,7 @@
           if (getCmd[0] == 'matrixled') {
             var Para = getCmd[1].split(";");
             if (Para[1]=="1")
-              matrix.setColor((Number(Para[0]) - 1), '#ff0000');
+              matrix.setColor((Number(Para[0]) - 1), Para[2]);
             else
               matrix.setColor((Number(Para[0]) - 1), '#000000');
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
