@@ -37,22 +37,12 @@
       var photocell_l = getPhotocell(board, 0);
       var photocell_r = getPhotocell(board, 3);
       
-      var cmd = '?metrixled=1;on';
+      matrix.setColor((1 - 1), '#ff0000');
       
       photocell_l.measure(async function (val){
         photocell_l.detectedVal = val;
       });
-      
-      while (true) {
-        if (cmd == '?metrixled=1;on') {
-          matrix.setColor((1 - 1), '#ff0000');
-        } else if (cmd == '?metrixled=1;off') {
-          matrix.setColor((1 - 1), '#000000');
-        } else if (cmd== '?photocell_l') {
-          document.getElementById("demo-area-01-show").innerHTML = photocell_l.detectedVal;
-        }
-        await delay(0.1);
-      }
+
     });
   }
 }());
