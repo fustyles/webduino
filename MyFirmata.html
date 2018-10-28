@@ -38,15 +38,7 @@
       
       board.samplingInterval = 250;
       matrix = getMatrix(board, 4, 25);
-      photocell_l = getPhotocell(board, 0);
-      photocell_r = getPhotocell(board, 3);
-      
       matrix.setColor((1 - 1), '#ff0000');
-      
-      photocell_l.measure(async function (val){
-        photocell_l.detectedVal = val;
-      });
-
     });
   }
 }());
