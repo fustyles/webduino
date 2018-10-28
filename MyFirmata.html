@@ -34,7 +34,7 @@
     var photocell_l;
     var photocell_r;
     
-    boardReady({board: 'Bit', device: getPara[0], transport: 'message', window: window.top.frames[0]}, async function (board) {
+    boardReady({board: 'Bit', device: getPara[0], transport: 'mqtt'}, function (board) {
       //document.getElementById("demo-area-01-show").innerHTML = getPara[0];
       board.samplingInterval = 250;
       matrix = getMatrix(board, 4, 25);
