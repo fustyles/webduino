@@ -49,6 +49,10 @@
 <option value="24">24</option>
 <option value="25">25</option>
 </select>
+<select name="state" id="state">  
+<option value="on">on</option>
+<option value="off">off</option>
+</select>
   
 <script id="jsbin-javascript">
 (async function () {
@@ -66,12 +70,10 @@
     var getPara = getCmd[1].split("&");
     
     boardReady({board: 'Bit', device: getPara[0], transport: 'mqtt'}, function (board) {
-            document.getElementById("demo-area-01-show").innerHTML = getPara[0];
+      document.getElementById("demo-area-01-show").innerHTML = "Bit is connected.";
       
       board.samplingInterval = 250;
       var matrix = getMatrix(board, 4, 25);
-      var photocell_l = getPhotocell(board, 0);
-      var photocell_r = getPhotocell(board, 3);
       
       var fuTimer = setInterval(function(){
         var cmd = document.getElementById("cmd");
@@ -82,12 +84,14 @@
           matrix.setColor((1 - 1), '#000000');
           cmd.value ="";
         } else if (cmd.value == '?photocell_l') {
+          var photocell_l = getPhotocell(board, 0);
           photocell_l.measure(async function (val){
             photocell_l.detectedVal = val;
           });
           document.getElementById("demo-area-01-show").innerHTML = photocell_l.detectedVal;
           cmd.value ="";
         } else if (cmd.value == '?photocell_r') {
+          var photocell_r = getPhotocell(board, 3);
           photocell_r.measure(async function (val){
             photocell_r.detectedVal = val;
           });
