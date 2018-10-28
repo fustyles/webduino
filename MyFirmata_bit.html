@@ -87,9 +87,16 @@
 <td id="btn3">  
 </td>
 </tr>
+  
+<tr>
+<td>Thermistor
+</td>
+<td id="btn4">  
+</td>
+</tr>
 </table>  
 
-  <script id="jsbin-javascript">
+<script id="jsbin-javascript">
 (async function () {
   
   let button1 = document.createElement('button');
@@ -112,6 +119,13 @@
       document.getElementById("cmd").value=document.getElementById("photocell").value;
   };
   document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_photocell');
+  
+  let button4 = document.createElement('button');
+  button4.textContent = "執行";
+  button4.onclick = function() {
+      document.getElementById("cmd").value="thermistor";
+  };
+  document.getElementById("btn4").appendChild(button4).setAttribute('id','btn_photocell');  
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
@@ -156,6 +170,13 @@
             var Para = getCmd[1].split(";");
             matrix.setString(Para[1], '#ff0000', Number(Para[0]));
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            cmd.value ="";
+          } else if (getCmd[0] == 'thermistor') {
+            document.getElementById("demo-area-01-show").innerHTML = "";
+            thermistor.measure(function (val) {
+              thermistor.detectedVal = val;
+            });
+            document.getElementById("demo-area-01-show").innerHTML = thermistor.detectedVal;
             cmd.value ="";
           }
         }
