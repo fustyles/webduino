@@ -64,6 +64,13 @@
 <tr>
 <td>Marquee：
 <input type="text" name="marquee" id="marquee">
+<select name="interval" id="interval">
+  <option value="0">150</option>
+  <option value="1">200</option>
+  <option value="2">250</option>
+  <option value="3">500</option>
+  <option value="4">1000</option>
+<select> (ms)
 </td>
 <td id="btn2">  
 </td>
@@ -94,7 +101,7 @@
   let button2 = document.createElement('button');
   button2.textContent = "執行";
   button2.onclick = function() {
-      document.getElementById("cmd").value="marquee="+document.getElementById("marquee").value;
+      document.getElementById("cmd").value="marquee="+document.getElementById("interval").value+";"+document.getElementById("marquee").value;
   };
   document.getElementById("btn2").appendChild(button2).setAttribute('id','btn_marquee');    
   
@@ -144,7 +151,7 @@
             document.getElementById("demo-area-01-show").innerHTML = photocell_right.detectedVal;
             cmd.value ="";
           } else if (getPara[0] == 'marquee') {
-            matrix.setString(getPara[1], '#ff0000', 1);
+            matrix.setString(getPara[1].split(";")[1], '#ff0000', Number(getPara[1].split(";")[0]));
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           }
