@@ -125,17 +125,17 @@
       var fuTimer = setInterval(function(){
         var cmd = document.getElementById("cmd");
         if (cmd.value!="") {
-          var getPara = cmd.value.split("=");
+          var getCmd = cmd.value.split("=");
           
-          if (getPara[0] == 'matrixled') {
-            var Para = getPara[1].split(";");
+          if (getCmd[0] == 'matrixled') {
+            var Para = getCmd[1].split(";");
             if (Para[1]=="1")
               matrix.setColor((Number(Para[0]) - 1), '#ff0000');
             else
               matrix.setColor((Number(Para[0]) - 1), '#000000');
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
-          } else if (getPara[0] == 'photocell_left') {
+          } else if (getCmd[0] == 'photocell_left') {
             document.getElementById("demo-area-01-show").innerHTML = "";
             var photocell_left = getPhotocell(board, 0);
             photocell_left.measure(async function (val){
@@ -143,7 +143,7 @@
             });
             document.getElementById("demo-area-01-show").innerHTML = photocell_left.detectedVal;
             cmd.value ="";
-          } else if (getPara[0] == 'photocell_right') {
+          } else if (getCmd[0] == 'photocell_right') {
             document.getElementById("demo-area-01-show").innerHTML = "";
             var photocell_right = getPhotocell(board, 3);
             photocell_right.measure(async function (val){
@@ -151,8 +151,8 @@
             });
             document.getElementById("demo-area-01-show").innerHTML = photocell_right.detectedVal;
             cmd.value ="";
-          } else if (getPara[0] == 'marquee') {
-            var Para = getPara[1].split(";");
+          } else if (getCmd[0] == 'marquee') {
+            var Para = getCmd[1].split(";");
             matrix.setString(Para[1], '#ff0000', Number(Para[0]));
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
