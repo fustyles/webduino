@@ -70,6 +70,13 @@
 <td id="btn2">  
 </td>
 </tr>
+<tr>
+<td>Set String：
+<input type="text" name="setstring" id="setstring">
+</td>
+<td id="btn3">  
+</td>
+</tr>  
 </table>  
 
   <script id="jsbin-javascript">
@@ -88,6 +95,13 @@
       document.getElementById("cmd").value=document.getElementById("photocell").value;
   };
   document.getElementById("btn2").appendChild(button2).setAttribute('id','btn_photocell');  
+  
+  let button3 = document.createElement('button');
+  button3.textContent = "執行";
+  button3.onclick = function() {
+      document.getElementById("cmd").value="setstring="+document.getElementById("setstring").value;
+  };
+  document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_setstring');    
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
@@ -123,6 +137,9 @@
               photocell_r.detectedVal = val;
             });
             document.getElementById("demo-area-01-show").innerHTML = photocell_r.detectedVal;
+            cmd.value ="";
+          } else if (getPara[0] == 'setstring') {
+            matrix.setString(getPara[1], '#ff0000', 1);
             cmd.value ="";
           }
         }
