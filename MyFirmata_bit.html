@@ -100,28 +100,28 @@
 (async function () {
   
   let button1 = document.createElement('button');
-  button1.textContent = "執行";
+  button1.textContent = "Execute";
   button1.onclick = function() {
       document.getElementById("cmd").value="ledmatrix="+document.getElementById("led").value+";"+document.getElementById("state").value+";"+document.getElementById("color").value;
   };
   document.getElementById("btn1").appendChild(button1).setAttribute('id','btn_ledmatrix');  
   
   let button2 = document.createElement('button');
-  button2.textContent = "執行";
+  button2.textContent = "Execute";
   button2.onclick = function() {
       document.getElementById("cmd").value="marquee="+document.getElementById("interval").value+";"+document.getElementById("marquee").value.replace(/;/g,".");
   };
   document.getElementById("btn2").appendChild(button2).setAttribute('id','btn_marquee');    
   
   let button3 = document.createElement('button');
-  button3.textContent = "執行";
+  button3.textContent = "Read";
   button3.onclick = function() {
       document.getElementById("cmd").value=document.getElementById("photocell").value;
   };
   document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_photocell');
   
   let button4 = document.createElement('button');
-  button4.textContent = "執行";
+  button4.textContent = "Read";
   button4.onclick = function() {
       document.getElementById("cmd").value="thermistor";
   };
