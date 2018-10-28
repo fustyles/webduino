@@ -24,7 +24,7 @@
 <input type="text" name="cmd" id="cmd">
 <table name="myfirmata" id ="myfirmata">
 <tr>
-<td>Matrix
+<td>Matrix Led:
 <select name="led" id="led">
   <option value="1">1</option>
   <option value="2">2</option>
@@ -60,17 +60,34 @@
 <td id="btn1">  
 </td>
 </tr>
+<tr>
+<td>photocell：
+<select name="photocell" id="photocell">  
+  <option value="photocell_left">left</option>
+  <option value="photocell_right">right</option>
+</select>
+</td>
+<td id="btn2">  
+</td>
+</tr>
 </table>  
 
   <script id="jsbin-javascript">
 (async function () {
   
-  let button = document.createElement('button');
-  button.textContent = "執行";
-  button.onclick = function() {
+  let button1 = document.createElement('button');
+  button1.textContent = "執行";
+  button1.onclick = function() {
       document.getElementById("cmd").value="matrixled="+document.getElementById("led").value+";"+document.getElementById("state").value;
   };
-  document.getElementById("btn1").appendChild(button).setAttribute('id','button');
+  document.getElementById("btn1").appendChild(button1).setAttribute('id','btn_matrixled');
+  
+  let button2 = document.createElement('button');
+  button2.textContent = "執行";
+  button2.onclick = function() {
+      document.getElementById("cmd").value=document.getElementById("photocell").value;
+  };
+  document.getElementById("btn2").appendChild(button2).setAttribute('id','btn_photocell');  
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
@@ -93,14 +110,14 @@
             else
               matrix.setColor((Number(getPara[1].split(";")[0]) - 1), '#000000');
             cmd.value ="";
-          } else if (getPara[0] == 'photocell_l') {
+          } else if (getPara[0] == 'photocell_left') {
             var photocell_l = getPhotocell(board, 0);
             photocell_l.measure(async function (val){
               photocell_l.detectedVal = val;
             });
             document.getElementById("demo-area-01-show").innerHTML = photocell_l.detectedVal;
             cmd.value ="";
-          } else if (getPara[0] == '?photocell_r') {
+          } else if (getPara[0] == 'photocell_right') {
             var photocell_r = getPhotocell(board, 3);
             photocell_r.measure(async function (val){
               photocell_r.detectedVal = val;
