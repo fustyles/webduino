@@ -80,6 +80,9 @@
         if (cmd.value == '?metrixled=1;on') {
           matrix.setColor((1 - 1), '#ff0000');
           cmd.value ="";
+        } else if (cmd.value == '?metrixled=2;on') {
+          matrix.setColor((2 - 1), '#ff0000');
+          cmd.value ="";
         } else if (cmd.value == '?metrixled=1;off') {
           matrix.setColor((1 - 1), '#000000');
           cmd.value ="";
