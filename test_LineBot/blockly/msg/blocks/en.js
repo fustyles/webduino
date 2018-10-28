@@ -1,0 +1,2 @@
+Blockly.Msg.PM_LINK_SHOW = "GET AIR DATA";
+Blockly.Msg.PM_GET_SHOW = "READ AIR DATA";
