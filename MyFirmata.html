@@ -61,7 +61,7 @@
 </td>
 </tr>
 <tr>
-<td>photocell：
+<td>Photocell：
 <select name="photocell" id="photocell">  
   <option value="photocell_left">left</option>
   <option value="photocell_right">right</option>
@@ -71,8 +71,8 @@
 </td>
 </tr>
 <tr>
-<td>Set String：
-<input type="text" name="setstring" id="setstring">
+<td>Marquee：
+<input type="text" name="marquee" id="marquee">
 </td>
 <td id="btn3">  
 </td>
@@ -99,9 +99,9 @@
   let button3 = document.createElement('button');
   button3.textContent = "執行";
   button3.onclick = function() {
-      document.getElementById("cmd").value="setstring="+document.getElementById("setstring").value;
+      document.getElementById("cmd").value="marquee="+document.getElementById("marquee").value;
   };
-  document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_setstring');    
+  document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_marquee');    
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
@@ -138,7 +138,7 @@
             });
             document.getElementById("demo-area-01-show").innerHTML = photocell_r.detectedVal;
             cmd.value ="";
-          } else if (getPara[0] == 'setstring') {
+          } else if (getPara[0] == 'marquee') {
             matrix.setString(getPara[1], '#ff0000', 1);
             cmd.value ="";
           }
