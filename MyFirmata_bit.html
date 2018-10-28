@@ -95,9 +95,9 @@
   let button1 = document.createElement('button');
   button1.textContent = "執行";
   button1.onclick = function() {
-      document.getElementById("cmd").value="matrixled="+document.getElementById("led").value+";"+document.getElementById("state").value+";"+document.getElementById("color").value;
+      document.getElementById("cmd").value="ledmatrix="+document.getElementById("led").value+";"+document.getElementById("state").value+";"+document.getElementById("color").value;
   };
-  document.getElementById("btn1").appendChild(button1).setAttribute('id','btn_matrixled');  
+  document.getElementById("btn1").appendChild(button1).setAttribute('id','btn_ledmatrix');  
   
   let button2 = document.createElement('button');
   button2.textContent = "執行";
@@ -128,7 +128,7 @@
         if (cmd.value!="") {
           var getCmd = cmd.value.split("=");
           
-          if (getCmd[0] == 'matrixled') {
+          if (getCmd[0] == 'ledmatrix') {
             var Para = getCmd[1].split(";");
             if (Para[1]=="1")
               matrix.setColor((Number(Para[0]) - 1), Para[2]);
