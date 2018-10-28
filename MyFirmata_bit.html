@@ -154,7 +154,7 @@
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } else if (getCmd[0] == 'photocell_left') {
-            document.getElementById("demo-area-01-show").innerHTML = "_";
+            document.getElementById("demo-area-01-show").innerHTML = "";
             var photocell_left = getPhotocell(board, 0);
             photocell_left.measure(async function (val){
               photocell_left.detectedVal = val;
@@ -163,7 +163,7 @@
             });
             cmd.value ="";
           } else if (getCmd[0] == 'photocell_right') {
-            document.getElementById("demo-area-01-show").innerHTML = "_";
+            document.getElementById("demo-area-01-show").innerHTML = "";
             var photocell_right = getPhotocell(board, 3);
             photocell_right.measure(async function (val){
               photocell_right.detectedVal = val;
@@ -177,7 +177,7 @@
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } else if (getCmd[0] == 'thermistor') {
-            document.getElementById("demo-area-01-show").innerHTML = "_";
+            document.getElementById("demo-area-01-show").innerHTML = "";
             var thermistor = getThermistor(board, 6);
             thermistor.measure(function (val) {
               thermistor.detectedVal = val;
