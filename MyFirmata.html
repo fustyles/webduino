@@ -37,7 +37,7 @@
       var photocell_l = getPhotocell(board, 0);
       var photocell_r = getPhotocell(board, 3);
       
-      var cmd = '?metrixled=1;on';
+      var cmd = '?photocell_l';
       
       photocell_l.measure(async function (val){
         photocell_l.detectedVal = val;
