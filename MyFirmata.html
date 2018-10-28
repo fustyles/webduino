@@ -24,7 +24,7 @@
 <input type="text" name="cmd" id="cmd">
 <table name="myfirmata" id ="myfirmata">
 <tr>
-<td>
+<td>Matrix
 <select name="led" id="led">
   <option value="1">1</option>
   <option value="2">2</option>
@@ -68,7 +68,7 @@
   let button = document.createElement('button');
   button.textContent = "執行";
   button.onclick = function() {
-      document.getElementById("cmd").value="metrixled="+document.getElementById("led").value+";"+document.getElementById("state").value;
+      document.getElementById("cmd").value="matrixled="+document.getElementById("led").value+";"+document.getElementById("state").value;
   };
   document.getElementById("btn1").appendChild(button).setAttribute('id','button');
   
@@ -87,7 +87,7 @@
         if (cmd.value!="") {
           var getPara = cmd.value.split("=");
           
-          if (getPara[0] == 'metrixled') {
+          if (getPara[0] == 'matrixled') {
             if (getPara[1].split(";")[1]=="1")
               matrix.setColor((Number(getPara[1].split(";")[0]) - 1), '#ff0000');
             else
