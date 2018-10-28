@@ -86,7 +86,9 @@
         var cmdstring = document.getElementById("cmd").value;
         if (cmdstring!="") {
           var getPara = cmdstring.split("=");
-
+          console.log(getPara[0]);
+          console.log(getPara[1].split(";")[0]);
+          console.log(getPara[1].split(";")[1]);
           if (getPara[0] == 'metrixled') {
             if (getPara[1].split(";")[1]=="1")
               matrix.setColor((Number(getPara[1].split(";")[0]) - 1), '#ff0000');
