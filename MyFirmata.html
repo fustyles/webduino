@@ -72,29 +72,27 @@
       var matrix = getMatrix(board, 4, 25);
       var photocell_l = getPhotocell(board, 0);
       var photocell_r = getPhotocell(board, 3);
-      var cmd="";
-      
-      photocell_l.measure(async function (val){
-        photocell_l.detectedVal = val;
-      });
-      photocell_r.measure(async function (val){
-        photocell_r.detectedVal = val;
-      });
       
       fuTimer = setInterval(function(){
-        cmd = document.getElementById("cmd").value;
-        if (cmd == '?metrixled=1;on') {
+        var cmd = document.getElementById("cmd");
+        if (cmd.value == '?metrixled=1;on') {
           matrix.setColor((1 - 1), '#ff0000');
-          cmd ="";
-        } else if (cmd == '?metrixled=1;off') {
+          cmd.value ="";
+        } else if (cmd.value == '?metrixled=1;off') {
           matrix.setColor((1 - 1), '#000000');
-          cmd ="";
-        } else if (cmd== '?photocell_l') {
+          cmd.value ="";
+        } else if (cmd.value == '?photocell_l') {
+          photocell_l.measure(async function (val){
+            photocell_l.detectedVal = val;
+          });
           document.getElementById("demo-area-01-show").innerHTML = photocell_l.detectedVal;
-          cmd ="";
-        } else if (cmd== '?photocell_r') {
+          cmd.value ="";
+        } else if (cmd.value == '?photocell_r') {
+          photocell_r.measure(async function (val){
+            photocell_r.detectedVal = val;
+          });
           document.getElementById("demo-area-01-show").innerHTML = photocell_r.detectedVal;
-          cmd ="";
+          cmd.value ="";
         }
       },100);
     });
