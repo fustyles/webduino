@@ -32,23 +32,27 @@
     var matrix;
     var photocell_l;
     var photocell_r;
-    var _E8_AE_8A_E6_95_B8;
+    var cmd;
+    
     boardReady({board: 'Bit', device: getPara[0], transport: 'message', window: window.top.frames[0]}, async function (board) {
       document.getElementById("demo-area-01-show").innerHTML = getPara[0];
       board.samplingInterval = 250;
       matrix = getMatrix(board, 4, 25);
       photocell_l = getPhotocell(board, 0);
       photocell_r = getPhotocell(board, 3);
-      _E8_AE_8A_E6_95_B8 = '?photocell_l';
+      
+      cmd = '?metrixled=1;on';
+      
       photocell_l.measure(async function (val){
         photocell_l.detectedVal = val;
       });
+      
       while (true) {
-        if (_E8_AE_8A_E6_95_B8 == '?metrixled=1;on') {
+        if (cmd == '?metrixled=1;on') {
           matrix.setColor((1 - 1), '#ff0000');
-        } else if (_E8_AE_8A_E6_95_B8 == '?metrixled=1;off') {
+        } else if (cmd == '?metrixled=1;off') {
           matrix.setColor((1 - 1), '#000000');
-        } else if (_E8_AE_8A_E6_95_B8 == '?photocell_l') {
+        } else if (cmd== '?photocell_l') {
           document.getElementById("demo-area-01-show").innerHTML = photocell_l.detectedVal;
         }
         await delay(0.1);
