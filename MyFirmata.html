@@ -73,7 +73,7 @@
       var photocell_l = getPhotocell(board, 0);
       var photocell_r = getPhotocell(board, 3);
       
-      fuTimer = setInterval(function(){
+      var fuTimer = setInterval(function(){
         var cmd = document.getElementById("cmd");
         if (cmd.value == '?metrixled=1;on') {
           matrix.setColor((1 - 1), '#ff0000');
