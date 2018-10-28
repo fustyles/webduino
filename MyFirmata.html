@@ -29,19 +29,15 @@
     var getCmd = strUrl.split("?");
     var getPara = getCmd[1].split("&");
     
-    var matrix;
-    var photocell_l;
-    var photocell_r;
-    var cmd;
-    
     boardReady({board: 'Bit', device: getPara[0], transport: 'message', window: window.top.frames[0]}, async function (board) {
       document.getElementById("demo-area-01-show").innerHTML = getPara[0];
-      board.samplingInterval = 250;
-      matrix = getMatrix(board, 4, 25);
-      photocell_l = getPhotocell(board, 0);
-      photocell_r = getPhotocell(board, 3);
       
-      cmd = '?metrixled=1;on';
+      board.samplingInterval = 250;
+      var matrix = getMatrix(board, 4, 25);
+      var photocell_l = getPhotocell(board, 0);
+      var photocell_r = getPhotocell(board, 3);
+      
+      var cmd = '?metrixled=1;on';
       
       photocell_l.measure(async function (val){
         photocell_l.detectedVal = val;
