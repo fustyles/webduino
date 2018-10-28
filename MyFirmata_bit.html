@@ -138,6 +138,7 @@
       var matrix = getMatrix(board, 4, 25);
       
       var fuTimer = setInterval(function(){
+        
         var cmd = document.getElementById("cmd");
         if (cmd.value!="") {
           var getCmd = cmd.value.split("=");
@@ -184,6 +185,7 @@
             cmd.value ="";
           }
         }
+        
       },100);
     });
   }
