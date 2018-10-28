@@ -159,6 +159,7 @@
             photocell_left.measure(async function (val){
               photocell_left.detectedVal = val;
               document.getElementById("demo-area-01-show").innerHTML = photocell_left.detectedVal;
+              photocell_left.off();
             });
             cmd.value ="";
           } else if (getCmd[0] == 'photocell_right') {
@@ -167,6 +168,7 @@
             photocell_right.measure(async function (val){
               photocell_right.detectedVal = val;
               document.getElementById("demo-area-01-show").innerHTML = photocell_right.detectedVal;
+              photocell_right.off();
             });
             cmd.value ="";
           } else if (getCmd[0] == 'marquee') {
