@@ -56,7 +56,7 @@
   let button = document.createElement('button');
   button.textContent = "執行";
   button.onclick = function() {
-      document.getElementById("cmd").value="?metrixled='+document.getElementById("led").value+';on";
+      document.getElementById("cmd").value="?metrixled="+document.getElementById("led").value+";on";
   };
   document.body.appendChild(button).setAttribute('id','button');
   
