@@ -345,7 +345,7 @@
                 MatrixLed_clear();
             else {
               MatrixLed_showstate(matrix,1);
-              MatrixLed_marquee_time(Para[0]);
+              MatrixLed_marquee_time(Number(Para[0]));
               MatrixLed_color(Para[1]);
               MatrixLed_marquee((MatrixLed_indentcode((MatrixLed_texttocode(Para[2])))));
             }
