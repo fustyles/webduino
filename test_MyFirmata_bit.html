@@ -219,6 +219,48 @@
   <td id="btn6" valign="top">  
   </td>
 </tr>
+    
+<tr>
+  <td valign="top">9. DigitalRead</td>
+  <td valign="top">
+    <select name="digitalRead_pin" id="digitalRead_pin">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+    </select>
+  </td>
+  <td id="btn9" valign="top">  
+  </td>
+</tr>
+  
+<tr>
+  <td valign="top">10. AnalogRead</td>
+  <td valign="top">
+    <select name="analogRead_pin" id="analogRead_pin">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="10">10</option>
+    </select>
+  </td>
+  <td id="btn10" valign="top">  
+  </td>
+</tr>
 
 </table>  
 
@@ -282,7 +324,21 @@
   button8.onclick = function() {
       document.getElementById("cmd").value="sample="+document.getElementById("sample").value+";"+document.getElementById("sample_color").value;
   };
-  document.getElementById("btn8").appendChild(button8).setAttribute('id','btn_sample');  
+  document.getElementById("btn8").appendChild(button8).setAttribute('id','btn_sample'); 
+  
+ let button9 = document.createElement('button');
+  button9.textContent = "Read";
+  button9.onclick = function() {
+      document.getElementById("cmd").value="digitalread="+document.getElementById("digitalRead_pin").value;
+  };
+  document.getElementById("btn9").appendChild(button9).setAttribute('id','btn_digitalread');
+  
+  let button10 = document.createElement('button');
+  button10.textContent = "Read";
+  button10.onclick = function() {
+      document.getElementById("cmd").value="analogread="+document.getElementById("analogRead_pin").value;
+  };
+  document.getElementById("btn10").appendChild(button10).setAttribute('id','btn_analogread');  
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
@@ -396,7 +452,19 @@
             MatrixLed_sample(Para[0]);
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
-          }          
+          }     
+          else if (getCmd[0] == 'digitalread') {
+            var pin = getPin(board, bitGPIO(Number(getCmd[1])));
+            pin.setMode(0);
+            document.getElementById("demo-area-01-show").innerHTML = (await pin.read());
+            cmd.value ="";
+          } 
+          else if (getCmd[0] == 'analogread') {
+            var pin = getPin(board, bitGPIO(Number(getCmd[1])));
+            pin.setMode(2);
+            document.getElementById("demo-area-01-show").innerHTML = (await pin.read());
+            cmd.value ="";
+          }           
         }
         
       },100);
