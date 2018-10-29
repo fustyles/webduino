@@ -293,6 +293,7 @@
       
       board.samplingInterval = 250;
       var matrix = getMatrix(board, 4, 25);
+      MatrixLed_showstate(matrix,1);
       
       var fuTimer = setInterval(function(){
         
@@ -302,7 +303,6 @@
           
           if (getCmd[0] == 'ledmatrix') {
             var Para = getCmd[1].split(";");
-            MatrixLed_showstate(matrix,1);
             MatrixLed_marquee_stop();
             
             if (Para[0]=="All") {
@@ -347,11 +347,15 @@
           } 
           else if (getCmd[0] == 'marquee') {
             var Para = getCmd[1].split(";");
-            
-            MatrixLed_showstate(matrix,1);
-            MatrixLed_marquee_time(Number(Para[0]));
-            MatrixLed_color(Para[1]);
-            MatrixLed_marquee((MatrixLed_indentcode((MatrixLed_texttocode(Para[2])))));
+            if (Para[2]=="") {
+              MatrixLed_marquee_stop();
+              MatrixLed_clear();
+            }
+            else {
+              MatrixLed_marquee_time(Number(Para[0]));
+              MatrixLed_color(Para[1]);
+              MatrixLed_marquee((MatrixLed_indentcode((MatrixLed_texttocode(Para[2])))));
+            }
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } 
@@ -388,7 +392,6 @@
           }
           else if (getCmd[0] == 'sample') {
             var Para = getCmd[1].split(";");
-            MatrixLed_showstate(matrix,1);
             MatrixLed_color(Para[1]);
             MatrixLed_sample(Para[0]);
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
