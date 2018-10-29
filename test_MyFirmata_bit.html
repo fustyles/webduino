@@ -219,12 +219,12 @@
           if (getCmd[0] == 'ledmatrix') {
             var Para = getCmd[1].split(";");
             if (Para[0]=="all") {
-              for (var i=1;i<=25;i++) {
-                if (Para[1]=="1")
+              if (Para[1]=="1") {
+                for (var i=1;i<=25;i++)
                   matrix.setColor((i - 1), Para[2]);
-                else
-                  matrix.setColor((i - 1), '#000000');
               }
+              else
+                matrix.off();
             }
             else {
               if (Para[1]=="1")
