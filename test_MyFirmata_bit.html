@@ -142,7 +142,8 @@
   <option value="4">4~</option>
   <option value="10">10~</option>
 </select> 
-<input type="range" name="analogWrite_value" id="analogWrite_value" min="0" max="255">
+<input type="range" name="analogWrite_value" id="analogWrite_value" min="0" max="255" onchange="range_value.value=this.value;">
+<span id="range_value"></span>
 </td>
 <td id="btn6" valign="top">  
 </td>
