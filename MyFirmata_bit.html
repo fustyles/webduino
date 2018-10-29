@@ -243,7 +243,10 @@
             cmd.value ="";
           } else if (getCmd[0] == 'marquee') {
             var Para = getCmd[1].split(";");
-            matrix.setString(Para[2], Para[1], Number(Para[0]));
+            if (Para[2]=="")
+                matrix.off();
+            else
+              matrix.setString(Para[2], Para[1], Number(Para[0]));
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } else if (getCmd[0] == 'thermistor') {
