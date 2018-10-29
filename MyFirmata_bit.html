@@ -53,6 +53,7 @@
   <option value="23">23</option>
   <option value="24">24</option>
   <option value="25">25</option>
+  <option value="all">all</option>  
 </select>
 <select name="state" id="state">  
   <option value="1">ON</option>
@@ -217,10 +218,20 @@
           
           if (getCmd[0] == 'ledmatrix') {
             var Para = getCmd[1].split(";");
-            if (Para[1]=="1")
-              matrix.setColor((Number(Para[0]) - 1), Para[2]);
-            else
-              matrix.setColor((Number(Para[0]) - 1), '#000000');
+            if (Para[0]=="all") {
+              for (var i=1;i<=25;i++) {
+                if (Para[1]=="1")
+                  matrix.setColor((i - 1), Para[2]);
+                else
+                  matrix.setColor((i - 1), '#000000');
+              }
+            }
+            else {
+              if (Para[1]=="1")
+                matrix.setColor((Number(Para[0]) - 1), Para[2]);
+              else
+                matrix.setColor((Number(Para[0]) - 1), '#000000');
+              }
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } else if (getCmd[0] == 'photocell_left') {
