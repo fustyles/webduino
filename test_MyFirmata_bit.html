@@ -304,11 +304,16 @@
             var Para = getCmd[1].split(";");
             if (Para[0]=="All") {
               if (Para[1]=="1") {
-                for (var i=1;i<=25;i++)
-                  matrix.setColor((i - 1), Para[2]);
+                MatrixLed_showstate(matrix,1);
+                for (var i=0;i<5;i++) {
+                  for (var j=0;i<5;j++)
+                    MatrixLed_color_on(i,j,Para[2]);
+                }
               }
-              else
-                matrix.off();
+              else {
+                MatrixLed_showstate(matrix,1);
+                MatrixLed_clear();
+              }
             }
             else {
               if (Para[1]=="1")
