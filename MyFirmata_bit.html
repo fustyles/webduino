@@ -140,11 +140,11 @@
   <td valign="top">
     <input type="text" name="marquee" id="marquee"><br>
     <select name="interval" id="interval">
-      <option value="0">150</option>
-      <option value="1">200</option>
-      <option value="2" selected>250</option>
-      <option value="3">500</option>
-      <option value="4">1000</option>
+      <option value="150">150</option>
+      <option value="200">200</option>
+      <option value="250" selected>250</option>
+      <option value="500">500</option>
+      <option value="1000">1000</option>
     <select> (ms)
     <input type="color" id="marquee_color" name="marquee_color" value="#ff0000">
   </td>
@@ -302,22 +302,28 @@
           
           if (getCmd[0] == 'ledmatrix') {
             var Para = getCmd[1].split(";");
+            MatrixLed_showstate(matrix,1);
+            MatrixLed_marquee_stop();
+            
             if (Para[0]=="All") {
               if (Para[1]=="1") {
-                for (var i=1;i<=25;i++)
-                  matrix.setColor((i - 1), Para[2]);
+                for (var i=0;i<5;i++) {
+                  for (var j=0;j<5;j++) {
+                    MatrixLed_color_on(i,j,Para[2]);
+                  }
+                }
               }
-              else
-                matrix.off();
+              else 
+                MatrixLed_clear();
+              document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+              cmd.value ="";
             }
             else {
               if (Para[1]=="1")
-                matrix.setColor((Number(Para[0]) - 1), Para[2]);
+                MatrixLed_color_on(((Number(Para[0])-1)%5),Math.floor((Number(Para[0])-1)/5),Para[2]);
               else
-                matrix.setColor((Number(Para[0]) - 1), '#000000');
-              }
-            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
-            cmd.value ="";
+                MatrixLed_color_on(((Number(Para[0])-1)%5),Math.floor((Number(Para[0])-1)/5),'#000000');
+            }
           } 
           else if (getCmd[0] == 'photocell_left') {
             document.getElementById("demo-area-01-show").innerHTML = "";
@@ -341,10 +347,11 @@
           } 
           else if (getCmd[0] == 'marquee') {
             var Para = getCmd[1].split(";");
-            if (Para[2]=="")
-                matrix.off();
-            else
-              matrix.setString(Para[2], Para[1], Number(Para[0]));
+            
+            MatrixLed_showstate(matrix,1);
+            MatrixLed_marquee_time(Number(Para[0]));
+            MatrixLed_color(Para[1]);
+            MatrixLed_marquee((MatrixLed_indentcode((MatrixLed_texttocode(Para[2])))));
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } 
