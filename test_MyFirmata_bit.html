@@ -218,6 +218,13 @@
   };
   document.getElementById("btn6").appendChild(button6).setAttribute('id','btn_analogwrite');
   
+  let button7 = document.createElement('button');
+  button7.textContent = "Execute";
+  button7.onclick = function() {
+      document.getElementById("cmd").value="paint="+document.getElementById("led1").value+document.getElementById("led2").value+document.getElementById("led3").value+document.getElementById("led4").value+document.getElementById("led5").value+document.getElementById("led6").value+document.getElementById("led7").value+document.getElementById("led8").value+document.getElementById("led9").value+document.getElementById("led10").value+document.getElementById("led11").value+document.getElementById("led12").value+document.getElementById("led13").value+document.getElementById("led14").value+document.getElementById("led15").value+document.getElementById("led16").value+document.getElementById("led17").value+document.getElementById("led18").value+document.getElementById("led19").value+document.getElementById("led20").value+document.getElementById("led21").value+document.getElementById("led22").value+document.getElementById("led23").value+document.getElementById("led24").value+document.getElementById("led25").value;
+  };
+  document.getElementById("btn7").appendChild(button7).setAttribute('id','btn_paint');  
+  
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
     var getdevice = strUrl.split("?")[1];
