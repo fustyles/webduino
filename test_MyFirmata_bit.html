@@ -15,6 +15,7 @@
   <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-led-matrix/BitLedMatrix-blockly.js"></script>
   <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-led-matrix/BitLedMatrix.js"></script>
   <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-photocell/BitPhotocell-blockly.js"></script>  
+  <script src="https://fustyles.github.io/webduino/bit_MatrixLed_20180810/matrixled.js"></script>
 <style id="jsbin-css">
 #demo-area-01-show { font-size: 20px; pointer-events: auto!important; }
 </style>
@@ -148,11 +149,11 @@
   <td valign="top">
     <select name="digitalWrite_pin" id="digitalWrite_pin">
       <option value="0">0~</option>
-      <option value="1">1~ (A4)</option>
-      <option value="2">2~ (A5)</option>
+      <option value="1">1~</option>
+      <option value="2">2~</option>
       <option value="3">3~</option>
       <option value="4">4~</option>
-      <option value="5">5 (A7)</option>
+      <option value="5">5)</option>
       <option value="6">6</option>
       <option value="7">7</option>
       <option value="8">8</option>
@@ -178,8 +179,8 @@
   <td valign="top">
     <select name="analogWrite_pin" id="analogWrite_pin">
       <option value="0">0~</option>
-      <option value="1">1~ (A4)</option>
-      <option value="2">2~ (A5)</option>
+      <option value="1">1~</option>
+      <option value="2">2~</option>
       <option value="3">3~</option>
       <option value="4">4~</option>
       <option value="10">10~</option>
@@ -188,6 +189,22 @@
     <span id="range_value">0</span>
   </td>
   <td id="btn6" valign="top">  
+  </td>
+</tr>
+    
+<tr>
+  <td valign="top">AnalogWrite</td>
+  <td valign="top">
+    <select name="sample" id="sample">
+      <option value="0">0~</option>
+      <option value="1">1~ (A4)</option>
+      <option value="2">2~ (A5)</option>
+      <option value="3">3~</option>
+      <option value="4">4~</option>
+      <option value="10">10~</option>
+    </select><br>
+  </td>
+  <td id="btn8" valign="top">  
   </td>
 </tr>
     
@@ -247,6 +264,13 @@
       document.getElementById("cmd").value="paint="+"01"+document.getElementById("led1").value.replace("#","")+"02"+document.getElementById("led2").value.replace("#","")+"03"+document.getElementById("led3").value.replace("#","")+"04"+document.getElementById("led4").value.replace("#","")+"05"+document.getElementById("led5").value.replace("#","")+"06"+document.getElementById("led6").value.replace("#","")+"07"+document.getElementById("led7").value.replace("#","")+"08"+document.getElementById("led8").value.replace("#","")+"09"+document.getElementById("led9").value.replace("#","")+"0a"+document.getElementById("led10").value.replace("#","")+"0b"+document.getElementById("led11").value.replace("#","")+"0c"+document.getElementById("led12").value.replace("#","")+"0d"+document.getElementById("led13").value.replace("#","")+"0e"+document.getElementById("led14").value.replace("#","")+"0f"+document.getElementById("led15").value.replace("#","")+"10"+document.getElementById("led16").value.replace("#","")+"11"+document.getElementById("led17").value.replace("#","")+"12"+document.getElementById("led18").value.replace("#","")+"13"+document.getElementById("led19").value.replace("#","")+"14"+document.getElementById("led20").value.replace("#","")+"15"+document.getElementById("led21").value.replace("#","")+"16"+document.getElementById("led22").value.replace("#","")+"17"+document.getElementById("led23").value.replace("#","")+"18"+document.getElementById("led24").value.replace("#","")+"19"+document.getElementById("led25").value.replace("#","");
   };
   document.getElementById("btn7").appendChild(button7).setAttribute('id','btn_paint');  
+  
+  let button8 = document.createElement('button');
+  button8.textContent = "Execute";
+  button8.onclick = function() {
+      document.getElementById("cmd").value="sample="+document.getElementById("sample").value;
+  };
+  document.getElementById("btn8").appendChild(button8).setAttribute('id','btn_sample');  
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
