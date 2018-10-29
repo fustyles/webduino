@@ -100,7 +100,40 @@
 <td id="btn3" valign="top">  
 </td>
 </tr>
+  
+<tr>
+<td valign="top">digitalWrite</td>
+<td valign="top">
+<select name="digitalWrite_pin" id="digitalWrite_pin">
+  <option value="0">0~</option>
+  <option value="1">1~ (A4)</option>
+  <option value="2">2~ (A5)</option>
+  <option value="3">3~</option>
+  <option value="4">4~</option>
+  <option value="5">5 (A7)</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10~</option>
+  <option value="11">11</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+</select>
+<select name="digitalWrite_value" id="digitalWrite_value">  
+  <option value="1">hight</option>
+  <option value="0">low</option>
+</select>
+</td>
+<td id="btn5" valign="top">  
+</td>
+</tr>
 </table>  
+
+</body>
+</html>
 
 <script id="jsbin-javascript">
 (async function () {
@@ -131,7 +164,14 @@
   button4.onclick = function() {
       document.getElementById("cmd").value="thermistor";
   };
-  document.getElementById("btn4").appendChild(button4).setAttribute('id','btn_thermistor');  
+  document.getElementById("btn4").appendChild(button4).setAttribute('id','btn_thermistor'); 
+  
+ let button5 = document.createElement('button');
+  button5.textContent = "Write";
+  button5.onclick = function() {
+      document.getElementById("cmd").value="digitalwrite="+document.getElementById("digitalWrite_pin").value+";"+document.getElementById("digitalWrite_value").value;
+  };
+  document.getElementById("btn5").appendChild(button5).setAttribute('id','btn_thermistor');
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
@@ -189,6 +229,13 @@
               thermistor.off();
             });
             cmd.value ="";
+          } else if (getCmd[0] == 'digitalwrite') {
+            var Para = getCmd[1].split(";");
+            var pin = getPin(board, bitGPIO(Number(Para[0])));
+            pin.setMode(1);
+            pin.write(Number(Para[1]));
+            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            cmd.value ="";
           }
         }
         
@@ -197,5 +244,3 @@
   }
 }());
 </script>
-</body>
-</html>
