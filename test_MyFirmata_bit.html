@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>MyFirmata For Webduino Bit</title>
+  <script src="https://bit.webduino.io/blockly/components/jquery/dist/jquery.min.js"></script>
+  <script src="https://bit.webduino.io/blockly/dist/lib/webduino-all.min.js"></script>
+  <script src="https://bit.webduino.io/blockly/dist/MessageTransport.min.js"></script>
+  <script src="https://bit.webduino.io/blockly/dist/webduino-blockly.min.js"></script>
+  <script src="https://bit.webduino.io/blockly/dist/lib/firebase.min.js"></script>
+  <script src="https://bit.webduino.io/blockly/dist/lib/runtime.min.js"></script>
+  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-thermistor/BitThermistor-blockly.js"></script>
+  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-thermistor/BitThermistor.js"></script>
+  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-led-matrix/BitLedMatrix-blockly.js"></script>
+  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-led-matrix/BitLedMatrix.js"></script>
+  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-photocell/BitPhotocell-blockly.js"></script>  
+<style id="jsbin-css">
+#demo-area-01-show { font-size: 20px; pointer-events: auto!important; }
+</style>
+</head>
+<body>
+
+<div><span id="demo-area-01-show">Bit isn't connected.</span></div>
+<input type="hidden" name="cmd" id="cmd">
+<table name="myfirmata" id ="myfirmata">
+<tr>
+<td valign="top">Led Matrix</td>
+<td valign="top">
+<select name="led" id="led">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+</select>
+<select name="state" id="state">  
+  <option value="1">on</option>
+  <option value="0">off</option>
+</select>
+<input type="color" id="led_color" name="led_color" value="#ff0000">
+</td>
+<td id="btn1" valign="top">  
+</td>
+</tr>
+  
+<tr>
+<td valign="top">Marquee</td>
+<td valign="top">
+<input type="text" name="marquee" id="marquee"><br>
+<select name="interval" id="interval">
+  <option value="0">150</option>
+  <option value="1">200</option>
+  <option value="2" selected>250</option>
+  <option value="3">500</option>
+  <option value="4">1000</option>
+<select> (ms)
+<input type="color" id="marquee_color" name="marquee_color" value="#ff0000">
+</td>
+<td id="btn2" valign="top">  
+</td>
+</tr> 
+  
+<tr>
+<td valign="top">Thermistor</td>
+<td valign="top">
+</td>
+<td id="btn4" valign="top">  
+</td>
+</tr>
+  
+<tr>
+<td valign="top">Photocell</td>
+<td valign="top">
+<select name="photocell" id="photocell">  
+  <option value="photocell_left">left</option>
+  <option value="photocell_right">right</option>
+</select>
+</td>
+<td id="btn3" valign="top">  
+</td>
+</tr>
+</table>  
+
+<script id="jsbin-javascript">
+(async function () {
+  
+  let button1 = document.createElement('button');
+  button1.textContent = "Execute";
+  button1.onclick = function() {
+      document.getElementById("cmd").value="ledmatrix="+document.getElementById("led").value+";"+document.getElementById("state").value+";"+document.getElementById("led_color").value;
+  };
+  document.getElementById("btn1").appendChild(button1).setAttribute('id','btn_ledmatrix');  
+  
+  let button2 = document.createElement('button');
+  button2.textContent = "Execute";
+  button2.onclick = function() {
+      document.getElementById("cmd").value="marquee="+document.getElementById("interval").value+";"+document.getElementById("marquee_color").value+";"+document.getElementById("marquee").value.replace(/;/g,".");
+  };
+  document.getElementById("btn2").appendChild(button2).setAttribute('id','btn_marquee');    
+  
+  let button3 = document.createElement('button');
+  button3.textContent = "Read";
+  button3.onclick = function() {
+      document.getElementById("cmd").value=document.getElementById("photocell").value;
+  };
+  document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_photocell');
+  
+  let button4 = document.createElement('button');
+  button4.textContent = "Read";
+  button4.onclick = function() {
+      document.getElementById("cmd").value="thermistor";
+  };
+  document.getElementById("btn4").appendChild(button4).setAttribute('id','btn_thermistor');  
+  
+  var strUrl=location.search;
+  if (strUrl.indexOf("?")!=-1) {
+    var getdevice = strUrl.split("?")[1];
+    
+    boardReady({board: 'Bit', device: getdevice, transport: 'mqtt'}, function (board) {
+      document.getElementById("demo-area-01-show").innerHTML = "Bit is connected.";
+      
+      board.samplingInterval = 250;
+      var matrix = getMatrix(board, 4, 25);
+      
+      var fuTimer = setInterval(function(){
+        
+        var cmd = document.getElementById("cmd");
+        if (cmd.value!="") {
+          var getCmd = cmd.value.split("=");
+          
+          if (getCmd[0] == 'ledmatrix') {
+            var Para = getCmd[1].split(";");
+            if (Para[1]=="1")
+              matrix.setColor((Number(Para[0]) - 1), Para[2]);
+            else
+              matrix.setColor((Number(Para[0]) - 1), '#000000');
+            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            cmd.value ="";
+          } else if (getCmd[0] == 'photocell_left') {
+            document.getElementById("demo-area-01-show").innerHTML = "";
+            var photocell_left = getPhotocell(board, 0);
+            photocell_left.measure(async function (val){
+              photocell_left.detectedVal = val;
+              document.getElementById("demo-area-01-show").innerHTML = photocell_left.detectedVal;
+              photocell_left.off();
+            });
+            cmd.value ="";
+          } else if (getCmd[0] == 'photocell_right') {
+            document.getElementById("demo-area-01-show").innerHTML = "";
+            var photocell_right = getPhotocell(board, 3);
+            photocell_right.measure(async function (val){
+              photocell_right.detectedVal = val;
+              document.getElementById("demo-area-01-show").innerHTML = photocell_right.detectedVal;
+              photocell_right.off();
+            });
+            cmd.value ="";
+          } else if (getCmd[0] == 'marquee') {
+            var Para = getCmd[1].split(";");
+            matrix.setString(Para[2], Para[1], Number(Para[0]));
+            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            cmd.value ="";
+          } else if (getCmd[0] == 'thermistor') {
+            document.getElementById("demo-area-01-show").innerHTML = "";
+            var thermistor = getThermistor(board, 6);
+            thermistor.measure(function (val) {
+              thermistor.detectedVal = val;
+              document.getElementById("demo-area-01-show").innerHTML = thermistor.detectedVal+" °C";
+              thermistor.off();
+            });
+            cmd.value ="";
+          }
+        }
+        
+      },100);
+    });
+  }
+}());
+</script>
+</body>
+</html>
