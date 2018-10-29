@@ -280,7 +280,7 @@
   let button8 = document.createElement('button');
   button8.textContent = "Execute";
   button8.onclick = function() {
-      document.getElementById("cmd").value="sample="+document.getElementById("sample").value;
+      document.getElementById("cmd").value="sample="+document.getElementById("sample").value+";"+document.getElementById("sample_color").value+;
   };
   document.getElementById("btn8").appendChild(button8).setAttribute('id','btn_sample');  
   
@@ -379,6 +379,14 @@
             document.getElementById("demo-area-01-show").innerHTML = getCmd[0]+" (OK)";
             cmd.value ="";
           }
+          else if (getCmd[0] == 'sample') {
+            var Para = getCmd[1].split(";");
+            MatrixLed_showstate(matrix,1);
+            MatrixLed_color(Para[1]);
+            MatrixLed_sample(Para[0]);
+            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            cmd.value ="";
+          }          
         }
         
       },100);
