@@ -24,6 +24,44 @@
 <div><span id="demo-area-01-show">Bit isn't connected.</span></div>
 <input type="hidden" name="cmd" id="cmd">
 <table name="myfirmata" id ="myfirmata">
+  
+<tr>
+  <td valign="top">Led Matrix</td>
+  <td valign="top">
+    <input type="color" id="led1" name="led1" value="#000000">
+    <input type="color" id="led2" name="led2" value="#000000">
+    <input type="color" id="led3" name="led3" value="#000000">
+    <input type="color" id="led4" name="led4" value="#000000">
+    <input type="color" id="led5" name="led5" value="#000000">
+    <br>
+    <input type="color" id="led6" name="led6" value="#000000">
+    <input type="color" id="led7" name="led7" value="#000000">
+    <input type="color" id="led8" name="led8" value="#000000">
+    <input type="color" id="led9" name="led9" value="#000000">
+    <input type="color" id="led10" name="led10" value="#000000">
+    <br>
+    <input type="color" id="led11" name="led11" value="#000000">
+    <input type="color" id="led12" name="led12" value="#000000">
+    <input type="color" id="led13" name="led13" value="#000000">
+    <input type="color" id="led14" name="led14" value="#000000">
+    <input type="color" id="led15" name="led15" value="#000000">
+    <br>
+    <input type="color" id="led16" name="led16" value="#000000">
+    <input type="color" id="led17" name="led17" value="#000000">
+    <input type="color" id="led18" name="led18" value="#000000">
+    <input type="color" id="led19" name="led19" value="#000000">
+    <input type="color" id="led20" name="led20" value="#000000">
+    <br>
+    <input type="color" id="led21" name="led21" value="#000000">
+    <input type="color" id="led22" name="led22" value="#000000">
+    <input type="color" id="led23" name="led23" value="#000000">
+    <input type="color" id="led24" name="led24" value="#000000">
+    <input type="color" id="led25" name="led25" value="#000000">
+  </td>
+  <td id="btn7" valign="top">  
+  </td>
+</tr>
+  
 <tr>
   <td valign="top">Led Matrix</td>
   <td valign="top">
@@ -149,25 +187,7 @@
   <td id="btn6" valign="top">  
   </td>
 </tr>
-  
-<tr>
-  <td valign="top">AnalogWrite</td>
-  <td valign="top">
-    <select name="analogWrite_pin" id="analogWrite_pin">
-      <option value="0">0~</option>
-      <option value="1">1~ (A4)</option>
-      <option value="2">2~ (A5)</option>
-      <option value="3">3~</option>
-      <option value="4">4~</option>
-      <option value="10">10~</option>
-    </select><br>
-    <input type="range" name="analogWrite_value" id="analogWrite_value" min="0" max="1"  value="0" step="0.05" onchange="range_value.innerHTML=this.value;">
-    <span id="range_value">0</span>
-  </td>
-  <td id="btn6" valign="top">  
-  </td>
-</tr>
-  
+    
 </table>  
 
 </body>
@@ -218,6 +238,13 @@
   };
   document.getElementById("btn6").appendChild(button6).setAttribute('id','btn_analogwrite');
   
+  let button7 = document.createElement('button');
+  button7.textContent = "Execute";
+  button7.onclick = function() {
+      document.getElementById("cmd").value="paint="+"01"+document.getElementById("led1").value.replace("#","")+"02"+document.getElementById("led2").value.replace("#","")+"03"+document.getElementById("led3").value.replace("#","")+"04"+document.getElementById("led4").value.replace("#","")+"05"+document.getElementById("led5").value.replace("#","")+"06"+document.getElementById("led6").value.replace("#","")+"07"+document.getElementById("led7").value.replace("#","")+"08"+document.getElementById("led8").value.replace("#","")+"09"+document.getElementById("led9").value.replace("#","")+"0a"+document.getElementById("led10").value.replace("#","")+"0b"+document.getElementById("led11").value.replace("#","")+"0c"+document.getElementById("led12").value.replace("#","")+"0d"+document.getElementById("led13").value.replace("#","")+"0e"+document.getElementById("led14").value.replace("#","")+"0f"+document.getElementById("led15").value.replace("#","")+"10"+document.getElementById("led16").value.replace("#","")+"11"+document.getElementById("led17").value.replace("#","")+"12"+document.getElementById("led18").value.replace("#","")+"13"+document.getElementById("led19").value.replace("#","")+"14"+document.getElementById("led20").value.replace("#","")+"15"+document.getElementById("led21").value.replace("#","")+"16"+document.getElementById("led22").value.replace("#","")+"17"+document.getElementById("led23").value.replace("#","")+"18"+document.getElementById("led24").value.replace("#","")+"19"+document.getElementById("led25").value.replace("#","");
+  };
+  document.getElementById("btn7").appendChild(button7).setAttribute('id','btn_paint');  
+  
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
     var getdevice = strUrl.split("?")[1];
@@ -252,7 +279,8 @@
               }
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
-          } else if (getCmd[0] == 'photocell_left') {
+          } 
+          else if (getCmd[0] == 'photocell_left') {
             document.getElementById("demo-area-01-show").innerHTML = "";
             var photocell_left = getPhotocell(board, 0);
             photocell_left.measure(async function (val){
@@ -261,7 +289,8 @@
               photocell_left.off();
             });
             cmd.value ="";
-          } else if (getCmd[0] == 'photocell_right') {
+          } 
+          else if (getCmd[0] == 'photocell_right') {
             document.getElementById("demo-area-01-show").innerHTML = "";
             var photocell_right = getPhotocell(board, 3);
             photocell_right.measure(async function (val){
@@ -270,7 +299,8 @@
               photocell_right.off();
             });
             cmd.value ="";
-          } else if (getCmd[0] == 'marquee') {
+          } 
+          else if (getCmd[0] == 'marquee') {
             var Para = getCmd[1].split(";");
             if (Para[2]=="")
                 matrix.off();
@@ -278,7 +308,8 @@
               matrix.setString(Para[2], Para[1], Number(Para[0]));
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
-          } else if (getCmd[0] == 'thermistor') {
+          } 
+          else if (getCmd[0] == 'thermistor') {
             document.getElementById("demo-area-01-show").innerHTML = "";
             var thermistor = getThermistor(board, 6);
             thermistor.measure(function (val) {
@@ -287,18 +318,25 @@
               thermistor.off();
             });
             cmd.value ="";
-          } else if (getCmd[0] == 'digitalwrite') {
+          } 
+          else if (getCmd[0] == 'digitalwrite') {
             var Para = getCmd[1].split(";");
             var pin = getPin(board, bitGPIO(Number(Para[0])));
             pin.setMode(1);
             pin.write(Number(Para[1]));
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
-          } else if (getCmd[0] == 'analogwrite') {
+          } 
+          else if (getCmd[0] == 'analogwrite') {
             var Para = getCmd[1].split(";");
             var pin = getPin(board, bitGPIO(Number(Para[0])));
             pin.setMode(3);
             pin.write(Number(Para[1]));
+            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            cmd.value ="";
+          } 
+          else if (getCmd[0] == 'paint') {
+            matrix.setColor(getCmd[1]);
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           }
