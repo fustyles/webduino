@@ -22,12 +22,12 @@
 </head>
 <body>
 
-<div><span id="demo-area-01-show">Bit isn't connected.</span></div>
+<div><span id="demo-area-01-show">Webduino Bit isn't connected.</span></div>
 <input type="hidden" name="cmd" id="cmd">
 <table name="myfirmata" id ="myfirmata">
   
 <tr>
-  <td valign="top">Led Matrix</td>
+  <td valign="top">1. Led Matrix</td>
   <td valign="top"></td>
   <td id="btn7" valign="top">  
   </td>
@@ -67,7 +67,7 @@
 </tr>
   
 <tr>
-  <td valign="top">Sample</td>
+  <td valign="top">2. Sample</td>
   <td valign="top">
     <select name="sample" id="sample">
       <option value="♥">♥</option>
@@ -95,7 +95,7 @@
 </tr>
     
 <tr>
-  <td valign="top">Led</td>
+  <td valign="top">3. Led</td>
   <td valign="top">
     <select name="led" id="led">
       <option value="1">1</option>
@@ -136,7 +136,7 @@
 </tr>
   
 <tr>
-  <td valign="top">Marquee</td>
+  <td valign="top">4. Marquee</td>
   <td valign="top">
     <input type="text" name="marquee" id="marquee"><br>
     <select name="interval" id="interval">
@@ -153,7 +153,7 @@
 </tr> 
   
 <tr>
-  <td valign="top">Thermistor</td>
+  <td valign="top">5. Thermistor</td>
   <td valign="top">
   </td>
   <td id="btn4" valign="top">  
@@ -161,7 +161,7 @@
 </tr>
   
 <tr>
-  <td valign="top">Photocell</td>
+  <td valign="top">6. Photocell</td>
   <td valign="top">
     <select name="photocell" id="photocell">  
       <option value="photocell_left">Left</option>
@@ -173,7 +173,7 @@
 </tr>
   
 <tr>
-  <td valign="top">DigitalWrite</td>
+  <td valign="top">7. DigitalWrite</td>
   <td valign="top">
     <select name="digitalWrite_pin" id="digitalWrite_pin">
       <option value="0">0</option>
@@ -203,7 +203,7 @@
 </tr>
   
 <tr>
-  <td valign="top">AnalogWrite</td>
+  <td valign="top">8. AnalogWrite</td>
   <td valign="top">
     <select name="analogWrite_pin" id="analogWrite_pin">
       <option value="0">0</option>
@@ -289,7 +289,7 @@
     var getdevice = strUrl.split("?")[1];
     
     boardReady({board: 'Bit', device: getdevice, transport: 'mqtt'}, function (board) {
-      document.getElementById("demo-area-01-show").innerHTML = "Bit is connected.";
+      document.getElementById("demo-area-01-show").innerHTML = "Webduino Bit is connected.";
       
       board.samplingInterval = 250;
       var matrix = getMatrix(board, 4, 25);
