@@ -167,6 +167,43 @@
   <td id="btn6" valign="top">  
   </td>
 </tr>
+    
+<tr>
+  <td valign="top">Led Matrix</td>
+  <td valign="top">
+    <input type="color" id="led1" name="led" value="#000000">
+    <input type="color" id="led2" name="led" value="#000000">
+    <input type="color" id="led3" name="led" value="#000000">
+    <input type="color" id="led4" name="led" value="#000000">
+    <input type="color" id="led5" name="led" value="#000000">
+    <br>
+    <input type="color" id="led6" name="led" value="#000000">
+    <input type="color" id="led7" name="led" value="#000000">
+    <input type="color" id="led8" name="led" value="#000000">
+    <input type="color" id="led9" name="led" value="#000000">
+    <input type="color" id="led10" name="led" value="#000000">
+    <br>
+    <input type="color" id="led11" name="led" value="#000000">
+    <input type="color" id="led12" name="led" value="#000000">
+    <input type="color" id="led13" name="led" value="#000000">
+    <input type="color" id="led14" name="led" value="#000000">
+    <input type="color" id="led15" name="led" value="#000000">
+    <br>
+    <input type="color" id="led16" name="led" value="#000000">
+    <input type="color" id="led17" name="led" value="#000000">
+    <input type="color" id="led18" name="led" value="#000000">
+    <input type="color" id="led19" name="led" value="#000000">
+    <input type="color" id="led20" name="led" value="#000000">
+    <br>
+    <input type="color" id="led21" name="led" value="#000000">
+    <input type="color" id="led22" name="led" value="#000000">
+    <input type="color" id="led23" name="led" value="#000000">
+    <input type="color" id="led24" name="led" value="#000000">
+    <input type="color" id="led25" name="led" value="#000000">
+  </td>
+  <td id="btn7" valign="top">  
+  </td>
+</tr>
   
 </table>  
 
@@ -221,8 +258,7 @@
   let button7 = document.createElement('button');
   button7.textContent = "Execute";
   button7.onclick = function() {
-      document.getElementById("cmd").value="paint="+document.getElementById("led1").value+document.getElementById("led2").value+document.getElementById("led3").value+document.getElementById("led4").value+document.getElementById("led5").value+document.getElementById("led6").value+document.getElementById("led7").value+document.getElementById("led8").value+document.getElementById("led9").value+document.getElementById("led10").value+document.getElementById("led11").value+document.getElementById("led12").value+document.getElementById("led13").value+document.getElementById("led14").value+document.getElementById("led15").value+document.getElementById("led16").value+document.getElementById("led17").value+document.getElementById("led18").value+document.getElementById("led19").value+document.getElementById("led20").value+document.getElementById("led21").value+document.getElementById("led22").value+document.getElementById("led23").value+document.getElementById("led24").value+document.getElementById("led25").value;
-  };
+      document.getElementById("cmd").value="paint="+"01"+document.getElementById("led1").value.replace("#","")+"02"+document.getElementById("led2").value.replace("#","")+"03"+document.getElementById("led3").value.replace("#","")+"04"+document.getElementById("led4").value.replace("#","")+"05"+document.getElementById("led5").value.replace("#","")+"06"+document.getElementById("led6").value.replace("#","")+"07"+document.getElementById("led7").value.replace("#","")+"08"+document.getElementById("led8").value.replace("#","")+"09"+document.getElementById("led9").value.replace("#","")+"0a"+document.getElementById("led10").value.replace("#","")+"0b"+document.getElementById("led11").value.replace("#","")+"0c"+document.getElementById("led12").value.replace("#","")+"0d"+document.getElementById("led13").value.replace("#","")+"0e"+document.getElementById("led14").value.replace("#","")+"0f"+document.getElementById("led15").value.replace("#","")+"10"+document.getElementById("led16").value.replace("#","")+"11"+document.getElementById("led17").value.replace("#","")+"12"+document.getElementById("led18").value.replace("#","")+"13"+document.getElementById("led19").value.replace("#","")+"14"+document.getElementById("led20").value.replace("#","")+"15"+document.getElementById("led21").value.replace("#","")+"16"+document.getElementById("led22").value.replace("#","")+"17"+document.getElementById("led23").value.replace("#","")+"18"+document.getElementById("led24").value.replace("#","")+"19"+document.getElementById("led25").value.replace("#","");
   document.getElementById("btn7").appendChild(button7).setAttribute('id','btn_paint');  
   
   var strUrl=location.search;
@@ -306,6 +342,10 @@
             var pin = getPin(board, bitGPIO(Number(Para[0])));
             pin.setMode(3);
             pin.write(Number(Para[1]));
+            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            cmd.value ="";
+          } else if (getCmd[0] == 'paint') {
+            matrix.setColor(getCmd[1]);
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           }
