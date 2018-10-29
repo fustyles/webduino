@@ -142,7 +142,7 @@
   <option value="4">4~</option>
   <option value="10">10~</option>
 </select><br>
-<input type="range" name="analogWrite_value" id="analogWrite_value" min="0" max="255"  value="0" step="1" onchange="range_value.innerHTML=this.value;">
+<input type="range" name="analogWrite_value" id="analogWrite_value" min="0" max="1"  value="0" step="0.05" onchange="range_value.innerHTML=this.value;">
 <span id="range_value">0</span>
 </td>
 <td id="btn6" valign="top">  
@@ -266,7 +266,7 @@
             var Para = getCmd[1].split(";");
             var pin = getPin(board, bitGPIO(Number(Para[0])));
             pin.setMode(3);
-            pin.write(Number(Para[1])/255);
+            pin.write(Number(Para[1]));
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           }
