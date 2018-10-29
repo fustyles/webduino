@@ -57,7 +57,7 @@
   <option value="1">on</option>
   <option value="0">off</option>
 </select>
-<input type="color" id="color" name="color" value="#ff0000">
+<input type="color" id="led_color" name="led_color" value="#ff0000">
 </td>
 <td id="btn1">  
 </td>
@@ -65,7 +65,7 @@
   
 <tr>
 <td>Marquee：
-<input type="text" name="marquee" id="marquee">
+<input type="text" name="marquee" id="marquee"><br>
 <select name="interval" id="interval">
   <option value="0">150</option>
   <option value="1">200</option>
@@ -73,6 +73,7 @@
   <option value="3">500</option>
   <option value="4">1000</option>
 <select> (ms)
+<input type="color" id="marquee_color" name="marquee_color" value="#ff0000">
 </td>
 <td id="btn2">  
 </td>
@@ -103,14 +104,14 @@
   let button1 = document.createElement('button');
   button1.textContent = "Execute";
   button1.onclick = function() {
-      document.getElementById("cmd").value="ledmatrix="+document.getElementById("led").value+";"+document.getElementById("state").value+";"+document.getElementById("color").value;
+      document.getElementById("cmd").value="ledmatrix="+document.getElementById("led").value+";"+document.getElementById("state").value+";"+document.getElementById("led_color").value;
   };
   document.getElementById("btn1").appendChild(button1).setAttribute('id','btn_ledmatrix');  
   
   let button2 = document.createElement('button');
   button2.textContent = "Execute";
   button2.onclick = function() {
-      document.getElementById("cmd").value="marquee="+document.getElementById("interval").value+";"+document.getElementById("marquee").value.replace(/;/g,".");
+      document.getElementById("cmd").value="marquee="+document.getElementById("interval").value+";"+document.getElementById("marquee_color").value+";"+document.getElementById("marquee").value.replace(/;/g,".");
   };
   document.getElementById("btn2").appendChild(button2).setAttribute('id','btn_marquee');    
   
@@ -172,7 +173,7 @@
             cmd.value ="";
           } else if (getCmd[0] == 'marquee') {
             var Para = getCmd[1].split(";");
-            matrix.setString(Para[1], '#ff0000', Number(Para[0]));
+            matrix.setString(Para[2], Para[1], Number(Para[0]));
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } else if (getCmd[0] == 'thermistor') {
