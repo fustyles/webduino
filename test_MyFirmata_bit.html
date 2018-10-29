@@ -351,7 +351,7 @@
       var matrix = getMatrix(board, 4, 25);
       MatrixLed_showstate(matrix,1);
       
-      var fuTimer = setInterval(function(){
+      var fuTimer = setInterval(async function(){
         
         var cmd = document.getElementById("cmd");
         if (cmd.value!="") {
