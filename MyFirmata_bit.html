@@ -337,7 +337,7 @@
           } 
           else if (getCmd[0] == 'paint') {
             matrix.setColor(getCmd[1]);
-            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            document.getElementById("demo-area-01-show").innerHTML = getCmd[0]+" (OK)";
             cmd.value ="";
           }
         }
