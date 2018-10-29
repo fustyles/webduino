@@ -56,8 +56,8 @@
   <option value="all">all</option>  
 </select>
 <select name="state" id="state">  
-  <option value="1">ON</option>
-  <option value="0">OFF</option>
+  <option value="1">On</option>
+  <option value="0">Off</option>
 </select>
 <input type="color" id="led_color" name="led_color" value="#ff0000">
 </td>
@@ -94,8 +94,8 @@
 <td valign="top">Photocell</td>
 <td valign="top">
 <select name="photocell" id="photocell">  
-  <option value="photocell_left">left</option>
-  <option value="photocell_right">right</option>
+  <option value="photocell_left">Left</option>
+  <option value="photocell_right">Right</option>
 </select>
 </td>
 <td id="btn3" valign="top">  
@@ -219,12 +219,12 @@
           if (getCmd[0] == 'ledmatrix') {
             var Para = getCmd[1].split(";");
             if (Para[0]=="all") {
-              for (var i=1;i<=25;i++) {
-                if (Para[1]=="1")
+              if (Para[1]=="1") {
+                for (var i=1;i<=25;i++)
                   matrix.setColor((i - 1), Para[2]);
-                else
-                  matrix.setColor((i - 1), '#000000');
               }
+              else
+                matrix.off();
             }
             else {
               if (Para[1]=="1")
