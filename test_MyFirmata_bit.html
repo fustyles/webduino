@@ -25,129 +25,147 @@
 <input type="hidden" name="cmd" id="cmd">
 <table name="myfirmata" id ="myfirmata">
 <tr>
-<td valign="top">Led Matrix</td>
-<td valign="top">
-<select name="led" id="led">
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
-  <option value="6">6</option>
-  <option value="7">7</option>
-  <option value="8">8</option>
-  <option value="9">9</option>
-  <option value="10">10</option>
-  <option value="11">11</option>
-  <option value="12">12</option>
-  <option value="13">13</option>
-  <option value="14">14</option>
-  <option value="15">15</option>
-  <option value="16">16</option>
-  <option value="17">17</option>
-  <option value="18">18</option>
-  <option value="19">19</option>
-  <option value="20">20</option>
-  <option value="21">21</option>
-  <option value="22">22</option>
-  <option value="23">23</option>
-  <option value="24">24</option>
-  <option value="25">25</option>
-  <option value="all">all</option>  
-</select>
-<select name="state" id="state">  
-  <option value="1">On</option>
-  <option value="0">Off</option>
-</select>
-<input type="color" id="led_color" name="led_color" value="#ff0000">
-</td>
-<td id="btn1" valign="top">  
-</td>
+  <td valign="top">Led Matrix</td>
+  <td valign="top">
+    <select name="led" id="led">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+      <option value="21">21</option>
+      <option value="22">22</option>
+      <option value="23">23</option>
+      <option value="24">24</option>
+      <option value="25">25</option>
+      <option value="all">all</option>  
+    </select>
+    <select name="state" id="state">  
+      <option value="1">On</option>
+      <option value="0">Off</option>
+    </select>
+    <input type="color" id="led_color" name="led_color" value="#ff0000">
+  </td>
+  <td id="btn1" valign="top">  
+  </td>
 </tr>
   
 <tr>
-<td valign="top">Marquee</td>
-<td valign="top">
-<input type="text" name="marquee" id="marquee"><br>
-<select name="interval" id="interval">
-  <option value="0">150</option>
-  <option value="1">200</option>
-  <option value="2" selected>250</option>
-  <option value="3">500</option>
-  <option value="4">1000</option>
-<select> (ms)
-<input type="color" id="marquee_color" name="marquee_color" value="#ff0000">
-</td>
-<td id="btn2" valign="top">  
-</td>
+  <td valign="top">Marquee</td>
+  <td valign="top">
+    <input type="text" name="marquee" id="marquee"><br>
+    <select name="interval" id="interval">
+      <option value="0">150</option>
+      <option value="1">200</option>
+      <option value="2" selected>250</option>
+      <option value="3">500</option>
+      <option value="4">1000</option>
+    <select> (ms)
+    <input type="color" id="marquee_color" name="marquee_color" value="#ff0000">
+  </td>
+  <td id="btn2" valign="top">  
+  </td>
 </tr> 
   
 <tr>
-<td valign="top">Thermistor</td>
-<td valign="top">
-</td>
-<td id="btn4" valign="top">  
-</td>
+  <td valign="top">Thermistor</td>
+  <td valign="top">
+  </td>
+  <td id="btn4" valign="top">  
+  </td>
 </tr>
   
 <tr>
-<td valign="top">Photocell</td>
-<td valign="top">
-<select name="photocell" id="photocell">  
-  <option value="photocell_left">Left</option>
-  <option value="photocell_right">Right</option>
-</select>
-</td>
-<td id="btn3" valign="top">  
-</td>
+  <td valign="top">Photocell</td>
+  <td valign="top">
+    <select name="photocell" id="photocell">  
+      <option value="photocell_left">Left</option>
+      <option value="photocell_right">Right</option>
+    </select>
+  </td>
+  <td id="btn3" valign="top">  
+  </td>
 </tr>
   
 <tr>
-<td valign="top">DigitalWrite</td>
-<td valign="top">
-<select name="digitalWrite_pin" id="digitalWrite_pin">
-  <option value="0">0~</option>
-  <option value="1">1~ (A4)</option>
-  <option value="2">2~ (A5)</option>
-  <option value="3">3~</option>
-  <option value="4">4~</option>
-  <option value="5">5 (A7)</option>
-  <option value="6">6</option>
-  <option value="7">7</option>
-  <option value="8">8</option>
-  <option value="9">9</option>
-  <option value="10">10~</option>
-  <option value="11">11</option>
-  <option value="13">13</option>
-  <option value="14">14</option>
-  <option value="15">15</option>
-  <option value="16">16</option>
-</select>
-<select name="digitalWrite_value" id="digitalWrite_value">  
-  <option value="1">High</option>
-  <option value="0">Low</option>
-</select>
-</td>
-<td id="btn5" valign="top">  
-</td>
+  <td valign="top">DigitalWrite</td>
+  <td valign="top">
+    <select name="digitalWrite_pin" id="digitalWrite_pin">
+      <option value="0">0~</option>
+      <option value="1">1~ (A4)</option>
+      <option value="2">2~ (A5)</option>
+      <option value="3">3~</option>
+      <option value="4">4~</option>
+      <option value="5">5 (A7)</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10~</option>
+      <option value="11">11</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+    </select>
+    <select name="digitalWrite_value" id="digitalWrite_value">  
+      <option value="1">High</option>
+      <option value="0">Low</option>
+    </select>
+  </td>
+  <td id="btn5" valign="top">  
+  </td>
 </tr>
   
 <tr>
-<td valign="top">AnalogWrite</td>
-<td valign="top">
-<select name="analogWrite_pin" id="analogWrite_pin">
-  <option value="0">0~</option>
-  <option value="1">1~ (A4)</option>
-  <option value="2">2~ (A5)</option>
-  <option value="3">3~</option>
-  <option value="4">4~</option>
-  <option value="10">10~</option>
-</select><br>
-<input type="range" name="analogWrite_value" id="analogWrite_value" min="0" max="1"  value="0" step="0.05" onchange="range_value.innerHTML=this.value;">
-<span id="range_value">0</span>
-</td>
-<td id="btn6" valign="top">  
-</td>
+  <td valign="top">AnalogWrite</td>
+  <td valign="top">
+    <select name="analogWrite_pin" id="analogWrite_pin">
+      <option value="0">0~</option>
+      <option value="1">1~ (A4)</option>
+      <option value="2">2~ (A5)</option>
+      <option value="3">3~</option>
+      <option value="4">4~</option>
+      <option value="10">10~</option>
+    </select><br>
+    <input type="range" name="analogWrite_value" id="analogWrite_value" min="0" max="1"  value="0" step="0.05" onchange="range_value.innerHTML=this.value;">
+    <span id="range_value">0</span>
+  </td>
+  <td id="btn6" valign="top">  
+  </td>
+</tr>
+  
+<tr>
+  <td valign="top">AnalogWrite</td>
+  <td valign="top">
+    <select name="analogWrite_pin" id="analogWrite_pin">
+      <option value="0">0~</option>
+      <option value="1">1~ (A4)</option>
+      <option value="2">2~ (A5)</option>
+      <option value="3">3~</option>
+      <option value="4">4~</option>
+      <option value="10">10~</option>
+    </select><br>
+    <input type="range" name="analogWrite_value" id="analogWrite_value" min="0" max="1"  value="0" step="0.05" onchange="range_value.innerHTML=this.value;">
+    <span id="range_value">0</span>
+  </td>
+  <td id="btn6" valign="top">  
+  </td>
 </tr>
   
 </table>  
