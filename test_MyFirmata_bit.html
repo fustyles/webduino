@@ -320,9 +320,9 @@
             }
             else {
               if (Para[1]=="1")
-                matrix.setColor((Number(Para[0]) - 1), Para[2]);
+                MatrixLed_color_on((Number(Para[0])%5),parseInt(Number(Para[0])/5),Para[2]);
               else
-                matrix.setColor((Number(Para[0]) - 1), '#000000');
+                MatrixLed_color_on((Number(Para[0])%5),parseInt(Number(Para[0])/5),'#000000');
             }
           } 
           else if (getCmd[0] == 'photocell_left') {
