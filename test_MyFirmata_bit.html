@@ -386,22 +386,20 @@
             var photocell_left = getPhotocell(board, 0);
             photocell_left.measure(async function (val){
               photocell_left.detectedVal = val;
-              await delay(1);
               document.getElementById("demo-area-01-show").innerHTML = photocell_left.detectedVal;
-              photocell_left.off();
             });
             cmd.value ="";
+            photocell_left.off();
           } 
           else if (getCmd[0] == 'photocell_right') {
             document.getElementById("demo-area-01-show").innerHTML = "";
             var photocell_right = getPhotocell(board, 3);
             photocell_right.measure(async function (val){
               photocell_right.detectedVal = val;
-              await delay(1);
               document.getElementById("demo-area-01-show").innerHTML = photocell_right.detectedVal;
-              photocell_right.off();
             });
             cmd.value ="";
+            photocell_right.off();
           } 
           else if (getCmd[0] == 'marquee') {
             var Para = getCmd[1].split(";");
