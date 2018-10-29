@@ -308,7 +308,7 @@ Blockly.JavaScript['document_timer'] = function (block) {
   var variable_fuTimer_ = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('fuTimer_'), Blockly.Variables.NAME_TYPE);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var value_intervals_ = Blockly.JavaScript.valueToCode(block, 'intervals_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = variable_fuTimer_+' = setInterval(function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
+  var code = variable_fuTimer_+' = setInterval(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
   return code;
 };
 
@@ -316,7 +316,7 @@ Blockly.JavaScript['document_timer_once'] = function (block) {
   var variable_fuTimerOnce_ = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('fuTimerOnce_'), Blockly.Variables.NAME_TYPE);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var value_intervals_ = Blockly.JavaScript.valueToCode(block, 'intervals_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = variable_fuTimerOnce_+' = setTimeout(function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
+  var code = variable_fuTimerOnce_+' = setTimeout(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
   return code;
 };
 
