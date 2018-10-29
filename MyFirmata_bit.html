@@ -22,12 +22,12 @@
 </head>
 <body>
 
-<div><span id="demo-area-01-show">Bit isn't connected.</span></div>
+<div><span id="demo-area-01-show">Webduino Bit isn't connected.</span></div>
 <input type="hidden" name="cmd" id="cmd">
 <table name="myfirmata" id ="myfirmata">
   
 <tr>
-  <td valign="top">Led Matrix</td>
+  <td valign="top">1. Led Matrix</td>
   <td valign="top"></td>
   <td id="btn7" valign="top">  
   </td>
@@ -67,7 +67,7 @@
 </tr>
   
 <tr>
-  <td valign="top">Sample</td>
+  <td valign="top">2. Sample</td>
   <td valign="top">
     <select name="sample" id="sample">
       <option value="♥">♥</option>
@@ -95,7 +95,7 @@
 </tr>
     
 <tr>
-  <td valign="top">Led</td>
+  <td valign="top">3. Led</td>
   <td valign="top">
     <select name="led" id="led">
       <option value="1">1</option>
@@ -136,7 +136,7 @@
 </tr>
   
 <tr>
-  <td valign="top">Marquee</td>
+  <td valign="top">4. Marquee</td>
   <td valign="top">
     <input type="text" name="marquee" id="marquee"><br>
     <select name="interval" id="interval">
@@ -153,7 +153,7 @@
 </tr> 
   
 <tr>
-  <td valign="top">Thermistor</td>
+  <td valign="top">5. Thermistor</td>
   <td valign="top">
   </td>
   <td id="btn4" valign="top">  
@@ -161,7 +161,7 @@
 </tr>
   
 <tr>
-  <td valign="top">Photocell</td>
+  <td valign="top">6. Photocell</td>
   <td valign="top">
     <select name="photocell" id="photocell">  
       <option value="photocell_left">Left</option>
@@ -173,7 +173,7 @@
 </tr>
   
 <tr>
-  <td valign="top">DigitalWrite</td>
+  <td valign="top">7. DigitalWrite</td>
   <td valign="top">
     <select name="digitalWrite_pin" id="digitalWrite_pin">
       <option value="0">0</option>
@@ -203,7 +203,7 @@
 </tr>
   
 <tr>
-  <td valign="top">AnalogWrite</td>
+  <td valign="top">8. AnalogWrite</td>
   <td valign="top">
     <select name="analogWrite_pin" id="analogWrite_pin">
       <option value="0">0</option>
@@ -217,6 +217,48 @@
     <span id="range_value">0</span>
   </td>
   <td id="btn6" valign="top">  
+  </td>
+</tr>
+    
+<tr>
+  <td valign="top">9. DigitalRead</td>
+  <td valign="top">
+    <select name="digitalRead_pin" id="digitalRead_pin">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+    </select>
+  </td>
+  <td id="btn9" valign="top">  
+  </td>
+</tr>
+  
+<tr>
+  <td valign="top">10. AnalogRead</td>
+  <td valign="top">
+    <select name="analogRead_pin" id="analogRead_pin">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="10">10</option>
+    </select>
+  </td>
+  <td id="btn10" valign="top">  
   </td>
 </tr>
 
@@ -282,19 +324,34 @@
   button8.onclick = function() {
       document.getElementById("cmd").value="sample="+document.getElementById("sample").value+";"+document.getElementById("sample_color").value;
   };
-  document.getElementById("btn8").appendChild(button8).setAttribute('id','btn_sample');  
+  document.getElementById("btn8").appendChild(button8).setAttribute('id','btn_sample'); 
+  
+ let button9 = document.createElement('button');
+  button9.textContent = "Read";
+  button9.onclick = function() {
+      document.getElementById("cmd").value="digitalread="+document.getElementById("digitalRead_pin").value;
+  };
+  document.getElementById("btn9").appendChild(button9).setAttribute('id','btn_digitalread');
+  
+  let button10 = document.createElement('button');
+  button10.textContent = "Read";
+  button10.onclick = function() {
+      document.getElementById("cmd").value="analogread="+document.getElementById("analogRead_pin").value;
+  };
+  document.getElementById("btn10").appendChild(button10).setAttribute('id','btn_analogread');  
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
     var getdevice = strUrl.split("?")[1];
     
     boardReady({board: 'Bit', device: getdevice, transport: 'mqtt'}, function (board) {
-      document.getElementById("demo-area-01-show").innerHTML = "Bit is connected.";
+      document.getElementById("demo-area-01-show").innerHTML = "Webduino Bit is connected.";
       
       board.samplingInterval = 250;
       var matrix = getMatrix(board, 4, 25);
+      MatrixLed_showstate(matrix,1);
       
-      var fuTimer = setInterval(function(){
+      var fuTimer = setInterval(async function(){
         
         var cmd = document.getElementById("cmd");
         if (cmd.value!="") {
@@ -302,7 +359,6 @@
           
           if (getCmd[0] == 'ledmatrix') {
             var Para = getCmd[1].split(";");
-            MatrixLed_showstate(matrix,1);
             MatrixLed_marquee_stop();
             
             if (Para[0]=="All") {
@@ -347,11 +403,15 @@
           } 
           else if (getCmd[0] == 'marquee') {
             var Para = getCmd[1].split(";");
-            
-            MatrixLed_showstate(matrix,1);
-            MatrixLed_marquee_time(Number(Para[0]));
-            MatrixLed_color(Para[1]);
-            MatrixLed_marquee((MatrixLed_indentcode((MatrixLed_texttocode(Para[2])))));
+            if (Para[2]=="") {
+              MatrixLed_marquee_stop();
+              MatrixLed_clear();
+            }
+            else {
+              MatrixLed_marquee_time(Number(Para[0]));
+              MatrixLed_color(Para[1]);
+              MatrixLed_marquee((MatrixLed_indentcode((MatrixLed_texttocode(Para[2])))));
+            }
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } 
@@ -388,12 +448,23 @@
           }
           else if (getCmd[0] == 'sample') {
             var Para = getCmd[1].split(";");
-            MatrixLed_showstate(matrix,1);
             MatrixLed_color(Para[1]);
             MatrixLed_sample(Para[0]);
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
-          }          
+          }     
+          else if (getCmd[0] == 'digitalread') {
+            var pin = getPin(board, bitGPIO(Number(getCmd[1])));
+            pin.setMode(0);
+            document.getElementById("demo-area-01-show").innerHTML = (await pin.read());
+            cmd.value ="";
+          } 
+          else if (getCmd[0] == 'analogread') {
+            var pin = getPin(board, bitGPIO(Number(getCmd[1])));
+            pin.setMode(2);
+            document.getElementById("demo-area-01-show").innerHTML =(await pin.read());
+            cmd.value ="";
+          }           
         }
         
       },100);
