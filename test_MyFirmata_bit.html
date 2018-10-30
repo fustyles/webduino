@@ -362,7 +362,7 @@
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
-    var getdevice = strUrl.split("?")[1];
+    var getdevice = strUrl.split("?")[1].split("&")[0];
     
     boardReady({board: 'Bit', device: getdevice, transport: 'mqtt'}, function (board) {
       document.getElementById("demo-area-01-show").innerHTML = "Webduino Bit is connected.";
