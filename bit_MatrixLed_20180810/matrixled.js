@@ -220,15 +220,15 @@
         else
           MatrixLedmarqueecode = MatrixLedmarqueecode+MatrixLed_conversion(input_marquee_.substr(i,1)) + "00000";
       }
-      for (var j=0;j<input_times_;j++)
-      {
-        MatrixLedmarqueecode += MatrixLedmarqueecode;
-        MatrixLedmarqueecodeonce += MatrixLedmarqueecode;
-      }
-      console.log(input_times_);
       MatrixLedmarqueecode = MatrixLedmarqueecode;
       MatrixLedmarqueecodeonce = MatrixLedmarqueecode;
     }
+    for (var j=0;j<input_times_;j++)
+    {
+      MatrixLedmarqueecode += MatrixLedmarqueecode;
+      MatrixLedmarqueecodeonce += MatrixLedmarqueecode;
+    }
+    console.log(input_times_);    
     MatrixLedmarqueeinitial=MatrixLedmarqueecode;
     marqueeactive=2;
     marqueetimeid = window.setInterval("MatrixLed_marquee_once_play()",MatrixLedmarqueetime);
