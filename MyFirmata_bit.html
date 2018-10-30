@@ -635,6 +635,7 @@
                   document.getElementById("demo-area-01-show").innerHTML = mpu9250.accVals[1];
                 if (getCmd[1]=="accelerometer_z") 
                   document.getElementById("demo-area-01-show").innerHTML = mpu9250.accVals[2];
+                mpu9250.off(webduino.module.MPU9250Event.ACCELEROMETER_MESSAGE);
               });
             }
             if (getCmd[1].indexOf("gyroscope")!=-1) {
@@ -645,6 +646,7 @@
                     document.getElementById("demo-area-01-show").innerHTML = mpu9250.gyrVals[1];
                   if (getCmd[1]=="gyroscope_yaw") 
                     document.getElementById("demo-area-01-show").innerHTML = mpu9250.gyrVals[2];
+                  mpu9250.off(webduino.module.MPU9250Event.GYROSCOPE_MESSAGE);
                 });
             }
             if (getCmd[1].indexOf("magnetometer")!=-1) {
@@ -655,6 +657,7 @@
                   document.getElementById("demo-area-01-show").innerHTML = mpu9250.magVals[1];
                 if (getCmd[1]=="magnetometer_yaw")
                   document.getElementById("demo-area-01-show").innerHTML = mpu9250.magVals[2];
+                mpu9250.off(webduino.module.MPU9250Event.ACCELEROMETER_MESSAGE);
               });
             }
             if (getCmd[1].indexOf("attitudeangles")!=-1) {
@@ -665,15 +668,16 @@
                   document.getElementById("demo-area-01-show").innerHTML = mpu9250.angVals[1];
                 if (getCmd[1]=="attitudeangles_yaw") 
                   document.getElementById("demo-area-01-show").innerHTML = mpu9250.angVals[2];
+                mpu9250.off(webduino.module.MPU9250Event.ANGLE_MESSAGE);
               });
             }
             if (getCmd[1].indexOf("electroniccompass")!=-1) {
               mpu9250.on(webduino.module.MPU9250Event.AZIMUTH_MESSAGE, function () {
                 if (getCmd[1]=="electroniccompass_azimuth") 
                   document.getElementById("demo-area-01-show").innerHTML = mpu9250.aziVals[0];
+                mpu9250.off(webduino.module.MPU9250Event.AZIMUTH_MESSAGE);
               });
             }
-            mpu9250.off(webduino.module.MPU9250Event.ACCELEROMETER_MESSAGE);
             cmd.value ="";
           } 
         }
