@@ -224,12 +224,13 @@
       MatrixLedmarqueecodeonce = MatrixLedmarqueecode;
     }
     var s = MatrixLedmarqueecode;
-    for (var j=0;j<input_times_;j++)
-    {
-      MatrixLedmarqueecode += s;
-      MatrixLedmarqueecodeonce += s;
-    }
-    console.log(input_times_);    
+    if (input_times_>1) {
+      for (var j=1;j<input_times_;j++)
+      {
+        MatrixLedmarqueecode += s;
+        MatrixLedmarqueecodeonce += s;
+      }
+    } 
     MatrixLedmarqueeinitial=MatrixLedmarqueecode;
     marqueeactive=2;
     marqueetimeid = window.setInterval("MatrixLed_marquee_once_play()",MatrixLedmarqueetime);
