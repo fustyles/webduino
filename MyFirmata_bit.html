@@ -15,6 +15,7 @@
   <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-led-matrix/BitLedMatrix-blockly.js"></script>
   <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-led-matrix/BitLedMatrix.js"></script>
   <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-photocell/BitPhotocell-blockly.js"></script>  
+  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-buzzer/BitBuzzer-blockly.js"></script>
   <script src="https://fustyles.github.io/webduino/bit_MatrixLed_20180810/matrixled.js"></script>
 <style id="jsbin-css">
 #demo-area-01-show { font-size: 20px; pointer-events: auto!important; }
@@ -25,9 +26,193 @@
 <div><span id="demo-area-01-show" style="color:red;font-weight:bold">Webduino Bit isn't connected.</span></div>
 <input type="hidden" name="cmd" id="cmd">
 <table name="myfirmata" id ="myfirmata">
+
+<tr>
+  <td valign="top" style="color:blue">1. Marquee</td>
+  <td valign="top">
+  </td>
+  <td id="btn2" valign="top">  
+  </td>
+</tr> 
+<tr>
+  <td colspan="3" valign="top">
+    <input type="text" name="marquee" id="marquee" size="20">
+  </td>
+</tr>   
+<tr>
+  <td colspan="3" valign="top">  
+    <select name="interval" id="interval">
+      <option value="150">150</option>
+      <option value="200">200</option>
+      <option value="250" selected>250</option>
+      <option value="500">500</option>
+      <option value="1000">1000</option>
+    <select> (ms)
+    <input type="color" id="marquee_color" name="marquee_color" value="#ff0000">
+    <select name="times" id="times">
+      <option value="Cycle">Cycle</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>      
+      <option value="10">10</option>
+      <option value="20">20</option> 
+      <option value="30">30</option>      
+      <option value="40">40</option>
+      <option value="50">50</option>      
+    <select>      
+  </td>
+</tr>    
   
 <tr>
-  <td valign="top">1. Led Matrix</td>
+  <td valign="top" style="color:blue">2. Thermistor</td>
+  <td valign="top">
+  </td>
+  <td id="btn4" valign="top">  
+  </td>
+</tr>
+     
+<tr>
+  <td valign="top" style="color:blue">3. Buzzer</td>
+  <td valign="top">
+  </td>
+  <td id="btn12" valign="top">  
+  </td>
+</tr> 
+<tr>
+  <td valign="top">Notes</td>
+  <td colspan="2" valign="top"><input type="text" name="notes" id="notes" size="20" value="C6,D6,E6,F6,G6,A6,B6"></td>
+</tr>
+<tr>
+  <td valign="top">Tempos(1~10)</td>
+  <td colspan="2" valign="top"><input type="text" name="tempos" id="tempos" size="20" value="1,2,3,4,5,6,7"></td>
+</tr>      
+      
+<tr>
+  <td valign="top" style="color:blue">4. Button</td>
+  <td valign="top">
+    <select name="button_state" id="button_state">  
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="A+B">A+B</option>
+    </select>
+  </td>
+  <td id="btn11" valign="top">  
+  </td>
+</tr>
+       
+<tr>
+  <td valign="top" style="color:blue">5. Photocell</td>
+  <td valign="top">
+    <select name="photocell" id="photocell">  
+      <option value="left">Left</option>
+      <option value="right">Right</option>
+    </select>
+  </td>
+  <td id="btn3" valign="top">  
+  </td>
+</tr>
+   
+<tr>
+  <td valign="top" style="color:blue">6. DigitalWrite</td>
+  <td valign="top">
+    <select name="digitalWrite_pin" id="digitalWrite_pin">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+    </select>
+    <select name="digitalWrite_value" id="digitalWrite_value">  
+      <option value="1">High</option>
+      <option value="0">Low</option>
+    </select>
+  </td>
+  <td id="btn5" valign="top">  
+  </td>
+</tr>
+  
+<tr>
+  <td valign="top" style="color:blue">7. AnalogWrite</td>
+  <td valign="top">
+    <select name="analogWrite_pin" id="analogWrite_pin">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="10">10</option>
+    </select>
+  </td>
+  <td id="btn6" valign="top">  
+  </td>
+</tr>
+<tr>
+  <td colspan="3"><input type="range" name="analogWrite_value" id="analogWrite_value" min="0" max="1"  value="0" step="0.05" onchange="range_value.innerHTML=this.value;">
+    <span id="range_value">0</span>
+  </td>
+</tr>
+    
+<tr>
+  <td valign="top" style="color:blue">8. DigitalRead</td>
+  <td valign="top">
+    <select name="digitalRead_pin" id="digitalRead_pin">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+    </select>
+  </td>
+  <td id="btn9" valign="top">  
+  </td>
+</tr>
+  
+<tr>
+  <td valign="top" style="color:blue">9. AnalogRead</td>
+  <td valign="top">
+    <select name="analogRead_pin" id="analogRead_pin">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="10">10</option>
+    </select>
+  </td>
+  <td id="btn10" valign="top">  
+  </td>
+</tr>
+        
+<tr>
+  <td valign="top" style="color:blue">10. Led Matrix</td>
   <td valign="top"></td>
   <td id="btn7" valign="top">  
   </td>
@@ -67,7 +252,7 @@
 </tr>
   
 <tr>
-  <td valign="top">2. Sample</td>
+  <td valign="top" style="color:blue">11. Sample</td>
   <td valign="top">
     <select name="sample" id="sample">
       <option value="♥">♥</option>
@@ -95,7 +280,7 @@
 </tr>
     
 <tr>
-  <td valign="top">3. Led</td>
+  <td valign="top" style="color:blue">12. Led</td>
   <td valign="top">
     <select name="led" id="led">
       <option value="1">1</option>
@@ -132,166 +317,6 @@
     <input type="color" id="led_color" name="led_color" value="#ff0000">
   </td>
   <td id="btn1" valign="top">  
-  </td>
-</tr>
-  
-<tr>
-  <td valign="top">4. Marquee</td>
-  <td valign="top">
-    <input type="text" name="marquee" id="marquee" size="13"><br>
-    <select name="interval" id="interval">
-      <option value="150">150</option>
-      <option value="200">200</option>
-      <option value="250" selected>250</option>
-      <option value="500">500</option>
-      <option value="1000">1000</option>
-    <select> (ms)
-    <input type="color" id="marquee_color" name="marquee_color" value="#ff0000"><br>
-    <select name="times" id="times">
-      <option value="Cycle">Cycle</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>      
-      <option value="10">10</option>
-      <option value="20">20</option> 
-      <option value="30">30</option>      
-      <option value="40">40</option>
-      <option value="50">50</option>      
-    <select>  
-  </td>
-  <td id="btn2" valign="top">  
-  </td>
-</tr> 
-  
-<tr>
-  <td valign="top">5. Thermistor</td>
-  <td valign="top">
-  </td>
-  <td id="btn4" valign="top">  
-  </td>
-</tr>
-  
-<tr>
-  <td valign="top">6. Photocell</td>
-  <td valign="top">
-    <select name="photocell" id="photocell">  
-      <option value="left">Left</option>
-      <option value="right">Right</option>
-    </select>
-  </td>
-  <td id="btn3" valign="top">  
-  </td>
-</tr>
-      
-<tr>
-  <td valign="top">7. Button</td>
-  <td valign="top">
-    <select name="button_state" id="button_state">  
-      <option value="A">A</option>
-      <option value="B">B</option>
-      <option value="A+B">A+B</option>
-    </select>
-  </td>
-  <td id="btn11" valign="top">  
-  </td>
-</tr>
-     
-<tr>
-  <td valign="top">8. DigitalWrite</td>
-  <td valign="top">
-    <select name="digitalWrite_pin" id="digitalWrite_pin">
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
-      <option value="13">13</option>
-      <option value="14">14</option>
-      <option value="15">15</option>
-      <option value="16">16</option>
-    </select>
-    <select name="digitalWrite_value" id="digitalWrite_value">  
-      <option value="1">High</option>
-      <option value="0">Low</option>
-    </select>
-  </td>
-  <td id="btn5" valign="top">  
-  </td>
-</tr>
-  
-<tr>
-  <td valign="top">9. AnalogWrite</td>
-  <td valign="top">
-    <select name="analogWrite_pin" id="analogWrite_pin">
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="10">10</option>
-    </select>
-  </td>
-  <td id="btn6" valign="top">  
-  </td>
-</tr>
-<tr>
-  <td colspan="3"><input type="range" name="analogWrite_value" id="analogWrite_value" min="0" max="1"  value="0" step="0.05" onchange="range_value.innerHTML=this.value;">
-    <span id="range_value">0</span>
-  </td>
-</tr>
-    
-<tr>
-  <td valign="top">10. DigitalRead</td>
-  <td valign="top">
-    <select name="digitalRead_pin" id="digitalRead_pin">
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
-      <option value="13">13</option>
-      <option value="14">14</option>
-      <option value="15">15</option>
-      <option value="16">16</option>
-    </select>
-  </td>
-  <td id="btn9" valign="top">  
-  </td>
-</tr>
-  
-<tr>
-  <td valign="top">11. AnalogRead</td>
-  <td valign="top">
-    <select name="analogRead_pin" id="analogRead_pin">
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="10">10</option>
-    </select>
-  </td>
-  <td id="btn10" valign="top">  
   </td>
 </tr>
       
@@ -379,6 +404,13 @@
       document.getElementById("cmd").value="button="+document.getElementById("button_state").value;
   };
   document.getElementById("btn11").appendChild(button11).setAttribute('id','btn_button');
+  
+  let button12 = document.createElement('button');
+  button12.textContent = "Execute";
+  button12.onclick = function() {
+      document.getElementById("cmd").value="buzzer="+document.getElementById("notes").value+";"+document.getElementById("tempos").value;
+  };
+  document.getElementById("btn12").appendChild(button12).setAttribute('id','btn_button');  
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
@@ -550,7 +582,15 @@
                 document.getElementById("demo-area-01-show").innerHTML = "longPress";
             }
             cmd.value ="";
-          }           
+          }
+          else if (getCmd[0] == 'buzzer') {
+            var Para = getCmd[1].split(";");
+            var buzzer = getBuzzer(board, '25');
+            var notes = Para[0].split(",");
+            var tempos = Para[1].split(",");
+            buzzer.play(notes , tempos);
+            cmd.value ="";
+          }  
         }
         
       },100);
