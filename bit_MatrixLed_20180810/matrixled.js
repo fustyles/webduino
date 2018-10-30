@@ -273,7 +273,7 @@
     else 
     {
       window.clearInterval(marqueetimeid);
-      MatrixLed_clear;
+      MatrixLed_clear();
     }
   }  
   
