@@ -441,7 +441,7 @@
   let button12 = document.createElement('button');
   button12.textContent = "Execute";
   button12.onclick = function() {
-      document.getElementById("cmd").value="buzzer="+document.getElementById("notes").value+";"+document.getElementById("tempos").value;
+      document.getElementById("cmd").value="buzzer="+document.getElementById("music").value+";"+document.getElementById("notes").value+";"+document.getElementById("tempos").value;
   };
   document.getElementById("btn12").appendChild(button12).setAttribute('id','btn_button');  
   
