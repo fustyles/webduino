@@ -231,9 +231,19 @@
   <td id="btn5" valign="top">  
   </td>
 </tr>
-  
+         
 <tr>
-  <td valign="top">9. AnalogWrite</td>
+  <td valign="top">9. Buzzer</td>
+  <td valign="top">
+    <input type="text" name="notes" id="notes" size="13"><br>
+    <input type="text" name="tempos" id="tempos" size="13">
+  </td>
+  <td id="btn12" valign="top">  
+  </td>
+</tr> 
+      
+<tr>
+  <td valign="top">10. AnalogWrite</td>
   <td valign="top">
     <select name="analogWrite_pin" id="analogWrite_pin">
       <option value="0">0</option>
@@ -254,7 +264,7 @@
 </tr>
     
 <tr>
-  <td valign="top">10. DigitalRead</td>
+  <td valign="top">11. DigitalRead</td>
   <td valign="top">
     <select name="digitalRead_pin" id="digitalRead_pin">
       <option value="0">0</option>
@@ -280,7 +290,7 @@
 </tr>
   
 <tr>
-  <td valign="top">11. AnalogRead</td>
+  <td valign="top">12. AnalogRead</td>
   <td valign="top">
     <select name="analogRead_pin" id="analogRead_pin">
       <option value="0">0</option>
@@ -380,6 +390,13 @@
   };
   document.getElementById("btn11").appendChild(button11).setAttribute('id','btn_button');
   
+  let button12 = document.createElement('button');
+  button12.textContent = "Execute";
+  button12.onclick = function() {
+      document.getElementById("cmd").value="buzzer="+document.getElementById("notes").value+";"+document.getElementById("tempos").value;
+  };
+  document.getElementById("btn12").appendChild(button12).setAttribute('id','btn_button');  
+  
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
     var getdevice = strUrl.split("?")[1].split("&")[0];
@@ -391,7 +408,7 @@
       var matrix = getMatrix(board, 4, 25);
       MatrixLed_showstate(matrix,1);
       
-      var A="",B="";
+      var A="released",B="released";
       var buttonA = getPullupButton(board, 35);
       buttonA.on('pressed', function () {
         A = 'pressed';
@@ -550,7 +567,38 @@
                 document.getElementById("demo-area-01-show").innerHTML = "longPress";
             }
             cmd.value ="";
-          }           
+          }
+          else if (getCmd[0] == 'buzzer') {
+            var buzzer = getBuzzer(board, '25');
+
+            var m = [{notes : ["C6","D6","E6","F6","G6","A6","B6","C7","D7","E7"] , tempos : ["1","2","3","4","5","6","7","8","9","10"] }];
+
+            var musicNotes = {};
+            musicNotes.notes = [];
+            musicNotes.tempos = [];
+            if (m[0].notes.length > 1) {
+              for (var i = 0; i < m.length; i++) {
+                if (Array.isArray(m[i].notes)) {
+                  var cn = musicNotes.notes.concat(m[i].notes);
+                  musicNotes.notes = cn;
+                } else {
+                  musicNotes.notes.push(m[i].notes);
+                }
+                if (Array.isArray(m[i].tempos)) {
+                  var ct = musicNotes.tempos.concat(m[i].tempos);
+                  musicNotes.tempos = ct;
+                } else {
+                  musicNotes.tempos.push(m[i].tempos);
+                }
+              }
+            } else {
+              musicNotes.notes = [m[0].notes];
+              musicNotes.tempos = [m[0].tempos];
+            }
+            buzzer.play(musicNotes.notes ,musicNotes.tempos);
+            
+            cmd.value ="";
+          }  
         }
         
       },100);
