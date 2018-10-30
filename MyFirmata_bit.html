@@ -650,14 +650,14 @@
                 });
             }
             if (getCmd[1].indexOf("magnetometer")!=-1) {
-              mpu9250.on(webduino.module.MPU9250Event.ACCELEROMETER_MESSAGE, function () {
+              mpu9250.on(webduino.module.MPU9250Event.MAGNETOMETER_MESSAGE, function () {
                 if (getCmd[1]=="magnetometer_row")
                   document.getElementById("demo-area-01-show").innerHTML = mpu9250.magVals[0];
                 if (getCmd[1]=="magnetometer_pitch")
                   document.getElementById("demo-area-01-show").innerHTML = mpu9250.magVals[1];
                 if (getCmd[1]=="magnetometer_yaw")
                   document.getElementById("demo-area-01-show").innerHTML = mpu9250.magVals[2];
-                mpu9250.off(webduino.module.MPU9250Event.ACCELEROMETER_MESSAGE);
+                mpu9250.off(webduino.module.MPU9250Event.MAGNETOMETER_MESSAGE);
               });
             }
             if (getCmd[1].indexOf("attitudeangles")!=-1) {
