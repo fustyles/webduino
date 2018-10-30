@@ -517,32 +517,28 @@
               var button = getPullupButton(board, 35);
               button.on('pressed', function () {
                 document.getElementById("demo-area-01-show").innerHTML = 'pressed';
-                button.off();
               });
               button.on('released', function () {
                 document.getElementById("demo-area-01-show").innerHTML = 'released';
-                button.off();
               });
               button.on('longPress', function () {
                 document.getElementById("demo-area-01-show").innerHTML = 'longPress';
-                button.off();
               });
+              console.log("A");
             }
             else if (getCmd[1]=="B")
             {
               var button = getPullupButton(board, 27);
               button.on('pressed', function () {
                 document.getElementById("demo-area-01-show").innerHTML = 'pressed';
-                button.off();
               });
               button.on('released', function () {
                 document.getElementById("demo-area-01-show").innerHTML = 'released';
-                button.off();
               });
               button.on('longPress', function () {
                 document.getElementById("demo-area-01-show").innerHTML = 'longPress';
-                button.off();
               });
+              console.log("B");
             }   
             cmd.value ="";
           }           
