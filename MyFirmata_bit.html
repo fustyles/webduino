@@ -181,16 +181,29 @@
   <td valign="top">6. Photocell</td>
   <td valign="top">
     <select name="photocell" id="photocell">  
-      <option value="photocell_left">Left</option>
-      <option value="photocell_right">Right</option>
+      <option value="left">Left</option>
+      <option value="right">Right</option>
     </select>
   </td>
   <td id="btn3" valign="top">  
   </td>
 </tr>
-  
+      
 <tr>
-  <td valign="top">7. DigitalWrite</td>
+  <td valign="top">7. Button</td>
+  <td valign="top">
+    <select name="button_state" id="button_state">  
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="A+B">A+B</option>
+    </select>
+  </td>
+  <td id="btn11" valign="top">  
+  </td>
+</tr>
+     
+<tr>
+  <td valign="top">8. DigitalWrite</td>
   <td valign="top">
     <select name="digitalWrite_pin" id="digitalWrite_pin">
       <option value="0">0</option>
@@ -220,7 +233,7 @@
 </tr>
   
 <tr>
-  <td valign="top">8. AnalogWrite</td>
+  <td valign="top">9. AnalogWrite</td>
   <td valign="top">
     <select name="analogWrite_pin" id="analogWrite_pin">
       <option value="0">0</option>
@@ -241,7 +254,7 @@
 </tr>
     
 <tr>
-  <td valign="top">9. DigitalRead</td>
+  <td valign="top">10. DigitalRead</td>
   <td valign="top">
     <select name="digitalRead_pin" id="digitalRead_pin">
       <option value="0">0</option>
@@ -267,7 +280,7 @@
 </tr>
   
 <tr>
-  <td valign="top">10. AnalogRead</td>
+  <td valign="top">11. AnalogRead</td>
   <td valign="top">
     <select name="analogRead_pin" id="analogRead_pin">
       <option value="0">0</option>
@@ -281,7 +294,7 @@
   <td id="btn10" valign="top">  
   </td>
 </tr>
-
+      
 </table>  
 
 </body>
@@ -293,7 +306,7 @@
   let button1 = document.createElement('button');
   button1.textContent = "Execute";
   button1.onclick = function() {
-      document.getElementById("cmd").value="ledmatrix="+document.getElementById("led").value+";"+document.getElementById("state").value+";"+document.getElementById("led_color").value;
+      document.getElementById("cmd").value="led="+document.getElementById("led").value+";"+document.getElementById("state").value+";"+document.getElementById("led_color").value;
   };
   document.getElementById("btn1").appendChild(button1).setAttribute('id','btn_ledmatrix');  
   
@@ -307,7 +320,7 @@
   let button3 = document.createElement('button');
   button3.textContent = "Read";
   button3.onclick = function() {
-      document.getElementById("cmd").value=document.getElementById("photocell").value;
+      document.getElementById("cmd").value="photocell="+document.getElementById("photocell").value;
   };
   document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_photocell');
   
@@ -359,6 +372,13 @@
       document.getElementById("cmd").value="analogread="+document.getElementById("analogRead_pin").value;
   };
   document.getElementById("btn10").appendChild(button10).setAttribute('id','btn_analogread');  
+ 
+  let button11 = document.createElement('button');
+  button11.textContent = "Read";
+  button11.onclick = function() {
+      document.getElementById("cmd").value="button="+document.getElementById("button_state").value;
+  };
+  document.getElementById("btn11").appendChild(button11).setAttribute('id','btn_button');
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
@@ -371,13 +391,36 @@
       var matrix = getMatrix(board, 4, 25);
       MatrixLed_showstate(matrix,1);
       
+      var A="",B="";
+      var buttonA = getPullupButton(board, 35);
+      buttonA.on('pressed', function () {
+        A = 'pressed';
+      });
+      buttonA.on('released', function () {
+        A ='released';
+      });
+      buttonA.on('longPress', function () {
+        A ='longPress';
+      });
+      
+      var buttonB = getPullupButton(board, 27);
+      buttonB.on('pressed', function () {
+        B = 'pressed';
+      });
+      buttonB.on('released', function () {
+        B ='released';
+      });
+      buttonB.on('longPress', function () {
+        B ='longPress';
+      });   
+      
       var fuTimer = setInterval(async function(){
         
         var cmd = document.getElementById("cmd");
         if (cmd.value!="") {
           var getCmd = cmd.value.split("=");
           
-          if (getCmd[0] == 'ledmatrix') {
+          if (getCmd[0] == 'led') {
             var Para = getCmd[1].split(";");
             MatrixLed_marquee_stop();
             
@@ -401,24 +444,25 @@
                 MatrixLed_color_on(((Number(Para[0])-1)%5),Math.floor((Number(Para[0])-1)/5),'#000000');
             }
           } 
-          else if (getCmd[0] == 'photocell_left') {
+          else if (getCmd[0] == 'photocell') {
             document.getElementById("demo-area-01-show").innerHTML = "　";
-            var photocell_left = getPhotocell(board, 0);
-            photocell_left.measure(async function (val){
-              photocell_left.detectedVal = val;
-              document.getElementById("demo-area-01-show").innerHTML = photocell_left.detectedVal;
-              photocell_left.off();
-            });
-            cmd.value ="";
-          } 
-          else if (getCmd[0] == 'photocell_right') {
-            document.getElementById("demo-area-01-show").innerHTML = "　";
-            var photocell_right = getPhotocell(board, 3);
-            photocell_right.measure(async function (val){
-              photocell_right.detectedVal = val;
-              document.getElementById("demo-area-01-show").innerHTML = photocell_right.detectedVal;
-              photocell_right.off();
-            });
+            if (getCmd[1]=="left") {
+              var photocell_left = getPhotocell(board, 0);
+              photocell_left.measure(async function (val){
+                photocell_left.detectedVal = val;
+                document.getElementById("demo-area-01-show").innerHTML = photocell_left.detectedVal;
+                photocell_left.off();
+              });
+            }
+            else if (getCmd[1]=="right")
+            {
+              var photocell_right = getPhotocell(board, 3);
+              photocell_right.measure(async function (val){
+                photocell_right.detectedVal = val;
+                document.getElementById("demo-area-01-show").innerHTML = photocell_right.detectedVal;
+                photocell_right.off();
+              });
+            }
             cmd.value ="";
           } 
           else if (getCmd[0] == 'marquee') {
@@ -489,6 +533,22 @@
             var pin = getPin(board, bitGPIO(Number(getCmd[1])));
             pin.setMode(2);
             document.getElementById("demo-area-01-show").innerHTML =(await pin.read());
+            cmd.value ="";
+          }        
+          else if (getCmd[0] == 'button') {
+            document.getElementById("demo-area-01-show").innerHTML = "　";
+            if (getCmd[1]=="A")
+              document.getElementById("demo-area-01-show").innerHTML = A;
+            else if (getCmd[1]=="B")
+              document.getElementById("demo-area-01-show").innerHTML = B;
+            else if (getCmd[1]=="A+B") {
+              if (A=="pressed"&&B=="pressed")
+                  document.getElementById("demo-area-01-show").innerHTML = "pressed";
+              else if (A=="released"&&B=="released")
+                document.getElementById("demo-area-01-show").innerHTML = "released";
+              else if (A=="longPress"&&B=="longPress")
+                document.getElementById("demo-area-01-show").innerHTML = "longPress";
+            }
             cmd.value ="";
           }           
         }
