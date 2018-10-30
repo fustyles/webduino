@@ -70,17 +70,9 @@
     <select>      
   </td>
 </tr>    
-  
+      
 <tr>
-  <td valign="top" style="color:blue">2. Thermistor</td>
-  <td valign="top">
-  </td>
-  <td id="btn4" valign="top">  
-  </td>
-</tr>
-     
-<tr>
-  <td valign="top" style="color:blue">3. Buzzer</td>
+  <td valign="top" style="color:blue">2. Buzzer</td>
   <td valign="top">
   </td>
   <td id="btn12" valign="top">  
@@ -93,10 +85,10 @@
 <tr>
   <td valign="top">Tempos(1~10)</td>
   <td colspan="2" valign="top"><input type="text" name="tempos" id="tempos" size="20" value="1,2,3,4,5,6,7"></td>
-</tr>      
+</tr>  
       
 <tr>
-  <td valign="top" style="color:blue">4. Button</td>
+  <td valign="top" style="color:blue">3. Button</td>
   <td valign="top">
     <select name="button_state" id="button_state">  
       <option value="A">A</option>
@@ -106,7 +98,15 @@
   </td>
   <td id="btn11" valign="top">  
   </td>
-</tr>
+</tr>      
+  
+<tr>
+  <td valign="top" style="color:blue">4. Thermistor</td>
+  <td valign="top">
+  </td>
+  <td id="btn4" valign="top">  
+  </td>
+</tr>     
        
 <tr>
   <td valign="top" style="color:blue">5. Photocell</td>
@@ -119,7 +119,7 @@
   <td id="btn3" valign="top">  
   </td>
 </tr>
-      
+          
 <tr>
   <td valign="top" style="color:blue">6. 9-Axis</td>
   <td valign="top">
@@ -142,9 +142,51 @@
   <td id="btn13" valign="top">  
   </td>
 </tr>
-      
+   
 <tr>
-  <td valign="top" style="color:blue">7. DigitalWrite</td>
+  <td valign="top" style="color:blue">7. DigitalRead</td>
+  <td valign="top">
+    <select name="digitalRead_pin" id="digitalRead_pin">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+    </select>
+  </td>
+  <td id="btn9" valign="top">  
+  </td>
+</tr>
+  
+<tr>
+  <td valign="top" style="color:blue">8. AnalogRead</td>
+  <td valign="top">
+    <select name="analogRead_pin" id="analogRead_pin">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="10">10</option>
+    </select>
+  </td>
+  <td id="btn10" valign="top">  
+  </td>
+</tr>
+   
+<tr>
+  <td valign="top" style="color:blue">9. DigitalWrite</td>
   <td valign="top">
     <select name="digitalWrite_pin" id="digitalWrite_pin">
       <option value="0">0</option>
@@ -174,7 +216,7 @@
 </tr>
   
 <tr>
-  <td valign="top" style="color:blue">8. AnalogWrite</td>
+  <td valign="top" style="color:blue">10. AnalogWrite</td>
   <td valign="top">
     <select name="analogWrite_pin" id="analogWrite_pin">
       <option value="0">0</option>
@@ -193,91 +235,9 @@
     <span id="range_value">0</span>
   </td>
 </tr>
-    
+
 <tr>
-  <td valign="top" style="color:blue">9. DigitalRead</td>
-  <td valign="top">
-    <select name="digitalRead_pin" id="digitalRead_pin">
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
-      <option value="13">13</option>
-      <option value="14">14</option>
-      <option value="15">15</option>
-      <option value="16">16</option>
-    </select>
-  </td>
-  <td id="btn9" valign="top">  
-  </td>
-</tr>
-  
-<tr>
-  <td valign="top" style="color:blue">10. AnalogRead</td>
-  <td valign="top">
-    <select name="analogRead_pin" id="analogRead_pin">
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="10">10</option>
-    </select>
-  </td>
-  <td id="btn10" valign="top">  
-  </td>
-</tr>
-        
-<tr>
-  <td valign="top" style="color:blue">11. Led Matrix</td>
-  <td valign="top"></td>
-  <td id="btn7" valign="top">  
-  </td>
-</tr>
-<tr>
-  <td colspan="3" valign="top">
-    <input type="color" id="led1" name="led1" value="#000000">
-    <input type="color" id="led2" name="led2" value="#000000">
-    <input type="color" id="led3" name="led3" value="#000000">
-    <input type="color" id="led4" name="led4" value="#000000">
-    <input type="color" id="led5" name="led5" value="#000000">
-    <br>
-    <input type="color" id="led6" name="led6" value="#000000">
-    <input type="color" id="led7" name="led7" value="#000000">
-    <input type="color" id="led8" name="led8" value="#000000">
-    <input type="color" id="led9" name="led9" value="#000000">
-    <input type="color" id="led10" name="led10" value="#000000">
-    <br>
-    <input type="color" id="led11" name="led11" value="#000000">
-    <input type="color" id="led12" name="led12" value="#000000">
-    <input type="color" id="led13" name="led13" value="#000000">
-    <input type="color" id="led14" name="led14" value="#000000">
-    <input type="color" id="led15" name="led15" value="#000000">
-    <br>
-    <input type="color" id="led16" name="led16" value="#000000">
-    <input type="color" id="led17" name="led17" value="#000000">
-    <input type="color" id="led18" name="led18" value="#000000">
-    <input type="color" id="led19" name="led19" value="#000000">
-    <input type="color" id="led20" name="led20" value="#000000">
-    <br>
-    <input type="color" id="led21" name="led21" value="#000000">
-    <input type="color" id="led22" name="led22" value="#000000">
-    <input type="color" id="led23" name="led23" value="#000000">
-    <input type="color" id="led24" name="led24" value="#000000">
-    <input type="color" id="led25" name="led25" value="#000000">
-  </td>
-</tr>
-  
-<tr>
-  <td valign="top" style="color:blue">12. Sample</td>
+  <td valign="top" style="color:blue">11. Sample</td>
   <td valign="top">
     <select name="sample" id="sample">
       <option value="♥">♥</option>
@@ -305,7 +265,7 @@
 </tr>
     
 <tr>
-  <td valign="top" style="color:blue">13. Led</td>
+  <td valign="top" style="color:blue">12. Led</td>
   <td valign="top">
     <select name="led" id="led">
       <option value="1">1</option>
@@ -345,6 +305,46 @@
   </td>
 </tr>
       
+<tr>
+  <td valign="top" style="color:blue">13. Led Matrix</td>
+  <td valign="top"></td>
+  <td id="btn7" valign="top">  
+  </td>
+</tr>
+<tr>
+  <td colspan="3" valign="top">
+    <input type="color" id="led1" name="led1" value="#000000">
+    <input type="color" id="led2" name="led2" value="#000000">
+    <input type="color" id="led3" name="led3" value="#000000">
+    <input type="color" id="led4" name="led4" value="#000000">
+    <input type="color" id="led5" name="led5" value="#000000">
+    <br>
+    <input type="color" id="led6" name="led6" value="#000000">
+    <input type="color" id="led7" name="led7" value="#000000">
+    <input type="color" id="led8" name="led8" value="#000000">
+    <input type="color" id="led9" name="led9" value="#000000">
+    <input type="color" id="led10" name="led10" value="#000000">
+    <br>
+    <input type="color" id="led11" name="led11" value="#000000">
+    <input type="color" id="led12" name="led12" value="#000000">
+    <input type="color" id="led13" name="led13" value="#000000">
+    <input type="color" id="led14" name="led14" value="#000000">
+    <input type="color" id="led15" name="led15" value="#000000">
+    <br>
+    <input type="color" id="led16" name="led16" value="#000000">
+    <input type="color" id="led17" name="led17" value="#000000">
+    <input type="color" id="led18" name="led18" value="#000000">
+    <input type="color" id="led19" name="led19" value="#000000">
+    <input type="color" id="led20" name="led20" value="#000000">
+    <br>
+    <input type="color" id="led21" name="led21" value="#000000">
+    <input type="color" id="led22" name="led22" value="#000000">
+    <input type="color" id="led23" name="led23" value="#000000">
+    <input type="color" id="led24" name="led24" value="#000000">
+    <input type="color" id="led25" name="led25" value="#000000">
+  </td>
+</tr>
+  
 </table>  
 
 </body>
