@@ -225,6 +225,7 @@
         MatrixLedmarqueecode += MatrixLedmarqueecode;
         MatrixLedmarqueecodeonce += MatrixLedmarqueecode;
       }
+      console.log(input_times_);
       MatrixLedmarqueecode = MatrixLedmarqueecode;
       MatrixLedmarqueecodeonce = MatrixLedmarqueecode;
     }
