@@ -223,7 +223,7 @@
       for (var j=0;j<input_times_;j++)
       {
         MatrixLedmarqueecode += MatrixLedmarqueecode;
-        MatrixLedmarqueecodeonce += MatrixLedmarqueecodeonce;
+        MatrixLedmarqueecodeonce += MatrixLedmarqueecode;
       }
       MatrixLedmarqueecode = MatrixLedmarqueecode;
       MatrixLedmarqueecodeonce = MatrixLedmarqueecode;
