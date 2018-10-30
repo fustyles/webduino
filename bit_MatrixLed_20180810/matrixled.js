@@ -192,6 +192,46 @@
     marqueetimeid = window.setInterval("MatrixLed_marquee_once_play()",MatrixLedmarqueetime);
   }    
   
+  function MatrixLed_marquee_times(input_marquee_,input_times_) {
+    input_marquee_=input_marquee_.toString();
+    window.clearInterval(marqueetimeid);
+    if ((input_marquee_.length==25)&&(input_marquee_.search(/[^0-1]/)==-1))
+    {
+      MatrixLed_matrix(input_marquee_);
+      return;
+    }
+    else if ((input_marquee_.length%5==0)&&(input_marquee_.length>25)&&(input_marquee_.search(/[^0-1]/)==-1))
+    {
+      MatrixLedmarqueecode = input_marquee_;
+      MatrixLedmarqueecodeonce = input_marquee_;
+    }
+    else if (input_marquee_.length==1)
+    {
+      MatrixLed_matrix(MatrixLed_conversion(input_marquee_));
+      return;
+    }
+    else if (input_marquee_.length>1)
+    {
+      MatrixLedmarqueecode="";
+      for (var i=0;i<input_marquee_.length;i++)
+      {
+        if (i==(input_marquee_.length-1))
+          MatrixLedmarqueecode = MatrixLedmarqueecode+MatrixLed_conversion(input_marquee_.substr(i,1));
+        else
+          MatrixLedmarqueecode = MatrixLedmarqueecode+MatrixLed_conversion(input_marquee_.substr(i,1)) + "00000";
+      }
+      for (var j=0;j<input_times_;j++)
+      {
+        MatrixLedmarqueecode = MatrixLedmarqueecode + MatrixLedmarqueecode;
+      }
+      MatrixLedmarqueecode = MatrixLedmarqueecode;
+      MatrixLedmarqueecodeonce = MatrixLedmarqueecode;
+    }
+    MatrixLedmarqueeinitial=MatrixLedmarqueecode;
+    marqueeactive=2;
+    marqueetimeid = window.setInterval("MatrixLed_marquee_once_play()",MatrixLedmarqueetime);
+  }  
+  
   function MatrixLed_marquee_play() {
     if (MatrixLedmarqueecode.length>25)
     {
@@ -228,7 +268,7 @@
     }
     else
       window.clearInterval(marqueetimeid);
-  } 
+  }  
   
   function MatrixLed_marquee_degree(direction,degree) {
     window.clearInterval(marqueetimeid);
@@ -780,5 +820,6 @@
   window.Matrixled_invert = Matrixled_invert;
   window.MatrixLed_getcolor = MatrixLed_getcolor;
   window.MatrixLed_backcolor = MatrixLed_backcolor;
+  window.MatrixLed_marquee_times = MatrixLed_marquee_times;
   
 }(window, window.document));
