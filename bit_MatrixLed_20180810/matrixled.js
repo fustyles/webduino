@@ -222,7 +222,8 @@
       }
       for (var j=0;j<input_times_;j++)
       {
-        MatrixLedmarqueecode = MatrixLedmarqueecode + MatrixLedmarqueecode + "00000";
+        MatrixLedmarqueecode += MatrixLedmarqueecode;
+        MatrixLedmarqueecodeonce += MatrixLedmarqueecodeonce;
       }
       MatrixLedmarqueecode = MatrixLedmarqueecode;
       MatrixLedmarqueecodeonce = MatrixLedmarqueecode;
