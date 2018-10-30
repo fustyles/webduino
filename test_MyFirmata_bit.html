@@ -390,6 +390,29 @@
       var matrix = getMatrix(board, 4, 25);
       MatrixLed_showstate(matrix,1);
       
+      var A="",B="";
+      var buttonA = getPullupButton(board, 35);
+      buttonA.on('pressed', function () {
+        A = 'pressed';
+      });
+      buttonA.on('released', function () {
+        A ='released';
+      });
+      buttonA.on('longPress', function () {
+        A ='longPress';
+      });
+      
+      var buttonB = getPullupButton(board, 27);
+      buttonB.on('pressed', function () {
+        B = 'pressed';
+      });
+      buttonB.on('released', function () {
+        B ='released';
+      });
+      buttonB.on('longPress', function () {
+        B ='longPress';
+      });   
+      
       var fuTimer = setInterval(async function(){
         
         var cmd = document.getElementById("cmd");
@@ -513,33 +536,18 @@
           }        
           else if (getCmd[0] == 'button') {
             document.getElementById("demo-area-01-show").innerHTML = "　";
-            if (getCmd[1]=="A") {
-              var button = getPullupButton(board, 35);
-              button.on('pressed', function () {
-                document.getElementById("demo-area-01-show").innerHTML = 'pressed';
-              });
-              button.on('released', function () {
-                document.getElementById("demo-area-01-show").innerHTML = 'released';
-              });
-              button.on('longPress', function () {
-                document.getElementById("demo-area-01-show").innerHTML = 'longPress';
-              });
-              console.log("A");
-            }
+            if (getCmd[1]=="A")
+              document.getElementById("demo-area-01-show").innerHTML = A;
             else if (getCmd[1]=="B")
-            {
-              var button = getPullupButton(board, 27);
-              button.on('pressed', function () {
-                document.getElementById("demo-area-01-show").innerHTML = 'pressed';
-              });
-              button.on('released', function () {
-                document.getElementById("demo-area-01-show").innerHTML = 'released';
-              });
-              button.on('longPress', function () {
-                document.getElementById("demo-area-01-show").innerHTML = 'longPress';
-              });
-              console.log("B");
-            }   
+              document.getElementById("demo-area-01-show").innerHTML = B;
+            else if (getCmd[1]=="A+B") {
+              if (A=="pressed"&&B=="pressed")
+                  document.getElementById("demo-area-01-show").innerHTML = "pressed";
+              else if (A=="released"&&B=="released")
+                document.getElementById("demo-area-01-show").innerHTML = "released";
+              else if (A=="longPress"&&B=="longPress")
+                document.getElementById("demo-area-01-show").innerHTML = "longPress";
+            }
             cmd.value ="";
           }           
         }
