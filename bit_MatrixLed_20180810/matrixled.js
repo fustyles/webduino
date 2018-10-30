@@ -270,8 +270,11 @@
         MatrixLedmarqueecode = MatrixLedmarqueecode.substr(0,MatrixLedmarqueecode.length-5);
       }
     }
-    else
+    else 
+    {
       window.clearInterval(marqueetimeid);
+      MatrixLed_clear;
+    }
   }  
   
   function MatrixLed_marquee_degree(direction,degree) {
