@@ -622,6 +622,7 @@
             cmd.value ="";
           }  
           else if (getCmd[0] == 'axis') {
+            console.log(getCmd[1]);
             var mpu9250 = getMPU9250(board);
             mpu9250.setDetectTimeType(2);
             mpu9250.on(webduino.module.MPU9250Event.ACCELEROMETER_MESSAGE, function () {
