@@ -223,10 +223,11 @@
       MatrixLedmarqueecode = MatrixLedmarqueecode;
       MatrixLedmarqueecodeonce = MatrixLedmarqueecode;
     }
+    var s = MatrixLedmarqueecode;
     for (var j=0;j<input_times_;j++)
     {
-      MatrixLedmarqueecode += MatrixLedmarqueecode;
-      MatrixLedmarqueecodeonce += MatrixLedmarqueecode;
+      MatrixLedmarqueecode += s;
+      MatrixLedmarqueecodeonce += s;
     }
     console.log(input_times_);    
     MatrixLedmarqueeinitial=MatrixLedmarqueecode;
