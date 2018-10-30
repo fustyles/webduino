@@ -293,7 +293,7 @@
   let button1 = document.createElement('button');
   button1.textContent = "Execute";
   button1.onclick = function() {
-      document.getElementById("cmd").value="ledmatrix="+document.getElementById("led").value+";"+document.getElementById("state").value+";"+document.getElementById("led_color").value;
+      document.getElementById("cmd").value="led="+document.getElementById("led").value+";"+document.getElementById("state").value+";"+document.getElementById("led_color").value;
   };
   document.getElementById("btn1").appendChild(button1).setAttribute('id','btn_ledmatrix');  
   
@@ -377,7 +377,7 @@
         if (cmd.value!="") {
           var getCmd = cmd.value.split("=");
           
-          if (getCmd[0] == 'ledmatrix') {
+          if (getCmd[0] == 'led') {
             var Para = getCmd[1].split(";");
             MatrixLed_marquee_stop();
             
