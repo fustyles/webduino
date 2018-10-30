@@ -375,7 +375,7 @@
   let button11 = document.createElement('button');
   button11.textContent = "Read";
   button11.onclick = function() {
-      document.getElementById("cmd").value=document.getElementById("button_state").value;
+      document.getElementById("cmd").value="button="+document.getElementById("button_state").value;
   };
   document.getElementById("btn11").appendChild(button11).setAttribute('id','btn_button');
   
