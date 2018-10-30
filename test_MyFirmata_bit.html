@@ -421,16 +421,12 @@
               MatrixLed_clear();
             }
             else {
-              if (Para[2]=="Cycle") {
-                MatrixLed_marquee_time(Number(Para[0]));
-                MatrixLed_color(Para[1]);
+              MatrixLed_marquee_time(Number(Para[0]));
+              MatrixLed_color(Para[1]);
+              if (Para[2]=="Cycle")
                 MatrixLed_marquee((MatrixLed_indentcode((MatrixLed_texttocode(Para[3])))));
-              }
-              else {
-                MatrixLed_marquee_time(Number(Para[0]));
-                MatrixLed_color(Para[1]);
+              else
                 MatrixLed_marquee_times((MatrixLed_indentcode((MatrixLed_texttocode(Para[3])))),Number(Para[2]));
-              }
             }
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
