@@ -16,6 +16,8 @@
   <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-led-matrix/BitLedMatrix.js"></script>
   <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-photocell/BitPhotocell-blockly.js"></script>  
   <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-buzzer/BitBuzzer-blockly.js"></script>
+  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-mpu9250/BitMPU9250-blockly.js"></script>
+  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-mpu9250/BitMPU9250.js"></script>
   <script src="https://fustyles.github.io/webduino/bit_MatrixLed_20180810/matrixled.js"></script>
 <style id="jsbin-css">
 #demo-area-01-show { font-size: 20px; pointer-events: auto!important; }
@@ -68,17 +70,9 @@
     <select>      
   </td>
 </tr>    
-  
+      
 <tr>
-  <td valign="top" style="color:blue">2. Thermistor</td>
-  <td valign="top">
-  </td>
-  <td id="btn4" valign="top">  
-  </td>
-</tr>
-     
-<tr>
-  <td valign="top" style="color:blue">3. Buzzer</td>
+  <td valign="top" style="color:blue">2. Buzzer</td>
   <td valign="top">
   </td>
   <td id="btn12" valign="top">  
@@ -91,10 +85,10 @@
 <tr>
   <td valign="top">Tempos(1~10)</td>
   <td colspan="2" valign="top"><input type="text" name="tempos" id="tempos" size="20" value="1,2,3,4,5,6,7"></td>
-</tr>      
+</tr>  
       
 <tr>
-  <td valign="top" style="color:blue">4. Button</td>
+  <td valign="top" style="color:blue">3. Button</td>
   <td valign="top">
     <select name="button_state" id="button_state">  
       <option value="A">A</option>
@@ -104,7 +98,15 @@
   </td>
   <td id="btn11" valign="top">  
   </td>
-</tr>
+</tr>      
+  
+<tr>
+  <td valign="top" style="color:blue">4. Thermistor</td>
+  <td valign="top">
+  </td>
+  <td id="btn4" valign="top">  
+  </td>
+</tr>     
        
 <tr>
   <td valign="top" style="color:blue">5. Photocell</td>
@@ -117,9 +119,74 @@
   <td id="btn3" valign="top">  
   </td>
 </tr>
+          
+<tr>
+  <td valign="top" style="color:blue">6. 9-Axis</td>
+  <td valign="top">
+    <select name="axis" id="axis">
+      <option value="accelerometer_x">Accelerometer_X</option>
+      <option value="accelerometer_y">Accelerometer_Y</option>
+      <option value="accelerometer_z">Accelerometer_Z</option>
+      <option value="gyroscope_row">Gyroscope_Row</option>
+      <option value="gyroscope_pitch">Gyroscope_Pitch</option>
+      <option value="gyroscope_yaw">Gyroscope_Yaw</option>
+      <option value="magnetometer_row">Magnetometer_Row</option>
+      <option value="magnetometer_pitch">Magnetometer_Pitch</option>
+      <option value="magnetometer_yaw">Magnetometer_Yaw</option>
+      <option value="attitudeangles_row">AttitudeAngles_Row</option>
+      <option value="attitudeangles_pitch">AttitudeAngles_Pitch</option>
+      <option value="attitudeangles_yaw">AttitudeAngles_Yaw</option>
+      <option value="electroniccompass_azimuth">ElectronicCompass_Azimuth</option>
+    </select>
+  </td>
+  <td id="btn13" valign="top">  
+  </td>
+</tr>
    
 <tr>
-  <td valign="top" style="color:blue">6. DigitalWrite</td>
+  <td valign="top" style="color:blue">7. DigitalRead</td>
+  <td valign="top">
+    <select name="digitalRead_pin" id="digitalRead_pin">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+    </select>
+  </td>
+  <td id="btn9" valign="top">  
+  </td>
+</tr>
+  
+<tr>
+  <td valign="top" style="color:blue">8. AnalogRead</td>
+  <td valign="top">
+    <select name="analogRead_pin" id="analogRead_pin">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="10">10</option>
+    </select>
+  </td>
+  <td id="btn10" valign="top">  
+  </td>
+</tr>
+   
+<tr>
+  <td valign="top" style="color:blue">9. DigitalWrite</td>
   <td valign="top">
     <select name="digitalWrite_pin" id="digitalWrite_pin">
       <option value="0">0</option>
@@ -149,7 +216,7 @@
 </tr>
   
 <tr>
-  <td valign="top" style="color:blue">7. AnalogWrite</td>
+  <td valign="top" style="color:blue">10. AnalogWrite</td>
   <td valign="top">
     <select name="analogWrite_pin" id="analogWrite_pin">
       <option value="0">0</option>
@@ -168,89 +235,7 @@
     <span id="range_value">0</span>
   </td>
 </tr>
-    
-<tr>
-  <td valign="top" style="color:blue">8. DigitalRead</td>
-  <td valign="top">
-    <select name="digitalRead_pin" id="digitalRead_pin">
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
-      <option value="13">13</option>
-      <option value="14">14</option>
-      <option value="15">15</option>
-      <option value="16">16</option>
-    </select>
-  </td>
-  <td id="btn9" valign="top">  
-  </td>
-</tr>
-  
-<tr>
-  <td valign="top" style="color:blue">9. AnalogRead</td>
-  <td valign="top">
-    <select name="analogRead_pin" id="analogRead_pin">
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="10">10</option>
-    </select>
-  </td>
-  <td id="btn10" valign="top">  
-  </td>
-</tr>
-        
-<tr>
-  <td valign="top" style="color:blue">10. Led Matrix</td>
-  <td valign="top"></td>
-  <td id="btn7" valign="top">  
-  </td>
-</tr>
-<tr>
-  <td colspan="3" valign="top">
-    <input type="color" id="led1" name="led1" value="#000000">
-    <input type="color" id="led2" name="led2" value="#000000">
-    <input type="color" id="led3" name="led3" value="#000000">
-    <input type="color" id="led4" name="led4" value="#000000">
-    <input type="color" id="led5" name="led5" value="#000000">
-    <br>
-    <input type="color" id="led6" name="led6" value="#000000">
-    <input type="color" id="led7" name="led7" value="#000000">
-    <input type="color" id="led8" name="led8" value="#000000">
-    <input type="color" id="led9" name="led9" value="#000000">
-    <input type="color" id="led10" name="led10" value="#000000">
-    <br>
-    <input type="color" id="led11" name="led11" value="#000000">
-    <input type="color" id="led12" name="led12" value="#000000">
-    <input type="color" id="led13" name="led13" value="#000000">
-    <input type="color" id="led14" name="led14" value="#000000">
-    <input type="color" id="led15" name="led15" value="#000000">
-    <br>
-    <input type="color" id="led16" name="led16" value="#000000">
-    <input type="color" id="led17" name="led17" value="#000000">
-    <input type="color" id="led18" name="led18" value="#000000">
-    <input type="color" id="led19" name="led19" value="#000000">
-    <input type="color" id="led20" name="led20" value="#000000">
-    <br>
-    <input type="color" id="led21" name="led21" value="#000000">
-    <input type="color" id="led22" name="led22" value="#000000">
-    <input type="color" id="led23" name="led23" value="#000000">
-    <input type="color" id="led24" name="led24" value="#000000">
-    <input type="color" id="led25" name="led25" value="#000000">
-  </td>
-</tr>
-  
+
 <tr>
   <td valign="top" style="color:blue">11. Sample</td>
   <td valign="top">
@@ -320,6 +305,46 @@
   </td>
 </tr>
       
+<tr>
+  <td valign="top" style="color:blue">13. Led Matrix</td>
+  <td valign="top"></td>
+  <td id="btn7" valign="top">  
+  </td>
+</tr>
+<tr>
+  <td colspan="3" valign="top">
+    <input type="color" id="led1" name="led1" value="#000000">
+    <input type="color" id="led2" name="led2" value="#000000">
+    <input type="color" id="led3" name="led3" value="#000000">
+    <input type="color" id="led4" name="led4" value="#000000">
+    <input type="color" id="led5" name="led5" value="#000000">
+    <br>
+    <input type="color" id="led6" name="led6" value="#000000">
+    <input type="color" id="led7" name="led7" value="#000000">
+    <input type="color" id="led8" name="led8" value="#000000">
+    <input type="color" id="led9" name="led9" value="#000000">
+    <input type="color" id="led10" name="led10" value="#000000">
+    <br>
+    <input type="color" id="led11" name="led11" value="#000000">
+    <input type="color" id="led12" name="led12" value="#000000">
+    <input type="color" id="led13" name="led13" value="#000000">
+    <input type="color" id="led14" name="led14" value="#000000">
+    <input type="color" id="led15" name="led15" value="#000000">
+    <br>
+    <input type="color" id="led16" name="led16" value="#000000">
+    <input type="color" id="led17" name="led17" value="#000000">
+    <input type="color" id="led18" name="led18" value="#000000">
+    <input type="color" id="led19" name="led19" value="#000000">
+    <input type="color" id="led20" name="led20" value="#000000">
+    <br>
+    <input type="color" id="led21" name="led21" value="#000000">
+    <input type="color" id="led22" name="led22" value="#000000">
+    <input type="color" id="led23" name="led23" value="#000000">
+    <input type="color" id="led24" name="led24" value="#000000">
+    <input type="color" id="led25" name="led25" value="#000000">
+  </td>
+</tr>
+  
 </table>  
 
 </body>
@@ -412,6 +437,13 @@
   };
   document.getElementById("btn12").appendChild(button12).setAttribute('id','btn_button');  
   
+  let button13 = document.createElement('button');
+  button13.textContent = "Execute";
+  button13.onclick = function() {
+      document.getElementById("cmd").value="axis="+document.getElementById("axis").value;
+  };
+  document.getElementById("btn13").appendChild(button13).setAttribute('id','btn_button');    
+  
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
     var getdevice = strUrl.split("?")[1].split("&")[0];
@@ -444,7 +476,7 @@
       });
       buttonB.on('longPress', function () {
         B ='longPress';
-      });   
+      });      
       
       var fuTimer = setInterval(async function(){
         
@@ -466,7 +498,7 @@
               }
               else 
                 MatrixLed_clear();
-              document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+              //document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
               cmd.value ="";
             }
             else {
@@ -512,7 +544,7 @@
               else
                 MatrixLed_marquee_times(space+(MatrixLed_indentcode((MatrixLed_texttocode(Para[3]))))+space,Number(Para[2]));
             }
-            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            //document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } 
           else if (getCmd[0] == 'thermistor') {
@@ -530,7 +562,7 @@
             var pin = getPin(board, bitGPIO(Number(Para[0])));
             pin.setMode(1);
             pin.write(Number(Para[1]));
-            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            //document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } 
           else if (getCmd[0] == 'analogwrite') {
@@ -538,19 +570,19 @@
             var pin = getPin(board, bitGPIO(Number(Para[0])));
             pin.setMode(3);
             pin.write(Number(Para[1]));
-            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            //document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } 
           else if (getCmd[0] == 'paint') {
             matrix.setColor(getCmd[1]);
-            document.getElementById("demo-area-01-show").innerHTML = getCmd[0]+" (OK)";
+            //document.getElementById("demo-area-01-show").innerHTML = getCmd[0]+" (OK)";
             cmd.value ="";
           }
           else if (getCmd[0] == 'sample') {
             var Para = getCmd[1].split(";");
             MatrixLed_color(Para[1]);
             MatrixLed_sample(Para[0]);
-            document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            //document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           }     
           else if (getCmd[0] == 'digitalread') {
@@ -591,6 +623,41 @@
             buzzer.play(notes , tempos);
             cmd.value ="";
           }  
+          else if (getCmd[0] == 'axis') {
+            document.getElementById("demo-area-01-show").innerHTML = "　";
+            var mpu9250 = getMPU9250(board);
+            mpu9250.setDetectTimeType(2);
+            mpu9250.on(webduino.module.MPU9250Event.ACCELEROMETER_MESSAGE, function () {
+              if (getCmd[1]=="accelerometer_x") 
+                document.getElementById("demo-area-01-show").innerHTML = mpu9250.accVals[0];
+              if (getCmd[1]=="accelerometer_y") 
+                document.getElementById("demo-area-01-show").innerHTML = mpu9250.accVals[1];
+              if (getCmd[1]=="accelerometer_z") 
+                document.getElementById("demo-area-01-show").innerHTML = mpu9250.accVals[2];
+              if (getCmd[1]=="gyroscope_row") 
+                document.getElementById("demo-area-01-show").innerHTML = mpu9250.gyrVals[0];
+              if (getCmd[1]=="gyroscope_pitch") 
+                document.getElementById("demo-area-01-show").innerHTML = mpu9250.gyrVals[1];
+              if (getCmd[1]=="gyroscope_yaw") 
+                document.getElementById("demo-area-01-show").innerHTML = mpu9250.gyrVals[2];
+              if (getCmd[1]=="magnetometer_row")
+                document.getElementById("demo-area-01-show").innerHTML = mpu9250.magVals[0];
+              if (getCmd[1]=="magnetometer_pitch")
+                document.getElementById("demo-area-01-show").innerHTML = mpu9250.magVals[1];
+              if (getCmd[1]=="magnetometer_yaw")
+                document.getElementById("demo-area-01-show").innerHTML = mpu9250.magVals[2];
+              if (getCmd[1]=="attitudeangles_row")
+                document.getElementById("demo-area-01-show").innerHTML = mpu9250.angVals[0];
+              if (getCmd[1]=="attitudeangles_pitch")
+                document.getElementById("demo-area-01-show").innerHTML = mpu9250.angVals[1];
+              if (getCmd[1]=="attitudeangles_yaw") 
+                document.getElementById("demo-area-01-show").innerHTML = mpu9250.angVals[2];
+              if (getCmd[1]=="electroniccompass_azimuth") 
+                document.getElementById("demo-area-01-show").innerHTML = mpu9250.aziVals[0];
+              mpu9250.off(webduino.module.MPU9250Event.ACCELEROMETER_MESSAGE);
+            });
+            cmd.value ="";
+          } 
         }
         
       },100);
