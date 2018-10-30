@@ -146,7 +146,24 @@
       <option value="500">500</option>
       <option value="1000">1000</option>
     <select> (ms)
-    <input type="color" id="marquee_color" name="marquee_color" value="#ff0000">
+    <input type="color" id="marquee_color" name="marquee_color" value="#ff0000"><br>
+    <select name="times" id="times">
+      <option value="Cycle">Cycle</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>      
+      <option value="10">10</option>
+      <option value="20">20</option> 
+      <option value="30">30</option>      
+      <option value="40">40</option>
+      <option value="50">50</option>      
+    <select>  
   </td>
   <td id="btn2" valign="top">  
   </td>
@@ -283,7 +300,7 @@
   let button2 = document.createElement('button');
   button2.textContent = "Execute";
   button2.onclick = function() {
-      document.getElementById("cmd").value="marquee="+document.getElementById("interval").value+";"+document.getElementById("marquee_color").value+";"+document.getElementById("marquee").value.replace(/;/g,".");
+      document.getElementById("cmd").value="marquee="+document.getElementById("interval").value+";"+document.getElementById("marquee_color").value+";"+document.getElementById("times").value+";"+document.getElementById("marquee").value.replace(/;/g,".");
   };
   document.getElementById("btn2").appendChild(button2).setAttribute('id','btn_marquee');    
   
@@ -413,7 +430,10 @@
             else {
               MatrixLed_marquee_time(Number(Para[0]));
               MatrixLed_color(Para[1]);
-              MatrixLed_marquee((MatrixLed_indentcode((MatrixLed_texttocode(Para[2])))));
+              if (Para[2]=="Cycle")
+                MatrixLed_marquee((MatrixLed_indentcode((MatrixLed_texttocode(Para[3])))));
+              else
+                MatrixLed_marquee_times((MatrixLed_indentcode((MatrixLed_texttocode(Para[3])))),Number(Para[2]));
             }
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
