@@ -181,8 +181,8 @@
   <td valign="top">6. Photocell</td>
   <td valign="top">
     <select name="photocell" id="photocell">  
-      <option value="photocell_left">Left</option>
-      <option value="photocell_right">Right</option>
+      <option value="left">Left</option>
+      <option value="right">Right</option>
     </select>
   </td>
   <td id="btn3" valign="top">  
@@ -281,6 +281,18 @@
   <td id="btn10" valign="top">  
   </td>
 </tr>
+      
+<tr>
+  <td valign="top">11. Photocell</td>
+  <td valign="top">
+    <select name="button_state" id="button">  
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </select>
+  </td>
+  <td id="btn11" valign="top">  
+  </td>
+</tr>
 
 </table>  
 
@@ -307,7 +319,7 @@
   let button3 = document.createElement('button');
   button3.textContent = "Read";
   button3.onclick = function() {
-      document.getElementById("cmd").value=document.getElementById("photocell").value;
+      document.getElementById("cmd").value="photocell="+document.getElementById("photocell").value;
   };
   document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_photocell');
   
@@ -359,6 +371,13 @@
       document.getElementById("cmd").value="analogread="+document.getElementById("analogRead_pin").value;
   };
   document.getElementById("btn10").appendChild(button10).setAttribute('id','btn_analogread');  
+ 
+  let button11 = document.createElement('button');
+  button11.textContent = "Read";
+  button11.onclick = function() {
+      document.getElementById("cmd").value=document.getElementById("button_state").value;
+  };
+  document.getElementById("btn11").appendChild(button11).setAttribute('id','btn_button');
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
@@ -401,24 +420,25 @@
                 MatrixLed_color_on(((Number(Para[0])-1)%5),Math.floor((Number(Para[0])-1)/5),'#000000');
             }
           } 
-          else if (getCmd[0] == 'photocell_left') {
+          else if (getCmd[0] == 'photocell') {
             document.getElementById("demo-area-01-show").innerHTML = "　";
-            var photocell_left = getPhotocell(board, 0);
-            photocell_left.measure(async function (val){
-              photocell_left.detectedVal = val;
-              document.getElementById("demo-area-01-show").innerHTML = photocell_left.detectedVal;
-              photocell_left.off();
-            });
-            cmd.value ="";
-          } 
-          else if (getCmd[0] == 'photocell_right') {
-            document.getElementById("demo-area-01-show").innerHTML = "　";
-            var photocell_right = getPhotocell(board, 3);
-            photocell_right.measure(async function (val){
-              photocell_right.detectedVal = val;
-              document.getElementById("demo-area-01-show").innerHTML = photocell_right.detectedVal;
-              photocell_right.off();
-            });
+            if (getCmd[1]=="left") {
+              var photocell_left = getPhotocell(board, 0);
+              photocell_left.measure(async function (val){
+                photocell_left.detectedVal = val;
+                document.getElementById("demo-area-01-show").innerHTML = photocell_left.detectedVal;
+                photocell_left.off();
+              });
+            }
+            else if (getCmd[1]=="right")
+            {
+              var photocell_right = getPhotocell(board, 3);
+              photocell_right.measure(async function (val){
+                photocell_right.detectedVal = val;
+                document.getElementById("demo-area-01-show").innerHTML = photocell_right.detectedVal;
+                photocell_right.off();
+              });
+            }
             cmd.value ="";
           } 
           else if (getCmd[0] == 'marquee') {
