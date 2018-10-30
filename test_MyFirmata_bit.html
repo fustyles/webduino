@@ -74,6 +74,14 @@
 <tr>
   <td valign="top" style="color:blue">2. Buzzer</td>
   <td valign="top">
+    <select name="music" id="music">  
+      <option value="custom">Custom</option>
+      <option value="supermario">Super Mario</option>
+      <option value="supermariochord">Super Mario Chord</option>
+      <option value="doremi">DoReMi</option>
+      <option value="bigbrotherandfather">Big brother and father</option>
+      <option value="merrychristmas">Merry Christmas</option>
+    </select>
   </td>
   <td id="btn12" valign="top">  
   </td>
@@ -618,8 +626,31 @@
           else if (getCmd[0] == 'buzzer') {
             var Para = getCmd[1].split(";");
             var buzzer = getBuzzer(board, '25');
-            var notes = Para[0].split(",");
-            var tempos = Para[1].split(",");
+            if (Para[1]=="custom") {
+              var notes = Para[1].split(",");
+              var tempos = Para[2].split(",");
+            }
+            else if (Para[1]=="supermario") {
+              var notes = ["E7","E7","0","E7","0","C7","E7","0","G7","0","0","0","G6","0","0","0","C7","0","0","G6","0","0","E6","0","0","A6","0","B6","0","AS6","A6","0","G6","E7","0","G7","A7","0","F7","G7","0","E7","0","C7","D7","B6","0","0","C7","0","0","G6","0","0","E6","0","0","A6","0","B6","0","AS6","A6","0","G6","E7","0","G7","A7","0","F7","G7","0","E7","0","C7","D7","B6","0","0"];
+              var tempos = ["8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8"];              
+            }
+            else if (Para[1]=="supermariochord") {
+              var notes = Para[1].split(",");
+              var tempos = Para[2].split(",");              
+            }
+            else if (Para[1]=="doremi") {
+              var notes = Para[1].split(",");
+              var tempos = Para[2].split(",");              
+            }
+            else if (Para[1]=="bigbrotherandfather") {
+              var notes = Para[1].split(",");
+              var tempos = Para[2].split(",");              
+            }
+            else if (Para[1]=="merrychristmas") {
+              var notes = Para[1].split(",");
+              var tempos = Para[2].split(",");              
+            }
+            
             buzzer.play(notes , tempos);
             cmd.value ="";
           }  
