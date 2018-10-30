@@ -117,9 +117,32 @@
   <td id="btn3" valign="top">  
   </td>
 </tr>
-   
+      
 <tr>
-  <td valign="top" style="color:blue">6. DigitalWrite</td>
+  <td valign="top" style="color:blue">6. 9-Axis</td>
+  <td valign="top">
+    <select name="axis" id="axis">
+      <option value="accelerometer_x">Accelerometer_X</option>
+      <option value="accelerometer_y">Accelerometer_Y</option>
+      <option value="accelerometer_z">Accelerometer_Z</option>
+      <option value="gyroscope_row">Gyroscope_Row</option>
+      <option value="gyroscope_pitch">Gyroscope_Pitch</option>
+      <option value="gyroscope_yaw">Gyroscope_Yaw</option>
+      <option value="magnetometer_row">Magnetometer_Row</option>
+      <option value="magnetometer_pitch">Magnetometer_Pitch</option>
+      <option value="magnetometer_yaw">Magnetometer_Yaw</option>
+      <option value="attitudeangles_row">AttitudeAngles_Row</option>
+      <option value="attitudeangles_pitch">AttitudeAngles_Pitch</option>
+      <option value="attitudeangles_yaw">AttitudeAngles_Yaw</option>
+      <option value="electroniccompass_azimuth">ElectronicCompass_Azimuth</option>
+    </select>
+  </td>
+  <td id="btn13" valign="top">  
+  </td>
+</tr>
+      
+<tr>
+  <td valign="top" style="color:blue">7. DigitalWrite</td>
   <td valign="top">
     <select name="digitalWrite_pin" id="digitalWrite_pin">
       <option value="0">0</option>
@@ -149,7 +172,7 @@
 </tr>
   
 <tr>
-  <td valign="top" style="color:blue">7. AnalogWrite</td>
+  <td valign="top" style="color:blue">8. AnalogWrite</td>
   <td valign="top">
     <select name="analogWrite_pin" id="analogWrite_pin">
       <option value="0">0</option>
@@ -170,7 +193,7 @@
 </tr>
     
 <tr>
-  <td valign="top" style="color:blue">8. DigitalRead</td>
+  <td valign="top" style="color:blue">9. DigitalRead</td>
   <td valign="top">
     <select name="digitalRead_pin" id="digitalRead_pin">
       <option value="0">0</option>
@@ -196,7 +219,7 @@
 </tr>
   
 <tr>
-  <td valign="top" style="color:blue">9. AnalogRead</td>
+  <td valign="top" style="color:blue">10. AnalogRead</td>
   <td valign="top">
     <select name="analogRead_pin" id="analogRead_pin">
       <option value="0">0</option>
@@ -212,7 +235,7 @@
 </tr>
         
 <tr>
-  <td valign="top" style="color:blue">10. Led Matrix</td>
+  <td valign="top" style="color:blue">11. Led Matrix</td>
   <td valign="top"></td>
   <td id="btn7" valign="top">  
   </td>
@@ -252,7 +275,7 @@
 </tr>
   
 <tr>
-  <td valign="top" style="color:blue">11. Sample</td>
+  <td valign="top" style="color:blue">12. Sample</td>
   <td valign="top">
     <select name="sample" id="sample">
       <option value="♥">♥</option>
@@ -280,7 +303,7 @@
 </tr>
     
 <tr>
-  <td valign="top" style="color:blue">12. Led</td>
+  <td valign="top" style="color:blue">13. Led</td>
   <td valign="top">
     <select name="led" id="led">
       <option value="1">1</option>
@@ -411,6 +434,13 @@
       document.getElementById("cmd").value="buzzer="+document.getElementById("notes").value+";"+document.getElementById("tempos").value;
   };
   document.getElementById("btn12").appendChild(button12).setAttribute('id','btn_button');  
+  
+  let button13 = document.createElement('button');
+  button13.textContent = "Execute";
+  button13.onclick = function() {
+      document.getElementById("cmd").value="axis="+document.getElementById("axis").value;
+  };
+  document.getElementById("btn13").appendChild(button13).setAttribute('id','btn_button');    
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
