@@ -142,8 +142,8 @@
     <select name="interval" id="interval">
       <option value="150">150</option>
       <option value="200">200</option>
-      <option value="250">250</option>
-      <option value="500" selected>500</option>
+      <option value="250" selected>250</option>
+      <option value="500">500</option>
       <option value="1000">1000</option>
     <select> (ms)
     <input type="color" id="marquee_color" name="marquee_color" value="#ff0000"><br>
@@ -430,10 +430,11 @@
             else {
               MatrixLed_marquee_time(Number(Para[0]));
               MatrixLed_color(Para[1]);
+              var space="0000000000000000000000000";
               if (Para[2]=="Cycle")
-                MatrixLed_marquee((MatrixLed_indentcode((MatrixLed_texttocode(Para[3])))));
+                MatrixLed_marquee(space+(MatrixLed_indentcode((MatrixLed_texttocode(Para[3]))))+space);
               else
-                MatrixLed_marquee_times((MatrixLed_indentcode((MatrixLed_texttocode(Para[3])))),Number(Para[2]));
+                MatrixLed_marquee_times(space+(MatrixLed_indentcode((MatrixLed_texttocode(Para[3]))))+space,Number(Para[2]));
             }
             document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
