@@ -716,7 +716,7 @@
             photocell_left.measure(async function (val){
               photocell_left.detectedVal = val;
               console.log(photocell_left.detectedVal);
-              if photocell_left.detectedVal=="")
+              if (photocell_left.detectedVal=="")
                 document.getElementById("demo-area-01-show").innerHTML = "Error";
               photocell_left.off();
             });
