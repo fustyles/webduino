@@ -21,6 +21,7 @@
   <script src="https://fustyles.github.io/webduino/bit_MatrixLed_20180810/matrixled.js"></script>
 <style id="jsbin-css">
 #demo-area-01-show { font-size: 20px; pointer-events: auto!important; }
+#demo-area-02-show { font-size: 20px; pointer-events: auto!important; }
 </style>
 </head>
 <body>
@@ -354,7 +355,8 @@
 </tr>
   
 </table>  
-
+      
+<div><span id="demo-area-02-show" style="color:red;font-weight:bold">Webduino Bit isn't connected.</span></div>
 </body>
 </html>
 
@@ -491,7 +493,6 @@
         var cmd = document.getElementById("cmd");
         if (cmd.value!="") {
           var getCmd = cmd.value.split("=");
-          
           if (getCmd[0] == 'led') {
             var Para = getCmd[1].split(";");
             MatrixLed_marquee_stop();
@@ -506,8 +507,6 @@
               }
               else 
                 MatrixLed_clear();
-              //document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
-              cmd.value ="";
             }
             else {
               if (Para[1]=="1")
@@ -515,6 +514,8 @@
               else
                 MatrixLed_color_on(((Number(Para[0])-1)%5),Math.floor((Number(Para[0])-1)/5),'#000000');
             }
+            document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
+            cmd.value ="";
           } 
           else if (getCmd[0] == 'photocell') {
             document.getElementById("demo-area-01-show").innerHTML = "　";
@@ -552,7 +553,7 @@
               else
                 MatrixLed_marquee_times(space+(MatrixLed_indentcode((MatrixLed_texttocode(Para[3]))))+space,Number(Para[2]));
             }
-            //document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } 
           else if (getCmd[0] == 'thermistor') {
@@ -570,7 +571,7 @@
             var pin = getPin(board, bitGPIO(Number(Para[0])));
             pin.setMode(1);
             pin.write(Number(Para[1]));
-            //document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } 
           else if (getCmd[0] == 'analogwrite') {
@@ -578,19 +579,19 @@
             var pin = getPin(board, bitGPIO(Number(Para[0])));
             pin.setMode(3);
             pin.write(Number(Para[1]));
-            //document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } 
           else if (getCmd[0] == 'paint') {
             matrix.setColor(getCmd[1]);
-            //document.getElementById("demo-area-01-show").innerHTML = getCmd[0]+" (OK)";
+            document.getElementById("demo-area-02-show").innerHTML = "Led Matrix (OK)";
             cmd.value ="";
           }
           else if (getCmd[0] == 'sample') {
             var Para = getCmd[1].split(";");
             MatrixLed_color(Para[1]);
             MatrixLed_sample(Para[0]);
-            //document.getElementById("demo-area-01-show").innerHTML = cmd.value+" (OK)";
+            document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           }     
           else if (getCmd[0] == 'digitalread') {
