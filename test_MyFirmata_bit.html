@@ -493,9 +493,6 @@
         var cmd = document.getElementById("cmd");
         if (cmd.value!="") {
           var getCmd = cmd.value.split("=");
-          
-          document.getElementById("demo-area-02-show").innerHTML = "";
-          
           if (getCmd[0] == 'led') {
             var Para = getCmd[1].split(";");
             MatrixLed_marquee_stop();
@@ -510,8 +507,6 @@
               }
               else 
                 MatrixLed_clear();
-              document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
-              cmd.value ="";
             }
             else {
               if (Para[1]=="1")
@@ -519,6 +514,8 @@
               else
                 MatrixLed_color_on(((Number(Para[0])-1)%5),Math.floor((Number(Para[0])-1)/5),'#000000');
             }
+            document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
+            cmd.value ="";
           } 
           else if (getCmd[0] == 'photocell') {
             document.getElementById("demo-area-01-show").innerHTML = "　";
