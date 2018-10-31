@@ -486,9 +486,10 @@
         B ='longPress';
       });      
       
+      try {
+                
       var fuTimer = setInterval(async function(){
         
-        try {
         var cmd = document.getElementById("cmd");
         if (cmd.value!="") {
           var getCmd = cmd.value.split("=");
@@ -713,11 +714,13 @@
               cmd.value ="";
             }
           }
-        } catch(e) {
-          console.log("Error caught!");
-          document.getElementById("demo-area-01-show").innerHTML = e;
-        }
+
       },100);
+        
+      } catch(e) {
+        console.log("Error caught!");
+        document.getElementById("demo-area-01-show").innerHTML = e;
+      }
     });
   }
 }());
