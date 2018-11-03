@@ -32,10 +32,9 @@
             document.getElementById("state").value = 1;
             document.getElementById("demo-area-01-show").innerHTML = "Board is connected";
          });
+        await delay(4);
         if (document.getElementById("state").value ==0)
           document.getElementById("demo-area-01-show").innerHTML = "Board isn't connected";
-        await delay(4);
-          
     },5000);
   }
 }());
