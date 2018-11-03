@@ -6,7 +6,7 @@
   <title>Webduino Smart</title>
   <script src="https://blocklypro.webduino.io/components/jquery/dist/jquery.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/webduino-all-0.4.20.min.js"></script>
-  <script src="https://blocklypro.webduino.io/dist/lib/webduino-blockly.min.js"></script>
+  <script src="https://blocklypro.webduino.io/dist/webduino-blockly.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/firebase.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>
 <style id="jsbin-css">
@@ -28,6 +28,7 @@
     var fuTimer = setInterval(async function(){
         var state = 0;
         boardReady({board: 'Smart', device: getdevice, transport: 'mqtt'}, function (board) {
+            board.samplingInterval = 50;
             state=1;
          });
         if (state==0)
