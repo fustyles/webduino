@@ -352,6 +352,15 @@
     <input type="color" id="led25" name="led25" value="#000000">
   </td>
 </tr>
+      
+<tr>
+  <td valign="top" style="color:blue">14. Line Notify(Error)</td>
+  <td valign="top" colspan="2">
+    <input type"checkbox" name="chkline" id="chkline">
+    <input type"text" name="token" id="token">
+    <iframe src="" name="notify" id="notify" style="width:0px;height:0px;visibility:hidden"></iframe>
+  </td>
+</tr>      
 </table>  
       
 <div><span id="demo-area-02-show" style="color:red;font-weight:bold;visibility:hidden"></span></div>
@@ -710,6 +719,12 @@
             }
             cmd.value ="";
           }
+           else if (getCmd[0] == 'error') {
+            document.getElementById("demo-area-01-show").innerHTML = "　";
+            document.getElementById("notify").src="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec?token="+document.getElementById("token").value+"&message=Board connection failed.";
+            cmd.value ="";
+          } 
+          
         }
         
       },100);
