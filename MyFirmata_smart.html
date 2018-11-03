@@ -4,173 +4,35 @@
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Webduino Bit</title>
-  <script src="https://bit.webduino.io/blockly/components/jquery/dist/jquery.min.js"></script>
-  <script src="https://bit.webduino.io/blockly/dist/lib/webduino-all.min.js"></script>
-  <script src="https://bit.webduino.io/blockly/dist/MessageTransport.min.js"></script>
   <script src="https://fustyles.github.io/webduino/bit_MatrixLed_20180810/webduino-blockly.min.js"></script>
-  <script src="https://bit.webduino.io/blockly/dist/lib/firebase.min.js"></script>
-  <script src="https://bit.webduino.io/blockly/dist/lib/runtime.min.js"></script>
-  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-thermistor/BitThermistor-blockly.js"></script>
-  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-thermistor/BitThermistor.js"></script>
-  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-led-matrix/BitLedMatrix-blockly.js"></script>
-  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-led-matrix/BitLedMatrix.js"></script>
-  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-photocell/BitPhotocell-blockly.js"></script>  
-  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-buzzer/BitBuzzer-blockly.js"></script>
-  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-mpu9250/BitMPU9250-blockly.js"></script>
-  <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-mpu9250/BitMPU9250.js"></script>
-  <script src="https://fustyles.github.io/webduino/bit_MatrixLed_20180810/matrixled.js"></script>
+  <script src="https://blocklypro.webduino.io/components/jquery/dist/jquery.min.js"></script>
+  <script src="https://blocklypro.webduino.io/dist/lib/webduino-all-0.4.20.min.js"></script>
+  <script src="https://blocklypro.webduino.io/dist/lib/firebase.min.js"></script>
+  <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>  
 <style id="jsbin-css">
 #demo-area-01-show { font-size: 20px; pointer-events: auto!important; }
 #demo-area-02-show { font-size: 20px; pointer-events: auto!important; }
 </style>
 </head>
 <body>
-<div><span id="demo-area-01-show" style="color:red;font-weight:bold">Webduino Bit isn't connected.</span></div>
+<div><span id="demo-area-01-show" style="color:red;font-weight:bold">Webduino Smart isn't connected.</span></div>
 <input type="hidden" name="cmd" id="cmd">
 
 <table name="myfirmata" id ="myfirmata">
+
 <tr>
-  <td valign="top" style="color:blue">1. Marquee</td>
-  <td valign="top">
-  </td>
-  <td id="btn2" valign="top">  
-  </td>
-</tr> 
-<tr>
-  <td colspan="3" valign="top">
-    <input type="text" name="marquee" id="marquee" size="30">
-  </td>
-</tr>   
-<tr>
-  <td colspan="3" valign="top">  
-    <select name="interval" id="interval">
-      <option value="150">150</option>
-      <option value="200">200</option>
-      <option value="250" selected>250</option>
-      <option value="500">500</option>
-      <option value="1000">1000</option>
-    <select> (ms)
-    <input type="color" id="marquee_color" name="marquee_color" value="#ff0000">
-    <select name="times" id="times">
-      <option value="Cycle">Cycle</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>      
-      <option value="10">10</option>
-      <option value="20">20</option> 
-      <option value="30">30</option>      
-      <option value="40">40</option>
-      <option value="50">50</option>      
-    <select>      
-  </td>
-</tr>    
-      
-<tr>
-  <td valign="top" style="color:blue">2. Buzzer</td>
-  <td valign="top">
-    <select name="music" id="music">  
-      <option value="custom">Custom</option>
-      <option value="supermario">Super Mario</option>
-      <option value="supermariochord">Super Mario Chord</option>
-      <option value="doremi">DoReMi</option>
-      <option value="bigbrotherandfather">Big brother and father</option>
-      <option value="merrychristmas">Merry Christmas</option>
-    </select>
-  </td>
-  <td id="btn12" valign="top">  
-  </td>
-</tr> 
-<tr>
-  <td valign="top">Notes</td>
-  <td colspan="2" valign="top"><input type="text" name="notes" id="notes" size="20" value="C6,D6,E6,F6,G6,A6,B6"></td>
-</tr>
-<tr>
-  <td valign="top">Tempos(1~10)</td>
-  <td colspan="2" valign="top"><input type="text" name="tempos" id="tempos" size="20" value="1,2,3,4,5,6,7"></td>
-</tr>  
-      
-<tr>
-  <td valign="top" style="color:blue">3. Button</td>
-  <td valign="top">
-    <select name="button_state" id="button_state">  
-      <option value="A">A</option>
-      <option value="B">B</option>
-      <option value="A+B">A+B</option>
-    </select>
-  </td>
-  <td id="btn11" valign="top">  
-  </td>
-</tr>      
-  
-<tr>
-  <td valign="top" style="color:blue">4. Thermistor</td>
-  <td valign="top">
-  </td>
-  <td id="btn4" valign="top">  
-  </td>
-</tr>     
-       
-<tr>
-  <td valign="top" style="color:blue">5. Photocell</td>
-  <td valign="top">
-    <select name="photocell" id="photocell">  
-      <option value="left">Left</option>
-      <option value="right">Right</option>
-    </select>
-  </td>
-  <td id="btn3" valign="top">  
-  </td>
-</tr>
-          
-<tr>
-  <td valign="top" style="color:blue">6. 9-Axis</td>
-  <td valign="top">
-    <select name="axis" id="axis">
-      <option value="accelerometer_x">Accelerometer_X</option>
-      <option value="accelerometer_y">Accelerometer_Y</option>
-      <option value="accelerometer_z">Accelerometer_Z</option>
-      <option value="gyroscope_row">Gyroscope_Row</option>
-      <option value="gyroscope_pitch">Gyroscope_Pitch</option>
-      <option value="gyroscope_yaw">Gyroscope_Yaw</option>
-      <option value="magnetometer_row">Magnetometer_Row</option>
-      <option value="magnetometer_pitch">Magnetometer_Pitch</option>
-      <option value="magnetometer_yaw">Magnetometer_Yaw</option>
-      <option value="attitudeangles_row">AttitudeAngles_Row</option>
-      <option value="attitudeangles_pitch">AttitudeAngles_Pitch</option>
-      <option value="attitudeangles_yaw">AttitudeAngles_Yaw</option>
-      <option value="electroniccompass_azimuth">ElectronicCompass</option>
-    </select>
-  </td>
-  <td id="btn13" valign="top">  
-  </td>
-</tr>
-   
-<tr>
-  <td valign="top" style="color:blue">7. DigitalRead</td>
+  <td valign="top" style="color:blue">1. DigitalRead</td>
   <td valign="top">
     <select name="digitalRead_pin" id="digitalRead_pin">
       <option value="0">0</option>
-      <option value="1">1</option>
       <option value="2">2</option>
-      <option value="3">3</option>
       <option value="4">4</option>
       <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
+      <option value="12">12</option>
       <option value="13">13</option>
       <option value="14">14</option>
       <option value="15">15</option>
-      <option value="16">16</option>
+      <option value="16">16</option>   
     </select>
   </td>
   <td id="btn9" valign="top">  
@@ -178,15 +40,10 @@
 </tr>
   
 <tr>
-  <td valign="top" style="color:blue">8. AnalogRead</td>
+  <td valign="top" style="color:blue">2. AnalogRead</td>
   <td valign="top">
     <select name="analogRead_pin" id="analogRead_pin">
       <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="10">10</option>
     </select>
   </td>
   <td id="btn10" valign="top">  
@@ -194,25 +51,18 @@
 </tr>
    
 <tr>
-  <td valign="top" style="color:blue">9. DigitalWrite</td>
+  <td valign="top" style="color:blue">3. DigitalWrite</td>
   <td valign="top">
     <select name="digitalWrite_pin" id="digitalWrite_pin">
       <option value="0">0</option>
-      <option value="1">1</option>
       <option value="2">2</option>
-      <option value="3">3</option>
       <option value="4">4</option>
       <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
+      <option value="12">12</option>
       <option value="13">13</option>
       <option value="14">14</option>
       <option value="15">15</option>
-      <option value="16">16</option>
+      <option value="16">16</option> 
     </select>
     <select name="digitalWrite_value" id="digitalWrite_value">  
       <option value="1">High</option>
@@ -224,15 +74,12 @@
 </tr>
   
 <tr>
-  <td valign="top" style="color:blue">10. AnalogWrite</td>
+  <td valign="top" style="color:blue">4. AnalogWrite</td>
   <td valign="top">
     <select name="analogWrite_pin" id="analogWrite_pin">
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="10">10</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="15">15</option>
     </select>
   </td>
   <td id="btn6" valign="top">  
@@ -243,115 +90,19 @@
     <span id="range_value">0</span>
   </td>
 </tr>
-
+  
 <tr>
-  <td valign="top" style="color:blue">11. Sample</td>
+  <td valign="top" style="color:blue">5. Photocell</td>
   <td valign="top">
-    <select name="sample" id="sample">
-      <option value="♥">♥</option>
-      <option value="♡">♡</option>
-      <option value="↑">↑</option>
-      <option value="↓">↓</option>
-      <option value="←">←</option>
-      <option value="→">→</option>
-      <option value="↖">↖</option>
-      <option value="↙">↙</option>
-      <option value="↗">↗</option>
-      <option value="↘">↘</option>
-      <option value="▲">▲</option>
-      <option value="▼">▼</option>      
-      <option value="◄">◄</option>
-      <option value="►">►</option>
-      <option value="O">O</option>
-      <option value="X">X</option>
-      <option value="V">V</option>        
+    <select name="photocell" id="photocell">  
+      <option value="left">Left</option>
+      <option value="right">Right</option>
     </select>
-    <input type="color" id="sample_color" name="marquee_color" value="#ff0000">
   </td>
-  <td id="btn8" valign="top">  
-  </td>
-</tr>
-    
-<tr>
-  <td valign="top" style="color:blue">12. Led</td>
-  <td valign="top">
-    <select name="led" id="led">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
-      <option value="12">12</option>
-      <option value="13">13</option>
-      <option value="14">14</option>
-      <option value="15">15</option>
-      <option value="16">16</option>
-      <option value="17">17</option>
-      <option value="18">18</option>
-      <option value="19">19</option>
-      <option value="20">20</option>
-      <option value="21">21</option>
-      <option value="22">22</option>
-      <option value="23">23</option>
-      <option value="24">24</option>
-      <option value="25">25</option>
-      <option value="All">All</option>  
-    </select>
-    <select name="state" id="state">  
-      <option value="1">On</option>
-      <option value="0">Off</option>
-    </select>
-    <input type="color" id="led_color" name="led_color" value="#ff0000">
-  </td>
-  <td id="btn1" valign="top">  
+  <td id="btn3" valign="top">  
   </td>
 </tr>
       
-<tr>
-  <td valign="top" style="color:blue">13. Led Matrix</td>
-  <td valign="top"></td>
-  <td id="btn7" valign="top">  
-  </td>
-</tr>
-<tr>
-  <td colspan="3" valign="top">
-    <input type="color" id="led1" name="led1" value="#000000">
-    <input type="color" id="led2" name="led2" value="#000000">
-    <input type="color" id="led3" name="led3" value="#000000">
-    <input type="color" id="led4" name="led4" value="#000000">
-    <input type="color" id="led5" name="led5" value="#000000">
-    <br>
-    <input type="color" id="led6" name="led6" value="#000000">
-    <input type="color" id="led7" name="led7" value="#000000">
-    <input type="color" id="led8" name="led8" value="#000000">
-    <input type="color" id="led9" name="led9" value="#000000">
-    <input type="color" id="led10" name="led10" value="#000000">
-    <br>
-    <input type="color" id="led11" name="led11" value="#000000">
-    <input type="color" id="led12" name="led12" value="#000000">
-    <input type="color" id="led13" name="led13" value="#000000">
-    <input type="color" id="led14" name="led14" value="#000000">
-    <input type="color" id="led15" name="led15" value="#000000">
-    <br>
-    <input type="color" id="led16" name="led16" value="#000000">
-    <input type="color" id="led17" name="led17" value="#000000">
-    <input type="color" id="led18" name="led18" value="#000000">
-    <input type="color" id="led19" name="led19" value="#000000">
-    <input type="color" id="led20" name="led20" value="#000000">
-    <br>
-    <input type="color" id="led21" name="led21" value="#000000">
-    <input type="color" id="led22" name="led22" value="#000000">
-    <input type="color" id="led23" name="led23" value="#000000">
-    <input type="color" id="led24" name="led24" value="#000000">
-    <input type="color" id="led25" name="led25" value="#000000">
-  </td>
-</tr>
 </table>  
       
 <div><span id="demo-area-02-show" style="color:red;font-weight:bold;visibility:hidden"></span></div>
@@ -360,34 +111,13 @@
 
 <script id="jsbin-javascript">
 (async function () {
-  
-  let button1 = document.createElement('button');
-  button1.textContent = "Execute";
-  button1.onclick = function() {
-      document.getElementById("cmd").value="led="+document.getElementById("led").value+";"+document.getElementById("state").value+";"+document.getElementById("led_color").value;
-  };
-  document.getElementById("btn1").appendChild(button1).setAttribute('id','btn_ledmatrix');  
-  
-  let button2 = document.createElement('button');
-  button2.textContent = "Execute";
-  button2.onclick = function() {
-      document.getElementById("cmd").value="marquee="+document.getElementById("interval").value+";"+document.getElementById("marquee_color").value+";"+document.getElementById("times").value+";"+document.getElementById("marquee").value.replace(/;/g,".");
-  };
-  document.getElementById("btn2").appendChild(button2).setAttribute('id','btn_marquee');    
-  
+
   let button3 = document.createElement('button');
   button3.textContent = "Read";
   button3.onclick = function() {
       document.getElementById("cmd").value="photocell="+document.getElementById("photocell").value;
   };
   document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_photocell');
-  
-  let button4 = document.createElement('button');
-  button4.textContent = "Read";
-  button4.onclick = function() {
-      document.getElementById("cmd").value="thermistor";
-  };
-  document.getElementById("btn4").appendChild(button4).setAttribute('id','btn_thermistor'); 
   
  let button5 = document.createElement('button');
   button5.textContent = "Write";
@@ -402,21 +132,7 @@
       document.getElementById("cmd").value="analogwrite="+document.getElementById("analogWrite_pin").value+";"+document.getElementById("analogWrite_value").value;
   };
   document.getElementById("btn6").appendChild(button6).setAttribute('id','btn_analogwrite');
-  
-  let button7 = document.createElement('button');
-  button7.textContent = "Execute";
-  button7.onclick = function() {
-      document.getElementById("cmd").value="paint="+"01"+document.getElementById("led1").value.replace("#","")+"02"+document.getElementById("led2").value.replace("#","")+"03"+document.getElementById("led3").value.replace("#","")+"04"+document.getElementById("led4").value.replace("#","")+"05"+document.getElementById("led5").value.replace("#","")+"06"+document.getElementById("led6").value.replace("#","")+"07"+document.getElementById("led7").value.replace("#","")+"08"+document.getElementById("led8").value.replace("#","")+"09"+document.getElementById("led9").value.replace("#","")+"0a"+document.getElementById("led10").value.replace("#","")+"0b"+document.getElementById("led11").value.replace("#","")+"0c"+document.getElementById("led12").value.replace("#","")+"0d"+document.getElementById("led13").value.replace("#","")+"0e"+document.getElementById("led14").value.replace("#","")+"0f"+document.getElementById("led15").value.replace("#","")+"10"+document.getElementById("led16").value.replace("#","")+"11"+document.getElementById("led17").value.replace("#","")+"12"+document.getElementById("led18").value.replace("#","")+"13"+document.getElementById("led19").value.replace("#","")+"14"+document.getElementById("led20").value.replace("#","")+"15"+document.getElementById("led21").value.replace("#","")+"16"+document.getElementById("led22").value.replace("#","")+"17"+document.getElementById("led23").value.replace("#","")+"18"+document.getElementById("led24").value.replace("#","")+"19"+document.getElementById("led25").value.replace("#","");
-  };
-  document.getElementById("btn7").appendChild(button7).setAttribute('id','btn_paint');  
-  
-  let button8 = document.createElement('button');
-  button8.textContent = "Execute";
-  button8.onclick = function() {
-      document.getElementById("cmd").value="sample="+document.getElementById("sample").value+";"+document.getElementById("sample_color").value;
-  };
-  document.getElementById("btn8").appendChild(button8).setAttribute('id','btn_sample'); 
-  
+ 
  let button9 = document.createElement('button');
   button9.textContent = "Read";
   button9.onclick = function() {
@@ -431,142 +147,34 @@
   };
   document.getElementById("btn10").appendChild(button10).setAttribute('id','btn_analogread');  
  
-  let button11 = document.createElement('button');
-  button11.textContent = "Read";
-  button11.onclick = function() {
-      document.getElementById("cmd").value="button="+document.getElementById("button_state").value;
-  };
-  document.getElementById("btn11").appendChild(button11).setAttribute('id','btn_button');
-  
-  let button12 = document.createElement('button');
-  button12.textContent = "Execute";
-  button12.onclick = function() {
-      document.getElementById("cmd").value="buzzer="+document.getElementById("music").value+";"+document.getElementById("notes").value+";"+document.getElementById("tempos").value;
-  };
-  document.getElementById("btn12").appendChild(button12).setAttribute('id','btn_button');  
-  
-  let button13 = document.createElement('button');
-  button13.textContent = "Read";
-  button13.onclick = function() {
-      document.getElementById("cmd").value="axis="+document.getElementById("axis").value;
-  };
-  document.getElementById("btn13").appendChild(button13).setAttribute('id','btn_button');    
-  
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
     var getdevice = strUrl.split("?")[1].split("&")[0];
     
-    boardReady({board: 'Bit', device: getdevice, transport: 'mqtt'}, function (board) {
-      document.getElementById("demo-area-01-show").innerHTML = "Webduino Bit is connected.";
+    boardReady({board: 'Smart', device: getdevice, transport: 'mqtt'}, function (board) {
+      document.getElementById("demo-area-01-show").innerHTML = "Webduino Smart is connected.";
       
       board.samplingInterval = 250;
-      var matrix = getMatrix(board, 4, 25);
-      MatrixLed_showstate(matrix,1);
-      
-      var A="released",B="released";
-      var buttonA = getPullupButton(board, 35);
-      buttonA.on('pressed', function () {
-        A = 'pressed';
-      });
-      buttonA.on('released', function () {
-        A ='released';
-      });
-      buttonA.on('longPress', function () {
-        A ='longPress';
-      });
-      
-      var buttonB = getPullupButton(board, 27);
-      buttonB.on('pressed', function () {
-        B = 'pressed';
-      });
-      buttonB.on('released', function () {
-        B ='released';
-      });
-      buttonB.on('longPress', function () {
-        B ='longPress';
-      });      
       
       var fuTimer = setInterval(async function(){
         
         var cmd = document.getElementById("cmd");
         if (cmd.value!="") {
+          
           var getCmd = cmd.value.split("=");
-          if (getCmd[0] == 'led') {
-            var Para = getCmd[1].split(";");
-            MatrixLed_marquee_stop();
-            
-            if (Para[0]=="All") {
-              if (Para[1]=="1") {
-                for (var i=0;i<5;i++) {
-                  for (var j=0;j<5;j++) {
-                    MatrixLed_color_on(i,j,Para[2]);
-                  }
-                }
-              }
-              else 
-                MatrixLed_clear();
-            }
-            else {
-              if (Para[1]=="1")
-                MatrixLed_color_on(((Number(Para[0])-1)%5),Math.floor((Number(Para[0])-1)/5),Para[2]);
-              else
-                MatrixLed_color_on(((Number(Para[0])-1)%5),Math.floor((Number(Para[0])-1)/5),'#000000');
-            }
-            document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
-            cmd.value ="";
-          } 
-          else if (getCmd[0] == 'photocell') {
-            document.getElementById("demo-area-01-show").innerHTML = "　";
-            if (getCmd[1]=="left") {
-              var photocell_left = getPhotocell(board, 0);
-              photocell_left.measure(async function (val){
-                photocell_left.detectedVal = val;
-                document.getElementById("demo-area-01-show").innerHTML = photocell_left.detectedVal;
-                photocell_left.off();
-              });
-            }
-            else if (getCmd[1]=="right")
-            {
-              var photocell_right = getPhotocell(board, 3);
-              photocell_right.measure(async function (val){
-                photocell_right.detectedVal = val;
-                document.getElementById("demo-area-01-show").innerHTML = photocell_right.detectedVal;
-                photocell_right.off();
-              });
-            }
-            cmd.value ="";
-          } 
-          else if (getCmd[0] == 'marquee') {
-            var Para = getCmd[1].split(";");
-            if (Para[2]=="") {
-              MatrixLed_marquee_stop();
-              MatrixLed_clear();
-            }
-            else {
-              MatrixLed_marquee_time(Number(Para[0]));
-              MatrixLed_color(Para[1]);
-              var space="0000000000000000000000000";
-              if (Para[2]=="Cycle")
-                MatrixLed_marquee(space+(MatrixLed_indentcode((MatrixLed_texttocode(Para[3]))))+space);
-              else
-                MatrixLed_marquee_times(space+(MatrixLed_indentcode((MatrixLed_texttocode(Para[3]))))+space,Number(Para[2]));
-            }
-            document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
-            cmd.value ="";
-          } 
-          else if (getCmd[0] == 'thermistor') {
-            document.getElementById("demo-area-01-show").innerHTML = "　";
-            var thermistor = getThermistor(board, 6);
-            thermistor.measure(function (val) {
-              thermistor.detectedVal = val;
-              document.getElementById("demo-area-01-show").innerHTML = thermistor.detectedVal+" °C";
-              thermistor.off();
+          if (getCmd[0] == 'photocell') {
+            photocell = getPhotocell(board, 0);
+            photocell.on(function(val){
+              photocell.detectedVal = val;
+              document.getElementById("demo-area-01-show").innerHTML = (Math.round((((photocell.detectedVal - (0)) * (1/((1)-(0)))) * ((100)-(0)) + (0))*100))/100;
+              photocell.off();
             });
             cmd.value ="";
           } 
+         
           else if (getCmd[0] == 'digitalwrite') {
             var Para = getCmd[1].split(";");
-            var pin = getPin(board, bitGPIO(Number(Para[0])));
+            var pin = getPin(board, Number(Para[0]));
             pin.setMode(1);
             pin.write(Number(Para[1]));
             document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
@@ -574,144 +182,28 @@
           } 
           else if (getCmd[0] == 'analogwrite') {
             var Para = getCmd[1].split(";");
-            var pin = getPin(board, bitGPIO(Number(Para[0])));
+            var pin = getPin(board, Number(Para[0]));
             pin.setMode(3);
             pin.write(Number(Para[1]));
             document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } 
-          else if (getCmd[0] == 'paint') {
-            matrix.setColor(getCmd[1]);
-            document.getElementById("demo-area-02-show").innerHTML = "Led Matrix (OK)";
-            cmd.value ="";
-          }
-          else if (getCmd[0] == 'sample') {
-            var Para = getCmd[1].split(";");
-            MatrixLed_color(Para[1]);
-            MatrixLed_sample(Para[0]);
-            document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
-            cmd.value ="";
-          }     
           else if (getCmd[0] == 'digitalread') {
             document.getElementById("demo-area-01-show").innerHTML = "　";
-            var pin = getPin(board, bitGPIO(Number(getCmd[1])));
+            var pin = getPin(board, Number(getCmd[1]));
             pin.setMode(0);
             document.getElementById("demo-area-01-show").innerHTML = (await pin.read());
             cmd.value ="";
           } 
           else if (getCmd[0] == 'analogread') {
             document.getElementById("demo-area-01-show").innerHTML = "　";
-            var pin = getPin(board, bitGPIO(Number(getCmd[1])));
+            var pin = getPin(board, Number(getCmd[1]));
             pin.setMode(2);
             document.getElementById("demo-area-01-show").innerHTML =(await pin.read());
             cmd.value ="";
-          }        
-          else if (getCmd[0] == 'button') {
-            document.getElementById("demo-area-01-show").innerHTML = "　";
-            if (getCmd[1]=="A")
-              document.getElementById("demo-area-01-show").innerHTML = A;
-            else if (getCmd[1]=="B")
-              document.getElementById("demo-area-01-show").innerHTML = B;
-            else if (getCmd[1]=="A+B") {
-              if (A=="pressed"&&B=="pressed")
-                  document.getElementById("demo-area-01-show").innerHTML = "pressed";
-              else if (A=="released"&&B=="released")
-                document.getElementById("demo-area-01-show").innerHTML = "released";
-              else if (A=="longPress"&&B=="longPress")
-                document.getElementById("demo-area-01-show").innerHTML = "longPress";
-            }
-            cmd.value ="";
-          }
-          else if (getCmd[0] == 'buzzer') {
-            var Para = getCmd[1].split(";");
-            var buzzer = getBuzzer(board, '25');
-            if (Para[0]=="custom") {
-              var notes = Para[1].split(",");
-              var tempos = Para[2].split(",");
-            }
-            else if (Para[0]=="supermario") {
-              var notes = ["E7","E7","0","E7","0","C7","E7","0","G7","0","0","0","G6","0","0","0","C7","0","0","G6","0","0","E6","0","0","A6","0","B6","0","AS6","A6","0","G6","E7","0","G7","A7","0","F7","G7","0","E7","0","C7","D7","B6","0","0","C7","0","0","G6","0","0","E6","0","0","A6","0","B6","0","AS6","A6","0","G6","E7","0","G7","A7","0","F7","G7","0","E7","0","C7","D7","B6","0","0"];
-              var tempos = ["8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8"];              
-            }
-            else if (Para[0]=="supermariochord") {
-              var notes = ["FS6","FS6","0","FS6","0","D6","FS6","0","B6","0","0","0","G6","0","0","0","G6","0","0","E6","0","0","C6","0","0","F6","0","G6","0","FS6","F6","0","E6","C7","0","E7","F7","0","D7","E7","0","C7","0","A6","B6","G6","0","0","G6","0","0","E6","0","0","C6","0","0","F6","0","G6","0","FS6","F6","0","E6","G6","0","E7","F7","0","D7","E7","0","C7","0","A6","B6","G6","0","0"];
-              var tempos = ["8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8", "8"];              
-            }
-            else if (Para[0]=="doremi") {
-              var notes = ["c4","e4","e4","0","e4","g4","g4","0","d4","f4","f4","0","a4","b4","b4","0","c4","d4","e4","c4","e4","c4","e4","0","d4","e4","f4","f4","e4","d4","f4","0","e4","f4","g4","e4","g4","e4","g4","0","f4","g4","a4","a4","g4","f4","a4","0","g4","c4","d4","e4","f4","g4","a4","0","a4","d4","e4","f4","g4","a4","b4","0","b4","e4","f4","g4","a4","b4","c5","0","c5","b4","a4","f4","b4","g4","c5"];
-              var tempos = ["6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6"];              
-            }
-            else if (Para[0]=="bigbrotherandfather") {
-              var notes = ["C5","C5","G4","G4","A4","A4","G4","0","E4","G4","C5","A4","G4","0","0","A4","0","G4","0","E4","A4","G4","0","E4","0","G4","0","E4","D4","C4","0","E4","E4","G4","G4","A4","A4","G4","G4","0","D5","0","C5","A4","G4","A4","C5","G4","0","A4","A4","G4","A4","C5","G4","0","A4","A4","G4","A4","D5","C5"];
-              var tempos = ["6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6"];              
-            }
-            else if (Para[0]=="merrychristmas") {
-              var notes = ["E5","E5","E5","0","E5","E5","E5","0","E5","G5","C5","D5","E5","0","F5","F5","F5","F5","F5","E5","E5","0","E5","D5","D5","E5","D5","G5","0","G4","E5","D5","C5","G4","0","G4","E5","D5","C5","A4","0","A4","F5","E5","D5","B4","0","G5","G5","F5","D5","E5","C5","0","G4","E5","D5","C5","G4","0","G4","E5","D5","C5","A4","0","A4","F5","E5","D5","G5","G5","G5","G5","A5","G5","F5","D5","C5"];
-              var tempos = ["8","8","8","8","8","8","8","8","8","8","6","8","8","6","8","8","8","8","8","8","8","6","8","8","8","8","4","8","6","8","8","8","8","5","5","8","8","8","8","5","5","8","8","8","8","5","5","8","8","8","8","5","5","5","8","8","8","8","5","5","8","8","8","8","5","5","8","8","8","8","8","8","8","8","8","8","8","8","8"];              
-            }
-            
-            buzzer.play(notes , tempos);
-            cmd.value ="";
           }  
-          else if (getCmd[0] == 'axis') {
-            document.getElementById("demo-area-01-show").innerHTML = "　";
-            var mpu9250 = getMPU9250(board);
-            mpu9250.setDetectTimeType(2);
-            if (getCmd[1].indexOf("accelerometer")!=-1) {
-              mpu9250.on(webduino.module.MPU9250Event.ACCELEROMETER_MESSAGE, function () {
-                if (getCmd[1]=="accelerometer_x") 
-                  document.getElementById("demo-area-01-show").innerHTML = mpu9250.accVals[0];
-                if (getCmd[1]=="accelerometer_y") 
-                  document.getElementById("demo-area-01-show").innerHTML = mpu9250.accVals[1];
-                if (getCmd[1]=="accelerometer_z") 
-                  document.getElementById("demo-area-01-show").innerHTML = mpu9250.accVals[2];
-                mpu9250.off(webduino.module.MPU9250Event.ACCELEROMETER_MESSAGE);
-              });
-            }
-            if (getCmd[1].indexOf("gyroscope")!=-1) {
-                mpu9250.on(webduino.module.MPU9250Event.GYROSCOPE_MESSAGE, function () {
-                  if (getCmd[1]=="gyroscope_row") 
-                    document.getElementById("demo-area-01-show").innerHTML = mpu9250.gyrVals[0];
-                  if (getCmd[1]=="gyroscope_pitch") 
-                    document.getElementById("demo-area-01-show").innerHTML = mpu9250.gyrVals[1];
-                  if (getCmd[1]=="gyroscope_yaw") 
-                    document.getElementById("demo-area-01-show").innerHTML = mpu9250.gyrVals[2];
-                  mpu9250.off(webduino.module.MPU9250Event.GYROSCOPE_MESSAGE);
-                });
-            }
-            if (getCmd[1].indexOf("magnetometer")!=-1) {
-              mpu9250.on(webduino.module.MPU9250Event.MAGNETOMETER_MESSAGE, function () {
-                if (getCmd[1]=="magnetometer_row")
-                  document.getElementById("demo-area-01-show").innerHTML = mpu9250.magVals[0];
-                if (getCmd[1]=="magnetometer_pitch")
-                  document.getElementById("demo-area-01-show").innerHTML = mpu9250.magVals[1];
-                if (getCmd[1]=="magnetometer_yaw")
-                  document.getElementById("demo-area-01-show").innerHTML = mpu9250.magVals[2];
-                mpu9250.off(webduino.module.MPU9250Event.MAGNETOMETER_MESSAGE);
-              });
-            }
-            if (getCmd[1].indexOf("attitudeangles")!=-1) {
-              mpu9250.on(webduino.module.MPU9250Event.ANGLE_MESSAGE, function () {
-                if (getCmd[1]=="attitudeangles_row")
-                  document.getElementById("demo-area-01-show").innerHTML = mpu9250.angVals[0];
-                if (getCmd[1]=="attitudeangles_pitch")
-                  document.getElementById("demo-area-01-show").innerHTML = mpu9250.angVals[1];
-                if (getCmd[1]=="attitudeangles_yaw") 
-                  document.getElementById("demo-area-01-show").innerHTML = mpu9250.angVals[2];
-                mpu9250.off(webduino.module.MPU9250Event.ANGLE_MESSAGE);
-              });
-            }
-            if (getCmd[1].indexOf("electroniccompass")!=-1) {
-              mpu9250.on(webduino.module.MPU9250Event.AZIMUTH_MESSAGE, function () {
-                if (getCmd[1]=="electroniccompass_azimuth") 
-                  document.getElementById("demo-area-01-show").innerHTML = mpu9250.aziVals[0];
-                mpu9250.off(webduino.module.MPU9250Event.AZIMUTH_MESSAGE);
-              });
-            }
-            cmd.value ="";
-          }
+          
         }
-        
       },100);
     });
   }
