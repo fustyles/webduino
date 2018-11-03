@@ -15,7 +15,7 @@
 </head>
 <body>
 <div><span id="demo-area-01-show" style="color:red;font-weight:bold"></span></div>
-<input type="hidden" name="cmd" id="cmd">
+<input type="hidden" name="state" id="state">
 
 </body>
 </html>
@@ -26,12 +26,12 @@
   if (strUrl.indexOf("?")!=-1) {
     var getdevice = strUrl.split("?")[1].split("&")[0];
     var fuTimer = setInterval(async function(){
-        var state = 0;
+        document.getElementById("state").value = 0;
         boardReady({board: 'Smart', device: getdevice, transport: 'mqtt'}, function (board) {
             board.samplingInterval = 50;
-            state=1;
+            document.getElementById("state").value = 1;
          });
-        if (state==0)
+        if (document.getElementById("state").value ==0)
           document.getElementById("demo-area-01-show").innerHTML = "Board isn't connected";
         else
           document.getElementById("demo-area-01-show").innerHTML = "Board is connected";
