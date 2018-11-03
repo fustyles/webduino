@@ -354,7 +354,7 @@
 </tr>
 </table>  
       
-<div><span id="demo-area-02-show" style="color:red;font-weight:bold;visibility:hidden"></span></div>
+<div><span id="demo-area-02-show" style="color:red;font-weight:bold;"></span></div>
 </body>
 </html>
 
@@ -709,7 +709,20 @@
               });
             }
             cmd.value ="";
-          } 
+          }
+          
+          
+          var thermistor = getThermistor(board, 6);
+          thermistor.measure(function (val) {
+            thermistor.detectedVal = val;
+            console.log(thermistor.detectedVal);
+            if (!thermistor.detectedVal)
+            document.getElementById("demo-area-01-show").innerHTML = "Error";
+            thermistor.off();
+          });
+          
+          
+          
         }
         
       },100);
