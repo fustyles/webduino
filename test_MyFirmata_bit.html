@@ -459,6 +459,10 @@
     boardReady({board: 'Bit', device: getdevice, transport: 'mqtt'}, function (board) {
       document.getElementById("demo-area-01-show").innerHTML = "Webduino Bit is connected.";
       
+      board.on(webduino.BoardEvent.ERROR, function(err) {
+        document.getElementById("demo-area-01-show").value = err.message;
+      });
+      
       board.samplingInterval = 250;
       var matrix = getMatrix(board, 4, 25);
       MatrixLed_showstate(matrix,1);
@@ -710,16 +714,6 @@
             }
             cmd.value ="";
           }
-          
-          
-          
-          
-          board.on(webduino.BoardEvent.ERROR, function(err) {
-            document.getElementById("demo-area-01-show").value = err.message;
-          });
-          
-          
-          
         }
         
       },100);
