@@ -714,7 +714,9 @@
           
           
           
-          console.log(webduino.BoardEvent.ERROR);
+          board.on(webduino.BoardEvent.ERROR, function(err) {
+            console.log('board error', err.message);
+          });
           
           
           
