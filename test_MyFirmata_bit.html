@@ -711,18 +711,10 @@
             cmd.value ="";
           }
           
-          /*
-          var thermistor = getThermistor(board, 6);
-          thermistor.measure(function (val) {
-            thermistor.detectedVal = val;
-            console.log(thermistor.detectedVal);
-            if (!thermistor.detectedVal)
-            document.getElementById("demo-area-01-show").innerHTML = "Error";
-            thermistor.off();
+          document.getElementById("demo-area-02-show").innerHTML = "Webduino Bit isn't connected.";
+          boardReady({board: 'Bit', device: getdevice, transport: 'mqtt'}, function (board) {
+              document.getElementById("demo-area-02-show").innerHTML = "Webduino Bit is connected.";
           });
-          */
-          
-          
         }
         
       },100);
