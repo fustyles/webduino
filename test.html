@@ -6,7 +6,7 @@
   <title>Webduino Smart</title>
   <script src="https://blocklypro.webduino.io/components/jquery/dist/jquery.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/webduino-all-0.4.20.min.js"></script>
-  <script src="https://blocklypro.webduino.io/dist/webduino-blockly.min.js"></script>
+  <script src="https://fustyles.github.io/webduino/bit_MatrixLed_20180810/smart_webduino-blockly.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/firebase.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>
 <style id="jsbin-css">
@@ -15,8 +15,7 @@
 </head>
 <body>
 <div><span id="demo-area-01-show" style="color:red;font-weight:bold"></span></div>
-<input type="text" name="state" id="state">
-
+<input type="text" name="cmd" id="cmd">
 </body>
 </html>
 
@@ -26,17 +25,9 @@
   if (strUrl.indexOf("?")!=-1) {
     var getdevice = strUrl.split("?")[1].split("&")[0];
     var fuTimer = setInterval(async function(){
-      document.getElementById("state").value = 0;
       boardReady({board: 'Smart', device: getdevice, transport: 'mqtt'},async function (board) {
-            document.getElementById("state").value = 1;
             document.getElementById("demo-area-01-show").innerHTML = "Board is connected";
        });
-      if (document.getElementById("state").value == 1) {
-        await delay(5);
-      }
-      else 
-        document.getElementById("demo-area-01-show").innerHTML = "Board isn't connected";
-      
     },10000);
   }
 }());
