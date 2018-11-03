@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Webduino Smart</title>
+  <script src="https://blocklypro.webduino.io/components/jquery/dist/jquery.min.js"></script>
+  <script src="https://blocklypro.webduino.io/dist/lib/webduino-all-0.4.20.min.js"></script>
+  <script src="https://fustyles.github.io/webduino/bit_MatrixLed_20180810/smart_webduino-blockly.min.js"></script>
+  <script src="https://blocklypro.webduino.io/dist/lib/firebase.min.js"></script>
+  <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>
+<style id="jsbin-css">
+#demo-area-01-show { font-size: 20px; pointer-events: auto!important; }
+</style>
+</head>
+<body>
+<div><span id="demo-area-01-show" style="color:red;font-weight:bold"></span></div>
+<input type="hidden" name="cmd" id="cmd">
+</body>
+</html>
+
+<script id="jsbin-javascript">
+(async function () {
+  var strUrl=location.search;
+  if (strUrl.indexOf("?")!=-1) {
+    var getdevice = strUrl.split("?")[1].split("&")[0];
+    var fuTimer = setInterval(async function(){
+      if (document.getElementById("demo-area-01-show").innerHTML != "Board is connected") {
+        boardReady({board: 'Smart', device: getdevice, transport: 'mqtt'},async function (board) {
+          document.getElementById("demo-area-01-show").innerHTML = "Board is connected";
+          while (true) {await delay(1)}
+         });
+      }
+    },5000);
+  }
+}());
+</script>
