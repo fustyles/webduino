@@ -7,7 +7,7 @@
   <script src="https://bit.webduino.io/blockly/components/jquery/dist/jquery.min.js"></script>
   <script src="https://bit.webduino.io/blockly/dist/lib/webduino-all.min.js"></script>
   <script src="https://bit.webduino.io/blockly/dist/MessageTransport.min.js"></script>
-  <script src="https://fustyles.github.io/webduino/bit_MatrixLed_20180810/webduino-blockly.min.js"></script>
+  <script src="https://fustyles.github.io/webduino/bit_MatrixLed_20180810/bit_webduino-blockly.min.js"></script>
   <script src="https://bit.webduino.io/blockly/dist/lib/firebase.min.js"></script>
   <script src="https://bit.webduino.io/blockly/dist/lib/runtime.min.js"></script>
   <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-thermistor/BitThermistor-blockly.js"></script>
@@ -354,7 +354,7 @@
 </tr>
 </table>  
       
-<div><span id="demo-area-02-show" style="color:red;font-weight:bold;"></span></div>
+<div><span id="demo-area-02-show" style="color:red;font-weight:bold;visibility:hidden"></span></div>
 </body>
 </html>
 
@@ -443,14 +443,14 @@
   button12.onclick = function() {
       document.getElementById("cmd").value="buzzer="+document.getElementById("music").value+";"+document.getElementById("notes").value+";"+document.getElementById("tempos").value;
   };
-  document.getElementById("btn12").appendChild(button12).setAttribute('id','btn_button');  
+  document.getElementById("btn12").appendChild(button12).setAttribute('id','btn_buzzer');  
   
   let button13 = document.createElement('button');
   button13.textContent = "Read";
   button13.onclick = function() {
       document.getElementById("cmd").value="axis="+document.getElementById("axis").value;
   };
-  document.getElementById("btn13").appendChild(button13).setAttribute('id','btn_button');    
+  document.getElementById("btn13").appendChild(button13).setAttribute('id','btn_axis');    
   
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
