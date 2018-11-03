@@ -162,7 +162,7 @@
             photocell = getPhotocell(board, 0);
             photocell.on(function(val){
               photocell.detectedVal = val;
-              document.getElementById("demo-area-01-show").innerHTML = (Math.round((((photocell.detectedVal - (0)) * (1/((1)-(0)))) * ((100)-(0)) + (0))*100))/100;
+              document.getElementById("demo-area-01-show").innerHTML = photocell.detectedVal;
               photocell.off();
             });
             cmd.value ="";
