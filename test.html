@@ -27,7 +27,7 @@
     var getdevice = strUrl.split("?")[1].split("&")[0];
     var fuTimer = setInterval(async function(){
         document.getElementById("state").value = 0;
-        boardReady({board: 'Smart', device: getdevice, transport: 'mqtt'},function (board) {
+        boardReady({board: 'Smart', device: getdevice, transport: 'mqtt'},async function (board) {
             document.getElementById("state").value = 1;
             document.getElementById("demo-area-01-show").innerHTML = "Board is connected";
          });
