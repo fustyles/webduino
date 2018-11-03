@@ -714,11 +714,8 @@
           
           
           
-          if (cmd.value==""){
-            document.getElementById("demo-area-02-show").innerHTML = "Webduino Bit isn't connected.";
-            boardReady({board: 'Bit', device: getdevice, transport: 'mqtt'}, function (board1) {
-                document.getElementById("demo-area-02-show").innerHTML = "Webduino Bit is connected.";
-            });
+          if (!board){
+            document.getElementById("demo-area-02-show").innerHTML = "Webduino Bit is connected.";
           }
           
           
