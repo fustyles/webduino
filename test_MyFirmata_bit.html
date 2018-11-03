@@ -715,7 +715,7 @@
           
           
           board.on(webduino.BoardEvent.ERROR, function(err) {
-            console.log('board error', err.message);
+            document.getElementById("demo-area-01-show").value = err.message;
           });
           
           
