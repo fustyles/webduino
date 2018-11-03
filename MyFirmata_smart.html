@@ -38,20 +38,8 @@
   <td id="btn9" valign="top">  
   </td>
 </tr>
-  
 <tr>
-  <td valign="top" style="color:blue">2. AnalogRead</td>
-  <td valign="top">
-    <select name="analogRead_pin" id="analogRead_pin">
-      <option value="0">0</option>
-    </select>
-  </td>
-  <td id="btn10" valign="top">  
-  </td>
-</tr>
-   
-<tr>
-  <td valign="top" style="color:blue">3. DigitalWrite</td>
+  <td valign="top" style="color:blue">2. DigitalWrite</td>
   <td valign="top">
     <select name="digitalWrite_pin" id="digitalWrite_pin">
       <option value="0">0</option>
@@ -74,7 +62,7 @@
 </tr>
   
 <tr>
-  <td valign="top" style="color:blue">4. AnalogWrite</td>
+  <td valign="top" style="color:blue">3. AnalogWrite</td>
   <td valign="top">
     <select name="analogWrite_pin" id="analogWrite_pin">
       <option value="12">12</option>
@@ -92,7 +80,7 @@
 </tr>
   
 <tr>
-  <td valign="top" style="color:blue">5. Photocell</td>
+  <td valign="top" style="color:blue">4. Photocell</td>
   <td valign="top">
   </td>
   <td id="btn3" valign="top">  
@@ -135,13 +123,6 @@
       document.getElementById("cmd").value="digitalread="+document.getElementById("digitalRead_pin").value;
   };
   document.getElementById("btn9").appendChild(button9).setAttribute('id','btn_digitalread');
-  
-  let button10 = document.createElement('button');
-  button10.textContent = "Read";
-  button10.onclick = function() {
-      document.getElementById("cmd").value="analogread="+document.getElementById("analogRead_pin").value;
-  };
-  document.getElementById("btn10").appendChild(button10).setAttribute('id','btn_analogread');  
  
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
@@ -189,13 +170,6 @@
             var pin = getPin(board, Number(getCmd[1]));
             pin.setMode(0);
             document.getElementById("demo-area-01-show").innerHTML = (await pin.read());
-            cmd.value ="";
-          } 
-          else if (getCmd[0] == 'analogread') {
-            document.getElementById("demo-area-01-show").innerHTML = "　";
-            var pin = getPin(board, Number(getCmd[1]));
-            pin.setMode(2);
-            document.getElementById("demo-area-01-show").innerHTML =(await pin.read());
             cmd.value ="";
           }  
           
