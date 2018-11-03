@@ -26,12 +26,15 @@
   if (strUrl.indexOf("?")!=-1) {
     var getdevice = strUrl.split("?")[1].split("&")[0];
     var fuTimer = setInterval(async function(){
-        document.getElementById("demo-area-01-show").innerHTML = "　";
-        boardReady({board: 'Smart', device: getdevice, transport: 'mqtt'},async function (board) {
-              document.getElementById("state").value = 1;
-              document.getElementById("demo-area-01-show").innerHTML = "Board is connected";
-         });
-    },1000);
+      document.getElementById("state").value = 0;
+      boardReady({board: 'Smart', device: getdevice, transport: 'mqtt'},async function (board) {
+            document.getElementById("state").value = 1;
+            document.getElementById("demo-area-01-show").innerHTML = "Board is connected";
+       });
+      await delay(15);
+      if (document.getElementById("state").value == 0);
+        document.getElementById("demo-area-01-show").innerHTML = "Board isn't connected";
+    },15000);
   }
 }());
 </script>
