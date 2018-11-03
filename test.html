@@ -11,187 +11,30 @@
   <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>
 <style id="jsbin-css">
 #demo-area-01-show { font-size: 20px; pointer-events: auto!important; }
-#demo-area-02-show { font-size: 20px; pointer-events: auto!important; }
 </style>
 </head>
 <body>
-<div><span id="demo-area-01-show" style="color:red;font-weight:bold">Webduino Smart isn't connected.</span></div>
+<div><span id="demo-area-01-show" style="color:red;font-weight:bold"></span></div>
 <input type="hidden" name="cmd" id="cmd">
 
-<table name="myfirmata" id ="myfirmata">
-
-<tr>
-  <td valign="top" style="color:blue">1. DigitalRead</td>
-  <td valign="top">
-    <select name="digitalRead_pin" id="digitalRead_pin">
-      <option value="0">0</option>
-      <option value="2">2</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="12">12</option>
-      <option value="13">13</option>
-      <option value="14">14</option>
-      <option value="15">15</option>
-      <option value="16">16</option>   
-    </select>
-  </td>
-  <td id="btn9" valign="top">  
-  </td>
-</tr>
-<tr>
-  <td valign="top" style="color:blue">2. DigitalWrite</td>
-  <td valign="top">
-    <select name="digitalWrite_pin" id="digitalWrite_pin">
-      <option value="0">0</option>
-      <option value="2">2</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="12">12</option>
-      <option value="13">13</option>
-      <option value="14">14</option>
-      <option value="15">15</option>
-      <option value="16">16</option> 
-    </select>
-    <select name="digitalWrite_value" id="digitalWrite_value">  
-      <option value="1">High</option>
-      <option value="0">Low</option>
-    </select>
-  </td>
-  <td id="btn5" valign="top">  
-  </td>
-</tr>
-  
-<tr>
-  <td valign="top" style="color:blue">3. AnalogWrite</td>
-  <td valign="top">
-    <select name="analogWrite_pin" id="analogWrite_pin">
-      <option value="12">12</option>
-      <option value="13">13</option>
-      <option value="15">15</option>
-    </select>
-  </td>
-  <td id="btn6" valign="top">  
-  </td>
-</tr>
-<tr>
-  <td colspan="3"><input type="range" name="analogWrite_value" id="analogWrite_value" min="0" max="1"  value="0" step="0.05" onchange="range_value.innerHTML=this.value;">
-    <span id="range_value">0</span>
-  </td>
-</tr>
-  
-<tr>
-  <td valign="top" style="color:blue">4. Photocell</td>
-  <td valign="top">
-  </td>
-  <td id="btn3" valign="top">  
-  </td>
-</tr>
-
-<tr>
-  <td colspan="3" valign="top" style="color:blue">5. Line Notify (Board connection failed.)</td>
-</tr>    
-<tr>
-  <td colspan="3" valign="top" colspan="2">
-    <input type="checkbox" name="chkline" id="chkline">
-    Token <input type"text" name="token" id="token">
-    <iframe src="" name="notify" id="notify" style="width:0px;height:0px;visibility:hidden"></iframe>
-  </td>
-</tr> 
-  
-</table>  
-      
-<div><span id="demo-area-02-show" style="color:red;font-weight:bold;visibility:hidden"></span></div>
 </body>
 </html>
 
 <script id="jsbin-javascript">
 (async function () {
-
-  let button3 = document.createElement('button');
-  button3.textContent = "Read";
-  button3.onclick = function() {
-      document.getElementById("cmd").value="photocell";
-  };
-  document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_photocell');
-  
- let button5 = document.createElement('button');
-  button5.textContent = "Write";
-  button5.onclick = function() {
-      document.getElementById("cmd").value="digitalwrite="+document.getElementById("digitalWrite_pin").value+";"+document.getElementById("digitalWrite_value").value;
-  };
-  document.getElementById("btn5").appendChild(button5).setAttribute('id','btn_digitalwrite');
-  
-  let button6 = document.createElement('button');
-  button6.textContent = "Write";
-  button6.onclick = function() {
-      document.getElementById("cmd").value="analogwrite="+document.getElementById("analogWrite_pin").value+";"+document.getElementById("analogWrite_value").value;
-  };
-  document.getElementById("btn6").appendChild(button6).setAttribute('id','btn_analogwrite');
- 
- let button9 = document.createElement('button');
-  button9.textContent = "Read";
-  button9.onclick = function() {
-      document.getElementById("cmd").value="digitalread="+document.getElementById("digitalRead_pin").value;
-  };
-  document.getElementById("btn9").appendChild(button9).setAttribute('id','btn_digitalread');
- 
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
     var getdevice = strUrl.split("?")[1].split("&")[0];
-    
-    boardReady({board: 'Smart', device: getdevice, transport: 'mqtt'}, function (board) {
-      document.getElementById("demo-area-01-show").innerHTML = "Webduino Smart is connected.";
-      
-      board.samplingInterval = 250;
-      
-      var fuTimer = setInterval(async function(){
-        
-        var cmd = document.getElementById("cmd");
-        if (cmd.value!="") {
-          
-          var getCmd = cmd.value.split("=");
-          if (getCmd[0] == 'photocell') {
-            photocell = getPhotocell(board, 0);
-            photocell.on(function(val){
-              photocell.detectedVal = val;
-              document.getElementById("demo-area-01-show").innerHTML = photocell.detectedVal;
-              photocell.off();
-            });
-            cmd.value ="";
-          } 
-         
-          else if (getCmd[0] == 'digitalwrite') {
-            var Para = getCmd[1].split(";");
-            var pin = getPin(board, Number(Para[0]));
-            pin.setMode(1);
-            pin.write(Number(Para[1]));
-            document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
-            cmd.value ="";
-          } 
-          else if (getCmd[0] == 'analogwrite') {
-            var Para = getCmd[1].split(";");
-            var pin = getPin(board, Number(Para[0]));
-            pin.setMode(3);
-            pin.write(Number(Para[1]));
-            document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
-            cmd.value ="";
-          } 
-          else if (getCmd[0] == 'digitalread') {
-            document.getElementById("demo-area-01-show").innerHTML = "　";
-            var pin = getPin(board, Number(getCmd[1]));
-            pin.setMode(0);
-            document.getElementById("demo-area-01-show").innerHTML = (await pin.read());
-            cmd.value ="";
-          }  
-          else if (getCmd[0] == 'error') {
-            if (document.getElementById("chkline").checked==1) 
-              document.getElementById("notify").src="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec?token="+document.getElementById("token").value+"&type=text&text=Board connection failed.";
-            cmd.value ="";
-          } 
-
-        }
-      },100);
-    });
+    var fuTimer = setInterval(async function(){
+        var state = 0;
+        boardReady({board: 'Smart', device: getdevice, transport: 'mqtt'}, function (board) {
+            state=1;
+         });
+        if (state==0)
+          document.getElementById("demo-area-01-show").innerHTML = "Board is connected";
+        else
+          document.getElementById("demo-area-01-show").innerHTML = "Board isn't connected";
+    },1000);
   }
 }());
 </script>
