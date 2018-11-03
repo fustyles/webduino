@@ -94,10 +94,6 @@
 <tr>
   <td valign="top" style="color:blue">5. Photocell</td>
   <td valign="top">
-    <select name="photocell" id="photocell">  
-      <option value="left">Left</option>
-      <option value="right">Right</option>
-    </select>
   </td>
   <td id="btn3" valign="top">  
   </td>
@@ -115,7 +111,7 @@
   let button3 = document.createElement('button');
   button3.textContent = "Read";
   button3.onclick = function() {
-      document.getElementById("cmd").value="photocell="+document.getElementById("photocell").value;
+      document.getElementById("cmd").value="photocell";
   };
   document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_photocell');
   
