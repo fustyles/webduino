@@ -6,7 +6,7 @@
   <title>Webduino Smart</title>
   <script src="https://blocklypro.webduino.io/components/jquery/dist/jquery.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/webduino-all-0.4.20.min.js"></script>
-  <script src="https://fustyles.github.io/webduino/bit_MatrixLed_20180810/smart_webduino-blockly.min.js"></script>
+  <script src="https://blocklypro.webduino.io/dist/lib/webduino-blockly.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/firebase.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>
 <style id="jsbin-css">
@@ -31,7 +31,7 @@
             state=1;
          });
         if (state==0)
-          document.getElementById("demo-area-01-show").innerHTML = "Board is connected";
+          document.getElementById("demo-area-01-show").innerHTML = "Board isn't connected";
         else
           document.getElementById("demo-area-01-show").innerHTML = "Board isn't connected";
     },1000);
