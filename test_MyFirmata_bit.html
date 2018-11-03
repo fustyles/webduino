@@ -354,13 +354,15 @@
 </tr>
       
 <tr>
-  <td valign="top" style="color:blue">14. Line Notify(Error)</td>
-  <td valign="top" colspan="2">
+  <td colspan="3" valign="top" style="color:blue">14. Line Notify(Board connection failed.)</td>
+</tr>    
+<tr>
+  <td colspan="3" valign="top" colspan="2">
     <input type="checkbox" name="chkline" id="chkline">
     Token<input type"text" name="token" id="token">
     <iframe src="" name="notify" id="notify" style="width:0px;height:0px;visibility:hidden"></iframe>
   </td>
-</tr>      
+</tr> 
 </table>  
       
 <div><span id="demo-area-02-show" style="color:red;font-weight:bold;visibility:hidden"></span></div>
@@ -722,7 +724,7 @@
            else if (getCmd[0] == 'error') {
             document.getElementById("demo-area-01-show").innerHTML = "　";
             if (document.getElementById("chkline").checked==1) 
-              document.getElementById("notify").src="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec?token="+document.getElementById("token").value+"&message=Board connection failed.";
+              document.getElementById("notify").src="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec?token="+document.getElementById("token").value+"&type=text&text=Board connection failed.";
             cmd.value ="";
           } 
           
