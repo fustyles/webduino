@@ -7,7 +7,7 @@
   <script src="https://bit.webduino.io/blockly/components/jquery/dist/jquery.min.js"></script>
   <script src="https://bit.webduino.io/blockly/dist/lib/webduino-all.min.js"></script>
   <script src="https://bit.webduino.io/blockly/dist/MessageTransport.min.js"></script>
-  <script src="https://bit.webduino.io/blockly/dist/webduino-blockly.min.js"></script>
+  <script src="https://fustyles.github.io/webduino/bit_MatrixLed_20180810/webduino-blockly.min.js"></script>
   <script src="https://bit.webduino.io/blockly/dist/lib/firebase.min.js"></script>
   <script src="https://bit.webduino.io/blockly/dist/lib/runtime.min.js"></script>
   <script src="https://bit.webduino.io/blockly/components/webduino-bit-module-thermistor/BitThermistor-blockly.js"></script>
@@ -458,10 +458,6 @@
     
     boardReady({board: 'Bit', device: getdevice, transport: 'mqtt'}, function (board) {
       document.getElementById("demo-area-01-show").innerHTML = "Webduino Bit is connected.";
-      
-      board.on(webduino.BoardEvent.ERROR, function(err) {
-        document.getElementById("demo-area-01-show").value = err.message;
-      });
       
       board.samplingInterval = 250;
       var matrix = getMatrix(board, 4, 25);
