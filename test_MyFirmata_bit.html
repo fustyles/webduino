@@ -712,7 +712,7 @@
           }
           
           document.getElementById("demo-area-02-show").innerHTML = "Webduino Bit isn't connected.";
-          boardReady({board: 'Bit', device: getdevice, transport: 'mqtt'}, function (board) {
+          boardReady({board: 'Bit', device: getdevice, transport: 'mqtt'}, function (board1) {
               document.getElementById("demo-area-02-show").innerHTML = "Webduino Bit is connected.";
           });
         }
