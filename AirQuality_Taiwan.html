@@ -5,21 +5,15 @@
 <title>Taiwan Air Quality</title>
 <script src="https://fustyles.github.io/webduino/AirQuality_Taiwan_20180121/AirQualityTaiwan.js"></script>
 </head>
-
-
 <body>
-  
-<div><span id="display"></span></div>
-
-
+<div id="display"></div>
 <script>
 
-while ((pmgov_get("高雄市-小港","SiteName")) == '') 
-{
-  pmgov_link('http://opendata2.epa.gov.tw/AQI.xml',"XML");
-}
-
+pmgov_link('http://opendata2.epa.gov.tw/AQI.xml',"XML");
+setTimeout(function(){
 document.getElementById('display').innerHTML = 'Site:'+pmgov_get("高雄市-小港","SiteName")+'-'+pmgov_get("高雄市-小港","County")+'<br>'+'Update:'+pmgov_get("高雄市-小港","PublishTime")+'<br>'+'AQI:'+pmgov_get("高雄市-小港","AQI")+'<br>'+'Status:'+pmgov_get("高雄市-小港","Status")+'<br>'+'PM2.5:'+pmgov_get("高雄市-小港","PM2.5")+'<br>'+'PM10:'+pmgov_get("高雄市-小港","PM10");
+}
+,5000);
 
 </script>
 
