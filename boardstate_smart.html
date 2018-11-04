@@ -148,7 +148,7 @@
       board.on(BoardEvent.READY, function() {
         check = setInterval(function() {
           board.send([0xF0, 0x0E, 0x07, 0xF7]);
-        }, 10000);
+        }, 30000);
       });
       
       board.on(BoardEvent.ERROR, function() {
