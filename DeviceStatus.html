@@ -10,10 +10,9 @@
 <div id="demo-area-01-show">Board isn't connected.</div>
 <script>
 
-  var strUrl=location.search;
-  if (strUrl.indexOf("?")!=-1) {
+var strUrl=location.search;
+if (strUrl.indexOf("?")!=-1) {
   var deviceID = strUrl.split("?")[1].split("&")[0];
-
   var timeInterval = 5000;
   var board = new webduino.WebArduino(deviceID);
   var BoardEvent = webduino.BoardEvent;
