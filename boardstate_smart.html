@@ -143,11 +143,13 @@
       
       board.samplingInterval = 250;
       
+      var BoardEvent = webduino.BoardEvent
       board.on(BoardEvent.READY, function() {
         setInterval(function() {
           board.send([0xF0, 0x0E, 0x07, 0xF7]);
         }, 5000);
       });
+      
       board.on(BoardEvent.ERROR, function() {
         document.getElementById("demo-area-01-show").innerHTML = "Board connection failed." ;
         cmd.value="error";
