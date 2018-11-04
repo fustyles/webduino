@@ -6,7 +6,7 @@
   <title>Webduino Smart</title>
   <script src="https://blocklypro.webduino.io/components/jquery/dist/jquery.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/webduino-all-0.4.20.min.js"></script>
-  <script src="https://fustyles.github.io/webduino/bit_MatrixLed_20180810/smart_webduino-blockly.min.js"></script>
+  <script src="https://blocklypro.webduino.io/dist/webduino-blockly.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/firebase.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>
 <style id="jsbin-css">
@@ -106,7 +106,6 @@
 
 <script id="jsbin-javascript">
 (async function () {
-
   let button3 = document.createElement('button');
   button3.textContent = "Read";
   button3.onclick = function() {
@@ -114,7 +113,7 @@
   };
   document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_photocell');
   
- let button5 = document.createElement('button');
+  let button5 = document.createElement('button');
   button5.textContent = "Write";
   button5.onclick = function() {
       document.getElementById("cmd").value="digitalwrite="+document.getElementById("digitalWrite_pin").value+";"+document.getElementById("digitalWrite_value").value;
@@ -143,6 +142,20 @@
       document.getElementById("demo-area-01-show").innerHTML = "Webduino Smart is connected.";
       
       board.samplingInterval = 250;
+      
+      var BoardEvent = webduino.BoardEvent
+      var check;
+      board.on(BoardEvent.READY, function() {
+        check = setInterval(function() {
+          board.send([0xF0, 0x0E, 0x07, 0xF7]);
+        }, 30000);
+      });
+      
+      board.on(BoardEvent.ERROR, function() {
+        document.getElementById("demo-area-01-show").innerHTML = "Board connection failed." ;
+        clearInterval(check);
+        cmd.value="error";
+      });
       
       var fuTimer = setInterval(async function(){
         
@@ -188,7 +201,6 @@
               document.getElementById("notify").src="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec?token="+document.getElementById("token").value+"&type=text&text=Board connection failed.";
             cmd.value ="";
           } 
-
         }
       },100);
     });
