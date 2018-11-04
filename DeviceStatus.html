@@ -17,9 +17,9 @@ if (strUrl.indexOf("?")!=-1) {
   div.innerHTML= "[ "+ deviceID + " ] isn't connected." ;
   document.body.appendChild(div);
   
-  var timeInterval = 5000;
   var board = new webduino.WebArduino(deviceID);
   var BoardEvent = webduino.BoardEvent;
+  var timeInterval = 5000;
   
   board.on(BoardEvent.READY, function() {
     setInterval(function(){
