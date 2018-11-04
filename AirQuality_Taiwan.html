@@ -10,8 +10,13 @@
 <script>
 
 pmgov_link('https://opendata.epa.gov.tw/webapi/api/rest/datastore/355000000I-000259?sort=County',"JSON");
-setTimeout(function(){
-document.getElementById('display').innerHTML = 'Site:'+pmgov_get("高雄市-小港","SiteName")+'-'+pmgov_get("高雄市-小港","County")+'<br>'+'Update:'+pmgov_get("高雄市-小港","PublishTime")+'<br>'+'AQI:'+pmgov_get("高雄市-小港","AQI")+'<br>'+'Status:'+pmgov_get("高雄市-小港","Status")+'<br>'+'PM2.5:'+pmgov_get("高雄市-小港","PM2.5")+'<br>'+'PM10:'+pmgov_get("高雄市-小港","PM10");
+setTimeout(function(){ 
+document.write('Site:'+pmgov_get("高雄市-小港","SiteName")+'-'+pmgov_get("高雄市-小港","County")+'<br>');
+document.write('Update:'+pmgov_get("高雄市-小港","PublishTime")+'<br>');
+document.write('AQI:'+pmgov_get("高雄市-小港","AQI")+'<br>');
+document.write('Status:'+pmgov_get("高雄市-小港","Status")+'<br>');
+document.write('PM2.5:'+pmgov_get("高雄市-小港","PM2.5")+'<br>');
+document.write('PM10:'+pmgov_get("高雄市-小港","PM10"));
 }
 ,5000);
 
