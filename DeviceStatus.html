@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Device Status</title>
+  <script src="https://webduino.io/components/webduino-js/dist/webduino-base.min.js"></script>
+</head>
+
+<body>
+<div id="demo-area-01-show">Board isn't connected.</div>
+<script>
+
+var strUrl=location.search;
+  if (strUrl.indexOf("?")!=-1) {
+    var deviceID = strUrl.split("?")[1].split("&")[0];
+
+  var timeInterval = 5000;
+
+  var board = new webduino.WebArduino(deviceID);
+  var BoardEvent = webduino.BoardEvent;
+  
+    
+  board.on(BoardEvent.READY, function() {
+      setInterval(function(){
+      board.send([0xF0, 0x0E, 0x07, 0xF7]);
+      }, timeInterval);
+  });
+  board.on(BoardEvent.ERROR, function() {
+    document.getElementById("demo-area-01-show").innerHTML = "Board isn't connected." ;
+      setTimeout(function(){
+	window.location.reload();
+      }, timeInterval);
+  });
+
+  board.on(webduino.BoardEvent.STRING_MESSAGE,
+    function(event) {
+      document.getElementById("demo-area-01-show").innerHTML = "Board is connected." ;
+    });
+  
+
+}
+
+</script>
+</body>
+
+</html>
