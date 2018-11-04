@@ -16,7 +16,7 @@
 
 while ((pmgov_get("高雄市-小港","SiteName")) == '') 
 {
-pmgov_link('http://opendata2.epa.gov.tw/AQI.xml',"XML");
+  pmgov_link('http://opendata2.epa.gov.tw/AQI.xml',"XML");
 }
 
 document.getElementById('display').innerHTML = 'Site:'+pmgov_get("高雄市-小港","SiteName")+'-'+pmgov_get("高雄市-小港","County")+'<br>'+'Update:'+pmgov_get("高雄市-小港","PublishTime")+'<br>'+'AQI:'+pmgov_get("高雄市-小港","AQI")+'<br>'+'Status:'+pmgov_get("高雄市-小港","Status")+'<br>'+'PM2.5:'+pmgov_get("高雄市-小港","PM2.5")+'<br>'+'PM10:'+pmgov_get("高雄市-小港","PM10");
