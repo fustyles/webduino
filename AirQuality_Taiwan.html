@@ -100,7 +100,7 @@ pmgov_link('https://opendata.epa.gov.tw/webapi/api/rest/datastore/355000000I-000
 //pmgov_link('http://opendata2.epa.gov.tw/AQI.xml',"XML");
 setTimeout(function(){ 
   document.getElementById("data").innerHTML= "<table>" +
-  '<tr><td>Site:</td><td>'+pmgov_get(site,"SiteName")+'-'+pmgov_get(site,"County")+'</td></tr>'+
+  '<tr><td>Site:</td><td>'+pmgov_get(site,"County")+'-'+pmgov_get(site,"SiteName")+'</td></tr>'+
   '<tr><td>AQI:</td><td>'+pmgov_get(site,"AQI")+'</td></tr>'+
   '<tr><td>Pollutant:</td><td>'+pmgov_get(site,"Pollutant")+'</td></tr>'+   
   '<tr><td>Status:</td><td>'+pmgov_get(site,"Status")+'</td></tr>'+            
