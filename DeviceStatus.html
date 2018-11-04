@@ -12,7 +12,7 @@
 
   var strUrl=location.search;
   if (strUrl.indexOf("?")!=-1) {
-    var deviceID = strUrl.split("?")[1].split("&")[0];
+  var deviceID = strUrl.split("?")[1].split("&")[0];
 
   var timeInterval = 5000;
   var board = new webduino.WebArduino(deviceID);
@@ -34,7 +34,7 @@
       document.getElementById("demo-area-01-show").innerHTML = "Board is connected." ;
     });
   }
-
+}
 </script>
 </body>
 </html>
