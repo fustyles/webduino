@@ -7,7 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 </head>
 <body>
-<select name="site" id="site" onclick="getData(this.value);">
+<select name="site" id="site" onclick="getData();">
 <option value=""></option>
 <option value="基隆市-基隆">基隆市-基隆</option>
 <option value="新北市-汐止">新北市-汐止</option>
@@ -94,11 +94,14 @@
 
 <script>
 
-function getData(site) {
-          
+function getData() {
 pmgov_link('https://opendata.epa.gov.tw/webapi/api/rest/datastore/355000000I-000259?sort=County',"JSON");
 //pmgov_link('http://opendata2.epa.gov.tw/AQI.xml',"XML");
-setTimeout(function(){ 
+setTimeout(getSite(),5000);
+}
+          
+function getSite(){ 
+  var site = document.getElementById("site").value;
   document.getElementById("data").innerHTML= "<table>" +
   '<tr><td>Site:</td><td>'+pmgov_get(site,"County")+'-'+pmgov_get(site,"SiteName")+'</td></tr>'+
   '<tr><td>AQI:</td><td>'+pmgov_get(site,"AQI")+'</td></tr>'+
@@ -122,7 +125,5 @@ setTimeout(function(){
   '<tr><td>Latitude:</td><td>'+pmgov_get(site,"Latitude")+'</td></tr>'+  
   '<tr><td>Longitude:</td><td>'+pmgov_get(site,"Longitude")+'</td></tr>'+
   '</table>';
-},5000);
-
 }
 </script>
