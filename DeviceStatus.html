@@ -14,7 +14,7 @@ if (strUrl.indexOf("?")!=-1) {
   var deviceID = strUrl.split("?")[1].split("&")[0];
   var div= document.createElement("div");
   div.id="demo-area-01-show";
-  div.innerHTML= deviceID + " isn't connected." ;
+  div.innerHTML= "[ "+ deviceID + " ] isn't connected." ;
   document.body.appendChild(div);
   
   var timeInterval = 5000;
@@ -27,13 +27,13 @@ if (strUrl.indexOf("?")!=-1) {
     }, timeInterval);
   });
   board.on(BoardEvent.ERROR, function() {
-    document.getElementById("demo-area-01-show").innerHTML = deviceID + " isn't connected." ;
+    document.getElementById("demo-area-01-show").innerHTML = "[ "+ deviceID + " ] isn't connected." ;
     setTimeout(function(){
       window.location.reload();
     }, timeInterval);
   });
   board.on(webduino.BoardEvent.STRING_MESSAGE, function(event) {
-    document.getElementById("demo-area-01-show").innerHTML = deviceID + " is connected." ;
+    document.getElementById("demo-area-01-show").innerHTML = "[ "+ deviceID + " ] is connected." ;
   });
 }
 
