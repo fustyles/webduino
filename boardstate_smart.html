@@ -144,8 +144,9 @@
       board.samplingInterval = 250;
       
       var BoardEvent = webduino.BoardEvent
+      var check;
       board.on(BoardEvent.READY, function() {
-        var check = setInterval(function() {
+        check = setInterval(function() {
           board.send([0xF0, 0x0E, 0x07, 0xF7]);
         }, 5000);
       });
