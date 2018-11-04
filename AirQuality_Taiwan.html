@@ -99,7 +99,7 @@ function getData(site) {
 pmgov_link('https://opendata.epa.gov.tw/webapi/api/rest/datastore/355000000I-000259?sort=County',"JSON");
 //pmgov_link('http://opendata2.epa.gov.tw/AQI.xml',"XML");
 setTimeout(function(){ 
-  document.getElementById("data").innHTML='Site:  '+pmgov_get(site,"SiteName")+'-'+pmgov_get(site,"County")+'<br>'+
+  document.getElementById("data").innerHTML='Site:  '+pmgov_get(site,"SiteName")+'-'+pmgov_get(site,"County")+'<br>'+
   'AQI:  '+pmgov_get(site,"AQI")+'<br>'+
   'Pollutant:  '+pmgov_get(site,"Pollutant")+'<br>'+   
   'Status:  '+pmgov_get(site,"Status")+'<br>'+            
