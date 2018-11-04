@@ -6,7 +6,7 @@
   <title>Webduino Smart</title>
   <script src="https://blocklypro.webduino.io/components/jquery/dist/jquery.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/webduino-all-0.4.20.min.js"></script>
-  <script src="https://blocklypro.webduino.io/dist/lib/webduino-blockly.min.js"></script>
+  <script src="https://blocklypro.webduino.io/dist/webduino-blockly.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/firebase.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>
 <style id="jsbin-css">
@@ -113,7 +113,7 @@
   };
   document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_photocell');
   
- let button5 = document.createElement('button');
+  let button5 = document.createElement('button');
   button5.textContent = "Write";
   button5.onclick = function() {
       document.getElementById("cmd").value="digitalwrite="+document.getElementById("digitalWrite_pin").value+";"+document.getElementById("digitalWrite_value").value;
