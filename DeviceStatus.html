@@ -12,7 +12,7 @@
 var strUrl=location.search;
 if (strUrl.indexOf("?")!=-1) {
   var deviceID = strUrl.split("?")[1].split("&")[0];
-  var div= document.createElement("DIV");
+  var div= document.createElement("div");
   div.id="demo-area-01-show";
   div.innerHTML= deviceID + " isn't connected." ;
   document.body.appendChild(div);
