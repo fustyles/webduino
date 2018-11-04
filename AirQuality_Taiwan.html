@@ -1,0 +1,37 @@
+﻿<!doctype html>
+<head>
+  
+<meta charset="utf-8">
+  
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+<title>Taiwan Air Quality</title>
+  
+<script src="https://fustyles.github.io/webduino/AirQuality_Taiwan_20180121/AirQualityTaiwan.js"></script>
+
+<script src="http://blocklypro.webduino.io/components/jquery/dist/jquery.min.js"></script>
+<script src="http://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>
+</head>
+
+
+<body>
+  
+<div><span id="display"></span></div>
+
+
+<script>
+
+(async function () {
+
+while ((pmgov_get("高雄市-小港","SiteName")) == '') {
+pmgov_link('http://opendata2.epa.gov.tw/AQI.xml',"XML");
+}
+
+document.getElementById('display').innerHTML = 'Site:'+pmgov_get("高雄市-小港","SiteName")+'-'+pmgov_get("高雄市-小港","County")+'<br>'+'Update:'+pmgov_get("高雄市-小港","PublishTime")+'<br>'+'AQI:'+pmgov_get("高雄市-小港","AQI")+'<br>'+'Status:'+pmgov_get("高雄市-小港","Status")+'<br>'+'PM2.5:'+pmgov_get("高雄市-小港","PM2.5")+'<br>'+'PM10:'+pmgov_get("高雄市-小港","PM10");
+
+}());
+</script>
+
+
+</body>
+</html>
