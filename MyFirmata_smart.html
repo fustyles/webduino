@@ -86,9 +86,17 @@
   <td id="btn3" valign="top">  
   </td>
 </tr>
+  
+<tr>
+  <td valign="top" style="color:blue">5. Button</td>
+  <td valign="top">
+  </td>
+  <td id="btn4" valign="top">  
+  </td>
+</tr>
 
 <tr>
-  <td colspan="3" valign="top" style="color:blue">5. Line Notify (Board connection failed.)</td>
+  <td colspan="3" valign="top" style="color:blue">6. Line Notify (Board connection failed.)</td>
 </tr>    
 <tr>
   <td colspan="3" valign="top" colspan="2">
@@ -112,6 +120,13 @@
       document.getElementById("cmd").value="photocell";
   };
   document.getElementById("btn3").appendChild(button3).setAttribute('id','btn_photocell');
+
+  let button4 = document.createElement('button');
+  button4.textContent = "Read";
+  button4.onclick = function() {
+      document.getElementById("cmd").value="button";
+  };
+  document.getElementById("btn4").appendChild(button4).setAttribute('id','btn_button');
   
   let button5 = document.createElement('button');
   button5.textContent = "Write";
@@ -157,6 +172,18 @@
         cmd.value="error";
       });
       
+      var button_state="";
+      button = getPullupButton(board, 4);
+      button.on('pressed', function () {
+        button_state = 'pressed';
+      });
+      button.on('released', function () {
+        button_state = 'released';
+      });
+      button.on('longPress', function () {
+        button_state = 'longPress';
+      });
+      
       var fuTimer = setInterval(async function(){
         
         var cmd = document.getElementById("cmd");
@@ -172,7 +199,10 @@
             });
             cmd.value ="";
           } 
-         
+          else if (getCmd[0] == 'button') {
+            document.getElementById("demo-area-01-show").innerHTML = button_state;
+            cmd.value ="";
+          } 
           else if (getCmd[0] == 'digitalwrite') {
             var Para = getCmd[1].split(";");
             var pin = getPin(board, Number(Para[0]));
