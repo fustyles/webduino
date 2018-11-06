@@ -98,27 +98,8 @@
   
 <tr>
   <td valign="top" style="color:blue">6. RGB LED</td>
-  <td valign="top">
-  </td>
+  <td valign="top"><input type="color" id="color" name="color" value="#000000"></td>
   <td id="btn7" valign="top">  
-  </td>
-</tr>
-<tr>
-  <td valign="top" colspan="3">
-    Red<input type="range" name="red" id="red" min="0" max="1"  value="0" step="0.05" onchange="red_value.innerHTML=this.value;">
-    <span id="red_value">0</span>
-  </td>
-</tr>
-<tr>
-  <td valign="top" colspan="3">
-    Green<input type="range" name="green" id="green" min="0" max="1"  value="0" step="0.05" onchange="green_value.innerHTML=this.value;">
-    <span id="green_value">0</span>
-  </td>
-</tr>
-<tr>
-  <td valign="top" colspan="3">
-    Blue<input type="range" name="blue" id="blue" min="0" max="1"  value="0" step="0.05" onchange="blue_value.innerHTML=this.value;">
-    <span id="blue_value">0</span>
   </td>
 </tr>
 
@@ -172,7 +153,7 @@
   let button7 = document.createElement('button');
   button7.textContent = "Write";
   button7.onclick = function() {
-      document.getElementById("cmd").value="rgb="+document.getElementById("red").value+";"+document.getElementById("green").value+";"+document.getElementById("blue").value;
+      document.getElementById("cmd").value="rgb="+document.getElementById("color").value;
   };
   document.getElementById("btn7").appendChild(button7).setAttribute('id','btn_rgb');
  
@@ -261,16 +242,8 @@
             cmd.value ="";
           }  
           else if (getCmd[0] == 'rgb') {
-            var Para = getCmd[1].split(";");
-            var pin_red = getPin(board, 15);
-            pin_red.setMode(3);
-            pin_red.write(Number(Para[0]));
-            var pin_green = getPin(board, 12);
-            pin_green.setMode(3);
-            pin_green.write(Number(Para[1]));
-            var pin_blue = getPin(board, 13);
-            pin_blue.setMode(3);
-            pin_blue.write(Number(Para[2]));
+            rgbled = getRGBLedCathode(board, 15, 12, 13);
+            rgbled.setColor(getCmd[1]);
             document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           }            
