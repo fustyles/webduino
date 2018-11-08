@@ -270,7 +270,7 @@
           else if (getCmd[0] == 'uart') {
             board.samplingInterval = 50;
             uart = getUART(board,"9600");
-            uart.tx((getCmd[1]);
+            uart.tx(getCmd[1]);
             document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
           } 
