@@ -9,6 +9,8 @@
   <script src="https://blocklypro.webduino.io/dist/webduino-blockly.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/firebase.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>
+  <script src="https://webduinoio.github.io/webduino-module-uart/UART.js"></script>
+  <script src="https://webduinoio.github.io/webduino-module-uart/UART-blockly.js"></script>
 <style id="jsbin-css">
 #demo-area-01-show { font-size: 20px; pointer-events: auto!important; }
 #demo-area-02-show { font-size: 20px; pointer-events: auto!important; }
@@ -102,12 +104,23 @@
   <td id="btn7" valign="top">  
   </td>
 </tr>
-
+  
 <tr>
-  <td colspan="3" valign="top" style="color:blue">7. Line Notify (Board connection failed.)</td>
+  <td valign="top" style="color:blue">7. Uart (RX, TX)</td>
+  <td valign="top"></td>
+  <td id="btn8" valign="top"> 
 </tr>    
 <tr>
-  <td colspan="3" valign="top" colspan="2">
+  <td colspan="3" valign="top">
+    Text <input type"text" name="token" id="uart_text">
+  </td>
+</tr> 
+
+<tr>
+  <td colspan="3" valign="top" style="color:blue">8. Line Notify (Board connection failed.)</td>
+</tr>    
+<tr>
+  <td colspan="3" valign="top">
     <input type="checkbox" name="chkline" id="chkline">
     Token <input type"text" name="token" id="token">
     <iframe src="" name="notify" id="notify" style="width:0px;height:0px;visibility:hidden"></iframe>
@@ -156,8 +169,15 @@
       document.getElementById("cmd").value="rgb="+document.getElementById("color").value;
   };
   document.getElementById("btn7").appendChild(button7).setAttribute('id','btn_rgb');
+  
+  let button8 = document.createElement('button');
+  button8.textContent = "Send";
+  button8.onclick = function() {
+      document.getElementById("cmd").value="uart="+document.getElementById("uart_text").value;
+  };
+  document.getElementById("btn8").appendChild(button8).setAttribute('id','btn_uart');
  
- let button9 = document.createElement('button');
+  let button9 = document.createElement('button');
   button9.textContent = "Read";
   button9.onclick = function() {
       document.getElementById("cmd").value="digitalread="+document.getElementById("digitalRead_pin").value;
@@ -246,7 +266,14 @@
             rgbled.setColor(getCmd[1]);
             document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
-          }            
+          } 
+          else if (getCmd[0] == 'uart') {
+            board.samplingInterval = 50;
+            uart = getUART(board,"9600");
+            uart.tx((getCmd[1]);
+            document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
+            cmd.value ="";
+          } 
           else if (getCmd[0] == 'error') {
             if (document.getElementById("chkline").checked==1) 
               document.getElementById("notify").src="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec?token="+document.getElementById("token").value+"&type=text&text=Board connection failed.";
