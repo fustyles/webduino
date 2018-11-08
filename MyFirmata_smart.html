@@ -224,7 +224,7 @@
         button_state = 'longPress';
       });
       
-      uart = getUART(board,"9600");
+      var uart = getUART(board,"9600");
       uart.rx(function(){
         document.getElementById('uart_receive').innerHTML = (uart.string);
       });
