@@ -112,7 +112,12 @@
 </tr>    
 <tr>
   <td colspan="3" valign="top">
-    Text <input type"text" name="token" id="uart_text">
+    Text <input type"text" name="uart_text" id="uart_text">
+  </td>
+</tr> 
+<tr>
+  <td colspan="3" valign="top">
+    Receive <div id="uart_receive"></div>
   </td>
 </tr> 
 
@@ -219,6 +224,11 @@
         button_state = 'longPress';
       });
       
+      uart = getUART(board,"9600");
+      uart.rx(function(){
+        document.getElementById('uart_receive').innerHTML = (uart.string);
+      });
+      
       var fuTimer = setInterval(async function(){
         
         var cmd = document.getElementById("cmd");
@@ -268,8 +278,6 @@
             cmd.value ="";
           } 
           else if (getCmd[0] == 'uart') {
-            board.samplingInterval = 50;
-            uart = getUART(board,"9600");
             uart.tx(getCmd[1]);
             document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
             cmd.value ="";
