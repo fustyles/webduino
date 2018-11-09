@@ -9,6 +9,6 @@ Blockly.JavaScript['boardevent'] = function (block) {
 };
 
 Blockly.JavaScript['boardevent_message'] = function (block) {
-  var code = 'event.message.split(",")';
+  var code = 'event.message.split(",")[0]';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
