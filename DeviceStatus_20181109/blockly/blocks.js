@@ -16,3 +16,13 @@ Blockly.Blocks['boardevent_ready'] = {
     this.setColour(60);
   }
 };
+
+Blockly.Blocks['boardevent_message'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Get Message");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(60);
+  }
+};
