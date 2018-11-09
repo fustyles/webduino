@@ -2,7 +2,7 @@ Blockly.Blocks['boardevent_ready'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("BoardEvent.READY");
-    this.appendStatementInput("do1_");
+    this.appendStatementInput("do_");
     this.appendStatementInput("do2_");
     this.appendStatementInput("do3_");
     this.setPreviousStatement(true);
