@@ -1,1 +1,1 @@
-MSG.catDeviceStatus = "设备状态";
+MSG.catDeviceStatus = "装置状态";
