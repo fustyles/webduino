@@ -9,6 +9,11 @@
       <block type="math_number">
         <field name="NUM">30000</field>
       </block>
+    </value>
+    <value name="cmd">
+      <block type="text">
+        <field name="TEXT">[0xF0, 0x0E, 0x07, 0xF7]</field>
+      </block>
     </value>  
   </block>  
   <block type="boardevent_message">
