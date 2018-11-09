@@ -6,7 +6,8 @@
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "devicestatus.js"    
+    "devicestatus.js",
+    "https://webduino.io/components/webduino-js/dist/webduino-base.min.js"
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
