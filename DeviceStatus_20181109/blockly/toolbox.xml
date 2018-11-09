@@ -1,5 +1,5 @@
 <category id="catDeviceStatus"> 
-  <block type="boardevent_ready">
+  <block type="boardevent">
     <value name="intervals">
       <block type="math_number">
         <field name="NUM">30000</field>
