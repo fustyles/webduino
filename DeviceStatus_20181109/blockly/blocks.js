@@ -7,7 +7,7 @@ Blockly.Blocks['boardevent'] = {
     this.appendValueInput("intervals")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
-        .appendField("Time Intervals");
+        .appendField("Time Intervals (ms)");
     this.appendValueInput("cmd")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("String")
