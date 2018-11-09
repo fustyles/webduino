@@ -1,4 +1,4 @@
-Blockly.Blocks['boardevent_ready'] = {
+Blockly.Blocks['boardevent'] = {
   init: function () {
     this.appendValueInput("intervals")
         .setAlign(Blockly.ALIGN_RIGHT)
