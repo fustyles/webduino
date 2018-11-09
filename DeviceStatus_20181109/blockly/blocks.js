@@ -11,9 +11,10 @@ Blockly.Blocks['boardevent'] = {
     this.appendValueInput("cmd")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("String")
-        .appendField("Send Command");    
+        .appendField("Send Command"); 
+    this.appendStatementInput("do_ready");
     this.appendDummyInput()
-      .appendField("\nBoardEvent.ERROR");
+      .appendField("BoardEvent.ERROR");
     this.appendStatementInput("do_error");
     this.appendDummyInput()
       .appendField("BoardEvent.STRING_MESSAGE");
