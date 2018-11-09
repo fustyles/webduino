@@ -1,1 +1,1 @@
-MSG.catGameElements = "游戏元素";
+MSG.catDeviceStatus = "设备状态";
