@@ -1,7 +1,9 @@
 Blockly.Blocks['boardevent_ready'] = {
   init: function () {
-    this.appendDummyInput()
-      .appendField("BoardEvent.READY");
+    this.appendValueInput("intervals")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .setCheck("Number")
+        .appendField("BoardEvent.READY    Time Intervals");
     this.appendStatementInput("do_");
     this.appendStatementInput("do2_");
     this.appendStatementInput("do3_");
