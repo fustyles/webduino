@@ -1,13 +1,14 @@
 Blockly.Blocks['boardevent'] = {
   init: function () {
-    this.appendValueInput("intervals")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck("Number")
-        .appendField("BoardEvent.READY    Time Intervals");
     this.appendValueInput("device")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("String")
-        .appendField("");    
+        .appendField("")
+        .appendField("BoardEvent.READY    DeviceID");
+    this.appendValueInput("intervals")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .setCheck("Number")
+        .appendField("Time Intervals");
     this.appendStatementInput("do_ready");
     this.appendDummyInput()
       .appendField("BoardEvent.ERROR");
