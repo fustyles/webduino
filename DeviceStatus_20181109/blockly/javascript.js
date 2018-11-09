@@ -8,6 +8,6 @@ Blockly.JavaScript['boardevent_ready'] = function (block) {
 };
 
 Blockly.JavaScript['boardevent_message'] = function (block) {
-  var code = 'event.message';
+  var code = 'event.message.split(",")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
