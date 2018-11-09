@@ -1,4 +1,4 @@
-Blockly.JavaScript['boardevent_ready'] = function (block) {
+Blockly.JavaScript['boardevent'] = function (block) {
   var value_intervals = Blockly.JavaScript.valueToCode(block, 'intervals', Blockly.JavaScript.ORDER_ATOMIC);
   var do_ready = Blockly.JavaScript.statementToCode(block, 'do_ready');
   var do_error = Blockly.JavaScript.statementToCode(block, 'do_error');
