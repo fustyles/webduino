@@ -4,6 +4,10 @@ Blockly.Blocks['boardevent'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
         .appendField("BoardEvent.READY    Time Intervals");
+    this.appendValueInput("device")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .setCheck("String")
+        .appendField("BoardEvent.READY    Time Intervals");    
     this.appendStatementInput("do_ready");
     this.appendDummyInput()
       .appendField("BoardEvent.ERROR");
