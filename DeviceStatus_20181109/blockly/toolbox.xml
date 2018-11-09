@@ -6,4 +6,6 @@
       </block>
     </value>  
   </block>  
+  <block type="boardevent_message">
+  </block>    
  </category>
