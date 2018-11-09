@@ -3,15 +3,17 @@ Blockly.Blocks['boardevent'] = {
     this.appendValueInput("device")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("String")
-        .appendField("")
-        .appendField("BoardEvent.READY    DeviceID");
+        .appendField("BoardEvent.READY    Device ID");
     this.appendValueInput("intervals")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
         .appendField("Time Intervals");
-    this.appendStatementInput("do_ready");
+    this.appendValueInput("cmd")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .setCheck("String")
+        .appendField("Send Command");    
     this.appendDummyInput()
-      .appendField("BoardEvent.ERROR");
+      .appendField("\nBoardEvent.ERROR");
     this.appendStatementInput("do_error");
     this.appendDummyInput()
       .appendField("BoardEvent.STRING_MESSAGE");
