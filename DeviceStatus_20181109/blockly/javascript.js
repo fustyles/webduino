@@ -1,6 +1,8 @@
 Blockly.JavaScript['boardevent_ready'] = function (block) {
   var value_intervals = Blockly.JavaScript.valueToCode(block, 'intervals', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'board.on(BoardEvent.READY, function() {\nsetInterval(function(){\nboard.send([0xF0, 0x0E, 0x07, 0xF7]);\n}, ' + value_intervals + ');\n});\n';
+  var do_error = Blockly.JavaScript.statementToCode(block, 'do_error');
+  var do_message = Blockly.JavaScript.statementToCode(block, 'do_message');
+  var code = 'board.on(BoardEvent.READY, function() {\n    setInterval(function(){\n        board.send([0xF0, 0x0E, 0x07, 0xF7]);\n    }, ' + value_intervals + ');\n});\nboard.on(BoardEvent.ERROR, function() {\n' + do_error + '\n});\nboard.on(webduino.BoardEvent.STRING_MESSAGE, function(event) {\n' + do_error + '\n});\n';
   return code;
 };
 
