@@ -1,5 +1,8 @@
 Blockly.Blocks['boardevent'] = {
   init: function () {
+    this.appendValueInput("device")
+      .setCheck("String")
+      .appendField("Device ID");     
     this.appendDummyInput()
       .appendField("BoardEvent.READY");    
     this.appendStatementInput("do_ready");
