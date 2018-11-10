@@ -80,19 +80,17 @@ Blockly.Blocks['linenotify_type'] = {
     this.setHelpUrl("");
   },
   onchange: function(event) {
-    console.log(event.type);
-    if (event.type=="change") {
+    console.log(this);
       if (this.getField('value_type').getValue() == 'text') {
-        Blockly.Blocks['linenotify_type'].removeField('p2');
-        Blockly.Blocks['linenotify_type'].removeInput('value_parameter2');
-        Blockly.Blocks['linenotify_type'].removeField('p3');
-        Blockly.Blocks['linenotify_type'].removeInput('value_parameter3');
+        this.removeField('p2');
+        this.removeInput('value_parameter2');
+        this.removeField('p3');
+        this.removeInput('value_parameter3');
       } else {
-        Blockly.Blocks['linenotify_type'].appendField('Parameter2','p2');
-        Blockly.Blocks['linenotify_type'].appendValueInput('value_parameter2').setCheck(null);
-        Blockly.Blocks['linenotify_type'].appendField('Parameter3','p3');
-        Blockly.Blocks['linenotify_type'].appendValueInput('value_parameter3').setCheck(null);
+        this.appendField('Parameter2','p2');
+        this.appendValueInput('value_parameter2').setCheck(null);
+        this.appendField('Parameter3','p3');
+        this.appendValueInput('value_parameter3').setCheck(null);
       }
-    }
   }
 };
