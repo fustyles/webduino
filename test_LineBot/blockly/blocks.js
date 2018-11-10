@@ -74,12 +74,6 @@ Blockly.Blocks['linenotify_type'] = {
     this.appendValueInput("value_parameter1")
         .setCheck(null)
         .appendField("Parameter1");
-    this.appendValueInput("value_parameter2")
-        .setCheck(null)
-        .appendField("Parameter2");
-    this.appendValueInput("value_parameter3")
-        .setCheck(null)
-        .appendField("Parameter3");
     this.setOutput(true, null);  
     this.setColour(300);
     this.setTooltip("");
@@ -87,9 +81,11 @@ Blockly.Blocks['linenotify_type'] = {
   },
   onchange: function(event) {
   if (this.getFieldValue('value_type') == 'text') {
-    this.appendValueInput('aaa').setCheck('Number');
+    input.removeField("value_parameter2");
+    input.removeField("value_parameter3");
   } else {
-    this.appendValueInput('bbb').setCheck('Number');
+    this.appendValueInput('value_parameter2');
+    this.appendValueInput('value_parameter3');
   }
 }
 };
