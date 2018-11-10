@@ -89,14 +89,14 @@ Blockly.Blocks['linenotify_type'] = {
     if (event.type=="change") {
       if (this.getField('value_type').getValue() == 'text') {
         this.getField('p2').setVisible(false);
-        this.getField('value_parameter2').setVisible(false);
+        this.getInput('value_parameter2').setVisible(false);
         this.getField('p3').setVisible(false);
-        this.getField('value_parameter3').setVisible(false);
+        this.getInput('value_parameter3').setVisible(false);
       } else {
         this.getField('p2').setVisible(true);
-        this.getField('value_parameter2').setVisible(true);
+        this.getInput('value_parameter2').setVisible(true);
         this.getField('p3').setVisible(true);
-        this.getField('value_parameter3').setVisible(true);
+        this.getInput('value_parameter3').setVisible(true);
       }
     }
   }
