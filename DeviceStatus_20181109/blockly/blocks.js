@@ -25,7 +25,17 @@ Blockly.Blocks['boardevent'] = {
   }
 };
 
-Blockly.Blocks['boardevent_message'] = {
+Blockly.Blocks['boardevent_sendmessage'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Send Message");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
+
+Blockly.Blocks['boardevent_getmessage'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Get Message");
