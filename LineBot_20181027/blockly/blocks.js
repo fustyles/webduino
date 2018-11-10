@@ -46,7 +46,7 @@ Blockly.Blocks['linebot_type'] = {
     this.getField('value_type').setValue('location');
   },
   onchange: function(event) {
-    if (event.type=="change") {
+    //if (event.type=="change") {
       if (this.getField('value_type').getValue() == 'text') {
         this.getField('p1').setValue("text");
         this.getField('p2').setVisible(false);
@@ -104,7 +104,7 @@ Blockly.Blocks['linebot_type'] = {
         this.getInput('value_parameter4').setVisible(true);  
       }
       this.setOutput(true, null);
-    }
+    //}
   }
 };
 
@@ -149,7 +149,7 @@ Blockly.Blocks['linenotify_type'] = {
     this.getField('value_type').setValue('sticker');
   },
   onchange: function(event) {
-    if (event.type=="change") {
+    //if (event.type=="change") {
       if (this.getField('value_type').getValue() == 'text') {
         this.getField('p2').setVisible(false);
         this.getInput('value_parameter2').setVisible(false);
@@ -171,6 +171,6 @@ Blockly.Blocks['linenotify_type'] = {
         this.getInput('value_parameter3').setVisible(true);
       }
       this.setOutput(true, null);
-    }
+    //}
   }
 };
