@@ -89,20 +89,17 @@ Blockly.Blocks['linenotify_type'] = {
     this.setTooltip("");
     this.setHelpUrl("");
   },
-  onchange: function(event) {
-    console.log(event.name);
-    if (event.name=="value_type") {
-      if (this.getField('value_type').getValue() == 'text') {
-        if (this.getField('p2').visible==true) this.getField('p2').setVisible(false);
-        if (this.getField('p3').visible==true) this.getField('p3').setVisible(false);
-        this.getInput('value_parameter2').setVisible(false);
-        this.getInput('value_parameter3').setVisible(false);
-      } else {
-        if (this.getField('p2').visible==false) this.getField('p2').setVisible(true);
-        if (this.getField('p3').visible==false) this.getField('p3').setVisible(true);
-        this.getInput('value_parameter2').setVisible(true);
-        this.getInput('value_parameter3').setVisible(true);
-      }
+    this.getField('value_type').onchange: function() {
+    if (this.getField('value_type').getValue() == 'text') {
+      if (this.getField('p2').visible==true) this.getField('p2').setVisible(false);
+      if (this.getField('p3').visible==true) this.getField('p3').setVisible(false);
+      this.getInput('value_parameter2').setVisible(false);
+      this.getInput('value_parameter3').setVisible(false);
+    } else {
+      if (this.getField('p2').visible==false) this.getField('p2').setVisible(true);
+      if (this.getField('p3').visible==false) this.getField('p3').setVisible(true);
+      this.getInput('value_parameter2').setVisible(true);
+      this.getInput('value_parameter3').setVisible(true);
     }
 }
 };
