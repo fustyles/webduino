@@ -58,27 +58,38 @@
     }
   }  
   
-  function line_url_escape(type,parameter1,parameter2,parameter3,parameter4) {
+  function line_url_escape(line,type,parameter1,parameter2,parameter3,parameter4) {
 
     parameter1 = escape(parameter1+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
     parameter2 = escape(parameter2+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
     parameter3 = escape(parameter3+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
     parameter4 = escape(parameter4+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
-
-    if (type=="text")
-      return "&type="+type+"&text="+parameter1;
-    else if (type=="sticker")
-      return "&type="+type+"&packageId="+parameter1+"&stickerId="+parameter2+"&text="+parameter3;
-    else if (type=="image")
-      return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2+"&text="+parameter3;
-    else if (type=="video")
-      return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
-    else if (type=="audio")
-      return "&type="+type+"&originalContentUrl="+parameter1+"&duration="+parameter2;
-    else if (type=="location")
-      return "&type="+type+"&title="+parameter1+"&address="+parameter2+"&latitude="+parameter3+"&longitude="+parameter4;
-    else
-      return "";
+    
+    if (line=="bot") {
+      if (type=="text")
+        return "&type="+type+"&text="+parameter1;
+      else if (type=="sticker")
+        return "&type="+type+"&packageId="+parameter1+"&stickerId="+parameter2;
+      else if (type=="image")
+        return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
+      else if (type=="video")
+        return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
+      else if (type=="audio")
+        return "&type="+type+"&originalContentUrl="+parameter1+"&duration="+parameter2;
+      else if (type=="location")
+        return "&type="+type+"&title="+parameter1+"&address="+parameter2+"&latitude="+parameter3+"&longitude="+parameter4;
+      else
+        return "";
+    } else if (line=="notify") {
+      if (type=="text")
+        return "&type="+type+"&text="+parameter1;
+      else if (type=="sticker")
+        return "&type="+type+"&text="+parameter1+"&packageId="+parameter2+"&stickerId="+parameter3;
+      else if (type=="image")
+        return "&type="+type+"&text="+parameter1+"&originalContentUrl="+parameter2+"&previewImageUrl="+parameter3;
+      else
+        return "";
+    }
   }
 
 
