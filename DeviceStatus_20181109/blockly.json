@@ -1,5 +1,5 @@
 {
-  "types": ["boardevent","boardevent_message"],
+  "types": ["boardevent","boardevent_sendmessage","boardevent_getmessage"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
