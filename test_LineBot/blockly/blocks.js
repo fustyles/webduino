@@ -71,13 +71,13 @@ Blockly.Blocks['linenotify_type'] = {
     this.appendDummyInput()
         .appendField("Type")
         .appendField(new Blockly.FieldDropdown([["text (text)","text"], ["sticker (packageId, stickerId, text)","sticker"], ["image (originalContentUrl, previewImageUrl, text)","image"]]), "value_type");
-    this.appendValueInput("value_parameter1","v1")
+    this.appendValueInput("value_parameter1")
         .setCheck(null)
         .appendField("Parameter1","p1");
-    this.appendValueInput("value_parameter2","v2")
+    this.appendValueInput("value_parameter2")
         .setCheck(null)
         .appendField("Parameter2","p2");
-    this.appendValueInput("value_parameter3","v3")
+    this.appendValueInput("value_parameter3")
         .setCheck(null)
         .appendField("Parameter3","p3");    
     this.setOutput(true, null);  
@@ -90,13 +90,13 @@ Blockly.Blocks['linenotify_type'] = {
   if (this.getField('value_type').getValue() == 'text') {
     this.getField('p2').setVisible(false);
     this.getField('p3').setVisible(false);
-    this.getField('v2').setVisible(false);
-    this.getField('v3').setVisible(false);
+    this.getField('value_parameter2').setVisible(false);
+    this.getField('value_parameter3').setVisible(false);
   } else {
     this.getField('p2').setVisible(true);
     this.getField('p3').setVisible(true);
-    this.getField('v2').setVisible(true);
-    this.getField('v3').setVisible(true);
+    this.getField('value_parameter2').setVisible(true);
+    this.getField('value_parameter3').setVisible(true);
   }
 }
 };
