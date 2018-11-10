@@ -98,6 +98,7 @@ Blockly.Blocks['linenotify_type'] = {
         this.getField('p3').setVisible(true);
         this.getInput('value_parameter3').setVisible(true);
       }
+      this.setOutput(true, null);
     }
   }
 };
