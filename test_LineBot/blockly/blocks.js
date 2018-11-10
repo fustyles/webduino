@@ -84,5 +84,12 @@ Blockly.Blocks['linenotify_type'] = {
     this.setColour(300);
     this.setTooltip("");
     this.setHelpUrl("");
-  }  
+  },
+  onchange: function(event) {
+  if (this.getFieldValue('value_type') == 'text') {
+    this.appendValueInput('aaa').setCheck('Number');
+  } else {
+    this.appendValueInput('bbb').setCheck('Number');
+  }
+}
 };
