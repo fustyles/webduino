@@ -102,5 +102,6 @@ Blockly.Blocks['linenotify_type'] = {
     this.getInput('value_parameter2').setVisible(true);
     this.getInput('value_parameter3').setVisible(true);
   }
+  this.updateShape();
 }
 };
