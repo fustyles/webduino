@@ -79,7 +79,11 @@ Blockly.Blocks['linenotify_type'] = {
         .appendField("Parameter2","p2");
     this.appendValueInput("value_parameter3")
         .setCheck(null)
-        .appendField("Parameter3","p3");    
+        .appendField("Parameter3","p3"); 
+    this.getField('p2').setVisible(false);
+    this.getField('p3').setVisible(false);
+    this.getInput('value_parameter2').setVisible(false);
+    this.getInput('value_parameter3').setVisible(false)
     this.setOutput(true, null);  
     this.setColour(300);
     this.setTooltip("");
