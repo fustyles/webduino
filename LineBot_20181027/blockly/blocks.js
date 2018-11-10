@@ -47,7 +47,10 @@ Blockly.Blocks['linebot_type'] = {
   onchange: function(event) {
     //if (event.type=="change") {
       if (this.getField('value_type').getValue() == 'text') {
-        this.getField('p1').setValue("text");       
+        this.getField('p1').setValue("text");  
+        this.getField('p2').setValue("");
+        this.getField('p3').setValue("");
+        this.getField('p4').setValue(""); 
       } else if (this.getField('value_type').getValue() == "sticker") {
         this.getField('p1').setValue("packageId");
         this.getField('p2').setValue("stickerId");  
