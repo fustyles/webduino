@@ -29,15 +29,19 @@ Blockly.Blocks['linebot_type'] = {
         .appendField(new Blockly.FieldDropdown([["text (text)","text"], ["sticker (packageId, stickerId)","sticker"], ["image (originalContentUrl, previewImageUrl)","image"], ["video (originalContentUrl, previewImageUrl)","video"], ["audio (originalContentUrl, duration)","audio"], ["location (title, address, latitude, longitude)","location"]]), "value_type");
     this.appendValueInput("value_parameter1")
         .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Parameter1","p1");
     this.appendValueInput("value_parameter2")
         .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Parameter2","p2");
     this.appendValueInput("value_parameter3")
         .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Parameter3","p3");
     this.appendValueInput("value_parameter4")
         .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Parameter4","p4"); 
     this.setOutput(true, null);  
     this.setColour(300);
@@ -157,12 +161,15 @@ Blockly.Blocks['linenotify_type'] = {
         .appendField(new Blockly.FieldDropdown([["text (text)","text"], ["sticker (text, packageId, stickerId)","sticker"], ["image (text, originalContentUrl, previewImageUrl)","image"]]), "value_type");
     this.appendValueInput("value_parameter1")
         .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Parameter1","p1");
     this.appendValueInput("value_parameter2")
         .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Parameter2","p2");
     this.appendValueInput("value_parameter3")
         .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Parameter3","p3");
     this.setOutput(true, null);  
     this.setColour(300);
