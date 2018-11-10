@@ -74,12 +74,6 @@ Blockly.Blocks['linenotify_type'] = {
     this.appendValueInput("value_parameter1")
         .setCheck(null)
         .appendField("Parameter1","p1");
-    this.appendValueInput("value_parameter2")
-        .setCheck(null)
-        .appendField("Parameter2","p2");
-    this.appendValueInput("value_parameter3")
-        .setCheck(null)
-        .appendField("Parameter3","p3"); 
     this.setOutput(true, null);  
     this.setColour(300);
     this.setTooltip("");
