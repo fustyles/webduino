@@ -38,7 +38,13 @@ Blockly.Blocks['linebot_type'] = {
         .appendField("","p3");
     this.appendValueInput("value_parameter4")
         .setCheck(null)
-        .appendField("","p4");     
+        .appendField("","p4"); 
+    this.getField('p2').setVisible(false);
+    this.getInput('value_parameter2').setVisible(false);
+    this.getField('p3').setVisible(false);
+    this.getInput('value_parameter3').setVisible(false); 
+    this.getField('p4').setVisible(false);
+    this.getInput('value_parameter4').setVisible(false);     
     this.setOutput(true, null);  
     this.setColour(300);
     this.setTooltip("");
@@ -140,7 +146,11 @@ Blockly.Blocks['linenotify_type'] = {
         .appendField("","p2");
     this.appendValueInput("value_parameter3")
         .setCheck(null)
-        .appendField("","p3");   
+        .appendField("","p3"); 
+    this.getField('p2').setVisible(false);
+    this.getInput('value_parameter2').setVisible(false);
+    this.getField('p3').setVisible(false);
+    this.getInput('value_parameter3').setVisible(false);    
     this.setOutput(true, null);  
     this.setColour(300);
     this.setTooltip("");
