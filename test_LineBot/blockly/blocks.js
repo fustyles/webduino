@@ -93,9 +93,9 @@ Blockly.Blocks['linenotify_type'] = {
         this.removeField('p3');
         this.removeInput('value_parameter3');
       } else {
-        this.appendField('Parameter2','p2').setVisible(true);
+        this.appendField('Parameter2','p2').setCheck(null);
         this.appendValueInput('value_parameter2');
-        this.appendField('Parameter3','p3').setVisible(true);
+        this.appendField('Parameter3','p3')..setCheck(null);
         this.appendValueInput('value_parameter3');
       }
     }
