@@ -80,7 +80,8 @@ Blockly.Blocks['linenotify_type'] = {
     this.setHelpUrl("");
   },
   onchange: function(event) {
-    if (event.type=="change") {
+    console.log(event.type);
+    if (event.type=="ui") {
       if (this.getField('value_type').getValue() == 'text') {
         this.removeField('p2');
         this.removeInput('value_parameter2');
