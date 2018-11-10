@@ -91,10 +91,10 @@ Blockly.Blocks['linenotify_type'] = {
   },
   onchange: function(event) {
     if (event.type=="change") {
-      consloe.log(this.getField('p2').Visible);
-      consloe.log(this.getField('p2').visible);
-      consloe.log(this.getField('p2').visibility);
-      consloe.log(this.getField('p2').display);
+      console.log(this.getField('p2').Visible);
+      console.log(this.getField('p2').visible);
+      console.log(this.getField('p2').visibility);
+      console.log(this.getField('p2').display);
       if (this.getField('value_type').getValue() == 'text') {
         this.getField('p2').setVisible(false);
         this.getField('p3').setVisible(false);
