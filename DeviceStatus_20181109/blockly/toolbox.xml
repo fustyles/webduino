@@ -1,5 +1,10 @@
 <category id="catDeviceStatus"> 
   <block type="boardevent">
+    <value name="device">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
   </block>  
   <block type="boardevent_sendmessage">
     <value name="cmd">
