@@ -80,7 +80,7 @@ Blockly.Blocks['linenotify_type'] = {
     this.setHelpUrl("");
   },
   onchange: function(event) {
-    console.log(this);
+    if (event.type=="change") {
       if (this.getField('value_type').getValue() == 'text') {
         this.removeField('p2');
         this.removeInput('value_parameter2');
@@ -92,5 +92,6 @@ Blockly.Blocks['linenotify_type'] = {
         this.appendField('Parameter3','p3');
         this.appendValueInput('value_parameter3').setCheck(null);
       }
+    }
   }
 };
