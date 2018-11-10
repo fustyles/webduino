@@ -73,13 +73,13 @@ Blockly.Blocks['linenotify_type'] = {
         .appendField(new Blockly.FieldDropdown([["text (text)","text"], ["sticker (text, packageId, stickerId)","sticker"], ["image (text, originalContentUrl, previewImageUrl)","image"]]), "value_type");
     this.appendValueInput("value_parameter1")
         .setCheck(null)
-        .appendField("Parameter1","p1");
+        .appendField("text","p1");
     this.appendValueInput("value_parameter2")
         .setCheck(null)
-        .appendField("Parameter2","p2");
+        .appendField("","p2");
     this.appendValueInput("value_parameter3")
         .setCheck(null)
-        .appendField("Parameter3","p3"); 
+        .appendField("","p3"); 
     this.getField('p2').setVisible(false);
     this.getInput('value_parameter2').setVisible(false);
     this.getField('p3').setVisible(false);
