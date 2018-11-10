@@ -40,6 +40,6 @@ Blockly.Blocks['boardevent_getmessage'] = {
       .appendField("Get Message");
     this.setInputsInline(true);
     this.setOutput(true, null);
-    this.setColour(50);
+    this.setColour(15);
   }
 };
