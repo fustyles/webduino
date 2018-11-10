@@ -17,8 +17,9 @@ Blockly.Blocks['boardevent'] = {
 
 Blockly.Blocks['boardevent_sendmessage'] = {
   init: function () {
-    this.appendDummyInput()
-      .appendField("Send Message");
+    this.appendValueInput("cmd")
+      .setCheck("String")
+      .appendField("Send Command");    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
