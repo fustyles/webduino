@@ -73,13 +73,13 @@ Blockly.Blocks['linenotify_type'] = {
         .appendField(new Blockly.FieldDropdown([["text (text)","text"], ["sticker (packageId, stickerId, text)","sticker"], ["image (originalContentUrl, previewImageUrl, text)","image"]]), "value_type");
     this.appendValueInput("value_parameter1")
         .setCheck(null)
-        .appendField("Parameter1");
+        .appendField("Parameter1","p1");
     this.appendValueInput("value_parameter2")
         .setCheck(null)
-        .appendField("Parameter2");
+        .appendField("Parameter2","p2");
     this.appendValueInput("value_parameter3")
         .setCheck(null)
-        .appendField("Parameter3");    
+        .appendField("Parameter3","p3");    
     this.setOutput(true, null);  
     this.setColour(300);
     this.setTooltip("");
@@ -87,11 +87,11 @@ Blockly.Blocks['linenotify_type'] = {
   },
   onchange: function(event) {
   if (this.getField('value_type').getValue() == 'text') {
-    this.getField('Parameter2').setVisible(false);
-    this.getField('Parameter3').setVisible(false);
+    this.getField('p2').setVisible(false);
+    this.getField('p3').setVisible(false);
   } else {
-    this.getField('Parameter2').setVisible(true);
-    this.getField('Parameter3').setVisible(true);
+    this.getField('p2').setVisible(true);
+    this.getField('p3').setVisible(true);
   }
 }
 };
