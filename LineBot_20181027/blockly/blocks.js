@@ -50,32 +50,80 @@ Blockly.Blocks['linebot_type'] = {
         this.getField('p1').setValue("text");  
         this.getField('p2').setValue("");
         this.getField('p3').setValue("");
-        this.getField('p4').setValue(""); 
+        this.getField('p4').setValue("");
+        this.getField('p1').setVisible(true);
+        this.getField('p2').setVisible(false);
+        this.getField('p3').setVisible(false);
+        this.getField('p4').setVisible(false);
+        this.getInput('value_parameter1').setVisible(true);
+        this.getInput('value_parameter2').setVisible(false);
+        this.getInput('value_parameter3').setVisible(false);
+        this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "sticker") {
         this.getField('p1').setValue("packageId");
         this.getField('p2').setValue("stickerId");  
         this.getField('p3').setValue("");
         this.getField('p4').setValue(""); 
+        this.getField('p1').setVisible(true);
+        this.getField('p2').setVisible(true);
+        this.getField('p3').setVisible(false);
+        this.getField('p4').setVisible(false);
+        this.getInput('value_parameter1').setVisible(true);
+        this.getInput('value_parameter2').setVisible(true);
+        this.getInput('value_parameter3').setVisible(false);
+        this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "image") {
         this.getField('p1').setValue("originalContentUrl");
         this.getField('p2').setValue("previewImageUrl"); 
         this.getField('p3').setValue("");
         this.getField('p4').setValue(""); 
+        this.getField('p1').setVisible(true);
+        this.getField('p2').setVisible(true);
+        this.getField('p3').setVisible(false);
+        this.getField('p4').setVisible(false);
+        this.getInput('value_parameter1').setVisible(true);
+        this.getInput('value_parameter2').setVisible(true);
+        this.getInput('value_parameter3').setVisible(false);
+        this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "vedio") {
         this.getField('p1').setValue("(originalContentUrl");
         this.getField('p2').setValue("previewImageUrl");  
         this.getField('p3').setValue("");
         this.getField('p4').setValue(""); 
+        this.getField('p1').setVisible(true);
+        this.getField('p2').setVisible(true);
+        this.getField('p3').setVisible(false);
+        this.getField('p4').setVisible(false);
+        this.getInput('value_parameter1').setVisible(true);
+        this.getInput('value_parameter2').setVisible(true);
+        this.getInput('value_parameter3').setVisible(false);
+        this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "audio") {
         this.getField('p1').setValue("originalContentUrl");
         this.getField('p2').setValue("duration");    
         this.getField('p3').setValue("");
         this.getField('p4').setValue(""); 
+        this.getField('p1').setVisible(true);
+        this.getField('p2').setVisible(true);
+        this.getField('p3').setVisible(false);
+        this.getField('p4').setVisible(false);
+        this.getInput('value_parameter1').setVisible(true);
+        this.getInput('value_parameter2').setVisible(true);
+        this.getInput('value_parameter3').setVisible(false);
+        this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "location") {
         this.getField('p1').setValue("title");
         this.getField('p2').setValue("address");        
         this.getField('p3').setValue("latitude");  
         this.getField('p4').setValue("longitude");  
+        this.getField('p1').setVisible(true);
+        this.getField('p2').setVisible(true);
+        this.getField('p3').setVisible(true);
+        this.getField('p4').setVisible(true);
+        this.getInput('value_parameter1').setVisible(true);
+        this.getInput('value_parameter2').setVisible(true);
+        this.getInput('value_parameter3').setVisible(true);
+        this.getInput('value_parameter4').setVisible(true);
       }
       this.setOutput(true, null);
     //}
@@ -127,14 +175,26 @@ Blockly.Blocks['linenotify_type'] = {
         this.getField('p1').setValue("text");
         this.getField('p2').setValue("");
         this.getField('p3').setValue("");
+        this.getField('p2').setVisible(false);
+        this.getField('p3').setVisible(false);
+        this.getInput('value_parameter2').setVisible(false);
+        this.getInput('value_parameter3').setVisible(false);
       } else if (this.getField('value_type').getValue() == "sticker") {
         this.getField('p1').setValue("text");
         this.getField('p2').setValue("packageId");
         this.getField('p3').setValue("stickerId");
+        this.getField('p2').setVisible(true);
+        this.getField('p3').setVisible(true);
+        this.getInput('value_parameter2').setVisible(true);
+        this.getInput('value_parameter3').setVisible(true);
       } else if (this.getField('value_type').getValue() == "image") {
         this.getField('p1').setValue("text");
         this.getField('p2').setValue("originalContentUrl");
         this.getField('p3').setValue("previewImageUrl");
+        this.getField('p2').setVisible(true);
+        this.getField('p3').setVisible(true);
+        this.getInput('value_parameter2').setVisible(true);
+        this.getInput('value_parameter3').setVisible(true);
       }
       this.setOutput(true, null);
     //}
