@@ -86,6 +86,7 @@ Blockly.Blocks['linenotify_type'] = {
     this.setHelpUrl("");
   },
   onchange: function(event) {
+    console.log(this.getField('value_type').getValue());
   if (this.getField('value_type').getValue() == 'text') {
     this.getField('p2').setVisible(false);
     this.getField('p3').setVisible(false);
