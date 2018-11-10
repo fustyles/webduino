@@ -83,15 +83,15 @@ Blockly.Blocks['linenotify_type'] = {
     console.log(event.type);
     if (event.type=="change") {
       if (this.getField('value_type').getValue() == 'text') {
-        Blockly.linenotify_type.removeField('p2');
-        Blockly.linenotify_type.removeInput('value_parameter2');
-        Blockly.linenotify_type.removeField('p3');
-        Blockly.linenotify_type.removeInput('value_parameter3');
+        Blockly.Blocks['linenotify_type'].removeField('p2');
+        Blockly.Blocks['linenotify_type'].removeInput('value_parameter2');
+        Blockly.Blocks['linenotify_type'].removeField('p3');
+        Blockly.Blocks['linenotify_type'].removeInput('value_parameter3');
       } else {
-        Blockly.linenotify_type.appendField('Parameter2','p2');
-        Blockly.linenotify_type.appendValueInput('value_parameter2').setCheck(null);
-        Blockly.linenotify_type.appendField('Parameter3','p3');
-        Blockly.linenotify_type.appendValueInput('value_parameter3').setCheck(null);
+        Blockly.Blocks['linenotify_type'].appendField('Parameter2','p2');
+        Blockly.Blocks['linenotify_type'].appendValueInput('value_parameter2').setCheck(null);
+        Blockly.Blocks['linenotify_type'].appendField('Parameter3','p3');
+        Blockly.Blocks['linenotify_type'].appendValueInput('value_parameter3').setCheck(null);
       }
     }
   }
