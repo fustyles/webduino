@@ -96,9 +96,18 @@ Blockly.Blocks['linenotify_type'] = {
         this.getInput('value_parameter2').setVisible(false);
         this.getField('p3').setVisible(false);
         this.getInput('value_parameter3').setVisible(false);
-      } else {
+      } else if (event.type=="sticker") {
+        this.getField('p2').value="packageId";
         this.getField('p2').setVisible(true);
         this.getInput('value_parameter2').setVisible(true);
+        this.getField('p3').value="stickerId";
+        this.getField('p3').setVisible(true);
+        this.getInput('value_parameter3').setVisible(true);
+      } else if (event.type=="image") {
+        this.getField('p2').value="originalContentUrl";
+        this.getField('p2').setVisible(true);
+        this.getInput('value_parameter2').setVisible(true);
+        this.getField('p3').value="previewImageUrl";
         this.getField('p3').setVisible(true);
         this.getInput('value_parameter3').setVisible(true);
       }
