@@ -23,7 +23,7 @@ Blockly.JavaScript['linebot_type'] = function(block) {
   if (!parameter3) parameter3='""';
   if (!parameter4) parameter4='""';
   
-  var code = 'line_url_escape("'+type+'",'+parameter1+','+parameter2+','+parameter3+','+parameter4+')';
+  var code = 'line_url_escape("bot","'+type+'",'+parameter1+','+parameter2+','+parameter3+','+parameter4+')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -48,6 +48,6 @@ Blockly.JavaScript['linenotify_type'] = function(block) {
   if (!parameter2) parameter2='""';
   if (!parameter3) parameter3='""';
   
-  var code = 'line_url_escape("'+type+'",'+parameter1+','+parameter2+','+parameter3+',"")';
+  var code = 'line_url_escape("notify","'+type+'",'+parameter1+','+parameter2+','+parameter3+',"")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
