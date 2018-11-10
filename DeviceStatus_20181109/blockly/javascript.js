@@ -1,6 +1,6 @@
 Blockly.JavaScript['boardevent'] = function (block) {
   var device = Blockly.JavaScript.valueToCode(block, 'device', Blockly.JavaScript.ORDER_ATOMIC);
-  var samplingInterval = Blockly.JavaScript.valueToCode(block, 'samplingInterval', Blockly.JavaScript.ORDER_ATOMIC);
+  var samplingInterval = block.getFieldValue('samplingInterval');
   var do_ready = Blockly.JavaScript.statementToCode(block, 'do_ready');
   var do_error = Blockly.JavaScript.statementToCode(block, 'do_error');
   var do_message = Blockly.JavaScript.statementToCode(block, 'do_message');
