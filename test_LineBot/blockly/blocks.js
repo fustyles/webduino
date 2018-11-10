@@ -92,15 +92,15 @@ Blockly.Blocks['linenotify_type'] = {
   onchange: function(event) {
     console.log(this.getField('value_type').getValue());
   if (this.getField('value_type').getValue() == 'text') {
-    this.getField('p2').setVisible(false);
-    this.getField('p3').setVisible(false);
-    this.getInput('value_parameter2').setVisible(false);
-    this.getInput('value_parameter3').setVisible(false);
+    if (this.getField('p2').isVisible==true) this.getField('p2').setVisible(false);
+    if (this.getField('p3').isVisible==true) this.getField('p3').setVisible(false);
+    if (this.getField('value_parameter2').isVisible==true) this.getInput('value_parameter2').setVisible(false);
+    if (this.getField('value_parameter3').isVisible==true) this.getInput('value_parameter3').setVisible(false);
   } else {
-    this.getField('p2').setVisible(true);
-    this.getField('p3').setVisible(true);
-    this.getInput('value_parameter2').setVisible(true);
-    this.getInput('value_parameter3').setVisible(true);
+    if (this.getField('p2').isVisible==false) this.getField('p2').setVisible(true);
+    if (this.getField('p3').isVisible==false) this.getField('p3').setVisible(true);
+    if (this.getField('value_parameter2').isVisible==false) this.getInput('value_parameter2').setVisible(true);
+    if (this.getField('value_parameter3').isVisible==false) this.getInput('value_parameter3').setVisible(true);
   }
 }
 };
