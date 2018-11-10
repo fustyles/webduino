@@ -1,17 +1,19 @@
 Blockly.Blocks['boardevent'] = {
   init: function () {
+    this.appendValueInput("device")
+      .setCheck("String")
+      .appendField("   Device ID"); 
+    this.appendDummyInput()  
+      .appendField("Sampling Interval (ms)")
+      .appendField(new Blockly.FieldDropdown([["20","20"], ["50","50"], ["75","75"], ["100","100"], ["250","250"], ["500","500"], ["1000","1000"]]), "samplingInterval");    
     this.appendDummyInput()
       .appendField("BoardEvent.ERROR");
     this.appendStatementInput("do_error");
     this.appendDummyInput()
       .appendField("BoardEvent.STRING_MESSAGE");
     this.appendStatementInput("do_message");
-    this.appendValueInput("device")
-      .setCheck("String")
-      .appendField("BoardEvent.READY   Device ID"); 
-    this.appendDummyInput()  
-      .appendField("Sampling Interval (ms)")
-      .appendField(new Blockly.FieldDropdown([["20","20"], ["50","50"], ["75","75"], ["100","100"], ["250","250"], ["500","500"], ["1000","1000"]]), "samplingInterval");    
+    this.appendDummyInput()
+      .appendField("BoardEvent.READY");
     this.appendStatementInput("do_ready");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
