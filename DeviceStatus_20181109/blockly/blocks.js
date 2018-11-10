@@ -4,7 +4,7 @@ Blockly.Blocks['boardevent'] = {
       .setCheck("String")
       .appendField("Sampling Interval (ms)")
       .appendField(new Blockly.FieldDropdown([["20","20"], ["50","50"], ["75","75"], ["100","100"], ["250","250"], ["500","500"], ["1000","1000"]]), "samplingInterval")
-      .appendField("Device ID");
+      .appendField("    Device ID");
     this.appendDummyInput()
       .appendField("");
     this.appendDummyInput()
@@ -18,7 +18,7 @@ Blockly.Blocks['boardevent'] = {
     this.appendStatementInput("do_ready");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(160);
     this.getField('samplingInterval').setValue('250');
   }
 };
@@ -30,7 +30,7 @@ Blockly.Blocks['boardevent_sendmessage'] = {
       .appendField("Send Command");    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(160);
   }
 };
 
@@ -40,6 +40,6 @@ Blockly.Blocks['boardevent_getmessage'] = {
       .appendField("Get Message");
     this.setInputsInline(true);
     this.setOutput(true, null);
-    this.setColour(200);
+    this.setColour(250);
   }
 };
