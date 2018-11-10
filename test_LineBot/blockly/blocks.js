@@ -80,10 +80,6 @@ Blockly.Blocks['linenotify_type'] = {
     this.appendValueInput("value_parameter3")
         .setCheck(null)
         .appendField("Parameter3","p3"); 
-    this.getField('p2').setVisible(false);
-    this.getField('p3').setVisible(false);
-    this.getInput('value_parameter2').setVisible(false);
-    this.getInput('value_parameter3').setVisible(false)
     this.setOutput(true, null);  
     this.setColour(300);
     this.setTooltip("");
@@ -91,20 +87,16 @@ Blockly.Blocks['linenotify_type'] = {
   },
   onchange: function(event) {
     if (event.type=="change") {
-      console.log(this.getField('p2').Visible);
-      console.log(this.getField('p2').visible);
-      console.log(this.getField('p2').visibility);
-      console.log(this.getField('p2').display);
       if (this.getField('value_type').getValue() == 'text') {
-        this.getField('p2').setVisible(false);
-        this.getField('p3').setVisible(false);
-        this.getInput('value_parameter2').setVisible(false);
-        this.getInput('value_parameter3').setVisible(false);
+        this.removeField('p2');
+        this.removeInput('value_parameter2');
+        this.removeField('p3');
+        this.removeInput('value_parameter3');
       } else {
-        this.getField('p2').setVisible(true);
-        this.getField('p3').setVisible(true);
-        this.getInput('value_parameter2').setVisible(true);
-        this.getInput('value_parameter3').setVisible(true);
+        this.appendField('Parameter2','p2').setVisible(true);
+        this.appendValueInput('value_parameter2');
+        this.appendField('Parameter3','p3').setVisible(true);
+        this.appendValueInput('value_parameter3');
       }
     }
   }
