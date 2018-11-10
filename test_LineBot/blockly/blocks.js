@@ -81,13 +81,15 @@ Blockly.Blocks['linenotify_type'] = {
   },
   onchange: function(event) {
   if (this.getFieldValue('value_type') == 'text') {
-    input.removeField("value_parameter2");
-    input.removeField("value_parameter3");
+    this.removeField("parameter2");
+    this.removeInput('value_parameter2');
+    this.removeField("parameter3");
+    this.removeInput('value_parameter3');
   } else {
-    this.appendField("value_parameter2");
+    this.appendField("parameter2");
     this.appendValueInput('value_parameter2');
     this.appendField("value_parameter3");
-    this.appendValueInput('value_parameter3');
+    this.appendValueInput('parameter3');
   }
 }
 };
