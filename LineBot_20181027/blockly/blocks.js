@@ -26,7 +26,7 @@ Blockly.Blocks['linebot_type'] = {
         .appendField("Message (Line Bot)");    
     this.appendDummyInput()
         .appendField("Type")
-        .appendField(new Blockly.FieldDropdown([["text [text]","text"], ["sticker [packageId, stickerId]","sticker"], ["image [originalContentUrl, previewImageUrl]","image"], ["video [originalContentUrl, previewImageUrl]","video"], ["audio [originalContentUrl, duration]","audio"], ["location [title, address, latitude, longitude]","location"]]), "value_type");
+        .appendField(new Blockly.FieldDropdown([["text [text]","text"], ["sticker [packageId,stickerId]","sticker"], ["image [originalContentUrl,previewImageUrl]","image"], ["video [originalContentUrl,previewImageUrl]","video"], ["audio [originalContentUrl,duration]","audio"], ["location [title,address,latitude,longitude]","location"]]), "value_type");
     this.appendValueInput("value_parameter1")
         .setCheck(null)
         .appendField("Parameter1","p1");
@@ -106,7 +106,7 @@ Blockly.Blocks['linenotify_type'] = {
         .appendField("Message (Line Notify)");    
     this.appendDummyInput()
         .appendField("Type")
-        .appendField(new Blockly.FieldDropdown([["text [text]","text"], ["sticker [text, packageId, stickerId]","sticker"], ["image [text, originalContentUrl, previewImageUrl]","image"]]), "value_type");
+        .appendField(new Blockly.FieldDropdown([["text [text]","text"], ["sticker [text,packageId,stickerId]","sticker"], ["image [text,originalContentUrl,previewImageUrl]","image"]]), "value_type");
     this.appendValueInput("value_parameter1")
         .setCheck(null)
         .appendField("Parameter1","p1");
