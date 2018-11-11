@@ -205,5 +205,8 @@ Blockly.Blocks['linenotify_type'] = {
       }
       this.setOutput(true, null);
     //}
+  },
+  onBlockCreate: function(event) {
+    console.log("Hi");
   }
 };
