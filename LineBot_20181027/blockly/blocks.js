@@ -23,7 +23,8 @@ Blockly.Blocks['linebot_notify'] = {
 Blockly.Blocks['linebot_type'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Message (Line Bot)    ")
+        .appendField("Message (Line Bot)");
+    this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([["text (text)","text"], ["sticker (packageId, stickerId)","sticker"], ["image (originalContentUrl, previewImageUrl)","image"], ["video (originalContentUrl, previewImageUrl)","video"], ["audio (originalContentUrl, duration)","audio"], ["location (title, address, latitude, longitude)","location"]]), "value_type");
     this.appendValueInput("value_parameter1")
@@ -154,7 +155,8 @@ Blockly.Blocks['linenotify'] = {
 Blockly.Blocks['linenotify_type'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Message (Line Notify)    ")
+        .appendField("Message (Line Notify)");
+    this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([["text (text)","text"], ["sticker (text, packageId, stickerId)","sticker"], ["image (text, originalContentUrl, previewImageUrl)","image"]]), "value_type");
     this.appendValueInput("value_parameter1")
