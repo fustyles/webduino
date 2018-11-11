@@ -11,7 +11,7 @@ Blockly.JavaScript['boardevent'] = function (block) {
 Blockly.JavaScript['boardevent_sendmessage'] = function (block) {
   var cmd = Blockly.JavaScript.valueToCode(block, 'cmd', Blockly.JavaScript.ORDER_ATOMIC);
   cmd = cmd.replace(/\'/g,"");
-  var code = 'board.send('+cmd+');\n';
+  var code = 'board.send(['+cmd+']);\n';
   return code;
 };
 
