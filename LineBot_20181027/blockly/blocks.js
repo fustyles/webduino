@@ -47,7 +47,6 @@ Blockly.Blocks['linebot_type'] = {
     this.setColour(300);
     this.setTooltip("");
     this.setHelpUrl("");
-    this.getField('value_type').setValue('text');
   },
   onchange: function(event) {
     //if (event.type=="change") {
@@ -176,7 +175,6 @@ Blockly.Blocks['linenotify_type'] = {
     this.setColour(300);
     this.setTooltip("");
     this.setHelpUrl("");
-    this.getField('value_type').setValue('text');
   },
   onchange: function(event) {
     //if (event.type=="change") {
