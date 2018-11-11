@@ -18,7 +18,7 @@ Blockly.Blocks['boardevent'] = {
     this.appendStatementInput("do_ready");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(100);
+    this.setColour(120);
     this.getField('samplingInterval').setValue('250');
   }
 };
