@@ -205,5 +205,8 @@ Blockly.Blocks['linenotify_type'] = {
       }
       this.setOutput(true, null);
     //}
+  },
+  domToMutation: function(xmlElement) {
+    console.log(this.getField('value_type').getValue());
   }
 };
