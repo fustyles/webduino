@@ -215,6 +215,7 @@ Blockly.Blocks['linenotify_type'] = {
       this.updateShape_test(xmlElement.getAttribute('type'));
   },
   updateShape_test : function(type) {
+      onchange();
       switch (type) {
       case 'text':
           console.log('text');
