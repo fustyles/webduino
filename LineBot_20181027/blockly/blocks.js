@@ -133,11 +133,11 @@ Blockly.Blocks['linebot_type'] = {
   },
   mutationToDom : function() {
     var container = document.createElement('mutation');
-    container.setAttribute('bot_type', this.getField('value_type').getValue());
+    container.setAttribute('value_type', this.getField('value_type').getValue());
     return container;
   },
   domToMutation : function(xmlElement) {
-    this.getField('value_type').setValue(xmlElement.getAttribute('bot_type'));
+    this.getField('value_type').setValue(xmlElement.getAttribute('value_type'));
     this.onchange();
   }
 };
@@ -215,11 +215,11 @@ Blockly.Blocks['linenotify_type'] = {
   },
   mutationToDom : function() {
     var container = document.createElement('mutation');
-    container.setAttribute('notify_type', this.getField('value_type').getValue());
+    container.setAttribute('value_type', this.getField('value_type').getValue());
     return container;
   },
   domToMutation : function(xmlElement) {
-    this.getField('value_type').setValue(xmlElement.getAttribute('notify_type'));
+    this.getField('value_type').setValue(xmlElement.getAttribute('value_type'));
     this.onchange();
   }
 };
