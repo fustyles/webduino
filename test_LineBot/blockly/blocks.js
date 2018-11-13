@@ -212,16 +212,18 @@ Blockly.Blocks['linenotify_type'] = {
       return container;
   },
   domToMutation : function(xmlElement) {
-      this.updateShape_test(xmlElement.getAttribute('type'));
+      this.updateShape_type(xmlElement.getAttribute('type'));
   },
-  updateShape_test : function(type) {
-      this.onchange();
+  updateShape_type : function(type) {
       switch (type) {
       case 'text':
-          console.log('text');
+          this.getField('value_type').setValue="text";
+          this.onchange();
           break;
       case 'sticker':
           console.log('sticker');
+          this.getField('value_type').setValue="sticker";
+          this.onchange();
           break;
       }
   }
