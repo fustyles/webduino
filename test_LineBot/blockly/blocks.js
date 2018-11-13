@@ -217,12 +217,12 @@ Blockly.Blocks['linenotify_type'] = {
   updateShape_type : function(type) {
       switch (type) {
       case 'text':
-          this.getField('value_type').setText="text";
+          this.getField('value_type').setValue("text");
           this.onchange();
           break;
       case 'sticker':
           console.log('sticker');
-          this.getField('value_type').setText="sticker";
+          this.getField('value_type').setValue("sticker");
           this.onchange();
           break;
       }
