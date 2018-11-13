@@ -208,23 +208,21 @@ Blockly.Blocks['linenotify_type'] = {
   },
   mutationToDom : function() {
       var container = document.createElement('mutation');
-      container.setAttribute('type', this.getField('value_type').getValue());
+      container.setAttribute('notify_type', this.getField('value_type').getValue());
       return container;
   },
   domToMutation : function(xmlElement) {
-      this.updateShape_type(xmlElement.getAttribute('type'));
-  },
-  updateShape_type : function(type) {
-      switch (type) {
+    switch (xmlElement.getAttribute('notify_type')) {
       case 'text':
           this.getField('value_type').setValue("text");
-          this.onchange();
           break;
       case 'sticker':
-          console.log('sticker');
           this.getField('value_type').setValue("sticker");
-          this.onchange();
           break;
-      }
+      case 'image':
+          this.getField('value_type').setValue("image");
+          break;        
+    }
+    this.onchange();
   }
 };
