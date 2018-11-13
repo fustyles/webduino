@@ -137,7 +137,26 @@ Blockly.Blocks['linebot_type'] = {
       return container;
   },
   domToMutation : function(xmlElement) {
-    this.getField('value_type').setValue(xmlElement.getAttribute('bot_type'));
+    switch (xmlElement.getAttribute('bot_type')) {
+      case 'text':
+          this.getField('value_type').setValue("text");
+          break;
+      case 'sticker':
+          this.getField('value_type').setValue("sticker");
+          break;
+      case 'image':
+          this.getField('value_type').setValue("image");
+          break;   
+      case 'vedio':
+          this.getField('value_type').setValue("vedio");
+          break;  
+      case 'audio':
+          this.getField('value_type').setValue("audio");
+          break;  
+      case 'location':
+          this.getField('value_type').setValue("location");
+          break;          
+    }
     this.onchange();
   }
 };
@@ -219,8 +238,17 @@ Blockly.Blocks['linenotify_type'] = {
       return container;
   },
   domToMutation : function(xmlElement) {
-    this.getField('value_type').setValue(xmlElement.getAttribute('bot_type'));
+    switch (xmlElement.getAttribute('notify_type')) {
+      case 'text':
+          this.getField('value_type').setValue("text");
+          break;
+      case 'sticker':
+          this.getField('value_type').setValue("sticker");
+          break;
+      case 'image':
+          this.getField('value_type').setValue("image");
+          break;        
+    }
     this.onchange();
-  }
   }
 };
