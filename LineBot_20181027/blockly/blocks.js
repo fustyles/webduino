@@ -88,7 +88,7 @@ Blockly.Blocks['linebot_type'] = {
         this.getInput('value_parameter2').setVisible(true);
         this.getInput('value_parameter3').setVisible(false);
         this.getInput('value_parameter4').setVisible(false);
-      } else if (this.getField('value_type').getValue() == "vedio") {
+      } else if (this.getField('value_type').getValue() == "video") {
         this.getField('p1').setValue("(originalContentUrl");
         this.getField('p2').setValue("previewImageUrl");  
         this.getField('p3').setValue("");
