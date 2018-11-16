@@ -65,7 +65,7 @@ Blockly.Blocks['matrix_led_marquee'] = {
 Blockly.Blocks['matrix_led_marquee_once'] = {
   init: function() {
     this.appendValueInput("value_times_")
-        .setCheck("Number")  ;
+        .setCheck("Number")
         .appendField(Blockly.Msg.MATRIXLED_MARQUEE_ONCE_SHOW);   
     this.appendValueInput("value_marquee_")
         .setCheck("String");    
