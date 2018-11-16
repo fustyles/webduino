@@ -18,7 +18,8 @@ Blockly.JavaScript['matrix_led_marquee'] = function(block) {
 
 Blockly.JavaScript['matrix_led_marquee_once'] = function(block) {
   var value_marquee_ = Blockly.JavaScript.valueToCode(block, 'value_marquee_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'MatrixLed_marquee_times('+ value_marquee_ +',1);\n';
+  var value_times_ = Blockly.JavaScript.valueToCode(block, 'value_times_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'MatrixLed_marquee_times('+ value_marquee_ +','+value_times_+');\n';
   return code;
 };
 
