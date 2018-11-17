@@ -259,7 +259,10 @@
       }
     }
     else
+    {
       window.clearInterval(marqueetimeid);
+      MatrixLed_clear();
+    }
   } 
   
   function MatrixLed_marquee_once_play() {
@@ -279,7 +282,10 @@
       }
     }
     else
+    {
       window.clearInterval(marqueetimeid);
+      MatrixLed_clear();
+    }
   } 
   
   function MatrixLed_marquee_degree(direction,degree) {
@@ -351,7 +357,10 @@
       }
     }
     else
+    {
       window.clearInterval(marqueetimeid);
+      MatrixLed_clear();
+    }
   } 
   
   function MatrixLed_marquee_color_once_play() {
@@ -371,7 +380,10 @@
       }
     }
     else
+    {
       window.clearInterval(marqueetimeid);
+      MatrixLed_clear();
+    }
   } 
   
   function MatrixLed_marquee_color_degree(direction,degree) {
