@@ -422,7 +422,7 @@
             <block type="matrix_led_texttocode">
               <value name="value_text_">
                 <block type="text">
-                  <field name="TEXT">♥ webduino ♡</field>
+                  <field name="TEXT"> ♥ webduino ♡ </field>
                 </block>
             </value>
           </block>           
@@ -442,7 +442,7 @@
             <block type="matrix_led_texttocode">
               <value name="value_text_">
                 <block type="text">
-                  <field name="TEXT">♥ webduino ♡</field>
+                  <field name="TEXT"> ♥ webduino ♡ </field>
                 </block>
             </value>
           </block>           
