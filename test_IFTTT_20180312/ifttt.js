@@ -22,7 +22,7 @@
         },
         error: function(exception)
         {
-          console.log($.parseJSON(exception.responseText ).Message);
+          console.log("");
         }
      });
   }
