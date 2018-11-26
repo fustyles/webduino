@@ -9,7 +9,7 @@
     var input_url ="https://api.thingspeak.com/update";
     var data = $.ajax({
         "type": "POST",
-        "dataType": "text",
+        "dataType": "html",
         "url": input_url,
         "data":{
           "api_key": key,
