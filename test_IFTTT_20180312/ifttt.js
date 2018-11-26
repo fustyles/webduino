@@ -22,7 +22,7 @@
         },
         error: function(exception)
         {
-          console.log(exception);
+          console.log(exception.responseText);
         }
      });
   }
