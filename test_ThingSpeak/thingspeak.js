@@ -4,7 +4,7 @@
 
   'use strict';
 
-  function createIframe(key,field1,field2,field3,field4,field5,field6,field7,field8) {
+  function ThingSpeak_update(key,field1,field2,field3,field4,field5,field6,field7,field8) {
     
     var input_url ="https://api.thingspeak.com/update";
     var data = $.ajax({
@@ -29,11 +29,11 @@
         },
         error: function(exception)
         {
-          console.log("Sorry");
+          console.log("Nothing");
         }
      });
   }
 
-  window.createIframe = createIframe;
+  window.ThingSpeak_update = ThingSpeak_update;
 
 }(window, window.document));
