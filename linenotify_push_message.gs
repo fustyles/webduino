@@ -39,7 +39,8 @@
     }
   });
 
-  
-  var textOutput = ContentService.createTextOutput("OK");
-  return textOutput;
+  var result = {
+    Return: "OK"
+  };
+  return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JAVASCRIPT);
 }
