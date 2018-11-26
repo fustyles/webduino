@@ -34,7 +34,7 @@
         "type": "POST",
         "dataType": "jsonp",
         "url": input_url,
-        "data":bot_msg,
+        "data":notify_msg,
         success: function(jsonp)
         {
           console.log(jsonp);
