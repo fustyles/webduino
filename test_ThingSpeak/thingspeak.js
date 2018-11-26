@@ -23,14 +23,16 @@
         url: input_url,
         api_key: key,
         created_at: "DATETIME_STAMP",
-        field1: field1, 
-        field2: field2, 
-        field3: field3, 
-        field4: field4, 
-        field5: field5, 
-        field6: field6, 
-        field7: field7, 
-        field8: field8,
+        dataset:[
+          field1: field1, 
+          field2: field2, 
+          field3: field3, 
+          field4: field4, 
+          field5: field5, 
+          field6: field6, 
+          field7: field7, 
+          field8: field8
+        }
         success: function(json)
         {
           console.log(json);
