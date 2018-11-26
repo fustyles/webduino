@@ -21,7 +21,7 @@
         },
         error: function(jqXHR, textStatus, errorThrown)
         {
-          console.log(jqXHR.responseText);
+          console.log(errorThrown);
         }
      });
   }
@@ -41,7 +41,7 @@
         },
         error: function(jqXHR, textStatus, errorThrown)
         {
-          console.log(jqXHR.responseText);
+          console.log(errorThrown);
         }
      });
   }  
