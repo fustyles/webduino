@@ -6,8 +6,8 @@
 
   function linebot_push_message(bot_token,bot_userid,bot_msg) {
     
-    bot_msg["token"] = bot_token;
-    bot_msg["userid"] = bot_userid;
+    bot_msg = JSON.parse(bot_msg);
+    bot_msg.
     var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec";
     var data = $.ajax({
         "type": "POST",
@@ -50,29 +50,28 @@
       if (type=="text")
         return '{"type":'+type+',"text":'+parameter1+'}';
       else if (type=="sticker")
-        return '{"type":'+type+',"packageId":'+parameter1+',"stickerId":'+parameter2+'}';
+        return '{"type":"'+type+'","packageId":"'+parameter1+'","stickerId":"'+parameter2+'"}';
       else if (type=="image")
-        return '{"type":'+type+',"originalContentUrl":'+parameter1+',"previewImageUrl":'+parameter2+'}';
+        return '{"type":"'+type+'","originalContentUrl":"'+parameter1+'","previewImageUrl":"'+parameter2+'"}';
       else if (type=="video")
-        return '{"type":'+type+',"originalContentUrl":'+parameter1+',"previewImageUrl":'+parameter2+'}';
+        return '{"type":"'+type+'","originalContentUrl":"'+parameter1+'","previewImageUrl":"'+parameter2+'"}';
       else if (type=="audio")
-        return '{"type":'+type+',"originalContentUrl":'+parameter1+',"duration":'+parameter2+'}';
+        return '{"type":"'+type+'","originalContentUrl":"'+parameter1+'","duration":"'+parameter2+'"}';
       else if (type=="location")
-        return '{"type":'+type+',"title":'+parameter1+',"address":'+parameter2+',"latitude":'+parameter3+',"longitude":'+parameter4+'}';
+        return '{"type":"'+type+'","title":"'+parameter1+'","address":"'+parameter2+'","latitude":"'+parameter3+'","longitude":"'+parameter4+'"}';
       else
         return "";
     } else if (line=="notify") {
       if (type=="text")
-        return '{"type":'+type+',"text":'+parameter1+'}';
+        return '{"type":"'+type+'","text":"'+parameter1+'"}';
       else if (type=="sticker")
-        return '{"type":'+type+',"text":'+parameter1+',"packageId":'+parameter2+',"stickerId":'+parameter3+'}';
+        return '{"type":"'+type+'","text":"'+parameter1+'","packageId":"'+parameter2+'","stickerId":"'+parameter3+'"}';
       else if (type=="image")
-        return '{"type":'+type+',"text":'+parameter1+',"originalContentUrl":'+parameter2+',"previewImageUrl":'+parameter3+'}';
+        return '{"type":"'+type+'","text":"'+parameter1+'","originalContentUrl":"'+parameter2+'","previewImageUrl":"'+parameter3+'"}';
       else
         return "";
     }
   }
-
 
   window.linebot_push_message = linebot_push_message;
   window.linenotify_push_message = linenotify_push_message;
