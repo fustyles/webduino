@@ -48,26 +48,26 @@
 
     if (line=="bot") {
       if (type=="text")
-        return "&type="+type+"&text="+parameter1;
+        return '{type:'+type+',text:'+parameter1+'}';
       else if (type=="sticker")
-        return "&type="+type+"&packageId="+parameter1+"&stickerId="+parameter2;
+        return '{type:'+type+',packageId:'+parameter1+',stickerId:'+parameter2+'}';
       else if (type=="image")
-        return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
+        return '{type:'+type+',originalContentUrl:'+parameter1+',previewImageUrl:'+parameter2+'}';
       else if (type=="video")
-        return "&type="+type+"&originalContentUrl="+parameter1+"&previewImageUrl="+parameter2;
+        return '{type:'+type+',originalContentUrl:'+parameter1+',previewImageUrl:'+parameter2+'}';
       else if (type=="audio")
-        return "&type="+type+"&originalContentUrl="+parameter1+"&duration="+parameter2;
+        return '{type:'+type+',originalContentUrl:'+parameter1+',duration:'+parameter2+'}';
       else if (type=="location")
-        return "&type="+type+"&title="+parameter1+"&address="+parameter2+"&latitude="+parameter3+"&longitude="+parameter4;
+        return '{type:'+type+',title:'+parameter1+',address:'+parameter2+',latitude:'+parameter3+',longitude:'+parameter4+'}';
       else
         return "";
     } else if (line=="notify") {
       if (type=="text")
-        return "&type="+type+"&text="+parameter1;
+        return '{type:'+type+',text:'+parameter1+'}';
       else if (type=="sticker")
-        return "&type="+type+"&text="+parameter1+"&packageId="+parameter2+"&stickerId="+parameter3;
+        return '{type:'+type+',text:'+parameter1+',packageId:'+parameter2+',stickerId:'+parameter3+'}';
       else if (type=="image")
-        return "&type="+type+"&text="+parameter1+"&originalContentUrl="+parameter2+"&previewImageUrl="+parameter3;
+        return '{type:'+type+',text:'+parameter1+',originalContentUrl:'+parameter2+',previewImageUrl:'+parameter3+'}';
       else
         return "";
     }
