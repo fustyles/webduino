@@ -19,9 +19,9 @@
         {
           console.log(jsonp);
         },
-        error: function(exception)
+        error: function(jqXHR, exception)
         {
-          console.log("");
+          console.log(jqXHR.status);
         }
      });
   }
@@ -39,9 +39,9 @@
         {
           console.log(jsonp);
         },
-        error: function(exception)
+        error: function(jqXHR, exception)
         {
-          console.log("");
+          console.log(jqXHR.status);
         }
      });
   }  
