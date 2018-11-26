@@ -65,11 +65,11 @@
         return "";
     } else if (line=="notify") {
       if (type=="text")
-        return '{"type":"'+type+'","text":'+parameter1+'}';
+        return '{"type":"'+type+'","text":"'+parameter1+'"}';
       else if (type=="sticker")
-        return '{"type":"'+type+'","text":'+parameter1+',"packageId":"'+parameter2+'","stickerId":"'+parameter3+'"}';
+        return '{"type":"'+type+'","text":"'+parameter1+'","packageId":"'+parameter2+'","stickerId":"'+parameter3+'"}';
       else if (type=="image")
-        return '{"type":"'+type+'","text":'+parameter1+',"originalContentUrl":"'+parameter2+'","previewImageUrl":"'+parameter3+'"}';
+        return '{"type":"'+type+'","text":"'+parameter1+'","originalContentUrl":"'+parameter2+'","previewImageUrl":"'+parameter3+'"}';
       else
         return "";
     }
