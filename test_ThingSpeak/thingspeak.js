@@ -21,7 +21,7 @@
           "field5": field5, 
           "field6": field6, 
           "field7": field7, 
-          "field8": field8
+          "field8": field8,
         },
         success: function(json)
         {
