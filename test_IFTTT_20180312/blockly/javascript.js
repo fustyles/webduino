@@ -11,6 +11,6 @@ Blockly.JavaScript['ifttt_open'] = function (block) {
   if (!ifttt_value2) ifttt_value2='""';
   if (!ifttt_value3) ifttt_value3='""';
   
-  var code = 'createIframe('+ifttt_event+','+ifttt_key+','+ifttt_value1+','+ifttt_value2+','+ifttt_value3+');\n';
+  var code = 'ifttt('+ifttt_event+','+ifttt_key+','+ifttt_value1+','+ifttt_value2+','+ifttt_value3+');\n';
   return code; 
 };
