@@ -48,7 +48,7 @@
   
   function line_url_escape(line,type,parameter1,parameter2,parameter3,parameter4) {
     
-    parameter1 = escape(parameter1+"").replace(/\'/g,"%27").replace(/\"/g,'%22');
+    parameter1 = (parameter1+"").replace(/\'/g,"%27").replace(/\"/g,'%22');
     parameter2 = (parameter2+"").replace(/\'/g,"%27").replace(/\"/g,'%22');
     parameter3 = (parameter3+"").replace(/\'/g,"%27").replace(/\"/g,'%22');
     parameter4 = (parameter4+"").replace(/\'/g,"%27").replace(/\"/g,'%22');
