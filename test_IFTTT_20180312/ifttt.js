@@ -25,6 +25,7 @@
           console.log("");
         }
      });
+    console.log(data);
   }
 
   window.ifttt = ifttt;
