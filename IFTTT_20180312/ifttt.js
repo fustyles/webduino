@@ -4,37 +4,29 @@
 
   'use strict';
 
-  function createIframe(ifttt_event,ifttt_key,ifttt_value1,ifttt_value2,ifttt_value3) {
+  function ifttt(event,key,value1,value2,value3) {
     
-    ifttt_event = escape(ifttt_event+"");
-    ifttt_key = escape(ifttt_key+"");
-    ifttt_value1 = escape(ifttt_value1+"");
-    ifttt_value2 = escape(ifttt_value2+"");
-    ifttt_value3 = escape(ifttt_value3+"");
-    
-    var input_url="https://maker.ifttt.com/trigger/"+ifttt_event+"/with/key/"+ifttt_key+"?value1="+ifttt_value1+"&value2="+ifttt_value2+"&value3="+ifttt_value3;
-    var src = '<iframe src="' + input_url + '" style="width:0px;height:0px"></iframe>';
-    
-    if (document.getElementById("ifttt_iframe"))
-    {
-          document.getElementById("ifttt_iframe").style.left = '0px';
-          document.getElementById("ifttt_iframe").style.top = '0px';
-          document.getElementById("ifttt_iframe").style.display = 'block';
-          document.getElementById("ifttt_iframe").innerHTML = src;
-    }
-    else
-    {
-        var div = document.createElement('div');
-        div.id = "ifttt_iframe";
-        div.style.position = 'absolute';      
-        div.style.left = '0px';
-        div.style.top = '0px';
-        div.style.zindex='9999';      
-        div.innerHTML = src;
-        document.body.appendChild(div);
-    }
+    var input_url="https://maker.ifttt.com/trigger/"+event+"/with/key/"+key;
+    var data = $.ajax({
+        "type": "POST",
+        "dataType": "jsonp",
+        "url": input_url,
+        "data":{
+          "value1": value1, 
+          "value2": value2, 
+          "value3": value3, 
+        },
+        success: function(jsonp)
+        {
+          console.log(jsonp);
+        },
+        error: function(exception)
+        {
+          console.log("");
+        }
+     });
   }
 
-  window.createIframe = createIframe;
+  window.ifttt = ifttt;
 
 }(window, window.document));
