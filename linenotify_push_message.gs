@@ -39,8 +39,9 @@
     }
   });
 
-  var result = {
-    Return: "OK"
-  };
-  return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JAVASCRIPT);
+  var result = JSON.stringify({
+    "Line Notify": type+" OK"
+  });  
+  
+  return ContentService.createTextOutput("console.log(" + result + ")").setMimeType(ContentService.MimeType.JAVASCRIPT); 
 }
