@@ -5,10 +5,15 @@
   'use strict';
 
   function linebot_push_message(bot_token,bot_userid,bot_msg) {
-    
+
     bot_msg = JSON.parse(bot_msg);
     bot_msg["token"]=bot_token;
     bot_msg["userid"]=bot_userid;
+    
+    bot_msg["start"]="1325437200";
+    bot_msg["end"]="1325439000";
+    bot_msg["prefix"]="alert";
+    
     var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec";
     var data = $.ajax({
         "type": "POST",
@@ -29,6 +34,11 @@
   function linenotify_push_message(notify_token,notify_msg) {
     notify_msg = JSON.parse(notify_msg);
     notify_msg["token"]=notify_token;
+    
+    notify_msg["start"]="1325437200";
+    notify_msg["end"]="1325439000";
+    notify_msg["prefix"]="alert";
+    
     var input_url="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec";
     var data = $.ajax({
         "type": "POST",
