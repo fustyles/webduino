@@ -27,8 +27,8 @@
   }
   
   function linenotify_push_message(notify_token,notify_msg) {
-    bot_msg = JSON.parse(notify_msg);
-    bot_msg["token"]=notify_token;
+    notify_msg = JSON.parse(notify_msg);
+    notify_msg["token"]=notify_token;
     var input_url="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec";
     var data = $.ajax({
         "type": "POST",
