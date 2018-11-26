@@ -50,29 +50,30 @@
 
     if (line=="bot") {
       if (type=="text")
-        return '{"type":"'+type+'","text":"'+parameter1+'"}';
+        var para='{"type":"'+type+'","text":"'+parameter1+'"}';
       else if (type=="sticker")
-        return '{"type":"'+type+'","packageId":"'+parameter1+'","stickerId":"'+parameter2+'"}';
+        var para='{"type":"'+type+'","packageId":"'+parameter1+'","stickerId":"'+parameter2+'"}';
       else if (type=="image")
-        return '{"type":"'+type+'","originalContentUrl":"'+parameter1+'","previewImageUrl":"'+parameter2+'"}';
+        var para='{"type":"'+type+'","originalContentUrl":"'+parameter1+'","previewImageUrl":"'+parameter2+'"}';
       else if (type=="video")
-        return '{"type":"'+type+'","originalContentUrl":"'+parameter1+'","previewImageUrl":"'+parameter2+'"}';
+        var para='{"type":"'+type+'","originalContentUrl":"'+parameter1+'","previewImageUrl":"'+parameter2+'"}';
       else if (type=="audio")
-        return '{"type":"'+type+'","originalContentUrl":"'+parameter1+'","duration":"'+parameter2+'"}';
+        var para='{"type":"'+type+'","originalContentUrl":"'+parameter1+'","duration":"'+parameter2+'"}';
       else if (type=="location")
-        return '{"type":"'+type+'","title":"'+parameter1+'","address":"'+parameter2+'","latitude":"'+parameter3+'","longitude":"'+parameter4+'"}';
+        var para='{"type":"'+type+'","title":"'+parameter1+'","address":"'+parameter2+'","latitude":"'+parameter3+'","longitude":"'+parameter4+'"}';
       else
-        return "";
+        var para="";
     } else if (line=="notify") {
       if (type=="text")
-        return '{"type":"'+type+'","text":"'+parameter1+'"}';
+        var para='{"type":"'+type+'","text":"'+parameter1+'"}';
       else if (type=="sticker")
-        return '{"type":"'+type+'","text":"'+parameter1+'","packageId":"'+parameter2+'","stickerId":"'+parameter3+'"}';
+        var para='{"type":"'+type+'","text":"'+parameter1+'","packageId":"'+parameter2+'","stickerId":"'+parameter3+'"}';
       else if (type=="image")
-        return '{"type":"'+type+'","text":"'+parameter1+'","originalContentUrl":"'+parameter2+'","previewImageUrl":"'+parameter3+'"}';
+        var para='{"type":"'+type+'","text":"'+parameter1+'","originalContentUrl":"'+parameter2+'","previewImageUrl":"'+parameter3+'"}';
       else
-        return "";
+        var para="";
     }
+    return para;
   }
 
   window.linebot_push_message = linebot_push_message;
