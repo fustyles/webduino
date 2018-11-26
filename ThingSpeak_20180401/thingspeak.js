@@ -29,7 +29,7 @@
         },
         error: function(exception)
         {
-          console.log("Nothing");
+          console.log("error");
         }
      });
   }
