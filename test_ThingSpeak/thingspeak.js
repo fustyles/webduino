@@ -6,7 +6,7 @@
 
   function createIframe(key,field1,field2,field3,field4,field5,field6,field7,field8) {
     
-    var input_url =" api.thingspeak.com/update.json";
+    var input_url ="https://api.thingspeak.com/update";
     var data = $.ajax({
         "type": "POST",
         "dataType": "application/json",
