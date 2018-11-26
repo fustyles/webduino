@@ -19,6 +19,6 @@ Blockly.JavaScript['thingspeak_update'] = function (block) {
   if (!field7) field7='""';
   if (!field8) field8='""';
   
-  var code = 'createIframe('+key+','+field1+','+field2+','+field3+','+field4+','+field5+','+field6+','+field7+','+field8+');\n';
+  var code = 'ThingSpeak_update('+key+','+field1+','+field2+','+field3+','+field4+','+field5+','+field6+','+field7+','+field8+');\n';
   return code; 
 };
