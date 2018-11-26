@@ -7,7 +7,8 @@
   function linebot_push_message(bot_token,bot_userid,bot_msg) {
     
     bot_msg = JSON.parse(bot_msg);
-    bot_msg.
+    bot_msg["token"]=bot_token;
+    bot_msg["userid"]=bot_userid;
     var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec";
     var data = $.ajax({
         "type": "POST",
@@ -25,8 +26,9 @@
      });
   }
   
-  function linenotify_push_message(bot_token,bot_msg) {
-    bot_msg["token"] = bot_token;
+  function linenotify_push_message(notify_token,notify_msg) {
+    bot_msg = JSON.parse(notify_msg);
+    bot_msg["token"]=notify_token;
     var input_url="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec";
     var data = $.ajax({
         "type": "POST",
