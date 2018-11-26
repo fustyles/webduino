@@ -12,12 +12,12 @@
     var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec";
     var data = $.ajax({
         "type": "POST",
-        "dataType": "jsonp",
+        "dataType": "text",
         "url": input_url,
         "data":bot_msg,
-        success: function(jsonp)
+        success: function(text)
         {
-          console.log(jsonp);
+          console.log(text);
         },
         error: function(exception)
         {
@@ -32,12 +32,12 @@
     var input_url="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec";
     var data = $.ajax({
         "type": "POST",
-        "dataType": "jsonp",
+        "dataType": "text",
         "url": input_url,
         "data":notify_msg,
-        success: function(jsonp)
+        success: function(text)
         {
-          console.log(jsonp);
+          console.log(text);
         },
         error: function(exception)
         {
