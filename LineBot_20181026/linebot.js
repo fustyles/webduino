@@ -47,7 +47,12 @@
   }  
   
   function line_url_escape(line,type,parameter1,parameter2,parameter3,parameter4) {
-
+    
+    parameter1 = escape(parameter1+"");
+    parameter2 = escape(parameter2+"");
+    parameter3 = escape(parameter3+"");
+    parameter4 = escape(parameter4+"");
+    
     if (line=="bot") {
       if (type=="text")
         var para='{"type":"'+type+'","text":"'+parameter1+'"}';
