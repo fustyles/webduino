@@ -23,9 +23,9 @@
           "field7": field7, 
           "field8": field8,
         },
-        success: function(json)
+        success: function(html)
         {
-          console.log(json);
+          console.log(html);
         },
         error: function(exception)
         {
