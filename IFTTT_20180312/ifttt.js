@@ -20,9 +20,9 @@
         {
           console.log(jsonp);
         },
-        error: function(exception)
+        error: function(jqXHR, textStatus, errorThrown)
         {
-          console.log("");
+          //console.log(errorThrown);
         }
      });
   }
