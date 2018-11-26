@@ -48,10 +48,10 @@
   
   function line_url_escape(line,type,parameter1,parameter2,parameter3,parameter4) {
     
-    parameter1 = escape(parameter1+"");
-    parameter2 = escape(parameter2+"");
-    parameter3 = escape(parameter3+"");
-    parameter4 = escape(parameter4+"");
+    parameter1 = (parameter1+"").replace(/\'/g,"\'").replace(/\"/g,'\"');
+    parameter2 = (parameter2+"").replace(/\'/g,"\'").replace(/\"/g,'\"');
+    parameter3 = (parameter3+"").replace(/\'/g,"\'").replace(/\"/g,'\"');
+    parameter4 = (parameter4+"").replace(/\'/g,"\'").replace(/\"/g,'\"');
     
     if (line=="bot") {
       if (type=="text")
