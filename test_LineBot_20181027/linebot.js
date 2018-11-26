@@ -48,7 +48,7 @@
 
     if (line=="bot") {
       if (type=="text")
-        return '{"type":'+type+',"text":'+parameter1+'}';
+        return '{"type":"'+type+'","text":"'+parameter1+'"}';
       else if (type=="sticker")
         return '{"type":"'+type+'","packageId":"'+parameter1+'","stickerId":"'+parameter2+'"}';
       else if (type=="image")
