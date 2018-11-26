@@ -6,65 +6,46 @@
 
   function linebot_push_message(bot_token,bot_userid,bot_msg) {
     
-    bot_token = escape(bot_token).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
-    bot_userid = escape(bot_userid).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
-    var url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec?token="+bot_token+"&userid="+bot_userid+bot_msg;
-    var src = '<iframe src="' + url + '" style="width:0px;height:0px"></iframe>';
-    
-    if (document.getElementById("bot_iframe"))
-    {
-          document.getElementById("bot_iframe").style.left = '0px';
-          document.getElementById("bot_iframe").style.top = '0px';
-          document.getElementById("bot_iframe").style.display = 'block';
-          document.getElementById("bot_iframe").innerHTML = src;
-    }
-    else
-    {
-        var div = document.createElement('div');
-        div.id = "bot_iframe";
-        div.style.position = 'absolute';      
-        div.style.left = '0px';
-        div.style.top = '0px';
-        div.style.zindex='9999';      
-        div.innerHTML = src;
-        document.body.appendChild(div);
-    }
+    bot_msg["token"] = bot_token;
+    bot_msg["userid"] = bot_userid;
+    var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec";
+    var data = $.ajax({
+        "type": "POST",
+        "dataType": "jsonp",
+        "url": input_url,
+        "data":bot_msg,
+        success: function(jsonp)
+        {
+          console.log(jsonp);
+        },
+        error: function(exception)
+        {
+          console.log("");
+        }
+     });
   }
   
   function linenotify_push_message(bot_token,bot_msg) {
-    
-    bot_token = escape(bot_token).replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
-    var url="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec?token="+bot_token+bot_msg;
-    console.log(url);
-    var src = '<iframe src="' + url + '" style="width:0px;height:0px"></iframe>';
-    
-    if (document.getElementById("notify_iframe"))
-    {
-          document.getElementById("notify_iframe").style.left = '0px';
-          document.getElementById("notify_iframe").style.top = '0px';
-          document.getElementById("notify_iframe").style.display = 'block';
-          document.getElementById("notify_iframe").innerHTML = src;
-    }
-    else
-    {
-        var div = document.createElement('div');
-        div.id = "notify_iframe";
-        div.style.position = 'absolute';      
-        div.style.left = '0px';
-        div.style.top = '0px';
-        div.style.zindex='9999';      
-        div.innerHTML = src;
-        document.body.appendChild(div);
-    }
+    bot_msg["token"] = bot_token;
+    var input_url="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec";
+    var data = $.ajax({
+        "type": "POST",
+        "dataType": "jsonp",
+        "url": input_url,
+        "data":bot_msg,
+        success: function(jsonp)
+        {
+          console.log(jsonp);
+        },
+        error: function(exception)
+        {
+          console.log("");
+        }
+     });
   }  
   
   function line_url_escape(line,type,parameter1,parameter2,parameter3,parameter4) {
 
-    parameter1 = escape(parameter1+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
-    parameter2 = escape(parameter2+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
-    parameter3 = escape(parameter3+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
-    parameter4 = escape(parameter4+"").replace(/\%5C/g,"fu01fu").replace(/\%26/g,"fu02fu").replace(/\%23/g,"fu03fu").replace(/\+/g,"%2B");
-    
     if (line=="bot") {
       if (type=="text")
         return "&type="+type+"&text="+parameter1;
