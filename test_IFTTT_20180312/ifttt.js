@@ -9,16 +9,16 @@
     var input_url="https://maker.ifttt.com/trigger/"+event+"/with/key/"+key;
     var data = $.ajax({
         "type": "POST",
-        "dataType": "html",
+        "dataType": "jsonp",
         "url": input_url,
         "data":{
           "value1": value1, 
           "value2": value2, 
           "value3": value3, 
         },
-        success: function(html)
+        success: function(jsonp)
         {
-          console.log(html);
+          console.log(jsonp);
         },
         error: function(exception)
         {
