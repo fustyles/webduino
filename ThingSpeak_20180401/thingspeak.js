@@ -27,9 +27,9 @@
         {
           console.log(html);
         },
-        error: function(exception)
+        error: function(jqXHR, textStatus, errorThrown)
         {
-          console.log("error");
+          //console.log(errorThrown);
         }
      });
   }
