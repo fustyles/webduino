@@ -13,23 +13,21 @@ function doGet(e) {
   var latitude = ((!e.parameter.latitude)?"":e.parameter.latitude);
   var longitude = ((!e.parameter.longitude)?"":e.parameter.longitude);
   
-  token = token.replace(/\s+/g,"+");
   text = text.replace(/\<br\>/g,"\n").replace(/\<br\/\>/g,"\n").replace(/\<br \/\>/g,"\n").replace(/\<BR\>/g,"\n").replace(/\<BR\/\>/g,"\n").replace(/\<BR \/\>/g,"\n");
-
-  // Webduino Blockly : .replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  token = token.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  userid = userid.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  type = type.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");  
-  text = text.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  packageId = packageId.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  stickerId = stickerId.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  originalContentUrl = originalContentUrl.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  previewImageUrl = previewImageUrl.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  duration = duration.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  title = title.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  address = address.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  latitude = latitude.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");
-  longitude = longitude.replace(/fu01fu/g,"\\").replace(/fu02fu/g,"&").replace(/fu03fu/g,"#");  
+  
+  token = token.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+  userid = userid.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+  type = type.replace(/\%27/g,"\'").replace(/\%22/g,"\"");  
+  text = text.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+  packageId = packageId.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+  stickerId = stickerId.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+  originalContentUrl = originalContentUrl.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+  previewImageUrl = previewImageUrl.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+  duration = duration.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+  title = title.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+  address = address.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+  latitude = latitude.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+  longitude = longitude.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
   
   //console.log("token="+token);
   //console.log("userid="+userid);
@@ -48,6 +46,10 @@ function doGet(e) {
   var url = 'https://api.line.me/v2/bot/message/push';
   
   if (type=="text") {
+    if (text.indexOf("data:")==0) {
+      text = text.replace(/\s+/g,"+");
+      text = "https://fustyles.github.io/webduino/LineControl_showimage.html?"+text;
+    }
     var payload= JSON.stringify({
       'to':  userid,
       'messages': [{
@@ -109,7 +111,7 @@ function doGet(e) {
     });
   }    
   
-  // Send a push message to Line Bot
+  // Send a push message
   UrlFetchApp.fetch(url, {
     'headers': {
       'Content-Type': 'application/json; charset=UTF-8',
