@@ -26,7 +26,8 @@
   
   var url = 'https://notify-api.line.me/api/notify';
   
-  UrlFetchApp.fetch(url, {
+  // Send a push message
+  var response = UrlFetchApp.fetch(url, {
     'headers': {
       'Authorization': 'Bearer ' + token,
     },
@@ -41,7 +42,7 @@
   });
 
   var result = JSON.stringify({
-    "Line Notify": type+" OK"
+    "LineNotify": response.getContentText()
   });  
   
   return ContentService.createTextOutput("console.log(" + result + ")").setMimeType(ContentService.MimeType.JAVASCRIPT); 
