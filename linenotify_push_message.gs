@@ -1,4 +1,4 @@
-﻿function doGet(e) {
+function doGet(e) {
   var token = ((!e.parameter.token)?"":e.parameter.token);
   var type = ((!e.parameter.type)?"":e.parameter.type);  
   var text = ((!e.parameter.text)?"":e.parameter.text);
@@ -7,14 +7,13 @@
   var originalContentUrl = ((!e.parameter.originalContentUrl)?"":e.parameter.originalContentUrl);
   var previewImageUrl = ((!e.parameter.previewImageUrl)?"":e.parameter.previewImageUrl);
   
+  text = text.replace(/\<br\>/g,"\n").replace(/\<br\/\>/g,"\n").replace(/\<br \/\>/g,"\n").replace(/\<BR\>/g,"\n").replace(/\<BR\/\>/g,"\n").replace(/\<BR \/\>/g,"\n");
   type = type.replace(/\%27/g,"\'").replace(/\%22/g,"\"");  
   text = text.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
   packageId = packageId.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
   stickerId = stickerId.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
   originalContentUrl = originalContentUrl.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
   previewImageUrl = previewImageUrl.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
-   
-  text = text.replace(/\<br\>/g,"\n").replace(/\<br\/\>/g,"\n").replace(/\<br \/\>/g,"\n").replace(/\<BR\>/g,"\n").replace(/\<BR\/\>/g,"\n").replace(/\<BR \/\>/g,"\n");
   
   //console.log("token="+token);
   //console.log("type="+type);
@@ -43,6 +42,5 @@
   var result = JSON.stringify({
     "LineNotify": response.getContentText()
   });  
-  
-  return ContentService.createTextOutput("console.log(" + result + ")").setMimeType(ContentService.MimeType.JAVASCRIPT); 
+  return ContentService.createTextOutput("console.log(" + result + ")").setMimeType(ContentService.MimeType.JAVASCRIPT);  
 }
