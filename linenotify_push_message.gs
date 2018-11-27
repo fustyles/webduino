@@ -24,9 +24,8 @@
   //console.log("originalContentUrl="+originalContentUrl);
   //console.log("previewImageUrl="+previewImageUrl);
   
-  var url = 'https://notify-api.line.me/api/notify';
-  
   // Send a push message
+  var url = 'https://notify-api.line.me/api/notify';
   var response = UrlFetchApp.fetch(url, {
     'headers': {
       'Authorization': 'Bearer ' + token,
