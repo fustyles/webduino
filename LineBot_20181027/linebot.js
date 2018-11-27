@@ -32,7 +32,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
         },
         error: function(jqXHR, textStatus, errorThrown)
         {
-          //console.log(errorThrown);
+          console.log(errorThrown);
         }
      });
   }
@@ -57,7 +57,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
         },
         error: function(jqXHR, textStatus, errorThrown)
         {
-          //console.log(errorThrown);
+          console.log(errorThrown);
         }
      });
   }  
