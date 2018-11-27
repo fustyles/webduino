@@ -12,7 +12,9 @@ function doGet(e) {
   var address = ((!e.parameter.address)?"":e.parameter.address);
   var latitude = ((!e.parameter.latitude)?"":e.parameter.latitude);
   var longitude = ((!e.parameter.longitude)?"":e.parameter.longitude);
-
+  
+  text = text.replace(/\<br\>/g,"\n").replace(/\<br\/\>/g,"\n").replace(/\<br \/\>/g,"\n").replace(/\<BR\>/g,"\n").replace(/\<BR\/\>/g,"\n").replace(/\<BR \/\>/g,"\n");
+  
   token = token.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
   userid = userid.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
   type = type.replace(/\%27/g,"\'").replace(/\%22/g,"\"");  
@@ -27,8 +29,6 @@ function doGet(e) {
   latitude = latitude.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
   longitude = longitude.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
   
-  text = text.replace(/\<br\>/g,"\n").replace(/\<br\/\>/g,"\n").replace(/\<br \/\>/g,"\n").replace(/\<BR\>/g,"\n").replace(/\<BR\/\>/g,"\n").replace(/\<BR \/\>/g,"\n");
-    
   //console.log("token="+token);
   //console.log("userid="+userid);
   //console.log("type="+type);
@@ -121,8 +121,7 @@ function doGet(e) {
   });  
   
   var result = JSON.stringify({
-    "LineBot": response.getContentText()
+    "LineBot": type + " OK"
   });  
-  
   return ContentService.createTextOutput("console.log(" + result + ")").setMimeType(ContentService.MimeType.JAVASCRIPT); 
 }
