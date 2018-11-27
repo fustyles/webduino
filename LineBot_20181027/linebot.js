@@ -65,30 +65,29 @@
     
     if (line=="bot") {
       if (type=="text")
-        var para='{"type":"'+type+'","text":"'+parameter1+'"}';
+        return '{"type":"'+type+'","text":"'+parameter1+'"}';
       else if (type=="sticker")
-        var para='{"type":"'+type+'","packageId":"'+parameter1+'","stickerId":"'+parameter2+'"}';
+        return '{"type":"'+type+'","packageId":"'+parameter1+'","stickerId":"'+parameter2+'"}';
       else if (type=="image")
-        var para='{"type":"'+type+'","originalContentUrl":"'+parameter1+'","previewImageUrl":"'+parameter2+'"}';
+        return '{"type":"'+type+'","originalContentUrl":"'+parameter1+'","previewImageUrl":"'+parameter2+'"}';
       else if (type=="video")
-        var para='{"type":"'+type+'","originalContentUrl":"'+parameter1+'","previewImageUrl":"'+parameter2+'"}';
+        return '{"type":"'+type+'","originalContentUrl":"'+parameter1+'","previewImageUrl":"'+parameter2+'"}';
       else if (type=="audio")
-        var para='{"type":"'+type+'","originalContentUrl":"'+parameter1+'","duration":"'+parameter2+'"}';
+        return '{"type":"'+type+'","originalContentUrl":"'+parameter1+'","duration":"'+parameter2+'"}';
       else if (type=="location")
-        var para='{"type":"'+type+'","title":"'+parameter1+'","address":"'+parameter2+'","latitude":"'+parameter3+'","longitude":"'+parameter4+'"}';
+        return '{"type":"'+type+'","title":"'+parameter1+'","address":"'+parameter2+'","latitude":"'+parameter3+'","longitude":"'+parameter4+'"}';
       else
         var para="";
     } else if (line=="notify") {
       if (type=="text")
-        var para='{"type":"'+type+'","text":"'+parameter1+'"}';
+        return '{"type":"'+type+'","text":"'+parameter1+'"}';
       else if (type=="sticker")
-        var para='{"type":"'+type+'","text":"'+parameter1+'","packageId":"'+parameter2+'","stickerId":"'+parameter3+'"}';
+        return '{"type":"'+type+'","text":"'+parameter1+'","packageId":"'+parameter2+'","stickerId":"'+parameter3+'"}';
       else if (type=="image")
-        var para='{"type":"'+type+'","text":"'+parameter1+'","originalContentUrl":"'+parameter2+'","previewImageUrl":"'+parameter3+'"}';
+        return '{"type":"'+type+'","text":"'+parameter1+'","originalContentUrl":"'+parameter2+'","previewImageUrl":"'+parameter3+'"}';
       else
-        var para="";
+        return "";
     }
-    return para;
   }
 
   window.linebot_push_message = linebot_push_message;
