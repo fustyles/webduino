@@ -7,13 +7,14 @@ function doGet(e) {
   var originalContentUrl = ((!e.parameter.originalContentUrl)?"":e.parameter.originalContentUrl);
   var previewImageUrl = ((!e.parameter.previewImageUrl)?"":e.parameter.previewImageUrl);
   
-  text = text.replace(/\<br\>/g,"\n").replace(/\<br\/\>/g,"\n").replace(/\<br \/\>/g,"\n").replace(/\<BR\>/g,"\n").replace(/\<BR\/\>/g,"\n").replace(/\<BR \/\>/g,"\n");
   type = type.replace(/\%27/g,"\'").replace(/\%22/g,"\"");  
   text = text.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
   packageId = packageId.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
   stickerId = stickerId.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
   originalContentUrl = originalContentUrl.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
   previewImageUrl = previewImageUrl.replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+  
+  text = text.replace(/\<br\>/g,"\n").replace(/\<br\/\>/g,"\n").replace(/\<br \/\>/g,"\n").replace(/\<BR\>/g,"\n").replace(/\<BR\/\>/g,"\n").replace(/\<BR \/\>/g,"\n");
   
   //console.log("token="+token);
   //console.log("type="+type);
