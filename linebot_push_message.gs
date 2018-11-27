@@ -111,8 +111,8 @@ function doGet(e) {
     });
   }    
   
-  // Send a push message
-  UrlFetchApp.fetch(url, {
+// Send a push message
+  var response = UrlFetchApp.fetch(url, {
     'headers': {
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer ' + token,
@@ -122,7 +122,7 @@ function doGet(e) {
   });  
   
   var result = JSON.stringify({
-    "Line Bot": type+" OK"
+    "LineBot": response.getContentText()
   });  
   
   return ContentService.createTextOutput("console.log(" + result + ")").setMimeType(ContentService.MimeType.JAVASCRIPT); 
