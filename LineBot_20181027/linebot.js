@@ -77,7 +77,7 @@
       else if (type=="location")
         return '{"type":"'+type+'","title":"'+parameter1+'","address":"'+parameter2+'","latitude":"'+parameter3+'","longitude":"'+parameter4+'"}';
       else
-        var para="";
+        return '';
     } else if (line=="notify") {
       if (type=="text")
         return '{"type":"'+type+'","text":"'+parameter1+'"}';
@@ -86,7 +86,7 @@
       else if (type=="image")
         return '{"type":"'+type+'","text":"'+parameter1+'","originalContentUrl":"'+parameter2+'","previewImageUrl":"'+parameter3+'"}';
       else
-        return "";
+        return '';
     }
   }
 
