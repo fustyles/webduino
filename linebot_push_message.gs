@@ -43,8 +43,6 @@ function doGet(e) {
   //console.log("latitude="+latitude);
   //console.log("longitude="+longitude);
   
-  var url = 'https://api.line.me/v2/bot/message/push';
-  
   if (type=="text") {
     if (text.indexOf("data:")==0) {
       text = text.replace(/\s+/g,"+");
@@ -111,7 +109,8 @@ function doGet(e) {
     });
   }    
   
-// Send a push message
+  // Send a push message
+  var url = 'https://api.line.me/v2/bot/message/push';
   var response = UrlFetchApp.fetch(url, {
     'headers': {
       'Content-Type': 'application/json; charset=UTF-8',
