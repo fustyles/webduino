@@ -44,10 +44,6 @@ function doGet(e) {
   //console.log("longitude="+longitude);
   
   if (type=="text") {
-    if (text.indexOf("data:")==0) {
-      text = text.replace(/\s+/g,"+");
-      text = "https://fustyles.github.io/webduino/LineControl_showimage.html?"+text;
-    }
     var payload= JSON.stringify({
       'to':  userid,
       'messages': [{
