@@ -1,6 +1,6 @@
 Blockly.Blocks['mutators_test'] = {
   init: function() {
-    this.appendValueInput("input_value0")
+    this.appendValueInput("input_value")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true, null);
@@ -30,105 +30,60 @@ Blockly.Blocks['mutators_test'] = {
     }
     return containerBlock;
   },
-  compose: function (containerBlock) {
-    if (this.getInput('notify_sendstkpkg')) 
-        this.removeInput("notify_sendstkpkg");
-    if (this.getInput('notify_sendstkid')) 
-	this.removeInput("notify_sendstkid");
-    if (this.getInput('notify_sendimg_s')) 
-	this.removeInput("notify_sendimg_s");
-    if (this.getInput('notify_sendimg')) 
-	this.removeInput("notify_sendimg");
-
-    this.sendstk_ = '0';
-    this.sendimg_ = '0';
-
-    var clauseBlock = containerBlock.getInputTargetBlock('STACK');
-    while (clauseBlock) {
-        if(clauseBlock.type=='linenotify_item_sendstk'){
-	    this.sendstk_ = '1';
-	    var input1 = this.appendValueInput("notify_sendstkpkg")
-		.setCheck("Number")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.LINEBot_Sendstk)
-		.appendField("STKPKGID :");
-	    var input2 = this.appendValueInput("notify_sendstkid")
-		.setCheck("Number")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField("STKID :");
-
-	    if (clauseBlock.Datastkpkg_ && clauseBlock.Datastkid_) {
-		input1.connection.connect(clauseBlock.Datastkpkg_);
-		input2.connection.connect(clauseBlock.Datastkid_);
-	    }
-        }
-        else if(clauseBlock.type=='linenotify_item_sendimg'){
-	    this.sendimg_ = '1';
-	    var input1 = this.appendValueInput("notify_sendimg_s")
-		.setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.LINEBot_Sendimg)
-		.appendField(Blockly.Msg.LINEBot_SendimgP);
-	    var input2 = this.appendValueInput("notify_sendimg")
-		.setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.LINEBot_SendimgO);
-
-	    if (clauseBlock.Dataimgs_ && clauseBlock.Dataimg_) {
-		input1.connection.connect(clauseBlock.Dataimgs_);
-		input2.connection.connect(clauseBlock.Dataimg_);
-	    }
-        }
-        clauseBlock = clauseBlock.nextConnection && clauseBlock.nextConnection.targetBlock();
+  compose: function(containerBlock) {
+    var itemBlock = containerBlock.getInputTargetBlock('STACK');
+    // Count number of inputs.
+    var connections = [];
+    while (itemBlock) {
+      connections.push(itemBlock.valueConnection_);
+      itemBlock = itemBlock.nextConnection &&
+          itemBlock.nextConnection.targetBlock();
+    }
+    // Disconnect any children that don't belong.
+    for (var i = 0; i < this.inputcount ; i++) {
+      var connection = this.getInput('input_value' + i).connection.targetConnection;
+      if (connection && connections.indexOf(connection) == -1) {
+        connection.disconnect();
+      }
+    }
+    this.inputcount = connections.length;
+    this.updateShape_();
+    // Reconnect any child blocks.
+    for (var i = 0; i < this.inputcount ; i++) {
+      Blockly.Mutator.reconnect(connections[i], this, 'input_value' + i);
     }
   },
-  saveConnections: function (containerBlock) {
-    var clauseBlock = containerBlock.getInputTargetBlock('STACK');
-    while (clauseBlock) {
-        var datastkpkg = this.getInput('notify_sendstkpkg');
-        var datastkid = this.getInput('notify_sendstkid');
-        var dataimgs = this.getInput('notify_sendimg_s');
-        var dataimg = this.getInput('notify_sendimg');
-
-        clauseBlock.Datastkpkg_ = datastkpkg && datastkpkg.connection.targetConnection;
-        clauseBlock.Datastkid_ = datastkid && datastkid.connection.targetConnection;
-        clauseBlock.Dataimgs_ = dataimgs && dataimgs.connection.targetConnection;
-        clauseBlock.Dataimg_ = dataimg && dataimg.connection.targetConnection;
-
-        clauseBlock = clauseBlock.nextConnection && clauseBlock.nextConnection.targetBlock();
+  saveConnections: function(containerBlock) {
+    var itemBlock = containerBlock.getInputTargetBlock('STACK');
+    var i = 0;
+    while (itemBlock) {
+      var input = this.getInput('input_value' + i);
+      itemBlock.valueConnection_ = input && input.connection.targetConnection;
+      i++;
+      itemBlock = itemBlock.nextConnection &&
+          itemBlock.nextConnection.targetBlock();
     }
   },
   updateShape_: function() {
-    if (this.getInput('notify_sendstkpkg')) 
-	this.removeInput("notify_sendstkpkg");
-    if (this.getInput('notify_sendstkid')) 
-	this.removeInput("notify_sendstkid");
-    if (this.getInput('notify_sendimg_s')) 
-	this.removeInput("notify_sendimg_s");
-    if (this.getInput('notify_sendimg')) 
-	this.removeInput("notify_sendimg");
-
-    if (this.sendstk_=='1') {
-	this.appendValueInput("notify_sendstkpkg")
-		.setCheck("Number")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.LINEBot_Sendstk)
-		.appendField("STKPKGID :");
-	this.appendValueInput("notify_sendstkid")
-		.setCheck("Number")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField("STKID :");
+    if (this.itemCount_ && this.getInput('EMPTY')) {
+      this.removeInput('EMPTY');
+    } else if (!this.itemCount_ && !this.getInput('EMPTY')) {
+      this.appendDummyInput('EMPTY')
+          .appendField("AAA");
     }
-    if (this.sendimg_=='1') {
-	this.appendValueInput("notify_sendimg_s")
-		.setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.LINEBot_Sendimg)
-		.appendField(Blockly.Msg.LINEBot_SendimgP);
-	this.appendValueInput("notify_sendimg")
-		.setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.LINEBot_SendimgO);
+    // Add new inputs.
+    for (var i = 0; i < this.inputcount ; i++) {
+      if (!this.getInput('input_value' + i)) {
+        var input = this.appendValueInput('input_value' + i);
+        if (i == 0) {
+          input.appendField("BBB");
+        }
+      }
+    }
+    // Remove deleted inputs.
+    while (this.getInput('input_value' + i)) {
+      this.removeInput('input_value' + i);
+      i++;
     }
   }
 };
