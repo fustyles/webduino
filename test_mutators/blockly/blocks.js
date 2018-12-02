@@ -3,8 +3,8 @@ Blockly.Blocks["mutators_test"] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(100);
-    this.inputcount = 1;
-    this.listcount = 
+    this.inputcount = 0;
+    this.listcount = 0;
     this.updateShape_();    
     this.setMutator(new Blockly.Mutator(['input_with_item','list_with_item']));
   },
