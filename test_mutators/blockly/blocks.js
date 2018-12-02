@@ -21,7 +21,7 @@ Blockly.Blocks["mutators_test"] = {
   decompose: function (workspace) {
     var containerBlock = workspace.newBlock('mutation_container');
     containerBlock.initSvg();
-    var connection = containerBlock.getInput('STACK').connection;
+    var connection = containerBlock.nextConnection;
     for (var i = 0; i < this.inputcount ; i++) {
       var itemBlock_input = workspace.newBlock('input_with_item');
       itemBlock_input.initSvg();
