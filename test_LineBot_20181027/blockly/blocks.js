@@ -165,7 +165,7 @@ Blockly.Blocks['linenotify_type'] = {
     this.appendDummyInput()
         .appendField("Line Notify    ")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(new Blockly.FieldDropdown([["text","text"], ["sticker","sticker"], ["image","image"]]), "value_type");
+        .appendField(new Blockly.FieldDropdown([["text","text"], ["sticker","sticker"], ["image","image"]],function(){this.onchange();}), "value_type");
     this.appendValueInput("value_parameter1")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -220,6 +220,6 @@ Blockly.Blocks['linenotify_type'] = {
   },
   domToMutation : function(xmlElement) {
     this.getField('value_type').setValue(xmlElement.getAttribute('value_type'));
-    this.onchange();
+    //this.onchange();
   }
 };
