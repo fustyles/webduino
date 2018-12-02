@@ -147,6 +147,7 @@ Blockly.Blocks["mutation_test"] = {
     console.log(this.list);
   },
   updateShape_: function() {
+    var tmp = this.list;
     console.log("updateShape");
     console.log(this.list);
     var i = 1;
@@ -159,6 +160,7 @@ Blockly.Blocks["mutation_test"] = {
       this.removeInput('list' + j);
       j++;
     }    
+    this.list = tmp;
     i=1;
     j=1;
     for (var k = 0; k < this.list.length; k++) {
