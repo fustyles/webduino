@@ -193,6 +193,8 @@ Blockly.Blocks['linenotify_type'] = {
         this.getField('p3').setVisible(false);
         this.getInput('value_parameter2').setVisible(false);
         this.getInput('value_parameter3').setVisible(false);
+        this.unplugBlock('value_parameter2');
+        this.unplugBlock('value_parameter3');
       } else if (this.getField('value_type').getValue() == "sticker") {
         this.getField('p1').setValue("text");
         this.getField('p2').setValue("packageId");
@@ -221,5 +223,14 @@ Blockly.Blocks['linenotify_type'] = {
   domToMutation : function(xmlElement) {
     this.getField('value_type').setValue(xmlElement.getAttribute('value_type'));
     this.onchange();
+  },
+  unplugBlock : function(id) {
+    if (this.childBlocks_.length > 0) {
+      for (var i = 0; i < this.childBlocks_.length; i++) {
+        if (this.childBlocks_[i].type == id) {
+          this.childBlocks_[i].unplug();
+        }
+      }
+    }
   }
 };
