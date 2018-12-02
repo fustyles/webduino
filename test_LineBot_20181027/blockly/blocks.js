@@ -184,7 +184,8 @@ Blockly.Blocks['linenotify_type'] = {
     this.setHelpUrl("");
   },
   onchange: function(event) {
-    if (event.type=="change") {
+    console.log(event);
+    //if (event.type=="change") {
       if (this.getField('value_type').getValue() == 'text') {
         this.getField('p1').setValue("text");
         this.getField('p2').setValue("");
@@ -212,7 +213,7 @@ Blockly.Blocks['linenotify_type'] = {
       }
       this.unplugBlock();  
       this.setOutput(true, null);
-    }
+    //}
   },
   mutationToDom : function() {
     var container = document.createElement('mutation');
