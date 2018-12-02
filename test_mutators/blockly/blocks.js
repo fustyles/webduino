@@ -4,7 +4,7 @@ Blockly.Blocks["mutators_test"] = {
     this.setNextStatement(true, null);
     this.setColour(100);
     this.setMutator(new Blockly.Mutator(['input_value_with_item']));
-    this.inputcount = ;
+    this.inputcount = 1;
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
@@ -66,7 +66,7 @@ Blockly.Blocks["mutators_test"] = {
       this.removeInput('EMPTY');
     } else if (!this.itemCount_ && !this.getInput('EMPTY')) {
       this.appendDummyInput('EMPTY')
-          .appendField("AAA");
+          .appendField("Mutator");
     }
     // Add new inputs.
     for (var i = 0; i < this.inputcount ; i++) {
