@@ -184,36 +184,35 @@ Blockly.Blocks['linenotify_type'] = {
     this.setHelpUrl("");
   },
   onchange: function(event) {
-    console.log(event);
-    //if (event.type=="change") {
-      if (this.getField('value_type').getValue() == 'text') {
-        this.getField('p1').setValue("text");
-        this.getField('p2').setValue("");
-        this.getField('p3').setValue("");
-        this.getField('p2').setVisible(false);
-        this.getField('p3').setVisible(false);     
-        this.getInput('value_parameter2').setVisible(false);
-        this.getInput('value_parameter3').setVisible(false);
-      } else if (this.getField('value_type').getValue() == "sticker") {
-        this.getField('p1').setValue("text");
-        this.getField('p2').setValue("packageId");
-        this.getField('p3').setValue("stickerId");
-        this.getField('p2').setVisible(true);
-        this.getField('p3').setVisible(true);
-        this.getInput('value_parameter2').setVisible(true);
-        this.getInput('value_parameter3').setVisible(true);
-      } else if (this.getField('value_type').getValue() == "image") {
-        this.getField('p1').setValue("text");
-        this.getField('p2').setValue("originalContentUrl");
-        this.getField('p3').setValue("previewImageUrl");
-        this.getField('p2').setVisible(true);
-        this.getField('p3').setVisible(true);
-        this.getInput('value_parameter2').setVisible(true);
-        this.getInput('value_parameter3').setVisible(true);
-      }
-      this.unplugBlock();  
-      this.setOutput(true, null);
-    //}
+    if (this.getField('value_type').getValue() == 'text') {
+      this.getField('p1').setValue("text");
+      this.getField('p2').setValue("");
+      this.getField('p3').setValue("");
+      this.getField('p2').setVisible(false);
+      this.getField('p3').setVisible(false);     
+      this.getInput('value_parameter2').setVisible(false);
+      this.getInput('value_parameter3').setVisible(false);
+      this.unplugBlock();
+    } else if (this.getField('value_type').getValue() == "sticker") {
+      this.getField('p1').setValue("text");
+      this.getField('p2').setValue("packageId");
+      this.getField('p3').setValue("stickerId");
+      this.getField('p2').setVisible(true);
+      this.getField('p3').setVisible(true);
+      this.getInput('value_parameter2').setVisible(true);
+      this.getInput('value_parameter3').setVisible(true);
+      this.unplugBlock();
+    } else if (this.getField('value_type').getValue() == "image") {
+      this.getField('p1').setValue("text");
+      this.getField('p2').setValue("originalContentUrl");
+      this.getField('p3').setValue("previewImageUrl");
+      this.getField('p2').setVisible(true);
+      this.getField('p3').setVisible(true);
+      this.getInput('value_parameter2').setVisible(true);
+      this.getInput('value_parameter3').setVisible(true);
+      this.unplugBlock();
+    }
+    this.setOutput(true, null);
   },
   mutationToDom : function() {
     var container = document.createElement('mutation');
