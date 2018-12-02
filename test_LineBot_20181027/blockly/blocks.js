@@ -25,7 +25,7 @@ Blockly.Blocks['linebot_type'] = {
     this.appendDummyInput()
         .appendField("Line Bot    ")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(new Blockly.FieldDropdown([["text","text"], ["sticker","sticker"], ["image","image"], ["video","video"], ["audio","audio"], ["location","location"]]), "value_type");
+        .appendField(new Blockly.FieldDropdown([["text","text"], ["sticker","sticker"], ["image","image"], ["video","video"], ["audio","audio"], ["location","location"]],function(){this.onchange();}), "value_type");
     this.appendValueInput("value_parameter1")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -138,7 +138,7 @@ Blockly.Blocks['linebot_type'] = {
   },
   domToMutation : function(xmlElement) {
     this.getField('value_type').setValue(xmlElement.getAttribute('value_type'));
-    this.onchange();
+    //this.onchange();
   }
 };
 
