@@ -1,26 +1,4 @@
 <category id="catDemoText">
-  <block type="demo_text_add">
-  </block>
-  <block type="demo_show_text"></block>
-  <block type="demo_text_size">
-    <value name="size_">
-      <block type="math_number">
-        <field name="NUM">20</field>
-      </block>
-    </value>
-  </block>
-  <block type="demo_text_lineheight">
-    <value name="lineheight_">
-      <block type="math_number">
-        <field name="NUM">20</field>
-      </block>
-    </value>
-  </block>
-  <block type="demo_text_color">
-    <value name="color_">
-      <block type="colour_picker">
-        <field name="COLOUR">#ff0000</field>
-      </block>
-    </value>
+  <block type="mutators_test">
   </block>
  </category>
