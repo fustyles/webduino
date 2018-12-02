@@ -1,4 +1,4 @@
-Blockly.JavaScript['demo_text_add'] = function(block) {
-  var code = 'createDemoText();\n';
+Blockly.JavaScript['mutators_test'] = function(block) {
+  var code = '';
   return code;
 };
