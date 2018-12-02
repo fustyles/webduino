@@ -20,7 +20,7 @@ Blockly.Blocks["mutators_test"] = {
     this.inputcount = parseInt(xmlElement.getAttribute('inputcount'), 10);
     this.listcount = parseInt(xmlElement.getAttribute('listcount'), 10);
     console.log(xmlElement.getAttribute('list'));
-    this.list = xmlElement.getAttribute('list');
+    this.list = xmlElement.getAttribute('list').split(",");
     this.updateShape_();
   },
   decompose: function (workspace) {
