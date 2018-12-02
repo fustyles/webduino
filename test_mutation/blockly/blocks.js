@@ -168,7 +168,7 @@ Blockly.Blocks["mutation_test"] = {
             .appendField('input' + i);
         i++;
       } else if (this.list[k]=="list") {
-        this.appendValueInput('list' + j)
+        this.appendStatementInput('list' + j)
             .appendField('list' + j);
         j++;
       }
