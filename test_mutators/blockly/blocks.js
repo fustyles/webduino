@@ -5,6 +5,7 @@ Blockly.Blocks["mutators_test"] = {
     this.setColour(100);
     this.inputcount = 0;
     this.listcount = 0;
+    this.list = [null];
     this.updateShape_();    
     this.setMutator(new Blockly.Mutator(['input_with_item','list_with_item']));
   },
@@ -49,10 +50,12 @@ Blockly.Blocks["mutators_test"] = {
       switch (clauseBlock.type) {
         case 'input_with_item':
           this.inputcount++;
+          this.list.push("input"+this.inputcount);
           inputConnections.push(clauseBlock.inputConnection_);
           break;
         case 'list_with_item':
           this.listcount++;
+          this.list.push("list"+this.listcount);
           listConnections.push(clauseBlock.listConnection_);
           break;
         default:
@@ -97,6 +100,7 @@ Blockly.Blocks["mutators_test"] = {
   },
   updateShape_: function() {
     // Delete everything.
+    console.log(this.list);
     var i = 1;
     while (this.getInput('input' + i)) {
       this.removeInput('input' + i);
