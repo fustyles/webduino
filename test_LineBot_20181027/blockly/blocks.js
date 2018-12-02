@@ -189,10 +189,10 @@ Blockly.Blocks['linenotify_type'] = {
       this.getField('p2').setValue("");
       this.getField('p3').setValue("");
       this.getField('p2').setVisible(false);
-      this.getField('p3').setVisible(false);     
+      this.getField('p3').setVisible(false);   
+      if (this.getInput('value_parameter2').getVisible==true) this.unplugBlock();
       this.getInput('value_parameter2').setVisible(false);
       this.getInput('value_parameter3').setVisible(false);
-      this.unplugBlock();
     } else if (this.getField('value_type').getValue() == "sticker") {
       this.getField('p1').setValue("text");
       this.getField('p2').setValue("packageId");
@@ -201,7 +201,6 @@ Blockly.Blocks['linenotify_type'] = {
       this.getField('p3').setVisible(true);
       this.getInput('value_parameter2').setVisible(true);
       this.getInput('value_parameter3').setVisible(true);
-      this.unplugBlock();
     } else if (this.getField('value_type').getValue() == "image") {
       this.getField('p1').setValue("text");
       this.getField('p2').setValue("originalContentUrl");
@@ -210,7 +209,6 @@ Blockly.Blocks['linenotify_type'] = {
       this.getField('p3').setVisible(true);
       this.getInput('value_parameter2').setVisible(true);
       this.getInput('value_parameter3').setVisible(true);
-      this.unplugBlock();
     }
     this.setOutput(true, null);
   },
