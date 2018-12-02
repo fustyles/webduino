@@ -223,12 +223,11 @@ Blockly.Blocks['linenotify_type'] = {
     this.onchange();
   },
   unplugBlock : function() {
-    console.log(this.childBlocks_.length);
     if (this.childBlocks_.length > 0) {
       for (var i = 0; i < this.childBlocks_.length; i++) {
         if (this.childBlocks_[i].type == 'text') {
+          console.log(i);
           this.childBlocks_[i].unplug();
-          console.log("OK");
         }
       }
     }
