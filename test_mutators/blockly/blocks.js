@@ -1,3 +1,48 @@
+
+Blockly.Blocks["mutation_container"] = {
+  /**
+   * Mutator block for list container.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setColour(Blockly.Blocks.lists.HUE);
+    this.appendDummyInput()
+        .appendField("Mutator_Sub");
+    this.appendStatementInput('STACK');
+    this.contextMenu = false;
+  }
+};
+
+Blockly.Blocks["input_with_item"] = {
+  /**
+   * Mutator bolck for adding items.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setColour(Blockly.Blocks.lists.HUE);
+    this.appendDummyInput()
+        .appendField("Input");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.contextMenu = false;
+  }
+};
+
+Blockly.Blocks["list_with_item"] = {
+  /**
+   * Mutator bolck for adding items.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setColour(Blockly.Blocks.lists.HUE);
+    this.appendDummyInput()
+        .appendField("List");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.contextMenu = false;
+  }
+};
+
 Blockly.Blocks["mutators_test"] = {
   init: function() {
     this.setPreviousStatement(true, null);
@@ -128,49 +173,5 @@ Blockly.Blocks["mutators_test"] = {
         j++;
       }
     }
-  }
-};
-
-Blockly.Blocks["mutation_container"] = {
-  /**
-   * Mutator block for list container.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.setColour(Blockly.Blocks.lists.HUE);
-    this.appendDummyInput()
-        .appendField("Mutator_Sub");
-    this.appendStatementInput('STACK');
-    this.contextMenu = false;
-  }
-};
-
-Blockly.Blocks["input_with_item"] = {
-  /**
-   * Mutator bolck for adding items.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.setColour(Blockly.Blocks.lists.HUE);
-    this.appendDummyInput()
-        .appendField("Input");
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.contextMenu = false;
-  }
-};
-
-Blockly.Blocks["list_with_item"] = {
-  /**
-   * Mutator bolck for adding items.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.setColour(Blockly.Blocks.lists.HUE);
-    this.appendDummyInput()
-        .appendField("List");
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.contextMenu = false;
   }
 };
