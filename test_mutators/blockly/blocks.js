@@ -19,8 +19,8 @@ Blockly.Blocks["mutators_test"] = {
   domToMutation: function (xmlElement) {
     this.inputcount = parseInt(xmlElement.getAttribute('inputcount'), 10);
     this.listcount = parseInt(xmlElement.getAttribute('listcount'), 10);
-    console.log(xmlElement.getAttribute('listcount'));
-    this.list = xmlElement.getAttribute('listcount');
+    console.log(xmlElement.getAttribute('list'));
+    this.list = xmlElement.getAttribute('list');
     this.updateShape_();
   },
   decompose: function (workspace) {
