@@ -130,7 +130,7 @@ Blockly.Blocks["input_value_with_container"] = {
   }
 };
 
-Blockly.Blocks["input_value_with_item"] = {
+Blockly.Blocks["input_with_item"] = {
   /**
    * Mutator bolck for adding items.
    * @this Blockly.Block
