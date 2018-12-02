@@ -105,12 +105,19 @@ Blockly.Blocks["mutation_test"] = {
     }
     this.updateShape_();
     
-    for (var i = 1; i <= this.inputcount; i++) {
-      Blockly.Mutator.reconnect(inputConnections[i], this, 'input' + i);
+    var i=1;
+    var j=1;
+    for (var k = 1; k <= this.list.length; k++) {
+      if (this.list[k-1]=="input") {
+        Blockly.Mutator.reconnect(inputConnections[k], this, 'input' + i);
+        i++;
+      } else if (this.list[k-1]=="list") {
+        Blockly.Mutator.reconnect(listConnections[k], this, 'list' + j);
+        j++;
+      }
     }
-    for (var j = 1; j <= this.listcount; j++) {
-      Blockly.Mutator.reconnect(listConnections[j], this, 'list' + j);
-    }
+    
+    
     console.log("compose");
     console.log(this.list);
   },
