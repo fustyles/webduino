@@ -44,6 +44,7 @@ Blockly.Blocks["mutators_test"] = {
     // Count number of inputs.
     this.inputcount = 0;
     this.listcount = 0;
+    this.list = [null];
     var inputConnections = [null];
     var listConnections = [null];
     while (clauseBlock) {
