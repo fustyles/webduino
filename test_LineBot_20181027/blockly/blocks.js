@@ -191,10 +191,10 @@ Blockly.Blocks['linenotify_type'] = {
         this.getField('p3').setValue("");
         this.getField('p2').setVisible(false);
         this.getField('p3').setVisible(false);
+        this.unplugBlock('value_parameter2');
+        this.unplugBlock('value_parameter3');        
         this.getInput('value_parameter2').setVisible(false);
         this.getInput('value_parameter3').setVisible(false);
-        this.unplugBlock('value_parameter2');
-        this.unplugBlock('value_parameter3');
       } else if (this.getField('value_type').getValue() == "sticker") {
         this.getField('p1').setValue("text");
         this.getField('p2').setValue("packageId");
