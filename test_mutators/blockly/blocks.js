@@ -33,7 +33,7 @@ Blockly.Blocks["mutators_test"] = {
       var itemBlock_list = workspace.newBlock('list_with_item');
       itemBlock_list.initSvg();
       connection.connect(itemBlock_list.previousConnection);
-      if (j < this.listcount-1) connection = itemBlock_list.nextConnection;
+      connection = itemBlock_list.nextConnection;
     }    
     return containerBlock;
   },
