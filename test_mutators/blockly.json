@@ -1,12 +1,12 @@
 {
-  "types": ["demo_text_add"],
+  "types": ["mutators_test"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "demotext.js"    
+    "mutatorst.js"    
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
