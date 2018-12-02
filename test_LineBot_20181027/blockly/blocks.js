@@ -210,9 +210,8 @@ Blockly.Blocks['linenotify_type'] = {
         this.getInput('value_parameter2').setVisible(true);
         this.getInput('value_parameter3').setVisible(true);
       }
-      //this.setOutput(true, null);
-      this.unplugBlock();   
-      Blockly.fireUiEvent(window, 'resize');
+      this.unplugBlock();  
+      this.setOutput(true, null);
     //}
   },
   mutationToDom : function() {
@@ -228,7 +227,6 @@ Blockly.Blocks['linenotify_type'] = {
     console.log(this.childBlocks_.length);
     if (this.childBlocks_.length > 0) {
       for (var i = 0; i < this.childBlocks_.length; i++) {
-        console.log(this.childBlocks_[i].type);
         if (this.childBlocks_[i].type == 'text') {
           this.childBlocks_[i].unplug();
           console.log("OK");
