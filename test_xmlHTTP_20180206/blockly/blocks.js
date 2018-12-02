@@ -46,8 +46,7 @@ Blockly.Blocks['en'] = {
   updateShape_: function(pxchecked) {
     // Add or remove a Value Input.
     if (pxchecked) {
-      this.appendValueInput("PX")
-          .setCheck(Number);
+      this.appendValueInput("PX");
     } else {
       if (this.childBlocks_.length > 0) {
         for (var i = 0; i < this.childBlocks_.length; i++) {
