@@ -1,4 +1,4 @@
 <category id="catxmlHTTPResponseData">
-  <block type="controls_if">
+  <block type="test">
   </block>  
  </category>
