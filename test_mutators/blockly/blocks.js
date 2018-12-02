@@ -73,6 +73,7 @@ Blockly.Blocks["mutators_test"] = {
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
     var i = 1;
+    var j = 1;
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'input_with_item':
@@ -82,9 +83,10 @@ Blockly.Blocks["mutators_test"] = {
           i++;
           break;
         case 'list_with_item':
-          var list = this.getInput('list' + i);
+          var list = this.getInput('list' + j);
           clauseBlock.listConnection_ =
               list && list.connection.targetConnection;
+          j++;
           break;
         default:
           throw TypeError('Unknown block type: ' + clauseBlock.type);
