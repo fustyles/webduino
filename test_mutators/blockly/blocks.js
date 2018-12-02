@@ -1,13 +1,10 @@
 Blockly.Blocks['mutators_test'] = {
   init: function() {
-    this.appendValueInput("input_value")
-        .setCheck("String")
-        .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(100);
     this.setMutator(new Blockly.Mutator(['input_value_with_item']));
-    this.inputcount = '0';
+    this.inputcount = 1;
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
