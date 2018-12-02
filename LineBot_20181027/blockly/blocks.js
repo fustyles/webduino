@@ -146,9 +146,8 @@ Blockly.Blocks['linebot_type'] = {
     this.onchange();
   },
   unplugBlock : function() {
-    if (this.childBlocks_.length > 0) {
-      for (var i = (this.childBlocks_.length-1) ; i >=0 ; i--)
-        this.childBlocks_[i].unplug();
+    while (this.childBlocks_.length > 0) {
+        this.childBlocks_[this.childBlocks_.length-1].unplug();
     }
   }
 };
@@ -233,9 +232,8 @@ Blockly.Blocks['linenotify_type'] = {
     this.onchange();
   },
   unplugBlock : function() {
-    if (this.childBlocks_.length > 0) {
-      for (var i = (this.childBlocks_.length-1) ; i >=0 ; i--)
-        this.childBlocks_[i].unplug();
+    while (this.childBlocks_.length > 0) {
+        this.childBlocks_[this.childBlocks_.length-1].unplug();
     }
   }
 };
