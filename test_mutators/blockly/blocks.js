@@ -91,7 +91,7 @@ Blockly.Blocks["input_value_with_container"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
-        .appendField("CCC");
+        .appendField("Mutator_Sub");
     this.appendStatementInput('STACK');
     this.contextMenu = false;
   }
@@ -105,7 +105,7 @@ Blockly.Blocks["input_value_with_item"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
-        .appendField("DDD");
+        .appendField("Input_value");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.contextMenu = false;
