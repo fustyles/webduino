@@ -1,5 +1,5 @@
 {
-  "types": ["xmlHTTP_ResponseData"],
+  "types": ["en"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
