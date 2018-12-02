@@ -108,11 +108,11 @@ Blockly.Blocks["mutators_test"] = {
       j++;
     }    
     // Rebuild block.
-    for (var i = 1; i <= this.inputcount_; i++) {
+    for (var i = 1; i <= this.inputcount; i++) {
       this.appendValueInput('input' + i)
           .appendField("AAA");
     }
-    for (var j = 1; j <= this.listcount_; j++) {
+    for (var j = 1; j <= this.listcount; j++) {
       this.appendField(new Blockly.FieldDropdown([["text","text"], ["sticker","sticker"]]), "type"+j)
           .appendField("BBB");
     }
