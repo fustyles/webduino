@@ -116,7 +116,7 @@ Blockly.Blocks["mutators_test"] = {
   }
 };
 
-Blockly.Blocks["input_with_container"] = {
+Blockly.Blocks["mutation_container"] = {
   /**
    * Mutator block for list container.
    * @this Blockly.Block
