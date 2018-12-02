@@ -1,5 +1,5 @@
 {
-  "types": ["controls_if"],
+  "types": ["test"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
