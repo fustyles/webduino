@@ -190,9 +190,7 @@ Blockly.Blocks['linenotify_type'] = {
         this.getField('p2').setValue("");
         this.getField('p3').setValue("");
         this.getField('p2').setVisible(false);
-        this.getField('p3').setVisible(false);
-        this.unplugBlock('value_parameter2');
-        this.unplugBlock('value_parameter3');        
+        this.getField('p3').setVisible(false);     
         this.getInput('value_parameter2').setVisible(false);
         this.getInput('value_parameter3').setVisible(false);
       } else if (this.getField('value_type').getValue() == "sticker") {
@@ -212,7 +210,8 @@ Blockly.Blocks['linenotify_type'] = {
         this.getInput('value_parameter2').setVisible(true);
         this.getInput('value_parameter3').setVisible(true);
       }
-      this.setOutput(true, null);
+      //this.setOutput(true, null);
+      this.unplugBlock();   
     //}
   },
   mutationToDom : function() {
@@ -224,7 +223,7 @@ Blockly.Blocks['linenotify_type'] = {
     this.getField('value_type').setValue(xmlElement.getAttribute('value_type'));
     this.onchange();
   },
-  unplugBlock : function(id) {
+  unplugBlock : function() {
     console.log(id);
     console.log(this.type);
     console.log(this.childBlocks_.length);
