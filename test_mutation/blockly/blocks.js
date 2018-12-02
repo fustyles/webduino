@@ -72,6 +72,8 @@ Blockly.Blocks["mutation_test"] = {
       connection.connect(itemBlock_list.previousConnection);
       connection = itemBlock_list.nextConnection;
     } 
+    console.log("decompose");
+    console.log(this.list);
     return containerBlock;
   },
   compose: function(containerBlock) {
@@ -117,7 +119,8 @@ Blockly.Blocks["mutation_test"] = {
         j++;
       }
     }
-    
+    console.log("compose");
+    console.log(this.list);
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
@@ -143,6 +146,8 @@ Blockly.Blocks["mutation_test"] = {
       clauseBlock = clauseBlock.nextConnection &&
           clauseBlock.nextConnection.targetBlock();
     }
+    console.log("saveConnections");
+    console.log(this.list);
   },
   updateShape_: function() {
     // Delete everything.
@@ -170,5 +175,7 @@ Blockly.Blocks["mutation_test"] = {
         j++;
       }
     }
+    console.log("updateShape");
+    console.log(this.list);
   }
 };
