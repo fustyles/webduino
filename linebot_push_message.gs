@@ -106,18 +106,24 @@ function doGet(e) {
   }    
   
   // Send a push message
-  var url = 'https://api.line.me/v2/bot/message/push';
-  var response = UrlFetchApp.fetch(url, {
-    'headers': {
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer ' + token,
-    },
-    'method': 'post',
-    'payload': payload
-  });  
+  var res = "";
+  try {
+    var url = 'https://api.line.me/v2/bot/message/push';
+    var response = UrlFetchApp.fetch(url, {
+      'headers': {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer ' + token,
+      },
+      'method': 'post',
+      'payload': payload
+    });  
+  } catch(error) {
+    res = error;
+  }   
   
+  if (res=="") res = type + " OK";
   var result = JSON.stringify({
-    "LineBot": type + " OK"
+    "LineBot": res
   });  
   return ContentService.createTextOutput("console.log(" + result + ")").setMimeType(ContentService.MimeType.JAVASCRIPT); 
 }
