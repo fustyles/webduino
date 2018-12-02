@@ -63,10 +63,10 @@ Blockly.Blocks["mutators_test"] = {
     }
     this.updateShape_();
     
-    for (var i = 1; i <= this.inputcount_; i++) {
+    for (var i = 1; i <= this.inputcount; i++) {
       Blockly.Mutator.reconnect(inputConnections[i], this, 'input' + i);
     }
-    for (var j = 1; j <= this.listcount_; j++) {
+    for (var j = 1; j <= this.listcount; j++) {
       Blockly.Mutator.reconnect(listConnections[j], this, 'list' + j);
     }
   },
