@@ -25,23 +25,29 @@ function doGet(e) {
   //console.log("previewImageUrl="+previewImageUrl);
   
   // Send a push message
-  var url = 'https://notify-api.line.me/api/notify';
-  var response = UrlFetchApp.fetch(url, {
-    'headers': {
-      'Authorization': 'Bearer ' + token,
-    },
-    'method': 'post',
-    'payload': {
-        'message':text + ' ',
-        'imageThumbnail':previewImageUrl,
-        'imageFullsize':originalContentUrl,
-        'stickerPackageId':packageId,
-        'stickerId':stickerId
-    }
-  });
-
+  var res = "";
+  try {
+    var url = 'https://notify-api.line.me/api/notify';
+    var response = UrlFetchApp.fetch(url, {
+      'headers': {
+        'Authorization': 'Bearer ' + token,
+      },
+      'method': 'post',
+      'payload': {
+          'message':text + ' ',
+          'imageThumbnail':previewImageUrl,
+          'imageFullsize':originalContentUrl,
+          'stickerPackageId':packageId,
+          'stickerId':stickerId
+      }
+    });
+  } catch(error) {
+    res = error;
+  } 
+  
+  if (res=="") res = response.getContentText();
   var result = JSON.stringify({
-    "LineNotify": response.getContentText()
+    "LineNotify": res
   });  
   return ContentService.createTextOutput("console.log(" + result + ")").setMimeType(ContentService.MimeType.JAVASCRIPT);  
 }
