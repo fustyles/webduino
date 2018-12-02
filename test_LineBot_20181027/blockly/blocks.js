@@ -230,6 +230,7 @@ Blockly.Blocks['linenotify_type'] = {
     console.log(this.childBlocks_.length);
     if (this.childBlocks_.length > 0) {
       for (var i = 0; i < this.childBlocks_.length; i++) {
+        console.log(this.childBlocks_[i].type);
         if (this.childBlocks_[i].type == id) {
           this.childBlocks_[i].unplug();
           console.log(this.childBlocks_[i].type);
