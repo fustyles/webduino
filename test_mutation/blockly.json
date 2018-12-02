@@ -1,5 +1,5 @@
 {
-  "types": ["mutators_test"],
+  "types": ["mutation_test"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
