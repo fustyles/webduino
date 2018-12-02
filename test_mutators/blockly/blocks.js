@@ -1,31 +1,21 @@
 Blockly.Blocks['mutators_test'] = {
   init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.LINENotify_Set)
-        .appendField(new Blockly.FieldVariable("linenotify"), "name_");
-    this.appendValueInput("notify_sendmsg")
+    this.appendValueInput("input_value1")
         .setCheck("String")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.LINEBot_Sendmsg);
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(60);
-    this.setTooltip("");
-    this.setHelpUrl("https://buberhu.blogspot.com/2018/10/webduinolineline-notify.html");
-    this.setMutator(new Blockly.Mutator(['linenotify_item_sendstk','linenotify_item_sendimg'])); //add setMutator
-
-    this.sendstk_ = '0';
-    this.sendimg_ = '0';
+    this.setColour(100);
+    this.setMutator(new Blockly.Mutator(['input_value']));
+    this.inputcount = '0';
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
-	container.setAttribute('sendstk', this.sendstk_);
-	container.setAttribute('sendimg', this.sendimg_);
+    container.setAttribute('inputcount', this.inputcount);
     return container;
   },
   domToMutation: function (xmlElement) {
-    this.sendstk_ = xmlElement.getAttribute('sendstk');
-    this.sendimg_ = xmlElement.getAttribute('sendimg');
+    this.inputcount = xmlElement.getAttribute('inputcount');
     this.updateShape_();
   },
   decompose: function (workspace) {
