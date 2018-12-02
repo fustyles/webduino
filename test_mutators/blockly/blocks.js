@@ -51,12 +51,12 @@ Blockly.Blocks["mutators_test"] = {
       switch (clauseBlock.type) {
         case 'input_with_item':
           this.inputcount++;
-          this.list.push("input"+this.inputcount);
+          this.list.push("input");
           inputConnections.push(clauseBlock.inputConnection_);
           break;
         case 'list_with_item':
           this.listcount++;
-          this.list.push("list"+this.listcount);
+          this.list.push("list");
           listConnections.push(clauseBlock.listConnection_);
           break;
         default:
@@ -101,27 +101,30 @@ Blockly.Blocks["mutators_test"] = {
   },
   updateShape_: function() {
     // Delete everything.
-    console.log(this.list);
     var i = 1;
     while (this.getInput('input' + i)) {
       this.removeInput('input' + i);
       i++;
     }
     var j = 1;
-    while (this.getInput('list' + j)) {
-      this.removeInput('list' + j);
+    while (this.getField('list' + j)) {
+      this.removeField('list' + j);
       j++;
     }    
     // Rebuild block.
-    console.log(this.inputcount);
-    for (var i = 1; i <= this.inputcount; i++) {
-      this.appendValueInput('input' + i)
-          .appendField('input' + i);
-    }
-    console.log(this.listcount);
-    for (var j = 1; j <= this.listcount; j++) {
-      this.appendValueInput('list' + j)
-          .appendField('list' + j);
+    console.log(this.list);
+    i=1;
+    j=1;
+    for (var k = 0; k < this.list.length; k++) {
+      if (this.list[k]=="input") {
+        this.appendValueInput('input' + i)
+            .appendField('input' + i);
+        i++;
+      } else if (this.list[k]=="list") {
+        this.appendValueInput('list' + j)
+            .appendField('list' + j);
+        j++;
+      }
     }
   }
 };
