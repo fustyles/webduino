@@ -1,4 +1,4 @@
-Blockly.Blocks['mutators_test'] = {
+Blockly.Blocks["mutators_test"] = {
   init: function() {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -85,7 +85,7 @@ Blockly.Blocks['mutators_test'] = {
   }
 };
 
-Blockly.Blocks['input_value_with_container'] = {
+Blockly.Blocks["input_value_with_container"] = {
   /**
    * Mutator block for list container.
    * @this Blockly.Block
