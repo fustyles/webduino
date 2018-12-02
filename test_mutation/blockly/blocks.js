@@ -43,7 +43,7 @@ Blockly.Blocks["list_with_item"] = {
   }
 };
 
-Blockly.Blocks["mutators_test"] = {
+Blockly.Blocks["mutation_test"] = {
   init: function() {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
