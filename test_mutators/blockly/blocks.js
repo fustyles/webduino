@@ -35,9 +35,6 @@ Blockly.Blocks["mutators_test"] = {
       connection.connect(itemBlock_list.previousConnection);
       connection = itemBlock_list.nextConnection;
     }    
-    console.log("decompose");
-    console.log(this.inputcount);
-    console.log(this.listcount);
     return containerBlock;
   },
   compose: function(containerBlock) {
@@ -72,10 +69,6 @@ Blockly.Blocks["mutators_test"] = {
     for (var j = 1; j <= this.listcount; j++) {
       Blockly.Mutator.reconnect(listConnections[j], this, 'list' + j);
     }
-    
-    console.log("compose");
-    console.log(this.inputcount);
-    console.log(this.listcount);
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
@@ -101,9 +94,6 @@ Blockly.Blocks["mutators_test"] = {
       clauseBlock = clauseBlock.nextConnection &&
           clauseBlock.nextConnection.targetBlock();
     }
-    console.log("saveConnection");
-    console.log(this.inputcount);
-    console.log(this.listcount);
   },
   updateShape_: function() {
     // Delete everything.
@@ -128,9 +118,6 @@ Blockly.Blocks["mutators_test"] = {
       this.appendValueInput('list' + j)
           .appendField('list' + j);
     }
-    console.log("updateShape");
-    console.log(this.inputcount);
-    console.log(this.listcount);
   }
 };
 
