@@ -212,6 +212,7 @@ Blockly.Blocks['linenotify_type'] = {
       }
       //this.setOutput(true, null);
       this.unplugBlock();   
+      Blockly.fireUiEvent(window, 'resize');
     //}
   },
   mutationToDom : function() {
