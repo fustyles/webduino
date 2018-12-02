@@ -190,7 +190,7 @@ Blockly.Blocks['linenotify_type'] = {
       this.getField('p3').setValue("");
       this.getField('p2').setVisible(false);
       this.getField('p3').setVisible(false);   
-      if (this.getInput('value_parameter2').isVisible==true) this.unplugBlock();
+      if (this.getInput('value_parameter2').isVisible==true||this.getInput('value_parameter3').isVisible==true) this.unplugBlock();
       this.getInput('value_parameter2').setVisible(false);
       this.getInput('value_parameter3').setVisible(false);
     } else if (this.getField('value_type').getValue() == "sticker") {
