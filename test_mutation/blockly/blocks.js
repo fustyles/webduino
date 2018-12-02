@@ -79,7 +79,6 @@ Blockly.Blocks["mutation_test"] = {
   compose: function(containerBlock) {
     
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
-    // Count number of inputs.
     this.inputcount = 0;
     this.listcount = 0;
     this.list = [];
@@ -148,7 +147,8 @@ Blockly.Blocks["mutation_test"] = {
     console.log(this.list);
   },
   updateShape_: function() {
-    // Delete everything.
+    console.log("updateShape");
+    console.log(this.list);
     var i = 1;
     while (this.getInput('input' + i)) {
       this.removeInput('input' + i);
@@ -159,7 +159,6 @@ Blockly.Blocks["mutation_test"] = {
       this.removeInput('list' + j);
       j++;
     }    
-    // Rebuild block.
     i=1;
     j=1;
     for (var k = 0; k < this.list.length; k++) {
