@@ -107,8 +107,8 @@ Blockly.Blocks["mutators_test"] = {
       i++;
     }
     var j = 1;
-    while (this.getField('list' + j)) {
-      this.removeField('list' + j);
+    while (this.getInput('list' + j)) {
+      this.removeInput('list' + j);
       j++;
     }    
     // Rebuild block.
