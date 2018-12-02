@@ -1,1 +1,0 @@
-Blockly.Msg.XMLHTTP_RESPONSEDATA = "XMLHTTP 取得回應資料";
