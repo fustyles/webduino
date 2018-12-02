@@ -101,6 +101,7 @@ Blockly.Blocks["mutation_test"] = {
       clauseBlock = clauseBlock.nextConnection &&
           clauseBlock.nextConnection.targetBlock();
     }
+    console.log(this.list);
     
     this.updateShape_();
     
