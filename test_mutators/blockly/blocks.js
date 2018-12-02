@@ -39,7 +39,7 @@ Blockly.Blocks["mutators_test"] = {
   },
   compose: function(containerBlock) {
     
-    var clauseBlock = containerBlock.getInput('STACK');
+    var clauseBlock = containerBlock.getInputTargetBlock('STACK');
     // Count number of inputs.
     this.inputcount_ = 0;
     this.listcount_ = 0;
@@ -71,7 +71,7 @@ Blockly.Blocks["mutators_test"] = {
     }
   },
   saveConnections: function(containerBlock) {
-    var clauseBlock = containerBlock.getInput('STACK');
+    var clauseBlock = containerBlock.getInputTargetBlock('STACK');
     var i = 1;
     while (clauseBlock) {
       switch (clauseBlock.type) {
