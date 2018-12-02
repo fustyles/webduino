@@ -73,21 +73,6 @@ Blockly.Blocks["mutation_test"] = {
         connection = itemBlock_list.nextConnection;
       }
     }
-    
-    /*
-    for (var i = 0; i < this.inputcount ; i++) {
-      var itemBlock_input = workspace.newBlock('input_with_item');
-      itemBlock_input.initSvg();
-      connection.connect(itemBlock_input.previousConnection);
-      connection = itemBlock_input.nextConnection;
-    }
-    for (var j = 0; j < this.listcount ; j++) {
-      var itemBlock_list = workspace.newBlock('list_with_item');
-      itemBlock_list.initSvg();
-      connection.connect(itemBlock_list.previousConnection);
-      connection = itemBlock_list.nextConnection;
-    } 
-    */
     return containerBlock;
   },
   compose: function(containerBlock) {
