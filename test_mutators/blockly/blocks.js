@@ -3,8 +3,9 @@ Blockly.Blocks["mutators_test"] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(100);
-    this.setMutator(new Blockly.Mutator(['input_value_with_item']));
     this.inputcount = 1;
+    this.updateShape_();    
+    this.setMutator(new Blockly.Mutator(['input_value_with_item']));
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
