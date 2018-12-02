@@ -102,14 +102,15 @@ Blockly.Blocks["mutation_test"] = {
     
     this.updateShape_();
     
-    if (this.inputcount>0) {
-      for (var i = 1; i <= this.inputcount; i++)
-          Blockly.Mutator.reconnect(inputConnections[i], this, 'input' + i);
-    }
     if (this.listcount>0) {
       for (var j = 1; j <= this.listcount; j++)
           Blockly.Mutator.reconnect(listConnections[j], this, 'list' + j);
     }
+    if (this.inputcount>0) {
+      for (var i = 1; i <= this.inputcount; i++)
+          Blockly.Mutator.reconnect(inputConnections[i], this, 'input' + i);
+    }
+
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
