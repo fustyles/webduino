@@ -25,7 +25,7 @@ Blockly.Blocks['linebot_type'] = {
     this.appendDummyInput()
         .appendField("Line Bot    ")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(new Blockly.FieldDropdown([["text","text"], ["sticker","sticker"], ["image","image"], ["video","video"], ["audio","audio"], ["location","location"]],function(){this.onchange();}), "value_type");
+        .appendField(new Blockly.FieldDropdown([["text","text"], ["sticker","sticker"], ["image","image"], ["video","video"], ["audio","audio"], ["location","location"]],function(){onchange();}), "value_type");
     this.appendValueInput("value_parameter1")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -165,7 +165,7 @@ Blockly.Blocks['linenotify_type'] = {
     this.appendDummyInput()
         .appendField("Line Notify    ")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(new Blockly.FieldDropdown([["text","text"], ["sticker","sticker"], ["image","image"]],function(){this.onchange();}), "value_type");
+        .appendField(new Blockly.FieldDropdown([["text","text"], ["sticker","sticker"], ["image","image"]],function(){onchange();}), "value_type");
     this.appendValueInput("value_parameter1")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
