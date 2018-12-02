@@ -1,12 +1,12 @@
 Blockly.Blocks['mutators_test'] = {
   init: function() {
-    this.appendValueInput("input_value1")
+    this.appendValueInput("input_value0")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(100);
-    this.setMutator(new Blockly.Mutator(['input_value']));
+    this.setMutator(new Blockly.Mutator(['input_value_with_item']));
     this.inputcount = '0';
   },
   mutationToDom: function (workspace) {
@@ -15,24 +15,18 @@ Blockly.Blocks['mutators_test'] = {
     return container;
   },
   domToMutation: function (xmlElement) {
-    this.inputcount = xmlElement.getAttribute('inputcount');
+    this.inputcount = parseInt(xmlElement.getAttribute('inputcount'), 10);
     this.updateShape_();
   },
   decompose: function (workspace) {
-    var containerBlock = workspace.newBlock('linenotify_item_container');
+    var containerBlock = workspace.newBlock('input_value_with_container');
     containerBlock.initSvg();
-
     var connection = containerBlock.getInput('STACK').connection;
-
-    if (this.sendstk_=='1') {
-        var stkBlock = workspace.newBlock('linenotify_item_sendstk');
-	stkBlock.initSvg();
-	connection.connect(stkBlock.previousConnection);
-    }
-    if (this.sendimg_=='1') {
-	var imgBlock = workspace.newBlock('linenotify_item_sendimg');
-	imgBlock.initSvg();
-	connection.connect(imgBlock.previousConnection);
+    for (var i = 0; i < this.inputcount ; i++) {
+      var itemBlock = workspace.newBlock('input_value_with_item');
+      itemBlock.initSvg();
+      connection.connect(itemBlock.previousConnection);
+      connection = itemBlock.nextConnection;
     }
     return containerBlock;
   },
