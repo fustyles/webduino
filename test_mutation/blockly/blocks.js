@@ -59,6 +59,22 @@ Blockly.Blocks["mutation_test"] = {
     var containerBlock = workspace.newBlock('mutation_container');
     containerBlock.initSvg();
     var connection = containerBlock.getInput('STACK').connection;
+    
+    for (var k = 0; k < this.list.length; k++) {
+      if (this.list[k]=="input") {
+        var itemBlock_input = workspace.newBlock('input_with_item');
+        itemBlock_input.initSvg();
+        connection.connect(itemBlock_input.previousConnection);
+        connection = itemBlock_input.nextConnection;
+      } else if (this.list[k]=="list") {
+        var itemBlock_list = workspace.newBlock('list_with_item');
+        itemBlock_list.initSvg();
+        connection.connect(itemBlock_list.previousConnection);
+        connection = itemBlock_list.nextConnection;
+      }
+    }
+    
+    /*
     for (var i = 0; i < this.inputcount ; i++) {
       var itemBlock_input = workspace.newBlock('input_with_item');
       itemBlock_input.initSvg();
@@ -71,6 +87,7 @@ Blockly.Blocks["mutation_test"] = {
       connection.connect(itemBlock_list.previousConnection);
       connection = itemBlock_list.nextConnection;
     } 
+    */
     return containerBlock;
   },
   compose: function(containerBlock) {
@@ -102,15 +119,14 @@ Blockly.Blocks["mutation_test"] = {
     
     this.updateShape_();
     
-    if (this.listcount>0) {
-      for (var j = 1; j <= this.listcount; j++)
-          Blockly.Mutator.reconnect(listConnections[j], this, 'list' + j);
-    }
     if (this.inputcount>0) {
       for (var i = 1; i <= this.inputcount; i++)
           Blockly.Mutator.reconnect(inputConnections[i], this, 'input' + i);
     }
-
+    if (this.listcount>0) {
+      for (var j = 1; j <= this.listcount; j++)
+          Blockly.Mutator.reconnect(listConnections[j], this, 'list' + j);
+    }
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
