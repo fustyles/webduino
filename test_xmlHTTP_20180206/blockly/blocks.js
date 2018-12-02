@@ -3,16 +3,13 @@
 //**************************************************************************
 Blockly.Blocks['en'] = {
   init: function() {
-    var checkbox = new Blockly.FieldCheckbox("TRUE", function(pxchecked) {
-      this.sourceBlock_.updateShape_(pxchecked);
-    });
     this.setInputsInline(false);
     this.appendDummyInput()
        .appendField("Unit")
        .appendField(new Blockly.FieldTextInput("C01"), "ENName");
     this.appendDummyInput()
        .appendField("PX")
-       .appendField(checkbox, 'HasPX');
+       .appendField(new Blockly.FieldCheckbox("TRUE"), 'HasPX');
     this.setPreviousStatement(true, ["C", "EN"]);
     this.setNextStatement(true, ["C", "EN"]);
     this.setColour(40);
