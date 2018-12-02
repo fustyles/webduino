@@ -1,9 +1,5 @@
 
 Blockly.Blocks["mutation_container"] = {
-  /**
-   * Mutator block for list container.
-   * @this Blockly.Block
-   */
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
@@ -14,10 +10,6 @@ Blockly.Blocks["mutation_container"] = {
 };
 
 Blockly.Blocks["input_with_item"] = {
-  /**
-   * Mutator bolck for adding items.
-   * @this Blockly.Block
-   */
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
@@ -29,10 +21,6 @@ Blockly.Blocks["input_with_item"] = {
 };
 
 Blockly.Blocks["list_with_item"] = {
-  /**
-   * Mutator bolck for adding items.
-   * @this Blockly.Block
-   */
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
@@ -83,7 +71,9 @@ Blockly.Blocks["mutation_test"] = {
       itemBlock_list.initSvg();
       connection.connect(itemBlock_list.previousConnection);
       connection = itemBlock_list.nextConnection;
-    }    
+    } 
+    console.log("decompose");
+    console.log(this.list);
     return containerBlock;
   },
   compose: function(containerBlock) {
@@ -121,6 +111,8 @@ Blockly.Blocks["mutation_test"] = {
     for (var j = 1; j <= this.listcount; j++) {
       Blockly.Mutator.reconnect(listConnections[j], this, 'list' + j);
     }
+    console.log("compose");
+    console.log(this.list);
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
