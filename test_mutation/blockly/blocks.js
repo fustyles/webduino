@@ -52,7 +52,6 @@ Blockly.Blocks["mutation_test"] = {
   domToMutation: function (xmlElement) {
     this.inputcount = parseInt(xmlElement.getAttribute('inputcount'), 10);
     this.listcount = parseInt(xmlElement.getAttribute('listcount'), 10);
-    console.log(xmlElement.getAttribute('list'));
     this.list = xmlElement.getAttribute('list').split(",");
     this.updateShape_();
   },
@@ -83,7 +82,6 @@ Blockly.Blocks["mutation_test"] = {
     var inputConnections = [null];
     var listConnections = [null];
     while (clauseBlock) {
-      console.log(clauseBlock.type);
       switch (clauseBlock.type) {
         case 'input_with_item':
           this.inputcount++;
@@ -101,20 +99,16 @@ Blockly.Blocks["mutation_test"] = {
       clauseBlock = clauseBlock.nextConnection &&
           clauseBlock.nextConnection.targetBlock();
     }
-    console.log(this.list);
     
     this.updateShape_();
     
-    var i=1;
-    var j=1;
-    for (var k = 1; k <= this.list.length; k++) {
-      if (this.list[k-1]=="input") {
-        Blockly.Mutator.reconnect(inputConnections[i], this, 'input' + i);
-        i++;
-      } else if (this.list[k-1]=="list") {
-        Blockly.Mutator.reconnect(listConnections[j], this, 'list' + j);
-        j++;
-      }
+    if (this.inputcount>0) {
+      for (var i = 1; i <= this.inputcount; i++)
+          Blockly.Mutator.reconnect(inputConnections[i], this, 'input' + i);
+    }
+    if (this.listcount>0) {
+      for (var j = 1; j <= this.listcount; j++)
+          Blockly.Mutator.reconnect(listConnections[j], this, 'list' + j);
     }
   },
   saveConnections: function(containerBlock) {
