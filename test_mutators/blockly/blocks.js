@@ -77,13 +77,13 @@ Blockly.Blocks["mutators_test"] = {
       switch (clauseBlock.type) {
         case 'input_with_item':
           var input = this.getInput('input' + i);
-          clauseBlock.valueConnection_ =
+          clauseBlock.inputConnection_ =
               input && input.connection.targetConnection;
           i++;
           break;
         case 'list_with_item':
           var list = this.getInput('list' + i);
-          clauseBlock.statementConnection_ =
+          clauseBlock.listConnection_ =
               list && list.connection.targetConnection;
           break;
         default:
@@ -106,11 +106,11 @@ Blockly.Blocks["mutators_test"] = {
       j++;
     }    
     // Rebuild block.
-    for (var i = 1; i <= this.inputount_; i++) {
+    for (var i = 1; i <= this.inputcount_; i++) {
       this.appendValueInput('input' + i)
           .appendField("AAA");
     }
-    for (var j = 1; j <= this.listount_; j++) {
+    for (var j = 1; j <= this.listcount_; j++) {
       this.appendField(new Blockly.FieldDropdown([["text","text"], ["sticker","sticker"]]), "type"+j)
           .appendField("BBB");
     }
