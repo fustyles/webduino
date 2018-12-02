@@ -1,4 +1,4 @@
-Blockly.Blocks['linenotify_sendmsg'] = {
+Blockly.Blocks['test_mutators'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.LINENotify_Set)
