@@ -108,10 +108,10 @@ Blockly.Blocks["mutation_test"] = {
     var j=1;
     for (var k = 1; k <= this.list.length; k++) {
       if (this.list[k-1]=="input") {
-        Blockly.Mutator.reconnect(inputConnections[k], this, 'input' + i);
+        Blockly.Mutator.reconnect(inputConnections[i], this, 'input' + i);
         i++;
       } else if (this.list[k-1]=="list") {
-        Blockly.Mutator.reconnect(listConnections[k], this, 'list' + j);
+        Blockly.Mutator.reconnect(listConnections[j], this, 'list' + j);
         j++;
       }
     }
