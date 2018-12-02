@@ -9,7 +9,9 @@ Blockly.Blocks['en'] = {
        .appendField(new Blockly.FieldTextInput("C01"), "ENName");
     this.appendDummyInput()
        .appendField("PX")
-       .appendField(new Blockly.FieldCheckbox("TRUE"), 'HasPX');
+       .appendField(new Blockly.FieldCheckbox("TRUE",function(pxchecked) {
+      this.sourceBlock_.updateShape_(pxchecked);
+    }), 'HasPX');
     this.setPreviousStatement(true, ["C", "EN"]);
     this.setNextStatement(true, ["C", "EN"]);
     this.setColour(40);
