@@ -63,41 +63,55 @@ Blockly.Blocks["mutators_test"] = {
     this.updateShape_();
     
     for (var i = 1; i <= this.inputcount_; i++) {
-      Blockly.Mutator.reconnect(inputConnections[i], this, 'AAA' + i);
+      Blockly.Mutator.reconnect(inputConnections[i], this, 'input' + i);
     }
     for (var j = 1; j <= this.listcount_; j++) {
-      Blockly.Mutator.reconnect(listConnections[i], this, 'BBB' + j);
+      Blockly.Mutator.reconnect(listConnections[j], this, 'list' + j);
     }
   },
   saveConnections: function(containerBlock) {
-    var itemBlock = containerBlock.getInputTargetBlock('STACK');
-    var i = 0;
-    while (itemBlock) {
-      var input = this.getInput('input_value' + i);
-      itemBlock.valueConnection_ = input && input.connection.targetConnection;
-      i++;
-      itemBlock = itemBlock.nextConnection &&
-          itemBlock.nextConnection.targetBlock();
+    var clauseBlock = containerBlock.nextConnection.targetBlock();
+    var i = 1;
+    while (clauseBlock) {
+      switch (clauseBlock.type) {
+        case 'input_with_item':
+          var input = this.getInput('input' + i);
+          clauseBlock.valueConnection_ =
+              input && input.connection.targetConnection;
+          i++;
+          break;
+        case 'list_with_item':
+          var list = this.getInput('list' + i);
+          clauseBlock.statementConnection_ =
+              list && list.connection.targetConnection;
+          break;
+        default:
+          throw TypeError('Unknown block type: ' + clauseBlock.type);
+      }
+      clauseBlock = clauseBlock.nextConnection &&
+          clauseBlock.nextConnection.targetBlock();
     }
   },
   updateShape_: function() {
-    if (this.itemCount_ && this.getInput('EMPTY')) {
-      this.removeInput('EMPTY');
-    } else if (!this.itemCount_ && !this.getInput('EMPTY')) {
-      this.appendDummyInput('EMPTY')
-          .appendField("Mutator");
-    }
-    // Add new inputs.
-    for (var i = 0; i < this.inputcount ; i++) {
-      if (!this.getInput('input_value' + i)) {
-        var input = this.appendValueInput('input_value' + i);
-        input.appendField('input_value' + i);
-      }
-    }
-    // Remove deleted inputs.
-    while (this.getInput('input_value' + i)) {
-      this.removeInput('input_value' + i);
+    // Delete everything.
+    var i = 1;
+    while (this.getInput('input' + i)) {
+      this.removeInput('input' + i);
       i++;
+    }
+    var j = 1;
+    while (this.getField('list' + j)) {
+      this.removeField('list' + j);
+      j++;
+    }    
+    // Rebuild block.
+    for (var i = 1; i <= this.inputount_; i++) {
+      this.appendValueInput('input' + i)
+          .appendField("AAA");
+    }
+    for (var j = 1; j <= this.listount_; j++) {
+      this.appendField(new Blockly.FieldDropdown([["text","text"], ["sticker","sticker"]]), "type"+j)
+          .appendField("BBB");
     }
   }
 };
@@ -124,7 +138,7 @@ Blockly.Blocks["input_value_with_item"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
-        .appendField("Input_value");
+        .appendField("Input");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.contextMenu = false;
