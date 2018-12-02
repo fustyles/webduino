@@ -74,6 +74,7 @@ Blockly.Blocks["mutation_test"] = {
     } 
     console.log("decompose");
     console.log(this.list);
+    
     return containerBlock;
   },
   compose: function(containerBlock) {
@@ -145,6 +146,8 @@ Blockly.Blocks["mutation_test"] = {
       clauseBlock = clauseBlock.nextConnection &&
           clauseBlock.nextConnection.targetBlock();
     }
+    console.log("saveConnections");
+    console.log(this.list);
   },
   updateShape_: function() {
     // Delete everything.
@@ -172,5 +175,7 @@ Blockly.Blocks["mutation_test"] = {
         j++;
       }
     }
+    console.log("updateShape");
+    console.log(this.list);
   }
 };
