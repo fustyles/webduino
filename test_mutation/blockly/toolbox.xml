@@ -1,4 +1,4 @@
 <category id="catDemoText">
-  <block type="mutators_test">
+  <block type="mutation_test">
   </block>
  </category>
