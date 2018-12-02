@@ -13,11 +13,13 @@ Blockly.Blocks["mutators_test"] = {
     var container = document.createElement('mutation');
     container.setAttribute('inputcount', this.inputcount);
     container.setAttribute('listcount', this.listcount);
+    container.setAttribute('list', this.list);
     return container;
   },
   domToMutation: function (xmlElement) {
     this.inputcount = parseInt(xmlElement.getAttribute('inputcount'), 10);
     this.listcount = parseInt(xmlElement.getAttribute('listcount'), 10);
+    this.list = xmlElement.getAttribute('listcount');
     this.updateShape_();
   },
   decompose: function (workspace) {
