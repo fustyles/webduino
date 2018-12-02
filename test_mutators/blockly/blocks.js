@@ -72,9 +72,7 @@ Blockly.Blocks["mutators_test"] = {
     for (var i = 0; i < this.inputcount ; i++) {
       if (!this.getInput('input_value' + i)) {
         var input = this.appendValueInput('input_value' + i);
-        if (i == 0) {
-          input.appendField("BBB");
-        }
+        input.appendField('input_value' + i);
       }
     }
     // Remove deleted inputs.
