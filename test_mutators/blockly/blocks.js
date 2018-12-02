@@ -109,14 +109,14 @@ Blockly.Blocks["mutators_test"] = {
     }    
     // Rebuild block.
     console.log(this.inputcount);
-    for (i = 1; i <= this.inputcount; i++) {
-      this.appendValueInput('input' + i)
-          .appendField('input' + i);
+    for (var m = 1; m <= this.inputcount; m++) {
+      this.appendValueInput('input' + m)
+          .appendField('input' + m);
     }
     console.log(this.listcount);
-    for (j = 1; j <= this.listcount; j++) {
-      this.appendValueInput('list' + j)
-          .appendField('list' + j);
+    for (var n = 1; n <= this.listcount; n++) {
+      this.appendValueInput('list' + n)
+          .appendField('list' + n);
     }
   }
 };
