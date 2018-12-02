@@ -1,4 +1,3 @@
-
 Blockly.Blocks["mutation_container"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
