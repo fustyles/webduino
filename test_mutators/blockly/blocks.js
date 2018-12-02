@@ -71,7 +71,7 @@ Blockly.Blocks["mutators_test"] = {
     }
   },
   saveConnections: function(containerBlock) {
-    var clauseBlock = containerBlock.nextConnection.targetBlock();
+    var clauseBlock = containerBlock.getInput('STACK').connection.targetBlock();
     var i = 1;
     while (clauseBlock) {
       switch (clauseBlock.type) {
