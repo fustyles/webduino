@@ -103,7 +103,6 @@ Blockly.Blocks["mutation_test"] = {
       clauseBlock = clauseBlock.nextConnection &&
           clauseBlock.nextConnection.targetBlock();
     }
-    this.updateShape_();
     
     var i=1;
     var j=1;
@@ -117,9 +116,10 @@ Blockly.Blocks["mutation_test"] = {
       }
     }
     
-    
     console.log("compose");
     console.log(this.list);
+    
+    this.updateShape_();
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
