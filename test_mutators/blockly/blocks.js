@@ -87,3 +87,32 @@ Blockly.Blocks['mutators_test'] = {
     }
   }
 };
+
+Blockly.Blocks['input_value_with_container'] = {
+  /**
+   * Mutator block for list container.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setColour(Blockly.Blocks.lists.HUE);
+    this.appendDummyInput()
+        .appendField("CCC");
+    this.appendStatementInput('STACK');
+    this.contextMenu = false;
+  }
+};
+
+Blockly.Blocks[input_value_with_item'] = {
+  /**
+   * Mutator bolck for adding items.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setColour(Blockly.Blocks.lists.HUE);
+    this.appendDummyInput()
+        .appendField("DDD");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.contextMenu = false;
+  }
+};
