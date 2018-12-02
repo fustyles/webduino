@@ -84,6 +84,8 @@ Blockly.Blocks["mutation_test"] = {
     var inputConnections = [null];
     var listConnections = [null];
     while (clauseBlock) {
+      console.log("aaa");
+      console.log(clauseBlock.type);
       switch (clauseBlock.type) {
         case 'input_with_item':
           this.inputcount++;
