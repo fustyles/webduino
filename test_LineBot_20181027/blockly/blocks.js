@@ -229,6 +229,7 @@ Blockly.Blocks['linenotify_type'] = {
       for (var i = 0; i < this.childBlocks_.length; i++) {
         if (this.childBlocks_[i].type == id) {
           this.childBlocks_[i].unplug();
+          console.log(this.childBlocks_[i].type);
         }
       }
     }
