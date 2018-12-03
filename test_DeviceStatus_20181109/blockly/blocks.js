@@ -2,7 +2,7 @@ Blockly.Blocks["mutation_container"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
-        .appendField("Mutator_Sub");
+        .appendField("BoardEvent");
     this.appendStatementInput('STACK');
     this.contextMenu = false;
   }
