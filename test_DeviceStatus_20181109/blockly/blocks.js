@@ -159,9 +159,15 @@ Blockly.Blocks['boardevent'] = {
     }
   },
   updateShape_: function() {
+    while (this.getField('title_error')) {
+      this.removeField('title_error');
+    }
     while (this.getInput('do_error')) {
       this.removeInput('do_error');
     }
+    while (this.getField('title_message')) {
+      this.removeField('title_message');
+    }  
     while (this.getInput('do_message')) {
       this.removeInput('do_message');
     }  
