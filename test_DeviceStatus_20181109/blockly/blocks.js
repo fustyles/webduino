@@ -90,6 +90,8 @@ Blockly.Blocks['boardevent'] = {
         connection = itemBlock_list.nextConnection;
       }
     }
+    
+    this.updateShape_();
     return containerBlock;
   },
   compose: function(containerBlock) {
