@@ -42,6 +42,12 @@ Blockly.Blocks['boardevent'] = {
     this.appendDummyInput()
       .appendField("BoardEvent.READY");
     this.appendStatementInput("do_ready"); 
+    this.appendDummyInput()
+        .appendField("BoardEvent.ERROR","title_error");
+    this.appendStatementInput("do_error");
+    this.appendDummyInput()
+        .appendField("BoardEvent.STRING_MESSAGE","title_message");
+    this.appendStatementInput("do_message");    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(340);
@@ -171,11 +177,11 @@ Blockly.Blocks['boardevent'] = {
     console.log(this.list);
     for (var k = 0; k < this.list.length; k++) {
       if (this.list[k]=="error") {
-        this.appendField("BoardEvent.ERROR","title_error");
-        this.appendStatementInput("do_error");
+        //this.appendField("BoardEvent.ERROR","title_error");
+        //this.appendStatementInput("do_error");
       } else if (this.list[k]=="message") {
-        this.appendField("BoardEvent.STRING_MESSAGE","title_message");
-        this.appendStatementInput("do_message");
+        //this.appendField("BoardEvent.STRING_MESSAGE","title_message");
+        //this.appendStatementInput("do_message");
       }
     }
   }
