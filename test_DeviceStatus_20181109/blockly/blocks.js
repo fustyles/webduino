@@ -12,7 +12,7 @@ Blockly.Blocks["error_with_item"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
-        .appendField("Input");
+        .appendField("event.Error");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.contextMenu = false;
@@ -23,7 +23,7 @@ Blockly.Blocks["message_with_item"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
-        .appendField("List");
+        .appendField("Message");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.contextMenu = false;
@@ -39,12 +39,6 @@ Blockly.Blocks['boardevent'] = {
       .appendField("    Device ID");
     this.appendDummyInput()
       .appendField("");
-    this.appendDummyInput()
-      .appendField("BoardEvent.ERROR");
-    this.appendStatementInput("do_error");
-    this.appendDummyInput()
-      .appendField("BoardEvent.STRING_MESSAGE");
-    this.appendStatementInput("do_message");
     this.appendDummyInput()
       .appendField("BoardEvent.READY");
     this.appendStatementInput("do_ready");
@@ -97,14 +91,18 @@ Blockly.Blocks['boardevent'] = {
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'error_with_item':
-          this.errorCount++;
-          this.list.push("input");
-          inputConnections.push(clauseBlock.inputConnection_);
+          if (this.errorCount==0) {
+            this.errorCount++;
+            this.list.push("error");
+            inputConnections.push(clauseBlock.inputConnection_);
+          }
           break;
         case 'message_with_item':
-          this.messageCount++;
-          this.list.push("list");
-          listConnections.push(clauseBlock.listConnection_);
+          if (this.messageCount==0) { 
+            this.messageCount++;
+            this.list.push("message");
+            listConnections.push(clauseBlock.listConnection_);
+          }
           break;
         default:
           throw TypeError('Unknown block type: ' + clauseBlock.type);
@@ -117,11 +115,11 @@ Blockly.Blocks['boardevent'] = {
     
     if (this.errorCount>0) {
       for (var i = 1; i <= this.errorCount; i++)
-          Blockly.Mutator.reconnect(inputConnections[i], this, 'input' + i);
+          Blockly.Mutator.reconnect(inputConnections[i], this, 'do_error');
     }
     if (this.messageCount>0) {
       for (var j = 1; j <= this.messageCount; j++)
-          Blockly.Mutator.reconnect(listConnections[j], this, 'list' + j);
+          Blockly.Mutator.reconnect(listConnections[j], this, 'do_message');
     }
   },
   saveConnections: function(containerBlock) {
@@ -131,13 +129,13 @@ Blockly.Blocks['boardevent'] = {
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'error_with_item':
-          var input = this.getInput('input' + i);
+          var input = this.getInput('do_error');
           clauseBlock.inputConnection_ =
               input && input.connection.targetConnection;
           i++;
           break;
         case 'message_with_item':
-          var list = this.getInput('list' + j);
+          var list = this.getInput('do_message');
           clauseBlock.listConnection_ =
               list && list.connection.targetConnection;
           j++;
@@ -150,26 +148,27 @@ Blockly.Blocks['boardevent'] = {
     }
   },
   updateShape_: function() {
-    var i = 1;
-    while (this.getInput('input' + i)) {
-      this.removeInput('input' + i);
-      i++;
+    while (this.getField('title_error')) {
+      this.removeField('title_error');
     }
-    var j = 1;
-    while (this.getInput('list' + j)) {
-      this.removeInput('list' + j);
-      j++;
-    }    
-    i=1;
-    j=1;
+    while (this.getInput('do_error')) {
+      this.removeInput('do_error');
+    }
+    while (this.getField('title_message')) {
+      this.removeField('title_message');
+    }
+    while (this.getInput('do_message')) {
+      this.removeInput('do_message');
+    }  
+    
     for (var k = 0; k < this.list.length; k++) {
       if (this.list[k]=="input") {
-        this.appendValueInput('input' + i)
-            .appendField('input' + i);
+        this.appendField("BoardEvent.ERROR","title_error")
+            .appendStatementInput("do_error");
         i++;
       } else if (this.list[k]=="list") {
-        this.appendStatementInput('list' + j)
-            .appendField('list' + j);
+        this.appendField("BoardEvent.STRING_MESSAGE","title_message")
+            .appendStatementInput("do_message");
         j++;
       }
     }
