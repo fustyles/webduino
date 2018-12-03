@@ -177,13 +177,9 @@ Blockly.Blocks['boardevent'] = {
     console.log(this.list);
     for (var k = 0; k < this.list.length; k++) {
       if (this.list[k]=="error") {
-        this.appendDummyInput()
-            .appendField("BoardEvent.ERROR","title_error")
-            .appendStatementInput("do_error");
+        this.appendDummyInput().appendField("BoardEvent.ERROR","title_error").appendStatementInput("do_error");
       } else if (this.list[k]=="message") {
-        this.appendDummyInput()
-            .appendField("BoardEvent.STRING_MESSAGE","title_message")
-            .appendStatementInput("do_message");
+        this.appendDummyInput().appendField("BoardEvent.STRING_MESSAGE","title_message").appendStatementInput("do_message");
       }
     }
   }
