@@ -72,6 +72,7 @@ Blockly.Blocks['boardevent'] = {
     this.updateShape_();
   },
   decompose: function (workspace) {
+    console.log("decompose");
     var containerBlock = workspace.newBlock('mutation_container');
     containerBlock.initSvg();
     var connection = containerBlock.getInput('STACK').connection;
@@ -92,9 +93,8 @@ Blockly.Blocks['boardevent'] = {
     return containerBlock;
   },
   compose: function(containerBlock) {
-    
+    console.log("compose");
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
-    console.log(clauseBlock.length);
     this.errorCount = 0;
     this.messageCount = 0;
     this.list = [];
@@ -131,8 +131,8 @@ Blockly.Blocks['boardevent'] = {
       Blockly.Mutator.reconnect(listConnections[1], this, 'do_message');
   },
   saveConnections: function(containerBlock) {
+    console.log("saveConnections");
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
-    console.log(clauseBlock.length);
     var i = 0;
     var j = 0;
     while (clauseBlock) {
@@ -161,6 +161,7 @@ Blockly.Blocks['boardevent'] = {
     }
   },
   updateShape_: function() {
+    console.log("updateShape_");
     this.getField('title_error').setVisible(false);
     this.getInput('do_error').setVisible(false);
     this.getField('title_message').setVisible(false);
