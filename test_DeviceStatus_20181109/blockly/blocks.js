@@ -159,24 +159,19 @@ Blockly.Blocks['boardevent'] = {
     }
   },
   updateShape_: function() {
-    while (this.getField('title_error')) {
-      this.removeField('title_error');
-    }
-    while (this.getInput('do_error')) {
-      this.removeInput('do_error');
-    }
-    while (this.getField('title_message')) {
-      this.removeField('title_message');
-    }  
-    while (this.getInput('do_message')) {
-      this.removeInput('do_message');
-    }  
+    this.getField('title_error').setVisible(false);
+    this.getInput('do_error').setVisible(false);
+    this.getField('title_message').setVisible(false);
+    this.getInput('do_message').setVisible(false);
+      
     console.log(this.list);
     for (var k = 0; k < this.list.length; k++) {
       if (this.list[k]=="error") {
-        this.appendStatementInput("do_error");
+        this.getField('title_error').setVisible(true);
+        this.getInput('do_error').setVisible(true);
       } else if (this.list[k]=="message") {
-        this.appendStatementInput("do_message");
+        this.getField('title_message').setVisible(true);
+        this.getInput('do_message').setVisible(true);
       }
     }
   }
