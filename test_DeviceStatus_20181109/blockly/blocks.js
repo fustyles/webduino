@@ -100,6 +100,7 @@ Blockly.Blocks['boardevent'] = {
     this.list = [];
     var inputConnections = [null];
     var listConnections = [null];
+    var i=0;
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'error_with_item':
@@ -108,6 +109,7 @@ Blockly.Blocks['boardevent'] = {
             this.list.push("error");
             inputConnections.push(clauseBlock.inputConnection_);
           }
+          i++;
           break;
         case 'message_with_item':
           if (this.messageCount==0) { 
@@ -115,10 +117,12 @@ Blockly.Blocks['boardevent'] = {
             this.list.push("message");
             listConnections.push(clauseBlock.listConnection_);
           }
+          i++;
           break;
         default:
           throw TypeError('Unknown block type: ' + clauseBlock.type);
       }
+      var cb =  clauseBlock;
       clauseBlock = clauseBlock.nextConnection &&
           clauseBlock.nextConnection.targetBlock();
     }
@@ -129,6 +133,8 @@ Blockly.Blocks['boardevent'] = {
       Blockly.Mutator.reconnect(inputConnections[1], this, 'do_error');
     if (this.messageCount==1) 
       Blockly.Mutator.reconnect(listConnections[1], this, 'do_message');
+    
+    this.decompose();
   },
   saveConnections: function(containerBlock) {
     console.log("saveConnections");
