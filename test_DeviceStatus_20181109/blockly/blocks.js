@@ -122,7 +122,6 @@ Blockly.Blocks['boardevent'] = {
         default:
           throw TypeError('Unknown block type: ' + clauseBlock.type);
       }
-      var cb =  clauseBlock;
       clauseBlock = clauseBlock.nextConnection &&
           clauseBlock.nextConnection.targetBlock();
     }
