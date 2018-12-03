@@ -89,7 +89,6 @@ Blockly.Blocks['boardevent'] = {
         connection = itemBlock_list.nextConnection;
       }
     }
-    console.log(this.list);
     return containerBlock;
   },
   compose: function(containerBlock) {
@@ -129,7 +128,6 @@ Blockly.Blocks['boardevent'] = {
       Blockly.Mutator.reconnect(inputConnections[1], this, 'do_error');
     if (this.messageCount==1) 
       Blockly.Mutator.reconnect(listConnections[1], this, 'do_message');
-    console.log(this.list);
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
@@ -159,7 +157,6 @@ Blockly.Blocks['boardevent'] = {
       clauseBlock = clauseBlock.nextConnection &&
           clauseBlock.nextConnection.targetBlock();
     }
-    console.log(this.list);
   },
   updateShape_: function() {
     while (this.getInput('do_error')) {
