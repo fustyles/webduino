@@ -42,6 +42,12 @@ Blockly.Blocks['boardevent'] = {
     this.appendDummyInput()
       .appendField("BoardEvent.READY");
     this.appendStatementInput("do_ready");
+    this.appendDummyInput()
+        .appendField("BoardEvent.ERROR","title_error")
+        .appendStatementInput("do_error");
+    this.appendDummyInput()
+        .appendField("BoardEvent.STRING_MESSAGE","title_message")
+        .appendStatementInput("do_message");    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(340);
