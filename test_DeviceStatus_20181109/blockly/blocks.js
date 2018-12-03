@@ -166,7 +166,6 @@ Blockly.Blocks['boardevent'] = {
     this.getField('title_message').setVisible(false);
     this.getInput('do_message').setVisible(false);
       
-    console.log(this.list);
     for (var k = 0; k < this.list.length; k++) {
       if (this.list[k]=="error") {
         this.getField('title_error').setVisible(true);
