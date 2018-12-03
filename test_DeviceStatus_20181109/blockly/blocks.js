@@ -127,20 +127,24 @@ Blockly.Blocks['boardevent'] = {
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
-    var i = 1;
-    var j = 1;
+    var i = 0;
+    var j = 0;
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'error_with_item':
-          var input = this.getInput('do_error');
-          clauseBlock.inputConnection_ =
-              input && input.connection.targetConnection;
+          if (i==0) {
+            var input = this.getInput('do_error');
+            clauseBlock.inputConnection_ =
+                input && input.connection.targetConnection;
+          }
           i++;
           break;
         case 'message_with_item':
-          var list = this.getInput('do_message');
-          clauseBlock.listConnection_ =
-              list && list.connection.targetConnection;
+          if (i==0) {
+            var list = this.getInput('do_message');
+            clauseBlock.listConnection_ =
+                list && list.connection.targetConnection;
+          }
           j++;
           break;
         default:
