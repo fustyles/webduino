@@ -156,13 +156,13 @@ Blockly.Blocks['boardevent'] = {
     console.log(this.list);
   },
   updateShape_: function() {
-    while (this.getField('error')) {
+    while (this.getField('title_error')) {
       this.removeField('title_error');
     }
     while (this.getInput('do_error')) {
       this.removeInput('do_error');
     }
-    while (this.getField('message')) {
+    while (this.getField('title_message')) {
       this.removeField('title_message');
     }
     while (this.getInput('do_message')) {
@@ -171,10 +171,10 @@ Blockly.Blocks['boardevent'] = {
     console.log(this.list);
     for (var k = 0; k < this.list.length; k++) {
       if (this.list[k]=="error") {
-        this.appendField("BoardEventERROR","error");
+        this.appendField("BoardEvent.ERROR","title_error");
         this.appendStatementInput("do_error");
       } else if (this.list[k]=="message") {
-        this.appendField("BoardEventSTRING_MESSAGE","message");
+        this.appendField("BoardEvent.STRING_MESSAGE","title_message");
         this.appendStatementInput("do_message");
       }
     }
