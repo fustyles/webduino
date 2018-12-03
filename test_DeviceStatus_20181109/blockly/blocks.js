@@ -71,12 +71,12 @@ Blockly.Blocks['boardevent'] = {
     var connection = containerBlock.getInput('STACK').connection;
     
     for (var k = 0; k < this.list.length; k++) {
-      if (this.list[k]=="input") {
+      if (this.list[k]=="error") {
         var itemBlock_input = workspace.newBlock('error_with_item');
         itemBlock_input.initSvg();
         connection.connect(itemBlock_input.previousConnection);
         connection = itemBlock_input.nextConnection;
-      } else if (this.list[k]=="list") {
+      } else if (this.list[k]=="message") {
         var itemBlock_list = workspace.newBlock('message_with_item');
         itemBlock_list.initSvg();
         connection.connect(itemBlock_list.previousConnection);
