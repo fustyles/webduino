@@ -94,6 +94,7 @@ Blockly.Blocks['boardevent'] = {
   compose: function(containerBlock) {
     
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+    console.log(clauseBlock.length);
     this.errorCount = 0;
     this.messageCount = 0;
     this.list = [];
@@ -131,6 +132,7 @@ Blockly.Blocks['boardevent'] = {
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+    console.log(clauseBlock.length);
     var i = 0;
     var j = 0;
     while (clauseBlock) {
