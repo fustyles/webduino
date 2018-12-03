@@ -81,6 +81,7 @@ Blockly.Blocks['boardevent'] = {
         connection = itemBlock_list.nextConnection;
       }
     }
+    console.log(this.list);
     return containerBlock;
   },
   compose: function(containerBlock) {
@@ -116,14 +117,11 @@ Blockly.Blocks['boardevent'] = {
     
     this.updateShape_();
     
-    if (this.errorCount>0) {
-      for (var i = 1; i <= this.errorCount; i++)
-          Blockly.Mutator.reconnect(inputConnections[i], this, 'do_error');
-    }
-    if (this.messageCount>0) {
-      for (var j = 1; j <= this.messageCount; j++)
-          Blockly.Mutator.reconnect(listConnections[j], this, 'do_message');
-    }
+    if (this.errorCount==1)
+      Blockly.Mutator.reconnect(inputConnections[1], this, 'do_error');
+    if (this.messageCount==1) 
+      Blockly.Mutator.reconnect(listConnections[1], this, 'do_message');
+    console.log(this.list);
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
@@ -153,6 +151,7 @@ Blockly.Blocks['boardevent'] = {
       clauseBlock = clauseBlock.nextConnection &&
           clauseBlock.nextConnection.targetBlock();
     }
+    console.log(this.list);
   },
   updateShape_: function() {
     while (this.getField('title_error')) {
@@ -167,7 +166,7 @@ Blockly.Blocks['boardevent'] = {
     while (this.getInput('do_message')) {
       this.removeInput('do_message');
     }  
-    
+    console.log(this.list);
     for (var k = 0; k < this.list.length; k++) {
       if (this.list[k]=="input") {
         this.appendField("BoardEvent.ERROR","title_error")
