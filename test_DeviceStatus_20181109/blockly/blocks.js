@@ -133,7 +133,6 @@ Blockly.Blocks['boardevent'] = {
     if (this.messageCount==1) 
       Blockly.Mutator.reconnect(listConnections[1], this, 'do_message');
     
-    var containerBlock = Workspace.getBlockById('mutation_container');
     containerBlock.initSvg();
     var connection = containerBlock.getInput('STACK').connection;
     
