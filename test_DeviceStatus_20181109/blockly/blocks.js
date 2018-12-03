@@ -132,23 +132,6 @@ Blockly.Blocks['boardevent'] = {
       Blockly.Mutator.reconnect(inputConnections[1], this, 'do_error');
     if (this.messageCount==1) 
       Blockly.Mutator.reconnect(listConnections[1], this, 'do_message');
-    
-    containerBlock.initSvg();
-    var connection = containerBlock.getInput('STACK').connection;
-    
-    for (var k = 0; k < this.list.length; k++) {
-      if (this.list[k]=="error") {
-        var itemBlock_input = Blockly.WorkspaceSvg.Blockly.Workspace.newBlock('error_with_item');
-        itemBlock_input.initSvg();
-        connection.connect(itemBlock_input.previousConnection);
-        connection = itemBlock_input.nextConnection;
-      } else if (this.list[k]=="message") {
-        var itemBlock_list = Blockly.WorkspaceSvg.Blockly.Workspace.newBlock('message_with_item');
-        itemBlock_list.initSvg();
-        connection.connect(itemBlock_list.previousConnection);
-        connection = itemBlock_list.nextConnection;
-      }
-    }
   },
   saveConnections: function(containerBlock) {
     console.log("saveConnections");
