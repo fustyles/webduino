@@ -96,14 +96,14 @@ Blockly.Blocks['boardevent'] = {
           if (messageCount==0) {   // limit to 1
             messageCount++;
             this.list.unshift("message");
-            messageConnections.push(clauseBlock.listConnection_);
+            messageConnections.push(clauseBlock.messageConnection_);
           }
           break;          
         case 'error_with_item':
           if (errorCount==0) {   // limit to 1
             errorCount++;
             this.list.push("error");
-            errorConnections.push(clauseBlock.inputConnection_);
+            errorConnections.push(clauseBlock.errorConnection_);
           }
           break;
         default:
@@ -129,17 +129,17 @@ Blockly.Blocks['boardevent'] = {
         case 'message_with_item':
           if (messageCount==0) {
             messageCount++;
-            var list = this.getInput('do_message');
-            clauseBlock.listConnection_ =
-                list && list.connection.targetConnection;
+            var message = this.getInput('do_message');
+            clauseBlock.messageConnection_ =
+                message && message.connection.targetConnection;
           }
           break;          
         case 'error_with_item':
           if (errorCount==0) {
             errorCount++;
-            var input = this.getInput('do_error');
-            clauseBlock.inputConnection_ =
-                input && input.connection.targetConnection;
+            var error = this.getInput('do_error');
+            clauseBlock.errorConnection_ =
+                error && error.connection.targetConnection;
           }
           break;
         default:
