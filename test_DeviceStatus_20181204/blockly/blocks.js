@@ -54,13 +54,14 @@ Blockly.Blocks['boardevent'] = {
     this.updateShape_();
   },
   decompose: function (workspace) {
+    console.log("decompose");
+    console.log(this.messageVisible_);
+    console.log(this.errorVisible_);        
     var containerBlock = workspace.newBlock('boardevent_mutator');
     containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.messageVisible_), "chkmessage");
     containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.errorVisible_), "chkerror");
     containerBlock.initSvg();
-    console.log("decompose");
-    console.log(this.messageVisible_);
-    console.log(this.errorVisible_);      
+  
     return containerBlock;
   },
   compose: function(containerBlock) {
