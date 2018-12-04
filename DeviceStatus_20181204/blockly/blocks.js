@@ -93,14 +93,14 @@ Blockly.Blocks['boardevent'] = {
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'message_with_item':
-          if (messageCount==0) { 
+          if (messageCount==0) {   // limit to 1
             messageCount++;
             this.list.unshift("message");
             messageConnections.push(clauseBlock.listConnection_);
           }
           break;          
         case 'error_with_item':
-          if (errorCount==0) {
+          if (errorCount==0) {   // limit to 1
             errorCount++;
             this.list.push("error");
             errorConnections.push(clauseBlock.inputConnection_);
