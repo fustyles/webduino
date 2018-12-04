@@ -59,6 +59,9 @@ Blockly.Blocks['boardevent'] = {
     containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.messageVisible_), "chkmessage");
     containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.errorVisible_), "chkerror");
     containerBlock.initSvg();
+    console.log("decompose");
+    console.log(this.messageVisible_);
+    console.log(this.errorVisible_);      
     return containerBlock;
   },
   compose: function(containerBlock) {
@@ -67,14 +70,21 @@ Blockly.Blocks['boardevent'] = {
     this.updateShape_();
     Blockly.Mutator.reconnect(containerBlock.messageConnection_, this, 'chkmessage');
     Blockly.Mutator.reconnect(containerBlock.errorConnection_, this, 'chkerror');
+    console.log("compose");
+    console.log(this.messageVisible_);
+    console.log(this.errorVisible_);    
   },
   saveConnections: function(containerBlock) {
     var message = this.getInput('chkmessage');
     containerBlock.messageConnection_ = message && message.connection.targetConnection;
     var error = this.getInput('chkerror');
     containerBlock.errorConnection_ = error && error.connection.targetConnection;
+    console.log("saveConnections");
+    console.log(this.messageVisible_);
+    console.log(this.errorVisible_);      
   },
   updateShape_: function() {
+    console.log("updateShape_");
     console.log(this.messageVisible_);
     console.log(this.errorVisible_);
     if (this.getInput('do_message')) this.removeInput('do_message');
