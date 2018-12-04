@@ -66,7 +66,7 @@ Blockly.Blocks['boardevent'] = {
   },
   compose: function(containerBlock) {
     this.messageVisible_ = (containerBlock.getFieldValue("chkmessage") == "TRUE");
-    this.widthVisible_ = (containerBlock.getFieldValue("chkerror") == "TRUE");
+    this.errorVisible_ = (containerBlock.getFieldValue("chkerror") == "TRUE");
     this.updateShape_();
     Blockly.Mutator.reconnect(containerBlock.messageConnection_, this, 'chkmessage');
     Blockly.Mutator.reconnect(containerBlock.errorConnection_, this, 'chkerror');
