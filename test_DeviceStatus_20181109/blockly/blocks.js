@@ -92,22 +92,22 @@ Blockly.Blocks['boardevent'] = {
     var errorCount = 0;
     var messageCount = 0;
     this.list = [];
-    var inputConnections = [null];
-    var listConnections = [null];
+    var errorConnections = [null];
+    var messageConnections = [null];
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'message_with_item':
           if (messageCount==0) { 
             messageCount++;
             this.list.push("message");
-            listConnections.push(clauseBlock.listConnection_);
+            messageConnections.push(clauseBlock.listConnection_);
           }
           break;          
         case 'error_with_item':
           if (errorCount==0) {
             errorCount++;
             this.list.push("error");
-            inputConnections.push(clauseBlock.inputConnection_);
+            errorConnections.push(clauseBlock.inputConnection_);
           }
           break;
         default:
@@ -120,9 +120,9 @@ Blockly.Blocks['boardevent'] = {
     this.updateShape_();
     
     if (messageCount>0) 
-      Blockly.Mutator.reconnect(listConnections[1], this, 'do_message');    
+      Blockly.Mutator.reconnect(messageConnections[1], this, 'do_message');    
     if (errorCount>0)
-      Blockly.Mutator.reconnect(inputConnections[1], this, 'do_error');
+      Blockly.Mutator.reconnect(errorConnections[1], this, 'do_error');
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
