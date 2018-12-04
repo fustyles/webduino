@@ -75,6 +75,8 @@ Blockly.Blocks['boardevent'] = {
     containerBlock.errorConnection_ = error && error.connection.targetConnection;
   },
   updateShape_: function() {
+    console.log(this.messageVisible_);
+    console.log(this.errorVisible_);
     if (this.getInput('do_message')) this.removeInput('do_message');
     if (this.getInput('do_error')) this.removeInput('do_error');
     if (this.messageVisible_) {
