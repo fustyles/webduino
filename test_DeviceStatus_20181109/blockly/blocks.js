@@ -59,19 +59,14 @@ Blockly.Blocks['boardevent'] = {
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
-    container.setAttribute('errorCount', this.errorCount);
-    container.setAttribute('messageCount', this.messageCount);
     container.setAttribute('list', this.list);
     return container;
   },
   domToMutation: function (xmlElement) {
-    this.errorCount = parseInt(xmlElement.getAttribute('errorCount'), 10);
-    this.messageCount = parseInt(xmlElement.getAttribute('messageCount'), 10);
     this.list = xmlElement.getAttribute('list').split(",");
     this.updateShape_();
   },
   decompose: function (workspace) {
-    console.log("decompose");
     var containerBlock = workspace.newBlock('mutation_container');
     containerBlock.initSvg();
     var connection = containerBlock.getInput('STACK').connection;
@@ -89,30 +84,29 @@ Blockly.Blocks['boardevent'] = {
         connection = itemBlock_list.nextConnection;
       }
     }
-    
     this.updateShape_();
     return containerBlock;
   },
   compose: function(containerBlock) {
     console.log("compose");
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
-    this.errorCount = 0;
-    this.messageCount = 0;
+    var errorCount = 0;
+    var messageCount = 0;
     this.list = [];
     var inputConnections = [null];
     var listConnections = [null];
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'error_with_item':
-          if (this.errorCount==0) {
-            this.errorCount++;
+          if (errorCount==0) {
+            errorCount++;
             this.list.push("error");
             inputConnections.push(clauseBlock.inputConnection_);
           }
           break;
         case 'message_with_item':
-          if (this.messageCount==0) { 
-            this.messageCount++;
+          if (messageCount==0) { 
+            messageCount++;
             this.list.push("message");
             listConnections.push(clauseBlock.listConnection_);
           }
@@ -126,33 +120,32 @@ Blockly.Blocks['boardevent'] = {
     
     this.updateShape_();
     
-    if (this.errorCount==1)
+    if (errorCount>0)
       Blockly.Mutator.reconnect(inputConnections[1], this, 'do_error');
-    if (this.messageCount==1) 
+    if (messageCount>0) 
       Blockly.Mutator.reconnect(listConnections[1], this, 'do_message');
   },
   saveConnections: function(containerBlock) {
-    console.log("saveConnections");
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
-    var i = 0;
-    var j = 0;
+    var errorCount = 0;
+    var messageCount = 0;
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'error_with_item':
-          if (i==0) {
+          if (errorCount==0) {
+            errorCount++;
             var input = this.getInput('do_error');
             clauseBlock.inputConnection_ =
                 input && input.connection.targetConnection;
           }
-          i++;
           break;
         case 'message_with_item':
-          if (i==0) {
+          if (messageCount==0) {
+            messageCount++;
             var list = this.getInput('do_message');
             clauseBlock.listConnection_ =
                 list && list.connection.targetConnection;
           }
-          j++;
           break;
         default:
           throw TypeError('Unknown block type: ' + clauseBlock.type);
@@ -162,7 +155,6 @@ Blockly.Blocks['boardevent'] = {
     }
   },
   updateShape_: function() {
-    console.log("updateShape_");
     this.getField('title_error').setVisible(false);
     this.getInput('do_error').setVisible(false);
     this.getField('title_message').setVisible(false);
