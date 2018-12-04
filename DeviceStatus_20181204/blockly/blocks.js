@@ -67,13 +67,13 @@ Blockly.Blocks['boardevent'] = {
     containerBlock.initSvg();
     var connection = containerBlock.getInput('STACK').connection;
     
-    for (var k = 0; k < this.list.length; k++) {
-      if (this.list[k]=="message") {
+    for (var i = 0; i < this.list.length; i++) {
+      if (this.list[i]=="message") {
         var itemBlock_list = workspace.newBlock('message_with_item');
         itemBlock_list.initSvg();
         connection.connect(itemBlock_list.previousConnection);
         connection = itemBlock_list.nextConnection;
-      } else if (this.list[k]=="error") {
+      } else if (this.list[i]=="error") {
         var itemBlock_input = workspace.newBlock('error_with_item');
         itemBlock_input.initSvg();
         connection.connect(itemBlock_input.previousConnection);
@@ -155,11 +155,11 @@ Blockly.Blocks['boardevent'] = {
     this.getField('title_error').setVisible(false);
     this.getInput('do_error').setVisible(false);
       
-    for (var k = 0; k < this.list.length; k++) {
-      if (this.list[k]=="message") {
+    for (var i = 0; i < this.list.length; i++) {
+      if (this.list[i]=="message") {
         this.getField('title_message').setVisible(true);
         this.getInput('do_message').setVisible(true);
-      } else if (this.list[k]=="error") {
+      } else if (this.list[i]=="error") {
         this.getField('title_error').setVisible(true);
         this.getInput('do_error').setVisible(true);
       } 
