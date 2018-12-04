@@ -35,7 +35,12 @@ Blockly.Blocks['boardevent'] = {
     this.errorVisible_=false;
     this.updateShape_();    
     this.jsonInit({"mutator": "boardevent_mutator"});
-  },
+  }
+};
+
+Blockly.Constants.Widgets.BORDER_MUTATOR_MIXIN = {
+  inputs_: [false, false],
+  
   mutationToDom: function (workspace) {
     if (!this.messageVisible_ && !this.errorVisible_) {
       return null;
