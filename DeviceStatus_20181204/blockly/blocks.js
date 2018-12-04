@@ -1,4 +1,4 @@
-Blockly.Blocks["mutation_container"] = {
+Blockly.Blocks["mutator_container"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
@@ -63,7 +63,7 @@ Blockly.Blocks['boardevent'] = {
     this.updateShape_();
   },
   decompose: function (workspace) {
-    var containerBlock = workspace.newBlock('mutation_container');
+    var containerBlock = workspace.newBlock('mutator_container');
     containerBlock.initSvg();
     var connection = containerBlock.getInput('STACK').connection;
     
