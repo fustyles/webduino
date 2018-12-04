@@ -34,7 +34,7 @@ Blockly.Blocks['boardevent'] = {
     this.messageVisible_=false;
     this.errorVisible_=false;
     this.updateShape_();    
-    this.setMutator(new Blockly.Mutator(['boardevent_mutator']));
+    this.setMutator();
   },
   mutationToDom: function (workspace) {
     if (!this.messageVisible_ && !this.errorVisible_) {
@@ -56,8 +56,8 @@ Blockly.Blocks['boardevent'] = {
   },
   decompose: function (workspace) {
     var containerBlock = workspace.newBlock('boardevent_mutator');
-    containerBlock.setFieldValue(this.messageVisible_, "chkmessage");
-    containerBlock.setFieldValue(this.errorVisible_, "chkerror");
+    containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.messageVisible_), "chkmessage");
+    containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.errorVisible_), "chkerror");
     containerBlock.initSvg();
     return containerBlock;
   },
