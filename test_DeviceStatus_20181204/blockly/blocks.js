@@ -31,9 +31,8 @@ Blockly.Blocks['boardevent'] = {
     this.setNextStatement(true);
     this.setColour(340);
     this.getField('samplingInterval').setValue('250');
-    this.messageVisible_=false;
-    this.errorVisible_=false;
-    this.updateShape_();    
+    this.messageVisible_=true;
+    this.errorVisible_=true;
     this.setMutator(new Blockly.Mutator(['boardevent_mutator']));
   },
   mutationToDom: function (workspace) {
