@@ -31,8 +31,8 @@ Blockly.Blocks['boardevent'] = {
     this.setNextStatement(true);
     this.setColour(340);
     this.getField('samplingInterval').setValue('250');
-    this.messageVisible_=true;
-    this.errorVisible_=true;
+    this.messageVisible_=false;
+    this.errorVisible_=false;
     this.setMutator(new Blockly.Mutator(['boardevent_mutator']));
   },
   mutationToDom: function (workspace) {
@@ -65,8 +65,8 @@ Blockly.Blocks['boardevent'] = {
     return containerBlock;
   },
   compose: function(containerBlock) {
-    this.messageVisible_ = (containerBlock.getFieldValue("chkmessage") == "TRUE");
-    this.errorVisible_ = (containerBlock.getFieldValue("chkerror") == "TRUE");
+    this.messageVisible_ = containerBlock.getFieldValue("chkmessage");
+    this.errorVisible_ = containerBlock.getFieldValue("chkerror");
     this.updateShape_();
     Blockly.Mutator.reconnect(containerBlock.messageConnection_, this, 'chkmessage');
     Blockly.Mutator.reconnect(containerBlock.errorConnection_, this, 'chkerror');
