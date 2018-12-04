@@ -8,16 +8,6 @@ Blockly.Blocks["mutation_container"] = {
   }
 };
 
-Blockly.Blocks["error_with_item"] = {
-  init: function() {
-    this.setColour(Blockly.Blocks.lists.HUE);
-    this.appendDummyInput()
-        .appendField("event.Error");
-    this.setPreviousStatement(true);
-    this.contextMenu = false;
-  }
-};
-
 Blockly.Blocks["message_with_item"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
@@ -25,6 +15,16 @@ Blockly.Blocks["message_with_item"] = {
         .appendField("Message");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
+    this.contextMenu = false;
+  }
+};
+
+Blockly.Blocks["error_with_item"] = {
+  init: function() {
+    this.setColour(Blockly.Blocks.lists.HUE);
+    this.appendDummyInput()
+        .appendField("event.Error");
+    this.setPreviousStatement(true);
     this.contextMenu = false;
   }
 };
