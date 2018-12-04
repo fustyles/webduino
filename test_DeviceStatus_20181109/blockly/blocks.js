@@ -55,7 +55,7 @@ Blockly.Blocks['boardevent'] = {
     this.messageCount = 0;
     this.list = [];
     this.updateShape_();    
-    this.setMutator(new Blockly.Mutator(['error_with_item','message_with_item']));
+    this.setMutator(new Blockly.Mutator(['message_with_item','error_with_item']));
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
@@ -88,7 +88,6 @@ Blockly.Blocks['boardevent'] = {
     return containerBlock;
   },
   compose: function(containerBlock) {
-    console.log("compose");
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
     var errorCount = 0;
     var messageCount = 0;
