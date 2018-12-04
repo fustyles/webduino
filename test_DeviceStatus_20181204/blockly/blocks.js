@@ -34,14 +34,8 @@ Blockly.Blocks['boardevent'] = {
     this.messageVisible_=false;
     this.errorVisible_=false;
     this.updateShape_();    
-    this.jsonInit({"mutator": "boardevent_mutator"});
-  }
-};
-
-Blockly.Constants.Widgets.BORDER_MUTATOR_MIXIN = {
-  messageVisible_: false,
-  errorVisible_: false,
-  
+    this.setMutator(new Blockly.Mutator(['boardevent_mutator']));
+  },
   mutationToDom: function (workspace) {
     if (!this.messageVisible_ && !this.errorVisible_) {
       return null;
@@ -61,7 +55,7 @@ Blockly.Constants.Widgets.BORDER_MUTATOR_MIXIN = {
     this.updateShape_();
   },
   decompose: function (workspace) {
-    var containerBlock = workspace.newBlock('boardevent_mutator');
+    var containerBlock = workspace.getBlockById('boardevent_mutator');
     containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.messageVisible_), "chkmessage");
     containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.errorVisible_), "chkerror");
     containerBlock.initSvg();
@@ -114,5 +108,3 @@ Blockly.Blocks['boardevent_getmessage'] = {
     this.setColour(45);
   }
 };
-
-Blockly.Extensions.registerMutator('boardevent_mutator', Blockly.Constants.Widgets.BORDER_MUTATOR_MIXIN, null, [""])
