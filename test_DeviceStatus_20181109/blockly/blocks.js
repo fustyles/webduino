@@ -63,7 +63,10 @@ Blockly.Blocks['boardevent'] = {
     return container;
   },
   domToMutation: function (xmlElement) {
-    this.list = xmlElement.getAttribute('list').split(",");
+    if (xmlElement.getAttribute('list'))
+      this.list = xmlElement.getAttribute('list').split(",");
+    else
+      this.list = "error,message".split(",");
     this.updateShape_();
   },
   decompose: function (workspace) {
