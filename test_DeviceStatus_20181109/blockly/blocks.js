@@ -23,6 +23,7 @@ Blockly.Blocks["message_with_item"] = {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
         .appendField("Message");
+    this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.contextMenu = false;
   }
