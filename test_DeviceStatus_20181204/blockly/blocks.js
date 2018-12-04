@@ -58,12 +58,12 @@ Blockly.Blocks['boardevent'] = {
     console.log("decompose");
     console.log(this.messageVisible_);
     console.log(this.errorVisible_);        
-    //var containerBlock = workspace.newBlock('boardevent_mutator');
-    //containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.messageVisible_), "chkmessage");
-    //containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.errorVisible_), "chkerror");
-    //containerBlock.initSvg();
+    var containerBlock = workspace.newBlock('boardevent_mutator');
+    containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.messageVisible_), "chkmessage");
+    containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.errorVisible_), "chkerror");
+    containerBlock.initSvg();
   
-    //return containerBlock;
+    return containerBlock;
   },
   compose: function(containerBlock) {
     this.messageVisible_ = (containerBlock.getFieldValue("chkmessage")=="TRUE");
