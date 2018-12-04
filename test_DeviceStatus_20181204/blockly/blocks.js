@@ -1,4 +1,20 @@
-
+/*
+Blockly.Blocks["boardevent_mutator"] = {
+  init: function() {
+    this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("BoardEvent.STRING_MESSAGE")
+      .appendField(new Blockly.FieldCheckbox("FALSE"), "chkmessage");
+    this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("BoardEvent.ERROR")
+      .appendField(new Blockly.FieldCheckbox("FALSE"), "chkerror");
+    this.setColour(20);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+*/
 
 Blockly.Blocks['boardevent'] = {
   init: function () {
