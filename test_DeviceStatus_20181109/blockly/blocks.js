@@ -99,7 +99,7 @@ Blockly.Blocks['boardevent'] = {
         case 'message_with_item':
           if (messageCount==0) { 
             messageCount++;
-            this.list.push("message");
+            this.list.unshift("message");
             messageConnections.push(clauseBlock.listConnection_);
           }
           break;          
