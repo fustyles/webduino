@@ -36,6 +36,7 @@ Blockly.Blocks['boardevent'] = {
       .appendField("Sampling Interval (ms)")
       .appendField(new Blockly.FieldDropdown([["20","20"], ["50","50"], ["75","75"], ["100","100"], ["250","250"], ["500","500"], ["1000","1000"]]), "samplingInterval")
       .appendField("    Device ID");
+    this.appendDummyInput();
     this.appendDummyInput()
       .appendField("BoardEvent.READY");
     this.appendStatementInput("do_ready"); 
