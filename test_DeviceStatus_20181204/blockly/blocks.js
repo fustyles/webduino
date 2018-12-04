@@ -1,4 +1,3 @@
-/*
 Blockly.Blocks["boardevent_mutator"] = {
   init: function() {
     this.appendDummyInput()
@@ -14,7 +13,6 @@ Blockly.Blocks["boardevent_mutator"] = {
     this.setHelpUrl("");
   }
 };
-*/
 
 Blockly.Blocks['boardevent'] = {
   init: function () {
@@ -67,14 +65,14 @@ Blockly.Blocks['boardevent'] = {
     this.messageVisible_ = (containerBlock.getFieldValue("chkmessage") == "TRUE");
     this.widthVisible_ = (containerBlock.getFieldValue("chkerror") == "TRUE");
     this.updateShape_();
-    Blockly.Mutator.reconnect(containerBlock.valueConnection_, this, 'chkmessage');
-    //Blockly.Mutator.reconnect(containerBlock.valueConnection_[1], this, 'chkerror');
+    Blockly.Mutator.reconnect(containerBlock.messageConnection_, this, 'chkmessage');
+    Blockly.Mutator.reconnect(containerBlock.errorConnection_, this, 'chkerror');
   },
   saveConnections: function(containerBlock) {
     var message = this.getInput('chkmessage');
-    containerBlock.valueConnection_ = message && message.connection.targetConnection;
+    containerBlock.messageConnection_ = message && message.connection.targetConnection;
     var error = this.getInput('chkerror');
-    // containerBlock.valueConnection_[1] = error && error.connection.targetConnection;
+    containerBlock.errorConnection_ = error && error.connection.targetConnection;
   },
   updateShape_: function() {
     if (this.getInput('do_message')) this.removeInput('do_message');
