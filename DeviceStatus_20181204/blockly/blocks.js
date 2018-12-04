@@ -51,8 +51,6 @@ Blockly.Blocks['boardevent'] = {
     this.setNextStatement(true);
     this.setColour(340);
     this.getField('samplingInterval').setValue('250');
-    this.errorCount = 0;
-    this.messageCount = 0;
     this.list = [];
     this.updateShape_();    
     this.setMutator(new Blockly.Mutator(['message_with_item','error_with_item']));
