@@ -72,17 +72,17 @@ Blockly.Blocks['boardevent'] = {
     var connection = containerBlock.getInput('STACK').connection;
     
     for (var k = 0; k < this.list.length; k++) {
-      if (this.list[k]=="error") {
-        var itemBlock_input = workspace.newBlock('error_with_item');
-        itemBlock_input.initSvg();
-        connection.connect(itemBlock_input.previousConnection);
-        connection = itemBlock_input.nextConnection;
-      } else if (this.list[k]=="message") {
+      if (this.list[k]=="message") {
         var itemBlock_list = workspace.newBlock('message_with_item');
         itemBlock_list.initSvg();
         connection.connect(itemBlock_list.previousConnection);
         connection = itemBlock_list.nextConnection;
-      }
+      } else if (this.list[k]=="error") {
+        var itemBlock_input = workspace.newBlock('error_with_item');
+        itemBlock_input.initSvg();
+        connection.connect(itemBlock_input.previousConnection);
+        connection = itemBlock_input.nextConnection;
+      } 
     }
     this.updateShape_();
     return containerBlock;
@@ -96,18 +96,18 @@ Blockly.Blocks['boardevent'] = {
     var listConnections = [null];
     while (clauseBlock) {
       switch (clauseBlock.type) {
-        case 'error_with_item':
-          if (errorCount==0) {
-            errorCount++;
-            this.list.push("error");
-            inputConnections.push(clauseBlock.inputConnection_);
-          }
-          break;
         case 'message_with_item':
           if (messageCount==0) { 
             messageCount++;
             this.list.push("message");
             listConnections.push(clauseBlock.listConnection_);
+          }
+          break;          
+        case 'error_with_item':
+          if (errorCount==0) {
+            errorCount++;
+            this.list.push("error");
+            inputConnections.push(clauseBlock.inputConnection_);
           }
           break;
         default:
@@ -119,10 +119,10 @@ Blockly.Blocks['boardevent'] = {
     
     this.updateShape_();
     
+    if (messageCount>0) 
+      Blockly.Mutator.reconnect(listConnections[1], this, 'do_message');    
     if (errorCount>0)
       Blockly.Mutator.reconnect(inputConnections[1], this, 'do_error');
-    if (messageCount>0) 
-      Blockly.Mutator.reconnect(listConnections[1], this, 'do_message');
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
@@ -130,20 +130,20 @@ Blockly.Blocks['boardevent'] = {
     var messageCount = 0;
     while (clauseBlock) {
       switch (clauseBlock.type) {
-        case 'error_with_item':
-          if (errorCount==0) {
-            errorCount++;
-            var input = this.getInput('do_error');
-            clauseBlock.inputConnection_ =
-                input && input.connection.targetConnection;
-          }
-          break;
         case 'message_with_item':
           if (messageCount==0) {
             messageCount++;
             var list = this.getInput('do_message');
             clauseBlock.listConnection_ =
                 list && list.connection.targetConnection;
+          }
+          break;          
+        case 'error_with_item':
+          if (errorCount==0) {
+            errorCount++;
+            var input = this.getInput('do_error');
+            clauseBlock.inputConnection_ =
+                input && input.connection.targetConnection;
           }
           break;
         default:
@@ -154,19 +154,19 @@ Blockly.Blocks['boardevent'] = {
     }
   },
   updateShape_: function() {
+    this.getField('title_message').setVisible(false);
+    this.getInput('do_message').setVisible(false);    
     this.getField('title_error').setVisible(false);
     this.getInput('do_error').setVisible(false);
-    this.getField('title_message').setVisible(false);
-    this.getInput('do_message').setVisible(false);
       
     for (var k = 0; k < this.list.length; k++) {
-      if (this.list[k]=="error") {
-        this.getField('title_error').setVisible(true);
-        this.getInput('do_error').setVisible(true);
-      } else if (this.list[k]=="message") {
+      if (this.list[k]=="message") {
         this.getField('title_message').setVisible(true);
         this.getInput('do_message').setVisible(true);
-      }
+      } else if (this.list[k]=="error") {
+        this.getField('title_error').setVisible(true);
+        this.getInput('do_error').setVisible(true);
+      } 
     }
   }
 };
