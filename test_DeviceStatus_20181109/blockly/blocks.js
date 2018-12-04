@@ -14,7 +14,6 @@ Blockly.Blocks["error_with_item"] = {
     this.appendDummyInput()
         .appendField("event.Error");
     this.setPreviousStatement(true);
-    this.setNextStatement(true);
     this.contextMenu = false;
   }
 };
@@ -24,7 +23,6 @@ Blockly.Blocks["message_with_item"] = {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
         .appendField("Message");
-    this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.contextMenu = false;
   }
@@ -102,7 +100,6 @@ Blockly.Blocks['boardevent'] = {
     this.list = [];
     var inputConnections = [null];
     var listConnections = [null];
-    var i=0;
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'error_with_item':
@@ -111,7 +108,6 @@ Blockly.Blocks['boardevent'] = {
             this.list.push("error");
             inputConnections.push(clauseBlock.inputConnection_);
           }
-          i++;
           break;
         case 'message_with_item':
           if (this.messageCount==0) { 
@@ -119,7 +115,6 @@ Blockly.Blocks['boardevent'] = {
             this.list.push("message");
             listConnections.push(clauseBlock.listConnection_);
           }
-          i++;
           break;
         default:
           throw TypeError('Unknown block type: ' + clauseBlock.type);
