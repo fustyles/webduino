@@ -108,3 +108,5 @@ Blockly.Blocks['boardevent_getmessage'] = {
     this.setColour(45);
   }
 };
+
+Blockly.Extensions.registerMutator('boardevent_mutator', Blockly.Constants.Widgets.BORDER_MUTATOR_MIXIN, null, [""])
