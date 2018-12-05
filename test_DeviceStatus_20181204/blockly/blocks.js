@@ -48,22 +48,17 @@ Blockly.Blocks['boardevent'] = {
     this.messageVisible_ = (xmlElement.getAttribute('message')=="true");
     this.errorVisible_ = (xmlElement.getAttribute('error')=="true");
     this.updateShape_();
-    console.log("domToMutation");
-    console.log(this.messageVisible_);
-    console.log(this.errorVisible_); 
   },
-  decompose: function (workspace) {
-    console.log("decompose");
-    console.log(this.messageVisible_);
-    console.log(this.errorVisible_);        
+  decompose: function (workspace) {      
     var containerBlock = workspace.newBlock('boardevent_mutator');
     containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.messageVisible_), "chkmessage");
     containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.errorVisible_), "chkerror");
     containerBlock.initSvg();
-  
     return containerBlock;
   },
   compose: function(containerBlock) {
+    console.log(containerBlock.getFieldValue("chkmessage"));
+    console.log(containerBlock.getFieldValue("chkerror"));
     this.messageVisible_ = (containerBlock.getFieldValue("chkmessage")=="TRUE");
     this.errorVisible_ = (containerBlock.getFieldValue("chkerror")=="TRUE");
     console.log("compose");
@@ -77,15 +72,9 @@ Blockly.Blocks['boardevent'] = {
     var message = this.getInput('chkmessage');
     containerBlock.messageConnection_ = message && message.connection.targetConnection;
     var error = this.getInput('chkerror');
-    containerBlock.errorConnection_ = error && error.connection.targetConnection;
-    console.log("saveConnections");
-    console.log(this.messageVisible_);
-    console.log(this.errorVisible_);      
+    containerBlock.errorConnection_ = error && error.connection.targetConnection; 
   },
   updateShape_: function() {
-    console.log("updateShape_");
-    console.log(this.messageVisible_);
-    console.log(this.errorVisible_);
     if (this.getInput('do_message')) this.removeInput('do_message');
     if (this.getInput('do_error')) this.removeInput('do_error');
     if (this.messageVisible_) {
