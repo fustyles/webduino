@@ -51,6 +51,9 @@ Blockly.Blocks['boardevent'] = {
   },
   decompose: function (workspace) {      
     var containerBlock = workspace.newBlock('boardevent_mutator');
+    console.log("decompose");
+    console.log(this.messageVisible_);
+    console.log(this.errorVisible_);       
     containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.messageVisible_=="TRUE"), "chkmessage");
     containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.errorVisible_=="TRUE"), "chkerror");
     containerBlock.initSvg();
@@ -60,10 +63,7 @@ Blockly.Blocks['boardevent'] = {
     console.log(containerBlock.getFieldValue("chkmessage"));
     console.log(containerBlock.getFieldValue("chkerror"));
     this.messageVisible_ = containerBlock.getFieldValue("chkmessage");
-    this.errorVisible_ = containerBlock.getFieldValue("chkerror");
-    console.log("compose");
-    console.log(this.messageVisible_);
-    console.log(this.errorVisible_);        
+    this.errorVisible_ = containerBlock.getFieldValue("chkerror"); 
     this.updateShape_();
     Blockly.Mutator.reconnect(containerBlock.messageConnection_, this, 'chkmessage');
     Blockly.Mutator.reconnect(containerBlock.errorConnection_, this, 'chkerror');
