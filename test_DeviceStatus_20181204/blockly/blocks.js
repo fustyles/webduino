@@ -1,6 +1,5 @@
 Blockly.Blocks["boardevent_mutator"] = {
-  init: function() {
-    /*
+  init: function () {
     this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("BoardEvent.STRING_MESSAGE")
@@ -9,7 +8,6 @@ Blockly.Blocks["boardevent_mutator"] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("BoardEvent.ERROR")
       .appendField(new Blockly.FieldCheckbox("FALSE"), "chkerror");
-      */
     this.setColour(20);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -56,8 +54,8 @@ Blockly.Blocks['boardevent'] = {
     console.log("decompose");
     console.log(this.messageVisible_);
     console.log(this.errorVisible_);    
-    containerBlock.appendField(new Blockly.FieldCheckbox("TRUE"), "chkmessage");
-    containerBlock.appendField(new Blockly.FieldCheckbox("TRUE"), "chkerror");
+    containerBlock.setFieldValue(this.messageVisible_, "chkmessage");
+    containerBlock.setFieldValue(this.errorVisible_, "chkerror");
     console.log(containerBlock.getFieldValue("chkmessage"));
     console.log(containerBlock.getFieldValue("chkerror")); 
     containerBlock.initSvg();
