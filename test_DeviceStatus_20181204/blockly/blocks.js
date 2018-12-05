@@ -45,8 +45,8 @@ Blockly.Blocks['boardevent'] = {
     return container;
   },
   domToMutation: function (xmlElement) {
-    this.messageVisible_ = (xmlElement.getAttribute('message')=="true");
-    this.errorVisible_ = (xmlElement.getAttribute('error')=="true");
+    this.messageVisible_ = (xmlElement.getAttribute('message')=="TRUE");
+    this.errorVisible_ = (xmlElement.getAttribute('error')=="TRUE");
     this.updateShape_();
   },
   decompose: function (workspace) {      
