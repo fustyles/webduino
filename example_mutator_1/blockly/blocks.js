@@ -1,3 +1,5 @@
+// Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
+
 Blockly.Blocks["mutation_container"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
