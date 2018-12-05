@@ -66,12 +66,12 @@ Blockly.Blocks['boardevent'] = {
   compose: function(containerBlock) {
     this.messageVisible_ = (containerBlock.getFieldValue("chkmessage")=="TRUE");
     this.errorVisible_ = (containerBlock.getFieldValue("chkerror")=="TRUE");
+    console.log("compose");
+    console.log(this.messageVisible_);
+    console.log(this.errorVisible_);        
     this.updateShape_();
     Blockly.Mutator.reconnect(containerBlock.messageConnection_, this, 'chkmessage');
     Blockly.Mutator.reconnect(containerBlock.errorConnection_, this, 'chkerror');
-    console.log("compose");
-    console.log(this.messageVisible_);
-    console.log(this.errorVisible_);    
   },
   saveConnections: function(containerBlock) {
     var message = this.getInput('chkmessage');
