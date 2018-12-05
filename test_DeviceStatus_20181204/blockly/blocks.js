@@ -37,16 +37,11 @@ Blockly.Blocks['boardevent'] = {
     this.setMutator(new Blockly.Mutator(['boardevent_mutator']));
   },
   mutationToDom: function (workspace) {
-    if (!this.messageVisible_ && !this.errorVisible_) {
-      return null;
-    }
     var container = document.createElement('mutation');
-    if (this.messageVisible_) {
+    if (this.messageVisible_)
       container.setAttribute('message', this.messageVisible_);
-    }
-    if (this.errorVisible_) {
+    if (this.errorVisible_)
       container.setAttribute('error', this.errorVisible_);
-    }
     return container;
   },
   domToMutation: function (xmlElement) {
