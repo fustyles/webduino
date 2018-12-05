@@ -1,4 +1,3 @@
-/*
 Blockly.Blocks["boardevent_mutator"] = {
   init: function () {
     this.appendDummyInput()
@@ -14,7 +13,6 @@ Blockly.Blocks["boardevent_mutator"] = {
     this.setHelpUrl("");
   }
 };
-*/
 
 Blockly.Blocks['boardevent'] = {
   init: function () {
@@ -36,7 +34,8 @@ Blockly.Blocks['boardevent'] = {
     this.messageVisible_= "FALSE";
     this.errorVisible_= "FALSE";
     this.updateShape_();
-    this.setMutator(new Blockly.Mutator(['boardevent_mutator']));
+    //this.setMutator(new Blockly.Mutator(['boardevent_mutator']));
+    this.setMutator(new Blockly.Mutator([]));
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
