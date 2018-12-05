@@ -31,8 +31,8 @@ Blockly.Blocks['boardevent'] = {
     this.setNextStatement(true);
     this.setColour(340);
     this.getField('samplingInterval').setValue('250');
-    this.messageVisible_= false;
-    this.errorVisible_= false;
+    this.messageVisible_= "FALSE";
+    this.errorVisible_= "FALSE";
     this.updateShape_();
     this.setMutator(new Blockly.Mutator(['boardevent_mutator']));
   },
@@ -45,8 +45,8 @@ Blockly.Blocks['boardevent'] = {
     return container;
   },
   domToMutation: function (xmlElement) {
-    this.messageVisible_ = (xmlElement.getAttribute('message')=="TRUE");
-    this.errorVisible_ = (xmlElement.getAttribute('error')=="TRUE");
+    this.messageVisible_ = xmlElement.getAttribute('message');
+    this.errorVisible_ = xmlElement.getAttribute('error');
     this.updateShape_();
   },
   decompose: function (workspace) {      
@@ -59,8 +59,8 @@ Blockly.Blocks['boardevent'] = {
   compose: function(containerBlock) {
     console.log(containerBlock.getFieldValue("chkmessage"));
     console.log(containerBlock.getFieldValue("chkerror"));
-    this.messageVisible_ = (containerBlock.getFieldValue("chkmessage")=="TRUE");
-    this.errorVisible_ = (containerBlock.getFieldValue("chkerror")=="TRUE");
+    this.messageVisible_ = containerBlock.getFieldValue("chkmessage");
+    this.errorVisible_ = containerBlock.getFieldValue("chkerror");
     console.log("compose");
     console.log(this.messageVisible_);
     console.log(this.errorVisible_);        
