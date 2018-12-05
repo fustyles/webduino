@@ -77,11 +77,11 @@ Blockly.Blocks['boardevent'] = {
   updateShape_: function() {
     if (this.getInput('do_message')) this.removeInput('do_message');
     if (this.getInput('do_error')) this.removeInput('do_error');
-    if (this.messageVisible_) {
+    if (this.messageVisible_=="TRUE") {
       this.appendStatementInput("do_message")
           .appendField("BoardEvent.STRING_MESSAGE","title_message");
     }
-    if (this.errorVisible_) {
+    if (this.errorVisible_=="TRUE") {
       this.appendStatementInput("do_error")
           .appendField("BoardEvent.ERROR","title_error");
     }
