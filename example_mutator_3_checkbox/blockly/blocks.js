@@ -1,3 +1,5 @@
+// Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
+
 Blockly.Blocks["boardevent_mutator"] = {
   init: function () {
     this.appendDummyInput()
