@@ -1,3 +1,4 @@
+/*
 Blockly.Blocks["boardevent_mutator"] = {
   init: function () {
     this.appendDummyInput()
@@ -13,6 +14,7 @@ Blockly.Blocks["boardevent_mutator"] = {
     this.setHelpUrl("");
   }
 };
+*/
 
 Blockly.Blocks['boardevent'] = {
   init: function () {
@@ -51,13 +53,8 @@ Blockly.Blocks['boardevent'] = {
   },
   decompose: function (workspace) {      
     var containerBlock = workspace.newBlock('boardevent_mutator');
-    console.log("decompose");
-    console.log(this.messageVisible_);
-    console.log(this.errorVisible_);    
     containerBlock.setFieldValue(this.messageVisible_, "chkmessage");
     containerBlock.setFieldValue(this.errorVisible_, "chkerror");
-    console.log(containerBlock.getFieldValue("chkmessage"));
-    console.log(containerBlock.getFieldValue("chkerror")); 
     containerBlock.initSvg();
     return containerBlock;
   },
