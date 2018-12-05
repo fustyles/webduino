@@ -54,10 +54,8 @@ Blockly.Blocks['boardevent'] = {
     console.log("decompose");
     console.log(this.messageVisible_);
     console.log(this.errorVisible_);    
-    console.log(this.messageVisible_=="TRUE");
-    console.log(this.errorVisible_=="TRUE"); 
-    containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.messageVisible_=="TRUE"), "chkmessage");
-    containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.errorVisible_=="TRUE"), "chkerror");
+    containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.messageVisible_), "chkmessage");
+    containerBlock.setFieldValue(new Blockly.FieldCheckbox(this.errorVisible_), "chkerror");
     containerBlock.initSvg();
     return containerBlock;
   },
