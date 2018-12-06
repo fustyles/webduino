@@ -60,7 +60,7 @@ Blockly.Blocks['boardevent'] = {
     console.log("decompose");
     console.log(this.list);
     
-    if (this.list[0]=="message"||this.list[0]=="error") {
+    if (this.list!=[]) {
       if (this.list[0]=="message"){
         var containerBlock = workspace.newBlock('message_with_item');
         containerBlock.initSvg();
