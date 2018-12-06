@@ -146,12 +146,12 @@ Blockly.Blocks['boardevent'] = {
     if (this.getInput('do_error')) this.removeInput('do_error');
     var i=0;
     for (var i = 0; i < this.list.length; i++) {
-      if (this.list[i]=="message")
+      if (this.list[i]=="message") {
         if (i==0)
           this.appendStatementInput("do_message")
               .appendField("BoardEvent.STRING_MESSAGE","title_message");
         i++
-      else if (this.list[i]=="error")
+      } else if (this.list[i]=="error")
         this.appendStatementInput("do_error")
             .appendField("BoardEvent.ERROR","title_error");
     }     
