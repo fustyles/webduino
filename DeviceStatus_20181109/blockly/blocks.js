@@ -1,3 +1,5 @@
+// Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
+
 Blockly.Blocks["boardevent_mutator"] = {
   init: function () {
     this.appendDummyInput()
@@ -80,6 +82,15 @@ Blockly.Blocks['boardevent'] = {
       this.appendStatementInput("do_error")
           .appendField("BoardEvent.ERROR","title_error");
     }
+    /*
+    this.getInput('do_message').setVisible(false);    
+    this.getInput('do_error').setVisible(false);
+      
+    if (this.messageVisible_=="TRUE")
+        this.getInput('do_message').setVisible(true);
+    if (this.errorVisible_=="TRUE")
+        this.getInput('do_error').setVisible(true);
+    */
   }
 };
 
