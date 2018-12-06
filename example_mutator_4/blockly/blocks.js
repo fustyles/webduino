@@ -56,9 +56,6 @@ Blockly.Blocks['boardevent'] = {
     this.updateShape_();
   },
   decompose: function (workspace) {
-    console.log("decompose");
-    console.log(this.list.length);
-   
     if (this.list.length>0) {
       if (this.list[0]=="message") {
         var containerBlock = workspace.newBlock('message_with_item');
@@ -81,7 +78,7 @@ Blockly.Blocks['boardevent'] = {
     }
   },
   compose: function(containerBlock) {
-    var clauseBlock = containerBlock.nextConnection.targetBlock();
+    var clauseBlock = containerBlock.Connection.targetBlock();
     var errorCount = 0;
     var messageCount = 0;
     this.list = [];
