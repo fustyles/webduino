@@ -51,7 +51,8 @@ Blockly.Blocks['boardevent'] = {
     return container;
   },
   domToMutation: function (xmlElement) {
-    this.list = xmlElement.getAttribute('list').split(",");
+    if (xmlElement.getAttribute('list')!="")
+      this.list = xmlElement.getAttribute('list').split(",");
     console.log("domToMutation");
     console.log(this.list);
     this.updateShape_();
