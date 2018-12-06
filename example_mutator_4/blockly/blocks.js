@@ -1,9 +1,11 @@
 // Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
-Blockly.Blocks["mutation_container"] = {
+Blockly.Blocks["ready_with_item"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
-    this.appendStatementInput('STACK');
+    this.appendDummyInput()
+        .appendField("Ready");
+    this.setNextStatement(true);
     this.contextMenu = false;
   }
 };
@@ -61,9 +63,9 @@ Blockly.Blocks['boardevent'] = {
     this.updateShape_();
   },
   decompose: function (workspace) {
-    var containerBlock = workspace.newBlock('mutation_container');
+    var containerBlock = workspace.newBlock('ready_with_item');
     containerBlock.initSvg();
-    var connection = containerBlock.getInput('STACK').connection;
+    var connection = containerBlock.nextConnection;
     
     for (var i=0  ; i < this.list.length ; i++) {
       if (this.list[i]=="message") {
@@ -82,7 +84,7 @@ Blockly.Blocks['boardevent'] = {
     return containerBlock;
   },
   compose: function(containerBlock) {
-    var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+    var clauseBlock = containerBlock.nextConnection.targetBlock();
     var errorCount = 0;
     var messageCount = 0;
     this.list = [];
@@ -115,7 +117,7 @@ Blockly.Blocks['boardevent'] = {
       Blockly.Mutator.reconnect(errorConnections[1], this, 'do_error');
   },
   saveConnections: function(containerBlock) {
-    var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+    var clauseBlock = containerBlock.nextConnection.targetBlock();
     var errorCount = 0;
     var messageCount = 0;
     while (clauseBlock) {
