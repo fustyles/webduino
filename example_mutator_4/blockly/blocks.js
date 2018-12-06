@@ -38,16 +38,12 @@ Blockly.Blocks['boardevent'] = {
       .appendField("Sampling Interval (ms)")
       .appendField(new Blockly.FieldDropdown([["20","20"], ["50","50"], ["75","75"], ["100","100"], ["250","250"], ["500","500"], ["1000","1000"]]), "samplingInterval")
       .appendField("    Device ID");
-    this.appendDummyInput();
-    this.appendDummyInput()
-      .appendField("BoardEvent.READY");
-    this.appendStatementInput("do_ready"); 
-    this.appendDummyInput()
+    this.appendStatementInput("do_ready")
+        .appendField("BoardEvent.READY");
+    this.appendStatementInput("do_message")
         .appendField("BoardEvent.STRING_MESSAGE","title_message");
-    this.appendStatementInput("do_message");      
-    this.appendDummyInput()
+    this.appendStatementInput("do_error")
         .appendField("BoardEvent.ERROR","title_error");
-    this.appendStatementInput("do_error");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(340);
@@ -146,17 +142,17 @@ Blockly.Blocks['boardevent'] = {
     }
   },
   updateShape_: function() {
-    this.getField('title_message').setVisible(false);
+    //this.getField('title_message').setVisible(false);
     this.getInput('do_message').setVisible(false);    
-    this.getField('title_error').setVisible(false);
+    //this.getField('title_error').setVisible(false);
     this.getInput('do_error').setVisible(false);
       
     for (var i = 0; i < this.list.length; i++) {
       if (this.list[i]=="message") {
-        this.getField('title_message').setVisible(true);
+        //this.getField('title_message').setVisible(true);
         this.getInput('do_message').setVisible(true);
       } else if (this.list[i]=="error") {
-        this.getField('title_error').setVisible(true);
+        //this.getField('title_error').setVisible(true);
         this.getInput('do_error').setVisible(true);
       } 
     }
