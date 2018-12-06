@@ -58,7 +58,7 @@ Blockly.Blocks['boardevent'] = {
   },
   decompose: function (workspace) {
     console.log("decompose");
-    console.log(this.list[0]);
+    console.log(this.list);
     
     if (this.list[0]=="message"||this.list[0]=="error") {
       if (this.list[0]=="message"){
