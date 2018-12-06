@@ -52,9 +52,12 @@ Blockly.Blocks['boardevent'] = {
   },
   domToMutation: function (xmlElement) {
     this.list = xmlElement.getAttribute('list').split(",");
+    console.log("domToMutation");
+    console.log(this.list);
     this.updateShape_();
   },
   decompose: function (workspace) {
+    console.log("decompose");
     console.log(this.list);
     if (this.list.length>0) {
       if (this.list[0]=="message")
