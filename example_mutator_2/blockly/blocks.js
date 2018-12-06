@@ -147,9 +147,10 @@ Blockly.Blocks['boardevent'] = {
     var messageCount=0;
     for (var i = 0; i < this.list.length; i++) {
       if (this.list[i]=="message") {
-        if (messageCount==0)
+        if (messageCount==0) {  // limit to 1
           this.appendStatementInput("do_message")
               .appendField("BoardEvent.STRING_MESSAGE","title_message");
+        }
         messageCount++;
       } else if (this.list[i]=="error") {
         this.appendStatementInput("do_error")
