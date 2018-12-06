@@ -142,19 +142,14 @@ Blockly.Blocks['boardevent'] = {
     }
   },
   updateShape_: function() {
-    //this.getField('title_message').setVisible(false);
     this.getInput('do_message').setVisible(false);    
-    //this.getField('title_error').setVisible(false);
     this.getInput('do_error').setVisible(false);
       
     for (var i = 0; i < this.list.length; i++) {
-      if (this.list[i]=="message") {
-        //this.getField('title_message').setVisible(true);
+      if (this.list[i]=="message")
         this.getInput('do_message').setVisible(true);
-      } else if (this.list[i]=="error") {
-        //this.getField('title_error').setVisible(true);
+      else if (this.list[i]=="error")
         this.getInput('do_error').setVisible(true);
-      } 
     }
   }
 };
