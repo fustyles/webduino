@@ -41,7 +41,7 @@ Blockly.Blocks['boardevent'] = {
     this.setNextStatement(true);
     this.setColour(340);
     this.getField('samplingInterval').setValue('250');
-    this.list = [];
+    this.list = ["message","error"];
     this.updateShape_();    
     this.setMutator(new Blockly.Mutator(['message_with_item','error_with_item']));
   },
@@ -58,7 +58,7 @@ Blockly.Blocks['boardevent'] = {
   decompose: function (workspace) {
     console.log("decompose");
     console.log(this.list.length);
-    this.list.unshift("message");
+   
     if (this.list.length>0) {
       if (this.list[0]=="message"){
         var containerBlock = workspace.newBlock('message_with_item');
