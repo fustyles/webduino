@@ -72,7 +72,6 @@ Blockly.Blocks['boardevent'] = {
     containerBlock.errorConnection_ = error && error.connection.targetConnection; 
   },
   updateShape_: function() {
-    /*
     if (this.getInput('do_message')) this.removeInput('do_message');
     if (this.getInput('do_error')) this.removeInput('do_error');
     if (this.messageVisible_=="TRUE") {
@@ -83,7 +82,7 @@ Blockly.Blocks['boardevent'] = {
       this.appendStatementInput("do_error")
           .appendField("BoardEvent.ERROR","title_error");
     }
-    */
+    /*
     this.getInput('do_message').setVisible(false);    
     this.getInput('do_error').setVisible(false);
       
@@ -91,6 +90,7 @@ Blockly.Blocks['boardevent'] = {
         this.getInput('do_message').setVisible(true);
     if (this.errorVisible_=="TRUE")
         this.getInput('do_error').setVisible(true);
+    */
   }
 };
 
