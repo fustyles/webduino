@@ -5,7 +5,7 @@ Blockly.Blocks["ready_with_item"] = {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
         .appendField("Ready");
-    this.setNextStatement(true);
+    //this.setNextStatement(true);
     this.contextMenu = false;
   }
 };
@@ -75,12 +75,12 @@ Blockly.Blocks['boardevent'] = {
         var itemBlock_input = workspace.newBlock('message_with_item');
         itemBlock_input.initSvg();
         connection.connect(itemBlock_input.previousConnection);
-        connection = containerBlock.nextConnection;        
+        connection = itemBlock_input.nextConnection;        
       } else if (this.list[i]=="error") {
-        var containerBlock = workspace.newBlock('error_with_item');  
+        var itemBlock_input = workspace.newBlock('error_with_item');  
         itemBlock_input.initSvg();
         connection.connect(itemBlock_input.previousConnection);
-        connection = containerBlock.nextConnection;  
+        connection = itemBlock_input.nextConnection;  
       }
     }
     this.updateShape_();
