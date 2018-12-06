@@ -111,9 +111,9 @@ Blockly.Blocks['boardevent'] = {
     
     this.updateShape_();
     
-    if (messageCount==1) 
+    if (messageCount>0) 
       Blockly.Mutator.reconnect(messageConnections[1], this, 'do_message');    
-    if (errorCount==1)
+    if (errorCount>0)
       Blockly.Mutator.reconnect(errorConnections[1], this, 'do_error');
   },
   saveConnections: function(containerBlock) {
