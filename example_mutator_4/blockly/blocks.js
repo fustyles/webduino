@@ -5,7 +5,7 @@ Blockly.Blocks["ready_with_item"] = {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
         .appendField("Ready");
-    //this.setNextStatement(true);
+    this.setNextStatement(true);
     this.contextMenu = false;
   }
 };
