@@ -69,9 +69,9 @@ Blockly.Blocks['boardevent'] = {
         connection.connect(itemBlock_input.previousConnection);
         connection = itemBlock_input.nextConnection;
       }
-      this.updateShape_();
-      return containerBlock;
     }
+    this.updateShape_();
+    return containerBlock;
   },
   compose: function(containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
