@@ -151,9 +151,10 @@ Blockly.Blocks['boardevent'] = {
           this.appendStatementInput("do_message")
               .appendField("BoardEvent.STRING_MESSAGE","title_message");
         i++
-      } else if (this.list[i]=="error")
+      } else if (this.list[i]=="error") {
         this.appendStatementInput("do_error")
             .appendField("BoardEvent.ERROR","title_error");
+      }
     }     
     /*
     this.getInput('do_message').setVisible(false);    
