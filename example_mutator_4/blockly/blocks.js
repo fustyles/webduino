@@ -50,7 +50,7 @@ Blockly.Blocks['boardevent'] = {
     this.getField('samplingInterval').setValue('250');
     this.list = [];
     this.updateShape_();    
-    this.setMutator(new Blockly.Mutator(['ready_with_item','message_with_item','error_with_item']));
+    this.setMutator(new Blockly.Mutator(['message_with_item','error_with_item']));
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
