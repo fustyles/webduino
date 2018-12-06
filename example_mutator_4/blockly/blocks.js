@@ -14,7 +14,7 @@ Blockly.Blocks["error_with_item"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
-        .appendField("event.Error");
+        .appendField("Error");
     this.setPreviousStatement(true);
     this.contextMenu = false;
   }
@@ -60,7 +60,7 @@ Blockly.Blocks['boardevent'] = {
     console.log("decompose");
     console.log(this.list[0]);
     
-    if (this.list[0]) {
+    if (this.list[0]=="message"||this.list[0]=="error") {
       if (this.list[0]=="message"){
         var containerBlock = workspace.newBlock('message_with_item');
         containerBlock.initSvg();
