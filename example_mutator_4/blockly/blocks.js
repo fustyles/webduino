@@ -1,5 +1,14 @@
 // Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
+Blockly.Blocks["ready_with_item"] = {
+  init: function() {
+    this.setColour(Blockly.Blocks.lists.HUE);
+    this.appendDummyInput()
+        .appendField("Ready");
+    this.contextMenu = false;
+  }
+};
+
 Blockly.Blocks["message_with_item"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
@@ -43,7 +52,7 @@ Blockly.Blocks['boardevent'] = {
     this.getField('samplingInterval').setValue('250');
     this.list = ["message","error"];
     this.updateShape_();    
-    this.setMutator(new Blockly.Mutator(['message_with_item','error_with_item']));
+    this.setMutator(new Blockly.Mutator(['ready_with_item','message_with_item','error_with_item']));
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
@@ -56,29 +65,28 @@ Blockly.Blocks['boardevent'] = {
     this.updateShape_();
   },
   decompose: function (workspace) {
-    if (this.list.length>0) {
-      if (this.list[0]=="message") {
-        var containerBlock = workspace.newBlock('message_with_item');
-        containerBlock.initSvg();
-        var connection = containerBlock.nextConnection;        
-      } else {
-        var containerBlock = workspace.newBlock('error_with_item');  
-        containerBlock.initSvg();
-        var connection = containerBlock.nextConnection;
-      }
-
-      if (this.list[1]=="error") {
-        var itemBlock_input = workspace.newBlock('error_with_item');
+    var containerBlock = workspace.newBlock('ready_with_item');
+    containerBlock.initSvg();
+    var connection = containerBlock.nextConnection;
+    
+    for (var i=0  ; i < this.list.length ; i++) {
+      if (this.list[i]=="message") {
+        var itemBlock_input = workspace.newBlock('message_with_item');
         itemBlock_input.initSvg();
         connection.connect(itemBlock_input.previousConnection);
-        connection = itemBlock_input.nextConnection;
+        connection = containerBlock.nextConnection;        
+      } else if (this.list[i]=="error") {
+        var containerBlock = workspace.newBlock('error_with_item');  
+        itemBlock_input.initSvg();
+        connection.connect(itemBlock_input.previousConnection);
+        connection = containerBlock.nextConnection;  
       }
-      this.updateShape_();
-      return containerBlock;
     }
+    this.updateShape_();
+    return containerBlock;
   },
   compose: function(containerBlock) {
-    var clauseBlock = containerBlock.Connection.targetBlock();
+    var clauseBlock = containerBlock.nextConnection.targetBlock();
     var errorCount = 0;
     var messageCount = 0;
     this.list = [];
