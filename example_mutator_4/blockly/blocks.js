@@ -60,13 +60,15 @@ Blockly.Blocks['boardevent'] = {
     console.log("decompose");
     console.log(this.list);
     if (this.list.length>0) {
-      if (this.list[0]=="message")
+      if (this.list[0]=="message"){
         var containerBlock = workspace.newBlock('message_with_item');
-      else
+        containerBlock.initSvg();
+        var connection = containerBlock.nextConnection;        
+      } else if (this.list[0]=="error") {
         var containerBlock = workspace.newBlock('error_with_item');  
-      containerBlock.initSvg();
-      var connection = containerBlock.nextConnection;
-      
+        containerBlock.initSvg();
+        var connection = containerBlock.nextConnection;
+      }
       if (this.list[1]) {
         var itemBlock_input = workspace.newBlock('error_with_item');
         itemBlock_input.initSvg();
@@ -75,7 +77,6 @@ Blockly.Blocks['boardevent'] = {
       }
     }
     this.updateShape_();
-    console.log(containerBlock);
     return containerBlock;
   },
   compose: function(containerBlock) {
