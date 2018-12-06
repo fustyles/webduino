@@ -1,11 +1,11 @@
 // Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
-Blockly.Blocks["mutator_container"] = {
+Blockly.Blocks["ready_with_item"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
-        .appendField("BoardEvent");
-    this.appendStatementInput('STACK');
+        .appendField("Ready");
+    this.setNextStatement(true);
     this.contextMenu = false;
   }
 };
@@ -25,7 +25,7 @@ Blockly.Blocks["error_with_item"] = {
   init: function() {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendDummyInput()
-        .appendField("event.Error");
+        .appendField("Error");
     this.setPreviousStatement(true);
     this.contextMenu = false;
   }
@@ -38,16 +38,12 @@ Blockly.Blocks['boardevent'] = {
       .appendField("Sampling Interval (ms)")
       .appendField(new Blockly.FieldDropdown([["20","20"], ["50","50"], ["75","75"], ["100","100"], ["250","250"], ["500","500"], ["1000","1000"]]), "samplingInterval")
       .appendField("    Device ID");
-    this.appendDummyInput();
-    this.appendDummyInput()
-      .appendField("BoardEvent.READY");
-    this.appendStatementInput("do_ready"); 
-    this.appendDummyInput()
+    this.appendStatementInput("do_ready")
+        .appendField("BoardEvent.READY");
+    this.appendStatementInput("do_message")
         .appendField("BoardEvent.STRING_MESSAGE","title_message");
-    this.appendStatementInput("do_message");      
-    this.appendDummyInput()
+    this.appendStatementInput("do_error")
         .appendField("BoardEvent.ERROR","title_error");
-    this.appendStatementInput("do_error");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(340);
@@ -62,32 +58,33 @@ Blockly.Blocks['boardevent'] = {
     return container;
   },
   domToMutation: function (xmlElement) {
-    this.list = xmlElement.getAttribute('list').split(",");
+    if (xmlElement.getAttribute('list')!="")
+      this.list = xmlElement.getAttribute('list').split(",");
     this.updateShape_();
   },
   decompose: function (workspace) {
-    var containerBlock = workspace.newBlock('mutator_container');
+    var containerBlock = workspace.newBlock('ready_with_item');
     containerBlock.initSvg();
-    var connection = containerBlock.getInput('STACK').connection;
+    var connection = containerBlock.nextConnection;
     
-    for (var i = 0; i < this.list.length; i++) {
+    for (var i=0  ; i < this.list.length ; i++) {
       if (this.list[i]=="message") {
-        var itemBlock_list = workspace.newBlock('message_with_item');
-        itemBlock_list.initSvg();
-        connection.connect(itemBlock_list.previousConnection);
-        connection = itemBlock_list.nextConnection;
-      } else if (this.list[i]=="error") {
-        var itemBlock_input = workspace.newBlock('error_with_item');
+        var itemBlock_input = workspace.newBlock('message_with_item');
         itemBlock_input.initSvg();
         connection.connect(itemBlock_input.previousConnection);
-        connection = itemBlock_input.nextConnection;
-      } 
+        connection = itemBlock_input.nextConnection;        
+      } else if (this.list[i]=="error") {
+        var itemBlock_input = workspace.newBlock('error_with_item');  
+        itemBlock_input.initSvg();
+        connection.connect(itemBlock_input.previousConnection);
+        connection = itemBlock_input.nextConnection;  
+      }
     }
     this.updateShape_();
     return containerBlock;
   },
   compose: function(containerBlock) {
-    var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+    var clauseBlock = containerBlock.nextConnection.targetBlock();
     var errorCount = 0;
     var messageCount = 0;
     this.list = [];
@@ -96,18 +93,14 @@ Blockly.Blocks['boardevent'] = {
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'message_with_item':
-          if (messageCount==0) {   // limit to 1
-            messageCount++;
-            this.list.unshift("message");
-            messageConnections.push(clauseBlock.messageConnection_);
-          }
+          messageCount++;
+          this.list.unshift("message");
+          messageConnections.push(clauseBlock.messageConnection_);
           break;          
         case 'error_with_item':
-          if (errorCount==0) {   // limit to 1
-            errorCount++;
-            this.list.push("error");
-            errorConnections.push(clauseBlock.errorConnection_);
-          }
+          errorCount++;
+          this.list.push("error");
+          errorConnections.push(clauseBlock.errorConnection_);
           break;
         default:
           throw TypeError('Unknown block type: ' + clauseBlock.type);
@@ -124,26 +117,22 @@ Blockly.Blocks['boardevent'] = {
       Blockly.Mutator.reconnect(errorConnections[1], this, 'do_error');
   },
   saveConnections: function(containerBlock) {
-    var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+    var clauseBlock = containerBlock.nextConnection.targetBlock();
     var errorCount = 0;
     var messageCount = 0;
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'message_with_item':
-          if (messageCount==0) {
-            messageCount++;
-            var message = this.getInput('do_message');
-            clauseBlock.messageConnection_ =
-                message && message.connection.targetConnection;
-          }
+          messageCount++;
+          var message = this.getInput('do_message');
+          clauseBlock.messageConnection_ =
+              message && message.connection.targetConnection;
           break;          
         case 'error_with_item':
-          if (errorCount==0) {
-            errorCount++;
-            var error = this.getInput('do_error');
-            clauseBlock.errorConnection_ =
-                error && error.connection.targetConnection;
-          }
+          errorCount++;
+          var error = this.getInput('do_error');
+          clauseBlock.errorConnection_ =
+              error && error.connection.targetConnection;
           break;
         default:
           throw TypeError('Unknown block type: ' + clauseBlock.type);
@@ -153,19 +142,14 @@ Blockly.Blocks['boardevent'] = {
     }
   },
   updateShape_: function() {
-    this.getField('title_message').setVisible(false);
     this.getInput('do_message').setVisible(false);    
-    this.getField('title_error').setVisible(false);
     this.getInput('do_error').setVisible(false);
       
     for (var i = 0; i < this.list.length; i++) {
-      if (this.list[i]=="message") {
-        this.getField('title_message').setVisible(true);
+      if (this.list[i]=="message")
         this.getInput('do_message').setVisible(true);
-      } else if (this.list[i]=="error") {
-        this.getField('title_error').setVisible(true);
+      else if (this.list[i]=="error")
         this.getInput('do_error').setVisible(true);
-      } 
     }
   }
 };
