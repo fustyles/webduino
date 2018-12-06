@@ -144,14 +144,14 @@ Blockly.Blocks['boardevent'] = {
   updateShape_: function() {
     if (this.getInput('do_message')) this.removeInput('do_message');
     if (this.getInput('do_error')) this.removeInput('do_error');
-    if (this.messageVisible_=="TRUE") {
-      this.appendStatementInput("do_message")
-          .appendField("BoardEvent.STRING_MESSAGE","title_message");
-    }
-    if (this.errorVisible_=="TRUE") {
-      this.appendStatementInput("do_error")
-          .appendField("BoardEvent.ERROR","title_error");
-    }      
+    for (var i = 0; i < this.list.length; i++) {
+      if (this.list[i]=="message")
+        this.appendStatementInput("do_message")
+            .appendField("BoardEvent.STRING_MESSAGE","title_message");
+      else if (this.list[i]=="error")
+        this.appendStatementInput("do_error")
+            .appendField("BoardEvent.ERROR","title_error");
+    }     
     /*
     this.getInput('do_message').setVisible(false);    
     this.getInput('do_error').setVisible(false);
