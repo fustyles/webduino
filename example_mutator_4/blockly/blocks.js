@@ -68,6 +68,7 @@ Blockly.Blocks['boardevent'] = {
         var containerBlock = workspace.newBlock('error_with_item');  
         containerBlock.initSvg();
         var connection = containerBlock.nextConnection;
+        connection.connect(itemBlock_input.previousConnection);
       }
       if (this.list[1]=="error") {
         var itemBlock_input = workspace.newBlock('error_with_item');
