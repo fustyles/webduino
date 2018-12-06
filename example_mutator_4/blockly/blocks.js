@@ -111,10 +111,20 @@ Blockly.Blocks['boardevent'] = {
     
     this.updateShape_();
     
+    if (this.messageCount>0) {
+      for (var i = 1; i <= this.messageCount; i++)
+          Blockly.Mutator.reconnect(messageConnections[i], this, 'do_message');
+    }
+    if (this.errorCount>0) {
+      for (var j = 1; j <= this.errorCount; j++)
+          Blockly.Mutator.reconnect(errorConnections[j], this, 'do_error');
+    }
+    /*
     if (messageCount>0) 
       Blockly.Mutator.reconnect(messageConnections[1], this, 'do_message');    
     if (errorCount>0)
       Blockly.Mutator.reconnect(errorConnections[1], this, 'do_error');
+    */
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
