@@ -55,21 +55,23 @@ Blockly.Blocks['boardevent'] = {
     this.updateShape_();
   },
   decompose: function (workspace) {
-    for (var i = 0; i < this.list.length; i++) {
-      if (this.list[i]=="message") {
-        var itemBlock_list = workspace.newBlock('message_with_item');
-        itemBlock_list.initSvg();
-        connection.connect(itemBlock_list.previousConnection);
-        connection = itemBlock_list.nextConnection;
-      } else if (this.list[i]=="error") {
+    if (this.list.length>0) {
+      if (this.list[0]=="message") {
+        var containerBlock = workspace.newBlock('message_with_item');
+      else
+        var containerBlock = workspace.newBlock('error_with_item');  
+      containerBlock.initSvg();
+      var connection = containerBlock.nextConnection;
+      
+      if (this.list[1]) {
         var itemBlock_input = workspace.newBlock('error_with_item');
         itemBlock_input.initSvg();
         connection.connect(itemBlock_input.previousConnection);
         connection = itemBlock_input.nextConnection;
-      } 
+      }
+      this.updateShape_();
+      return containerBlock;
     }
-    this.updateShape_();
-    return containerBlock;
   },
   compose: function(containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
