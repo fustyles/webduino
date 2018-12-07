@@ -27,6 +27,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 console.log(document.cookie);
+
+var c = document.cookie.split(';');
+for(var i=0; i<c.length; i++) {
+  var num = c[i].trim();
+  if (num.indexOf("NUM_CLASSES")==0) { 
+    var a = num.substring("NUM_CLASSES".length,c.length);
+    console.log(a); 
+  }
+}
+	
 // Number of classes to classify
 var NUM_CLASSES = 4;
 // Webcam Image size. Must be 227. 
