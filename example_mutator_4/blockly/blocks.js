@@ -85,20 +85,16 @@ Blockly.Blocks['boardevent'] = {
   },
   compose: function(containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
-    var errorCount = 0;
-    var messageCount = 0;
     this.list = [];
     var errorConnections = [null];
     var messageConnections = [null];
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'message_with_item':
-          messageCount++;
           this.list.unshift("message");
           messageConnections.push(clauseBlock.messageConnection_);
           break;          
         case 'error_with_item':
-          errorCount++;
           this.list.push("error");
           errorConnections.push(clauseBlock.errorConnection_);
           break;
@@ -122,18 +118,14 @@ Blockly.Blocks['boardevent'] = {
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
-    var errorCount = 0;
-    var messageCount = 0;
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'message_with_item':
-          messageCount++;
           var message = this.getInput('do_message');
           clauseBlock.messageConnection_ =
               message && message.connection.targetConnection;
           break;          
         case 'error_with_item':
-          errorCount++;
           var error = this.getInput('do_error');
           clauseBlock.errorConnection_ =
               error && error.connection.targetConnection;
