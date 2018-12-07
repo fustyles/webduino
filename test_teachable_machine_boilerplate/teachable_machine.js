@@ -5,7 +5,6 @@
   'use strict';    
 
   function teachable_machine_open(input_num) {
-    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
     document.cookie = "NUM_CLASSES="+input_num;
     
     if (document.getElementById("train"))
