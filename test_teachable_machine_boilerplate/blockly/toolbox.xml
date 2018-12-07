@@ -2,7 +2,7 @@
   <block type="teachable_machine_open"> 
     <value name="num_">
       <block type="math_number">
-        <field name="NUM">4</field>
+        <field name="NUM">10</field>
       </block>
     </value>    
   </block>
