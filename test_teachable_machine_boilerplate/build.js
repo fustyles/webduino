@@ -28,17 +28,18 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 console.log(document.cookie);
 
+var num = 4;
 var c = document.cookie.split(';');
 for(var i=0; i<c.length; i++) {
-  var num = c[i].trim();
-  if (num.indexOf("NUM_CLASSES")==0) { 
-    var a = num.substring("NUM_CLASSES".length,c.length);
-    console.log(a); 
+  var para = c[i].trim();
+  if (para.indexOf("NUM_CLASSES")==0) { 
+    num = Number(para.substring("NUM_CLASSES".length,para.length));
+    console.log(num); 
   }
 }
 	
 // Number of classes to classify
-var NUM_CLASSES = 4;
+var NUM_CLASSES = num;
 // Webcam Image size. Must be 227. 
 var IMAGE_SIZE = 227;
 // K value for KNN
