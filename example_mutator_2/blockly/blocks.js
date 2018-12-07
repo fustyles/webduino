@@ -83,16 +83,20 @@ Blockly.Blocks['boardevent'] = {
   },
   compose: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+    var errorCount = 0;
+    var messageCount = 0;
     this.list = [];
     var errorConnections = [null];
     var messageConnections = [null];
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'message_with_item':
+          messageCount++;
           this.list.unshift("message");
           messageConnections.push(clauseBlock.messageConnection_);
           break;          
         case 'error_with_item':
+          errorCount++;
           this.list.push("error");
           errorConnections.push(clauseBlock.errorConnection_);
           break;
@@ -116,14 +120,18 @@ Blockly.Blocks['boardevent'] = {
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+    var errorCount = 0;
+    var messageCount = 0;
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'message_with_item':
+          messageCount++;
           var message = this.getInput('do_message');
           clauseBlock.messageConnection_ =
               message && message.connection.targetConnection;
           break;          
         case 'error_with_item':
+          errorCount++;
           var error = this.getInput('do_error');
           clauseBlock.errorConnection_ =
               error && error.connection.targetConnection;
@@ -139,7 +147,6 @@ Blockly.Blocks['boardevent'] = {
     if (this.getInput('do_message')) this.removeInput('do_message');
     if (this.getInput('do_error')) this.removeInput('do_error');
     var messageCount=0;
-    var errorCount=0;
     for (var i = 0; i < this.list.length; i++) {
       if (this.list[i]=="message") {
         if (messageCount==0) {  // limit to 1
@@ -148,11 +155,8 @@ Blockly.Blocks['boardevent'] = {
         }
         messageCount++;
       } else if (this.list[i]=="error") {
-        if (errorCount==0) {  // limit to 1
-          this.appendStatementInput("do_error")
-              .appendField("BoardEvent.ERROR","title_error");
-        }
-        errorCount++;
+        this.appendStatementInput("do_error")
+            .appendField("BoardEvent.ERROR","title_error");
       }
     }     
     /*
