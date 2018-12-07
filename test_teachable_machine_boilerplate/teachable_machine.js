@@ -6,7 +6,7 @@
 
   function teachable_machine_open(input_num) {
     document.cookie = input_num;
-    console.log(document.cookie);
+    
     if (document.getElementById("train"))
     {
       document.getElementById("train").innerHTML = "";
