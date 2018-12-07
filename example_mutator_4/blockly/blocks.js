@@ -149,6 +149,7 @@ Blockly.Blocks['boardevent'] = {
     if (this.getInput('do_message')) this.removeInput('do_message');
     if (this.getInput('do_error')) this.removeInput('do_error');
     var messageCount=0;
+    var errorCount=0;
     for (var i = 0; i < this.list.length; i++) {
       if (this.list[i]=="message") {
         if (messageCount==0) {  // limit to 1
@@ -157,8 +158,11 @@ Blockly.Blocks['boardevent'] = {
         }
         messageCount++;
       } else if (this.list[i]=="error") {
-        this.appendStatementInput("do_error")
-            .appendField("BoardEvent.ERROR","title_error");
+        if (errorCount==0) {  // limit to 1
+          this.appendStatementInput("do_error")
+              .appendField("BoardEvent.ERROR","title_error");
+        }
+        errorCount++;
       }
     }     
     /*
