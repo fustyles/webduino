@@ -2,7 +2,8 @@ Blockly.Blocks['teachable_machine_open'] = {
   init: function() {
   this.appendValueInput("num_")
       .setCheck("Number") 
-      .appendField(Blockly.Msg.TEACHABLE_MACHINE_OPEN_SHOW);      
+      .appendField(Blockly.Msg.TEACHABLE_MACHINE_OPEN_SHOW);    
+  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(65);
