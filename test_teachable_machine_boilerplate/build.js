@@ -33,7 +33,7 @@ var c = document.cookie.split(';');
 for(var i=0; i<c.length; i++) {
   var para = c[i].trim();
   if (para.indexOf("NUM_CLASSES")==0) { 
-    num = para.substring("NUM_CLASSES".length,para.length);
+    num = Number(para.substring("NUM_CLASSES".length+1,para.length));
     console.log(num); 
   }
 }
