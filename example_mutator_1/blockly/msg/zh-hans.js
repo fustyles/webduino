@@ -1,1 +1,1 @@
-MSG.catDemoText = "Mutation";
+MSG.catDemoText = "Mutator";
