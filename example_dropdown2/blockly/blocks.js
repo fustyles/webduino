@@ -35,9 +35,9 @@ Blockly.Blocks['dropdown'] = {
     if (this.getInput('b')) this.removeInput('b');
     
     if (this.Dropdown=="A")
-      var d = new FieldDropdown(this.listA);
+      var d = new Blockly.FieldDropdown(this.listA);
     else if (this.Dropdown=="B")
-      var d = new FieldDropdown(this.listB);
+      var d = new Blockly.FieldDropdown(this.listB);
     d.name = 'Dropdown2';
     this.appendDummyInput("b")
         .appendField(d);
