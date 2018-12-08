@@ -122,6 +122,7 @@ Blockly.Blocks['boardevent'] = {
           Blockly.Mutator.reconnect(errorConnections[j], this, 'do_error');
     }
     
+    // limit to 1
     if (messageCount>1)
       containerBlock.nextConnection.targetBlock().dispose(true);    
   },
