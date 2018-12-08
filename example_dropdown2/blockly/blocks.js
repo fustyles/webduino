@@ -30,14 +30,8 @@ Blockly.Blocks['dropdown'] = {
     console.log(event.element.name);
     //this.updateShape_();
   },
-  updateShape_: function() {
-    console.log(this.Dropdown);
-    console.log(this.getInput('b'));
-    console.log(this.getField('Dropdown2'));    
+  updateShape_: function() {  
     if (this.getInput('b')) this.removeInput('b');
-    console.log(this.Dropdown);
-    console.log(this.getInput('b'));
-    console.log(this.getField('Dropdown2'));
     if (this.Dropdown=="A") {
       this.appendDummyInput("b")
           .appendField(new Blockly.FieldDropdown(this.listA), "Dropdown2");
