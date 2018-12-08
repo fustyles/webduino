@@ -121,7 +121,7 @@ Blockly.Blocks['boardevent'] = {
       Blockly.Mutator.reconnect(errorConnections[1], this, 'do_error');
     
     if (messageCount>1) {
-      console.log(containerBlock.getNextBlock.id);
+      console.log(containerBlock.id);
       //this.decompose();
     }
   },
