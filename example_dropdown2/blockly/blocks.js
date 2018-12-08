@@ -2,7 +2,6 @@
 
 Blockly.Blocks['dropdown'] = {
   init: function () {
-    this.Dropdown="A";
     this.appendDummyInput()
         .appendField("List1")
         .appendField(new Blockly.FieldDropdown([["A","A"], ["B","B"]]), "Dropdown")
@@ -33,7 +32,6 @@ Blockly.Blocks['dropdown'] = {
   onchange: function (event) {
     if (event.element=="field") {
       if (event.name=="Dropdown") {
-        this.Dropdown = this.getFieldValue('Dropdown');
         this.updateShape_();
       }
     }
