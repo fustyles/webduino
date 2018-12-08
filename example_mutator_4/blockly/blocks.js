@@ -120,8 +120,8 @@ Blockly.Blocks['boardevent'] = {
     if (this.errorCount>0)
       Blockly.Mutator.reconnect(errorConnections[1], this, 'do_error');
     
-    if (messageCount>1||errorCount>1) {
-      containerBlock.Workspace.clear();
+    if (messageCount>1) {
+      containerBlock.Workspace.removeTopBlock('message_with_item');
       this.decompose();
     }
   },
