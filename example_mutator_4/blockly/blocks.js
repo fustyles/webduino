@@ -94,13 +94,17 @@ Blockly.Blocks['boardevent'] = {
       switch (clauseBlock.type) {
         case 'message_with_item':
           messageCount++;
-          this.list.unshift("message");
-          messageConnections.push(clauseBlock.messageConnection_);
+          if (messageCount==1) {
+            this.list.unshift("message");
+            messageConnections.push(clauseBlock.messageConnection_);
+          }
           break;          
         case 'error_with_item':
           errorCount++;
-          this.list.push("error");
-          errorConnections.push(clauseBlock.errorConnection_);
+          if (errorCount==1) {
+            this.list.push("error");
+            errorConnections.push(clauseBlock.errorConnection_);
+          }
           break;
         default:
           throw TypeError('Unknown block type: ' + clauseBlock.type);
@@ -112,13 +116,9 @@ Blockly.Blocks['boardevent'] = {
     this.updateShape_();
     
     if (this.messageCount>0) {
-      for (var i = 1; i <= this.messageCount; i++)
-          Blockly.Mutator.reconnect(messageConnections[i], this, 'do_message');
-    }
+      Blockly.Mutator.reconnect(messageConnections[1], this, 'do_message');
     if (this.errorCount>0) {
-      for (var j = 1; j <= this.errorCount; j++)
-          Blockly.Mutator.reconnect(errorConnections[j], this, 'do_error');
-    }
+      Blockly.Mutator.reconnect(errorConnections[1], this, 'do_error');
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
@@ -128,15 +128,19 @@ Blockly.Blocks['boardevent'] = {
       switch (clauseBlock.type) {
         case 'message_with_item':
           messageCount++;
-          var message = this.getInput('do_message');
-          clauseBlock.messageConnection_ =
-              message && message.connection.targetConnection;
+          if (messageCount==1) {
+            var message = this.getInput('do_message');
+            clauseBlock.messageConnection_ =
+                message && message.connection.targetConnection;
+          }
           break;          
         case 'error_with_item':
           errorCount++;
-          var error = this.getInput('do_error');
-          clauseBlock.errorConnection_ =
-              error && error.connection.targetConnection;
+          if (errorCount==1) {
+            var error = this.getInput('do_error');
+            clauseBlock.errorConnection_ =
+                error && error.connection.targetConnection;
+          }
           break;
         default:
           throw TypeError('Unknown block type: ' + clauseBlock.type);
