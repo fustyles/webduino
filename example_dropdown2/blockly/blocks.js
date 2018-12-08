@@ -16,7 +16,7 @@ Blockly.Blocks['dropdown'] = {
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
-    container.setAttribute('Dropdown1', this.getField('Dropdown1').getValue());
+    container.setAttribute('Dropdown', this.getField('Dropdown').getValue());
     return container;
   },
   domToMutation: function (xmlElement) {
@@ -25,7 +25,7 @@ Blockly.Blocks['dropdown'] = {
     this.updateShape_();
   },
   updateShape_: function() {
-    //if (this.getInput('b')) this.removeInput('b');
+    if (this.getInput('b')) this.removeInput('b');
     if (this.Dropdown=="A") {
       this.appendDummyInput()
           .appendField(new Blockly.FieldDropdown([this.listA]), "b");
