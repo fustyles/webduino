@@ -28,18 +28,18 @@ Blockly.Blocks['dropdown'] = {
     console.log(event.element);
     if (event.element=="selected") {
       this.Dropdown = this.getFieldValue('Dropdown1');
-      //this.updateShape_();
+      this.updateShape_();
     }
   },
   updateShape_: function() {  
     if (this.getInput('b')) this.removeInput('b');
     if (this.Dropdown=="A") {
       this.appendDummyInput("b");
-      this.getInput('b').appendField(new Blockly.FieldDropdown(this.listA), "Dropdown2");
+      //this.getInput('b').appendField(new Blockly.FieldDropdown(this.listA), "Dropdown2");
     }
     else if (this.Dropdown=="B") {
       this.appendDummyInput("b");
-      this.getInput('b').appendField(new Blockly.FieldDropdown(this.listB), "Dropdown2");
+      //this.getInput('b').appendField(new Blockly.FieldDropdown(this.listB), "Dropdown2");
     }
   }
 };
