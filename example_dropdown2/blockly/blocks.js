@@ -33,14 +33,14 @@ Blockly.Blocks['dropdown'] = {
   },
   updateShape_: function() {  
     if (this.Dropdown=="A") {
-      this.getInput('Dropdown2').setVisible(true);
-      this.getInput('Dropdown3').setValue("");
-      this.getInput('Dropdown3').setVisible(false);
+      this.getInput('d2').setVisible(true);
+      this.getInput('d3').setValue("");
+      this.getInput('d3').setVisible(false);
     }
     else if (this.Dropdown=="B") {
-      this.getInput('Dropdown2').setValue("");
-      this.getInput('Dropdown2').setVisible(false);
-      this.getInput('Dropdown3').setVisible(true);
+      this.getInput('d2').setValue("");
+      this.getInput('d2').setVisible(false);
+      this.getInput('d3').setVisible(true);
     }
   }
 };
