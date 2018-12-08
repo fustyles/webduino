@@ -120,6 +120,7 @@ Blockly.Blocks['boardevent'] = {
     if (this.errorCount>0)
       Blockly.Mutator.reconnect(errorConnections[1], this, 'do_error');
     
+    // limit to 1
     if (messageCount>1)
       containerBlock.nextConnection.targetBlock().dispose(true);
   },
@@ -167,8 +168,8 @@ Blockly.Blocks['boardevent'] = {
       } else if (this.list[i]=="error") {
         errorCount++;
         if (errorCount==1) {  // limit to 1
-        this.appendStatementInput("do_error")
-            .appendField("BoardEvent.ERROR","title_error");
+          this.appendStatementInput("do_error")
+              .appendField("BoardEvent.ERROR","title_error");
         }
       }
     }     
