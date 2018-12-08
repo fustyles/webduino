@@ -35,10 +35,12 @@ Blockly.Blocks['dropdown'] = {
   updateShape_: function() {  
     if (this.getInput('b')) this.removeInput('b');
     if (this.Dropdown=="A") {
-      this.appendDummyInput("b").appendField(new Blockly.FieldDropdown(this.listA), "Dropdown2");
+      this.appendDummyInput("b");
+      this.getInput('b').appendField(new Blockly.FieldDropdown(this.listA), "Dropdown2");
     }
     else if (this.Dropdown=="B") {
-      this.appendDummyInput("b").appendField(new Blockly.FieldDropdown(this.listB), "Dropdown2");
+      this.appendDummyInput("b");
+      this.getInput('b').appendField(new Blockly.FieldDropdown(this.listB), "Dropdown2");
     }
   }
 };
