@@ -40,5 +40,6 @@ Blockly.Blocks['dropdown'] = {
       this.getField('Dropdown2').setVisible(false);
       this.getField('Dropdown3').setVisible(true);
     }
+    this.setNextStatement(true);
   }
 };
