@@ -143,9 +143,9 @@ Blockly.Blocks['boardevent'] = {
         case 'error_with_item':
           errorCount++;
           if (errorCount==1) {  // limit to 1
-          var error = this.getInput('do_error');
-            clauseBlock.errorConnection_ =
-                error && error.connection.targetConnection;
+            var error = this.getInput('do_error');
+              clauseBlock.errorConnection_ =
+                  error && error.connection.targetConnection;
           }
           break;
         default:
@@ -162,7 +162,7 @@ Blockly.Blocks['boardevent'] = {
     var errorCount = 0;
     for (var i = 0; i < this.list.length; i++) {
       if (this.list[i]=="message") {
-        if (messageCount==0) {  // limit to 1
+        if (messageCount==1) {  // limit to 1
           this.appendStatementInput("do_message")
               .appendField("BoardEvent.STRING_MESSAGE","title_message");
         }
@@ -172,6 +172,7 @@ Blockly.Blocks['boardevent'] = {
           this.appendStatementInput("do_error")
               .appendField("BoardEvent.ERROR","title_error");
         }
+        errorCount++;
       }
     }     
     /*
