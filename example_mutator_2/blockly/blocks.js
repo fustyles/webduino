@@ -124,7 +124,7 @@ Blockly.Blocks['boardevent'] = {
     
     // limit to 1
     if (messageCount>1)
-      containerBlock.getInputTargetBlock('STACK').targetBlock().dispose(true);    
+      containerBlock.getInputTargetBlock('STACK').dispose(true);    
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.getInputTargetBlock('STACK');
