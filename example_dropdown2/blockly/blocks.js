@@ -2,7 +2,7 @@
 
 Blockly.Blocks['dropdown'] = {
   init: function () {
-    this.d = new Blockly.FieldDropdown();
+    this.d = new Blockly.FieldDropdown(null);
     this.Dropdown="A";
     this.listA = [["A1","A1"], ["A2","A2"]];
     this.listB = [["B1","B1"], ["B2","B2"]];
