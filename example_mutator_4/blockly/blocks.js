@@ -85,8 +85,8 @@ Blockly.Blocks['boardevent'] = {
   },
   compose: function(containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
-    var errorCount = 0;
     var messageCount = 0;
+    var errorCount = 0;
     this.list = [];
     var errorConnections = [null];
     var messageConnections = [null];
@@ -122,8 +122,8 @@ Blockly.Blocks['boardevent'] = {
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
-    var errorCount = 0;
     var messageCount = 0;
+    var errorCount = 0;
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'message_with_item':
@@ -152,7 +152,8 @@ Blockly.Blocks['boardevent'] = {
   updateShape_: function() {
     if (this.getInput('do_message')) this.removeInput('do_message');
     if (this.getInput('do_error')) this.removeInput('do_error');
-    var messageCount=0;
+    var messageCount = 0;
+    var errorCount = 0;
     for (var i = 0; i < this.list.length; i++) {
       if (this.list[i]=="message") {
         messageCount++;
