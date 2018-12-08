@@ -3,16 +3,16 @@
 Blockly.Blocks['dropdown'] = {
   init: function () {
     this.Dropdown="A";
-    this.listA = [["A1","A1"], ["A2","A2"]];
-    this.listB = [["B1","B1"], ["B2","B2"]];
     this.appendDummyInput("d1")
         .appendField(new Blockly.FieldDropdown([["A","A"], ["B","B"]]), "Dropdown1");
     this.appendDummyInput("d2")
-        .appendField(new Blockly.FieldDropdown(this.listA), "Dropdown2");
+        .appendField(new Blockly.FieldDropdown([["",""], ["A1","A1"], ["A2","A2"]]), "Dropdown2");
+    this.appendDummyInput("d3")
+        .appendField(new Blockly.FieldDropdown([["",""], ["B1","B1"], ["B2","B2"]]), "Dropdown3");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(340);
-    //this.updateShape_();
+    this.updateShape_();
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
@@ -32,14 +32,15 @@ Blockly.Blocks['dropdown'] = {
     }
   },
   updateShape_: function() {  
-    if (this.getInput('d2')) this.removeInput('d2');
-    
-    if (this.Dropdown=="A")
-      var d = new Blockly.FieldDropdown(this.listA);
-    else if (this.Dropdown=="B")
-      var d = new Blockly.FieldDropdown(this.listB);
-    d.name = 'Dropdown2';
-    this.appendDummyInput("d2")
-        .appendField(d,"Dropdown2");
+    if (this.Dropdown=="A") {
+      this.getInput('Dropdown2').setVisible(true);
+      this.getInput('Dropdown3').setValue("");
+      this.getInput('Dropdown3').setVisible(false);
+    }
+    else if (this.Dropdown=="B") {
+      this.getInput('Dropdown2').setValue("");
+      this.getInput('Dropdown2').setVisible(false);
+      this.getInput('Dropdown3').setVisible(true);
+    }
   }
 };
