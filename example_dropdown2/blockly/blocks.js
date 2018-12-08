@@ -4,7 +4,9 @@ Blockly.Blocks['dropdown'] = {
   init: function () {
     this.Dropdown="A";
     this.appendDummyInput()
+        .appendField("List1")
         .appendField(new Blockly.FieldDropdown([["A","A"], ["B","B"]]), "Dropdown1")
+        .appendField("List2")
         .appendField(new Blockly.FieldDropdown([["",""], ["A1","A1"], ["A2","A2"]]), "Dropdown2")
         .appendField(new Blockly.FieldDropdown([["",""], ["B1","B1"], ["B2","B2"]]), "Dropdown3");
     this.setPreviousStatement(true);
