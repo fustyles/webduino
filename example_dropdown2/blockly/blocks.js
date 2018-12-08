@@ -25,7 +25,7 @@ Blockly.Blocks['dropdown'] = {
     this.updateShape_();
   },
   updateShape_: function() {
-    if (this.getField('b')) this.removeField('b');
+    if (this.getInput('b')) this.removeInput('b');
     if (this.Dropdown1=="A") {
       this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([this.listA]), "b");
