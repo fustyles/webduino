@@ -94,14 +94,14 @@ Blockly.Blocks['boardevent'] = {
       switch (clauseBlock.type) {
         case 'message_with_item':
           messageCount++;
-          if (messageCount==1) {
+          if (messageCount==1) {  // limit to 1
             this.list.unshift("message");
             messageConnections.push(clauseBlock.messageConnection_);
           }
           break;          
         case 'error_with_item':
           errorCount++;
-          if (errorCount==1) {
+          if (errorCount==1) {  // limit to 1
             this.list.push("error");
             errorConnections.push(clauseBlock.errorConnection_);
           }
@@ -128,7 +128,7 @@ Blockly.Blocks['boardevent'] = {
       switch (clauseBlock.type) {
         case 'message_with_item':
           messageCount++;
-          if (messageCount==1) {
+          if (messageCount==1) {  // limit to 1
             var message = this.getInput('do_message');
             clauseBlock.messageConnection_ =
                 message && message.connection.targetConnection;
@@ -136,7 +136,7 @@ Blockly.Blocks['boardevent'] = {
           break;          
         case 'error_with_item':
           errorCount++;
-          if (errorCount==1) {
+          if (errorCount==1) {  // limit to 1
             var error = this.getInput('do_error');
             clauseBlock.errorConnection_ =
                 error && error.connection.targetConnection;
@@ -155,14 +155,17 @@ Blockly.Blocks['boardevent'] = {
     var messageCount=0;
     for (var i = 0; i < this.list.length; i++) {
       if (this.list[i]=="message") {
-        if (messageCount==0) {  // limit to 1
+        messageCount++;
+        if (messageCount==1) {  // limit to 1
           this.appendStatementInput("do_message")
               .appendField("BoardEvent.STRING_MESSAGE","title_message");
         }
-        messageCount++;
       } else if (this.list[i]=="error") {
+        errorCount++;
+        if (errorCount==1) {  // limit to 1
         this.appendStatementInput("do_error")
             .appendField("BoardEvent.ERROR","title_error");
+        }
       }
     }     
     /*
