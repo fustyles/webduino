@@ -24,6 +24,9 @@ Blockly.Blocks['dropdown'] = {
       this.Dropdown = xmlElement.getAttribute('Dropdown');
     this.updateShape_();
   },
+  onchange: function (event) {
+    this.updateShape_();
+  },
   updateShape_: function() {
     if (this.getInput('b')) this.removeInput('b');
     if (this.Dropdown=="A") {
