@@ -22,18 +22,17 @@ Blockly.Blocks['dropdown'] = {
   domToMutation: function (xmlElement) {
     if (xmlElement.getAttribute('Dropdown'))
       this.Dropdown = xmlElement.getAttribute('Dropdown');
-    console.log(this.Dropdown);
     this.updateShape_();
   },
   updateShape_: function() {
-    //if (this.getInput('b')) this.removeInput('b');
+    if (this.getInput('b')) this.removeInput('b');
     if (this.Dropdown=="A") {
       this.appendDummyInput()
-          .appendField(new Blockly.FieldDropdown([this.listA]), "b");
+          .appendField(new Blockly.FieldDropdown(this.listA), "b");
     }
     else if (this.Dropdown=="B") {
       this.appendDummyInput()
-          .appendField(new Blockly.FieldDropdown([this.listB]), "b");
+          .appendField(new Blockly.FieldDropdown(this.listB), "b");
     }
   }
 };
