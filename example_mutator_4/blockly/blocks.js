@@ -120,10 +120,8 @@ Blockly.Blocks['boardevent'] = {
     if (this.errorCount>0)
       Blockly.Mutator.reconnect(errorConnections[1], this, 'do_error');
     
-    if (messageCount>1) {
+    if (messageCount>1)
       containerBlock.nextConnection.targetBlock().dispose(true);
-      this.decompose();
-    }
   },
   saveConnections: function(containerBlock) {
     var clauseBlock = containerBlock.nextConnection.targetBlock();
