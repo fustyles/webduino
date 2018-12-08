@@ -12,7 +12,7 @@ Blockly.Blocks['dropdown'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(340);
-    this.updateShape_();
+    //this.updateShape_();
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
@@ -22,7 +22,8 @@ Blockly.Blocks['dropdown'] = {
   domToMutation: function (xmlElement) {
     if (xmlElement.getAttribute('Dropdown'))
       this.Dropdown = xmlElement.getAttribute('Dropdown');
-    this.updateShape_();
+    console.log(this.Dropdown);
+    //this.updateShape_();
   },
   updateShape_: function() {
     if (this.getInput('b')) this.removeInput('b');
