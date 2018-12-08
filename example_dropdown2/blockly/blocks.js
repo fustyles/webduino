@@ -1,54 +1,26 @@
 // Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
-Blockly.Blocks["boardevent_mutator"] = {
-  init: function () {
-    this.appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("BoardEvent.STRING_MESSAGE")
-      .appendField(new Blockly.FieldCheckbox("FALSE"), "chkmessage");
-    this.appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("BoardEvent.ERROR")
-      .appendField(new Blockly.FieldCheckbox("FALSE"), "chkerror");
-    this.setColour(20);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  }
-};
-
 Blockly.Blocks['boardevent'] = {
   init: function () {
+    this.Dropdown1="A";
+    this.listA = ["A1","A1"], ["A2","A2"];
+    this.listA = ["B1","B1"], ["B2","B2"];
     this.appendValueInput("device")
-      .setCheck("String")
-      .appendField("Sampling Interval (ms)")
-      .appendField(new Blockly.FieldDropdown([["20","20"], ["50","50"], ["75","75"], ["100","100"], ["250","250"], ["500","500"], ["1000","1000"]]), "samplingInterval")
-      .appendField("    Device ID");
-    this.appendStatementInput("do_ready")
-        .appendField("BoardEvent.READY");   
-    this.appendStatementInput("do_message")
-        .appendField("BoardEvent.STRING_MESSAGE","title_message");
-    this.appendStatementInput("do_error")
-        .appendField("BoardEvent.ERROR","title_error");
+      .appendField(new Blockly.FieldDropdown([["A","A"], ["B","B"]]), "Dropdown1");
+    this.appendValueInput("device")
+      .appendField(new Blockly.FieldDropdown([this.listA]), "Dropdown2");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(340);
-    this.getField('samplingInterval').setValue('250');
-    this.messageVisible_= "TRUE";
-    this.errorVisible_= "TRUE";
     this.updateShape_();
-    this.setMutator(new Blockly.Mutator([]));
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
-    if (this.messageVisible_)
-      container.setAttribute('message', this.messageVisible_);
-    if (this.errorVisible_)
-      container.setAttribute('error', this.errorVisible_);
+    container.setAttribute('Dropdown1', this.getField('Dropdown1').getValue());
     return container;
   },
   domToMutation: function (xmlElement) {
-    this.messageVisible_ = xmlElement.getAttribute('message');
-    this.errorVisible_ = xmlElement.getAttribute('error');
+    this.Dropdown1 = xmlElement.getAttribute('Dropdown1');
     this.updateShape_();
   },
   decompose: function (workspace) {      
@@ -57,19 +29,6 @@ Blockly.Blocks['boardevent'] = {
     containerBlock.setFieldValue(this.errorVisible_, "chkerror");
     containerBlock.initSvg();
     return containerBlock;
-  },
-  compose: function(containerBlock) {
-    this.messageVisible_ = containerBlock.getFieldValue("chkmessage");
-    this.errorVisible_ = containerBlock.getFieldValue("chkerror"); 
-    this.updateShape_();
-    Blockly.Mutator.reconnect(containerBlock.messageConnection_, this, 'chkmessage');
-    Blockly.Mutator.reconnect(containerBlock.errorConnection_, this, 'chkerror');
-  },
-  saveConnections: function(containerBlock) {
-    var message = this.getInput('chkmessage');
-    containerBlock.messageConnection_ = message && message.connection.targetConnection;
-    var error = this.getInput('chkerror');
-    containerBlock.errorConnection_ = error && error.connection.targetConnection; 
   },
   updateShape_: function() {
     if (this.getInput('do_message')) this.removeInput('do_message');
