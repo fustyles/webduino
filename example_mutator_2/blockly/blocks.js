@@ -88,6 +88,7 @@ Blockly.Blocks['boardevent'] = {
     this.list = [];
     var errorConnections = [null];
     var messageConnections = [null];
+    
     while (clauseBlock) {
       switch (clauseBlock.type) {
         case 'message_with_item':
