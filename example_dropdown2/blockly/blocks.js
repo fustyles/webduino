@@ -27,7 +27,7 @@ Blockly.Blocks['dropdown'] = {
   onchange: function (event) {
     this.Dropdown = this.getFieldValue('Dropdown1');
     console.log(this.Dropdown);
-    console.log(event);
+    console.log(event.element);
     //this.updateShape_();
   },
   updateShape_: function() {
