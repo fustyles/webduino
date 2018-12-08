@@ -3,11 +3,9 @@
 Blockly.Blocks['dropdown'] = {
   init: function () {
     this.Dropdown="A";
-    this.appendDummyInput("d1")
-        .appendField(new Blockly.FieldDropdown([["A","A"], ["B","B"]]), "Dropdown1");
-    this.appendDummyInput("d2")
-        .appendField(new Blockly.FieldDropdown([["",""], ["A1","A1"], ["A2","A2"]]), "Dropdown2");
-    this.appendDummyInput("d3")
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["A","A"], ["B","B"]]), "Dropdown1")
+        .appendField(new Blockly.FieldDropdown([["",""], ["A1","A1"], ["A2","A2"]]), "Dropdown2")
         .appendField(new Blockly.FieldDropdown([["",""], ["B1","B1"], ["B2","B2"]]), "Dropdown3");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -33,14 +31,14 @@ Blockly.Blocks['dropdown'] = {
   },
   updateShape_: function() {  
     if (this.Dropdown=="A") {
-      this.getInput('d2').setVisible(true);
+      this.getField('Dropdown2').setVisible(true);
       this.getField('Dropdown3').setValue("");
-      this.getInput('d3').setVisible(false);
+      this.getField('Dropdown3').setVisible(false);
     }
     else if (this.Dropdown=="B") {
       this.getField('Dropdown2').setValue("");
-      this.getInput('d2').setVisible(false);
-      this.getInput('d3').setVisible(true);
+      this.getField('Dropdown2').setVisible(false);
+      this.getField('Dropdown3').setVisible(true);
     }
   }
 };
