@@ -1,13 +1,12 @@
 {
-  "types": ["boardevent","boardevent_sendmessage","boardevent_getmessage"],
+  "types": ["dropdown"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "devicestatus.js",
-    "https://webduino.io/components/webduino-js/dist/webduino-base.min.js"
+    "devicestatus.js"
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
