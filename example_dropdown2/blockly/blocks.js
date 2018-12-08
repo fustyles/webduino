@@ -40,6 +40,6 @@ Blockly.Blocks['dropdown'] = {
       var d = new Blockly.FieldDropdown(this.listB);
     d.name = 'Dropdown2';
     this.appendDummyInput("d2")
-        .appendField(d);
+        .appendField(d,"Dropdown2");
   }
 };
