@@ -16,7 +16,7 @@ Blockly.Blocks['dropdown'] = {
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
-    container.setAttribute('Dropdown', this.getField('Dropdown1').getFieldValue());
+    container.setAttribute('Dropdown', this.getField('Dropdown1').getValue());
     return container;
   },
   domToMutation: function (xmlElement) {
