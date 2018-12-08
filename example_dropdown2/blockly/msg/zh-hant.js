@@ -1,1 +1,1 @@
-MSG.catDeviceStatus = "dropdown2";
+MSG.catDropDown2 = "dropdown2";
