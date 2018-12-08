@@ -2,7 +2,7 @@
 
 Blockly.Blocks['dropdown'] = {
   init: function () {
-    this.Dropdown="A";
+    this.d1="A";
     this.appendDummyInput()
         .appendField("List1")
         .appendField(new Blockly.FieldDropdown([["A","A"], ["B","B"]]), "Dropdown1")
@@ -16,12 +16,18 @@ Blockly.Blocks['dropdown'] = {
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
-    container.setAttribute('Dropdown', this.getFieldValue('Dropdown1'));
+    container.setAttribute('d1', this.getFieldValue('Dropdown1'));
+    container.setAttribute('d2', this.getFieldValue('Dropdown2'));
+    container.setAttribute('d3', this.getFieldValue('Dropdown3'));
     return container;
   },
   domToMutation: function (xmlElement) {
-    if (xmlElement.getAttribute('Dropdown'))
-      this.Dropdown = xmlElement.getAttribute('Dropdown');
+    if (xmlElement.getAttribute('d1'))
+      this.getField('Dropdown1').setValue(xmlElement.getAttribute('d1'));
+    if (xmlElement.getAttribute('d2'))
+      this.getField('Dropdown2').setValue(xmlElement.getAttribute('d2'));
+    if (xmlElement.getAttribute('d3'))
+      this.getField('Dropdown3').setValue(xmlElement.getAttribute('d3'));
     this.updateShape_();
   },
   onchange: function (event) {
@@ -31,12 +37,12 @@ Blockly.Blocks['dropdown'] = {
     }
   },
   updateShape_: function() {  
-    if (this.Dropdown=="A") {
+    if (this.getFieldValue('Dropdown1')=="A") {
       this.getField('Dropdown2').setVisible(true);
       this.getField('Dropdown3').setValue("");
       this.getField('Dropdown3').setVisible(false);
     }
-    else if (this.Dropdown=="B") {
+    else if (this.getFieldValue('Dropdown1')=="B") {
       this.getField('Dropdown2').setValue("");
       this.getField('Dropdown2').setVisible(false);
       this.getField('Dropdown3').setVisible(true);
