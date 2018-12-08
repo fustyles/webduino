@@ -1,6 +1,6 @@
 // Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
-Blockly.Blocks['boardevent'] = {
+Blockly.Blocks['dropdown'] = {
   init: function () {
     this.Dropdown1="A";
     this.listA = ["A1","A1"], ["A2","A2"];
