@@ -133,7 +133,7 @@ Blockly.Blocks['dropdown'] = {
       if (this.getField('DropdownA2').getText()==null||this.getField('DropdownA2').getText()=="");
         this.getField('DropdownA2').setVisible(false);
       else
-        this.getField('DropdownB1').setVisible(true);
+        this.getField('DropdownA2').setVisible(true);
       if (this.getField('DropdownB1').getText()==null||this.getField('DropdownB1').getText()=="");
         this.getField('DropdownB1').setVisible(false);
       else
