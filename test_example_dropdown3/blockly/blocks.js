@@ -4,15 +4,15 @@ Blockly.Blocks['dropdown'] = {
   init: function () {
     this.appendDummyInput()
         .appendField("List1")
-        .appendField(new Blockly.FieldDropdown([["A","A"], ["B","B"]]), "Dropdown")
+        .appendField(new Blockly.FieldDropdown([["",""], ["A","A"], ["B","B"]]), "Dropdown")
         .appendField("List2")
-        .appendField(new Blockly.FieldDropdown([["A1","A1"], ["A2","A2"]]), "DropdownA")
-        .appendField(new Blockly.FieldDropdown([["B1","B1"], ["B2","B2"]]), "DropdownB")
+        .appendField(new Blockly.FieldDropdown([["",""], ["A1","A1"], ["A2","A2"]]), "DropdownA")
+        .appendField(new Blockly.FieldDropdown([["",""], ["B1","B1"], ["B2","B2"]]), "DropdownB")
         .appendField("List3")
-        .appendField(new Blockly.FieldDropdown([["A1_1","A1_1"], ["A1_2","A1_2"]]), "DropdownA1")
-        .appendField(new Blockly.FieldDropdown([["A2_1","A2_1"], ["A2_2","A2_2"]]), "DropdownA2")
-        .appendField(new Blockly.FieldDropdown([["B1_1","B1_1"], ["B1_2","B1_2"]]), "DropdownB1")
-        .appendField(new Blockly.FieldDropdown([["B2_1","B2_1"], ["B2_2","B2_2"]]), "DropdownB2");
+        .appendField(new Blockly.FieldDropdown([["",""], ["A1_1","A1_1"], ["A1_2","A1_2"]]), "DropdownA1")
+        .appendField(new Blockly.FieldDropdown([["",""], ["A2_1","A2_1"], ["A2_2","A2_2"]]), "DropdownA2")
+        .appendField(new Blockly.FieldDropdown([["",""], ["B1_1","B1_1"], ["B1_2","B1_2"]]), "DropdownB1")
+        .appendField(new Blockly.FieldDropdown([["",""], ["B2_1","B2_1"], ["B2_2","B2_2"]]), "DropdownB2");
     this.getField('DropdownB').setVisible(false);
     this.getField('DropdownA2').setVisible(false);
     this.getField('DropdownB1').setVisible(false);
