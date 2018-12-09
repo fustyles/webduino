@@ -32,31 +32,52 @@ Blockly.Blocks['dropdown'] = {
   domToMutation: function (xmlElement) {
     if (xmlElement.getAttribute('d')) {
       this.getField('Dropdown').setValue(xmlElement.getAttribute('d'));
-      if (xmlElement.getAttribute('d')=="") this.getField('Dropdown').setVisible(false);
+      if (xmlElement.getAttribute('d')=="") 
+        this.getField('Dropdown').setVisible(false);
+      else
+        this.getField('Dropdown').setVisible(true);
     }
     if (xmlElement.getAttribute('dA')) {
       this.getField('DropdownA').setValue(xmlElement.getAttribute('dA'));
-      if (xmlElement.getAttribute('dA')=="") this.getField('DropdownA').setVisible(false);
+      if (xmlElement.getAttribute('dA')=="") 
+        this.getField('DropdownA').setVisible(false);
+      else
+        this.getField('DropdownA').setVisible(true);
     }      
     if (xmlElement.getAttribute('dB')) {
       this.getField('DropdownB').setValue(xmlElement.getAttribute('dB'));
-      if (xmlElement.getAttribute('dB')=="") this.getField('DropdownB').setVisible(false);
+      if (xmlElement.getAttribute('dB')=="") 
+        this.getField('DropdownB').setVisible(false);
+      else
+        this.getField('DropdownB').setVisible(true);
     }      
     if (xmlElement.getAttribute('dA1')) {
       this.getField('DropdownA1').setValue(xmlElement.getAttribute('dA1'));
-      if (xmlElement.getAttribute('dA1')=="") this.getField('DropdownA1').setVisible(false);
+      if (xmlElement.getAttribute('dA1')=="") 
+        this.getField('DropdownA1').setVisible(false);
+      else
+        this.getField('DropdownA1').setVisible(true);
     }      
     if (xmlElement.getAttribute('dA2')) {
       this.getField('DropdownA2').setValue(xmlElement.getAttribute('dA2'));
-      if (xmlElement.getAttribute('dA2')=="") this.getField('DropdownA2').setVisible(false);
+      if (xmlElement.getAttribute('dA2')=="") 
+        this.getField('DropdownA2').setVisible(false);
+      else
+        this.getField('DropdownA2').setVisible(true);
     }      
     if (xmlElement.getAttribute('dB1')) {
       this.getField('DropdownB1').setValue(xmlElement.getAttribute('dB1'));
-      if (xmlElement.getAttribute('dB1')=="") this.getField('DropdownB1').setVisible(false);
+      if (xmlElement.getAttribute('dB1')=="") 
+        this.getField('DropdownB1').setVisible(false);
+      else
+        this.getField('DropdownB1').setVisible(true);
     }      
     if (xmlElement.getAttribute('dB2')) {
       this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2')); 
-      if (xmlElement.getAttribute('dB2')=="") this.getField('DropdownB2').setVisible(false);
+      if (xmlElement.getAttribute('dB2')=="") 
+        this.getField('DropdownB2').setVisible(false);
+      else
+        this.getField('DropdownB2').setVisible(true);
     }      
   },
   onchange: function (event) {
