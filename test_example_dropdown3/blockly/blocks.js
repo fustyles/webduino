@@ -36,6 +36,7 @@ Blockly.Blocks['dropdown'] = {
     this.getField('DropdownB').setValue(xmlElement.getAttribute('dB'));
     this.getField('DropdownB1').setValue(xmlElement.getAttribute('dB1'));
     this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2')); 
+    this.updateShape_("refresh");
   },
   onchange: function (event) {
     if (event.element=="field") {
