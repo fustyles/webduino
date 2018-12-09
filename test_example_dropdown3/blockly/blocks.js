@@ -67,7 +67,7 @@ Blockly.Blocks['dropdown'] = {
       }
     }      
     if (xmlElement.getAttribute('dB2')) {
-      if (xmlElement.getAttribute('dB2')!="") 
+      if (xmlElement.getAttribute('dB2')!="") {
         this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2')); 
         this.updateShape_("DropdownB2");
       }
