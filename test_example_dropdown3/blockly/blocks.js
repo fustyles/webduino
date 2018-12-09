@@ -30,13 +30,6 @@ Blockly.Blocks['dropdown'] = {
     return container;
   },
   domToMutation: function (xmlElement) {
-    console.log(xmlElement.getAttribute('d'));
-    console.log(xmlElement.getAttribute('dA'));
-    console.log(xmlElement.getAttribute('dB'));
-    console.log(xmlElement.getAttribute('dA1'));
-    console.log(xmlElement.getAttribute('dA2'));
-    console.log(xmlElement.getAttribute('dB1'));
-    console.log(xmlElement.getAttribute('dB2'));
     this.getField('Dropdown').setValue(xmlElement.getAttribute('d'));
     this.getField('DropdownA').setValue(xmlElement.getAttribute('dA'));
     this.getField('DropdownB').setValue(xmlElement.getAttribute('dB'));
