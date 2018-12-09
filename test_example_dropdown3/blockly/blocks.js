@@ -33,13 +33,13 @@ Blockly.Blocks['dropdown'] = {
     this.getField('Dropdown').setValue(xmlElement.getAttribute('d'));
     this.updateShape_("Dropdown");
     this.getField('DropdownA').setValue(xmlElement.getAttribute('dA'));
-    this.updateShape_("DropdownA");
-    this.getField('DropdownB').setValue(xmlElement.getAttribute('dB'));
-    this.updateShape_("DropdownB");
     this.getField('DropdownA1').setValue(xmlElement.getAttribute('dA1'));
     this.getField('DropdownA2').setValue(xmlElement.getAttribute('dA2'));
+    this.updateShape_("DropdownA");
+    this.getField('DropdownB').setValue(xmlElement.getAttribute('dB'));
     this.getField('DropdownB1').setValue(xmlElement.getAttribute('dB1'));
     this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2')); 
+    this.updateShape_("DropdownB");
   },
   onchange: function (event) {
     if (event.element=="field") {
