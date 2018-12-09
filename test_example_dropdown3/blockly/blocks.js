@@ -19,14 +19,6 @@ Blockly.Blocks['dropdown'] = {
     this.updateShape_("Dropdown");
   },
   mutationToDom: function (workspace) {
-    console.log(this.getFieldValue('Dropdown'));
-    console.log(this.getFieldValue('DropdownA'));
-    console.log(this.getFieldValue('DropdownB'));
-    console.log(this.getFieldValue('DropdownA1'));
-    console.log(this.getFieldValue('DropdownA2'));
-    console.log(this.getFieldValue('DropdownB1'));
-    console.log(this.getFieldValue('DropdownB2'));
-    
     var container = document.createElement('mutation');
     container.setAttribute('d', this.getFieldValue('Dropdown'));
     container.setAttribute('dA', this.getFieldValue('DropdownA'));
