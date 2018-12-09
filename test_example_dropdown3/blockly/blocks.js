@@ -36,7 +36,30 @@ Blockly.Blocks['dropdown'] = {
     this.getField('DropdownB').setValue(xmlElement.getAttribute('dB'));
     this.getField('DropdownB1').setValue(xmlElement.getAttribute('dB1'));
     this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2')); 
-    this.updateShape_("refresh");
+    if (this.getField('DropdownA').getText()!="")
+      this.getField('DropdownA').setVisible(true);
+    else
+      this.getField('DropdownA').setVisible(false);
+    if (this.getField('DropdownB').getText()!="")
+      this.getField('DropdownB').setVisible(true);
+    else
+      this.getField('DropdownB').setVisible(false);
+    if (this.getField('DropdownA1').getText()!="")
+      this.getField('DropdownA1').setVisible(true);
+    else
+      this.getField('DropdownA1').setVisible(false);
+    if (this.getField('DropdownA2').getText()!="")
+      this.getField('DropdownA2').setVisible(true);
+    else
+      this.getField('DropdownA2').setVisible(false);
+    if (this.getField('DropdownB1').getText()!="")
+      this.getField('DropdownB1').setVisible(true);
+    else
+      this.getField('DropdownB1').setVisible(false);
+    if (this.getField('DropdownB2').getText()!="")
+      this.getField('DropdownB2').setVisible(true);
+    else
+      this.getField('DropdownB2').setVisible(false);
   },
   onchange: function (event) {
     if (event.element=="field") {
@@ -120,31 +143,6 @@ Blockly.Blocks['dropdown'] = {
       console.log(this.getField('DropdownA2').getText());
       console.log(this.getField('DropdownB1').getText());
       console.log(this.getField('DropdownB2').getText());
-      
-      if (this.getField('DropdownA').getText()!="")
-        this.getField('DropdownA').setVisible(true);
-      else
-        this.getField('DropdownA').setVisible(false);
-      if (this.getField('DropdownB').getText()!="")
-        this.getField('DropdownB').setVisible(true);
-      else
-        this.getField('DropdownB').setVisible(false);
-      if (this.getField('DropdownA1').getText()!="")
-        this.getField('DropdownA1').setVisible(true);
-      else
-        this.getField('DropdownA1').setVisible(false);
-      if (this.getField('DropdownA2').getText()!="")
-        this.getField('DropdownA2').setVisible(true);
-      else
-        this.getField('DropdownA2').setVisible(false);
-      if (this.getField('DropdownB1').getText()!="")
-        this.getField('DropdownB1').setVisible(true);
-      else
-        this.getField('DropdownB1').setVisible(false);
-      if (this.getField('DropdownB2').getText()!="")
-        this.getField('DropdownB2').setVisible(true);
-      else
-        this.getField('DropdownB2').setVisible(false);
     } 
     this.setNextStatement(true);
   }
