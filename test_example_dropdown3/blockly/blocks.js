@@ -49,6 +49,7 @@ Blockly.Blocks['dropdown'] = {
     }
   },
   updateShape_: function(name) {  
+    console.log(name);
     if (name=='Dropdown'&&this.getFieldValue('Dropdown')=='A') {
       this.getField('DropdownA').setValue("");
       this.getField('DropdownA').setVisible(true);
