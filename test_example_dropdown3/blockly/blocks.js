@@ -59,19 +59,15 @@ Blockly.Blocks['dropdown'] = {
     }
     if (xmlElement.getAttribute('dA1')!="") {
       this.getField('DropdownA1').setValue(xmlElement.getAttribute('dA1'));
-      this.updateShape_("DropdownA1");
     }
     if (xmlElement.getAttribute('dA2')!="") {
       this.getField('DropdownA2').setValue(xmlElement.getAttribute('dA2'));
-      this.updateShape_("DropdownA2");
     }
     if (xmlElement.getAttribute('dB1')!="") {
       this.getField('DropdownB1').setValue(xmlElement.getAttribute('dB1'));
-      this.updateShape_("DropdownB1");
     }
     if (xmlElement.getAttribute('dB2')!="") {
       this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2')); 
-      this.updateShape_("DropdownB2");
     }
   },
   onchange: function (event) {
