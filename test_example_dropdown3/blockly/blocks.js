@@ -13,9 +13,13 @@ Blockly.Blocks['dropdown'] = {
         .appendField(new Blockly.FieldDropdown([["A2_1","A2_1"], ["A2_2","A2_2"]]), "DropdownA2")
         .appendField(new Blockly.FieldDropdown([["B1_1","B1_1"], ["B1_2","B1_2"]]), "DropdownB1")
         .appendField(new Blockly.FieldDropdown([["B2_1","B2_1"], ["B2_2","B2_2"]]), "DropdownB2");
+    this.getField('DropdownB').setValue("");
     this.getField('DropdownB').setVisible(false);
+    this.getField('DropdownA2').setValue("");
     this.getField('DropdownA2').setVisible(false);
+    this.getField('DropdownB1').setValue("");
     this.getField('DropdownB1').setVisible(false);
+    this.getField('DropdownB2').setValue("");
     this.getField('DropdownB2').setVisible(false);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
