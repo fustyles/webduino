@@ -40,13 +40,6 @@ Blockly.Blocks['dropdown'] = {
     this.getField('DropdownB').setValue(xmlElement.getAttribute('dB'));
     this.getField('DropdownB1').setValue(xmlElement.getAttribute('dB1'));
     this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2')); 
-    console.log(this.getFieldValue('Dropdown'));
-    console.log(this.getFieldValue('DropdownA'));
-    console.log(this.getFieldValue('DropdownB'));
-    console.log(this.getFieldValue('DropdownA1'));
-    console.log(this.getFieldValue('DropdownA2'));
-    console.log(this.getFieldValue('DropdownB1'));
-    console.log(this.getFieldValue('DropdownB2'));  
     this.updateShape_("refresh");
   },
   onchange: function (event) {
@@ -69,7 +62,6 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownB1').setVisible(false);
       this.getField('DropdownB2').setValue("");
       this.getField('DropdownB2').setVisible(false);
-      console.log("A");
     } else if (name=='Dropdown'&&this.getFieldValue('Dropdown')=='B') {
       this.getField('DropdownB').setVisible(true);
       this.getField('DropdownB1').setVisible(true);
@@ -82,7 +74,6 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownA1').setVisible(false);
       this.getField('DropdownA2').setValue("");
       this.getField('DropdownA2').setVisible(false);
-      console.log("B");
     }
     if (name=='DropdownA'&&this.getFieldValue('DropdownA')=='A1') {
       this.getField('DropdownA1').setValue("");
@@ -94,7 +85,6 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownB1').setVisible(false);
       this.getField('DropdownB2').setValue("");
       this.getField('DropdownB2').setVisible(false);
-      console.log("A1");
     } else if (name=='DropdownA'&&this.getFieldValue('DropdownA')=='A2') {
       this.getField('DropdownA2').setValue("");
       this.getField('DropdownA2').setVisible(true);
@@ -105,7 +95,6 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownB1').setVisible(false);
       this.getField('DropdownB2').setValue("");
       this.getField('DropdownB2').setVisible(false);
-      console.log("A2");
     } else if (name=='DropdownB'&&this.getFieldValue('DropdownB')=='B1') {
       this.getField('DropdownB1').setValue("");
       this.getField('DropdownB1').setVisible(true);
@@ -116,7 +105,6 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownA2').setVisible(false);
       this.getField('DropdownB2').setValue("");
       this.getField('DropdownB2').setVisible(false);
-      console.log("B1");
     } else if (name=='DropdownB'&&this.getFieldValue('DropdownB')=='B2') {
       this.getField('DropdownB2').setValue("");
       this.getField('DropdownB2').setVisible(true);
@@ -127,7 +115,6 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownA2').setVisible(false);
       this.getField('DropdownB1').setValue("");
       this.getField('DropdownB1').setVisible(false);
-      console.log("B2");
     }    
     if (name=='refresh') {
       if (this.getFieldValue('DropdownA'))
