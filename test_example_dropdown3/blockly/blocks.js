@@ -4,7 +4,7 @@ Blockly.Blocks['dropdown'] = {
   init: function () {
     this.appendDummyInput()
         .appendField("List1")
-        .appendField(new Blockly.FieldDropdown([["",""], ["A","A"], ["B","B"]]), "Dropdown")
+        .appendField(new Blockly.FieldDropdown([["A","A"], ["B","B"]]), "Dropdown")
         .appendField("List2")
         .appendField(new Blockly.FieldDropdown([["",""], ["A1","A1"], ["A2","A2"]]), "DropdownA")
         .appendField(new Blockly.FieldDropdown([["",""], ["B1","B1"], ["B2","B2"]]), "DropdownB")
@@ -16,6 +16,7 @@ Blockly.Blocks['dropdown'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(340);
+    this.updateShape_("Dropdown");
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
