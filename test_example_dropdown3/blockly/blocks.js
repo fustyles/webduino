@@ -31,60 +31,45 @@ Blockly.Blocks['dropdown'] = {
   },
   domToMutation: function (xmlElement) {
     if (xmlElement.getAttribute('d')) {
-      if (xmlElement.getAttribute('d')=="") 
-        this.getField('Dropdown').setVisible(false);
-      else {
+      if (xmlElement.getAttribute('d')!="") {
         this.getField('Dropdown').setValue(xmlElement.getAttribute('d'));
-        this.getField('Dropdown').setVisible(true);
+        this.updateShape_("Dropdown");
       }
     }
     if (xmlElement.getAttribute('dA')) {
-      
-      if (xmlElement.getAttribute('dA')=="") 
-        this.getField('DropdownA').setVisible(false);
-      else {
+      if (xmlElement.getAttribute('dA')!="") {
         this.getField('DropdownA').setValue(xmlElement.getAttribute('dA'));
-        this.getField('DropdownA').setVisible(true);
+        this.updateShape_("DropdownA");
       }
     }      
     if (xmlElement.getAttribute('dB')) {
-      if (xmlElement.getAttribute('dB')=="") 
-        this.getField('DropdownB').setVisible(false);
-      else {
+      if (xmlElement.getAttribute('dB')!="") {
         this.getField('DropdownB').setValue(xmlElement.getAttribute('dB'));
-        this.getField('DropdownB').setVisible(true);
+        this.updateShape_("DropdownB");
       }
     }      
     if (xmlElement.getAttribute('dA1')) {
-      if (xmlElement.getAttribute('dA1')=="") 
-        this.getField('DropdownA1').setVisible(false);
-      else {
+      if (xmlElement.getAttribute('dA1')!="") {
         this.getField('DropdownA1').setValue(xmlElement.getAttribute('dA1'));
-        this.getField('DropdownA1').setVisible(true);
+        this.updateShape_("DropdownA1");
       }
     }      
     if (xmlElement.getAttribute('dA2')) {
-      if (xmlElement.getAttribute('dA2')=="") 
-        this.getField('DropdownA2').setVisible(false);
-      else {
+      if (xmlElement.getAttribute('dA2')!="") {
         this.getField('DropdownA2').setValue(xmlElement.getAttribute('dA2'));
-        this.getField('DropdownA2').setVisible(true);
+        this.updateShape_("DropdownA2");
       }
     }      
     if (xmlElement.getAttribute('dB1')) {
-      if (xmlElement.getAttribute('dB1')=="") 
-        this.getField('DropdownB1').setVisible(false);
-      else {
+      if (xmlElement.getAttribute('dB1')!="") {
         this.getField('DropdownB1').setValue(xmlElement.getAttribute('dB1'));
-        this.getField('DropdownB1').setVisible(true);
+        this.updateShape_("DropdownB1");
       }
     }      
     if (xmlElement.getAttribute('dB2')) {
-      if (xmlElement.getAttribute('dB2')=="") 
-        this.getField('DropdownB2').setVisible(false);
-      else {
+      if (xmlElement.getAttribute('dB2')!="") 
         this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2')); 
-        this.getField('DropdownB2').setVisible(true);
+        this.updateShape_("DropdownB2");
       }
     }      
   },
