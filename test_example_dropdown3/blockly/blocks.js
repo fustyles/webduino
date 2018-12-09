@@ -8,6 +8,7 @@ Blockly.Blocks['dropdown'] = {
         .appendField("List2")
         .appendField(new Blockly.FieldDropdown([["A1","A1"], ["A2","A2"]]), "DropdownA")
         .appendField(new Blockly.FieldDropdown([["B1","B1"], ["B2","B2"]]), "DropdownB")
+        .appendField("List3")
         .appendField(new Blockly.FieldDropdown([["A1_1","A1_1"], ["A1_2","A1_2"]]), "DropdownA1")
         .appendField(new Blockly.FieldDropdown([["A2_1","A2_1"], ["A2_2","A2_2"]]), "DropdownA2")
         .appendField(new Blockly.FieldDropdown([["B1_1","B1_1"], ["B1_2","B1_2"]]), "DropdownB1")
@@ -83,7 +84,7 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownB2').setValue("");
       this.getField('DropdownB2').setVisible(false);
     }
-    else if (this.getFieldValue('Dropdown')=="A1") {
+    else if (this.getFieldValue('DropdownA')=="A1") {
       this.getField('DropdownA1').setValue("A1_1");
       this.getField('DropdownA1').setVisible(true);
       
@@ -94,7 +95,7 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownB2').setValue("");
       this.getField('DropdownB2').setVisible(false);
     }
-    else if (this.getFieldValue('Dropdown')=="A2") {
+    else if (this.getFieldValue('DropdownA')=="A2") {
       this.getField('DropdownA2').setValue("A2_1");
       this.getField('DropdownA2').setVisible(true);
       
@@ -105,7 +106,7 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownB2').setValue("");
       this.getField('DropdownB2').setVisible(false);
     }    
-    else if (this.getFieldValue('Dropdown')=="B1") {
+    else if (this.getFieldValue('DropdownB')=="B1") {
       this.getField('DropdownB1').setValue("B1_1");
       this.getField('DropdownB1').setVisible(true);
       
@@ -116,7 +117,7 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownB2').setValue("");
       this.getField('DropdownB2').setVisible(false);
     }    
-    else if (this.getFieldValue('Dropdown')=="B2") {
+    else if (this.getFieldValue('DropdownB')=="B2") {
       this.getField('DropdownB2').setValue("B2_1");
       this.getField('DropdownB2').setVisible(true);
       
