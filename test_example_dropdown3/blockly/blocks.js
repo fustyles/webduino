@@ -84,7 +84,7 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownB2').setValue("");
       this.getField('DropdownB2').setVisible(false);
     }
-    else if name=='DropdownA'&&(this.getFieldValue('DropdownA')=="A1") {
+    else if (name=='DropdownA'&&this.getFieldValue('DropdownA')=="A1") {
       this.getField('DropdownA1').setValue("A1_1");
       this.getField('DropdownA1').setVisible(true);
       
