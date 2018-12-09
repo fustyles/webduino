@@ -50,6 +50,13 @@ Blockly.Blocks['dropdown'] = {
   },
   updateShape_: function(name) {  
     console.log(name);
+    console.log(this.getFieldValue('Dropdown'));
+    console.log(this.getFieldValue('DropdownA'));
+    console.log(this.getFieldValue('DropdownB'));
+    console.log(this.getFieldValue('DropdownA1'));
+    console.log(this.getFieldValue('DropdownA2'));
+    console.log(this.getFieldValue('DropdownB1'));
+    console.log(this.getFieldValue('DropdownB2'));
     if (name=='Dropdown'&&this.getFieldValue('Dropdown')=='A') {
       this.getField('DropdownA').setValue("");
       this.getField('DropdownA').setVisible(true);
