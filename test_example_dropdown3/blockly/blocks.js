@@ -44,22 +44,14 @@ Blockly.Blocks['dropdown'] = {
     if (xmlElement.getAttribute('dA')!="") {
       this.getField('DropdownA').setValue(xmlElement.getAttribute('dA'));
       this.updateShape_("DropdownA");
-      if (xmlElement.getAttribute('dA1')!="") {
-        this.getField('DropdownA1').setValue(xmlElement.getAttribute('dA1'));
-      }
-      if (xmlElement.getAttribute('dA2')!="") {
-        this.getField('DropdownA2').setValue(xmlElement.getAttribute('dA2'));
-      }      
+      this.getField('DropdownA1').setValue(xmlElement.getAttribute('dA1'));
+      this.getField('DropdownA2').setValue(xmlElement.getAttribute('dA2'));
     }
     if (xmlElement.getAttribute('dB')!="") {
       this.getField('DropdownB').setValue(xmlElement.getAttribute('dB'));
       this.updateShape_("DropdownB");
-      if (xmlElement.getAttribute('dB1')!="") {
-        this.getField('DropdownB1').setValue(xmlElement.getAttribute('dB1'));
-      }
-      if (xmlElement.getAttribute('dB2')!="") {
-        this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2')); 
-      }      
+      this.getField('DropdownB1').setValue(xmlElement.getAttribute('dB1'));
+      this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2')); 
     }
   },
   onchange: function (event) {
