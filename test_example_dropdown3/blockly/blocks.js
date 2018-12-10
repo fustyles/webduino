@@ -119,7 +119,6 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownB1').setVisible(false);
     }    
     if (name=='refresh') {
-      /*
       if (xmlElement.getAttribute('dA')=="")
         this.getField('DropdownA').setVisible(false);
       else
@@ -144,7 +143,6 @@ Blockly.Blocks['dropdown'] = {
         this.getField('DropdownB2').setVisible(false);
       else
         this.getField('DropdownB2').setVisible(true);
-      */
     } 
     this.setNextStatement(true);
   }
