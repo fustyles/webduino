@@ -30,6 +30,7 @@ Blockly.Blocks['dropdown'] = {
     return container;
   },
   domToMutation: function (xmlElement) {
+    console.log(xmlElement);
     this.getField('Dropdown').setValue(xmlElement.getAttribute('d'));
     this.getField('DropdownA').setValue(xmlElement.getAttribute('dA'));
     this.getField('DropdownA1').setValue(xmlElement.getAttribute('dA1'));
@@ -38,7 +39,7 @@ Blockly.Blocks['dropdown'] = {
     this.getField('DropdownB1').setValue(xmlElement.getAttribute('dB1'));
     this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2'));
     this.setNextStatement(true);
-    this.updateShape_("refresh",xmlElement.getAttribute('dA')+","+xmlElement.getAttribute('dA1')+","+xmlElement.getAttribute('dA2')+","+xmlElement.getAttribute('dB')+","+xmlElement.getAttribute('dB1')+","+xmlElement.getAttribute('dB2'));
+    this.updateShape_("refresh");
   },
   onchange: function (event) {
     if (event.element=="field") {
