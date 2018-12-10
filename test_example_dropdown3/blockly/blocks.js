@@ -119,6 +119,7 @@ Blockly.Blocks['dropdown'] = {
     }    
     if (name=='refresh') {
       console.log(xmlElement);
+      console.log(xmlElement.getAttribute('dB2'));
       if (xmlElement.getAttribute('dA')=="")
         this.getField('DropdownA').setVisible(false);
       else
