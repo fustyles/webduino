@@ -30,7 +30,6 @@ Blockly.Blocks['dropdown'] = {
     return container;
   },
   domToMutation: function (xmlElement) {
-    console.log(xmlElement);
     this.getField('Dropdown').setValue(xmlElement.getAttribute('d'));
     this.getField('DropdownA').setValue(xmlElement.getAttribute('dA'));
     this.getField('DropdownA1').setValue(xmlElement.getAttribute('dA1'));
@@ -119,6 +118,7 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownB1').setVisible(false);
     }    
     if (name=='refresh') {
+      console.log(xmlElement);
       if (xmlElement.getAttribute('dA')=="")
         this.getField('DropdownA').setVisible(false);
       else
