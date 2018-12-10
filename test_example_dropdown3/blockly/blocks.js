@@ -118,6 +118,15 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownB1').setVisible(false);
     }    
     if (name=='refresh') {
+      console.log(this.getField('DropdownA1').getText()==null);
+      console.log(this.getField('DropdownA1').getText()=="");
+      console.log(this.getField('DropdownA2').getText()==null);
+      console.log(this.getField('DropdownA2').getText()=="");
+      console.log(this.getField('DropdownB1').getText()==null);
+      console.log(this.getField('DropdownB1').getText()=="");
+      console.log(this.getField('DropdownB2').getText()==null);
+      console.log(this.getField('DropdownB2').getText()=="");
+      
       if (this.getField('DropdownA').getText()==null||this.getField('DropdownA').getText()=="")
         this.getField('DropdownA').setVisible(false);
       else
