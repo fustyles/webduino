@@ -20,23 +20,23 @@ Blockly.Blocks['dropdown'] = {
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
-    container.setAttribute('d', this.getFieldValue('Dropdown')+"");
-    container.setAttribute('dA', this.getFieldValue('DropdownA')+"");
-    container.setAttribute('dB', this.getFieldValue('DropdownB')+"");
-    container.setAttribute('dA1', this.getFieldValue('DropdownA1')+"");
-    container.setAttribute('dA2', this.getFieldValue('DropdownA2')+"");
-    container.setAttribute('dB1', this.getFieldValue('DropdownB1')+"");
-    container.setAttribute('dB2', this.getFieldValue('DropdownB2')+"");
+    container.setAttribute('d', this.getFieldValue('Dropdown'));
+    container.setAttribute('dA', this.getFieldValue('DropdownA'));
+    container.setAttribute('dB', this.getFieldValue('DropdownB'));
+    container.setAttribute('dA1', this.getFieldValue('DropdownA1'));
+    container.setAttribute('dA2', this.getFieldValue('DropdownA2'));
+    container.setAttribute('dB1', this.getFieldValue('DropdownB1'));
+    container.setAttribute('dB2', this.getFieldValue('DropdownB2'));
     return container;
   },
   domToMutation: function (xmlElement) {
-    this.getField('Dropdown').setValue(xmlElement.getAttribute('d')+"");
-    this.getField('DropdownA').setValue(xmlElement.getAttribute('dA')+"");
-    this.getField('DropdownA1').setValue(xmlElement.getAttribute('dA1')+"");
-    this.getField('DropdownA2').setValue(xmlElement.getAttribute('dA2')+"");
-    this.getField('DropdownB').setValue(xmlElement.getAttribute('dB')+"");
-    this.getField('DropdownB1').setValue(xmlElement.getAttribute('dB1')+"");
-    this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2')+"");
+    this.getField('Dropdown').setValue(xmlElement.getAttribute('d'));
+    this.getField('DropdownA').setValue(xmlElement.getAttribute('dA'));
+    this.getField('DropdownA1').setValue(xmlElement.getAttribute('dA1'));
+    this.getField('DropdownA2').setValue(xmlElement.getAttribute('dA2'));
+    this.getField('DropdownB').setValue(xmlElement.getAttribute('dB'));
+    this.getField('DropdownB1').setValue(xmlElement.getAttribute('dB1'));
+    this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2'));
     this.updateShape_("refresh",xmlElement.getAttribute('d')+","+xmlElement.getAttribute('dA')+","+xmlElement.getAttribute('dA1')+","+xmlElement.getAttribute('dA2')+","+xmlElement.getAttribute('dB')+","+xmlElement.getAttribute('dB1')+","+xmlElement.getAttribute('dB2'));
   },
   onchange: function (event) {
