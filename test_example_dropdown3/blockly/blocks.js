@@ -21,22 +21,22 @@ Blockly.Blocks['dropdown'] = {
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
     container.setAttribute('d', this.getFieldValue('Dropdown')+"");
-    container.setAttribute('dA', this.getFieldValue('DropdownA')+"");
-    container.setAttribute('dB', this.getFieldValue('DropdownB')+"");
-    container.setAttribute('dA1', this.getFieldValue('DropdownA1')+"");
-    container.setAttribute('dA2', this.getFieldValue('DropdownA2')+"");
-    container.setAttribute('dB1', this.getFieldValue('DropdownB1')+"");
-    container.setAttribute('dB2', this.getFieldValue('DropdownB2')+"");
+    container.setAttribute('da', this.getFieldValue('DropdownA')+"");
+    container.setAttribute('db', this.getFieldValue('DropdownB')+"");
+    container.setAttribute('da1', this.getFieldValue('DropdownA1')+"");
+    container.setAttribute('da2', this.getFieldValue('DropdownA2')+"");
+    container.setAttribute('db1', this.getFieldValue('DropdownB1')+"");
+    container.setAttribute('db2', this.getFieldValue('DropdownB2')+"");
     return container;
   },
   domToMutation: function (xmlElement) {
     this.getField('Dropdown').setValue(xmlElement.getAttribute('d'));
-    this.getField('DropdownA').setValue(xmlElement.getAttribute('dA'));
-    this.getField('DropdownA1').setValue(xmlElement.getAttribute('dA1'));
-    this.getField('DropdownA2').setValue(xmlElement.getAttribute('dA2'));
-    this.getField('DropdownB').setValue(xmlElement.getAttribute('dB'));
-    this.getField('DropdownB1').setValue(xmlElement.getAttribute('dB1'));
-    this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2'));
+    this.getField('DropdownA').setValue(xmlElement.getAttribute('da'));
+    this.getField('DropdownA1').setValue(xmlElement.getAttribute('da1'));
+    this.getField('DropdownA2').setValue(xmlElement.getAttribute('da2'));
+    this.getField('DropdownB').setValue(xmlElement.getAttribute('db'));
+    this.getField('DropdownB1').setValue(xmlElement.getAttribute('db1'));
+    this.getField('DropdownB2').setValue(xmlElement.getAttribute('db2'));
     this.updateShape_("refresh",xmlElement);
   },
   onchange: function (event) {
@@ -119,28 +119,28 @@ Blockly.Blocks['dropdown'] = {
     }    
     if (name=='refresh') {
       console.log(xmlElement);
-      console.log(xmlElement.getAttribute('dB2'));
-      if (xmlElement.getAttribute('dA')=="")
+      console.log(xmlElement.getAttribute('db2'));
+      if (xmlElement.getAttribute('da')=="")
         this.getField('DropdownA').setVisible(false);
       else
         this.getField('DropdownA').setVisible(true);
-      if (xmlElement.getAttribute('dB')=="")
+      if (xmlElement.getAttribute('db')=="")
         this.getField('DropdownB').setVisible(false);
       else
         this.getField('DropdownB').setVisible(true);
-      if (xmlElement.getAttribute('dA1')=="")
+      if (xmlElement.getAttribute('da1')=="")
         this.getField('DropdownA1').setVisible(false);
       else
         this.getField('DropdownA1').setVisible(true);
-      if (xmlElement.getAttribute('dA2')=="")
+      if (xmlElement.getAttribute('da2')=="")
         this.getField('DropdownA2').setVisible(false);
       else
         this.getField('DropdownA2').setVisible(true);
-      if (xmlElement.getAttribute('dB1')=="")
+      if (xmlElement.getAttribute('db1')=="")
         this.getField('DropdownB1').setVisible(false);
       else
         this.getField('DropdownB1').setVisible(true);
-      if (xmlElement.getAttribute('dB2')=="")
+      if (xmlElement.getAttribute('db2')=="")
         this.getField('DropdownB2').setVisible(false);
       else
         this.getField('DropdownB2').setVisible(true);
