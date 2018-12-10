@@ -115,30 +115,12 @@ Blockly.Blocks['dropdown'] = {
     if (name=='refresh') {
       console.log(xmlElement);
       console.log(xmlElement.getAttribute('db2'));
-      if (xmlElement.getAttribute('da')=="")
-        this.getField('DropdownA').setVisible(false);
-      else
-        this.getField('DropdownA').setVisible(true);
-      if (xmlElement.getAttribute('db')=="")
-        this.getField('DropdownB').setVisible(false);
-      else
-        this.getField('DropdownB').setVisible(true);
-      if (xmlElement.getAttribute('da1')=="")
-        this.getField('DropdownA1').setVisible(false);
-      else
-        this.getField('DropdownA1').setVisible(true);
-      if (xmlElement.getAttribute('da2')=="")
-        this.getField('DropdownA2').setVisible(false);
-      else
-        this.getField('DropdownA2').setVisible(true);
-      if (xmlElement.getAttribute('db1')=="")
-        this.getField('DropdownB1').setVisible(false);
-      else
-        this.getField('DropdownB1').setVisible(true);
-      if (xmlElement.getAttribute('db2')=="")
-        this.getField('DropdownB2').setVisible(false);
-      else
-        this.getField('DropdownB2').setVisible(true);
+      this.getField('DropdownA').setVisible(xmlElement.getAttribute('da')!="");
+      this.getField('DropdownB').setVisible(xmlElement.getAttribute('db')!="");
+      this.getField('DropdownA1').setVisible(xmlElement.getAttribute('da1')!="");
+      this.getField('DropdownA2').setVisible(xmlElement.getAttribute('da2')!="");
+      this.getField('DropdownB1').setVisible(xmlElement.getAttribute('db1')!="");
+      this.getField('DropdownB2').setVisible(xmlElement.getAttribute('db2')!="");
     } 
     this.setNextStatement(true);
   }
