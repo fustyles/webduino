@@ -38,17 +38,16 @@ Blockly.Blocks['dropdown'] = {
     this.getField('DropdownB').setValue(xmlElement.getAttribute('dB'));
     this.getField('DropdownB1').setValue(xmlElement.getAttribute('dB1'));
     this.getField('DropdownB2').setValue(xmlElement.getAttribute('dB2'));
-    this.setNextStatement(true);
     this.updateShape_("refresh");
   },
   onchange: function (event) {
     if (event.element=="field") {
       if (event.name.indexOf("Dropdown")!=-1) {
-        this.updateShape_(event.name,"");
+        this.updateShape_(event.name);
       }
     }
   },
-  updateShape_: function(name,dValue) {  
+  updateShape_: function(name) {  
     if ((name=='Dropdown')&&(this.getFieldValue('Dropdown')=='A')) {
       this.getField('DropdownA').setValue("");
       this.getField('DropdownA').setVisible(true);
