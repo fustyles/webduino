@@ -127,27 +127,27 @@ Blockly.Blocks['dropdown'] = {
       console.log(this.getField('DropdownB2').getText()==null);
       console.log(this.getField('DropdownB2').getText()=="");
       
-      if (this.getField('DropdownA').getText()==null||this.getField('DropdownA').getText()=="")
+      if (this.getField('DropdownA').getText()=="")
         this.getField('DropdownA').setVisible(false);
       else
         this.getField('DropdownA').setVisible(true);
-      if (this.getField('DropdownB').getText()==null||this.getField('DropdownB').getText()=="")
+      if (this.getField('DropdownB').getText()=="")
         this.getField('DropdownB').setVisible(false);
       else
         this.getField('DropdownB').setVisible(true);
-      if (this.getField('DropdownA1').getText()==null||this.getField('DropdownA1').getText()=="")
+      if (this.getField('DropdownA1').getText()=="")
         this.getField('DropdownA1').setVisible(false);
       else
         this.getField('DropdownA1').setVisible(true);
-      if (this.getField('DropdownA2').getText()==null||this.getField('DropdownA2').getText()=="")
+      if (this.getField('DropdownA2').getText()=="")
         this.getField('DropdownA2').setVisible(false);
       else
         this.getField('DropdownA2').setVisible(true);
-      if (this.getField('DropdownB1').getText()==null||this.getField('DropdownB1').getText()=="")
+      if (this.getField('DropdownB1').getText()=="")
         this.getField('DropdownB1').setVisible(false);
       else
         this.getField('DropdownB1').setVisible(true);
-      if (this.getField('DropdownB2').getText()==null||this.getField('DropdownB2').getText()=="")
+      if (this.getField('DropdownB2').getText()=="")
         this.getField('DropdownB2').setVisible(false);
       else
         this.getField('DropdownB2').setVisible(true);
