@@ -34,10 +34,12 @@ Blockly.Blocks['dropdown'] = {
     }
   },
   updateShape_: function(name,xmlElement) {  
-    if ((name=='Dropdown')&&(this.getFieldValue('Dropdown')=='A')) 
-      this.changeList(['DropdownA'],['DropdownB']);
-    else if ((name=='Dropdown')&&(this.getFieldValue('Dropdown')=='B')) 
-      this.changeList(['DropdownB'],['DropdownA']);
+    if (name=='Dropdown') {
+      if (this.getFieldValue('Dropdown')=='A') 
+        this.changeList(['DropdownA'],['DropdownB']);
+      else if (this.getFieldValue('Dropdown')=='B') 
+        this.changeList(['DropdownB'],['DropdownA']);
+    }
     
     if (name=='refresh') {
       this.getField('DropdownA').setVisible(xmlElement.getAttribute('da')!="");
