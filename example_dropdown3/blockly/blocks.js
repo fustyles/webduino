@@ -80,7 +80,7 @@ Blockly.Blocks['dropdown'] = {
   },
     changelist: function (id_display,id_hide) {
     for (var i=0;i<id_display.length;i++) {
-      console.log(this.getField(id_display[i]).getOptions);
+      console.log(this.getField(id_display[i]).getOptions());
       
       this.getField(id_display[i]).setValue("");
       this.getField(id_display[i]).setVisible(true);
