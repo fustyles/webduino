@@ -53,75 +53,32 @@ Blockly.Blocks['dropdown'] = {
       }
     }
   },
-  updateShape_: function(name,xmlElement) {  
-    if ((name=='Dropdown')&&(this.getFieldValue('Dropdown')=='A')) {
-      this.getField('DropdownA').setValue("");
-      this.getField('DropdownA').setVisible(true);
-      this.getField('DropdownA1').setValue("");
-      this.getField('DropdownA1').setVisible(true);
-      this.getField('DropdownA2').setValue("");
-      this.getField('DropdownA2').setVisible(false);
-      this.getField('DropdownB').setValue("");
-      this.getField('DropdownB').setVisible(false);
-      this.getField('DropdownB1').setValue("");
-      this.getField('DropdownB1').setVisible(false);
-      this.getField('DropdownB2').setValue("");
-      this.getField('DropdownB2').setVisible(false);
-    } else if ((name=='Dropdown')&&(this.getFieldValue('Dropdown')=='B')) {
-      this.getField('DropdownB').setValue("");
-      this.getField('DropdownB').setVisible(true);
-      this.getField('DropdownB1').setValue("");
-      this.getField('DropdownB1').setVisible(true);
-      this.getField('DropdownB2').setValue("");
-      this.getField('DropdownB2').setVisible(false);
-      this.getField('DropdownA').setValue("");
-      this.getField('DropdownA').setVisible(false);
-      this.getField('DropdownA1').setValue("");
-      this.getField('DropdownA1').setVisible(false);
-      this.getField('DropdownA2').setValue("");
-      this.getField('DropdownA2').setVisible(false);
+  changelist: function (id_display,id_hide) {
+    for (var i=0;i<id_display.length;i++) {
+      this.getField(id_display[i]).setValue("");
+      this.getField(id_display[i]).setVisible(true);
     }
-    if ((name=='DropdownA')&&(this.getFieldValue('DropdownA')=='A1')) {
-      this.getField('DropdownA1').setValue("");
-      this.getField('DropdownA1').setVisible(true);
-      this.getField('DropdownA2').setValue("");
-      this.getField('DropdownA2').setVisible(false);
-      this.getField('DropdownB1').setValue("");
-      this.getField('DropdownB1').setVisible(false);
-      this.getField('DropdownB2').setValue("");
-      this.getField('DropdownB2').setVisible(false);
-    } else if ((name=='DropdownA')&&(this.getFieldValue('DropdownA')=='A2')) {
-      this.getField('DropdownA2').setValue("");
-      this.getField('DropdownA2').setVisible(true);
-      this.getField('DropdownA1').setValue("");
-      this.getField('DropdownA1').setVisible(false);
-      this.getField('DropdownB1').setValue("");
-      this.getField('DropdownB1').setVisible(false);
-      this.getField('DropdownB2').setValue("");
-      this.getField('DropdownB2').setVisible(false);
-    } else if ((name=='DropdownB')&&(this.getFieldValue('DropdownB')=='B1')) {
-      this.getField('DropdownB1').setValue("");
-      this.getField('DropdownB1').setVisible(true);
-      this.getField('DropdownA1').setValue("");
-      this.getField('DropdownA1').setVisible(false);
-      this.getField('DropdownA2').setValue("");
-      this.getField('DropdownA2').setVisible(false);
-      this.getField('DropdownB2').setValue("");
-      this.getField('DropdownB2').setVisible(false);
-    } else if ((name=='DropdownB')&&(this.getFieldValue('DropdownB')=='B2')) {
-      this.getField('DropdownB2').setValue("");
-      this.getField('DropdownB2').setVisible(true);
-      
-      this.getField('DropdownA1').setValue("");
-      this.getField('DropdownA1').setVisible(false);
-      this.getField('DropdownA2').setValue("");
-      this.getField('DropdownA2').setVisible(false);
-      this.getField('DropdownB1').setValue("");
-      this.getField('DropdownB1').setVisible(false);
-    }    
+    for (var j=0;j<id_hide.length;j++) {
+      this.getField(id_hide[j]).setValue("");
+      this.getField(id_hide[j]).setVisible(false);
+    }
+  },
+  updateShape_: function(name,xmlElement) {  
+    if ((name=='Dropdown')&&(this.getFieldValue('Dropdown')=='A')) 
+      this.changelist(['DropdownA','DropdownA1'],['DropdownA2','DropdownB','DropdownB1','DropdownB2']);
+    else if ((name=='Dropdown')&&(this.getFieldValue('Dropdown')=='B')) 
+      this.changelist(['DropdownB','DropdownB1'],['DropdownB2','DropdownA','DropdownA1','DropdownA2']);
+    
+    if ((name=='DropdownA')&&(this.getFieldValue('DropdownA')=='A1'))
+      this.changelist(['DropdownA1'],['DropdownA2','DropdownB1','DropdownB2']);
+    else if ((name=='DropdownA')&&(this.getFieldValue('DropdownA')=='A2'))
+      this.onselect(['DropdownA2'],['DropdownA1','DropdownB1','DropdownB2']);
+    else if ((name=='DropdownB')&&(this.getFieldValue('DropdownB')=='B1'))
+      this.changelist(['DropdownB1'],['DropdownB2','DropdownA1','DropdownA2']);
+    else if ((name=='DropdownB')&&(this.getFieldValue('DropdownB')=='B2'))
+      this.changelist(['DropdownB2'],['DropdownB1','DropdownA1','DropdownA2']);
+    
     if (name=='refresh') {
-      console.log(xmlElement);
-      console.log(xmlElement.getAttribute('db2'));
       this.getField('DropdownA').setVisible(xmlElement.getAttribute('da')!="");
       this.getField('DropdownB').setVisible(xmlElement.getAttribute('db')!="");
       this.getField('DropdownA1').setVisible(xmlElement.getAttribute('da1')!="");
