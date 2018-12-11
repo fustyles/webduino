@@ -41,7 +41,7 @@ Blockly.Blocks['dropdown'] = {
   },
   onchange: function (event) {
     console.log(this.id);
-    console.log(event.blockid);
+    console.log(event.blockId);
     console.log("");
     if (event.element=="field") {
       if (event.name.indexOf("Dropdown")!=-1) {
