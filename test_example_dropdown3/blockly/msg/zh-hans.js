@@ -1,1 +1,1 @@
-MSG.catDropDown2 = "dropdown2";
+MSG.catDropDown3 = "dropdown3";
