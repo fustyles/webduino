@@ -76,6 +76,7 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownB1').setVisible(xmlElement.getAttribute('db1')!="");
       this.getField('DropdownB2').setVisible(xmlElement.getAttribute('db2')!="");
     } 
+    
     this.setNextStatement(true);
   },
     changeList: function (id_display,id_hide) {
