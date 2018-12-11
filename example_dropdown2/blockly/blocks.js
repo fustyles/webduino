@@ -28,9 +28,8 @@ Blockly.Blocks['dropdown'] = {
   },
   onchange: function (event) {
     if (event.element=="field") {
-      if ((this.id==event.blockId)&&(event.name.indexOf("Dropdown")!=-1)) {
+      if ((this.id==event.blockId)&&(event.name.indexOf("Dropdown")!=-1))
         this.updateShape_(event.name,"");
-      }
     }
   },
   updateShape_: function(name,xmlElement) {  
