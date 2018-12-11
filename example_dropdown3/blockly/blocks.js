@@ -16,7 +16,7 @@ Blockly.Blocks['dropdown'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(340);
-    this.changeList([],['DropdownA2','DropdownB','DropdownB1','DropdownB2']);
+    this.changeList(['Dropdown','DropdownA','DropdownA1'],['DropdownA2','DropdownB','DropdownB1','DropdownB2']);
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
@@ -47,20 +47,27 @@ Blockly.Blocks['dropdown'] = {
     }
   },
   updateShape_: function(name,xmlElement) {  
-    if ((name=='Dropdown')&&(this.getFieldValue('Dropdown')=='A')) 
-      this.changeList(['DropdownA','DropdownA1'],['DropdownA2','DropdownB','DropdownB1','DropdownB2']);
-    else if ((name=='Dropdown')&&(this.getFieldValue('Dropdown')=='B')) 
-      this.changeList(['DropdownB','DropdownB1'],['DropdownB2','DropdownA','DropdownA1','DropdownA2']);
+    if (name=='Dropdown') {
+      if (this.getFieldValue('Dropdown')=='A') 
+        this.changeList(['DropdownA','DropdownA1'],['DropdownA2','DropdownB','DropdownB1','DropdownB2']);
+      else if (this.getFieldValue('Dropdown')=='B')
+        this.changeList(['DropdownB','DropdownB1'],['DropdownB2','DropdownA','DropdownA1','DropdownA2']);
+    }
     
-    if ((name=='DropdownA')&&(this.getFieldValue('DropdownA')=='A1'))
-      this.changeList(['DropdownA1'],['DropdownA2','DropdownB1','DropdownB2']);
-    else if ((name=='DropdownA')&&(this.getFieldValue('DropdownA')=='A2'))
-      this.changeList(['DropdownA2'],['DropdownA1','DropdownB1','DropdownB2']);
-    else if ((name=='DropdownB')&&(this.getFieldValue('DropdownB')=='B1'))
-      this.changeList(['DropdownB1'],['DropdownB2','DropdownA1','DropdownA2']);
-    else if ((name=='DropdownB')&&(this.getFieldValue('DropdownB')=='B2'))
-      this.changeList(['DropdownB2'],['DropdownB1','DropdownA1','DropdownA2']);
+    if (name=='DropdownA') {
+      if (this.getFieldValue('DropdownA')=='A1')
+        this.changeList(['DropdownA1'],['DropdownA2','DropdownB1','DropdownB2']);
+      else if (this.getFieldValue('DropdownA')=='A2')
+        this.changeList(['DropdownA2'],['DropdownA1','DropdownB1','DropdownB2']);
+    }
     
+    if (name=='DropdownB') {
+      if (this.getFieldValue('DropdownB')=='B1')
+        this.changeList(['DropdownB1'],['DropdownB2','DropdownA1','DropdownA2']);
+      else if (this.getFieldValue('DropdownB')=='B2')
+        this.changeList(['DropdownB2'],['DropdownB1','DropdownA1','DropdownA2']);
+    }
+  
     if (name=='refresh') {
       this.getField('DropdownA').setVisible(xmlElement.getAttribute('da')!="");
       this.getField('DropdownB').setVisible(xmlElement.getAttribute('db')!="");
