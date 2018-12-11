@@ -16,7 +16,14 @@ Blockly.Blocks['dropdown'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(340);
-    this.updateShape_('refresh','<mutation d="A" da="A1" db="" da1="A1_1" da2="" db1="" db2=""></mutation>');
+    this.getField('DropdownA2').setValue("");
+    this.getField('DropdownA2').setVisible(false);
+    this.getField('DropdownB').setValue("");
+    this.getField('DropdownB').setVisible(false);
+    this.getField('DropdownB1').setValue("");
+    this.getField('DropdownB1').setVisible(false);
+    this.getField('DropdownB2').setValue("");
+    this.getField('DropdownB2').setVisible(false);
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
