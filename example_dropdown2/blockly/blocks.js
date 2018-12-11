@@ -42,14 +42,12 @@ Blockly.Blocks['dropdown'] = {
     if (name=='refresh') {
       this.getField('DropdownA').setVisible(xmlElement.getAttribute('da')!="");
       this.getField('DropdownB').setVisible(xmlElement.getAttribute('db')!="");
-      if ((xmlElement.getAttribute('da')=="")&&(xmlElement.getAttribute('db')==""))
-        this.updateShape_('Dropdown',""); 
     } 
     this.setNextStatement(true);
   },
     changelist: function (id_display,id_hide) {
     for (var i=0;i<id_display.length;i++) {
-      this.getField(id_display[i]).setValue("");
+      this.getField(id_display[i]).setValue(this.getField(id_display[i]).menuGenerator_[0][0]);
       this.getField(id_display[i]).setVisible(true);
     }
     for (var j=0;j<id_hide.length;j++) {
