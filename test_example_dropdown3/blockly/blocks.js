@@ -27,13 +27,13 @@ Blockly.Blocks['dropdown'] = {
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
-    container.setAttribute('d', this.getFieldValue('Dropdown')+"");
-    container.setAttribute('da', this.getFieldValue('DropdownA')+"");
-    container.setAttribute('db', this.getFieldValue('DropdownB')+"");
-    container.setAttribute('da1', this.getFieldValue('DropdownA1')+"");
-    container.setAttribute('da2', this.getFieldValue('DropdownA2')+"");
-    container.setAttribute('db1', this.getFieldValue('DropdownB1')+"");
-    container.setAttribute('db2', this.getFieldValue('DropdownB2')+"");
+    container.setAttribute('d', this.getFieldValue('Dropdown'));
+    container.setAttribute('da', this.getFieldValue('DropdownA'));
+    container.setAttribute('db', this.getFieldValue('DropdownB'));
+    container.setAttribute('da1', this.getFieldValue('DropdownA1'));
+    container.setAttribute('da2', this.getFieldValue('DropdownA2'));
+    container.setAttribute('db1', this.getFieldValue('DropdownB1'));
+    container.setAttribute('db2', this.getFieldValue('DropdownB2'));
     return container;
   },
   domToMutation: function (xmlElement) {
