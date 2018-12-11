@@ -42,6 +42,8 @@ Blockly.Blocks['dropdown'] = {
     if (name=='refresh') {
       this.getField('DropdownA').setVisible(xmlElement.getAttribute('da')!="");
       this.getField('DropdownB').setVisible(xmlElement.getAttribute('db')!="");
+      if ((xmlElement.getAttribute('da')=="")&&(xmlElement.getAttribute('db')==""))
+        this.updateShape_('Dropdown',""); 
     } 
     this.setNextStatement(true);
   },
