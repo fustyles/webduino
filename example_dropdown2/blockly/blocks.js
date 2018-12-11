@@ -39,11 +39,11 @@ Blockly.Blocks['dropdown'] = {
       else if (this.getFieldValue('Dropdown')=='B') 
         this.changeList(['DropdownB'],['DropdownA']);
     }
-    
-    if (name=='refresh') {
+    else if (name=='refresh') {
       this.getField('DropdownA').setVisible(xmlElement.getAttribute('da')!="");
       this.getField('DropdownB').setVisible(xmlElement.getAttribute('db')!="");
-    } 
+    }
+    
     this.setNextStatement(true);
   },
     changeList: function (id_display,id_hide) {
