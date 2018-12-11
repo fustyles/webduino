@@ -16,7 +16,7 @@ Blockly.Blocks['dropdown'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(340);
-    //this.updateShape_('refresh','<mutation d="A" da="A1" db="" da1="A1_1" da2="" db1="" db2=""></mutation>');
+    this.updateShape_('refresh','<mutation d="A" da="A1" db="" da1="A1_1" da2="" db1="" db2=""></mutation>');
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
@@ -40,9 +40,6 @@ Blockly.Blocks['dropdown'] = {
     this.updateShape_("refresh",xmlElement);
   },
   onchange: function (event) {
-    console.log(this.id);
-    console.log(event.blockId);
-    console.log("");
     if (event.element=="field") {
       if ((this.id==event.blockId)&&(event.name.indexOf("Dropdown")!=-1)) {
         this.updateShape_(event.name,"");
