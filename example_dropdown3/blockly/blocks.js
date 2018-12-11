@@ -68,13 +68,6 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownA2').setVisible(xmlElement.getAttribute('da2')!="");
       this.getField('DropdownB1').setVisible(xmlElement.getAttribute('db1')!="");
       this.getField('DropdownB2').setVisible(xmlElement.getAttribute('db2')!="");
-      
-      if ((xmlElement.getAttribute('da')=="")&&(xmlElement.getAttribute('db')==""))
-        this.updateShape_('Dropdown',""); 
-      else if ((xmlElement.getAttribute('da1')=="")&&(xmlElement.getAttribute('da2')=="")&&(xmlElement.getAttribute('db1')=="")&&(xmlElement.getAttribute('db2')=="")) {
-        this.updateShape_('DropdownA',""); 
-        this.updateShape_('DropdownB',""); 
-      }
     } 
     this.setNextStatement(true);
   },
