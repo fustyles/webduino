@@ -53,16 +53,6 @@ Blockly.Blocks['dropdown'] = {
       }
     }
   },
-  changelist: function (id_display,id_hide) {
-    for (var i=0;i<id_display.length;i++) {
-      this.getField(id_display[i]).setValue("");
-      this.getField(id_display[i]).setVisible(true);
-    }
-    for (var j=0;j<id_hide.length;j++) {
-      this.getField(id_hide[j]).setValue("");
-      this.getField(id_hide[j]).setVisible(false);
-    }
-  },
   updateShape_: function(name,xmlElement) {  
     if ((name=='Dropdown')&&(this.getFieldValue('Dropdown')=='A')) 
       this.changelist(['DropdownA','DropdownA1'],['DropdownA2','DropdownB','DropdownB1','DropdownB2']);
@@ -87,5 +77,15 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownB2').setVisible(xmlElement.getAttribute('db2')!="");
     } 
     this.setNextStatement(true);
+  },
+    changelist: function (id_display,id_hide) {
+    for (var i=0;i<id_display.length;i++) {
+      this.getField(id_display[i]).setValue("");
+      this.getField(id_display[i]).setVisible(true);
+    }
+    for (var j=0;j<id_hide.length;j++) {
+      this.getField(id_hide[j]).setValue("");
+      this.getField(id_hide[j]).setVisible(false);
+    }
   }
 };
