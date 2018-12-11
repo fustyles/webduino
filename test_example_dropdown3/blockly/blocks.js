@@ -55,7 +55,7 @@ Blockly.Blocks['dropdown'] = {
     if ((name=='DropdownA')&&(this.getFieldValue('DropdownA')=='A1'))
       this.changelist(['DropdownA1'],['DropdownA2','DropdownB1','DropdownB2']);
     else if ((name=='DropdownA')&&(this.getFieldValue('DropdownA')=='A2'))
-      this.onselect(['DropdownA2'],['DropdownA1','DropdownB1','DropdownB2']);
+      this.changelist(['DropdownA2'],['DropdownA1','DropdownB1','DropdownB2']);
     else if ((name=='DropdownB')&&(this.getFieldValue('DropdownB')=='B1'))
       this.changelist(['DropdownB1'],['DropdownB2','DropdownA1','DropdownA2']);
     else if ((name=='DropdownB')&&(this.getFieldValue('DropdownB')=='B2'))
