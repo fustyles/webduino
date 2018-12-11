@@ -11,7 +11,7 @@ Blockly.Blocks['dropdown'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(340);
-    this.changeList([],['DropdownB']);
+    this.changeList(['Dropdown','DropdownA'],['DropdownB']);
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
