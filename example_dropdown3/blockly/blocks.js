@@ -16,7 +16,7 @@ Blockly.Blocks['dropdown'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(340);
-    this.changelist([],['DropdownA2','DropdownB','DropdownB1','DropdownB2']);
+    this.changeList([],['DropdownA2','DropdownB','DropdownB1','DropdownB2']);
   },
   mutationToDom: function (workspace) {
     var container = document.createElement('mutation');
@@ -48,18 +48,18 @@ Blockly.Blocks['dropdown'] = {
   },
   updateShape_: function(name,xmlElement) {  
     if ((name=='Dropdown')&&(this.getFieldValue('Dropdown')=='A')) 
-      this.changelist(['DropdownA','DropdownA1'],['DropdownA2','DropdownB','DropdownB1','DropdownB2']);
+      this.changeList(['DropdownA','DropdownA1'],['DropdownA2','DropdownB','DropdownB1','DropdownB2']);
     else if ((name=='Dropdown')&&(this.getFieldValue('Dropdown')=='B')) 
-      this.changelist(['DropdownB','DropdownB1'],['DropdownB2','DropdownA','DropdownA1','DropdownA2']);
+      this.changeList(['DropdownB','DropdownB1'],['DropdownB2','DropdownA','DropdownA1','DropdownA2']);
     
     if ((name=='DropdownA')&&(this.getFieldValue('DropdownA')=='A1'))
-      this.changelist(['DropdownA1'],['DropdownA2','DropdownB1','DropdownB2']);
+      this.changeList(['DropdownA1'],['DropdownA2','DropdownB1','DropdownB2']);
     else if ((name=='DropdownA')&&(this.getFieldValue('DropdownA')=='A2'))
-      this.changelist(['DropdownA2'],['DropdownA1','DropdownB1','DropdownB2']);
+      this.changeList(['DropdownA2'],['DropdownA1','DropdownB1','DropdownB2']);
     else if ((name=='DropdownB')&&(this.getFieldValue('DropdownB')=='B1'))
-      this.changelist(['DropdownB1'],['DropdownB2','DropdownA1','DropdownA2']);
+      this.changeList(['DropdownB1'],['DropdownB2','DropdownA1','DropdownA2']);
     else if ((name=='DropdownB')&&(this.getFieldValue('DropdownB')=='B2'))
-      this.changelist(['DropdownB2'],['DropdownB1','DropdownA1','DropdownA2']);
+      this.changeList(['DropdownB2'],['DropdownB1','DropdownA1','DropdownA2']);
     
     if (name=='refresh') {
       this.getField('DropdownA').setVisible(xmlElement.getAttribute('da')!="");
@@ -71,7 +71,7 @@ Blockly.Blocks['dropdown'] = {
     } 
     this.setNextStatement(true);
   },
-    changelist: function (id_display,id_hide) {
+    changeList: function (id_display,id_hide) {
     for (var i=0;i<id_display.length;i++) {
       this.getField(id_display[i]).setValue(this.getField(id_display[i]).menuGenerator_[0][0]);
       this.getField(id_display[i]).setVisible(true);
