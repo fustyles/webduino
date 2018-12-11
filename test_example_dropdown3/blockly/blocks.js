@@ -44,7 +44,7 @@ Blockly.Blocks['dropdown'] = {
     console.log(event.blockId);
     console.log("");
     if (event.element=="field") {
-      if (event.name.indexOf("Dropdown")!=-1) {
+      if ((this.id==event.blockId)&&(event.name.indexOf("Dropdown")!=-1)) {
         this.updateShape_(event.name,"");
       }
     }
