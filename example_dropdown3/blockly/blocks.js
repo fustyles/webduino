@@ -73,8 +73,6 @@ Blockly.Blocks['dropdown'] = {
   },
     changelist: function (id_display,id_hide) {
     for (var i=0;i<id_display.length;i++) {
-      console.log(this.getField(id_display[i]).menuGenerator_[0][0]);
-      
       this.getField(id_display[i]).setValue(this.getField(id_display[i]).menuGenerator_[0][0]);
       this.getField(id_display[i]).setVisible(true);
     }
