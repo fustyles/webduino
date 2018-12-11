@@ -40,6 +40,9 @@ Blockly.Blocks['dropdown'] = {
     this.updateShape_("refresh",xmlElement);
   },
   onchange: function (event) {
+    console.log(this);
+    console.log(event);
+    console.log("");
     if (event.element=="field") {
       if (event.name.indexOf("Dropdown")!=-1) {
         this.updateShape_(event.name,"");
