@@ -28,7 +28,7 @@ Blockly.Blocks['dropdown'] = {
   },
   onchange: function (event) {
     if (event.element=="field") {
-      if ((this.id==event.blockId)&&(event.name.indexOf("Dropdown")!=-1))
+      if (this.id==event.blockId)
         this.updateShape_(event.name,"");
     }
   },
@@ -42,9 +42,8 @@ Blockly.Blocks['dropdown'] = {
     else if (name=='refresh') {
       this.getField('DropdownA').setVisible(xmlElement.getAttribute('da')!="");
       this.getField('DropdownB').setVisible(xmlElement.getAttribute('db')!="");
+      this.setNextStatement(true);
     }
-    
-    this.setNextStatement(true);
   },
     changeList: function (id_display,id_hide) {
     for (var i=0;i<id_display.length;i++) {
@@ -55,5 +54,6 @@ Blockly.Blocks['dropdown'] = {
       this.getField(id_hide[j]).setValue("");
       this.getField(id_hide[j]).setVisible(false);
     }
+      this.setNextStatement(true);
   }
 };
