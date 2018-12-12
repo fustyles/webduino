@@ -79,7 +79,7 @@ Blockly.Blocks['dropdown'] = {
     
     this.setNextStatement(true);
   },
-    changeList: function (id_display,id_hide) {
+  changeList: function (id_display,id_hide) {
     for (var i=0;i<id_display.length;i++) {
       this.getField(id_display[i]).setValue(this.getField(id_display[i]).menuGenerator_[0][0]);
       this.getField(id_display[i]).setVisible(true);
@@ -88,5 +88,7 @@ Blockly.Blocks['dropdown'] = {
       this.getField(id_hide[j]).setValue("");
       this.getField(id_hide[j]).setVisible(false);
     }
+    
+    this.setNextStatement(true);      
   }
 };
