@@ -75,9 +75,8 @@ Blockly.Blocks['dropdown'] = {
       this.getField('DropdownA2').setVisible(xmlElement.getAttribute('da2')!="");
       this.getField('DropdownB1').setVisible(xmlElement.getAttribute('db1')!="");
       this.getField('DropdownB2').setVisible(xmlElement.getAttribute('db2')!="");
+      this.setNextStatement(true);
     } 
-    
-    this.setNextStatement(true);
   },
   changeList: function (id_display,id_hide) {
     for (var i=0;i<id_display.length;i++) {
