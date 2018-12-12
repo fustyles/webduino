@@ -87,7 +87,6 @@ Blockly.Blocks['dropdown'] = {
       this.getField(id_hide[j]).setValue("");
       this.getField(id_hide[j]).setVisible(false);
     }
-    
     this.setNextStatement(true);      
   }
 };
