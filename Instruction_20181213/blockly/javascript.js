@@ -76,7 +76,7 @@ Blockly.JavaScript['cmd6'] = function (block) {
   if ((cmd_math.indexOf("(")==0)&&(cmd_math.lastIndexOf(")")==cmd_math.length-1))
     cmd_math = cmd_math.substring(1,cmd_math.length-1);
     
-  var code = cmd_math + "\n";
+  var code = cmd_math;
   return [code, Blockly.JavaScript.ORDER_NONE]; 
 };
 
@@ -89,6 +89,6 @@ Blockly.JavaScript['cmd7'] = function (block) {
   if ((cmd_string.indexOf("(")==0)&&(cmd_string.lastIndexOf(")")==cmd_string.length-1))
     cmd_string = cmd_string.substring(1,cmd_string.length-1);
     
-  var code = cmd_string + "\n";
+  var code = cmd_string;
   return [code, Blockly.JavaScript.ORDER_NONE]; 
 };
