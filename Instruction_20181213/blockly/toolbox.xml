@@ -80,4 +80,16 @@
   </block>
   <block type="cmd8">   
   </block>  
+  <block type="cmd5">
+    <value name="myVar">
+      <block type="variables_get"> 
+        <field name="VAR">myVar</field> 
+      </block>
+    </value>    
+    <value name="cmd5_0">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>          
+  </block>      
  </category>
