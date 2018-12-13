@@ -54,8 +54,8 @@ Blockly.Blocks['cmd4'] = {
   init: function() {
   this.appendDummyInput()
       .appendField("Get ");
-  this.appendDummyInput()
-      .appendField(new Blockly.FieldVariable('myVar'), 'myVar');  
+  this.appendValueInput("myVar")
+      .setCheck(null); 
   this.appendDummyInput()
       .appendField(".");     
   this.appendValueInput("cmd4_0")
@@ -81,8 +81,8 @@ Blockly.Blocks['cmd5'] = {
   init: function() {
   this.appendDummyInput()
       .appendField("Get ");
-  this.appendDummyInput()
-      .appendField(new Blockly.FieldVariable('myVar'), 'myVar');  
+  this.appendValueInput("myVar")
+      .setCheck(null);  
   this.appendDummyInput()
       .appendField(".");     
   this.appendValueInput("cmd5_0")
