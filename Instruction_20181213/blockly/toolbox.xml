@@ -5,4 +5,15 @@
         <field name="TEXT"></field>
       </block>
     </value>
+  <block type="cmd2">
+    <value name="cmd2_0">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+    <value name="cmd2_1">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
  </category>
