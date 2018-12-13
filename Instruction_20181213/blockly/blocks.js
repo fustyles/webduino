@@ -2,7 +2,7 @@ Blockly.Blocks['cmd1'] = {
   init: function() {
   this.appendValueInput("cmd1_0")
       .setCheck("String")
-      .appendField("Code ");    
+      .appendField("Javascript: ");    
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
@@ -14,7 +14,7 @@ Blockly.Blocks['cmd2'] = {
   init: function() {
   this.appendValueInput("cmd2_0")
       .setCheck("String")
-      .appendField("Code ");    
+      .appendField("Javascript: ");    
   this.appendValueInput("cmd2_1")
       .setCheck(null)
       .appendField("( ");  
