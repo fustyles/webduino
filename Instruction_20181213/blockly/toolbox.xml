@@ -5,6 +5,7 @@
         <field name="TEXT"></field>
       </block>
     </value>
+  </block>
   <block type="cmd2">
     <value name="cmd2_0">
       <block type="text">
@@ -15,5 +16,6 @@
       <block type="text">
         <field name="TEXT"></field>
       </block>
-    </value>    
+    </value>   
+  </block>    
  </category>
