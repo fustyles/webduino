@@ -18,7 +18,7 @@ Blockly.JavaScript['cmd2'] = function (block) {
   if ((cmd2_0.indexOf("'")==0)&&(cmd2_0.lastIndexOf("'")==cmd2_0.length-1))
     cmd2_0 = cmd2_0.substring(1,cmd2_0.length-1);
     
-  var code = cmd2_0 + "("+ cmd2_1 + ")\n";
+  var code = cmd2_0 + "(" + cmd2_1 + ")\n";
   return [code, Blockly.JavaScript.ORDER_NONE]; 
 };
 
@@ -33,7 +33,7 @@ Blockly.JavaScript['cmd3'] = function (block) {
   if ((cmd3_0.indexOf("'")==0)&&(cmd3_0.lastIndexOf("'")==cmd3_0.length-1))
     cmd3_0 = cmd3_0.substring(1,cmd3_0.length-1);
     
-  var code = cmd3_0 + "("+ cmd3_1 + ", " + cmd3_2 + ")\n";
+  var code = cmd3_0 + "(" + cmd3_1 + ", " + cmd3_2 + ")\n";
   return [code, Blockly.JavaScript.ORDER_NONE]; 
 };
 
@@ -49,7 +49,7 @@ Blockly.JavaScript['cmd4'] = function (block) {
   if ((cmd4_0.indexOf("'")==0)&&(cmd4_0.lastIndexOf("'")==cmd4_0.length-1))
     cmd4_0 = cmd4_0.substring(1,cmd4_0.length-1);
     
-  var code = myVar + "." + cmd4_0 + "("+ cmd4_1 + ", " + cmd4_2 + ")\n";
+  var code = myVar + "." + cmd4_0 + "(" + cmd4_1 + ", " + cmd4_2 + ")\n";
   return [code, Blockly.JavaScript.ORDER_NONE]; 
 };
 
@@ -63,6 +63,6 @@ Blockly.JavaScript['cmd5'] = function (block) {
   if ((cmd5_0.indexOf("'")==0)&&(cmd5_0.lastIndexOf("'")==cmd5_0.length-1))
     cmd5_0 = cmd5_0.substring(1,cmd5_0.length-1);
     
-  var code = myVar + "." + cmd5_0 + "("+ cmd5_1 + ")\n";
+  var code = myVar + "." + cmd5_0 + "(" + cmd5_1 + ")\n";
   return [code, Blockly.JavaScript.ORDER_NONE]; 
 };
