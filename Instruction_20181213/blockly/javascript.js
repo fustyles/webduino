@@ -52,3 +52,17 @@ Blockly.JavaScript['cmd4'] = function (block) {
   var code = myVar + "." + cmd4_0 + "("+ cmd4_1 + ", " + cmd4_2 + ")\n";
   return [code, Blockly.JavaScript.ORDER_NONE]; 
 };
+
+Blockly.JavaScript['cmd5'] = function (block) {
+  var myVar = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('myVar'), Blockly.Variables.NAME_TYPE);
+  var cmd5_0 = Blockly.JavaScript.valueToCode(block, 'cmd5_0', Blockly.JavaScript.ORDER_ATOMIC);
+  var cmd5_1 = Blockly.JavaScript.valueToCode(block, 'cmd5_1', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  if (!cmd5_0) cmd5_0='""';
+  if (!cmd5_1) cmd5_1='""';
+  if ((cmd5_0.indexOf("'")==0)&&(cmd5_0.lastIndexOf("'")==cmd5_0.length-1))
+    cmd5_0 = cmd5_0.substring(1,cmd5_0.length-1);
+    
+  var code = myVar + "." + cmd5_0 + "("+ cmd5_1 + ")\n";
+  return [code, Blockly.JavaScript.ORDER_NONE]; 
+};
