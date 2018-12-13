@@ -200,6 +200,7 @@ Blockly.Blocks['cmd7'] = {
         ["toLocaleUpperCase","toLocaleUpperCase"],
         ["toLowerCase","toLowerCase"],
         ["toString","toString"],
+        ["length","length"],    
         ["null","null"]
       ]), "cmd_string");    
   this.setOutput(true, null);
