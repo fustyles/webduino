@@ -100,7 +100,6 @@ Blockly.Blocks['cmd5'] = {
   }
 };
 
-
 Blockly.Blocks['cmd6'] = {
   init: function() {
   this.appendDummyInput()
@@ -250,5 +249,22 @@ Blockly.Blocks['cmd8'] = {
   this.setInputsInline(true);
   this.setTooltip('');
   this.setColour(50);
+  }
+};
+
+Blockly.Blocks['cmd9'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField("Get ");
+  this.appendValueInput("myVar")
+      .setCheck(null);  
+  this.appendDummyInput()
+      .appendField(".");     
+  this.appendValueInput("cmd9_0")
+      .setCheck("String");   
+  this.setOutput(true, null);
+  this.setInputsInline(true);
+  this.setTooltip('');
+  this.setColour(20);
   }
 };
