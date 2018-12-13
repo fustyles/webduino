@@ -35,6 +35,18 @@
       </block>
     </value>     
   </block> 
+  <block type="cmd9">
+    <value name="myVar">
+      <block type="variables_get"> 
+        <field name="VAR">myVar</field> 
+      </block>
+    </value>    
+    <value name="cmd9_0">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>          
+  </block>   
   <block type="cmd5">
     <value name="myVar">
       <block type="variables_get"> 
@@ -51,19 +63,7 @@
         <field name="TEXT"></field>
       </block>
     </value>       
-  </block>  
-  <block type="cmd9">
-    <value name="myVar">
-      <block type="variables_get"> 
-        <field name="VAR">myVar</field> 
-      </block>
-    </value>    
-    <value name="cmd9_0">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>          
-  </block>   
+  </block>    
   <block type="cmd4">
     <value name="myVar">
       <block type="variables_get"> 
