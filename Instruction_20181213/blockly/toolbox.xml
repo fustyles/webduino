@@ -36,6 +36,9 @@
     </value>     
   </block> 
   <block type="cmd5">
+    <block type="variables_get"> 
+      <field name="VAR">myVar</field> 
+    </block>
     <value name="cmd5_0">
       <block type="text">
         <field name="TEXT"></field>
@@ -48,6 +51,9 @@
     </value>       
   </block>    
   <block type="cmd4">
+    <block type="variables_get"> 
+      <field name="VAR">myVar</field> 
+    </block>
     <value name="cmd4_0">
       <block type="text">
         <field name="TEXT"></field>
