@@ -102,3 +102,16 @@ Blockly.JavaScript['cmd7'] = function (block) {
   var code = cmd_string;
   return [code, Blockly.JavaScript.ORDER_NONE]; 
 };
+
+Blockly.JavaScript['cmd8'] = function (block) {
+  var cmd_array = block.getFieldValue('cmd_array');
+  
+  if (!cmd_array) cmd_array='""';
+  if ((cmd_array.indexOf("'")==0)&&(cmd_array.lastIndexOf("'")==cmd_array.length-1))
+    cmd_array = cmd_array.substring(1,cmd_array.length-1);
+  if ((cmd_array.indexOf("(")==0)&&(cmd_array.lastIndexOf(")")==cmd_array.length-1))
+    cmd_array = cmd_array.substring(1,cmd_array.length-1);
+    
+  var code = cmd_array;
+  return [code, Blockly.JavaScript.ORDER_NONE]; 
+};
