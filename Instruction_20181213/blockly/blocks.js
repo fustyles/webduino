@@ -209,3 +209,46 @@ Blockly.Blocks['cmd7'] = {
   this.setColour(50);
   }
 };
+
+Blockly.Blocks['cmd8'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+        ["concat","concat"],
+        ["entries","entries"],
+        ["every","every"],
+        ["fill","fill"],
+        ["filter","filter"],
+        ["findIndex","findIndex"],
+        ["forEach","forEach"],
+        ["hasOwnProperty","hasOwnProperty"],
+        ["indexOf","indexOf"],
+        ["isPrototypeOf","isPrototypeOf"],
+        ["join","join"],
+        ["keys","keys"],
+        ["lastIndexOf","lastIndexOf"],
+        ["map","map"],
+        ["pop","pop"],
+        ["propertyIsEnumerable","propertyIsEnumerable"],
+        ["push","push"],
+        ["reduce","reduce"],
+        ["reduceRight","reduceRight"],
+        ["reverse","reverse"],
+        ["shift","shift"],
+        ["slice","slice"],
+        ["some","some"],
+        ["sort","sort"],
+        ["splice","splice"],
+        ["toLocaleString","toLocaleString"],
+        ["toString","toString"],
+        ["unshift","unshift"],
+        ["valueOf","valueOf"],
+        ["values","values"],
+        ["null","null"]
+      ]), "cmd_array");    
+  this.setOutput(true, null);
+  this.setInputsInline(true);
+  this.setTooltip('');
+  this.setColour(50);
+  }
+};
