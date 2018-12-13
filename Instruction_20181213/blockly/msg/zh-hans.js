@@ -1,1 +1,1 @@
-MSG.catInstruction = "Custom Instruction";
+MSG.catInstruction = "Instruction";
