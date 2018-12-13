@@ -6,7 +6,7 @@ Blockly.Blocks['cmd1'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(80);
+  this.setColour(20);
   }
 };
 
@@ -24,7 +24,7 @@ Blockly.Blocks['cmd2'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(80);
+  this.setColour(20);
   }
 };
 
@@ -46,6 +46,6 @@ Blockly.Blocks['cmd3'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(80);
+  this.setColour(20);
   }
 };
