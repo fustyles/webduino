@@ -153,7 +153,7 @@ Blockly.Blocks['cmd6'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(20);
+  this.setColour(50);
   }
 };
 
