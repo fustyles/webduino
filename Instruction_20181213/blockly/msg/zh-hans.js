@@ -1,1 +1,1 @@
-MSG.catifttt = "IFTTT";
+MSG.catInstruction = "Custom Instruction";
