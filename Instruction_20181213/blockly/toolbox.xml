@@ -17,5 +17,22 @@
         <field name="TEXT"></field>
       </block>
     </value>   
-  </block>    
+  </block>   
+  <block type="cmd3">
+    <value name="cmd3_0">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+    <value name="cmd3_1">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>   
+    <value name="cmd3_2">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>   
  </category>
