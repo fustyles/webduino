@@ -44,7 +44,7 @@ Blockly.JavaScript['cmd3'] = function (block) {
 };
 
 Blockly.JavaScript['cmd4'] = function (block) {
-  var myVar = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('myVar'), Blockly.Variables.NAME_TYPE);
+  var myVar = Blockly.JavaScript.valueToCode(block, 'myVar', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd4_0 = Blockly.JavaScript.valueToCode(block, 'cmd4_0', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd4_1 = Blockly.JavaScript.valueToCode(block, 'cmd4_1', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd4_2 = Blockly.JavaScript.valueToCode(block, 'cmd4_2', Blockly.JavaScript.ORDER_ATOMIC);
@@ -62,7 +62,7 @@ Blockly.JavaScript['cmd4'] = function (block) {
 };
 
 Blockly.JavaScript['cmd5'] = function (block) {
-  var myVar = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('myVar'), Blockly.Variables.NAME_TYPE);
+  var myVar = Blockly.JavaScript.valueToCode(block, 'myVar', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd5_0 = Blockly.JavaScript.valueToCode(block, 'cmd5_0', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd5_1 = Blockly.JavaScript.valueToCode(block, 'cmd5_1', Blockly.JavaScript.ORDER_ATOMIC);
   
