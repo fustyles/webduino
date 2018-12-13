@@ -21,3 +21,18 @@ Blockly.JavaScript['cmd2'] = function (block) {
   var code = cmd2_0 + "("+ cmd2_1 + ")\n";
   return [code, Blockly.JavaScript.ORDER_NONE]; 
 };
+
+Blockly.JavaScript['cmd3'] = function (block) {
+  var cmd3_0 = Blockly.JavaScript.valueToCode(block, 'cmd3_0', Blockly.JavaScript.ORDER_ATOMIC);
+  var cmd3_1 = Blockly.JavaScript.valueToCode(block, 'cmd3_1', Blockly.JavaScript.ORDER_ATOMIC);
+  var cmd3_2 = Blockly.JavaScript.valueToCode(block, 'cmd3_2', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  if (!cmd3_0) cmd3_0='""';
+  if (!cmd3_1) cmd3_1='""';
+  if (!cmd3_2) cmd3_2='""';
+  if ((cmd3_0.indexOf("'")==0)&&(cmd3_0.lastIndexOf("'")==cmd3_0.length-1))
+    cmd3_0 = cmd3_0.substring(1,cmd3_0.length-1);
+    
+  var code = cmd3_0 + "("+ cmd3_1 + ", " + cmd3_2 + ")\n";
+  return [code, Blockly.JavaScript.ORDER_NONE]; 
+};
