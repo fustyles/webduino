@@ -30,16 +30,16 @@ Blockly.Blocks['cmd2'] = {
 
 Blockly.Blocks['cmd3'] = {
   init: function() {
-  this.appendValueInput("cmd2_0")
+  this.appendValueInput("cmd3_0")
       .setCheck("String")
       .appendField("Javascript: ");
   this.appendDummyInput()
       .appendField("( ");    
-  this.appendValueInput("cmd2_1")
+  this.appendValueInput("cmd3_1")
       .setCheck(null);  
   this.appendDummyInput()
       .appendField(", ");       
-  this.appendValueInput("cmd2_2")
+  this.appendValueInput("cmd3_2")
       .setCheck(null);     
   this.appendDummyInput()
       .appendField(" )");      
