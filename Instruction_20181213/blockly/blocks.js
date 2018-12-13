@@ -149,7 +149,7 @@ Blockly.Blocks['cmd6'] = {
         ["Math.tanh","Math.tanh"],
         ["Math.trunc","Math.trunc"],  
         ["null","null"]
-      ]), "math");    
+      ]), "cmd_math");    
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
@@ -157,3 +157,55 @@ Blockly.Blocks['cmd6'] = {
   }
 };
 
+Blockly.Blocks['cmd7'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+        ["anchor","anchor"],
+        ["big","big"],
+        ["blink","blink"],
+        ["bold","bold"],
+        ["charAt","charAt"],
+        ["charCodeAt","charCodeAt"],
+        ["codePointAt","codePointAt"],
+        ["concat","concat"],
+        ["EndsWith","EndsWith"],
+        ["includes","includes"],
+        ["fixed","fixed"],
+        ["fontcolor","fontcolor"],
+        ["fontsize","fontsize"],
+        ["hasOwnProperty","hasOwnProperty"],
+        ["indexOf","indexOf"],
+        ["isPrototypeOf","isPrototypeOf"],
+        ["italics","italics"],
+        ["lastIndexOf","lastIndexOf"],
+        ["link","link"],
+        ["localeCompare","localeCompare"],
+        ["match","match"],
+        ["normalize","normalize"],
+        ["propertyIsEnumerable","propertyIsEnumerable"],
+        ["repeat","repeat"],
+        ["replace","replace"],
+        ["search","search"],
+        ["slice","slice"],
+        ["small","small"],
+        ["split","split"],
+        ["StartsWith","StartsWith"],
+        ["strike","strike"],
+        ["sub","sub"],
+        ["substr","substr"],
+        ["substring","substring"],
+        ["sup","sup"],
+        ["toLocaleLowerCase","toLocaleLowerCase"],
+        ["toLocaleString","toLocaleString"],
+        ["toLocaleUpperCase","toLocaleUpperCase"],
+        ["toLowerCase","toLowerCase"],
+        ["toString","toString"],
+        ["null","null"]
+      ]), "cmd_string");    
+  this.setOutput(true, null);
+  this.setInputsInline(true);
+  this.setTooltip('');
+  this.setColour(50);
+  }
+};
