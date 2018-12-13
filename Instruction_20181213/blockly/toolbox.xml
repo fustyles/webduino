@@ -1,6 +1,6 @@
 <category id="catInstruction">
   <block type="cmd1">
-    <value name="cmd1_1">
+    <value name="cmd1_0">
       <block type="text">
         <field name="TEXT"></field>
       </block>
