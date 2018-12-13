@@ -16,7 +16,7 @@ Blockly.Blocks['cmd2'] = {
       .setCheck("String")
       .appendField("Code ");    
   this.appendValueInput("cmd2_1")
-      .setCheck("String")
+      .setCheck(null)
       .appendField("( ");  
   this.appendDummyInput()
       .appendField(" )");      
