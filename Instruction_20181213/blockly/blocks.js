@@ -2,7 +2,7 @@ Blockly.Blocks['cmd1'] = {
   init: function() {
   this.appendValueInput("cmd1_0")
       .setCheck("String")
-      .appendField("");    
+      .appendField("Get ");    
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
@@ -14,7 +14,7 @@ Blockly.Blocks['cmd2'] = {
   init: function() {
   this.appendValueInput("cmd2_0")
       .setCheck("String")
-      .appendField("");   
+      .appendField("Get ");   
   this.appendDummyInput()
       .appendField("( ");      
   this.appendValueInput("cmd2_1")
@@ -32,7 +32,7 @@ Blockly.Blocks['cmd3'] = {
   init: function() {
   this.appendValueInput("cmd3_0")
       .setCheck("String")
-      .appendField("");
+      .appendField("Get ");
   this.appendDummyInput()
       .appendField("( ");    
   this.appendValueInput("cmd3_1")
@@ -53,7 +53,7 @@ Blockly.Blocks['cmd3'] = {
 Blockly.Blocks['cmd4'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField("");
+      .appendField("Get ");
   this.appendDummyInput()
       .appendField(new Blockly.FieldVariable('myVar'), 'myVar');  
   this.appendDummyInput()
@@ -80,7 +80,7 @@ Blockly.Blocks['cmd4'] = {
 Blockly.Blocks['cmd5'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField("");
+      .appendField("Get ");
   this.appendDummyInput()
       .appendField(new Blockly.FieldVariable('myVar'), 'myVar');  
   this.appendDummyInput()
