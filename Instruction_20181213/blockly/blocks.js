@@ -76,3 +76,27 @@ Blockly.Blocks['cmd4'] = {
   this.setColour(20);
   }
 };
+
+Blockly.Blocks['cmd5'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField("Javascript: ");
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldVariable('myVar'), 'myVar');  
+  this.appendDummyInput()
+      .appendField(".");     
+  this.appendValueInput("cmd5_0")
+      .setCheck("String");
+  this.appendDummyInput()
+      .appendField("( ");    
+  this.appendValueInput("cmd5_1")
+      .setCheck(null);    
+  this.appendDummyInput()
+      .appendField(" )");      
+  this.setOutput(true, null);
+  this.setInputsInline(true);
+  this.setTooltip('');
+  this.setColour(20);
+  }
+};
+
