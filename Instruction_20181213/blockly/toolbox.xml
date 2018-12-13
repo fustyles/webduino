@@ -65,5 +65,7 @@
     </value>     
   </block>   
   <block type="cmd6">   
-  </block>   
+  </block>
+  <block type="cmd7">   
+  </block>
  </category>
