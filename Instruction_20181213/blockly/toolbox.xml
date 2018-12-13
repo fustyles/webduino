@@ -35,4 +35,21 @@
       </block>
     </value>     
   </block>   
+  <block type="cmd4">
+    <value name="cmd4_0">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+    <value name="cmd4_1">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>   
+    <value name="cmd4_2">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>   
  </category>
