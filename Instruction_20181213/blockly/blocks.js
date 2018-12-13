@@ -5,6 +5,7 @@ Blockly.Blocks['cmd1'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Code ");    
   this.setOutput(true, null);
+  this.setInputsInline(true);
   this.setTooltip('');
   this.setColour(65);
   }
