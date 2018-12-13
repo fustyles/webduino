@@ -34,7 +34,19 @@
         <field name="TEXT"></field>
       </block>
     </value>     
-  </block>   
+  </block> 
+  <block type="cmd5">
+    <value name="cmd5_0">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+    <value name="cmd5_1">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>       
+  </block>    
   <block type="cmd4">
     <value name="cmd4_0">
       <block type="text">
