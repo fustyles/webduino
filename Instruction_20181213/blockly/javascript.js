@@ -5,7 +5,7 @@ Blockly.JavaScript['cmd1'] = function (block) {
   if ((cmd1_0.indexOf("'")==0)&&(cmd1_0.lastIndexOf("'")==cmd1_0.length-1))
     cmd1_0 = cmd1_0.substring(1,cmd1_0.length-1);
     
-  var code = cmd1_0 + "\n";
+  var code = cmd1_0;
   return [code, Blockly.JavaScript.ORDER_NONE]; 
 };
 
@@ -64,5 +64,16 @@ Blockly.JavaScript['cmd5'] = function (block) {
     cmd5_0 = cmd5_0.substring(1,cmd5_0.length-1);
     
   var code = myVar + "." + cmd5_0 + "(" + cmd5_1 + ")\n";
+  return [code, Blockly.JavaScript.ORDER_NONE]; 
+};
+
+Blockly.JavaScript['cmd6'] = function (block) {
+  var math = block.getFieldValue('math');
+  
+  if (!math) math='""';
+  if ((math.indexOf("'")==0)&&(math.lastIndexOf("'")==math.length-1))
+    math = math.substring(1,math.length-1);
+    
+  var code = math;
   return [code, Blockly.JavaScript.ORDER_NONE]; 
 };
