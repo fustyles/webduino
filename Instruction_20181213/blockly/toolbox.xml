@@ -86,6 +86,33 @@
       </block>
     </value>     
   </block>   
+  <block type="cmd11">
+    <value name="myVar">
+      <block type="variables_get"> 
+        <field name="VAR">myVar</field> 
+      </block>
+    </value>
+    <value name="cmd11_0">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+    <value name="cmd11_1">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>   
+    <value name="cmd11_2">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>   
+    <value name="cmd11_3">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
   <block type="cmd10">
     <value name="myVar">
       <block type="variables_get"> 
