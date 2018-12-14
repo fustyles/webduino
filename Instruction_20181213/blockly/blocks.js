@@ -331,9 +331,7 @@ Blockly.Blocks['cmd12'] = {
   this.appendValueInput("cmd12_0")
       .setCheck(null); 
   this.appendDummyInput()
-      .appendField("]");  
-  this.appendDummyInput()
-      .appendField("[");     
+      .appendField("][");     
   this.appendValueInput("cmd12_1")
       .setCheck(null); 
   this.appendDummyInput()
