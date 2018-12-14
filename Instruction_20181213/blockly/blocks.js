@@ -277,9 +277,11 @@ Blockly.Blocks['cmd10'] = {
   this.appendValueInput("myVar")
       .setCheck(null);  
   this.appendDummyInput()
-      .appendField(".");     
+      .appendField("[");     
   this.appendValueInput("cmd10_0")
-      .setCheck(null);   
+      .setCheck(null); 
+  this.appendDummyInput()
+      .appendField("]");      
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
