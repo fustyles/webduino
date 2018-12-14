@@ -125,6 +125,23 @@
       </block>
     </value>      
   </block>   
+  <block type="cmd12">
+    <value name="myVar">
+      <block type="variables_get"> 
+        <field name="VAR">myArr</field> 
+      </block>
+    </value>
+    <value name="cmd12_0">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>      
+    <value name="cmd12_1">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
+  </block>    
   <block type="cmd6">   
   </block>
   <block type="cmd7">   
