@@ -101,10 +101,10 @@
   var MatrixLedcolor = "#ff0000";
   var MatrixLedbackcolor = "#000000";
   var MatrixLedmarqueeinitial = "";
-  var MatrixLedmarqueecode = "";
-  var MatrixLedmarqueecodeonce = "";
-  var MatrixLedmarqueecolorcode = "";
-  var MatrixLedmarqueecolorcodeonce = ""; 
+  var MatrixLedmarqueecode = "",MatrixLedmarqueecode_vertical = "";
+  var MatrixLedmarqueecodeonce = "",MatrixLedmarqueecodeonce_vertical = "";
+  var MatrixLedmarqueecolorcode = "",MatrixLedmarqueecolorcode_vertical = "";
+  var MatrixLedmarqueecolorcodeonce = "",MatrixLedmarqueecolorcodeonce_vertical = ""; 
   var MatrixLedmarqueetime = 500;
   var MatrixLedmarqueedirection = 1;
   var MatrixLedshowstate = 1;
