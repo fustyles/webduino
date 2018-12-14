@@ -89,7 +89,7 @@
   <block type="cmd10">
     <value name="myVar">
       <block type="variables_get"> 
-        <field name="VAR">myVar</field> 
+        <field name="VAR">myArr</field> 
       </block>
     </value>
     <value name="cmd10_0">
