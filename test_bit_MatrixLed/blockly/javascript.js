@@ -74,7 +74,8 @@ Blockly.JavaScript['matrix_led_marquee_resume'] = function(block) {
 };
 
 Blockly.JavaScript['matrix_led_marquee_reverse'] = function(block) {
-  var code = 'MatrixLed_marquee_reverse();\n';
+  var value_marquee_direction_ = block.getFieldValue('value_marquee_direction_');
+  var code = 'MatrixLed_marquee_reverse('+value_marquee_direction_+');\n';
   return code;
 };
 
