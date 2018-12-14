@@ -434,10 +434,17 @@
   } 
   
   function MatrixLed_marquee_reverse(direction) {
-    MatrixLedmarqueecode = MatrixLedmarqueeinitial;
-    MatrixLedmarqueecodeonce = MatrixLedmarqueeinitial;
-    MatrixLedmarqueecolorcode = MatrixLedmarqueeinitial;
-    MatrixLedmarqueecolorcodeonce = MatrixLedmarqueeinitial;
+    if (direction==1||direction==2) {
+      MatrixLedmarqueecode = MatrixLedmarqueeinitial;
+      MatrixLedmarqueecodeonce = MatrixLedmarqueeinitial;
+      MatrixLedmarqueecolorcode = MatrixLedmarqueeinitial;
+      MatrixLedmarqueecolorcodeonce = MatrixLedmarqueeinitial;
+    } else if (direction==3||direction==4) {
+      MatrixLedmarqueecode = Matrixled_code_vertical(MatrixLedmarqueeinitial);
+      MatrixLedmarqueecodeonce = Matrixled_code_vertical(MatrixLedmarqueeinitial);
+      MatrixLedmarqueecolorcode = Matrixled_code_vertical(MatrixLedmarqueeinitial);
+      MatrixLedmarqueecolorcodeonce = Matrixled_code_vertical(MatrixLedmarqueeinitial);
+    }
     
     MatrixLedmarqueedirection=direction;
   }   
@@ -662,6 +669,10 @@
     else if (input_char_=="►")      return arrowrightfill;    
     else      return noexist;
   }
+  
+  function Matrixled_code_vertical(code) {
+    
+  }
 
   function Matrixled_code_clockwise(code){
     var Tmp = new Array(25);
@@ -878,7 +889,9 @@
   window.MatrixLed_marquee_time = MatrixLed_marquee_time;
   window.MatrixLed_char = MatrixLed_char;
   window.MatrixLed_conversion = MatrixLed_conversion;
+  window.Matrixled_code_clockwise = Matrixled_code_clockwise;
   window.Matrixled_code_counterclockwise = Matrixled_code_counterclockwise;
+  window.Matrixled_code_vertical = Matrixled_code_vertical;
   window.MatrixLed_texttocode = MatrixLed_texttocode;
   window.MatrixLed_showstate = MatrixLed_showstate;
   window.MatrixLed_indentcode = MatrixLed_indentcode;
