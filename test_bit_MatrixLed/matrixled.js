@@ -100,7 +100,11 @@
   var L = new Array("","","","","","","","","","","","","","","","","","","","","","","","","");
   var MatrixLedcolor = "#ff0000";
   var MatrixLedbackcolor = "#000000";
-  var MatrixLedmarqueeinitial = "",MatrixLedmarqueecode = "",MatrixLedmarqueecodeonce = "",MatrixLedmarqueecolorcode = "",MatrixLedmarqueecolorcodeonce = "";  
+  var MatrixLedmarqueeinitial = "";
+  var MatrixLedmarqueecode = "";
+  var MatrixLedmarqueecodeonce = "";
+  var MatrixLedmarqueecolorcode = "";
+  var MatrixLedmarqueecolorcodeonce = ""; 
   var MatrixLedmarqueetime = 500;
   var MatrixLedmarqueedirection = 1;
   var MatrixLedshowstate = 1;
@@ -143,6 +147,7 @@
     else if (input_marquee_.length>1)
     {
       MatrixLedmarqueecode="";
+      MatrixLedmarqueecode_verical="";
       for (var i=0;i<input_marquee_.length;i++)
       {
         if (i==(input_marquee_.length-1))
