@@ -273,7 +273,7 @@ Blockly.Blocks['cmd9'] = {
 Blockly.Blocks['cmd10'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField("Get Array");
+      .appendField("Get  Array");
   this.appendValueInput("myVar")
       .setCheck(null);  
   this.appendDummyInput()
@@ -323,7 +323,7 @@ Blockly.Blocks['cmd11'] = {
 Blockly.Blocks['cmd12'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField("Get Array");
+      .appendField("Get  Array");
   this.appendValueInput("myVar")
       .setCheck(null);  
   this.appendDummyInput()
