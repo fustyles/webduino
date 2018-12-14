@@ -43,6 +43,10 @@ Blockly.JavaScript['cmd4'] = function (block) {
   var cmd4_1 = Blockly.JavaScript.valueToCode(block, 'cmd4_1', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd4_2 = Blockly.JavaScript.valueToCode(block, 'cmd4_2', Blockly.JavaScript.ORDER_ATOMIC);
   
+  if ((myVar.indexOf("'")==0)&&(myVar.lastIndexOf("'")==myVar.length-1))
+    myVar = myVar.substring(1,myVar.length-1);
+  if ((myVar.indexOf("(")==0)&&(myVar.lastIndexOf(")")==myVar.length-1))
+    myVar = myVar.substring(1,myVar.length-1);
   if ((cmd4_0.indexOf("'")==0)&&(cmd4_0.lastIndexOf("'")==cmd4_0.length-1))
     cmd4_0 = cmd4_0.substring(1,cmd4_0.length-1);
   if ((cmd4_0.indexOf("(")==0)&&(cmd4_0.lastIndexOf(")")==cmd4_0.length-1))
@@ -57,6 +61,10 @@ Blockly.JavaScript['cmd5'] = function (block) {
   var cmd5_0 = Blockly.JavaScript.valueToCode(block, 'cmd5_0', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd5_1 = Blockly.JavaScript.valueToCode(block, 'cmd5_1', Blockly.JavaScript.ORDER_ATOMIC);
   
+  if ((myVar.indexOf("'")==0)&&(myVar.lastIndexOf("'")==myVar.length-1))
+    myVar = myVar.substring(1,myVar.length-1);
+  if ((myVar.indexOf("(")==0)&&(myVar.lastIndexOf(")")==myVar.length-1))
+    myVar = myVar.substring(1,myVar.length-1);
   if ((cmd5_0.indexOf("'")==0)&&(cmd5_0.lastIndexOf("'")==cmd5_0.length-1))
     cmd5_0 = cmd5_0.substring(1,cmd5_0.length-1);
   if ((cmd5_0.indexOf("(")==0)&&(cmd5_0.lastIndexOf(")")==cmd5_0.length-1))
@@ -106,6 +114,10 @@ Blockly.JavaScript['cmd9'] = function (block) {
   var myVar = Blockly.JavaScript.valueToCode(block, 'myVar', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd9_0 = Blockly.JavaScript.valueToCode(block, 'cmd9_0', Blockly.JavaScript.ORDER_ATOMIC);
   
+  if ((myVar.indexOf("'")==0)&&(myVar.lastIndexOf("'")==myVar.length-1))
+    myVar = myVar.substring(1,myVar.length-1);
+  if ((myVar.indexOf("(")==0)&&(myVar.lastIndexOf(")")==myVar.length-1))
+    myVar = myVar.substring(1,myVar.length-1);
   if ((cmd9_0.indexOf("'")==0)&&(cmd9_0.lastIndexOf("'")==cmd9_0.length-1))
     cmd9_0 = cmd9_0.substring(1,cmd9_0.length-1);
   if ((cmd9_0.indexOf("(")==0)&&(cmd9_0.lastIndexOf(")")==cmd9_0.length-1))
@@ -119,6 +131,10 @@ Blockly.JavaScript['cmd10'] = function (block) {
   var myVar = Blockly.JavaScript.valueToCode(block, 'myVar', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd10_0 = Blockly.JavaScript.valueToCode(block, 'cmd10_0', Blockly.JavaScript.ORDER_ATOMIC);
   
+  if ((myVar.indexOf("'")==0)&&(myVar.lastIndexOf("'")==myVar.length-1))
+    myVar = myVar.substring(1,myVar.length-1);
+  if ((myVar.indexOf("(")==0)&&(myVar.lastIndexOf(")")==myVar.length-1))
+    myVar = myVar.substring(1,myVar.length-1);
   if ((cmd10_0.indexOf("'")==0)&&(cmd10_0.lastIndexOf("'")==cmd10_0.length-1))
     cmd10_0 = cmd10_0.substring(1,cmd10_0.length-1);
   if ((cmd10_0.indexOf("(")==0)&&(cmd10_0.lastIndexOf(")")==cmd10_0.length-1))
@@ -135,6 +151,10 @@ Blockly.JavaScript['cmd11'] = function (block) {
   var cmd11_2 = Blockly.JavaScript.valueToCode(block, 'cmd11_2', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd11_3 = Blockly.JavaScript.valueToCode(block, 'cmd11_3', Blockly.JavaScript.ORDER_ATOMIC);
   
+  if ((myVar.indexOf("'")==0)&&(myVar.lastIndexOf("'")==myVar.length-1))
+    myVar = myVar.substring(1,myVar.length-1);
+  if ((myVar.indexOf("(")==0)&&(myVar.lastIndexOf(")")==myVar.length-1))
+    myVar = myVar.substring(1,myVar.length-1);
   if ((cmd11_0.indexOf("'")==0)&&(cmd11_0.lastIndexOf("'")==cmd11_0.length-1))
     cmd11_0 = cmd11_0.substring(1,cmd11_0.length-1);
   if ((cmd11_0.indexOf("(")==0)&&(cmd11_0.lastIndexOf(")")==cmd11_0.length-1))
