@@ -153,7 +153,8 @@ Blockly.Blocks['matrix_led_marquee_resume'] = {
 Blockly.Blocks['matrix_led_marquee_reverse'] = {
   init: function() {
     this.appendDummyInput() 
-        .appendField(Blockly.Msg.MATRIXLED_MARQUEE_REVERSE_SHOW);    
+        .appendField(Blockly.Msg.MATRIXLED_MARQUEE_REVERSE_SHOW)
+        .appendField(new Blockly.FieldDropdown([["left","1"], ["right","2"], ["up","3"], ["down","4"]]), "value_marquee_direction_");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
