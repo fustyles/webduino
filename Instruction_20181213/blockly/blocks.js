@@ -269,3 +269,20 @@ Blockly.Blocks['cmd9'] = {
   this.setColour(20);
   }
 };
+
+Blockly.Blocks['cmd10'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField("Get Array");
+  this.appendValueInput("myVar")
+      .setCheck(null);  
+  this.appendDummyInput()
+      .appendField(".");     
+  this.appendValueInput("cmd10_0")
+      .setCheck(null);   
+  this.setOutput(true, null);
+  this.setInputsInline(true);
+  this.setTooltip('');
+  this.setColour(20);
+  }
+};
