@@ -102,7 +102,7 @@
   var MatrixLedbackcolor = "#000000";
   var MatrixLedmarqueeinitial = "",MatrixLedmarqueecode = "",MatrixLedmarqueecodeonce = "",MatrixLedmarqueecolorcode = "",MatrixLedmarqueecolorcodeonce = "";  
   var MatrixLedmarqueetime = 500;
-  var MatrixLedmarqueereverse = 1;
+  var MatrixLedmarqueedirection = 1;
   var MatrixLedshowstate = 1;
   var marqueetimeid;
   var marqueeactive;
@@ -239,12 +239,12 @@
   function MatrixLed_marquee_play() {
     if (MatrixLedmarqueecode.length>25)
     {
-      if (MatrixLedmarqueereverse==1)
+      if (MatrixLedmarqueedirection==1)
       {
         MatrixLed_matrix(MatrixLedmarqueecode.substr(0,25));
         MatrixLedmarqueecode = MatrixLedmarqueecode.substr(5,MatrixLedmarqueecode.length-5)+MatrixLedmarqueecode.substr(0,5);
       }
-      else if (MatrixLedmarqueereverse==2)
+      else if (MatrixLedmarqueedirection==2)
       {
         MatrixLed_matrix(MatrixLedmarqueecode.substr(MatrixLedmarqueecode.length-25,25));
         MatrixLedmarqueecode = MatrixLedmarqueecode.substr(MatrixLedmarqueecode.length-5,5)+MatrixLedmarqueecode.substr(0,MatrixLedmarqueecode.length-5);
@@ -260,13 +260,13 @@
   function MatrixLed_marquee_once_play() {
     if (MatrixLedmarqueecode.length>=25)
     {
-      if (MatrixLedmarqueereverse==1)
+      if (MatrixLedmarqueedirection==1)
       {
         MatrixLed_matrix(MatrixLedmarqueecode.substr(0,25));
         MatrixLedmarqueecodeonce = MatrixLedmarqueecodeonce.substr(5,MatrixLedmarqueecodeonce.length-5)+MatrixLedmarqueecodeonce.substr(0,5);
         MatrixLedmarqueecode = MatrixLedmarqueecode.substr(5,MatrixLedmarqueecode.length-5);
       }
-      else if (MatrixLedmarqueereverse==2)
+      else if (MatrixLedmarqueedirection==2)
       {
         MatrixLed_matrix(MatrixLedmarqueecode.substr(MatrixLedmarqueecode.length-25,25));
         MatrixLedmarqueecodeonce = MatrixLedmarqueecodeonce.substr(MatrixLedmarqueecodeonce.length-5,5)+MatrixLedmarqueecodeonce.substr(0,MatrixLedmarqueecodeonce.length-5);
@@ -337,12 +337,12 @@
   function MatrixLed_marquee_color_play() {
     if (MatrixLedmarqueecolorcode.length>175)
     {
-      if (MatrixLedmarqueereverse==1)
+      if (MatrixLedmarqueedirection==1)
       {
         MatrixLed_matrix_codetocolor(MatrixLedmarqueecolorcode.substr(0,175));
         MatrixLedmarqueecolorcode = MatrixLedmarqueecolorcode.substr(35,MatrixLedmarqueecolorcode.length-35)+MatrixLedmarqueecolorcode.substr(0,35);
       }
-      else if (MatrixLedmarqueereverse==2)
+      else if (MatrixLedmarqueedirection==2)
       {
         MatrixLed_matrix_codetocolor(MatrixLedmarqueecolorcode.substr(MatrixLedmarqueecolorcode.length-175,175));
         MatrixLedmarqueecolorcode = MatrixLedmarqueecolorcode.substr(MatrixLedmarqueecolorcode.length-35,35)+MatrixLedmarqueecolorcode.substr(0,MatrixLedmarqueecolorcode.length-35);
@@ -358,13 +358,13 @@
   function MatrixLed_marquee_color_once_play() {
     if (MatrixLedmarqueecolorcode.length>=175)
     {
-      if (MatrixLedmarqueereverse==1)
+      if (MatrixLedmarqueedirection==1)
       {
         MatrixLed_matrix_codetocolor(MatrixLedmarqueecolorcode.substr(0,175));
         MatrixLedmarqueecolorcodeonce = MatrixLedmarqueecolorcodeonce.substr(35,MatrixLedmarqueecolorcodeonce.length-35)+MatrixLedmarqueecolorcodeonce.substr(0,35);
         MatrixLedmarqueecolorcode = MatrixLedmarqueecolorcode.substr(35,MatrixLedmarqueecolorcode.length-35);
       }
-      else if (MatrixLedmarqueereverse==2)
+      else if (MatrixLedmarqueedirection==2)
       {
         MatrixLed_matrix_codetocolor(MatrixLedmarqueecolorcode.substr(MatrixLedmarqueecolorcode.length-175,175));
         MatrixLedmarqueecolorcodeonce = MatrixLedmarqueecolorcodeonce.substr(MatrixLedmarqueecolorcodeonce.length-35,35)+MatrixLedmarqueecolorcodeonce.substr(0,MatrixLedmarqueecolorcodeonce.length-35);
@@ -417,15 +417,13 @@
       marqueetimeid = window.setInterval("MatrixLed_marquee_color_once_play()",MatrixLedmarqueetime);
   } 
   
-  function MatrixLed_marquee_reverse() {
+  function MatrixLed_marquee_reverse(direction) {
     MatrixLedmarqueecode = MatrixLedmarqueeinitial;
     MatrixLedmarqueecodeonce = MatrixLedmarqueeinitial;
     MatrixLedmarqueecolorcode = MatrixLedmarqueeinitial;
     MatrixLedmarqueecolorcodeonce = MatrixLedmarqueeinitial;
-    if (MatrixLedmarqueereverse==1)
-      MatrixLedmarqueereverse=2;
-    else if (MatrixLedmarqueereverse==2)
-      MatrixLedmarqueereverse=1;
+    
+    MatrixLedmarqueedirection=direction;
   }   
   
   function MatrixLed_char(input_char_) {
