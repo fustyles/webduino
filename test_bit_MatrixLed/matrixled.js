@@ -150,10 +150,13 @@
       MatrixLedmarqueecode_verical="";
       for (var i=0;i<input_marquee_.length;i++)
       {
-        if (i==(input_marquee_.length-1))
+        if (i==(input_marquee_.length-1)) {
           MatrixLedmarqueecode = MatrixLedmarqueecode + MatrixLed_conversion(input_marquee_.substr(i,1));
-        else
+          MatrixLedmarqueecode_vertical = MatrixLedmarqueecode_vertical + MatrixLed_conversion(input_marquee_.substr(i,1));
+        } else {
           MatrixLedmarqueecode = MatrixLedmarqueecode + MatrixLed_conversion(input_marquee_.substr(i,1)) + "00000";
+          MatrixLedmarqueecode_vertical = MatrixLedmarqueecode_vertical + MatrixLed_conversion(input_marquee_.substr(i,1)) + "00000";
+        }
       }
     }
     MatrixLedmarqueeinitial=MatrixLedmarqueecode;
@@ -652,6 +655,25 @@
     else      return noexist;
   }
   
+  function Matrixled_code_counterclockwise(){
+    var Tmp = new Array("","","","","","","","","","","","","","","","","","","","","","","","","");
+    var n;
+    for (n=0;n<25;n++)
+    {
+      Tmp[n]=L[n];
+    }
+    n=0;
+    for (var i=0;i<=4;i++)
+    {    
+      for (var j=4;j>=0;j--)
+      {
+        L[n]=Tmp[i+5*j];
+        n++;
+      }
+    }
+    return;
+  }
+  
   function MatrixLed_linechart(value1,value2,value3,value4,value5){
     var input_value=[value1,value2,value3,value4,value5];
     var k=0;
@@ -827,6 +849,7 @@
   window.MatrixLed_marquee_time = MatrixLed_marquee_time;
   window.MatrixLed_char = MatrixLed_char;
   window.MatrixLed_conversion = MatrixLed_conversion;
+  window.Matrixled_code_counterclockwise = Matrixled_code_counterclockwise;
   window.MatrixLed_texttocode = MatrixLed_texttocode;
   window.MatrixLed_showstate = MatrixLed_showstate;
   window.MatrixLed_indentcode = MatrixLed_indentcode;
