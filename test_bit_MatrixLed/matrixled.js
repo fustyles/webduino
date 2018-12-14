@@ -442,6 +442,10 @@
     MatrixLedmarqueecodeonce = MatrixLedmarqueeinitial;
     MatrixLedmarqueecolorcode = MatrixLedmarqueeinitial;
     MatrixLedmarqueecolorcodeonce = MatrixLedmarqueeinitial;
+    MatrixLedmarqueecode_vertical = MatrixLedmarqueeinitial_vertical;
+    MatrixLedmarqueecodeonce_vertical = MatrixLedmarqueeinitial_vertical;
+    MatrixLedmarqueecolorcode_vertical = MatrixLedmarqueeinitial_vertical;
+    MatrixLedmarqueecolorcodeonce_vertical = MatrixLedmarqueeinitial_vertical;
     
     MatrixLedmarqueedirection=direction;
   }   
