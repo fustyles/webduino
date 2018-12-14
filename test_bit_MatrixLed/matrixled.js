@@ -257,6 +257,16 @@
         MatrixLed_matrix(MatrixLedmarqueecode.substr(MatrixLedmarqueecode.length-25,25));
         MatrixLedmarqueecode = MatrixLedmarqueecode.substr(MatrixLedmarqueecode.length-5,5)+MatrixLedmarqueecode.substr(0,MatrixLedmarqueecode.length-5);
       }
+      else if (MatrixLedmarqueedirection==3)
+      {
+        MatrixLed_matrix(Matrixled_code_clockwise(MatrixLedmarqueecode_vertical.substr(0,25)));
+        MatrixLedmarqueecode_vertical = MatrixLedmarqueecode_vertical.substr(5,MatrixLedmarqueecode_vertical.length-5)+MatrixLedmarqueecode_vertical.substr(0,5);
+      }
+      else if (MatrixLedmarqueedirection==4)
+      {
+        MatrixLed_matrix(Matrixled_code_clockwise(MatrixLedmarqueecode_vertical.substr(MatrixLedmarqueecode_vertical.length-25,25)));
+        MatrixLedmarqueecode_vertical = MatrixLedmarqueecode_vertical.substr(MatrixLedmarqueecode_vertical.length-5,5)+MatrixLedmarqueecode_vertical.substr(0,MatrixLedmarqueecode_vertical.length-5);
+      }      
     }
     else
     {
