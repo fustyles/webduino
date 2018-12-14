@@ -147,7 +147,7 @@
     else if (input_marquee_.length>1)
     {
       MatrixLedmarqueecode="";
-      MatrixLedmarqueecode_verical="";
+      MatrixLedmarqueecode_vertical="";
       for (var i=0;i<input_marquee_.length;i++)
       {
         if (i==(input_marquee_.length-1)) {
@@ -663,6 +663,26 @@
     else if (input_char_=="◄")      return arrowleftfill;
     else if (input_char_=="►")      return arrowrightfill;    
     else      return noexist;
+  }
+
+  function Matrixled_code_clockwise(code){
+    var Tmp = new Array(25);
+    var codeArr = code.split('');
+    var n;
+    for (n=0;n<25;n++)
+    {
+      Tmp[n]=codeArr[n];
+    }
+    n=0;
+    for (var i=4;i>=0;i--)
+    {    
+      for (var j=0;j<=4;j++)
+      {
+        codeArr[n]=Tmp[i+5*j];
+        n++;
+      }
+    }
+    return codeArr.join('');
   }
   
   function Matrixled_code_counterclockwise(code){
