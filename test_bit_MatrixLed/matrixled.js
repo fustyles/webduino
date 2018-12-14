@@ -131,6 +131,7 @@
   function MatrixLed_marquee(input_marquee_) {
     input_marquee_=input_marquee_.toString();
     MatrixLedmarqueecodeonce = "";
+    MatrixLedmarqueecodeonce_vertical = "";
     window.clearInterval(marqueetimeid);
     if ((input_marquee_.length==25)&&(input_marquee_.search(/[^0-1]/)==-1))
     {
@@ -158,6 +159,8 @@
           MatrixLedmarqueecode_vertical = MatrixLedmarqueecode_vertical + Matrixled_code_counterclockwise(MatrixLed_conversion(input_marquee_.substr(i,1))) + "00000";
         }
       }
+      console.log(MatrixLedmarqueecode);
+      console.log(MatrixLedmarqueecode_vertical);
     }
     MatrixLedmarqueeinitial=MatrixLedmarqueecode;
     marqueeactive=1;
