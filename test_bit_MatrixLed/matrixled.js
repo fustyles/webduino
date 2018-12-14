@@ -100,7 +100,7 @@
   var L = new Array("","","","","","","","","","","","","","","","","","","","","","","","","");
   var MatrixLedcolor = "#ff0000";
   var MatrixLedbackcolor = "#000000";
-  var MatrixLedmarqueeinitial = "";
+  var MatrixLedmarqueeinitial = "",MatrixLedmarqueeinitial_vertical = "";
   var MatrixLedmarqueecode = "",MatrixLedmarqueecode_vertical = "";
   var MatrixLedmarqueecodeonce = "",MatrixLedmarqueecodeonce_vertical = "";
   var MatrixLedmarqueecolorcode = "",MatrixLedmarqueecolorcode_vertical = "";
@@ -159,10 +159,9 @@
           MatrixLedmarqueecode_vertical = MatrixLedmarqueecode_vertical + Matrixled_code_counterclockwise(MatrixLed_conversion(input_marquee_.substr(i,1))) + "00000";
         }
       }
-      console.log(MatrixLedmarqueecode);
-      console.log(MatrixLedmarqueecode_vertical);
     }
     MatrixLedmarqueeinitial=MatrixLedmarqueecode;
+    MatrixLedmarqueeinitial_vertical=MatrixLedmarqueecode_vertical;
     marqueeactive=1;
     marqueetimeid = window.setInterval("MatrixLed_marquee_play()",MatrixLedmarqueetime);
   }  
