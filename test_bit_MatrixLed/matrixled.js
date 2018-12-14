@@ -672,6 +672,7 @@
   
   function Matrixled_code_vertical(code) {
     
+    return code;
   }
 
   function Matrixled_code_clockwise(code){
