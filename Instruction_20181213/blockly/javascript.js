@@ -1,11 +1,3 @@
-var workspace = Blockly.inject('blocklyDiv',
-      {toolbox: document.getElementById('toolbox')});
-function myUpdateFunction(event) {
-  var code = Blockly.JavaScript.workspaceToCode(workspace);
-  document.getElementById('demo-area-01-show').innerHTML = code;
-}
-workspace.addChangeListener(myUpdateFunction);
-
 Blockly.JavaScript['cmd1'] = function (block) {
   var cmd1_0 = Blockly.JavaScript.valueToCode(block, 'cmd1_0', Blockly.JavaScript.ORDER_ATOMIC);  
   
