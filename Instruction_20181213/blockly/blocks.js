@@ -1,9 +1,3 @@
-function myUpdateFunction(event) {
-  var code = Blockly.JavaScript.workspaceToCode(workspace);
-  document.getElementById('demo-area-01-show').innerHTML = code;
-}
-workspace.addChangeListener(myUpdateFunction);
-
 Blockly.Blocks['cmd1'] = {
   init: function() {
   this.appendValueInput("cmd1_0")
