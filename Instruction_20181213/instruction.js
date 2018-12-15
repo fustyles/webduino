@@ -4,10 +4,12 @@
 
   'use strict';
 
-  function test() {
-    
+  function myUpdateFunction(event) {
+    var code = Blockly.JavaScript.workspaceToCode(workspace);
+    document.getElementById('demo-area-01-show').innerHTML = code;
   }
+  workspace.addChangeListener(myUpdateFunction);
 
-  window.test = test;
+  window.myUpdateFunction = myUpdateFunction;
 
 }(window, window.document));
