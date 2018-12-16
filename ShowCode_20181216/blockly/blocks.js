@@ -18,5 +18,8 @@ Blockly.Blocks['showcode'] = {
       console.clear();
       console.log(Blockly.JavaScript.workspaceToCode(workspace));
     }
+  },
+  domToMutation: function (xmlElement) {
+    this.setFieldValue("continued")="FALSE";
   }
 };    
