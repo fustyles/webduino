@@ -20,6 +20,6 @@ Blockly.Blocks['showcode'] = {
     }
   },
   domToMutation: function (xmlElement) {
-    this.setFieldValue("FALSE","continued");
+    this.getField("continued").setValue("FALSE");
   }
 };    
