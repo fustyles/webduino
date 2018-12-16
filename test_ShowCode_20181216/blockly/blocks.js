@@ -1,7 +1,7 @@
 Blockly.Blocks['showcode'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField("Show Code  continued")
+      .appendField("Show Code  Continuous")
       .appendField(new Blockly.FieldCheckbox("FALSE"), "check");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
