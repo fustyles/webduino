@@ -9,8 +9,8 @@ Blockly.Blocks['showcode'] = {
   this.setColour(20);
   },
   onchange: function (event) {
-    console.log(containerBlock.getFieldValue("check"));
-    if (event.element=="click"||containerBlock.getFieldValue("check")==TRUE) {
+    console.log(this.getFieldValue("check"));
+    if (event.element=="click"||this.getFieldValue("check")==TRUE) {
       if (this.id==event.blockId) {
         var workspace = Blockly.getMainWorkspace('blocklyDiv');
         console.clear();
