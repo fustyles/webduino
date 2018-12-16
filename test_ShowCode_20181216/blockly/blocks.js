@@ -1,14 +1,16 @@
 Blockly.Blocks['showcode'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField("Show Code");
+      .appendField("Show Code  continued")
+      .appendField(new Blockly.FieldCheckbox("FALSE"), "check");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
   this.setColour(20);
   },
   onchange: function (event) {
-    if (event.element=="click") {
+    console.log(containerBlock.getFieldValue("check"));
+    if (event.element=="click"||containerBlock.getFieldValue("check")==TRUE) {
       if (this.id==event.blockId) {
         var workspace = Blockly.getMainWorkspace('blocklyDiv');
         console.clear();
