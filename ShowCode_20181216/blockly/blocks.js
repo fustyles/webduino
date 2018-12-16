@@ -10,7 +10,7 @@ Blockly.Blocks['showcode'] = {
   onchange: function (event) {
     if (event.element=="click") {
       if (this.id==event.blockId) {
-        console.log(Blockly.JavaScript.workspaceToCode(Blockly.WorkspaceSvg.Blockly.Workspace));
+        console.log(Blockly.JavaScript.workspaceToCode(workspace));
       }
     }
   }
