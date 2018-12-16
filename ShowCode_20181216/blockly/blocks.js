@@ -10,13 +10,17 @@ Blockly.Blocks['showcode'] = {
     if (event.element=="click"&&this.getFieldValue("continued")=="FALSE") {
       if (this.id==event.blockId) {
         var workspace = Blockly.getMainWorkspace('blocklyDiv');
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
         console.clear();
-        console.log(Blockly.JavaScript.workspaceToCode(workspace));
+        console.log(code);
+        document.getElementById('demo-area-01-show').innerHTML = code;
       }
     } else if (this.getFieldValue("continued")=="TRUE") {
       var workspace = Blockly.getMainWorkspace('blocklyDiv');
+      var code = Blockly.JavaScript.workspaceToCode(workspace);
       console.clear();
-      console.log(Blockly.JavaScript.workspaceToCode(workspace));
+      console.log(code);
+      document.getElementById('demo-area-01-show').innerHTML = code;
     }
   }
 };    
