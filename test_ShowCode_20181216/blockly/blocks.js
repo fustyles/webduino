@@ -9,13 +9,17 @@ Blockly.Blocks['showcode'] = {
   this.setColour(20);
   },
   onchange: function (event) {
-    console.log(this.getFieldValue("check"));
-    if (event.element=="click"||this.getFieldValue("check")=="TRUE") {
+    //console.log(this.getFieldValue("check")=="TRUE");
+    if (event.element=="click"&&this.getFieldValue("check")=="FALSE") {
       if (this.id==event.blockId) {
         var workspace = Blockly.getMainWorkspace('blocklyDiv');
         console.clear();
         console.log(Blockly.JavaScript.workspaceToCode(workspace));
       }
+    } else (this.getFieldValue("check")=="TRUE") {
+      var workspace = Blockly.getMainWorkspace('blocklyDiv');
+      console.clear();
+      console.log(Blockly.JavaScript.workspaceToCode(workspace));
     }
   }
 };    
