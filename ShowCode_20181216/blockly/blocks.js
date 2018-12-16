@@ -10,6 +10,10 @@ Blockly.Blocks['showcode'] = {
   onchange: function (event) {
     if (event.element=="click") {
       if (this.id==event.blockId) {
+        var workspace = Blockly.inject('blocklyDiv',
+        { media: '../../media/',
+          toolbox: document.getElementById('toolbox')}
+        );
         console.log(Blockly.JavaScript.workspaceToCode(workspace));
       }
     }
