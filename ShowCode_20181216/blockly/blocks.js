@@ -9,9 +9,11 @@ Blockly.Blocks['showcode'] = {
   },
   onchange: function (event) {
     console.log(event);
-    //if (event.element=="field") {
+    if (event.element=="click") {
+      console.log(this);
+      console.log(event.blockId);
       //if (this.id==event.blockId)
         //this.updateShape_(event.name,"");
-    //}
+    }
   }
 };    
