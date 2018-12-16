@@ -19,6 +19,10 @@ Blockly.Blocks['showcode'] = {
       console.log(Blockly.JavaScript.workspaceToCode(workspace));
     }
   },
+  mutationToDom: function (workspace) {
+    var container = document.createElement('mutation');
+    return container;
+  },
   domToMutation: function (xmlElement) {
     this.getField("continued").setValue("FALSE");
   }
