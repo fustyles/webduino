@@ -16,7 +16,7 @@ Blockly.Blocks['showcode'] = {
         console.clear();
         console.log(Blockly.JavaScript.workspaceToCode(workspace));
       }
-    } else (this.getFieldValue("check")=="TRUE") {
+    } else if (this.getFieldValue("check")=="TRUE") {
       var workspace = Blockly.getMainWorkspace('blocklyDiv');
       console.clear();
       console.log(Blockly.JavaScript.workspaceToCode(workspace));
