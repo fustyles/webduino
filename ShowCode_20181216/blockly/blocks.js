@@ -7,6 +7,7 @@ Blockly.Blocks['showcode'] = {
   this.setColour(20);
   },
   onchange: function (event) {
+    console.log(event);
     if (event.element=="click"&&this.getFieldValue("continued")=="FALSE") {
       if (this.id==event.blockId) {
         var workspace = Blockly.getMainWorkspace('blocklyDiv');
@@ -18,13 +19,5 @@ Blockly.Blocks['showcode'] = {
       console.clear();
       console.log(Blockly.JavaScript.workspaceToCode(workspace));
     }
-  },
-  mutationToDom: function (workspace) {
-    var container = document.createElement('mutation');
-    return container;
-  },
-  domToMutation: function (xmlElement) {
-    console.log(this.getFieldValue("continued"));
-    this.setFieldValue("FALSE", "continued");
   }
 };    
