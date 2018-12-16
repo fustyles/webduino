@@ -6,8 +6,7 @@ Blockly.Blocks['showcode'] = {
   this.setNextStatement(true);
   this.setTooltip('');
   this.setColour(20);
-  }
-},
+  },
   onchange: function (event) {
     console.log(event);
     //if (event.element=="field") {
