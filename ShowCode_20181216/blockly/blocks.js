@@ -5,7 +5,7 @@ Blockly.Blocks['showcode'] = {
       .appendField(new Blockly.FieldCheckbox("FALSE"), "continued");
   this.setTooltip('');
   this.setColour(20);
-  this.onchange();
+  //this.onchange();
   },
   onchange: function (event) {
     if (event.element=="click"&&this.getFieldValue("continued")=="FALSE") {
