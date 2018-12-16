@@ -12,5 +12,4 @@ onchange: function (event) {
     //if (this.id==event.blockId)
       //this.updateShape_(event.name,"");
   //}
-},
 };    
