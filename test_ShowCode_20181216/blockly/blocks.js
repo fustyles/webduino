@@ -10,7 +10,7 @@ Blockly.Blocks['showcode'] = {
   },
   onchange: function (event) {
     console.log(this.getFieldValue("check"));
-    if (event.element=="click"||this.getFieldValue("check")==true) {
+    if (event.element=="click"||this.getFieldValue("check")=="TRUE") {
       if (this.id==event.blockId) {
         var workspace = Blockly.getMainWorkspace('blocklyDiv');
         console.clear();
