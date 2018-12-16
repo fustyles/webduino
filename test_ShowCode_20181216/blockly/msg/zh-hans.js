@@ -1,1 +1,0 @@
-MSG.catShowCode = "Show Code";
