@@ -1,1 +1,1 @@
-Blockly.Msg.SHOWCODE_SHOW = "显示原始码";
+Blockly.Msg.SHOWCODE_SHOW = "显示原始码  即时";
