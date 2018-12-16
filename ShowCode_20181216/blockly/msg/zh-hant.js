@@ -1,1 +1,1 @@
-MSG.catInstruction = "Instruction";
+MSG.catShowCode = "Show Code";
