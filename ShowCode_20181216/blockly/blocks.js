@@ -11,6 +11,7 @@ Blockly.Blocks['showcode'] = {
     if (event.element=="click") {
       if (this.id==event.blockId) {
         var workspace = Blockly.getMainWorkspace('blocklyDiv');
+        console.clear();
         console.log(Blockly.JavaScript.workspaceToCode(workspace));
       }
     }
