@@ -1,12 +1,12 @@
 {
-  "types": ["cmd1","cmd2","cmd3","cmd4","cmd5","cmd6","cmd7","cmd8","cmd9","cmd10","cmd11","cmd12","cmd13","cmd14","cmd15","cmd16","cmd17","cmd18","cmd19","cmd20"],
+  "types": ["showcode"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "instruction.js"    
+    "showcode.js"    
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
