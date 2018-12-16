@@ -1,7 +1,7 @@
 Blockly.Blocks['showcode'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField("Show Code  ")
+      .appendField(Blockly.Msg.SHOWCODE_SHOW)
       .appendField(new Blockly.FieldCheckbox("FALSE"), "check");
   this.setTooltip('');
   this.setColour(20);
