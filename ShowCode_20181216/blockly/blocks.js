@@ -13,14 +13,12 @@ Blockly.Blocks['showcode'] = {
         var code = Blockly.JavaScript.workspaceToCode(workspace);
         console.clear();
         console.log(code);
-        document.getElementById('demo-area-01-show').innerHTML = code;
       }
     } else if (this.getFieldValue("continued")=="TRUE") {
       var workspace = Blockly.getMainWorkspace('blocklyDiv');
       var code = Blockly.JavaScript.workspaceToCode(workspace);
       console.clear();
       console.log(code);
-      document.getElementById('demo-area-01-show').innerHTML = code;
     }
   }
 };    
