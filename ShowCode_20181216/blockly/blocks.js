@@ -24,6 +24,6 @@ Blockly.Blocks['showcode'] = {
     return container;
   },
   domToMutation: function (xmlElement) {
-    this.getField("continued").setValue("FALSE");
+    this.setFieldValue("FALSE","continued");
   }
 };    
