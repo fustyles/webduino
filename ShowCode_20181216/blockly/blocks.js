@@ -5,21 +5,18 @@ Blockly.Blocks['showcode'] = {
       .appendField(new Blockly.FieldCheckbox("FALSE"), "continued");
   this.setTooltip('');
   this.setColour(20);
-  this.onchange();
   },
   onchange: function (event) {
-    try {
-      if (event.element=="click"&&this.getFieldValue("continued")=="FALSE") {
-        if (this.id==event.blockId) {
-          var workspace = Blockly.getMainWorkspace('blocklyDiv');
-          console.clear();
-          console.log(Blockly.JavaScript.workspaceToCode(workspace));
-        }
-      } else if (this.getFieldValue("continued")=="TRUE") {
+    if (event.element=="click"&&this.getFieldValue("continued")=="FALSE") {
+      if (this.id==event.blockId) {
         var workspace = Blockly.getMainWorkspace('blocklyDiv');
         console.clear();
         console.log(Blockly.JavaScript.workspaceToCode(workspace));
       }
+    } else if (this.getFieldValue("continued")=="TRUE") {
+      var workspace = Blockly.getMainWorkspace('blocklyDiv');
+      console.clear();
+      console.log(Blockly.JavaScript.workspaceToCode(workspace));
     }
   }
 };    
