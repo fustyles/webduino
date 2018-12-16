@@ -3,8 +3,6 @@ Blockly.Blocks['showcode'] = {
   this.appendDummyInput()
       .appendField("Show Code  ")
       .appendField(new Blockly.FieldCheckbox("FALSE"), "check");
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
   this.setTooltip('');
   this.setColour(20);
   },
