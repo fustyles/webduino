@@ -18,20 +18,29 @@ https://bit.webduino.io/blockly/#xqVZebp2GNoq7
 顯示文字新增
 https://fustyles.github.io/webduino/demo_text_20180811/blockly.json
 [Smart]
-
+https://blocklypro.webduino.io/#kwrNbp9aJK
 [Bit]
+https://bit.webduino.io/blockly/#kRvX4Dv6ZJK3Q
 
 
 溫濕度變化圖(D3.js)
 https://fustyles.github.io/webduino/DHTchart-20180103/blockly.json
 [Smart]
-
+https://blocklypro.webduino.io/?demo=demo-area-01#RY52g5e9qd
 [Bit]
+https://bit.webduino.io/blockly/#rybdwjPAZ6rqk
 
 
 遊戲元素
 https://fustyles.github.io/webduino/GameElements_20180910/blockly.json
 [Smart]
+https://blocklypro.webduino.io/?demo=demo-area-01#7ggDGYENrd
+https://blocklypro.webduino.io/?demo=demo-area-01#RKzVaolpxb
+https://blocklypro.webduino.io/?demo=demo-area-01#72pnvy5qgL
+https://blocklypro.webduino.io/?demo=demo-area-01#RjNAmxmyK9
+https://blocklypro.webduino.io/?demo=demo-area-01#kZPKY1goNW
+https://blocklypro.webduino.io/?demo=demo-area-01#RozAB5PeVy
+https://blocklypro.webduino.io/?demo=demo-area-01#k4awqdq505
 
 [Bit]
 https://bit.webduino.io/blockly/#xqVZebwboDdq7
