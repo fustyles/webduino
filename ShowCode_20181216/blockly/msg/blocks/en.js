@@ -1,1 +1,1 @@
-Blockly.Msg.SHOWCODE_SHOW = "Show Code  Continued";
+Blockly.Msg.SHOWCODE_SHOW = "Show Code(Console)  Continued";
