@@ -96,11 +96,15 @@ https://fustyles.github.io/webduino/LineBot_20181027/blockly.json
 [Smart]
 
 [Bit]
+https://bit.webduino.io/blockly/#byXNWnAgGWJqO
+
+Google Script
+https://github.com/fustyles/webduino/blob/gs/linebot_push_message.gs
+https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
 
 
 裝置狀態
 https://fustyles.github.io/webduino/DeviceStatus_20181109/blockly.json
-
 [Smart]
 
 [Bit]
@@ -109,7 +113,6 @@ https://bit.webduino.io/blockly/#byXNWnAdKw1qO
 
 Javascript 指令擴充
 https://fustyles.github.io/webduino/Instruction_20181213/blockly.json
-
 [Smart]
 
 [Bit]
@@ -118,7 +121,6 @@ https://bit.webduino.io/blockly/#JyeZjPL97MdRV
 
 監看程式碼
 https://fustyles.github.io/webduino/ShowCode_20181216/blockly.json
-
 [Smart]
 
 [Bit]
@@ -126,9 +128,7 @@ https://bit.webduino.io/blockly/#rybdwjzzGxQqk
 
 
 Bit & Smart 網頁控制介面
-
 [Smart] (網址末請填入裝置ID)
 https://fustyles.github.io/webduino/MyFirmata_smart.html?yourID
-
 [Bit] (網址末請填入裝置ID)
 https://fustyles.github.io/webduino/MyFirmata_bit.html?yourID
