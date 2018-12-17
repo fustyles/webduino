@@ -1,1 +1,1 @@
-MSG.catShowCode = "监看原始码";
+MSG.catShowCode = "监看程式码";
