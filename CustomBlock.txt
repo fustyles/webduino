@@ -56,57 +56,61 @@ https://bit.webduino.io/blockly/#7Rp78GWk659yr
 顯示網頁
 https://fustyles.github.io/webduino/iframe_20180802/blockly.json
 [Smart]
-
+https://blocklypro.webduino.io/?demo=demo-area-01#RKzjgpQxvO
 [Bit]
+https://bit.webduino.io/blockly/#Z3kA9zVLpOBRv
 
 
 IFTTT
 https://fustyles.github.io/webduino/IFTTT_20180312/blockly.json
 [Smart]
-
+https://blocklypro.webduino.io/#XBBDV9D9Az
 [Bit]
+https://bit.webduino.io/blockly/#ARzWe08axb0q2
 
 
 模擬指示燈
 https://fustyles.github.io/webduino/MatrixLed_20180810/blockly.json
 [Smart]
-
-[Bit]
+https://blocklypro.webduino.io/?demo=demo-area-01#X5OevGeap5
 
 
 Smart Uart MyFirmata
 https://fustyles.github.io/webduino/smart_uart_myfirmata_20180309/blockly.json
 [Smart]
-
-[Bit]
+https://blocklypro.webduino.io/?demo=demo-area-01#XBBDVMPQ2L
 
 
 朗讀語言擴充
 https://fustyles.github.io/webduino/speak_setting_sample_fustyles/blockly.json
 [Smart]
-
+https://blocklypro.webduino.io/#XNWE3MnqaO
 [Bit]
+https://bit.webduino.io/blockly/#XRODG4A55DAqn
 
 
 機械學習(Google深度學習)
 https://fustyles.github.io/webduino/teachable_machine_boilerplate_20180818/blockly.json
 [Smart]
-
+https://blocklypro.webduino.io/?demo=demo-area-01#RzvANWoZWV
+https://blocklypro.webduino.io/?demo=demo-area-01#7DwleopgbK
 [Bit]
 https://bit.webduino.io/blockly/#Jy1d0pYV07Z3l
 https://bit.webduino.io/blockly/#r34oWm206lwqd
 
+
 thingspeak
 https://fustyles.github.io/webduino/ThingSpeak_20180401/blockly.json
 [Smart]
-
+https://blocklypro.webduino.io/#XLJmn5VJPY
 [Bit]
+https://bit.webduino.io/blockly/#03lAoQwAj0Ayv
 
 
 Line Bot 傳送訊息
 https://fustyles.github.io/webduino/LineBot_20181027/blockly.json
 [Smart]
-
+https://blocklypro.webduino.io/#XLJmPa5PJJ
 [Bit]
 https://bit.webduino.io/blockly/#byXNWnAgGWJqO
 
@@ -118,7 +122,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
 裝置狀態
 https://fustyles.github.io/webduino/DeviceStatus_20181109/blockly.json
 [Smart]
-
+https://blocklypro.webduino.io/?demo=demo-area-01#7ggeO3EBlB
 [Bit]
 https://bit.webduino.io/blockly/#byXNWnAdKw1qO
 
@@ -126,7 +130,7 @@ https://bit.webduino.io/blockly/#byXNWnAdKw1qO
 Javascript 指令擴充
 https://fustyles.github.io/webduino/Instruction_20181213/blockly.json
 [Smart]
-
+https://blocklypro.webduino.io/?demo=demo-area-01#k8md646wE0
 [Bit]
 https://bit.webduino.io/blockly/#JyeZjPL97MdRV
 
@@ -134,7 +138,7 @@ https://bit.webduino.io/blockly/#JyeZjPL97MdRV
 監看程式碼
 https://fustyles.github.io/webduino/ShowCode_20181216/blockly.json
 [Smart]
-
+https://blocklypro.webduino.io/#7ggezB96Qa
 [Bit]
 https://bit.webduino.io/blockly/#rybdwjzzGxQqk
 
