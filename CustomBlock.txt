@@ -43,5 +43,5 @@ https://fustyles.github.io/webduino/DeviceStatus_20181109/blockly.json
 Javascript 指令擴充
 https://fustyles.github.io/webduino/Instruction_20181213/blockly.json
 
-顯示程式碼
+監看程式碼
 https://fustyles.github.io/webduino/ShowCode_20181216/blockly.json
