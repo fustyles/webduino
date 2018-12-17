@@ -1,6 +1,5 @@
 台灣空氣品質
 https://fustyles.github.io/webduino/AirQuality_Taiwan_20180121/blockly.json
-
 [Smart]
 https://blocklypro.webduino.io/#7nLeEpoPE3
 https://blocklypro.webduino.io/#k4awq1nGjA
@@ -8,12 +7,12 @@ https://blocklypro.webduino.io/#k4awq1nGjA
 https://bit.webduino.io/blockly/#8qMJr2boeWP3W
 https://bit.webduino.io/blockly/#Z3kA9zBN1pYRv
 
+
 Bit 全彩點矩陣
 https://fustyles.github.io/webduino/bit_MatrixLed_20180810/blockly.json
-
-[Smart]
-
 [Bit]
+https://bit.webduino.io/blockly/#ayxvLVa0o02qM
+https://bit.webduino.io/blockly/#xqVZebp2GNoq7
 
 
 顯示文字新增
@@ -42,6 +41,7 @@ https://bit.webduino.io/blockly/#ARzWe0Jk021q2
 https://bit.webduino.io/blockly/#wRBjldYAVvlRM
 https://bit.webduino.io/blockly/#rybdwjPvkEmqk
 https://bit.webduino.io/blockly/#6yY4bpm94Dd3w
+https://bit.webduino.io/blockly/#7Rp78GWk659yr
 
 
 顯示網頁
@@ -84,6 +84,7 @@ https://fustyles.github.io/webduino/teachable_machine_boilerplate_20180818/block
 [Smart]
 
 [Bit]
+https://bit.webduino.io/blockly/#Jy1d0pYV07Z3l
 https://bit.webduino.io/blockly/#r34oWm206lwqd
 
 thingspeak
