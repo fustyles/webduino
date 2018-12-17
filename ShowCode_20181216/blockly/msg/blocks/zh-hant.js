@@ -1,1 +1,1 @@
-Blockly.Msg.SHOWCODE_SHOW = "顯示原始碼  即時";
+Blockly.Msg.SHOWCODE_SHOW = "監看原始碼(主控台)  即時";
