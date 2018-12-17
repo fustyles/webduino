@@ -4,11 +4,11 @@ Blockly.Blocks["boardevent_mutator"] = {
   init: function () {
     this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("BoardEvent.STRING_MESSAGE")
+      .appendField("STRING_MESSAGE")
       .appendField(new Blockly.FieldCheckbox("FALSE"), "chkmessage");
     this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("BoardEvent.ERROR")
+      .appendField("ERROR")
       .appendField(new Blockly.FieldCheckbox("FALSE"), "chkerror");
     this.setColour(20);
     this.setTooltip("");
@@ -24,11 +24,11 @@ Blockly.Blocks['boardevent'] = {
       .appendField(new Blockly.FieldDropdown([["20","20"], ["50","50"], ["75","75"], ["100","100"], ["250","250"], ["500","500"], ["1000","1000"]]), "samplingInterval")
       .appendField("    Device ID");
     this.appendStatementInput("do_ready")
-        .appendField("BoardEvent.READY");   
+        .appendField("READY");   
     this.appendStatementInput("do_message")
-        .appendField("BoardEvent.STRING_MESSAGE","title_message");
+        .appendField("STRING_MESSAGE","title_message");
     this.appendStatementInput("do_error")
-        .appendField("BoardEvent.ERROR","title_error");
+        .appendField("ERROR","title_error");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(340);
@@ -76,11 +76,11 @@ Blockly.Blocks['boardevent'] = {
     if (this.getInput('do_error')) this.removeInput('do_error');
     if (this.messageVisible_=="TRUE") {
       this.appendStatementInput("do_message")
-          .appendField("BoardEvent.STRING_MESSAGE","title_message");
+          .appendField("STRING_MESSAGE","title_message");
     }
     if (this.errorVisible_=="TRUE") {
       this.appendStatementInput("do_error")
-          .appendField("BoardEvent.ERROR","title_error");
+          .appendField("ERROR","title_error");
     }
     /*
     this.getInput('do_message').setVisible(false);    
