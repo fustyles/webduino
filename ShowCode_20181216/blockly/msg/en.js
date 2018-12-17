@@ -1,1 +1,1 @@
-MSG.catShowCode = "Show Code";
+MSG.catShowCode = "Monitor Code";
