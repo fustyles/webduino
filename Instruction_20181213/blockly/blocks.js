@@ -366,7 +366,6 @@ Blockly.Blocks['cmd14'] = {
       .appendField(" = ");      
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setInputsInline(true);
   this.setTooltip('');
   this.setColour(20);
   }
