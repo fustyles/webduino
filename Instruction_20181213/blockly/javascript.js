@@ -182,6 +182,6 @@ Blockly.JavaScript['cmd13'] = function (block) {
   if ((variable.indexOf("(")==0)&&(variable.lastIndexOf(")")==variable.length-1))
     variable = variable.substring(1,variable.length-1);
     
-  var code = "var " + cmd12_0 + ";\n";
+  var code = "var " + variable + ";\n";
   return code;
 };
