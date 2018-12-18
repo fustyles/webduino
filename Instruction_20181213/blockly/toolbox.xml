@@ -157,7 +157,7 @@
   <block type="cmd13">
     <value name="variable">
       <block type="text">
-        <field name="TEXT">localVar</field>
+        <field name="TEXT">myVar</field>
       </block>
     </value>         
   </block>   
