@@ -355,3 +355,19 @@ Blockly.Blocks['cmd13'] = {
   this.setColour(20);
   }
 };
+
+Blockly.Blocks['cmd14'] = {
+  init: function() {
+  this.appendValueInput("variable")
+      .setCheck("String")
+      .appendField("Set Local Variable ");    
+  this.appendValueInput("variableValue")
+      .setCheck(null)
+      .appendField(" = ");      
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setInputsInline(true);
+  this.setTooltip('');
+  this.setColour(20);
+  }
+};
