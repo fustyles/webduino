@@ -141,13 +141,6 @@
         <field name="NUM">0</field>
       </block>
     </value>     
-  </block>    
-  <block type="cmd13">
-    <value name="variable">
-      <block type="text">
-        <field name="TEXT">localVar</field>
-      </block>
-    </value>         
   </block>   
   <block type="cmd14">
     <value name="myVar">
@@ -161,6 +154,13 @@
       </block>
     </value>     
   </block>    
+  <block type="cmd13">
+    <value name="variable">
+      <block type="text">
+        <field name="TEXT">localVar</field>
+      </block>
+    </value>         
+  </block>   
   <block type="cmd6">   
   </block>
   <block type="cmd7">   
