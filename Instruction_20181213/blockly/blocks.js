@@ -347,7 +347,7 @@ Blockly.Blocks['cmd13'] = {
   init: function() {
   this.appendValueInput("variable")
       .setCheck("String")
-      .appendField("Set Local Variable ");    
+      .appendField("Declare Local Variable ");    
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setInputsInline(true);
