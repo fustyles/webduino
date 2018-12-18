@@ -175,7 +175,7 @@ Blockly.JavaScript['cmd12'] = function (block) {
 };
 
 Blockly.JavaScript['cmd13'] = function (block) {
-  var variable = Blockly.JavaScript.valueToCode(block, 'myVar', Blockly.JavaScript.ORDER_ATOMIC);
+  var variable = Blockly.JavaScript.valueToCode(block, 'variable', Blockly.JavaScript.ORDER_ATOMIC);
   
   if ((variable.indexOf("'")==0)&&(variable.lastIndexOf("'")==variable.length-1))
     variable = variable.substring(1,variable.length-1);
