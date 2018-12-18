@@ -345,9 +345,10 @@ Blockly.Blocks['cmd12'] = {
 
 Blockly.Blocks['cmd13'] = {
   init: function() {
-  this.appendValueInput("variable")
-      .setCheck("String")
-      .appendField("Declare Variable ");    
+  this.appendDummyInput()
+      .appendField("Declare Variable ");
+  this.appendValueInput("myVar")
+      .setCheck(null);    
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setInputsInline(true);
@@ -361,10 +362,11 @@ Blockly.Blocks['cmd14'] = {
   this.appendDummyInput()
       .appendField("Set Variable ");
   this.appendValueInput("myVar")
-      .setCheck(null);      
+      .setCheck(null);   
+  this.appendDummyInput()
+      .appendField(" = ");    
   this.appendValueInput("variableValue")
-      .setCheck(null)
-      .appendField(" = ");      
+      .setCheck(null);      
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setInputsInline(true);
