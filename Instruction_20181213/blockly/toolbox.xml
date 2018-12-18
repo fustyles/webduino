@@ -149,6 +149,18 @@
       </block>
     </value>         
   </block>   
+  <block type="cmd14">
+    <value name="variable">
+      <block type="text">
+        <field name="TEXT">localVar</field>
+      </block>
+    </value>    
+    <value name="variableValue">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>    
   <block type="cmd6">   
   </block>
   <block type="cmd7">   
