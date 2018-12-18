@@ -360,7 +360,7 @@ Blockly.Blocks['cmd14'] = {
   init: function() {
   this.appendValueInput("variable")
       .setCheck("String")
-      .appendField("Set Local Variable ");    
+      .appendField("Set Variable ");    
   this.appendValueInput("variableValue")
       .setCheck(null)
       .appendField(" = ");      
