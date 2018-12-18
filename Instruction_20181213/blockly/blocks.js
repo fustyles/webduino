@@ -350,6 +350,7 @@ Blockly.Blocks['cmd13'] = {
       .appendField("Set Local Variable ");    
   this.setPreviousStatement(true);
   this.setNextStatement(true);
+  this.setInputsInline(true);
   this.setTooltip('');
   this.setColour(20);
   }
