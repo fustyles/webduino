@@ -150,11 +150,11 @@
     </value>         
   </block>   
   <block type="cmd14">
-    <value name="variable">
-      <block type="text">
-        <field name="TEXT">localVar</field>
+    <value name="myVar">
+      <block type="variables_get"> 
+        <field name="VAR">myVar</field> 
       </block>
-    </value>    
+    </value> 
     <value name="variableValue">
       <block type="text">
         <field name="TEXT"></field>
