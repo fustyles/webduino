@@ -160,7 +160,14 @@
         <field name="TEXT"></field>
       </block>
     </value>     
-  </block>    
+  </block> 
+  <block type="cmd15">
+    <value name="Instruction">
+      <block type="text">
+        <field name="TEXT">Break</field>
+      </block>
+    </value>     
+  </block>   
   <block type="cmd6">   
   </block>
   <block type="cmd7">   
