@@ -377,6 +377,8 @@ Blockly.Blocks['cmd14'] = {
 
 Blockly.Blocks['cmd15'] = {
   init: function() {
+  this.appendDummyInput()
+      .appendField("Instruction");    
   this.appendValueInput("Instruction")
       .setCheck(null);
   this.setPreviousStatement(true);
