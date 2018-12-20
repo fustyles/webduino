@@ -374,3 +374,17 @@ Blockly.Blocks['cmd14'] = {
   this.setColour(20);
   }
 };
+
+Blockly.Blocks['cmd15'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField("Instruction"); 
+  this.appendValueInput("Instruction")
+      .setCheck(null);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setInputsInline(true);
+  this.setTooltip('');
+  this.setColour(20);
+  }
+};
