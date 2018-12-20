@@ -164,7 +164,7 @@
   <block type="cmd15">
     <value name="Instruction">
       <block type="text">
-        <field name="TEXT">Break</field>
+        <field name="TEXT">break</field>
       </block>
     </value>     
   </block>   
