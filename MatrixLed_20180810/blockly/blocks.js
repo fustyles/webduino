@@ -441,11 +441,11 @@ Blockly.Blocks['matrix_led_matrixcode_line_color'] = {
         .setAlign(Blockly.ALIGN_CENTRE)
         .appendField(Blockly.Msg.MATRIXLED_MATRIXCODE_LINE_COLOR_SHOW);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldColour("#000000"), 'L01')
-        .appendField(new Blockly.FieldColour("#000000"), 'L02')
-        .appendField(new Blockly.FieldColour("#000000"), 'L03')
-        .appendField(new Blockly.FieldColour("#000000"), 'L04')
-        .appendField(new Blockly.FieldColour("#000000"), 'L05');
+        .appendField(new Blockly.FieldColour("#ffffff"), 'L01')
+        .appendField(new Blockly.FieldColour("#ffffff"), 'L02')
+        .appendField(new Blockly.FieldColour("#ffffff"), 'L03')
+        .appendField(new Blockly.FieldColour("#ffffff"), 'L04')
+        .appendField(new Blockly.FieldColour("#ffffff"), 'L05');
     this.setOutput(true, null);
     this.setColour(300);
   }
