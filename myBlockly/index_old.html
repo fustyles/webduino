@@ -396,7 +396,7 @@
       var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
       Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
       try {
-		window.clearInterval(marqueetimeid);
+	window.clearInterval(marqueetimeid);
         eval(code);
       } catch (e) {
         alert(e);
@@ -407,7 +407,7 @@
       var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
       var xml_text = Blockly.Xml.domToText(xml);
       try {
-		window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
+	window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
       } catch (e) {
         alert(e);
       }
