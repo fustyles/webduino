@@ -5,24 +5,34 @@
 <head>
   <meta charset="utf-8">
   <title>myBlockly</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-  <script src="../../blockly_compressed.js"></script>
-  <script src="../../blocks_compressed.js"></script>
-  <script src="../../javascript_compressed.js"></script>
-  <script src="en.js"></script>
-  <script src="Instruction/blocks_Instruction.js"></script>
-  <script src="Instruction/javascript_Instruction.js"></script>
-  <script src="Instruction/toolbox_Instruction.js"></script>
-  <script src="MatrixLed/blocks_MatrixLed.js"></script>
-  <script src="MatrixLed/javascript_MatrixLed.js"></script>
-  <script src="MatrixLed/toolbox_MatrixLed.js"></script>
-  <script src="MatrixLed/msg_Matrixled.js"></script>
-  <script src="MatrixLed/matrixled.js"></script>
-  <script src="GameElements/blocks_GameElements.js"></script>
-  <script src="GameElements/javascript_GameElements.js"></script>
-  <script src="GameElements/toolbox_GameElements.js"></script>
-  <script src="GameElements/msg_GameElements.js"></script>
-  <script src="GameElements/gameelements.js"></script>
+
+  <script>
+	var scr = [
+			'https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js',
+			'../../blockly_compressed.js',
+			'../../blocks_compressed.js',
+			'../../javascript_compressed.js',
+			'https://fustyles.github.io/webduino/myBlockly/en.js',
+			'https://fustyles.github.io/webduino/myBlockly/Instruction/blocks_Instruction.js',
+			'https://fustyles.github.io/webduino/myBlockly/Instruction/javascript_Instruction.js',
+			'https://fustyles.github.io/webduino/myBlockly/Instruction/toolbox_Instruction.js',
+			'https://fustyles.github.io/webduino/myBlockly/MatrixLed/blocks_MatrixLed.js',
+			'https://fustyles.github.io/webduino/myBlockly/MatrixLed/javascript_MatrixLed.js',
+			'https://fustyles.github.io/webduino/myBlockly/MatrixLed/toolbox_MatrixLed.js',
+			'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed.js',
+			'https://fustyles.github.io/webduino/myBlockly/MatrixLed/matrixled.js',
+			'https://fustyles.github.io/webduino/myBlockly/GameElements/blocks_GameElements.js',
+			'https://fustyles.github.io/webduino/myBlockly/GameElements/javascript_GameElements.js',
+			'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameElements.js',
+			'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements.js',
+			'https://fustyles.github.io/webduino/myBlockly/GameElements/gameelements.js'
+			];
+	for (var i=0; i<scr.length; i++)
+	{
+	  document.write("\<script src='"+scr[i]+"'\>\<\/script>");
+	}
+  </script>
+
   <style>
     body {
       background-color: #fff;
@@ -38,19 +48,16 @@
 
 <table>
   <tr>
-    <td rowspan="2">
+    <td>
       <div id="blocklyDiv" style="height: 620px; width: 950px;"></div>
     </td>
     <td align="center" valign="top">
-      <textarea id="javscriptArea"  cols="50" rows="18" readonly></textarea><br>
-	  <button onclick="runCode()">Run JavaScript</button>
+	  <button onclick="runCode()">Run Code</button>
+	  <button onclick="stopCode()">Stop Code</button>
 	  <button onclick="exportBlocks()">Export Blocks</button>
-	  <button onclick="importBlocks()">Import Blocks</button>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" valign="top">
-      <div id="fustyles_matrixled"></div>
+	  <button onclick="importBlocks()">Import Blocks</button><br><br>
+      <textarea id="javscriptArea"  cols="50" rows="37" readonly></textarea>
+	  <iframe id="iframe_run" style="left:250px;top:10px;width:600px;height:600px;position:absolute;display:none;background-color: white" frameborder="1"  scrolling="auto" allow="geolocation; microphone; camera"></iframe>
     </td>
   </tr>
 </table>
@@ -394,20 +401,41 @@
       Blockly.JavaScript.INFINITE_LOOP_TRAP =
       'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
       var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+	  
+	  var iframe_code="\<html\>\<head\>";
+	  var scr = [
+				'https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js',
+				'https://fustyles.github.io/webduino/myBlockly/MatrixLed/matrixled.js',
+				'https://fustyles.github.io/webduino/myBlockly/GameElements/gameelements.js'
+				];
+	  for (var i=0; i<scr.length; i++)
+      {
+		iframe_code = iframe_code+"\<script src='"+scr[i]+"'\>\<\/script>";
+		
+      }
+	  iframe_code = iframe_code + "\<\/head\>\<body\>\<script\>" + code + "\<\/script\>\<\/body\>\<\/html\>";
+	  
+	  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+
+	  document.getElementById("iframe_run").style.display = "block";
       try {
-	window.clearInterval(marqueetimeid);
-        eval(code);
+		document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,';
+		document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
       } catch (e) {
         alert(e);
       }
     }
+
+	function stopCode() {
+	  document.getElementById("iframe_run").style.display = "none";
+	  document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';
+	}
 	  
     function exportBlocks() {
       var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
       var xml_text = Blockly.Xml.domToText(xml);
       try {
-	window.location.href="data:application/octet-stream;base64,"+window.btoa(xml_text);
+		window.location.href="data:application/octet-stream;base64,"+window.btoa(xml_text);
       } catch (e) {
         alert(e);
       }
