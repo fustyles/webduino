@@ -1,0 +1,429 @@
+<!-- Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update: 2018-12-24 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>myBlockly</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+  <script src="../../blockly_compressed.js"></script>
+  <script src="../../blocks_compressed.js"></script>
+  <script src="../../javascript_compressed.js"></script>
+  <script src="en.js"></script>
+  <script src="Instruction/blocks_Instruction.js"></script>
+  <script src="Instruction/javascript_Instruction.js"></script>
+  <script src="Instruction/toolbox_Instruction.js"></script>
+  <script src="MatrixLed/blocks_MatrixLed.js"></script>
+  <script src="MatrixLed/javascript_MatrixLed.js"></script>
+  <script src="MatrixLed/toolbox_MatrixLed.js"></script>
+  <script src="MatrixLed/msg_Matrixled.js"></script>
+  <script src="MatrixLed/matrixled.js"></script>
+  <script src="GameElements/blocks_GameElements.js"></script>
+  <script src="GameElements/javascript_GameElements.js"></script>
+  <script src="GameElements/toolbox_GameElements.js"></script>
+  <script src="GameElements/msg_GameElements.js"></script>
+  <script src="GameElements/gameelements.js"></script>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+  </style>
+</head>
+<body>
+
+<table>
+  <tr>
+    <td rowspan="2">
+      <div id="blocklyDiv" style="height: 620px; width: 950px;"></div>
+    </td>
+    <td align="center" valign="top">
+      <textarea id="javscriptArea"  cols="50" rows="18" readonly></textarea><br>
+	  <button onclick="runCode()">Run JavaScript</button>
+	  <button onclick="exportBlocks()">Export Blocks</button>
+	  <button onclick="importBlocks()">Import Blocks</button>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <div id="fustyles_matrixled"></div>
+    </td>
+  </tr>
+</table>
+
+  <xml id="toolbox" style="display: none">
+    <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+    <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
+    <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
+      <block type="controls_if"></block>
+      <block type="logic_compare"></block>
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
+      <block type="logic_boolean"></block>
+      <block type="logic_null"></block>
+      <block type="logic_ternary"></block>
+    </category>
+    <category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+      </block>
+      <block type="controls_whileUntil"></block>
+      <block type="controls_for">
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+        <value name="BY">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+      <block type="controls_forEach"></block>
+      <block type="controls_flow_statements"></block>
+    </category>
+    <category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">
+      <block type="math_number">
+        <field name="NUM">123</field>
+      </block>
+      <block type="math_arithmetic">
+        <value name="A">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="B">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_single">
+        <value name="NUM">
+          <block type="math_number">
+            <field name="NUM">9</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_trig">
+        <value name="NUM">
+          <block type="math_number">
+            <field name="NUM">45</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_constant"></block>
+      <block type="math_number_property">
+        <value name="NUMBER_TO_CHECK">
+          <block type="math_number">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_round">
+        <value name="NUM">
+          <block type="math_number">
+            <field name="NUM">3.1</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_on_list"></block>
+      <block type="math_modulo">
+        <value name="DIVIDEND">
+          <block type="math_number">
+            <field name="NUM">64</field>
+          </block>
+        </value>
+        <value name="DIVISOR">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_constrain">
+        <value name="VALUE">
+          <block type="math_number">
+            <field name="NUM">50</field>
+          </block>
+        </value>
+        <value name="LOW">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="HIGH">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_random_int">
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_random_float"></block>
+      <block type="math_atan2">
+        <value name="X">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="Y">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+    </category>
+    <category name="%{BKY_CATTEXT}" colour="%{BKY_TEXTS_HUE}">
+      <block type="text"></block>
+      <block type="text_join"></block>
+      <block type="text_append">
+        <value name="TEXT">
+          <block type="text"></block>
+        </value>
+      </block>
+      <block type="text_length">
+        <value name="VALUE">
+          <block type="text">
+            <field name="TEXT">abc</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_isEmpty">
+        <value name="VALUE">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+      </block>
+      <block type="text_indexOf">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+        <value name="FIND">
+          <block type="text">
+            <field name="TEXT">abc</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_charAt">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_getSubstring">
+        <value name="STRING">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_changeCase">
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT">abc</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_trim">
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT">abc</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT">abc</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_prompt_ext">
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT">abc</field>
+          </block>
+        </value>
+      </block>
+    </category>
+    <category name="%{BKY_CATLISTS}" colour="%{BKY_LISTS_HUE}">
+      <block type="lists_create_with">
+        <mutation items="0"></mutation>
+      </block>
+      <block type="lists_create_with"></block>
+      <block type="lists_repeat">
+        <value name="NUM">
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_length"></block>
+      <block type="lists_isEmpty"></block>
+      <block type="lists_indexOf">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_getIndex">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_setIndex">
+        <value name="LIST">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_getSublist">
+        <value name="LIST">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_split">
+        <value name="DELIM">
+          <block type="text">
+            <field name="TEXT">,</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_sort"></block>
+    </category>
+    <category name="%{BKY_CATCOLOUR}" colour="%{BKY_COLOUR_HUE}">
+      <block type="colour_picker"></block>
+      <block type="colour_random"></block>
+      <block type="colour_rgb">
+        <value name="RED">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+        <value name="GREEN">
+          <block type="math_number">
+            <field name="NUM">50</field>
+          </block>
+        </value>
+        <value name="BLUE">
+          <block type="math_number">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+      </block>
+      <block type="colour_blend">
+        <value name="COLOUR1">
+          <block type="colour_picker">
+            <field name="COLOUR">#ff0000</field>
+          </block>
+        </value>
+        <value name="COLOUR2">
+          <block type="colour_picker">
+            <field name="COLOUR">#3333ff</field>
+          </block>
+        </value>
+        <value name="RATIO">
+          <block type="math_number">
+            <field name="NUM">0.5</field>
+          </block>
+        </value>
+      </block>
+    </category>
+    <sep></sep>
+  </xml>
+
+  <xml id="startBlocks" style="display: none">
+    <variables><variable type="" id="~_W/2o][NZD,=;w]?]vn">i</variable><variable type="" id="g/A4n2qD)|6C7UZz5Ojh">fuTimer</variable></variables><block type="variables_set" id="nbzU8,|B^DrkE,e$];J$" x="-479" y="48"><field name="VAR" id="~_W/2o][NZD,=;w]?]vn" variabletype="">i</field><value name="VALUE"><block type="math_number" id="3$e-WV8BhM=f(/E|!+oL"><field name="NUM">0</field></block></value><next><block type="document_timer" id="ariN:7e]XpR9yjC+*Wxt"><field name="fuTimer_" id="g/A4n2qD)|6C7UZz5Ojh" variabletype="">fuTimer</field><value name="intervals_"><block type="math_number" id="3Y%~O*9(chxeF.E3jw72"><field name="NUM">1000</field></block></value><statement name="do_"><block type="variables_set" id="niPM`;(Q7dv-#VHpQyk)"><field name="VAR" id="~_W/2o][NZD,=;w]?]vn" variabletype="">i</field><value name="VALUE"><block type="math_arithmetic" id="t.x4_B|Lj{:t0!{3K0*^"><field name="OP">ADD</field><value name="A"><block type="variables_get" id="/.__!xT[S(2H0QZ0-_.f"><field name="VAR" id="~_W/2o][NZD,=;w]?]vn" variabletype="">i</field></block></value><value name="B"><block type="math_number" id="$Rs34pR:xIl3eH.Atr)#"><field name="NUM">1</field></block></value></block></value><next><block type="controls_if" id="m40XO+,EQu.Vqyf,=!:Q"><mutation else="1"></mutation><value name="IF0"><block type="logic_compare" id="#ywJ[rb{urm^#gdl8_]n"><field name="OP">GTE</field><value name="A"><block type="variables_get" id="PepOB`e8^ANP7/=2Guku"><field name="VAR" id="~_W/2o][NZD,=;w]?]vn" variabletype="">i</field></block></value><value name="B"><block type="math_number" id="M:2)6,zV%2TBN}^j(r,}"><field name="NUM">10</field></block></value></block></value><statement name="DO0"><block type="document_timer_stop" id=";y2[buge8BtRTGT~mTY]"><field name="fuTimer_" id="g/A4n2qD)|6C7UZz5Ojh" variabletype="">fuTimer</field></block></statement><statement name="ELSE"><block type="cmd15" id="kFdw$IM*2)/YB#VzfXz/"><value name="Instruction"><block type="cmd5" id="BPYvkSVfOjhfP`Qi*F1j"><value name="myVar"><block type="text" id="`M`:Kx7tc6{#C;~*$-EF"><field name="TEXT">console</field></block></value><value name="cmd5_0"><block type="text" id="pntC+QrECmdnTWaCIt=A"><field name="TEXT">log</field></block></value><value name="cmd5_1"><block type="variables_get" id="?}Xla1Vw[~4K8p6ET2U-"><field name="VAR" id="~_W/2o][NZD,=;w]?]vn" variabletype="">i</field></block></value></block></value><next><block type="matrix_led_color" id="FTTcytL+eH~p,pJcbY}]"><value name="value_color_"><block type="colour_random" id="ym2:fon8+ku4!jqWAXL-"></block></value><next><block type="matrix_led_char" id="BtXv23@4aIIBkUS_08B#"><value name="value_char_"><block type="variables_get" id="9,hYnS*W#tg|p#K(^2[x"><field name="VAR" id="~_W/2o][NZD,=;w]?]vn" variabletype="">i</field></block></value></block></next></block></next></block></statement></block></next></block></statement></block></next></block>
+  </xml>
+
+  <script>
+    //append custom blocks to toolbox
+    var xml = Blockly.Xml.textToDom(catInstruction);
+    document.getElementById('toolbox').append(xml.firstChild);
+    var xml = Blockly.Xml.textToDom(catGameElements);
+    document.getElementById('toolbox').append(xml.firstChild);
+    var xml = Blockly.Xml.textToDom(catMatrixLed);
+    document.getElementById('toolbox').append(xml.firstChild);
+	
+    var demoWorkspace = Blockly.inject('blocklyDiv',{media: '../../media/', toolbox: document.getElementById('toolbox')});
+    Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
+	
+    function showCode() {
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+      document.getElementById('javscriptArea').innerHTML = code;
+    }
+    demoWorkspace.addChangeListener(showCode);
+	  
+    function runCode() {
+      window.LoopTrap = 1000;
+      Blockly.JavaScript.INFINITE_LOOP_TRAP =
+      'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+      var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      try {
+	window.clearInterval(marqueetimeid);
+        eval(code);
+      } catch (e) {
+        alert(e);
+      }
+    }
+	  
+    function exportBlocks() {
+      var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+      var xml_text = Blockly.Xml.domToText(xml);
+      try {
+	window.location.href="data:application/octet-stream;base64,"+window.btoa(xml_text);
+      } catch (e) {
+        alert(e);
+      }
+    }
+	  
+    function importBlocks() {
+      try {
+	var xml_text = prompt("Please enter xml code", "");
+	var xml = Blockly.Xml.textToDom(xml_text);
+        demoWorkspace.clear();
+        Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+      } catch (e) {
+        alert(e);
+      }
+    }
+  </script>
+
+</body>
+</html>
