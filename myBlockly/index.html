@@ -116,8 +116,12 @@ function runCode() {
 }
 
 function stopCode() {
-  document.getElementById("iframe_run").style.display = "none";
-  document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';
+  try {	
+    document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';	  
+    document.getElementById("iframe_run").style.display = "none";
+  } catch (e) {
+    alert(e);
+  }	  
 }
 
 function exportBlocks() {
