@@ -353,7 +353,7 @@ Blockly.Blocks['cmd13'] = {
   this.setNextStatement(true);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(35);
+  this.setColour(65);
   }
 };
 
@@ -371,7 +371,7 @@ Blockly.Blocks['cmd14'] = {
   this.setNextStatement(true);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(35);
+  this.setColour(65);
   }
 };
 
@@ -385,6 +385,6 @@ Blockly.Blocks['cmd15'] = {
   this.setNextStatement(true);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(35);
+  this.setColour(65);
   }
 };
