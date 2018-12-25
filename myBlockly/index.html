@@ -64,6 +64,7 @@
 </xml>
 
 <script>
+	
 //append system blocks to toolbox
 while (catSystem.indexOf("<category")!=-1) {
   var s = catSystem.indexOf("<category");
@@ -74,6 +75,7 @@ while (catSystem.indexOf("<category")!=-1) {
 }
 var xml = Blockly.Xml.textToDom("<xml><sep></sep></xml>");
 document.getElementById('toolbox').append(xml.firstChild);
+	
 //append custom blocks to toolbox
 var xml = Blockly.Xml.textToDom(catInstruction);
 document.getElementById('toolbox').append(xml.firstChild);
@@ -83,12 +85,14 @@ var xml = Blockly.Xml.textToDom(catMatrixLed);
 document.getElementById('toolbox').append(xml.firstChild);
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: '../../media/', toolbox: document.getElementById('toolbox')});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
+	
 function showCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
   document.getElementById('javscriptArea').innerHTML = code;
 }
 demoWorkspace.addChangeListener(showCode);
+	
 function runCode() {
   window.LoopTrap = 1000;
   Blockly.JavaScript.INFINITE_LOOP_TRAP =
@@ -109,10 +113,12 @@ function runCode() {
     alert(e);
   }
 }
+	
 function stopCode() {
   document.getElementById("iframe_run").style.display = "none";
   document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';
 }
+	
 function exportBlocks() {
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
@@ -122,6 +128,7 @@ function exportBlocks() {
     alert(e);
   }
 }
+	
 function importBlocks() {
   try {
     var xml_text = prompt("Please enter xml code", "");
@@ -132,6 +139,7 @@ function importBlocks() {
     alert(e);
   }
 }
+	
 </script>
 
 </body>
