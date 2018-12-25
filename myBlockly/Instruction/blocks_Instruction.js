@@ -377,10 +377,10 @@ Blockly.Blocks['cmd14'] = {
 
 Blockly.Blocks['cmd15'] = {
   init: function() {
-  this.appendDummyInput()
-      .appendField("Instruction");    
   this.appendValueInput("Instruction")
       .setCheck(null);
+  this.appendDummyInput()
+      .appendField(";");        
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setInputsInline(true);
