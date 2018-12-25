@@ -163,9 +163,18 @@ var catInstruction = '<xml><category name="%{BKY_INSTRUCTION}" colour="%{BKY_INS
 '  </block>'+   
 '  <block type="cmd15">'+
 '    <value name="Instruction">'+
-'      <block type="text">'+
-'        <field name="TEXT">break</field>'+
-'      </block>'+
+'    <block type="cmd2">'+ 
+'      <value name="cmd2_0">'+ 
+'        <block type="text">'+ 
+'          <field name="TEXT">alert</field>'+ 
+'        </block>'+ 
+'      </value>'+ 
+'      <value name="cmd2_1">'+ 
+'        <block type="text">'+ 
+'          <field name="TEXT">Hello World</field>'+ 
+'        </block>'+ 
+'      </value>'+ 
+'    </block>'+ 
 '    </value>'+     
 '  </block>'+ 
 '  <block type="cmd6">'+   
