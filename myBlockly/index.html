@@ -42,19 +42,31 @@
 
 <table>
   <tr>
-    <td>
+    <td rowspan="3">
       <div id="blocklyDiv" style="height: 620px; width: 950px;"></div>
     </td>
     <td align="center" valign="top">
-      <button onclick="runCode()">Run Code</button>
+      <button onclick="runCode()" id="runCode">Run Code</button>
       <button onclick="stopCode()">Stop Code</button>
       <button onclick="exportBlocks()">Export Blocks</button>
-      <button onclick="importBlocks()">Import Blocks</button><br><br>
+      <button onclick="importBlocks()">Import Blocks</button>
+	</td>
+  </tr>
+  <tr>
+	<td align="center">
+	  iframe : left<input type="text" id="ifrLeft" size="2" value="250" onfocus="this.select()">top<input type="text" id="ifrTop" size="2" value="10" onfocus="this.select()">width<input type="text" id="ifrWidth" size="2" value="600" onfocus="this.select()">height<input type="text" id="ifrHeight" size="2" value="600" onfocus="this.select()">
+	</td>
+  </tr>
+  </tr>
+	<td>
       <textarea id="javscriptArea"  cols="50" rows="37" readonly></textarea>
-      <div id="runArea" style="left:250px;top:10px;position:absolute;display:none;"><iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="geolocation; microphone; camera"></iframe></div>
     </td>
   </tr>
 </table>
+
+<div id="runArea" style="left:250px;top:10px;position:absolute;display:none;z-index:9999">
+<iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="geolocation; microphone; camera"></iframe>
+</div>
 
 <xml id="toolbox" style="display: none"></xml>
 
@@ -104,8 +116,13 @@ function runCode() {
 
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   try {
-    document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,';
+	document.getElementById("runCode").disabled = true;
     document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
+
+	document.getElementById("runArea").style.left = document.getElementById("ifrLeft").value + "px";
+	document.getElementById("runArea").style.top = document.getElementById("ifrTop").value + "px";
+	document.getElementById("iframe_run").style.width = document.getElementById("ifrWidth").value + "px";
+	document.getElementById("iframe_run").style.height = document.getElementById("ifrHeight").value + "px";
 	document.getElementById("runArea").style.display = "block";
   } catch (e) {
     alert(e);
@@ -114,6 +131,7 @@ function runCode() {
 
 function stopCode() {
   try {	
+	document.getElementById("runCode").disabled = false;
     document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';	  
     document.getElementById("runArea").style.display = "none";
   } catch (e) {
