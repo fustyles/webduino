@@ -53,7 +53,7 @@
       <button onclick="exportBlocks()">Export Blocks</button>
       <button onclick="importBlocks()">Import Blocks</button><br><br>
       <textarea id="javscriptArea"  cols="50" rows="37" readonly></textarea>
-      <iframe id="iframe_run" style="left:250px;top:10px;width:600px;height:600px;position:absolute;display:none;background-color: white" frameborder="1"  scrolling="auto" allow="geolocation; microphone; camera"></iframe>
+      <div id="runArea" style="left:250px;top:10px;position:absolute;display:none;"><iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="geolocation; microphone; camera"></iframe></div>
     </td>
   </tr>
 </table>
@@ -99,10 +99,10 @@ function runCode() {
 
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
 
-  document.getElementById("iframe_run").style.display = "block";
   try {
     document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,';
     document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
+	document.getElementById("runArea").style.display = "block";
   } catch (e) {
     alert(e);
   }
@@ -111,7 +111,7 @@ function runCode() {
 function stopCode() {
   try {	
     document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';	  
-    document.getElementById("iframe_run").style.display = "none";
+    document.getElementById("runArea").style.display = "none";
   } catch (e) {
     alert(e);
   }	  
