@@ -7,32 +7,35 @@
   <title>myBlockly</title>
   <script>
 	var script_blockly = [
-	'https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js',
 	'../../blockly_compressed.js',
 	'../../blocks_compressed.js',
 	'../../javascript_compressed.js',
+
 	'https://fustyles.github.io/webduino/myBlockly/toolbox.js',
 	'https://fustyles.github.io/webduino/myBlockly/en.js',
+
 	'https://fustyles.github.io/webduino/myBlockly/Instruction/blocks_Instruction.js',
 	'https://fustyles.github.io/webduino/myBlockly/Instruction/javascript_Instruction.js',
 	'https://fustyles.github.io/webduino/myBlockly/Instruction/toolbox_Instruction.js',
+
 	'https://fustyles.github.io/webduino/myBlockly/MatrixLed/blocks_MatrixLed.js',
 	'https://fustyles.github.io/webduino/myBlockly/MatrixLed/javascript_MatrixLed.js',
 	'https://fustyles.github.io/webduino/myBlockly/MatrixLed/toolbox_MatrixLed.js',
 	'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed.js',
-	'https://fustyles.github.io/webduino/myBlockly/MatrixLed/matrixled.js',
+
 	'https://fustyles.github.io/webduino/myBlockly/GameElements/blocks_GameElements.js',
 	'https://fustyles.github.io/webduino/myBlockly/GameElements/javascript_GameElements.js',
 	'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameElements.js',
-	'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements.js',
-	'https://fustyles.github.io/webduino/myBlockly/GameElements/gameelements.js'
+	'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements.js'
 	];
 	for (var i=0;i<script_blockly.length;i++) {
 	document.write("\<script src='"+script_blockly[i]+"'\>\<\/script>");
 	}
 	var script_iframe_run = [
 	'https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js',
+
 	'https://fustyles.github.io/webduino/myBlockly/MatrixLed/matrixled.js',
+
 	'https://fustyles.github.io/webduino/myBlockly/GameElements/gameelements.js'
 	];
   </script>
@@ -55,32 +58,22 @@
   </tr>
 </table>
 
-<xml id="toolbox" style="display: none">
-</xml>
+<xml id="toolbox" style="display: none"></xml>
 
 <xml id="startBlocks" style="display: none">
   <variables><variable type="" id="~_W/2o][NZD,=;w]?]vn">i</variable><variable type="" id="g/A4n2qD)|6C7UZz5Ojh">fuTimer</variable></variables><block type="variables_set" id="nbzU8,|B^DrkE,e$];J$" x="-479" y="48"><field name="VAR" id="~_W/2o][NZD,=;w]?]vn" variabletype="">i</field><value name="VALUE"><block type="math_number" id="3$e-WV8BhM=f(/E|!+oL"><field name="NUM">0</field></block></value><next><block type="document_timer" id="ariN:7e]XpR9yjC+*Wxt"><field name="fuTimer_" id="g/A4n2qD)|6C7UZz5Ojh" variabletype="">fuTimer</field><value name="intervals_"><block type="math_number" id="3Y%~O*9(chxeF.E3jw72"><field name="NUM">1000</field></block></value><statement name="do_"><block type="variables_set" id="niPM`;(Q7dv-#VHpQyk)"><field name="VAR" id="~_W/2o][NZD,=;w]?]vn" variabletype="">i</field><value name="VALUE"><block type="math_arithmetic" id="t.x4_B|Lj{:t0!{3K0*^"><field name="OP">ADD</field><value name="A"><block type="variables_get" id="/.__!xT[S(2H0QZ0-_.f"><field name="VAR" id="~_W/2o][NZD,=;w]?]vn" variabletype="">i</field></block></value><value name="B"><block type="math_number" id="$Rs34pR:xIl3eH.Atr)#"><field name="NUM">1</field></block></value></block></value><next><block type="controls_if" id="m40XO+,EQu.Vqyf,=!:Q"><mutation else="1"></mutation><value name="IF0"><block type="logic_compare" id="#ywJ[rb{urm^#gdl8_]n"><field name="OP">GTE</field><value name="A"><block type="variables_get" id="PepOB`e8^ANP7/=2Guku"><field name="VAR" id="~_W/2o][NZD,=;w]?]vn" variabletype="">i</field></block></value><value name="B"><block type="math_number" id="M:2)6,zV%2TBN}^j(r,}"><field name="NUM">10</field></block></value></block></value><statement name="DO0"><block type="document_timer_stop" id=";y2[buge8BtRTGT~mTY]"><field name="fuTimer_" id="g/A4n2qD)|6C7UZz5Ojh" variabletype="">fuTimer</field></block></statement><statement name="ELSE"><block type="cmd15" id="kFdw$IM*2)/YB#VzfXz/"><value name="Instruction"><block type="cmd5" id="BPYvkSVfOjhfP`Qi*F1j"><value name="myVar"><block type="text" id="`M`:Kx7tc6{#C;~*$-EF"><field name="TEXT">console</field></block></value><value name="cmd5_0"><block type="text" id="pntC+QrECmdnTWaCIt=A"><field name="TEXT">log</field></block></value><value name="cmd5_1"><block type="variables_get" id="?}Xla1Vw[~4K8p6ET2U-"><field name="VAR" id="~_W/2o][NZD,=;w]?]vn" variabletype="">i</field></block></value></block></value><next><block type="matrix_led_color" id="FTTcytL+eH~p,pJcbY}]"><value name="value_color_"><block type="colour_random" id="ym2:fon8+ku4!jqWAXL-"></block></value><next><block type="matrix_led_char" id="BtXv23@4aIIBkUS_08B#"><value name="value_char_"><block type="variables_get" id="9,hYnS*W#tg|p#K(^2[x"><field name="VAR" id="~_W/2o][NZD,=;w]?]vn" variabletype="">i</field></block></value></block></next></block></next></block></statement></block></next></block></statement></block></next></block>
 </xml>
 
 <script>
-//append system blocks to toolbox
-while (catSystem.indexOf("<category")!=-1) {
-  var s = catSystem.indexOf("<category");
-  var e = catSystem.indexOf("</category>");
-  var xml = Blockly.Xml.textToDom("<xml>"+catSystem.substring(s,e+11)+"</xml>");
+//append blocks to toolbox
+var category = catSystem + "<category></category>" + catInstruction + catGameElements + catMatrixLed;
+while (category.toLowerCase().indexOf("<category")!=-1) {
+  var s = category.toLowerCase().indexOf("<category");
+  var e = category.toLowerCase().indexOf("</category>");
+  var xml = Blockly.Xml.textToDom("<xml>"+category.substring(s,e+11)+"</xml>");
   document.getElementById('toolbox').append(xml.firstChild);
-  catSystem=catSystem.substr(e+11);
+  category=category.substr(e+11);
 }
-var xml = Blockly.Xml.textToDom("<xml><sep></sep></xml>");
-document.getElementById('toolbox').append(xml.firstChild);
-
-//append custom blocks to toolbox
-var xml = Blockly.Xml.textToDom(catInstruction);
-document.getElementById('toolbox').append(xml.firstChild);
-var xml = Blockly.Xml.textToDom(catGameElements);
-document.getElementById('toolbox').append(xml.firstChild);
-var xml = Blockly.Xml.textToDom(catMatrixLed);
-document.getElementById('toolbox').append(xml.firstChild);
 
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: '../../media/', toolbox: document.getElementById('toolbox')});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
