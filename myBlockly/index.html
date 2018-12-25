@@ -1,4 +1,4 @@
-<!-- Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update date: 2018-12-25 -->
+<!-- Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update: 2018-12-25 -->
 
 <!DOCTYPE html>
 <html>
@@ -29,7 +29,7 @@
 	'https://fustyles.github.io/webduino/myBlockly/GameElements/gameelements.js'
 	];
 	for (var i=0;i<script_blockly.length;i++) {
-	  document.write("\<script src='"+script_blockly[i]+"'\>\<\/script>");
+	document.write("\<script src='"+script_blockly[i]+"'\>\<\/script>");
 	}
 	var script_iframe_run = [
 	'https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js',
@@ -64,7 +64,6 @@
 </xml>
 
 <script>
-	
 //append system blocks to toolbox
 while (catSystem.indexOf("<category")!=-1) {
   var s = catSystem.indexOf("<category");
@@ -75,7 +74,7 @@ while (catSystem.indexOf("<category")!=-1) {
 }
 var xml = Blockly.Xml.textToDom("<xml><sep></sep></xml>");
 document.getElementById('toolbox').append(xml.firstChild);
-	
+
 //append custom blocks to toolbox
 var xml = Blockly.Xml.textToDom(catInstruction);
 document.getElementById('toolbox').append(xml.firstChild);
@@ -83,16 +82,17 @@ var xml = Blockly.Xml.textToDom(catGameElements);
 document.getElementById('toolbox').append(xml.firstChild);
 var xml = Blockly.Xml.textToDom(catMatrixLed);
 document.getElementById('toolbox').append(xml.firstChild);
+
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: '../../media/', toolbox: document.getElementById('toolbox')});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
-	
+
 function showCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
   document.getElementById('javscriptArea').innerHTML = code;
 }
 demoWorkspace.addChangeListener(showCode);
-	
+
 function runCode() {
   window.LoopTrap = 1000;
   Blockly.JavaScript.INFINITE_LOOP_TRAP =
@@ -104,7 +104,9 @@ function runCode() {
     iframe_code = iframe_code+"\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
   }
   iframe_code = iframe_code + "\<\/head\>\<body\>\<script\>" + code + "\<\/script\>\<\/body\>\<\/html\>";
+
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+
   document.getElementById("iframe_run").style.display = "block";
   try {
     document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,';
@@ -113,12 +115,12 @@ function runCode() {
     alert(e);
   }
 }
-	
+
 function stopCode() {
   document.getElementById("iframe_run").style.display = "none";
   document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';
 }
-	
+
 function exportBlocks() {
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
@@ -128,7 +130,7 @@ function exportBlocks() {
     alert(e);
   }
 }
-	
+
 function importBlocks() {
   try {
     var xml_text = prompt("Please enter xml code", "");
@@ -139,7 +141,6 @@ function importBlocks() {
     alert(e);
   }
 }
-	
 </script>
 
 </body>
