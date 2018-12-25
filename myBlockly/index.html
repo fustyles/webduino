@@ -7,34 +7,34 @@
   <title>myBlockly</title>
   <script>
 	var script_blockly = [
-	'../../blockly_compressed.js',
-	'../../blocks_compressed.js',
-	'../../javascript_compressed.js',
+		'../../blockly_compressed.js',
+		'../../blocks_compressed.js',
+		'../../javascript_compressed.js',
 
-	'https://fustyles.github.io/webduino/myBlockly/toolbox.js',
-	'https://fustyles.github.io/webduino/myBlockly/en.js',
+		'https://fustyles.github.io/webduino/myBlockly/toolbox.js',
+		'https://fustyles.github.io/webduino/myBlockly/en.js',
 
-	'https://fustyles.github.io/webduino/myBlockly/Instruction/blocks_Instruction.js',
-	'https://fustyles.github.io/webduino/myBlockly/Instruction/javascript_Instruction.js',
-	'https://fustyles.github.io/webduino/myBlockly/Instruction/toolbox_Instruction.js',
+		'https://fustyles.github.io/webduino/myBlockly/Instruction/blocks_Instruction.js',
+		'https://fustyles.github.io/webduino/myBlockly/Instruction/javascript_Instruction.js',
+		'https://fustyles.github.io/webduino/myBlockly/Instruction/toolbox_Instruction.js',
 
-	'https://fustyles.github.io/webduino/myBlockly/MatrixLed/blocks_MatrixLed.js',
-	'https://fustyles.github.io/webduino/myBlockly/MatrixLed/javascript_MatrixLed.js',
-	'https://fustyles.github.io/webduino/myBlockly/MatrixLed/toolbox_MatrixLed.js',
-	'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed.js',
+		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/blocks_MatrixLed.js',
+		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/javascript_MatrixLed.js',
+		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/toolbox_MatrixLed.js',
+		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed.js',
 
-	'https://fustyles.github.io/webduino/myBlockly/GameElements/blocks_GameElements.js',
-	'https://fustyles.github.io/webduino/myBlockly/GameElements/javascript_GameElements.js',
-	'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameElements.js',
-	'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements.js'
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/blocks_GameElements.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/javascript_GameElements.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameElements.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements.js'
 	];
 	for (var i=0;i<script_blockly.length;i++) {
 	  document.write("\<script src='"+script_blockly[i]+"'\>\<\/script>");
 	}
 	var script_iframe_run = [
-	'https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js',
-	'https://fustyles.github.io/webduino/myBlockly/MatrixLed/matrixled.js',
-	'https://fustyles.github.io/webduino/myBlockly/GameElements/gameelements.js'
+		'https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js',
+		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/matrixled.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/gameelements.js'
 	];
   </script>
 </head>
@@ -64,7 +64,14 @@
 
 <script>
 //append blocks to toolbox
-var category = catSystem + "<category></category>" + catInstruction + catGameElements + catMatrixLed;
+var category = [
+	catSystem,
+	"<category></category>",
+	catInstruction,
+	catGameElements,
+	catMatrixLed
+].join("");
+
 while (category.toLowerCase().indexOf("<category")!=-1) {
   var s = category.toLowerCase().indexOf("<category");
   var e = category.toLowerCase().indexOf("</category>");
@@ -99,7 +106,7 @@ function runCode() {
   try {
     document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,';
     document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
-    document.getElementById("runArea").style.display = "block";
+	document.getElementById("runArea").style.display = "block";
   } catch (e) {
     alert(e);
   }
