@@ -92,7 +92,6 @@ while (category.toLowerCase().indexOf("<category")!=-1) {
 }
 	
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: '../../media/', toolbox: document.getElementById('toolbox')});
-	
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
 	
 function showCode() {
@@ -107,7 +106,7 @@ function runCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP =
   'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-  var iframe_code="\<html\>\<head\>";
+  var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
   for (var i=0;i<script_iframe_run.length;i++)
   {
     iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
@@ -115,12 +114,12 @@ function runCode() {
   iframe_code += "\<\/head\>\<body\>\<script\>" + code + "\<\/script\>\<\/body\>\<\/html\>";
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   try {
-    document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
     document.getElementById("runArea").style.left = document.getElementById("ifrLeft").value + "px";
     document.getElementById("runArea").style.top = document.getElementById("ifrTop").value + "px";
     document.getElementById("iframe_run").style.width = document.getElementById("ifrWidth").value + "px";
     document.getElementById("iframe_run").style.height = document.getElementById("ifrHeight").value + "px";
     document.getElementById("runArea").style.display = "block";
+    document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
   } catch (e) {
     alert(e);
   }
