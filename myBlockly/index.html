@@ -84,7 +84,6 @@ var category = [
 	catGameElements,
 	catMatrixLed
 ].join("");
-
 while (category.toLowerCase().indexOf("<category")!=-1) {
   var s = category.toLowerCase().indexOf("<category");
   var e = category.toLowerCase().indexOf("</category>");
@@ -107,6 +106,7 @@ function runCode() {
   window.LoopTrap = 1000;
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+	
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
   var iframe_code="\<html\>\<head\>";
   for (var i=0;i<script_iframe_run.length;i++)
