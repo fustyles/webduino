@@ -1,5 +1,5 @@
 var catOpenURL = '<xml>'+
-'<category name="%{BKY_EXECUTEURL}" colour="%{BKY_EXECUTEURL_HUE}">'+
+'<category name="%{BKY_OPENURL}" colour="%{BKY_OPENURL_HUE}">'+
 '  <block type="iframe_open">'+
 '    <value name="openid_">'+
 '      <block type="text">'+
