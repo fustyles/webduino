@@ -14,12 +14,14 @@ Blockly.Msg["CATMATH"] = "MATH";
 Blockly.Msg["CATTEXT"] = "TEXT";
 Blockly.Msg["CATLISTS"] = "LISTS";
 Blockly.Msg["CATCOLOUR"] = "COLOUR";
-Blockly.Msg["INSTRUCTION"] = "INSTRUCTION";
-Blockly.Msg["MATRIXLED"] = "MATRIXLED";
-Blockly.Msg["GAMEELEMENTS"] = "GAMEELEMENTS";
+Blockly.Msg["INSTRUCTION"] = "Instruction";
+Blockly.Msg["MATRIXLED"] = "MatrixLED";
+Blockly.Msg["GAMEELEMENTS"] = "GameElements";
+Blockly.Msg["EXECUTEURL"] = "ExecuteURL";
 Blockly.Msg["INSTRUCTION_HUE"] = "280";
 Blockly.Msg["MATRIXLED_HUE"] = "280";
 Blockly.Msg["GAMEELEMENTS_HUE"] = "280";
+Blockly.Msg["EXECUTEURL_HUE"] = "280";
 
 
 Blockly.Msg["ADD_COMMENT"] = "Add Comment";

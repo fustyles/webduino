@@ -17,9 +17,11 @@ Blockly.Msg["CATCOLOUR"] = "顏色";
 Blockly.Msg["INSTRUCTION"] = "擴充指令";
 Blockly.Msg["MATRIXLED"] = "模擬指示燈";
 Blockly.Msg["GAMEELEMENTS"] = "遊戲元素";
+Blockly.Msg["EXECUTEURL"] = "執行網址";
 Blockly.Msg["INSTRUCTION_HUE"] = "280";
 Blockly.Msg["MATRIXLED_HUE"] = "280";
 Blockly.Msg["GAMEELEMENTS_HUE"] = "280";
+Blockly.Msg["EXECUTEURL_HUE"] = "280";
 
 
 Blockly.Msg["ADD_COMMENT"] = "加入註解";
