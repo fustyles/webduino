@@ -33,7 +33,6 @@ Blockly.Blocks['iframe_open'] = {
   this.setNextStatement(true);
   this.setTooltip('');
   this.setColour(65);
-  this.setHelpUrl(mainUrl + 'basic/blockly/blockly-information.html' + utmUrl);
   }
 };
 
