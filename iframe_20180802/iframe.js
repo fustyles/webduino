@@ -4,7 +4,7 @@
 
   'use strict';
 
-  function createIframe(input_id_,input_url_,input_width_,input_height_,input_left_,input_top_,input_zindex_) {
+  function openURL(input_id_,input_url_,input_width_,input_height_,input_left_,input_top_,input_zindex_) {
     
     var substr = input_url_.toLowerCase().split('.');
     var extname_av = ".aac,.au,.aif,.aiff,.aiffc,.alac,.ape,.asf,.avi,.cda,.dat,.divx,.flac,.m2ts,.m4a,.mid,.mov,.mp2,.mp3,.mp4,.mpc,.mpg,.mpeg,.mv2,.ogg,.pdf,.ra,.ram,.raw,.rcp,.rm,.rmvb,.snd,.tak,.tta,.vob,.voc,.wma,.wav,.webm,.wmf,.wmv,.wv,.xmi,";
@@ -40,12 +40,12 @@
     }
   }
   
-  function deleteIframe(input_id_){
+  function closeURL(input_id_){
     if (document.getElementById("iframe"+input_id_))
       document.getElementById("iframe"+input_id_).remove();
   }
 
-  window.createIframe = createIframe;
-  window.deleteIframe = deleteIframe;
+  window.openURL = openURL;
+  window.closeURL = closeURL;
 
 }(window, window.document));
