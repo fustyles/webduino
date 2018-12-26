@@ -12,13 +12,16 @@
 		'../../javascript_compressed.js',
 		'https://fustyles.github.io/webduino/myBlockly/toolbox.js',
 		'https://fustyles.github.io/webduino/myBlockly/en.js',
+		
 		'https://fustyles.github.io/webduino/myBlockly/Instruction/blocks_Instruction.js',
 		'https://fustyles.github.io/webduino/myBlockly/Instruction/javascript_Instruction.js',
 		'https://fustyles.github.io/webduino/myBlockly/Instruction/toolbox_Instruction.js',
+		
 		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/blocks_MatrixLed.js',
 		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/javascript_MatrixLed.js',
 		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/toolbox_MatrixLed.js',
 		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed.js',
+		
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/blocks_GameElements.js',
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/javascript_GameElements.js',
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameElements.js',
@@ -49,7 +52,7 @@
   </tr>
   <tr>
     <td align="center">
-      iframe : left<input type="text" id="ifrLeft" size="2" value="250" onfocus="this.select()">top<input type="text" id="ifrTop" size="2" value="100" onfocus="this.select()">width<input type="text" id="ifrWidth" size="2" value="600" onfocus="this.select()">height<input type="text" id="ifrHeight" size="2" value="400" onfocus="this.select()">
+      Screen : left<input type="text" id="ifrLeft" size="2" value="250" onfocus="this.select()">top<input type="text" id="ifrTop" size="2" value="100" onfocus="this.select()">width<input type="text" id="ifrWidth" size="2" value="600" onfocus="this.select()">height<input type="text" id="ifrHeight" size="2" value="400" onfocus="this.select()">
     </td>
   </tr>
   </tr>
@@ -87,14 +90,18 @@ while (category.toLowerCase().indexOf("<category")!=-1) {
   document.getElementById('toolbox').append(xml.firstChild);
   category=category.substr(e+11);
 }
+	
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: '../../media/', toolbox: document.getElementById('toolbox')});
+	
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
+	
 function showCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
   document.getElementById('javscriptArea').innerHTML = code;
 }
 demoWorkspace.addChangeListener(showCode);
+	
 function runCode() {
   window.LoopTrap = 1000;
   Blockly.JavaScript.INFINITE_LOOP_TRAP =
@@ -118,6 +125,7 @@ function runCode() {
     alert(e);
   }
 }
+	
 function stopCode() {
   try {	
     document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';
@@ -125,6 +133,7 @@ function stopCode() {
     alert(e);
   }
 }
+	
 function closeScreen() {
   try {	
     document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';	  
@@ -133,6 +142,7 @@ function closeScreen() {
     alert(e);
   }	  
 }
+	
 function exportBlocks() {
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
@@ -142,6 +152,7 @@ function exportBlocks() {
     alert(e);
   }
 }
+	
 function importBlocks() {
   try {
     var xml_text = prompt("Please enter XML code", "");
