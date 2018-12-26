@@ -118,12 +118,11 @@ function runCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   try {
     document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
-
-	document.getElementById("runArea").style.left = document.getElementById("ifrLeft").value + "px";
-	document.getElementById("runArea").style.top = document.getElementById("ifrTop").value + "px";
-	document.getElementById("iframe_run").style.width = document.getElementById("ifrWidth").value + "px";
-	document.getElementById("iframe_run").style.height = document.getElementById("ifrHeight").value + "px";
-	document.getElementById("runArea").style.display = "block";
+    document.getElementById("runArea").style.left = document.getElementById("ifrLeft").value + "px";
+    document.getElementById("runArea").style.top = document.getElementById("ifrTop").value + "px";
+    document.getElementById("iframe_run").style.width = document.getElementById("ifrWidth").value + "px";
+    document.getElementById("iframe_run").style.height = document.getElementById("ifrHeight").value + "px";
+    document.getElementById("runArea").style.display = "block";
   } catch (e) {
     alert(e);
   }
