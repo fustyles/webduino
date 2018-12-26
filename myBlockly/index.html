@@ -10,19 +10,15 @@
 		'../../blockly_compressed.js',
 		'../../blocks_compressed.js',
 		'../../javascript_compressed.js',
-
 		'https://fustyles.github.io/webduino/myBlockly/toolbox.js',
 		'https://fustyles.github.io/webduino/myBlockly/en.js',
-
 		'https://fustyles.github.io/webduino/myBlockly/Instruction/blocks_Instruction.js',
 		'https://fustyles.github.io/webduino/myBlockly/Instruction/javascript_Instruction.js',
 		'https://fustyles.github.io/webduino/myBlockly/Instruction/toolbox_Instruction.js',
-
 		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/blocks_MatrixLed.js',
 		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/javascript_MatrixLed.js',
 		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/toolbox_MatrixLed.js',
 		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed.js',
-
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/blocks_GameElements.js',
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/javascript_GameElements.js',
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameElements.js',
@@ -46,10 +42,10 @@
       <div id="blocklyDiv" style="height: 620px; width: 950px;"></div>
     </td>
     <td align="center" valign="top">
-      <button onclick="runCode()">Run Code</button>
+      <button onclick="document.getElementById('btnRun').disabled=true;runCode();">Show Screen</button>
       <button onclick="exportBlocks()">Export Blocks</button>
       <button onclick="importBlocks()">Import Blocks</button>
-	</td>
+    </td>
   </tr>
   <tr>
     <td align="center">
@@ -57,14 +53,14 @@
     </td>
   </tr>
   </tr>
-    <td>
+   <td>
       <textarea id="javscriptArea"  cols="50" rows="37" readonly></textarea>
     </td>
   </tr>
 </table>
 
 <div id="runArea" style="left:250px;top:10px;position:absolute;display:none;z-index:9999">
-  <button onclick="stopCode();">Stop Code</button><button onclick="runCode()">Run Code</button><button onclick="closeScreen();">Close Screen</button>
+  <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeScreen();">Close Screen</button>
   <br>
   <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="geolocation; microphone; camera"></iframe>
 </div>
@@ -91,22 +87,18 @@ while (category.toLowerCase().indexOf("<category")!=-1) {
   document.getElementById('toolbox').append(xml.firstChild);
   category=category.substr(e+11);
 }
-
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: '../../media/', toolbox: document.getElementById('toolbox')});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
-
 function showCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
   document.getElementById('javscriptArea').innerHTML = code;
 }
 demoWorkspace.addChangeListener(showCode);
-
 function runCode() {
   window.LoopTrap = 1000;
-  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+  Blockly.JavaScript.INFINITE_LOOP_TRAP =
   'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-	
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
   var iframe_code="\<html\>\<head\>";
   for (var i=0;i<script_iframe_run.length;i++)
@@ -114,7 +106,6 @@ function runCode() {
     iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
   }
   iframe_code += "\<\/head\>\<body\>\<script\>" + code + "\<\/script\>\<\/body\>\<\/html\>";
-
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   try {
     document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
@@ -127,7 +118,6 @@ function runCode() {
     alert(e);
   }
 }
-
 function stopCode() {
   try {	
     document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';
@@ -135,7 +125,6 @@ function stopCode() {
     alert(e);
   }
 }
-
 function closeScreen() {
   try {	
     document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';	  
@@ -144,7 +133,6 @@ function closeScreen() {
     alert(e);
   }	  
 }
-
 function exportBlocks() {
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
@@ -154,10 +142,9 @@ function exportBlocks() {
     alert(e);
   }
 }
-
 function importBlocks() {
   try {
-    var xml_text = prompt("Please enter xml code", "");
+    var xml_text = prompt("Please enter XML code", "");
     var xml = Blockly.Xml.textToDom(xml_text);
     demoWorkspace.clear();
     Blockly.Xml.domToWorkspace(xml, demoWorkspace);
