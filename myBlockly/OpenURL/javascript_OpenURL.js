@@ -6,12 +6,12 @@ Blockly.JavaScript['iframe_open'] = function (block) {
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_zindex_ = Blockly.JavaScript.valueToCode(block, 'zindex_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'createIframe(' + value_openid_ + ',' + value_url_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ',' + value_zindex_ + ');\n';
+  var code = 'openURL(' + value_openid_ + ',' + value_url_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ',' + value_zindex_ + ');\n';
   return code;
 };
 
 Blockly.JavaScript['iframe_close'] = function(block) {
   var value_closeid_ = Blockly.JavaScript.valueToCode(block, 'closeid_', Blockly.JavaScript.ORDER_ATOMIC);  
-  var code = 'deleteIframe(' + value_closeid_ + ');\n';
+  var code = 'closeURL(' + value_closeid_ + ');\n';
   return code;
 };
