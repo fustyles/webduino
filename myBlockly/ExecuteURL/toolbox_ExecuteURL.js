@@ -1,5 +1,5 @@
-var catExecuteURL = '<xml><category name="%{BKY_EXECUTEURL}" colour="%{BKY_EXECUTEURL_HUE}">'+
-'<category id="catIframe">'+
+var catExecuteURL = '<xml>'+
+'<category name="%{BKY_EXECUTEURL}" colour="%{BKY_EXECUTEURL_HUE}">'+
 '  <block type="iframe_open">'+
 '    <value name="openid_">'+
 '      <block type="text">'+
