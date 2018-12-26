@@ -104,7 +104,7 @@ demoWorkspace.addChangeListener(showCode);
 
 function runCode() {
   window.LoopTrap = 1000;
-  Blockly.JavaScript.INFINITE_LOOP_TRAP =
+  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
   var iframe_code="\<html\>\<head\>";
