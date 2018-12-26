@@ -25,7 +25,12 @@
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/blocks_GameElements.js',
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/javascript_GameElements.js',
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameElements.js',
-		'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements.js'
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements.js',
+
+		'https://fustyles.github.io/webduino/myBlockly/ExecuteURL/blocks_ExecuteURL.js',
+		'https://fustyles.github.io/webduino/myBlockly/ExecuteURL/javascript_ExecuteURL.js',
+		'https://fustyles.github.io/webduino/myBlockly/ExecuteURL/toolbox_ExecuteURL.js',
+		'https://fustyles.github.io/webduino/myBlockly/ExecuteURL/msg_ExecuteURL.js'
 	];
 	for (var i=0;i<script_blockly.length;i++) {
 	  document.write("\<script src='"+script_blockly[i]+"'\>\<\/script>");
@@ -33,7 +38,8 @@
 	var script_iframe_run = [
 		'https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js',
 		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/matrixled.js',
-		'https://fustyles.github.io/webduino/myBlockly/GameElements/gameelements.js'
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/gameelements.js',
+		'https://fustyles.github.io/webduino/myBlockly/ExecuteURL/executeurl.js'
 	];
   </script>
 </head>
@@ -81,7 +87,8 @@ var category = [
 	"<category></category>",
 	catInstruction,
 	catGameElements,
-	catMatrixLed
+	catMatrixLed,
+	catExecuteURL
 ].join("");
 while (category.toLowerCase().indexOf("<category")!=-1) {
   var s = category.toLowerCase().indexOf("<category");
@@ -92,6 +99,7 @@ while (category.toLowerCase().indexOf("<category")!=-1) {
 }
 	
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: '../../media/', toolbox: document.getElementById('toolbox')});
+	
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
 	
 function showCode() {
@@ -111,7 +119,7 @@ function runCode() {
   {
     iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
   }
-  iframe_code += "\<\/head\>\<body\>\<script\>" + code + "\<\/script\>\<\/body\>\<\/html\>";
+  iframe_code += "\<\/head\>\<body\>  \<div id='showText'\>\<\div>\<script\>" + code + "\<\/script\>\<\/body\>\<\/html\>";
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   try {
     document.getElementById("runArea").style.left = document.getElementById("ifrLeft").value + "px";
@@ -119,7 +127,7 @@ function runCode() {
     document.getElementById("iframe_run").style.width = document.getElementById("ifrWidth").value + "px";
     document.getElementById("iframe_run").style.height = document.getElementById("ifrHeight").value + "px";
     document.getElementById("runArea").style.display = "block";
-    document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
+	document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
   } catch (e) {
     alert(e);
   }

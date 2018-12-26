@@ -306,4 +306,5 @@ var catSystem = '<xml>'+
 '    </value>'+
 '    </block>'+
 '    </category>'+
+'    <sep></sep>'+
 '</xml>';
