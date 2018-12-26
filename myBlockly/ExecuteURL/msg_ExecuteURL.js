@@ -1,4 +1,4 @@
-Blockly.Msg.OPEN_SHOW = "Open Link;
+Blockly.Msg.OPEN_SHOW = "Open Link";
 Blockly.Msg.CLOSE_SHOW = "Close Link";
 Blockly.Msg.OPENID_SHOW = "ID";
 Blockly.Msg.CLOSEID_SHOW = "ID";
