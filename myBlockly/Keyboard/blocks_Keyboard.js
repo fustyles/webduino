@@ -1,7 +1,8 @@
 Blockly.Blocks['keydown_listener'] = {
 	init: function() {
-	this.appendStatementInput("statement")
-		.appendField(Blockly.Msg.KEYDOWN_LISTENER_SHOW);
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg.KEYDOWN_LISTENER_SHOW);
+	this.appendStatementInput("statement");
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
 	this.setTooltip('');
