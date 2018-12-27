@@ -125,7 +125,7 @@ while (category.toLowerCase().indexOf("<category")!=-1) {
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: '../../media/', toolbox: document.getElementById('toolbox')});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
 
-//append example to startBlocks
+//append Game(Tetris) blocks to startBlocks
 var xml = Blockly.Xml.textToDom(Tetris);
 demoWorkspace.clear();
 Blockly.Xml.domToWorkspace(xml, demoWorkspace);
