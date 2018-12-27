@@ -180,9 +180,9 @@ function closeScreen() {
 }
 	
 function exportBlocks() {
-  var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-  var xml_text = Blockly.Xml.domToText(xml);
   try {
+    var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+    var xml_text = Blockly.Xml.domToText(xml);
     window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
   } catch (e) {
     alert(e);
