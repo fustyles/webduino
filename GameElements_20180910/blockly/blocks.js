@@ -205,7 +205,11 @@ Blockly.Blocks['table_td_get'] = {
 Blockly.Blocks['table_td_insert_img'] = {
   init: function () {
   this.appendDummyInput()
-      .appendField(new Blockly.FieldVariable('fuGameTable'), 'fuGameElements_');   
+      .appendField(new Blockly.FieldVariable('fuGameTable'), 'fuGameElements_'); 
+  this.appendValueInput("imgid_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ID_SHOW);     
   this.appendValueInput("x_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -215,10 +219,6 @@ Blockly.Blocks['table_td_insert_img'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_TD_Y_SHOW);   
-  this.appendValueInput("imgid_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID_SHOW); 
   this.appendValueInput("url_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -666,16 +666,16 @@ Blockly.Blocks['image_create'] = {
 
 Blockly.Blocks['image_set'] = {
   init: function() {
+  this.appendValueInput("id_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null) 
+      .appendField(Blockly.Msg.ID_SHOW);    
   this.appendDummyInput()  
       .appendField(Blockly.Msg.SET_SHOW)
       .appendField(new Blockly.FieldDropdown([["url","url"], ["width","width"], ["height","height"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["opacity","opacity"], ["rotate","rotate"], ["rotateX","rotateX"], ["rotateY","rotateY"], ["rotateZ","rotateZ"], ["moveX","moveX"], ["moveY","moveY"]]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
-  this.appendValueInput("id_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck(null) 
-      .appendField(Blockly.Msg.ID_SHOW);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -743,12 +743,12 @@ Blockly.Blocks['image_boundary'] = {
 
 Blockly.Blocks['image_boundary_collision'] = {
   init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.ID_SHOW);    
   this.appendDummyInput()
       .appendField(Blockly.Msg.BOUNDARY_COLLISION_SHOW)
       .appendField(new Blockly.FieldDropdown([["up","up"], ["down","down"], ["left","left"], ["right","right"], ["any","any"]]), "property_");   
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.ID_SHOW);
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
