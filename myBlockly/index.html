@@ -36,8 +36,8 @@
 	for (var i=0;i<script_blockly.length;i++) {
 	  document.write("\<script src='"+script_blockly[i]+"'\>\<\/script>");
 	}
-    var language = location.search.split("?")[1];
-    if (language.toLowerCase()=="zh-hant")
+    var language = location.search.toLowerCase().split("?")[1];
+    if (language=="zh-hant")
     {
 		var script_msg = [
 			'https://fustyles.github.io/webduino/myBlockly/zh-hant.js',
