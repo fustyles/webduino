@@ -105,7 +105,6 @@ while (category.toLowerCase().indexOf("<category")!=-1) {
 }
 	
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: '../../media/', toolbox: document.getElementById('toolbox')});
-	
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
 	
 function showCode() {
@@ -133,8 +132,8 @@ function runCode() {
     document.getElementById("iframe_run").style.width = document.getElementById("ifrWidth").value + "px";
     document.getElementById("iframe_run").style.height = document.getElementById("ifrHeight").value + "px";
     document.getElementById("runArea").style.display = "block";
-	document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
-	document.getElementById("iframe_run").focus();
+    document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
+    document.getElementById("iframe_run").focus();
   } catch (e) {
     alert(e);
   }
@@ -177,7 +176,6 @@ function importBlocks() {
     alert(e);
   }
 }
-
 </script>
 
 </body>
