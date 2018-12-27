@@ -1,2 +1,2 @@
-Blockly.Msg.KEYDOWN_LISTENER_SHOW = "¶}©l°»´úÁä½L«ö¤U";
-Blockly.Msg.KEYDOWN_KEYCODE_SHOW = "Áä½X­È¬°";
+Blockly.Msg.KEYDOWN_LISTENER_SHOW = "é–‹å§‹åµæ¸¬éµç›¤æŒ‰ä¸‹";
+Blockly.Msg.KEYDOWN_KEYCODE_SHOW = "æŒ‰éµç‚º";
