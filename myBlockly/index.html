@@ -4,6 +4,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
   <title>myBlockly</title>
   <script>
 	var script_blockly = [
@@ -136,7 +137,7 @@ function runCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP =
   'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-  var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
+  var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>\<meta http-equiv='Access-Control-Allow-Origin' content='*'\>";
   for (var i=0;i<script_iframe_run.length;i++)
   {
     iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
