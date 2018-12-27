@@ -12,7 +12,7 @@ Blockly.Blocks['keydown_listener'] = {
 Blockly.Blocks['keydown_keycode'] = {
 	init: function() {
     this.appendDummyInput()
-		.appendField(Blockly.Msg.KEYDOWN_KEYCODE_SHOW);
+		.appendField(Blockly.Msg.KEYDOWN_KEYCODE_SHOW)
 		.appendField(new Blockly.FieldDropdown([
 			["BackSpace","8"],
 			["Tab","9"],
