@@ -134,6 +134,7 @@ function runCode() {
     document.getElementById("iframe_run").style.height = document.getElementById("ifrHeight").value + "px";
     document.getElementById("runArea").style.display = "block";
 	document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
+	document.getElementById("iframe_run").focus();
   } catch (e) {
     alert(e);
   }
