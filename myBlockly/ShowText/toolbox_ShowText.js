@@ -13,7 +13,7 @@ var catShowText = '<xml>'+
 '    </value>'+
 '    <value name="text">'+
 '      <block type="text">'+
-'        <field name="TEXT"></field>'+
+'        <field name="TEXT">Hello</field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
