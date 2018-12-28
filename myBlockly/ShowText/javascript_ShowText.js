@@ -5,6 +5,6 @@ Blockly.JavaScript['showtext'] = function (block) {
   var text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);  
   if ((text.indexOf("'")==0)&&(text.lastIndexOf("'")==text.length-1))
     text = text.substring(1,text.length-1);
-  var code = 'document.getElementById("showText").style.fontSize='+size+';document.getElementById("showText").style.fontcolor='+color+';\ndocument.getElementById("showText").innerHTML = '+ text +';\n';
+  var code = 'document.getElementById("showText").style.fontSize='+size+';document.getElementById("showText").style.color='+color+';\ndocument.getElementById("showText").innerHTML = '+ text +';\n';
   return code;
 };
