@@ -1,4 +1,4 @@
-<!-- Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update: 2018-12-29 -->
+<!-- Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update: 2018-12-28 -->
 
 <!DOCTYPE html>
 <html>
@@ -44,23 +44,23 @@
 	}
 	var language = location.search.toLowerCase();
 	if (language.indexOf("lang=zh-hant")!=-1)
-        {
+	{
 		var script_msg = [
-			'https://fustyles.github.io/webduino/myBlockly/zh-hant.js',
-			'https://fustyles.github.io/webduino/myBlockly/ShowText/msg_ShowText_zh-hant.js',
-			'https://fustyles.github.io/webduino/myBlockly/Keyboard/msg_Keyboard_zh-hant.js',
-			'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed_zh-hant.js',
-			'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements_zh-hant.js',
-			'https://fustyles.github.io/webduino/myBlockly/OpenURL/msg_OpenURL_zh-hant.js'
+		'https://fustyles.github.io/webduino/myBlockly/zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/ShowText/msg_ShowText_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/Keyboard/msg_Keyboard_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/OpenURL/msg_OpenURL_zh-hant.js'
 		];
-        } else{
+	} else{
 		var script_msg = [
-			'https://fustyles.github.io/webduino/myBlockly/en.js',
-			'https://fustyles.github.io/webduino/myBlockly/ShowText/msg_ShowText.js',
-			'https://fustyles.github.io/webduino/myBlockly/Keyboard/msg_Keyboard.js',
-			'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed.js',
-			'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements.js',
-			'https://fustyles.github.io/webduino/myBlockly/OpenURL/msg_OpenURL.js'
+		'https://fustyles.github.io/webduino/myBlockly/en.js',
+		'https://fustyles.github.io/webduino/myBlockly/ShowText/msg_ShowText.js',
+		'https://fustyles.github.io/webduino/myBlockly/Keyboard/msg_Keyboard.js',
+		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements.js',
+		'https://fustyles.github.io/webduino/myBlockly/OpenURL/msg_OpenURL.js'
 		];
 	}
 	for (var i=0;i<script_msg.length;i++) {
@@ -83,13 +83,17 @@
     </td>
     <td align="center" valign="top">
       <button onclick="document.getElementById('btnRun').disabled=true;runCode();">Show Screen</button>
-      <button onclick="exportBlocks()">Export Blocks</button>
-      <button onclick="importBlocks()">Import Blocks</button>
+      left<input type="text" id="ifrLeft" size="1" value="500" onfocus="this.select()">top<input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()">width<input type="text" id="ifrWidth" size="1" value="350" onfocus="this.select()">height<input type="text" id="ifrHeight" size="1" value="545" onfocus="this.select()">
     </td>
   </tr>
   <tr>
     <td align="center">
-      Screen : left<input type="text" id="ifrLeft" size="2" value="500" onfocus="this.select()">top<input type="text" id="ifrTop" size="2" value="20" onfocus="this.select()">width<input type="text" id="ifrWidth" size="2" value="350" onfocus="this.select()">height<input type="text" id="ifrHeight" size="2" value="545" onfocus="this.select()">
+	  <button onclick="exportBlocks()">Export Blocks</button>
+      <button onclick="importBlocks()">Import Blocks</button>
+	  <select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
+	    <option value=""></option>
+		<option value="game_Tetris">Game Tetris</option>
+	  </select>
     </td>
   </tr>
   </tr>
@@ -132,10 +136,14 @@ var demoWorkspace = Blockly.inject('blocklyDiv',{media: '../../media/', toolbox:
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
 
 //append Game(Tetris) blocks to startBlocks
-var xml = Blockly.Xml.textToDom(Tetris);
-demoWorkspace.clear();
-Blockly.Xml.domToWorkspace(xml, demoWorkspace);
-	
+XmldomToWorkspace(Tetris);
+
+function XmldomToWorkspace(example) {	
+	var xml = Blockly.Xml.textToDom(example);
+	demoWorkspace.clear();
+	Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+}	
+
 function showCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
