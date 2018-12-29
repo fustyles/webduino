@@ -21,17 +21,16 @@ Blockly.Blocks['iframe_open'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.LEFT_SHOW);    
-    this.appendValueInput("top_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TOP_SHOW); 
-    this.appendValueInput("zindex_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ZINDEX_SHOW);    
+  this.appendValueInput("top_")
+    .setCheck("Number")
+    .setAlign(Blockly.ALIGN_RIGHT)
+    .appendField(Blockly.Msg.TOP_SHOW); 
+  this.appendValueInput("zindex_")
+    .setCheck("Number")
+    .setAlign(Blockly.ALIGN_RIGHT)
+    .appendField(Blockly.Msg.ZINDEX_SHOW);    
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setTooltip('');
   this.setColour(65);
   }
 };
@@ -42,11 +41,10 @@ Blockly.Blocks['iframe_close'] = {
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.CLOSE_SHOW)
-        .appendField(Blockly.Msg.CLOSEID_SHOW)     
+        .appendField(Blockly.Msg.CLOSEID_SHOW);
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(65);
- this.setTooltip("");
- this.setHelpUrl("");
   }
 };
