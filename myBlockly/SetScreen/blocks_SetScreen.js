@@ -26,6 +26,7 @@ Blockly.Blocks['comment'] = {
   this.appendValueInput("text")
       .setCheck(null)
       .appendField(Blockly.Msg.SETSCREEN_COMMENT_SHOW); 
+  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(90);
