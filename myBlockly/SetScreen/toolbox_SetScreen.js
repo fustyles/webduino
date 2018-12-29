@@ -1,4 +1,4 @@
-var catSetScreen = '<xml>'+
+﻿var catSetScreen = '<xml>'+
 '<category name="%{BKY_SETSCREEN}" colour="%{BKY_SETSCREEN_HUE}">'+
 '  <block type="setscreen">'+
 '    <value name="left">'+

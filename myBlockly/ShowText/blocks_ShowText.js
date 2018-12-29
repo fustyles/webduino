@@ -1,4 +1,4 @@
-Blockly.Blocks['showtext'] = {
+﻿Blockly.Blocks['showtext'] = {
   init: function() {
   this.appendDummyInput()
       .appendField(Blockly.Msg.SHOWTEXT_SHOW);  

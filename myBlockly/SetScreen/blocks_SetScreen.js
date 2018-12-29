@@ -1,4 +1,4 @@
-Blockly.Blocks['setscreen'] = {
+﻿Blockly.Blocks['setscreen'] = {
   init: function() {
   this.appendDummyInput()
       .appendField(Blockly.Msg.SETSCREEN_SHOW);  

@@ -1,4 +1,4 @@
-var catShowText = '<xml>'+
+﻿var catShowText = '<xml>'+
 '<category name="%{BKY_SHOWTEXT}" colour="%{BKY_SHOWTEXT_HUE}">'+
 '  <block type="showtext">'+
 '    <value name="size">'+

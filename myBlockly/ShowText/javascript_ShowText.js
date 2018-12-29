@@ -1,4 +1,4 @@
-Blockly.JavaScript['showtext'] = function (block) {
+﻿Blockly.JavaScript['showtext'] = function (block) {
   var size = Blockly.JavaScript.valueToCode(block, 'size', Blockly.JavaScript.ORDER_ATOMIC);
   size = "'"+size+"px'";
   var color = Blockly.JavaScript.valueToCode(block, 'color', Blockly.JavaScript.ORDER_ATOMIC);
