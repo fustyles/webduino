@@ -113,6 +113,12 @@
         <tr>
           <td align="left" valign="center">
 	    <button onclick="importBlocks()">Import Blocks</button>
+	    <input id="myfile"  type="file" onchange ="getXML(this);" accept=".txt,.xml">
+          </td>
+        </tr>
+        <tr>
+          <td align="left" valign="center">
+	    Example
             <select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
               <option value=""></option>
               <option value="Game_Tetris">Game_Tetris</option>
@@ -120,8 +126,7 @@
 	      <option value="ShowText_example">ShowText_example</option>
 	      <option value="Instruction_example">Instruction_example</option>
 	      <option value="OpenURL_example">OpenURL_example</option>
-            </select><br>
-	    <input id="myfile"  type="file" onchange ="getXML(this);" accept=".txt,.xml">
+            </select>
           </td>
         </tr>
         <tr>
@@ -129,9 +134,9 @@
             <textarea id="javscriptArea"  cols="50" rows="30" readonly></textarea>
           </td>
         </tr>
-		<tr>
+	<tr>
           <td align="center">
-	        Fu Chung-Yi (Taiwan)  Update Date : 2018-12-29
+	    Fu Chung-Yi (Taiwan)  Update Date : 2018-12-29
           </td>
         </tr>
       </table>
