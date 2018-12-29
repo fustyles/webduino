@@ -8,6 +8,6 @@ Blockly.JavaScript['showtext'] = function (block) {
 };
 
 Blockly.JavaScript['linebreak'] = function (block) {
-  var code = '<br>';
+  var code = '"<br>"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
