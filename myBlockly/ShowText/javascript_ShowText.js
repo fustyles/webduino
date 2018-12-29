@@ -21,10 +21,10 @@ Blockly.JavaScript['setscreen'] = function (block) {
   width = "'"+width+"px'";
   var height = Blockly.JavaScript.valueToCode(block, 'height', Blockly.JavaScript.ORDER_ATOMIC);
   height = "'"+height+"px'";
-  document.getElementById("runArea").style.left='+left+';
-	document.getElementById("runArea").style.top='+top+';
-	document.getElementById("iframe_run").style.width='+width+';
-	document.getElementById("iframe_run").style.height='+height+';
+  document.getElementById("runArea").style.left='+left;
+  document.getElementById("runArea").style.top='+top;
+  document.getElementById("iframe_run").style.width='+width;
+  document.getElementById("iframe_run").style.height='+height;
   
   var code = '//document.getElementById("runArea").style.left='+left+';\n//document.getElementById("runArea").style.top='+top+';\n//document.getElementById("iframe_run").style.width='+width+';\n//document.getElementById("iframe_run").style.height='+height+';\n';
   return code;
