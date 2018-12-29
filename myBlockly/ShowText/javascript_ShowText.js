@@ -11,3 +11,16 @@ Blockly.JavaScript['linebreak'] = function (block) {
   var code = "'<br>'";
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['setscreen'] = function (block) {
+  var left = Blockly.JavaScript.valueToCode(block, 'left', Blockly.JavaScript.ORDER_ATOMIC);
+  left = "'"+left+"px'";
+  var top = Blockly.JavaScript.valueToCode(block, 'top', Blockly.JavaScript.ORDER_ATOMIC);
+  top = "'"+top+"px'";
+  var width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC);
+  width = "'"+width+"px'";
+  var height = Blockly.JavaScript.valueToCode(block, 'height', Blockly.JavaScript.ORDER_ATOMIC);
+  height = "'"+height+"px'";
+  var code = '//document.getElementById("runArea").style.left='+left+';\n//document.getElementById("runArea").style.top='+top+';\n//document.getElementById("iframe_run").style.width='+width+';\n//document.getElementById("iframe_run").style.height='+height+';\n';
+  return code;
+};
