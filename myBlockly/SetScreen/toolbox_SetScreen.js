@@ -1,4 +1,4 @@
-﻿var catSetScreen = '<xml>'+
+var catSetScreen = '<xml>'+
 '<category name="%{BKY_SETSCREEN}" colour="%{BKY_SETSCREEN_HUE}">'+
 '  <block type="setscreen">'+
 '    <value name="left">'+
@@ -19,6 +19,13 @@
 '    <value name="height">'+
 '      <block type="math_number">'+
 '        <field name="NUM">500</field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+   
+'  <block type="setscreen">'+
+'    <value name="text">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
