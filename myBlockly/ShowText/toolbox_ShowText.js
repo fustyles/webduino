@@ -17,5 +17,7 @@ var catShowText = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
+'  <block type="linebreak">'+
+'  </block>'+
 '</category>'+
 '</xml>';

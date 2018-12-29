@@ -16,3 +16,11 @@ Blockly.Blocks['showtext'] = {
   this.setColour(65);
   }
 };
+
+Blockly.Blocks['linebreak'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.LINEBREAK_SHOW);  
+  this.setOutput(true, null); 
+  }
+};

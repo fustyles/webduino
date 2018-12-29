@@ -6,3 +6,8 @@ Blockly.JavaScript['showtext'] = function (block) {
   var code = 'document.getElementById("showText").style.fontSize='+size+';\ndocument.getElementById("showText").style.color='+color+';\ndocument.getElementById("showText").innerHTML = '+ text +';\n';
   return code;
 };
+
+Blockly.JavaScript['linebreak'] = function (block) {
+  var code = '<br>';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
