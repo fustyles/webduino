@@ -1,4 +1,4 @@
-﻿Blockly.JavaScript['setscreen'] = function (block) {
+Blockly.JavaScript['setscreen'] = function (block) {
   var left = Blockly.JavaScript.valueToCode(block, 'left', Blockly.JavaScript.ORDER_ATOMIC);
   var top = Blockly.JavaScript.valueToCode(block, 'top', Blockly.JavaScript.ORDER_ATOMIC);
   var width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC);
@@ -9,5 +9,11 @@
   document.getElementById("ifrHeight").value=height;
   
   var code = '';
+  return code;
+};
+
+Blockly.JavaScript['comment'] = function (block) {
+  var text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '//' + text;
   return code;
 };
