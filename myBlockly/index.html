@@ -11,16 +11,13 @@
 		'https://blockly-demo.appspot.com/static/blocks_compressed.js',
 		'https://blockly-demo.appspot.com/static/javascript_compressed.js',
 		'https://fustyles.github.io/webduino/myBlockly/toolbox.js',
-
 		'https://fustyles.github.io/webduino/myBlockly/example/Game_Tetris.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/Matrixled_Marquee_iloveyou.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/ShowText_example.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/Instruction_example.js',
-
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/blocks_ShowText.js',
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/javascript_ShowText.js',
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/toolbox_ShowText.js',
-
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/blocks_Keyboard.js',
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/javascript_Keyboard.js',
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/toolbox_Keyboard.js',
@@ -95,29 +92,34 @@
             <button onclick="document.getElementById('btnRun').disabled=true;runCode();">Show Screen</button>
             left<input type="text" id="ifrLeft" size="1" value="500" onfocus="this.select()">top<input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()">width<input type="text" id="ifrWidth" size="1" value="350" onfocus="this.select()">height<input type="text" id="ifrHeight" size="1" value="545" onfocus="this.select()">
           </td>
-      </tr>
-      <tr>
-        <td  align="left" valign="center">
-          <button onclick="exportBlocks()">Export Blocks</button>
-        </td>
-      </tr>
-      <tr>
-        <td align="left" valign="center">
-          <button onclick="importBlocks()">Import Blocks</button>
-          <select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
-            <option value=""></option>
-            <option value="Game_Tetris">Game_Tetris</option>
-            <option value="Matrixled_Marquee_iloveyou">Matrixled_Marquee_iloveyou</option>
-	    <option value="ShowText_example">ShowText_example</option>
-	    <option value="Instruction_example">Instruction_example</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <textarea id="javscriptArea"  cols="50" rows="35" readonly></textarea>
-        </td>
-      </tr>
+        </tr>
+        <tr>
+          <td  align="left" valign="center">
+            <button onclick="exportBlocks()">Export Blocks</button>
+          </td>
+        </tr>
+        <tr>
+          <td align="left" valign="center">
+            <button onclick="importBlocks()">Import Blocks</button>
+            <select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
+              <option value=""></option>
+              <option value="Game_Tetris">Game_Tetris</option>
+              <option value="Matrixled_Marquee_iloveyou">Matrixled_Marquee_iloveyou</option>
+	      <option value="ShowText_example">ShowText_example</option>
+	      <option value="Instruction_example">Instruction_example</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <textarea id="javscriptArea"  cols="50" rows="33" readonly></textarea>
+          </td>
+        </tr>
+		<tr>
+          <td align="center">
+	        Chung-Yi Fu (Taiwan)  Update date: 2018-12-28
+          </td>
+        </tr>
       </table>
     </td>
   </tr>
@@ -154,16 +156,13 @@ while (category.toLowerCase().indexOf("<category")!=-1) {
 	
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.appspot.com/static/media/', toolbox: document.getElementById('toolbox')});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
-
 //append Game(Tetris) blocks to startBlocks
 XmldomToWorkspace(Game_Tetris);
-
 function XmldomToWorkspace(example) {	
   var xml = Blockly.Xml.textToDom(example);
   demoWorkspace.clear();
   Blockly.Xml.domToWorkspace(xml, demoWorkspace);
 }	
-
 function showCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
@@ -217,7 +216,6 @@ function exportBlocks() {
   try {
     var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
     var xml_text = Blockly.Xml.domToText(xml);
-
     var link = document.createElement('a');
     link.download="blocks.txt";
     link.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
@@ -225,7 +223,7 @@ function exportBlocks() {
     link.click();
     link.remove();
   } catch (e) {
-    window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
+	window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
     alert(e);
   }
 }
