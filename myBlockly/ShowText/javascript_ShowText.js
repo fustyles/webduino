@@ -22,6 +22,6 @@ Blockly.JavaScript['setscreen'] = function (block) {
   document.getElementById("ifrWidth").value=width;
   document.getElementById("ifrHeight").value=height;
   
-  var code = '//document.getElementById("runArea").style.left='+left+';\n//document.getElementById("runArea").style.top='+top+';\n//document.getElementById("iframe_run").style.width='+width+';\n//document.getElementById("iframe_run").style.height='+height+';\n';
+  var code = '';
   return code;
 };
