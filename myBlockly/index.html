@@ -80,28 +80,32 @@
 
 <table>
   <tr>
-    <td rowspan="3">
+    <td rowspan="4" align="left" valign="center">
       <div id="blocklyDiv" style="height: 620px; width: 950px;"></div>
     </td>
-    <td align="center" valign="top">
+    <td align="left" valign="center">
       <button onclick="document.getElementById('btnRun').disabled=true;runCode();">Show Screen</button>
       left<input type="text" id="ifrLeft" size="1" value="500" onfocus="this.select()">top<input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()">width<input type="text" id="ifrWidth" size="1" value="350" onfocus="this.select()">height<input type="text" id="ifrHeight" size="1" value="545" onfocus="this.select()">
     </td>
   </tr>
   <tr>
-    <td align="center">
+    <td  align="left" valign="center">
 	  <button onclick="exportBlocks()">Export Blocks</button>
-      <button onclick="importBlocks()">Import Blocks</button>
+    </td>
+  </tr>
+  <tr>
+	<td align="left" valign="center">
+	  <button onclick="importBlocks()">Import Blocks</button>
 	  <select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
 	    <option value=""></option>
 		<option value="Game_Tetris">Game_Tetris</option>
 		<option value="Matrixled_Marquee_iloveyou">Matrixled_Marquee_iloveyou</option>
 	  </select>
-    </td>
+	</td>
   </tr>
-  </tr>
+  <tr>
    <td>
-      <textarea id="javscriptArea"  cols="50" rows="37" readonly></textarea>
+      <textarea id="javscriptArea"  cols="50" rows="36" readonly></textarea>
     </td>
   </tr>
 </table>
@@ -139,7 +143,7 @@ var demoWorkspace = Blockly.inject('blocklyDiv',{media: '../../media/', toolbox:
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
 
 //append Game(Tetris) blocks to startBlocks
-XmldomToWorkspace(game_Tetris);
+XmldomToWorkspace(Game_Tetris);
 
 function XmldomToWorkspace(example) {	
 	var xml = Blockly.Xml.textToDom(example);
