@@ -157,7 +157,7 @@
 //append category to toolbox
 var category = [
 	catSystem,
-	"<category></category>",
+	"<sep></sep>",
 	catSetScreen,
 	catShowText,
 	catKeyboard,
@@ -166,12 +166,20 @@ var category = [
 	catMatrixLed,
 	catOpenURL
 ].join("");
-while (category.toLowerCase().indexOf("<category")!=-1) {
+while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().indexOf("<sep>")!=-1) {
   var s = category.toLowerCase().indexOf("<category");
-  var e = category.toLowerCase().indexOf("</category>");
-  var xml = Blockly.Xml.textToDom("<xml>"+category.substring(s,e+11)+"</xml>");
-  document.getElementById('toolbox').append(xml.firstChild);
-  category=category.substr(e+11);
+  var s1 = category.toLowerCase().indexOf("<sep>");
+  if (s1!=-1&&s1<s) {
+	  var xml = Blockly.Xml.textToDom("<xml><sep></sep></xml>");
+	  document.getElementById('toolbox').append(xml.firstChild);
+	  console.log(category.substr(s1+11));
+	  category=category.substr(s1+11);
+  } else {
+	  var e = category.toLowerCase().indexOf("</category>");
+	  var xml = Blockly.Xml.textToDom("<xml>"+category.substring(s,e+11)+"</xml>");
+	  document.getElementById('toolbox').append(xml.firstChild);
+	  category=category.substr(e+11);
+	}
 }
 	
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.appspot.com/static/media/', toolbox: document.getElementById('toolbox')});
