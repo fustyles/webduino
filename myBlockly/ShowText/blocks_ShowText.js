@@ -22,5 +22,6 @@ Blockly.Blocks['linebreak'] = {
   this.appendDummyInput()
       .appendField(Blockly.Msg.LINEBREAK_SHOW);  
   this.setOutput(true, null); 
+  this.setColour(65);
   }
 };
