@@ -162,7 +162,8 @@ function XmldomToWorkspace(example) {
   var xml = Blockly.Xml.textToDom(example);
   demoWorkspace.clear();
   Blockly.Xml.domToWorkspace(xml, demoWorkspace);
-}	
+}
+
 function showCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
