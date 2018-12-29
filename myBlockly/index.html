@@ -87,34 +87,34 @@
       <input type="button" id="hide" value=">>" onclick="if (document.getElementById('myfeatures').style.display != 'none'){ document.getElementById('myfeatures').style.display = 'none';this.value='<<';document.getElementById('blocklyDiv').style.width='1300px';}else{document.getElementById('myfeatures').style.display = 'block';this.value='>>';document.getElementById('blocklyDiv').style.width='900px';}">
     </td>
     <td align="left" valign="center">
-		<table id="myfeatures">
-			<tr>
-				<td>
-				<button onclick="document.getElementById('btnRun').disabled=true;runCode();">Show Screen</button>
-				left<input type="text" id="ifrLeft" size="1" value="500" onfocus="this.select()">top<input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()">width<input type="text" id="ifrWidth" size="1" value="350" onfocus="this.select()">height<input type="text" id="ifrHeight" size="1" value="545" onfocus="this.select()">
-				</td>
-			</tr>
-			<tr>
-				<td  align="left" valign="center">
-				<button onclick="exportBlocks()">Export Blocks</button>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" valign="center">
-				<button onclick="importBlocks()">Import Blocks</button>
-				<select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
-				<option value=""></option>
-				<option value="Game_Tetris">Game_Tetris</option>
-				<option value="Matrixled_Marquee_iloveyou">Matrixled_Marquee_iloveyou</option>
-				</select>
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<textarea id="javscriptArea"  cols="50" rows="36" readonly></textarea>
-				</td>
-			</tr>
-		</table>
+      <table id="myfeatures">
+        <tr>
+          <td>
+            <button onclick="document.getElementById('btnRun').disabled=true;runCode();">Show Screen</button>
+            left<input type="text" id="ifrLeft" size="1" value="500" onfocus="this.select()">top<input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()">width<input type="text" id="ifrWidth" size="1" value="350" onfocus="this.select()">height<input type="text" id="ifrHeight" size="1" value="545" onfocus="this.select()">
+          </td>
+      </tr>
+      <tr>
+        <td  align="left" valign="center">
+          <button onclick="exportBlocks()">Export Blocks</button>
+        </td>
+      </tr>
+      <tr>
+        <td align="left" valign="center">
+          <button onclick="importBlocks()">Import Blocks</button>
+          <select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
+            <option value=""></option>
+            <option value="Game_Tetris">Game_Tetris</option>
+            <option value="Matrixled_Marquee_iloveyou">Matrixled_Marquee_iloveyou</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <textarea id="javscriptArea"  cols="50" rows="36" readonly></textarea>
+        </td>
+      </tr>
+      </table>
     </td>
   </tr>
 </table>
