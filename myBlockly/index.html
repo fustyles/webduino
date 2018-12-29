@@ -1,4 +1,4 @@
-<!-- Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update: 2018-12-29 -->
+<!-- Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update: 2018-12-28 -->
 
 <!DOCTYPE html>
 <html>
@@ -11,16 +11,17 @@
 		'https://blockly-demo.appspot.com/static/blocks_compressed.js',
 		'https://blockly-demo.appspot.com/static/javascript_compressed.js',
 		'https://fustyles.github.io/webduino/myBlockly/toolbox.js',
-		
+
 		'https://fustyles.github.io/webduino/myBlockly/example/Game_Tetris.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/Matrixled_Marquee_iloveyou.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/ShowText_example.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/Instruction_example.js',
-		
+		'https://fustyles.github.io/webduino/myBlockly/example/OpenURL_example.js',
+
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/blocks_ShowText.js',
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/javascript_ShowText.js',
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/toolbox_ShowText.js',
-		
+
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/blocks_Keyboard.js',
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/javascript_Keyboard.js',
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/toolbox_Keyboard.js',
@@ -93,7 +94,7 @@
         <tr>
           <td>
             <button onclick="document.getElementById('btnRun').disabled=true;runCode();">Show Screen</button>
-            left<input type="text" id="ifrLeft" size="1" value="500" onfocus="this.select()">top<input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()">width<input type="text" id="ifrWidth" size="1" value="350" onfocus="this.select()">height<input type="text" id="ifrHeight" size="1" value="545" onfocus="this.select()">
+            left<input type="text" id="ifrLeft" size="1" value="300" onfocus="this.select()">top<input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()">width<input type="text" id="ifrWidth" size="1" value="350" onfocus="this.select()">height<input type="text" id="ifrHeight" size="1" value="545" onfocus="this.select()">
           </td>
         </tr>
         <tr>
@@ -108,8 +109,9 @@
               <option value=""></option>
               <option value="Game_Tetris">Game_Tetris</option>
               <option value="Matrixled_Marquee_iloveyou">Matrixled_Marquee_iloveyou</option>
-	      <option value="ShowText_example">ShowText_example</option>
-	      <option value="Instruction_example">Instruction_example</option>
+	          <option value="ShowText_example">ShowText_example</option>
+	          <option value="Instruction_example">Instruction_example</option>
+			  <option value="OpenURL_example">OpenURL_example</option>
             </select>
           </td>
         </tr>
