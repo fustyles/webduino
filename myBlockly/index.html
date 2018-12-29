@@ -217,8 +217,16 @@ function exportBlocks() {
   try {
     var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
     var xml_text = Blockly.Xml.domToText(xml);
-    window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
+
+	var link = document.createElement('a');
+	link.id="exportblocks";
+    link.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
+	link.download="blocks.txt";
+	document.body.appendChild(link);
+	link.click();
+    link.remove();;
   } catch (e) {
+	window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
     alert(e);
   }
 }
