@@ -225,7 +225,7 @@ function exportBlocks() {
     link.click();
     link.remove();
   } catch (e) {
-	window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
+    window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
     alert(e);
   }
 }
