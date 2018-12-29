@@ -29,6 +29,5 @@ Blockly.Blocks['comment'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(90);
   }
 };
