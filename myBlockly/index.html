@@ -219,12 +219,11 @@ function exportBlocks() {
     var xml_text = Blockly.Xml.domToText(xml);
 
     var link = document.createElement('a');
-    link.id="exportblocks";
-    link.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
     link.download="blocks.txt";
+    link.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
     document.body.appendChild(link);
     link.click();
-    link.remove();;
+    link.remove();
   } catch (e) {
 	window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
     alert(e);
