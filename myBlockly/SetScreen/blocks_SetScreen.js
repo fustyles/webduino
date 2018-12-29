@@ -1,4 +1,4 @@
-﻿Blockly.Blocks['setscreen'] = {
+Blockly.Blocks['setscreen'] = {
   init: function() {
   this.appendDummyInput()
       .appendField(Blockly.Msg.SETSCREEN_SHOW);  
@@ -15,6 +15,17 @@
       .setCheck("Number")
       .appendField(Blockly.Msg.SETSCREEN_HEIGHT_SHOW);   
   this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(90);
+  }
+};
+
+Blockly.Blocks['comment'] = {
+  init: function() {
+  this.appendValueInput("text")
+      .setCheck(null)
+      .appendField(Blockly.Msg.SETSCREEN_COMMENT_SHOW); 
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(90);
