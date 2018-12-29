@@ -136,7 +136,7 @@ var demoWorkspace = Blockly.inject('blocklyDiv',{media: '../../media/', toolbox:
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
 
 //append Game(Tetris) blocks to startBlocks
-XmldomToWorkspace(Tetris);
+XmldomToWorkspace(game_Tetris);
 
 function XmldomToWorkspace(example) {	
 	var xml = Blockly.Xml.textToDom(example);
