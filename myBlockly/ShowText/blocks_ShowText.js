@@ -13,7 +13,7 @@ Blockly.Blocks['showtext'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(80);
   }
 };
 
@@ -22,6 +22,6 @@ Blockly.Blocks['linebreak'] = {
   this.appendDummyInput()
       .appendField(Blockly.Msg.LINEBREAK_SHOW);  
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(80);
   }
 };
