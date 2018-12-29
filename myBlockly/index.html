@@ -106,7 +106,8 @@
         <tr>
           <td  align="left" valign="center">
             <button onclick="exportBlocks();">Export Blocks</button>
-            <button onclick="demoWorkspace.clear();">Clear Blocks</button>
+			<button onclick="exportHTML();">Export HTML</button>
+			<button onclick="demoWorkspace.clear();">Clear Blocks</button>
           </td>
         </tr>
         <tr>
@@ -127,7 +128,7 @@
             <textarea id="javscriptArea"  cols="50" rows="33" readonly></textarea>
           </td>
         </tr>
-	<tr>
+		<tr>
           <td align="center">
 	        Fu Chung-Yi (Taiwan)  Update Date : 2018-12-29
           </td>
@@ -241,6 +242,28 @@ function exportBlocks() {
     alert(e);
   }
 }
+
+function exportHTML() {
+  try {
+	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+	var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
+	for (var i=0;i<script_iframe_run.length;i++)
+	{
+      iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
+	}
+	iframe_code += "\<\/head\>\<body\>  \<div id='showText'\>\<\div>\<script\>" + code + "\<\/script\>\<\/body\>\<\/html\>";
+
+    var link = document.createElement('a');
+    link.download="project.html";
+    link.href="data:application/octet-stream;utf-8," + encodeURI(iframe_code);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  } catch (e) {
+	window.location.href="data:application/octet-stream;utf-8," + encodeURI(iframe_code);
+    alert(e);
+  }
+}
 	
 function importBlocks() {
   try {
@@ -265,16 +288,16 @@ function importBlocks() {
 }
 
 function hideMySpace(element) {
-  if (document.getElementById('myfeatures').style.display != 'none') { 
-    document.getElementById('myfeatures').style.display = 'none';
-    element.value='<<';
-    document.getElementById('blocklyDiv').style.width='1300px';
-  } else {
-    document.getElementById('myfeatures').style.display = 'block';
-    element.value='>>';
-    document.getElementById('blocklyDiv').style.width='900px';
-  }
-  Blockly.svgResize(demoWorkspace);
+	if (document.getElementById('myfeatures').style.display != 'none') { 
+		document.getElementById('myfeatures').style.display = 'none';
+		element.value='<<';
+		document.getElementById('blocklyDiv').style.width='1300px';
+	} else {
+		document.getElementById('myfeatures').style.display = 'block';
+		element.value='>>';
+		document.getElementById('blocklyDiv').style.width='900px';
+	}
+	Blockly.svgResize(demoWorkspace);
 }
 </script>
 
