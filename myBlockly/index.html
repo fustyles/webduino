@@ -170,10 +170,10 @@ while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().i
   var s = category.toLowerCase().indexOf("<category");
   var s1 = category.toLowerCase().indexOf("<sep>");
   if (s1!=-1&&s1<s) {
-	  var xml = Blockly.Xml.textToDom("<xml><sep></sep></xml>");
+	  var e1 = category.toLowerCase().indexOf("</sep>");
+	  var xml = Blockly.Xml.textToDom("<xml>"+category.substring(s1,e1+6)+"</xml>");
 	  document.getElementById('toolbox').append(xml.firstChild);
-	  console.log(category.substr(s1+11));
-	  category=category.substr(s1+11);
+	  category=category.substr(e1+6);
   } else {
 	  var e = category.toLowerCase().indexOf("</category>");
 	  var xml = Blockly.Xml.textToDom("<xml>"+category.substring(s,e+11)+"</xml>");
