@@ -1,3 +1,6 @@
+Blockly.Msg["OPENURL"] = "執行網址";
+Blockly.Msg["OPENURL_HUE"] = "280";
+
 Blockly.Msg.OPEN_SHOW = "開啟連結";
 Blockly.Msg.CLOSE_SHOW = "關閉連結";
 Blockly.Msg.OPENID_SHOW = "代碼";
