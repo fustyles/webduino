@@ -27,7 +27,7 @@ Blockly.JavaScript['keydown_keycode'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript['keypress_key'] = function(block) {
+Blockly.JavaScript['hotkey'] = function(block) {
   var keycode = block.getFieldValue('keycode');
   if (keycode=="Ctrl")
     var code = '(event.ctrlKey)';
