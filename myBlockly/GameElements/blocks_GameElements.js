@@ -767,6 +767,17 @@ Blockly.Blocks['image_sys_get'] = {
   }
 };
 
+Blockly.Blocks['image_onclick_listener'] = {
+  init: function () {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ONCLICK_LISTENER_SHOW);
+    this.appendStatementInput("do_");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
+
 Blockly.Blocks['image_onclick_get'] = {
   init: function() {
   this.appendValueInput("id_")
