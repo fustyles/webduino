@@ -36,7 +36,7 @@ Blockly.Blocks['keypress_listener'] = {
 
 Blockly.Blocks['keydown_keycode'] = {
 	init: function() {
-    this.appendDummyInput()
+    	this.appendDummyInput()
 		.appendField(Blockly.Msg.KEYDOWN_KEYCODE_SHOW)
 		.appendField(new Blockly.FieldDropdown([
 			["BackSpace","8"],
@@ -101,6 +101,21 @@ Blockly.Blocks['keydown_keycode'] = {
 			["Y(y)","89"],
 			["Z(z)","90"]
 			]), "keycode");
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(65);
+  }
+};
+
+Blockly.Blocks['keypress_key'] = {
+	init: function() {
+    	this.appendDummyInput()
+	    .appendField(new Blockly.FieldDropdown([
+	      ["Ctrl","Ctrl"],
+	      ["Shift","Shift"],
+	      ["Alt","Alt"]
+	      ]), "keycode")
+	    .appendField(Blockly.Msg.KEYPRESS_KEY_SHOW);
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(65);
