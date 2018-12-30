@@ -41,8 +41,6 @@ var catGameImage = '<xml><category name="%{BKY_GAMEIMAGE}" colour="%{BKY_GAMEIMA
 '      </block>'+
 '    </value>'+     
 '  </block>'+
-'  <block type="image_sys_get">'+
-'  </block>'+    
 '  <block type="image_boundary">'+
 '    <value name="left_">'+
 '      <block type="math_number">'+
@@ -54,7 +52,21 @@ var catGameImage = '<xml><category name="%{BKY_GAMEIMAGE}" colour="%{BKY_GAMEIMA
 '        <field name="NUM">500</field>'+
 '      </block>'+
 '    </value>'+    
-'  </block>'+    
+'  </block>'+  
+'  <block type="image_sys_get">'+
+'  </block>'+      
+'  <block type="image_collision">'+
+'    <value name="id1_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+ 
+'    <value name="id2_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
+'  </block>'+       
 '  <block type="image_set">'+
 '    <value name="id_">'+
 '      <block type="text">'+
@@ -88,18 +100,6 @@ var catGameImage = '<xml><category name="%{BKY_GAMEIMAGE}" colour="%{BKY_GAMEIMA
 '      </block>'+
 '    </value>'+  
 '  </block>'+      
-'  <block type="image_collision">'+
-'    <value name="id1_">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+ 
-'    <value name="id2_">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+     
-'  </block>'+   
 '  <block type="image_delete">'+
 '    <value name="id_">'+
 '      <block type="text">'+
