@@ -25,3 +25,14 @@ Blockly.Blocks['linebreak'] = {
   this.setColour(90);
   }
 };
+
+Blockly.Blocks['comment'] = {
+  init: function() {
+  this.appendValueInput("text")
+      .setCheck(null)
+      .appendField(Blockly.Msg.COMMENT_SHOW); 
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  }
+};
