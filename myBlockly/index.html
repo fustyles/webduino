@@ -41,7 +41,10 @@
 		
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/blocks_GameElements.js',
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/javascript_GameElements.js',
-		'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameElements.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameAuxiliary.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameTable.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameCanvas.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameImage.js',
 		
 		'https://fustyles.github.io/webduino/myBlockly/OpenURL/blocks_OpenURL.js',
 		'https://fustyles.github.io/webduino/myBlockly/OpenURL/javascript_OpenURL.js',
@@ -128,26 +131,26 @@
           </td>
         </tr>
         <tr>
-          <td align="left" valign="center">
+          <td  align="left" valign="center">
             <button onclick="exportCODE();">Export CODE</button>
-	    <button onclick="exportHTML();">Export HTML</button>
-	    <button onclick="exportBlocks();">Export Blocks</button>
+	        <button onclick="exportHTML();">Export HTML</button>
+	        <button onclick="exportBlocks();">Export Blocks</button>
           </td>
         </tr>
         <tr>
           <td align="left" valign="center">
-	    <button onclick="importBlocks()">Import Blocks</button>
-            <button onclick="demoWorkspace.clear();">Clear Blocks</button>
+		    <button onclick="importBlocks()">Import Blocks</button>
+		    <button onclick="demoWorkspace.clear();">Clear Blocks</button>
           </td>
         </tr>
         <tr>
           <td align="left" valign="center">
-	    Import <input id="myfile"  type="file" onchange ="getXML(this);" accept=".txt,.xml">
+	        Import <input id="myfile"  type="file" onchange ="getXML(this);" accept=".txt,.xml">
           </td>
         </tr>
         <tr>
           <td align="left" valign="center">
-	    Example
+	        Example
             <select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
               <option value=""></option>
               <option value="Game_Tetris">Game_Tetris</option>
@@ -163,7 +166,7 @@
           <td>
             Language
             <select onchange="var url=location.href.split('?')[0];location.href=url+'?lang='+this.value;">
-	      <option value=""></option>
+			  <option value=""></option>
               <option value="en">en</option>
               <option value="zh-Hant">zh-Hant</option>
               <option value="zh-Hans">zh-Hans</option>
@@ -203,7 +206,10 @@ var category = [
 	catShowText,
 	catKeyboard,
 	catInstruction,
-	catGameElements,
+	catGameAuxiliary,
+	catGameTable,
+	catGameCanvas,
+	catGameImage,
 	catMatrixLed,
 	catOpenURL,
 	catTaiwanAirQuality
