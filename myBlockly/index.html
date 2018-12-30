@@ -122,12 +122,13 @@
           <td  align="left" valign="center">
             <button onclick="exportBlocks();">Export Blocks</button>
 	    <button onclick="exportHTML();">Export HTML</button>
-	    <button onclick="demoWorkspace.clear();">Clear Blocks</button>
+	    <button onclick="exportCODE();">Export CODE</button>
           </td>
         </tr>
         <tr>
           <td align="left" valign="center">
-	        <button onclick="importBlocks()">Import Blocks</button>
+	    <button onclick="importBlocks()">Import Blocks</button>
+	    <button onclick="demoWorkspace.clear();">Clear Blocks</button>
           </td>
         </tr>
         <tr>
@@ -306,6 +307,22 @@ function exportHTML() {
     link.remove();
   } catch (e) {
 	window.location.href="data:application/octet-stream;utf-8," + encodeURI(iframe_code);
+    alert(e);
+  }
+}
+	
+function exportCODE() {
+  try {
+	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+
+    var link = document.createElement('a');
+    link.download="code.txt";
+    link.href="data:application/octet-stream;utf-8," + encodeURI(code);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  } catch (e) {
+	window.location.href="data:application/octet-stream;utf-8," + encodeURI(code);
     alert(e);
   }
 }
