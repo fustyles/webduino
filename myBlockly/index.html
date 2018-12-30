@@ -121,8 +121,8 @@
         <tr>
           <td  align="left" valign="center">
             <button onclick="exportBlocks();">Export Blocks</button>
-	        <button onclick="exportHTML();">Export HTML</button>
-	        <button onclick="demoWorkspace.clear();">Clear Blocks</button>
+	    <button onclick="exportHTML();">Export HTML</button>
+	    <button onclick="demoWorkspace.clear();">Clear Blocks</button>
           </td>
         </tr>
         <tr>
@@ -132,19 +132,19 @@
         </tr>
         <tr>
           <td align="left" valign="center">
-	        <input id="myfile"  type="file" onchange ="getXML(this);" accept=".txt,.xml">
+	    <input id="myfile"  type="file" onchange ="getXML(this);" accept=".txt,.xml">
           </td>
         </tr>
         <tr>
           <td align="left" valign="center">
-	        Example
+	    Example
             <select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
               <option value=""></option>
               <option value="Game_Tetris">Game_Tetris</option>
               <option value="Matrixled_Marquee_iloveyou">Matrixled_Marquee_iloveyou</option>
-	          <option value="ShowText_example">ShowText_example</option>
-	          <option value="Instruction_example">Instruction_example</option>
-	          <option value="OpenURL_example">OpenURL_example</option>
+	      <option value="ShowText_example">ShowText_example</option>
+	      <option value="Instruction_example">Instruction_example</option>
+	      <option value="OpenURL_example">OpenURL_example</option>
             </select>
           </td>
         </tr>
@@ -152,7 +152,7 @@
           <td>
             Language
             <select onchange="var url=location.href.split('?')[0];location.href=url+'?lang='+this.value;">
-			  <option value=""></option>
+	      <option value=""></option>
               <option value="en">en</option>
               <option value="zh-Hant">zh-Hant</option>
               <option value="zh-Hans">zh-Hans</option>
@@ -164,7 +164,7 @@
             <textarea id="javscriptArea"  cols="50" rows="29" readonly></textarea>
           </td>
         </tr>
-	    <tr>
+	<tr>
           <td align="center">
 	    Fu Chung-Yi (Taiwan)  Update Date : 2018-12-30
           </td>
@@ -200,20 +200,21 @@ while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().i
   var s = category.toLowerCase().indexOf("<category");
   var s1 = category.toLowerCase().indexOf("<sep>");
   if (s1!=-1&&s1<s) {
-	  var e1 = category.toLowerCase().indexOf("</sep>");
-	  var xml = Blockly.Xml.textToDom("<xml>"+category.substring(s1,e1+6)+"</xml>");
-	  document.getElementById('toolbox').append(xml.firstChild);
-	  category=category.substr(e1+6);
+    var e1 = category.toLowerCase().indexOf("</sep>");
+    var xml = Blockly.Xml.textToDom("<xml>"+category.substring(s1,e1+6)+"</xml>");
+    document.getElementById('toolbox').append(xml.firstChild);
+    category=category.substr(e1+6);
   } else {
-	  var e = category.toLowerCase().indexOf("</category>");
-	  var xml = Blockly.Xml.textToDom("<xml>"+category.substring(s,e+11)+"</xml>");
-	  document.getElementById('toolbox').append(xml.firstChild);
-	  category=category.substr(e+11);
-	}
+    var e = category.toLowerCase().indexOf("</category>");
+    var xml = Blockly.Xml.textToDom("<xml>"+category.substring(s,e+11)+"</xml>");
+    document.getElementById('toolbox').append(xml.firstChild);
+    category=category.substr(e+11);
+  }
 }
 	
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.appspot.com/static/media/', toolbox: document.getElementById('toolbox')});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
+	
 //append Game(Tetris) blocks to startBlocks
 XmldomToWorkspace(Game_Tetris);
 function XmldomToWorkspace(example) {	
