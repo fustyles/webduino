@@ -20,14 +20,3 @@ Blockly.Blocks['setscreen'] = {
   this.setColour(90);
   }
 };
-
-Blockly.Blocks['comment'] = {
-  init: function() {
-  this.appendValueInput("text")
-      .setCheck(null)
-      .appendField(Blockly.Msg.SETSCREEN_COMMENT_SHOW); 
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  }
-};
