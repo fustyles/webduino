@@ -22,12 +22,5 @@ var catSetScreen = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+   
-'  <block type="comment">'+
-'    <value name="text">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+
-'  </block>'+
 '</category>'+
 '</xml>';
