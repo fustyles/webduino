@@ -292,6 +292,12 @@ Blockly.JavaScript['image_sys_get'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['image_onclick_listener'] = function (block) {
+  var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'setInterval(async function(){\n' + statements_do_ + '},10);\n';
+  return code;
+};
+
 Blockly.JavaScript['image_onclick_get'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   var code = 'image_onclick_get(' + value_id_ + ')';
