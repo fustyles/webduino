@@ -22,7 +22,7 @@
 '  <block type="comment">'+
 '    <value name="text">'+
 '      <block type="text">'+
-'        <field name="TEXT"></field>'+
+'        <field name="TEXT">Make coding fun and interesting</field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+     
