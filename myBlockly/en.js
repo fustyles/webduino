@@ -14,6 +14,16 @@ Blockly.Msg["CATTEXT"] = "TEXT";
 Blockly.Msg["CATLISTS"] = "LISTS";
 Blockly.Msg["CATCOLOUR"] = "COLOUR";
 
+Blockly.Msg["MATH_HUE"] = "230";
+Blockly.Msg["LOOPS_HUE"] = "120";
+Blockly.Msg["LISTS_HUE"] = "260";
+Blockly.Msg["LOGIC_HUE"] = "210";
+Blockly.Msg["VARIABLES_HUE"] = "330";
+Blockly.Msg["TEXTS_HUE"] = "160";
+Blockly.Msg["PROCEDURES_HUE"] = "290";
+Blockly.Msg["COLOUR_HUE"] = "20";
+Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
+
 Blockly.Msg["ADD_COMMENT"] = "Add Comment";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "Can't delete the variable '%1' because it's part of the definition of the function '%2'";
 Blockly.Msg["CHANGE_VALUE_TITLE"] = "Change value:";
@@ -431,13 +441,3 @@ Blockly.Msg["PROCEDURES_DEFRETURN_PROCEDURE"] = Blockly.Msg["PROCEDURES_DEFNORET
 Blockly.Msg["PROCEDURES_DEFRETURN_TITLE"] = Blockly.Msg["PROCEDURES_DEFNORETURN_TITLE"];
 Blockly.Msg["TEXT_APPEND_VARIABLE"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
 Blockly.Msg["TEXT_CREATE_JOIN_ITEM_TITLE_ITEM"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
-
-Blockly.Msg["MATH_HUE"] = "230";
-Blockly.Msg["LOOPS_HUE"] = "120";
-Blockly.Msg["LISTS_HUE"] = "260";
-Blockly.Msg["LOGIC_HUE"] = "210";
-Blockly.Msg["VARIABLES_HUE"] = "330";
-Blockly.Msg["TEXTS_HUE"] = "160";
-Blockly.Msg["PROCEDURES_HUE"] = "290";
-Blockly.Msg["COLOUR_HUE"] = "20";
-Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";

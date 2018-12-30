@@ -14,6 +14,16 @@ Blockly.Msg["CATTEXT"] = "文字";
 Blockly.Msg["CATLISTS"] = "列表";
 Blockly.Msg["CATCOLOUR"] = "颜色";
 
+Blockly.Msg["MATH_HUE"] = "230";
+Blockly.Msg["LOOPS_HUE"] = "120";
+Blockly.Msg["LISTS_HUE"] = "260";
+Blockly.Msg["LOGIC_HUE"] = "210";
+Blockly.Msg["VARIABLES_HUE"] = "330";
+Blockly.Msg["TEXTS_HUE"] = "160";
+Blockly.Msg["PROCEDURES_HUE"] = "290";
+Blockly.Msg["COLOUR_HUE"] = "20";
+Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
+
 Blockly.Msg["ADD_COMMENT"] = "添加注释";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "不能删除变量“%1”，因为它是函数“%2”定义的一部分";
 Blockly.Msg["CHANGE_VALUE_TITLE"] = "更改值：";
@@ -431,20 +441,3 @@ Blockly.Msg["PROCEDURES_DEFRETURN_PROCEDURE"] = Blockly.Msg["PROCEDURES_DEFNORET
 Blockly.Msg["PROCEDURES_DEFRETURN_TITLE"] = Blockly.Msg["PROCEDURES_DEFNORETURN_TITLE"];
 Blockly.Msg["TEXT_APPEND_VARIABLE"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
 Blockly.Msg["TEXT_CREATE_JOIN_ITEM_TITLE_ITEM"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
-
-Blockly.Msg["MATH_HUE"] = "230";
-Blockly.Msg["LOOPS_HUE"] = "120";
-Blockly.Msg["LISTS_HUE"] = "260";
-Blockly.Msg["LOGIC_HUE"] = "210";
-Blockly.Msg["VARIABLES_HUE"] = "330";
-Blockly.Msg["TEXTS_HUE"] = "160";
-Blockly.Msg["PROCEDURES_HUE"] = "290";
-Blockly.Msg["COLOUR_HUE"] = "20";
-Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
-
-Blockly.Msg["CATLOGIC"] = "逻辑";
-Blockly.Msg["CATLOOPS"] = "迴圈";
-Blockly.Msg["CATMATH"] = "数值";
-Blockly.Msg["CATTEXT"] = "文字";
-Blockly.Msg["CATLISTS"] = "列表";
-Blockly.Msg["CATCOLOUR"] = "颜色";
