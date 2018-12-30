@@ -14,21 +14,6 @@ Blockly.Msg["CATMATH"] = "數值";
 Blockly.Msg["CATTEXT"] = "文字";
 Blockly.Msg["CATLISTS"] = "列表";
 Blockly.Msg["CATCOLOUR"] = "顏色";
-//Blockly.Msg["SETSCREEN"] = "設定視窗";
-//Blockly.Msg["SHOWTEXT"] = "顯示文字";
-//Blockly.Msg["KEYBOARD"] = "鍵盤事件"
-//Blockly.Msg["INSTRUCTION"] = "擴充指令";
-//Blockly.Msg["MATRIXLED"] = "模擬指示燈";
-//Blockly.Msg["GAMEELEMENTS"] = "遊戲元素";
-//Blockly.Msg["OPENURL"] = "執行網址";
-//Blockly.Msg["SETSCREEN_HUE"] = "280";
-//Blockly.Msg["SHOWTEXT_HUE"] = "280";
-//Blockly.Msg["KEYBOARD_HUE"] = "280";
-//Blockly.Msg["INSTRUCTION_HUE"] = "280";
-//Blockly.Msg["MATRIXLED_HUE"] = "280";
-//Blockly.Msg["GAMEELEMENTS_HUE"] = "280";
-//Blockly.Msg["OPENURL_HUE"] = "280";
-
 
 Blockly.Msg["ADD_COMMENT"] = "加入註解";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "無法刪除變數「%1」，因為這是功能「%2」定義的一部份內容";
