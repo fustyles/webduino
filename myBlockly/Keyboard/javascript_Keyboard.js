@@ -4,6 +4,18 @@ Blockly.JavaScript['keydown_listener'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['keyup_listener'] = function (block) {
+  var statement = Blockly.JavaScript.statementToCode(block, 'statement');  
+  var code = 'window.addEventListener("keyup", function (event) {\n' + statement + '}, true);\n';
+  return code;
+};
+
+Blockly.JavaScript['keypress_listener'] = function (block) {
+  var statement = Blockly.JavaScript.statementToCode(block, 'statement');  
+  var code = 'window.addEventListener("keypress", function (event) {\n' + statement + '}, true);\n';
+  return code;
+};
+
 Blockly.JavaScript['keydown_keycode'] = function(block) {
   var keycode = block.getFieldValue('keycode'); 
   var code = 'event.keyCode == ' + keycode;
