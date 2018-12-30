@@ -43,6 +43,18 @@ var catGameImage = '<xml><category name="%{BKY_GAMEIMAGE}" colour="%{BKY_GAMEIMA
 '  </block>'+
 '  <block type="image_sys_get">'+
 '  </block>'+    
+'  <block type="image_boundary">'+
+'    <value name="left_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">500</field>'+
+'      </block>'+
+'    </value>'+ 
+'    <value name="top_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">500</field>'+
+'      </block>'+
+'    </value>'+    
+'  </block>'+    
 '  <block type="image_set">'+
 '    <value name="id_">'+
 '      <block type="text">'+
