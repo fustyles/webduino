@@ -1,3 +1,6 @@
+Blockly.Msg["GAMEELEMENTS"] = "GameElements";
+Blockly.Msg["GAMEELEMENTS_HUE"] = "280";
+
 Blockly.Msg.TABLE_CREATE_SHOW = "Table Create";
 Blockly.Msg.TABLE_SET_SHOW = "Table Set";
 Blockly.Msg.TABLE_TD_WIDTH_SHOW = "Cell Width";
