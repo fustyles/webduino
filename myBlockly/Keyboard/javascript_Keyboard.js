@@ -16,6 +16,11 @@ Blockly.JavaScript['keypress_listener'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['get_keycode'] = function(block) {
+  var code = 'event.keyCode';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['keydown_keycode'] = function(block) {
   var keycode = block.getFieldValue('keycode'); 
   var code = 'event.keyCode == ' + keycode;
