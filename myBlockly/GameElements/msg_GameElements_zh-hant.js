@@ -1,3 +1,6 @@
+Blockly.Msg["GAMEELEMENTS"] = "遊戲元素";
+Blockly.Msg["GAMEELEMENTS_HUE"] = "280";
+
 Blockly.Msg.TABLE_CREATE_SHOW = "表格 新增";
 Blockly.Msg.TABLE_SET_SHOW = "表格 設定";
 Blockly.Msg.TABLE_TD_WIDTH_SHOW = "儲存格寬度";
