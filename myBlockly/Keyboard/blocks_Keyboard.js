@@ -10,6 +10,30 @@ Blockly.Blocks['keydown_listener'] = {
 	}
 };
 
+Blockly.Blocks['keyup_listener'] = {
+	init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg.KEYUP_LISTENER_SHOW);
+	this.appendStatementInput("statement");
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setTooltip('');
+	this.setColour(65);
+	}
+};
+
+Blockly.Blocks['keypress_listener'] = {
+	init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg.KEYPRESS_LISTENER_SHOW);
+	this.appendStatementInput("statement");
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setTooltip('');
+	this.setColour(65);
+	}
+};
+
 Blockly.Blocks['keydown_keycode'] = {
 	init: function() {
     this.appendDummyInput()
