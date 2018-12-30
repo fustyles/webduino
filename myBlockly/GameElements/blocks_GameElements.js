@@ -205,11 +205,7 @@ Blockly.Blocks['table_td_get'] = {
 Blockly.Blocks['table_td_insert_img'] = {
   init: function () {
   this.appendDummyInput()
-      .appendField(new Blockly.FieldVariable('fuGameTable'), 'fuGameElements_'); 
-  this.appendValueInput("imgid_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID_SHOW);     
+      .appendField(new Blockly.FieldVariable('fuGameTable'), 'fuGameElements_');    
   this.appendValueInput("x_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -218,7 +214,11 @@ Blockly.Blocks['table_td_insert_img'] = {
   this.appendValueInput("y_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_Y_SHOW);   
+      .appendField(Blockly.Msg.TABLE_TD_Y_SHOW); 
+  this.appendValueInput("imgid_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ID_SHOW);      
   this.appendValueInput("url_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
