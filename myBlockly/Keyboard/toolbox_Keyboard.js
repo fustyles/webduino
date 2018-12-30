@@ -8,5 +8,7 @@ var catKeyboard = '<xml>'+
 '  </block>'+    
 '  <block type="keydown_keycode">'+
 '  </block>'+
+'  <block type="keypress_key">'+
+'  </block>'+    
 '</category>'+
 '</xml>';
