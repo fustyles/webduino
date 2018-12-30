@@ -1,3 +1,6 @@
+Blockly.Msg["OPENURL"] = "OpenURL";
+Blockly.Msg["OPENURL_HUE"] = "280";
+
 Blockly.Msg.OPEN_SHOW = "Open Link";
 Blockly.Msg.CLOSE_SHOW = "Close Link";
 Blockly.Msg.OPENID_SHOW = "ID";
