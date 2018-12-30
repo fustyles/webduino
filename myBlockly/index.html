@@ -45,10 +45,6 @@
 		'https://fustyles.github.io/webduino/myBlockly/OpenURL/blocks_OpenURL.js',
 		'https://fustyles.github.io/webduino/myBlockly/OpenURL/javascript_OpenURL.js',
 		'https://fustyles.github.io/webduino/myBlockly/OpenURL/toolbox_OpenURL.js',
-
-		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/blocks_TaiwanAirQuality.js',
-		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/javascript_TaiwanAirQuality.js',
-		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/toolbox_TaiwanAirQuality.js',
 		
 		'https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'
 	];
@@ -66,8 +62,7 @@
 		'https://fustyles.github.io/webduino/myBlockly/Instruction/msg_Instruction_zh-hant.js',
 		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed_zh-hant.js',
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements_zh-hant.js',
-		'https://fustyles.github.io/webduino/myBlockly/OpenURL/msg_OpenURL_zh-hant.js',
-		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/msg_TaiwanAirQuality_zh-hant.js'
+		'https://fustyles.github.io/webduino/myBlockly/OpenURL/msg_OpenURL_zh-hant.js'
 		];
 	} 
 	else if (language.indexOf("lang=zh-hans")!=-1) {
@@ -79,8 +74,7 @@
 		'https://fustyles.github.io/webduino/myBlockly/Instruction/msg_Instruction_zh-hans.js',
 		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed_zh-hans.js',
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements_zh-hans.js',
-		'https://fustyles.github.io/webduino/myBlockly/OpenURL/msg_OpenURL_zh-hans.js',
-		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/msg_TaiwanAirQuality_zh-hans.js'
+		'https://fustyles.github.io/webduino/myBlockly/OpenURL/msg_OpenURL_zh-hans.js'
 		];
 	} 
 	else {
@@ -92,8 +86,7 @@
 		'https://fustyles.github.io/webduino/myBlockly/Instruction/msg_Instruction.js',
 		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed.js',
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements.js',
-		'https://fustyles.github.io/webduino/myBlockly/OpenURL/msg_OpenURL.js',
-		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/msg_TaiwanAirQuality.js'
+		'https://fustyles.github.io/webduino/myBlockly/OpenURL/msg_OpenURL.js'
 		];
 	}
 	for (var i=0;i<script_msg.length;i++) {
@@ -103,8 +96,7 @@
 		'https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js',
 		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/matrixled.js',
 		'https://fustyles.github.io/webduino/myBlockly/GameElements/gameelements.js',
-		'https://fustyles.github.io/webduino/myBlockly/OpenURL/openurl.js',
-		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/taiwanairquality.js'
+		'https://fustyles.github.io/webduino/myBlockly/OpenURL/openurl.js'
 	];
   </script>
 </head>
@@ -203,8 +195,7 @@ var category = [
 	catInstruction,
 	catGameElements,
 	catMatrixLed,
-	catOpenURL,
-	catTaiwanAirQuality
+	catOpenURL
 ].join("");
 while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().indexOf("<sep>")!=-1) {
   var s = category.toLowerCase().indexOf("<category");
