@@ -5,6 +5,8 @@ var catKeyboard = '<xml>'+
 '  <block type="keyup_listener">'+
 '  </block>'+
 '  <block type="keypress_listener">'+
+'  </block>'+  
+'  <block type="get_keycode">'+
 '  </block>'+    
 '  <block type="keydown_keycode">'+
 '  </block>'+
