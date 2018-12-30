@@ -110,12 +110,12 @@ Blockly.Blocks['keydown_keycode'] = {
 Blockly.Blocks['keypress_key'] = {
 	init: function() {
     	this.appendDummyInput()
+	    .appendField(Blockly.Msg.KEYPRESS_KEY_SHOW)
 	    .appendField(new Blockly.FieldDropdown([
 	      ["Ctrl","Ctrl"],
 	      ["Shift","Shift"],
 	      ["Alt","Alt"]
-	      ]), "keycode")
-	    .appendField(Blockly.Msg.KEYPRESS_KEY_SHOW);
+	      ]), "keycode");
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(65);
