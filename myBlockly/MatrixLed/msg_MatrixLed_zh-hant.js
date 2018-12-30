@@ -1,3 +1,6 @@
+Blockly.Msg["MATRIXLED"] = "模擬指示燈";
+Blockly.Msg["MATRIXLED_HUE"] = "280";
+
 Blockly.Msg.MATRIXLED_MATRIX_SHOW = "指示燈(單色)";
 Blockly.Msg.MATRIXLED_MATRIX_COLOR_SHOW = "指示燈(全彩)";
 Blockly.Msg.MATRIXLED_MATRIXCODE_SHOW = "指示燈(單色) 編碼";
