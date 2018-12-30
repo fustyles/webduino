@@ -21,3 +21,14 @@ Blockly.JavaScript['keydown_keycode'] = function(block) {
   var code = 'event.keyCode == ' + keycode;
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['keypress_key'] = function(block) {
+  var keycode = block.getFieldValue('keycode');
+  if (keycode=="Ctrl")
+    var code = '(event.ctrlKey)';
+  else if (keycode=="Shift")
+    var code = '(event.shiftKey)';
+  else if (keycode=="Alt")
+    var code = '(event.altKey)';  
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
