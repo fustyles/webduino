@@ -564,6 +564,8 @@ var catGameElements = '<xml><category name="%{BKY_GAMEELEMENTS}" colour="%{BKY_G
 '      </block>'+
 '    </value>'+ 
 '  </block>'+
+'  <block type="image_onclick_listener">'+
+'  </block>'+      
 '  <block type="image_onclick_get">'+
 '    <value name="id_">'+
 '      <block type="text">'+
