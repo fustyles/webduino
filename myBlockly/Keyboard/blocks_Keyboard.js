@@ -117,10 +117,10 @@ Blockly.Blocks['keydown_keycode'] = {
   }
 };
 
-Blockly.Blocks['keypress_key'] = {
+Blockly.Blocks['hotkey'] = {
 	init: function() {
     	this.appendDummyInput()
-	    .appendField(Blockly.Msg.KEYPRESS_KEY_SHOW)
+	    .appendField(Blockly.Msg.HOTKEY_SHOW)
 	    .appendField(new Blockly.FieldDropdown([
 	      ["Ctrl","Ctrl"],
 	      ["Shift","Shift"],
