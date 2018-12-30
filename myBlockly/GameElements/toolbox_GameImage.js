@@ -86,6 +86,8 @@ var catGameImage = '<xml><category name="%{BKY_GAMEIMAGE}" colour="%{BKY_GAMEIMA
 '      </block>'+
 '    </value>'+ 
 '  </block>'+
+'  <block type="image_onclick_listener">'+
+'  </block>'+      
 '  <block type="image_onclick_get">'+
 '    <value name="id_">'+
 '      <block type="text">'+
