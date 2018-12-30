@@ -477,18 +477,6 @@ var catGameElements = '<xml><category name="%{BKY_GAMEELEMENTS}" colour="%{BKY_G
 '  </block>'+  
 '  <block type="canvas_delete">'+
 '  </block>'+  
-'  <block type="image_boundary">'+
-'    <value name="left_">'+
-'      <block type="math_number">'+
-'        <field name="NUM">0</field>'+
-'      </block>'+
-'    </value>'+ 
-'    <value name="top_">'+
-'      <block type="math_number">'+
-'        <field name="NUM">0</field>'+
-'      </block>'+
-'    </value>'+    
-'  </block>'+  
 '  <block type="image_create">'+
 '    <value name="id_">'+
 '      <block type="text">'+
@@ -531,8 +519,32 @@ var catGameElements = '<xml><category name="%{BKY_GAMEELEMENTS}" colour="%{BKY_G
 '      </block>'+
 '    </value>'+     
 '  </block>'+
+'  <block type="image_boundary">'+
+'    <value name="left_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">500</field>'+
+'      </block>'+
+'    </value>'+ 
+'    <value name="top_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">500</field>'+
+'      </block>'+
+'    </value>'+    
+'  </block>'+  
 '  <block type="image_sys_get">'+
-'  </block>'+    
+'  </block>'+      
+'  <block type="image_collision">'+
+'    <value name="id1_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+ 
+'    <value name="id2_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
+'  </block>'+       
 '  <block type="image_set">'+
 '    <value name="id_">'+
 '      <block type="text">'+
@@ -558,26 +570,14 @@ var catGameElements = '<xml><category name="%{BKY_GAMEELEMENTS}" colour="%{BKY_G
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+     
-'  </block>'+    
-'  <block type="image_collision">'+
-'    <value name="id1_">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+ 
-'    <value name="id2_">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+     
-'  </block>'+   
+'  </block>'+  
 '  <block type="image_boundary_collision">'+
 '    <value name="id_">'+
 '      <block type="text">'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+  
-'  </block>'+  
+'  </block>'+      
 '  <block type="image_delete">'+
 '    <value name="id_">'+
 '      <block type="text">'+
