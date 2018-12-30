@@ -1,7 +1,7 @@
 ﻿Blockly.JavaScript['pmgov_link'] = function(block) {
   var value_format_ = block.getFieldValue('value_format_'); 
   var value_url_ = Blockly.JavaScript.valueToCode(block, 'value_url_', Blockly.JavaScript.ORDER_ATOMIC);  
-  var code = 'pmgov_link('+value_url_+',"'+value_format_+'");\nawait delay(1);\n';
+  var code = 'pmgov_link('+value_url_+',"'+value_format_+'");\n';
   return code;
 };
 
