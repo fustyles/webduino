@@ -34,6 +34,16 @@ Blockly.Blocks['keypress_listener'] = {
 	}
 };
 
+Blockly.Blocks['get_keycode'] = {
+	init: function() {
+    	this.appendDummyInput()
+	    .appendField(Blockly.Msg.GET_KEYCODE_SHOW);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(65);
+  }
+};
+
 Blockly.Blocks['keydown_keycode'] = {
 	init: function() {
     	this.appendDummyInput()
