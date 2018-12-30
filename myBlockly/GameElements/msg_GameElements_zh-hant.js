@@ -1,5 +1,13 @@
 Blockly.Msg["GAMEELEMENTS"] = "遊戲元素";
 Blockly.Msg["GAMEELEMENTS_HUE"] = "280";
+Blockly.Msg["GAMEAUXILIARY"] = "遊戲輔助";
+Blockly.Msg["GAMEAUXILIARY_HUE"] = "280";
+Blockly.Msg["GAMETABLE"] = "遊戲表格";
+Blockly.Msg["GAMETABLE_HUE"] = "280";
+Blockly.Msg["GAMECANVAS"] = "遊戲畫布";
+Blockly.Msg["GAMECANVAS_HUE"] = "280";
+Blockly.Msg["GAMEIMAGE"] = "遊戲圖片";
+Blockly.Msg["GAMEIMAGE_HUE"] = "280";
 
 Blockly.Msg.TABLE_CREATE_SHOW = "表格 新增";
 Blockly.Msg.TABLE_SET_SHOW = "表格 設定";

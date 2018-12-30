@@ -1,5 +1,13 @@
 Blockly.Msg["GAMEELEMENTS"] = "GameElements";
 Blockly.Msg["GAMEELEMENTS_HUE"] = "280";
+Blockly.Msg["GAMEAUXILIARY"] = "GameAuxiliary";
+Blockly.Msg["GAMEAUXILIARY_HUE"] = "280";
+Blockly.Msg["GAMETABLE"] = "GameTable";
+Blockly.Msg["GAMETABLE_HUE"] = "280";
+Blockly.Msg["GAMECANVAS"] = "GameCanvas";
+Blockly.Msg["GAMECANVAS_HUE"] = "280";
+Blockly.Msg["GAMEIMAGE"] = "GameImage";
+Blockly.Msg["GAMEIMAGE_HUE"] = "280";
 
 Blockly.Msg.TABLE_CREATE_SHOW = "Table Create";
 Blockly.Msg.TABLE_SET_SHOW = "Table Set";
