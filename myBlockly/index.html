@@ -317,7 +317,7 @@ function exportHTML() {
 	{
       iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
 	}
-	iframe_code += "\<\/head\>\<body\>  \<div id='showText'\>\<\div>\<script\>" + code + "\<\/script\>\<\/body\>\<\/html\>";
+	iframe_code += "\<\/head\>\<body\>  \<div id='showText' style='z-index:9999;'\>\<\div>\<script\>" + code + "\<\/script\>\<\/body\>\<\/html\>";
 
     var link = document.createElement('a');
     link.download="project.html";
