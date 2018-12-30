@@ -1,4 +1,4 @@
-Blockly.Msg["TAIWANAIRQUALITY"] = "TaiwanAirQuality";
+Blockly.Msg["TAIWANAIRQUALITY"] = "台灣空氣品質";
 Blockly.Msg["TAIWANAIRQUALITY_HUE"] = "280";
 
 Blockly.Msg.PM_LINK_SHOW = "取得空氣資料";
