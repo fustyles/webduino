@@ -149,7 +149,7 @@
         </tr>
         <tr>
           <td align="left" valign="center">
-	        Example
+            Example
             <select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
               <option value=""></option>
               <option value="Game_Tetris">Game_Tetris</option>
@@ -165,7 +165,7 @@
           <td>
             Language
             <select onchange="var url=location.href.split('?')[0];location.href=url+'?lang='+this.value;">
-			  <option value=""></option>
+              <option value=""></option>
               <option value="en">en</option>
               <option value="zh-Hant">zh-Hant</option>
               <option value="zh-Hans">zh-Hans</option>
@@ -177,16 +177,16 @@
             <textarea id="javscriptArea"  cols="50" rows="28" readonly></textarea>
           </td>
         </tr>
-	    <tr>
+        <tr>
           <td align="center">
-	    Fu Chung-Yi (Taiwan)  Update Date : 2018-12-30
+            Fu Chung-Yi (Taiwan)  Update Date : 2018-12-30
           </td>
         </tr>
       </table>
     </td>
   </tr>
 </table>
-
+	
 <div id="runArea" style="left:250px;top:10px;position:absolute;display:none;z-index:9999">
   <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeScreen();">Close Screen</button>
   <br>
