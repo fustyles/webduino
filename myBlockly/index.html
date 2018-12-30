@@ -226,6 +226,7 @@ while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().i
 	
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.appspot.com/static/media/', toolbox: document.getElementById('toolbox')});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
+
 //append Game(Tetris) blocks to startBlocks
 XmldomToWorkspace(Game_Tetris);
 function XmldomToWorkspace(example) {	
