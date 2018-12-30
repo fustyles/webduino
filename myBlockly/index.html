@@ -349,17 +349,6 @@ function importBlocks() {
   }
 }
 
-function importBlocks() {
-  try {
-    var xml_text = prompt("Please enter XML code", "");
-    var xml = Blockly.Xml.textToDom(xml_text);
-    demoWorkspace.clear();
-    Blockly.Xml.domToWorkspace(xml, demoWorkspace);
-  } catch (e) {
-    alert(e);
-  }
-}
-
 function hideMySpace(element) {
   if (document.getElementById('myfeatures').style.display != 'none') { 
     document.getElementById('myfeatures').style.display = 'none';
