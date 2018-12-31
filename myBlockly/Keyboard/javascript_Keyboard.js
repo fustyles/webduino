@@ -13,11 +13,11 @@ Blockly.JavaScript['keyboard_listener'] = function (block) {
 Blockly.JavaScript['stop_keyboard_listener'] = function (block) {
   var event = block.getFieldValue('event');
   if (event=="keydown")
-    var code = 'window.removeEventListener("keydown", function (event) {}, true);\n';
+    var code = 'document.onkeydown="";\n';
   else if (event=="keyup")
-    var code = 'window.removeEventListener("keyup", function (event) {}, true);\n';
+    var code = 'document.onkeyup="";\n';
   else if (event=="keypress")
-    var code = 'window.removeEventListener("keypress", function (event) {}, true);\n';
+    var code = 'document.onkeypress="";\n';
   return code;
 };
 
