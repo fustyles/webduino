@@ -790,6 +790,23 @@ Blockly.Blocks['image_onclick_get'] = {
   }
 };
 
+Blockly.Blocks['image_move'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.ID_SHOW);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.IMAGE_MOVE_DIRECTION_SHOW)
+      .appendField(new Blockly.FieldDropdown([["up","up"], ["down","down"], ["left","left"], ["right","right"]]), "property_");   
+  this.appendValueInput("step_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.IMAGE_MOVE_STEP_SHOW);
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
 Blockly.Blocks['mouse_coordinate_get'] = {
   init: function() {
   this.appendDummyInput()
