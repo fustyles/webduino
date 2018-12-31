@@ -210,3 +210,15 @@ Blockly.JavaScript['cmd15'] = function (block) {
   var code = Instruction + ";\n";
   return code;
 };
+
+Blockly.JavaScript['cmd16'] = function (block) {
+  var cmd_date = block.getFieldValue('cmd_date');
+  
+  if ((cmd_date.indexOf("'")==0)&&(cmd_date.lastIndexOf("'")==cmd_date.length-1))
+    cmd_date = cmd_date.substring(1,cmd_date.length-1);
+  if ((cmd_date.indexOf("(")==0)&&(cmd_date.lastIndexOf(")")==cmd_date.length-1))
+    cmd_date = cmd_date.substring(1,cmd_date.length-1);
+    
+  var code = cmd_date;
+  return [code, Blockly.JavaScript.ORDER_NONE]; 
+};
