@@ -264,7 +264,7 @@ function runCode() {
   {
     iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
   }
-  iframe_code += "\<\/head\>\<body\>  \<div id='showText' style='z-index:999'\>\<\div>\<script\>" + code + "\<\/script\>\<\/body\>\<\/html\>";
+  iframe_code += "\<\/head\>\<body\>  \<div id='showText'\>\<\div>\<script\>" + code + "\<\/script\>\<\/body\>\<\/html\>";
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   try {
     document.getElementById("runArea").style.left = document.getElementById("ifrLeft").value + "px";
