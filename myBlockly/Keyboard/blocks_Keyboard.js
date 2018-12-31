@@ -1,8 +1,7 @@
 Blockly.Blocks['keydown_listener'] = {
 	init: function() {
 	this.appendDummyInput()
-	    .appendField(Blockly.Msg.KEYBOARD_LISTENER_SHOW);
-	this.appendDummyInput()
+	    .appendField(Blockly.Msg.KEYBOARD_LISTENER_SHOW)
 	    .appendField(new Blockly.FieldDropdown([
 	      ["keydown","keydown"],
 	      ["keyup","keyup"],
