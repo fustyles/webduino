@@ -94,3 +94,5 @@ Blockly.Msg.LOOP_BREAK_SHOW = "迴圈 中斷";
 Blockly.Msg.LOOP_CONTINUE_SHOW = "迴圈 繼續";
 Blockly.Msg.FUNCTION_RETURN_SHOW = "函數 回傳";
 Blockly.Msg.TIME_DELAY_SHOW = "等待 (秒)";
+Blockly.Msg.IMAGE_MOVE_DIRECTION_SHOW = "移動方向";
+Blockly.Msg.IMAGE_MOVE_STEP_SHOW = "距離";
