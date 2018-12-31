@@ -494,19 +494,7 @@
   }    
   
   function image_get(input_id,input_property) {
-    if (input_property=="onclickid"){
-      if (onclickid.indexOf("gameimg_")==0)   
-        return onclickid.replace(/gameimg_/ig,"");
-      else if (onclickid.indexOf("gametable_td_")==0){     
-          if (document.getElementById(onclickid).hasChildNodes())
-            return document.getElementById(onclickid).firstChild.id.replace(/gameimg_/ig,"");
-          else
-            return "";
-        }
-      else
-        return "";
-    }
-    else if (input_property=='exist')
+    if (input_property=='exist')
     {
       if (document.getElementById("gameimg_"+input_id))
         return 1;
