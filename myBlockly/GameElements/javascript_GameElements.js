@@ -304,6 +304,14 @@ Blockly.JavaScript['image_onclick_get'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['image_move'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_property_ = block.getFieldValue('property_');
+  var value_step_ = Blockly.JavaScript.valueToCode(block, 'step_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'image_set('+value_id_+','+value_property_+',(image_get('+value_id_+','+value_property_+')'+value_step_+'));\n';
+  return code;
+};
+
 Blockly.JavaScript['mouse_coordinate_get'] = function (block) {
   var value_property_ = block.getFieldValue('property_');
   var code = 'mouse_coordinate_get("' + value_property_ + '")';
