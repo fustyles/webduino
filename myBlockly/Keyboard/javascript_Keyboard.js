@@ -2,22 +2,22 @@ Blockly.JavaScript['keyboard_listener'] = function (block) {
   var statement = Blockly.JavaScript.statementToCode(block, 'statement');  
   var event = block.getFieldValue('event');
   if (event=="keydown")
-    var code = 'window.addEventListener("keydown", function (event) {\n' + statement + '}, true);\n';
+    var code = 'window.addEventListener("keydown", myKeydown, true);\nfunction myKeydown(event) {\n' + statement + '};\n';
   else if (event=="keyup")
-    var code = 'window.addEventListener("keyup", mykeyup, true);\nfunction mykeyup(event) {\n' + statement + '};\n';
+    var code = 'window.addEventListener("keyup", myKeyup, true);\nfunction myKeyup(event) {\n' + statement + '};\n';
   else if (event=="keypress")
-    var code = 'window.addEventListener("keypress", function (event) {\n' + statement + '}, true);\n';
+    var code = 'window.addEventListener("keyup", myKeypress, true);\nfunction myKeypress(event) {\n' + statement + '};\n';
   return code;
 };
 
 Blockly.JavaScript['stop_keyboard_listener'] = function (block) {
   var event = block.getFieldValue('event');
   if (event=="keydown")
-    var code = 'document.onkeydown="";\n';
+    var code = 'window.removeEventListener("keydown", myKeydown, true);\n';
   else if (event=="keyup")
-    var code = 'window.removeEventListener("keyup", mykeyup, true);\n';
+    var code = 'window.removeEventListener("keyup", myKeyup, true);\n';
   else if (event=="keypress")
-    var code = 'document.onkeypress="";\n';
+    var code = 'window.removeEventListener("keypress", myKeypress, true);\n';
   return code;
 };
 
