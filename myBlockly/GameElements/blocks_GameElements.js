@@ -882,3 +882,14 @@ Blockly.Blocks['function_return'] = {
     this.setColour(60);
   }
 };
+
+Blockly.Blocks['time_delay'] = {
+  init: function () {
+    this.appendValueInput("seconds")
+        .setCheck("Number")
+        .appendField(Blockly.Msg.TIME_DELAY_SHOW);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
