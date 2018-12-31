@@ -596,13 +596,13 @@
       var height = Number(document.getElementById("gameimg_"+input_id).style.height.replace(/px/ig,""));
       if (screen_width>0)
       {
-        if (((input_property=="left")||(input_property=="any"))&&(left<=0)) return 1
-        if (((input_property=="right")||(input_property=="any"))&&(left+width>=screen_width)) return 1
+        if (((input_property=="left")||(input_property=="any"))&&(left<0)) return 1
+        if (((input_property=="right")||(input_property=="any"))&&(left+width>screen_width)) return 1
       }
       if (screen_height>0) 
       {
-        if (((input_property=="up")||(input_property=="any"))&&(top<=0)) return 1
-        if (((input_property=="down")||(input_property=="any"))&&(top+height>=screen_height)) return 1
+        if (((input_property=="up")||(input_property=="any"))&&(top<0)) return 1
+        if (((input_property=="down")||(input_property=="any"))&&(top+height>screen_height)) return 1
       }
       return 0;
     }
