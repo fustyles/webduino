@@ -2,30 +2,12 @@ Blockly.Blocks['keydown_listener'] = {
 	init: function() {
 	this.appendDummyInput()
 	    .appendField(Blockly.Msg.KEYDOWN_LISTENER_SHOW);
-	this.appendStatementInput("statement");
-	this.setPreviousStatement(true);
-	this.setNextStatement(true);
-	this.setTooltip('');
-	this.setColour(65);
-	}
-};
-
-Blockly.Blocks['keyup_listener'] = {
-	init: function() {
 	this.appendDummyInput()
-	    .appendField(Blockly.Msg.KEYUP_LISTENER_SHOW);
-	this.appendStatementInput("statement");
-	this.setPreviousStatement(true);
-	this.setNextStatement(true);
-	this.setTooltip('');
-	this.setColour(65);
-	}
-};
-
-Blockly.Blocks['keypress_listener'] = {
-	init: function() {
-	this.appendDummyInput()
-	    .appendField(Blockly.Msg.KEYPRESS_LISTENER_SHOW);
+	    .appendField(new Blockly.FieldDropdown([
+	      ["keydown","keydown"],
+	      ["keyup","keyup"],
+	      ["keypress","keypress"]
+	      ]), "event");
 	this.appendStatementInput("statement");
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
