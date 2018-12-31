@@ -670,13 +670,12 @@
     return Number(input_text);
   } 
 
-  function delay(seconds) {
-    var start = new Date().getTime();
-    while ((new Date().getTime() - start) <= (seconds*1000)){
-      
-    }
+  async function delay(seconds){
+      await sleep(seconds*1000);
   }
 
-  function delay(seconds) {
-    //
+  async function sleep(time : number) : Promise<void>{
+      return new Promise<void>((res,rej)=>{
+          setTimeout(res,time);
+      });
   }
