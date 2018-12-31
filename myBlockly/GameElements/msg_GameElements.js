@@ -94,3 +94,5 @@ Blockly.Msg.LOOP_BREAK_SHOW = "LOOP BREAK";
 Blockly.Msg.LOOP_CONTINUE_SHOW = "LOOP CONTINUE";
 Blockly.Msg.FUNCTION_RETURN_SHOW = "FUNCTION RETURN";
 Blockly.Msg.TIME_DELAY_SHOW = "Delay (s)";
+Blockly.Msg.IMAGE_MOVE_DIRECTION_SHOW = "Direction";
+Blockly.Msg.IMAGE_MOVE_STEP_SHOW = "Step";
