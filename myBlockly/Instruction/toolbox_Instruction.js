@@ -183,4 +183,6 @@ var catInstruction = '<xml><category name="%{BKY_INSTRUCTION}" colour="%{BKY_INS
 '  </block>'+
 '  <block type="cmd8">'+   
 '  </block>'+
+'  <block type="cmd16">'+ 
+'  </block>'+
 ' </category></xml>';
