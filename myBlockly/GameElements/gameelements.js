@@ -669,3 +669,10 @@
   function text_to_number(input_text) {
     return Number(input_text);
   } 
+
+  function delay(seconds) {
+    var start = new Date().getTime();
+    while ((new Date().getTime() - start) <= (seconds*1000)){
+      
+    }
+  }
