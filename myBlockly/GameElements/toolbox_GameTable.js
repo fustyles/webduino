@@ -108,6 +108,15 @@ var catGameTable = '<xml><category name="%{BKY_GAMETABLE}" colour="%{BKY_GAMETAB
 '      </block>'+
 '    </value>'+  
 '  </block>'+  
+'  <block type="image_onclick_listener">'+
+'  </block>'+      
+'  <block type="image_onclick_get">'+
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
+'  </block>'+  
 '  <block type="table_td_insert_text">'+  
 '    <value name="x_">'+
 '      <block type="math_number">'+
