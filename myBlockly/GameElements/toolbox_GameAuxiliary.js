@@ -23,6 +23,13 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '  </block>'+  
 '  <block type="loop_continue">'+      
 '  </block>'+ 
+'  <block type="time_delay">'+
+'    <value name="seconds">'+
+'      <block type="math_number">'+
+'        <field name="NUM">1</field>'+
+'      </block>'+      
+'    </value>'+     
+'  </block>'+     
 '  <block type="function_return">'+
 '    <value name="value_">'+
 '      <block type="math_number">'+
