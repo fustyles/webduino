@@ -93,3 +93,4 @@ Blockly.Msg.TEXT_TO_NUMBER_SHOW = "文字轉數字";
 Blockly.Msg.LOOP_BREAK_SHOW = "迴圈 中斷";
 Blockly.Msg.LOOP_CONTINUE_SHOW = "迴圈 繼續";
 Blockly.Msg.FUNCTION_RETURN_SHOW = "函數 回傳";
+Blockly.Msg.TIME_DELAY_SHOW = "等待";
