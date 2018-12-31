@@ -674,8 +674,9 @@
       await sleep(seconds*1000);
   }
 
-  async function sleep(time : number) : Promise<void>{
-      return new Promise<void>((res,rej)=>{
-          setTimeout(res,time);
-      });
+  var sleep = function(para) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+        }, para)
+    })
   }
