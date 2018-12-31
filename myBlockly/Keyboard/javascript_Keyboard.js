@@ -4,7 +4,7 @@ Blockly.JavaScript['keyboard_listener'] = function (block) {
   if (event=="keydown")
     var code = 'window.addEventListener("keydown", function (event) {\n' + statement + '}, true);\n';
   else if (event=="keyup")
-    var code = 'window.addEventListener("keyup", function (event) {\n' + statement + '}, true);\n';
+    var code = 'window.addEventListener("keyup", mykeyup, true);\n function mykeyup(event) {\n' + statement + '};\n';
   else if (event=="keypress")
     var code = 'window.addEventListener("keypress", function (event) {\n' + statement + '}, true);\n';
   return code;
@@ -15,7 +15,7 @@ Blockly.JavaScript['stop_keyboard_listener'] = function (block) {
   if (event=="keydown")
     var code = 'document.onkeydown="";\n';
   else if (event=="keyup")
-    var code = 'document.onkeyup="";\n';
+    var code = 'window.removeEventListener("keyup", mykeyup, true);\n';
   else if (event=="keypress")
     var code = 'document.onkeypress="";\n';
   return code;
