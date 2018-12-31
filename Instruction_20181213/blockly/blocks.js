@@ -388,3 +388,65 @@ Blockly.Blocks['cmd15'] = {
   this.setColour(75);
   }
 };
+
+Blockly.Blocks['cmd16'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+        ["new Date()","new Date()"],
+        ["getDate","getDate"],
+        ["getDay","getDay"],
+        ["getFullYear","getFullYear"],
+        ["getHours","getHours"],
+        ["getMilliseconds","getMilliseconds"],
+        ["getMinutes","getMinutes"],
+        ["getMonth","getMonth"],
+        ["getSeconds","getSeconds"],
+        ["getTime","getTime"],
+        ["getTimezoneOffset","getTimezoneOffset"],
+        ["getUTCDate","getUTCDate"],
+        ["getUTCDay","getUTCDay"],
+        ["getUTCFullYear","getUTCFullYear"],
+        ["getUTCHours","getUTCHours"],
+        ["getUTCMilliseconds","getUTCMilliseconds"],
+        ["getUTCMinutes","getUTCMinutes"],
+        ["getUTCMonth","getUTCMonth"],
+        ["getUTCSeconds","getUTCSeconds"],
+        ["getYear","getYear"],
+        ["now","now"],
+        ["parse","parse"],
+        ["setDate","setDate"],
+        ["setFullYear","setFullYear"],
+        ["setHours","setHours"],
+        ["setMilliseconds","setMilliseconds"],
+        ["setMinutes","setMinutes"],
+        ["setMonth","setMonth"],
+        ["setSeconds","setSeconds"],
+        ["setTime","setTime"],
+        ["setUTCDate","setUTCDate"],
+        ["setUTCFullYear","setUTCFullYear"],
+        ["setUTCHours","setUTCHours"],
+        ["setUTCMilliseconds","setUTCMilliseconds"],
+        ["setUTCMinutes","setUTCMinutes"],
+        ["setUTCMonth","setUTCMonth"],
+        ["setUTCSeconds","setUTCSeconds"],
+        ["setYear","setYear"],
+        ["toDateString","toDateString"],
+        ["toGMTString","toGMTString"],
+        ["toISOString","toISOString"],
+        ["toJSON","toJSON"],
+        ["toLocaleDateString","toLocaleDateString"],
+        ["toLocaleTimeString","toLocaleTimeString"],
+        ["toLocaleString","toLocaleString"],
+        ["toString","toString"],
+        ["toTimeString","toTimeString"],
+        ["toUTCString","toUTCString"],
+        ["UTC","UTC"],
+        ["valueOf","valueOf"]
+      ]), "cmd_date");    
+  this.setOutput(true, null);
+  this.setInputsInline(true);
+  this.setTooltip('');
+  this.setColour(50);
+  }
+};
