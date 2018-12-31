@@ -670,13 +670,12 @@
     return Number(input_text);
   } 
 
-  async function delay(seconds){
-      await sleep(seconds*1000);
+  function sleep(duration) {
+    return new Promise(function(resolve, reject) {
+      setTimeout(()=> { resolve(0) }, duration);
+    })
   }
 
-  var sleep = function(para) {
-    return new Promise(function(resolve, reject) {
-        setTimeout(function() {
-        }, para)
-    })
+  async function delay(seconds) {
+    await sleep(seconds*1000)
   }
