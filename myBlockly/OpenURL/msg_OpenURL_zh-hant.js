@@ -1,4 +1,4 @@
-Blockly.Msg["OPENURL"] = "執行網址";
+Blockly.Msg["OPENURL"] = "網址連結";
 Blockly.Msg["OPENURL_HUE"] = "280";
 
 Blockly.Msg.OPEN_SHOW = "開啟連結";
