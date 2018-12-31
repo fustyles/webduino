@@ -801,8 +801,8 @@ Blockly.Blocks['image_move'] = {
   this.appendValueInput("step_")
       .setCheck("Number")
       .appendField(Blockly.Msg.IMAGE_MOVE_STEP_SHOW);
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
   this.setColour(200);
   }
 };
