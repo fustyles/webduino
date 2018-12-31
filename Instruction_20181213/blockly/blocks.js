@@ -146,7 +146,8 @@ Blockly.Blocks['cmd6'] = {
         ["Math.sqrt","Math.sqrt"],
         ["Math.tan","Math.tan"],
         ["Math.tanh","Math.tanh"],
-        ["Math.trunc","Math.trunc"],  
+        ["Math.trunc","Math.trunc"], 
+        ["Number","Number"], 
         ["null","null"]
       ]), "cmd_math");    
   this.setOutput(true, null);
