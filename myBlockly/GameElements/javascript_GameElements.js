@@ -353,3 +353,9 @@ Blockly.JavaScript['function_return'] = function (block) {
   var code = 'return ' + value_ + ';\n';
   return code;
 };
+
+Blockly.JavaScript['time_delay'] = function (block) {
+  var seconds = Blockly.JavaScript.valueToCode(block, 'seconds', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'delay(' + seconds + ');\n';
+  return code;
+};
