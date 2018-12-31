@@ -6,7 +6,6 @@ Blockly.JavaScript['cmd1'] = function (block) {
     cmd1_0 = cmd1_0.substring(1,cmd1_0.length-1);
   if ((cmd1_0.indexOf("(")==0)&&(cmd1_0.lastIndexOf(")")==cmd1_0.length-1))
     cmd1_0 = cmd1_0.substring(1,cmd1_0.length-1);
-    console.log(cmd1_0);
   
   var code = cmd1_0;
   return [code, Blockly.JavaScript.ORDER_NONE]; 
