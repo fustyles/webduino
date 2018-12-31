@@ -308,7 +308,14 @@ Blockly.JavaScript['image_move'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_property_ = block.getFieldValue('property_');
   var value_step_ = Blockly.JavaScript.valueToCode(block, 'step_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'image_set('+value_id_+','+value_property_+',(image_get('+value_id_+','+value_property_+')'+value_step_+'));\n';
+  if (value_property_=="left")
+    var code = 'image_set('+value_id_+',"left",(image_get('+value_id_+',"left")-'+value_step_+'));\n';
+  else if (value_property_=="right")
+    var code = 'image_set('+value_id_+',"left",(image_get('+value_id_+',"left")+'+value_step_+'));\n';
+  else if (value_property_=="up")
+    var code = 'image_set('+value_id_+',"top",(image_get('+value_id_+',"top")-'+value_step_+'));\n';
+  else if (value_property_=="down")
+    var code = 'image_set('+value_id_+',"top",(image_get('+value_id_+',"top")+'+value_step_+'));\n';
   return code;
 };
 
