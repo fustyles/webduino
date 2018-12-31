@@ -132,7 +132,7 @@ https://fustyles.github.io/webduino/Instruction_20181213/blockly.json
 [Smart]
 https://blocklypro.webduino.io/?demo=demo-area-01#k8md646wE0
 [Bit]
-https://bit.webduino.io/blockly/#JyeZjPL97MdRV
+https://bit.webduino.io/blockly/#rybdVnw1NMKqk
 
 
 監看程式碼
