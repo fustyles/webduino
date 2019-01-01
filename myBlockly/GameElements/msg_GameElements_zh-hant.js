@@ -102,4 +102,3 @@ Blockly.Msg.IMAGE_RESIZE_SHOW = "調整大小";
 Blockly.Msg.PERCENTAGE_SHOW = "%";
 Blockly.Msg.IMAGE_ONCLICK_DO_SHOW = "如果被點擊";
 Blockly.Msg.BOUNDARY_COLLISION_DO_SHOW = "如果碰觸邊界";
-Blockly.Msg.BODY_SET_SHOW = "設定執行視窗背景";
