@@ -250,7 +250,7 @@ function XmldomToWorkspace(example) {
 function showCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-  document.getElementById('javscriptArea').innerHTML = code;
+  document.getElementById('javscriptArea').innerHTML = "//You can double click the textarea to enlarge.\n\n" + code;
 }
 demoWorkspace.addChangeListener(showCode);
 	
