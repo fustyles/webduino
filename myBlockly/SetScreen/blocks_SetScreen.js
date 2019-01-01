@@ -33,4 +33,3 @@ Blockly.Blocks['body_set'] = {
   this.setColour(60);
   }
 };  
-};
