@@ -294,7 +294,7 @@ Blockly.JavaScript['image_sys_get'] = function (block) {
 
 Blockly.JavaScript['image_onclick_listener'] = function (block) {
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'setInterval(async function(){\n' + statements_do_ + '},10);\n';
+  var code = 'setInterval(async function(){\ntry {\n' + statements_do_ + '} catch (e) {\nalert(e);\n}\n},10);\n';
   return code;
 };
 
