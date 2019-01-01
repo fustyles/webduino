@@ -79,6 +79,15 @@ Blockly.JavaScript['table_td_insert_img'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['table_td_img_move'] = function (block) {
+  var variable_fuGameElements_ = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('fuGameElements_'), Blockly.Variables.NAME_TYPE);
+  var value_imgid_ = Blockly.JavaScript.valueToCode(block, 'imgid_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'table_td_img_move("' + variable_fuGameElements_ + '",'+ value_x_ + ',' + value_y_ + ');\n';
+  return code;
+};
+
 Blockly.JavaScript['table_td_img_get'] = function (block) {
   var value_imgid_ = Blockly.JavaScript.valueToCode(block, 'imgid_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_property_ = block.getFieldValue('property_');
