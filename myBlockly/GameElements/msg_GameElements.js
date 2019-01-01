@@ -102,3 +102,4 @@ Blockly.Msg.IMAGE_RESIZE_SHOW = "Resize";
 Blockly.Msg.PERCENTAGE_SHOW = "%";
 Blockly.Msg.IMAGE_ONCLICK_DO_SHOW = "is Clicked ";
 Blockly.Msg.BOUNDARY_COLLISION_DO_SHOW = "If collision with sides of screen";
+Blockly.TABLE_TD_IMAGE_MOVE_SHOW = "Move image to";
