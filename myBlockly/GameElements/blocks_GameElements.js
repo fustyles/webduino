@@ -926,17 +926,6 @@ Blockly.Blocks['time_delay'] = {
   }
 };
 
-Blockly.Blocks[''] = {
-  init: function() {
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.MOUSE_COORDINATE_GET_SHOW)
-      .appendField(new Blockly.FieldDropdown([["X","x"], ["Y","y"]]), "property_");
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(200);
-  }
-};
-
 Blockly.Blocks['move_to_mouse'] = {
   init: function() {
   this.appendValueInput("id_")
