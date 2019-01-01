@@ -658,7 +658,6 @@
         mouse_x = e.pageX;
         mouse_y = e.pageY;
       }
-      console.log("set");
     }
     if (input_property=="x")
       return mouse_x;
