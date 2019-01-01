@@ -319,6 +319,14 @@ Blockly.JavaScript['image_move'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['image_resize'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_percentage_ = Blockly.JavaScript.valueToCode(block, 'percentage_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_percentage_ = value_percentage_/100;
+  var code = 'image_set('+value_id_+',"width",((image_get('+value_id_+',"width")) * '+value_percentage_+'));\nimage_set('+value_id_+',"height",((image_get('+value_id_+',"height")) * '+value_percentage_+'));\n';
+  return code;
+};
+
 Blockly.JavaScript['mouse_coordinate_get'] = function (block) {
   var value_property_ = block.getFieldValue('property_');
   var code = 'mouse_coordinate_get("' + value_property_ + '")';
