@@ -11,3 +11,10 @@ Blockly.JavaScript['setscreen'] = function (block) {
   var code = '';
   return code;
 };
+
+Blockly.JavaScript['body_set'] = function (block) {
+  var value_property_ = block.getFieldValue('property_');
+  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'body_set("' + value_property_ + '",' + value_value_ + ');\n';
+  return code;
+};
