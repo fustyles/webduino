@@ -8,7 +8,7 @@
   var mouse_x,mouse_y;
   var ImageWidth,ImageHeight;
   
-  function body_set(input_property,input_value}
+  function body_set(input_property,input_value) {
     if (input_property=="backgroundColor")
       document.body.style.backgroundColor = input_value;
     else if (input_property=="backgroundImage") 
