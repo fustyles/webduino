@@ -2,11 +2,11 @@ Blockly.JavaScript['keyboard_listener'] = function (block) {
   var statement = Blockly.JavaScript.statementToCode(block, 'statement');  
   var event = block.getFieldValue('event');
   if (event=="keydown")
-    var code = 'window.addEventListener("keydown", myKeydown, true);\nfunction myKeydown(event) {\ntry {\n' + statement + '} catch (e) {\nalert(e);\n}\n};\n';
+    var code = 'window.addEventListener("keydown", myKeydown, true);\nasync function myKeydown(event) {\ntry {\n' + statement + '} catch (e) {\nalert(e);\n}\n};\n';
   else if (event=="keyup")
-    var code = 'window.addEventListener("keyup", myKeyup, true);\nfunction myKeyup(event) {\ntry {\n' + statement + '} catch (e) {\nalert(e);\n}\n};\n';
+    var code = 'window.addEventListener("keyup", myKeyup, true);\nasync function myKeyup(event) {\ntry {\n' + statement + '} catch (e) {\nalert(e);\n}\n};\n';
   else if (event=="keypress")
-    var code = 'window.addEventListener("keypress", myKeypress, true);\nfunction myKeypress(event) {\ntry {\n' + statement + '} catch (e) {\nalert(e);\n}\n};\n';
+    var code = 'window.addEventListener("keypress", myKeypress, true);\nasync function myKeypress(event) {\ntry {\n' + statement + '} catch (e) {\nalert(e);\n}\n};\n';
   return code;
 };
 
