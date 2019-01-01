@@ -95,6 +95,6 @@ Blockly.Msg.LOOP_CONTINUE_SHOW = "迴圈 继续";
 Blockly.Msg.FUNCTION_RETURN_SHOW = "函数 回传";
 Blockly.Msg.TIME_DELAY_SHOW = "等待 (秒)";
 Blockly.Msg.IMAGE_MOVE_DIRECTION_SHOW = "移动方向";
-Blockly.Msg.IMAGE_MOVE_STEP_SHOW = "距离";
+Blockly.Msg.IMAGE_MOVE_STEP_SHOW = "位移";
 Blockly.Msg.MOVE_TO_MOUSE_SHOW = "定位到滑鼠位置";
 Blockly.Msg.MOVE_TO_COORDINATE_SHOW = "定位到";
