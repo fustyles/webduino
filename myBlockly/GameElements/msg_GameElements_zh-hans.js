@@ -102,3 +102,4 @@ Blockly.Msg.IMAGE_RESIZE_SHOW = "调整大小";
 Blockly.Msg.PERCENTAGE_SHOW = "%";
 Blockly.Msg.IMAGE_ONCLICK_DO_SHOW = "如果被点击";
 Blockly.Msg.BOUNDARY_COLLISION_DO_SHOW = "如果碰触边界";
+Blockly.TABLE_TD_IMAGE_MOVE_SHOW = "移动图片到";
