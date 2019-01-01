@@ -224,8 +224,12 @@
       }
       else if (input_property=="innerHTML")
         return document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x).innerHTML;
-      else if (input_property=="text")
-        return document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x).firstChild.innerHTML;
+      else if (input_property=="text") {
+        if (document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x).firstChild)
+          return document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x).firstChild.innerHTML;
+        else
+          return document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x).innerHTML;
+      }
       else if (input_property=="image"){
         var td = document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x);
         if (td.childNodes.length > 0){
