@@ -286,6 +286,14 @@ Blockly.JavaScript['image_boundary_collision'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['image_boundary_collision_do'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_property_ = block.getFieldValue('property_');
+  var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'if (image_boundary_collision('+value_id_+',"'+value_property_+'")==1) {\n' + statements_do_ + '};\n';
+  return code;
+};
+
 Blockly.JavaScript['image_sys_get'] = function (block) {
   var value_property_ = block.getFieldValue('property_');
   var code = 'image_sys_get("' + value_property_ + '")';
