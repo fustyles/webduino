@@ -1,10 +1,3 @@
-Blockly.JavaScript['body_set'] = function (block) {
-  var value_property_ = block.getFieldValue('property_');
-  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'body_set("' + value_property_ + '",' + value_value_ + ');\n';
-  return code;
-};
-
 Blockly.JavaScript['table_create'] = function (block) {
   var variable_fuGameElements_ = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('fuGameElements_'), Blockly.Variables.NAME_TYPE);
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
