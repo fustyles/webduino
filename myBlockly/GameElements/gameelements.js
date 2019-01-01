@@ -257,19 +257,15 @@
 
   function table_td_img_move(input_id,input_img_id,input_x,input_y){
     if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x)){
-      console.log("1");
       if (document.getElementById("gameimg_"+input_img_id)) {
-        console.log("2");
         var img = document.createElement('img');
         img.src = document.getElementById("gameimg_"+input_img_id).src;
         img.style.width = document.getElementById("gameimg_"+input_img_id).style.width;
         img.style.height = document.getElementById("gameimg_"+input_img_id).style.height;
         img.setAttribute("onclick", "javascript:image_onclickid_set(this);");
-        document.getElementById("gameimg_"+input_id).parentNode.removeChild(document.getElementById("gameimg_"+input_img_id));
+        document.getElementById("gameimg_"+input_img_id).parentNode.removeChild(document.getElementById("gameimg_"+input_img_id));
         img.id = "gameimg_"+input_img_id;
-        console.log(img);
         document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).appendChild(img);
-        console.log("3");
       }
     }
   }
