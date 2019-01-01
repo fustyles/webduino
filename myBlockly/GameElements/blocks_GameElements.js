@@ -245,11 +245,11 @@ Blockly.Blocks['table_td_img_move'] = {
   this.appendValueInput("imgid_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID_SHOW)
-      .appendField(Blockly.TABLE_TD_IMAGE_MOVE_SHOW);      
+      .appendField(Blockly.Msg.ID_SHOW);
   this.appendValueInput("x_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.TABLE_TD_IMAGE_MOVE_SHOW)
       .appendField(Blockly.Msg.TABLE_TD_X_SHOW);
   this.appendValueInput("y_")
       .setCheck("Number")
