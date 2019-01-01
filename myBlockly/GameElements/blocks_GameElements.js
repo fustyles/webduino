@@ -910,3 +910,48 @@ Blockly.Blocks['time_delay'] = {
     this.setColour(60);
   }
 };
+
+Blockly.Blocks[''] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.MOUSE_COORDINATE_GET_SHOW)
+      .appendField(new Blockly.FieldDropdown([["X","x"], ["Y","y"]]), "property_");
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['move_to_mouse'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.ID_SHOW);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.MOVE_TO_MOUSE_SHOW);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['move_to_coordinate'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.ID_SHOW); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.MOVE_TO_COORDINATE_SHOW);
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LEFT_SHOW);    
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TOP_SHOW); 
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(200);
+  }
+};
