@@ -39,6 +39,13 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '  </block>'+    
 '  <block type="mouse_coordinate_get">'+
 '  </block>'+
+'  <block type="body_set">'+ 
+'    <value name="value_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+    
+'  </block>'+  
 '  <block type="music_create">'+ 
 '    <value name="url_">'+
 '      <block type="text">'+
