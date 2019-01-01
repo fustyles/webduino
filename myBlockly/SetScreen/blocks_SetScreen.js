@@ -24,7 +24,7 @@ Blockly.Blocks['setscreen'] = {
 Blockly.Blocks['body_set'] = {
   init: function() {    
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.BODY_SET_SHOW)
+      .appendField(Blockly.Msg.SETSCREEN_SHOW)
       .appendField(new Blockly.FieldDropdown([["backgroundColor","backgroundColor"], ["backgroundImage","backgroundImage"]]), "property_");
   this.appendValueInput("value_")
       .setCheck(null);    
