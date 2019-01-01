@@ -28,6 +28,7 @@ Blockly.Blocks['body_set'] = {
       .appendField(new Blockly.FieldDropdown([["backgroundColor","backgroundColor"], ["backgroundImage","backgroundImage"]]), "property_");
   this.appendValueInput("value_")
       .setCheck(null);    
+  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
