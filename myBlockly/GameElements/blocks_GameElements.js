@@ -238,6 +238,30 @@ Blockly.Blocks['table_td_insert_img'] = {
   }
 };
 
+Blockly.Blocks['table_td_img_move'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldVariable('fuGameTable'), 'fuGameElements_');    
+  this.appendValueInput("imgid_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ID_SHOW)
+      .appendField(Blockly.TABLE_TD_IMAGE_MOVE_SHOW);      
+  this.appendValueInput("x_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_X_SHOW);
+  this.appendValueInput("y_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_Y_SHOW);     
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['table_td_img_get'] = {
   init: function () {
   this.appendValueInput("imgid_")
