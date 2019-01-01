@@ -19,4 +19,18 @@ Blockly.Blocks['setscreen'] = {
   this.setNextStatement(true);
   this.setColour(90);
   }
+  
+Blockly.Blocks['body_set'] = {
+  init: function() {    
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.BODY_SET_SHOW)
+      .appendField(new Blockly.FieldDropdown([["backgroundColor","backgroundColor"], ["backgroundImage","backgroundImage"]]), "property_");
+  this.appendValueInput("value_")
+      .setCheck(null);    
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};  
 };
