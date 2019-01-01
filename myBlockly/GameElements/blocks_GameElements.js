@@ -767,7 +767,7 @@ Blockly.Blocks['image_boundary_collision_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
