@@ -119,7 +119,7 @@
 <body>
 
 <table>
-  <tr>
+  <tr valign="top">
     <td align="left" valign="center">
       <div id="blocklyDiv" style="height: 620px; width: 900px;"></div>
     </td>
@@ -181,7 +181,7 @@
         </tr>
         <tr>
           <td>
-            <textarea id="javscriptArea"  cols="50" style="overflow:auto;" rows="28" readonly></textarea>
+            <textarea id="javscriptArea" cols="50" rows="28" readonly ondblclick="this.style.position='absolute';this.style.left='200px';this.style.top='100px';this.style.width='900px';" onfocusout="this.style.width='360px';this.style.position='static';"></textarea>
           </td>
         </tr>
         <tr>
