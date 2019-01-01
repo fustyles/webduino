@@ -371,7 +371,7 @@ Blockly.JavaScript['function_return'] = function (block) {
 
 Blockly.JavaScript['time_delay'] = function (block) {
   var seconds = Blockly.JavaScript.valueToCode(block, 'seconds', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'await sleep(' + seconds + ');\n';
+  var code = 'await delay(' + seconds + ');\n';
   return code;
 };
 
