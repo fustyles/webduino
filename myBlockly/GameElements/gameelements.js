@@ -9,8 +9,11 @@
   var ImageWidth,ImageHeight;
   
   function body_set(input_property,input_value}
-  
-                     }
+    if (input_property=="backgroundColor")
+      document.body.style.backgroundColor = "red";
+    else if (input_property=="backgroundImage") 
+      document.body.style.backgroundImage = "url('"+input_value+"')";
+  }
                        
   function table_create(input_id,input_width,input_height,input_left,input_top,input_trcount,input_tdcount,input_borderstyle,input_borderwidth,input_bordercolor,input_bgcolor,input_zindex,input_display) {
     if (document.getElementById("gametable_"+input_id)) 
