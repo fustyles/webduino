@@ -298,6 +298,13 @@ Blockly.JavaScript['image_onclick_listener'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['image_onclick_do'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'if (image_onclick_get(' + value_id_ + ')==1) {\n' + statements_do_ + '};\n';
+  return code;
+};
+
 Blockly.JavaScript['image_onclick_get'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   var code = 'image_onclick_get(' + value_id_ + ')';
