@@ -374,3 +374,17 @@ Blockly.JavaScript['time_delay'] = function (block) {
   var code = 'await sleep(' + seconds + ');\n';
   return code;
 };
+
+Blockly.JavaScript['move_to_mouse'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);   
+  var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("x")));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("y")));\n';
+  return code;
+};
+
+Blockly.JavaScript['move_to_coordinate'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);   
+  var code = 'image_set('+value_id_+',"left",'+value_left_+');\nimage_set('+value_id_+',"top",'+value_top_+');\n';
+  return code;
+};
