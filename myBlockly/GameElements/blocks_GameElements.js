@@ -811,10 +811,10 @@ Blockly.Blocks['image_resize'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.ID_SHOW)
-      .appendField(Blockly.Msg.IMAGE_RESIZE_SHOW);    
+      .appendField(Blockly.Msg.ID_SHOW);
   this.appendValueInput("percentage_")
-      .setCheck("Number");
+      .setCheck("Number")
+      .appendField(Blockly.Msg.IMAGE_RESIZE_SHOW); 
   this.appendDummyInput()
       .appendField(Blockly.Msg.PERCENTAGE_SHOW);
   this.setPreviousStatement(true);
