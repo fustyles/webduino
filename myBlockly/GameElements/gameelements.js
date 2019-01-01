@@ -265,6 +265,7 @@
         img.setAttribute("onclick", "javascript:image_onclickid_set(this);");
         document.getElementById("gameimg_"+input_id).parentNode.removeChild(document.getElementById("gameimg_"+input_img_id));
         img.id = "gameimg_"+input_img_id;
+        console.log(img);
         document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).appendChild(img);
       }
     }
