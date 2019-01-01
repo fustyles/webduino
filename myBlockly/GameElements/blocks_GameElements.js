@@ -807,6 +807,21 @@ Blockly.Blocks['image_move'] = {
   }
 };
 
+Blockly.Blocks['image_resize'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.ID_SHOW);
+  this.appendValueInput("percentage_")
+      .setCheck("Number");
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.PERCENTAGE_SHOW);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(200);
+  }
+};
+
 Blockly.Blocks['mouse_coordinate_get'] = {
   init: function() {
   this.appendDummyInput()
