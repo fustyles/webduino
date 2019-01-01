@@ -195,7 +195,7 @@ Blockly.Blocks['table_td_get'] = {
       .appendField(Blockly.Msg.TABLE_TD_Y_SHOW); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.PROPERTY_SHOW)
-      .appendField(new Blockly.FieldDropdown([["width","width"], ["height","height"], ["background","background"], ["innerHTML","innerHTML"], ["image","image"], ["tdid","tdid"]]), "property_");  
+      .appendField(new Blockly.FieldDropdown([["width","width"], ["height","height"], ["background","background"], ["text","text"], ["innerHTML","innerHTML"], ["image","image"], ["tdid","tdid"]]), "property_");  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
