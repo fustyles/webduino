@@ -255,6 +255,12 @@
     }
   }
 
+  function table_td_img_move(input_id,input_img_id,input_x,input_y){
+    if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x)){
+      document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).appendChild(img);
+    }
+  }
+
   function table_td_img_get(input_img_id,input_property){
     if (document.getElementById("gameimg_"+input_img_id)){
       if (document.getElementById("gameimg_"+input_img_id).parentNode.id.split("_").length>=5){
