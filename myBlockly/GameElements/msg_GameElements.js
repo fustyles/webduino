@@ -98,4 +98,5 @@ Blockly.Msg.IMAGE_MOVE_DIRECTION_SHOW = "Direction";
 Blockly.Msg.IMAGE_MOVE_STEP_SHOW = "Displacement";
 Blockly.Msg.MOVE_TO_MOUSE_SHOW = "Move to mouse position";
 Blockly.Msg.MOVE_TO_COORDINATE_SHOW = "Move to ";
+Blockly.Msg.IMAGE_RESIZE_SHOW = "Resize";
 Blockly.Msg.PERCENTAGE_SHOW = "%";
