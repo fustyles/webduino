@@ -24,6 +24,9 @@ var catSetScreen = '<xml>'+
 '  </block>'+ 
 '  <block type="body_set">'+ 
 '    <value name="value_">'+
+'      <block type="colour_picker">'+
+'        <field name="COLOUR">#ffffff</field>'+
+'      </block>'
 '    </value>'+    
 '  </block>'+      
 '</category>'+
