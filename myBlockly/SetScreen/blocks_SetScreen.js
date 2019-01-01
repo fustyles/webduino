@@ -19,6 +19,7 @@ Blockly.Blocks['setscreen'] = {
   this.setNextStatement(true);
   this.setColour(90);
   }
+};   
   
 Blockly.Blocks['body_set'] = {
   init: function() {    
