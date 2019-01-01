@@ -668,7 +668,3 @@
   function text_to_number(input_text) {
     return Number(input_text);
   } 
-
-  function delay(seconds) {
-  //
-  }
