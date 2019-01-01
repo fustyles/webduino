@@ -96,3 +96,5 @@ Blockly.Msg.FUNCTION_RETURN_SHOW = "FUNCTION RETURN";
 Blockly.Msg.TIME_DELAY_SHOW = "Delay (s)";
 Blockly.Msg.IMAGE_MOVE_DIRECTION_SHOW = "Direction";
 Blockly.Msg.IMAGE_MOVE_STEP_SHOW = "Step";
+Blockly.Msg.MOVE_TO_MOUSE_SHOW = "Move to mouse position";
+Blockly.Msg.MOVE_TO_COORDINATE_SHOW = "Move to ";
