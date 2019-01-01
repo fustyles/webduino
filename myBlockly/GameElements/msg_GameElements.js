@@ -100,4 +100,4 @@ Blockly.Msg.MOVE_TO_MOUSE_SHOW = "Move to mouse position";
 Blockly.Msg.MOVE_TO_COORDINATE_SHOW = "Move to ";
 Blockly.Msg.IMAGE_RESIZE_SHOW = "Resize";
 Blockly.Msg.PERCENTAGE_SHOW = "%";
-Blockly.Msg.IMAGE_ONCLICK_DO_SHOW = "If Clicked ";
+Blockly.Msg.IMAGE_ONCLICK_DO_SHOW = "is Clicked ";
