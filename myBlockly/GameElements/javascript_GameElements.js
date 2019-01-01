@@ -84,7 +84,7 @@ Blockly.JavaScript['table_td_img_move'] = function (block) {
   var value_imgid_ = Blockly.JavaScript.valueToCode(block, 'imgid_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'table_td_img_move("' + variable_fuGameElements_ + '",'+ value_x_ + ',' + value_y_ + ');\n';
+  var code = 'table_td_img_move("' + variable_fuGameElements_ + '",'+ value_imgid_ + ','+ value_x_ + ',' + value_y_ + ');\n';
   return code;
 };
 
