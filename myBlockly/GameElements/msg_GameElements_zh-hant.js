@@ -98,3 +98,4 @@ Blockly.Msg.IMAGE_MOVE_DIRECTION_SHOW = "移動方向";
 Blockly.Msg.IMAGE_MOVE_STEP_SHOW = "位移";
 Blockly.Msg.MOVE_TO_MOUSE_SHOW = "定位到滑鼠位置";
 Blockly.Msg.MOVE_TO_COORDINATE_SHOW = "定位到";
+Blockly.Msg.PERCENTAGE_SHOW = "%";
