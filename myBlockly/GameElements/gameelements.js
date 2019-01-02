@@ -733,6 +733,26 @@
     }
   }
 
+  
+  function table_get(input_id,input_property){
+    if (document.getElementById("gamebutton_"+input_id)) {
+      if (input_property=="left")
+        return Number(document.getElementById("gamebutton_"+input_id).style.left.replace(/px/ig,""));
+      else if (input_property=="top")
+        return Number(document.getElementById("gamebutton_"+input_id).style.top.replace(/px/ig,""));
+      else if (input_property=="width")
+        return Number(document.getElementById("gamebutton_"+input_id).style.width.replace(/px/ig,""));
+      else if (input_property=="height")
+        return Number(document.getElementById("gamebutton_"+input_id).style.height.replace(/px/ig,""));
+      else if (input_property=="zindex")
+        return document.getElementById("gamebutton_"+input_id).style.zIndex;
+      else if (input_property=="display")
+        return document.getElementById("gamebutton_"+input_id).style.display;
+    }
+    else
+      return "";
+  }
+
   function button_delete(input_id) {
     if (document.getElementById("gamebutton_"+input_id))
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
