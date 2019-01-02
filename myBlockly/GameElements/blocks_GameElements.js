@@ -1073,6 +1073,20 @@ Blockly.Blocks['button_set'] = {
   }
 };
 
+Blockly.Blocks['button_get'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.BUTTON_GET_SHOW)    
+      .appendField(Blockly.Msg.ID_SHOW);  
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["value","value"], ["zindex","zindex"], ["display","display"]]), "property_");
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
 Blockly.Blocks['button_delete'] = {
   init: function () {
   this.appendValueInput("id_")
