@@ -108,3 +108,4 @@ Blockly.Msg.BUTTON_VALUE_SHOW = "文字";
 Blockly.Msg.BUTTON_SET_SHOW = "按鈕設定";
 Blockly.Msg.BUTTON_DELETE_SHOW = "按鈕刪除";
 Blockly.Msg.BUTTON_ONCLICK_SHOW = "按鈕點擊後執行";
+Blockly.Msg.BUTTON_GET_SHOW = "取得按鈕";
