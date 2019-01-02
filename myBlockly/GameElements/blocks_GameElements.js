@@ -1018,11 +1018,11 @@ Blockly.Blocks['button_create'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
+      .appendField(Blockly.Msg.BUTTON_CREATE_SHOW)    
       .appendField(Blockly.Msg.ID_SHOW);    
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.BUTTON_CREATE_SHOW)
       .appendField(Blockly.Msg.LEFT_SHOW);    
   this.appendValueInput("top_")
       .setCheck("Number")
