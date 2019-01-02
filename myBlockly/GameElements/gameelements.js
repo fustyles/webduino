@@ -744,6 +744,8 @@
         return Number(document.getElementById("gamebutton_"+input_id).style.width.replace(/px/ig,""));
       else if (input_property=="height")
         return Number(document.getElementById("gamebutton_"+input_id).style.height.replace(/px/ig,""));
+      else if (input_property=="value")
+        return document.getElementById("gamebutton_"+input_id).value;
       else if (input_property=="zindex")
         return document.getElementById("gamebutton_"+input_id).style.zIndex;
       else if (input_property=="display")
