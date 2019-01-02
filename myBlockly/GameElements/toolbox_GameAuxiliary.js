@@ -113,6 +113,11 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '    </value>'+    
 '  </block>'+      
 '  <block type="button_delete">'+
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
 '  </block>'+    
 '  <block type="button_onclick_do">'+
 '    <value name="id_">'+
