@@ -450,6 +450,10 @@ Blockly.JavaScript['button_delete'] = function (block) {
 
 Blockly.JavaScript['button_onclick_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf("(")==0)&&(value_id_.lastIndexOf(")")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'document.getElementById("gamebutton_' + value_id_ + '").onclick = function(){\n' + statements_do_ + '};\n';
   return code;
