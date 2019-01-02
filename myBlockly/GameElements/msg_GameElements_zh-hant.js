@@ -105,3 +105,6 @@ Blockly.Msg.BOUNDARY_COLLISION_DO_SHOW = "如果碰觸邊界";
 Blockly.Msg.TABLE_TD_IMAGE_MOVE_SHOW = "圖片移動到";
 Blockly.Msg.BUTTON_CREATE_SHOW = "按鈕新增";
 Blockly.Msg.BUTTON_VALUE_SHOW = "文字";
+Blockly.Msg.BUTTON_SET_SHOW = "按鈕設定";
+Blockly.Msg.BUTTON_DELETE_SHOW = "按鈕刪除";
+Blockly.Msg.BUTTON_ONCLICK_SHOW = "按鈕點擊後執行";
