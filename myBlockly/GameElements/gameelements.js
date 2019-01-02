@@ -734,7 +734,7 @@
   }
 
   
-  function table_get(input_id,input_property){
+  function button_get(input_id,input_property){
     if (document.getElementById("gamebutton_"+input_id)) {
       if (input_property=="left")
         return Number(document.getElementById("gamebutton_"+input_id).style.left.replace(/px/ig,""));
