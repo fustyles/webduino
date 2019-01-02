@@ -105,3 +105,6 @@ Blockly.Msg.BOUNDARY_COLLISION_DO_SHOW = "If collision with sides of screen";
 Blockly.Msg.TABLE_TD_IMAGE_MOVE_SHOW = "Move image to";
 Blockly.Msg.BUTTON_CREATE_SHOW = "Create Button";
 Blockly.Msg.BUTTON_VALUE_SHOW = "Value";
+Blockly.Msg.BUTTON_SET_SHOW = "Set Button";
+Blockly.Msg.BUTTON_DELETE_SHOW = "Delete Button";
+Blockly.Msg.BUTTON_ONCLICK_SHOW = "Button onclick";
