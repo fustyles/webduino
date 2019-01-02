@@ -709,3 +709,31 @@
       btn.style.display = "block";
     document.body.appendChild(btn);
   }
+
+  function button_set(input_id,input_property,input_value) {
+    if (document.getElementById("gamebutton_"+input_id)) {
+      if (input_property=="left")
+        document.getElementById("gamebutton_"+input_id).style.left = input_value + "px";
+      else if (input_property=="top")
+        document.getElementById("gamebutton_"+input_id).style.top = input_value + "px";
+      else if (input_property=="width")
+        document.getElementById("gamebutton_"+input_id).style.width = input_value + "px";
+      else if (input_property=="height")
+        document.getElementById("gamebutton_"+input_id).style.height = input_value + "px";
+      else if (input_property=="value")
+        document.getElementById("gamebutton_"+input_id).value = input_value;      
+      else if (input_property=="zindex")
+        document.getElementById("gamebutton_"+input_id).style.zIndex = input_value;
+      else if (input_property=="display"){ 
+        if (input_value==1)
+          document.getElementById("gamebutton_"+input_id).style.display = "block";    
+        else if (input_value==0)
+          document.getElementById("gamebutton_"+input_id).style.display = "none";
+      }
+    }
+  }
+
+  function button_delete(input_id) {
+    if (document.getElementById("gamebutton_"+input_id))
+      document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
+  }
