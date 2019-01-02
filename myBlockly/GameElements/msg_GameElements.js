@@ -108,3 +108,4 @@ Blockly.Msg.BUTTON_VALUE_SHOW = "Value";
 Blockly.Msg.BUTTON_SET_SHOW = "Set Button";
 Blockly.Msg.BUTTON_DELETE_SHOW = "Delete Button";
 Blockly.Msg.BUTTON_ONCLICK_SHOW = "Button onclick";
+Blockly.Msg.BUTTON_GET_SHOW = "Get Button";
