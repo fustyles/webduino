@@ -1087,11 +1087,13 @@ Blockly.Blocks['button_delete'] = {
 
 Blockly.Blocks['button_onclick_do'] = {
   init: function () {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.BUTTON_ONCLICK_SHOW);
-    this.appendStatementInput("do_");
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(60);
+  this.appendValueInput("id_")
+    .setCheck(null)
+    .appendField(Blockly.Msg.BUTTON_ONCLICK_SHOW)   
+    .appendField(Blockly.Msg.ID_SHOW);  
+  this.appendStatementInput("do_");
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
   }
 };
