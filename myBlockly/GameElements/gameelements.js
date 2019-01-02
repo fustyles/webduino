@@ -690,7 +690,7 @@
     return Number(input_text);
   } 
 
-  fuction button_create(input_id,input_width,input_height,input_left,input_top,input_value,input_zindex,input_display) {
+  function button_create(input_id,input_width,input_height,input_left,input_top,input_value,input_zindex,input_display) {
     if (document.getElementById("gamebutton_"+input_id)) 
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
     var btn = document.createElement('button');
