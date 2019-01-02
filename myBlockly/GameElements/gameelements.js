@@ -689,3 +689,22 @@
   function text_to_number(input_text) {
     return Number(input_text);
   } 
+
+  fuction button_create(input_id,input_width,input_height,input_left,input_top,input_value,input_zindex,input_display) {
+    if (document.getElementById("gamebutton_"+input_id)) 
+      document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
+    var btn = document.createElement('button');
+    btn.id = "gamebutton_"+input_id;
+    btn.style.position = "absolute";
+    btn.style.left = input_left + 'px';
+    btn.style.top = input_top + 'px';
+    btn.style.width = input_width + 'px';
+    btn.style.height = input_height + 'px';  
+    btn.value = input_value;
+    btn.style.zIndex = input_zindex;
+    if (input_display==0)
+      btn.style.display = "none";
+    else
+      btn.style.display = "block";
+    document.body.appendChild(btn);
+  }
