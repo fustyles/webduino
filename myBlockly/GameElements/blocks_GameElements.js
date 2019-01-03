@@ -769,12 +769,12 @@ Blockly.Blocks['image_boundary'] = {
 
 Blockly.Blocks['image_boundary_collision'] = {
   init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.BOUNDARY_COLLISION_SHOW)
+      .appendField(new Blockly.FieldDropdown([["up","up"], ["down","down"], ["left","left"], ["right","right"], ["any","any"]]), "property_");   
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.BOUNDARY_COLLISION_SHOW)
       .appendField(Blockly.Msg.IMAGE_ID_SHOW);    
-  this.appendDummyInput()
-      .appendField(new Blockly.FieldDropdown([["up","up"], ["down","down"], ["left","left"], ["right","right"], ["any","any"]]), "property_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -783,12 +783,12 @@ Blockly.Blocks['image_boundary_collision'] = {
 
 Blockly.Blocks['image_boundary_collision_do'] = {
   init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.BOUNDARY_COLLISION_DO_SHOW) 
+      .appendField(new Blockly.FieldDropdown([["up","up"], ["down","down"], ["left","left"], ["right","right"], ["any","any"]]), "property_");
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.BOUNDARY_COLLISION_DO_SHOW)    
       .appendField(Blockly.Msg.IMAGE_ID_SHOW);    
-  this.appendDummyInput()
-      .appendField(new Blockly.FieldDropdown([["up","up"], ["down","down"], ["left","left"], ["right","right"], ["any","any"]]), "property_");   
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
