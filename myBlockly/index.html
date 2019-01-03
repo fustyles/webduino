@@ -1,4 +1,4 @@
-<!-- Author: Fu Chung-Yi (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update date: 2019-1-2 -->
+<!-- Author: Fu Chung-Yi (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update date: 2019-1-3 -->
 
 <!DOCTYPE html>
 <html>
@@ -241,6 +241,7 @@ while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().i
 	
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.appspot.com/static/media/', toolbox: document.getElementById('toolbox'),zoom:{controls: true,wheel: true,startScale: 1.0,maxScale: 3,minScale: 0.3,scaleSpeed: 1.2},trashcan: true});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
+	
 //append Game(Tetris) blocks to startBlocks
 XmldomToWorkspace(Game_Tetris);
 function XmldomToWorkspace(example) {	
@@ -248,6 +249,7 @@ function XmldomToWorkspace(example) {
   demoWorkspace.clear();
   Blockly.Xml.domToWorkspace(xml, demoWorkspace);
 }
+	
 function showCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
@@ -313,6 +315,7 @@ function exportBlocks() {
     alert(e);
   }
 }
+	
 function exportHTML() {
   try {
     var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
@@ -333,6 +336,7 @@ function exportHTML() {
     alert(e);
   }
 }
+	
 function exportCODE() {
   try {
     var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
@@ -359,6 +363,7 @@ function importBlocks() {
     alert(e);
   }
 }
+	
 function hideMySpace(element) {
   if (document.getElementById('myfeatures').style.display != 'none') { 
     document.getElementById('myfeatures').style.display = 'none';
@@ -371,6 +376,7 @@ function hideMySpace(element) {
   }
   Blockly.svgResize(demoWorkspace);
 }
+	
 function getXML(element) {
   var file = element.files[0];
   var fr = new FileReader();           
