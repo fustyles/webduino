@@ -1031,9 +1031,23 @@ Blockly.Blocks['rotatez_degrees'] = {
       .setCheck(null)
       .appendField(Blockly.Msg.IMAGE_ID_SHOW); 
   this.appendDummyInput()
-      .appendField(Blockly.Msg.ROTATE_DEGREES_SHOW);  
+      .appendField(Blockly.Msg.ROTATEZ_DEGREES_SHOW);  
   this.appendValueInput("degrees_")
       .setCheck("Number"); 
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['rotatey_degrees'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.ROTATEY_DEGREES_SHOW);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
