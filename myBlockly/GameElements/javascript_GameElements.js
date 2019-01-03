@@ -421,6 +421,13 @@ Blockly.JavaScript['move_to_coordinate'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['rotatez_degrees'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_degrees_ = Blockly.JavaScript.valueToCode(block, 'degrees_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var code = 'image_set('+value_id_+',"rotateZ",'+value_degrees_+');\n';
+  return code;
+};
+
 Blockly.JavaScript['button_create'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
