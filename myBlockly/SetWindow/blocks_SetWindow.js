@@ -1,4 +1,4 @@
-Blockly.Blocks['setWindow'] = {
+Blockly.Blocks['setwindow'] = {
   init: function() {
   this.appendDummyInput()
       .appendField(Blockly.Msg.SETWINDOW_SHOW);  
