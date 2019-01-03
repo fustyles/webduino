@@ -1,6 +1,6 @@
 var catSetWindow = '<xml>'+
 '<category name="%{BKY_SETWINDOW}" colour="%{BKY_SETWINDOW_HUE}">'+
-'  <block type="setWindow">'+
+'  <block type="setwindow">'+
 '    <value name="left">'+
 '      <block type="math_number">'+
 '        <field name="NUM">300</field>'+
