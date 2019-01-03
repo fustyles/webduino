@@ -1,7 +1,7 @@
 Blockly.Blocks['setscreen'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField("Old block");  
+      .appendField("Old block will be deleted");  
   this.appendValueInput("left")
       .setCheck("Number")
       .appendField(Blockly.Msg.SETWINDOW_LEFT_SHOW); 
