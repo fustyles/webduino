@@ -141,7 +141,19 @@ var catGameImage = '<xml><category name="%{BKY_GAMEIMAGE}" colour="%{BKY_GAMEIMA
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+     
-'  </block>'+      
+'  </block>'+     
+'  <block type="rotatez_degrees">'+
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+   
+'    <value name="degrees_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">30</field>'+
+'      </block>'+
+'    </value>'+     
+'  </block>'+  
 '  <block type="move_to_coordinate">'+
 '    <value name="id_">'+
 '      <block type="text">'+
