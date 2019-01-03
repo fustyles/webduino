@@ -69,6 +69,7 @@ Blockly.Msg.CANVAS_DELETE_SHOW = "刪除畫布";
 Blockly.Msg.IMAGE_CREATE_SHOW = "建立圖片";
 Blockly.Msg.ID_SHOW = "代碼";
 Blockly.Msg.IMAGE_ID_SHOW = "圖片代碼";
+Blockly.Msg.CANVAS_ID_SHOW = "畫布代碼";
 Blockly.Msg.URL_SHOW = "網址來源";
 Blockly.Msg.WIDTH_SHOW = "寬度";
 Blockly.Msg.HEIGHT_SHOW = "高度";
