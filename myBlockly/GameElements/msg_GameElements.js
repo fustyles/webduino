@@ -8,6 +8,8 @@ Blockly.Msg["GAMECANVAS"] = "GameCanvas";
 Blockly.Msg["GAMECANVAS_HUE"] = "280";
 Blockly.Msg["GAMEIMAGE"] = "GameImage";
 Blockly.Msg["GAMEIMAGE_HUE"] = "280";
+Blockly.Msg["GAMEFORM"] = "GameForm";
+Blockly.Msg["GAMEFORM_HUE"] = "280";
 
 Blockly.Msg.TABLE_CREATE_SHOW = "Table Create";
 Blockly.Msg.TABLE_SET_SHOW = "Table Set";

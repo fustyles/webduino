@@ -1,4 +1,4 @@
-var catGameForm = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY_GAMEAUXILIARY_HUE}">'+
+var catGameForm = '<xml><category name="%{BKY_GAMEFORM}" colour="%{BKY_GAMEFORM_HUE}">'+
 '  <block type="button_create">'+ 
 '    <value name="id_">'+
 '      <block type="text">'+

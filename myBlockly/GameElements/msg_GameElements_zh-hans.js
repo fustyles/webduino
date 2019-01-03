@@ -8,6 +8,8 @@ Blockly.Msg["GAMECANVAS"] = "游戏画布";
 Blockly.Msg["GAMECANVAS_HUE"] = "280";
 Blockly.Msg["GAMEIMAGE"] = "游戏图片";
 Blockly.Msg["GAMEIMAGE_HUE"] = "280";
+Blockly.Msg["GAMEFORM"] = "游戏表单";
+Blockly.Msg["GAMEFORM_HUE"] = "280";
 
 Blockly.Msg.TABLE_CREATE_SHOW = "表格 新增";
 Blockly.Msg.TABLE_SET_SHOW = "表格 设定";
