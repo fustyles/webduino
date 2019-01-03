@@ -4,16 +4,16 @@ Blockly.Blocks['setscreen'] = {
       .appendField("Old block will be deleted");  
   this.appendValueInput("left")
       .setCheck("Number")
-      .appendField(Blockly.Msg.SETWINDOW_LEFT_SHOW); 
+      .appendField(""); 
   this.appendValueInput("top")
       .setCheck("Number")
-      .appendField(Blockly.Msg.SETWINDOW_TOP_SHOW);   
+      .appendField("");   
   this.appendValueInput("width")
       .setCheck("Number")
-      .appendField(Blockly.Msg.SETWINDOW_WIDTH_SHOW); 
+      .appendField(""); 
   this.appendValueInput("height")
       .setCheck("Number")
-      .appendField(Blockly.Msg.SETWINDOW_HEIGHT_SHOW);   
+      .appendField("");   
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
