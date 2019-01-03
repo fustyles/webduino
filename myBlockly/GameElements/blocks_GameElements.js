@@ -1025,6 +1025,22 @@ Blockly.Blocks['move_to_coordinate'] = {
   }
 };
 
+Blockly.Blocks['rotatez_degrees'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.ROTATE_DEGREES_SHOW);  
+  this.appendValueInput("degrees_")
+      .setCheck("Number"); 
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(200);
+  }
+};
+
 Blockly.Blocks['button_create'] = {
   init: function() {
   this.appendValueInput("id_")
