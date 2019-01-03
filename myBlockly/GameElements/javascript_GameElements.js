@@ -428,7 +428,7 @@ Blockly.JavaScript['rotatez_degrees'] = function (block) {
   return code;
 };
 
-Blockly.JavaScript['rotateㄗ_degrees'] = function (block) {
+Blockly.JavaScript['rotatey_degrees'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var code = 'if (image_get('+value_id_+',"rotateY")<=90) \n\timage_set('+value_id_+',"rotateY",180); else \n\timage_set('+value_id_+',"rotateY",0);\n';
   return code;
