@@ -825,6 +825,7 @@ Blockly.Blocks['image_onclick_do'] = {
       .appendField(Blockly.Msg.IMAGE_ONCLICK_DO_SHOW)
       .appendField(Blockly.Msg.IMAGE_ID_SHOW);    
     this.appendStatementInput("do_");
+    this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
