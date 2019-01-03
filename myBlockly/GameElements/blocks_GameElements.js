@@ -1092,7 +1092,8 @@ Blockly.Blocks['button_delete'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.BUTTON_DELETE_SHOW)    
-      .appendField(Blockly.Msg.ID_SHOW);   
+      .appendField(Blockly.Msg.ID_SHOW); 
+  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -1105,6 +1106,7 @@ Blockly.Blocks['button_onclick_do'] = {
     .setCheck(null)
     .appendField(Blockly.Msg.BUTTON_ONCLICK_SHOW)   
     .appendField(Blockly.Msg.ID_SHOW);  
+  this.setInputsInline(true);
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
