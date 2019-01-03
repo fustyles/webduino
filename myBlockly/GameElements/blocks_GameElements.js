@@ -822,9 +822,8 @@ Blockly.Blocks['image_onclick_do'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.IMAGE_ID_SHOW);     
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.IMAGE_ONCLICK_DO_SHOW);
+      .appendField(Blockly.Msg.IMAGE_ONCLICK_DO_SHOW)
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW);    
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
