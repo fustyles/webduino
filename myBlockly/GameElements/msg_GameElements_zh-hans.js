@@ -114,4 +114,4 @@ Blockly.Msg.BUTTON_DELETE_SHOW = "删除按钮";
 Blockly.Msg.BUTTON_ONCLICK_SHOW = "按钮点击后执行";
 Blockly.Msg.BUTTON_GET_SHOW = "取得按钮";
 Blockly.Msg.ROTATEZ_DEGREES_SHOW = "旋转角度";
-Blockly.Msg.ROTATEY_DEGREES_SHOW = "左右反向";
+Blockly.Msg.ROTATEY_DEGREES_SHOW = "左右翻转";
