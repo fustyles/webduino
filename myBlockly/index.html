@@ -146,7 +146,7 @@
         </tr>
         <tr>
           <td align="left" valign="center">
-            <button onclick="importBlocks()">Import Blocks</button><input id="myfile"  type="file" onchange ="openXML(this);" accept=".txt,.xml">
+            <button onclick="importBlocks()">Import Blocks</button><input id="myfile"  type="file" onchange ="getXML(this);" accept=".txt,.xml">
           </td>
         </tr>
         <tr>
@@ -379,7 +379,7 @@ function hideMySpace(element) {
   Blockly.svgResize(demoWorkspace);
 }
 	
-function openXML(element) {
+function getXML(element) {
   var file = element.files[0];
   var fr = new FileReader();           
   fr.onload = function (event) {
