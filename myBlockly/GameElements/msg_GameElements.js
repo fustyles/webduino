@@ -69,6 +69,7 @@ Blockly.Msg.CANVAS_DELETE_SHOW = "Delete Canvas";
 Blockly.Msg.IMAGE_CREATE_SHOW = "Create Image";
 Blockly.Msg.ID_SHOW = " ID";
 Blockly.Msg.IMAGE_ID_SHOW = "Image ID";
+Blockly.Msg.CANVAS_ID_SHOW = "Canvas ID";
 Blockly.Msg.URL_SHOW = "Url";
 Blockly.Msg.WIDTH_SHOW = "Width";
 Blockly.Msg.HEIGHT_SHOW = "Height";
