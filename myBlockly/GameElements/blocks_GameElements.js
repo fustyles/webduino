@@ -787,6 +787,7 @@ Blockly.Blocks['image_boundary_collision_do'] = {
       .setCheck(null)
       .appendField(Blockly.Msg.IMAGE_ID_SHOW);    
   this.appendDummyInput()
+      .appendField(" ");
       .appendField(Blockly.Msg.BOUNDARY_COLLISION_DO_SHOW)
       .appendField(new Blockly.FieldDropdown([["up","up"], ["down","down"], ["left","left"], ["right","right"], ["any","any"]]), "property_");   
   this.appendStatementInput("do_");
