@@ -183,4 +183,11 @@ var catGameImage = '<xml><category name="%{BKY_GAMEIMAGE}" colour="%{BKY_GAMEIMA
 '      </block>'+
 '    </value>'+     
 '  </block>'+      
+'  <block type="rotatey_degrees">'+
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+       
+'  </block>'+      
 ' </category></xml>';
