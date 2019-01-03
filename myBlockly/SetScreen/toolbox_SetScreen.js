@@ -28,6 +28,8 @@ var catSetScreen = '<xml>'+
 '        <field name="COLOUR">#ffffff</field>'+
 '      </block>'+
 '    </value>'+    
-'  </block>'+      
+'  </block>'+     
+'  <block type="window_reload">'+  
+'  </block>'+     
 '</category>'+
 '</xml>';
