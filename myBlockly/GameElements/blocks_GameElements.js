@@ -986,7 +986,7 @@ Blockly.Blocks['move_to_mouse'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.ID_SHOW);
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW);
   this.appendDummyInput()
       .appendField(Blockly.Msg.MOVE_TO_MOUSE_SHOW);
   this.setPreviousStatement(true);
@@ -999,7 +999,7 @@ Blockly.Blocks['move_to_coordinate'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.ID_SHOW); 
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW); 
   this.appendDummyInput()
       .appendField(Blockly.Msg.MOVE_TO_COORDINATE_SHOW);
   this.appendValueInput("left_")
