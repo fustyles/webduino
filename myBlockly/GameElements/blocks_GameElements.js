@@ -219,7 +219,7 @@ Blockly.Blocks['table_td_insert_img'] = {
   this.appendValueInput("imgid_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID_SHOW);      
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW);      
   this.appendValueInput("url_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -246,7 +246,7 @@ Blockly.Blocks['table_td_img_move'] = {
   this.appendValueInput("imgid_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID_SHOW);
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW);
   this.appendValueInput("x_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -269,7 +269,7 @@ Blockly.Blocks['table_td_img_get'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_TD_IMAGE_GET_SHOW)
-      .appendField(Blockly.Msg.ID_SHOW); 
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.PROPERTY_SHOW)
       .appendField(new Blockly.FieldDropdown([["column","column"], ["row","row"], ["width","width"], ["height","height"], ["naturalwidth","naturalwidth"], ["naturalheight","naturalheight"], ["imageid","imageid"]]), "property_");  
