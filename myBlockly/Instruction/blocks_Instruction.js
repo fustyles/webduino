@@ -380,7 +380,7 @@ Blockly.Blocks['cmd15'] = {
   init: function() {
   this.appendValueInput("Instruction")
       .setCheck(null)
-      .appendField(Blockly.Msg.INSTRUCTION_DECLARE_VARIABLE_SHOW);
+      .appendField(Blockly.Msg.INSTRUCTION_SHOW);
   this.appendDummyInput()
       .appendField(";");        
   this.setPreviousStatement(true);
