@@ -1,5 +1,10 @@
 var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMECANVAS_HUE}">'+
-'  <block type="canvas_create">'+  
+'  <block type="canvas_create">'+ 
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+      
 '    <value name="width_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">500</field>'+
@@ -27,6 +32,11 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '    </value>'+     
 '  </block>'+
 '  <block type="canvas_line">'+  
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+      
 '    <value name="linewidth_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">5</field>'+
@@ -59,6 +69,11 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '    </value>'+     
 '  </block>'+  
 '  <block type="canvas_rect">'+ 
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+      
 '    <value name="linewidth_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">5</field>'+
@@ -96,6 +111,11 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '    </value>'+     
 '  </block>'+  
 '  <block type="canvas_arc">'+  
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+      
 '    <value name="linewidth_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">5</field>'+
@@ -143,6 +163,11 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '    </value>'+     
 '  </block>'+  
 '  <block type="canvas_img">'+
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+      
 '    <value name="url_">'+
 '      <block type="text">'+
 '        <field name="TEXT"></field>'+
@@ -190,6 +215,11 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '    </value>'+   
 '  </block>'+
 '  <block type="canvas_text">'+
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+      
 '    <value name="text_">'+
 '      <block type="text">'+
 '        <field name="TEXT">Hello World</field>'+
@@ -227,7 +257,17 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '    </value>'+  
 '  </block>'+
 '  <block type="canvas_clear">'+
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+      
 '  </block>'+  
 '  <block type="canvas_delete">'+
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+      
 '  </block>'+  
 ' </category></xml>';
