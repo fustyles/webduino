@@ -693,10 +693,10 @@ Blockly.Blocks['image_set'] = {
   init: function() {
   this.appendValueInput("id_")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck(null) 
+      .setCheck(null)
+      .appendField(Blockly.Msg.SET_SHOW)
       .appendField(Blockly.Msg.IMAGE_ID_SHOW);    
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.SET_SHOW)
       .appendField(new Blockly.FieldDropdown([["url","url"], ["width","width"], ["height","height"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["opacity","opacity"], ["rotate","rotate"], ["rotateX","rotateX"], ["rotateY","rotateY"], ["rotateZ","rotateZ"], ["moveX","moveX"], ["moveY","moveY"]]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -712,9 +712,9 @@ Blockly.Blocks['image_get'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
+      .appendField(Blockly.Msg.GET_SHOW)
       .appendField(Blockly.Msg.IMAGE_ID_SHOW);  
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.GET_SHOW)
       .appendField(new Blockly.FieldDropdown([["exist","exist"], ["url","url"], ["width","width"], ["height","height"], ["naturalwidth","naturalwidth"], ["naturalheight","naturalheight"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["opacity","opacity"], ["rotate","rotate"], ["rotateX","rotateX"], ["rotateY","rotateY"], ["rotateZ","rotateZ"], ["id","id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
