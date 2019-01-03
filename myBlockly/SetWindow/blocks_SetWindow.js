@@ -64,6 +64,6 @@ Blockly.Blocks['window_reload'] = {
       .appendField(Blockly.Msg.WINDOW_RELOAD_SHOW);   
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(130);
   }
 };  
