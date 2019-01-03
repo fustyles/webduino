@@ -18,3 +18,8 @@ Blockly.JavaScript['body_set'] = function (block) {
   var code = 'body_set("' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
+
+Blockly.JavaScript['window_reload'] = function (block) {
+  var code = 'window.location.reload();\n';
+  return code;
+};
