@@ -380,9 +380,10 @@ Blockly.Blocks['music_delete'] = {
 
 Blockly.Blocks['canvas_create'] = {
   init: function() {
-  this.appendDummyInput()
+  this.appendValueInput("id_")
+      .setCheck(null)
       .appendField(Blockly.Msg.CANVAS_CREATE_SHOW)
-      .appendField(new Blockly.FieldVariable('fuGameCanvas'), 'fuGameElements_');
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW); 
   this.appendValueInput("width_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -411,9 +412,10 @@ Blockly.Blocks['canvas_create'] = {
 
 Blockly.Blocks['canvas_line'] = {
   init: function() {
-  this.appendDummyInput()
+  this.appendValueInput("id_")
+      .setCheck(null)
       .appendField(Blockly.Msg.CANVAS_LINE_SHOW)
-      .appendField(new Blockly.FieldVariable('fuGameCanvas'), 'fuGameElements_');
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);
   this.appendValueInput("linewidth_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -447,9 +449,10 @@ Blockly.Blocks['canvas_line'] = {
 
 Blockly.Blocks['canvas_rect'] = {
   init: function() {
-  this.appendDummyInput()
+  this.appendValueInput("id_")
+      .setCheck(null)
       .appendField(Blockly.Msg.CANVAS_RECT_SHOW)
-      .appendField(new Blockly.FieldVariable('fuGameCanvas'), 'fuGameElements_');
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);
   this.appendValueInput("linewidth_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -487,9 +490,10 @@ Blockly.Blocks['canvas_rect'] = {
 
 Blockly.Blocks['canvas_arc'] = {
   init: function() {
-  this.appendDummyInput()
+  this.appendValueInput("id_")
+      .setCheck(null)
       .appendField(Blockly.Msg.CANVAS_ARC_SHOW)
-      .appendField(new Blockly.FieldVariable('fuGameCanvas'), 'fuGameElements_');
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);
   this.appendValueInput("linewidth_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -535,9 +539,10 @@ Blockly.Blocks['canvas_arc'] = {
 
 Blockly.Blocks['canvas_img'] = {
   init: function() {
-  this.appendDummyInput()
+  this.appendValueInput("id_")
+      .setCheck(null)
       .appendField(Blockly.Msg.CANVAS_IMG_SHOW)
-      .appendField(new Blockly.FieldVariable('fuGameCanvas'), 'fuGameElements_');
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);
   this.appendValueInput("url_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -583,9 +588,10 @@ Blockly.Blocks['canvas_img'] = {
 
 Blockly.Blocks['canvas_text'] = {
   init: function() {
-  this.appendDummyInput()
+  this.appendValueInput("id_")
+      .setCheck(null)
       .appendField(Blockly.Msg.CANVAS_TEXT_SHOW)
-      .appendField(new Blockly.FieldVariable('fuGameCanvas'), 'fuGameElements_');
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);
   this.appendValueInput("text_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -626,25 +632,27 @@ Blockly.Blocks['canvas_text'] = {
 
 Blockly.Blocks['canvas_clear'] = {
   init: function () {
-    this.appendDummyInput()
+  this.appendValueInput("id_")
+      .setCheck(null)
       .appendField(Blockly.Msg.CANVAS_CLEAR_SHOW)
-      .appendField(new Blockly.FieldVariable('fuGameCanvas'), 'fuGameElements_');
-    this.setInputsInline(true);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(60);
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
   }
 };
 
 Blockly.Blocks['canvas_delete'] = {
   init: function () {
-    this.appendDummyInput()
+  this.appendValueInput("id_")
+      .setCheck(null)
       .appendField(Blockly.Msg.CANVAS_DELETE_SHOW)
-      .appendField(new Blockly.FieldVariable('fuGameCanvas'), 'fuGameElements_');
-    this.setInputsInline(true);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(60);
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
   }
 };
 
