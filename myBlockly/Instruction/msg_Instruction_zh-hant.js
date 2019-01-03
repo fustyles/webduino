@@ -1,6 +1,7 @@
-Blockly.Msg["INSTRUCTION"] = "指令擴充"
+Blockly.Msg["INSTRUCTION"] = "指令擴充";
 Blockly.Msg["INSTRUCTION_HUE"] = "280";
 
+Blockly.Msg.INSTRUCTION_SHOW = "指令";
 Blockly.Msg.INSTRUCTION_GET_SHOW = "取得";
 Blockly.Msg.INSTRUCTION_SHOW = "指令";
 Blockly.Msg.INSTRUCTION_GET_ARRAY_SHOW = "取得陣列";
