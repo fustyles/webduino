@@ -34,3 +34,13 @@ Blockly.Blocks['body_set'] = {
   this.setColour(60);
   }
 };  
+
+Blockly.Blocks['window_reload'] = {
+  init: function() {    
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.WINDOW_RELOAD_SHOW);   
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};  
