@@ -694,7 +694,7 @@ Blockly.Blocks['image_set'] = {
   this.appendValueInput("id_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null) 
-      .appendField(Blockly.Msg.ID_SHOW);    
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW);    
   this.appendDummyInput()  
       .appendField(Blockly.Msg.SET_SHOW)
       .appendField(new Blockly.FieldDropdown([["url","url"], ["width","width"], ["height","height"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["opacity","opacity"], ["rotate","rotate"], ["rotateX","rotateX"], ["rotateY","rotateY"], ["rotateZ","rotateZ"], ["moveX","moveX"], ["moveY","moveY"]]), "property_");
@@ -712,7 +712,7 @@ Blockly.Blocks['image_get'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.ID_SHOW);  
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.GET_SHOW)
       .appendField(new Blockly.FieldDropdown([["exist","exist"], ["url","url"], ["width","width"], ["height","height"], ["naturalwidth","naturalwidth"], ["naturalheight","naturalheight"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["opacity","opacity"], ["rotate","rotate"], ["rotateX","rotateX"], ["rotateY","rotateY"], ["rotateZ","rotateZ"], ["id","id"]]), "property_");
@@ -727,7 +727,7 @@ Blockly.Blocks['image_delete'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.DELETE_SHOW)
-      .appendField(Blockly.Msg.ID_SHOW); 
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW); 
   this.setInputsInline(true);
   this.setPreviousStatement(true, null);
   this.setNextStatement(true, null);
@@ -771,7 +771,7 @@ Blockly.Blocks['image_boundary_collision'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.ID_SHOW);    
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW);    
   this.appendDummyInput()
       .appendField(Blockly.Msg.BOUNDARY_COLLISION_SHOW)
       .appendField(new Blockly.FieldDropdown([["up","up"], ["down","down"], ["left","left"], ["right","right"], ["any","any"]]), "property_");   
@@ -785,7 +785,7 @@ Blockly.Blocks['image_boundary_collision_do'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.ID_SHOW);    
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW);    
   this.appendDummyInput()
       .appendField(Blockly.Msg.BOUNDARY_COLLISION_DO_SHOW)
       .appendField(new Blockly.FieldDropdown([["up","up"], ["down","down"], ["left","left"], ["right","right"], ["any","any"]]), "property_");   
@@ -822,7 +822,7 @@ Blockly.Blocks['image_onclick_do'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.ID_SHOW);     
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW);     
     this.appendDummyInput()
         .appendField(Blockly.Msg.IMAGE_ONCLICK_DO_SHOW);
     this.appendStatementInput("do_");
@@ -837,7 +837,7 @@ Blockly.Blocks['image_onclick_get'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.ONCLICK_SHOW)
-      .appendField(Blockly.Msg.ID_SHOW); 
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -848,7 +848,7 @@ Blockly.Blocks['image_move'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.ID_SHOW);
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW);
   this.appendDummyInput()
       .appendField(Blockly.Msg.IMAGE_MOVE_DIRECTION_SHOW)
       .appendField(new Blockly.FieldDropdown([["up","up"], ["down","down"], ["left","left"], ["right","right"]]), "property_");   
@@ -865,7 +865,7 @@ Blockly.Blocks['image_resize'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.ID_SHOW);
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW);
   this.appendValueInput("percentage_")
       .setCheck("Number")
       .appendField(Blockly.Msg.IMAGE_RESIZE_SHOW); 
