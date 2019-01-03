@@ -63,6 +63,7 @@ Blockly.Blocks['table_set'] = {
       .appendField(Blockly.Msg.TABLE_SET_SHOW)    
       .appendField(new Blockly.FieldVariable('fuGameTable'), 'fuGameElements_');      
   this.appendDummyInput()  
+      .appendField(" ")
       .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["borderstyle","borderstyle"], ["borderwidth","borderwidth"], ["bordercolor","bordercolor"], ["cellwidth","cellwidth"], ["cellheight","cellheight"], ["cellcolor","cellcolor"], ["zindex","zindex"], ["display","display"]]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -80,6 +81,7 @@ Blockly.Blocks['table_get'] = {
       .appendField(Blockly.Msg.TABLE_GET_SHOW)
       .appendField(new Blockly.FieldVariable('fuGameTable'), 'fuGameElements_');  
   this.appendDummyInput()  
+      .appendField(" ")    
       .appendField(new Blockly.FieldDropdown([["onclick[Column,Row]","onclick[Column,Row]"], ["onclickImage","onclickImage"], ["columns","columns"], ["rows","rows"], ["left","left"], ["top","top"], ["borderstyle","borderstyle"], ["borderwidth","borderwidth"], ["bordercolor","bordercolor"], ["zindex","zindex"], ["display","display"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
