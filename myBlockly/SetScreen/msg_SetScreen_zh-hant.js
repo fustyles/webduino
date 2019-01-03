@@ -6,4 +6,4 @@ Blockly.Msg.SETSCREEN_LEFT_SHOW = "靠左";
 Blockly.Msg.SETSCREEN_TOP_SHOW = "靠上";
 Blockly.Msg.SETSCREEN_WIDTH_SHOW = "寬度";
 Blockly.Msg.SETSCREEN_HEIGHT_SHOW = "高度";
-Blockly.Msg.SCREEN_RELOAD_SHOW = "重新載入網頁";
+Blockly.Msg.SCREEN_RELOAD_SHOW = "視窗重新載入網頁";
