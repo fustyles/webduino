@@ -1041,13 +1041,27 @@ Blockly.Blocks['rotatez_degrees'] = {
   }
 };
 
+Blockly.Blocks['rotate_vertical_flip'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.ROTATE_VERTICAL_FLIP_SHOW);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(200);
+  }
+};
+
 Blockly.Blocks['rotate_horizontal_flip'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.IMAGE_ID_SHOW); 
   this.appendDummyInput()
-      .appendField(Blockly.Msg.ROTATEY_DEGREES_SHOW);
+      .appendField(Blockly.Msg.ROTATE_HORIZONTAL_FLIP_SHOW);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
