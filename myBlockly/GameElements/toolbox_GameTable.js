@@ -1,5 +1,10 @@
 var catGameTable = '<xml><category name="%{BKY_GAMETABLE}" colour="%{BKY_GAMETABLE_HUE}">'+
-'  <block type="table_create">'+   
+'  <block type="table_create">'+  
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
 '    <value name="left_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
@@ -57,19 +62,44 @@ var catGameTable = '<xml><category name="%{BKY_GAMETABLE}" colour="%{BKY_GAMETAB
 '    </value>'+     
 '  </block>'+
 '  <block type="table_set">'+
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+ 
 '    <value name="value_">'+
 '      <block type="text">'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+    
 '  </block>'+  
-'  <block type="table_get">'+      
+'  <block type="table_get">'+   
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
 '  </block>'+  
-'  <block type="table_clear">'+      
+'  <block type="table_clear">'+  
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
 '  </block>'+ 
 '  <block type="table_delete">'+
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
 '  </block>'+
-'  <block type="table_td_insert_img">'+  
+'  <block type="table_td_insert_img">'+ 
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
 '    <value name="x_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
@@ -102,6 +132,11 @@ var catGameTable = '<xml><category name="%{BKY_GAMETABLE}" colour="%{BKY_GAMETAB
 '    </value>'+   
 '  </block>'+
 '  <block type="table_td_img_move">'+  
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
 '    <value name="imgid_">'+
 '      <block type="text">'+
 '        <field name="TEXT"></field>'+
@@ -119,6 +154,11 @@ var catGameTable = '<xml><category name="%{BKY_GAMETABLE}" colour="%{BKY_GAMETAB
 '    </value>'+  
 '  </block>'+    
 '  <block type="table_td_copy_move">'+  
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
 '    <value name="x0_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
@@ -157,6 +197,11 @@ var catGameTable = '<xml><category name="%{BKY_GAMETABLE}" colour="%{BKY_GAMETAB
 '    </value>'+     
 '  </block>'+  
 '  <block type="table_td_insert_text">'+  
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
 '    <value name="x_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
@@ -189,6 +234,11 @@ var catGameTable = '<xml><category name="%{BKY_GAMETABLE}" colour="%{BKY_GAMETAB
 '    </value>'+       
 '  </block>'+
 '  <block type="table_td_set">'+  
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
 '    <value name="x_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
@@ -206,6 +256,11 @@ var catGameTable = '<xml><category name="%{BKY_GAMETABLE}" colour="%{BKY_GAMETAB
 '    </value>'+      
 '  </block>'+
 '  <block type="table_border_set">'+  
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
 '    <value name="borderwidth_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">1</field>'+
@@ -218,6 +273,11 @@ var catGameTable = '<xml><category name="%{BKY_GAMETABLE}" colour="%{BKY_GAMETAB
 '    </value>'+
 '  </block>'+  
 '  <block type="table_td_border_set">'+  
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
 '    <value name="x_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
@@ -240,6 +300,11 @@ var catGameTable = '<xml><category name="%{BKY_GAMETABLE}" colour="%{BKY_GAMETAB
 '    </value>'+
 '  </block>'+
 '  <block type="table_td_get">'+    
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
 '    <value name="x_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
@@ -252,6 +317,11 @@ var catGameTable = '<xml><category name="%{BKY_GAMETABLE}" colour="%{BKY_GAMETAB
 '    </value>'+     
 '  </block>'+    
 '  <block type="table_td_clear">'+  
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+     
 '    <value name="x_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
