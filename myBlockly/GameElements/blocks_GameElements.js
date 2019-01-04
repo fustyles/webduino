@@ -1050,7 +1050,7 @@ Blockly.Blocks['move_to_mouse'] = {
       .appendField(Blockly.Msg.MOVE_TO_MOUSE_SHOW);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -1071,7 +1071,7 @@ Blockly.Blocks['move_to_coordinate'] = {
       .appendField(Blockly.Msg.TOP_SHOW); 
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -1087,7 +1087,7 @@ Blockly.Blocks['rotatez_degrees'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -1101,7 +1101,7 @@ Blockly.Blocks['rotate_vertical_flip'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -1115,7 +1115,7 @@ Blockly.Blocks['rotate_horizontal_flip'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
