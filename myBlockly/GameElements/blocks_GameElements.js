@@ -911,7 +911,7 @@ Blockly.Blocks['image_move'] = {
       .appendField(Blockly.Msg.IMAGE_ID_SHOW);
   this.appendDummyInput()
       .appendField(Blockly.Msg.IMAGE_MOVE_DIRECTION_SHOW)
-      .appendField(new Blockly.FieldDropdown([["up","up"], ["down","down"], ["left","left"], ["right","right"]]), "property_");   
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["right","right"], ["up","up"], ["down","down"]]), "property_");   
   this.appendValueInput("step_")
       .setCheck("Number")
       .appendField(Blockly.Msg.IMAGE_MOVE_STEP_SHOW);
