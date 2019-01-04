@@ -62,10 +62,9 @@ Blockly.Blocks['table_set'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.TABLE_SET_SHOW) 
-      .appendField(Blockly.Msg.ID_SHOW);     
+      .appendField(Blockly.Msg.TABLE_ID_SHOW);     
   this.appendDummyInput()  
-      .appendField(" ")
+      .appendField(Blockly.Msg.TABLE_SET_SHOW) 
       .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["borderstyle","borderstyle"], ["borderwidth","borderwidth"], ["bordercolor","bordercolor"], ["cellwidth","cellwidth"], ["cellheight","cellheight"], ["cellcolor","cellcolor"], ["zindex","zindex"], ["display","display"]]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -81,9 +80,9 @@ Blockly.Blocks['table_get'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.TABLE_GET_SHOW) 
-      .appendField(Blockly.Msg.ID_SHOW); 
+      .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.TABLE_GET_SHOW) 
       .appendField(new Blockly.FieldDropdown([["onclick[Column,Row]","onclick[Column,Row]"], ["onclickImage","onclickImage"], ["columns","columns"], ["rows","rows"], ["left","left"], ["top","top"], ["borderstyle","borderstyle"], ["borderwidth","borderwidth"], ["bordercolor","bordercolor"], ["zindex","zindex"], ["display","display"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
@@ -95,8 +94,9 @@ Blockly.Blocks['table_clear'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.TABLE_CLEAR_SHOW)
-      .appendField(Blockly.Msg.ID_SHOW); 
+      .appendField(Blockly.Msg.TABLE_ID_SHOW);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.TABLE_CLEAR_SHOW);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
