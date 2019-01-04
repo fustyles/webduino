@@ -114,4 +114,5 @@ Blockly.Msg.BUTTON_DELETE_SHOW = "Delete Button";
 Blockly.Msg.BUTTON_ONCLICK_SHOW = "Button onclick";
 Blockly.Msg.BUTTON_GET_SHOW = "Get Button";
 Blockly.Msg.ROTATEZ_DEGREES_SHOW = "Rotate (degrees)";
-Blockly.Msg.ROTATEY_DEGREES_SHOW = "horizontal flip";
+Blockly.Msg.ROTATE_VERTICAL_FLIP_SHOW = "Vertical Flip";
+Blockly.Msg.ROTATE_HORIZONTAL_FLIP_SHOW = "Horizontal Flip";
