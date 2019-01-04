@@ -944,7 +944,7 @@ Blockly.Blocks['mouse_coordinate_get'] = {
       .appendField(new Blockly.FieldDropdown([["X","x"], ["Y","y"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(60);
+  this.setColour(200);
   }
 };
 
