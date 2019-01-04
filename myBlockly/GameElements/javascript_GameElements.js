@@ -428,9 +428,9 @@ Blockly.JavaScript['rotatez_degrees'] = function (block) {
   return code;
 };
 
-Blockly.JavaScript['rotatey_degrees'] = function (block) {
+Blockly.JavaScript['rotate_horizontal_flip'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
-  var code = 'if (Number(image_get('+value_id_+',"rotateY").replace(/[^0-9]/ig,""))<=90||image_get('+value_id_+',"rotateY")=="") \n  image_set('+value_id_+',"rotateY",180); \nelse \n  image_set('+value_id_+',"rotateY",0);\n';
+  var code = 'if (Number(image_get('+value_id_+',"rotate").replace(/[^0-9]/ig,""))<=90||image_get('+value_id_+',"rotate")=="") \n  image_set('+value_id_+',"rotateY",180); \nelse \n  image_set('+value_id_+',"rotateY",0);\n';
   return code;
 };
 
