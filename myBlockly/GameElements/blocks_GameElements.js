@@ -1041,7 +1041,7 @@ Blockly.Blocks['rotatez_degrees'] = {
   }
 };
 
-Blockly.Blocks['rotatey_degrees'] = {
+Blockly.Blocks['rotate_horizontal_flip'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
