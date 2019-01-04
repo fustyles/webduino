@@ -381,8 +381,9 @@ Blockly.Blocks['table_delete'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.TABLE_DELETE_SHOW)
       .appendField(Blockly.Msg.ID_SHOW); 
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.TABLE_DELETE_SHOW);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
