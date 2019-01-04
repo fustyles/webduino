@@ -11,7 +11,7 @@ Blockly.Msg["GAMEIMAGE_HUE"] = "280";
 Blockly.Msg["GAMEFORM"] = "游戏表单";
 Blockly.Msg["GAMEFORM_HUE"] = "280";
 
-Blockly.Msg.TABLE_ID_SHOW = "表格 ID";
+Blockly.Msg.TABLE_ID_SHOW = "表格ID";
 Blockly.Msg.TABLE_CREATE_SHOW = "新增表格";
 Blockly.Msg.TABLE_SET_SHOW = "设定表格";
 Blockly.Msg.TABLE_TD_WIDTH_SHOW = "储存格宽度";
