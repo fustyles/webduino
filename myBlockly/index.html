@@ -269,7 +269,7 @@ function runCode() {
   for (var i=0;i<script_iframe_run.length;i++)  {
     iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
   }
-  iframe_code += "\<\/head\>\<body\>\<div id='showText'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
+  iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   try {
     document.getElementById("runArea").style.left = document.getElementById("ifrLeft").value + "px";
@@ -325,7 +325,7 @@ function exportHTML() {
     for (var i=0;i<script_iframe_run.length;i++)  {
       iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
     }
-    iframe_code += "\<\/head\>\<body\>\<div id='showText'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
+    iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
     
     var link = document.createElement('a');
     link.download="project.html";
