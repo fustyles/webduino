@@ -360,11 +360,11 @@ Blockly.Blocks['table_td_clear'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.TABLE_TD_CLEAR_SHOW)
-      .appendField(Blockly.Msg.ID_SHOW); 
+      .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendValueInput("x_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_CLEAR_SHOW)
       .appendField(Blockly.Msg.TABLE_TD_X_SHOW);
   this.appendValueInput("y_")
       .setCheck("Number")
