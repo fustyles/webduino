@@ -13,7 +13,7 @@ Blockly.Msg["GAMEFORM_HUE"] = "280";
 
 Blockly.Msg.TABLE_ID_SHOW = "TableID";
 Blockly.Msg.TABLE_CREATE_SHOW = "Create Table";
-Blockly.Msg.TABLE_SET_SHOW = "Set Table";
+Blockly.Msg.TABLE_SET_SHOW = "Set";
 Blockly.Msg.TABLE_TD_WIDTH_SHOW = "CellWidth";
 Blockly.Msg.TABLE_TD_HEIGHT_SHOW = "CellHeight";
 Blockly.Msg.TABLE_TRCOUNT_SHOW = "Rows";
