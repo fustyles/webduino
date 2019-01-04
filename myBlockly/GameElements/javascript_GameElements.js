@@ -88,6 +88,20 @@ Blockly.JavaScript['table_td_img_move'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['table_td_copy_move'] = function (block) {
+  var variable_fuGameElements_ = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('fuGameElements_'), Blockly.Variables.NAME_TYPE);
+  var value_x0_ = Blockly.JavaScript.valueToCode(block, 'x0_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_y0_ = Blockly.JavaScript.valueToCode(block, 'y0_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_property_ = block.getFieldValue('property_');
+  var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
+  if (value_property_=="copy")
+    var code = 'table_td_set("' + variable_fuGameElements_ + '",'+ value_x_ + ','+ value_y_ + ',"innerHTML",(table_td_get("' + variable_fuGameElements_ + '",'+ value_x0_ + ','+ value_y0_ + ',"innerHTML")));\n';
+  else if (value_property_=="move")
+    var code = 'table_td_set("' + variable_fuGameElements_ + '",'+ value_x_ + ','+ value_y_ + ',"innerHTML",(table_td_get("' + variable_fuGameElements_ + '",'+ value_x0_ + ','+ value_y0_ + ',"innerHTML")));\ntable_td_set("' + variable_fuGameElements_ + '",'+ value_x0_ + ','+ value_y0_ + ',"innerHTML",'');\n'; 
+  return code;
+};
+
 Blockly.JavaScript['table_td_img_get'] = function (block) {
   var value_imgid_ = Blockly.JavaScript.valueToCode(block, 'imgid_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_property_ = block.getFieldValue('property_');
