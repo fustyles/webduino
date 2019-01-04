@@ -555,12 +555,24 @@
         return document.getElementById("gameimg_"+input_id).style.opacity;
       else if (input_property=='rotate')
         return document.getElementById("gameimg_"+input_id).style.transform;
-      else if (input_property=='rotateX')
-        return document.getElementById("gameimg_"+input_id).style.transform;
-      else if (input_property=='rotateY')
-        return document.getElementById("gameimg_"+input_id).style.transform;
-      else if (input_property=='rotateZ')
-        return document.getElementById("gameimg_"+input_id).style.transform;
+      else if (input_property=='rotateX') {
+        if (document.getElementById("gameimg_"+input_id).style.transform.indexOf("rotateX")==0)
+          return Number(document.getElementById("gameimg_"+input_id).style.transform.replace(/[^0-9]/ig,""));
+        else
+          return "";
+      }
+      else if (input_property=='rotateY') {
+        if (document.getElementById("gameimg_"+input_id).style.transform.indexOf("rotateY")==0)
+          return Number(document.getElementById("gameimg_"+input_id).style.transform.replace(/[^0-9]/ig,""));
+        else
+          return "";
+      }
+      else if (input_property=='rotateZ') {
+        if (document.getElementById("gameimg_"+input_id).style.transform.indexOf("rotateZ")==0)
+          return Number(document.getElementById("gameimg_"+input_id).style.transform.replace(/[^0-9]/ig,""));
+        else
+          return "";
+      }
       else if (input_property=='id')
         return "gameimg_"+input_id;
     }
