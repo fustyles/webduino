@@ -748,9 +748,9 @@ Blockly.Blocks['image_set'] = {
   this.appendValueInput("id_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null)
-      .appendField(Blockly.Msg.SET_SHOW)
       .appendField(Blockly.Msg.IMAGE_ID_SHOW);    
-  this.appendDummyInput()  
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.SET_SHOW)    
       .appendField(new Blockly.FieldDropdown([["url","url"], ["width","width"], ["height","height"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["opacity","opacity"], ["rotate","rotate"], ["rotateX","rotateX"], ["rotateY","rotateY"], ["rotateZ","rotateZ"], ["moveX","moveX"], ["moveY","moveY"]]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -766,9 +766,9 @@ Blockly.Blocks['image_get'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.GET_SHOW)
       .appendField(Blockly.Msg.IMAGE_ID_SHOW);  
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.GET_SHOW)    
       .appendField(new Blockly.FieldDropdown([["exist","exist"], ["url","url"], ["width","width"], ["height","height"], ["naturalwidth","naturalwidth"], ["naturalheight","naturalheight"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["opacity","opacity"], ["rotate","rotate"], ["rotateX","rotateX"], ["rotateY","rotateY"], ["rotateZ","rotateZ"], ["id","id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
@@ -780,8 +780,9 @@ Blockly.Blocks['image_delete'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.DELETE_SHOW)
       .appendField(Blockly.Msg.IMAGE_ID_SHOW); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.DELETE_SHOW);
   this.setInputsInline(true);
   this.setPreviousStatement(true, null);
   this.setNextStatement(true, null);
@@ -793,10 +794,12 @@ Blockly.Blocks['image_collision'] = {
   init: function() {
   this.appendValueInput("id1_")
       .setCheck(null)
-      .appendField(Blockly.Msg.COLLISION_SHOW);
+      .appendField(Blockly.Msg.COLLISION_SHOW)
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW); 
   this.appendValueInput("id2_")
       .setCheck(null)
-      .appendField(Blockly.Msg.AND_SHOW);   
+      .appendField(Blockly.Msg.AND_SHOW)
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW);    
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -837,12 +840,12 @@ Blockly.Blocks['image_boundary_collision'] = {
 
 Blockly.Blocks['image_boundary_collision_do'] = {
   init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW);      
   this.appendDummyInput()
       .appendField(Blockly.Msg.BOUNDARY_COLLISION_DO_SHOW) 
       .appendField(new Blockly.FieldDropdown([["up","up"], ["down","down"], ["left","left"], ["right","right"], ["any","any"]]), "property_");
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.IMAGE_ID_SHOW);   
   this.appendStatementInput("do_");
   this.setInputsInline(true);    
   this.setPreviousStatement(true);
