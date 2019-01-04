@@ -917,7 +917,7 @@ Blockly.Blocks['image_move'] = {
       .appendField(Blockly.Msg.IMAGE_MOVE_STEP_SHOW);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -933,7 +933,7 @@ Blockly.Blocks['image_resize'] = {
       .appendField(Blockly.Msg.PERCENTAGE_SHOW);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -944,7 +944,7 @@ Blockly.Blocks['mouse_coordinate_get'] = {
       .appendField(new Blockly.FieldDropdown([["X","x"], ["Y","y"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -994,8 +994,6 @@ Blockly.Blocks['text_to_number'] = {
         .appendField(Blockly.Msg.TEXT_TO_NUMBER_SHOW);
     this.setOutput(true);  
     this.setColour(300);
-    this.setTooltip("");
-    this.setHelpUrl("");
   }  
 };
 
