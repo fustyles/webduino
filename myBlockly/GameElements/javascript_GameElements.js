@@ -98,7 +98,7 @@ Blockly.JavaScript['table_td_copy_move'] = function (block) {
   if (value_property_=="copy")
     var code = 'table_td_set("' + variable_fuGameElements_ + '",'+ value_x_ + ','+ value_y_ + ',"innerHTML",(table_td_get("' + variable_fuGameElements_ + '",'+ value_x0_ + ','+ value_y0_ + ',"innerHTML")));\n';
   else if (value_property_=="move")
-    var code = 'table_td_set("' + variable_fuGameElements_ + '",'+ value_x_ + ','+ value_y_ + ',"innerHTML",(table_td_get("' + variable_fuGameElements_ + '",'+ value_x0_ + ','+ value_y0_ + ',"innerHTML")));\ntable_td_set("' + variable_fuGameElements_ + '",'+ value_x0_ + ','+ value_y0_ + ',"innerHTML",'');\n'; 
+    var code = 'table_td_set("' + variable_fuGameElements_ + '",'+ value_x_ + ','+ value_y_ + ',"innerHTML",(table_td_get("' + variable_fuGameElements_ + '",'+ value_x0_ + ','+ value_y0_ + ',"innerHTML")));\ntable_td_set("' + variable_fuGameElements_ + '",'+ value_x0_ + ','+ value_y0_ + ',"innerHTML","");\n'; 
   return code;
 };
 
