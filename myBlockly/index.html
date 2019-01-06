@@ -124,7 +124,6 @@
   <tr>
     <td valign="center">
       <input type="button" id="hide" value="  >  " onclick="hideMySpace(this);"><br><br>
-      <input type="button" id="hide" value="Code" onclick="showcodeWindow(document.getElementById('codeWindow'),'big');"><br><br>
       <button id="btnRun2" style="display:none" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
     </td>
     <td>
@@ -415,7 +414,7 @@ function showcodeWindow(element, state) {
     element.style.left="-"+(document.body.clientWidth-450)+"px";
     element.style.top='0px';
     element.style.width=(document.body.clientWidth-480)+"px";
-	element.style.height=document.body.clientHeight +"px";
+    element.style.height=document.body.clientHeight +"px";
     element.style.fontSize='18px';
     element.style.color='red';
     element.style.zIndex='999';
@@ -423,7 +422,7 @@ function showcodeWindow(element, state) {
   } else if (state=="small") {
     element.style.position='static';
     element.style.width='360px';
-	document.getElementById('codeWindow').style.height=(document.body.clientHeight-200) +"px";
+    document.getElementById('codeWindow').style.height=(document.body.clientHeight-200) +"px";
     element.style.fontSize='13px';
     element.style.color='black';
   }
