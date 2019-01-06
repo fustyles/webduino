@@ -143,7 +143,7 @@
         </tr>
         <tr>
           <td align="left" valign="center">
-            <button onclick="importBlocks()">Import Blocks(XML)</button><input id="myfile"  type="file" onchange ="getBlocksXML(this);" accept=".txt,.xml">
+            <button onclick="importBlocks()">Import Blocks(XML)</button><input id="myfile"  type="file" onchange ="importBlocksFile(this);" accept=".txt,.xml">
           </td>
         </tr>
         <tr>
@@ -363,7 +363,7 @@ function importBlocks() {
   }
 }
 	
-function getBlocksXML(element) {
+function importBlocksFile(element) {
   var file = element.files[0];
   var fr = new FileReader();           
   fr.onload = function (event) {
