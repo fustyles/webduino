@@ -179,7 +179,7 @@ Blockly.Blocks['table_td_border_set'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_BORDERCOLOR_SHOW);       
-  this.setInputsInline(true);
+  this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
