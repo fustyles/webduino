@@ -138,7 +138,7 @@
           <td align="left" valign="center">
             <button onclick="exportCODE();">Export Code</button>
             <button onclick="exportHTML();">Export HTML</button>
-            <button onclick="exportBlocks();">Backup Blocks(XML)</button>
+            <button onclick="exportBlocksXML();">Backup Blocks(XML)</button>
           </td>
         </tr>
         <tr>
@@ -298,7 +298,7 @@ function closeScreen() {
   }	  
 }
 	
-function exportBlocks() {
+function exportBlocksXML() {
   try {
     var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
     var xml_text = Blockly.Xml.domToText(xml);
