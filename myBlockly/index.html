@@ -182,7 +182,7 @@
         </tr>
         <tr>
           <td>
-            <textarea id="codeWindow"  cols="50" rows="28" readonly ondblclick="showcodeWindow(this,'big');" onfocusout="showcodeWindow(this,'small');"></textarea>
+            <textarea id="codeWindow" style="width:350px;height:400px;" readonly ondblclick="showcodeWindow(this,'big');" onfocusout="showcodeWindow(this,'small');"></textarea>
           </td>
         </tr>
         <tr>
@@ -376,10 +376,11 @@ function importBlocksFile(element) {
 
 function initial() {
     document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
-    document.getElementById('mySpace').style.left=(document.body.clientWidth-440) +"px";
     document.getElementById('blocklyDiv').style.height=document.body.clientHeight +"px";
+	Blockly.svgResize(demoWorkspace);
+    document.getElementById('codeWindow').style.height=(document.body.clientHeight-200) +"px";
+	document.getElementById('mySpace').style.left=(document.body.clientWidth-440) +"px";
     document.getElementById('mySpace').style.height=document.body.clientHeight +"px";
-    Blockly.svgResize(demoWorkspace);
     document.getElementById('mySpace').style.display="block";
 	
     if (document.cookie!=""&&document.cookie.toLowerCase().indexOf("block")!=-1) {
@@ -413,12 +414,14 @@ function showcodeWindow(element, state) {
     element.style.left="-"+(document.body.clientWidth-450)+"px";
     element.style.top='0px';
     element.style.width=(document.body.clientWidth-480)+"px";
+	element.style.height=document.body.clientHeight +"px";
     element.style.fontSize='18px';
     element.style.color='red';
     element.style.zIndex='999';
   } else if (state=="small") {
     element.style.position='static';
     element.style.width='360px';
+	document.getElementById('codeWindow').style.height=(document.body.clientHeight-200) +"px";
     element.style.fontSize='13px';
     element.style.color='black';
   }
