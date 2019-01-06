@@ -1,4 +1,4 @@
-<!-- Author: Fu Chung-Yi (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update date: 2019-1-6 -->
+<!-- Author: Fu Chung-Yi (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update date: 2019-1-3 -->
 
 <!DOCTYPE html>
 <html>
@@ -22,12 +22,15 @@
 		'https://fustyles.github.io/webduino/myBlockly/example/MatrixLED_example.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/GameImage_example.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example.js',
+
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/blocks_SetWindow.js',
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/javascript_SetWindow.js',
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/toolbox_SetWindow.js',
+
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/blocks_ShowText.js',
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/javascript_ShowText.js',
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/toolbox_ShowText.js',
+
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/blocks_Keyboard.js',
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/javascript_Keyboard.js',
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/toolbox_Keyboard.js',
@@ -116,21 +119,21 @@
 	];
   </script>
 </head>
-<body onload="initialElementsSize();"></div>
-
-<div id="blocklyDiv" style="height: 600px; width: 800px;">
-
-<table id="MySpace" style="position:absolute;display:none;height:100%">
+<body>
+<div align="center">
+<table>
   <tr>
-    <td valign="center">
-      <input type="button" id="hide" value=">" onclick="hideMySpace(this);"><br><br>
-      <button id="btnRun2" style="display:none" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
+    <td align="left" valign="center">
+      <div id="blocklyDiv" style="height: 620px; width: 850px;"></div>
     </td>
-    <td>
+    <td align="left" valign="center">
+      <input type="button" id="hide" value=">" onclick="hideMySpace(this);">
+    </td>
+    <td align="left" valign="top">
       <table id="myfeatures">
         <tr>
           <td>
-            <button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button>
+            <button onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Window</button>
             left<input type="text" id="ifrLeft" size="1" value="300" onfocus="this.select()">top<input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()">width<input type="text" id="ifrWidth" size="1" value="600" onfocus="this.select()">height<input type="text" id="ifrHeight" size="1" value="600" onfocus="this.select()">
           </td>
         </tr>
@@ -138,12 +141,12 @@
           <td align="left" valign="center">
             <button onclick="exportCODE();">Export Code</button>
             <button onclick="exportHTML();">Export HTML</button>
-            <button onclick="exportBlocksXML();">Backup Blocks(XML)</button>
+            <button onclick="exportBlocks();">Backup Blocks(XML)</button>
           </td>
         </tr>
         <tr>
           <td align="left" valign="center">
-            <button onclick="importBlocks()">Import Blocks(XML)</button><input id="myfile"  type="file" onchange ="importBlocksFile(this);" accept=".txt,.xml">
+            <button onclick="importBlocks()">Import Blocks</button><input id="myfile"  type="file" onchange ="getXML(this);" accept=".txt,.xml">
           </td>
         </tr>
         <tr>
@@ -182,19 +185,19 @@
         </tr>
         <tr>
           <td>
-            <textarea id="javscriptArea"  cols="50" rows="28" readonly ondblclick="showcodeWindow(this,'big');" onfocusout="showcodeWindow(this,'small');"></textarea>
-          </td>
+            <textarea id="javscriptArea"  cols="50" rows="28" readonly ondblclick="this.style.position='absolute';this.style.left='200px';this.style.top='10px';this.style.width='900px';this.style.fontSize='18px';this.style.color='red';this.style.zIndex='999';" onfocusout="this.style.width='360px';this.style.position='static';this.style.fontSize='13px';this.style.color='black';"></textarea>
+	  </td>
         </tr>
         <tr>
           <td align="center">
-            Fu Chung-Yi (Taiwan)  Update Date : 2019-1-6
+            Fu Chung-Yi (Taiwan)  Update Date : 2019-1-3
           </td>
         </tr>
       </table>
     </td>
   </tr>
 </table>
-
+	
 <div id="runArea" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left">
   <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeScreen();">Close Window</button>
   <br>
@@ -298,7 +301,7 @@ function closeScreen() {
   }	  
 }
 	
-function exportBlocksXML() {
+function exportBlocks() {
   try {
     var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
     var xml_text = Blockly.Xml.domToText(xml);
@@ -363,7 +366,20 @@ function importBlocks() {
   }
 }
 	
-function importBlocksFile(element) {
+function hideMySpace(element) {
+  if (document.getElementById('myfeatures').style.display != 'none') { 
+    document.getElementById('myfeatures').style.display = 'none';
+    element.value='<';
+    document.getElementById('blocklyDiv').style.width='1229px';
+  } else {
+    document.getElementById('myfeatures').style.display = 'block';
+    element.value='>';
+    document.getElementById('blocklyDiv').style.width='850px';
+  }
+  Blockly.svgResize(demoWorkspace);
+}
+	
+function getXML(element) {
   var file = element.files[0];
   var fr = new FileReader();           
   fr.onload = function (event) {
@@ -373,65 +389,7 @@ function importBlocksFile(element) {
   };
   fr.readAsText(file);
 }
-
-function initialElementsSize() {
-    document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
-    document.getElementById('MySpace').style.left=(document.body.clientWidth-440) +"px";
-    document.getElementById('blocklyDiv').style.height=document.body.clientHeight +"px";
-    document.getElementById('MySpace').style.height=document.body.clientHeight +"px";
-    Blockly.svgResize(demoWorkspace);
-    document.getElementById('MySpace').style.display="block";
-
-	if (document.cookie!="") {
-      var xml = Blockly.Xml.textToDom(document.cookie);
-      demoWorkspace.clear();
-      Blockly.Xml.domToWorkspace(xml, demoWorkspace);
-	  console.log(document.cookie);
-	}
-}
-
-function hideMySpace(element) {
-  if (document.getElementById('myfeatures').style.display != 'none') { 
-    document.getElementById('myfeatures').style.display = 'none';
-    document.getElementById('btnRun2').style.display = 'block';
-    element.value='  <  ';
-    document.getElementById('MySpace').style.left=(document.body.clientWidth-40) +"px";
-    document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-70) +"px";
-  } else {
-    document.getElementById('myfeatures').style.display = 'block';
-    document.getElementById('btnRun2').style.display = 'none';
-    element.value='>';
-    document.getElementById('MySpace').style.left=(document.body.clientWidth-440) +"px";
-    document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
-  }
-  Blockly.svgResize(demoWorkspace);
-}
-
-function showcodeWindow(element, state) {
-  if (state=="big")
-  {
-    element.style.position='absolute';
-    element.style.left="-"+(document.body.clientWidth-450)+"px";
-    element.style.top='0px';
-    element.style.width=(document.body.clientWidth-480)+"px";
-    element.style.fontSize='18px';
-    element.style.color='red';
-    element.style.zIndex='999';
-  } else if (state=="small") {
-    element.style.position='static';
-    element.style.width='360px';
-    element.style.fontSize='13px';
-    element.style.color='black';
-  }
-}
-
-
-setInterval(function(){
-	var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-	var xml_text = Blockly.Xml.domToText(xml);
-	document.cookie=xml_text;
-	console.log(document.cookie);
-}, 60000);
 </script>
+</div>
 </body>
 </html>
