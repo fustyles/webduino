@@ -382,7 +382,7 @@ function initialElementsSize() {
     Blockly.svgResize(demoWorkspace);
     document.getElementById('MySpace').style.display="block";
 	
-    if (document.cookie!=""&&document.cookie.toLowerCase().indexOf("xml")!=-1) {
+    if (document.cookie!=""&&document.cookie.toLowerCase().indexOf("block")!=-1) {
       var xml = Blockly.Xml.textToDom(document.cookie);
       demoWorkspace.clear();
       Blockly.Xml.domToWorkspace(xml, demoWorkspace);
