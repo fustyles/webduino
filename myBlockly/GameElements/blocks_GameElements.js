@@ -662,7 +662,8 @@ Blockly.Blocks['canvas_text'] = {
   this.appendValueInput("color_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.COLOR_SHOW);   
+      .appendField(Blockly.Msg.COLOR_SHOW); 
+  this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
