@@ -484,7 +484,6 @@ Blockly.Blocks['canvas_line'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.COLOR_SHOW);  
-  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -525,7 +524,6 @@ Blockly.Blocks['canvas_rect'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.COLOR_SHOW);   
-  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -574,7 +572,6 @@ Blockly.Blocks['canvas_arc'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.COLOR_SHOW);   
-  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -623,7 +620,6 @@ Blockly.Blocks['canvas_img'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.HEIGHT_SHOW); 
-  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -667,7 +663,6 @@ Blockly.Blocks['canvas_text'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.COLOR_SHOW);   
-  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -681,7 +676,6 @@ Blockly.Blocks['canvas_clear'] = {
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);
   this.appendDummyInput() 
       .appendField(Blockly.Msg.CANVAS_CLEAR_SHOW);
-  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -694,8 +688,7 @@ Blockly.Blocks['canvas_delete'] = {
       .setCheck(null)
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);
   this.appendDummyInput()
-      .appendField(Blockly.Msg.CANVAS_DELETE_SHOW);    
-  this.setInputsInline(true);
+      .appendField(Blockly.Msg.CANVAS_DELETE_SHOW);   
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
