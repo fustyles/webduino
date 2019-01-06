@@ -297,7 +297,7 @@ this.appendDummyInput()
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_TD_Y_SHOW);       
-  this.setInputsInline(true);
+  this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
