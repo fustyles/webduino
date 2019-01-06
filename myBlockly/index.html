@@ -22,15 +22,12 @@
 		'https://fustyles.github.io/webduino/myBlockly/example/MatrixLED_example.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/GameImage_example.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example.js',
-
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/blocks_SetWindow.js',
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/javascript_SetWindow.js',
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/toolbox_SetWindow.js',
-
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/blocks_ShowText.js',
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/javascript_ShowText.js',
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/toolbox_ShowText.js',
-
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/blocks_Keyboard.js',
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/javascript_Keyboard.js',
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/toolbox_Keyboard.js',
@@ -119,7 +116,8 @@
 	];
   </script>
 </head>
-<body onload="initialPageSize();"></div>
+<body onload="initialElementsSize();"></div>
+
 <div id="blocklyDiv" style="height: 600px; width: 800px;">
 
 <table id="MySpace" style="position:absolute;display:none;height:100%">
@@ -129,8 +127,7 @@
 	  <button id="btnRun2" style="display:none" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
     </td>
     <td>
-	  <div id="myfeatures">
-      <table>
+      <table id="myfeatures">
         <tr>
           <td>
             <button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button>
@@ -185,7 +182,7 @@
         </tr>
         <tr>
           <td>
-            <textarea id="javscriptArea"  cols="50" rows="28" readonly ondblclick="showcode1(this,'big');" onfocusout="showcode1(this,'small');"></textarea>
+            <textarea id="javscriptArea"  cols="50" rows="28" readonly ondblclick="showcodeWindow(this,'big');" onfocusout="showcodeWindow(this,'small');"></textarea>
 		 </td>
         </tr>
         <tr>
@@ -194,7 +191,6 @@
           </td>
         </tr>
       </table>
-	  </div>
     </td>
   </tr>
 </table>
@@ -378,7 +374,7 @@ function getXML(element) {
   fr.readAsText(file);
 }
 
-function initialPageSize() {
+function initialElementsSize() {
 	document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
 	document.getElementById('MySpace').style.left=(document.body.clientWidth-440) +"px";
 	document.getElementById('blocklyDiv').style.height=document.body.clientHeight +"px";
@@ -404,13 +400,13 @@ function hideMySpace(element) {
   Blockly.svgResize(demoWorkspace);
 }
 
-function showcode1(element, state) {
+function showcodeWindow(element, state) {
   if (state=="big")
   {
 	element.style.position='absolute';
 	element.style.left="-"+(document.body.clientWidth-450)+"px";
 	element.style.top='0px';
-	element.style.width=(document.body.clientWidth-470)+"px";
+	element.style.width=(document.body.clientWidth-480)+"px";
 	element.style.fontSize='18px';
 	element.style.color='red';
 	element.style.zIndex='999';
