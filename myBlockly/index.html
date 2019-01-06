@@ -381,6 +381,13 @@ function initialElementsSize() {
     document.getElementById('MySpace').style.height=document.body.clientHeight +"px";
     Blockly.svgResize(demoWorkspace);
     document.getElementById('MySpace').style.display="block";
+	
+    if (document.cookie!=""&&document.cookie.toLowerCase().indexOf("xml")!=-1) {
+      var xml = Blockly.Xml.textToDom(document.cookie);
+      demoWorkspace.clear();
+      Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+      console.log(document.cookie);
+    }	
 }
 
 function hideMySpace(element) {
@@ -417,6 +424,12 @@ function showcodeWindow(element, state) {
     element.style.color='black';
   }
 }
+	
+setInterval(function(){
+    var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+    var xml_text = Blockly.Xml.domToText(xml);
+    document.cookie=xml_text;
+}, 60000);
 </script>
 </body>
 </html>
