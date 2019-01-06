@@ -182,7 +182,7 @@
         </tr>
         <tr>
           <td>
-            <textarea id="javscriptArea"  cols="50" rows="28" readonly ondblclick="showcodeWindow(this,'big');" onfocusout="showcodeWindow(this,'small');"></textarea>
+            <textarea id="codeWindow"  cols="50" rows="28" readonly ondblclick="showcodeWindow(this,'big');" onfocusout="showcodeWindow(this,'small');"></textarea>
           </td>
         </tr>
         <tr>
@@ -195,7 +195,7 @@
   </tr>
 </table>
 
-<div id="runArea" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left">
+<div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left">
   <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeWindow();">Close Window</button>
   <br>
   <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="autoplay; fullscreen; geolocation; microphone; camera"></iframe>
@@ -253,7 +253,7 @@ function showCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
   if (code=="") code="//You can double click on the textarea to enlarge.\n\n" + code;
-  document.getElementById('javscriptArea').innerHTML = code;
+  document.getElementById('codeWindow').innerHTML = code;
 }
 demoWorkspace.addChangeListener(showCode);
 	
@@ -269,11 +269,11 @@ function runCode() {
   iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   try {
-    document.getElementById("runArea").style.left = document.getElementById("ifrLeft").value + "px";
-    document.getElementById("runArea").style.top = document.getElementById("ifrTop").value + "px";
+    document.getElementById("runWindow").style.left = document.getElementById("ifrLeft").value + "px";
+    document.getElementById("runWindow").style.top = document.getElementById("ifrTop").value + "px";
     document.getElementById("iframe_run").style.width = document.getElementById("ifrWidth").value + "px";
     document.getElementById("iframe_run").style.height = document.getElementById("ifrHeight").value + "px";
-    document.getElementById("runArea").style.display = "block";
+    document.getElementById("runWindow").style.display = "block";
     document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
     document.getElementById("iframe_run").focus();
   } catch (e) {
@@ -292,7 +292,7 @@ function stopCode() {
 function closeWindow() {
   try {	
     document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';	  
-    document.getElementById("runArea").style.display = "none";
+    document.getElementById("runWindow").style.display = "none";
   } catch (e) {
     alert(e);
   }	  
@@ -425,9 +425,9 @@ function showcodeWindow(element, state) {
 }
 	
 setInterval(function(){
-    var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-    var xml_text = Blockly.Xml.domToText(xml);
-    document.cookie=xml_text;
+  var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+  var xml_text = Blockly.Xml.domToText(xml);
+  document.cookie=xml_text;
 }, 5000);
 </script>
 </body>
