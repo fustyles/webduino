@@ -119,15 +119,17 @@
 	];
   </script>
 </head>
-<body onload="initialPageSize();"></div>
-<div id="blocklyDiv" style="height: 600px; width: 800px;">
-
-<table id="MySpace" style="position:absolute;display:none;height:100%">
+<body>
+<div align="center">
+<table>
   <tr>
-    <td valign="center">
+    <td align="left" valign="center">
+      <div id="blocklyDiv" style="height: 620px; width: 850px;"></div>
+    </td>
+    <td align="left" valign="center">
       <input type="button" id="hide" value=">" onclick="hideMySpace(this);">
     </td>
-    <td>
+    <td align="left" valign="top">
       <table id="myfeatures">
         <tr>
           <td>
@@ -183,8 +185,8 @@
         </tr>
         <tr>
           <td>
-            <textarea id="javscriptArea"  cols="50" rows="28" readonly ondblclick="this.style.position='absolute';this.style.left='-910px';this.style.top='0px';this.style.width='900px';this.style.fontSize='18px';this.style.color='red';this.style.zIndex='999';" onfocusout="this.style.width='360px';this.style.position='static';this.style.fontSize='13px';this.style.color='black';"></textarea>
-		 </td>
+            <textarea id="javscriptArea"  cols="50" rows="28" readonly ondblclick="this.style.position='absolute';this.style.left='200px';this.style.top='10px';this.style.width='900px';this.style.fontSize='18px';this.style.color='red';this.style.zIndex='999';" onfocusout="this.style.width='360px';this.style.position='static';this.style.fontSize='13px';this.style.color='black';"></textarea>
+	  </td>
         </tr>
         <tr>
           <td align="center">
@@ -195,7 +197,7 @@
     </td>
   </tr>
 </table>
-
+	
 <div id="runArea" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left">
   <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeScreen();">Close Window</button>
   <br>
@@ -364,6 +366,19 @@ function importBlocks() {
   }
 }
 	
+function hideMySpace(element) {
+  if (document.getElementById('myfeatures').style.display != 'none') { 
+    document.getElementById('myfeatures').style.display = 'none';
+    element.value='<';
+    document.getElementById('blocklyDiv').style.width='1229px';
+  } else {
+    document.getElementById('myfeatures').style.display = 'block';
+    element.value='>';
+    document.getElementById('blocklyDiv').style.width='850px';
+  }
+  Blockly.svgResize(demoWorkspace);
+}
+	
 function getXML(element) {
   var file = element.files[0];
   var fr = new FileReader();           
@@ -374,29 +389,7 @@ function getXML(element) {
   };
   fr.readAsText(file);
 }
-
-function initialPageSize() {
-	document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-450) +"px";
-	document.getElementById('MySpace').style.left=(document.body.clientWidth-420) +"px";
-	document.getElementById('blocklyDiv').style.height=document.body.clientHeight +"px";
-	document.getElementById('MySpace').style.height=document.body.clientHeight +"px";
-	Blockly.svgResize(demoWorkspace);
-	document.getElementById('MySpace').style.display="block";
-}
-function hideMySpace(element) {
-  if (document.getElementById('myfeatures').style.display != 'none') { 
-    document.getElementById('myfeatures').style.display = 'none';
-    element.value='<';
-	document.getElementById('MySpace').style.left=(document.body.clientWidth-20) +"px";
-	document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-40) +"px";
-  } else {
-    document.getElementById('myfeatures').style.display = 'block';
-    element.value='>';
-	document.getElementById('MySpace').style.left=(document.body.clientWidth-420) +"px";
-	document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-440) +"px";
-  }
-  Blockly.svgResize(demoWorkspace);
-}
 </script>
+</div>
 </body>
 </html>

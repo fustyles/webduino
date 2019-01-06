@@ -119,21 +119,21 @@
 	];
   </script>
 </head>
-<body>
-<div align="center">
-<table>
+<body onload="initialPageSize();"></div>
+<div id="blocklyDiv" style="height: 600px; width: 800px;">
+
+<table id="MySpace" style="position:absolute;display:none;height:100%">
   <tr>
-    <td align="left" valign="center">
-      <div id="blocklyDiv" style="height: 620px; width: 850px;"></div>
+    <td valign="center">
+      <input type="button" id="hide" value=">" onclick="hideMySpace(this);"><br><br>
+	  <button id="btnRun2" style="display:none" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
     </td>
-    <td align="left" valign="center">
-      <input type="button" id="hide" value=">" onclick="hideMySpace(this);">
-    </td>
-    <td align="left" valign="top">
-      <table id="myfeatures">
+    <td>
+	  <div id="myfeatures">
+      <table>
         <tr>
           <td>
-            <button onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Window</button>
+            <button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
             left<input type="text" id="ifrLeft" size="1" value="300" onfocus="this.select()">top<input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()">width<input type="text" id="ifrWidth" size="1" value="600" onfocus="this.select()">height<input type="text" id="ifrHeight" size="1" value="600" onfocus="this.select()">
           </td>
         </tr>
@@ -185,8 +185,8 @@
         </tr>
         <tr>
           <td>
-            <textarea id="javscriptArea"  cols="50" rows="28" readonly ondblclick="this.style.position='absolute';this.style.left='200px';this.style.top='10px';this.style.width='900px';this.style.fontSize='18px';this.style.color='red';this.style.zIndex='999';" onfocusout="this.style.width='360px';this.style.position='static';this.style.fontSize='13px';this.style.color='black';"></textarea>
-	  </td>
+            <textarea id="javscriptArea"  cols="50" rows="28" readonly ondblclick="showcode1(this,'big');" onfocusout="showcode1(this,'small');"></textarea>
+		 </td>
         </tr>
         <tr>
           <td align="center">
@@ -194,10 +194,11 @@
           </td>
         </tr>
       </table>
+	  </div>
     </td>
   </tr>
 </table>
-	
+
 <div id="runArea" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left">
   <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeScreen();">Close Window</button>
   <br>
@@ -366,19 +367,6 @@ function importBlocks() {
   }
 }
 	
-function hideMySpace(element) {
-  if (document.getElementById('myfeatures').style.display != 'none') { 
-    document.getElementById('myfeatures').style.display = 'none';
-    element.value='<';
-    document.getElementById('blocklyDiv').style.width='1229px';
-  } else {
-    document.getElementById('myfeatures').style.display = 'block';
-    element.value='>';
-    document.getElementById('blocklyDiv').style.width='850px';
-  }
-  Blockly.svgResize(demoWorkspace);
-}
-	
 function getXML(element) {
   var file = element.files[0];
   var fr = new FileReader();           
@@ -389,7 +377,50 @@ function getXML(element) {
   };
   fr.readAsText(file);
 }
+
+function initialPageSize() {
+	document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
+	document.getElementById('MySpace').style.left=(document.body.clientWidth-440) +"px";
+	document.getElementById('blocklyDiv').style.height=document.body.clientHeight +"px";
+	document.getElementById('MySpace').style.height=document.body.clientHeight +"px";
+	Blockly.svgResize(demoWorkspace);
+	document.getElementById('MySpace').style.display="block";
+}
+
+function hideMySpace(element) {
+  if (document.getElementById('myfeatures').style.display != 'none') { 
+    document.getElementById('myfeatures').style.display = 'none';
+	document.getElementById('btnRun2').style.display = 'block';
+    element.value='  <  ';
+	document.getElementById('MySpace').style.left=(document.body.clientWidth-40) +"px";
+	document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-70) +"px";
+  } else {
+    document.getElementById('myfeatures').style.display = 'block';
+	document.getElementById('btnRun2').style.display = 'none';
+    element.value='>';
+	document.getElementById('MySpace').style.left=(document.body.clientWidth-440) +"px";
+	document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
+  }
+  Blockly.svgResize(demoWorkspace);
+}
+
+function showcode1(element, state) {
+  if (state=="big")
+  {
+	element.style.position='absolute';
+	element.style.left="-"+(document.body.clientWidth-450)+"px";
+	element.style.top='0px';
+	element.style.width=(document.body.clientWidth-470)+"px";
+	element.style.fontSize='18px';
+	element.style.color='red';
+	element.style.zIndex='999';
+  } else if (state=="small") {
+	element.style.position='static';
+	element.style.width='360px';
+	element.style.fontSize='13px';
+	element.style.color='black';
+  }
+}
 </script>
-</div>
 </body>
 </html>
