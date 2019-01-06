@@ -116,7 +116,7 @@
 	];
   </script>
 </head>
-<body onload="initialElementsSize();"></div>
+<body onload="initial();"></div>
 
 <div id="blocklyDiv" style="height: 600px; width: 800px;">
 
@@ -138,7 +138,7 @@
           <td align="left" valign="center">
             <button onclick="exportCODE();">Export Code</button>
             <button onclick="exportHTML();">Export HTML</button>
-            <button onclick="exportBlocksXML();">Backup Blocks(XML)</button>
+            <button onclick="exportBlocks();">Backup Blocks(XML)</button>
           </td>
         </tr>
         <tr>
@@ -182,6 +182,7 @@
         </tr>
         <tr>
           <td>
+            <textarea cols="0" rows="28"></textarea>
             <textarea id="javscriptArea"  cols="50" rows="28" readonly ondblclick="showcodeWindow(this,'big');" onfocusout="showcodeWindow(this,'small');"></textarea>
           </td>
         </tr>
@@ -196,7 +197,7 @@
 </table>
 
 <div id="runArea" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left">
-  <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeScreen();">Close Window</button>
+  <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeWindow();">Close Window</button>
   <br>
   <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="autoplay; fullscreen; geolocation; microphone; camera"></iframe>
 </div>
@@ -252,7 +253,7 @@ function XmldomToWorkspace(example) {
 function showCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-  if (code=="") code="//You can double click the textarea to enlarge.\n\n" + code;
+  if (code=="") code="//You can double click on the textarea to enlarge.\n\n" + code;
   document.getElementById('javscriptArea').innerHTML = code;
 }
 demoWorkspace.addChangeListener(showCode);
@@ -289,7 +290,7 @@ function stopCode() {
   }
 }
 	
-function closeScreen() {
+function closeWindow() {
   try {	
     document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';	  
     document.getElementById("runArea").style.display = "none";
@@ -298,7 +299,7 @@ function closeScreen() {
   }	  
 }
 	
-function exportBlocksXML() {
+function exportBlocks() {
   try {
     var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
     var xml_text = Blockly.Xml.domToText(xml);
@@ -374,19 +375,19 @@ function importBlocksFile(element) {
   fr.readAsText(file);
 }
 
-function initialElementsSize() {
+function initial() {
     document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
     document.getElementById('MySpace').style.left=(document.body.clientWidth-440) +"px";
     document.getElementById('blocklyDiv').style.height=document.body.clientHeight +"px";
     document.getElementById('MySpace').style.height=document.body.clientHeight +"px";
     Blockly.svgResize(demoWorkspace);
     document.getElementById('MySpace').style.display="block";
-
+	
     if (document.cookie!=""&&document.cookie.toLowerCase().indexOf("block")!=-1) {
       var xml = Blockly.Xml.textToDom(document.cookie);
       demoWorkspace.clear();
       Blockly.Xml.domToWorkspace(xml, demoWorkspace);
-    }
+    }	
 }
 
 function hideMySpace(element) {
@@ -423,12 +424,11 @@ function showcodeWindow(element, state) {
     element.style.color='black';
   }
 }
-
+	
 setInterval(function(){
     var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
     var xml_text = Blockly.Xml.domToText(xml);
     document.cookie=xml_text;
-    console.log(document.cookie);
 }, 5000);
 </script>
 </body>
