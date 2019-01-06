@@ -239,7 +239,7 @@ Blockly.Blocks['table_td_insert_img'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.HEIGHT_SHOW);   
-  this.setInputsInline(true);
+  this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -349,7 +349,7 @@ Blockly.Blocks['table_td_insert_text'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.FONTCOLOR_SHOW);       
-  this.setInputsInline(true);
+  this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
