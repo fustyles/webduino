@@ -375,27 +375,27 @@ function importBlocksFile(element) {
 }
 
 function initialElementsSize() {
-	document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
-	document.getElementById('MySpace').style.left=(document.body.clientWidth-440) +"px";
-	document.getElementById('blocklyDiv').style.height=document.body.clientHeight +"px";
-	document.getElementById('MySpace').style.height=document.body.clientHeight +"px";
-	Blockly.svgResize(demoWorkspace);
-	document.getElementById('MySpace').style.display="block";
+    document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
+    document.getElementById('MySpace').style.left=(document.body.clientWidth-440) +"px";
+    document.getElementById('blocklyDiv').style.height=document.body.clientHeight +"px";
+    document.getElementById('MySpace').style.height=document.body.clientHeight +"px";
+    Blockly.svgResize(demoWorkspace);
+    document.getElementById('MySpace').style.display="block";
 }
 
 function hideMySpace(element) {
   if (document.getElementById('myfeatures').style.display != 'none') { 
     document.getElementById('myfeatures').style.display = 'none';
-	document.getElementById('btnRun2').style.display = 'block';
+    document.getElementById('btnRun2').style.display = 'block';
     element.value='  <  ';
-	document.getElementById('MySpace').style.left=(document.body.clientWidth-40) +"px";
-	document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-70) +"px";
+    document.getElementById('MySpace').style.left=(document.body.clientWidth-40) +"px";
+    document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-70) +"px";
   } else {
     document.getElementById('myfeatures').style.display = 'block';
-	document.getElementById('btnRun2').style.display = 'none';
+    document.getElementById('btnRun2').style.display = 'none';
     element.value='>';
-	document.getElementById('MySpace').style.left=(document.body.clientWidth-440) +"px";
-	document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
+    document.getElementById('MySpace').style.left=(document.body.clientWidth-440) +"px";
+    document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
   }
   Blockly.svgResize(demoWorkspace);
 }
@@ -403,18 +403,18 @@ function hideMySpace(element) {
 function showcodeWindow(element, state) {
   if (state=="big")
   {
-	element.style.position='absolute';
-	element.style.left="-"+(document.body.clientWidth-450)+"px";
-	element.style.top='0px';
-	element.style.width=(document.body.clientWidth-480)+"px";
-	element.style.fontSize='18px';
-	element.style.color='red';
-	element.style.zIndex='999';
+    element.style.position='absolute';
+    element.style.left="-"+(document.body.clientWidth-450)+"px";
+    element.style.top='0px';
+    element.style.width=(document.body.clientWidth-480)+"px";
+    element.style.fontSize='18px';
+    element.style.color='red';
+    element.style.zIndex='999';
   } else if (state=="small") {
-	element.style.position='static';
-	element.style.width='360px';
-	element.style.fontSize='13px';
-	element.style.color='black';
+    element.style.position='static';
+    element.style.width='360px';
+    element.style.fontSize='13px';
+    element.style.color='black';
   }
 }
 </script>
