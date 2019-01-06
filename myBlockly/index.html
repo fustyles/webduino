@@ -298,19 +298,18 @@ function closeWindow() {
   }	  
 }
 	
-function exportBlocks() {
+function exportCODE() {
   try {
-    var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-    var xml_text = Blockly.Xml.domToText(xml);
+    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
 	  
     var link = document.createElement('a');
-    link.download="project.txt";
-    link.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
+    link.download="code.txt";
+    link.href="data:application/octet-stream;utf-8," + encodeURI(code);
     document.body.appendChild(link);
     link.click();
     link.remove();
   } catch (e) {
-    window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
+    window.location.href="data:application/octet-stream;utf-8," + encodeURI(code);
     alert(e);
   }
 }
@@ -335,19 +334,20 @@ function exportHTML() {
     alert(e);
   }
 }
-	
-function exportCODE() {
+		
+function exportBlocks() {
   try {
-    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+    var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+    var xml_text = Blockly.Xml.domToText(xml);
 	  
     var link = document.createElement('a');
-    link.download="code.txt";
-    link.href="data:application/octet-stream;utf-8," + encodeURI(code);
+    link.download="project.txt";
+    link.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
     document.body.appendChild(link);
     link.click();
     link.remove();
   } catch (e) {
-    window.location.href="data:application/octet-stream;utf-8," + encodeURI(code);
+    window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
     alert(e);
   }
 }
