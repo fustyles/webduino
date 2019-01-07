@@ -241,8 +241,6 @@ while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().i
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.appspot.com/static/media/', toolbox: document.getElementById('toolbox'),zoom:{controls: true,wheel: true,startScale: 1.0,maxScale: 3,minScale: 0.3,scaleSpeed: 1.2},trashcan: true});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
 	
-//append Game(Tetris) blocks to startBlocks
-XmldomToWorkspace(Game_Tetris);
 function XmldomToWorkspace(example) {	
   var xml = Blockly.Xml.textToDom(example);
   demoWorkspace.clear();
@@ -364,20 +362,24 @@ function importBlocks() {
 }
 	
 function importBlocksFile(element) {
-  var file = element.files[0];
-  var fr = new FileReader();           
-  fr.onload = function (event) {
-    var xml = Blockly.Xml.textToDom(event.target.result);
-    demoWorkspace.clear();
-    Blockly.Xml.domToWorkspace(xml, demoWorkspace);
-  };
-  fr.readAsText(file);
+  try {	
+    var file = element.files[0];
+    var fr = new FileReader();           
+    fr.onload = function (event) {
+      var xml = Blockly.Xml.textToDom(event.target.result);
+      demoWorkspace.clear();
+      Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+    };
+    fr.readAsText(file);
+  } catch (e) {
+    alert(e);
+  }	  
 }
-	
+
 function initial() {
   var myWidth = document.body.clientWidth;
-  if (window.screen.height> document.body.clientHeight)
-    var myHeight = window.screen.height-180;
+  if (document.documentElement.clientHeight)
+    var myHeight = document.documentElement.clientHeight-25;
   else
     var myHeight = document.body.clientHeight;
   document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
@@ -397,8 +399,8 @@ function initial() {
 	
 function hideMySpace(element) {
   var myWidth = document.body.clientWidth;
-  if (window.screen.height> document.body.clientHeight)
-    var myHeight = window.screen.height-180;
+  if (document.documentElement.clientHeight)
+    var myHeight = document.documentElement.clientHeight-25;
   else
     var myHeight = document.body.clientHeight;	
   if (document.getElementById('myFeatures').style.display != 'none') { 
@@ -419,8 +421,8 @@ function hideMySpace(element) {
 	
 function showcodeWindow(element, state) {
   var myWidth = document.body.clientWidth;
-  if (window.screen.height> document.body.clientHeight)
-    var myHeight = window.screen.height-180;
+  if (document.documentElement.clientHeight)
+    var myHeight = document.documentElement.clientHeight-25;
   else
     var myHeight = document.body.clientHeight;
   if (state=="big")
@@ -446,8 +448,10 @@ function showcodeWindow(element, state) {
 }
 	
 window.onresize = function(){
-  initial();
   showcodeWindow(document.getElementById('codeWindow'),"small");
+  if (document.getElementById('myFeatures').style.display == 'none') 
+    document.getElementById('hide').click();
+  initial();
 }
 	
 setInterval(function(){
