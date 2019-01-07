@@ -428,6 +428,10 @@ function showcodeWindow(element, state) {
   }
 }
 	
+window.onresize = function(){
+  initial();
+}
+	
 setInterval(function(){
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
