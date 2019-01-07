@@ -373,6 +373,7 @@ function importBlocksFile(element) {
   };
   fr.readAsText(file);
 }
+
 function initial() {
   var myWidth = document.body.clientWidth;
   if (document.documentElement.clientHeight)
@@ -445,6 +446,8 @@ function showcodeWindow(element, state) {
 }
 window.onresize = function(){
   showcodeWindow(document.getElementById('codeWindow'),"small");
+  if (document.getElementById('myFeatures').style.display == 'none') 
+    document.getElementById('hide').click();
   initial();
 }
 	
