@@ -393,18 +393,20 @@ function initial() {
 }
 
 function hideMySpace(element) {
+  var myWidth = document.body.clientWidth;
+  var myHeight = window.screen.height-180;	
   if (document.getElementById('myFeatures').style.display != 'none') { 
     document.getElementById('myFeatures').style.display = 'none';
     document.getElementById('btnRun2').style.display = 'block';
     element.value='  <  ';
-    document.getElementById('mySpace').style.left=(document.body.clientWidth-40) +"px";
-    document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-70) +"px";
+    document.getElementById('mySpace').style.left=(myWidth-40) +"px";
+    document.getElementById('blocklyDiv').style.width=(myWidth-70) +"px";
   } else {
     document.getElementById('myFeatures').style.display = 'block';
     document.getElementById('btnRun2').style.display = 'none';
     element.value='  >  ';
-    document.getElementById('mySpace').style.left=(document.body.clientWidth-440) +"px";
-    document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
+    document.getElementById('mySpace').style.left=(myWidth-440) +"px";
+    document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
   }
   Blockly.svgResize(demoWorkspace);
 }
