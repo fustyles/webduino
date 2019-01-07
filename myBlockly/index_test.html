@@ -380,11 +380,11 @@ function initial() {
   console.log(window.screen.availHeight);
   console.log(window.screen.availWidth);	
     document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
-    document.getElementById('blocklyDiv').style.height=document.body.clientHeight +"px";
-	Blockly.svgResize(demoWorkspace);
-    document.getElementById('codeWindow').style.height=(document.body.clientHeight-200) +"px";
-	document.getElementById('mySpace').style.left=(document.body.clientWidth-440) +"px";
-    document.getElementById('mySpace').style.height=document.body.clientHeight +"px";
+    document.getElementById('blocklyDiv').style.height=window.screen.availHeight +"px";
+    Blockly.svgResize(demoWorkspace);
+    document.getElementById('codeWindow').style.height=(window.screen.availHeight-200) +"px";
+    document.getElementById('mySpace').style.left=(document.body.clientWidth-440) +"px";
+    document.getElementById('mySpace').style.height=window.screen.availHeight +"px";
     document.getElementById('mySpace').style.display="block";
 	
     if (document.cookie!=""&&document.cookie.toLowerCase().indexOf("block")!=-1) {
