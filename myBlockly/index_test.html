@@ -460,7 +460,7 @@ setInterval(function(){
   var xml_text = Blockly.Xml.domToText(xml);
   var exp = new Date(); 
   exp.setTime(exp.getTime()+10000); 
-  document.cookie=xml_text+";expires="+exp.toGMTString(); 
+  document.cookie=xml_text.replace(/\;/g,"")+";expires="+exp.toGMTString(); 
   console.log(document.cookie);
 }, 10000);
 </script>
