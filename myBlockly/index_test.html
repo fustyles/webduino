@@ -458,7 +458,9 @@ window.onresize = function(){
 setInterval(function(){
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
-  document.cookie=escape(xml_text); 
+  var exp = new Date(); 
+  exp.setTime(exp.getTime()+10000); 
+  document.cookie=escape(xml_text)+"; expires=" + exp.toGMTString();
   console.log(document.cookie);
 }, 10000);
 </script>
