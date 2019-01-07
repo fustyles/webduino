@@ -410,13 +410,15 @@ function hideMySpace(element) {
 }
 
 function showcodeWindow(element, state) {
+  var myWidth = document.body.clientWidth;
+  var myHeight = window.screen.height-180;
   if (state=="big")
   {
     element.style.position='absolute';
-    element.style.left="-"+(document.body.clientWidth-450)+"px";
+    element.style.left="-"+(myWidth-450)+"px";
     element.style.top='0px';
-    element.style.width=(document.body.clientWidth-480)+"px";
-    element.style.height=document.body.clientHeight +"px";
+    element.style.width=(myWidth-480)+"px";
+    element.style.height=myHeight +"px";
     element.style.fontSize='18px';
     element.style.color='red';
     element.style.zIndex='999';
@@ -426,7 +428,7 @@ function showcodeWindow(element, state) {
   } else if (state=="small") {
     element.style.position='static';
     element.style.width='360px';
-    element.style.height=(document.body.clientHeight-200) +"px";
+    element.style.height=(myHeight-200) +"px";
     element.style.fontSize='13px';
     element.style.color='black';
   }
