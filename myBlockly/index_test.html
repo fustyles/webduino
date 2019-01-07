@@ -380,13 +380,15 @@ function initial() {
   console.log(window.screen.availHeight);
   console.log(window.screen.availWidth);
   console.log(window.screen.height);
-  console.log(window.screen.width);	
-    document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
-    document.getElementById('blocklyDiv').style.height=window.screen.height +"px";
+  console.log(window.screen.width);
+    var myWidth = document.body.clientWidth;
+    var myHeight = window.screen.height-100;
+    document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
+    document.getElementById('blocklyDiv').style.height=myHeight +"px";
     Blockly.svgResize(demoWorkspace);
-    document.getElementById('codeWindow').style.height=(window.screen.height-200) +"px";
-    document.getElementById('mySpace').style.left=(document.body.clientWidth-440) +"px";
-    document.getElementById('mySpace').style.height=window.screen.height +"px";
+    document.getElementById('codeWindow').style.height=(myHeight-200) +"px";
+    document.getElementById('mySpace').style.left=(myWidth-440) +"px";
+    document.getElementById('mySpace').style.height=myHeight +"px";
     document.getElementById('mySpace').style.display="block";
 	
     if (document.cookie!=""&&document.cookie.toLowerCase().indexOf("block")!=-1) {
