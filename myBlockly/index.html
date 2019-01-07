@@ -1,4 +1,4 @@
-<!-- Author: Fu Chung-Yi (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update date: 2019-1-6 -->
+<!-- Author: Fu Chung-Yi (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update date: 2019-1-7 -->
 
 <!DOCTYPE html>
 <html>
@@ -187,7 +187,7 @@
         </tr>
         <tr>
           <td align="center">
-            Fu Chung-Yi (Taiwan)  Update Date : 2019-1-6
+            Fu Chung-Yi (Taiwan)  Update Date : 2019-1-7
           </td>
         </tr>
       </table>
@@ -373,14 +373,15 @@ function importBlocksFile(element) {
   };
   fr.readAsText(file);
 }
-
 function initial() {
-    document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
-    document.getElementById('blocklyDiv').style.height=document.body.clientHeight +"px";
-	Blockly.svgResize(demoWorkspace);
-    document.getElementById('codeWindow').style.height=(document.body.clientHeight-200) +"px";
-	document.getElementById('mySpace').style.left=(document.body.clientWidth-440) +"px";
-    document.getElementById('mySpace').style.height=document.body.clientHeight +"px";
+    var myWidth = document.body.clientWidth;
+    var myHeight = window.screen.height-180;
+    document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
+    document.getElementById('blocklyDiv').style.height=myHeight +"px";
+    Blockly.svgResize(demoWorkspace);
+    document.getElementById('codeWindow').style.height=(myHeight-200) +"px";
+    document.getElementById('mySpace').style.left=(myWidth-440) +"px";
+    document.getElementById('mySpace').style.height=myHeight +"px";
     document.getElementById('mySpace').style.display="block";
 	
     if (document.cookie!=""&&document.cookie.toLowerCase().indexOf("block")!=-1) {
@@ -389,7 +390,6 @@ function initial() {
       Blockly.Xml.domToWorkspace(xml, demoWorkspace);
     }	
 }
-
 function hideMySpace(element) {
   if (document.getElementById('myFeatures').style.display != 'none') { 
     document.getElementById('myFeatures').style.display = 'none';
@@ -406,7 +406,6 @@ function hideMySpace(element) {
   }
   Blockly.svgResize(demoWorkspace);
 }
-
 function showcodeWindow(element, state) {
   if (state=="big")
   {
@@ -427,7 +426,6 @@ function showcodeWindow(element, state) {
     element.style.color='black';
   }
 }
-	
 window.onresize = function(){
   initial();
 }
