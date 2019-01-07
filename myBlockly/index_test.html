@@ -376,7 +376,7 @@ function importBlocksFile(element) {
 function initial() {
   var myWidth = document.body.clientWidth;
   if (window.screen.height> document.body.clientHeight)
-    var myHeight = window.screen.height-180;
+    var myHeight = document.documentElement.clientHeight;
   else
     var myHeight = document.body.clientHeight;
   document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
@@ -396,7 +396,7 @@ function initial() {
 function hideMySpace(element) {
   var myWidth = document.body.clientWidth;
   if (window.screen.height> document.body.clientHeight)
-    var myHeight = window.screen.height-180;
+    var myHeight = document.documentElement.clientHeight;
   else
     var myHeight = document.body.clientHeight;	
   if (document.getElementById('myFeatures').style.display != 'none') { 
@@ -414,10 +414,11 @@ function hideMySpace(element) {
   }
   Blockly.svgResize(demoWorkspace);
 }
+	
 function showcodeWindow(element, state) {
   var myWidth = document.body.clientWidth;
   if (window.screen.height> document.body.clientHeight)
-    var myHeight = window.screen.height-180;
+    var myHeight = document.documentElement.clientHeight;
   else
     var myHeight = document.body.clientHeight;
   if (state=="big")
