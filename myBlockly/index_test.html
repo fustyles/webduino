@@ -392,7 +392,7 @@ function initial() {
 	
   console.log(document.cookie);
   if (document.cookie!=""&&document.cookie.toLowerCase().indexOf("block")!=-1) {
-    var xml = Blockly.Xml.textToDom(document.cookie);
+    var xml = Blockly.Xml.textToDom(unescape(document.cookie));
     demoWorkspace.clear();
     Blockly.Xml.domToWorkspace(xml, demoWorkspace);
   }
@@ -460,7 +460,7 @@ setInterval(function(){
   var xml_text = Blockly.Xml.domToText(xml);
   var exp = new Date(); 
   exp.setTime(exp.getTime()+10000); 
-  document.cookie=xml_text.replace(/\;/g,"")+";expires="+exp.toGMTString(); 
+  document.cookie=escape(xml_text); 
   console.log(document.cookie);
 }, 10000);
 </script>
