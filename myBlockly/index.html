@@ -391,12 +391,13 @@ function initial() {
   document.getElementById('mySpace').style.left=(myWidth-440) +"px";
   document.getElementById('mySpace').style.height=myHeight +"px";
   document.getElementById('mySpace').style.display="block";
-	
+/*	
   if (document.cookie!=""&&document.cookie.toLowerCase().indexOf("block")!=-1) {
     var xml = Blockly.Xml.textToDom(document.cookie);
     demoWorkspace.clear();
     Blockly.Xml.domToWorkspace(xml, demoWorkspace);
-  }	
+  }
+*/
 }
 	
 function hideMySpace(element) {
@@ -456,11 +457,13 @@ window.onresize = function(){
   initial();
 }
 	
+/*
 setInterval(function(){
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
   document.cookie=xml_text;
 }, 10000);
+*/
 </script>
 </body>
 </html>
