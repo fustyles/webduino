@@ -375,26 +375,32 @@ function importBlocksFile(element) {
 }
 
 function initial() {
-    var myWidth = document.body.clientWidth;
+  var myWidth = document.body.clientWidth;
+  if (window.screen.height> document.body.clientHeight)
     var myHeight = window.screen.height-180;
-    document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
-    document.getElementById('blocklyDiv').style.height=myHeight +"px";
-    Blockly.svgResize(demoWorkspace);
-    document.getElementById('codeWindow').style.height=(myHeight-200) +"px";
-    document.getElementById('mySpace').style.left=(myWidth-440) +"px";
-    document.getElementById('mySpace').style.height=myHeight +"px";
-    document.getElementById('mySpace').style.display="block";
+  else
+  var myHeight = document.body.clientHeight;
+  document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
+  document.getElementById('blocklyDiv').style.height=myHeight +"px";
+  Blockly.svgResize(demoWorkspace);
+  document.getElementById('codeWindow').style.height=(myHeight-200) +"px";
+  document.getElementById('mySpace').style.left=(myWidth-440) +"px";
+  document.getElementById('mySpace').style.height=myHeight +"px";
+  document.getElementById('mySpace').style.display="block";
 	
-    if (document.cookie!=""&&document.cookie.toLowerCase().indexOf("block")!=-1) {
-      var xml = Blockly.Xml.textToDom(document.cookie);
-      demoWorkspace.clear();
-      Blockly.Xml.domToWorkspace(xml, demoWorkspace);
-    }	
+  if (document.cookie!=""&&document.cookie.toLowerCase().indexOf("block")!=-1) {
+    var xml = Blockly.Xml.textToDom(document.cookie);
+    demoWorkspace.clear();
+    Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+  }	
 }
 
 function hideMySpace(element) {
   var myWidth = document.body.clientWidth;
-  var myHeight = window.screen.height-180;	
+  if (window.screen.height> document.body.clientHeight)
+    var myHeight = window.screen.height-180;
+  else
+    var myHeight = document.body.clientHeight;	
   if (document.getElementById('myFeatures').style.display != 'none') { 
     document.getElementById('myFeatures').style.display = 'none';
     document.getElementById('btnRun2').style.display = 'block';
@@ -413,7 +419,10 @@ function hideMySpace(element) {
 
 function showcodeWindow(element, state) {
   var myWidth = document.body.clientWidth;
-  var myHeight = window.screen.height-180;
+  if (window.screen.height> document.body.clientHeight)
+    var myHeight = window.screen.height-180;
+  else
+    var myHeight = document.body.clientHeight;
   if (state=="big")
   {
     element.style.position='absolute';
