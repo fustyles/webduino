@@ -426,7 +426,7 @@ function showcodeWindow(element, state) {
   } else if (state=="small") {
     element.style.position='static';
     element.style.width='360px';
-    document.getElementById('codeWindow').style.height=(document.body.clientHeight-200) +"px";
+    element.style.height=(document.body.clientHeight-200) +"px";
     element.style.fontSize='13px';
     element.style.color='black';
   }
@@ -434,7 +434,7 @@ function showcodeWindow(element, state) {
 
 window.onresize = function(){
   initial();
-  hideMySpace(document.getElementById('hide'));
+  showcodeWindow(document.getElementById('codeWindow'),"small");
 }
 	
 setInterval(function(){
