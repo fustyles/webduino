@@ -376,7 +376,7 @@ function importBlocksFile(element) {
 function initial() {
   var myWidth = document.body.clientWidth;
   if (document.documentElement.clientHeight)
-    var myHeight = document.documentElement.clientHeight-30;
+    var myHeight = document.documentElement.clientHeight-25;
   else
     var myHeight = document.body.clientHeight;
   document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
@@ -397,7 +397,7 @@ function initial() {
 function hideMySpace(element) {
   var myWidth = document.body.clientWidth;
   if (document.documentElement.clientHeight)
-    var myHeight = document.documentElement.clientHeight-30;
+    var myHeight = document.documentElement.clientHeight-25;
   else
     var myHeight = document.body.clientHeight;	
   if (document.getElementById('myFeatures').style.display != 'none') { 
@@ -419,7 +419,7 @@ function hideMySpace(element) {
 function showcodeWindow(element, state) {
   var myWidth = document.body.clientWidth;
   if (document.documentElement.clientHeight)
-    var myHeight = document.documentElement.clientHeight-30;
+    var myHeight = document.documentElement.clientHeight-25;
   else
     var myHeight = document.body.clientHeight;
   if (state=="big")
@@ -444,8 +444,8 @@ function showcodeWindow(element, state) {
   }
 }
 window.onresize = function(){
-  initial();
   showcodeWindow(document.getElementById('codeWindow'),"small");
+  initial();
 }
 	
 setInterval(function(){
