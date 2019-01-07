@@ -393,7 +393,7 @@ function initial() {
   document.getElementById('mySpace').style.display="block";
 	
   if (document.cookie!=""&&document.cookie.toLowerCase().indexOf("block")!=-1) {
-    var xml = Blockly.Xml.textToDom(document.cookie);
+    var xml = Blockly.Xml.textToDom(decodeURIComponent(document.cookie));
     demoWorkspace.clear();
     Blockly.Xml.domToWorkspace(xml, demoWorkspace);
   }	
@@ -459,7 +459,6 @@ window.onresize = function(){
 setInterval(function(){
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
-  console.log(xml_text);
   document.cookie=xml_text;
 }, 10000);
 </script>
