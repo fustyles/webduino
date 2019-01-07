@@ -375,7 +375,7 @@ function importBlocksFile(element) {
 }
 function initial() {
     var myWidth = document.body.clientWidth;
-    var myHeight = window.screen.height-170;
+    var myHeight = window.screen.height-180;
     document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
     document.getElementById('blocklyDiv').style.height=myHeight +"px";
     Blockly.svgResize(demoWorkspace);
@@ -391,43 +391,50 @@ function initial() {
     }	
 }
 function hideMySpace(element) {
+  var myWidth = document.body.clientWidth;
+  var myHeight = window.screen.height-180;	
   if (document.getElementById('myFeatures').style.display != 'none') { 
     document.getElementById('myFeatures').style.display = 'none';
     document.getElementById('btnRun2').style.display = 'block';
     element.value='  <  ';
-    document.getElementById('mySpace').style.left=(document.body.clientWidth-40) +"px";
-    document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-70) +"px";
+    document.getElementById('mySpace').style.left=(myWidth-40) +"px";
+    document.getElementById('blocklyDiv').style.width=(myWidth-70) +"px";
   } else {
     document.getElementById('myFeatures').style.display = 'block';
     document.getElementById('btnRun2').style.display = 'none';
     element.value='  >  ';
-    document.getElementById('mySpace').style.left=(document.body.clientWidth-440) +"px";
-    document.getElementById('blocklyDiv').style.width=(document.body.clientWidth-470) +"px";
+    document.getElementById('mySpace').style.left=(myWidth-440) +"px";
+    document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
   }
   Blockly.svgResize(demoWorkspace);
 }
 function showcodeWindow(element, state) {
+  var myWidth = document.body.clientWidth;
+  var myHeight = window.screen.height-180;
   if (state=="big")
   {
     element.style.position='absolute';
-    element.style.left="-"+(document.body.clientWidth-450)+"px";
+    element.style.left="-"+(myWidth-450)+"px";
     element.style.top='0px';
-    element.style.width=(document.body.clientWidth-480)+"px";
-    element.style.height=document.body.clientHeight +"px";
+    element.style.width=(myWidth-480)+"px";
+    element.style.height=myHeight +"px";
     element.style.fontSize='18px';
     element.style.color='red';
     element.style.zIndex='999';
+    element.selectionStart = 0;
+    element.selectionEnd = 0;
     element.focus();
   } else if (state=="small") {
     element.style.position='static';
     element.style.width='360px';
-    document.getElementById('codeWindow').style.height=(document.body.clientHeight-200) +"px";
+    element.style.height=(myHeight-200) +"px";
     element.style.fontSize='13px';
     element.style.color='black';
   }
 }
 window.onresize = function(){
   initial();
+  showcodeWindow(document.getElementById('codeWindow'),"small");
 }
 	
 setInterval(function(){
