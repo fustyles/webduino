@@ -375,14 +375,8 @@ function importBlocksFile(element) {
 }
 
 function initial() {
-  console.log(document.body.clientWidth);
-  console.log(document.body.clientHeight);
-  console.log(window.screen.availHeight);
-  console.log(window.screen.availWidth);
-  console.log(window.screen.height);
-  console.log(window.screen.width);
     var myWidth = document.body.clientWidth;
-    var myHeight = window.screen.height-200;
+    var myHeight = window.screen.height-150;
     document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
     document.getElementById('blocklyDiv').style.height=myHeight +"px";
     Blockly.svgResize(demoWorkspace);
