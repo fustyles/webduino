@@ -373,7 +373,6 @@ function importBlocksFile(element) {
   };
   fr.readAsText(file);
 }
-
 function initial() {
   var myWidth = document.body.clientWidth;
   if (window.screen.height> document.body.clientHeight)
@@ -394,7 +393,6 @@ function initial() {
     Blockly.Xml.domToWorkspace(xml, demoWorkspace);
   }	
 }
-
 function hideMySpace(element) {
   var myWidth = document.body.clientWidth;
   if (window.screen.height> document.body.clientHeight)
@@ -416,7 +414,6 @@ function hideMySpace(element) {
   }
   Blockly.svgResize(demoWorkspace);
 }
-
 function showcodeWindow(element, state) {
   var myWidth = document.body.clientWidth;
   if (window.screen.height> document.body.clientHeight)
@@ -444,7 +441,6 @@ function showcodeWindow(element, state) {
     element.style.color='black';
   }
 }
-
 window.onresize = function(){
   initial();
   showcodeWindow(document.getElementById('codeWindow'),"small");
