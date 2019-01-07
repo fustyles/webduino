@@ -240,7 +240,6 @@ while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().i
 	
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.appspot.com/static/media/', toolbox: document.getElementById('toolbox'),zoom:{controls: true,wheel: true,startScale: 1.0,maxScale: 3,minScale: 0.3,scaleSpeed: 1.2},trashcan: true});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
-	
 //append Game(Tetris) blocks to startBlocks
 XmldomToWorkspace(Game_Tetris);
 function XmldomToWorkspace(example) {	
@@ -364,16 +363,19 @@ function importBlocks() {
 }
 	
 function importBlocksFile(element) {
-  var file = element.files[0];
-  var fr = new FileReader();           
-  fr.onload = function (event) {
-    var xml = Blockly.Xml.textToDom(event.target.result);
-    demoWorkspace.clear();
-    Blockly.Xml.domToWorkspace(xml, demoWorkspace);
-  };
-  fr.readAsText(file);
+  try {	
+    var file = element.files[0];
+    var fr = new FileReader();           
+    fr.onload = function (event) {
+      var xml = Blockly.Xml.textToDom(event.target.result);
+      demoWorkspace.clear();
+      Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+    };
+    fr.readAsText(file);
+  } catch (e) {
+    alert(e);
+  }	  
 }
-
 function initial() {
   var myWidth = document.body.clientWidth;
   if (document.documentElement.clientHeight)
@@ -392,7 +394,7 @@ function initial() {
     var xml = Blockly.Xml.textToDom(document.cookie);
     demoWorkspace.clear();
     Blockly.Xml.domToWorkspace(xml, demoWorkspace);
-  }	
+  }
 }
 	
 function hideMySpace(element) {
@@ -444,6 +446,7 @@ function showcodeWindow(element, state) {
     element.style.color='black';
   }
 }
+	
 window.onresize = function(){
   showcodeWindow(document.getElementById('codeWindow'),"small");
   if (document.getElementById('myFeatures').style.display == 'none') 
@@ -454,8 +457,10 @@ window.onresize = function(){
 setInterval(function(){
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
-  document.cookie=xml_text;
-}, 5000);
+  var exp = new Date(); 
+  exp.setTime(exp.getTime()+10000); 
+  document.cookie=xml_text+";expires="+exp.toGMTString(); 
+}, 10000);
 </script>
 </body>
 </html>
