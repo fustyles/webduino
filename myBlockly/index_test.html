@@ -379,7 +379,7 @@ function initial() {
   if (window.screen.height> document.body.clientHeight)
     var myHeight = window.screen.height-180;
   else
-  var myHeight = document.body.clientHeight;
+    var myHeight = document.body.clientHeight;
   document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
   document.getElementById('blocklyDiv').style.height=myHeight +"px";
   Blockly.svgResize(demoWorkspace);
