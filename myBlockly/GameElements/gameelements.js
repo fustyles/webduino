@@ -65,7 +65,7 @@
         document.getElementById("gametable_"+input_id).style.background="";
         document.getElementById("gametable_"+input_id).style.backgroundImage="url("+input_value+")";
       }
-      else if (input_property=="backgroundcolor")
+      else if (input_property=="background")
         document.getElementById("gametable_"+input_id).style.background=input_value;
       else
       {
