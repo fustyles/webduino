@@ -1216,11 +1216,13 @@ Blockly.Blocks['async_function'] = {
   this.appendValueInput("name_")
       .setCheck("String")   
       .appendField(Blockly.Msg.ASYNC_FUNCTION_SHOW);
-    this.appendStatementInput("do_");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(60);
+  this.appendValueInput("parameter_")
+      .setCheck("String");    
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
   }
 };
 
@@ -1228,7 +1230,9 @@ Blockly.Blocks['call_async_function'] = {
   init: function () {
   this.appendValueInput("name_")
       .setCheck("String")   
-      .appendField(Blockly.Msg.CALL_ASYNC_FUNCTION_SHOW); 
+      .appendField(Blockly.Msg.CALL_ASYNC_FUNCTION_SHOW);
+  this.appendValueInput("parameter_")
+      .setCheck("String");        
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
