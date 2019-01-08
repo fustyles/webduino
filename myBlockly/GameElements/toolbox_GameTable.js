@@ -46,8 +46,7 @@ var catGameTable = '<xml><category name="%{BKY_GAMETABLE}" colour="%{BKY_GAMETAB
 '      </block>'+
 '    </value>'+    
 '    <value name="bgcolor_">'+
-'      <block type="colour_picker">'+
-'        <field name="COLOUR">#ff0000</field>'+
+'      <block type="logic_null">'+
 '      </block>'+
 '    </value>'+       
 '    <value name="zindex_">'+
