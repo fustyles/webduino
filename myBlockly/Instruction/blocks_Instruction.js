@@ -147,8 +147,7 @@ Blockly.Blocks['cmd6'] = {
         ["Math.tan","Math.tan"],
         ["Math.tanh","Math.tanh"],
         ["Math.trunc","Math.trunc"],  
-        ["Number","Number"], 
-        ["null","null"]
+        ["Number","Number"]
       ]), "cmd_math");    
   this.setOutput(true, null);
   this.setInputsInline(true);
@@ -201,8 +200,7 @@ Blockly.Blocks['cmd7'] = {
         ["toLocaleUpperCase","toLocaleUpperCase"],
         ["toLowerCase","toLowerCase"],
         ["toString","toString"],
-        ["length","length"],    
-        ["null","null"]
+        ["length","length"]
       ]), "cmd_string");    
   this.setOutput(true, null);
   this.setInputsInline(true);
@@ -244,8 +242,7 @@ Blockly.Blocks['cmd8'] = {
         ["toString","toString"],
         ["unshift","unshift"],
         ["valueOf","valueOf"],
-        ["values","values"],
-        ["null","null"]
+        ["values","values"]
       ]), "cmd_array");    
   this.setOutput(true, null);
   this.setInputsInline(true);
