@@ -111,8 +111,12 @@
        return "#"+r+g+b;
       }
       else if (input_property=="background") {
-        var color=document.getElementById("gametable_"+input_id).style.background;
-        return color.substring(4,color.length-1).split(",");
+        var rgb=document.getElementById("gametable_"+input_id).style.background;
+        var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
+        var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+        var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+        var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+        return "#"+r+g+b;
       }
       else if (input_property=="backgroundimage") {
         var url=document.getElementById("gametable_"+input_id).style.backgroundImage;
