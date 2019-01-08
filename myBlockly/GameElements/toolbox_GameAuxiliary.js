@@ -21,15 +21,7 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '    </value>'+  
 '  </block>'+  
 '  <block type="document_timer_stop">'+
-'  </block>'+  
-'  <block type="text_to_number">'+
-'    <value name="value_text_">'+
-'    </value>'+    
-'  </block>'+  
-'  <block type="loop_break">'+      
-'  </block>'+  
-'  <block type="loop_continue">'+      
-'  </block>'+   
+'  </block>'+ 
 '  <block type="async_function">'+
 '    <value name="name_">'+
 '      <block type="text">'+
@@ -43,7 +35,15 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '        <field name="TEXT"></field>'+
 '      </block>'+    
 '    </value>'+     
-'  </block>'+           
+'  </block>'+      
+'  <block type="text_to_number">'+
+'    <value name="value_text_">'+
+'    </value>'+    
+'  </block>'+  
+'  <block type="loop_break">'+      
+'  </block>'+  
+'  <block type="loop_continue">'+      
+'  </block>'+            
 '  <block type="function_return">'+
 '    <value name="value_">'+
 '      <block type="math_number">'+
