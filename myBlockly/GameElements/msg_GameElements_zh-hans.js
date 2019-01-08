@@ -118,3 +118,5 @@ Blockly.Msg.ROTATEZ_DEGREES_SHOW = "旋转角度";
 Blockly.Msg.ROTATE_VERTICAL_FLIP_SHOW = "上下翻转";
 Blockly.Msg.ROTATE_HORIZONTAL_FLIP_SHOW = "左右翻转";
 Blockly.Msg.TABLE_TD_COPY_MOVE_SHOW = "储存格内容";
+Blockly.Msg.ASYNC_FUNCTION_SHOW = "async function 名称";
+Blockly.Msg.CALL_ASYNC_FUNCTION_SHOW = "执行 async function 名称";
