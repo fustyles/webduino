@@ -120,3 +120,4 @@ Blockly.Msg.ROTATE_HORIZONTAL_FLIP_SHOW = "左右翻轉";
 Blockly.Msg.TABLE_TD_COPY_MOVE_SHOW = "儲存格內容";
 Blockly.Msg.ASYNC_FUNCTION_SHOW = "async function ";
 Blockly.Msg.CALL_ASYNC_FUNCTION_SHOW = "執行 async function ";
+Blockly.Msg.RETURN_ASYNC_FUNCTION_SHOW = "回傳 async function ";
