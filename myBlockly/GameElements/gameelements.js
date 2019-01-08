@@ -113,7 +113,9 @@
       else if (input_property=="background")
         return document.getElementById("gametable_"+input_id).style.background;
       else if (input_property=="backgroundimage") {
-        return document.getElementById("gametable_"+input_id).style.backgroundImage;
+        var url=document.getElementById("gametable_"+input_id).style.backgroundImage;
+        url=url.substring(5,url.length-2);
+        return url;
       }
       else if (input_property=="zindex")
         return document.getElementById("gametable_"+input_id).style.zIndex;
