@@ -265,6 +265,7 @@ function runCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP =
   'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+  code = code.replace(/function/g,"async function").replace(/async async/g,"async");
   var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
   for (var i=0;i<script_iframe_run.length;i++)  {
     iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
@@ -304,7 +305,7 @@ function closeWindow() {
 function exportCODE() {
   try {
     var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-	  
+    code = code.replace(/function/g,"async function").replace(/async async/g,"async");  
     var link = document.createElement('a');
     link.download="code.txt";
     link.href="data:application/octet-stream;utf-8," + encodeURI(code);
@@ -320,6 +321,7 @@ function exportCODE() {
 function exportHTML() {
   try {
     var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+    code = code.replace(/function/g,"async function").replace(/async async/g,"async");
     var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
     for (var i=0;i<script_iframe_run.length;i++)  {
       iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
