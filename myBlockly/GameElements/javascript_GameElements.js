@@ -519,13 +519,3 @@ Blockly.JavaScript['call_async_function'] = function (block) {
   var code = value_name_ + '();\n';
   return code;
 };
-
-Blockly.JavaScript['return_async_function'] = function (block) {
-  var value_name_ = Blockly.JavaScript.valueToCode(block, 'name_', Blockly.JavaScript.ORDER_ATOMIC);   
-  if ((value_name_.indexOf("'")==0)&&(value_name_.lastIndexOf("'")==value_name_.length-1))
-    value_name_ = value_name_.substring(1,value_name_.length-1);
-  if ((value_name_.indexOf("(")==0)&&(value_name_.lastIndexOf(")")==value_name_.length-1))
-    value_name_ = value_name_.substring(1,value_name_.length-1);
-  var code = value_name_ + '()';
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
