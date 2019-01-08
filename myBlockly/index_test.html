@@ -22,12 +22,15 @@
 		'https://fustyles.github.io/webduino/myBlockly/example/MatrixLED_example.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/GameImage_example.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example.js',
+		
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/blocks_SetWindow.js',
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/javascript_SetWindow.js',
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/toolbox_SetWindow.js',
+		
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/blocks_ShowText.js',
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/javascript_ShowText.js',
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/toolbox_ShowText.js',
+		
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/blocks_Keyboard.js',
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/javascript_Keyboard.js',
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/toolbox_Keyboard.js',
@@ -118,8 +121,6 @@
 </head>
 <body onload="initial();"></div>
 
-<div id="blocklyDiv" style="height: 600px; width: 800px;">
-
 <table id="mySpace" style="position:absolute;display:none;height:100%">
   <tr>
     <td valign="center">
@@ -201,9 +202,10 @@
   <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="autoplay; fullscreen; geolocation; microphone; camera"></iframe>
 </div>
 
+<div id="blocklyDiv" style="height: 600px; width: 800px;">
 <xml id="toolbox" style="display: none"></xml>
 <xml id="startBlocks" style="display: none"></xml>
-
+		
 <script>
 //append category to toolbox
 var category = [
@@ -240,6 +242,7 @@ while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().i
 	
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.appspot.com/static/media/', toolbox: document.getElementById('toolbox'),zoom:{controls: true,wheel: true,startScale: 1.0,maxScale: 3,minScale: 0.3,scaleSpeed: 1.2},trashcan: true});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
+
 //append Game(Tetris) blocks to startBlocks
 XmldomToWorkspace(Game_Tetris);
 function XmldomToWorkspace(example) {	
@@ -376,6 +379,7 @@ function importBlocksFile(element) {
     alert(e);
   }	  
 }
+
 function initial() {
   var myWidth = document.body.clientWidth;
   if (document.documentElement.clientHeight)
@@ -389,13 +393,6 @@ function initial() {
   document.getElementById('mySpace').style.left=(myWidth-440) +"px";
   document.getElementById('mySpace').style.height=myHeight +"px";
   document.getElementById('mySpace').style.display="block";
-	
-  console.log(document.cookie);
-  if (document.cookie!=""&&document.cookie.toLowerCase().indexOf("block")!=-1) {
-    var xml = Blockly.Xml.textToDom(unescape(document.cookie));
-    demoWorkspace.clear();
-    Blockly.Xml.domToWorkspace(xml, demoWorkspace);
-  }
 }
 	
 function hideMySpace(element) {
@@ -454,15 +451,6 @@ window.onresize = function(){
     document.getElementById('hide').click();
   initial();
 }
-	
-setInterval(function(){
-  var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-  var xml_text = Blockly.Xml.domToText(xml);
-  var exp = new Date(); 
-  exp.setTime(exp.getTime()+10000); 
-  document.cookie=escape(xml_text)+"; expires=" + exp.toGMTString();
-  console.log(document.cookie);
-}, 10000);
 </script>
 </body>
 </html>
