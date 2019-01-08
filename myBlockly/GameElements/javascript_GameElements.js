@@ -533,7 +533,10 @@ Blockly.JavaScript['call_async_function'] = function (block) {
 
 Blockly.JavaScript['transform_async_function'] = function (block) {
   console.log(Blockly.getMainWorkspace('blocklyDiv'));
-  console.log(Blockly.getMainWorkspace('blocklyDiv').getBlocksByType('procedures_defnoreturn'));
+  if (Blockly.getMainWorkspace('blocklyDiv').getBlocksByType('procedures_defnoreturn')) {
+    Blockly.getMainWorkspace('blocklyDiv').getBlocksByType('procedures_defnoreturn').setPreviousStatement(true);
+    Blockly.getMainWorkspace('blocklyDiv').getBlocksByType('procedures_defnoreturn').setNextStatement(true);
+  }
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = statements_do_.replace(/function/g,"async function").replace(/async async/g,"async");
   return code;
