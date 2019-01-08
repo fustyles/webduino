@@ -394,13 +394,6 @@ function initial() {
   document.getElementById('mySpace').style.left=(myWidth-440) +"px";
   document.getElementById('mySpace').style.height=myHeight +"px";
   document.getElementById('mySpace').style.display="block";
-	
-  if (demoWorkspace.getBlocksByType('procedures_defnoreturn')) {
-    for (var i=0;i<demoWorkspace.getBlocksByType('procedures_defnoreturn').length;i++) {
-      demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setPreviousStatement(true, null); 
-      demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setNextStatement(true, null);
-    }
-  }
 }
 	
 function hideMySpace(element) {
