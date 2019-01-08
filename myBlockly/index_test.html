@@ -1,4 +1,4 @@
-<!-- Author: Fu Chung-Yi (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update date: 2019-1-7 -->
+<!-- Author: Fu Chung-Yi (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update date: 2019-1-8 -->
 
 <!DOCTYPE html>
 <html>
@@ -22,6 +22,7 @@
 		'https://fustyles.github.io/webduino/myBlockly/example/MatrixLED_example.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/GameImage_example.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/GameAuxiliary_example.js',
 		
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/blocks_SetWindow.js',
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/javascript_SetWindow.js',
@@ -167,6 +168,7 @@
               <option value="GameImage_example">GameImage_example</option>
               <option value="GameCanvas_example">GameCanvas_example</option>
               <option value="MatrixLED_example">MatrixLED_example</option>
+              <option value="GameAuxiliary_example">GameAuxiliary_example</option>
             </select>
           </td>
         </tr>
@@ -188,7 +190,7 @@
         </tr>
         <tr>
           <td align="center">
-            Fu Chung-Yi (Taiwan)  Update Date : 2019-1-7
+            Fu Chung-Yi (Taiwan)  Update Date : 2019-1-8
           </td>
         </tr>
       </table>
@@ -242,9 +244,9 @@ while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().i
 	
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.appspot.com/static/media/', toolbox: document.getElementById('toolbox'),zoom:{controls: true,wheel: true,startScale: 1.0,maxScale: 3,minScale: 0.3,scaleSpeed: 1.2},trashcan: true});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
-
 //append Game(Tetris) blocks to startBlocks
 XmldomToWorkspace(Game_Tetris);
+	
 function XmldomToWorkspace(example) {	
   var xml = Blockly.Xml.textToDom(example);
   demoWorkspace.clear();
@@ -254,7 +256,6 @@ function XmldomToWorkspace(example) {
 function showCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-  code = code.replace(/function/g,"async function").replace(/async async/g,"async");
   if (code=="") code="//Please open this site in Google Chrome Browser.\n//You can double click on the textarea to enlarge.";
   document.getElementById('codeWindow').innerHTML = code;
 }
@@ -265,7 +266,6 @@ function runCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP =
   'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-  code = code.replace(/function/g,"async function").replace(/async async/g,"async");
   var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
   for (var i=0;i<script_iframe_run.length;i++)  {
     iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
@@ -305,7 +305,7 @@ function closeWindow() {
 function exportCODE() {
   try {
     var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-    code = code.replace(/function/g,"async function").replace(/async async/g,"async");  
+	  
     var link = document.createElement('a');
     link.download="code.txt";
     link.href="data:application/octet-stream;utf-8," + encodeURI(code);
@@ -321,7 +321,6 @@ function exportCODE() {
 function exportHTML() {
   try {
     var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-    code = code.replace(/function/g,"async function").replace(/async async/g,"async");
     var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
     for (var i=0;i<script_iframe_run.length;i++)  {
       iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
@@ -382,7 +381,6 @@ function importBlocksFile(element) {
     alert(e);
   }	  
 }
-
 function initial() {
   var myWidth = document.body.clientWidth;
   if (document.documentElement.clientHeight)
@@ -396,6 +394,9 @@ function initial() {
   document.getElementById('mySpace').style.left=(myWidth-440) +"px";
   document.getElementById('mySpace').style.height=myHeight +"px";
   document.getElementById('mySpace').style.display="block";
+	
+  if (demoWorkspace.getBlocksByType('procedures_defnoreturn'))
+    demoWorkspace.getBlocksByType('procedures_defnoreturn').setPreviousStatement(true, null);
 }
 	
 function hideMySpace(element) {
