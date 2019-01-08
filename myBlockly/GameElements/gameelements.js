@@ -61,6 +61,8 @@
         else if (input_value==0)
         document.getElementById("gametable_"+input_id).style.display = "none";
       }
+      else if (input_property=="backgroundimage")
+        document.getElementById("gametable_"+input_id).style.backgroundImage="url("+input_value+")";
       else
       {
         var obj = document.getElementById("gametable_"+input_id);
