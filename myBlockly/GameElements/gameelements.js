@@ -110,12 +110,13 @@
        var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
        return "#"+r+g+b;
       }
-      else if (input_property=="background")
-        return document.getElementById("gametable_"+input_id).style.background;
+      else if (input_property=="background") {
+        var color=document.getElementById("gametable_"+input_id).style.background;
+        return color.substring(4,color.length-1).split(",");
+      }
       else if (input_property=="backgroundimage") {
         var url=document.getElementById("gametable_"+input_id).style.backgroundImage;
-        url=url.substring(5,url.length-2);
-        return url;
+        return url.substring(5,url.length-2);
       }
       else if (input_property=="zindex")
         return document.getElementById("gametable_"+input_id).style.zIndex;
