@@ -1216,8 +1216,12 @@ Blockly.Blocks['async_function'] = {
   this.appendValueInput("name_")
       .setCheck("String")   
       .appendField(Blockly.Msg.ASYNC_FUNCTION_SHOW);
+  this.appendDummyInput()  
+      .appendField("(");    
   this.appendValueInput("parameter_")
       .setCheck("String");    
+  this.appendDummyInput()  
+      .appendField(")");    
   this.appendStatementInput("do_");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
@@ -1231,8 +1235,12 @@ Blockly.Blocks['call_async_function'] = {
   this.appendValueInput("name_")
       .setCheck("String")   
       .appendField(Blockly.Msg.CALL_ASYNC_FUNCTION_SHOW);
+  this.appendDummyInput()  
+      .appendField("(");
   this.appendValueInput("parameter_")
-      .setCheck("String");        
+      .setCheck("String");   
+  this.appendDummyInput()  
+      .appendField(")");    
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
