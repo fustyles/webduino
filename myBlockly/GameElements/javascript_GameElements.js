@@ -502,7 +502,7 @@ Blockly.JavaScript['button_onclick_do'] = function (block) {
 Blockly.JavaScript['async_function'] = function (block) {
   var value_name_ = Blockly.JavaScript.valueToCode(block, 'name_', Blockly.JavaScript.ORDER_ATOMIC); 
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'async function "+value_name_+"(){\n' + statements_do_ + '};\n';
+  var code = 'async function '+value_name_+'(){\n' + statements_do_ + '};\n';
   return code;
 };
 
