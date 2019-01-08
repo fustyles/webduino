@@ -22,12 +22,15 @@
 		'https://fustyles.github.io/webduino/myBlockly/example/MatrixLED_example.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/GameImage_example.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example.js',
+		
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/blocks_SetWindow.js',
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/javascript_SetWindow.js',
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/toolbox_SetWindow.js',
+		
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/blocks_ShowText.js',
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/javascript_ShowText.js',
 		'https://fustyles.github.io/webduino/myBlockly/ShowText/toolbox_ShowText.js',
+		
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/blocks_Keyboard.js',
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/javascript_Keyboard.js',
 		'https://fustyles.github.io/webduino/myBlockly/Keyboard/toolbox_Keyboard.js',
@@ -118,8 +121,6 @@
 </head>
 <body onload="initial();"></div>
 
-<div id="blocklyDiv" style="height: 600px; width: 800px;">
-
 <table id="mySpace" style="position:absolute;display:none;height:100%">
   <tr>
     <td valign="center">
@@ -201,9 +202,10 @@
   <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="autoplay; fullscreen; geolocation; microphone; camera"></iframe>
 </div>
 
+<div id="blocklyDiv" style="height: 600px; width: 800px;">
 <xml id="toolbox" style="display: none"></xml>
 <xml id="startBlocks" style="display: none"></xml>
-
+		
 <script>
 //append category to toolbox
 var category = [
