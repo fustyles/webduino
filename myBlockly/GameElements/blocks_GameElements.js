@@ -1217,6 +1217,7 @@ Blockly.Blocks['async_function'] = {
       .setCheck("String")   
       .appendField(Blockly.Msg.ASYNC_FUNCTION_SHOW);
     this.appendStatementInput("do_");
+    this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
