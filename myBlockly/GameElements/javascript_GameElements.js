@@ -532,7 +532,6 @@ Blockly.JavaScript['call_async_function'] = function (block) {
 };
 
 Blockly.JavaScript['transform_async_function'] = function (block) {
-  demoWorkspace.getBlocksByType('procedures_defnoreturn').setPreviousStatement(true, null);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = statements_do_.replace(/function/g,"async function").replace(/async async/g,"async");
   return code;
