@@ -62,7 +62,7 @@
         document.getElementById("gametable_"+input_id).style.display = "none";
       }
       else if (input_property=="backgroundimage") {
-        document.getElementById("gametable_"+input_id).style.backgroundColor=null;
+        document.getElementById("gametable_"+input_id).style.background="";
         document.getElementById("gametable_"+input_id).style.backgroundImage="url("+input_value+")";
       }
       else
