@@ -1247,3 +1247,14 @@ Blockly.Blocks['call_async_function'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['transform_async_function'] = {
+  init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TRANSFORM_ASYNC_FUNCTION_SHOW);    
+  this.appendStatementInput("do_");
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
