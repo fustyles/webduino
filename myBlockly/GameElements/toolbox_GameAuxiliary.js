@@ -29,7 +29,28 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '  <block type="loop_break">'+      
 '  </block>'+  
 '  <block type="loop_continue">'+      
-'  </block>'+     
+'  </block>'+   
+'  <block type="async_function">'+
+'    <value name="name_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+    
+'    </value>'+     
+'  </block>'+    
+'  <block type="call_async_function">'+
+'    <value name="name_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+    
+'    </value>'+     
+'  </block>'+  
+'  <block type="return_async_function">'+
+'    <value name="name_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+    
+'    </value>'+     
+'  </block>'+          
 '  <block type="function_return">'+
 '    <value name="value_">'+
 '      <block type="math_number">'+
@@ -58,18 +79,4 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '  </block>'+  
 '  <block type="music_delete">'+ 
 '  </block>'+    
-'  <block type="async_function">'+
-'    <value name="name_">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+    
-'    </value>'+     
-'  </block>'+    
-'  <block type="call_async_function">'+
-'    <value name="name_">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+    
-'    </value>'+     
-'  </block>'+        
 ' </category></xml>';
