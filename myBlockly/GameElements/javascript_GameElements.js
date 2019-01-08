@@ -532,7 +532,6 @@ Blockly.JavaScript['call_async_function'] = function (block) {
 };
 
 Blockly.JavaScript['transform_async_function'] = function (block) {
-  console.log(Blockly.getMainWorkspace('blocklyDiv'));
   if (Blockly.getMainWorkspace('blocklyDiv').getBlocksByType('procedures_defnoreturn')) {
     Blockly.getMainWorkspace('blocklyDiv').getBlocksByType('procedures_defnoreturn').setPreviousStatement(true);
     Blockly.getMainWorkspace('blocklyDiv').getBlocksByType('procedures_defnoreturn').setNextStatement(true);
