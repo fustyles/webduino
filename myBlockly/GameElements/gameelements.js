@@ -61,12 +61,12 @@
         else if (input_value==0)
         document.getElementById("gametable_"+input_id).style.display = "none";
       }
+      else if (input_property=="background")
+        document.getElementById("gametable_"+input_id).style.background=input_value;
       else if (input_property=="backgroundimage") {
         document.getElementById("gametable_"+input_id).style.background="";
         document.getElementById("gametable_"+input_id).style.backgroundImage="url("+input_value+")";
       }
-      else if (input_property=="background")
-        document.getElementById("gametable_"+input_id).style.background=input_value;
       else
       {
         var obj = document.getElementById("gametable_"+input_id);
@@ -109,6 +109,11 @@
        var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
        var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
        return "#"+r+g+b;
+      }
+      else if (input_property=="background")
+        return document.getElementById("gametable_"+input_id).style.background;
+      else if (input_property=="backgroundimage") {
+        return document.getElementById("gametable_"+input_id).style.backgroundImage;
       }
       else if (input_property=="zindex")
         return document.getElementById("gametable_"+input_id).style.zIndex;
