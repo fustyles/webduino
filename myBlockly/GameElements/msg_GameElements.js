@@ -118,3 +118,5 @@ Blockly.Msg.ROTATEZ_DEGREES_SHOW = "Rotate (degrees)";
 Blockly.Msg.ROTATE_VERTICAL_FLIP_SHOW = "Vertical Flip";
 Blockly.Msg.ROTATE_HORIZONTAL_FLIP_SHOW = "Horizontal Flip";
 Blockly.Msg.TABLE_TD_COPY_MOVE_SHOW = "Cell innerHTML";
+Blockly.Msg.ASYNC_FUNCTION_SHOW = "async function ";
+Blockly.Msg.CALL_ASYNC_FUNCTION_SHOW = "Call async function ";
