@@ -5,6 +5,16 @@
 <head>
   <meta charset="utf-8">
   <title>myBlockly</title>
+  <script>
+	var script_blockly = [
+		'https://blockly-demo.appspot.com/static/blockly_compressed.js',
+		'https://blockly-demo.appspot.com/static/blocks_compressed.js',
+		'https://blockly-demo.appspot.com/static/javascript_compressed.js',
+		'https://fustyles.github.io/webduino/myBlockly/toolbox.js'
+	];
+	for (var i=0;i<script_blockly.length;i++) {
+	  document.write("\<script src='"+script_blockly[i]+"'\>\<\/script>");
+	}
 </head>
 <body></div>
 	
@@ -17,18 +27,6 @@
 var category = [
 	catSystem,
 	"<sep></sep>",
-	catSetWindow,
-	catShowText,
-	catKeyboard,
-	catInstruction,
-	catGameAuxiliary,
-	catGameTable,
-	catGameCanvas,
-	catGameImage,
-	catGameForm,
-	catMatrixLed,
-	catOpenURL,
-	catTaiwanAirQuality
 ].join("");
 while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().indexOf("<sep>")!=-1) {
   var s = category.toLowerCase().indexOf("<category");
