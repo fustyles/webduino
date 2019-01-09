@@ -156,12 +156,7 @@ if (demoWorkspace.getBlocksByType('procedures_defnoreturn')) {
   for (var i=0;i<demoWorkspace.getBlocksByType('procedures_defnoreturn').length;i++) {
     demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setPreviousStatement(true, null); 
     demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setNextStatement(true, null);
-  }
-}
-if (demoWorkspace.getBlocksByType('procedures_defreturn')) {
-  for (var i=0;i<demoWorkspace.getBlocksByType('procedures_defreturn').length;i++) {
-    demoWorkspace.getBlocksByType('procedures_defreturn')[i].setPreviousStatement(true, null); 
-    demoWorkspace.getBlocksByType('procedures_defreturn')[i].setNextStatement(true, null);
+    console.log(demoWorkspace.getBlocksByType('procedures_defnoreturn')[i]);
   }
 }
 
