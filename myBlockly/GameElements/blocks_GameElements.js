@@ -1257,10 +1257,11 @@ Blockly.Blocks['transform_async_function'] = {
   this.setNextStatement(true);
   this.setColour(60);
     
-  if (demoWorkspace.getBlocksByType('procedures_defnoreturn')) {
-    for (var i=0;i<demoWorkspace.getBlocksByType('procedures_defnoreturn').length;i++) {
-      demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setPreviousStatement(true); 
-      demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setNextStatement(true);
+  var b=demoWorkspace.getBlocksByType('procedures_defnoreturn');
+  if (b) {
+    for (var i=0;i<b.length;i++) {
+      b[i].setPreviousStatement(true); 
+      b[i].setNextStatement(true);
     }
   }
   }
