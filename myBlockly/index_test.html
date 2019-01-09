@@ -244,8 +244,6 @@ while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().i
 	
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.appspot.com/static/media/', toolbox: document.getElementById('toolbox'),zoom:{controls: true,wheel: true,startScale: 1.0,maxScale: 3,minScale: 0.3,scaleSpeed: 1.2},trashcan: true});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
-//append Game(Tetris) blocks to startBlocks
-XmldomToWorkspace(Game_Tetris);
 				
 if (demoWorkspace.getBlocksByType('procedures_defnoreturn')) {
   for (var i=0;i<demoWorkspace.getBlocksByType('procedures_defnoreturn').length;i++) {
@@ -259,6 +257,9 @@ if (demoWorkspace.getBlocksByType('procedures_defreturn')) {
     demoWorkspace.getBlocksByType('procedures_defreturn')[i].setNextStatement(true, null);
   }
 }	
+
+//append Game(Tetris) blocks to startBlocks
+XmldomToWorkspace(Game_Tetris);
 	
 function XmldomToWorkspace(example) {	
   var xml = Blockly.Xml.textToDom(example);
