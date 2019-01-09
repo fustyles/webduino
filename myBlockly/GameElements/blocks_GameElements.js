@@ -1259,9 +1259,8 @@ Blockly.Blocks['transform_async_function'] = {
     
   if (demoWorkspace.getBlocksByType('procedures_defnoreturn')) {
     for (var i=0;i<demoWorkspace.getBlocksByType('procedures_defnoreturn').length;i++) {
-      demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setPreviousStatement(true, null); 
-      demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setNextStatement(true, null);
-      console.log(demoWorkspace.getBlocksByType('procedures_defnoreturn')[i]);
+      demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setPreviousStatement(true); 
+      demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setNextStatement(true);
     }
   }
   }
