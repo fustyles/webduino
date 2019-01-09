@@ -255,6 +255,7 @@ function XmldomToWorkspace(example) {
 }
 	
 function showCode() {
+  /* under construction
   if (demoWorkspace.getBlocksByType('procedures_defnoreturn')) {
     for (var i=0;i<demoWorkspace.getBlocksByType('procedures_defnoreturn').length;i++) {
       demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setEditable(true);
@@ -262,6 +263,7 @@ function showCode() {
       demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setNextStatement(true, null);
     }
   }
+  */
 	
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
