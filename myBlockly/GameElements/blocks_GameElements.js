@@ -1256,5 +1256,13 @@ Blockly.Blocks['transform_async_function'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
+    
+  if (demoWorkspace.getBlocksByType('procedures_defnoreturn')) {
+    for (var i=0;i<demoWorkspace.getBlocksByType('procedures_defnoreturn').length;i++) {
+      demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setPreviousStatement(true, null); 
+      demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setNextStatement(true, null);
+      console.log(demoWorkspace.getBlocksByType('procedures_defnoreturn')[i]);
+    }
+  }
   }
 };
