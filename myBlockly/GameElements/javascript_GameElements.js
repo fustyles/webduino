@@ -130,6 +130,15 @@ Blockly.JavaScript['table_td_get'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['table_td_onclick_do'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'if ((table_get(' + value_id_ + ',"onclick[Column,Row]")) == "'+ value_x_ + ',' + value_y_ + '") {\n' + statements_do_ + '};\n';
+  return code;
+};
+
 Blockly.JavaScript['table_td_clear'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
