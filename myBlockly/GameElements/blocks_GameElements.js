@@ -216,10 +216,10 @@ Blockly.Blocks['table_td_onclick_do'] = {
       .appendField(Blockly.Msg.TABLE_ID_SHOW);     
   this.appendValueInput("x_")
       .setCheck(null)
-      .appendField(Blockly.Msg.X_SHOW);
+      .appendField(Msg.TABLE_TD_X_SHOW);
   this.appendValueInput("y_")
       .setCheck(null)
-      .appendField(Blockly.Msg.Y_SHOW); 
+      .appendField(Msg.TABLE_TD_Y_SHOW); 
   this.appendDummyInput()
       .appendField(Blockly.Msg.TABLE_TD_ONCLICK_DO_SHOW);    
   this.appendStatementInput("do_");
