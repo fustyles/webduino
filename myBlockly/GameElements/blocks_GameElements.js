@@ -1177,9 +1177,9 @@ Blockly.Blocks['button_set'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.BUTTON_SET_SHOW)    
       .appendField(Blockly.Msg.ID_SHOW);      
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.BUTTON_SET_SHOW) 
       .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["value","value"], ["zindex","zindex"], ["display","display"]]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -1195,9 +1195,9 @@ Blockly.Blocks['button_get'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.BUTTON_GET_SHOW)    
       .appendField(Blockly.Msg.ID_SHOW);  
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.BUTTON_GET_SHOW)
       .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["value","value"], ["zindex","zindex"], ["display","display"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
@@ -1209,8 +1209,9 @@ Blockly.Blocks['button_delete'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.BUTTON_DELETE_SHOW)    
       .appendField(Blockly.Msg.ID_SHOW); 
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.BUTTON_DELETE_SHOW);  
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -1222,8 +1223,9 @@ Blockly.Blocks['button_onclick_do'] = {
   init: function () {
   this.appendValueInput("id_")
     .setCheck(null)
-    .appendField(Blockly.Msg.BUTTON_ONCLICK_SHOW)   
-    .appendField(Blockly.Msg.ID_SHOW);  
+    .appendField(Blockly.Msg.ID_SHOW);
+  this.appendDummyInput()   
+    .appendField(Blockly.Msg.BUTTON_ONCLICK_SHOW);
   this.setInputsInline(true);
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
