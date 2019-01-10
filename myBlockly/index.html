@@ -150,6 +150,11 @@
         </tr>
         <tr>
           <td align="left" valign="center">
+            <button onclick="demoWorkspace.clear();">Clear Workspace</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkbackup">Backup Blocks (every 5 min)
+          </td>
+        </tr>	      
+        <tr>
+          <td align="left" valign="center">
             Example
             <select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
               <option value=""></option>
@@ -176,11 +181,6 @@
               <option value="zh-Hant">zh-Hant</option>
               <option value="zh-Hans">zh-Hans</option>
             </select>
-          </td>
-        </tr>
-        <tr>
-          <td align="left" valign="center">
-            <button onclick="demoWorkspace.clear();">Clear Workspace</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkbackup">Backup Blocks (every 5 min)
           </td>
         </tr>	      
         <tr>
