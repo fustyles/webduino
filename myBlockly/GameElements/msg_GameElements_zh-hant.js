@@ -108,6 +108,7 @@ Blockly.Msg.PERCENTAGE_SHOW = "%";
 Blockly.Msg.IMAGE_ONCLICK_DO_SHOW = "被點擊後執行";
 Blockly.Msg.BOUNDARY_COLLISION_DO_SHOW = "如果碰撞邊界";
 Blockly.Msg.TABLE_TD_IMAGE_MOVE_SHOW = "移動到";
+Blockly.Msg.BUTTON_ID_SHOW = "按鈕代碼";
 Blockly.Msg.BUTTON_CREATE_SHOW = "新增按鈕";
 Blockly.Msg.BUTTON_VALUE_SHOW = "文字";
 Blockly.Msg.BUTTON_SET_SHOW = "設定按鈕";
