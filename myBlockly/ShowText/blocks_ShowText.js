@@ -8,7 +8,7 @@
   this.appendValueInput("color")
       .appendField(Blockly.Msg.SHOWTEXT_COLOR_SHOW); 
   this.appendValueInput("text")
-      .setCheck("String")
+      .setCheck(null)
       .appendField(Blockly.Msg.SHOWTEXT_TEXT_SHOW);   
   this.setInputsInline(true);
   this.setPreviousStatement(true);
