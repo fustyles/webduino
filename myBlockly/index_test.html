@@ -264,14 +264,22 @@ function XmldomToWorkspace(example) {
   demoWorkspace.clear();
   Blockly.Xml.domToWorkspace(xml, demoWorkspace);
 }
+
+demoWorkspace.addChangeListener(function (event) {
+  if(event.type == Blockly.Events.BLOCK_CREATE) {
+    var block = Blockly.Workspace.getById(event.workspaceId).getBlockById(event.blockId);
+    if (block.type == 'procedures_defnoreturn') {
+      //block.setEditable(true);
+      block.setPreviousStatement(true, null);
+      block.setNextStatement(true, null)
+    }
+  }
 	
-function showCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
   if (code=="") code="//Please open this site in Google Chrome Browser.\n//You can double click on the textarea to enlarge.";
   document.getElementById('codeWindow').innerHTML = code;
-}
-demoWorkspace.addChangeListener(showCode);
+});
 	
 function runCode() {
   window.LoopTrap = 1000;
