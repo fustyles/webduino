@@ -180,7 +180,7 @@
         </tr>
         <tr>
           <td align="left" valign="center">
-            <input type="checkbox" id="chkbackup" onclick="if (this.checked) {var timebackup = setInterval(exportBlocks(),10000)}">Backup Blocks (every 5 min)&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="demoWorkspace.clear();">Clear Workspace</button>
+            <input type="checkbox" id="chkbackup" onclick="if (this.checked) {var backupTimer = setInterval(exportBlocks(),10000)} else clearInterval(backupTimer);">Backup Blocks (every 5 min)&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="demoWorkspace.clear();">Clear Workspace</button>
           </td>
         </tr>	      
         <tr>
