@@ -108,6 +108,7 @@ Blockly.Msg.PERCENTAGE_SHOW = "%";
 Blockly.Msg.IMAGE_ONCLICK_DO_SHOW = "is clicked ";
 Blockly.Msg.BOUNDARY_COLLISION_DO_SHOW = "collision with sides of screen";
 Blockly.Msg.TABLE_TD_IMAGE_MOVE_SHOW = "Move to";
+Blockly.Msg.BUTTON_ID_SHOW = "B";
 Blockly.Msg.BUTTON_CREATE_SHOW = "Button Create";
 Blockly.Msg.BUTTON_VALUE_SHOW = "Value";
 Blockly.Msg.BUTTON_SET_SHOW = "Set Button";
