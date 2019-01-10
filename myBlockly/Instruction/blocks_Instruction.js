@@ -344,7 +344,7 @@ Blockly.Blocks['cmd12'] = {
 Blockly.Blocks['cmd13'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField(Blockly.Msg.INSTRUCTION_DECLARE_ARRAY_SHOW);
+      .appendField(Blockly.Msg.INSTRUCTION_DECLARE_VARIABLE_SHOW);
   this.appendValueInput("myVar")
       .setCheck(null);    
   this.setPreviousStatement(true);
