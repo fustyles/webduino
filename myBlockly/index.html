@@ -462,7 +462,7 @@ function showcodeWindow(element, state) {
 
 setInterval(function(){ 
   if (document.getElementById('chkbackup').checked) exportBlocks(); 
-}, 300000);
+}, 60000);
 	
 window.onresize = function(){
   showcodeWindow(document.getElementById('codeWindow'),"small");
