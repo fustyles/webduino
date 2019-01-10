@@ -150,7 +150,7 @@
         </tr>
         <tr>
           <td align="left" valign="center">
-            <button onclick="demoWorkspace.clear();">Clear Workspace</button>
+            <button onclick="demoWorkspace.clear();">Clear Workspace</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkbackup">Backup Blocks(5 min)
           </td>
         </tr>
         <tr>
@@ -459,6 +459,10 @@ function showcodeWindow(element, state) {
     element.style.color='black';
   }
 }
+
+setInterval(function(){ 
+  if (document.getElementById('chkbackup').checked) exportBlocks(); 
+}, 300000);
 	
 window.onresize = function(){
   showcodeWindow(document.getElementById('codeWindow'),"small");
