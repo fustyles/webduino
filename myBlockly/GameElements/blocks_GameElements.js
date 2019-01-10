@@ -209,6 +209,27 @@ Blockly.Blocks['table_td_get'] = {
   }
 };
 
+Blockly.Blocks['table_td_onclick_do'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TABLE_ID_SHOW);     
+  this.appendValueInput("x_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.X_SHOW);
+  this.appendValueInput("y_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.Y_SHOW); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.TABLE_TD_ONCLICK_DO_SHOW);    
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['table_td_insert_img'] = {
   init: function () {
   this.appendValueInput("id_")
