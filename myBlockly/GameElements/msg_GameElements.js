@@ -121,3 +121,4 @@ Blockly.Msg.TABLE_TD_COPY_MOVE_SHOW = "Cell innerHTML";
 Blockly.Msg.ASYNC_FUNCTION_SHOW = "async function ";
 Blockly.Msg.CALL_ASYNC_FUNCTION_SHOW = "Call async function ";
 Blockly.Msg.TRANSFORM_ASYNC_FUNCTION_SHOW = "Transform into async function";
+Blockly.Msg.TABLE_TD_ONCLICK_DO_SHOW = "Cell is clicked";
