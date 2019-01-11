@@ -32,7 +32,7 @@ https://bit.webduino.io/blockly/#rybdwjPAZ6rqk
 
 
 遊戲元素
-https://fustyles.github.io/webduino/GameElements_20180910/blockly.json
+https://fustyles.github.io/webduino/GameElements_20190111/blockly.json
 [Smart]
 https://blocklypro.webduino.io/?demo=demo-area-01#7ggDGYENrd
 https://blocklypro.webduino.io/?demo=demo-area-01#RKzVaolpxb
