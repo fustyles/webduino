@@ -1,4 +1,4 @@
-// Author: Chung-Yi Fu (Kaohsiung, Taiwan)  2018-9-15 23:00  
+// Author: Chung-Yi Fu (Kaohsiung, Taiwan)  2019-1-11 20:00  
 // https://www.facebook.com/francefu
 
 +(function (window, document) {
