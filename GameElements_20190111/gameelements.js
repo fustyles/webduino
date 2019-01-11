@@ -795,12 +795,12 @@
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
   }
   
-  window.table_create = ;
-  window.table_set = ;
-  window.table_get = ;
-  window.table_clear = ;
-  window.table_td_set = ;
-  window.table_border_set = ;
+  window.table_create = table_create;
+  window.table_set = table_set;
+  window.table_get = table_get;
+  window.table_clear = table_clear;
+  window.table_td_set = table_td_set;
+  window.table_border_set = table_border_set;
   window.table_td_border_set = table_td_border_set;
   window.table_td_get = table_td_get;
   window.table_td_insert_img = table_td_insert_img;
