@@ -12,7 +12,7 @@
   var onclicktimerid;
   var mouse_x,mouse_y;
   var ImageWidth,ImageHeight;
-  
+                      
   function table_create(input_id,input_width,input_height,input_left,input_top,input_trcount,input_tdcount,input_borderstyle,input_borderwidth,input_bordercolor,input_bgcolor,input_zindex,input_display) {
     if (document.getElementById("gametable_"+input_id)) 
       document.getElementById("gametable_"+input_id).parentNode.removeChild(document.getElementById("gametable_"+input_id));
@@ -66,6 +66,12 @@
         else if (input_value==0)
         document.getElementById("gametable_"+input_id).style.display = "none";
       }
+      else if (input_property=="background")
+        document.getElementById("gametable_"+input_id).style.background=input_value;
+      else if (input_property=="backgroundimage") {
+        document.getElementById("gametable_"+input_id).style.background="";
+        document.getElementById("gametable_"+input_id).style.backgroundImage="url("+input_value+")";
+      }
       else
       {
         var obj = document.getElementById("gametable_"+input_id);
@@ -108,6 +114,18 @@
        var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
        var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
        return "#"+r+g+b;
+      }
+      else if (input_property=="background") {
+        var rgb=document.getElementById("gametable_"+input_id).style.background;
+        var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
+        var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+        var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+        var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+        return "#"+r+g+b;
+      }
+      else if (input_property=="backgroundimage") {
+        var url=document.getElementById("gametable_"+input_id).style.backgroundImage;
+        return url.substring(5,url.length-2);
       }
       else if (input_property=="zindex")
         return document.getElementById("gametable_"+input_id).style.zIndex;
@@ -229,6 +247,12 @@
       }
       else if (input_property=="innerHTML")
         return document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x).innerHTML;
+      else if (input_property=="text") {
+        if (document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x).firstChild)
+          return document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x).firstChild.innerHTML;
+        else
+          return document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x).innerHTML;
+      }
       else if (input_property=="image"){
         var td = document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x);
         if (td.childNodes.length > 0){
@@ -257,6 +281,21 @@
       img.style.height = input_height + 'px';
       img.setAttribute("onclick", "javascript:image_onclickid_set(this);");
       document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).appendChild(img);
+    }
+  }
+
+  function table_td_img_move(input_id,input_img_id,input_x,input_y){
+    if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x)){
+      if (document.getElementById("gameimg_"+input_img_id)) {
+        var img = document.createElement('img');
+        img.src = document.getElementById("gameimg_"+input_img_id).src;
+        img.style.width = document.getElementById("gameimg_"+input_img_id).style.width;
+        img.style.height = document.getElementById("gameimg_"+input_img_id).style.height;
+        img.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+        document.getElementById("gameimg_"+input_img_id).parentNode.removeChild(document.getElementById("gameimg_"+input_img_id));
+        img.id = "gameimg_"+input_img_id;
+        document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).appendChild(img);
+      }
     }
   }
 
@@ -539,12 +578,24 @@
         return document.getElementById("gameimg_"+input_id).style.opacity;
       else if (input_property=='rotate')
         return document.getElementById("gameimg_"+input_id).style.transform;
-      else if (input_property=='rotateX')
-        return document.getElementById("gameimg_"+input_id).style.transform;
-      else if (input_property=='rotateY')
-        return document.getElementById("gameimg_"+input_id).style.transform;
-      else if (input_property=='rotateZ')
-        return document.getElementById("gameimg_"+input_id).style.transform;
+      else if (input_property=='rotateX') {
+        if (document.getElementById("gameimg_"+input_id).style.transform.indexOf("rotateX")==0)
+          return Number(document.getElementById("gameimg_"+input_id).style.transform.replace(/[^0-9]/ig,""));
+        else
+          return "";
+      }
+      else if (input_property=='rotateY') {
+        if (document.getElementById("gameimg_"+input_id).style.transform.indexOf("rotateY")==0)
+          return Number(document.getElementById("gameimg_"+input_id).style.transform.replace(/[^0-9]/ig,""));
+        else
+          return "";
+      }
+      else if (input_property=='rotateZ') {
+        if (document.getElementById("gameimg_"+input_id).style.transform.indexOf("rotateZ")==0)
+          return Number(document.getElementById("gameimg_"+input_id).style.transform.replace(/[^0-9]/ig,""));
+        else
+          return "";
+      }
       else if (input_property=='id')
         return "gameimg_"+input_id;
     }
@@ -663,7 +714,6 @@
         mouse_x = e.pageX;
         mouse_y = e.pageY;
       }
-      console.log("set");
     }
     if (input_property=="x")
       return mouse_x;
@@ -674,7 +724,101 @@
   function text_to_number(input_text) {
     return Number(input_text);
   } 
+
+  function button_create(input_id,input_width,input_height,input_left,input_top,input_value,input_zindex,input_display) {
+    if (document.getElementById("gamebutton_"+input_id)) 
+      document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
+    var btn = document.createElement('input');
+    btn.type="button";
+    btn.id = "gamebutton_"+input_id;
+    btn.style.position = "absolute";
+    btn.style.left = input_left + 'px';
+    btn.style.top = input_top + 'px';
+    btn.style.width = input_width + 'px';
+    btn.style.height = input_height + 'px';  
+    btn.value = input_value;
+    btn.style.zIndex = input_zindex;
+    if (input_display==0)
+      btn.style.display = "none";
+    else
+      btn.style.display = "block";
+    document.body.appendChild(btn);
+  }
+
+  function button_set(input_id,input_property,input_value) {
+    if (document.getElementById("gamebutton_"+input_id)) {
+      if (input_property=="left")
+        document.getElementById("gamebutton_"+input_id).style.left = input_value + "px";
+      else if (input_property=="top")
+        document.getElementById("gamebutton_"+input_id).style.top = input_value + "px";
+      else if (input_property=="width")
+        document.getElementById("gamebutton_"+input_id).style.width = input_value + "px";
+      else if (input_property=="height")
+        document.getElementById("gamebutton_"+input_id).style.height = input_value + "px";
+      else if (input_property=="value")
+        document.getElementById("gamebutton_"+input_id).value = input_value;      
+      else if (input_property=="zindex")
+        document.getElementById("gamebutton_"+input_id).style.zIndex = input_value;
+      else if (input_property=="display"){ 
+        if (input_value==1)
+          document.getElementById("gamebutton_"+input_id).style.display = "block";    
+        else if (input_value==0)
+          document.getElementById("gamebutton_"+input_id).style.display = "none";
+      }
+    }
+  }
+
   
+  function button_get(input_id,input_property){
+    if (document.getElementById("gamebutton_"+input_id)) {
+      if (input_property=="left")
+        return Number(document.getElementById("gamebutton_"+input_id).style.left.replace(/px/ig,""));
+      else if (input_property=="top")
+        return Number(document.getElementById("gamebutton_"+input_id).style.top.replace(/px/ig,""));
+      else if (input_property=="width")
+        return Number(document.getElementById("gamebutton_"+input_id).style.width.replace(/px/ig,""));
+      else if (input_property=="height")
+        return Number(document.getElementById("gamebutton_"+input_id).style.height.replace(/px/ig,""));
+      else if (input_property=="value")
+        return document.getElementById("gamebutton_"+input_id).value;
+      else if (input_property=="zindex")
+        return document.getElementById("gamebutton_"+input_id).style.zIndex;
+      else if (input_property=="display")
+        return document.getElementById("gamebutton_"+input_id).style.display;
+    }
+    else
+      return "";
+  }
+
+  function button_delete(input_id) {
+    if (document.getElementById("gamebutton_"+input_id))
+      document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
+  }
+  
+  window.table_create = ;
+  window.table_set = ;
+  window.table_get = ;
+  window.table_clear = ;
+  window.table_td_set = ;
+  window.table_border_set = ;
+  window.table_td_border_set = table_td_border_set;
+  window.table_td_get = table_td_get;
+  window.table_td_insert_img = table_td_insert_img;
+  window.table_td_img_move = table_td_img_move;
+  window.table_td_img_get = table_td_img_get;
+  window.table_td_insert_text = table_td_insert_text;
+  window.table_td_clear = table_td_clear;
+  window.table_delete = table_delete;
+  window.music_create = music_create;
+  window.music_delete = music_delete;
+  window.canvas_create =  canvas_create;
+  window.canvas_line = canvas_line;
+  window.canvas_rect = canvas_rect;
+  window.canvas_arc = canvas_arc;
+  window.canvas_img = canvas_img;
+  window.canvas_text = canvas_text;
+  window.canvas_clear = canvas_clear;
+  window.canvas_delete = canvas_delete;
   window.image_create = image_create;
   window.image_set = image_set;
   window.image_get = image_get;
@@ -688,29 +832,10 @@
   window.image_onclick_get = image_onclick_get;
   window.image_Natural_get = image_Natural_get;
   window.mouse_coordinate_get = mouse_coordinate_get;
-  window.canvas_create = canvas_create;
-  window.canvas_line = canvas_line;
-  window.canvas_rect = canvas_rect;
-  window.canvas_arc = canvas_arc;
-  window.canvas_img = canvas_img;
-  window.canvas_text = canvas_text;
-  window.canvas_clear = canvas_clear;
-  window.canvas_delete = canvas_delete;
-  window.music_create = music_create;
-  window.music_delete = music_delete;
-  window.table_create = table_create;
-  window.table_set = table_set;
-  window.table_delete = table_delete;
-  window.table_td_insert_img = table_td_insert_img;
-  window.table_td_img_get = table_td_img_get;
-  window.table_td_insert_text = table_td_insert_text;
-  window.table_td_get = table_td_get;
-  window.table_td_clear = table_td_clear;
-  window.table_get = table_get;
-  window.table_clear = table_clear;
-  window.table_td_set = table_td_set;
-  window.table_border_set = table_border_set;
-  window.table_td_border_set = table_td_border_set;
   window.text_to_number = text_to_number;
+  window.button_create = button_create;
+  window.button_set = button_set;
+  window.button_get = button_get;
+  window.button_delete = button_delete;
   
 }(window, window.document));
