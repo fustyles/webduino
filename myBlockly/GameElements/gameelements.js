@@ -790,8 +790,14 @@
         return Number(document.getElementById("gamebutton_"+input_id).style.height.replace(/px/ig,""));
       else if (input_property=="opacity")
         return Number(document.getElementById("gamebutton_"+input_id).style.opacity);
-      else if (input_property=="background")
-        return document.getElementById("gamebutton_"+input_id).style.background;
+      else if (input_property=="background") {
+        var rgb=document.getElementById("gamebutton_"+input_id).style.background;
+        var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
+        var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+        var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+        var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+        return "#"+r+g+b;
+      }
       else if (input_property=="value")
         return document.getElementById("gamebutton_"+input_id).value;
       else if (input_property=="zindex")
