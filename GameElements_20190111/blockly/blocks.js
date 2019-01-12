@@ -1043,17 +1043,6 @@ Blockly.Blocks['function_return'] = {
   }
 };
 
-Blockly.Blocks['time_delay'] = {
-  init: function () {
-    this.appendValueInput("seconds")
-        .setCheck("Number")
-        .appendField(Blockly.Msg.TIME_DELAY_SHOW);    
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(60);
-  }
-};
-
 Blockly.Blocks['move_to_mouse'] = {
   init: function() {
   this.appendValueInput("id_")
