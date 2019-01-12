@@ -123,3 +123,4 @@ Blockly.Msg.ASYNC_FUNCTION_SHOW = "async function ";
 Blockly.Msg.CALL_ASYNC_FUNCTION_SHOW = "執行 async function ";
 Blockly.Msg.TRANSFORM_ASYNC_FUNCTION_SHOW = "轉換成 async function";
 Blockly.Msg.TABLE_TD_ONCLICK_DO_SHOW = "儲存格點擊後執行";
+Blockly.Msg.OPACITY_SHOW = "透明度";
