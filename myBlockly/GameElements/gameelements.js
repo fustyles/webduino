@@ -740,7 +740,7 @@
     btn.style.width = input_width + 'px';
     btn.style.height = input_height + 'px';
     btn.style.opacity = input_opacity;
-    btn.style.backgroundColor = input_bgcolor;
+    btn.style.background = input_bgcolor;
     btn.value = input_value;
     btn.style.zIndex = input_zindex;
     if (input_display==0)
@@ -762,8 +762,8 @@
         document.getElementById("gamebutton_"+input_id).style.height = input_value + "px";
       else if (input_property=="opacity")
         document.getElementById("gamebutton_"+input_id).style.opacity = input_value;
-      else if (input_property=="backgroundcolor")
-        document.getElementById("gamebutton_"+input_id).style.backgroundcolor = input_value;
+      else if (input_property=="background")
+        document.getElementById("gamebutton_"+input_id).style.background = input_value;
       else if (input_property=="value")
         document.getElementById("gamebutton_"+input_id).value = input_value;      
       else if (input_property=="zindex")
@@ -791,7 +791,7 @@
       else if (input_property=="opacity")
         return Number(document.getElementById("gamebutton_"+input_id).style.opacity);
       else if (input_property=="backgroundcolor")
-        return document.getElementById("gamebutton_"+input_id).style.backgroundcolor;
+        return document.getElementById("gamebutton_"+input_id).style.background;
       else if (input_property=="value")
         return document.getElementById("gamebutton_"+input_id).value;
       else if (input_property=="zindex")
