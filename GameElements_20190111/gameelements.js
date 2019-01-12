@@ -733,7 +733,7 @@
     return Number(input_text);
   }
   
-  function button_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_value,input_zindex,input_display) {
+  function btn_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_value,input_zindex,input_display) {
     if (document.getElementById("gamebutton_"+input_id))
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
     var btn = document.createElement('input');
@@ -754,7 +754,7 @@
     document.body.appendChild(btn);
   }
   
-  function button_set(input_id,input_property,input_value) {
+  function btn_set(input_id,input_property,input_value) {
     if (document.getElementById("gamebutton_"+input_id)) {
       if (input_property=="left")
         document.getElementById("gamebutton_"+input_id).style.left = input_value + "px";
@@ -779,7 +779,7 @@
     }
   }
   
-  function button_get(input_id,input_property){
+  function btn_get(input_id,input_property){
     if (document.getElementById("gamebutton_"+input_id)) {
       if (input_property=="left")
         return Number(document.getElementById("gamebutton_"+input_id).style.left.replace(/px/ig,""));
@@ -802,7 +802,7 @@
       return "";
   }
   
-  function button_delete(input_id) {
+  function btn_delete(input_id) {
     if (document.getElementById("gamebutton_"+input_id))
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
   }
@@ -843,10 +843,10 @@
   window.image_onclickid_clear = image_onclickid_clear;
   window.image_onclick_get = image_onclick_get;
   window.image_Natural_get = image_Natural_get;
-  window.button_create = button_create;
-  window.button_set = button_set;
-  window.button_get = button_get;
-  window.button_delete = button_delete;  
+  window.btn_create = btn_create;
+  window.btn_set = btn_set;
+  window.btn_get = btn_get;
+  window.btn_delete = btn_delete;  
   window.mouse_coordinate_get = mouse_coordinate_get;
   window.text_to_number = text_to_number;
   
