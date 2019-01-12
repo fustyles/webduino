@@ -731,10 +731,10 @@
   
   function text_to_number(input_text) {
     return Number(input_text);
-  }
-  
-  function button_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_value,input_zindex,input_display) {
-    if (document.getElementById("gamebutton_"+input_id))
+  } 
+
+  function button_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_bgcolor,input_value,input_zindex,input_display) {
+    if (document.getElementById("gamebutton_"+input_id)) 
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
     var btn = document.createElement('input');
     btn.type="button";
@@ -745,6 +745,7 @@
     btn.style.width = input_width + 'px';
     btn.style.height = input_height + 'px';
     btn.style.opacity = input_opacity;
+    btn.style.background = input_bgcolor;
     btn.value = input_value;
     btn.style.zIndex = input_zindex;
     if (input_display==0)
@@ -753,7 +754,7 @@
       btn.style.display = "block";
     document.body.appendChild(btn);
   }
-  
+
   function button_set(input_id,input_property,input_value) {
     if (document.getElementById("gamebutton_"+input_id)) {
       if (input_property=="left")
@@ -766,11 +767,13 @@
         document.getElementById("gamebutton_"+input_id).style.height = input_value + "px";
       else if (input_property=="opacity")
         document.getElementById("gamebutton_"+input_id).style.opacity = input_value;
+      else if (input_property=="background")
+        document.getElementById("gamebutton_"+input_id).style.background = input_value;
       else if (input_property=="value")
-        document.getElementById("gamebutton_"+input_id).value = input_value;
+        document.getElementById("gamebutton_"+input_id).value = input_value;      
       else if (input_property=="zindex")
         document.getElementById("gamebutton_"+input_id).style.zIndex = input_value;
-      else if (input_property=="display"){
+      else if (input_property=="display"){ 
         if (input_value==1)
           document.getElementById("gamebutton_"+input_id).style.display = "block";    
         else if (input_value==0)
@@ -778,6 +781,7 @@
       }
     }
   }
+
   
   function button_get(input_id,input_property){
     if (document.getElementById("gamebutton_"+input_id)) {
@@ -791,6 +795,14 @@
         return Number(document.getElementById("gamebutton_"+input_id).style.height.replace(/px/ig,""));
       else if (input_property=="opacity")
         return Number(document.getElementById("gamebutton_"+input_id).style.opacity);
+      else if (input_property=="background") {
+        var rgb=document.getElementById("gamebutton_"+input_id).style.background;
+        var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
+        var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+        var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+        var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+        return "#"+r+g+b;
+      }
       else if (input_property=="value")
         return document.getElementById("gamebutton_"+input_id).value;
       else if (input_property=="zindex")
@@ -801,7 +813,7 @@
     else
       return "";
   }
-  
+
   function button_delete(input_id) {
     if (document.getElementById("gamebutton_"+input_id))
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
