@@ -35,7 +35,7 @@
           td.style.width = input_width + 'px';
           td.style.height = input_height + 'px';
           td.setAttribute("onclick", "javascript:image_onclickid_set(this);");
-          td.setAttribute("ondrop","javascript:event.preventDefault();event.target.appendChild(document.getElementById(event.dataTransfer.getData('id')));");
+          td.setAttribute("ondrop","javascript:event.preventDefault();event.target.appendChild(document.getElementById(event.dataTransfer.getData('text')));");
           td.setAttribute("ondragover","javascript:event.preventDefault();"); 
         }
        }
@@ -278,7 +278,7 @@
       img.style.height = input_height + 'px';
       img.setAttribute("onclick", "javascript:image_onclickid_set(this);");
       img.draggable="true";
-      img.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('id',event.target.id);");
+      img.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text',event.target.id);");
       document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).appendChild(img);
     }
   }
@@ -292,7 +292,7 @@
         img.style.height = document.getElementById("gameimg_"+input_img_id).style.height;
         img.setAttribute("onclick", "javascript:image_onclickid_set(this);");
         img.draggable="true";
-        img.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('id',event.target.id);");
+        img.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text',event.target.id);");
         document.getElementById("gameimg_"+input_img_id).parentNode.removeChild(document.getElementById("gameimg_"+input_img_id));
         img.id = "gameimg_"+input_img_id;
         document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).appendChild(img);
@@ -497,7 +497,7 @@
       img.style.display = "block";
     img.setAttribute("onclick", "javascript:image_onclickid_set(this);");
     img.draggable="true";
-    img.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('id',event.target.id);");
+    img.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text',event.target.id);");
     document.body.appendChild(img);
   }
   
