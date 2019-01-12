@@ -844,11 +844,11 @@
   window.image_onclickid_clear = image_onclickid_clear;
   window.image_onclick_get = image_onclick_get;
   window.image_Natural_get = image_Natural_get;
-  window.mouse_coordinate_get = mouse_coordinate_get;
-  window.text_to_number = text_to_number;
   window.button_create = button_create;
   window.button_set = button_set;
   window.button_get = button_get;
-  window.button_delete = button_delete;
+  window.button_delete = button_delete;  
+  window.mouse_coordinate_get = mouse_coordinate_get;
+  window.text_to_number = text_to_number;
   
 }(window, window.document));
