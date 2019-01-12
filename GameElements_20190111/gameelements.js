@@ -778,7 +778,6 @@
       }
     }
   }
-
   
   function button_get(input_id,input_property){
     if (document.getElementById("gamebutton_"+input_id)) {
