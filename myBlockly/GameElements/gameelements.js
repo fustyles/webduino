@@ -759,6 +759,8 @@
         document.getElementById("gamebutton_"+input_id).style.width = input_value + "px";
       else if (input_property=="height")
         document.getElementById("gamebutton_"+input_id).style.height = input_value + "px";
+      else if (input_property=="opacity")
+        document.getElementById("gamebutton_"+input_id).style.opacity = input_value;
       else if (input_property=="value")
         document.getElementById("gamebutton_"+input_id).value = input_value;      
       else if (input_property=="zindex")
