@@ -14,7 +14,7 @@
     </value>  
   </block>  
   <block type="document_timer_stop">
-  </block> 
+  </block>   
   <block type="async_function">
     <value name="name_">
       <block type="text">
