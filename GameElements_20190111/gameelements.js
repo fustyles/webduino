@@ -1,4 +1,4 @@
-// Author: Chung-Yi Fu (Kaohsiung, Taiwan)  2019-1-11 20:00  
+// Author: Chung-Yi Fu (Kaohsiung, Taiwan)  2019-1-12 21:00  
 // https://www.facebook.com/francefu
 
 +(function (window, document) {
@@ -733,7 +733,7 @@
     return Number(input_text);
   } 
 
-  function button_create(input_id,input_width,input_height,input_left,input_top,input_value,input_zindex,input_display) {
+  function button_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_value,input_zindex,input_display) {
     if (document.getElementById("gamebutton_"+input_id)) 
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
     var btn = document.createElement('input');
@@ -743,7 +743,8 @@
     btn.style.left = input_left + 'px';
     btn.style.top = input_top + 'px';
     btn.style.width = input_width + 'px';
-    btn.style.height = input_height + 'px';  
+    btn.style.height = input_height + 'px';
+    btn.style.opacity = input_opacity;
     btn.value = input_value;
     btn.style.zIndex = input_zindex;
     if (input_display==0)
@@ -763,6 +764,8 @@
         document.getElementById("gamebutton_"+input_id).style.width = input_value + "px";
       else if (input_property=="height")
         document.getElementById("gamebutton_"+input_id).style.height = input_value + "px";
+      else if (input_property=="opacity")
+        document.getElementById("gamebutton_"+input_id).style.opacity = input_value;
       else if (input_property=="value")
         document.getElementById("gamebutton_"+input_id).value = input_value;      
       else if (input_property=="zindex")
@@ -787,6 +790,8 @@
         return Number(document.getElementById("gamebutton_"+input_id).style.width.replace(/px/ig,""));
       else if (input_property=="height")
         return Number(document.getElementById("gamebutton_"+input_id).style.height.replace(/px/ig,""));
+      else if (input_property=="opacity")
+        return Number(document.getElementById("gamebutton_"+input_id).style.opacity);
       else if (input_property=="value")
         return document.getElementById("gamebutton_"+input_id).value;
       else if (input_property=="zindex")
