@@ -204,7 +204,7 @@
   <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="autoplay; fullscreen; geolocation; microphone; camera"></iframe>
 </div>
 
-<div id="blocklyDiv" style="height: 600px; width: 800px;" onmousemove="var objTable = document.getElementById('runWindow');if (objTable.title=='true'){objTable.title='false';objTable.style.left=(event.pageX-300)+'px';objTable.style.top=event.pageY+'px';}">
+<div id="blocklyDiv" style="height: 600px; width: 800px;">
 <xml id="toolbox" style="display: none"></xml>
 <xml id="startBlocks" style="display: none"></xml>
 		
@@ -458,6 +458,16 @@ window.onresize = function(){
     document.getElementById('hide').click();
   initial();
 }
+	
+window.onmousemove = function() { 
+  var objTable = document.getElementById('runWindow');
+  if (objTable.title=='true')
+  {
+    objTable.title='false';
+    objTable.style.left=(event.pageX-300)+'px';
+    objTable.style.top=event.pageY+'px';
+  }
+};	
 </script>
 </body>
 </html>
