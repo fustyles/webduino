@@ -198,13 +198,13 @@
   </tr>
 </table>
 
-<div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left">
+<div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left" draggable="true" ondragend="this.title='true';">
   <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeWindow();">Close Window</button>
   <br>
   <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="autoplay; fullscreen; geolocation; microphone; camera"></iframe>
 </div>
 
-<div id="blocklyDiv" style="height: 600px; width: 800px;">
+<div id="blocklyDiv" style="height: 600px; width: 800px;" onmousemove="var objTable = document.getElementById('runWindow');if (objTable.title=='true'){objTable.title='false';objTable.style.left=event.pageX+'px';objTable.style.top=event.pageY+'px';}">
 <xml id="toolbox" style="display: none"></xml>
 <xml id="startBlocks" style="display: none"></xml>
 		
