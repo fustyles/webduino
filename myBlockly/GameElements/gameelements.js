@@ -791,7 +791,7 @@
       else if (input_property=="opacity")
         return Number(document.getElementById("gamebutton_"+input_id).style.opacity);
       else if (input_property=="backgroundcolor")
-        return Number(document.getElementById("gamebutton_"+input_id).style.backgroundcolor);
+        return document.getElementById("gamebutton_"+input_id).style.backgroundcolor;
       else if (input_property=="value")
         return document.getElementById("gamebutton_"+input_id).value;
       else if (input_property=="zindex")
