@@ -733,7 +733,7 @@
     return Number(input_text);
   } 
 
-  function mybutton_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_value,input_zindex,input_display) {
+  function button_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_value,input_zindex,input_display) {
     if (document.getElementById("gamebutton_"+input_id)) 
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
     var btn = document.createElement('input');
@@ -744,7 +744,7 @@
     btn.style.top = input_top + 'px';
     btn.style.width = input_width + 'px';
     btn.style.height = input_height + 'px';
-    btn.style.opacity = String(input_opacity);
+    btn.style.opacity = input_opacity;
     btn.value = input_value;
     btn.style.zIndex = input_zindex;
     if (input_display==0)
@@ -754,7 +754,7 @@
     document.body.appendChild(btn);
   }
 
-  function mybutton_set(input_id,input_property,input_value) {
+  function button_set(input_id,input_property,input_value) {
     if (document.getElementById("gamebutton_"+input_id)) {
       if (input_property=="left")
         document.getElementById("gamebutton_"+input_id).style.left = input_value + "px";
@@ -780,7 +780,7 @@
   }
 
   
-  function mybutton_get(input_id,input_property){
+  function button_get(input_id,input_property){
     if (document.getElementById("gamebutton_"+input_id)) {
       if (input_property=="left")
         return Number(document.getElementById("gamebutton_"+input_id).style.left.replace(/px/ig,""));
@@ -803,7 +803,7 @@
       return "";
   }
 
-  function mybutton_delete(input_id) {
+  function button_delete(input_id) {
     if (document.getElementById("gamebutton_"+input_id))
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
   }
@@ -844,10 +844,10 @@
   window.image_onclickid_clear = image_onclickid_clear;
   window.image_onclick_get = image_onclick_get;
   window.image_Natural_get = image_Natural_get;
-  window.button_create = mybutton_create;
-  window.button_set = mybutton_set;
-  window.button_get = mybutton_get;
-  window.button_delete = mybutton_delete;  
+  window.button_create = button_create;
+  window.button_set = button_set;
+  window.button_get = button_get;
+  window.button_delete = button_delete;  
   window.mouse_coordinate_get = mouse_coordinate_get;
   window.text_to_number = text_to_number;
   
