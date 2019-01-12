@@ -790,7 +790,7 @@
         return Number(document.getElementById("gamebutton_"+input_id).style.height.replace(/px/ig,""));
       else if (input_property=="opacity")
         return Number(document.getElementById("gamebutton_"+input_id).style.opacity);
-      else if (input_property=="backgroundcolor")
+      else if (input_property=="background")
         return document.getElementById("gamebutton_"+input_id).style.background;
       else if (input_property=="value")
         return document.getElementById("gamebutton_"+input_id).value;
