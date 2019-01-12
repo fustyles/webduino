@@ -728,7 +728,7 @@
     return Number(input_text);
   } 
 
-  function button_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_value,input_zindex,input_display) {
+  function button_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_bgcolor,input_value,input_zindex,input_display) {
     if (document.getElementById("gamebutton_"+input_id)) 
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
     var btn = document.createElement('input');
@@ -740,6 +740,7 @@
     btn.style.width = input_width + 'px';
     btn.style.height = input_height + 'px';
     btn.style.opacity = input_opacity;
+    btn.style.backgroundColor = input_bgcolor;
     btn.value = input_value;
     btn.style.zIndex = input_zindex;
     if (input_display==0)
@@ -761,6 +762,8 @@
         document.getElementById("gamebutton_"+input_id).style.height = input_value + "px";
       else if (input_property=="opacity")
         document.getElementById("gamebutton_"+input_id).style.opacity = input_value;
+      else if (input_property=="backgroundcolor")
+        document.getElementById("gamebutton_"+input_id).style.backgroundcolor = input_value;
       else if (input_property=="value")
         document.getElementById("gamebutton_"+input_id).value = input_value;      
       else if (input_property=="zindex")
@@ -787,6 +790,8 @@
         return Number(document.getElementById("gamebutton_"+input_id).style.height.replace(/px/ig,""));
       else if (input_property=="opacity")
         return Number(document.getElementById("gamebutton_"+input_id).style.opacity);
+      else if (input_property=="backgroundcolor")
+        return Number(document.getElementById("gamebutton_"+input_id).style.backgroundcolor);
       else if (input_property=="value")
         return document.getElementById("gamebutton_"+input_id).value;
       else if (input_property=="zindex")
