@@ -1278,3 +1278,17 @@ Blockly.Blocks['transform_async_function'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['body_set'] = {
+  init: function() {    
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.SETWINDOW_SHOW)
+      .appendField(new Blockly.FieldDropdown([["backgroundColor","backgroundColor"], ["backgroundImage","backgroundImage"]]), "property_");
+  this.appendValueInput("value_")
+      .setCheck(null);    
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+}; 
