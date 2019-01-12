@@ -844,10 +844,10 @@
   window.image_onclickid_clear = image_onclickid_clear;
   window.image_onclick_get = image_onclick_get;
   window.image_Natural_get = image_Natural_get;
-  window.mybutton_create = mybutton_create;
-  window.mybutton_set = mybutton_set;
-  window.mybutton_get = mybutton_get;
-  window.mybutton_delete = mybutton_delete;  
+  window.button_create = mybutton_create;
+  window.button_set = mybutton_set;
+  window.button_get = mybutton_get;
+  window.button_delete = mybutton_delete;  
   window.mouse_coordinate_get = mouse_coordinate_get;
   window.text_to_number = text_to_number;
   
