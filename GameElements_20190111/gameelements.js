@@ -731,10 +731,10 @@
   
   function text_to_number(input_text) {
     return Number(input_text);
-  } 
-
+  }
+  
   function button_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_value,input_zindex,input_display) {
-    if (document.getElementById("gamebutton_"+input_id)) 
+    if (document.getElementById("gamebutton_"+input_id))
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
     var btn = document.createElement('input');
     btn.type="button";
@@ -753,7 +753,7 @@
       btn.style.display = "block";
     document.body.appendChild(btn);
   }
-
+  
   function button_set(input_id,input_property,input_value) {
     if (document.getElementById("gamebutton_"+input_id)) {
       if (input_property=="left")
@@ -767,10 +767,10 @@
       else if (input_property=="opacity")
         document.getElementById("gamebutton_"+input_id).style.opacity = input_value;
       else if (input_property=="value")
-        document.getElementById("gamebutton_"+input_id).value = input_value;      
+        document.getElementById("gamebutton_"+input_id).value = input_value;
       else if (input_property=="zindex")
         document.getElementById("gamebutton_"+input_id).style.zIndex = input_value;
-      else if (input_property=="display"){ 
+      else if (input_property=="display"){
         if (input_value==1)
           document.getElementById("gamebutton_"+input_id).style.display = "block";    
         else if (input_value==0)
@@ -801,7 +801,7 @@
     else
       return "";
   }
-
+  
   function button_delete(input_id) {
     if (document.getElementById("gamebutton_"+input_id))
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
