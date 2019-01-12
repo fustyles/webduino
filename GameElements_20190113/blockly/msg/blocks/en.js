@@ -111,3 +111,4 @@ Blockly.Msg.CALL_ASYNC_FUNCTION_SHOW = "Call async function ";
 Blockly.Msg.TRANSFORM_ASYNC_FUNCTION_SHOW = "Transform into async function";
 Blockly.Msg.TABLE_TD_ONCLICK_DO_SHOW = "Cell is clicked";
 Blockly.Msg.OPACITY_SHOW = "Opacity";
+Blockly.Msg.SETWINDOW_SHOW = "Set Window";
