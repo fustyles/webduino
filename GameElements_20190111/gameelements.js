@@ -744,7 +744,7 @@
     btn.style.top = input_top + 'px';
     btn.style.width = input_width + 'px';
     btn.style.height = input_height + 'px';
-    btn.style.opacity = input_opacity;
+    btn.style.opacity = String(input_opacity);
     btn.value = input_value;
     btn.style.zIndex = input_zindex;
     if (input_display==0)
