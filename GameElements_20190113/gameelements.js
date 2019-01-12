@@ -819,6 +819,13 @@
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
   }
   
+   function body_set(input_property,input_value) {
+    if (input_property=="backgroundColor")
+      document.body.style.backgroundColor = input_value;
+    else if (input_property=="backgroundImage") 
+      document.body.style.backgroundImage = "url('"+input_value+"')";
+  }  
+  
   window.table_create = table_create;
   window.table_set = table_set;
   window.table_get = table_get;
@@ -861,5 +868,6 @@
   window.button_delete = button_delete;  
   window.mouse_coordinate_get = mouse_coordinate_get;
   window.text_to_number = text_to_number;
+  window.body_set = body_set;
   
 }(window, window.document));
