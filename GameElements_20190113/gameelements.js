@@ -752,6 +752,7 @@
       btn.style.display = "none";
     else
       btn.style.display = "block";
+    btn.draggable="true";
     btn.setAttribute("onclick", "javascript:image_onclickid_set(this);");
     document.body.appendChild(btn);
   }
