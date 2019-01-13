@@ -754,6 +754,7 @@
       btn.style.display = "block";
     btn.draggable="true";
     btn.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+    btn.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(btn);
   }
 
