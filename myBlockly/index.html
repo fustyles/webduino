@@ -322,7 +322,7 @@ function exportCODE() {
 function exportHTML() {
   try {
     var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-    var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
+    var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>\<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'\>";
     for (var i=0;i<script_iframe_run.length;i++)  {
       iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
     }
