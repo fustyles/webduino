@@ -388,8 +388,8 @@
     can.style.left = input_left + 'px';
     can.style.top = input_top + 'px';
     can.style.zIndex = input_zindex;
-    can.draggable="true";
-    can.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
+    //can.draggable="true";
+    //can.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(can);
 
     var img = document.createElement('img');
