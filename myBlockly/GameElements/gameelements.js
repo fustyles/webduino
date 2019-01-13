@@ -813,3 +813,23 @@
     if (document.getElementById("gamebutton_"+input_id))
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
   }
+
+  function button_onclick_get(input_id) {
+    if (onclickid==("gamebutton_"+input_id))
+    {
+      onclickid="";
+      return 1;
+    }
+    else if (onclickid.indexOf("gametable_td_")==0){     
+      if (document.getElementById(onclickid).hasChildNodes()) {
+        if (document.getElementById(onclickid).firstChild.id==("gamebutton_"+input_id)) {
+          onclickid="";
+          return 1;
+        } else 
+          return 0;
+      } else 
+        return 0;
+    }
+    else
+      return 0;
+  }
