@@ -506,7 +506,7 @@ Blockly.JavaScript['button_onclick_do'] = function (block) {
   if ((value_id_.indexOf("(")==0)&&(value_id_.lastIndexOf(")")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'document.getElementById("gamebutton_' + value_id_ + '").onclick = function(){\n' + statements_do_ + '};\n';
+  var code = 'if (button_onclick_get(' + value_id_ + ')==1) {\n' + statements_do_ + '};\n';
   return code;
 };
 
