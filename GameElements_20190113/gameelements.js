@@ -752,6 +752,7 @@
       btn.style.display = "none";
     else
       btn.style.display = "block";
+    btn.setAttribute("onclick", "javascript:image_onclickid_set(this);");
     document.body.appendChild(btn);
   }
 
@@ -819,6 +820,26 @@
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
   }
   
+  function button_onclick_get(input_id) {
+    if (onclickid==("gamebutton_"+input_id))
+    {
+      onclickid="";
+      return 1;
+    }
+    else if (onclickid.indexOf("gametable_td_")==0){     
+      if (document.getElementById(onclickid).hasChildNodes()) {
+        if (document.getElementById(onclickid).firstChild.id==("gamebutton_"+input_id)) {
+          onclickid="";
+          return 1;
+        } else 
+          return 0;
+      } else 
+        return 0;
+    }
+    else
+      return 0;
+  }
+  
    function body_set(input_property,input_value) {
     if (input_property=="backgroundColor")
       document.body.style.backgroundColor = input_value;
@@ -865,7 +886,8 @@
   window.button_create = button_create;
   window.button_set = button_set;
   window.button_get = button_get;
-  window.button_delete = button_delete;  
+  window.button_delete = button_delete;
+  window.button_onclick_get = button_onclick_get;
   window.mouse_coordinate_get = mouse_coordinate_get;
   window.text_to_number = text_to_number;
   window.body_set = body_set;
