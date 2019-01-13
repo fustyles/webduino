@@ -15,14 +15,15 @@
 		'https://fustyles.github.io/webduino/myBlockly/example/Game_Tetris.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/Game_TicTacToe.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/Matrixled_Marquee_iloveyou.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/ShowText_example.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/Instruction_example.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/OpenURL_example.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/TaiwanAirQuality_example.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/MatrixLED_example.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/GameImage_example.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/GameAuxiliary_example.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/ShowText_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/Instruction_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/OpenURL_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/TaiwanAirQuality_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/MatrixLED_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/GameImage_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/GameAuxiliary_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example_002.js',
 		
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/blocks_SetWindow.js',
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/javascript_SetWindow.js',
@@ -161,14 +162,15 @@
               <option value="Game_Tetris">Game_Tetris</option>
               <option value="Game_TicTacToe">Game_TicTacToe</option>
               <option value="Matrixled_Marquee_iloveyou">Matrixled_Marquee_iloveyou</option>
-              <option value="ShowText_example">ShowText_example</option>
-              <option value="Instruction_example">Instruction_example</option>
-              <option value="OpenURL_example">OpenURL_example</option>
-              <option value="TaiwanAirQuality_example">TaiwanAirQuality_example</option>
-              <option value="GameImage_example">GameImage_example</option>
-              <option value="GameCanvas_example">GameCanvas_example</option>
-              <option value="MatrixLED_example">MatrixLED_example</option>
-              <option value="GameAuxiliary_example">GameAuxiliary_example</option>
+	      <option value="GameImage_example_001">GameImage_example_001</option>
+              <option value="GameCanvas_example_001">GameCanvas_example_001</option>
+	      <option value="GameCanvas_example_002">GameCanvas_example_002</option>
+              <option value="GameAuxiliary_example_001">GameAuxiliary_example_001</option>
+	      <option value="MatrixLED_example_001">MatrixLED_example_001</option>
+              <option value="ShowText_example_001">ShowText_example_001</option>
+              <option value="Instruction_example_001">Instruction_example_001</option>
+              <option value="OpenURL_example_001">OpenURL_example_001</option>
+              <option value="TaiwanAirQuality_example_001">TaiwanAirQuality_example_001</option>
             </select>
           </td>
         </tr>
@@ -245,8 +247,8 @@ while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().i
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.appspot.com/static/media/', toolbox: document.getElementById('toolbox'),zoom:{controls: true,wheel: true,startScale: 1.0,maxScale: 3,minScale: 0.3,scaleSpeed: 1.2},trashcan: true});
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);	
 	
-//append Game(Tetris) blocks to startBlocks
-XmldomToWorkspace(Game_Tetris);
+//append initial blocks to startBlocks
+XmldomToWorkspace(GameCanvas_example_002);
 	
 function XmldomToWorkspace(example) {	
   var xml = Blockly.Xml.textToDom(example);
