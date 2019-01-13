@@ -76,6 +76,8 @@ var catGameForm = '<xml><category name="%{BKY_GAMEFORM}" colour="%{BKY_GAMEFORM_
 '      </block>'+
 '    </value>'+     
 '  </block>'+    
+'  <block type="image_onclick_listener">'+
+'  </block>'+      
 '  <block type="button_onclick_do">'+
 '    <value name="id_">'+
 '      <block type="text">'+
