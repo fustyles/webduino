@@ -189,8 +189,10 @@
       if (document.getElementById("gametable_"+input_id).rows.length>0){
         for (var i=0;i<obj.rows.length;i++){
           if (obj.rows[i].cells.length>0){
-            for (var j=0;j<obj.rows[i].cells.length;j++)
+            for (var j=0;j<obj.rows[i].cells.length;j++) {
+              obj.rows[i].cells[j].background = null;
               obj.rows[i].cells[j].innerHTML = "";
+            }
           }
         }
       }
