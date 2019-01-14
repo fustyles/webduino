@@ -111,7 +111,7 @@
         url: target,
         success: function(json)
         {
-          //console.log(json.result.records);
+          //console.log(json);
           PM_data = "";
           json = eval(json);
           for (var i in json) 
