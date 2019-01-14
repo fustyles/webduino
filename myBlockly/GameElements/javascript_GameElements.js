@@ -1,7 +1,7 @@
 Blockly.JavaScript['table_create'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
   if ((value_id_.indexOf("'")==-1)&&(value_id_.lastIndexOf("'")!=value_id_.length-1))
-    value_id_ = "'"+value_id_"'";
+    value_id_ = "'"+value_id_+"'";
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_borderstyle_ = block.getFieldValue('borderstyle_');
