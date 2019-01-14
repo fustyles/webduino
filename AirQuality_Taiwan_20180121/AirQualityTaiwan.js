@@ -113,7 +113,7 @@
         {
           //console.log(json.result.records);
           PM_data = "";
-          json = eval(json.result.records);
+          json = eval(json);
           for (var i in json) 
           {
             PM_data += "SiteName,";
