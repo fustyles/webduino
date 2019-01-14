@@ -191,12 +191,13 @@
   function table_clear(input_id){
     if (document.getElementById("gametable_"+input_id)) {
       var obj = document.getElementById("gametable_"+input_id);
+      /*
       obj.style.borderstyle = null;
       obj.style.borderwidth = null;
       obj.style.bordercolor = null;
       obj.style.background = null;
       obj.style.backgroundimage = null;
-      
+      */
       if (document.getElementById("gametable_"+input_id).rows.length>0){
         for (var i=0;i<obj.rows.length;i++){
           if (obj.rows[i].cells.length>0){
