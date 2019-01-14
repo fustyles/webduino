@@ -55,10 +55,10 @@
           PM_data += ",O3_8hr (ppb),";
           if (x[i].getElementsByTagName("O3_8hr")[0].childNodes.length==1)                      
             PM_data += x[i].getElementsByTagName("O3_8hr")[0].childNodes[0].nodeValue;
-          PM_data += ",PM10 (£gg/m3),";
+          PM_data += ",PM10 (Â£gg/m3),";
           if (x[i].getElementsByTagName("PM10")[0].childNodes.length==1)                      
             PM_data += x[i].getElementsByTagName("PM10")[0].childNodes[0].nodeValue;          
-          PM_data += ",PM2.5 (£gg/m3),";
+          PM_data += ",PM2.5 (Â£gg/m3),";
           if (x[i].getElementsByTagName("PM2.5")[0].childNodes.length==1)                      
             PM_data += x[i].getElementsByTagName("PM2.5")[0].childNodes[0].nodeValue;          
           PM_data += ",NO2 (ppb),";
@@ -79,10 +79,10 @@
           PM_data += ",PublishTime,";
           if (x[i].getElementsByTagName("PublishTime")[0].childNodes.length==1)                      
             PM_data += x[i].getElementsByTagName("PublishTime")[0].childNodes[0].nodeValue;          
-          PM_data += ",PM2.5_AVG (£gg/m3),";
+          PM_data += ",PM2.5_AVG (Â£gg/m3),";
           if (x[i].getElementsByTagName("PM2.5_AVG")[0].childNodes.length==1)                      
             PM_data += x[i].getElementsByTagName("PM2.5_AVG")[0].childNodes[0].nodeValue; 
-          PM_data += ",PM10_AVG (£gg/m3),";
+          PM_data += ",PM10_AVG (Â£gg/m3),";
           if (x[i].getElementsByTagName("PM10_AVG")[0].childNodes.length==1)                      
             PM_data += x[i].getElementsByTagName("PM10_AVG")[0].childNodes[0].nodeValue;  
           PM_data += ",Latitude,";
@@ -132,9 +132,9 @@
             PM_data += json[i]["O3"];
             PM_data += ",O3_8hr (ppb),";
             PM_data += json[i]["O3_8hr"];            
-            PM_data += ",PM10 (£gg/m3),";
+            PM_data += ",PM10 (Â£gg/m3),";
             PM_data += json[i]["PM10"];
-            PM_data += ",PM2.5 (£gg/m3),";
+            PM_data += ",PM2.5 (Â£gg/m3),";
             PM_data += json[i]["PM2.5"];            
             PM_data += ",NO2 (ppb),";
             PM_data += json[i]["NO2"];
@@ -148,9 +148,9 @@
             PM_data += json[i]["WindSpeed"];
             PM_data += ",PublishTime,";
             PM_data += json[i]["PublishTime"];
-            PM_data += ",PM2.5_AVG (£gg/m3),";
+            PM_data += ",PM2.5_AVG (Â£gg/m3),";
             PM_data += json[i]["PM2.5_AVG"];  
-            PM_data += ",PM10_AVG (£gg/m3),";
+            PM_data += ",PM10_AVG (Â£gg/m3),";
             PM_data += json[i]["PM10_AVG"];
             PM_data += ",Latitude,";
             PM_data += json[i]["Latitude"];  
@@ -158,6 +158,7 @@
             PM_data += json[i]["Longitude"];
             PM_data += ";";
           }
+          console.log(PM_data);
         },
         error: function(exception)
         {
