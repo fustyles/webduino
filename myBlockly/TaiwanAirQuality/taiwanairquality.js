@@ -105,7 +105,6 @@
         type: "get",
         dataType: "jsonp",
         url: target,
-        jsonpCallback:"callback",
         success: function(json)
         {
           //console.log(json.result.records);
