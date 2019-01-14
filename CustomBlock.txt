@@ -4,8 +4,8 @@ https://fustyles.github.io/webduino/AirQuality_Taiwan_20180121/blockly.json
 https://blocklypro.webduino.io/#7nLeEpoPE3
 https://blocklypro.webduino.io/#k4awq1nGjA
 [Bit]
-https://bit.webduino.io/blockly/#8qMJr2boeWP3W
-https://bit.webduino.io/blockly/#Z3kA9zBN1pYRv
+https://bit.webduino.io/blockly/#XRODjBmBeVBqn
+http://bit.webduino.io/blockly/#VR9xMKbngoMy1
 
 
 Bit 全彩點矩陣
