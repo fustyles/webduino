@@ -109,7 +109,7 @@
         jsonpCallback: "dosomething",
         success: function(json)
         {
-          //console.log(json.result.records);
+          console.log(json);
           PM_data = "";
           json = eval(json.result.records);
           for (var i in json) 
@@ -160,7 +160,6 @@
             PM_data += json[i]["Longitude"];
             PM_data += ";";
           }
-          console.log(PM_data);
         },
         error: function(exception)
         {
