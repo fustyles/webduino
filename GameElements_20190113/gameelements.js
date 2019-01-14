@@ -191,11 +191,21 @@
   function table_clear(input_id){
     if (document.getElementById("gametable_"+input_id)) {
       var obj = document.getElementById("gametable_"+input_id);
+      obj.style.borderstyle = null;
+      obj.style.borderwidth = null;
+      obj.style.bordercolor = null;
+      obj.style.background = null;
+      obj.style.backgroundimage = null;
+      
       if (document.getElementById("gametable_"+input_id).rows.length>0){
         for (var i=0;i<obj.rows.length;i++){
           if (obj.rows[i].cells.length>0){
-            for (var j=0;j<obj.rows[i].cells.length;j++)
+            for (var j=0;j<obj.rows[i].cells.length;j++) {
+              obj.rows[i].cells[j].style.textAlign="center";
+              obj.rows[i].cells[j].style.verticalAlign = "middle";              
+              obj.rows[i].cells[j].style.background = null;
               obj.rows[i].cells[j].innerHTML = "";
+            }
           }
         }
       }
