@@ -617,6 +617,7 @@ Blockly.Blocks['canvas_img'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.CANVAS_IMG_SHOW)
       .appendField(Blockly.Msg.ID_SHOW);  
   this.appendValueInput("sx_")
@@ -661,6 +662,7 @@ Blockly.Blocks['canvas_text'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);
   this.appendValueInput("text_")
       .setCheck("String")
