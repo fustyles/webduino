@@ -151,7 +151,7 @@
         </tr>
         <tr>
           <td align="left" valign="center">
-            <button onclick="demoWorkspace.clear();">Clear Workspace</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkbackup" onclick="exportBlocks();var backupTimer = setInterval(function(){if (document.getElementById('chkbackup').checked) exportBlocks();}, 10000);">Backup Blocks (every 5 min)
+            <button onclick="demoWorkspace.clear();">Clear Workspace</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkbackup" onclick="exportBlocks();var backupTimer = setInterval(function(){if (document.getElementById('chkbackup').checked) exportBlocks();}, 300000);">Backup Blocks (every 5 min)
           </td>
         </tr>	      
         <tr>
@@ -384,6 +384,7 @@ function importBlocksFile(element) {
     alert(e);
   }	  
 }
+
 function initial() {
   var myWidth = document.body.clientWidth;
   if (document.documentElement.clientHeight)
@@ -448,9 +449,6 @@ function showcodeWindow(element, state) {
     element.style.color='black';
   }
 }
-var backupTimer = setInterval(function(){ 
-  if (document.getElementById('chkbackup').checked) exportBlocks(); 
-}, 10000);
 	
 window.onresize = function(){
   showcodeWindow(document.getElementById('codeWindow'),"small");
