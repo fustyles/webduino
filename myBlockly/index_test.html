@@ -457,34 +457,30 @@ window.onresize = function(){
   initial();
 }
 
-document.onmousedown = function() {
-  console.log("onmousedown");
+window.onmousedown = function() { 
+var obj = document.getElementById('runWindow');
+var div = document.createElement("div");
+div.id="div";
+div.style.position = "absolute";
+div.style.zIndex = "9999";
+div.style.left = obj.style.left;
+div.style.top = obj.style.top;
+div.style.width = obj.style.width;
+div.style.height = obj.style.height;
+document.body.appendChild(div);
 };
 	
-document.onmousemove = function() { 
-  var objTable = document.getElementById('runWindow');
-  if (objTable.title=='true')
+window.onmousemove = function() { 
+  var obj = document.getElementById('runWindow');
+  if (obj.title=='true')
   {
-    objTable.title='false';
-    objTable.style.left=(event.pageX-280)+'px';
-    objTable.style.top=event.pageY+'px';
+    obj.title='false';
+    obj.style.left=(event.pageX-280)+'px';
+    obj.style.top=event.pageY+'px';
     console.log("onmousemove");
   }
 };
 
-document.onmouseup = function() {
-  console.log("onmouseup");
-};
-
-document.getElementById('iframe_run').onmousemove = function() { 
-  var objTable = document.getElementById('runWindow');
-  if (objTable.title=='true')
-  {
-    objTable.title='false';
-    objTable.style.left=(event.pageX-280)+'px';
-    objTable.style.top=event.pageY+'px';
-  }
-};
 </script>
 </body>
 </html>
