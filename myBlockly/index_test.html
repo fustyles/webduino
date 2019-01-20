@@ -467,13 +467,14 @@ window.onmousemove = function() {
   }
 };	
 
-document.getElementById('iframe_run').onmousemove = function() { 
+document.getElementById('runWindow').onmousemove = function() { 
   var objTable = document.getElementById('runWindow');
   if (objTable.title=='true')
   {
     objTable.title='false';
     objTable.style.left=(event.pageX-280)+'px';
     objTable.style.top=event.pageY+'px';
+    console.log("runWindow");
   }
 };
 </script>
