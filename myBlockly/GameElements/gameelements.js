@@ -454,7 +454,7 @@
   function canvas_img(input_id,input_url,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var img = document.getElementById("gamecanvasimg");
-      img.src = input_url;
+      if (input_url!=""&&img.src!=input_url) img.src = input_url;
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
       if ((input_swidth>0)&&(input_sheight>0))
         context.drawImage(img,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height);
