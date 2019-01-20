@@ -192,7 +192,7 @@
         </tr>
         <tr>
           <td align="center">
-            Fu Chung-Yi (Taiwan)  Update Date : 2019-1-20
+            Fu Chung-Yi (Taiwan)  Update Date : 2019-1-10
           </td>
         </tr>
       </table>
@@ -200,7 +200,7 @@
   </tr>
 </table>
 
-<div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left" draggable="true" ondragend="this.title='true';">
+<div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left" draggable="true" ondragstart="document.getElementById('iframe_run').style.display='none';" ondragend="this.title='true';">
   <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeWindow();">Close Window</button><button>drag</button>
   <br>
   <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="autoplay; fullscreen; geolocation; microphone; camera"></iframe>
@@ -457,14 +457,17 @@ window.onresize = function(){
 }
 	
 window.onmousemove = function() { 
-  var objTable = document.getElementById('runWindow');
-  if (objTable.title=='true')
+  var obj = document.getElementById('runWindow');
+  if (obj.title=='true')
   {
-    objTable.title='false';
-    objTable.style.left=(event.pageX-280)+'px';
-    objTable.style.top=event.pageY+'px';
+    obj.title='false';
+    obj.style.left=(event.pageX-272)+'px';
+    obj.style.top=(event.pageY-8)+'px';
+    document.getElementById('iframe_run').style.display="block"; 
+    console.log(event.pageX+", "+event.clientX);
+    console.log(event.pageY+", "+event.clientY);
   }
-};	
+};
 </script>
 </body>
 </html>
