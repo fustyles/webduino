@@ -222,6 +222,12 @@ Blockly.JavaScript['canvas_arc'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['canvas_img_url'] = function (block) {
+  var value_url_ = Blockly.JavaScript.valueToCode(block, 'url_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'canvas_img_url(' + value_url_ + ');\n';
+  return code;
+};
+
 Blockly.JavaScript['canvas_img'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_url_ = Blockly.JavaScript.valueToCode(block, 'url_', Blockly.JavaScript.ORDER_ATOMIC);
