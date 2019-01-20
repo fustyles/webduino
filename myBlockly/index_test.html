@@ -456,7 +456,7 @@ window.onresize = function(){
     document.getElementById('hide').click();
   initial();
 }
-	
+
 window.onmousemove = function() { 
   var objTable = document.getElementById('runWindow');
   if (objTable.title=='true')
@@ -464,6 +464,7 @@ window.onmousemove = function() {
     objTable.title='false';
     objTable.style.left=(event.pageX-280)+'px';
     objTable.style.top=event.pageY+'px';
+    console.log("window");
   }
 };	
 
@@ -474,7 +475,6 @@ document.getElementById('iframe_run').onmousemove = function() {
     objTable.title='false';
     objTable.style.left=(event.pageX-280)+'px';
     objTable.style.top=event.pageY+'px';
-    console.log("iframe_run");
   }
 };
 </script>
