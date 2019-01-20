@@ -161,7 +161,14 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '        <field name="COLOUR">#ff0000</field>'+
 '      </block>'+
 '    </value>'+     
-'  </block>'+  
+'  </block>'+ 
+'  <block type="canvas_img_url">'+   
+'    <value name="url_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+   
 '  <block type="canvas_img">'+
 '    <value name="id_">'+
 '      <block type="text">'+
