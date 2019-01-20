@@ -599,6 +599,21 @@ Blockly.Blocks['canvas_arc'] = {
   }
 };
 
+Blockly.Blocks['canvas_img_url'] = {
+  init: function() {
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);
+  this.appendValueInput("url_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.CANVAS_IMG_SHOW)    
+      .appendField(Blockly.Msg.URL_SHOW);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['canvas_img'] = {
   init: function() {
   this.appendValueInput("id_")
