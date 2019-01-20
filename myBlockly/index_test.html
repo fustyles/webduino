@@ -465,7 +465,8 @@ window.onmousemove = function() {
     obj.style.left=(event.pageX-275)+'px';
     obj.style.top=event.pageY+'px';
     document.getElementById('iframe_run').style.display="block"; 
-    console.log("onmousemove");
+    console.log( event.clientX);
+    console.log( event.clientY);
   }
 };
 
