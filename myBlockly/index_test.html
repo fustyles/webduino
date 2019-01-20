@@ -457,22 +457,22 @@ window.onresize = function(){
   initial();
 }
 
-window.onmousedown = function() {
+document.onmousedown = function() {
   console.log("onmousedown");
 };
 	
-window.onmousemove = function() { 
+document.onmousemove = function() { 
   var objTable = document.getElementById('runWindow');
   if (objTable.title=='true')
   {
     objTable.title='false';
     objTable.style.left=(event.pageX-280)+'px';
     objTable.style.top=event.pageY+'px';
-    console.log("window");
+    console.log("onmousemove");
   }
 };
 
-window.onmouseup = function() {
+document.onmouseup = function() {
   console.log("onmouseup");
 };
 
