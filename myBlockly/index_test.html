@@ -14,15 +14,16 @@
 		
 		'https://fustyles.github.io/webduino/myBlockly/example/Game_Tetris.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/Game_TicTacToe.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/Matrixled_Marquee_iloveyou.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/ShowText_example.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/Instruction_example.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/OpenURL_example.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/TaiwanAirQuality_example.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/MatrixLED_example.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/GameImage_example.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/GameAuxiliary_example.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/GameAuxiliary_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/GameImage_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example_002.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/MatrixLED_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/MatrixLED_example_002.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/ShowText_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/Instruction_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/OpenURL_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/TaiwanAirQuality_example_001.js',
 		
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/blocks_SetWindow.js',
 		'https://fustyles.github.io/webduino/myBlockly/SetWindow/javascript_SetWindow.js',
@@ -150,20 +151,26 @@
         </tr>
         <tr>
           <td align="left" valign="center">
+            <button onclick="demoWorkspace.clear();">Clear Workspace</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkbackup" onclick="exportBlocks();var backupTimer = setInterval(function(){if (document.getElementById('chkbackup').checked) exportBlocks();}, 10000);">Backup Blocks (every 5 min)
+          </td>
+        </tr>	      
+        <tr>
+          <td align="left" valign="center">
             Example
             <select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
               <option value=""></option>
               <option value="Game_Tetris">Game_Tetris</option>
               <option value="Game_TicTacToe">Game_TicTacToe</option>
-              <option value="Matrixled_Marquee_iloveyou">Matrixled_Marquee_iloveyou</option>
-              <option value="ShowText_example">ShowText_example</option>
-              <option value="Instruction_example">Instruction_example</option>
-              <option value="OpenURL_example">OpenURL_example</option>
-              <option value="TaiwanAirQuality_example">TaiwanAirQuality_example</option>
-              <option value="GameImage_example">GameImage_example</option>
-              <option value="GameCanvas_example">GameCanvas_example</option>
-              <option value="MatrixLED_example">MatrixLED_example</option>
-              <option value="GameAuxiliary_example">GameAuxiliary_example</option>
+	      <option value="GameImage_example_001">GameImage_example_001</option>
+              <option value="GameAuxiliary_example_001">GameAuxiliary_example_001</option>
+	      <option value="GameCanvas_example_001">GameCanvas_example_001</option>
+	      <option value="GameCanvas_example_002">GameCanvas_example_002</option>
+	      <option value="MatrixLED_example_001">MatrixLED_example_001</option>
+	      <option value="MatrixLED_example_002">MatrixLED_example_002</option>
+              <option value="ShowText_example_001">ShowText_example_001</option>
+              <option value="Instruction_example_001">Instruction_example_001</option>
+              <option value="OpenURL_example_001">OpenURL_example_001</option>
+              <option value="TaiwanAirQuality_example_001">TaiwanAirQuality_example_001</option>
             </select>
           </td>
         </tr>
@@ -176,11 +183,6 @@
               <option value="zh-Hant">zh-Hant</option>
               <option value="zh-Hans">zh-Hans</option>
             </select>
-          </td>
-        </tr>
-        <tr>
-          <td align="left" valign="center">
-            <input type="checkbox" id="chkbackup" onclick="if (document.getElementById('chkbackup').checked) {var backupTimer = setInterval(exportBlocks(),10000)} else clearInterval(backupTimer);">Backup Blocks (every 5 min)&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="demoWorkspace.clear();">Clear Workspace</button>
           </td>
         </tr>	      
         <tr>
@@ -198,8 +200,8 @@
   </tr>
 </table>
 
-<div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left">
-  <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeWindow();">Close Window</button>
+<div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left" draggable="true" ondragend="this.title='true';">
+  <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeWindow();">Close Window</button><button>drag</button>
   <br>
   <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="autoplay; fullscreen; geolocation; microphone; camera"></iframe>
 </div>
@@ -243,43 +245,24 @@ while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().i
 }
 	
 var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.appspot.com/static/media/', toolbox: document.getElementById('toolbox'),zoom:{controls: true,wheel: true,startScale: 1.0,maxScale: 3,minScale: 0.3,scaleSpeed: 1.2},trashcan: true});
-Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
-function setStatement_defreturn() {
-/*
-  if (demoWorkspace.getBlocksByType('procedures_defnoreturn')) {
-    for (var i=0;i<demoWorkspace.getBlocksByType('procedures_defnoreturn').length;i++) {
-      demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setEditable(true);
-      demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setPreviousStatement(true, null); 
-      demoWorkspace.getBlocksByType('procedures_defnoreturn')[i].setNextStatement(true, null);
-    }
-  }
-*/
-}	
+Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);	
 	
-//append Game(Tetris) blocks to startBlocks
-XmldomToWorkspace(Game_Tetris);
+//append initial blocks to startBlocks
+XmldomToWorkspace(GameCanvas_example_002);
 	
 function XmldomToWorkspace(example) {	
   var xml = Blockly.Xml.textToDom(example);
   demoWorkspace.clear();
   Blockly.Xml.domToWorkspace(xml, demoWorkspace);
 }
-
-demoWorkspace.addChangeListener(function (event) {
-  if(event.type == Blockly.Events.BLOCK_CREATE) {
-    var block = Blockly.Workspace.getById(event.workspaceId).getBlockById(event.blockId);
-    if (block.type == 'procedures_defnoreturn') {
-      //block.setEditable(true);
-      block.setPreviousStatement(true, null);
-      block.setNextStatement(true, null)
-    }
-  }
 	
+function showCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
   if (code=="") code="//Please open this site in Google Chrome Browser.\n//You can double click on the textarea to enlarge.";
   document.getElementById('codeWindow').innerHTML = code;
-});
+}
+demoWorkspace.addChangeListener(showCode);
 	
 function runCode() {
   window.LoopTrap = 1000;
@@ -447,7 +430,7 @@ function showcodeWindow(element, state) {
   if (state=="big")
   {
     element.style.position='absolute';
-    element.style.left="-"+(myWidth-450)+"px";
+    element.style.left="-"+(myWidth-455)+"px";
     element.style.top='0px';
     element.style.width=(myWidth-480)+"px";
     element.style.height=myHeight +"px";
@@ -465,6 +448,9 @@ function showcodeWindow(element, state) {
     element.style.color='black';
   }
 }
+var backupTimer = setInterval(function(){ 
+  if (document.getElementById('chkbackup').checked) exportBlocks(); 
+}, 10000);
 	
 window.onresize = function(){
   showcodeWindow(document.getElementById('codeWindow'),"small");
@@ -472,6 +458,16 @@ window.onresize = function(){
     document.getElementById('hide').click();
   initial();
 }
+	
+window.onmousemove = function() { 
+  var objTable = document.getElementById('runWindow');
+  if (objTable.title=='true')
+  {
+    objTable.title='false';
+    objTable.style.left=(event.pageX-280)+'px';
+    objTable.style.top=event.pageY+'px';
+  }
+};	
 </script>
 </body>
 </html>
