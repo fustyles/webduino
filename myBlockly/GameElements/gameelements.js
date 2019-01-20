@@ -450,6 +450,11 @@
         context.fill();
     }
   } 
+
+  function canvas_img_url(input_url) {
+    var img = document.getElementById("gamecanvasimg");
+    if (input_url!=""&&img.src!=input_url) img.src = input_url;
+  } 
   
   function canvas_img(input_id,input_url,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height) {
     if (document.getElementById("gamecanvas_"+input_id)) {
