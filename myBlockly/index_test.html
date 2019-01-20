@@ -466,6 +466,16 @@ window.onmousemove = function() {
     objTable.style.top=event.pageY+'px';
   }
 };	
+
+document.getElementById('iframe_run').onmousemove = function() { 
+  var objTable = document.getElementById('runWindow');
+  if (objTable.title=='true')
+  {
+    objTable.title='false';
+    objTable.style.left=(event.pageX-280)+'px';
+    objTable.style.top=event.pageY+'px';
+  }
+};
 </script>
 </body>
 </html>
