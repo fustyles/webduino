@@ -457,6 +457,10 @@ window.onresize = function(){
   initial();
 }
 
+window.onmousedown = function() {
+  console.log("onmousedown");
+};
+	
 window.onmousemove = function() { 
   var objTable = document.getElementById('runWindow');
   if (objTable.title=='true')
@@ -466,7 +470,11 @@ window.onmousemove = function() {
     objTable.style.top=event.pageY+'px';
     console.log("window");
   }
-};	
+};
+
+window.onmouseup = function() {
+  console.log("onmouseup");
+};
 
 document.getElementById('iframe_run').onmousemove = function() { 
   var objTable = document.getElementById('runWindow');
