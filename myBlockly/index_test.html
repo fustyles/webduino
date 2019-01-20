@@ -201,7 +201,7 @@
 </table>
 
 <div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left" draggable="true" ondragend="this.title='true';">
-  <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeWindow();">Close Window</button><button>drag</button>
+  <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeWindow();">Close Window</button><button onmousedown="createdragdiv"  onmousedown="deletedragdiv">drag</button>
   <br>
   <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="autoplay; fullscreen; geolocation; microphone; camera"></iframe>
 </div>
@@ -457,19 +457,26 @@ window.onresize = function(){
   initial();
 }
 
-window.onmousedown = function() { 
-var obj = document.getElementById('runWindow');
-var div = document.createElement("div");
-div.id="div";
-div.style.position = "absolute";
-div.style.zIndex = "9999";
-div.style.opacity = "0";
-div.style.background = "red";
-div.style.left = obj.style.left;
-div.style.top = obj.style.top;
-div.style.width = obj.style.width;
-div.style.height = obj.style.height;
-document.body.appendChild(div);
+function createdragdiv() { 
+  var obj = document.getElementById('runWindow');
+  var div = document.createElement("div");
+  div.id="dragdiv";
+  div.style.position = "absolute";
+  div.style.zIndex = "9999";
+  div.style.opacity = "0";
+  div.style.background = "red";
+  div.style.left = obj.style.left;
+  div.style.top = obj.style.top;
+  div.style.width = obj.style.width;
+  div.style.height = obj.style.height;
+  document.body.appendChild(div);
+};
+	
+function deletedragdiv() { 
+  if (document.getElementById('dragdiv')) {
+    var obj = document.getElementById('dragdiv');
+    obj.parent.removeChild(obj);
+  }
 };
 	
 window.onmousemove = function() { 
