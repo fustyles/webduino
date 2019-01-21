@@ -127,4 +127,3 @@ Blockly.Msg.OPACITY_SHOW = "透明度";
 Blockly.Msg.ELEMENT_SHOW = "網頁元素";
 Blockly.Msg.ELEMENT_EVENT_SHOW = "監聽到事件後執行";
 Blockly.Msg.ELEMENT_EVENT_STOP_SHOW = "停止監聽事件";
-Blockly.Msg.TABLE_TD_CANVAS_MOVE_SHOW = "移動到";
