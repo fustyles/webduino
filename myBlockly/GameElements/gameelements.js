@@ -460,12 +460,14 @@
     if (document.getElementById("gamecanvas_"+input_id)) {
       var img = document.getElementById("gamecanvasimg");
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
-      if ((input_swidth>0)&&(input_sheight>0))
-        context.drawImage(img,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height);
-      else if (((input_swidth==0)||(input_sheight==0))&&((input_width>0)&&(input_height>0)))
-        context.drawImage(img,input_x0,input_y0,input_width,input_height);
-      else
-        context.drawImage(img,input_x0,input_y0);
+      img.onload = function() {
+        if ((input_swidth>0)&&(input_sheight>0))
+          context.drawImage(img,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height);
+        else if (((input_swidth==0)||(input_sheight==0))&&((input_width>0)&&(input_height>0)))
+          context.drawImage(img,input_x0,input_y0,input_width,input_height);
+        else
+          context.drawImage(img,input_x0,input_y0);
+      }
     }
   } 
   
