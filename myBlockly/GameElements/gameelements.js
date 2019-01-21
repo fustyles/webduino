@@ -35,7 +35,7 @@
           td.style.width = input_width + 'px';
           td.style.height = input_height + 'px';
           td.setAttribute("onclick", "javascript:image_onclickid_set(this);");
-          td.setAttribute("ondrop","javascript:var obj=document.getElementById(event.dataTransfer.getData('text/plain'));obj.style.position='static';obj.style.left=null;obj.style.top=null;event.preventDefault();if(event.target.tagName!='td') {return false;} else {event.target.appendChild(obj);}");
+          td.setAttribute("ondrop","javascript:var obj=document.getElementById(event.dataTransfer.getData('text/plain'));obj.style.position='static';obj.style.left=null;obj.style.top=null;event.preventDefault();alert(event.target.tagName);if(event.target.tagName!='td') {return false;} else {event.target.appendChild(obj);}");
           td.setAttribute("ondragover","javascript:event.preventDefault();"); 
         }
        }
