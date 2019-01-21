@@ -115,3 +115,4 @@ Blockly.Msg.ELEMENT_SHOW = "網頁元素";
 Blockly.Msg.ELEMENT_EVENT_SHOW = "監聽到事件後執行";
 Blockly.Msg.ELEMENT_EVENT_STOP_SHOW = "停止監聽事件";
 Blockly.Msg.CANVAS_ONCLICK_DO_SHOW = "被點擊後執行";
+Blockly.Msg.SETWINDOW_SHOW = "設定執行視窗";
