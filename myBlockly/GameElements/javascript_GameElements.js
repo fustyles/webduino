@@ -88,15 +88,6 @@ Blockly.JavaScript['table_td_img_move'] = function (block) {
   return code;
 };
 
-Blockly.JavaScript['table_td_canvas_move'] = function (block) {
-  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_canvasid_ = Blockly.JavaScript.valueToCode(block, 'canvasid_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'table_td_canvas_move(' + value_id_ + ','+ value_canvasid_ + ','+ value_x_ + ',' + value_y_ + ');\n';
-  return code;
-};
-
 Blockly.JavaScript['table_td_copy_move'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_x0_ = Blockly.JavaScript.valueToCode(block, 'x0_', Blockly.JavaScript.ORDER_ATOMIC);
