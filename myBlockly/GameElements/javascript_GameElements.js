@@ -568,7 +568,9 @@ Blockly.JavaScript['transform_async_function'] = function (block) {
 };
 
 Blockly.JavaScript['element_event'] = function (block) {
-  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var element = block.getFieldValue('element');
   if (element=="window")
     var obj="window";
