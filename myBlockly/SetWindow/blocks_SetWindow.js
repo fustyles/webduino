@@ -38,7 +38,7 @@ Blockly.Blocks['setwindow'] = {
       .setCheck("Number")
       .appendField(Blockly.Msg.SETWINDOW_HEIGHT_SHOW);   
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.OVERFLOW_SHOW)
+      .appendField(Blockly.Msg.SETWINDOW_OVERFLOW_SHOW)
       .appendField(new Blockly.FieldDropdown([["auto","auto"], ["visible","visible"], ["hidden","hidden"], ["scroll","scroll"], ["inherit","inherit"]]), "overflow");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
