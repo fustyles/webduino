@@ -730,6 +730,34 @@ Blockly.Blocks['canvas_delete'] = {
   }
 };
 
+Blockly.Blocks['canvas_onclick_do'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.CANVAS_ONCLICK_DO_SHOW);  
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['canvas_onclick_get'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.ONCLICK_SHOW);    
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
 Blockly.Blocks['image_create'] = {
   init: function() {
   this.appendValueInput("id_")
