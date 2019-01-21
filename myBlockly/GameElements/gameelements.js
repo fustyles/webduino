@@ -313,9 +313,7 @@
   function table_td_canvas_move(input_id,input_canvas_id,input_x,input_y){
     if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x)){
       if (document.getElementById("gamecanvas_"+input_canvas_id)) {
-        var dataURL = document.getElementById("gamecanvas_"+input_canvas_id).toDataURL();
-        var can = document.createElement('canvas');
-        can.src = dataURL;
+        var can = document.getElementById("gamecanvas_"+input_canvas_id);
         document.getElementById("gamecanvas_"+input_canvas_id).parentNode.removeChild(document.getElementById("gamecanvas_"+input_canvas_id));
         document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).appendChild(can);
       }
