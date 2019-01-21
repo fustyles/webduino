@@ -268,6 +268,19 @@ Blockly.JavaScript['canvas_delete'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['canvas_onclick_do'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'if (canvas_onclick_get(' + value_id_ + ')==1) {\n' + statements_do_ + '};\n';
+  return code;
+};
+
+Blockly.JavaScript['canvas_onclick_get'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var code = 'canvas_onclick_get(' + value_id_ + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['image_create'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_url_ = Blockly.JavaScript.valueToCode(block, 'url_', Blockly.JavaScript.ORDER_ATOMIC);
