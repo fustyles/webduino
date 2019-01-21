@@ -126,3 +126,4 @@ Blockly.Msg.TABLE_TD_ONCLICK_DO_SHOW = "储存格点击后执行";
 Blockly.Msg.OPACITY_SHOW = "透明度";
 Blockly.Msg.ELEMENT_SHOW = "网页元素";
 Blockly.Msg.ELEMENT_EVENT_SHOW = "监听到事件后执行";
+Blockly.Msg.ELEMENT_EVENT_STOP_SHOW = "停止监听事件";
