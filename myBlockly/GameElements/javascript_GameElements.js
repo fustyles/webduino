@@ -591,3 +591,27 @@ Blockly.JavaScript['element_event'] = function (block) {
   var code = obj+'.addEventListener("'+event+'", '+element+'_'+value_id_+'_'+event+', true);\nasync function '+element+'_'+value_id_+'_'+event+'(event) {\n' + statement + '};\n';
   return code;
 };
+
+Blockly.JavaScript['element_event_stop'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  var element = block.getFieldValue('element');
+  if (element=="window")
+    var obj="window";
+  else if (element=="document")
+    var obj="document";
+  else if (element=="table")
+    var obj="document.getElementById('gametable_"+value_id_+"')";  
+  else if (element=="canvas")
+    var obj="document.getElementById('gamecanvas_"+value_id_+"')"; 
+  else if (element=="image")
+    var obj="document.getElementById('gameimg_"+value_id_+"')";
+  if ((element.indexOf("'")==0)&&(element.lastIndexOf("'")==element.length-1))
+    element = element.substring(1,element.length-1);
+  var event = block.getFieldValue('event');
+  if ((event.indexOf("'")==0)&&(event.lastIndexOf("'")==event.length-1))
+    event = event.substring(1,event.length-1);
+  var code = obj+'.removeEventListener("'+event+'", '+element+'_'+value_id_+'_'+event+', true);\n';
+  return code;
+};
