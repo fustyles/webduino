@@ -22,6 +22,8 @@
   </block>  
   <block type="document_timer_stop">
   </block> 
+  <block type="image_onclick_listener">
+  </block>     
   <block type="element_event">  
     <value name="id_">
       <block type="text">
@@ -179,8 +181,6 @@
       </block>
     </value> 
   </block>
-  <block type="image_onclick_listener">
-  </block>   
   <block type="image_onclick_do">
     <value name="id_">
       <block type="text">
@@ -362,9 +362,7 @@
         <field name="TEXT"></field>
       </block>
     </value>    
-  </block>  
-  <block type="image_onclick_listener">
-  </block>  
+  </block>   
   <block type="table_td_onclick_do">  
     <value name="id_">
       <block type="text">
@@ -912,8 +910,6 @@
         <field name="TEXT"></field>
       </block>
     </value>      
-  </block>  
-  <block type="image_onclick_listener">
   </block>       
   <block type="canvas_onclick_do">
     <value name="id_">
@@ -1005,9 +1001,7 @@
         <field name="TEXT"></field>
       </block>
     </value>     
-  </block>    
-  <block type="image_onclick_listener">
-  </block>      
+  </block>        
   <block type="button_onclick_do">
     <value name="id_">
       <block type="text">
