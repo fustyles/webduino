@@ -582,10 +582,12 @@ Blockly.JavaScript['element_event'] = function (block) {
     var obj="document.getElementById('gamecanvas_"+value_id_+"')"; 
   else if (element=="image")
     var obj="document.getElementById('gameimg_"+value_id_+"')";
+  if ((element.indexOf("'")==0)&&(element.lastIndexOf("'")==element.length-1))
+    element = element.substring(1,element.length-1);
   var event = block.getFieldValue('event');
   if ((event.indexOf("'")==0)&&(event.lastIndexOf("'")==event.length-1))
     event = event.substring(1,event.length-1);
   var statement = Blockly.JavaScript.statementToCode(block, 'statement'); 
-  var code = obj+'.addEventListener("'+event+'", '+obj+'_'+event+', true);\nasync function '+obj+'_'+event+'(event) {\n' + statement + '};\n';
+  var code = obj+'.addEventListener("'+event+'", '+element+'_'+event+', true);\nasync function '+element+'_'+event+'(event) {\n' + statement + '};\n';
   return code;
 };
