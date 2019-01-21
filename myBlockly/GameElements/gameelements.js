@@ -5,7 +5,7 @@
   var onclickid = "";
   var onclicktime = 200;
   var onclicktimerid;
-  var mouse_x,mouse_y;
+  var mouse_x,mouse_y,mouse_offsetx,mouse_offsety;
   var ImageWidth,ImageHeight;
                       
   function table_create(input_id,input_width,input_height,input_left,input_top,input_trcount,input_tdcount,input_borderstyle,input_borderwidth,input_bordercolor,input_bgcolor,input_zindex,input_display) {
@@ -729,16 +729,26 @@
   function mouse_coordinate_get(input_property) {
     if (!document.onmousemove)
     {
+      mouse_x = 0;
+      mouse_y = 0;
+      mouse_offsetx = 0;
+      mouse_offsety = 0;       
       document.onmousemove = function(e){  
         e=e||window.event;
         mouse_x = e.pageX;
         mouse_y = e.pageY;
+        mouse_offsetx = e.offsetX;
+        mouse_offsety = e.offsetY;        
       }
     }
-    if (input_property=="x")
+    if (input_property=="X")
       return mouse_x;
-    else if (input_property=="y")
+    else if (input_property=="Y")
       return mouse_y;
+    else if (input_property=="offsetX")
+      return mouse_offsetx;
+    else if (input_property=="offsetY")
+      return mouse_offsety;    
   } 
   
   function text_to_number(input_text) {
