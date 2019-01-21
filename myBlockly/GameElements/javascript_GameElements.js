@@ -586,6 +586,6 @@ Blockly.JavaScript['element_event'] = function (block) {
   if ((event.indexOf("'")==0)&&(event.lastIndexOf("'")==event.length-1))
     event = event.substring(1,event.length-1);
   var statement = Blockly.JavaScript.statementToCode(block, 'statement'); 
-  var code = obj+'.addEventListener("'+event+'", my'+event+', true);\nasync function my'+event+'(event) {\n' + statement + '};\n';
+  var code = obj+'.addEventListener("'+event+'", '+obj+'_'+event+', true);\nasync function '+obj+'_'+event+'(event) {\n' + statement + '};\n';
   return code;
 };
