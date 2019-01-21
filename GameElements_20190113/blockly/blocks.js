@@ -956,7 +956,7 @@ Blockly.Blocks['mouse_coordinate_get'] = {
   init: function() {
   this.appendDummyInput()
       .appendField(Blockly.Msg.MOUSE_COORDINATE_GET_SHOW)
-      .appendField(new Blockly.FieldDropdown([["X","x"], ["Y","y"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["X","X"], ["Y","Y"], ["offsetX","offsetX"], ["offsetY","offsetY"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -1050,6 +1050,9 @@ Blockly.Blocks['move_to_mouse'] = {
       .appendField(Blockly.Msg.IMAGE_ID_SHOW);
   this.appendDummyInput()
       .appendField(Blockly.Msg.MOVE_TO_MOUSE_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([["center","center"], ["up","up"], ["down","down"], ["left","left"], ["right","right"], ["upperLeft","upperLeft"], ["lowerLeft","lowerLeft"], ["upperRight","upperRight"], ["lowerRight","lowerRight"]]), "position");
+  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
