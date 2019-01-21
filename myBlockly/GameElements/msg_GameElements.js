@@ -127,3 +127,4 @@ Blockly.Msg.OPACITY_SHOW = "Opacity";
 Blockly.Msg.ELEMENT_SHOW = "Element";
 Blockly.Msg.ELEMENT_EVENT_SHOW = "addEventListener";
 Blockly.Msg.ELEMENT_EVENT_STOP_SHOW = "removeEventListener";
+Blockly.Msg.TABLE_TD_CANVAS_MOVE_SHOW = "Move to";
