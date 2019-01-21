@@ -1,26 +1,3 @@
-Blockly.Blocks['setscreen'] = {
-  init: function() {
-  this.appendDummyInput()
-      .appendField("Old block will be deleted");  
-  this.appendValueInput("left")
-      .setCheck("Number")
-      .appendField(""); 
-  this.appendValueInput("top")
-      .setCheck("Number")
-      .appendField("");   
-  this.appendValueInput("width")
-      .setCheck("Number")
-      .appendField(""); 
-  this.appendValueInput("height")
-      .setCheck("Number")
-      .appendField("");   
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(90);
-  }
-}; 
-
 Blockly.Blocks['setwindow'] = {
   init: function() {
   this.appendDummyInput()
@@ -51,7 +28,7 @@ Blockly.Blocks['body_set'] = {
   init: function() {    
   this.appendDummyInput()  
       .appendField(Blockly.Msg.SETWINDOW_SHOW)
-      .appendField(new Blockly.FieldDropdown([["backgroundColor","backgroundColor"], ["backgroundImage","backgroundImage"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["backgroundColor","backgroundColor"], ["backgroundImage","backgroundImage"], ["overflow","overflow"], ["droppable","droppable"]]), "property_");
   this.appendValueInput("value_")
       .setCheck(null);    
   this.setInputsInline(true);
