@@ -30,8 +30,6 @@ var catSetWindow = '<xml>'+
 '    </value>'+    
 '  </block>'+     
 '  <block type="window_reload">'+  
-'  </block>'+    
-'  <block type="window_event">'+  
-'  </block>'+      
+'  </block>'+       
 '</category>'+
 '</xml>';
