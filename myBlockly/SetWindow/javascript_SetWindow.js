@@ -18,7 +18,7 @@ Blockly.JavaScript['setwindow'] = function (block) {
   document.getElementById("ifrTop").value=top;
   document.getElementById("ifrWidth").value=width;
   document.getElementById("ifrHeight").value=height;
-  var code = 'body_set("overflow",' + overflow + ');\n';
+  var code = 'body_set("overflow","' + overflow + '");\n';
   return code;
 };
 
