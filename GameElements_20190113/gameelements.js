@@ -1,4 +1,4 @@
-// Author: Chung-Yi Fu (Kaohsiung, Taiwan)  2019-1-12 21:00  
+// Author: Chung-Yi Fu (Kaohsiung, Taiwan)  2019-1-21 12:00  
 // https://www.facebook.com/francefu
 
 +(function (window, document) {
@@ -728,16 +728,26 @@
   function mouse_coordinate_get(input_property) {
     if (!document.onmousemove)
     {
+      mouse_x = 0;
+      mouse_y = 0;
+      mouse_offsetx = 0;
+      mouse_offsety = 0;       
       document.onmousemove = function(e){  
         e=e||window.event;
         mouse_x = e.pageX;
         mouse_y = e.pageY;
+        mouse_offsetx = e.offsetX;
+        mouse_offsety = e.offsetY;        
       }
     }
-    if (input_property=="x")
+    if (input_property=="X")
       return mouse_x;
-    else if (input_property=="y")
+    else if (input_property=="Y")
       return mouse_y;
+    else if (input_property=="offsetX")
+      return mouse_offsetx;
+    else if (input_property=="offsetY")
+      return mouse_offsety;    
   } 
   
   function text_to_number(input_text) {
