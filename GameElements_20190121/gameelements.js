@@ -1,5 +1,4 @@
-// Author: Chung-Yi Fu (Kaohsiung, Taiwan)  2019-1-21 12:00  
-// https://www.facebook.com/francefu
+// Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
 +(function (window, document) {
   
@@ -284,7 +283,6 @@
       return "";
   }
  
-  
   function table_td_insert_img(input_id,input_x,input_y,input_img_id,input_url,input_width,input_height){
     if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x)){
       var img = document.createElement('img');
@@ -404,12 +402,17 @@
     can.style.left = input_left + 'px';
     can.style.top = input_top + 'px';
     can.style.zIndex = input_zindex;
+    can.draggable="true";
+    can.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+    can.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(can);
 
-    var img = document.createElement('img');
-    img.id = "gamecanvasimg";
-    img.style.display = "none";
-    document.body.appendChild(img);
+    if (!document.getElementById("gamecanvasimg")) {
+      var img = document.createElement('img');
+      img.id = "gamecanvasimg";
+      img.style.display = "none";
+      document.body.appendChild(img);
+    }
   } 
   
   function canvas_line(input_id,input_linewidth,input_x0,input_y0,input_x1,input_y1,input_color) {
@@ -453,11 +456,21 @@
         context.fill();
     }
   } 
+
+  function canvas_img_url(input_url) {
+    if (!document.getElementById("gamecanvasimg")) {
+      var img = document.createElement('img');
+      img.id = "gamecanvasimg";
+      img.style.display = "none";
+      document.body.appendChild(img);
+    }    
+    var img = document.getElementById("gamecanvasimg");
+    if (input_url!=""&&img.src!=input_url) img.src = input_url;
+  } 
   
-  function canvas_img(input_id,input_url,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height) {
+  function canvas_img(input_id,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var img = document.getElementById("gamecanvasimg");
-      img.src = input_url;
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
       if ((input_swidth>0)&&(input_sheight>0))
         context.drawImage(img,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height);
@@ -495,6 +508,26 @@
       document.getElementById("gamecanvas_"+input_id).parentNode.removeChild(document.getElementById("gamecanvas_"+input_id));
   }   
   
+  function canvas_onclick_get(input_id) {
+    if (onclickid==("gamecanvas_"+input_id))
+    {
+      onclickid="";
+      return 1;
+    }
+    else if (onclickid.indexOf("gametable_td_")==0){     
+      if (document.getElementById(onclickid).hasChildNodes()) {
+        if (document.getElementById(onclickid).firstChild.id==("gamecanvas_"+input_id)) {
+          onclickid="";
+          return 1;
+        } else 
+          return 0;
+      } else 
+        return 0;
+    }
+    else
+      return 0;
+  }
+
   function image_create(input_id,input_url,input_width,input_height,input_left,input_top,input_zindex,input_display) {
     if (document.getElementById("gameimg_"+input_id))
       document.getElementById("gameimg_"+input_id).parentNode.removeChild(document.getElementById("gameimg_"+input_id));
@@ -842,7 +875,7 @@
     if (document.getElementById("gamebutton_"+input_id))
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
   }
-  
+
   function button_onclick_get(input_id) {
     if (onclickid==("gamebutton_"+input_id))
     {
@@ -868,6 +901,17 @@
       document.body.style.backgroundColor = input_value;
     else if (input_property=="backgroundImage") 
       document.body.style.backgroundImage = "url('"+input_value+"')";
+    else if (input_property=="overflow") 
+      document.body.style.overflow = input_value; 
+    else if (input_property=="droppable") {
+      if (input_value==1) {
+        document.body.setAttribute("ondrop","javascript:var obj=document.getElementById(event.dataTransfer.getData('text/plain'));obj.style.position='static';obj.style.left=null;obj.style.top=null;event.preventDefault();if(event.target.tagName!='BODY') {return false;} else {event.target.appendChild(obj);}");
+        document.body.setAttribute("ondragover","javascript:event.preventDefault();"); 
+      } else {
+        document.body.setAttribute("ondrop","");
+        document.body.setAttribute("ondragover","");  
+      }
+    }
   }  
   
   window.table_create = table_create;
