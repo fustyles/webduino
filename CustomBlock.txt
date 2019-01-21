@@ -46,6 +46,7 @@ https://blocklypro.webduino.io/?demo=demo-area-01#7DwleopgbK
 https://blocklypro.webduino.io/?demo=demo-area-01#k4awqdq505
 https://blocklypro.webduino.io/?demo=demo-area-01#k8m8pyw9nb
 https://blocklypro.webduino.io/?demo=demo-area-01#X0pMBGmQ9Z
+https://blocklypro.webduino.io/?demo=demo-area-01#XOVp2jN9Bl
 
 [Bit]
 https://bit.webduino.io/blockly/#VRm9vbAW07XR2
@@ -58,6 +59,7 @@ https://bit.webduino.io/blockly/#7Rp76poNNrByr
 https://bit.webduino.io/blockly/#a3558X5xL443m
 https://bit.webduino.io/blockly/#byr1kvWVb4v3m
 https://bit.webduino.io/blockly/#MyolanZeB8XRv
+https://bit.webduino.io/blockly/#VRm9vb95DXnR2
 
 
 顯示網頁
