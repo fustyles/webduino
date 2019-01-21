@@ -1305,3 +1305,22 @@ Blockly.Blocks['transform_async_function'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['element_event'] = {
+  init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.ELEMENT_SHOW)
+      .appendField(new Blockly.FieldDropdown([["window","window"],["document","document"],["table","table"],["image","image"],["canvas","canvas"]]), "element");
+  this.appendValueInput("id_")
+    .setCheck(null)
+    .appendField(Blockly.Msg.ID_SHOW);    
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.ELEMENT_EVENT_SHOW)
+      .appendField(new Blockly.FieldDropdown([["abort","abort"],["afterprint","afterprint"],["animationend","animationend"],["animationiteration","animationiteration"],["animationstart","animationstart"],["beforeprint","beforeprint"],["beforeunload","beforeunload"],["blur","blur"],["canplay","canplay"],["canplaythrough","canplaythrough"],["change","change"],["click","click"],["contextmenu","contextmenu"],["copy","copy"],["cut","cut"],["dblclick","dblclick"],["drag","drag"],["dragend","dragend"],["dragenter","dragenter"],["dragleave","dragleave"],["dragover","dragover"],["dragstart","dragstart"],["drop","drop"],["durationchange","durationchange"],["ended","ended"],["error","error"],["focus","focus"],["focusin","focusin"],["focusout","focusout"],["fullscreenchange","fullscreenchange"],["fullscreenerror","fullscreenerror"],["hashchange","hashchange"],["input","input"],["invalid","invalid"],["keydown","keydown"],["keypress","keypress"],["keyup","keyup"],["load","load"],["loadeddata","loadeddata"],["loadedmetadata","loadedmetadata"],["loadstart","loadstart"],["message","message"],["mousedown","mousedown"],["mouseenter","mouseenter"],["mouseleave","mouseleave"],["mousemove","mousemove"],["mouseover","mouseover"],["mouseout","mouseout"],["mouseup","mouseup"],["mousewheel","mousewheel"],["offline","offline"],["online","online"],["open","open"],["pagehide","pagehide"],["pageshow","pageshow"],["paste","paste"],["pause","pause"],["play","play"],["playing","playing"],["popstate","popstate"],["progress","progress"],["ratechange","ratechange"],["resize","resize"],["reset","reset"],["scroll","scroll"],["search","search"],["seeked","seeked"],["seeking","seeking"],["select","select"],["show","show"],["stalled","stalled"],["storage","storage"],["submit","submit"],["suspend","suspend"],["timeupdate","timeupdate"],["toggle","toggle"],["touchcancel","touchcancel"],["touchend","touchend"],["touchmove","touchmove"],["touchstart","touchstart"],["transitionend","transitionend"],["unload","unload"],["volumechange","volumechange"],["waiting","waiting"],["wheel","wheel"]]), "event");
+  this.appendStatementInput("statement");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
