@@ -12,7 +12,7 @@ var catGameTable = '<xml><category name="%{BKY_GAMETABLE}" colour="%{BKY_GAMETAB
 '    </value>'+
 '    <value name="top_">'+
 '      <block type="math_number">'+
-'        <field name="NUM">100</field>'+
+'        <field name="NUM">50</field>'+
 '      </block>'+
 '    </value>'+ 
 '    <value name="borderwidth_">'+
