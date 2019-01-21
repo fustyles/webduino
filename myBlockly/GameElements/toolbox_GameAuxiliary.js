@@ -22,6 +22,8 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '  </block>'+  
 '  <block type="document_timer_stop">'+
 '  </block>'+ 
+'  <block type="element_event">'+  
+'  </block>'+       
 '  <block type="async_function">'+
 '    <value name="name_">'+
 '      <block type="text">'+
