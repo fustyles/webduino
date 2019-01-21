@@ -1,4 +1,11 @@
 <category id="catGameElements"> 
+  <block type="time_delay">
+    <value name="seconds">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>      
+    </value>     
+  </block>  
   <block type="document_timer">
     <value name="intervals_">
       <block type="math_number">
@@ -14,14 +21,21 @@
     </value>  
   </block>  
   <block type="document_timer_stop">
-  </block>
-  <block type="body_set">
-    <value name="value_">
-      <block type="colour_picker">
-        <field name="COLOUR">#ffffff</field>
-      </block>
-    </value>   
-  </block>       
+  </block> 
+  <block type="element_event">  
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value>     
+  </block>   
+  <block type="element_event_stop">  
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value>     
+  </block>      
   <block type="async_function">
     <value name="name_">
       <block type="text">
@@ -77,9 +91,7 @@
     </value>     
   </block>  
   <block type="music_delete"> 
-  </block>   
-  <block type="image_onclick_listener">
-  </block>     
+  </block>    
   <block type="image_create">
     <value name="id_">
       <block type="text">
@@ -167,6 +179,8 @@
       </block>
     </value> 
   </block>
+  <block type="image_onclick_listener">
+  </block>   
   <block type="image_onclick_do">
     <value name="id_">
       <block type="text">
@@ -275,7 +289,7 @@
         <field name="TEXT"></field>
       </block>
     </value>       
-  </block>        
+  </block>      
   <block type="table_create">  
     <value name="id_">
       <block type="text">
@@ -289,7 +303,7 @@
     </value>
     <value name="top_">
       <block type="math_number">
-        <field name="NUM">100</field>
+        <field name="NUM">50</field>
       </block>
     </value> 
     <value name="borderwidth_">
@@ -348,6 +362,8 @@
         <field name="TEXT"></field>
       </block>
     </value>    
+  </block>  
+  <block type="image_onclick_listener">
   </block>  
   <block type="table_td_onclick_do">  
     <value name="id_">
@@ -445,7 +461,7 @@
         <field name="NUM">0</field>
       </block>
     </value>  
-  </block>    
+  </block>   
   <block type="table_td_copy_move">  
     <value name="id_">
       <block type="text">
@@ -786,18 +802,20 @@
         <field name="COLOUR">#ff0000</field>
       </block>
     </value>     
-  </block>  
+  </block> 
+  <block type="canvas_img_url">   
+    <value name="url_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+  </block>   
   <block type="canvas_img">
     <value name="id_">
       <block type="text">
         <field name="TEXT"></field>
       </block>
     </value>      
-    <value name="url_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
     <value name="sx_">
       <block type="math_number">
         <field name="NUM">0</field>
@@ -895,6 +913,22 @@
       </block>
     </value>      
   </block>  
+  <block type="image_onclick_listener">
+  </block>       
+  <block type="canvas_onclick_do">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block> 
+  <block type="canvas_onclick_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>  
   <block type="button_create"> 
     <value name="id_">
       <block type="text">
@@ -920,16 +954,16 @@
       <block type="math_number">
         <field name="NUM">30</field>
       </block>
-    </value>  
+    </value>    
     <value name="opacity_">
       <block type="math_number">
         <field name="NUM">1</field>
       </block>
-    </value>
+    </value> 
     <value name="bgcolor_">
       <block type="logic_null">
       </block>
-    </value>
+    </value>       
     <value name="value_">
       <block type="text">
         <field name="TEXT">button</field>
@@ -972,11 +1006,20 @@
       </block>
     </value>     
   </block>    
+  <block type="image_onclick_listener">
+  </block>      
   <block type="button_onclick_do">
     <value name="id_">
       <block type="text">
         <field name="TEXT"></field>
       </block>
     </value>         
-  </block>
+  </block>           
+  <block type="body_set"> 
+    <value name="value_">
+      <block type="colour_picker">
+        <field name="COLOUR">#ffffff</field>
+      </block>
+    </value>    
+  </block>  
 </category>
