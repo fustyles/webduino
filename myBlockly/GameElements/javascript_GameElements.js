@@ -566,3 +566,24 @@ Blockly.JavaScript['transform_async_function'] = function (block) {
   var code = statements_do_.replace(/function/g,"async function").replace(/async async/g,"async");
   return code;
 };
+
+Blockly.JavaScript['element_event'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var element = block.getFieldValue('element');
+  if (element=="window")
+    var obj="window";
+  else if (element=="document")
+    var obj="document";
+  else if (element=="table")
+    var obj="document.getElementById('gametable_"+value_id_+"')";  
+  else if (element=="canvas")
+    var obj="document.getElementById('gamecanvas_"+value_id_+"')"; 
+  else if (element=="image")
+    var obj="document.getElementById('gameimg_"+value_id_+"')";
+  var event = block.getFieldValue('event');
+  if ((event.indexOf("'")==0)&&(event.lastIndexOf("'")==event.length-1))
+    event = event.substring(1,event.length-1);
+  var statement = Blockly.JavaScript.statementToCode(block, 'statement'); 
+  var code = obj+'.addEventListener("'+event+'", my'+event+', true);\nasync function my'+event+'(event) {\n' + statement + '};\n';
+  return code;
+};
