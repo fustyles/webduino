@@ -437,7 +437,7 @@ Blockly.JavaScript['time_delay'] = function (block) {
 
 Blockly.JavaScript['move_to_mouse'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);   
-  var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("x")-image_get('+value_id_+',"width")/2));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("y")-image_get('+value_id_+',"height")/2));\n';
+  var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("X")-image_get('+value_id_+',"width")/2));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("Y")-image_get('+value_id_+',"height")/2));\n';
   return code;
 };
 
