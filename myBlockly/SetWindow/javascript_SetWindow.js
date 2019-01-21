@@ -33,12 +33,3 @@ Blockly.JavaScript['window_reload'] = function (block) {
   var code = 'window.location.reload();\n';
   return code;
 };
-
-Blockly.JavaScript['window_event'] = function (block) {
-  var statement = Blockly.JavaScript.statementToCode(block, 'statement');  
-  var event = block.getFieldValue('event');
-  if ((event.indexOf("'")==0)&&(event.lastIndexOf("'")==event.length-1))
-    event = event.substring(1,event.length-1);
-  var code = 'window.addEventListener("'+event+'", my'+event+', true);\nasync function my'+event+'(event) {\n' + statement + '};\n';
-  return code;
-};
