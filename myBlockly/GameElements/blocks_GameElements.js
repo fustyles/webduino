@@ -1076,6 +1076,7 @@ Blockly.Blocks['move_to_mouse'] = {
   this.appendDummyInput()
       .appendField(Blockly.Msg.MOUSE_COORDINATE_GET_SHOW)
       .appendField(new Blockly.FieldDropdown([["center","center"], ["up","up"], ["down","down"], ["left","left"], ["right","right"], ["upperLeft","upperLeft"], ["lowerLeft","lowerLeft"], ["upperRight","upperRight"], ["lowerRight","lowerRight"]]), "position");
+  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
