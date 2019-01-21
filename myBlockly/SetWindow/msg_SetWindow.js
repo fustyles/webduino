@@ -8,4 +8,3 @@ Blockly.Msg.SETWINDOW_WIDTH_SHOW = "width";
 Blockly.Msg.SETWINDOW_HEIGHT_SHOW = "height";
 Blockly.Msg.SETWINDOW_OVERFLOW_SHOW = "overflow";
 Blockly.Msg.WINDOW_RELOAD_SHOW = "Reload Page";
-Blockly.Msg.WINDOW_EVENT_SHOW = "window.addEventListener";
