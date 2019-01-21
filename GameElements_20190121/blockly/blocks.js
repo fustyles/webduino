@@ -599,16 +599,28 @@ Blockly.Blocks['canvas_arc'] = {
   }
 };
 
+Blockly.Blocks['canvas_img_url'] = {
+  init: function() {
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.CANVAS_IMG_SHOW);
+  this.appendValueInput("url_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.URL_SHOW);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['canvas_img'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.CANVAS_ID_SHOW);
-  this.appendValueInput("url_")
-      .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_IMG_SHOW)    
-      .appendField(Blockly.Msg.URL_SHOW);
+      .appendField(Blockly.Msg.CANVAS_IMG_SHOW)
+      .appendField(Blockly.Msg.ID_SHOW);  
   this.appendValueInput("sx_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -651,6 +663,7 @@ Blockly.Blocks['canvas_text'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);
   this.appendValueInput("text_")
       .setCheck("String")
@@ -714,6 +727,34 @@ Blockly.Blocks['canvas_delete'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
+  }
+};
+
+Blockly.Blocks['canvas_onclick_do'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.CANVAS_ONCLICK_DO_SHOW);  
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['canvas_onclick_get'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.ONCLICK_SHOW);    
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
   }
 };
 
@@ -1043,6 +1084,17 @@ Blockly.Blocks['function_return'] = {
   }
 };
 
+Blockly.Blocks['time_delay'] = {
+  init: function () {
+    this.appendValueInput("seconds")
+        .setCheck("Number")
+        .appendField(Blockly.Msg.TIME_DELAY_SHOW);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
+
 Blockly.Blocks['move_to_mouse'] = {
   init: function() {
   this.appendValueInput("id_")
@@ -1282,16 +1334,39 @@ Blockly.Blocks['transform_async_function'] = {
   }
 };
 
-Blockly.Blocks['body_set'] = {
-  init: function() {    
+Blockly.Blocks['element_event'] = {
+  init: function () {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.SETWINDOW_SHOW)
-      .appendField(new Blockly.FieldDropdown([["backgroundColor","backgroundColor"], ["backgroundImage","backgroundImage"]]), "property_");
-  this.appendValueInput("value_")
-      .setCheck(null);    
+      .appendField(Blockly.Msg.ELEMENT_SHOW)
+      .appendField(new Blockly.FieldDropdown([["window","window"],["document","document"],["table","table"],["image","image"],["canvas","canvas"]]), "element");
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.ID_SHOW); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.ELEMENT_EVENT_SHOW)
+      .appendField(new Blockly.FieldDropdown([["abort","abort"],["afterprint","afterprint"],["animationend","animationend"],["animationiteration","animationiteration"],["animationstart","animationstart"],["beforeprint","beforeprint"],["beforeunload","beforeunload"],["blur","blur"],["canplay","canplay"],["canplaythrough","canplaythrough"],["change","change"],["click","click"],["contextmenu","contextmenu"],["copy","copy"],["cut","cut"],["dblclick","dblclick"],["drag","drag"],["dragend","dragend"],["dragenter","dragenter"],["dragleave","dragleave"],["dragover","dragover"],["dragstart","dragstart"],["drop","drop"],["durationchange","durationchange"],["ended","ended"],["error","error"],["focus","focus"],["focusin","focusin"],["focusout","focusout"],["fullscreenchange","fullscreenchange"],["fullscreenerror","fullscreenerror"],["hashchange","hashchange"],["input","input"],["invalid","invalid"],["keydown","keydown"],["keypress","keypress"],["keyup","keyup"],["load","load"],["loadeddata","loadeddata"],["loadedmetadata","loadedmetadata"],["loadstart","loadstart"],["message","message"],["mousedown","mousedown"],["mouseenter","mouseenter"],["mouseleave","mouseleave"],["mousemove","mousemove"],["mouseover","mouseover"],["mouseout","mouseout"],["mouseup","mouseup"],["mousewheel","mousewheel"],["offline","offline"],["online","online"],["open","open"],["pagehide","pagehide"],["pageshow","pageshow"],["paste","paste"],["pause","pause"],["play","play"],["playing","playing"],["popstate","popstate"],["progress","progress"],["ratechange","ratechange"],["resize","resize"],["reset","reset"],["scroll","scroll"],["search","search"],["seeked","seeked"],["seeking","seeking"],["select","select"],["show","show"],["stalled","stalled"],["storage","storage"],["submit","submit"],["suspend","suspend"],["timeupdate","timeupdate"],["toggle","toggle"],["touchcancel","touchcancel"],["touchend","touchend"],["touchmove","touchmove"],["touchstart","touchstart"],["transitionend","transitionend"],["unload","unload"],["volumechange","volumechange"],["waiting","waiting"],["wheel","wheel"]]), "event");
+  this.appendStatementInput("statement");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
   }
-}; 
+};
+
+Blockly.Blocks['element_event_stop'] = {
+  init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.ELEMENT_SHOW)
+      .appendField(new Blockly.FieldDropdown([["window","window"],["document","document"],["table","table"],["image","image"],["canvas","canvas"]]), "element");
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.ID_SHOW);    
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.ELEMENT_EVENT_STOP_SHOW)
+      .appendField(new Blockly.FieldDropdown([["abort","abort"],["afterprint","afterprint"],["animationend","animationend"],["animationiteration","animationiteration"],["animationstart","animationstart"],["beforeprint","beforeprint"],["beforeunload","beforeunload"],["blur","blur"],["canplay","canplay"],["canplaythrough","canplaythrough"],["change","change"],["click","click"],["contextmenu","contextmenu"],["copy","copy"],["cut","cut"],["dblclick","dblclick"],["drag","drag"],["dragend","dragend"],["dragenter","dragenter"],["dragleave","dragleave"],["dragover","dragover"],["dragstart","dragstart"],["drop","drop"],["durationchange","durationchange"],["ended","ended"],["error","error"],["focus","focus"],["focusin","focusin"],["focusout","focusout"],["fullscreenchange","fullscreenchange"],["fullscreenerror","fullscreenerror"],["hashchange","hashchange"],["input","input"],["invalid","invalid"],["keydown","keydown"],["keypress","keypress"],["keyup","keyup"],["load","load"],["loadeddata","loadeddata"],["loadedmetadata","loadedmetadata"],["loadstart","loadstart"],["message","message"],["mousedown","mousedown"],["mouseenter","mouseenter"],["mouseleave","mouseleave"],["mousemove","mousemove"],["mouseover","mouseover"],["mouseout","mouseout"],["mouseup","mouseup"],["mousewheel","mousewheel"],["offline","offline"],["online","online"],["open","open"],["pagehide","pagehide"],["pageshow","pageshow"],["paste","paste"],["pause","pause"],["play","play"],["playing","playing"],["popstate","popstate"],["progress","progress"],["ratechange","ratechange"],["resize","resize"],["reset","reset"],["scroll","scroll"],["search","search"],["seeked","seeked"],["seeking","seeking"],["select","select"],["show","show"],["stalled","stalled"],["storage","storage"],["submit","submit"],["suspend","suspend"],["timeupdate","timeupdate"],["toggle","toggle"],["touchcancel","touchcancel"],["touchend","touchend"],["touchmove","touchmove"],["touchstart","touchstart"],["transitionend","transitionend"],["unload","unload"],["volumechange","volumechange"],["waiting","waiting"],["wheel","wheel"]]), "event");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
