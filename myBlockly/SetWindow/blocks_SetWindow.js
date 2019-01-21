@@ -70,16 +70,3 @@ Blockly.Blocks['window_reload'] = {
   this.setColour(130);
   }
 };  
-
-Blockly.Blocks['window_event'] = {
-  init: function () {
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.WINDOW_EVENT_SHOW)
-      .appendField(new Blockly.FieldDropdown([["blur","blur"],["focus","focus"],["change","change"],["mouseover","mouseover"],["mouseout","mouseout"],["mousemove","mousemove"],["mousedown","mousedown"],["mouseup","mouseup"],["click","click"],["dblclick","dblclick"],["keydown","keydown"],["keyup","keyup"],["keypress","keypress"],["submit","submit"],["load","load"],["unload","unload"]]), "event");
-  this.setInputsInline(true);
-  this.appendStatementInput("statement");
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
