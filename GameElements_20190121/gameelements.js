@@ -934,10 +934,12 @@
   window.canvas_line = canvas_line;
   window.canvas_rect = canvas_rect;
   window.canvas_arc = canvas_arc;
+  window.canvas_img_url = canvas_img_url;
   window.canvas_img = canvas_img;
   window.canvas_text = canvas_text;
   window.canvas_clear = canvas_clear;
   window.canvas_delete = canvas_delete;
+  window.canvas_onclick_get = canvas_onclick_get;
   window.image_create = image_create;
   window.image_set = image_set;
   window.image_get = image_get;
@@ -950,12 +952,12 @@
   window.image_onclickid_clear = image_onclickid_clear;
   window.image_onclick_get = image_onclick_get;
   window.image_Natural_get = image_Natural_get;
+  window.mouse_coordinate_get = mouse_coordinate_get;
   window.button_create = button_create;
   window.button_set = button_set;
   window.button_get = button_get;
   window.button_delete = button_delete;
   window.button_onclick_get = button_onclick_get;
-  window.mouse_coordinate_get = mouse_coordinate_get;
   window.text_to_number = text_to_number;
   window.body_set = body_set;
   
