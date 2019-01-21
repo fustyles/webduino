@@ -968,7 +968,7 @@ Blockly.Blocks['mouse_coordinate_get'] = {
   init: function() {
   this.appendDummyInput()
       .appendField(Blockly.Msg.MOUSE_COORDINATE_GET_SHOW)
-      .appendField(new Blockly.FieldDropdown([["X","x"], ["Y","y"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["X","X"], ["Y","Y"], ["offsetX","offsetX"], ["offsetY","offsetY"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
