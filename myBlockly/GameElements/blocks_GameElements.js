@@ -1073,6 +1073,9 @@ Blockly.Blocks['move_to_mouse'] = {
       .appendField(Blockly.Msg.IMAGE_ID_SHOW);
   this.appendDummyInput()
       .appendField(Blockly.Msg.MOVE_TO_MOUSE_SHOW);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.MOUSE_COORDINATE_GET_SHOW)
+      .appendField(new Blockly.FieldDropdown([["center","center"], ["up","up"], ["down","down"], ["left","left"], ["right","right"], ["upperLeft","upperLeft"], ["lowerLeft","lowerLeft"], ["upperRight","upperRight"], ["lowerRight","lowerRight"]]), "position");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
