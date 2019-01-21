@@ -418,7 +418,6 @@
       var img = document.createElement('img');
       img.id = "gamecanvasimg";
       img.style.display = "none";
-      img.setAttribute('crossOrigin', 'anonymous');
       document.body.appendChild(img);
     }
   } 
@@ -470,7 +469,6 @@
       var img = document.createElement('img');
       img.id = "gamecanvasimg";
       img.style.display = "none";
-      img.setAttribute('crossOrigin', 'anonymous');
       document.body.appendChild(img);
     }    
     var img = document.getElementById("gamecanvasimg");
