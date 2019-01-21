@@ -203,7 +203,7 @@
 </table>
 
 <div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left" draggable="true" ondragstart="document.getElementById('iframe_run').style.display='none';" ondragend="this.title='true';">
-  <button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeWindow();">Close Window</button><button>drag</button>
+  <button>drag</button><button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeWindow();">Close Window</button>
   <br>
   <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="autoplay; fullscreen; geolocation; microphone; camera"></iframe>
 </div>
@@ -462,7 +462,7 @@ window.onmousemove = function() {
   var obj = document.getElementById('runWindow');
   if (obj.title=='true') {
     obj.title='false';
-    obj.style.left=(event.pageX-275)+'px';
+    obj.style.left=(event.pageX-5)+'px';
     obj.style.top=(event.pageY-8)+'px';
     document.getElementById('iframe_run').style.display="block"; 
   }
