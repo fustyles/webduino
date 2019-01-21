@@ -115,3 +115,4 @@ Blockly.Msg.ELEMENT_SHOW = "Element";
 Blockly.Msg.ELEMENT_EVENT_SHOW = "addEventListener";
 Blockly.Msg.ELEMENT_EVENT_STOP_SHOW = "removeEventListener";
 Blockly.Msg.CANVAS_ONCLICK_DO_SHOW = "is clicked ";
+Blockly.Msg.SETWINDOW_SHOW = "Set Run Window";
