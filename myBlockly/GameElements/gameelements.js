@@ -411,10 +411,12 @@
     can.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(can);
 
-    var img = document.createElement('img');
-    img.id = "gamecanvasimg";
-    img.style.display = "none";
-    document.body.appendChild(img);
+    if (!document.getElementById("gamecanvasimg")) {
+      var img = document.createElement('img');
+      img.id = "gamecanvasimg";
+      img.style.display = "none";
+      document.body.appendChild(img);
+    }
   } 
   
   function canvas_line(input_id,input_linewidth,input_x0,input_y0,input_x1,input_y1,input_color) {
@@ -460,6 +462,12 @@
   } 
 
   function canvas_img_url(input_url) {
+    if (!document.getElementById("gamecanvasimg")) {
+      var img = document.createElement('img');
+      img.id = "gamecanvasimg";
+      img.style.display = "none";
+      document.body.appendChild(img);
+    }    
     var img = document.getElementById("gamecanvasimg");
     if (input_url!=""&&img.src!=input_url) img.src = input_url;
   } 
