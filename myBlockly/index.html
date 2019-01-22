@@ -252,7 +252,7 @@ var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.ap
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);	
 	
 //append initial blocks to startBlocks
-XmldomToWorkspace(Game_Hamster);
+XmldomToWorkspace(Game_TicTacToe);
 	
 function XmldomToWorkspace(example) {	
   var xml = Blockly.Xml.textToDom(example);
@@ -388,6 +388,7 @@ function importBlocksFile(element) {
     alert(e);
   }	  
 }
+	
 function initial() {
   var myWidth = document.body.clientWidth;
   if (document.documentElement.clientHeight)
