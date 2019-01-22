@@ -622,6 +622,10 @@ Blockly.JavaScript['element_event_stop'] = function (block) {
     var obj="document.getElementById('gamecanvas_"+value_id_+"')"; 
   else if (element=="image")
     var obj="document.getElementById('gameimg_"+value_id_+"')";
+  else if (element=="button")
+    var obj="document.getElementById('gamebutton_"+value_id_+"')"; 
+  else if (element=="color")
+    var obj="document.getElementById('gamecolor_"+value_id_+"')";
   if ((element.indexOf("'")==0)&&(element.lastIndexOf("'")==element.length-1))
     element = element.substring(1,element.length-1);
   var event = block.getFieldValue('event');
