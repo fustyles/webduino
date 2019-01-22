@@ -896,20 +896,6 @@
       return 0;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   function colorpicker_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_value,input_zindex,input_display) {
     if (document.getElementById("gamecolor_"+input_id)) 
       document.getElementById("gamecolor_"+input_id).parentNode.removeChild(document.getElementById("gamecolor_"+input_id));
