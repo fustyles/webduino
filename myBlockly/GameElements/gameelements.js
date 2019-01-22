@@ -832,6 +832,8 @@
         else if (input_value==0)
           document.getElementById("gamebutton_"+input_id).style.display = "none";
       }
+      else if (input_property=="disabled")
+        document.getElementById("gamebutton_"+input_id).disabled = input_value;
     }
   }
 
@@ -862,6 +864,8 @@
         return document.getElementById("gamebutton_"+input_id).style.zIndex;
       else if (input_property=="display")
         return document.getElementById("gamebutton_"+input_id).style.display;
+      else if (input_property=="disabled")
+        return document.getElementById("gamebutton_"+input_id).disabled;
     }
     else
       return "";
