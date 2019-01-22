@@ -629,17 +629,6 @@ Blockly.JavaScript['element_event_stop'] = function (block) {
   return code;
 };
 
-
-
-
-
-
-
-
-
-
-
-
 Blockly.JavaScript['colorpicker_create'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
@@ -678,6 +667,6 @@ Blockly.JavaScript['colorpicker_delete'] = function (block) {
 Blockly.JavaScript['colorpicker_onchange_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = '';\n';
+  var code = ';\n';
   return code;
 };
