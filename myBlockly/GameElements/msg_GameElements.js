@@ -137,3 +137,7 @@ Blockly.Msg.COLORPICKER_GET_SHOW = "Get";
 Blockly.Msg.CANVAS_QUADRATICCURVE_SHOW = "QuadraticCurve";
 Blockly.Msg.CANVAS_BEZIERCURVE_SHOW = "BezierCurve";
 Blockly.Msg.CANVAS_CLEARRECT_SHOW = "ClearRect";
+Blockly.Msg.CANVAS_CP1X_SHOW = "cp1x";
+Blockly.Msg.CANVAS_CP1X_SHOW = "cp1y";
+Blockly.Msg.CANVAS_CP1X_SHOW = "cp2x";
+Blockly.Msg.CANVAS_CP1X_SHOW = "cp2y";
