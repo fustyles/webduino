@@ -130,4 +130,4 @@ Blockly.Msg.CANVAS_CP1Y_SHOW = "cp1y";
 Blockly.Msg.CANVAS_CP2X_SHOW = "cp2x";
 Blockly.Msg.CANVAS_CP2Y_SHOW = "cp2y";
 Blockly.Msg.SETWINDOW_SHOW = "設定執行視窗";
-Blockly.Msg.TIME_DELAY_SHOW = "遊戲元素若產生無法載入JS可加入此積木";
+Blockly.Msg.TIME_DELAY_SHOW = "遊戲元素新積木若產生JS函式不存在的錯誤可加入此積木";
