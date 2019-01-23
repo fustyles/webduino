@@ -134,3 +134,6 @@ Blockly.Msg.COLORPICKER_SET_SHOW = "Set";
 Blockly.Msg.COLORPICKER_DELETE_SHOW = "Delete";
 Blockly.Msg.COLORPICKER_ONCHANGE_SHOW = "is picked";
 Blockly.Msg.COLORPICKER_GET_SHOW = "Get";
+Blockly.Msg.CANVAS_QUADRATICCURVE_SHOW = "QuadraticCurve";
+Blockly.Msg.CANVAS_BEZIERCURVE_SHOW = "BezierCurve";
+Blockly.Msg.CANVAS_CLEARRECT_SHOW = "ClearRect";
