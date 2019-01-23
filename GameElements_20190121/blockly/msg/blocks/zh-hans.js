@@ -130,4 +130,4 @@ Blockly.Msg.CANVAS_CP1Y_SHOW = "cp1y";
 Blockly.Msg.CANVAS_CP2X_SHOW = "cp2x";
 Blockly.Msg.CANVAS_CP2Y_SHOW = "cp2y";
 Blockly.Msg.SETWINDOW_SHOW = "设定执行视窗";
-Blockly.Msg.TIME_DELAY_SHOW = "游戏元素新积木若无法执行可加入此积木(暂时)";
+Blockly.Msg.TIME_DELAY_SHOW = "游戏元素初始化(载入JS档)";
