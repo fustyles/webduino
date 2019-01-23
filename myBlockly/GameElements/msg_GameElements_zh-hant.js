@@ -134,3 +134,6 @@ Blockly.Msg.COLORPICKER_SET_SHOW = "設定";
 Blockly.Msg.COLORPICKER_DELETE_SHOW = "刪除";
 Blockly.Msg.COLORPICKER_ONCHANGE_SHOW = "挑選顏色後執行";
 Blockly.Msg.COLORPICKER_GET_SHOW = "取得";
+Blockly.Msg.CANVAS_QUADRATICCURVE_SHOW = "畫二次貝茲曲線";
+Blockly.Msg.CANVAS_BEZIERCURVE_SHOW = "畫三次貝茲曲線";
+Blockly.Msg.CANVAS_CLEARRECT_SHOW = "清除區域";
