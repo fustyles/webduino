@@ -130,4 +130,4 @@ Blockly.Msg.CANVAS_CP1Y_SHOW = "cp1y";
 Blockly.Msg.CANVAS_CP2X_SHOW = "cp2x";
 Blockly.Msg.CANVAS_CP2Y_SHOW = "cp2y";
 Blockly.Msg.SETWINDOW_SHOW = "设定执行视窗";
-Blockly.Msg.TIME_DELAY_SHOW = "游戏元素新增积木载入程式档";
+Blockly.Msg.TIME_DELAY_SHOW = "游戏元素新积木若产生JS函式不存在的错误可加入此积木";
