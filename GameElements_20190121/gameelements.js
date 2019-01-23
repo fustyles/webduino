@@ -495,6 +495,45 @@
     }
   } 
   
+  function canvas_quadraticcurve(input_id,input_x0,input_y0,input_cp1x,input_cp1y,input_x,input_y,input_linewidth,input_color,input_fill) {
+    if (document.getElementById("gamecanvas_"+input_id)) {
+      var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
+      context.strokeStyle = input_color;
+      context.fillStyle = input_color;
+      context.lineWidth = input_linewidth;
+      context.beginPath();
+      context.moveTo(input_x0,input_y0);
+      context.quadraticCurveTo(input_cp1x,input_cp1y,input_x,input_y);
+      if (input_fill==0)
+        context.stroke();
+      else
+        context.fill();
+    }
+  }
+
+  function canvas_beziercurve(input_id,input_x0,input_y0,input_cp1x,input_cp1y,input_cp2x,input_cp2y,input_x,input_y,input_linewidth,input_color,input_fill) {
+    if (document.getElementById("gamecanvas_"+input_id)) {
+      var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
+      context.strokeStyle = input_color;
+      context.fillStyle = input_color;
+      context.lineWidth = input_linewidth;
+      context.beginPath();
+      context.moveTo(input_x0,input_y0);
+      context.bezierCurveTo(input_cp1x,input_cp1y,input_cp2x,input_cp2y,input_x,input_y);
+      if (input_fill==0)
+        context.stroke();
+      else
+        context.fill();
+    }
+  }
+
+  function canvas_clearrect(input_id,input_x,input_y,input_width,input_height) {
+    if (document.getElementById("gamecanvas_"+input_id)) {
+      var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
+      context.clearRect(input_x,input_y,input_width,input_height);
+    }
+  }  
+  
   function canvas_clear(input_id) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var canvas = document.getElementById("gamecanvas_"+input_id);
@@ -937,6 +976,9 @@
   window.canvas_img_url = canvas_img_url;
   window.canvas_img = canvas_img;
   window.canvas_text = canvas_text;
+  window.canvas_quadraticcurve = canvas_quadraticcurve;
+  window.canvas_beziercurve = canvas_beziercurve;
+  window.canvas_clearrect = canvas_clearrect;
   window.canvas_clear = canvas_clear;
   window.canvas_delete = canvas_delete;
   window.canvas_onclick_get = canvas_onclick_get;
