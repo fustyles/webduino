@@ -294,7 +294,7 @@ Blockly.JavaScript['canvas_clearrect'] = function (block) {
   var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC); 
-  var code = 'canvas_clearrect(' + value_id_ + ' + value_x_ + ','+ value_y_ + ',' + value_width_ + ',' + value_height_ + ');\n';
+  var code = 'canvas_clearrect(' + value_id_ + ',' + value_x_ + ','+ value_y_ + ',' + value_width_ + ',' + value_height_ + ');\n';
   return code;
 };
 
