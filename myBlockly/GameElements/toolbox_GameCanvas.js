@@ -258,6 +258,147 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '      </block>'+
 '    </value>'+  
 '  </block>'+
+'  <block type="canvas_quadraticcurve">'+
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+      
+'    <value name="x0_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="y0_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+           
+'    <value name="cp1x_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="cp1y_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+              
+'    <value name="x_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="y_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+    
+'    <value name="linewidth_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">5</field>'+
+'      </block>'+
+'    </value>'+          
+'    <value name="color_">'+
+'      <block type="colour_picker">'+
+'        <field name="COLOUR">#ff0000</field>'+
+'      </block>'+
+'    </value>'+ 
+'    <value name="fill_">'+
+'      <block type="logic_boolean">'+
+'        <field name="BOOL">FALSE</field>'+
+'      </block>'+
+'    </value>'+        
+'  </block>'+
+'  <block type="canvas_beziercurve">'+
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+      
+'    <value name="x0_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="y0_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+           
+'    <value name="cp1x_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="cp1y_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+       
+'    <value name="cp2x_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="cp2y_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+           
+'    <value name="x_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="y_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+    
+'    <value name="linewidth_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">5</field>'+
+'      </block>'+
+'    </value>'+          
+'    <value name="color_">'+
+'      <block type="colour_picker">'+
+'        <field name="COLOUR">#ff0000</field>'+
+'      </block>'+
+'    </value>'+ 
+'    <value name="fill_">'+
+'      <block type="logic_boolean">'+
+'        <field name="BOOL">FALSE</field>'+
+'      </block>'+
+'    </value>'+        
+'  </block>'+
+'  <block type="canvas_clearrect">'+
+'    <value name="id_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+      
+'    <value name="x_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="y_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+     
+'    <value name="width_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="height_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+        
+'  </block>'+ 
 '  <block type="canvas_clear">'+
 '    <value name="id_">'+
 '      <block type="text">'+
