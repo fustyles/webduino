@@ -445,9 +445,11 @@ Blockly.Blocks['music_delete'] = {
 
 Blockly.Blocks['canvas_create'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_CREATE_SHOW);    
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.CANVAS_CREATE_SHOW)
+      .setAlign(Blockly.ALIGN_RIGHT)    
       .appendField(Blockly.Msg.CANVAS_ID_SHOW); 
   this.appendValueInput("width_")
       .setCheck("Number")
@@ -477,13 +479,15 @@ Blockly.Blocks['canvas_create'] = {
 
 Blockly.Blocks['canvas_line'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_LINE_SHOW);     
   this.appendValueInput("id_")
       .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT) 
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);
   this.appendValueInput("linewidth_")
       .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_LINE_SHOW)    
+      .setAlign(Blockly.ALIGN_RIGHT)  
       .appendField(Blockly.Msg.CANVAS_LINEWIDTH_SHOW);    
   this.appendValueInput("x0_")
       .setCheck("Number")
@@ -513,13 +517,15 @@ Blockly.Blocks['canvas_line'] = {
 
 Blockly.Blocks['canvas_rect'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_RECT_SHOW);      
   this.appendValueInput("id_")
       .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT) 
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);
   this.appendValueInput("linewidth_")
       .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_RECT_SHOW)    
+      .setAlign(Blockly.ALIGN_RIGHT)   
       .appendField(Blockly.Msg.CANVAS_LINEWIDTH_SHOW);    
   this.appendValueInput("x0_")
       .setCheck("Number")
@@ -553,13 +559,15 @@ Blockly.Blocks['canvas_rect'] = {
 
 Blockly.Blocks['canvas_arc'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_ARC_SHOW);      
   this.appendValueInput("id_")
       .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT) 
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);
   this.appendValueInput("linewidth_")
       .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_ARC_SHOW)    
+      .setAlign(Blockly.ALIGN_RIGHT)   
       .appendField(Blockly.Msg.CANVAS_LINEWIDTH_SHOW);    
   this.appendValueInput("x0_")
       .setCheck("Number")
@@ -616,10 +624,11 @@ Blockly.Blocks['canvas_img_url'] = {
 
 Blockly.Blocks['canvas_img'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_IMG_SHOW);      
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_IMG_SHOW)
       .appendField(Blockly.Msg.ID_SHOW);  
   this.appendValueInput("sx_")
       .setCheck("Number")
@@ -661,14 +670,15 @@ Blockly.Blocks['canvas_img'] = {
 
 Blockly.Blocks['canvas_text'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_TEXT_SHOW);     
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);
   this.appendValueInput("text_")
       .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_TEXT_SHOW)    
+      .setAlign(Blockly.ALIGN_RIGHT)   
       .appendField(Blockly.Msg.CONTEXT_SHOW);    
   this.appendValueInput("x0_")
       .setCheck("Number")
@@ -706,13 +716,15 @@ Blockly.Blocks['canvas_text'] = {
 
 Blockly.Blocks['canvas_quadraticcurve'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_QUADRATICCURVE_SHOW);     
   this.appendValueInput("id_")
-      .setCheck(null)  
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT) 
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);  
   this.appendValueInput("x0_")
       .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_QUADRATICCURVE_SHOW)      
+      .setAlign(Blockly.ALIGN_RIGHT)     
       .appendField(Blockly.Msg.CANVAS_X0_SHOW);
   this.appendValueInput("y0_")
       .setCheck("Number")
@@ -754,13 +766,15 @@ Blockly.Blocks['canvas_quadraticcurve'] = {
 
 Blockly.Blocks['canvas_beziercurve'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_BEZIERCURVE_SHOW);     
   this.appendValueInput("id_")
-      .setCheck(null)   
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)    
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);  
   this.appendValueInput("x0_")
       .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_BEZIERCURVE_SHOW)      
+      .setAlign(Blockly.ALIGN_RIGHT)    
       .appendField(Blockly.Msg.CANVAS_X0_SHOW);
   this.appendValueInput("y0_")
       .setCheck("Number")
@@ -811,13 +825,15 @@ Blockly.Blocks['canvas_beziercurve'] = {
 
 Blockly.Blocks['canvas_clearrect'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_CLEARRECT_SHOW);     
   this.appendValueInput("id_")
-      .setCheck(null)    
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)     
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);  
   this.appendValueInput("x_")
       .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_CLEARRECT_SHOW)     
+      .setAlign(Blockly.ALIGN_RIGHT)    
       .appendField(Blockly.Msg.CANVAS_X_SHOW);
   this.appendValueInput("y_")
       .setCheck("Number")
@@ -839,11 +855,12 @@ Blockly.Blocks['canvas_clearrect'] = {
 
 Blockly.Blocks['canvas_clear'] = {
   init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_CLEAR_SHOW);      
   this.appendValueInput("id_")
       .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT) 
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);
-  this.appendDummyInput() 
-      .appendField(Blockly.Msg.CANVAS_CLEAR_SHOW);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -852,11 +869,12 @@ Blockly.Blocks['canvas_clear'] = {
 
 Blockly.Blocks['canvas_delete'] = {
   init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_DELETE_SHOW);      
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.CANVAS_ID_SHOW);
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.CANVAS_DELETE_SHOW);   
+      .setAlign(Blockly.ALIGN_RIGHT) 
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW); 
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -867,9 +885,8 @@ Blockly.Blocks['canvas_onclick_do'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.CANVAS_ID_SHOW);
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.CANVAS_ONCLICK_DO_SHOW);  
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW)
+      .appendField(Blockly.Msg.CANVAS_ONCLICK_DO_SHOW);     
   this.appendStatementInput("do_");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
@@ -882,8 +899,7 @@ Blockly.Blocks['canvas_onclick_get'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.CANVAS_ID_SHOW); 
-  this.appendDummyInput()
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW)
       .appendField(Blockly.Msg.ONCLICK_SHOW);    
   this.setInputsInline(true);
   this.setOutput(true, null); 
