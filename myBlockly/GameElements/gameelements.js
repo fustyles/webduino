@@ -495,6 +495,7 @@
     if (document.getElementById("gamecanvas_"+input_id)) {
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
       context.strokeStyle = input_color;
+      context.fillStyle = input_color;
       context.lineWidth = input_linewidth;
       context.beginPath();
       context.moveTo(input_x0,input_y0);
@@ -510,6 +511,7 @@
     if (document.getElementById("gamecanvas_"+input_id)) {
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
       context.strokeStyle = input_color;
+      context.fillStyle = input_color;
       context.lineWidth = input_linewidth;
       context.beginPath();
       context.moveTo(input_x0,input_y0);
