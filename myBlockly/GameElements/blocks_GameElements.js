@@ -4,6 +4,7 @@ Blockly.Blocks['table_create'] = {
       .appendField(Blockly.Msg.TABLE_CREATE_SHOW);
   this.appendValueInput("id_")
       .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_ID_SHOW);     
   this.appendValueInput("left_")
       .setCheck("Number")
@@ -161,6 +162,7 @@ Blockly.Blocks['table_td_border_set'] = {
       .appendField(Blockly.Msg.TABLE_TD_BORDER_SET_SHOW);    
   this.appendValueInput("id_")
       .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendValueInput("x_")
       .setCheck("Number")
@@ -238,6 +240,7 @@ Blockly.Blocks['table_td_insert_img'] = {
       .appendField(Blockly.Msg.TABLE_TD_INSERT_IMAGE_SHOW);        
   this.appendValueInput("id_")
       .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendValueInput("x_")
       .setCheck("Number")
@@ -297,13 +300,15 @@ Blockly.Blocks['table_td_img_move'] = {
 
 Blockly.Blocks['table_td_copy_move'] = {
   init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE_TD_COPY_MOVE_SHOW);       
   this.appendValueInput("id_")
       .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendValueInput("x0_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_COPY_MOVE_SHOW)
       .appendField(Blockly.Msg.TABLE_TD_X_SHOW);
   this.appendValueInput("y0_")
       .setCheck("Number")
@@ -350,6 +355,7 @@ Blockly.Blocks['table_td_insert_text'] = {
       .appendField(Blockly.Msg.TABLE_TD_INSERT_TEXT_SHOW);     
   this.appendValueInput("id_")
       .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendValueInput("x_")
       .setCheck("Number")
