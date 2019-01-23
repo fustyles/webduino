@@ -130,4 +130,4 @@ Blockly.Msg.CANVAS_CP1Y_SHOW = "cp1y";
 Blockly.Msg.CANVAS_CP2X_SHOW = "cp2x";
 Blockly.Msg.CANVAS_CP2Y_SHOW = "cp2y";
 Blockly.Msg.SETWINDOW_SHOW = "Set Run Window";
-Blockly.Msg.TIME_DELAY_SHOW = "Load resources of GameElements for new blocks.";
+Blockly.Msg.TIME_DELAY_SHOW = "GameElements initialize (load js File)";
