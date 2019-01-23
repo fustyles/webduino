@@ -137,3 +137,7 @@ Blockly.Msg.COLORPICKER_GET_SHOW = "取得";
 Blockly.Msg.CANVAS_QUADRATICCURVE_SHOW = "画二次贝兹曲线";
 Blockly.Msg.CANVAS_BEZIERCURVE_SHOW = "画三次贝兹曲线";
 Blockly.Msg.CANVAS_CLEARRECT_SHOW = "清除区域";
+Blockly.Msg.CANVAS_CP1X_SHOW = "cp1x";
+Blockly.Msg.CANVAS_CP1X_SHOW = "cp1y";
+Blockly.Msg.CANVAS_CP1X_SHOW = "cp2x";
+Blockly.Msg.CANVAS_CP1X_SHOW = "cp2y";
