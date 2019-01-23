@@ -490,7 +490,19 @@
         context.fillText(input_text,input_x0,input_y0);
     }
   } 
-  
+
+  function canvas_quadraticCurve(input_id,input_x0,input_y0,input_cp1x,input_cp1y,input_x,input_y,input_linewidth,input_color,input_fill) {
+
+  }
+
+  function canvas_bezierCurve(input_id,input_x0,input_y0,input_cp1x,input_cp1y,input_cp2x,input_cp2y,input_x,input_y,input_linewidth,input_color,input_fill) {
+
+  }
+
+  function canvas_clearRect(input_id,input_x,input_y,input_width,input_height) {
+
+  }
+
   function canvas_clear(input_id) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var canvas = document.getElementById("gamecanvas_"+input_id);
