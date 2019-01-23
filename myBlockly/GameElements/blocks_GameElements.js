@@ -726,14 +726,14 @@ Blockly.Blocks['canvas_quadraticcurve'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.CANVAS_CP1Y_SHOW);    
-  this.appendValueInput("x1_")
+  this.appendValueInput("x_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_X1_SHOW);    
-  this.appendValueInput("y1_")
+      .appendField(Blockly.Msg.CANVAS_X_SHOW);    
+  this.appendValueInput("y_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_Y1_SHOW);  
+      .appendField(Blockly.Msg.CANVAS_Y_SHOW);  
   this.appendValueInput("linewidth_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT) 
@@ -782,14 +782,14 @@ Blockly.Blocks['canvas_beziercurve'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.CANVAS_CP2Y_SHOW);    
-  this.appendValueInput("x1_")
+  this.appendValueInput("x_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_X1_SHOW);    
-  this.appendValueInput("y1_")
+      .appendField(Blockly.Msg.CANVAS_X_SHOW);    
+  this.appendValueInput("y_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_Y1_SHOW);  
+      .appendField(Blockly.Msg.CANVAS_Y_SHOW);  
   this.appendValueInput("linewidth_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
