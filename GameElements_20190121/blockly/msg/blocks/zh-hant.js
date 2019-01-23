@@ -130,4 +130,4 @@ Blockly.Msg.CANVAS_CP1Y_SHOW = "cp1y";
 Blockly.Msg.CANVAS_CP2X_SHOW = "cp2x";
 Blockly.Msg.CANVAS_CP2Y_SHOW = "cp2y";
 Blockly.Msg.SETWINDOW_SHOW = "設定執行視窗";
-Blockly.Msg.TIME_DELAY_SHOW = "遊戲元素新增積木載入程式檔";
+Blockly.Msg.TIME_DELAY_SHOW = "遊戲元素新增積木若無法執行請加入此積木";
