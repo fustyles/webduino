@@ -629,7 +629,7 @@ Blockly.Blocks['canvas_img'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID_SHOW);  
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);  
   this.appendValueInput("sx_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
