@@ -315,10 +315,8 @@ Blockly.Blocks['table_td_copy_move'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_TD_Y_SHOW);     
 this.appendDummyInput() 
-      .setAlign(Blockly.ALIGN_RIGHT)    
-      .appendField(" ")
+      .setAlign(Blockly.ALIGN_RIGHT)   
       .appendField(new Blockly.FieldDropdown([["copy to","copy"], ["move to","move"]]), "property_")
-      .appendField(" ");
   this.appendValueInput("x_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
