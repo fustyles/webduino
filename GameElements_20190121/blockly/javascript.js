@@ -484,12 +484,6 @@ Blockly.JavaScript['function_return'] = function (block) {
   return code;
 };
 
-Blockly.JavaScript['time_delay'] = function (block) {
-  var seconds = Blockly.JavaScript.valueToCode(block, 'seconds', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'await delay(' + seconds + ');\n';
-  return code;
-};
-
 Blockly.JavaScript['move_to_mouse'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_position = block.getFieldValue('position');
@@ -729,5 +723,11 @@ Blockly.JavaScript['body_set'] = function (block) {
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
   var code = 'body_set("' + value_property_ + '",' + value_value_ + ');\n';
+  return code;
+};
+
+
+Blockly.JavaScript['time_delay'] = function (block) {
+  var code = '';
   return code;
 };
