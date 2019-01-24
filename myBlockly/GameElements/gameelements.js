@@ -1055,7 +1055,6 @@
         obj.appendChild(option);
       }
     }
-    console.log(obj);
     obj.value = input_value;
     obj.style.zIndex = input_zindex;
     if (input_display==0)
@@ -1095,7 +1094,6 @@
             obj.appendChild(option);
           }
         }
-        console.log(obj);
       }
       else if (input_property=="value")
         obj.value = input_value;      
