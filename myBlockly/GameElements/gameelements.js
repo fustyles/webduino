@@ -1048,7 +1048,14 @@
     sel.style.width = input_width + 'px';
     sel.style.height = input_height + 'px';
     sel.style.opacity = input_opacity;
-    //sel.option = input_option;
+    if (input_option.length>0) {
+      for (var i = 0; i < input_option.length; i++) {
+        var option = document.createElement("option");
+        option.value = input_option[i];
+        option.text = input_option[i];
+        sel.appendChild(option);
+      }
+    }
     sel.value = input_value;
     sel.style.zIndex = input_zindex;
     if (input_display==0)
@@ -1073,8 +1080,22 @@
         document.getElementById("gameselect_"+input_id).style.height = input_value + "px";
       else if (input_property=="opacity")
         document.getElementById("gameselect_"+input_id).style.opacity = input_value;
-      else if (input_property=="option")
-        document.getElementById("gameselect_"+input_id).option = input_value; 
+      else if (input_property=="option") {
+       var sel = document.getElementById("gameselect_"+input_id);
+       if (sel.length>0) {
+          while (sel.length>0) {
+            sel.remove(sel.length-1);
+          }
+        } 
+        if (input_value.length>0) {
+          for (var i = 0; i < input_value.length; i++) {
+            var option = document.createElement("option");
+            option.value = input_value[i];
+            option.text = input_value[i];
+            sel.appendChild(option);
+          }
+        } 
+      }
       else if (input_property=="value")
         document.getElementById("gameselect_"+input_id).value = input_value;      
       else if (input_property=="zindex")
