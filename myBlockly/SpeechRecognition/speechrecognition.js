@@ -60,7 +60,6 @@ function startButton(event) {
   //recognition.lang = 'cmn-Hant-TW';
   recognition.start();
   ignore_onend = false;
-  final_span.innerHTML = '';
 }
 
 function Recognition_final_get() {
