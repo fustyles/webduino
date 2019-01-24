@@ -1669,11 +1669,11 @@ Blockly.Blocks['select_create'] = {
   this.appendValueInput("option_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.OPTION_SHOW); 
+      .appendField(Blockly.Msg.SELECT_OPTION_SHOW); 
   this.appendValueInput("value_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VALUE_SHOW);     
+      .appendField(Blockly.Msg.SELECT_VALUE_SHOW);     
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
