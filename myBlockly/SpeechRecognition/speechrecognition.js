@@ -1,15 +1,3 @@
-<div class="right">
-  <button id="start_button" onclick="startButton(event)">開始辨識</button>
-</div>
-<div id="results">
-  <span class="final" id="final_span"></span> <span class="interim" id=
-          "interim_span"></span>
-</div>
-
-
-
-
-<script>
 var final_transcript = '';
 var recognizing = false;
 var ignore_onend;
@@ -71,5 +59,3 @@ function startButton(event) {
   ignore_onend = false;
   final_span.innerHTML = '';
 }
-
-</script>
