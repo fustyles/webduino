@@ -64,5 +64,7 @@ function startButton(event) {
 }
 
 function Recognition_final_get() {
-  return ;
+  var result = Recognition_final;
+  Recognition_final = '';
+  return result;
 }
