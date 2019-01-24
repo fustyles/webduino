@@ -33,7 +33,7 @@ if ('webkitSpeechRecognition' in window) {
     recognizing = false;
     if (ignore_onend) return;
     if (!final_transcript) return;
-	startButton(event);
+    //startButton(event);
   };
   recognition.onresult = function(event) {
     var interim_transcript = '';
@@ -66,17 +66,7 @@ function startButton(event) {
     return;
   }
   final_transcript = '';
-  /*
-	var langs =
-	[['English',         ['en-US', 'United States']],
-	 ['中文',            ['cmn-Hans-CN', '普通话 (中国大陆)'],
-						 ['cmn-Hans-HK', '普通话 (香港)'],
-						 ['cmn-Hant-TW', '中文 (台灣)'],
-						 ['yue-Hant-HK', '粵語 (香港)']],
-	 ['日本語',           ['ja-JP']],
-	 ['Lingua latīna',   ['la']]];
-  */
-  recognition.lang = 'ja-JP';
+  //recognition.lang = 'cmn-Hant-TW';
   recognition.start();
   ignore_onend = false;
   final_span.innerHTML = '';
