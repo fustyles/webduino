@@ -1039,8 +1039,7 @@
   function select_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_option,input_value,input_zindex,input_display) {
     if (document.getElementById("gameselect_"+input_id)) 
       document.getElementById("gameselect_"+input_id).parentNode.removeChild(document.getElementById("gameselect_"+input_id));
-    var obj = document.createElement('input');
-    obj.type="select";
+    var obj = document.createElement("select");
     obj.id = "gameselect_"+input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
@@ -1096,6 +1095,7 @@
             obj.appendChild(option);
           }
         }
+        console.log(obj);
       }
       else if (input_property=="value")
         obj.value = input_value;      
