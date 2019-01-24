@@ -4,7 +4,7 @@ var ignore_onend;
 var two_line = /\n\n/g;
 var one_line = /\n/g;
 var first_char = /\S/;
-var Recognition_Result='';
+var Recognition_Result = '';
 
 if ('webkitSpeechRecognition' in window) {
   var recognition = new webkitSpeechRecognition();
