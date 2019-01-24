@@ -1,33 +1,111 @@
-Blockly.Blocks['setscreen'] = {
-  init: function() {
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.SETSCREEN_SHOW);  
-  this.appendValueInput("left")
-      .setCheck("Number")
-      .appendField(Blockly.Msg.SETSCREEN_LEFT_SHOW); 
-  this.appendValueInput("top")
-      .setCheck("Number")
-      .appendField(Blockly.Msg.SETSCREEN_TOP_SHOW);   
-  this.appendValueInput("width")
-      .setCheck("Number")
-      .appendField(Blockly.Msg.SETSCREEN_WIDTH_SHOW); 
-  this.appendValueInput("height")
-      .setCheck("Number")
-      .appendField(Blockly.Msg.SETSCREEN_HEIGHT_SHOW);   
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(90);
-  }
-};   
-  
-Blockly.Blocks['body_set'] = {
+Blockly.Blocks['SpeechRecognition_run'] = {
   init: function() {    
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.SETSCREEN_SHOW)
-      .appendField(new Blockly.FieldDropdown([["backgroundColor","backgroundColor"], ["backgroundImage","backgroundImage"]]), "property_");
-  this.appendValueInput("value_")
-      .setCheck(null);    
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_SHOW)
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_LANGUAGE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+        ["Afrikaans","af-ZA"],
+        ["አማርኛ","am-ET"],
+        ["Azərbaycanca","az-AZ"],
+        ["বাংলাদেশ","bn-BD"],
+        ["ভারত","bn-IN"],
+        ["BahasaIndonesia","id-ID"],
+        ["BahasaMelayu","ms-MY"],
+        ["Català","ca-ES"],
+        ["Čeština","cs-CZ"],
+        ["Dansk","da-DK"],
+        ["Deutsch","de-DE"],
+        ["Australia","en-AU"],
+        ["Canada","en-CA"],
+        ["India","en-IN"],
+        ["Kenya","en-KE"],
+        ["Tanzania","en-TZ"],
+        ["Ghana","en-GH"],
+        ["NewZealand","en-NZ"],
+        ["Nigeria","en-NG"],
+        ["SouthAfrica","en-ZA"],
+        ["Philippines","en-PH"],
+        ["UnitedKingdom","en-GB"],
+        ["UnitedStates","en-US"],
+        ["Argentina","es-AR"],
+        ["Bolivia","es-BO"],
+        ["Chile","es-CL"],
+        ["Colombia","es-CO"],
+        ["CostaRica","es-CR"],
+        ["Ecuador","es-EC"],
+        ["ElSalvador","es-SV"],
+        ["España","es-ES"],
+        ["EstadosUnidos","es-US"],
+        ["Guatemala","es-GT"],
+        ["Honduras","es-HN"],
+        ["México","es-MX"],
+        ["Nicaragua","es-NI"],
+        ["Panamá","es-PA"],
+        ["Paraguay","es-PY"],
+        ["Perú","es-PE"],
+        ["PuertoRico","es-PR"],
+        ["RepúblicaDominicana","es-DO"],
+        ["Uruguay","es-UY"],
+        ["Venezuela","es-VE"],
+        ["Euskara","eu-ES"],
+        ["Filipino","fil-PH"],
+        ["Français","fr-FR"],
+        ["BasaJawa","jv-ID"],
+        ["Galego","gl-ES"],
+        ["ગુજરાતી","gu-IN"],
+        ["Hrvatski","hr-HR"],
+        ["IsiZulu","zu-ZA"],
+        ["Íslenska","is-IS"],
+        ["Italia","it-IT"],
+        ["Svizzera","it-CH"],
+        ["ಕನ್ನಡ","kn-IN"],
+        ["ភាសាខ្មែរ","km-KH"],
+        ["Latviešu","lv-LV"],
+        ["Lietuvių","lt-LT"],
+        ["മലയാളം","ml-IN"],
+        ["मराठी","mr-IN"],
+        ["Magyar","hu-HU"],
+        ["ລາວ","lo-LA"],
+        ["Nederlands","nl-NL"],
+        ["नेपालीभाषा","ne-NP"],
+        ["Norskbokmål","nb-NO"],
+        ["Polski","pl-PL"],
+        ["Brasil","pt-BR"],
+        ["Portugal","pt-PT"],
+        ["Română","ro-RO"],
+        ["සිංහල","si-LK"],
+        ["Slovenščina","sl-SI"],
+        ["BasaSunda","su-ID"],
+        ["Slovenčina","sk-SK"],
+        ["Suomi","fi-FI"],
+        ["Svenska","sv-SE"],
+        ["Tanzania","sw-TZ"],
+        ["Kenya","sw-KE"],
+        ["ქართული","ka-GE"],
+        ["Հայերեն","hy-AM"],
+        ["இந்தியா","ta-IN"],
+        ["சிங்கப்பூர்","ta-SG"],
+        ["இலங்கை","ta-LK"],
+        ["மலேசியா","ta-MY"],
+        ["తెలుగు","te-IN"],
+        ["TiếngViệt","vi-VN"],
+        ["Türkçe","tr-TR"],
+        ["پاکستان","ur-PK"],
+        ["بھارت","ur-IN"],
+        ["Ελληνικά","el-GR"],
+        ["български","bg-BG"],
+        ["Pусский","ru-RU"],
+        ["Српски","sr-RS"],
+        ["Українська","uk-UA"],
+        ["한국어","ko-KR"],
+        ["普通话(中国大陆)","cmn-Hans-CN"],
+        ["普通话(香港)","cmn-Hans-HK"],
+        ["中文(台灣)","cmn-Hant-TW"],
+        ["粵語(香港)","yue-Hant-HK"],
+        ["日本語","ja-JP"],
+        ["हिन्दी","hi-IN"],
+        ["ภาษาไทย","th-TH"]
+        ]), "language_");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
