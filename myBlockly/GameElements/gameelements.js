@@ -1054,8 +1054,6 @@
         option.value = input_option[i][0];
         option.text = input_option[i][1];
         obj.appendChild(option);
-        console.log(option);
-        console.log(obj.length);
       }
     }
     obj.value = input_value;
@@ -1068,6 +1066,7 @@
     obj.setAttribute("onclick", "javascript:image_onclickid_set(this);");
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(obj);
+    console.log(obj.length);
   }
 
   function select_set(input_id,input_property,input_value) {
