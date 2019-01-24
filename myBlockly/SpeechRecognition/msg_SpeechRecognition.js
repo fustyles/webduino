@@ -1,8 +1,4 @@
-Blockly.Msg["SETSCREEN"] = "SetScreen";
-Blockly.Msg["SETSCREEN_HUE"] = "280";
-
-Blockly.Msg.SETSCREEN_SHOW = "Set Run Screen";
-Blockly.Msg.SETSCREEN_LEFT_SHOW = "left";
-Blockly.Msg.SETSCREEN_TOP_SHOW = "top";
-Blockly.Msg.SETSCREEN_WIDTH_SHOW = "width";
-Blockly.Msg.SETSCREEN_HEIGHT_SHOW = "height";
+Blockly.Msg.SPEECHRECOGNITION_SHOW = "Start speech recognition";
+Blockly.Msg.SPEECHRECOGNITION_LANGUAGE_SHOW = "Language";
+Blockly.Msg.SPEECHRECOGNITION_GET_SHOW = "Get speech recognition text";
+Blockly.Msg.SPEECHRECOGNITION_LISTENER_SHOW = "Start to listener recognition text";
