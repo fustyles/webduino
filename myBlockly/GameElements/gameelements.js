@@ -1048,6 +1048,7 @@
     obj.style.width = input_width + 'px';
     obj.style.height = input_height + 'px';
     obj.style.opacity = input_opacity;
+    console.log(input_option);
     if (input_option.length>0) {
       for (var i = 0; i < input_option.length; i++) {
         var option = document.createElement("option");
