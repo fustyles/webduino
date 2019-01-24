@@ -1089,14 +1089,14 @@
             obj.remove(obj.length-1);
           }
         } 
-        if (input_value.length>0) {
-          for (var i = 0; i < input_value.length; i++) {
+        if (input_option.length>0) {
+          for (var i = 0; i < input_option.length; i++) {
             var option = document.createElement("option");
-            option.value = input_value[i];
-            option.text = input_value[i];
+            option.value = input_option[i][0];
+            option.text = input_option[i][1];
             obj.appendChild(option);
           }
-        } 
+        }
       }
       else if (input_property=="value")
         obj.value = input_value;      
