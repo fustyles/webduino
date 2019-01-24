@@ -1053,7 +1053,7 @@
         var option = document.createElement("option");
         option.value = input_option[i][0];
         option.text = input_option[i][1];
-        obj.options[obj.options.length] = option;
+        obj.options[obj.length] = option;
       }
     }
     obj.value = input_value;
@@ -1093,7 +1093,7 @@
             var option = document.createElement("option");
             option.value = input_value[i][0];
             option.text = input_value[i][1];
-            obj.options[obj.options.length] = option;
+            obj.options[obj.length] = option;
           }
         }
       }
