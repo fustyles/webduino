@@ -1,8 +1,4 @@
-Blockly.Msg["SETSCREEN"] = "設定視窗";
-Blockly.Msg["SETSCREEN_HUE"] = "280";
-
-Blockly.Msg.SETSCREEN_SHOW = "設定執行視窗";
-Blockly.Msg.SETSCREEN_LEFT_SHOW = "靠左";
-Blockly.Msg.SETSCREEN_TOP_SHOW = "靠上";
-Blockly.Msg.SETSCREEN_WIDTH_SHOW = "寬度";
-Blockly.Msg.SETSCREEN_HEIGHT_SHOW = "高度";
+Blockly.Msg.SPEECHRECOGNITION_SHOW = "開始語音辨識";
+Blockly.Msg.SPEECHRECOGNITION_LANGUAGE_SHOW = "語言";
+Blockly.Msg.SPEECHRECOGNITION_GET_SHOW = "取得語音辨識文字";
+Blockly.Msg.SPEECHRECOGNITION_LISTENER_SHOW = "開始監聽語音辨識";
