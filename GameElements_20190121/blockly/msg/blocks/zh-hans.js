@@ -148,4 +148,4 @@ Blockly.Msg.RANGE_SET_SHOW = "设定";
 Blockly.Msg.RANGE_DELETE_SHOW = "删除";
 Blockly.Msg.RANGE_ONCHANGE_SHOW = "改变数值后执行"; 
 Blockly.Msg.SETWINDOW_SHOW = "设定执行视窗";
-Blockly.Msg.TIPS_SHOW = "游戏元素初始化(新增的积木载入JS档，否则无法执行)";
+Blockly.Msg.TIPS_SHOW = "游戏元素初始化 (载入JS档)";
