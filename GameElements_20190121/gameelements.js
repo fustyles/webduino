@@ -1173,6 +1173,128 @@
     else
       return 0;
   }
+	
+  function range_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_max,input_min,input_step,input_value,input_zindex,input_display) {
+    if (document.getElementById("gamerange_"+input_id)) 
+      document.getElementById("gamerange_"+input_id).parentNode.removeChild(document.getElementById("gamerange_"+input_id));
+    var obj = document.createElement('input');
+    obj.type="range";
+    obj.id = "gamerange_"+input_id;
+    obj.style.position = "absolute";
+    obj.style.left = input_left + 'px';
+    obj.style.top = input_top + 'px';
+    obj.style.width = input_width + 'px';
+    obj.style.height = input_height + 'px';
+    obj.style.opacity = input_opacity;
+	obj.max = input_max;
+	obj.min = input_min;
+	obj.step = input_step;
+    obj.value = input_value;
+    obj.style.zIndex = input_zindex;
+    if (input_display==0)
+      obj.style.display = "none";
+    else
+      obj.style.display = "block";
+    //obj.draggable="true";
+    obj.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+    obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
+    document.body.appendChild(obj);
+  }
+
+  function range_set(input_id,input_property,input_value) {
+    if (document.getElementById("gamerange_"+input_id)) {
+	  var obj = document.getElementById("gamerange_"+input_id);
+      if (input_property=="left")
+        obj.style.left = input_value + "px";
+      else if (input_property=="top")
+        obj.style.top = input_value + "px";
+      else if (input_property=="width")
+        obj.style.width = input_value + "px";
+      else if (input_property=="height")
+        obj.style.height = input_value + "px";
+      else if (input_property=="opacity")
+        obj.style.opacity = input_value;
+      else if (input_property=="max")
+        obj.max = input_value;      
+      else if (input_property=="min")
+        obj.min = input_value;      
+      else if (input_property=="step")
+        obj.step = input_value;      
+      else if (input_property=="value")
+        obj.value = input_value;      
+      else if (input_property=="zindex")
+        obj.style.zIndex = input_value;
+      else if (input_property=="display"){ 
+        if (input_value==1)
+          obj.style.display = "block";    
+        else if (input_value==0)
+          obj.style.display = "none";
+      }
+      else if (input_property=="disabled")
+        obj.disabled = input_value;
+      else if (input_property=="draggable")
+        obj.draggable = input_value;		    
+    }
+  }
+
+  function range_get(input_id,input_property){
+    if (document.getElementById("gamerange_"+input_id)) {
+	  var obj = document.getElementById("gamerange_"+input_id);
+      if (input_property=="left")
+        return Number(obj.style.left.replace(/px/ig,""));
+      else if (input_property=="top")
+        return Number(obj.style.top.replace(/px/ig,""));
+      else if (input_property=="width")
+        return Number(obj.style.width.replace(/px/ig,""));
+      else if (input_property=="height")
+        return Number(obj.style.height.replace(/px/ig,""));
+      else if (input_property=="opacity")
+        return Number(obj.style.opacity);
+      else if (input_property=="max")
+        return obj.max;
+      else if (input_property=="min")
+        return obj.min;
+      else if (input_property=="step")
+        return obj.step;
+      else if (input_property=="value")
+        return obj.value;
+      else if (input_property=="zindex")
+        return obj.style.zIndex;
+      else if (input_property=="display")
+        return obj.style.display;
+      else if (input_property=="disabled")
+        return obj.disabled;
+      else if (input_property=="draggable")
+        return obj.draggable;	    
+    }
+    else
+      return "";
+  }
+
+  function range_delete(input_id) {
+    if (document.getElementById("gamerange_"+input_id))
+      document.getElementById("gamerange_"+input_id).parentNode.removeChild(document.getElementById("gamerange_"+input_id));
+  }
+
+  function range_onclick_get(input_id) {
+    if (onclickid==("gamerange_"+input_id))
+    {
+      onclickid="";
+      return 1;
+    }
+    else if (onclickid.indexOf("gametable_td_")==0){     
+      if (document.getElementById(onclickid).hasChildNodes()) {
+        if (document.getElementById(onclickid).firstChild.id==("gamerange_"+input_id)) {
+          onclickid="";
+          return 1;
+        } else 
+          return 0;
+      } else 
+        return 0;
+    }
+    else
+      return 0;
+  }        	
   
   function body_set(input_property,input_value) {
     if (input_property=="backgroundColor")
@@ -1249,6 +1371,11 @@
   window.select_get = select_get;
   window.select_delete = select_delete;
   window.select_onclick_get = select_onclick_get;
+  window.range_create = range_create;
+  window.range_set = range_set;
+  window.range_get = range_get;
+  window.range_delete = range_delete;
+  window.range_onclick_get = range_onclick_get;	
   window.text_to_number = text_to_number;
   window.body_set = body_set;
   
