@@ -1053,7 +1053,7 @@
         var option = document.createElement("option");
         option.value = input_option[i][0];
         option.text = input_option[i][1];
-        obj.appendChild(option);
+        obj.options[obj.options.length] = option;
       }
     }
     obj.value = input_value;
@@ -1088,12 +1088,12 @@
             obj.remove(obj.options.length-1);
           }
         } 
-        if (input_option.length>0) {
-          for (var i = 0; i < input_option.length; i++) {
+        if (input_value.length>0) {
+          for (var i = 0; i < input_value.length; i++) {
             var option = document.createElement("option");
-            option.value = input_option[i][0];
-            option.text = input_option[i][1];
-            obj.appendChild(option);
+            option.value = input_value[i][0];
+            option.text = input_value[i][1];
+            obj.options[obj.options.length] = option;
           }
         }
       }
