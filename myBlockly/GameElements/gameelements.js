@@ -1048,14 +1048,14 @@
     obj.style.width = input_width + 'px';
     obj.style.height = input_height + 'px';
     obj.style.opacity = input_opacity;
-    console.log(input_option);
-    console.log(input_option.length);
     if (input_option.length>0) {
       for (var i = 0; i < input_option.length; i++) {
         var option = document.createElement("option");
         option.value = input_option[i][0];
         option.text = input_option[i][1];
         obj.appendChild(option);
+        console.log(option);
+        console.log(obj.length);
       }
     }
     obj.value = input_value;
