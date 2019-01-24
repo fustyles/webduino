@@ -4,6 +4,7 @@ var ignore_onend;
 var two_line = /\n\n/g;
 var one_line = /\n/g;
 var first_char = /\S/;
+var Recognition_Result='';
 
 if ('webkitSpeechRecognition' in window) {
   var recognition = new webkitSpeechRecognition();
@@ -34,8 +35,10 @@ if ('webkitSpeechRecognition' in window) {
     }
     final_transcript = capitalize(final_transcript);
     document.getElementById("showText").innerHTML = linebreak(interim_transcript);
-    if (linebreak(interim_transcript)=='')
+    if (linebreak(interim_transcript)=='') {
       document.getElementById("showText").innerHTML=linebreak(final_transcript);
+      Recognition_Result = linebreak(final_transcript);
+    }
   };
 }
 
