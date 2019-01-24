@@ -1714,7 +1714,7 @@ Blockly.Blocks['select_get'] = {
       .appendField(Blockly.Msg.SELECT_ID_SHOW);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.SELECT_GET_SHOW)
-      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["opacity","opacity"], ["value","value"], ["zindex","zindex"], ["display","display"], ["disabled","disabled"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["opacity","opacity"], ["selectedValue","selectedValue"], ["selectedText","selectedText"], ["selectedIndex","selectedIndex"], ["length","length"], ["zindex","zindex"], ["display","display"], ["disabled","disabled"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
