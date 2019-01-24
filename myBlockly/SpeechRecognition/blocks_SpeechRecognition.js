@@ -112,3 +112,25 @@ Blockly.Blocks['SpeechRecognition_run'] = {
   this.setColour(60);
   }
 };  
+
+Blockly.Blocks['SpeechRecognition_get'] = {
+  init: function () {   
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['SpeechRecognition_listener'] = {
+  init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_LISTENER_SHOW); 
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
