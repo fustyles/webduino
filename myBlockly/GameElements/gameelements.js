@@ -1083,9 +1083,9 @@
       else if (input_property=="opacity")
         obj.style.opacity = input_value;
       else if (input_property=="option") {
-       if (obj.length>0) {
-          while (obj.length>0) {
-            obj.remove(obj.length-1);
+       if (obj.options.length>0) {
+          while (obj.options.length>0) {
+            obj.remove(obj.options.length-1);
           }
         } 
         if (input_option.length>0) {
