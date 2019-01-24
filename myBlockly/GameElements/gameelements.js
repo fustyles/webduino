@@ -874,6 +874,8 @@
       }
       else if (input_property=="disabled")
         obj.disabled = input_value;
+      else if (input_property=="draggable")
+        obj.draggable = input_value;	    
     }
   }
  
@@ -906,6 +908,8 @@
         return obj.style.display;
       else if (input_property=="disabled")
         return obj.disabled;
+      else if (input_property=="draggable")
+        return obj.draggable;		    
     }
     else
       return "";
@@ -985,6 +989,8 @@
       }
       else if (input_property=="disabled")
         obj.disabled = input_value;
+      else if (input_property=="draggable")
+        obj.draggable = input_value;	    
     }
   }
 
@@ -1009,6 +1015,8 @@
         return obj.style.display;
       else if (input_property=="disabled")
         return obj.disabled;
+      else if (input_property=="draggable")
+        return obj.draggable;		    
     }
     else
       return "";
@@ -1110,6 +1118,8 @@
       }
       else if (input_property=="disabled")
         obj.disabled = input_value;
+      else if (input_property=="draggable")
+        obj.draggable = input_value;	    
     }
   }
 
@@ -1139,7 +1149,9 @@
       else if (input_property=="display")
         return obj.style.display;
       else if (input_property=="disabled")
-        return obj.disabled;
+        return obj.disabled;   
+      else if (input_property=="draggable")
+        return obj.draggable;		    
     }
     else
       return "";
