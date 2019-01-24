@@ -821,78 +821,77 @@
     else if (input_property=="offsetY")
       return mouse_offsety;    
   } 
-  
-  function text_to_number(input_text) {
-    return Number(input_text);
-  } 
 
   function button_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_bgcolor,input_value,input_zindex,input_display) {
     if (document.getElementById("gamebutton_"+input_id)) 
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
-    var btn = document.createElement('input');
-    btn.type="button";
-    btn.id = "gamebutton_"+input_id;
-    btn.style.position = "absolute";
-    btn.style.left = input_left + 'px';
-    btn.style.top = input_top + 'px';
-    btn.style.width = input_width + 'px';
-    btn.style.height = input_height + 'px';
-    btn.style.opacity = input_opacity;
-    btn.style.background = input_bgcolor;
-    btn.value = input_value;
-    btn.style.zIndex = input_zindex;
+    var obj = document.createElement('input');
+    obj.type="button";
+    obj.id = "gamebutton_"+input_id;
+    obj.style.position = "absolute";
+    obj.style.left = input_left + 'px';
+    obj.style.top = input_top + 'px';
+    obj.style.width = input_width + 'px';
+    obj.style.height = input_height + 'px';
+    obj.style.opacity = input_opacity;
+    obj.style.background = input_bgcolor;
+    obj.value = input_value;
+    obj.style.zIndex = input_zindex;
     if (input_display==0)
-      btn.style.display = "none";
+      obj.style.display = "none";
     else
-      btn.style.display = "block";
-    btn.draggable="true";
-    btn.setAttribute("onclick", "javascript:image_onclickid_set(this);");
-    btn.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
-    document.body.appendChild(btn);
+      obj.style.display = "block";
+    obj.draggable="true";
+    obj.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+    obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
+    document.body.appendChild(obj);
   }
 
   function button_set(input_id,input_property,input_value) {
     if (document.getElementById("gamebutton_"+input_id)) {
+	  var obj = document.getElementById("gamebutton_"+input_id);
       if (input_property=="left")
-        document.getElementById("gamebutton_"+input_id).style.left = input_value + "px";
+        obj.style.left = input_value + "px";
       else if (input_property=="top")
-        document.getElementById("gamebutton_"+input_id).style.top = input_value + "px";
+        obj.style.top = input_value + "px";
       else if (input_property=="width")
-        document.getElementById("gamebutton_"+input_id).style.width = input_value + "px";
+        obj.style.width = input_value + "px";
       else if (input_property=="height")
-        document.getElementById("gamebutton_"+input_id).style.height = input_value + "px";
+        obj.style.height = input_value + "px";
       else if (input_property=="opacity")
-        document.getElementById("gamebutton_"+input_id).style.opacity = input_value;
+        obj.style.opacity = input_value;
       else if (input_property=="background")
-        document.getElementById("gamebutton_"+input_id).style.background = input_value;
+        obj.style.background = input_value;
       else if (input_property=="value")
-        document.getElementById("gamebutton_"+input_id).value = input_value;      
+        obj.value = input_value;      
       else if (input_property=="zindex")
-        document.getElementById("gamebutton_"+input_id).style.zIndex = input_value;
+        obj.style.zIndex = input_value;
       else if (input_property=="display"){ 
         if (input_value==1)
-          document.getElementById("gamebutton_"+input_id).style.display = "block";    
+          obj.style.display = "block";    
         else if (input_value==0)
-          document.getElementById("gamebutton_"+input_id).style.display = "none";
+          obj.style.display = "none";
       }
+      else if (input_property=="disabled")
+        obj.disabled = input_value;
     }
   }
-
-  
+ 
   function button_get(input_id,input_property){
     if (document.getElementById("gamebutton_"+input_id)) {
+	  var obj = document.getElementById("gamebutton_"+input_id);
       if (input_property=="left")
-        return Number(document.getElementById("gamebutton_"+input_id).style.left.replace(/px/ig,""));
+        return Number(obj.style.left.replace(/px/ig,""));
       else if (input_property=="top")
-        return Number(document.getElementById("gamebutton_"+input_id).style.top.replace(/px/ig,""));
+        return Number(obj.style.top.replace(/px/ig,""));
       else if (input_property=="width")
-        return Number(document.getElementById("gamebutton_"+input_id).style.width.replace(/px/ig,""));
+        return Number(obj.style.width.replace(/px/ig,""));
       else if (input_property=="height")
-        return Number(document.getElementById("gamebutton_"+input_id).style.height.replace(/px/ig,""));
+        return Number(obj.style.height.replace(/px/ig,""));
       else if (input_property=="opacity")
-        return Number(document.getElementById("gamebutton_"+input_id).style.opacity);
+        return Number(obj.style.opacity);
       else if (input_property=="background") {
-        var rgb=document.getElementById("gamebutton_"+input_id).style.background;
+        var rgb=obj.style.background;
         var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
         var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
         var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
@@ -900,11 +899,13 @@
         return "#"+r+g+b;
       }
       else if (input_property=="value")
-        return document.getElementById("gamebutton_"+input_id).value;
+        return obj.value;
       else if (input_property=="zindex")
-        return document.getElementById("gamebutton_"+input_id).style.zIndex;
+        return obj.style.zIndex;
       else if (input_property=="display")
-        return document.getElementById("gamebutton_"+input_id).style.display;
+        return obj.style.display;
+      else if (input_property=="disabled")
+        return obj.disabled;
     }
     else
       return "";
@@ -934,78 +935,80 @@
     else
       return 0;
   }
-  
+
   function colorpicker_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_value,input_zindex,input_display) {
     if (document.getElementById("gamecolor_"+input_id)) 
       document.getElementById("gamecolor_"+input_id).parentNode.removeChild(document.getElementById("gamecolor_"+input_id));
-    var cp = document.createElement('input');
-    cp.type="color";
-    cp.id = "gamecolor_"+input_id;
-    cp.style.position = "absolute";
-    cp.style.left = input_left + 'px';
-    cp.style.top = input_top + 'px';
-    cp.style.width = input_width + 'px';
-    cp.style.height = input_height + 'px';
-    cp.style.opacity = input_opacity;
-    cp.value = input_value;
-    cp.style.zIndex = input_zindex;
+    var obj = document.createElement('input');
+    obj.type="color";
+    obj.id = "gamecolor_"+input_id;
+    obj.style.position = "absolute";
+    obj.style.left = input_left + 'px';
+    obj.style.top = input_top + 'px';
+    obj.style.width = input_width + 'px';
+    obj.style.height = input_height + 'px';
+    obj.style.opacity = input_opacity;
+    obj.value = input_value;
+    obj.style.zIndex = input_zindex;
     if (input_display==0)
-      cp.style.display = "none";
+      obj.style.display = "none";
     else
-      cp.style.display = "block";
-    cp.draggable="true";
-    cp.setAttribute("onclick", "javascript:image_onclickid_set(this);");
-    cp.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
-    document.body.appendChild(cp);
+      obj.style.display = "block";
+    obj.draggable="true";
+    obj.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+    obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
+    document.body.appendChild(obj);
   }
 
   function colorpicker_set(input_id,input_property,input_value) {
     if (document.getElementById("gamecolor_"+input_id)) {
+	  var obj = document.getElementById("gamecolor_"+input_id);
       if (input_property=="left")
-        document.getElementById("gamecolor_"+input_id).style.left = input_value + "px";
+        obj.style.left = input_value + "px";
       else if (input_property=="top")
-        document.getElementById("gamecolor_"+input_id).style.top = input_value + "px";
+        obj.style.top = input_value + "px";
       else if (input_property=="width")
-        document.getElementById("gamecolor_"+input_id).style.width = input_value + "px";
+        obj.style.width = input_value + "px";
       else if (input_property=="height")
-        document.getElementById("gamecolor_"+input_id).style.height = input_value + "px";
+        obj.style.height = input_value + "px";
       else if (input_property=="opacity")
-        document.getElementById("gamecolor_"+input_id).style.opacity = input_value;
+        obj.style.opacity = input_value;
       else if (input_property=="value")
-        document.getElementById("gamecolor_"+input_id).value = input_value;      
+        obj.value = input_value;      
       else if (input_property=="zindex")
-        document.getElementById("gamecolor_"+input_id).style.zIndex = input_value;
+        obj.style.zIndex = input_value;
       else if (input_property=="display"){ 
         if (input_value==1)
-          document.getElementById("gamecolor_"+input_id).style.display = "block";    
+          obj.style.display = "block";    
         else if (input_value==0)
-          document.getElementById("gamecolor_"+input_id).style.display = "none";
+          obj.style.display = "none";
       }
       else if (input_property=="disabled")
-        document.getElementById("gamecolor_"+input_id).disabled = input_value;
+        obj.disabled = input_value;
     }
   }
 
   function colorpicker_get(input_id,input_property){
     if (document.getElementById("gamecolor_"+input_id)) {
+	  var obj = document.getElementById("gamecolor_"+input_id);
       if (input_property=="left")
-        return Number(document.getElementById("gamecolor_"+input_id).style.left.replace(/px/ig,""));
+        return Number(obj.style.left.replace(/px/ig,""));
       else if (input_property=="top")
-        return Number(document.getElementById("gamecolor_"+input_id).style.top.replace(/px/ig,""));
+        return Number(obj.style.top.replace(/px/ig,""));
       else if (input_property=="width")
-        return Number(document.getElementById("gamecolor_"+input_id).style.width.replace(/px/ig,""));
+        return Number(obj.style.width.replace(/px/ig,""));
       else if (input_property=="height")
-        return Number(document.getElementById("gamecolor_"+input_id).style.height.replace(/px/ig,""));
+        return Number(obj.style.height.replace(/px/ig,""));
       else if (input_property=="opacity")
-        return Number(document.getElementById("gamecolor_"+input_id).style.opacity);
+        return Number(obj.style.opacity);
       else if (input_property=="value")
-        return document.getElementById("gamecolor_"+input_id).value;
+        return obj.value;
       else if (input_property=="zindex")
-        return document.getElementById("gamecolor_"+input_id).style.zIndex;
+        return obj.style.zIndex;
       else if (input_property=="display")
-        return document.getElementById("gamecolor_"+input_id).style.display;
+        return obj.style.display;
       else if (input_property=="disabled")
-        return document.getElementById("gamecolor_"+input_id).disabled;
+        return obj.disabled;
     }
     else
       return "";
@@ -1035,7 +1038,7 @@
     else
       return 0;
   }
-  
+
   function select_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_option,input_value,input_zindex,input_display) {
     if (document.getElementById("gameselect_"+input_id)) 
       document.getElementById("gameselect_"+input_id).parentNode.removeChild(document.getElementById("gameselect_"+input_id));
@@ -1165,9 +1168,13 @@
     }
     else
       return 0;
-  }  
+  }
   
-   function body_set(input_property,input_value) {
+  function text_to_number(input_text) {
+    return Number(input_text);
+  } 
+  
+  function body_set(input_property,input_value) {
     if (input_property=="backgroundColor")
       document.body.style.backgroundColor = input_value;
     else if (input_property=="backgroundImage") 
