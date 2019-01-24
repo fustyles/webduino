@@ -1039,52 +1039,52 @@
   function select_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_option,input_value,input_zindex,input_display) {
     if (document.getElementById("gameselect_"+input_id)) 
       document.getElementById("gameselect_"+input_id).parentNode.removeChild(document.getElementById("gameselect_"+input_id));
-    var sel = document.createElement('input');
-    sel.type="select";
-    sel.id = "gameselect_"+input_id;
-    sel.style.position = "absolute";
-    sel.style.left = input_left + 'px';
-    sel.style.top = input_top + 'px';
-    sel.style.width = input_width + 'px';
-    sel.style.height = input_height + 'px';
-    sel.style.opacity = input_opacity;
+    var obj = document.createElement('input');
+    obj.type="select";
+    obj.id = "gameselect_"+input_id;
+    obj.style.position = "absolute";
+    obj.style.left = input_left + 'px';
+    obj.style.top = input_top + 'px';
+    obj.style.width = input_width + 'px';
+    obj.style.height = input_height + 'px';
+    obj.style.opacity = input_opacity;
     if (input_option.length>0) {
       for (var i = 0; i < input_option.length; i++) {
         var option = document.createElement("option");
         option.value = input_option[i];
         option.text = input_option[i];
-        sel.appendChild(option);
+        obj.appendChild(option);
       }
     }
-    sel.value = input_value;
-    sel.style.zIndex = input_zindex;
+    obj.value = input_value;
+    obj.style.zIndex = input_zindex;
     if (input_display==0)
-      sel.style.display = "none";
+      obj.style.display = "none";
     else
-      sel.style.display = "block";
-    sel.draggable="true";
-    sel.setAttribute("onclick", "javascript:image_onclickid_set(this);");
-    sel.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
-    document.body.appendChild(sel);
+      obj.style.display = "block";
+    obj.draggable="true";
+    obj.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+    obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
+    document.body.appendChild(obj);
   }
 
   function select_set(input_id,input_property,input_value) {
     if (document.getElementById("gameselect_"+input_id)) {
+      var obj = document.getElementById("gameselect_"+input_id);
       if (input_property=="left")
-        document.getElementById("gameselect_"+input_id).style.left = input_value + "px";
+        obj.style.left = input_value + "px";
       else if (input_property=="top")
-        document.getElementById("gameselect_"+input_id).style.top = input_value + "px";
+        obj.style.top = input_value + "px";
       else if (input_property=="width")
-        document.getElementById("gameselect_"+input_id).style.width = input_value + "px";
+        obj.style.width = input_value + "px";
       else if (input_property=="height")
-        document.getElementById("gameselect_"+input_id).style.height = input_value + "px";
+        obj.style.height = input_value + "px";
       else if (input_property=="opacity")
-        document.getElementById("gameselect_"+input_id).style.opacity = input_value;
+        obj.style.opacity = input_value;
       else if (input_property=="option") {
-       var sel = document.getElementById("gameselect_"+input_id);
-       if (sel.length>0) {
-          while (sel.length>0) {
-            sel.remove(sel.length-1);
+       if (obj.length>0) {
+          while (obj.length>0) {
+            obj.remove(obj.length-1);
           }
         } 
         if (input_value.length>0) {
@@ -1092,45 +1092,52 @@
             var option = document.createElement("option");
             option.value = input_value[i];
             option.text = input_value[i];
-            sel.appendChild(option);
+            obj.appendChild(option);
           }
         } 
       }
       else if (input_property=="value")
-        document.getElementById("gameselect_"+input_id).value = input_value;      
+        obj.value = input_value;      
       else if (input_property=="zindex")
-        document.getElementById("gameselect_"+input_id).style.zIndex = input_value;
+        obj.style.zIndex = input_value;
       else if (input_property=="display"){ 
         if (input_value==1)
-          document.getElementById("gameselect_"+input_id).style.display = "block";    
+          obj.style.display = "block";    
         else if (input_value==0)
-          document.getElementById("gameselect_"+input_id).style.display = "none";
+          obj.style.display = "none";
       }
       else if (input_property=="disabled")
-        document.getElementById("gameselect_"+input_id).disabled = input_value;
+        obj.disabled = input_value;
     }
   }
 
   function select_get(input_id,input_property){
     if (document.getElementById("gameselect_"+input_id)) {
+      var obj = document.getElementById("gameselect_"+input_id);
       if (input_property=="left")
-        return Number(document.getElementById("gameselect_"+input_id).style.left.replace(/px/ig,""));
+        return Number(obj.style.left.replace(/px/ig,""));
       else if (input_property=="top")
-        return Number(document.getElementById("gameselect_"+input_id).style.top.replace(/px/ig,""));
+        return Number(obj.style.top.replace(/px/ig,""));
       else if (input_property=="width")
-        return Number(document.getElementById("gameselect_"+input_id).style.width.replace(/px/ig,""));
+        return Number(obj.style.width.replace(/px/ig,""));
       else if (input_property=="height")
-        return Number(document.getElementById("gameselect_"+input_id).style.height.replace(/px/ig,""));
+        return Number(obj.style.height.replace(/px/ig,""));
       else if (input_property=="opacity")
-        return Number(document.getElementById("gameselect_"+input_id).style.opacity);
-      else if (input_property=="value")
-        return document.getElementById("gameselect_"+input_id).value;
+        return Number(obj.style.opacity);
+      else if (input_property=="selectedValue")
+        return obj.options[obj.selectedIndex].value;
+      else if (input_property=="selectedText")
+        return obj.options[obj.selectedIndex].text;
+      else if (input_property=="selectedIndex")
+        return Number(obj.selectedIndex);
+      else if (input_property=="length")
+        return Number(obj.length);
       else if (input_property=="zindex")
-        return document.getElementById("gameselect_"+input_id).style.zIndex;
+        return obj.style.zIndex;
       else if (input_property=="display")
-        return document.getElementById("gameselect_"+input_id).style.display;
+        return obj.style.display;
       else if (input_property=="disabled")
-        return document.getElementById("gameselect_"+input_id).disabled;
+        return obj.disabled;
     }
     else
       return "";
