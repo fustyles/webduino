@@ -33,11 +33,9 @@ if ('webkitSpeechRecognition' in window) {
       }
     }
     final_transcript = capitalize(final_transcript);
-    final_span.innerHTML = linebreak(final_transcript);
-	interim_span.innerHTML = linebreak(interim_transcript);
-	if (interim_span.innerHTML=='')
-	  console.log(final_span.innerHTML);
-	final_span.innerHTML='';
+    interim_span.innerHTML = linebreak(interim_transcript);
+    if (linebreak(interim_transcript)=='')
+      document.getElementById("showText").innerHTML=linebreak(final_transcript);
   };
 }
 
