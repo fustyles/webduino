@@ -1,33 +1,10 @@
-var catSetScreen = '<xml>'+
-'<category name="%{BKY_SETSCREEN}" colour="%{BKY_SETSCREEN_HUE}">'+
-'  <block type="setscreen">'+
-'    <value name="left">'+
-'      <block type="math_number">'+
-'        <field name="NUM">300</field>'+
-'      </block>'+
-'    </value>'+
-'    <value name="top">'+
-'      <block type="math_number">'+
-'        <field name="NUM">20</field>'+
-'      </block>'+
-'    </value>'+
-'    <value name="width">'+
-'      <block type="math_number">'+
-'        <field name="NUM">500</field>'+
-'      </block>'+
-'    </value>'+
-'    <value name="height">'+
-'      <block type="math_number">'+
-'        <field name="NUM">500</field>'+
-'      </block>'+
-'    </value>'+
+var catSpeechRecognition = '<xml>'+
+'<category name="%{BKY_SPEECHRECOGNITION}" colour="%{BKY_SPEECHRECOGNITION_HUE}">'+
+'  <block type="SpeechRecognition_run">'+  
 '  </block>'+    
-'  <block type="body_set">'+ 
-'    <value name="value_">'+
-'      <block type="colour_picker">'+
-'        <field name="COLOUR">#ffffff</field>'+
-'      </block>'+
-'    </value>'+    
+'  <block type="SpeechRecognition_get">'+  
+'  </block>'+    
+'  <block type="SpeechRecognition_listener">'+  
 '  </block>'+      
 '</category>'+
 '</xml>';
