@@ -1074,7 +1074,7 @@
       else if (input_property=="opacity")
         document.getElementById("gameselect_"+input_id).style.opacity = input_value;
       else if (input_property=="option")
-        //document.getElementById("gameselect_"+input_id).option = input_value; 
+        document.getElementById("gameselect_"+input_id).option = input_value; 
       else if (input_property=="value")
         document.getElementById("gameselect_"+input_id).value = input_value;      
       else if (input_property=="zindex")
