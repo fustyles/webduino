@@ -1223,11 +1223,11 @@
       else if (input_property=="opacity")
         obj.style.opacity = input_value;
       else if (input_property=="max")
-        obj.max = input_max;      
+        obj.max = input_value;      
       else if (input_property=="min")
-        obj.min = input_min;      
+        obj.min = input_value;      
       else if (input_property=="step")
-        obj.step = input_step;      
+        obj.step = input_value;      
       else if (input_property=="value")
         obj.value = input_value;      
       else if (input_property=="zindex")
