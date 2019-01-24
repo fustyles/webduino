@@ -18,6 +18,7 @@ if ('webkitSpeechRecognition' in window) {
     if (event.error == 'no-speech') ignore_onend = true;
     if (event.error == 'audio-capture') ignore_onend = true;
     if (event.error == 'not-allowed') ignore_onend = true;
+    console.log(event.error);
   };
   recognition.onend = function() {
     recognizing = false;
