@@ -1191,7 +1191,7 @@
       obj.style.display = "none";
     else
       obj.style.display = "block";
-    obj.draggable="true";
+    //obj.draggable="true";
     obj.setAttribute("onclick", "javascript:image_onclickid_set(this);");
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(obj);
@@ -1228,6 +1228,8 @@
       }
       else if (input_property=="disabled")
         obj.disabled = input_value;
+      else if (input_property=="draggable")
+        obj.draggable = input_value;		    
     }
   }
 
@@ -1258,6 +1260,8 @@
         return obj.style.display;
       else if (input_property=="disabled")
         return obj.disabled;
+      else if (input_property=="draggable")
+        return obj.draggable;	    
     }
     else
       return "";
