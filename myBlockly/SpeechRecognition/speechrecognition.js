@@ -36,9 +36,10 @@ if ('webkitSpeechRecognition' in window) {
     }
     final_transcript = capitalize(final_transcript);
     Recognition_interim = linebreak(interim_transcript);
-    if (Recognition_interim=='') {
+    if (Recognition_interim=='')
       Recognition_final = linebreak(final_transcript);
-    }
+    else
+      document.getElementById("showText") = Recognition_interim;
   };
 }
 
@@ -49,6 +50,7 @@ function linebreak(s) {
 function capitalize(s) {
   return s.replace(first_char, function(m) { return m.toUpperCase(); });
 }
+
 function startButton(event) {
   if (recognizing) {
     recognition.stop();
@@ -59,4 +61,8 @@ function startButton(event) {
   recognition.start();
   ignore_onend = false;
   final_span.innerHTML = '';
+}
+
+function Recognition_final_get() {
+  return ;
 }
