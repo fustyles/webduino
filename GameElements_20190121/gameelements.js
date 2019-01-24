@@ -821,7 +821,11 @@
     else if (input_property=="offsetY")
       return mouse_offsety;    
   } 
-
+  
+  function text_to_number(input_text) {
+    return Number(input_text);
+  } 
+	
   function button_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_bgcolor,input_value,input_zindex,input_display) {
     if (document.getElementById("gamebutton_"+input_id)) 
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
@@ -1169,10 +1173,6 @@
     else
       return 0;
   }
-  
-  function text_to_number(input_text) {
-    return Number(input_text);
-  } 
   
   function body_set(input_property,input_value) {
     if (input_property=="backgroundColor")
