@@ -138,4 +138,4 @@ Blockly.Msg.SELECT_DELETE_SHOW = "刪除";
 Blockly.Msg.SELECT_ONCHANGE_SHOW = "選擇選項後執行";
 Blockly.Msg.SELECT_GET_SHOW = "取得";
 Blockly.Msg.SETWINDOW_SHOW = "設定執行視窗";
-Blockly.Msg.TIME_DELAY_SHOW = "遊戲元素初始化(新積木載入JS檔)";
+Blockly.Msg.TIME_DELAY_SHOW = "遊戲元素初始化(新增的積木載入JS檔，否則無法執行)";
