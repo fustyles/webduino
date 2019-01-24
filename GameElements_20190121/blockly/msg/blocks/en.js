@@ -147,3 +147,5 @@ Blockly.Msg.RANGE_VALUE_SHOW = "Value";
 Blockly.Msg.RANGE_SET_SHOW = "Set";
 Blockly.Msg.RANGE_DELETE_SHOW = "Delete";
 Blockly.Msg.RANGE_ONCHANGE_SHOW = "is changed"; 
+Blockly.Msg.SETWINDOW_SHOW = "Set Run Window";
+Blockly.Msg.TIPS_SHOW = "GameElements initialize (load js File for new blocks)";
