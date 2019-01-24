@@ -1875,7 +1875,7 @@ Blockly.Blocks['body_set'] = {
 Blockly.Blocks['time_delay'] = {
   init: function () {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.TIME_DELAY_SHOW);    
+        .appendField(Blockly.Msg.TIPS_SHOW);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
