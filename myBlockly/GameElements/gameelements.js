@@ -1052,8 +1052,8 @@
     if (input_option.length>0) {
       for (var i = 0; i < input_option.length; i++) {
         var option = document.createElement("option");
-        option.value = input_option[i];
-        option.text = input_option[i];
+        option.value = input_option[i][0];
+        option.text = input_option[i][1];
         obj.appendChild(option);
       }
     }
