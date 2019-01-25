@@ -8,7 +8,7 @@ Blockly.Msg.TEXTTOSPEECH_PITCH_SHOW = "Pitch(0~2)";
 Blockly.Msg.TEXTTOSPEECH_LANG_SHOW = "Language";      
 Blockly.Msg.TEXTTOSPEECH_VOICE_SHOW = "Voice"; 
 Blockly.Msg.TEXTTOSPEECH_TEXT_SHOW = "Text";
-
+Blockly.Msg.TEXTTOSPEECH_CONTROL_SHOW = "Speech";
 Blockly.Msg.TEXTTOSPEECH_LANG_af_ZA = "Afrikaans (South Africa)";
 Blockly.Msg.TEXTTOSPEECH_LANG_am_ET = "Amharic (Ethiopia)";
 Blockly.Msg.TEXTTOSPEECH_LANG_hy_AM = "Armenian (Armenia)";
