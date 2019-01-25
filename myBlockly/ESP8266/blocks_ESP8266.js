@@ -6,7 +6,7 @@ Blockly.Blocks['esp8266_system'] = {
     this.appendValueInput("ip")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("ip");    
+        .appendField("IP address");    
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("cmd")
@@ -38,7 +38,7 @@ Blockly.Blocks['esp8266_car'] = {
     this.appendValueInput("ip")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("ip");     
+        .appendField("IP address");     
     this.appendValueInput("cmd")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -90,7 +90,7 @@ Blockly.Blocks['esp8266_custom'] = {
     this.appendValueInput("ip")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("ip");     
+        .appendField("IP address");     
     this.appendValueInput("cmd")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
