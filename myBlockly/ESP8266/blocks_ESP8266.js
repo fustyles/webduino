@@ -19,6 +19,7 @@ Blockly.Blocks['esp8266_system'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
+    this.setColour(60);
   }
 };
 
@@ -66,6 +67,7 @@ Blockly.Blocks['esp8266_car'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
+    this.setColour(60);
   }
 };
 
@@ -114,5 +116,6 @@ Blockly.Blocks['esp8266_custom'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
+    this.setColour(60);
   }
 };
