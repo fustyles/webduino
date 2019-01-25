@@ -63,6 +63,8 @@
         else if (input_value==0)
         document.getElementById("gametable_"+input_id).style.display = "none";
       }
+      else if (input_property=="position")
+        document.getElementById("gametable_"+input_id).style.position = input_value;	    
       else if (input_property=="background")
         document.getElementById("gametable_"+input_id).style.background=input_value;
       else if (input_property=="backgroundimage") {
@@ -128,6 +130,8 @@
         return document.getElementById("gametable_"+input_id).style.zIndex;
       else if (input_property=="display")
         return document.getElementById("gametable_"+input_id).style.display;
+      else if (input_property=="position")
+        return document.getElementById("gametable_"+input_id).style.position;		    
       else if (input_property=="onclickColumn"){
         if (onclickid.indexOf("gametable_td_"+input_id)==0){     
           if (onclickid.split("_").length>=5){
@@ -607,20 +611,22 @@
         else
           document.getElementById("gameimg_"+input_id).style.display = "block";
       }
+      else if (input_property=="position")
+        document.getElementById("gameimg_"+input_id).style.position = input_value;		    
       else if (input_property=='opacity')
-          document.getElementById("gameimg_"+input_id).style.opacity = input_value;
+        document.getElementById("gameimg_"+input_id).style.opacity = input_value;
       else if (input_property=='rotate')
-          document.getElementById("gameimg_"+input_id).style.transform = "rotate("+input_value+"deg)";
+        document.getElementById("gameimg_"+input_id).style.transform = "rotate("+input_value+"deg)";
       else if (input_property=='rotateX')
-          document.getElementById("gameimg_"+input_id).style.transform = "rotateX("+input_value+"deg)";
+        document.getElementById("gameimg_"+input_id).style.transform = "rotateX("+input_value+"deg)";
       else if (input_property=='rotateY')
-          document.getElementById("gameimg_"+input_id).style.transform = "rotateY("+input_value+"deg)";
+        document.getElementById("gameimg_"+input_id).style.transform = "rotateY("+input_value+"deg)";
       else if (input_property=='rotateZ')
-          document.getElementById("gameimg_"+input_id).style.transform = "rotateZ("+input_value+"deg)";
+        document.getElementById("gameimg_"+input_id).style.transform = "rotateZ("+input_value+"deg)";
       else if (input_property=='moveX')
-          document.getElementById("gameimg_"+input_id).style.left = (Number(document.getElementById("gameimg_"+input_id).style.left.replace(/px/ig,""))+Number(input_value))+"px";
+        document.getElementById("gameimg_"+input_id).style.left = (Number(document.getElementById("gameimg_"+input_id).style.left.replace(/px/ig,""))+Number(input_value))+"px";
       else if (input_property=='moveY')
-          document.getElementById("gameimg_"+input_id).style.top = (Number(document.getElementById("gameimg_"+input_id).style.top.replace(/px/ig,""))+Number(input_value))+"px";    
+        document.getElementById("gameimg_"+input_id).style.top = (Number(document.getElementById("gameimg_"+input_id).style.top.replace(/px/ig,""))+Number(input_value))+"px";    
     }
   }    
   
@@ -661,6 +667,8 @@
         else
           return 0;  
       }
+      else if (input_property=="position")
+        return document.getElementById("gameimg_"+input_id).style.position;		    
       else if (input_property=='opacity')
         return document.getElementById("gameimg_"+input_id).style.opacity;
       else if (input_property=='rotate')
@@ -872,6 +880,8 @@
         else if (input_value==0)
           obj.style.display = "none";
       }
+      else if (input_property=="position")
+        obj.style.position = input_value;		    
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
@@ -906,6 +916,8 @@
         return obj.style.zIndex;
       else if (input_property=="display")
         return obj.style.display;
+      else if (input_property=="position")
+        return obj.style.position;		    
       else if (input_property=="disabled")
         return obj.disabled;
       else if (input_property=="draggable")
@@ -987,6 +999,8 @@
         else if (input_value==0)
           obj.style.display = "none";
       }
+      else if (input_property=="position")
+        obj.style.position = input_value;		    
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
@@ -1013,6 +1027,8 @@
         return obj.style.zIndex;
       else if (input_property=="display")
         return obj.style.display;
+      else if (input_property=="position")
+        return obj.style.position;		    
       else if (input_property=="disabled")
         return obj.disabled;
       else if (input_property=="draggable")
@@ -1116,6 +1132,8 @@
         else if (input_value==0)
           obj.style.display = "none";
       }
+      else if (input_property=="position")
+        obj.style.position = input_value;		    
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
@@ -1148,6 +1166,8 @@
         return obj.style.zIndex;
       else if (input_property=="display")
         return obj.style.display;
+      else if (input_property=="position")
+        return obj.style.position;		    
       else if (input_property=="disabled")
         return obj.disabled;   
       else if (input_property=="draggable")
@@ -1238,6 +1258,8 @@
         else if (input_value==0)
           obj.style.display = "none";
       }
+      else if (input_property=="position")
+        obj.style.position = input_value;		    
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
@@ -1270,6 +1292,8 @@
         return obj.style.zIndex;
       else if (input_property=="display")
         return obj.style.display;
+      else if (input_property=="position")
+        return obj.style.position;		    
       else if (input_property=="disabled")
         return obj.disabled;
       else if (input_property=="draggable")
