@@ -1,9 +1,10 @@
 Blockly.Blocks['ifttt_open'] = {
   init: function() {
+  this.appendDummyInput()
+      .appendField("IFTTT");    
   this.appendValueInput("ifttt_event")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("IFTTT   ")
       .appendField("Event");    
   this.appendValueInput("ifttt_key")
       .setCheck("String")
