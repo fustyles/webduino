@@ -12,7 +12,7 @@ Blockly.JavaScript['TextToSpeech_run'] = function (block) {
       'tts.lang="'+value_lang_+'";\n'+
       'var voices = window.speechSynthesis.getVoices();\n'+
       'if (voices.length==0) {\n'+
-      '  await delay(3);\n'+        
+      '  await delay(5);\n'+        
       '  var voices = window.speechSynthesis.getVoices();\n'+      
       '}\n'+
       'if (voices.length>0) {\n'+ 
