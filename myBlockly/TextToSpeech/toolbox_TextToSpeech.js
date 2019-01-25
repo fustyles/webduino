@@ -3,17 +3,17 @@ var catTextToSpeech = '<xml>'+
 '  <block type="TextToSpeech_run">'+  
 '    <value name="volume_">'+
 '      <block type="math_number">'+
-'        <field name="NUM">0</field>'+
+'        <field name="NUM">5</field>'+
 '      </block>'+  
 '    </value>'+    
 '    <value name="rate_">'+
 '      <block type="math_number">'+
-'        <field name="NUM">0</field>'+
+'        <field name="NUM">1</field>'+
 '      </block>'+  
 '    </value>'+  
 '    <value name="pitch_">'+
 '      <block type="math_number">'+
-'        <field name="NUM">0</field>'+
+'        <field name="NUM">1</field>'+
 '      </block>'+
 '    </value>'+      
 '    <value name="lang_">'+
