@@ -40,7 +40,7 @@ if ('webkitSpeechRecognition' in window) {
     if (Recognition_interim=='')
       Recognition_final = linebreak(final_transcript);
     else
-      document.getElementById("showText") = Recognition_interim;
+      document.getElementById("showText").innerHTML = Recognition_interim;
   };
 }
 
