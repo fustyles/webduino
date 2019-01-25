@@ -153,6 +153,22 @@ Blockly.Blocks['TextToSpeech_run'] = {
   }
 };
 
+Blockly.Blocks['TextToSpeech_control'] = {
+  init: function () {          
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.TEXTTOSPEECH_CONTROL_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+        ["paused", "paused"],    
+        ["resume", "resume"],
+        ["cancel","cancel"]    
+      ]), "control_");
+  this.setInputsInline(true);    
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['TextToSpeech_voice'] = {
   init: function () {    
   this.appendDummyInput()
