@@ -85,7 +85,6 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '            <field name="TEXT">http://192.168.1.2</field>'+
 '          </block>'+
 '        </value>'+    
-'        <field name="str5">F</field>'+
 '        <value name="cmd">'+
 '          <block type="text">'+
 '            <field name="TEXT">car</field>'+
