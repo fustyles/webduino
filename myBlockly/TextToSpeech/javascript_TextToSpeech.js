@@ -10,7 +10,7 @@ Blockly.JavaScript['TextToSpeech_run'] = function (block) {
       'tts.volume='+value_volume_+';\n'+
       'tts.rate='+value_rate_+';\n'+
       'tts.pitch='+value_pitch_+';\n'+
-      'tts.lang='+value_lang_+';\n'+
+      'tts.lang="'+value_lang_+'";\n'+
       '//var voices = window.speechSynthesis.getVoices();\n//tts.voice = voices['+value_voice_+'];\n'+     
       'window.speechSynthesis.speak(tts);\n';
   return code;
