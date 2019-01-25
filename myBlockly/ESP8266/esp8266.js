@@ -11,7 +11,11 @@ function esp8266_SendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
       success: function(json)
       {
         console.log(json);
-        FeedBack = eval(json);
+        json = eval(json);
+        for (var i in json) {
+          console.log(json[i]["esp8266"]);
+          FeedBack += ","+json[i]["esp8266"];
+        }
       },
       error: function(jqXHR, textStatus, errorThrown)
       {
