@@ -26,6 +26,17 @@ Blockly.JavaScript['TextToSpeech_run'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['TextToSpeech_control'] = function(block) {
+  var control_ = block.getFieldValue('control_'); 
+  if (control_=="paused")
+    var code = 'tts.paused();\n';
+  else if (control_=="resume")
+    var code = 'tts.resume();\n';
+  else if (control_=="cancel")
+    var code = 'tts.cancel();\n';  
+  return code;
+};
+
 Blockly.JavaScript['TextToSpeech_voice'] = function(block) {
   var voice_ = block.getFieldValue('voice_'); 
   var code = '"'+voice_+'"';
