@@ -1,6 +1,5 @@
 <category id="catUARTMYFIRMATA" tags="mark1,fly,smart">
     <block type="uart_car">
-        <field name="str5">F</field>
         <value name="cmd">
           <block type="text">
             <field name="TEXT">car</field>
