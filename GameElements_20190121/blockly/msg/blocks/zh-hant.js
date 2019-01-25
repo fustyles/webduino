@@ -148,4 +148,4 @@ Blockly.Msg.RANGE_SET_SHOW = "設定";
 Blockly.Msg.RANGE_DELETE_SHOW = "刪除";
 Blockly.Msg.RANGE_ONCHANGE_SHOW = "改變數值後執行"; 
 Blockly.Msg.SETWINDOW_SHOW = "設定執行視窗";
-Blockly.Msg.TIPS_SHOW = "遊戲元素初始化 (載入JS檔)";
+Blockly.Msg.TIPS_SHOW = "遊戲元素初始化JS (新擴充的積木若無法執行請加入)";
