@@ -1,3 +1,29 @@
+Blockly.Blocks['esp8266_system'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("ESP8266 System    cmd")
+        .appendField(new Blockly.FieldDropdown([["inputPullup","inputpullup"], ["pinMode","pinmode"], ["digitalWrite","digitalwrite"], ["digitalRead","digitalread"], ["analogWrite","analogwrite"], ["analogRead","analogread"]]), "cmd");
+    this.appendValueInput("str1")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("pin");
+    this.appendValueInput("str2")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("value");
+    this.appendValueInput("str3")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("str3~str9");
+    this.setInputsInline(false);     
+    this.setOutput(true, null);
+    this.setColour(300);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['esp8266_car'] = {
   init: function() {
     this.appendDummyInput()
@@ -40,32 +66,6 @@ Blockly.Blocks['esp8266_car'] = {
         .appendField("State")
         .appendField(new Blockly.FieldDropdown([["FORWARD","F"], ["BACKWARD","B"], ["LEFT","L"], ["RIGHT","R"], ["STOP","S"]]), "str8");    
     this.setInputsInline(false);    
-    this.setOutput(true, null);
-    this.setColour(300);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['esp8266_system'] = {
-  init: function() {
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("ESP8266 System    cmd")
-        .appendField(new Blockly.FieldDropdown([["inputPullup","inputpullup"], ["pinMode","pinmode"], ["digitalWrite","digitalwrite"], ["digitalRead","digitalread"], ["analogWrite","analogwrite"], ["analogRead","analogread"]]), "cmd");
-    this.appendValueInput("str1")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("pin");
-    this.appendValueInput("str2")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("value");
-    this.appendValueInput("str3")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("str3~str9");
-    this.setInputsInline(false);     
     this.setOutput(true, null);
     this.setColour(300);
     this.setTooltip("");
