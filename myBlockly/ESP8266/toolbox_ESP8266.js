@@ -1,5 +1,10 @@
 var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE}">'+
 '    <block type="esp8266_system">'+
+'        <value name="ip">'+
+'          <block type="text">'+
+'            <field name="TEXT"></field>'+
+'          </block>'+
+'        </value>'+    
 '        <field name="cmd">inputpullup</field>'+
 '        <value name="str1">'+
 '          <block type="math_number">'+
@@ -18,6 +23,11 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '        </value>'+
 '    </block>'+
 '    <block type="esp8266_custom">'+
+'        <value name="ip">'+
+'          <block type="text">'+
+'            <field name="TEXT"></field>'+
+'          </block>'+
+'        </value>'+    
 '        <value name="cmd">'+
 '          <block type="text">'+
 '            <field name="TEXT"></field>'+
@@ -70,6 +80,11 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '        </value>'+
 '    </block>'+
 '    <block type="esp8266_car">'+
+'        <value name="ip">'+
+'          <block type="text">'+
+'            <field name="TEXT"></field>'+
+'          </block>'+
+'        </value>'+    
 '        <field name="str5">F</field>'+
 '        <value name="cmd">'+
 '          <block type="text">'+
