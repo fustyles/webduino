@@ -239,7 +239,7 @@ Blockly.Blocks['linenotify_type'] = {
   },
   unplugBlocks : function(remain) {
     console.log(remain);
-    while (this.childBlocks_.length > 0) {
+    while (this.childBlocks_.length > remain) {
         this.childBlocks_[this.childBlocks_.length-1].unplug();
     }
   }
