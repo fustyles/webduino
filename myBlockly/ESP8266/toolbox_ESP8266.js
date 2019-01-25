@@ -126,6 +126,11 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '          </block>'+
 '        </value>'+
 '    </block>'+    
-'    <block type="esp8266_getresponse">'+
-'    </block>'+      
+'    <variables><variable type="" id="ij_ZS;5L7fPB{t3^~CEl">data</variable></variables>'+
+'    <block type="variables_set" id="Sh:0%7~`mHXezT$HAE*w" x="97" y="299">'+
+'      <field name="VAR" id="ij_ZS;5L7fPB{t3^~CEl" variabletype="">data</field>'+
+'      <value name="VALUE">'+
+'        <block type="esp8266_getresponse" id="KE3ci[=9F6s6fOnlqASf"></block>'+
+'      </value>'+
+'    </block>'+
 '</category></xml>';
