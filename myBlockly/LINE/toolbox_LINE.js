@@ -13,9 +13,6 @@ var catLINE = '<xml><category name="%{BKY_LINE}" colour="%{BKY_LINE_HUE}">'+
 '    <value name="bot_msg">'+
 '      <block type="linebot_type">'+
 '        <value name="value_parameter1">'+
-'          <block type="text">'+
-'            <field name="TEXT"></field>'+
-'          </block>'+
 '        </value>'+
 '        <value name="value_parameter2">'+
 '        </value>'+
@@ -35,9 +32,6 @@ var catLINE = '<xml><category name="%{BKY_LINE}" colour="%{BKY_LINE_HUE}">'+
 '    <value name="notify_msg">'+
 '      <block type="linenotify_type">'+
 '        <value name="value_parameter1">'+
-'          <block type="text">'+
-'            <field name="TEXT"></field>'+
-'          </block>'+
 '        </value>'+
 '        <value name="value_parameter2">'+
 '        </value>'+
