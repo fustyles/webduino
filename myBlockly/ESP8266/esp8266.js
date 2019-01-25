@@ -17,16 +17,15 @@ function esp8266_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
       },
       error: function(jqXHR, textStatus, errorThrown)
       {
-        return "";
         //console.log(errorThrown);
       }
    });
 }
 
 function esp8266_getResponse() {
- console.log(Response);
+ console.log("respone="+Response);
  var res = Response;
  Response.length=0;
- console.log(res);
+ console.log("res"+res);
  return res;
 }
