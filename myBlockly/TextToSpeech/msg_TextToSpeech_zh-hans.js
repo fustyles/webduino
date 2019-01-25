@@ -1,7 +1,7 @@
 Blockly.Msg["TEXTTOSPEECH"] = "语音朗读";
 Blockly.Msg["TEXTTOSPEECH_HUE"] = "280";
 
-Blockly.Msg.TEXTTOSPEECH_SHOW = "文字";
+Blockly.Msg.TEXTTOSPEECH_SHOW = "语音朗读";
 Blockly.Msg.TEXTTOSPEECH_VOLUME_SHOW = "音量(0~1)";  
 Blockly.Msg.TEXTTOSPEECH_RATE_SHOW = "速度(0.1~10)";  
 Blockly.Msg.TEXTTOSPEECH_PITCH_SHOW = "语调(0~2)";      
