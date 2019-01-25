@@ -25,4 +25,5 @@
         <field name="TEXT"></field>
       </block>
     </value>
- </category>
+  </block>    
+</category>
