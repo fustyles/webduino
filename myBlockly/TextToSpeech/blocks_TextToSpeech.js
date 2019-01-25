@@ -158,7 +158,7 @@ Blockly.Blocks['TextToSpeech_control'] = {
   this.appendDummyInput()
       .appendField(Blockly.Msg.TEXTTOSPEECH_CONTROL_SHOW)
       .appendField(new Blockly.FieldDropdown([
-        ["paused", "paused"],    
+        ["paused", "pause"],    
         ["resume", "resume"],
         ["cancel","cancel"]    
       ]), "control_");
