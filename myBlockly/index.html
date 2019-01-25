@@ -77,6 +77,14 @@
 		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/javascript_DeepLearning.js',
 		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/toolbox_DeepLearning.js',
 		
+		'https://fustyles.github.io/webduino/myBlockly/ESP8266/blocks_ESP8266.js',
+		'https://fustyles.github.io/webduino/myBlockly/ESP8266/javascript_ESP8266.js',
+		'https://fustyles.github.io/webduino/myBlockly/ESP8266/toolbox_ESP8266.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/blocks_ThingSpeak.js',
+		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/javascript_ThingSpeak.js',
+		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/toolbox_ThingSpeak.js',		
+		
 		'https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'
 	];
 	for (var i=0;i<script_blockly.length;i++) {
@@ -97,7 +105,9 @@
 		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/msg_TaiwanAirQuality_zh-hant.js',
 		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/msg_SpeechRecognition_zh-hant.js',
 		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/msg_TextToSpeech_zh-hant.js',
-		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/msg_DeepLearning_zh-hant.js'
+		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/msg_DeepLearning_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/ESP8266/msg_ESP8266_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/msg_ThingSpeak_zh-hant.js'
 		];
 	} 
 	else if (language.indexOf("lang=zh-hans")!=-1) {
@@ -113,7 +123,9 @@
 		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/msg_TaiwanAirQuality_zh-hans.js',
 		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/msg_SpeechRecognition_zh-hans.js',
 		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/msg_TextToSpeech_zh-hans.js',
-		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/msg_DeepLearning_zh-hans.js'
+		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/msg_DeepLearning_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/ESP8266/msg_ESP8266_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/msg_ThingSpeak_zh-hans.js'
 		];
 	} 
 	else {
@@ -129,7 +141,9 @@
 		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/msg_TaiwanAirQuality.js',
 		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/msg_SpeechRecognition.js',
 		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/msg_TextToSpeech.js',
-		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/msg_DeepLearning.js'
+		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/msg_DeepLearning.js',
+		'https://fustyles.github.io/webduino/myBlockly/ESP8266/msg_ESP8266.js',
+		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/msg_ThingSpeak.js'
 		];
 	}
 	for (var i=0;i<script_msg.length;i++) {
@@ -145,7 +159,9 @@
 		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/taiwanairquality.js',
 		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/speechrecognition.js',
 		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/texttospeech.js',
-		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/deeplearning.js'
+		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/deeplearning.js',
+		'https://fustyles.github.io/webduino/myBlockly/ESP8266/esp8266.js',
+		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/thingspeak.js'
 	];
   </script>
 </head>
@@ -261,7 +277,9 @@ var category = [
 	catDeepLearning,	
 	catMatrixLed,
 	catOpenURL,
-	catTaiwanAirQuality
+	catTaiwanAirQuality,
+	catESP8266,
+	catThingSpeak	
 ].join("");
 while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().indexOf("<sep>")!=-1) {
   var s = category.toLowerCase().indexOf("<category");
