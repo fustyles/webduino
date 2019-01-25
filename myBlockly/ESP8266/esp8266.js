@@ -15,7 +15,7 @@ function esp8266_SendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
       error: function(jqXHR, textStatus, errorThrown)
       {
         //console.log(errorThrown);
-        return "";
+        return "error";
       }
    });
   FeedBack=data.responseText;
