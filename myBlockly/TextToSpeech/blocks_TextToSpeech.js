@@ -1,9 +1,32 @@
 Blockly.Blocks['TextToSpeech_run'] = {
   init: function () {
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TEXTTOSPEECH_SHOW);           
+  this.appendValueInput("volume_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TEXTTOSPEECH_VOLUME_SHOW);  
+  this.appendValueInput("rate_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TEXTTOSPEECH_RATE_SHOW);  
+  this.appendValueInput("pitch_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TEXTTOSPEECH_PITCH_SHOW);      
+  this.appendValueInput("lang_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TEXTTOSPEECH_LANG_SHOW);      
+  this.appendValueInput("voice_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TEXTTOSPEECH_VOICE_SHOW);  
   this.appendValueInput("text_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TEXTTOSPEECH_SHOW);  
+      .appendField(Blockly.Msg.TEXTTOSPEECH_TEXT_SHOW);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
