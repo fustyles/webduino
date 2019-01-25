@@ -3,6 +3,7 @@
 var FeedBack="";
 
 function esp8266_SendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str9) {
+  FeedBack="";
   var data = $.ajax({
       "type": "POST",
       "dataType": "json",
@@ -17,12 +18,12 @@ function esp8266_SendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
           FeedBack += ","+json[i]["esp8266"];
         }
         console.log(FeedBack);
+        return FeedBack;
       },
       error: function(jqXHR, textStatus, errorThrown)
       {
-        FeedBack="";
+        return "";
         //console.log(errorThrown);
       }
    });
-  console.log(data);
 }
