@@ -2,7 +2,10 @@ Blockly.Blocks['esp8266_system'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("ESP8266 System    cmd")
+        .appendField("ESP8266 System");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("cmd")
         .appendField(new Blockly.FieldDropdown([["inputPullup","inputpullup"], ["pinMode","pinmode"], ["digitalWrite","digitalwrite"], ["digitalRead","digitalread"], ["analogWrite","analogwrite"], ["analogRead","analogread"]]), "cmd");
     this.appendValueInput("str1")
         .setCheck("Number")
@@ -26,8 +29,8 @@ Blockly.Blocks['esp8266_system'] = {
 Blockly.Blocks['esp8266_car'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("ESP8266 Car"); 
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("ESP8266 Car");    
     this.appendValueInput("cmd")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -73,10 +76,13 @@ Blockly.Blocks['esp8266_car'] = {
 
 Blockly.Blocks['esp8266_custom'] = {
   init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("ESP8266 Custom");      
     this.appendValueInput("cmd")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("ESP8266 Custom    cmd");
+        .appendField("cmd");
     this.appendValueInput("str1")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
