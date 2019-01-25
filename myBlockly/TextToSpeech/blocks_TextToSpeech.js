@@ -139,7 +139,7 @@ Blockly.Blocks['TextToSpeech_run'] = {
         [Blockly.Msg.TEXTTOSPEECH_LANG_th_TH,"th-TH"]    
       ]), "lang_");
   this.appendValueInput("voice_")
-      .setCheck(null)
+      .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TEXTTOSPEECH_VOICE_SHOW);  
   this.appendValueInput("text_")
