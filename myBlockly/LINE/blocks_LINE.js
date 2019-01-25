@@ -60,7 +60,7 @@ Blockly.Blocks['linebot_type'] = {
         this.getField('p4').setVisible(false);
         this.getInput('value_parameter1').setVisible(true);
         if (this.getInput('value_parameter2').visible_==true||this.getInput('value_parameter3').visible_==true||this.getInput('value_parameter4').visible_==true) 
-          this.unplugBlocks();
+          this.unplugBlocks(1);
         this.getInput('value_parameter2').setVisible(false);
         this.getInput('value_parameter3').setVisible(false);
         this.getInput('value_parameter4').setVisible(false);
@@ -76,7 +76,7 @@ Blockly.Blocks['linebot_type'] = {
         this.getInput('value_parameter1').setVisible(true);
         this.getInput('value_parameter2').setVisible(true);
         if (this.getInput('value_parameter3').visible_==true||this.getInput('value_parameter4').visible_==true) 
-          this.unplugBlocks();
+          this.unplugBlocks(2);
         this.getInput('value_parameter3').setVisible(false);
         this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "image") {
@@ -91,7 +91,7 @@ Blockly.Blocks['linebot_type'] = {
         this.getInput('value_parameter1').setVisible(true);
         this.getInput('value_parameter2').setVisible(true);
         if (this.getInput('value_parameter3').visible_==true||this.getInput('value_parameter4').visible_==true) 
-          this.unplugBlocks();
+          this.unplugBlocks(2);
         this.getInput('value_parameter3').setVisible(false);
         this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "video") {
@@ -106,7 +106,7 @@ Blockly.Blocks['linebot_type'] = {
         this.getInput('value_parameter1').setVisible(true);
         this.getInput('value_parameter2').setVisible(true);
         if (this.getInput('value_parameter3').visible_==true||this.getInput('value_parameter4').visible_==true) 
-          this.unplugBlocks();
+          this.unplugBlocks(2);
         this.getInput('value_parameter3').setVisible(false);
         this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "audio") {
@@ -121,7 +121,7 @@ Blockly.Blocks['linebot_type'] = {
         this.getInput('value_parameter1').setVisible(true);
         this.getInput('value_parameter2').setVisible(true);
         if (this.getInput('value_parameter3').visible_==true||this.getInput('value_parameter4').visible_==true) 
-          this.unplugBlocks();
+          this.unplugBlocks(2);
         this.getInput('value_parameter3').setVisible(false);
         this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "location") {
@@ -150,8 +150,9 @@ Blockly.Blocks['linebot_type'] = {
     this.getField('value_type').setValue(xmlElement.getAttribute('value_type'));
     this.onchange();
   },
-  unplugBlocks : function() {
-    while (this.childBlocks_.length > 0) {
+  unplugBlocks : function(remain) {
+    console.log(remain);
+    while (this.childBlocks_.length > remain) {
         this.childBlocks_[this.childBlocks_.length-1].unplug();
     }
   }
