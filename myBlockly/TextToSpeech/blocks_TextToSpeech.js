@@ -14,7 +14,11 @@ Blockly.Blocks['TextToSpeech_run'] = {
   this.appendValueInput("pitch_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TEXTTOSPEECH_PITCH_SHOW);      
+      .appendField(Blockly.Msg.TEXTTOSPEECH_PITCH_SHOW); 
+  this.appendValueInput("voice_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TEXTTOSPEECH_VOICE_SHOW);      
   this.appendDummyInput()
       .appendField(Blockly.Msg.TEXTTOSPEECH_LANG_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -138,10 +142,6 @@ Blockly.Blocks['TextToSpeech_run'] = {
         [Blockly.Msg.TEXTTOSPEECH_LANG_hi_IN,"hi-IN"],
         [Blockly.Msg.TEXTTOSPEECH_LANG_th_TH,"th-TH"]    
       ]), "lang_");
-  this.appendValueInput("voice_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TEXTTOSPEECH_VOICE_SHOW);  
   this.appendValueInput("text_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
