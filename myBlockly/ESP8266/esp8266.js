@@ -9,7 +9,6 @@ function esp8266_SendCommand(ip,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str9
       "type": "POST",
       "dataType": "html",
       "url": url,
-      },
       success: function(html)
       {
         FeedBack=html;
