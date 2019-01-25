@@ -10,13 +10,10 @@ function esp8266_SendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
       "url": url+"?"+cmd+"="+str1+";"+str2+";"+str3+";"+str4+";"+str5+";"+str6+";"+str7+";"+str8+";"+str9,
       success: function(json)
       {
-        console.log(json);
         json = eval(json);
         for (var i=0;i<json.length;i++) {
-          console.log(json[i]["esp8266"]);
           FeedBack.push(json[i]["esp8266"]);
         }
-        return FeedBack;
       },
       error: function(jqXHR, textStatus, errorThrown)
       {
@@ -24,6 +21,4 @@ function esp8266_SendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
         //console.log(errorThrown);
       }
    });
-   console.log(FeedBack);
-   return FeedBack;
 }
