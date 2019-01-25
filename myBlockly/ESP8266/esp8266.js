@@ -10,13 +10,13 @@ function esp8266_SendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
       "url": url+"?"+cmd+"="+str1+";"+str2+";"+str3+";"+str4+";"+str5+";"+str6+";"+str7+";"+str8+";"+str9,
       success: function(html)
       {
-        console.log(html.responseText);
+        console.log(html);
       },
       error: function(jqXHR, textStatus, errorThrown)
       {
         //console.log(errorThrown);
       }
    });
-  console.log(data.responseText);
+  console.log(data);
   //console.log(FeedBack);
 }
