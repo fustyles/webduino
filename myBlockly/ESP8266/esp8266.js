@@ -1,9 +1,9 @@
 // Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
-var FeedBack=[];
+var Response=[];
 
 function esp8266_SendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str9) {
-  FeedBack.length=0;
+  Response.length=0;
   var data = $.ajax({
       "type": "POST",
       "dataType": "json",
@@ -12,7 +12,7 @@ function esp8266_SendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
       {
         json = eval(json);
         for (var i=0;i<json.length;i++) {
-          FeedBack.push(json[i]["esp8266"]);
+          Response.push(json[i]["esp8266"]);
         }
       },
       error: function(jqXHR, textStatus, errorThrown)
@@ -21,4 +21,8 @@ function esp8266_SendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
         //console.log(errorThrown);
       }
    });
+}
+
+function esp8266_getResponse() {
+ return  Response;
 }
