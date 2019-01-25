@@ -15,12 +15,7 @@ var catTextToSpeech = '<xml>'+
 '      <block type="math_number">'+
 '        <field name="NUM">1</field>'+
 '      </block>'+
-'    </value>'+      
-'    <value name="lang_">'+
-'      <block type="text">'+
-'        <field name="TEXT">en-us</field>'+
-'      </block>'+    
-'    </value>'+  
+'    </value>'+    
 '    <value name="voice_">'+
 '      <block type="text">'+
 '        <field name="TEXT">en-us</field>'+
