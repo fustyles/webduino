@@ -1,14 +1,14 @@
 Blockly.Msg["TEXTTOSPEECH"] = "語音朗讀";
 Blockly.Msg["TEXTTOSPEECH_HUE"] = "280";
 
-Blockly.Msg.TEXTTOSPEECH_SHOW = "朗讀文字";
+Blockly.Msg.TEXTTOSPEECH_SHOW = "文字";
 Blockly.Msg.TEXTTOSPEECH_VOLUME_SHOW = "音量(0~1)";  
 Blockly.Msg.TEXTTOSPEECH_RATE_SHOW = "速度(0.1~10)";  
 Blockly.Msg.TEXTTOSPEECH_PITCH_SHOW = "語調(0~2)";      
 Blockly.Msg.TEXTTOSPEECH_LANG_SHOW = "語系";      
 Blockly.Msg.TEXTTOSPEECH_VOICE_SHOW = "語音"; 
 Blockly.Msg.TEXTTOSPEECH_TEXT_SHOW = "文字";
-
+Blockly.Msg.TEXTTOSPEECH_CONTROL_SHOW = "語音朗讀執行";
 Blockly.Msg.TEXTTOSPEECH_LANG_af_ZA = "Afrikaans (South Africa)";
 Blockly.Msg.TEXTTOSPEECH_LANG_am_ET = "Amharic (Ethiopia)";
 Blockly.Msg.TEXTTOSPEECH_LANG_hy_AM = "Armenian (Armenia)";
