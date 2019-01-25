@@ -2,10 +2,10 @@ Blockly.Blocks['esp8266_system'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("ESP8266 System");
-    this.appendValueInput("ip")
+    this.appendValueInput("url")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("IP address");    
+        .appendField("url"); 
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("cmd")
@@ -33,10 +33,10 @@ Blockly.Blocks['esp8266_car'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("ESP8266 Car");  
-    this.appendValueInput("ip")
+    this.appendValueInput("url")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("IP address");     
+        .appendField("url");       
     this.appendValueInput("cmd")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -84,10 +84,10 @@ Blockly.Blocks['esp8266_custom'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("ESP8266 Custom"); 
-    this.appendValueInput("ip")
+    this.appendValueInput("url")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("IP address");     
+        .appendField("url");     
     this.appendValueInput("cmd")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
