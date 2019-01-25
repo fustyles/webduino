@@ -11,6 +11,8 @@ function esp8266_SendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
       success: function(html)
       {
         console.log(html);
+        FeedBack=html;
+        console.log(FeedBack);
         return html;
       },
       error: function(jqXHR, textStatus, errorThrown)
