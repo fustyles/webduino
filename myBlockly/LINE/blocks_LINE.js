@@ -146,7 +146,7 @@ Blockly.Blocks['linebot_type'] = {
     this.onchange();
   },
   unplugBlocks : function() {
-    while (this.childBlocks_.length > remain) {
+    while (this.childBlocks_.length > 0) {
         this.childBlocks_[this.childBlocks_.length-1].unplug();
     }
   }
@@ -230,7 +230,7 @@ Blockly.Blocks['linenotify_type'] = {
     this.onchange();
   },
   unplugBlocks : function() {
-    while (this.childBlocks_.length > remain) {
+    while (this.childBlocks_.length > 0) {
         this.childBlocks_[this.childBlocks_.length-1].unplug();
     }
   }
