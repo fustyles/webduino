@@ -16,7 +16,7 @@ Blockly.Blocks['TextToSpeech_run'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TEXTTOSPEECH_PITCH_SHOW);      
   this.appendDummyInput()
-      .appendField(Blockly.Msg.TEXTTOSPEECH_LANG_LANG)
+      .appendField(Blockly.Msg.TEXTTOSPEECH_LANG_SHOW)
       .appendField(new Blockly.FieldDropdown([
         [Blockly.Msg.TEXTTOSPEECH_LANG_TW, "cmn-Hant-TW"],
         [Blockly.Msg.TEXTTOSPEECH_LANG_US, "en-US"],
