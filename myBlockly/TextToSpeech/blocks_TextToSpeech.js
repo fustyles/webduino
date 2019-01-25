@@ -18,16 +18,16 @@ Blockly.Blocks['TextToSpeech_run'] = {
   this.appendDummyInput()
       .appendField(Blockly.Msg.TEXTTOSPEECH_LANG_SHOW)
       .appendField(new Blockly.FieldDropdown([
-        [Blockly.Msg.TEXTTOSPEECH_LANG_TW, "cmn-Hant-TW"],
-        [Blockly.Msg.TEXTTOSPEECH_LANG_US, "en-US"],
-        [Blockly.Msg.TEXTTOSPEECH_LANG_JP, "ja-JP"],
-        [Blockly.Msg.TEXTTOSPEECH_LANG_KR, "ko-KR"],
-        [Blockly.Msg.TEXTTOSPEECH_LANG_ES, "es-ES"],
-        [Blockly.Msg.TEXTTOSPEECH_LANG_FR, "fr-FR"],
-        [Blockly.Msg.TEXTTOSPEECH_LANG_IT, "it-IT"],
+        [Blockly.Msg.TEXTTOSPEECH_LANG_en_US, "en-US"],    
+        [Blockly.Msg.TEXTTOSPEECH_LANG_cmn_Hant_TW, "cmn-Hant-TW"],
         [Blockly.Msg.TEXTTOSPEECH_LANG_yue_Hant_HK,"yue-Hant-HK"],
         [Blockly.Msg.TEXTTOSPEECH_LANG_cmn_Hans_HK,"cmn-Hans-HK"],
         [Blockly.Msg.TEXTTOSPEECH_LANG_cmn_Hans_CN,"cmn-Hans-CN"], 
+        [Blockly.Msg.TEXTTOSPEECH_LANG_ja_JP, "ja-JP"],
+        [Blockly.Msg.TEXTTOSPEECH_LANG_ko_KR, "ko-KR"],
+        [Blockly.Msg.TEXTTOSPEECH_LANG_es_ES, "es-ES"],
+        [Blockly.Msg.TEXTTOSPEECH_LANG_fr_FR, "fr-FR"],
+        [Blockly.Msg.TEXTTOSPEECH_LANG_it_IT, "it-IT"],
         [Blockly.Msg.TEXTTOSPEECH_LANG_vi_VN,"vi-VN"],      
         [Blockly.Msg.TEXTTOSPEECH_LANG_af_ZA,"af-ZA"],
         [Blockly.Msg.TEXTTOSPEECH_LANG_am_ET,"am-ET"],
