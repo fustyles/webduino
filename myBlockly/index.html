@@ -314,9 +314,10 @@ function runCode() {
     exportHTML();
     return false;
   }
-  //Deep Learning
+  //If Deep Learning is used,it must execute "Export HTML" to run on main window.
   if (xml_text.indexOf("teachable")!=-1) {
-    iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script>";
+    exportHTML();
+    return false;
   }
       
   iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
