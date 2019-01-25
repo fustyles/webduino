@@ -6,7 +6,6 @@ Blockly.JavaScript['TextToSpeech_run'] = function (block) {
   var value_lang_ = block.getFieldValue('lang_');
   var value_text_ = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
   var code = 'var tts = new SpeechSynthesisUtterance('+value_text_+');\n'+
-      'window.speechSynthesis.speak();\n';
       'tts.volume='+value_volume_+';\n'+
       'tts.rate='+value_rate_+';\n'+
       'tts.pitch='+value_pitch_+';\n'+
