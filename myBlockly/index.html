@@ -259,7 +259,7 @@
 <xml id="startBlocks" style="display: none"></xml>
 		
 <script>
-console.log(catThingSpeak);
+
 //append category to toolbox
 var category = [
 	catSystem,
@@ -279,8 +279,8 @@ var category = [
 	catMatrixLed,
 	catOpenURL,
 	catTaiwanAirQuality,
-	catESP8266,
-	catThingSpeak	
+	catThingSpeak,
+	catESP8266
 ].join("");
 while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().indexOf("<sep>")!=-1) {
   var s = category.toLowerCase().indexOf("<category");
@@ -289,6 +289,7 @@ while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().i
     var e1 = category.toLowerCase().indexOf("</sep>");
     var xml = Blockly.Xml.textToDom("<xml>"+category.substring(s1,e1+6)+"</xml>");
     document.getElementById('toolbox').append(xml.firstChild);
+    console.log(xml.firstChild);
     category=category.substr(e1+6);
   } else {
     var e = category.toLowerCase().indexOf("</category>");
