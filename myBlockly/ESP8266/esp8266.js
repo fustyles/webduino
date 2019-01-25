@@ -2,7 +2,7 @@
 
 var Response=[];
 
-function esp8266_SendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str9) {
+function esp8266_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str9) {
   Response.length=0;
   var data = $.ajax({
       "type": "POST",
