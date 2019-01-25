@@ -206,7 +206,7 @@ Blockly.Blocks['linenotify_type'] = {
       this.getField('p2').setVisible(false);
       this.getField('p3').setVisible(false); 
       if (this.getInput('value_parameter2').visible_==true||this.getInput('value_parameter3').visible_==true) 
-        this.unplugBlocks();
+        this.unplugBlocks(1);
       this.getInput('value_parameter2').setVisible(false);
       this.getInput('value_parameter3').setVisible(false);
     } else if (this.getField('value_type').getValue() == "sticker") {
@@ -237,7 +237,8 @@ Blockly.Blocks['linenotify_type'] = {
     this.getField('value_type').setValue(xmlElement.getAttribute('value_type'));
     this.onchange();
   },
-  unplugBlocks : function() {
+  unplugBlocks : function(remain) {
+    console.log(remain);
     while (this.childBlocks_.length > 0) {
         this.childBlocks_[this.childBlocks_.length-1].unplug();
     }
