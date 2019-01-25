@@ -4,6 +4,7 @@ Blockly.Blocks['SpeechRecognition_run'] = {
       .appendField(Blockly.Msg.SPEECHRECOGNITION_SHOW)
       .appendField(Blockly.Msg.SPEECHRECOGNITION_LANGUAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([
+        ["",""],
         ["Afrikaans","af-ZA"],
         ["አማርኛ","am-ET"],
         ["Azərbaycanca","az-AZ"],
