@@ -288,8 +288,8 @@ while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().i
   if (s1!=-1&&s1<s) {
     var e1 = category.toLowerCase().indexOf("</sep>");
     var xml = Blockly.Xml.textToDom("<xml>"+category.substring(s1,e1+6)+"</xml>");
+    console.log(xml);
     document.getElementById('toolbox').append(xml.firstChild);
-    console.log(xml.firstChild);
     category=category.substr(e1+6);
   } else {
     var e = category.toLowerCase().indexOf("</category>");
