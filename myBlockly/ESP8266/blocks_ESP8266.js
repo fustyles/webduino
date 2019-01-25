@@ -23,9 +23,8 @@ Blockly.Blocks['esp8266_system'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("str3(~str9)");
     this.setInputsInline(false);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(60);
+    this.setOutput(true, null); 
+    this.setColour(200);
   }
 };
 
@@ -78,9 +77,8 @@ Blockly.Blocks['esp8266_custom'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("str9");
     this.setInputsInline(false);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(60);
+    this.setOutput(true, null); 
+    this.setColour(200);
   }
 };
 
@@ -129,8 +127,7 @@ Blockly.Blocks['esp8266_car'] = {
         .appendField("State")
         .appendField(new Blockly.FieldDropdown([["FORWARD","F"], ["BACKWARD","B"], ["LEFT","L"], ["RIGHT","R"], ["STOP","S"]]), "str8");    
     this.setInputsInline(false);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(60);
+    this.setOutput(true, null); 
+    this.setColour(200);
   }
 };
