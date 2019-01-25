@@ -10,6 +10,7 @@ function esp8266_SendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
       "url": url+"?"+cmd+"="+str1+";"+str2+";"+str3+";"+str4+";"+str5+";"+str6+";"+str7+";"+str8+";"+str9,
       success: function(html)
       {
+        FeedBack = html;
         return html;
       },
       error: function(jqXHR, textStatus, errorThrown)
@@ -18,6 +19,6 @@ function esp8266_SendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
         return "error";
       }
    });
-  FeedBack=data.responseText;
+  console.log(data);
   console.log(FeedBack);
 }
