@@ -16,7 +16,7 @@ Blockly.Blocks['TextToSpeech_run'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TEXTTOSPEECH_PITCH_SHOW); 
   this.appendValueInput("voice_")
-      .setCheck(null)
+      .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TEXTTOSPEECH_VOICE_SHOW);      
   this.appendDummyInput()
