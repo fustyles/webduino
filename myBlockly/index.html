@@ -230,6 +230,7 @@ var category = [
 	catSetWindow,
 	catShowText,
 	catKeyboard,
+	catSpeechRecognition
 	catInstruction,
 	catGameAuxiliary,
 	catGameTable,
@@ -238,8 +239,7 @@ var category = [
 	catGameForm,
 	catMatrixLed,
 	catOpenURL,
-	catTaiwanAirQuality,
-	catSpeechRecognition
+	catTaiwanAirQuality
 ].join("");
 while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().indexOf("<sep>")!=-1) {
   var s = category.toLowerCase().indexOf("<category");
@@ -278,6 +278,14 @@ function showCode() {
 demoWorkspace.addChangeListener(showCode);
 	
 function runCode() {
+  //If Speech Recognition is exist,it must execute export HTML
+  var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+  var xml_text = Blockly.Xml.domToText(xml);
+  if (xml_text.indexOf("SpeechRecognition")!=-1) {
+    exportHTML();
+    return;
+  }
+	
   window.LoopTrap = 1000;
   Blockly.JavaScript.INFINITE_LOOP_TRAP =
   'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
