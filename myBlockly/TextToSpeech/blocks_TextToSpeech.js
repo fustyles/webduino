@@ -137,7 +137,7 @@ Blockly.Blocks['TextToSpeech_run'] = {
         [Blockly.Msg.TEXTTOSPEECH_LANG_fa_IR,"fa-IR"],
         [Blockly.Msg.TEXTTOSPEECH_LANG_hi_IN,"hi-IN"],
         [Blockly.Msg.TEXTTOSPEECH_LANG_th_TH,"th-TH"]    
-      ]), "lang_") 
+      ]), "lang_");
   this.appendValueInput("voice_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
