@@ -152,3 +152,36 @@ Blockly.Blocks['TextToSpeech_run'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['TextToSpeech_voice'] = {
+  init: function () {    
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.TEXTTOSPEECH_VOICE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+        ["Google US English","Google US English"],
+        ["Google Deutsch","Google Deutsch"],
+        ["Google UK English Female","Google UK English Female"],
+        ["Google UK English Male","Google UK English Male"],
+        ["Google español","Google español"],
+        ["Google español de Estados Unidos","Google español de Estados Unidos"],
+        ["Google français","Google français"],
+        ["Google हिन्दी","Google हिन्दी"],
+        ["Google Bahasa Indonesia","Google Bahasa Indonesia"],
+        ["Google italiano","Google italiano"],
+        ["Google 日本語","Google 日本語"],
+        ["Google 한국의","Google 한국의"],
+        ["Google Nederlands","Google Nederlands"],
+        ["Google polski","Google polski"],
+        ["Google português do Brasil","Google português do Brasil"],
+        ["Google русский","Google русский"],
+        ["Google 普通话（中国大陆）","Google 普通话（中国大陆）"],
+        ["Google 粤語（香港）","Google 粤語（香港）"],
+        ["Google 國語（臺灣）","Google 國語（臺灣）"],
+        ["Microsoft Hanhan Desktop - Chinese (Taiwan)","Microsoft Hanhan Desktop - Chinese (Taiwan)"],
+        ["Microsoft Zira Desktop - English (United States)","Microsoft Zira Desktop - English (United States)"]
+      ]), "voice_");
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(65);
+  }
+};
