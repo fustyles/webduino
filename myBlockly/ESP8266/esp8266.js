@@ -12,7 +12,7 @@ function esp8266_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
       {
         json = eval(json);
         for (var i=0;i<json.length;i++) {
-          Response.push(json[i]["esp8266"]);
+          Response.push(json[i]["esp8266"]+"");
         }
       },
       error: function(jqXHR, textStatus, errorThrown)
@@ -24,7 +24,8 @@ function esp8266_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
 }
 
 function esp8266_getResponse() {
- var res = Response.toString();
+ console.log(Response);
+ var res = Response;
  Response.length=0;
  console.log(res);
  return res;
