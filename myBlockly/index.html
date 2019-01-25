@@ -309,7 +309,7 @@ function runCode() {
 	
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
-  //If Speech Recognition is used,it must execute export HTML
+  //If Speech Recognition is used,it must execute "Export HTML" to run on main window.
   if (xml_text.indexOf("SpeechRecognition")!=-1) {
     exportHTML();
     return false;
