@@ -283,7 +283,7 @@ function runCode() {
   var xml_text = Blockly.Xml.domToText(xml);
   if (xml_text.indexOf("SpeechRecognition")!=-1) {
     exportHTML();
-    return;
+    return false;
   }
 	
   window.LoopTrap = 1000;
