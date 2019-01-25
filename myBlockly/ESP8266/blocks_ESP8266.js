@@ -1,8 +1,8 @@
-Blockly.Blocks['uart_car'] = {
+Blockly.Blocks['esp8266_car'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("Uart Car"); 
+        .appendField("ESP8266 Car"); 
     this.appendValueInput("cmd")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -47,11 +47,11 @@ Blockly.Blocks['uart_car'] = {
   }
 };
 
-Blockly.Blocks['uart_system'] = {
+Blockly.Blocks['esp8266_system'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Uart System    cmd")
+        .appendField("ESP8266 System    cmd")
         .appendField(new Blockly.FieldDropdown([["inputPullup","inputpullup"], ["pinMode","pinmode"], ["digitalWrite","digitalwrite"], ["digitalRead","digitalread"], ["analogWrite","analogwrite"], ["analogRead","analogread"]]), "cmd");
     this.appendValueInput("str1")
         .setCheck("Number")
@@ -73,12 +73,12 @@ Blockly.Blocks['uart_system'] = {
   }
 };
 
-Blockly.Blocks['uart_custom'] = {
+Blockly.Blocks['esp8266_custom'] = {
   init: function() {
     this.appendValueInput("cmd")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Uart Custom    cmd");
+        .appendField("ESP8266 Custom    cmd");
     this.appendValueInput("str1")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
