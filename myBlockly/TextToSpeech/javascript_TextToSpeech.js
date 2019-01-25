@@ -30,7 +30,7 @@ Blockly.JavaScript['TextToSpeech_run'] = function (block) {
 Blockly.JavaScript['TextToSpeech_control'] = function(block) {
   var control_ = block.getFieldValue('control_'); 
   if (control_=="paused")
-    var code = 'synth.paused();\n';
+    var code = 'synth.pause();\n';
   else if (control_=="resume")
     var code = 'synth.resume();\n';
   else if (control_=="cancel")
