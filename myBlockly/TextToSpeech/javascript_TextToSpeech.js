@@ -25,6 +25,6 @@ Blockly.JavaScript['TextToSpeech_run'] = function (block) {
 
 Blockly.JavaScript['TextToSpeech_voice'] = function(block) {
   var voice_ = block.getFieldValue('voice_'); 
-  var code = voice_;
+  var code = '"'+voice_+'"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
