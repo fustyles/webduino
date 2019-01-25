@@ -3,7 +3,7 @@ var catTextToSpeech = '<xml>'+
 '  <block type="TextToSpeech_run">'+  
 '    <value name="volume_">'+
 '      <block type="math_number">'+
-'        <field name="NUM">5</field>'+
+'        <field name="NUM">1</field>'+
 '      </block>'+  
 '    </value>'+    
 '    <value name="rate_">'+
