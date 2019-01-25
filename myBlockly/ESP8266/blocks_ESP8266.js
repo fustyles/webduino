@@ -16,11 +16,9 @@ Blockly.Blocks['esp8266_system'] = {
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("str3~str9");
-    this.setInputsInline(false);     
-    this.setOutput(true, null);
-    this.setColour(300);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
   }
 };
 
@@ -65,11 +63,9 @@ Blockly.Blocks['esp8266_car'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("State")
         .appendField(new Blockly.FieldDropdown([["FORWARD","F"], ["BACKWARD","B"], ["LEFT","L"], ["RIGHT","R"], ["STOP","S"]]), "str8");    
-    this.setInputsInline(false);    
-    this.setOutput(true, null);
-    this.setColour(300);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
   }
 };
 
@@ -115,10 +111,8 @@ Blockly.Blocks['esp8266_custom'] = {
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("str9");
-    this.setInputsInline(false);     
-    this.setOutput(true, null);
-    this.setColour(300);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
   }
 };
