@@ -29,11 +29,11 @@ Blockly.JavaScript['TextToSpeech_run'] = function (block) {
 Blockly.JavaScript['TextToSpeech_control'] = function(block) {
   var control_ = block.getFieldValue('control_'); 
   if (control_=="paused")
-    var code = 'tts.paused();\n';
+    var code = 'window.speechSynthesis.paused();\n';
   else if (control_=="resume")
-    var code = 'tts.resume();\n';
+    var code = 'window.speechSynthesis.resume();\n';
   else if (control_=="cancel")
-    var code = 'tts.cancel();\n';  
+    var code = 'window.speechSynthesis.cancel();\n';  
   return code;
 };
 
