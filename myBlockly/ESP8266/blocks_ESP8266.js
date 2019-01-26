@@ -152,7 +152,21 @@ Blockly.Blocks['esp8266_cmd'] = {
       .appendField(new Blockly.FieldDropdown([
         ["inputPullup","inputpullup"], 
         ["pinMode(pin)","pinmode"],
-        ["digitalWrite(pin\,value)","digitalwrite"]
+        ["digitalWrite(pin\,value)","digitalwrite"], 
+        ["digitalRead(pin)","digitalread"], 
+        ["analogWrite(pin\,value)","analogwrite"], 
+        ["analogRead(pin)","analogread"]
+        ["touchread(pin) for ESP32","touchread"],    
+        ["ip","ip"],
+        ["mac","mac"],
+        ["restart","restart"],
+        ["resetwifi(ssid\,password)","resetwifi"],
+        ["tcp(domain\,port\,request\,wait)","tcp"],
+        ["ifttt(event\,key\,value1\,value2\,value3)","ifttt"],
+        ["thingspeakupdate(key\,field1\,field2\,field3\,field4\,field5\,field6\,field7\,field8)","thingspeakupdate"],
+        ["thingspeakread(request)","thingspeakread"],
+        ["linenotify(token\,request)","linenotify"],
+        ["car(pinL1\,pinL2\,pinR1\,pinR2\,L_speed\,R_speed\,Delay\,state)","car"]    
       ]), "cmd_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
