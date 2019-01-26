@@ -28,6 +28,7 @@ https://github.com/fustyles/Arduino/blob/master/ESP8266_MyFirmata.html
 */
 
 #include <WiFi.h>
+#include <WiFiClientSecure.h>
 
 // Enter your WiFi ssid and password
 const char* ssid     = "";   //your network SSID
@@ -157,7 +158,13 @@ void ExecuteCommand()
     String domain="api.thingspeak.com";
     String request = str1;
     Feedback="{\"data\":\""+tcp(domain,request,80,1)+"\"}";
-  }   
+  } 
+  else if (cmd=="linenotify")
+  {
+    String token = str1;
+    String request = str2;
+    Feedback="{\"data\":\""+LineNotify(token,request,1)+"\"}";
+  } 
   else 
   {
     Feedback="{\"data\":\"Command is not defined\"}";
@@ -364,4 +371,51 @@ String tcp(String domain,String request,int port,byte wait)
     }
     else
       return "Connection failed";  
+}
+
+String LineNotify(String token, String request, byte wait)
+{
+  WiFiClientSecure client_tcp;
+  
+  if (client_tcp.connect("notify-api.line.me", 443)) 
+  {
+    client_tcp.println("POST /api/notify HTTP/1.1");
+    client_tcp.println("Connection: close"); 
+    client_tcp.println("Host: notify-api.line.me");
+    client_tcp.println("User-Agent: ESP8266/1.0");
+    client_tcp.println("Authorization: Bearer " + token);
+    client_tcp.println("Content-Type: application/x-www-form-urlencoded");
+    client_tcp.println("Content-Length: " + String(request.length()));
+    client_tcp.println();
+    client_tcp.println(request);
+    client_tcp.println();
+    
+    String getResponse="",Feedback="";
+    boolean state = false;
+    int waitTime = 3000;   // timeout 3 seconds
+    long startTime = millis();
+    while ((startTime + waitTime) > millis())
+    {
+      while (client_tcp.available()) 
+      {
+          char c = client_tcp.read();
+          if (c == '\n') 
+          {
+            if (getResponse.length()==0) state=true; 
+            getResponse = "";
+          } 
+          else if (c != '\r')
+            getResponse += String(c);
+          if (state==true) Feedback += String(c);
+          if (wait==1)
+            startTime = millis();
+       }
+       if (wait==0)
+        if ((state==true)&&(Feedback.length()!= 0)) break;
+    }
+    client_tcp.stop();
+    return Feedback;
+  }
+  else
+    return "Connection failed";  
 }
