@@ -165,6 +165,103 @@ void ExecuteCommand()
     String request = str2;
     Feedback="{\"data\":\""+LineNotify(token,request,1)+"\"}";
   } 
+	else if (cmd=="car")    // ?car=pinL1;pinL2;pinR1;pinR2;L_speed;R_speed;Delay;state
+  {
+	  ledcAttachPin(str1.toInt(), 1);
+	  ledcSetup(1, 5000, 8);
+	  ledcWrite(1,0);
+	  ledcAttachPin(str2.toInt(), 2);
+	  ledcSetup(2, 5000, 8);
+	  ledcWrite(2,0);	
+	  ledcAttachPin(str3.toInt(), 3);
+	  ledcSetup(3, 5000, 8);
+	  ledcWrite(3,0);	
+	  ledcAttachPin(str4.toInt(), 4);
+	  ledcSetup(4, 5000, 8);
+	  ledcWrite(4,0);
+      delay(10);
+    
+      if (str8=="S")
+      {
+		//
+      }
+      else if  (str8=="F")
+      {
+		ledcAttachPin(str1.toInt(), 1);
+		ledcSetup(1, 5000, 8);
+		ledcWrite(1,str5.toInt());
+		ledcAttachPin(str4.toInt(), 4);
+		ledcSetup(4, 5000, 8);
+		ledcWrite(4,str6.toInt());
+        if ((str7!="")&&(str7!="0"))
+        {
+          delay(str7.toInt());
+		  ledcAttachPin(str1.toInt(), 1);
+		  ledcSetup(1, 5000, 8);
+		  ledcWrite(1,0);
+		  ledcAttachPin(str4.toInt(), 4);
+		  ledcSetup(4, 5000, 8);
+		  ledcWrite(4,0);          
+        }     
+      }
+      else if  (str8=="B")
+      {
+	    ledcAttachPin(str2.toInt(), 2);
+	    ledcSetup(2, 5000, 8);
+	    ledcWrite(2,str5.toInt());	
+	    ledcAttachPin(str3.toInt(), 3);
+	    ledcSetup(3, 5000, 8);
+	    ledcWrite(3,str6.toInt());	
+        if ((str7!="")&&(str7!="0"))
+        {
+          delay(str7.toInt());
+		  ledcAttachPin(str2.toInt(), 2);
+		  ledcSetup(2, 5000, 8);
+		  ledcWrite(2,0);	
+		  ledcAttachPin(str3.toInt(), 3);
+		  ledcSetup(3, 5000, 8);
+		  ledcWrite(3,0);	
+        }     
+      }
+      else if  (str8=="L")
+      {
+	    ledcAttachPin(str2.toInt(), 2);
+	    ledcSetup(2, 5000, 8);
+	    ledcWrite(2,str5.toInt());	
+	    ledcAttachPin(str4.toInt(), 4);
+	    ledcSetup(4, 5000, 8);
+	    ledcWrite(4,str6.toInt());   
+        if ((str7!="")&&(str7!="0"))
+        {
+          delay(str7.toInt());
+		  ledcAttachPin(str2.toInt(), 2);
+		  ledcSetup(2, 5000, 8);
+		  ledcWrite(2,0);	
+		  ledcAttachPin(str4.toInt(), 4);
+		  ledcSetup(4, 5000, 8);
+		  ledcWrite(4,0);          
+        }
+      }
+      else if  (str8=="R")
+      {
+	    ledcAttachPin(str1.toInt(), 1);
+	    ledcSetup(1, 5000, 8);
+	    ledcWrite(1,str5.toInt());
+	    ledcAttachPin(str3.toInt(), 3);
+	    ledcSetup(3, 5000, 8);
+	    ledcWrite(3,str6.toInt());	
+        if ((str7!="")&&(str7!="0"))
+        {
+          delay(str7.toInt());
+		  ledcAttachPin(str1.toInt(), 1);
+		  ledcSetup(1, 5000, 8);
+		  ledcWrite(1,0);
+		  ledcAttachPin(str3.toInt(), 3);
+		  ledcSetup(3, 5000, 8);
+		  ledcWrite(3,0);	
+        }        
+      }
+  }    
   else 
   {
     Feedback="{\"data\":\"Command is not defined\"}";
