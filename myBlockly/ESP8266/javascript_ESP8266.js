@@ -11,12 +11,12 @@ Blockly.JavaScript['esp8266_custom'] = function(block) {
   var value_url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC);
   var value_cmd = Blockly.JavaScript.valueToCode(block, 'cmd', Blockly.JavaScript.ORDER_ATOMIC);
   var value_P1 = Blockly.JavaScript.valueToCode(block, 'P1', Blockly.JavaScript.ORDER_ATOMIC);
-  if (P1.toLowerCase().indexOf("0x")!=-1) {
-    if ((P1.indexOf("'")==0)&&(P1.lastIndexOf("'")==P1.length-1))
-    P1 = P1.substring(1,P1.length-1);
-    if ((P1.indexOf("(")==0)&&(P1.lastIndexOf(")")==P1.length-1))
-      P1 = P1.substring(1,P1.length-1);
-    P1=parseInt(P1, 16);
+  if (value_P1.toLowerCase().indexOf("0x")!=-1) {
+    if ((value_P1.indexOf("'")==0)&&(value_P1.lastIndexOf("'")==value_P1.length-1))
+    value_P1 = value_P1.substring(1,value_P1.length-1);
+    if ((value_P1.indexOf("(")==0)&&(value_P1.lastIndexOf(")")==value_P1.length-1))
+      value_P1 = value_P1.substring(1,value_P1.length-1);
+    value_P1=parseInt(value_P1, 16);
   }
   var value_P2 = Blockly.JavaScript.valueToCode(block, 'P2', Blockly.JavaScript.ORDER_ATOMIC);
   var value_P3 = Blockly.JavaScript.valueToCode(block, 'P3', Blockly.JavaScript.ORDER_ATOMIC);
