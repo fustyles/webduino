@@ -10,11 +10,11 @@ Blockly.Blocks['esp8266_system'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("cmd")
         .appendField(new Blockly.FieldDropdown([["inputPullup","inputpullup"], ["pinMode","pinmode"], ["digitalWrite","digitalwrite"], ["digitalRead","digitalread"], ["analogWrite","analogwrite"], ["analogRead","analogread"]]), "cmd");
-    this.appendValueInput("str1")
+    this.appendValueInput("P1")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("pin");
-    this.appendValueInput("str2")
+    this.appendValueInput("P2")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("value");
@@ -37,42 +37,42 @@ Blockly.Blocks['esp8266_custom'] = {
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("cmd");
-    this.appendValueInput("str1")
+    this.appendValueInput("P1")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("str1");
-    this.appendValueInput("str2")
+        .appendField("P1");
+    this.appendValueInput("P2")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("str2");
-    this.appendValueInput("str3")
+        .appendField("P2");
+    this.appendValueInput("P3")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("str3");
-    this.appendValueInput("str4")
+        .appendField("P3");
+    this.appendValueInput("P4")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("str4");
-    this.appendValueInput("str5")
+        .appendField("P4");
+    this.appendValueInput("P5")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("str5");
-    this.appendValueInput("str6")
+        .appendField("P5");
+    this.appendValueInput("P6")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("str6");
-    this.appendValueInput("str7")
+        .appendField("P6");
+    this.appendValueInput("P7")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("str7");
-    this.appendValueInput("str8")
+        .appendField("P7");
+    this.appendValueInput("P8")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("str8");
-    this.appendValueInput("str9")
+        .appendField("P8");
+    this.appendValueInput("P9")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("str9");
+        .appendField("P9");
     this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -92,38 +92,38 @@ Blockly.Blocks['esp8266_car'] = {
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("cmd");    
-    this.appendValueInput("str1")
+    this.appendValueInput("P1")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("pinL1");
-    this.appendValueInput("str2")
+    this.appendValueInput("P2")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("pinL2");
-    this.appendValueInput("str3")
+    this.appendValueInput("P3")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("pinR1");
-    this.appendValueInput("str4")
+    this.appendValueInput("P4")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("pinR2");
-    this.appendValueInput("str5")
+    this.appendValueInput("P5")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("L speed");
-    this.appendValueInput("str6")
+    this.appendValueInput("P6")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("R speed");
-    this.appendValueInput("str7")
+    this.appendValueInput("P7")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Delay(ms)");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("State")
-        .appendField(new Blockly.FieldDropdown([["FORWARD","F"], ["BACKWARD","B"], ["LEFT","L"], ["RIGHT","R"], ["STOP","S"]]), "str8");    
+        .appendField(new Blockly.FieldDropdown([["FORWARD","F"], ["BACKWARD","B"], ["LEFT","L"], ["RIGHT","R"], ["STOP","S"]]), "P8");    
     this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -166,6 +166,6 @@ Blockly.Blocks['esp8266_cmd'] = {
       ]), "cmd");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(60);
   }
 };
