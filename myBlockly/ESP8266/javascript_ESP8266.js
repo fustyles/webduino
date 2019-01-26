@@ -3,8 +3,7 @@ Blockly.JavaScript['esp8266_system'] = function(block) {
   var value_cmd = block.getFieldValue('cmd');
   var value_str1 = Blockly.JavaScript.valueToCode(block, 'str1', Blockly.JavaScript.ORDER_ATOMIC);
   var value_str2 = Blockly.JavaScript.valueToCode(block, 'str2', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_str3 = Blockly.JavaScript.valueToCode(block, 'str3', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = "esp8266_sendCommand("+value_url+",'"+value_cmd+"',"+value_str1+","+value_str2+","+value_str3+",'','','','','','');\n";
+  var code = "esp8266_sendCommand("+value_url+",'"+value_cmd+"',"+value_str1+","+value_str2+",'','','','','','','');\n";
   return code;
 };
 
