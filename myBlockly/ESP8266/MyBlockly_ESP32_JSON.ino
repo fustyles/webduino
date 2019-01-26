@@ -49,26 +49,21 @@ void ExecuteCommand()
   Serial.println("cmd= "+cmd+" ,str1= "+str1+" ,str2= "+str2+" ,str3= "+str3+" ,str4= "+str4+" ,str5= "+str5+" ,str6= "+str6+" ,str7= "+str7+" ,str8= "+str8+" ,str9= "+str9);
   Serial.println("");
   
-  if (cmd=="your cmd")
-  {
+  if (cmd=="your cmd") {
     // You can do anything
     // Feedback="{\"data\":\"Sensor data"\"}";
   }
-  else if (cmd=="ip")
-  {
+  else if (cmd=="ip") {
     Feedback="{\"data\":\""+WiFi.softAPIP().toString()+"\"},{\"data\":\""+WiFi.localIP().toString()+"\"}";
   }  
-  else if (cmd=="mac")
-  {
+  else if (cmd=="mac") {
     Feedback="{\"data\":\""+WiFi.macAddress()+"\"}";
   }  
-  else if (cmd=="restart")
-  {
+  else if (cmd=="restart") {
     setup();
     Feedback="{\"data\":\""+Command+"\"}";
   }    
-  else if (cmd=="resetwifi")
-  {
+  else if (cmd=="resetwifi") {
     WiFi.begin(str1.c_str(), str2.c_str());
     Serial.print("Connecting to ");
     Serial.println(str1);
@@ -92,178 +87,155 @@ void ExecuteCommand()
     }
     */
   }    
-  else if (cmd=="inputpullup")
-  {
+  else if (cmd=="inputpullup") {
     pinMode(str1.toInt(), INPUT_PULLUP);
     Feedback="{\"data\":\""+Command+"\"}";
   }  
-  else if (cmd=="pinmode")
-  {
+  else if (cmd=="pinmode") {
     if (str2.toInt()==1)
       pinMode(str1.toInt(), OUTPUT);
     else
       pinMode(str1.toInt(), INPUT);
     Feedback="{\"data\":\""+Command+"\"}";
   }        
-  else if (cmd=="digitalwrite")
-  {
+  else if (cmd=="digitalwrite") {
     ledcDetachPin(str1.toInt());
     pinMode(str1.toInt(), OUTPUT);
     digitalWrite(str1.toInt(), str2.toInt());
     Feedback="{\"data\":\""+Command+"\"}";
   }   
-  else if (cmd=="digitalread")
-  {
+  else if (cmd=="digitalread") {
     Feedback="{\"data\":\""+String(digitalRead(str1.toInt()))+"\"}";
   }
-  else if (cmd=="analogwrite")
-  {
+  else if (cmd=="analogwrite") {
     ledcAttachPin(str1.toInt(), 1);
     ledcSetup(1, 5000, 8);
     ledcWrite(1,str2.toInt());
     Feedback="{\"data\":\""+Command+"\"}";
   }       
-  else if (cmd=="analogread")
-  {
+  else if (cmd=="analogread") {
     Feedback="{\"data\":\""+String(analogRead(str1.toInt()))+"\"}";
   }
-  else if (cmd=="touchread")
-  {
+  else if (cmd=="touchread") {
     Feedback="{\"data\":\""+String(touchRead(str1.toInt()))+"\"}";
   }  
-  else if (cmd=="tcp")
-  {
+  else if (cmd=="tcp") {
     String domain=str1;
     int port=str2.toInt();
     String request=str3;
     int wait=str4.toInt();      // wait = 0 or 1
     Feedback="{\"data\":\""+tcp(domain,request,port,wait)+"\"}";
   }
-  else if (cmd=="ifttt")
-  {
+  else if (cmd=="ifttt") {
     String domain="maker.ifttt.com";
     String request = "/trigger/" + str1 + "/with/key/" + str2;
     request += "?value1="+str3+"&value2="+str4+"&value3="+str5;
     Feedback="{\"data\":\""+tcp(domain,request,80,0)+"\"}";
   }
-  else if (cmd=="thingspeakupdate")
-  {
+  else if (cmd=="thingspeakupdate") {
     String domain="api.thingspeak.com";
     String request = "/update?api_key=" + str1;
     request += "&field1="+str2+"&field2="+str3+"&field3="+str4+"&field4="+str5+"&field5="+str6+"&field6="+str7+"&field7="+str8+"&field8="+str9;
     Feedback="{\"data\":\""+tcp(domain,request,80,0)+"\"}";
   }    
-  else if (cmd=="thingspeakread")
-  {
+  else if (cmd=="thingspeakread") {
     String domain="api.thingspeak.com";
     String request = str1;
     Feedback="{\"data\":\""+tcp(domain,request,80,1)+"\"}";
   } 
-  else if (cmd=="linenotify")
-  {
+  else if (cmd=="linenotify") {
     String token = str1;
     String request = str2;
     Feedback="{\"data\":\""+LineNotify(token,request,1)+"\"}";
   } 
-	else if (cmd=="car")    // ?car=pinL1;pinL2;pinR1;pinR2;L_speed;R_speed;Delay;state
-  {
-	  ledcAttachPin(str1.toInt(), 1);
-	  ledcSetup(1, 5000, 8);
-	  ledcWrite(1,0);
-	  ledcAttachPin(str2.toInt(), 2);
-	  ledcSetup(2, 5000, 8);
-	  ledcWrite(2,0);	
-	  ledcAttachPin(str3.toInt(), 3);
-	  ledcSetup(3, 5000, 8);
-	  ledcWrite(3,0);	
-	  ledcAttachPin(str4.toInt(), 4);
-	  ledcSetup(4, 5000, 8);
-	  ledcWrite(4,0);
-      delay(10);
+  else if (cmd=="car") {
+    ledcAttachPin(str1.toInt(), 1);
+    ledcSetup(1, 5000, 8);
+    ledcWrite(1,0);
+    ledcAttachPin(str2.toInt(), 2);
+    ledcSetup(2, 5000, 8);
+    ledcWrite(2,0);	
+    ledcAttachPin(str3.toInt(), 3);
+    ledcSetup(3, 5000, 8);
+    ledcWrite(3,0);	
+    ledcAttachPin(str4.toInt(), 4);
+    ledcSetup(4, 5000, 8);
+    ledcWrite(4,0);
+    delay(10);
     
-      if (str8=="S")
-      {
-		//
+    if (str8=="S") {
+      //
+    }
+    else if  (str8=="F") {
+      ledcAttachPin(str1.toInt(), 1);
+      ledcSetup(1, 5000, 8);
+      ledcWrite(1,str5.toInt());
+      ledcAttachPin(str4.toInt(), 4);
+      ledcSetup(4, 5000, 8);
+      ledcWrite(4,str6.toInt());
+      if ((str7!="")&&(str7!="0")) {
+        delay(str7.toInt());
+        ledcAttachPin(str1.toInt(), 1);
+        ledcSetup(1, 5000, 8);
+        ledcWrite(1,0);
+        ledcAttachPin(str4.toInt(), 4);
+        ledcSetup(4, 5000, 8);
+        ledcWrite(4,0);          
+      }     
+    }
+    else if  (str8=="B") {
+      ledcAttachPin(str2.toInt(), 2);
+      ledcSetup(2, 5000, 8);
+      ledcWrite(2,str5.toInt());	
+      ledcAttachPin(str3.toInt(), 3);
+      ledcSetup(3, 5000, 8);
+      ledcWrite(3,str6.toInt());	
+      if ((str7!="")&&(str7!="0")) {
+        delay(str7.toInt());
+        ledcAttachPin(str2.toInt(), 2);
+        ledcSetup(2, 5000, 8);
+        ledcWrite(2,0);	
+        ledcAttachPin(str3.toInt(), 3);
+        ledcSetup(3, 5000, 8);
+        ledcWrite(3,0);	
+      }     
+    }
+    else if  (str8=="L") {
+      ledcAttachPin(str2.toInt(), 2);
+      ledcSetup(2, 5000, 8);
+      ledcWrite(2,str5.toInt());	
+      ledcAttachPin(str4.toInt(), 4);
+      ledcSetup(4, 5000, 8);
+      ledcWrite(4,str6.toInt());   
+      if ((str7!="")&&(str7!="0")) {
+        delay(str7.toInt());
+        ledcAttachPin(str2.toInt(), 2);
+        ledcSetup(2, 5000, 8);
+        ledcWrite(2,0);	
+        ledcAttachPin(str4.toInt(), 4);
+        ledcSetup(4, 5000, 8);
+        ledcWrite(4,0);          
       }
-      else if  (str8=="F")
-      {
-		ledcAttachPin(str1.toInt(), 1);
-		ledcSetup(1, 5000, 8);
-		ledcWrite(1,str5.toInt());
-		ledcAttachPin(str4.toInt(), 4);
-		ledcSetup(4, 5000, 8);
-		ledcWrite(4,str6.toInt());
-        if ((str7!="")&&(str7!="0"))
-        {
-          delay(str7.toInt());
-		  ledcAttachPin(str1.toInt(), 1);
-		  ledcSetup(1, 5000, 8);
-		  ledcWrite(1,0);
-		  ledcAttachPin(str4.toInt(), 4);
-		  ledcSetup(4, 5000, 8);
-		  ledcWrite(4,0);          
-        }     
-      }
-      else if  (str8=="B")
-      {
-	    ledcAttachPin(str2.toInt(), 2);
-	    ledcSetup(2, 5000, 8);
-	    ledcWrite(2,str5.toInt());	
-	    ledcAttachPin(str3.toInt(), 3);
-	    ledcSetup(3, 5000, 8);
-	    ledcWrite(3,str6.toInt());	
-        if ((str7!="")&&(str7!="0"))
-        {
-          delay(str7.toInt());
-		  ledcAttachPin(str2.toInt(), 2);
-		  ledcSetup(2, 5000, 8);
-		  ledcWrite(2,0);	
-		  ledcAttachPin(str3.toInt(), 3);
-		  ledcSetup(3, 5000, 8);
-		  ledcWrite(3,0);	
-        }     
-      }
-      else if  (str8=="L")
-      {
-	    ledcAttachPin(str2.toInt(), 2);
-	    ledcSetup(2, 5000, 8);
-	    ledcWrite(2,str5.toInt());	
-	    ledcAttachPin(str4.toInt(), 4);
-	    ledcSetup(4, 5000, 8);
-	    ledcWrite(4,str6.toInt());   
-        if ((str7!="")&&(str7!="0"))
-        {
-          delay(str7.toInt());
-		  ledcAttachPin(str2.toInt(), 2);
-		  ledcSetup(2, 5000, 8);
-		  ledcWrite(2,0);	
-		  ledcAttachPin(str4.toInt(), 4);
-		  ledcSetup(4, 5000, 8);
-		  ledcWrite(4,0);          
-        }
-      }
-      else if  (str8=="R")
-      {
-	    ledcAttachPin(str1.toInt(), 1);
-	    ledcSetup(1, 5000, 8);
-	    ledcWrite(1,str5.toInt());
-	    ledcAttachPin(str3.toInt(), 3);
-	    ledcSetup(3, 5000, 8);
-	    ledcWrite(3,str6.toInt());	
-        if ((str7!="")&&(str7!="0"))
-        {
-          delay(str7.toInt());
-		  ledcAttachPin(str1.toInt(), 1);
-		  ledcSetup(1, 5000, 8);
-		  ledcWrite(1,0);
-		  ledcAttachPin(str3.toInt(), 3);
-		  ledcSetup(3, 5000, 8);
-		  ledcWrite(3,0);	
-        }        
-      }
+    }
+    else if  (str8=="R") {
+      ledcAttachPin(str1.toInt(), 1);
+      ledcSetup(1, 5000, 8);
+      ledcWrite(1,str5.toInt());
+      ledcAttachPin(str3.toInt(), 3);
+      ledcSetup(3, 5000, 8);
+      ledcWrite(3,str6.toInt());	
+      if ((str7!="")&&(str7!="0")) {
+        delay(str7.toInt());
+        ledcAttachPin(str1.toInt(), 1);
+        ledcSetup(1, 5000, 8);
+        ledcWrite(1,0);
+        ledcAttachPin(str3.toInt(), 3);
+        ledcSetup(3, 5000, 8);
+        ledcWrite(3,0);	
+      }        
+    }
   }    
-  else 
-  {
+  else {
     Feedback="{\"data\":\"Command is not defined\"}";
   }
 }
