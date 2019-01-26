@@ -151,7 +151,8 @@ Blockly.Blocks['esp8266_cmd'] = {
       .appendField("cmd")
       .appendField(new Blockly.FieldDropdown([
         ["inputPullup","inputpullup"], 
-        ["pinMode(pin)","pinmode"]
+        ["pinMode(pin)","pinmode"],
+        ["digitalWrite(pin\,value)","digitalwrite"]
       ]), "cmd_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
