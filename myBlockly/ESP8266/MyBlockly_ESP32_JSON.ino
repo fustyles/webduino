@@ -403,12 +403,11 @@ void getCommand(char c)
 
 String tcp(String domain,String request,int port,byte wait)
 {
-    if ((port==443)||(domain.indexOf("https")==0)||(domain.indexOf("HTTPS")==0))
+    WiFiClient client_tcp;
+    if ((port==443)||(domain.indexOf("https")==0)||(domain.indexOf("HTTPS")==0)) {
       WiFiClientSecure client_tcp;
-    else
-      WiFiClient client_tcp;
-     
-    
+    }
+      
     if (client_tcp.connect(domain.c_str(), port)) 
     {
       Serial.println("GET " + request);
