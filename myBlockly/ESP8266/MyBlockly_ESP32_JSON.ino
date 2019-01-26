@@ -51,7 +51,7 @@ void ExecuteCommand()
   if (cmd=="your cmd")
   {
     // You can do anything
-    // Feedback="<font color=\"red\">Hello World</font>";
+    // Feedback="{\"data\":\"Sensor data"\"}";
   }
   else if (cmd=="ip")
   {
