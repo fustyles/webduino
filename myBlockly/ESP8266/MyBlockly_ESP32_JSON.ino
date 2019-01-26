@@ -125,7 +125,6 @@ void ExecuteCommand()
     int port=str2.toInt();
     String request=str3;
     int wait=str4.toInt();      // wait = 0 or 1
-
     if ((port==443)||(domain.indexOf("https")==0)||(domain.indexOf("HTTPS")==0))
       Feedback="{\"data\":\""+tcp_https(domain,request,port,wait)+"\"}";
     else
@@ -361,19 +360,6 @@ ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate
     delay(1);
     client.stop();
   }
-  /*
-  if (SensorValue>LimitValue)
-  {
-    cmd="yourcmd";
-    str1="yourstr1";
-    str2="yourstr2";
-    str3="yourstr3";
-    ...
-    str9="yourstr9";
-    ExecuteCommand();
-    delay(10000);
-  }
-  */
 }
 
 void getCommand(char c)
