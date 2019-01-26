@@ -133,4 +133,6 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '        <block type="esp8266_getresponse" id="KE3ci[=9F6s6fOnlqASf"></block>'+
 '      </value>'+
 '    </block>'+
+'    <block type="esp8266_cmd">'+
+'    </block>'+    
 '</category></xml>';
