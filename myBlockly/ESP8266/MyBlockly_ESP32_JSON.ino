@@ -494,7 +494,10 @@ String LineNotify(String token, String request, byte wait)
         if ((state==true)&&(Feedback.length()!= 0)) break;
     }
     client_tcp.stop();
-    return Feedback;
+    if (Feedback.indexOf("ok")!=-1)
+      return "LineNotify success.";
+    else
+      return "LineNotify error.";
   }
   else
     return "Connection failed";  
