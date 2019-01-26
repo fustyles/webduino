@@ -6,14 +6,14 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '          </block>'+
 '        </value>'+    
 '        <field name="cmd">inputpullup</field>'+
-'        <value name="str1">'+
+'        <value name="P1">'+
 '          <block type="math_number">'+
-'            <field name="NUM">3</field>'+
+'            <field name="NUM">2</field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str2">'+
+'        <value name="P2">'+
 '          <block type="math_number">'+
-'            <field name="NUM">0</field>'+
+'            <field name="NUM">1</field>'+
 '          </block>'+
 '        </value>'+
 '    </block>'+
@@ -28,47 +28,47 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '            <field name="TEXT"></field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str1">'+
+'        <value name="P1">'+
 '          <block type="text">'+
 '            <field name="TEXT"></field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str2">'+
+'        <value name="P2">'+
 '          <block type="text">'+
 '            <field name="TEXT"></field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str3">'+
+'        <value name="P3">'+
 '          <block type="text">'+
 '            <field name="TEXT"></field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str4">'+
+'        <value name="P4">'+
 '          <block type="text">'+
 '            <field name="TEXT"></field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str5">'+
+'        <value name="P5">'+
 '          <block type="text">'+
 '            <field name="TEXT"></field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str6">'+
+'        <value name="P6">'+
 '          <block type="text">'+
 '            <field name="TEXT"></field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str7">'+
+'        <value name="P7">'+
 '          <block type="text">'+
 '            <field name="TEXT"></field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str8">'+
+'        <value name="P8">'+
 '          <block type="text">'+
 '            <field name="TEXT"></field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str9">'+
+'        <value name="P9">'+
 '          <block type="text">'+
 '            <field name="TEXT"></field>'+
 '          </block>'+
@@ -85,37 +85,37 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '            <field name="TEXT">car</field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str1">'+
+'        <value name="P1">'+
 '          <block type="math_number">'+
 '            <field name="NUM">3</field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str2">'+
+'        <value name="P2">'+
 '          <block type="math_number">'+
 '            <field name="NUM">5</field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str3">'+
+'        <value name="P3">'+
 '          <block type="math_number">'+
 '            <field name="NUM">6</field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str4">'+
+'        <value name="P4">'+
 '          <block type="math_number">'+
 '            <field name="NUM">9</field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str5">'+
+'        <value name="P5">'+
 '          <block type="math_number">'+
 '            <field name="NUM">200</field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str6">'+
+'        <value name="P6">'+
 '          <block type="math_number">'+
 '            <field name="NUM">200</field>'+
 '          </block>'+
 '        </value>'+
-'        <value name="str7">'+
+'        <value name="P7">'+
 '          <block type="math_number">'+
 '            <field name="NUM">200</field>'+
 '          </block>'+
