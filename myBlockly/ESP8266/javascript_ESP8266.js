@@ -40,6 +40,12 @@ Blockly.JavaScript['esp8266_car'] = function(block) {
 };
 
 Blockly.JavaScript['esp8266_getresponse'] = function(block) {
-  var code = "esp8266_getResponse()\n";
+  var code = "esp8266_getResponse()";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['esp8266_cmd'] = function(block) {
+  var value_cmd = Blockly.JavaScript.valueToCode(block, 'cmd', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '"'+value_cmd+'"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
