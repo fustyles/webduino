@@ -167,7 +167,7 @@ Blockly.Blocks['esp8266_cmd'] = {
         ["thingspeakread(request)","thingspeakread"],
         ["linenotify(token\,request)","linenotify"],
         ["car(pinL1\,pinL2\,pinR1\,pinR2\,L_speed\,R_speed\,Delay\,state)","car"]    
-      ]), "cmd_");
+      ]), "cmd");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
