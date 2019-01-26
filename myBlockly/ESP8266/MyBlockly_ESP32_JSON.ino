@@ -375,6 +375,13 @@ String tcp(String domain,String request,int port,byte wait)
 
 String LineNotify(String token, String request, byte wait)
 {
+  request.replace(" ","%20");
+  request.replace("&","%20");
+  request.replace("#","%20");
+  //request.replace("\'","%27");
+  request.replace("\"","%22");
+  request.replace("\n","%0D%0A");
+  
   WiFiClientSecure client_tcp;
   
   if (client_tcp.connect("notify-api.line.me", 443)) 
