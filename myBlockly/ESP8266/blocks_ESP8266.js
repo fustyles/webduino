@@ -18,10 +18,6 @@ Blockly.Blocks['esp8266_system'] = {
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("value");
-    this.appendValueInput("str3")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("str3(~str9)");
     this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
