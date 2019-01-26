@@ -125,24 +125,28 @@ void ExecuteCommand()
     int port=str2.toInt();
     String request=str3;
     int wait=str4.toInt();      // wait = 0 or 1
-    Feedback="{\"data\":\""+tcp(domain,request,port,wait)+"\"}";
+
+    if ((port==443)||(domain.indexOf("https")==0)||(domain.indexOf("HTTPS")==0))
+      Feedback="{\"data\":\""+tcp_https(domain,request,port,wait)+"\"}";
+    else
+      Feedback="{\"data\":\""+tcp_http(domain,request,port,wait)+"\"}";  
   }
   else if (cmd=="ifttt") {
     String domain="maker.ifttt.com";
     String request = "/trigger/" + str1 + "/with/key/" + str2;
     request += "?value1="+str3+"&value2="+str4+"&value3="+str5;
-    Feedback="{\"data\":\""+tcp(domain,request,80,0)+"\"}";
+    Feedback="{\"data\":\""+tcp_https(domain,request,443,0)+"\"}";
   }
   else if (cmd=="thingspeakupdate") {
     String domain="api.thingspeak.com";
     String request = "/update?api_key=" + str1;
     request += "&field1="+str2+"&field2="+str3+"&field3="+str4+"&field4="+str5+"&field5="+str6+"&field6="+str7+"&field7="+str8+"&field8="+str9;
-    Feedback="{\"data\":\""+tcp(domain,request,80,0)+"\"}";
+    Feedback="{\"data\":\""+tcp_https(domain,request,443,0)+"\"}";
   }    
   else if (cmd=="thingspeakread") {
     String domain="api.thingspeak.com";
     String request = str1;
-    Feedback="{\"data\":\""+tcp(domain,request,80,1)+"\"}";
+    Feedback="{\"data\":\""+tcp_https(domain,request,443,1)+"\"}";
   } 
   else if (cmd=="linenotify") {
     String token = str1;
@@ -155,10 +159,10 @@ void ExecuteCommand()
     ledcWrite(1,0);
     ledcAttachPin(str2.toInt(), 2);
     ledcSetup(2, 5000, 8);
-    ledcWrite(2,0);	
+    ledcWrite(2,0);  
     ledcAttachPin(str3.toInt(), 3);
     ledcSetup(3, 5000, 8);
-    ledcWrite(3,0);	
+    ledcWrite(3,0); 
     ledcAttachPin(str4.toInt(), 4);
     ledcSetup(4, 5000, 8);
     ledcWrite(4,0);
@@ -187,24 +191,24 @@ void ExecuteCommand()
     else if  (str8=="B") {
       ledcAttachPin(str2.toInt(), 2);
       ledcSetup(2, 5000, 8);
-      ledcWrite(2,str5.toInt());	
+      ledcWrite(2,str5.toInt());  
       ledcAttachPin(str3.toInt(), 3);
       ledcSetup(3, 5000, 8);
-      ledcWrite(3,str6.toInt());	
+      ledcWrite(3,str6.toInt());  
       if ((str7!="")&&(str7!="0")) {
         delay(str7.toInt());
         ledcAttachPin(str2.toInt(), 2);
         ledcSetup(2, 5000, 8);
-        ledcWrite(2,0);	
+        ledcWrite(2,0); 
         ledcAttachPin(str3.toInt(), 3);
         ledcSetup(3, 5000, 8);
-        ledcWrite(3,0);	
+        ledcWrite(3,0); 
       }     
     }
     else if  (str8=="L") {
       ledcAttachPin(str2.toInt(), 2);
       ledcSetup(2, 5000, 8);
-      ledcWrite(2,str5.toInt());	
+      ledcWrite(2,str5.toInt());  
       ledcAttachPin(str4.toInt(), 4);
       ledcSetup(4, 5000, 8);
       ledcWrite(4,str6.toInt());   
@@ -212,7 +216,7 @@ void ExecuteCommand()
         delay(str7.toInt());
         ledcAttachPin(str2.toInt(), 2);
         ledcSetup(2, 5000, 8);
-        ledcWrite(2,0);	
+        ledcWrite(2,0); 
         ledcAttachPin(str4.toInt(), 4);
         ledcSetup(4, 5000, 8);
         ledcWrite(4,0);          
@@ -224,7 +228,7 @@ void ExecuteCommand()
       ledcWrite(1,str5.toInt());
       ledcAttachPin(str3.toInt(), 3);
       ledcSetup(3, 5000, 8);
-      ledcWrite(3,str6.toInt());	
+      ledcWrite(3,str6.toInt());  
       if ((str7!="")&&(str7!="0")) {
         delay(str7.toInt());
         ledcAttachPin(str1.toInt(), 1);
@@ -232,7 +236,7 @@ void ExecuteCommand()
         ledcWrite(1,0);
         ledcAttachPin(str3.toInt(), 3);
         ledcSetup(3, 5000, 8);
-        ledcWrite(3,0);	
+        ledcWrite(3,0); 
       }        
     }
   }    
@@ -401,13 +405,52 @@ void getCommand(char c)
   }
 }
 
-String tcp(String domain,String request,int port,byte wait)
+String tcp_http(String domain,String request,int port,byte wait)
 {
     WiFiClient client_tcp;
-    if ((port==443)||(domain.indexOf("https")==0)||(domain.indexOf("HTTPS")==0)) {
-      WiFiClientSecure client_tcp;
+
+    if (client_tcp.connect(domain.c_str(), port)) 
+    {
+      Serial.println("GET " + request);
+      client_tcp.println("GET " + request + " HTTP/1.1");
+      client_tcp.println("Host: " + domain);
+      client_tcp.println("Connection: close");
+      client_tcp.println();
+
+      String getResponse="",Feedback="";
+      boolean state = false;
+      int waitTime = 3000;   // timeout 3 seconds
+      long startTime = millis();
+      while ((startTime + waitTime) > millis())
+      {
+        while (client_tcp.available()) 
+        {
+            char c = client_tcp.read();
+            if (c == '\n') 
+            {
+              if (getResponse.length()==0) state=true; 
+              getResponse = "";
+            } 
+            else if (c != '\r')
+              getResponse += String(c);
+            if (state==true) Feedback += String(c);
+            if (wait==1)
+              startTime = millis();
+         }
+         if (wait==0)
+          if ((state==true)&&(Feedback.length()!= 0)) break;
+      }
+      client_tcp.stop();
+      return Feedback;
     }
-      
+    else
+      return "Connection failed";  
+}
+
+String tcp_https(String domain,String request,int port,byte wait)
+{
+    WiFiClientSecure client_tcp;
+
     if (client_tcp.connect(domain.c_str(), port)) 
     {
       Serial.println("GET " + request);
@@ -494,6 +537,7 @@ String LineNotify(String token, String request, byte wait)
         if ((state==true)&&(Feedback.length()!= 0)) break;
     }
     client_tcp.stop();
+    Serial.println(Feedback);
     if (Feedback.indexOf("ok")!=-1)
       return "LineNotify success.";
     else
