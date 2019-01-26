@@ -1,6 +1,7 @@
 // Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
 var Response=[];
+var getstate = false;
 
 function esp8266_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str9) {
   Response=[];
@@ -11,9 +12,11 @@ function esp8266_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
       success: function(json)
       {
         json = eval(json);
+        getstate = true;
         for (var i=0;i<json.length;i++) {
           Response.push(json[i]["data"]+"");
         }
+        getstate = false;
       },
       error: function(jqXHR, textStatus, errorThrown)
       {
@@ -23,7 +26,11 @@ function esp8266_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
 }
 
 function esp8266_getResponse() {
- var res = Response;
- Response=[];
- return res;
+ if (getstate == false) {
+   var res = Response;
+   Response=[];
+   return res;
+  }
+  else
+    return [];
 }
