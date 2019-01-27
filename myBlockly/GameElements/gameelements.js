@@ -408,7 +408,9 @@
     obj.style.position = "absolute";
     obj.id = "gamecanvas_"+input_id;
     obj.setAttribute("width",input_width + 'px');
+    obj.style.height = input_width + 'px';
     obj.setAttribute("height",input_height + 'px');
+    obj.style.height = input_height + 'px';
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
     obj.style.zIndex = input_zindex;
@@ -424,18 +426,6 @@
       document.body.appendChild(img);
     }
   } 
-
-
-
-
-
-
-
-
-
-
-
-
 
   function canvas_set(input_id,input_property,input_value) {
     if (document.getElementById("gamecanvas_"+input_id))
