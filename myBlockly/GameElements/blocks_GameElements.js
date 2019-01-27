@@ -577,6 +577,14 @@ Blockly.Blocks['canvas_line'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.COLOR_SHOW);  
+  this.appendValueInput("rotate_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ROTATEZ_DEGREES_SHOW);     
+  this.appendValueInput("globalAlpha_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPACITY_SHOW);      
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
