@@ -502,15 +502,17 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '      </block>'+
 '    </value>'+      
 '  </block>'+  
-'  <block type="image_onclick_listener">'+
-'  </block>'+       
-'  <block type="canvas_onclick_do">'+
-'    <value name="id_">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
+'  <block type="image_onclick_listener" id="_u]I^KFlA[UgTzFj#]rD" x="10" y="22">'+
+'    <statement name="do_">'+
+'      <block type="canvas_onclick_do" id=":9%fzFFPrN)HQ7gF9WON">'+
+'        <value name="id_">'+
+'          <block type="text" id="OF;J;$t!QY,awlXqB^V{">'+
+'            <field name="TEXT"></field>'+
+'          </block>'+
+'        </value>'+
 '      </block>'+
-'    </value>'+     
-'  </block>'+ 
+'    </statement>'+
+'  </block>'+    
 '  <block type="canvas_onclick_get">'+
 '    <value name="id_">'+
 '      <block type="text">'+
