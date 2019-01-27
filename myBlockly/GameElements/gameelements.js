@@ -506,12 +506,9 @@
       var obj = document.getElementById("gamecanvas_"+input_id);
       var context = obj.getContext("2d");
       context.strokeStyle = input_color;
-      if (input_rotate) {
-	context.translate(-Math.abs(input_x0-input_x1)/2,-Math.abs(input_y0-input_y1)/2);
-	context.rotate(input_rotate * Math.PI / 180);
-      }
-      if (input_globalAlpha) context.globalAlpha = input_globalAlpha;
       context.lineWidth = input_linewidth;
+      context.rotate(input_rotate * Math.PI / 180);
+      context.globalAlpha = input_globalAlpha;
       context.beginPath();
       context.moveTo(input_x0,input_y0);
       context.lineTo(input_x1,input_y1);
@@ -519,12 +516,14 @@
     }
   } 
   
-  function canvas_rect(input_id,input_linewidth,input_x0,input_y0,input_width,input_height,input_fill,input_color) {
+  function canvas_rect(input_id,input_linewidth,input_x0,input_y0,input_width,input_height,input_fill,input_color,input_rotate,input_globalAlpha) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
       context.strokeStyle = input_color;
       context.fillStyle = input_color;
       context.lineWidth = input_linewidth;
+      context.rotate(input_rotate * Math.PI / 180);
+      context.globalAlpha = input_globalAlpha;	    
       context.beginPath();
       context.rect(input_x0,input_y0,input_width,input_height);
       if (input_fill==0)
@@ -534,12 +533,14 @@
     }
   } 
   
-  function canvas_arc(input_id,input_linewidth,input_x0,input_y0,input_r,input_sAngle,input_eAngle,input_counterclockwise,input_fill,input_color) {
+  function canvas_arc(input_id,input_linewidth,input_x0,input_y0,input_r,input_sAngle,input_eAngle,input_counterclockwise,input_fill,input_color,input_rotate,input_globalAlpha) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
       context.strokeStyle = input_color;
       context.fillStyle = input_color;
       context.lineWidth = input_linewidth;
+      context.rotate(input_rotate * Math.PI / 180);
+      context.globalAlpha = input_globalAlpha;	    
       context.beginPath();
       context.arc(input_x0,input_y0,input_r,input_sAngle,input_eAngle,input_counterclockwise);
       if (input_fill==0)
@@ -560,10 +561,12 @@
     if (input_url!=""&&img.src!=input_url) img.src = input_url;
   } 
   
-  function canvas_img(input_id,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height) {
+  function canvas_img(input_id,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height,input_rotate,input_globalAlpha) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var img = document.getElementById("gamecanvasimg");
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
+      context.rotate(input_rotate * Math.PI / 180);
+      context.globalAlpha = input_globalAlpha;	    
       if ((input_swidth>0)&&(input_sheight>0))
         context.drawImage(img,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height);
       else if (((input_swidth==0)||(input_sheight==0))&&((input_width>0)&&(input_height>0)))
@@ -573,13 +576,15 @@
     }
   } 
   
-  function canvas_text(input_id,input_text,input_x0,input_y0,input_fontname,input_fontsize,input_textalign,input_fill,input_color) {
+  function canvas_text(input_id,input_text,input_x0,input_y0,input_fontname,input_fontsize,input_textalign,input_fill,input_color,input_rotate,input_globalAlpha) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
       context.strokeStyle = input_color;
       context.fillStyle = input_color;
       context.font = input_fontsize + 'px ' + input_fontname;
       context.textAlign = input_textalign;
+      context.rotate(input_rotate * Math.PI / 180);
+      context.globalAlpha = input_globalAlpha;	    
       if (input_fill==0)
         context.strokeText(input_text,input_x0,input_y0);
       else
@@ -587,12 +592,14 @@
     }
   } 
 
-  function canvas_quadraticcurve(input_id,input_x0,input_y0,input_cp1x,input_cp1y,input_x,input_y,input_linewidth,input_color,input_fill) {
+  function canvas_quadraticcurve(input_id,input_x0,input_y0,input_cp1x,input_cp1y,input_x,input_y,input_linewidth,input_color,input_fill,input_rotate,input_globalAlpha) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
       context.strokeStyle = input_color;
       context.fillStyle = input_color;
       context.lineWidth = input_linewidth;
+      context.rotate(input_rotate * Math.PI / 180);
+      context.globalAlpha = input_globalAlpha;	    
       context.beginPath();
       context.moveTo(input_x0,input_y0);
       context.quadraticCurveTo(input_cp1x,input_cp1y,input_x,input_y);
@@ -609,6 +616,8 @@
       context.strokeStyle = input_color;
       context.fillStyle = input_color;
       context.lineWidth = input_linewidth;
+      context.rotate(input_rotate * Math.PI / 180);
+      context.globalAlpha = input_globalAlpha;	    
       context.beginPath();
       context.moveTo(input_x0,input_y0);
       context.bezierCurveTo(input_cp1x,input_cp1y,input_cp2x,input_cp2y,input_x,input_y);
