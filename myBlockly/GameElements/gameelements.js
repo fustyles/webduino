@@ -216,13 +216,15 @@
   function table_change_colsrows(input_id,input_target,input_y,input_cmd,input_index) {
     if (document.getElementById("gametable_"+input_id)) {
       var obj = document.getElementById("gametable_"+input_id);
-      if (input_target=="row")
-  	obj.deleteRow(input_index);
-      else if (input_target=="col") {  
-	for (var i=0;i<obj.rows.length;i++) {
-	  var row = obj.rows[i];
-          row.deleteCell(input_index);
-	}
+      if (input_cmd=="remove") {
+        if (input_target=="row")
+  	  obj.deleteRow(input_index);
+        else if (input_target=="col") {  
+	  for (var i=0;i<obj.rows.length;i++) {
+	    var row = obj.rows[i];
+            row.deleteCell(input_index);
+	  }
+        }
       }
     }
   }
