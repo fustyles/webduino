@@ -219,7 +219,7 @@
       if (input_target=="row")
   	obj.deleteRow(input_index);
       else if (input_target=="col") {  
-	for (var i=0;i<obj.ros.length;i++) {
+	for (var i=0;i<obj.rows.length;i++) {
 	  var row = obj.rows[i];
           row.deleteCell(input_index);
 	}
