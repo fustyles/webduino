@@ -1,7 +1,6 @@
 Blockly.Blocks['thingspeak_update'] = {
   init: function() {  
   this.appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("ThingSpeak");
   this.appendValueInput("key")
       .setCheck("String")
