@@ -403,6 +403,18 @@
       </block>
     </value>     
   </block>
+  <block type="table_change_colsrows">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>        
+    <value name="index_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+  </block>    
   <block type="table_td_insert_img"> 
     <value name="id_">
       <block type="text">
@@ -671,6 +683,25 @@
         <field name="NUM">0</field>
       </block>
     </value>     
+  </block>
+  <block type="canvas_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+  </block>
+  <block type="canvas_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
   </block>
   <block type="canvas_line">  
     <value name="id_">
