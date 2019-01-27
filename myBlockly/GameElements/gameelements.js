@@ -414,6 +414,7 @@
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
     obj.style.zIndex = input_zindex;
+    obj.style.display = "block";
     obj.draggable="true";
     obj.setAttribute("onclick", "javascript:image_onclickid_set(this);");
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
