@@ -85,6 +85,11 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '      <block type="colour_picker">'+
 '        <field name="COLOUR">#ff0000</field>'+
 '      </block>'+
+'    </value>'+  
+'    <value name="rotate_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
 '    </value>'+     
 '  </block>'+  
 '  <block type="canvas_rect">'+ 
