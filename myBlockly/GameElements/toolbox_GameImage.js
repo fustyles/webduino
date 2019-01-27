@@ -85,16 +85,18 @@ var catGameImage = '<xml><category name="%{BKY_GAMEIMAGE}" colour="%{BKY_GAMEIMA
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+ 
-'  </block>'+
-'  <block type="image_onclick_listener">'+
-'  </block>'+   
-'  <block type="image_onclick_do">'+
-'    <value name="id_">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
+'  </block>'+  
+'  <block type="image_onclick_listener" id="o(a?Wess1x(SbtJmfsA7" x="46" y="47">'+
+'    <statement name="do_">'+
+'      <block type="image_onclick_do" id="c3b9fdE)Ol$%w-;AVKS$">'+
+'        <value name="id_">'+
+'          <block type="text" id="rn4|!k{H3`mt2_[(W)][">'+
+'            <field name="TEXT"></field>'+
+'          </block>'+
+'        </value>'+
 '      </block>'+
-'    </value>'+     
-'  </block>'+ 
+'    </statement>'+
+'  </block>'+
 '  <block type="image_onclick_get">'+
 '    <value name="id_">'+
 '      <block type="text">'+
