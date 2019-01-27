@@ -439,6 +439,8 @@
         obj.setAttribute("height",input_value + 'px');
         obj.style.height = input_value + 'px';
       }
+      else if (input_property=='left')
+        obj.style.left = input_value + 'px';	    
       else if (input_property=='top')
         obj.style.top = input_value + 'px';
       else if (input_property=='zindex')
