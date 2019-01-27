@@ -149,3 +149,5 @@ Blockly.Msg.RANGE_DELETE_SHOW = "刪除";
 Blockly.Msg.RANGE_ONCHANGE_SHOW = "改變數值後執行"; 
 Blockly.Msg.SETWINDOW_SHOW = "設定執行視窗";
 Blockly.Msg.TIPS_SHOW = "遊戲元素初始化JS (新擴充的積木若無法執行請加入)";
+Blockly.Msg.TABLE_INDEX_SHOW = "索引";
+Blockly.Msg.TABLE_CHANGE_COLSROWS_SHOW = "表格改變行列";
