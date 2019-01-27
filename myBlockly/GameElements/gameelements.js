@@ -213,7 +213,7 @@
     }  
   }
 
-  function table_change_colsrows(input_id,input_target,input_y,input_cmd,input_index) {
+  function table_change_colsrows(input_id,input_target,input_cmd,input_index) {
     if (document.getElementById("gametable_"+input_id)) {
       var obj = document.getElementById("gametable_"+input_id);
       if (input_cmd=="remove") {
