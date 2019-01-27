@@ -1,7 +1,6 @@
 Blockly.Blocks['TextToSpeech_run'] = {
   init: function () {
   this.appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TEXTTOSPEECH_SHOW);           
   this.appendValueInput("volume_")
       .setCheck("Number")
