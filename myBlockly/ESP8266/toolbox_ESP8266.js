@@ -87,22 +87,22 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '        </value>'+
 '        <value name="P1">'+
 '          <block type="math_number">'+
-'            <field name="NUM">3</field>'+
+'            <field name="NUM"></field>'+
 '          </block>'+
 '        </value>'+
 '        <value name="P2">'+
 '          <block type="math_number">'+
-'            <field name="NUM">5</field>'+
+'            <field name="NUM"></field>'+
 '          </block>'+
 '        </value>'+
 '        <value name="P3">'+
 '          <block type="math_number">'+
-'            <field name="NUM">6</field>'+
+'            <field name="NUM"></field>'+
 '          </block>'+
 '        </value>'+
 '        <value name="P4">'+
 '          <block type="math_number">'+
-'            <field name="NUM">9</field>'+
+'            <field name="NUM"></field>'+
 '          </block>'+
 '        </value>'+
 '        <value name="P5">'+
