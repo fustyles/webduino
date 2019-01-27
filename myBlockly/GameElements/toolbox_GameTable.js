@@ -105,25 +105,27 @@ var catGameTable = '<xml><category name="%{BKY_GAMETABLE}" colour="%{BKY_GAMETAB
 '      </block>'+
 '    </value>'+
 '  </block>'+   
-'  <block type="image_onclick_listener">'+
-'  </block>'+  
-'  <block type="table_td_onclick_do">'+  
-'    <value name="id_">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+         
-'    <value name="x_">'+
-'      <block type="math_number">'+
-'        <field name="NUM">0</field>'+
-'      </block>'+
-'    </value>'+
-'    <value name="y_">'+
-'      <block type="math_number">'+
-'        <field name="NUM">0</field>'+
-'      </block>'+
-'    </value>'+  
-'  </block>'+      
+'  <block type="image_onclick_listener" id="dr3[S]LJj)EK]i`WZ_eW" x="-8" y="6">
+'    <statement name="do_">
+'      <block type="table_td_onclick_do" id="N+ptDK;m?|L=[~!8lE7+">
+'        <value name="id_">
+'          <block type="text" id="AN%=|3{PM~iC7c5s(3b;">
+'            <field name="TEXT"></field>
+'          </block>
+'        </value>
+'        <value name="x_">
+'          <block type="math_number" id="]@b%8K]-}VIT_MMIM-S%">
+'          <field name="NUM">0</field>
+'          </block>
+'        </value>
+'        <value name="y_">
+'          <block type="math_number" id="v-D163zB;#TgK2yWb*gt">
+'            <field name="NUM">0</field>
+'          </block>
+'        </value>
+'      </block>
+'    </statement>
+'  </block>
 '  <block type="table_td_insert_img">'+ 
 '    <value name="id_">'+
 '      <block type="text">'+
