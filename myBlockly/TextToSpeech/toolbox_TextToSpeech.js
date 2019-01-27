@@ -27,9 +27,9 @@ var catTextToSpeech = '<xml>'+
 '      </block>'+    
 '    </value>'+      
 '  </block>'+  
-'  <block type="TextToSpeech_control">'+  
-'  </block>'+       
 '  <block type="TextToSpeech_voice">'+  
 '  </block>'+      
+'  <block type="TextToSpeech_control">'+  
+'  </block>'+       
 '</category>'+
 '</xml>';
