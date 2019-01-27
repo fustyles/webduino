@@ -42,8 +42,8 @@ Blockly.JavaScript['table_change_colsrows'] = function (block) {
   var value_target_ = block.getFieldValue('target_');
   var value_cmd_ = block.getFieldValue('cmd_');  
   var value_index_ = Blockly.JavaScript.valueToCode(block, 'index_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'table_change_colsrows(' + value_id_ + ',"'+ value_target_ + '","' + value_cmd_ + '",' + value_index_+ ')';
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  var code = 'table_change_colsrows(' + value_id_ + ',"'+ value_target_ + '","' + value_cmd_ + '",' + value_index_+ ');\n'
+  return code;
 };
 
 Blockly.JavaScript['table_td_set'] = function (block) {
