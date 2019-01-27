@@ -456,10 +456,12 @@
       else if (input_property=="position")
         obj.style.position = input_value;		    
       else if (input_property=='globalAlpha') {
-        //
+	var ctx = obj.getContext("2d");
+	ctx.globalAlpha = input_value;
       }
       else if (input_property=='rotate') {
-        //
+	var ctx = obj.getContext("2d");
+	ctx.rotate(input_value * Math.PI / 180);
       }
       else if (input_property=='moveX')
         obj.style.left = (Number(obj.style.left.replace(/px/ig,""))+Number(input_value))+"px";
