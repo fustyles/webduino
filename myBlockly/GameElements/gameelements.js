@@ -501,10 +501,16 @@
       return "";    
   }  
 
-  function canvas_line(input_id,input_linewidth,input_x0,input_y0,input_x1,input_y1,input_color) {
+  function canvas_line(input_id,input_linewidth,input_x0,input_y0,input_x1,input_y1,input_color,input_rotate,input_globalAlpha) {
     if (document.getElementById("gamecanvas_"+input_id)) {
-      var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
+      var obj = document.getElementById("gamecanvas_"+input_id);
+      var context = obj.getContext("2d");
       context.strokeStyle = input_color;
+      if (input_rotate) {
+	context.translate(obj.width/2,obj.height/2);
+	context.rotate(input_rotate * Math.PI / 180);
+      }
+      if (input_globalAlpha) context.globalAlpha = input_globalAlpha;
       context.lineWidth = input_linewidth;
       context.beginPath();
       context.moveTo(input_x0,input_y0);
