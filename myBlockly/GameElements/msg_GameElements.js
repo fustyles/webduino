@@ -160,3 +160,5 @@ Blockly.Msg.RANGE_VALUE_SHOW = "Value";
 Blockly.Msg.RANGE_SET_SHOW = "Set";
 Blockly.Msg.RANGE_DELETE_SHOW = "Delete";
 Blockly.Msg.RANGE_ONCHANGE_SHOW = "is changed"; 
+Blockly.Msg.TABLE_INDEX_SHOW = "Index";
+Blockly.Msg.TABLE_CHANGE_COLSROWS_SHOW = "Table change cols or rows";
