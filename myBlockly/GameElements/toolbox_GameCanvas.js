@@ -137,7 +137,17 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '      <block type="colour_picker">'+
 '        <field name="COLOUR">#ff0000</field>'+
 '      </block>'+
-'    </value>'+     
+'    </value>'+   
+'    <value name="rotate_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+   
+'    <value name="globalAlpha_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">1</field>'+
+'      </block>'+
+'    </value>'+      
 '  </block>'+  
 '  <block type="canvas_arc">'+  
 '    <value name="id_">'+
@@ -189,7 +199,17 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '      <block type="colour_picker">'+
 '        <field name="COLOUR">#ff0000</field>'+
 '      </block>'+
-'    </value>'+     
+'    </value>'+   
+'    <value name="rotate_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+   
+'    <value name="globalAlpha_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">1</field>'+
+'      </block>'+
+'    </value>'+      
 '  </block>'+ 
 '  <block type="canvas_img_url">'+   
 '    <value name="url_">'+
@@ -244,6 +264,16 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '        <field name="NUM">0</field>'+
 '      </block>'+
 '    </value>'+   
+'    <value name="rotate_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+   
+'    <value name="globalAlpha_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">1</field>'+
+'      </block>'+
+'    </value>'+      
 '  </block>'+
 '  <block type="canvas_text">'+
 '    <value name="id_">'+
@@ -286,6 +316,16 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '        <field name="COLOUR">#ff0000</field>'+
 '      </block>'+
 '    </value>'+  
+'    <value name="rotate_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+   
+'    <value name="globalAlpha_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">1</field>'+
+'      </block>'+
+'    </value>'+      
 '  </block>'+
 '  <block type="canvas_quadraticcurve">'+
 '    <value name="id_">'+
@@ -337,7 +377,17 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '      <block type="logic_boolean">'+
 '        <field name="BOOL">FALSE</field>'+
 '      </block>'+
-'    </value>'+        
+'    </value>'+     
+'    <value name="rotate_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+   
+'    <value name="globalAlpha_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">1</field>'+
+'      </block>'+
+'    </value>'+      
 '  </block>'+
 '  <block type="canvas_beziercurve">'+
 '    <value name="id_">'+
@@ -399,7 +449,17 @@ var catGameCanvas = '<xml><category name="%{BKY_GAMECANVAS}" colour="%{BKY_GAMEC
 '      <block type="logic_boolean">'+
 '        <field name="BOOL">FALSE</field>'+
 '      </block>'+
-'    </value>'+        
+'    </value>'+    
+'    <value name="rotate_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+   
+'    <value name="globalAlpha_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">1</field>'+
+'      </block>'+
+'    </value>'+      
 '  </block>'+
 '  <block type="canvas_clearrect">'+
 '    <value name="id_">'+
