@@ -211,6 +211,22 @@
       }
     }  
   }
+	
+  function table_change_colsrows(input_id,input_target,input_cmd,input_index) {
+    if (document.getElementById("gametable_"+input_id)) {
+      var obj = document.getElementById("gametable_"+input_id);
+      if (input_cmd=="remove") {
+        if (input_target=="row")
+  	  obj.deleteRow(input_index);
+        else if (input_target=="col") {  
+	  for (var i=0;i<obj.rows.length;i++) {
+	    var row = obj.rows[i];
+            row.deleteCell(input_index);
+	  }
+        }
+      }
+    }
+  }	
   
   function table_td_set(input_id,input_x,input_y,input_property,input_value){
     if (document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x)) {
@@ -414,6 +430,79 @@
       document.body.appendChild(img);
     }
   } 
+	
+  function canvas_set(input_id,input_property,input_value) {
+    if (document.getElementById("gamecanvas_"+input_id))
+    {
+      var obj = document.getElementById("gamecanvas_"+input_id);
+      if (input_property=='width') {
+        obj.setAttribute("width",input_value + 'px');
+        obj.style.width = input_value + 'px';
+      }
+      else if (input_property=='height') {
+        obj.setAttribute("height",input_value + 'px');
+        obj.style.height = input_value + 'px';
+      }
+      else if (input_property=='left')
+        obj.style.left = input_value + 'px';	    
+      else if (input_property=='top')
+        obj.style.top = input_value + 'px';
+      else if (input_property=='zindex')
+        obj.style.zIndex = input_value;
+      else if (input_property=='display')
+      {
+        if (input_value==0)
+          obj.style.display = "none";
+        else
+          obj.style.display = "block";
+      }
+      else if (input_property=="position")
+        obj.style.position = input_value;		    
+      else if (input_property=='moveX')
+        obj.style.left = (Number(obj.style.left.replace(/px/ig,""))+Number(input_value))+"px";
+      else if (input_property=='moveY')
+        obj.style.top = (Number(obj.style.top.replace(/px/ig,""))+Number(input_value))+"px";    
+    }
+  }  
+  
+  function canvas_get(input_id,input_property) {
+    if (input_property=='exist')
+    {
+      if (document.getElementById("gamecanvas_"+input_id))
+        return 1;
+      else
+        return 0;
+    }   
+    if (document.getElementById("gamecanvas_"+input_id))
+    {
+      var obj = document.getElementById("gamecanvas_"+input_id);
+      if (input_property=='url')
+        return obj.src;
+      else if (input_property=='width')
+        return Number(obj.style.width.replace(/px/ig,""));
+      else if (input_property=='height')
+        return Number(obj.style.height.replace(/px/ig,""));
+      else if (input_property=='left')
+        return Number(obj.style.left.replace(/px/ig,""));
+      else if (input_property=='top')
+        return Number(obj.style.top.replace(/px/ig,""));
+      else if (input_property=='zindex')
+        return Number(obj.style.zIndex);
+      else if (input_property=='display')
+      {
+        if (obj.style.display=="block")
+          return 1;
+        else
+          return 0;  
+      }
+      else if (input_property=="position")
+        return obj.style.position;		    
+      else if (input_property=='id')
+        return "gamecanvas_"+input_id;
+    }
+    else
+      return "";    
+  }  	
   
   function canvas_line(input_id,input_linewidth,input_x0,input_y0,input_x1,input_y1,input_color) {
     if (document.getElementById("gamecanvas_"+input_id)) {
@@ -1376,6 +1465,9 @@
   window.range_get = range_get;
   window.range_delete = range_delete;
   window.range_onclick_get = range_onclick_get;	
+  window.table_change_colsrows = table_change_colsrows;
+  window.canvas_set = canvas_set;
+  window.canvas_get = canvas_get;	
   window.text_to_number = text_to_number;
   window.body_set = body_set;
   
