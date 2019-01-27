@@ -408,7 +408,7 @@
     obj.style.position = "absolute";
     obj.id = "gamecanvas_"+input_id;
     obj.setAttribute("width",input_width + 'px');
-    obj.style.height = input_width + 'px';
+    obj.style.width = input_width + 'px';
     obj.setAttribute("height",input_height + 'px');
     obj.style.height = input_height + 'px';
     obj.style.left = input_left + 'px';
@@ -431,12 +431,14 @@
     if (document.getElementById("gamecanvas_"+input_id))
     {
       var obj = document.getElementById("gamecanvas_"+input_id);
-      if (input_property=='width')
+      if (input_property=='width') {
+        obj.setAttribute("width",input_value + 'px');
         obj.style.width = input_value + 'px';
-      else if (input_property=='height')
+      }
+      else if (input_property=='height') {
+        obj.setAttribute("height",input_value + 'px');
         obj.style.height = input_value + 'px';
-      else if (input_property=='left')
-        obj.style.left = input_value + 'px';
+      }
       else if (input_property=='top')
         obj.style.top = input_value + 'px';
       else if (input_property=='zindex')
@@ -502,19 +504,6 @@
       return "";    
   }  
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
   function canvas_line(input_id,input_linewidth,input_x0,input_y0,input_x1,input_y1,input_color) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
