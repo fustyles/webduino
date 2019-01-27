@@ -519,7 +519,7 @@ Blockly.Blocks['canvas_set'] = {
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);    
   this.appendDummyInput() 
       .appendField(Blockly.Msg.SET_SHOW)    
-      .appendField(new Blockly.FieldDropdown([["width","width"], ["height","height"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["position","position"], ["globalAlpha","globalAlpha"], ["rotate","rotate"], , ["moveX","moveX"], ["moveY","moveY"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["width","width"], ["height","height"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["position","position"], ["globalAlpha","globalAlpha"], ["rotate","rotate"], ["moveX","moveX"], ["moveY","moveY"]]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
