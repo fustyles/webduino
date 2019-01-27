@@ -106,6 +106,32 @@ Blockly.Blocks['table_clear'] = {
   }
 };
 
+Blockly.Blocks['table_change_colsrows'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE_CHANGE_COLSROWS_SHOW);       
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_ID_SHOW); 
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(new Blockly.FieldDropdown([["col","col"], ["row","row"]]), "target_");    
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)   
+      .appendField(" ")
+      .appendField(new Blockly.FieldDropdown([["remove","remove"]]), "cmd_");    
+  this.appendValueInput("index_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_INDEX_SHOW);   
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['table_td_set'] = {
   init: function() {
   this.appendValueInput("id_")
@@ -483,6 +509,39 @@ Blockly.Blocks['canvas_create'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
+  }
+};
+
+Blockly.Blocks['canvas_set'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null)
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);    
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.SET_SHOW)    
+      .appendField(new Blockly.FieldDropdown([["width","width"], ["height","height"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["position","position"], ["moveX","moveX"], ["moveY","moveY"]]), "property_");
+  this.appendValueInput("value_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null);    
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['canvas_get'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.GET_SHOW)    
+      .appendField(new Blockly.FieldDropdown([["exist","exist"], ["width","width"], ["height","height"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["position","position"], ["id","id"]]), "property_");
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
   }
 };
 
