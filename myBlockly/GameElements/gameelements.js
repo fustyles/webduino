@@ -507,7 +507,7 @@
       var context = obj.getContext("2d");
       context.strokeStyle = input_color;
       if (input_rotate) {
-	context.translate(input_x0,input_y0);
+	context.translate(Math.abs(input_x0-input_x1)/2,Math.abs(input_y0-input_y1)/2);
 	context.rotate(input_rotate * Math.PI / 180);
       }
       if (input_globalAlpha) context.globalAlpha = input_globalAlpha;
