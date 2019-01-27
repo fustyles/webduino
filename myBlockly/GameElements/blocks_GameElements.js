@@ -627,6 +627,14 @@ Blockly.Blocks['canvas_rect'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.COLOR_SHOW);   
+  this.appendValueInput("rotate_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ROTATEZ_DEGREES_SHOW);     
+  this.appendValueInput("globalAlpha_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPACITY_SHOW);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -676,7 +684,15 @@ Blockly.Blocks['canvas_arc'] = {
   this.appendValueInput("color_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.COLOR_SHOW);   
+      .appendField(Blockly.Msg.COLOR_SHOW);  
+  this.appendValueInput("rotate_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ROTATEZ_DEGREES_SHOW);     
+  this.appendValueInput("globalAlpha_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPACITY_SHOW);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -738,6 +754,14 @@ Blockly.Blocks['canvas_img'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.HEIGHT_SHOW); 
+  this.appendValueInput("rotate_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ROTATEZ_DEGREES_SHOW);     
+  this.appendValueInput("globalAlpha_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPACITY_SHOW);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -783,6 +807,14 @@ Blockly.Blocks['canvas_text'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.COLOR_SHOW); 
+  this.appendValueInput("rotate_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ROTATEZ_DEGREES_SHOW);     
+  this.appendValueInput("globalAlpha_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPACITY_SHOW);     
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -834,6 +866,14 @@ Blockly.Blocks['canvas_quadraticcurve'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.CANVAS_FILL_SHOW);      
+  this.appendValueInput("rotate_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ROTATEZ_DEGREES_SHOW);     
+  this.appendValueInput("globalAlpha_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPACITY_SHOW);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -893,6 +933,14 @@ Blockly.Blocks['canvas_beziercurve'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.CANVAS_FILL_SHOW);      
+  this.appendValueInput("rotate_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ROTATEZ_DEGREES_SHOW);     
+  this.appendValueInput("globalAlpha_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPACITY_SHOW);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
