@@ -131,16 +131,6 @@ Blockly.Blocks['esp8266_car'] = {
   }
 };
 
-Blockly.Blocks['esp8266_getresponse'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Get ESP8266 Response data");
-    this.setInputsInline(false);
-    this.setOutput(true, null); 
-    this.setColour(200);
-  }
-};
-
 Blockly.Blocks['esp8266_cmd'] = {
   init: function () {    
   this.appendDummyInput()
@@ -171,10 +161,20 @@ Blockly.Blocks['esp8266_cmd'] = {
   }
 };
 
+Blockly.Blocks['esp8266_getresponse'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Get ESP8266 response data");
+    this.setInputsInline(false);
+    this.setOutput(true, null); 
+    this.setColour(200);
+  }
+};
+
 Blockly.Blocks['esp8266_cleardata'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Clear ESP8266 Response data");
+        .appendField("Clear ESP8266 response data");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
