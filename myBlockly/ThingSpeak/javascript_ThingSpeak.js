@@ -43,3 +43,8 @@ Blockly.JavaScript['thingspeak_read3'] = function (block) {
   var code = 'ThingSpeak_read(3,'+key+',"","");\n';
   return code; 
 };
+
+Blockly.JavaScript['thingspeak_getresponse'] = function(block) {
+  var code = "thingspeak_getResponse()";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
