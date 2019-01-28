@@ -102,3 +102,23 @@ Blockly.Blocks['thingspeak_read3'] = {
   this.setColour(65);
   }
 };
+
+Blockly.Blocks['thingspeak_getResponse'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Get ThingSpeak Response data");
+    this.setInputsInline(false);
+    this.setOutput(true, null); 
+    this.setColour(200);
+  }
+};
+
+Blockly.Blocks['thingspeak_clearResponse'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Clear ThingSpeak Response data");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
