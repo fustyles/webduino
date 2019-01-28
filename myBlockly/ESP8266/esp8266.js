@@ -12,7 +12,7 @@ function esp8266_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
       success: function(json)
       {
         json = eval(json);
-        console.log(json);
+        //console.log(json);
         getstate = true;
         for (var i=0;i<json.length;i++) {
           Response.push(json[i]["data"]+"");
