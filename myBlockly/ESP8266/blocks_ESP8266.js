@@ -177,6 +177,6 @@ Blockly.Blocks['esp8266_cleardata'] = {
         .appendField("Clear ESP8266 Data");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(200);
+    this.setColour(60);
   }
 };
