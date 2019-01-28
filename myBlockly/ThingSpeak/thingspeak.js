@@ -44,7 +44,7 @@ function ThingSpeak_read(kind,key,index,count) {
   ThingSpeak_response=[];
   var data = $.ajax({
       "type": "POST",
-      "dataType": "json",
+      "dataType": "jsonp",
       "url": url,
       success: function(json)
       {
