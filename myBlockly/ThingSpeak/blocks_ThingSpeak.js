@@ -57,7 +57,8 @@ Blockly.Blocks['thingspeak_read1'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("/feeds.json?results=");
   this.setInputsInline(true);
-  this.setOutput(true, null); 
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
   this.setColour(65);
   }
 };
@@ -79,7 +80,8 @@ Blockly.Blocks['thingspeak_read2'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(".json?results=");
   this.setInputsInline(true);
-  this.setOutput(true, null); 
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
   this.setColour(65);
   }
 };
@@ -95,7 +97,8 @@ Blockly.Blocks['thingspeak_read3'] = {
   this.appendDummyInput()
       .appendField("/status.json");  
   this.setInputsInline(true);
-  this.setOutput(true, null); 
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
   this.setColour(65);
   }
 };
