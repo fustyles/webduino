@@ -45,11 +45,11 @@ Blockly.JavaScript['thingspeak_read3'] = function (block) {
 };
 
 Blockly.JavaScript['thingspeak_getresponse'] = function(block) {
-  var code = "thingspeak_getResponse()";
+  var code = "ThingSpeak_getResponse()";
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['thingspeak_clearresponse'] = function(block) {
-  var code = "thingspeak_clearResponse();\n";
+  var code = "ThingSpeak_clearResponse();\n";
   return code;
 };
