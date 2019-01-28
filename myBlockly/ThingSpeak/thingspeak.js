@@ -37,7 +37,7 @@ function ThingSpeak_read(kind,key,index,count) {
   if (kind==1)
     var url ="https://api.thingspeak.com/channels/"+key+"/feeds.json?results="+count;
   else if (kind==2)
-    var url ="https://api.thingspeak.com/channels/"+key+"/fields/"+count+".json?results="+count;
+    var url ="https://api.thingspeak.com/channels/"+key+"/fields/"+index+".json?results="+count;
   else if (kind==3)
     var url ="https://api.thingspeak.com/channels/"+key+"/status.json";
 
