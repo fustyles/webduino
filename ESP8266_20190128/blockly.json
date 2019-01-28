@@ -1,0 +1,14 @@
+{
+  "types": ["esp8266_system","esp8266_custom","esp8266_car","esp8266_cmd","esp8266_getresponse","esp8266_clearresponse",],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "esp8266.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
