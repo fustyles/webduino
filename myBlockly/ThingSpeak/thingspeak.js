@@ -54,17 +54,17 @@ function ThingSpeak_read(kind,key,index,count) {
         for (var i=0;i<json.length;i++) {
           var Feedback= JSON.stringify(json[i]);
           console.log(Feedback);
-          Feedback= Feedback.replace("},{",";");
-          Feedback= Feedback.replace("\":\"",",");
-          Feedback= Feedback.replace("\":",",");
-          Feedback= Feedback.replace("\",\"",","); 
-          Feedback= Feedback.replace("\"","");
-          Feedback= Feedback.replace("{","");
-          Feedback= Feedback.replace("}","");
-          Feedback= Feedback.replace("[","");
-          Feedback= Feedback.replace("]","");
-          Feedback= Feedback.replace(",\"",",");
-          Feedback= Feedback.replace("\":",",");
+          Feedback= Feedback.replace(/},{/g,";");
+          Feedback= Feedback.replace(/\":\"/g,",");
+          Feedback= Feedback.replace(/\":/g,",");
+          Feedback= Feedback.replace(/\/g,\"",","); 
+          Feedback= Feedback.replace(/\"/g,"");
+          Feedback= Feedback.replace(/{/g,"");
+          Feedback= Feedback.replace(/}/g,"");
+          Feedback= Feedback.replace(/[/g,"");
+          Feedback= Feedback.replace(/]/g,"");
+          Feedback= Feedback.replace(/,\"/g,",");
+          Feedback= Feedback.replace(/\":/g,",");
           ThingSpeak_response.push(Feedback);
         }
         ThingSpeak_getState = false;
