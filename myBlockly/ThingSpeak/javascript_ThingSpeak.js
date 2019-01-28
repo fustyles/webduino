@@ -44,22 +44,12 @@ Blockly.JavaScript['thingspeak_read3'] = function (block) {
   return code; 
 };
 
-Blockly.Blocks['ThingSpeak_getResponse'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Get ThingSpeak Response Data");
-    this.setInputsInline(false);
-    this.setOutput(true, null); 
-    this.setColour(200);
-  }
+Blockly.JavaScript['thingspeak_getresponse'] = function(block) {
+  var code = "thingspeak_getResponse()";
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.Blocks['ThingSpeak_clearResponse'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Get ThingSpeak Response Data");
-    this.setInputsInline(false);
-    this.setOutput(true, null); 
-    this.setColour(200);
-  }
+Blockly.JavaScript['thingspeak_cleardata'] = function(block) {
+  var code = "thingspeak_clearResponse();\n";
+  return code;
 };
