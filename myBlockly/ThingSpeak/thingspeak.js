@@ -66,10 +66,14 @@ function ThingSpeak_read(kind,key,index,count) {
 
 function ThingSpeak_getResponse() {
  if (ThingSpeak_getstate == false) {
-   var res = Response;
-   Response=[];
+   var res = ThingSpeak_Response;
+   ThingSpeak_Response=[];
    return res;
   }
   else
     return [];
+}
+
+function ThingSpeak_clearResponse() {
+ ThingSpeak_Response=[];
 }
