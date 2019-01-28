@@ -40,6 +40,6 @@ Blockly.JavaScript['thingspeak_read2'] = function (block) {
 
 Blockly.JavaScript['thingspeak_read3'] = function (block) {
   var key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'ThingSpeak_read(3,'+key+',"",0);\n';
+  var code = 'ThingSpeak_read(3,'+key+',"","");\n';
   return code; 
 };
