@@ -63,6 +63,8 @@ function ThingSpeak_read(kind,key,index,count) {
           Feedback= Feedback.replace("}","");
           Feedback= Feedback.replace("[","");
           Feedback= Feedback.replace("]","");
+          Feedback= Feedback.replace(",\"",",");
+          Feedback= Feedback.replace("\":",",");
           ThingSpeak_response.push(Feedback);
         }
         ThingSpeak_getState = false;
