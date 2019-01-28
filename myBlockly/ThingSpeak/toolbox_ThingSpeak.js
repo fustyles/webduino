@@ -81,5 +81,7 @@ var catThingSpeak = '<xml><category name="%{BKY_THINGSPEAK}" colour="%{BKY_THING
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
-'  </block>'+  
+'  </block>'+ 
+'  <block type="thingspeak_getresponse">'+ 
+'  </block>'+      
 ' </category></xml>';
