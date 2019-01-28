@@ -35,3 +35,7 @@ function esp8266_getResponse() {
   else
     return [];
 }
+
+function esp8266_clear() {
+ esp8266_Response=[];
+}
