@@ -1,7 +1,7 @@
 // Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
-var Response=[];
-var getstate = false;
+var esp8266_Response=[];
+var esp8266_getstate = false;
 
 function esp8266_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str9) {
   Response=[];
@@ -13,11 +13,11 @@ function esp8266_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
       {
         json = eval(json);
         //console.log(json);
-        getstate = true;
+        esp8266_getstate = true;
         for (var i=0;i<json.length;i++) {
-          Response.push(json[i]["data"]+"");
+          esp8266_Response.push(json[i]["data"]+"");
         }
-        getstate = false;
+        esp8266_getstate = false;
       },
       error: function(jqXHR, textStatus, errorThrown)
       {
@@ -27,9 +27,9 @@ function esp8266_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str
 }
 
 function esp8266_getResponse() {
- if (getstate == false) {
-   var res = Response;
-   Response=[];
+ if (esp8266_getstate == false) {
+   var res = esp8266_Response;
+   esp8266_Response=[];
    return res;
   }
   else
