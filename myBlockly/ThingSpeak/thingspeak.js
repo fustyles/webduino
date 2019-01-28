@@ -1,7 +1,7 @@
 // Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
-var Response=[];
-var getstate = false;
+var ThingSpeak_Response=[];
+var ThingSpeak_getstate = false;
 
 function ThingSpeak_update(key,field1,field2,field3,field4,field5,field6,field7,field8) {
 
@@ -41,7 +41,7 @@ function ThingSpeak_read(kind,key,index,count) {
   else if (kind==3)
     var url ="https://api.thingspeak.com/channels/"+key+"/status.json";
 
-  var Response=[];
+  ThingSpeak_Response=[];
   var data = $.ajax({
       "type": "POST",
       "dataType": "json",
@@ -50,11 +50,11 @@ function ThingSpeak_read(kind,key,index,count) {
       {
         json = eval(json);
         //console.log(json);
-        getstate = true;
+        ThingSpeak_getstate = true;
         for (var i=0;i<json.length;i++) {
-          Response.push(json[i]["data"]+"");
+          ThingSpeak_Response.push(json[i]["data"]+"");
         }
-        getstate = false;
+        ThingSpeak_getstate = false;
       },
       error: function(jqXHR, textStatus, errorThrown)
       {
@@ -64,7 +64,7 @@ function ThingSpeak_read(kind,key,index,count) {
 }
 
 function ThingSpeak_getResponse() {
- if (getstate == false) {
+ if (ThingSpeak_getstate == false) {
    var res = Response;
    Response=[];
    return res;
