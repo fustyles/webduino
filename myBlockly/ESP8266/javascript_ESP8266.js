@@ -56,7 +56,7 @@ Blockly.JavaScript['esp8266_cmd'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript['esp8266_cleardata'] = function(block) {
+Blockly.JavaScript['esp8266_clearresponse'] = function(block) {
   var code = "esp8266_clearData();\n";
   return code;
 };
