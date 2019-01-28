@@ -171,7 +171,7 @@ Blockly.Blocks['esp8266_getresponse'] = {
   }
 };
 
-Blockly.Blocks['esp8266_cleardata'] = {
+Blockly.Blocks['esp8266_clearresponse'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Clear ESP8266 response data");
