@@ -57,12 +57,12 @@ function ThingSpeak_read(kind,key,index,count) {
           Feedback= Feedback.replace(/},{/g,";");
           Feedback= Feedback.replace(/\":\"/g,",");
           Feedback= Feedback.replace(/\":/g,",");
-          Feedback= Feedback.replace(/\/g,\"",","); 
+          Feedback= Feedback.replace(/\,\"/g,","); 
           Feedback= Feedback.replace(/\"/g,"");
-          Feedback= Feedback.replace(/{/g,"");
-          Feedback= Feedback.replace(/}/g,"");
-          Feedback= Feedback.replace(/[/g,"");
-          Feedback= Feedback.replace(/]/g,"");
+          Feedback= Feedback.replace(/\{/g,"");
+          Feedback= Feedback.replace(/\}/g,"");
+          Feedback= Feedback.replace(/\[/g,"");
+          Feedback= Feedback.replace(/\]/g,"");
           Feedback= Feedback.replace(/,\"/g,",");
           Feedback= Feedback.replace(/\":/g,",");
           ThingSpeak_response.push(Feedback);
