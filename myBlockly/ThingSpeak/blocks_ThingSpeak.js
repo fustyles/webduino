@@ -103,7 +103,7 @@ Blockly.Blocks['thingspeak_read3'] = {
   }
 };
 
-Blockly.Blocks['thingspeak_getResponse'] = {
+Blockly.Blocks['thingspeak_getresponse'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Get ThingSpeak Response data");
@@ -113,7 +113,7 @@ Blockly.Blocks['thingspeak_getResponse'] = {
   }
 };
 
-Blockly.Blocks['thingspeak_clearResponse'] = {
+Blockly.Blocks['thingspeak_clearresponse'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Clear ThingSpeak Response data");
