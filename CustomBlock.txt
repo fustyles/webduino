@@ -152,8 +152,14 @@ https://blocklypro.webduino.io/#7ggezB96Qa
 https://bit.webduino.io/blockly/#rybdwjzzGxQqk
 
 
-ESP8266
+ESP8266 (ESP01、ESP12E、ESP32)
 https://fustyles.github.io/webduino/ESP8266_20190128/blockly.json
+[ smart ]
+http://blocklypro.webduino.io/?demo=demo-area-01#kEqpZjVp6A
+http://blocklypro.webduino.io/?demo=demo-area-01#X0pMVD5n9Z
+[ bit ]
+http://bit.webduino.io/blockly/#jqwMPzDxXx9yO
+http://bit.webduino.io/blockly/#Qq7l7e9j8KE3B
 
 
 Bit & Smart 網頁控制介面
