@@ -29,3 +29,7 @@ function ThingSpeak_update(key,field1,field2,field3,field4,field5,field6,field7,
       }
    });
 }
+
+function ThingSpeak_read(key,index,count) {
+  
+}
