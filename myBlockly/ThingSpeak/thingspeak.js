@@ -54,15 +54,15 @@ function ThingSpeak_read(kind,key,index,count) {
         for (var i=0;i<json.length;i++) {
           var Feedback= JSON.stringify(json[i]);
           console.log(Feedback);
-          Feedback.replace("},{",";");
-          Feedback.replace("\":\"",",");
-          Feedback.replace("\":",",");
-          Feedback.replace("\",\"",","); 
-          Feedback.replace("\"","");
-          Feedback.replace("{","");
-          Feedback.replace("}","");
-          Feedback.replace("[","");
-          Feedback.replace("]","");
+          Feedback= Feedback.replace("},{",";");
+          Feedback= Feedback.replace("\":\"",",");
+          Feedback= Feedback.replace("\":",",");
+          Feedback= Feedback.replace("\",\"",","); 
+          Feedback= Feedback.replace("\"","");
+          Feedback= Feedback.replace("{","");
+          Feedback= Feedback.replace("}","");
+          Feedback= Feedback.replace("[","");
+          Feedback= Feedback.replace("]","");
           ThingSpeak_response.push(Feedback);
         }
         ThingSpeak_getState = false;
