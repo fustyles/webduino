@@ -49,12 +49,13 @@ function ThingSpeak_read(kind,key,index,count) {
       success: function(json)
       {
         json = eval(json.feeds);
-        //console.log(json);
+        console.log(json);
         ThingSpeak_getstate = true;
         for (var i=0;i<json.length;i++) {
           ThingSpeak_Response.push(json[i]+"");
         }
         ThingSpeak_getstate = false;
+        console.log(ThingSpeak_Response);
       },
       error: function(jqXHR, textStatus, errorThrown)
       {
