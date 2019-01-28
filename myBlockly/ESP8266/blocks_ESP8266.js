@@ -134,7 +134,7 @@ Blockly.Blocks['esp8266_car'] = {
 Blockly.Blocks['esp8266_getresponse'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Get Response");
+        .appendField("Get ESP8266 Response");
     this.setInputsInline(false);
     this.setOutput(true, null); 
     this.setColour(200);
