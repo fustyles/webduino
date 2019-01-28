@@ -52,7 +52,7 @@ function ThingSpeak_read(kind,key,index,count) {
         console.log(json);
         ThingSpeak_getState = true;
         for (var i=0;i<json.length;i++) {
-          var Feedback= JSON.parse(json[i]);
+          var Feedback= JSON.stringify(json[i]);
           var s=Feedback.indexOf("[");
           Feedback=Feedback.substring(s);
           var e=Feedback.indexOf("]");
