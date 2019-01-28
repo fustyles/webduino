@@ -44,7 +44,12 @@ Blockly.JavaScript['thingspeak_read3'] = function (block) {
   return code; 
 };
 
-Blockly.JavaScript['thingspeak_getresponse'] = function(block) {
-  var code = "thingspeak_getResponse()";
-  return [code, Blockly.JavaScript.ORDER_NONE];
+Blockly.Blocks['ThingSpeak_getresponse'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Get ThingSpeak Response");
+    this.setInputsInline(false);
+    this.setOutput(true, null); 
+    this.setColour(200);
+  }
 };
