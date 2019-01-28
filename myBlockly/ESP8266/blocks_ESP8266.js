@@ -174,7 +174,7 @@ Blockly.Blocks['esp8266_cmd'] = {
 Blockly.Blocks['esp8266_cleardata'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Clear ESP8266 Data");
+        .appendField("Clear ESP8266 temporary data");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
