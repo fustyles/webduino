@@ -1,7 +1,7 @@
 // Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
-var ThingSpeak_Response=[];
-var ThingSpeak_getstate = false;
+var ThingSpeak_response=[];
+var ThingSpeak_getState = false;
 
 function ThingSpeak_update(key,field1,field2,field3,field4,field5,field6,field7,field8) {
 
@@ -41,7 +41,7 @@ function ThingSpeak_read(kind,key,index,count) {
   else if (kind==3)
     var url ="https://api.thingspeak.com/channels/"+key+"/status.json";
 
-  ThingSpeak_Response=[];
+  ThingSpeak_response=[];
   var data = $.ajax({
       "type": "POST",
       "dataType": "json",
@@ -50,12 +50,12 @@ function ThingSpeak_read(kind,key,index,count) {
       {
         json = eval(json.feeds);
         console.log(json);
-        ThingSpeak_getstate = true;
+        ThingSpeak_getState = true;
         for (var i=0;i<json.length;i++) {
-          ThingSpeak_Response.push(json[i]+"");
+          ThingSpeak_response.push(json[i]+"");
         }
-        ThingSpeak_getstate = false;
-        console.log(ThingSpeak_Response);
+        ThingSpeak_getState = false;
+        console.log(ThingSpeak_response);
       },
       error: function(jqXHR, textStatus, errorThrown)
       {
@@ -65,9 +65,9 @@ function ThingSpeak_read(kind,key,index,count) {
 }
 
 function ThingSpeak_getResponse() {
- if (ThingSpeak_getstate == false) {
-   var res = ThingSpeak_Response;
-   ThingSpeak_Response=[];
+ if (ThingSpeak_getState == false) {
+   var res = ThingSpeak_response;
+   ThingSpeak_response=[];
    return res;
   }
   else
@@ -75,5 +75,5 @@ function ThingSpeak_getResponse() {
 }
 
 function ThingSpeak_clearResponse() {
- ThingSpeak_Response=[];
+ ThingSpeak_response=[];
 }
