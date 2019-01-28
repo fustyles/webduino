@@ -48,11 +48,11 @@ function ThingSpeak_read(kind,key,index,count) {
       "url": url,
       success: function(json)
       {
-        json = eval(json);
+        json = eval(json.feeds);
         //console.log(json);
         ThingSpeak_getstate = true;
         for (var i=0;i<json.length;i++) {
-          ThingSpeak_Response.push(json[i]["data"]+"");
+          ThingSpeak_Response.push(json[i]+"");
         }
         ThingSpeak_getstate = false;
       },
