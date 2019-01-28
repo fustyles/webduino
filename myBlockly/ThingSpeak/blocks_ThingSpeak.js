@@ -106,7 +106,7 @@ Blockly.Blocks['thingspeak_read3'] = {
 Blockly.Blocks['thingspeak_getresponse'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Get ThingSpeak Response data");
+        .appendField("Get ThingSpeak response data");
     this.setInputsInline(false);
     this.setOutput(true, null); 
     this.setColour(200);
@@ -116,7 +116,7 @@ Blockly.Blocks['thingspeak_getresponse'] = {
 Blockly.Blocks['thingspeak_clearresponse'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Clear ThingSpeak Response data");
+        .appendField("Clear ThingSpeak response data");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
