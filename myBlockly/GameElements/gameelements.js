@@ -352,19 +352,8 @@
     if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x)){
       var obj = document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x);
       if (document.getElementById("gamecanvas_"+input_canvas_id)) {
-	var canvasold = document.getElementById("gamecanvas_"+input_canvas_id);
-        var canvas = document.createElement('canvas');
-	canvas.getContext("2d").putImageData(canvasold.getContext("2d").getImageData(0,0,canvasold.style.width.replace(/px/ig,""),canvasold.style.height.replace(/px/ig,"")),0,0);
-	obj.setAttribute("width",canvasold.style.width);
-        canvas.style.width = canvasold.style.width;
-	obj.setAttribute("height",canvasold.style.height);
-        canvas.style.height = canvasold.style.height;
-        canvas.setAttribute("onclick", "javascript:image_onclickid_set(this);");
-        canvas.draggable="true";
-        canvas.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
-        canvasold.parentNode.removeChild(canvasold);
-        canvas.id = "gamecanvas_"+input_canvas_id;
-	console.log(canvas);
+	var canvas = document.getElementById("gamecanvas_"+input_canvas_id);
+	canvas.style.position = "static";
         obj.appendChild(canvas);
       }
     }
