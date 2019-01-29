@@ -162,3 +162,4 @@ Blockly.Msg.RANGE_DELETE_SHOW = "删除";
 Blockly.Msg.RANGE_ONCHANGE_SHOW = "改变数值后执行"; 
 Blockly.Msg.TABLE_INDEX_SHOW = "索引";
 Blockly.Msg.TABLE_CHANGE_COLSROWS_SHOW = "表格改變行列";
+Blockly.Msg.TABLE_TD_CANVAS_MOVE_SHOW = "移动到";
