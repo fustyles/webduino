@@ -324,10 +324,6 @@ Blockly.Blocks['table_td_img_move'] = {
   }
 };
 
-
-
-
-
 Blockly.Blocks['table_td_canvas_move'] = {
   init: function () {
   this.appendValueInput("id_")
@@ -352,11 +348,6 @@ Blockly.Blocks['table_td_canvas_move'] = {
   this.setColour(60);
   }
 };
-
-
-
-
-
 
 Blockly.Blocks['table_td_copy_move'] = {
   init: function () {
