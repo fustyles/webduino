@@ -359,7 +359,7 @@
         canvas.style.width = canvasold.style.width;
 	obj.setAttribute("height",canvasold.style.height);
         canvas.style.height = canvasold.style.height;
-        canvas.setAttribute("onclick", "javascript:canvas_onclickid_set(this);");
+        canvas.setAttribute("onclick", "javascript:image_onclickid_set(this);");
         canvas.draggable="true";
         canvas.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
         canvasold.parentNode.removeChild(canvasold);
