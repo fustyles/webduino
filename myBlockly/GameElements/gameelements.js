@@ -333,7 +333,8 @@
     if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x)){
       var obj = document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x);
       if (document.getElementById("gameimg_"+input_img_id)) {
-	    var imgold = document.getElementById("gameimg_"+input_img_id);
+	var img = document.getElementById("gameimg_"+input_img_id);
+	      /*
         var img = document.createElement('img');
         img.src = imgold.src;
         img.style.width = imgold.style.width;
@@ -343,6 +344,8 @@
         img.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
         imgold.parentNode.removeChild(imgold);
         img.id = "gameimg_"+input_img_id;
+	*/
+	img style.position = "static";
         obj.appendChild(img);
       }
     }
