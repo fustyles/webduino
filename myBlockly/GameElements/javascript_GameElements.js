@@ -681,15 +681,19 @@ Blockly.JavaScript['element_event'] = function (block) {
   else if (element=="document")
     var obj="document";
   else if (element=="table")
-    var obj="document.getElementById('gametable_"+value_id_+"')";  
+    var obj="document.getElementById(table_get("+value_id_+",'id'))";  
   else if (element=="canvas")
-    var obj="document.getElementById('gamecanvas_"+value_id_+"')"; 
+    var obj="document.getElementById(canvas_get("+value_id_+",'id'))"; 
   else if (element=="image")
-    var obj="document.getElementById('gameimg_"+value_id_+"')";
+    var obj="document.getElementById(image_get("+value_id_+",'id'))"; 
   else if (element=="button")
-    var obj="document.getElementById('gamebutton_"+value_id_+"')"; 
+    var obj="document.getElementById(button_get("+value_id_+",'id'))"; 
   else if (element=="color")
-    var obj="document.getElementById('gamecolor_"+value_id_+"')";  
+    var obj="document.getElementById(color_get("+value_id_+",'id'))"; 
+  else if (element=="select")
+    var obj="document.getElementById(select_get("+value_id_+",'id'))";  
+  else if (element=="range")
+    var obj="document.getElementById(range_get("+value_id_+",'id'))";  
   if ((element.indexOf("'")==0)&&(element.lastIndexOf("'")==element.length-1))
     element = element.substring(1,element.length-1);
   var event = block.getFieldValue('event');
