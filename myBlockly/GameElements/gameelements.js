@@ -45,7 +45,7 @@
 
   function table_set(input_id,input_property,input_value){
     if (document.getElementById("gametable_"+input_id)) {
-	  var obj = document.getElementById("gametable_"+input_id);
+      var obj = document.getElementById("gametable_"+input_id);
       if (input_property=="left")
         obj.style.left = input_value + "px";
       else if (input_property=="top")
@@ -94,7 +94,7 @@
   
   function table_get(input_id,input_property){
     if (document.getElementById("gametable_"+input_id)) {
-	  var obj = document.getElementById("gametable_"+input_id);
+      var obj = document.getElementById("gametable_"+input_id);
       if (input_property=="rows")
         return obj.rows.length;
       else if (input_property=="columns")
@@ -132,7 +132,9 @@
       else if (input_property=="display")
         return obj.style.display;
       else if (input_property=="position")
-        return obj.style.position;		    
+        return obj.style.position;
+      else if (input_property=='id')
+        return "gametable_"+input_id;
       else if (input_property=="onclickColumn"){
         if (onclickid.indexOf("gametable_td_"+input_id)==0){     
           if (onclickid.split("_").length>=5){
@@ -1052,7 +1054,9 @@
       else if (input_property=="disabled")
         return obj.disabled;
       else if (input_property=="draggable")
-        return obj.draggable;		    
+        return obj.draggable;
+      else if (input_property=='id')
+        return "gamebutton_"+input_id;
     }
     else
       return "";
@@ -1163,7 +1167,9 @@
       else if (input_property=="disabled")
         return obj.disabled;
       else if (input_property=="draggable")
-        return obj.draggable;		    
+        return obj.draggable;	
+      else if (input_property=='id')
+        return "gamecolor_"+input_id;
     }
     else
       return "";
@@ -1302,7 +1308,9 @@
       else if (input_property=="disabled")
         return obj.disabled;   
       else if (input_property=="draggable")
-        return obj.draggable;		    
+        return obj.draggable;	
+      else if (input_property=='id')
+        return "gameselect_"+input_id;
     }
     else
       return "";
@@ -1428,7 +1436,9 @@
       else if (input_property=="disabled")
         return obj.disabled;
       else if (input_property=="draggable")
-        return obj.draggable;	    
+        return obj.draggable;
+      else if (input_property=='id')
+        return "gamerange_"+input_id;	    
     }
     else
       return "";
