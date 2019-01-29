@@ -354,7 +354,7 @@
       if (document.getElementById("gamecanvas_"+input_canvas_id)) {
 	var canvasold = document.getElementById("gamecanvas_"+input_canvas_id);
         var canvas = document.createElement('canvas');
-	canvas.getContext("2d").putImageData(canvasold.getContext("2d").getImageData());
+	canvas.getContext("2d").putImageData(canvasold.getContext("2d").getImageData(),0,0);
 	obj.setAttribute("width",canvasold.style.width);
         canvas.style.width = canvasold.style.width;
 	obj.setAttribute("height",canvasold.style.height);
