@@ -296,7 +296,7 @@
       }
       else if (input_property=="childlength")
         return obj.childNodes.length;
-      else if (input_property=="childid")
+      else if (input_property=="childid") {
 	if (obj.childNodes.length>0) {
           var childid=[];
 	  for (var i=0;i<obj.childNodes.length;i++) {
