@@ -673,27 +673,25 @@ Blockly.JavaScript['transform_async_function'] = function (block) {
 
 Blockly.JavaScript['element_event'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
-  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
-    value_id_ = value_id_.substring(1,value_id_.length-1);
   var element = block.getFieldValue('element');
   if (element=="window")
     var obj="window";
   else if (element=="document")
     var obj="document";
   else if (element=="table")
-    var obj="document.getElementById('gametable_"+value_id_+"')";  
+    var obj="document.getElementById('gametable_'+"+value_id_+")";  
   else if (element=="canvas")
-    var obj="document.getElementById('gamecanvas_"+value_id_+"')"; 
+    var obj="document.getElementById('gamecanvas_'+"+value_id_+")";
   else if (element=="image")
-    var obj="document.getElementById('gameimg_"+value_id_+"')";
+    var obj="document.getElementById('gameimg_'+"+value_id_+")";
   else if (element=="button")
-    var obj="document.getElementById('gamebutton_"+value_id_+"')"; 
+    var obj="document.getElementById('gamebutton_'+"+value_id_+")";
   else if (element=="color")
-    var obj="document.getElementById('gamecolor_"+value_id_+"')";  
+    var obj="document.getElementById('gamecolor_'+"+value_id_+")"; 
   else if (element=="select")
-    var obj="document.getElementById('gameselect_"+value_id_+"')";  
+    var obj="document.getElementById('gameselect_'+"+value_id_+")";
   else if (element=="range")
-    var obj="document.getElementById('gamerange_"+value_id_+"')";    
+    var obj="document.getElementById('gamerange_'+"+value_id_+")";   
   if ((element.indexOf("'")==0)&&(element.lastIndexOf("'")==element.length-1))
     element = element.substring(1,element.length-1);
   var event = block.getFieldValue('event');
