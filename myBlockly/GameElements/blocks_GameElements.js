@@ -85,7 +85,7 @@ Blockly.Blocks['table_get'] = {
       .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TABLE_GET_SHOW) 
-      .appendField(new Blockly.FieldDropdown([["onclick[Column,Row]","onclick[Column,Row]"], ["onclickImage","onclickImage"], ["columns","columns"], ["rows","rows"], ["left","left"], ["top","top"], ["borderstyle","borderstyle"], ["borderwidth","borderwidth"], ["bordercolor","bordercolor"], ["background","background"], ["backgroundimage","backgroundimage"], ["zindex","zindex"], ["display","display"], ["position","position"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["onclick[Column,Row]","onclick[Column,Row]"], ["onclickImage","onclickImage"], ["columns","columns"], ["rows","rows"], ["left","left"], ["top","top"], ["borderstyle","borderstyle"], ["borderwidth","borderwidth"], ["bordercolor","bordercolor"], ["background","background"], ["backgroundimage","backgroundimage"], ["zindex","zindex"], ["display","display"], ["position","position"], ["id","id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -1553,7 +1553,7 @@ Blockly.Blocks['button_get'] = {
       .appendField(Blockly.Msg.BUTTON_ID_SHOW);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.BUTTON_GET_SHOW)
-      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["opacity","opacity"], ["background","background"], ["value","value"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["opacity","opacity"], ["background","background"], ["value","value"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["id","id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -1744,7 +1744,7 @@ Blockly.Blocks['colorpicker_get'] = {
       .appendField(Blockly.Msg.COLORPICKER_ID_SHOW);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COLORPICKER_GET_SHOW)
-      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["opacity","opacity"], ["value","value"], ["zindex","zindex"], ["display","display"], ["disabled","disabled"], ["draggable","draggable"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["opacity","opacity"], ["value","value"], ["zindex","zindex"], ["display","display"], ["disabled","disabled"], ["draggable","draggable"], ["id","id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -1854,7 +1854,7 @@ Blockly.Blocks['select_get'] = {
       .appendField(Blockly.Msg.SELECT_ID_SHOW);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.SELECT_GET_SHOW)
-      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["opacity","opacity"], ["selectedValue","selectedValue"], ["selectedText","selectedText"], ["selectedIndex","selectedIndex"], ["length","length"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["opacity","opacity"], ["selectedValue","selectedValue"], ["selectedText","selectedText"], ["selectedIndex","selectedIndex"], ["length","length"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["id","id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -1972,7 +1972,7 @@ Blockly.Blocks['range_get'] = {
       .appendField(Blockly.Msg.RANGE_ID_SHOW);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.RANGE_GET_SHOW)
-      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["opacity","opacity"], ["max","max"], ["min","min"], ["step","step"], ["value","value"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["opacity","opacity"], ["max","max"], ["min","min"], ["step","step"], ["value","value"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["id","id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
