@@ -7,8 +7,7 @@
       document.body.style.overflow = input_value; 
     else if (input_property=="droppable") {
       if (input_value==1) {
-        //document.body.setAttribute("ondrop","javascript:var obj=document.getElementById(event.dataTransfer.getData('text/plain'));obj.style.position='static';obj.style.left=null;obj.style.top=null;event.preventDefault();if(event.target.tagName!='BODY') {return false;} else {event.target.appendChild(obj);}");
-        document.body.setAttribute("ondrop","javascript:var obj=document.getElementById(event.dataTransfer.getData('text/plain'));event.preventDefault();if(event.target.tagName!='BODY') {return false;} else {var left=obj.style.left;var top=obj.style.top;obj.style.position='static';event.target.appendChild(obj);obj.style.position='absolute';obj.style.left=left;obj.style.top=top;}");
+        document.body.setAttribute("ondrop","javascript:var obj=document.getElementById(event.dataTransfer.getData('text/plain'));obj.style.position='static';event.preventDefault();if(event.target.tagName!='BODY') {return false;} else {event.target.appendChild(obj);obj.style.position='absolute';}");
         document.body.setAttribute("ondragover","javascript:event.preventDefault();"); 
       } else {
         document.body.setAttribute("ondrop","");
