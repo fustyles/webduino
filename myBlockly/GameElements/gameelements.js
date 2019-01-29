@@ -345,7 +345,7 @@
         imgold.parentNode.removeChild(imgold);
         img.id = "gameimg_"+input_img_id;
 	*/
-	img style.position = "static";
+	img.style.position = "static";
         obj.appendChild(img);
       }
     }
