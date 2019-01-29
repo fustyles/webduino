@@ -262,7 +262,7 @@
   function table_td_get(input_id,input_x,input_y,input_property){
     if (document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x))
     {
-	  var obj = document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x);
+      var obj = document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x);
       if (input_property=="width")
         return obj.style.width.replace(/px/ig,"");
       else if (input_property=="height")
@@ -293,6 +293,19 @@
         }
         else
           return "";
+      }
+      else if (input_property=="childlength")
+        return obj.childNodes.length;
+      else if (input_property=="childid")
+	if (obj.childNodes.length>0) {
+          var childid=[];
+	  for (var i=0;i<obj.childNodes.length;i++) {
+	    childid.push(obj.childNodes[i].id);
+	  }
+	  return childid;
+	}
+	else
+	  return "";
       }
       else if (input_property=="tdid")
         return "gametable_td_"+input_id+"_"+input_y+'_'+input_x;
