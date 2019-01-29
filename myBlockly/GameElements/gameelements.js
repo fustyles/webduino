@@ -354,7 +354,7 @@
       if (document.getElementById("gamecanvas_"+input_canvas_id)) {
 	var canvasold = document.getElementById("gamecanvas_"+input_canvas_id);
         var canvas = document.createElement('canvas');
-        canvas.src = canvasold.src;
+	canvas.getContext("2d").putImageData(canvasold.getContext("2d").getImageData());
 	obj.setAttribute("width",canvasold.style.width);
         canvas.style.width = canvasold.style.width;
 	obj.setAttribute("height",canvasold.style.height);
@@ -364,6 +364,7 @@
         canvas.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
         canvasold.parentNode.removeChild(canvasold);
         canvas.id = "gamecanvas_"+input_canvas_id;
+	console.log(canvas);
         obj.appendChild(canvas);
       }
     }
