@@ -348,6 +348,27 @@
     }
   }
 
+  function table_td_canvas_move(input_id,input_canvas_id,input_x,input_y){
+    if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x)){
+      var obj = document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x);
+      if (document.getElementById("gamecanvas_"+input_canvas_id)) {
+	var canvasold = document.getElementById("gamecanvas_"+input_canvas_id);
+        var canvas = document.createElement('canvas');
+        canvas.src = canvasold.src;
+	obj.setAttribute("width",canvasold.style.width);
+        canvas.style.width = canvasold.style.width;
+	obj.setAttribute("height",canvasold.style.height);
+        canvas.style.height = canvasold.style.height;
+        canvas.setAttribute("onclick", "javascript:canvas_onclickid_set(this);");
+        canvas.draggable="true";
+        canvas.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
+        canvasold.parentNode.removeChild(canvasold);
+        canvas.id = "gamecanvas_"+input_canvas_id;
+        obj.appendChild(canvas);
+      }
+    }
+  }
+
   function table_td_img_get(input_img_id,input_property){
     if (document.getElementById("gameimg_"+input_img_id)){
 	  var img = document.getElementById("gameimg_"+input_img_id);
