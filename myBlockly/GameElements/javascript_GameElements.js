@@ -694,9 +694,9 @@ Blockly.JavaScript['element_event'] = function (block) {
     var obj="document.getElementById('gamerange_'+"+value_id_+")";   	
   if ((element.indexOf("'")==0)&&(element.lastIndexOf("'")==element.length-1))	
     element = element.substring(1,element.length-1);	
-  var event = block.getFieldValue('event');	  var event = block.getFieldValue('event');
-  if ((event.indexOf("'")==0)&&(event.lastIndexOf("'")==event.length-1))	  var statement = Blockly.JavaScript.statementToCode(block, 'statement');
-    event = event.substring(1,event.length-1);	  var code = 'element_event("'+element+'",'+value_id_+',"'+event+'",'+statement+');\n';
+  var event = block.getFieldValue('event');	  
+  if ((event.indexOf("'")==0)&&(event.lastIndexOf("'")==event.length-1))	  
+  event = event.substring(1,event.length-1);	  
   var statement = Blockly.JavaScript.statementToCode(block, 'statement'); 	
   var code = obj+'.addEventListener("'+event+'", '+element+'_'+value_id_.replace(/'/g,"")+'_'+event+', true);\nasync function '+element+'_'+value_id_.replace(/'/g,"")+'_'+event+'(event) {\n' + statement + '};\n';	
   return code;
