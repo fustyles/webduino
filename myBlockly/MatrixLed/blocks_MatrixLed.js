@@ -182,7 +182,8 @@ Blockly.Blocks['matrix_led_color'] = {
   init: function() {
     this.appendValueInput("value_color_")
         .setCheck(null)  
-        .appendField(Blockly.Msg.MATRIXLED_COLOR_SHOW);    
+        .appendField(Blockly.Msg.MATRIXLED_COLOR_SHOW); 
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
@@ -630,11 +631,10 @@ Blockly.Blocks['matrix_led_backcolor'] = {
   init: function() {
     this.appendValueInput("value_color_")
         .setCheck(null)  
-        .appendField(Blockly.Msg.MATRIXLED_BACKCOLOR_SHOW);    
+        .appendField(Blockly.Msg.MATRIXLED_BACKCOLOR_SHOW); 
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
-    this.setTooltip("");
-    this.setHelpUrl("");    
   }
 }; 
