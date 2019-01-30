@@ -4,7 +4,6 @@ Blockly.JavaScript['showtext'] = function (block) {
   color = HextoRgb(color);  //Color Hex to RGB
   var text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);  
   var code = 'showtext('+size+', '+color+', '+text+');\n';
-  test();
   return code;
 };
 
