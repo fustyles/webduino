@@ -894,16 +894,6 @@ Blockly.JavaScript['range_onchange_do'] = function (block) {
   return code;
 };
 
-
-
-
-
-
-
-
-
-
-
 Blockly.JavaScript['text_create'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
@@ -948,13 +938,6 @@ Blockly.JavaScript['text_onchange_do'] = function (block) {
   var code = 'gametext_'+value_id_+'.addEventListener("change", gametext_'+value_id_+'_onchange, true);\nasync function gametext_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\n';
   return code;
 };
-
-
-
-
-
-
-
 
 Blockly.JavaScript['color_hextorgb'] = function (block) {
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
