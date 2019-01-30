@@ -896,6 +896,6 @@ Blockly.JavaScript['range_onchange_do'] = function (block) {
 
 Blockly.JavaScript['color_hextorgb'] = function (block) {
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'HextoRgb(' + value_color_ + ');\n';
-  return code;
+  var code = 'HextoRgb(' + value_color_ + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
