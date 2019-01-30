@@ -464,12 +464,12 @@ function exportBlocks() {
 	  
     var link = document.createElement('a');
     link.download="project.txt";
-    link.href="data:application/octet-stream;utf-8," + encodeURI(xml_text.replace(/#/g,""));
+    link.href="data:application/octet-stream;utf-8," + encodeURI(xml_text.replace(/#/g,"%23"));
     document.body.appendChild(link);
     link.click();
     link.remove();
   } catch (e) {
-    window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text.replace(/#/g,""));
+    window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text.replace(/#/g,"%23"));
     alert(e);
   }
 }
@@ -477,7 +477,7 @@ function exportBlocks() {
 function importBlocks() {
   try {
     var xml_text = prompt("Please enter XML code", "");
-    var xml = Blockly.Xml.textToDom(xml_text);
+    var xml = Blockly.Xml.textToDom(xml_text.replace(/%23/g,"#"));
     demoWorkspace.clear();
     Blockly.Xml.domToWorkspace(xml, demoWorkspace);
   } catch (e) {
@@ -490,7 +490,7 @@ function importBlocksFile(element) {
     var file = element.files[0];
     var fr = new FileReader();           
     fr.onload = function (event) {
-      var xml = Blockly.Xml.textToDom(event.target.result);
+      var xml = Blockly.Xml.textToDom(event.target.result.replace(/%23/g,"#"));
       demoWorkspace.clear();
       Blockly.Xml.domToWorkspace(xml, demoWorkspace);
     };
