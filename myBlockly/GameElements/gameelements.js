@@ -1468,3 +1468,35 @@
     else
       return 0;
   }        
+
+
+
+
+
+
+
+
+
+function element_event(element,value_id,event,statement) {
+  if (element=="window")
+    var obj=window;
+  else if (element=="document")
+    var obj=document;
+  else if (element=="table")
+    var obj=document.getElementById('gametable_'+value_id_);  
+  else if (element=="canvas")
+    var obj=document.getElementById('gamecanvas_'+value_id_); 
+  else if (element=="image")
+    var obj=document.getElementById('gameimg_'+value_id_); 
+  else if (element=="button")
+    var obj=document.getElementById('gamebutton_'+value_id_); 
+  else if (element=="color")
+    var obj=document.getElementById('gamecolor_'+value_id_); 
+  else if (element=="select")
+    var obj=document.getElementById('gameselect_'+value_id_); 
+  else if (element=="range")
+    var obj=document.getElementById('gamerange_'+value_id_);    
+
+  obj.addEventListener(event, eval(element+'_'+value_id+'_'+event), true);
+  var eval(element+'_'+value_id+'_'+event) = new function(){eval(statement)}
+};
