@@ -496,11 +496,11 @@
     for (var i=0;i<25;i++)
     {
       if (i==(input_x_*5+input_y_))
-        L[i]=HextoRgb(input_color_);   //RGB
+        L[i]=input_color_;
       else
       {
         if (L[i]=="")
-          L[i]=HextoRgb(MatrixLedbackcolor);   //RGB
+          L[i]=MatrixLedbackcolor;
       }
     }
     MatrixLed_show();
@@ -777,7 +777,7 @@
   }
   
   function MatrixLed_getcolor(input_x_,input_y_) {
-    return L[input_x_*5+input_y_];
+    return HextoRgb(L[input_x_*5+input_y_]);   //RGB;
   } 
   
   function MatrixLed_backcolor(input_color_) {
