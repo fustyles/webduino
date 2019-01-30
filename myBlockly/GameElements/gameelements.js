@@ -1526,7 +1526,7 @@
       else if (input_property=="color")
         return obj.style.color;
       else if (input_property=="fontsize")
-        return obj.style.fontSize.replace(/px/ig,""));  	    
+        return Number(obj.style.fontSize.replace(/px/ig,""));  	    
       else if (input_property=="opacity")
         return Number(obj.style.opacity);
       else if (input_property=="value")
