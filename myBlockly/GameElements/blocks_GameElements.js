@@ -1703,7 +1703,7 @@ Blockly.Blocks['colorpicker_create'] = {
   this.appendValueInput("value_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.COLOR_SHOW); 
+      .appendField(Blockly.Msg.COLORPICKER_COLOR_SHOW); 
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
