@@ -136,6 +136,7 @@ Blockly.Msg.COLORPICKER_SET_SHOW = "设定";
 Blockly.Msg.COLORPICKER_DELETE_SHOW = "删除";
 Blockly.Msg.COLORPICKER_ONCHANGE_SHOW = "改变颜色后执行";
 Blockly.Msg.COLORPICKER_GET_SHOW = "取得";
+Blockly.Msg.COLORPICKER_COLOR_SHOW = "颜色(Hex)";
 Blockly.Msg.CANVAS_QUADRATICCURVE_SHOW = "画布画二次贝兹曲线";
 Blockly.Msg.CANVAS_BEZIERCURVE_SHOW = "画布画三次贝兹曲线";
 Blockly.Msg.CANVAS_CLEARRECT_SHOW = "画布清除区域";
