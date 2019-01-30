@@ -6,6 +6,19 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '      </block>'+      
 '    </value>'+     
 '  </block>'+  
+'  <block type="color_hextorgb">'+
+'    <value name="color_">'+
+'      <block type="colour_picker">'+
+'       <field name="COLOUR">ff0000</field>'+
+'     </block>'+
+'    </value>'+     
+'  </block>'+ 
+'  <block type="color_hextorgb">'+
+'    <value name="color_">'+
+'      <block type="colour_random">'+
+'     </block>'+
+'    </value>'+     
+'  </block>'+          
 '  <block type="document_timer">'+
 '    <value name="intervals_">'+
 '      <block type="math_number">'+
@@ -35,14 +48,7 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '        <field name="TEXT"></field>'+
 '      </block>'+    
 '    </value>'+     
-'  </block>'+  
-'  <block type="color_hextorgb">'+
-'    <value name="color_">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+    
-'    </value>'+     
-'  </block>'+ 
+'  </block>'+    
 '  <block type="async_function">'+
 '    <value name="name_">'+
 '      <block type="text">'+
