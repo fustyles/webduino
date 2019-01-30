@@ -2016,8 +2016,7 @@ Blockly.Blocks['color_hextorgb'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null); 
   this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
+  this.setOutput(true, null); 
+  this.setColour(200);
   }
 };
