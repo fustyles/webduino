@@ -362,7 +362,7 @@ function runCode() {
   window.LoopTrap = 1000;
   Blockly.JavaScript.INFINITE_LOOP_TRAP =
   'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-  var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+  var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
   var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
   for (var i=0;i<script_iframe_run.length;i++)  {
     iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
@@ -415,7 +415,7 @@ function closeWindow() {
 	
 function exportCODE() {
   try {
-    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
 	  
     var link = document.createElement('a');
     link.download="code.txt";
@@ -431,7 +431,7 @@ function exportCODE() {
 	
 function exportHTML() {
   try {
-    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
     var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
     for (var i=0;i<script_iframe_run.length;i++)  {
       iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
@@ -582,6 +582,18 @@ window.onmousemove = function() {
     document.getElementById('iframe_run').style.display="block"; 
   }
 };
+	
+function HextoRgb(color) {
+  if (!color) return null;
+  if (color.indexOf("'#")==0&&color.length==9) {
+    var color_hex = color.substring(1,color.length-1);
+    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color_hex);
+    return "'rgb("+parseInt(color_rgb[1], 16)+","+parseInt(color_rgb[2], 16)+","+parseInt(color_rgb[3], 16)+")'";
+  }
+  else
+    return color;
+}
+	
 </script>
 </body>
 </html>
