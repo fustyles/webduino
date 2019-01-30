@@ -416,7 +416,7 @@ var catGameForm = '<xml><category name="%{BKY_GAMEFORM}" colour="%{BKY_GAMEFORM_
 '    </value>'+    
 '    <value name="fontsize_">'+
 '      <block type="math_number">'+
-'        <field name="NUM">2</field>'+
+'        <field name="NUM">14</field>'+
 '      </block>'+
 '    </value>'+       
 '    <value name="opacity_">'+
