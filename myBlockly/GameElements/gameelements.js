@@ -1485,6 +1485,12 @@
         obj.style.width = input_value + "px";
       else if (input_property=="height")
         obj.style.height = input_value + "px";
+      else if (input_property=="background")
+        obj.style.topbackground = input_value;
+      else if (input_property=="color")
+        obj.style.color = input_value;
+      else if (input_property=="fontsize")
+        obj.style.fontSize = input_value + "px";	    
       else if (input_property=="opacity")
         obj.style.opacity = input_value;    
       else if (input_property=="value")
@@ -1563,12 +1569,6 @@
       return 0;
   }        
 
-
-
-
-
-
-
 function HextoRgb(color) {
   if (!color) return null;
   if (color.indexOf("'#")==0&&color.length==9) {
@@ -1587,4 +1587,3 @@ function HextoRgb(color) {
   }else
     return color;
 }
-
