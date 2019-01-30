@@ -2,7 +2,6 @@ Blockly.JavaScript['linebot_notify'] = function (block) {
   var bot_token = Blockly.JavaScript.valueToCode(block, 'bot_token', Blockly.JavaScript.ORDER_ATOMIC);  
   var bot_userid = Blockly.JavaScript.valueToCode(block, 'bot_userid', Blockly.JavaScript.ORDER_ATOMIC);
   var bot_msg = Blockly.JavaScript.valueToCode(block, 'bot_msg', Blockly.JavaScript.ORDER_ATOMIC);
-  bot_msg = HextoRgb(bot_msg);  //Color Hex to RGB
   
   if (!bot_token) bot_token='""';
   if (!bot_userid) bot_userid='""';
@@ -31,7 +30,6 @@ Blockly.JavaScript['linebot_type'] = function(block) {
 Blockly.JavaScript['linenotify'] = function (block) {
   var notify_token = Blockly.JavaScript.valueToCode(block, 'notify_token', Blockly.JavaScript.ORDER_ATOMIC);  
   var notify_msg = Blockly.JavaScript.valueToCode(block, 'notify_msg', Blockly.JavaScript.ORDER_ATOMIC);
-  notify_msg = HextoRgb(notify_msg);  //Color Hex to RGB
   
   if (!notify_token) notify_token='""';
   if (!notify_msg) notify_msg='""';
@@ -53,14 +51,3 @@ Blockly.JavaScript['linenotify_type'] = function(block) {
   var code = 'line_url_escape("notify","'+type+'",'+parameter1+','+parameter2+','+parameter3+',"")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
-
-function HextoRgb(color) {
-  if (!color) return null;
-  if (color.indexOf("'#")==0&&color.length==9) {
-    var color_hex = color.substring(1,color.length-1);
-    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color_hex);
-    return "'rgb("+parseInt(color_rgb[1], 16)+","+parseInt(color_rgb[2], 16)+","+parseInt(color_rgb[3], 16)+")'";
-  }
-  else
-    return color.replace(/#/g,"%23");
-}
