@@ -345,9 +345,9 @@ Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace)
 XmldomToWorkspace(Game_TicTacToe);
 	
 function XmldomToWorkspace(example) {	
-  var xml = Blockly.Xml.textToDom(example);
+  var xml = Blockly.Xml.textToDom(example.replace(/%23/g,"#"));
   demoWorkspace.clear();
-  Blockly.Xml.domToWorkspace(xml.replace(/%23/g,"#"), demoWorkspace);
+  Blockly.Xml.domToWorkspace(xml, demoWorkspace);
 }
 	
 function showCode() {
