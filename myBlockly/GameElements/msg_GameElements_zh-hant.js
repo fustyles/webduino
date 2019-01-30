@@ -163,3 +163,4 @@ Blockly.Msg.RANGE_ONCHANGE_SHOW = "改變數值後執行";
 Blockly.Msg.TABLE_INDEX_SHOW = "索引";
 Blockly.Msg.TABLE_CHANGE_COLSROWS_SHOW = "表格改變行列";
 Blockly.Msg.TABLE_TD_CANVAS_MOVE_SHOW = "移動到";
+Blockly.Msg.COLOR_HEXTORGB_SHOW = "顏色Hex碼轉換成RGB碼" ;
