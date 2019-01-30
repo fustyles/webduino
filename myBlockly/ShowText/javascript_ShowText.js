@@ -23,7 +23,7 @@ Blockly.JavaScript['comment'] = function (block) {
 };
 
 function HextoRgb(color) {
-  console.log("OK");
+  if (!color) return "";
   if (color.indexOf("#")!=-1&&color.indexOf("'")==0) {
     var color_hex = color.substring(1,color.length-1);
     var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color_hex);
