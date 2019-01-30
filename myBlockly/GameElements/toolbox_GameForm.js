@@ -362,10 +362,7 @@ var catGameForm = '<xml><category name="%{BKY_GAMEFORM}" colour="%{BKY_GAMEFORM_
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+         
-'  </block>'+      
-    
-    
-    
+'  </block>'+
 '  <block type="text_create">'+ 
 '    <value name="id_">'+
 '      <block type="text">'+
@@ -446,6 +443,4 @@ var catGameForm = '<xml><category name="%{BKY_GAMEFORM}" colour="%{BKY_GAMEFORM_
 '      </block>'+
 '    </value>'+         
 '  </block>'+ 
-    
-    
 ' </category></xml>';
