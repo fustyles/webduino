@@ -34,7 +34,7 @@
           td.style.background = input_bgcolor;
           td.style.width = input_width + 'px';
           td.style.height = input_height + 'px';
-          td.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+          td.setAttribute("onclick", "javascript:onclickid_set(this);");
           td.setAttribute("ondrop","javascript:var obj=document.getElementById(event.dataTransfer.getData('text/plain'));obj.style.position='static';obj.style.left=null;obj.style.top=null;event.preventDefault();if(event.target.tagName!='TD') {return false;} else {event.target.appendChild(obj);}");
           td.setAttribute("ondragover","javascript:event.preventDefault();"); 
         }
@@ -306,7 +306,7 @@
       img.src = input_url;
       img.style.width = input_width + 'px';
       img.style.height = input_height + 'px';
-      img.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+      img.setAttribute("onclick", "javascript:onclickid_set(this);");
       img.draggable="true";
       img.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
       obj.appendChild(img);
@@ -428,7 +428,7 @@
     obj.style.zIndex = input_zindex;
     obj.style.display = "block";
     obj.draggable="true";
-    obj.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(obj);
 
@@ -696,7 +696,7 @@
       obj.style.display = "none";
     else
       obj.style.display = "block";
-    obj.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
     obj.draggable="true";
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(obj);
@@ -880,7 +880,7 @@
       return;
   }  
   
-  function image_onclickid_set(obj) {
+  function onclickid_set(obj) {
     clearTimeout(onclicktimerid);  
     onclickid=obj.id;
     onclicktimerid=setTimeout('image_onclickid_clear()',onclicktime);
@@ -965,7 +965,7 @@
     else
       obj.style.display = "block";
     obj.draggable="true";
-    obj.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(obj);
   }
@@ -1082,7 +1082,7 @@
     else
       obj.style.display = "block";
     obj.draggable="true";
-    obj.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(obj);
   }
@@ -1202,7 +1202,7 @@
     else
       obj.style.display = "block";
     obj.draggable="true";
-    obj.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(obj);
   }
@@ -1339,7 +1339,7 @@
     else
       obj.style.display = "block";
     //obj.draggable="true";
-    obj.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(obj);
   }
@@ -1467,7 +1467,7 @@
     else
       obj.style.display = "block";
     //obj.draggable="true";
-    obj.setAttribute("onclick", "javascript:image_onclickid_set(this);");
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(obj);
   }
