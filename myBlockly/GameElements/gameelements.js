@@ -1498,5 +1498,5 @@ function element_event(element,value_id,event,statement) {
     var obj=document.getElementById('gamerange_'+value_id_);    
 
   obj.addEventListener(event, eval(element+'_'+value_id+'_'+event), true);
-  var eval(element+'_'+value_id+'_'+event) = new function(){eval(statement)}
+  var eval(element+'_'+value_id+'_'+event) = new function(){eval(statement)};
 };
