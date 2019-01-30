@@ -893,3 +893,9 @@ Blockly.JavaScript['range_onchange_do'] = function (block) {
   var code = 'gamerange_'+value_id_+'.addEventListener("change", gamerange_'+value_id_+'_onchange, true);\nasync function gamerange_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\n';
   return code;
 };
+
+Blockly.JavaScript['color_hextorgb'] = function (block) {
+  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'HextoRgb(' + value_color_ + ');\n';
+  return code;
+};
