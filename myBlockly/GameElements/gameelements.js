@@ -1521,6 +1521,12 @@
         return Number(obj.style.width.replace(/px/ig,""));
       else if (input_property=="height")
         return Number(obj.style.height.replace(/px/ig,""));
+      else if (input_property=="background")
+        return obj.style.background;
+      else if (input_property=="color")
+        return obj.style.color;
+      else if (input_property=="fontsize")
+        return obj.style.fontSize.replace(/px/ig,""));  	    
       else if (input_property=="opacity")
         return Number(obj.style.opacity);
       else if (input_property=="value")
