@@ -2008,15 +2008,6 @@ Blockly.Blocks['range_onchange_do'] = {
   }
 };
 
-
-
-
-
-
-
-
-
-
 Blockly.Blocks['text_create'] = {
   init: function() {
   this.appendValueInput("id_")
@@ -2123,23 +2114,6 @@ Blockly.Blocks['text_onchange_do'] = {
   }
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Blockly.Blocks['color_hextorgb'] = {
   init: function() {
   this.appendDummyInput()  
@@ -2152,20 +2126,3 @@ Blockly.Blocks['color_hextorgb'] = {
   this.setColour(200);
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
