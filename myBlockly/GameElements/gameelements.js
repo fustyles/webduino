@@ -975,7 +975,7 @@
     obj.style.width = input_width + 'px';
     obj.style.height = input_height + 'px';
     obj.style.opacity = input_opacity;
-    obj.style.background = input_bgcolor.replace(/%23/g,"#");
+    obj.style.background = input_bgcolor+"".replace(/%23/g,"#");
     obj.value = input_value;
     obj.style.zIndex = input_zindex;
     if (input_display==0)
