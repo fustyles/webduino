@@ -2007,3 +2007,17 @@ Blockly.Blocks['range_onchange_do'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['color_hextorgb'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COLOR_HEXTORGB_SHOW);
+  this.appendValueInput("color_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null); 
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
