@@ -2030,6 +2030,18 @@ Blockly.Blocks['text_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.HEIGHT_SHOW);
+  this.appendValueInput("backcolor_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null)
+      .appendField(Blockly.Msg.BACKCOLOR_SHOW);
+  this.appendValueInput("color_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null)
+      .appendField(Blockly.Msg.COLOR_SHOW);
+  this.appendValueInput("fontsize_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FONTSIZE_SHOW);
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
