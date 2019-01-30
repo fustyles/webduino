@@ -496,11 +496,11 @@
     for (var i=0;i<25;i++)
     {
       if (i==(input_x_*5+input_y_))
-        L[i]=input_color_;
+        L[i]=HextoRgb(input_color_);   //RGB
       else
       {
         if (L[i]=="")
-          L[i]=MatrixLedbackcolor;
+          L[i]=HextoRgb(MatrixLedbackcolor);   //RGB
       }
     }
     MatrixLed_show();
@@ -814,3 +814,22 @@
         document.body.appendChild(div);
     }    
   }
+
+function HextoRgb(color) {
+  if (!color) return null;
+  if (color.indexOf("'#")==0&&color.length==9) {
+    color = color.substring(1,color.length-1);
+    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+    return "'rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")'";
+  }
+  else  if (color.indexOf("#")==0&&color.length==7) {
+    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+    return "rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")";
+  }  
+  else  if (color.length==6) {
+    color = "#"+ color;
+    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+    return "rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")";
+  }else
+    return color;
+}
