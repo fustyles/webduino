@@ -323,42 +323,6 @@ var catSystem = '<xml>'+
 '			</value>'+
 '		</block>'+
 '	</value>'+
-'</block>'+    
-'    <block type="colour_picker"></block>'+
-'    <block type="colour_random"></block>'+
-'    <block type="colour_rgb">'+
-'    <value name="RED">'+
-'    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="GREEN">'+
-'    <block type="math_number">'+
-'    <field name="NUM">50</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="BLUE">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
-'    <block type="colour_blend">'+
-'    <value name="COLOUR1">'+
-'    <block type="colour_picker">'+
-'    <field name="COLOUR">#ff0000</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="COLOUR2">'+
-'    <block type="colour_picker">'+
-'    <field name="COLOUR">#3333ff</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="RATIO">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0.5</field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
-'    </category>'+
+'</block>'+     
+'  </category>'+
 '</xml>';
