@@ -1075,7 +1075,7 @@
     obj.style.width = input_width + 'px';
     obj.style.height = input_height + 'px';
     obj.style.opacity = input_opacity;
-    obj.value = input_value;
+    obj.value = input_value.replace(/%23/g,"#");
     obj.style.zIndex = input_zindex;
     if (input_display==0)
       obj.style.display = "none";
@@ -1101,7 +1101,7 @@
       else if (input_property=="opacity")
         obj.style.opacity = input_value;
       else if (input_property=="value")
-        obj.value = input_value;      
+        obj.value = input_value.replace(/%23/g,"#");      
       else if (input_property=="zindex")
         obj.style.zIndex = input_value;
       else if (input_property=="display"){ 
