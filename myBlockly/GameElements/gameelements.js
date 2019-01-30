@@ -1445,12 +1445,7 @@
       return 0;
   }        
 
-
-
-
-
-
-  function text_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_size,input_value,input_zindex,input_display) {
+  function text_create(input_id,input_width,input_height,input_left,input_top,input_background,input_color,input_fontSize,input_opacity,input_size,input_value,input_zindex,input_display) {
     if (document.getElementById("gametext_"+input_id)) 
       document.getElementById("gametext_"+input_id).parentNode.removeChild(document.getElementById("gametext_"+input_id));
     var obj = document.createElement('input');
@@ -1461,6 +1456,9 @@
     obj.style.top = input_top + 'px';
     obj.style.width = input_width + 'px';
     obj.style.height = input_height + 'px';
+    obj.style.background = input_background;
+    obj.style.color = input_color;
+    obj.style.fontSize = input_fontSize + "px";
     obj.style.opacity = input_opacity;
     obj.value = input_value;
     obj.style.zIndex = input_zindex;
@@ -1486,7 +1484,7 @@
       else if (input_property=="height")
         obj.style.height = input_value + "px";
       else if (input_property=="background")
-        obj.style.topbackground = input_value;
+        obj.style.background = input_value;
       else if (input_property=="color")
         obj.style.color = input_value;
       else if (input_property=="fontsize")
