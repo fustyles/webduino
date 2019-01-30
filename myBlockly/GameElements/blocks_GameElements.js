@@ -2072,7 +2072,7 @@ Blockly.Blocks['text_set'] = {
       .appendField(Blockly.Msg.TEXT_ID_SHOW);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TEXT_SET_SHOW) 
-      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["opacity","opacity"], ["value","value"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["backcolor","backcolor"], ["color","color"], ["fontsize","fontsize"], ["opacity","opacity"], ["value","value"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"]]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
