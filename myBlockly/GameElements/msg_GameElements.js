@@ -163,4 +163,4 @@ Blockly.Msg.RANGE_ONCHANGE_SHOW = "is changed";
 Blockly.Msg.TABLE_INDEX_SHOW = "Index";
 Blockly.Msg.TABLE_CHANGE_COLSROWS_SHOW = "Table change cols or rows";
 Blockly.Msg.TABLE_TD_CANVAS_MOVE_SHOW = "Move to";
-Blockly.Msg.COLOR_HEXTORGB_SHOW = "Color Hex to RGB" ;
+Blockly.Msg.COLOR_HEXTORGB_SHOW = "RGB" ;
