@@ -53,7 +53,6 @@ function ThingSpeak_read(kind,key,index,count) {
         ThingSpeak_getState = true;
         for (var i=0;i<json.length;i++) {
           var Feedback= JSON.stringify(json[i]);
-          console.log(Feedback);
           Feedback= Feedback.replace(/},{/g,";");
           Feedback= Feedback.replace(/\":\"/g,",");
           Feedback= Feedback.replace(/\":/g,",");
@@ -68,7 +67,6 @@ function ThingSpeak_read(kind,key,index,count) {
           ThingSpeak_response.push(Feedback);
         }
         ThingSpeak_getState = false;
-        console.log(ThingSpeak_response);
       },
       error: function(jqXHR, textStatus, errorThrown)
       {
