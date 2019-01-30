@@ -622,7 +622,7 @@
     }
   }
 
-  function canvas_beziercurve(input_id,input_x0,input_y0,input_cp1x,input_cp1y,input_cp2x,input_cp2y,input_x,input_y,input_linewidth,input_color,input_fill) {
+  function canvas_beziercurve(input_id,input_x0,input_y0,input_cp1x,input_cp1y,input_cp2x,input_cp2y,input_x,input_y,input_linewidth,input_color,input_fill,input_rotate,input_globalAlpha) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
       context.strokeStyle = input_color;
