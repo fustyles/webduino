@@ -305,6 +305,7 @@
   
   function MatrixLed_marquee_color(input_marquee_) {
     input_marquee_=input_marquee_.toString();
+    input_marquee_=input_marquee_.replace(/%23/g,"#");
     MatrixLedmarqueecolorcodeonce = "";
     window.clearInterval(marqueetimeid);
     if (input_marquee_.length==175)
@@ -321,6 +322,7 @@
   
   function MatrixLed_marquee_color_once(input_marquee_) {
     input_marquee_=input_marquee_.toString();
+    input_marquee_=input_marquee_.replace(/%23/g,"#");
     MatrixLedmarqueeinitial=input_marquee_;
     window.clearInterval(marqueetimeid);
     if (input_marquee_.length==175)
