@@ -165,6 +165,7 @@ Blockly.Msg.TABLE_INDEX_SHOW = "索引";
 Blockly.Msg.TABLE_CHANGE_COLSROWS_SHOW = "表格改變行列";
 Blockly.Msg.TABLE_TD_CANVAS_MOVE_SHOW = "移動到";
 Blockly.Msg.COLOR_HEXTORGB_SHOW = "RGB" ;
+Blockly.Msg.RANGE_ID_SHOW = "文字欄位代碼";
 Blockly.Msg.TEXT_CREATE_SHOW = "文字欄位建立";
 Blockly.Msg.TEXT_VALUE_SHOW = "值";
 Blockly.Msg.TEXT_SET_SHOW = "設定";
