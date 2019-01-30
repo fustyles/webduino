@@ -24,7 +24,7 @@ Blockly.JavaScript['comment'] = function (block) {
 
 function HextoRgb(color) {
   if (!color) return null;
-  if (color.indexOf("#")!=-1&&color.indexOf("'")==0) {
+  if (color.indexOf("#")==1&&color.indexOf("'")==0&&color.length==9) {
     var color_hex = color.substring(1,color.length-1);
     var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color_hex);
     return "'rgb("+parseInt(color_rgb[1], 16)+","+parseInt(color_rgb[2], 16)+","+parseInt(color_rgb[3], 16)+")'";
