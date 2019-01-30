@@ -173,3 +173,4 @@ Blockly.Msg.TEXT_SET_SHOW = "Set";
 Blockly.Msg.TEXT_GET_SHOW = "Get";
 Blockly.Msg.TEXT_DELETE_SHOW = "Delete";
 Blockly.Msg.TEXT_ONCHANGE_SHOW = "is changed"; 
+Blockly.Msg.BACKCOLOR_SHOW = "Background Color";
