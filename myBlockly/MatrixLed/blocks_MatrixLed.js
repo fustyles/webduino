@@ -445,7 +445,7 @@ Blockly.Blocks['matrix_led_color_on'] = {
         .appendField("y");
     this.appendValueInput("value_color_on_")
         .setCheck("Colour")
-        .appendField("color");    
+        .appendField(Blockly.Msg.MATRIXLED_COLOR_SHOW);    
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
