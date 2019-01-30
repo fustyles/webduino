@@ -1,4 +1,4 @@
-  // Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
+// Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   
   var screen_width = 0;
   var screen_height = 0;
@@ -18,7 +18,7 @@
       obj.style.left = input_left + 'px';
       obj.style.top = input_top + 'px';
       obj.style.zIndex = input_zindex;
-      obj.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
+      obj.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor.replace(/%23/g,"#");
       if (input_display==0)
         obj.style.display = "none";
       else
@@ -31,7 +31,7 @@
           td.id = "gametable_td_"+input_id+"_"+i+'_'+j;
           td.style.textAlign="center";
           td.style.verticalAlign = "middle";
-          td.style.background = input_bgcolor;
+          td.style.background = input_bgcolor.replace(/%23/g,"#");
           td.style.width = input_width + 'px';
           td.style.height = input_height + 'px';
           td.setAttribute("onclick", "javascript:image_onclickid_set(this);");
@@ -55,7 +55,7 @@
       else if (input_property=="borderwidth")
         obj.style.borderWidth = input_value + "px";
       else if (input_property=="bordercolor")
-        obj.style.borderColor = input_value;      
+        obj.style.borderColor = input_value.replace(/%23/g,"#");      
       else if (input_property=="zindex")
         obj.style.zIndex = input_value;
       else if (input_property=="display"){ 
@@ -67,7 +67,7 @@
       else if (input_property=="position")
         obj.style.position = input_value;	    
       else if (input_property=="background")
-        obj.style.background=input_value;
+        obj.style.background=input_value.replace(/%23/g,"#");
       else if (input_property=="backgroundimage") {
         obj.style.background="";
         obj.style.backgroundImage="url("+input_value+")";
@@ -83,7 +83,7 @@
                 else if (input_property=="cellheight")
                   obj.rows[i].cells[j].style.height = input_value + "px";        
                 else if (input_property=="cellcolor")
-                  obj.rows[i].cells[j].style.background = input_value;
+                  obj.rows[i].cells[j].style.background = input_value.replace(/%23/g,"#");
               }
             }
           }
@@ -241,7 +241,7 @@
       else if (input_property=="textalign")
         obj.style.textAlign = input_value;      
       else if (input_property=="background")
-        obj.style.background = input_value;
+        obj.style.background = input_value.replace(/%23/g,"#");
       else if (input_property=="innerHTML")
         obj.innerHTML = input_value;
     } 
@@ -250,14 +250,14 @@
   function table_border_set(input_id,input_borderstyle,input_borderwidth,input_bordercolor){
     if (document.getElementById("gametable_"+input_id)) {
       var obj = document.getElementById("gametable_"+input_id);
-      obj.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
+      obj.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor.replace(/%23/g,"#");
     } 
   } 
   
   function table_td_border_set(input_id,input_x,input_y,input_borderstyle,input_borderwidth,input_bordercolor){
     if (document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x)) {
       var obj = document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x);
-      obj.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
+      obj.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor.replace(/%23/g,"#");
     } 
   }  
   
@@ -386,7 +386,7 @@
   
   function table_td_insert_text(input_id,input_x,input_y,input_text,input_fontname,input_fontsize,input_color){
     if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x))
-      document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color + "'>" + input_text + "</font>";
+      document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color.replace(/%23/g,"#") + "'>" + input_text + "</font>";
   }  
   
   function table_td_clear(input_id,input_x,input_y){
@@ -535,7 +535,7 @@
     if (document.getElementById("gamecanvas_"+input_id)) {
       var obj = document.getElementById("gamecanvas_"+input_id);
       var context = obj.getContext("2d");
-      context.strokeStyle = input_color;
+      context.strokeStyle = input_color.replace(/%23/g,"#");
       context.lineWidth = input_linewidth;
       context.rotate(input_rotate * Math.PI / 180);
       context.globalAlpha = input_globalAlpha;
@@ -549,8 +549,8 @@
   function canvas_rect(input_id,input_linewidth,input_x0,input_y0,input_width,input_height,input_fill,input_color,input_rotate,input_globalAlpha) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
-      context.strokeStyle = input_color;
-      context.fillStyle = input_color;
+      context.strokeStyle = input_color.replace(/%23/g,"#");
+      context.fillStyle = input_color.replace(/%23/g,"#");
       context.lineWidth = input_linewidth;
       context.rotate(input_rotate * Math.PI / 180);
       context.globalAlpha = input_globalAlpha;	    
@@ -566,8 +566,8 @@
   function canvas_arc(input_id,input_linewidth,input_x0,input_y0,input_r,input_sAngle,input_eAngle,input_counterclockwise,input_fill,input_color,input_rotate,input_globalAlpha) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
-      context.strokeStyle = input_color;
-      context.fillStyle = input_color;
+      context.strokeStyle = input_color.replace(/%23/g,"#");
+      context.fillStyle = input_color.replace(/%23/g,"#");
       context.lineWidth = input_linewidth;
       context.rotate(input_rotate * Math.PI / 180);
       context.globalAlpha = input_globalAlpha;	    
@@ -609,8 +609,8 @@
   function canvas_text(input_id,input_text,input_x0,input_y0,input_fontname,input_fontsize,input_textalign,input_fill,input_color,input_rotate,input_globalAlpha) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
-      context.strokeStyle = input_color;
-      context.fillStyle = input_color;
+      context.strokeStyle = input_color.replace(/%23/g,"#");
+      context.fillStyle = input_color.replace(/%23/g,"#");
       context.font = input_fontsize + 'px ' + input_fontname;
       context.textAlign = input_textalign;
       context.rotate(input_rotate * Math.PI / 180);
@@ -625,8 +625,8 @@
   function canvas_quadraticcurve(input_id,input_x0,input_y0,input_cp1x,input_cp1y,input_x,input_y,input_linewidth,input_color,input_fill,input_rotate,input_globalAlpha) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
-      context.strokeStyle = input_color;
-      context.fillStyle = input_color;
+      context.strokeStyle = input_color.replace(/%23/g,"#");
+      context.fillStyle = input_color.replace(/%23/g,"#");
       context.lineWidth = input_linewidth;
       context.rotate(input_rotate * Math.PI / 180);
       context.globalAlpha = input_globalAlpha;	    
@@ -643,8 +643,8 @@
   function canvas_beziercurve(input_id,input_x0,input_y0,input_cp1x,input_cp1y,input_cp2x,input_cp2y,input_x,input_y,input_linewidth,input_color,input_fill) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
-      context.strokeStyle = input_color;
-      context.fillStyle = input_color;
+      context.strokeStyle = input_color.replace(/%23/g,"#");
+      context.fillStyle = input_color.replace(/%23/g,"#");
       context.lineWidth = input_linewidth;
       context.rotate(input_rotate * Math.PI / 180);
       context.globalAlpha = input_globalAlpha;	    
@@ -975,7 +975,7 @@
     obj.style.width = input_width + 'px';
     obj.style.height = input_height + 'px';
     obj.style.opacity = input_opacity;
-    obj.style.background = input_bgcolor;
+    obj.style.background = input_bgcolor.replace(/%23/g,"#");
     obj.value = input_value;
     obj.style.zIndex = input_zindex;
     if (input_display==0)
@@ -1002,7 +1002,7 @@
       else if (input_property=="opacity")
         obj.style.opacity = input_value;
       else if (input_property=="background")
-        obj.style.background = input_value;
+        obj.style.background = input_value.replace(/%23/g,"#");
       else if (input_property=="value")
         obj.value = input_value;      
       else if (input_property=="zindex")
