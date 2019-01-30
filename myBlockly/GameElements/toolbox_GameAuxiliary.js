@@ -45,12 +45,12 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '      <block type="colour_blend" id="Fl,d+(`Ww%qzlGUez^+m" x="82" y="118">'+
 '        <value name="COLOUR1">'+
 '          <block type="colour_picker" id="|P{VE%^^e(=O?RrA;M7e">'+
-'            <field name="COLOUR">%23ff0000</field>'+
+'            <field name="COLOUR">#ff0000</field>'+
 '          </block>'+
 '        </value>'+
 '        <value name="COLOUR2">'+
 '          <block type="colour_picker" id="j`YjgVBX%23wYDo|?M.%D(">'+
-'            <field name="COLOUR">%233333ff</field>'+
+'            <field name="COLOUR">#3333ff</field>'+
 '          </block>'+
 '        </value>'+
 '        <value name="RATIO">'+
