@@ -30,5 +30,5 @@ function HextoRgb(color) {
     return "'rgb("+parseInt(color_rgb[1], 16)+","+parseInt(color_rgb[2], 16)+","+parseInt(color_rgb[3], 16)+")'";
   }
   else
-    return color;
+    return color.replace(/#/g,"%23");
 }
