@@ -14,6 +14,7 @@ Blockly.JavaScript['cmd1'] = function (block) {
 Blockly.JavaScript['cmd2'] = function (block) {
   var cmd2_0 = Blockly.JavaScript.valueToCode(block, 'cmd2_0', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd2_1 = Blockly.JavaScript.valueToCode(block, 'cmd2_1', Blockly.JavaScript.ORDER_ATOMIC);
+  cmd2_1 = HextoRgb(cmd2_1);  //Color Hex to RGB
   
   if ((cmd2_0.indexOf("'")==0)&&(cmd2_0.lastIndexOf("'")==cmd2_0.length-1))
     cmd2_0 = cmd2_0.substring(1,cmd2_0.length-1);
@@ -27,7 +28,9 @@ Blockly.JavaScript['cmd2'] = function (block) {
 Blockly.JavaScript['cmd3'] = function (block) {
   var cmd3_0 = Blockly.JavaScript.valueToCode(block, 'cmd3_0', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd3_1 = Blockly.JavaScript.valueToCode(block, 'cmd3_1', Blockly.JavaScript.ORDER_ATOMIC);
+  cmd3_1 = HextoRgb(cmd3_1);  //Color Hex to RGB
   var cmd3_2 = Blockly.JavaScript.valueToCode(block, 'cmd3_2', Blockly.JavaScript.ORDER_ATOMIC);
+  cmd3_2 = HextoRgb(cmd3_2);  //Color Hex to RGB
   
   if ((cmd3_0.indexOf("'")==0)&&(cmd3_0.lastIndexOf("'")==cmd3_0.length-1))
     cmd3_0 = cmd3_0.substring(1,cmd3_0.length-1);
@@ -42,7 +45,9 @@ Blockly.JavaScript['cmd4'] = function (block) {
   var myVar = Blockly.JavaScript.valueToCode(block, 'myVar', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd4_0 = Blockly.JavaScript.valueToCode(block, 'cmd4_0', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd4_1 = Blockly.JavaScript.valueToCode(block, 'cmd4_1', Blockly.JavaScript.ORDER_ATOMIC);
+  cmd4_1 = HextoRgb(cmd4_1);  //Color Hex to RGB
   var cmd4_2 = Blockly.JavaScript.valueToCode(block, 'cmd4_2', Blockly.JavaScript.ORDER_ATOMIC);
+  cmd4_2 = HextoRgb(cmd4_2);  //Color Hex to RGB
   
   if ((myVar.indexOf("'")==0)&&(myVar.lastIndexOf("'")==myVar.length-1))
     myVar = myVar.substring(1,myVar.length-1);
@@ -61,6 +66,7 @@ Blockly.JavaScript['cmd5'] = function (block) {
   var myVar = Blockly.JavaScript.valueToCode(block, 'myVar', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd5_0 = Blockly.JavaScript.valueToCode(block, 'cmd5_0', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd5_1 = Blockly.JavaScript.valueToCode(block, 'cmd5_1', Blockly.JavaScript.ORDER_ATOMIC);
+  cmd5_1 = HextoRgb(cmd5_1);  //Color Hex to RGB
   
   if ((myVar.indexOf("'")==0)&&(myVar.lastIndexOf("'")==myVar.length-1))
     myVar = myVar.substring(1,myVar.length-1);
@@ -145,8 +151,11 @@ Blockly.JavaScript['cmd11'] = function (block) {
   var myVar = Blockly.JavaScript.valueToCode(block, 'myVar', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd11_0 = Blockly.JavaScript.valueToCode(block, 'cmd11_0', Blockly.JavaScript.ORDER_ATOMIC);
   var cmd11_1 = Blockly.JavaScript.valueToCode(block, 'cmd11_1', Blockly.JavaScript.ORDER_ATOMIC);
+  cmd11_1 = HextoRgb(cmd11_1);  //Color Hex to RGB
   var cmd11_2 = Blockly.JavaScript.valueToCode(block, 'cmd11_2', Blockly.JavaScript.ORDER_ATOMIC);
+  cmd11_2 = HextoRgb(cmd11_2);  //Color Hex to RGB
   var cmd11_3 = Blockly.JavaScript.valueToCode(block, 'cmd11_3', Blockly.JavaScript.ORDER_ATOMIC);
+  cmd11_3 = HextoRgb(cmd11_3);  //Color Hex to RGB
   
   if ((myVar.indexOf("'")==0)&&(myVar.lastIndexOf("'")==myVar.length-1))
     myVar = myVar.substring(1,myVar.length-1);
@@ -223,3 +232,14 @@ Blockly.JavaScript['cmd16'] = function (block) {
   var code = cmd_date;
   return [code, Blockly.JavaScript.ORDER_NONE]; 
 };
+
+function HextoRgb(color) {
+  if (!color) return null;
+  if (color.indexOf("#")!=-1&&color.indexOf("'")==0) {
+    var color_hex = color.substring(1,color.length-1);
+    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color_hex);
+    return "'rgb("+parseInt(color_rgb[1], 16)+","+parseInt(color_rgb[2], 16)+","+parseInt(color_rgb[3], 16)+")'";
+  }
+  else
+    return color;
+}
