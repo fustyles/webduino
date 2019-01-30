@@ -1470,6 +1470,7 @@
   }        
 
   function HextoRgb(color) {
+  if (color.length==6||color.length==7)
     if (!color) return null;
     if (color.indexOf("#")!=0) color = "#"+color;
     var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
