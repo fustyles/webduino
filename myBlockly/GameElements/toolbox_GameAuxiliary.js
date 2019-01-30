@@ -40,8 +40,6 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '      </block>'+
 '    </value>'+     
 '  </block>'+ 
-'  <block type="color_hextorgb">'+
-'    <value name="color_">'+
 '<block type="color_hextorgb" id="6Nn(m:}$P303Rr=AsiP9" x="41" y="37">'+
 '	<value name="color_">'+
 '		<block type="colour_blend" id="(ec%23123jY5HWe/G@@$ro">'+
@@ -63,8 +61,6 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '		</block>'+
 '	</value>'+
 '</block>'+
-'    </value>'+ 
-'  </block>'+
 '  <block type="document_timer">'+
 '    <value name="intervals_">'+
 '      <block type="math_number">'+
