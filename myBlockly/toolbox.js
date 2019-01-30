@@ -271,7 +271,14 @@ var catSystem = '<xml>'+
 '    <category name="%{BKY_CATCOLOUR}" colour="%{BKY_COLOUR_HUE}">'+
 '    <block type="colour_picker">'+
 '    <field name="COLOUR">#ff0000</field>'+
-'    </block>'+    
+'    </block>'+ 
+'    <block type="color_hextorgb">'+
+'    <value name="color_">'+
+'    <block type="colour_picker">'+
+'    <field name="COLOUR">#ff0000</field>'+
+'    </block>'+ 
+'    </value>'+    
+'    </block>'+     
 '    <block type="color_hextorgb">'+
 '    <value name="color_">'+
 '    <block type="colour_random">'+
