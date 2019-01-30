@@ -257,6 +257,7 @@ Blockly.JavaScript['matrix_led_color_on'] = function(block) {
   var value_x_on_ = Blockly.JavaScript.valueToCode(block, 'value_x_on_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_on_ = Blockly.JavaScript.valueToCode(block, 'value_y_on_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_color_on_ = Blockly.JavaScript.valueToCode(block, 'value_color_on_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_color_on_ = HextoRgb(value_color_on_);  //Color Hex to RGB
   var code = 'MatrixLed_color_on('+value_x_on_+','+value_y_on_+','+value_color_on_+');\n';
   return code;
 };
