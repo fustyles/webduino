@@ -42,24 +42,7 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '  </block>'+ 
 '  <block type="color_hextorgb">'+
 '    <value name="color_">'+
-'      <block type="colour_blend" id="Fl,d+(`Ww%qzlGUez^+m" x="82" y="118">'+
-'        <value name="COLOUR1">'+
-'          <block type="colour_picker" id="|P{VE%^^e(=O?RrA;M7e">'+
-'            <field name="COLOUR">#ff0000</field>'+
-'          </block>'+
-'        </value>'+
-'        <value name="COLOUR2">'+
-'          <block type="colour_picker" id="j`YjgVBX%23wYDo|?M.%D(">'+
-'            <field name="COLOUR">#3333ff</field>'+
-'          </block>'+
-'        </value>'+
-'        <value name="RATIO">'+
-'          <block type="math_number" id="/d$9?+)CFQVL$@VKrqr$">'+
-'          < field name="NUM">0.5</field>'+
-'          </block>'+
-'        </value>'+
-'      </block>'+
-'      </value>'+ 
+'    </value>'+ 
 '  </block>'+
 '  <block type="document_timer">'+
 '    <value name="intervals_">'+
