@@ -32,9 +32,19 @@ myFirstExtension.prototype.getInfo = function () {
 };
  
 myFirstExtension.prototype.esp8266system = function (args) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open('GET', 'https://192.168.201.16?' + args.CMD);
-    xhttp.send();
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', 'https://192.168.201.16?' + args.CMD);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var arr = JSON.parse(this.responseText);
+        var out = [];
+        for(var i = 0; i < arr.length; i++) {
+          out.push(arr["data"]);
+        }
+        console.log(out);
+      }
+    };	
 };
  
 Scratch.extensions.register(new myFirstExtension());
