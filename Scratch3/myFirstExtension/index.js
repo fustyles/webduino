@@ -11,7 +11,7 @@ myFirstExtension.prototype.getInfo = function () {
                 blockType: BlockType.COMMAND,
                 text: formatMessage({
                     id: 'system',
-                    defaultMessage: 'ESP8266 SYSTEM [CMD]',
+                    defaultMessage: 'ESP8266 SYSTEM URL[IP] Command[CMD]',
                     description: ''
                 }),
 		arguments: {
@@ -25,7 +25,7 @@ myFirstExtension.prototype.getInfo = function () {
         translation_map: {
             zh: {
                 'extensionName': 'ESP8266',
-                'executesystem': 'ESP8266 系統指令 [CMD]'
+                'executesystem': 'ESP8266 系統指令 網址[URL] 指令[CMD]'
             }
         },
     };
@@ -33,7 +33,7 @@ myFirstExtension.prototype.getInfo = function () {
  
 myFirstExtension.prototype.esp8266system = function (args) {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET', 'https://192.168.201.16?' + args.CMD);
+    xmlhttp.open('GET', args.URL + '?' + args.CMD);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
