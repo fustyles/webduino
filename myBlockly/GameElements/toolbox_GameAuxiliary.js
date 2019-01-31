@@ -74,8 +74,7 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '        <field name="NUM">1000</field>'+
 '      </block>'+
 '    </value>'+  
-'  </block>'+      
-'</block>'+
+'  </block>'+   
 '  <block type="document_timer">'+
 '    <value name="intervals_">'+
 '      <block type="math_number">'+
