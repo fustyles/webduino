@@ -1176,7 +1176,7 @@
       return 0;
   }
 
-  function select_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_option,input_value,input_zindex,input_display) {
+  function select_create(input_id,input_width,input_height,input_left,input_top,input_background,input_color,input_fontSize,input_opacity,input_option,input_value,input_zindex,input_display) {
     if (document.getElementById("gameselect_"+input_id)) 
       document.getElementById("gameselect_"+input_id).parentNode.removeChild(document.getElementById("gameselect_"+input_id));
     var obj = document.createElement("select");
@@ -1186,6 +1186,9 @@
     obj.style.top = input_top + 'px';
     obj.style.width = input_width + 'px';
     obj.style.height = input_height + 'px';
+    obj.style.background = input_background;
+    obj.style.color = input_color;
+    obj.style.fontSize = input_fontSize + "px";	  
     obj.style.opacity = input_opacity;
     if (input_option.length>0) {
       for (var i = 0; i < input_option.length; i++) {
@@ -1220,6 +1223,12 @@
         obj.style.height = input_value + "px";
       else if (input_property=="opacity")
         obj.style.opacity = input_value;
+      else if (input_property=="background")
+        obj.style.background = input_value;
+      else if (input_property=="color")
+        obj.style.color = input_value;
+      else if (input_property=="fontsize")
+        obj.style.fontSize = input_value + "px";		    
       else if (input_property=="option") {
        if (obj.options.length>0) {
           while (obj.options.length>0) {
@@ -1265,6 +1274,12 @@
         return Number(obj.style.width.replace(/px/ig,""));
       else if (input_property=="height")
         return Number(obj.style.height.replace(/px/ig,""));
+      else if (input_property=="background")
+        return obj.style.background;
+      else if (input_property=="color")
+        return obj.style.color;
+      else if (input_property=="fontsize")
+        return Number(obj.style.fontSize.replace(/px/ig,""));  	    	    
       else if (input_property=="opacity")
         return Number(obj.style.opacity);
       else if (input_property=="selectedValue")
