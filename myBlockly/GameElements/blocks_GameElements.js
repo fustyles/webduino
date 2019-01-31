@@ -1307,6 +1307,32 @@ Blockly.Blocks['mouse_coordinate_get'] = {
   }
 };
 
+Blockly.Blocks['document_timer_novar'] = {
+  init: function () {
+    this.appendValueInput("intervals_")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .setCheck("Number")
+        .appendField(Blockly.Msg.DOCUMENT_TIMER_SHOW);     
+    this.appendStatementInput("do_");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
+
+Blockly.Blocks['document_timer_once_novar'] = {
+  init: function () {
+    this.appendValueInput("intervals_")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .setCheck("Number")
+        .appendField(Blockly.Msg.DOCUMENT_TIMER_ONCE_SHOW);     
+    this.appendStatementInput("do_");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
+
 Blockly.Blocks['document_timer'] = {
   init: function () {
     this.appendValueInput("intervals_")
