@@ -713,7 +713,7 @@ Blockly.JavaScript['element_event'] = function (block) {
   else if (element=="range")
     var obj="document.getElementById('gamerange_'+"+value_id_+")"; 
   else if (element=="text")
-    var obj="document.getElementById('gamerange_'+"+value_id_+")";  
+    var obj="document.getElementById('gametext_'+"+value_id_+")";  
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
  
@@ -744,7 +744,7 @@ Blockly.JavaScript['element_event_stop'] = function (block) {
   else if (element=="range")
     var obj="document.getElementById('gamerange_'+"+value_id_+")"; 
   else if (element=="text")
-    var obj="document.getElementById('gamerange_'+"+value_id_+")";  
+    var obj="document.getElementById('gametext_'+"+value_id_+")";  
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
 
