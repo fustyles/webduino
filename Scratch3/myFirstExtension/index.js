@@ -7,7 +7,7 @@ myFirstExtension.prototype.getInfo = function () {
  
         blocks: [
             {
-                opcode: 'esp8266esystem',
+                opcode: 'esp8266_system',
                 blockType: BlockType.COMMAND,
                 text: formatMessage({
                     id: 'system',
@@ -31,7 +31,7 @@ myFirstExtension.prototype.getInfo = function () {
     };
 };
  
-myFirstExtension.prototype.esp8266system = function (args) {
+myFirstExtension.prototype.esp8266_system = function (args) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open('GET', args.URL + '?' + args.CMD);
     xmlhttp.send();
