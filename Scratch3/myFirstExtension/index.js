@@ -33,8 +33,8 @@ myFirstExtension.prototype.getInfo = function () {
  
 myFirstExtension.prototype.esp8266system = function (args) {
     var xhttp = new XMLHttpRequest();
-	xhttp.open('GET', 'https://192.168.201.16?' + args.CMD);
-	xhttp.send();
+    xhttp.open('GET', 'https://192.168.201.16?' + args.CMD);
+    xhttp.send();
 };
  
 Scratch.extensions.register(new myFirstExtension());
