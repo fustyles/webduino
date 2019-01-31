@@ -227,7 +227,8 @@ Blockly.JavaScript['matrix_led_matrixcode_color'] = function(block) {
   var L23 = block.getFieldValue('L23');
   var L24 = block.getFieldValue('L24');
   var L25 = block.getFieldValue('L25');
-  var code = '"'+L01+L02+L03+L04+L05+L06+L07+L08+L09+L10+L11+L12+L13+L14+L15+L16+L17+L18+L19+L20+L21+L22+L23+L24+L25+'"';
+  var led = L01+L02+L03+L04+L05+L06+L07+L08+L09+L10+L11+L12+L13+L14+L15+L16+L17+L18+L19+L20+L21+L22+L23+L24+L25;
+  var code = '"'+led.replace(/#/g,"%23")+'"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -237,7 +238,8 @@ Blockly.JavaScript['matrix_led_matrixcode_line_color'] = function(block) {
   var L03 = block.getFieldValue('L03');
   var L04 = block.getFieldValue('L04');
   var L05 = block.getFieldValue('L05');
-  var code = '"'+L01+L02+L03+L04+L05+'"';
+  var led = L01+L02+L03+L04+L05;
+  var code = '"'+led.replace(/#/g,"%23")+'"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
