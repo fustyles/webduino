@@ -1525,6 +1525,8 @@
     obj.setAttribute("onclick", "javascript:onclickid_set(this);");
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(obj);
+    obj.value = input_value;
+	  console.log(input_value);
   }
 
   function text_set(input_id,input_property,input_value) {
