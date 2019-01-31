@@ -2059,7 +2059,7 @@ Blockly.Blocks['text_create'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPACITY_SHOW);
   this.appendValueInput("value_")
-      .setCheck("Number")
+      .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TEXT_VALUE_SHOW); 
   this.appendValueInput("zindex_")
