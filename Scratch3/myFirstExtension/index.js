@@ -14,11 +14,11 @@ myFirstExtension.prototype.getInfo = function () {
                     defaultMessage: 'ESP8266 SYSTEM [CMD]',
                     description: ''
                 }),
-				arguments: {
-					CMD: {
-						type: 'string'
-					}
-                 },
+		arguments: {
+		CMD: {
+			type: 'string'
+		}
+                },
             }
         ],
  
