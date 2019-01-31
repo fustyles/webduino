@@ -15,9 +15,9 @@ myFirstExtension.prototype.getInfo = function () {
                     description: ''
                 }),
 		arguments: {
-		CMD: {
-			type: 'string'
-		}
+                    CMD: {
+                        type: 'string'
+                    }
                 },
             }
         ],
