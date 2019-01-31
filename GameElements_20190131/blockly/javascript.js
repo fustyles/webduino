@@ -5,11 +5,13 @@ Blockly.JavaScript['table_create'] = function (block) {
   var value_borderstyle_ = block.getFieldValue('borderstyle_');
   var value_borderwidth_ = Blockly.JavaScript.valueToCode(block, 'borderwidth_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_bordercolor_ = Blockly.JavaScript.valueToCode(block, 'bordercolor_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_bordercolor_ = HextoRgb(value_bordercolor_);  //Color Hex to RGB
   var value_trcount_ = Blockly.JavaScript.valueToCode(block, 'trcount_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_tdcount_ = Blockly.JavaScript.valueToCode(block, 'tdcount_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);  
-  var value_bgcolor_ = Blockly.JavaScript.valueToCode(block, 'bgcolor_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_bgcolor_ = Blockly.JavaScript.valueToCode(block, 'bgcolor_', Blockly.JavaScript.ORDER_ATOMIC); 
+  value_bgcolor_ = HextoRgb(value_bgcolor_);  //Color Hex to RGB
   var value_zindex_ = Blockly.JavaScript.valueToCode(block, 'zindex_', Blockly.JavaScript.ORDER_ATOMIC);    
   var value_display_ = Blockly.JavaScript.valueToCode(block, 'display_', Blockly.JavaScript.ORDER_ATOMIC);  
   var code = 'table_create(' + value_id_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ',' + value_trcount_ + ',' + value_tdcount_ + ',"'+ value_borderstyle_ + '",' + value_borderwidth_ + ',' + value_bordercolor_ + ',' + value_bgcolor_ + ',' + value_zindex_ + ',' + value_display_ + ');\n';
@@ -20,6 +22,7 @@ Blockly.JavaScript['table_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'table_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -52,6 +55,7 @@ Blockly.JavaScript['table_td_set'] = function (block) {
   var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'table_td_set(' + value_id_ + ','+ value_x_ + ',' + value_y_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -61,6 +65,7 @@ Blockly.JavaScript['table_border_set'] = function (block) {
   var value_borderstyle_ = block.getFieldValue('borderstyle_');
   var value_borderwidth_ = Blockly.JavaScript.valueToCode(block, 'borderwidth_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_bordercolor_ = Blockly.JavaScript.valueToCode(block, 'bordercolor_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_bordercolor_ = HextoRgb(value_bordercolor_);  //Color Hex to RGB
   var code = 'table_border_set(' + value_id_ + ',"'+ value_borderstyle_ + '",' + value_borderwidth_ + ',' + value_bordercolor_ + ');\n';
   return code;
 };
@@ -72,6 +77,7 @@ Blockly.JavaScript['table_td_border_set'] = function (block) {
   var value_borderstyle_ = block.getFieldValue('borderstyle_');
   var value_borderwidth_ = Blockly.JavaScript.valueToCode(block, 'borderwidth_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_bordercolor_ = Blockly.JavaScript.valueToCode(block, 'bordercolor_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_bordercolor_ = HextoRgb(value_bordercolor_);  //Color Hex to RGB
   var code = 'table_td_border_set(' + value_id_ + ','+ value_x_ + ',' + value_y_ + ',"'+ value_borderstyle_ + '",' + value_borderwidth_ + ',' + value_bordercolor_ + ');\n';
   return code;
 };
@@ -94,6 +100,15 @@ Blockly.JavaScript['table_td_img_move'] = function (block) {
   var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
   var code = 'table_td_img_move(' + value_id_ + ','+ value_imgid_ + ','+ value_x_ + ',' + value_y_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['table_td_canvas_move'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_canvasid_ = Blockly.JavaScript.valueToCode(block, 'canvasid_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'table_td_canvas_move(' + value_id_ + ','+ value_canvasid_ + ','+ value_x_ + ',' + value_y_ + ');\n';
   return code;
 };
 
@@ -126,6 +141,7 @@ Blockly.JavaScript['table_td_insert_text'] = function (block) {
   var value_fontname_ = Blockly.JavaScript.valueToCode(block, 'fontname_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_fontsize_ = Blockly.JavaScript.valueToCode(block, 'fontsize_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
   var code = 'table_td_insert_text(' + value_id_ + ','+ value_x_ + ',' + value_y_ + ',' + value_text_+ ',' + value_fontname_ + ',' + value_fontsize_ + ',' + value_color_+ ');\n';
   return code;
 };
@@ -195,6 +211,7 @@ Blockly.JavaScript['canvas_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'canvas_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -213,8 +230,11 @@ Blockly.JavaScript['canvas_line'] = function (block) {
   var value_y0_ = Blockly.JavaScript.valueToCode(block, 'y0_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_x1_ = Blockly.JavaScript.valueToCode(block, 'x1_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y1_ = Blockly.JavaScript.valueToCode(block, 'y1_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);   
-  var code = 'canvas_line(' + value_id_ + ',' + value_linewidth_ + ',' + value_x0_ + ','+ value_y0_ + ',' + value_x1_ + ',' + value_y1_ + ',' + value_color_ + ');\n';
+  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
+  var value_rotate_ = Blockly.JavaScript.valueToCode(block, 'rotate_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_globalAlpha_ = Blockly.JavaScript.valueToCode(block, 'globalAlpha_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'canvas_line(' + value_id_ + ',' + value_linewidth_ + ',' + value_x0_ + ','+ value_y0_ + ',' + value_x1_ + ',' + value_y1_ + ',' + value_color_ + ',' + value_rotate_ + ',' + value_globalAlpha_ + ');\n';
   return code;
 };
 
@@ -226,8 +246,11 @@ Blockly.JavaScript['canvas_rect'] = function (block) {
   var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_fill_ = Blockly.JavaScript.valueToCode(block, 'fill_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);   
-  var code = 'canvas_rect(' + value_id_ + ',' + value_linewidth_ + ',' + value_x0_ + ','+ value_y0_ + ',' + value_width_ + ',' + value_height_ + ',' + value_fill_ + ',' + value_color_ + ');\n';
+  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
+  var value_rotate_ = Blockly.JavaScript.valueToCode(block, 'rotate_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_globalAlpha_ = Blockly.JavaScript.valueToCode(block, 'globalAlpha_', Blockly.JavaScript.ORDER_ATOMIC);    
+  var code = 'canvas_rect(' + value_id_ + ',' + value_linewidth_ + ',' + value_x0_ + ','+ value_y0_ + ',' + value_width_ + ',' + value_height_ + ',' + value_fill_ + ',' + value_color_ + ',' + value_rotate_ + ',' + value_globalAlpha_ + ');\n';
   return code;
 };
 
@@ -241,8 +264,11 @@ Blockly.JavaScript['canvas_arc'] = function (block) {
   var value_eAngle_ = Blockly.JavaScript.valueToCode(block, 'eAngle_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_counterclockwise_ = Blockly.JavaScript.valueToCode(block, 'counterclockwise_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_fill_ = Blockly.JavaScript.valueToCode(block, 'fill_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);  
-  var code = 'canvas_arc(' + value_id_ + ',' + value_linewidth_ + ',' + value_x0_ + ','+ value_y0_ + ',' + value_r_ + ',' + value_sAngle_ + ',' + value_eAngle_ + ',' + value_counterclockwise_ + ',' + value_fill_ + ',' + value_color_ + ');\n';
+  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
+  var value_rotate_ = Blockly.JavaScript.valueToCode(block, 'rotate_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_globalAlpha_ = Blockly.JavaScript.valueToCode(block, 'globalAlpha_', Blockly.JavaScript.ORDER_ATOMIC);    
+  var code = 'canvas_arc(' + value_id_ + ',' + value_linewidth_ + ',' + value_x0_ + ','+ value_y0_ + ',' + value_r_ + ',' + value_sAngle_ + ',' + value_eAngle_ + ',' + value_counterclockwise_ + ',' + value_fill_ + ',' + value_color_ + ',' + value_rotate_ + ',' + value_globalAlpha_ + ');\n';
   return code;
 };
 
@@ -262,7 +288,9 @@ Blockly.JavaScript['canvas_img'] = function (block) {
   var value_y0_ = Blockly.JavaScript.valueToCode(block, 'y0_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'canvas_img(' + value_id_ + ',' + value_sx_ + ',' + value_sy_ + ',' + value_swidth_ + ','+ value_sheight_ + ',' + value_x0_ + ','+ value_y0_ + ',' + value_width_ + ',' + value_height_ + ');\n';
+  var value_rotate_ = Blockly.JavaScript.valueToCode(block, 'rotate_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_globalAlpha_ = Blockly.JavaScript.valueToCode(block, 'globalAlpha_', Blockly.JavaScript.ORDER_ATOMIC);    
+  var code = 'canvas_img(' + value_id_ + ',' + value_sx_ + ',' + value_sy_ + ',' + value_swidth_ + ','+ value_sheight_ + ',' + value_x0_ + ','+ value_y0_ + ',' + value_width_ + ',' + value_height_ + ',' + value_rotate_ + ',' + value_globalAlpha_ + ');\n';
   return code;
 };
 
@@ -275,8 +303,11 @@ Blockly.JavaScript['canvas_text'] = function (block) {
   var value_fontsize_ = Blockly.JavaScript.valueToCode(block, 'fontsize_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_textalign_ = block.getFieldValue('textalign_');
   var value_fill_ = Blockly.JavaScript.valueToCode(block, 'fill_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC); 
-  var code = 'canvas_text(' + value_id_ + ',' + value_text_ + ',' + value_x0_ + ','+ value_y0_ + ',' + value_fontname_ + ','+ value_fontsize_ + ',"' + value_textalign_ + '",'+ value_fill_ + ',' + value_color_ + ');\n';
+  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
+  var value_rotate_ = Blockly.JavaScript.valueToCode(block, 'rotate_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_globalAlpha_ = Blockly.JavaScript.valueToCode(block, 'globalAlpha_', Blockly.JavaScript.ORDER_ATOMIC);    
+  var code = 'canvas_text(' + value_id_ + ',' + value_text_ + ',' + value_x0_ + ','+ value_y0_ + ',' + value_fontname_ + ','+ value_fontsize_ + ',"' + value_textalign_ + '",'+ value_fill_ + ',' + value_color_ + ',' + value_rotate_ + ',' + value_globalAlpha_ + ');\n';
   return code;
 };
 
@@ -290,8 +321,11 @@ Blockly.JavaScript['canvas_quadraticcurve'] = function (block) {
   var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_linewidth_ = Blockly.JavaScript.valueToCode(block, 'linewidth_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
   var value_fill_ = Blockly.JavaScript.valueToCode(block, 'fill_', Blockly.JavaScript.ORDER_ATOMIC); 
-  var code = 'canvas_quadraticcurve(' + value_id_ + ',' + value_x0_ + ',' + value_y0_ + ','+ value_cp1x_ + ',' + value_cp1y_ + ',' + value_x_ + ',' + value_y_ + ',' + value_linewidth_ + ',' + value_color_ + ',' + value_fill_ + ');\n';
+  var value_rotate_ = Blockly.JavaScript.valueToCode(block, 'rotate_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_globalAlpha_ = Blockly.JavaScript.valueToCode(block, 'globalAlpha_', Blockly.JavaScript.ORDER_ATOMIC);    
+  var code = 'canvas_quadraticcurve(' + value_id_ + ',' + value_x0_ + ',' + value_y0_ + ','+ value_cp1x_ + ',' + value_cp1y_ + ',' + value_x_ + ',' + value_y_ + ',' + value_linewidth_ + ',' + value_color_ + ',' + value_fill_ + ',' + value_rotate_ + ',' + value_globalAlpha_ + ');\n';
   return code;
 };
 
@@ -307,8 +341,11 @@ Blockly.JavaScript['canvas_beziercurve'] = function (block) {
   var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_linewidth_ = Blockly.JavaScript.valueToCode(block, 'linewidth_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
   var value_fill_ = Blockly.JavaScript.valueToCode(block, 'fill_', Blockly.JavaScript.ORDER_ATOMIC);  
-  var code = 'canvas_beziercurve(' + value_id_ + ',' + value_x0_ + ',' + value_y0_ + ','+ value_cp1x_ + ',' + value_cp1y_ + ','+ value_cp2x_ + ',' + value_cp2y_ + ',' + value_x_ + ',' + value_y_ + ',' + value_linewidth_ + ',' + value_color_ + ',' + value_fill_ + ');\n';
+  var value_rotate_ = Blockly.JavaScript.valueToCode(block, 'rotate_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_globalAlpha_ = Blockly.JavaScript.valueToCode(block, 'globalAlpha_', Blockly.JavaScript.ORDER_ATOMIC);    
+  var code = 'canvas_beziercurve(' + value_id_ + ',' + value_x0_ + ',' + value_y0_ + ','+ value_cp1x_ + ',' + value_cp1y_ + ','+ value_cp2x_ + ',' + value_cp2y_ + ',' + value_x_ + ',' + value_y_ + ',' + value_linewidth_ + ',' + value_color_ + ',' + value_fill_ + ',' + value_rotate_ + ',' + value_globalAlpha_ + ');\n';
   return code;
 };
 
@@ -364,6 +401,7 @@ Blockly.JavaScript['image_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'image_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -508,6 +546,12 @@ Blockly.JavaScript['function_return'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['time_delay'] = function (block) {
+  var seconds = Blockly.JavaScript.valueToCode(block, 'seconds', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'await delay(' + seconds + ');\n';
+  return code;
+};
+
 Blockly.JavaScript['move_to_mouse'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_position = block.getFieldValue('position');
@@ -566,8 +610,9 @@ Blockly.JavaScript['button_create'] = function (block) {
   var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_opacity_ = Blockly.JavaScript.valueToCode(block, 'opacity_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_bgcolor_ = Blockly.JavaScript.valueToCode(block, 'bgcolor_', Blockly.JavaScript.ORDER_ATOMIC); 
-  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_bgcolor_ = Blockly.JavaScript.valueToCode(block, 'bgcolor_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_bgcolor_ = HextoRgb(value_bgcolor_);  //Color Hex to RGB
+  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_zindex_ = Blockly.JavaScript.valueToCode(block, 'zindex_', Blockly.JavaScript.ORDER_ATOMIC);    
   var value_display_ = Blockly.JavaScript.valueToCode(block, 'display_', Blockly.JavaScript.ORDER_ATOMIC);  
   var code = 'button_create(' + value_id_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ',' + value_opacity_ + ',' + value_bgcolor_ + ',' + value_value_ + ',' + value_zindex_ + ',' + value_display_ + ');\n';
@@ -578,6 +623,7 @@ Blockly.JavaScript['button_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'button_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -642,59 +688,66 @@ Blockly.JavaScript['transform_async_function'] = function (block) {
   return code;
 };
 
+
 Blockly.JavaScript['element_event'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
-  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
-    value_id_ = value_id_.substring(1,value_id_.length-1);
   var element = block.getFieldValue('element');
+  var event = block.getFieldValue('event');
+  var statement = Blockly.JavaScript.statementToCode(block, 'statement');
   if (element=="window")
     var obj="window";
   else if (element=="document")
     var obj="document";
   else if (element=="table")
-    var obj="document.getElementById('gametable_"+value_id_+"')";  
+    var obj="document.getElementById('gametable_'+"+value_id_+")";  
   else if (element=="canvas")
-    var obj="document.getElementById('gamecanvas_"+value_id_+"')"; 
+    var obj="document.getElementById('gamecanvas_'+"+value_id_+")"; 
   else if (element=="image")
-    var obj="document.getElementById('gameimg_"+value_id_+"')";
+    var obj="document.getElementById('gameimg_'+"+value_id_+")";
   else if (element=="button")
-    var obj="document.getElementById('gamebutton_"+value_id_+"')"; 
+    var obj="document.getElementById('gamebutton_'+"+value_id_+")"; 
   else if (element=="color")
-    var obj="document.getElementById('gamecolor_"+value_id_+"')";  
-  if ((element.indexOf("'")==0)&&(element.lastIndexOf("'")==element.length-1))
-    element = element.substring(1,element.length-1);
-  var event = block.getFieldValue('event');
-  if ((event.indexOf("'")==0)&&(event.lastIndexOf("'")==event.length-1))
-    event = event.substring(1,event.length-1);
-  var statement = Blockly.JavaScript.statementToCode(block, 'statement'); 
+    var obj="document.getElementById('gamecolor_'+"+value_id_+")";  
+  else if (element=="select")
+    var obj="document.getElementById('gameselect_'+"+value_id_+")"; 
+  else if (element=="range")
+    var obj="document.getElementById('gamerange_'+"+value_id_+")"; 
+  else if (element=="text")
+    var obj="document.getElementById('gametext_'+"+value_id_+")";  
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+ 
   var code = obj+'.addEventListener("'+event+'", '+element+'_'+value_id_+'_'+event+', true);\nasync function '+element+'_'+value_id_+'_'+event+'(event) {\n' + statement + '};\n';
   return code;
 };
 
 Blockly.JavaScript['element_event_stop'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
-  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
-    value_id_ = value_id_.substring(1,value_id_.length-1);
   var element = block.getFieldValue('element');
+  var event = block.getFieldValue('event');
   if (element=="window")
     var obj="window";
   else if (element=="document")
     var obj="document";
   else if (element=="table")
-    var obj="document.getElementById('gametable_"+value_id_+"')";  
+    var obj="document.getElementById('gametable_'+"+value_id_+")";  
   else if (element=="canvas")
-    var obj="document.getElementById('gamecanvas_"+value_id_+"')"; 
+    var obj="document.getElementById('gamecanvas_'+"+value_id_+")"; 
   else if (element=="image")
-    var obj="document.getElementById('gameimg_"+value_id_+"')";
+    var obj="document.getElementById('gameimg_'+"+value_id_+")";
   else if (element=="button")
-    var obj="document.getElementById('gamebutton_"+value_id_+"')"; 
+    var obj="document.getElementById('gamebutton_'+"+value_id_+")"; 
   else if (element=="color")
-    var obj="document.getElementById('gamecolor_"+value_id_+"')";
-  if ((element.indexOf("'")==0)&&(element.lastIndexOf("'")==element.length-1))
-    element = element.substring(1,element.length-1);
-  var event = block.getFieldValue('event');
-  if ((event.indexOf("'")==0)&&(event.lastIndexOf("'")==event.length-1))
-    event = event.substring(1,event.length-1);
+    var obj="document.getElementById('gamecolor_'+"+value_id_+")";  
+  else if (element=="select")
+    var obj="document.getElementById('gameselect_'+"+value_id_+")"; 
+  else if (element=="range")
+    var obj="document.getElementById('gamerange_'+"+value_id_+")"; 
+  else if (element=="text")
+    var obj="document.getElementById('gametext_'+"+value_id_+")";  
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+
   var code = obj+'.removeEventListener("'+event+'", '+element+'_'+value_id_+'_'+event+', true);\n';
   return code;
 };
@@ -706,7 +759,8 @@ Blockly.JavaScript['colorpicker_create'] = function (block) {
   var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_opacity_ = Blockly.JavaScript.valueToCode(block, 'opacity_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_value_=value_value_.replace(/#/g,"%23");
   var value_zindex_ = Blockly.JavaScript.valueToCode(block, 'zindex_', Blockly.JavaScript.ORDER_ATOMIC);    
   var value_display_ = Blockly.JavaScript.valueToCode(block, 'display_', Blockly.JavaScript.ORDER_ATOMIC);  
   var code = 'colorpicker_create(' + value_id_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ',' + value_opacity_ + ',' + value_value_ + ',' + value_zindex_ + ',' + value_display_ + ');\n';
@@ -717,6 +771,7 @@ Blockly.JavaScript['colorpicker_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_value_=value_value_.replace(/#/g,"%23");
   var code = 'colorpicker_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -748,13 +803,18 @@ Blockly.JavaScript['select_create'] = function (block) {
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_background_ = Blockly.JavaScript.valueToCode(block, 'background_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_background_ = HextoRgb(value_background_);  //Color Hex to RGB
+  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
+  var value_fontsize_ = Blockly.JavaScript.valueToCode(block, 'fontsize_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_opacity_ = Blockly.JavaScript.valueToCode(block, 'opacity_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_option_ = Blockly.JavaScript.valueToCode(block, 'option_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_zindex_ = Blockly.JavaScript.valueToCode(block, 'zindex_', Blockly.JavaScript.ORDER_ATOMIC);    
   var value_display_ = Blockly.JavaScript.valueToCode(block, 'display_', Blockly.JavaScript.ORDER_ATOMIC);  
-  var code = 'select_create(' + value_id_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ',' + value_opacity_ + ',' + value_option_ + ',' + value_value_ + ',' + value_zindex_ + ',' + value_display_ + ');\n';
+  var code = 'select_create(' + value_id_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ',' + value_background_ + ',' + value_color_ + ',' + value_fontsize_ + ',' + value_opacity_ + ',' + value_option_ + ',' + value_value_ + ',' + value_zindex_ + ',' + value_display_ + ');\n';
   return code;
 };
 
@@ -762,6 +822,7 @@ Blockly.JavaScript['select_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'select_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -809,6 +870,7 @@ Blockly.JavaScript['range_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'range_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -835,14 +897,65 @@ Blockly.JavaScript['range_onchange_do'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['text_create'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_background_ = Blockly.JavaScript.valueToCode(block, 'background_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_background_ = HextoRgb(value_background_);  //Color Hex to RGB
+  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
+  var value_fontsize_ = Blockly.JavaScript.valueToCode(block, 'fontsize_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_opacity_ = Blockly.JavaScript.valueToCode(block, 'opacity_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_zindex_ = Blockly.JavaScript.valueToCode(block, 'zindex_', Blockly.JavaScript.ORDER_ATOMIC);    
+  var value_display_ = Blockly.JavaScript.valueToCode(block, 'display_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'text_create(' + value_id_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ',' + value_background_ + ',' + value_color_ + ',' + value_fontsize_ + ',' + value_opacity_ + ',' + value_value_ + ',' + value_zindex_ + ',' + value_display_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['text_set'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
+  var code = 'text_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['text_get'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'text_get(' + value_id_ + ',"' + value_property_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['text_delete'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'text_delete(' + value_id_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['text_onchange_do'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'gametext_'+value_id_+'.addEventListener("change", gametext_'+value_id_+'_onchange, true);\nasync function gametext_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\n';
+  return code;
+};
+
+Blockly.JavaScript['color_hextorgb'] = function (block) {
+  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'HextoRgb(' + value_color_ + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['body_set'] = function (block) {
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
   var code = 'body_set("' + value_property_ + '",' + value_value_ + ');\n';
-  return code;
-};
-
-Blockly.JavaScript['time_delay'] = function (block) {
-  var code = '';
   return code;
 };
