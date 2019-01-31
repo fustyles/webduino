@@ -156,7 +156,8 @@ Blockly.JavaScript['matrix_led_matrix_color'] = function(block) {
   var L23 = block.getFieldValue('L23');
   var L24 = block.getFieldValue('L24');
   var L25 = block.getFieldValue('L25');
-  var code = 'MatrixLed_matrix_color(["'+L01+'","'+L02+'","'+L03+'","'+L04+'","'+L05+'","'+L06+'","'+L07+'","'+L08+'","'+L09+'","'+L10+'","'+L11+'","'+L12+'","'+L13+'","'+L14+'","'+L15+'","'+L16+'","'+L17+'","'+L18+'","'+L19+'","'+L20+'","'+L21+'","'+L22+'","'+L23+'","'+L24+'","'+L25+'"]);\n';
+  var led = L01+'","'+L02+'","'+L03+'","'+L04+'","'+L05+'","'+L06+'","'+L07+'","'+L08+'","'+L09+'","'+L10+'","'+L11+'","'+L12+'","'+L13+'","'+L14+'","'+L15+'","'+L16+'","'+L17+'","'+L18+'","'+L19+'","'+L20+'","'+L21+'","'+L22+'","'+L23+'","'+L24+'","'+L25;
+  var code = 'MatrixLed_matrix_color(["'+led.replace(/#/g,"%23")+'"]);\n';
   return code;
 };
 
