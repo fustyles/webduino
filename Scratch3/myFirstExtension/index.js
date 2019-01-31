@@ -12,7 +12,7 @@ myFirstExtension.prototype.getInfo = function () {
                 text: formatMessage({
                     id: 'system',
                     defaultMessage: 'ESP8266 SYSTEM URL[IP] Command[CMD]',
-                    description: ''
+                    description: 'My First Extension'
                 }),
 		arguments: {
                     CMD: {
