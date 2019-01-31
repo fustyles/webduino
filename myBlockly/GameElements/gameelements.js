@@ -1460,7 +1460,7 @@
       return 0;
   }        
 
-  function text_create(input_id,input_width,input_height,input_left,input_top,input_background,input_color,input_fontSize,input_opacity,input_size,input_value,input_zindex,input_display) {
+  function text_create(input_id,input_width,input_height,input_left,input_top,input_background,input_color,input_fontSize,input_opacity,input_value,input_zindex,input_display) {
     if (document.getElementById("gametext_"+input_id)) 
       document.getElementById("gametext_"+input_id).parentNode.removeChild(document.getElementById("gametext_"+input_id));
     var obj = document.createElement('input');
