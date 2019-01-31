@@ -10,7 +10,7 @@ myFirstExtension.prototype.getInfo = function () {
                 opcode: 'esp8266esystem',
                 blockType: BlockType.COMMAND,
                 text: formatMessage({
-                    id: 'cmd',
+                    id: 'system',
                     defaultMessage: 'ESP8266 SYSTEM [CMD]',
                     description: ''
                 }),
