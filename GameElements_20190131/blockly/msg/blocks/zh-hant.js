@@ -161,5 +161,4 @@ Blockly.Msg.TEXT_GET_SHOW = "取得";
 Blockly.Msg.TEXT_DELETE_SHOW = "刪除";
 Blockly.Msg.TEXT_ONCHANGE_SHOW = "改變文字後執行"; 
 Blockly.Msg.BACKCOLOR_SHOW = "背景顏色";
-
 Blockly.Msg.SETWINDOW_SHOW = "設定執行視窗";
