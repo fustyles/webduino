@@ -1,13 +1,73 @@
 <category id="catGameElements"> 
-  <block type="time_delay">    
-  </block>  
   <block type="body_set"> 
     <value name="value_">
       <block type="colour_picker">
         <field name="COLOUR">#ffffff</field>
       </block>
     </value>    
-  </block>    
+  </block> 
+  <block type="time_delay">
+    <value name="seconds">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>      
+    </value>     
+  </block>  
+  <block type="color_hextorgb">
+    <value name="color_">
+      <block type="colour_picker">
+       <field name="COLOUR">#ff0000</field>
+     </block>
+    </value>     
+  </block> 
+  <block type="color_hextorgb">
+    <value name="color_">
+      <block type="colour_random">
+     </block>
+    </value>     
+  </block>      
+  <block type="color_hextorgb">
+    <value name="color_">
+      <block type="colour_rgb" id="~:cvP%,`n_{%23dgQNT=G|" x="222" y="93">
+        <value name="RED">
+          <block type="math_number" id="F-%*wH]f,^W0B3(UADA-">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+        <value name="GREEN">
+          <block type="math_number" id=";FX7DY9fUJg!1sC:~*-j">
+            <field name="NUM">50</field>
+          </block>
+        </value>
+        <value name="BLUE">
+          <block type="math_number" id=",sFPNSlB?~qk,vHJ9rO?">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+      </block>
+    </value>     
+  </block> 
+<block type="color_hextorgb" id="6Nn(m:}$P303Rr=AsiP9" x="41" y="37">
+	<value name="color_">
+		<block type="colour_blend" id="(ec%23123jY5HWe/G@@$ro">
+			<value name="COLOUR1">
+				<block type="colour_picker" id="j9BOR;4D,ygU]nZRCBQk">
+				<field name="COLOUR">#ff0000</field>
+				</block>
+			</value>
+			<value name="COLOUR2">
+				<block type="colour_picker" id="R}Ag5juIem]qfP%[=F9N">
+				<field name="COLOUR">#3333ff</field>
+				</block>
+			</value>
+			<value name="RATIO">
+				<block type="math_number" id="FotbO*W2k-rT7(l7?GI=">
+				<field name="NUM">0.5</field>
+				</block>
+			</value>
+		</block>
+	</value>
+</block>
   <block type="document_timer">
     <value name="intervals_">
       <block type="math_number">
@@ -24,8 +84,6 @@
   </block>  
   <block type="document_timer_stop">
   </block> 
-  <block type="image_onclick_listener">
-  </block>     
   <block type="element_event">  
     <value name="id_">
       <block type="text">
@@ -39,7 +97,7 @@
         <field name="TEXT"></field>
       </block>    
     </value>     
-  </block>      
+  </block>    
   <block type="async_function">
     <value name="name_">
       <block type="text">
@@ -75,8 +133,6 @@
       </block>      
     </value>     
   </block>        
-  <block type="mouse_coordinate_get">
-  </block>
   <block type="music_create"> 
     <value name="url_">
       <block type="text">
@@ -151,7 +207,9 @@
     </value>    
   </block>  
   <block type="image_sys_get">
-  </block>      
+  </block>     
+  <block type="mouse_coordinate_get">
+  </block>    
   <block type="image_collision">
     <value name="id1_">
       <block type="text">
@@ -182,14 +240,18 @@
         <field name="TEXT"></field>
       </block>
     </value> 
-  </block>
-  <block type="image_onclick_do">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
+  </block>  
+  <block type="image_onclick_listener" id="o(a?Wess1x(SbtJmfsA7" x="46" y="47">
+    <statement name="do_">
+      <block type="image_onclick_do" id="c3b9fdE)Ol$%w-;AVKS$">
+        <value name="id_">
+          <block type="text" id="rn4|!k{H3`mt2_[(W)][">
+            <field name="TEXT"></field>
+          </block>
+        </value>
       </block>
-    </value>     
-  </block> 
+    </statement>
+  </block>
   <block type="image_onclick_get">
     <value name="id_">
       <block type="text">
@@ -292,6 +354,480 @@
       </block>
     </value>       
   </block>      
+  <block type="button_create"> 
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">60</field>
+      </block>
+    </value>
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">30</field>
+      </block>
+    </value>    
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value> 
+    <value name="bgcolor_">
+      <block type="logic_null">
+      </block>
+    </value>       
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT">button</field>
+      </block>
+    </value>       
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="button_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="button_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
+  <block type="button_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>       
+  <block type="button_onclick_do">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>         
+  </block>           
+  <block type="colorpicker_create"> 
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">60</field>
+      </block>
+    </value>
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">30</field>
+      </block>
+    </value>    
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>      
+    <value name="value_">  
+      <block type="colour_picker">
+        <field name="COLOUR">#000000</field>
+      </block>
+    </value>       
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="colorpicker_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="colorpicker_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
+  <block type="colorpicker_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>    
+  <block type="colorpicker_onchange_do">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>         
+  </block>                
+  <block type="select_create"> 
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value>
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">30</field>
+      </block>
+    </value>   
+    <value name="background_">
+      <block type="colour_picker">
+        <field name="COLOUR">#ffffff</field>
+      </block>
+    </value>
+    <value name="color_">
+      <block type="colour_picker">
+        <field name="COLOUR">#000000</field>
+      </block>
+    </value>    
+    <value name="fontsize_">
+      <block type="math_number">
+        <field name="NUM">14</field>
+      </block>
+    </value>           
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>      
+    <value name="option_">  
+      <block type="lists_create_with" id="jLD:QAJS$32jf.+JB/bN" x="41" y="59">
+        <mutation items="2"></mutation>
+        <value name="ADD0">
+          <block type="lists_create_with" id="%9qiGe9~7ZY?pY^so]Pb">
+            <mutation items="2"></mutation>
+            <value name="ADD0">
+              <block type="text" id="|XSH3fb=BL.DBOIJLtn2"><field name="TEXT">TPE</field></block>
+            </value>
+            <value name="ADD1">
+                <block type="text" id="u?rMfr~z5o^;KMU1%3ED"><field name="TEXT">Taipei</field></block>
+            </value>
+          </block>
+        </value>
+        <value name="ADD1">
+          <block type="lists_create_with" id="XfYrI}b[-uTOo)jZAhvh"><mutation items="2"></mutation>
+            <value name="ADD0">
+              <block type="text" id="0jf/qQwA}MB!geAQUTR4"><field name="TEXT">KHH</field></block></value>
+            <value name="ADD1">
+              <block type="text" id="=tad^JCXBY/[Zkbg1gZ~"><field name="TEXT">Kaohsiung</field></block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>       
+    <value name="value_">  
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value>          
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="select_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="select_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
+  <block type="select_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>    
+  <block type="select_onchange_do">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>         
+  </block> 
+  <block type="range_create"> 
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">60</field>
+      </block>
+    </value>
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">30</field>
+      </block>
+    </value>   
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>   
+    <value name="max_">  
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value>  
+    <value name="min_">  
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>  
+    <value name="step_">  
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>  
+    <value name="value_">  
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>       
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="range_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="range_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
+  <block type="range_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>    
+  <block type="range_onchange_do">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>         
+  </block>
+  <block type="text_create"> 
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">60</field>
+      </block>
+    </value>
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">30</field>
+      </block>
+    </value>   
+    <value name="background_">
+      <block type="colour_picker">
+        <field name="COLOUR">#ffffff</field>
+      </block>
+    </value>
+    <value name="color_">
+      <block type="colour_picker">
+        <field name="COLOUR">#000000</field>
+      </block>
+    </value>    
+    <value name="fontsize_">
+      <block type="math_number">
+        <field name="NUM">14</field>
+      </block>
+    </value>       
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>    
+    <value name="value_">  
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>       
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="text_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="text_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
+  <block type="text_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>  
+  <block type="text_onchange_do">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>         
+  </block> 
   <block type="table_create">  
     <value name="id_">
       <block type="text">
@@ -365,23 +901,6 @@
       </block>
     </value>    
   </block>   
-  <block type="table_td_onclick_do">  
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>         
-    <value name="x_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
-    <value name="y_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>  
-  </block>   
   <block type="table_get">   
     <value name="id_">
       <block type="text">
@@ -403,18 +922,39 @@
       </block>
     </value>     
   </block>
-  <block type="table_change_colsrows">
+  <block type="table_change_colsrows">  
     <value name="id_">
       <block type="text">
         <field name="TEXT"></field>
       </block>
-    </value>        
+    </value>         
     <value name="index_">
       <block type="math_number">
         <field name="NUM">0</field>
       </block>
     </value>
-  </block>    
+  </block> 
+  <block type="image_onclick_listener" id="dr3[S]LJj)EK]i`WZ_eW" x="-8" y="6"> 
+    <statement name="do_"> 
+      <block type="table_td_onclick_do" id="N+ptDK;m?|L=[~!8lE7+"> 
+        <value name="id_"> 
+          <block type="text" id="AN%=|3{PM~iC7c5s(3b;"> 
+            <field name="TEXT"></field> 
+          </block> 
+        </value> 
+        <value name="x_"> 
+          <block type="math_number" id="]@b%8K]-}VIT_MMIM-S%"> 
+          <field name="NUM">0</field> 
+          </block> 
+        </value> 
+        <value name="y_"> 
+          <block type="math_number" id="v-D163zB;#TgK2yWb*gt"> 
+            <field name="NUM">0</field> 
+          </block> 
+        </value> 
+      </block> 
+    </statement> 
+  </block> 
   <block type="table_td_insert_img"> 
     <value name="id_">
       <block type="text">
@@ -459,6 +999,28 @@
       </block>
     </value>     
     <value name="imgid_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>      
+    <value name="x_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="y_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>  
+  </block>   
+  <block type="table_td_canvas_move">  
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="canvasid_">
       <block type="text">
         <field name="TEXT"></field>
       </block>
@@ -689,19 +1251,19 @@
       <block type="text">
         <field name="TEXT"></field>
       </block>
-    </value>
+    </value> 
     <value name="value_">
       <block type="text">
         <field name="TEXT"></field>
       </block>
-    </value>
+    </value>    
   </block>
   <block type="canvas_get">
     <value name="id_">
       <block type="text">
         <field name="TEXT"></field>
       </block>
-    </value>
+    </value> 
   </block>
   <block type="canvas_line">  
     <value name="id_">
@@ -738,7 +1300,17 @@
       <block type="colour_picker">
         <field name="COLOUR">#ff0000</field>
       </block>
-    </value>     
+    </value>  
+    <value name="rotate_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+    <value name="globalAlpha_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>      
   </block>  
   <block type="canvas_rect"> 
     <value name="id_">
@@ -780,7 +1352,17 @@
       <block type="colour_picker">
         <field name="COLOUR">#ff0000</field>
       </block>
-    </value>     
+    </value>   
+    <value name="rotate_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+    <value name="globalAlpha_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>      
   </block>  
   <block type="canvas_arc">  
     <value name="id_">
@@ -832,7 +1414,17 @@
       <block type="colour_picker">
         <field name="COLOUR">#ff0000</field>
       </block>
-    </value>     
+    </value>   
+    <value name="rotate_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+    <value name="globalAlpha_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>      
   </block> 
   <block type="canvas_img_url">   
     <value name="url_">
@@ -887,6 +1479,16 @@
         <field name="NUM">0</field>
       </block>
     </value>   
+    <value name="rotate_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+    <value name="globalAlpha_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>      
   </block>
   <block type="canvas_text">
     <value name="id_">
@@ -929,6 +1531,16 @@
         <field name="COLOUR">#ff0000</field>
       </block>
     </value>  
+    <value name="rotate_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+    <value name="globalAlpha_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>      
   </block>
   <block type="canvas_quadraticcurve">
     <value name="id_">
@@ -980,7 +1592,17 @@
       <block type="logic_boolean">
         <field name="BOOL">FALSE</field>
       </block>
-    </value>        
+    </value>     
+    <value name="rotate_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+    <value name="globalAlpha_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>      
   </block>
   <block type="canvas_beziercurve">
     <value name="id_">
@@ -1042,7 +1664,17 @@
       <block type="logic_boolean">
         <field name="BOOL">FALSE</field>
       </block>
-    </value>        
+    </value>    
+    <value name="rotate_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+    <value name="globalAlpha_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>      
   </block>
   <block type="canvas_clearrect">
     <value name="id_">
@@ -1070,7 +1702,7 @@
         <field name="NUM">0</field>
       </block>
     </value>        
-  </block>   
+  </block> 
   <block type="canvas_clear">
     <value name="id_">
       <block type="text">
@@ -1084,383 +1716,23 @@
         <field name="TEXT"></field>
       </block>
     </value>      
-  </block>       
-  <block type="canvas_onclick_do">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
+  </block>  
+  <block type="image_onclick_listener" id="_u]I^KFlA[UgTzFj#]rD" x="10" y="22">
+    <statement name="do_">
+      <block type="canvas_onclick_do" id=":9%fzFFPrN)HQ7gF9WON">
+        <value name="id_">
+          <block type="text" id="OF;J;$t!QY,awlXqB^V{">
+            <field name="TEXT"></field>
+          </block>
+        </value>
       </block>
-    </value>     
-  </block> 
+    </statement>
+  </block>    
   <block type="canvas_onclick_get">
     <value name="id_">
       <block type="text">
         <field name="TEXT"></field>
       </block>
     </value>     
-  </block>  
-  <block type="button_create"> 
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-    <value name="left_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
-    <value name="top_">
-      <block type="math_number">
-        <field name="NUM">100</field>
-      </block>
-    </value> 
-    <value name="width_">
-      <block type="math_number">
-        <field name="NUM">60</field>
-      </block>
-    </value>
-    <value name="height_">
-      <block type="math_number">
-        <field name="NUM">30</field>
-      </block>
-    </value>    
-    <value name="opacity_">
-      <block type="math_number">
-        <field name="NUM">1</field>
-      </block>
-    </value> 
-    <value name="bgcolor_">
-      <block type="logic_null">
-      </block>
-    </value>       
-    <value name="value_">
-      <block type="text">
-        <field name="TEXT">button</field>
-      </block>
-    </value>       
-    <value name="zindex_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value> 
-    <value name="display_">
-      <block type="logic_boolean">
-        <field name="BOOL">TRUE</field>
-      </block>
-    </value>     
-  </block>
-  <block type="button_set">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-    <value name="value_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>    
-  </block>  
-  <block type="button_get">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-  </block>     
-  <block type="button_delete">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-  </block>        
-  <block type="button_onclick_do">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>         
-  </block>  
-  <block type="colorpicker_create"> 
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-    <value name="left_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
-    <value name="top_">
-      <block type="math_number">
-        <field name="NUM">100</field>
-      </block>
-    </value> 
-    <value name="width_">
-      <block type="math_number">
-        <field name="NUM">60</field>
-      </block>
-    </value>
-    <value name="height_">
-      <block type="math_number">
-        <field name="NUM">30</field>
-      </block>
-    </value>    
-    <value name="opacity_">
-      <block type="math_number">
-        <field name="NUM">1</field>
-      </block>
-    </value>      
-    <value name="value_">  
-      <block type="colour_picker">
-        <field name="COLOUR">#000000</field>
-      </block>
-    </value>       
-    <value name="zindex_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value> 
-    <value name="display_">
-      <block type="logic_boolean">
-        <field name="BOOL">TRUE</field>
-      </block>
-    </value>     
-  </block>
-  <block type="colorpicker_set">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-    <value name="value_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>    
-  </block>  
-  <block type="colorpicker_get">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-  </block>     
-  <block type="colorpicker_delete">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
   </block>    
-  <block type="colorpicker_onchange_do">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>         
-  </block> 
-  <block type="select_create"> 
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-    <value name="left_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
-    <value name="top_">
-      <block type="math_number">
-        <field name="NUM">100</field>
-      </block>
-    </value> 
-    <value name="width_">
-      <block type="math_number">
-        <field name="NUM">60</field>
-      </block>
-    </value>
-    <value name="height_">
-      <block type="math_number">
-        <field name="NUM">30</field>
-      </block>
-    </value>    
-    <value name="opacity_">
-      <block type="math_number">
-        <field name="NUM">1</field>
-      </block>
-    </value>      
-    <value name="option_">  
-      <block type="lists_create_with" id="jLD:QAJS$32jf.+JB/bN" x="41" y="59">
-        <mutation items="2"></mutation>
-        <value name="ADD0">
-          <block type="lists_create_with" id="%9qiGe9~7ZY?pY^so]Pb">
-            <mutation items="2"></mutation>
-            <value name="ADD0">
-              <block type="text" id="|XSH3fb=BL.DBOIJLtn2"><field name="TEXT">TPE</field></block>
-            </value>
-            <value name="ADD1">
-                <block type="text" id="u?rMfr~z5o^;KMU1%3ED"><field name="TEXT">Taipei</field></block>
-            </value>
-          </block>
-        </value>
-        <value name="ADD1">
-          <block type="lists_create_with" id="XfYrI}b[-uTOo)jZAhvh"><mutation items="2"></mutation>
-            <value name="ADD0">
-              <block type="text" id="0jf/qQwA}MB!geAQUTR4"><field name="TEXT">KHH</field></block></value>
-            <value name="ADD1">
-              <block type="text" id="=tad^JCXBY/[Zkbg1gZ~"><field name="TEXT">Kaohsiung</field></block>
-            </value>
-          </block>
-        </value>
-      </block>  
-    </value>       
-    <value name="value_">  
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>    
-    </value>          
-    <value name="zindex_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value> 
-    <value name="display_">
-      <block type="logic_boolean">
-        <field name="BOOL">TRUE</field>
-      </block>
-    </value>     
-  </block>
-  <block type="select_set">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-    <value name="value_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>    
-  </block>  
-  <block type="select_get">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-  </block>     
-  <block type="select_delete">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-  </block>    
-  <block type="select_onchange_do">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>         
-  </block>   
-  <block type="range_create"> 
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-    <value name="left_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
-    <value name="top_">
-      <block type="math_number">
-        <field name="NUM">100</field>
-      </block>
-    </value> 
-    <value name="width_">
-      <block type="math_number">
-        <field name="NUM">60</field>
-      </block>
-    </value>
-    <value name="height_">
-      <block type="math_number">
-        <field name="NUM">30</field>
-      </block>
-    </value>    
-    <value name="opacity_">
-      <block type="math_number">
-        <field name="NUM">1</field>
-      </block>
-    </value>   
-    <value name="max_">  
-      <block type="math_number">
-        <field name="NUM">100</field>
-      </block>
-    </value>  
-    <value name="min_">  
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>  
-    <value name="step_">  
-      <block type="math_number">
-        <field name="NUM">1</field>
-      </block>
-    </value>  
-    <value name="value_">  
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>       
-    <value name="zindex_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value> 
-    <value name="display_">
-      <block type="logic_boolean">
-        <field name="BOOL">TRUE</field>
-      </block>
-    </value>     
-  </block>
-  <block type="range_set">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-    <value name="value_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>    
-  </block>  
-  <block type="range_get">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-  </block>     
-  <block type="range_delete">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>     
-  </block>    
-  <block type="range_onchange_do">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>         
-  </block>        
 </category>
