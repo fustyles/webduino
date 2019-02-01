@@ -120,7 +120,13 @@
             <field name="NUM">200</field>
           </block>
         </value>
+        <value name="P8">
+          <block type="esp8266_car_state">
+          </block>  
+        </value>    
     </block>   
+    <block type="esp8266_car_state">
+    </block>      
     <block type="esp8266_cmd">
     </block>   	 
     <block type="esp8266_getresponse">
