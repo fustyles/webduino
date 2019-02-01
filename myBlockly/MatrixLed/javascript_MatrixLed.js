@@ -1,3 +1,10 @@
+Blockly.JavaScript['matrix_led_initial'] = function (block) {
+  var left = Blockly.JavaScript.valueToCode(block, 'left', Blockly.JavaScript.ORDER_ATOMIC);
+  var top = Blockly.JavaScript.valueToCode(block, 'top', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'MatrixLed_initial(' + left + ',' + top + ');\n';
+  return code;
+};
+
 Blockly.JavaScript['matrix_led_char'] = function(block) {
   var value_char_ = Blockly.JavaScript.valueToCode(block, 'value_char_', Blockly.JavaScript.ORDER_ATOMIC);
   var code = 'MatrixLed_char('+ value_char_ +');\n';
