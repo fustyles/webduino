@@ -473,11 +473,11 @@ function exportHTML() {
 function exportBlocks() {
   try {
     var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-    var xml_text = Blockly.Xml.domToText(xml);
+    var xml_text = Blockly.Xml.domToText(xml).replace(/#/g,"%23");
 	  
     var link = document.createElement('a');
     link.download="project.txt";
-    link.href="data:application/octet-stream;utf-8," + encodeURI(xml_text.replace(/#/g,"%23"));
+    link.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
     document.body.appendChild(link);
     link.click();
     link.remove();
