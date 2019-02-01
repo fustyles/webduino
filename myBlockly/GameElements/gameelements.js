@@ -842,13 +842,13 @@
       
       if (state==1&&input_position!="any") {
         if (input_position=="up") {
-	  if (y1_h<=(y2+y2_h)/2||(y1_h-y2>(y2_h-y2)/2&&y1=<y2)
+	  if (y1_h<=(y2+y2_h)/2||(y1_h-y2>(y2_h-y2)/2&&y1=<y2))
             return 1;
 	  else
 	    return 0;
         }      
         else if (input_position=="down") {
-	  if (y1>(y2+y2_h)/2||(y2_h-y1>(y2_h-y2)/2&&y1>=y2)
+	  if (y1>(y2+y2_h)/2||(y2_h-y1>(y2_h-y2)/2&&y1>=y2))
             return 1;
 	  else
 	    return 0;      
