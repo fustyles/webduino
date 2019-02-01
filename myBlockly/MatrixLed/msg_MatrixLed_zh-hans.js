@@ -48,4 +48,4 @@ Blockly.Msg.MATRIXLED_MARQUEE_COLOR_SHOW = "跑马灯(全彩) 循环";
 Blockly.Msg.MATRIXLED_MARQUEE_COLOR_ONCE_SHOW = "跑马灯(全彩) 单次";
 Blockly.Msg.MATRIXLED_MATRIXCODE_LINE_SHOW = "指示灯(单色) 新增纵行";
 Blockly.Msg.MATRIXLED_MATRIXCODE_LINE_COLOR_SHOW = "指示灯(全彩) 新增纵行";
-Blockly.Msg.MATRIXLED_COLOR_SHOW = "颜色";
+Blockly.Msg.MATRIXLED_COLOR_SHOW = "指示灯 颜色";
