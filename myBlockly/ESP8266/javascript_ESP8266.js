@@ -40,9 +40,20 @@ Blockly.JavaScript['esp8266_car'] = function(block) {
   var value_P5 = Blockly.JavaScript.valueToCode(block, 'P5', Blockly.JavaScript.ORDER_ATOMIC);
   var value_P6 = Blockly.JavaScript.valueToCode(block, 'P6', Blockly.JavaScript.ORDER_ATOMIC);
   var value_P7 = Blockly.JavaScript.valueToCode(block, 'P7', Blockly.JavaScript.ORDER_ATOMIC);
-  var dropdown_P8 = block.getFieldValue('P8');
-  var code = "esp8266_sendCommand("+value_url+","+value_cmd+","+value_P1+","+value_P2+","+value_P3+","+value_P4+","+value_P5+","+value_P6+","+value_P7+",'"+dropdown_P8+"','');\n";
+  var value_P8 = Blockly.JavaScript.valueToCode(block, 'P8', Blockly.JavaScript.ORDER_ATOMIC);
+  if (value_P8=="FORWARD") value_P8="F";
+  if (value_P8=="BACKWARD") value_P8="B";
+  if (value_P8=="TURNLEFT") value_P8="L";
+  if (value_P8=="TURNRIGHT") value_P8="R";
+  if (value_P8=="STOP") value_P8="S";
+  var code = "esp8266_sendCommand("+value_url+","+value_cmd+","+value_P1+","+value_P2+","+value_P3+","+value_P4+","+value_P5+","+value_P6+","+value_P7+",'"+value_P8+"','');\n";
   return code;
+};
+
+Blockly.JavaScript['esp8266_car_state'] = function(block) {
+  var value_state = block.getFieldValue('state');
+  var code = "'"+value_state+"'";
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['esp8266_getresponse'] = function(block) {
