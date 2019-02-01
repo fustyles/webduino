@@ -35,10 +35,10 @@ Blockly.JavaScript['keyboard_keycode'] = function(block) {
 Blockly.JavaScript['hotkey'] = function(block) {
   var keycode = block.getFieldValue('keycode');
   if (keycode=="Ctrl")
-    var code = '(event.ctrlKey == true)';
+    var code = 'event.ctrlKey == true';
   else if (keycode=="Shift")
-    var code = '(event.shiftKey == true)';
+    var code = 'event.shiftKey == true';
   else if (keycode=="Alt")
-    var code = '(event.altKey == true)';  
+    var code = 'event.altKey == true';  
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
