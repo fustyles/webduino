@@ -11,7 +11,7 @@ Blockly.Blocks['matrix_led_initial'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(90);
+  this.setColour(300);
   }
 };
 
