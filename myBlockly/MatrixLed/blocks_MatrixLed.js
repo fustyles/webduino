@@ -1,3 +1,20 @@
+Blockly.Blocks['matrix_led_initial'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.MATRIXLED_INITIAL_SHOW);  
+  this.appendValueInput("left")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.MATRIXLED_LEFT_SHOW); 
+  this.appendValueInput("top")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.MATRIXLED_TOP_SHOW);   
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(90);
+  }
+};
+
 Blockly.Blocks['matrix_led_char'] = {
   init: function() {
     this.appendValueInput("value_char_")
