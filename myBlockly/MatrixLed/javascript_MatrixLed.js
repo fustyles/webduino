@@ -351,7 +351,6 @@ Blockly.JavaScript['matrix_led_getcolor'] = function(block) {
 
 Blockly.JavaScript['matrix_led_backcolor'] = function(block) {
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'value_color_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
-  var code = 'MatrixLed_backcolor('+ value_color_ +');\n';
+  var code = 'MatrixLed_backcolor('+ value_color_.replace(/#/g,"%23") +');\n';
   return code;
 };
