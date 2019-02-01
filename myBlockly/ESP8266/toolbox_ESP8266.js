@@ -150,5 +150,42 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '    <block type="esp8266_cmd">'+
 '    </block>'+    
 '    <block type="esp8266_clearresponse">'+
-'    </block>'+     
+'    </block>'+   
+'  <block type="iframe_open">'+
+'    <value name="openid_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="url_">'+
+'      <block type="text">'+
+'        <field name="TEXT">https://fustyles.github.io/webduino/ESP8266_MyFirmata.html</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="width_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">600</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="height_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">400</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="left_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="top_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">100</field>'+
+'      </block>'+
+'    </value>  '+
+'    <value name="zindex_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+    
 '</category></xml>';
