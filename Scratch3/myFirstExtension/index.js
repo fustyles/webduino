@@ -16,7 +16,8 @@ myFirstExtension.prototype.getInfo = function () {
                 }),
 		arguments: {
                     URL: {
-                        type: 'string'
+                        type: 'string',
+			default: 'http://'
                     },			
                     CMD: {
                         type: 'string'
