@@ -1160,7 +1160,7 @@ Blockly.Blocks['image_collision'] = {
       .appendField(Blockly.Msg.AND_SHOW)
       .appendField(Blockly.Msg.ID_SHOW);    
   this.appendDummyInput()
-      .appendField(Blockly.Msg.BOUNDARY_COLLISION_SHOW)
+      .appendField(Blockly.Msg.COLLISION_SIDE_SHOW)
       .appendField(new Blockly.FieldDropdown([["any","any"], ["up","up"], ["down","down"], ["left","left"], ["right","right"]]), "position_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
