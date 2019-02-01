@@ -496,7 +496,7 @@
     for (var i=0;i<25;i++)
     {
       if (i==(input_x_*5+input_y_))
-        L[i]=input_color_;
+        L[i]=input_color_.replace(/%23/g,"#");
       else
       {
         if (L[i]=="")
@@ -556,7 +556,7 @@
   
   function MatrixLed_matrix_color(color) {
     for (var i=0;i<25;i++)
-      L[i]=color[i];
+      L[i]=color[i].replace(/%23/g,"#");
     
     MatrixLed_show();
   }  
