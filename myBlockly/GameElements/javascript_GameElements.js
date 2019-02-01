@@ -421,8 +421,9 @@ Blockly.JavaScript['image_delete'] = function(block) {
 
 Blockly.JavaScript['image_collision'] = function (block) {
   var value_id1_ = Blockly.JavaScript.valueToCode(block, 'id1_', Blockly.JavaScript.ORDER_ATOMIC); 
-  var value_id2_ = Blockly.JavaScript.valueToCode(block, 'id2_', Blockly.JavaScript.ORDER_ATOMIC); 
-  var code = 'image_collision(' + value_id1_ + ',' + value_id2_ + ')';
+  var value_id2_ = Blockly.JavaScript.valueToCode(block, 'id2_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_position_ = block.getFieldValue('position_');
+  var code = 'image_collision(' + value_id1_ + ',' + value_id2_ + ',"' + value_position_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
