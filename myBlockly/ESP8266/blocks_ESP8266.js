@@ -83,7 +83,7 @@ Blockly.Blocks['esp8266_custom'] = {
 Blockly.Blocks['esp8266_car'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("ESP8266 Car");  
+        .appendField("ESP8266 Car (ESP32)");  
     this.appendValueInput("url")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
