@@ -777,7 +777,7 @@
   }
   
   function MatrixLed_getcolor(input_x_,input_y_) {
-    return HextoRgb(L[input_x_*5+input_y_].replace(/%23/g,"#"));   //RGB;
+    return L[input_x_*5+input_y_].replace(/%23/g,"#");   //RGB;
   } 
   
   function MatrixLed_backcolor(input_color_) {
