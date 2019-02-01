@@ -15,6 +15,7 @@ Blockly.Msg.MATRIXLED_WIDTH_SHOW = "Screen Width";
 Blockly.Msg.MATRIXLED_HEIGHT_SHOW = "Screen Height";
 Blockly.Msg.MATRIXLED_LEFT_SHOW = "Left";
 Blockly.Msg.MATRIXLED_TOP_SHOW = "Top";
+Blockly.Msg.MATRIXLED_INITIAL_SHOW = "Matrix Led P";
 Blockly.Msg.MATRIXLED_SAMPLE_SHOW = "Show Sample";
 Blockly.Msg.MATRIXLED_CODE_SHOW = "Show Sample By Code";
 Blockly.Msg.MATRIXLED_MARQUEE_SHOW = "Show Marguee(Cycle)";
