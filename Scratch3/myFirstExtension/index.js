@@ -11,7 +11,7 @@ myFirstExtension.prototype.getInfo = function () {
                 blockType: BlockType.COMMAND,
                 text: formatMessage({
                     id: 'system',
-                    defaultMessage: 'ESP8266 SYSTEM URL[URL] Command[CMD]',
+                    defaultMessage: 'ESP8266 SYSTEM URL[URL] Command[REQUEST]',
                     description: 'My First Extension'
                 }),
 		arguments: {
@@ -19,7 +19,7 @@ myFirstExtension.prototype.getInfo = function () {
                         type: 'string',
 			default: 'http://'
                     },			
-                    CMD: {
+                    REQUEST: {
                         type: 'string'
                     }
                 },
@@ -37,7 +37,7 @@ myFirstExtension.prototype.getInfo = function () {
  
 myFirstExtension.prototype.esp8266_system = function (args) {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET', args.URL + '?' + args.CMD);
+    xmlhttp.open('GET', args.URL + '?' + args.REQUEST);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
