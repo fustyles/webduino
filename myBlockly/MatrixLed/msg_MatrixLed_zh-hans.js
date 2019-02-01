@@ -15,6 +15,7 @@ Blockly.Msg.MATRIXLED_WIDTH_SHOW = "指示灯 宽度";
 Blockly.Msg.MATRIXLED_HEIGHT_SHOW = "指示灯 高度";
 Blockly.Msg.MATRIXLED_LEFT_SHOW = "靠左距离";
 Blockly.Msg.MATRIXLED_TOP_SHOW = "靠上距离";
+Blockly.Msg.MATRIXLED_INITIAL_SHOW = "指示灯 位置";
 Blockly.Msg.MATRIXLED_SAMPLE_SHOW = "显示 图案";
 Blockly.Msg.MATRIXLED_CODE_SHOW = "显示 图案(编码)";
 Blockly.Msg.MATRIXLED_MARQUEE_SHOW = "跑马灯(单色) 循环";
