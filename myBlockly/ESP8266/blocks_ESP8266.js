@@ -120,13 +120,23 @@ Blockly.Blocks['esp8266_car'] = {
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Delay(ms)");
-    this.appendDummyInput()
+    this.appendValueInput("P8")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("State")
-        .appendField(new Blockly.FieldDropdown([["FORWARD","F"], ["BACKWARD","B"], ["TURNLEFT","L"], ["TURNRIGHT","R"], ["STOP","S"]]), "P8");    
+        .appendField("State");
     this.setInputsInline(false);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
+
+Blockly.Blocks['esp8266_car_state'] = {
+  init: function () {    
+  this.appendDummyInput()
+      .appendField("state")
+      .appendField(new Blockly.FieldDropdown([["FORWARD","F"], ["BACKWARD","B"], ["TURNLEFT","L"], ["TURNRIGHT","R"], ["STOP","S"]]), "state");    
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
   this.setColour(60);
   }
 };
