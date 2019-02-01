@@ -46,7 +46,7 @@ Blockly.JavaScript['esp8266_car'] = function(block) {
   if (value_P8=="TURNLEFT") value_P8="L";
   if (value_P8=="TURNRIGHT") value_P8="R";
   if (value_P8=="STOP") value_P8="S";
-  var code = "esp8266_sendCommand("+value_url+","+value_cmd+","+value_P1+","+value_P2+","+value_P3+","+value_P4+","+value_P5+","+value_P6+","+value_P7+",'"+value_P8+"','');\n";
+  var code = "esp8266_sendCommand("+value_url+","+value_cmd+","+value_P1+","+value_P2+","+value_P3+","+value_P4+","+value_P5+","+value_P6+","+value_P7+","+value_P8+",'');\n";
   return code;
 };
 
