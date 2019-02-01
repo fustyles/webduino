@@ -154,7 +154,7 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '  <block type="iframe_open">'+
 '    <value name="openid_">'+
 '      <block type="text">'+
-'        <field name="TEXT"></field>'+
+'        <field name="TEXT">ESP8266</field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="url_">'+
