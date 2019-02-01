@@ -66,7 +66,8 @@ Blockly.JavaScript['matrix_led_marquee_reverse'] = function(block) {
 
 Blockly.JavaScript['matrix_led_color'] = function(block) {
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'value_color_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'MatrixLed_color('+ value_color_.replace(/#/g,"%23") +');\n';
+  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
+  var code = 'MatrixLed_color('+ value_color_ +');\n';
   return code;
 };
 
@@ -259,7 +260,8 @@ Blockly.JavaScript['matrix_led_color_on'] = function(block) {
   var value_x_on_ = Blockly.JavaScript.valueToCode(block, 'value_x_on_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_on_ = Blockly.JavaScript.valueToCode(block, 'value_y_on_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_color_on_ = Blockly.JavaScript.valueToCode(block, 'value_color_on_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'MatrixLed_color_on('+value_x_on_+','+value_y_on_+','+value_color_on_.replace(/#/g,"%23")+');\n';
+  value_color_on_ = HextoRgb(value_color_on_);  //Color Hex to RGB
+  var code = 'MatrixLed_color_on('+value_x_on_+','+value_y_on_+','+value_color_on_+');\n';
   return code;
 };
 
@@ -350,6 +352,7 @@ Blockly.JavaScript['matrix_led_getcolor'] = function(block) {
 
 Blockly.JavaScript['matrix_led_backcolor'] = function(block) {
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'value_color_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'MatrixLed_backcolor('+ value_color_.replace(/#/g,"%23") +');\n';
+  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
+  var code = 'MatrixLed_backcolor('+ value_color_ +');\n';
   return code;
 };
