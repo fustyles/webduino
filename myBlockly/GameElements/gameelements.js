@@ -841,9 +841,8 @@
         state=0;  
       
       if (state==1&&input_position!="any") {
-	/*
         if (input_position=="up") {
-	  if (y1_h<=(y2+y2_h)/2||(y1_h-y2>(y2_h-y2)/2&&y1=<y2))
+	  if (y1_h<=(y2+y2_h)/2||(y1_h-y2>(y2_h-y2)/2&&y1<=y2))
             return 1;
 	  else
 	    return 0;
@@ -855,7 +854,7 @@
 	    return 0;      
         }
         else if (input_position=="left") {
-	  if (x1_w<=(x2+x2_w)/2||(x1_w-x2>(x2_w-x2)/2&&x1=<x2))
+	  if (x1_w<=(x2+x2_w)/2||(x1_w-x2>(x2_w-x2)/2&&x1<=x2))
             return 1;
 	  else
 	    return 0;    
@@ -866,7 +865,6 @@
 	  else
 	    return 0;     
         }
-	*/
 	return 1;
       }
       else
