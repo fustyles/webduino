@@ -1,1 +1,1 @@
-MSG.catGameElements = "游戏元素(old)";
+MSG.catGameElements = "游戏元素";
