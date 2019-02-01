@@ -123,7 +123,7 @@ Blockly.Blocks['esp8266_car'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("State")
-        .appendField(new Blockly.FieldDropdown([["FORWARD","F"], ["BACKWARD","B"], ["LEFT","L"], ["RIGHT","R"], ["STOP","S"]]), "P8");    
+        .appendField(new Blockly.FieldDropdown([["FORWARD","F"], ["BACKWARD","B"], ["TURNLEFT","L"], ["TURNRIGHT","R"], ["STOP","S"]]), "P8");    
     this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
