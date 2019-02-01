@@ -840,7 +840,7 @@
       document.getElementById("gameimg_"+input_id).parentNode.removeChild(document.getElementById("gameimg_"+input_id));
   }   
   
-  function image_collision(input_id1,input_id2) {
+  function image_collision(input_id1,input_id2,input_position) {
     if ((document.getElementById("gameimg_"+input_id1))&&(document.getElementById("gameimg_"+input_id2)))
     {
       var img1 = document.getElementById("gameimg_"+input_id1).style;
@@ -854,12 +854,43 @@
       var y2 = Number(img2.top.replace(/px/ig,""));
       var y2_h = Number(img2.top.replace(/px/ig,"")) + Number(img2.height.replace(/px/ig,""));
     
+      var state=0;
       if ((((x2>=x1)&&(x2<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2>=x1)&&(x2<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h))))
-        return 1;
+        state=1;
       else if ((((x1>=x2)&&(x1<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1>=x2)&&(x1<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h))))
-        return 1;
+        state=1;
       else
-        return 0;  
+        state=0;  
+      
+      if (state==1&&input_position!="any") {
+        if (input_position=="up") {
+	  if (y1_h<=(y2+y2_h)/2||(y1_h-y2>=(y2_h-y2)/2&&y1<=y2))
+            return 1;
+	  else
+	    return 0;
+        }      
+        else if (input_position=="down") {
+	  if (y1>=(y2+y2_h)/2||(y2_h-y1>=(y2_h-y2)/2&&y1>=y2))
+            return 1;
+	  else
+	    return 0;      
+        }
+        else if (input_position=="left") {
+	  if (x1_w<=(x2+x2_w)/2||(x1_w-x2>=(x2_w-x2)/2&&x1<=x2))
+            return 1;
+	  else
+	    return 0;    
+        } 
+        else if (input_position=="right") {
+	  if (x1>=(x2+x2_w)/2||(x2_w-x1>=(x2_w-x2)/2&&x1>=x2))
+            return 1;
+	  else
+	    return 0;     
+        }
+	return 1;
+      }
+      else
+        return state; 
     }
     else
       return 0;   
