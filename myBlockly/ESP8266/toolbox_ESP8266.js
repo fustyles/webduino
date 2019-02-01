@@ -179,7 +179,7 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '    </value>'+
 '    <value name="top_">'+
 '      <block type="math_number">'+
-'        <field name="NUM">100</field>'+
+'        <field name="NUM">0</field>'+
 '      </block>'+
 '    </value>  '+
 '    <value name="zindex_">'+
