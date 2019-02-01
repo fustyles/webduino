@@ -818,7 +818,7 @@
       document.getElementById("gameimg_"+input_id).parentNode.removeChild(document.getElementById("gameimg_"+input_id));
   }   
   
-  function image_collision(input_id1,input_id2) {
+  function image_collision(input_id1,input_id2,input_position) {
     if ((document.getElementById("gameimg_"+input_id1))&&(document.getElementById("gameimg_"+input_id2)))
     {
       var img1 = document.getElementById("gameimg_"+input_id1).style;
@@ -832,12 +832,27 @@
       var y2 = Number(img2.top.replace(/px/ig,""));
       var y2_h = Number(img2.top.replace(/px/ig,"")) + Number(img2.height.replace(/px/ig,""));
     
-      if ((((x2>=x1)&&(x2<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2>=x1)&&(x2<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h))))
-        return 1;
-      else if ((((x1>=x2)&&(x1<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1>=x2)&&(x1<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h))))
-        return 1;
+      if (input_position=="any")
+        if ((((x2>=x1)&&(x2<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2>=x1)&&(x2<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h))))
+          return 1;
+        else if ((((x1>=x2)&&(x1<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1>=x2)&&(x1<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h))))
+          return 1;
+        else
+          return 0;  
+      else if (input_position=="up") {
+        return 0;      
+      }
+      else if (input_position=="down") {
+        return 0;       
+      }
+      else if (input_position=="left") {
+        return 0;     
+      } 
+      else if (input_position=="right") {
+        return 0;      
+      }
       else
-        return 0;  
+        return 0; 
     }
     else
       return 0;   
