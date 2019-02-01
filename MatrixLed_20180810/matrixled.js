@@ -811,7 +811,8 @@
     else
     {
         var div = document.createElement('div');
-        div.id = "fustyles_matrixled";   
+        div.id = "fustyles_matrixled";
+        div.style.position="absolute";
         div.innerHTML = ledtable;
         document.body.appendChild(div);
     }    
