@@ -1,4 +1,7 @@
 var catMatrixLed = '<xml><category name="%{BKY_MATRIXLED}" colour="%{BKY_MATRIXLED_HUE}">'+
+'  <block type="matrix_led_showstate">'+
+'    <field name="value_showstate_">1</field>'+
+'  </block>'+
 '  <block type="matrix_led_initial">'+
 '    <value name="left">'+
 '      <block type="math_number">'+
@@ -11,9 +14,6 @@ var catMatrixLed = '<xml><category name="%{BKY_MATRIXLED}" colour="%{BKY_MATRIXL
 '      </block>'+
 '    </value>'+
 '  </block>'+    
-'  <block type="matrix_led_showstate">'+
-'    <field name="value_showstate_">1</field>'+
-'  </block>'+
 '  <block type="matrix_led_width">'+
 '    <value name="value_width_">'+
 '      <block type="math_number">'+
