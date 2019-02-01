@@ -28,7 +28,7 @@ myFirstExtension.prototype.getInfo = function () {
         translation_map: {
             zh: {
                 'extensionName': 'ESP8266',
-                'executesystem': 'ESP8266 系統指令 網址[URL] 指令[CMD]'
+                'esp8266_system': 'ESP8266 系統指令'
             }
         },
     };
