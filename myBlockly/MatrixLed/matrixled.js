@@ -108,14 +108,14 @@
   function MatrixLed_initial(left,top) {
     if (document.getElementById("fustyles_matrixled")) {
       var div = document.getElementById("fustyles_matrixled");
-      div.style.top = top + "px";
       div.style.left = left + "px";
+      div.style.top = top + "px";
     }
     else {
       var div = document.createElement('div');
       div.style.position="absolute";
-      div.style.top = top + "px";
       div.style.left = left + "px";
+      div.style.top = top + "px";
       div.id = "fustyles_matrixled";
       document.body.appendChild(div);
     } 
