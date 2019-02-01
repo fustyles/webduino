@@ -48,4 +48,4 @@ Blockly.Msg.MATRIXLED_MARQUEE_COLOR_SHOW = "Show Marguee(Full Color) Cycle";
 Blockly.Msg.MATRIXLED_MARQUEE_COLOR_ONCE_SHOW = "Show Marguee(Full Color) Once";
 Blockly.Msg.MATRIXLED_MATRIXCODE_LINE_SHOW = "Matrix Led Add Up A Long Column";
 Blockly.Msg.MATRIXLED_MATRIXCODE_LINE_COLOR_SHOW = "Matrix Led(Full Color) Add Up A Long Column";
-Blockly.Msg.MATRIXLED_COLOR_SHOW = "Color";
+Blockly.Msg.MATRIXLED_COLOR_SHOW = "Led Color";
