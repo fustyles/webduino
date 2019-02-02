@@ -539,6 +539,11 @@ Blockly.JavaScript['image_resize'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['mouse_coordinate_get_start'] = function (block) {
+  var code = 'mouse_coordinate_get_start();\n';
+  return code;
+};
+
 Blockly.JavaScript['mouse_coordinate_get'] = function (block) {
   var value_property_ = block.getFieldValue('property_');
   var code = 'mouse_coordinate_get("' + value_property_ + '")';
