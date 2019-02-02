@@ -1321,6 +1321,16 @@ Blockly.Blocks['image_resize'] = {
   }
 };
 
+Blockly.Blocks['mouse_coordinate_get_start'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.MOUSE_COORDINATE_GET_START_SHOW);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['mouse_coordinate_get'] = {
   init: function() {
   this.appendDummyInput()
