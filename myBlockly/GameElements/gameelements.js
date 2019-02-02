@@ -947,6 +947,16 @@
     return {width: img.width, height: img.height};
   }  
   
+  function mouse_coordinate_get_start() {       
+      document.onmousemove = function(e){  
+        e=e||window.event;
+        mouse_x = e.pageX;
+        mouse_y = e.pageY;
+        mouse_offsetx = e.offsetX;
+        mouse_offsety = e.offsetY;        
+      }	  
+  }
+
   function mouse_coordinate_get(input_property) {
     if (!document.onmousemove)
     {
