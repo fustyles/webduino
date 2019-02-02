@@ -1,0 +1,601 @@
+<!-- Author: Fu Chung-Yi (Kaohsiung, Taiwan)   https://www.facebook.com/francefu      Update date: 2019-2-2 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>myBlockly</title>
+  <script>
+	var script_blockly = [
+		'https://blockly-demo.appspot.com/static/blockly_compressed.js',
+		'https://blockly-demo.appspot.com/static/blocks_compressed.js',
+		'https://blockly-demo.appspot.com/static/javascript_compressed.js',
+		'https://fustyles.github.io/webduino/myBlockly/toolbox.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/example/Game_Tetris.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/Game_TicTacToe.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/Game_Bounce.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/Game_Hamster.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/Game_Puzzle.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/GameAuxiliary_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/GameAuxiliary_example_002.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/GameAuxiliary_example_003.js',		
+		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example_002.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example_003.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/MatrixLED_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/MatrixLED_example_002.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/MatrixLED_example_003.js',		
+		'https://fustyles.github.io/webduino/myBlockly/example/ShowText_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/Keyboard_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/Keyboard_example_002.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/Instruction_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/OpenURL_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/TaiwanAirQuality_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/SpeechRecognition_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/DeepLearning_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/ESP8266_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/ESP8266_example_002.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/ESP8266_example_003.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/ESP8266_example_004.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/ESP8266_example_005.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/ThingSpeak_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/HTChart_example_001.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/SetWindow/blocks_SetWindow.js',
+		'https://fustyles.github.io/webduino/myBlockly/SetWindow/javascript_SetWindow.js',
+		'https://fustyles.github.io/webduino/myBlockly/SetWindow/toolbox_SetWindow.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/ShowText/blocks_ShowText.js',
+		'https://fustyles.github.io/webduino/myBlockly/ShowText/javascript_ShowText.js',
+		'https://fustyles.github.io/webduino/myBlockly/ShowText/toolbox_ShowText.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/Keyboard/blocks_Keyboard.js',
+		'https://fustyles.github.io/webduino/myBlockly/Keyboard/javascript_Keyboard.js',
+		'https://fustyles.github.io/webduino/myBlockly/Keyboard/toolbox_Keyboard.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/Instruction/blocks_Instruction.js',
+		'https://fustyles.github.io/webduino/myBlockly/Instruction/javascript_Instruction.js',
+		'https://fustyles.github.io/webduino/myBlockly/Instruction/toolbox_Instruction.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/blocks_MatrixLed.js',
+		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/javascript_MatrixLed.js',
+		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/toolbox_MatrixLed.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/blocks_GameElements.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/javascript_GameElements.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameAuxiliary.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameTable.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameCanvas.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameImage.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/toolbox_GameForm.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/OpenURL/blocks_OpenURL.js',
+		'https://fustyles.github.io/webduino/myBlockly/OpenURL/javascript_OpenURL.js',
+		'https://fustyles.github.io/webduino/myBlockly/OpenURL/toolbox_OpenURL.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/blocks_TaiwanAirQuality.js',
+		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/javascript_TaiwanAirQuality.js',
+		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/toolbox_TaiwanAirQuality.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/blocks_SpeechRecognition.js',
+		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/javascript_SpeechRecognition.js',
+		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/toolbox_SpeechRecognition.js',	
+		
+		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/blocks_TextToSpeech.js',
+		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/javascript_TextToSpeech.js',
+		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/toolbox_TextToSpeech.js',	
+		
+		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/blocks_DeepLearning.js',
+		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/javascript_DeepLearning.js',
+		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/toolbox_DeepLearning.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/ESP8266/blocks_ESP8266.js',
+		'https://fustyles.github.io/webduino/myBlockly/ESP8266/javascript_ESP8266.js',
+		'https://fustyles.github.io/webduino/myBlockly/ESP8266/toolbox_ESP8266.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/blocks_ThingSpeak.js',
+		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/javascript_ThingSpeak.js',
+		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/toolbox_ThingSpeak.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/IFTTT/blocks_IFTTT.js',
+		'https://fustyles.github.io/webduino/myBlockly/IFTTT/javascript_IFTTT.js',
+		'https://fustyles.github.io/webduino/myBlockly/IFTTT/toolbox_IFTTT.js',
+		
+		'https://fustyles.github.io/webduino/myBlockly/LINE/blocks_LINE.js',
+		'https://fustyles.github.io/webduino/myBlockly/LINE/javascript_LINE.js',
+		'https://fustyles.github.io/webduino/myBlockly/LINE/toolbox_LINE.js',	
+		
+		'https://fustyles.github.io/webduino/myBlockly/HTChart/blocks_HTChart.js',
+		'https://fustyles.github.io/webduino/myBlockly/HTChart/javascript_HTChart.js',
+		'https://fustyles.github.io/webduino/myBlockly/HTChart/toolbox_HTChart.js',			
+		
+		'https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'
+	];
+	for (var i=0;i<script_blockly.length;i++) {
+	  document.write("\<script src='"+script_blockly[i]+"'\>\<\/script>");
+	}
+	var language = location.search.toLowerCase();
+	if (language.indexOf("lang=zh-hant")!=-1)
+	{
+		var script_msg = [
+		'https://fustyles.github.io/webduino/myBlockly/zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/SetWindow/msg_SetWindow_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/ShowText/msg_ShowText_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/Keyboard/msg_Keyboard_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/Instruction/msg_Instruction_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/OpenURL/msg_OpenURL_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/msg_TaiwanAirQuality_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/msg_SpeechRecognition_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/msg_TextToSpeech_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/msg_DeepLearning_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/ESP8266/msg_ESP8266_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/msg_ThingSpeak_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/IFTTT/msg_IFTTT_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/LINE/msg_LINE_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/HTChart/msg_HTChart_zh-hant.js'
+		];
+	} 
+	else if (language.indexOf("lang=zh-hans")!=-1) {
+		var script_msg = [
+		'https://fustyles.github.io/webduino/myBlockly/zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/SetWindow/msg_SetWindow_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/ShowText/msg_ShowText_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/Keyboard/msg_Keyboard_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/Instruction/msg_Instruction_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/OpenURL/msg_OpenURL_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/msg_TaiwanAirQuality_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/msg_SpeechRecognition_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/msg_TextToSpeech_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/msg_DeepLearning_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/ESP8266/msg_ESP8266_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/msg_ThingSpeak_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/IFTTT/msg_IFTTT_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/LINE/msg_LINE_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/HTChart/msg_HTChart_zh-hans.js'
+		];
+	} 
+	else {
+		var script_msg = [
+		'https://fustyles.github.io/webduino/myBlockly/en.js',
+		'https://fustyles.github.io/webduino/myBlockly/SetWindow/msg_SetWindow.js',
+		'https://fustyles.github.io/webduino/myBlockly/ShowText/msg_ShowText.js',
+		'https://fustyles.github.io/webduino/myBlockly/Keyboard/msg_Keyboard.js',
+		'https://fustyles.github.io/webduino/myBlockly/Instruction/msg_Instruction.js',
+		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/msg_MatrixLed.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/msg_GameElements.js',
+		'https://fustyles.github.io/webduino/myBlockly/OpenURL/msg_OpenURL.js',
+		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/msg_TaiwanAirQuality.js',
+		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/msg_SpeechRecognition.js',
+		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/msg_TextToSpeech.js',
+		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/msg_DeepLearning.js',
+		'https://fustyles.github.io/webduino/myBlockly/ESP8266/msg_ESP8266.js',
+		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/msg_ThingSpeak.js',
+		'https://fustyles.github.io/webduino/myBlockly/IFTTT/msg_IFTTT.js',
+		'https://fustyles.github.io/webduino/myBlockly/LINE/msg_LINE.js',
+		'https://fustyles.github.io/webduino/myBlockly/HTChart/msg_HTChart.js'
+		];
+	}
+	for (var i=0;i<script_msg.length;i++) {
+	  document.write("\<script src='"+script_msg[i]+"'\>\<\/script>");
+	}
+	var script_iframe_run = [
+		'https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js',
+		'https://fustyles.github.io/webduino/myBlockly/ShowText/showtext.js',
+		'https://fustyles.github.io/webduino/myBlockly/SetWindow/setwindow.js',
+		'https://fustyles.github.io/webduino/myBlockly/MatrixLed/matrixled.js',
+		'https://fustyles.github.io/webduino/myBlockly/GameElements/gameelements.js',
+		'https://fustyles.github.io/webduino/myBlockly/OpenURL/openurl.js',
+		'https://fustyles.github.io/webduino/myBlockly/TaiwanAirQuality/taiwanairquality.js',
+		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/speechrecognition.js',
+		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/texttospeech.js',
+		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/deeplearning.js',
+		'https://fustyles.github.io/webduino/myBlockly/ESP8266/esp8266.js',
+		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/thingspeak.js',
+		'https://fustyles.github.io/webduino/myBlockly/IFTTT/ifttt.js',
+		'https://fustyles.github.io/webduino/myBlockly/LINE/line.js',
+		'https://fustyles.github.io/webduino/myBlockly/HTChart/htchart.js',
+		'https://d3js.org/d3.v4.min.js'		
+	];
+	for (var i=0;i<script_iframe_run.length;i++) {
+	  document.write("\<script src='"+script_iframe_run[i]+"'\>\<\/script>");
+	}	  
+  </script>
+</head>
+<body onload="initial();"></div>
+<img id="gameimg_1" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Scratch_Cat.png" style="width:100px;height:100px;left:200px;top:300px;position:absolute;display:none;z-index:9999;">
+<img id="gameimg_2" src="http://www.msps.chc.edu.tw/~office/computer/study/writer/%E5%A4%A7%E6%96%B9%E9%80%81/%E5%8D%A1%E9%80%9A%E5%9C%96%E6%A1%88/02.png" style="width:100px;height:100px;left:400px;top:300px;position:absolute;display:none;z-index:9999;">
+<img id="gameimg_3" src="http://www.msps.chc.edu.tw/~office/computer/study/writer/%E5%A4%A7%E6%96%B9%E9%80%81/%E5%8D%A1%E9%80%9A%E5%9C%96%E6%A1%88/03.png" style="width:100px;height:100px;left:600px;top:300px;position:absolute;display:none;z-index:9999;">
+<img id="gameimg_4" src="http://www.msps.chc.edu.tw/~office/computer/study/writer/%E5%A4%A7%E6%96%B9%E9%80%81/%E5%8D%A1%E9%80%9A%E5%9C%96%E6%A1%88/04.png" style="width:100px;height:100px;left:0px;top:0px;position:absolute;display:none;z-index:9999;">
+<img id="gameimg_5" src="http://www.msps.chc.edu.tw/~office/computer/study/writer/%E5%A4%A7%E6%96%B9%E9%80%81/%E5%8D%A1%E9%80%9A%E5%9C%96%E6%A1%88/05.png" style="width:100px;height:100px;left:0px;top:0px;position:absolute;display:none;z-index:9999;">
+<img id="gameimg_6" src="http://www.msps.chc.edu.tw/~office/computer/study/writer/%E5%A4%A7%E6%96%B9%E9%80%81/%E5%8D%A1%E9%80%9A%E5%9C%96%E6%A1%88/06.png" style="width:100px;height:100px;left:0px;top:0px;position:absolute;display:none;z-index:9999;">
+<img id="gameimg_7" src="http://www.msps.chc.edu.tw/~office/computer/study/writer/%E5%A4%A7%E6%96%B9%E9%80%81/%E5%8D%A1%E9%80%9A%E5%9C%96%E6%A1%88/07.png" style="width:100px;height:100px;left:0px;top:0px;position:absolute;display:none;z-index:9999;">
+<img id="gameimg_8" src="http://www.msps.chc.edu.tw/~office/computer/study/writer/%E5%A4%A7%E6%96%B9%E9%80%81/%E5%8D%A1%E9%80%9A%E5%9C%96%E6%A1%88/08.png" style="width:100px;height:100px;left:0px;top:0px;position:absolute;display:none;z-index:9999;">
+<img id="gameimg_9" src="http://www.msps.chc.edu.tw/~office/computer/study/writer/%E5%A4%A7%E6%96%B9%E9%80%81/%E5%8D%A1%E9%80%9A%E5%9C%96%E6%A1%88/09.png" style="width:100px;height:100px;left:0px;top:0px;position:absolute;display:none;z-index:9999;">
+<img id="gameimg_10" src="http://www.msps.chc.edu.tw/~office/computer/study/writer/%E5%A4%A7%E6%96%B9%E9%80%81/%E5%8D%A1%E9%80%9A%E5%9C%96%E6%A1%88/10.png" style="width:100px;height:100px;left:0px;top:0px;position:absolute;display:none;z-index:9999;">		
+<table id="mySpace" style="position:absolute;display:none;height:100%">
+  <tr>
+    <td valign="center">
+      <br><br><input type="button" id="hide" value="  >  " onclick="hideMySpace(this);"><br><br>
+      <button id="btnRun2" style="display:none" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
+    </td>
+    <td>
+      <table id="myFeatures">
+        <tr>
+          <td>
+            <button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button>
+            left<input type="text" id="ifrLeft" size="1" value="300" onfocus="this.select()">top<input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()">width<input type="text" id="ifrWidth" size="1" value="600" onfocus="this.select()">height<input type="text" id="ifrHeight" size="1" value="600" onfocus="this.select()">
+          </td>
+        </tr>
+        <tr>
+          <td align="left" valign="center">
+            <button onclick="exportCODE();">Export Code</button>
+            <button onclick="exportHTML();">Export HTML</button>
+            <button onclick="exportBlocks();">Backup Blocks(XML)</button>
+          </td>
+        </tr>
+        <tr>
+          <td align="left" valign="center">
+            <button onclick="importBlocks()">Import Blocks(XML)</button><input id="myfile"  type="file" onchange ="importBlocksFile(this);" accept=".txt,.xml">
+          </td>
+        </tr>
+        <tr>
+          <td align="left" valign="center">
+            <button onclick="demoWorkspace.clear();">Clear Workspace</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkbackup" onclick="exportBlocks();var backupTimer = setInterval(function(){if (document.getElementById('chkbackup').checked) exportBlocks();}, 300000);">Backup Blocks (every 5 min)
+          </td>
+        </tr>	      
+        <tr>
+          <td align="left" valign="center">
+            Example
+            <select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
+              <option value=""></option>
+	      <option value="Game_Tetris">Game_Tetris</option>
+              <option value="Game_TicTacToe">Game_TicTacToe</option>
+	      <option value="Game_Bounce">Game_Bounce</option>
+	      <option value="Game_Hamster">Game_Hamster</option>
+	      <option value="Game_Puzzle">Game_Puzzle</option>
+	      <option value="GameAuxiliary_example_001">GameAuxiliary_example_001</option>
+	      <option value="GameAuxiliary_example_002">GameAuxiliary_example_002</option>
+	      <option value="GameAuxiliary_example_003">GameAuxiliary_example_003</option>		    
+	      <option value="GameCanvas_example_001">GameCanvas_example_001</option>
+	      <option value="GameCanvas_example_002">GameCanvas_example_002</option>
+	      <option value="GameCanvas_example_003">GameCanvas_example_003</option>
+	      <option value="MatrixLED_example_001">MatrixLED_example_001</option>
+	      <option value="MatrixLED_example_002">MatrixLED_example_002</option>	
+	      <option value="MatrixLED_example_003">MatrixLED_example_003</option>		    
+              <option value="ShowText_example_001">ShowText_example_001</option>
+              <option value="Keyboard_example_001">Keyboard_example_001</option>
+              <option value="Keyboard_example_002">Keyboard_example_002</option>		    
+              <option value="Instruction_example_001">Instruction_example_001</option>
+              <option value="OpenURL_example_001">OpenURL_example_001</option>
+              <option value="TaiwanAirQuality_example_001">TaiwanAirQuality_example_001</option>
+	      <option value="SpeechRecognition_example_001">SpeechRecognition_example_001</option>
+	      <option value="DeepLearning_example_001">DeepLearning_example_001</option>
+	      <option value="ESP8266_example_001">ESP8266_example_001</option>
+	      <option value="ESP8266_example_002">ESP8266_example_002</option>
+	      <option value="ESP8266_example_003">ESP8266_example_003</option>
+	      <option value="ESP8266_example_004">ESP8266_example_004</option>	
+	      <option value="ESP8266_example_005">ESP8266_example_005</option>		    
+	      <option value="ThingSpeak_example_001">ThingSpeak_example_001</option>
+	      <option value="HTChart_example_001">HTChart_example_001</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Language
+            <select onchange="var url=location.href.split('?')[0];location.href=url+'?lang='+this.value;">
+              <option value=""></option>
+              <option value="en">en</option>
+              <option value="zh-Hant">zh-Hant</option>
+              <option value="zh-Hans">zh-Hans</option>
+            </select>
+          </td>
+        </tr>	      
+        <tr>
+          <td>
+            <textarea id="codeWindow" style="width:350px;height:400px;" readonly ondblclick="showcodeWindow(this,'big');" onfocusout="showcodeWindow(this,'small');"></textarea>
+	  </td>
+        </tr>
+        <tr>
+          <td align="center">
+            Fu Chung-Yi (Taiwan)  Update Date : 2019-2-2
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left" draggable="true" ondragstart="document.getElementById('iframe_run').style.display='none';" ondragend="this.title='true';">
+  <button>Drag</button><button onclick="document.getElementById('btnRun').disabled=true;runCode();" id="btnRun">Run Code</button><button onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button onclick="closeWindow();">Close Window</button>
+  <br>
+  <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="autoplay; fullscreen; geolocation; microphone; camera"></iframe>
+</div>
+
+<div id="blocklyDiv" style="height: 600px; width: 800px;">
+<xml id="toolbox" style="display: none"></xml>
+<xml id="startBlocks" style="display: none"></xml>
+		
+<script>
+//append category to toolbox
+var category = [
+	catSystem,
+	"<sep></sep>",
+	catSetWindow,
+	catShowText,
+	catKeyboard,
+	catSpeechRecognition,
+	catTextToSpeech,	
+	catInstruction,
+	catGameAuxiliary,
+	catGameTable,
+	catGameCanvas,
+	catGameImage,
+	catGameForm,
+	catDeepLearning,	
+	catMatrixLed,
+	catOpenURL,
+	catTaiwanAirQuality,
+	catESP8266,
+	catThingSpeak,
+	catIFTTT,
+	catLINE,
+	catHTChart		
+].join("");
+while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().indexOf("<sep>")!=-1) {
+  var s = category.toLowerCase().indexOf("<category");
+  var s1 = category.toLowerCase().indexOf("<sep>");
+  if (s1!=-1&&s1<s) {
+    var e1 = category.toLowerCase().indexOf("</sep>");
+    var xml = Blockly.Xml.textToDom("<xml>"+category.substring(s1,e1+6)+"</xml>");
+    document.getElementById('toolbox').append(xml.firstChild);
+    category=category.substr(e1+6);
+  } else {
+    var e = category.toLowerCase().indexOf("</category>");
+    var xml = Blockly.Xml.textToDom("<xml>"+category.substring(s,e+11)+"</xml>");
+    document.getElementById('toolbox').append(xml.firstChild);
+    category=category.substr(e+11);
+  }
+}
+	
+var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.appspot.com/static/media/', toolbox: document.getElementById('toolbox'),zoom:{controls: true,wheel: true,startScale: 1.0,maxScale: 3,minScale: 0.3,scaleSpeed: 1.2},trashcan: true});
+Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);	
+	
+//append initial blocks to startBlocks
+XmldomToWorkspace('<xml xmlns="http://www.w3.org/1999/xhtml"><variables><variable type="" id="*y8%23n1_0le~9QzoknCxH">angle</variable></variables><block type="variables_set" id="*YTL|=lfdbzT$u%(E+w1" x="51" y="35"><field name="VAR" id="*y8%23n1_0le~9QzoknCxH" variabletype="">angle</field><value name="VALUE"><block type="math_number" id="%23Cd@={VEq$XCwTu?4H4Z"><field name="NUM">0</field></block></value><next><block type="controls_repeat_ext" id="KaL;21.LsVC`R:^52It5"><value name="TIMES"><block type="math_number" id="ftIWUsJ24{%{B6h+4XE~"><field name="NUM">18</field></block></value><statement name="DO"><block type="image_move" id="Iy%23E(=uk~+c(*ZYMnyNQ"><field name="property_">right</field><value name="id_"><block type="text" id="0I+Z{4$m5~V*rZXbX}-]"><field name="TEXT">1</field></block></value><value name="step_"><block type="math_number" id="1aAksr*qQBUA-@W%|v-,"><field name="NUM">10</field></block></value><next><block type="image_move" id="Z8FRZKFv0C~[@KjA_[|G"><field name="property_">up</field><value name="id_"><block type="text" id="5PVhj|.Z@h%23$NZU+k/|u"><field name="TEXT">2</field></block></value><value name="step_"><block type="math_number" id="{-=gYa6Hr=A[Gk:-7(~$"><field name="NUM">10</field></block></value><next><block type="variables_set" id="@)xwt|8B,2w3F%CP}8py"><field name="VAR" id="*y8%23n1_0le~9QzoknCxH" variabletype="">angle</field><value name="VALUE"><block type="math_arithmetic" id="r^B-HByltG9ej,p,1dFL"><field name="OP">ADD</field><value name="A"><block type="variables_get" id="F9(qSX[%BprNXNh-IhI*"><field name="VAR" id="*y8%23n1_0le~9QzoknCxH" variabletype="">angle</field></block></value><value name="B"><block type="math_number" id="^Bqr-7=,5Z*8;dY3x`6L"><field name="NUM">20</field></block></value></block></value><next><block type="rotatez_degrees" id="Y%b3:^QDxmxiQtt*6A9-"><value name="id_"><block type="text" id="2a,`o`9J3|6.VV|-(UuZ"><field name="TEXT">3</field></block></value><value name="degrees_"><block type="variables_get" id="Ho|w4~Pyhyg6kcoF?LW9"><field name="VAR" id="*y8%23n1_0le~9QzoknCxH" variabletype="">angle</field></block></value><next><block type="time_delay" id="njJ7-PLf:VLrm8o}!m;r"><value name="seconds"><block type="math_number" id="0x{y_YuY@^]wDxbq{tl,"><field name="NUM">0.2</field></block></value></block></next></block></next></block></next></block></next></block></statement></block></next></block></xml>');
+	
+function XmldomToWorkspace(example) {	
+  var xml = Blockly.Xml.textToDom(example.replace(/%23/g,"#"));
+  demoWorkspace.clear();
+  Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+}
+	
+function showCode() {
+  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+  var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+  if (code=="") code="//Please open this site in Google Chrome Browser.\n//You can double click on the textarea to enlarge.";
+  document.getElementById('codeWindow').innerHTML = code;
+}
+demoWorkspace.addChangeListener(showCode);
+	
+function runCode() {
+  window.LoopTrap = 1000;
+  Blockly.JavaScript.INFINITE_LOOP_TRAP =
+  'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+  var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
+  eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();");
+}
+	
+function stopCode() {
+  try {	
+    document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';
+  } catch (e) {
+    alert(e);
+  }
+}
+	
+function closeWindow() {
+  try {	
+    document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';	  
+    document.getElementById("runWindow").style.display = "none";
+  } catch (e) {
+    alert(e);
+  }	  
+}
+	
+function exportCODE() {
+  try {
+    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
+	  
+    var link = document.createElement('a');
+    link.download="code.txt";
+    link.href="data:application/octet-stream;utf-8," + encodeURI(code);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  } catch (e) {
+    window.location.href="data:application/octet-stream;utf-8," + encodeURI(code);
+    alert(e);
+  }
+}
+	
+function exportHTML() {
+  try {
+    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
+    var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
+    for (var i=0;i<script_iframe_run.length;i++)  {
+      iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
+    }
+	  
+    var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+    var xml_text = Blockly.Xml.domToText(xml);
+    //Deep Learning
+    if (xml_text.indexOf("teachable")!=-1) {
+      iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script>";
+    }
+	  
+    iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
+    
+    var link = document.createElement('a');
+    link.download="project.html";
+    link.href="data:application/octet-stream;utf-8," + encodeURI(iframe_code);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  } catch (e) {
+    window.location.href="data:application/octet-stream;utf-8," + encodeURI(iframe_code);
+    alert(e);
+  }
+}
+		
+function exportBlocks() {
+  try {
+    var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+    var xml_text = Blockly.Xml.domToText(xml).replace(/#/g,"%23");
+	  
+    var link = document.createElement('a');
+    link.download="project.txt";
+    link.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  } catch (e) {
+    window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text.replace(/#/g,"%23"));
+    alert(e);
+  }
+}
+	
+function importBlocks() {
+  try {
+    var xml_text = prompt("Please enter XML code", "");
+    var xml = Blockly.Xml.textToDom(xml_text.replace(/%23/g,"#"));
+    demoWorkspace.clear();
+    Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+  } catch (e) {
+    alert(e);
+  }
+}
+	
+function importBlocksFile(element) {
+  try {	
+    var file = element.files[0];
+    var fr = new FileReader();           
+    fr.onload = function (event) {
+      var xml = Blockly.Xml.textToDom(event.target.result.replace(/%23/g,"#"));
+      demoWorkspace.clear();
+      Blockly.Xml.domToWorkspace(xml, demoWorkspace);
+    };
+    fr.readAsText(file);
+  } catch (e) {
+    alert(e);
+  }	  
+}
+	
+function initial() {
+  var myWidth = document.body.clientWidth;
+  if (document.documentElement.clientHeight)
+    var myHeight = document.documentElement.clientHeight-25;
+  else
+    var myHeight = document.body.clientHeight;
+  document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
+  document.getElementById('blocklyDiv').style.height=myHeight +"px";
+  Blockly.svgResize(demoWorkspace);
+  document.getElementById('codeWindow').style.height=(myHeight-200) +"px";
+  document.getElementById('mySpace').style.left=(myWidth-440) +"px";
+  document.getElementById('mySpace').style.height=myHeight +"px";
+  document.getElementById('mySpace').style.display="block";	
+	
+  document.getElementById('gameimg_1').style.display="block";
+  document.getElementById('gameimg_2').style.display="block";
+  document.getElementById('gameimg_3').style.display="block";
+}
+	
+function hideMySpace(element) {
+  var myWidth = document.body.clientWidth;
+  if (document.documentElement.clientHeight)
+    var myHeight = document.documentElement.clientHeight-25;
+  else
+    var myHeight = document.body.clientHeight;	
+  if (document.getElementById('myFeatures').style.display != 'none') { 
+    document.getElementById('myFeatures').style.display = 'none';
+    document.getElementById('btnRun2').style.display = 'block';
+    element.value='  <  ';
+    document.getElementById('mySpace').style.left=(myWidth-40) +"px";
+    document.getElementById('blocklyDiv').style.width=(myWidth-70) +"px";
+  } else {
+    document.getElementById('myFeatures').style.display = 'block';
+    document.getElementById('btnRun2').style.display = 'none';
+    element.value='  >  ';
+    document.getElementById('mySpace').style.left=(myWidth-440) +"px";
+    document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
+  }
+  Blockly.svgResize(demoWorkspace);
+}
+	
+function showcodeWindow(element, state) {
+  var myWidth = document.body.clientWidth;
+  if (document.documentElement.clientHeight)
+    var myHeight = document.documentElement.clientHeight-25;
+  else
+    var myHeight = document.body.clientHeight;
+  if (state=="big")
+  {
+    element.style.position='absolute';
+    element.style.left="-"+(myWidth-455)+"px";
+    element.style.top='0px';
+    element.style.width=(myWidth-480)+"px";
+    element.style.height=myHeight +"px";
+    element.style.fontSize='18px';
+    element.style.color='red';
+    element.style.zIndex='999';
+    element.selectionStart = 0;
+    element.selectionEnd = 0;
+    element.focus();
+  } else if (state=="small") {
+    element.style.position='static';
+    element.style.width='360px';
+    element.style.height=(myHeight-200) +"px";
+    element.style.fontSize='13px';
+    element.style.color='black';
+  }
+}
+	
+window.onresize = function(){
+  showcodeWindow(document.getElementById('codeWindow'),"small");
+  if (document.getElementById('myFeatures').style.display == 'none') 
+    document.getElementById('hide').click();
+  initial();
+}
+	
+window.onmousemove = function() { 
+  var obj = document.getElementById('runWindow');
+  if (obj.title=='true') {
+    obj.title='false';
+    obj.style.left=(event.pageX-8)+'px';
+    obj.style.top=(event.pageY-8)+'px';
+    document.getElementById('iframe_run').style.display="block"; 
+  }
+};
+	
+function HextoRgb(color) {
+  if (!color) return null;
+  if (color.indexOf("'#")==0&&color.length==9) {
+    color = color.substring(1,color.length-1);
+    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+    return "'rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")'";
+  }
+  else  if (color.indexOf("#")==0&&color.length==7) {
+    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+    return "rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")";
+  }  
+  else
+    return color;
+}
+</script>
+</body>
+</html>
