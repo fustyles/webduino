@@ -207,6 +207,7 @@
   </script>
 </head>
 <body onload="initial();"></div>
+<div id='showText' style='position:absolute;z-index:9999;display:none;'>
 <img id="gameimg_1" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Scratch_Cat.png" style="width:100px;height:100px;left:200px;top:300px;position:absolute;display:none;z-index:9999;">
 <img id="gameimg_2" src="http://www.msps.chc.edu.tw/~office/computer/study/writer/%E5%A4%A7%E6%96%B9%E9%80%81/%E5%8D%A1%E9%80%9A%E5%9C%96%E6%A1%88/02.png" style="width:100px;height:100px;left:400px;top:300px;position:absolute;display:none;z-index:9999;">
 <img id="gameimg_3" src="http://www.msps.chc.edu.tw/~office/computer/study/writer/%E5%A4%A7%E6%96%B9%E9%80%81/%E5%8D%A1%E9%80%9A%E5%9C%96%E6%A1%88/03.png" style="width:100px;height:100px;left:600px;top:300px;position:absolute;display:none;z-index:9999;">
@@ -506,6 +507,7 @@ function initial() {
   document.getElementById('gameimg_1').style.display="block";
   document.getElementById('gameimg_2').style.display="block";
   document.getElementById('gameimg_3').style.display="block";
+  document.getElementById('showText').style.display="block";
   hideMySpace(document.getElementById('hide'));
 }
 	
