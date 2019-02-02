@@ -54,7 +54,9 @@ var catGameImage = '<xml><category name="%{BKY_GAMEIMAGE}" colour="%{BKY_GAMEIMA
 '    </value>'+    
 '  </block>'+  
 '  <block type="image_sys_get">'+
-'  </block>'+     
+'  </block>'+ 
+'  <block type="mouse_coordinate_get_start">'+
+'  </block>'+    
 '  <block type="mouse_coordinate_get">'+
 '  </block>'+    
 '  <block type="image_collision">'+
