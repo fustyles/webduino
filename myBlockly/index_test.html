@@ -207,7 +207,7 @@
   </script>
 </head>
 <body onload="initial();"></div>
-<img id="gameimg_a" src="https://inside-assets1.inside.com.tw/2014/10/imgres.jpg" style="width:100px;height:100px;left:300px;top:300px;position:absoulte;">
+<img id="gameimg_a" src="https://inside-assets1.inside.com.tw/2014/10/imgres.jpg" style="width:100px;height:100px;left:300px;top:300px;position:absolute;display:none;">
 <table id="mySpace" style="position:absolute;display:none;height:100%">
   <tr>
     <td valign="center">
@@ -289,7 +289,7 @@
         </tr>	      
         <tr>
           <td>
-            <textarea id="codeWindow" style="width:350px;height:400px;display:none;" readonly ondblclick="showcodeWindow(this,'big');" onfocusout="showcodeWindow(this,'small');"></textarea>
+            <textarea id="codeWindow" style="width:350px;height:400px;" readonly ondblclick="showcodeWindow(this,'big');" onfocusout="showcodeWindow(this,'small');"></textarea>
 	  </td>
         </tr>
         <tr>
@@ -501,6 +501,8 @@ function initial() {
   document.getElementById('mySpace').style.left=(myWidth-440) +"px";
   document.getElementById('mySpace').style.height=myHeight +"px";
   document.getElementById('mySpace').style.display="block";	
+	
+  document.getElementById('gameimg_a').style.display="block";
 }
 	
 function hideMySpace(element) {
