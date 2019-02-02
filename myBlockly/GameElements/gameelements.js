@@ -872,7 +872,63 @@
     }
     else
       return 0;   
-  }   
+  }  
+
+  function elements_collision(element1,input_id1,element2,input_id2,input_position) {
+    if ((document.getElementById(element1+input_id1))&&(document.getElementById(element2+input_id2)))
+    {
+      var obj1 = document.getElementById(element1+input_id1).style;
+      var obj2 = document.getElementById(element2+input_id2).style;
+      var x1 = Number(obj1.left.replace(/px/ig,""));
+      var x1_w = Number(obj1.left.replace(/px/ig,"")) + Number(obj1.width.replace(/px/ig,""));
+      var y1 = Number(obj1.top.replace(/px/ig,""));
+      var y1_h = Number(obj1.top.replace(/px/ig,"")) + Number(obj1.height.replace(/px/ig,""));
+      var x2 = Number(obj2.left.replace(/px/ig,""));
+      var x2_w = Number(obj2.left.replace(/px/ig,"")) + Number(obj2.width.replace(/px/ig,""));
+      var y2 = Number(obj2.top.replace(/px/ig,""));
+      var y2_h = Number(obj2.top.replace(/px/ig,"")) + Number(obj2.height.replace(/px/ig,""));
+    
+      var state=0;
+      if ((((x2>=x1)&&(x2<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2>=x1)&&(x2<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h))))
+        state=1;
+      else if ((((x1>=x2)&&(x1<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1>=x2)&&(x1<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h))))
+        state=1;
+      else
+        state=0;  
+      
+      if (state==1&&input_position!="any") {
+        if (input_position=="up") {
+	  if (y1_h<=(y2+y2_h)/2||(y1_h-y2>=(y2_h-y2)/2&&y1<=y2))
+            return 1;
+	  else
+	    return 0;
+        }      
+        else if (input_position=="down") {
+	  if (y1>=(y2+y2_h)/2||(y2_h-y1>=(y2_h-y2)/2&&y1>=y2))
+            return 1;
+	  else
+	    return 0;      
+        }
+        else if (input_position=="left") {
+	  if (x1_w<=(x2+x2_w)/2||(x1_w-x2>=(x2_w-x2)/2&&x1<=x2))
+            return 1;
+	  else
+	    return 0;    
+        } 
+        else if (input_position=="right") {
+	  if (x1>=(x2+x2_w)/2||(x2_w-x1>=(x2_w-x2)/2&&x1>=x2))
+            return 1;
+	  else
+	    return 0;     
+        }
+	return 1;
+      }
+      else
+        return state; 
+    }
+    else
+      return 0;   
+  } 
   
   function image_boundary(input_left,input_top) {
     if (input_left>=0) screen_width = input_left;
