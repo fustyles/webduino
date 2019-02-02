@@ -419,6 +419,48 @@ Blockly.JavaScript['image_delete'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['elements_collision'] = function (block) {
+  var value_element1_ = block.getFieldValue('element1_');
+  var value_id1_ = Blockly.JavaScript.valueToCode(block, 'id1_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_element2_ = block.getFieldValue('element2_');
+  var value_id2_ = Blockly.JavaScript.valueToCode(block, 'id2_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_position_ = block.getFieldValue('position_');
+  if (value_element1_=="table")
+    var obj1= 'gametable_';
+  else if (value_element1_=="canvas")
+    var obj1= 'gamecanvas_';
+  else if (value_element1_=="image")
+    var obj1= 'gameimg_';
+  else if (value_element1_=="button")
+    var obj1= 'gamebutton_';
+  else if (value_element1_=="color")
+    var obj1= 'gamecolor_';
+  else if (value_element1_=="select")
+    var obj1= 'gameselect_';
+  else if (value_element1_=="range")
+    var obj1= 'gamerange_';
+  else if (value_element1_=="text")
+    var obj1= 'gametext_';   
+  if (value_element2_=="table")
+    var obj2= 'gametable_';
+  else if (value_element2_=="canvas")
+    var obj2= 'gamecanvas_';
+  else if (value_element2_=="image")
+    var obj2= 'gameimg_';
+  else if (value_element2_=="button")
+    var obj2= 'gamebutton_';
+  else if (value_element2_=="color")
+    var obj2= 'gamecolor_';
+  else if (value_element2_=="select")
+    var obj2= 'gameselect_';
+  else if (value_element2_=="range")
+    var obj2= 'gamerange_';
+  else if (value_element2_=="text")
+    var obj2= 'gametext_';    
+  var code = 'elements_collision("'+obj1+'",' + value_id1_ + ',"'+obj2+'",' + value_id2_ + ',"' + value_position_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['image_collision'] = function (block) {
   var value_id1_ = Blockly.JavaScript.valueToCode(block, 'id1_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_id2_ = Blockly.JavaScript.valueToCode(block, 'id2_', Blockly.JavaScript.ORDER_ATOMIC);
