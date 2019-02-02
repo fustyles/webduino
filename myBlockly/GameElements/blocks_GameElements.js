@@ -1155,7 +1155,6 @@ Blockly.Blocks['elements_collision'] = {
       .appendField(new Blockly.FieldDropdown([["window","window"],["document","document"],["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"]]), "element1");    
   this.appendValueInput("id1_")
       .setCheck(null)
-      .appendField(Blockly.Msg.COLLISION_SHOW)
       .appendField(Blockly.Msg.ID_SHOW); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AND_SHOW)
