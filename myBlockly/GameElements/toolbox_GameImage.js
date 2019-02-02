@@ -40,25 +40,7 @@ var catGameImage = '<xml><category name="%{BKY_GAMEIMAGE}" colour="%{BKY_GAMEIMA
 '        <field name="BOOL">TRUE</field>'+
 '      </block>'+
 '    </value>'+     
-'  </block>'+
-'  <block type="image_boundary">'+
-'    <value name="left_">'+
-'      <block type="math_number">'+
-'        <field name="NUM">500</field>'+
-'      </block>'+
-'    </value>'+ 
-'    <value name="top_">'+
-'      <block type="math_number">'+
-'        <field name="NUM">500</field>'+
-'      </block>'+
-'    </value>'+    
 '  </block>'+  
-'  <block type="image_sys_get">'+
-'  </block>'+ 
-'  <block type="mouse_coordinate_get_start">'+
-'  </block>'+    
-'  <block type="mouse_coordinate_get">'+
-'  </block>'+    
 '  <block type="image_collision">'+
 '    <value name="id1_">'+
 '      <block type="text">'+
@@ -202,5 +184,23 @@ var catGameImage = '<xml><category name="%{BKY_GAMEIMAGE}" colour="%{BKY_GAMEIMA
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+       
+'  </block>'+   
+'  <block type="image_boundary">'+
+'    <value name="left_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">500</field>'+
+'      </block>'+
+'    </value>'+ 
+'    <value name="top_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">500</field>'+
+'      </block>'+
+'    </value>'+    
+'  </block>'+  
+'  <block type="image_sys_get">'+
+'  </block>'+ 
+'  <block type="mouse_coordinate_get_start">'+
+'  </block>'+    
+'  <block type="mouse_coordinate_get">'+
 '  </block>'+      
 ' </category></xml>';
