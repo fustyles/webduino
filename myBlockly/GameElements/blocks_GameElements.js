@@ -1149,6 +1149,29 @@ Blockly.Blocks['image_delete'] = {
   }
 };
 
+Blockly.Blocks['elements_collision'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([["window","window"],["document","document"],["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"]]), "element1");    
+  this.appendValueInput("id1_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.COLLISION_SHOW)
+      .appendField(Blockly.Msg.ID_SHOW); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AND_SHOW)
+      .appendField(new Blockly.FieldDropdown([["window","window"],["document","document"],["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"]]), "element2");    
+  this.appendValueInput("id2_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.ID_SHOW);    
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.COLLISION_SIDE_SHOW)
+      .appendField(new Blockly.FieldDropdown([["any","any"], ["up","up"], ["down","down"], ["left","left"], ["right","right"]]), "position_");   
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
 Blockly.Blocks['image_collision'] = {
   init: function() {
   this.appendValueInput("id1_")
