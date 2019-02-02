@@ -199,12 +199,15 @@
 		'https://fustyles.github.io/webduino/myBlockly/IFTTT/ifttt.js',
 		'https://fustyles.github.io/webduino/myBlockly/LINE/line.js',
 		'https://fustyles.github.io/webduino/myBlockly/HTChart/htchart.js',
-		'https://d3js.org/d3.v4.min.js'
+		'https://d3js.org/d3.v4.min.js'		
 	];
+	for (var i=0;i<script_iframe_run.length;i++) {
+	  document.write("\<script src='"+script_iframe_run[i]+"'\>\<\/script>");
+	}	  
   </script>
 </head>
 <body onload="initial();"></div>
-
+<img id="gameimg_a" src="https://inside-assets1.inside.com.tw/2014/10/imgres.jpg" style="width:100px;height:100px;left:300px;top:300px;position:absoulte;">
 <table id="mySpace" style="position:absolute;display:none;height:100%">
   <tr>
     <td valign="center">
@@ -286,8 +289,8 @@
         </tr>	      
         <tr>
           <td>
-            <textarea id="codeWindow" style="width:350px;height:400px;" readonly ondblclick="showcodeWindow(this,'big');" onfocusout="showcodeWindow(this,'small');"></textarea>
-          </td>
+            <textarea id="codeWindow" style="width:350px;height:400px;display:none;" readonly ondblclick="showcodeWindow(this,'big');" onfocusout="showcodeWindow(this,'small');"></textarea>
+	  </td>
         </tr>
         <tr>
           <td align="center">
@@ -356,7 +359,7 @@ var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.ap
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);	
 	
 //append initial blocks to startBlocks
-XmldomToWorkspace(Game_TicTacToe);
+//XmldomToWorkspace(Game_TicTacToe);
 	
 function XmldomToWorkspace(example) {	
   var xml = Blockly.Xml.textToDom(example.replace(/%23/g,"#"));
@@ -377,37 +380,7 @@ function runCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP =
   'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
-  var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
-  for (var i=0;i<script_iframe_run.length;i++)  {
-    iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
-  }
-	
-  var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-  var xml_text = Blockly.Xml.domToText(xml);
-  //If Speech Recognition is used,it must execute "Export HTML" to run on main window.
-  if (xml_text.indexOf("SpeechRecognition")!=-1) {
-    exportHTML();
-    return false;
-  }
-  //If Deep Learning is used,it must execute "Export HTML" to run on main window.
-  if (xml_text.indexOf("teachable")!=-1) {
-    exportHTML();
-    return false;
-  }
-      
-  iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
-  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-  try {
-    document.getElementById("runWindow").style.left = document.getElementById("ifrLeft").value + "px";
-    document.getElementById("runWindow").style.top = document.getElementById("ifrTop").value + "px";
-    document.getElementById("iframe_run").style.width = document.getElementById("ifrWidth").value + "px";
-    document.getElementById("iframe_run").style.height = document.getElementById("ifrHeight").value + "px";
-    document.getElementById("runWindow").style.display = "block";
-    document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
-    document.getElementById("iframe_run").focus();
-  } catch (e) {
-    alert(e);
-  }
+  eval(code);
 }
 	
 function stopCode() {
