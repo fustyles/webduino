@@ -175,4 +175,4 @@ Blockly.Msg.TEXT_GET_SHOW = "Get";
 Blockly.Msg.TEXT_DELETE_SHOW = "Delete";
 Blockly.Msg.TEXT_ONCHANGE_SHOW = "is changed"; 
 Blockly.Msg.BACKCOLOR_SHOW = "Background Color";
-Blockly.Msg.MOUSE_COORDINATE_GET_START_SHOW = "Start to the mouse coordinates";
+Blockly.Msg.MOUSE_COORDINATE_GET_START_SHOW = "Start to get the mouse coordinates";
