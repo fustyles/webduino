@@ -1,0 +1,761 @@
+<template id="head">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Webduino Blockly App</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="components/jquery/dist/jquery.min.js"></script>
+  <script src="dist/lib/webduino-all.min.js"></script>
+  <script src="dist/edu.min.js"></script>
+  <script src="dist/edu-mpu9250.min.js"></script>
+  <script src="dist/edu-blockly.min.js"></script>
+  <script src="dist/MessageTransport.min.js"></script>
+  <script src="dist/webduino-blockly.min.js"></script>
+  <script src="dist/lib/firebase.min.js"></script>
+  <script src="dist/lib/runtime.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</template>
+<template id="css">
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow:hidden;
+  }
+  
+  body * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    font-family: Arial, sans-self;
+  }
+  
+  body div {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  #bg img {
+    width: 100%;
+    vertical-align: middle;
+  }
+  
+  #bg::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 0;
+    vertical-align: middle;
+  }
+  
+  .monster {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    bottom: 5px;
+    cursor: pointer;
+    overflow: visible;
+    z-index: 3;
+  }
+  
+  .monster .m-img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-size: 100% auto;
+  }
+  
+  .monster .m-img[attr-emotion="0"] {
+    background-position: 0 0;
+  }
+  
+  .monster .m-img[attr-emotion="1"] {
+    background-position: 0 -100%;
+  }
+  
+  .monster .m-img[attr-emotion="2"] {
+    background-position: 0 -200%;
+  }
+  
+  .monster .m-img[attr-emotion="3"] {
+    background-position: 0 -300%;
+  }
+  
+  .monster .m-img[attr-emotion="4"] {
+    background-position: 0 -400%;
+  }
+  
+  #demoMonster01 .m-img {
+    background-image: url(media/demo-edu-a1.png);
+  }
+  
+  #demoMonster02 .m-img {
+    background-image: url(media/demo-edu-a2.png);
+  }
+  
+  #demoMonster03 .m-img {
+    background-image: url(media/demo-edu-a3.png);
+  }
+  
+  #demoMonster04 .m-img {
+    background-image: url(media/demo-edu-a4.png);
+  }
+  
+  .monster .talk {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 10px);
+    z-index: 2;
+    left: 0;
+    border: 2px solid #bbb;
+    border-radius: 8px;
+    padding: 7px 10px;
+    background: #fff;
+    pointer-events: none;
+    width: max-content;
+    max-width: 240px;
+    font-size: 16px;
+  }
+  
+  .monster.hasMsg .talk {
+    display: inline;
+  }
+  
+  .monster .talk::before {
+    content: "";
+    position: absolute;
+    background: url(media/talk-bar.png);
+    background-size: cover;
+    width: 14px;
+    height: 18px;
+    bottom: -15px;
+    left: 10px;
+  }
+  
+  #reset {
+    display: block;
+    position: fixed;
+    top: 30px;
+    right: 5px;
+    font-size: 25px;
+    line-height: 1;
+    color: #ddd;
+    z-index: 999999;
+    transition: .3s;
+    cursor: pointer;
+  }
+  
+  #reset:hover {
+    color: #aaa;
+    transform: rotate(180deg);
+  }
+  
+  #inputArea {
+    display: none;
+    position: absolute;
+    z-index: 9999999;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    border-top: 2px dotted #aaa;
+    padding: 12px 0 15px;
+    text-align: center;
+    background: rgba(255, 255, 255, .9);
+  }
+  
+  #inputArea.show {
+    display: block;
+  }
+  
+  #inputArea input {
+    font-size: 17px;
+    line-height: 17px;
+    border: none;
+    padding: 4px 10px;
+    width: calc(100% - 100px);
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: #aaa 0 0 0 2px;
+    text-align: center;
+    transition: .3s;
+  }
+  
+  #inputArea input:focus {
+    border: none;
+    outline: none;
+    box-shadow: #39c 0 0 0 2px;
+  }
+  
+  #inputArea span {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 19px;
+    box-shadow: #39c 0 0 0 3px;
+    padding: 4px 10px;
+    margin-left: 8px;
+    border-radius: 20px;
+    cursor: pointer;
+    background: #39c;
+    color: #fff;
+    transition: .3s;
+  }
+  
+  #inputArea span:hover {
+    box-shadow: #f60 0 0 0 2px;
+    background: #f60;
+  }
+</template>
+<template id="body">
+  <div id="bg"></div>
+  <span id="reset">↻</span>
+  <div id="inputArea">
+    <input id="input" autocomplete="off" autofocus><span id="send">✔</span>
+  </div>
+  <div id="demoMonster01" class="monster">
+    <span class="talk"></span>
+    <div class="m-img" attr-emotion="0"></div>
+  </div>
+  <div id="demoMonster02" class="monster">
+    <span class="talk"></span>
+    <div class="m-img" attr-emotion="0"></div>
+  </div>
+  <div id="demoMonster03" class="monster">
+    <span class="talk"></span>
+    <div class="m-img" attr-emotion="0"></div>
+  </div>
+  <div id="demoMonster04" class="monster">
+    <span class="talk"></span>
+    <div class="m-img" attr-emotion="0"></div>
+  </div>
+  <audio data-src="media/sound/cat-01.mp3" class="sound cat-01"></audio>
+  <audio data-src="media/sound/dog-01.mp3" class="sound dog-01"></audio>
+  <audio data-src="media/sound/crow-01.mp3" class="sound crow-01"></audio>
+  <audio data-src="media/sound/elephant-01.mp3" class="sound elephant-01"></audio>
+  <audio data-src="media/sound/frog-01.mp3" class="sound frog-01"></audio>
+  <audio data-src="media/sound/lion-01.mp3" class="sound lion-01"></audio>
+  <audio data-src="media/sound/goat-01.mp3" class="sound goat-01"></audio>
+  <audio data-src="media/sound/chicken-01.mp3" class="sound chicken-01"></audio>
+  <audio data-src="media/sound/chicken-02.mp3" class="sound chicken-02"></audio>
+  <audio data-src="media/sound/monkey-01.mp3" class="sound monkey-01"></audio>
+  <audio data-src="media/sound/duck-01.mp3" class="sound duck-01"></audio>
+  <audio data-src="media/sound/mouse-01.mp3" class="sound mouse-01"></audio>
+  <audio data-src="media/sound/pig-01.mp3" class="sound pig-01"></audio>
+
+  <audio data-src="media/sound/sneeze-01.mp3" class="sound sneeze-01"></audio>
+  <audio data-src="media/sound/laugth-01.mp3" class="sound laugth-01"></audio>
+  <audio data-src="media/sound/cough-01.mp3" class="sound cough-01"></audio>
+  <audio data-src="media/sound/kiss-01.mp3" class="sound kiss-01"></audio>
+  <audio data-src="media/sound/applaud-01.mp3" class="sound applaud-01"></audio>
+  <audio data-src="media/sound/cry-01.mp3" class="sound cry-01"></audio>
+  <audio data-src="media/sound/snoring-01.mp3" class="sound snoring-01"></audio>
+  <audio data-src="media/sound/fart-01.mp3" class="sound fart-01"></audio>
+  <audio data-src="media/sound/whistle-01.mp3" class="sound whistle-01"></audio>
+  <audio data-src="media/sound/snore-01.mp3" class="sound snore-01"></audio>
+  <audio data-src="media/sound/sigh-01.mp3" class="sound sigh-01"></audio>
+  <audio data-src="media/sound/sigh-02.mp3" class="sound sigh-02"></audio>
+
+  <audio data-src="media/sound/sound-01.mp3" class="sound sound-01"></audio>
+  <audio data-src="media/sound/sound-02.mp3" class="sound sound-02"></audio>
+  <audio data-src="media/sound/sound-03.mp3" class="sound sound-03"></audio>
+  <audio data-src="media/sound/sound-04.mp3" class="sound sound-04"></audio>
+  <audio data-src="media/sound/sound-05.mp3" class="sound sound-05"></audio>
+  <audio data-src="media/sound/sound-06.mp3" class="sound sound-06"></audio>
+  <audio data-src="media/sound/sound-07.mp3" class="sound sound-07"></audio>
+  <audio data-src="media/sound/sound-08.mp3" class="sound sound-08"></audio>
+  <audio data-src="media/sound/sound-09.mp3" class="sound sound-09"></audio>
+  <audio data-src="media/sound/sound-10.mp3" class="sound sound-10"></audio>
+  <audio data-src="media/sound/sound-11.mp3" class="sound sound-11"></audio>
+  <audio data-src="media/sound/coin-01.mp3" class="sound coin-01"></audio>
+  <audio data-src="media/sound/jump-01.mp3" class="sound jump-01"></audio>
+  <audio data-src="media/sound/death-01.mp3" class="sound death-01"></audio>
+  <audio data-src="media/sound/bell-01.mp3" class="sound bell-01"></audio>
+  <script>
+    function init() {
+      let monsterData = {};
+      let demoMonster01, demoMonster02, demoMonster03, demoMonster04;
+      let demoMonster01_data, demoMonster02_data, demoMonster03_data, demoMonster04_data;
+      let zindex;
+      if (localStorage.monsterData) {
+        monsterData = JSON.parse(localStorage.monsterData);
+        demoMonster01 = monsterData.demoMonster01;
+        demoMonster02 = monsterData.demoMonster02;
+        demoMonster03 = monsterData.demoMonster03;
+        demoMonster04 = monsterData.demoMonster04;
+        zindex = monsterData.z;
+        demoMonster01_data = { x: demoMonster01.x, y: demoMonster01.y, z: demoMonster01.z, deg: demoMonster01.deg, size: demoMonster01.size, display: demoMonster01.display };
+        demoMonster02_data = { x: demoMonster02.x, y: demoMonster02.y, z: demoMonster02.z, deg: demoMonster02.deg, size: demoMonster02.size, display: demoMonster02.display };
+        demoMonster03_data = { x: demoMonster03.x, y: demoMonster03.y, z: demoMonster03.z, deg: demoMonster03.deg, size: demoMonster03.size, display: demoMonster03.display };
+        demoMonster04_data = { x: demoMonster04.x, y: demoMonster04.y, z: demoMonster04.z, deg: demoMonster04.deg, size: demoMonster04.size, display: demoMonster04.display };
+      } else {
+        zindex = 10;
+      }
+      let windowWidth = $(window).width();
+      let left = {
+        demoMonster01: 10,
+        demoMonster02: windowWidth * 0.33 - 30,
+        demoMonster03: windowWidth * 0.66 - 70,
+        demoMonster04: windowWidth - 110
+      };
+      let height = $(window).height() - 95;
+      $(".monster").each(function (i) {
+        let thisId = $(this).attr('id');
+        let monster = {};
+        if (!monsterData[thisId]) {
+          monster[thisId] = {
+            x: left[thisId],
+            y: 25,
+            z: 10,
+            deg: 0,
+            size: 90,
+            display: 'block'
+          };
+          monsterData[thisId] = monster[thisId];
+        } else {
+          monster[thisId] = monsterData[thisId];
+        }
+        $(this).css({ left: monster[thisId].x + 'px', bottom: monster[thisId].y + 'px', 'z-index': monster[thisId].z, 'width': monster[thisId].size + 'px', 'height': monster[thisId].size + 'px' });
+        $(this).find('.m-img').css({ 'transform': 'rotate(' + monster[thisId].deg + 'deg)' });
+        if ($(this).find('span').text().length > 0) {
+          $(this).addClass('hasMsg');
+        }
+      });
+      localStorage.monsterData = JSON.stringify(monsterData);
+      window.monsterReady = true;
+      window.onmousemove = function (e) {
+        window.mouse = [e.clientX, e.clientY];
+      };
+      $(".monster").on('mousedown', function () {
+        monsterData = JSON.parse(localStorage.monsterData);
+        let thisId = $(this).attr('id');
+        let monster = monsterData[thisId];
+        zindex = zindex * 1 + 1;
+        monster.z = zindex;
+        monsterData.z = zindex;
+        $(this).css({ 'z-index': zindex });
+        localStorage.monsterData = JSON.stringify(monsterData);
+      });
+      $(".monster").draggable({
+        drag: function (e, ui) {
+          $(this).css({ opacity: 0.4 });
+        },
+        stop: function (e, ui) {
+          monsterData = JSON.parse(localStorage.monsterData);
+          $(this).css({ opacity: 1 });
+          let thisId = $(this).attr('id');
+          let monster = monsterData[thisId];
+          monster.x = ui.position.left;
+          monster.y = $(window).height() - ui.position.top - $(this).height();
+          $(this).css({ bottom: monster.y + 'px', top: 'auto' });
+          localStorage.monsterData = JSON.stringify(monsterData);
+        }
+      });
+      $('#reset').on('click', function () {
+        windowWidth = $(window).width();
+        monsterData = {
+          demoMonster01: {
+            x: 10,
+            y: 25,
+            z: 10,
+            deg: 0,
+            size: 90,
+            display: 'block'
+          },
+          demoMonster02: {
+            x: windowWidth * 0.33 - 30,
+            y: 25,
+            z: 10,
+            deg: 0,
+            size: 90,
+            display: 'block'
+          },
+          demoMonster03: {
+            x: windowWidth * 0.66 - 70,
+            y: 25,
+            z: 10,
+            deg: 0,
+            size: 90,
+            display: 'block'
+          },
+          demoMonster04: {
+            x: windowWidth - 110,
+            y: 25,
+            z: 10,
+            deg: 0,
+            size: 90,
+            display: 'block'
+          },
+          z: 10
+        };
+        localStorage.monsterData = JSON.stringify(monsterData);
+        $(".monster").each(function () {
+          let thisId = $(this).attr('id');
+          let monster = monsterData[thisId];
+          $(this).css({ top: 'auto', left: monster.x + 'px', bottom: monster.y + 'px', 'z-index': monster.z, 'width': monster.size + 'px', 'height': monster.size + 'px', 'display': monster.display });
+          $(this).find('.m-img').css({ 'transform': 'rotate(' + monster.deg + 'deg)' });
+          $(this).find('span').text('');
+          $(this).removeClass('hasMsg');
+        });
+      });
+      $(window).one('destroy', function () {
+        window.boards.forEach(function (board) {
+          board.systemReset();
+        });
+      });
+    }
+    init();
+
+    $.fn.extend({
+      talk: function (text) {
+        let monsterName = this;
+        let monsterMsg = text + '';
+        monsterName.addClass('hasMsg');
+        if (monsterMsg.length > 0) {
+          if (monsterMsg.indexOf('png') != -1 || monsterMsg.indexOf('jpg') != -1 || monsterMsg.indexOf('GIF') != -1 || monsterMsg.indexOf('PNG') != -1 || monsterMsg.indexOf('JPEG') != -1 || monsterMsg.indexOf('JPG') != -1 || monsterMsg.indexOf('gif') != -1 || monsterMsg.indexOf('jpeg') != -1) {
+            monsterName.find('.talk').html('<img src="' + monsterMsg + '">');
+          } else {
+            monsterName.find('.talk').html(monsterMsg);
+          }
+        } else {
+          monsterName.removeClass('hasMsg');
+        }
+      },
+      xyPoint: function(type){
+        let monsterName = this;
+        let point;
+        switch (type) {
+          case 'x':
+            point = this.offset().left + this.width()/2;
+            break;
+          case 'y':
+            point = $(window).height() - this.offset().top - this.height()/2;
+            break;
+        }
+        return point;
+      },
+      move: function (type, num, rebound) {
+        let monsterName = this;
+        let monsterId = monsterName.attr('id');
+        let monsterData = JSON.parse(localStorage.monsterData);
+        let monsterPosition;
+        switch (type) {
+          case 'x':
+            monsterPosition = monsterData[monsterId].x + rebound * num;
+            monsterData[monsterId].x = monsterPosition;
+            monsterName.css({
+              left: monsterPosition + 'px'
+            });
+            break;
+          case 'y':
+            monsterPosition = monsterData[monsterId].y - rebound * num;
+            monsterData[monsterId].y = monsterPosition;
+            monsterName.css({
+              bottom: monsterPosition + 'px'
+            });
+            break;
+        }
+        localStorage.monsterData = JSON.stringify(monsterData);
+      },
+      moveRandom: function (d, rx, ry) {
+        let monsterName = this;
+        let monsterId = monsterName.attr('id');
+        let monsterData = JSON.parse(localStorage.monsterData);
+        let randomAngle = Math.floor(Math.random() * 359);
+        let angle = Math.round(randomAngle);
+        let moveX = Math.round(d * Math.cos(angle / 180 * Math.PI));
+        let moveY = Math.round(d * Math.sin(angle / 180 * Math.PI));
+        monsterName.move('x', moveX, rx);
+        monsterName.move('y', moveY, ry);
+      },
+      moveTo: function (x, y) {
+        let monsterName = this;
+        let monsterId = monsterName.attr('id');
+        let monsterData = JSON.parse(localStorage.monsterData);
+        monsterData[monsterId].x = x;
+        monsterData[monsterId].y = $(window).height() - y - monsterName.height();
+        monsterName.css({
+          left: monsterData[monsterId].x + 'px',
+          bottom: monsterData[monsterId].y + 'px'
+        });
+        localStorage.monsterData = JSON.stringify(monsterData);
+      },
+      moveToMouse: function (d) {
+        let monsterName = this;
+        let monsterId = monsterName.attr('id');
+        let monsterData = JSON.parse(localStorage.monsterData);
+        let x = monsterData[monsterId].x + (monsterName.width() / 2);
+        let y = $(window).height() - monsterData[monsterId].y - (monsterName.height() / 2);
+        let mouseX, mouseY;
+        if (!window.mouse) {
+          mouseX = -1;
+          mouseY = -1;
+        } else {
+          mouseX = window.mouse[0];
+          mouseY = window.mouse[1];
+        }
+        let c = Math.abs(x - mouseX);
+        let s = Math.abs(y - mouseY);
+        if (mouseX >= 0 && mouseY >= 0) {
+          if (c >= 10 && y >= 10) {
+            let angle = Math.round(Math.atan(s / c) / Math.PI * 180);
+            let moveX = Math.round(d * Math.cos(angle / 180 * Math.PI));
+            let moveY = Math.round(d * Math.sin(angle / 180 * Math.PI));
+            if (x > mouseX) {
+              moveX = moveX * -1;
+            }
+            if (y > mouseY) {
+              moveY = moveY * -1;
+            }
+            monsterName.move('x', moveX, 1);
+            monsterName.move('y', moveY, 1);
+          }
+        }
+      },
+      rotate: function (type, angle) {
+        let monsterName = this;
+        let monsterId = monsterName.attr('id');
+        let monsterData = JSON.parse(localStorage.monsterData);
+        let monsterAngle;
+        switch (type) {
+          case 'left':
+            monsterAngle = monsterData[monsterId].deg - angle;
+            break;
+          case 'right':
+            monsterAngle = monsterData[monsterId].deg + angle;
+            break;
+        }
+        monsterData[monsterId].deg = monsterAngle;
+        monsterName.find('.m-img').css({
+          transform: 'rotate(' + monsterAngle + 'deg)'
+        });
+        localStorage.monsterData = JSON.stringify(monsterData);
+      },
+      faceTo: function (angle) {
+        let monsterName = this;
+        let monsterId = monsterName.attr('id');
+        let monsterData = JSON.parse(localStorage.monsterData);
+        monsterName.find('.m-img').css({
+          transform: 'rotate(' + angle + 'deg)'
+        });
+        monsterData[monsterId].deg = angle;
+        localStorage.monsterData = JSON.stringify(monsterData);
+      },
+      faceToMouse: function (type) {
+        if (type == 'auto') {
+          let monsterName = this;
+          let monsterId = monsterName.attr('id');
+          let monsterData = JSON.parse(localStorage.monsterData);
+          let x = monsterData[monsterId].x + (monsterName.width() / 2);
+          let y = $(window).height() - monsterData[monsterId].y - (monsterName.height() / 2);
+          let mouseX, mouseY;
+          if (!window.mouse) {
+            mouseX = -1;
+            mouseY = -1;
+          } else {
+            mouseX = window.mouse[0];
+            mouseY = window.mouse[1];
+          }
+          let radians = Math.atan2(mouseX - x, mouseY - y);
+          let degree = (radians * (180 / Math.PI) * -1) + 90;
+          monsterName.find('.m-img').css({
+            transform: 'rotate(' + degree + 'deg)'
+          });
+          monsterData[monsterId].deg = degree;
+          localStorage.monsterData = JSON.stringify(monsterData);
+        }
+      },
+      size: function (type, size) {
+        let monsterName = this;
+        let monsterId = monsterName.attr('id');
+        let monsterData = JSON.parse(localStorage.monsterData);
+        let monsterSize, monsterX, monsterY;
+        switch (type) {
+          case 'big':
+            monsterSize = monsterData[monsterId].size + size;
+            monsterX = monsterData[monsterId].x - (size / 2);
+            monsterY = monsterData[monsterId].y - (size / 2);
+            break;
+          case 'small':
+            monsterSize = monsterData[monsterId].size - size;
+            monsterX = monsterData[monsterId].x + (size / 2);
+            monsterY = monsterData[monsterId].y + (size / 2);
+            break;
+        }
+        monsterName.css({
+          width: monsterSize + 'px',
+          height: monsterSize + 'px',
+          left: monsterX + 'px',
+          bottom: monsterY + 'px'
+        });
+        monsterData[monsterId].size = monsterSize;
+        monsterData[monsterId].x = monsterX;
+        monsterData[monsterId].y = monsterY;
+        localStorage.monsterData = JSON.stringify(monsterData);
+      },
+      sizeTo: function (size) {
+        let monsterName = this;
+        let monsterId = monsterName.attr('id');
+        let monsterData = JSON.parse(localStorage.monsterData);
+        let monsterOriginSize = monsterData[monsterId].size;
+        let monsterSize = 90 * (size / 100);
+        let size2 = monsterOriginSize - monsterSize;
+        let monsterX = monsterData[monsterId].x + (size2 / 2);
+        let monsterY = monsterData[monsterId].y + (size2 / 2);
+        monsterName.css({
+          width: monsterSize + 'px',
+          height: monsterSize + 'px',
+          left: monsterX + 'px',
+          bottom: monsterY + 'px'
+        });
+        monsterData[monsterId].size = monsterSize;
+        monsterData[monsterId].x = monsterX;
+        monsterData[monsterId].y = monsterY;
+        localStorage.monsterData = JSON.stringify(monsterData);
+      },
+      display: function (type) {
+        let monsterName = this;
+        let monsterId = monsterName.attr('id');
+        let monsterData = JSON.parse(localStorage.monsterData);
+        switch (type) {
+          case 'show':
+            monsterName.css({ display: 'block' });
+            monsterData.display = 'block';
+            break;
+          case 'hide':
+            monsterName.css({ display: 'none' });
+            monsterData.display = 'none';
+            break;
+        }
+        localStorage.monsterData = JSON.stringify(monsterData);
+      },
+      reset: function () {
+        let monsterName = this;
+        let monsterId = monsterName.attr('id');
+        let monsterData = JSON.parse(localStorage.monsterData);
+        let x;
+        switch (monsterId) {
+          case 'demoMonster01':
+            x = 10;
+            break;
+          case 'demoMonster02':
+            x = $(window).width() * 0.33 - 30;
+            break;
+          case 'demoMonster03':
+            x = $(window).width() * 0.66 - 70;
+            break;
+          case 'demoMonster04':
+            x = $(window).width() - 110;
+            break;
+        }
+        monsterName.removeClass('hasMsg').find('span').text('');
+        monsterName.find('.m-img').css({
+          transform: 'rotate(0)'
+        });
+        monsterName.css({
+          top: 'auto',
+          bottom: '25px',
+          left: x + 'px',
+          width: '90px',
+          height: '90px',
+          display: 'block'
+        });
+        monsterData[monsterId] = {
+          x: x,
+          y: 25,
+          z: 10,
+          deg: 0,
+          size: 90,
+          display: 'block'
+        };
+        monsterData.z = 10;
+        localStorage.monsterData = JSON.stringify(monsterData);
+      },
+      indexLevel: function (type) {
+        let monsterName = this;
+        let monsterId = monsterName.attr('id');
+        let monsterData = JSON.parse(localStorage.monsterData);
+        let indexArr = [monsterData['demoMonster01'].z, monsterData['demoMonster02'].z, monsterData['demoMonster03'].z, monsterData['demoMonster04'].z];
+        let top;
+        if (monsterData.z) {
+          top = monsterData.z + 1;
+        } else {
+          top = 11;
+        }
+        let bottom = Math.min.apply(null, indexArr) - 1;
+        switch (type) {
+          case 1:
+            monsterName.css({ 'z-index': top });
+            monsterData[monsterId].z = top;
+            monsterData.z = top;
+            zindex = top;
+            break;
+          case 2:
+            monsterName.css({ 'z-index': bottom });
+            monsterData[monsterId].z = bottom;
+            break;
+        }
+        localStorage.monsterData = JSON.stringify(monsterData);
+      },
+      collision: function (otherName, callback) {
+        let monsterName = this;
+        let monsterId = monsterName.attr('id');
+        let otherId = otherName.attr('id');
+        let axs, ays, bxs, bys;
+        switch (monsterId) {
+          case 'demoMonster01':
+            axs = 7;
+            ays = 7;
+            break;
+          case 'demoMonster02':
+            axs = 7;
+            ays = 7;
+            break;
+          case 'demoMonster03':
+            axs = 7;
+            ays = 7;
+            break;
+          case 'demoMonster04':
+            axs = 7;
+            ays = 7;
+            break;
+        }
+        switch (otherId) {
+          case 'demoMonster01':
+            bxs = 7;
+            bys = 7;
+            break;
+          case 'demoMonster02':
+            bxs = 7;
+            bys = 7;
+            break;
+          case 'demoMonster03':
+            bxs = 7;
+            bys = 7;
+            break;
+          case 'demoMonster04':
+            bxs = 7;
+            bys = 7;
+            break;
+        }
+        let ax = monsterName.offset().left;
+        let ay = monsterName.offset().top;
+        let aw = monsterName.width();
+        let ah = monsterName.height();
+        let axw = ax + aw;
+        let ayh = ay + ah;
+        let bx = otherName.offset().left;
+        let by = otherName.offset().top;
+        let bw = otherName.width();
+        let bh = otherName.height();
+        let bxw = bx + bw;
+        let byh = by + bh;
+        if ((ayh - ays) < (by + bys) || (ay + ays) > (byh - bys) || (axw - axs) < (bx + bxs) || (ax + axs) > (bxw - bxs)) { } else {
+          callback();
+        }
+      }
+    });
+  </script>
+</template>
