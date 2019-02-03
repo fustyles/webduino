@@ -3,15 +3,48 @@
   <head>
     <meta http-equiv="origin-trial" data-feature="WebUSB (For Chrome M57+)" data-expires="2017-06-19" content="Ag83MurQOa5N4SKRCqqtSlbycfe08s5LgUiqEI7J3jTk2NEIpRp7SLPz2i+EBDuXyf+AeRMdD6BI++kTSJmGzQEAAABReyJvcmlnaW4iOiJodHRwczovL3dlYnVzYi5naXRodWIuaW86NDQzIiwiZmVhdHVyZSI6IldlYlVTQjIiLCJleHBpcnkiOjE0OTc4OTM2OTV9">
     <title>RGB LED</title>
-    <script src="https://webusb.github.io/arduino/demos/serial.js"></script>
-    <script src="https://webusb.github.io/arduino/demos/rgb/rgb.js"></script>
+    <script>
+      
+document.getElementById('arduinoButton').addEventListener('click', function () {
+  if (navigator.usb) {
+    talkToArduino();
+  } else {
+    alert('WebUSB not supported.');
+  }
+});
+
+async function talkToArduino() {
+  try {
+    let device = await navigator.usb.requestDevice({ filters: [{ vendorId: 0x2341 }] });
+    await device.open(); // Begin a session.
+    await device.selectConfiguration(1); // Select configuration #1 for the device.
+    await device.claimInterface(2); // Request exclusive control over interface #2.
+    await device.controlTransferOut({
+      requestType: 'class',
+      recipient: 'interface',
+      request: 0x22,
+      value: 0x01,
+      index: 0x02
+    });
+  
+    // Ready to receive data
+    let result = device.transferIn(5, 64); // Waiting for 64 bytes of data from endpoint #5.
+    let decoder = new TextDecoder();
+    document.getElementById('target').innerHTML = 'Received: ' + decoder.decode(result.data);
+  } catch (error) {
+    document.getElementById('target').innerHTML = error;
+  }
+}
+      
+    </script>
   </head>
   <body>
-    <p>
-      <button id="connect">Connect</button> <span id="status"></span>
-    </p>
-    <input type="range" min="0" max="255" value="0" id="red"/>
-    <input type="range" min="0" max="255" value="0" id="green"/>
-    <input type="range" min="0" max="255" value="0" id="blue"/>
+    
+<button class="btn btn-default" id="arduinoButton">Talk to Arduino</button>
+
+<div id="target"></div>
+
+<p><small>Demo from <a href="https://developers.google.com/web/updates/2016/03/access-usb-devices-on-the-web" target="_blank">Google Developers</a> article.</small></p>
+  
   </body>
 </html>
