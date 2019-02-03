@@ -32,7 +32,7 @@
         return;
       }
 
-      let view = new Uint8Array(3);
+      let view = new Uint8Array(1);
       //view[0] = parseInt(redSlider.value);
       //view[1] = parseInt(greenSlider.value);
       //view[2] = parseInt(blueSlider.value);
