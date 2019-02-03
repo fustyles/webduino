@@ -1,0 +1,109 @@
+{
+  "navigation": {
+    "logout": "登出",
+    "lang": "語系：",
+    "language": {
+      "zh-cn": "簡體中文",
+      "zh-tw": "繁體中文",
+      "en": "English"
+    }
+  },
+  "dashboard-nav": {
+    "myfiles": "我的檔案",
+    "publicfiles": "公開的檔案",
+    "sharedfiles": "共享的檔案"
+  },
+  "operateTemplate": {
+    "hide": "隱藏"
+  },
+  "blocklyMyFiles": {
+    "newFile": "新增檔案",
+    "remove": "刪除",
+    "edit": "編輯",
+    "copy": "建立副本",
+    "share": "分享",
+    "rename": "更改名稱",
+    "copy-suffix": " - 副本",
+    "fileName": "新建檔案名稱",
+    "searchName": "搜尋檔案",
+    "shareMethodSpecified": "指定使用者",
+    "shareMethodUnlisted": "非公開分享",
+    "shareMethodPublic": "公開分享",
+    "shareMethodNone": "未分享",
+    "add": "新增",
+    "cancel": "取消",
+    "fieldTitle": {
+      "name": "名稱",
+      "modifyTime": "上次修改日期",
+      "shareStatus": "分享狀態"
+    },
+    "projectCount": "專案數量",
+    "reachLimit": "檔案數量已達限制 :(<br>您最多可以建立 {{limit}} 個檔案",
+    "updateProfile": "點 <a {{attr}}>這裡</a> 更新個人資料以獲得更完整的服務"
+  },
+  "blocklySharedFiles": {
+    "searchName": "搜尋檔案",
+    "fieldTitle": {
+      "name": "名稱",
+      "user": "擁有者",
+      "modifyTime": "上次修改日期",
+      "operate": "操作"
+    },
+    "alert": {
+      "success": "成功更新共享設定！"
+    }
+  },
+  "blocklyPublicFiles": {
+    "search": "搜尋",
+    "hiddenFiles": "被隱藏的檔案",
+    "showHiddenFiles": "顯示被隱藏的檔案",
+    "showPublicFiles": "顯示公開分享的檔案",
+    "hideFile": "隱藏檔案",
+    "unhideFile": "取消隱藏檔案",
+    "searchFile": "輸入要搜尋的檔名"
+  },
+  "sharedInfo": {
+    "title": "共享檔案",
+    "shareMethod": "分享方式",
+    "filename": "名稱",
+    "privateShare": "與指定使用者分享",
+    "enterEmail": "填入使用者 E-mail",
+    "groupname": "共享的群組名稱",
+    "update": "儲存設定",
+    "cancel": "取消",
+    "none": "不分享",
+    "specified": "指定使用者",
+    "public": "公開",
+    "publicHelp": "檔案將會被收錄於$t(dashboard-nav.publicfiles)，且任何人皆可透過下列網址存取檔案：",
+    "publicHelpMultiple": "檔案將會被收錄於$t(dashboard-nav.publicfiles)，且任何人皆可透過其網址存取檔案",
+    "unlisted": "非公開",
+    "unlistedHelp": "任何擁有分享連結的使用者皆可存取，但不會列於\"公開的檔案\"中",
+    "unlistedHelp2": "任何人皆可透過下列網址存取檔案：",
+    "unlistedHelpMultiple": "任何人皆可透過其網址存取檔案",
+    "copyLink": "複製連結",
+    "copied": "已複製"
+  },
+  "sharedInfoText": {
+    "share": "共享檔案",
+    "to": "至",
+    "group": "群組",
+    "user": "使用者"
+  },
+  "changeName": {
+    "title": "重新命名",
+    "oldfilename": "舊的名稱",
+    "newfilename": "新的名稱",
+    "willrenameto": "將會更名為",
+    "rename": "重新命名",
+    "cancel": "取消"
+  },
+  "initMyFileTable": {
+    "confirmDelete": "確定要刪除 {{name}} 嗎？",
+    "multiFile": "多個檔案"
+  },
+  "storageJS": {
+    "reachLimit": "已達檔案數量限制，因此所有變更都無法儲存",
+    "unknownError": "儲存檔案時發生未知錯誤",
+    "copy": "複製"
+  }
+}

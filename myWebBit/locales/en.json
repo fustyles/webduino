@@ -1,0 +1,104 @@
+{
+  "navigation": {
+    "logout": "Logout",
+    "lang": "Lang : ",
+    "language": {
+      "zh-cn": "Simplified chinese",
+      "zh-tw": "Traditional chinese",
+      "en": "English"
+    }
+  },
+  "dashboard-nav": {
+    "myfiles": "My files",
+    "publicfiles": "Public Files",
+    "sharedfiles": "Shared files"
+  },
+  "operateTemplate": {
+    "hide": "Hide"
+  },
+  "blocklyMyFiles": {
+    "newFile": "New File",
+    "remove": "Remove",
+    "edit": "Edit",
+    "copy": "Copy",
+    "share": "Share",
+    "rename": "Change name",
+    "copy-suffix": " - Copy",
+    "fileName": "New file's name",
+    "searchName": "Search Name",
+    "shareStatus": "Share Status",
+    "shareMethodSpecified": "Specified",
+    "shareMethodUnlisted": "Unlisted",
+    "shareMethodPublic": "Public",
+    "shareMethodNone": "Not sharing",
+    "add": "Add",
+    "cancel": "Cancel",
+    "fieldTitle": {
+      "name": "Name",
+      "modifyTime": "Last modified",
+      "shareStatus": "Share Status"
+    },
+    "projectCount": "Project Created",
+    "reachLimit": "Number of files reach limit :(<br>You can have {{limit}} files at most.",
+    "updateProfile": "For more complete service, please update profile <a {{attr}}>here</a>."
+  },
+  "blocklySharedFiles": {
+    "searchName": "Search Name",
+    "fieldTitle": {
+      "name": "Name",
+      "user": "User",
+      "modifyTime": "Last modified",
+      "operate": "Operate"
+    },
+    "alert": {
+      "success": "Sharing setting has been updated!"
+    }
+  },
+  "blocklyPublicFiles": {
+    "search": "Search",
+    "hiddenFiles": "Hidden Files",
+    "showHiddenFiles": "Show hidden files",
+    "showPublicFiles": "Show public files",
+    "hideFile": "Hide File(s)",
+    "unhideFile": "Unhide File(s)",
+    "searchFile": "Enter filename to search"
+  },
+  "sharedInfo": {
+    "title": "Share the file",
+    "shareMethod": "Sharing Method",
+    "filename": "File name",
+    "privateShare": "Share to specified user",
+    "enterEmail": "Enter E-mail to share",
+    "groupname": "Group's name",
+    "update": "Update Setting",
+    "cancel": "Cancel",
+    "none": "None",
+    "specified": "Specified",
+    "public": "Public",
+    "publicHelp": "The file will be listed in $t(dashboard-nav.publicfiles), those with the link below can access it too",
+    "publicHelpMultiple": "The file will be listed in $t(dashboard-nav.publicfiles), those with the link can access it too",
+    "unlisted": "Unlisted",
+    "unlistedHelp": "Only those with the link can access file, it won't be listed in \"Public Files\".",
+    "unlistedHelp2": "Only those with the link below can access the file",
+    "unlistedHelpMultiple": "Only those with the link can access the file",
+    "copyLink": "Copy link",
+    "copied": "Copied"
+  },
+  "changeName": {
+    "title": "Rename file",
+    "oldfilename": "Old name",
+    "newfilename": "New Name",
+    "willrenameto": "Will rename to",
+    "rename": "Rename",
+    "cancel": "Cancel"
+  },
+  "initMyFileTable": {
+    "confirmDelete": "Are you sure to delete {{name}} ?",
+    "multiFile": "files"
+  },
+  "storageJS": {
+    "reachLimit": "Number of files reach limit, any changes will not be saved.",
+    "unknownError": "Unknown error occured while saving file.",
+    "copy": "copy"
+  }
+}

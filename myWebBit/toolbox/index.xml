@@ -1,0 +1,627 @@
+<xml id="toolbox" style="display: none">
+  <category id="catVariables" custom="VARIABLE" COLOUR="330"></category>
+  <category id="catLogic" COLOUR="210">
+    <block type="controls_if"></block>
+    <block type="logic_compare"></block>
+    <block type="logic_operation"></block>
+    <block type="logic_is_even"></block>
+    <block type="logic_is_empty"></block>
+    <block type="text_indexof">
+      <value name="indexof_">
+        <block type="text">
+          <field name="TEXT"></field>
+        </block>
+      </value>
+    </block>
+    <block type="logic_negate"></block>
+    <block type="logic_boolean"></block>
+    <block type="logic_null"></block>
+    <block type="logic_ternary"></block>
+  </category>
+  <category id="catLoops" COLOUR="110">
+    <block type="delay">
+      <value name="secs_">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
+    <!-- <block type="controls_repeat_ext">
+      <value name="TIMES">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+    </block> -->
+    <block type="controls_repeat_ext_can_stop">
+      <value name="times_">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+    </block>
+    <block type="controls_loop_forever"></block>
+    <block type="controls_loop_forever_while_do"></block>
+    <block type="controls_for_can_stop">
+      <value name="from_">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="to_">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+      <value name="num_">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
+    <block type="controls_foreach_can_stop"></block>
+    <block type="controls_loop_stop"></block>
+  </category>
+  <category id="catMath" COLOUR="230">
+    <block type="math_number"></block>
+    <block type="math_arithmetic"></block>
+    <block type="math_round_digit"></block>
+    <block type="math_modulo_big_icon"></block>
+    <block type="math_random_int">
+      <value name="FROM">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="TO">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+    </block>
+    <block type="math_random_float"></block>
+    <block type="math_value_conversion">
+      <value name="omin_">
+        <block type="math_number">
+          <field name="NUM">0</field>
+        </block>
+      </value>
+      <value name="omax_">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="cmin_">
+        <block type="math_number">
+          <field name="NUM">0</field>
+        </block>
+      </value>
+      <value name="cmax_">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+    </block>
+    <block type="math_constrain">
+      <value name="LOW">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="HIGH">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+    </block>
+    <block type="math_on_list"></block>
+    <block type="math_single"></block>
+    <block type="math_trig"></block>
+    <block type="math_constant"></block>
+  </category>
+  <category id="catText" COLOUR="160">
+    <block type="text"></block>
+    <block type="text_wrap"></block>
+    <block type="text_join"></block>
+    <block type="text_append_2">
+      <value name="name_">
+        <block type="variables_get">
+          <field name="VAR" class="textVar">變數</field>
+        </block>
+      </value>
+      <value name="text_">
+        <block type="text"></block>
+      </value>
+    </block>
+    <block type="text_changeCase"></block>
+    <block type="text_trim"></block>
+    <block type="text_replace">
+      <value name="name_">
+        <block type="variables_get">
+          <field name="VAR" class="textVar">變數</field>
+        </block>
+      </value>
+      <value name="input_">
+        <block type="text"></block>
+      </value>
+      <value name="output_">
+        <block type="text"></block>
+      </value>
+    </block>
+    <block type="text_indexOf_2">
+      <value name="name_">
+        <block type="variables_get">
+          <field name="VAR" class="textVar">變數</field>
+        </block>
+      </value>
+    </block>
+    <block type="text_charAt_2">
+      <value name="name_">
+        <block type="variables_get">
+          <field name="VAR" class="textVar">變數</field>
+        </block>
+      </value>
+      <value name="num_">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
+    <block type="text_getSubstring_2">
+      <value name="name_">
+        <block type="variables_get">
+          <field name="VAR" class="textVar">變數</field>
+        </block>
+      </value>
+      <value name="num1_">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="num2_">
+        <block type="math_number">
+          <field name="NUM">2</field>
+        </block>
+      </value>
+    </block>
+    <block type="number_to_string">
+      <value name="number_">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+    </block>
+    <block type="text_length_2">
+      <value name="name_">
+        <block type="variables_get">
+          <field name="VAR" class="listVar">變數</field>
+        </block>
+      </value>
+    </block>
+    <block type="text_print">
+      <value name="TEXT">
+        <block type="text"></block>
+      </value>
+    </block>
+  </category>
+  <category id="catLists" COLOUR="260">
+    <block type="lists_create_empty"></block>
+    <block type="lists_create_with"></block>
+    <block type="lists_repeat">
+      <value name="NUM">
+        <block type="math_number">
+          <field name="NUM">5</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_set_2">
+      <value name="name_">
+        <block type="variables_get">
+          <field name="VAR" class="listVar">變數</field>
+        </block>
+      </value>
+      <value name="num_">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_get_2">
+      <value name="val_">
+        <block type="variables_get">
+          <field name="VAR" class="listVar">變數</field>
+        </block>
+      </value>
+      <value name="num_">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_indexOf_2">
+      <value name="name_">
+        <block type="variables_get">
+          <field name="VAR" class="listVar">變數</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_sort_2">
+      <value name="name_">
+        <block type="variables_get">
+          <field name="VAR" class="listVar">變數</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_split_2">
+      <value name="name_">
+        <block type="variables_get">
+          <field name="VAR" class="listVar">變數</field>
+        </block>
+      </value>
+      <value name="mark_">
+        <block type="text">
+          <field name="TEXT">,</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_length_2">
+      <value name="name_">
+        <block type="variables_get">
+          <field name="VAR" class="listVar">變數</field>
+        </block>
+      </value>
+    </block>
+  </category>
+  <category id="catColour" COLOUR="120">
+    <block type="colour_picker"></block>
+    <block type="colour_random"></block>
+    <block type="colour_rgb">
+      <value name="RED">
+        <block type="math_number">
+          <field name="NUM">255</field>
+        </block>
+      </value>
+      <value name="GREEN">
+        <block type="math_number">
+          <field name="NUM">50</field>
+        </block>
+      </value>
+      <value name="BLUE">
+        <block type="math_number">
+          <field name="NUM">0</field>
+        </block>
+      </value>
+    </block>
+    <block type="colour_blend">
+      <value name="COLOUR1">
+        <block type="colour_picker">
+          <field name="COLOUR">#ff0000</field>
+        </block>
+      </value>
+      <value name="COLOUR2">
+        <block type="colour_picker">
+          <field name="COLOUR">#3333ff</field>
+        </block>
+      </value>
+      <value name="RATIO">
+        <block type="math_number">
+          <field name="NUM">0.5</field>
+        </block>
+      </value>
+    </block>
+  </category>
+  <category id="catFunctions" custom="PROCEDURE" COLOUR="290"></category>
+
+  <sep></sep>
+
+  <category id="carBitDemoMonster" index="1" COLOUR="100">
+    <block type="demo_monster_talk">
+      <value name="val_">
+        <block type="text">
+          <field name="TEXT">Hello</field>
+        </block>
+      </value>
+    </block>
+    <block type="demo_monster_show_image">
+      <value name="img_">
+        <block type="text">
+          <field name="TEXT">圖片網址</field>
+        </block>
+      </value>
+    </block>
+    <block type="demo_monster_dont_talk"></block>
+    <block type="demo_monster_emotion">
+      <field name="type_">1</field>
+    </block>
+    <block type="demo_monster_move">
+      <value name="val_">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+    </block>
+    <block type="demo_monster_moveto">
+      <value name="x_">
+        <block type="math_number">
+          <field name="NUM">30</field>
+        </block>
+      </value>
+      <value name="y_">
+        <block type="math_number">
+          <field name="NUM">30</field>
+        </block>
+      </value>
+    </block>
+    <block type="demo_monster_rotate">
+      <value name="val_">
+        <block type="math_number">
+          <field name="NUM">30</field>
+        </block>
+      </value>
+    </block>
+    <block type="demo_monster_faceto">
+      <value name="val_">
+        <block type="math_number">
+          <field name="NUM">30</field>
+        </block>
+      </value>
+    </block>
+    <block type="demo_monster_face_mouse"></block>
+    <block type="demo_monster_size">
+      <value name="val_">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+    </block>
+    <block type="demo_monster_sizeto">
+      <value name="val_">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+    </block>
+    <block type="demo_monster_zindex"></block>
+    <block type="demo_monster_display"></block>
+    <block type="demo_monster_reset">
+      <field name="name_">all</field>
+    </block>
+    <block type="demo_monster_state"></block>
+    <block type="demo_monster_click"></block>
+    <block type="demo_monster_hover"></block>
+    <block type="demo_monster_collision">
+      <field name="m2_">demoMonster02</field>
+    </block>
+    <block type="demo_monster_stage"></block>
+    <block type="demo_monster_stage_rebound"></block>
+    <block type="demo_monster_background_color">
+      <value name="color_">
+        <block type="colour_picker">
+          <field name="COLOUR">#ff0000</field>
+        </block>
+      </value>
+    </block>
+    <block type="demo_monster_background_image">
+      <value name="image_">
+        <block type="text">
+          <field name="TEXT">圖片網址</field>
+        </block>
+      </value>
+    </block>
+    <block type="demo_monster_stage_max"></block>
+    <block type="demo_monster_stage_size"></block>
+  </category>
+
+
+
+  <category id="catDetect" COLOUR="10">
+    <block type="bit_document_keycode"></block>
+    <block type="getdate"></block>
+    <block type="gettime"></block>
+    <block type="input_text"></block>
+    <block type="input_text_val"></block>
+  </category>
+
+
+  <category id="catSpeak" COLOUR="40">
+    <block type="sound_01"></block>
+    <block type="sound_03"></block>
+    <block type="sound_02"></block>
+    <block type="speak">
+      <value name="text_">
+        <block type="text">
+          <field name="TEXT"></field>
+        </block>
+      </value>
+      <value name="setting_">
+        <block type="speak_setting_sample">
+          <field name="pitch_">1</field>
+          <field name="rate_">1</field>
+        </block>
+      </value>
+    </block>
+    <block type="speak_callback">
+      <value name="text_">
+        <block type="text">
+          <field name="TEXT"></field>
+        </block>
+      </value>
+      <value name="setting_">
+        <block type="speak_setting_sample">
+          <field name="pitch_">1</field>
+          <field name="rate_">1</field>
+        </block>
+      </value>
+    </block>
+    <block type="speak_event"></block>
+    <block type="sound_recognition"></block>
+    <block type="sound_recognition_check">
+      <value name="text_">
+        <block type="text">
+          <field name="TEXT"></field>
+        </block>
+      </value>
+    </block>
+    <block type="sound_recognition_text"></block>
+    <block type="sound_recognition_stop"></block>
+  </category>
+  <!-- <category id="catPlus" COLOUR="290">
+    <block type="console"></block>
+  </category> -->
+
+  <sep></sep>
+
+  <category id="catBoard" COLOUR="240">
+    <block type="board"></block>
+  </category>
+  <category id="catBitLedMatrix" index="1" COLOUR="250">
+    <block type="bit_matrix_off"></block>
+    <block type="bit_matrix_color_output">
+      <value name="color_input">
+        <block type="colour_picker"></block>
+      </value>
+    </block>
+    <block type="bit_matrix_color_output">
+      <value name="color_input">
+        <block type="bit_matrix_color_array"></block>
+      </value>
+    </block>
+    <block type="bit_matrix_color_output">
+      <value name="color_input">
+        <block type="bit_matrix_emoji">
+          <value name="color_input">
+            <block type="colour_picker">
+              <field name="COLOUR">#ff0000</field>
+            </block>
+          </value>
+        </block>
+      </value>
+    </block>
+    <block type="bit_matrix_color_output">
+      <value name="color_input">
+        <block type="lists_create_with">
+          <mutation items="3"></mutation>
+          <value name="ADD0">
+            <block type="colour_picker">
+              <field name="COLOUR">#ff0000</field>
+            </block>
+          </value>
+          <value name="ADD1">
+            <block type="colour_picker">
+              <field name="COLOUR">#ff0000</field>
+            </block>
+          </value>
+          <value name="ADD2">
+            <block type="colour_picker">
+              <field name="COLOUR">#ff0000</field>
+            </block>
+          </value>
+        </block>
+      </value>
+    </block>
+    <block type="bit_matrix_xy">
+      <value name="x">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="y">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="color_input">
+        <block type="colour_picker"></block>
+      </value>
+    </block>
+    <block type="bit_matrix_color_single">
+      <value name="led_">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="color_">
+        <block type="colour_picker">
+          <field name="COLOUR">#ff0000</field>
+        </block>
+      </value>
+    </block>
+    <block type="bit_matrix_character">
+      <value name="char_">
+        <block type="text">
+          <field name="TEXT"></field>
+        </block>
+      </value>
+      <value name="color_">
+        <block type="colour_picker">
+          <field name="COLOUR">#ff0000</field>
+        </block>
+      </value>
+    </block>
+    <block type="bit_matrix_string_once">
+      <value name="str_">
+        <block type="text">
+          <field name="TEXT">Hello World</field>
+        </block>
+      </value>
+      <value name="color_">
+        <block type="colour_picker">
+          <field name="COLOUR">#ff0000</field>
+        </block>
+      </value>
+      <field name="speed_">2</field>
+    </block>
+    <block type="bit_matrix_brightness">
+      <value name="brightness_">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+    </block>
+  </category>
+  <category id="catBitButton" index="2" COLOUR="200">
+    <block type="bit_button_event" tags="fly,mark1,bit"></block>
+  </category>
+  <category id="catBitDetected" index="3" COLOUR="190">
+    <block type="bit_detected"></block>
+    <block type="bit_photocell_val"></block>
+    <block type="bit_temp_val"></block>
+    <block type="bit_detected_stop"></block>
+  </category>
+  <category id="catBitBuzzer" index="4">
+    <block type="buzzer_music_play">
+      <statement name="music_">
+        <block type="buzzer_notes_tempos">
+          <field name="tone_">C4</field>
+          <field name="tempos_">2</field>
+        </block>
+      </statement>
+    </block>
+    <block type="buzzer_music_play">
+      <statement name="music_">
+        <block type="buzzer_load_music"></block>
+      </statement>
+    </block>
+    <block type="buzzer_notes_tempos">
+      <field name="tone_">C4</field>
+      <field name="tempos_">2</field>
+    </block>
+    <block type="buzzer_load_music"></block>
+    <block type="buzzer_mute">
+      <field name="tempos_">2</field>
+    </block>
+    <block type="buzzer_event"></block>
+    <block type="buzzer_state"></block>
+  </category>
+  <category id="catBitMpu9250" index="5" COLOUR="130">
+    <block type="mpu9250_detected">
+      <statement name="do_">
+        <block type="mpu9250_detected_type"></block>
+      </statement>
+    </block>
+    <block type="mpu9250_detected_type"></block>
+    <block type="mpu9250_val"></block>
+    <block type="mpu9250_stop"></block>
+  </category>
+
+</xml>
