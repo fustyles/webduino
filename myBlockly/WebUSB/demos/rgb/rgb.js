@@ -37,6 +37,7 @@
       view[1] = parseInt(greenSlider.value);
       view[2] = parseInt(blueSlider.value);
       //port.send(view);
+      console.log(text.value);
       port.send(text.value);
     };
 
