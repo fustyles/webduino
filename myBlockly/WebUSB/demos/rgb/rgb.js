@@ -33,12 +33,12 @@
       }
 
       let view = new Uint8Array(3);
-      view[0] = parseInt(redSlider.value);
-      view[1] = parseInt(greenSlider.value);
-      view[2] = parseInt(blueSlider.value);
-      //port.send(view);
+      //view[0] = parseInt(redSlider.value);
+      //view[1] = parseInt(greenSlider.value);
+      //view[2] = parseInt(blueSlider.value);
       console.log(text.value);
-      port.send(parseInt(text.value));
+      view[0] = parseInt(text.value);
+      port.send(view);
     };
 
     redSlider.addEventListener('input', onUpdate);
