@@ -24,13 +24,6 @@
   }
 });
   
-navigator.usb.getDevices().then(devices => {
-  devices.map(device => {
-    console.log(device.productName);      // "Arduino Micro"
-    console.log(device.manufacturerName); // "Arduino LLC"
-  });
-})
-  
 async function talkToArduino() {
   try {
     let device = await navigator.usb.requestDevice({ filters: [{ vendorId: 0x2341 }] });
