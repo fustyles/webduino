@@ -7,6 +7,7 @@
     let redSlider = document.querySelector('#red');
     let greenSlider = document.querySelector('#green');
     let blueSlider = document.querySelector('#blue');
+    let text = document.querySelector('#text');
     let port;
 
     function connect() {
@@ -35,7 +36,8 @@
       view[0] = parseInt(redSlider.value);
       view[1] = parseInt(greenSlider.value);
       view[2] = parseInt(blueSlider.value);
-      port.send(view);
+      //port.send(view);
+      port.send(text.value);
     };
 
     redSlider.addEventListener('input', onUpdate);
