@@ -38,7 +38,7 @@
       view[2] = parseInt(blueSlider.value);
       //port.send(view);
       console.log(text.value);
-      port.send(text.value);
+      port.send(parseInt(text.value));
     };
 
     redSlider.addEventListener('input', onUpdate);
