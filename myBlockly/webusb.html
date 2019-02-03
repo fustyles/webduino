@@ -26,7 +26,7 @@
   
 async function talkToArduino() {
   try {
-    let device = await navigator.usb.requestDevice({ filters: [{ vendorId: 0x2341 }] });
+    let device = await navigator.usb.requestDevice({ filters: [{ vendorId: 0x2A03 }] });
    
     await device.open(); // Begin a session.
     await device.selectConfiguration(1); // Select configuration #1 for the device.
