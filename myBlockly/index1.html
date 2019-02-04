@@ -326,26 +326,14 @@
 var category = [
 	catSystem,
 	"<sep></sep>",
-	catSetWindow,
-	catShowText,
 	catKeyboard,
 	catSpeechRecognition,
-	catTextToSpeech,	
 	catInstruction,
 	catGameAuxiliary,
 	catGameTable,
 	catGameCanvas,
 	catGameImage,
-	catGameForm,
-	catDeepLearning,	
-	catMatrixLed,
-	catOpenURL,
-	catTaiwanAirQuality,
-	catESP8266,
-	catThingSpeak,
-	catIFTTT,
-	catLINE,
-	catHTChart		
+	catGameForm		
 ].join("");
 while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().indexOf("<sep>")!=-1) {
   var s = category.toLowerCase().indexOf("<category");
