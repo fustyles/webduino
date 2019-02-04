@@ -1,5 +1,5 @@
 var catWebUSB = '<xml><category name="%{BKY_WEBUSB}" colour="%{BKY_WEBUSB_HUE}">'+
-'    <block type="WEBUSB_system">'+  
+'    <block type="webusb_system">'+  
 '        <field name="cmd">inputpullup</field>'+
 '        <value name="P1">'+
 '          <block type="math_number">'+
@@ -12,7 +12,7 @@ var catWebUSB = '<xml><category name="%{BKY_WEBUSB}" colour="%{BKY_WEBUSB_HUE}">
 '          </block>'+
 '        </value>'+
 '    </block>'+
-'    <block type="WEBUSB_custom">'+  
+'    <block type="webusb_custom">'+  
 '        <value name="cmd">'+
 '          <block type="text">'+
 '            <field name="TEXT"></field>'+
@@ -64,7 +64,7 @@ var catWebUSB = '<xml><category name="%{BKY_WEBUSB}" colour="%{BKY_WEBUSB_HUE}">
 '          </block>'+
 '        </value>'+
 '    </block>'+
-'    <block type="WEBUSB_car">'+   
+'    <block type="webusb_car">'+   
 '        <value name="cmd">'+
 '          <block type="text">'+
 '            <field name="TEXT">car</field>'+
@@ -110,7 +110,7 @@ var catWebUSB = '<xml><category name="%{BKY_WEBUSB}" colour="%{BKY_WEBUSB_HUE}">
 '          </block>'+  
 '        </value>'+    
 '    </block>'+   
-'    <block type="WEBUSB_car_state">'+
+'    <block type="webusb_car_state">'+
 '    </block>'+     
 '    <variables>'+ 
 '      <variable type="" id="+Oog~D)0D,I*Y5(g]2r1">TimerWEBUSB</variable>'+ 
@@ -127,13 +127,13 @@ var catWebUSB = '<xml><category name="%{BKY_WEBUSB}" colour="%{BKY_WEBUSB_HUE}">
 '        <block type="variables_set" id="Sh:0%7~`mHXezT$HAE*w">'+ 
 '          <field name="VAR" id="ij_ZS;5L7fPB{t3^~CEl" variabletype="">data</field>'+ 
 '          <value name="VALUE">'+ 
-'            <block type="WEBUSB_getresponse" id="KE3ci[=9F6s6fOnlqASf"></block>'+ 
+'            <block type="webusb_getresponse" id="KE3ci[=9F6s6fOnlqASf"></block>'+ 
 '          </value>'+ 
 '        </block>'+ 
 '      </statement>'+ 
 '    </block>'+     
-'    <block type="WEBUSB_cmd">'+
+'    <block type="webusb_cmd">'+
 '    </block>'+    
-'    <block type="WEBUSB_clearresponse">'+
+'    <block type="webusb_clearresponse">'+
 '    </block>'+   
 '</category></xml>';
