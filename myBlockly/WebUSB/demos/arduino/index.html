@@ -9,11 +9,7 @@
     <script>
     function getCommand()
     {
-    document.getElementById("send").disabled=true;
-    if (document.getElementById("choice1").checked)
-        var cmd=document.getElementById("cmd1").value;
-    else
-        var cmd=document.getElementById("cmd2").value;
+    var cmd=document.getElementById("cmd").value;
     var P1=document.getElementById("P1").value;
     var P2=document.getElementById("P2").value;
     var P3=document.getElementById("P3").value;
@@ -42,8 +38,7 @@
     <tr><td>Command</td></tr>
     <tr>
     <td>
-    <input type="radio" name="choice" id="choice1" checked>
-    <select name="cmd1" id="cmd1">
+    <select name="cmd" id="cmd">
     <option value="inputpullup">inputpullup</option>
     <option value="pinmode">pinmode</option>
     <option value="digitalwrite">digitalwrite(pin,value)</option>
@@ -53,9 +48,6 @@
     <option value="car">car(L1,L2,R1,R2,Lspeed,Rspeed,Delay,state)</option>
     <option value="i2cLcd">i2cLcd(address,gpioSDA,gpioSCL,text1,text2)</option>
     </select>
-    <br>
-    <input type="radio" name="choice" id="choice2">
-    <input type="text" name="cmd2" id="cmd2" size="23">
     </td>
     </tr>
     <tr>
@@ -90,15 +82,8 @@
     </tr>
    </table><br>
   </td>
-  <td valign="top">
-   <iframe id="MyFirmata" width="320" height="320"></iframe><br>
-   Command Format：<br>
-   http://APIP/?cmd=P1;P2;P3;P4;P5;P6;;P7;P8;P9<br>
-   http://STAIP/?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9
-  </td>
  </tr>
 </table>
 </form>
-<div id="ShowUrl"></div>
 </body>
 </html>
