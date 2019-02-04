@@ -2,7 +2,6 @@ Blockly.Blocks['webusb_system'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("webusb System");
-        .appendField("url"); 
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("cmd")
@@ -141,7 +140,7 @@ Blockly.Blocks['webusb_cmd'] = {
         ["analogWrite(pin\,value)","analogwrite"], 
         ["analogRead(pin)","analogread"],
         ["car(pinL1\,pinL2\,pinR1\,pinR2\,L_speed\,R_speed\,Delay\,state)","car"],
-        ["i2cLcd(address\,gpioSDA\,gpioSCL\,text1\,text2\)","i2cLcd"]
+        ["i2cLcd(address\,2\,3\,text1\,text2\)","i2cLcd"]
       ]), "cmd");
   this.setInputsInline(true);
   this.setOutput(true, null); 
