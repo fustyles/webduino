@@ -8,7 +8,7 @@
     <script src="arduino.js"></script>
   </head>
  
-<body onload="autoRun();">
+<body>
 <p>
 <button id="connect">Connect to Arduino Leonardo</button><br><span id="status" style="color:red"></span>
 </p>
@@ -88,12 +88,5 @@
     var link="?"+cmd+"="+P1+";"+P2+";"+P3+";"+P4+";"+P5+";"+P6+";"+P7+";"+P8+";"+P9;
     document.getElementById("text").value=link;
     return false;
-  }
-  
-  function autoRun() {
-    var strUrl=location.search;
-    if (strUrl.indexOf("?")!=-1&&strUrl.indexOf("&cmd")!=-1) {
-      document.getElementById("text").value = strUrl.split("?")[1].split("&")[0];
-    }
   }
 </script>
