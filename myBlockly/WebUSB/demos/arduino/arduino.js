@@ -30,10 +30,15 @@
         return;
       }
 
-      console.log("send="+text.value);
-      const  Input = text.value + '\n';
-      port.send(new TextEncoder("utf-8").encode(Input));
+      if (text.value!="") {
+        console.log("send="+text.value);
+        const  Input = text.value + '\n';
+        text.value = "";
+        port.send(new TextEncoder("utf-8").encode(Input));
+      }
     };
+    
+    var update = setInterval(function(){onUpdate();}, 10);
 
     send.addEventListener('click', onUpdate);
 
