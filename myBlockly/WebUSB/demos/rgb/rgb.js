@@ -30,11 +30,10 @@
         return;
       }
 
-      let view = new Uint8Array(1);
+      let view = [];
       console.log(text.value);
-      view[0] = parseInt(text.value);
+      view[0] = text.value;
       port.send(view);
-      alert("send="+view);
     };
 
     send.addEventListener('click', onUpdate);
