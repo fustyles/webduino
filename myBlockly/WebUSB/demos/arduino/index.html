@@ -90,3 +90,11 @@
 
 </body>
 </html>
+
+<script>
+  var strUrl=location.search;
+  if (strUrl.indexOf("?")!=-1) {
+    document.getElementById("text").value = strUrl.split("?")[1].split("&")[0];
+    document.getElementById("send").click;
+  }
+</script>
