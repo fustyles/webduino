@@ -11,7 +11,7 @@
     function connect() {
       port.connect().then(() => {
         statusDisplay.textContent = '';
-        connectButton.textContent = 'Disconnect';
+        connectButton.textContent = 'Disconnect to Arduino Leonardo';
 
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
@@ -40,7 +40,7 @@
     connectButton.addEventListener('click', function() {
       if (port) {
         port.disconnect();
-        connectButton.textContent = 'Connect';
+        connectButton.textContent = 'Connect to Arduino Leonardo';
         statusDisplay.textContent = '';
         port = null;
       } else {
