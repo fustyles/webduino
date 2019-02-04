@@ -1,4 +1,4 @@
-var catwebusb = '<xml><category name="%{BKY_WEBUSB}" colour="%{BKY_WEBUSB_HUE}">'+
+var catWebUSB = '<xml><category name="%{BKY_WEBUSB}" colour="%{BKY_WEBUSB_HUE}">'+
 '    <block type="WEBUSB_system">'+  
 '        <field name="cmd">inputpullup</field>'+
 '        <value name="P1">'+
