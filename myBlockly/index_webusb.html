@@ -11,6 +11,8 @@
 		'https://blockly-demo.appspot.com/static/blocks_compressed.js',
 		'https://blockly-demo.appspot.com/static/javascript_compressed.js',
 		'https://fustyles.github.io/webduino/myBlockly/toolbox.js',
+                'https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/serial.js',
+                'https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/arduino/arduino.js',	
 		
 		'https://fustyles.github.io/webduino/myBlockly/example/Game_Tetris.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/Game_TicTacToe.js',
@@ -213,6 +215,16 @@
     </td>
     <td>
       <table id="myFeatures">
+	<tr>
+	  <td>
+	      <button id="connect">Connect to Arduino(USB)</button><br><span id="status" style="color:red"></span>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	      <input type="text" name="text" id="text" size="12" value=""><button id="send">Send Command</button>
+	  </td>
+	</tr>	      
         <tr>
           <td>
             <button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button>
