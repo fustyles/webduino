@@ -31,8 +31,8 @@
       }
 
       console.log("send="+text.value);
-      const  textInput = text.value + '\n';
-      port.send(new TextEncoder("utf-8").encode(textInput));
+      const  Input = text.value + '\n';
+      port.send(new TextEncoder("utf-8").encode(Input));
     };
 
     send.addEventListener('click', onUpdate);
