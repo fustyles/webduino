@@ -31,13 +31,15 @@
       }
 
       if (text.value!="") {
-        console.log("send="+text.value);
+        //console.log("send="+text.value);
         const  Input = text.value + '\n';
         text.value = "";
         port.send(new TextEncoder("utf-8").encode(Input));
       }
     };
 
+    setInterval(function(){if (text.value!="") onUpdate();}, 10);
+    
     send.addEventListener('click', onUpdate);
 
     connectButton.addEventListener('click', function() {
