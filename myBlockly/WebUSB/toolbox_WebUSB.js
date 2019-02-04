@@ -106,7 +106,7 @@ var catWebUSB = '<xml><category name="%{BKY_WEBUSB}" colour="%{BKY_WEBUSB_HUE}">
 '          </block>'+
 '        </value>'+
 '        <value name="P8">'+
-'          <block type="WEBUSB_car_state">'+
+'          <block type="webusb_car_state">'+
 '          </block>'+  
 '        </value>'+    
 '    </block>'+   
