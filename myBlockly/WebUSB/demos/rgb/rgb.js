@@ -5,6 +5,7 @@
     let connectButton = document.querySelector("#connect");
     let statusDisplay = document.querySelector('#status');
     let text = document.querySelector('#text');
+    let send = document.querySelector('#send');
     let port;
 
     function connect() {
@@ -36,7 +37,7 @@
       alert("send="+view);
     };
 
-    text.addEventListener('click', onUpdate);
+    send.addEventListener('click', onUpdate);
 
     connectButton.addEventListener('click', function() {
       if (port) {
