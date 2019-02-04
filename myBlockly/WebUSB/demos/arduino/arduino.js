@@ -37,8 +37,6 @@
         port.send(new TextEncoder("utf-8").encode(Input));
       }
     };
-    
-    var update = setInterval(function(){onUpdate();}, 10);
 
     send.addEventListener('click', onUpdate);
 
