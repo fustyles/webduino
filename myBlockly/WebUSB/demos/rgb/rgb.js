@@ -33,6 +33,7 @@
       console.log(text.value);
       view[0] = parseInt(text.value);
       port.send(view);
+      alert("OK");
     };
 
     text.addEventListener('click', onUpdate);
