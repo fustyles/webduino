@@ -6,11 +6,99 @@
     <title>RGB LED</title>
     <script src="../serial.js"></script>
     <script src="arduino.js"></script>
+    <script>
+    function getCommand()
+    {
+    document.getElementById("send").disabled=true;
+    if (document.getElementById("choice1").checked)
+        var cmd=document.getElementById("cmd1").value;
+    else
+        var cmd=document.getElementById("cmd2").value;
+    var P1=document.getElementById("P1").value;
+    var P2=document.getElementById("P2").value;
+    var P3=document.getElementById("P3").value;
+    var P4=document.getElementById("P4").value;
+    var P5=document.getElementById("P5").value;
+    var P6=document.getElementById("P6").value;
+    var P7=document.getElementById("P7").value;
+    var P8=document.getElementById("P8").value;
+    var P9=document.getElementById("P9").value;
+    var link=?"+cmd+"="+P1+";"+P2+";"+P3+";"+P4+";"+P5+";"+P6+";"+P7+";"+P8+";"+P9;
+    document.getElementById("text").value=link;
+    </script>    
   </head>
-  <body>
-    <p>
-      <button id="connect">Connect</button> <span id="status"></span>
-    </p>
-    <input type="text" id="text"/><button id="send">Send</button>
-  </body>
+ 
+<body>
+<p>
+<button id="connect">Connect to Arduino Leonardo</button> <span id="status"></span>
+</p>
+<form>
+<table>
+ <tr>
+  <td valign="top">
+   <table >
+    <tr><td>WebUSB for Arduino Leonardo</td></tr>
+    <tr><td>Command：<input type="text" name="text" id="text" size="26" value=""><button id="send">Send</button></td></tr>
+    <tr><td>Command</td></tr>
+    <tr>
+    <td>
+    <input type="radio" name="choice" id="choice1" checked>
+    <select name="cmd1" id="cmd1">
+    <option value="inputpullup">inputpullup</option>
+    <option value="pinmode">pinmode</option>
+    <option value="digitalwrite">digitalwrite(pin,value)</option>
+    <option value="analogwrite">analogwrite</option>
+    <option value="digitalread">digitalread(pin)</option>
+    <option value="analogread">analogread(pin)</option>
+    <option value="car">car(L1,L2,R1,R2,Lspeed,Rspeed,Delay,state)</option>
+    <option value="i2cLcd">i2cLcd(address,gpioSDA,gpioSCL,text1,text2)</option>
+    </select>
+    <br>
+    <input type="radio" name="choice" id="choice2">
+    <input type="text" name="cmd2" id="cmd2" size="23">
+    </td>
+    </tr>
+    <tr>
+    <td>P1：<input type="text" name="P1" id="P1" size="30" onclick="this.select()"></td>
+    </tr>
+    <tr>
+    <td>P2：<input type="text" name="P2" id="P2" size="30" onclick="this.select()"></td>
+    </tr>
+    <tr>
+    <td>P3：<input type="text" name="P3" id="P3" size="30" onclick="this.select()"></td>
+    </tr>
+    <tr>
+    <td>P4：<input type="text" name="P4" id="P4" size="30" onclick="this.select()"></td>
+    </tr>
+    <tr>
+    <td>P5：<input type="text" name="P5" id="P5" size="30" onclick="this.select()"></td>
+    </tr>
+    <tr>
+    <td>P6：<input type="text" name="P6" id="P6" size="30" onclick="this.select()"></td>
+    </tr>
+    <tr>
+    <td>P7：<input type="text" name="P7" id="P7" size="30" onclick="this.select()"></td>
+    </tr>
+    <tr>
+    <td>P8：<input type="text" name="P8" id="P8" size="30" onclick="this.select()"></td>
+    </tr>
+    <tr>
+    <td>P9：<input type="text" name="P9" id="P9" size="30" onclick="this.select()"></td>
+    </tr>
+    <tr>
+    <td align="center"><input type="reset" value="Clear" height="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="getCommand" value="Get Command" onclick="getCommand();">&nbsp;&nbsp;&nbsp;</td>
+    </tr>
+   </table><br>
+  </td>
+  <td valign="top">
+   <iframe id="MyFirmata" width="320" height="320"></iframe><br>
+   Command Format：<br>
+   http://APIP/?cmd=P1;P2;P3;P4;P5;P6;;P7;P8;P9<br>
+   http://STAIP/?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9
+  </td>
+ </tr>
+</table>
+</form>
+<div id="ShowUrl"></div>
+</body>
 </html>
