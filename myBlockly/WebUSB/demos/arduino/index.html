@@ -6,24 +6,6 @@
     <title>WebUSB for Arduino Leonardo</title>
     <script src="../serial.js"></script>
     <script src="arduino.js"></script>
-    <script>
-    function getCommand()
-    {
-      var cmd=document.getElementById("cmd").value;
-      var P1=document.getElementById("P1").value;
-      var P2=document.getElementById("P2").value;
-      var P3=document.getElementById("P3").value;
-      var P4=document.getElementById("P4").value;
-      var P5=document.getElementById("P5").value;
-      var P6=document.getElementById("P6").value;
-      var P7=document.getElementById("P7").value;
-      var P8=document.getElementById("P8").value;
-      var P9=document.getElementById("P9").value;
-      var link="?"+cmd+"="+P1+";"+P2+";"+P3+";"+P4+";"+P5+";"+P6+";"+P7+";"+P8+";"+P9;
-      document.getElementById("text").value=link;
-      return false;
-    }
-    </script>    
   </head>
  
 <body onload="autoRun();">
@@ -92,8 +74,24 @@
 </html>
 
 <script>
+  function getCommand() {
+    var cmd=document.getElementById("cmd").value;
+    var P1=document.getElementById("P1").value;
+    var P2=document.getElementById("P2").value;
+    var P3=document.getElementById("P3").value;
+    var P4=document.getElementById("P4").value;
+    var P5=document.getElementById("P5").value;
+    var P6=document.getElementById("P6").value;
+    var P7=document.getElementById("P7").value;
+    var P8=document.getElementById("P8").value;
+    var P9=document.getElementById("P9").value;
+    var link="?"+cmd+"="+P1+";"+P2+";"+P3+";"+P4+";"+P5+";"+P6+";"+P7+";"+P8+";"+P9;
+    document.getElementById("text").value=link;
+    return false;
+  }
+  
   function autoRun() {
-  var strUrl=location.search;
+    var strUrl=location.search;
     if (strUrl.indexOf("?")!=-1&&strUrl.indexOf("&cmd")!=-1) {
       document.getElementById("text").value = strUrl.split("?")[1].split("&")[0];
     }
