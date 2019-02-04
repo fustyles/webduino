@@ -30,10 +30,9 @@
         return;
       }
 
-      let view = [];
       console.log(text.value);
-      view[0] = text.value;
-      port.send(view);
+      const  textInput = text.value + '   \n';
+      port.send(new TextEncoder("utf-8").encode(textInput));
     };
 
     send.addEventListener('click', onUpdate);
