@@ -8,8 +8,8 @@ function webusb_sendCommand(cmd,str1,str2,str3,str4,str5,str6,str7,str8,str9) {
 }
 
 function webusb_getResponse() {
-  if (document.getElementById("text").value != "") {
-    json = eval(document.getElementById("text").value);
+  if (document.getElementById("status").value != "") {
+    json = eval(document.getElementById("status").value);
     //console.log(json);
     for (var i=0;i<json.length;i++) {
       webusb_Response.push(json[i]["data"]+"");
