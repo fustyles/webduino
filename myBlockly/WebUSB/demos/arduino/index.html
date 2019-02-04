@@ -30,61 +30,63 @@
 <p>
 <button id="connect">Connect to Arduino Leonardo</button> <span id="status"></span>
 </p>
-<form>
+
 <table>
  <tr>
   <td valign="top">
-   <table >
-    <tr><td>WebUSB for Arduino Leonardo</td></tr>
-    <tr>
-    <td>
-    <select name="cmd" id="cmd">
-    <option value="inputpullup">inputpullup</option>
-    <option value="pinmode">pinmode</option>
-    <option value="digitalwrite">digitalwrite(pin,value)</option>
-    <option value="analogwrite">analogwrite</option>
-    <option value="digitalread">digitalread(pin)</option>
-    <option value="analogread">analogread(pin)</option>
-    <option value="i2cLcd">i2cLcd(address,gpioSDA,gpioSCL,text1,text2)</option>
-    </select>
-    </td>
-    </tr>
-    <tr>
-    <td>P1：<input type="text" name="P1" id="P1" size="30" onclick="this.select()"></td>
-    </tr>
-    <tr>
-    <td>P2：<input type="text" name="P2" id="P2" size="30" onclick="this.select()"></td>
-    </tr>
-    <tr>
-    <td>P3：<input type="text" name="P3" id="P3" size="30" onclick="this.select()"></td>
-    </tr>
-    <tr>
-    <td>P4：<input type="text" name="P4" id="P4" size="30" onclick="this.select()"></td>
-    </tr>
-    <tr>
-    <td>P5：<input type="text" name="P5" id="P5" size="30" onclick="this.select()"></td>
-    </tr>
-    <tr>
-    <td>P6：<input type="text" name="P6" id="P6" size="30" onclick="this.select()"></td>
-    </tr>
-    <tr>
-    <td>P7：<input type="text" name="P7" id="P7" size="30" onclick="this.select()"></td>
-    </tr>
-    <tr>
-    <td>P8：<input type="text" name="P8" id="P8" size="30" onclick="this.select()"></td>
-    </tr>
-    <tr>
-    <td>P9：<input type="text" name="P9" id="P9" size="30" onclick="this.select()"></td>
-    </tr>
-    <tr><td>Command：<input type="text" name="text" id="text" size="26" value="?digitalwrite=13;1"></td></tr>
-    <tr>
-    <td align="center"><input type="reset" value="Clear" height="50"><button id="getcommand" onclick="getCommand();">Get Command</button><button id="send">Send Command</button></td>
-    </tr>
-   </table>
-    <br>
+   <form>
+     <table >
+      <tr><td>WebUSB for Arduino Leonardo</td></tr>
+      <tr>
+      <td>
+      <select name="cmd" id="cmd">
+      <option value="inputpullup">inputpullup</option>
+      <option value="pinmode">pinmode</option>
+      <option value="digitalwrite">digitalwrite(pin,value)</option>
+      <option value="analogwrite">analogwrite</option>
+      <option value="digitalread">digitalread(pin)</option>
+      <option value="analogread">analogread(pin)</option>
+      <option value="i2cLcd">i2cLcd(address,gpioSDA,gpioSCL,text1,text2)</option>
+      </select>
+      </td>
+      </tr>
+      <tr>
+      <td>P1：<input type="text" name="P1" id="P1" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P2：<input type="text" name="P2" id="P2" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P3：<input type="text" name="P3" id="P3" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P4：<input type="text" name="P4" id="P4" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P5：<input type="text" name="P5" id="P5" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P6：<input type="text" name="P6" id="P6" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P7：<input type="text" name="P7" id="P7" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P8：<input type="text" name="P8" id="P8" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P9：<input type="text" name="P9" id="P9" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr><td>Command：<input type="text" name="text" id="text" size="26" value="?digitalwrite=13;1"></td></tr>
+      <tr>
+      <td align="center"><input type="reset" value="Clear" height="50"></td>
+      </tr>
+     </table>
+   </form>
   </td>
  </tr>
+ <tr><td><button id="getcommand" onclick="getCommand();">Get Command</button><button id="send">Send Command</button></td></tr>
 </table>
-</form>
+
 </body>
 </html>
