@@ -26,7 +26,7 @@
     </script>    
   </head>
  
-<body>
+<body onload="autoRun();">
 <p>
 <button id="connect">Connect to Arduino Leonardo</button><br><span id="status" style="color:red"></span>
 </p>
@@ -92,9 +92,11 @@
 </html>
 
 <script>
+  function autoRun() {
   var strUrl=location.search;
-  if (strUrl.indexOf("?")!=-1) {
-    document.getElementById("text").value = strUrl.split("?")[1].split("&")[0];
-    document.getElementById("send").click();
+    if (strUrl.indexOf("?")!=-1&&strUrl.indexOf("&cmd")!=-1) {
+      document.getElementById("text").value = strUrl.split("?")[1].split("&")[0];
+      document.getElementById("send").click();
+    }
   }
 </script>
