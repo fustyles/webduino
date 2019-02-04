@@ -4,9 +4,6 @@
   document.addEventListener('DOMContentLoaded', event => {
     let connectButton = document.querySelector("#connect");
     let statusDisplay = document.querySelector('#status');
-    let redSlider = document.querySelector('#red');
-    let greenSlider = document.querySelector('#green');
-    let blueSlider = document.querySelector('#blue');
     let text = document.querySelector('#text');
     let port;
 
@@ -33,17 +30,12 @@
       }
 
       let view = new Uint8Array(1);
-      //view[0] = parseInt(redSlider.value);
-      //view[1] = parseInt(greenSlider.value);
-      //view[2] = parseInt(blueSlider.value);
       console.log(text.value);
       view[0] = parseInt(text.value);
       port.send(view);
     };
 
-    redSlider.addEventListener('input', onUpdate);
-    greenSlider.addEventListener('input', onUpdate);
-    blueSlider.addEventListener('input', onUpdate);
+    text.addEventListener('click', onUpdate);
 
     connectButton.addEventListener('click', function() {
       if (port) {
