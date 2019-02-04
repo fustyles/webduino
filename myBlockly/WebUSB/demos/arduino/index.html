@@ -37,7 +37,6 @@
     <tr><td>WebUSB for Arduino Leonardo</td></tr>
     <tr>
     <tr><td>Command：<input type="text" name="text" id="text" size="26" value="?digitalwrite=13;1"></td></tr>
-    <tr><td align="right"><button id="send">Send Command</button></td></tr>      
     <td>
     <select name="cmd" id="cmd">
     <option value="inputpullup">inputpullup</option>
@@ -78,7 +77,7 @@
     <td>P9：<input type="text" name="P9" id="P9" size="30" onclick="this.select()"></td>
     </tr>
     <tr>
-    <td align="center"><input type="reset" value="Clear" height="50"><button onclick="getCommand();">Get Command</button></td>
+    <td align="center"><input type="reset" value="Clear" height="50"><button id="send" onclick="getCommand();">Send Command</button></td>
     </tr>
    </table>
     <br>
