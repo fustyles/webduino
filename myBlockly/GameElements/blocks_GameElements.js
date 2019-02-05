@@ -2221,6 +2221,17 @@ Blockly.Blocks['div_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.HEIGHT_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TABLE_BORDERSTYLE_SHOW)
+      .appendField(new Blockly.FieldDropdown([["solid","solid"], ["dashed","dashed"], ["double","double"], ["dotted","dotted"], ["groove","groove"], ["ridge","ridge"], ["inset","inset"], ["outset","outset"], ["inherit","inherit"], ["none","none"], ["hidden","hidden"]]), "borderstyle_");  
+  this.appendValueInput("borderwidth_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_BORDERWIDTH_SHOW);       
+  this.appendValueInput("bordercolor_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_BORDERCOLOR_SHOW);         
   this.appendValueInput("background_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null)
@@ -2263,7 +2274,7 @@ Blockly.Blocks['div_set'] = {
       .appendField(Blockly.Msg.DIV_ID_SHOW);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.DIV_SET_SHOW) 
-      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["background","background"], ["color","color"], ["fontsize","fontsize"], ["opacity","opacity"], ["innerHTML","innerHTML"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["borderstyle","borderstyle"], ["borderwidth","borderwidth"], ["bordercolor","bordercolor"], ["background","background"], ["color","color"], ["fontsize","fontsize"], ["opacity","opacity"], ["innerHTML","innerHTML"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"]]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -2281,7 +2292,7 @@ Blockly.Blocks['div_get'] = {
       .appendField(Blockly.Msg.DIV_ID_SHOW);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.DIV_GET_SHOW)
-      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["background","background"], ["color","color"], ["fontsize","fontsize"], ["opacity","opacity"], ["innerHTML","innerHTML"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["id","id"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["borderstyle","borderstyle"], ["borderwidth","borderwidth"], ["bordercolor","bordercolor"], ["background","background"], ["color","color"], ["fontsize","fontsize"], ["opacity","opacity"], ["innerHTML","innerHTML"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["id","id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
