@@ -498,7 +498,17 @@ var catGameForm = '<xml><category name="%{BKY_GAMEFORM}" colour="%{BKY_GAMEFORM_
 '      <block type="math_number">'+
 '        <field name="NUM">30</field>'+
 '      </block>'+
-'    </value>'+   
+'    </value>'+  
+'    <value name="borderwidth_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">1</field>'+
+'      </block>'+
+'    </value>'+    
+'    <value name="bordercolor_">'+
+'      <block type="colour_picker">'+
+'        <field name="COLOUR">#000000</field>'+
+'      </block>'+
+'    </value>'+         
 '    <value name="background_">'+
 '      <block type="colour_picker">'+
 '        <field name="COLOUR">#ffffff</field>'+
