@@ -221,7 +221,17 @@
       <button id="btnRun2" style="display:none" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
     </td>
     <td>
-      <table id="myFeatures" style="display:none">	      
+      <table id="myFeatures" style="display:none">
+	<tr id="btnUSB">
+	  <td>
+	      <button id="connect">Connect to Arduino(USB)</button><br><span id="status" style="color:red"></span>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	      <input type="text" name="text" id="text" size="12" value=""><button id="send">Send Command</button>
+	  </td>
+	</tr>	
         <tr>
           <td>
             <button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button>
@@ -298,16 +308,6 @@
             <textarea id="codeWindow" style="width:350px;height:400px;" readonly ondblclick="showcodeWindow(this,'big');" onfocusout="showcodeWindow(this,'small');"></textarea>
           </td>
         </tr>
-      	<tr id="btnUSB">
-	  <td>
-	      <button id="connect">Connect to Arduino(USB)</button><br><span id="status" style="color:red"></span>
-	  </td>
-	</tr>
-	<tr>
-	  <td>
-	      <input type="text" name="text" id="text" size="12" value=""><button id="send">Send Command</button>
-	  </td>
-	</tr>	
         <tr>
           <td align="center">
             Fu Chung-Yi (Taiwan)  Update Date : 2019-2-2
