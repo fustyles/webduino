@@ -1629,7 +1629,7 @@
       return 0;
   }        
 
-  function div_create(input_id,input_width,input_height,input_left,input_top,input_background,input_color,input_fontSize,input_opacity,input_innerHTML,input_zindex,input_display) {
+  function div_create(input_id,input_width,input_height,input_left,input_top,input_borderstyle,input_borderwidth,input_bordercolor,input_background,input_color,input_fontSize,input_opacity,input_innerHTML,input_zindex,input_display) {
     if (document.getElementById("gamediv_"+input_id)) 
       document.getElementById("gamediv_"+input_id).parentNode.removeChild(document.getElementById("gamediv_"+input_id));
     var obj = document.createElement('div');
@@ -1639,6 +1639,7 @@
     obj.style.top = input_top + 'px';
     obj.style.width = input_width + 'px';
     obj.style.height = input_height + 'px';
+    obj.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
     obj.style.background = input_background;
     obj.style.color = input_color;
     obj.style.fontSize = input_fontSize + "px";
