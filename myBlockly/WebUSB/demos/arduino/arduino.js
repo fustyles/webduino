@@ -63,9 +63,9 @@
       if (ports.length == 0) {
         statusDisplay.textContent = 'No device found.';
       } else {
-        statusDisplay.textContent = 'Connecting...';
-        port = ports[0];
-        connect();
+        statusDisplay.textContent = 'Select your device.';
+        //port = ports[0];
+        //connect();
       }
     });
   });
