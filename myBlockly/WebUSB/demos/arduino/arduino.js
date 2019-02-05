@@ -1,5 +1,5 @@
-(function() {
-  'use strict';
+//(function() {
+//  'use strict';
 
   document.addEventListener('DOMContentLoaded', event => {
     let connectButton = document.querySelector("#connect");
@@ -69,4 +69,5 @@
       }
     });
   });
-})();
+
+//})();
