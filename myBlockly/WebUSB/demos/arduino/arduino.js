@@ -10,7 +10,7 @@
 
     function connect() {
       port.connect().then(() => {
-        statusDisplay.textContent = '';
+        statusDisplay.textContent = 'Device is connected.';
         connectButton.textContent = 'Disconnect to Arduino(USB)';
 
         port.onReceive = data => {
