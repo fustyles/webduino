@@ -441,6 +441,8 @@ Blockly.JavaScript['elements_collision'] = function (block) {
     var obj1= 'gamerange_';
   else if (value_element1_=="text")
     var obj1= 'gametext_';   
+  else if (value_element1_=="div")
+    var obj1= 'gamediv_';     
   if (value_element2_=="table")
     var obj2= 'gametable_';
   else if (value_element2_=="canvas")
