@@ -1646,6 +1646,7 @@
     obj.style.opacity = input_opacity;
     obj.innerHTML = input_innerHTML;
     obj.style.zIndex = input_zindex;
+    obj.style.wordWrap = "break-word";
     if (input_display==0)
       obj.style.display = "none";
     else
