@@ -568,7 +568,9 @@ function initial() {
   document.getElementById('codeWindow').style.height=(myHeight-250) +"px";
   document.getElementById('mySpace').style.left=(myWidth-440) +"px";
   document.getElementById('mySpace').style.height=myHeight +"px";
-  document.getElementById('mySpace').style.display="block";	
+  document.getElementById('mySpace').style.display="block";
+	
+  document.getElementById('blocklyDiv').style.zIndex = "-1";
 }
 	
 function hideMySpace(element) {
