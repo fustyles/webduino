@@ -421,7 +421,7 @@ function runCode() {
     for (var i=0;i<script_iframe_run.length;i++) {
       script=script+'var script = document.createElement("script"); script.type = "text/javascript"; script.src = "'+script_iframe_run[i]+'"; document.body.appendChild(script);';
     }
-    code = script+"var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';document.body.appendChild(div);" + code;
+    code = "async function webusbrun() {"+script+"var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';document.body.appendChild(div);" + code+"} webusbrun();";
     eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();");
     return false;
   }	
