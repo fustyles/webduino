@@ -19,6 +19,7 @@
         }
         port.onReceiveError = error => {
           console.error(error);
+          statusDisplay.textContent = error;
         };
       }, error => {
         statusDisplay.textContent = error;
