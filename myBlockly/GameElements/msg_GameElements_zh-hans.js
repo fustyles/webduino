@@ -182,4 +182,3 @@ Blockly.Msg.DIV_VALUE_SHOW = "值";
 Blockly.Msg.DIV_SET_SHOW = "设定";
 Blockly.Msg.DIV_GET_SHOW = "取得";
 Blockly.Msg.DIV_DELETE_SHOW = "删除";
-Blockly.Msg.DIV_ONCHANGE_SHOW = "改变文字后执行"; 
