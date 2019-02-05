@@ -1667,6 +1667,12 @@
         obj.style.width = input_value + "px";
       else if (input_property=="height")
         obj.style.height = input_value + "px";
+      else if (input_property=="borderstyle")
+        obj.style.borderStyle = input_value;
+      else if (input_property=="borderwidth")
+        obj.style.borderWidth = input_value + "px";
+      else if (input_property=="bordercolor")
+        obj.style.borderColor = input_value;      	    
       else if (input_property=="background")
         obj.style.background = input_value;
       else if (input_property=="color")
@@ -1705,6 +1711,12 @@
         return Number(obj.style.width.replace(/px/ig,""));
       else if (input_property=="height")
         return Number(obj.style.height.replace(/px/ig,""));
+      else if (input_property=="borderstyle")
+        return obj.style.borderStyle;
+      else if (input_property=="borderwidth")
+        return Number(obj.style.borderWidth.replace(/px/ig,""));
+      else if (input_property=="bordercolor")
+       return obj.style.borderColor;	    
       else if (input_property=="background")
         return obj.style.background;
       else if (input_property=="color")
