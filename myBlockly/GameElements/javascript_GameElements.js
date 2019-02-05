@@ -456,7 +456,9 @@ Blockly.JavaScript['elements_collision'] = function (block) {
   else if (value_element2_=="range")
     var obj2= 'gamerange_';
   else if (value_element2_=="text")
-    var obj2= 'gametext_';    
+    var obj2= 'gametext_';  
+  else if (value_element2_=="div")
+    var obj2= 'gamediv_';  
   var code = 'elements_collision("'+obj1+'",' + value_id1_ + ',"'+obj2+'",' + value_id2_ + ',"' + value_position_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
@@ -775,7 +777,9 @@ Blockly.JavaScript['element_event'] = function (block) {
   else if (element=="range")
     var obj="document.getElementById('gamerange_'+"+value_id_+")"; 
   else if (element=="text")
-    var obj="document.getElementById('gametext_'+"+value_id_+")";  
+    var obj="document.getElementById('gametext_'+"+value_id_+")"; 
+  else if (element=="div")
+    var obj="document.getElementById('gamediv_'+"+value_id_+")";  
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
  
@@ -807,6 +811,8 @@ Blockly.JavaScript['element_event_stop'] = function (block) {
     var obj="document.getElementById('gamerange_'+"+value_id_+")"; 
   else if (element=="text")
     var obj="document.getElementById('gametext_'+"+value_id_+")";  
+  else if (element=="div")
+    var obj="document.getElementById('gamediv_'+"+value_id_+")";   
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
 
