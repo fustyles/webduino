@@ -1651,7 +1651,7 @@
       obj.style.display = "none";
     else
       obj.style.display = "block";
-    //obj.draggable="true";
+    obj.draggable="true";
     obj.setAttribute("onclick", "javascript:onclickid_set(this);");
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('div/plain',event.target.id);");
     document.body.appendChild(obj);
