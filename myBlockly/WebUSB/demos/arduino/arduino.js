@@ -18,7 +18,7 @@
           statusDisplay.textContent = "Receive = "+textDecoder.decode(data);
         }
         port.onReceiveError = error => {
-          console.error(error);
+          //console.error(error);
           statusDisplay.textContent = error;
         };
       }, error => {
