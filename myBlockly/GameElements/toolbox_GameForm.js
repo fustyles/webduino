@@ -476,7 +476,7 @@ var catGameForm = '<xml><category name="%{BKY_GAMEFORM}" colour="%{BKY_GAMEFORM_
 '  <block type="div_create">'+ 
 '    <value name="id_">'+
 '      <block type="text">'+
-'        <field name="div"></field>'+
+'        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+     
 '    <value name="left_">'+
@@ -519,9 +519,9 @@ var catGameForm = '<xml><category name="%{BKY_GAMEFORM}" colour="%{BKY_GAMEFORM_
 '        <field name="NUM">1</field>'+
 '      </block>'+
 '    </value>'+    
-'    <value name="value_">'+  
+'    <value name="innerHTML_">'+  
 '      <block type="text">'+
-'        <field name="div"></field>'+
+'        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+       
 '    <value name="zindex_">'+
@@ -538,26 +538,26 @@ var catGameForm = '<xml><category name="%{BKY_GAMEFORM}" colour="%{BKY_GAMEFORM_
 '  <block type="div_set">'+
 '    <value name="id_">'+
 '      <block type="text">'+
-'        <field name="div"></field>'+
+'        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+     
 '    <value name="value_">'+
 '      <block type="text">'+
-'        <field name="div"></field>'+
+'        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+    
 '  </block>'+  
 '  <block type="div_get">'+
 '    <value name="id_">'+
 '      <block type="text">'+
-'        <field name="div"></field>'+
+'        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+     
 '  </block>'+     
 '  <block type="div_delete">'+
 '    <value name="id_">'+
 '      <block type="text">'+
-'        <field name="div"></field>'+
+'        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+     
 '  </block>'+  
