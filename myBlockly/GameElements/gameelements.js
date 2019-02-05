@@ -1632,8 +1632,7 @@
   function div_create(input_id,input_width,input_height,input_left,input_top,input_background,input_color,input_fontSize,input_opacity,input_innerHTML,input_zindex,input_display) {
     if (document.getElementById("gamediv_"+input_id)) 
       document.getElementById("gamediv_"+input_id).parentNode.removeChild(document.getElementById("gamediv_"+input_id));
-    var obj = document.createElement('input');
-    obj.type="div";
+    var obj = document.createElement('div');
     obj.id = "gamediv_"+input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
