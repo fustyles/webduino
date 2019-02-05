@@ -32,9 +32,9 @@
 
       if (text.value!="") {
         //console.log("send="+text.value);
-        const  Input = text.value + '\n';
+        const Command = text.value + '\n';
         text.value = "";
-        port.send(new TextEncoder("utf-8").encode(Input));
+        port.send(new TextEncoder("utf-8").encode(Command));
       }
     };
 
