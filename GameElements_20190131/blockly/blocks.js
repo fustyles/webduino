@@ -1455,9 +1455,8 @@ Blockly.Blocks['function_return'] = {
 
 Blockly.Blocks['time_delay'] = {
   init: function () {
-    this.appendValueInput("seconds")
-        .setCheck("Number")
-        .appendField(Blockly.Msg.TIME_DELAY_SHOW); 
+    this.appendDummyInput()
+      .appendField(Blockly.Msg.TIME_DELAY_SHOW); 
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
