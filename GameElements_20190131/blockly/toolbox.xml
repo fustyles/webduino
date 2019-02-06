@@ -1,4 +1,6 @@
-<category id="catGameElements"> 
+<category id="catGameElements">
+  <block type="time_delay">
+  </block>  
   <block type="body_set"> 
     <value name="value_">
       <block type="colour_picker">
