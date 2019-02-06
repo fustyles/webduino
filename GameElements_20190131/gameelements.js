@@ -839,7 +839,63 @@
     if (document.getElementById("gameimg_"+input_id))
       document.getElementById("gameimg_"+input_id).parentNode.removeChild(document.getElementById("gameimg_"+input_id));
   }   
-  
+
+  function elements_collision(element1,input_id1,element2,input_id2,input_position) {
+    if ((document.getElementById(element1+input_id1))&&(document.getElementById(element2+input_id2)))
+    {
+      var obj1 = document.getElementById(element1+input_id1).style;
+      var obj2 = document.getElementById(element2+input_id2).style;
+      var x1 = Number(obj1.left.replace(/px/ig,""));
+      var x1_w = Number(obj1.left.replace(/px/ig,"")) + Number(obj1.width.replace(/px/ig,""));
+      var y1 = Number(obj1.top.replace(/px/ig,""));
+      var y1_h = Number(obj1.top.replace(/px/ig,"")) + Number(obj1.height.replace(/px/ig,""));
+      var x2 = Number(obj2.left.replace(/px/ig,""));
+      var x2_w = Number(obj2.left.replace(/px/ig,"")) + Number(obj2.width.replace(/px/ig,""));
+      var y2 = Number(obj2.top.replace(/px/ig,""));
+      var y2_h = Number(obj2.top.replace(/px/ig,"")) + Number(obj2.height.replace(/px/ig,""));
+    
+      var state=0;
+      if ((((x2>=x1)&&(x2<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2>=x1)&&(x2<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h))))
+        state=1;
+      else if ((((x1>=x2)&&(x1<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1>=x2)&&(x1<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h))))
+        state=1;
+      else
+        state=0;  
+      
+      if (state==1&&input_position!="any") {
+        if (input_position=="up") {
+	  if (y1_h<=(y2+y2_h)/2||(y1_h-y2>=(y2_h-y2)/2&&y1<=y2))
+            return 1;
+	  else
+	    return 0;
+        }      
+        else if (input_position=="down") {
+	  if (y1>=(y2+y2_h)/2||(y2_h-y1>=(y2_h-y2)/2&&y1>=y2))
+            return 1;
+	  else
+	    return 0;      
+        }
+        else if (input_position=="left") {
+	  if (x1_w<=(x2+x2_w)/2||(x1_w-x2>=(x2_w-x2)/2&&x1<=x2))
+            return 1;
+	  else
+	    return 0;    
+        } 
+        else if (input_position=="right") {
+	  if (x1>=(x2+x2_w)/2||(x2_w-x1>=(x2_w-x2)/2&&x1>=x2))
+            return 1;
+	  else
+	    return 0;     
+        }
+	return 1;
+      }
+      else
+        return state; 
+    }
+    else
+      return 0;   
+  } 
+	
   function image_collision(input_id1,input_id2,input_position) {
     if ((document.getElementById("gameimg_"+input_id1))&&(document.getElementById("gameimg_"+input_id2)))
     {
@@ -969,6 +1025,16 @@
     return {width: img.width, height: img.height};
   }  
   
+  function mouse_coordinate_get_start() {       
+      document.onmousemove = function(e){  
+        e=e||window.event;
+        mouse_x = e.pageX;
+        mouse_y = e.pageY;
+        mouse_offsetx = e.offsetX;
+        mouse_offsety = e.offsetY;        
+      }	  
+  }
+
   function mouse_coordinate_get(input_property) {
     if (!document.onmousemove)
     {
@@ -1671,7 +1737,129 @@
     }
     else
       return 0;
-  }        
+  } 
+	
+  function div_create(input_id,input_width,input_height,input_left,input_top,input_borderstyle,input_borderwidth,input_bordercolor,input_background,input_color,input_fontSize,input_opacity,input_innerHTML,input_zindex,input_display) {
+    if (document.getElementById("gamediv_"+input_id)) 
+      document.getElementById("gamediv_"+input_id).parentNode.removeChild(document.getElementById("gamediv_"+input_id));
+    var obj = document.createElement('div');
+    obj.id = "gamediv_"+input_id;
+    obj.style.position = "absolute";
+    obj.style.left = input_left + 'px';
+    obj.style.top = input_top + 'px';
+    obj.style.width = input_width + 'px';
+    obj.style.height = input_height + 'px';
+    obj.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
+    obj.style.background = input_background;
+    obj.style.color = input_color;
+    obj.style.fontSize = input_fontSize + "px";
+    obj.style.opacity = input_opacity;
+    obj.innerHTML = input_innerHTML;
+    obj.style.zIndex = input_zindex;
+    obj.style.wordWrap = "break-word";
+    if (input_display==0)
+      obj.style.display = "none";
+    else
+      obj.style.display = "block";
+    obj.draggable="true";
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
+    obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('div/plain',event.target.id);");
+    document.body.appendChild(obj);
+  }
+
+  function div_set(input_id,input_property,input_value) {
+    if (document.getElementById("gamediv_"+input_id)) {
+	  var obj = document.getElementById("gamediv_"+input_id);
+      if (input_property=="left")
+        obj.style.left = input_value + "px";
+      else if (input_property=="top")
+        obj.style.top = input_value + "px";
+      else if (input_property=="width")
+        obj.style.width = input_value + "px";
+      else if (input_property=="height")
+        obj.style.height = input_value + "px";
+      else if (input_property=="borderstyle")
+        obj.style.borderStyle = input_value;
+      else if (input_property=="borderwidth")
+        obj.style.borderWidth = input_value + "px";
+      else if (input_property=="bordercolor")
+        obj.style.borderColor = input_value;      	    
+      else if (input_property=="background")
+        obj.style.background = input_value;
+      else if (input_property=="color")
+        obj.style.color = input_value;
+      else if (input_property=="fontsize")
+        obj.style.fontSize = input_value + "px";	    
+      else if (input_property=="opacity")
+        obj.style.opacity = input_value;    
+      else if (input_property=="innerHTML")
+        obj.innerHTML = input_value;      
+      else if (input_property=="zindex")
+        obj.style.zIndex = input_value;
+      else if (input_property=="display"){ 
+        if (input_value==1)
+          obj.style.display = "block";    
+        else if (input_value==0)
+          obj.style.display = "none";
+      }
+      else if (input_property=="position")
+        obj.style.position = input_value;		    
+      else if (input_property=="disabled")
+        obj.disabled = input_value;
+      else if (input_property=="draggable")
+        obj.draggable = input_value;		    
+    }
+  }
+
+  function div_get(input_id,input_property){
+    if (document.getElementById("gamediv_"+input_id)) {
+	  var obj = document.getElementById("gamediv_"+input_id);
+      if (input_property=="left")
+        return Number(obj.style.left.replace(/px/ig,""));
+      else if (input_property=="top")
+        return Number(obj.style.top.replace(/px/ig,""));
+      else if (input_property=="width")
+        return Number(obj.style.width.replace(/px/ig,""));
+      else if (input_property=="height")
+        return Number(obj.style.height.replace(/px/ig,""));
+      else if (input_property=="borderstyle")
+        return obj.style.borderStyle;
+      else if (input_property=="borderwidth")
+        return Number(obj.style.borderWidth.replace(/px/ig,""));
+      else if (input_property=="bordercolor")
+       return obj.style.borderColor;	    
+      else if (input_property=="background")
+        return obj.style.background;
+      else if (input_property=="color")
+        return obj.style.color;
+      else if (input_property=="fontsize")
+        return Number(obj.style.fontSize.replace(/px/ig,""));  	    
+      else if (input_property=="opacity")
+        return Number(obj.style.opacity);
+      else if (input_property=="innerHTML")
+        return obj.innerHTML;
+      else if (input_property=="zindex")
+        return obj.style.zIndex;
+      else if (input_property=="display")
+        return obj.style.display;
+      else if (input_property=="position")
+        return obj.style.position;		    
+      else if (input_property=="disabled")
+        return obj.disabled;
+      else if (input_property=="draggable")
+        return obj.draggable;
+      else if (input_property=='id')
+        return "gamediv_"+input_id;	    
+    }
+    else
+      return "";
+  }
+
+  function div_delete(input_id) {
+    if (document.getElementById("gamediv_"+input_id))
+      document.getElementById("gamediv_"+input_id).parentNode.removeChild(document.getElementById("gamediv_"+input_id));
+  }
+	
 
 function HextoRgb(color) {
   if (!color) return null;
@@ -1747,6 +1935,7 @@ function HextoRgb(color) {
   window.image_set = image_set;
   window.image_get = image_get;
   window.image_delete = image_delete;
+  window.elements_collision = elements_collision;
   window.image_collision = image_collision;
   window.image_boundary = image_boundary;
   window.image_boundary_collision = image_boundary_collision;
@@ -1756,6 +1945,7 @@ function HextoRgb(color) {
   window.image_onclick_get = image_onclick_get;
   window.image_Natural_get = image_Natural_get;
   window.mouse_coordinate_get = mouse_coordinate_get;
+  window.mouse_coordinate_get_start = mouse_coordinate_get_start;
   window.text_to_number = text_to_number;
   window.button_create = button_create;
   window.button_set = button_set;
@@ -1782,6 +1972,10 @@ function HextoRgb(color) {
   window.text_get = text_get;
   window.text_delete = text_delete;
   window.text_onclick_get = text_onclick_get;
+  window.div_create = div_create;
+  window.div_set = div_set;
+  window.div_get = div_get;
+  window.div_delete = div_delete;	
   window.HextoRgb = HextoRgb;
   window.body_set = body_set;
   
