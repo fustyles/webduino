@@ -1347,7 +1347,8 @@ Blockly.Blocks['document_timer_novar'] = {
     this.appendValueInput("intervals_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
-        .appendField(Blockly.Msg.DOCUMENT_TIMER_SHOW);     
+        .appendField(Blockly.Msg.DOCUMENT_TIMER_SHOW);
+    this.setInputsInline(true);    
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -1360,7 +1361,8 @@ Blockly.Blocks['document_timer_once_novar'] = {
     this.appendValueInput("intervals_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
-        .appendField(Blockly.Msg.DOCUMENT_TIMER_ONCE_SHOW);     
+        .appendField(Blockly.Msg.DOCUMENT_TIMER_ONCE_SHOW);
+    this.setInputsInline(true);    
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -1374,7 +1376,8 @@ Blockly.Blocks['document_timer'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
         .appendField(new Blockly.FieldVariable('fuTimer'), 'fuTimer_')
-        .appendField(Blockly.Msg.DOCUMENT_TIMER_SHOW);     
+        .appendField(Blockly.Msg.DOCUMENT_TIMER_SHOW);  
+    this.setInputsInline(true);    
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -1388,7 +1391,8 @@ Blockly.Blocks['document_timer_once'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
         .appendField(new Blockly.FieldVariable('fuTimerOnce'), 'fuTimerOnce_')
-        .appendField(Blockly.Msg.DOCUMENT_TIMER_ONCE_SHOW);     
+        .appendField(Blockly.Msg.DOCUMENT_TIMER_ONCE_SHOW);   
+    this.setInputsInline(true);    
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -1441,7 +1445,8 @@ Blockly.Blocks['function_return'] = {
   init: function () {
     this.appendValueInput("value_")
         .setCheck(null)
-        .appendField(Blockly.Msg.FUNCTION_RETURN_SHOW);    
+        .appendField(Blockly.Msg.FUNCTION_RETURN_SHOW);   
+    this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
@@ -1452,7 +1457,8 @@ Blockly.Blocks['time_delay'] = {
   init: function () {
     this.appendValueInput("seconds")
         .setCheck("Number")
-        .appendField(Blockly.Msg.TIME_DELAY_SHOW);    
+        .appendField(Blockly.Msg.TIME_DELAY_SHOW); 
+    this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
