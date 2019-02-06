@@ -404,6 +404,52 @@ Blockly.JavaScript['image_delete'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['elements_collision'] = function (block) {
+  var value_element1_ = block.getFieldValue('element1_');
+  var value_id1_ = Blockly.JavaScript.valueToCode(block, 'id1_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_element2_ = block.getFieldValue('element2_');
+  var value_id2_ = Blockly.JavaScript.valueToCode(block, 'id2_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_position_ = block.getFieldValue('position_');
+  if (value_element1_=="table")
+    var obj1= 'gametable_';
+  else if (value_element1_=="canvas")
+    var obj1= 'gamecanvas_';
+  else if (value_element1_=="image")
+    var obj1= 'gameimg_';
+  else if (value_element1_=="button")
+    var obj1= 'gamebutton_';
+  else if (value_element1_=="color")
+    var obj1= 'gamecolor_';
+  else if (value_element1_=="select")
+    var obj1= 'gameselect_';
+  else if (value_element1_=="range")
+    var obj1= 'gamerange_';
+  else if (value_element1_=="text")
+    var obj1= 'gametext_';   
+  else if (value_element1_=="div")
+    var obj1= 'gamediv_';     
+  if (value_element2_=="table")
+    var obj2= 'gametable_';
+  else if (value_element2_=="canvas")
+    var obj2= 'gamecanvas_';
+  else if (value_element2_=="image")
+    var obj2= 'gameimg_';
+  else if (value_element2_=="button")
+    var obj2= 'gamebutton_';
+  else if (value_element2_=="color")
+    var obj2= 'gamecolor_';
+  else if (value_element2_=="select")
+    var obj2= 'gameselect_';
+  else if (value_element2_=="range")
+    var obj2= 'gamerange_';
+  else if (value_element2_=="text")
+    var obj2= 'gametext_';  
+  else if (value_element2_=="div")
+    var obj2= 'gamediv_';  
+  var code = 'elements_collision("'+obj1+'",' + value_id1_ + ',"'+obj2+'",' + value_id2_ + ',"' + value_position_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['image_collision'] = function (block) {
   var value_id1_ = Blockly.JavaScript.valueToCode(block, 'id1_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_id2_ = Blockly.JavaScript.valueToCode(block, 'id2_', Blockly.JavaScript.ORDER_ATOMIC);
@@ -482,10 +528,29 @@ Blockly.JavaScript['image_resize'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['mouse_coordinate_get_start'] = function (block) {
+  var code = 'mouse_coordinate_get_start();\n';
+  return code;
+};
+
 Blockly.JavaScript['mouse_coordinate_get'] = function (block) {
   var value_property_ = block.getFieldValue('property_');
   var code = 'mouse_coordinate_get("' + value_property_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['document_timer_novar'] = function (block) {
+  var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
+  var value_intervals_ = Blockly.JavaScript.valueToCode(block, 'intervals_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'setInterval(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['document_timer_once_novar'] = function (block) {
+  var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
+  var value_intervals_ = Blockly.JavaScript.valueToCode(block, 'intervals_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'setTimeout(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
+  return code;
 };
 
 Blockly.JavaScript['document_timer'] = function (block) {
@@ -919,6 +984,51 @@ Blockly.JavaScript['text_onchange_do'] = function (block) {
     value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'gametext_'+value_id_+'.addEventListener("change", gametext_'+value_id_+'_onchange, true);\nasync function gametext_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\n';
+  return code;
+};
+
+Blockly.JavaScript['div_create'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_borderstyle_ = block.getFieldValue('borderstyle_');
+  var value_borderwidth_ = Blockly.JavaScript.valueToCode(block, 'borderwidth_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_bordercolor_ = Blockly.JavaScript.valueToCode(block, 'bordercolor_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_bordercolor_ = HextoRgb(value_bordercolor_);  //Color Hex to RGB
+  var value_background_ = Blockly.JavaScript.valueToCode(block, 'background_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_background_ = HextoRgb(value_background_);  //Color Hex to RGB
+  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
+  var value_fontsize_ = Blockly.JavaScript.valueToCode(block, 'fontsize_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_opacity_ = Blockly.JavaScript.valueToCode(block, 'opacity_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_innerHTML_ = Blockly.JavaScript.valueToCode(block, 'innerHTML_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_zindex_ = Blockly.JavaScript.valueToCode(block, 'zindex_', Blockly.JavaScript.ORDER_ATOMIC);    
+  var value_display_ = Blockly.JavaScript.valueToCode(block, 'display_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'div_create(' + value_id_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ',"'+ value_borderstyle_ + '",' + value_borderwidth_ + ',' + value_bordercolor_ + ',' + value_background_ + ',' + value_color_ + ',' + value_fontsize_ + ',' + value_opacity_ + ',' + value_innerHTML_ + ',' + value_zindex_ + ',' + value_display_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['div_set'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
+  var code = 'div_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['div_get'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'div_get(' + value_id_ + ',"' + value_property_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['div_delete'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'div_delete(' + value_id_ + ');\n';
   return code;
 };
 
