@@ -149,7 +149,7 @@ https://blocklypro.webduino.io/?demo=demo-area-01#k8md646wE0
 https://bit.webduino.io/blockly/#rybdVnw1NMKqk
 
 
-監看程式碼
+監看程式碼(開啟瀏覽器主控台觀看程式碼)
 https://fustyles.github.io/webduino/ShowCode_20181216/blockly.json
 [Smart]
 https://blocklypro.webduino.io/#7ggezB96Qa
