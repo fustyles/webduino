@@ -1152,13 +1152,13 @@ Blockly.Blocks['image_delete'] = {
 Blockly.Blocks['elements_collision'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(new Blockly.FieldDropdown([["window","window"],["document","document"],["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"],["div","div"]]), "element1_");    
+      .appendField(new Blockly.FieldDropdown([["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"],["div","div"]]), "element1_");    
   this.appendValueInput("id1_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID_SHOW); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AND_SHOW)
-      .appendField(new Blockly.FieldDropdown([["window","window"],["document","document"],["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"],["div","div"]]), "element2_");    
+      .appendField(new Blockly.FieldDropdown([["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"],["div","div"]]), "element2_");    
   this.appendValueInput("id2_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID_SHOW);    
