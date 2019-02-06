@@ -6,6 +6,18 @@
       </block>
     </value>    
   </block>  
+  <block type="image_boundary">
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">500</field>
+      </block>
+    </value> 
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">500</field>
+      </block>
+    </value>    
+  </block>   
   <block type="color_hextorgb">
     <value name="color_">
       <block type="colour_picker">
@@ -170,19 +182,7 @@
         <field name="BOOL">TRUE</field>
       </block>
     </value>     
-  </block>
-  <block type="image_boundary">
-    <value name="left_">
-      <block type="math_number">
-        <field name="NUM">500</field>
-      </block>
-    </value> 
-    <value name="top_">
-      <block type="math_number">
-        <field name="NUM">500</field>
-      </block>
-    </value>    
-  </block>  
+  </block> 
   <block type="image_collision">
     <value name="id1_">
       <block type="text">
