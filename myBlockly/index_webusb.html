@@ -208,6 +208,8 @@
 		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/deeplearning.js',
 		'https://fustyles.github.io/webduino/myBlockly/ESP8266/esp8266.js',
 		'https://fustyles.github.io/webduino/myBlockly/WebUSB/webusb.js',
+		'https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/serial.js',
+		'https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/arduino/arduino.js',
 		'https://fustyles.github.io/webduino/myBlockly/ThingSpeak/thingspeak.js',
 		'https://fustyles.github.io/webduino/myBlockly/IFTTT/ifttt.js',
 		'https://fustyles.github.io/webduino/myBlockly/LINE/line.js',
@@ -418,9 +420,10 @@ function runCode() {
     for (var i=0;i<script_iframe_run.length;i++) {
       script=script+'var script = document.createElement("script"); script.type = "text/javascript"; script.src = "'+script_iframe_run[i]+'"; document.body.appendChild(script);';
     }
-    code = "async function webusbrun() {"+script+"var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';document.body.appendChild(div);" + code+"} webusbrun();";
-    eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();");
-    return false;
+    //code = "async function webusbrun() {"+script+"var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';document.body.appendChild(div);" + code+"} webusbrun();";
+    //eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();");
+    //return false;
+    code= script + "var obj = document.createElement('input');obj.type='text';obj.id = 'text';document.body.appendChild(obj);"+code;
   }	
 	
   //If Speech Recognition is used,it must execute "Export HTML" to run on main window.
