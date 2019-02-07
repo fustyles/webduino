@@ -226,19 +226,19 @@
         </tr>
         <tr>
           <td align="left" valign="center">
-            <button onclick="exportCODE();">Export Code</button>
-            <button onclick="exportHTML();">Export HTML</button>
-            <button onclick="exportBlocks();">Backup Blocks(XML)</button>
+            <button id="btnexportcode" onclick="exportCODE();">Export Code</button>
+            <button id="btnexporthtml" onclick="exportHTML();">Export HTML</button>
+            <button id="btnexportblocks" onclick="exportBlocks();">Backup Blocks(XML)</button>
           </td>
         </tr>
         <tr>
           <td align="left" valign="center">
-            <button onclick="importBlocks()">Import Blocks(XML)</button><input id="myfile"  type="file" onchange ="importBlocksFile(this);" accept=".txt,.xml">
+            <button id="btnimportblocks" onclick="importBlocks()">Import Blocks(XML)</button><input id="myfile"  type="file" onchange ="importBlocksFile(this);" accept=".txt,.xml">
           </td>
         </tr>
         <tr>
           <td align="left" valign="center">
-            <button onclick="demoWorkspace.clear();">Clear Workspace</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkbackup" onclick="exportBlocks();var backupTimer = setInterval(function(){if (document.getElementById('chkbackup').checked) exportBlocks();}, 300000);">Backup Blocks (every 5 min)
+            <button id="btnclearworkspace" onclick="demoWorkspace.clear();">Clear Workspace</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkbackup" onclick="exportBlocks();var backupTimer = setInterval(function(){if (document.getElementById('chkbackup').checked) exportBlocks();}, 300000);">Backup Blocks (every 5 min)
           </td>
         </tr>	      
         <tr>
