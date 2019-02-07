@@ -214,66 +214,37 @@
         <tr>
           <td>
             <button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button>
-            left<input type="text" id="ifrLeft" size="1" value="300" onfocus="this.select()">top<input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()">width<input type="text" id="ifrWidth" size="1" value="600" onfocus="this.select()">height<input type="text" id="ifrHeight" size="1" value="600" onfocus="this.select()">
+            <span id="left">left</span><input type="text" id="ifrLeft" size="1" value="300" onfocus="this.select()"><span id="top">top</span><input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()"><span id="width">width</span><input type="text" id="ifrWidth" size="1" value="600" onfocus="this.select()"><span id="height">height</span><input type="text" id="ifrHeight" size="1" value="600" onfocus="this.select()">
           </td>
         </tr>
         <tr>
           <td align="left" valign="center">
-            <button onclick="exportCODE();">Export Code</button>
-            <button onclick="exportHTML();">Export HTML</button>
-            <button onclick="exportBlocks();">Backup Blocks(XML)</button>
+            <button id="btnexportcode" onclick="exportCODE();">Export Code</button>
+            <button id="btnexporthtml" onclick="exportHTML();">Export HTML</button>
+            <button id="btnexportblocks" onclick="exportBlocks();">Backup Blocks(XML)</button>
           </td>
         </tr>
         <tr>
           <td align="left" valign="center">
-            <button onclick="importBlocks()">Import Blocks(XML)</button><input id="myfile"  type="file" onchange ="importBlocksFile(this);" accept=".txt,.xml">
+            <button id="btnimportblocks" onclick="importBlocks()">Import Blocks(XML)</button><input id="myfile"  type="file" onchange ="importBlocksFile(this);" accept=".txt,.xml">
           </td>
         </tr>
         <tr>
           <td align="left" valign="center">
-            <button onclick="demoWorkspace.clear();">Clear Workspace</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkbackup" onclick="exportBlocks();var backupTimer = setInterval(function(){if (document.getElementById('chkbackup').checked) exportBlocks();}, 300000);">Backup Blocks (every 5 min)
+            <button id="btnclearworkspace" onclick="demoWorkspace.clear();">Clear Workspace</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkbackup" onclick="exportBlocks();var backupTimer = setInterval(function(){if (document.getElementById('chkbackup').checked) exportBlocks();}, 300000);"><span id="backuptimer">Backup Blocks (every 5 min)</span>
           </td>
         </tr>	      
         <tr>
           <td align="left" valign="center">
-            Example
+            <span id="example">Example</span>
             <select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
               <option value=""></option>
-	      <option value="Game_Tetris">Game_Tetris</option>
-              <option value="Game_TicTacToe">Game_TicTacToe</option>
-	      <option value="Game_Bounce">Game_Bounce</option>
-	      <option value="Game_Hamster">Game_Hamster</option>
-	      <option value="Game_Puzzle">Game_Puzzle</option>
-	      <option value="GameAuxiliary_example_001">GameAuxiliary_example_001</option>
-	      <option value="GameAuxiliary_example_002">GameAuxiliary_example_002</option>
-	      <option value="GameAuxiliary_example_003">GameAuxiliary_example_003</option>		    
-	      <option value="GameCanvas_example_001">GameCanvas_example_001</option>
-	      <option value="GameCanvas_example_002">GameCanvas_example_002</option>
-	      <option value="GameCanvas_example_003">GameCanvas_example_003</option>
-	      <option value="MatrixLED_example_001">MatrixLED_example_001</option>
-	      <option value="MatrixLED_example_002">MatrixLED_example_002</option>	
-	      <option value="MatrixLED_example_003">MatrixLED_example_003</option>		    
-              <option value="ShowText_example_001">ShowText_example_001</option>
-              <option value="Keyboard_example_001">Keyboard_example_001</option>
-              <option value="Keyboard_example_002">Keyboard_example_002</option>		    
-              <option value="Instruction_example_001">Instruction_example_001</option>
-              <option value="OpenURL_example_001">OpenURL_example_001</option>
-              <option value="TaiwanAirQuality_example_001">TaiwanAirQuality_example_001</option>
-	      <option value="SpeechRecognition_example_001">SpeechRecognition_example_001</option>
-	      <option value="DeepLearning_example_001">DeepLearning_example_001</option>
-	      <option value="ESP8266_example_001">ESP8266_example_001</option>
-	      <option value="ESP8266_example_002">ESP8266_example_002</option>
-	      <option value="ESP8266_example_003">ESP8266_example_003</option>
-	      <option value="ESP8266_example_004">ESP8266_example_004</option>	
-	      <option value="ESP8266_example_005">ESP8266_example_005</option>		    
-	      <option value="ThingSpeak_example_001">ThingSpeak_example_001</option>
-	      <option value="HTChart_example_001">HTChart_example_001</option>
             </select>
           </td>
         </tr>
         <tr>
           <td>
-            Language
+            <span id="language">Language</span>
             <select onchange="var url=location.href.split('?')[0];location.href=url+'?lang='+this.value;">
               <option value=""></option>
               <option value="en">en</option>
@@ -285,11 +256,11 @@
         <tr>
           <td>
             <textarea id="codeWindow" style="width:350px;height:400px;" readonly ondblclick="showcodeWindow(this,'big');" onfocusout="showcodeWindow(this,'small');"></textarea>
-          </td>
+	  </td>
         </tr>
         <tr>
           <td align="center">
-            Fu Chung-Yi (Taiwan)  Update Date : 2019-2-2
+            <div id='showText'>
           </td>
         </tr>
       </table>
@@ -525,7 +496,22 @@ function initial() {
   document.getElementById('codeWindow').style.height=(myHeight-200) +"px";
   document.getElementById('mySpace').style.left=(myWidth-440) +"px";
   document.getElementById('mySpace').style.height=myHeight +"px";
-  document.getElementById('mySpace').style.display="block";	
+  document.getElementById('mySpace').style.display="block";
+	
+  document.getElementById('btnRun1').innerHTML = Blockly.Msg.btnRun1_TEXT;
+  document.getElementById('btnRun2').innerHTML = Blockly.Msg.btnRun2_TEXT;
+  document.getElementById('btnexportcode').innerHTML = Blockly.Msg.btnexportcode_TEXT;
+  document.getElementById('btnexporthtml').innerHTML = Blockly.Msg.btnexporthtml_TEXT;
+  document.getElementById('btnexportblocks').innerHTML = Blockly.Msg.btnexportblocks_TEXT;
+  document.getElementById('btnimportblocks').innerHTML = Blockly.Msg.btnimportblocks_TEXT;
+  document.getElementById('btnclearworkspace').innerHTML = Blockly.Msg.btnclearworkspace_TEXT;	
+  document.getElementById('left').innerHTML = Blockly.Msg.left_TEXT;
+  document.getElementById('top').innerHTML = Blockly.Msg.top_TEXT;
+  document.getElementById('width').innerHTML = Blockly.Msg.width_TEXT;
+  document.getElementById('height').innerHTML = Blockly.Msg.height_TEXT;
+  document.getElementById('backuptimer').innerHTML = Blockly.Msg.backuptimer_TEXT;
+  document.getElementById('example').innerHTML = Blockly.Msg.example_TEXT;
+  document.getElementById('language').innerHTML = Blockly.Msg.language_TEXT;	
 }
 	
 function hideMySpace(element) {
