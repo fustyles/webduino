@@ -10,7 +10,7 @@
 
     function connect() {
       port.connect().then(() => {
-        console.log(port.device_);
+        console.log(port.device_.configurations);
         statusDisplay.textContent = 'Device is connected.';
         connectButton.textContent = 'Disconnect to Arduino(USB)';
 
