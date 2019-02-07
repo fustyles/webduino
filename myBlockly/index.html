@@ -449,7 +449,8 @@ function exportCODE() {
 	
 function exportHTML() {
   try {
-    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
+    //var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
+    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
     var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
     for (var i=0;i<script_iframe_run.length;i++)  {
       iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
@@ -466,7 +467,8 @@ function exportHTML() {
     
     var link = document.createElement('a');
     link.download="project.html";
-    link.href="data:application/octet-stream;utf-8," + encodeURI(iframe_code);
+    //link.href="data:application/octet-stream;utf-8," + encodeURI(iframe_code);
+    link.href="data:application/octet-stream;utf-8," + encodeURIComponent(iframe_code);	  
     document.body.appendChild(link);
     link.click();
     link.remove();
