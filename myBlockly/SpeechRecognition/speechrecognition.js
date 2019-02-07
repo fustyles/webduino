@@ -11,6 +11,8 @@ if ('webkitSpeechRecognition' in window) {
   var recognition = new webkitSpeechRecognition();
   recognition.continuous = true;
   recognition.interimResults = true;
+  recognition.start();  // 2019-2-7
+  
   recognition.onstart = function() {
     recognizing = true;
   };
