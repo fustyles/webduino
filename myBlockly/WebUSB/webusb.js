@@ -14,10 +14,12 @@ function webusb_getResponse() {
       json = eval(document.getElementById("status").innerHTML);
       //console.log(json);
       for (var i=0;i<json.length;i++) {
-        webusb_Response.push(json[i]["data"]+"");
+        webusb_Response.push(json[i]["data"]);
       }
+    } else {
+      webusb_Response.push("");
     }
-   
+    
     var res = webusb_Response;
     webusb_Response=[];
     return res;
