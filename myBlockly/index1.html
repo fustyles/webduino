@@ -467,7 +467,6 @@ function initial() {
   document.getElementById('gameimg_3').style.display="block";
   document.getElementById('gameimg_3').style.left = (myWidth-400) +"px";
   document.getElementById('gameimg_3').style.top = (myHeight-300) +"px";
-  hideMySpace(document.getElementById('hide'));
 	
   document.getElementById('hide').value = Blockly.Msg.hide_TEXT = "切換";
   document.getElementById('btnRun1').value = Blockly.Msg.btnRun1_TEXT = "執行";
@@ -477,6 +476,8 @@ function initial() {
   document.getElementById('btnexportblocks').value = Blockly.Msg.btnexportblocks_TEXT = "匯出積木檔";
   document.getElementById('btnimportblocks').value = Blockly.Msg.btnimportblocks_TEXT = "匯入積木檔";
   document.getElementById('btnclearworkspace').value = Blockly.Msg.btnclearworkspace_TEXT = "清除工作區";	
+	
+  hideMySpace(document.getElementById('hide'));	
 }
 	
 function hideMySpace(element) {
