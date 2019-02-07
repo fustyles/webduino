@@ -318,7 +318,7 @@ Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace)
 XmldomToWorkspace('<xml xmlns="http://www.w3.org/1999/xhtml"><variables><variable type="" id="*y8#n1_0le~9QzoknCxH">angle</variable></variables><block type="variables_set" id="*YTL|=lfdbzT$u%(E+w1" x="51" y="35"><field name="VAR" id="*y8#n1_0le~9QzoknCxH" variabletype="">angle</field><value name="VALUE"><block type="math_number" id="#Cd@={VEq$XCwTu?4H4Z"><field name="NUM">0</field></block></value><next><block type="controls_repeat_ext" id="KaL;21.LsVC`R:^52It5"><value name="TIMES"><block type="math_number" id="ftIWUsJ24{%{B6h+4XE~"><field name="NUM">18</field></block></value><statement name="DO"><block type="image_move" id="Iy#E(=uk~+c(*ZYMnyNQ"><field name="property_">right</field><value name="id_"><block type="text" id="0I+Z{4$m5~V*rZXbX}-]"><field name="TEXT">1</field></block></value><value name="step_"><block type="math_number" id="1aAksr*qQBUA-@W%|v-,"><field name="NUM">10</field></block></value><next><block type="move_to_coordinate" id="I*}{u:Cxqs_gL0^i^ux|"><value name="id_"><block type="text" id="*`#OJhE~|;U6RK@kV-tT"><field name="TEXT">2</field></block></value><value name="left_"><block type="math_random_int" id="oFxS.usriShu?iCTCvlj"><value name="FROM"><block type="math_number" id="vqKx_58:$r{h]jzC1;6J"><field name="NUM">200</field></block></value><value name="TO"><block type="math_number" id="EauCtEKRIo8HWmwS)iom"><field name="NUM">500</field></block></value></block></value><value name="top_"><block type="math_random_int" id="?PMs(b{vd5N0F.6#g}]U"><value name="FROM"><block type="math_number" id="Hq2|Er3q}2ZZ?+]5sRX%"><field name="NUM">200</field></block></value><value name="TO"><block type="math_number" id="rz0B9qO!E[J{u/)duKh1"><field name="NUM">500</field></block></value></block></value><next><block type="variables_set" id="@)xwt|8B,2w3F%CP}8py"><field name="VAR" id="*y8#n1_0le~9QzoknCxH" variabletype="">angle</field><value name="VALUE"><block type="math_arithmetic" id="r^B-HByltG9ej,p,1dFL"><field name="OP">ADD</field><value name="A"><block type="variables_get" id="F9(qSX[%BprNXNh-IhI*"><field name="VAR" id="*y8#n1_0le~9QzoknCxH" variabletype="">angle</field></block></value><value name="B"><block type="math_number" id="^Bqr-7=,5Z*8;dY3x`6L"><field name="NUM">20</field></block></value></block></value><next><block type="rotatez_degrees" id="Y%b3:^QDxmxiQtt*6A9-"><value name="id_"><block type="text" id="2a,`o`9J3|6.VV|-(UuZ"><field name="TEXT">3</field></block></value><value name="degrees_"><block type="variables_get" id="Ho|w4~Pyhyg6kcoF?LW9"><field name="VAR" id="*y8#n1_0le~9QzoknCxH" variabletype="">angle</field></block></value><next><block type="time_delay" id="njJ7-PLf:VLrm8o}!m;r"><value name="seconds"><block type="math_number" id="0x{y_YuY@^]wDxbq{tl,"><field name="NUM">0.2</field></block></value></block></next></block></next></block></next></block></next></block></statement><next><block type="keyboard_listener" id="JpK7a6EvOLq~L;ORmJr$"><field name="event">keydown</field><statement name="statement"><block type="controls_if" id="{zBw9MK?5gq;#([Pix^g"><mutation elseif="3"></mutation><value name="IF0"><block type="keyboard_keycode" id="o;ZM$9OBz0tkuGm(-+eE"><field name="keycode">38</field></block></value><statement name="DO0"><block type="image_move" id="g/Y-OC:|CXqH/u1!/FOw"><field name="property_">up</field><value name="id_"><block type="text" id="_nIkn4A_dPo117G}!k9;"><field name="TEXT">1</field></block></value><value name="step_"><block type="math_number" id="$^6JE-JG@V`ic(Y/z9~x"><field name="NUM">10</field></block></value></block></statement><value name="IF1"><block type="keyboard_keycode" id="E=t@H0C5T#|#j)V[z@Q_"><field name="keycode">40</field></block></value><statement name="DO1"><block type="image_move" id="+!A;r-X?scQ6(kUC,6$)"><field name="property_">down</field><value name="id_"><block type="text" id=";+fE0h3W{n%n~%.fMI$K"><field name="TEXT">1</field></block></value><value name="step_"><block type="math_number" id="tiGhHjG)VS+FXhc6@9u1"><field name="NUM">10</field></block></value></block></statement><value name="IF2"><block type="keyboard_keycode" id="!e/8$QkZ;g-aBIOmvZ@w"><field name="keycode">37</field></block></value><statement name="DO2"><block type="image_move" id="J@}U`i6V(:DlQ/gAAS(P"><field name="property_">left</field><value name="id_"><block type="text" id="3ecEEp1=8N+g[AC0ev80"><field name="TEXT">1</field></block></value><value name="step_"><block type="math_number" id="8,J!dSu)yw}1A+XTLNY:"><field name="NUM">10</field></block></value></block></statement><value name="IF3"><block type="keyboard_keycode" id="3`?yy3!aKmU0cRY1PxFT"><field name="keycode">39</field></block></value><statement name="DO3"><block type="image_move" id="FMH-]v$F-HO)Q/p3h)g="><field name="property_">right</field><value name="id_"><block type="text" id=":$^[(GSYemoCbbyC@q.z"><field name="TEXT">1</field></block></value><value name="step_"><block type="math_number" id="2167YPGjtM~=K?w3``5Q"><field name="NUM">10</field></block></value></block></statement></block></statement></block></next></block></next></block></xml>');
 	
 function XmldomToWorkspace(example) {	
-  var xml = Blockly.Xml.textToDom(example.replace(/%23/g,"#"));
+  var xml = Blockly.Xml.textToDom(example);
   demoWorkspace.clear();
   Blockly.Xml.domToWorkspace(xml, demoWorkspace);
 }
@@ -335,7 +335,7 @@ function runCode() {
   window.LoopTrap = 1000;
   Blockly.JavaScript.INFINITE_LOOP_TRAP =
   'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-  var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
+  var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
   eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();");
 
   return;
@@ -368,7 +368,7 @@ function runCode() {
     document.getElementById("iframe_run").style.width = document.getElementById("ifrWidth").value + "px";
     document.getElementById("iframe_run").style.height = document.getElementById("ifrHeight").value + "px";
     document.getElementById("runWindow").style.display = "block";
-    document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
+    document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURIComponent(iframe_code);
     document.getElementById("iframe_run").focus();
   } catch (e) {
     alert(e);
@@ -394,23 +394,23 @@ function closeWindow() {
 	
 function exportCODE() {
   try {
-    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
+    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
 	  
     var link = document.createElement('a');
     link.download="code.txt";
-    link.href="data:application/octet-stream;utf-8," + encodeURI(code);
+    link.href="data:application/octet-stream;utf-8," + encodeURIComponent(code);
     document.body.appendChild(link);
     link.click();
     link.remove();
   } catch (e) {
-    window.location.href="data:application/octet-stream;utf-8," + encodeURI(code);
+    window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(code);
     alert(e);
   }
 }
 	
 function exportHTML() {
   try {
-    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
+    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
     var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
     for (var i=0;i<script_iframe_run.length;i++)  {
       iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
@@ -427,12 +427,12 @@ function exportHTML() {
     
     var link = document.createElement('a');
     link.download="project.html";
-    link.href="data:application/octet-stream;utf-8," + encodeURI(iframe_code);
+    link.href="data:application/octet-stream;utf-8," + encodeURIComponent(iframe_code);
     document.body.appendChild(link);
     link.click();
     link.remove();
   } catch (e) {
-    window.location.href="data:application/octet-stream;utf-8," + encodeURI(iframe_code);
+    window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(iframe_code);
     alert(e);
   }
 }
@@ -440,16 +440,16 @@ function exportHTML() {
 function exportBlocks() {
   try {
     var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-    var xml_text = Blockly.Xml.domToText(xml).replace(/#/g,"%23");
+    var xml_text = Blockly.Xml.domToText(xml);
 	  
     var link = document.createElement('a');
     link.download="project.txt";
-    link.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
+    link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
     document.body.appendChild(link);
     link.click();
     link.remove();
   } catch (e) {
-    window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text.replace(/#/g,"%23"));
+    window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
     alert(e);
   }
 }
@@ -457,7 +457,7 @@ function exportBlocks() {
 function importBlocks() {
   try {
     var xml_text = prompt("Please enter XML code", "");
-    var xml = Blockly.Xml.textToDom(xml_text.replace(/%23/g,"#"));
+    var xml = Blockly.Xml.textToDom(xml_text);
     demoWorkspace.clear();
     Blockly.Xml.domToWorkspace(xml, demoWorkspace);
   } catch (e) {
@@ -470,7 +470,7 @@ function importBlocksFile(element) {
     var file = element.files[0];
     var fr = new FileReader();           
     fr.onload = function (event) {
-      var xml = Blockly.Xml.textToDom(event.target.result.replace(/%23/g,"#"));
+      var xml = Blockly.Xml.textToDom(event.target.result);
       demoWorkspace.clear();
       Blockly.Xml.domToWorkspace(xml, demoWorkspace);
     };
