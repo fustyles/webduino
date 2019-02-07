@@ -26,3 +26,8 @@ function webusb_getResponse() {
 function webusb_clearData() {
  webusb_Response=[];
 }
+
+function webusb_sendCustomCommand(cmd) {
+  Response=[];
+  document.getElementById("text").value = cmd;
+}
