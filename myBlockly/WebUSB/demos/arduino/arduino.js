@@ -10,6 +10,7 @@
 
     function connect() {
       port.connect().then(() => {
+        console.log(port);
         statusDisplay.textContent = 'Device is connected.';
         connectButton.textContent = 'Disconnect to Arduino(USB)';
 
@@ -63,11 +64,10 @@
       if (ports.length == 0) {
         statusDisplay.textContent = 'No device found.';
       } else {
-        //statusDisplay.textContent = 'Select your device.';
-        console.log(ports);
-        statusDisplay.textContent = 'Connect to first device.';
-        port = ports[0];
-        connect();
+        statusDisplay.textContent = 'Select your device.';
+        //statusDisplay.textContent = 'Connect to '+ports[0].productName;
+        //port = ports[0];
+        //connect();
       }
     });
   });
