@@ -214,16 +214,10 @@
   <tr>
     <td valign="center">
       <br><br><input type="button" id="hide" value="  >  " onclick="hideMySpace(this);"><br><br>
-      <button id="btnRun2" style="display:none" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
+      <button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
     </td>
     <td>
       <table id="myFeatures">
-        <tr>
-          <td>
-            <button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button>
-            <span id="left">left</span><input type="text" id="ifrLeft" size="1" value="300" onfocus="this.select()"><span id="top">top</span><input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()"><span id="width">width</span><input type="text" id="ifrWidth" size="1" value="600" onfocus="this.select()"><span id="height">height</span><input type="text" id="ifrHeight" size="1" value="600" onfocus="this.select()">
-          </td>
-        </tr>
         <tr>
           <td align="left" valign="center">
             <button id="btnexportcode" onclick="exportCODE();">Export Code</button>
@@ -239,6 +233,11 @@
         <tr>
           <td align="left" valign="center">
             <button id="btnclearworkspace" onclick="demoWorkspace.clear();">Clear Workspace</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkbackup" onclick="exportBlocks();var backupTimer = setInterval(function(){if (document.getElementById('chkbackup').checked) exportBlocks();}, 300000);"><span id="backuptimer">Backup Blocks (every 5 min)</span>
+          </td>
+        </tr>	  
+        <tr>
+          <td>
+            <span id="left">left</span><input type="text" id="ifrLeft" size="1" value="300" onfocus="this.select()"><span id="top">top</span><input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()"><span id="width">width</span><input type="text" id="ifrWidth" size="1" value="600" onfocus="this.select()"><span id="height">height</span><input type="text" id="ifrHeight" size="1" value="600" onfocus="this.select()">
           </td>
         </tr>	      
         <tr>
@@ -506,7 +505,6 @@ function initial() {
   hideMySpace(document.getElementById('hide'));	
 	
   document.getElementById('btnRun1').innerHTML = Blockly.Msg.btnRun1_TEXT;
-  document.getElementById('btnRun2').innerHTML = Blockly.Msg.btnRun2_TEXT;
   document.getElementById('btnexportcode').innerHTML = Blockly.Msg.btnexportcode_TEXT;
   document.getElementById('btnexporthtml').innerHTML = Blockly.Msg.btnexporthtml_TEXT;
   document.getElementById('btnexportblocks').innerHTML = Blockly.Msg.btnexportblocks_TEXT;
@@ -529,13 +527,11 @@ function hideMySpace(element) {
     var myHeight = document.body.clientHeight;	
   if (document.getElementById('myFeatures').style.display != 'none') { 
     document.getElementById('myFeatures').style.display = 'none';
-    document.getElementById('btnRun2').style.display = 'block';
     element.value='  <  ';
     document.getElementById('mySpace').style.left=(myWidth-40) +"px";
     document.getElementById('blocklyDiv').style.width=(myWidth-70) +"px";
   } else {
     document.getElementById('myFeatures').style.display = 'block';
-    document.getElementById('btnRun2').style.display = 'none';
     element.value='  >  ';
     document.getElementById('mySpace').style.left=(myWidth-440) +"px";
     document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
