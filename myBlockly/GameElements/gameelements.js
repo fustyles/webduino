@@ -107,10 +107,22 @@
         return obj.style.borderStyle;
       else if (input_property=="borderwidth")
         return Number(obj.style.borderWidth.replace(/px/ig,""));
-      else if (input_property=="bordercolor")
-       return obj.style.borderColor;
-      else if (input_property=="background")
-        return obj.style.background;
+      else if (input_property=="bordercolor") {
+       var rgb = obj.style.borderColor;
+       var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
+       var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+       var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+       var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+       return "#"+r+g+b;
+      }
+      else if (input_property=="background") {
+        var rgb = obj.style.background;
+        var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
+        var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+        var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+        var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+        return "#"+r+g+b;
+      }
       else if (input_property=="backgroundimage") {
         var url=obj.style.backgroundImage;
         return url.substring(5,url.length-2);
@@ -257,8 +269,14 @@
         return obj.style.width.replace(/px/ig,"");
       else if (input_property=="height")
         return obj.style.height.replace(/px/ig,"");        
-      else if (input_property=="background")
-       return obj.style.background;
+      else if (input_property=="background") {
+       var rgb = obj.style.background;
+       var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
+       var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+       var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+       var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+       return "#"+r+g+b;
+      }
       else if (input_property=="innerHTML")
         return obj.innerHTML;
       else if (input_property=="text") {
@@ -1058,8 +1076,14 @@
         return Number(obj.style.height.replace(/px/ig,""));
       else if (input_property=="opacity")
         return Number(obj.style.opacity);
-      else if (input_property=="background") 
-        return obj.style.background;
+      else if (input_property=="background")  {
+        var rgb=obj.style.background;
+        var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
+        var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+        var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+        var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+        return "#"+r+g+b;
+      }
       else if (input_property=="value")
         return obj.value;
       else if (input_property=="zindex")
@@ -1315,10 +1339,22 @@
         return Number(obj.style.width.replace(/px/ig,""));
       else if (input_property=="height")
         return Number(obj.style.height.replace(/px/ig,""));
-      else if (input_property=="background")
-        return obj.style.background;
-      else if (input_property=="color")
-        return obj.style.color;
+      else if (input_property=="background") {
+       var rgb = obj.style.background;
+       var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
+       var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+       var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+       var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+       return "#"+r+g+b;
+      }
+      else if (input_property=="color") {
+       var rgb = obj.style.color;
+       var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
+       var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+       var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+       var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+       return "#"+r+g+b;
+      }
       else if (input_property=="fontsize")
         return Number(obj.style.fontSize.replace(/px/ig,""));  	    	    
       else if (input_property=="opacity")
@@ -1577,10 +1613,22 @@
         return Number(obj.style.width.replace(/px/ig,""));
       else if (input_property=="height")
         return Number(obj.style.height.replace(/px/ig,""));
-      else if (input_property=="background")
-        return obj.style.background;
-      else if (input_property=="color")
-        return obj.style.color;
+      else if (input_property=="background") {
+       var rgb = obj.style.background;
+       var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
+       var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+       var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+       var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+       return "#"+r+g+b;
+      }
+      else if (input_property=="color") {
+       var rgb = obj.style.color;
+       var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
+       var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+       var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+       var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+       return "#"+r+g+b;
+      }
       else if (input_property=="fontsize")
         return Number(obj.style.fontSize.replace(/px/ig,""));  	    
       else if (input_property=="opacity")
