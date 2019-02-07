@@ -73,7 +73,6 @@ Blockly.JavaScript['matrix_led_marquee_reverse'] = function(block) {
 
 Blockly.JavaScript['matrix_led_color'] = function(block) {
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'value_color_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
   var code = 'MatrixLed_color('+ value_color_ +');\n';
   return code;
 };
@@ -165,7 +164,7 @@ Blockly.JavaScript['matrix_led_matrix_color'] = function(block) {
   var L24 = block.getFieldValue('L24');
   var L25 = block.getFieldValue('L25');
   var led = L01+'","'+L02+'","'+L03+'","'+L04+'","'+L05+'","'+L06+'","'+L07+'","'+L08+'","'+L09+'","'+L10+'","'+L11+'","'+L12+'","'+L13+'","'+L14+'","'+L15+'","'+L16+'","'+L17+'","'+L18+'","'+L19+'","'+L20+'","'+L21+'","'+L22+'","'+L23+'","'+L24+'","'+L25;
-  var code = 'MatrixLed_matrix_color(["'+led.replace(/#/g,"%23")+'"]);\n';
+  var code = 'MatrixLed_matrix_color(["'+led+'"]);\n';
   return code;
 };
 
@@ -236,7 +235,7 @@ Blockly.JavaScript['matrix_led_matrixcode_color'] = function(block) {
   var L24 = block.getFieldValue('L24');
   var L25 = block.getFieldValue('L25');
   var led = L01+L02+L03+L04+L05+L06+L07+L08+L09+L10+L11+L12+L13+L14+L15+L16+L17+L18+L19+L20+L21+L22+L23+L24+L25;
-  var code = '"'+led.replace(/#/g,"%23")+'"';
+  var code = '"'+led+'"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -247,7 +246,7 @@ Blockly.JavaScript['matrix_led_matrixcode_line_color'] = function(block) {
   var L04 = block.getFieldValue('L04');
   var L05 = block.getFieldValue('L05');
   var led = L01+L02+L03+L04+L05;
-  var code = '"'+led.replace(/#/g,"%23")+'"';
+  var code = '"'+led+'"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -267,7 +266,7 @@ Blockly.JavaScript['matrix_led_color_on'] = function(block) {
   var value_x_on_ = Blockly.JavaScript.valueToCode(block, 'value_x_on_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_on_ = Blockly.JavaScript.valueToCode(block, 'value_y_on_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_color_on_ = Blockly.JavaScript.valueToCode(block, 'value_color_on_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'MatrixLed_color_on('+value_x_on_+','+value_y_on_+','+value_color_on_.replace(/#/g,"%23")+');\n';
+  var code = 'MatrixLed_color_on('+value_x_on_+','+value_y_on_+','+value_color_on_+');\n';
   return code;
 };
 
@@ -358,6 +357,6 @@ Blockly.JavaScript['matrix_led_getcolor'] = function(block) {
 
 Blockly.JavaScript['matrix_led_backcolor'] = function(block) {
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'value_color_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'MatrixLed_backcolor('+ value_color_.replace(/#/g,"%23") +');\n';
+  var code = 'MatrixLed_backcolor('+ value_color_ +');\n';
   return code;
 };
