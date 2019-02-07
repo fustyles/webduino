@@ -5,6 +5,21 @@
 goog.provide('Blockly.Msg.en');
 goog.require('Blockly.Msg');
 
+Blockly.Msg.btnRun1_TEXT = "Run";
+Blockly.Msg.btnRun2_TEXT = "Run";
+Blockly.Msg.btnexportcode_TEXT = "Export Code";
+Blockly.Msg.btnexporthtml_TEXT = "Export HTML";
+Blockly.Msg.btnexportblocks_TEXT = "Export Blocks(XML)";
+Blockly.Msg.btnimportblocks_TEXT = "Import Blocks(XML)";
+Blockly.Msg.btnclearworkspace_TEXT = "Clear Workspace";
+Blockly.Msg.left_TEXT = "Left";
+Blockly.Msg.top_TEXT = "Top";
+Blockly.Msg.width_TEXT = "Width";
+Blockly.Msg.height_TEXT = "Height";
+Blockly.Msg.backuptimer_TEXT = "Backup Blocks (every 5 min)";
+Blockly.Msg.example_TEXT = "Example";
+Blockly.Msg.language_TEXT = "Language";
+
 Blockly.Msg["CATVARIABLES"] = "VARIABLES";
 Blockly.Msg["CATFUNCTIONS"] = "FUNCTIONS";
 Blockly.Msg["CATLOGIC"] = "LOGIC";
