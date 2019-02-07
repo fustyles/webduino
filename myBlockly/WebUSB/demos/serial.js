@@ -8,7 +8,8 @@ var serial = {};
       return devices.map(device => new serial.Port(device));
     });
   };
-
+  
+/*
   serial.requestPort = function() {
     const filters = [
       { 'vendorId': 0x2341, 'productId': 0x8036 },
@@ -22,16 +23,15 @@ var serial = {};
       device => new serial.Port(device)
     );
   }
+*/
 
-/*
   serial.requestPort = function() {
     const filters = [];
     return navigator.usb.requestDevice({ 'filters': filters }).then(
       device => new serial.Port(device)
     );
   }
-*/
-  
+
   serial.Port = function(device) {
     this.device_ = device;
     this.interfaceNumber_ = 2;  // original interface number of WebUSB Arduino demo
