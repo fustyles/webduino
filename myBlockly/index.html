@@ -215,11 +215,6 @@
     <td>
       <table id="myFeatures">
         <tr>
-          <td>
-            <span id="left">left</span><input type="text" id="ifrLeft" size="1" value="300" onfocus="this.select()"><span id="top">top</span><input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()"><span id="width">width</span><input type="text" id="ifrWidth" size="1" value="600" onfocus="this.select()"><span id="height">height</span><input type="text" id="ifrHeight" size="1" value="600" onfocus="this.select()">
-          </td>
-        </tr>
-        <tr>
           <td align="left" valign="center">
             <button id="btnexportcode" onclick="exportCODE();">Export Code</button>
             <button id="btnexporthtml" onclick="exportHTML();">Export HTML</button>
@@ -234,6 +229,11 @@
         <tr>
           <td align="left" valign="center">
             <button id="btnclearworkspace" onclick="demoWorkspace.clear();">Clear Workspace</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkbackup" onclick="exportBlocks();var backupTimer = setInterval(function(){if (document.getElementById('chkbackup').checked) exportBlocks();}, 300000);"><span id="backuptimer">Backup Blocks (every 5 min)</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span id="left">left</span><input type="text" id="ifrLeft" size="1" value="300" onfocus="this.select()"><span id="top">top</span><input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()"><span id="width">width</span><input type="text" id="ifrWidth" size="1" value="600" onfocus="this.select()"><span id="height">height</span><input type="text" id="ifrHeight" size="1" value="600" onfocus="this.select()">
           </td>
         </tr>	      
         <tr>
