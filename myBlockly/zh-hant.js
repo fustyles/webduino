@@ -5,6 +5,15 @@
 goog.provide('Blockly.Msg.zh.hant');
 goog.require('Blockly.Msg');
 
+Blockly.Msg.hide_TEXT = "切換";
+Blockly.Msg.btnRun1_TEXT = "執行";
+Blockly.Msg.btnRun2_TEXT = "執行";
+Blockly.Msg.btnexportcode_TEXT = "匯出程式碼";
+Blockly.Msg.btnexporthtml_TEXT = "匯出網頁檔";
+Blockly.Msg.btnexportblocks_TEXT = "匯出積木檔";
+Blockly.Msg.btnimportblocks_TEXT = "匯入積木檔";
+Blockly.Msg.btnclearworkspace_TEXT = "清除工作區";
+
 Blockly.Msg["CATVARIABLES"] = "變數";
 Blockly.Msg["CATFUNCTIONS"] = "流程";
 Blockly.Msg["CATLOGIC"] = "邏輯";
