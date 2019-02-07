@@ -114,61 +114,6 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '  </block>'+  
 '  <block type="music_delete">'+ 
 '  </block>'+        
-'  <block type="color_hextorgb">'+
-'    <value name="color_">'+
-'      <block type="colour_picker">'+
-'       <field name="COLOUR">#ff0000</field>'+
-'     </block>'+
-'    </value>'+     
-'  </block>'+ 
-'  <block type="color_hextorgb">'+
-'    <value name="color_">'+
-'      <block type="colour_random">'+
-'     </block>'+
-'    </value>'+     
-'  </block>'+      
-'  <block type="color_hextorgb">'+
-'    <value name="color_">'+
-'      <block type="colour_rgb" id="~:cvP%,`n_{%23dgQNT=G|" x="222" y="93">'+
-'        <value name="RED">'+
-'          <block type="math_number" id="F-%*wH]f,^W0B3(UADA-">'+
-'            <field name="NUM">100</field>'+
-'          </block>'+
-'        </value>'+
-'        <value name="GREEN">'+
-'          <block type="math_number" id=";FX7DY9fUJg!1sC:~*-j">'+
-'            <field name="NUM">50</field>'+
-'          </block>'+
-'        </value>'+
-'        <value name="BLUE">'+
-'          <block type="math_number" id=",sFPNSlB?~qk,vHJ9rO?">'+
-'            <field name="NUM">0</field>'+
-'          </block>'+
-'        </value>'+
-'      </block>'+
-'    </value>'+     
-'  </block>'+ 
-'<block type="color_hextorgb" id="6Nn(m:}$P303Rr=AsiP9" x="41" y="37">'+
-'	<value name="color_">'+
-'		<block type="colour_blend" id="(ec%23123jY5HWe/G@@$ro">'+
-'			<value name="COLOUR1">'+
-'				<block type="colour_picker" id="j9BOR;4D,ygU]nZRCBQk">'+
-'				<field name="COLOUR">#ff0000</field>'+
-'				</block>'+
-'			</value>'+
-'			<value name="COLOUR2">'+
-'				<block type="colour_picker" id="R}Ag5juIem]qfP%[=F9N">'+
-'				<field name="COLOUR">#3333ff</field>'+
-'				</block>'+
-'			</value>'+
-'			<value name="RATIO">'+
-'				<block type="math_number" id="FotbO*W2k-rT7(l7?GI=">'+
-'				<field name="NUM">0.5</field>'+
-'				</block>'+
-'			</value>'+
-'		</block>'+
-'	</value>'+
-'</block>'+    
 '  <block type="async_function">'+
 '    <value name="name_">'+
 '      <block type="text">'+
