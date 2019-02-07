@@ -5,6 +5,22 @@
 goog.provide('Blockly.Msg.zh.hans');
 goog.require('Blockly.Msg');
 
+Blockly.Msg.hide_TEXT = "切换";
+Blockly.Msg.btnRun1_TEXT = "执行";
+Blockly.Msg.btnRun2_TEXT = "执行";
+Blockly.Msg.btnexportcode_TEXT = "汇出程式码";
+Blockly.Msg.btnexporthtml_TEXT = "汇出网页档";
+Blockly.Msg.btnexportblocks_TEXT = "汇出积木档(XML)";
+Blockly.Msg.btnimportblocks_TEXT = "汇入积木档(XML)";
+Blockly.Msg.btnclearworkspace_TEXT = "清除工作区";
+Blockly.Msg.left_TEXT = "靠左";
+Blockly.Msg.top_TEXT = "靠上";
+Blockly.Msg.width_TEXT = "宽度";
+Blockly.Msg.height_TEXT = "高度";
+Blockly.Msg.backuptimer_TEXT = "定时备份积木档(每5分钟)";
+Blockly.Msg.example_TEXT = "范例";
+Blockly.Msg.language_TEXT = "语言";
+
 Blockly.Msg["CATVARIABLES"] = "变数";
 Blockly.Msg["CATFUNCTIONS"] = "流程";
 Blockly.Msg["CATLOGIC"] = "逻辑";
