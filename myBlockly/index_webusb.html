@@ -470,7 +470,7 @@ function exportCODE() {
     var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
 	  
     var link = document.createElement('a');
-    link.download="code.txt";
+    link.download="code.js";
     link.href="data:application/octet-stream;utf-8," + encodeURIComponent(code);
     document.body.appendChild(link);
     link.click();
@@ -516,7 +516,7 @@ function exportBlocks() {
     var xml_text = Blockly.Xml.domToText(xml);
 	  
     var link = document.createElement('a');
-    link.download="project.txt";
+    link.download="project.xml";
     link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
     document.body.appendChild(link);
     link.click();
