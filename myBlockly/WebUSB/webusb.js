@@ -16,8 +16,6 @@ function webusb_getResponse() {
       for (var i=0;i<json.length;i++) {
         webusb_Response.push(json[i]["data"]+"");
       }
-    } else {
-      webusb_Response.push(document.getElementById("status").innerHTML);
     }
    
     var res = webusb_Response;
