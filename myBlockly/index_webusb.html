@@ -414,7 +414,9 @@ function runCode() {
   //If WebUSB is used,it must run on main window.
   if (xml_text.indexOf("webusb")!=-1) {
     for (var i=0;i<script_iframe_run.length;i++) {
-      document.write("\<script src='"+script_iframe_run[i]+"'\>\<\/script>");
+      var script = document.createElement('script');
+      script.src = script_iframe_run[i];
+      document.getElementsByTagName('head')[0].appendChild(script);
     }	  
     code = "async function webusbrun() {var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';document.body.appendChild(div);" + code+"} webusbrun();";	
     eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();");
