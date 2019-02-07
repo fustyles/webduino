@@ -17,7 +17,7 @@ function webusb_getResponse() {
       }
       document.getElementById("status").innerHTML = " ";
     } else {
-      webusb_Response.push("");
+      webusb_Response.push(null);
     }
     
     var res = webusb_Response;
