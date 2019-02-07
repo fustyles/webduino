@@ -6,6 +6,7 @@
     let statusDisplay = document.querySelector('#status');
     let response = document.querySelector('#response');
     let text = document.querySelector('#text');
+    let send = document.querySelector('#send');
     let port;
 
     function connect() {
