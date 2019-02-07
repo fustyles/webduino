@@ -5,13 +5,11 @@ Blockly.JavaScript['table_create'] = function (block) {
   var value_borderstyle_ = block.getFieldValue('borderstyle_');
   var value_borderwidth_ = Blockly.JavaScript.valueToCode(block, 'borderwidth_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_bordercolor_ = Blockly.JavaScript.valueToCode(block, 'bordercolor_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_bordercolor_ = HextoRgb(value_bordercolor_);  //Color Hex to RGB
   var value_trcount_ = Blockly.JavaScript.valueToCode(block, 'trcount_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_tdcount_ = Blockly.JavaScript.valueToCode(block, 'tdcount_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_bgcolor_ = Blockly.JavaScript.valueToCode(block, 'bgcolor_', Blockly.JavaScript.ORDER_ATOMIC); 
-  value_bgcolor_ = HextoRgb(value_bgcolor_);  //Color Hex to RGB
   var value_zindex_ = Blockly.JavaScript.valueToCode(block, 'zindex_', Blockly.JavaScript.ORDER_ATOMIC);    
   var value_display_ = Blockly.JavaScript.valueToCode(block, 'display_', Blockly.JavaScript.ORDER_ATOMIC);  
   var code = 'table_create(' + value_id_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ',' + value_trcount_ + ',' + value_tdcount_ + ',"'+ value_borderstyle_ + '",' + value_borderwidth_ + ',' + value_bordercolor_ + ',' + value_bgcolor_ + ',' + value_zindex_ + ',' + value_display_ + ');\n';
@@ -22,7 +20,6 @@ Blockly.JavaScript['table_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'table_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -55,7 +52,6 @@ Blockly.JavaScript['table_td_set'] = function (block) {
   var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'table_td_set(' + value_id_ + ','+ value_x_ + ',' + value_y_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -65,7 +61,6 @@ Blockly.JavaScript['table_border_set'] = function (block) {
   var value_borderstyle_ = block.getFieldValue('borderstyle_');
   var value_borderwidth_ = Blockly.JavaScript.valueToCode(block, 'borderwidth_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_bordercolor_ = Blockly.JavaScript.valueToCode(block, 'bordercolor_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_bordercolor_ = HextoRgb(value_bordercolor_);  //Color Hex to RGB
   var code = 'table_border_set(' + value_id_ + ',"'+ value_borderstyle_ + '",' + value_borderwidth_ + ',' + value_bordercolor_ + ');\n';
   return code;
 };
@@ -77,7 +72,6 @@ Blockly.JavaScript['table_td_border_set'] = function (block) {
   var value_borderstyle_ = block.getFieldValue('borderstyle_');
   var value_borderwidth_ = Blockly.JavaScript.valueToCode(block, 'borderwidth_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_bordercolor_ = Blockly.JavaScript.valueToCode(block, 'bordercolor_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_bordercolor_ = HextoRgb(value_bordercolor_);  //Color Hex to RGB
   var code = 'table_td_border_set(' + value_id_ + ','+ value_x_ + ',' + value_y_ + ',"'+ value_borderstyle_ + '",' + value_borderwidth_ + ',' + value_bordercolor_ + ');\n';
   return code;
 };
@@ -141,7 +135,6 @@ Blockly.JavaScript['table_td_insert_text'] = function (block) {
   var value_fontname_ = Blockly.JavaScript.valueToCode(block, 'fontname_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_fontsize_ = Blockly.JavaScript.valueToCode(block, 'fontsize_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
   var code = 'table_td_insert_text(' + value_id_ + ','+ value_x_ + ',' + value_y_ + ',' + value_text_+ ',' + value_fontname_ + ',' + value_fontsize_ + ',' + value_color_+ ');\n';
   return code;
 };
@@ -211,7 +204,6 @@ Blockly.JavaScript['canvas_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'canvas_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -231,7 +223,6 @@ Blockly.JavaScript['canvas_line'] = function (block) {
   var value_x1_ = Blockly.JavaScript.valueToCode(block, 'x1_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y1_ = Blockly.JavaScript.valueToCode(block, 'y1_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
   var value_rotate_ = Blockly.JavaScript.valueToCode(block, 'rotate_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_globalAlpha_ = Blockly.JavaScript.valueToCode(block, 'globalAlpha_', Blockly.JavaScript.ORDER_ATOMIC);  
   var code = 'canvas_line(' + value_id_ + ',' + value_linewidth_ + ',' + value_x0_ + ','+ value_y0_ + ',' + value_x1_ + ',' + value_y1_ + ',' + value_color_ + ',' + value_rotate_ + ',' + value_globalAlpha_ + ');\n';
@@ -247,7 +238,6 @@ Blockly.JavaScript['canvas_rect'] = function (block) {
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_fill_ = Blockly.JavaScript.valueToCode(block, 'fill_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
   var value_rotate_ = Blockly.JavaScript.valueToCode(block, 'rotate_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_globalAlpha_ = Blockly.JavaScript.valueToCode(block, 'globalAlpha_', Blockly.JavaScript.ORDER_ATOMIC);    
   var code = 'canvas_rect(' + value_id_ + ',' + value_linewidth_ + ',' + value_x0_ + ','+ value_y0_ + ',' + value_width_ + ',' + value_height_ + ',' + value_fill_ + ',' + value_color_ + ',' + value_rotate_ + ',' + value_globalAlpha_ + ');\n';
@@ -265,7 +255,6 @@ Blockly.JavaScript['canvas_arc'] = function (block) {
   var value_counterclockwise_ = Blockly.JavaScript.valueToCode(block, 'counterclockwise_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_fill_ = Blockly.JavaScript.valueToCode(block, 'fill_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
   var value_rotate_ = Blockly.JavaScript.valueToCode(block, 'rotate_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_globalAlpha_ = Blockly.JavaScript.valueToCode(block, 'globalAlpha_', Blockly.JavaScript.ORDER_ATOMIC);    
   var code = 'canvas_arc(' + value_id_ + ',' + value_linewidth_ + ',' + value_x0_ + ','+ value_y0_ + ',' + value_r_ + ',' + value_sAngle_ + ',' + value_eAngle_ + ',' + value_counterclockwise_ + ',' + value_fill_ + ',' + value_color_ + ',' + value_rotate_ + ',' + value_globalAlpha_ + ');\n';
@@ -304,7 +293,6 @@ Blockly.JavaScript['canvas_text'] = function (block) {
   var value_textalign_ = block.getFieldValue('textalign_');
   var value_fill_ = Blockly.JavaScript.valueToCode(block, 'fill_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
   var value_rotate_ = Blockly.JavaScript.valueToCode(block, 'rotate_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_globalAlpha_ = Blockly.JavaScript.valueToCode(block, 'globalAlpha_', Blockly.JavaScript.ORDER_ATOMIC);    
   var code = 'canvas_text(' + value_id_ + ',' + value_text_ + ',' + value_x0_ + ','+ value_y0_ + ',' + value_fontname_ + ','+ value_fontsize_ + ',"' + value_textalign_ + '",'+ value_fill_ + ',' + value_color_ + ',' + value_rotate_ + ',' + value_globalAlpha_ + ');\n';
@@ -321,7 +309,6 @@ Blockly.JavaScript['canvas_quadraticcurve'] = function (block) {
   var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_linewidth_ = Blockly.JavaScript.valueToCode(block, 'linewidth_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
   var value_fill_ = Blockly.JavaScript.valueToCode(block, 'fill_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_rotate_ = Blockly.JavaScript.valueToCode(block, 'rotate_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_globalAlpha_ = Blockly.JavaScript.valueToCode(block, 'globalAlpha_', Blockly.JavaScript.ORDER_ATOMIC);    
@@ -341,7 +328,6 @@ Blockly.JavaScript['canvas_beziercurve'] = function (block) {
   var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_linewidth_ = Blockly.JavaScript.valueToCode(block, 'linewidth_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
   var value_fill_ = Blockly.JavaScript.valueToCode(block, 'fill_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_rotate_ = Blockly.JavaScript.valueToCode(block, 'rotate_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_globalAlpha_ = Blockly.JavaScript.valueToCode(block, 'globalAlpha_', Blockly.JavaScript.ORDER_ATOMIC);    
@@ -401,7 +387,6 @@ Blockly.JavaScript['image_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'image_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -689,7 +674,6 @@ Blockly.JavaScript['button_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'button_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -830,7 +814,6 @@ Blockly.JavaScript['colorpicker_create'] = function (block) {
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_opacity_ = Blockly.JavaScript.valueToCode(block, 'opacity_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_value_=value_value_.replace(/#/g,"%23");
   var value_zindex_ = Blockly.JavaScript.valueToCode(block, 'zindex_', Blockly.JavaScript.ORDER_ATOMIC);    
   var value_display_ = Blockly.JavaScript.valueToCode(block, 'display_', Blockly.JavaScript.ORDER_ATOMIC);  
   var code = 'colorpicker_create(' + value_id_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ',' + value_opacity_ + ',' + value_value_ + ',' + value_zindex_ + ',' + value_display_ + ');\n';
@@ -841,7 +824,6 @@ Blockly.JavaScript['colorpicker_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_value_=value_value_.replace(/#/g,"%23");
   var code = 'colorpicker_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -875,9 +857,7 @@ Blockly.JavaScript['select_create'] = function (block) {
   var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_background_ = Blockly.JavaScript.valueToCode(block, 'background_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_background_ = HextoRgb(value_background_);  //Color Hex to RGB
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
   var value_fontsize_ = Blockly.JavaScript.valueToCode(block, 'fontsize_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_opacity_ = Blockly.JavaScript.valueToCode(block, 'opacity_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_option_ = Blockly.JavaScript.valueToCode(block, 'option_', Blockly.JavaScript.ORDER_ATOMIC);  
@@ -892,7 +872,6 @@ Blockly.JavaScript['select_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'select_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -940,7 +919,6 @@ Blockly.JavaScript['range_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'range_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -974,9 +952,7 @@ Blockly.JavaScript['text_create'] = function (block) {
   var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_background_ = Blockly.JavaScript.valueToCode(block, 'background_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_background_ = HextoRgb(value_background_);  //Color Hex to RGB
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
   var value_fontsize_ = Blockly.JavaScript.valueToCode(block, 'fontsize_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_opacity_ = Blockly.JavaScript.valueToCode(block, 'opacity_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);  
@@ -990,7 +966,6 @@ Blockly.JavaScript['text_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'text_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
@@ -1026,11 +1001,8 @@ Blockly.JavaScript['div_create'] = function (block) {
   var value_borderstyle_ = block.getFieldValue('borderstyle_');
   var value_borderwidth_ = Blockly.JavaScript.valueToCode(block, 'borderwidth_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_bordercolor_ = Blockly.JavaScript.valueToCode(block, 'bordercolor_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_bordercolor_ = HextoRgb(value_bordercolor_);  //Color Hex to RGB
   var value_background_ = Blockly.JavaScript.valueToCode(block, 'background_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_background_ = HextoRgb(value_background_);  //Color Hex to RGB
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_color_ = HextoRgb(value_color_);  //Color Hex to RGB
   var value_fontsize_ = Blockly.JavaScript.valueToCode(block, 'fontsize_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_opacity_ = Blockly.JavaScript.valueToCode(block, 'opacity_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_innerHTML_ = Blockly.JavaScript.valueToCode(block, 'innerHTML_', Blockly.JavaScript.ORDER_ATOMIC);  
@@ -1044,7 +1016,6 @@ Blockly.JavaScript['div_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
   var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
-  value_value_ = HextoRgb(value_value_);  //Color Hex to RGB
   var code = 'div_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
