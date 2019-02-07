@@ -504,6 +504,7 @@ function initial() {
   document.getElementById('gameimg_3').style.top = (myHeight-300) +"px";
   hideMySpace(document.getElementById('hide'));	
 	
+  document.getElementById('btnRun').innerHTML = Blockly.Msg.btnRun1_TEXT;
   document.getElementById('btnRun1').innerHTML = Blockly.Msg.btnRun1_TEXT;
   document.getElementById('btnexportcode').innerHTML = Blockly.Msg.btnexportcode_TEXT;
   document.getElementById('btnexporthtml').innerHTML = Blockly.Msg.btnexporthtml_TEXT;
@@ -516,7 +517,10 @@ function initial() {
   document.getElementById('height').innerHTML = Blockly.Msg.height_TEXT;
   document.getElementById('backuptimer').innerHTML = Blockly.Msg.backuptimer_TEXT;
   document.getElementById('example').innerHTML = Blockly.Msg.example_TEXT;
-  document.getElementById('language').innerHTML = Blockly.Msg.language_TEXT;
+  document.getElementById('language').innerHTML = Blockly.Msg.language_TEXT;	
+  document.getElementById('btndrag').innerHTML = Blockly.Msg.btndrag_TEXT;
+  document.getElementById('btnstopcode').innerHTML = Blockly.Msg.btnstopcode_TEXT;
+  document.getElementById('btnclosewindow').innerHTML = Blockly.Msg.btnclosewindow_TEXT;
 }
 	
 function hideMySpace(element) {
