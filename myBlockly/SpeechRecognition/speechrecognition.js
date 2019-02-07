@@ -26,7 +26,7 @@ if ('webkitSpeechRecognition' in window) {
     if (ignore_onend) return;
     if (!final_transcript) return;
     console.log("restart");
-    recognition.start();
+    recognition.start();  //2019-2-7
   };
   recognition.onresult = function(event) {
     var interim_transcript = '';
@@ -39,8 +39,10 @@ if ('webkitSpeechRecognition' in window) {
     }
     final_transcript = capitalize(final_transcript);
     Recognition_interim = linebreak(interim_transcript);
-    if (Recognition_interim=='')
+    if (Recognition_interim=='') {
       Recognition_final = linebreak(final_transcript);
+      recognition.start();  //2019-2-7
+    }
     else
       document.getElementById("showText").innerHTML = Recognition_interim;
   };
