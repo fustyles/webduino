@@ -336,8 +336,9 @@ function runCode() {
   Blockly.JavaScript.INFINITE_LOOP_TRAP =
   'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
-  //WebUSB
-  //eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();");
+  eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();");
+
+  return;
 	
   var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
   for (var i=0;i<script_iframe_run.length;i++)  {
