@@ -68,3 +68,9 @@ Blockly.JavaScript['webusb_clearresponse'] = function(block) {
   var code = "webusb_clearData();\n";
   return code;
 };
+
+Blockly.JavaScript['webusb_custom_cmd'] = function(block) {
+  var value_cmd = Blockly.JavaScript.valueToCode(block, 'cmd', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = "webusb_sendCustomCommand("+value_cmd+");\n";
+  return code;
+};
