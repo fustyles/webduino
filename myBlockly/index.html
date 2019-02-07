@@ -465,7 +465,7 @@ function exportHTML() {
     iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
     
     var link = document.createElement('a');
-    link.download="project.html";\
+    link.download="project.html";
     link.href="data:application/octet-stream;utf-8," + encodeURIComponent(iframe_code);	  
     document.body.appendChild(link);
     link.click();
