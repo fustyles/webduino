@@ -271,7 +271,7 @@ var catSystem = '<xml>'+
 '    <category name="%{BKY_CATCOLOUR}" colour="%{BKY_COLOUR_HUE}">'+
 '    <block type="colour_picker">'+
 '    <field name="COLOUR">#ff0000</field>'+
-'    </block>'+ 
+'    </block>'+
 '    <block type="color_hextorgb">'+
 '    <value name="color_">'+
 '    <block type="colour_picker">'+
@@ -279,14 +279,8 @@ var catSystem = '<xml>'+
 '    </block>'+ 
 '    </value>'+    
 '    </block>'+     
-'    <block type="color_hextorgb">'+
-'    <value name="color_">'+
 '    <block type="colour_random">'+
 '    </block>'+
-'    </value>'+    
-'    </block>'+    
-'    <block type="color_hextorgb">'+
-'    <value name="color_">'+
 '    <block type="colour_rgb" id="~:cvP%,`n_{%23dgQNT=G|" x="222" y="93">'+
 '    <value name="RED">'+
 '    <block type="math_number" id="F-%*wH]f,^W0B3(UADA-">'+
@@ -304,10 +298,6 @@ var catSystem = '<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
-'    </value>'+    
-'    </block>'+ 
-'    <block type="color_hextorgb" id="6Nn(m:}$P303Rr=AsiP9" x="41" y="37">'+
-'    <value name="color_">'+
 '    <block type="colour_blend" id="(ec%23123jY5HWe/G@@$ro">'+
 '    <value name="COLOUR1">'+
 '    <block type="colour_picker" id="j9BOR;4D,ygU]nZRCBQk">'+
@@ -325,7 +315,5 @@ var catSystem = '<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
-'    </value>'+
-'    </block>'+    
 '    </category>'+
 '</xml>';
