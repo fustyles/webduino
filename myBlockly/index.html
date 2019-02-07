@@ -488,7 +488,7 @@ function exportBlocks() {
     link.click();
     link.remove();
   } catch (e) {
-    window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text.replace(/#/g,"%23"));
+    window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
     alert(e);
   }
 }
