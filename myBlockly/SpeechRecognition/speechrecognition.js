@@ -25,7 +25,8 @@ if ('webkitSpeechRecognition' in window) {
     recognizing = false;
     if (ignore_onend) return;
     if (!final_transcript) return;
-    //startButton(event);
+    console.log("restart");
+    startButton(event);
   };
   recognition.onresult = function(event) {
     var interim_transcript = '';
