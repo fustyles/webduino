@@ -6,8 +6,8 @@ goog.provide('Blockly.Msg.zh.hant');
 goog.require('Blockly.Msg');
 
 Blockly.Msg.hide_TEXT = "切換";
+Blockly.Msg.btnRun_TEXT = "執行";
 Blockly.Msg.btnRun1_TEXT = "執行";
-Blockly.Msg.btnRun2_TEXT = "執行";
 Blockly.Msg.btnexportcode_TEXT = "匯出程式碼";
 Blockly.Msg.btnexporthtml_TEXT = "匯出網頁檔";
 Blockly.Msg.btnexportblocks_TEXT = "匯出積木檔(XML)";
@@ -20,6 +20,9 @@ Blockly.Msg.height_TEXT = "高度";
 Blockly.Msg.backuptimer_TEXT = "定時備份積木檔(每5分鐘)";
 Blockly.Msg.example_TEXT = "範例";
 Blockly.Msg.language_TEXT = "語言";
+Blockly.Msg.btndrag_TEXT = "拖曳視窗";
+Blockly.Msg.btnstopcode_TEXT = "停止執行";
+Blockly.Msg.btnclosewindow_TEXT = "關閉視窗";
 
 Blockly.Msg["CATVARIABLES"] = "變數";
 Blockly.Msg["CATFUNCTIONS"] = "流程";
