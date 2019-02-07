@@ -395,14 +395,6 @@ function showCode() {
   var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
   if (code=="") code="//Please open this site in Google Chrome Browser.\n//You can double click on the textarea to enlarge.";
   document.getElementById('codeWindow').innerHTML = code;
-  /*
-  var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-  var xml_text = Blockly.Xml.domToText(xml);
-  if (xml_text.indexOf("webusb")!=-1)
-    document.getElementById("btnUSB").style.display = "block";
-  else
-    document.getElementById("btnUSB").style.display = "none"; 
-  */
 }
 demoWorkspace.addChangeListener(showCode);
 	
@@ -426,10 +418,9 @@ function runCode() {
     for (var i=0;i<script_iframe_run.length;i++) {
       script=script+'var script = document.createElement("script"); script.type = "text/javascript"; script.src = "'+script_iframe_run[i]+'"; document.body.appendChild(script);';
     }
-    //code = "async function webusbrun() {"+script+"var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';document.body.appendChild(div);" + code+"} webusbrun();";
-    //eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();");
-    //return false;
-    code= script + "var obj = document.createElement('input');obj.type='text';obj.id = 'text';document.body.appendChild(obj);"+code;
+    code = "async function webusbrun() {"+script+"var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';document.body.appendChild(div);" + code+"} webusbrun();";
+    eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();");
+    return false;
   }	
 	
   //If Speech Recognition is used,it must execute "Export HTML" to run on main window.
