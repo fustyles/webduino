@@ -321,7 +321,7 @@
   
   function MatrixLed_marquee_color(input_marquee_) {
     input_marquee_=input_marquee_.toString();
-    input_marquee_=input_marquee_.replace(/%23/g,"#");
+    input_marquee_=input_marquee_;
     MatrixLedmarqueecolorcodeonce = "";
     window.clearInterval(marqueetimeid);
     if (input_marquee_.length==175)
@@ -338,7 +338,7 @@
   
   function MatrixLed_marquee_color_once(input_marquee_) {
     input_marquee_=input_marquee_.toString();
-    input_marquee_=input_marquee_.replace(/%23/g,"#");
+    input_marquee_=input_marquee_;
     MatrixLedmarqueeinitial=input_marquee_;
     window.clearInterval(marqueetimeid);
     if (input_marquee_.length==175)
@@ -512,7 +512,7 @@
     for (var i=0;i<25;i++)
     {
       if (i==(input_x_*5+input_y_))
-        L[i]=input_color_.replace(/%23/g,"#");
+        L[i]=input_color_;
       else
       {
         if (L[i]=="")
@@ -572,7 +572,7 @@
   
   function MatrixLed_matrix_color(color) {
     for (var i=0;i<25;i++)
-      L[i]=color[i].replace(/%23/g,"#");
+      L[i]=color[i];
     
     MatrixLed_show();
   }  
@@ -797,7 +797,7 @@
   } 
   
   function MatrixLed_backcolor(input_color_) {
-    MatrixLedbackcolor=input_color_.replace(/%23/g,"#");
+    MatrixLedbackcolor=input_color_;
   }  
  
   function MatrixLed_show() {
@@ -831,22 +831,3 @@
         document.body.appendChild(div);
     }    
   }
-
-function HextoRgb(color) {
-  if (!color) return null;
-  if (color.indexOf("'#")==0&&color.length==9) {
-    color = color.substring(1,color.length-1);
-    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-    return "'rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")'";
-  }
-  else  if (color.indexOf("#")==0&&color.length==7) {
-    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-    return "rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")";
-  }  
-  else  if (color.length==6) {
-    color = "#"+ color;
-    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-    return "rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")";
-  }else
-    return color;
-}
