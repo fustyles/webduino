@@ -4,8 +4,8 @@
   document.addEventListener('DOMContentLoaded', event => {
     let connectButton = document.querySelector("#connect");
     let statusDisplay = document.querySelector('#status');
+    let response = document.querySelector('#response');
     let text = document.querySelector('#text');
-    let send = document.querySelector('#send');
     let port;
 
     function connect() {
@@ -15,7 +15,7 @@
 
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
-          statusDisplay.textContent = textDecoder.decode(data);
+          response = textDecoder.decode(data);
         }
         port.onReceiveError = error => {
           console.error(error);
