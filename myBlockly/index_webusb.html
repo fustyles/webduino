@@ -385,7 +385,7 @@ Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace)
 XmldomToWorkspace(Game_TicTacToe);
 	
 function XmldomToWorkspace(example) {	
-  var xml = Blockly.Xml.textToDom(example.replace(/%23/g,"#"));
+  var xml = Blockly.Xml.textToDom(example);
   demoWorkspace.clear();
   Blockly.Xml.domToWorkspace(xml, demoWorkspace);
 }
@@ -402,7 +402,7 @@ function runCode() {
   window.LoopTrap = 1000;
   Blockly.JavaScript.INFINITE_LOOP_TRAP =
   'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-  var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
+  var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
 	
   var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
   for (var i=0;i<script_iframe_run.length;i++)  {
@@ -442,7 +442,7 @@ function runCode() {
     document.getElementById("iframe_run").style.width = document.getElementById("ifrWidth").value + "px";
     document.getElementById("iframe_run").style.height = document.getElementById("ifrHeight").value + "px";
     document.getElementById("runWindow").style.display = "block";
-    document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);
+    document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURIComponent(iframe_code);
     document.getElementById("iframe_run").focus();
   } catch (e) {
     alert(e);
@@ -468,23 +468,23 @@ function closeWindow() {
 	
 function exportCODE() {
   try {
-    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
+    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
 	  
     var link = document.createElement('a');
     link.download="code.txt";
-    link.href="data:application/octet-stream;utf-8," + encodeURI(code);
+    link.href="data:application/octet-stream;utf-8," + encodeURIComponent(code);
     document.body.appendChild(link);
     link.click();
     link.remove();
   } catch (e) {
-    window.location.href="data:application/octet-stream;utf-8," + encodeURI(code);
+    window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(code);
     alert(e);
   }
 }
 	
 function exportHTML() {
   try {
-    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace).replace(/#/g,"");
+    var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
     var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
     for (var i=0;i<script_iframe_run.length;i++)  {
       iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
@@ -501,12 +501,12 @@ function exportHTML() {
     
     var link = document.createElement('a');
     link.download="project.html";
-    link.href="data:application/octet-stream;utf-8," + encodeURI(iframe_code);
+    link.href="data:application/octet-stream;utf-8," + encodeURIComponent(iframe_code);
     document.body.appendChild(link);
     link.click();
     link.remove();
   } catch (e) {
-    window.location.href="data:application/octet-stream;utf-8," + encodeURI(iframe_code);
+    window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(iframe_code);
     alert(e);
   }
 }
@@ -514,16 +514,16 @@ function exportHTML() {
 function exportBlocks() {
   try {
     var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-    var xml_text = Blockly.Xml.domToText(xml).replace(/#/g,"%23");
+    var xml_text = Blockly.Xml.domToText(xml);
 	  
     var link = document.createElement('a');
     link.download="project.txt";
-    link.href="data:application/octet-stream;utf-8," + encodeURI(xml_text);
+    link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
     document.body.appendChild(link);
     link.click();
     link.remove();
   } catch (e) {
-    window.location.href="data:application/octet-stream;utf-8," + encodeURI(xml_text.replace(/#/g,"%23"));
+    window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
     alert(e);
   }
 }
@@ -531,7 +531,7 @@ function exportBlocks() {
 function importBlocks() {
   try {
     var xml_text = prompt("Please enter XML code", "");
-    var xml = Blockly.Xml.textToDom(xml_text.replace(/%23/g,"#"));
+    var xml = Blockly.Xml.textToDom(xml_text);
     demoWorkspace.clear();
     Blockly.Xml.domToWorkspace(xml, demoWorkspace);
   } catch (e) {
@@ -544,7 +544,7 @@ function importBlocksFile(element) {
     var file = element.files[0];
     var fr = new FileReader();           
     fr.onload = function (event) {
-      var xml = Blockly.Xml.textToDom(event.target.result.replace(/%23/g,"#"));
+      var xml = Blockly.Xml.textToDom(event.target.result);
       demoWorkspace.clear();
       Blockly.Xml.domToWorkspace(xml, demoWorkspace);
     };
@@ -652,21 +652,6 @@ window.onmousemove = function() {
     document.getElementById('iframe_run').style.display="block"; 
   }
 };
-	
-function HextoRgb(color) {
-  if (!color) return null;
-  if (color.indexOf("'#")==0&&color.length==9) {
-    color = color.substring(1,color.length-1);
-    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-    return "'rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")'";
-  }
-  else  if (color.indexOf("#")==0&&color.length==7) {
-    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-    return "rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")";
-  }  
-  else
-    return color;
-}
 </script>
 </body>
 </html>
