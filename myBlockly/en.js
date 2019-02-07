@@ -19,6 +19,9 @@ Blockly.Msg.height_TEXT = "Height";
 Blockly.Msg.backuptimer_TEXT = "Backup Blocks (every 5 min)";
 Blockly.Msg.example_TEXT = "Example";
 Blockly.Msg.language_TEXT = "Language";
+Blockly.Msg.btndrag_TEXT = "Drag Window";
+Blockly.Msg.btnstopcode_TEXT = "Stop Code";
+Blockly.Msg.btnclosewindow_TEXT = "Close Window";
 
 Blockly.Msg["CATVARIABLES"] = "VARIABLES";
 Blockly.Msg["CATFUNCTIONS"] = "FUNCTIONS";
