@@ -167,3 +167,15 @@ Blockly.Blocks['webusb_clearresponse'] = {
     this.setColour(60);
   }
 };
+
+Blockly.Blocks['webusb_custom_cmd'] = {
+  init: function() {
+    this.appendValueInput("cmd")
+        .setCheck(null)
+        .appendField("WEBUSB Custom Command");    
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
