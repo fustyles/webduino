@@ -15,7 +15,7 @@ function webusb_getResponse() {
       for (var i=0;i<json.length;i++) {
         webusb_Response.push(json[i]["data"]);
       }
-      document.getElementById("status").innerHTML = "";
+      document.getElementById("status").innerHTML = " ";
     } else {
       webusb_Response.push("");
     }
@@ -29,7 +29,7 @@ function webusb_getResponse() {
 }
 
 function webusb_clearData() {
-  document.getElementById("status").innerHTML = "";
+  document.getElementById("status").innerHTML = " ";
   webusb_Response=[];
 }
 
