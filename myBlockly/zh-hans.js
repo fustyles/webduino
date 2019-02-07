@@ -21,7 +21,7 @@ Blockly.Msg.backuptimer_TEXT = "定时备份积木档(每5分钟)";
 Blockly.Msg.example_TEXT = "范例";
 Blockly.Msg.language_TEXT = "语言";
 Blockly.Msg.btndrag_TEXT = "拖曳视窗";
-Blockly.Msg.btnstopcode_TEXT = "停止执行";
+Blockly.Msg.btnstopcode_TEXT = "停止";
 Blockly.Msg.btnclosewindow_TEXT = "关闭视窗";
 
 Blockly.Msg["CATVARIABLES"] = "变数";
