@@ -210,13 +210,12 @@
   <tr>
     <td valign="center">
       <br><br><input type="button" id="hide" value="  >  " onclick="hideMySpace(this);"><br><br>
-      <button id="btnRun2" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
+      <button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
     </td>
     <td>
       <table id="myFeatures">
         <tr>
           <td>
-            <button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button>
             <span id="left">left</span><input type="text" id="ifrLeft" size="1" value="300" onfocus="this.select()"><span id="top">top</span><input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()"><span id="width">width</span><input type="text" id="ifrWidth" size="1" value="600" onfocus="this.select()"><span id="height">height</span><input type="text" id="ifrHeight" size="1" value="600" onfocus="this.select()">
           </td>
         </tr>
@@ -534,7 +533,6 @@ function initial() {
   document.getElementById('mySpace').style.display="block";
 	
   document.getElementById('btnRun1').innerHTML = Blockly.Msg.btnRun1_TEXT;
-  document.getElementById('btnRun2').innerHTML = Blockly.Msg.btnRun2_TEXT;
   document.getElementById('btnexportcode').innerHTML = Blockly.Msg.btnexportcode_TEXT;
   document.getElementById('btnexporthtml').innerHTML = Blockly.Msg.btnexporthtml_TEXT;
   document.getElementById('btnexportblocks').innerHTML = Blockly.Msg.btnexportblocks_TEXT;
