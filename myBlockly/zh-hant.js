@@ -19,7 +19,7 @@ Blockly.Msg.width_TEXT = "寬度";
 Blockly.Msg.height_TEXT = "高度";
 Blockly.Msg.backuptimer_TEXT = "定時備份積木檔(每5分鐘)";
 Blockly.Msg.example_TEXT = "範例";
-Blockly.Msg.language_TEXT = "介面語系";
+Blockly.Msg.language_TEXT = "語言";
 
 Blockly.Msg["CATVARIABLES"] = "變數";
 Blockly.Msg["CATFUNCTIONS"] = "流程";
