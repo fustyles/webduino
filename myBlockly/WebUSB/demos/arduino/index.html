@@ -66,7 +66,7 @@
      </form>
   </td>
  </tr>
- <tr><td>Command：<input type="text" name="text" id="text" size="22" value="?digitalwrite=13;1"></td></tr>
+ <tr><td>Command：<input type="text" name="command" id="command" size="22" value="?digitalwrite=13;1"></td></tr>
  <tr><td><button id="getcommand" onclick="getCommand();">Get Command</button><button id="send">Send Command</button></td></tr>
 </table>
 
@@ -86,7 +86,7 @@
     var P8=document.getElementById("P8").value;
     var P9=document.getElementById("P9").value;
     var link="?"+cmd+"="+P1+";"+P2+";"+P3+";"+P4+";"+P5+";"+P6+";"+P7+";"+P8+";"+P9;
-    document.getElementById("text").value=link;
+    document.getElementById("command").value=link;
     return false;
   }
   
@@ -94,7 +94,7 @@
   function autoRun() {
     var strUrl=location.search;
     if (strUrl.indexOf("?")!=-1&&strUrl.indexOf("&cmd")!=-1) {
-      document.getElementById("text").value = strUrl.split("?")[1].split("&")[0];
+      document.getElementById("command").value = strUrl.split("?")[1].split("&")[0];
     }
   }
   */
