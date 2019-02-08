@@ -35,13 +35,13 @@
 
       if (command.textContent!="") {
         //console.log("send="+command.textContent);
-        const Command = command.textContent + '\n';
+        const Command = command.value + '\n';
         command.value = "";
         port.send(new TextEncoder("utf-8").encode(Command));
       }
     };
 
-    setInterval(function(){if (command.textContent!="") onUpdate();else console.log("NO");}, 10);
+    setInterval(function(){if (command.value!="") {console.log("YES");onUpdate();}else console.log("NO");}, 10);
     
     send.addEventListener('click', onUpdate);
 
