@@ -506,7 +506,7 @@ function exportHTML() {
       iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script>";
     }
 	  
-    iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
+    iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999;left:0px;top:0px;'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
     
     var link = document.createElement('a');
     link.download="project.html";
