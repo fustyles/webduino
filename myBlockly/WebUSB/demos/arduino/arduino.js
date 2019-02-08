@@ -40,7 +40,7 @@
       }
     };
 
-    setInterval(function(){if (text.value!="") onUpdate();}, 10);
+    setInterval(function(){if (cmd.value!="") onUpdate();}, 10);
     
     send.addEventListener('click', onUpdate);
 
