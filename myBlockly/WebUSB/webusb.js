@@ -34,5 +34,5 @@ function webusb_clearData() {
 }
 
 function webusb_sendCustomCommand(cmd) {
-  document.getElementById("text").value = cmd;
+  document.getElementById("cmd").value = cmd;
 }
