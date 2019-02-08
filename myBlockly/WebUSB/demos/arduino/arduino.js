@@ -11,7 +11,7 @@
 
     function connect() {
       port.connect().then(() => {
-        statusDisplay.textContent = '[{"data":"'+port.device_.productName+' is connected."}]';
+        statusDisplay.textContent = port.device_.productName+" is connected.";
         connectButton.textContent = 'Disconnect to Arduino(USB)';
 
         port.onReceive = data => {
