@@ -8,11 +8,11 @@ function webusb_sendCommand(cmd,str1,str2,str3,str4,str5,str6,str7,str8,str9) {
 
 function webusb_getResponse() {
   webusb_Response=[];
-  console.log(document.getElementById("response").innerHTML);
+  //console.log(document.getElementById("response").innerHTML);
   if (document.getElementById("response").innerHTML!= "") {
     if (document.getElementById("response").innerHTML.indexOf("[{")!=-1) {
       json = eval(document.getElementById("response").innerHTML);
-      //console.log(json);
+      console.log(json);
       for (var i=0;i<json.length;i++) {
         webusb_Response.push(json[i]["data"]);
       }
