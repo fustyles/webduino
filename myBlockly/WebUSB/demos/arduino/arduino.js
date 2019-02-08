@@ -15,10 +15,10 @@
         connectButton.textContent = 'Disconnect to Arduino(USB)';
 
         port.onReceive = data => {
-          let textDecoder = new TextDecoder();
-          response.innerHTML = textDecoder.decode(data);
           console.log(textDecoder.decode(data));
-          console.log(response.innerHTML);
+          console.log(response.innerHTML);          
+          let textDecoder = new TextDecoder();
+          response.textContent = textDecoder.decode(data);
         }
         port.onReceiveError = error => {
           console.error(error);
