@@ -32,3 +32,12 @@ function webusb_clearData() {
 function webusb_sendCustomCommand(cmd) {
   document.getElementById("command").value = cmd;
 }
+
+function connect2() {
+  var filters = [];
+  navigator.usb.requestDevice({
+      'filters': filters
+  }).then(
+      device => console.log(device)
+  );
+}
