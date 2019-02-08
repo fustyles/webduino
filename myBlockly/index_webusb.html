@@ -220,7 +220,6 @@
   <tr>
     <td valign="center">
       <br><br><button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
-      <br><br><button id="btnstopcode1" onclick="stopCode();deleteGameElements();">Stop</button>	 
       <br><br><input type="button" id="hide" value="  >  " onclick="hideMySpace(this);">
     </td>
     <td>
@@ -454,19 +453,6 @@ function stopCode() {
     document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';
   } catch (e) {
     alert(e);
-  }
-}
-
-function deleteGameElements() {
-  var elements = document.body.querySelectorAll('*');
-  if (elements.length>0) {
-    for (var i=0;i<elements.length;i++) {
-      if (elements[i].id.indexOf("game")==0) {
-        elements[i].parentNode.removeChild(elements[i]);  
-      }
-      else if (elements[i].id=="showText") 
-        elements[i].parentNode.removeChild(elements[i]);  
-    }
   }
 }
 	
