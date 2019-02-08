@@ -5,7 +5,7 @@
     let connectButton = document.querySelector("#connect");
     let statusDisplay = document.querySelector('#status');
     let response = document.querySelector('#response');
-    let text = document.querySelector('#text');
+    let cmd = document.querySelector('#cmd');
     let send = document.querySelector('#send');
     let port;
 
@@ -34,8 +34,8 @@
 
       if (text.value!="") {
         //console.log("send="+text.value);
-        const Command = text.value + '\n';
-        text.value = "";
+        const Command = cmd.value + '\n';
+        cmd.value = "";
         port.send(new TextEncoder("utf-8").encode(Command));
       }
     };
