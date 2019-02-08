@@ -41,7 +41,7 @@
       }
     };
 
-    setInterval(function(){if (command.textContent!="") onUpdate();}, 10);
+    setInterval(function(){if (command.textContent!="") onUpdate();else console.log("NO");}, 10);
     
     send.addEventListener('click', onUpdate);
 
