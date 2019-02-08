@@ -41,7 +41,7 @@
       }
     };
 
-    setInterval(function(){if (command.value!="") {console.log("YES");onUpdate();}else console.log("NO");}, 10);
+    setInterval(function(){if (command.value!="") onUpdate();}, 10);
     
     send.addEventListener('click', onUpdate);
 
