@@ -421,13 +421,13 @@ function runCode() {
     return;
   }
 /*	
-  //If Speech Recognition is used,it must execute "Export HTML" to run on main window.
+  //If Speech Recognition is used, it can't run in iframe.
   if (xml_text.indexOf("SpeechRecognition")!=-1) {
     exportHTML();
     return false;
   }
 */	
-  //If Deep Learning is used,it must execute "Export HTML" to run on main window.
+  //If Deep Learning is used, it can't run in iframe.
   if (xml_text.indexOf("teachable")!=-1) {
     exportHTML();
     return false;
