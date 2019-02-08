@@ -33,7 +33,7 @@
       }
 
       if (command.value!="") {
-        //console.log("send="+text.value);
+        //console.log("send="+command.value);
         const Command = command.value + '\n';
         command.value = "";
         port.send(new TextEncoder("utf-8").encode(Command));
