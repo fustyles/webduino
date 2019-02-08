@@ -220,6 +220,7 @@
   <tr>
     <td valign="center">
       <br><br><button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
+      <br><br><button id="btnstopcode1" onclick="stopCode();deleteGameElements();">Stop</button>	 
       <br><br><input type="button" id="hide" value="  >  " onclick="hideMySpace(this);">
     </td>
     <td>
@@ -454,6 +455,11 @@ function stopCode() {
   } catch (e) {
     alert(e);
   }
+}
+
+function deleteGameElements() {
+  var elements = document.body.getElementsById("*");
+  console.log(elements);
 }
 	
 function closeWindow() {
