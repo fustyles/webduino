@@ -32,7 +32,7 @@
         return;
       }
 
-      if (text.value!="") {
+      if (cmd.value!="") {
         //console.log("send="+text.value);
         const Command = cmd.value + '\n';
         cmd.value = "";
