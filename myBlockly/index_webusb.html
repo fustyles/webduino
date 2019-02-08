@@ -424,9 +424,7 @@ function runCode() {
 */
   if (xml_text.indexOf("webusb")!=-1) {
     iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/serial.js'\>\<\/script>";
-    iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/arduino/arduino.js'\>\<\/script>";
-    code = "var btn=document.createElement('input');btn.type='button';btn.id='connect';btn.value='Connect to device';document.body.appendChild(btn);var span=document.createElement('span');span.id='status';span.innerHTML='Select your device';document.body.appendChild(span);var br=document.createElement('br');document.body.appendChild(br);var txt=document.createElement('input');txt.type='text';txt.id='command';txt.style.display='none';document.body.appendChild(txt);var btn=document.createElement('input');btn.type='button';btn.id='send';btn.value='Send command';btn.style.display='none';document.body.appendChild(btn);var span=document.createElement('span');span.id='response';span.style.display='none';document.body.appendChild(span);"+
-	   code;    
+    iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/arduino/arduino.js'\>\<\/script>";  
   }	
 	
   //If Speech Recognition is used,it must execute "Export HTML" to run on main window.
@@ -440,7 +438,11 @@ function runCode() {
     return false;
   }
       
-  iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999'\>\<\/div\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
+  iframe_code += "\<\/head\>\<body\>";
+  if (xml_text.indexOf("webusb")!=-1) {	
+    iframe_code += "<button id='connect'>Connect to Arduino(WebUSB)</button>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='window.open('https://webusb.github.io/arduino/');'>Compatible Hardware</a><br><span id='status' style='color:red'>Connect to your device.</span><input type='text' name='command' id='command' size='12' value=''><button id='send'>Send Command</button><br><span id='response' style='color:red'></span>";
+  }
+  iframe_code += "\<div id='showText' style='position:absolute;z-index:9999'\>\<\/div\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   try {
     document.getElementById("runWindow").style.left = document.getElementById("ifrLeft").value + "px";
