@@ -3,7 +3,7 @@
 var webusb_Response=[];
 
 function webusb_sendCommand(cmd,str1,str2,str3,str4,str5,str6,str7,str8,str9) {
-  document.getElementById("text").value = "?"+cmd+"="+str1+";"+str2+";"+str3+";"+str4+";"+str5+";"+str6+";"+str7+";"+str8+";"+str9;
+  document.getElementById("command").value = "?"+cmd+"="+str1+";"+str2+";"+str3+";"+str4+";"+str5+";"+str6+";"+str7+";"+str8+";"+str9;
 }
 
 function webusb_getResponse() {
@@ -34,5 +34,5 @@ function webusb_clearData() {
 }
 
 function webusb_sendCustomCommand(cmd) {
-  document.getElementById("cmd").value = cmd;
+  document.getElementById("command").value = cmd;
 }
