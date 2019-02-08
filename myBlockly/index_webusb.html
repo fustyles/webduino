@@ -417,7 +417,7 @@ function runCode() {
       script.src = script_iframe_run[i];
       document.getElementsByTagName('head')[0].appendChild(script);
     }	  
-    code = "async function webusbrun() {var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';div.style.left = '0px';div.style.top = '0px';document.body.appendChild(div);" + code+"} webusbrun();";	
+    code = "var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';div.style.left = '0px';div.style.top = '0px';document.body.appendChild(div);" + code;	
     eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{await delay(1);try{"+code+"}catch(err){console.log('stop');}};main();");
     return;
   }
