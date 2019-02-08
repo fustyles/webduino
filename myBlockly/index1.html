@@ -585,7 +585,10 @@ window.onmousemove = function() {
     document.getElementById('iframe_run').style.display="block"; 
   }
 };
-	
+
+window.onbeforeunload = function(){ 
+  return "Data may not be stored yet. Are you sure?"; 
+}
 </script>
 </body>
 </html>
