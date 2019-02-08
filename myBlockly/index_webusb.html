@@ -410,7 +410,7 @@ function runCode() {
 
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
-		
+/*		
   //If WebUSB is used,it must run on main window.
   if (xml_text.indexOf("webusb")!=-1) {
     for (var i=0;i<script_iframe_run.length;i++) {
@@ -422,7 +422,7 @@ function runCode() {
     eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();");
     return;
   }
-	
+*/	
   //If Speech Recognition is used,it must execute "Export HTML" to run on main window.
   if (xml_text.indexOf("SpeechRecognition")!=-1) {
     exportHTML();
