@@ -4,7 +4,7 @@
   document.addEventListener('DOMContentLoaded', event => {
     let connectButton = document.querySelector("#connect");
     let statusDisplay = document.querySelector('#status');
-    let res = document.querySelector('#response');
+    let response = document.querySelector('#response');
     let command = document.querySelector('#command');
     let send = document.querySelector('#send');
     let port;
@@ -13,11 +13,11 @@
       port.connect().then(() => {
         statusDisplay.textContent = port.device_.productName+" is connected.";
         connectButton.textContent = 'Disconnect to Arduino(USB)';
-        res.textContent = 'Disconnect to Arduino(USB)';
+        response.textContent = 'Disconnect to Arduino(USB)';
         
         port.onReceive = data => {       
           let textDecoder = new TextDecoder();
-          res.textContent = textDecoder.decode(data);
+          response.textContent = textDecoder.decode(data);
         }
         port.onReceiveError = error => {
           console.error(error);
