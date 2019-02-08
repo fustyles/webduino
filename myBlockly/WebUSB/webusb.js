@@ -12,7 +12,7 @@ function webusb_getResponse() {
   if (document.getElementById("response").innerHTML!= "") {
     if (document.getElementById("response").innerHTML.indexOf("[{")!=-1) {
       json = eval(document.getElementById("response").innerHTML);
-      console.log(json);
+      //console.log(json);
       for (var i=0;i<json.length;i++) {
         webusb_Response.push(json[i]["data"]);
       }
@@ -20,7 +20,7 @@ function webusb_getResponse() {
     } else {
       webusb_Response.push(null);
     }
-    
+    console.log(webusb_Response);
     var res = webusb_Response;
     webusb_Response=[];
     return res;
