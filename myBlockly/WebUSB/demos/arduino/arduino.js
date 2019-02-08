@@ -5,7 +5,7 @@
     let connectButton = document.querySelector("#connect");
     let statusDisplay = document.querySelector('#status');
     let response = document.querySelector('#response');
-    let cmd = document.querySelector('#cmd');
+    let command = document.querySelector('#command');
     let send = document.querySelector('#send');
     let port;
 
@@ -32,15 +32,15 @@
         return;
       }
 
-      if (cmd.value!="") {
+      if (command.value!="") {
         //console.log("send="+text.value);
-        const Command = cmd.value + '\n';
-        cmd.value = "";
+        const Command = command.value + '\n';
+        command.value = "";
         port.send(new TextEncoder("utf-8").encode(Command));
       }
     };
 
-    setInterval(function(){if (cmd.value!="") onUpdate();}, 10);
+    setInterval(function(){if (command.value!="") onUpdate();}, 10);
     
     send.addEventListener('click', onUpdate);
 
