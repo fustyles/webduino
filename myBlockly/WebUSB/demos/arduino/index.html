@@ -18,6 +18,7 @@
       <tr><td>WebUSB for Arduino Leonardo</td></tr>
       <tr>
       <td>
+      <input type="radio" name="choice" id="choice1" checked>
       <select name="cmd" id="cmd">
       <option value="inputpullup">inputpullup</option>
       <option value="pinmode">pinmode</option>
@@ -27,6 +28,9 @@
       <option value="analogread">analogread(pin)</option>
       <option value="i2cLcd">i2cLcd(address,2,3,text1,text2)</option>
       </select>
+      <br>
+      <input type="radio" name="choice" id="choice2">
+      <input type="text" name="cmdcustom" id="cmdcustom" size="23">
       </td>
       </tr>
       <tr>
@@ -72,7 +76,11 @@
 
 <script>
   function getCommand() {
-    var cmd=document.getElementById("cmd").value;
+    if (document.getElementById("choice1").checked)
+        var cmd=document.getElementById("cmd").value;
+    else
+        var cmd=document.getElementById("cmdcustom").value;
+    
     var P1=document.getElementById("P1").value;
     var P2=document.getElementById("P2").value;
     var P3=document.getElementById("P3").value;
