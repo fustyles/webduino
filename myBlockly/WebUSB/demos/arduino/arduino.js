@@ -16,7 +16,8 @@
 
         port.onReceive = data => {       
           let textDecoder = new TextDecoder();
-          response.textContent = textDecoder.decode(data);
+          console.log(textDecoder.decode(data));
+          //response.textContent = textDecoder.decode(data);
         }
         port.onReceiveError = error => {
           console.error(error);
@@ -32,8 +33,8 @@
         return;
       }
 
-      if (command.value!="") {
-        //console.log("send="+command.value);
+      if (command.textContent!="") {
+        //console.log("send="+command.textContent);
         const Command = command.textContent + '\n';
         command.value = "";
         port.send(new TextEncoder("utf-8").encode(Command));
