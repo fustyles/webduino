@@ -434,7 +434,7 @@ function runCode() {
   }
       
   iframe_code += "\<\/head\>\<body\>";
-  iframe_code += "\<div id='showText' style='position:absolute;z-index:9999'\>\<\/div\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
+  iframe_code += "\<div id='showText' style='position:absolute;z-index:9999'\>\<\/div\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{await delay(1);try{"+code+"}catch(err){console.log('stop');}};main();\<\/script\>\<\/body\>\<\/html\>";
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   try {
     document.getElementById("runWindow").style.left = document.getElementById("ifrLeft").value + "px";
