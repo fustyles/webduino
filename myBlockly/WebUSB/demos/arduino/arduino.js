@@ -16,9 +16,9 @@
 
         port.onReceive = data => {
           console.log(textDecoder.decode(data));
-          console.log(response.textContent);          
+          //console.log(response.textContent);          
           let textDecoder = new TextDecoder();
-          response.textContent = textDecoder.decode(data);
+          //response.textContent = textDecoder.decode(data);
         }
         port.onReceiveError = error => {
           console.error(error);
