@@ -9,7 +9,7 @@
   </head>
  
 <body>
-<button id="connect">Connect to Arduino Leonardo</button><br><span id="status" style="color:red"></span><br><span id="response" style="color:red"></span>
+<button id="connect">Connect to Arduino Leonardo</button><br><span id="status" style="color:red"></span>
 <table>
  <tr>
   <td valign="top">
@@ -68,7 +68,7 @@
   </td>
  </tr>
  <tr style="display:none"><td>Command：<input type="text" name="command" id="command" size="22" value="?digitalwrite=13;1"></td></tr>
- <tr><td align="right"><button id="getcommand" onclick="getCommand();">Send Command</button><button id="send" style="display:none">Send Command</button></td></tr>
+ <tr><td align="right"><span id="response" style="color:red"></span><button id="getcommand" onclick="getCommand();">Send Command</button><button id="send" style="display:none">Send Command</button></td></tr>
 </table>
 
 </body>
