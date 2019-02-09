@@ -19,10 +19,11 @@
           response.textContent = textDecoder.decode(data);
         }
         port.onReceiveError = error => {
-          console.error(error);
+          connectButton.textContent = 'Connect to Arduino(USB)';
           statusDisplay.textContent = error;
         };
       }, error => {
+        connectButton.textContent = 'Connect to Arduino(USB)';
         statusDisplay.textContent = error;
       });
     }
