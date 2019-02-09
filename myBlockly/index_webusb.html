@@ -428,7 +428,8 @@ function runCode() {
     code = "var btn=document.createElement('input');btn.type='button';btn.id='connect';btn.value='Connect to device';document.body.appendChild(btn);var span=document.createElement('span');span.id='status';span.innerHTML='Select your device';document.body.appendChild(span);var br=document.createElement('br');document.body.appendChild(br);var txt=document.createElement('input');txt.type='text';txt.id='command';txt.style.display='none';document.body.appendChild(txt);var btn=document.createElement('input');btn.type='button';btn.id='send';btn.value='Send command';btn.style.display='none';document.body.appendChild(btn);var span=document.createElement('span');span.id='response';span.style.display='none';document.body.appendChild(span);while (document.getElementById('connect').value.indexOf('Disconnect')==-1) {await delay(0.1);}"+
 	   code;    
   }
-	
+
+  //Deep Learning
   if (xml_text.indexOf("teachable")!=-1) {
     iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script>";
   }	
