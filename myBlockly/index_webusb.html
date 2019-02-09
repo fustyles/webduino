@@ -420,13 +420,13 @@ function runCode() {
     eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{await delay(1);"+code+"};main();");
     return;
   }
-/*	
+	
   //If Speech Recognition is used, it can't run in iframe.
   if (xml_text.indexOf("SpeechRecognition")!=-1) {
     exportHTML();
     return false;
   }
-*/	
+
   //If Deep Learning is used, it can't run in iframe.
   if (xml_text.indexOf("teachable")!=-1) {
     exportHTML();
@@ -551,6 +551,11 @@ function importBlocks() {
 function importBlocksFile(element) {
   try {	
     var file = element.files[0];
+    console.log(file);
+    if (file.t.toLowerCase().indexOf("html")!=-1||file.t.toLowerCase().indexOf("htm")!=-1) {
+      document.getElementById("iframe_run").src = file;
+      return;
+    }
     var fr = new FileReader();           
     fr.onload = function (event) {
       var xml = Blockly.Xml.textToDom(event.target.result);
