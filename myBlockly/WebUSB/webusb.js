@@ -17,7 +17,7 @@ function webusb_getResponse() {
     var response = document.getElementById("response").innerHTML;
     document.getElementById("response").innerHTML = "";
   }
-  if (response=""||response="undefined") return [];
+  if (response==""||response=="undefined") return [];
   console.log(response);
   if (response!= "") {
     if (response.indexOf("[{")!=-1) {
