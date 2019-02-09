@@ -226,7 +226,7 @@
       <table id="myFeatures">
 	<tr id="btnUSB">
 	  <td>
-	      <button id="connect">Connect to Arduino(WebUSB)</button>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="window.open('https://webusb.github.io/arduino/');">Compatible Hardware</a><br><span id="status" style="color:red">Connect to your device.</span>
+	      <button id="connect">Connect to Arduino(WebUSB)</button>&nbsp;&nbsp;&nbsp;&nbsp;<a style='color:blue' onclick="window.open('https://webusb.github.io/arduino/');">Compatible Hardware</a><br><span id="status" style="color:red">Connect to your device.</span>
 	  </td>
 	</tr>
 	<tr style="display:none">
@@ -379,7 +379,7 @@ var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.ap
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);	
 	
 //append initial blocks to startBlocks
-XmldomToWorkspace(Game_TicTacToe);
+XmldomToWorkspace(WebUSB_example_001);
 	
 function XmldomToWorkspace(example) {	
   var xml = Blockly.Xml.textToDom(example);
