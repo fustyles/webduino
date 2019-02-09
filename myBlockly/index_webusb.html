@@ -502,7 +502,7 @@ function exportHTML() {
       iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script>";
     }
 	  
-    iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999;top:40px'\>\<\/div\>";
+    iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999;'\>\<\/div\>";
     //If WebUSB is used.
     if (xml_text.indexOf("webusb")!=-1) {
       iframe_code += "\<button id='connect'\>Connect to Arduino(WebUSB)\</button\>\<span id='status' style='color:red'\>Connect to your device.\</span\>\<input type='text' name='command' id='command' style='display:none'\>\<button id='send' style='display:none'\>Send Command\</button\>\<span id='response' style='display:none'\>\</span\>";
