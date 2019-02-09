@@ -9,6 +9,7 @@ var TimerWEBUSB, data;
 TimerWEBUSB = setInterval(async function(){
   data = (webusb_getResponse());
   if (data != '') {
+    console.log(data[0]);
     showtext(20, '#ff0000', (data[0]));
   }
 },10);
