@@ -383,13 +383,14 @@ function runCode() {
 		
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
-	
+/*	
   //If Deep Learning is used, it can't run in iframe.
   if (xml_text.indexOf("teachable")!=-1) {
     exportHTML();
     return false;
   }
-      
+*/
+    
   iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   try {
