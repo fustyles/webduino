@@ -551,7 +551,7 @@ function importBlocks() {
 function importBlocksFile(element) {
   try {	
     var file = element.files[0];
-    console.log(file);
+    console.log(element.files[0]);
     if (file.name.toLowerCase().indexOf("html")!=-1||file.name.toLowerCase().indexOf("htm")!=-1) {
       document.getElementById("iframe_run").src = file;
       return;
