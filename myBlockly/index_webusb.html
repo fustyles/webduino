@@ -553,7 +553,7 @@ function importBlocksFile(element) {
     var file = element.files[0];
     console.log(element.files[0]);
     if (file.name.toLowerCase().indexOf("html")!=-1||file.name.toLowerCase().indexOf("htm")!=-1) {
-      document.getElementById("iframe_run").src = file;
+      document.getElementById("iframe_run").src = document.getElementById("myfile).value;
       return;
     }
     var fr = new FileReader();           
