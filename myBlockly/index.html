@@ -384,6 +384,7 @@ function runCode() {
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
 
+  //Deep Learning
   if (xml_text.indexOf("teachable")!=-1) {
     iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script\>";
   }	
