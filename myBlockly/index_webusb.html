@@ -677,7 +677,12 @@ window.onmousemove = function() {
 	
 window.onbeforeunload = function(){ 
   return "Data may not be stored yet. Are you sure?"; 
-} 	
+} 
+	
+setInterval(function(){ 
+  if (document.getElementById('iframe_run').contentWindow.document.getElementById('gameimg_1'))
+    document.getElementById('iframe_run').contentWindow.document.getElementById('gameimg_1').style.left; 
+}, 10);
 </script>
 </body>
 </html>
