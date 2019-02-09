@@ -9,7 +9,7 @@ function webusb_sendCommand(cmd,P1,P2,P3,P4,P5,P6,P7,P8,P9) {
 function webusb_getResponse() {
   webusb_Response=[];
   if (!document.getElementById("response")) return [];
-  if (document.getElementById("response").value!="") {
+  if (document.getElementById("response").value) {
     var response = document.getElementById("response").value;
     document.getElementById("response").value = "";
   }
@@ -17,7 +17,7 @@ function webusb_getResponse() {
     var response = document.getElementById("response").innerHTML;
     document.getElementById("response").innerHTML = "";
   }
-  if (response==""||response=="undefined") return [];
+  if (response==""||!response) return [];
   console.log(response);
   if (response!= "") {
     if (response.indexOf("[{")!=-1) {
