@@ -299,9 +299,9 @@
 </table>
 
 <div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left" draggable="true" ondragstart="document.getElementById('iframe_run').style.display='none';" ondragend="this.title='true';">
-  <button id="btndrag">Drag</button><button id="btnclosewindow" onclick="closeWindow();">Close Window</button><button id="btnRun" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button><button id="btnstopcode" onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button>
+  <button id="btndrag">Drag</button><button id="btnclosewindow" onclick="closeWindow();">Close Window</button><button id="btnfullscreen" onclick="document.getElementById('iframe_run').requestFullscreen();">Stop Code</button><button id="btnRun" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button><button id="btnstopcode" onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button>
   <br>
-  <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="autoplay; fullscreen; geolocation; microphone; camera"></iframe>
+  <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allowpaymentrequest allow="autoplay; fullscreen; geolocation; microphone; camera ; usb"></iframe>
 </div>
 
 <div id="blocklyDiv" style="height: 600px; width: 800px;">
@@ -545,7 +545,8 @@ function initial() {
   document.getElementById('language').innerHTML = Blockly.Msg.language_TEXT;	
   document.getElementById('btndrag').innerHTML = Blockly.Msg.btndrag_TEXT;
   document.getElementById('btnstopcode').innerHTML = Blockly.Msg.btnstopcode_TEXT;
-  document.getElementById('btnclosewindow').innerHTML = Blockly.Msg.btnclosewindow_TEXT;	
+  document.getElementById('btnclosewindow').innerHTML = Blockly.Msg.btnclosewindow_TEXT;
+  document.getElementById('btnfullscreen').innerHTML = Blockly.Msg.btnfullscreen_TEXT;
 }
 	
 function hideMySpace(element) {
