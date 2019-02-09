@@ -408,7 +408,7 @@ function runCode() {
 
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
-
+/*
   //If WebUSB is used,it must run on main window.	
   if (xml_text.indexOf("webusb")!=-1) {
     for (var i=0;i<script_iframe_run.length;i++) {
@@ -420,7 +420,7 @@ function runCode() {
     eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{await delay(1);"+code+"};main();");
     return;
   }
-/*	
+*/	
   //If WebUSB is used,it must run on main window.
   if (xml_text.indexOf("webusb")!=-1) {
     iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/serial.js'\>\<\/script\>";
@@ -428,7 +428,6 @@ function runCode() {
     code = "var btn=document.createElement('input');btn.type='button';btn.id='connect';btn.value='Connect to device';document.body.appendChild(btn);var span=document.createElement('span');span.id='status';span.innerHTML='Select your device';document.body.appendChild(span);var br=document.createElement('br');document.body.appendChild(br);var txt=document.createElement('input');txt.type='text';txt.id='command';txt.style.display='none';document.body.appendChild(txt);var btn=document.createElement('input');btn.type='button';btn.id='send';btn.value='Send command';btn.style.display='none';document.body.appendChild(btn);var span=document.createElement('span');span.id='response';span.style.display='none';document.body.appendChild(span);"+
 	   code;    
   }
-*/
 	
   if (xml_text.indexOf("teachable")!=-1) {
     iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script>";
