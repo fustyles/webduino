@@ -411,6 +411,8 @@ function runCode() {
 	
   //If WebUSB is used,it must run on main window.
   console.log(document.getElementById("connect").value);
+  console.log(document.getElementById("connect").text);
+  console.log(document.getElementById("connect").innerHTML);
   if (xml_text.indexOf("webusb")!=-1) {
     if (document.getElementById("connect").value.indexOf("Disconnect")==-1) {
       alert("Please connect to your device first.");
