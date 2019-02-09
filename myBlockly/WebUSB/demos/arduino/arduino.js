@@ -11,19 +11,19 @@
 
     function connect() {
       port.connect().then(() => {
-        statusDisplay.value = port.device_.productName+" is connected.";
-        connectButton.value = 'Disconnect to Arduino(USB)';
+        statusDisplay.textContent = port.device_.productName+" is connected.";
+        connectButton.textContent = 'Disconnect to Arduino(USB)';
         
         port.onReceive = data => {       
           let textDecoder = new TextDecoder();
-          response.value = textDecoder.decode(data);
+          response.textContent = textDecoder.decode(data);
         }
         port.onReceiveError = error => {
           console.error(error);
-          statusDisplay.value = error;
+          statusDisplay.textContent = error;
         };
       }, error => {
-        statusDisplay.value = error;
+        statusDisplay.textContent = error;
       });
     }
 
@@ -32,40 +32,40 @@
         return;
       }
 
-      if (command.value!="") {
+      if (command.textContent!="") {
         //console.log("send="+command.textContent);
-        const Command = command.value + '\n';
-        command.value = "";
+        const Command = command.textContent + '\n';
+        command.textContent = "";
         port.send(new TextEncoder("utf-8").encode(Command));
       }
     };
 
-    setInterval(function(){if (command.value!="") onUpdate();}, 10);
+    setInterval(function(){if (command.textContent!="") onUpdate();}, 10);
     
     send.addEventListener('click', onUpdate);
 
     connectButton.addEventListener('click', function() {
       if (port) {
         port.disconnect();
-        connectButton.value = 'Connect to Arduino(USB)';
-        statusDisplay.value = '';
+        connectButton.textContent = 'Connect to Arduino(USB)';
+        statusDisplay.textContent = '';
         port = null;
       } else {
         serial.requestPort().then(selectedPort => {
           port = selectedPort;
           connect();
         }).catch(error => {
-          statusDisplay.value = error;
+          statusDisplay.textContent = error;
         });
       }
     });
 
     serial.getPorts().then(ports => {
       if (ports.length == 0) {
-        statusDisplay.value = 'No device found.';
+        statusDisplay.textContent = 'No device found.';
       } else {
-        statusDisplay.value = 'Select your device.';
-        //statusDisplay.value = 'Connect to '+ports[0].productName;
+        statusDisplay.textContent = 'Select your device.';
+        //statusDisplay.textContent = 'Connect to '+ports[0].productName;
         //port = ports[0];
         //connect();
       }
