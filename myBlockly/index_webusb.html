@@ -680,6 +680,7 @@ window.onbeforeunload = function(){
 } 
 	
 setInterval(function(){ 
+  if (document.getElementById('iframe_run').contentWindow.document.getElementById('gameimg_1')!=null)
   console.log(document.getElementById('iframe_run').contentWindow.document.getElementById('gameimg_1')); 
 }, 1000);
 </script>
