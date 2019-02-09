@@ -410,7 +410,7 @@ function runCode() {
 
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
-	
+/*	
   //If WebUSB is used,it must run on main window.	
   if (xml_text.indexOf("webusb")!=-1) {
     for (var i=0;i<script_iframe_run.length;i++) {
@@ -422,12 +422,19 @@ function runCode() {
     eval("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{await delay(1);"+code+"};main();");
     return;
   }
-
+*/	
+  if (xml_text.indexOf("webusb")!=-1) {
+    iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/serial.js'\>\<\/script>";
+    iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/arduino/arduino.js'\>\<\/script>";
+    code = "var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';div.style.left = '0px';div.style.top = '0px';document.body.appendChild(div);" + code;
+  }
+/*
   //If Speech Recognition is used, it can't run in iframe.
   if (xml_text.indexOf("SpeechRecognition")!=-1) {
     exportHTML();
     return false;
   }	
+*/
 	
   //If Deep Learning is used, it can't run in iframe.
   if (xml_text.indexOf("teachable")!=-1) {
