@@ -678,6 +678,7 @@ setInterval(function(){
     document.getElementById('command').value = command;
     if (document.getElementById('response').value!="") {
       var response = document.getElementById('response').value;
+      console.log(response);
       document.getElementById('response').value = "";
       document.getElementById('iframe_run').contentWindow.document.getElementById('response').value = response;	  
     }	  
