@@ -398,11 +398,11 @@ function runCode() {
     document.getElementById("iframe_run").style.height = document.getElementById("ifrHeight").value + "px";
     document.getElementById("runWindow").style.display = "block";
 	  
+    //document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);  
     var iframe = document.getElementById("iframe_run");
     iframe.contentWindow.document.open();
     iframe.contentWindow.document.write(iframe_code);
     iframe.contentWindow.document.close();
-	  
     document.getElementById("iframe_run").focus();
   } catch (e) {
     alert(e);
@@ -411,8 +411,7 @@ function runCode() {
 	
 function stopCode() {
   try {	
-    document.getElementById("iframe_run").src="about:blank";	  
-	  
+    document.getElementById("iframe_run").src="about:blank";
   } catch (e) {
     alert(e);
   }
