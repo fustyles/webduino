@@ -6,6 +6,13 @@ Blockly.JavaScript['showtext'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['showtext_set'] = function (block) {
+  var value_property_ = block.getFieldValue('property_');
+  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'showtext_set("' + value_property_ + '",' + value_value_ + ');\n';
+  return code;
+};
+
 Blockly.JavaScript['linebreak'] = function (block) {
   var code = "'<br>'";
   return [code, Blockly.JavaScript.ORDER_NONE];
