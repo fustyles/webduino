@@ -473,7 +473,7 @@ function stopCode() {
 	
 function closeWindow() {
   try {	
-    document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';	  
+    stopCode();  
     document.getElementById("runWindow").style.display = "none";
   } catch (e) {
     alert(e);
