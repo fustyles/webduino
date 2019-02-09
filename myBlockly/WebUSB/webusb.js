@@ -8,7 +8,7 @@ function webusb_sendCommand(cmd,str1,str2,str3,str4,str5,str6,str7,str8,str9) {
 
 function webusb_getResponse() {
   webusb_Response=[];
-  if (document.getElementById("response")) {
+  if (document.getElementById("response")&&document.getElementById("response")!="undefined") {
     if (document.getElementById("response").value) {
       var response = document.getElementById("response").value;
       document.getElementById("response").value = "";
