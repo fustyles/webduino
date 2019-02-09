@@ -1040,6 +1040,12 @@
         obj.style.width = input_value + "px";
       else if (input_property=="height")
         obj.style.height = input_value + "px";
+      else if (input_property=="borderradius") {
+	if (input_value.toLowerCase().indexOf("px")==-1)
+          obj.style.borderRadius = input_value + "px";
+	else
+	  obj.style.borderRadius = input_value;
+      }
       else if (input_property=="opacity")
         obj.style.opacity = input_value;
       else if (input_property=="background")
@@ -1721,7 +1727,13 @@
       else if (input_property=="borderwidth")
         obj.style.borderWidth = input_value + "px";
       else if (input_property=="bordercolor")
-        obj.style.borderColor = input_value;      	    
+        obj.style.borderColor = input_value; 
+      else if (input_property=="borderradius") {
+	if (input_value.toLowerCase().indexOf("px")==-1)
+          obj.style.borderRadius = input_value + "px";
+	else
+	  obj.style.borderRadius = input_value;
+      }	    
       else if (input_property=="background")
         obj.style.background = input_value;
       else if (input_property=="color")
