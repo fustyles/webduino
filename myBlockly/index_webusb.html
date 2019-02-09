@@ -410,7 +410,7 @@ function runCode() {
 
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
-/*		
+	
   //If WebUSB is used,it must run on main window.	
   if (xml_text.indexOf("webusb")!=-1) {
     for (var i=0;i<script_iframe_run.length;i++) {
@@ -428,7 +428,7 @@ function runCode() {
     exportHTML();
     return false;
   }
-*/
+
   //If Deep Learning is used, it can't run in iframe.
   if (xml_text.indexOf("teachable")!=-1) {
     exportHTML();
@@ -554,8 +554,8 @@ function importBlocksFile(element) {
   try {	
     var file = element.files[0];
     if (file.name.toLowerCase().indexOf("html")!=-1||file.name.toLowerCase().indexOf("htm")!=-1) {
-      console.log(document.getElementById("myfile").value);
-      document.getElementById("iframe_run").src = document.getElementById("myfile").value;
+      console.log("file:///C:/"+file.name);
+      document.getElementById("iframe_run").src = "file:///C:/"+file.name;
       return;
     }
     var fr = new FileReader();           
