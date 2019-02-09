@@ -2,9 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Access-Control-Allow-Origin" content="*">
   <title>myBlockly</title>
-  <header name = "Access-Control-Allow-Origin" value = "*" />
   <script>
 	var script_blockly = [
 		'https://blockly-demo.appspot.com/static/blockly_compressed.js',
@@ -405,7 +403,7 @@ function runCode() {
 	
   var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
   for (var i=0;i<script_iframe_run.length;i++)  {
-    iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
+    iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script\>";
   }
 
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
@@ -424,9 +422,9 @@ function runCode() {
   }
 */	
   if (xml_text.indexOf("webusb")!=-1) {
-    iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/serial.js'\>\<\/script>";
-    iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/arduino/arduino.js'\>\<\/script>";
-    code = "var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';div.style.left = '0px';div.style.top = '0px';document.body.appendChild(div);" + code;
+    iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/serial.js'\>\<\/script\>";
+    iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/arduino/arduino.js'\>\<\/script\>";
+    code = "var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';div.style.left = '0px';div.style.top = '0px';document.body.appendChild(div);await delay(1);" + code;
   }
 	
   if (xml_text.indexOf("teachable")!=-1) {
