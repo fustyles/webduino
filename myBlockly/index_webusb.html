@@ -676,6 +676,11 @@ setInterval(function(){
     var command = document.getElementById('iframe_run').contentWindow.document.getElementById('command').value;
     document.getElementById('iframe_run').contentWindow.document.getElementById('command').value = "";
     document.getElementById('command').value = command;
+    if (document.getElementById('response').value!="") {
+      var response = document.getElementById('response').value;
+      document.getElementById('response').value = "";
+      document.getElementById('iframe_run').contentWindow.document.getElementById('response').value = response;	  
+    }	  
   }
 }, 10);
 </script>
