@@ -3,6 +3,6 @@
 
 //Arduino Leonardo Fireware
 //https://github.com/fustyles/Arduino/blob/master/WebUSB_Leonardo_MyFirmata.ino
-await delay(10);
+while (!port) {await delay(0.1);}
 webusb_sendCommand('digitalwrite',13,1,'','','','','','','');
 };main();</script></body></html>
