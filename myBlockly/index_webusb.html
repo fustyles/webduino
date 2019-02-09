@@ -680,7 +680,8 @@ setInterval(function(){
       var response = document.getElementById('response').value;
       console.log(response);
       document.getElementById('response').value = "";
-      document.getElementById('iframe_run').contentWindow.document.getElementById('response').value = response;	  
+      document.getElementById('iframe_run').contentWindow.document.getElementById('response').value = response;	 
+      document.getElementById('iframe_run').contentWindow.document.getElementById('response').innerHTML = response;
     }	  
   }
 }, 10);
