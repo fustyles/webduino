@@ -6,8 +6,8 @@
 
 
   function showtext_set(input_property,input_value) {
-    if (document.getElementById("showtext")) {
-	    var obj = document.getElementById("showtext");
+    if (document.getElementById("showText")) {
+      var obj = document.getElementById("showText");
       if (input_property=="left")
         obj.style.left = input_value + "px";
       else if (input_property=="top")
