@@ -322,9 +322,9 @@
 </table>
 
 <div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left" draggable="true" ondragstart="document.getElementById('iframe_run').style.display='none';" ondragend="this.title='true';">
-  <button id="btndrag">Drag</button><button id="btnclosewindow" onclick="closeWindow();">Close Window</button><button id="btnRun" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button><button id="btnstopcode" onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button>
+  <button id="btndrag">Drag</button><button id="btnclosewindow" onclick="closeWindow();">Close Window</button><button id="btnfullscreen" onclick="document.getElementById("iframe_run").requestFullscreen();">Stop Code</button><button id="btnRun" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button><button id="btnstopcode" onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button>
   <br>
-  <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto"  allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" allowpaymentrequest allow="autoplay; fullscreen; geolocation; microphone; camera ; usb"></iframe>
+  <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allowpaymentrequest allow="autoplay; fullscreen; geolocation; microphone; camera ; usb"></iframe>
 </div>
 
 <div id="blocklyDiv" style="height: 600px; width: 800px;">
@@ -450,7 +450,6 @@ function runCode() {
     iframe.contentWindow.document.write(iframe_code);
     iframe.contentWindow.document.close();
 
-    document.getElementById("iframe_run").requestFullscreen();
     document.getElementById("iframe_run").focus();
   } catch (e) {
     alert(e);
