@@ -429,11 +429,9 @@ function runCode() {
     code = "var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';div.style.left = '0px';div.style.top = '0px';document.body.appendChild(div);" + code;
   }
 	
-  //If Deep Learning is used, it can't run in iframe.
   if (xml_text.indexOf("teachable")!=-1) {
-    exportHTML();
-    return false;
-  }
+    iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script>";
+  }	
       
   iframe_code += "\<\/head\>\<body\>";
   iframe_code += "\<div id='showText' style='position:absolute;z-index:9999'\>\<\/div\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
