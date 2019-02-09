@@ -13,7 +13,6 @@
       port.connect().then(() => {
         statusDisplay.textContent = port.device_.productName+" is connected.";
         connectButton.value = 'Disconnect to Arduino(USB)';
-        console.log(connectButton.value);
         
         port.onReceive = data => {       
           let textDecoder = new TextDecoder();
