@@ -448,7 +448,7 @@ function runCode() {
 	  
     var iframe = document.getElementById("iframe_run");
     iframe.contentWindow.document.open();
-    iframe.contentWindow.document.write(responseData);
+    iframe.contentWindow.document.write(iframe_code);
     iframe.contentWindow.document.close();
 	  
     document.getElementById("iframe_run").focus();
