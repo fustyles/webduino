@@ -33,14 +33,13 @@
       }
 
       if (command.textContent!="") {
-        //console.log("send="+command.textContent);
-        const Command = command.textContent + '\n';
-        command.textContent = "";
+        const Command = command.value + '\n';
+        command.value = "";
         port.send(new TextEncoder("utf-8").encode(Command));
       }
     };
 
-    setInterval(function(){if (command.textContent!="") onUpdate();}, 10);
+    setInterval(function(){if (command.value!="") onUpdate();}, 10);
     
     send.addEventListener('click', onUpdate);
 
