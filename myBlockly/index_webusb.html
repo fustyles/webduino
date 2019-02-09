@@ -410,11 +410,9 @@ function runCode() {
   var xml_text = Blockly.Xml.domToText(xml);
 	
   //If WebUSB is used,it must run on main window.
-  console.log(document.getElementById("connect").value);
-  console.log(document.getElementById("connect").text);
-  console.log(document.getElementById("connect").innerHTML);
   if (xml_text.indexOf("webusb")!=-1) {
-    if (document.getElementById("connect").value.indexOf("Disconnect")==-1) {
+    var status = document.getElementById("connect").innerHTML;
+    if (status.indexOf("Disconnect")==-1) {
       alert("Please connect to your device first.");
       return;
     }
