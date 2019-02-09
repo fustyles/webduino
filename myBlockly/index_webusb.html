@@ -422,10 +422,10 @@ function runCode() {
   }
 */	
   if (xml_text.indexOf("webusb")!=-1) {
-    var appendscript = "";
-    appendscript += "document.createElement('script');script.src = 'https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/serial.js';document.getElementsByTagName('head')[0].appendChild(script);";
-    appendscript += "document.createElement('script');script.src = 'https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/arduino/arduino.js';document.getElementsByTagName('head')[0].appendChild(script);";
-    code = "var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';div.style.left = '0px';div.style.top = '0px';document.body.appendChild(div);await delay(1);" + appendscript + code;
+    var script = "";
+    script += "var script = document.createElement('script');script.src = 'https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/serial.js';document.getElementsByTagName('head')[0].appendChild(script);";
+    script += "var script = document.createElement('script');script.src = 'https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/arduino/arduino.js';document.getElementsByTagName('head')[0].appendChild(script);";
+    code = "var div = document.createElement('div');div.id = 'showText';div.style.position = 'absolute';div.style.zIndex = 9999;div.style.fontSize = '20px';div.style.color = 'red';div.style.left = '0px';div.style.top = '0px';document.body.appendChild(div);await delay(1);" + script + code;
   }
 	
   if (xml_text.indexOf("teachable")!=-1) {
