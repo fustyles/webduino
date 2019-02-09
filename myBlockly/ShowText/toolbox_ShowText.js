@@ -17,6 +17,13 @@
 '      </block>'+
 '    </value>'+
 '  </block>'+
+'  <block type="showtext_set">'+   
+'    <value name="value_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+    
+'  </block>'+       
 '  <block type="linebreak">'+
 '  </block>'+
 '  <block type="comment">'+
