@@ -14,10 +14,10 @@ Blockly.Blocks['webusb_system'] = {
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("value");
-    this.setInputsInline(false);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
   }
 };
 
