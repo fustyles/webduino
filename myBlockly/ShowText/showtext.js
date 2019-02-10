@@ -4,7 +4,6 @@
     document.getElementById("showText").innerHTML = input_text;
   }
 
-
   function showtext_set(input_property,input_value) {
     if (document.getElementById("showText")) {
       var obj = document.getElementById("showText");
@@ -21,7 +20,13 @@
       else if (input_property=="borderwidth")
         obj.style.borderWidth = input_value + "px";
       else if (input_property=="bordercolor")
-        obj.style.borderColor = input_value;      	    
+        obj.style.borderColor = input_value; 
+      else if (input_property=="borderradius") {
+	      if (input_value.toLowerCase().indexOf("px")==-1)
+          obj.style.borderRadius = input_value + "px";
+	      else
+	        obj.style.borderRadius = input_value;
+      }	         
       else if (input_property=="background")
         obj.style.background = input_value;
       else if (input_property=="color")
