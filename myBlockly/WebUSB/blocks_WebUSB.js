@@ -172,7 +172,7 @@ Blockly.Blocks['webusb_custom_cmd'] = {
   init: function() {
     this.appendValueInput("cmd")
         .setCheck(null)
-        .appendField("WEBUSB Custom Command");    
+        .appendField("WebUSB Custom Command");    
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
