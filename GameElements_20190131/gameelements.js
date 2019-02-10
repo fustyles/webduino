@@ -1101,7 +1101,7 @@
       else if (input_property=="height")
         obj.style.height = input_value + "px";
       else if (input_property=="borderradius") {
-	if (input_value.toLowerCase().indexOf("px")==-1)
+	if (input_value.toString().toLowerCase().indexOf("px")==-1)
           obj.style.borderRadius = input_value + "px";
 	else
 	  obj.style.borderRadius = input_value;
@@ -1791,7 +1791,7 @@
       else if (input_property=="bordercolor")
         obj.style.borderColor = input_value; 
       else if (input_property=="borderradius") {
-	if (input_value.toLowerCase().indexOf("px")==-1)
+	if (input_value.toString().toLowerCase().indexOf("px")==-1)
           obj.style.borderRadius = input_value + "px";
 	else
 	  obj.style.borderRadius = input_value;
