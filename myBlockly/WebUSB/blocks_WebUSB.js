@@ -1,7 +1,7 @@
 Blockly.Blocks['webusb_system'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("WEBUSB System");
+        .appendField("WebUSB System");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("cmd")
@@ -24,7 +24,7 @@ Blockly.Blocks['webusb_system'] = {
 Blockly.Blocks['webusb_custom'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("WEBUSB Custom");   
+        .appendField("WebUSB Custom");   
     this.appendValueInput("cmd")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -75,7 +75,7 @@ Blockly.Blocks['webusb_custom'] = {
 Blockly.Blocks['webusb_car'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("WEBUSB Car");       
+        .appendField("WebUSB Car");       
     this.appendValueInput("cmd")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -151,7 +151,7 @@ Blockly.Blocks['webusb_cmd'] = {
 Blockly.Blocks['webusb_getresponse'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Get WEBUSB response data");
+        .appendField("Get WebUSB response data");
     this.setInputsInline(false);
     this.setOutput(true, null); 
     this.setColour(200);
@@ -161,7 +161,7 @@ Blockly.Blocks['webusb_getresponse'] = {
 Blockly.Blocks['webusb_clearresponse'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Clear WEBUSB response data");
+        .appendField("Clear WebUSB response data");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
