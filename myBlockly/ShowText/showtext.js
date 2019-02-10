@@ -22,11 +22,11 @@
       else if (input_property=="bordercolor")
         obj.style.borderColor = input_value; 
       else if (input_property=="borderradius") {
-	      if (input_value.toLowerCase().indexOf("px")==-1)
+        if (input_value.toLowerCase().indexOf("px")==-1)
           obj.style.borderRadius = input_value + "px";
-	      else
-	        obj.style.borderRadius = input_value;
-      }	         
+        else
+          obj.style.borderRadius = input_value;
+      }
       else if (input_property=="background")
         obj.style.background = input_value;
       else if (input_property=="color")
