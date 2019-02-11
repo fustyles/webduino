@@ -208,7 +208,7 @@
   <tr>
     <td valign="center">
       <br><br><button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
-      <br><br><input type="button" id="hide" value="  >  " onclick="hideMySpace(this);">
+      <br><br><input type="button" id="hide" value="  >>  " onclick="hideMySpace(this);">
     </td>
     <td>
       <table id="myFeatures">
@@ -556,12 +556,12 @@ function hideMySpace(element) {
     var myHeight = document.body.clientHeight;	
   if (document.getElementById('myFeatures').style.display != 'none') { 
     document.getElementById('myFeatures').style.display = 'none';
-    element.value='  <  ';
+    element.value='  <<  ';
     document.getElementById('mySpace').style.left=(myWidth-40) +"px";
     document.getElementById('blocklyDiv').style.width=(myWidth-70) +"px";
   } else {
     document.getElementById('myFeatures').style.display = 'block';
-    element.value='  >  ';
+    element.value='  >>  ';
     document.getElementById('mySpace').style.left=(myWidth-440) +"px";
     document.getElementById('blocklyDiv').style.width=(myWidth-470) +"px";
   }
