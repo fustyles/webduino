@@ -122,7 +122,9 @@ var catGameImage = '<xml><category name="%{BKY_GAMEIMAGE}" colour="%{BKY_GAMEIMA
 '        <field name="NUM">10</field>'+
 '      </block>'+
 '    </value>'+     
-'  </block>'+      
+'  </block>'+   
+'  <block type="mouse_coordinate_get_start">'+
+'  </block>'+       
 '  <block type="move_to_mouse">'+
 '    <value name="id_">'+
 '      <block type="text">'+
@@ -198,9 +200,7 @@ var catGameImage = '<xml><category name="%{BKY_GAMEIMAGE}" colour="%{BKY_GAMEIMA
 '    </value>'+    
 '  </block>'+  
 '  <block type="image_sys_get">'+
-'  </block>'+ 
-'  <block type="mouse_coordinate_get_start">'+
-'  </block>'+    
+'  </block>'+  
 '  <block type="mouse_coordinate_get">'+
 '  </block>'+      
 ' </category></xml>';
