@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
   <meta charset="utf-8">
@@ -16,8 +16,7 @@
 		'https://fustyles.github.io/webduino/myBlockly/example/Game_Hamster.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/Game_Puzzle.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/GameAuxiliary_example_001.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/GameAuxiliary_example_002.js',
-		'https://fustyles.github.io/webduino/myBlockly/example/GameAuxiliary_example_003.js',		
+		'https://fustyles.github.io/webduino/myBlockly/example/GameAuxiliary_example_002.js',	
 		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example_001.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example_002.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/GameCanvas_example_003.js',
@@ -28,9 +27,11 @@
 		'https://fustyles.github.io/webduino/myBlockly/example/Keyboard_example_001.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/Keyboard_example_002.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/Instruction_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/Instruction_example_002.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/OpenURL_example_001.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/TaiwanAirQuality_example_001.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/SpeechRecognition_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/SpeechSynthesis_example_001.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/DeepLearning_example_001.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/ESP8266_example_001.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/ESP8266_example_002.js',
@@ -197,7 +198,7 @@
 		'https://fustyles.github.io/webduino/myBlockly/IFTTT/ifttt.js',
 		'https://fustyles.github.io/webduino/myBlockly/LINE/line.js',
 		'https://fustyles.github.io/webduino/myBlockly/HTChart/htchart.js',
-		'https://d3js.org/d3.v4.min.js'		
+		'https://d3js.org/d3.v4.min.js'	
 	];
 	for (var i=0;i<script_iframe_run.length;i++) {
 	  document.write("\<script src='"+script_iframe_run[i]+"'\>\<\/script>");
@@ -208,6 +209,7 @@
 <img id="gameimg_1" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Scratch_Cat.png" style="width:100px;height:100px;left:200px;top:300px;position:absolute;display:none;z-index:9999;">
 <img id="gameimg_2" src="http://www.msps.chc.edu.tw/~office/computer/study/writer/%E5%A4%A7%E6%96%B9%E9%80%81/%E5%8D%A1%E9%80%9A%E5%9C%96%E6%A1%88/02.png" style="width:100px;height:100px;left:400px;top:300px;position:absolute;display:none;z-index:9998;">
 <img id="gameimg_3" src="http://www.msps.chc.edu.tw/~office/computer/study/writer/%E5%A4%A7%E6%96%B9%E9%80%81/%E5%8D%A1%E9%80%9A%E5%9C%96%E6%A1%88/03.png" style="width:100px;height:100px;left:600px;top:300px;position:absolute;display:none;z-index:9997;">
+
 <table id="mySpace" style="position:absolute;display:none;height:100%">
   <tr>
     <td valign="center">
@@ -232,7 +234,7 @@
           <td align="left" valign="center">
             <button id="btnclearworkspace" onclick="demoWorkspace.clear();">Clear Workspace</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkbackup" onclick="exportBlocks();var backupTimer = setInterval(function(){if (document.getElementById('chkbackup').checked) exportBlocks();}, 300000);"><span id="backuptimer">Backup Blocks (every 5 min)</span>
           </td>
-        </tr>	  
+        </tr>
         <tr>
           <td>
             <span id="left">left</span><input type="text" id="ifrLeft" size="1" value="300" onfocus="this.select()">&nbsp;<span id="top">top</span><input type="text" id="ifrTop" size="1" value="20" onfocus="this.select()">&nbsp;<span id="width">width</span><input type="text" id="ifrWidth" size="1" value="600" onfocus="this.select()">&nbsp;<span id="height">height</span><input type="text" id="ifrHeight" size="1" value="600" onfocus="this.select()">
@@ -243,6 +245,36 @@
             <span id="example">Example</span>
             <select onchange="if (this.value!='') XmldomToWorkspace(eval(this.value));this.value='';">
               <option value=""></option>
+	      <option value="Game_Tetris">Game_Tetris</option>
+              <option value="Game_TicTacToe">Game_TicTacToe</option>
+	      <option value="Game_Bounce">Game_Bounce</option>
+	      <option value="Game_Hamster">Game_Hamster</option>
+	      <option value="Game_Puzzle">Game_Puzzle</option>
+	      <option value="GameAuxiliary_example_001">GameAuxiliary_example_001</option>
+	      <option value="GameAuxiliary_example_002">GameAuxiliary_example_002</option>		    
+	      <option value="GameCanvas_example_001">GameCanvas_example_001</option>
+	      <option value="GameCanvas_example_002">GameCanvas_example_002</option>
+	      <option value="GameCanvas_example_003">GameCanvas_example_003</option>
+	      <option value="MatrixLED_example_001">MatrixLED_example_001</option>
+	      <option value="MatrixLED_example_002">MatrixLED_example_002</option>	
+	      <option value="MatrixLED_example_003">MatrixLED_example_003</option>		    
+              <option value="ShowText_example_001">ShowText_example_001</option>
+              <option value="Keyboard_example_001">Keyboard_example_001</option>
+              <option value="Keyboard_example_002">Keyboard_example_002</option>		    
+              <option value="Instruction_example_001">Instruction_example_001</option>
+              <option value="Instruction_example_002">Instruction_example_002</option>		    
+              <option value="OpenURL_example_001">OpenURL_example_001</option>
+              <option value="TaiwanAirQuality_example_001">TaiwanAirQuality_example_001</option>
+	      <option value="SpeechRecognition_example_001">SpeechRecognition_example_001</option>
+	      <option value="SpeechSynthesis_example_001">SpeechSynthesis_example_001</option>
+	      <option value="DeepLearning_example_001">DeepLearning_example_001</option>
+	      <option value="ESP8266_example_001">ESP8266_example_001</option>
+	      <option value="ESP8266_example_002">ESP8266_example_002</option>
+	      <option value="ESP8266_example_003">ESP8266_example_003</option>
+	      <option value="ESP8266_example_004">ESP8266_example_004</option>	
+	      <option value="ESP8266_example_005">ESP8266_example_005</option>		    
+	      <option value="ThingSpeak_example_001">ThingSpeak_example_001</option>
+	      <option value="HTChart_example_001">HTChart_example_001</option>
             </select>
           </td>
         </tr>
@@ -264,7 +296,7 @@
         </tr>
         <tr>
           <td align="center">
-            <div id='showText'>
+            Fu Chung-Yi (Taiwan)  Update Date : 2019-2-10
           </td>
         </tr>
       </table>
@@ -273,9 +305,9 @@
 </table>
 
 <div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left" draggable="true" ondragstart="document.getElementById('iframe_run').style.display='none';" ondragend="this.title='true';">
-  <button id="btndrag">Drag</button><button id="btnclosewindow" onclick="closeWindow();">Close Window</button><button id="btnRun" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button><button id="btnstopcode" onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button>
+  <button id="btndrag">Drag</button><button id="btnfullscreen" onclick="document.getElementById('iframe_run').requestFullscreen();document.getElementById('iframe_run').focus();">Full Screen</button><button id="btnRun" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button><button id="btnstopcode" onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button id="btnclosewindow" onclick="closeWindow();">Close Window</button>
   <br>
-  <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allow="autoplay; fullscreen; geolocation; microphone; camera"></iframe>
+  <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allowpaymentrequest allow="autoplay; fullscreen; geolocation; microphone; camera ; usb"></iframe>
 </div>
 
 <div id="blocklyDiv" style="height: 600px; width: 800px;">
@@ -312,7 +344,7 @@ var demoWorkspace = Blockly.inject('blocklyDiv',{media: 'https://blockly-demo.ap
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);	
 	
 //append initial blocks to startBlocks
-XmldomToWorkspace('<xml xmlns="http://www.w3.org/1999/xhtml"><variables><variable type="" id="*y8#n1_0le~9QzoknCxH">angle</variable></variables><block type="variables_set" id="*YTL|=lfdbzT$u%(E+w1" x="51" y="35"><field name="VAR" id="*y8#n1_0le~9QzoknCxH" variabletype="">angle</field><value name="VALUE"><block type="math_number" id="#Cd@={VEq$XCwTu?4H4Z"><field name="NUM">0</field></block></value><next><block type="controls_repeat_ext" id="KaL;21.LsVC`R:^52It5"><value name="TIMES"><block type="math_number" id="ftIWUsJ24{%{B6h+4XE~"><field name="NUM">18</field></block></value><statement name="DO"><block type="image_move" id="Iy#E(=uk~+c(*ZYMnyNQ"><field name="property_">right</field><value name="id_"><block type="text" id="0I+Z{4$m5~V*rZXbX}-]"><field name="TEXT">1</field></block></value><value name="step_"><block type="math_number" id="1aAksr*qQBUA-@W%|v-,"><field name="NUM">10</field></block></value><next><block type="move_to_coordinate" id="I*}{u:Cxqs_gL0^i^ux|"><value name="id_"><block type="text" id="*`#OJhE~|;U6RK@kV-tT"><field name="TEXT">2</field></block></value><value name="left_"><block type="math_random_int" id="oFxS.usriShu?iCTCvlj"><value name="FROM"><block type="math_number" id="vqKx_58:$r{h]jzC1;6J"><field name="NUM">200</field></block></value><value name="TO"><block type="math_number" id="EauCtEKRIo8HWmwS)iom"><field name="NUM">500</field></block></value></block></value><value name="top_"><block type="math_random_int" id="?PMs(b{vd5N0F.6#g}]U"><value name="FROM"><block type="math_number" id="Hq2|Er3q}2ZZ?+]5sRX%"><field name="NUM">200</field></block></value><value name="TO"><block type="math_number" id="rz0B9qO!E[J{u/)duKh1"><field name="NUM">500</field></block></value></block></value><next><block type="variables_set" id="@)xwt|8B,2w3F%CP}8py"><field name="VAR" id="*y8#n1_0le~9QzoknCxH" variabletype="">angle</field><value name="VALUE"><block type="math_arithmetic" id="r^B-HByltG9ej,p,1dFL"><field name="OP">ADD</field><value name="A"><block type="variables_get" id="F9(qSX[%BprNXNh-IhI*"><field name="VAR" id="*y8#n1_0le~9QzoknCxH" variabletype="">angle</field></block></value><value name="B"><block type="math_number" id="^Bqr-7=,5Z*8;dY3x`6L"><field name="NUM">20</field></block></value></block></value><next><block type="rotatez_degrees" id="Y%b3:^QDxmxiQtt*6A9-"><value name="id_"><block type="text" id="2a,`o`9J3|6.VV|-(UuZ"><field name="TEXT">3</field></block></value><value name="degrees_"><block type="variables_get" id="Ho|w4~Pyhyg6kcoF?LW9"><field name="VAR" id="*y8#n1_0le~9QzoknCxH" variabletype="">angle</field></block></value><next><block type="time_delay" id="njJ7-PLf:VLrm8o}!m;r"><value name="seconds"><block type="math_number" id="0x{y_YuY@^]wDxbq{tl,"><field name="NUM">0.2</field></block></value></block></next></block></next></block></next></block></next></block></statement><next><block type="keyboard_listener" id="JpK7a6EvOLq~L;ORmJr$"><field name="event">keydown</field><statement name="statement"><block type="controls_if" id="{zBw9MK?5gq;#([Pix^g"><mutation elseif="3"></mutation><value name="IF0"><block type="keyboard_keycode" id="o;ZM$9OBz0tkuGm(-+eE"><field name="keycode">38</field></block></value><statement name="DO0"><block type="image_move" id="g/Y-OC:|CXqH/u1!/FOw"><field name="property_">up</field><value name="id_"><block type="text" id="_nIkn4A_dPo117G}!k9;"><field name="TEXT">1</field></block></value><value name="step_"><block type="math_number" id="$^6JE-JG@V`ic(Y/z9~x"><field name="NUM">10</field></block></value></block></statement><value name="IF1"><block type="keyboard_keycode" id="E=t@H0C5T#|#j)V[z@Q_"><field name="keycode">40</field></block></value><statement name="DO1"><block type="image_move" id="+!A;r-X?scQ6(kUC,6$)"><field name="property_">down</field><value name="id_"><block type="text" id=";+fE0h3W{n%n~%.fMI$K"><field name="TEXT">1</field></block></value><value name="step_"><block type="math_number" id="tiGhHjG)VS+FXhc6@9u1"><field name="NUM">10</field></block></value></block></statement><value name="IF2"><block type="keyboard_keycode" id="!e/8$QkZ;g-aBIOmvZ@w"><field name="keycode">37</field></block></value><statement name="DO2"><block type="image_move" id="J@}U`i6V(:DlQ/gAAS(P"><field name="property_">left</field><value name="id_"><block type="text" id="3ecEEp1=8N+g[AC0ev80"><field name="TEXT">1</field></block></value><value name="step_"><block type="math_number" id="8,J!dSu)yw}1A+XTLNY:"><field name="NUM">10</field></block></value></block></statement><value name="IF3"><block type="keyboard_keycode" id="3`?yy3!aKmU0cRY1PxFT"><field name="keycode">39</field></block></value><statement name="DO3"><block type="image_move" id="FMH-]v$F-HO)Q/p3h)g="><field name="property_">right</field><value name="id_"><block type="text" id=":$^[(GSYemoCbbyC@q.z"><field name="TEXT">1</field></block></value><value name="step_"><block type="math_number" id="2167YPGjtM~=K?w3``5Q"><field name="NUM">10</field></block></value></block></statement></block></statement></block></next></block></next></block></xml>');
+XmldomToWorkspace(Game_TicTacToe);
 	
 function XmldomToWorkspace(example) {	
   var xml = Blockly.Xml.textToDom(example);
@@ -339,24 +371,16 @@ function runCode() {
 	
   var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
   for (var i=0;i<script_iframe_run.length;i++)  {
-    iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
+    iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script\>";
   }
 		
   var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
   var xml_text = Blockly.Xml.domToText(xml);
-  
-  //If Speech Recognition is used, it can't run in iframe.
-  if (xml_text.indexOf("SpeechRecognition")!=-1) {
-    exportHTML();
-    return false;
-  }
-	
-  //If Deep Learning is used, it can't run in iframe.
+  //Deep Learning
   if (xml_text.indexOf("teachable")!=-1) {
-    exportHTML();
-    return false;
-  }
-      
+    iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script\>";
+  }	
+    
   iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   try {
@@ -366,22 +390,21 @@ function runCode() {
     document.getElementById("iframe_run").style.height = document.getElementById("ifrHeight").value + "px";
     document.getElementById("runWindow").style.display = "block";
     document.getElementById("iframe_run").style.display = "block";
-    document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURIComponent(iframe_code);
-    /*  
+	  
+    //document.getElementById("iframe_run").src = 'data:text/html;charset=utf-8,' + encodeURI(iframe_code);  
     var iframe = document.getElementById("iframe_run");
     iframe.contentWindow.document.open();
     iframe.contentWindow.document.write(iframe_code);
     iframe.contentWindow.document.close();
-    */  	  
     document.getElementById("iframe_run").focus();
   } catch (e) {
     alert(e);
-  }	
+  }
 }
 	
 function stopCode() {
   try {	
-    document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';
+    document.getElementById("iframe_run").src="about:blank";
   } catch (e) {
     alert(e);
   }
@@ -389,7 +412,7 @@ function stopCode() {
 	
 function closeWindow() {
   try {	
-    document.getElementById("iframe_run").src='data:text/html;charset=utf-8,';	  
+    stopCode();	  
     document.getElementById("runWindow").style.display = "none";
   } catch (e) {
     alert(e);
@@ -417,21 +440,21 @@ function exportHTML() {
     var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
     var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
     for (var i=0;i<script_iframe_run.length;i++)  {
-      iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script>";
+      iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script\>";
     }
 	  
     var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
     var xml_text = Blockly.Xml.domToText(xml);
     //Deep Learning
     if (xml_text.indexOf("teachable")!=-1) {
-      iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script>";
+      iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script\>";
     }
 	  
     iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
     
     var link = document.createElement('a');
     link.download="project.html";
-    link.href="data:application/octet-stream;utf-8," + encodeURIComponent(iframe_code);
+    link.href="data:application/octet-stream;utf-8," + encodeURIComponent(iframe_code);	  
     document.body.appendChild(link);
     link.click();
     link.remove();
@@ -496,20 +519,8 @@ function initial() {
   document.getElementById('codeWindow').style.height=(myHeight-200) +"px";
   document.getElementById('mySpace').style.left=(myWidth-440) +"px";
   document.getElementById('mySpace').style.height=myHeight +"px";
-  document.getElementById('mySpace').style.display="block";	
-	
-  document.getElementById('gameimg_1').style.display="block";
-  document.getElementById('gameimg_1').style.left = (myWidth-800) +"px";
-  document.getElementById('gameimg_1').style.top = (myHeight-300) +"px";
-  document.getElementById('gameimg_2').style.display="block";
-  document.getElementById('gameimg_2').style.left = (myWidth-600) +"px";
-  document.getElementById('gameimg_2').style.top = (myHeight-300) +"px";
-  document.getElementById('gameimg_3').style.display="block";
-  document.getElementById('gameimg_3').style.left = (myWidth-400) +"px";
-  document.getElementById('gameimg_3').style.top = (myHeight-300) +"px";
-  hideMySpace(document.getElementById('hide'));	
-	
-  document.getElementById('btnRun').innerHTML = Blockly.Msg.btnRun1_TEXT;
+  document.getElementById('mySpace').style.display="block";
+  document.getElementById('btnRun').innerHTML = Blockly.Msg.btnRun_TEXT;
   document.getElementById('btnRun1').innerHTML = Blockly.Msg.btnRun1_TEXT;
   document.getElementById('btnexportcode').innerHTML = Blockly.Msg.btnexportcode_TEXT;
   document.getElementById('btnexporthtml').innerHTML = Blockly.Msg.btnexporthtml_TEXT;
@@ -526,6 +537,7 @@ function initial() {
   document.getElementById('btndrag').innerHTML = Blockly.Msg.btndrag_TEXT;
   document.getElementById('btnstopcode').innerHTML = Blockly.Msg.btnstopcode_TEXT;
   document.getElementById('btnclosewindow').innerHTML = Blockly.Msg.btnclosewindow_TEXT;
+  document.getElementById('btnfullscreen').innerHTML = Blockly.Msg.btnfullscreen_TEXT;
 }
 	
 function hideMySpace(element) {
@@ -557,7 +569,7 @@ function showcodeWindow(element, state) {
   if (state=="big")
   {
     element.style.position='absolute';
-    element.style.left="-"+(myWidth-450)+"px";
+    element.style.left="-"+(myWidth-440)+"px";
     element.style.top='0px';
     element.style.width=(myWidth-480)+"px";
     element.style.height=myHeight +"px";
@@ -592,7 +604,6 @@ window.onmousemove = function() {
     document.getElementById('iframe_run').style.display="block"; 
   }
 };
-
 window.onbeforeunload = function(){ 
   return "Data may not be stored yet. Are you sure?"; 
 }
