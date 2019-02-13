@@ -520,6 +520,18 @@ function initial() {
   document.getElementById('mySpace').style.left=(myWidth-440) +"px";
   document.getElementById('mySpace').style.height=myHeight +"px";
   document.getElementById('mySpace').style.display="block";
+	
+  document.getElementById('gameimg_1').style.display="block";
+  document.getElementById('gameimg_1').style.left = (myWidth-800) +"px";
+  document.getElementById('gameimg_1').style.top = (myHeight-300) +"px";
+  document.getElementById('gameimg_2').style.display="block";
+  document.getElementById('gameimg_2').style.left = (myWidth-600) +"px";
+  document.getElementById('gameimg_2').style.top = (myHeight-300) +"px";
+  document.getElementById('gameimg_3').style.display="block";
+  document.getElementById('gameimg_3').style.left = (myWidth-400) +"px";
+  document.getElementById('gameimg_3').style.top = (myHeight-300) +"px";
+  hideMySpace(document.getElementById('hide'));		
+	
   document.getElementById('btnRun').innerHTML = Blockly.Msg.btnRun_TEXT;
   document.getElementById('btnRun1').innerHTML = Blockly.Msg.btnRun1_TEXT;
   document.getElementById('btnexportcode').innerHTML = Blockly.Msg.btnexportcode_TEXT;
