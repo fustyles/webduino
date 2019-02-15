@@ -247,13 +247,13 @@
 	  for (var i=0;i<obj.rows.length;i++) {
 	    var row = obj.rows[i];
             row.insertCell(input_index);
-	    row.cells[i].style.textAlign="center";
-	    row.cells[i].style.verticalAlign = "middle";
-	    row.cells[i].style.background = obj.rows[0].cells[0].style.background;
-	    row.cells[i].style.width = obj.rows[0].cells[0].style.width;
-	    row.cells[i].style.height = obj.rows[0].cells[0].style.height;
-	    row.cells[i].setAttribute("onclick", "javascript:onclickid_set(this);");
-	    row.cells[i].setAttribute("ondragover","javascript:event.preventDefault();"); 		  
+	    row.cells[input_index].style.textAlign="center";
+	    row.cells[input_index].style.verticalAlign = "middle";
+	    row.cells[input_index].style.background = obj.rows[0].cells[0].style.background;
+	    row.cells[input_index].style.width = obj.rows[0].cells[0].style.width;
+	    row.cells[input_index].style.height = obj.rows[0].cells[0].style.height;
+	    row.cells[input_index].setAttribute("onclick", "javascript:onclickid_set(this);");
+	    row.cells[input_index].setAttribute("ondragover","javascript:event.preventDefault();"); 		  
 	  }
         }
       }	    
@@ -262,7 +262,6 @@
 	  for (var i=0;i<obj.rows.length;i++) {
 	    for (var j=0;j<obj.rows[0].cells.length;j++) {
 	      obj.rows[i].cells[j].id="gametable_td_"+input_id+"_"+i+"_"+j;
-	      console.log(obj.rows[i].cells[j].id);
 	    }	  	
 	  }
 	}
