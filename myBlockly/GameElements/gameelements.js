@@ -228,13 +228,21 @@
 	  }
         }
       }
+      else if (input_cmd=="add") {
+        if (input_target=="row")
+  	  obj.insertRow(input_index);
+        else if (input_target=="col") {  
+	  for (var i=0;i<obj.rows.length;i++) {
+	    var row = obj.rows[i];
+            row.insertCell(input_index);
+	  }
+        }
+      }	    
       if (obj.rows.length>0) {
 	if (obj.rows[0].cells.length>0) {
 	  for (var i=0;i<obj.rows.length;i++) {
 	    for (var j=0;j<obj.rows[0].cells.length;j++) {
-              console.log(obj.rows[i].cells[j].id);
 	      obj.rows[i].cells[j].id="gametable_td_"+input_id+"_"+i+"_"+j;
-	      console.log(obj.rows[i].cells[j].id);
 	    }	  	
 	  }
 	}
