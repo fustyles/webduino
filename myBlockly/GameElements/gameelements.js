@@ -229,12 +229,13 @@
         }
       }
       else if (input_cmd=="add") {
-        if (input_target=="row")
+        if (input_target=="row") {
   	  obj.insertRow(input_index);
 	  for (var i=0;i<obj.rows[0].cells.length;i++) {
 	    var row = obj.rows[input_index];
             row.insertCell(i);
 	  }	      
+	}
         else if (input_target=="col") {  
 	  for (var i=0;i<obj.rows.length;i++) {
 	    var row = obj.rows[i];
