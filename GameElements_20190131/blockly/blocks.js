@@ -120,7 +120,7 @@ Blockly.Blocks['table_change_colsrows'] = {
   this.appendDummyInput() 
       .setAlign(Blockly.ALIGN_RIGHT)   
       .appendField(" ")
-      .appendField(new Blockly.FieldDropdown([["remove","remove"]]), "cmd_");    
+      .appendField(new Blockly.FieldDropdown([["add","add"], ["remove","remove"]]), "cmd_");    
   this.appendValueInput("index_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
