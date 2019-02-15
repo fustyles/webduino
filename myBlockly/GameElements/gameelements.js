@@ -243,6 +243,7 @@
 	  for (var i=0;i<obj.rows.length;i++) {
 	    for (var j=0;j<obj.rows[0].cells.length;j++) {
 	      obj.rows[i].cells[j].id="gametable_td_"+input_id+"_"+i+"_"+j;
+	      console.log(obj.rows[i].cells[j].id);
 	    }	  	
 	  }
 	}
