@@ -234,6 +234,13 @@
 	  for (var i=0;i<obj.rows[0].cells.length;i++) {
 	    var row = obj.rows[input_index];
             row.insertCell(i);
+	    row.cells[i].style.textAlign="center";
+	    row.cells[i].style.verticalAlign = "middle";
+	    row.cells[i].style.background = row.cells[0].style.background;
+	    row.cells[i].style.width = row.cells[0].style.width;
+	    row.cells[i].style.height = row.cells[0].style.height;
+	    row.cells[i].setAttribute("onclick", "javascript:onclickid_set(this);");
+	    row.cells[i].setAttribute("ondragover","javascript:event.preventDefault();"); 		  
 	  }	      
 	}
         else if (input_target=="col") {  
