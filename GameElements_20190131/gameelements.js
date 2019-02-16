@@ -996,7 +996,7 @@
 	  var top = y1-y2;
 	  var height = y2_h-y1;	
 	}
-	var context = obj2.getContext("2d");
+	var context = document.getElementById("gamecanvas_"+input_id2).getContext("2d");
 	if (width>0&&height>0) {
           var hexcolor = context.getImageData(left, top, width, height).data;	      
 	  for (var i=0;i<hexcolor.length;i+=4) {
