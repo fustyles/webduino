@@ -632,7 +632,7 @@ Blockly.JavaScript['function_return'] = function (block) {
   return code;
 };
 
-Blockly.JavaScript['time_delay'] = function (block) {
+Blockly.JavaScript['gameelements_1'] = function (block) {
   var code = '';
   return code;
 };
