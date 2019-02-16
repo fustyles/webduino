@@ -896,6 +896,7 @@
   function elements_collision(element1,input_id1,element2,input_id2,input_position) {
     if ((document.getElementById(element1+input_id1))&&(document.getElementById(element2+input_id2)))
     {
+console.log("two ok");
       var obj1 = document.getElementById(element1+input_id1).style;
       var obj2 = document.getElementById(element2+input_id2).style;
       var x1 = Number(obj1.left.replace(/px/ig,""));
@@ -913,7 +914,8 @@
       else if ((((x1>=x2)&&(x1<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1>=x2)&&(x1<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h)))||((x1>=x2&&x1_w<=x2_w)&&(y1<=y2&&y1_h>=y2_h))||((x1<=x2&&x1_w>=x2_w)&&(y1>=y2&&y1_h<=y2_h))||((x1>=x2&&x1_w<=x2_w)&&(y1>=y2&&y1_h<=y2_h)))
         state=1;
       else
-        state=0;  
+        state=0; 
+console.log("any="+state);
       
       if (state==1&&input_position!="any") {
         if (input_position=="up") {
@@ -951,6 +953,7 @@
 
   function elements_collision_color(element1,input_id1,input_id2,input_color) {
     if ((document.getElementById(element1+input_id1))&&(document.getElementById("gamecanvas_"+input_id2))) {
+console.log("two ok");	    
       var obj = document.getElementById(element1+input_id1);
       var canvas = document.getElementById("gamecanvas_"+input_id2);
 console.log(elements_collision(element1,input_id1,"gamecanvas_",input_id2,"any"));
