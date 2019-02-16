@@ -450,14 +450,14 @@ function exportHTML() {
     var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
     var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
     for (var i=0;i<script_iframe_run.length;i++)  {
-      iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script\>\\n";
+      iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script\>";
     }
 	  
     var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
     var xml_text = Blockly.Xml.domToText(xml);
     //Deep Learning
     if (xml_text.indexOf("teachable")!=-1) {
-      iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script\>\\n";
+      iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script\>";
     }
 	  
     iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999'\>\<\div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
