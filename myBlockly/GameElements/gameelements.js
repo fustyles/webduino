@@ -236,9 +236,9 @@
             row.insertCell(i);
 	    row.cells[i].style.textAlign="center";
 	    row.cells[i].style.verticalAlign = "middle";
-	    row.cells[i].style.background = obj.rows[0].cells[0].style.background;
-	    row.cells[i].style.width = obj.rows[0].cells[0].style.width;
-	    row.cells[i].style.height = obj.rows[0].cells[0].style.height;
+	    row.cells[i].style.background = obj.rows[0].cells[i].style.background;
+	    row.cells[i].style.width = obj.rows[0].cells[i].style.width;
+	    row.cells[i].style.height = obj.rows[0].cells[i].style.height;
 	    row.cells[i].setAttribute("onclick", "javascript:onclickid_set(this);");
 	    row.cells[i].setAttribute("ondragover","javascript:event.preventDefault();"); 		  
 	  }	      
@@ -249,9 +249,9 @@
             row.insertCell(input_index);
 	    row.cells[input_index].style.textAlign="center";
 	    row.cells[input_index].style.verticalAlign = "middle";
-	    row.cells[input_index].style.background = obj.rows[0].cells[0].style.background;
-	    row.cells[input_index].style.width = obj.rows[0].cells[0].style.width;
-	    row.cells[input_index].style.height = obj.rows[0].cells[0].style.height;
+	    row.cells[input_index].style.background = obj.rows[0].cells[input_index].style.background;
+	    row.cells[input_index].style.width = obj.rows[0].cells[input_index].style.width;
+	    row.cells[input_index].style.height = obj.rows[0].cells[input_index].style.height;
 	    row.cells[input_index].setAttribute("onclick", "javascript:onclickid_set(this);");
 	    row.cells[input_index].setAttribute("ondragover","javascript:event.preventDefault();"); 		  
 	  }
