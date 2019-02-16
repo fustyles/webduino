@@ -739,6 +739,21 @@
     else
       return 0;
   }
+	
+  function canvas_getcolor(input_id,input_left,input_top) {
+    if (document.getElementById("gamecanvas_"+input_id))
+    {
+      var obj = document.getElementById("gamecanvas_"+input_id);
+      var context = obj.getContext("2d");
+      var hexcolor = context.getImageData(input_left, input_top, 1, 1).data;
+      var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+      var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+      var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+      return "#"+r+g+b;
+    }
+    else
+      return "";
+  }	
 
   function image_create(input_id,input_url,input_width,input_height,input_left,input_top,input_zindex,input_display) {
     if (document.getElementById("gameimg_"+input_id))
@@ -893,9 +908,9 @@
       var y2_h = Number(obj2.top.replace(/px/ig,"")) + Number(obj2.height.replace(/px/ig,""));
     
       var state=0;
-      if ((((x2>=x1)&&(x2<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2>=x1)&&(x2<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h))))
+      if ((((x2>=x1)&&(x2<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2>=x1)&&(x2<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h)))||((x1>=x2&&x1_w<=x2_w)&&(y1<=y2&&y1_h>=y2_h))||((x1<=x2&&x1_w>=x2_w)&&(y1>=y2&&y1_h<=y2_h))||((x1>=x2&&x1_w<=x2_w)&&(y1>=y2&&y1_h<=y2_h)))
         state=1;
-      else if ((((x1>=x2)&&(x1<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1>=x2)&&(x1<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h))))
+      else if ((((x1>=x2)&&(x1<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1>=x2)&&(x1<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h)))||((x1>=x2&&x1_w<=x2_w)&&(y1<=y2&&y1_h>=y2_h))||((x1<=x2&&x1_w>=x2_w)&&(y1>=y2&&y1_h<=y2_h))||((x1>=x2&&x1_w<=x2_w)&&(y1>=y2&&y1_h<=y2_h)))
         state=1;
       else
         state=0;  
@@ -933,62 +948,46 @@
     else
       return 0;   
   } 
-	
-  function image_collision(input_id1,input_id2,input_position) {
-    if ((document.getElementById("gameimg_"+input_id1))&&(document.getElementById("gameimg_"+input_id2)))
-    {
-      var img1 = document.getElementById("gameimg_"+input_id1).style;
-      var img2 = document.getElementById("gameimg_"+input_id2).style;
-      var x1 = Number(img1.left.replace(/px/ig,""));
-      var x1_w = Number(img1.left.replace(/px/ig,"")) + Number(img1.width.replace(/px/ig,""));
-      var y1 = Number(img1.top.replace(/px/ig,""));
-      var y1_h = Number(img1.top.replace(/px/ig,"")) + Number(img1.height.replace(/px/ig,""));
-      var x2 = Number(img2.left.replace(/px/ig,""));
-      var x2_w = Number(img2.left.replace(/px/ig,"")) + Number(img2.width.replace(/px/ig,""));
-      var y2 = Number(img2.top.replace(/px/ig,""));
-      var y2_h = Number(img2.top.replace(/px/ig,"")) + Number(img2.height.replace(/px/ig,""));
-    
-      var state=0;
-      if ((((x2>=x1)&&(x2<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2>=x1)&&(x2<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2>=y1)&&(y2<=y1_h)))||(((x2_w>=x1)&&(x2_w<=x1_w))&&((y2_h>=y1)&&(y2_h<=y1_h))))
-        state=1;
-      else if ((((x1>=x2)&&(x1<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1>=x2)&&(x1<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1>=y2)&&(y1<=y2_h)))||(((x1_w>=x2)&&(x1_w<=x2_w))&&((y1_h>=y2)&&(y1_h<=y2_h))))
-        state=1;
-      else
-        state=0;  
-      
-      if (state==1&&input_position!="any") {
-        if (input_position=="up") {
-	  if (y1_h<=(y2+y2_h)/2||(y1_h-y2>=(y2_h-y2)/2&&y1<=y2))
-            return 1;
-	  else
-	    return 0;
-        }      
-        else if (input_position=="down") {
-	  if (y1>=(y2+y2_h)/2||(y2_h-y1>=(y2_h-y2)/2&&y1>=y2))
-            return 1;
-	  else
-	    return 0;      
-        }
-        else if (input_position=="left") {
-	  if (x1_w<=(x2+x2_w)/2||(x1_w-x2>=(x2_w-x2)/2&&x1<=x2))
-            return 1;
-	  else
-	    return 0;    
-        } 
-        else if (input_position=="right") {
-	  if (x1>=(x2+x2_w)/2||(x2_w-x1>=(x2_w-x2)/2&&x1>=x2))
-            return 1;
-	  else
-	    return 0;     
-        }
-	return 1;
+
+  function elements_collision_color(element1,input_id1,input_id2,input_color) {
+    if ((document.getElementById(element1+input_id1))&&(document.getElementById("gamecanvas_"+input_id2))) {
+      var obj = document.getElementById(element1+input_id1);
+      var canvas = document.getElementById("gamecanvas_"+input_id2);
+      if (elements_collision(element1,input_id1,"gamecanvas_",input_id2,"any")==1) {
+	if (Number(obj.style.left.replace(/px/ig,""))>Number(canvas.style.left.replace(/px/ig,""))) {
+	  var left = Number(obj.style.left.replace(/px/ig,"")) - Number(canvas.style.left.replace(/px/ig,""));
+	  var width = Number(canvas.style.left.replace(/px/ig,"")) + Number(canvas.style.width.replace(/px/ig,"")) - Number(obj.style.left.replace(/px/ig,""));
+	}
+	else {
+	  var left = 0;
+	  var width = Number(obj.style.left.replace(/px/ig,"")) + Number(obj.style.width.replace(/px/ig,"")) - Number(canvas.style.left.replace(/px/ig,""));
+	}
+	if (Number(obj.style.top.replace(/px/ig,""))>Number(canvas.style.top.replace(/px/ig,""))) {
+	  var top = Number(obj.style.top.replace(/px/ig,"")) - Number(canvas.style.top.replace(/px/ig,""));
+	  var height = Number(canvas.style.top.replace(/px/ig,"")) + Number(canvas.style.height.replace(/px/ig,"")) - Number(obj.style.top.replace(/px/ig,""));
+	}
+	else {
+	  var top = 0;
+	  var height = Number(obj.style.top.replace(/px/ig,"")) + Number(obj.style.height.replace(/px/ig,"")) - Number(canvas.style.top.replace(/px/ig,""));
+	}
+	var context = canvas.getContext("2d");
+	if (width>0&&height>0) {
+          var hexcolor = context.getImageData(left, top, width, height).data;	      
+	  for (var i=0;i<hexcolor.length;i+=4) {
+            var r = Number(hexcolor[i]).toString(16).length==1?"0"+Number(hexcolor[i]).toString(16):Number(hexcolor[i]).toString(16);
+            var g = Number(hexcolor[i+1]).toString(16).length==1?"0"+Number(hexcolor[i+1]).toString(16):Number(hexcolor[i+1]).toString(16);
+            var b = Number(hexcolor[i+2]).toString(16).length==1?"0"+Number(hexcolor[i+2]).toString(16):Number(hexcolor[i+2]).toString(16);
+            if (input_color=="#"+r+g+b) return 1;
+	  }
+	}
+        return 0;	      
       }
       else
-        return state; 
+        return 0;
     }
     else
-      return 0;   
-  }   
+      return 0;
+  }  
   
   function image_boundary(input_left,input_top) {
     if (input_left>=0) screen_width = input_left;
@@ -1981,12 +1980,13 @@ function HextoRgb(color) {
   window.canvas_clear = canvas_clear;
   window.canvas_delete = canvas_delete;
   window.canvas_onclick_get = canvas_onclick_get;
+  window.canvas_getcolor = canvas_getcolor;
   window.image_create = image_create;
   window.image_set = image_set;
   window.image_get = image_get;
   window.image_delete = image_delete;
   window.elements_collision = elements_collision;
-  window.image_collision = image_collision;
+  window.elements_collision_color = elements_collision_color;
   window.image_boundary = image_boundary;
   window.image_boundary_collision = image_boundary_collision;
   window.image_sys_get = image_sys_get;
