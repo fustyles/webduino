@@ -1062,13 +1062,13 @@ Blockly.Blocks['canvas_onclick_get'] = {
 };
 
 Blockly.Blocks['canvas_getcolor'] = {
-  init: function() {
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.CANVAS_GETCOLOR_SHOW);     
+  init: function() {  
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT) 
-      .appendField(Blockly.Msg.CANVAS_ID_SHOW);   
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_GETCOLOR_SHOW);       
   this.appendValueInput("x_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
