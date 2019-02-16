@@ -115,12 +115,12 @@ Blockly.Blocks['table_change_colsrows'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendDummyInput() 
-      .setAlign(Blockly.ALIGN_RIGHT)    
-      .appendField(new Blockly.FieldDropdown([["col","col"], ["row","row"]]), "target_");    
-  this.appendDummyInput() 
       .setAlign(Blockly.ALIGN_RIGHT)   
       .appendField(" ")
-      .appendField(new Blockly.FieldDropdown([["add","add"], ["remove","remove"]]), "cmd_");    
+      .appendField(new Blockly.FieldDropdown([["add","add"], ["remove","remove"]]), "cmd_");  
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(new Blockly.FieldDropdown([["col","col"], ["row","row"]]), "target_");     
   this.appendValueInput("index_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
