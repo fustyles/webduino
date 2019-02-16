@@ -967,7 +967,7 @@
 	  var height = Number(obj.style.top.replace(/px/ig,"")) + Number(obj.style.height.replace(/px/ig,"")) - Number(canvas.style.top.replace(/px/ig,""));
 	}
 	var context = canvas.getContext("2d");
-        var hexcolor = context.getImageData(top, left, width, height).data;	      
+        var hexcolor = context.getImageData(left, top, width, height).data;	      
 	for (var i=0;i<hexcolor.length;i+=4) {
           var r = Number(hexcolor[i]).toString(16).length==1?"0"+Number(hexcolor[i]).toString(16):Number(hexcolor[i]).toString(16);
           var g = Number(hexcolor[i+1]).toString(16).length==1?"0"+Number(hexcolor[i+1]).toString(16):Number(hexcolor[i+1]).toString(16);
