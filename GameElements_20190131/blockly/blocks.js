@@ -1497,7 +1497,7 @@ Blockly.Blocks['function_return'] = {
   }
 };
 
-Blockly.Blocks['time_delay'] = {
+Blockly.Blocks['gameelements_1'] = {
   init: function () {
     this.appendDummyInput()
       .appendField(Blockly.Msg.TIME_DELAY_SHOW); 
