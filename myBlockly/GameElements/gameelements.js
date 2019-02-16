@@ -741,6 +741,8 @@
     {
       return "OK";
     }
+    else
+      return "";
   }
 
   function image_create(input_id,input_url,input_width,input_height,input_left,input_top,input_zindex,input_display) {
