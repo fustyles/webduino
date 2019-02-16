@@ -182,3 +182,4 @@ Blockly.Msg.DIV_VALUE_SHOW = "Value";
 Blockly.Msg.DIV_SET_SHOW = "Set";
 Blockly.Msg.DIV_GET_SHOW = "Get";
 Blockly.Msg.DIV_DELETE_SHOW = "Delete";
+Blockly.Msg.CANVAS_GETCOLOR_SHOW = "Get color";
