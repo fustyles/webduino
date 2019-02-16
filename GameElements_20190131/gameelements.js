@@ -953,6 +953,7 @@
     if ((document.getElementById(element1+input_id1))&&(document.getElementById("gamecanvas_"+input_id2))) {
       var obj = document.getElementById(element1+input_id1);
       var canvas = document.getElementById("gamecanvas_"+input_id2);
+console.log(elements_collision(element1,input_id1,"gamecanvas_",input_id2,"any"));
       if (elements_collision(element1,input_id1,"gamecanvas_",input_id2,"any")==1) {
 	if (Number(obj.style.left.replace(/px/ig,""))>Number(canvas.style.left.replace(/px/ig,""))) {
 	  var left = Number(obj.style.left.replace(/px/ig,"")) - Number(canvas.style.left.replace(/px/ig,""));
