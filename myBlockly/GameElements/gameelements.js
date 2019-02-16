@@ -951,20 +951,20 @@
       var canvas = document.getElementById("gamecanvas_"+input_id2);
       if (elements_collision(element1,input_id1,"gamecanvas_",input_id2,"any")==1) {
 	if (Number(obj.style.left.replace(/px/ig,""))>Number(canvas.style.left.replace(/px/ig,""))) {
-	  var left = Number(obj.style.left.replace(/px/ig,""))>Number(canvas.style.left.replace(/px/ig,""));
-	  var width = Number(obj.style.width.replace(/px/ig,""));
+	  var left = Number(obj.style.left.replace(/px/ig,"")) - Number(canvas.style.left.replace(/px/ig,""));
+	  var width = Number(canvas.style.left.replace(/px/ig,"")) + Number(canvas.style.width.replace(/px/ig,"")) - Number(obj.style.left.replace(/px/ig,""));
 	}
 	else {
 	  var left = 0;
-	  var width = Number(obj.style.width.replace(/px/ig,"")) -(Number(canvas.style.left.replace(/px/ig,"")) - Number(obj.style.left.replace(/px/ig,"")));
+	  var width = Number(obj.style.left.replace(/px/ig,"")) + Number(obj.style.width.replace(/px/ig,"")) - Number(canvas.style.left.replace(/px/ig,""));
 	}
 	if (Number(obj.style.top.replace(/px/ig,""))>Number(canvas.style.top.replace(/px/ig,""))) {
-	  var top = Number(obj.style.top.replace(/px/ig,""))>Number(canvas.style.top.replace(/px/ig,""));
-	  var height = Number(canvas.style.width.replace(/px/ig,"")) - (Number(obj.style.top.replace(/px/ig,"")) - Number(canvas.style.top.replace(/px/ig,"")));
+	  var top = Number(obj.style.top.replace(/px/ig,"")) - Number(canvas.style.top.replace(/px/ig,""));
+	  var height = Number(canvas.style.top.replace(/px/ig,"")) + Number(canvas.style.height.replace(/px/ig,"")) - Number(obj.style.top.replace(/px/ig,""));
 	}
 	else {
 	  var top = 0;
-	  var height = Number(obj.style.top.replace(/px/ig,"")) + Number(obj.style.width.replace(/px/ig,"")) - Number(canvas.style.top.replace(/px/ig,""));
+	  var height = Number(obj.style.top.replace(/px/ig,"")) + Number(obj.style.height.replace(/px/ig,"")) - Number(canvas.style.top.replace(/px/ig,""));
 	}
 	var context = canvas.getContext("2d");
         var hexcolor = context.getImageData(top, left, width, height).data;	      
