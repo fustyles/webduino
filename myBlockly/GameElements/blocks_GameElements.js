@@ -1069,14 +1069,14 @@ Blockly.Blocks['canvas_getcolor'] = {
       .appendField(Blockly.Msg.CANVAS_ID_SHOW); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.CANVAS_GETCOLOR_SHOW);       
-  this.appendValueInput("x_")
+  this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_X_SHOW);    
-  this.appendValueInput("y_")
+      .appendField(Blockly.Msg.LEFT_SHOW);    
+  this.appendValueInput("top_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_Y_SHOW);  
+      .appendField(Blockly.Msg.TOP_SHOW);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
