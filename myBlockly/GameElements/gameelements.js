@@ -736,6 +736,13 @@
       return 0;
   }
 
+  function canvas_getcolor(input_id,input_x,input_y) {
+    if (document.getElementById("gamecanvas_"+input_id))
+    {
+      return "OK";
+    }
+  }
+
   function image_create(input_id,input_url,input_width,input_height,input_left,input_top,input_zindex,input_display) {
     if (document.getElementById("gameimage_"+input_id))
       document.getElementById("gameimage_"+input_id).parentNode.removeChild(document.getElementById("gameimage_"+input_id));
