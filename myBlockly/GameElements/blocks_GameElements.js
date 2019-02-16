@@ -1193,6 +1193,28 @@ Blockly.Blocks['elements_collision'] = {
   }
 };
 
+Blockly.Blocks['elements_collision_color'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"],["div","div"]]), "element1_");    
+  this.appendValueInput("id1_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.ID_SHOW); 
+  this.appendValueInput("id2_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT) 
+      .appendField(Blockly.Msg.AND_SHOW)     
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);      
+  this.appendValueInput("color_")
+      .setCheck(null) 
+      .setAlign(Blockly.ALIGN_RIGHT)   
+      .appendField(Blockly.Msg.COLOR_SHOW);
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
 Blockly.Blocks['image_collision'] = {
   init: function() {
   this.appendValueInput("id1_")
