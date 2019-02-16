@@ -423,7 +423,7 @@ Blockly.JavaScript['elements_collision'] = function (block) {
   else if (value_element1_=="canvas")
     var obj1= 'gamecanvas_';
   else if (value_element1_=="image")
-    var obj1= 'gameimg_';
+    var obj1= 'gameimage_';
   else if (value_element1_=="button")
     var obj1= 'gamebutton_';
   else if (value_element1_=="color")
@@ -441,7 +441,7 @@ Blockly.JavaScript['elements_collision'] = function (block) {
   else if (value_element2_=="canvas")
     var obj2= 'gamecanvas_';
   else if (value_element2_=="image")
-    var obj2= 'gameimg_';
+    var obj2= 'gameimage_';
   else if (value_element2_=="button")
     var obj2= 'gamebutton_';
   else if (value_element2_=="color")
@@ -786,7 +786,7 @@ Blockly.JavaScript['element_event'] = function (block) {
   else if (element=="canvas")
     var obj="document.getElementById('gamecanvas_'+"+value_id_+")"; 
   else if (element=="image")
-    var obj="document.getElementById('gameimg_'+"+value_id_+")";
+    var obj="document.getElementById('gameimage_'+"+value_id_+")";
   else if (element=="button")
     var obj="document.getElementById('gamebutton_'+"+value_id_+")"; 
   else if (element=="color")
@@ -817,7 +817,7 @@ Blockly.JavaScript['element_event_stop'] = function (block) {
   else if (element=="canvas")
     var obj="document.getElementById('gamecanvas_'+"+value_id_+")"; 
   else if (element=="image")
-    var obj="document.getElementById('gameimg_'+"+value_id_+")";
+    var obj="document.getElementById('gameimage_'+"+value_id_+")";
   else if (element=="button")
     var obj="document.getElementById('gamebutton_'+"+value_id_+")"; 
   else if (element=="color")
