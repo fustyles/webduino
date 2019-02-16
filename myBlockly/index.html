@@ -450,7 +450,7 @@ function exportHTML() {
     var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
     var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
     for (var i=0;i<script_iframe_run.length;i++)  {
-      iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script\>";
+      iframe_code += "\<script src='"+script_iframe_run[i]+"'\>\<\/script\>\\n";
     }
 	  
     var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
