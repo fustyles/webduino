@@ -1061,6 +1061,28 @@ Blockly.Blocks['canvas_onclick_get'] = {
   }
 };
 
+Blockly.Blocks['canvas_getcolor'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_GETCOLOR_SHOW);     
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT) 
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);   
+  this.appendValueInput("x_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.CANVAS_X_SHOW);    
+  this.appendValueInput("y_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.CANVAS_Y_SHOW);  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
 Blockly.Blocks['image_create'] = {
   init: function() {
   this.appendValueInput("id_")
