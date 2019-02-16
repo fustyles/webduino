@@ -950,12 +950,23 @@
       var obj = document.getElementById(element1+input_id1);
       var canvas = document.getElementById("gamecanvas_"+input_id2);
       if (elements_collision(element1,input_id1,"gamecanvas_",input_id2,"any")==1) {
-        var obj = document.getElementById("gamecanvas_"+input_id);
-        var context = canvas.getContext("2d");
-	var left = obj.style.left.replace(/px/ig,"");
-	var top = obj.style.top.replace(/px/ig,"");
-	var width = Number(canvas.style.left.replace(/px/ig,"")) - Number(obj.style.left.replace(/px/ig,""));
-	var height = Number(canvas.style.top.replace(/px/ig,"")) - Number(obj.style.top.replace(/px/ig,""));
+	if (Number(obj.style.left.replace(/px/ig,""))>Number(canvas.style.left.replace(/px/ig,""))) {
+	  var left = Number(obj.style.left.replace(/px/ig,""))>Number(canvas.style.left.replace(/px/ig,""));
+	  var width = Number(obj.style.width.replace(/px/ig,""));
+	}
+	else {
+	  var left = 0;
+	  var width = Number(obj.style.width.replace(/px/ig,"")) -(Number(canvas.style.left.replace(/px/ig,"")) - Number(obj.style.left.replace(/px/ig,"")));
+	}
+	if (Number(obj.style.top.replace(/px/ig,""))>Number(canvas.style.top.replace(/px/ig,""))) {
+	  var top = Number(obj.style.top.replace(/px/ig,""))>Number(canvas.style.top.replace(/px/ig,""));
+	  var height = Number(canvas.style.width.replace(/px/ig,"")) - (Number(canvas.style.top.replace(/px/ig,"")) - Number(obj.style.top.replace(/px/ig,"")));
+	}
+	else {
+	  var top = 0;
+	  var height = Number(canvas.style.top.replace(/px/ig,"")) - Number(obj.style.top.replace(/px/ig,""));
+	}
+	var context = canvas.getContext("2d");
         var hexcolor = context.getImageData(top, left, width, height).data;	      
 	for (vari=0;i<hexcolor.length;i+=4) {
           var r = Number(hexcolor[i]).toString(16).length==1?"0"+Number(hexcolor[i]).toString(16):Number(hexcolor[i]).toString(16);
