@@ -944,6 +944,14 @@
     else
       return 0;   
   } 
+
+  function elements_collision_color(element1,input_id1,input_id2,input_color) {
+    if ((document.getElementById(element1+input_id1))&&(document.getElementById("gamecanvas_"+input_id2))) {
+      var obj = document.getElementById(element1+input_id1).style;
+      var canvas = document.getElementById("gamecanvas_"+input_id2);
+	    
+    }
+  } 
   
   function image_boundary(input_left,input_top) {
     if (input_left>=0) screen_width = input_left;
