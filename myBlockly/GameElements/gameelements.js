@@ -951,10 +951,12 @@
       var canvas = document.getElementById("gamecanvas_"+input_id2);
       if (elements_collision(element1,input_id1,"gamecanvas_",input_id2,"any")==1) {
         var obj = document.getElementById("gamecanvas_"+input_id);
-        var context = obj.getContext("2d");
-	var width = canvas.style.left - obj.style.left;
-	var height = canvas.style.top - obj.style.top;
-        var hexcolor = context.getImageData(0, 0, width, height).data;	      
+        var context = canvas.getContext("2d");
+	var left = obj.style.left.replace(/px/ig,"");
+	var top = obj.style.top.replace(/px/ig,"");
+	var width = Number(canvas.style.left.replace(/px/ig,"")) - Number(obj.style.left.replace(/px/ig,""));
+	var height = Number(canvas.style.top.replace(/px/ig,"")) - Number(obj.style.top.replace(/px/ig,""));
+        var hexcolor = context.getImageData(top, left, width, height).data;	      
 	for (vari=0;i<hexcolor.length;i+=4) {
           var r = Number(hexcolor[i]).toString(16).length==1?"0"+Number(hexcolor[i]).toString(16):Number(hexcolor[i]).toString(16);
           var g = Number(hexcolor[i+1]).toString(16).length==1?"0"+Number(hexcolor[i+1]).toString(16):Number(hexcolor[i+1]).toString(16);
