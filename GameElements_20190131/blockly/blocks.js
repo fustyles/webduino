@@ -1061,6 +1061,28 @@ Blockly.Blocks['canvas_onclick_get'] = {
   }
 };
 
+Blockly.Blocks['canvas_getcolor'] = {
+  init: function() {  
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT) 
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_GETCOLOR_SHOW);       
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LEFT_SHOW);    
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TOP_SHOW);  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
 Blockly.Blocks['image_create'] = {
   init: function() {
   this.appendValueInput("id_")
@@ -1165,6 +1187,28 @@ Blockly.Blocks['elements_collision'] = {
   this.appendDummyInput()
       .appendField(Blockly.Msg.COLLISION_SIDE_SHOW)
       .appendField(new Blockly.FieldDropdown([["any","any"], ["up","up"], ["down","down"], ["left","left"], ["right","right"]]), "position_");   
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['elements_collision_color'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"],["div","div"]]), "element1_");    
+  this.appendValueInput("id1_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.ID_SHOW); 
+  this.appendValueInput("id2_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT) 
+      .appendField(Blockly.Msg.AND_SHOW)     
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);      
+  this.appendValueInput("color_")
+      .setCheck(null) 
+      .setAlign(Blockly.ALIGN_RIGHT)   
+      .appendField(Blockly.Msg.COLOR_SHOW);
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
