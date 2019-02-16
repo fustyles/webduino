@@ -80,6 +80,23 @@ var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY
 '      </block>'+
 '    </value>'+     
 '  </block>'+  
+'  <block type="elements_collision_color">'+
+'    <value name="id1_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+ 
+'    <value name="id2_">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+  
+'    <value name="color_">'+
+'      <block type="colour_picker">'+
+'        <field name="COLOUR">#000000</field>'+
+'      </block>'+
+'    </value>'+      
+'  </block>'+      
 '  <block type="text_to_number">'+
 '    <value name="value_text_">'+
 '    </value>'+    
