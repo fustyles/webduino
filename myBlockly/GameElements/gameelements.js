@@ -947,10 +947,27 @@
 
   function elements_collision_color(element1,input_id1,input_id2,input_color) {
     if ((document.getElementById(element1+input_id1))&&(document.getElementById("gamecanvas_"+input_id2))) {
-      var obj = document.getElementById(element1+input_id1).style;
+      var obj = document.getElementById(element1+input_id1);
       var canvas = document.getElementById("gamecanvas_"+input_id2);
-	    
+      if (elements_collision(element1,input_id1,"gamecanvas_",input_id2,"any")==1) {
+        var obj = document.getElementById("gamecanvas_"+input_id);
+        var context = obj.getContext("2d");
+	var width = canvas.style.left - obj.style.left;
+	var height = canvas.style.top - obj.style.top;
+        var hexcolor = context.getImageData(0, 0, width, height).data;	      
+	for (vari=0;i<hexcolor.length;i+=4) {
+          var r = Number(hexcolor[i]).toString(16).length==1?"0"+Number(hexcolor[i]).toString(16):Number(hexcolor[i]).toString(16);
+          var g = Number(hexcolor[i+1]).toString(16).length==1?"0"+Number(hexcolor[i+1]).toString(16):Number(hexcolor[i+1]).toString(16);
+          var b = Number(hexcolor[i+2]).toString(16).length==1?"0"+Number(hexcolor[i+2]).toString(16):Number(hexcolor[i+2]).toString(16);
+          if (input_color=="#"+r+g+b) return 1;
+	}
+        return 0;	      
+      }
+      else
+        return 0;
     }
+    else
+      return 0;
   } 
   
   function image_boundary(input_left,input_top) {
