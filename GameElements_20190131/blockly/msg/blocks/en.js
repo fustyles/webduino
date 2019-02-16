@@ -170,3 +170,4 @@ Blockly.Msg.DIV_SET_SHOW = "Set";
 Blockly.Msg.DIV_GET_SHOW = "Get";
 Blockly.Msg.DIV_DELETE_SHOW = "Delete";
 Blockly.Msg.SETWINDOW_SHOW = "Set Run Window";
+Blockly.Msg.CANVAS_GETCOLOR_SHOW = "Get color";
