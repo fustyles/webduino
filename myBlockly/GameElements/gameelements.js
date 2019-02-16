@@ -249,9 +249,9 @@
             row.insertCell(input_index);
 	    row.cells[input_index].style.textAlign="center";
 	    row.cells[input_index].style.verticalAlign = "middle";
-	    row.cells[input_index].style.background = obj.rows[0].cells[input_index].style.background;
-	    row.cells[input_index].style.width = obj.rows[0].cells[input_index].style.width;
-	    row.cells[input_index].style.height = obj.rows[0].cells[input_index].style.height;
+	    row.cells[input_index].style.background = row.cells[0].style.background;
+	    row.cells[input_index].style.width = row.cells[0].style.width;
+	    row.cells[input_index].style.height = row.cells[0].style.height;
 	    row.cells[input_index].setAttribute("onclick", "javascript:onclickid_set(this);");
 	    row.cells[input_index].setAttribute("ondragover","javascript:event.preventDefault();"); 		  
 	  }
