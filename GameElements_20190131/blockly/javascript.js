@@ -370,6 +370,14 @@ Blockly.JavaScript['canvas_onclick_get'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['canvas_getcolor'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'canvas_getcolor(' + value_id_ + ',' + value_left_ + ',' + value_top_ + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['image_create'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_url_ = Blockly.JavaScript.valueToCode(block, 'url_', Blockly.JavaScript.ORDER_ATOMIC);
@@ -447,6 +455,33 @@ Blockly.JavaScript['elements_collision'] = function (block) {
   else if (value_element2_=="div")
     var obj2= 'gamediv_';  
   var code = 'elements_collision("'+obj1+'",' + value_id1_ + ',"'+obj2+'",' + value_id2_ + ',"' + value_position_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['elements_collision_color'] = function (block) {
+  var value_element1_ = block.getFieldValue('element1_');
+  var value_id1_ = Blockly.JavaScript.valueToCode(block, 'id1_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_id2_ = Blockly.JavaScript.valueToCode(block, 'id2_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  if (value_element1_=="table")
+    var obj1= 'gametable_';
+  else if (value_element1_=="canvas")
+    var obj1= 'gamecanvas_';
+  else if (value_element1_=="image")
+    var obj1= 'gameimage_';
+  else if (value_element1_=="button")
+    var obj1= 'gamebutton_';
+  else if (value_element1_=="color")
+    var obj1= 'gamecolor_';
+  else if (value_element1_=="select")
+    var obj1= 'gameselect_';
+  else if (value_element1_=="range")
+    var obj1= 'gamerange_';
+  else if (value_element1_=="text")
+    var obj1= 'gametext_';   
+  else if (value_element1_=="div")
+    var obj1= 'gamediv_';     
+  var code = 'elements_collision_color("'+obj1+'",' + value_id1_ + ',' + value_id2_ + ',' + value_color_ + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
