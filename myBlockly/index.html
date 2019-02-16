@@ -300,7 +300,7 @@
   </tr>
 </table>
 
-<div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left" draggable="true" ondragstart="document.getElementById('iframe_run').style.display='none';" ondrag="return flase;" ondragend="this.title='true';">
+<div id="runWindow" style="left:250px;top:10px;position:absolute;display:none;z-index:9999" align="left" ondragstart="document.getElementById('iframe_run').style.display='none';" ondrag="return flase;" ondragend="this.title='true';">
   <button id="btndrag">Drag</button><button id="btnfullscreen" onclick="document.getElementById('iframe_run').requestFullscreen();document.getElementById('iframe_run').focus();">Full Screen</button><button id="btnRun" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run Code</button><button id="btnstopcode" onclick="document.getElementById('btnRun').disabled=false;stopCode();">Stop Code</button><button id="btnclosewindow" onclick="closeWindow();">Close Window</button>
   <br>
   <iframe id="iframe_run" style="width:600px;height:600px;background-color: white" frameborder="1"  scrolling="auto" allowpaymentrequest allow="autoplay; fullscreen; geolocation; microphone; camera ; usb"></iframe>
