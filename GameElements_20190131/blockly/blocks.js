@@ -947,8 +947,7 @@ Blockly.Blocks['canvas_beziercurve'] = {
       .appendField(Blockly.Msg.CANVAS_Y_SHOW);  
   this.appendValueInput("linewidth_")
       .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_LINE_SHOW)    
+      .setAlign(Blockly.ALIGN_RIGHT) 
       .appendField(Blockly.Msg.CANVAS_LINEWIDTH_SHOW);      
   this.appendValueInput("color_")
       .setCheck(null)
