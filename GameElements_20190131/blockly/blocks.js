@@ -1499,7 +1499,7 @@ Blockly.Blocks['function_return'] = {
 Blockly.Blocks['gameelements_1'] = {
   init: function () {
     this.appendDummyInput()
-      .appendField(Blockly.Msg.TIME_DELAY_SHOW); 
+      .appendField(Blockly.Msg.LOAD_JS_SHOW); 
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
