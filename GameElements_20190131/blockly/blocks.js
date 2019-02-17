@@ -1918,7 +1918,7 @@ Blockly.Blocks['select_create'] = {
   this.appendValueInput("color_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null)
-      .appendField(Blockly.Msg.COLOR_SHOW);
+      .appendField(Blockly.Msg.FONTCOLOR_SHOW);
   this.appendValueInput("fontsize_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck("Number")
