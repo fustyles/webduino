@@ -42,8 +42,11 @@
         canvasDetection.height = 240
         var context = canvasDetection.getContext('2d');
 
-        // tracking.LBF.maxNumStages = 10
-        var tracker = new tracking.LandmarksTracker();
+        var track;
+        track = {};
+        track.canvas = document.getElementById("canvasDetection");
+        track.context = track.canvas.getContext("2d");
+        track.myTracker = new tracking.ObjectTracker("face");
         tracker.setEdgesDensity(0.1);
         tracker.setInitialScale(4);
         tracker.setStepSize(2);
