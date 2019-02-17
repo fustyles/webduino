@@ -2365,7 +2365,7 @@ Blockly.Blocks['color_hextorgb'] = {
 
 Blockly.Blocks['time_delay'] = {
   init: function () {
-    this.appendValueInput("seconds")
+    this.appendValueInput("secs_")
         .setCheck("Number")
         .appendField(Blockly.Msg.TIME_DELAY_SHOW);   
     this.setInputsInline(true);    
