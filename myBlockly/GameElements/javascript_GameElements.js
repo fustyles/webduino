@@ -1068,7 +1068,7 @@ Blockly.JavaScript['color_hextorgb'] = function (block) {
 };
 
 Blockly.JavaScript['time_delay'] = function (block) {
-  var seconds = Blockly.JavaScript.valueToCode(block, 'seconds', Blockly.JavaScript.ORDER_ATOMIC);
+  var seconds = Blockly.JavaScript.valueToCode(block, 'secs_', Blockly.JavaScript.ORDER_ATOMIC);
   var code = 'await delay(' + seconds + ');\n';
   return code;
 };
