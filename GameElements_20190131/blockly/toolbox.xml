@@ -1,6 +1,13 @@
 <category id="catGameElements">
   <block type="gameelements_1">
   </block>  
+  <block type="time_delay">
+    <value name="seconds">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>
+  </block>  
   <block type="body_set"> 
     <value name="value_">
       <block type="colour_picker">
