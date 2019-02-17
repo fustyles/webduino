@@ -2363,7 +2363,6 @@ Blockly.Blocks['color_hextorgb'] = {
   }
 };
 
-
 Blockly.Blocks['time_delay'] = {
   init: function () {
     this.appendValueInput("seconds")
