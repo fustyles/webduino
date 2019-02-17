@@ -831,7 +831,7 @@ Blockly.Blocks['canvas_text'] = {
   this.appendValueInput("color_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.COLOR_SHOW); 
+      .appendField(Blockly.Msg.FONTCOLOR_SHOW); 
   this.appendValueInput("rotate_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -2147,7 +2147,7 @@ Blockly.Blocks['text_create'] = {
   this.appendValueInput("color_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null)
-      .appendField(Blockly.Msg.COLOR_SHOW);
+      .appendField(Blockly.Msg.FONTCOLOR_SHOW);
   this.appendValueInput("fontsize_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck("Number")
