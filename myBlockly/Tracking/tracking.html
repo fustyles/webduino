@@ -42,10 +42,7 @@
         canvasDetection.height = 240
         var context = canvasDetection.getContext('2d');
 
-        var tracker = {};
-        tracker.canvas = document.getElementById("canvasDetection");
-        tracker.context = tracker.canvas.getContext("2d");
-        tracker.myTracker = new tracking.ObjectTracker("face");
+        var tracker = new tracking.ObjectTracker("face");
         tracker.setEdgesDensity(0.1);
         tracker.setInitialScale(4);
         tracker.setStepSize(2);
