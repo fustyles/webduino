@@ -1074,3 +1074,9 @@ Blockly.JavaScript['body_set'] = function (block) {
   var code = 'body_set("' + value_property_ + '",' + value_value_ + ');\n';
   return code;
 };
+
+Blockly.JavaScript['time_delay'] = function (block) {
+  var seconds = Blockly.JavaScript.valueToCode(block, 'seconds', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'await delay(' + seconds + ');\n';
+  return code;
+};
