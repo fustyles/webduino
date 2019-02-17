@@ -948,7 +948,6 @@ Blockly.Blocks['canvas_beziercurve'] = {
   this.appendValueInput("linewidth_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_LINE_SHOW)    
       .appendField(Blockly.Msg.CANVAS_LINEWIDTH_SHOW);      
   this.appendValueInput("color_")
       .setCheck(null)
@@ -1491,18 +1490,6 @@ Blockly.Blocks['function_return'] = {
     this.appendValueInput("value_")
         .setCheck(null)
         .appendField(Blockly.Msg.FUNCTION_RETURN_SHOW);    
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(60);
-  }
-};
-
-Blockly.Blocks['time_delay'] = {
-  init: function () {
-    this.appendValueInput("seconds")
-        .setCheck("Number")
-        .appendField(Blockly.Msg.TIME_DELAY_SHOW);   
-    this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
@@ -2373,5 +2360,18 @@ Blockly.Blocks['color_hextorgb'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
+  }
+};
+
+
+Blockly.Blocks['time_delay'] = {
+  init: function () {
+    this.appendValueInput("seconds")
+        .setCheck("Number")
+        .appendField(Blockly.Msg.TIME_DELAY_SHOW);   
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
   }
 };
