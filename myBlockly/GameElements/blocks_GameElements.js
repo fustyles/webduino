@@ -1606,7 +1606,7 @@ Blockly.Blocks['button_create'] = {
   this.appendValueInput("bgcolor_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.COLOR_SHOW);     
+      .appendField(Blockly.Msg.BACKCOLOR_SHOW);     
   this.appendValueInput("value_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
