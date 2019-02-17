@@ -1,6 +1,6 @@
 var catGameAuxiliary = '<xml><category name="%{BKY_GAMEAUXILIARY}" colour="%{BKY_GAMEAUXILIARY_HUE}">'+
 '  <block type="time_delay">'+
-'    <value name="secs_">'+
+'    <value name="seconds">'+
 '      <block type="math_number">'+
 '        <field name="NUM">1</field>'+
 '      </block>'+      
