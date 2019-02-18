@@ -40,12 +40,12 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
   function linenotify_push_message(notify_token,notify_msg) {
     notify_msg = JSON.parse(notify_msg);
     
-    notify_msg["text"] = notify_msg["text"].replace(/\%27/g,"\'").replace(/\%22/g,"\"");
-    notify_msg["text"] = notify_msg["text"].replace(/\<br\>/g,"\n").replace(/\<br\/\>/g,"\n").replace(/\<br \/\>/g,"\n").replace(/\<BR\>/g,"\n").replace(/\<BR\/\>/g,"\n").replace(/\<BR \/\>/g,"\n");
-    notify_msg["stickerPackageId"] = notify_msg["stickerPackageId"].replace(/\%27/g,"\'").replace(/\%22/g,"\"");
-    notify_msg["stickerId"] = notify_msg["stickerId"].replace(/\%27/g,"\'").replace(/\%22/g,"\"");
-    notify_msg["imageFullsize"] = notify_msg["imageFullsize"].replace(/\%27/g,"\'").replace(/\%22/g,"\"");
-    notify_msg["imageThumbnail"] = notify_msg["imageThumbnail"].replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+    if (notify_msg["text"]) notify_msg["text"] = notify_msg["text"].replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+    if (notify_msg["text"]) notify_msg["text"] = notify_msg["text"].replace(/\<br\>/g,"\n").replace(/\<br\/\>/g,"\n").replace(/\<br \/\>/g,"\n").replace(/\<BR\>/g,"\n").replace(/\<BR\/\>/g,"\n").replace(/\<BR \/\>/g,"\n");
+    if (notify_msg["stickerPackageId"]) notify_msg["stickerPackageId"] = notify_msg["stickerPackageId"].replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+    if (notify_msg["stickerId"]) notify_msg["stickerId"] = notify_msg["stickerId"].replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+    if (notify_msg["imageFullsize"]) notify_msg["imageFullsize"] = notify_msg["imageFullsize"].replace(/\%27/g,"\'").replace(/\%22/g,"\"");
+    if (notify_msg["imageThumbnail"]) notify_msg["imageThumbnail"] = notify_msg["imageThumbnail"].replace(/\%27/g,"\'").replace(/\%22/g,"\"");
   
     var input_url="https://notify-api.line.me/api/notify";
     var data = $.ajax({
