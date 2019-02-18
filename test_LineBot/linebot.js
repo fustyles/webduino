@@ -44,6 +44,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
         "headers": {
           "Authorization": "Bearer " + notify_token
         },        
+        contentType: "application/x-www-form-urlencoded",    
         "type": "POST",
         "dataType": "jsonp",
         "url": input_url,
