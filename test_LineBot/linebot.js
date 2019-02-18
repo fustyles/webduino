@@ -55,7 +55,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
           'imageFullsize':notify_msg["originalContentUrl"],
           'stickerPackageId':notify_msg["packageId"],
           'stickerId':notify_msg["stickerId"]
-        }      
+        },
         success: function(jsonp)
         {
           console.log(jsonp);
