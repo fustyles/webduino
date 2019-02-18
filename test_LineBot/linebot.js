@@ -42,9 +42,10 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
     var input_url="https://notify-api.line.me/api/notify";
     var Data = $.ajax({
         "headers": {
-          "Authorization": "Bearer " + notify_token
+          "Authorization": "Bearer " + notify_token,
+          "contentType": "application/x-www-form-urlencoded",
+          "Content-Length": data.length
         },        
-        contentType: "application/x-www-form-urlencoded",    
         "type": "POST",
         "dataType": "jsonp",
         "url": input_url,
