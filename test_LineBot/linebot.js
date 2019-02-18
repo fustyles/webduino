@@ -39,19 +39,20 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
   
   function linenotify_push_message(notify_token,notify_msg) {
     notify_msg = JSON.parse(notify_msg);
-
+    console.log(notify_token);
+    console.log(notify_msg);
     var input_url="https://notify-api.line.me/api/notify";
-    var data = $.ajax({
+    $.ajax({
         "type": "POST",
-        "dataType": "html",
+        "dataType": "jsonp",
         "url": input_url,
         "headers": {
           'Authorization': 'Bearer ' + notify_token,
         },
         "data": notify_msg,
-        success: function(html)
+        success: function(jsonp)
         {
-          console.log(html);
+          console.log(jsonp);
         },
         error: function(jqXHR, textStatus, errorThrown)
         {
