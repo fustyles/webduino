@@ -52,7 +52,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
           'imageThumbnail':notify_msg["previewImageUrl"],
           'imageFullsize':notify_msg["originalContentUrl"],
           'stickerPackageId':notify_msg["packageId"],
-          'stickerId':notify_msg["stickerIdmessage
+          'stickerId':notify_msg["stickerIdmessage"]
         },      
         //"payload": JSON.parse(notify_msg),
         success: function(jsonp)
