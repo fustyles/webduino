@@ -39,18 +39,23 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
   
   function linenotify_push_message(notify_token,notify_msg) {
     notify_msg = JSON.parse(notify_msg);
-    notify_msg["token"]=notify_token;
     
-    notify_msg["start"]="1325437200";
-    notify_msg["end"]="1325439000";
-    notify_msg["prefix"]="alert";
-    
-    var input_url="https://script.google.com/macros/s/AKfycbySgcM0Ghz9gywkUQtRiM76YvKVmLpV8SNKLN7eMWms8BNDN7c/exec";
+    var input_url="https://notify-api.line.me/api/notify";
     var data = $.ajax({
         "type": "POST",
         "dataType": "jsonp",
         "url": input_url,
-        "data":notify_msg,
+        'headers': {
+          'Authorization': 'Bearer ' + notify_token,
+        },
+        'method': 'post',
+        'payload': {
+          'message':notify_msg["text"] + ' ',
+          'imageThumbnail':notify_msg["previewImageUrl"],
+          'imageFullsize':notify_msg["originalContentUrl"],
+          'stickerPackageId':notify_msg["packageId"],
+          'stickerId':notify_msg["stickerId"]
+        }      
         success: function(jsonp)
         {
           console.log(jsonp);
