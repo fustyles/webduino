@@ -39,7 +39,6 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
   
   function linenotify_push_message(notify_token,notify_msg) {
     notify_msg = JSON.parse(notify_msg);
-    console.log(notify_msg["text"]);
     
     var input_url="https://notify-api.line.me/api/notify";
     var data = $.ajax({
@@ -85,16 +84,16 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
         return '';
     } else if (line=="notify") {
       if (type=="text")
-        return '{"type":"'+type+'","text":"'+parameter1+'"}';
+        return '{"text":"'+parameter1+'"}';
       else if (type=="sticker")
-        return '{"type":"'+type+'","text":"'+parameter1+'","packageId":"'+parameter2+'","stickerId":"'+parameter3+'"}';
+        return '{"text":"'+parameter1+'","stickerPackageId":"'+parameter2+'","stickerId":"'+parameter3+'"}';
       else if (type=="image")
-        return '{"type":"'+type+'","text":"'+parameter1+'","originalContentUrl":"'+parameter2+'","previewImageUrl":"'+parameter3+'"}';
+        return '{"text":"'+parameter1+'","imageFullsize":"'+parameter2+'","imageThumbnail":"'+parameter3+'"}';
       else
         return '';
     }
   }
-
+  
   window.linebot_push_message = linebot_push_message;
   window.linenotify_push_message = linenotify_push_message;
   window.line_url_escape = line_url_escape;
