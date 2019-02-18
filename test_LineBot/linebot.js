@@ -39,8 +39,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
   
   function linenotify_push_message(notify_token,notify_msg) {
     notify_msg = JSON.parse(notify_msg);
-    console.log(notify_token);
-    console.log(notify_msg);
+
     var input_url="https://notify-api.line.me/api/notify";
     var Data = $.ajax({
         "type": "POST",
@@ -85,11 +84,11 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
         return '';
     } else if (line=="notify") {
       if (type=="text")
-        return '{"text":"'+parameter1+'"}';
+        return '{"message":"'+parameter1+'"}';
       else if (type=="sticker")
-        return '{"text":"'+parameter1+'","stickerPackageId":"'+parameter2+'","stickerId":"'+parameter3+'"}';
+        return '{"message":"'+parameter1+'","stickerPackageId":"'+parameter2+'","stickerId":"'+parameter3+'"}';
       else if (type=="image")
-        return '{"text":"'+parameter1+'","imageFullsize":"'+parameter2+'","imageThumbnail":"'+parameter3+'"}';
+        return '{"message":"'+parameter1+'","imageFullsize":"'+parameter2+'","imageThumbnail":"'+parameter3+'"}';
       else
         return '';
     }
