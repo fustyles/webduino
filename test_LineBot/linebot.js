@@ -48,7 +48,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
         "headers": {
           "Authorization": 'Bearer ' + notify_token
         },    
-        "data": JSON.parse(notify_msg),
+        "data": notify_msg,
         success: function(jsonp)
         {
           console.log(jsonp);
