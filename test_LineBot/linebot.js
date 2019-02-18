@@ -45,11 +45,11 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
         "type": "POST",
         "dataType": "jsonp",
         "url": input_url,
-        'headers': {
+        "headers": {
           'Authorization': 'Bearer ' + notify_token,
         },
-        'method': 'post',
-        'payload': {
+        "method": 'post',
+        "payload": {
           'message':notify_msg["text"] + ' ',
           'imageThumbnail':notify_msg["previewImageUrl"],
           'imageFullsize':notify_msg["originalContentUrl"],
