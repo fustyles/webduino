@@ -26,9 +26,9 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
         "dataType": "jsonp",
         "url": input_url,
         "data":bot_msg,
-        success: function(jsonp)
+        success: function(json)
         {
-          console.log(jsonp);
+          console.log(json);
         },
         error: function(jqXHR, textStatus, errorThrown)
         {
