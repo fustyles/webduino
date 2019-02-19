@@ -21,7 +21,7 @@ Blockly.Msg.example_TEXT = "Example";
 Blockly.Msg.language_TEXT = "Language";
 Blockly.Msg.btndrag_TEXT = "Drag";
 Blockly.Msg.btnstopcode_TEXT = "Stop";
-Blockly.Msg.btnclosewindow_TEXT = "Close Window";
+Blockly.Msg.btnclosewindow_TEXT = "X";
 Blockly.Msg.btnfullscreen_TEXT = "Full Screen";
 
 Blockly.Msg["CATVARIABLES"] = "VARIABLES";
