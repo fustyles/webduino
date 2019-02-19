@@ -22,7 +22,7 @@ Blockly.Msg.example_TEXT = "范例";
 Blockly.Msg.language_TEXT = "语言";
 Blockly.Msg.btndrag_TEXT = "拖曳视窗";
 Blockly.Msg.btnstopcode_TEXT = "停止";
-Blockly.Msg.btnclosewindow_TEXT = "关闭视窗";
+Blockly.Msg.btnclosewindow_TEXT = "X";
 Blockly.Msg.btnfullscreen_TEXT = "全萤幕";
 
 Blockly.Msg["CATVARIABLES"] = "变数";
