@@ -812,6 +812,7 @@ function BitMatrixLed_sendCommand(command) {
 function BitMatrixLed_getResponse() {
   BitMatrixLed_Response=[];
   var res = document.getElementById("BitIframe").document.getElementsByTagName("body")[0].innerHTML;
+  console.log(res);
   if (res.indexOf("[{")!=-1) {
     json = eval(res);
     for (var i=0;i<json.length;i++) {
