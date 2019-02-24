@@ -2,7 +2,7 @@ Blockly.Blocks['BitMatrixLed_host'] = {
   init: function () {
     this.appendValueInput('host_')
         .setCheck(null)
-        .appendField(Blockly.Msg.BITMatrixLed_HOST_SHOW);
+        .appendField(Blockly.Msg.BITMATRIXLED_HOST_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);
