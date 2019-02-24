@@ -801,8 +801,8 @@
     BitMatrixLed_run("?matrixled="+ledcolor+";stop");
   }
 
-  function BitMatrixLed_run(command) {
-    document.getElementsByID("BitIframe").src = BitMatrixLedurl+command;
+  function BitMatrixLed_run(cmd) {
+    document.getElementsByID("BitIframe").src = BitMatrixLedurl+cmd;
   }
 
   var BitMatrixLed_Response=[];
