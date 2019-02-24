@@ -793,12 +793,46 @@
  
     if (!document.getElementById("BitIframe")) {
       var ifrm = document.createElement("iframe");
-      ifrm.setAttribute("src", BitMatrixLedurl+"?matrixled="+ledcolor+";stop");
       ifrm.style.width = "0px";
       ifrm.style.height = "0px";
       ifrm.style.display = "none";
       document.body.appendChild(ifrm);
     }
-    else
-      document.getElementsByID("BitIframe").src = BitMatrixLedurl+"?matrixled="+ledcolor+";stop";
+    BitMatrixLed_sendCommand("?matrixled="+ledcolor+";stop");
   }
+
+  function BitMatrixLed_sendCommand(command) {
+    document.getElementsByID("BitIframe").src = BitMatrixLedurl+command;
+  }
+
+var BitMatrixLed_Response=[];
+
+function BitMatrixLed_sendCommand(cmd,P1,P2,P3,P4,P5,P6,P7,P8,P9) {
+  BitMatrixLed_sendCommand("?"+cmd+"="+P1+";"+P2+";"+P3+";"+P4+";"+P5+";"+P6+";"+P7+";"+P8+";"+P9);
+}
+
+function BitMatrixLed_getResponse() {
+  BitMatrixLed_Response=[];
+  response=document.getElementsByID("BitIframe").innerHTML;
+  if (response==""||response=="undefined"||!response) return [];
+  if (response!= "") {
+    if (response.indexOf("[{")!=-1) {
+      json = eval(response);
+      for (var i=0;i<json.length;i++)
+        BitMatrixLed_Response.push(json[i]["data"]);
+    } 
+    var res = BitMatrixLed_Response;
+    BitMatrixLed_Response=[];
+    return res;
+  }
+  else
+    return [];
+}
+
+function BitMatrixLed_clearData() {
+  BitMatrixLed_Response=[];
+}
+
+function BitMatrixLed_sendCustomCommand(cmd) {
+  BitMatrixLed_sendCommand(cmd);
+}
