@@ -371,7 +371,7 @@ Blockly.JavaScript['BitMatrixLed_custom'] = function(block) {
   var value_P7 = Blockly.JavaScript.valueToCode(block, 'P7', Blockly.JavaScript.ORDER_ATOMIC);
   var value_P8 = Blockly.JavaScript.valueToCode(block, 'P8', Blockly.JavaScript.ORDER_ATOMIC);
   var value_P9 = Blockly.JavaScript.valueToCode(block, 'P9', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = "BitMatrixLed_sendCommand('?"+value_cmd+"="+value_P1+";"+value_P2+";"+value_P3+";"+value_P4+";"+value_P5+";"+value_P6+";"+value_P7+";"+value_P8+";"+value_P9+");\n";
+  var code = "BitMatrixLed_sendCommand('?"+value_cmd+"="+value_P1+";"+value_P2+";"+value_P3+";"+value_P4+";"+value_P5+";"+value_P6+";"+value_P7+";"+value_P8+";"+value_P9+"');\n";
   return code;
 };
 
