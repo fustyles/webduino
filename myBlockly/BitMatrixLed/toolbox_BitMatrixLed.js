@@ -1,16 +1,16 @@
 var catBitMatrixLed = '<xml>'+
-'<category name="%{BKY_BITMATRIXLED}" colour="%{BKY_BITMATRIXLED_HUE}">'+
-'  <block type="BitMatrixled_host">'+
+'<category name="%{BKY_BITMatrixLed}" colour="%{BKY_BITMatrixLed_HUE}">'+
+'  <block type="BitMatrixLed_host">'+
 '    <value name="host_">'+
 '      <block type="text">'+
 '        <field name="TEXT">http://</field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_showstate">'+
+'  <block type="BitMatrixLed_showstate">'+
 '    <field name="value_showstate_">1</field>'+
 '  </block>'+
-'  <block type="BitMatrixled_matrix_color">'+
+'  <block type="BitMatrixLed_matrix_color">'+
 '    <field name="L01">#000000</field>'+
 '    <field name="L06">#000000</field>'+
 '    <field name="L11">#000000</field>'+
@@ -37,7 +37,7 @@ var catBitMatrixLed = '<xml>'+
 '    <field name="L20">#000000</field>'+
 '    <field name="L25">#000000</field>'+
 '  </block>'+
-'  <block type="BitMatrixled_matrixcode_color">'+
+'  <block type="BitMatrixLed_matrixcode_color">'+
 '    <field name="L01">#000000</field>'+
 '    <field name="L06">#000000</field>'+
 '    <field name="L11">#000000</field>'+
@@ -64,14 +64,14 @@ var catBitMatrixLed = '<xml>'+
 '    <field name="L20">#000000</field>'+
 '    <field name="L25">#000000</field>'+
 '  </block>'+
-'  <block type="BitMatrixled_matrixcode_line_color">'+
+'  <block type="BitMatrixLed_matrixcode_line_color">'+
 '    <field name="L01">#000000</field>'+
 '    <field name="L02">#000000</field>'+
 '    <field name="L03">#000000</field>'+
 '    <field name="L04">#000000</field>'+
 '    <field name="L05">#000000</field>'+
 '  </block>'+
-'  <block type="BitMatrixled_color_on">'+
+'  <block type="BitMatrixLed_color_on">'+
 '    <value name="value_x_on_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
@@ -88,7 +88,7 @@ var catBitMatrixLed = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_state">'+
+'  <block type="BitMatrixLed_state">'+
 '    <value name="value_x_state_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
@@ -100,7 +100,7 @@ var catBitMatrixLed = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_getcolor">'+
+'  <block type="BitMatrixLed_getcolor">'+
 '    <value name="value_x_state_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
@@ -112,29 +112,29 @@ var catBitMatrixLed = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_clear">'+
+'  <block type="BitMatrixLed_clear">'+
 '  </block>'+
-'  <block type="BitMatrixled_marquee_time">'+
+'  <block type="BitMatrixLed_marquee_time">'+
 '    <value name="value_marquee_time_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">500</field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_clockwise">'+
+'  <block type="BitMatrixLed_clockwise">'+
 '  </block>'+
-'  <block type="BitMatrixled_counterclockwise">'+
+'  <block type="BitMatrixLed_counterclockwise">'+
 '  </block>'+
-'  <block type="BitMatrixled_verticalflip">'+
+'  <block type="BitMatrixLed_verticalflip">'+
 '  </block>'+
-'  <block type="BitMatrixled_horizontalflip">'+
+'  <block type="BitMatrixLed_horizontalflip">'+
 '  </block>'+
-'  <block type="BitMatrixled_marquee_color">'+
+'  <block type="BitMatrixLed_marquee_color">'+
 '    <value name="value_marquee_">'+
 '      <block type="text_join">'+
 '        <mutation items="2"></mutation>'+
 '        <value name="ADD0">'+
-'          <block type="BitMatrixled_matrixcode_color">'+
+'          <block type="BitMatrixLed_matrixcode_color">'+
 '            <field name="L01">#000000</field>'+
 '            <field name="L06">#000000</field>'+
 '            <field name="L11">#000000</field>'+
@@ -163,7 +163,7 @@ var catBitMatrixLed = '<xml>'+
 '          </block>'+
 '        </value>'+
 '        <value name="ADD1">'+
-'          <block type="BitMatrixled_matrixcode_color">'+
+'          <block type="BitMatrixLed_matrixcode_color">'+
 '            <field name="L01">#000000</field>'+
 '            <field name="L06">#000000</field>'+
 '            <field name="L11">#000000</field>'+
@@ -194,12 +194,12 @@ var catBitMatrixLed = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_marquee_color_once">'+
+'  <block type="BitMatrixLed_marquee_color_once">'+
 '    <value name="value_marquee_">'+
 '      <block type="text_join">'+
 '        <mutation items="2"></mutation>'+
 '        <value name="ADD0">'+
-'          <block type="BitMatrixled_matrixcode_color">'+
+'          <block type="BitMatrixLed_matrixcode_color">'+
 '            <field name="L01">#000000</field>'+
 '            <field name="L06">#000000</field>'+
 '            <field name="L11">#000000</field>'+
@@ -228,7 +228,7 @@ var catBitMatrixLed = '<xml>'+
 '          </block>'+
 '        </value>'+
 '        <value name="ADD1">'+
-'          <block type="BitMatrixled_matrixcode_color">'+
+'          <block type="BitMatrixLed_matrixcode_color">'+
 '            <field name="L01">#000000</field>'+
 '            <field name="L06">#000000</field>'+
 '            <field name="L11">#000000</field>'+
@@ -259,7 +259,7 @@ var catBitMatrixLed = '<xml>'+
 '      </block>'+ 
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_marquee_color_degree">'+
+'  <block type="BitMatrixLed_marquee_color_degree">'+
 '    <field name="value_marquee_direction_">1</field>'+
 '    <value name="value_marquee_degree_">'+
 '      <block type="math_number">'+
@@ -267,27 +267,27 @@ var catBitMatrixLed = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_marquee_stop">'+
+'  <block type="BitMatrixLed_marquee_stop">'+
 '  </block>'+
-'  <block type="BitMatrixled_marquee_resume">'+
+'  <block type="BitMatrixLed_marquee_resume">'+
 '  </block>'+
-'  <block type="BitMatrixled_marquee_reverse">'+
+'  <block type="BitMatrixLed_marquee_reverse">'+
 '  </block>'+
-'  <block type="BitMatrixled_backcolor">'+
+'  <block type="BitMatrixLed_backcolor">'+
 '    <value name="value_color_">'+
 '      <block type="colour_picker">'+
 '        <field name="COLOUR">#000000</field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_color">'+
+'  <block type="BitMatrixLed_color">'+
 '    <value name="value_color_">'+
 '      <block type="colour_picker">'+
 '        <field name="COLOUR">#ff0000</field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_matrix">'+
+'  <block type="BitMatrixLed_matrix">'+
 '    <field name="L01">FALSE</field>'+
 '    <field name="L06">FALSE</field>'+
 '    <field name="L11">FALSE</field>'+
@@ -314,7 +314,7 @@ var catBitMatrixLed = '<xml>'+
 '    <field name="L20">FALSE</field>'+
 '    <field name="L25">FALSE</field>'+
 '  </block>'+
-'  <block type="BitMatrixled_matrixcode">'+
+'  <block type="BitMatrixLed_matrixcode">'+
 '    <field name="L01">FALSE</field>'+
 '    <field name="L06">FALSE</field>'+
 '    <field name="L11">FALSE</field>'+
@@ -341,31 +341,31 @@ var catBitMatrixLed = '<xml>'+
 '    <field name="L20">FALSE</field>'+
 '    <field name="L25">FALSE</field>'+
 '  </block>'+
-'  <block type="BitMatrixled_matrixcode_line">'+
+'  <block type="BitMatrixLed_matrixcode_line">'+
 '    <field name="L01">FALSE</field>'+
 '    <field name="L02">FALSE</field>'+
 '    <field name="L03">FALSE</field>'+
 '    <field name="L04">FALSE</field>'+
 '    <field name="L05">FALSE</field>'+
 '  </block>'+
-'  <block type="BitMatrixled_sample">'+
+'  <block type="BitMatrixLed_sample">'+
 '    <field name="value_sample_">♥</field>'+
 '  </block>'+
-'  <block type="BitMatrixled_char">'+
+'  <block type="BitMatrixLed_char">'+
 '    <value name="value_char_">'+
 '      <block type="text">'+
 '        <field name="TEXT">♥</field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_code">'+
+'  <block type="BitMatrixLed_code">'+
 '    <value name="value_code_">'+
 '      <block type="text">'+
 '        <field name="TEXT">0110011110011111111001100</field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+ 
-'  <block type="BitMatrixled_on">'+
+'  <block type="BitMatrixLed_on">'+
 '    <value name="value_x_on_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
@@ -377,7 +377,7 @@ var catBitMatrixLed = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_off">'+
+'  <block type="BitMatrixLed_off">'+
 '    <value name="value_x_off_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
@@ -389,7 +389,7 @@ var catBitMatrixLed = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_reverse">'+
+'  <block type="BitMatrixLed_reverse">'+
 '    <value name="value_x_reverse_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
@@ -401,19 +401,19 @@ var catBitMatrixLed = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_texttocode">'+
+'  <block type="BitMatrixLed_texttocode">'+
 '    <value name="value_text_">'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_indentcode">'+
+'  <block type="BitMatrixLed_indentcode">'+
 '    <value name="value_indentcode_">'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_marquee">'+
+'  <block type="BitMatrixLed_marquee">'+
 '    <value name="value_marquee_">'+
-'        <block type="BitMatrixled_indentcode">'+
+'        <block type="BitMatrixLed_indentcode">'+
 '          <value name="value_indentcode_">'+
-'            <block type="BitMatrixled_texttocode">'+
+'            <block type="BitMatrixLed_texttocode">'+
 '              <value name="value_text_">'+
 '                <block type="text">'+
 '                  <field name="TEXT"> ♥ webduino ♡ </field>'+
@@ -424,16 +424,16 @@ var catBitMatrixLed = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_marquee_once">'+
+'  <block type="BitMatrixLed_marquee_once">'+
 '    <value name="value_times_">'+
 '      <block type="math_number">'+
 '        <field name="NUM">1</field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="value_marquee_">'+
-'      <block type="BitMatrixled_indentcode">'+
+'      <block type="BitMatrixLed_indentcode">'+
 '          <value name="value_indentcode_">'+
-'            <block type="BitMatrixled_texttocode">'+
+'            <block type="BitMatrixLed_texttocode">'+
 '              <value name="value_text_">'+
 '                <block type="text">'+
 '                  <field name="TEXT"> ♥ webduino ♡ </field>'+
@@ -444,7 +444,7 @@ var catBitMatrixLed = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_marquee_degree">'+
+'  <block type="BitMatrixLed_marquee_degree">'+
 '    <field name="value_marquee_direction_">1</field>'+
 '    <value name="value_marquee_degree_">'+
 '      <block type="math_number">'+
@@ -452,9 +452,9 @@ var catBitMatrixLed = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_invert">'+
+'  <block type="BitMatrixLed_invert">'+
 '  </block>'+
-'  <block type="BitMatrixled_linechart">'+
+'  <block type="BitMatrixLed_linechart">'+
 '    <value name="value_value1">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
@@ -481,7 +481,7 @@ var catBitMatrixLed = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="BitMatrixled_barchart">'+
+'  <block type="BitMatrixLed_barchart">'+
 '    <value name="value_value1">'+
 '      <block type="math_number">'+
 '        <field name="NUM">0</field>'+
