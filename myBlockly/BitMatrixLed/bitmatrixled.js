@@ -811,10 +811,10 @@ function BitMatrixLed_sendCommand(command) {
 
 function BitMatrixLed_getResponse() {
   BitMatrixLed_Response=[];
-  var res = document.getElementById("BitIframe").innerHTML
+  var res = document.getElementById("BitIframe").innerHTML;
+  console.log(res);
   if (res.indexOf("[{")!=-1) {
     json = eval(res);
-    //console.log(json);
     for (var i=0;i<json.length;i++) {
       BitMatrixLed_Response.push(json[i]["data"]+"");
     }
