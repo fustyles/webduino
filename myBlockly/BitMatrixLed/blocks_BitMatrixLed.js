@@ -1,18 +1,18 @@
-Blockly.Blocks['BitMatrixled_host'] = {
+Blockly.Blocks['BitMatrixLed_host'] = {
   init: function () {
     this.appendValueInput('host_')
         .setCheck(null)
-        .appendField(Blockly.Msg.BITMATRIXLED_HOST_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_HOST_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);
   }
 };
 
-Blockly.Blocks['BitMatrixled_showstate'] = {
+Blockly.Blocks['BitMatrixLed_showstate'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_SHOWSTATE_SHOW)
+        .appendField(Blockly.Msg.BITMatrixLed_SHOWSTATE_SHOW)
         .appendField(new Blockly.FieldDropdown([["on","1"], ["off","0"]]), "value_showstate_");     
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -20,11 +20,11 @@ Blockly.Blocks['BitMatrixled_showstate'] = {
   }  
 };
 
-Blockly.Blocks['BitMatrixled_char'] = {
+Blockly.Blocks['BitMatrixLed_char'] = {
   init: function() {
     this.appendValueInput("value_char_")
         .setCheck(null)   
-        .appendField(Blockly.Msg.BITMATRIXLED_CHAR_SHOW);    
+        .appendField(Blockly.Msg.BITMatrixLed_CHAR_SHOW);    
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
@@ -32,45 +32,45 @@ Blockly.Blocks['BitMatrixled_char'] = {
 }; 
 
   
-Blockly.Blocks['BitMatrixled_texttocode'] = {
+Blockly.Blocks['BitMatrixLed_texttocode'] = {
   init: function() {
     this.appendValueInput("value_text_")
         .setCheck("String")
-        .appendField(Blockly.Msg.BITMATRIXLED_TEXTTOCODE_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_TEXTTOCODE_SHOW);
     this.setOutput(true, null);  
     this.setColour(300);
   }  
 };
 
-Blockly.Blocks['BitMatrixled_indentcode'] = {
+Blockly.Blocks['BitMatrixLed_indentcode'] = {
   init: function() {
     this.appendValueInput("value_indentcode_")
         .setCheck("String")
-        .appendField(Blockly.Msg.BITMATRIXLED_INDENTCODE_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_INDENTCODE_SHOW);
     this.setOutput(true, null);  
     this.setColour(300);
   }  
 };
 
-Blockly.Blocks['BitMatrixled_marquee'] = {
+Blockly.Blocks['BitMatrixLed_marquee'] = {
   init: function() {
     this.appendValueInput("value_marquee_")
         .setCheck("String")   
-        .appendField(Blockly.Msg.BITMATRIXLED_MARQUEE_SHOW); 
+        .appendField(Blockly.Msg.BITMatrixLed_MARQUEE_SHOW); 
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);   
   }
 };  
 
-Blockly.Blocks['BitMatrixled_marquee_once'] = {
+Blockly.Blocks['BitMatrixLed_marquee_once'] = {
   init: function() {
     this.appendValueInput("value_times_")
         .setCheck("Number")       
-        .appendField(Blockly.Msg.BITMATRIXLED_MARQUEE_ONCE_SHOW);  
+        .appendField(Blockly.Msg.BITMatrixLed_MARQUEE_ONCE_SHOW);  
     this.appendValueInput("value_marquee_")
         .setCheck("String")
-        .appendField(Blockly.Msg.BITMATRIXLED_MARQUEE_TIMES_SHOW);  
+        .appendField(Blockly.Msg.BITMatrixLed_MARQUEE_TIMES_SHOW);  
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -80,99 +80,99 @@ Blockly.Blocks['BitMatrixled_marquee_once'] = {
   }
 };
 
-Blockly.Blocks['BitMatrixled_marquee_color'] = {
+Blockly.Blocks['BitMatrixLed_marquee_color'] = {
   init: function() {
     this.appendValueInput("value_marquee_")
         .setCheck("String")   
-        .appendField(Blockly.Msg.BITMATRIXLED_MARQUEE_COLOR_SHOW); 
+        .appendField(Blockly.Msg.BITMatrixLed_MARQUEE_COLOR_SHOW); 
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
   }
 };  
 
-Blockly.Blocks['BitMatrixled_marquee_color_once'] = {
+Blockly.Blocks['BitMatrixLed_marquee_color_once'] = {
   init: function() {
     this.appendValueInput("value_marquee_")
         .setCheck("String")   
-        .appendField(Blockly.Msg.BITMATRIXLED_MARQUEE_COLOR_ONCE_SHOW); 
+        .appendField(Blockly.Msg.BITMatrixLed_MARQUEE_COLOR_ONCE_SHOW); 
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);   
   }
 }; 
 
-Blockly.Blocks['BitMatrixled_marquee_degree'] = {
+Blockly.Blocks['BitMatrixLed_marquee_degree'] = {
   init: function() {
     this.appendValueInput("value_marquee_degree_")
         .setCheck("Number")
-        .appendField(Blockly.Msg.BITMATRIXLED_MARQUEE_DIRECTION_SHOW)
+        .appendField(Blockly.Msg.BITMatrixLed_MARQUEE_DIRECTION_SHOW)
         .appendField(new Blockly.FieldDropdown([["left","1"], ["right","2"]]), "value_marquee_direction_")
-        .appendField(Blockly.Msg.BITMATRIXLED_MARQUEE_DEGREE_SHOW);      
+        .appendField(Blockly.Msg.BITMatrixLed_MARQUEE_DEGREE_SHOW);      
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);
   }  
 };
 
-Blockly.Blocks['BitMatrixled_marquee_color_degree'] = {
+Blockly.Blocks['BitMatrixLed_marquee_color_degree'] = {
   init: function() {
     this.appendValueInput("value_marquee_degree_")
         .setCheck("Number")
-        .appendField(Blockly.Msg.BITMATRIXLED_MARQUEE_DIRECTION_COLOR_SHOW)
+        .appendField(Blockly.Msg.BITMatrixLed_MARQUEE_DIRECTION_COLOR_SHOW)
         .appendField(new Blockly.FieldDropdown([["left","1"], ["right","2"]]), "value_marquee_direction_")
-        .appendField(Blockly.Msg.BITMATRIXLED_MARQUEE_DEGREE_SHOW);      
+        .appendField(Blockly.Msg.BITMatrixLed_MARQUEE_DEGREE_SHOW);      
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);
   }  
 };
 
-Blockly.Blocks['BitMatrixled_marquee_stop'] = {
+Blockly.Blocks['BitMatrixLed_marquee_stop'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_MARQUEE_STOP_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_MARQUEE_STOP_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
   }
 }; 
 
-Blockly.Blocks['BitMatrixled_marquee_resume'] = {
+Blockly.Blocks['BitMatrixLed_marquee_resume'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_MARQUEE_RESUME_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_MARQUEE_RESUME_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);     
   }
 }; 
 
-Blockly.Blocks['BitMatrixled_marquee_reverse'] = {
+Blockly.Blocks['BitMatrixLed_marquee_reverse'] = {
   init: function() {
     this.appendDummyInput() 
-        .appendField(Blockly.Msg.BITMATRIXLED_MARQUEE_REVERSE_SHOW);    
+        .appendField(Blockly.Msg.BITMatrixLed_MARQUEE_REVERSE_SHOW);    
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
   }
 };
 
-Blockly.Blocks['BitMatrixled_marquee_time'] = {
+Blockly.Blocks['BitMatrixLed_marquee_time'] = {
   init: function() {
     this.appendValueInput("value_marquee_time_")
         .setCheck("Number")  
-        .appendField(Blockly.Msg.BITMATRIXLED_MARQUEE_TIME_SHOW);  
+        .appendField(Blockly.Msg.BITMatrixLed_MARQUEE_TIME_SHOW);  
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
   }
 };  
 
-Blockly.Blocks['BitMatrixled_sample'] = {
+Blockly.Blocks['BitMatrixLed_sample'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_SAMPLE_SHOW)
+        .appendField(Blockly.Msg.BITMatrixLed_SAMPLE_SHOW)
         .appendField(new Blockly.FieldDropdown([["♥","♥"], ["♡","♡"], ["↑","↑"], ["↓","↓"], ["←","←"], ["→","→"], ["↖","↖"], ["↙","↙"], ["↗","↗"], ["↘","↘"], ["▲","▲"], ["▼","▼"], ["◄","◄"], ["►","►"], ["O","O"], ["X","X"], ["V","V"]]), "value_sample_");     
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -180,33 +180,33 @@ Blockly.Blocks['BitMatrixled_sample'] = {
   }
 };
 
-Blockly.Blocks['BitMatrixled_code'] = {
+Blockly.Blocks['BitMatrixLed_code'] = {
   init: function() {
     this.appendValueInput("value_code_")
         .setCheck("String")   
-        .appendField(Blockly.Msg.BITMATRIXLED_CODE_SHOW)
+        .appendField(Blockly.Msg.BITMatrixLed_CODE_SHOW)
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
   }
 }; 
 
-Blockly.Blocks['BitMatrixled_color'] = {
+Blockly.Blocks['BitMatrixLed_color'] = {
   init: function() {
     this.appendValueInput("value_color_")
         .setCheck(null)  
-        .appendField(Blockly.Msg.BITMATRIXLED_COLOR_SHOW);    
+        .appendField(Blockly.Msg.BITMatrixLed_COLOR_SHOW);    
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);     
   }
 };  
 
-Blockly.Blocks['BitMatrixled_matrix'] = {
+Blockly.Blocks['BitMatrixLed_matrix'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_CENTRE)
-        .appendField(Blockly.Msg.BITMATRIXLED_MATRIX_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_MATRIX_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L01")
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L06")
@@ -243,11 +243,11 @@ Blockly.Blocks['BitMatrixled_matrix'] = {
   }
 };
 
-Blockly.Blocks['BitMatrixled_matrix_color'] = {
+Blockly.Blocks['BitMatrixLed_matrix_color'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_CENTRE)
-        .appendField(Blockly.Msg.BITMATRIXLED_MATRIX_COLOR_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_MATRIX_COLOR_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldColour("#000000"), 'L01')
         .appendField(new Blockly.FieldColour("#000000"), 'L06')
@@ -284,11 +284,11 @@ Blockly.Blocks['BitMatrixled_matrix_color'] = {
   }
 };
 
-Blockly.Blocks['BitMatrixled_matrixcode'] = {
+Blockly.Blocks['BitMatrixLed_matrixcode'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_CENTRE)
-        .appendField(Blockly.Msg.BITMATRIXLED_MATRIXCODE_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_MATRIXCODE_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L01")
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L06")
@@ -324,11 +324,11 @@ Blockly.Blocks['BitMatrixled_matrixcode'] = {
   }
 };
 
-Blockly.Blocks['BitMatrixled_matrixcode_line'] = {
+Blockly.Blocks['BitMatrixLed_matrixcode_line'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_CENTRE)
-        .appendField(Blockly.Msg.BITMATRIXLED_MATRIXCODE_LINE_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_MATRIXCODE_LINE_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L01")
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L02")
@@ -340,11 +340,11 @@ Blockly.Blocks['BitMatrixled_matrixcode_line'] = {
   }
 };
 
-Blockly.Blocks['BitMatrixled_matrixcode_color'] = {
+Blockly.Blocks['BitMatrixLed_matrixcode_color'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_CENTRE)
-        .appendField(Blockly.Msg.BITMATRIXLED_MATRIXCODE_COLOR_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_MATRIXCODE_COLOR_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldColour("#000000"), 'L01')
         .appendField(new Blockly.FieldColour("#000000"), 'L06')
@@ -380,11 +380,11 @@ Blockly.Blocks['BitMatrixled_matrixcode_color'] = {
   }
 };
 
-Blockly.Blocks['BitMatrixled_matrixcode_line_color'] = {
+Blockly.Blocks['BitMatrixLed_matrixcode_line_color'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_CENTRE)
-        .appendField(Blockly.Msg.BITMATRIXLED_MATRIXCODE_LINE_COLOR_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_MATRIXCODE_LINE_COLOR_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldColour("#000000"), 'L01')
         .appendField(new Blockly.FieldColour("#000000"), 'L02')
@@ -396,20 +396,20 @@ Blockly.Blocks['BitMatrixled_matrixcode_line_color'] = {
   }
 };
 
-Blockly.Blocks['BitMatrixled_clear'] = {
+Blockly.Blocks['BitMatrixLed_clear'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_CLEAR_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_CLEAR_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);     
   }
 };    
 
-Blockly.Blocks['BitMatrixled_on'] = {
+Blockly.Blocks['BitMatrixLed_on'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_ON_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_ON_SHOW);
     this.appendValueInput("value_x_on_")
         .setCheck("Number")
         .appendField("x");
@@ -423,10 +423,10 @@ Blockly.Blocks['BitMatrixled_on'] = {
   }
 };
 
-Blockly.Blocks['BitMatrixled_color_on'] = {
+Blockly.Blocks['BitMatrixLed_color_on'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_COLOR_ON_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_COLOR_ON_SHOW);
     this.appendValueInput("value_x_on_")
         .setCheck("Number")
         .appendField("x");
@@ -443,10 +443,10 @@ Blockly.Blocks['BitMatrixled_color_on'] = {
   }
 };
 
-Blockly.Blocks['BitMatrixled_off'] = {
+Blockly.Blocks['BitMatrixLed_off'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_OFF_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_OFF_SHOW);
     this.appendValueInput("value_x_off_")
         .setCheck("Number")
         .appendField("x");
@@ -460,10 +460,10 @@ Blockly.Blocks['BitMatrixled_off'] = {
   }
 };  
 
-Blockly.Blocks['BitMatrixled_reverse'] = {
+Blockly.Blocks['BitMatrixLed_reverse'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_REVERSE_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_REVERSE_SHOW);
     this.appendValueInput("value_x_reverse_")
         .setCheck("Number")
         .appendField("x");
@@ -477,10 +477,10 @@ Blockly.Blocks['BitMatrixled_reverse'] = {
   }
 };  
   
-Blockly.Blocks['BitMatrixled_state'] = {
+Blockly.Blocks['BitMatrixLed_state'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_STATE_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_STATE_SHOW);
     this.appendValueInput("value_x_state_")
         .setCheck("Number")
         .appendField("x");
@@ -493,118 +493,118 @@ Blockly.Blocks['BitMatrixled_state'] = {
   }  
 };
 
-Blockly.Blocks['BitMatrixled_linechart'] = {
+Blockly.Blocks['BitMatrixLed_linechart'] = {
   init: function() {
     this.appendValueInput("value_value1")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)    
-        .appendField(Blockly.Msg.BITMATRIXLED_LINECHART_SHOW)    
-        .appendField(Blockly.Msg.BITMATRIXLED_VALUE1_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_LINECHART_SHOW)    
+        .appendField(Blockly.Msg.BITMatrixLed_VALUE1_SHOW);
     this.appendValueInput("value_value2")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)     
-        .appendField(Blockly.Msg.BITMATRIXLED_VALUE2_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_VALUE2_SHOW);
     this.appendValueInput("value_value3")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)     
-        .appendField(Blockly.Msg.BITMATRIXLED_VALUE3_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_VALUE3_SHOW);
     this.appendValueInput("value_value4")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)     
-        .appendField(Blockly.Msg.BITMATRIXLED_VALUE4_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_VALUE4_SHOW);
     this.appendValueInput("value_value5")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)     
-        .appendField(Blockly.Msg.BITMATRIXLED_VALUE5_SHOW);    
+        .appendField(Blockly.Msg.BITMatrixLed_VALUE5_SHOW);    
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);
   }  
 };
 
-Blockly.Blocks['BitMatrixled_barchart'] = {
+Blockly.Blocks['BitMatrixLed_barchart'] = {
   init: function() {
     this.appendValueInput("value_value1")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)    
-        .appendField(Blockly.Msg.BITMATRIXLED_BARCHART_SHOW)    
-        .appendField(Blockly.Msg.BITMATRIXLED_VALUE1_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_BARCHART_SHOW)    
+        .appendField(Blockly.Msg.BITMatrixLed_VALUE1_SHOW);
     this.appendValueInput("value_value2")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)     
-        .appendField(Blockly.Msg.BITMATRIXLED_VALUE2_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_VALUE2_SHOW);
     this.appendValueInput("value_value3")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)     
-        .appendField(Blockly.Msg.BITMATRIXLED_VALUE3_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_VALUE3_SHOW);
     this.appendValueInput("value_value4")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)     
-        .appendField(Blockly.Msg.BITMATRIXLED_VALUE4_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_VALUE4_SHOW);
     this.appendValueInput("value_value5")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)     
-        .appendField(Blockly.Msg.BITMATRIXLED_VALUE5_SHOW);    
+        .appendField(Blockly.Msg.BITMatrixLed_VALUE5_SHOW);    
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);
   }  
 };
 
-Blockly.Blocks['BitMatrixled_clockwise'] = {
+Blockly.Blocks['BitMatrixLed_clockwise'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_CLOCKWISE_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_CLOCKWISE_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
   }
 }; 
 
-Blockly.Blocks['BitMatrixled_counterclockwise'] = {
+Blockly.Blocks['BitMatrixLed_counterclockwise'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_COUNTERCLOCKWISE_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_COUNTERCLOCKWISE_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
   }
 }; 
 
-Blockly.Blocks['BitMatrixled_verticalflip'] = {
+Blockly.Blocks['BitMatrixLed_verticalflip'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_VERTICALFLIP_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_VERTICALFLIP_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
   }
 }; 
 
-Blockly.Blocks['BitMatrixled_horizontalflip'] = {
+Blockly.Blocks['BitMatrixLed_horizontalflip'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_HORIZONTALFLIP_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_HORIZONTALFLIP_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
   }
 }; 
 
-Blockly.Blocks['BitMatrixled_invert'] = {
+Blockly.Blocks['BitMatrixLed_invert'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_INVERT_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_INVERT_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
   }
 }; 
 
-Blockly.Blocks['BitMatrixled_getcolor'] = {
+Blockly.Blocks['BitMatrixLed_getcolor'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.BITMATRIXLED_GETCOLOR_SHOW);
+        .appendField(Blockly.Msg.BITMatrixLed_GETCOLOR_SHOW);
     this.appendValueInput("value_x_state_")
         .setCheck("Number")
         .appendField("x");
@@ -617,11 +617,11 @@ Blockly.Blocks['BitMatrixled_getcolor'] = {
   }  
 };
 
-Blockly.Blocks['BitMatrixled_backcolor'] = {
+Blockly.Blocks['BitMatrixLed_backcolor'] = {
   init: function() {
     this.appendValueInput("value_color_")
         .setCheck(null)  
-        .appendField(Blockly.Msg.BITMATRIXLED_BACKCOLOR_SHOW);    
+        .appendField(Blockly.Msg.BITMatrixLed_BACKCOLOR_SHOW);    
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);    
