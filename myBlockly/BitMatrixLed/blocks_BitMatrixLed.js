@@ -820,15 +820,3 @@ Blockly.Blocks['BitMatrixLed_clearresponse'] = {
     this.setColour(60);
   }
 };
-
-Blockly.Blocks['BitMatrixLed_custom_cmd'] = {
-  init: function() {
-    this.appendValueInput("cmd")
-        .setCheck(null)
-        .appendField("WebBit Custom Command");    
-    this.setInputsInline(true);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(60);
-  }
-};
