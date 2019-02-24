@@ -800,6 +800,7 @@
       ifrm.id="BitIframe";
       ifrm.style.width = "0px";
       ifrm.style.height = "0px";
+      ifrm.style.poition = "absolute";
       ifrm.style.display = "none";
       document.body.appendChild(ifrm);
     }    
