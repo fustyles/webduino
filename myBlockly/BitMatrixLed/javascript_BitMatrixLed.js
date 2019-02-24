@@ -5,9 +5,8 @@ Blockly.JavaScript['BitMatrixLed_host'] = function (block) {
 };
 
 Blockly.JavaScript['BitMatrixLed_showstate'] = function(block) {
-  var variable_myBitMatrixLed_ = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('myBitMatrixLed_'), Blockly.Variables.NAME_TYPE);
   var value_showstate_ = block.getFieldValue('value_showstate_');
-  var code = variable_myBitMatrixLed_+' = getMatrix(board, 4, 25);\nBitMatrixLed_showstate('+variable_myBitMatrixLed_+','+value_showstate_+');\n';
+  var code = 'BitMatrixLed_showstate('+value_showstate_+');\n';
   return code;
 };
 
