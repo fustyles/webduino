@@ -795,39 +795,31 @@
   }
 
 var BitMatrixLed_Response=[];
-var BitMatrixLed_getstate = false;
 
 function BitMatrixLed_sendCommand(command) {
-  Response=[];
-  var data = $.ajax({
-      "type": "POST",
-      "dataType": "json",
-      "url": BitMatrixLedurl+command,
-      success: function(json)
-      {
-        json = eval(json);
-        //console.log(json);
-        BitMatrixLed_getstate = true;
-        for (var i=0;i<json.length;i++) {
-          BitMatrixLed_Response.push(json[i]["data"]+"");
-        }
-        BitMatrixLed_getstate = false;
-      },
-      error: function(jqXHR, textStatus, errorThrown)
-      {
-        //console.log(errorThrown);
-      }
-   });
+  if (!document.getElementById("BitIframe")) {	
+    var ifrm = document.createElement("iframe");	
+    ifrm.id="BitIframe";	
+    ifrm.style.width = "0px";	
+    ifrm.style.height = "0px";	
+    ifrm.style.poition = "absolute";	
+    ifrm.style.display = "none";	
+    document.body.appendChild(ifrm);	
+  }    	
+  document.getElementById("BitIframe").src = BitMatrixLedurl+command;
 }
 
 function BitMatrixLed_getResponse() {
- if (BitMatrixLed_getstate == false) {
-   var res = BitMatrixLed_Response;
-   BitMatrixLed_Response=[];
-   return res;
+  Response=[];
+  var res = document.getElementById("BitIframe").innerHTML
+  json = eval(res);
+  //console.log(json);
+  for (var i=0;i<json.length;i++) {
+    BitMatrixLed_Response.push(json[i]["data"]+"");
   }
-  else
-    return [];
+  var res = BitMatrixLed_Response;
+  BitMatrixLed_Response=[];
+  return res;
 }
 
 function BitMatrixLed_clearData() {
