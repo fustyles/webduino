@@ -795,12 +795,12 @@
  
 	if (!document.getElementById("BitIframe")) {
 	  var ifrm = document.createElement("iframe");
-	  ifrm.setAttribute("src", BitMatrixLedurl+"?matrixled="+ledcolor);
+	  ifrm.setAttribute("src", BitMatrixLedurl+"?matrixled="+ledcolor+";stop");
 	  ifrm.style.width = "0px";
 	  ifrm.style.height = "0px";
 	  ifrm.style.display = "none";
 	  document.body.appendChild(ifrm);
     }
 	else
-      document.getElementsByID("BitIframe").src = BitMatrixLedurl+"?matrixled="+ledcolor;
+      document.getElementsByID("BitIframe").src = BitMatrixLedurl+"?matrixled="+ledcolor+";stop";
   }
