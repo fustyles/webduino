@@ -93,7 +93,7 @@
   const BitArrowrightfill = "1111101110011100010000100";  
   const BitNoexist = "0000000000000000000000000";
   
-  var L = new Array("","","","","","","","","","","","","","","","","","","","","","","","","");
+  var BitLed = new Array("","","","","","","","","","","","","","","","","","","","","","","","","");
   var BitMatrixLedcolor = "#ff0000";
   var BitMatrixLedbackcolor = "#000000";
   var BitMatrixLedmarqueeinitial = "",BitMatrixLedmarqueecode = "",BitMatrixLedmarqueecodeonce = "",BitMatrixLedmarqueecolorcode = "",BitMatrixLedmarqueecolorcodeonce = "";  
@@ -466,7 +466,7 @@
   function BitMatrixLed_clear() {
     for (var i=0;i<25;i++)
     {
-      L[i]=BitMatrixLedbackcolor;
+      BitLed[i]=BitMatrixLedbackcolor;
     }
     BitMatrixLed_show();
   }
@@ -475,11 +475,11 @@
     for (var i=0;i<25;i++)
     {
       if (i==(input_x_*5+input_y_))
-        L[i]=BitMatrixLedcolor;
+        BitLed[i]=BitMatrixLedcolor;
       else
       {
         if (L[i]=="")
-          L[i]=BitMatrixLedbackcolor;
+          BitLed[i]=BitMatrixLedbackcolor;
       }
     }
     BitMatrixLed_show();
@@ -489,11 +489,11 @@
     for (var i=0;i<25;i++)
     {
       if (i==(input_x_*5+input_y_))
-        L[i]=input_color_;
+        BitLed[i]=input_color_;
       else
       {
         if (L[i]=="")
-          L[i]=BitMatrixLedbackcolor;
+          BitLed[i]=BitMatrixLedbackcolor;
       }
     }
     BitMatrixLed_show();
@@ -503,11 +503,11 @@
     for (var i=0;i<25;i++)
     {
       if (i==(input_x_*5+input_y_))
-        L[i]=BitMatrixLedbackcolor;
+        BitLed[i]=BitMatrixLedbackcolor;
       else
       {
         if (L[i]=="")
-          L[i]=BitMatrixLedbackcolor;
+          BitLed[i]=BitMatrixLedbackcolor;
       }
     }
     BitMatrixLed_show();
@@ -515,9 +515,9 @@
   
   function BitMatrixLed_reverse(input_x_,input_y_) {
     if ((L[input_x_*5+input_y_]=="")||(L[input_x_*5+input_y_]==BitMatrixLedbackcolor))
-      L[input_x_*5+input_y_]=BitMatrixLedcolor;
+      BitLed[input_x_*5+input_y_]=BitMatrixLedcolor;
     else
-      L[input_x_*5+input_y_]=BitMatrixLedbackcolor;
+      BitLed[input_x_*5+input_y_]=BitMatrixLedbackcolor;
     BitMatrixLed_show();
   }
 
@@ -533,23 +533,23 @@
     for (var i=0;i<25;i++)
     {
       if (input_value_.substr(i,1)=="1")
-        L[i]=BitMatrixLedcolor;
+        BitLed[i]=BitMatrixLedcolor;
       else
-        L[i]=BitMatrixLedbackcolor;
+        BitLed[i]=BitMatrixLedbackcolor;
     }
     BitMatrixLed_show();
   }
   
   function BitMatrixLed_matrix_codetocolor(code) {
     for (var i=0;i<25;i++)
-      L[i]=code.substr(i*7,7);
+      BitLed[i]=code.substr(i*7,7);
     
     BitMatrixLed_show();
   }
   
   function BitMatrixLed_matrix_color(color) {
     for (var i=0;i<25;i++)
-      L[i]=color[i];
+      BitLed[i]=color[i];
     
     BitMatrixLed_show();
   }  
@@ -656,9 +656,9 @@
       for (var j=0;j<=4;j++)
       {
         if (j==(5-input_value[i]))
-          L[k]=BitMatrixLedcolor;
+          BitLed[k]=BitMatrixLedcolor;
         else
-          L[k]=BitMatrixLedbackcolor;
+          BitLed[k]=BitMatrixLedbackcolor;
         k++;
       }
     }
@@ -673,9 +673,9 @@
       for (var j=0;j<=4;j++)
       {
         if (j>=(5-input_value[i]))
-          L[k]=BitMatrixLedcolor;
+          BitLed[k]=BitMatrixLedcolor;
         else
-          L[k]=BitMatrixLedbackcolor;
+          BitLed[k]=BitMatrixLedbackcolor;
         k++;
       }
     }
@@ -694,7 +694,7 @@
     {    
       for (var j=0;j<=4;j++)
       {
-        L[n]=Tmp[i+5*j];
+        BitLed[n]=Tmp[i+5*j];
         n++;
       }
     }
@@ -713,7 +713,7 @@
     {    
       for (var j=4;j>=0;j--)
       {
-        L[n]=Tmp[i+5*j];
+        BitLed[n]=Tmp[i+5*j];
         n++;
       }
     }
@@ -732,7 +732,7 @@
     {    
       for (var j=4;j>=0;j--)
       {
-        L[n]=Tmp[j+5*i];
+        BitLed[n]=Tmp[j+5*i];
         n++;
       }
     }
@@ -751,7 +751,7 @@
     {    
       for (var j=0;j<=4;j++)
       {
-        L[n]=Tmp[j+i*5];
+        BitLed[n]=Tmp[j+i*5];
         n++;
       }
     }
@@ -762,15 +762,15 @@
     for (var i=0;i<25;i++)
     {
       if ((L[i]=="")||(L[i]==BitMatrixLedbackcolor))
-        L[i]=BitMatrixLedcolor;
+        BitLed[i]=BitMatrixLedcolor;
       else
-        L[i]=BitMatrixLedbackcolor;
+        BitLed[i]=BitMatrixLedbackcolor;
     }
     BitMatrixLed_show();
   }
   
   function BitMatrixLed_getcolor(input_x_,input_y_) {
-    return L[input_x_*5+input_y_];
+    return BitLed[input_x_*5+input_y_];
   } 
   
   function BitMatrixLed_backcolor(input_color_) {
@@ -779,26 +779,26 @@
  
   function BitMatrixLed_show() {
     if (BitMatrixLedshowstate==1)
-      var ledcolor =L[20].replace(/\#/ig, "")+L[21].replace(/\#/ig, "")+L[22].replace(/\#/ig, "")+L[23].replace(/\#/ig, "")+L[24].replace(/\#/ig, "")
-                  + L[15].replace(/\#/ig, "")+L[16].replace(/\#/ig, "")+L[17].replace(/\#/ig, "")+L[18].replace(/\#/ig, "")+L[19].replace(/\#/ig, "")
-                  + L[10].replace(/\#/ig, "")+L[11].replace(/\#/ig, "")+L[12].replace(/\#/ig, "")+L[13].replace(/\#/ig, "")+L[14].replace(/\#/ig, "")
-                  + L[5].replace(/\#/ig, "")+L[6].replace(/\#/ig, "")+L[7].replace(/\#/ig, "")+L[8].replace(/\#/ig, "")+L[9].replace(/\#/ig, "")
-                  + L[0].replace(/\#/ig, "")+L[1].replace(/\#/ig, "")+L[2].replace(/\#/ig, "")+L[3].replace(/\#/ig, "")+L[4].replace(/\#/ig, "");
+      var ledcolor = BitLed[20].replace(/\#/ig, "")+ BitLed[21].replace(/\#/ig, "")+ BitLed[22].replace(/\#/ig, "")+ BitLed[23].replace(/\#/ig, "")+ BitLed[24].replace(/\#/ig, "")
+                  + BitLed[15].replace(/\#/ig, "")+ BitLed[16].replace(/\#/ig, "")+ BitLed[17].replace(/\#/ig, "")+ BitLed[18].replace(/\#/ig, "")+ BitLed[19].replace(/\#/ig, "")
+                  + BitLed[10].replace(/\#/ig, "")+ BitLed[11].replace(/\#/ig, "")+ BitLed[12].replace(/\#/ig, "")+ BitLed[13].replace(/\#/ig, "")+ BitLed[14].replace(/\#/ig, "")
+                  + BitLed[5].replace(/\#/ig, "")+ BitLed[6].replace(/\#/ig, "")+ BitLed[7].replace(/\#/ig, "")+ BitLed[8].replace(/\#/ig, "")+ BitLed[9].replace(/\#/ig, "")
+                  + BitLed[0].replace(/\#/ig, "")+ BitLed[1].replace(/\#/ig, "")+ BitLed[2].replace(/\#/ig, "")+ BitLed[3].replace(/\#/ig, "")+ BitLed[4].replace(/\#/ig, "");
     else
-      var ledcolor =BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")
+      var ledcolor = BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")
                   + BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")
                   + BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")
                   + BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")
                   + BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "");           
  
-	if (!document.getElementById("BitIframe")) {
-	  var ifrm = document.createElement("iframe");
-	  ifrm.setAttribute("src", BitMatrixLedurl+"?matrixled="+ledcolor+";stop");
-	  ifrm.style.width = "0px";
-	  ifrm.style.height = "0px";
-	  ifrm.style.display = "none";
-	  document.body.appendChild(ifrm);
+    if (!document.getElementById("BitIframe")) {
+      var ifrm = document.createElement("iframe");
+      ifrm.setAttribute("src", BitMatrixLedurl+"?matrixled="+ledcolor+";stop");
+      ifrm.style.width = "0px";
+      ifrm.style.height = "0px";
+      ifrm.style.display = "none";
+      document.body.appendChild(ifrm);
     }
-	else
+    else
       document.getElementsByID("BitIframe").src = BitMatrixLedurl+"?matrixled="+ledcolor+";stop";
   }
