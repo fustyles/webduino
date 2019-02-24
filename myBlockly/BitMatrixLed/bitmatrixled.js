@@ -816,6 +816,7 @@
   function BitMatrixLed_getResponse() {
     BitMatrixLed_Response=[];
     var response = document.getElementById("BitIframe").innerHTML;
+    console.log(response);
     if (response=="") 
       return [];
     else {
@@ -834,6 +835,6 @@
     BitMatrixLed_Response=[];
   }
 
-  function BitMatrixLed_sendCustomCommand(cmd) {
-    BitMatrixLed_run(cmd);
+  function BitMatrixLed_sendCustomCommand(command) {
+    BitMatrixLed_run(command);
   }
