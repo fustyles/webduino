@@ -763,14 +763,37 @@ Blockly.Blocks['BitMatrixLed_cmd'] = {
   this.appendDummyInput()
       .appendField("cmd")
       .appendField(new Blockly.FieldDropdown([
-        ["inputPullup","inputpullup"], 
-        ["pinMode(pin)","pinmode"],
-        ["digitalWrite(pin\,value)","digitalwrite"], 
-        ["digitalRead(pin)","digitalread"], 
-        ["analogWrite(pin\,value)","analogwrite"], 
-        ["analogRead(pin)","analogread"],
-        ["car(pinL1\,pinL2\,pinR1\,pinR2\,L_speed\,R_speed\,Delay\,state)","car"],
-        ["i2cLcd(address\,2\,3\,text1\,text2\)","i2cLcd"]
+        ["ip","ip"],
+        ["mac","mac"],
+        ["restart","restart"],
+        ["resetwifi(ssid,password)","resetwifi"],
+        ["inputpullup(gpio)","inputpullup"],
+        ["gpiomode(gpio,value)","gpiomode"],
+        ["digitalwrite(gpio,value)","digitalwrite"],
+        ["analogwrite(gpio,value)","analogwrite"],
+        ["digitalread(gpio)","digitalread"],
+        ["analogread(gpio)","analogread"],
+        ["touchread(gpio)","touchread"],
+        ["tcp(domain,port,request,wait)","tcp"],
+        ["ifttt(event,key,value1,value2,value3)","ifttt"],
+        ["thingspeakupdate(key,field1,~~~,field8)","thingspeakupdate"],
+        ["thingspeakread(request)","thingspeakread"],
+        ["linenotify(token,request)","linenotify"],
+        ["car(gpioL1,gpioL2,gpioR1,gpioR2,L_speed,R_speed,Delay,state)","car"],
+        ["i2cLcd(address,gpioSDA,gpioSCL,text1,text2)","i2cLcd"],
+        ["brightness(value[0~1])","brightness"],
+        ["rgb(number[0~24],rrggbb","rgb"],
+        ["matrixled(rrggbbrrggbb......[0~24])","matrixled"],
+        ["buzzer(frequency,delay)","buzzer"],
+        ["buttonA","buttonA"],
+        ["buttonB","buttonB"],
+        ["buttonAB","buttonAB"],
+        ["temperature","temperature"],
+        ["lumL","lumL"],
+        ["lumR","lumR"],
+        ["accel(item[,x,y,z,s]","accel"],
+        ["gyro(item[,x,y,z]","gyro"],
+        ["mag(item[,x,y,z,d]","mag"]
       ]), "cmd");
   this.setInputsInline(true);
   this.setOutput(true, null); 
