@@ -1,106 +1,106 @@
-Blockly.JavaScript['BitMatrixled_host'] = function (block) {
+Blockly.JavaScript['BitMatrixLed_host'] = function (block) {
   var value_host_ = Blockly.JavaScript.valueToCode(block, 'host_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_host(' + value_host_ + ');\n';
+  var code = 'BitMatrixLed_host(' + value_host_ + ');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_showstate'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_showstate'] = function(block) {
   var value_showstate_ = block.getFieldValue('value_showstate_');
-  var code = 'BitMatrixled_showstate('+value_showstate_+');\n';
+  var code = 'BitMatrixLed_showstate('+value_showstate_+');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_char'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_char'] = function(block) {
   var value_char_ = Blockly.JavaScript.valueToCode(block, 'value_char_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_char('+ value_char_ +');\n';
+  var code = 'BitMatrixLed_char('+ value_char_ +');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_marquee_time'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_marquee_time'] = function(block) {
   var value_marquee_time_ = Blockly.JavaScript.valueToCode(block, 'value_marquee_time_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_marquee_time('+ value_marquee_time_ +');\n';
+  var code = 'BitMatrixLed_marquee_time('+ value_marquee_time_ +');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_marquee'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_marquee'] = function(block) {
   var value_marquee_ = Blockly.JavaScript.valueToCode(block, 'value_marquee_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_marquee('+ value_marquee_ +');\n';
+  var code = 'BitMatrixLed_marquee('+ value_marquee_ +');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_marquee_once'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_marquee_once'] = function(block) {
   var value_marquee_ = Blockly.JavaScript.valueToCode(block, 'value_marquee_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_times_ = Blockly.JavaScript.valueToCode(block, 'value_times_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_marquee_times('+ value_marquee_ +','+value_times_+');\n';
+  var code = 'BitMatrixLed_marquee_times('+ value_marquee_ +','+value_times_+');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_marquee_color'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_marquee_color'] = function(block) {
   var value_marquee_ = Blockly.JavaScript.valueToCode(block, 'value_marquee_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_marquee_color('+ value_marquee_ +');\n';
+  var code = 'BitMatrixLed_marquee_color('+ value_marquee_ +');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_marquee_color_once'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_marquee_color_once'] = function(block) {
   var value_marquee_ = Blockly.JavaScript.valueToCode(block, 'value_marquee_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_marquee_color_once('+ value_marquee_ +');\n';
+  var code = 'BitMatrixLed_marquee_color_once('+ value_marquee_ +');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_marquee_degree'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_marquee_degree'] = function(block) {
   var value_marquee_direction_ = block.getFieldValue('value_marquee_direction_');
   var value_marquee_degree_ = Blockly.JavaScript.valueToCode(block, 'value_marquee_degree_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_marquee_degree('+ value_marquee_direction_ +','+ value_marquee_degree_ +');\n';
+  var code = 'BitMatrixLed_marquee_degree('+ value_marquee_direction_ +','+ value_marquee_degree_ +');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_marquee_color_degree'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_marquee_color_degree'] = function(block) {
   var value_marquee_direction_ = block.getFieldValue('value_marquee_direction_');
   var value_marquee_degree_ = Blockly.JavaScript.valueToCode(block, 'value_marquee_degree_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_marquee_color_degree('+ value_marquee_direction_ +','+ value_marquee_degree_ +');\n';
+  var code = 'BitMatrixLed_marquee_color_degree('+ value_marquee_direction_ +','+ value_marquee_degree_ +');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_marquee_stop'] = function(block) {
-  var code = 'BitMatrixled_marquee_stop();\n';
+Blockly.JavaScript['BitMatrixLed_marquee_stop'] = function(block) {
+  var code = 'BitMatrixLed_marquee_stop();\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_marquee_resume'] = function(block) {
-  var code = 'BitMatrixled_marquee_resume();\n';
+Blockly.JavaScript['BitMatrixLed_marquee_resume'] = function(block) {
+  var code = 'BitMatrixLed_marquee_resume();\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_marquee_reverse'] = function(block) {
-  var code = 'BitMatrixled_marquee_reverse();\n';
+Blockly.JavaScript['BitMatrixLed_marquee_reverse'] = function(block) {
+  var code = 'BitMatrixLed_marquee_reverse();\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_color'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_color'] = function(block) {
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'value_color_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_color('+ value_color_ +');\n';
+  var code = 'BitMatrixLed_color('+ value_color_ +');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_texttocode'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_texttocode'] = function(block) {
   var value_text_ = Blockly.JavaScript.valueToCode(block, 'value_text_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_texttocode('+value_text_+')';
+  var code = 'BitMatrixLed_texttocode('+value_text_+')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript['BitMatrixled_sample'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_sample'] = function(block) {
   var value_sample_ = block.getFieldValue('value_sample_');
-  var code = 'BitMatrixled_sample("'+ value_sample_ +'");\n';
+  var code = 'BitMatrixLed_sample("'+ value_sample_ +'");\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_code'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_code'] = function(block) {
   var value_code_ = Blockly.JavaScript.valueToCode(block, 'value_code_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_code('+ value_code_ +');\n';
+  var code = 'BitMatrixLed_code('+ value_code_ +');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_matrix'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_matrix'] = function(block) {
   var L01 = (block.getFieldValue('L01') == 'TRUE')?"1":"0";
   var L02 = (block.getFieldValue('L02') == 'TRUE')?"1":"0";
   var L03 = (block.getFieldValue('L03') == 'TRUE')?"1":"0";
@@ -126,11 +126,11 @@ Blockly.JavaScript['BitMatrixled_matrix'] = function(block) {
   var L23 = (block.getFieldValue('L23') == 'TRUE')?"1":"0";
   var L24 = (block.getFieldValue('L24') == 'TRUE')?"1":"0";
   var L25 = (block.getFieldValue('L25') == 'TRUE')?"1":"0";
-  var code = 'BitMatrixled_matrix("'+L01+L02+L03+L04+L05+L06+L07+L08+L09+L10+L11+L12+L13+L14+L15+L16+L17+L18+L19+L20+L21+L22+L23+L24+L25+'");\n';
+  var code = 'BitMatrixLed_matrix("'+L01+L02+L03+L04+L05+L06+L07+L08+L09+L10+L11+L12+L13+L14+L15+L16+L17+L18+L19+L20+L21+L22+L23+L24+L25+'");\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_matrix_color'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_matrix_color'] = function(block) {
   var L01 = block.getFieldValue('L01');
   var L02 = block.getFieldValue('L02');
   var L03 = block.getFieldValue('L03');
@@ -156,11 +156,11 @@ Blockly.JavaScript['BitMatrixled_matrix_color'] = function(block) {
   var L23 = block.getFieldValue('L23');
   var L24 = block.getFieldValue('L24');
   var L25 = block.getFieldValue('L25');
-  var code = 'BitMatrixled_matrix_color(["'+L01+'","'+L02+'","'+L03+'","'+L04+'","'+L05+'","'+L06+'","'+L07+'","'+L08+'","'+L09+'","'+L10+'","'+L11+'","'+L12+'","'+L13+'","'+L14+'","'+L15+'","'+L16+'","'+L17+'","'+L18+'","'+L19+'","'+L20+'","'+L21+'","'+L22+'","'+L23+'","'+L24+'","'+L25+'"]);\n';
+  var code = 'BitMatrixLed_matrix_color(["'+L01+'","'+L02+'","'+L03+'","'+L04+'","'+L05+'","'+L06+'","'+L07+'","'+L08+'","'+L09+'","'+L10+'","'+L11+'","'+L12+'","'+L13+'","'+L14+'","'+L15+'","'+L16+'","'+L17+'","'+L18+'","'+L19+'","'+L20+'","'+L21+'","'+L22+'","'+L23+'","'+L24+'","'+L25+'"]);\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_matrixcode'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_matrixcode'] = function(block) {
   var L01 = (block.getFieldValue('L01') == 'TRUE')?"1":"0";
   var L02 = (block.getFieldValue('L02') == 'TRUE')?"1":"0";
   var L03 = (block.getFieldValue('L03') == 'TRUE')?"1":"0";
@@ -190,7 +190,7 @@ Blockly.JavaScript['BitMatrixled_matrixcode'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript['BitMatrixled_matrixcode_line'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_matrixcode_line'] = function(block) {
   var L01 = (block.getFieldValue('L01') == 'TRUE')?"1":"0";
   var L02 = (block.getFieldValue('L02') == 'TRUE')?"1":"0";
   var L03 = (block.getFieldValue('L03') == 'TRUE')?"1":"0";
@@ -200,7 +200,7 @@ Blockly.JavaScript['BitMatrixled_matrixcode_line'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript['BitMatrixled_matrixcode_color'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_matrixcode_color'] = function(block) {
   var L01 = block.getFieldValue('L01');
   var L02 = block.getFieldValue('L02');
   var L03 = block.getFieldValue('L03');
@@ -230,7 +230,7 @@ Blockly.JavaScript['BitMatrixled_matrixcode_color'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript['BitMatrixled_matrixcode_line_color'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_matrixcode_line_color'] = function(block) {
   var L01 = block.getFieldValue('L01');
   var L02 = block.getFieldValue('L02');
   var L03 = block.getFieldValue('L03');
@@ -240,107 +240,107 @@ Blockly.JavaScript['BitMatrixled_matrixcode_line_color'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript['BitMatrixled_clear'] = function(block) {
-  var code = 'BitMatrixled_clear();\n';
+Blockly.JavaScript['BitMatrixLed_clear'] = function(block) {
+  var code = 'BitMatrixLed_clear();\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_on'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_on'] = function(block) {
   var value_x_on_ = Blockly.JavaScript.valueToCode(block, 'value_x_on_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_on_ = Blockly.JavaScript.valueToCode(block, 'value_y_on_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_on('+value_x_on_+','+value_y_on_+');\n';
+  var code = 'BitMatrixLed_on('+value_x_on_+','+value_y_on_+');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_color_on'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_color_on'] = function(block) {
   var value_x_on_ = Blockly.JavaScript.valueToCode(block, 'value_x_on_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_on_ = Blockly.JavaScript.valueToCode(block, 'value_y_on_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_color_on_ = Blockly.JavaScript.valueToCode(block, 'value_color_on_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_color_on('+value_x_on_+','+value_y_on_+','+value_color_on_+');\n';
+  var code = 'BitMatrixLed_color_on('+value_x_on_+','+value_y_on_+','+value_color_on_+');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_off'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_off'] = function(block) {
   var value_x_off_ = Blockly.JavaScript.valueToCode(block, 'value_x_off_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_off_ = Blockly.JavaScript.valueToCode(block, 'value_y_off_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_off('+value_x_off_+','+value_y_off_+');\n';
+  var code = 'BitMatrixLed_off('+value_x_off_+','+value_y_off_+');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_reverse'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_reverse'] = function(block) {
   var value_x_reverse_ = Blockly.JavaScript.valueToCode(block, 'value_x_reverse_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_reverse_ = Blockly.JavaScript.valueToCode(block, 'value_y_reverse_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_reverse('+value_x_reverse_+','+value_y_reverse_+');\n';
+  var code = 'BitMatrixLed_reverse('+value_x_reverse_+','+value_y_reverse_+');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_state'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_state'] = function(block) {
   var value_x_state_ = Blockly.JavaScript.valueToCode(block, 'value_x_state_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_state_ = Blockly.JavaScript.valueToCode(block, 'value_y_state_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_state('+value_x_state_+','+value_y_state_+')';
+  var code = 'BitMatrixLed_state('+value_x_state_+','+value_y_state_+')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript['BitMatrixled_indentcode'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_indentcode'] = function(block) {
   var value_indentcode_ = Blockly.JavaScript.valueToCode(block, 'value_indentcode_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_indentcode('+value_indentcode_+')';
+  var code = 'BitMatrixLed_indentcode('+value_indentcode_+')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript['BitMatrixled_linechart'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_linechart'] = function(block) {
   var value_value1 = Blockly.JavaScript.valueToCode(block, 'value_value1', Blockly.JavaScript.ORDER_ATOMIC);
   var value_value2 = Blockly.JavaScript.valueToCode(block, 'value_value2', Blockly.JavaScript.ORDER_ATOMIC);
   var value_value3 = Blockly.JavaScript.valueToCode(block, 'value_value3', Blockly.JavaScript.ORDER_ATOMIC);
   var value_value4 = Blockly.JavaScript.valueToCode(block, 'value_value4', Blockly.JavaScript.ORDER_ATOMIC);
   var value_value5 = Blockly.JavaScript.valueToCode(block, 'value_value5', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_linechart('+value_value1+','+value_value2+','+value_value3+','+value_value4+','+value_value5+');\n';
+  var code = 'BitMatrixLed_linechart('+value_value1+','+value_value2+','+value_value3+','+value_value4+','+value_value5+');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_barchart'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_barchart'] = function(block) {
   var value_value1 = Blockly.JavaScript.valueToCode(block, 'value_value1', Blockly.JavaScript.ORDER_ATOMIC);
   var value_value2 = Blockly.JavaScript.valueToCode(block, 'value_value2', Blockly.JavaScript.ORDER_ATOMIC);
   var value_value3 = Blockly.JavaScript.valueToCode(block, 'value_value3', Blockly.JavaScript.ORDER_ATOMIC);
   var value_value4 = Blockly.JavaScript.valueToCode(block, 'value_value4', Blockly.JavaScript.ORDER_ATOMIC);
   var value_value5 = Blockly.JavaScript.valueToCode(block, 'value_value5', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_barchart('+value_value1+','+value_value2+','+value_value3+','+value_value4+','+value_value5+');\n';
+  var code = 'BitMatrixLed_barchart('+value_value1+','+value_value2+','+value_value3+','+value_value4+','+value_value5+');\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_clockwise'] = function(block) {
-  var code = 'BitMatrixled_clockwise();\n';
+Blockly.JavaScript['BitMatrixLed_clockwise'] = function(block) {
+  var code = 'BitMatrixLed_clockwise();\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_counterclockwise'] = function(block) {
-  var code = 'BitMatrixled_counterclockwise();\n';
+Blockly.JavaScript['BitMatrixLed_counterclockwise'] = function(block) {
+  var code = 'BitMatrixLed_counterclockwise();\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_verticalflip'] = function(block) {
-  var code = 'BitMatrixled_verticalflip();\n';
+Blockly.JavaScript['BitMatrixLed_verticalflip'] = function(block) {
+  var code = 'BitMatrixLed_verticalflip();\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_horizontalflip'] = function(block) {
-  var code = 'BitMatrixled_horizontalflip();\n';
+Blockly.JavaScript['BitMatrixLed_horizontalflip'] = function(block) {
+  var code = 'BitMatrixLed_horizontalflip();\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_invert'] = function(block) {
-  var code = 'BitMatrixled_invert();\n';
+Blockly.JavaScript['BitMatrixLed_invert'] = function(block) {
+  var code = 'BitMatrixLed_invert();\n';
   return code;
 };
 
-Blockly.JavaScript['BitMatrixled_getcolor'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_getcolor'] = function(block) {
   var value_x_state_ = Blockly.JavaScript.valueToCode(block, 'value_x_state_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_state_ = Blockly.JavaScript.valueToCode(block, 'value_y_state_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_getcolor('+value_x_state_+','+value_y_state_+')';
+  var code = 'BitMatrixLed_getcolor('+value_x_state_+','+value_y_state_+')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript['BitMatrixled_backcolor'] = function(block) {
+Blockly.JavaScript['BitMatrixLed_backcolor'] = function(block) {
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'value_color_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'BitMatrixled_backcolor('+ value_color_ +');\n';
+  var code = 'BitMatrixLed_backcolor('+ value_color_ +');\n';
   return code;
 };
