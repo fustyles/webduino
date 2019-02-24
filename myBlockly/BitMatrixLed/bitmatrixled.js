@@ -791,18 +791,18 @@
                   + BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")
                   + BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "");           
  
-    BitMatrixLed_sendCommand("?matrixled="+ledcolor+";stop");
+    BitMatrixLed_sendCommand("matrixled",ledcolor,"stop");
   }
 
 var BitMatrixLed_Response=[];
 var BitMatrixLed_getstate = false;
 
-function BitMatrixLed_sendCommand(command) {
+function BitMatrixLed_sendCommand(cmd,p1,p2,p3,p4,p5,p6,p7,p8,p9) {
   BitMatrixLed_Response=[];
   var data = $.ajax({
       "type": "POST",
       "dataType": "json",
-      "url": BitMatrixLedurl+command,
+      "url": BitMatrixLedurl+"?"+cmd+"="+p1+";"+p2+";"+p3+";"+p4+";"+p5+";"+p6+";"+p7+";"+p8+";"+p9,
       success: function(json)
       {
         json = eval(json);
