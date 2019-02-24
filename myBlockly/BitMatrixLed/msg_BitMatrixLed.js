@@ -1,3 +1,6 @@
+Blockly.Msg["BITMATRIXLED"] = "RGB LED";
+Blockly.Msg["BITMATRIXLED_HUE"] = "280";
+
 Blockly.Msg.BITMATRIXLED_MATRIX_SHOW = "Matrix Led";
 Blockly.Msg.BITMATRIXLED_MATRIX_COLOR_SHOW = "Matrix Led (Full Color)";
 Blockly.Msg.BITMATRIXLED_MATRIXCODE_SHOW = "Matrix Led Code";
