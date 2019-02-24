@@ -826,8 +826,6 @@
       BitMatrixLed_Response=[];
       return res;
     }
-    else
-      return [];
   }
 
   function BitMatrixLed_clearData() {
