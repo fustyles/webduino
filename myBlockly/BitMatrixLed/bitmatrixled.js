@@ -810,14 +810,16 @@ function BitMatrixLed_sendCommand(command) {
 }
 
 function BitMatrixLed_getResponse() {
-  Response=[];
+  BitMatrixLed_Response=[];
   var res = document.getElementById("BitIframe").innerHTML
-  json = eval(res);
-  //console.log(json);
-  for (var i=0;i<json.length;i++) {
-    BitMatrixLed_Response.push(json[i]["data"]+"");
+  if (res.indexOf("[{")!=-1) {
+    json = eval(res);
+    //console.log(json);
+    for (var i=0;i<json.length;i++) {
+      BitMatrixLed_Response.push(json[i]["data"]+"");
+    }
   }
-  var res = BitMatrixLed_Response;
+  res = BitMatrixLed_Response;
   BitMatrixLed_Response=[];
   return res;
 }
