@@ -791,6 +791,10 @@
                   + BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")
                   + BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "");           
  
+    BitMatrixLed_run("?matrixled="+ledcolor+";stop");
+  }
+
+  function BitMatrixLed_run(command) {
     if (!document.getElementById("BitIframe")) {
       var ifrm = document.createElement("iframe");
       ifrm.id="BitIframe";
@@ -798,11 +802,7 @@
       ifrm.style.height = "0px";
       ifrm.style.display = "none";
       document.body.appendChild(ifrm);
-    }
-    BitMatrixLed_run("?matrixled="+ledcolor+";stop");
-  }
-
-  function BitMatrixLed_run(command) {
+    }    
     document.getElementById("BitIframe").src = BitMatrixLedurl+command;
   }
 
