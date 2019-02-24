@@ -798,41 +798,42 @@
       ifrm.style.display = "none";
       document.body.appendChild(ifrm);
     }
-    BitMatrixLed_sendCommand("?matrixled="+ledcolor+";stop");
+    BitMatrixLed_run("?matrixled="+ledcolor+";stop");
   }
 
-  function BitMatrixLed_sendCommand(command) {
+  function BitMatrixLed_run(command) {
     document.getElementsByID("BitIframe").src = BitMatrixLedurl+command;
   }
 
-var BitMatrixLed_Response=[];
+  var BitMatrixLed_Response=[];
 
-function BitMatrixLed_sendCommand(cmd,P1,P2,P3,P4,P5,P6,P7,P8,P9) {
-  BitMatrixLed_sendCommand("?"+cmd+"="+P1+";"+P2+";"+P3+";"+P4+";"+P5+";"+P6+";"+P7+";"+P8+";"+P9);
-}
-
-function BitMatrixLed_getResponse() {
-  BitMatrixLed_Response=[];
-  response=document.getElementsByID("BitIframe").innerHTML;
-  if (response==""||response=="undefined"||!response) return [];
-  if (response!= "") {
-    if (response.indexOf("[{")!=-1) {
-      json = eval(response);
-      for (var i=0;i<json.length;i++)
-        BitMatrixLed_Response.push(json[i]["data"]);
-    } 
-    var res = BitMatrixLed_Response;
-    BitMatrixLed_Response=[];
-    return res;
+  function BitMatrixLed_sendCommand(cmd,P1,P2,P3,P4,P5,P6,P7,P8,P9) {
+    BitMatrixLed_run("?"+cmd+"="+P1+";"+P2+";"+P3+";"+P4+";"+P5+";"+P6+";"+P7+";"+P8+";"+P9);
   }
-  else
-    return [];
-}
 
-function BitMatrixLed_clearData() {
-  BitMatrixLed_Response=[];
-}
+  function BitMatrixLed_getResponse() {
+    BitMatrixLed_Response=[];
+    var response = document.getElementsByID("BitIframe").innerHTML;
+    if (response=="") 
+      return [];
+    else {
+      if (response.indexOf("[{")!=-1) {
+        json = eval(response);
+        for (var i=0;i<json.length;i++)
+          BitMatrixLed_Response.push(json[i]["data"]);
+      } 
+      var res = BitMatrixLed_Response;
+      BitMatrixLed_Response=[];
+      return res;
+    }
+    else
+      return [];
+  }
 
-function BitMatrixLed_sendCustomCommand(cmd) {
-  BitMatrixLed_sendCommand(cmd);
-}
+  function BitMatrixLed_clearData() {
+    BitMatrixLed_Response=[];
+  }
+
+  function BitMatrixLed_sendCustomCommand(cmd) {
+    BitMatrixLed_run(cmd);
+  }
