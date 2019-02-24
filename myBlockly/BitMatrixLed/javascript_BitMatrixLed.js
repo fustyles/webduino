@@ -1,4 +1,4 @@
-Blockly.JavaScript['BitMatrixLed_host'] = function (block) {
+Blockly.JavaScript['BitMatrixled_host'] = function (block) {
   var value_host_ = Blockly.JavaScript.valueToCode(block, 'host_', Blockly.JavaScript.ORDER_ATOMIC);
   var code = 'BitMatrixLed_host(' + value_host_ + ');\n';
   return code;
