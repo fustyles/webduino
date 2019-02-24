@@ -478,7 +478,7 @@
         BitLed[i]=BitMatrixLedcolor;
       else
       {
-        if (L[i]=="")
+        if (BitLed[i]=="")
           BitLed[i]=BitMatrixLedbackcolor;
       }
     }
@@ -492,7 +492,7 @@
         BitLed[i]=input_color_;
       else
       {
-        if (L[i]=="")
+        if (BitLed[i]=="")
           BitLed[i]=BitMatrixLedbackcolor;
       }
     }
@@ -506,7 +506,7 @@
         BitLed[i]=BitMatrixLedbackcolor;
       else
       {
-        if (L[i]=="")
+        if (BitLed[i]=="")
           BitLed[i]=BitMatrixLedbackcolor;
       }
     }
@@ -514,7 +514,7 @@
   }
   
   function BitMatrixLed_reverse(input_x_,input_y_) {
-    if ((L[input_x_*5+input_y_]=="")||(L[input_x_*5+input_y_]==BitMatrixLedbackcolor))
+    if ((BitLed[input_x_*5+input_y_]=="")||(BitLed[input_x_*5+input_y_]==BitMatrixLedbackcolor))
       BitLed[input_x_*5+input_y_]=BitMatrixLedcolor;
     else
       BitLed[input_x_*5+input_y_]=BitMatrixLedbackcolor;
@@ -522,7 +522,7 @@
   }
 
   function BitMatrixLed_state(input_x_,input_y_) {
-    if ((L[input_x_*5+input_y_]=="")||(L[input_x_*5+input_y_]==BitMatrixLedbackcolor))
+    if ((BitLed[input_x_*5+input_y_]=="")||(BitLed[input_x_*5+input_y_]==BitMatrixLedbackcolor))
       return 0;
     else
       return 1;
@@ -687,7 +687,7 @@
     var n;
     for (n=0;n<25;n++)
     {
-      Tmp[n]=L[n];
+      Tmp[n]=BitLed[n];
     }
     n=0;
     for (var i=4;i>=0;i--)
@@ -706,7 +706,7 @@
     var n;
     for (n=0;n<25;n++)
     {
-      Tmp[n]=L[n];
+      Tmp[n]=BitLed[n];
     }
     n=0;
     for (var i=0;i<=4;i++)
@@ -725,7 +725,7 @@
     var n;
     for (n=0;n<25;n++)
     {
-      Tmp[n]=L[n];
+      Tmp[n]=BitLed[n];
     }
     n=0;
     for (var i=0;i<=4;i++)
@@ -744,7 +744,7 @@
     var n;
     for (n=0;n<25;n++)
     {
-      Tmp[n]=L[n];
+      Tmp[n]=BitLed[n];
     }
     n=0;
     for (var i=4;i>=0;i--)
@@ -761,7 +761,7 @@
   function BitMatrixLed_invert(){
     for (var i=0;i<25;i++)
     {
-      if ((L[i]=="")||(L[i]==BitMatrixLedbackcolor))
+      if ((BitLed[i]=="")||(BitLed[i]==BitMatrixLedbackcolor))
         BitLed[i]=BitMatrixLedcolor;
       else
         BitLed[i]=BitMatrixLedbackcolor;
