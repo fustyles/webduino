@@ -103,7 +103,6 @@
   var BitMatrixLedurl = "";
   var marqueetimeid;
   var marqueeactive;
-  var objBitMatrixLed;
 
   function BitMatrixLed_host(input_host_) {
     BitMatrixLedurl = input_host_;
@@ -113,8 +112,7 @@
     BitMatrixLedcolor = input_color_;
   }
   
-  function BitMatrixLed_showstate(obj,input_showstate_) {
-    objBitMatrixLed=obj;
+  function BitMatrixLed_showstate(input_showstate_) {
     BitMatrixLedshowstate = input_showstate_;
   }   
   
