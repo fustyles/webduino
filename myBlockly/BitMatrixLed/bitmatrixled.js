@@ -791,50 +791,45 @@
                   + BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")
                   + BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "")+BitMatrixLedbackcolor.replace(/\#/ig, "");           
  
-    BitMatrixLed_run("?matrixled="+ledcolor+";stop");
+    BitMatrixLed_sendCommand("?matrixled="+ledcolor+";stop");
   }
 
-  function BitMatrixLed_run(command) {
-    if (!document.getElementById("BitIframe")) {
-      var ifrm = document.createElement("iframe");
-      ifrm.id="BitIframe";
-      ifrm.style.width = "0px";
-      ifrm.style.height = "0px";
-      ifrm.style.poition = "absolute";
-      ifrm.style.display = "none";
-      document.body.appendChild(ifrm);
-    }    
-    document.getElementById("BitIframe").src = BitMatrixLedurl+command;
-  }
+var BitMatrixLed_Response=[];
+var BitMatrixLed_getstate = false;
 
-  var BitMatrixLed_Response=[];
+function BitMatrixLed_sendCommand(command) {
+  Response=[];
+  var data = $.ajax({
+      "type": "POST",
+      "dataType": "json",
+      "url": BitMatrixLedurl+command,
+      success: function(json)
+      {
+        json = eval(json);
+        //console.log(json);
+        BitMatrixLed_getstate = true;
+        for (var i=0;i<json.length;i++) {
+          BitMatrixLed_Response.push(json[i]["data"]+"");
+        }
+        BitMatrixLed_getstate = false;
+      },
+      error: function(jqXHR, textStatus, errorThrown)
+      {
+        //console.log(errorThrown);
+      }
+   });
+}
 
-  function BitMatrixLed_sendCommand(cmd,P1,P2,P3,P4,P5,P6,P7,P8,P9) {
-    BitMatrixLed_run("?"+cmd+"="+P1+";"+P2+";"+P3+";"+P4+";"+P5+";"+P6+";"+P7+";"+P8+";"+P9);
+function BitMatrixLed_getResponse() {
+ if (BitMatrixLed_getstate == false) {
+   var res = BitMatrixLed_Response;
+   BitMatrixLed_Response=[];
+   return res;
   }
+  else
+    return [];
+}
 
-  function BitMatrixLed_getResponse() {
-    BitMatrixLed_Response=[];
-    var response = document.getElementById("BitIframe").innerHTML;
-    console.log(response);
-    if (response=="") 
-      return [];
-    else {
-      if (response.indexOf("[{")!=-1) {
-        json = eval(response);
-        for (var i=0;i<json.length;i++)
-          BitMatrixLed_Response.push(json[i]["data"]);
-      } 
-      var res = BitMatrixLed_Response;
-      BitMatrixLed_Response=[];
-      return res;
-    }
-  }
-
-  function BitMatrixLed_clearData() {
-    BitMatrixLed_Response=[];
-  }
-
-  function BitMatrixLed_sendCustomCommand(command) {
-    BitMatrixLed_run(command);
-  }
+function BitMatrixLed_clearData() {
+ BitMatrixLed_Response=[];
+}
