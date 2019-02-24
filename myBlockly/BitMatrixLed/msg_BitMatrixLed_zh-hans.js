@@ -1,4 +1,4 @@
-Blockly.Msg["BITMATRIXLED"] = "RGB点矩阵";
+Blockly.Msg["BITMATRIXLED"] = "WebBit";
 Blockly.Msg["BITMATRIXLED_HUE"] = "280";
 
 Blockly.Msg.BITMATRIXLED_HOST_SHOW = "WebBit网址";
