@@ -349,7 +349,7 @@ Blockly.JavaScript['BitMatrixLed_system'] = function(block) {
   var value_cmd = block.getFieldValue('cmd');
   var value_P1 = Blockly.JavaScript.valueToCode(block, 'P1', Blockly.JavaScript.ORDER_ATOMIC);
   var value_P2 = Blockly.JavaScript.valueToCode(block, 'P2', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = "BitMatrixLed_sendCommand('?"+value_cmd+"="+value_P1+";"+value_P2+"');\n";
+  var code = "BitMatrixLed_sendCommand('"+value_cmd+"',"+value_P1+","+value_P2+",'','','','','','','');\n";
   return code;
 };
 
@@ -371,7 +371,7 @@ Blockly.JavaScript['BitMatrixLed_custom'] = function(block) {
   var value_P7 = Blockly.JavaScript.valueToCode(block, 'P7', Blockly.JavaScript.ORDER_ATOMIC);
   var value_P8 = Blockly.JavaScript.valueToCode(block, 'P8', Blockly.JavaScript.ORDER_ATOMIC);
   var value_P9 = Blockly.JavaScript.valueToCode(block, 'P9', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = "BitMatrixLed_sendCommand('?"+value_cmd+"="+value_P1+";"+value_P2+";"+value_P3+";"+value_P4+";"+value_P5+";"+value_P6+";"+value_P7+";"+value_P8+";"+value_P9+"');\n";
+  var code = "BitMatrixLed_sendCommand("+value_cmd+","+value_P1+","+value_P2+","+value_P3+","+value_P4+","+value_P5+","+value_P6+","+value_P7+","+value_P8+","+value_P9+");\n";
   return code;
 };
 
@@ -390,7 +390,7 @@ Blockly.JavaScript['BitMatrixLed_car'] = function(block) {
   if (value_P8=="TURNLEFT") value_P8="L";
   if (value_P8=="TURNRIGHT") value_P8="R";
   if (value_P8=="STOP") value_P8="S";
-  var code = "BitMatrixLed_sendCommand('?"+value_cmd+"="+value_P1+";"+value_P2+";"+value_P3+";"+value_P4+";"+value_P5+";"+value_P6+";"+value_P7+";"+value_P8+"');\n";
+  var code = "BitMatrixLed_sendCommand("+value_cmd+","+value_P1+","+value_P2+","+value_P3+","+value_P4+","+value_P5+","+value_P6+","+value_P7+","+value_P8+",'');\n";
   return code;
 };
 
