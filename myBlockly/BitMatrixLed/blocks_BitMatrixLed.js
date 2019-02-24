@@ -12,7 +12,6 @@ Blockly.Blocks['BitMatrixled_host'] = {
 Blockly.Blocks['BitMatrixled_showstate'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldVariable('myMatrixLed'), 'myMatrixLed_')
         .appendField(Blockly.Msg.BITMATRIXLED_SHOWSTATE_SHOW)
         .appendField(new Blockly.FieldDropdown([["on","1"], ["off","0"]]), "value_showstate_");     
     this.setPreviousStatement(true, null);
