@@ -1,6 +1,7 @@
 Blockly.Msg["BITMATRIXLED"] = "RGB点矩阵";
 Blockly.Msg["BITMATRIXLED_HUE"] = "280";
 
+Blockly.Msg.BITMATRIXLED_HOST_SHOW = "WebBit网址";
 Blockly.Msg.BITMATRIXLED_MATRIX_SHOW = "指示灯(单色)";
 Blockly.Msg.BITMATRIXLED_MATRIX_COLOR_SHOW = "指示灯(全彩)";
 Blockly.Msg.BITMATRIXLED_MATRIXCODE_SHOW = "指示灯(单色) 编码";
