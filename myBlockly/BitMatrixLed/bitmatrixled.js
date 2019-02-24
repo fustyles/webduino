@@ -793,6 +793,7 @@
  
     if (!document.getElementById("BitIframe")) {
       var ifrm = document.createElement("iframe");
+      ifrm.id="BitIframe";
       ifrm.style.width = "0px";
       ifrm.style.height = "0px";
       ifrm.style.display = "none";
@@ -802,7 +803,7 @@
   }
 
   function BitMatrixLed_run(command) {
-    document.getElementsByID("BitIframe").src = BitMatrixLedurl+command;
+    document.getElementById("BitIframe").src = BitMatrixLedurl+command;
   }
 
   var BitMatrixLed_Response=[];
@@ -813,7 +814,7 @@
 
   function BitMatrixLed_getResponse() {
     BitMatrixLed_Response=[];
-    var response = document.getElementsByID("BitIframe").innerHTML;
+    var response = document.getElementById("BitIframe").innerHTML;
     if (response=="") 
       return [];
     else {
