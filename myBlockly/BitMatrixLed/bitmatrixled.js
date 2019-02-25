@@ -811,7 +811,7 @@ function BitMatrixLed_sendCommand(cmd,p1,p2,p3,p4,p5,p6,p7,p8,p9) {
   var data = $.ajax({
       "type": "POST",
       "dataType": "json",
-      "url": BitMatrixLedurl+"?"+cmd+"="+p1+";"+p2+";"+p3+";"+p4+";"+p5+";"+p6+";"+p7+";"+p8+";"+p9,
+      "url": (BitMatrixLedurl+"?"+cmd+"="+p1+";"+p2+";"+p3+";"+p4+";"+p5+";"+p6+";"+p7+";"+p8+";"+p9).replace(/#/ig,""),
       success: function(json)
       {
         json = eval(json);
