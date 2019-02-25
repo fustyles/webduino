@@ -805,7 +805,7 @@ Blockly.Blocks['BitMatrixLed_getresponse'] = {
         .appendField("Get WebBit response data");
     this.setInputsInline(false);
     this.setOutput(true, null); 
-    this.setColour(200);
+    this.setColour(60);
   }
 };
 
