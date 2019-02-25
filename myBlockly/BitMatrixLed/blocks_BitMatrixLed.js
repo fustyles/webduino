@@ -629,7 +629,7 @@ Blockly.Blocks['BitMatrixLed_backcolor'] = {
 Blockly.Blocks['BitMatrixLed_custom'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("WebBit Custom");   
+        .appendField("WebBit Command");   
     this.appendValueInput("cmd")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
