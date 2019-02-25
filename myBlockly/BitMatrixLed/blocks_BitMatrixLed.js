@@ -626,29 +626,6 @@ Blockly.Blocks['BitMatrixLed_backcolor'] = {
   }
 }; 
 
-Blockly.Blocks['BitMatrixLed_system'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("WebBit System");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("cmd")
-        .appendField(new Blockly.FieldDropdown([["inputPullup","inputpullup"], ["pinMode","pinmode"], ["digitalWrite","digitalwrite"], ["digitalRead","digitalread"], ["analogWrite","analogwrite"], ["analogRead","analogread"]]), "cmd");
-    this.appendValueInput("P1")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("pin");
-    this.appendValueInput("P2")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("value");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(345);
-  }
-};
-
 Blockly.Blocks['BitMatrixLed_custom'] = {
   init: function() {
     this.appendDummyInput()
@@ -760,7 +737,7 @@ Blockly.Blocks['BitMatrixLed_cmd'] = {
   init: function () {    
   this.appendDummyInput()
       .appendField("cmd")
-      .appendField(new Blockly.FieldDropdown([
+      .appendField(new Blockly.FieldDropdown([  
         ["ip","ip"],
         ["mac","mac"],
         ["restart","restart"],
