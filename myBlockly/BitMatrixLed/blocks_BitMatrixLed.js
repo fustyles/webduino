@@ -766,7 +766,7 @@ Blockly.Blocks['BitMatrixLed_cmd'] = {
         ["restart","restart"],
         ["resetwifi(ssid,password)","resetwifi"],
         ["inputpullup(gpio)","inputpullup"],
-        ["gpiomode(gpio,value)","gpiomode"],
+        ["pinmode(gpio,value)","pinmode"],
         ["digitalwrite(gpio,value)","digitalwrite"],
         ["analogwrite(gpio,value)","analogwrite"],
         ["digitalread(gpio)","digitalread"],
