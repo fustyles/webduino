@@ -559,6 +559,8 @@ var catWebBit = '<xml>'+
 '          </block>'+
 '        </value>'+
 '    </block>'+
+'    <block type="BitMatrixLed_cmd">'+
+'    </block>'+     
 '    <block type="BitMatrixLed_car">'+   
 '        <value name="cmd">'+
 '          <block type="text">'+
@@ -606,7 +608,9 @@ var catWebBit = '<xml>'+
 '        </value>'+    
 '    </block>'+   
 '    <block type="BitMatrixLed_car_state">'+
-'    </block>'+ 
+'    </block>'+    
+'    <block type="BitMatrixLed_clearresponse">'+
+'    </block>'+        
 '    <block type="BitMatrixLed_getresponse">'+
 '    </block>'+       
 '    <variables>'+
@@ -648,10 +652,6 @@ var catWebBit = '<xml>'+
 '    </block>'+
 '    </statement>'+
 '    </block>'+
-'    <block type="BitMatrixLed_cmd">'+
-'    </block>'+    
-'    <block type="BitMatrixLed_clearresponse">'+
-'    </block>'+    
 '  <block type="iframe_open">'+
 '    <value name="openid_">'+
 '      <block type="text">'+
