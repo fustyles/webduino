@@ -1,0 +1,14 @@
+{
+  "types": ["BitMatrixLed_host","BitMatrixLed_showstate","BitMatrixLed_char","BitMatrixLed_texttocode","BitMatrixLed_indentcode","BitMatrixLed_marquee","BitMatrixLed_marquee_once","BitMatrixLed_marquee_color","BitMatrixLed_marquee_color_once","BitMatrixLed_marquee_degree","BitMatrixLed_marquee_color_degree","BitMatrixLed_marquee_stop","BitMatrixLed_marquee_resume","BitMatrixLed_marquee_reverse","BitMatrixLed_marquee_time","BitMatrixLed_sample","BitMatrixLed_code","BitMatrixLed_color","BitMatrixLed_matrix","BitMatrixLed_matrix_color","BitMatrixLed_matrixcode","BitMatrixLed_matrixcode_line","BitMatrixLed_matrixcode_color","BitMatrixLed_matrixcode_line_color","BitMatrixLed_clear","BitMatrixLed_on","BitMatrixLed_color_on","BitMatrixLed_off","BitMatrixLed_reverse","BitMatrixLed_state","BitMatrixLed_linechart","BitMatrixLed_barchart","BitMatrixLed_clockwise","BitMatrixLed_counterclockwise","BitMatrixLed_verticalflip","BitMatrixLed_horizontalflip","BitMatrixLed_invert","BitMatrixLed_getcolor","BitMatrixLed_backcolor","BitMatrixLed_custom","BitMatrixLed_car","BitMatrixLed_car_state","BitMatrixLed_cmd","BitMatrixLed_getresponse","BitMatrixLed_clearresponse","BitMatrixLed_01","BitMatrixLed_02","BitMatrixLed_03","BitMatrixLed_04","BitMatrixLed_05","BitMatrixLed_06","BitMatrixLed_07","BitMatrixLed_08","BitMatrixLed_09","BitMatrixLed_10"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "webbit.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
