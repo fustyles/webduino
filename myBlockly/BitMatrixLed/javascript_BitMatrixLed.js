@@ -345,14 +345,6 @@ Blockly.JavaScript['BitMatrixLed_backcolor'] = function(block) {
   return code;
 };
 
-Blockly.JavaScript['BitMatrixLed_system'] = function(block) {
-  var value_cmd = block.getFieldValue('cmd');
-  var value_P1 = Blockly.JavaScript.valueToCode(block, 'P1', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_P2 = Blockly.JavaScript.valueToCode(block, 'P2', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = "BitMatrixLed_sendCommand('"+value_cmd+"',"+value_P1+","+value_P2+",'','','','','','','');\n";
-  return code;
-};
-
 Blockly.JavaScript['BitMatrixLed_custom'] = function(block) {
   var value_cmd = Blockly.JavaScript.valueToCode(block, 'cmd', Blockly.JavaScript.ORDER_ATOMIC);
   var value_P1 = Blockly.JavaScript.valueToCode(block, 'P1', Blockly.JavaScript.ORDER_ATOMIC);
