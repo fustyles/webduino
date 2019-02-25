@@ -766,9 +766,9 @@ Blockly.Blocks['BitMatrixLed_cmd'] = {
         ["temperature","temperature"],
         ["lumL","lumL"],
         ["lumR","lumR"],
-        ["Accelerometer(item[,x,y,z,s]","accel"],
-        ["Gyroscope(item[,x,y,z]","gyro"],
-        ["Magnetic(item[,x,y,z,d]","mag"]
+        ["Accelerometer(item[,x,y,z,s])","accel"],
+        ["Gyroscope(item[,x,y,z])","gyro"],
+        ["Magnetic(item[,x,y,z,d])","mag"]
       ]), "cmd");
   this.setInputsInline(true);
   this.setOutput(true, null); 
