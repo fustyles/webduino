@@ -1,5 +1,5 @@
-var catBitMatrixLed = '<xml>'+
-'<category name="%{BKY_BITMatrixLed}" colour="%{BKY_BITMatrixLed_HUE}">'+
+var catWebBit = '<xml>'+
+'<category name="%{BKY_WEBBIT}" colour="%{BKY_WEBBIT_HUE}">'+
 '  <block type="BitMatrixLed_host">'+
 '    <value name="host_">'+
 '      <block type="text">'+
