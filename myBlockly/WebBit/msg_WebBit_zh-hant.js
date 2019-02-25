@@ -1,5 +1,5 @@
-Blockly.Msg["BITMATRIXLED"] = "WebBit";
-Blockly.Msg["BITMATRIXLED_HUE"] = "280";
+Blockly.Msg["WEBBIT"] = "WebBit";
+Blockly.Msg["WEBBIT_HUE"] = "280";
 
 Blockly.Msg.BITMATRIXLED_HOST_SHOW = "WebBit網址";
 Blockly.Msg.BITMATRIXLED_MATRIX_SHOW = "指示燈(單色)";
