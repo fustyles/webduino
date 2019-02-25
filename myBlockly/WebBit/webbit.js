@@ -845,6 +845,6 @@ function BitMatrixLed_clearData() {
 
 function BitMatrixLed_sendCustomCommand(command) {
   if (command.indexOf("?")==0) command=command.substring(1);
-  consoloe.log(command);
+  console.log(command);
   BitMatrixLed_sendCommand(command,"","","","","","","","","");
 }
