@@ -508,23 +508,9 @@ var catBitMatrixLed = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'    <block type="BitMatrixLed_system">'+  
-'        <field name="cmd">inputpullup</field>'+
-'        <value name="P1">'+
-'          <block type="math_number">'+
-'            <field name="NUM">2</field>'+
-'          </block>'+
-'        </value>'+
-'        <value name="P2">'+
-'          <block type="math_number">'+
-'            <field name="NUM">1</field>'+
-'          </block>'+
-'        </value>'+
-'    </block>'+
 '    <block type="BitMatrixLed_custom">'+  
 '        <value name="cmd">'+
-'          <block type="text">'+
-'            <field name="TEXT"></field>'+
+'          <block type="BitMatrixLed_cmd">'+
 '          </block>'+
 '        </value>'+
 '        <value name="P1">'+
