@@ -652,6 +652,13 @@ var catWebBit = '<xml>'+
 '    </block>'+    
 '    <block type="BitMatrixLed_clearresponse">'+
 '    </block>'+ 
+'    <block type="BitMatrixLed_custom_cmd">'+  
+'        <value name="cmd">'+
+'          <block type="text">'+
+'            <field name="TEXT"></field>'+
+'          </block>'+
+'        </value>'+
+'    </block>'+      
 '  <block type="iframe_open">'+
 '    <value name="openid_">'+
 '      <block type="text">'+
@@ -688,6 +695,6 @@ var catWebBit = '<xml>'+
 '        <field name="NUM">0</field>'+
 '      </block>'+
 '    </value>'+
-'  </block>'+        
+'  </block>'+     
 '</category>'+
 '</xml>';
