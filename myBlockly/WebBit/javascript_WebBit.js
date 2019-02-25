@@ -407,9 +407,3 @@ Blockly.JavaScript['BitMatrixLed_clearresponse'] = function(block) {
   var code = "BitMatrixLed_clearData();\n";
   return code;
 };
-
-Blockly.JavaScript['BitMatrixLed_custom_cmd'] = function(block) {
-  var value_cmd = Blockly.JavaScript.valueToCode(block, 'cmd', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = "BitMatrixLed_sendCustomCommand("+value_cmd+");\n";
-  return code;
-};
