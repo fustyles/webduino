@@ -128,11 +128,11 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '    <block type="esp8266_car_state">'+
 '    </block>'+   
 '    <variables>'+
-'    <variable type="" id="+Oog~D)0D,I*Y5(g]2r1">Timeresp8266</variable>'+
+'    <variable type="" id="+Oog~D)0D,I*Y5(g]2r1">myTimer</variable>'+
 '    <variable type="" id="ij_ZS;5L7fPB{t3^~CEl">data</variable>'+
 '    </variables>'+
 '    <block type="document_timer" id="mi/z6I4OGW!r-?w:dktl" x="54" y="61">'+
-'    <field name="myTimer_" id="+Oog~D)0D,I*Y5(g]2r1" variabletype="">Timeresp8266</field>'+
+'    <field name="myTimer_" id="+Oog~D)0D,I*Y5(g]2r1" variabletype="">myTimer</field>'+
 '    <value name="intervals_">'+
 '    <block type="math_number" id=";yP~x1l8Ovs6JfUe6u0C">'+
 '    <field name="NUM">10</field>'+
