@@ -38,7 +38,7 @@ Blockly.Blocks['BitMatrixLed_texttocode'] = {
         .setCheck("String")
         .appendField(Blockly.Msg.BITMATRIXLED_TEXTTOCODE_SHOW);
     this.setOutput(true, null);  
-    this.setColour(345);
+    this.setColour(60);
   }  
 };
 
@@ -48,7 +48,7 @@ Blockly.Blocks['BitMatrixLed_indentcode'] = {
         .setCheck("String")
         .appendField(Blockly.Msg.BITMATRIXLED_INDENTCODE_SHOW);
     this.setOutput(true, null);  
-    this.setColour(345);
+    this.setColour(60);
   }  
 };
 
@@ -318,7 +318,7 @@ Blockly.Blocks['BitMatrixLed_matrixcode'] = {
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L20")
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L25");
     this.setOutput(true, null);
-    this.setColour(345);   
+    this.setColour(60);   
   }
 };
 
@@ -334,7 +334,7 @@ Blockly.Blocks['BitMatrixLed_matrixcode_line'] = {
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L04")
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L05");
     this.setOutput(true, null);
-    this.setColour(345);  
+    this.setColour(60);  
   }
 };
 
@@ -374,7 +374,7 @@ Blockly.Blocks['BitMatrixLed_matrixcode_color'] = {
         .appendField(new Blockly.FieldColour("#000000"), 'L20')
         .appendField(new Blockly.FieldColour("#000000"), 'L25')
     this.setOutput(true, null);
-    this.setColour(345);
+    this.setColour(60);
   }
 };
 
@@ -390,7 +390,7 @@ Blockly.Blocks['BitMatrixLed_matrixcode_line_color'] = {
         .appendField(new Blockly.FieldColour("#000000"), 'L04')
         .appendField(new Blockly.FieldColour("#000000"), 'L05');
     this.setOutput(true, null);
-    this.setColour(345);
+    this.setColour(60);
   }
 };
 
@@ -487,7 +487,7 @@ Blockly.Blocks['BitMatrixLed_state'] = {
         .appendField("y");
     this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(345);
+    this.setColour(60);
   }  
 };
 
@@ -611,7 +611,7 @@ Blockly.Blocks['BitMatrixLed_getcolor'] = {
         .appendField("y");
     this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(345);
+    this.setColour(60);
   }  
 };
 
@@ -645,7 +645,7 @@ Blockly.Blocks['BitMatrixLed_system'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(345);
   }
 };
 
@@ -696,7 +696,7 @@ Blockly.Blocks['BitMatrixLed_custom'] = {
     this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(345);
   }
 };
 
@@ -742,7 +742,7 @@ Blockly.Blocks['BitMatrixLed_car'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(345);
   }
 };
 
@@ -815,6 +815,6 @@ Blockly.Blocks['BitMatrixLed_clearresponse'] = {
         .appendField("Clear WebBit response data");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(345);
   }
 };
