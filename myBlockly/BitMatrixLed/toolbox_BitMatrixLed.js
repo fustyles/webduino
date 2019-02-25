@@ -651,6 +651,43 @@ var catBitMatrixLed = '<xml>'+
 '    <block type="BitMatrixLed_cmd">'+
 '    </block>'+    
 '    <block type="BitMatrixLed_clearresponse">'+
-'    </block>'+         
+'    </block>'+ 
+'  <block type="iframe_open">'+
+'    <value name="openid_">'+
+'      <block type="text">'+
+'        <field name="TEXT">ESP8266</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="url_">'+
+'      <block type="text">'+
+'        <field name="TEXT">https://fustyles.github.io/webduino/ESP8266_MyFirmata.html</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="width_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">650</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="height_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">450</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="left_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="top_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>  '+
+'    <value name="zindex_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+        
 '</category>'+
 '</xml>';
