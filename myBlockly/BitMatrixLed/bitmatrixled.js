@@ -800,7 +800,7 @@
       ifrm.style.display = "none";	
       document.body.appendChild(ifrm);
     }
-    document.getElementById("BitIframe").src = BitMatrixLedurl+command;
+    document.getElementById("BitIframe").src = BitMatrixLedurl+"?matrixled="+ledcolor+";stop";
   }
 
 var BitMatrixLed_Response=[];
