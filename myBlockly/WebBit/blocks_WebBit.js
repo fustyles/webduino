@@ -757,7 +757,7 @@ Blockly.Blocks['BitMatrixLed_cmd'] = {
         ["car(gpioL1,gpioL2,gpioR1,gpioR2,L_speed,R_speed,Delay,state)","car"],
         ["i2cLcd(address,gpioSDA,gpioSCL,text1,text2)","i2cLcd"],
         ["brightness(value[0~1])","brightness"],
-        ["rgb(number[0~24],rrggbb","rgb"],
+        ["led(number[0~24],rrggbb","led"],
         ["matrixled(rrggbbrrggbb......[0~24])","matrixled"],
         ["buzzer(frequency,delay)","buzzer"],
         ["buttonA","buttonA"],
