@@ -756,8 +756,8 @@ Blockly.Blocks['BitMatrixLed_cmd'] = {
         ["linenotify(token,request)","linenotify"],
         ["car(gpioL1,gpioL2,gpioR1,gpioR2,L_speed,R_speed,Delay,state)","car"],
         ["i2cLcd(address,gpioSDA,gpioSCL,text1,text2)","i2cLcd"],
-        ["brightness(value[0~1])","brightness"],
-        ["led(number[0~24],rrggbb)","led"],
+        ["brightness([0~1])","brightness"],
+        ["led([0~24],rrggbb)","led"],
         ["matrixled(rrggbbrrggbb......[0~24])","matrixled"],
         ["buzzer(frequency,delay)","buzzer"],
         ["buttonA","buttonA"],
@@ -766,9 +766,9 @@ Blockly.Blocks['BitMatrixLed_cmd'] = {
         ["temperature","temperature"],
         ["lumL","lumL"],
         ["lumR","lumR"],
-        ["Accelerometer(item[,x,y,z,s])","accel"],
-        ["Gyroscope(item[,x,y,z])","gyro"],
-        ["Magnetic(item[,x,y,z,d])","mag"]
+        ["Accelerometer([,x,y,z,s])","accel"],
+        ["Gyroscope([,x,y,z])","gyro"],
+        ["Magnetic([,x,y,z,d])","mag"]
       ]), "cmd");
   this.setInputsInline(true);
   this.setOutput(true, null); 
