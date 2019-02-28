@@ -135,12 +135,12 @@ Blockly.Blocks['webusb_cmd'] = {
       .appendField(new Blockly.FieldDropdown([
         ["inputPullup","inputpullup"], 
         ["pinMode(pin)","pinmode"],
-        ["digitalWrite(pin\,value)","digitalwrite"], 
+        ["digitalWrite(pin,value)","digitalwrite"], 
         ["digitalRead(pin)","digitalread"], 
-        ["analogWrite(pin\,value)","analogwrite"], 
+        ["analogWrite(pin,value)","analogwrite"], 
         ["analogRead(pin)","analogread"],
-        ["car(pinL1\,pinL2\,pinR1\,pinR2\,L_speed\,R_speed\,Delay\,state)","car"],
-        ["i2cLcd(address\,2\,3\,text1\,text2\)","i2cLcd"],
+        ["car(pinL1,pinL2,pinR1,pinR2,L_speed,R_speed,Delay,state)","car"],
+        ["i2cLcd(address,2,3,text1,text2)","i2cLcd"],
         ["SW1 for Ywbot","SW1"],
         ["SW2 for Ywbot","SW2"],
         ["DHT11 for Ywbot","DHT11"],
@@ -152,7 +152,8 @@ Blockly.Blocks['webusb_cmd'] = {
         ["LED2A(value) for Ywbot","LED2A"],
         ["Rotation for Ywbot","Rotation"],
         ["Light for Ywbot","Light"],
-        ["LM35 for Ywbot","LM35"]
+        ["LM35 for Ywbot","LM35"],
+        ["i2cLcd(address,text1,text2) for Ywbot","i2cLcd"]
       ]), "cmd");
   this.setInputsInline(true);
   this.setOutput(true, null); 
