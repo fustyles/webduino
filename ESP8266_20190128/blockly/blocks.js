@@ -19,9 +19,9 @@ Blockly.Blocks['esp8266_system'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("value");
     this.setInputsInline(false);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
   }
 };
 
@@ -74,9 +74,9 @@ Blockly.Blocks['esp8266_custom'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("P9");
     this.setInputsInline(false);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
   }
 };
 
