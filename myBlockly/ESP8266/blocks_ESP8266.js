@@ -11,11 +11,11 @@ Blockly.Blocks['esp8266_system'] = {
         .appendField("cmd")
         .appendField(new Blockly.FieldDropdown([["inputPullup","inputpullup"], ["pinMode","pinmode"], ["digitalWrite","digitalwrite"], ["digitalRead","digitalread"], ["analogWrite","analogwrite"], ["analogRead","analogread"]]), "cmd");
     this.appendValueInput("P1")
-        .setCheck("Number")
+        .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("pin");
     this.appendValueInput("P2")
-        .setCheck("Number")
+        .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("value");
     this.setInputsInline(false);
