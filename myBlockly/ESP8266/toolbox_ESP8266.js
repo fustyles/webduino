@@ -7,13 +7,13 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '        </value>'+    
 '        <field name="cmd">inputpullup</field>'+
 '        <value name="P1">'+
-'          <block type="math_number">'+
-'            <field name="NUM">2</field>'+
+'          <block type="text">'+
+'            <field name="TEXT">2</field>'+
 '          </block>'+
 '        </value>'+
 '        <value name="P2">'+
-'          <block type="math_number">'+
-'            <field name="NUM">1</field>'+
+'          <block type="text">'+
+'            <field name="TEXT"></field>'+
 '          </block>'+
 '        </value>'+
 '    </block>'+
