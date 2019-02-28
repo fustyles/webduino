@@ -6,7 +6,7 @@ var catKeyboard = '<xml>'+
 '  </block>'+    
 '  <block type="get_keycode">'+
 '  </block>'+      
-'  <block type="controls_if" id="XgX^Agq}7ua.qa;P`5D0" disabled="true" x="52" y="108">'+
+'  <block type="controls_if" id="XgX^Agq}7ua.qa;P`5D0" x="52" y="108">'+
 '  <value name="IF0"><block type="hotkey" id="X$+;Gy]{;C#a08a/M.n1"><field name="keycode">Ctrl</field></block></value>'+
 '  </block>'+
 '  <block type="controls_if" id="M``I^-T|f.+%Fa_#Vdsm" x="192" y="203">'+
