@@ -148,7 +148,6 @@ Blockly.Blocks['webusb_cmd'] = {
         ["IRReceiver for Ywbot","IRReceiver"],
         ["RGBLED(Red,Green,Blue) for Ywbot","RGBLED"],
         ["LED1D(value) for Ywbot","LED1D"],
-        ["LED1A(value) for Ywbot","LED1A"],
         ["LED2D(value) for Ywbot","LED2D"],
         ["LED2A(value) for Ywbot","LED2A"],
         ["Rotation for Ywbot","Rotation"],
