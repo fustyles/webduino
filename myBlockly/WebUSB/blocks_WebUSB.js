@@ -141,19 +141,19 @@ Blockly.Blocks['webusb_cmd'] = {
         ["analogRead(pin)","analogread"],
         ["car(pinL1,pinL2,pinR1,pinR2,L_speed,R_speed,Delay,state)","car"],
         ["i2cLcd(address,2,3,text1,text2)","i2cLcd"],
-        ["SW1 for Ywbot","SW1"],
-        ["SW2 for Ywbot","SW2"],
-        ["DHT11 for Ywbot","DHT11"],
-        ["Buzzer(frequency,delay) for Ywbot","Buzzer"],
-        ["IRReceiver for Ywbot","IRReceiver"],
-        ["RGBLED(Red,Green,Blue) for Ywbot","RGBLED"],
-        ["LED1D(value) for Ywbot","LED1D"],
-        ["LED2D(value) for Ywbot","LED2D"],
-        ["LED2A(value) for Ywbot","LED2A"],
-        ["Rotation for Ywbot","Rotation"],
-        ["Light for Ywbot","Light"],
-        ["LM35 for Ywbot","LM35"],
-        ["i2cLcd(address,text1,text2) for Ywbot","i2cLcd"]
+        ["SW1 for Ywbot V1","SW1"],
+        ["SW2 for Ywbot V1","SW2"],
+        ["DHT11 for Ywbot V1","DHT11"],
+        ["Buzzer(frequency,delay) for Ywbot V1","Buzzer"],
+        ["IRReceiver for Ywbot V1","IRReceiver"],
+        ["RGBLED(Red,Green,Blue) for Ywbot V1","RGBLED"],
+        ["LED1D(value) for Ywbot V1","LED1D"],
+        ["LED2D(value) for Ywbot V1","LED2D"],
+        ["LED2A(value) for Ywbot V1","LED2A"],
+        ["Rotation for Ywbot V1","Rotation"],
+        ["Light for Ywbot V1","Light"],
+        ["LM35 for Ywbot V1","LM35"],
+        ["i2cLcd(address,text1,text2) for Ywbot V1","i2cLcd"]
       ]), "cmd");
   this.setInputsInline(true);
   this.setOutput(true, null); 
