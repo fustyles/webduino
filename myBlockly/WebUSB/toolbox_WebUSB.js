@@ -14,9 +14,8 @@ var catWebUSB = '<xml><category name="%{BKY_WEBUSB}" colour="%{BKY_WEBUSB_HUE}">
 '    </block>'+
 '    <block type="webusb_custom">'+  
 '        <value name="cmd">'+
-'          <block type="text">'+
-'            <field name="TEXT"></field>'+
-'          </block>'+
+'          <block type="webusb_cmd">'+
+'          </block>'+ 
 '        </value>'+
 '        <value name="P1">'+
 '          <block type="text">'+
