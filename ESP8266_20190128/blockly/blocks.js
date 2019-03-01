@@ -173,7 +173,7 @@ Blockly.Blocks['esp8266_cmd'] = {
 Blockly.Blocks['esp8266_getresponse'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Get ESP8266 response data");
+        .appendField("ESP8266 get response data");
     this.setInputsInline(false);
     this.setOutput(true, null); 
     this.setColour(200);
@@ -183,7 +183,7 @@ Blockly.Blocks['esp8266_getresponse'] = {
 Blockly.Blocks['esp8266_clearresponse'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Clear ESP8266 response data");
+        .appendField("ESP8266 clear response data");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
