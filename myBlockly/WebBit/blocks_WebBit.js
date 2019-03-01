@@ -780,7 +780,7 @@ Blockly.Blocks['BitMatrixLed_cmd'] = {
 Blockly.Blocks['BitMatrixLed_getresponse'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Get WebBit response data");
+        .appendField("WebBit get response data");
     this.setInputsInline(false);
     this.setOutput(true, null); 
     this.setColour(60);
@@ -790,7 +790,7 @@ Blockly.Blocks['BitMatrixLed_getresponse'] = {
 Blockly.Blocks['BitMatrixLed_clearresponse'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Clear WebBit response data");
+        .appendField("WebBit clear response data");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(345);
