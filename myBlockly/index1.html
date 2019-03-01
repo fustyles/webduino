@@ -211,7 +211,7 @@
 <img id="gameimage_3" src="http://www.msps.chc.edu.tw/~office/computer/study/writer/%E5%A4%A7%E6%96%B9%E9%80%81/%E5%8D%A1%E9%80%9A%E5%9C%96%E6%A1%88/03.png" style="width:100px;height:100px;left:600px;top:300px;position:absolute;display:none;z-index:9997;">
 
 <table id="mySpace" style="position:absolute;display:none;height:100%">
-  <tr>
+  <tr id="mySpacetr">
     <td valign="center">
       <br><br><button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
       <br><br><input type="button" id="hide" value="  >  " onclick="hideMySpace(this);">
@@ -488,8 +488,8 @@ function initial() {
   document.getElementById('codeWindow').style.height=(myHeight-200) +"px";
   document.getElementById('mySpace').style.left=(myWidth-440) +"px";
   document.getElementById('mySpace').style.height=myHeight +"px";
+  document.getElementById('mySpacetr').style.height=myHeight +"px";
   document.getElementById('mySpace').style.display="block";
-	
   document.getElementById('gameimage_1').style.display="block";
   document.getElementById('gameimage_1').style.left = (myWidth-800) +"px";
   document.getElementById('gameimage_1').style.top = (myHeight-300) +"px";
@@ -500,7 +500,6 @@ function initial() {
   document.getElementById('gameimage_3').style.left = (myWidth-400) +"px";
   document.getElementById('gameimage_3').style.top = (myHeight-300) +"px";
   hideMySpace(document.getElementById('hide'));		
-	
   document.getElementById('btnRun').innerHTML = Blockly.Msg.btnRun_TEXT;
   document.getElementById('btnRun1').innerHTML = Blockly.Msg.btnRun1_TEXT;
   document.getElementById('btnexportcode').innerHTML = Blockly.Msg.btnexportcode_TEXT;
