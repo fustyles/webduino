@@ -157,7 +157,7 @@ https://blocklypro.webduino.io/#7ggezB96Qa
 https://bit.webduino.io/blockly/#rybdwjzzGxQqk
 
 
-ESP8266 (ESP01、ESP12E、ESP32) 網址列右側須點選載入不安全指令碼才能執行
+ESP8266 (ESP01、ESP12E、ESP32) 官方網址要改為http
 https://fustyles.github.io/webduino/ESP8266_20190128/blockly.json
 [ smart ]
 http://blocklypro.webduino.io/?demo=demo-area-01#kEqpZjVp6A
@@ -165,6 +165,13 @@ http://blocklypro.webduino.io/?demo=demo-area-01#X0pMVD5n9Z
 [ bit ]
 http://bit.webduino.io/blockly/#jqwMPzDxXx9yO
 http://bit.webduino.io/blockly/#Qq7l7e9j8KE3B
+
+[ 自訂積木 ] WebBit 官方網址要改為http
+https://fustyles.github.io/webduino/WebBit_20190225/blockly.json
+[smart]
+http://blocklypro.webduino.io/?demo=demo-area-01#XOVpjL5oBe
+[bit]
+http://bit.webduino.io/blockly/#Vyjonr4d2JPRY
 
 
 Bit & Smart 網頁控制介面
