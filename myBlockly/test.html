@@ -216,8 +216,8 @@
 </head>
 <body onload="initial();">
 
-<table style="position:absolute;display:none;">
-  <tr id="mySpace">
+<table id="mySpace" style="position:absolute;display:none;">
+  <tr id="mySpacetr">
     <td valign="center">
       <br><br><button id="btnRun1" onclick="document.getElementById('btnRun').disabled=true;runCode();">Run</button>
       <br><br><input type="button" id="hide" value="  >  " onclick="hideMySpace(this);">
@@ -541,6 +541,7 @@ function initial() {
   document.getElementById('codeWindow').style.height=(myHeight-200) +"px";
   document.getElementById('mySpace').style.left=(myWidth-440) +"px";
   document.getElementById('mySpace').style.height=myHeight +"px";
+  document.getElementById('mySpacetr').style.height=myHeight +"px";
   document.getElementById('mySpace').style.display="block";
   document.getElementById('btnRun').innerHTML = Blockly.Msg.btnRun_TEXT;
   document.getElementById('btnRun1').innerHTML = Blockly.Msg.btnRun1_TEXT;
