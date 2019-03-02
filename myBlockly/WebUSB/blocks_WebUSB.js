@@ -141,6 +141,7 @@ Blockly.Blocks['webusb_cmd'] = {
         ["analogRead(pin)","analogread"],
         ["car(pinL1,pinL2,pinR1,pinR2,L_speed,R_speed,Delay,state)","car"],
         ["i2cLcd(address,2,3,text1,text2)","i2cLcd"],
+        ["i2cLcd(address,text1,text2) for Ywbot V1","i2cLcd"],    
         ["SW1 for Ywbot V1","SW1"],
         ["SW2 for Ywbot V1","SW2"],
         ["DHT11 for Ywbot V1","DHT11"],
@@ -152,8 +153,7 @@ Blockly.Blocks['webusb_cmd'] = {
         ["LED2A(value) for Ywbot V1","LED2A"],
         ["Rotation for Ywbot V1","Rotation"],
         ["Light for Ywbot V1","Light"],
-        ["LM35 for Ywbot V1","LM35"],
-        ["i2cLcd(address,text1,text2) for Ywbot V1","i2cLcd"]
+        ["LM35 for Ywbot V1","LM35"]
       ]), "cmd");
   this.setInputsInline(true);
   this.setOutput(true, null); 
