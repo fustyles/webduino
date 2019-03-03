@@ -383,13 +383,13 @@ var category = [
 	catOpenURL,
 	catMatrixLed,	
 	catTaiwanAirQuality,
-	catESP8266,
-	catWebBit,
-	catWebUSB,	
 	catThingSpeak,
 	catIFTTT,
 	catLINE,
-	catHTChart		
+	catHTChart,
+	catESP8266,
+	catWebBit,
+	catWebUSB	
 ].join("");
 while (category.toLowerCase().indexOf("<category")!=-1||category.toLowerCase().indexOf("<sep>")!=-1) {
   var s = category.toLowerCase().indexOf("<category");
