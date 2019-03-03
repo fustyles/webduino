@@ -44,5 +44,9 @@
 	if (input_property=="faceWidth") return Number(document.getElementById('tracking').contentWindow.document.getElementById('boundingBoxWidth').innerHTML); 
 	if (input_property=="faceHeight") return Number(document.getElementById('tracking').contentWindow.document.getElementById('boundingBoxHeight').innerHTML); 
       }
+      else
+        return 0;	    
     }
+    else
+      return 0;
   }
