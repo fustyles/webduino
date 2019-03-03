@@ -1,4 +1,4 @@
-var catTRACKFACE = '<xml>'+
+var catTrackFace = '<xml>'+
 '<category name="%{BKY_TRACKFACE}" colour="%{BKY_TRACKFACE_HUE}">'+
 '  <block type="trackface_open">'+
 '    <value name="url_">'+
