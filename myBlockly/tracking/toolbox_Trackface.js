@@ -29,5 +29,7 @@ var catTrackface = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
+'  <block type="trackface_get">'+
+'  </block>'+    
 '</category>'+
 '</xml>';
