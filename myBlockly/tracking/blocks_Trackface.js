@@ -35,3 +35,20 @@ Blockly.Blocks['trackface_display'] = {
     this.setColour(65);
   }
 };
+
+Blockly.Blocks['trackface_get'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TRACKFACE_GET_SHOW);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+          ["faceX","faceX"], 
+          ["faceY","faceY"],
+          ["faceWidth","faceWidth"], 
+          ["faceHeight","faceHeight"]
+        ]), "property_");
+    this.setInputsInline(true);
+    this.setOutput(true, null); 
+    this.setColour(200);
+  }
+};
