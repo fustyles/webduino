@@ -1,4 +1,4 @@
-Blockly.Msg["TRACKFACE"] = "TracefACE";
+Blockly.Msg["TRACKFACE"] = "Trackface";
 Blockly.Msg["TRACKFACE_HUE"] = "280";
 
 Blockly.Msg.TRACKFACE_OPEN_SHOW = "Open Trackface";
