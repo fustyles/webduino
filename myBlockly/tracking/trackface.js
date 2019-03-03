@@ -1,29 +1,28 @@
   function openURL(input_url,input_left,input_top,input_display) {
-   
+
     if (document.getElementById("trackface")) {
-	var iframe = document.getElementById("trackface");
-	iframe.style.left = input_left + 'px';
-	iframe.style.top = input_top + 'px';
+	var div = document.getElementById("trackface");
+	div.style.left = input_left + 'px';
+	div.style.top = input_top + 'px';	    
 	if (input_display==1)
-	  iframe.style.display = "block";
+	  var display = "display:block;";
 	else
-	  iframe.style.display = "none";
-	iframe.src = input_url;
+	  var display = "display:none;";
+	div.innerHTML = '<iframe src="trackface" style="width:480px;height:320px;'+display+'" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
     }
     else {
-	var iframe = document.createElement('iframe');
-	iframe.id = "trackface";
-	iframe.style.position = 'absolute';      
-	iframe.style.left = input_left_ + 'px';
-	iframe.style.top = input_top_ + 'px';
-	iframe.style.width = '480px';
-	iframe.style.height = '320px';
+	var div = document.createElement('div');
+	div.id = "trackface";
+	div.style.position = 'absolute';      
+	div.style.left = input_left + 'px';
+	div.style.top = input_top + 'px';
+	div.style.zIndex = '9999';
 	if (input_display==1)
-	  iframe.style.display = "block";
+	  var display = "display:block;";
 	else
-	  iframe.style.display = "none";
-	iframe.setAttribute("src", input_url);
-	document.body.appendChild(iframe);
+	  var display = "display:none;";
+	div.innerHTML = '<iframe src="trackface" style="width:480px;height:320px;'+display+'" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
+	document.body.appendChild(div);
     }
   }
   
