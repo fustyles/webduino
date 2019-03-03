@@ -1,4 +1,4 @@
-  function openURL(input_url,input_left,input_top,input_display) {
+  function openTrackface(input_url,input_left,input_top,input_display) {
 
     if (document.getElementById("trackface")) {
 	var div = document.getElementById("trackface");
