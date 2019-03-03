@@ -28,9 +28,9 @@
   
   function showTrackface(input_display){
     if (document.getElementById("trackface")) {
-	var iframe = document.getElementById("trackface");
+	var div = document.getElementById("trackface");
 	if (input_display==1)
-	  iframe.style.display = "block";
+	  div.style.display = "block";
 	else
-	  iframe.style.display = "none";
+	  div.style.display = "none";
     }
