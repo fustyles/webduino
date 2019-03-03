@@ -26,7 +26,7 @@
     }
   }
   
-  function Trackface_display(input_display){
+  function Trackface_display(input_display)  {
     if (document.getElementById("trackface")) {
 	var div = document.getElementById("trackface");
 	if (input_display==1)
@@ -36,7 +36,7 @@
     }
   }
 
-  function Trackface_get(input_property){
+  function Trackface_get(input_property)  {
     if (document.getElementById("trackface")) {
       if (document.getElementById('tracking').contentWindow.document.getElementById('boundingBoxX')) {
 	if (input_property=="faceX") return Number(document.getElementById('tracking').contentWindow.document.getElementById('boundingBoxX').innerHTML);
