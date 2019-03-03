@@ -16,7 +16,7 @@
 	div.style.position = 'absolute';      
 	div.style.left = input_left + 'px';
 	div.style.top = input_top + 'px';
-	div.style.zIndex = '9998';
+	div.style.zIndex = '-1';
 	if (input_display==1)
 	  div.style.display = "block";
 	else
