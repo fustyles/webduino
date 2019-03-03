@@ -4,15 +4,15 @@ Blockly.Blocks['iframe_open'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPEN_SHOW)
-      .appendField(Blockly.Msg.OPENID_SHOW)    
+      .appendField(Blockly.Msg.OPENID_SHOW);
   this.appendValueInput("url_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.URL_SHOW)
+      .appendField(Blockly.Msg.URL_SHOW);
   this.appendValueInput("width_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.WIDTH_SHOW)
+      .appendField(Blockly.Msg.WIDTH_SHOW);
   this.appendValueInput("height_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -42,7 +42,7 @@ Blockly.Blocks['iframe_close'] = {
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.CLOSE_SHOW)
-        .appendField(Blockly.Msg.CLOSEID_SHOW)     
+        .appendField(Blockly.Msg.CLOSEID_SHOW);     
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(65);
