@@ -5,10 +5,10 @@
 	div.style.left = input_left + 'px';
 	div.style.top = input_top + 'px';	    
 	if (input_display==1)
-	  var display = "display:block;";
+	  div.style.display = "block";
 	else
-	  var display = "display:none;";
-	div.innerHTML = '<iframe src="trackface" style="width:480px;height:320px;'+display+'" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
+	  div.style.display = "none";
+	div.innerHTML = '<iframe src="'+input_url+'" style="width:480px;height:320px;" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
     }
     else {
 	var div = document.createElement('div');
@@ -18,10 +18,10 @@
 	div.style.top = input_top + 'px';
 	div.style.zIndex = '9999';
 	if (input_display==1)
-	  var display = "display:block;";
+	  div.style.display = "block";
 	else
-	  var display = "display:none;";
-	div.innerHTML = '<iframe src="trackface" style="width:480px;height:320px;'+display+'" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
+	  div.style.display = "none";
+	div.innerHTML = '<iframe src="'+input_url+'" style="width:480px;height:320px;" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
 	document.body.appendChild(div);
     }
   }
