@@ -18,7 +18,6 @@ Blockly.Blocks['trackface_open'] = {
 	.setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.TRACKFACE_DISPLAY_SHOW); 
-    this.setInputsInline(true);  
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(65);
