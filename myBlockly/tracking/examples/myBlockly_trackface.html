@@ -59,14 +59,7 @@
 
         tracker.setInitialScale(2);
         tracker.setStepSize(1);
-
-        
-        var gui = new dat.GUI();
-        gui.add(tracker, 'edgesDensity', 0.1, 0.5).step(0.01).listen();
-        gui.add(tracker, 'initialScale', 1.0, 10.0).step(0.1).listen();
-        gui.add(tracker, 'stepSize', 0.5, 5).step(0.1).listen();
-        
-
+	
         var videoElement = document.querySelector('#videoWebcam')
         // tracking.track(videoElement, tracker);
         tracking.track(videoElement, tracker, { camera: true });
@@ -131,11 +124,6 @@
                 eyeRVisible : true,
                 mouthVisible : true,
         }
-        gui.add(parameters, 'landmarkLerpFactor', 0.0, 1).listen().name('Landmarks Lerp');
-        gui.add(parameters, 'boundinBoxVisible', 0.0, 1).listen().name('bounding box');
-        Object.keys(landmarkFeatures).forEach(function(featureLabel){
-                gui.add(parameters, featureLabel + 'Visible').listen().name(featureLabel);
-        })
 
         var lerpedFacesLandmarks = []
         
