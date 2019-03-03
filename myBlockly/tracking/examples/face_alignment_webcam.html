@@ -64,8 +64,8 @@
         
 
         var videoElement = document.querySelector('#videoWebcam')
-        tracking.track(videoElement, tracker);
-        // tracking.track(videoElement, tracker, { camera: true });
+        // tracking.track(videoElement, tracker);
+        tracking.track(videoElement, tracker, { camera: true });
         
         var landmarksPerFace = 30
         var landmarkFeatures = {
