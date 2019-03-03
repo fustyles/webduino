@@ -38,9 +38,11 @@
 
   function Trackface_get(input_property){
     if (document.getElementById("trackface")) {
+      if (document.getElementById('tracking').contentWindow.document.getElementById('boundingBoxX')) {
 	if (input_property=="faceX") return Number(document.getElementById('tracking').contentWindow.document.getElementById('boundingBoxX').innerHTML);
 	if (input_property=="faceY") return Number(document.getElementById('tracking').contentWindow.document.getElementById('boundingBoxY').innerHTML); 
 	if (input_property=="faceWidth") return Number(document.getElementById('tracking').contentWindow.document.getElementById('boundingBoxWidth').innerHTML); 
 	if (input_property=="faceHeight") return Number(document.getElementById('tracking').contentWindow.document.getElementById('boundingBoxHeight').innerHTML); 
+      }
     }
   }
