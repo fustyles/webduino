@@ -32,8 +32,7 @@
                         zoom: 3;
                 }
         </style>
-	<video id="videoWebcam" width="368" height="288" autoplay loop></video>
-        <!-- <video id="videoWebcam" preload autoplay loop muted></video> -->
+	<video id="videoWebcam" preload autoplay loop muted></video>
         <canvas id="canvasDetection"></canvas>
         
 <script>
@@ -42,7 +41,7 @@
         canvasDetection.height = 240
         var context = canvasDetection.getContext('2d');
 
-        var tracker = new tracking.ObjectTracker('face');
+        var tracker = new tracking.ObjectTracker();
         tracker.setEdgesDensity(0.1);
         tracker.setInitialScale(4);
         tracker.setStepSize(2);
