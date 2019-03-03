@@ -3,7 +3,7 @@ var catTrackface = '<xml>'+
 '  <block type="trackface_open">'+
 '    <value name="url_">'+
 '      <block type="text">'+
-'        <field name="TEXT">https://fustyles.github.io/webduino/myBlockly/tracking/examples/face_alignment_webcam.html</field>'+
+'        <field name="TEXT">face_alignment_webcam.html</field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="left_">'+
