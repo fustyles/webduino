@@ -140,14 +140,7 @@
                 event.data.faces.forEach(function(boundingBox, faceIndex) {
                         var faceLandmarks = event.data.landmarks[faceIndex]
 
-                        if( parameters.boundinBoxVisible === true ) 
-				displayFaceLandmarksBoundingBox(boundingBox, faceIndex)
-			else {
-				document.getElementById("boundingBoxX").innerHTML = "0";
-				document.getElementById("boundingBoxY").innerHTML = "0";
-				document.getElementById("boundingBoxWidth").innerHTML = "0";
-				document.getElementById("boundingBoxHeight").innerHTML = "0";
-			}
+                        if( parameters.boundinBoxVisible === true ) displayFaceLandmarksBoundingBox(boundingBox, faceIndex)
 			
                         // lerpFacesLandmarks
                         lerpFacesLandmarks(faceLandmarks)
