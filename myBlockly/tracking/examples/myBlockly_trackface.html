@@ -135,19 +135,20 @@
                 // clear debug canvasDetection
                 context.clearRect(0,0,canvasDetection.width, canvasDetection.height);
 
-                if( event.data === undefined ) {
-			document.getElementById("boundingBoxX").innerHTML = "0";
-			document.getElementById("boundingBoxY").innerHTML = "0";
-			document.getElementById("boundingBoxWidth").innerHTML = "0";
-			document.getElementById("boundingBoxHeight").innerHTML = "0";
-			return;
-		}
+                if( event.data === undefined ) return;
                 
                 event.data.faces.forEach(function(boundingBox, faceIndex) {
                         var faceLandmarks = event.data.landmarks[faceIndex]
 
-                        if( parameters.boundinBoxVisible === true ) displayFaceLandmarksBoundingBox(boundingBox, faceIndex)
-
+                        if( parameters.boundinBoxVisible === true ) 
+				displayFaceLandmarksBoundingBox(boundingBox, faceIndex)
+			else {
+				document.getElementById("boundingBoxX").innerHTML = "0";
+				document.getElementById("boundingBoxY").innerHTML = "0";
+				document.getElementById("boundingBoxWidth").innerHTML = "0";
+				document.getElementById("boundingBoxHeight").innerHTML = "0";
+			}
+			
                         // lerpFacesLandmarks
                         lerpFacesLandmarks(faceLandmarks)
                         
