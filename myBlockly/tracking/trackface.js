@@ -1,4 +1,4 @@
-  function openTrackface(input_url,input_left,input_top,input_display) {
+  function Trackface_open(input_url,input_left,input_top,input_display) {
 
     if (document.getElementById("trackface")) {
 	var div = document.getElementById("trackface");
@@ -8,7 +8,7 @@
 	  div.style.display = "block";
 	else
 	  div.style.display = "none";
-	div.innerHTML = '<iframe src="'+input_url+'" style="width:480px;height:320px;" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
+	div.innerHTML = '<iframe id="tracking" src="'+input_url+'" style="width:480px;height:320px;" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
     }
     else {
 	var div = document.createElement('div');
@@ -21,17 +21,26 @@
 	  div.style.display = "block";
 	else
 	  div.style.display = "none";
-	div.innerHTML = '<iframe src="'+input_url+'" style="width:480px;height:320px;" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
+	div.innerHTML = '<iframe id="tracking" src="'+input_url+'" style="width:480px;height:320px;" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
 	document.body.appendChild(div);
     }
   }
   
-  function showTrackface(input_display){
+  function Trackface_display(input_display){
     if (document.getElementById("trackface")) {
 	var div = document.getElementById("trackface");
 	if (input_display==1)
 	  div.style.display = "block";
 	else
 	  div.style.display = "none";
+    }
+  }
+
+  function Trackface_get(input_property){
+    if (document.getElementById("trackface")) {
+	if (input_property=="faceX") return document.getElementById('tracking').contentWindow.document.getElementById('boundingBoxX').innerHTML;
+	if (input_property=="faceY") return document.getElementById('tracking').contentWindow.document.getElementById('boundingBoxY').innerHTML; 
+	if (input_property=="faceWidth") return document.getElementById('tracking').contentWindow.document.getElementById('boundingBoxWidth').innerHTML; 
+	if (input_property=="faceHeight") return document.getElementById('tracking').contentWindow.document.getElementById('boundingBoxHeight').innerHTML; 
     }
   }
