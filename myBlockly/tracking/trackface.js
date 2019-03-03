@@ -5,9 +5,9 @@
 	div.style.left = input_left + 'px';
 	div.style.top = input_top + 'px';	    
 	if (input_display==1)
-	  div.style.display = "block";
+	  div.style.visibility="visible";
 	else
-	  div.style.display = "none";
+	  div.style.visibility="hidden";
 	div.innerHTML = '<iframe id="tracking" src="'+input_url+'" style="width:480px;height:320px;" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
     }
     else {
@@ -18,9 +18,9 @@
 	div.style.top = input_top + 'px';
 	div.style.zIndex = '-1';
 	if (input_display==1)
-	  div.style.display = "block";
+	  div.style.visibility="visible";
 	else
-	  div.style.display = "none";
+	  div.style.visibility="hidden";
 	div.innerHTML = '<iframe id="tracking" src="'+input_url+'" style="width:480px;height:320px;" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
 	document.body.appendChild(div);
     }
@@ -30,9 +30,9 @@
     if (document.getElementById("trackface")) {
 	var div = document.getElementById("trackface");
 	if (input_display==1)
-	  div.style.display = "block";
+	  div.style.visibility="visible";
 	else
-	  div.style.display = "none";
+	  div.style.visibility="hidden";
     }
   }
 
