@@ -143,7 +143,6 @@ Blockly.Blocks['esp8266_car_state'] = {
 Blockly.Blocks['esp8266_cmd'] = {
   init: function () {    
   this.appendDummyInput()
-      .appendField("cmd")
       .appendField(new Blockly.FieldDropdown([
         ["inputPullup","inputpullup"], 
         ["pinMode(pin)","pinmode"],
