@@ -736,7 +736,6 @@ Blockly.Blocks['BitMatrixLed_car_state'] = {
 Blockly.Blocks['BitMatrixLed_cmd'] = {
   init: function () {    
   this.appendDummyInput()
-      .appendField("cmd")
       .appendField(new Blockly.FieldDropdown([  
         ["ip","ip"],
         ["mac","mac"],
