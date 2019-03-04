@@ -24,9 +24,8 @@ var catESP8266 = '<xml><category name="%{BKY_ESP8266}" colour="%{BKY_ESP8266_HUE
 '          </block>'+
 '        </value>'+    
 '        <value name="cmd">'+
-'          <block type="text">'+
-'            <field name="TEXT"></field>'+
-'          </block>'+
+'          <block type="esp8266_cmd">'+
+'          </block>'+ 
 '        </value>'+
 '        <value name="P1">'+
 '          <block type="text">'+
