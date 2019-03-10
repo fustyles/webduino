@@ -41,8 +41,10 @@ if ('webkitSpeechRecognition' in window) {
     Recognition_interim = linebreak(interim_transcript);
     if (Recognition_interim=='')
       Recognition_final = linebreak(final_transcript);
-    else
-      document.getElementById("showText").innerHTML = Recognition_interim;
+    else {
+      if (document.getElementById("showText"))
+        document.getElementById("showText").innerHTML = Recognition_interim;
+    }
   };
 }
 
