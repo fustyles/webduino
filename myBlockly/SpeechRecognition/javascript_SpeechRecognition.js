@@ -16,8 +16,8 @@ Blockly.JavaScript['SpeechRecognition_listener'] = function (block) {
 };
 
 Blockly.JavaScript['SpeechRecognition_keyword'] = function (block) {
-  var myVar = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('myVar_'), Blockly.Variables.NAME_TYPE);
+  var value_myVar = Blockly.JavaScript.valueToCode(block, 'myVar_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_keyword = Blockly.JavaScript.valueToCode(block, 'keyword', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = myVar + '.toLowerCase().indexOf('+value_keyword+'.toLowerCase())!=-1';
+  var code = value_myVar + '.toLowerCase().indexOf('+value_keyword+'.toLowerCase())!=-1';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
