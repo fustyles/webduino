@@ -15,14 +15,18 @@ var catSpeechRecognition = '<xml>'+
 '      </block>'+
 '    </statement>'+
 '  </block>'+ 
-'  <block type="SpeechRecognition_keyword">'+
-'    <value name="myVar_">'+
-'    </value>'+     
-'    <value name="keyword">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+    
-'  </block>'+    
+'  <variables>'+
+'  <variable type="" id="XET3`{C@a}F7i!;%jtKr">Result</variable></variables>'+
+'  <block type="SpeechRecognition_keyword" id="uHnsYoYyi41B{]=^27?t" x="112" y="142">'+
+'  <value name="myVar_"><block type="variables_get" id="9xK~IcyR[i~}Z,a/U{cQ">'+
+'  <field name="VAR" id="XET3`{C@a}F7i!;%jtKr" variabletype="">Result</field>'+
+'  </block>'+
+'  </value>'+
+'  <value name="keyword">'+
+'  <block type="text" id="dg@Un3Xd(9p9E]2]=(/@">'+
+'  <field name="TEXT"></field>'+
+'  </block>'+
+'  </value>'+
+'  </block>'+
 '</category>'+
 '</xml>';
