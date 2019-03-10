@@ -135,3 +135,16 @@ Blockly.Blocks['SpeechRecognition_listener'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['SpeechRecognition_keyword'] = {
+  init: function () {   
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_KEYWORD_SHOW); 
+  this.appendValueInput("keyword")
+        .setCheck("String")
+        .setAlign(Blockly.ALIGN_RIGHT);     
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
