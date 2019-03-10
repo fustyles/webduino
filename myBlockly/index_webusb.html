@@ -459,7 +459,7 @@ function runCode() {
   }	
       
   iframe_code += "\<\/head\>\<body\>";
-  iframe_code += "\<div id='showText' style='position:absolute;z-index:9999'\>\<\/div\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
+  iframe_code += "\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   try {
     document.getElementById("runWindow").style.left = document.getElementById("ifrLeft").value + "px";
@@ -534,7 +534,7 @@ function exportHTML() {
       iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script>";
     }
 	  
-    iframe_code += "\<\/head\>\<body\>\<div id='showText' style='position:absolute;z-index:9999;'\>\<\/div\>";
+    iframe_code += "\<\/head\>\<body\>";
     //If WebUSB is used.
     if (xml_text.indexOf("webusb")!=-1) {
       iframe_code += "\<button id='connect'\>Connect to Arduino(WebUSB)\</button\>\<span id='status' style='color:red'\>Connect to your device.\</span\>\<input type='text' name='command' id='command' style='display:none'\>\<button id='send' style='display:none'\>Send Command\</button\>\<span id='response' style='display:none'\>\</span\>";
