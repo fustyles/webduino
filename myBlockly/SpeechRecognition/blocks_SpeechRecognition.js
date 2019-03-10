@@ -138,9 +138,10 @@ Blockly.Blocks['SpeechRecognition_listener'] = {
 
 Blockly.Blocks['SpeechRecognition_keyword'] = {
   init: function () {   
-  this.appendDummyInput() 
-      .appendField(new Blockly.FieldVariable('Result'), 'myVar_')    
-      .appendField(Blockly.Msg.SPEECHRECOGNITION_KEYWORD_SHOW); 
+  this.appendValueInput("myVar_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_KEYWORD_SHOW);     
   this.appendValueInput("keyword")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT);     
