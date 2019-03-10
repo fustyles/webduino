@@ -42,8 +42,17 @@ if ('webkitSpeechRecognition' in window) {
     if (Recognition_interim=='')
       Recognition_final = linebreak(final_transcript);
     else {
-      if (document.getElementById("showText"))
-        document.getElementById("showText").innerHTML = Recognition_interim;
+      if (!document.getElementById("showText")) {
+        var obj = document.createElement('div');
+        obj.id = "showText";
+        obj.style.position = "absolute";
+        obj.style.zIndex = "9999";
+        obj.draggable="true";
+        obj.setAttribute("onclick", "javascript:onclickid_set(this);");
+        obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('div/plain',event.target.id);");
+        document.body.appendChild(obj);
+      }
+      document.getElementById("showText").innerHTML = Recognition_interim;
     }
   };
 }
