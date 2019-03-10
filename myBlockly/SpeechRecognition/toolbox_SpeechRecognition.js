@@ -16,7 +16,7 @@ var catSpeechRecognition = '<xml>'+
 '    </statement>'+
 '  </block>'+ 
 '  <block type="SpeechRecognition_keyword">'+
-'    <value name="myVar">'+
+'    <value name="myVar_">'+
 '    </value>'+     
 '    <value name="keyword">'+
 '      <block type="text">'+
