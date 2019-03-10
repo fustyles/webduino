@@ -144,7 +144,7 @@ Blockly.Blocks['SpeechRecognition_keyword'] = {
   this.appendValueInput("keyword")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.SPEECHRECOGNITION_KEYWORD_SHOW)  ;    
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_KEYWORD_SHOW);    
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
