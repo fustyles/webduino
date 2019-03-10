@@ -776,7 +776,7 @@
   function image_set(input_id,input_property,input_value) {
     if (document.getElementById("gameimage_"+input_id))
     {
-	  var obj = document.getElementById("gameimage_"+input_id);
+      var obj = document.getElementById("gameimage_"+input_id);
       if (input_property=='url')
         obj.src = input_value;
       else if (input_property=='width')
