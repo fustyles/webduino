@@ -18,7 +18,6 @@ Blockly.JavaScript['SpeechRecognition_listener'] = function (block) {
 Blockly.JavaScript['SpeechRecognition_keyword'] = function (block) {
   var myVar = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('myVar'), Blockly.Variables.NAME_TYPE);
   var value_keyword = Blockly.JavaScript.valueToCode(block, 'keyword', Blockly.JavaScript.ORDER_ATOMIC);
-  value_keyword = value_keyword.toLowerCase();
-  var code = myVar + '.toLowerCase().indexOf('+value_keyword+')!=-1';
+  var code = myVar + '.toLowerCase().indexOf('+value_keyword+'.toLowerCase())!=-1';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
