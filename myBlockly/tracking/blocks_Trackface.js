@@ -70,7 +70,7 @@ Blockly.Blocks['trackface_get'] = {
           ["nose2Y","nose2Y"],
           ["nose3X","nose3X"],
           ["nose3Y","nose3Y"],	
-          ["nose4X","nose4X")],
+          ["nose4X","nose4X"],
           ["nose4Y","nose4Y"],
           ["mouth1X","mouth1X"],	
           ["mouth1Y","mouth1Y"],	
