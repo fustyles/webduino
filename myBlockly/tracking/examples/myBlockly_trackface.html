@@ -223,6 +223,12 @@
                 }
 
                 context.stroke();
-
+		
+		// get coordinate 
+                for(var i = feature.first; i <= feature.last; i++){
+                        var xy = faceLandmarks[i]
+                        console.log(xy[0]+","+xy[1]);                   
+                } 		
+                console.log("");
         }
 </script></body>
