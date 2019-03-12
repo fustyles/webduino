@@ -7,3 +7,4 @@ Blockly.Msg.TRACKFACE_GET_SHOW = "取得追蹤人臉";
 Blockly.Msg.URL_SHOW = "網址";
 Blockly.Msg.LEFT_SHOW = "靠左距離";
 Blockly.Msg.TOP_SHOW = "靠上距離";
+Blockly.Msg.TRACKFACE_DRAWIMAGE_SHOW = "視訊畫面描繪至";
