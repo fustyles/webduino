@@ -33,9 +33,9 @@
 	else
 	  div.style.visibility="hidden";
     }
-    var canvas = document.getElementById('tracking').contentWindow.document.getElementById("canvasDetection");
-    var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  
-    window.location.href=image;
+    var video = document.getElementById('tracking').contentWindow.document.getElementById("videoWebcam");
+    var context = document.getElementById("gamecanvas_").getContext("2d");
+    context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
   }
 
   function Trackface_get(input_property)  {
