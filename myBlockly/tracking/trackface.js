@@ -113,7 +113,9 @@
   }
 
   function Trackface_drawimage(input_id,input_left,input_top) {
-    var video = document.getElementById('tracking').contentWindow.document.getElementById("videoWebcam");
-    var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
-    context.drawImage(video, input_left, input_top, video.clientWidth, video.clientHeight); 
+    if (document.getElementById("gamecanvas_"+input_id)) {
+      var video = document.getElementById('tracking').contentWindow.document.getElementById("videoWebcam");
+      var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
+      context.drawImage(video, input_left, input_top, video.clientWidth, video.clientHeight); 
+    }
   }
