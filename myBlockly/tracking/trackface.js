@@ -33,9 +33,6 @@
 	else
 	  div.style.visibility="hidden";
     }
-    var video = document.getElementById('tracking').contentWindow.document.getElementById("videoWebcam");
-    var context = document.getElementById("gamecanvas_").getContext("2d");
-    context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
   }
 
   function Trackface_get(input_property)  {
@@ -113,4 +110,10 @@
     }
     else
       return 0;
+  }
+
+  function Trackface_drawimage(input_id,input_left,input_top) {
+    var video = document.getElementById('tracking').contentWindow.document.getElementById("videoWebcam");
+    var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
+    context.drawImage(video, input_left, input_top, video.clientWidth, video.clientHeight); 
   }
