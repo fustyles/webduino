@@ -130,7 +130,8 @@ Blockly.Blocks['trackface_drawimage'] = {
   this.appendValueInput("top_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TOP_SHOW); 	  
+      .appendField(Blockly.Msg.TOP_SHOW); 
+  this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
