@@ -9,8 +9,7 @@
 	else
 	  div.style.visibility="hidden";
 	div.innerHTML = '<iframe id="tracking" src="'+input_url+'" style="width:480px;height:320px;" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
-    }
-    else {
+    } else {
 	var div = document.createElement('div');
 	div.id = "trackface";
 	div.style.position = 'absolute';      
@@ -24,6 +23,9 @@
 	div.innerHTML = '<iframe id="tracking" src="'+input_url+'" style="width:480px;height:320px;" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
 	document.body.appendChild(div);
     }
+    var canvas = document.getElementById('tracking').contentWindow.document.getElementById("canvasDetection");
+    var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  
+    window.location.href=image;
   }
   
   function Trackface_display(input_display)  {
