@@ -6,8 +6,7 @@
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "trackface.js",
-    "myBlockly_trackface.html"
+    "trackface.js"
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
