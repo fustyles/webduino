@@ -121,7 +121,7 @@
       obj.style.width = '320px';
       obj.setAttribute("height",'240px');
       obj.style.height = '240px';
-      obj.style.left = '0px';
+      obj.style.left = '640px';
       obj.style.top = '0px';
       obj.style.zIndex = 9999;
       obj.style.display = "block";
