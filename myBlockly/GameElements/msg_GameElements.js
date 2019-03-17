@@ -74,6 +74,7 @@ Blockly.Msg.ID_SHOW = "ID";
 Blockly.Msg.IMAGE_ID_SHOW = "ImageID";
 Blockly.Msg.CANVAS_ID_SHOW = "CanvasID";
 Blockly.Msg.URL_SHOW = "Url";
+Blockly.Msg.CANVAS_URL_SHOW = "ImageUrl";
 Blockly.Msg.WIDTH_SHOW = "Width";
 Blockly.Msg.HEIGHT_SHOW = "Height";
 Blockly.Msg.LEFT_SHOW = "Left";
