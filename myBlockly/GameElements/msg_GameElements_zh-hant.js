@@ -73,6 +73,7 @@ Blockly.Msg.IMAGE_CREATE_SHOW = "圖片建立";
 Blockly.Msg.ID_SHOW = "代碼";
 Blockly.Msg.IMAGE_ID_SHOW = "圖片代碼";
 Blockly.Msg.CANVAS_ID_SHOW = "畫布代碼";
+Blockly.Msg.URL_SHOW = "網址";
 Blockly.Msg.CANVAS_URL_SHOW = "圖片網址";
 Blockly.Msg.WIDTH_SHOW = "寬度";
 Blockly.Msg.HEIGHT_SHOW = "高度";
