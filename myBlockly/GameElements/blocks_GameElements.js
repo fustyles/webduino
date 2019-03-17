@@ -731,7 +731,7 @@ Blockly.Blocks['canvas_img_url'] = {
   this.appendValueInput("url_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.URL_SHOW);
+      .appendField(Blockly.Msg.CANVAS_URL_SHOW);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
