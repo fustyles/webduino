@@ -9,6 +9,12 @@
 	<title></title>
  </head>
  <body>
-  <img id="trackimg" src="http://192.168.201.32:81/stream" />
+  <img id="track" src="http://192.168.201.32:81/stream" />
+  <img id="trackimg" style="display:none" />	 
  </body>
 </html>
+<script>
+  setInterval(function(){
+    document.getElementById('trackimg').src = document.getElementById("track").src;
+  }, 500);
+</script>
