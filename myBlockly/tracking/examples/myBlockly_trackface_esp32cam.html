@@ -50,9 +50,8 @@
   </div>
 
   <script>
-    window.onload = function() {
+    document.getElementById('img').onload = function() {
       var img = document.getElementById('img');
-      //img.src = document.getElementById('cam').contentWindow.document.getElementById("trackimg").src;
       var tracker = new tracking.LandmarksTracker();
       tracker.setInitialScale(4);
       tracker.setStepSize(2);
@@ -89,12 +88,19 @@
         circle.style.top = (img.offsetTop + y) + 'px';
       }
 	    
+      showcam();
+    };
+	  
+  function showcam() {
       var iframe = document.createElement('iframe');
       iframe.src = "myBlockly_trackface_esp32cam_cam.html";
       iframe.style.width = "350px";
       iframe.style.height = "260px";
       document.body.appendChild(iframe);
-    };
+      setInterval(function(){
+        document.getElementById('img').src = document.getElementById('cam').contentWindow.document.getElementById("trackimg").src;
+      }, 500);
+  }
   </script>
 
 </body>
