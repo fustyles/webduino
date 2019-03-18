@@ -42,7 +42,7 @@
   </div>
 
   <script>
-    window.onload = function() {
+    setInterval(function() {
       var img = document.getElementById('img');
       var tracker = new tracking.LandmarksTracker();
       tracker.setInitialScale(4);
@@ -79,7 +79,7 @@
         circle.style.left = (img.offsetLeft + x) + 'px';
         circle.style.top = (img.offsetTop + y) + 'px';
       }
-    };
+    , 500);
   </script>
 
 </body>
