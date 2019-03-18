@@ -48,9 +48,9 @@
   </div>
 
   <script>
-    setInterval(function() {
+    window.onload = function() {
       var img = document.getElementById('img');
-      img.src = document.getElementById('cam').contentWindow.document.getElementById("trackimg").src;
+      //img.src = document.getElementById('cam').contentWindow.document.getElementById("trackimg").src;
       var tracker = new tracking.LandmarksTracker();
       tracker.setInitialScale(4);
       tracker.setStepSize(2);
@@ -86,7 +86,7 @@
         circle.style.left = (img.offsetLeft + x) + 'px';
         circle.style.top = (img.offsetTop + y) + 'px';
       }
-    }, 1000);
+    };
   </script>
 
 </body>
