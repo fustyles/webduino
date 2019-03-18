@@ -37,13 +37,15 @@
 
   <div class="demo-frame">
     <div class="demo-container">
-      <img id="img" src="http://192.168.201.32:81/stream" />
+      <img id="trackimg" src="http://192.168.201.32:81/stream" />
+      <img id="img"/>
     </div>
   </div>
 
   <script>
     setInterval(function() {
       var img = document.getElementById('img');
+      img.src = document.getElementById('trackimg').src;
       var tracker = new tracking.LandmarksTracker();
       tracker.setInitialScale(4);
       tracker.setStepSize(2);
