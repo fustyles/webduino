@@ -88,15 +88,17 @@
     };
 	  
   function showcam() {
-      var iframe = document.createElement('iframe');
-      iframe.id = "cam";
-      iframe.src = "myBlockly_trackface_esp32cam_cam.html";
-      iframe.style.width = "340px";
-      iframe.style.height = "260px";
-      document.body.appendChild(iframe);
-      setInterval(function(){
-        document.getElementById('img').src = document.getElementById('cam').contentWindow.document.getElementById("trackimg").src;
-      }, 2000);
+      if (!document.getElementById('cam')) {
+	      var iframe = document.createElement('iframe');
+	      iframe.id = "cam";
+	      iframe.src = "myBlockly_trackface_esp32cam_cam.html";
+	      iframe.style.width = "340px";
+	      iframe.style.height = "260px";
+	      document.body.appendChild(iframe);
+	      setInterval(function(){
+		document.getElementById('img').src = document.getElementById('cam').contentWindow.document.getElementById("trackimg").src;
+	      }, 2000);
+      }
   }
   </script>
 
