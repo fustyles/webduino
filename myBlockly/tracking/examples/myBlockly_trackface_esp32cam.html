@@ -1,8 +1,12 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>tracking.js - face alignment with images</title>
+        <meta charset="utf-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+        <header name = "Access-Control-Allow-Headers" value = "Origin, Methods, Content-Type, Authorization" />	
+        <header name = "Access-Control-Allow-Origin" value = "*" />
+        <header name = "Access-Control-Allow-Methods" value = "*" />	
+        <title></title>
 
 	<script src="https://fustyles.github.io/webduino/myBlockly/tracking/build/tracking.js"></script>
 	<script src="https://fustyles.github.io/webduino/myBlockly/tracking/build/data/face-min.js"></script>
@@ -23,7 +27,6 @@
     box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
   }
   #img {
-    position: absolute;
     top: 50%;
     left: 50%;
     margin: -200px 0 0 -200px;
@@ -37,15 +40,16 @@
 
   <div class="demo-frame">
     <div class="demo-container">
-      <img id="trackimg" src="http://192.168.201.32:81/stream" />
       <img id="img"/>
+      <br>
+      <iframe id="cam" src="myBlockly_trackface_esp32cam_cam.html">
     </div>
   </div>
 
   <script>
     setInterval(function() {
       var img = document.getElementById('img');
-      img.src = document.getElementById('trackimg').src;
+      img.src = document.getElementById('cam').contentWindow.document.getElementById("trackimg").src;
       var tracker = new tracking.LandmarksTracker();
       tracker.setInitialScale(4);
       tracker.setStepSize(2);
@@ -81,7 +85,7 @@
         circle.style.left = (img.offsetLeft + x) + 'px';
         circle.style.top = (img.offsetTop + y) + 'px';
       }
-    }, 500);
+    }, 1000);
   </script>
 
 </body>
