@@ -41,7 +41,7 @@
 
   <div class="demo-frame">
     <div class="demo-container">
-      <img id="img" src="https://fustyles.github.io/webduino/myBlockly/tracking/examples/assets/faces.jpg"/>
+      <img id="img" src="http://192.168.201.32:81/stream"/>
     </div>
   </div>
 
@@ -83,23 +83,7 @@
         circle.style.left = (img.offsetLeft + x) + 'px';
         circle.style.top = (img.offsetTop + y) + 'px';
       }
-	    
-      showcam();
     };
-	  
-  function showcam() {
-      if (!document.getElementById('cam')) {
-	      var iframe = document.createElement('iframe');
-	      iframe.id = "cam";
-	      iframe.src = "myBlockly_trackface_esp32cam_cam.html";
-	      iframe.style.width = "340px";
-	      iframe.style.height = "260px";
-	      document.body.appendChild(iframe);
-	      setInterval(function(){
-		document.getElementById('img').src = document.getElementById('cam').contentWindow.document.getElementById("trackimg").src;
-	      }, 2000);
-      }
-  }
   </script>
 
 </body>
