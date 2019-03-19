@@ -163,7 +163,7 @@ Blockly.Blocks['webusb_cmd'] = {
 Blockly.Blocks['webusb_getresponse'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Get WebUSB response data");
+        .appendField("WebUSB get response data");
     this.setInputsInline(false);
     this.setOutput(true, null); 
     this.setColour(200);
@@ -173,7 +173,7 @@ Blockly.Blocks['webusb_getresponse'] = {
 Blockly.Blocks['webusb_clearresponse'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Clear WebUSB response data");
+        .appendField("WebUSB clear response data");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
