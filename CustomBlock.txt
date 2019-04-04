@@ -178,6 +178,6 @@ http://bit.webduino.io/blockly/#Vyjonr4d2JPRY
 
 Bit & Smart 網頁控制介面
 [Smart] (網址末請填入裝置ID)
-https://fustyles.github.io/webduino/MyFirmata_smart.html?yourID
+https://fustyles.github.io/webduino/MyFirmata_smart.html?DeviceID
 [Bit] (網址末請填入裝置ID)
-https://fustyles.github.io/webduino/MyFirmata_bit.html?yourID
+https://fustyles.github.io/webduino/MyFirmata_bit.html?DeviceID
