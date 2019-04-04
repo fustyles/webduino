@@ -67,6 +67,6 @@
   }  
  
   window.createDemoText = createDemoText;
-  window.showtext_set = showtext_set;
+  window.DemoText_set = DemoText_set;
 
 }(window, window.document));
