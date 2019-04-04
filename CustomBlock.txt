@@ -24,7 +24,7 @@ https://fustyles.github.io/webduino/demo_text_20180811/blockly.json
 [Smart]
 https://blocklypro.webduino.io/#kwrNbp9aJK
 [Bit]
-https://bit.webduino.io/blockly/#kRvX4Dv6ZJK3Q
+https://bit.webduino.io/blockly/#r34oEdwkGmzqd
 
 
 溫濕度變化圖(D3.js)
