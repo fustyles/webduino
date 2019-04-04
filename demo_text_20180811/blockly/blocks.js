@@ -21,6 +21,6 @@ Blockly.Blocks['demo_text_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(90);
+  this.setColour(65);
   }
 };
