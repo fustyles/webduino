@@ -123,7 +123,7 @@
       var s =  cmd.value;
       cmd.value ="";
       uart.tx(s);
-      document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
+      document.getElementById("demo-area-02-show").innerHTML = s + " [OK]";
     }
   },100);
 });
