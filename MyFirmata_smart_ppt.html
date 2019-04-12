@@ -1,0 +1,133 @@
+﻿<!-- Author: https://www.facebook.com/francefu -->
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Webduino Smart</title>
+  <script src="https://blocklypro.webduino.io/components/jquery/dist/jquery.min.js"></script>
+  <script src="https://blocklypro.webduino.io/dist/lib/webduino-all-0.4.20.min.js"></script>
+  <script src="https://blocklypro.webduino.io/dist/webduino-blockly.min.js"></script>
+  <script src="https://blocklypro.webduino.io/dist/lib/firebase.min.js"></script>
+  <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>
+  <script src="https://webduinoio.github.io/webduino-module-uart/UART.js"></script>
+  <script src="https://webduinoio.github.io/webduino-module-uart/UART-blockly.js"></script>
+<style id="jsbin-css">
+#demo-area-01-show { font-size: 20px; pointer-events: auto!important; }
+#demo-area-02-show { font-size: 20px; pointer-events: auto!important; }
+</style>
+</head>
+<body>
+<div><span id="demo-area-01-show" style="color:red;font-weight:bold">Webduino Smart isn't connected.</span></div>
+<input type="hidden" name="cmd" id="cmd">
+
+<table name="myfirmata" id ="myfirmata">
+<tr><td colspan="2" align="center"><B>Remote control Powerpoint</B></td></tr>
+<tr><td id="btn_F5"></td><td id="btn_PAGEUP"></td></tr>
+<tr><td id="btn_SHIFTF5"></td><td id="btn_PAGEDOWN"></td></tr>
+<tr><td id="btn_W"></td><td id="btn_ESC"></td></tr>
+<tr><td></td><td id="btn_B"></td></tr>
+<tr>
+  <td colspan="2"><span id="uart_receive" style="color:red"></span></td>
+</tr> 
+</table>  
+      
+<div><span id="demo-area-02-show" style="color:red;font-weight:bold;visibility:hidden"></span></div>
+</body>
+</html>
+
+<script id="jsbin-javascript">
+(async function () {
+
+  let btn_F5 = document.createElement('button');
+  btn_F5.textContent = "F5";
+  btn_F5.onclick = function() {
+      document.getElementById("cmd").value="?keyboardwrite=198";
+  };
+  document.getElementById("btn_F5").appendChild(btn_F5).setAttribute('id','F5');
+
+  let btn_PAGEUP = document.createElement('button');
+  btn_PAGEUP.textContent = "PAGE UP";
+  btn_PAGEUP.onclick = function() {
+      document.getElementById("cmd").value="?keyboardwrite=211";
+  };
+  document.getElementById("btn_PAGEUP").appendChild(btn_PAGEUP).setAttribute('id','PAGEUP');
+
+  let btn_SHIFTF5 = document.createElement('button');
+  btn_SHIFTF5.textContent = "SHIFT+F5";
+  btn_SHIFTF5.onclick = function() {
+      document.getElementById("cmd").value="?keyboardpress=133;198;;10";
+  };
+  document.getElementById("btn_SHIFTF5").appendChild(btn_SHIFTF5).setAttribute('id','SHIFTF5');
+
+  let btn_PAGEDOWN = document.createElement('button');
+  btn_PAGEDOWN.textContent = "PAGEDOWN";
+  btn_PAGEDOWN.onclick = function() {
+      document.getElementById("cmd").value="?keyboardwrite=214";
+  };
+  document.getElementById("btn_PAGEDOWN").appendChild(btn_PAGEDOWN).setAttribute('id','PAGEDOWN');
+
+  let btn_W = document.createElement('button');
+  btn_W.textContent = "W";
+  btn_W.onclick = function() {
+      document.getElementById("cmd").value="?keyboardwrite=87";
+  };
+  document.getElementById("btn_W").appendChild(btn_W).setAttribute('id','W');
+
+  let btn_ESC = document.createElement('button');
+  btn_ESC.textContent = "ESC";
+  btn_ESC.onclick = function() {
+      document.getElementById("cmd").value="?keyboardwrite=177";
+  };
+  document.getElementById("btn_ESC").appendChild(btn_ESC).setAttribute('id','ESC');
+
+  let btn_B = document.createElement('button');
+  btn_B.textContent = "B";
+  btn_B.onclick = function() {
+      document.getElementById("cmd").value="?keyboardwrite=66";
+  };
+  document.getElementById("btn_B").appendChild(btn_B).setAttribute('id','B');
+  
+ 
+	var strUrl=location.search;
+	if (strUrl.indexOf("?")!=-1) {
+	var getdevice = strUrl.split("?")[1].split("&")[0];
+
+	boardReady({board: 'Smart', device: getdevice, transport: 'mqtt'}, function (board) {
+	document.getElementById("demo-area-01-show").innerHTML = "Webduino Smart is connected.";
+
+	board.samplingInterval = 250;
+
+	var BoardEvent = webduino.BoardEvent
+	var check;
+	board.on(BoardEvent.READY, function() {
+		check = setInterval(function() {
+			board.send([0xF0, 0x0E, 0x07, 0xF7]);
+		}, 30000);
+	});
+
+	board.on(BoardEvent.ERROR, function() {
+		document.getElementById("demo-area-01-show").innerHTML = "Board connection failed." ;
+		clearInterval(check);
+		cmd.value="error";
+	});
+
+
+	var uart = getUART(board,"9600");
+	uart.rx(function(){
+		document.getElementById('uart_receive').innerHTML = (uart.string);
+	});
+
+	var myTimer = setInterval(async function(){
+		var cmd = document.getElementById("cmd");
+		if (cmd.value!="") {
+			var s =  cmd.value;
+			cmd.value ="";
+			uart.tx(s);
+			document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
+		}
+	},100);
+});
+}
+}());
+</script>
