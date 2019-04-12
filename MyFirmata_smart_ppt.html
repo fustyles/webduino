@@ -89,44 +89,44 @@
   document.getElementById("btn_B").appendChild(btn_B).setAttribute('id','B');
   
  
-	var strUrl=location.search;
-	if (strUrl.indexOf("?")!=-1) {
-	var getdevice = strUrl.split("?")[1].split("&")[0];
+  var strUrl=location.search;
+  if (strUrl.indexOf("?")!=-1) {
+  var getdevice = strUrl.split("?")[1].split("&")[0];
 
-	boardReady({board: 'Smart', device: getdevice, transport: 'mqtt'}, function (board) {
-	document.getElementById("demo-area-01-show").innerHTML = "Webduino Smart is connected.";
+  boardReady({board: 'Smart', device: getdevice, transport: 'mqtt'}, function (board) {
+  document.getElementById("demo-area-01-show").innerHTML = "Webduino Smart is connected.";
 
-	board.samplingInterval = 250;
+  board.samplingInterval = 250;
 
-	var BoardEvent = webduino.BoardEvent
-	var check;
-	board.on(BoardEvent.READY, function() {
-		check = setInterval(function() {
-			board.send([0xF0, 0x0E, 0x07, 0xF7]);
-		}, 30000);
-	});
+  var BoardEvent = webduino.BoardEvent
+  var check;
+  board.on(BoardEvent.READY, function() {
+    check = setInterval(function() {
+      board.send([0xF0, 0x0E, 0x07, 0xF7]);
+    }, 30000);
+  });
 
-	board.on(BoardEvent.ERROR, function() {
-		document.getElementById("demo-area-01-show").innerHTML = "Board connection failed." ;
-		clearInterval(check);
-		cmd.value="error";
-	});
+  board.on(BoardEvent.ERROR, function() {
+    document.getElementById("demo-area-01-show").innerHTML = "Board connection failed." ;
+    clearInterval(check);
+    cmd.value="error";
+  });
 
 
-	var uart = getUART(board,"9600");
-	uart.rx(function(){
-		document.getElementById('uart_receive').innerHTML = (uart.string);
-	});
+  var uart = getUART(board,"9600");
+  uart.rx(function(){
+    document.getElementById('uart_receive').innerHTML = (uart.string);
+  });
 
-	var myTimer = setInterval(async function(){
-		var cmd = document.getElementById("cmd");
-		if (cmd.value!="") {
-			var s =  cmd.value;
-			cmd.value ="";
-			uart.tx(s);
-			document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
-		}
-	},100);
+  var myTimer = setInterval(async function(){
+    var cmd = document.getElementById("cmd");
+    if (cmd.value!="") {
+      var s =  cmd.value;
+      cmd.value ="";
+      uart.tx(s);
+      document.getElementById("demo-area-02-show").innerHTML = cmd.value+" (OK)";
+    }
+  },100);
 });
 }
 }());
