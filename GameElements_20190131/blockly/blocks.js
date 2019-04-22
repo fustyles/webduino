@@ -545,7 +545,7 @@ Blockly.Blocks['canvas_set'] = {
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);    
   this.appendDummyInput() 
       .appendField(Blockly.Msg.SET_SHOW)    
-      .appendField(new Blockly.FieldDropdown([["width","width"], ["height","height"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["position","position"], ["moveX","moveX"], ["moveY","moveY"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["width","width"], ["height","height"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["position","position"], ["moveX","moveX"], ["moveY","moveY"], ["draggable","draggable"]]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -563,7 +563,7 @@ Blockly.Blocks['canvas_get'] = {
       .appendField(Blockly.Msg.CANVAS_ID_SHOW);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.GET_SHOW)    
-      .appendField(new Blockly.FieldDropdown([["exist","exist"], ["width","width"], ["height","height"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["position","position"], ["id","id"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["exist","exist"], ["width","width"], ["height","height"], ["left","left"], ["top","top"], ["zindex","zindex"], ["display","display"], ["position","position"], ["draggable","draggable"], ["id","id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
