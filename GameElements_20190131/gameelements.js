@@ -815,7 +815,9 @@
       else if (input_property=='moveX')
         obj.style.left = (Number(obj.style.left.replace(/px/ig,""))+Number(input_value))+"px";
       else if (input_property=='moveY')
-        obj.style.top = (Number(obj.style.top.replace(/px/ig,""))+Number(input_value))+"px";    
+        obj.style.top = (Number(obj.style.top.replace(/px/ig,""))+Number(input_value))+"px";  
+      else if (input_property=="draggable")
+        obj.draggable = input_value;	    	    
     }
   }  
   
@@ -881,6 +883,8 @@
         else
           return "";
       }
+      else if (input_property=="draggable")
+        return obj.draggable;	    
       else if (input_property=='id')
         return "gameimage_"+input_id;
     }
