@@ -800,7 +800,7 @@ Blockly.JavaScript['element_event'] = function (block) {
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
  
-  var code = obj+'.addEventListener("'+event+'", '+element+'_'+value_id_+'_'+event+', true);\nasync function '+element+'_'+value_id_+'_'+event+'(event) {\n' + statement + '};\n';
+  var code = 'async function '+element+'_'+value_id_+'_'+event+'(event) {\n' + statement + '};\n'+obj+'.addEventListener("'+event+'", '+element+'_'+value_id_+'_'+event+', true);\n';
   return code;
 };
 
