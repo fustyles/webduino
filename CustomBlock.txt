@@ -142,7 +142,7 @@ https://fustyles.github.io/webduino/DeviceStatus_20181109/blockly.json
 [Smart]
 https://blocklypro.webduino.io/?demo=demo-area-01#7ggeO3EBlB
 [Bit]
-https://bit.webduino.io/blockly/#rybdx2PmV0Mqk
+https://bit.webduino.io/blockly/#JyeZBg9oB2bRV
 
 
 Javascript 指令擴充
