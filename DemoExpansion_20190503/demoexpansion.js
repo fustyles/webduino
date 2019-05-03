@@ -3,24 +3,15 @@
 +(function (window, document) {
 
   'use strict';
-
-  function createDemoText() {
-    if (!document.getElementById("demo-area-01-show"))
-    {
-        var div = document.createElement('div');
-        div.id = "demo-area-01-show";
-        div.style.zIndex = 999;   
-        div.style.display = 'block';
-        div.innerHTML = "123";
-        document.body.insertBefore(div, document.body.firstChild);
-    }
-  }
   
-  function DemoText_set(input_property,input_value) {
-    createDemoText();
-    
-    var obj = document.getElementById("demo-area-01-show");
-    if (input_property=="left")
+  function DemoExpansion_set(input_id,input_property,input_value) {
+
+    var obj = document.getElementById(input_id);
+    if (input_property=="innerHTML")
+      obj.innerHTML = input_value;
+    else if (input_property=="text")
+      obj.text = input_value;      
+    else if (input_property=="left")
       obj.style.left = input_value + "px";
     else if (input_property=="top")
       obj.style.top = input_value + "px";
