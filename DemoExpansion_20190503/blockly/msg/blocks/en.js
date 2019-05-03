@@ -1,4 +1,4 @@
-
+Blockly.Msg.DEMOEXPANSION_ID_SHOW = "ElementID";
 Blockly.Msg.DEMOEXPANSION_SET_SHOW = "Set";
 Blockly.Msg.DEMOEXPANSION_VALUE_SHOW = "Value";
 Blockly.Msg.DEMOEXPANSION_TEXT_SHOW = "Show Text";
