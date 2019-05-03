@@ -71,6 +71,7 @@ Blockly.Blocks['demoexpansion3'] = {
 Blockly.Blocks['demoexpansion4'] = {
   init: function() {    
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.DEMOEXPANSION_PROPERTY_SHOW, "屬性")
       .appendField(new Blockly.FieldDropdown([
       ["innerHTML","innerHTML"],     
       ["innerText","innerText"],   
