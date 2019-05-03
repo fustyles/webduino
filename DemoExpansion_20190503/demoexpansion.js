@@ -8,7 +8,7 @@
 
     var obj = document.getElementById(input_id);
     if(!obj) {
-      var obj = document.getElementsByClassName("demo-area-09-btn " +input_id); 
+      var obj = document.getElementsByClassName("demo-area-09-btn " +input_id)[0]; 
     }
     console.log(input_id);
     console.log(input_property);
