@@ -7,14 +7,16 @@
   function DemoExpansion_set(input_id,input_property,input_value) {
 
     var obj = document.getElementById(input_id);
-    if (input_property=="innerHTML")
-      obj.innerHTML = input_value;
+    if (input_property=="text")
+      obj.text = input_value;    
+    else if (input_property=="value")
+      obj.value = input_value;
+    else if (input_property=="innerHTML")
+      obj.innerHTML = input_value;       
     else if (input_property=="innerText")
       obj.innerText = input_value;    
     else if (input_property=="textContent")
       obj.textContent = input_value;   
-    else if (input_property=="value")
-      obj.value = input_value;       
     else if (input_property=="left")
       obj.style.left = input_value + "px";
     else if (input_property=="top")
@@ -42,9 +44,7 @@
     else if (input_property=="fontsize")
       obj.style.fontSize = input_value + "px";	    
     else if (input_property=="opacity")
-      obj.style.opacity = input_value;    
-    else if (input_property=="innerHTML")
-      obj.innerHTML = input_value;      
+      obj.style.opacity = input_value;       
     else if (input_property=="zindex")
       obj.style.zIndex = input_value;
     else if (input_property=="display"){ 
