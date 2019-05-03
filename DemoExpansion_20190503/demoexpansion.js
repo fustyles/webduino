@@ -7,6 +7,9 @@
   function DemoExpansion_set(input_id,input_property,input_value) {
 
     var obj = document.getElementById(input_id);
+    if(!obj) {
+      var obj = document.getElementsByClassName("demo-area-09-btn " +input_id); 
+    }
     console.log(input_id);
     console.log(input_property);
     console.log(input_value);
