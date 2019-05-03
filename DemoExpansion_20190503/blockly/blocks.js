@@ -21,7 +21,7 @@ Blockly.Blocks['demoexpansion2'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.DEMOEXPANSION_TEXT_SHOW, "顯示")    
       .appendField(new Blockly.FieldDropdown([
-        [Blockly.Msg.DEMO_SHOW, "demo-area-01-show"]
+        [Blockly.Msg.DEMOEXPANSION_TEXT_SHOW, "demo-area-01-show"]
       ]), "id_")
     this.setInputsInline(true);
   this.setOutput(true, null); 
