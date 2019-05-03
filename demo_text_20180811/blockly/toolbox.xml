@@ -23,11 +23,11 @@
       </block>
     </value>
   </block>
-  <block type="demo_text_set">'+   
-    <value name="value_">'+
-      <block type="text">'+
-        <field name="TEXT"></field>'+
-      </block>'+
-    </value>'+    
-  </block>'+    
+  <block type="demo_text_set">  
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+  </block>
  </category>
