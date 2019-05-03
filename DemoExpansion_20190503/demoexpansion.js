@@ -67,7 +67,7 @@
     else {
       if (obj.style[input_property])
         obj.style[input_property] = input_value;	    
-      else
+      else if (obj[input_property])
         obj[input_property] = input_value;
     }
   }  
