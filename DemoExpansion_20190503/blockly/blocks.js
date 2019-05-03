@@ -1,7 +1,7 @@
 Blockly.Blocks['demoexpansion1'] = {
   init: function() {   
   this.appendValueInput("id_")
-      .appendField("ID")       
+      .appendField(Blockly.Msg.DEMOEXPANSION_ID_SHOW)       
       .setCheck(null);     
   this.appendValueInput("property_")
       .appendField(Blockly.Msg.DEMOEXPANSION_SET_SHOW, "設定")       
