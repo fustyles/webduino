@@ -7,10 +7,10 @@
   function DemoExpansion_set(input_id,input_property,input_value) {
 
     var obj = document.getElementById(input_id);
-    if(!obj) {
+    if (!obj) {
       var obj = document.getElementsByClassName("demo-area-09-btn " +input_id)[0]; 
     }
-    if(!obj) return;
+    if (!obj) return;
     
     if (input_property=="text")
       obj.text = input_value;    
