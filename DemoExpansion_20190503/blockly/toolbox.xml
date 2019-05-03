@@ -1,14 +1,12 @@
 <category id="catDemoExpansion">
   <block type="demoexpansion1">  
     <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
+      <block type="demoexpansion3">  
+      </block>  
     </value> 
     <value name="property_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
+      <block type="demoexpansion4">  
+      </block> 
     </value>
     <value name="value_">
       <block type="text">
