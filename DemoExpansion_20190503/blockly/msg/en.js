@@ -1,1 +1,1 @@
-MSG.catDemoText = "Show Text";
+MSG.catDemoExpansion = "Demo Expansion";
