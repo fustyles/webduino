@@ -10,10 +10,6 @@
     if(!obj) {
       var obj = document.getElementsByClassName("demo-area-09-btn " +input_id)[0]; 
     }
-    console.log(input_id);
-    console.log(input_property);
-    console.log(input_value);
-    console.log(obj);
     if (input_property=="text")
       obj.text = input_value;    
     else if (input_property=="value")
