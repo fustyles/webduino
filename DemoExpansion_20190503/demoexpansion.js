@@ -64,6 +64,12 @@
       obj.disabled = input_value;
     else if (input_property=="draggable")
       obj.draggable = input_value;		
+    else {
+      if (obj.style[input_property])
+        obj.style[input_property] = input_value;	    
+      else
+        obj[input_property] = input_value;
+    }
   }  
  
   window.DemoExpansion_set = DemoExpansion_set;
