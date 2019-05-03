@@ -1,1 +1,1 @@
-MSG.catDemoText = "顯示文字";
+MSG.catDemoExpansion = "互動區域擴充";
