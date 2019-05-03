@@ -1,0 +1,14 @@
+{
+  "types": ["demoexpansion1","demoexpansion2","demoexpansion3","demoexpansion4","demoexpansion5","demoexpansion6","demoexpansion7","demoexpansion8","demoexpansion9","demoexpansion10","demoexpansion11","demoexpansion12","demoexpansion13","demoexpansion14","demoexpansion15","demoexpansion16","demoexpansion17","demoexpansion18","demoexpansion19","demoexpansion20"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "demoexpansion.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
