@@ -1,3 +1,4 @@
+Blockly.Msg.DEMOEXPANSION_ID_SHOW = "网页元素ID";
 Blockly.Msg.DEMOEXPANSION_SET_SHOW = "设定";
 Blockly.Msg.DEMOEXPANSION_VALUE_SHOW = "值";
 Blockly.Msg.DEMOEXPANSION_TEXT_SHOW = "显示文字";
