@@ -71,7 +71,27 @@ Blockly.Blocks['demoexpansion3'] = {
 Blockly.Blocks['demoexpansion4'] = {
   init: function() {    
   this.appendDummyInput()  
-      .appendField(new Blockly.FieldDropdown([["innerHTML","innerHTML"], ["left","left"], ["top","top"], ["width","width"], ["height","height"], ["borderstyle","borderstyle"], ["borderwidth","borderwidth"], ["bordercolor","bordercolor"], ["borderradius","borderradius"], ["background","background"], ["color","color"], ["fontsize","fontsize"], ["opacity","opacity"], ["innerHTML","innerHTML"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+      ["innerHTML","innerHTML"], 
+      ["left","left"], 
+      ["top","top"], 
+      ["width","width"], 
+      ["height","height"], 
+      ["borderstyle","borderstyle"], 
+      ["borderwidth","borderwidth"], 
+      ["bordercolor","bordercolor"], 
+      ["borderradius","borderradius"], 
+      ["background","background"], 
+      ["color","color"], 
+      ["fontsize","fontsize"], 
+      ["opacity","opacity"], 
+      ["innerHTML","innerHTML"], 
+      ["zindex","zindex"], 
+      ["display","display"], 
+      ["position","position"], 
+      ["disabled","disabled"], 
+      ["draggable","draggable"]
+    ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
