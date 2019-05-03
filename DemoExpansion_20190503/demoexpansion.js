@@ -10,6 +10,8 @@
     if(!obj) {
       var obj = document.getElementsByClassName("demo-area-09-btn " +input_id)[0]; 
     }
+    if(!obj) return;
+    
     if (input_property=="text")
       obj.text = input_value;    
     else if (input_property=="value")
