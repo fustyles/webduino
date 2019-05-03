@@ -73,6 +73,7 @@ Blockly.Blocks['demoexpansion4'] = {
   this.appendDummyInput()  
       .appendField(new Blockly.FieldDropdown([
       ["innerHTML","innerHTML"], 
+      ["text","text"],    
       ["left","left"], 
       ["top","top"], 
       ["width","width"], 
