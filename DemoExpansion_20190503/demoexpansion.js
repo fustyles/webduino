@@ -57,7 +57,6 @@
       obj.draggable = input_value;		
   }  
  
-  window.createDemoText = createDemoText;
-  window.DemoText_set = DemoText_set;
+  window.DemoExpansion_set = DemoExpansion_set;
 
 }(window, window.document));
