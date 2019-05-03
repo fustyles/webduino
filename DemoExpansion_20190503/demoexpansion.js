@@ -7,6 +7,10 @@
   function DemoExpansion_set(input_id,input_property,input_value) {
 
     var obj = document.getElementById(input_id);
+    console.log(input_id);
+    console.log(input_property);
+    console.log(input_value);
+    console.log(obj);
     if (input_property=="text")
       obj.text = input_value;    
     else if (input_property=="value")
