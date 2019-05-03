@@ -4,10 +4,10 @@ Blockly.Blocks['demoexpansion1'] = {
       .appendField("ID")       
       .setCheck(null);     
   this.appendValueInput("property_")
-      .appendField("Set")       
+      .appendField(Blockly.Msg.DEMOEXPANSION_SET_SHOW, "設定")       
       .setCheck(null);      
   this.appendValueInput("value_")
-      .appendField("Value")    
+      .appendField(Blockly.Msg.DEMOEXPANSION_VALUE_SHOW, "值")   
       .setCheck(null);    
   this.setInputsInline(true);
   this.setPreviousStatement(true);
@@ -19,7 +19,7 @@ Blockly.Blocks['demoexpansion1'] = {
 Blockly.Blocks['demoexpansion2'] = {
   init: function() {    
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.DEMO_SHOW, "顯示文字")    
+      .appendField(Blockly.Msg.DEMOEXPANSION_TEXT_SHOW, "顯示")    
       .appendField(new Blockly.FieldDropdown([
         [Blockly.Msg.DEMO_SHOW, "demo-area-01-show"]
       ]), "id_")
@@ -32,7 +32,7 @@ Blockly.Blocks['demoexpansion2'] = {
 Blockly.Blocks['demoexpansion3'] = {
   init: function() {    
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.DEMO_CONTROLLER_BTN, "遙控器按鍵")    
+      .appendField(Blockly.Msg.DEMOEXPANSION_CONTROLLER_BTN_SHOW, "遙控器按鍵")    
       .appendField(new Blockly.FieldDropdown([
         ["○", "btn-power"],
         ["1", "btn-num1"],
@@ -57,10 +57,10 @@ Blockly.Blocks['demoexpansion3'] = {
         ["▶", "btn-play"],
         ["❙ ❙", "btn-pause"],
         ["▶▶", "btn-next"],
-        [Blockly.Msg.DEMO_CONTROLLER_BTNRED, "btn-color1"],
-        [Blockly.Msg.DEMO_CONTROLLER_BTNGREEN, "btn-color2"],
-        [Blockly.Msg.DEMO_CONTROLLER_BTNBLUE, "btn-color3"],
-        [Blockly.Msg.DEMO_CONTROLLER_BTNYELLOW, "btn-color4"]
+        [Blockly.Msg.DEMOEXPANSION_CONTROLLER_BTN_RED_SHOW, "btn-color1"],
+        [Blockly.Msg.DEMOEXPANSION_CONTROLLER_BTN_GREEN_SHOW, "btn-color2"],
+        [Blockly.Msg.DEMOEXPANSION_CONTROLLER_BTN_BLUE_SHOW, "btn-color3"],
+        [Blockly.Msg.DEMOEXPANSION_CONTROLLER_BTN_YELLOW_SHOW, "btn-color4"]
       ]), "id_")
     this.setInputsInline(true);
   this.setOutput(true, null); 
