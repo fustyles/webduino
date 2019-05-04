@@ -101,3 +101,20 @@ Blockly.Blocks['demoexpansion4'] = {
   this.setColour(200);
   }
 };
+
+Blockly.Blocks['demoexpansion5'] = {
+  init: function() {    
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.DEMOEXPANSION_BTN_SHOW, "按鈕行為")    
+      .appendField(new Blockly.FieldDropdown([
+        ["Button1", "demo-area-05-btn1"],
+        ["Button2", "demo-area-05-btn2"],
+        ["Button3", "demo-area-05-btn3"],
+        ["Button4", "demo-area-05-btn4"],
+        ["Button5", "demo-area-05-btn5"]
+      ]), "id_")
+    this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
