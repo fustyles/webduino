@@ -1,4 +1,4 @@
-Blockly.Msg.DEMOEXPANSION_ID_SHOW = "網頁元素ID";
+Blockly.Msg.DEMOEXPANSION_ID_SHOW = "元素ID";
 Blockly.Msg.DEMOEXPANSION_SET_SHOW = "設定";
 Blockly.Msg.DEMOEXPANSION_VALUE_SHOW = "值";
 Blockly.Msg.DEMOEXPANSION_TEXT_SHOW = "顯示文字";
