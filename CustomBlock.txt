@@ -9,7 +9,7 @@ https://fustyles.github.io/webduino/DemoExpansion_20190503/blockly.json
 [smart]
 https://blocklypro.webduino.io/?demo=demo-area-09#XBBzwP1jZZ
 [Bit]
-https://bit.webduino.io/blockly/?lang=zh-hant&demo=demo-area-09#xqVZrmWXO8Eq7
+https://bit.webduino.io/blockly/?demo=demo-area-01#N32pGz2vxN5R9
 
 
 台灣空氣品質
