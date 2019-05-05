@@ -29,3 +29,8 @@ Blockly.JavaScript['demoexpansion5'] = function(block) {
   var code = "'"+id_+"'";
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['demoexpansion6'] = function(block) {
+  var code = 'createDemoText();\n';
+  return code;
+};
