@@ -73,11 +73,10 @@ Blockly.Blocks['demoexpansion4'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.DEMOEXPANSION_PROPERTY_SHOW, "屬性")
       .appendField(new Blockly.FieldDropdown([
-      ["innerHTML","innerHTML"],     
-      ["innerText","innerText"],   
-      ["textContent","textContent"],     
+      ["innerHTML","innerHTML"],         
       ["text","text"], 
       ["value","value"],   
+      ["src","src"],     
       ["left","left"], 
       ["top","top"], 
       ["width","width"], 
@@ -116,5 +115,16 @@ Blockly.Blocks['demoexpansion5'] = {
     this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
+  }
+};
+
+Blockly.Blocks['demoexpansion6'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.DEMOEXPANSION_TEXT_ADD_SHOW, "顯示文字附加");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(65);
   }
 };
