@@ -2,7 +2,7 @@
 
 +(function (window, document) {
 
-  'use strict';
+  'use strict';  
   
   function DemoExpansion_set(input_id,input_property,input_value) {
 
@@ -71,7 +71,19 @@
         obj[input_property] = input_value;
     }
   }  
+  
+  function createDemoText() {
+    if (!document.getElementById("demo-area-01-show")) {
+        var div = document.createElement('div');
+        div.id = "demo-area-01-show";
+        div.style.zIndex = 999;   
+        div.style.display = 'block';
+        div.innerHTML = "123";
+        document.body.insertBefore(div, document.body.firstChild);
+    }
+  }  
  
   window.DemoExpansion_set = DemoExpansion_set;
+  window.createDemoText = createDemoText;
 
 }(window, window.document));
