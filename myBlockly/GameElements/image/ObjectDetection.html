@@ -3,6 +3,7 @@
 
 </head>
 <body>
+<div id="result"></div>
 
 <!-- Load TensorFlow.js. This is required to use coco-ssd model. -->
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
@@ -24,7 +25,7 @@
     // detect objects in the image.
     model.detect(img).then(predictions => {
       console.log('Predictions: ', predictions);
-      console.log('Predictions: ', predictions[0].class);
+      document.getElementById('result').innerHTML = predictions[0].class;
     });
   });
 </script>
