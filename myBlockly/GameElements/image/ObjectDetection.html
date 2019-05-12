@@ -10,7 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>
 
 <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
-<img id="img" src="img001.jpg"/>
+<img id="img" src="img001.jpg" width="320px" height="240px"/>
 
 <!-- Place your code in the script tag below. You can also use an external .js file -->
 <script>
@@ -24,6 +24,7 @@
     // detect objects in the image.
     model.detect(img).then(predictions => {
       console.log('Predictions: ', predictions);
+      console.log('Predictions: ', predictions[0].class);
     });
   });
 </script>
