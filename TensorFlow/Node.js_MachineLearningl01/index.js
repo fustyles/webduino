@@ -1,9 +1,11 @@
-﻿//npm install -g parcel-bundler
-//npm init -y
-//npm install babel-polyfill --save
-//npm install @tensorflow/tfjs --save
-//npm install @tensorflow/tfjs-node --save
-//npm install @tensorflow/tfjs-node-gpu --save
+/*
+npm install -g parcel-bundler
+npm init -y
+npm install babel-polyfill
+npm install @tensorflow/tfjs
+npm install @tensorflow/tfjs-node
+npm install @tensorflow/tfjs-node-gpu
+*/
 
 //import main from './main';
 //main();
