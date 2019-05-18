@@ -35,7 +35,7 @@ function ObjectDetect() {
     model.detect(img).then(predictions => {
       console.log('Predictions: ', predictions);
       if (predictions.length>0) {
-        for (int i=0;i<predictions.length;i++) {
+        for (var i=0;i<predictions.length;i++) {
           const x = predictions[i].bbox[0];
           const y = predictions[i].bbox[1];
           const width = predictions[i].bbox[2];
