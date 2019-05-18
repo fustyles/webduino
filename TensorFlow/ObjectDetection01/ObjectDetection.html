@@ -55,7 +55,7 @@ function ObjectDetect() {
           context.lineWidth = "2";
           context.fillStyle = "red";
           context.font = Math.round(s/30) + "px Arial";
-          context.fillText("["+i+"] "predictions[i].class, x+10, y+(s/20));
+          context.fillText("["+i+"] "+predictions[i].class, x+10, y+(s/20));
           
           document.getElementById('predictions').innerHTML+= "[ "+i+" ] "+predictions[i].class+"<br>";
         }
