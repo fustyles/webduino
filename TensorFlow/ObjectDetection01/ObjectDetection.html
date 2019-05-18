@@ -22,7 +22,7 @@
     // available on the index-page because of the script tag above.
     const img = document.getElementById('img');
     var context = document.getElementById("canvas").getContext("2d");
-    context.drawImage(img,0,0,img.style.width,img.style.height);
+    context.drawImage(img,0,0);
     
     // Load the model.
     cocoSsd.load().then(model => {
