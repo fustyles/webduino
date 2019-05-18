@@ -6,9 +6,9 @@
 <button type="button" id="detect" onclick="this.innerText='Detect...';ObjectDetect();">Detect</button>
 <br>
 <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
-<img id="showimage" src="cat.jpg" width="400" height="300"><img id="originimage" src="cat.jpg" style="display:none">
+<img id="showimage" src="cat.jpg" width="800" height="600"><img id="originimage" src="cat.jpg" style="display:none">
 <br>
-<canvas id="canvas"></canvas>
+<canvas id="canvas" style="display:none"></canvas>
 
 <!-- Load TensorFlow.js. This is required to use coco-ssd model. -->
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
