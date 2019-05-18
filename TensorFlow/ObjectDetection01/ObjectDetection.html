@@ -20,13 +20,15 @@
     // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
     // available on the index-page because of the script tag above.
     const img = document.getElementById('img');
+    var img1 = new Image();
+    img1.src = img.src;
     var canvas = document.getElementById("canvas");
-    canvas.setAttribute("width", img.style.width);
-    canvas.style.width =  img.style.width;
-    canvas.setAttribute("height", img.style.height);
-    canvas.style.height =  img.style.height;
-    console.log(img.style.width);
-    console.log(img.style.height);
+    canvas.setAttribute("width", img1.width);
+    canvas.style.width =  img1.width;
+    canvas.setAttribute("height", img1.height);
+    canvas.style.height =  img1.height;
+    console.log(img1.width);
+    console.log(img1.height);
     console.log(canvas.style.width);
     console.log(canvas.style.height);
     var context = canvas.getContext("2d");
