@@ -2,6 +2,7 @@
 <head>
 </head>
 <body>
+<input type="file" id="selectimage">Select Image</input>
 <button type="button" id="detect" onclick="this.innerText='Detect...';ObjectDetect();">Detect</button>
 <br>
 <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
@@ -50,6 +51,17 @@ function ObjectDetect() {
       }
     });
   });    
+}
+  
+document.getElementById('selectimage').onchange = function (event) {
+  var target = event.target || window.event.srcElement, files = target.files;
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+        document.getElementById("img").src = fr.result;
+    }
+    fr.readAsDataURL(files[0]);
+  }
 }
 </script>
 
