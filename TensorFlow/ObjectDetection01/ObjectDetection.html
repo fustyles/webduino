@@ -21,8 +21,10 @@
     // available on the index-page because of the script tag above.
     const img = document.getElementById('img');
     var canvas = document.getElementById("canvas");
-    canvas.width = img.style.width;
-    canvas.height = img.style.height;
+    canvas.setAttribute("width", img.style.width);
+    canvas.style.width =  img.style.width;
+    canvas.setAttribute("height", img.style.height);
+    canvas.style.height =  img.style.height;
     var context = canvas.getContext("2d");
     context.drawImage(img,0,0);
     
