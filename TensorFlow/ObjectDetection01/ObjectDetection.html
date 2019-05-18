@@ -10,7 +10,7 @@
 <input type="file" id="selectimage"></input>
 <br>
 <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
-<img id="showimage" src="cat.jpg" width="500" height="375"><img id="originimage" src="cat.jpg" style="display:none" onload="predictions.innerHTML='';ObjectDetect();">
+<img id="showimage" src="cat.jpg" width="500" height="375"><img id="originimage" src="cat.jpg" style="display:none" onload="predictions.innerHTML='Detecting...';ObjectDetect();">
 <br>
 <div id="predictions" style="width:400px"></div>
 <canvas id="canvas" style="display:none"></canvas>
@@ -36,7 +36,6 @@ function ObjectDetect() {
       context.drawImage(img,0,0);
       var s = (img1.width>img1.height)?img1.width:img1.height;
       
-      document.getElementById('predictions').innerHTML= predictions;
       console.log('Predictions: ', predictions);
       
       if (predictions.length>0) {
@@ -56,6 +55,8 @@ function ObjectDetect() {
           context.fillStyle = "red";
           context.font = Math.round(s/30) + "px Arial";
           context.fillText(predictions[i].class, x+10, y+(s/20));
+          
+          document.getElementById('predictions').innerHTML+= "[ "+i+" ] "+predictions[i].class+"<br>";
         }
       }
       document.getElementById('showimage').src = canvas.toDataURL("image/png");
