@@ -19,12 +19,13 @@
     
 // Load the model.    
 cocoSsd.load().then(model => {
+  // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
+  // available on the index-page because of the script tag above.  
   // detect objects in the image.
+  const img = document.getElementById('originimage');
+  
   model.detect(img).then(predictions => {
     
-    // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
-    // available on the index-page because of the script tag above.
-    const img = document.getElementById('originimage');
     var img1 = new Image();
     img1.src = img.src;
     var canvas = document.getElementById("canvas");
