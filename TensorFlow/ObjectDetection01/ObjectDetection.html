@@ -3,7 +3,8 @@
 
 </head>
 <body>
-<div id="result">物件辨識中...</div>
+<button value="Detect" onclick="result.innerHTML='Detect...';ObjectDetect();">
+<div id="result"></div>
   
 <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
 <img id="img" src="cat.jpg" width="320px" height="240px"/>
@@ -15,17 +16,19 @@
 
 <!-- Place your code in the script tag below. You can also use an external .js file -->
 <script>
-  // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
-  // available on the index-page because of the script tag above.
-  const img = document.getElementById('img');
-  // Load the model.
-  cocoSsd.load().then(model => {
-    // detect objects in the image.
-    model.detect(img).then(predictions => {
-      console.log('Predictions: ', predictions);
-      document.getElementById('result').innerHTML = predictions[0].class;
+  function ObjectDetect() {
+    // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
+    // available on the index-page because of the script tag above.
+    const img = document.getElementById('img');
+    // Load the model.
+    cocoSsd.load().then(model => {
+      // detect objects in the image.
+      model.detect(img).then(predictions => {
+        console.log('Predictions: ', predictions);
+        document.getElementById('result').innerHTML = predictions[0].class;
+      });
     });
-  });
+  }
 </script>
 
 </body>
