@@ -15,23 +15,23 @@
 
 <!-- Place your code in the script tag below. You can also use an external .js file -->
 <script>
-  // Load the model.
+
+function ObjectDetect() {
+  // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
+  // available on the index-page because of the script tag above.
+  const img = document.getElementById('img');
+  var img1 = new Image();
+  img1.src = img.src;
+  var canvas = document.getElementById("canvas");
+  canvas.setAttribute("width", img1.width);
+  canvas.setAttribute("height", img1.height);
+  var context = canvas.getContext("2d");
+  context.drawImage(img,0,0);
+    
+  // Load the model.    
   cocoSsd.load().then(model => {
     document.getElementById('detect').innerText = "Detect";
     document.getElementById('detect').disabled = false;
-  });
-  
-  function ObjectDetect() {
-    // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
-    // available on the index-page because of the script tag above.
-    const img = document.getElementById('img');
-    var img1 = new Image();
-    img1.src = img.src;
-    var canvas = document.getElementById("canvas");
-    canvas.setAttribute("width", img1.width);
-    canvas.setAttribute("height", img1.height);
-    var context = canvas.getContext("2d");
-    context.drawImage(img,0,0);
     
     // detect objects in the image.
     model.detect(img).then(predictions => {
@@ -53,7 +53,8 @@
         context.strokeText(predictions[0].class) + " %", x+6, y+20);
       }
     });
-  }
+  });    
+}
 </script>
 
 </body>
