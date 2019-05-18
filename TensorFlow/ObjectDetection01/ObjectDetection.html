@@ -30,18 +30,18 @@
       model.detect(img).then(predictions => {
         console.log('Predictions: ', predictions);
         if (predictions.length>0) {
-          document.getElementById('result').innerHTML = predictions[0].class;
- 
+          //document.getElementById('result').innerHTML = predictions[0].class;
+          
           const x = predictions[0].bbox[0];
           const y = predictions[0].bbox[1];
           const width = predictions[0].bbox[2];
           const height = predictions[0].bbox[3];
-          
           context.strokeStyle = "red";
           context.lineWidth = "2";
           context.beginPath();
           context.rect(x, y, width, height);
-          context.stroke();      
+          context.stroke(); 
+          context.strokeText(predictions[0].class, x, y);
         }
       });
     });
