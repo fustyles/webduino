@@ -9,6 +9,13 @@
 <img id="showimage" src="cat.jpg" width="500" height="375"><img id="originimage" src="cat.jpg" style="display:none">
 <br>
 <canvas id="canvas" style="display:none"></canvas>
+  
+<!-- Load TensorFlow.js. This is required to use coco-ssd model. -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+<!-- Load the coco-ssd model. -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>
+<!-- Place your code in the script tag below. You can also use an external .js file -->    
+  
 <script>
 
 function ObjectDetect() {
@@ -23,12 +30,6 @@ function ObjectDetect() {
   var context = canvas.getContext("2d");
   context.drawImage(img,0,0);
     
-  <!-- Load TensorFlow.js. This is required to use coco-ssd model. -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
-  <!-- Load the coco-ssd model. -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>
-
-  <!-- Place your code in the script tag below. You can also use an external .js file -->  
   // Load the model.    
   cocoSsd.load().then(model => {
     // detect objects in the image.
