@@ -57,7 +57,7 @@ function ObjectDetect() {
           context.font = Math.round(s/30) + "px Arial";
           context.fillText("["+i+"] "+predictions[i].class, x+10, y+(s/20));
           
-          document.getElementById('predictions').innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+          document.getElementById('predictions').innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
         }
       }
       else
