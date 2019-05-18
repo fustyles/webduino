@@ -26,13 +26,13 @@
       // detect objects in the image.
       model.detect(img).then(predictions => {
         console.log('Predictions: ', predictions);
-        if (prediction.length>0) {
+        if (predictions.length>0) {
           document.getElementById('result').innerHTML = predictions[0].class;
 
-          const x = prediction[0].bbox[0];
-          const y = prediction[0].bbox[1];
-          const width = prediction[0].bbox[2];
-          const height = prediction[0].bbox[3];
+          const x = predictions[0].bbox[0];
+          const y = predictions[0].bbox[1];
+          const width = predictions[0].bbox[2];
+          const height = predictions[0].bbox[3];
           var context = document.getElementById("canvas").getContext("2d");
           context.strokeStyle = "red";
           context.lineWidth = "2";
