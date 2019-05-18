@@ -41,12 +41,18 @@ function ObjectDetect() {
           const y = predictions[i].bbox[1];
           const width = predictions[i].bbox[2];
           const height = predictions[i].bbox[3];
+          
+          const img = document.getElementById('originimage');
+          var img1 = new Image();
+          img1.src = img.src;
+
+          context.lineWidth = Math.round(((img1.width>img1.height)?img1.width:img1.height)/50);
+          context.font = Math.round(((img1.width>img1.height)?img1.width:img1.height)/10) + "px Arial";
+          
           context.strokeStyle = "#00FFFF";
-          context.lineWidth = "4";
           context.beginPath();
           context.rect(x, y, width, height);
           context.stroke(); 
-          context.font = "40px Arial";
           context.strokeText(predictions[i].class, x+6, y+20);
         }
       }
