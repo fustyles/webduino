@@ -1,9 +1,8 @@
-﻿<html>
+<html>
 <head>
-
 </head>
 <body>
-<button type="button" id="detect" disabled="true" onclick="this.innerText='Detect...';ObjectDetect();">Load...</button>
+<button type="button" id="detect" onclick="this.innerText='Detect...';ObjectDetect();">Load...</button>
 <br>
 <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
 <img id="img" src="cat.jpg"/><br><canvas id="canvas"></canvas>
@@ -30,9 +29,6 @@ function ObjectDetect() {
     
   // Load the model.    
   cocoSsd.load().then(model => {
-    document.getElementById('detect').innerText = "Detect";
-    document.getElementById('detect').disabled = false;
-    
     // detect objects in the image.
     model.detect(img).then(predictions => {
       console.log('Predictions: ', predictions);
