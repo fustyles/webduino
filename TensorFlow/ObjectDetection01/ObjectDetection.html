@@ -45,7 +45,6 @@ function ObjectDetect() {
           const img = document.getElementById('originimage');
           var img1 = new Image();
           img1.src = img.src;
-
           context.lineWidth = Math.round(((img1.width>img1.height)?img1.width:img1.height)/50);
           context.font = Math.round(((img1.width>img1.height)?img1.width:img1.height)/10) + "px Arial";
           
