@@ -35,21 +35,21 @@ function ObjectDetect() {
     model.detect(img).then(predictions => {
       console.log('Predictions: ', predictions);
       if (predictions.length>0) {
-        document.getElementById('detect').innerText = "Detect";
-
-        const x = predictions[0].bbox[0];
-        const y = predictions[0].bbox[1];
-        const width = predictions[0].bbox[2];
-        const height = predictions[0].bbox[3];
-        context.strokeStyle = "red";
-        context.lineWidth = "2";
-        context.beginPath();
-        context.rect(x, y, width, height);
-        context.stroke(); 
-
-        context.font = "20px Arial";
-        context.strokeText(predictions[0].class, x+6, y+20);
+        for (int i=0;i<predictions.length;i++) {
+          const x = predictions[i].bbox[0];
+          const y = predictions[i].bbox[1];
+          const width = predictions[i].bbox[2];
+          const height = predictions[i].bbox[3];
+          context.strokeStyle = "red";
+          context.lineWidth = "2";
+          context.beginPath();
+          context.rect(x, y, width, height);
+          context.stroke(); 
+          context.font = "20px Arial";
+          context.strokeText(predictions[i].class, x+6, y+20);
+        }
       }
+      document.getElementById('detect').innerText = "Detect";
     });
   });    
 }
