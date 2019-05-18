@@ -21,6 +21,19 @@
 cocoSsd.load().then(model => {
   // detect objects in the image.
   model.detect(img).then(predictions => {
+    
+    // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
+    // available on the index-page because of the script tag above.
+    const img = document.getElementById('originimage');
+    var img1 = new Image();
+    img1.src = img.src;
+    var canvas = document.getElementById("canvas");
+    canvas.setAttribute("width", img1.width);
+    canvas.setAttribute("height", img1.height);
+    var context = canvas.getContext("2d");
+    context.drawImage(img,0,0);
+    var s = (img1.width>img1.height)?img1.width:img1.height;
+    
     console.log('Predictions: ', predictions);
     if (predictions.length>0) {
       for (var i=0;i<predictions.length;i++) {
@@ -28,18 +41,6 @@ cocoSsd.load().then(model => {
         const y = predictions[i].bbox[1];
         const width = predictions[i].bbox[2];
         const height = predictions[i].bbox[3];
-
-        // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
-        // available on the index-page because of the script tag above.
-        const img = document.getElementById('originimage');
-        var img1 = new Image();
-        img1.src = img.src;
-        var canvas = document.getElementById("canvas");
-        canvas.setAttribute("width", img1.width);
-        canvas.setAttribute("height", img1.height);
-        var context = canvas.getContext("2d");
-        context.drawImage(img,0,0);
-        var s = (img1.width>img1.height)?img1.width:img1.height;
 
         context.lineWidth = Math.round(s/100);
         context.strokeStyle = "#00FFFF";
