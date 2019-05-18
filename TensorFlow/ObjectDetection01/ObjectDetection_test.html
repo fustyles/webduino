@@ -26,7 +26,8 @@ function ObjectDetect() {
   cocoSsd.load().then(model => {
     // detect objects in the image.
     model.detect(img).then(predictions => {
-
+      console.log("Detecting...");
+      
       var img1 = new Image();
       img1.src = img.src;
       var canvas = document.getElementById("canvas");
