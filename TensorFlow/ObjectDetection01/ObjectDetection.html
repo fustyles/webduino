@@ -46,12 +46,13 @@ function ObjectDetect() {
           var img1 = new Image();
           img1.src = img.src;
           context.lineWidth = Math.round(((img1.width>img1.height)?img1.width:img1.height)/80);
-          context.font = Math.round(((img1.width>img1.height)?img1.width:img1.height)/30) + "px Arial";
-          
           context.strokeStyle = "#00FFFF";
           context.beginPath();
           context.rect(x, y, width, height);
           context.stroke(); 
+          
+          context.lineWidth = "2";
+          context.font = Math.round(((img1.width>img1.height)?img1.width:img1.height)/30) + "px Arial";
           context.strokeText(predictions[i].class, x+6, y+20);
         }
       }
