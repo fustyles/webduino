@@ -39,8 +39,8 @@ function ObjectDetect() {
           const y = predictions[i].bbox[1];
           const width = predictions[i].bbox[2];
           const height = predictions[i].bbox[3];
-          context.strokeStyle = "green";
-          context.lineWidth = "1";
+          context.strokeStyle = "#66FFFF";
+          context.lineWidth = "2";
           context.beginPath();
           context.rect(x, y, width, height);
           context.stroke(); 
