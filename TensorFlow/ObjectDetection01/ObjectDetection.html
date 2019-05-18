@@ -27,10 +27,6 @@
     canvas.style.width =  img1.width;
     canvas.setAttribute("height", img1.height);
     canvas.style.height =  img1.height;
-    console.log(img1.width);
-    console.log(img1.height);
-    console.log(canvas.style.width);
-    console.log(canvas.style.height);
     var context = canvas.getContext("2d");
     context.drawImage(img,0,0);
     
@@ -52,7 +48,7 @@
           context.rect(x, y, width, height);
           context.stroke(); 
           context.font = '20px';
-          context.strokeText(predictions[0].class + " " + predictions[0].score, x, y+30);
+          context.strokeText(predictions[0].class + " " + predictions[0].score, x+20, y+20);
         }
       });
     });
