@@ -54,7 +54,6 @@ cocoSsd.load().then(model => {
         context.fillText(predictions[i].class, x+10, y+(s/20));
       }
     }
-    document.getElementById('detect').innerText = "Detect";
     document.getElementById('showimage').src = canvas.toDataURL("image/png");
   });
 });    
