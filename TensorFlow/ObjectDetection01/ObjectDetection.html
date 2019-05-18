@@ -3,7 +3,6 @@
 </head>
 <body>
 <input type="file" id="selectimage"></input>
-<button type="button" id="detect" onclick="this.innerText='Detecting...';ObjectDetect();">Detect</button>
 <br>
 <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
 <img id="showimage" src="cat.jpg" width="500" height="375"><img id="originimage" src="cat.jpg" style="display:none">
@@ -17,19 +16,6 @@
 <!-- Place your code in the script tag below. You can also use an external .js file -->    
   
 <script>
-
-function ObjectDetect() {
-  // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
-  // available on the index-page because of the script tag above.
-  const img = document.getElementById('originimage');
-  var img1 = new Image();
-  img1.src = img.src;
-  var canvas = document.getElementById("canvas");
-  canvas.setAttribute("width", img1.width);
-  canvas.setAttribute("height", img1.height);
-  var context = canvas.getContext("2d");
-  context.drawImage(img,0,0);
-}
     
 // Load the model.    
 cocoSsd.load().then(model => {
@@ -43,9 +29,16 @@ cocoSsd.load().then(model => {
         const width = predictions[i].bbox[2];
         const height = predictions[i].bbox[3];
 
+        // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
+        // available on the index-page because of the script tag above.
         const img = document.getElementById('originimage');
         var img1 = new Image();
         img1.src = img.src;
+        var canvas = document.getElementById("canvas");
+        canvas.setAttribute("width", img1.width);
+        canvas.setAttribute("height", img1.height);
+        var context = canvas.getContext("2d");
+        context.drawImage(img,0,0);
         var s = (img1.width>img1.height)?img1.width:img1.height;
 
         context.lineWidth = Math.round(s/100);
