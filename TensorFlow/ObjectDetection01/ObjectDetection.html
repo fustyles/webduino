@@ -52,7 +52,7 @@
           context.rect(x, y, width, height);
           context.stroke(); 
           context.font = '20px';
-          context.strokeText(predictions[0].class, x, y) + " " + predictions[0].score;
+          context.strokeText(predictions[0].class + " " + predictions[0].score, x, y);
         }
       });
     });
