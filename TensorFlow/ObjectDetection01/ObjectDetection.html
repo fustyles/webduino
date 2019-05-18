@@ -35,7 +35,7 @@
           //document.getElementById('result').innerHTML = predictions[0].class;
           
           const x = predictions[0].bbox[0];
-          const y = predictions[0].bbox[1];
+          const y = predictions[0].bbox[1] + 30;
           const width = predictions[0].bbox[2];
           const height = predictions[0].bbox[3];
           context.strokeStyle = "red";
