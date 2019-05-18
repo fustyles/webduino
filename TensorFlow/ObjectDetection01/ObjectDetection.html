@@ -10,52 +10,55 @@
 <input type="file" id="selectimage"></input>
 <br>
 <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
-<img id="showimage" src="cat.jpg" width="500" height="375"><img id="originimage" src="cat.jpg" style="display:none">
+<img id="showimage" src="cat.jpg" width="500" height="375"><img id="originimage" src="cat.jpg" style="display:none" onload="ObjectDetect();">
 <br>
 <canvas id="canvas" style="display:none"></canvas>
   
 <script>
-// Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
-// available on the index-page because of the script tag above.  
-const img = document.getElementById('originimage');
   
-// Load the model.    
-cocoSsd.load().then(model => {
-  // detect objects in the image.
-  model.detect(img).then(predictions => {
-    
-    var img1 = new Image();
-    img1.src = img.src;
-    var canvas = document.getElementById("canvas");
-    canvas.setAttribute("width", img1.width);
-    canvas.setAttribute("height", img1.height);
-    var context = canvas.getContext("2d");
-    context.drawImage(img,0,0);
-    var s = (img1.width>img1.height)?img1.width:img1.height;
-    
-    console.log('Predictions: ', predictions);
-    if (predictions.length>0) {
-      for (var i=0;i<predictions.length;i++) {
-        const x = predictions[i].bbox[0];
-        const y = predictions[i].bbox[1];
-        const width = predictions[i].bbox[2];
-        const height = predictions[i].bbox[3];
+function ObjectDetect() {
+  // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
+  // available on the index-page because of the script tag above.  
+  const img = document.getElementById('originimage');
 
-        context.lineWidth = Math.round(s/100);
-        context.strokeStyle = "#00FFFF";
-        context.beginPath();
-        context.rect(x, y, width, height);
-        context.stroke(); 
+  // Load the model.    
+  cocoSsd.load().then(model => {
+    // detect objects in the image.
+    model.detect(img).then(predictions => {
 
-        context.lineWidth = "2";
-        context.fillStyle = "red";
-        context.font = Math.round(s/30) + "px Arial";
-        context.fillText(predictions[i].class, x+10, y+(s/20));
+      var img1 = new Image();
+      img1.src = img.src;
+      var canvas = document.getElementById("canvas");
+      canvas.setAttribute("width", img1.width);
+      canvas.setAttribute("height", img1.height);
+      var context = canvas.getContext("2d");
+      context.drawImage(img,0,0);
+      var s = (img1.width>img1.height)?img1.width:img1.height;
+
+      console.log('Predictions: ', predictions);
+      if (predictions.length>0) {
+        for (var i=0;i<predictions.length;i++) {
+          const x = predictions[i].bbox[0];
+          const y = predictions[i].bbox[1];
+          const width = predictions[i].bbox[2];
+          const height = predictions[i].bbox[3];
+
+          context.lineWidth = Math.round(s/100);
+          context.strokeStyle = "#00FFFF";
+          context.beginPath();
+          context.rect(x, y, width, height);
+          context.stroke(); 
+
+          context.lineWidth = "2";
+          context.fillStyle = "red";
+          context.font = Math.round(s/30) + "px Arial";
+          context.fillText(predictions[i].class, x+10, y+(s/20));
+        }
       }
-    }
-    document.getElementById('showimage').src = canvas.toDataURL("image/png");
-  });
-});    
+      document.getElementById('showimage').src = canvas.toDataURL("image/png");
+    });
+  }); 
+}
   
 document.getElementById('selectimage').onchange = function (event) {
   var target = event.target || window.event.srcElement;
