@@ -21,6 +21,9 @@
     // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
     // available on the index-page because of the script tag above.
     const img = document.getElementById('img');
+    var context = document.getElementById("canvas").getContext("2d");
+    context.drawImage(img,0,0,img.style.width,img.style.height);
+    
     // Load the model.
     cocoSsd.load().then(model => {
       // detect objects in the image.
@@ -28,12 +31,12 @@
         console.log('Predictions: ', predictions);
         if (predictions.length>0) {
           document.getElementById('result').innerHTML = predictions[0].class;
-
+ 
           const x = predictions[0].bbox[0];
           const y = predictions[0].bbox[1];
           const width = predictions[0].bbox[2];
           const height = predictions[0].bbox[3];
-          var context = document.getElementById("canvas").getContext("2d");
+          
           context.strokeStyle = "red";
           context.lineWidth = "2";
           context.beginPath();
