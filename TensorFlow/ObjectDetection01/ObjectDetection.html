@@ -45,7 +45,7 @@ function ObjectDetect() {
           const img = document.getElementById('originimage');
           var img1 = new Image();
           img1.src = img.src;
-          context.lineWidth = Math.round(((img1.width>img1.height)?img1.width:img1.height)/50);
+          context.lineWidth = Math.round(((img1.width>img1.height)?img1.width:img1.height)/80);
           context.font = Math.round(((img1.width>img1.height)?img1.width:img1.height)/20) + "px Arial";
           
           context.strokeStyle = "#00FFFF";
