@@ -6,7 +6,7 @@
 <button type="button" id="detect" onclick="this.innerText='Detect...';ObjectDetect();">Detect</button>
 <br>
 <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
-<img id="img" src="cat.jpg"/ width="400" height="300"><img id="originimg" src="cat.jpg" style="display:none">
+<img id="showimg" src="cat.jpg"/ width="400" height="300"><img id="originimg" src="cat.jpg" style="display:none">
 <br>
 <canvas id="canvas"></canvas>
 
@@ -51,7 +51,7 @@ function ObjectDetect() {
         }
       }
       document.getElementById('detect').innerText = "Detect";
-      document.getElementById('img').src = canvas.toDataURL("image/png");
+      document.getElementById('showimg').src = canvas.toDataURL("image/png");
     });
   });    
 }
@@ -62,7 +62,7 @@ document.getElementById('selectimage').onchange = function (event) {
   if (FileReader && files && files.length) {
     var fr = new FileReader();
     fr.onload = function () {
-      document.getElementById("img").src = fr.result;
+      document.getElementById("showimg").src = fr.result;
       document.getElementById("originimg").src = fr.result;
     }
     fr.readAsDataURL(files[0]);
