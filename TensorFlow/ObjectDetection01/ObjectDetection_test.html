@@ -14,14 +14,13 @@
 <input type="file" id="selectimage"></input>
 <br><br>
 <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
-<img id="showimage" src="cat.jpg" width="400" height="400"><img id="originimage" src="cat.jpg" style="display:none" onload="predictions.innerHTML='Detecting...';ObjectDetect();">
+<img id="showimage" src="cat.jpg" width="400" height="400"><img id="originimage" src="cat.jpg" style="display:none">
 <br>
 <div id="predictions" style="width:400px;color:red"></div>
 <canvas id="canvas" style="display:none"></canvas>
   
 <script>
   
-function ObjectDetect() {
   // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
   // available on the index-page because of the script tag above.  
   const img = document.getElementById('originimage');
@@ -66,7 +65,6 @@ function ObjectDetect() {
       document.getElementById('showimage').src = canvas.toDataURL("image/png");
     });
   }); 
-}
   
 document.getElementById('selectimage').onchange = function (event) {
   var target = event.target || window.event.srcElement;
