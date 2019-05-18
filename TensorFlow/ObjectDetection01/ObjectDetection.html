@@ -8,6 +8,7 @@
   
 <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
 <img id="img" src="cat.jpg" width="320px" height="240px"/>
+<canvas id="canvas"></canvas>
 
 <!-- Load TensorFlow.js. This is required to use coco-ssd model. -->
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
@@ -25,7 +26,20 @@
       // detect objects in the image.
       model.detect(img).then(predictions => {
         console.log('Predictions: ', predictions);
-        document.getElementById('result').innerHTML = predictions[0].class;
+        if (prediction.length>0) {
+          document.getElementById('result').innerHTML = predictions[0].class;
+
+          const x = prediction[0].bbox[0];
+          const y = prediction[0].bbox[1];
+          const width = prediction[0].bbox[2];
+          const height = prediction[0].bbox[3];
+          var context = document.getElementById("canvas").getContext("2d");
+          context.strokeStyle = "red";
+          context.lineWidth = "2";
+          context.beginPath();
+          context.rect(x, y, width, height);
+          context.stroke();      
+        }
       });
     });
   }
