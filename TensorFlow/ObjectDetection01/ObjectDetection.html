@@ -42,7 +42,7 @@ function ObjectDetect() {
           const width = predictions[i].bbox[2];
           const height = predictions[i].bbox[3];
           context.strokeStyle = "#00FFFF";
-          context.lineWidth = "2";
+          context.lineWidth = "4";
           context.beginPath();
           context.rect(x, y, width, height);
           context.stroke(); 
