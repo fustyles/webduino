@@ -52,7 +52,7 @@ function ObjectDetect() {
           context.stroke(); 
           
           context.lineWidth = "2";
-          context.strokeStyle = "red";
+          context.fillStyle = "red";
           context.font = Math.round(((img1.width>img1.height)?img1.width:img1.height)/30) + "px Arial";
           context.fillText(predictions[i].class, x+20, y+50);
         }
