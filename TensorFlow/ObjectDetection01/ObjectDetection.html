@@ -3,7 +3,7 @@
 
 </head>
 <body>
-<button type="button" id="detect" onclick="this.value='Detect...';ObjectDetect();">Detect</button>
+<button type="button" id="detect" onclick="this.text='Detect...';ObjectDetect();">Detect</button>
 <br>
 <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
 <img id="img" src="cat.jpg"/><br><canvas id="canvas"></canvas>
@@ -33,7 +33,7 @@
       model.detect(img).then(predictions => {
         console.log('Predictions: ', predictions);
         if (predictions.length>0) {
-          document.getElementById('detect').value = "Detect";
+          document.getElementById('detect').text = "Detect";
           
           const x = predictions[0].bbox[0];
           const y = predictions[0].bbox[1];
