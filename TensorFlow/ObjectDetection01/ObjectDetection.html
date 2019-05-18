@@ -60,6 +60,8 @@ function ObjectDetect() {
           document.getElementById('predictions').innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
         }
       }
+      else
+        document.getElementById('predictions').innerHTML = "Sorry!";
       document.getElementById('showimage').src = canvas.toDataURL("image/png");
     });
   }); 
