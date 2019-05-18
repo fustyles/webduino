@@ -15,6 +15,9 @@
 
 <!-- Place your code in the script tag below. You can also use an external .js file -->
 <script>
+  // Load the model.
+  cocoSsd.load().then(model => {
+  });
   function ObjectDetect() {
     // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
     // available on the index-page because of the script tag above.
@@ -27,28 +30,25 @@
     var context = canvas.getContext("2d");
     context.drawImage(img,0,0);
     
-    // Load the model.
-    cocoSsd.load().then(model => {
-      // detect objects in the image.
-      model.detect(img).then(predictions => {
-        console.log('Predictions: ', predictions);
-        if (predictions.length>0) {
-          document.getElementById('detect').innerText = "Detect";
-          
-          const x = predictions[0].bbox[0];
-          const y = predictions[0].bbox[1];
-          const width = predictions[0].bbox[2];
-          const height = predictions[0].bbox[3];
-          context.strokeStyle = "red";
-          context.lineWidth = "2";
-          context.beginPath();
-          context.rect(x, y, width, height);
-          context.stroke(); 
-          
-          context.font = "20px sans-serif";
-          context.strokeText(predictions[0].class) + " %", x+6, y+20);
-        }
-      });
+    // detect objects in the image.
+    model.detect(img).then(predictions => {
+      console.log('Predictions: ', predictions);
+      if (predictions.length>0) {
+        document.getElementById('detect').innerText = "Detect";
+
+        const x = predictions[0].bbox[0];
+        const y = predictions[0].bbox[1];
+        const width = predictions[0].bbox[2];
+        const height = predictions[0].bbox[3];
+        context.strokeStyle = "red";
+        context.lineWidth = "2";
+        context.beginPath();
+        context.rect(x, y, width, height);
+        context.stroke(); 
+
+        context.font = "20px sans-serif";
+        context.strokeText(predictions[0].class) + " %", x+6, y+20);
+      }
     });
   }
 </script>
