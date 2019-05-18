@@ -41,6 +41,7 @@
           context.beginPath();
           context.rect(x, y, width, height);
           context.stroke(); 
+          context.font = '20px';
           context.strokeText(predictions[0].class, x, y);
         }
       });
