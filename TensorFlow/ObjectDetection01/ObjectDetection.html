@@ -54,7 +54,8 @@ function ObjectDetect() {
 }
   
 document.getElementById('selectimage').onchange = function (event) {
-  var target = event.target || window.event.srcElement, files = target.files;
+  var target = event.target || window.event.srcElement;
+  var files = target.files;
   if (FileReader && files && files.length) {
     var fr = new FileReader();
     fr.onload = function () {
