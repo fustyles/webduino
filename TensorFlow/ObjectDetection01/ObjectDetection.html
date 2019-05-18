@@ -18,11 +18,11 @@
 <script>
 // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
 // available on the index-page because of the script tag above.  
-// detect objects in the image.
 const img = document.getElementById('originimage');
   
 // Load the model.    
 cocoSsd.load().then(model => {
+  // detect objects in the image.
   model.detect(img).then(predictions => {
     
     var img1 = new Image();
