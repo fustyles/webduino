@@ -29,41 +29,41 @@ function ObjectDetect() {
   canvas.setAttribute("height", img1.height);
   var context = canvas.getContext("2d");
   context.drawImage(img,0,0);
-    
-  // Load the model.    
-  cocoSsd.load().then(model => {
-    // detect objects in the image.
-    model.detect(img).then(predictions => {
-      console.log('Predictions: ', predictions);
-      if (predictions.length>0) {
-        for (var i=0;i<predictions.length;i++) {
-          const x = predictions[i].bbox[0];
-          const y = predictions[i].bbox[1];
-          const width = predictions[i].bbox[2];
-          const height = predictions[i].bbox[3];
-          
-          const img = document.getElementById('originimage');
-          var img1 = new Image();
-          img1.src = img.src;
-          var s = (img1.width>img1.height)?img1.width:img1.height;
-          
-          context.lineWidth = Math.round(s/100);
-          context.strokeStyle = "#00FFFF";
-          context.beginPath();
-          context.rect(x, y, width, height);
-          context.stroke(); 
-          
-          context.lineWidth = "2";
-          context.fillStyle = "red";
-          context.font = Math.round(s/30) + "px Arial";
-          context.fillText(predictions[i].class, x+10, y+(s/20));
-        }
-      }
-      document.getElementById('detect').innerText = "Detect";
-      document.getElementById('showimage').src = canvas.toDataURL("image/png");
-    });
-  });    
 }
+    
+// Load the model.    
+cocoSsd.load().then(model => {
+  // detect objects in the image.
+  model.detect(img).then(predictions => {
+    console.log('Predictions: ', predictions);
+    if (predictions.length>0) {
+      for (var i=0;i<predictions.length;i++) {
+        const x = predictions[i].bbox[0];
+        const y = predictions[i].bbox[1];
+        const width = predictions[i].bbox[2];
+        const height = predictions[i].bbox[3];
+
+        const img = document.getElementById('originimage');
+        var img1 = new Image();
+        img1.src = img.src;
+        var s = (img1.width>img1.height)?img1.width:img1.height;
+
+        context.lineWidth = Math.round(s/100);
+        context.strokeStyle = "#00FFFF";
+        context.beginPath();
+        context.rect(x, y, width, height);
+        context.stroke(); 
+
+        context.lineWidth = "2";
+        context.fillStyle = "red";
+        context.font = Math.round(s/30) + "px Arial";
+        context.fillText(predictions[i].class, x+10, y+(s/20));
+      }
+    }
+    document.getElementById('detect').innerText = "Detect";
+    document.getElementById('showimage').src = canvas.toDataURL("image/png");
+  });
+});    
   
 document.getElementById('selectimage').onchange = function (event) {
   var target = event.target || window.event.srcElement;
