@@ -37,6 +37,7 @@ function ObjectDetect() {
       var s = (img1.width>img1.height)?img1.width:img1.height;
       
       console.log('Predictions: ', predictions);
+      document.getElementById('predictions').innerHTML = "";
       
       if (predictions.length>0) {
         for (var i=0;i<predictions.length;i++) {
