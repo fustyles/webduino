@@ -79,8 +79,9 @@ document.getElementById('selectimage').onchange = function (event) {
 }
 
 document.getElementById('originimage').onload = function (event) {
-  var width = Number(event.target.style.width.replace(/px/ig,""));
-  var height = Number(event.target.style.height.replace(/px/ig,""));
+  var target = event.target || window.event.srcElement;
+  var width = Number(target.style.width.replace(/px/ig,""));
+  var height = Number(target.style.height.replace(/px/ig,""));
   console.log(event.target.style.width);
   console.log(event.target);
   console.log(width);
