@@ -37,9 +37,7 @@ navigator.mediaDevices
     }
   })
 
-var modelPromise;
-window.onload = () => modelPromise = cocoSsd.load();
-const model = modelPromise;
+window.onload = () => model = cocoSsd.load();
   
 function ObjectDetect() {
 
