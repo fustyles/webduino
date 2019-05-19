@@ -9,8 +9,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>  
 </head>
 <body>
-<video id="video" width="320" height="240" preload autoplay loop muted></video>
-<canvas id="canvas" width="320" height="240"></canvas>
+<video id="video" preload autoplay loop muted></video>
+<canvas id="canvas"></canvas>
 <br>
 <button type="button" onclick="this.disabled='true';ObjectDetect();">Start Detection</button>
 <div id="predictions" style="width:320px;color:red"></div>
@@ -18,7 +18,7 @@
 <script>
   
 var video = document.getElementById('video');
-var canvas = document.getElementById('canvas');
+var canvas = document.getElementById('canvas'); 
 var context = canvas.getContext('2d');
   
 navigator.mediaDevices
@@ -42,10 +42,12 @@ function ObjectDetect() {
   cocoSsd.load().then(model => {
     model.detect(video).then(predictions => {
 
-      console.log('Predictions: ', predictions);
+      canvas.setAttribute("width", video.clientWidth);
+      canvas.setAttribute("height", video.clientHeight); 
       context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
       document.getElementById('predictions').innerHTML = "";
       
+      console.log('Predictions: ', predictions);
       if (predictions.length>0) {
           for (var i=0;i<predictions.length;i++) {
             const x = predictions[i].bbox[0];
