@@ -32,10 +32,11 @@ navigator.mediaDevices
   .then(stream => {
     video.srcObject = stream
     video.onloadedmetadata = () => {
-      video.play();
-      ObjectDetect();
+      video.play()
     }
   })
+  
+ObjectDetect();
   
 function ObjectDetect() {
   cocoSsd.load().then(model => {
