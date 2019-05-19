@@ -80,11 +80,11 @@ document.getElementById('selectimage').onchange = function (event) {
 
 document.getElementById('originimage').onload = function (event) {
   var target = event.target || window.event.srcElement;
-  var width = Number(target.style.width.replace(/px/ig,""));
-  var height = Number(target.style.height.replace(/px/ig,""));
+  var width = Number(target.width.replace(/px/ig,""));
+  var height = Number(target.height.replace(/px/ig,""));
   console.log(target);
-  console.log(target.style.width);
-  console.log(target.style.height);
+  console.log(target.width);
+  console.log(target.height);
   console.log(width);
   console.log(height);
   document.getElementById("showimage").height = (400*height/width) +"px";
