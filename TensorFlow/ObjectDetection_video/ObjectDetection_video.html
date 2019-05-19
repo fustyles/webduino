@@ -73,8 +73,8 @@ function ObjectDetect() {
       }
       else
         document.getElementById('predictions').innerHTML = "Sorry";
-      model.dispose();
-      setTimeout(function(){ObjectDetect();},100);
+
+      setTimeout(function(){ObjectDetect();},0);
     });
   }); 
 }
