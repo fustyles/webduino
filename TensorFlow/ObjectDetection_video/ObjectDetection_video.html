@@ -41,7 +41,8 @@ window.onload = () => cocoSsd.load();
   
 function ObjectDetect() {
 
-  cocoSsd.load().then(model => {
+  //cocoSsd.load().then(
+    cocoSsd.model => {
     model.detect(video).then(predictions => {
 
       canvas.setAttribute("width", video.clientWidth);
@@ -76,7 +77,8 @@ function ObjectDetect() {
       
       ObjectDetect();
     });
-  }); 
+  }
+  //); 
 }
   
 </script>
