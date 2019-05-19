@@ -71,9 +71,9 @@ function ObjectDetect() {
         }
         else
           document.getElementById('predictions').innerHTML = "Sorry";
+        setTimeout('ObjectDetect();',10);
       });
   }); 
-  setTimeout('ObjectDetect();',10);
 }
   
 </script>
