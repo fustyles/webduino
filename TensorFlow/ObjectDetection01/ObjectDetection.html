@@ -73,13 +73,13 @@ document.getElementById('selectimage').onchange = function (event) {
     fr.onload = function () {
       var originimage = document.getElementById("originimage");
       originimage.src = fr.result;
+      document.getElementById("showimage").src = fr.result;
       var width = originimage.style.width.replace(/px/ig,"");
       var height = originimage.style.height.replace(/px/ig,"");
       console.log(width);
       console.log(height);
       console.log(400*height/width);
       document.getElementById("showimage").style.height = (400*height/width) +"px";
-      document.getElementById("showimage").src = fr.result;
     }
     fr.readAsDataURL(files[0]);
   }
