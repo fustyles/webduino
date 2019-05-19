@@ -22,7 +22,6 @@
 const img = document.getElementById('originimage');
   
 function ObjectDetect() {
-
   cocoSsd.load().then(model => {
     model.detect(img).then(predictions => {
       var img1 = new Image();
