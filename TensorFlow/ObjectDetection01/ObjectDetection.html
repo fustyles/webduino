@@ -73,8 +73,8 @@ document.getElementById('selectimage').onchange = function (event) {
     fr.onload = function () {
       var originimage = document.getElementById("originimage");
       originimage.src = fr.result;
-      var width = originimage.width;
-      var height = originimage.height;
+      var width = originimage.width.replace(/px/ig,"");
+      var height = originimage.height.replace(/px/ig,"");
       document.getElementById("showimage").style.height = (400*height/width) +"px";
       document.getElementById("showimage").src = fr.result;
       
