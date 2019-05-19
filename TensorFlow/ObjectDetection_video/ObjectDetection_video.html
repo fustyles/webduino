@@ -44,6 +44,7 @@ function ObjectDetect() {
 
       console.log('Predictions: ', predictions);
       context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
+      document.getElementById('predictions').innerHTML = "";
       
       if (predictions.length>0) {
           for (var i=0;i<predictions.length;i++) {
