@@ -40,8 +40,6 @@ navigator.mediaDevices
 function ObjectDetect() {
 
   cocoSsd.load().then(model => {
-    while (true) {
-
       model.detect(video).then(predictions => {
 
         canvas.setAttribute("width", video.clientWidth);
@@ -74,8 +72,6 @@ function ObjectDetect() {
         else
           document.getElementById('predictions').innerHTML = "Sorry";
       });
-
-    }
   }); 
 }
   
