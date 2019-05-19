@@ -18,9 +18,10 @@
 <div id="predictions" style="width:350px;color:red"></div>
   
 <script>
+
+const img = document.getElementById('originimage');
   
 function ObjectDetect() {
-  const img = document.getElementById('originimage');
 
   cocoSsd.load().then(model => {
     model.detect(img).then(predictions => {
