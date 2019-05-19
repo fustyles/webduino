@@ -75,8 +75,8 @@ document.getElementById('selectimage').onchange = function (event) {
       var showimage = document.getElementById("showimage");
       originimage.src = fr.result;
       showimage.src = fr.result;
-      var width = originimage.style.width.replace(/px/ig,"");
-      var height = originimage.style.height.replace(/px/ig,"");
+      var width = Number(originimage.style.width.replace(/px/ig,""));
+      var height = Number(originimage.style.height.replace(/px/ig,""));
       console.log(width);
       console.log(height);
       console.log(400*height/width);
