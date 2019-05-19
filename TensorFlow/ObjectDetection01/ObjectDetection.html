@@ -79,8 +79,12 @@ document.getElementById('selectimage').onchange = function (event) {
 }
 
 document.getElementById('originimage').onload = function (event) {
-  var width = Number(event.target.style.height.replace(/px/ig,""));
-  var height = Number(event.target.style.width.replace(/px/ig,""));
+  var width = Number(event.target.style.width.replace(/px/ig,""));
+  var height = Number(event.target.style.height.replace(/px/ig,""));
+  console.log(event.target.style.width);
+  console.log(event.target);
+  console.log(width);
+  console.log(height);
   document.getElementById("showimage").height = (400*height/width) +"px";
   document.getElementById("predictions").innerHTML='Detecting...';
   ObjectDetect();
