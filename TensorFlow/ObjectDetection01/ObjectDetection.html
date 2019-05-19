@@ -80,8 +80,6 @@ document.getElementById('selectimage').onchange = function (event) {
 
 document.getElementById('originimage').onload = function (event) {
   var target = event.target || window.event.srcElement;
-  var width = Number(target.width);
-  var height = Number(target.height);
   document.getElementById("showimage").style.height = (400*target.height/target.width) +"px";
   document.getElementById("predictions").innerHTML='Detecting...';
   ObjectDetect();
