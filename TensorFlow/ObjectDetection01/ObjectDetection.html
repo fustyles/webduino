@@ -72,14 +72,15 @@ document.getElementById('selectimage').onchange = function (event) {
     var fr = new FileReader();
     fr.onload = function () {
       var originimage = document.getElementById("originimage");
+      var showimage = document.getElementById("showimage");
       originimage.src = fr.result;
-      document.getElementById("showimage").src = fr.result;
+      showimage.src = fr.result;
       var width = originimage.style.width.replace(/px/ig,"");
       var height = originimage.style.height.replace(/px/ig,"");
       console.log(width);
       console.log(height);
       console.log(400*height/width);
-      document.getElementById("showimage").style.height = (400*height/width) +"px";
+      showimage.style.height = (400*height/width) +"px";
     }
     fr.readAsDataURL(files[0]);
   }
