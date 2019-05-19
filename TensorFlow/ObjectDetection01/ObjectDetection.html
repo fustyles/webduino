@@ -11,7 +11,7 @@
 <body>
 <input type="file" id="selectimage"></input>
 <br><br>
-<img id="showimage" src="cat.jpg" width="400" height="400">
+<img id="showimage" src="cat.jpg" width="350" height="350">
 <img id="originimage" src="cat.jpg" style="display:none">
 <canvas id="canvas" style="display:none"></canvas>
 <br>
@@ -80,7 +80,7 @@ document.getElementById('selectimage').onchange = function (event) {
 
 document.getElementById('originimage').onload = function (event) {
   var target = event.target || window.event.srcElement;
-  document.getElementById("showimage").style.height = (400*target.height/target.width) +"px";
+  document.getElementById("showimage").style.height = (350*target.height/target.width) +"px";
   document.getElementById("predictions").innerHTML='Detecting...';
   ObjectDetect();
 }
