@@ -12,7 +12,7 @@
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas" width="320" height="240"></canvas>
 <br>
-<button type="button" onclick="ObjectDetect();">Object Detect</button>
+<button type="button" onclick="ObjectDetect();">Start Detection</button>
 <div id="predictions" style="width:320px;color:red"></div>
   
 <script>
@@ -56,7 +56,7 @@ function ObjectDetect() {
         document.getElementById('predictions').innerHTML = "Sorry";
     });
   }); 
-  //ObjectDetect();
+  ObjectDetect();
 }
   
 </script>
