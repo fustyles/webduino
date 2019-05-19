@@ -32,7 +32,6 @@ function ObjectDetect() {
       var context = canvas.getContext("2d");
       context.drawImage(img,0,0);
       var s = (img1.width>img1.height)?img1.width:img1.height;
-      document.getElementById("showimage").style.height = (400*img1.height/img1.width) +"px";
       
       console.log('Predictions: ', predictions);
       document.getElementById('predictions').innerHTML = "";
@@ -72,9 +71,13 @@ document.getElementById('selectimage').onchange = function (event) {
   if (FileReader && files && files.length) {
     var fr = new FileReader();
     fr.onload = function () {
-      document.getElementById("showimage").style.height = "400px";
+      var originimage = document.getElementById("originimage");
+      originimage.src = fr.result;
+      var width = originimage.width;
+      var height = originimage.height;
+      document.getElementById("showimage").style.height = (400*height/width) +"px";
       document.getElementById("showimage").src = fr.result;
-      document.getElementById("originimage").src = fr.result;
+      
     }
     fr.readAsDataURL(files[0]);
   }
