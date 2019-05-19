@@ -82,12 +82,7 @@ document.getElementById('originimage').onload = function (event) {
   var target = event.target || window.event.srcElement;
   var width = Number(target.width);
   var height = Number(target.height);
-  console.log(target);
-  console.log(target.width);
-  console.log(target.height);
-  console.log(width);
-  console.log(height);
-  document.getElementById("showimage").height = (400*height/width) +"px";
+  document.getElementById("showimage").style.height = (400*height/width) +"px";
   document.getElementById("predictions").innerHTML='Detecting...';
   ObjectDetect();
 }
