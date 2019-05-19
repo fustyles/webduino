@@ -12,7 +12,7 @@
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas>
 <br>
-<button type="button" onclick="this.disabled='true';ObjectDetect();">Start Detection</button>
+<button type="button" onclick="ObjectDetect();">Start Detection</button>
 <div id="predictions" style="width:320px;color:red"></div>
   
 <script>
@@ -38,7 +38,7 @@ navigator.mediaDevices
   })
     
 function ObjectDetect() {
-  var test = cocoSsd.load().then(model => {
+  cocoSsd.load().then(model => {
       model.detect(video).then(predictions => {
 
         canvas.setAttribute("width", video.clientWidth);
@@ -70,10 +70,8 @@ function ObjectDetect() {
         }
         else
           document.getElementById('predictions').innerHTML = "Sorry";
-        setTimeout('ObjectDetect();',10);
       });
   }); 
-  test = "";
 }
   
 </script>
