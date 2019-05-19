@@ -36,7 +36,8 @@ navigator.mediaDevices
       video.play()
     }
   })
-  
+
+var modelPromise;
 window.onload = () => modelPromise = cocoSsd.load();
 const model = modelPromise;
   
