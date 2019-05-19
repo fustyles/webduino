@@ -12,7 +12,7 @@
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas>
 <br>
-<button type="button" onclick="ObjectDetect();">Start Detection</button>
+<button type="button" onclick="this.disabled='true';ObjectDetect();">Start Detection</button>
 <div id="predictions" style="width:320px;color:red"></div>
   
 <script>
@@ -70,7 +70,8 @@ function ObjectDetect() {
         }
         else
           document.getElementById('predictions').innerHTML = "Sorry";
-        setTimeout(function(){var sess = tf.Session();sess.close();ObjectDetect();},10);
+        
+        setTimeout('ObjectDetect();',0);
       });
   }); 
   
