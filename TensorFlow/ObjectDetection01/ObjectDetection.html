@@ -32,6 +32,7 @@ function ObjectDetect() {
       var context = canvas.getContext("2d");
       context.drawImage(img,0,0);
       var s = (img1.width>img1.height)?img1.width:img1.height;
+      document.getElementById("showimage").style.height = (400*img1.height/img1.width) +"px";
       
       console.log('Predictions: ', predictions);
       document.getElementById('predictions').innerHTML = "";
