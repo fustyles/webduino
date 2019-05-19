@@ -75,6 +75,7 @@ document.getElementById('selectimage').onchange = function (event) {
       originimage.src = fr.result;
       var width = originimage.style.width.replace(/px/ig,"");
       var height = originimage.style.height.replace(/px/ig,"");
+      console.log(400*height/width);
       document.getElementById("showimage").style.height = (400*height/width) +"px";
       document.getElementById("showimage").src = fr.result;
     }
