@@ -44,7 +44,8 @@ function ObjectDetect() {
     model.detect(video).then(predictions => {
 
       console.log('Predictions: ', predictions);
-      document.getElementById('predictions').innerHTML = "";
+      context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
+      
       if (predictions.length>0) {
           for (var i=0;i<predictions.length;i++) {
             const x = predictions[i].bbox[0];
@@ -52,7 +53,6 @@ function ObjectDetect() {
             const width = predictions[i].bbox[2];
             const height = predictions[i].bbox[3];
             
-            context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
             context.lineWidth = "3";
             context.strokeStyle = "#00FFFF";
             context.beginPath();
