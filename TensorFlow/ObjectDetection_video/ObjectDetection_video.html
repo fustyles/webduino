@@ -70,11 +70,10 @@ function ObjectDetect() {
         }
         else
           document.getElementById('predictions').innerHTML = "Sorry";
-        
-        // How to release GPU memory?
         setTimeout('ObjectDetect();',0);
       });
   }); 
+  // How to release GPU memory?
 }
   
 </script>
