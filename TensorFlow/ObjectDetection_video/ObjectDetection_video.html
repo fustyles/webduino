@@ -70,6 +70,7 @@ function ObjectDetect() {
         }
         else
           document.getElementById('predictions').innerHTML = "Sorry";
+        setTimeout('ObjectDetect();',10);
       });
   }); 
   delete test;
