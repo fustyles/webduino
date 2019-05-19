@@ -61,6 +61,7 @@ function ObjectDetect() {
       else
         document.getElementById('predictions').innerHTML = "Sorry!";
       document.getElementById('showimage').src = canvas.toDataURL("image/png");
+      // How to release GPU memory?
     });
   }); 
 }
