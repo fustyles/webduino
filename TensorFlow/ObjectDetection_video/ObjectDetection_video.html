@@ -12,6 +12,7 @@
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas" width="320" height="240"></canvas>
 <br>
+<button type="button" onclick="ObjectDetect();">Object Detect</button>
 <div id="predictions" style="width:320px;color:red"></div>
   
 <script>
@@ -35,8 +36,6 @@ navigator.mediaDevices
       video.play()
     }
   })
-  
-//ObjectDetect();
   
 function ObjectDetect() {
   cocoSsd.load().then(model => {
