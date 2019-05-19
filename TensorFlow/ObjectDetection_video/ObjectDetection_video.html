@@ -39,39 +39,39 @@ navigator.mediaDevices
     
 function ObjectDetect() {
   cocoSsd.load().then(model => {
-      model.detect(video).then(predictions => {
+    model.detect(video).then(predictions => {
 
-        canvas.setAttribute("width", video.clientWidth);
-        canvas.setAttribute("height", video.clientHeight); 
-        context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
-        document.getElementById('predictions').innerHTML = "";
+      canvas.setAttribute("width", video.clientWidth);
+      canvas.setAttribute("height", video.clientHeight); 
+      context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
+      document.getElementById('predictions').innerHTML = "";
 
-        console.log('Predictions: ', predictions);
-        if (predictions.length>0) {
-            for (var i=0;i<predictions.length;i++) {
-              const x = predictions[i].bbox[0];
-              const y = predictions[i].bbox[1];
-              const width = predictions[i].bbox[2];
-              const height = predictions[i].bbox[3];
+      console.log('Predictions: ', predictions);
+      if (predictions.length>0) {
+        for (var i=0;i<predictions.length;i++) {
+          const x = predictions[i].bbox[0];
+          const y = predictions[i].bbox[1];
+          const width = predictions[i].bbox[2];
+          const height = predictions[i].bbox[3];
 
-              context.lineWidth = "3";
-              context.strokeStyle = "#00FFFF";
-              context.beginPath();
-              context.rect(x, y, width, height);
-              context.stroke(); 
-              context.lineWidth = "2";
-              context.fillStyle = "red";
-              context.font = "12px Arial";
-              //context.fillText("["+i+"]"+predictions[i].class, x, y);
-              context.fillText(i, x, y);
+          context.lineWidth = "3";
+          context.strokeStyle = "#00FFFF";
+          context.beginPath();
+          context.rect(x, y, width, height);
+          context.stroke(); 
+          context.lineWidth = "2";
+          context.fillStyle = "red";
+          context.font = "12px Arial";
+          //context.fillText("["+i+"]"+predictions[i].class, x, y);
+          context.fillText(i, x, y);
 
-              document.getElementById('predictions').innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
-            }
+          document.getElementById('predictions').innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
         }
-        else
-          document.getElementById('predictions').innerHTML = "Sorry";
-        setTimeout('ObjectDetect();',0);
-      });
+      }
+      else
+        document.getElementById('predictions').innerHTML = "Sorry";
+      setTimeout('ObjectDetect();',0);
+    });
   }); 
   // How to release GPU memory?
 }
