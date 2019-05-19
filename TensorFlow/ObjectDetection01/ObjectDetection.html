@@ -80,8 +80,8 @@ document.getElementById('selectimage').onchange = function (event) {
 
 document.getElementById('originimage').onload = function (event) {
   var target = event.target || window.event.srcElement;
-  var width = Number(target.width.replace(/px/ig,""));
-  var height = Number(target.height.replace(/px/ig,""));
+  var width = Number(target.width);
+  var height = Number(target.height);
   console.log(target);
   console.log(target.width);
   console.log(target.height);
