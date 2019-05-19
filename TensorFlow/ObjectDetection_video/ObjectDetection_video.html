@@ -38,7 +38,7 @@ navigator.mediaDevices
   })
     
 function ObjectDetect() {
-  tf.dispose();
+  tf.tidy();
   cocoSsd.load().then(model => {
       model.detect(video).then(predictions => {
 
