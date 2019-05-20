@@ -39,6 +39,7 @@
   function ObjectDetect() {
     document.getElementById('predictions').innerHTML = "Please wait for loading model.";
     cocoSsd.load().then(model => {
+      document.getElementById('video').style.display = "none";
       DetectVideo(model);
     }); 
     // How to release GPU memory?
