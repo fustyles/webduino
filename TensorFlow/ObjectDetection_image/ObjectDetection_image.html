@@ -18,6 +18,8 @@
 <div id="predictions" style="width:350px;color:red"></div>
   
 <script>
+  
+var state = false;
 
 const img = document.getElementById('originimage');
   
@@ -30,43 +32,48 @@ function ObjectDetect() {
   
 function DetectImage(model) {
     model.detect(img).then(predictions => {
-      var img1 = new Image();
-      img1.src = img.src;
-      var canvas = document.getElementById("canvas");
-      canvas.setAttribute("width", img1.width);
-      canvas.setAttribute("height", img1.height);
-      var context = canvas.getContext("2d");
-      context.drawImage(img,0,0);
-      var s = (img1.width>img1.height)?img1.width:img1.height;
       
-      //console.log('Predictions: ', predictions);
-      document.getElementById('predictions').innerHTML = "";
-      
-      if (predictions.length>0) {
-        for (var i=0;i<predictions.length;i++) {
-          const x = predictions[i].bbox[0];
-          const y = predictions[i].bbox[1];
-          const width = predictions[i].bbox[2];
-          const height = predictions[i].bbox[3];
+      if (state==true) {
+        var img1 = new Image();
+        img1.src = img.src;
+        var canvas = document.getElementById("canvas");
+        canvas.setAttribute("width", img1.width);
+        canvas.setAttribute("height", img1.height);
+        var context = canvas.getContext("2d");
+        context.drawImage(img,0,0);
+        var s = (img1.width>img1.height)?img1.width:img1.height;
 
-          context.lineWidth = Math.round(s/100);
-          context.strokeStyle = "#00FFFF";
-          context.beginPath();
-          context.rect(x, y, width, height);
-          context.stroke(); 
+        //console.log('Predictions: ', predictions);
+        document.getElementById('predictions').innerHTML = "";
 
-          context.lineWidth = "2";
-          context.fillStyle = "red";
-          context.font = Math.round(s/30) + "px Arial";
-          context.fillText(predictions[i].class, x, y);
-          //context.fillText(i, x, y);
-          
-          document.getElementById('predictions').innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+        if (predictions.length>0) {
+          for (var i=0;i<predictions.length;i++) {
+            const x = predictions[i].bbox[0];
+            const y = predictions[i].bbox[1];
+            const width = predictions[i].bbox[2];
+            const height = predictions[i].bbox[3];
+
+            context.lineWidth = Math.round(s/100);
+            context.strokeStyle = "#00FFFF";
+            context.beginPath();
+            context.rect(x, y, width, height);
+            context.stroke(); 
+
+            context.lineWidth = "2";
+            context.fillStyle = "red";
+            context.font = Math.round(s/30) + "px Arial";
+            context.fillText(predictions[i].class, x, y);
+            //context.fillText(i, x, y);
+
+            document.getElementById('predictions').innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+          }
         }
+        else
+          document.getElementById('predictions').innerHTML = "Unrecognizable";
+        document.getElementById('showimage').src = canvas.toDataURL("image/png");
+        state = false;
       }
-      else
-        document.getElementById('predictions').innerHTML = "Unrecognizable";
-      document.getElementById('showimage').src = canvas.toDataURL("image/png");
+      
       DetectImage(model);
     });
 }
@@ -89,6 +96,7 @@ document.getElementById('originimage').onload = function (event) {
   var target = event.target || window.event.srcElement;
   document.getElementById("showimage").style.height = (350*target.height/target.width) +"px";
   document.getElementById("predictions").innerHTML = "Detecting...";
+  state = true;
 }
 
 window.onload = function () {ObjectDetect();}
