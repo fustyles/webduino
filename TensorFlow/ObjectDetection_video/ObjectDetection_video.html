@@ -69,6 +69,7 @@
         }
         else
           document.getElementById('predictions').innerHTML = "Sorry";
+        model.dispose();
         setTimeout('ObjectDetect();',0);
       });
     }); 
