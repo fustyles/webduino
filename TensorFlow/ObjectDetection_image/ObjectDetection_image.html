@@ -31,9 +31,10 @@ function ObjectDetect() {
 }
   
 function DetectImage(model) {
+  
+  if (state==true) {
+    state = false;
     model.detect(img).then(predictions => {
-      
-      if (state==true) {
         var img1 = new Image();
         img1.src = img.src;
         var canvas = document.getElementById("canvas");
@@ -71,11 +72,9 @@ function DetectImage(model) {
         else
           document.getElementById('predictions').innerHTML = "Unrecognizable";
         document.getElementById('showimage').src = canvas.toDataURL("image/png");
-        state = false;
-      }
-      
-      DetectImage(model);
     });
+  }    
+  DetectImage(model);
 }
     
 document.getElementById('selectimage').onchange = function (event) {
