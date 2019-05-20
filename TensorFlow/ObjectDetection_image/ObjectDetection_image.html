@@ -90,7 +90,8 @@ document.getElementById('originimage').onload = function (event) {
   document.getElementById("predictions").innerHTML='Detecting...';
 }
 
-ObjectDetect();
+window.onload = function () {ObjectDetect();}
+
 </script>
 
 </body>
