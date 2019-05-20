@@ -37,6 +37,7 @@ function DetectImage(model) {
       canvas.setAttribute("height", img1.height);
       var context = canvas.getContext("2d");
       context.drawImage(img,0,0);
+      document.getElementById("showimage").style.height = (350*img1.height/img1.width) +"px";
       var s = (img1.width>img1.height)?img1.width:img1.height;
       
       //console.log('Predictions: ', predictions);
@@ -85,8 +86,6 @@ document.getElementById('selectimage').onchange = function (event) {
 
 document.getElementById('originimage').onload = function (event) {
   var target = event.target || window.event.srcElement;
-  document.getElementById("showimage").style.height = (350*target.height/target.width) +"px";
-  document.getElementById("showimage").src = target.src;
   document.getElementById("predictions").innerHTML='Detecting...';
 }
 
