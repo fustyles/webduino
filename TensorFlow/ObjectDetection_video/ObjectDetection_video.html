@@ -37,6 +37,7 @@
     })
 
   function ObjectDetect() {
+    document.getElementById('predictions').innerHTML = "Load model...";
     cocoSsd.load().then(model => {
       DetectVideo(model);
     }); 
