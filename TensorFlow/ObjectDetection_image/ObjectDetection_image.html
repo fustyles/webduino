@@ -65,7 +65,7 @@ function DetectImage(model) {
         }
       }
       else
-        document.getElementById('predictions').innerHTML = "Sorry";
+        document.getElementById('predictions').innerHTML = "Unrecognizable";
       document.getElementById('showimage').src = canvas.toDataURL("image/png");
       DetectImage(model);
     });
