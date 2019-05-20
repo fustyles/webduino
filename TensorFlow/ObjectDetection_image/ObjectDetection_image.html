@@ -22,7 +22,13 @@
 const img = document.getElementById('originimage');
   
 function ObjectDetect() {
+  document.getElementById('predictions').innerHTML = "Load model...";
   cocoSsd.load().then(model => {
+    DetectImage(model);
+  }); 
+}
+  
+function DetectImage(model) {
     model.detect(img).then(predictions => {
       var img1 = new Image();
       img1.src = img.src;
@@ -61,11 +67,10 @@ function ObjectDetect() {
       else
         document.getElementById('predictions').innerHTML = "Sorry";
       document.getElementById('showimage').src = canvas.toDataURL("image/png");
-      // How to release GPU memory?
+      DetectImage(model);
     });
-  }); 
 }
-  
+    
 document.getElementById('selectimage').onchange = function (event) {
   var target = event.target || window.event.srcElement;
   var files = target.files;
