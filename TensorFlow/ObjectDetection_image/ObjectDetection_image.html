@@ -22,7 +22,7 @@
 const img = document.getElementById('originimage');
   
 function ObjectDetect() {
-  document.getElementById('predictions').innerHTML = "Load model...";
+  document.getElementById('predictions').innerHTML = "Please wait for loading model.";
   cocoSsd.load().then(model => {
     DetectImage(model);
   }); 
