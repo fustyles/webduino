@@ -51,7 +51,7 @@
       context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
       document.getElementById('predictions').innerHTML = "";
 
-      console.log('Predictions: ', predictions);
+      //console.log('Predictions: ', predictions);
       if (predictions.length>0) {
         for (var i=0;i<predictions.length;i++) {
           const x = predictions[i].bbox[0];
