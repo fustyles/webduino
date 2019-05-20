@@ -77,8 +77,8 @@ document.getElementById('selectimage').onchange = function (event) {
   if (FileReader && files && files.length) {
     var fr = new FileReader();
     fr.onload = function () {
-      document.getElementById("originimage").src = fr.result;
       document.getElementById("showimage").src = fr.result;
+      document.getElementById("originimage").src = fr.result;
     }
     fr.readAsDataURL(files[0]);
   }
