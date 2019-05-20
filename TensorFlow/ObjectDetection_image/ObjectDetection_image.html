@@ -11,8 +11,8 @@
 <body>
 <input type="file" id="selectimage"></input>
 <br><br>
-<img id="showimage" src="_blank" width="350" height="350">
-<img id="originimage" src="_blank" style="display:none">
+<img id="showimage" src="cat.jpg" width="350" height="350">
+<img id="originimage" src="cat.jpg" style="display:none">
 <canvas id="canvas" style="display:none"></canvas>
 <br>
 <div id="predictions" style="width:350px;color:red"></div>
@@ -89,7 +89,7 @@ document.getElementById('originimage').onload = function (event) {
   document.getElementById("showimage").style.height = (350*target.height/target.width) +"px";
   document.getElementById("predictions").innerHTML='Detecting...';
 }
-  
+
 ObjectDetect();
 </script>
 
