@@ -89,7 +89,6 @@ document.getElementById('originimage').onload = function (event) {
   var target = event.target || window.event.srcElement;
   document.getElementById("showimage").style.height = (350*target.height/target.width) +"px";
   document.getElementById("predictions").innerHTML = "Detecting...";
-  state = true;
 }
 
 window.onload = function () {ObjectDetect();}
