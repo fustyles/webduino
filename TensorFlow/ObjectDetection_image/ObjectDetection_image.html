@@ -58,8 +58,8 @@ function DetectImage(model) {
           context.lineWidth = "2";
           context.fillStyle = "red";
           context.font = Math.round(s/30) + "px Arial";
-          //context.fillText("["+i+"]"+predictions[i].class, x, y);
-          context.fillText(i, x, y);
+          context.fillText(predictions[i].class, x, y);
+          //context.fillText(i, x, y);
           
           document.getElementById('predictions').innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
         }
