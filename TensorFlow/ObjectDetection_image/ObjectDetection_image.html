@@ -77,9 +77,7 @@ document.getElementById('selectimage').onchange = function (event) {
     var fr = new FileReader();
     fr.onload = function () {
       document.getElementById("originimage").src = fr.result;
-      var canvas = document.getElementById("canvas");
-      var context = canvas.getContext("2d");
-      context.clearRect(0, 0, canvas.width, canvas.height);
+      document.getElementById("showimage").src = fr.result;
     }
     fr.readAsDataURL(files[0]);
   }
