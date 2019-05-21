@@ -72,10 +72,7 @@ function DetectImage(model) {
       }
       else
         pred.innerHTML = "Unrecognizable";
-
-      showimage.style.height = (350*originimage.height/originimage.width) +"px"; 
       showimage.src = canvas.toDataURL("image/png"); 
-      //DetectImage(model);
     });   
 }
     
@@ -92,6 +89,8 @@ document.getElementById('selectimage').onchange = function (event) {
 }
   
 document.getElementById('originimage').onload = function (event) {
+  showimage.style.height = (350*originimage.height/originimage.width) +"px"; 
+  showimage.src = originimage.src
   pred.innerHTML = "Detect...";
   if (mod) DetectImage(mod);
 }
