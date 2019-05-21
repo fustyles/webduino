@@ -39,7 +39,9 @@ function DetectImage(model) {
 
       context.clearRect(0, 0, canvas.width, canvas.height);
       canvas.setAttribute("width", originimage.width);
+      canvas.style.width = originimage.width + "px";
       canvas.setAttribute("height", originimage.height);
+      canvas.style.height = originimage.height + "px";
 
       context.drawImage(originimage,0,0);
       var s = (originimage.width>originimage.height)?originimage.width:originimage.height;   
