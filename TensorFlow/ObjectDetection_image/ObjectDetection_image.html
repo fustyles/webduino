@@ -14,7 +14,7 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_image/ObjectDetec
 <body>
 <input type="file" id="selectimage"></input>
 <br><br>
-<img id="ShowImage" src="" alt="Please select one image." width="350">
+<img id="ShowImage" src="" alt="Please select one image.">
 <img id="OriginImage" src="" style="display:none">
 <canvas id="Canvas" style="display:none"></canvas>
 <br>
@@ -85,7 +85,9 @@ document.getElementById('selectimage').onchange = function (event) {
 }
   
 document.getElementById('OriginImage').onload = function (event) {
-  ShowImage.style.height = (350*OriginImage.height/OriginImage.width) +"px"; 
+  var width = 350;
+  ShowImage.style.width = width +"px";
+  ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px"; 
   ShowImage.src = OriginImage.src
   ShowPredictions.innerHTML = "Detect...";
   if (Model) DetectImage(Model);
