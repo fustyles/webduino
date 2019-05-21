@@ -35,11 +35,7 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
     .then(stream => {
       video.srcObject = stream
       video.onloadedmetadata = () => {
-        video.play()
-        Canvas.setAttribute("width", OriginImage.width);
-        Canvas.style.width = OriginImage.width + "px";
-        Canvas.setAttribute("height", OriginImage.height);
-        Canvas.style.height = OriginImage.height + "px";        
+        video.play() 
       }
     })
 
@@ -53,6 +49,8 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
                         
   function DetectVideo(model) {
     model.detect(video).then(predictions => {
+      Canvas.setAttribute("width", OriginImage.width);
+      Canvas.setAttribute("height", OriginImage.height);          
       context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
       document.getElementById('predictions').innerHTML = "";
 
