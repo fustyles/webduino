@@ -18,21 +18,21 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_image/ObjectDetec
 <img id="OriginImage" src="https://upload.wikimedia.org/wikipedia/commons/6/69/Landform_of_Taiwan.png" style="display:none">
 <canvas id="Canvas" style="display:none"></canvas>
 <br>
-<div id="ShowPredictions" style="width:350px;color:red"></div>
+<div id="result" style="width:350px;color:red"></div>
   
 <script>
 var OriginImage = document.getElementById('OriginImage');
 var ShowImage = document.getElementById('ShowImage');
 var Canvas = document.getElementById("Canvas");
 var Context = Canvas.getContext("2d");  
-var ShowPredictions = document.getElementById('ShowPredictions');
+var result = document.getElementById('result');
 var Model;
   
 function ObjectDetect() {
-  ShowPredictions.innerHTML = "Please wait for loading model.";
+  result.innerHTML = "Please wait for loading model.";
   cocoSsd.load().then(cocoSsd_Model => {
     Model = cocoSsd_Model;
-    ShowPredictions.innerHTML = "Please select one image.";
+    result.innerHTML = "Please select one image.";
   }); 
 }
   
@@ -47,7 +47,7 @@ function DetectImage(Model) {
       Context.drawImage(OriginImage,0,0);
       var s = (OriginImage.width>OriginImage.height)?OriginImage.width:OriginImage.height;   
       if (Predictions.length>0) {
-        ShowPredictions.innerHTML = "";
+        result.innerHTML = "";
         for (var i=0;i<Predictions.length;i++) {
           const x = Predictions[i].bbox[0];
           const y = Predictions[i].bbox[1];
@@ -63,11 +63,11 @@ function DetectImage(Model) {
           Context.font = Math.round(s/30) + "px Arial";
           Context.fillText(Predictions[i].class, x, y);
           //Context.fillText(i, x, y);
-          ShowPredictions.innerHTML+= "[ "+i+" ] "+Predictions[i].class+", "+Math.round(Predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+          result.innerHTML+= "[ "+i+" ] "+Predictions[i].class+", "+Math.round(Predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
         }
       }
       else
-        ShowPredictions.innerHTML = "Unrecognizable";
+        result.innerHTML = "Unrecognizable";
       ShowImage.src = Canvas.toDataURL("image/png"); 
     });   
 }
@@ -95,7 +95,7 @@ document.getElementById('OriginImage').onload = function (event) {
   ShowImage.style.width = width +"px";
   ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px"; 
   ShowImage.src = OriginImage.src
-  ShowPredictions.innerHTML = "Detect...";
+  result.innerHTML = "Detect...";
   if (Model) DetectImage(Model);
 }
 window.onload = function () { ObjectDetect(); }
