@@ -34,41 +34,41 @@ function ObjectDetect() {
   
 function DetectImage(model) {
     model.detect(originimage).then(predictions => {
-        //console.log('Predictions: ', predictions);
+      //console.log('Predictions: ', predictions);
 
-          canvas.setAttribute("width", originimage.width);
-          canvas.setAttribute("height", originimage.height);
-          context.drawImage(originimage,0,0);
-          var s = (originimage.width>originimage.height)?originimage.width:originimage.height;   
-          
-          if (predictions.length>0) {
-            pred.innerHTML = "";
-            for (var i=0;i<predictions.length;i++) {
-              const x = predictions[i].bbox[0];
-              const y = predictions[i].bbox[1];
-              const width = predictions[i].bbox[2];
-              const height = predictions[i].bbox[3];
+      canvas.setAttribute("width", originimage.width);
+      canvas.setAttribute("height", originimage.height);
+      context.drawImage(originimage,0,0);
+      var s = (originimage.width>originimage.height)?originimage.width:originimage.height;   
 
-              context.lineWidth = Math.round(s/100);
-              context.strokeStyle = "#00FFFF";
-              context.beginPath();
-              context.rect(x, y, width, height);
-              context.stroke(); 
+      if (predictions.length>0) {
+        pred.innerHTML = "";
+        for (var i=0;i<predictions.length;i++) {
+          const x = predictions[i].bbox[0];
+          const y = predictions[i].bbox[1];
+          const width = predictions[i].bbox[2];
+          const height = predictions[i].bbox[3];
 
-              context.lineWidth = "2";
-              context.fillStyle = "red";
-              context.font = Math.round(s/30) + "px Arial";
-              context.fillText(predictions[i].class, x, y);
-              //context.fillText(i, x, y);
+          context.lineWidth = Math.round(s/100);
+          context.strokeStyle = "#00FFFF";
+          context.beginPath();
+          context.rect(x, y, width, height);
+          context.stroke(); 
 
-              pred.innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
-            }
-          }
-          else
-            pred.innerHTML = "Unrecognizable";
-          showimage.src = canvas.toDataURL("image/png"); 
+          context.lineWidth = "2";
+          context.fillStyle = "red";
+          context.font = Math.round(s/30) + "px Arial";
+          context.fillText(predictions[i].class, x, y);
+          //context.fillText(i, x, y);
 
-        DetectImage(model);
+          pred.innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+        }
+      }
+      else
+        pred.innerHTML = "Unrecognizable";
+      
+      showimage.src = canvas.toDataURL("image/png"); 
+      DetectImage(model);
     });   
 }
     
