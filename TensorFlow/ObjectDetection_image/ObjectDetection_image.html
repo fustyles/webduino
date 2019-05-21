@@ -37,13 +37,13 @@ function DetectImage(model) {
     model.detect(originimage).then(predictions => {
       //console.log('Predictions: ', predictions);
 
-      canvas.setAttribute("width", originimage.width);
-      canvas.setAttribute("height", originimage.height);
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(originimage,0,0);
-      var s = (originimage.width>originimage.height)?originimage.width:originimage.height;   
-
       if (predictions_pre!=predictions) {
+        canvas.setAttribute("width", originimage.width);
+        canvas.setAttribute("height", originimage.height);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(originimage,0,0);
+        var s = (originimage.width>originimage.height)?originimage.width:originimage.height;   
+        
         if (predictions.length>0) {
           pred.innerHTML = "";
           for (var i=0;i<predictions.length;i++) {
