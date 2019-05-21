@@ -30,14 +30,13 @@ function ObjectDetect() {
   
 function DetectImage(model) {
     model.detect(img).then(predictions => {
-        var img1 = new Image();
-        img1.src = img.src;
         var canvas = document.getElementById("canvas");
-        canvas.setAttribute("width", img1.width);
-        canvas.setAttribute("height", img1.height);
+        canvas.setAttribute("width", img.width);
+        canvas.setAttribute("height", img.height);
         var context = canvas.getContext("2d");
         context.drawImage(img,0,0);
-        var s = (img1.width>img1.height)?img1.width:img1.height;
+        document.getElementById("showimage").style.height = (350*img.height/img.width) +"px";
+        var s = (img.width>img.height)?img.width:img.height;
 
         //console.log('Predictions: ', predictions);
         document.getElementById('predictions').innerHTML = "";
@@ -77,7 +76,6 @@ document.getElementById('selectimage').onchange = function (event) {
   if (FileReader && files && files.length) {
     var fr = new FileReader();
     fr.onload = function () {
-      document.getElementById("showimage").src = fr.result;
       document.getElementById("originimage").src = fr.result;
     }
     fr.readAsDataURL(files[0]);
@@ -86,7 +84,6 @@ document.getElementById('selectimage').onchange = function (event) {
 
 document.getElementById('originimage').onload = function (event) {
   var target = event.target || window.event.srcElement;
-  document.getElementById("showimage").style.height = (350*target.height/target.width) +"px";
   document.getElementById("predictions").innerHTML = "Detecting...";
 }
 
