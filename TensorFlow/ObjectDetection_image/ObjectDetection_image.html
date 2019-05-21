@@ -31,9 +31,10 @@ function ObjectDetect() {
 function DetectImage(model) {
     model.detect(img).then(predictions => {
         var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+        context.clearRect(0, 0, canvas.width, canvas.height);
         canvas.setAttribute("width", img.width);
         canvas.setAttribute("height", img.height);
-        var context = canvas.getContext("2d");
         context.drawImage(img,0,0);
         document.getElementById("showimage").style.height = (350*img.height/img.width) +"px";
         var s = (img.width>img.height)?img.width:img.height;
