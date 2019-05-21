@@ -13,7 +13,7 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
 </head>
 <body>
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
-<canvas id="canvas"></canvas>
+<canvas id="canvas" style="position:relative"></canvas>
 <br>
 <button type="button" onclick="this.disabled='true';ObjectDetect();">Start</button>
 <div id="predictions" style="width:320px;color:red"></div>
@@ -42,13 +42,13 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
   function ObjectDetect() {
     document.getElementById('predictions').innerHTML = "Please wait for loading model.";
     cocoSsd.load().then(model => {
-      //video.style.visibility="hidden";
       DetectVideo(model);
     }); 
   }
                         
   function DetectVideo(model) {
     model.detect(video).then(predictions => { 
+      video.style.visibility="hidden";
       try { 
         document.createEvent("TouchEvent"); 
         canvas.setAttribute("width", video.clientWidth);
