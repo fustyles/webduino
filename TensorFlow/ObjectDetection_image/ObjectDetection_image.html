@@ -30,8 +30,8 @@ var Model;
   
 function ObjectDetect() {
   ShowPredictions.innerHTML = "Please wait for loading model.";
-  cocoSsd.load().then(cocossd_Model => {
-    Model = cocossd_Model;
+  cocoSsd.load().then(cocoSsd_Model => {
+    Model = cocoSsd_Model;
     DetectImage(Model);
   }); 
 }
