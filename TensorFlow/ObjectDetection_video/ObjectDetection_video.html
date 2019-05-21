@@ -56,9 +56,9 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
         context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
       }
       catch(e) { 
-        canvas.setAttribute("width", video.Width);
-        canvas.setAttribute("height", video.Height);        
-        context.drawImage(video, 0, 0, video.Width, video.Height);
+        canvas.setAttribute("width", video.width);
+        canvas.setAttribute("height", video.height);        
+        context.drawImage(video, 0, 0, video.width, video.height);
       }  
       
       document.getElementById('predictions').innerHTML = "";
