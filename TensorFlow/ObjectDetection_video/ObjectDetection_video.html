@@ -50,7 +50,6 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
                         
   function DetectVideo(model) {
     model.detect(video).then(predictions => {
-
       context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
       document.getElementById('predictions').innerHTML = "";
 
