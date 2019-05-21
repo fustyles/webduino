@@ -42,15 +42,14 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
   function ObjectDetect() {
     document.getElementById('predictions').innerHTML = "Please wait for loading model.";
     cocoSsd.load().then(model => {
+      video.style.visibility="hidden";
+      video.style.position="absolute";
       DetectVideo(model);
     }); 
   }
                         
   function DetectVideo(model) {
     model.detect(video).then(predictions => { 
-      video.style.visibility="hidden";
-      video.style.position="absolute";
-      
       try { 
         document.createEvent("TouchEvent"); 
         canvas.setAttribute("width", video.clientWidth);
