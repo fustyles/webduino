@@ -16,7 +16,7 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_image/ObjectDetec
 <br><br>
 <img id="ShowImage" src="cat.jpg" width="350">
 <img id="OriginImage" src="cat.jpg" style="display:none">
-<Canvas id="Canvas" style="display:none"></Canvas>
+<canvas id="Canvas" style="display:none"></canvas>
 <br>
 <div id="Predictions" style="width:350px;color:red"></div>
   
@@ -29,7 +29,7 @@ var ShowPredictions = document.getElementById('Predictions');
 var Model;
   
 function ObjectDetect() {
-  ShowPredictions.innerHTML = "Please wait for loading Model.";
+  ShowPredictions.innerHTML = "Please wait for loading model.";
   cocoSsd.load().then(cocossd_Model => {
     Model = cocossd_Model;
     DetectImage(Model);
