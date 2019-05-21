@@ -35,9 +35,7 @@ function ObjectDetect() {
 function DetectImage(model) {
     model.detect(originimage).then(predictions => {
         //console.log('Predictions: ', predictions);
-
         if (pred.innerHTML == "Detect") {
-          
           canvas.setAttribute("width", originimage.width);
           canvas.setAttribute("height", originimage.height);
           context.drawImage(originimage,0,0);
