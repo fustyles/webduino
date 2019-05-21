@@ -24,6 +24,7 @@ var showimage = document.getElementById('showimage');
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");  
 var pred = document.getElementById('predictions');
+var predictions_pre = null;
   
 function ObjectDetect() {
   pred.innerHTML = "Please wait for loading model.";
@@ -41,33 +42,36 @@ function DetectImage(model) {
       context.drawImage(originimage,0,0);
       var s = (originimage.width>originimage.height)?originimage.width:originimage.height;   
 
-      if (predictions.length>0) {
-        pred.innerHTML = "";
-        for (var i=0;i<predictions.length;i++) {
-          const x = predictions[i].bbox[0];
-          const y = predictions[i].bbox[1];
-          const width = predictions[i].bbox[2];
-          const height = predictions[i].bbox[3];
+      if (predictions_pre!=predictions) {
+        if (predictions.length>0) {
+          pred.innerHTML = "";
+          for (var i=0;i<predictions.length;i++) {
+            const x = predictions[i].bbox[0];
+            const y = predictions[i].bbox[1];
+            const width = predictions[i].bbox[2];
+            const height = predictions[i].bbox[3];
 
-          context.lineWidth = Math.round(s/100);
-          context.strokeStyle = "#00FFFF";
-          context.beginPath();
-          context.rect(x, y, width, height);
-          context.stroke(); 
+            context.lineWidth = Math.round(s/100);
+            context.strokeStyle = "#00FFFF";
+            context.beginPath();
+            context.rect(x, y, width, height);
+            context.stroke(); 
 
-          context.lineWidth = "2";
-          context.fillStyle = "red";
-          context.font = Math.round(s/30) + "px Arial";
-          context.fillText(predictions[i].class, x, y);
-          //context.fillText(i, x, y);
+            context.lineWidth = "2";
+            context.fillStyle = "red";
+            context.font = Math.round(s/30) + "px Arial";
+            context.fillText(predictions[i].class, x, y);
+            //context.fillText(i, x, y);
 
-          pred.innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+            pred.innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+          }
         }
+        else
+          pred.innerHTML = "Unrecognizable";
+
+        showimage.src = canvas.toDataURL("image/png"); 
+        predictions_pre = predictions;
       }
-      else
-        pred.innerHTML = "Unrecognizable";
-      
-      showimage.src = canvas.toDataURL("image/png"); 
       DetectImage(model);
     });   
 }
