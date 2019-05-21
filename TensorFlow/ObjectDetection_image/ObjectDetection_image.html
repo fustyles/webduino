@@ -82,11 +82,6 @@ document.getElementById('selectimage').onchange = function (event) {
   }
 }
 
-document.getElementById('originimage').onload = function (event) {
-  var target = event.target || window.event.srcElement;
-  document.getElementById("predictions").innerHTML = "Detecting...";
-}
-
 window.onload = function () {ObjectDetect();}
 
 </script>
