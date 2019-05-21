@@ -85,7 +85,7 @@ document.getElementById('selectimage').onchange = function (event) {
 }
   
 document.getElementById('OriginImage').onload = function (event) {
-  var width = 350;
+  var width = document.body.clientWidth;
   ShowImage.style.width = width +"px";
   ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px"; 
   ShowImage.src = OriginImage.src
