@@ -24,13 +24,13 @@ var showimage = document.getElementById('showimage');
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");  
 var pred = document.getElementById('predictions');
-var mod;
+var model;
   
 function ObjectDetect() {
   pred.innerHTML = "Please wait for loading model.";
-  cocoSsd.load().then(model => {
-    mod = model;
-    DetectImage(mod);
+  cocoSsd.load().then(cocossd_model => {
+    model = cocossd_model;
+    DetectImage(model);
   }); 
 }
   
@@ -92,7 +92,7 @@ document.getElementById('originimage').onload = function (event) {
   showimage.style.height = (350*originimage.height/originimage.width) +"px"; 
   showimage.src = originimage.src
   pred.innerHTML = "Detect...";
-  if (mod) DetectImage(mod);
+  if (model) DetectImage(model);
 }
 
 window.onload = function () {ObjectDetect();}
