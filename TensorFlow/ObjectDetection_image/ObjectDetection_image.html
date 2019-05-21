@@ -28,6 +28,7 @@ var pred = document.getElementById('predictions');
 function ObjectDetect() {
   pred.innerHTML = "Please wait for loading model.";
   cocoSsd.load().then(model => {
+    pred.innerHTML = "Detect";
     DetectImage(model);
   }); 
 }
