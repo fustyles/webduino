@@ -48,10 +48,19 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
   }
                         
   function DetectVideo(model) {
-    model.detect(video).then(predictions => {      
-      Canvas.setAttribute("width", video.Width);
-      Canvas.setAttribute("height", video.Height);        
-      context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
+    model.detect(video).then(predictions => { 
+      try { 
+        document.createEvent("TouchEvent"); 
+        Canvas.setAttribute("width", video.clientWidth);
+        Canvas.setAttribute("height", video.clientHeight);        
+        context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
+      }
+      catch(e) { 
+        Canvas.setAttribute("width", video.Width);
+        Canvas.setAttribute("height", video.Height);        
+        context.drawImage(video, 0, 0, video.Width, video.Height);
+      }  
+      
       document.getElementById('predictions').innerHTML = "";
 
       //console.log('Predictions: ', predictions);
