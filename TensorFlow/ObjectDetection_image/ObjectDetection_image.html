@@ -30,7 +30,7 @@ function ObjectDetect() {
   pred.innerHTML = "Please wait for loading model.";
   cocoSsd.load().then(model => {
     mod = model;
-    //DetectImage(model);
+    DetectImage(mod);
   }); 
 }
   
