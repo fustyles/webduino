@@ -32,11 +32,9 @@ function DetectImage(model) {
     model.detect(img).then(predictions => {
         var canvas = document.getElementById("canvas");
         var context = canvas.getContext("2d");
-        context.clearRect(0, 0, canvas.width, canvas.height);
         canvas.setAttribute("width", img.width);
         canvas.setAttribute("height", img.height);
         context.drawImage(img,0,0);
-        document.getElementById("showimage").style.height = (350*img.height/img.width) +"px";
         var s = (img.width>img.height)?img.width:img.height;
 
         //console.log('Predictions: ', predictions);
@@ -66,6 +64,7 @@ function DetectImage(model) {
         }
         else
           document.getElementById('predictions').innerHTML = "Unrecognizable";
+        document.getElementById("showimage").style.height = (350*img.height/img.width) +"px";
         document.getElementById('showimage').src = canvas.toDataURL("image/png"); 
         DetectImage(model);
     });   
@@ -78,6 +77,9 @@ document.getElementById('selectimage').onchange = function (event) {
     var fr = new FileReader();
     fr.onload = function () {
       document.getElementById("originimage").src = fr.result;
+      var canvas = document.getElementById("canvas");
+      var context = canvas.getContext("2d");
+      context.clearRect(0, 0, canvas.width, canvas.height);
     }
     fr.readAsDataURL(files[0]);
   }
