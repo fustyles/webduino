@@ -15,13 +15,13 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas>
 <br>
-<div id="predictions" style="width:320px;color:red"></div>
+<div id="result" style="width:320px;color:red"></div>
   
 <script>
   var video = document.getElementById('video');
   var canvas = document.getElementById('canvas'); 
   var context = canvas.getContext('2d');
-  var result = document.getElementById('predictions');  
+  var result = document.getElementById('result');  
 
   navigator.mediaDevices
     .getUserMedia({
