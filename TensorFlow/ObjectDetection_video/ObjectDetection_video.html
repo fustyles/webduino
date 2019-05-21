@@ -42,6 +42,7 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
   function ObjectDetect() {
     document.getElementById('predictions').innerHTML = "Please wait for loading model.";
     cocoSsd.load().then(model => {
+      document.getElementById('predictions').innerHTML = "";
       video.style.visibility="hidden";
       video.style.position="absolute";
       DetectVideo(model);
@@ -49,7 +50,7 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
   }
                         
   function DetectVideo(model) {
-    document.getElementById('predictions').innerHTML = "";
+    
     model.detect(video).then(predictions => { 
       try { 
         document.createEvent("TouchEvent"); 
@@ -63,7 +64,9 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
         context.drawImage(video, 0, 0, video.width, video.height);
       }  
       
+      document.getElementById('predictions').innerHTML = "";
       //console.log('Predictions: ', predictions);
+      
       if (predictions.length>0) {
         for (var i=0;i<predictions.length;i++) {
           const x = predictions[i].bbox[0];
