@@ -36,14 +36,16 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
       video.srcObject = stream
       video.onloadedmetadata = () => {
         video.play()
+        Canvas.setAttribute("width", OriginImage.width);
+        Canvas.style.width = OriginImage.width + "px";
+        Canvas.setAttribute("height", OriginImage.height);
+        Canvas.style.height = OriginImage.height + "px";        
       }
     })
 
   function ObjectDetect() {
     document.getElementById('predictions').innerHTML = "Please wait for loading model.";
     cocoSsd.load().then(model => {
-      canvas.setAttribute("width", video.clientWidth);
-      canvas.setAttribute("height", video.clientHeight); 
       DetectVideo(model);
     }); 
   }
