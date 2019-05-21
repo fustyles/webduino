@@ -35,12 +35,12 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
       video.srcObject = stream
       video.onloadedmetadata = () => {       
         video.play();
-        document.getElementById('predictions').innerHTML = "Please wait for loading model.";
         ObjectDetect();
       }
     })
 
   function ObjectDetect() {
+    document.getElementById('predictions').innerHTML = "Please wait for loading model.";
     cocoSsd.load().then(model => {
       DetectVideo(model);
     }); 
