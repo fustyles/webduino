@@ -24,12 +24,13 @@ var showimage = document.getElementById('showimage');
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");  
 var pred = document.getElementById('predictions');
-var predictions_pre = null;
+var mod;
   
 function ObjectDetect() {
   pred.innerHTML = "Please wait for loading model.";
   cocoSsd.load().then(model => {
-    DetectImage(model);
+    mod = model;
+    //DetectImage(model);
   }); 
 }
   
@@ -74,7 +75,7 @@ function DetectImage(model) {
 
       showimage.style.height = (350*originimage.height/originimage.width) +"px"; 
       showimage.src = canvas.toDataURL("image/png"); 
-      DetectImage(model);
+      //DetectImage(model);
     });   
 }
     
@@ -92,6 +93,7 @@ document.getElementById('selectimage').onchange = function (event) {
   
 document.getElementById('originimage').onload = function (event) {
   pred.innerHTML = "Detect...";
+  DetectImage(mod);
 }
 
 window.onload = function () {ObjectDetect();}
