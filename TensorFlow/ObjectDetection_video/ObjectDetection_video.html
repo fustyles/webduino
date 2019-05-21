@@ -15,7 +15,6 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
 <video id="video" width="320" height="240" style="position:absolute" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas>
 <br>
-<button type="button" onclick="this.disabled='true';ObjectDetect();">Start</button>
 <div id="predictions" style="width:320px;color:red"></div>
   
 <script>
@@ -35,7 +34,8 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
     .then(stream => {
       video.srcObject = stream
       video.onloadedmetadata = () => {       
-        video.play() 
+        video.play();
+        ObjectDetect();
       }
     })
 
