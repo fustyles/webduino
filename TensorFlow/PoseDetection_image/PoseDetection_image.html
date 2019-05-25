@@ -59,7 +59,7 @@ async function DetectPose(Model) {
       const y = pose.keypoints[i].position.y;
       Context.fillStyle="red";
       Context.beginPath();
-      Context.arc(x, y, Math.round(s/100), 0,2*Math.PI);
+      Context.arc(x, y, Math.round(s/200), 0,2*Math.PI);
       Context.closePath();
       Context.fill();
     }
