@@ -41,10 +41,7 @@ function ObjectDetect() {
   
 function DetectPose(Model) {
   console.log(Model);
-  const poses = Model.estimatePoses(OriginImage, {
-    flipHorizontal: false,
-    decodingMethod: 'single-person'
-  });
+  const poses = Model.estimateSinglePose(OriginImage, 0.50, false, 16);
   const pose = poses[0];
   console.log(pose);
 }
