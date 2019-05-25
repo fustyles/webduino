@@ -1,5 +1,7 @@
 console.log('Hello TensorFlow');
 
+const classNames = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+
 import {MnistData} from './data.js';
 
 async function showExamples(data) {
@@ -177,9 +179,7 @@ async function showConfusion(model, data) {
   labels.dispose();
 }
 
-const classNames = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
-
-function doPrediction(model, data, testDataSize = 20) {
+function doPrediction(model, data, testDataSize = 500) {
   const IMAGE_WIDTH = 28;
   const IMAGE_HEIGHT = 28;
   const testData = data.nextTestBatch(testDataSize);
