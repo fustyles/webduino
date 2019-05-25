@@ -33,9 +33,20 @@ var Model;
 function ObjectDetect() {
   result.innerHTML = "Please wait for loading model.";
   posenet.load().then(function(net) {
+    
+      const poses = net.estimatePoses(OriginImage, {
+        flipHorizontal: false,
+        decodingMethod: 'single-person'
+      });
+      console.log(poses);
+      const pose = poses[0];
+      return pose;    
+    
+    /*
     Model = net;
     console.log(Model);
     result.innerHTML = "Please select one image.";
+    */
   }); 
 }
   
