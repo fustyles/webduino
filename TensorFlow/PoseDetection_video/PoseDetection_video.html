@@ -78,7 +78,7 @@ async function DetectVideo(Model) {
     }
     try { 
       document.createEvent("TouchEvent");
-      setTimeout(function(){DetectVideo(Model);},100);
+      setTimeout(function(){DetectVideo(Model);},200);
     }
     catch(e) { 
       DetectVideo(Model);
