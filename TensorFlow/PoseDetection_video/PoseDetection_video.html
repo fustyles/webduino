@@ -76,7 +76,13 @@ async function DetectVideo(Model) {
         result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].score*100) + "%, " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + "<br>";
       }
     }
-    DetectVideo(Model);
+    try { 
+      document.createEvent("TouchEvent");
+      setTimeout(function(){DetectVideo(Model);},300);
+    }
+    catch(e) { 
+      DetectVideo(Model);
+    }   
   });
 }
 
