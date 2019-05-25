@@ -55,7 +55,7 @@ async function DetectPose(Model) {
   if (pose.keypoints.length>0)
     for (var i=0;i<pose.keypoints.length;i++) {
       result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + ", " + Math.round(pose.keypoints[i].score*100) + "% <br>";
-      if (pose.keypoints[i].score>=0.5) {
+      if (pose.keypoints[i].score>=0.1) {
         const x = pose.keypoints[i].position.x;
         const y = pose.keypoints[i].position.y;
         Context.fillStyle="red";
