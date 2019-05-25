@@ -18,15 +18,15 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_image/ObjectDetec
 <br><br>
 <img id="ShowImage" src="https://upload.wikimedia.org/wikipedia/commons/6/69/Landform_of_Taiwan.png">
 <img id="OriginImage" src="https://upload.wikimedia.org/wikipedia/commons/6/69/Landform_of_Taiwan.png" style="display:none">
-<canvas id="Canvas" style="display:none"></canvas>
+<canvas id="canvas" style="display:none"></canvas>
 <br>
 <div id="result" style="width:350px;color:red"></div>
   
 <script>
 var OriginImage = document.getElementById('OriginImage');
 var ShowImage = document.getElementById('ShowImage');
-var Canvas = document.getElementById("Canvas");
-var Context = Canvas.getContext("2d");  
+var canvas = document.getElementById("canvas");
+var context = canvas.getcontext("2d");  
 var result = document.getElementById('result');
 var Model;
   
@@ -41,12 +41,12 @@ function ObjectDetect() {
 function DetectImage(Model) {
     Model.detect(OriginImage).then(Predictions => {
       //console.log('Predictions: ', Predictions);
-      Context.clearRect(0, 0, Canvas.width, Canvas.height);
-      Canvas.setAttribute("width", OriginImage.width);
-      Canvas.style.width = OriginImage.width + "px";
-      Canvas.setAttribute("height", OriginImage.height);
-      Canvas.style.height = OriginImage.height + "px";
-      Context.drawImage(OriginImage,0,0);
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.setAttribute("width", OriginImage.width);
+      canvas.style.width = OriginImage.width + "px";
+      canvas.setAttribute("height", OriginImage.height);
+      canvas.style.height = OriginImage.height + "px";
+      context.drawImage(OriginImage,0,0);
       var s = (OriginImage.width>OriginImage.height)?OriginImage.width:OriginImage.height;   
       if (Predictions.length>0) {
         result.innerHTML = "";
@@ -55,22 +55,22 @@ function DetectImage(Model) {
           const y = Predictions[i].bbox[1];
           const width = Predictions[i].bbox[2];
           const height = Predictions[i].bbox[3];
-          Context.lineWidth = Math.round(s/100);
-          Context.strokeStyle = "#00FFFF";
-          Context.beginPath();
-          Context.rect(x, y, width, height);
-          Context.stroke(); 
-          Context.lineWidth = "2";
-          Context.fillStyle = "red";
-          Context.font = Math.round(s/30) + "px Arial";
-          Context.fillText(Predictions[i].class, x, y);
-          //Context.fillText(i, x, y);
+          context.lineWidth = Math.round(s/100);
+          context.strokeStyle = "#00FFFF";
+          context.beginPath();
+          context.rect(x, y, width, height);
+          context.stroke(); 
+          context.lineWidth = "2";
+          context.fillStyle = "red";
+          context.font = Math.round(s/30) + "px Arial";
+          context.fillText(Predictions[i].class, x, y);
+          //context.fillText(i, x, y);
           result.innerHTML+= "[ "+i+" ] "+Predictions[i].class+", "+Math.round(Predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
         }
       }
       else
         result.innerHTML = "Unrecognizable";
-      ShowImage.src = Canvas.toDataURL("image/png"); 
+      ShowImage.src = canvas.toDataURL("image/png"); 
     });   
 }
     
