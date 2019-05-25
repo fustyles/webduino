@@ -40,7 +40,7 @@ function ObjectDetect() {
 }
   
 async function DetectImage(Model) {
-  const pose = await Model.estimateSinglePose(OriginImage, 0.75, false, 16);
+  const pose = await Model.estimateMultiplePoses(OriginImage, 0.75, false, 16);
   console.log(Model);
   //console.log(pose.score);
   //console.log(pose.keypoints);
@@ -54,18 +54,23 @@ async function DetectImage(Model) {
   Context.drawImage(OriginImage,0,0);  
   var s = (OriginImage.width>OriginImage.height)?OriginImage.width:OriginImage.height;
   
-  if (pose.keypoints.length>0) {
-    for (var i=0;i<pose.keypoints.length;i++) {
-      if (pose.keypoints[i].score>0.1) {
-        const x = pose.keypoints[i].position.x;
-        const y = pose.keypoints[i].position.y;
-        Context.fillStyle="#00FFFF";
-        Context.beginPath();
-        Context.arc(x, y, Math.round(s/150), 0,2*Math.PI);
-        Context.closePath();
-        Context.fill();
-      }      
-      result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].score*100) + "%, " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + "<br>";
+  if (pose.length>0) {
+    for (var n=0;n<pose.length;n++) {
+      var k = pose[n].keypoints;
+      if (k.length>0) {
+        for (var i=0;i<k.length;i++) {
+          if (k[i].score>0.1) {
+            const x = k[i].position.x;
+            const y = k[i].position.y;
+            Context.fillStyle="#00FFFF";
+            Context.beginPath();
+            Context.arc(x, y, Math.round(s/150), 0,2*Math.PI);
+            Context.closePath();
+            Context.fill();
+          }      
+          result.innerHTML += "[" + n + "]" + k[i].part + ", " + Math.round(k[i].score*100) + "%, " + Math.round(k[i].position.x) + ", " + Math.round(k[i].position.y) + "<br>";
+        }
+      }
     }
   }
   else
