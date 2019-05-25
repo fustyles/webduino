@@ -1,7 +1,5 @@
 console.log('Hello TensorFlow');
 
-const classNames = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
-
 import {MnistData} from './data.js';
 
 async function showExamples(data) {
@@ -145,6 +143,8 @@ async function train(model, data) {
   });
 }
 
+const classNames = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+
 function doPrediction(model, data, testDataSize = 500) {
   const IMAGE_WIDTH = 28;
   const IMAGE_HEIGHT = 28;
@@ -156,7 +156,6 @@ function doPrediction(model, data, testDataSize = 500) {
   testxs.dispose();
   return [preds, labels];
 }
-
 
 async function showAccuracy(model, data) {
   const [preds, labels] = doPrediction(model, data);
