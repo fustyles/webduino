@@ -54,30 +54,31 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
   }
                         
 async function DetectVideo(Model) {
-  const pose = await Model.estimateSinglePose(video, 0.2, false, 16);
-  //console.log(pose.score);
-  //console.log(pose.keypoints);
-  
-  canvas.setAttribute("width", video.width);
-  canvas.setAttribute("height", video.height);        
-  context.drawImage(video, 0, 0, video.width, video.height);
-  result.innerHTML = "";  
-  
-  if (pose.keypoints.length>0) {
-    for (var i=0;i<pose.keypoints.length;i++) {
-      const x = pose.keypoints[i].position.x;
-      const y = pose.keypoints[i].position.y;
-      context.fillStyle="red";
-      context.beginPath();
-      context.arc(x, y, 3, 0,2*Math.PI);
-      context.closePath();
-      context.fill();
-      
-      result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].score*100) + "%, " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + "<br>";
-    }
-    
-  }
-  setTimeout(function(){DetectVideo(Model);},300);
+  await Model.estimateSinglePose(video, 0.2, false, 16).then(pose => {
+	  //console.log(pose.score);
+	  //console.log(pose.keypoints);
+	  
+	  canvas.setAttribute("width", video.width);
+	  canvas.setAttribute("height", video.height);        
+	  context.drawImage(video, 0, 0, video.width, video.height);
+	  result.innerHTML = "";  
+	  
+	  if (pose.keypoints.length>0) {
+		for (var i=0;i<pose.keypoints.length;i++) {
+		  const x = pose.keypoints[i].position.x;
+		  const y = pose.keypoints[i].position.y;
+		  context.fillStyle="red";
+		  context.beginPath();
+		  context.arc(x, y, 3, 0,2*Math.PI);
+		  context.closePath();
+		  context.fill();
+		  
+		  result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].score*100) + "%, " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + "<br>";
+		}
+		
+	  }
+	  DetectVideo(Model);
+    });
 }
 
 </script>
