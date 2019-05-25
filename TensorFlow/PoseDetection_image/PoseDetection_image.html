@@ -69,7 +69,7 @@ document.getElementById('OriginImage').onload = function (event) {
   ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px"; 
   ShowImage.src = OriginImage.src
   result.innerHTML = "Detect...";
-  if (Model) async DetectPose(Model);
+  if (Model) DetectPose(Model);
 }
   
 window.onload = function () { ObjectDetect(); }
