@@ -50,18 +50,21 @@ async function DetectPose(Model) {
   Canvas.setAttribute("height", OriginImage.height);
   Canvas.style.height = OriginImage.height + "px";
   Context.drawImage(OriginImage,0,0);  
-  
-  for (var i=0;i<pose.keypoints.length;i++) {
-    result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + ", " + Math.round(pose.keypoints[i].score*100) + "% <br>";
-    if (pose.keypoints[i].score>=0.5) {
-      const x = pose.keypoints[i].position.x;
-      const y = pose.keypoints[i].position.y;
-      Context.fillStyle="red";
-      Context.beginPath();
-      Context.arc(x, y, 10, 0,2*Math.PI);
-      Context.stroke();
+  if (pose.keypoints.length>0)
+    for (var i=0;i<pose.keypoints.length;i++) {
+      result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + ", " + Math.round(pose.keypoints[i].score*100) + "% <br>";
+      if (pose.keypoints[i].score>=0.5) {
+        const x = pose.keypoints[i].position.x;
+        const y = pose.keypoints[i].position.y;
+        Context.fillStyle="red";
+        Context.beginPath();
+        Context.arc(x, y, 10, 0,2*Math.PI);
+        Context.stroke();
+      }
     }
-  }
+  else
+    result.innerHTML = "Unrecognizable";
+  ShowImage.src = Canvas.toDataURL("image/png");   
 }
     
 document.getElementById('selectimage').onchange = function (event) {
