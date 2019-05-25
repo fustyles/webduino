@@ -69,7 +69,7 @@ async function DetectVideo(Model) {
       const y = pose.keypoints[i].position.y;
       context.fillStyle="red";
       context.beginPath();
-      context.arc(x, y, 10, 0,2*Math.PI);
+      context.arc(x, y, 3, 0,2*Math.PI);
       context.closePath();
       context.fill();
       
