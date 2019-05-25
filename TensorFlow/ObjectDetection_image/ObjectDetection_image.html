@@ -14,7 +14,7 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_image/ObjectDetec
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>  
 </head>
 <body>
-<input type="file" id="selectimage"></input>
+<input type="file" id="selectimage" disabled="true"></input>
 <br><br>
 <img id="ShowImage" src="https://upload.wikimedia.org/wikipedia/commons/6/69/Landform_of_Taiwan.png">
 <img id="OriginImage" src="https://upload.wikimedia.org/wikipedia/commons/6/69/Landform_of_Taiwan.png" style="display:none">
@@ -35,6 +35,7 @@ function ObjectDetect() {
   cocoSsd.load().then(cocoSsd_Model => {
     Model = cocoSsd_Model;
     result.innerHTML = "Please select one image.";
+    document.getElementById('selectimage').disabled = false;
   }); 
 }
   
