@@ -39,39 +39,39 @@ function ObjectDetect() {
 }
   
 function DetectImage(Model) {
-    Model.detect(OriginImage).then(Predictions => {
-      //console.log('Predictions: ', Predictions);
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      canvas.setAttribute("width", OriginImage.width);
-      canvas.style.width = OriginImage.width + "px";
-      canvas.setAttribute("height", OriginImage.height);
-      canvas.style.height = OriginImage.height + "px";
-      context.drawImage(OriginImage,0,0);
-      var s = (OriginImage.width>OriginImage.height)?OriginImage.width:OriginImage.height;   
-      if (Predictions.length>0) {
-        result.innerHTML = "";
-        for (var i=0;i<Predictions.length;i++) {
-          const x = Predictions[i].bbox[0];
-          const y = Predictions[i].bbox[1];
-          const width = Predictions[i].bbox[2];
-          const height = Predictions[i].bbox[3];
-          context.lineWidth = Math.round(s/100);
-          context.strokeStyle = "#00FFFF";
-          context.beginPath();
-          context.rect(x, y, width, height);
-          context.stroke(); 
-          context.lineWidth = "2";
-          context.fillStyle = "red";
-          context.font = Math.round(s/30) + "px Arial";
-          context.fillText(Predictions[i].class, x, y);
-          //context.fillText(i, x, y);
-          result.innerHTML+= "[ "+i+" ] "+Predictions[i].class+", "+Math.round(Predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
-        }
+  Model.detect(OriginImage).then(Predictions => {
+    //console.log('Predictions: ', Predictions);
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    canvas.setAttribute("width", OriginImage.width);
+    canvas.style.width = OriginImage.width + "px";
+    canvas.setAttribute("height", OriginImage.height);
+    canvas.style.height = OriginImage.height + "px";
+    context.drawImage(OriginImage,0,0);
+    var s = (OriginImage.width>OriginImage.height)?OriginImage.width:OriginImage.height;   
+    if (Predictions.length>0) {
+      result.innerHTML = "";
+      for (var i=0;i<Predictions.length;i++) {
+        const x = Predictions[i].bbox[0];
+        const y = Predictions[i].bbox[1];
+        const width = Predictions[i].bbox[2];
+        const height = Predictions[i].bbox[3];
+        context.lineWidth = Math.round(s/100);
+        context.strokeStyle = "#00FFFF";
+        context.beginPath();
+        context.rect(x, y, width, height);
+        context.stroke(); 
+        context.lineWidth = "2";
+        context.fillStyle = "red";
+        context.font = Math.round(s/30) + "px Arial";
+        context.fillText(Predictions[i].class, x, y);
+        //context.fillText(i, x, y);
+        result.innerHTML+= "[ "+i+" ] "+Predictions[i].class+", "+Math.round(Predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
       }
-      else
-        result.innerHTML = "Unrecognizable";
-      ShowImage.src = canvas.toDataURL("image/png"); 
-    });   
+    }
+    else
+      result.innerHTML = "Unrecognizable";
+    ShowImage.src = canvas.toDataURL("image/png"); 
+  });   
 }
     
 document.getElementById('selectimage').onchange = function (event) {
