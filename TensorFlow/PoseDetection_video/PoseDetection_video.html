@@ -63,7 +63,7 @@ function DetectVideo(Model) {
   context.drawImage(video, 0, 0, video.width, video.height);
   result.innerHTML = "";  
   
-  if (pose.keypoints.length>0)
+  if (pose.keypoints.length>0) {
     for (var i=0;i<pose.keypoints.length;i++) {
       const x = pose.keypoints[i].position.x;
       const y = pose.keypoints[i].position.y;
@@ -75,6 +75,7 @@ function DetectVideo(Model) {
       
       result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + ", " + Math.round(pose.keypoints[i].score*100) + "% <br>";
     }
+  }
   else
     result.innerHTML = "Unrecognizable";
   DetectVideo(Model);
