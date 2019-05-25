@@ -78,7 +78,7 @@ async function DetectVideo(Model) {
   }
   else
     result.innerHTML = "Unrecognizable";
-  if (pose) DetectVideo(Model);
+  if (await pose) DetectVideo(Model);
 }
 
 </script>
