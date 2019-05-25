@@ -73,7 +73,7 @@ async function DetectVideo(Model) {
       context.closePath();
       context.fill();
       
-      result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].score*100)"%, " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + "<br>";
+      result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].score*100) + "%, " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + "<br>";
     }
     
   }
