@@ -58,7 +58,7 @@ async function DetectImage(Model) {
       if (pose.keypoints[i].score>0.1) {
         const x = pose.keypoints[i].position.x;
         const y = pose.keypoints[i].position.y;
-        Context.fillStyle="red";
+        Context.fillStyle="#00FFFF";
         Context.beginPath();
         Context.arc(x, y, Math.round(s/150), 0,2*Math.PI);
         Context.closePath();
