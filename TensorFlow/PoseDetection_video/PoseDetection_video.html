@@ -21,8 +21,8 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
   
 <script>
   var video = document.getElementById('video');
-  var Canvas = document.getElementById('canvas'); 
-  var Context = canvas.getContext('2d');
+  var canvas = document.getElementById('canvas'); 
+  var context = canvas.getContext('2d');
   var result = document.getElementById('result');  
 
   navigator.mediaDevices
@@ -58,30 +58,26 @@ async function DetectVideo(Model) {
   //console.log(pose.score);
   //console.log(pose.keypoints);
   
-  result.innerHTML = "";
-  Context.clearRect(0, 0, Canvas.width, Canvas.height);
-  Canvas.setAttribute("width", OriginImage.width);
-  Canvas.style.width = OriginImage.width + "px";
-  Canvas.setAttribute("height", OriginImage.height);
-  Canvas.style.height = OriginImage.height + "px";
-  Context.drawImage(OriginImage,0,0);  
-  var s = (OriginImage.width>OriginImage.height)?OriginImage.width:OriginImage.height;
+  canvas.setAttribute("width", video.width);
+  canvas.setAttribute("height", video.height);        
+  context.drawImage(video, 0, 0, video.width, video.height);
+  result.innerHTML = "";  
   
   if (pose.keypoints.length>0)
     for (var i=0;i<pose.keypoints.length;i++) {
       const x = pose.keypoints[i].position.x;
       const y = pose.keypoints[i].position.y;
-      Context.fillStyle="red";
-      Context.beginPath();
-      Context.arc(x, y, Math.round(s/200), 0,2*Math.PI);
-      Context.closePath();
-      Context.fill();
+      context.fillStyle="red";
+      context.beginPath();
+      context.arc(x, y, Math.round(s/200), 0,2*Math.PI);
+      context.closePath();
+      context.fill();
       
       result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + ", " + Math.round(pose.keypoints[i].score*100) + "% <br>";
     }
   else
     result.innerHTML = "Unrecognizable";
-  ShowImage.src = Canvas.toDataURL("image/png");  
+  ShowImage.src = canvas.toDataURL("image/png");  
   DetectVideo(Model);
 }
 
