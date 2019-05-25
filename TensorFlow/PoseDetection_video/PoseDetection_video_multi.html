@@ -69,8 +69,8 @@ async function DetectVideo(Model) {
         if (k.length>0) {
           for (var i=0;i<k.length;i++) {
             if (k[i].score>0.1) {
-            const x = pose.keypoints[i].position.x;
-            const y = pose.keypoints[i].position.y;
+            const x = k[i].position.x;
+            const y = k[i].position.y;
             context.fillStyle="#00FFFF";
             context.beginPath();
             context.arc(x, y, 3, 0,2*Math.PI);
