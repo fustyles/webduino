@@ -35,7 +35,9 @@ var flipHorizontal = false;
 function ObjectDetect() {
   result.innerHTML = "Please wait for loading model.";
   posenet.load().then(function(net) {
+    consloe.log(net);
     Model = net.PoseNet;
+    consloe.log(Model);
     result.innerHTML = "Please select one image.";
   }); 
 }
