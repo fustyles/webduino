@@ -65,14 +65,15 @@ async function DetectVideo(Model) {
     
     if (pose.keypoints.length>0) {
       for (var i=0;i<pose.keypoints.length;i++) {
-        const x = pose.keypoints[i].position.x;
-        const y = pose.keypoints[i].position.y;
-        context.fillStyle="red";
-        context.beginPath();
-        context.arc(x, y, 3, 0,2*Math.PI);
-        context.closePath();
-        context.fill();
-    
+        if (pose.keypoints[i].score>0) {
+          const x = pose.keypoints[i].position.x;
+          const y = pose.keypoints[i].position.y;
+          context.fillStyle="red";
+          context.beginPath();
+          context.arc(x, y, 3, 0,2*Math.PI);
+          context.closePath();
+          context.fill();
+        }
         result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].score*100) + "%, " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + "<br>";
       }
     }
