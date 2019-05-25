@@ -1,0 +1,107 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/5/26
+https://www.facebook.com/francefu
+
+https://fustyles.github.io/webduino/TensorFlow/PoseDetection_image/PoseDetection_image.html
+-->
+<!DOCTYPE html>
+<head>
+  <title>Single Pose Detection (Image)</title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"> </script>  
+</head>
+<body>
+<input type="file" id="selectimage" disabled="true"></input>
+<br><br>
+<img id="ShowImage" src="https://upload.wikimedia.org/wikipedia/commons/6/69/Landform_of_Taiwan.png">
+<img id="OriginImage" src="https://upload.wikimedia.org/wikipedia/commons/6/69/Landform_of_Taiwan.png" style="display:none">
+<canvas id="Canvas" style="display:none"></canvas>
+<br>
+<div id="result" style="width:350px;color:red"></div>
+  
+<script>
+var OriginImage = document.getElementById('OriginImage');
+var ShowImage = document.getElementById('ShowImage');
+var Canvas = document.getElementById("Canvas");
+var Context = Canvas.getContext("2d");  
+var result = document.getElementById('result');
+var Model;
+  
+function ObjectDetect() {
+  result.innerHTML = "Please wait for loading model.";
+  posenet.load().then(function(net) {
+    Model = net;
+    result.innerHTML = "Please select one image.";
+    document.getElementById('selectimage').disabled = false;
+  }); 
+}
+  
+async function DetectImage(Model) {
+  const pose = await Model.estimateSinglePose(OriginImage, 0.75, false, 16);
+  //console.log(pose.score);
+  //console.log(pose.keypoints);
+  
+  result.innerHTML = "";
+  Context.clearRect(0, 0, Canvas.width, Canvas.height);
+  Canvas.setAttribute("width", OriginImage.width);
+  Canvas.style.width = OriginImage.width + "px";
+  Canvas.setAttribute("height", OriginImage.height);
+  Canvas.style.height = OriginImage.height + "px";
+  Context.drawImage(OriginImage,0,0);  
+  var s = (OriginImage.width>OriginImage.height)?OriginImage.width:OriginImage.height;
+  
+  if (pose.keypoints.length>0) {
+    for (var i=0;i<pose.keypoints.length;i++) {
+      if (pose.keypoints[i].score>0.1) {
+        const x = pose.keypoints[i].position.x;
+        const y = pose.keypoints[i].position.y;
+        Context.fillStyle="#00FFFF";
+        Context.beginPath();
+        Context.arc(x, y, Math.round(s/150), 0,2*Math.PI);
+        Context.closePath();
+        Context.fill();
+      }      
+      result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].score*100) + "%, " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + "<br>";
+    }
+  }
+  else
+    result.innerHTML = "Unrecognizable";
+  ShowImage.src = Canvas.toDataURL("image/png");   
+}
+    
+document.getElementById('selectimage').onchange = function (event) {
+  var target = event.target || window.event.srcElement;
+  var files = target.files;
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      OriginImage.src = fr.result;
+      result.innerHTML = "Loading image to detect...";
+    }
+    fr.readAsDataURL(files[0]);
+  }
+}
+  
+document.getElementById('OriginImage').onload = function (event) {
+  try { 
+    document.createEvent("TouchEvent"); 
+    var width = document.body.clientWidth;
+  }
+  catch(e) { 
+    var width = 400;
+  }  
+  ShowImage.style.width = width +"px";
+  ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px"; 
+  ShowImage.src = OriginImage.src
+  
+  if (Model) DetectImage(Model);
+}
+  
+window.onload = function () { ObjectDetect(); }
+</script>
+
+</body>
+</html>
