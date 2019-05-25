@@ -35,20 +35,21 @@ var flipHorizontal = false;
 function ObjectDetect() {
   result.innerHTML = "Please wait for loading model.";
  
-  posenet.load().then(posenet => {
-    console.log(posenet);
-    Model = posenet;
-    result.innerHTML = "Please select one image.";
+  posenet.load().then(function(net) {
+      Model = net;
+      result.innerHTML = "Please select one image.";
+    }
   }); 
 }
   
 function DetectPose(Model) {
-    const poses = Model.estimatePoses(OriginImage, {
-      flipHorizontal: flipHorizontal,
-      decodingMethod: 'single-person'
-    });
-    const pose = poses[0];
-    console.log(pose);
+  console.log(Model);
+  const poses = Model.estimatePoses(OriginImage, {
+    flipHorizontal: flipHorizontal,
+    decodingMethod: 'single-person'
+  });
+  const pose = poses[0];
+  console.log(pose);
 }
     
 document.getElementById('selectimage').onchange = function (event) {
