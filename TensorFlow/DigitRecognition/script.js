@@ -179,7 +179,7 @@ async function showConfusion(model, data) {
 
 const classNames = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
 
-function doPrediction(model, data, testDataSize = 500) {
+function doPrediction(model, data, testDataSize = 20) {
   const IMAGE_WIDTH = 28;
   const IMAGE_HEIGHT = 28;
   const testData = data.nextTestBatch(testDataSize);
