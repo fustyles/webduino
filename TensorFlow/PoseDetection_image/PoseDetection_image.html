@@ -61,6 +61,7 @@ document.getElementById('selectimage').onchange = function (event) {
 }
   
 document.getElementById('OriginImage').onload = function (event) {
+  result.innerHTML = "Load image to detect...";
   try { 
     document.createEvent("TouchEvent"); 
     var width = document.body.clientWidth;
@@ -71,10 +72,9 @@ document.getElementById('OriginImage').onload = function (event) {
   ShowImage.style.width = width +"px";
   ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px"; 
   ShowImage.src = OriginImage.src
-  result.innerHTML = "Detect...";
+  
   if (Model) DetectPose(Model);
 }
-  
 window.onload = function () { ObjectDetect(); }
 </script>
 
