@@ -79,7 +79,7 @@ async function DetectVideo(Model) {
     }
     try { 
       document.createEvent("TouchEvent");
-      setTimeout(function(){DetectVideo(Model);},300);
+      setTimeout(function(){DetectVideo(Model);},250);
     }
     catch(e) { 
       DetectVideo(Model);
