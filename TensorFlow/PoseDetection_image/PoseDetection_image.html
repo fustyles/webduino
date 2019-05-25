@@ -39,7 +39,7 @@ function ObjectDetect() {
   }); 
 }
   
-async function DetectPose(Model) {
+async function DetectImage(Model) {
   const pose = await Model.estimateSinglePose(OriginImage, 0.2, false, 16);
   //console.log(pose.score);
   //console.log(pose.keypoints);
@@ -94,8 +94,9 @@ document.getElementById('OriginImage').onload = function (event) {
   ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px"; 
   ShowImage.src = OriginImage.src
   
-  if (Model) DetectPose(Model);
+  if (Model) DetectImage(Model);
 }
+  
 window.onload = function () { ObjectDetect(); }
 </script>
 
