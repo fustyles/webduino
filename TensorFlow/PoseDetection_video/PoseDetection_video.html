@@ -75,10 +75,11 @@ async function DetectVideo(Model) {
       
       result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + ", " + Math.round(pose.keypoints[i].score*100) + "% <br>";
     }
-    DetectVideo(Model);
+    
   }
   else
     result.innerHTML = "Unrecognizable";
+  setTimeout(function(){DetectVideo(Model);},500);
 }
 
 </script>
