@@ -39,9 +39,9 @@ function ObjectDetect() {
   }); 
 }
   
-function DetectPose(Model) {
+async function DetectPose(Model) {
   console.log(Model);
-  const pose = Model.estimateSinglePose(OriginImage);
+  let pose = await Model.estimateSinglePose(OriginImage);
   console.log("pose: "+pose[0]);
 }
     
