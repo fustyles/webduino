@@ -32,7 +32,8 @@ var Model;
   
 function ObjectDetect() {
   result.innerHTML = "Please wait for loading model.";
-  Model = posenet.load().then(function(net) {
+  posenet.load().then(function(net) {
+    Model = net;
     result.innerHTML = "Please select one image.";
   }); 
 }
