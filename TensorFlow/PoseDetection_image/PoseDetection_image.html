@@ -41,8 +41,8 @@ function ObjectDetect() {
   
 function DetectPose(Model) {
   console.log(Model);
-  const poses = Model.estimateSinglePose(OriginImage);
-  console.log("pose: "+poses);
+  const pose = Model.estimateSinglePose(OriginImage);
+  console.log("pose: "+pose);
 }
     
 document.getElementById('selectimage').onchange = function (event) {
