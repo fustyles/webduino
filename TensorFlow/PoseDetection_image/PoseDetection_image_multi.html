@@ -2,7 +2,7 @@
 Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/5/26
 https://www.facebook.com/francefu
 
-https://fustyles.github.io/webduino/TensorFlow/PoseDetection_image/PoseDetection_image.html
+https://fustyles.github.io/webduino/TensorFlow/PoseDetection_image/PoseDetection_image_multi.html
 -->
 <!DOCTYPE html>
 <head>
@@ -41,6 +41,7 @@ function ObjectDetect() {
   
 async function DetectImage(Model) {
   const pose = await Model.estimateSinglePose(OriginImage, 0.75, false, 16);
+  console.log(Model);
   //console.log(pose.score);
   //console.log(pose.keypoints);
   
