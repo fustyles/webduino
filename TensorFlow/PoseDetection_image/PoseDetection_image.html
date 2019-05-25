@@ -36,7 +36,7 @@ function ObjectDetect() {
   result.innerHTML = "Please wait for loading model.";
   posenet.load().then(function(net) {
     console.log(net);
-    Model = net.mobileNet;
+    Model = net.poseNet();
     console.log(Model);
     result.innerHTML = "Please select one image.";
   }); 
