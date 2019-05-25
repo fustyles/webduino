@@ -43,6 +43,10 @@ async function DetectPose(Model) {
   const pose = await Model.estimateSinglePose(OriginImage, 0.2, false, 16);
   console.log(pose.score);
   console.log(pose.keypoints);
+  result.innerHTML = "";
+  for (var i=0;i<pose.keypoints.length;i++) {
+    result.innerHTML += pose.keypoints[0] + "<br>";
+  }
 }
     
 document.getElementById('selectimage').onchange = function (event) {
