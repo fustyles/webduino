@@ -55,15 +55,13 @@ async function DetectPose(Model) {
   if (pose.keypoints.length>0)
     for (var i=0;i<pose.keypoints.length;i++) {
       result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + ", " + Math.round(pose.keypoints[i].score*100) + "% <br>";
-      if (pose.keypoints[i].score>=0.1) {
-        const x = pose.keypoints[i].position.x;
-        const y = pose.keypoints[i].position.y;
-        Context.fillStyle="red";
-        Context.beginPath();
-        Context.arc(x, y, Math.round(s/100), 0,2*Math.PI);
-        Context.closePath();
-        Context.fill();
-      }
+      const x = pose.keypoints[i].position.x;
+      const y = pose.keypoints[i].position.y;
+      Context.fillStyle="red";
+      Context.beginPath();
+      Context.arc(x, y, Math.round(s/100), 0,2*Math.PI);
+      Context.closePath();
+      Context.fill();
     }
   else
     result.innerHTML = "Unrecognizable";
