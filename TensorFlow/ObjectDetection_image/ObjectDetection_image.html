@@ -82,6 +82,7 @@ document.getElementById('selectimage').onchange = function (event) {
     var fr = new FileReader();
     fr.onload = function () {
       OriginImage.src = fr.result;
+      result.innerHTML = "Loading image to detect...";
     }
     fr.readAsDataURL(files[0]);
   }
@@ -98,7 +99,6 @@ document.getElementById('OriginImage').onload = function (event) {
   ShowImage.style.width = width +"px";
   ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px"; 
   ShowImage.src = OriginImage.src
-  result.innerHTML = "Detect...";
   if (Model) DetectImage(Model);
 }
   
