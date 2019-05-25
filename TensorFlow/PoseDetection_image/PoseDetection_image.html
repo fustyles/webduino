@@ -44,7 +44,7 @@ async function DetectPose(Model) {
   console.log(pose.keypoints);
   result.innerHTML = "";
   for (var i=0;i<pose.keypoints.length;i++) {
-    result.innerHTML += pose.keypoints[0] + "<br>";
+    result.innerHTML += pose.keypoints[i].part + ", " + pose.keypoints[i].position.x + ", " +pose.keypoints[i].position.y + ", " + pose.keypoints[i].score + "<br>";
   }
 }
     
