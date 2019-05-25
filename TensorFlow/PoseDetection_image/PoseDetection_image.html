@@ -1,0 +1,108 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/5/22
+https://www.facebook.com/francefu
+
+https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_image/ObjectDetection_image.html
+-->
+<!DOCTYPE html>
+<head>
+  <title>Object Detection (Image)</title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>  
+</head>
+<body>
+<input type="file" id="selectimage"></input>
+<br><br>
+<img id="ShowImage" src="https://upload.wikimedia.org/wikipedia/commons/6/69/Landform_of_Taiwan.png">
+<img id="OriginImage" src="https://upload.wikimedia.org/wikipedia/commons/6/69/Landform_of_Taiwan.png" style="display:none">
+<canvas id="Canvas" style="display:none"></canvas>
+<br>
+<div id="result" style="width:350px;color:red"></div>
+  
+<script>
+var OriginImage = document.getElementById('OriginImage');
+var ShowImage = document.getElementById('ShowImage');
+var Canvas = document.getElementById("Canvas");
+var Context = Canvas.getContext("2d");  
+var result = document.getElementById('result');
+var Model;
+  
+function ObjectDetect() {
+  result.innerHTML = "Please wait for loading model.";
+  cocoSsd.load().then(cocoSsd_Model => {
+    Model = cocoSsd_Model;
+    result.innerHTML = "Please select one image.";
+  }); 
+}
+  
+function DetectImage(Model) {
+    Model.detect(OriginImage).then(Predictions => {
+      //console.log('Predictions: ', Predictions);
+      Context.clearRect(0, 0, Canvas.width, Canvas.height);
+      Canvas.setAttribute("width", OriginImage.width);
+      Canvas.style.width = OriginImage.width + "px";
+      Canvas.setAttribute("height", OriginImage.height);
+      Canvas.style.height = OriginImage.height + "px";
+      Context.drawImage(OriginImage,0,0);
+      var s = (OriginImage.width>OriginImage.height)?OriginImage.width:OriginImage.height;   
+      if (Predictions.length>0) {
+        result.innerHTML = "";
+        for (var i=0;i<Predictions.length;i++) {
+          const x = Predictions[i].bbox[0];
+          const y = Predictions[i].bbox[1];
+          const width = Predictions[i].bbox[2];
+          const height = Predictions[i].bbox[3];
+          Context.lineWidth = Math.round(s/100);
+          Context.strokeStyle = "#00FFFF";
+          Context.beginPath();
+          Context.rect(x, y, width, height);
+          Context.stroke(); 
+          Context.lineWidth = "2";
+          Context.fillStyle = "red";
+          Context.font = Math.round(s/30) + "px Arial";
+          Context.fillText(Predictions[i].class, x, y);
+          //Context.fillText(i, x, y);
+          result.innerHTML+= "[ "+i+" ] "+Predictions[i].class+", "+Math.round(Predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+        }
+      }
+      else
+        result.innerHTML = "Unrecognizable";
+      ShowImage.src = Canvas.toDataURL("image/png"); 
+    });   
+}
+    
+document.getElementById('selectimage').onchange = function (event) {
+  var target = event.target || window.event.srcElement;
+  var files = target.files;
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      OriginImage.src = fr.result;
+    }
+    fr.readAsDataURL(files[0]);
+  }
+}
+  
+document.getElementById('OriginImage').onload = function (event) {
+  try { 
+    document.createEvent("TouchEvent"); 
+    var width = document.body.clientWidth;
+  }
+  catch(e) { 
+    var width = 400;
+  }  
+  ShowImage.style.width = width +"px";
+  ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px"; 
+  ShowImage.src = OriginImage.src
+  result.innerHTML = "Detect...";
+  if (Model) DetectImage(Model);
+}
+  
+window.onload = function () { ObjectDetect(); }
+</script>
+
+</body>
+</html>
