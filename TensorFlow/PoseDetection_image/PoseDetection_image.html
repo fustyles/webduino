@@ -23,7 +23,6 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_image/PoseDetection
 <div id="result" style="width:350px;color:red"></div>
   
 <script>
-var OriginImage = document.getElementById('OriginImage');
 var ShowImage = document.getElementById('ShowImage');
 var ShowImageWidth = 400;
 var Canvas = document.getElementById("Canvas");
@@ -81,13 +80,12 @@ document.getElementById('selectimage').onchange = function (event) {
     fr.onload = function () {
       result.innerHTML = "Loading image to detect...";
       ShowImage.src = fr.result;
-      OriginImage.src = fr.result;
     }
     fr.readAsDataURL(files[0]);
   }
 }
   
-document.getElementById('OriginImage').onload = function (event) {
+document.getElementById('ShowImage').onload = function (event) {
   try { 
     document.createEvent("TouchEvent"); 
     var width = document.body.clientWidth;
