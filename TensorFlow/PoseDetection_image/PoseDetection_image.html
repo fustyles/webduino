@@ -77,6 +77,8 @@ document.getElementById('selectimage').onchange = function (event) {
     fr.onload = function () {
       result.innerHTML = "Loading image to detect...";
       Context.clearRect(0, 0, Canvas.width, Canvas.height);
+      Canvas.setAttribute("width", 0);
+      Canvas.setAttribute("height", 0);      
       OriginImage.src = fr.result;
     }
     fr.readAsDataURL(files[0]);
