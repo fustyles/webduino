@@ -54,7 +54,7 @@ function DetectImage(Model) {
         const y = Predictions[i].bbox[1];
         const width = Predictions[i].bbox[2];
         const height = Predictions[i].bbox[3];
-        context.lineWidth = Math.round(s/100);
+        context.lineWidth = Math.round(s/200);
         context.strokeStyle = "#00FFFF";
         context.beginPath();
         context.rect(x, y, width, height);
