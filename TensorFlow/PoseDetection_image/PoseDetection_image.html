@@ -80,7 +80,7 @@ document.getElementById('selectimage').onchange = function (event) {
     var fr = new FileReader();
     fr.onload = function () {
       ShowImage.src = fr.result;
-      OriginImage.src = ShowImage.src
+      OriginImage.src = fr.result;
       result.innerHTML = "Loading image to detect...";
     }
     fr.readAsDataURL(files[0]);
