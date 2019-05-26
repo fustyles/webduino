@@ -48,9 +48,7 @@ async function DetectImage(Model) {
   result.innerHTML = "";
   Context.clearRect(0, 0, Canvas.width, Canvas.height);
   Canvas.setAttribute("width", ShowImage.width);
-  Canvas.style.width = ShowImage.width + "px";
   Canvas.setAttribute("height", ShowImage.height);
-  Canvas.style.height = ShowImage.height + "px";
   Context.drawImage(ShowImage,0,0);  
   var s = (ShowImage.width>ShowImage.height)?ShowImage.width:ShowImage.height;
   
@@ -94,11 +92,11 @@ document.getElementById('OriginImage').onload = function (event) {
   catch(e) { 
     var width = ShowImageWidth;
   } 
-  ShowImage.style.width = width +"px";
-  ShowImage.width = width;
-  ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px";
-  ShowImage.height = (width*OriginImage.height/OriginImage.width);
   ShowImage.src = OriginImage.src
+  //ShowImage.style.width = width +"px";
+  ShowImage.width = width;
+  //ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px";
+  ShowImage.height = (width*OriginImage.height/OriginImage.width);
 }
   
 document.getElementById('ShowImage').onload = function (event) {
