@@ -44,7 +44,7 @@ function DetectImage(Model) {
     //console.log('Predictions: ', Predictions);
     canvas.setAttribute("width", ShowImage.width);
     canvas.setAttribute("height", ShowImage.height);
-    Context.drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
+    context.drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
     var s = (ShowImage.width>ShowImage.height)?ShowImage.width:ShowImage.height;
     
     if (Predictions.length>0) {
