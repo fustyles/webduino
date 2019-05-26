@@ -95,9 +95,9 @@ document.getElementById('OriginImage').onload = function (event) {
   } 
   
   //ShowImage.style.width = width +"px";
-  ShowImage.width = width;
+  ShowImage.width = width +"px";
   //ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px";
-  ShowImage.height = (width*OriginImage.height/OriginImage.width);
+  ShowImage.height = (width*OriginImage.height/OriginImage.width) +"px";
   if (Model) DetectImage(Model);
 }
   
