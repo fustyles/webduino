@@ -92,10 +92,10 @@ document.getElementById('OriginImage').onload = function (event) {
   }
   catch(e) { 
     var width = 400;
-  }  
+  } 
+  ShowImage.src = OriginImage.src
   ShowImage.style.width = width +"px";
   ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px"; 
-  ShowImage.src = OriginImage.src
   
   if (Model) DetectImage(Model);
 }
