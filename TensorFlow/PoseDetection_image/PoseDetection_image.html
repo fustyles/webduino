@@ -93,9 +93,9 @@ document.getElementById('ShowImage').onload = function (event) {
     var width = ShowImageWidth;
   } 
   var height = width*ShowImage.height/ShowImage.width;
-  ShowImage.style.width = width +"px";
   ShowImage.width = width;
-  ShowImage.height = height;
+  ShowImage.height = height;  
+  ShowImage.style.width = width +"px";
   ShowImage.style.height = height +"px";  
 
   if (Model) DetectImage(Model);
