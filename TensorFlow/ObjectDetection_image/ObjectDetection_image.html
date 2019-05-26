@@ -71,6 +71,22 @@ function DetectImage(Model) {
       result.innerHTML = "Unrecognizable";
   });   
 }
+  
+document.getElementById('selectimage').onchange = function (event) {
+  var target = event.target || window.event.srcElement;
+  var files = target.files;
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      result.innerHTML = "Loading image to detect...";
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.setAttribute("width", 0);
+      canvas.setAttribute("height", 0);      
+      OriginImage.src = fr.result;
+    }
+    fr.readAsDataURL(files[0]);
+  }
+}
     
 document.getElementById('OriginImage').onload = function (event) {
   try { 
