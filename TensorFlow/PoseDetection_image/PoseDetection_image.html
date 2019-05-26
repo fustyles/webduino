@@ -93,7 +93,7 @@ document.getElementById('OriginImage').onload = function (event) {
   catch(e) { 
     var width = ShowImageWidth;
   } 
-  var height = width*ShowImage.height/ShowImage.width;
+  var height = width*OriginImage.height/OriginImage.width;
   ShowImage.width = width;
   ShowImage.height = height;  
   //ShowImage.style.width = width +"px";
