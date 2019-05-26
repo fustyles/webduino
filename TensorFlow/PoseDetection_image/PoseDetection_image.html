@@ -25,6 +25,7 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_image/PoseDetection
 <script>
 var OriginImage = document.getElementById('OriginImage');
 var ShowImage = document.getElementById('ShowImage');
+var ShowImageWidth = 400;
 var Canvas = document.getElementById("Canvas");
 var Context = Canvas.getContext("2d");  
 var result = document.getElementById('result');
@@ -91,7 +92,7 @@ document.getElementById('OriginImage').onload = function (event) {
     var width = document.body.clientWidth;
   }
   catch(e) { 
-    var width = 400;
+    var width = ShowImageWidth;
   } 
   ShowImage.style.width = width +"px";
   ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px";
