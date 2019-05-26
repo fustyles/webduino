@@ -91,6 +91,15 @@ document.getElementById('OriginImage').onload = function (event) {
   catch(e) { 
     var width = ShowImageWidth;
   } 
+  
+  if (OriginImage.height<OriginImage.width) {
+    var height = width*OriginImage.height/OriginImage.width; 
+  }
+  else {
+    var height = width;
+    width = height*OriginImage.width/OriginImage.height; 
+  }
+  
   var height = width*OriginImage.height/OriginImage.width;
   ShowImage.width = width;
   ShowImage.height = height;  
