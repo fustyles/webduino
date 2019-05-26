@@ -77,6 +77,7 @@ document.getElementById('selectimage').onchange = function (event) {
   if (FileReader && files && files.length) {
     var fr = new FileReader();
     fr.onload = function () {
+      ShowImage.src = fr.result;
       OriginImage.src = fr.result;
       result.innerHTML = "Loading image to detect...";
     }
@@ -92,7 +93,7 @@ document.getElementById('OriginImage').onload = function (event) {
   catch(e) { 
     var width = ShowImageWidth;
   } 
-  ShowImage.src = OriginImage.src
+  
   //ShowImage.style.width = width +"px";
   ShowImage.width = width;
   //ShowImage.style.height = (width*OriginImage.height/OriginImage.width) +"px";
