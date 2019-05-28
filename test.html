@@ -82,9 +82,11 @@ boardReady({board: 'Smart', device: '10ybYrbd', transport: 'mqtt'}, function (bo
 
 function allBoardReady(boardReadyNumber) {
   if (window.boardReadyNumber==window.readyBoardLength) {
-    await delay(1);
-    document.getElementById('demo-area-01-show').innerHTML = (Math.round((photocell.detectedVal)*100))/100;
     matrix.setColor((1 - 1 + ( 1 - 1) * 5 ), '#ff0000');
+    while (true) {
+      await delay(1);
+      document.getElementById('demo-area-01-show').innerHTML = (Math.round((photocell.detectedVal)*100))/100;
+    }
   }
 }
 
