@@ -66,7 +66,6 @@ boardReady({board: 'Smart', device: 'xxxxxxxxxx', transport: 'mqtt'}, function (
   photocell = getPhotocell(board, 0);
   photocell.measure(function (val) {
     photocell.detectedVal = val;
-    //document.getElementById('demo-area-01-show').innerHTML = (Math.round((photocell.detectedVal)*100))/100;
   });
   if (window.boardReadyNumber) {
     window.boardReadyNumber = window.boardReadyNumber + 1;
