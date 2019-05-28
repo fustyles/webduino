@@ -55,6 +55,9 @@ if (window.readyBoardLength) {
 boardReady({board: 'Smart', device: '10ybYrbd', transport: 'mqtt'}, function (board) {
   board.samplingInterval = 50;
   photocell = getPhotocell(board, 0);
+  photocell.measure(function (val) {
+    photocell.detectedVal = val;
+  });
   if (window.boardReadyNumber) {
     window.boardReadyNumber = window.boardReadyNumber + 1;
   } else {
@@ -65,7 +68,7 @@ boardReady({board: 'Smart', device: '10ybYrbd', transport: 'mqtt'}, function (bo
 
 function allBoardReady(boardReadyNumber) {
   if (window.boardReadyNumber==window.readyBoardLength) {
-    document.getElementById('demo-area-01-show').innerHTML = photocell.detectedVal;
+    document.getElementById('demo-area-01-show').innerHTML = (Math.round((photocell.detectedVal)*100))/100;
     matrix.setColor((1 - 1 + ( 1 - 1) * 5 ), '#ff0000');
   }
 }
