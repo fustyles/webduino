@@ -84,10 +84,10 @@ async function allBoardReady(boardReadyNumber) {
   if (window.boardReadyNumber==window.readyBoardLength) {
     while (true) {
       matrix.setColor((1 - 1 + ( 1 - 1) * 5 ), '#ff0000');
-      await delay(1);
+      await delay(0.2);
       document.getElementById('demo-area-01-show').innerHTML = (Math.round((photocell.detectedVal)*100))/100;
       matrix.setColor((1 - 1 + ( 1 - 1) * 5 ), '#000000');
-      await delay(1);
+      await delay(0.2);
     }
   }
 }
