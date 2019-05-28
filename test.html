@@ -48,7 +48,7 @@ if (window.readyBoardLength) {
   window.readyBoardLength = 1;
 }
 
-boardReady({board: 'Bit', device: 'nA2fbAHRJiNDCeTy', transport: 'mqtt'}, function (board) {
+boardReady({board: 'Bit', device: 'xxxxxxxxxx', transport: 'mqtt'}, function (board) {
   board.samplingInterval = 250;
   matrix = getMatrix(board, 4, 25);
   if (window.boardReadyNumber) {
@@ -65,7 +65,7 @@ if (window.readyBoardLength) {
   window.readyBoardLength = 1;
 }
 
-boardReady({board: 'Smart', device: '10ybYrbd', transport: 'mqtt'}, function (board) {
+boardReady({board: 'Smart', device: 'xxxxxxxxxx', transport: 'mqtt'}, function (board) {
   board.samplingInterval = 50;
   photocell = getPhotocell(board, 0);
   photocell.measure(function (val) {
