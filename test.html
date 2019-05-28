@@ -80,7 +80,7 @@ boardReady({board: 'Smart', device: '10ybYrbd', transport: 'mqtt'}, function (bo
   allBoardReady(window.boardReadyNumber);
 });
 
-function allBoardReady(boardReadyNumber) {
+async function allBoardReady(boardReadyNumber) {
   if (window.boardReadyNumber==window.readyBoardLength) {
     matrix.setColor((1 - 1 + ( 1 - 1) * 5 ), '#ff0000');
     while (true) {
