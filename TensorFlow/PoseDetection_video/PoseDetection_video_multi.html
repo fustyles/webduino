@@ -86,7 +86,7 @@ async function DetectVideo() {
     try { 
       document.createEvent("TouchEvent");
       imageScaleFactor = 0.5;
-      setTimeout(function(){DetectVideo();},200);
+      setTimeout(function(){DetectVideo();},250);
     }
     catch(e) { 
       imageScaleFactor = 0.75;
