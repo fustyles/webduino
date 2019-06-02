@@ -23,7 +23,8 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
   var video = document.getElementById('video');
   var canvas = document.getElementById('canvas'); 
   var context = canvas.getContext('2d');
-  var result = document.getElementById('result');  
+  var result = document.getElementById('result'); 
+  var imageScaleFactor = 0.75;
 
   navigator.mediaDevices
     .getUserMedia({
@@ -54,7 +55,7 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
   }
                         
 async function DetectVideo() {
-  await Model.estimateSinglePose(video, 0.5, false, 16).then(pose => {
+  await Model.estimateSinglePose(video, imageScaleFactor, false, 16).then(pose => {
     //console.log(pose.score);
     //console.log(pose.keypoints);
 
@@ -80,10 +81,12 @@ async function DetectVideo() {
     
     try { 
       document.createEvent("TouchEvent");
-      setTimeout(function(){DetectVideo();},250);
+      imageScaleFactor = 0.5;
+      //setTimeout(function(){DetectVideo();},250);
     }
     catch(e) { 
-      DetectVideo();
+      imageScaleFactor = 0.75;
+      //DetectVideo();
     }   
     
   });
