@@ -53,7 +53,7 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
     }); 
   }
                         
-async function DetectVideo(Model) {
+async function DetectVideo() {
   await Model.estimateSinglePose(video, 0.75, false, 16).then(pose => {
     //console.log(pose.score);
     //console.log(pose.keypoints);
@@ -80,10 +80,10 @@ async function DetectVideo(Model) {
     
     try { 
       document.createEvent("TouchEvent");
-      setTimeout(function(){DetectVideo(Model);},250);
+      setTimeout(function(){DetectVideo();},250);
     }
     catch(e) { 
-      DetectVideo(Model);
+      DetectVideo();
     }   
     
   });
