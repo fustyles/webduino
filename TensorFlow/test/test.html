@@ -11,6 +11,7 @@
   <body>
     <img id='class0' src='0.jpg'/>
     <img id='class1' src='1.jpg'/>
+    <img id='class2' src='2.jpg'/>
     <img id='test' src='test.jpg'/>
   </body>
   <!-- Place your code in the script tag below. You can also use an external .js file -->
@@ -31,6 +32,10 @@
       const img1 = tf.browser.fromPixels(document.getElementById('class1'));
       const logits1 = mobilenetModule.infer(img1, 'conv_preds');
       classifier.addExample(logits1, 1);
+      
+      const img2 = tf.browser.fromPixels(document.getElementById('class2'));
+      const logits2 = mobilenetModule.infer(img2, 'conv_preds');
+      classifier.addExample(logits2, 2);      
 
       // Make a prediction.
       const x = tf.browser.fromPixels(document.getElementById('test'));
