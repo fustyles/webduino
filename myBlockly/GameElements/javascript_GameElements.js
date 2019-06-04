@@ -724,7 +724,7 @@ Blockly.JavaScript['button_onclick_do'] = function (block) {
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'gamebutton_'+value_id_+'.addEventListener("click", gamebutton_'+value_id_+'_onclick, true);\nasync function gamebutton_'+value_id_+'_onclick (event) {\n' + statements_do_ + '};\n';
+  var code = 'async function gamebutton_'+value_id_+'_onclick (event) {\n' + statements_do_ + '};\ngamebutton_'+value_id_+'.addEventListener("click", gamebutton_'+value_id_+'_onclick, true);\n';
   return code;
 };
 
@@ -874,7 +874,7 @@ Blockly.JavaScript['colorpicker_onchange_do'] = function (block) {
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'gamecolor_'+value_id_+'.addEventListener("change", gamecolor_'+value_id_+'_onchange, true);\nasync function gamecolor_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\n';
+  var code = 'async function gamecolor_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\ngamecolor_'+value_id_+'.addEventListener("change", gamecolor_'+value_id_+'_onchange, true);\n';
   return code;
 };
 
@@ -922,7 +922,7 @@ Blockly.JavaScript['select_onchange_do'] = function (block) {
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'gameselect_'+value_id_+'.addEventListener("change", gameselect_'+value_id_+'_onchange, true);\nasync function gameselect_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\n';
+  var code = 'async function gameselect_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\ngameselect_'+value_id_+'.addEventListener("change", gameselect_'+value_id_+'_onchange, true);\n';
   return code;
 };
 
@@ -969,7 +969,7 @@ Blockly.JavaScript['range_onchange_do'] = function (block) {
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'gamerange_'+value_id_+'.addEventListener("change", gamerange_'+value_id_+'_onchange, true);\nasync function gamerange_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\n';
+  var code = 'async function gamerange_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\ngamerange_'+value_id_+'.addEventListener("change", gamerange_'+value_id_+'_onchange, true);\n';
   return code;
 };
 
@@ -1016,7 +1016,7 @@ Blockly.JavaScript['text_onchange_do'] = function (block) {
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'gametext_'+value_id_+'.addEventListener("change", gametext_'+value_id_+'_onchange, true);\nasync function gametext_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\n';
+  var code = 'async function gametext_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\ngametext_'+value_id_+'.addEventListener("change", gametext_'+value_id_+'_onchange, true);\n';
   return code;
 };
 
