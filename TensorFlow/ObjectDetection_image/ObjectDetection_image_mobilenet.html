@@ -40,7 +40,7 @@ function ObjectDetect() {
 }
   
 function DetectImage(Model) {
-  Model.detect(ShowImage).then(Predictions => {
+  Model.classify(ShowImage).then(Predictions => {
     //console.log('Predictions: ', Predictions);
     canvas.setAttribute("width", ShowImage.width);
     canvas.setAttribute("height", ShowImage.height);
