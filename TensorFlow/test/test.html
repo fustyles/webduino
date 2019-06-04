@@ -53,7 +53,7 @@
     gamebutton_clear.addEventListener("click", gamebutton_clear_onclick, true);    
     
     function gamebutton_predictClass_onclick (event) {
-      document.getElementById("test").src = document.getElementById(canvas_get('canvas',"id")).toDataURL('image/jpeg');
+      document.getElementById("test").src = document.getElementById(canvas_get('canvas',"id")).toDataURL();
       predictClass(document.getElementById("test"));
     };
     gamebutton_predictClass.addEventListener("click", gamebutton_predictClass_onclick, true);     
