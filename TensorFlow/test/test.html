@@ -37,7 +37,7 @@
       
       const img2 = tf.browser.fromPixels(document.getElementById('class2'));
       const logits2 = mobilenetModule.infer(img2, 'conv_preds');
-      classifier.addExample(logits2, 2);      
+      classifier.addExample(logits2, 1);      
 
       // Make a prediction.
       const x = tf.browser.fromPixels(document.getElementById('test'));
