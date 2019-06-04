@@ -37,7 +37,7 @@
     };
     document.getElementById('gamecanvas_'+'canvas').addEventListener("mousedown", canvas_canvas_mousedown, true);
 
-    async function canvas_canvas_mousemove(event) {
+    function canvas_canvas_mousemove(event) {
       if (state == true) {
         canvas_line('canvas',5,x0,y0,(mouse_coordinate_get("offsetX")),(mouse_coordinate_get("offsetY")),color,0,1);
       }
@@ -46,12 +46,12 @@
     };
     document.getElementById('gamecanvas_'+'canvas').addEventListener("mousemove", canvas_canvas_mousemove, true);
 
-    async function gamebutton_clear_onclick (event) {
+    function gamebutton_clear_onclick (event) {
       canvas_clear('canvas');
     };
     gamebutton_clear.addEventListener("click", gamebutton_clear_onclick, true);    
     
-    async function gamebutton_predictClass_onclick (event) {
+    function gamebutton_predictClass_onclick (event) {
       predictClass(document.getElementById(canvas_get('canvas',"id")).toDataURL());
     };
     gamebutton_clear.addEventListener("click", gamebutton_predictClass_onclick, true);     
