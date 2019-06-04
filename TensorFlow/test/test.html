@@ -41,6 +41,8 @@
       addExampleImage(document.getElementById("class2"),2);
       addExampleImage(document.getElementById("class2-1"),2);
       addExampleImage(document.getElementById("class2-2"),2);
+      
+      predictClass(document.getElementById("test"));
     }
 
     init();    
@@ -52,7 +54,7 @@
       classifier.addExample(logits, index);
     }
     
-    function (img) {
+    function predictClass(img) {
       // Make a prediction.
       const Image = tf.browser.fromPixels(img);
       const xlogits = mobilenetModule.infer(Image, 'conv_preds');
