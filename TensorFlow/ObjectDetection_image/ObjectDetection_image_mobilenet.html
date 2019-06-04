@@ -38,13 +38,13 @@ function ObjectDetect() {
   
 function DetectImage(Model) {
   Model.classify(ShowImage).then(Predictions => {
-    console.log('Predictions: ', Predictions);
+    //console.log('Predictions: ', Predictions);
     var s = (ShowImage.width>ShowImage.height)?ShowImage.width:ShowImage.height;
     
     if (Predictions.length>0) {
       result.innerHTML = "";
       for (var i=0;i<Predictions.length;i++) {
-        result.innerHTML+= "[ "+i+" ] "+Predictions[i].className+", "+Math.round(Predictions[i].probability*100)+"%<br>";
+        result.innerHTML+= "[ "+i+" ] "+Math.round(Predictions[i].probability*100)+"%, "+Predictions[i].className+"<br>";
       }
     }
     else
