@@ -1,5 +1,6 @@
 <html>
   <head>
+    <script src='https://fustyles.github.io/webduino/myBlockly/GameElements/gameelements.js'></script>
     <!-- Load TensorFlow.js -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <!-- Load MobileNet -->
@@ -22,6 +23,40 @@
     <img id='test' src='test.jpg' width="300" height="300">
     <div id="result"></div>
   </body>
+  <script>
+    canvas_create('canvas',300,300,0,0,0);
+    state = false;
+    color = '#000000';
+    button_create('predictClass',100,30,0,30,1,null,'predictClass',0,true);
+    button_create('clear',100,30,0,30,1,null,'Clear Canvas',0,true);
+
+    async function canvas_canvas_mousedown(event) {
+      state = state != true;
+      x0 = (mouse_coordinate_get("offsetX"));
+      y0 = (mouse_coordinate_get("offsetY"));
+    };
+    document.getElementById('gamecanvas_'+'canvas').addEventListener("mousedown", canvas_canvas_mousedown, true);
+
+    async function canvas_canvas_mousemove(event) {
+      if (state == true) {
+        canvas_line('canvas',5,x0,y0,(mouse_coordinate_get("offsetX")),(mouse_coordinate_get("offsetY")),color,0,1);
+      }
+      x0 = (mouse_coordinate_get("offsetX"));
+      y0 = (mouse_coordinate_get("offsetY"));
+    };
+    document.getElementById('gamecanvas_'+'canvas').addEventListener("mousemove", canvas_canvas_mousemove, true);
+
+    async function gamebutton_clear_onclick (event) {
+      canvas_clear('canvas');
+    };
+    gamebutton_clear.addEventListener("click", gamebutton_clear_onclick, true);    
+    
+    async function gamebutton_predictClass_onclick (event) {
+      predictClass(document.getElementById(canvas_get('canvas',"id")).toDataURL());
+    };
+    gamebutton_clear.addEventListener("click", gamebutton_predictClass_onclick, true);     
+  </script>
+  
   <!-- Place your code in the script tag below. You can also use an external .js file -->
   <script>
 
