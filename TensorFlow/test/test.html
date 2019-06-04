@@ -24,14 +24,13 @@
   </body>
   <!-- Place your code in the script tag below. You can also use an external .js file -->
   <script>
+    // Create the classifier.
+    const classifier = knnClassifier.create();
+
+    // Load mobilenet.
+    const mobilenetModule = await mobilenet.load();
     
     const init = async function() {
-      // Create the classifier.
-      const classifier = knnClassifier.create();
-
-      // Load mobilenet.
-      const mobilenetModule = await mobilenet.load();
-      
       addExampleImage(document.getElementById("class0"),0);
       addExampleImage(document.getElementById("class0-1"),0);
       addExampleImage(document.getElementById("class0-2"),0);
