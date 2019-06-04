@@ -9,10 +9,12 @@
  </head>
 
   <body>
-    <img id='class0' src='0.jpg'/>
-    <img id='class1' src='1.jpg'/>
-    <img id='class2' src='2.jpg'/>
-    <img id='test' src='test.jpg'/>
+    <img id='class0' src='0.jpg' width="300" height="300">
+    <img id='class1' src='1.jpg' width="300" height="300">
+    <img id='class2' src='2.jpg' width="300" height="300">
+    <br>
+    <img id='test' src='test.jpg' width="300" height="300">
+    <div id="result"></div>
   </body>
   <!-- Place your code in the script tag below. You can also use an external .js file -->
   <script>
@@ -43,6 +45,7 @@
       console.log('Predictions:');
       const result = await classifier.predictClass(xlogits);
       console.log(result);
+      document.getElementById("result").innHTML = result.confidences;
     }
 
     init();
