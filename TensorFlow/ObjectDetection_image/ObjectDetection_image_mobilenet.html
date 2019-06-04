@@ -10,8 +10,8 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_image/ObjectDetec
   <meta charset="utf-8">
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>  
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"> </script>  
 </head>
 <body>
 <input type="file" id="selectimage" disabled="true"></input>
@@ -32,8 +32,8 @@ var Model;
   
 function ObjectDetect() {
   result.innerHTML = "Please wait for loading model.";
-  cocoSsd.load().then(cocoSsd_Model => {
-    Model = cocoSsd_Model;
+  mobilenet.load().then(mobilenet_Model => {
+    Model = mobilenet_Model;
     result.innerHTML = "Please select one image.";
     document.getElementById('selectimage').disabled = false;
   }); 
