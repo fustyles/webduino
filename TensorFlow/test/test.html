@@ -12,6 +12,12 @@
     <img id='class0' src='0.jpg' width="300" height="300">
     <img id='class1' src='1.jpg' width="300" height="300">
     <img id='class2' src='2.jpg' width="300" height="300">
+    <img id='class0-1' src='0-1.jpg' width="300" height="300">
+    <img id='class1-1' src='1-1.jpg' width="300" height="300">
+    <img id='class2-1' src='2-1.jpg' width="300" height="300">
+    <img id='class0-2' src='0-2.jpg' width="300" height="300">
+    <img id='class1-2' src='1-2.jpg' width="300" height="300">
+    <img id='class2-2' src='2-2.jpg' width="300" height="300">    
     <br>
     <img id='test' src='test.jpg' width="300" height="300">
     <div id="result"></div>
@@ -27,17 +33,35 @@
       const mobilenetModule = await mobilenet.load();
 
       // Add MobileNet activations to the model repeatedly for all classes.
-      const img0 = tf.browser.fromPixels(document.getElementById('class0'));
-      const logits0 = mobilenetModule.infer(img0, 'conv_preds');
+      var img0 = tf.browser.fromPixels(document.getElementById('class0'));
+      var logits0 = mobilenetModule.infer(img0, 'conv_preds');
       classifier.addExample(logits0, 0);
+      var img0 = tf.browser.fromPixels(document.getElementById('class0-1'));
+      var logits0 = mobilenetModule.infer(img0, 'conv_preds');
+      classifier.addExample(logits0, 0);
+      var img0 = tf.browser.fromPixels(document.getElementById('class0-2'));
+      var logits0 = mobilenetModule.infer(img0, 'conv_preds');
+      classifier.addExample(logits0, 0);      
 
-      const img1 = tf.browser.fromPixels(document.getElementById('class1'));
-      const logits1 = mobilenetModule.infer(img1, 'conv_preds');
+      var img1 = tf.browser.fromPixels(document.getElementById('class1'));
+      var logits1 = mobilenetModule.infer(img1, 'conv_preds');
       classifier.addExample(logits1, 1);
+      var img1 = tf.browser.fromPixels(document.getElementById('class1-1'));
+      var logits1 = mobilenetModule.infer(img1, 'conv_preds');
+      classifier.addExample(logits1, 1);
+      var img1 = tf.browser.fromPixels(document.getElementById('class1-2'));
+      var logits1 = mobilenetModule.infer(img1, 'conv_preds');
+      classifier.addExample(logits1, 1);      
       
-      const img2 = tf.browser.fromPixels(document.getElementById('class2'));
-      const logits2 = mobilenetModule.infer(img2, 'conv_preds');
-      classifier.addExample(logits2, 1);      
+      var img2 = tf.browser.fromPixels(document.getElementById('class2'));
+      var logits2 = mobilenetModule.infer(img2, 'conv_preds');
+      classifier.addExample(logits2, 2);    
+      var img2 = tf.browser.fromPixels(document.getElementById('class2-1'));
+      var logits2 = mobilenetModule.infer(img2, 'conv_preds');
+      classifier.addExample(logits2, 2);   
+      var img2 = tf.browser.fromPixels(document.getElementById('class2-2'));
+      var logits2 = mobilenetModule.infer(img2, 'conv_preds');
+      classifier.addExample(logits2, 2);         
 
       // Make a prediction.
       const x = tf.browser.fromPixels(document.getElementById('test'));
