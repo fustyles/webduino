@@ -28,27 +28,25 @@
     var classifier;
     var mobilenetModule;
     
-    async function() {
-      // Create the classifier.
-      classifier = knnClassifier.create();
-      
-      // Load mobilenet.
-      mobilenet.load().then(Module => {
-        mobilenetModule = Module;
-        
-        addExampleImage(document.getElementById("class0"),0);
-        addExampleImage(document.getElementById("class0-1"),0);
-        addExampleImage(document.getElementById("class0-2"),0);
-        addExampleImage(document.getElementById("class1"),1);
-        addExampleImage(document.getElementById("class1-1"),1);
-        addExampleImage(document.getElementById("class1-2"),1);
-        addExampleImage(document.getElementById("class2"),2);
-        addExampleImage(document.getElementById("class2-1"),2);
-        addExampleImage(document.getElementById("class2-2"),2);
+    // Create the classifier.
+    classifier = knnClassifier.create();
 
-        predictClass(document.getElementById("test"));
-      }); 
-    } 
+    // Load mobilenet.
+    mobilenet.load().then(Module => {
+      mobilenetModule = Module;
+
+      addExampleImage(document.getElementById("class0"),0);
+      addExampleImage(document.getElementById("class0-1"),0);
+      addExampleImage(document.getElementById("class0-2"),0);
+      addExampleImage(document.getElementById("class1"),1);
+      addExampleImage(document.getElementById("class1-1"),1);
+      addExampleImage(document.getElementById("class1-2"),1);
+      addExampleImage(document.getElementById("class2"),2);
+      addExampleImage(document.getElementById("class2-1"),2);
+      addExampleImage(document.getElementById("class2-2"),2);
+
+      predictClass(document.getElementById("test"));
+    }); 
 
     function addExampleImage(img,index) {
       // Add MobileNet activations to the model repeatedly for all classes.
