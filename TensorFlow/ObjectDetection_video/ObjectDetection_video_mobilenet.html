@@ -45,8 +45,6 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
     mobilenet.load().then(mobilenet_model => {
       Model = mobilenet_model;
       result.innerHTML = "";
-      video.style.visibility="hidden";
-      video.style.position="absolute";
       DetectVideo();
     }); 
   }
@@ -54,7 +52,7 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
   function DetectVideo() {
     Model.classify(video).then(Predictions => { 
       result.innerHTML = "";
-      console.log('Predictions: ', Predictions);
+      //console.log('Predictions: ', Predictions);
       
       if (Predictions.length>0) {
         for (var i=0;i<Predictions.length;i++) {
