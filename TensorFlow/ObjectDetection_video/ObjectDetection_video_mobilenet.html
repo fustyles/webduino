@@ -52,12 +52,12 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
   }
                         
   function DetectVideo() {
-    Model.classify(video).then(predictions => { 
+    Model.classify(video).then(Predictions => { 
       result.innerHTML = "";
-      //console.log('Predictions: ', predictions);
+      console.log('Predictions: ', Predictions);
       
-      if (predictions.length>0) {
-        for (var i=0;i<predictions.length;i++) {
+      if (Predictions.length>0) {
+        for (var i=0;i<Predictions.length;i++) {
           result.innerHTML+= "[ "+i+" ] "+Math.round(Predictions[i].probability*100)+"%, "+Predictions[i].className+"<br>";
         }
       }
