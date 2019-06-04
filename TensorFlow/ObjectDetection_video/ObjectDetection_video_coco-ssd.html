@@ -23,7 +23,8 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
   var video = document.getElementById('video');
   var canvas = document.getElementById('canvas'); 
   var context = canvas.getContext('2d');
-  var result = document.getElementById('result');  
+  var result = document.getElementById('result'); 
+  var Model;
 
   navigator.mediaDevices
     .getUserMedia({
@@ -44,16 +45,17 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
 
   function ObjectDetect() {
     result.innerHTML = "Please wait for loading model.";
-    cocoSsd.load().then(model => {
+    cocoSsd.load().then(cocoSsd_model => {
+      Model = cocoSsd_model;
       result.innerHTML = "";
       video.style.visibility="hidden";
       video.style.position="absolute";
-      DetectVideo(model);
+      DetectVideo();
     }); 
   }
                         
-  function DetectVideo(model) {
-    model.detect(video).then(predictions => { 
+  function DetectVideo() {
+    Model.detect(video).then(predictions => { 
       canvas.setAttribute("width", video.width);
       canvas.setAttribute("height", video.height);        
       context.drawImage(video, 0, 0, video.width, video.height);
@@ -84,7 +86,7 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
       }
       else
         result.innerHTML = "Unrecognizable";
-      DetectVideo(model);
+      DetectVideo();
     });
   }
 </script>
