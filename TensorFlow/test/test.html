@@ -69,7 +69,7 @@
       console.log('Predictions:');
       const result = await classifier.predictClass(xlogits);
       console.log(result);
-      document.getElementById("result").innerHTML = result.confidences;
+      document.getElementById("result").innerHTML = result.confidences.label;
     }
 
     init();
