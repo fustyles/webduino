@@ -54,7 +54,7 @@
       classifier.addExample(logits, index);
     }
     
-    function predictClass(img) {
+    async function predictClass(img) {
       // Make a prediction.
       const Image = tf.browser.fromPixels(img);
       const xlogits = mobilenetModule.infer(Image, 'conv_preds');
