@@ -10,28 +10,17 @@
  </head>
 
   <body>
-    <select id="class">
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-    </select>  
-    <div id="result"></div>
     <img id="test" style="position:absolute;left:0px;top:200px;width:100px;height:100px">
     <div id="sample"></div>
   </body>
   <script>
     var state, x0, color, y0;
-    button_create('addExample',100,30,50,0,1,null,'addExample',0,true);
-    button_create('predictClass',100,30,150,0,1,null,'predictClass',0,true);
-    button_create('clear',100,30,250,0,1,null,'clear',0,true);
-    canvas_create('canvas',100,100,0,400,9999);
+    button_create('addExample',100,30,0,0,1,null,'addExample',0,true);
+    select_create('class',100,30,100,0,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
+    button_create('predictClass',100,30,200,0,1,null,'predictClass',0,true);
+    button_create('clear',100,30,300,0,1,null,'clear',0,true);
+    canvas_create('canvas',100,100,0,150,999);
+    div_create('result',60,30,0,300,"solid",1,'#000000','#ffffff','#000000',14,1,'',0,true);
     document.getElementById(canvas_get('canvas',"id")).style = "border: 1px solid black;";
     
     state = false;
