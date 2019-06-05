@@ -10,9 +10,6 @@
  </head>
 
   <body>
-    <button id="clear" onclick="">Clear Canvas</button>
-    <button id="predictClass" onclick="">predictClass</button>
-    <button id="addExample" onclick="">addExample</button>
     <select id="class">
       <option value="0">0</option>
       <option value="1">1</option>
@@ -29,13 +26,12 @@
   </body>
   <script>
     var state, x0, color, y0;
-    
+    button_create('addExample',60,30,0,100,1,null,'addExample',0,true);
+    button_set('addExample',"position",'relative'); 
     button_create('clear',60,30,0,100,1,null,'clear',0,true);
     button_set('clear',"position",'relative');
-    button_create('predictClass',60,30,100,100,1,null,'predictClass',0,true);
+    button_create('predictClass',60,30,200,100,1,null,'predictClass',0,true);
     button_set('predictClass',"position",'relative');
-    button_create('addExample',60,30,200,100,1,null,'addExample',0,true);
-    button_set('addExample',"position",'relative');    
     canvas_create('canvas',100,100,0,0,0);
     document.getElementById(canvas_get('canvas',"id")).style = "position: relative; border: 1px solid black;";
     
