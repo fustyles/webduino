@@ -10,16 +10,6 @@
  </head>
 
   <body>
-    <img id='class0' src='0.jpg' width="30" height="30">
-    <img id='class1' src='1.jpg' width="30" height="30">
-    <img id='class2' src='2.jpg' width="30" height="30">
-    <img id='class0-1' src='0-1.jpg' width="30" height="30">
-    <img id='class1-1' src='1-1.jpg' width="30" height="30">
-    <img id='class2-1' src='2-1.jpg' width="30" height="30">
-    <img id='class0-2' src='0-2.jpg' width="30" height="30">
-    <img id='class1-2' src='1-2.jpg' width="30" height="30">
-    <img id='class2-2' src='2-2.jpg' width="30" height="30">    
-    <img id='test' src='test.jpg' width="30" height="30">
     <div id="result"></div>
   </body>
   <script>
@@ -28,8 +18,10 @@
     document.getElementById(canvas_get('canvas',"id")).style = "border: 1px solid black;";
     state = false;
     color = '#000000';
-    button_create('predictClass',100,30,100,200,1,null,'predictClass',0,true);
+    
     button_create('clear',100,30,0,200,1,null,'Clear Canvas',0,true);
+    button_create('predictClass',100,30,100,200,1,null,'predictClass',0,true);
+    button_create('addExample',100,30,200,200,1,null,'addExample',0,true);
 
     function canvas_canvas_mousedown(event) {
       state = state != true;
@@ -57,6 +49,12 @@
       predictClass(document.getElementById("test"));
     };
     gamebutton_predictClass.addEventListener("click", gamebutton_predictClass_onclick, true);     
+    
+    function gamebutton_addExample_onclick (event) {
+      document.getElementById("test").src = document.getElementById(canvas_get('canvas',"id")).toDataURL();
+      addExampleImage(document.getElementById("test"), Number(document.getElementById("class").value));
+    };
+    gamebutton_addExample.addEventListener("click", gamebutton_addExample_onclick, true);      
   </script>
   
   <!-- Place your code in the script tag below. You can also use an external .js file -->
@@ -71,18 +69,7 @@
     // Load mobilenet.
     mobilenet.load().then(Module => {
       mobilenetModule = Module;
-
-      addExampleImage(document.getElementById("class0"),0);
-      addExampleImage(document.getElementById("class0-1"),0);
-      addExampleImage(document.getElementById("class0-2"),0);
-      addExampleImage(document.getElementById("class1"),1);
-      addExampleImage(document.getElementById("class1-1"),1);
-      addExampleImage(document.getElementById("class1-2"),1);
-      addExampleImage(document.getElementById("class2"),2);
-      addExampleImage(document.getElementById("class2-1"),2);
-      addExampleImage(document.getElementById("class2-2"),2);
-
-      console.log("Ready!");
+      document.getElementById("result").innerHTML = "Ready!";
       //predictClass(document.getElementById("test"));
     }); 
 
