@@ -85,7 +85,7 @@
       const xlogits = mobilenetModule.infer(Image, 'conv_preds');
       const result = await classifier.predictClass(xlogits);
       console.log(result);
-      div_set('result',"innerHTML",result.label); 
+      div_set('result',"innerHTML","Label = " + result.label); 
     }
   </script>
 </html>
