@@ -24,6 +24,7 @@
     </select>  
     <div id="result"></div>
     <img id="test" style="position:absolute;left:0px;top:200px;width:100px;height:100px">
+    <div id="sample"></div>
   </body>
   <script>
     var state, x0, color, y0;
@@ -96,7 +97,7 @@
       image.src = img.src;
       image.width = 30;
       image.height = 30;
-      document.body.appendChild(image);
+      document.getElementById("sample").appendChild(image);
     }
     
     async function predictClass(img) {
