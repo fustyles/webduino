@@ -97,11 +97,11 @@
       var logits = mobilenetModule.infer(Image, 'conv_preds');
       classifier.addExample(logits, index);
       
-      var image = new image();
-      image.src = img.src;
-      image.width = 30;
-      image.height = 30;
-      document.getElementById("sample").appendChild(image);
+      var s = new image();
+      s.src = img.src;
+      s.width = 30;
+      s.height = 30;
+      document.getElementById("sample").appendChild(s);
     }
     
     async function predictClass(img) {
