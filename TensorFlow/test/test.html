@@ -29,26 +29,34 @@
   </body>
   <script>
     var state, x0, color, y0;
+    
+    button_create('clear',60,30,0,100,1,null,'clear',0,true);
+    button_set('clear',"position",'relative');
+    button_create('predictClass',60,30,100,100,1,null,'predictClass',0,true);
+    button_set('predictClass',"position",'relative');
+    button_create('addExample',60,30,200,100,1,null,'addExample',0,true);
+    button_set('addExample',"position",'relative');    
     canvas_create('canvas',100,100,0,0,0);
-    document.getElementById(canvas_get('canvas',"id")).style = "border: 1px solid black;";
+    document.getElementById(canvas_get('canvas',"id")).style = "position: relative; border: 1px solid black;";
+    
     state = false;
     color = '#000000';
 
-    function canvas_canvas_mousedown(event) {
+    function canvas_mousedown(event) {
       state = state != true;
       x0 = (mouse_coordinate_get("offsetX"));
       y0 = (mouse_coordinate_get("offsetY"));
     };
-    document.getElementById('gamecanvas_'+'canvas').addEventListener("mousedown", canvas_canvas_mousedown, true);
+    document.getElementById(canvas_get('canvas',"id")).addEventListener("mousedown", canvas_mousedown, true);
 
-    function canvas_canvas_mousemove(event) {
+    function canvas_mousemove(event) {
       if (state == true) {
         canvas_line('canvas',5,x0,y0,(mouse_coordinate_get("offsetX")),(mouse_coordinate_get("offsetY")),color,0,1);
       }
       x0 = (mouse_coordinate_get("offsetX"));
       y0 = (mouse_coordinate_get("offsetY"));
     };
-    document.getElementById('gamecanvas_'+'canvas').addEventListener("mousemove", canvas_canvas_mousemove, true);
+    document.getElementById(canvas_get('canvas',"id")).addEventListener("mousemove", canvas_mousemove, true);
 
     function gamebutton_clear_onclick (event) {
       canvas_clear('canvas');
@@ -89,6 +97,12 @@
       var Image = tf.browser.fromPixels(img);
       var logits = mobilenetModule.infer(Image, 'conv_preds');
       classifier.addExample(logits, index);
+      
+      var image = new image();
+      image.src = img.src;
+      image.width = 30;
+      image.height = 30;
+      document.body.appendChild(image);
     }
     
     async function predictClass(img) {
