@@ -57,7 +57,7 @@
     
     function gamebutton_addExample_onclick (event) {
       document.getElementById("test").onload = function () {
-        addExampleImage(document.getElementById("test"), Number(document.getElementById("class").value));
+        addExampleImage(document.getElementById("test"), Number(document.getElementById(select_get('class',"id")).value));
       }      
       document.getElementById("test").src = document.getElementById(canvas_get('canvas',"id")).toDataURL();
     };
