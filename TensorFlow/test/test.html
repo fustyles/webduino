@@ -85,12 +85,6 @@
       var Image = tf.browser.fromPixels(img);
       var logits = mobilenetModule.infer(Image, 'conv_preds');
       classifier.addExample(logits, index);
-      
-      var s = new Image();
-      s.src = img.src;
-      s.width = 30;
-      s.height = 30;
-      document.getElementById("sample").appendChild(s);
     }
     
     async function predictClass(img) {
