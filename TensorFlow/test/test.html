@@ -30,7 +30,7 @@
     button_create('addExample',100,30,50,0,1,null,'addExample',0,true);
     button_create('clear',100,30,150,0,1,null,'clear',0,true);
     button_create('predictClass',100,30,250,0,1,null,'predictClass',0,true);
-    canvas_create('canvas',100,100,0,200,0);
+    canvas_create('canvas',100,100,0,200,9999);
     document.getElementById(canvas_get('canvas',"id")).style = "border: 1px solid black;";
     
     state = false;
