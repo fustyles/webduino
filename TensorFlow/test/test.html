@@ -10,6 +10,9 @@
  </head>
 
   <body>
+    <button id="clear" onclick="">Clear Canvas</button>
+    <button id="predictClass" onclick="">predictClass</button>
+    <button id="addExample" onclick="">addExample</button>
     <div id="result"></div>
   </body>
   <script>
@@ -18,10 +21,6 @@
     document.getElementById(canvas_get('canvas',"id")).style = "border: 1px solid black;";
     state = false;
     color = '#000000';
-    
-    button_create('clear',100,30,0,200,1,null,'Clear Canvas',0,true);
-    button_create('predictClass',100,30,100,200,1,null,'predictClass',0,true);
-    button_create('addExample',100,30,200,200,1,null,'addExample',0,true);
 
     function canvas_canvas_mousedown(event) {
       state = state != true;
