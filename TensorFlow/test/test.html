@@ -10,8 +10,6 @@
  </head>
 
   <body>
-    <img id="test" style="position:absolute;left:0px;top:200px;width:100px;height:100px">
-    <div id="sample"></div>
   </body>
   <script>
     var state, x0, color, y0;
@@ -48,18 +46,12 @@
     gamebutton_clear.addEventListener("click", gamebutton_clear_onclick, true);    
     
     function gamebutton_predictClass_onclick (event) {
-      document.getElementById("test").onload = function () {
-        predictClass(document.getElementById(canvas_get('canvas',"id")));
-      }      
-      document.getElementById("test").src = document.getElementById(canvas_get('canvas',"id")).toDataURL();
+      predictClass(document.getElementById(document.getElementById(canvas_get('canvas',"id")));
     };
     gamebutton_predictClass.addEventListener("click", gamebutton_predictClass_onclick, true);     
     
     function gamebutton_addExample_onclick (event) {
-      document.getElementById("test").onload = function () {
-        addExampleImage(document.getElementById("test"), Number(document.getElementById(select_get('class',"id")).value));
-      }      
-      document.getElementById("test").src = document.getElementById(canvas_get('canvas',"id")).toDataURL();
+      addExampleImage(document.getElementById(canvas_get('canvas',"id")), Number(document.getElementById(select_get('class',"id")).value));
     };
     gamebutton_addExample.addEventListener("click", gamebutton_addExample_onclick, true);      
   </script>
