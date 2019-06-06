@@ -94,6 +94,8 @@
       const result = await classifier.predictClass(xlogits);
       console.log(result);
       console.log(result.confidences);
+      console.log(result.confidences["0"]);
+      console.log(result.confidences[0]);
       /*
       var r="";
       for (i=0;i<result.confidences.length;i++) {
