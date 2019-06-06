@@ -93,6 +93,7 @@
       const xlogits = mobilenetModule.infer(Image, 'conv_preds');
       const result = await classifier.predictClass(xlogits);
       console.log(result);
+      console.log(result.confidences.length);
       var r="";
       for (i=0;i<result.confidences.length;i++) {
         r += "["+i+"] " + result.confidences[i] + "<br>";
