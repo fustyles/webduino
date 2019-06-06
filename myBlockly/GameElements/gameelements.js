@@ -573,7 +573,12 @@
       else if (input_property=="border")
         return obj.style.border;	
       else if (input_property=="backgroundColor")
-        return obj.style.backgroundColor;	    
+        var rgb = obj.style.backgroundColor;
+	var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
+	var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+	var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+	var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+	return "#"+r+g+b;	    
       else if (input_property=='id')
         return "gamecanvas_"+input_id;
     }
