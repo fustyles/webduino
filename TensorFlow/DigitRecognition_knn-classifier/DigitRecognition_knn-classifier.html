@@ -16,7 +16,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
  </head>
 
   <body>
-  <img id="test" style="width:300px;height:300px;visibility:hidden">
+  <img id="example" style="width:300px;height:300px;visibility:hidden">
   </body>
   <script>
     
@@ -57,18 +57,18 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     gamebutton_clear.addEventListener("click", gamebutton_clear_onclick, true);    
     
     function gamebutton_predictClass_onclick (event) {
-      document.getElementById("test").onload = function () {
-        predictClass(document.getElementById("test"));
+      document.getElementById("example").onload = function () {
+        predictClass(document.getElementById("example"));
       }
-      document.getElementById("test").src = document.getElementById(canvas_get('canvas',"id")).toDataURL('image/jpeg');
+      document.getElementById("example").src = document.getElementById(canvas_get('canvas',"id")).toDataURL('image/jpeg');
     };
     gamebutton_predictClass.addEventListener("click", gamebutton_predictClass_onclick, true);     
     
     function gamebutton_addExample_onclick (event) {
-      document.getElementById("test").onload = function () {
-        addExampleImage(document.getElementById("test"), Number(document.getElementById(select_get('class',"id")).value));
+      document.getElementById("example").onload = function () {
+        addExampleImage(document.getElementById("example"), Number(document.getElementById(select_get('class',"id")).value));
       }
-      document.getElementById("test").src = document.getElementById(canvas_get('canvas',"id")).toDataURL('image/jpeg');
+      document.getElementById("example").src = document.getElementById(canvas_get('canvas',"id")).toDataURL('image/jpeg');
     };
     gamebutton_addExample.addEventListener("click", gamebutton_addExample_onclick, true);      
   </script>
