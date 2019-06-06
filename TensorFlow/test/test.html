@@ -94,7 +94,7 @@
       const result = await classifier.predictClass(xlogits);
       console.log(result);
 
-      var r = result.label + "<br><br>";;
+      var r = "<font color='red'>" + result.label + "</font><br><br>";;
       for (i=0;i<10;i++) {
         r += "["+i+"] " + result.confidences[i.toString()] + "<br>";
       }
