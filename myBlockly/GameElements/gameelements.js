@@ -528,7 +528,11 @@
       else if (input_property=='moveY')
         obj.style.top = (Number(obj.style.top.replace(/px/ig,""))+Number(input_value))+"px";   
       else if (input_property=="draggable")
-        obj.draggable = input_value;	    
+        obj.draggable = input_value;
+      else if (input_property=="border")
+        obj.style.border = input_value;
+      else if (input_property=="backgroundColor")
+        obj.style.backgroundColor = input_value;	    
     }
   }  
   
