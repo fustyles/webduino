@@ -29,6 +29,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     canvas_set('canvas',"backgroundColor",'#000000');
     canvas_set('canvas',"display",false);
     div_create('result',300,30,0,400,"solid",0,'#000000','#ffffff','#000000',14,1,'',0,true);
+    div_set('result',"innerHTML",'Please wait for loading model.');
     
     var state = false;
     var color = '#ffffff';
@@ -85,8 +86,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     mobilenet.load().then(Module => {
       mobilenetModule = Module;
       canvas_set('canvas',"display",true);
-      div_set('result',"innerHTML",'Model is ready!');
-      //predictClass(document.getElementById("test"));
+      div_set('result',"innerHTML",'');
     }); 
 
     function addExampleImage(img,index) {
