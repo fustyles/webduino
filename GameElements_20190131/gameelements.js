@@ -532,7 +532,11 @@
       else if (input_property=='moveY')
         obj.style.top = (Number(obj.style.top.replace(/px/ig,""))+Number(input_value))+"px"; 
       else if (input_property=="draggable")
-        obj.draggable = input_value;	    
+        obj.draggable = input_value;
+      else if (input_property=="border")
+        obj.style.border = input_value;
+      else if (input_property=="backgroundColor")
+        obj.style.backgroundColor = input_value;	    
     }
   }  
   
@@ -569,7 +573,11 @@
       else if (input_property=="position")
         return obj.style.position;
       else if (input_property=="draggable")
-        return obj.draggable;	    
+        return obj.draggable;	 
+      else if (input_property=="border")
+        return obj.style.border;	
+      else if (input_property=="backgroundColor")
+        return obj.style.backgroundColor;	    
       else if (input_property=='id')
         return "gamecanvas_"+input_id;
     }
