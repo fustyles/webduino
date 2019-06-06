@@ -569,7 +569,11 @@
       else if (input_property=="position")
         return obj.style.position;	
       else if (input_property=="draggable")
-        return obj.draggable;	    
+        return obj.draggable;
+      else if (input_property=="border")
+        return obj.style.border;	
+      else if (input_property=="backgroundColor")
+        return obj.style.backgroundColor;	    
       else if (input_property=='id')
         return "gamecanvas_"+input_id;
     }
