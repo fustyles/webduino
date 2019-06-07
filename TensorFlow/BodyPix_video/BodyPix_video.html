@@ -5,7 +5,7 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix_video.html
 -->
 <!DOCTYPE html>
 <head>
-  <title>Single Pose Detection (Camera)</title>
+  <title>person and body part segmentation (BodyPix)</title>
   <meta charset="utf-8">
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,7 +66,7 @@ async function DetectVideo() {
 	const backgroundDarkeningMask = bodyPix.toMaskImageData(segmentation, maskBackground);
 	const opacity = 0.7;
 	const maskBlurAmount = 3;
-	const flipHorizontal = true;
+	const flipHorizontal = false;
 	const backgroundBlurAmount = 3;
 	const edgeBlurAmount = 3;
 	// draw the mask onto the image on a canvas.  With opacity set to 0.7 and maskBlurAmount set to 3, this will darken the background and blur the darkened background's edge.

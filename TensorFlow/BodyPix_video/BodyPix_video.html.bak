@@ -1,11 +1,11 @@
 <!-- 
 Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/7
 https://www.facebook.com/francefu
-https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection_video.html
+https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix_video.html
 -->
 <!DOCTYPE html>
 <head>
-  <title>Single Pose Detection (Camera)</title>
+  <title>person and body part segmentation (BodyPix)</title>
   <meta charset="utf-8">
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">

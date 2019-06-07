@@ -1,0 +1,125 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/7
+https://www.facebook.com/francefu
+https://fustyles.github.io/webduino/TensorFlow/BodyPix_image/BodyPix_image.html
+-->
+<!DOCTYPE html>
+<head>
+  <title>person and body part segmentation (BodyPix)</title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@1.0.0"> </script> 
+</head>
+<body>
+<input type="file" id="selectimage" disabled="true"></input>
+<br><br>
+<img id="OriginImage" style="display:none">
+<img id="ShowImage">
+<img id="ShowImage1">
+<img id="ShowImage2">
+<canvas id="canvas1" style="display:none"></canvas>
+<canvas id="canvas2" style="display:none"></canvas>
+<br>
+<div id="result" style="width:350px;color:red"></div>
+  
+<script>
+var ShowImage = document.getElementById('ShowImage');
+var ShowImage1 = document.getElementById('ShowImage1');
+var ShowImage2 = document.getElementById('ShowImage2');
+var ShowImageWidth = 500;
+var canvas1 = document.getElementById("canvas1");
+var context1 = canvas1.getContext("2d"); 
+var canvas2 = document.getElementById("canvas2");
+var context2 = canvas2.getContext("2d"); 
+var result = document.getElementById('result');
+var Model;
+var outputStride = 16;
+var segmentationThreshold = 0.5;
+  
+function ObjectDetect() {
+  result.innerHTML = "Please wait for loading model.";
+  bodyPix.load().then(function(net) {
+    Model = net;
+    result.innerHTML = "Please select one image.";
+    document.getElementById('selectimage').disabled = false;
+  }); 
+}
+  
+function DetectImage() {
+  Model.estimatePersonSegmentation(OriginImage, outputStride, segmentationThreshold).then(segmentation => {
+    //console.log(segmentation);
+
+	canvas1.setAttribute("width", OriginImage.width);
+	canvas1.setAttribute("height", OriginImage.height);   
+	canvas2.setAttribute("width", OriginImage.width);
+	canvas2.setAttribute("height", OriginImage.height);  
+
+	const maskBackground = true;
+	// Convert the personSegmentation into a mask to darken the background.
+	// Since maskBackground is set to true, there will be 1s where the background is and 0s where the person is.
+	const backgroundDarkeningMask = bodyPix.toMaskImageData(segmentation, maskBackground);
+	const opacity = 0.8;
+	const maskBlurAmount = 3;
+	const flipHorizontal = false;
+	const backgroundBlurAmount = 3;
+	const edgeBlurAmount = 3;
+	// draw the mask onto the image on a canvas.  With opacity set to 0.7 and maskBlurAmount set to 3, this will darken the background and blur the darkened background's edge.
+	bodyPix.drawMask(canvas1, OriginImage, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
+    //bodyPix.drawBokehEffect(canvas2, OriginImage, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
+	result.innerHTML = ""; 
+    ShowImage1.src = canvas1.toDataURL('image/jpeg');
+	ShowImage2.src = canvas2.toDataURL('image/jpeg');
+  });
+}
+    
+document.getElementById('selectimage').onchange = function (event) {
+  var target = event.target || window.event.srcElement;
+  var files = target.files;
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      result.innerHTML = "Loading image to detect...";  
+      OriginImage.src = fr.result;
+    }
+    fr.readAsDataURL(files[0]);
+  }
+}
+  
+document.getElementById('OriginImage').onload = function (event) {
+  try { 
+    document.createEvent("TouchEvent"); 
+    var width = document.body.clientWidth;
+  }
+  catch(e) { 
+    var width = ShowImageWidth;
+  } 
+  
+  if (OriginImage.height<OriginImage.width) {
+    var height = width*OriginImage.height/OriginImage.width; 
+  }
+  else {
+    var height = width;
+    width = height*OriginImage.width/OriginImage.height; 
+  }
+  
+  var height = width*OriginImage.height/OriginImage.width;
+  ShowImage.width = width;
+  ShowImage.height = height;  
+  ShowImage.src = OriginImage.src;
+  ShowImage1.width = width;
+  ShowImage1.height = height;  
+  ShowImage2.width = width;
+  ShowImage2.height = height;  
+}
+  
+document.getElementById('ShowImage').onload = function (event) {
+  if (Model) DetectImage();
+}
+  
+window.onload = function () { ObjectDetect(); }
+</script>
+
+</body>
+</html>
