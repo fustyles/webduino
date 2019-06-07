@@ -37,7 +37,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     var predictClass = document.getElementById(button_get('predictClass',"id"));
     var addExample = document.getElementById(button_get('addExample',"id"));
     var example = document.getElementById(image_get('example',"id"));
-	
+    
     var state = false;
     var color = '#ffffff';
     var x0, y0;
@@ -74,12 +74,12 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     function addExample_onclick (event) {
       example.onload = function () {
         addExampleImage(example, Number(document.getElementById(select_get('class',"id")).value));
-		console.log("ok");
+        console.log("ok");
       }
       example.src = canvas.toDataURL('image/jpeg');
     };
     addExample.addEventListener("click", addExample_onclick, true); 
-	
+    
   </script>
   
   <!-- Place your code in the script tag below. You can also use an external .js file -->
@@ -94,7 +94,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       mobilenetModule = Module;
       canvas_set('canvas',"display",true);
       div_set('result',"innerHTML",'');
-	  document.getElementById('selectimage').disabled = false;
+      document.getElementById('selectimage').disabled = false;
     }); 
     function addExampleImage(img,index) {
       // Add MobileNet activations to the model repeatedly for all classes.
@@ -116,31 +116,31 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       div_set('result',"innerHTML",r); 
     }
 
-	document.getElementById('selectimage').onchange = function (event) {
-	  var target = event.target || window.event.srcElement;
-	  var files = target.files;
-	  if (files && files.length>0) 
-	    ImportMultiFiles(files);
-	}
+    document.getElementById('selectimage').onchange = function (event) {
+      var target = event.target || window.event.srcElement;
+      var files = target.files;
+      if (files && files.length>0) 
+        ImportMultiFiles(files);
+    }
 
-	function ImportMultiFiles(files) {
-	  var img = new Image();
-	  img.onload = function () {
-	    context.clearRect(0, 0, canvas.width, canvas.height);
-	    context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
-	    addExample_onclick();
-	  }
+    function ImportMultiFiles(files) {
+      var img = new Image();
+      img.onload = function () {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
+        addExample_onclick();
+      }
 
-	  function ImportOneFile(n) {
-		var fr = new FileReader();
-		fr.onload = function() {  
-		  img.src = fr.result;
-		  if (n<(files.length-1)) 
-		    ImportOneFile(n+1);
-		}
-		fr.readAsDataURL(files[n]);
-	  }
-	  ImportOneFile(0);
-	}
+      function ImportOneFile(n) {
+        var fr = new FileReader();
+        fr.onload = function() {  
+          img.src = fr.result;
+          if (n<(files.length-1)) 
+            ImportOneFile(n+1);
+        }
+        fr.readAsDataURL(files[n]);
+      }
+      ImportOneFile(0);
+    }
   </script>
 </html>
