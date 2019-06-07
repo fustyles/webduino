@@ -23,19 +23,24 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     button_create('addExample',100,30,0,0,1,null,'Train Example',0,true);
     select_create('class',100,30,100,0,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
     select_set('class',"value",'0');
+    
     canvas_create('canvas',300,300,0,60,999);
     canvas_set('canvas',"backgroundColor",'#000000');
-    button_create('predictClass',100,30,0,360,1,null,'predict Class',0,true);
+	button_create('predictClass',100,30,0,360,1,null,'predict Class',0,true);
     button_create('clear',100,30,200,360,1,null,'clear',0,true);
     canvas_set('canvas',"display",false);
     div_create('result',300,30,0,390,"solid",0,'#000000','#ffffff','#ff0000',14,1,'',0,true);
     div_set('result',"innerHTML",'Please wait for loading model.');
-    
+	var canvas = document.getElementById(canvas_get('canvas',"id"));
+	var context = canvas.getContext("2d"); 
+	var clear = document.getElementById(button_get('clear',"id"));
+	var predictClass = document.getElementById(button_get('predictClass',"id"));
+	var addExample = document.getElementById(button_get('addExample',"id"));
+	var example = document.getElementById(image_get('example',"id"));
+	
     var state = false;
     var color = '#ffffff';
     var x0, y0;
-    var canvas = document.getElementById(canvas_get('canvas',"id"));
-    var context = canvas.getContext("2d"); 
 
     function canvas_mousedown(event) {
       state = state != true;
@@ -53,27 +58,27 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     };
     canvas.addEventListener("mousemove", canvas_mousemove, true);
 
-    function gamebutton_clear_onclick (event) {
+    function clear_onclick (event) {
       canvas_clear('canvas');
     };
-    gamebutton_clear.addEventListener("click", gamebutton_clear_onclick, true);    
+    clear.addEventListener("click", clear_onclick, true);    
     
-    function gamebutton_predictClass_onclick (event) {
-      document.getElementById(image_get('example',"id")).onload = function () {
-        predictClass(document.getElementById(image_get('example',"id")));
+    function predictClass_onclick (event) {
+      example.onload = function () {
+        predictClass(example);
       }
-      document.getElementById(image_get('example',"id")).src = canvas.toDataURL('image/jpeg');
+      example.src = canvas.toDataURL('image/jpeg');
     };
-    gamebutton_predictClass.addEventListener("click", gamebutton_predictClass_onclick, true);     
+    predictClass.addEventListener("click", predictClass_onclick, true);     
     
-    function gamebutton_addExample_onclick (event) {
-      document.getElementById(image_get('example',"id")).onload = function () {
-        addExampleImage(document.getElementById(image_get('example',"id")), Number(document.getElementById(select_get('class',"id")).value));
+    function addExample_onclick (event) {
+      example.onload = function () {
+        addExampleImage(example, Number(document.getElementById(select_get('class',"id")).value));
 		console.log("ok");
       }
-      document.getElementById(image_get('example',"id")).src = canvas.toDataURL('image/jpeg');
+      example.src = canvas.toDataURL('image/jpeg');
     };
-    gamebutton_addExample.addEventListener("click", gamebutton_addExample_onclick, true); 
+    addExample.addEventListener("click", addExample_onclick, true); 
 	
   </script>
   
@@ -123,7 +128,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
 	  img.onload = function () {
 	    context.clearRect(0, 0, canvas.width, canvas.height);
 	    context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
-	    gamebutton_addExample_onclick();
+	    addExample_onclick();
 	  }
 
 	  function ImportOneFile(n) {
