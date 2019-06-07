@@ -26,17 +26,17 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     
     canvas_create('canvas',300,300,0,60,999);
     canvas_set('canvas',"backgroundColor",'#000000');
-	button_create('predictClass',100,30,0,360,1,null,'predict Class',0,true);
+    button_create('predictClass',100,30,0,360,1,null,'predict Class',0,true);
     button_create('clear',100,30,200,360,1,null,'clear',0,true);
     canvas_set('canvas',"display",false);
     div_create('result',300,30,0,390,"solid",0,'#000000','#ffffff','#ff0000',14,1,'',0,true);
     div_set('result',"innerHTML",'Please wait for loading model.');
-	var canvas = document.getElementById(canvas_get('canvas',"id"));
-	var context = canvas.getContext("2d"); 
-	var clear = document.getElementById(button_get('clear',"id"));
-	var predictClass = document.getElementById(button_get('predictClass',"id"));
-	var addExample = document.getElementById(button_get('addExample',"id"));
-	var example = document.getElementById(image_get('example',"id"));
+    var canvas = document.getElementById(canvas_get('canvas',"id"));
+    var context = canvas.getContext("2d"); 
+    var clear = document.getElementById(button_get('clear',"id"));
+    var predictClass = document.getElementById(button_get('predictClass',"id"));
+    var addExample = document.getElementById(button_get('addExample',"id"));
+    var example = document.getElementById(image_get('example',"id"));
 	
     var state = false;
     var color = '#ffffff';
