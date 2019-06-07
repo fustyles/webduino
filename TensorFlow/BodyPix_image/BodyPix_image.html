@@ -67,9 +67,9 @@ function DetectImage() {
 	const edgeBlurAmount = 3;
 	// draw the mask onto the image on a canvas.  With opacity set to 0.7 and maskBlurAmount set to 3, this will darken the background and blur the darkened background's edge.
 	bodyPix.drawMask(canvas1, OriginImage, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
-    //bodyPix.drawBokehEffect(canvas2, OriginImage, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
+        bodyPix.drawBokehEffect(canvas2, OriginImage, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
 	result.innerHTML = ""; 
-    ShowImage1.src = canvas1.toDataURL('image/jpeg');
+        ShowImage1.src = canvas1.toDataURL('image/jpeg');
 	ShowImage2.src = canvas2.toDataURL('image/jpeg');
   });
 }
