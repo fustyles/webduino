@@ -76,12 +76,11 @@ async function DetectVideo() {
     try { 
       document.createEvent("TouchEvent");
       segmentationThreshold = 0.5;
-      setTimeout(function(){DetectVideo();},250);
     }
     catch(e) { 
       segmentationThreshold = 0.75;
-      DetectVideo();
     }   
+    DetectVideo();
   });
 }
 </script>
