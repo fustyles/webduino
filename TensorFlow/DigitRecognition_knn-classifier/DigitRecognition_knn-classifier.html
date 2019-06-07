@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/7
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/8
 https://www.facebook.com/francefu
 https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/DigitRecognition_knn-classifier.html
 -->
@@ -23,7 +23,8 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     button_create('addExample',100,30,0,0,1,null,'Train Example',0,true);
     select_create('Class',100,30,100,0,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
     select_set('Class',"value",'0');
-    
+    div_create('count',100,30,250,00,"solid",0,'#000000','#ffffff','#ff0000',20,1,'',0,true);
+	div_set('count',"innerHTML","0");
     canvas_create('canvas',300,300,0,60,999);
     canvas_set('canvas',"backgroundColor",'#000000');
     button_create('predictClass',100,30,0,360,1,null,'predict Class',0,true);
@@ -75,7 +76,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     function addExample_onclick (event) {
       example.onload = function () {
         addExampleImage(example, Number(Class.value));
-        console.log("ok");
+        div_set('count',"innerHTML",Number(div_get('count',"innerHTML"))+1);
       }
       example.src = canvas.toDataURL('image/jpeg');
     };
@@ -105,16 +106,22 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     }
     
     async function predictClass(img) {
-      // Make a prediction.
-      const Image = tf.browser.fromPixels(img);
-      const xlogits = mobilenetModule.infer(Image, 'conv_preds');
-      const result = await classifier.predictClass(xlogits);
-      console.log(result);
-      var r = "<font color='red'>label : " + result.label + "</font><br><br>";;
-      for (i=0;i<10;i++) {
-        r += "["+i+"] " + result.confidences[i.toString()] + "<br>";
+      try
+      {
+        // Make a prediction.
+        const Image = tf.browser.fromPixels(img);
+        const xlogits = mobilenetModule.infer(Image, 'conv_preds');
+        const result = await classifier.predictClass(xlogits);
+        console.log(result);
+        var r = "<font color='red'>label : " + result.label + "</font><br><br>";;
+        for (i=0;i<10;i++) {
+      	r += "["+i+"] " + result.confidences[i.toString()] + "<br>";
+        }
+        div_set('result',"innerHTML",r); 
       }
-      div_set('result',"innerHTML",r); 
+      catch (e)
+      {
+      }
     }
 
     document.getElementById('selectimage').onchange = function (event) {
