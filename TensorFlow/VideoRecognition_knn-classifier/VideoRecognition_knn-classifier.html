@@ -6,7 +6,6 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
 
 <html>
   <head>
-    <script src='https://fustyles.github.io/webduino/myBlockly/GameElements/gameelements.js'></script>
     <!-- Load TensorFlow.js -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <!-- Load MobileNet -->
@@ -16,7 +15,12 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
  </head>
 
   <body>
-  <video id="video" width="300" height="300" style="position:absolute;top:60px;left:0px;" preload autoplay loop muted></video>
+  <video id="video" width="300" height="300" preload autoplay loop muted></video><br>
+  <button id="addExample">Train Example</button>
+  <select id="Class"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>
+  <div id="result" style="color:red">Please wait for loading model.</div>
+  <canvas id="canvas" width="300" height="300" style="background-color:#000000;display:none;">
+  <img id="example" width="300" height="300" style="display:none">
   </body>
   <script>
     
@@ -35,24 +39,14 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
         video.play();
       }
     })
-
-    image_create('example','',300,300,0,0,0,false);
-    button_create('addExample',100,30,0,0,1,null,'Train Example',0,true);
-    select_create('Class',100,30,100,0,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
-    select_set('Class',"value",'0');
     
-    canvas_create('canvas',300,300,0,60,999);
-    canvas_set('canvas',"backgroundColor",'#000000');
-    canvas_set('canvas',"display",false);
-    div_create('result',300,30,0,360,"solid",0,'#000000','#ffffff','#ff0000',14,1,'',0,true);
-    div_set('result',"innerHTML",'Please wait for loading model.');
 	var video = document.getElementById('video');
-    var canvas = document.getElementById(canvas_get('canvas',"id"));
+    var canvas = document.getElementById('canvas');
     var context = canvas.getContext("2d"); 
-    var predictClass = document.getElementById(button_get('predictClass',"id"));
-    var addExample = document.getElementById(button_get('addExample',"id"));
-    var example = document.getElementById(image_get('example',"id"));
-	var Class = document.getElementById(select_get('Class',"id"));
+    var addExample = document.getElementById('addExample');
+    var example = document.getElementById('example');
+	var Class = document.getElementById('Class');
+	var result = document.getElementById('result');
     
     var state = false;
     var color = '#ffffff';
@@ -104,9 +98,8 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
     mobilenet.load().then(Module => {
       mobilenetModule = Module;
       setInterval(function(){ predictClass_onclick(); }, 200);
-      div_set('result',"innerHTML",'');
+      result.innerHTML = '';
     }); 
-
     function addExampleImage(img,index) {
       // Add MobileNet activations to the model repeatedly for all classes.
       var Image = tf.browser.fromPixels(img);
@@ -120,18 +113,17 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
 	  {
         const Image = tf.browser.fromPixels(img);
         const xlogits = mobilenetModule.infer(Image, 'conv_preds');
-        const result = await classifier.predictClass(xlogits);
-        //console.log(result);
-        var r = "<font color='red'>label : " + result.label + "</font><br><br>";;
-        for (i=0;i<10;i++) {
-			r += "["+i+"] " + result.confidences[i.toString()] + "<br>";
+        const predict = await classifier.predictClass(xlogits);
+        //console.log(predict);
+        var msg = "<font color='red'>Label : " + predict.label + "</font><br><br>";;
+        for (i=0;i<Class.length;i++) {
+			msg += "["+i+"] " + predict.confidences[i.toString()] + "<br>";
         }
-        div_set('result',"innerHTML",r); 
+        result.innerHTML = msg; 
 	  }
 	  catch (e)
 	  {
 	  }
-
     }
   </script>
 </html>
