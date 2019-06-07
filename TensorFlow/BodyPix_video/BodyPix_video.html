@@ -60,17 +60,17 @@ async function DetectVideo() {
   await Model.estimatePersonSegmentation(video, outputStride, segmentationThreshold).then(segmentation => {
     //console.log(segmentation);
 
-	const maskBackground = true;
-	// Convert the personSegmentation into a mask to darken the background.
-	// Since maskBackground is set to true, there will be 1s where the background is and 0s where the person is.
-	const backgroundDarkeningMask = bodyPix.toMaskImageData(segmentation, maskBackground);
-	const opacity = 0.7;
-	const maskBlurAmount = 3;
-	const flipHorizontal = false;
-	const backgroundBlurAmount = 3;
-	const edgeBlurAmount = 3;
-	// draw the mask onto the image on a canvas.  With opacity set to 0.7 and maskBlurAmount set to 3, this will darken the background and blur the darkened background's edge.
-	bodyPix.drawMask(canvas1, video, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
+    const maskBackground = true;
+    // Convert the personSegmentation into a mask to darken the background.
+    // Since maskBackground is set to true, there will be 1s where the background is and 0s where the person is.
+    const backgroundDarkeningMask = bodyPix.toMaskImageData(segmentation, maskBackground);
+    const opacity = 0.7;
+    const maskBlurAmount = 3;
+    const flipHorizontal = false;
+    const backgroundBlurAmount = 3;
+    const edgeBlurAmount = 3;
+    // draw the mask onto the image on a canvas.  With opacity set to 0.7 and maskBlurAmount set to 3, this will darken the background and blur the darkened background's edge.
+    bodyPix.drawMask(canvas1, video, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
     bodyPix.drawBokehEffect(canvas2, video, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
     
     try { 
