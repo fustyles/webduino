@@ -44,9 +44,8 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
     canvas_create('canvas',300,300,0,60,999);
     canvas_set('canvas',"backgroundColor",'#000000');
 	canvas_set('canvas',"display", false);
-    button_create('predictClass',100,30,0,360,1,null,'predict Class',0,true);
     canvas_set('canvas',"display",false);
-    div_create('result',300,30,0,390,"solid",0,'#000000','#ffffff','#ff0000',14,1,'',0,true);
+    div_create('result',300,30,0,360,"solid",0,'#000000','#ffffff','#ff0000',14,1,'',0,true);
     div_set('result',"innerHTML",'Please wait for loading model.');
 	var video = document.getElementById('video');
     var canvas = document.getElementById(canvas_get('canvas',"id"));
@@ -82,13 +81,11 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
       }
       context.drawImage(video, 0, 0, video.width, video.height ,0 ,0 ,canvas.width, canvas.height);
       example.src = canvas.toDataURL('image/jpeg');
-    };
-    predictClass.addEventListener("click", predictClass_onclick, true);     
+    };    
     
     function addExample_onclick (event) {
       example.onload = function () {
         addExampleImage(example, Number(Class.value));
-        console.log("ok");
       }
       context.drawImage(video, 0, 0, video.width, video.height ,0 ,0 ,canvas.width, canvas.height);
       example.src = canvas.toDataURL('image/jpeg');
@@ -107,8 +104,10 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
     // Load mobilenet.
     mobilenet.load().then(Module => {
       mobilenetModule = Module;
+	  setInterval(function(){ predictClass_onclick(); }, 200);
       div_set('result',"innerHTML",'');
     }); 
+
     function addExampleImage(img,index) {
       // Add MobileNet activations to the model repeatedly for all classes.
       var Image = tf.browser.fromPixels(img);
@@ -118,15 +117,22 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
     
     async function predictClass(img) {
       // Make a prediction.
-      const Image = tf.browser.fromPixels(img);
-      const xlogits = mobilenetModule.infer(Image, 'conv_preds');
-      const result = await classifier.predictClass(xlogits);
-      console.log(result);
-      var r = "<font color='red'>label : " + result.label + "</font><br><br>";;
-      for (i=0;i<10;i++) {
-        r += "["+i+"] " + result.confidences[i.toString()] + "<br>";
-      }
-      div_set('result',"innerHTML",r); 
+	  try
+	  {
+        const Image = tf.browser.fromPixels(img);
+        const xlogits = mobilenetModule.infer(Image, 'conv_preds');
+        const result = await classifier.predictClass(xlogits);
+        //console.log(result);
+        var r = "<font color='red'>label : " + result.label + "</font><br><br>";;
+        for (i=0;i<10;i++) {
+			r += "["+i+"] " + result.confidences[i.toString()] + "<br>";
+        }
+        div_set('result',"innerHTML",r); 
+	  }
+	  catch (e)
+	  {
+	  }
+
     }
   </script>
 </html>
