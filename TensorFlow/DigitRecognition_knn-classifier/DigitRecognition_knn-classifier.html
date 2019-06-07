@@ -40,6 +40,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       y0 = (mouse_coordinate_get("offsetY"));
     };
     document.getElementById(canvas_get('canvas',"id")).addEventListener("mousedown", canvas_mousedown, true);
+	  
     function canvas_mousemove(event) {
       if (state == true) {
         canvas_line('canvas',5,x0,y0,(mouse_coordinate_get("offsetX")),(mouse_coordinate_get("offsetY")),color,0,1);
@@ -48,6 +49,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       y0 = (mouse_coordinate_get("offsetY"));
     };
     document.getElementById(canvas_get('canvas',"id")).addEventListener("mousemove", canvas_mousemove, true);
+	  
     function gamebutton_clear_onclick (event) {
       canvas_clear('canvas');
     };
@@ -67,7 +69,8 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       }
       document.getElementById(image_get('example',"id")).src = document.getElementById(canvas_get('canvas',"id")).toDataURL('image/jpeg');
     };
-    gamebutton_addExample.addEventListener("click", gamebutton_addExample_onclick, true);      
+    gamebutton_addExample.addEventListener("click", gamebutton_addExample_onclick, true);  
+	  
   </script>
   
   <!-- Place your code in the script tag below. You can also use an external .js file -->
