@@ -11,7 +11,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <!-- Load MobileNet -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
-    <!-- Load KNN Classifier -->
+    <!-- Load KNN classifier -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
  </head>
 
@@ -21,8 +21,8 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
   <script>
     image_create('example','',300,300,0,0,0,false);
     button_create('addExample',100,30,0,0,1,null,'Train Example',0,true);
-    select_create('class',100,30,100,0,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
-    select_set('class',"value",'0');
+    select_create('Class',100,30,100,0,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
+    select_set('Class',"value",'0');
     
     canvas_create('canvas',300,300,0,60,999);
     canvas_set('canvas',"backgroundColor",'#000000');
@@ -37,7 +37,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     var predictClass = document.getElementById(button_get('predictClass',"id"));
     var addExample = document.getElementById(button_get('addExample',"id"));
     var example = document.getElementById(image_get('example',"id"));
-    var class_ = document.getElementById(select_get('class',"id"));
+	var Class = document.getElementById(select_get('Class',"id"));
     
     var state = false;
     var color = '#ffffff';
@@ -74,7 +74,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     
     function addExample_onclick (event) {
       example.onload = function () {
-        addExampleImage(example, Number(class_.value));
+        addExampleImage(example, Number(Class.value));
         console.log("ok");
       }
       example.src = canvas.toDataURL('image/jpeg');
@@ -98,7 +98,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       document.getElementById('selectimage').disabled = false;
     }); 
     function addExampleImage(img,index) {
-      // Add MobileNet activations to the model repeatedly for all classes.
+      // Add MobileNet activations to the model repeatedly for all Classes.
       var Image = tf.browser.fromPixels(img);
       var logits = mobilenetModule.infer(Image, 'conv_preds');
       classifier.addExample(logits, index);
