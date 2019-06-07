@@ -104,7 +104,7 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
     // Load mobilenet.
     mobilenet.load().then(Module => {
       mobilenetModule = Module;
-	  setInterval(function(){ predictClass_onclick(); }, 200);
+      setInterval(function(){ predictClass_onclick(); }, 200);
       div_set('result',"innerHTML",'');
     }); 
 
