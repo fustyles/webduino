@@ -56,42 +56,41 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
                         
 async function DetectVideo() {
   await Model.estimateMultiplePoses(video, imageScaleFactor, false, 16).then(pose => {
-  //console.log(pose.score);
-  //console.log(pose.keypoints);
+    //console.log(pose.score);
+    //console.log(pose.keypoints);
 
-  canvas.setAttribute("width", video.width);
-  canvas.setAttribute("height", video.height);        
-  context.drawImage(video, 0, 0, video.width, video.height);
-  result.innerHTML = "";  
-    
-  if (pose.length>0) {
-    for (var n=0;n<pose.length;n++) {
-      var k = pose[n].keypoints;
-        if (k.length>0) {
-          for (var i=0;i<k.length;i++) {
-            if (k[i].score>0.1) {
-            const x = k[i].position.x;
-            const y = k[i].position.y;
-            context.fillStyle="#00FFFF";
-            context.beginPath();
-            context.arc(x, y, 3, 0,2*Math.PI);
-            context.closePath();
-            context.fill();
-          }      
-          result.innerHTML += "[" + n + "]" + k[i].part + ", " + Math.round(k[i].score*100) + "%, " + Math.round(k[i].position.x) + ", " + Math.round(k[i].position.y) + "<br>";
+    canvas.setAttribute("width", video.width);
+    canvas.setAttribute("height", video.height);        
+    context.drawImage(video, 0, 0, video.width, video.height);
+    result.innerHTML = "";  
+
+    if (pose.length>0) {
+      for (var n=0;n<pose.length;n++) {
+        var k = pose[n].keypoints;
+          if (k.length>0) {
+            for (var i=0;i<k.length;i++) {
+              if (k[i].score>0.1) {
+              const x = k[i].position.x;
+              const y = k[i].position.y;
+              context.fillStyle="#00FFFF";
+              context.beginPath();
+              context.arc(x, y, 3, 0,2*Math.PI);
+              context.closePath();
+              context.fill();
+            }      
+            result.innerHTML += "[" + n + "]" + k[i].part + ", " + Math.round(k[i].score*100) + "%, " + Math.round(k[i].position.x) + ", " + Math.round(k[i].position.y) + "<br>";
+          }
         }
       }
     }
-  }
     try { 
       document.createEvent("TouchEvent");
       imageScaleFactor = 0.5;
-      setTimeout(function(){DetectVideo();},250);
     }
     catch(e) { 
       imageScaleFactor = 0.75;
-      DetectVideo();
     }   
+    DetectVideo();
   });
 }
 
