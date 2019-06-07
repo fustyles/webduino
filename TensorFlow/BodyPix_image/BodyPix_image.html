@@ -42,8 +42,8 @@ function ObjectDetect() {
   }); 
 }
   
-function DetectImage() {
-  Model.estimatePersonSegmentation(ShowImage, outputStride, segmentationThreshold).then(segmentation => {
+async function DetectImage() {
+  await Model.estimatePersonSegmentation(ShowImage, outputStride, segmentationThreshold).then(segmentation => {
     //console.log(segmentation);
 	canvas1.setAttribute("width", ShowImage.width);
 	canvas1.setAttribute("height", ShowImage.height);   
