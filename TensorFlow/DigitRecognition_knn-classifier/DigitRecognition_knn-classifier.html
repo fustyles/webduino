@@ -23,10 +23,9 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     button_create('addExample',100,30,0,0,1,null,'Train Example',0,true);
     select_create('class',100,30,100,0,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
     select_set('class',"value",'0');
-    
     canvas_create('canvas',300,300,0,60,999);
     canvas_set('canvas',"backgroundColor",'#000000');
-	button_create('predictClass',100,30,0,360,1,null,'predict Class',0,true);
+    button_create('predictClass',100,30,0,360,1,null,'predict Class',0,true);
     button_create('clear',100,30,200,360,1,null,'clear',0,true);
     canvas_set('canvas',"display",false);
     div_create('result',300,30,0,390,"solid",0,'#000000','#ffffff','#ff0000',14,1,'',0,true);
@@ -35,13 +34,16 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     var state = false;
     var color = '#ffffff';
     var x0, y0;
+    var canvas = document.getElementById(canvas_get('canvas',"id"));
+    var context = canvas.getContext("2d"); 
 
     function canvas_mousedown(event) {
       state = state != true;
       x0 = (mouse_coordinate_get("offsetX"));
       y0 = (mouse_coordinate_get("offsetY"));
     };
-    document.getElementById(canvas_get('canvas',"id")).addEventListener("mousedown", canvas_mousedown, true);
+    canvas.addEventListener("mousedown", canvas_mousedown, true);
+
     function canvas_mousemove(event) {
       if (state == true) {
         canvas_line('canvas',5,x0,y0,(mouse_coordinate_get("offsetX")),(mouse_coordinate_get("offsetY")),color,0,1);
@@ -49,7 +51,8 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       x0 = (mouse_coordinate_get("offsetX"));
       y0 = (mouse_coordinate_get("offsetY"));
     };
-    document.getElementById(canvas_get('canvas',"id")).addEventListener("mousemove", canvas_mousemove, true);
+    canvas.addEventListener("mousemove", canvas_mousemove, true);
+
     function gamebutton_clear_onclick (event) {
       canvas_clear('canvas');
     };
@@ -59,7 +62,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       document.getElementById(image_get('example',"id")).onload = function () {
         predictClass(document.getElementById(image_get('example',"id")));
       }
-      document.getElementById(image_get('example',"id")).src = document.getElementById(canvas_get('canvas',"id")).toDataURL('image/jpeg');
+      document.getElementById(image_get('example',"id")).src = canvas.toDataURL('image/jpeg');
     };
     gamebutton_predictClass.addEventListener("click", gamebutton_predictClass_onclick, true);     
     
@@ -68,7 +71,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
         addExampleImage(document.getElementById(image_get('example',"id")), Number(document.getElementById(select_get('class',"id")).value));
 		console.log("ok");
       }
-      document.getElementById(image_get('example',"id")).src = document.getElementById(canvas_get('canvas',"id")).toDataURL('image/jpeg');
+      document.getElementById(image_get('example',"id")).src = canvas.toDataURL('image/jpeg');
     };
     gamebutton_addExample.addEventListener("click", gamebutton_addExample_onclick, true); 
 	
@@ -108,34 +111,31 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       div_set('result',"innerHTML",r); 
     }
 
-    document.getElementById('selectimage').onchange = function (event) {
-      var target = event.target || window.event.srcElement;
-      var files = target.files;
-      if (files && files.length>0) 
-        ImportMultiFiles(files);
-    }
+	document.getElementById('selectimage').onchange = function (event) {
+	  var target = event.target || window.event.srcElement;
+	  var files = target.files;
+	  if (files && files.length>0) 
+	    ImportMultiFiles(files);
+	}
 
-    function ImportMultiFiles(files) {
-      var canvas = document.getElementById(canvas_get('canvas',"id"));
-      var context = canvas.getContext("2d"); 
+	function ImportMultiFiles(files) {
+	  var img = new Image();
+	  img.onload = function () {
+	    context.clearRect(0, 0, canvas.width, canvas.height);
+	    context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
+	    gamebutton_addExample_onclick();
+	  }
 
-      var img = new Image();
-      img.onload = function () {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
-        gamebutton_addExample_onclick();
-      }
-    
-      function ImportOneFile(n) {
-        var fr = new FileReader();
-        fr.onload = function() {  
-          img.src = fr.result;
-          if (n<(files.length-1)) 
-            ImportOneFile(n+1);
-        }
-        fr.readAsDataURL(files[n]);
-      }
-      ImportOneFile(0);
-    }
+	  function ImportOneFile(n) {
+		var fr = new FileReader();
+		fr.onload = function() {  
+		  img.src = fr.result;
+		  if (n<(files.length-1)) 
+		    ImportOneFile(n+1);
+		}
+		fr.readAsDataURL(files[n]);
+	  }
+	  ImportOneFile(0);
+	}
   </script>
 </html>
