@@ -1,0 +1,90 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/7
+https://www.facebook.com/francefu
+https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix_video.html
+-->
+<!DOCTYPE html>
+<head>
+  <title>person and body part segmentation (BodyPix)</title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@1.0.0"> </script>  
+</head>
+<body>
+<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<canvas id="canvas1"></canvas>
+<canvas id="canvas2"></canvas>
+<br>
+<div id="result" style="width:320px;color:red"></div>
+  
+<script>
+  var video = document.getElementById('video');
+  var canvas1 = document.getElementById('canvas1'); 
+  var canvas2 = document.getElementById('canvas2');
+  var outputStride = 16;
+  var segmentationThreshold = 0.5;
+
+  navigator.mediaDevices
+    .getUserMedia({
+      audio: false,
+      video: {
+        facingMode: "user",
+        width: 320,
+        height: 240
+      }
+    })
+    .then(stream => {
+      video.srcObject = stream
+      video.onloadedmetadata = () => {       
+        video.play();
+        ObjectDetect();
+      }
+    })
+
+  function ObjectDetect() {
+    result.innerHTML = "Please wait for loading model.";
+    bodyPix.load().then(function(net) {
+      Model = net;
+      result.innerHTML = "";
+      canvas1.setAttribute("width", video.width);
+      canvas1.setAttribute("height", video.height);  
+      canvas2.setAttribute("width", video.width);
+      canvas2.setAttribute("height", video.height);  
+      DetectVideo(Model);
+    }); 
+  }
+                        
+async function DetectVideo() {
+  await Model.estimatePersonSegmentation(video, outputStride, segmentationThreshold).then(segmentation => {
+    //console.log(segmentation);
+
+	const maskBackground = true;
+	// Convert the personSegmentation into a mask to darken the background.
+	// Since maskBackground is set to true, there will be 1s where the background is and 0s where the person is.
+	const backgroundDarkeningMask = bodyPix.toMaskImageData(segmentation, maskBackground);
+	const opacity = 0.7;
+	const maskBlurAmount = 3;
+	const flipHorizontal = true;
+	const backgroundBlurAmount = 3;
+	const edgeBlurAmount = 3;
+	// draw the mask onto the image on a canvas.  With opacity set to 0.7 and maskBlurAmount set to 3, this will darken the background and blur the darkened background's edge.
+	bodyPix.drawMask(canvas1, video, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
+    bodyPix.drawBokehEffect(canvas2, video, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
+    
+    try { 
+      document.createEvent("TouchEvent");
+      segmentationThreshold = 0.5;
+      setTimeout(function(){DetectVideo();},250);
+    }
+    catch(e) { 
+      segmentationThreshold = 0.75;
+      DetectVideo();
+    }   
+  });
+}
+</script>
+
+</body>
+</html>
