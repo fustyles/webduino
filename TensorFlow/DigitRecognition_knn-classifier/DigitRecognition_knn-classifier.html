@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/6
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/7
 https://www.facebook.com/francefu
 https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/DigitRecognition_knn-classifier.html
 -->
@@ -16,32 +16,30 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
  </head>
 
   <body>
-  <img id="example" style="width:300px;height:300px;visibility:hidden">
   </body>
   <script>
-    
+    image_create('example','',300,300,0,0,0,false);
     button_create('addExample',100,30,0,0,1,null,'Train Example',0,true);
     select_create('class',100,30,100,0,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
     select_set('class',"value",'0');
-    button_create('predictClass',100,30,0,30,1,null,'predict Class',0,true);
-    button_create('clear',100,30,0,360,1,null,'clear',0,true);
-    canvas_create('canvas',300,300,0,60,999);
+    
+    canvas_create('canvas',300,300,0,30,999);
     canvas_set('canvas',"backgroundColor",'#000000');
+	button_create('predictClass',100,30,0,330,1,null,'predict Class',0,true);
+    button_create('clear',100,30,200,330,1,null,'clear',0,true);
     canvas_set('canvas',"display",false);
-    div_create('result',300,30,0,400,"solid",0,'#000000','#ffffff','#000000',14,1,'',0,true);
+    div_create('result',300,30,0,360,"solid",0,'#000000','#ffffff','#ff0000',14,1,'',0,true);
     div_set('result',"innerHTML",'Please wait for loading model.');
     
     var state = false;
     var color = '#ffffff';
     var x0, y0;
-
     function canvas_mousedown(event) {
       state = state != true;
       x0 = (mouse_coordinate_get("offsetX"));
       y0 = (mouse_coordinate_get("offsetY"));
     };
     document.getElementById(canvas_get('canvas',"id")).addEventListener("mousedown", canvas_mousedown, true);
-
     function canvas_mousemove(event) {
       if (state == true) {
         canvas_line('canvas',5,x0,y0,(mouse_coordinate_get("offsetX")),(mouse_coordinate_get("offsetY")),color,0,1);
@@ -50,45 +48,41 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       y0 = (mouse_coordinate_get("offsetY"));
     };
     document.getElementById(canvas_get('canvas',"id")).addEventListener("mousemove", canvas_mousemove, true);
-
     function gamebutton_clear_onclick (event) {
       canvas_clear('canvas');
     };
     gamebutton_clear.addEventListener("click", gamebutton_clear_onclick, true);    
     
     function gamebutton_predictClass_onclick (event) {
-      document.getElementById("example").onload = function () {
-        predictClass(document.getElementById("example"));
+      document.getElementById(image_get('example',"id")).onload = function () {
+        predictClass(document.getElementById(image_get('example',"id")));
       }
-      document.getElementById("example").src = document.getElementById(canvas_get('canvas',"id")).toDataURL('image/jpeg');
+      document.getElementById(image_get('example',"id")).src = document.getElementById(canvas_get('canvas',"id")).toDataURL('image/jpeg');
     };
     gamebutton_predictClass.addEventListener("click", gamebutton_predictClass_onclick, true);     
     
     function gamebutton_addExample_onclick (event) {
-      document.getElementById("example").onload = function () {
-        addExampleImage(document.getElementById("example"), Number(document.getElementById(select_get('class',"id")).value));
+      document.getElementById(image_get('example',"id")).onload = function () {
+        addExampleImage(document.getElementById(image_get('example',"id")), Number(document.getElementById(select_get('class',"id")).value));
       }
-      document.getElementById("example").src = document.getElementById(canvas_get('canvas',"id")).toDataURL('image/jpeg');
+      document.getElementById(image_get('example',"id")).src = document.getElementById(canvas_get('canvas',"id")).toDataURL('image/jpeg');
     };
     gamebutton_addExample.addEventListener("click", gamebutton_addExample_onclick, true);      
   </script>
   
   <!-- Place your code in the script tag below. You can also use an external .js file -->
   <script>
-
     var classifier;
     var mobilenetModule;
     
     // Create the classifier.
     classifier = knnClassifier.create();
-
     // Load mobilenet.
     mobilenet.load().then(Module => {
       mobilenetModule = Module;
       canvas_set('canvas',"display",true);
       div_set('result',"innerHTML",'');
     }); 
-
     function addExampleImage(img,index) {
       // Add MobileNet activations to the model repeatedly for all classes.
       var Image = tf.browser.fromPixels(img);
@@ -102,7 +96,6 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       const xlogits = mobilenetModule.infer(Image, 'conv_preds');
       const result = await classifier.predictClass(xlogits);
       console.log(result);
-
       var r = "<font color='red'>label : " + result.label + "</font><br><br>";;
       for (i=0;i<10;i++) {
         r += "["+i+"] " + result.confidences[i.toString()] + "<br>";
