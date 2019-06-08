@@ -106,7 +106,7 @@ window.onload = function () {
 		//console.log(predict);
 		var msg = "<font color='red'>Label : " + predict.label + "</font><br><br>";;
 		for (i=0;i<Class.length;i++) {
-		  msg += "["+i+"] " + predict.confidences[i.toString()] + "<br>";
+		  if (predict.confidences[i.toString()]) msg += "["+i+"] " + predict.confidences[i.toString()] + "<br>";
 		}
 		result.innerHTML = msg; 
 		train.innerHTML = predict.label;
