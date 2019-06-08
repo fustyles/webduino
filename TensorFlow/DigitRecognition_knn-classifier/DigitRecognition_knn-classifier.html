@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/7
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/8
 https://www.facebook.com/francefu
 https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/DigitRecognition_knn-classifier.html
 -->
@@ -80,8 +80,8 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     
     function addExample_onclick (event) {
       example.src = canvas.toDataURL('image/jpeg');
-	  addExampleImage(example, Number(Class.value));
-	  div_set('count',"innerHTML",Number(div_get('count',"innerHTML"))+1);
+      addExampleImage(example, Number(Class.value));
+      div_set('count',"innerHTML",Number(div_get('count',"innerHTML"))+1);
     };
     addExample.addEventListener("click", addExample_onclick, true); 
 
@@ -142,7 +142,8 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     selectimage_train.onchange = function (event) {
       var target = event.target || window.event.srcElement;
       files = target.files;
-      if (files && files.length>0) 
+      console.log(files.length);
+      if (files.length>0) 
         ImportMultiFiles(files);
     }
 
@@ -154,13 +155,15 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
           img.onload = function () {
             context.clearRect(0, 0, canvas.width, canvas.height);
             context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
-        	addExample.click();
+            addExample.click();
             if (n<(files.length-1)) {
               //ImportOneFile(n+1);
-        	  setTimeout(function(){ ImportOneFile(n+1); }, 2000);
-        	}
-        	else
-        	  return;
+              setTimeout(function(){ ImportOneFile(n+1); }, 2000);
+            }
+            else {
+              file = null;
+              return;
+            }
           }
           img.src = fr.result;
         }
