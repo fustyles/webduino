@@ -80,8 +80,8 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     
     function addExample_onclick (event) {
       example.src = canvas.toDataURL('image/jpeg');
-	  addExampleImage(example, Number(Class.value));
-	  div_set('count',"innerHTML",Number(div_get('count',"innerHTML"))+1);
+      addExampleImage(example, Number(Class.value));
+      div_set('count',"innerHTML",Number(div_get('count',"innerHTML"))+1);
     };
     addExample.addEventListener("click", addExample_onclick, true); 
 
