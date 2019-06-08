@@ -34,7 +34,6 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     canvas_set('canvas',"display",false);
     div_create('result',300,30,0,390,"solid",0,'#000000','#ffffff','#ff0000',14,1,'',0,true);
     div_set('result',"innerHTML",'Please wait for loading model.');
-
     var canvas = document.getElementById(canvas_get('canvas',"id"));
     var context = canvas.getContext("2d"); 
     var clear = document.getElementById(button_get('clear',"id"));
@@ -50,12 +49,14 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     var state = false;
     var color = '#ffffff';
     var x0, y0;
+
     function canvas_mousedown(event) {
       state = state != true;
       x0 = (mouse_coordinate_get("offsetX"));
       y0 = (mouse_coordinate_get("offsetY"));
     };
     canvas.addEventListener("mousedown", canvas_mousedown, true);
+
     function canvas_mousemove(event) {
       if (state == true) {
         canvas_line('canvas',5,x0,y0,(mouse_coordinate_get("offsetX")),(mouse_coordinate_get("offsetY")),color,0,1);
@@ -64,6 +65,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       y0 = (mouse_coordinate_get("offsetY"));
     };
     canvas.addEventListener("mousemove", canvas_mousemove, true);
+
     function clear_onclick (event) {
       canvas_clear('canvas');
     };
@@ -77,17 +79,17 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     };   
     
     function addExample_onclick (event) {
-      example.onload = function () {
-        addExampleImage(example, Number(Class.value));
-        div_set('count',"innerHTML",Number(div_get('count',"innerHTML"))+1);
-      }
       example.src = canvas.toDataURL('image/jpeg');
+	  addExampleImage(example, Number(Class.value));
+	  div_set('count',"innerHTML",Number(div_get('count',"innerHTML"))+1);
     };
     addExample.addEventListener("click", addExample_onclick, true); 
+
     function SelectTrain_onclick (event) {
       selectimage_train.click();
     };
     SelectTrain.addEventListener("click", SelectTrain_onclick, true); 
+
     function SelectLoad_onclick (event) {
       selectimage_load.click();
     };
@@ -101,13 +103,15 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     
     // Create the classifier.
     classifier = knnClassifier.create();
+
     // Load mobilenet.
     mobilenet.load().then(Module => {
       mobilenetModule = Module;
       canvas_set('canvas',"display",true);
       div_set('result',"innerHTML",'');
-	  setInterval(function(){ predictClass_onclick(); }, 200);
+        setInterval(function(){ predictClass_onclick(); }, 200);
     }); 
+
     function addExampleImage(img,index) {
       // Add MobileNet activations to the model repeatedly for all Classes.
       var Image = tf.browser.fromPixels(img);
@@ -125,7 +129,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
         //console.log(result);
         var r = "<font color='red'>label : " + result.label + "</font><br><br>";;
         for (i=0;i<Class.length;i++) {
-      	  r += "["+i+"] " + result.confidences[i.toString()] + "<br>";
+              r += "["+i+"] " + result.confidences[i.toString()] + "<br>";
         }
         div_set('result',"innerHTML",r); 
       }
@@ -133,30 +137,38 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       {
       }
     }
+
     selectimage_train.onchange = function (event) {
       var target = event.target || window.event.srcElement;
       var files = target.files;
       if (files && files.length>0) 
         ImportMultiFiles(files);
     }
+
     function ImportMultiFiles(files) {
-      var img = new Image();
-      img.onload = function () {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
-        addExample_onclick();
-      }
-      function ImportOneFile(n) {
+      function ImportOneFile(n, files) {
         var fr = new FileReader();
-        fr.onload = function() {  
+        fr.onload = function() { 
+          var img = new Image();
+          img.onload = function () {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
+        	addExample.click();
+        	console.log(n);
+            if (n<(files.length-1)) {
+              //ImportOneFile(n+1, files);
+        	  setTimeout(function(){ ImportOneFile(n+1, files); }, 2000);
+        	}
+        	else
+        	  return;
+          }
           img.src = fr.result;
-          if (n<(files.length-1)) 
-            ImportOneFile(n+1);
         }
         fr.readAsDataURL(files[n]);
       }
-      ImportOneFile(0);
+      ImportOneFile(0, files);
     }
+
     selectimage_load.onchange = function (event) {
       var target = event.target || window.event.srcElement;
       var files = target.files;
