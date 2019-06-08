@@ -22,8 +22,6 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
   <select id="Class"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>
   <span id="count" style="font-size::18px;color:red">0</span>
   <div id="result" style="color:red">Please wait for loading model.</div>
-  <canvas id="canvas" width="300" height="300" style="background-color:#000000;display:none;">
-  <img id="example" width="300" height="300" style="display:none">
   </body>
   <script>
     
@@ -44,44 +42,17 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
     })
     
     var video = document.getElementById('video');
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext("2d"); 
     var addExample = document.getElementById('addExample');
-    var example = document.getElementById('example');
     var Class = document.getElementById('Class');
     var result = document.getElementById('result');
     var count = document.getElementById('count');
     
-    var state = false;
-    var color = '#ffffff';
-    var x0, y0;
-    function canvas_mousedown(event) {
-      state = state != true;
-      x0 = (mouse_coordinate_get("offsetX"));
-      y0 = (mouse_coordinate_get("offsetY"));
-    };
-    canvas.addEventListener("mousedown", canvas_mousedown, true);
-    function canvas_mousemove(event) {
-      if (state == true) {
-        canvas_line('canvas',5,x0,y0,(mouse_coordinate_get("offsetX")),(mouse_coordinate_get("offsetY")),color,0,1);
-      }
-      x0 = (mouse_coordinate_get("offsetX"));
-      y0 = (mouse_coordinate_get("offsetY"));
-    };
-    canvas.addEventListener("mousemove", canvas_mousemove, true); 
-    
     function predictClass_onclick (event) {
-      example.onload = function () {
-        predictClass(example);
-      }
-      context.drawImage(video, 0, 0, video.width, video.height ,0 ,0 ,canvas.width, canvas.height);
-      example.src = canvas.toDataURL('image/jpeg');
+        predictClass(video);
     };    
     
     function addExample_onclick (event) {
-      context.drawImage(video, 0, 0, video.width, video.height ,0 ,0 ,canvas.width, canvas.height);
-      example.src = canvas.toDataURL('image/jpeg');
-      addExampleImage(example, Number(Class.value));
+      addExampleImage(video, Number(Class.value));
       count.innerHTML = Number(count.innerHTML)+1;
     };
     addExample.addEventListener("click", addExample_onclick, true);
@@ -128,7 +99,6 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
       {
       }
     }
-
     function saveModel() {
       let dataset = classifier.getClassifierDataset();
       let myDataset = {}
@@ -145,7 +115,6 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
       link.click();
       link.remove();
     }
-
     document.getElementById('getModel').onchange = function (event) {
       var target = event.target || window.event.srcElement;
       var files = target.files;
