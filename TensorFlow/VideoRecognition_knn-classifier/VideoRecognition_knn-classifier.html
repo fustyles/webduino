@@ -99,6 +99,7 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
       {
       }
     }
+    
     function saveModel() {
       let dataset = classifier.getClassifierDataset();
       let myDataset = {}
@@ -115,6 +116,7 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
       link.click();
       link.remove();
     }
+    
     document.getElementById('getModel').onchange = function (event) {
       var target = event.target || window.event.srcElement;
       var files = target.files;
