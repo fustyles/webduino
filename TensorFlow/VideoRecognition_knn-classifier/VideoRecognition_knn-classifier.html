@@ -95,12 +95,14 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
     
     // Create the classifier.
     classifier = knnClassifier.create();
+    
     // Load mobilenet.
     mobilenet.load().then(Module => {
       mobilenetModule = Module;
       setInterval(function(){ predictClass_onclick(); }, 200);
       result.innerHTML = '';
     }); 
+    
     function addExampleImage(img,index) {
       // Add MobileNet activations to the model repeatedly for all classes.
       var Image = tf.browser.fromPixels(img);
