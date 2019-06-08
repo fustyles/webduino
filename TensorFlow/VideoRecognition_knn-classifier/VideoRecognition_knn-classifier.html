@@ -41,14 +41,14 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
       }
     })
     
-	var video = document.getElementById('video');
+    var video = document.getElementById('video');
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext("2d"); 
     var addExample = document.getElementById('addExample');
     var example = document.getElementById('example');
-	var Class = document.getElementById('Class');
-	var result = document.getElementById('result');
-	var count = document.getElementById('count');
+    var Class = document.getElementById('Class');
+    var result = document.getElementById('result');
+    var count = document.getElementById('count');
     
     var state = false;
     var color = '#ffffff';
@@ -81,7 +81,7 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
     function addExample_onclick (event) {
       example.onload = function () {
         addExampleImage(example, Number(Class.value));
-		count.innerHTML = Number(count.innerHTML)+1;
+        count.innerHTML = Number(count.innerHTML)+1;
       }
       context.drawImage(video, 0, 0, video.width, video.height ,0 ,0 ,canvas.width, canvas.height);
       example.src = canvas.toDataURL('image/jpeg');
@@ -112,8 +112,8 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
     
     async function predictClass(img) {
       // Make a prediction.
-	  try
-	  {
+      try
+      {
         const Image = tf.browser.fromPixels(img);
         const xlogits = mobilenetModule.infer(Image, 'conv_preds');
         const predict = await classifier.predictClass(xlogits);
@@ -123,10 +123,10 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
 			msg += "["+i+"] " + predict.confidences[i.toString()] + "<br>";
         }
         result.innerHTML = msg; 
-	  }
-	  catch (e)
-	  {
-	  }
+      }
+      catch (e)
+      {
+      }
     }
   </script>
 </html>
