@@ -130,37 +130,37 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
     }
 
 	function saveModel() {
-	  let dataset = classifier.getClassifierDataset();
-	  let myDataset = {}
-	  Object.keys(dataset).forEach((key) => {
+      let dataset = classifier.getClassifierDataset();
+      let myDataset = {}
+      Object.keys(dataset).forEach((key) => {
 		let data = dataset[key].dataSync();
 		myDataset[key] = Array.from(data);
-	  });
-	  let jsonStr = JSON.stringify(myDataset)
-	  
-	  var link = document.createElement('a');
-	  link.download="model.json";
-	  link.href='data:text/text;charset=utf-8,' + encodeURIComponent(jsonStr);
-	  document.body.appendChild(link);
-	  link.click();
-	  link.remove();
+      });
+      let jsonStr = JSON.stringify(myDataset)
+      
+      var link = document.createElement('a');
+      link.download="model.json";
+      link.href='data:text/text;charset=utf-8,' + encodeURIComponent(jsonStr);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
 	}
 
 	document.getElementById('getModel').onchange = function (event) {
-	  var target = event.target || window.event.srcElement;
-	  var files = target.files;
-	  var fr = new FileReader();
-	  if (files.length>0) {
+      var target = event.target || window.event.srcElement;
+      var files = target.files;
+      var fr = new FileReader();
+      if (files.length>0) {
 		fr.onload = function () {     
-		  var dataset = fr.result;
-		  var myDataset = JSON.parse(dataset)
-		  Object.keys(myDataset).forEach((key) => {
+          var dataset = fr.result;
+          var myDataset = JSON.parse(dataset)
+          Object.keys(myDataset).forEach((key) => {
 			myDataset[key] = tf.tensor(myDataset[key], [myDataset[key].length / 1024, 1024]);
-		  })
-		  classifier.setClassifierDataset(myDataset);
+          })
+          classifier.setClassifierDataset(myDataset);
 		}
 		fr.readAsText(files[0]);
-	  }
+      }
 	}
   </script>
 </html>
