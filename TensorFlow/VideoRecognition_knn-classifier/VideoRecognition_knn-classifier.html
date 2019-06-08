@@ -120,7 +120,7 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
         //console.log(predict);
         var msg = "<font color='red'>Label : " + predict.label + "</font><br><br>";;
         for (i=0;i<Class.length;i++) {
-			msg += "["+i+"] " + predict.confidences[i.toString()] + "<br>";
+          msg += "["+i+"] " + predict.confidences[i.toString()] + "<br>";
         }
         result.innerHTML = msg; 
       }
