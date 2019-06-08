@@ -6,8 +6,8 @@
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "knn_classifier_video.js",
-    "knn_classifier.js"
+    "knn-classifier_video.js",
+    "knn-classifier.js"
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
