@@ -1,6 +1,3 @@
-document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>');
-document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>');
-document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>');
 document.write('<video id="video" width="320" height="240" preload autoplay loop muted></video><br>  <button id="saveModel">Save Model</button><input type="file" id="getModel"></input><br>  <button id="addExample">Train Example</button>  <select id="Class"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select><span id="count" style="font-size:18px;color:red">0</span>  <div id="result" style="color:red">Please wait for loading model.</div><div id="train" style="position:absolute;visibility:hidden;"></div><div id="probability" style="position:absolute;visibility:hidden;"></div>');
 
 var saveModel = document.getElementById("saveModel");
