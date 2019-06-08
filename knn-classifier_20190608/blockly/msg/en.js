@@ -1,1 +1,1 @@
-MSG.teachable_machine = "knn-classifier";
+MSG.knn_classifier = "knn-classifier";
