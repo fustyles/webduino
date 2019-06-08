@@ -16,7 +16,7 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
  </head>
 
   <body>
-  <video id="video" width="300" height="300" preload autoplay loop muted></video><br>
+  <video id="video" width="320" height="240" preload autoplay loop muted></video><br>
   <button onclick="saveModel();">Save Model</button><input type="file" id="getModel"></input><br>
   <button id="addExample">Train Example</button>
   <select id="Class"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>
@@ -30,8 +30,8 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
       audio: false,
       video: {
         facingMode: "user",
-        width: 300,
-        height: 300
+        width: 320,
+        height: 240
       }
     })
     .then(stream => {
