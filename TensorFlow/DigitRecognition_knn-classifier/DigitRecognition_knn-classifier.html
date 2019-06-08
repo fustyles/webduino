@@ -153,14 +153,13 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
           img.onload = function () {
             context.clearRect(0, 0, canvas.width, canvas.height);
             context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
-        	addExample.click();
-        	console.log(n);
+            addExample.click();
             if (n<(files.length-1)) {
               //ImportOneFile(n+1, files);
         	  setTimeout(function(){ ImportOneFile(n+1, files); }, 2000);
-        	}
-        	else
-        	  return;
+            }
+            else
+              return;
           }
           img.src = fr.result;
         }
