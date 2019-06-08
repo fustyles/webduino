@@ -20,21 +20,21 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
   <input type="file" id="selectimage_load" style="position:absolute;top:30px;visibility:hidden;"></input>
   </body>
   <script>
-    image_create('example','',300,300,0,0,0,false);
-    button_create('addExample',100,30,0,0,1,null,'Train Example',0,true);
-    select_create('Class',100,30,100,0,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
+	button_create('SelectTrain',140,30,0,0,1,null,'Select images to train',0,true);
+	button_create('SelectLoad',160,30,140,0,1,null,'Select one image to load',0,true);
+    button_create('addExample',100,30,0,30,1,null,'Train Example',0,true);
+    select_create('Class',50,30,100,30,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
     select_set('Class',"value",'0');
-    div_create('count',100,30,250,00,"solid",0,'#000000','#ffffff','#ff0000',20,1,'',0,true);
+    div_create('count',100,30,200,30,"solid",0,'#000000','#ffffff','#ff0000',20,1,'',0,true);
 	div_set('count',"innerHTML","0");
-	button_create('SelectTrain',150,30,0,30,1,null,'Select image to train',0,true);
-	button_create('SelectLoad',150,30,150,30,1,null,'Select image to load',0,true);
     canvas_create('canvas',300,300,0,60,999);
     canvas_set('canvas',"backgroundColor",'#000000');
-    button_create('predictClass',100,30,0,360,1,null,'predict Class',0,true);
     button_create('clear',100,30,200,360,1,null,'clear',0,true);
+	image_create('example','',300,300,0,0,0,false);
     canvas_set('canvas',"display",false);
     div_create('result',300,30,0,390,"solid",0,'#000000','#ffffff','#ff0000',14,1,'',0,true);
     div_set('result',"innerHTML",'Please wait for loading model.');
+
     var canvas = document.getElementById(canvas_get('canvas',"id"));
     var context = canvas.getContext("2d"); 
     var clear = document.getElementById(button_get('clear',"id"));
@@ -50,14 +50,12 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     var state = false;
     var color = '#ffffff';
     var x0, y0;
-
     function canvas_mousedown(event) {
       state = state != true;
       x0 = (mouse_coordinate_get("offsetX"));
       y0 = (mouse_coordinate_get("offsetY"));
     };
     canvas.addEventListener("mousedown", canvas_mousedown, true);
-
     function canvas_mousemove(event) {
       if (state == true) {
         canvas_line('canvas',5,x0,y0,(mouse_coordinate_get("offsetX")),(mouse_coordinate_get("offsetY")),color,0,1);
@@ -66,7 +64,6 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       y0 = (mouse_coordinate_get("offsetY"));
     };
     canvas.addEventListener("mousemove", canvas_mousemove, true);
-
     function clear_onclick (event) {
       canvas_clear('canvas');
     };
@@ -77,8 +74,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
         predictClass(example);
       }
       example.src = canvas.toDataURL('image/jpeg');
-    };
-    predictClass.addEventListener("click", predictClass_onclick, true);     
+    };   
     
     function addExample_onclick (event) {
       example.onload = function () {
@@ -88,12 +84,10 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       example.src = canvas.toDataURL('image/jpeg');
     };
     addExample.addEventListener("click", addExample_onclick, true); 
-
     function SelectTrain_onclick (event) {
       selectimage_train.click();
     };
     SelectTrain.addEventListener("click", SelectTrain_onclick, true); 
-
     function SelectLoad_onclick (event) {
       selectimage_load.click();
     };
@@ -112,6 +106,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       mobilenetModule = Module;
       canvas_set('canvas',"display",true);
       div_set('result',"innerHTML",'');
+	  setInterval(function(){ predictClass_onclick(); }, 200);
     }); 
     function addExampleImage(img,index) {
       // Add MobileNet activations to the model repeatedly for all Classes.
@@ -127,10 +122,10 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
         const Image = tf.browser.fromPixels(img);
         const xlogits = mobilenetModule.infer(Image, 'conv_preds');
         const result = await classifier.predictClass(xlogits);
-        console.log(result);
+        //console.log(result);
         var r = "<font color='red'>label : " + result.label + "</font><br><br>";;
-        for (i=0;i<10;i++) {
-      	r += "["+i+"] " + result.confidences[i.toString()] + "<br>";
+        for (i=0;i<Class.length;i++) {
+      	  r += "["+i+"] " + result.confidences[i.toString()] + "<br>";
         }
         div_set('result',"innerHTML",r); 
       }
@@ -138,14 +133,12 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       {
       }
     }
-
     selectimage_train.onchange = function (event) {
       var target = event.target || window.event.srcElement;
       var files = target.files;
       if (files && files.length>0) 
         ImportMultiFiles(files);
     }
-
     function ImportMultiFiles(files) {
       var img = new Image();
       img.onload = function () {
@@ -153,33 +146,31 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
         context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
         addExample_onclick();
       }
-
       function ImportOneFile(n) {
         var fr = new FileReader();
         fr.onload = function() {  
-          img.src = fr.result;
-          if (n<(files.length-1)) 
-            ImportOneFile(n+1);
+      img.src = fr.result;
+      if (n<(files.length-1)) 
+        ImportOneFile(n+1);
         }
         fr.readAsDataURL(files[n]);
       }
       ImportOneFile(0);
     }
-
     selectimage_load.onchange = function (event) {
       var target = event.target || window.event.srcElement;
       var files = target.files;
       if (FileReader && files && files.length) {
-	var fr = new FileReader();
-	fr.onload = function () {
-          var img = new Image();
-          img.onload = function () {
-	    context.clearRect(0, 0, canvas.width, canvas.height);
-            context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
-          }
-          img.src = fr.result;
-	}
-	fr.readAsDataURL(files[0]);
+		var fr = new FileReader();
+		fr.onload = function () {
+		  var img = new Image();
+		  img.onload = function () {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
+		  }
+		  img.src = fr.result;
+		}
+		fr.readAsDataURL(files[0]);
       }
     }
   </script>
