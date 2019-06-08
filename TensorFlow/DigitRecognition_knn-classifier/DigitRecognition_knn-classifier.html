@@ -20,12 +20,13 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
   <body>
   <input type="file" id="selectimage_train" multiple="true" style="position:absolute;visibility:hidden;"></input>
   <input type="file" id="selectimage_load" style="position:absolute;visibility:hidden;"></input>
-  <button onclick="saveModel();" style="position:absolute;left:0px;top:30px;width:100px;height:30px;">Save Model</button><input type="file" id="getModel" style="position:absolute;left:100px;top:30px;height:30px;"></input><br>
+  <input type="file" id="getModel" style="position:absolute;left:100px;top:30px;height:30px;"></input><br>
   </body>
 
   <script>
     button_create('SelectTrain',140,30,0,0,1,null,'Select images to train',0,true);
     button_create('SelectLoad',160,30,140,0,1,null,'Select one image to load',0,true);
+	button_create('SaveModel',100,30,0,30,1,null,'Save Model',0,true);
     button_create('addExample',100,30,0,60,1,null,'Train Example',0,true);
     select_create('Class',50,30,100,60,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
     select_set('Class',"value",'0');
@@ -49,6 +50,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     var selectimage_load = document.getElementById("selectimage_load");
     var SelectTrain = document.getElementById(button_get('SelectTrain',"id"));
     var SelectLoad = document.getElementById(button_get('SelectLoad',"id"));
+	var SaveModel = document.getElementById(button_get('SaveModel',"id"));
     
     var state = false;
     var color = '#ffffff';
@@ -70,6 +72,11 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     };
     canvas.addEventListener("mousemove", canvas_mousemove, true);
 
+    function SaveModel_onclick (event) {
+      saveModel();
+    };
+    SaveModel.addEventListener("click", SaveModel_onclick, true);  
+
     function clear_onclick (event) {
       canvas_clear('canvas');
     };
@@ -88,12 +95,10 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       div_set('count',"innerHTML",Number(div_get('count',"innerHTML"))+1);
     };
     addExample.addEventListener("click", addExample_onclick, true); 
-
     function SelectTrain_onclick (event) {
       selectimage_train.click();
     };
     SelectTrain.addEventListener("click", SelectTrain_onclick, true); 
-
     function SelectLoad_onclick (event) {
       selectimage_load.click();
     };
@@ -107,7 +112,6 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     
     // Create the classifier.
     classifier = knnClassifier.create();
-
     // Load mobilenet.
     mobilenet.load().then(Module => {
       mobilenetModule = Module;
@@ -115,7 +119,6 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       div_set('result',"innerHTML",'');
         setInterval(function(){ predictClass_onclick(); }, 200);
     }); 
-
     function addExampleImage(img,index) {
       // Add MobileNet activations to the model repeatedly for all Classes.
       var Image = tf.browser.fromPixels(img);
@@ -141,7 +144,6 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       {
       }
     }
-
     var files;
     selectimage_train.onchange = function (event) {
       var target = event.target || window.event.srcElement;
@@ -150,7 +152,6 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       if (files.length>0) 
         ImportMultiFiles(files);
     }
-
     function ImportMultiFiles() {
       function ImportOneFile(n) {
         var fr = new FileReader();
@@ -175,7 +176,6 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       }
       ImportOneFile(0);
     }
-
     selectimage_load.onchange = function (event) {
       var target = event.target || window.event.srcElement;
       var files = target.files;
