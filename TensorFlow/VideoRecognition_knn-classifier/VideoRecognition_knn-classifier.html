@@ -1,7 +1,6 @@
 <!-- 
 Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/8
 https://www.facebook.com/francefu
-
 Try it!
 https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/VideoRecognition_knn-classifier.html
 -->
@@ -18,6 +17,7 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
 
   <body>
   <video id="video" width="300" height="300" preload autoplay loop muted></video><br>
+  <button onclick="saveModel();">Save Model</button><input type="file" id="getModel"></input><br>
   <button id="addExample">Train Example</button>
   <select id="Class"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>
   <span id="count" style="font-size::18px;color:red">0</span>
@@ -55,14 +55,12 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
     var state = false;
     var color = '#ffffff';
     var x0, y0;
-
     function canvas_mousedown(event) {
       state = state != true;
       x0 = (mouse_coordinate_get("offsetX"));
       y0 = (mouse_coordinate_get("offsetY"));
     };
     canvas.addEventListener("mousedown", canvas_mousedown, true);
-
     function canvas_mousemove(event) {
       if (state == true) {
         canvas_line('canvas',5,x0,y0,(mouse_coordinate_get("offsetX")),(mouse_coordinate_get("offsetY")),color,0,1);
@@ -130,5 +128,39 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
       {
       }
     }
+
+	function saveModel() {
+	  let dataset = classifier.getClassifierDataset();
+	  let myDataset = {}
+	  Object.keys(dataset).forEach((key) => {
+		let data = dataset[key].dataSync();
+		myDataset[key] = Array.from(data);
+	  });
+	  let jsonStr = JSON.stringify(myDataset)
+	  
+	  var link = document.createElement('a');
+	  link.download="model.json";
+	  link.href='data:text/text;charset=utf-8,' + encodeURIComponent(jsonStr);
+	  document.body.appendChild(link);
+	  link.click();
+	  link.remove();
+	}
+
+	document.getElementById('getModel').onchange = function (event) {
+	  var target = event.target || window.event.srcElement;
+	  var files = target.files;
+	  var fr = new FileReader();
+	  if (files.length>0) {
+		fr.onload = function () {     
+		  var dataset = fr.result;
+		  var myDataset = JSON.parse(dataset)
+		  Object.keys(myDataset).forEach((key) => {
+			myDataset[key] = tf.tensor(myDataset[key], [myDataset[key].length / 1024, 1024]);
+		  })
+		  classifier.setClassifierDataset(myDataset);
+		}
+		fr.readAsText(files[0]);
+	  }
+	}
   </script>
 </html>
