@@ -1,1 +1,1 @@
-MSG.knn_classifier = "機械學習KNN";
+MSG.knn_classifier = "機械學習(KNN)";
