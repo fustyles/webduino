@@ -1,13 +1,13 @@
 {
-  "types": ["knn-classifier_open","knn-classifier_proportion"],
+  "types": ["knn_classifier_open","knn_classifier_proportion"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "knn-classifier_video.js",
-    "knn-classifier.js"
+    "knn_classifier_video.js",
+    "knn_classifier.js"
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",

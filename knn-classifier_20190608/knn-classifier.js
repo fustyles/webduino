@@ -4,7 +4,7 @@
 
   'use strict';
 
-  function knn-classifier_open() {
+  function knn_classifier_open() {
     if (document.getElementById("train"))
     {
       document.getElementById("train").innerHTML = "";
@@ -26,14 +26,14 @@
     }
   }
   
-  function knn-classifier_proportion(input_property){
+  function knn_classifier_proportion(input_property){
     if (input_property=="train")
       return Number(document.getElementById("train").innerHTML);
     else if (input_property=="probability")
       return Number(document.getElementById("probability").innerHTML);
   }
 
-  window.knn-classifier_open = knn-classifier_open;
-  window.knn-classifier_proportion = knn-classifier_proportion;
+  window.knn_classifier_open = knn_classifier_open;
+  window.knn_classifier_proportion = knn_classifier_proportion;
 
 }(window, window.document));

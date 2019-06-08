@@ -1,6 +1,6 @@
 <category id="knn_classifier">
-  <block type="knn-classifier_open">  
+  <block type="knn_classifier_open">  
   </block>
-  <block type="knn-classifier_proportion">
+  <block type="knn_classifier_proportion">
   </block>
 </category>
