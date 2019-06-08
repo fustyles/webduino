@@ -1,4 +1,4 @@
-<category id="knn-classifier">
+<category id="knn_classifier">
   <block type="knn-classifier_open">  
   </block>
   <block type="knn-classifier_proportion">
