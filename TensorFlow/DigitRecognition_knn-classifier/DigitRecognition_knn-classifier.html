@@ -20,17 +20,17 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
   <input type="file" id="selectimage_load" style="position:absolute;top:30px;visibility:hidden;"></input>
   </body>
   <script>
-	button_create('SelectTrain',140,30,0,0,1,null,'Select images to train',0,true);
-	button_create('SelectLoad',160,30,140,0,1,null,'Select one image to load',0,true);
+    button_create('SelectTrain',140,30,0,0,1,null,'Select images to train',0,true);
+    button_create('SelectLoad',160,30,140,0,1,null,'Select one image to load',0,true);
     button_create('addExample',100,30,0,30,1,null,'Train Example',0,true);
     select_create('Class',50,30,100,30,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
     select_set('Class',"value",'0');
     div_create('count',100,30,200,30,"solid",0,'#000000','#ffffff','#ff0000',20,1,'',0,true);
-	div_set('count',"innerHTML","0");
+    div_set('count',"innerHTML","0");
     canvas_create('canvas',300,300,0,60,999);
     canvas_set('canvas',"backgroundColor",'#000000');
     button_create('clear',100,30,200,360,1,null,'clear',0,true);
-	image_create('example','',300,300,0,0,0,false);
+    image_create('example','',300,300,0,0,0,false);
     canvas_set('canvas',"display",false);
     div_create('result',300,30,0,390,"solid",0,'#000000','#ffffff','#ff0000',14,1,'',0,true);
     div_set('result',"innerHTML",'Please wait for loading model.');
@@ -42,10 +42,10 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     var addExample = document.getElementById(button_get('addExample',"id"));
     var example = document.getElementById(image_get('example',"id"));
     var Class = document.getElementById(select_get('Class',"id"));
-	var selectimage_train = document.getElementById("selectimage_train");
-	var selectimage_load = document.getElementById("selectimage_load");
-	var SelectTrain = document.getElementById(button_get('SelectTrain',"id"));
-	var SelectLoad = document.getElementById(button_get('SelectLoad',"id"));
+    var selectimage_train = document.getElementById("selectimage_train");
+    var selectimage_load = document.getElementById("selectimage_load");
+    var SelectTrain = document.getElementById(button_get('SelectTrain',"id"));
+    var SelectLoad = document.getElementById(button_get('SelectLoad',"id"));
     
     var state = false;
     var color = '#ffffff';
@@ -149,9 +149,9 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       function ImportOneFile(n) {
         var fr = new FileReader();
         fr.onload = function() {  
-      img.src = fr.result;
-      if (n<(files.length-1)) 
-        ImportOneFile(n+1);
+          img.src = fr.result;
+          if (n<(files.length-1)) 
+            ImportOneFile(n+1);
         }
         fr.readAsDataURL(files[n]);
       }
@@ -161,16 +161,16 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       var target = event.target || window.event.srcElement;
       var files = target.files;
       if (FileReader && files && files.length) {
-		var fr = new FileReader();
-		fr.onload = function () {
-		  var img = new Image();
-		  img.onload = function () {
-			context.clearRect(0, 0, canvas.width, canvas.height);
-			context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
-		  }
-		  img.src = fr.result;
-		}
-		fr.readAsDataURL(files[0]);
+        var fr = new FileReader();
+        fr.onload = function () {
+          var img = new Image();
+          img.onload = function () {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
+          }
+          img.src = fr.result;
+        }
+        fr.readAsDataURL(files[0]);
       }
     }
   </script>
