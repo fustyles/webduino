@@ -1,1 +1,1 @@
-MSG.knn_classifier = "knn_classifier";
+MSG.knn_classifier = "KNN Classifier";
