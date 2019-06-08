@@ -6,9 +6,6 @@
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs",
-    "https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet",
-    "https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier",
     "knn-classifier_video.js",
     "knn-classifier.js"
   ],
