@@ -79,14 +79,12 @@ https://fustyles.github.io/webduino/TensorFlow/VideoRecognition_knn-classifier/V
     };    
     
     function addExample_onclick (event) {
-      example.onload = function () {
-        addExampleImage(example, Number(Class.value));
-        count.innerHTML = Number(count.innerHTML)+1;
-      }
       context.drawImage(video, 0, 0, video.width, video.height ,0 ,0 ,canvas.width, canvas.height);
       example.src = canvas.toDataURL('image/jpeg');
+	    addExampleImage(example, Number(Class.value));
+      count.innerHTML = Number(count.innerHTML)+1;
     };
-    addExample.addEventListener("click", addExample_onclick, true); 
+    addExample.addEventListener("click", addExample_onclick, true);
     
   </script>
   
