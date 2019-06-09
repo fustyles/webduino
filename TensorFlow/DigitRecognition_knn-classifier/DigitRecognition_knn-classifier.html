@@ -31,10 +31,10 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     button_create('SelectLoad',160,30,140,0,1,null,'Select one image to load',0,true);
     button_create('SaveModel',100,30,0,30,1,null,'Save Model',0,true);
     button_create('clearAllClasses',150,30,0,60,1,null,'Clear All Classes',0,true);
-    button_create('addExample',50,30,150,60,1,null,'Train',0,true);
-    select_create('Class',50,30,200,60,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
+    button_create('addExample',50,30,180,60,1,null,'Train',0,true);
+    select_create('Class',50,30,230,60,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
     select_set('Class',"value",'0');
-    div_create('count',100,30,280,60,"solid",0,'#000000','#ffffff','#ff0000',20,1,'',0,true);
+    div_create('count',100,30,290,60,"solid",0,'#000000','#ffffff','#ff0000',20,1,'',0,true);
     div_set('count',"innerHTML","0");
     canvas_create('canvas',300,300,0,90,999);
     canvas_set('canvas',"backgroundColor",'#000000');
