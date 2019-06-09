@@ -17,13 +17,13 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
  </head>
 
-  <body>
-  <input type="file" id="selectimage_train" multiple="true" style="position:absolute;visibility:hidden;"></input>
-  <input type="file" id="selectimage_load" style="position:absolute;visibility:hidden;"></input>
-  <input type="file" id="getModel" style="position:absolute;left:100px;top:30px;height:30px;"></input><br>
-  </body>
+ <body>
+   <input type="file" id="selectimage_train" multiple="true" style="position:absolute;visibility:hidden;"></input>
+   <input type="file" id="selectimage_load" style="position:absolute;visibility:hidden;"></input>
+   <input type="file" id="getModel" style="position:absolute;left:100px;top:30px;height:30px;"></input><br>
+ </body>
 
-  <script>
+ <script>
     button_create('SelectTrain',140,30,0,0,1,null,'Select images to train',0,true);
     button_create('SelectLoad',160,30,140,0,1,null,'Select one image to load',0,true);
     button_create('SaveModel',100,30,0,30,1,null,'Save Model',0,true);
