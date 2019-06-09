@@ -47,7 +47,6 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
     result.innerHTML = "Please wait for loading model.";
     posenet.load({architecture: 'MobileNetV1',outputStride: 16,inputResolution: 513,multiplier: 0.75}).then(function(net) {
       Model = net;
-      console.log(Model);
       result.innerHTML = "";
       video.style.visibility="hidden";
       video.style.position="absolute";
@@ -57,16 +56,14 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
                         
 async function DetectVideo() {
   await Model.estimatePoses(video, {flipHorizontal: false,decodingMethod: 'single-person'}).then(pose => {
-    console.log(pose);
-    //console.log(pose.score);
-    //console.log(pose.keypoints);
-
     canvas.setAttribute("width", video.width);
     canvas.setAttribute("height", video.height);        
     context.drawImage(video, 0, 0, video.width, video.height);
     result.innerHTML = "";  
     
     pose = pose[0];
+    //console.log(pose.score);
+    //console.log(pose.keypoints);    
     if (pose.keypoints.length>0) {
       for (var i=0;i<pose.keypoints.length;i++) {
         if (pose.keypoints[i].score>0.1) {
