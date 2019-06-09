@@ -1,13 +1,14 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>');
-document.write('<video id="video" width="320" height="240" preload autoplay loop muted></video><br><button id="saveModel">Save Model</button><input type="file" id="getModel"></input><br><button id="addExample">Train</button><select id="Class"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<span id="count" style="font-size:18px;color:red">0</span><div id="result" style="color:red">Please wait for loading model.</div><div id="train" style="position:absolute;visibility:hidden;"></div><div id="probability" style="position:absolute;visibility:hidden;"></div>');
+document.write('<video id="video" width="320" height="240" preload autoplay loop muted></video><br><button id="saveModel">Save Model</button><input type="file" id="getModel"></input><br><button id="clearAllClasses">clear All Classes()</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="addExample">Train</button><select id="Class"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<span id="count" style="font-size:18px;color:red">0</span><div id="result" style="color:red">Please wait for loading model.</div><div id="train" style="position:absolute;visibility:hidden;"></div><div id="probability" style="position:absolute;visibility:hidden;"></div>');
 
 window.onload = function () {
     
   var saveModel = document.getElementById("saveModel");
   var getModel = document.getElementById('getModel');
   var video = document.getElementById('video');
+  var clearAllClasses = document.getElementById('clearAllClasses');
   var addExample = document.getElementById('addExample');
   var Class = document.getElementById('Class');
   var result = document.getElementById('result');
@@ -31,7 +32,14 @@ window.onload = function () {
 
   function predictClass_onclick (event) {
     predictClass(video);
-  };    
+  }; 
+    
+  function clearAllClasses_onclick (event) {
+    result.innerHTML = '';
+    count.innerHTML = "0";
+    classifier.clearAllClasses();
+  };
+  clearAllClasses.addEventListener("click", clearAllClasses_onclick, true);    
 
   function addExample_onclick (event) {
     addExampleImage(video, Number(Class.value));
