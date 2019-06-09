@@ -95,8 +95,8 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     };
    
     function clearAllClasses_onclick (event) {
-      result.innerHTML = '';
-      count.innerHTML = "0";
+      div_set('result',"innerHTML","");
+      div_set('count',"innerHTML", "0");
       classifier.clearAllClasses();
     };
     clearAllClasses.addEventListener("click", clearAllClasses_onclick, true); 
