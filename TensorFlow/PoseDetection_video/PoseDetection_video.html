@@ -56,7 +56,8 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
   }
                         
 async function DetectVideo() {
-  await Model.estimateSinglePose(video, imageScaleFactor, false, 16).then(pose => {
+  await Model..estimatePoses(video, {flipHorizontal: false,decodingMethod: 'single-person'}).then(pose => {
+    console.log(pose);
     //console.log(pose.score);
     //console.log(pose.keypoints);
 
