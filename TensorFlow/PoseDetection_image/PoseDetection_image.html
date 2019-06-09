@@ -41,7 +41,7 @@ function ObjectDetect() {
 }
   
 async function DetectImage() {
-  await Model.estimateSinglePose(video, imageScaleFactor, false, 16).then(pose => {
+  await Model.estimateSinglePose(ShowImage, imageScaleFactor, false, 16).then(pose => {
     result.innerHTML = "";
     canvas.setAttribute("width", ShowImage.width);
     canvas.setAttribute("height", ShowImage.height);  
