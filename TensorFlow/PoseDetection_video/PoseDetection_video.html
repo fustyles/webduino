@@ -66,6 +66,7 @@ async function DetectVideo() {
     context.drawImage(video, 0, 0, video.width, video.height);
     result.innerHTML = "";  
     
+    pose = pose[0];
     if (pose.keypoints.length>0) {
       for (var i=0;i<pose.keypoints.length;i++) {
         if (pose.keypoints[i].score>0.1) {
