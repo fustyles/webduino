@@ -49,8 +49,8 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
     }); 
   }
                         
-  function DetectVideo() {
-    Model.classify(video).then(Predictions => { 
+  async function DetectVideo() {
+    await Model.classify(video).then(Predictions => { 
       result.innerHTML = "";
       //console.log('Predictions: ', Predictions);
       
