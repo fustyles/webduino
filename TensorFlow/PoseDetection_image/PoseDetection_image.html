@@ -30,7 +30,6 @@ var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");  
 var result = document.getElementById('result');
 var Model;
-var imageScaleFactor = 0.75;
   
 function ObjectDetect() {
   result.innerHTML = "Please wait for loading model.";
@@ -42,7 +41,7 @@ function ObjectDetect() {
 }
   
 async function DetectImage() {
-  await Model.estimateSinglePose(ShowImage, imageScaleFactor, false, 16).then(pose => {
+  await Model.estimateSinglePose(ShowImage, 0.75, false, 16).then(pose => {
     result.innerHTML = "";
     canvas.setAttribute("width", ShowImage.width);
     canvas.setAttribute("height", ShowImage.height);  
