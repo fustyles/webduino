@@ -20,14 +20,14 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
   <body>
   <input type="file" id="selectimage_train" multiple="true" style="position:absolute;visibility:hidden;"></input>
   <input type="file" id="selectimage_load" style="position:absolute;visibility:hidden;"></input>
-  <input type="file" id="getModel" style="position:absolute;left:70px;top:30px;height:30px;"></input><br>
+  <input type="file" id="getModel" style="position:absolute;left:100px;top:30px;height:30px;"></input><br>
   </body>
 
   <script>
     button_create('SelectTrain',140,30,0,0,1,null,'Select images to train',0,true);
     button_create('SelectLoad',160,30,140,0,1,null,'Select one image to load',0,true);
-    button_create('SaveModel',70,30,0,30,1,null,'Save Model',0,true);
-    button_create('addExample',70,30,0,60,1,null,'Train',0,true);
+    button_create('SaveModel',100,30,0,30,1,null,'Save Model',0,true);
+    button_create('addExample',100,30,0,60,1,null,'Train',0,true);
     select_create('Class',50,30,100,60,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
     select_set('Class',"value",'0');
     div_create('count',100,30,200,60,"solid",0,'#000000','#ffffff','#ff0000',20,1,'',0,true);
