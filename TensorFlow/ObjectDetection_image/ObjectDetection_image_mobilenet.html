@@ -35,8 +35,8 @@ function ObjectDetect() {
   }); 
 }
   
-function DetectImage(Model) {
-  Model.classify(ShowImage).then(Predictions => {
+async function DetectImage(Model) {
+  await Model.classify(ShowImage).then(Predictions => {
     //console.log('Predictions: ', Predictions);
     var s = (ShowImage.width>ShowImage.height)?ShowImage.width:ShowImage.height;
     
