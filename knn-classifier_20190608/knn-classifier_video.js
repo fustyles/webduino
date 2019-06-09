@@ -104,9 +104,9 @@ window.onload = function () {
     const xlogits = mobilenetModule.infer(Image, 'conv_preds');
     const predict = await classifier.predictClass(xlogits);
     //console.log(predict);
-    var msg = "<font color='red'>Label : " + predict.label + "</font><br>";
+    var msg = "<font color='red'>Result : train " + predict.label + "</font><br>";
     for (i=0;i<Class.length;i++) {
-      if (predict.confidences[i.toString()]>=0) msg += "["+i+"] " + predict.confidences[i.toString()] + "<br>";
+      if (predict.confidences[i.toString()]>=0) msg += "[train "+i+"] " + predict.confidences[i.toString()] + "<br>";
     }
     result.innerHTML = msg; 
     train.innerHTML = predict.label;
