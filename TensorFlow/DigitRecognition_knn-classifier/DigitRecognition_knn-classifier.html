@@ -140,7 +140,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
         const xlogits = mobilenetModule.infer(Image, 'conv_preds');
         const result = await classifier.predictClass(xlogits);
         //console.log(result);
-        var r = "<font color='red'>label(Max) : " + result.label + "</font><br><br>";;
+        var r = "<font color='red'>label : " + result.label + "</font><br><br>";;
         for (i=0;i<Class.length;i++) {
           if (result.confidences[i.toString()]>=0) r += "["+i+"] " + result.confidences[i.toString()] + "<br>";
         }
