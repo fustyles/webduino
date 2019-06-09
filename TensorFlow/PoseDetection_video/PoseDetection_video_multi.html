@@ -25,7 +25,6 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
   var canvas = document.getElementById('canvas'); 
   var context = canvas.getContext('2d');
   var result = document.getElementById('result');  
-  var imageScaleFactor = 0.75;
 
   navigator.mediaDevices
     .getUserMedia({
@@ -56,7 +55,7 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
   }
                         
 async function DetectVideo() {
-  await Model.estimateMultiplePoses(video, imageScaleFactor, false, 16).then(pose => {
+  await Model.estimateMultiplePoses(video, 0.75, false, 16).then(pose => {
     //console.log(pose.score);
     //console.log(pose.keypoints);
 
