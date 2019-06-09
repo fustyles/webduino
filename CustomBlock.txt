@@ -6,7 +6,6 @@
 
 機器學習 KNN分類演算法
 https://fustyles.github.io/webduino/knn-classifier_20190608/blockly.json
-
 [Smart]
 https://blocklypro.webduino.io/#RrdNJ5Jnpb
 [Bit]
@@ -15,7 +14,6 @@ https://bit.webduino.io/blockly/#8qMJP9BEXzD3W
 
 網頁互動區域擴充
 https://fustyles.github.io/webduino/DemoExpansion_20190503/blockly.json
-
 [smart]
 https://blocklypro.webduino.io/?demo=demo-area-09#XBBzwP1jZZ
 [Bit]
