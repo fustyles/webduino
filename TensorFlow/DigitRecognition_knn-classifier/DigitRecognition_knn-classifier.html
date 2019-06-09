@@ -95,23 +95,25 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       div_set('count',"innerHTML",Number(div_get('count',"innerHTML"))+1);
     };
     addExample.addEventListener("click", addExample_onclick, true); 
+    
     function SelectTrain_onclick (event) {
       selectimage_train.click();
     };
     SelectTrain.addEventListener("click", SelectTrain_onclick, true); 
+    
     function SelectLoad_onclick (event) {
       selectimage_load.click();
     };
     SelectLoad.addEventListener("click", SelectLoad_onclick, true);
   </script>
   
-  <!-- Place your code in the script tag below. You can also use an external .js file -->
   <script>
     var classifier;
     var mobilenetModule;
     
     // Create the classifier.
     classifier = knnClassifier.create();
+    
     // Load mobilenet.
     mobilenet.load().then(Module => {
       mobilenetModule = Module;
@@ -119,6 +121,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       div_set('result',"innerHTML",'');
         setInterval(function(){ predictClass_onclick(); }, 200);
     }); 
+    
     function addExampleImage(img,index) {
       // Add MobileNet activations to the model repeatedly for all Classes.
       var Image = tf.browser.fromPixels(img);
@@ -144,6 +147,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       {
       }
     }
+    
     var files;
     selectimage_train.onchange = function (event) {
       var target = event.target || window.event.srcElement;
@@ -152,6 +156,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       if (files.length>0) 
         ImportMultiFiles(files);
     }
+    
     function ImportMultiFiles() {
       function ImportOneFile(n) {
         var fr = new FileReader();
@@ -176,6 +181,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
       }
       ImportOneFile(0);
     }
+    
     selectimage_load.onchange = function (event) {
       var target = event.target || window.event.srcElement;
       var files = target.files;
