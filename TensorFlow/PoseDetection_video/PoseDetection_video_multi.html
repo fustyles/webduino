@@ -56,14 +56,12 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
                         
 async function DetectVideo() {
   await Model.estimateMultiplePoses(video, 0.75, false, 16).then(pose => {
-    //console.log(pose.score);
-    //console.log(pose.keypoints);
-
     canvas.setAttribute("width", video.width);
     canvas.setAttribute("height", video.height);        
     context.drawImage(video, 0, 0, video.width, video.height);
     result.innerHTML = "";  
-
+    //console.log(pose.score);
+    //console.log(pose.keypoints);
     if (pose.length>0) {
       for (var n=0;n<pose.length;n++) {
         var k = pose[n].keypoints;
