@@ -45,7 +45,7 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
 
   function ObjectDetect() {
     result.innerHTML = "Please wait for loading model.";
-    posenet.load().then(function(net) {
+    posenet.load({architecture: 'MobileNetV1',outputStride: 16,inputResolution: 513,multiplier: 0.75}).then(function(net) {
       Model = net;
       console.log(Model);
       result.innerHTML = "";
