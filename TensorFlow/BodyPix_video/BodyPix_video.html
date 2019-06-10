@@ -14,9 +14,10 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix_video.html
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@1.0.0"> </script>  
 </head>
 <body>
-<video id="video" width="320" height="240" preload autoplay loop muted></video>
-<canvas id="canvas1"></canvas>
-<canvas id="canvas2"></canvas>
+<video id="video" width="320" height="240" preload autoplay loop muted></video><br>
+<canvas id="canvas1"></canvas><br>
+<canvas id="canvas2"></canvas><br>
+<canvas id="canvas3"></canvas>
 <br>
 <div id="result" style="width:320px;color:red"></div>
   
@@ -24,6 +25,7 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix_video.html
   var video = document.getElementById('video');
   var canvas1 = document.getElementById('canvas1'); 
   var canvas2 = document.getElementById('canvas2');
+  var canvas3 = document.getElementById('canvas3');
   var outputStride = 16;
   var segmentationThreshold = 0.5;
 
@@ -53,6 +55,8 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix_video.html
       canvas1.setAttribute("height", video.height);  
       canvas2.setAttribute("width", video.width);
       canvas2.setAttribute("height", video.height);  
+      canvas3.setAttribute("width", video.width);
+      canvas3.setAttribute("height", video.height);        
       DetectVideo(Model);
     }); 
   }
@@ -73,6 +77,9 @@ async function DetectVideo() {
     // draw the mask onto the image on a canvas.  With opacity set to 0.7 and maskBlurAmount set to 3, this will darken the background and blur the darkened background's edge.
     bodyPix.drawMask(canvas1, video, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
     bodyPix.drawBokehEffect(canvas2, video, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
+    
+    const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, rainbow);
+    bodyPix.drawMask(canvas3, video, coloredPartImage, opacity, maskBlurAmount, flipHorizontal);
     
     try { 
       document.createEvent("TouchEvent");
