@@ -52,19 +52,18 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     var SelectLoad = document.getElementById("SelectLoad");
     var SaveModel = document.getElementById("SaveModel");
     
-    var state = false;
+    var drawState = false;
     var x0, y0;
-    var mouse_x,mouse_y,mouse_offsetx,mouse_offsety;	
  
     function canvas_mousedown(e) {
       x0 = e.offsetX;
       y0 = e.offsetY;
-      state = state != true;
+      drawState = drawState != true;
     };
     canvas.addEventListener("mousedown", canvas_mousedown, true);
 
     function canvas_mousemove(e) {
-      if (state == true) {
+      if (drawState == true) {
         context.strokeStyle = "#ffffff";
         context.lineWidth = 5;
         context.beginPath();
