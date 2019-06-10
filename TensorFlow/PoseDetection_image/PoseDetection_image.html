@@ -41,13 +41,15 @@ function ObjectDetect() {
   
 async function DetectImage() {
   await Model.estimatePoses(ShowImage, {flipHorizontal: false, decodingMethod: 'single-person'}).then(pose => {
+    pose = pose[0];
+    //console.log(pose.score);
+    //console.log(pose.keypoints);    
     result.innerHTML = "";
     canvas.setAttribute("width", ShowImage.width);
     canvas.setAttribute("height", ShowImage.height);  
     context.drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height);  
     var s = (ShowImage.width>ShowImage.height)?ShowImage.width:ShowImage.height;
-    //console.log(pose.score);
-    //console.log(pose.keypoints);
+
     if (pose.keypoints.length>0) {
       for (var i=0;i<pose.keypoints.length;i++) {
         if (pose.keypoints[i].score>0.1) {
