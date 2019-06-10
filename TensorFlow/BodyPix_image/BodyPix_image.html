@@ -75,7 +75,7 @@ async function DetectImage() {
       [96, 247, 97],  [115, 246, 91], [134, 245, 88], [155, 243, 88]
     ];
     const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
-    bodyPix.drawMask(canvas3, video, coloredPartImage, 1.0, maskBlurAmount, flipHorizontal);
+    bodyPix.drawMask(canvas3, ShowImage, coloredPartImage, 1.0, maskBlurAmount, flipHorizontal);
 	  
     result.innerHTML = "";
   });
