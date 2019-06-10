@@ -15,27 +15,28 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_image/BodyPix_image.html
 </head>
 <body>
 <input type="file" id="selectimage" disabled="true"></input>
+<br>
+<div id="result" style="width:350px;color:red">Please wait for loading model.</div>
 <br><br>
 <img id="OriginImage" style="display:none">
 <canvas id="ShowImage"></canvas>
 <canvas id="canvas1"></canvas>
 <canvas id="canvas2"></canvas>
-<br>
-<div id="result" style="width:350px;color:red"></div>
-  
+<canvas id="canvas3"></canvas>
+
 <script>
 var ShowImage = document.getElementById('ShowImage');
 var context = ShowImage.getContext("2d");
 var ShowImageWidth = 500;
 var canvas1 = document.getElementById("canvas1");
 var canvas2 = document.getElementById("canvas2");
+var canvas3 = document.getElementById("canvas3");
 var result = document.getElementById('result');
 var Model;
 var outputStride = 16;
 var segmentationThreshold = 0.5;
   
 function ObjectDetect() {
-  result.innerHTML = "Please wait for loading model.";
   bodyPix.load().then(function(net) {
     Model = net;
     result.innerHTML = "Please select one image.";
@@ -46,23 +47,37 @@ function ObjectDetect() {
 async function DetectImage() {
   await Model.estimatePersonSegmentation(ShowImage, outputStride, segmentationThreshold).then(segmentation => {
     //console.log(segmentation);
-	canvas1.setAttribute("width", ShowImage.width);
-	canvas1.setAttribute("height", ShowImage.height);   
-	canvas2.setAttribute("width", ShowImage.width);
-	canvas2.setAttribute("height", ShowImage.height);  
-	const maskBackground = true;
-	// Convert the personSegmentation into a mask to darken the background.
-	// Since maskBackground is set to true, there will be 1s where the background is and 0s where the person is.
-	const backgroundDarkeningMask = bodyPix.toMaskImageData(segmentation, maskBackground);
-	const opacity = 0.8;
-	const maskBlurAmount = 3;
-	const flipHorizontal = false;
-	const backgroundBlurAmount = 3;
-	const edgeBlurAmount = 3;
-	// draw the mask onto the image on a canvas.  With opacity set to 0.7 and maskBlurAmount set to 3, this will darken the background and blur the darkened background's edge.
-	bodyPix.drawMask(canvas1, ShowImage, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
+    canvas1.setAttribute("width", ShowImage.width);
+    canvas1.setAttribute("height", ShowImage.height);   
+    canvas2.setAttribute("width", ShowImage.width);
+    canvas2.setAttribute("height", ShowImage.height); 
+    canvas3.setAttribute("width", ShowImage.width);
+    canvas3.setAttribute("height", ShowImage.height); 	  
+    
+    const maskBackground = true;
+    // Convert the personSegmentation into a mask to darken the background.
+    // Since maskBackground is set to true, there will be 1s where the background is and 0s where the person is.
+    const backgroundDarkeningMask = bodyPix.toMaskImageData(segmentation, maskBackground);
+    const opacity = 0.8;
+    const maskBlurAmount = 3;
+    const flipHorizontal = false;
+    const backgroundBlurAmount = 3;
+    const edgeBlurAmount = 3;
+    // draw the mask onto the image on a canvas.  With opacity set to 0.7 and maskBlurAmount set to 3, this will darken the background and blur the darkened background's edge.
+    bodyPix.drawMask(canvas1, ShowImage, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
     bodyPix.drawBokehEffect(canvas2, ShowImage, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
-	result.innerHTML = ""; 
+    const warm = [
+      [110, 64, 170], [106, 72, 183], [100, 81, 196], [92, 91, 206],
+      [84, 101, 214], [75, 113, 221], [66, 125, 224], [56, 138, 226],
+      [48, 150, 224], [40, 163, 220], [33, 176, 214], [29, 188, 205],
+      [26, 199, 194], [26, 210, 182], [28, 219, 169], [33, 227, 155],
+      [41, 234, 141], [51, 240, 128], [64, 243, 116], [79, 246, 105],
+      [96, 247, 97],  [115, 246, 91], [134, 245, 88], [155, 243, 88]
+    ];
+    const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
+    bodyPix.drawMask(canvas3, video, coloredPartImage, 1.0, maskBlurAmount, flipHorizontal);
+	  
+    result.innerHTML = "";
   });
 }
     
