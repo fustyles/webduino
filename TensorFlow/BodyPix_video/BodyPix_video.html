@@ -78,8 +78,8 @@ async function DetectVideo() {
     bodyPix.drawMask(canvas1, video, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
     bodyPix.drawBokehEffect(canvas2, video, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
     
-    const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, rainbow);
-    bodyPix.drawMask(canvas3, video, coloredPartImage, opacity, maskBlurAmount, flipHorizontal);
+    //const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, rainbow);
+    //bodyPix.drawMask(canvas3, video, coloredPartImage, opacity, maskBlurAmount, flipHorizontal);
     
     try { 
       document.createEvent("TouchEvent");
