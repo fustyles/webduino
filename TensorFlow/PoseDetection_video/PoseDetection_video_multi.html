@@ -54,7 +54,7 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
   }
                         
 async function DetectVideo() {
-  await Model.estimatePoses(image, {flipHorizontal: false, decodingMethod: 'multi-person', maxPoseDetections: 5, scoreThreshold: 0.5, nmsRadius: 20}).then(pose => {
+  await Model.estimatePoses(video, {flipHorizontal: false, decodingMethod: 'multi-person', maxPoseDetections: 5, scoreThreshold: 0.5, nmsRadius: 20}).then(pose => {
     canvas.setAttribute("width", video.width);
     canvas.setAttribute("height", video.height);        
     context.drawImage(video, 0, 0, video.width, video.height);
