@@ -19,7 +19,7 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix_video.html
 <canvas id="canvas2"></canvas><br>
 <canvas id="canvas3"></canvas>
 <br>
-<div id="result" style="width:320px;color:red"></div>
+<div id="result" style="width:320px;color:red">Please wait for loading model.</div>
   
 <script>
   var video = document.getElementById('video');
@@ -47,7 +47,6 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix_video.html
     })
 
   function ObjectDetect() {
-    result.innerHTML = "Please wait for loading model.";
     bodyPix.load().then(function(net) {
       Model = net;
       result.innerHTML = "";
