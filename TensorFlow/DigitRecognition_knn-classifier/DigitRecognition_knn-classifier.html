@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/8
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/10
 https://www.facebook.com/francefu
 
 Try it!
@@ -11,7 +11,6 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     <title>Machine Learning (knn-classifier)</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <script src='https://fustyles.github.io/webduino/myBlockly/GameElements/gameelements.js'></script>
     <!-- Load TensorFlow.js -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <!-- Load MobileNet -->
@@ -21,59 +20,61 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
  </head>
 
  <body>
-   <input type="file" id="selectimage_train" multiple="true" style="position:absolute;visibility:hidden;"></input>
-   <input type="file" id="selectimage_load" style="position:absolute;visibility:hidden;"></input>
-   <input type="file" id="getModel" style="position:absolute;left:100px;top:30px;height:30px;"></input><br>
+   <button id="SelectTrain" style="width:145px;">Select images to train</button>
+   <button id="SelectLoad" style="width:165px;">Select one image to load</button><br>
+   <button id="SaveModel" style="width:100px;">Save Model</button>
+   <input type="file" id="selectimage_train" multiple="true" style="display:none;"></input>
+   <input type="file" id="selectimage_load" style="display:none;"></input>
+   <input type="file" id="getModel"></input><br>
+   <button id="clearAllClasses" style="width:150px;">Clear All Classes</button>&nbsp;&nbsp;&nbsp;&nbsp;
+   <button id="addExample" style="width:50px;">Train</button>
+   <select id="Class"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>&nbsp;&nbsp;&nbsp;&nbsp;
+   <span id="count" style="font-size:18px;color:red">0</span><br>
+   <canvas id="canvas" width="300" height="300" style="background-color:#000000;"></canvas><br>
+   <button id="clear" style="Clear Canvas" style="width:100px;">Clear Canvas</button>
+   <div id="result" style="color:red">Please wait for loading model.</div>
+   <img id="example" style="display:none">
+   <span id="test" style="font-size:12px;color:red"></span>
  </body>
 
  <script>
-    button_create('SelectTrain',140,30,0,0,1,null,'Select images to train',0,true);
-    button_create('SelectLoad',160,30,140,0,1,null,'Select one image to load',0,true);
-    button_create('SaveModel',100,30,0,30,1,null,'Save Model',0,true);
-    button_create('clearAllClasses',150,30,0,60,1,null,'Clear All Classes',0,true);
-    button_create('addExample',50,30,170,60,1,null,'Train',0,true);
-    select_create('Class',50,30,220,60,'#ffffff','#000000',14,1,[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9']],'',0,true);
-    select_set('Class',"value",'0');
-    div_create('count',100,30,280,60,"solid",0,'#000000','#ffffff','#ff0000',20,1,'',0,true);
-    div_set('count',"innerHTML","0");
-    canvas_create('canvas',300,300,0,90,999);
-    canvas_set('canvas',"backgroundColor",'#000000');
-    button_create('clear',100,30,200,390,1,null,'Clear Canvas',0,true);
-    image_create('example','',300,300,0,0,0,false);
-    canvas_set('canvas',"display",false);
-    div_create('result',300,30,0,420,"solid",0,'#000000','#ffffff','#ff0000',14,1,'',0,true);
-    div_set('result',"innerHTML",'Please wait for loading model.');
-    var canvas = document.getElementById(canvas_get('canvas',"id"));
+    var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d"); 
-    var clear = document.getElementById(button_get('clear',"id"));
-    var predictClass = document.getElementById(button_get('predictClass',"id"));
-    var clearAllClasses = document.getElementById(button_get('clearAllClasses',"id"));
-    var addExample = document.getElementById(button_get('addExample',"id"));
-    var example = document.getElementById(image_get('example',"id"));
-    var Class = document.getElementById(select_get('Class',"id"));
+    var clear = document.getElementById("clear");
+    var predictClass = document.getElementById("predictClass");
+    var clearAllClasses = document.getElementById("clearAllClasses");
+    var addExample = document.getElementById("addExample");
+    var example = document.getElementById("example");
+    var Class = document.getElementById("Class");
     var selectimage_train = document.getElementById("selectimage_train");
     var selectimage_load = document.getElementById("selectimage_load");
-    var SelectTrain = document.getElementById(button_get('SelectTrain',"id"));
-    var SelectLoad = document.getElementById(button_get('SelectLoad',"id"));
-    var SaveModel = document.getElementById(button_get('SaveModel',"id"));
+    var SelectTrain = document.getElementById("SelectTrain");
+    var SelectLoad = document.getElementById("SelectLoad");
+    var SaveModel = document.getElementById("SaveModel");
     
     var state = false;
-    var color = '#ffffff';
     var x0, y0;
-
-    function canvas_mousedown(event) {
+    var mouse_x,mouse_y,mouse_offsetx,mouse_offsety;	
+ 
+    function canvas_mousedown(e) {
+      x0 = e.offsetX;
+      y0 = e.offsetY;
       state = state != true;
-      x0 = (mouse_coordinate_get("offsetX"));
-      y0 = (mouse_coordinate_get("offsetY"));
     };
     canvas.addEventListener("mousedown", canvas_mousedown, true);
 
-    function canvas_mousemove(event) {
+    function canvas_mousemove(e) {
+      document.getElementById("test").innerHTML = x0 + "<br>" + y0 + "<br>" + e.offsetX + "<br>" + e.offsetY;
       if (state == true) {
-        canvas_line('canvas',5,x0,y0,(mouse_coordinate_get("offsetX")),(mouse_coordinate_get("offsetY")),color,0,1);
+        context.strokeStyle = "#ffffff";
+        context.lineWidth = 5;
+        context.beginPath();
+        context.moveTo(x0,y0);
+        context.lineTo(e.offsetX,e.offsetY);
+        context.stroke();
       }
-      x0 = (mouse_coordinate_get("offsetX"));
-      y0 = (mouse_coordinate_get("offsetY"));
+      x0 = e.offsetX;
+      y0 = e.offsetY;
     };
     canvas.addEventListener("mousemove", canvas_mousemove, true);
 
@@ -83,7 +84,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     SaveModel.addEventListener("click", SaveModel_onclick, true);  
 
     function clear_onclick (event) {
-      canvas_clear('canvas');
+      context.clearRect(0, 0, canvas.width, canvas.height);
     };
     clear.addEventListener("click", clear_onclick, true);    
     
@@ -95,16 +96,16 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     };
    
     function clearAllClasses_onclick (event) {
-      div_set('result',"innerHTML","");
-      div_set('count',"innerHTML", "0");
+      result.innerHTML = "";
+      count.innerHTML = "0";
       classifier.clearAllClasses();
     };
     clearAllClasses.addEventListener("click", clearAllClasses_onclick, true); 
     
     function addExample_onclick (event) {
       example.src = canvas.toDataURL('image/jpeg');
-      addExampleImage(example, Class.value);
-      div_set('count',"innerHTML",Number(div_get('count',"innerHTML"))+1);
+      addExampleImage(example, Number(Class.value));
+      count.innerHTML = Number(count.innerHTML)+1;
     };
     addExample.addEventListener("click", addExample_onclick, true); 
     
@@ -129,9 +130,8 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     // Load mobilenet.
     mobilenet.load().then(Module => {
       mobilenetModule = Module;
-      canvas_set('canvas',"display",true);
-      div_set('result',"innerHTML",'');
-        setInterval(function(){ predictClass_onclick(); }, 200);
+      result.innerHTML = "";
+      setInterval(function(){ predictClass_onclick(); }, 200);
     }); 
     
     function addExampleImage(img,index) {
@@ -147,13 +147,13 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
         // Make a prediction.
         const Image = tf.browser.fromPixels(img);
         const xlogits = mobilenetModule.infer(Image, 'conv_preds');
-        const result = await classifier.predictClass(xlogits);
-        //console.log(result);
-        var r = "<font color='red'>Result : class " + result.label + "</font><br><br>";;
+        const predict = await classifier.predictClass(xlogits);
+        //console.log(predict);
+        var r = "<font color='red'>Result : class " + predict.label + "</font><br><br>";;
         for (i=0;i<Class.length;i++) {
-          if (result.confidences[i.toString()]>=0) r += "[train "+i+"] " + result.confidences[i.toString()] + "<br>";
+          if (predict.confidences[i.toString()]>=0) r += "[train "+i+"] " + predict.confidences[i.toString()] + "<br>";
         }
-        div_set('result',"innerHTML",r); 
+        result.innerHTML = r; 
       }
       catch (e)
       {
@@ -164,7 +164,6 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
     selectimage_train.onchange = function (event) {
       var target = event.target || window.event.srcElement;
       files = target.files;
-      console.log(files.length);
       if (files.length>0) 
         ImportMultiFiles(files);
     }
@@ -179,7 +178,6 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
             context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
             addExample.click();
             if (n<(files.length-1)) {
-              //ImportOneFile(n+1);
               setTimeout(function(){ ImportOneFile(n+1); }, 2000);
             }
             else {
