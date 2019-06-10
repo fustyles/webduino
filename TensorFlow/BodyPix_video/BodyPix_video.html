@@ -84,7 +84,7 @@ async function DetectVideo() {
       [40, 234, 141], [28, 219, 169], [26, 199, 194], [33, 176, 213],
       [47, 150, 224], [65, 125, 224], [84, 101, 214], [99, 81, 195]
     ];
-    const coloredPartImageData = bodyPix.toColoredPartImageData(partSegmentation, rainbow);
+    const coloredPartImageData = bodyPix.toColoredPartImageData(segmentation, rainbow);
     const pixelCellWidth = 10.0;
     bodyPix.drawPixelatedMask(canvas3, video, coloredPartImageData, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
 
