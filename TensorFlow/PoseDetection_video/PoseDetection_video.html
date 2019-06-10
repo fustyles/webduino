@@ -46,6 +46,7 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
   function ObjectDetect() {
     posenet.load().then(function(net) {
       Model = net;
+      console.log(Model);
       result.innerHTML = "";
       video.style.visibility="hidden";
       video.style.position="absolute";
