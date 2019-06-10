@@ -16,7 +16,7 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_image/ObjectDetec
 <body>
 <input type="file" id="selectimage" disabled="true"></input>
 <br><br>
-<div id="result" style="width:350px;color:red"></div>
+<div id="result" style="width:350px;color:red">Please wait for loading model.</div>
 <img id="OriginImage" style="display:none">
 <img id="ShowImage">
 
@@ -27,7 +27,6 @@ var result = document.getElementById('result');
 var Model;
   
 function ObjectDetect() {
-  result.innerHTML = "Please wait for loading model.";
   mobilenet.load().then(mobilenet_Model => {
     Model = mobilenet_Model;
     result.innerHTML = "Please select one image.";
