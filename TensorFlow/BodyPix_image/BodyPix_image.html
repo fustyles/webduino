@@ -22,7 +22,8 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_image/BodyPix_image.html
 <canvas id="ShowImage"></canvas><br>
 <canvas id="canvas1"></canvas><br>
 <canvas id="canvas2"></canvas><br>
-<canvas id="canvas3"></canvas>
+<canvas id="canvas3"></canvas><br>
+<canvas id="canvas4"></canvas>
 
 <script>
 var ShowImage = document.getElementById('ShowImage');
@@ -31,6 +32,7 @@ var ShowImageWidth = 500;
 var canvas1 = document.getElementById("canvas1");
 var canvas2 = document.getElementById("canvas2");
 var canvas3 = document.getElementById("canvas3");
+var canvas4 = document.getElementById("canvas4");
 var result = document.getElementById('result');
 var Model;
 var outputStride = 16;
@@ -52,7 +54,9 @@ async function DetectImage() {
     canvas2.setAttribute("width", ShowImage.width);
     canvas2.setAttribute("height", ShowImage.height); 
     canvas3.setAttribute("width", ShowImage.width);
-    canvas3.setAttribute("height", ShowImage.height); 	  
+    canvas3.setAttribute("height", ShowImage.height); 
+    canvas4.setAttribute("width", ShowImage.width);
+    canvas4.setAttribute("height", ShowImage.height);	  
     
     const maskBackground = true;
     // Convert the personSegmentation into a mask to darken the background.
@@ -76,6 +80,18 @@ async function DetectImage() {
     ];
     const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
     bodyPix.drawMask(canvas3, ShowImage, coloredPartImage, 1.0, maskBlurAmount, flipHorizontal);
+	 
+    const rainbow = [
+      [110, 64, 170], [143, 61, 178], [178, 60, 178], [210, 62, 167],
+      [238, 67, 149], [255, 78, 125], [255, 94, 99],  [255, 115, 75],
+      [255, 140, 56], [239, 167, 47], [217, 194, 49], [194, 219, 64],
+      [175, 240, 91], [135, 245, 87], [96, 247, 96],  [64, 243, 115],
+      [40, 234, 141], [28, 219, 169], [26, 199, 194], [33, 176, 213],
+      [47, 150, 224], [65, 125, 224], [84, 101, 214], [99, 81, 195]
+    ];
+    const coloredPartImageData = bodyPix.toColoredPartImageData(segmentation, rainbow);
+    const pixelCellWidth = 10.0;
+    bodyPix.drawPixelatedMask(canvas4, video, coloredPartImageData, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
 	  
     result.innerHTML = "";
   });
