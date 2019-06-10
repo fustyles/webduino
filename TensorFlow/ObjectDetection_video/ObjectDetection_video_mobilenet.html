@@ -16,7 +16,7 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
 <body>
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <br>
-<div id="result" style="width:320px;color:red"></div>
+<div id="result" style="width:320px;color:red">Please wait for loading model.</div>
   
 <script>
   var video = document.getElementById('video');
@@ -41,7 +41,6 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetec
     })
 
   function ObjectDetect() {
-    result.innerHTML = "Please wait for loading model.";
     mobilenet.load().then(mobilenet_model => {
       Model = mobilenet_model;
       result.innerHTML = "";
