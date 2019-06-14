@@ -57,6 +57,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
  
     function canvas_mousedown(e) {
       e.preventDefault();
+      e.stopPropagation();
       x0 = e.offsetX;
       y0 = e.offsetY;
       drawState = drawState != true;
@@ -65,6 +66,7 @@ https://fustyles.github.io/webduino/TensorFlow/DigitRecognition_knn-classifier/D
 
     function canvas_mousemove(e) {
       e.preventDefault();
+      e.stopPropagation();
       if (drawState == true) {
         context.strokeStyle = "#ffffff";
         context.lineWidth = 5;
