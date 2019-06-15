@@ -1,7 +1,7 @@
 ﻿var catKnnClassifier = '<xml>'+
-'<category id="knn_classifier">'+
-'  <block type="knn_classifier_open"> '+ 
+'<category id="knnclassifier">'+
+'  <block type="knnclassifier_open"> '+ 
 '  </block>'+
-'  <block type="knn_classifier_proportion">'+
+'  <block type="knnclassifier_proportion">'+
 '  </block>'+
 '</category>';
