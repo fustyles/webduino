@@ -1,4 +1,4 @@
-Blockly.Blocks['knn_classifier_open'] = {
+Blockly.Blocks['knnclassifier_open'] = {
   init: function() {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.KNN_CLASSIFIER_OPEN_SHOW);      
@@ -8,7 +8,7 @@ Blockly.Blocks['knn_classifier_open'] = {
   }
 };
 
-Blockly.Blocks['knn_classifier_proportion'] = {
+Blockly.Blocks['knnclassifier_proportion'] = {
   init: function() {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.KNN_CLASSIFIER_PROPORTION_SHOW)
