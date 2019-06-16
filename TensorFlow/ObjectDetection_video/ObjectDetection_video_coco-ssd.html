@@ -47,9 +47,8 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
     })
 
   function ObjectDetect() {
-    cocoSsd.load('lite_mobilenet_v2').then(cocoSsd_model => {
+    cocoSsd.load().then(cocoSsd_model => {
       Model = cocoSsd_model;
-      console.log(Model);
       result.innerHTML = "";
       video.style.visibility="hidden";
       video.style.position="absolute";
