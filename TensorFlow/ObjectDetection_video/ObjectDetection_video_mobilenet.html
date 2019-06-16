@@ -26,29 +26,33 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   var result = document.getElementById('result');
   var Model;
 
-  navigator.mediaDevices
-    .getUserMedia({
-      audio: false,
-      video: {
-        facingMode: "user",
-        width: 320,
-        height: 240
-      }
-    })
-    .then(stream => {
-      video.srcObject = stream
-      video.onloadedmetadata = () => {       
-        video.play();
-        ObjectDetect();
-      }
-    })
-
+  ObjectDetect(); 
+  
   function ObjectDetect() {
     mobilenet.load().then(mobilenet_model => {
       Model = mobilenet_model;
       result.innerHTML = "";
-      DetectVideo();
+      setTimeout(function(){ startvideo(); }, 2000);
     }); 
+  }
+  
+  function startvideo() {
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+        video: {
+          facingMode: "user",
+          width: 320,
+          height: 240
+        }
+      })
+      .then(stream => {
+        video.srcObject = stream
+        video.onloadedmetadata = () => {       
+          video.play();         
+          setTimeout(function(){DetectVideo(); }, 100);
+        }
+      })   
   }
                         
   async function DetectVideo() {
@@ -63,7 +67,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       }
       else
         result.innerHTML = "Unrecognizable";
-      DetectVideo();
+      setTimeout(function(){DetectVideo(); }, 100);
     });
   }
 </script>
