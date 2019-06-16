@@ -33,6 +33,7 @@ var Model;
 function ObjectDetect() {
   cocoSsd.load().then(cocoSsd_Model => {
     Model = cocoSsd_Model;
+    console.log(Model);
     result.innerHTML = "Please select one image.";
     document.getElementById('selectimage').disabled = false;
   }); 
