@@ -40,7 +40,8 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
     })
     .then(stream => {
       video.srcObject = stream
-      video.onloadedmetadata = () => {   
+      video.onloadedmetadata = () => {  
+        video.play();
         ObjectDetect();
       }
     })
@@ -51,7 +52,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       result.innerHTML = "";
       video.style.visibility="hidden";
       video.style.position="absolute";
-      video.play();
       DetectVideo();
     }); 
   }
