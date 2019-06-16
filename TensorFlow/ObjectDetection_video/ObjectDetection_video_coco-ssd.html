@@ -18,7 +18,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 </head>
 <body>
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
-<canvas id="canvas" style="background-color:#000000;"></canvas>
+<canvas id="canvas"></canvas>
 <br>
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div>
   
@@ -36,7 +36,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       Model = cocoSsd_model;
       console.log(Model);
       result.innerHTML = "";
-      setTimeout(function(){ startvideo(); }, 3000);
+      setTimeout(function(){ startvideo(); }, 2000);
     }); 
   }  
   
@@ -58,7 +58,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
           video.play();
           canvas.setAttribute("width", video.width);
           canvas.setAttribute("height", video.height);          
-          setTimeout(function(){DetectVideo(); }, 200);
+          setTimeout(function(){DetectVideo(); }, 100);
         }
       })   
   }
@@ -91,7 +91,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       }
       else
         result.innerHTML = "Unrecognizable";
-      setTimeout(function(){DetectVideo(); }, 200);
+      setTimeout(function(){DetectVideo(); }, 100);
     });
   }
 </script>
