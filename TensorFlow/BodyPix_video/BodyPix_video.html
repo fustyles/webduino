@@ -19,6 +19,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <body>
 <video id="video" width="320" height="240" preload autoplay loop muted></video><br>
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div><br>
+<canvas id="canvas"></canvas><br>
 <canvas id="canvas1"></canvas><br>
 <canvas id="canvas2"></canvas><br>
 <canvas id="canvas3"></canvas><br>
@@ -26,11 +27,13 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   
 <script>
   var video = document.getElementById('video');
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
   var canvas1 = document.getElementById('canvas1'); 
   var canvas2 = document.getElementById('canvas2');
   var canvas3 = document.getElementById('canvas3');
   var canvas4 = document.getElementById('canvas4'); 
-  var Model; 
+  var Model;
   var outputStride = 16;
   var segmentationThreshold = 0.5;
 
@@ -59,6 +62,8 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
         video.srcObject = stream
         video.onloadedmetadata = () => {       
           video.play();
+          canvas.setAttribute("width", video.width);
+          canvas.setAttribute("height", video.height);           
           canvas1.setAttribute("width", video.width);
           canvas1.setAttribute("height", video.height);  
           canvas2.setAttribute("width", video.width);
@@ -74,7 +79,8 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   }  
                         
 async function DetectVideo() {
-  await Model.estimatePersonSegmentation(video, outputStride, segmentationThreshold).then(segmentation => {
+  context.drawImage(video, 0, 0, video.width, video.height); 
+  await Model.estimatePersonSegmentation(canvas, outputStride, segmentationThreshold).then(segmentation => {
     //console.log(segmentation);
 
     const maskBackground = true;
@@ -87,9 +93,9 @@ async function DetectVideo() {
     const backgroundBlurAmount = 3;
     const edgeBlurAmount = 3;
     // draw the mask onto the image on a canvas.  With opacity set to 0.7 and maskBlurAmount set to 3, this will darken the background and blur the darkened background's edge.
-    bodyPix.drawMask(canvas1, video, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
+    bodyPix.drawMask(canvas1, canvas, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
     
-    bodyPix.drawBokehEffect(canvas2, video, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
+    bodyPix.drawBokehEffect(canvas2, canvas, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
     
     const rainbow = [
       [110, 64, 170], [143, 61, 178], [178, 60, 178], [210, 62, 167],
@@ -101,7 +107,7 @@ async function DetectVideo() {
     ];
     const coloredPartImageData = bodyPix.toColoredPartImageData(segmentation, rainbow);
     const pixelCellWidth = 10.0;
-    bodyPix.drawPixelatedMask(canvas3, video, coloredPartImageData, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
+    bodyPix.drawPixelatedMask(canvas3, canvas, coloredPartImageData, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
     
     const warm = [
       [110, 64, 170], [106, 72, 183], [100, 81, 196], [92, 91, 206],
@@ -112,7 +118,7 @@ async function DetectVideo() {
       [96, 247, 97],  [115, 246, 91], [134, 245, 88], [155, 243, 88]
     ];
     const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
-    bodyPix.drawMask(canvas4, video, coloredPartImage, 1.0, maskBlurAmount, flipHorizontal);
+    bodyPix.drawMask(canvas4, canvas, coloredPartImage, 1.0, maskBlurAmount, flipHorizontal);
     
     try { 
       document.createEvent("TouchEvent");
