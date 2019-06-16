@@ -18,7 +18,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 </head>
 <body>
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
-<canvas id="canvas"></canvas>
+<canvas id="canvas" style="background-color:#000000;"></canvas>
 <br>
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div>
   
@@ -33,7 +33,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
     Model = cocoSsd_model;
     console.log(Model);
     result.innerHTML = "";
-    console.log("OK");
     navigator.mediaDevices
       .getUserMedia({
         audio: false,
