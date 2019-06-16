@@ -38,6 +38,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   }  
   
   if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    console.log("test");
     navigator.mediaDevices.getUserMedia(myConstraints).then(function(stream) {
       video.srcObject = stream;
       video.play();
