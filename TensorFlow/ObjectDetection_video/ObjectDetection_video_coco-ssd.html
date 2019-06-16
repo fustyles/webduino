@@ -66,8 +66,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
                         
   async function DetectVideo() {
     await Model.detect(canvas).then(predictions => { 
-       
-      //context.drawImage(video, 0, 0, video.width, video.height);
       result.innerHTML = "";
       
       console.log('Predictions: ', predictions);
@@ -94,6 +92,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       }
       else
         result.innerHTML = "Unrecognizable";
+      context.drawImage(video, 0, 0, video.width, video.height);
       setTimeout(function(){DetectVideo(); }, 200);
     });
   }
