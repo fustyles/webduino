@@ -27,41 +27,47 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   var video = document.getElementById('video');
   var canvas = document.getElementById('canvas'); 
   var context = canvas.getContext('2d');
-  var result = document.getElementById('result');  
-
-  navigator.mediaDevices
-    .getUserMedia({
-      audio: false,
-      video: {
-        facingMode: "user",
-        width: 320,
-        height: 240
-      }
-    })
-    .then(stream => {
-      video.srcObject = stream
-      video.onloadedmetadata = () => {       
-        video.play();
-        ObjectDetect();
-      }
-    })
+  var result = document.getElementById('result');
+  var Model; 
+  
+  ObjectDetect();
 
   function ObjectDetect() {
     posenet.load().then(function(net) {
       Model = net;
       result.innerHTML = "";
-      video.style.visibility="hidden";
-      video.style.position="absolute";
-      DetectVideo(Model);
+      startvideo();
     }); 
   }
+  
+  function startvideo() {
+    video.style.visibility="hidden";
+    video.style.position="absolute";
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+        video: {
+          facingMode: "user",
+          width: 320,
+          height: 240
+        }
+      })
+      .then(stream => {
+        video.srcObject = stream
+        video.onloadedmetadata = () => {       
+          video.play();
+          canvas.setAttribute("width", video.width);
+          canvas.setAttribute("height", video.height);          
+          setTimeout(function(){DetectVideo(); }, 100);
+        }
+      })   
+  } 
                         
 async function DetectVideo() {
-  await Model.estimatePoses(video, {flipHorizontal: false, decodingMethod: 'multi-person', maxPoseDetections: 5, scoreThreshold: 0.5, nmsRadius: 20}).then(pose => {
-    canvas.setAttribute("width", video.width);
-    canvas.setAttribute("height", video.height);        
-    context.drawImage(video, 0, 0, video.width, video.height);
+  context.drawImage(video, 0, 0, video.width, video.height);
+  await Model.estimatePoses(canvas, {flipHorizontal: false, decodingMethod: 'multi-person', maxPoseDetections: 5, scoreThreshold: 0.5, nmsRadius: 20}).then(pose => {
     result.innerHTML = "";  
+    
     //console.log(pose.score);
     //console.log(pose.keypoints);
     if (pose.length>0) {
@@ -83,7 +89,7 @@ async function DetectVideo() {
         }
       }
     }  
-    DetectVideo();
+    setTimeout(function(){DetectVideo(); }, 100);
   });
 }
 
