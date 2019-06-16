@@ -46,7 +46,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   })
   
   function ObjectDetect() {
-    console.log("start");
     cocoSsd.load('lite_mobilenet_v2').then(cocoSsd_model => {
       Model = cocoSsd_model;
       console.log(Model);
@@ -90,7 +89,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
     });
   }
   
-  window.onload = function () { ObjectDetect(); }  
+  window.onload = function () { //ObjectDetect(); }  
 </script>
 
 </body>
