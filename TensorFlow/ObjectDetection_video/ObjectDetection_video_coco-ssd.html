@@ -29,8 +29,16 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   var result = document.getElementById('result'); 
   var Model;
   
+  var myConstraints = {
+    video: {
+      facingMode: "user",
+      width: 320,
+      height: 240
+    }
+  }  
+  
   if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+    navigator.mediaDevices.getUserMedia(myConstraints).then(function(stream) {
       video.srcObject = stream;
       video.play();
       video.style.visibility="hidden";
