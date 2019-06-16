@@ -58,6 +58,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   }
                         
   async function DetectVideo() {
+    console.log("OK");
     await Model.detect(video).then(predictions => { 
       canvas.setAttribute("width", video.width);
       canvas.setAttribute("height", video.height);        
