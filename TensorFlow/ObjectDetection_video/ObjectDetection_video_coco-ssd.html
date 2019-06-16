@@ -18,7 +18,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 </head>
 <body>
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
-<canvas id="canvas"></canvas>
+<canvas id="canvas" style="background-color:#000000;"></canvas>
 <br>
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div>
   
@@ -36,7 +36,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       Model = cocoSsd_model;
       console.log(Model);
       result.innerHTML = "";
-      setTimeout(function(){ startvideo(); }, 10000);
+      setTimeout(function(){ startvideo(); }, 5000);
     }); 
   }  
   
@@ -57,14 +57,14 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
         video.onloadedmetadata = () => {       
           video.play();
           canvas.setAttribute("width", video.width);
-          canvas.setAttribute("height", video.height);           
-          DetectVideo(); 
+          canvas.setAttribute("height", video.height);
+          context.drawImage(video, 0, 0, video.width, video.height);
+          setTimeout(function(){DetectVideo(); }, 200);
         }
       })   
   }
                         
   async function DetectVideo() {
-    context.drawImage(video, 0, 0, video.width, video.height);
     await Model.detect(canvas).then(predictions => { 
        
       //context.drawImage(video, 0, 0, video.width, video.height);
@@ -94,7 +94,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       }
       else
         result.innerHTML = "Unrecognizable";
-      DetectVideo();
+      setTimeout(function(){DetectVideo(); }, 200);
     });
   }
 </script>
