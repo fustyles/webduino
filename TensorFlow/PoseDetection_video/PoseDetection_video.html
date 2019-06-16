@@ -65,10 +65,11 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   }
   
   async function DetectVideo() {
-    context.drawImage(video, 0, 0, video.width, video.height);
-    await Model.estimatePoses(canvas, {flipHorizontal: false, decodingMethod: 'single-person'}).then(pose => {
+    
+    await Model.estimatePoses(video, {flipHorizontal: false, decodingMethod: 'single-person'}).then(pose => {
       result.innerHTML = "";
-
+      context.drawImage(video, 0, 0, video.width, video.height);
+      
       pose = pose[0];
       //console.log(pose.score);
       //console.log(pose.keypoints);
