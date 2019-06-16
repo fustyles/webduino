@@ -29,6 +29,16 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   var result = document.getElementById('result'); 
   var Model;
   
+  if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+      video.srcObject = stream;
+      video.play();
+      video.style.visibility="hidden";
+      video.style.position="absolute";        
+    });
+  }
+  
+  /*
   navigator.mediaDevices
     .getUserMedia({
       audio: false,
@@ -46,6 +56,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
         video.style.position="absolute";
       }
     })  
+  */
   
   function ObjectDetect() {
     console.log("start");
