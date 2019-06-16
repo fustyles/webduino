@@ -47,12 +47,14 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       }
     })  
   
-  cocoSsd.load().then(cocoSsd_model => {
-    Model = cocoSsd_model;
-    console.log(Model);
-    result.innerHTML = "";
-    DetectVideo(); 
-  }); 
+  function ObjectDetect() {
+    cocoSsd.load().then(cocoSsd_model => {
+      Model = cocoSsd_model;
+      console.log(Model);
+      result.innerHTML = "";
+      DetectVideo(); 
+    }); 
+  }  
                         
   async function DetectVideo() {
     await Model.detect(video).then(predictions => { 
@@ -88,6 +90,8 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       DetectVideo();
     });
   }
+  
+window.onload = function () { ObjectDetect(); }  
 </script>
 
 </body>
