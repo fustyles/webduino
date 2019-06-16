@@ -36,6 +36,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
     video.srcObject = stream
     video.onloadedmetadata = () => {       
       video.play();
+      ObjectDetect();
     }
   })
   
@@ -89,8 +90,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       DetectVideo();
     });
   }
-  
-  window.onload = function () { ObjectDetect(); }  
 </script>
 
 </body>
