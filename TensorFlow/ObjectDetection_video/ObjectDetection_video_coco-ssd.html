@@ -23,12 +23,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div>
   
 <script>
-  var video = document.getElementById('video');
-  var canvas = document.getElementById('canvas'); 
-  var context = canvas.getContext('2d');
-  var result = document.getElementById('result'); 
-  var Model;
-  
   navigator.mediaDevices
   .getUserMedia({
     audio: false,
@@ -54,6 +48,12 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       DetectVideo(); 
     }); 
   }  
+  
+  var video = document.getElementById('video');
+  var canvas = document.getElementById('canvas'); 
+  var context = canvas.getContext('2d');
+  var result = document.getElementById('result'); 
+  var Model;  
                         
   async function DetectVideo() {
     await Model.detect(video).then(predictions => { 
