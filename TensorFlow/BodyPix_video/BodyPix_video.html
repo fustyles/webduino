@@ -37,7 +37,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   function ObjectDetect() {
     bodyPix.load().then(function(net) {
       Model = net;
-      result.innerHTML = "";       
       setTimeout(function(){ startvideo(); }, 100);
     }); 
   }
@@ -65,7 +64,8 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
           canvas3.setAttribute("width", video.width);
           canvas3.setAttribute("height", video.height);     
           canvas4.setAttribute("width", video.width);
-          canvas4.setAttribute("height", video.height);          
+          canvas4.setAttribute("height", video.height);
+          result.innerHTML = ""; 
           setTimeout(function(){DetectVideo(); }, 100);
         }
       })   
