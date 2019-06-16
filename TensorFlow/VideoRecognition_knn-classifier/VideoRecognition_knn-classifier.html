@@ -126,7 +126,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       
       var link = document.createElement('a');
       link.download="model.json";
-      link.href='data:text/json;charset=utf-8,' + encodeURIComponent(json);
+      link.href='data:application/json;charset=utf-8,' + encodeURIComponent(json);
       document.body.appendChild(link);
       link.click();
       link.remove();
