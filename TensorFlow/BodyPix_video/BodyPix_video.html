@@ -29,42 +29,47 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   var canvas1 = document.getElementById('canvas1'); 
   var canvas2 = document.getElementById('canvas2');
   var canvas3 = document.getElementById('canvas3');
-  var canvas4 = document.getElementById('canvas4');  
+  var canvas4 = document.getElementById('canvas4'); 
+  var Model; 
   var outputStride = 16;
   var segmentationThreshold = 0.5;
-
-  navigator.mediaDevices
-    .getUserMedia({
-      audio: false,
-      video: {
-        facingMode: "user",
-        width: 320,
-        height: 240
-      }
-    })
-    .then(stream => {
-      video.srcObject = stream
-      video.onloadedmetadata = () => {       
-        video.play();
-        ObjectDetect();
-      }
-    })
 
   function ObjectDetect() {
     bodyPix.load().then(function(net) {
       Model = net;
-      result.innerHTML = "";
-      canvas1.setAttribute("width", video.width);
-      canvas1.setAttribute("height", video.height);  
-      canvas2.setAttribute("width", video.width);
-      canvas2.setAttribute("height", video.height);  
-      canvas3.setAttribute("width", video.width);
-      canvas3.setAttribute("height", video.height);     
-      canvas4.setAttribute("width", video.width);
-      canvas4.setAttribute("height", video.height);        
-      DetectVideo(Model);
+      result.innerHTML = "";       
+      setTimeout(function(){ startvideo(); }, 100);
     }); 
   }
+  
+  function startvideo() {
+    video.style.visibility="hidden";
+    video.style.position="absolute";
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+        video: {
+          facingMode: "user",
+          width: 320,
+          height: 240
+        }
+      })
+      .then(stream => {
+        video.srcObject = stream
+        video.onloadedmetadata = () => {       
+          video.play();
+          canvas1.setAttribute("width", video.width);
+          canvas1.setAttribute("height", video.height);  
+          canvas2.setAttribute("width", video.width);
+          canvas2.setAttribute("height", video.height);  
+          canvas3.setAttribute("width", video.width);
+          canvas3.setAttribute("height", video.height);     
+          canvas4.setAttribute("width", video.width);
+          canvas4.setAttribute("height", video.height);          
+          setTimeout(function(){DetectVideo(); }, 100);
+        }
+      })   
+  }  
                         
 async function DetectVideo() {
   await Model.estimatePersonSegmentation(video, outputStride, segmentationThreshold).then(segmentation => {
@@ -114,7 +119,7 @@ async function DetectVideo() {
     catch(e) { 
       segmentationThreshold = 0.75;
     }   
-    DetectVideo();
+    setTimeout(function(){DetectVideo(); }, 100);
   });
 }
 </script>
