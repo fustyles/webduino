@@ -41,11 +41,10 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
     .then(stream => {
       video.srcObject = stream
       video.oncanplay = () => {  
-        video.play();
-        ObjectDetect();
+        //video.play();
       }    
       video.onloadedmetadata = () => {  
-        
+        ObjectDetect();
       }
     })
 
