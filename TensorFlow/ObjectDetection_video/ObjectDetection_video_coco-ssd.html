@@ -17,7 +17,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>  
 </head>
 <body>
-<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<video id="video" width="320" height="240" preload loop muted></video>
 <canvas id="canvas"></canvas>
 <br>
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div>
@@ -39,12 +39,10 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       }
     })
     .then(stream => {
-      video.srcObject = stream
-      video.oncanplay = () => {  
-        //video.play();
-      }    
+      video.srcObject = stream 
       video.onloadedmetadata = () => {  
         console.log("OK");
+        //video.play();
         ObjectDetect();
       }
     })
