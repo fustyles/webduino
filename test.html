@@ -19,6 +19,11 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas>
 <br>
+<form id="myForm" action="https://script.google.com/macros/s/AKfycbxGJWiG4Zfaghvnyuz8ip4GEU-D-5PXv_4j80LZ/exec" method="post">
+  <input type="text" name="myFilename"><br>
+  <input type="text" name="myToken"><br>
+  <textarea id="myFile" name="myFile" rows="20" cols="50"></textarea><br>
+</form>
 <button onclick="SendCapturedImage();">Send Captured Image </button>
 <br>
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div>
@@ -99,17 +104,15 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 
   function SendCapturedImage() {
 	// Upload captured image and send a message to LineNotify.
-	var filename = new Date();
-	var file = canvas.toDataURL();
-	console.log(file);
-	var para = '{"myFilename":"test.png","myToken":"lHaUbj8vv1ZCvoxzwhpoarxNYR4PKYIHtVOS72qS6Lt","myFile":"'+file+'"}';
-	para = JSON.parse(para);
-	console.log(para);
+	document.getElementById("myFilename").value = "test.png";
+	document.getElementById("myFile").value = canvas.toDataURL();
+	document.getElementById("myTokenmyFile").value = "lHaUbj8vv1ZCvoxzwhpoarxNYR4PKYIHtVOS72qS6Lt";
+
 	var data = $.ajax({
 	  "type": "POST",
 	  "dataType": "jsonp",
 	  "url": "https://script.google.com/macros/s/AKfycbxGJWiG4Zfaghvnyuz8ip4GEU-D-5PXv_4j80LZ/exec",
-	  "data":para,
+	  "data":new FormData(document.getElementById("myForm")),
 	  success: function(jsonp) {
 	    console.log(jsonp);
 	  },
