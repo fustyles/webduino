@@ -20,7 +20,7 @@ function doPost(e) {
   var imageID = file.getUrl().substring(file.getUrl().indexOf("/d/")+3,file.getUrl().indexOf("view")-1);
   imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
     
-  // Send a push message to Line Nitify.
+  // Send a push message to Line Notify.
   var res = "";
   try {
     var url = 'https://notify-api.line.me/api/notify';
