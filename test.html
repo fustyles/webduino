@@ -21,6 +21,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <div style="display:none">
 <button onclick="SendCapturedImage();">Send Captured Image </button>
 <form id="myForm" action="https://script.google.com/macros/s/AKfycbxGJWiG4Zfaghvnyuz8ip4GEU-D-5PXv_4j80LZ/exec" method="post" target="sendcapturedimage">
+<input type="text" id="myFoldername" name="myFoldername"><br>
 <input type="text" id="myFilename" name="myFilename"><br>
 <input type="text" id="myToken" name="myToken"><br>
 <textarea id="myFile" name="myFile" rows="10" cols="50"></textarea><br>
@@ -30,6 +31,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   
 <script>
   var myForm = document.getElementById('myForm');
+  var myFoldername = document.getElementById('myFoldername');
   var myFilename = document.getElementById('myFilename');
   var myFile = document.getElementById('myFile');
   var myToken = document.getElementById('myToken');
@@ -112,6 +114,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 
   function SendCapturedImage() {
     // Upload captured image and send a message to LineNotify.
+    myFoldername.value = "ESP32-CAM";
     myFilename.value = "test.png";
     myFile.value = canvas.toDataURL();
     myToken.value = "lHaUbj8vv1ZCvoxzwhpoarxNYR4PKYIHtVOS72qS6LtXYZ";
