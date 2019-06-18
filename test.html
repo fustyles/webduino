@@ -100,14 +100,13 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
             personState = true;
           }
         }
-	      
-	if (personState == true) {
-	    SendCapturedImage();
-	    setTimeout(function(){ personState = false; }, 10000);
-	}
       }
       else
         result.innerHTML = "Unrecognizable";
+      if (personState == true) {
+        SendCapturedImage();
+        setTimeout(function(){ personState = false; }, 10000);
+      }
       setTimeout(function(){DetectVideo(); }, 100);
     });
   }
