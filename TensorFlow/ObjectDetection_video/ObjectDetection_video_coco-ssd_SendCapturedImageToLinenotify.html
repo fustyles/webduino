@@ -1,0 +1,122 @@
+﻿<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/18 23:00
+https://www.facebook.com/francefu
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetection_video_coco-ssd_SendCapturedImageToLinenotify.html
+How to enable WebGL in Chrome.
+https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
+-->
+<!DOCTYPE html>
+<head>
+  <title>Object Detection (coco-ssd)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>  
+</head>
+<body>
+<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<canvas id="canvas"></canvas><br>
+<div style="display:none">
+<button onclick="SendCapturedImage();">Send Captured Image </button>
+<form id="myForm" action="https://script.google.com/macros/s/AKfycbxGJWiG4Zfaghvnyuz8ip4GEU-D-5PXv_4j80LZ/exec" method="post" target="sendcapturedimage">
+<input type="text" id="myFilename" name="myFilename"><br>
+<input type="text" id="myToken" name="myToken"><br>
+<textarea id="myFile" name="myFile" rows="10" cols="50"></textarea><br>
+</form>
+</div>
+<div id="result" style="width:320px;color:red">Please wait for loading model.</div>
+  
+<script>
+  var myForm = document.getElementById('myForm');
+  var myFilename = document.getElementById('myFilename');
+  var myFile = document.getElementById('myFile');
+  var myToken = document.getElementById('myToken');
+  var personState = false;
+	
+  var video = document.getElementById('video');
+  var canvas = document.getElementById('canvas'); 
+  var context = canvas.getContext('2d');
+  var result = document.getElementById('result'); 
+  var Model; 
+  
+  ObjectDetect();  
+  
+  function ObjectDetect() {
+    cocoSsd.load().then(cocoSsd_model => {
+      Model = cocoSsd_model;
+      //console.log(Model);
+      result.innerHTML = "";
+      setTimeout(function(){ startvideo(); }, 2000);
+    }); 
+  }  
+  
+  function startvideo() {
+    video.style.visibility="hidden";
+    video.style.position="absolute";
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+        video: {
+          facingMode: "user",
+          width: 320,
+          height: 240
+        }
+      })
+      .then(stream => {
+        video.srcObject = stream
+        video.onloadedmetadata = () => {       
+          video.play();
+          canvas.setAttribute("width", video.width);
+          canvas.setAttribute("height", video.height);          
+          setTimeout(function(){DetectVideo(); }, 100);
+        }
+      })   
+  }
+                        
+  async function DetectVideo() {
+    context.drawImage(video, 0, 0, video.width, video.height);    
+    await Model.detect(canvas).then(predictions => { 
+      result.innerHTML = "";
+      //console.log('Predictions: ', predictions);
+      if (predictions.length>0) {
+        for (var i=0;i<predictions.length;i++) {
+          const x = predictions[i].bbox[0];
+          const y = predictions[i].bbox[1];
+          const width = predictions[i].bbox[2];
+          const height = predictions[i].bbox[3];
+          context.lineWidth = "3";
+          context.strokeStyle = "#00FFFF";
+          context.beginPath();
+          context.rect(x, y, width, height);
+          context.stroke(); 
+          context.lineWidth = "2";
+          context.fillStyle = "red";
+          context.font = "12px Arial";
+          context.fillText(predictions[i].class, x, y);
+          result.innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+          if ((personState == false)&&(predictions[i].class=="person")) {
+            personState = true;
+            SendCapturedImage();
+            setTimeout(function(){ personState = false; }, 10000);
+          }
+        }
+      }
+      else
+        result.innerHTML = "Unrecognizable";
+      setTimeout(function(){DetectVideo(); }, 100);
+    });
+  }
+  function SendCapturedImage() {
+    // Upload captured image and send a message to LineNotify.
+    myFilename.value = "test.png";
+    myFile.value = canvas.toDataURL();
+    myToken.value = "lHaUbj8vv1ZCvoxzwhpoarxNYR4PKYIHtVOS72qS6LtXYZ";
+    var myWindow = window.open("", "sendcapturedimage", "width=600,height=60");
+    myForm.submit();
+  }
+</script>
+
+</body>
+</html>
