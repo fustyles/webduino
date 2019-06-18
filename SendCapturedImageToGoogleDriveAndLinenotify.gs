@@ -1,7 +1,7 @@
 function doPost(e) {
     
   // Save a captured image.
-  var dropbox = "ESP32-CAM";
+  var dropbox = e.parameter.myFoldername;
   var folder, folders = DriveApp.getFoldersByName(dropbox);
   
   if (folders.hasNext()) {
