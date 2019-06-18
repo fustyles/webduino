@@ -20,7 +20,11 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <canvas id="canvas"></canvas>
 <br>
 <button onclick="SendCapturedImage();">Send Captured Image </button>
-<textarea id="myFile" name="myFile" rows="20" cols="50"></textarea>
+<form id="myForm" action="https://script.google.com/macros/s/AKfycbxGJWiG4Zfaghvnyuz8ip4GEU-D-5PXv_4j80LZ/exec" method="post">
+<input type="text" name="myFilename"><br>
+<input type="text" name="myToken"><br>
+<textarea id="myFile" name="myFile" rows="10" cols="50"></textarea><br>
+</form>
 <br>
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div>
   
@@ -100,11 +104,10 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 
   function SendCapturedImage() {
 	// Upload captured image and send a message to LineNotify.
+	document.getElementById('myFilename').value = "test.png";
 	document.getElementById('myFile').value = canvas.toDataURL();
-	let formData = new FormData();
-	formData.append('myFilename', 'test.png');
-	formData.append('myFile', encodeURIComponent(document.getElementById('myFile').value));
-	formData.append('myToken', 'lHaUbj8vv1ZCvoxzwhpoarxNYR4PKYIHtVOS72qS6Lt');
+	document.getElementById('myToken').value = "lHaUbj8vv1ZCvoxzwhpoarxNYR4PKYIHtVOS72qS6Lt";
+
 	var data = $.ajax({
 	  "type": "POST",
 	  "dataType": "jsonp",
