@@ -102,7 +102,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 	var filename = new Date();
 	var file = canvas.toDataURL();
 	console.log(file);
-	var para = '{"myFilename":"'+filename+'","myToken":"lHaUbj8vv1ZCvoxzwhpoarxNYR4PKYIHtVOS72qS6Lt","myFile":"'+file+'"}';
+	var para = '{"myFilename":"test.png","myToken":"lHaUbj8vv1ZCvoxzwhpoarxNYR4PKYIHtVOS72qS6Lt","myFile":"'+file+'"}';
 	para = JSON.parse(para);
 	console.log(para);
 	var data = $.ajax({
