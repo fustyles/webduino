@@ -26,6 +26,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <textarea id="myFile" name="myFile" rows="10" cols="50"></textarea><br>
 <input type="submit" value="Send">
 </form>
+<iframe id="send" width="300" height="200"></iframe>
 <br>
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div>
   
@@ -117,7 +118,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 	var data = $.ajax({
 	  "type": "POST",
 	  "processData": false,
-          "contentType": false,
+          "contentType": "multipart/form-data",
 	  "dataType": "jsonp",
 	  "url": "https://script.google.com/macros/s/AKfycbxGJWiG4Zfaghvnyuz8ip4GEU-D-5PXv_4j80LZ/exec",
 	  "data":new FormData(myForm),
