@@ -21,14 +21,19 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <br>
 <button onclick="SendCapturedImage();">Send Captured Image </button>
 <form id="myForm" action="https://script.google.com/macros/s/AKfycbxGJWiG4Zfaghvnyuz8ip4GEU-D-5PXv_4j80LZ/exec" method="post">
-<input type="text" name="myFilename"><br>
-<input type="text" name="myToken"><br>
+<input type="text" id="myFilename" name="myFilename"><br>
+<input type="text" id="myToken" name="myToken"><br>
 <textarea id="myFile" name="myFile" rows="10" cols="50"></textarea><br>
 </form>
 <br>
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div>
   
 <script>
+  var myForm = document.getElementById('myForm');
+  var myFilename = document.getElementById('myFilename');
+  var myFile = document.getElementById('myFile');
+  var myToken = document.getElementById('myToken');
+	
   var video = document.getElementById('video');
   var canvas = document.getElementById('canvas'); 
   var context = canvas.getContext('2d');
@@ -112,7 +117,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 	  "type": "POST",
 	  "dataType": "jsonp",
 	  "url": "https://script.google.com/macros/s/AKfycbxGJWiG4Zfaghvnyuz8ip4GEU-D-5PXv_4j80LZ/exec",
-	  "data":formData,
+	  "data":new FormData(myForm),
 	  success: function(jsonp) {
 	    console.log(jsonp);
 	  },
