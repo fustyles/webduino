@@ -1,0 +1,127 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/18 23:00
+https://www.facebook.com/francefu
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetection_video_coco-ssd.html
+How to enable WebGL in Chrome.
+https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
+-->
+<!DOCTYPE html>
+<head>
+  <title>Object Detection (coco-ssd)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>  
+</head>
+<body>
+<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<canvas id="canvas"></canvas>
+<br>
+<button onclick="SendCapturedImage();">Send Captured Image </button>
+<br>
+<div id="result" style="width:320px;color:red">Please wait for loading model.</div>
+  
+<script>
+  var video = document.getElementById('video');
+  var canvas = document.getElementById('canvas'); 
+  var context = canvas.getContext('2d');
+  var result = document.getElementById('result'); 
+  var Model; 
+  
+  ObjectDetect();  
+  
+  function ObjectDetect() {
+    cocoSsd.load().then(cocoSsd_model => {
+      Model = cocoSsd_model;
+      //console.log(Model);
+      result.innerHTML = "";
+      setTimeout(function(){ startvideo(); }, 2000);
+    }); 
+  }  
+  
+  function startvideo() {
+    video.style.visibility="hidden";
+    video.style.position="absolute";
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+        video: {
+          facingMode: "user",
+          width: 320,
+          height: 240
+        }
+      })
+      .then(stream => {
+        video.srcObject = stream
+        video.onloadedmetadata = () => {       
+          video.play();
+          canvas.setAttribute("width", video.width);
+          canvas.setAttribute("height", video.height);          
+          setTimeout(function(){DetectVideo(); }, 100);
+        }
+      })   
+  }
+                        
+  async function DetectVideo() {
+    context.drawImage(video, 0, 0, video.width, video.height);    
+    await Model.detect(canvas).then(predictions => { 
+      result.innerHTML = "";
+      //console.log('Predictions: ', predictions);
+      if (predictions.length>0) {
+		var personState = false;
+        for (var i=0;i<predictions.length;i++) {
+          const x = predictions[i].bbox[0];
+          const y = predictions[i].bbox[1];
+          const width = predictions[i].bbox[2];
+          const height = predictions[i].bbox[3];
+          context.lineWidth = "3";
+          context.strokeStyle = "#00FFFF";
+          context.beginPath();
+          context.rect(x, y, width, height);
+          context.stroke(); 
+          context.lineWidth = "2";
+          context.fillStyle = "red";
+          context.font = "12px Arial";
+          context.fillText(predictions[i].class, x, y);
+          result.innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+
+		  if (predictions[i].class=="person") {
+			  personState = true;
+		  }
+        }
+      }
+      else
+        result.innerHTML = "Unrecognizable";
+      setTimeout(function(){DetectVideo(); }, 100);
+    });
+  }
+
+  function SendCapturedImage() {
+	// Upload captured image and send a message to LineNotify.
+	var filename = new Date();
+	var file = canvas.toDataURL();
+	console.log(file);
+	var para = '{"myFilename":"'+filename+'","myToken":"lHaUbj8vv1ZCvoxzwhpoarxNYR4PKYIHtVOS72qS6Lt","myFile":"'+file+'"}';
+	para = JSON.parse(para);
+	console.log(para);
+	var data = $.ajax({
+		"type": "POST",
+		"dataType": "jsonp",
+		"url": "https://script.google.com/macros/s/AKfycbxGJWiG4Zfaghvnyuz8ip4GEU-D-5PXv_4j80LZ/exec",
+		"data":para,
+		success: function(jsonp)
+		{
+		  console.log(jsonp);
+		},
+		error: function(jqXHR, textStatus, errorThrown)
+		{
+		  //console.log(errorThrown);
+		}
+	 });
+  }
+</script>
+
+</body>
+</html>
