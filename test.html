@@ -107,12 +107,12 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   }
 
   function SendCapturedImage() {
-	// Upload captured image and send a message to LineNotify.
-	myFilename.value = "test.png";
-	myFile.value = canvas.toDataURL();
-	myToken.value = "lHaUbj8vv1ZCvoxzwhpoarxNYR4PKYIHtVOS72qS6Lt";
-	var myWindow = window.open("", "sendcapturedimage", "width=200,height=200");
-	myForm.submit();
+    // Upload captured image and send a message to LineNotify.
+    myFilename.value = "test.png";
+    myFile.value = canvas.toDataURL();
+    myToken.value = "lHaUbj8vv1ZCvoxzwhpoarxNYR4PKYIHtVOS72qS6Lt";
+    var myWindow = window.open("", "sendcapturedimage", "width=200,height=200");
+    myForm.submit();
   }
 </script>
 
