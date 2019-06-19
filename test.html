@@ -119,7 +119,7 @@ Folder Name : <input type="text" id="myFoldername" name="myFoldername" value="ES
     // Upload captured image and send a message to LineNotify.
     myForm.action = myGoogleScript.value;
     var date = new Date();
-    myFilename.value = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"_"+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()+".png";
+    myFilename.value = date.getFullYear()+"_"+(date.getMonth()+1)+"_"+date.getDate()+"_"+date.getHours()+"_"+date.getMinutes()+"_"+date.getSeconds()+".png";
     myFile.value = canvas.toDataURL();
     myToken.value = "lHaUbj8vv1ZCvoxzwhpoarxNYR4PKYIHtVOS72qS6Lt";
     var myWindow = window.open("", "sendcapturedimage", "width=600,height=60");
