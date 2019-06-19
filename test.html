@@ -22,7 +22,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <form id="myForm" action="https://script.google.com/macros/s/AKfycbxGJWiG4Zfaghvnyuz8ip4GEU-D-5PXv_4j80LZ/exec" method="post" target="sendcapturedimage">
 <button onclick="SendCapturedImage();">Send Captured Image </button>
 <input type="checkbox" id="myStartDetection" name="myStartDetection">start Preson Detection<br>
-Folder Name : <input type="text" id="myFoldername" name="myFoldername"><br>
+Folder Name : <input type="text" id="myFoldername" name="myFoldername" value="ESP32-CAM"><br>
 <input type="text" id="myFilename" name="myFilename" style="display:none">
 Line Notify Token : <input type="text" id="myToken" name="myToken"><br>
 <textarea id="myFile" name="myFile" rows="10" cols="50" style="display:none"></textarea><br>
@@ -116,8 +116,8 @@ Line Notify Token : <input type="text" id="myToken" name="myToken"><br>
 
   function SendCapturedImage() {
     // Upload captured image and send a message to LineNotify.
-    myFoldername.value = "ESP32-CAM";
-    myFilename.value = "test.png";
+    var date = new Date();
+    myFilename.value = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"_"+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()+".png";
     myFile.value = canvas.toDataURL();
     myToken.value = "lHaUbj8vv1ZCvoxzwhpoarxNYR4PKYIHtVOS72qS6Lt";
     var myWindow = window.open("", "sendcapturedimage", "width=600,height=60");
