@@ -107,7 +107,7 @@ Line Notify Token : <input type="text" id="myToken" name="myToken" value=""><br>
           if ((myStartDetection.checked)&&(personState == false)&&(predictions[i].class=="person")) {
             personState = true;
             SendCapturedImage();
-            setTimeout(function(){ personState = false; }, 10000);
+            setTimeout(function(){ personState = false; }, 15000);
           }
         }
       }
