@@ -19,12 +19,12 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas><br>
 
-<form id="myForm" action="https://script.google.com/macros/s/AKfycbxGJWiG4Zfaghvnyuz8ip4GEU-D-5PXv_4j80LZ/exec" method="post" target="sendcapturedimage">
-<button onclick="SendCapturedImage();">Send Captured Image </button>
-<input type="checkbox" id="myStartDetection" name="myStartDetection">start Preson Detection<br>
+<form id="myForm" action="" method="post" target="sendcapturedimage">
+<button onclick="SendCapturedImage();">Send Captured Image </button><input type="checkbox" id="myStartDetection" name="myStartDetection">start Preson Detection<br>
+Google Script Url : <input type="text" id="myGoogleScript" name="myGoogleScript" value="https://script.google.com/macros/s/AKfycbxGJWiG4Zfaghvnyuz8ip4GEU-D-5PXv_4j80LZ/exec"><br>
+Line Notify Token : <input type="text" id="myToken" name="myToken"><br>
 Folder Name : <input type="text" id="myFoldername" name="myFoldername" value="ESP32-CAM"><br>
 <input type="text" id="myFilename" name="myFilename" style="display:none">
-Line Notify Token : <input type="text" id="myToken" name="myToken"><br>
 <textarea id="myFile" name="myFile" rows="10" cols="50" style="display:none"></textarea><br>
 </form>
 
@@ -33,6 +33,7 @@ Line Notify Token : <input type="text" id="myToken" name="myToken"><br>
 <script>
   var myForm = document.getElementById('myForm');
   var myStartDetection = document.getElementById('myStartDetection');
+  var myGoogleScript = document.getElementById('myGoogleScript');
   var myFoldername = document.getElementById('myFoldername');
   var myFilename = document.getElementById('myFilename');
   var myFile = document.getElementById('myFile');
@@ -116,6 +117,7 @@ Line Notify Token : <input type="text" id="myToken" name="myToken"><br>
 
   function SendCapturedImage() {
     // Upload captured image and send a message to LineNotify.
+    myForm.action = myGoogleScript.value;
     var date = new Date();
     myFilename.value = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"_"+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()+".png";
     myFile.value = canvas.toDataURL();
