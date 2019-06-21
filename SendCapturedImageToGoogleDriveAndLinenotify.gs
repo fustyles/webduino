@@ -21,7 +21,7 @@ function doPost(e) {
   imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
     
   // Send a link message to Line Nitify.
-  var res = "";
+  var res = "Line Notify: ";
   try {
     var url = 'https://notify-api.line.me/api/notify';
     var response = UrlFetchApp.fetch(url, {
@@ -33,14 +33,10 @@ function doPost(e) {
           'message': "Person Detection\n"+imageUrl
       }
     });
+    res += response.getContentText();
   } catch(error) {
-    res = error;
+    res += error;
   } 
-  
-  if (res=="") res = response.getContentText();
-  var result = JSON.stringify({
-    "LineNotify": res
-  });  
     
-  return  ContentService.createTextOutput(res+"\n"+myFoldername+"/"+myFilename+"\n"+imageUrl);
+  return  ContentService.createTextOutput(myFoldername+"/"+myFilename+"\n"+imageUrl+"\n"+res);
 }
