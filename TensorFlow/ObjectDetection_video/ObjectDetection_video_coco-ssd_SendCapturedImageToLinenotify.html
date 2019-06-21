@@ -131,6 +131,7 @@ Line Notify Token : <input type="text" id="myToken" name="myToken" value=""><br>
     var date = new Date();
     myFilename.value = date.getFullYear()+"_"+(date.getMonth()+1)+"_"+date.getDate()+"_"+date.getHours()+"_"+date.getMinutes()+"_"+date.getSeconds()+".png";
     myFile.value = canvas.toDataURL();
+    var myWindow = window.open("", "sendcapturedimage", "width=600,height=60");
     myForm.submit();
   }
 </script>
