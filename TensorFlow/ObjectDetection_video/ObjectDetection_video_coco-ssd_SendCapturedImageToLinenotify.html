@@ -22,7 +22,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   <title>Object Detection (coco-ssd)</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>  
 </head>
@@ -132,7 +131,6 @@ Line Notify Token : <input type="text" id="myToken" name="myToken" value=""><br>
     var date = new Date();
     myFilename.value = date.getFullYear()+"_"+(date.getMonth()+1)+"_"+date.getDate()+"_"+date.getHours()+"_"+date.getMinutes()+"_"+date.getSeconds()+".png";
     myFile.value = canvas.toDataURL();
-    var myWindow = window.open("", "sendcapturedimage", "width=600,height=60");
     myForm.submit();
   }
 </script>
