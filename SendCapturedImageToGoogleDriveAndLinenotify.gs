@@ -1,26 +1,28 @@
 function doPost(e) {
     
-  // Save a captured image.
-  var dropbox = e.parameter.myFoldername;
-  var folder, folders = DriveApp.getFoldersByName(dropbox);
   
+  var myFoldername = e.parameter.myFoldername;
+  var myFile = e.parameter.myFile;
+  var myFilename = e.parameter.myFilename;
+  
+  // Save a captured image to Google Drive.
+  var folder, folders = DriveApp.getFoldersByName(myFoldername);
   if (folders.hasNext()) {
     folder = folders.next();
   } else {
-    folder = DriveApp.createFolder(dropbox);
+    folder = DriveApp.createFolder(myFoldername);
   }
-  
-  var contentType = e.parameter.myFile.substring(e.parameter.myFile.indexOf(":")+1, e.parameter.myFile.indexOf(";"));
-  var data = e.parameter.myFile.substring(e.parameter.myFile.indexOf(",")+1);
+  var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
+  var data = myFile.substring(myFile.indexOf(",")+1);
   data = Utilities.base64Decode(data);
-  var blob = Utilities.newBlob(data, contentType, e.parameter.myFilename);
+  var blob = Utilities.newBlob(data, contentType, myFilename);
   var file = folder.createFile(blob);    
-  file.setDescription("Uploaded by " + e.parameter.myFilename);
+  file.setDescription("Uploaded by " + myFilename);
   
   var imageID = file.getUrl().substring(file.getUrl().indexOf("/d/")+3,file.getUrl().indexOf("view")-1);
   imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
     
-  // Send a push message to Line Notify.
+  // Send a link message to Line Nitify.
   var res = "";
   try {
     var url = 'https://notify-api.line.me/api/notify';
@@ -42,5 +44,5 @@ function doPost(e) {
     "LineNotify": res
   });  
     
-  return  ContentService.createTextOutput(res+"\n"+imageUrl);
+  return  ContentService.createTextOutput(res+"\n"+myFoldername+"/"+myFilename+"\n"+imageUrl);
 }
