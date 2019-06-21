@@ -7,6 +7,7 @@ function doPost(e) {
   var myFoldername = e.parameter.myFoldername;
   var myFile = e.parameter.myFile;
   var myFilename = e.parameter.myFilename;
+  var myToken = e.parameter.myToken;
   
   // Save a captured image to Google Drive.
   var folder, folders = DriveApp.getFoldersByName(myFoldername);
@@ -31,7 +32,7 @@ function doPost(e) {
     var url = 'https://notify-api.line.me/api/notify';
     var response = UrlFetchApp.fetch(url, {
       'headers': {
-        'Authorization': 'Bearer ' + e.parameter.myToken,
+        'Authorization': 'Bearer ' + myToken,
       },
       'method': 'post',
       'payload': {
