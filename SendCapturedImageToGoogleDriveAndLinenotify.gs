@@ -1,6 +1,4 @@
 function doPost(e) {
-    
-  
   var myFoldername = e.parameter.myFoldername;
   var myFile = e.parameter.myFile;
   var myFilename = e.parameter.myFilename;
