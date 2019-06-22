@@ -37,6 +37,7 @@ Line Notify Token : <input type="text" id="myToken" name="myToken" value=""><br>
 <input type="text" id="myFilename" name="myFilename" style="display:none">
 <textarea id="myFile" name="myFile" rows="10" cols="50" style="display:none"></textarea><br>
 </form>
+<iframe id="sendcapturedimage" name="sendcapturedimage" style="display:none"></iframe>
 
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div>
   
@@ -131,7 +132,6 @@ Line Notify Token : <input type="text" id="myToken" name="myToken" value=""><br>
     var date = new Date();
     myFilename.value = date.getFullYear()+"_"+(date.getMonth()+1)+"_"+date.getDate()+"_"+date.getHours()+"_"+date.getMinutes()+"_"+date.getSeconds()+".png";
     myFile.value = canvas.toDataURL();
-    var myWindow = window.open("", "sendcapturedimage", "width=600,height=60");
     myForm.submit();
   }
 </script>
