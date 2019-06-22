@@ -3,7 +3,7 @@ Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/21 18:00
 https://www.facebook.com/francefu
 */
 
-function doPost(e) {
+function doGet(e) {
   var myFoldername = e.parameter.myFoldername;
   var myFile = e.parameter.myFile;
   var myFilename = e.parameter.myFilename;
