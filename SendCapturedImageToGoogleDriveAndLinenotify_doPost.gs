@@ -36,7 +36,7 @@ function doPost(e) {
       },
       'method': 'post',
       'payload': {
-          'message': "Person Detection\n"+imageUrl
+          'message': imageUrl
       }
     });
     res += response.getContentText();
