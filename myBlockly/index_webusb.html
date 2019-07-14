@@ -36,6 +36,7 @@
 		'https://fustyles.github.io/webduino/myBlockly/example/SpeechRecognition_example_001.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/SpeechSynthesis_example_001.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/DeepLearning_example_001.js',
+		'https://fustyles.github.io/webduino/myBlockly/example/KnnClassifier_example_001.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/Trackface_example_001.js',
 		'https://fustyles.github.io/webduino/myBlockly/example/Trackface_example_002.js',		
 		'https://fustyles.github.io/webduino/myBlockly/example/ESP8266_example_001.js',
@@ -98,6 +99,10 @@
 		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/javascript_DeepLearning.js',
 		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/toolbox_DeepLearning.js',
 		
+		'https://fustyles.github.io/webduino/myBlockly/KnnClassifier/blocks_KnnClassifier.js',
+		'https://fustyles.github.io/webduino/myBlockly/KnnClassifier/javascript_KnnClassifier.js',
+		'https://fustyles.github.io/webduino/myBlockly/KnnClassifier/toolbox_KnnClassifier.js',	
+		
 		'https://fustyles.github.io/webduino/myBlockly/tracking/blocks_Trackface.js',
 		'https://fustyles.github.io/webduino/myBlockly/tracking/javascript_Trackface.js',
 		'https://fustyles.github.io/webduino/myBlockly/tracking/toolbox_Trackface.js',			
@@ -155,6 +160,7 @@
 		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/msg_SpeechRecognition_zh-hant.js',
 		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/msg_TextToSpeech_zh-hant.js',
 		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/msg_DeepLearning_zh-hant.js',
+		'https://fustyles.github.io/webduino/myBlockly/KnnClassifier/msg_KnnClassifier_zh-hant.js',
 		'https://fustyles.github.io/webduino/myBlockly/tracking/msg_Trackface_zh-hant.js',			
 		'https://fustyles.github.io/webduino/myBlockly/ESP8266/msg_ESP8266_zh-hant.js',
 		'https://fustyles.github.io/webduino/myBlockly/WebBit/msg_WebBit_zh-hant.js',
@@ -179,6 +185,7 @@
 		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/msg_SpeechRecognition_zh-hans.js',
 		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/msg_TextToSpeech_zh-hans.js',
 		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/msg_DeepLearning_zh-hans.js',
+		'https://fustyles.github.io/webduino/myBlockly/KnnClassifier/msg_KnnClassifier_zh-hans.js',
 		'https://fustyles.github.io/webduino/myBlockly/tracking/msg_Trackface_zh-hans.js',			
 		'https://fustyles.github.io/webduino/myBlockly/ESP8266/msg_ESP8266_zh-hans.js',
 		'https://fustyles.github.io/webduino/myBlockly/WebBit/msg_WebBit_zh-hans.js',
@@ -203,6 +210,7 @@
 		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/msg_SpeechRecognition.js',
 		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/msg_TextToSpeech.js',
 		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/msg_DeepLearning.js',
+		'https://fustyles.github.io/webduino/myBlockly/KnnClassifier/msg_KnnClassifier.js',
 		'https://fustyles.github.io/webduino/myBlockly/tracking/msg_Trackface.js',			
 		'https://fustyles.github.io/webduino/myBlockly/ESP8266/msg_ESP8266.js',
 		'https://fustyles.github.io/webduino/myBlockly/WebBit/msg_WebBit.js',
@@ -227,6 +235,7 @@
 		'https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/speechrecognition.js',
 		'https://fustyles.github.io/webduino/myBlockly/TextToSpeech/texttospeech.js',
 		'https://fustyles.github.io/webduino/myBlockly/DeepLearning/deeplearning.js',
+		'https://fustyles.github.io/webduino/myBlockly/KnnClassifier/knnclassifier.js',
 		'https://fustyles.github.io/webduino/myBlockly/tracking/trackface.js',		
 		'https://fustyles.github.io/webduino/myBlockly/ESP8266/esp8266.js',
 	        'https://fustyles.github.io/webduino/myBlockly/WebBit/webbit.js',
@@ -308,6 +317,7 @@
 	      <option value="GameCanvas_example_003">GameCanvas_example_003</option>
 	      <option value="GameCanvas_example_004">GameCanvas_example_004</option>	
 	      <option value="DeepLearning_example_001">DeepLearning_example_001</option>
+	      <option value="KnnClassifier_example_001">KnnClassifier_example_001</option>
 	      <option value="MatrixLED_example_001">MatrixLED_example_001</option>
 	      <option value="MatrixLED_example_002">MatrixLED_example_002</option>	
 	      <option value="MatrixLED_example_003">MatrixLED_example_003</option>
@@ -382,6 +392,7 @@ var category = [
 	catGameImage,
 	catGameForm,		
 	catDeepLearning,
+	catKnnClassifier,	
 	catOpenURL,
 	catMatrixLed,	
 	catTaiwanAirQuality,
@@ -459,7 +470,12 @@ function runCode() {
   if (xml_text.indexOf("teachable")!=-1) {
     iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script>";
   }	
-      
+   
+  //KNN-Classifier
+  if (xml_text.indexOf("knnclassifier")!=-1) {
+    iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/KnnClassifier/knnclassifier_video.js'\>\<\/script\>";
+  }
+	
   iframe_code += "\<\/head\>\<body\>";
   iframe_code += "\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
