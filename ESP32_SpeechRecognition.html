@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/speechrecognition.js"></script>
 </head><body>
-<div id="showText" style="position:absolute"></div>
-<div id="result" style="color:red;font-weight:bold;position:absolute"></div>
+<div id="showText"></div>
+<div id="result" style="color:red;font-weight:bold;"></div>
 </body>
 </html>
 <script>
@@ -16,9 +16,6 @@ setInterval(async function(){
   if (Result) {
     document.getElementById("showText").innerHTML = "";
     document.getElementById("result").innerHTML = Result;
-  }
-  else {
-    document.getElementById("result").innerHTML = "";
   }
 },10);
 </script>
