@@ -13,7 +13,7 @@ recognition.lang="en-NZ";
 if (!recognizing) startButton(event);
 setInterval(async function(){
   Result = (Recognition_final_get());
-  if (Result != '') {
+  if (Result) {
     document.getElementById("showText").innerHTML = "";
     document.getElementById("result").innerHTML = Result;
   }
