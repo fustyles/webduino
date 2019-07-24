@@ -17,5 +17,7 @@ setInterval(async function(){
     document.getElementById("showText").innerHTML = "";
     document.getElementById("result").innerHTML = Result;
   }
+  if (document.getElementById("showText").innerHTML!="")
+    document.getElementById("result").innerHTML = "";
 },10);
 </script>
