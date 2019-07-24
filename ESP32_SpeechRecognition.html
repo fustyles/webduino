@@ -4,6 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/speechrecognition.js"></script>
 </head><body>
+<div id="showText" style="position:absolute">
+<div id="result" style="color:red;font-weight:bold;position:absolute">
+</body>
+</html>
 <script>
 recognition.lang="en-NZ";
 if (!recognizing) startButton(event);
@@ -18,7 +22,3 @@ setInterval(async function(){
   }
 },10);
 </script>
-<div id="showText" style="position:absolute">
-<div id="result" style="color:red;font-weight:bold;position:absolute">
-</body>
-</html>
