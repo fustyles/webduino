@@ -110,6 +110,7 @@
 </select>
 <div id="showText"></div>
 <div id="result" style="color:red;font-weight:bold;"></div>
+<div id="reply">reply</div>
 </body>
 </html>
 <script>
@@ -120,6 +121,7 @@ setInterval(async function(){
   if (Result) {
     document.getElementById("showText").innerHTML = "";
     document.getElementById("result").innerHTML = Result;
+    if (Result.indexOf("助理")!=-1) document.getElementById("reply").innerHTML = "我在！";
   }
   if (document.getElementById("showText").innerHTML!="")
     document.getElementById("result").innerHTML = "";
