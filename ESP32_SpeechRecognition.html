@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/speechrecognition.js"></script>
 </head><body>
-<select id="lang" name="lang" onclick="recognition.lang=this.value;">
+<select id="lang" name="lang" onclick="recognition.stop();recognition.lang=this.value;recognition.start();">
   <option value="en-NZ">en-NZ</option>
   <option value="cmn-Hant-TW">中文(台灣)</option>  
   <option value="af-ZA">Afrikaans</option>
