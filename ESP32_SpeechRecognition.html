@@ -114,6 +114,7 @@
 </html>
 <script>
 recognition.lang="en-NZ";
+if (!recognizing) startButton(event);
 setInterval(async function(){
   Result = (Recognition_final_get());
   if (Result) {
