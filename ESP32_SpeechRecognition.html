@@ -123,8 +123,10 @@ setInterval(async function(){
     document.getElementById("result").innerHTML = Result;
     if (Result.indexOf("助理")!=-1) document.getElementById("reply").innerHTML = "我在！";
   }
-  if (document.getElementById("showText").innerHTML!="")
+  if (document.getElementById("showText").innerHTML!="") {
     document.getElementById("result").innerHTML = "";
+    document.getElementById("reply").innerHTML = ""; 
+  }
   if (!recognizing) startButton(event);
 },10);
 </script>
