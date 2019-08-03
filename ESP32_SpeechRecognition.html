@@ -9,6 +9,7 @@
     var STAIP = strUrl.split("?")[1].split("&")[0];  
 </script>
 </head><body>
+Language
 <select id="lang" name="lang" onclick="recognition.lang=this.value;startButton(event);">
   <option value="en-NZ">en-NZ</option>
   <option value="cmn-Hant-TW">中文(台灣)</option>  
@@ -113,8 +114,9 @@
   <option value="hi-IN">हिन्दी</option>
   <option value="th-TH">ภาษาไทย</option> 
 </select>
-<div id="showText"></div>
+TEXT<div id="showText"></div>
 <div id="result" style="color:red;font-weight:bold;"></div>
+<br>
 <div id="command" style="color:blue;font-weight:bold;"></div>
 <iframe id="execute" rows="4" cols="20"></iframe>
 </body>
