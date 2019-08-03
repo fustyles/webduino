@@ -5,9 +5,10 @@
 <script src="https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/speechrecognition.js"></script>
 <script>
   var strUrl=location.search;
-  if (strUrl.indexOf("?")!=-1)
+  if (strUrl.indexOf("?")!=-1) {
     var STAIP = strUrl.split("?")[1].split("&")[0];
     var Lang =  strUrl.split("?")[1].split("&")[1];
+  }
 </script>
 </head>
 <body onclick="if (Lang.trim()!='') document.getElementById('lang').value=Lang;">
