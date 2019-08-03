@@ -13,9 +13,9 @@
     var Lang =  strUrl.split("?")[1].split("&")[1];
 </script>
 </head>
-<body onload="if (Lang!='') {document.getElementById('lang').value=Lang;document.getElementById('lang').click();}">
+<body onload="if (Lang!='') {recognition.stop();document.getElementById('lang').value=Lang;try{startButton(event);}catch(e){}}">
 Language
-<select id="lang" name="lang" onclick="recognition.lang=this.value;try{startButton(event);}catch(e){}">
+<select id="lang" name="lang" onclick="recognition.stop();recognition.lang=this.value;try{startButton(event);}catch(e){}">
   <option value="en-NZ">en-NZ</option>
   <option value="cmn-Hant-TW">中文(台灣)</option>  
   <option value="af-ZA">Afrikaans</option>
