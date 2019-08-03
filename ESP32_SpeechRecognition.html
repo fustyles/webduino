@@ -130,7 +130,7 @@ if (!recognizing) startButton(event);
 setInterval(async function(){
   Result = (Recognition_final_get());
   if (Result) {
-    if (Result.toLowerCase().trim()=="okay") {
+    if (Result.toLowerCase().trim()=="okay"||Result.toLowerCase().trim()=="ok") {
       document.getElementById("showText").innerHTML = "";
       document.getElementById("result").innerHTML = "";
       location.href = document.getElementById("command").innerHTML;  
