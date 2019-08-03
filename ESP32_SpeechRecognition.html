@@ -13,7 +13,7 @@
     var Lang =  strUrl.split("?")[1].split("&")[1];
 </script>
 </head>
-<body onload="if (Lang!='') {document.getElementById('lang').value=Lang;document.getElementById('lang').}">
+<body onload="if (Lang!='') {document.getElementById('lang').value=Lang;document.getElementById('lang').click;}">
 Language
 <select id="lang" name="lang" onclick="recognition.lang=this.value;try{startButton(event);}catch(e){}">
   <option value="en-NZ">en-NZ</option>
