@@ -11,9 +11,10 @@
   if (strUrl.indexOf("?")!=-1)
     var STAIP = strUrl.split("?")[1].split("&")[0];
     var Lang =  strUrl.split("?")[1].split("&")[1];
+    console.log(Lang);
 </script>
 </head>
-<body onload="if (Lang!='') {recognition.stop();document.getElementById('lang').value=Lang;try{startButton(event);}catch(e){}}">
+<body onload="if (Lang!='') {document.getElementById('lang').value=Lang;}">
 Language
 <select id="lang" name="lang" onclick="recognition.stop();recognition.lang=this.value;try{startButton(event);}catch(e){}">
   <option value="en-NZ">en-NZ</option>
