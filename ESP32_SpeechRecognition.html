@@ -14,7 +14,7 @@
     console.log(Lang);
 </script>
 </head>
-<body onload="if (Lang!='') {document.getElementById('lang').value=Lang;}">
+<body">
 Language
 <select id="lang" name="lang" onclick="recognition.stop();recognition.lang=this.value;try{startButton(event);}catch(e){}">
   <option value="en-NZ">en-NZ</option>
