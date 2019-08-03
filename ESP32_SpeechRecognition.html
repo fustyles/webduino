@@ -3,13 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/speechrecognition.js"></script>
-<script>
-  var strUrl=location.search;
-  if (strUrl.indexOf("?")!=-1) {
-    var STAIP = strUrl.split("?")[1].split("&")[0];
-    var Lang =  strUrl.split("?")[1].split("&")[1];
-  }
-</script>
 </head>
 <body>
 Language
@@ -124,7 +117,13 @@ Language
 <div id="command" style="color:blue;font-weight:bold;"></div>
                                                       
 <script>
-recognition.lang="en-NZ";
+var strUrl=location.search;
+if (strUrl.indexOf("?")!=-1) {
+  var STAIP = strUrl.split("?")[1].split("&")[0];
+  var Lang =  strUrl.split("?")[1].split("&")[1];
+}  
+  
+if (Lang=="") recognition.lang="en-NZ";
 if (!recognizing) startButton(event);
 setInterval(async function(){
   Result = (Recognition_final_get());
