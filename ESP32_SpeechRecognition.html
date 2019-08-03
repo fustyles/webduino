@@ -2,7 +2,7 @@
 Author: https://www.facebook.com/francefu 
 
 Page
-https://fustyles.github.io/webduino/ESP32_SpeechRecognition.html?STAIP&en-NZ
+https://fustyles.github.io/webduino/ESP32_SpeechRecognition.html?STAIP&en-US
 -->
 <html>
 <head>
@@ -12,7 +12,7 @@ https://fustyles.github.io/webduino/ESP32_SpeechRecognition.html?STAIP&en-NZ
 <body onload="if (language!='') document.getElementById('lang').value=language;">
 Language
 <select id="lang" name="lang" onclick="recognition.lang=this.value;try{startButton(event);}catch(e){}">
-  <option value="en-NZ">en-NZ</option>
+  <option value="en-US">en-US</option>
   <option value="cmn-Hant-TW">中文(台灣)</option>  
   <option value="af-ZA">Afrikaans</option>
   <option value="am-ET">አማርኛ</option>
@@ -128,7 +128,7 @@ if (strUrl.indexOf("?")!=-1) {
   var language =  strUrl.split("?")[1].split("&")[1];
 }  
 if (language=="") 
-  recognition.lang="en-NZ";
+  recognition.lang="en-US";
 else
   recognition.lang=language;
     
