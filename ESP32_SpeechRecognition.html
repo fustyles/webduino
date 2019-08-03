@@ -128,6 +128,8 @@ setInterval(async function(){
   Result = (Recognition_final_get());
   if (Result) {
     if (Result.toLowerCase()=="okay") {
+      document.getElementById("showText").innerHTML = "";
+      document.getElementById("result").innerHTML = "";
       document.getElementById("execute").src = document.getElementById("command").innerHTML;  
       return; 
     }
