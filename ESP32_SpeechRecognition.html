@@ -120,12 +120,12 @@ Language
 var strUrl=location.search;
 if (strUrl.indexOf("?")!=-1) {
   var STAIP = strUrl.split("?")[1].split("&")[0];
-  var Lang =  strUrl.split("?")[1].split("&")[1];
+  var language =  strUrl.split("?")[1].split("&")[1];
 }  
-if (Lang=="") 
+if (language=="") 
   recognition.lang="en-NZ";
 else
-  recognition.lang=Lang;
+  recognition.lang=language;
     
 if (!recognizing) startButton(event);
 setInterval(async function(){
