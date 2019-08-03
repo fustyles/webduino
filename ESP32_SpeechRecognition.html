@@ -127,8 +127,10 @@ if (!recognizing) startButton(event);
 setInterval(async function(){
   Result = (Recognition_final_get());
   if (Result) {
-    if (Result.toLowerCase()=="okay")
+    if (Result.toLowerCase()=="okay") {
       document.getElementById("execute").src = document.getElementById("command").innerHTML;  
+      return; 
+    }
     else {
       document.getElementById("showText").innerHTML = "";
       document.getElementById("result").innerHTML = Result;
