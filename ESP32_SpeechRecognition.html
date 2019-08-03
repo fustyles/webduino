@@ -133,7 +133,7 @@ setInterval(async function(){
     if (Result.toLowerCase().trim()=="okay") {
       document.getElementById("showText").innerHTML = "";
       document.getElementById("result").innerHTML = "";
-      document.getElementById("execute").src = document.getElementById("command").innerHTML;  
+      location.href = document.getElementById("command").innerHTML;  
       return; 
     }
     else {
