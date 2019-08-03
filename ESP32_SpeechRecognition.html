@@ -110,7 +110,8 @@
 </select>
 <div id="showText"></div>
 <div id="result" style="color:red;font-weight:bold;"></div>
-<div id="reply" style="color:blue;font-weight:bold;"></div>
+<div id="command" style="color:blue;font-weight:bold;"></div>
+<iframe id="execute" rows="4" cols="20"></iframe>
 </body>
 </html>
 <script>
@@ -119,14 +120,21 @@ if (!recognizing) startButton(event);
 setInterval(async function(){
   Result = (Recognition_final_get());
   if (Result) {
-    document.getElementById("showText").innerHTML = "";
-    document.getElementById("result").innerHTML = Result;
-    if (Result.indexOf("助理")!=-1) document.getElementById("reply").innerHTML = "我在！";
+    if (Result.toLowerCase()=="ok")
+      document.getElementById("execute").src = "http://" +STAIP + "?speech=" + Result.toLowerCase();  
+    else
+      document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + Result;
   }
   if (document.getElementById("showText").innerHTML!="") {
     document.getElementById("result").innerHTML = "";
-    document.getElementById("reply").innerHTML = ""; 
   }
-  if (!recognizing) startButton(event);
+  if (!recognizing) {
+    try {
+      startButton(event);
+    }
+    catch (e) {
+      
+    }
+  }
 },10);
 </script>
