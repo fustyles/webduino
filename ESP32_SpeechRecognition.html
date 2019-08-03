@@ -3,6 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/speechrecognition.js"></script>
+<script>
+  var strUrl=location.search;
+  if (strUrl.indexOf("?")!=-1)
+    var STAIP = strUrl.split("?")[1].split("&")[0];  
+</script>
 </head><body>
 <select id="lang" name="lang" onclick="recognition.lang=this.value;startButton(event);">
   <option value="en-NZ">en-NZ</option>
