@@ -128,11 +128,11 @@ setInterval(async function(){
   Result = (Recognition_final_get());
   if (Result) {
     if (Result.toLowerCase()=="okay")
-      document.getElementById("execute").src = "http://" +STAIP + "?speech=" + Result.toLowerCase();  
+      document.getElementById("execute").src = document.getElementById("command").innerHTML;  
     else {
       document.getElementById("showText").innerHTML = "";
       document.getElementById("result").innerHTML = Result;
-      document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + Result;
+      document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + Result.toLowerCase();
     }
   }
   if (document.getElementById("showText").innerHTML!="") {
