@@ -182,7 +182,7 @@ if ('webkitSpeechRecognition' in window) {
     Recognition_interim = linebreak(interim_transcript);
     if (Recognition_interim=='') {
       Recognition_final = linebreak(final_transcript);
-      console.log("final= " + Recognition_final);
+      console.log("result= " + Recognition_final);
       
       if (Recognition_final.toLowerCase().trim()=="ok"||Recognition_final.toLowerCase().trim()=="okay") {
         document.getElementById("showText").innerHTML = "";
