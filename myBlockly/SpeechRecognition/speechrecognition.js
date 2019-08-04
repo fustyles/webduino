@@ -38,9 +38,10 @@ if ('webkitSpeechRecognition' in window) {
     }
     final_transcript = capitalize(final_transcript);
     Recognition_interim = linebreak(interim_transcript);
-    console.log(Recognition_interim);
+    console.log("interim = " + Recognition_interim);
     if (Recognition_interim.trim()=='')
       Recognition_final = linebreak(final_transcript);
+      console.log("final   = " + Recognition_interim);
     else {
       Recognition_final = "";
       if (!document.getElementById("showText")) {
