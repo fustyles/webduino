@@ -7,7 +7,6 @@ https://fustyles.github.io/webduino/ESP32_SpeechRecognition.html?STAIP&en-US
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="https://fustyles.github.io/webduino/myBlockly/SpeechRecognition/speechrecognition.js"></script>
 </head>
 <body onload="if (language!='') document.getElementById('lang').value=language;">
 Language
@@ -123,35 +122,111 @@ Language
 <div id="command" style="color:blue;font-weight:bold;"></div>
                                                       
 <script>
-var strUrl=location.search;
-if (strUrl.indexOf("?")!=-1) {
-  var STAIP = strUrl.split("?")[1].split("&")[0];
-  var language =  strUrl.split("?")[1].split("&")[1];
-}  
-if (language=="") 
-  recognition.lang="en-US";
-else
-  recognition.lang=language;
-    
-if (!recognizing) startButton(event);
-setInterval(async function(){
-  Result = (Recognition_final_get());
-  if (Result) {
-    if (Result.toLowerCase().trim()=="ok"||Result.toLowerCase().trim()=="okay") {
-      document.getElementById("showText").innerHTML = "";
-      document.getElementById("result").innerHTML = "";
-      location.href = document.getElementById("command").innerHTML;  
-      return; 
+var final_transcript = '';
+var recognizing = false;
+var ignore_onend;
+var two_line = /\n\n/g;
+var one_line = /\n/g;
+var first_char = /\S/;
+var Recognition_interim = '';
+var Recognition_final = '';
+
+if ('webkitSpeechRecognition' in window) {
+  var recognition = new webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  
+  var strUrl=location.search;
+  if (strUrl.indexOf("?")!=-1) {
+    var STAIP = strUrl.split("?")[1].split("&")[0];
+    var language =  strUrl.split("?")[1].split("&")[1];
+  }  
+  if (language=="") 
+    recognition.lang="en-US";
+  else
+    recognition.lang=language;
+
+  if (!recognizing) startButton(event);
+  
+  recognition.onstart = function() {
+    recognizing = true;
+  };
+  
+  recognition.onerror = function(event) {
+    if (event.error == 'no-speech') ignore_onend = true;
+    if (event.error == 'audio-capture') ignore_onend = true;
+    if (event.error == 'not-allowed') ignore_onend = true;
+    console.log(event.error);
+  };
+  
+  recognition.onend = function() {
+    recognizing = false;
+    if (ignore_onend) return;
+    if (!final_transcript) return;
+    recognition.start(); 
+  };
+  
+  recognition.onresult = function(event) {
+    var interim_transcript = '';
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        final_transcript = event.results[i][0].transcript;
+      } else {
+        interim_transcript += event.results[i][0].transcript;
+      }
+    }
+    final_transcript = capitalize(final_transcript);
+    Recognition_interim = linebreak(interim_transcript);
+    if (Recognition_interim=='') {
+      Recognition_final = linebreak(final_transcript);
+      console.log("final   = " + Recognition_final);
+      
+      if (Recognition_final.toLowerCase().trim()=="ok"||Recognition_final.toLowerCase().trim()=="okay") {
+        document.getElementById("showText").innerHTML = "";
+        document.getElementById("result").innerHTML = "";
+        location.href = document.getElementById("command").innerHTML;  
+      }
+      else {
+        document.getElementById("showText").innerHTML = "";
+        document.getElementById("result").innerHTML = Recognition_final;
+        document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + Recognition_final.toLowerCase().trim() + ";" + document.getElementById("lang").value;
+      }      
     }
     else {
-      document.getElementById("showText").innerHTML = "";
-      document.getElementById("result").innerHTML = Result;
-      document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + Result.toLowerCase().trim() + ";" + document.getElementById("lang").value;
+      Recognition_final = "";
+      document.getElementById("showText").innerHTML = Recognition_interim;
+      console.log("interim = " + Recognition_interim);
     }
+    if (document.getElementById("showText").innerHTML!="") {
+      document.getElementById("result").innerHTML = "";
+    }
+  };
+}
+
+function linebreak(s) {
+  return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+}
+
+function capitalize(s) {
+  return s.replace(first_char, function(m) { return m.toUpperCase(); });
+}
+
+function startButton(event) {
+  if (recognizing) {
+    recognition.stop();
   }
-  if (document.getElementById("showText").innerHTML!="") {
-    document.getElementById("result").innerHTML = "";
-  }
+  final_transcript = '';
+  recognition.start();
+  ignore_onend = false;
+}
+
+function Recognition_final_get() {
+  var result = Recognition_final;
+  Recognition_final = '';
+  return result;
+}
+  
+setInterval(async function(){
   if (!recognizing) {
     try {
       startButton(event);
