@@ -165,7 +165,12 @@ if ('webkitSpeechRecognition' in window) {
     var interim_transcript = '';
     var final_transcript = '';
     var Recognition_interim = '';
-    var Recognition_final = '';       
+    var Recognition_final = '';  
+    if (typeof(event.results) == 'undefined') {
+      recognition.onend = null;
+      recognition.stop();
+      return;
+    }    
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         final_transcript = event.results[i][0].transcript;
