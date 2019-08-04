@@ -122,14 +122,12 @@ Language
 <div id="command" style="color:blue;font-weight:bold;"></div>
                                                       
 <script>
-var final_transcript = '';
 var recognizing = false;
 var ignore_onend;
 var two_line = /\n\n/g;
 var one_line = /\n/g;
 var first_char = /\S/;
-var Recognition_interim = '';
-var Recognition_final = '';
+  
 if ('webkitSpeechRecognition' in window) {
   var recognition = new webkitSpeechRecognition();
   recognition.continuous = true;
@@ -160,12 +158,14 @@ if ('webkitSpeechRecognition' in window) {
   recognition.onend = function() {
     recognizing = false;
     if (ignore_onend) return;
-    if (!final_transcript) return;
     recognition.start(); 
   };
   
   recognition.onresult = function(event) {
     var interim_transcript = '';
+    var final_transcript = '';
+    var Recognition_interim = '';
+    var Recognition_final = '';       
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         final_transcript = event.results[i][0].transcript;
@@ -210,7 +210,6 @@ function startButton(event) {
   if (recognizing) {
     recognition.stop();
   }
-  final_transcript = '';
   recognition.start();
   ignore_onend = false;
 }
