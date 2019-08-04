@@ -219,12 +219,6 @@ function startButton(event) {
   recognition.start();
   ignore_onend = false;
 }
-
-function Recognition_final_get() {
-  var result = Recognition_final;
-  Recognition_final = '';
-  return result;
-}
   
 setInterval(async function(){
   if (!recognizing) {
