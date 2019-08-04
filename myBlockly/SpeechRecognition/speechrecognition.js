@@ -41,7 +41,7 @@ if ('webkitSpeechRecognition' in window) {
     console.log("interim = " + Recognition_interim);
     if (Recognition_interim.trim()=='') {
       Recognition_final = linebreak(final_transcript);
-      console.log("final   = " + Recognition_interim);
+      console.log("final   = " + Recognition_final);
     }
     else {
       Recognition_final = "";
