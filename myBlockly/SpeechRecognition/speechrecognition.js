@@ -15,18 +15,21 @@ if ('webkitSpeechRecognition' in window) {
   recognition.onstart = function() {
     recognizing = true;
   };
+  
   recognition.onerror = function(event) {
     if (event.error == 'no-speech') ignore_onend = true;
     if (event.error == 'audio-capture') ignore_onend = true;
     if (event.error == 'not-allowed') ignore_onend = true;
     console.log(event.error);
   };
+  
   recognition.onend = function() {
     recognizing = false;
     if (ignore_onend) return;
     if (!final_transcript) return;
     recognition.start(); 
   };
+  
   recognition.onresult = function(event) {
     var interim_transcript = '';
     for (var i = event.resultIndex; i < event.results.length; ++i) {
