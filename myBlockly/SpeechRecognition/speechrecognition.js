@@ -51,7 +51,7 @@ if ('webkitSpeechRecognition' in window) {
         obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('div/plain',event.target.id);");
         document.body.appendChild(obj);
       }
-      Recognition_final = "";  //2019-8-4
+      Recognition_final = "";
       document.getElementById("showText").innerHTML = Recognition_interim;
     }
   };
@@ -68,7 +68,6 @@ function capitalize(s) {
 function startButton(event) {
   if (recognizing) {
     recognition.stop();
-    //return;
   }
   final_transcript = '';
   recognition.start();
