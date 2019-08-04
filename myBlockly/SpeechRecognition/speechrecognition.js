@@ -72,9 +72,9 @@ function capitalize(s) {
 }
 
 function startButton(event) {
-  if (recognizing) {
-    recognition.stop();
-  }
+  //if (recognizing) {
+  //  recognition.stop();
+  //}
   final_transcript = '';
   recognition.start();
   ignore_onend = false;
