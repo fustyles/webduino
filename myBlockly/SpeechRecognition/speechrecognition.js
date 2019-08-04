@@ -25,8 +25,7 @@ if ('webkitSpeechRecognition' in window) {
     recognizing = false;
     if (ignore_onend) return;
     if (!final_transcript) return;
-    console.log("restart");
-    recognition.start();  //2019-2-7
+    recognition.start(); 
   };
   recognition.onresult = function(event) {
     var interim_transcript = '';
@@ -52,6 +51,7 @@ if ('webkitSpeechRecognition' in window) {
         obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('div/plain',event.target.id);");
         document.body.appendChild(obj);
       }
+      Recognition_final = "";  //2019-8-4
       document.getElementById("showText").innerHTML = Recognition_interim;
     }
   };
@@ -68,10 +68,9 @@ function capitalize(s) {
 function startButton(event) {
   if (recognizing) {
     recognition.stop();
-    return;
+    //return;
   }
   final_transcript = '';
-  //recognition.lang = 'cmn-Hant-TW';
   recognition.start();
   ignore_onend = false;
 }
