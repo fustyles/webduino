@@ -41,6 +41,7 @@ if ('webkitSpeechRecognition' in window) {
     if (Recognition_interim=='')
       Recognition_final = linebreak(final_transcript);
     else {
+      Recognition_final = "";
       if (!document.getElementById("showText")) {
         var obj = document.createElement('div');
         obj.id = "showText";
@@ -51,7 +52,6 @@ if ('webkitSpeechRecognition' in window) {
         obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('div/plain',event.target.id);");
         document.body.appendChild(obj);
       }
-      Recognition_final = "";
       document.getElementById("showText").innerHTML = Recognition_interim;
     }
   };
