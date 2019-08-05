@@ -1,0 +1,239 @@
+<!-- 
+Author: https://www.facebook.com/francefu       2019-08-05 05:30
+
+Page
+https://fustyles.github.io/webduino/ESP32_SpeechRecognition.html?STAIP&en-US
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<body onload="if (language!='') document.getElementById('lang').value=language;">
+Language
+<select id="lang" name="lang" onchange="recognition.lang=this.value;try{startButton(event);}catch(e){}">
+  <option value="en-US">UnitedStates</option>
+  <option value="cmn-Hant-TW">中文(台灣)</option>  
+  <option value="af-ZA">Afrikaans</option>
+  <option value="am-ET">አማርኛ</option>
+  <option value="az-AZ">Azərbaycanca</option>
+  <option value="bn-BD">বাংলাদেশ</option>
+  <option value="bn-IN">ভারত</option>
+  <option value="id-ID">BahasaIndonesia</option>
+  <option value="ms-MY">BahasaMelayu</option>
+  <option value="ca-ES">Català</option>
+  <option value="cs-CZ">Čeština</option>
+  <option value="da-DK">Dansk</option>
+  <option value="de-DE">Deutsch</option>
+  <option value="en-AU">Australia</option>
+  <option value="en-CA">Canada</option>
+  <option value="en-IN">India</option>
+  <option value="en-KE">Kenya</option>
+  <option value="en-TZ">Tanzania</option>
+  <option value="en-GH">Ghana</option>
+  <option value="en-NZ">NewZealand</option>
+  <option value="en-NG">Nigeria</option>
+  <option value="en-ZA">SouthAfrica</option>
+  <option value="en-PH">Philippines</option>
+  <option value="en-GB">UnitedKingdom</option>
+  <option value="en-US">UnitedStates</option>
+  <option value="es-AR">Argentina</option>
+  <option value="es-BO">Bolivia</option>
+  <option value="es-CL">Chile</option>
+  <option value="es-CO">Colombia</option>
+  <option value="es-CR">CostaRica</option>
+  <option value="es-EC">Ecuador</option>
+  <option value="es-SV">ElSalvador</option>
+  <option value="es-ES">España</option>
+  <option value="es-US">EstadosUnidos</option>
+  <option value="es-GT">Guatemala</option>
+  <option value="es-HN">Honduras</option>
+  <option value="es-MX">México</option>
+  <option value="es-NI">Nicaragua</option>
+  <option value="es-PA">Panamá</option>
+  <option value="es-PY">Paraguay</option>
+  <option value="es-PE">Perú</option>
+  <option value="es-PR">PuertoRico</option>
+  <option value="es-DO">RepúblicaDominicana</option>
+  <option value="es-UY">Uruguay</option>
+  <option value="es-VE">Venezuela</option>
+  <option value="eu-ES">Euskara</option>
+  <option value="fil-PH">Filipino</option>
+  <option value="fr-FR">Français</option>
+  <option value="jv-ID">BasaJawa</option>
+  <option value="gl-ES">Galego</option>
+  <option value="gu-IN">ગુજરાતી</option>
+  <option value="hr-HR">Hrvatski</option>
+  <option value="zu-ZA">IsiZulu</option>
+  <option value="is-IS">Íslenska</option>
+  <option value="it-IT">Italia</option>
+  <option value="it-CH">Svizzera</option>
+  <option value="kn-IN">ಕನ್ನಡ</option>
+  <option value="km-KH">ភាសាខ្មែរ</option>
+  <option value="lv-LV">Latviešu</option>
+  <option value="lt-LT">Lietuvių</option>
+  <option value="ml-IN">മലയാളം</option>
+  <option value="mr-IN">मराठी</option>
+  <option value="hu-HU">Magyar</option>
+  <option value="lo-LA">ລາວ</option>
+  <option value="nl-NL">Nederlands</option>
+  <option value="ne-NP">नेपालीभाषा</option>
+  <option value="nb-NO">Norskbokmål</option>
+  <option value="pl-PL">Polski</option>
+  <option value="pt-BR">Brasil</option>
+  <option value="pt-PT">Portugal</option>
+  <option value="ro-RO">Română</option>
+  <option value="si-LK">සිංහල</option>
+  <option value="sl-SI">Slovenščina</option>
+  <option value="su-ID">BasaSunda</option>
+  <option value="sk-SK">Slovenčina</option>
+  <option value="fi-FI">Suomi</option>
+  <option value="sv-SE">Svenska</option>
+  <option value="sw-TZ">Tanzania</option>
+  <option value="sw-KE">Kenya</option>
+  <option value="ka-GE">ქართული</option>
+  <option value="hy-AM">Հայերեն</option>
+  <option value="ta-IN">இந்தியா</option>
+  <option value="ta-SG">சிங்கப்பூர்</option>
+  <option value="ta-LK">இலங்கை</option>
+  <option value="ta-MY">மலேசியா</option>
+  <option value="te-IN">తెలుగు</option>
+  <option value="vi-VN">TiếngViệt</option>
+  <option value="tr-TR">Türkçe</option>
+  <option value="ur-PK">پاکستان</option>
+  <option value="ur-IN">بھارت</option>
+  <option value="el-GR">Ελληνικά</option>
+  <option value="bg-BG">български</option>
+  <option value="ru-RU">Pусский</option>
+  <option value="sr-RS">Српски</option>
+  <option value="uk-UA">Українська</option>
+  <option value="ko-KR">한국어</option>
+  <option value="cmn-Hans-CN">普通话(中国大陆)</option>
+  <option value="cmn-Hans-HK">普通话(香港)</option>
+  <option value="yue-Hant-HK">粵語(香港)</option>
+  <option value="cmn-Hant-TW">中文(台灣)</option>  
+  <option value="ja-JP">日本語</option>
+  <option value="hi-IN">हिन्दी</option>
+  <option value="th-TH">ภาษาไทย</option> 
+</select>
+<br>Say "ok" or "okay" to execute command.<br>
+<div id="showText"></div>
+<div id="result" style="color:red;font-weight:bold;"></div>
+<br>
+<div id="command" style="color:blue;font-weight:bold;"></div>
+                                                      
+<script>
+var recognizing = false;
+var ignore_onend;
+var two_line = /\n\n/g;
+var one_line = /\n/g;
+var first_char = /\S/;
+  
+if ('webkitSpeechRecognition' in window) {
+  var recognition = new webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  
+  var strUrl=location.search;
+  if (strUrl.indexOf("?")!=-1) {
+    var STAIP = strUrl.split("?")[1].split("&")[0];
+    var language =  strUrl.split("?")[1].split("&")[1];
+  }  
+  if (language=="") 
+    recognition.lang="en-US";
+  else
+    recognition.lang=language;
+  if (!recognizing) startButton(event);
+  
+  recognition.onstart = function() {
+    recognizing = true;
+  };
+  
+  recognition.onerror = function(event) {
+    if (event.error == 'no-speech') ignore_onend = true;
+    if (event.error == 'audio-capture') ignore_onend = true;
+    if (event.error == 'not-allowed') ignore_onend = true;
+    console.log(event.error);
+  };
+  
+  recognition.onend = function() {
+    recognizing = false;
+    if (ignore_onend) return;
+    recognition.start(); 
+  };
+  
+  recognition.onresult = function(event) {
+    var interim_transcript = '';
+    var final_transcript = '';
+    var Recognition_interim = '';
+    var Recognition_final = '';  
+    if (typeof(event.results) == 'undefined') {
+      recognition.onend = null;
+      recognition.stop();
+      return;
+    }    
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        final_transcript = event.results[i][0].transcript;
+      } else {
+        interim_transcript += event.results[i][0].transcript;
+      }
+    }
+    final_transcript = capitalize(final_transcript);
+    Recognition_interim = linebreak(interim_transcript);
+    if (Recognition_interim=='') {
+      Recognition_final = linebreak(final_transcript);
+      console.log("result= " + Recognition_final);
+      
+      if (Recognition_final.toLowerCase().trim()=="ok"||Recognition_final.toLowerCase().trim()=="okay") {
+        document.getElementById("showText").innerHTML = "";
+        document.getElementById("result").innerHTML = "";
+        location.href = document.getElementById("command").innerHTML; 
+        return;
+      }
+      else {
+        document.getElementById("showText").innerHTML = "";
+        document.getElementById("result").innerHTML = Recognition_final;
+        document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + Recognition_final.toLowerCase().trim() + ";" + document.getElementById("lang").value;
+      }      
+    }
+    else {
+      Recognition_final = "";
+      document.getElementById("showText").innerHTML = Recognition_interim;
+      console.log(Recognition_interim);
+    }
+    if (document.getElementById("showText").innerHTML!="") {
+      document.getElementById("result").innerHTML = "";
+    }
+  };
+}
+  
+function linebreak(s) {
+  return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+}
+  
+function capitalize(s) {
+  return s.replace(first_char, function(m) { return m.toUpperCase(); });
+}
+  
+function startButton(event) {
+  if (recognizing) {
+    recognition.stop();
+  }
+  recognition.start();
+  ignore_onend = false;
+}
+  
+setInterval(async function(){
+  if (!recognizing) {
+    try {
+      startButton(event);
+    }
+    catch (e) {
+      
+    }
+  }
+},100);
+</script>                                                      
+</body>
+</html>
