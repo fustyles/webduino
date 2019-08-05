@@ -129,6 +129,9 @@ var two_line = /\n\n/g;
 var one_line = /\n/g;
 var first_char = /\S/;
   
+var myString = "";
+var myTimer;
+  
 if ('webkitSpeechRecognition' in window) {
   var recognition = new webkitSpeechRecognition();
   recognition.continuous = true;
@@ -201,6 +204,16 @@ if ('webkitSpeechRecognition' in window) {
       Recognition_final = "";
       document.getElementById("showText").innerHTML = Recognition_interim;
       console.log(Recognition_interim);
+      
+      clearTimeout(myTimer);
+      myString = Recognition_interim;
+      myTimer = setTimeout(function() { 
+        if (myString==document.getElementById("showText").innerHTML&&myString!="") {
+          document.getElementById("showText").innerHTML = "";
+          document.getElementById("result").innerHTML = Recognition_final;
+          document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + Recognition_final.toLowerCase().trim() + ";" + document.getElementById("lang").value;
+        }
+      }, 3000);
     }
     if (document.getElementById("showText").innerHTML!="") {
       document.getElementById("result").innerHTML = "";
