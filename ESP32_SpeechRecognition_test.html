@@ -114,11 +114,10 @@ Language
   <option value="ja-JP">日本語</option>
   <option value="hi-IN">हिन्दी</option>
   <option value="th-TH">ภาษาไทย</option> 
-</select>
-<br>Say "ok" or "okay" to execute command.<br>
+</select><br>
+<input type="checkbox" id="chk" name="chk" checked>Say "ok" or "okay" to execute command.<br>
 <div id="showText"></div>
-<div id="result" style="color:red;font-weight:bold;"></div>
-<br>
+<div id="result" style="color:red;font-weight:bold;"></div><br>
 <div id="command" style="color:blue;font-weight:bold;"></div>
                                                       
 <script>
@@ -128,8 +127,9 @@ var two_line = /\n\n/g;
 var one_line = /\n/g;
 var first_char = /\S/;
   
-var myString = "";
-var myTimer;
+var errTemp = "";
+var errTimer;
+var chkTimer;
   
 if ('webkitSpeechRecognition' in window) {
   var recognition = new webkitSpeechRecognition();
@@ -186,8 +186,8 @@ if ('webkitSpeechRecognition' in window) {
     if (Recognition_interim=='') {
       Recognition_final = linebreak(final_transcript);
       console.log("result= " + Recognition_final);
-      
-      if (Recognition_final.toLowerCase().trim()=="ok"||Recognition_final.toLowerCase().trim()=="okay") {
+     
+      if (Recognition_final.toLowerCase().trim()=="ok"||Recognition_final.toLowerCase().trim()=="okay"||document.getElementById("chk").checked == false) {
         document.getElementById("showText").innerHTML = "";
         document.getElementById("result").innerHTML = "";
         location.href = document.getElementById("command").innerHTML; 
@@ -204,11 +204,11 @@ if ('webkitSpeechRecognition' in window) {
       document.getElementById("showText").innerHTML = Recognition_interim;
       console.log(Recognition_interim);
       
-      clearTimeout(myTimer);
-      myString = Recognition_interim;
-      myTimer = setTimeout(function() { 
-        if (myString==document.getElementById("showText").innerHTML&&myString!="") {
-          if (myString.toLowerCase().trim()=="ok"||myString.toLowerCase().trim()=="okay") {
+      clearTimeout(errTimer);
+      errTemp = Recognition_interim;
+      errTimer = setTimeout(function() { 
+        if (errTemp==document.getElementById("showText").innerHTML&&errTemp!="") {
+          if (errTemp.toLowerCase().trim()=="ok"||errTemp.toLowerCase().trim()=="okay") {
             document.getElementById("showText").innerHTML = "";
             document.getElementById("result").innerHTML = "";
             location.href = document.getElementById("command").innerHTML; 
@@ -216,8 +216,8 @@ if ('webkitSpeechRecognition' in window) {
           }
           else {
             document.getElementById("showText").innerHTML = "";
-            document.getElementById("result").innerHTML = myString;
-            document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + myString.toLowerCase().trim() + ";" + document.getElementById("lang").value;
+            document.getElementById("result").innerHTML = errTemp;
+            document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + errTemp.toLowerCase().trim() + ";" + document.getElementById("lang").value;
           }  
         }
       }, 3000);
