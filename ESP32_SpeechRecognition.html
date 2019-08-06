@@ -140,11 +140,15 @@ if ('webkitSpeechRecognition' in window) {
   if (strUrl.indexOf("?")!=-1) {
     var STAIP = strUrl.split("?")[1].split("&")[0];
     var language =  strUrl.split("?")[1].split("&")[1];
+    var checkbox =  strUrl.split("?")[1].split("&")[2];
   }  
   if (language=="") 
     recognition.lang="en-US";
   else
     recognition.lang=language;
+  if (checkbox!="on")
+    document.getElementById("chk").checked = false;
+  
   if (!recognizing) startButton(event);
   
   recognition.onstart = function() {
