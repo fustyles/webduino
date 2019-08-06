@@ -196,7 +196,7 @@ if ('webkitSpeechRecognition' in window) {
       else {
         document.getElementById("showText").innerHTML = "";
         document.getElementById("result").innerHTML = Recognition_final;
-        document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + Recognition_final.toLowerCase().trim() + ";" + document.getElementById("lang").value;
+        document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + Recognition_final.toLowerCase().trim() + ";" + document.getElementById("lang").value + ";" + document.getElementById("chk").value;
         if (document.getElementById("chk").checked == false) {
           document.getElementById("showText").innerHTML = "";
           document.getElementById("result").innerHTML = "";
@@ -223,7 +223,7 @@ if ('webkitSpeechRecognition' in window) {
           else {
             document.getElementById("showText").innerHTML = "";
             document.getElementById("result").innerHTML = errTemp;
-            document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + errTemp.toLowerCase().trim() + ";" + document.getElementById("lang").value;
+            document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + errTemp.toLowerCase().trim() + ";" + document.getElementById("lang").value + ";" + document.getElementById("chk").value;
             if (document.getElementById("chk").checked == false) {
               document.getElementById("showText").innerHTML = "";
               document.getElementById("result").innerHTML = "";
