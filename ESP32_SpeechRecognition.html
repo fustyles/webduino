@@ -146,7 +146,7 @@ if ('webkitSpeechRecognition' in window) {
     recognition.lang="en-US";
   else
     recognition.lang=language;
-  if (checkbox!="on")
+  if (checkbox!="true")
     document.getElementById("chk").checked = false;
   
   if (!recognizing) startButton(event);
