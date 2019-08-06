@@ -187,7 +187,7 @@ if ('webkitSpeechRecognition' in window) {
       Recognition_final = linebreak(final_transcript);
       console.log("result= " + Recognition_final);
      
-      if (Recognition_final.toLowerCase().trim()=="ok"||Recognition_final.toLowerCase().trim()=="okay"||document.getElementById("chk").checked == false) {
+      if (Recognition_final.toLowerCase().trim()=="ok"||Recognition_final.toLowerCase().trim()=="okay") {
         document.getElementById("showText").innerHTML = "";
         document.getElementById("result").innerHTML = "";
         location.href = document.getElementById("command").innerHTML; 
@@ -197,6 +197,12 @@ if ('webkitSpeechRecognition' in window) {
         document.getElementById("showText").innerHTML = "";
         document.getElementById("result").innerHTML = Recognition_final;
         document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + Recognition_final.toLowerCase().trim() + ";" + document.getElementById("lang").value;
+        if (document.getElementById("chk").checked == false) {
+          document.getElementById("showText").innerHTML = "";
+          document.getElementById("result").innerHTML = "";
+          location.href = document.getElementById("command").innerHTML; 
+          return;
+        }
       }      
     }
     else {
@@ -218,6 +224,12 @@ if ('webkitSpeechRecognition' in window) {
             document.getElementById("showText").innerHTML = "";
             document.getElementById("result").innerHTML = errTemp;
             document.getElementById("command").innerHTML = "http://" +STAIP + "?speech=" + errTemp.toLowerCase().trim() + ";" + document.getElementById("lang").value;
+            if (document.getElementById("chk").checked == false) {
+              document.getElementById("showText").innerHTML = "";
+              document.getElementById("result").innerHTML = "";
+              location.href = document.getElementById("command").innerHTML; 
+              return;
+            }            
           }  
         }
       }, 3000);
