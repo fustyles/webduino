@@ -85,6 +85,13 @@ async function DetectVideo() {
               context.fill();
             }      
             result.innerHTML += "[" + n + "]" + k[i].part + ", " + Math.round(k[i].score*100) + "%, " + Math.round(k[i].position.x) + ", " + Math.round(k[i].position.y) + "<br>";
+              
+            context.strokeStyle = "#FF0000";
+            context.lineWidth = 2;
+            context.beginPath();
+            context.moveTo(k[0].position.x,k[0].position.y);
+            context.lineTo(k[1].position.x,k[1].position.y);
+            context.stroke();
           }
         }
       }
