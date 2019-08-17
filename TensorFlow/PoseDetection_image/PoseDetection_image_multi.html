@@ -18,7 +18,7 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_image/PoseDetection
 <input type="file" id="selectimage" disabled="true"></input>
 <br>
 Persons
-<select id="persons" onchange="document.getElementById('ShowImage').src='';">
+<select id="persons" onchange="DetectImage();">
 <option value="1">1</option>
 <option value="2">2</option>
 <option value="3">3</option>
@@ -27,7 +27,7 @@ Persons
 <option value="999">No Limit</option>
 </select>
 ScoreLimit
-<select id="scorelimit" onchange="document.getElementById('ShowImage').src='';">
+<select id="scorelimit" onchange="DetectImage();">
 <option value="0">0%</option>  
 <option value="0.1">10%</option>
 <option value="0.2">20%</option>
