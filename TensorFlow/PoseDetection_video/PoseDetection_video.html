@@ -102,7 +102,7 @@ ScoreLimit
         
         var centerShoulderX = (pose.keypoints[5].position.x+pose.keypoints[6].position.x)/2;
         var centerShoulderY = (pose.keypoints[5].position.y+pose.keypoints[6].position.y)/2; 
-        if (k[5].score>=scoreLimit&&k[6].score>=scoreLimit) {
+        if (pose.keypoints[5].score>=scoreLimit&&pose.keypoints[6].score>=scoreLimit) {
           context.beginPath();
           context.arc(centerShoulderX, centerShoulderY, 3, 0,2*Math.PI);
           context.closePath();
