@@ -93,7 +93,7 @@ async function DetectVideo() {
               
             result.innerHTML += "[" + n + "]" + k[i].part + ", " + Math.round(k[i].score*100) + "%, " + Math.round(k[i].position.x) + ", " + Math.round(k[i].position.y) + "<br>";
               
-            if (k[i].score>=0.1) {
+            if (k[0].score>=0.1) {
               context.lineWidth = 2;
 
               context.strokeStyle = "#0000FF";
@@ -146,12 +146,12 @@ async function DetectVideo() {
               context.lineTo(k[10].position.x,k[10].position.y);
               context.stroke();   
 
-              context.strokeStyle = "#77FF00";
+              context.strokeStyle = "#227700";
               context.beginPath();
               context.moveTo(centerShoulderX, centerShoulderY);
               context.lineTo(k[11].position.x,k[11].position.y);
               context.stroke(); 
-              context.strokeStyle = "#0066FF";
+              context.strokeStyle = "#9999FF";
               context.beginPath();
               context.moveTo(centerShoulderX, centerShoulderY);
               context.lineTo(k[12].position.x,k[12].position.y);
