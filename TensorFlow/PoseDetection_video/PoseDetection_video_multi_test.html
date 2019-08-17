@@ -84,8 +84,11 @@ async function DetectVideo() {
               context.closePath();
               context.fill();
             }      
+            
+            var centerShoulderX = (k[5].position.x+k[6].position.x)/2;
+            var centerShoulderY = (k[5].position.y+k[6].position.y)/2;  
             context.beginPath();
-            context.arc((k[5].position.x+k[6].position.x)/2, (k[5].position.y+k[6].position.y)/2, 3, 0,2*Math.PI);
+            context.arc(centerShoulderX, centerShoulderY, 3, 0,2*Math.PI);
             context.closePath();
             context.fill();
               
@@ -96,7 +99,7 @@ async function DetectVideo() {
               
             context.beginPath();
             context.moveTo(k[0].position.x,k[0].position.y);
-            context.lineTo((k[5].position.x+k[6].position.x)/2, (k[5].position.y+k[6].position.y)/2);
+            context.lineTo(centerShoulderX, centerShoulderY);
             context.stroke();              
               
             context.beginPath();
@@ -129,7 +132,16 @@ async function DetectVideo() {
             context.beginPath();
             context.moveTo(k[8].position.x,k[8].position.y);
             context.lineTo(k[10].position.x,k[10].position.y);
-            context.stroke();                
+            context.stroke();   
+              
+            context.beginPath();
+            context.moveTo(centerShoulderX, centerShoulderY);
+            context.lineTo(k[11].position.x,k[11].position.y);
+            context.stroke(); 
+            context.beginPath();
+            context.moveTo(centerShoulderX, centerShoulderY);
+            context.lineTo(k[12].position.x,k[12].position.y);
+            context.stroke();               
           }
         }
       }
