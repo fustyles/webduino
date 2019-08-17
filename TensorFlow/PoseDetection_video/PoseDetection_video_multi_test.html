@@ -95,6 +95,11 @@ async function DetectVideo() {
             context.lineWidth = 2;
               
             context.beginPath();
+            context.moveTo(k[0].position.x,k[0].position.y);
+            context.lineTo((k[5].position.x+k[6].position.x)/2, (k[5].position.y+k[6].position.y)/2);
+            context.stroke();              
+              
+            context.beginPath();
             context.moveTo(k[5].position.x,k[5].position.y);
             context.lineTo(k[6].position.x,k[6].position.y);
             context.stroke();
