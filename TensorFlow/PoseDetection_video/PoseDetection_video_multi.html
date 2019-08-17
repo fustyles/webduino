@@ -109,7 +109,7 @@ async function DetectVideo() {
 
             context.lineWidth = 2;
             if (n<Number(document.getElementById("persons").value)) {
-              if (k[5].score>=scoreLimit&&k[7].score>=scoreLimit) {
+              if (k[5].score>=scoreLimit&&k[6].score>=scoreLimit) {
                 var centerShoulderX = (k[5].position.x+k[6].position.x)/2;
                 var centerShoulderY = (k[5].position.y+k[6].position.y)/2;  
                 context.beginPath();
