@@ -88,22 +88,38 @@ async function DetectVideo() {
               
             context.strokeStyle = "#FF0000";
             context.lineWidth = 2;
+              
+            context.beginPath();
+            context.moveTo(k[5].position.x,k[5].position.y);
+            context.lineTo(k[6].position.x,k[6].position.y);
+            context.stroke();
+              
             context.beginPath();
             context.moveTo(k[5].position.x,k[5].position.y);
             context.lineTo(k[7].position.x,k[7].position.y);
             context.stroke();
             context.beginPath();
+            context.moveTo(k[6].position.x,k[6].position.y);
+            context.lineTo(k[8].position.x,k[8].position.y);
+            context.stroke();
+              
+            context.beginPath();
             context.moveTo(k[7].position.x,k[7].position.y);
             context.lineTo(k[9].position.x,k[9].position.y);
             context.stroke(); 
             context.beginPath();
-            context.moveTo(k[6].position.x,k[6].position.y);
-            context.lineTo(k[8].position.x,k[8].position.y);
-            context.stroke();
+            context.moveTo(k[8].position.x,k[8].position.y);
+            context.lineTo(k[10].position.x,k[10].position.y);
+            context.stroke();    
+              
+            context.beginPath();
+            context.moveTo(k[7].position.x,k[7].position.y);
+            context.lineTo(k[9].position.x,k[9].position.y);
+            context.stroke(); 
             context.beginPath();
             context.moveTo(k[8].position.x,k[8].position.y);
             context.lineTo(k[10].position.x,k[10].position.y);
-            context.stroke();                  
+            context.stroke();                
           }
         }
       }
