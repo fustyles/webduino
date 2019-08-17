@@ -1,0 +1,96 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/16 23:00
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection_video.html
+
+How to enable WebGL in Chrome.
+https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
+-->
+<!DOCTYPE html>
+<head>
+  <title>Single Pose Detection (Camera)</title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"> </script>  
+</head>
+<body>
+<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<canvas id="canvas"></canvas>
+<br>
+<div id="result" style="width:320px;color:red">Please wait for loading model.</div>
+  
+<script>
+  
+  var video = document.getElementById('video');
+  var canvas = document.getElementById('canvas'); 
+  var context = canvas.getContext('2d');
+  var result = document.getElementById('result');
+  var Model; 
+  
+  ObjectDetect();
+  
+  function ObjectDetect() {
+    posenet.load().then(function(net) {
+      Model = net;
+      result.innerHTML = "";
+      startvideo();
+    }); 
+  }
+  
+  function startvideo() {
+    video.style.visibility="hidden";
+    video.style.position="absolute";
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+        video: {
+          facingMode: "user",
+          width: 320,
+          height: 240
+        }
+      })
+      .then(stream => {
+        video.srcObject = stream
+        video.onloadedmetadata = () => {       
+          video.play();
+          canvas.setAttribute("width", video.width);
+          canvas.setAttribute("height", video.height);          
+          setTimeout(function(){DetectVideo(); }, 100);
+        }
+      })   
+  }
+  
+  async function DetectVideo() {
+    context.drawImage(video, 0, 0, video.width, video.height);
+    await Model.estimatePoses(canvas, {flipHorizontal: false, decodingMethod: 'single-person'}).then(pose => {
+      result.innerHTML = "";
+      
+      pose = pose[0];
+      //console.log(pose.score);
+      //console.log(pose.keypoints);
+      if (pose.keypoints.length>0) {
+        for (var i=0;i<pose.keypoints.length;i++) {
+          if (pose.keypoints[i].score>0.1) {
+            const x = pose.keypoints[i].position.x;
+            const y = pose.keypoints[i].position.y;
+            context.fillStyle="#00FFFF";
+            context.beginPath();
+            context.arc(x, y, 3, 0,2*Math.PI);
+            context.closePath();
+            context.fill();
+          }
+          result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].score*100) + "%, " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + "<br>";
+        }
+      }
+      setTimeout(function(){DetectVideo(); }, 100);
+    });
+  }
+
+</script>
+
+</body>
+</html>
