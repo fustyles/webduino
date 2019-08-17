@@ -14,9 +14,6 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"> </script>  
 </head>
 <body>
-<video id="video" width="320" height="240" preload autoplay loop muted></video>
-<canvas id="canvas"></canvas>
-<br>
 Persons
 <select id="persons">
 <option value="1">1</option>
@@ -39,6 +36,9 @@ ScoreLimit
 <option value="0.8">80%</option>
 <option value="0.9">90%</option>
 </select>
+<br>
+<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<canvas id="canvas"></canvas>
 <br>
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div>
   
