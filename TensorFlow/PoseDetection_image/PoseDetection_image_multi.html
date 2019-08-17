@@ -53,23 +53,25 @@ async function DetectImage() {
         var k = pose[n].keypoints;
         if (k.length>0) {
           for (var i=0;i<k.length;i++) {
-            const x = k[i].position.x;
-            const y = k[i].position.y;
-            context.fillStyle="#00FFFF";
-            context.beginPath();
-            context.arc(x, y, Math.round(s/200), 0,2*Math.PI);
-            context.closePath();
-            context.fill();
-            
+            if (k[i].score>0.1) {
+              const x = k[i].position.x;
+              const y = k[i].position.y;
+              context.fillStyle="#00FFFF";
+              context.beginPath();
+              context.arc(x, y, Math.round(s/200), 0,2*Math.PI);
+              context.closePath();
+              context.fill();
+            }
+
             var centerShoulderX = (k[5].position.x+k[6].position.x)/2;
             var centerShoulderY = (k[5].position.y+k[6].position.y)/2;  
             context.beginPath();
             context.arc(centerShoulderX, centerShoulderY, 3, 0,2*Math.PI);
             context.closePath();
             context.fill();
-              
+
             result.innerHTML += "[" + n + "]" + k[i].part + ", " + Math.round(k[i].score*100) + "%, " + Math.round(k[i].position.x) + ", " + Math.round(k[i].position.y) + "<br>";
-              
+
             context.lineWidth = 2;
             if (n<Number(document.getElementById("persons").value)) {
               var scoreLimit = 0.5;
