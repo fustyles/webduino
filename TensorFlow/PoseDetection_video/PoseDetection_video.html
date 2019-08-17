@@ -16,9 +16,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"> </script>  
 </head>
 <body>
-<video id="video" width="320" height="240" preload autoplay loop muted></video>
-<canvas id="canvas"></canvas>
-<br>
 ScoreLimit
 <select id="scorelimit">
 <option value="0">0%</option>  
@@ -32,6 +29,9 @@ ScoreLimit
 <option value="0.8">80%</option>
 <option value="0.9">90%</option>
 </select>
+<br>
+<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<canvas id="canvas"></canvas>
 <br>
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div>
   
