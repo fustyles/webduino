@@ -90,58 +90,59 @@ async function DetectImage() {
             }
             result.innerHTML += "[" + n + "]" + k[i].part + ", " + Math.round(k[i].score*100) + "%, " + Math.round(k[i].position.x) + ", " + Math.round(k[i].position.y) + "<br>";
           }
-            context.lineWidth = 2;
-            if (n<Number(document.getElementById("persons").value)) {
-              var centerShoulderX = (k[5].position.x+k[6].position.x)/2;
-              var centerShoulderY = (k[5].position.y+k[6].position.y)/2; 
-              if (k[5].score>=scoreLimit&&k[6].score>=scoreLimit) {
-                context.beginPath();
-                context.arc(centerShoulderX, centerShoulderY, 3, 0,2*Math.PI);
-                context.closePath();
-                context.fill();
-              }              
-              if (k[0].score>=scoreLimit) {
-                context.strokeStyle = "#0000FF";
-                context.beginPath();
-                context.moveTo(k[0].position.x,k[0].position.y);
-                context.lineTo(centerShoulderX, centerShoulderY);
-                context.stroke(); 
-              }
-              if (k[5].score>=scoreLimit) {
-                context.strokeStyle = "#FF3333";
-                context.beginPath();
-                context.moveTo(centerShoulderX, centerShoulderY);
-                context.lineTo(k[5].position.x,k[5].position.y);
-                context.stroke();
-              }
-              if (k[6].score>=scoreLimit) {
-                context.strokeStyle = "#FF8800";
-                context.beginPath();
-                context.moveTo(centerShoulderX, centerShoulderY);
-                context.lineTo(k[6].position.x,k[6].position.y);
-                context.stroke();              
-              }
-              if (k[5].score>=scoreLimit&&k[7].score>=scoreLimit) {
-                context.strokeStyle = "#FFCC22";
-                context.beginPath();
-                context.moveTo(k[5].position.x,k[5].position.y);
-                context.lineTo(k[7].position.x,k[7].position.y);
-                context.stroke();
-              }
-              if (k[6].score>=scoreLimit&&k[8].score>=scoreLimit) {
-                context.strokeStyle = "#66DD00";
-                context.beginPath();
-                context.moveTo(k[6].position.x,k[6].position.y);
-                context.lineTo(k[8].position.x,k[8].position.y);
-                context.stroke();
-              }
-              if (k[7].score>=scoreLimit&&k[9].score>=scoreLimit) {
-                context.strokeStyle = "#FFFF77";
-                context.beginPath();
-                context.moveTo(k[7].position.x,k[7].position.y);
-                context.lineTo(k[9].position.x,k[9].position.y);
-                context.stroke(); 
-              }
+          
+          context.lineWidth = 2;
+          if (n<Number(document.getElementById("persons").value)) {
+            var centerShoulderX = (k[5].position.x+k[6].position.x)/2;
+            var centerShoulderY = (k[5].position.y+k[6].position.y)/2; 
+            if (k[5].score>=scoreLimit&&k[6].score>=scoreLimit) {
+              context.beginPath();
+              context.arc(centerShoulderX, centerShoulderY, 3, 0,2*Math.PI);
+              context.closePath();
+              context.fill();
+            }              
+            if (k[0].score>=scoreLimit) {
+              context.strokeStyle = "#0000FF";
+              context.beginPath();
+              context.moveTo(k[0].position.x,k[0].position.y);
+              context.lineTo(centerShoulderX, centerShoulderY);
+              context.stroke(); 
+            }
+            if (k[5].score>=scoreLimit) {
+              context.strokeStyle = "#FF3333";
+              context.beginPath();
+              context.moveTo(centerShoulderX, centerShoulderY);
+              context.lineTo(k[5].position.x,k[5].position.y);
+              context.stroke();
+            }
+            if (k[6].score>=scoreLimit) {
+              context.strokeStyle = "#FF8800";
+              context.beginPath();
+              context.moveTo(centerShoulderX, centerShoulderY);
+              context.lineTo(k[6].position.x,k[6].position.y);
+              context.stroke();              
+            }
+            if (k[5].score>=scoreLimit&&k[7].score>=scoreLimit) {
+              context.strokeStyle = "#FFCC22";
+              context.beginPath();
+              context.moveTo(k[5].position.x,k[5].position.y);
+              context.lineTo(k[7].position.x,k[7].position.y);
+              context.stroke();
+            }
+            if (k[6].score>=scoreLimit&&k[8].score>=scoreLimit) {
+              context.strokeStyle = "#66DD00";
+              context.beginPath();
+              context.moveTo(k[6].position.x,k[6].position.y);
+              context.lineTo(k[8].position.x,k[8].position.y);
+              context.stroke();
+            }
+            if (k[7].score>=scoreLimit&&k[9].score>=scoreLimit) {
+              context.strokeStyle = "#FFFF77";
+              context.beginPath();
+              context.moveTo(k[7].position.x,k[7].position.y);
+              context.lineTo(k[9].position.x,k[9].position.y);
+              context.stroke(); 
+            }
             if (k[8].score>=scoreLimit&&k[10].score>=scoreLimit) {
               context.strokeStyle = "#BBFF66";
               context.beginPath();
