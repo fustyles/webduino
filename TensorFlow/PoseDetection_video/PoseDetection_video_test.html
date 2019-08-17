@@ -93,81 +93,97 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
           
           result.innerHTML += pose.keypoints[i].part + ", " + Math.round(pose.keypoints[i].score*100) + "%, " + Math.round(pose.keypoints[i].position.x) + ", " + Math.round(pose.keypoints[i].position.y) + "<br>";
           
-          context.strokeStyle = "#0000FF";
-          context.beginPath();
-          context.moveTo(pose.keypoints[0].position.x,pose.keypoints[0].position.y);
-          context.lineTo(centerShoulderX, centerShoulderY);
-          context.stroke();              
-          context.strokeStyle = "#FF3333";
-          context.beginPath();
-          context.moveTo(centerShoulderX, centerShoulderY);
-          context.lineTo(pose.keypoints[5].position.x,pose.keypoints[5].position.y);
-          context.stroke();
-          context.strokeStyle = "#FF8800";
-          context.beginPath();
-          context.moveTo(centerShoulderX, centerShoulderY);
-          context.lineTo(pose.keypoints[6].position.x,pose.keypoints[6].position.y);
-          context.stroke();              
-          context.strokeStyle = "#FFCC22";
-          context.beginPath();
-          context.moveTo(pose.keypoints[5].position.x,pose.keypoints[5].position.y);
-          context.lineTo(pose.keypoints[7].position.x,pose.keypoints[7].position.y);
-          context.stroke();
-          context.strokeStyle = "#66DD00";
-          context.beginPath();
-          context.moveTo(pose.keypoints[6].position.x,pose.keypoints[6].position.y);
-          context.lineTo(pose.keypoints[8].position.x,pose.keypoints[8].position.y);
-          context.stroke();
-          context.strokeStyle = "#FFFF77";
-          context.beginPath();
-          context.moveTo(pose.keypoints[7].position.x,pose.keypoints[7].position.y);
-          context.lineTo(pose.keypoints[9].position.x,pose.keypoints[9].position.y);
-          context.stroke(); 
-          context.strokeStyle = "#BBFF66";
-          context.beginPath();
-          context.moveTo(pose.keypoints[8].position.x,pose.keypoints[8].position.y);
-          context.lineTo(pose.keypoints[10].position.x,pose.keypoints[10].position.y);
-          context.stroke();    
-          context.strokeStyle = "#55AA00";
-          context.beginPath();
-          context.moveTo(pose.keypoints[7].position.x,pose.keypoints[7].position.y);
-          context.lineTo(pose.keypoints[9].position.x,pose.keypoints[9].position.y);
-          context.stroke(); 
-          context.strokeStyle = "#00BBFF";
-          context.beginPath();
-          context.moveTo(pose.keypoints[8].position.x,pose.keypoints[8].position.y);
-          context.lineTo(pose.keypoints[10].position.x,pose.keypoints[10].position.y);
-          context.stroke();   
-          context.strokeStyle = "#227700";
-          context.beginPath();
-          context.moveTo(centerShoulderX, centerShoulderY);
-          context.lineTo(pose.keypoints[11].position.x,pose.keypoints[11].position.y);
-          context.stroke(); 
-          context.strokeStyle = "#9999FF";
-          context.beginPath();
-          context.moveTo(centerShoulderX, centerShoulderY);
-          context.lineTo(pose.keypoints[12].position.x,pose.keypoints[12].position.y);
-          context.stroke();    
-          context.strokeStyle = "#77FF00";
-          context.beginPath();
-          context.moveTo(pose.keypoints[11].position.x,pose.keypoints[11].position.y);
-          context.lineTo(pose.keypoints[13].position.x,pose.keypoints[13].position.y);
-          context.stroke(); 
-          context.strokeStyle = "#0066FF";
-          context.beginPath();
-          context.moveTo(pose.keypoints[12].position.x,pose.keypoints[12].position.y);
-          context.lineTo(pose.keypoints[14].position.x,pose.keypoints[14].position.y);
-          context.stroke();  
-          context.strokeStyle = "#99FF99";
-          context.beginPath();
-          context.moveTo(pose.keypoints[13].position.x,pose.keypoints[13].position.y);
-          context.lineTo(pose.keypoints[15].position.x,pose.keypoints[14].position.y);
-          context.stroke(); 
-          context.strokeStyle = "#0000CC";
-          context.beginPath();
-          context.moveTo(pose.keypoints[14].position.x,pose.keypoints[14].position.y);
-          context.lineTo(pose.keypoints[16].position.x,pose.keypoints[16].position.y);
-          context.stroke(); 
+          if (pose.keypoints[0].score>0.1) {
+            context.strokeStyle = "#0000FF";
+            context.beginPath();
+            context.moveTo(pose.keypoints[0].position.x,pose.keypoints[0].position.y);
+            context.lineTo(centerShoulderX, centerShoulderY);
+            context.stroke();              
+          }
+          if (pose.keypoints[5].score>0.1) {          
+            context.strokeStyle = "#FF3333";
+            context.beginPath();
+            context.moveTo(centerShoulderX, centerShoulderY);
+            context.lineTo(pose.keypoints[5].position.x,pose.keypoints[5].position.y);
+            context.stroke();
+          }
+          if (pose.keypoints[6].score>0.1) {          
+            context.strokeStyle = "#FF8800";
+            context.beginPath();
+            context.moveTo(centerShoulderX, centerShoulderY);
+            context.lineTo(pose.keypoints[6].position.x,pose.keypoints[6].position.y);
+            context.stroke();              
+          }
+          if (pose.keypoints[5].score>0.1&&pose.keypoints[7].score>0.1) {          
+            context.strokeStyle = "#FFCC22";
+            context.beginPath();
+            context.moveTo(pose.keypoints[5].position.x,pose.keypoints[5].position.y);
+            context.lineTo(pose.keypoints[7].position.x,pose.keypoints[7].position.y);
+            context.stroke();
+          }
+          if (pose.keypoints[6].score>0.1&&pose.keypoints[8].score>0.1) {          
+            context.strokeStyle = "#66DD00";
+            context.beginPath();
+            context.moveTo(pose.keypoints[6].position.x,pose.keypoints[6].position.y);
+            context.lineTo(pose.keypoints[8].position.x,pose.keypoints[8].position.y);
+            context.stroke();
+          }
+          if (pose.keypoints[7].score>0.1&&pose.keypoints[9].score>0.1) {          
+            context.strokeStyle = "#55AA00";
+            context.beginPath();
+            context.moveTo(pose.keypoints[7].position.x,pose.keypoints[7].position.y);
+            context.lineTo(pose.keypoints[9].position.x,pose.keypoints[9].position.y);
+            context.stroke(); 
+          }
+          if (pose.keypoints[8].score>0.1&&pose.keypoints[10].score>0.1) {          
+            context.strokeStyle = "#00BBFF";
+            context.beginPath();
+            context.moveTo(pose.keypoints[8].position.x,pose.keypoints[8].position.y);
+            context.lineTo(pose.keypoints[10].position.x,pose.keypoints[10].position.y);
+            context.stroke();   
+          }
+          if (pose.keypoints[11].score>0.1) {          
+            context.strokeStyle = "#227700";
+            context.beginPath();
+            context.moveTo(centerShoulderX, centerShoulderY);
+            context.lineTo(pose.keypoints[11].position.x,pose.keypoints[11].position.y);
+            context.stroke(); 
+          }
+          if (pose.keypoints[12].score>0.1) {          
+            context.strokeStyle = "#9999FF";
+            context.beginPath();
+            context.moveTo(centerShoulderX, centerShoulderY);
+            context.lineTo(pose.keypoints[12].position.x,pose.keypoints[12].position.y);
+            context.stroke();    
+          }
+          if (pose.keypoints[11].score>0.1&&pose.keypoints[13].score>0.1) {          
+            context.strokeStyle = "#77FF00";
+            context.beginPath();
+            context.moveTo(pose.keypoints[11].position.x,pose.keypoints[11].position.y);
+            context.lineTo(pose.keypoints[13].position.x,pose.keypoints[13].position.y);
+            context.stroke(); 
+          }
+          if (pose.keypoints[12].score>0.1&&pose.keypoints[14].score>0.1) {          
+            context.strokeStyle = "#0066FF";
+            context.beginPath();
+            context.moveTo(pose.keypoints[12].position.x,pose.keypoints[12].position.y);
+            context.lineTo(pose.keypoints[14].position.x,pose.keypoints[14].position.y);
+            context.stroke();  
+          }
+          if (pose.keypoints[13].score>0.1&&pose.keypoints[15].score>0.1) {          
+            context.strokeStyle = "#99FF99";
+            context.beginPath();
+            context.moveTo(pose.keypoints[13].position.x,pose.keypoints[13].position.y);
+            context.lineTo(pose.keypoints[15].position.x,pose.keypoints[14].position.y);
+            context.stroke(); 
+          }
+          if (pose.keypoints[14].score>0.1&&pose.keypoints[16].score>0.1) {          
+            context.strokeStyle = "#0000CC";
+            context.beginPath();
+            context.moveTo(pose.keypoints[14].position.x,pose.keypoints[14].position.y);
+            context.lineTo(pose.keypoints[16].position.x,pose.keypoints[16].position.y);
+            context.stroke(); 
+          }
         }
       }
       setTimeout(function(){DetectVideo(); }, 100);
