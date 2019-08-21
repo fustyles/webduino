@@ -1,1 +1,1 @@
-MSG.coco_ssd = "物件偵測 (mobilenet)";
+MSG.mobilenet = "物件偵測 (mobilenet)";
