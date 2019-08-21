@@ -11,7 +11,7 @@
 	console.log(result[i]);
 	var result_detail = result[i].split(",");
 	if (result_detail[0].trim()==input_object) {
-	  return result_detail[0];
+	  return result_detail[0].split(",");
 	}
       }
     }
