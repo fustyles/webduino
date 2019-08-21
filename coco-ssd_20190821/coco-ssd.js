@@ -8,7 +8,6 @@
     var result = document.getElementById("result").innerHTML.split("<br>");
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
-	console.log(result[i]);
 	var result_detail = result[i].split(",");
 	if (result_detail[0]==input_object) {
 	  return result_detail;
