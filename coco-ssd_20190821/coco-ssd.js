@@ -6,7 +6,7 @@
 
  function coco_ssd_object(input_object){
     var result = document.getElementById("result").innerHTML.split("<br>");
-      if (result.length>0) {
+    if (result.length>0) {
       for (var i=0;i<result.length;i++) {
 	console.log(result[i]);
 	var result_detail = result[i].split(",");
@@ -15,6 +15,7 @@
 	}
       }
     }
+    return "";
   }
 
   window.coco_ssd_object = coco_ssd_object;
