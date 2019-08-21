@@ -1,0 +1,4 @@
+<category id="mobilenet">
+  <block type="mobilenet_object">
+  </block>
+</category>
