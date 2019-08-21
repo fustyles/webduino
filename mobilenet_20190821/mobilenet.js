@@ -10,7 +10,7 @@
       for (var i=0;i<result.length;i++) {
 	var result_detail = result[i].split(",");
 	if (result_detail[0]==input_object) {
-	  console.log(result_detail[0]+", "+input_object);
+	  //console.log(result_detail[0]+", "+input_object);
 	  return result_detail;
 	}
       }
