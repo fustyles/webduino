@@ -1,7 +1,7 @@
 Blockly.Blocks['mobilenet_object'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.mobilenet_OBJECT_SHOW)
+      .appendField(Blockly.Msg.MOBILENET_SHOW)
       .appendField(new Blockly.FieldDropdown([
 			["tench, Tinca tinca","tench, Tinca tinca"],
 			["goldfish, Carassius auratus","goldfish, Carassius auratus"],
