@@ -92,23 +92,23 @@ async function DetectVideo() {
 
     if (pose.length>0) {
       for (var n=0;n<pose.length;n++) {
-        var k = pose[n].keypoints;
-        if (k.length>0) {
-          for (var i=0;i<k.length;i++) {
-            if (k[i].score>=scoreLimit) {
-              const x = k[i].position.x;
-              const y = k[i].position.y;
-              context.fillStyle="#00FFFF";
-              context.beginPath();
-              context.arc(x, y, 3, 0,2*Math.PI);
-              context.closePath();
-              context.fill();
-            }      
-            result.innerHTML += "[" + n + "]" + k[i].part + ", " + Math.round(k[i].score*100) + "%, " + Math.round(k[i].position.x) + ", " + Math.round(k[i].position.y) + "<br>";
-          }
+        if (n<Number(document.getElementById("persons").value)) {
+          var k = pose[n].keypoints;
+          if (k.length>0) {
+            for (var i=0;i<k.length;i++) {
+              if (k[i].score>=scoreLimit) {
+                const x = k[i].position.x;
+                const y = k[i].position.y;
+                context.fillStyle="#00FFFF";
+                context.beginPath();
+                context.arc(x, y, 3, 0,2*Math.PI);
+                context.closePath();
+                context.fill();
+              }      
+              result.innerHTML += "[" + n + "]" + k[i].part + ", " + Math.round(k[i].score*100) + "%, " + Math.round(k[i].position.x) + ", " + Math.round(k[i].position.y) + "<br>";
+            }
 
-          context.lineWidth = 2;
-          if (n<Number(document.getElementById("persons").value)) {
+            context.lineWidth = 2;
             var centerShoulderX = (k[5].position.x+k[6].position.x)/2;
             var centerShoulderY = (k[5].position.y+k[6].position.y)/2; 
             if (k[5].score>=scoreLimit&&k[6].score>=scoreLimit) {
