@@ -1,1 +1,1 @@
-MSG.coco_ssd = "Object Detection (mobilenet)";
+MSG.mobilenet = "Object Detection (mobilenet)";
