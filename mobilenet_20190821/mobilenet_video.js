@@ -43,7 +43,7 @@ window.onload = function () {
       //console.log('Predictions: ', Predictions);
       if (Predictions.length>0) {
         for (var i=0;i<Predictions.length;i++) {
-          result.innerHTML+= Predictions[i].className+","+Predictions[i].probability+"<br>";
+          result.innerHTML+= Predictions[i].className+","+Math.round(Predictions[i].probability*100)/100+"<br>";
         }
       }
       else
