@@ -1,6 +1,6 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"></script>');
-document.write('<video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><div id="result" style="width:320px;color:red">Please wait for loading model.</div>');
+document.write('<video id="video" width="320" height="240" preload autoplay loop muted></video><div id="result" style="width:320px;color:red">Please wait for loading model.</div>');
 
 window.onload = function () {
     
