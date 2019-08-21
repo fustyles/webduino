@@ -1,1 +1,1 @@
-Blockly.Msg.coco_ssd_OBJECT_SHOW = "Object Detection (mobilenet) Object";
+Blockly.Msg.MOBILENET_OBJECT_SHOW = "Object Detection (mobilenet) Object";
