@@ -4,6 +4,13 @@
 
 
 
+物件偵測 tfjs coco-ssd
+https://fustyles.github.io/webduino/coco-ssd_20190821/blockly.json
+[Smart] 
+https://blocklypro.webduino.io/#7AdJxE0YOv
+[Bit]
+https://bit.webduino.io/blockly/#VRm9mwMMQwGR2
+
 機器學習 KNN分類演算法
 https://fustyles.github.io/webduino/knn-classifier_20190608/blockly.json
 [Smart]
