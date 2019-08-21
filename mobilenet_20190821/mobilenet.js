@@ -9,6 +9,7 @@
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
 	var result_detail = result[i].split(",");
+	console.log(result_detail[0]+", "+input_object);
 	if (result_detail[0]==input_object) {
 	  return result_detail;
 	}
