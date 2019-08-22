@@ -17,8 +17,8 @@
   }
 	
   function posenet_canvas(input_width, input_height) {
-    document.getElementById('canvas').setAttribute("width", input_width);
-    document.getElementById('canvas').setAttribute("height", input_height); 
+    document.getElementById('video').setAttribute("width", input_width);
+    document.getElementById('video').setAttribute("height", input_height); 
   }
 
   window.posenet_person = posenet_person;
