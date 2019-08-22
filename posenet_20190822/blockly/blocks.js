@@ -29,3 +29,17 @@ Blockly.Blocks['posenet_person'] = {
   this.setColour(65);
   }
 };
+
+Blockly.Blocks['posenet_canvas'] = {
+  init: function() {
+  this.appendValueInput("width_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.POSENET_WIDTH_SHOW);  
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.POSENET_HEIGHT_SHOW);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
