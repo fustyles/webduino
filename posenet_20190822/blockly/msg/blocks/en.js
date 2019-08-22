@@ -1,2 +1,2 @@
-Blockly.Msg.MOBILENET_PERSONS_SHOW = "Person Detection (posenet) Index";
-Blockly.Msg.MOBILENET_PART_SHOW = "Part";
+Blockly.Msg.POSENET_PERSON_SHOW = "Person Detection (posenet) Index";
+Blockly.Msg.POSENET_PART_SHOW = "Part";
