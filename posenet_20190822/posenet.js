@@ -4,7 +4,7 @@
 
   'use strict';
 
- function posenet_person(input_person){
+ function posenet_person(input_person, input_part){
     var result = document.getElementById("result").innerHTML.split("<br>");
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
