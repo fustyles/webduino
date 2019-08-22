@@ -38,6 +38,7 @@ Blockly.Blocks['posenet_canvas'] = {
   this.appendValueInput("height_")
       .setCheck("Number")
       .appendField(Blockly.Msg.POSENET_HEIGHT_SHOW);
+  this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
