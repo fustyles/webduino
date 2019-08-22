@@ -10,7 +10,6 @@
       for (var i=0;i<result.length;i++) {
 	var result_detail = result[i].split(",");
 	if (result_detail[0]==input_person) {
-	  //console.log(result_detail[0]+", "+input_person);
 	  return result_detail;
 	}
       }
