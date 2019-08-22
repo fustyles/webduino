@@ -43,7 +43,7 @@ window.onload = function () {
                         
 async function DetectVideo() {
   context.drawImage(video, 0, 0, video.width, video.height);
-  await Model.estimatePoses(canvas, {flipHorizontal: false, decodingMethod: 'multi-person', maxPoseDetections: 5, scoreThreshold: 0.5, nmsRadius: 20}).then(pose => {
+  await Model.estimatePoses(canvas, {flipHorizontal: true, decodingMethod: 'multi-person', maxPoseDetections: 5, scoreThreshold: 0.5, nmsRadius: 20}).then(pose => {
     //console.log(pose.score);
     //console.log(pose.keypoints);
     result.innerHTML = "";  
