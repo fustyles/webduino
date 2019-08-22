@@ -26,8 +26,8 @@ window.onload = function () {
         audio: false,
         video: {
           facingMode: "user",
-          width: 320,
-          height: 240
+          width: 400,
+          height: 300
         }
       })
       .then(stream => {
