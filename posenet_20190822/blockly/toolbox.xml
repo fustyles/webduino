@@ -6,4 +6,16 @@
       </block>
     </value> 
   </block>
+  <block type="posenet_canvas">
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">320</field>
+      </block>
+    </value> 
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">240</field>
+      </block>
+    </value>     
+  </block>  
 </category>
