@@ -1,5 +1,5 @@
 {
-  "types": ["posenet_person","posenet_canvas"],
+  "types": ["posenet_person","posenet_video"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
