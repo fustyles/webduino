@@ -1,6 +1,6 @@
 Blockly.Blocks['posenet_person'] = {
   init: function() {
-  this.appendValueInput("persons_")
+  this.appendValueInput("person_")
       .setCheck("Number")
       .appendField(Blockly.Msg.POSENET_PERSONS_SHOW);  
   this.appendDummyInput()  
