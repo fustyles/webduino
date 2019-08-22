@@ -22,7 +22,8 @@ Blockly.Blocks['posenet_person'] = {
 		["leftKnee","leftKnee"],
 		["rightKnee","rightKnee"],
 		["leftAnkle","leftAnkle"],
-		["rightAnkle","rightAnkle"]
+		["rightAnkle","rightAnkle"],
+		["all","all"]
   ]), "part_");    
   this.setInputsInline(true);
   this.setOutput(true, null); 
