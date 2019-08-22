@@ -30,7 +30,7 @@ Blockly.Blocks['posenet_person'] = {
   }
 };
 
-Blockly.Blocks['posenet_canvas'] = {
+Blockly.Blocks['posenet_video'] = {
   init: function() {
   this.appendValueInput("width_")
       .setCheck("Number")
