@@ -9,7 +9,7 @@
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
 	var result_detail = result[i].split(",");
-	if (result_detail[0]==input_person&&result_detail[1]=input_part) return result_detail;
+	if (result_detail[0]==input_person&&result_detail[1]==input_part) return result_detail;
       }
     }
     return "";
