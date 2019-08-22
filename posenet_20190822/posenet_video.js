@@ -42,7 +42,6 @@ window.onload = function () {
   } 
                         
 async function DetectVideo() {
-  canvas.style="transform:rotateY(0deg)";
   context.drawImage(video, 0, 0, video.width, video.height);
   await Model.estimatePoses(canvas, {flipHorizontal: false, decodingMethod: 'multi-person', maxPoseDetections: 5, scoreThreshold: 0.5, nmsRadius: 20}).then(pose => {
     //console.log(pose.score);
@@ -170,7 +169,6 @@ async function DetectVideo() {
         }
       }
     }  
-    canvas.style="transform:rotateY(180deg)";
     setTimeout(function(){DetectVideo(); }, 100);
   });
 }
