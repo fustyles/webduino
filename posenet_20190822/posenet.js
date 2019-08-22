@@ -16,12 +16,12 @@
     return "";
   }
 	
-  function posenet_canvas(input_width, input_height) {
+  function posenet_video(input_width, input_height) {
     document.getElementById('video').setAttribute("width", input_width);
     document.getElementById('video').setAttribute("height", input_height); 
   }
 
   window.posenet_person = posenet_person;
-  window.posenet_canvas = posenet_canvas;
+  window.posenet_video = posenet_video;
 	
 }(window, window.document));
