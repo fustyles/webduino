@@ -16,9 +16,11 @@
     return "";
   }
 	
-  function posenet_video(input_width, input_height, input_mirrorimage) {
+  function posenet_video(input_width, input_height, input_persons, input_mirrorimage, input_result) {
     document.getElementById('video').width = input_width;
-    document.getElementById('video').height = input_height; 
+    document.getElementById('video').height = input_height;
+    document.getElementById('persons').value = input_persons; 
+    document.getElementById('result').style.display = input_result;
   }
 
   window.posenet_person = posenet_person;
