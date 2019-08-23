@@ -39,10 +39,26 @@ Blockly.Blocks['posenet_video'] = {
       .setCheck("Number")
       .appendField(Blockly.Msg.POSENET_HEIGHT_SHOW);
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_PERSONS_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["1","1"],
+		["2","2"],
+		["3","3"],
+		["4","4"],
+		["5","5"],	  
+		["999","No Limit"]	  
+  ]), "persons_"); 	  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.POSENET_MIRRORIMAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		["",""]
-  ]), "mirrorimage_");  	  
+  ]), "mirrorimage_"); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_RESULT_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["block","TRUE"],
+		["none","FALSE"]	  
+  ]), "result_"); 	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
