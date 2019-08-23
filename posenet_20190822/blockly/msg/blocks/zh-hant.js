@@ -5,5 +5,5 @@ Blockly.Msg.POSENET_HEIGHT_SHOW = "高度";
 Blockly.Msg.POSENET_MIRRORIMAGE_SHOW = "鏡像";
 Blockly.Msg.POSENET_PERSONS_SHOW = "偵測人數";
 Blockly.Msg.POSENET_RESULT_SHOW = "結果";
-Blockly.Msg.POSENET_SCORELIMIT_SHOW = "得分底限";
+Blockly.Msg.POSENET_SCORELIMIT_SHOW = "信心底分";
 Blockly.Msg.POSENET_SKELETON_SHOW = "骨架";
