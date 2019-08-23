@@ -17,6 +17,7 @@
   }
 	
   function posenet_video(input_width, input_height) {
+    console.log("test");
     document.getElementById('video').width = input_width;
     document.getElementById('video').height = input_height; 
   }
