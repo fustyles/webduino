@@ -23,7 +23,7 @@ Blockly.Blocks['posenet_person'] = {
 		["rightKnee","rightKnee"],
 		["leftAnkle","leftAnkle"],
 		["rightAnkle","rightAnkle"]
-  ]), "part_");    
+  ]), "part_");  	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
@@ -38,6 +38,11 @@ Blockly.Blocks['posenet_video'] = {
   this.appendValueInput("height_")
       .setCheck("Number")
       .appendField(Blockly.Msg.POSENET_HEIGHT_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_MIRRORiMAGE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["",""]
+  ]), "mirrorimage_");  	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
