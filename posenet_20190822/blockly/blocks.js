@@ -61,18 +61,18 @@ Blockly.Blocks['posenet_video'] = {
 		["0.7","0.7"],
 		["0.8","0.8"],
 		["0.9","0.9"]	  
-  ]), "scorelimit_"); 	  
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSENET_MIRRORIMAGE_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["",""]
-  ]), "mirrorimage_"); 
+  ]), "scorelimit_"); 	 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSENET_RESULT_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		["YES","block"],
 		["NO","none"]	  
   ]), "result_"); 	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_MIRRORIMAGE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["",""]
+  ]), "mirrorimage_"); 
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
