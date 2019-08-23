@@ -39,7 +39,7 @@ Blockly.Blocks['posenet_video'] = {
       .setCheck("Number")
       .appendField(Blockly.Msg.POSENET_HEIGHT_SHOW);
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSENET_MIRRORiMAGE_SHOW)
+      .appendField(Blockly.Msg.POSENET_MIRRORIMAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		["",""]
   ]), "mirrorimage_");  	  
