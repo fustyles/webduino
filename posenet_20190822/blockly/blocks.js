@@ -65,9 +65,15 @@ Blockly.Blocks['posenet_video'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSENET_RESULT_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["YES","block"],
-		["NO","none"]	  
-  ]), "result_"); 	  
+		["show","block"],
+		["hide","none"]	  
+  ]), "result_"); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_SKELETON_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["show","1"],
+		["hide","0"]	  
+  ]), "skeleton_");	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSENET_MIRRORIMAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([
