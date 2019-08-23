@@ -6,7 +6,6 @@ window.onload = function () {
   var video = document.getElementById('video');
   var canvas = document.getElementById('canvas'); 
   var context = canvas.getContext('2d');
-  var skeleton = 1;
   var result = document.getElementById('result');
   var Model; 
   
@@ -49,7 +48,7 @@ async function DetectVideo() {
     //console.log(pose.keypoints);
     result.innerHTML = "";  
     var scoreLimit = Number(document.getElementById("scorelimit").value);
-    skeleton = Number(document.getElementById("skeleton").value);
+    var skeleton = Number(document.getElementById("skeleton").value);
     if (pose.length>0) {
       for (var n=0;n<pose.length;n++) {
         if (n<Number(document.getElementById("persons").value)) {
