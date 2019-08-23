@@ -7,7 +7,7 @@ https://fustyles.github.io/webduino/posenet_20190822/blockly.json
 [Smart]
 https://blocklypro.webduino.io/#RozE1qKvnK
 [Bit] 
-https://bit.webduino.io/blockly/#GqNEZZaB9nBRg
+https://bit.webduino.io/blockly/#Qq7lNNVEx0E3B
 
 
 物件偵測 (tfjs mobilenet)
