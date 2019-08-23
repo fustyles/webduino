@@ -77,7 +77,8 @@ Blockly.Blocks['posenet_video'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSENET_MIRRORIMAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["",""]
+		["yes","1"],
+		["no","0"]	  
   ]), "mirrorimage_"); 
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
