@@ -5,3 +5,4 @@ Blockly.Msg.POSENET_HEIGHT_SHOW = "高度";
 Blockly.Msg.POSENET_MIRRORIMAGE_SHOW = "鏡像";
 Blockly.Msg.POSENET_PERSONS_SHOW = "人數";
 Blockly.Msg.POSENET_RESULT_SHOW = "輸出結果";
+Blockly.Msg.POSENET_SCORELIMIT_SHOW = "得分底線";
