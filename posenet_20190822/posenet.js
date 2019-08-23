@@ -16,7 +16,7 @@
     return "";
   }
 	
-  function posenet_video(input_width, input_height) {
+  function posenet_video(input_width, input_height, input_mirrorimage) {
     document.getElementById('video').width = input_width;
     document.getElementById('video').height = input_height; 
   }
