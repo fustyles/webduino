@@ -46,7 +46,7 @@ Blockly.Blocks['posenet_video'] = {
 		["3","3"],
 		["4","4"],
 		["5","5"],	  
-		["999","No Limit"]	  
+		["No Limit","999"]	  
   ]), "persons_"); 	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSENET_MIRRORIMAGE_SHOW)
@@ -56,8 +56,8 @@ Blockly.Blocks['posenet_video'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSENET_RESULT_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["block","TRUE"],
-		["none","FALSE"]	  
+		["YES","block"],
+		["NO","none"]	  
   ]), "result_"); 	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
