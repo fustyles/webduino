@@ -21,6 +21,7 @@
     document.getElementById('video').height = input_height;
     document.getElementById('persons').value = input_persons; 
     document.getElementById('scorelimit').value = input_scorelimit;
+    document.getElementById('mirrorimage').value = input_mirrorimage;
     document.getElementById('result').style.display = input_result;
     document.getElementById('skeleton').value = input_skeleton;
   }
