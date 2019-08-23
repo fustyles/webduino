@@ -3,3 +3,5 @@ Blockly.Msg.POSENET_PART_SHOW = "Part";
 Blockly.Msg.POSENET_WIDTH_SHOW = "Canvas Width";
 Blockly.Msg.POSENET_HEIGHT_SHOW = "Height";
 Blockly.Msg.POSENET_MIRRORIMAGE_SHOW = "Mirror Image";
+Blockly.Msg.POSENET_PERSONS_SHOW = "Persons";
+Blockly.Msg.POSENET_RESULT_SHOW = "Show Result";
