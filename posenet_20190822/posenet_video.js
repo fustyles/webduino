@@ -1,6 +1,6 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>');
-document.write('<canvas id="canvas"></canvas><br>Persons<select id="persons"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="999">No Limit</option></select>ScoreLimit<select id="scorelimit"><option value="0">0</option><option value="0.1" selected>0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5">0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select>Skeleton<select id="skeleton"><option value="1">show</option><option value="0">hide</option></select><br><video id="video" width="600" height="450" preload autoplay loop muted></video><div id="result" style="width:320px;color:red">Please wait for loading model.</div>');
+document.write('<canvas id="canvas"></canvas><br>Persons<select id="persons"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="999">No Limit</option></select>ScoreLimit<select id="scorelimit"><option value="0">0</option><option value="0.1" selected>0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5">0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select>Skeleton<select id="skeleton"><option value="1">show</option><option value="0">hide</option></select>MirrorImage<select id="mirrorimage"><option value="1">YES</option><option value="0">NO</option></select><br><video id="video" width="600" height="450" preload autoplay loop muted></video><div id="result" style="width:320px;color:red">Please wait for loading model.</div>');
 
 window.onload = function () {
   var video = document.getElementById('video');
@@ -42,10 +42,15 @@ window.onload = function () {
   } 
                         
 async function DetectVideo() {
-  context.translate((canvas.width + video.width) / 2, 0);
-  context.scale(-1, 1);
-  context.drawImage(video, 0, 0, video.width, video.height);
-  context.setTransform(1, 0, 0, 1, 0, 0);
+  var mirrorimage = Number(document.getElementById("mirrorimage").value);
+  if (mirrorimage==1) {
+    context.translate((canvas.width + video.width) / 2, 0);
+    context.scale(-1, 1);
+    context.drawImage(video, 0, 0, video.width, video.height);
+    context.setTransform(1, 0, 0, 1, 0, 0);
+  }
+  else
+    context.drawImage(video, 0, 0, video.width, video.height);
   await Model.estimatePoses(canvas, {flipHorizontal: false, decodingMethod: 'multi-person', maxPoseDetections: 5, scoreThreshold: 0.5, nmsRadius: 20}).then(pose => {
     //console.log(pose.score);
     //console.log(pose.keypoints);
