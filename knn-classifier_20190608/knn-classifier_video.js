@@ -1,13 +1,15 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>');
-document.write('<video id="video" width="320" height="240" preload autoplay loop muted></video><br><button id="saveModel">Save Model</button><input type="file" id="getModel"></input><br><button id="clearAllClasses">Clear All Classes</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="addExample">Train</button><select id="Class"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<span id="count" style="font-size:18px;color:red">0</span><div id="result" style="color:red">Please wait for loading model.</div><div id="train" style="position:absolute;visibility:hidden;"></div><div id="probability" style="position:absolute;visibility:hidden;"></div>');
+document.write('<video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><br>MirrorImage<select id="mirrorimage"><option value="1">yes</option><option value="0">no</option></select><br><button id="saveModel">Save Model</button><input type="file" id="getModel"></input><br><button id="clearAllClasses">Clear All Classes</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="addExample">Train</button><select id="Class"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<span id="count" style="font-size:18px;color:red">0</span><div id="result" style="color:red">Please wait for loading model.</div><div id="train" style="position:absolute;visibility:hidden;"></div><div id="probability" style="position:absolute;visibility:hidden;"></div>');
 
 window.onload = function () {
     
   var saveModel = document.getElementById("saveModel");
   var getModel = document.getElementById('getModel');
   var video = document.getElementById('video');
+  var canvas = document.getElementById('canvas'); 
+  var context = canvas.getContext('2d');       
   var clearAllClasses = document.getElementById('clearAllClasses');
   var addExample = document.getElementById('addExample');
   var Class = document.getElementById('Class');
@@ -27,11 +29,25 @@ window.onload = function () {
     video.srcObject = stream
     video.onloadedmetadata = () => {       
     video.play();
+    canvas.setAttribute("width", video.width);
+    canvas.setAttribute("height", video.height);
+    video.style.visibility="hidden";
+    video.style.position="absolute";          
     }
   })
 
   function predictClass_onclick (event) {
-    predictClass(video);
+    var mirrorimage = Number(document.getElementById("mirrorimage").value);
+    if (mirrorimage==1) {
+      context.translate((canvas.width + video.width) / 2, 0);
+      context.scale(-1, 1);
+      context.drawImage(video, 0, 0, video.width, video.height);
+      context.setTransform(1, 0, 0, 1, 0, 0);
+    }
+    else
+      context.drawImage(video, 0, 0, video.width, video.height);
+      
+    predictClass(canvas);
   }; 
     
   function clearAllClasses_onclick (event) {
@@ -42,7 +58,7 @@ window.onload = function () {
   clearAllClasses.addEventListener("click", clearAllClasses_onclick, true);    
 
   function addExample_onclick (event) {
-    addExampleImage(video, Number(Class.value));
+    addExampleImage(canvas, Number(Class.value));
     count.innerHTML = Number(count.innerHTML)+1;
   };
   addExample.addEventListener("click", addExample_onclick, true);
@@ -108,16 +124,16 @@ window.onload = function () {
     // Make a prediction.
     try
     {
-    const Image = tf.browser.fromPixels(img);
-    const xlogits = mobilenetModule.infer(Image, 'conv_preds');
-    const predict = await classifier.predictClass(xlogits);
-    //console.log(predict);
-    var msg = "<font color='red'>Result : class " + predict.label + "</font><br>";
-    for (i=0;i<Class.length;i++) {
-      if (predict.confidences[i.toString()]>=0) msg += "[train "+i+"] " + predict.confidences[i.toString()] + "<br>";
-    }
-    result.innerHTML = msg; 
-    train.innerHTML = predict.label;
+      const Image = tf.browser.fromPixels(img);
+      const xlogits = mobilenetModule.infer(Image, 'conv_preds');
+      const predict = await classifier.predictClass(xlogits);
+      //console.log(predict);
+      var msg = "<font color='red'>Result : class " + predict.label + "</font><br>";
+      for (i=0;i<Class.length;i++) {
+        if (predict.confidences[i.toString()]>=0) msg += "[train "+i+"] " + predict.confidences[i.toString()] + "<br>";
+      }
+      result.innerHTML = msg; 
+      train.innerHTML = predict.label;
       probability.innerHTML = predict.confidences[predict.label];
     }
     catch (e)
