@@ -1,2 +1,6 @@
 Blockly.Msg.KNN_CLASSIFIER_OPEN_SHOW = "机器学习(KNN) 初始化";
 Blockly.Msg.KNN_CLASSIFIER_PROPORTION_SHOW = "机器学习(KNN) 最高";
+Blockly.Msg.KNN_CLASSIFIER_WIDTH_SHOW = "视讯 (KNN) 宽度";
+Blockly.Msg.KNN_CLASSIFIER_HEIGHT_SHOW = "高度";
+Blockly.Msg.KNN_CLASSIFIER_MIRRORIMAGE_SHOW = "镜像";
+Blockly.Msg.KNN_CLASSIFIER_RESULT_SHOW = "结果";
