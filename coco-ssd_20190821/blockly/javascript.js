@@ -10,6 +10,6 @@ Blockly.JavaScript['coco_ssd_video'] = function(block) {
   var value_result_ = block.getFieldValue('result_');
   var value_frame_ = block.getFieldValue('frame_');
   var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
-  var code = 'posenet_video(' + value_width_ + ',' + value_height_ + ',"' + value_result_ + '","' + value_frame_ + '","' + value_mirrorimage_ + '");';
+  var code = 'coco_ssd_video(' + value_width_ + ',' + value_height_ + ',"' + value_result_ + '","' + value_frame_ + '","' + value_mirrorimage_ + '");';
   return code;
 };
