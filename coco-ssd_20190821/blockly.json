@@ -1,5 +1,5 @@
 {
-  "types": ["coco_ssd_object"],
+  "types": ["coco_ssd_object", "coco_ssd_video],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
