@@ -23,7 +23,7 @@ https://fustyles.github.io/webduino/coco-ssd_20190821/blockly.json
 [Smart] 
 https://blocklypro.webduino.io/#7AdJxE0YOv
 [Bit]
-https://bit.webduino.io/blockly/#r34oMEJXEAjqd
+https://bit.webduino.io/blockly/#Jyg5bbJPBZ7q4
 
 
 深度學習 (tfjs KNN-Classifier)
