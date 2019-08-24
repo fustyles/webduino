@@ -47,13 +47,13 @@ window.onload = function () {
   async function DetectVideo() {
     var mirrorimage = Number(document.getElementById("mirrorimage").value);
     if (mirrorimage==1) {
-    context.translate((canvas.width + video.width) / 2, 0);
-    context.scale(-1, 1);
-    context.drawImage(video, 0, 0, video.width, video.height);
-    context.setTransform(1, 0, 0, 1, 0, 0);
+      context.translate((canvas.width + video.width) / 2, 0);
+      context.scale(-1, 1);
+      context.drawImage(video, 0, 0, video.width, video.height);
+      context.setTransform(1, 0, 0, 1, 0, 0);
     }
     else
-    context.drawImage(video, 0, 0, video.width, video.height);   
+      context.drawImage(video, 0, 0, video.width, video.height);   
     await Model.detect(canvas).then(predictions => { 
       result.innerHTML = "";
       //console.log('Predictions: ', predictions);
