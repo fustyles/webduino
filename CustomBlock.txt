@@ -31,7 +31,7 @@ https://fustyles.github.io/webduino/knn-classifier_20190608/blockly.json
 [Smart]
 https://blocklypro.webduino.io/#RrdNJ5Jnpb
 [Bit]
-https://bit.webduino.io/blockly/#8qMJP9BEXzD3W
+https://bit.webduino.io/blockly/#r34oMM92r9mqd
 
 
 網頁互動區域擴充
