@@ -3,3 +3,12 @@ Blockly.JavaScript['mobilenet_object'] = function(block) {
   var code = 'mobilenet_object("' + value_object_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['mobilenet_video'] = function(block) { 
+  var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_result_ = block.getFieldValue('result_');
+  var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
+  var code = 'mobilenet_video(' + value_width_ + ',' + value_height_ + ',"' + value_result_ + '","' + value_mirrorimage_ + '");';
+  return code;
+};
