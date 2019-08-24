@@ -1010,7 +1010,6 @@ Blockly.Blocks['mobilenet_object'] = {
   }
 };
 
-
 Blockly.Blocks['mobilenet_video'] = {
   init: function() {
   this.appendValueInput("width_")
