@@ -1,7 +1,7 @@
 Blockly.Blocks['coco_ssd_object'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.coco_ssd_OBJECT_SHOW)
+      .appendField(Blockly.Msg.COCOSSD_OBJECT_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		["airplane","airplane"],
 		["apple","apple"],
@@ -87,5 +87,38 @@ Blockly.Blocks['coco_ssd_object'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
+  }
+};
+
+Blockly.Blocks['coco_ssd_video'] = {
+  init: function() {
+  this.appendValueInput("width_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.COCOSSD_WIDTH_SHOW);  
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.COCOSSD_HEIGHT_SHOW);	 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_RESULT_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["show","block"],
+		["hide","none"]	  
+  ]), "result_"); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_FRAME_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["show","1"],
+		["hide","0"]	  
+  ]), "frame_");	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_MIRRORIMAGE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["yes","1"],
+		["no","0"]	  
+  ]), "mirrorimage_"); 
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
   }
 };
