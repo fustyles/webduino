@@ -34,7 +34,9 @@ window.onload = function () {
       .then(stream => {
         video.srcObject = stream
         video.onloadedmetadata = () => {       
-          video.play();         
+          video.play();     
+          canvas.setAttribute("width", video.width);
+          canvas.setAttribute("height", video.height);            
           setTimeout(function(){DetectVideo(); }, 100);
         }
       })   
