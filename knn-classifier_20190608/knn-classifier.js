@@ -32,8 +32,17 @@
     else if (input_property=="probability")
       return Number(document.getElementById("probability").innerHTML);
   }
+  
+  function knn_classifier_video(input_width, input_height, input_result, input_mirrorimage) {
+    document.getElementById('video').width = input_width;
+    document.getElementById('video').height = input_height;
+    document.getElementById('result').style.display = input_result;
+    document.getElementById('mirrorimage').value = input_mirrorimage;
+  }	
+  
 
   window.knn_classifier_open = knn_classifier_open;
   window.knn_classifier_proportion = knn_classifier_proportion;
+  window.knn_classifier_video = knn_classifier_video;
 
 }(window, window.document));
