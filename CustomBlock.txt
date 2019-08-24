@@ -15,7 +15,7 @@ https://fustyles.github.io/webduino/mobilenet_20190821/blockly.json
 [Smart]
 https://blocklypro.webduino.io/#XQdbPWNAmV
 [Bit] 
-https://bit.webduino.io/blockly/#wqabVeLNQoM3Y
+https://bit.webduino.io/blockly/#03lAvveA8mNyv
 
 
 物件偵測 (tfjs coco-ssd)
