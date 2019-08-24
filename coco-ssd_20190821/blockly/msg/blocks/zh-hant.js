@@ -1,4 +1,3 @@
-Blockly.Msg.COCOSSD_OPEN_SHOW = "物件偵測(coco-ssd) 初始化";
 Blockly.Msg.COCOSSD_OBJECT_SHOW = "物件偵測(coco-ssd) 偵測物件";
 Blockly.Msg.COCOSSD_WIDTH_SHOW = "視訊 (coco-ssd) 寬度";
 Blockly.Msg.COCOSSD_HEIGHT_SHOW = "高度";
