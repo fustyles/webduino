@@ -17,7 +17,15 @@
     }
     return "";
   }
+	
+  function mobilenet_video(input_width, input_height, input_result, input_mirrorimage) {
+    document.getElementById('video').width = input_width;
+    document.getElementById('video').height = input_height;
+    document.getElementById('result').style.display = input_result;
+    document.getElementById('mirrorimage').value = input_mirrorimage;
+  }	
 
   window.mobilenet_object = mobilenet_object;
+  window.mobilenet_video = mobilenet_video;
 
 }(window, window.document));
