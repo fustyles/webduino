@@ -1,6 +1,6 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>');
-document.write('<video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><div id="result" style="width:320px;color:red">Please wait for loading model.</div>');
+document.write('<video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas>Frame<select id="frame"><option value="1">show</option><option value="0">hide</option></select>MirrorImage<select id="mirrorimage"><option value="1">yes</option><option value="0">no</option></select><div id="result" style="width:320px;color:red">Please wait for loading model.</div>');
 
 window.onload = function () {
     
@@ -45,25 +45,36 @@ window.onload = function () {
   }
                         
   async function DetectVideo() {
-    context.drawImage(video, 0, 0, video.width, video.height);    
+    var mirrorimage = Number(document.getElementById("mirrorimage").value);
+    if (mirrorimage==1) {
+    context.translate((canvas.width + video.width) / 2, 0);
+    context.scale(-1, 1);
+    context.drawImage(video, 0, 0, video.width, video.height);
+    context.setTransform(1, 0, 0, 1, 0, 0);
+    }
+    else
+    context.drawImage(video, 0, 0, video.width, video.height);   
     await Model.detect(canvas).then(predictions => { 
       result.innerHTML = "";
       //console.log('Predictions: ', predictions);
+      var frame = Number(document.getElementById("frame").value);
       if (predictions.length>0) {
         for (var i=0;i<predictions.length;i++) {
           const x = predictions[i].bbox[0];
           const y = predictions[i].bbox[1];
           const width = predictions[i].bbox[2];
           const height = predictions[i].bbox[3];
-          context.lineWidth = "3";
-          context.strokeStyle = "#00FFFF";
-          context.beginPath();
-          context.rect(x, y, width, height);
-          context.stroke(); 
-          context.lineWidth = "2";
-          context.fillStyle = "red";
-          context.font = "12px Arial";
-          context.fillText(predictions[i].class, x, y);
+          if (frame==1) {
+            context.lineWidth = "3";
+            context.strokeStyle = "#00FFFF";
+            context.beginPath();
+            context.rect(x, y, width, height);
+            context.stroke(); 
+            context.lineWidth = "2";
+            context.fillStyle = "red";
+            context.font = "12px Arial";
+            context.fillText(predictions[i].class, x, y);
+          }
           result.innerHTML+= predictions[i].class+","+Math.round(predictions[i].score,2)+","+Math.round(x)+","+Math.round(y)+","+Math.round(width)+","+Math.round(height)+"<br>";
         }
       }
