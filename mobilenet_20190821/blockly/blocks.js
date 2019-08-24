@@ -1009,3 +1009,31 @@ Blockly.Blocks['mobilenet_object'] = {
   this.setColour(65);
   }
 };
+
+
+Blockly.Blocks['mobilenet_video'] = {
+  init: function() {
+  this.appendValueInput("width_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.MOBILENET_WIDTH_SHOW);  
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.MOBILENET_HEIGHT_SHOW);	 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.MOBILENET_RESULT_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["show","block"],
+		["hide","none"]	  
+  ]), "result_"); 	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.MOBILENET_MIRRORIMAGE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["yes","1"],
+		["no","0"]	  
+  ]), "mirrorimage_"); 
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
