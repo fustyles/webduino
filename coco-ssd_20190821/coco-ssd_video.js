@@ -1,6 +1,6 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>');
-document.write('<video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas>Frame<select id="frame"><option value="1">show</option><option value="0">hide</option></select>MirrorImage<select id="mirrorimage"><option value="1">yes</option><option value="0">no</option></select><div id="result" style="width:320px;color:red">Please wait for loading model.</div>');
+document.write('<video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><br>Frame<select id="frame"><option value="1">show</option><option value="0">hide</option></select>MirrorImage<select id="mirrorimage"><option value="1">yes</option><option value="0">no</option></select><div id="result" style="width:320px;color:red">Please wait for loading model.</div>');
 
 window.onload = function () {
     
