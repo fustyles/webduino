@@ -7,3 +7,4 @@ Blockly.Msg.POSENET_PERSONS_SHOW = "Persons";
 Blockly.Msg.POSENET_RESULT_SHOW = "Result";
 Blockly.Msg.POSENET_SCORELIMIT_SHOW = "Score Limit";
 Blockly.Msg.POSENET_SKELETON_SHOW = "Skeleton";
+Blockly.Msg.POSENET_OPACITY_SHOW = "Opacity";
