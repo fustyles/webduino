@@ -13,6 +13,7 @@ Blockly.JavaScript['posenet_video'] = function(block) {
   var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
   var value_result_ = block.getFieldValue('result_');
   var value_skeleton_ = block.getFieldValue('skeleton_');
-  var code = 'posenet_video(' + value_width_ + ',' + value_height_ + ',"' + value_persons_ + '","' + value_scorelimit_ + '","' + value_mirrorimage_ + '","' + value_result_ + '","' + value_skeleton_ + '");';
+  var value_opacity_ = block.getFieldValue('opacity_');
+  var code = 'posenet_video(' + value_width_ + ',' + value_height_ + ',"' + value_persons_ + '","' + value_scorelimit_ + '","' + value_mirrorimage_ + '","' + value_result_ + '","' + value_skeleton_ + '","' + value_opacity_ + '");';
   return code;
 };
