@@ -57,7 +57,7 @@ async function DetectVideo() {
     result.innerHTML = "";  
     var scoreLimit = Number(document.getElementById("scorelimit").value);
     var skeleton = Number(document.getElementById("skeleton").value);
-    document.getElementById("video").style.opacity = Number(document.getElementById("opacity").value);
+    document.getElementById("canvas").style.opacity = Number(document.getElementById("opacity").value);
     if (pose.length>0) {
       for (var n=0;n<pose.length;n++) {
         if (n<Number(document.getElementById("persons").value)) {
