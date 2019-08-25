@@ -38,7 +38,22 @@ Blockly.Blocks['knn_classifier_video'] = {
       .appendField(new Blockly.FieldDropdown([
 		["yes","1"],
 		["no","0"]	  
-  ]), "mirrorimage_"); 
+  ]), "mirrorimage_");
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.KNN_CLASSIFIER_OPACITY_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["1","1"],
+		["0.9","0.9"],
+		["0.8","0.8"],
+		["0.7","0.7"],
+		["0.6","0.6"],	  
+		["0.5","0.5"],
+		["0.4","0.4"],
+		["0.3","0.3"],
+		["0.2","0.2"],
+		["0.1","0.1"],	
+		["0","0"]	   
+  ]), "opacity_"); 	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
