@@ -15,7 +15,6 @@ window.onload = function () {
   function ObjectDetect() {
     cocoSsd.load().then(cocoSsd_model => {
       Model = cocoSsd_model;
-      console.log(Model);
       result.innerHTML = "";
       setTimeout(function(){ startvideo(); }, 2000);
     }); 
