@@ -16,7 +16,7 @@
     return "";
   }
 	
-  function posenet_video(input_width, input_height, input_persons, input_scorelimit, input_mirrorimage, input_result, input_skeleton) {
+  function posenet_video(input_width, input_height, input_persons, input_scorelimit, input_mirrorimage, input_result, input_skeleton, input_opacity) {
     document.getElementById('video').width = input_width;
     document.getElementById('video').height = input_height;
     document.getElementById('persons').value = input_persons; 
@@ -24,6 +24,7 @@
     document.getElementById('mirrorimage').value = input_mirrorimage;
     document.getElementById('result').style.display = input_result;
     document.getElementById('skeleton').value = input_skeleton;
+    document.getElementById('canvas').style.opacity = input_opacity;
   }
 
   window.posenet_person = posenet_person;
