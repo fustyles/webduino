@@ -24,7 +24,7 @@
     document.getElementById('mirrorimage').value = input_mirrorimage;
     document.getElementById('result').style.display = input_result;
     document.getElementById('skeleton').value = input_skeleton;
-    document.getElementById('canvas').style.opacity = input_opacity;
+    document.getElementById('opacity').value = input_opacity;
   }
 
   window.posenet_person = posenet_person;
