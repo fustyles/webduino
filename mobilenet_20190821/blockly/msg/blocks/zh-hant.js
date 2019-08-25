@@ -3,3 +3,4 @@ Blockly.Msg.MOBILENET_WIDTH_SHOW = "視訊 (mobilenet) 寬度";
 Blockly.Msg.MOBILENET_HEIGHT_SHOW = "高度";
 Blockly.Msg.MOBILENET_MIRRORIMAGE_SHOW = "鏡像";
 Blockly.Msg.MOBILENET_RESULT_SHOW = "結果";
+Blockly.Msg.MOBILENET_OPACITY_SHOW = "透明度";
