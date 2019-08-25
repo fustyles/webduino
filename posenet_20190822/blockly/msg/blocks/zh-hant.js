@@ -7,3 +7,4 @@ Blockly.Msg.POSENET_PERSONS_SHOW = "偵測人數";
 Blockly.Msg.POSENET_RESULT_SHOW = "結果";
 Blockly.Msg.POSENET_SCORELIMIT_SHOW = "信心底限";
 Blockly.Msg.POSENET_SKELETON_SHOW = "骨架";
+Blockly.Msg.POSENET_OPACITY_SHOW = "透明度";
