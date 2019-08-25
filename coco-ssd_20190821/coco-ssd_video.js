@@ -1,6 +1,6 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>');
-document.write('<video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><br>Frame<select id="frame"><option value="1">show</option><option value="0">hide</option></select>MirrorImage<select id="mirrorimage"><option value="1">yes</option><option value="0">no</option></select><div id="result" style="width:320px;color:red">Please wait for loading model.</div>');
+document.write('<div id="region"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><br>Frame<select id="frame"><option value="1">show</option><option value="0">hide</option></select>MirrorImage<select id="mirrorimage"><option value="1">yes</option><option value="0">no</option></select>Opacity<select id="opacity"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><br><div id="result" style="width:320px;color:red">Please wait for loading model.</div></div>');
 
 window.onload = function () {
     
@@ -57,6 +57,7 @@ window.onload = function () {
     await Model.detect(canvas).then(predictions => { 
       result.innerHTML = "";
       //console.log('Predictions: ', predictions);
+      document.getElementById("region").style.opacity = Number(document.getElementById("opacity").value);
       var frame = Number(document.getElementById("frame").value);
       if (predictions.length>0) {
         for (var i=0;i<predictions.length;i++) {
