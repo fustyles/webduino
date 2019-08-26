@@ -72,6 +72,8 @@
         obj.style.background="";
         obj.style.backgroundImage="url("+input_value+")";
       }
+      else if (input_property=="style")
+        obj.style = input_value;	    
       else
       {
         if (obj.rows.length>0){
@@ -282,6 +284,8 @@
         obj.style.background = input_value;
       else if (input_property=="innerHTML")
         obj.innerHTML = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
     } 
   }
   
@@ -532,7 +536,9 @@
       else if (input_property=="border")
         obj.style.border = input_value;
       else if (input_property=="backgroundColor")
-        obj.style.backgroundColor = input_value;	    
+        obj.style.backgroundColor = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }  
   
@@ -831,7 +837,9 @@
       else if (input_property=='moveY')
         obj.style.top = (Number(obj.style.top.replace(/px/ig,""))+Number(input_value))+"px";  
       else if (input_property=="draggable")
-        obj.draggable = input_value;	    
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }  
   
@@ -1261,7 +1269,9 @@
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
-        obj.draggable = input_value;	    
+        obj.draggable = input_value;	
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }
  
@@ -1382,7 +1392,9 @@
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
-        obj.draggable = input_value;	    
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }
 
@@ -1495,7 +1507,7 @@
       else if (input_property=="color")
         obj.style.color = input_value;
       else if (input_property=="fontsize")
-        obj.style.fontSize = input_value + "px";		    
+        obj.style.fontSize = input_value + "px";	    
       else if (input_property=="option") {
        if (obj.options.length>0) {
           while (obj.options.length>0) {
@@ -1526,7 +1538,9 @@
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
-        obj.draggable = input_value;	    
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }
 
@@ -1672,7 +1686,9 @@
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
-        obj.draggable = input_value;		    
+        obj.draggable = input_value;	
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }
 
@@ -1800,7 +1816,9 @@
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
-        obj.draggable = input_value;		    
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }
 
@@ -1953,7 +1971,9 @@
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
-        obj.draggable = input_value;		    
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }
 
