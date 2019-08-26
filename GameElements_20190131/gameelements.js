@@ -76,6 +76,8 @@
         obj.style.background="";
         obj.style.backgroundImage="url("+input_value+")";
       }
+      else if (input_property=="style")
+        obj.style = input_value;	    
       else
       {
         if (obj.rows.length>0){
@@ -286,6 +288,8 @@
         obj.style.background = input_value;
       else if (input_property=="innerHTML")
         obj.innerHTML = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;		    
     } 
   }
   
@@ -536,7 +540,9 @@
       else if (input_property=="border")
         obj.style.border = input_value;
       else if (input_property=="backgroundColor")
-        obj.style.backgroundColor = input_value;	    
+        obj.style.backgroundColor = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;		    
     }
   }  
   
@@ -835,7 +841,9 @@
       else if (input_property=='moveY')
         obj.style.top = (Number(obj.style.top.replace(/px/ig,""))+Number(input_value))+"px";  
       else if (input_property=="draggable")
-        obj.draggable = input_value;	    	    
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }  
   
@@ -849,7 +857,7 @@
     }   
     if (document.getElementById("gameimage_"+input_id))
     {
-	  var obj = document.getElementById("gameimage_"+input_id);
+      var obj = document.getElementById("gameimage_"+input_id);
       if (input_property=='url')
         return obj.src;
       else if (input_property=='width')
@@ -1266,7 +1274,9 @@
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
-        obj.draggable = input_value;	    
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }
  
@@ -1387,7 +1397,9 @@
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
-        obj.draggable = input_value;	    
+        obj.draggable = input_value;	
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }
 
@@ -1531,7 +1543,9 @@
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
-        obj.draggable = input_value;	    
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }
 
@@ -1677,7 +1691,9 @@
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
-        obj.draggable = input_value;		    
+        obj.draggable = input_value;	
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }
 
@@ -1807,7 +1823,9 @@
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
-        obj.draggable = input_value;		    
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }
 
@@ -1960,7 +1978,9 @@
       else if (input_property=="disabled")
         obj.disabled = input_value;
       else if (input_property=="draggable")
-        obj.draggable = input_value;		    
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
     }
   }
 
@@ -2039,7 +2059,9 @@ function HextoRgb(color) {
     else if (input_property=="backgroundImage") 
       document.body.style.backgroundImage = "url('"+input_value+"')";
     else if (input_property=="overflow") 
-      document.body.style.overflow = input_value; 
+      document.body.style.overflow = input_value;
+    else if (input_property=="style")
+      obj.style = input_value;
     else if (input_property=="droppable") {
       if (input_value==1) {
         document.body.setAttribute("ondrop","javascript:var obj=document.getElementById(event.dataTransfer.getData('text/plain'));obj.style.position='static';obj.style.left=null;obj.style.top=null;event.preventDefault();if(event.target.tagName!='BODY') {return false;} else {event.target.appendChild(obj);}");
