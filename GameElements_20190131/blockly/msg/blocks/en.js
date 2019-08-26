@@ -171,4 +171,4 @@ Blockly.Msg.DIV_DELETE_SHOW = "Delete";
 Blockly.Msg.SETWINDOW_SHOW = "Set Run Window";
 Blockly.Msg.CANVAS_GETCOLOR_SHOW = "Get color";
 Blockly.Msg.TIME_DELAY_SHOW = "Delay (s)";
-Blockly.Msg.LOAD_JS_SHOW = "GameElements initial (Load JS files for new blocks)";
+Blockly.Msg.LOAD_JS_SHOW = "GameElements initial";
