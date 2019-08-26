@@ -171,4 +171,4 @@ Blockly.Msg.DIV_DELETE_SHOW = "刪除";
 Blockly.Msg.SETWINDOW_SHOW = "設定執行視窗";
 Blockly.Msg.CANVAS_GETCOLOR_SHOW = "取得色碼值";
 Blockly.Msg.TIME_DELAY_SHOW = "等待 (秒)";
-Blockly.Msg.LOAD_JS_SHOW = "遊戲元素初始化(此積木請刪除)";
+Blockly.Msg.LOAD_JS_SHOW = "遊戲元素初始化(此積木可移除)";
