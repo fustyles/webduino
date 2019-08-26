@@ -171,4 +171,4 @@ Blockly.Msg.DIV_DELETE_SHOW = "删除";
 Blockly.Msg.SETWINDOW_SHOW = "设定执行视窗";
 Blockly.Msg.CANVAS_GETCOLOR_SHOW = "取得色码值";
 Blockly.Msg.TIME_DELAY_SHOW = "等待 (秒)";
-Blockly.Msg.LOAD_JS_SHOW = "游戏元素初始化(此积木可移除)";
+Blockly.Msg.LOAD_JS_SHOW = "游戏元素初始化(此积木已废除)";
