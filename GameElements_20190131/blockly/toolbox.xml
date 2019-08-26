@@ -1,6 +1,4 @@
-<category id="catGameElements">
-  <block type="gameelements_1">
-  </block>  
+<category id="catGameElements"> 
   <block type="time_delay">
     <value name="seconds">
       <block type="math_number">
