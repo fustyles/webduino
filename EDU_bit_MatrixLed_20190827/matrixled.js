@@ -107,6 +107,10 @@
   var marqueetimeid;
   var marqueeactive;
 
+  function MatrixLed_brightness(input_value_) {
+    _board_._bit_matrix_.brightness(input_value_);
+  }
+  
   function MatrixLed_color(input_color_) {
     MatrixLedcolor = input_color_;
   }
