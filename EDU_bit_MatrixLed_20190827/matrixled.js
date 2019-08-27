@@ -797,6 +797,7 @@
     _board_._bit_matrix_.setColor(ledtable);
   }
   
+  window.MatrixLed_brightness = MatrixLed_brightness;
   window.MatrixLed_clear = MatrixLed_clear;
   window.MatrixLed_matrix = MatrixLed_matrix;
   window.MatrixLed_matrix_color = MatrixLed_matrix_color;
