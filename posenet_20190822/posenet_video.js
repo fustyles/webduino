@@ -184,7 +184,7 @@ async function DetectVideo() {
         }
       }
     }  
-    setTimeout(function(){DetectVideo(); }, 200);
+    setTimeout(function(){DetectVideo(); }, 100);
   });
 }
 }
