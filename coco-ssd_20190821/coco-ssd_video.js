@@ -27,9 +27,7 @@ window.onload = function () {
       .getUserMedia({
         audio: false,
         video: {
-          facingMode: "user",
-          width: 320,
-          height: 240
+          facingMode: "user"
         }
       })
       .then(stream => {
