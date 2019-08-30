@@ -238,6 +238,8 @@ https://fustyles.github.io/webduino/WebBit_20190225/blockly.json
 http://blocklypro.webduino.io/?demo=demo-area-01#XOVpjL5oBe
 [bit]
 http://bit.webduino.io/blockly/#Vyjonr4d2JPRY
+[Wibbit韌體]
+https://github.com/fustyles/Arduino/blob/master/WebBit_ESP32_MyBlockly_JSON.ino
 
 
 Bit & Smart 網頁控制介面
