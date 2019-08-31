@@ -26,9 +26,7 @@ window.onload = function () {
         }
       })   
   } 
-	
-  DetectVideo();
-                        
+	                    
   async function DetectVideo() {
 
     var mirrorimage = Number(document.getElementById("mirrorimage").value);
