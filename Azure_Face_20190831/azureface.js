@@ -113,7 +113,7 @@ function DetectVideo() {
       context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     
     }
     faceApi_result += "]";
-    result.innerHTML = faceApi_result.replace(/},]/g,"}]").replace(/[/g,"").replace(/]/g,"");
+    result.innerHTML = faceApi_result.replace(/},]/g,"}]").replace(/\[/g,"").replace(/\]/g,"");
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, 3000);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
