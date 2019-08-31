@@ -104,12 +104,10 @@ function DetectVideo() {
       faceApi_result += ";";
 
       context.lineWidth = "3";
-      context.strokeStyle = "#00FFFF";
+      context.strokeStyle = "red";
       context.beginPath();
       context.rect(json[i]["faceRectangle"]["left"], json[i]["faceRectangle"]["top"], json[i]["faceRectangle"]["width"], json[i]["faceRectangle"]["height"]);
       context.stroke(); 
-      context.lineWidth = "3";
-      context.fillStyle = "red";
       context.font = "16px Arial";
       context.fillStyle = "green";
       context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     
