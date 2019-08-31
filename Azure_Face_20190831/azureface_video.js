@@ -58,26 +58,22 @@ window.onload = function () {
 	const imagefile = new Blob([u8], { type: mime });
 	console.log(imagefile);
 
+    // Perform the REST API call.
+	$.ajax({
+	    url: faceApi_url,
+	    // Request headers.
+	    beforeSend: function(xhrObj){
+		xhrObj.setRequestHeader("Content-Type","application/json");
+		xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceApi_key);
+	    },
+	    type: "POST",
+	    // Request body.
+	    data: imagefile,
+	})
 
-	  
-	  
-	  
-	          // Perform the REST API call.
-        $.ajax({
-            url: faceApi_url,
-            // Request headers.
-            beforeSend: function(xhrObj){
-                xhrObj.setRequestHeader("Content-Type","application/json");
-                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceApi_key);
-            },
-            type: "POST",
-            // Request body.
-            data: imagefile,
-        })
-    
-        .done(function(data) {
-            // Show formatted JSON on webpage.
-            $("#result").val(JSON.stringify(data, null, 2));
+	.done(function(data) {
+	    // Show formatted JSON on webpage.
+	    $("#result").val(JSON.stringify(data, null, 2));
 		/*
 	      faceApi_result += "faceId,";
 	      faceApi_result += json[i]["faceId"]; 
@@ -91,17 +87,17 @@ window.onload = function () {
 	      faceApi_result += json[i]["recognitionModel"];
 	      faceApi_result += ";";
 	      */
-        })
-        .fail(function(jqXHR, textStatus, errorThrown) {
-            // Display error message.
-            var errorString = (errorThrown === "") ?
-                "Error. " : errorThrown + " (" + jqXHR.status + "): ";
-            errorString += (jqXHR.responseText === "") ?
-                "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
-                    jQuery.parseJSON(jqXHR.responseText).message :
-                        jQuery.parseJSON(jqXHR.responseText).error.message;
-            alert(errorString);
-        });
+	})
+	.fail(function(jqXHR, textStatus, errorThrown) {
+	    // Display error message.
+	    var errorString = (errorThrown === "") ?
+		"Error. " : errorThrown + " (" + jqXHR.status + "): ";
+	    errorString += (jqXHR.responseText === "") ?
+		"" : (jQuery.parseJSON(jqXHR.responseText).message) ?
+		    jQuery.parseJSON(jqXHR.responseText).message :
+			jQuery.parseJSON(jqXHR.responseText).error.message;
+	    alert(errorString);
+	});
 	  
 	  
 
