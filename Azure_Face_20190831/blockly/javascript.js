@@ -6,7 +6,6 @@ Blockly.JavaScript['azure_face_settings'] = function(block) {
 };
 
 Blockly.JavaScript['azure_face_part'] = function(block) { 
-  DetectVideo();
   var value_part_ = block.getFieldValue('part_');
   var code = 'azureface_part("' + value_part_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
