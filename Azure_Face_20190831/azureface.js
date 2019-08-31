@@ -19,7 +19,8 @@ function azureface_settings(input_resourceName, input_key){
 }
 
 async function azureface_part(input_part){
-  return DetectVideo();
+  DetectVideo();
+  return "";
 }
 
 function azureface_video(input_width, input_height, input_result, input_opacity) {
