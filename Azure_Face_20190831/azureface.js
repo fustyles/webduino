@@ -21,13 +21,10 @@ async function azureface_part(input_part){
   return DetectVideo();
 }
 
-function azureface_video(input_width, input_height, input_mirrorimage, input_result, input_frame, input_opacity) {
+function azureface_video(input_width, input_height, input_result) {
   document.getElementById('video').width = input_width;
   document.getElementById('video').height = input_height;
-  document.getElementById('mirrorimage').value = input_mirrorimage;
   document.getElementById('result').style.display = input_result;
-  document.getElementById('frame').value = input_frame;
-  document.getElementById('opacity').value = input_opacity;
 }
   
 function DetectVideo() {
