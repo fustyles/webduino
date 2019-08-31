@@ -4,6 +4,7 @@
 
 'use strict';
   
+var region = document.getElementById('region');
 var video = document.getElementById('video');
 var canvas = document.getElementById('gamecanvas_azureface'); 
 var context = canvas.getContext('2d');
@@ -21,10 +22,19 @@ async function azureface_part(input_part){
   return DetectVideo();
 }
 
-function azureface_video(input_width, input_height, input_result) {
-  document.getElementById('video').width = input_width;
-  document.getElementById('video').height = input_height;
-  document.getElementById('result').style.display = input_result;
+function azureface_video(input_width, input_height, input_mirrorimage, input_result, input_opacity) {
+  video.width = input_width;
+  video.height = input_height;
+  if (input_mirrorimage=="1") {
+    context.translate((canvas.width + video.width) / 2, 0);
+    context.scale(-1, 1);
+    context.drawImage(video, 0, 0, video.width, video.height);
+    context.setTransform(1, 0, 0, 1, 0, 0);
+  }
+  else
+    context.drawImage(video, 0, 0, video.width, video.height);
+  result.style.display = input_result;
+  region.style.opacity = input_opacity;
 }
   
 function DetectVideo() {
