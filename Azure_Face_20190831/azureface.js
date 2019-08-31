@@ -20,7 +20,7 @@ function azureface_settings(input_resourceName, input_key){
 async function azureface_part(input_part){
   DetectVideo();
   await delay(10);
-  return faceApi_result;
+  return JSON.stringify(faceApi_result);
   /*
 
   */ 
@@ -90,7 +90,7 @@ function DetectVideo() {
     processData: false
   })
   .done(function(json) {
-    result.innerHTML = JSON.stringify(json);
+    result.innerHTML = "";
     json = eval(json);
     faceApi_result = "";
     for (var i in json) 
@@ -126,7 +126,7 @@ function DetectVideo() {
 	  faceApi_result += json[i]["faceAttributes"]["emotion"]["surprise"];	   
 	  faceApi_result += ";";
     }
-	  console.log(faceApi_result);
+    result.innerHTML = JSON.stringify(faceApi_result);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
