@@ -18,7 +18,8 @@ function azureface_settings(input_resourceName, input_key){
 }
 
 function azureface_part(input_part){
-  return DetectVideo();
+  DetectVideo();
+  return result.innerHTML;
   /*
   faceApi_result += "faceId,";
   faceApi_result += json[i]["faceId"]; 
