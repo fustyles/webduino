@@ -70,7 +70,7 @@ window.onload = function () {
 	  processData : false,
 	  success: function(json)
 	  {
-		faceApi_result = "";
+	    faceApi_result = "";
 	    console.log(json);
 	    json = eval(json);
 	    for (var i in json) {
@@ -87,11 +87,13 @@ window.onload = function () {
 	      faceApi_result += json[i]["recognitionModel"];
 	      faceApi_result += ";";
 		
-		  console.log(json[i]);
+              //console.log(json[i]);
+	      alert(json[i]);
 	    }
 	  },
-	  error: function(exception) {
-		  console.log('fail');
+	  error: functionalert(json[i]);(exception) {
+	    //console.log("fail");
+	    alert("fail");
 	  }
     });
 
@@ -110,7 +112,9 @@ window.onload = function () {
 	  context.fillText(predictions[i].class, x, y);
 	}
 	*/
-    setTimeout(function(){DetectVideo(); }, 100);
+	  
+	  
+    //setTimeout(function(){DetectVideo(); }, 100);
   }
 	
   startvideo();
