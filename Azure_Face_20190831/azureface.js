@@ -10,6 +10,7 @@
    function azureface_settings(input_resourceName, input_key){
 	faceApi_ResourceName = "https://" + input_resourceName.trim() + ".cognitiveservices.azure.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=true&recognitionModel=recognition_01&returnRecognitionModel=true&detectionModel=detection_01&returnFaceAttributes=emotion,gender,age";
 	faceApi_Key = input_key;
+	   console.log(input_key);
 	console.log(faceApi_ResourceName);
 	console.log(faceApi_Key);
    }
