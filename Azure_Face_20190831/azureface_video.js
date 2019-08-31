@@ -67,24 +67,9 @@ window.onload = function () {
 	    data: imagefile,
 	    processData: false
 	})
-
 	.done(function(data) {
-	    // Show formatted JSON on webpage.
 	    result.innerHTML = JSON.stringify(data);
-		/*
-	      faceApi_result += "faceId,";
-	      faceApi_result += json[i]["faceId"]; 
-	      faceApi_result += "faceRectangle,";
-	      faceApi_result += json[i]["faceRectangle"];            
-	      faceApi_result += ",faceLandmarks,";
-	      faceApi_result += json[i]["faceLandmarks"];  
-	      faceApi_result += ",faceAttributes,";
-	      faceApi_result += json[i]["faceAttributes"];  
-	      faceApi_result += ",recognitionModel,";
-	      faceApi_result += json[i]["recognitionModel"];
-	      faceApi_result += ";";
-	      */
-	     setTimeout(function(){ DetectVideo(); }, 100);
+	    setTimeout(function(){ DetectVideo(); }, 100);
 		
 	})
 	.fail(function(jqXHR, textStatus, errorThrown) {
@@ -96,7 +81,7 @@ window.onload = function () {
 		    jQuery.parseJSON(jqXHR.responseText).message :
 			jQuery.parseJSON(jqXHR.responseText).error.message;
 	    result.innerHTML = errorString;
-		setTimeout(function(){ DetectVideo(); }, 100);
+	    setTimeout(function(){ DetectVideo(); }, 100);
 	});
 	  
 	  
