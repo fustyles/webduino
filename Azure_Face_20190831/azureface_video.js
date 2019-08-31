@@ -40,13 +40,10 @@ window.onload = function () {
     else
       context.drawImage(video, 0, 0, video.width, video.height);
     document.getElementById("region").style.opacity = Number(document.getElementById("opacity").value);
-    /*
+ 
     var faceApi_Key = document.getElementById('faceApi_Key').innerHTML ;
     var faceApi_ResourceName = document.getElementById('faceApi_ResourceName').innerHTML;
-    if (faceApi_Key == ""||faceApi_ResourceName == "") return;
-	  
-    console.log("key = " + faceApi_Key);
-    console.log("ResourceName = " + faceApi_ResourceName); 	  
+    if (faceApi_Key == ""||faceApi_ResourceName == "") return;	  
 
 	const dataURL = canvas.toDataURL('image/png');
 	const blobBin = atob(dataURL.split(',')[1]);
@@ -98,7 +95,6 @@ window.onload = function () {
 	  }
     });
 
-   */
 
     /*
 	var frame = Number(document.getElementById("frame").value);
@@ -114,16 +110,8 @@ window.onload = function () {
 	  context.fillText(predictions[i].class, x, y);
 	}
 	*/
-  
-
-
-
-
-
-
-
     setTimeout(function(){DetectVideo(); }, 100);
   }
 	
-    startvideo();
+  startvideo();
 }
