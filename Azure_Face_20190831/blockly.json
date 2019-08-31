@@ -1,5 +1,5 @@
 {
-  "types": ["azure_face_settings", "azure_face_part", "azure_face_video"],
+  "types": ["azure_face_settings", "azure_face_detect", "azure_face_get", "azure_face_video"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
