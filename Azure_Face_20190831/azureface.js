@@ -3,18 +3,12 @@
 +(function (window, document) {
 
   'use strict';
-
-   var faceApi_ResourceName = "";
-   var faceApi_Key = "";
    	
    function azureface_settings(input_resourceName, input_key){
-	   console.log(input_resourceName);
-	   console.log(input_key);
-     //faceApi_ResourceName = "https://" + input_resourceName.trim() + ".cognitiveservices.azure.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=true&recognitionModel=recognition_01&returnRecognitionModel=true&detectionModel=detection_01&returnFaceAttributes=emotion,gender,age";
-     //faceApi_Key = input_key;
-     
-     //console.log(faceApi_ResourceName);
-     //console.log(faceApi_Key);
+     console.log(input_resourceName);
+     console.log(input_key);
+     document.getElementById('faceApi_ResourceName').innerHTML = "https://" + input_resourceName.trim() + ".cognitiveservices.azure.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=true&recognitionModel=recognition_01&returnRecognitionModel=true&detectionModel=detection_01&returnFaceAttributes=emotion,gender,age";
+     document.getElementById('faceApi_Key').innerHTML = input_key;
    }
 
    function azureface_part(input_part){
@@ -30,8 +24,6 @@
     document.getElementById('opacity').value = input_opacity;
   }
 
-  window.faceApi_Key = faceApi_Key;
-  window.faceApi_ResourceName = faceApi_ResourceName;
   window.azureface_settings = azureface_settings;
   window.azureface_part = azureface_part;
   window.azureface_video = azureface_video;
