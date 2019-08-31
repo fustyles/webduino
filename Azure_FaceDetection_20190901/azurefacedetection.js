@@ -94,54 +94,43 @@ function DetectVideo() {
 		  faceApi_result += json[i]["faceAttributes"]["gender"]; 
 		  faceApi_result += ",";	    
 		  faceApi_result += json[i]["faceAttributes"]["age"]; 
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["emotion"]["anger"];
+
+			
 		  if (json[i]["faceAttributes"]["emotion"]["anger"]>max) { 
 			maxEmotion="anger";
 			max = json[i]["faceAttributes"]["emotion"]["anger"];
 		  }
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["emotion"]["contempt"];
 		  if (json[i]["faceAttributes"]["emotion"]["contempt"]>max) { 
 			maxEmotion="contempt";
 			max = json[i]["faceAttributes"]["emotion"]["contempt"];
 		  }      
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["emotion"]["disgust"];
 		  if (json[i]["faceAttributes"]["emotion"]["disgust"]>max) { 
 			maxEmotion="disgust";
 			max = json[i]["faceAttributes"]["emotion"]["disgust"];
 		  }      
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["emotion"]["fear"];
 		  if (json[i]["faceAttributes"]["emotion"]["fear"]>max) { 
 			maxEmotion="fear";
 			max = json[i]["faceAttributes"]["emotion"]["fear"];
 		  }      
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["emotion"]["happiness"];
 		  if (json[i]["faceAttributes"]["emotion"]["happiness"]>max) { 
 			maxEmotion="happiness";
 			max = json[i]["faceAttributes"]["emotion"]["happiness"];
 		  }      
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["emotion"]["neutral"];
 		  if (json[i]["faceAttributes"]["emotion"]["neutral"]>max) { 
 			maxEmotion="neutral";
 			max = json[i]["faceAttributes"]["emotion"]["neutral"];
 		  }      
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["emotion"]["sadness"];
 		  if (json[i]["faceAttributes"]["emotion"]["sadness"]>max) { 
 			maxEmotion="sadness";
 			max = json[i]["faceAttributes"]["emotion"]["sadness"];
 		  }      
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["emotion"]["surprise"];	
 		  if (json[i]["faceAttributes"]["emotion"]["surprise"]>max) { 
 			maxEmotion="surprise";
 			max = json[i]["faceAttributes"]["emotion"]["surprise"];
-		  }      
+		  } 
+		  faceApi_result += ",";	    
+		  faceApi_result += maxEmotion;
+			
 		  faceApi_result += ",";	    
 		  faceApi_result += json[i]["faceAttributes"]["headPose"]; 
 		  faceApi_result += ",";	    
