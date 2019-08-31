@@ -22,7 +22,8 @@ window.onload = function () {
         video.onloadedmetadata = () => {       
           video.play();
           canvas.setAttribute("width", video.width);
-          canvas.setAttribute("height", video.height);   
+          canvas.setAttribute("height", video.height); 
+		DetectVideo();
         }
       })   
   } 
@@ -86,7 +87,6 @@ window.onload = function () {
 	      faceApi_result += ";";
 	      */
 		
-	    startvideo()
 	})
 	.fail(function(jqXHR, textStatus, errorThrown) {
 	    // Display error message.
@@ -97,7 +97,6 @@ window.onload = function () {
 		    jQuery.parseJSON(jqXHR.responseText).message :
 			jQuery.parseJSON(jqXHR.responseText).error.message;
 	    alert(errorString);
-	    startvideo()
 	});
 	  
 	  
