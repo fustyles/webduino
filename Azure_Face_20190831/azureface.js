@@ -108,8 +108,7 @@ function DetectVideo() {
 	    canvas.style.display = "block";
 	    setTimeout(( () => canvas.style.display = "none" ), 2000);   
     }
-    result.innerHTML = JSON.stringify(faceApi_result);
-    return result.innerHTML;
+    result.innerHTML = faceApi_result;
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
@@ -120,7 +119,6 @@ function DetectVideo() {
       jQuery.parseJSON(jqXHR.responseText).message :
     jQuery.parseJSON(jqXHR.responseText).error.message;
     result.innerHTML = errorString;
-    return "";
   });
 }
 
