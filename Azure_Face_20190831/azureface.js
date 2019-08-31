@@ -70,6 +70,9 @@ function DetectVideo() {
     faceApi_result = "";
     for (var i in json) 
     {
+      var max="";
+      var maxEmotion="";
+      
       faceApi_result += i;      
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceId"]; 
@@ -87,20 +90,52 @@ function DetectVideo() {
       faceApi_result += json[i]["faceAttributes"]["age"]; 
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["anger"];
+      if (["faceAttributes"]["emotion"]["anger"]>max) { 
+        maxEmotion="anger";
+        max = ["faceAttributes"]["emotion"]["anger"];
+      }
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["contempt"];
+      if (["faceAttributes"]["emotion"]["contempt"]>max) { 
+        maxEmotion="contempt";
+        max = ["faceAttributes"]["emotion"]["contempt"];
+      }      
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["disgust"];
+      if (["faceAttributes"]["emotion"]["disgust"]>max) { 
+        maxEmotion="disgust";
+        max = ["faceAttributes"]["emotion"]["disgust"];
+      }      
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["fear"];
+      if (["faceAttributes"]["emotion"]["fear"]>max) { 
+        maxEmotion="fear";
+        max = ["faceAttributes"]["emotion"]["fear"];
+      }      
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["happiness"];
+      if (["faceAttributes"]["emotion"]["happiness"]>max) { 
+        maxEmotion="happiness";
+        max = ["faceAttributes"]["emotion"]["happiness"];
+      }      
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["neutral"];
+      if (["faceAttributes"]["emotion"]["neutral"]>max) { 
+        maxEmotion="neutral";
+        max = ["faceAttributes"]["emotion"]["neutral"];
+      }      
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["sadness"];
+      if (["faceAttributes"]["emotion"]["sadness"]>max) { 
+        maxEmotion="sadness";
+        max = ["faceAttributes"]["emotion"]["sadness"];
+      }      
       faceApi_result += ",";	    
-      faceApi_result += json[i]["faceAttributes"]["emotion"]["surprise"];	   
+      faceApi_result += json[i]["faceAttributes"]["emotion"]["surprise"];	
+      if (["faceAttributes"]["emotion"]["surprise"]>max) { 
+        maxEmotion="surprise";
+        max = ["faceAttributes"]["emotion"]["surprise"];
+      }      
       faceApi_result += "<br>";
 
       context.lineWidth = "3";
@@ -110,7 +145,7 @@ function DetectVideo() {
       context.stroke(); 
       context.font = "16px Arial";
       context.fillStyle = "#99FF99";
-      context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     
+      context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"]+", "+maxEmotion, json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     
     }
     if (faceApi_result!="") 
       faceApi_result = faceApi_result.substr(0,faceApi_result.length-4);
