@@ -109,7 +109,7 @@ function DetectVideo() {
       context.rect(json[i]["faceRectangle"]["left"], json[i]["faceRectangle"]["top"], json[i]["faceRectangle"]["width"], json[i]["faceRectangle"]["height"]);
       context.stroke(); 
       context.font = "16px Arial";
-      context.fillStyle = "green";
+      context.fillStyle = "#99FF99";
       context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     
     }
     faceApi_result += "]";
