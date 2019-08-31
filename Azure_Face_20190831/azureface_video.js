@@ -94,7 +94,7 @@ window.onload = function () {
 		"" : (jQuery.parseJSON(jqXHR.responseText).message) ?
 		    jQuery.parseJSON(jqXHR.responseText).message :
 			jQuery.parseJSON(jqXHR.responseText).error.message;
-	    alert(errorString);
+	    result.innerHTML = errorString;
 	});
 	  
 	  
