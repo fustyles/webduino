@@ -1,0 +1,1 @@
+MSG.azurefacedetection = "Face Detection (Azure)";
