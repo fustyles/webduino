@@ -110,7 +110,7 @@ function DetectVideo() {
       canvas.style.display = "block";      
     }
     result.innerHTML = faceApi_result;
-    setTimeout(( () => {canvas.style.display = "none";video.style.display = "block;} ), 2000);
+    setTimeout(( () => canvas.style.display = "none";video.style.display = "block; ), 2000);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
