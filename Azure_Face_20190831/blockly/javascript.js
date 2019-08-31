@@ -5,9 +5,13 @@ Blockly.JavaScript['azure_face_settings'] = function(block) {
   return code;
 };
 
-Blockly.JavaScript['azure_face_part'] = function(block) { 
-  var value_part_ = block.getFieldValue('part_');
-  var code = 'azureface_part("' + value_part_ + '")';
+Blockly.JavaScript['azure_face_detect'] = function(block) { 
+  var code = 'azureface_detect();\n';
+  return code;
+};
+
+Blockly.JavaScript['azure_face_get'] = function(block) { 
+  var code = 'azureface_get()';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
