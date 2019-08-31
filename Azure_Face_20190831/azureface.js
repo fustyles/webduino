@@ -34,6 +34,82 @@ document.getElementById('result').style.display = input_result;
 document.getElementById('frame').value = input_frame;
 document.getElementById('opacity').value = input_opacity;
 }
+	
+  function DetectVideo() {
+
+    var mirrorimage = Number(document.getElementById("mirrorimage").value);
+    if (mirrorimage==1) {
+      context.translate((canvas.width + video.width) / 2, 0);
+      context.scale(-1, 1);
+      context.drawImage(video, 0, 0, video.width, video.height);
+      context.setTransform(1, 0, 0, 1, 0, 0);
+    }
+    else
+      context.drawImage(video, 0, 0, video.width, video.height);
+    document.getElementById("region").style.opacity = Number(document.getElementById("opacity").value);
+ 
+    var faceApi_key = document.getElementById('faceApi_Key').innerHTML ;
+    var faceApi_url = document.getElementById('faceApi_ResourceName').innerHTML;
+    if (faceApi_key == ""||faceApi_url == "") return;	  
+
+	const dataURL = canvas.toDataURL('image/png');
+	const blobBin = atob(dataURL.split(',')[1]);
+	const mime = dataURL.split(',')[0].split(':')[1].split(';')[0];
+	const arr = [];
+	for (let i = 0; i < blobBin.length; i++) {
+		arr.push(blobBin.charCodeAt(i));
+	}
+	const u8 = new Uint8Array(arr);
+	const imagefile = new Blob([u8], { type: mime });
+
+    // Perform the REST API call.
+	$.ajax({
+	    url: faceApi_url,
+	    // Request headers.
+	    beforeSend: function(xhrObj){
+		xhrObj.setRequestHeader("Content-Type","application/octet-stream");
+		xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceApi_key);
+		xhrObj.setRequestHeader("Content-Length", imagefile.length);		    
+	    },
+	    type: "POST",
+	    // Request body.
+	    data: imagefile,
+	    processData: false
+	})
+	.done(function(data) {
+	    result.innerHTML = JSON.stringify(data);
+	    setTimeout(function(){ DetectVideo(); }, 100);
+		
+	})
+	.fail(function(jqXHR, textStatus, errorThrown) {
+	    // Display error message.
+	    var errorString = (errorThrown === "") ?
+		"Error. " : errorThrown + " (" + jqXHR.status + "): ";
+	    errorString += (jqXHR.responseText === "") ?
+		"" : (jQuery.parseJSON(jqXHR.responseText).message) ?
+		    jQuery.parseJSON(jqXHR.responseText).message :
+			jQuery.parseJSON(jqXHR.responseText).error.message;
+	    result.innerHTML = errorString;
+	    setTimeout(function(){ DetectVideo(); }, 100);
+	});
+	  
+	  
+
+    /*
+	var frame = Number(document.getElementById("frame").value);
+	if (frame==1) {
+	  context.lineWidth = "3";
+	  context.strokeStyle = "#00FFFF";
+	  context.beginPath();
+	  context.rect(x, y, width, height);
+	  context.stroke(); 
+	  context.lineWidth = "2";
+	  context.fillStyle = "red";
+	  context.font = "12px Arial";
+	  context.fillText(predictions[i].class, x, y);
+	}
+    */
+  }
 
 window.azureface_settings = azureface_settings;
 window.azureface_part = azureface_part;
