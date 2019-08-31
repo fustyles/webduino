@@ -106,8 +106,7 @@ function DetectVideo() {
       context.fillStyle = "red";
       context.font = "14px Arial";
       context.fillStyle = "green";
-      context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);
-      canvas.style.display = "block";      
+      context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     
     }
     result.innerHTML = faceApi_result;
     setTimeout(( () => canvas.style.display = "none";video.style.display = "block; ), 2000);
