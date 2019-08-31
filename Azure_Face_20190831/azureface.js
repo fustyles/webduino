@@ -107,6 +107,7 @@ function DetectVideo() {
 	  faceApi_result += ",recognitionModel,";
 	  faceApi_result += json[i]["recognitionModel"];
 	  faceApi_result += ";";
+	    console.log(json[i]["faceId"]);
     }
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
