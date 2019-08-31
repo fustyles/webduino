@@ -18,9 +18,13 @@ function azureface_settings(input_resourceName, input_key){
   faceApi_key = input_key;
 }
 
-function azureface_part(input_part){
+function azureface_detect(){
+  result.innerHTML = "";
   DetectVideo();
-  return "test";
+}
+  
+function azureface_get(){
+  return result.innerHTML;
 }
 
 function azureface_video(input_width, input_height, input_result, input_opacity) {
