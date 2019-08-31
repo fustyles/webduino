@@ -27,7 +27,7 @@ window.onload = function () {
       })   
   } 
 	                    
-  async function DetectVideo() {
+  function DetectVideo() {
 
     var mirrorimage = Number(document.getElementById("mirrorimage").value);
     if (mirrorimage==1) {
