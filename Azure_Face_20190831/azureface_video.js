@@ -6,12 +6,10 @@ window.onload = function () {
   var context = canvas.getContext('2d');
   var result = document.getElementById('result');
   var faceApi_result = "";
-  
-  startvideo();
 
   function startvideo() {
-    //video.style.visibility="hidden";
-    //video.style.position="absolute";
+    video.style.visibility="hidden";
+    video.style.position="absolute";
     navigator.mediaDevices
       .getUserMedia({
         audio: false,
@@ -126,4 +124,6 @@ window.onload = function () {
 
     setTimeout(function(){DetectVideo(); }, 100);
   }
+	
+    startvideo();
 }
