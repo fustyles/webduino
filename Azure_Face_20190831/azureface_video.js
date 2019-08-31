@@ -58,7 +58,7 @@ window.onload = function () {
 	    url: faceApi_url,
 	    // Request headers.
 	    beforeSend: function(xhrObj){
-		xhrObj.setRequestHeader("Content-Type","application/json");
+		xhrObj.setRequestHeader("Content-Type","application/octet-stream");
 		xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceApi_key);
 	    },
 	    type: "POST",
