@@ -19,7 +19,7 @@ function azureface_settings(input_resourceName, input_key){
 
 function azureface_part(input_part){
   DetectVideo();
-  return result.innerHTML;
+  return faceApi_result;
   /*
   faceApi_result += "faceId,";
   faceApi_result += json[i]["faceId"]; 
@@ -101,6 +101,7 @@ function DetectVideo() {
   })
   .done(function(data) {
     result.innerHTML = JSON.stringify(data);
+    faceApi_result = data;
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
