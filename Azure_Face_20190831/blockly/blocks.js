@@ -45,13 +45,7 @@ Blockly.Blocks['azure_face_video'] = {
       .appendField(new Blockly.FieldDropdown([
 		["show","block"],
 		["hide","none"]	  
-  ]), "result_"); 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.AZUREFACE_FRAME_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["show","1"],
-		["hide","0"]	  
-  ]), "frame_");	  
+  ]), "result_"); 	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AZUREFACE_MIRRORIMAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([
