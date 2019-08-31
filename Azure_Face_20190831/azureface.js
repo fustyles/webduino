@@ -5,7 +5,7 @@
 'use strict';
 
 function azureface_settings(input_resourceName, input_key){
-  document.getElementById('faceApi_ResourceName').innerHTML = "https://" + input_resourceName.trim() + ".cognitiveservices.azure.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=true&returnFaceAttributes=emotion,gender,age";
+  document.getElementById('faceApi_ResourceName').innerHTML = "https://" + input_resourceName.trim() + ".cognitiveservices.azure.com/face/v1.0/detect?returnFaceId=true&returnFaceAttributes=emotion,gender,age&returnFaceLandmarks=true";
   document.getElementById('faceApi_Key').innerHTML = input_key;
 }
 
