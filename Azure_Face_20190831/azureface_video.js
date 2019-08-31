@@ -60,6 +60,7 @@ window.onload = function () {
 	    beforeSend: function(xhrObj){
 		xhrObj.setRequestHeader("Content-Type","application/octet-stream");
 		xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceApi_key);
+		xhrObj.setRequestHeader("Content-Length", imagefile.length);		    
 	    },
 	    type: "POST",
 	    // Request body.
