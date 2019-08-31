@@ -58,9 +58,8 @@ window.onload = function () {
 	console.log(imagefile);
 
 
-	var data = $.ajax({
+	$.ajax({
 	  type: "post",
-	  dataType: "jsonp",
 	  url: faceApi_url,
 	  beforeSend : function(Obj) {
 	    Obj.setRequestHeader("Content-Type", "application/octet-stream");
@@ -71,7 +70,6 @@ window.onload = function () {
 	  success: function(json)
 	  {
 	    faceApi_result = "";
-	    console.log(json);
 	    json = eval(json);
 	    for (var i in json) {
 		
