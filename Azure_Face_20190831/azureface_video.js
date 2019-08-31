@@ -65,7 +65,7 @@ window.onload = function () {
 	    },
 	    type: "POST",
 	    // Request body.
-	    data: imagefile.val(),
+	    data: imagefile
 	})
 
 	.done(function(data) {
