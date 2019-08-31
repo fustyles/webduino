@@ -124,7 +124,7 @@ function DetectVideo() {
     "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
       jQuery.parseJSON(jqXHR.responseText).message :
     jQuery.parseJSON(jqXHR.responseText).error.message;
-    result.innerHTML = errorString;
+    result.innerHTML = "-1";
   });
 }
 
