@@ -58,21 +58,26 @@ window.onload = function () {
 	console.log(imagefile);
 
 
-	$.ajax({
-	  type: "post",
-	  url: faceApi_url,
-	  beforeSend : function(Obj) {
-	    Obj.setRequestHeader("Content-Type", "application/octet-stream");
-	    Obj.setRequestHeader("Ocp-Apim-Subscription-Key", faceApi_key);
-	  },
-	  data: imagefile,
-	  processData : false,
-	  success: function(json)
-	  {
-	    faceApi_result = "";
-	    json = eval(json);
-	    for (var i in json) {
-		
+	  
+	  
+	  
+	          // Perform the REST API call.
+        $.ajax({
+            url: faceApi_url,
+            // Request headers.
+            beforeSend: function(xhrObj){
+                xhrObj.setRequestHeader("Content-Type","application/json");
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceApi_key);
+            },
+            type: "POST",
+            // Request body.
+            data: '{"url": ' + '"' + imagefile + '"}',
+        })
+    
+        .done(function(data) {
+            // Show formatted JSON on webpage.
+            $("#result").val(JSON.stringify(data, null, 2));
+		/*
 	      faceApi_result += "faceId,";
 	      faceApi_result += json[i]["faceId"]; 
 	      faceApi_result += "faceRectangle,";
@@ -84,19 +89,20 @@ window.onload = function () {
 	      faceApi_result += ",recognitionModel,";
 	      faceApi_result += json[i]["recognitionModel"];
 	      faceApi_result += ";";
-		
-              //console.log(json[i]);
-	      alert(json[i]);
-	    }
-	    setTimeout(function(){DetectVideo(); }, 100);
-	  },
-	  error: function(exception) {
-	    //console.log("fail");
-	    alert("fail");
-	    setTimeout(function(){DetectVideo(); }, 100);
-	  }
-    });
-
+	      */
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            // Display error message.
+            var errorString = (errorThrown === "") ?
+                "Error. " : errorThrown + " (" + jqXHR.status + "): ";
+            errorString += (jqXHR.responseText === "") ?
+                "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
+                    jQuery.parseJSON(jqXHR.responseText).message :
+                        jQuery.parseJSON(jqXHR.responseText).error.message;
+            alert(errorString);
+        });
+	  
+	  
 
     /*
 	var frame = Number(document.getElementById("frame").value);
