@@ -18,7 +18,7 @@ function azurefacedetection_settings(input_resourceName, input_key){
   if (input_resourceName.toLowerCase().indexOf("http")==0)
     faceApi_url = input_resourceName;
   else
-    faceApi_url = "https://" + input_resourceName.trim() + ".cognitiveservices.azure.com/face/v1.0/detect?returnFaceAttributes=emotion,gender,age&returnFaceLandmark";
+    faceApi_url = "https://" + input_resourceName.trim() + ".cognitiveservices.azure.com/face/v1.0/detect?returnFaceAttributes=emotion,gender,age&returnFaceLandmarks=true";
   faceApi_key = input_key;
 }
 
