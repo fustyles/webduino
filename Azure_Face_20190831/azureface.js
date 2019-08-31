@@ -25,6 +25,8 @@
     document.getElementById('opacity').value = input_opacity;
   }
 
+  window.faceApi_key = faceApi_key;
+  window.faceApi_ResourceName = faceApi_ResourceName;
   window.azureface_settings = azureface_settings;
   window.azureface_part = azureface_part;
   window.azureface_video = azureface_video;
