@@ -19,12 +19,13 @@ function azureface_settings(input_resourceName, input_key){
 }
 
 function azureface_detect(){
-  result.innerHTML = "";
+  faceApi_result = "";
+  result.innerHTML = "Detect...";
   DetectVideo();
 }
   
 function azureface_get(){
-  return result.innerHTML;
+  return faceApi_result;
 }
 
 function azureface_video(input_width, input_height, input_result, input_opacity) {
