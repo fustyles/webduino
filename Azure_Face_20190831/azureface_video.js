@@ -45,22 +45,17 @@ window.onload = function () {
 	if (faceApi_key == ""||faceApi_ResourceName == "") return;
 
 
-	// 首先將Canvas轉為 DataURL
-	const dataURL = canvas.toDataURL('image/png')
-	// 取出資料並使用 atob 將資料轉為base64的字串
-	const blobBin = atob(dataURL.split(',')[1])
-	// 取得 mine
-	const mime = dataURL.split(',')[0].split(':')[1].split(';')[0]
-	console.log(mime)   // "image/png"
-	// 建立一個array容器放charCode
-	const arr = []
+	const dataURL = canvas.toDataURL('image/png');
+	const blobBin = atob(dataURL.split(',')[1]);
+	const mime = dataURL.split(',')[0].split(':')[1].split(';')[0];
+	console.log(mime);
+	const arr = [];
 	for (let i = 0; i < blobBin.length; i++) {
-		arr.push(blobBin.charCodeAt(i))
+		arr.push(blobBin.charCodeAt(i));
 	}
-	// 將基礎arr 轉為 ArrayBuffer (usign integer 8): Uint8Array
-	const u8 = new Uint8Array(arr)
-	const imagefile = new Blob([u8], { type: mime })
-	console.log(imagefile)
+	const u8 = new Uint8Array(arr);
+	const imagefile = new Blob([u8], { type: mime });
+	console.log(imagefile);
 
 
 	var data = $.ajax({
