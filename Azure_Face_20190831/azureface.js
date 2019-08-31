@@ -7,8 +7,8 @@
    function azureface_settings(input_resourceName, input_key){
      console.log(input_resourceName);
      console.log(input_key);
-     document.getElementById('faceApi_ResourceName').innerHTML = "https://" + input_resourceName.trim() + ".cognitiveservices.azure.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=true&recognitionModel=recognition_01&returnRecognitionModel=true&detectionModel=detection_01&returnFaceAttributes=emotion,gender,age";
-     document.getElementById('faceApi_Key').innerHTML = input_key;
+     //document.getElementById('faceApi_ResourceName').innerHTML = "https://" + input_resourceName.trim() + ".cognitiveservices.azure.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=true&recognitionModel=recognition_01&returnRecognitionModel=true&detectionModel=detection_01&returnFaceAttributes=emotion,gender,age";
+     //document.getElementById('faceApi_Key').innerHTML = input_key;
    }
 
    function azureface_part(input_part){
