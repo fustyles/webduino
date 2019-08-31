@@ -14,7 +14,10 @@ var faceApi_url = "";
 var faceApi_result = ""; 
 
 function azureface_settings(input_resourceName, input_key){
-  faceApi_url = "https://" + input_resourceName.trim() + ".cognitiveservices.azure.com/face/v1.0/detect?returnFaceAttributes=emotion,gender,age";
+  if (input_resourceName.toLowerCase().indexOf("http")==0)
+    faceApi_url = input_resourceName;
+  else
+    faceApi_url = "https://" + input_resourceName.trim() + ".cognitiveservices.azure.com/face/v1.0/detect?returnFaceAttributes=emotion,gender,age";
   faceApi_key = input_key;
 }
 
