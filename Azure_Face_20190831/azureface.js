@@ -25,7 +25,7 @@ function azureface_detect(){
 }
   
 function azureface_get(){
-  return faceApi_result.split(";");
+  return result.innerHTML;
 }
 
 function azureface_video(input_width, input_height, input_result, input_opacity) {
@@ -67,10 +67,10 @@ function DetectVideo() {
   .done(function(json) {
     result.innerHTML = "";
     json = eval(json);
-    faceApi_result = "";
+    faceApi_result = "[";
     for (var i in json) 
     {
-      faceApi_result += i;      
+      faceApi_result += "{"+i;      
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceId"]; 
       faceApi_result += ",";
@@ -101,7 +101,7 @@ function DetectVideo() {
       faceApi_result += json[i]["faceAttributes"]["emotion"]["sadness"];
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["surprise"];	   
-      faceApi_result += ";";
+      faceApi_result += "},";
 
       context.lineWidth = "3";
       context.strokeStyle = "red";
@@ -112,7 +112,8 @@ function DetectVideo() {
       context.fillStyle = "green";
       context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     
     }
-    result.innerHTML = JSON.stringify(json);
+    faceApi_result += "]";
+    result.innerHTML = faceApi_result.replace(/},]/g,"}]");
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, 3000);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
