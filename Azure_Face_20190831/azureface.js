@@ -105,10 +105,10 @@ function DetectVideo() {
 	    context.font = "14px Arial";
 	    context.fillStyle = "green";
 	    context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);
-	    canvas.style.display = "block";
-	    setTimeout(( () => canvas.style.display = "none" ), 2000);   
+	    canvas.style.display = "block";      
     }
     result.innerHTML = faceApi_result;
+    setTimeout(( () => canvas.style.display = "none" ), 2000);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
