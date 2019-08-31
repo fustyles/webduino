@@ -7,8 +7,8 @@ window.onload = function () {
   var result = document.getElementById('result');
   var faceApi_result = "";
 
-	//video.style.visibility="hidden";
-	//video.style.position="absolute";
+	video.style.visibility="hidden";
+	video.style.position="absolute";
 	navigator.mediaDevices
 	.getUserMedia({
 	audio: false,
