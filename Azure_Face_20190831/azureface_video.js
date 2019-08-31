@@ -115,6 +115,4 @@ window.onload = function () {
 	}
     */
   }
-	
-  DetectVideo();
 }
