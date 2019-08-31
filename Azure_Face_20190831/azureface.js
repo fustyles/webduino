@@ -31,17 +31,6 @@ function azureface_video(input_width, input_height, input_mirrorimage, input_res
 }
   
 function DetectVideo() {
-
-  var mirrorimage = Number(document.getElementById("mirrorimage").value);
-  if (mirrorimage==1) {
-    context.translate((canvas.width + video.width) / 2, 0);
-    context.scale(-1, 1);
-    context.drawImage(video, 0, 0, video.width, video.height);
-    context.setTransform(1, 0, 0, 1, 0, 0);
-  }
-  else
-    context.drawImage(video, 0, 0, video.width, video.height);
-
   if (faceApi_key == ""||faceApi_url == "") return;    
 
   const dataURL = canvas.toDataURL('image/png');
