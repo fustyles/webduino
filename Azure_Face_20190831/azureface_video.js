@@ -42,7 +42,7 @@ window.onload = function () {
     else
       context.drawImage(video, 0, 0, video.width, video.height);
 
-	if (faceApi_key == ""||faceApi_ResourceName == "") return;
+	if (faceApi_Key == ""||faceApi_ResourceName == "") return;
 
 
 	const dataURL = canvas.toDataURL('image/png');
