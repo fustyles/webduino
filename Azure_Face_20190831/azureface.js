@@ -20,7 +20,7 @@ function azureface_settings(input_resourceName, input_key){
 
 function azureface_detect(){
   faceApi_result = "";
-  result.innerHTML = "Detect...";
+  result.innerHTML = "";
   DetectVideo();
 }
   
