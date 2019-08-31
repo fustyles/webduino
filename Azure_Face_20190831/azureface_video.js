@@ -22,7 +22,7 @@ window.onload = function () {
 	  video.play();
 	  canvas.setAttribute("width", video.width);
 	  canvas.setAttribute("height", video.height); 
-		DetectVideo();
+	  setTimeout(function(){ DetectVideo(); }, 2000);
 	}
 	})   
 	                    
