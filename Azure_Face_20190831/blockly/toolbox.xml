@@ -1,4 +1,16 @@
 <category id="azureface">
+  <block type="azure_face_video">
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">320</field>
+      </block>
+    </value> 
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">240</field>
+      </block>
+    </value>     
+  </block>   
   <block type="azure_face_settings">
     <value name="resourcename_">
       <block type="text">
@@ -14,17 +26,5 @@
   <block type="azure_face_detect">
   </block>  
   <block type="azure_face_get">
-  </block>
-  <block type="azure_face_video">
-    <value name="width_">
-      <block type="math_number">
-        <field name="NUM">320</field>
-      </block>
-    </value> 
-    <value name="height_">
-      <block type="math_number">
-        <field name="NUM">240</field>
-      </block>
-    </value>     
-  </block>   
+  </block>  
 </category>
