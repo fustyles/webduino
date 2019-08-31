@@ -13,7 +13,7 @@
    }
 
    function azureface_part(input_part){
-
+     console.log("test");
    }
 	
   function azureface_video(input_width, input_height, input_mirrorimage, input_result, input_frame, input_opacity) {
