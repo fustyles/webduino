@@ -85,8 +85,6 @@ function DetectVideo() {
   })
   .done(function(data) {
     result.innerHTML = JSON.stringify(data);
-    setTimeout(function(){ DetectVideo(); }, 100);
-
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
@@ -97,11 +95,8 @@ function DetectVideo() {
       jQuery.parseJSON(jqXHR.responseText).message :
     jQuery.parseJSON(jqXHR.responseText).error.message;
     result.innerHTML = errorString;
-    setTimeout(function(){ DetectVideo(); }, 100);
   });
     
-    
-
     /*
   var frame = Number(document.getElementById("frame").value);
   if (frame==1) {
