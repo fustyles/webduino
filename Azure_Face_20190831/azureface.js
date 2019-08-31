@@ -4,7 +4,7 @@
 
   'use strict';
 	
-   var faceApi_key = "";
+   var faceApi_Key = "";
    var faceApi_ResourceName = "";	
 
    function azureface_settings(input_resourceName, input_key){
@@ -25,7 +25,7 @@
     document.getElementById('opacity').value = input_opacity;
   }
 
-  window.faceApi_key = faceApi_key;
+  window.faceApi_Key = faceApi_Key;
   window.faceApi_ResourceName = faceApi_ResourceName;
   window.azureface_settings = azureface_settings;
   window.azureface_part = azureface_part;
