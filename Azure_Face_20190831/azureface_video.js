@@ -70,7 +70,7 @@ window.onload = function () {
 
 	.done(function(data) {
 	    // Show formatted JSON on webpage.
-	    $("#result").val(JSON.stringify(data, null, 2));
+	    result.innerHTML = JSON.stringify(data, null, 2);
 		/*
 	      faceApi_result += "faceId,";
 	      faceApi_result += json[i]["faceId"]; 
