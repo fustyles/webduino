@@ -71,7 +71,7 @@ window.onload = function () {
             },
             type: "POST",
             // Request body.
-            data: '{"url": ' + '"' + imagefile + '"}',
+            data: imagefile,
         })
     
         .done(function(data) {
