@@ -10,6 +10,7 @@ var context = canvas.getContext('2d');
 var result = document.getElementById('result');
 var faceApi_key = "";
 var faceApi_url = "";  
+var faceApi_result = ""; 
 
 function azureface_settings(input_resourceName, input_key){
   faceApi_url = "https://" + input_resourceName.trim() + ".cognitiveservices.azure.com/face/v1.0/detect?returnFaceAttributes=emotion,gender,age";
@@ -19,19 +20,9 @@ function azureface_settings(input_resourceName, input_key){
 async function azureface_part(input_part){
   DetectVideo();
   await delay(2);
-  return result.innerHTML;
+  return faceApi_result;
   /*
-  faceApi_result += "faceId,";
-  faceApi_result += json[i]["faceId"]; 
-  faceApi_result += "faceRectangle,";
-  faceApi_result += json[i]["faceRectangle"];            
-  faceApi_result += ",faceLandmarks,";
-  faceApi_result += json[i]["faceLandmarks"];  
-  faceApi_result += ",faceAttributes,";
-  faceApi_result += json[i]["faceAttributes"];  
-  faceApi_result += ",recognitionModel,";
-  faceApi_result += json[i]["recognitionModel"];
-  faceApi_result += ";";
+
   */ 
 	
     
@@ -99,8 +90,24 @@ function DetectVideo() {
     data: imagefile,
     processData: false
   })
-  .done(function(data) {
-    result.innerHTML = JSON.stringify(data);
+  .done(function(json) {
+    result.innerHTML = JSON.stringify(json);
+    json = eval(json);
+    faceApi_result = "";
+    for (var i in json) 
+    {
+	  faceApi_result += "faceId,";
+	  faceApi_result += json[i]["faceId"]; 
+	  faceApi_result += "faceRectangle,";
+	  faceApi_result += json[i]["faceRectangle"];            
+	  faceApi_result += ",faceLandmarks,";
+	  faceApi_result += json[i]["faceLandmarks"];  
+	  faceApi_result += ",faceAttributes,";
+	  faceApi_result += json[i]["faceAttributes"];  
+	  faceApi_result += ",recognitionModel,";
+	  faceApi_result += json[i]["recognitionModel"];
+	  faceApi_result += ";";
+    }
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
