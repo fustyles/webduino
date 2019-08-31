@@ -112,7 +112,10 @@ function DetectVideo() {
       context.fillStyle = "#99FF99";
       context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     
     }
-    if (faceApi_result!="") faceApi_result = faceApi_result.substr(0,faceApi_result.length-4);
+    if (faceApi_result!="") 
+      faceApi_result = faceApi_result.substr(0,faceApi_result.length-4);
+    else
+      faceApi_result = "error";
     result.innerHTML = faceApi_result;
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, 3000);
   })
