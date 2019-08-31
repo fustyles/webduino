@@ -11,7 +11,6 @@ var result = document.getElementById('result');
 var faceApi_result = "";
 var faceApi_key = "";
 var faceApi_url = "";  
-var queryState = false;
 
 function azureface_settings(input_resourceName, input_key){
   faceApi_url = "https://" + input_resourceName.trim() + ".cognitiveservices.azure.com/face/v1.0/detect?returnFaceAttributes=emotion,gender,age";
@@ -19,8 +18,8 @@ function azureface_settings(input_resourceName, input_key){
 }
 
 function azureface_part(input_part){
-  queryState = true;
   DetectVideo();
+  await delay(2);
   return faceApi_result;
   /*
   faceApi_result += "faceId,";
@@ -104,7 +103,6 @@ function DetectVideo() {
   .done(function(data) {
     result.innerHTML = JSON.stringify(data);
     faceApi_result = data;
-    queryState = false;
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
@@ -115,7 +113,6 @@ function DetectVideo() {
       jQuery.parseJSON(jqXHR.responseText).message :
     jQuery.parseJSON(jqXHR.responseText).error.message;
     result.innerHTML = errorString;
-    queryState = false;
   });
 }
 
