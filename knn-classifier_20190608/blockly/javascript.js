@@ -15,6 +15,6 @@ Blockly.JavaScript['knn_classifier_video'] = function(block) {
   var value_result_ = block.getFieldValue('result_');
   var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
   var value_opacity_ = block.getFieldValue('opacity_');
-  var code = 'knn_classifier_video(' + value_width_ + ',' + value_height_ + ',"' + value_result_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");';
+  var code = 'knn_classifier_video(' + value_width_ + ',' + value_height_ + ',"' + value_result_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
   return code;
 };
