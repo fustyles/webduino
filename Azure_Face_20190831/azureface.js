@@ -20,26 +20,7 @@ function azureface_settings(input_resourceName, input_key){
 async function azureface_part(input_part){
   DetectVideo();
   await delay(10);
-  return result.innerHTML;
-  /*
-
-  */ 
-	
-    
-    /*
-  var frame = Number(document.getElementById("frame").value);
-  if (frame==1) {
-    context.lineWidth = "3";
-    context.strokeStyle = "#00FFFF";
-    context.beginPath();
-    context.rect(x, y, width, height);
-    context.stroke(); 
-    context.lineWidth = "2";
-    context.fillStyle = "red";
-    context.font = "12px Arial";
-    context.fillText(predictions[i].class, x, y);
-  }
-    */	
+  return result.innerHTML;	
 }
 
 function azureface_video(input_width, input_height, input_mirrorimage, input_result, input_frame, input_opacity) {
@@ -127,6 +108,21 @@ function DetectVideo() {
 	  faceApi_result += ";";
     }
     result.innerHTML = JSON.stringify(faceApi_result);
+	  
+    /*
+	  var frame = Number(document.getElementById("frame").value);
+	  if (frame==1) {
+	    context.lineWidth = "3";
+	    context.strokeStyle = "#00FFFF";
+	    context.beginPath();
+	    context.rect(x, y, width, height);
+	    context.stroke(); 
+	    context.lineWidth = "2";
+	    context.fillStyle = "red";
+	    context.font = "12px Arial";
+	    context.fillText(predictions[i].class, x, y);
+	  }
+    */	  
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
