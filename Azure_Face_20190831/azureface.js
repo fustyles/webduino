@@ -101,7 +101,7 @@ function DetectVideo() {
   })
   .done(function(data) {
     result.innerHTML = JSON.stringify(data);
-    return JSON.stringify(data);
+    return data;
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
