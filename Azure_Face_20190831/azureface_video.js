@@ -80,7 +80,7 @@ window.onload = function () {
 	    console.log(json);
 	    json = eval(json);
 	    for (var i in json) {
-		  /*
+		
 	      faceApi_result += "faceId,";
 	      faceApi_result += json[i]["faceId"]; 
 	      faceApi_result += "faceRectangle,";
@@ -92,7 +92,7 @@ window.onload = function () {
 	      faceApi_result += ",recognitionModel,";
 	      faceApi_result += json[i]["recognitionModel"];
 	      faceApi_result += ";";
-		  */
+		
 		  console.log(json[i]);
 	    }
 	  },
