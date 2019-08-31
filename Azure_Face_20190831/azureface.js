@@ -34,6 +34,7 @@ function DetectVideo() {
   if (faceApi_key == ""||faceApi_url == "") return;    
 
   context.drawImage(video, 0, 0, video.width, video.height);
+  video.style.display = "none";
   canvas.style.display = "block";
   const dataURL = canvas.toDataURL('image/png');
   const blobBin = atob(dataURL.split(',')[1]);
@@ -110,7 +111,7 @@ function DetectVideo() {
 	    canvas.style.display = "block";      
     }
     result.innerHTML = faceApi_result;
-    setTimeout(( () => canvas.style.display = "none" ), 2000);
+    setTimeout(( () => {canvas.style.display = "none";video.style.display = "block;} ), 2000);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
