@@ -8,7 +8,7 @@ Blockly.Blocks['azure_face_settings'] = {
   this.appendValueInput("key_")
       .setCheck("String")
       .appendField(Blockly.Msg.AZUREFACE_KEY_SHOW);
-  this.setInputsInline(true);
+  this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
