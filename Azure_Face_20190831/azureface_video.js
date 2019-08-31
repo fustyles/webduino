@@ -42,7 +42,7 @@ window.onload = function () {
     else
       context.drawImage(video, 0, 0, video.width, video.height);
 
-
+    /*
     var faceApi_Key = document.getElementById('faceApi_Key').innerHTML ;
     var faceApi_ResourceName = document.getElementById('faceApi_ResourceName').innerHTML;
     if (faceApi_Key == ""||faceApi_ResourceName == "") return;
@@ -50,7 +50,6 @@ window.onload = function () {
     console.log("key = " + faceApi_Key);
     console.log("ResourceName = " + faceApi_ResourceName); 	  
 
-    /*
 	const dataURL = canvas.toDataURL('image/png');
 	const blobBin = atob(dataURL.split(',')[1]);
 	const mime = dataURL.split(',')[0].split(':')[1].split(';')[0];
