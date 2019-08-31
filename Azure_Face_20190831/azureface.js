@@ -25,7 +25,7 @@ function azureface_detect(){
 }
   
 function azureface_get(){
-  return result.innerHTML;
+  return result.innerHTML.split(";");
 }
 
 function azureface_video(input_width, input_height, input_result, input_opacity) {
