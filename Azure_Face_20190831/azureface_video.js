@@ -91,7 +91,7 @@ window.onload = function () {
 	      alert(json[i]);
 	    }
 	  },
-	  error: functionalert(json[i]);(exception) {
+	  error: function(exception) {
 	    //console.log("fail");
 	    alert("fail");
 	  }
