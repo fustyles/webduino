@@ -3,9 +3,6 @@ document.write('<div id="region"><video id="video" width="320" height="240" prel
 window.onload = function () {
   var video = document.getElementById('video');
   var canvas = document.getElementById('gamecanvas_azureface'); 
-  var context = canvas.getContext('2d');
-  var result = document.getElementById('result');
-  var faceApi_result = "";
 
   navigator.mediaDevices
     .getUserMedia({
