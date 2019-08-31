@@ -90,51 +90,51 @@ function DetectVideo() {
       faceApi_result += json[i]["faceAttributes"]["age"]; 
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["anger"];
-      if (["faceAttributes"]["emotion"]["anger"]>max) { 
+      if (json[i]["faceAttributes"]["emotion"]["anger"]>max) { 
         maxEmotion="anger";
-        max = ["faceAttributes"]["emotion"]["anger"];
+        max = json[i]["faceAttributes"]["emotion"]["anger"];
       }
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["contempt"];
-      if (["faceAttributes"]["emotion"]["contempt"]>max) { 
+      if (json[i]["faceAttributes"]["emotion"]["contempt"]>max) { 
         maxEmotion="contempt";
-        max = ["faceAttributes"]["emotion"]["contempt"];
+        max = json[i]["faceAttributes"]["emotion"]["contempt"];
       }      
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["disgust"];
-      if (["faceAttributes"]["emotion"]["disgust"]>max) { 
+      if (json[i]["faceAttributes"]["emotion"]["disgust"]>max) { 
         maxEmotion="disgust";
-        max = ["faceAttributes"]["emotion"]["disgust"];
+        max = json[i]["faceAttributes"]["emotion"]["disgust"];
       }      
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["fear"];
-      if (["faceAttributes"]["emotion"]["fear"]>max) { 
+      if (json[i]["faceAttributes"]["emotion"]["fear"]>max) { 
         maxEmotion="fear";
-        max = ["faceAttributes"]["emotion"]["fear"];
+        max = json[i]["faceAttributes"]["emotion"]["fear"];
       }      
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["happiness"];
-      if (["faceAttributes"]["emotion"]["happiness"]>max) { 
+      if (json[i]["faceAttributes"]["emotion"]["happiness"]>max) { 
         maxEmotion="happiness";
-        max = ["faceAttributes"]["emotion"]["happiness"];
+        max = json[i]["faceAttributes"]["emotion"]["happiness"];
       }      
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["neutral"];
-      if (["faceAttributes"]["emotion"]["neutral"]>max) { 
+      if (json[i]["faceAttributes"]["emotion"]["neutral"]>max) { 
         maxEmotion="neutral";
-        max = ["faceAttributes"]["emotion"]["neutral"];
+        max = json[i]["faceAttributes"]["emotion"]["neutral"];
       }      
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["sadness"];
-      if (["faceAttributes"]["emotion"]["sadness"]>max) { 
+      if (json[i]["faceAttributes"]["emotion"]["sadness"]>max) { 
         maxEmotion="sadness";
-        max = ["faceAttributes"]["emotion"]["sadness"];
+        max = json[i]["faceAttributes"]["emotion"]["sadness"];
       }      
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["surprise"];	
-      if (["faceAttributes"]["emotion"]["surprise"]>max) { 
+      if (json[i]["faceAttributes"]["emotion"]["surprise"]>max) { 
         maxEmotion="surprise";
-        max = ["faceAttributes"]["emotion"]["surprise"];
+        max = json[i]["faceAttributes"]["emotion"]["surprise"];
       }      
       faceApi_result += "<br>";
 
