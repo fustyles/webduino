@@ -18,7 +18,8 @@ function azureface_settings(input_resourceName, input_key){
 }
 
 function azureface_part(input_part){
-  return DetectVideo();
+  DetectVideo();
+  return result.innerHTML;
   /*
   faceApi_result += "faceId,";
   faceApi_result += json[i]["faceId"]; 
@@ -100,7 +101,6 @@ function DetectVideo() {
   })
   .done(function(data) {
     result.innerHTML = JSON.stringify(data);
-    return data;
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
@@ -111,7 +111,6 @@ function DetectVideo() {
       jQuery.parseJSON(jqXHR.responseText).message :
     jQuery.parseJSON(jqXHR.responseText).error.message;
     result.innerHTML = errorString;
-    return "";
   });
 }
 
