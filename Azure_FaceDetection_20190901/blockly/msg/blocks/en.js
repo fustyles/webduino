@@ -8,3 +8,4 @@ Blockly.Msg.AZUREFACEDETECTION_OPACITY_SHOW = "Opacity";
 Blockly.Msg.AZUREFACEDETECTION_SETTINGS_SHOW ="Face Detection (Azure) settings";
 Blockly.Msg.AZUREFACEDETECTION_RESOURCENAME_SHOW ="Resource Name";
 Blockly.Msg.AZUREFACEDETECTION_KEY_SHOW = "Ocp-Apim-Subscription-Key";
+Blockly.Msg.AZUREFACEDETECTION_SHOWTIME_SHOW = "Show Photo(s)";
