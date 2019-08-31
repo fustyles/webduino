@@ -128,7 +128,8 @@ function DetectVideo() {
 }
 
 window.azureface_settings = azureface_settings;
-window.azureface_part = azureface_part;
+window.azureface_detect = azureface_detect;
+window.azureface_get = azureface_get;
 window.azureface_video = azureface_video;
 window.DetectVideo = DetectVideo;
 
