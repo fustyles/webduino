@@ -33,7 +33,6 @@ function azureface_video(input_width, input_height, input_result, input_opacity)
 function DetectVideo() {
   if (faceApi_key == ""||faceApi_url == "") return;    
 
-  video.style.display = "none";
   canvas.style.display = "block";
   context.drawImage(video, 0, 0, video.width, video.height);
   const dataURL = canvas.toDataURL('image/png');
@@ -109,7 +108,7 @@ function DetectVideo() {
       context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     
     }
     result.innerHTML = faceApi_result;
-    setTimeout(( () => video.style.display = "block; ), 2000);
+    setTimeout(( () => canvas.style.display = "none; ), 2000);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
