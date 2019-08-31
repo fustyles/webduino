@@ -46,14 +46,12 @@ window.onload = function () {
 	const dataURL = canvas.toDataURL('image/png');
 	const blobBin = atob(dataURL.split(',')[1]);
 	const mime = dataURL.split(',')[0].split(':')[1].split(';')[0];
-	console.log(mime);
 	const arr = [];
 	for (let i = 0; i < blobBin.length; i++) {
 		arr.push(blobBin.charCodeAt(i));
 	}
 	const u8 = new Uint8Array(arr);
 	const imagefile = new Blob([u8], { type: mime });
-	console.log(imagefile);
 
     // Perform the REST API call.
 	$.ajax({
