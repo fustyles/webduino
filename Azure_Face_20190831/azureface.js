@@ -5,6 +5,7 @@
 'use strict';
 
 function azureface_settings(input_resourceName, input_key){
+  alert(input_resourceName);
 console.log(input_resourceName);
 console.log(input_key);
   console.log("test");
