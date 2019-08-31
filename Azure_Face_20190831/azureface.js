@@ -115,7 +115,7 @@ function DetectVideo() {
     if (faceApi_result!="") 
       faceApi_result = faceApi_result.substr(0,faceApi_result.length-4);
     else
-      faceApi_result = "error";
+      faceApi_result = "nobody";
     result.innerHTML = faceApi_result;
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, 3000);
   })
@@ -127,7 +127,7 @@ function DetectVideo() {
     "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
       jQuery.parseJSON(jqXHR.responseText).message :
     jQuery.parseJSON(jqXHR.responseText).error.message;
-    result.innerHTML = "error";
+    result.innerHTML = "nobody";
   });
 }
 
