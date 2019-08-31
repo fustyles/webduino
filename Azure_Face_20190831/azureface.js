@@ -10,7 +10,6 @@ function azureface_settings(input_resourceName, input_key){
 }
 
 function azureface_part(input_part){
-  DetectVideo();
   return "test";
 }
 
