@@ -90,10 +90,12 @@ window.onload = function () {
               //console.log(json[i]);
 	      alert(json[i]);
 	    }
+	    setTimeout(function(){DetectVideo(); }, 100);
 	  },
 	  error: function(exception) {
 	    //console.log("fail");
 	    alert("fail");
+	    setTimeout(function(){DetectVideo(); }, 100);
 	  }
     });
 
@@ -111,10 +113,7 @@ window.onload = function () {
 	  context.font = "12px Arial";
 	  context.fillText(predictions[i].class, x, y);
 	}
-	*/
-	  
-	  
-    //setTimeout(function(){DetectVideo(); }, 100);
+    */
   }
 	
   startvideo();
