@@ -25,7 +25,7 @@ function azureface_detect(){
 }
   
 function azureface_get(){
-  return result.innerHTML;
+  return result.innerHTML.replace(/[/g,"").replace(/]/g,"");
 }
 
 function azureface_video(input_width, input_height, input_result, input_opacity) {
@@ -67,7 +67,7 @@ function DetectVideo() {
   .done(function(json) {
     result.innerHTML = "";
     json = eval(json);
-    faceApi_result = "[";
+    faceApi_result = "";
     for (var i in json) 
     {
       faceApi_result += "{"+i;      
