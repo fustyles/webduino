@@ -19,7 +19,7 @@ function azureface_settings(input_resourceName, input_key){
 
 async function azureface_part(input_part){
   DetectVideo();
-  await delay(2);
+  await delay(10);
   return faceApi_result;
   /*
 
