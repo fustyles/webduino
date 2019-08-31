@@ -39,7 +39,7 @@ window.onload = function () {
     }
     else
       context.drawImage(video, 0, 0, video.width, video.height);
-
+    document.getElementById("region").style.opacity = Number(document.getElementById("opacity").value);
     /*
     var faceApi_Key = document.getElementById('faceApi_Key').innerHTML ;
     var faceApi_ResourceName = document.getElementById('faceApi_ResourceName').innerHTML;
