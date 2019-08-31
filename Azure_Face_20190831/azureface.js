@@ -21,6 +21,7 @@ async function azureface_part(input_part){
   faceApi_result = "";
   DetectVideo();
   await delay(2);
+  console.log(faceApi_result);
   return faceApi_result;
   /*
   faceApi_result += "faceId,";
