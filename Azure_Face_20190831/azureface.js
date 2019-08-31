@@ -104,7 +104,7 @@ function DetectVideo() {
   })
   .done(function(data) {
     result.innerHTML = JSON.stringify(data);
-    faceApi_result = data;
+    faceApi_result = JSON.stringify(data);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
