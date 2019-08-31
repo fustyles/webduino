@@ -142,6 +142,28 @@ function DetectVideo() {
 			maxEmotion="surprise";
 			max = json[i]["faceAttributes"]["emotion"]["surprise"];
 		  }      
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["headPose"]; 
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["smile"]; 
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["facialHair"]; 
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["glasses"]; 
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["hair"]; 
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["makeup"]; 	
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["occlusion"]; 
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["accessories"]; 
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["blur"]; 	
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["exposure"]; 			
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["noise"]; 	
 		  faceApi_result += "<br>";
 
 		  context.lineWidth = "3";
