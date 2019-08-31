@@ -1,0 +1,15 @@
+{
+  "types": ["azure_facedetection_settings", "azure_facedetection_detect", "azure_facedetection_get", "azure_facedetection_video"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "azurefacedetection_video.js",
+    "azurefacedetection.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
