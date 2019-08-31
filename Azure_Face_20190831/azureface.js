@@ -116,8 +116,11 @@ function DetectVideo() {
 	    context.stroke(); 
 	    context.lineWidth = "2";
 	    context.fillStyle = "red";
-	    context.font = "12px Arial";
-	    context.fillText(json[i]["faceAttributes"]["gender"]+","+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);
+	    context.font = "14px Arial";
+	    context.fillStyle = "green";
+	    context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);
+            canvas.style.display = "block";
+            setTimeout(( () => canvas.style.display = "none" ), 2000);
 	  }	    
     }
     result.innerHTML = JSON.stringify(faceApi_result);
