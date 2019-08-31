@@ -11,6 +11,19 @@ function azureface_settings(input_resourceName, input_key){
 
 function azureface_part(input_part){
   return "test";
+		/*
+	      faceApi_result += "faceId,";
+	      faceApi_result += json[i]["faceId"]; 
+	      faceApi_result += "faceRectangle,";
+	      faceApi_result += json[i]["faceRectangle"];            
+	      faceApi_result += ",faceLandmarks,";
+	      faceApi_result += json[i]["faceLandmarks"];  
+	      faceApi_result += ",faceAttributes,";
+	      faceApi_result += json[i]["faceAttributes"];  
+	      faceApi_result += ",recognitionModel,";
+	      faceApi_result += json[i]["recognitionModel"];
+	      faceApi_result += ";";
+	      */  
 }
 
 function azureface_video(input_width, input_height, input_mirrorimage, input_result, input_frame, input_opacity) {
