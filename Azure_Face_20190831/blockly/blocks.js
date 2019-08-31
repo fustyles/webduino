@@ -15,17 +15,21 @@ Blockly.Blocks['azure_face_settings'] = {
   }
 };
 
-Blockly.Blocks['azure_face_part'] = {
+Blockly.Blocks['azure_face_detect'] = {
+  init: function() {
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.AZUREFACE_DETECT_SHOW);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['azure_face_get'] = {
   init: function() { 
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.AZUREFACE_PART_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["faceId","faceId"],
-		["faceAttributes","faceAttributes"],
-		["faceRectangle","faceRectangle"],
-		["faceLandmarks","faceLandmarks"],
-		["recognitionModel","recognitionModel"]
-  ]), "part_");  	  
+      .appendField(Blockly.Msg.AZUREFACE_GET_SHOW); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
