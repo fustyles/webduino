@@ -69,7 +69,7 @@ window.onload = function () {
 	  url: faceApi_url,
 	  beforeSend : function(Obj) {
 	    Obj.setRequestHeader("Content-Type", "application/octet-stream");
-	    Obj.setRequestHeader("Ocp-Apim-Subscription-Key", faceApi_key);
+	    Obj.setRequestHeader("Ocp-Apim-Subscription-Key", faceApi_Key);
 	  },
 	  data: imagefile,
 	  processData : false,
