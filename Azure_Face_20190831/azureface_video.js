@@ -60,7 +60,7 @@ window.onload = function () {
 
 	var data = $.ajax({
 	  type: "post",
-	  dataType: "jsonp",
+	  dataType: "json",
 	  url: faceApi_url,
 	  beforeSend : function(Obj) {
 	    Obj.setRequestHeader("Content-Type", "application/octet-stream");
