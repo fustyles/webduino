@@ -8,7 +8,6 @@ var video = document.getElementById('video');
 var canvas = document.getElementById('gamecanvas_azureface'); 
 var context = canvas.getContext('2d');
 var result = document.getElementById('result');
-var faceApi_result = "";
 var faceApi_key = "";
 var faceApi_url = "";  
 
@@ -18,11 +17,9 @@ function azureface_settings(input_resourceName, input_key){
 }
 
 async function azureface_part(input_part){
-  faceApi_result = "";
   DetectVideo();
   await delay(2);
-  console.log(faceApi_result);
-  return faceApi_result;
+  return result.innerHTML;
   /*
   faceApi_result += "faceId,";
   faceApi_result += json[i]["faceId"]; 
@@ -104,7 +101,6 @@ function DetectVideo() {
   })
   .done(function(data) {
     result.innerHTML = JSON.stringify(data);
-    faceApi_result = JSON.stringify(data);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
