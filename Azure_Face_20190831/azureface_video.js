@@ -1,5 +1,4 @@
-document.write('<div id="region"><video id="video" width="320" height="240" preload autoplay loop muted></video><br><div id="result" style="width:320px;color:red"></div></div>');
-document.write('<canvas id="gamecanvas_azureface" style="display:none;position:absolute;"></canvas>');
+document.write('<div id="region"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="gamecanvas_azureface" style="display:none;"></canvas><br><div id="result" style="width:320px;color:red"></div></div>');
 
 window.onload = function () {
   var video = document.getElementById('video');
