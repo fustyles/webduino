@@ -18,8 +18,7 @@ function azureface_settings(input_resourceName, input_key){
 }
 
 function azureface_part(input_part){
-  DetectVideo();
-  return "test";
+  return DetectVideo();
   /*
   faceApi_result += "faceId,";
   faceApi_result += json[i]["faceId"]; 
@@ -32,7 +31,23 @@ function azureface_part(input_part){
   faceApi_result += ",recognitionModel,";
   faceApi_result += json[i]["recognitionModel"];
   faceApi_result += ";";
-  */  
+  */ 
+	
+    
+    /*
+  var frame = Number(document.getElementById("frame").value);
+  if (frame==1) {
+    context.lineWidth = "3";
+    context.strokeStyle = "#00FFFF";
+    context.beginPath();
+    context.rect(x, y, width, height);
+    context.stroke(); 
+    context.lineWidth = "2";
+    context.fillStyle = "red";
+    context.font = "12px Arial";
+    context.fillText(predictions[i].class, x, y);
+  }
+    */	
 }
 
 function azureface_video(input_width, input_height, input_mirrorimage, input_result, input_frame, input_opacity) {
@@ -85,6 +100,7 @@ function DetectVideo() {
   })
   .done(function(data) {
     result.innerHTML = JSON.stringify(data);
+    return JSON.stringify(data);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
@@ -95,23 +111,9 @@ function DetectVideo() {
       jQuery.parseJSON(jqXHR.responseText).message :
     jQuery.parseJSON(jqXHR.responseText).error.message;
     result.innerHTML = errorString;
+    return "";
   });
-    
-    /*
-  var frame = Number(document.getElementById("frame").value);
-  if (frame==1) {
-    context.lineWidth = "3";
-    context.strokeStyle = "#00FFFF";
-    context.beginPath();
-    context.rect(x, y, width, height);
-    context.stroke(); 
-    context.lineWidth = "2";
-    context.fillStyle = "red";
-    context.font = "12px Arial";
-    context.fillText(predictions[i].class, x, y);
-  }
-    */
-  }
+}
 
 window.azureface_settings = azureface_settings;
 window.azureface_part = azureface_part;
