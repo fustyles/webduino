@@ -22,11 +22,12 @@ window.onload = function () {
         video.onloadedmetadata = () => {       
           video.play();
           canvas.setAttribute("width", video.width);
-          canvas.setAttribute("height", video.height);          
-          setTimeout(function(){DetectVideo(); }, 100);
+          canvas.setAttribute("height", video.height);   
         }
       })   
   } 
+	
+  DetectVideo();
                         
   async function DetectVideo() {
 
