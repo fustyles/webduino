@@ -93,8 +93,7 @@ function DetectVideo() {
 	  faceApi_result += json[i]["faceAttributes"]["emotion"]["surprise"];	   
 	  faceApi_result += ";";
 	    
-	  var frame = Number(document.getElementById("frame").value);
-	  if (frame==1) {
+
 	    context.lineWidth = "3";
 	    context.strokeStyle = "#00FFFF";
 	    context.beginPath();
@@ -105,9 +104,8 @@ function DetectVideo() {
 	    context.font = "14px Arial";
 	    context.fillStyle = "green";
 	    context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);
-            canvas.style.display = "block";
-            setTimeout(( () => canvas.style.display = "none" ), 2000);
-	  }	    
+	    canvas.style.display = "block";
+	    setTimeout(( () => canvas.style.display = "none" ), 2000);   
     }
     result.innerHTML = JSON.stringify(faceApi_result);
     return result.innerHTML;
