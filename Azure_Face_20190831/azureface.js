@@ -3,7 +3,7 @@
 +(function (window, document) {
 
   'use strict';
-   	
+
    function azureface_settings(input_resourceName, input_key){
      console.log(input_resourceName);
      console.log(input_key);
@@ -14,7 +14,7 @@
    function azureface_part(input_part){
      return "test";
    }
-	
+
   function azureface_video(input_width, input_height, input_mirrorimage, input_result, input_frame, input_opacity) {
     document.getElementById('video').width = input_width;
     document.getElementById('video').height = input_height;
@@ -27,5 +27,5 @@
   window.azureface_settings = azureface_settings;
   window.azureface_part = azureface_part;
   window.azureface_video = azureface_video;
-	
+
 }(window, window.document));
