@@ -18,9 +18,7 @@ function azureface_settings(input_resourceName, input_key){
 }
 
 async function azureface_part(input_part){
-  DetectVideo();
-  await delay(10);
-  return result.innerHTML;	
+  return DetectVideo();
 }
 
 function azureface_video(input_width, input_height, input_mirrorimage, input_result, input_frame, input_opacity) {
@@ -125,6 +123,7 @@ function DetectVideo() {
 	  }	    
     }
     result.innerHTML = JSON.stringify(faceApi_result);
+    return result.innerHTML;
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
@@ -135,6 +134,7 @@ function DetectVideo() {
       jQuery.parseJSON(jqXHR.responseText).message :
     jQuery.parseJSON(jqXHR.responseText).error.message;
     result.innerHTML = errorString;
+    return "";
   });
 }
 
