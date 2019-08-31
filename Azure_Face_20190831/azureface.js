@@ -70,7 +70,8 @@ function DetectVideo() {
     faceApi_result = "";
     for (var i in json) 
     {
-      faceApi_result += i + ",";	    
+      faceApi_result += i;      
+      faceApi_result += ",";	    
       faceApi_result += json[i]["faceId"]; 
       faceApi_result += ",";
       faceApi_result += json[i]["faceRectangle"]["top"];
