@@ -11,7 +11,9 @@
       </block>    
     </value> 	
   </block> 
-  <block type="azure_face_part">
+  <block type="azure_face_detect">
+  </block>  
+  <block type="azure_face_get">
   </block>
   <block type="azure_face_video">
     <value name="width_">
