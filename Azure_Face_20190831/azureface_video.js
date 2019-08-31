@@ -41,9 +41,9 @@ window.onload = function () {
       context.drawImage(video, 0, 0, video.width, video.height);
     document.getElementById("region").style.opacity = Number(document.getElementById("opacity").value);
  
-    var faceApi_Key = document.getElementById('faceApi_Key').innerHTML ;
-    var faceApi_ResourceName = document.getElementById('faceApi_ResourceName').innerHTML;
-    if (faceApi_Key == ""||faceApi_ResourceName == "") return;	  
+    var faceApi_key = document.getElementById('faceApi_Key').innerHTML ;
+    var faceApi_url = document.getElementById('faceApi_ResourceName').innerHTML;
+    if (faceApi_key == ""||faceApi_url == "") return;	  
 
 	const dataURL = canvas.toDataURL('image/png');
 	const blobBin = atob(dataURL.split(',')[1]);
@@ -64,7 +64,7 @@ window.onload = function () {
 	  url: faceApi_url,
 	  beforeSend : function(Obj) {
 	    Obj.setRequestHeader("Content-Type", "application/octet-stream");
-	    Obj.setRequestHeader("Ocp-Apim-Subscription-Key", faceApi_Key);
+	    Obj.setRequestHeader("Ocp-Apim-Subscription-Key", faceApi_key);
 	  },
 	  data: imagefile,
 	  processData : false,
