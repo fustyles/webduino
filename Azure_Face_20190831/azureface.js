@@ -10,7 +10,8 @@ function azureface_settings(input_resourceName, input_key){
 }
 
 function azureface_part(input_part){
-return "test";
+  DetectVideo();
+  return "test";
 }
 
 function azureface_video(input_width, input_height, input_mirrorimage, input_result, input_frame, input_opacity) {
