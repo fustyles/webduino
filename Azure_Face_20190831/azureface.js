@@ -21,7 +21,6 @@ function azureface_settings(input_resourceName, input_key){
 function azureface_part(input_part){
   queryState = true;
   DetectVideo();
-  while (queryState){}
   return faceApi_result;
   /*
   faceApi_result += "faceId,";
