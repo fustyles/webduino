@@ -67,7 +67,7 @@ function DetectVideo() {
   .done(function(json) {
     result.innerHTML = "";
     json = eval(json);
-    faceApi_result = "";
+    faceApi_result = "[";
     for (var i in json) 
     {
       faceApi_result += "{"+i;      
