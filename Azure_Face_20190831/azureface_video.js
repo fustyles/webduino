@@ -84,6 +84,7 @@ window.onload = function () {
 	      faceApi_result += json[i]["recognitionModel"];
 	      faceApi_result += ";";
 	      */
+	     setTimeout(function(){ DetectVideo(); }, 100);
 		
 	})
 	.fail(function(jqXHR, textStatus, errorThrown) {
@@ -95,6 +96,7 @@ window.onload = function () {
 		    jQuery.parseJSON(jqXHR.responseText).message :
 			jQuery.parseJSON(jqXHR.responseText).error.message;
 	    result.innerHTML = errorString;
+		setTimeout(function(){ DetectVideo(); }, 100);
 	});
 	  
 	  
