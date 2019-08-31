@@ -5,8 +5,6 @@ window.onload = function () {
   var canvas = document.getElementById('gamecanvas_azureface'); 
   var context = canvas.getContext('2d');
   var result = document.getElementById('result');
-  var faceApi_key = "";
-  var faceApi_ResourceName = "";
   var faceApi_result = "";
   
   startvideo();
@@ -47,19 +45,19 @@ window.onload = function () {
 	if (faceApi_key == ""||faceApi_ResourceName == "") return;
 
 
-	// ­º¥ı±NCanvasÂà¬° DataURL
+	// é¦–å…ˆå°‡Canvasè½‰ç‚º DataURL
 	const dataURL = canvas.toDataURL('image/png')
-	// ¨ú¥X¸ê®Æ¨Ã¨Ï¥Î atob ±N¸ê®ÆÂà¬°base64ªº¦r¦ê
+	// å–å‡ºè³‡æ–™ä¸¦ä½¿ç”¨ atob å°‡è³‡æ–™è½‰ç‚ºbase64çš„å­—ä¸²
 	const blobBin = atob(dataURL.split(',')[1])
-	// ¨ú±o mine
+	// å–å¾— mine
 	const mime = dataURL.split(',')[0].split(':')[1].split(';')[0]
 	console.log(mime)   // "image/png"
-	// «Ø¥ß¤@­Óarray®e¾¹©ñcharCode
+	// å»ºç«‹ä¸€å€‹arrayå®¹å™¨æ”¾charCode
 	const arr = []
 	for (let i = 0; i < blobBin.length; i++) {
 		arr.push(blobBin.charCodeAt(i))
 	}
-	// ±N°òÂ¦arr Âà¬° ArrayBuffer (usign integer 8): Uint8Array
+	// å°‡åŸºç¤arr è½‰ç‚º ArrayBuffer (usign integer 8): Uint8Array
 	const u8 = new Uint8Array(arr)
 	const imagefile = new Blob([u8], { type: mime })
 	console.log(imagefile)
