@@ -25,7 +25,7 @@ function azureface_detect(){
 }
   
 function azureface_get(){
-  return result.innerHTML.split(";");
+  return result.innerHTML.split("<br>");
 }
 
 function azureface_video(input_width, input_height, input_result, input_opacity) {
@@ -101,7 +101,7 @@ function DetectVideo() {
       faceApi_result += json[i]["faceAttributes"]["emotion"]["sadness"];
       faceApi_result += ",";	    
       faceApi_result += json[i]["faceAttributes"]["emotion"]["surprise"];	   
-      faceApi_result += ";";
+      faceApi_result += "<br>";
 
       context.lineWidth = "3";
       context.strokeStyle = "red";
@@ -112,7 +112,7 @@ function DetectVideo() {
       context.fillStyle = "#99FF99";
       context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     
     }
-    if (faceApi_result!="") faceApi_result = faceApi_result.substr(0,faceApi_result.length-1);
+    if (faceApi_result!="") faceApi_result = faceApi_result.substr(0,faceApi_result.length-4);
     result.innerHTML = faceApi_result;
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, 3000);
   })
