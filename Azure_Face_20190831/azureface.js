@@ -40,8 +40,7 @@ function DetectVideo() {
     context.setTransform(1, 0, 0, 1, 0, 0);
   }
   else
-	context.drawImage(video, 0, 0, video.width, video.height);
-  document.getElementById("region").style.opacity = Number(document.getElementById("opacity").value);
+    context.drawImage(video, 0, 0, video.width, video.height);
 
   if (faceApi_key == ""||faceApi_url == "") return;    
 
