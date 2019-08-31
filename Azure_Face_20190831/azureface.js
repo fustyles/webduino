@@ -109,7 +109,7 @@ function DetectVideo() {
       context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     
     }
     result.innerHTML = faceApi_result;
-    setTimeout(( () => canvas.style.display = "none"; video.style.display = "block";), 3000);
+    setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, 3000);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
