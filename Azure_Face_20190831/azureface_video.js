@@ -7,26 +7,24 @@ window.onload = function () {
   var result = document.getElementById('result');
   var faceApi_result = "";
 
-  function startvideo() {
-    //video.style.visibility="hidden";
-    //video.style.position="absolute";
-    navigator.mediaDevices
-      .getUserMedia({
-        audio: false,
-        video: {
-          facingMode: "user"
-        }
-      })
-      .then(stream => {
-        video.srcObject = stream
-        video.onloadedmetadata = () => {       
-          video.play();
-          canvas.setAttribute("width", video.width);
-          canvas.setAttribute("height", video.height); 
+	//video.style.visibility="hidden";
+	//video.style.position="absolute";
+	navigator.mediaDevices
+	.getUserMedia({
+	audio: false,
+	video: {
+	  facingMode: "user"
+	}
+	})
+	.then(stream => {
+	video.srcObject = stream
+	video.onloadedmetadata = () => {       
+	  video.play();
+	  canvas.setAttribute("width", video.width);
+	  canvas.setAttribute("height", video.height); 
 	  DetectVideo();
-        }
-      })   
-  } 
+	}
+	})   
 	                    
   function DetectVideo() {
 
