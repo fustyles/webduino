@@ -33,6 +33,7 @@ function azureface_video(input_width, input_height, input_result, input_opacity)
 function DetectVideo() {
   if (faceApi_key == ""||faceApi_url == "") return;    
 
+  video.style.display = "none";
   canvas.style.display = "block";
   context.drawImage(video, 0, 0, video.width, video.height);
   const dataURL = canvas.toDataURL('image/png');
