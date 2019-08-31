@@ -106,23 +106,21 @@ function DetectVideo() {
 	  faceApi_result += ",";	    
 	  faceApi_result += json[i]["faceAttributes"]["emotion"]["surprise"];	   
 	  faceApi_result += ";";
-    }
-    result.innerHTML = JSON.stringify(faceApi_result);
-	  
-    /*
+	    
 	  var frame = Number(document.getElementById("frame").value);
 	  if (frame==1) {
 	    context.lineWidth = "3";
 	    context.strokeStyle = "#00FFFF";
 	    context.beginPath();
-	    context.rect(x, y, width, height);
+	    context.rect(json[i]["faceRectangle"]["left"], json[i]["faceRectangle"]["top"], json[i]["faceRectangle"]["width"], json[i]["faceRectangle"]["height"]);
 	    context.stroke(); 
 	    context.lineWidth = "2";
 	    context.fillStyle = "red";
 	    context.font = "12px Arial";
-	    context.fillText(predictions[i].class, x, y);
-	  }
-    */	  
+	    context.fillText(json[i]["faceAttributes"]["gender"]+","+json[i]["faceAttributes"]["age"], json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);
+	  }	    
+    }
+    result.innerHTML = JSON.stringify(faceApi_result);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     // Display error message.
