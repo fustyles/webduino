@@ -133,6 +133,15 @@ function DetectVideo() {
 		  faceApi_result += ",";	    
 		  faceApi_result += maxName;
 			
+		  context.lineWidth = "3";
+		  context.strokeStyle = "red";
+		  context.beginPath();
+		  context.rect(json[i]["faceRectangle"]["left"], json[i]["faceRectangle"]["top"], json[i]["faceRectangle"]["width"], json[i]["faceRectangle"]["height"]);
+		  context.stroke(); 
+		  context.font = "16px Arial";
+		  context.fillStyle = "#99FF99";
+		  context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"]+", "+maxName, json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     			
+			
 		  faceApi_result += ",";	    
 		  faceApi_result += json[i]["faceAttributes"]["smile"]; 
 		  faceApi_result += ",";	    
@@ -181,18 +190,8 @@ function DetectVideo() {
 			
 		  faceApi_result += ",";	    
 		  faceApi_result += json[i]["faceAttributes"]["hair"]["bald"]+"_"+json[i]["faceAttributes"]["hair"]["invisible"]+"_"+maxName; 
-	
-
+			
 		  faceApi_result += "<br>";
-
-		  context.lineWidth = "3";
-		  context.strokeStyle = "red";
-		  context.beginPath();
-		  context.rect(json[i]["faceRectangle"]["left"], json[i]["faceRectangle"]["top"], json[i]["faceRectangle"]["width"], json[i]["faceRectangle"]["height"]);
-		  context.stroke(); 
-		  context.font = "16px Arial";
-		  context.fillStyle = "#99FF99";
-		  context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"]+", "+maxName, json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     
 		}
 		
 	}
