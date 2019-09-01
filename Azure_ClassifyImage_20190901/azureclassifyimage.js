@@ -19,7 +19,8 @@ function azureclassifyimage_settings(input_resourceName, input_predictionKey, in
   if (input_resourceName.toLowerCase().indexOf("http")==0)
     Prediction_url = input_resourceName;
   else
-    Prediction_url = "https://" + input_resourceName + ".api.cognitive.microsoft.com/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/"+input_publishedName+"/image"
+    Prediction_url = "https://" + input_resourceName + ".cognitiveservices.azure.com/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/Iteration1/"+input_publishedName+"/image"
+    //Prediction_url = "https://" + input_resourceName + ".api.cognitive.microsoft.com/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/Iteration1/"+input_publishedName+"/image"
   Prediction_key = input_predictionKey;
   console.log(Prediction_url);
   console.log(Prediction_key);  
