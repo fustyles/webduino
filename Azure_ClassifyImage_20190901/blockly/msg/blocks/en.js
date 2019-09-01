@@ -1,11 +1,11 @@
-Blockly.Msg.AZURECLASSIFYIMAGE_PART_SHOW = "Object Detection (Azure) Part";
+Blockly.Msg.AZURECLASSIFYIMAGE_PART_SHOW = "Classify Image (Azure) Part";
 Blockly.Msg.AZURECLASSIFYIMAGE_WIDTH_SHOW = "Width";
 Blockly.Msg.AZURECLASSIFYIMAGE_HEIGHT_SHOW = "Height";
-Blockly.Msg.AZURECLASSIFYIMAGE_DETECT_SHOW = "Object Detect (Azure)";
+Blockly.Msg.AZURECLASSIFYIMAGE_DETECT_SHOW = "Classify Image (Azure)";
 Blockly.Msg.AZURECLASSIFYIMAGE_GET_SHOW = "Get Result (Azure)";
 Blockly.Msg.AZURECLASSIFYIMAGE_RESULT_SHOW = "Result (Azure)";
 Blockly.Msg.AZURECLASSIFYIMAGE_OPACITY_SHOW = "Opacity";
-Blockly.Msg.AZURECLASSIFYIMAGE_SETTINGS_SHOW ="Object Detection (Azure) settings";
+Blockly.Msg.AZURECLASSIFYIMAGE_SETTINGS_SHOW ="Classify Image (Azure) settings";
 Blockly.Msg.AZURECLASSIFYIMAGE_SHOWTIME_SHOW = "Show Photo(s)";
 Blockly.Msg.AZURECLASSIFYIMAGE_ENDPOINTHOST_SHOW ="Endpoint Host";
 Blockly.Msg.AZURECLASSIFYIMAGE_PREDICTIONKEY_SHOW = "Prediction Key";
