@@ -12,7 +12,7 @@
     </value>     
   </block>   
   <block type="azure_classifyimage_settings">
-    <value name="resourcename_">
+    <value name="endpointhost_">
       <block type="text">
         <field name="TEXT"></field>
       </block>    
@@ -27,7 +27,7 @@
         <field name="TEXT"></field>
       </block>    
     </value> 
-    <value name="publishedname_">
+    <value name="iterationname_">
       <block type="text">
         <field name="TEXT"></field>
       </block>    
