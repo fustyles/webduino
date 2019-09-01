@@ -12,6 +12,7 @@ var result = document.getElementById('result');
 var faceApi_key = "";
 var faceApi_url = "";  
 var faceApi_result = ""; 
+var faceApi_returnResult = "";
 var showTime = 3000;
 
 function azurefacedetection_settings(input_resourceName, input_key){
@@ -26,11 +27,12 @@ function azurefacedetection_detect(input_showtime){
   showTime = input_showtime*1000;
   result.innerHTML = "";
   faceApi_result = "";
+  faceApi_returnResult = "";
   DetectVideo();
 }
   
 function azurefacedetection_get(){
-  return result.innerHTML.split("<br>");
+  return faceApi_returnResult.split("<br>");
 }
 
 function azurefacedetection_video(input_width, input_height, input_result, input_opacity) {
@@ -68,10 +70,10 @@ function DetectVideo() {
     processData: false
   })
   .done(function(json) {
+    json = eval(json);	  
     result.innerHTML = "";
-    json = eval(json);
     faceApi_result = "";
-
+    faceApi_returnResult = "";
 
 	try {
 		for (var i in json) 
@@ -175,8 +177,9 @@ function DetectVideo() {
       faceApi_result = faceApi_result.substr(0,faceApi_result.length-4);
     else
       faceApi_result = "nobody";
-	console.log(JSON.stringify(json));
-    result.innerHTML = faceApi_result;
+    console.log(JSON.stringify(json));
+    faceApi_returnResult = faceApi_result;
+    result.innerHTML = JSON.stringify(json);
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, showTime);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
