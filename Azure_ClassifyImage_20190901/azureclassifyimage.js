@@ -34,6 +34,7 @@ function azureclassifyimage_detect(input_showtime){
 }
   
 function azureclassifyimage_get(){
+  console.log(Prediction_returnResult);
   return Prediction_returnResult.split("<br>");
 }
 
