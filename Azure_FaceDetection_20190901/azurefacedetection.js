@@ -134,27 +134,30 @@ function DetectVideo() {
 		  faceApi_result += maxEmotion;
 			
 		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["headPose"]; 
-		  faceApi_result += ",";	    
 		  faceApi_result += json[i]["faceAttributes"]["smile"]; 
 		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["facialHair"]; 
+		  faceApi_result += json[i]["faceAttributes"]["headPose"]["pitch"]+"_"+json[i]["faceAttributes"]["headPose"]["roll"]+"_"+json[i]["faceAttributes"]["headPose"]["yaw"]; 
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["facialHair"]["moustache"]+"_"+json[i]["faceAttributes"]["facialHair"]["beard"]+"_"+json[i]["faceAttributes"]["facialHair"]["sideburns"]; 
+
 		  faceApi_result += ",";	    
 		  faceApi_result += json[i]["faceAttributes"]["glasses"]; 
 		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["blur"]["blurLevel"]+"_"+json[i]["faceAttributes"]["blur"]["value"]; 	
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["exposure"]["exposureLevel"]+"_"+json[i]["faceAttributes"]["exposure"]["value"];
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["noise"]["noiseLevel"]+"_"+json[i]["faceAttributes"]["noise"]["value"]; 			
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["makeup"]["eyeMakeup"]+"_"+json[i]["faceAttributes"]["makeup"]["lipMakeup"]; 
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["accessories"]["type"]+"_"+json[i]["faceAttributes"]["accessories"]["confidence"]; 	
+		  faceApi_result += ",";	    
+		  faceApi_result += json[i]["faceAttributes"]["occlusion"]["foreheadOccluded"]+"_"+json[i]["faceAttributes"]["occlusion"]["eyeOccluded"]+"_"+json[i]["faceAttributes"]["occlusion"]["mouthOccluded"]; 			
+		  faceApi_result += ",";	    
 		  faceApi_result += json[i]["faceAttributes"]["hair"]; 
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["makeup"]; 	
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["occlusion"]; 
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["accessories"]; 
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["blur"]; 	
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["exposure"]; 			
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["noise"]; 	
+	
+
 		  faceApi_result += "<br>";
 
 		  context.lineWidth = "3";
