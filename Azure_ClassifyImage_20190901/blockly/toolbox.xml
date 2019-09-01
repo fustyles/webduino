@@ -1,0 +1,45 @@
+<category id="azureclassifyimage">
+  <block type="azure_classifyimage_video">
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">320</field>
+      </block>
+    </value> 
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">240</field>
+      </block>
+    </value>     
+  </block>   
+  <block type="azure_classifyimage_settings">
+    <value name="resourcename_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value> 
+    <value name="predictionkey_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value> 	
+    <value name="projectid_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value> 
+    <value name="publishedname_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value> 
+  </block> 
+  <block type="azure_classifyimage_detect">
+    <value name="showtime_">
+      <block type="math_number">
+        <field name="NUM">3</field>
+      </block>
+    </value>     
+  </block>  
+  <block type="azure_classifyimage_get">
+  </block>  
+</category>

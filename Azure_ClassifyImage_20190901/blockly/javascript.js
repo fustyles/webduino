@@ -1,0 +1,28 @@
+Blockly.JavaScript['azure_classifyimage_settings'] = function(block) { 
+  var value_resourcename_ = Blockly.JavaScript.valueToCode(block, 'resourcename_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_predictionkey_ = Blockly.JavaScript.valueToCode(block, 'predictionkey_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_projectid_ = Blockly.JavaScript.valueToCode(block, 'projectid_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_publishedname_ = Blockly.JavaScript.valueToCode(block, 'publishedname_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'azureclassifyimage_settings(' + value_resourcename_ + ',' + value_predictionkey_ + ',' + value_projectid_ + ',' + value_publishedname_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['azure_classifyimage_detect'] = function(block) {
+  var value_showtime_ = Blockly.JavaScript.valueToCode(block, 'showtime_', Blockly.JavaScript.ORDER_ATOMIC);	
+  var code = 'azureclassifyimage_detect(' + value_showtime_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['azure_classifyimage_get'] = function(block) { 
+  var code = 'azureclassifyimage_get()';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['azure_classifyimage_video'] = function(block) { 
+  var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_result_ = block.getFieldValue('result_');
+  var value_opacity_ = block.getFieldValue('opacity_');
+  var code = 'azureclassifyimage_video(' + value_width_ + ',' + value_height_ + ',"' + value_result_ + '","' + value_opacity_ + '");\n';
+  return code;
+};
