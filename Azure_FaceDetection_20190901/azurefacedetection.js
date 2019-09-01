@@ -155,28 +155,28 @@ function DetectVideo() {
 		  faceApi_result += ",";	    
 		  faceApi_result += json[i]["faceAttributes"]["occlusion"]["foreheadOccluded"]+"_"+json[i]["faceAttributes"]["occlusion"]["eyeOccluded"]+"_"+json[i]["faceAttributes"]["occlusion"]["mouthOccluded"]; 			
 		  
-		  max=json[i]["faceAttributes"]["hair"][0]["confidence"];
-		  maxName=json[i]["faceAttributes"]["hair"][0]["color"];
+		  max=json[i]["faceAttributes"]["hair"]["confidence"][0];
+		  maxName=json[i]["faceAttributes"]["hair"]["color"][0];
 			
-		  if (json[i]["faceAttributes"]["hair"][1]["confidence"]>max) {
-			maxName = json[i]["faceAttributes"]["hair"][1]["color"];
-			max = json[i]["faceAttributes"]["hair"][1]["confidence"];  
+		  if (json[i]["faceAttributes"]["hair"]["confidence"][1]>max) {
+			maxName = json[i]["faceAttributes"]["hair"]["color"][1];
+			max = json[i]["faceAttributes"]["hair"]["confidence"][1];  
 		  }
-		  if (json[i]["faceAttributes"]["hair"][2]["confidence"]>max) {
-			maxName = json[i]["faceAttributes"]["hair"][2]["color"];
-			max = json[i]["faceAttributes"]["hair"][2]["confidence"];  
+		  if (json[i]["faceAttributes"]["hair"]["confidence"][2]>max) {
+			maxName = json[i]["faceAttributes"]["hair"]["color"][2];
+			max = json[i]["faceAttributes"]["hair"]["confidence"][2];  
 		  }
-		  if (json[i]["faceAttributes"]["hair"][3]["confidence"]>max) {
-			maxName = json[i]["faceAttributes"]["hair"][3]["color"];
-			max = json[i]["faceAttributes"]["hair"][3]["confidence"];  
+		  if (json[i]["faceAttributes"]["hair"]["confidence"][3]>max) {
+			maxName = json[i]["faceAttributes"]["hair"]["color"][3];
+			max = json[i]["faceAttributes"]["hair"]["confidence"][3];  
 		  }
-		  if (json[i]["faceAttributes"]["hair"][4]["confidence"]>max) {
-			maxName = json[i]["faceAttributes"]["hair"][4]["color"];
-			max = json[i]["faceAttributes"]["hair"][4]["confidence"];  
+		  if (json[i]["faceAttributes"]["hair"]["confidence"][4]>max) {
+			maxName = json[i]["faceAttributes"]["hair"]["color"][4];
+			max = json[i]["faceAttributes"]["hair"]["confidence"][4];  
 		  }
-		  if (json[i]["faceAttributes"]["hair"][5]["confidence"]>max) {
-			maxName = json[i]["faceAttributes"]["hair"][5]["color"];
-			max = json[i]["faceAttributes"]["hair"][5]["confidence"];  
+		  if (json[i]["faceAttributes"]["hair"]["confidence"][5]>max) {
+			maxName = json[i]["faceAttributes"]["hair"]["color"][5];
+			max = json[i]["faceAttributes"]["hair"]["confidence"][5];  
 		  }				
 			
 		  faceApi_result += ",";	    
