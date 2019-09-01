@@ -19,7 +19,7 @@ function azureclassifyimage_settings(input_resourceName, input_predictionKey, in
   if (input_resourceName.toLowerCase().indexOf("http")==0)
     CustomVision_url = input_resourceName;
   else
-    CustomVision_url = "https://" + input_resourceName + ".cognitiveservices.azure.com/customvision/v3.0/Prediction/"+input_projectId+"/classify/iterations/"+input_publishedName+"/image"
+    CustomVision_url = "https://" + input_resourceName + ".cognitiveservices.azure.com/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/"+input_publishedName+"/image"
   CustomVision_key = input_predictionKey;
 }
 
