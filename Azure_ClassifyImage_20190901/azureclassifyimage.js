@@ -15,12 +15,11 @@ var Prediction_result = "";
 var Prediction_returnResult = "";
 var showTime = 3000;
 
-function azureclassifyimage_settings(input_resourceName, input_predictionKey, input_projectId, input_publishedName){
-  if (input_resourceName.toLowerCase().indexOf("http")==0)
-    Prediction_url = input_resourceName;
+function azureclassifyimage_settings(input_endpointhost, input_predictionKey, input_projectId, input_iterationname){
+  if (input_endpointhost.toLowerCase().indexOf("http")==0)
+    Prediction_url = input_endpointhost + "/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/Iteration1/"+input_iterationname+"/image"
   else
-    Prediction_url = "https://" + input_resourceName + ".cognitiveservices.azure.com/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/Iteration1/"+input_publishedName+"/image"
-    //Prediction_url = "https://" + input_resourceName + ".api.cognitive.microsoft.com/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/Iteration1/"+input_publishedName+"/image"
+    Prediction_url = "https://" + input_endpointhost + "/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/Iteration1/"+input_iterationname+"/image"
   Prediction_key = input_predictionKey;
   console.log(Prediction_url);
   console.log(Prediction_key);  
