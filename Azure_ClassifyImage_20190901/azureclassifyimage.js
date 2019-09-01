@@ -97,15 +97,8 @@ function azureclassifyimage_detectvideo() {
     result.innerHTML = JSON.stringify(json);
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, showTime);
   })
-  .fail(function(jqXHR, textStatus, errorThrown) {
-    // Display error message.
-    var errorString = (errorThrown === "") ?
-    "Error. " : errorThrown + " (" + jqXHR.status + "): ";
-    errorString += (jqXHR.responseText === "") ?
-    "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
-      jQuery.parseJSON(jqXHR.responseText).message :
-    jQuery.parseJSON(jqXHR.responseText).error.message;
-    result.innerHTML = "nobody";
+  .fail(function() {
+    console.log("error");
   });
 }
 
