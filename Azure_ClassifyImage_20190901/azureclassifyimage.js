@@ -34,7 +34,7 @@ function azureclassifyimage_detect(input_showtime){
 }
   
 function azureclassifyimage_get(){
-  return Prediction_returnResult.split(",");
+  return Prediction_returnResult.split("<br>");
 }
 
 function azureclassifyimage_video(input_width, input_height, input_result, input_opacity) {
@@ -88,12 +88,12 @@ function azureclassifyimage_detectvideo() {
           max = json["predictions"][i]["probability"];
           maxName = json["predictions"][i]["tagName"];
         }
-        Prediction_result += ";"+json["predictions"][i]["tagName"]+","+json["predictions"][i]["probability"];
+        Prediction_result += "<br>"+json["predictions"][i]["tagName"]+","+json["predictions"][i]["probability"];
       }
       Prediction_result = maxName + "," + max + Prediction_result;
     }
     catch (e) {
-      Prediction_result = ",";
+      Prediction_result = "Error,0";
       console.log(e);
     }
     console.log(JSON.stringify(json));
