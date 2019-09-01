@@ -95,7 +95,7 @@ function azureclassifyimage_detectvideo() {
       context.lineWidth = "3";
       context.font = "20px Arial";
       context.fillStyle = "#99FF99";
-      context.fillText(maxName+" : "+max , 50,  50);     					      
+      context.fillText(maxName+" : "+max , 30,  30);     					      
     }
     catch (e) {
       Prediction_result = "Error,0";
