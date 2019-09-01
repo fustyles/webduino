@@ -71,31 +71,7 @@ function azureclassifyimage_detectvideo() {
   })
   .done(function(json) {
     json = eval(json);	  
-    result.innerHTML = "";
-    Prediction_result = "";
-    Prediction_returnResult = "";
-
-	try {
-		for (var i in json) 
-		{
-		  
-		}
-		
-	}
-	catch (e) {
-      Prediction_result = "";
-	  console.log(e);
-	}
-
-
-    if (Prediction_result!="") 
-      Prediction_result = Prediction_result.substr(0,Prediction_result.length-4);
-    else
-      Prediction_result = "nobody";
     console.log(JSON.stringify(json));
-    Prediction_returnResult = Prediction_result;
-    result.innerHTML = JSON.stringify(json);
-    setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, showTime);
   })
   .fail(function() {
     console.log("error");
