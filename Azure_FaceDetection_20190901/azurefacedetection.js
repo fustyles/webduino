@@ -192,7 +192,7 @@ function DetectVideo() {
 		  context.stroke(); 
 		  context.font = "16px Arial";
 		  context.fillStyle = "#99FF99";
-		  context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"]+", "+maxEmotion, json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     
+		  context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"]+", "+maxName, json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     
 		}
 		
 	}
