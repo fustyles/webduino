@@ -197,7 +197,8 @@ function DetectVideo() {
 		
 	}
 	catch (e) {
-      faceApi_result = "";
+          faceApi_result = "";
+	  console.log(e);
 	}
 
 
