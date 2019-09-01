@@ -88,8 +88,9 @@ function azureclassifyimage_detectvideo() {
           max = json["predictions"][i]["probability"];
           maxName = json["predictions"][i]["tagName"];
         }
+        Prediction_result += ";"+json["predictions"][i]["tagName"]+","+json["predictions"][i]["probability"];
       }
-      Prediction_result = maxName + "," + max;
+      Prediction_result = maxName + "," + max + Prediction_result;
     }
     catch (e) {
       Prediction_result = ",";
