@@ -10,29 +10,29 @@ var canvas = document.getElementById('gamecanvas_azureclassifyimage');
 var context = canvas.getContext('2d');
 var result = document.getElementById('result');
 var Prediction_key = "";
-var CustomVision_url = "";  
-var CustomVision_result = ""; 
-var CustomVision_returnResult = "";
+var Prediction_url = "";  
+var Prediction_result = ""; 
+var Prediction_returnResult = "";
 var showTime = 3000;
 
 function azureclassifyimage_settings(input_resourceName, input_predictionKey, input_projectId, input_publishedName){
   if (input_resourceName.toLowerCase().indexOf("http")==0)
-    CustomVision_url = input_resourceName;
+    Prediction_url = input_resourceName;
   else
-    CustomVision_url = "https://" + input_resourceName + ".api.cognitive.microsoft.com/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/"+input_publishedName+"/image"
+    Prediction_url = "https://" + input_resourceName + ".api.cognitive.microsoft.com/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/"+input_publishedName+"/image"
   Prediction_key = input_predictionKey;
 }
 
 function azureclassifyimage_detect(input_showtime){
   showTime = input_showtime*1000;
   result.innerHTML = "";
-  CustomVision_result = "";
-  CustomVision_returnResult = "";
+  Prediction_result = "";
+  Prediction_returnResult = "";
   azureclassifyimage_detectvideo();
 }
   
 function azureclassifyimage_get(){
-  return CustomVision_returnResult.split("<br>");
+  return Prediction_returnResult.split("<br>");
 }
 
 function azureclassifyimage_video(input_width, input_height, input_result, input_opacity) {
@@ -43,7 +43,7 @@ function azureclassifyimage_video(input_width, input_height, input_result, input
 }
   
 function azureclassifyimage_detectvideo() {
-  if (CustomVision_key == ""||CustomVision_url == "") return;    
+  if (Prediction_key == ""||Prediction_url == "") return;    
 
   video.style.display = "none";
   canvas.style.display = "block";
@@ -60,7 +60,7 @@ function azureclassifyimage_detectvideo() {
 
   // Perform the REST API call.
   $.ajax({
-    url: CustomVision_url,
+    url: Prediction_url,
     beforeSend: function(xhrObj){
     xhrObj.setRequestHeader("Content-Type","application/octet-stream");
     xhrObj.setRequestHeader("Prediction-Key", Prediction_key);     
@@ -72,8 +72,8 @@ function azureclassifyimage_detectvideo() {
   .done(function(json) {
     json = eval(json);	  
     result.innerHTML = "";
-    CustomVision_result = "";
-    CustomVision_returnResult = "";
+    Prediction_result = "";
+    Prediction_returnResult = "";
 
 	try {
 		for (var i in json) 
@@ -83,17 +83,17 @@ function azureclassifyimage_detectvideo() {
 		
 	}
 	catch (e) {
-      CustomVision_result = "";
+      Prediction_result = "";
 	  console.log(e);
 	}
 
 
-    if (CustomVision_result!="") 
-      CustomVision_result = CustomVision_result.substr(0,CustomVision_result.length-4);
+    if (Prediction_result!="") 
+      Prediction_result = Prediction_result.substr(0,Prediction_result.length-4);
     else
-      CustomVision_result = "nobody";
+      Prediction_result = "nobody";
     console.log(JSON.stringify(json));
-    CustomVision_returnResult = CustomVision_result;
+    Prediction_returnResult = Prediction_result;
     result.innerHTML = JSON.stringify(json);
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, showTime);
   })
