@@ -6,6 +6,6 @@ Blockly.Msg.AZUREFACEDETECTION_GET_SHOW = "Get Result (Azure Face Detection)";
 Blockly.Msg.AZUREFACEDETECTION_RESULT_SHOW = "Result (Azure Face Detection)";
 Blockly.Msg.AZUREFACEDETECTION_OPACITY_SHOW = "Opacity";
 Blockly.Msg.AZUREFACEDETECTION_SETTINGS_SHOW ="Face Detection (Azure) settings";
-Blockly.Msg.AZUREFACEDETECTION_RESOURCENAME_SHOW ="Resource Name";
+Blockly.Msg.AZUREFACEDETECTION_RESOURCENAME_SHOW ="Resource Host";
 Blockly.Msg.AZUREFACEDETECTION_KEY_SHOW = "Ocp-Apim-Subscription-Key";
 Blockly.Msg.AZUREFACEDETECTION_SHOWTIME_SHOW = " and Show Photo(s)";
