@@ -1,7 +1,7 @@
 Blockly.Msg.AZUREFACEDETECTION_PART_SHOW = "Face Detection (Azure) Part";
 Blockly.Msg.AZUREFACEDETECTION_WIDTH_SHOW = "Width";
 Blockly.Msg.AZUREFACEDETECTION_HEIGHT_SHOW = "Height";
-Blockly.Msg.AZUREFACEDETECTION_DETECT_SHOW = "Detect Faces (Azure)";
+Blockly.Msg.AZUREFACEDETECTION_DETECT_SHOW = "Detect faces (Azure)";
 Blockly.Msg.AZUREFACEDETECTION_GET_SHOW = "Get Result (Azure Face Detection)";
 Blockly.Msg.AZUREFACEDETECTION_RESULT_SHOW = "Result (Azure Face Detection)";
 Blockly.Msg.AZUREFACEDETECTION_OPACITY_SHOW = "Opacity";
