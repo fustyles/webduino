@@ -34,7 +34,6 @@ function azureclassifyimage_detect(input_showtime){
 }
   
 function azureclassifyimage_get(){
-  console.log(Prediction_returnResult);
   return Prediction_returnResult.split("<br>");
 }
 
@@ -103,7 +102,7 @@ function azureclassifyimage_detectvideo() {
       Prediction_result = "Error,0";
       console.log(e);
     }
-    console.log(JSON.stringify(json));
+    console.log(Prediction_returnResult);
     Prediction_returnResult = Prediction_result;
     result.innerHTML = JSON.stringify(json);
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, showTime);
