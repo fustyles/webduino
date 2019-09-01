@@ -21,8 +21,7 @@ function azureclassifyimage_settings(input_endpointhost, input_predictionKey, in
   else
     Prediction_url = "https://" + input_endpointhost + "/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/"+input_iterationname+"/image"
   Prediction_key = input_predictionKey;
-  console.log(Prediction_url);
-  console.log(Prediction_key);  
+  console.log(Prediction_url); 
 }
 
 function azureclassifyimage_detect(input_showtime){
@@ -102,7 +101,7 @@ function azureclassifyimage_detectvideo() {
       Prediction_result = "Error,0";
       console.log(e);
     }
-    console.log(Prediction_returnResult);
+    console.log(Prediction_result);
     Prediction_returnResult = Prediction_result;
     result.innerHTML = JSON.stringify(json);
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, showTime);
