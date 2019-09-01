@@ -34,7 +34,7 @@ function azureclassifyimage_detect(input_showtime){
 }
   
 function azureclassifyimage_get(){
-  return Prediction_returnResult.split("<br>");
+  return Prediction_returnResult.split(",");
 }
 
 function azureclassifyimage_video(input_width, input_height, input_result, input_opacity) {
@@ -73,7 +73,33 @@ function azureclassifyimage_detectvideo() {
   })
   .done(function(json) {
     json = eval(json);	  
+    result.innerHTML = "";
+    Prediction_result = "";
+    Prediction_returnResult = "";
+    try {
+      var max="";
+      var maxName="";      
+      for (var i in json["predictions"]) 
+      {
+        if (max=="") max = json["predictions"][i]["probability"];
+        if (maxName=="") maxName = json["predictions"][i]["tagName"];
+        
+        if (json["predictions"][i]["probability"]>max) { 
+          max = json["predictions"][i]["probability"];
+          maxName = json["predictions"][i]["tagName"];
+        }
+      }
+      Prediction_result = maxName + "," + maxName;
+    }
+    catch (e) {
+      Prediction_result = "";
+      console.log(e);
+    }
     console.log(JSON.stringify(json));
+    Prediction_returnResult = Prediction_result;
+    result.innerHTML = JSON.stringify(json);
+    setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, showTime);
+  })
   })
   .fail(function() {
     console.log("error");
