@@ -93,9 +93,9 @@ function azureclassifyimage_detectvideo() {
       Prediction_result = maxName + "," + max + Prediction_result;
       
       context.lineWidth = "3";
-      context.font = "16px Arial";
+      context.font = "20px Arial";
       context.fillStyle = "#99FF99";
-      context.fillText(maxName+" : "+max , 0,  0);     					      
+      context.fillText(maxName+" : "+max , 100,  0);     					      
     }
     catch (e) {
       Prediction_result = "Error,0";
