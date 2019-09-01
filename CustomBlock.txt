@@ -8,7 +8,7 @@ https://fustyles.github.io/webduino/Azure_FaceDetection_20190901/blockly.json
 [Smart]
 https://blocklypro.webduino.io/#XenY8MWLlw
 [Bit]
-
+https://bit.webduino.io/blockly/#Qq7lNK24Ozn3B
 
 
 Wibbit教育版 法蘭斯點矩陣(不可與官方積木混用)
