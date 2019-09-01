@@ -21,6 +21,8 @@ function azureclassifyimage_settings(input_resourceName, input_predictionKey, in
   else
     Prediction_url = "https://" + input_resourceName + ".api.cognitive.microsoft.com/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/"+input_publishedName+"/image"
   Prediction_key = input_predictionKey;
+  console.log(Prediction_url);
+  console.log(Prediction_key);  
 }
 
 function azureclassifyimage_detect(input_showtime){
