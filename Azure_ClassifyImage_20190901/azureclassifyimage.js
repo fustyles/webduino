@@ -9,7 +9,7 @@ var video = document.getElementById('video');
 var canvas = document.getElementById('gamecanvas_azureclassifyimage'); 
 var context = canvas.getContext('2d');
 var result = document.getElementById('result');
-var CustomVision_key = "";
+var Prediction_key = "";
 var CustomVision_url = "";  
 var CustomVision_result = ""; 
 var CustomVision_returnResult = "";
@@ -20,7 +20,7 @@ function azureclassifyimage_settings(input_resourceName, input_predictionKey, in
     CustomVision_url = input_resourceName;
   else
     CustomVision_url = "https://" + input_resourceName + ".api.cognitive.microsoft.com/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/"+input_publishedName+"/image"
-  CustomVision_key = input_predictionKey;
+  Prediction_key = input_predictionKey;
 }
 
 function azureclassifyimage_detect(input_showtime){
@@ -63,7 +63,7 @@ function azureclassifyimage_detectvideo() {
     url: CustomVision_url,
     beforeSend: function(xhrObj){
     xhrObj.setRequestHeader("Content-Type","application/octet-stream");
-    xhrObj.setRequestHeader("Prediction-Key", CustomVision_key);     
+    xhrObj.setRequestHeader("Prediction-Key", Prediction_key);     
     },
     type: "POST",
     data: photo,
