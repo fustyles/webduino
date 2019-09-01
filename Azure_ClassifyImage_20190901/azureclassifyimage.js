@@ -100,7 +100,6 @@ function azureclassifyimage_detectvideo() {
     result.innerHTML = JSON.stringify(json);
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, showTime);
   })
-  })
   .fail(function() {
     console.log("error");
   });
