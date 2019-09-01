@@ -92,7 +92,7 @@ function azureclassifyimage_detectvideo() {
       Prediction_result = maxName + "," + max;
     }
     catch (e) {
-      Prediction_result = "";
+      Prediction_result = ",";
       console.log(e);
     }
     console.log(JSON.stringify(json));
