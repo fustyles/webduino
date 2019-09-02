@@ -84,7 +84,8 @@ function azureclassifyimage_detectvideo() {
     processData: false
   })
   .done(function(json) {
-    json = eval(json);	  
+    json = eval(json);
+    console.log(JSON.stringify(json));
     result.innerHTML = "";
     Prediction_result = "";
     Prediction_returnResult = "";
