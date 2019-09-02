@@ -117,7 +117,7 @@ function azureclassifyimage_detectvideo() {
       Prediction_result = maxName + "," + max + Prediction_result;
       
       if (func=="classify") {
-        context.font = "12px Arial";
+        context.font = "20px Arial";
         context.fillStyle = "#99FF99";
         context.fillText(maxName + "," + max, 30,  30);     			
       }      
