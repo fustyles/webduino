@@ -1,5 +1,5 @@
 {
-  "types": ["azure_classifyimage_settings", "azure_classifyimage_detect", "azure_classifyimage_get", "azure_classifyimage_video"],
+  "types": ["azure_classifyimage_settings", "azure_classifyimage_detect", "azure_classifyimage_get", "azure_classifyimage_video", "azure_classifyimage_max"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
