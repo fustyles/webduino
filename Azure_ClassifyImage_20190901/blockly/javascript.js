@@ -3,7 +3,8 @@ Blockly.JavaScript['azure_classifyimage_settings'] = function(block) {
   var value_predictionkey_ = Blockly.JavaScript.valueToCode(block, 'predictionkey_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_projectid_ = Blockly.JavaScript.valueToCode(block, 'projectid_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_iterationname_ = Blockly.JavaScript.valueToCode(block, 'iterationname_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'azureclassifyimage_settings(' + value_endpointhost_ + ',' + value_predictionkey_ + ',' + value_projectid_ + ',' + value_iterationname_ + ');\n';
+  var value_function_ = block.getFieldValue('function_');  
+  var code = 'azureclassifyimage_settings(' + value_endpointhost_ + ',' + value_predictionkey_ + ',' + value_projectid_ + ',' + value_iterationname_ + ',"' + value_function_ + '");\n';
   return code;
 };
 
