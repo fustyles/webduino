@@ -14,9 +14,10 @@ var Prediction_url = "";
 var Prediction_result = ""; 
 var Prediction_returnResult = "";
 var showTime = 3000;
+var func = "";
 
 function azureclassifyimage_settings(input_endpointhost, input_predictionKey, input_projectId, input_iterationname, input_function){
-  if (input_function=="") input_function="detect";
+  func = input_function;
   if (input_endpointhost.toLowerCase().indexOf("http")==0)
     Prediction_url = input_endpointhost + "/customvision/v3.0/Prediction/"+input_projectId+"/"+input_function+"/iterations/"+input_iterationname+"/image"
   else
@@ -102,14 +103,16 @@ function azureclassifyimage_detectvideo() {
         }
         Prediction_result += "<br>"+json["predictions"][i]["tagName"]+","+json["predictions"][i]["probability"];
         
-        context.lineWidth = "1";
-        context.strokeStyle = "red";
-        context.beginPath();
-        context.rect(json["predictions"][i]["boundingBox"]["left"]*video.width, json["predictions"][i]["boundingBox"]["top"]*video.height, json["predictions"][i]["boundingBox"]["width"]*video.width, json["predictions"][i]["boundingBox"]["height"]*video.height);
-        context.stroke(); 
-        context.font = "12px Arial";
-        context.fillStyle = "#99FF99";
-        context.fillText(json["predictions"][i]["tagName"]+", "+json["predictions"][i]["probability"], json["predictions"][i]["boundingBox"]["left"]*video.width,  json["predictions"][i]["boundingBox"]["top"]*video.height);     			
+        if (func=="detect") {
+          context.lineWidth = "1";
+          context.strokeStyle = "red";
+          context.beginPath();
+          context.rect(json["predictions"][i]["boundingBox"]["left"]*video.width, json["predictions"][i]["boundingBox"]["top"]*video.height, json["predictions"][i]["boundingBox"]["width"]*video.width, json["predictions"][i]["boundingBox"]["height"]*video.height);
+          context.stroke(); 
+          context.font = "12px Arial";
+          context.fillStyle = "#99FF99";
+          context.fillText(json["predictions"][i]["tagName"]+", "+json["predictions"][i]["probability"], json["predictions"][i]["boundingBox"]["left"]*video.width,  json["predictions"][i]["boundingBox"]["top"]*video.height);     			
+        }
       }
       Prediction_result = maxName + "," + max + Prediction_result;
     }
