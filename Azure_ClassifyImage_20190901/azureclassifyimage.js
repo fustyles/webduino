@@ -115,6 +115,12 @@ function azureclassifyimage_detectvideo() {
         }
       }
       Prediction_result = maxName + "," + max + Prediction_result;
+      
+      if (func=="classify") {
+        context.font = "12px Arial";
+        context.fillStyle = "#99FF99";
+        context.fillText(json["predictions"][i]["tagName"]+", "+json["predictions"][i]["probability"], 30,  30;     			
+      }      
     }
     catch (e) {
       Prediction_result = "Error,0";
