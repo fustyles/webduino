@@ -1,1 +1,1 @@
-MSG.azureclassifyimage = "圖像分類 (Azure)";
+MSG.azureclassifyimage = "自訂視覺 (Azure)";
