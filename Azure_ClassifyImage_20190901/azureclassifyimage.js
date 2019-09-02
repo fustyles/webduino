@@ -101,11 +101,15 @@ function azureclassifyimage_detectvideo() {
         }
         Prediction_result += "<br>"+json["predictions"][i]["tagName"]+","+json["predictions"][i]["probability"];
         
-        context.lineWidth = "3";
+        context.lineWidth = "1";
         context.strokeStyle = "red";
         context.beginPath();
         context.rect(json["predictions"][i]["boundingBox"]["left"]*video.width, json["predictions"][i]["boundingBox"]["top"]*video.height, json["predictions"][i]["boundingBox"]["width"]*video.width, json["predictions"][i]["boundingBox"]["height"]*video.height);
         context.stroke(); 
+        context.font = "12px Arial";
+		    context.fillStyle = "#99FF99";
+		    context.fillText(json["predictions"][i]["tagName"]+", "+json["predictions"][i]["probability"], json[i]["faceRectangle"]["left"]*video.width,  json[i]["faceRectangle"]["top"]*video.height);     			
+			        
       }
       Prediction_result = maxName + "," + max + Prediction_result;
     }
