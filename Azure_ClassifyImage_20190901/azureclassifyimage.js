@@ -100,6 +100,12 @@ function azureclassifyimage_detectvideo() {
           maxName = json["predictions"][i]["tagName"];
         }
         Prediction_result += "<br>"+json["predictions"][i]["tagName"]+","+json["predictions"][i]["probability"];
+        
+        context.lineWidth = "3";
+        context.strokeStyle = "red";
+        context.beginPath();
+        context.rect(json["predictions"][i]["boundingBox"]["left"]*video.width, json["predictions"][i]["boundingBox"]["top"]*video.height, json["predictions"][i]["boundingBox"]["width"]*video.width, json["predictions"][i]["boundingBox"]["height"]*video.height);
+        context.stroke(); 
       }
       Prediction_result = maxName + "," + max + Prediction_result;
     }
