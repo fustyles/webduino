@@ -1,4 +1,3 @@
-Blockly.Msg.AZURECLASSIFYIMAGE_PART_SHOW = "Azure Custom Vision 部位";
 Blockly.Msg.AZURECLASSIFYIMAGE_WIDTH_SHOW = "Azure Custom Vision 视讯宽度";
 Blockly.Msg.AZURECLASSIFYIMAGE_HEIGHT_SHOW = "高度";
 Blockly.Msg.AZURECLASSIFYIMAGE_DETECT_SHOW = "Azure Custom Vision 辨识";
