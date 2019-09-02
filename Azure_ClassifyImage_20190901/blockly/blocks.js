@@ -45,6 +45,21 @@ Blockly.Blocks['azure_classifyimage_get'] = {
   }
 };
 
+Blockly.Blocks['azure_classifyimage_max'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AZURECLASSIFYIMAGE_GET_MAX_SHOW); 
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([
+		["tagName","tagName"],
+		["probability","probability"]	  
+  ]), "property_"); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
 Blockly.Blocks['azure_classifyimage_video'] = {
   init: function() {
   this.appendValueInput("width_")
