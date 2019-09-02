@@ -90,8 +90,7 @@ function azureclassifyimage_detectvideo() {
     try {
       var max="";
       var maxName="";      
-      for (var i in json["predictions"]) 
-      {
+      for (var i in json["predictions"]) {
         if (max=="") max = json["predictions"][i]["probability"];
         if (maxName=="") maxName = json["predictions"][i]["tagName"];
         
@@ -107,9 +106,8 @@ function azureclassifyimage_detectvideo() {
         context.rect(json["predictions"][i]["boundingBox"]["left"]*video.width, json["predictions"][i]["boundingBox"]["top"]*video.height, json["predictions"][i]["boundingBox"]["width"]*video.width, json["predictions"][i]["boundingBox"]["height"]*video.height);
         context.stroke(); 
         context.font = "12px Arial";
-		    context.fillStyle = "#99FF99";
-		    context.fillText(json["predictions"][i]["tagName"]+", "+json["predictions"][i]["probability"], json[i]["faceRectangle"]["left"]*video.width,  json[i]["faceRectangle"]["top"]*video.height);     			
-			        
+        context.fillStyle = "#99FF99";
+        context.fillText(json["predictions"][i]["tagName"]+", "+json["predictions"][i]["probability"], json[i]["faceRectangle"]["left"]*video.width,  json[i]["faceRectangle"]["top"]*video.height);     			
       }
       Prediction_result = maxName + "," + max + Prediction_result;
     }
