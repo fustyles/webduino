@@ -18,6 +18,12 @@ Blockly.JavaScript['azure_classifyimage_get'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['azure_classifyimage_max'] = function(block) { 
+  var value_property_ = block.getFieldValue('property_');  
+  var code = 'azureclassifyimage_max(' + value_property_ + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['azure_classifyimage_video'] = function(block) { 
   var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);
