@@ -1,7 +1,7 @@
 Blockly.Msg.AZURECLASSIFYIMAGE_PART_SHOW = "图像分类 (Azure) 部位";
 Blockly.Msg.AZURECLASSIFYIMAGE_WIDTH_SHOW = "图像分类 (Azure) 视讯宽度";
 Blockly.Msg.AZURECLASSIFYIMAGE_HEIGHT_SHOW = "高度";
-Blockly.Msg.AZURECLASSIFYIMAGE_DETECT_SHOW = "图像分类 (Azure)";
+Blockly.Msg.AZURECLASSIFYIMAGE_DETECT_SHOW = "图像分类辨识 (Azure)";
 Blockly.Msg.AZURECLASSIFYIMAGE_GET_SHOW = "图像分类取得结果 (Azure)";
 Blockly.Msg.AZURECLASSIFYIMAGE_RESULT_SHOW = "结果";
 Blockly.Msg.AZURECLASSIFYIMAGE_OPACITY_SHOW = "透明度";
