@@ -2,6 +2,11 @@ Blockly.Blocks['azure_classifyimage_settings'] = {
   init: function() {
   this.appendDummyInput() 
       .appendField(Blockly.Msg.AZURECLASSIFYIMAGE_SETTINGS_SHOW);
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([
+		["detect","detect"],
+		["classify","classify"]	  
+  ]), "function_"); 	  
   this.appendValueInput("endpointhost_")
       .setCheck("String")
       .appendField(Blockly.Msg.AZURECLASSIFYIMAGE_ENDPOINTHOST_SHOW);
@@ -13,12 +18,7 @@ Blockly.Blocks['azure_classifyimage_settings'] = {
       .appendField(Blockly.Msg.AZURECLASSIFYIMAGE_PROJECTID_SHOW);
   this.appendValueInput("iterationname_")
       .setCheck("String")
-      .appendField(Blockly.Msg.AZURECLASSIFYIMAGE_ITERATIONNAME_SHOW);
-  this.appendDummyInput()  
-      .appendField(new Blockly.FieldDropdown([
-		["detect","detect"],
-		["classify","classify"]	  
-  ]), "function_"); 	  
+      .appendField(Blockly.Msg.AZURECLASSIFYIMAGE_ITERATIONNAME_SHOW);	  
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
