@@ -3,6 +3,7 @@ Blockly.Blocks['azure_classifyimage_settings'] = {
   this.appendDummyInput() 
       .appendField(Blockly.Msg.AZURECLASSIFYIMAGE_SETTINGS_SHOW);
   this.appendDummyInput()  
+      .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(new Blockly.FieldDropdown([
 		["detect","detect"],
 		["classify","classify"]	  
