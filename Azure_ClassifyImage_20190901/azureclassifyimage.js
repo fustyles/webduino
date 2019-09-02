@@ -15,11 +15,12 @@ var Prediction_result = "";
 var Prediction_returnResult = "";
 var showTime = 3000;
 
-function azureclassifyimage_settings(input_endpointhost, input_predictionKey, input_projectId, input_iterationname){
+function azureclassifyimage_settings(input_endpointhost, input_predictionKey, input_projectId, input_iterationname, input_function){
+  if (input_function=="") input_function="detect";
   if (input_endpointhost.toLowerCase().indexOf("http")==0)
-    Prediction_url = input_endpointhost + "/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/"+input_iterationname+"/image"
+    Prediction_url = input_endpointhost + "/customvision/v3.0/Prediction/"+input_projectId+"/"+input_function+"/iterations/"+input_iterationname+"/image"
   else
-    Prediction_url = "https://" + input_endpointhost + "/customvision/v3.0/Prediction/"+input_projectId+"/detect/iterations/"+input_iterationname+"/image"
+    Prediction_url = "https://" + input_endpointhost + "/customvision/v3.0/Prediction/"+input_projectId+"/"+input_function+"/iterations/"+input_iterationname+"/image"
   Prediction_key = input_predictionKey;
   console.log(Prediction_url); 
 }
