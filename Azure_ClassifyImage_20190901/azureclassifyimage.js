@@ -35,6 +35,18 @@ function azureclassifyimage_detect(input_showtime){
 function azureclassifyimage_get(){
   return Prediction_returnResult.split("<br>");
 }
+  
+function azureclassifyimage_max(input_property){
+  var Data = Prediction_returnResult.split("<br>");
+  if (Data.length>0) {
+    if (input_property=="tagName")
+      return Data[0].split(",")[0];
+    else if (input_property=="probability")
+      return Data[0].split(",")[1];
+  }
+  else
+    return "";
+}
 
 function azureclassifyimage_video(input_width, input_height, input_result, input_opacity) {
   video.width = input_width;
@@ -107,6 +119,8 @@ function azureclassifyimage_detectvideo() {
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, showTime);
   })
   .fail(function() {
+    Prediction_returnResult = "Error,0";
+    setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, 0);
     console.log("error");
   });
 }
@@ -116,5 +130,6 @@ window.azureclassifyimage_detect = azureclassifyimage_detect;
 window.azureclassifyimage_get = azureclassifyimage_get;
 window.azureclassifyimage_video = azureclassifyimage_video;
 window.azureclassifyimage_detectvideo = azureclassifyimage_detectvideo;
+window.azureclassifyimage_max = azureclassifyimage_max;
 
 }(window, window.document));
