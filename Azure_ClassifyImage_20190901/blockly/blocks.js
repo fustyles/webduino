@@ -4,8 +4,8 @@ Blockly.Blocks['azure_classifyimage_settings'] = {
       .appendField(Blockly.Msg.AZURECLASSIFYIMAGE_SETTINGS_SHOW);
   this.appendDummyInput()    
       .appendField(new Blockly.FieldDropdown([
-		["detect","detect"],
-		["classify","classify"]	  
+		["Object Detection","detect"],
+		["Classification","classify"]	  
   ]), "function_"); 	  
   this.appendValueInput("endpointhost_")
       .setCheck("String")
