@@ -14,6 +14,11 @@ Blockly.Blocks['azure_classifyimage_settings'] = {
   this.appendValueInput("iterationname_")
       .setCheck("String")
       .appendField(Blockly.Msg.AZURECLASSIFYIMAGE_ITERATIONNAME_SHOW);
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([
+		["detect","detect"],
+		["classify","classify"]	  
+  ]), "function_"); 	  
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
