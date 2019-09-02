@@ -1,1 +1,1 @@
-MSG.azureclassifyimage = "Custom Vision";
+MSG.azureclassifyimage = "Custom Vision (Azure)";
