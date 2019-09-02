@@ -20,7 +20,7 @@ Blockly.JavaScript['azure_classifyimage_get'] = function(block) {
 
 Blockly.JavaScript['azure_classifyimage_max'] = function(block) { 
   var value_property_ = block.getFieldValue('property_');  
-  var code = 'azureclassifyimage_max(' + value_property_ + ')';
+  var code = 'azureclassifyimage_max("' + value_property_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
