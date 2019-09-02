@@ -1,4 +1,3 @@
-Blockly.Msg.AZURECLASSIFYIMAGE_PART_SHOW = "Azure Custom Vision Part";
 Blockly.Msg.AZURECLASSIFYIMAGE_WIDTH_SHOW = "Width";
 Blockly.Msg.AZURECLASSIFYIMAGE_HEIGHT_SHOW = "Height";
 Blockly.Msg.AZURECLASSIFYIMAGE_DETECT_SHOW = "Azure Custom Vision";
