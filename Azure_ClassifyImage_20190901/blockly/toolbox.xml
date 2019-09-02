@@ -42,4 +42,6 @@
   </block>  
   <block type="azure_classifyimage_get">
   </block>  
+  <block type="azure_classifyimage_max">
+  </block>   
 </category>
