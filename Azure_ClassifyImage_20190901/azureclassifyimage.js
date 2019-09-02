@@ -107,7 +107,7 @@ function azureclassifyimage_detectvideo() {
         context.stroke(); 
         context.font = "12px Arial";
         context.fillStyle = "#99FF99";
-        context.fillText(json["predictions"][i]["tagName"]+", "+json["predictions"][i]["probability"], json[i]["faceRectangle"]["left"]*video.width,  json[i]["faceRectangle"]["top"]*video.height);     			
+        context.fillText(json["predictions"][i]["tagName"]+", "+json["predictions"][i]["probability"], json["predictions"][i]["boundingBox"]["left"]*video.width,  json["predictions"][i]["boundingBox"]["top"]*video.height);     			
       }
       Prediction_result = maxName + "," + max + Prediction_result;
     }
