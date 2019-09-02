@@ -102,12 +102,6 @@ function azureclassifyimage_detectvideo() {
         Prediction_result += "<br>"+json["predictions"][i]["tagName"]+","+json["predictions"][i]["probability"];
       }
       Prediction_result = maxName + "," + max + Prediction_result;
-      
-      context.lineWidth = "3";
-      context.font = "20px Arial";
-      context.fillStyle = "#99FF99";
-      context.fillText(maxName , 20,  30); 
-      context.fillText(max , 20,  60); 
     }
     catch (e) {
       Prediction_result = "Error,0";
