@@ -8,7 +8,7 @@ https://fustyles.github.io/webduino/Azure_ClassifyImage_20190901/blockly.json
 [Smart]
 https://blocklypro.webduino.io/#XGQ1OzMVWY
 [Bit]
-https://bit.webduino.io/blockly/#XROD46E59KBqn
+https://bit.webduino.io/blockly/#Z3kAzl5KKXKRv
 
 
 人臉偵測(Microsoft Azure) 
