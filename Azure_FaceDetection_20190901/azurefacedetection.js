@@ -219,6 +219,7 @@ function DetectVideo() {
       jQuery.parseJSON(jqXHR.responseText).message :
     jQuery.parseJSON(jqXHR.responseText).error.message;
     result.innerHTML = "nobody";
+    setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, 0);
   });
 }
 
