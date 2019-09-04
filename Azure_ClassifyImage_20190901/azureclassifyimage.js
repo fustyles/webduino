@@ -87,9 +87,9 @@ function azureclassifyimage_detectvideo() {
     result.innerHTML = "";
     Prediction_result = "";
     Prediction_returnResult = "";
+    max="";
+    maxName="";  
     try {
-      max="";
-      maxName="";      
       for (var i in json["predictions"]) {
         if (max=="") max = Number(json["predictions"][i]["probability"]);
         if (maxName=="") maxName = json["predictions"][i]["tagName"];
