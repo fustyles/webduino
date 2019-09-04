@@ -40,6 +40,23 @@ function azureclassifyimage_get(){
   
 function azureclassifyimage_max(input_property){
   var Data = Prediction_returnResult.split("<br>");
+  var maxName="";     
+  var max="";  
+  if (Data.length>0) {
+    for (var i=0;i<Data.length;i++) {
+      if (maxName=="") {
+        maxName = Data[i].split(",")[0];           
+        max = Data[i].split(",")[1];
+      }
+      if (Data[i].split(",")[1]>max) { 
+        maxName = Data[i].split(",")[0];           
+        max = Data[i].split(",")[1];
+      }
+    }
+  }
+  console.log(maxName);
+  console.log(max);  
+  
   if (Data.length>0) {
     if (input_property=="tagName")
       return Data[0].split(",")[0];
