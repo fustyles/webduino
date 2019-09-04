@@ -98,35 +98,35 @@ function DetectVideo() {
 		  faceApi_result += json[i]["faceAttributes"]["age"]; 
 
 			
-		  if (json[i]["faceAttributes"]["emotion"]["anger"]>max) { 
+		  if (Number(json[i]["faceAttributes"]["emotion"]["anger"])>Number(max)) { 
 			maxName="anger";
 			max = json[i]["faceAttributes"]["emotion"]["anger"];
 		  }
-		  if (json[i]["faceAttributes"]["emotion"]["contempt"]>max) { 
+		  if (Number(json[i]["faceAttributes"]["emotion"]["contempt"])>Number(max)) { 
 			maxName="contempt";
 			max = json[i]["faceAttributes"]["emotion"]["contempt"];
 		  }      
-		  if (json[i]["faceAttributes"]["emotion"]["disgust"]>max) { 
+		  if (Number(json[i]["faceAttributes"]["emotion"]["disgust"])>Number(max)) { 
 			maxName="disgust";
 			max = json[i]["faceAttributes"]["emotion"]["disgust"];
 		  }      
-		  if (json[i]["faceAttributes"]["emotion"]["fear"]>max) { 
+		  if (Number(json[i]["faceAttributes"]["emotion"]["fear"])>Number(max)) { 
 			maxName="fear";
 			max = json[i]["faceAttributes"]["emotion"]["fear"];
 		  }      
-		  if (json[i]["faceAttributes"]["emotion"]["happiness"]>max) { 
+		  if (Number(json[i]["faceAttributes"]["emotion"]["happiness"])>Number(max)) { 
 			maxName="happiness";
 			max = json[i]["faceAttributes"]["emotion"]["happiness"];
 		  }      
-		  if (json[i]["faceAttributes"]["emotion"]["neutral"]>max) { 
+		  if (Number(json[i]["faceAttributes"]["emotion"]["neutral"])>Number(max)) { 
 			maxName="neutral";
 			max = json[i]["faceAttributes"]["emotion"]["neutral"];
 		  }      
-		  if (json[i]["faceAttributes"]["emotion"]["sadness"]>max) { 
+		  if (Number(json[i]["faceAttributes"]["emotion"]["sadness"])>Number(max)) { 
 			maxName="sadness";
 			max = json[i]["faceAttributes"]["emotion"]["sadness"];
 		  }      
-		  if (json[i]["faceAttributes"]["emotion"]["surprise"]>max) { 
+		  if (Number(json[i]["faceAttributes"]["emotion"]["surprise"])>Number(max)) { 
 			maxName="surprise";
 			max = json[i]["faceAttributes"]["emotion"]["surprise"];
 		  } 
@@ -167,23 +167,23 @@ function DetectVideo() {
 		  max=json[i]["faceAttributes"]["hair"]["hairColor"][0]["confidence"];
 		  maxName=json[i]["faceAttributes"]["hair"]["hairColor"][0]["color"];
 			
-		  if (json[i]["faceAttributes"]["hair"]["hairColor"][1]["confidence"]>max) {
+		  if (Number(json[i]["faceAttributes"]["hair"]["hairColor"][1]["confidence"])>Number(max)) {
 			maxName = json[i]["faceAttributes"]["hair"]["hairColor"][1]["color"];
 			max = json[i]["faceAttributes"]["hair"]["hairColor"][1]["confidence"];  
 		  }
-		  if (json[i]["faceAttributes"]["hair"]["hairColor"][2]["confidence"]>max) {
+		  if (Number(json[i]["faceAttributes"]["hair"]["hairColor"][2]["confidence"])>Number(max)) {
 			maxName = json[i]["faceAttributes"]["hair"]["hairColor"][2]["color"];
 			max = json[i]["faceAttributes"]["hair"]["hairColor"][2]["confidence"];  
 		  }
-		  if (json[i]["faceAttributes"]["hair"]["hairColor"][3]["confidence"]>max) {
+		  if (Number(json[i]["faceAttributes"]["hair"]["hairColor"][3]["confidence"])>Number(max)) {
 			maxName = json[i]["faceAttributes"]["hair"]["hairColor"][3]["color"];
 			max = json[i]["faceAttributes"]["hair"]["hairColor"][3]["confidence"];  
 		  }
-		  if (json[i]["faceAttributes"]["hair"]["hairColor"][4]["confidence"]>max) {
+		  if (Number(json[i]["faceAttributes"]["hair"]["hairColor"][4]["confidence"])>Number(max)) {
 			maxName = json[i]["faceAttributes"]["hair"]["hairColor"][4]["color"];
 			max = json[i]["faceAttributes"]["hair"]["hairColor"][4]["confidence"];  
 		  }
-		  if (json[i]["faceAttributes"]["hair"]["hairColor"][5]["confidence"]>max) {
+		  if (Number(json[i]["faceAttributes"]["hair"]["hairColor"][5]["confidence"])>Number(max)) {
 			maxName = json[i]["faceAttributes"]["hair"]["hairColor"][5]["color"];
 			max = json[i]["faceAttributes"]["hair"]["hairColor"][5]["confidence"];  
 		  }				
