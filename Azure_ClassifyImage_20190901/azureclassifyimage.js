@@ -91,12 +91,14 @@ function azureclassifyimage_detectvideo() {
     maxName="";  
     try {
       for (var i in json["predictions"]) {
-        if (max=="") max = Number(json["predictions"][i]["probability"]);
-        if (maxName=="") maxName = json["predictions"][i]["tagName"];
+        if (maxName=="") {
+          maxName = json["predictions"][i]["tagName"];
+          max = Number(json["predictions"][i]["probability"]);
+        }
         
         if (Number(json["predictions"][i]["probability"])>max) { 
+          maxName = json["predictions"][i]["tagName"];          
           max = Number(json["predictions"][i]["probability"]);
-          maxName = json["predictions"][i]["tagName"];
         }
         Prediction_result += json["predictions"][i]["tagName"]+","+json["predictions"][i]["probability"];
         if (i<json["predictions"].length-1) Prediction_result += "<br>";
