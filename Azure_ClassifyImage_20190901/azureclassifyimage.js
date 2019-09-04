@@ -119,7 +119,7 @@ function azureclassifyimage_detectvideo() {
           maxName = json["predictions"][i]["tagName"];
         }
         Prediction_result += json["predictions"][i]["tagName"]+","+json["predictions"][i]["probability"];
-        if (i<json["predictions"].length) Prediction_result += "<br>";
+        if (i<json["predictions"].length-1) Prediction_result += "<br>";
         
         if (func=="detect") {
           context.lineWidth = "1";
