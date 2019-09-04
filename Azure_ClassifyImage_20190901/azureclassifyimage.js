@@ -15,6 +15,8 @@ var Prediction_result = "";
 var Prediction_returnResult = "";
 var showTime = 3000;
 var func = "";
+var max="";
+var maxName="";  
 
 function azureclassifyimage_settings(input_endpointhost, input_predictionKey, input_projectId, input_iterationname, input_function){
   func = input_function;
@@ -39,27 +41,10 @@ function azureclassifyimage_get(){
 }
   
 function azureclassifyimage_max(input_property){
-  var Data = Prediction_returnResult.split("<br>");
-  var maxName="";     
-  var max="";  
-  if (Data.length>0) {
-    for (var i=0;i<Data.length;i++) {
-      if (maxName=="") {
-        maxName = Data[i].split(",")[0];           
-        max = Data[i].split(",")[1];
-      }
-      if (Data[i].split(",")[1]>max) { 
-        maxName = Data[i].split(",")[0];           
-        max = Data[i].split(",")[1];
-      }
-    }
-    if (input_property=="tagName")
-      return maxName;
-    else if (input_property=="probability")
-      return max;
-  }
-  else
-    return "";
+  if (input_property=="tagName")
+    return maxName;
+  else if (input_property=="probability")
+    return max;
 }
 
 function azureclassifyimage_video(input_width, input_height, input_result, input_opacity) {
@@ -103,14 +88,14 @@ function azureclassifyimage_detectvideo() {
     Prediction_result = "";
     Prediction_returnResult = "";
     try {
-      var max="";
-      var maxName="";      
+      max="";
+      maxName="";      
       for (var i in json["predictions"]) {
-        if (max=="") max = json["predictions"][i]["probability"];
+        if (max=="") max = Number(json["predictions"][i]["probability"]);
         if (maxName=="") maxName = json["predictions"][i]["tagName"];
         
         if (json["predictions"][i]["probability"]>max) { 
-          max = json["predictions"][i]["probability"];
+          max = Number(json["predictions"][i]["probability"]);
           maxName = json["predictions"][i]["tagName"];
         }
         Prediction_result += json["predictions"][i]["tagName"]+","+json["predictions"][i]["probability"];
