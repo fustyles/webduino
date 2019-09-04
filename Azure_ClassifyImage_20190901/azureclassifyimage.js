@@ -59,9 +59,9 @@ function azureclassifyimage_max(input_property){
   
   if (Data.length>0) {
     if (input_property=="tagName")
-      return Data[0].split(",")[0];
+      return maxName;
     else if (input_property=="probability")
-      return Data[0].split(",")[1];
+      return max;
   }
   else
     return "";
