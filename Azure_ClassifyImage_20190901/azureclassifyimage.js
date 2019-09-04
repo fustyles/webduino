@@ -14,7 +14,6 @@ var Prediction_url = "";
 var Prediction_result = ""; 
 var Prediction_returnResult = "";
 var showTime = 3000;
-var func = "";
 var max="";
 var maxName="";  
 
