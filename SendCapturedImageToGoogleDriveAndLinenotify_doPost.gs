@@ -24,7 +24,7 @@ function doPost(e) {
   file.setDescription("Uploaded by " + myFilename);
   
   var imageID = file.getUrl().substring(file.getUrl().indexOf("/d/")+3,file.getUrl().indexOf("view")-1);
-  imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
+  var imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
     
   // Send a link message to Line Notify.
   var res = "Line Notify: ";
