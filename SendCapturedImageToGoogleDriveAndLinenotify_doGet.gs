@@ -9,6 +9,11 @@ function doGet(e) {
   var myFilename = e.parameter.myFilename;
   var myToken = e.parameter.myToken;
   
+  var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
+  var data = myFile.substring(myFile.indexOf(",")+1);
+  data = Utilities.base64Decode(data);
+  var blob = Utilities.newBlob(data, contentType, myFilename);  
+  
   // Save a captured image to Google Drive.
   var folder, folders = DriveApp.getFoldersByName(myFoldername);
   if (folders.hasNext()) {
@@ -16,10 +21,6 @@ function doGet(e) {
   } else {
     folder = DriveApp.createFolder(myFoldername);
   }
-  var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
-  var data = myFile.substring(myFile.indexOf(",")+1);
-  data = Utilities.base64Decode(data);
-  var blob = Utilities.newBlob(data, contentType, myFilename);
   var file = folder.createFile(blob);    
   file.setDescription("Uploaded by " + myFilename);
   
