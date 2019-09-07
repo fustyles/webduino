@@ -51,6 +51,8 @@ function doPost(e) {
 
 
 /*
+
+//Another way
 //You could send up to 50 images to Line Notify in one hour.
 
 function doPost(e) {
@@ -102,4 +104,5 @@ function sendImagetoLineNotify(imageData, token, boundary){
   };
   UrlFetchApp.fetch("https://notify-api.line.me/api/notify", options);
 }
+
 */
