@@ -95,7 +95,7 @@ function doPost(e) {
   sendImagetoLineNotify(imageData, myToken, boundary);
 
   
-  return  ContentService.createTextOutput("Return =" + myFile);
+  return  ContentService.createTextOutput("Return =" + imageUrl);
 }
 
 function sendImagetoLineNotify(imageData, token, boundary){
