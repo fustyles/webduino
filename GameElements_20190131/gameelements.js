@@ -2064,11 +2064,11 @@ function HextoRgb(color) {
       document.body.style = input_value;
     else if (input_property=="fullscreen") {
       if (input_value==true) {
-        document.documentElement.requestFullscreen();
-        document.body.focus();
+        window.requestFullscreen();
+        window.focus();
       }
       else
-	document.documentElement.exitFullscreen();	    
+	window.exitFullscreen();	    
     }
     else if (input_property=="droppable") {
       if (input_value==1) {
