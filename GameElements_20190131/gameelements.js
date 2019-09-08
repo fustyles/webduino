@@ -2064,9 +2064,9 @@ function HextoRgb(color) {
       document.body.style = input_value;
     else if (input_property=="fullscreen") {
       if (input_value==true)
-        window.parent.document.getElementsByTagName("IFRAME")[0].webkitRequestFullscreen();
+        window.parent.document.getElementsByTagName("IFRAME")[1].webkitRequestFullscreen();
       else
-	window.parent.document.getElementsByTagName("IFRAME")[0].webkitExitFullscreen();	    
+	window.parent.document.getElementsByTagName("IFRAME")[1].webkitExitFullscreen();	    
     }
     else if (input_property=="droppable") {
       if (input_value==1) {
