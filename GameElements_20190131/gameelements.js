@@ -2061,7 +2061,15 @@ function HextoRgb(color) {
     else if (input_property=="overflow") 
       document.body.style.overflow = input_value;
     else if (input_property=="style")
-      obj.style = input_value;
+      document.body.style = input_value;
+    else if (input_property=="fullscreen") {
+      if (input_value==true) {
+        document.body.requestFullscreen();
+        document.body.focus();
+      }
+      else
+	document.body.exitFullscreen();	    
+    }
     else if (input_property=="droppable") {
       if (input_value==1) {
         document.body.setAttribute("ondrop","javascript:var obj=document.getElementById(event.dataTransfer.getData('text/plain'));obj.style.position='static';obj.style.left=null;obj.style.top=null;event.preventDefault();if(event.target.tagName!='BODY') {return false;} else {event.target.appendChild(obj);}");
