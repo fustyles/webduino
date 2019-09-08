@@ -5,6 +5,8 @@
       document.body.style.backgroundImage = "url('"+input_value+"')";
     else if (input_property=="overflow") 
       document.body.style.overflow = input_value; 
+    else if (input_property=="style")
+      document.body.style = input_value;      
     else if (input_property=="droppable") {
       if (input_value==1) {
         document.body.setAttribute("ondrop","javascript:var obj=document.getElementById(event.dataTransfer.getData('text/plain'));obj.style.position='static';event.preventDefault();if(event.target.tagName!='BODY') {return false;} else {event.target.appendChild(obj);obj.style.position='absolute';}");
