@@ -2063,10 +2063,8 @@ function HextoRgb(color) {
     else if (input_property=="style")
       document.body.style = input_value;
     else if (input_property=="fullscreen") {
-      if (input_value==true) {
+      if (input_value==true)
         document.webkitRequestFullscreen;
-        document.focus();
-      }
       else
 	document.webkitExitFullscreen();	    
     }
