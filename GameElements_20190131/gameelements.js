@@ -2066,7 +2066,7 @@ function HextoRgb(color) {
       if (input_value==true)
         window.parent.document.getElementById("demo-area").webkitRequestFullscreen();
       else
-	window.parent.document.getElementById("demo-area").webkitExitFullscreen();	    
+	window.parent.document.getElementById("demo-area").document.webkitExitFullscreen();	    
     }
     else if (input_property=="droppable") {
       if (input_value==1) {
