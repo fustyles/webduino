@@ -9,7 +9,7 @@
       document.body.style = input_value;    
     else if (input_property=="fullscreen") {
       if (input_value==true)
-        window.parent.document.getElementById("runWindow").webkitRequestFullscreen();
+        window.parent.document.getElementById("iframe_run").webkitRequestFullscreen();
       else
         window.parent.document.webkitExitFullscreen();	    
     }      
