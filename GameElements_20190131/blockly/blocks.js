@@ -2390,7 +2390,7 @@ Blockly.Blocks['body_set'] = {
   init: function() {    
   this.appendDummyInput()  
       .appendField(Blockly.Msg.SETWINDOW_SHOW)
-      .appendField(new Blockly.FieldDropdown([["backgroundColor","backgroundColor"], ["backgroundImage","backgroundImage"], ["overflow","overflow"], ["droppable","droppable"], ["style","style"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["backgroundColor","backgroundColor"], ["backgroundImage","backgroundImage"], ["overflow","overflow"], ["droppable","droppable"], ["style","style"], ["fullscreen","fullscreen"]]), "property_");
   this.appendValueInput("value_")
       .setCheck(null);    
   this.setInputsInline(true);
