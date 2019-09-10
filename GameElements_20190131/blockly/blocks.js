@@ -1,3 +1,57 @@
+Blockly.Blocks['position_distance'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSITION_DISTANCE_SHOW);
+  this.appendValueInput("x0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(Blockly.Msg.X0_SHOW);
+  this.appendValueInput("y0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.Y0_SHOW); 
+  this.appendValueInput("x1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(Blockly.Msg.X1_SHOW);
+  this.appendValueInput("y1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.Y1_SHOW);     
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['position_angle'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSITION_ANGLE_SHOW);
+  this.appendValueInput("x0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(Blockly.Msg.X0_SHOW);
+  this.appendValueInput("y0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.Y0_SHOW); 
+  this.appendValueInput("x1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(Blockly.Msg.X1_SHOW);
+  this.appendValueInput("y1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.Y1_SHOW);     
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['table_create'] = {
   init: function() {
   this.appendDummyInput()     
