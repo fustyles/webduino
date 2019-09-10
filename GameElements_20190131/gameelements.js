@@ -2078,6 +2078,14 @@ function HextoRgb(color) {
       }
     }
   }  
+	
+  function position_distance(input_x0,input_y0,input_x1,input_y1) {
+      return Math.sqrt(Math.pow((input_x1-input_x0), 2) + Math.pow((input_y1-input_y0), 2));
+  } 	
+	
+  function position_angle(input_x0,input_y0,input_x1,input_y1) {
+      return (Math.atan((input_y1-input_y0)/(input_x1-input_x0)) / Math.PI) * 180;
+  } 	
   
   window.table_create = table_create;
   window.table_set = table_set;
@@ -2161,5 +2169,7 @@ function HextoRgb(color) {
   window.div_delete = div_delete;	
   window.HextoRgb = HextoRgb;
   window.body_set = body_set;
+  window.position_distance = position_distance;
+  window.position_angle = position_angle;	
   
 }(window, window.document));
