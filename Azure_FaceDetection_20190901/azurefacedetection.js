@@ -189,7 +189,7 @@ function DetectVideo() {
 		  }				
 			
 		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["hair"]["bald"]+"_"+json[i]["faceAttributes"]["hair"]["invisible"]+"_"+maxName; 
+		  faceApi_result += json[i]["faceAttributes"]["hair"]["bald"]+"_"+json[i]["faceAttributes"]["hair"]["invisible"]+"_"+maxName+"_"+max; 
 		
 		  if (i<json.length-1) faceApi_result += "<br>";
 		}
