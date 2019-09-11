@@ -201,10 +201,7 @@ function DetectVideo() {
 	}
 
 
-    if (faceApi_result!="") 
-      faceApi_result = faceApi_result.substr(0,faceApi_result.length-4);
-    else
-      faceApi_result = "nobody";
+    if (faceApi_result=="") faceApi_result = "nobody";
     console.log(JSON.stringify(json));
     faceApi_returnResult = faceApi_result;
     result.innerHTML = JSON.stringify(json);
