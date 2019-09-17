@@ -1,4 +1,3 @@
-Blockly.Msg.TRACKFACE_OPEN_SHOW = "開啟追蹤人臉";
 Blockly.Msg.TRACKFACE_SET_SHOW = "追蹤人臉視窗設定";
 Blockly.Msg.TRACKFACE_GET_SHOW = "取得追蹤人臉";
 Blockly.Msg.TRACKFACE_WIDTH_SHOW = "寬度";
