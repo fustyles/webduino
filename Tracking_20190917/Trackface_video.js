@@ -136,6 +136,10 @@ window.onload = function () {
                 context.fillText('idx: '+faceIndex, boundingBox.x + boundingBox.width + 5, boundingBox.y + 11);
                 context.fillText('x: ' + boundingBox.x + 'px', boundingBox.x + boundingBox.width + 5, boundingBox.y + 22);
                 context.fillText('y: ' + boundingBox.y + 'px', boundingBox.x + boundingBox.width + 5, boundingBox.y + 33);
+		document.getElementById("boundingBoxX").innerHTML=boundingBox.x;
+		document.getElementById("boundingBoxY").innerHTML=boundingBox.y;
+		document.getElementById("boundingBoxWidth").innerHTML=boundingBox.width;
+		document.getElementById("boundingBoxHeight").innerHTML=boundingBox.height;		
         }
         
         function displayFaceLandmarksDot(faceLandmarks){
@@ -176,5 +180,68 @@ window.onload = function () {
                 }
 
                 context.stroke();
+		// get feature coordinate 		
+		document.getElementById("jaw1X").innerHTML=faceLandmarks[0][0];
+		document.getElementById("jaw1Y").innerHTML=faceLandmarks[0][1];	
+		document.getElementById("jaw2X").innerHTML=faceLandmarks[1][0];
+		document.getElementById("jaw2Y").innerHTML=faceLandmarks[1][1];
+		document.getElementById("jaw3X").innerHTML=faceLandmarks[2][0];
+		document.getElementById("jaw3Y").innerHTML=faceLandmarks[2][1];	
+		document.getElementById("jaw4X").innerHTML=faceLandmarks[3][0];
+		document.getElementById("jaw4Y").innerHTML=faceLandmarks[3][1];	
+		document.getElementById("jaw5X").innerHTML=faceLandmarks[4][0];
+		document.getElementById("jaw5Y").innerHTML=faceLandmarks[4][1];
+		document.getElementById("jaw6X").innerHTML=faceLandmarks[5][0];	
+		document.getElementById("jaw6Y").innerHTML=faceLandmarks[5][1];
+		document.getElementById("jaw7X").innerHTML=faceLandmarks[6][0];
+		document.getElementById("jaw7Y").innerHTML=faceLandmarks[6][1];	
+		document.getElementById("jaw8X").innerHTML=faceLandmarks[7][0];	
+		document.getElementById("jaw8Y").innerHTML=faceLandmarks[7][1];
+		document.getElementById("jaw9X").innerHTML=faceLandmarks[8][0];	
+		document.getElementById("jaw9Y").innerHTML=faceLandmarks[8][1];
+		document.getElementById("nose1X").innerHTML=faceLandmarks[15][0];
+		document.getElementById("nose1Y").innerHTML=faceLandmarks[15][1];	
+		document.getElementById("nose2X").innerHTML=faceLandmarks[16][0];	
+		document.getElementById("nose2Y").innerHTML=faceLandmarks[16][1];
+		document.getElementById("nose3X").innerHTML=faceLandmarks[17][0];
+		document.getElementById("nose3Y").innerHTML=faceLandmarks[17][1];	
+		document.getElementById("nose4X").innerHTML=faceLandmarks[18][0];	
+		document.getElementById("nose4Y").innerHTML=faceLandmarks[18][1];
+		document.getElementById("mouth1X").innerHTML=faceLandmarks[27][0];	
+		document.getElementById("mouth1Y").innerHTML=faceLandmarks[27][1];	
+		document.getElementById("mouth2X").innerHTML=faceLandmarks[28][0];
+		document.getElementById("mouth2Y").innerHTML=faceLandmarks[28][1];	
+		document.getElementById("mouth3X").innerHTML=faceLandmarks[29][0];	
+		document.getElementById("mouth3Y").innerHTML=faceLandmarks[29][1];	
+		document.getElementById("mouth4X").innerHTML=faceLandmarks[30][0];
+		document.getElementById("mouth4Y").innerHTML=faceLandmarks[30][1];
+		document.getElementById("eyeL1X").innerHTML=faceLandmarks[19][0];	
+		document.getElementById("eyeL1Y").innerHTML=faceLandmarks[19][1];
+		document.getElementById("eyeL2X").innerHTML=faceLandmarks[20][0];	
+		document.getElementById("eyeL2Y").innerHTML=faceLandmarks[20][1];
+		document.getElementById("eyeL3X").innerHTML=faceLandmarks[21][0];	
+		document.getElementById("eyeL3Y").innerHTML=faceLandmarks[21][1];
+		document.getElementById("eyeL4X").innerHTML=faceLandmarks[22][0];	
+		document.getElementById("eyeL4Y").innerHTML=faceLandmarks[22][1];
+		document.getElementById("eyeR1X").innerHTML=faceLandmarks[23][0];
+		document.getElementById("eyeR1Y").innerHTML=faceLandmarks[23][1];	
+		document.getElementById("eyeR2X").innerHTML=faceLandmarks[24][0];	
+		document.getElementById("eyeR2Y").innerHTML=faceLandmarks[24][1];
+		document.getElementById("eyeR3X").innerHTML=faceLandmarks[25][0];
+		document.getElementById("eyeR3Y").innerHTML=faceLandmarks[25][1];	
+		document.getElementById("eyeR4X").innerHTML=faceLandmarks[26][0];	
+		document.getElementById("eyeR4Y").innerHTML=faceLandmarks[26][1];
+		document.getElementById("eyeBrowL1X").innerHTML=faceLandmarks[9][0];	
+		document.getElementById("eyeBrowL1Y").innerHTML=faceLandmarks[9][1];	
+		document.getElementById("eyeBrowL2X").innerHTML=faceLandmarks[10][0];
+		document.getElementById("eyeBrowL2Y").innerHTML=faceLandmarks[10][1];	
+		document.getElementById("eyeBrowL3X").innerHTML=faceLandmarks[11][0];	
+		document.getElementById("eyeBrowL3Y").innerHTML=faceLandmarks[11][1];
+		document.getElementById("eyeBrowR1X").innerHTML=faceLandmarks[12][0];
+		document.getElementById("eyeBrowR1Y").innerHTML=faceLandmarks[12][1];	
+		document.getElementById("eyeBrowR2X").innerHTML=faceLandmarks[13][0];
+		document.getElementById("eyeBrowR2Y").innerHTML=faceLandmarks[13][1];
+		document.getElementById("eyeBrowR3X").innerHTML=faceLandmarks[14][0];	
+		document.getElementById("eyeBrowR3Y").innerHTML=faceLandmarks[14][1];		
         }
 }
