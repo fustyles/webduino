@@ -89,8 +89,6 @@
 	<span id="eyeBrowR3X" style="position:absolute;display:none;z-index:9999">0</span>	
 	<span id="eyeBrowR3Y" style="position:absolute;display:none;z-index:9999">0</span>	
 	
-	<textarea id="video_image" style="position:absolute;z-index:9999"></textarea>
-	
         <style>
                 #videoWebcam {
                         position: absolute;
@@ -359,8 +357,6 @@
 		document.getElementById("eyeBrowR2Y").innerHTML=faceLandmarks[13][1];
 		document.getElementById("eyeBrowR3X").innerHTML=faceLandmarks[14][0];	
 		document.getElementById("eyeBrowR3Y").innerHTML=faceLandmarks[14][1];
-		
-		document.getElementById("video_image").innerHTML= canvasDetection.toDataURL();
         }
 </script></body>
 </html>
