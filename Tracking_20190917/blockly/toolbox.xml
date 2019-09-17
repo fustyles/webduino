@@ -1,5 +1,15 @@
-﻿<category id="catTracking">
-  <block type="trackface_display">
+<category id="catTracking">
+  <block type="trackface_set">
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">400</field>
+      </block>
+    </value>
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">300</field>
+      </block>
+    </value>     
     <value name="display_">
       <block type="logic_boolean">
         <field name="BOOL">TRUE</field>
