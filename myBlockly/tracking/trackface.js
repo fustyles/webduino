@@ -132,5 +132,5 @@
     }
     var video = document.getElementById('tracking').contentWindow.document.getElementById("videoWebcam");
     var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
-    context.drawImage(video, input_left, input_top, video.width, video.height);	  
+    context.drawImage(video, input_left, input_top, video.clientWidth, video.clientHeight);	  
   }
