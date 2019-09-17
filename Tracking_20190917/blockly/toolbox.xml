@@ -1,21 +1,4 @@
 ﻿<category id="catTracking">
-  <block type="trackface_open">
-    <value name="left_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
-    <value name="top_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>  
-    <value name="display_">
-      <block type="logic_boolean">
-        <field name="BOOL">TRUE</field>
-      </block>
-    </value>
-  </block>
   <block type="trackface_display">
     <value name="display_">
       <block type="logic_boolean">
