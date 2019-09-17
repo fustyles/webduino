@@ -158,6 +158,8 @@ window.onload = function () {
 			return;
 		}
 		
+		gamecanvas_tracking.setAttribute("width", video.width);
+		gamecanvas_tracking.setAttribute("height", video.height);
 		context.drawImage(videoElement, 0, 0, video.clientWidth, video.clientHeight);
 		
                 event.data.faces.forEach(function(boundingBox, faceIndex) {
