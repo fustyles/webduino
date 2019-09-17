@@ -102,6 +102,8 @@
       document.body.appendChild(obj); 
     }
     var video = document.getElementById("video");
+    document.getElementById("gamecanvas_"+input_id).setAttribute("width", video.width);
+    document.getElementById("gamecanvas_"+input_id).setAttribute("height", video.height);	  
     var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
     context.drawImage(video, input_left, input_top, video.clientWidth, video.clientHeight);	  
   }
