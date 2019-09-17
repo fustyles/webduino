@@ -3,7 +3,7 @@ document.write('<script src="https://fustyles.github.io/webduino/Tracking_201909
 document.write('<script src="https://fustyles.github.io/webduino/Tracking_20190917/src/alignment/training/Landmarks.js"></script>');
 document.write('<script src="https://fustyles.github.io/webduino/Tracking_20190917/src/alignment/training/Regressor.js"></script>');
 
-document.write('<div id="region"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="gamecanvas_tracking" width="320" height="240"></canvas><br><div id="result" style="width:320px;color:red">Please wait for loading model.</div></div>');
+document.write('<div id="region"><video id="videoWebcam" width="320" height="240" preload autoplay loop muted></video><canvas id="gamecanvas_tracking" width="320" height="240"></canvas><br><div id="result" style="width:320px;color:red">Please wait for loading model.</div></div>');
 
 window.onload = function () {
 
@@ -22,7 +22,7 @@ window.onload = function () {
         tracker.setInitialScale(2);
         tracker.setStepSize(1);
 	
-        var videoElement = document.querySelector('#video')
+        var videoElement = document.querySelector('#videoWebcam')
         // tracking.track(videoElement, tracker);
         tracking.track(videoElement, tracker, { camera: true });
         
