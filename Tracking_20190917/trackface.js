@@ -3,33 +3,6 @@
 +(function (window, document) {
 
   'use strict';
-	
-  function Trackface_open(input_left,input_top,input_display) {
-    var input_url = "https://fustyles.github.io/webduino/Tracking_20190917/examples/myBlockly_trackface.html";
-    if (document.getElementById("trackface")) {
-	var div = document.getElementById("trackface");
-	div.style.left = input_left + 'px';
-	div.style.top = input_top + 'px';	    
-	if (input_display==1)
-	  div.style.visibility="visible";
-	else
-	  div.style.visibility="hidden";
-	div.innerHTML = '<iframe id="tracking" src="'+input_url+'" style="width:480px;height:320px;" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
-    } else {
-	var div = document.createElement('div');
-	div.id = "trackface";
-	div.style.position = 'absolute';      
-	div.style.left = input_left + 'px';
-	div.style.top = input_top + 'px';
-	div.style.zIndex = '-1';
-	if (input_display==1)
-	  div.style.visibility="visible";
-	else
-	  div.style.visibility="hidden";
-	div.innerHTML = '<iframe id="tracking" src="'+input_url+'" style="width:480px;height:320px;" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
-	document.body.appendChild(div);
-    }
-  }
   
   function Trackface_display(input_display)  {
     if (document.getElementById("trackface")) {
