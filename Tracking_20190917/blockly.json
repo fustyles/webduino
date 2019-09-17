@@ -7,7 +7,11 @@
   ],
   "dependencies": [
     "trackface.js",
-    "Trackface_video.js"
+    "Trackface_video.js",
+    "build/tracking.js",
+    "build/data/face-min.js",
+    "src/alignment/training/Landmarks.js",
+    "src/alignment/training/Regressor.js"
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
