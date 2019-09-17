@@ -157,6 +157,8 @@ window.onload = function () {
 			document.getElementById("eyeBrowR3Y").innerHTML=-1;
 			return;
 		}
+		
+		context.drawImage(videoElement, 0, 0, video.clientWidth, video.clientHeight);
                 
                 event.data.faces.forEach(function(boundingBox, faceIndex) {
                         var faceLandmarks = event.data.landmarks[faceIndex]
