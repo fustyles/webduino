@@ -104,8 +104,8 @@
     var video = document.getElementById("video");
     console.log(video.width); 
     console.log(video.height); 
-    document.getElementById("gamecanvas_"+input_id).setAttribute("width", video.width);
-    document.getElementById("gamecanvas_"+input_id).setAttribute("height", video.height);	  
+    document.getElementById("gamecanvas_"+input_id).setAttribute("width", video.width+"px");
+    document.getElementById("gamecanvas_"+input_id).setAttribute("height", video.height+"px");	  
     var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
     context.drawImage(video, input_left, input_top, video.width, video.height);	  
   }
