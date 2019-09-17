@@ -102,10 +102,10 @@
       document.body.appendChild(obj); 
     }
     var video = document.getElementById("video");
-    document.getElementById("gamecanvas_"+input_id).setAttribute("width", video.clientWidth);
-    document.getElementById("gamecanvas_"+input_id).setAttribute("height", video.clientHeight);	  
+    document.getElementById("gamecanvas_"+input_id).setAttribute("width", video.width);
+    document.getElementById("gamecanvas_"+input_id).setAttribute("height", video.height);	  
     var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
-    context.drawImage(video, input_left, input_top, video.clientWidth, video.clientHeight);	  
+    context.drawImage(video, input_left, input_top, video.width, video.height);	  
   }
     
   window.Trackface_display = Trackface_display;
