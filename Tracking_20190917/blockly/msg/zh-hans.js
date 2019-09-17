@@ -1,1 +1,1 @@
-MSG.catpmgov = "台湾空气品质";
+MSG.catTracking = 追踪人脸"
