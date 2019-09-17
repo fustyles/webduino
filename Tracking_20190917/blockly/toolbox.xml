@@ -17,6 +17,11 @@
     </value>
   </block>
   <block type="trackface_get">
+    <value name="index_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>    
   </block>
   <block type="trackface_drawimage">
     <value name="id_">
