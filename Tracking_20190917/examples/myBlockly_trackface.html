@@ -9,10 +9,10 @@
         <title></title>
         <!-- here is the frame around each example - to be removed - to a fullscreen video - working on mobile too -->
         <!-- <link rel="stylesheet" href="assets/demo.css"> -->
-        <script src="https://fustyles.github.io/webduino/myBlockly/tracking/build/tracking.js"></script>
-        <script src="https://fustyles.github.io/webduino/myBlockly/tracking/build/data/face-min.js"></script>
-        <script src="https://fustyles.github.io/webduino/myBlockly/tracking/src/alignment/training/Landmarks.js"></script>
-        <script src="https://fustyles.github.io/webduino/myBlockly/tracking/src/alignment/training/Regressor.js"></script>
+        <script src="https://fustyles.github.io/webduino/Tracking_20190917/build/tracking.js"></script>
+        <script src="https://fustyles.github.io/webduino/Tracking_20190917/build/data/face-min.js"></script>
+        <script src="https://fustyles.github.io/webduino/Tracking_20190917/src/alignment/training/Landmarks.js"></script>
+        <script src="https://fustyles.github.io/webduino/Tracking_20190917/src/alignment/training/Regressor.js"></script>
 </head>
 <body>
 	<span id="boundingBoxX" style="top:0px;position:absolute;display:none;z-index:9999">0</span>
@@ -109,12 +109,6 @@
                         zoom: 1;
                 }
         </style>
-	<!--
-	<video id="videoWebcam" width="368" height="288" autoplay loop>
-		<source src="./assets/franck.mp4" type="video/mp4"/>
-		<source src="./assets/franck.ogv" type="video/ogg"/>
-	</video>
-         -->
         <video id="videoWebcam" preload autoplay loop muted></video>
         <canvas id="canvasDetection"></canvas>
         
