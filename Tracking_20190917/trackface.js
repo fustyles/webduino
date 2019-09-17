@@ -107,7 +107,6 @@
     context.drawImage(video, input_left, input_top, video.clientWidth, video.clientHeight);	  
   }
     
-  window.Trackface_open = Trackface_open;
   window.Trackface_display = Trackface_display;
   window.Trackface_get = Trackface_get;
   window.Trackface_drawimage = Trackface_drawimage;
