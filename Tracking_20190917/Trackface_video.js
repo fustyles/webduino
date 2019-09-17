@@ -1,4 +1,4 @@
-document.write('<div id="region"><video id="videoWebcam" width="320" height="240" preload autoplay loop muted></video><canvas id="gamecanvas_tracking" width="320" height="240"></canvas><br><div id="result" style="width:320px;color:red">Please wait for loading model.</div></div>');
+document.write('<div id="region"><video id="videoWebcam" width="320" height="240" style="position:absolute;display:none" preload autoplay loop muted></video><canvas id="gamecanvas_tracking" width="320" height="240"></canvas><br><div id="result" style="width:320px;color:red">Please wait for loading model.</div></div>');
 
 window.onload = function () {
 
