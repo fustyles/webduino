@@ -7,3 +7,4 @@ Blockly.Msg.TRACKFACE_LEFT_SHOW = "靠左距离";
 Blockly.Msg.TRACKFACE_TOP_SHOW = "靠上距离";
 Blockly.Msg.TRACKFACE_DRAWIMAGE_SHOW = "视讯画面描绘至";
 Blockly.Msg.CANVAS_ID_SHOW = "画布代码";
+Blockly.Msg.CANVAS_INDEX_SHOW = "索引";
