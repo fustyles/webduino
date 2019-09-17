@@ -88,10 +88,6 @@
       var obj = document.createElement('canvas');
       obj.style.position = "absolute";
       obj.id = "gamecanvas_"+input_id;
-      obj.setAttribute("width",'320px');
-      obj.style.width = '320px';
-      obj.setAttribute("height",'240px');
-      obj.style.height = '240px';
       obj.style.left = '0px';
       obj.style.top = '0px';
       obj.style.zIndex = 9999;
@@ -105,7 +101,9 @@
     console.log(video.width); 
     console.log(video.height); 
     document.getElementById("gamecanvas_"+input_id).setAttribute("width", video.width+"px");
-    document.getElementById("gamecanvas_"+input_id).setAttribute("height", video.height+"px");	  
+    document.getElementById("gamecanvas_"+input_id).setAttribute("height", video.height+"px");
+    document.getElementById("gamecanvas_"+input_id).style.width = video.width+"px";
+    document.getElementById("gamecanvas_"+input_id).style.height = video.height+"px";	  
     var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
     context.drawImage(video, input_left, input_top, video.width, video.height);	  
   }
