@@ -7,3 +7,4 @@ Blockly.Msg.TRACKFACE_LEFT_SHOW = "Left";
 Blockly.Msg.TRACKFACE_TOP_SHOW = "Top";
 Blockly.Msg.TRACKFACE_DRAWIMAGE_SHOW = "Capture vedio and draw image on";
 Blockly.Msg.CANVAS_ID_SHOW = "CanvasID";
+Blockly.Msg.CANVAS_INDEX_SHOW = "Index";
