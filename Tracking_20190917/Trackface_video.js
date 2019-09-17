@@ -89,6 +89,7 @@ window.onload = function () {
                 context.clearRect(0,0,gamecanvas_tracking.width, gamecanvas_tracking.height);
 
                 if( event.data === undefined ) {
+			context.drawImage(videoElement, 0, 0, video.clientWidth, video.clientHeight);
 			document.getElementById("boundingBoxX").innerHTML=-1;
 			document.getElementById("boundingBoxY").innerHTML=-1;
 			document.getElementById("boundingBoxWidth").innerHTML=-1;
