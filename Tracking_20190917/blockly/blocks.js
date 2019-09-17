@@ -1,5 +1,15 @@
-Blockly.Blocks['trackface_display'] = {
+Blockly.Blocks['trackface_set'] = {
   init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TRACKFACE_SET_SHOW);	  
+    this.appendValueInput("width_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.WIDTH_SHOW);    
+    this.appendValueInput("height_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.HEIGHT_SHOW); 	  
     this.appendValueInput("display_")
 	.setCheck(null)
         .appendField(Blockly.Msg.TRACKFACE_DISPLAY_SHOW);
