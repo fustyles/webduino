@@ -41,7 +41,7 @@
 	else if (input_property=="jaw4X") return Number(result[10]);
 	else if (input_property=="jaw4Y") return Number(result[11]);	
 	else if (input_property=="jaw5X") return Number(result[12]);
-	else if (input_property=="jaw5Y") return Numberresult[13]);
+	else if (input_property=="jaw5Y") return Number(result[13]);
 	else if (input_property=="jaw6X") return Number(result[14]);	
 	else if (input_property=="jaw6Y") return Number(result[15]);
 	else if (input_property=="jaw7X") return Number(result[16]);
