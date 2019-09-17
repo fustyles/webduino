@@ -102,10 +102,8 @@
       document.body.appendChild(obj); 
     }
     var video = document.getElementById("video");
-    document.getElementById("gamecanvas_"+input_id).setAttribute("width", video.width);
-    document.getElementById("gamecanvas_"+input_id).setAttribute("height", video.height);
-    document.getElementById("gamecanvas_"+input_id).style.width = '400px';
-    document.getElementById("gamecanvas_"+input_id).style.height = '300px';	  
+    document.getElementById("gamecanvas_"+input_id).setAttribute("width", video.clientWidth);
+    document.getElementById("gamecanvas_"+input_id).setAttribute("height", video.clientHeight);	  
     var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
     context.drawImage(video, input_left, input_top, video.clientWidth, video.clientHeight);	  
   }
