@@ -111,26 +111,3 @@
     else
       return 0;
   }
-
-  function Trackface_drawimage(input_id,input_left,input_top) {
-    if (!document.getElementById("gamecanvas_"+input_id)) {
-      var obj = document.createElement('canvas');
-      obj.style.position = "absolute";
-      obj.id = "gamecanvas_"+input_id;
-      obj.setAttribute("width",'320px');
-      obj.style.width = '320px';
-      obj.setAttribute("height",'240px');
-      obj.style.height = '240px';
-      obj.style.left = '640px';
-      obj.style.top = '0px';
-      obj.style.zIndex = 9999;
-      obj.style.display = "block";
-      obj.draggable="true";
-      obj.setAttribute("onclick", "javascript:onclickid_set(this);");
-      obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
-      document.body.appendChild(obj); 
-    }
-    var video = document.getElementById('tracking').contentWindow.document.getElementById("videoWebcam");
-    var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
-    context.drawImage(video, input_left, input_top, video.width, video.height);	  
-  }
