@@ -136,10 +136,10 @@
       obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
       document.body.appendChild(obj); 
     }
-    var video = document.getElementById('tracking').contentWindow.document.getElementById("videoWebcam");
     var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
-    var dataurl = document.getElementById('tracking').contentWindow.document.getElementById("video_image").innerHTML;
-    context.drawImage(dataurl, input_left, input_top, video.clientWidth, video.clientHeight);	  
+    var img = document.createElement('img');
+    img.src = document.getElementById('tracking').contentWindow.document.getElementById("video_image").innerHTML;
+    context.drawImage(img, input_left, input_top, video.clientWidth, video.clientHeight);	  
   }
     
   window.Trackface_open = Trackface_open;
