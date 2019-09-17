@@ -5,12 +5,12 @@
   'use strict';
   
   function Trackface_display(input_display)  {
-    if (document.getElementById("trackface")) {
-	var div = document.getElementById("trackface");
+    if (document.getElementById("gamecanvas_tracking")) {
+	var div = document.getElementById("gamecanvas_tracking");
 	if (input_display==1)
-	  div.style.visibility="visible";
+	  div.style.display="block";
 	else
-	  div.style.visibility="hidden";
+	  div.style.display="none";
     }
   }
 
