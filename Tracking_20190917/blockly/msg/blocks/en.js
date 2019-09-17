@@ -1,7 +1,9 @@
-Blockly.Msg.TRACKFACE_OPEN_SHOW = "TrackFace Open";
-Blockly.Msg.TRACKFACE_DISPLAY_SHOW = "Display TrackFace Window";
+Blockly.Msg.TRACKFACE_SET_SHOW = "TrackFace Window Set";
 Blockly.Msg.TRACKFACE_GET_SHOW = "TrackFace Get";
-Blockly.Msg.LEFT_SHOW = "Left";
-Blockly.Msg.TOP_SHOW = "Top";
+Blockly.Msg.TRACKFACE_WIDTH_SHOW = "Width";
+Blockly.Msg.TRACKFACE_HEIGHT_SHOW = "Height";
+Blockly.Msg.TRACKFACE_DISPLAY_SHOW = "Display";
+Blockly.Msg.TRACKFACE_LEFT_SHOW = "Left";
+Blockly.Msg.TRACKFACE_TOP_SHOW = "Top";
 Blockly.Msg.TRACKFACE_DRAWIMAGE_SHOW = "Capture vedio and draw image on";
 Blockly.Msg.CANVAS_ID_SHOW = "CanvasID";
