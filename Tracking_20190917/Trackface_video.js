@@ -1,5 +1,5 @@
 document.write('<video id="video" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><canvas id="gamecanvas_tracking" width="320" height="240"></canvas>');
-document.write('<span id="boundingBoxX" style="top:0px;position:absolute;display:none;z-index:9999">0</span><span id="boundingBoxY" style="top:30px;position:absolute;display:none;z-index:9999">0</span><span id="boundingBoxWidth" style="top:60px;position:absolute;display:none;z-index:9999">0</span><span id="boundingBoxHeight" style="top:90px;position:absolute;display:none;z-index:9999">0</span><span id="jaw1X" style="position:absolute;display:none;z-index:9999">0</span>	<span id="jaw1Y" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw2X" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw2Y" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw3X" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw3Y" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw4X" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw4Y" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw5X" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw5Y" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw6X" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw6Y" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw7X" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw7Y" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw8X" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw8Y" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw9X" style="position:absolute;display:none;z-index:9999">0</span><span id="jaw9Y" style="position:absolute;display:none;z-index:9999">0</span><span id="nose1X" style="position:absolute;display:none;z-index:9999">0</span><span id="nose1Y" style="position:absolute;display:none;z-index:9999">0</span><span id="nose2X" style="position:absolute;display:none;z-index:9999">0</span><span id="nose2Y" style="position:absolute;display:none;z-index:9999">0</span><span id="nose3X" style="position:absolute;display:none;z-index:9999">0</span><span id="nose3Y" style="position:absolute;display:none;z-index:9999">0</span><span id="nose4X" style="position:absolute;display:none;z-index:9999">0</span><span id="nose4Y" style="position:absolute;display:none;z-index:9999">0</span><span id="mouth1X" style="position:absolute;display:none;z-index:9999">0</span><span id="mouth1Y" style="position:absolute;display:none;z-index:9999">0</span><span id="mouth2X" style="position:absolute;display:none;z-index:9999">0</span><span id="mouth2Y" style="position:absolute;display:none;z-index:9999">0</span><span id="mouth3X" style="position:absolute;display:none;z-index:9999">0</span><span id="mouth3Y" style="position:absolute;display:none;z-index:9999">0</span><span id="mouth4X" style="position:absolute;display:none;z-index:9999">0</span><span id="mouth4Y" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeL1X" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeL1Y" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeL2X" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeL2Y" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeL3X" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeL3Y" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeL4X" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeL4Y" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeR1X" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeR1Y" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeR2X" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeR2Y" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeR3X" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeR3Y" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeR4X" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeR4Y" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeBrowL1X" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeBrowL1Y" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeBrowL2X" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeBrowL2Y" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeBrowL3X" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeBrowL3Y" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeBrowR1X" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeBrowR1Y" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeBrowR2X" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeBrowR2Y" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeBrowR3X" style="position:absolute;display:none;z-index:9999">0</span><span id="eyeBrowR3Y" style="position:absolute;display:none;z-index:9999">0</span>');
+document.write('<span id="boundingBoxX" style="top:0px;position:absolute;display:none;z-index:9999">-1</span><span id="boundingBoxY" style="top:30px;position:absolute;display:none;z-index:9999">-1</span><span id="boundingBoxWidth" style="top:60px;position:absolute;display:none;z-index:9999">-1</span><span id="boundingBoxHeight" style="top:90px;position:absolute;display:none;z-index:9999">-1</span><span id="jaw1X" style="position:absolute;display:none;z-index:9999">-1</span>	<span id="jaw1Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw2X" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw2Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw3X" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw3Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw4X" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw4Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw5X" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw5Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw6X" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw6Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw7X" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw7Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw8X" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw8Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw9X" style="position:absolute;display:none;z-index:9999">-1</span><span id="jaw9Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="nose1X" style="position:absolute;display:none;z-index:9999">-1</span><span id="nose1Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="nose2X" style="position:absolute;display:none;z-index:9999">-1</span><span id="nose2Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="nose3X" style="position:absolute;display:none;z-index:9999">-1</span><span id="nose3Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="nose4X" style="position:absolute;display:none;z-index:9999">-1</span><span id="nose4Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="mouth1X" style="position:absolute;display:none;z-index:9999">-1</span><span id="mouth1Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="mouth2X" style="position:absolute;display:none;z-index:9999">-1</span><span id="mouth2Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="mouth3X" style="position:absolute;display:none;z-index:9999">-1</span><span id="mouth3Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="mouth4X" style="position:absolute;display:none;z-index:9999">-1</span><span id="mouth4Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeL1X" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeL1Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeL2X" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeL2Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeL3X" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeL3Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeL4X" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeL4Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeR1X" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeR1Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeR2X" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeR2Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeR3X" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeR3Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeR4X" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeR4Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeBrowL1X" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeBrowL1Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeBrowL2X" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeBrowL2Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeBrowL3X" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeBrowL3Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeBrowR1X" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeBrowR1Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeBrowR2X" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeBrowR2Y" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeBrowR3X" style="position:absolute;display:none;z-index:9999">-1</span><span id="eyeBrowR3Y" style="position:absolute;display:none;z-index:9999">-1</span>');
 	       
 window.onload = function () {
 	
@@ -88,7 +88,75 @@ window.onload = function () {
                 // clear debug gamecanvas_tracking
                 context.clearRect(0,0,gamecanvas_tracking.width, gamecanvas_tracking.height);
 
-                if( event.data === undefined ) return;
+                if( event.data === undefined ) {
+			document.getElementById("boundingBoxX").innerHTML=-1;
+			document.getElementById("boundingBoxY").innerHTML=-1;
+			document.getElementById("boundingBoxWidth").innerHTML=-1;
+			document.getElementById("boundingBoxHeight").innerHTML=-1;			
+			document.getElementById("jaw1X").innerHTML=-1;
+			document.getElementById("jaw1Y").innerHTML=-1;	
+			document.getElementById("jaw2X").innerHTML=-1;
+			document.getElementById("jaw2Y").innerHTML=-1;
+			document.getElementById("jaw3X").innerHTML=-1;
+			document.getElementById("jaw3Y").innerHTML=-1;
+			document.getElementById("jaw4X").innerHTML=-1;
+			document.getElementById("jaw4Y").innerHTML=-1;
+			document.getElementById("jaw5X").innerHTML=-1;
+			document.getElementById("jaw5Y").innerHTML=-1;
+			document.getElementById("jaw6X").innerHTML=-1;
+			document.getElementById("jaw6Y").innerHTML=-1;
+			document.getElementById("jaw7X").innerHTML=-1;
+			document.getElementById("jaw7Y").innerHTML=-1;
+			document.getElementById("jaw8X").innerHTML=-1;
+			document.getElementById("jaw8Y").innerHTML=-1;
+			document.getElementById("jaw9X").innerHTML=-1;
+			document.getElementById("jaw9Y").innerHTML=-1;
+			document.getElementById("nose1X").innerHTML=-1;
+			document.getElementById("nose1Y").innerHTML=-1;	
+			document.getElementById("nose2X").innerHTML=-1;	
+			document.getElementById("nose2Y").innerHTML=-1;
+			document.getElementById("nose3X").innerHTML=-1;
+			document.getElementById("nose3Y").innerHTML=-1;	
+			document.getElementById("nose4X").innerHTML=-1;	
+			document.getElementById("nose4Y").innerHTML=-1;
+			document.getElementById("mouth1X").innerHTML=-1;	
+			document.getElementById("mouth1Y").innerHTML=-1;	
+			document.getElementById("mouth2X").innerHTML=-1;
+			document.getElementById("mouth2Y").innerHTML=-1;	
+			document.getElementById("mouth3X").innerHTML=-1;	
+			document.getElementById("mouth3Y").innerHTML=-1;	
+			document.getElementById("mouth4X").innerHTML=-1;
+			document.getElementById("mouth4Y").innerHTML=-1;
+			document.getElementById("eyeL1X").innerHTML=-1;	
+			document.getElementById("eyeL1Y").innerHTML=-1;
+			document.getElementById("eyeL2X").innerHTML=-1;	
+			document.getElementById("eyeL2Y").innerHTML=-1;
+			document.getElementById("eyeL3X").innerHTML=-1;	
+			document.getElementById("eyeL3Y").innerHTML=-1;
+			document.getElementById("eyeL4X").innerHTML=-1;	
+			document.getElementById("eyeL4Y").innerHTML=-1;
+			document.getElementById("eyeR1X").innerHTML=-1;
+			document.getElementById("eyeR1Y").innerHTML=-1;	
+			document.getElementById("eyeR2X").innerHTML=-1;	
+			document.getElementById("eyeR2Y").innerHTML=-1;
+			document.getElementById("eyeR3X").innerHTML=-1;
+			document.getElementById("eyeR3Y").innerHTML=-1;	
+			document.getElementById("eyeR4X").innerHTML=-1;	
+			document.getElementById("eyeR4Y").innerHTML=-1;
+			document.getElementById("eyeBrowL1X").innerHTML=-1;	
+			document.getElementById("eyeBrowL1Y").innerHTML=-1;	
+			document.getElementById("eyeBrowL2X").innerHTML=-1;
+			document.getElementById("eyeBrowL2Y").innerHTML=-1;	
+			document.getElementById("eyeBrowL3X").innerHTML=-1;
+			document.getElementById("eyeBrowL3Y").innerHTML=-1;
+			document.getElementById("eyeBrowR1X").innerHTML=-1;
+			document.getElementById("eyeBrowR1Y").innerHTML=-1;	
+			document.getElementById("eyeBrowR2X").innerHTML=-1;
+			document.getElementById("eyeBrowR2Y").innerHTML=-1;
+			document.getElementById("eyeBrowR3X").innerHTML=-1;	
+			document.getElementById("eyeBrowR3Y").innerHTML=-1;
+			return;
+		}
                 
                 event.data.faces.forEach(function(boundingBox, faceIndex) {
                         var faceLandmarks = event.data.landmarks[faceIndex]
