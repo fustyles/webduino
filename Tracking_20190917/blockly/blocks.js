@@ -24,6 +24,10 @@ Blockly.Blocks['trackface_get'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.TRACKFACE_GET_SHOW);
+    this.appendValueInput("index_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TRACKFACE_INDEX_SHOW);    	  
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
           ["faceX","faceX"], 
