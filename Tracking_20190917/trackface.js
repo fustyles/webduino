@@ -42,8 +42,6 @@
   }
 
   function Trackface_get(input_property)  {
-    if (document.getElementById("trackface")) {
-      if (document.getElementById('boundingBoxX')) {
 	if (input_property=="faceX") return Number(document.getElementById('boundingBoxX').innerHTML);
 	else if (input_property=="faceY") return Number(document.getElementById('boundingBoxY').innerHTML); 
 	else if (input_property=="faceWidth") return Number(document.getElementById('boundingBoxWidth').innerHTML); 
@@ -110,12 +108,6 @@
 	else if (input_property=="eyeBrowR2Y") return Number(document.getElementById("eyeBrowR2Y").innerHTML);
 	else if (input_property=="eyeBrowR3X") return Number(document.getElementById("eyeBrowR3X").innerHTML);
 	else if (input_property=="eyeBrowR3Y") return Number(document.getElementById("eyeBrowR3Y").innerHTML);
-      }
-      else
-        return 0;	    
-    }
-    else
-      return 0;
   }
 
   function Trackface_drawimage(input_id,input_left,input_top) {
