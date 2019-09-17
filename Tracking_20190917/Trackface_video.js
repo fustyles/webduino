@@ -158,8 +158,6 @@ window.onload = function () {
 			return;
 		}
 		
-		context.drawImage(videoElement, 0, 0, video.clientWidth, video.clientHeight);
-                
                 event.data.faces.forEach(function(boundingBox, faceIndex) {
                         var faceLandmarks = event.data.landmarks[faceIndex]
 
@@ -195,6 +193,9 @@ window.onload = function () {
         //                Code Separator
         //////////////////////////////////////////////////////////////////////////////
         function displayFaceLandmarksBoundingBox(boundingBox, faceIndex){
+		
+		context.drawImage(videoElement, 0, 0, video.clientWidth, video.clientHeight);
+		
                 // display the box
                 context.strokeStyle = '#a64ceb';
                 context.strokeRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height);
