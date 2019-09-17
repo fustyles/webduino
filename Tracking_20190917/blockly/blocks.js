@@ -2,10 +2,6 @@ Blockly.Blocks['trackface_open'] = {
   init: function() { 
     this.appendDummyInput()  
         .appendField(Blockly.Msg.TRACKFACE_OPEN_SHOW);
-    this.appendValueInput("url_")
-        .setCheck("String")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.URL_SHOW);
     this.appendValueInput("left_")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
