@@ -86,10 +86,9 @@ window.onload = function () {
         
         tracker.on('track', function(event) {
                 // clear debug gamecanvas_tracking
-                // context.clearRect(0,0,gamecanvas_tracking.width, gamecanvas_tracking.height);
+                context.clearRect(0,0,gamecanvas_tracking.width, gamecanvas_tracking.height);
 
                 if( event.data === undefined ) {
-			context.drawImage(videoElement, 0, 0, video.clientWidth, video.clientHeight);
 			document.getElementById("boundingBoxX").innerHTML=-1;
 			document.getElementById("boundingBoxY").innerHTML=-1;
 			document.getElementById("boundingBoxWidth").innerHTML=-1;
@@ -159,6 +158,8 @@ window.onload = function () {
 			return;
 		}
 		
+		context.drawImage(videoElement, 0, 0, video.clientWidth, video.clientHeight);
+		
                 event.data.faces.forEach(function(boundingBox, faceIndex) {
                         var faceLandmarks = event.data.landmarks[faceIndex]
 
@@ -194,8 +195,6 @@ window.onload = function () {
         //                Code Separator
         //////////////////////////////////////////////////////////////////////////////
         function displayFaceLandmarksBoundingBox(boundingBox, faceIndex){
-		
-		context.drawImage(videoElement, 0, 0, video.clientWidth, video.clientHeight);
 		
                 // display the box
                 context.strokeStyle = '#a64ceb';
@@ -251,6 +250,7 @@ window.onload = function () {
                 }
 
                 context.stroke();
+		
 		// get feature coordinate 		
 		document.getElementById("jaw1X").innerHTML=faceLandmarks[0][0];
 		document.getElementById("jaw1Y").innerHTML=faceLandmarks[0][1];	
