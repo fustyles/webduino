@@ -4,13 +4,22 @@
 
   'use strict';
   
-  function Trackface_display(input_display)  {
+  function Trackface_display(input_width, input_height, input_display)  {
     if (document.getElementById("gamecanvas_tracking")) {
-	var div = document.getElementById("gamecanvas_tracking");
+	var canvas = document.getElementById("gamecanvas_tracking");
 	if (input_display==1)
-	  div.style.display="block";
+	  canvas.style.display="block";
 	else
-	  div.style.display="none";
+	  canvas.style.display="none";
+	    
+	var video = document.getElementById("video");
+	video.width = input_width;
+	video.height = input_height;   
+	    
+	canvas.setAttribute("width", video.width+"px");
+	canvas.setAttribute("height", video.height+"px");
+	canvas.style.width = video.width+"px";
+	canvas.style.height = video.height+"px";
     }
   }
 
