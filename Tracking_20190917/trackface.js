@@ -101,7 +101,7 @@
       obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
       document.body.appendChild(obj); 
     }
-    var video = document.getElementById("videoWebcam");
+    var video = document.getElementById("video");
     var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
     context.drawImage(video, input_left, input_top, video.clientWidth, video.clientHeight);	  
   }
