@@ -1,12 +1,12 @@
 {
-  "types": ["pmgov_link","pmgov_get"],
+  "types": ["trackface_open","trackface_display","trackface_get","trackface_drawimage"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "AirQualityTaiwan.js"    
+    "trackface.js"    
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
