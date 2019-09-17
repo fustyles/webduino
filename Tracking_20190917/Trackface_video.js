@@ -86,7 +86,7 @@ window.onload = function () {
         
         tracker.on('track', function(event) {
                 // clear debug gamecanvas_tracking
-                context.clearRect(0,0,gamecanvas_tracking.width, gamecanvas_tracking.height);
+                // context.clearRect(0,0,gamecanvas_tracking.width, gamecanvas_tracking.height);
 
                 if( event.data === undefined ) {
 			context.drawImage(videoElement, 0, 0, video.clientWidth, video.clientHeight);
@@ -155,7 +155,7 @@ window.onload = function () {
 			document.getElementById("eyeBrowR2X").innerHTML=-1;
 			document.getElementById("eyeBrowR2Y").innerHTML=-1;
 			document.getElementById("eyeBrowR3X").innerHTML=-1;	
-			document.getElementById("eyeBrowR3Y").innerHTML=-1;
+			document.getElementById("eyeBrowR3Y").innerHTML=-1;			
 			return;
 		}
 		
