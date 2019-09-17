@@ -1,5 +1,5 @@
 {
-  "types": ["trackface_open","trackface_display","trackface_get","trackface_drawimage"],
+  "types": ["trackface_open","trackface_display","trackface_get"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
