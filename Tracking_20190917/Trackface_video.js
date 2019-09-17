@@ -135,10 +135,6 @@ window.onload = function () {
                 context.fillText('idx: '+faceIndex, boundingBox.x + boundingBox.width + 5, boundingBox.y + 11);
                 context.fillText('x: ' + boundingBox.x + 'px', boundingBox.x + boundingBox.width + 5, boundingBox.y + 22);
                 context.fillText('y: ' + boundingBox.y + 'px', boundingBox.x + boundingBox.width + 5, boundingBox.y + 33);
-		document.getElementById("boundingBoxX").innerHTML=boundingBox.x;
-		document.getElementById("boundingBoxY").innerHTML=boundingBox.y;
-		document.getElementById("boundingBoxWidth").innerHTML=boundingBox.width;
-		document.getElementById("boundingBoxHeight").innerHTML=boundingBox.height;
         }
         
         function displayFaceLandmarksDot(faceLandmarks){
