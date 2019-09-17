@@ -98,8 +98,6 @@
       document.body.appendChild(obj); 
     }
     var video = document.getElementById("video");
-    console.log(video.width); 
-    console.log(video.height); 
     document.getElementById("gamecanvas_"+input_id).setAttribute("width", video.width+"px");
     document.getElementById("gamecanvas_"+input_id).setAttribute("height", video.height+"px");
     document.getElementById("gamecanvas_"+input_id).style.width = video.width+"px";
