@@ -15,7 +15,6 @@
   }
 
   function Trackface_get(input_property)  {
-	console.log(input_property);
 	if (input_property=="faceX") return Number(document.getElementById('boundingBoxX').innerHTML);
 	else if (input_property=="faceY") return Number(document.getElementById('boundingBoxY').innerHTML); 
 	else if (input_property=="faceWidth") return Number(document.getElementById('boundingBoxWidth').innerHTML); 
