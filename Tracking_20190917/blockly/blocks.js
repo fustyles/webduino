@@ -5,11 +5,11 @@ Blockly.Blocks['trackface_set'] = {
     this.appendValueInput("width_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.WIDTH_SHOW);    
+      .appendField(Blockly.Msg.TRACKFACE_WIDTH_SHOW);    
     this.appendValueInput("height_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.HEIGHT_SHOW); 	  
+      .appendField(Blockly.Msg.TRACKFACE_HEIGHT_SHOW); 	  
     this.appendValueInput("display_")
 	.setCheck(null)
         .appendField(Blockly.Msg.TRACKFACE_DISPLAY_SHOW);
@@ -110,11 +110,11 @@ Blockly.Blocks['trackface_drawimage'] = {
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.LEFT_SHOW);    
+      .appendField(Blockly.Msg.TRACKFACE_LEFT_SHOW);    
   this.appendValueInput("top_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TOP_SHOW); 
+      .appendField(Blockly.Msg.TRACKFACE_TOP_SHOW); 
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
