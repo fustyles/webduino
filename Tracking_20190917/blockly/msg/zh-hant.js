@@ -1,1 +1,1 @@
-MSG.catpmgov = "台灣空氣品質";
+MSG.catTracking = 追蹤人臉";
