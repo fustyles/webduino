@@ -1,6 +1,8 @@
-Blockly.JavaScript['trackface_display'] = function(block) {
+Blockly.JavaScript['trackface_set'] = function(block) {
+  var value_width = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_height = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);   
   var value_display = Blockly.JavaScript.valueToCode(block, 'display_', Blockly.JavaScript.ORDER_ATOMIC);  
-  var code = 'Trackface_display(' + value_display + ');\n';
+  var code = 'Trackface_display(' + value_width + ',' + value_height + ',' + value_display + ');\n';
   return code;
 };
 
