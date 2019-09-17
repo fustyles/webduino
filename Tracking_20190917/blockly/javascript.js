@@ -7,8 +7,9 @@ Blockly.JavaScript['trackface_set'] = function(block) {
 };
 
 Blockly.JavaScript['trackface_get'] = function(block) {
+  var value_index = Blockly.JavaScript.valueToCode(block, 'index_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property = block.getFieldValue('property_');
-  var code = 'Trackface_get("' + value_property + '")';
+  var code = 'Trackface_get(' + value_index + ',"' + value_property + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
