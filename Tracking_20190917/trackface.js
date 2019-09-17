@@ -1,4 +1,10 @@
-  function Trackface_open(input_left,input_top,input_display) {
+// Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
+
++(function (window, document) {
+
+  'use strict';
+	
+function Trackface_open(input_left,input_top,input_display) {
     var input_url = "https://fustyles.github.io/webduino/Tracking_20190917/examples/myBlockly_trackface.html";
     if (document.getElementById("trackface")) {
 	var div = document.getElementById("trackface");
@@ -134,3 +140,10 @@
     var context = document.getElementById("gamecanvas_"+input_id).getContext("2d");
     context.drawImage(video, input_left, input_top, video.clientWidth, video.clientHeight);	  
   }
+    
+  window.Trackface_open = Trackface_open;
+  window.Trackface_display = Trackface_display;
+  window.Trackface_get = Trackface_get;
+  window.Trackface_drawimage = Trackface_drawimage;
+  
+}(window, window.document));
