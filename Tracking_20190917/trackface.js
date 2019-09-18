@@ -25,9 +25,10 @@
 
   function Trackface_get(input_index, input_property)  {
 	if (document.getElementById("result").innerHTML == "") return -1;
-	var result = document.getElementById("result").innerHTML.split("<br>")[input_index].split(",");
-	console.log(result.length-2);
-	if (input_index > result.length-2) return -1;
+	var persons = document.getElementById("result").innerHTML.split("<br>");
+	console.log(persons.length-2);
+	if (input_index>persons.length-2||input_index<0) return -1;	  
+	var result = persons[input_index].split(",");
 	//console.log(result);
 	  
 	if (input_property=="faceX") return Number(result[0]);
