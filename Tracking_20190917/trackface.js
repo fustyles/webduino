@@ -26,7 +26,7 @@
   function Trackface_get(input_index, input_property)  {
 	if (document.getElementById("result").innerHTML == "") return -1;
 	var result = document.getElementById("result").innerHTML.split("<br>")[input_index].split(",");
-	console.log(result);
+	//console.log(result);
 	  
 	if (input_property=="faceX") return Number(result[0]);
 	else if (input_property=="faceY") return Number(result[1]); 
