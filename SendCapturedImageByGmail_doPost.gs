@@ -14,12 +14,14 @@ function doPost(e) {
   data = Utilities.base64Decode(data);
   var blob = Utilities.newBlob(data, contentType, "esp32-cam.jpg");
 
+  // Send a photo as an attachment by using Gmail
   var response = GmailApp.sendEmail(myRecipient, mySubject, myBody,{
       attachments: [blob],
       name: 'Automatic Emailer Script'
     }
   );
   
+  // Save the photo to Google Drive
   var folder, folders = DriveApp.getFoldersByName("ESP32-CAM");
   if (folders.hasNext()) {
     folder = folders.next();
@@ -28,6 +30,6 @@ function doPost(e) {
   }
   var file = folder.createFile(blob);    
   file.setDescription("Uploaded by ESP32-CAM");
-
+  
   return  ContentService.createTextOutput(response);
 }
