@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/9/28 11:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/9/28 12:00
 https://www.facebook.com/francefu
 */
 
@@ -19,6 +19,15 @@ function doPost(e) {
       name: 'Automatic Emailer Script'
     }
   );
+  
+  var folder, folders = DriveApp.getFoldersByName("ESP32-CAM");
+  if (folders.hasNext()) {
+    folder = folders.next();
+  } else {
+    folder = DriveApp.createFolder("ESP32-CAM");
+  }
+  var file = folder.createFile(blob);    
+  file.setDescription("Uploaded by ESP32-CAM");
 
   return  ContentService.createTextOutput(response);
 }
