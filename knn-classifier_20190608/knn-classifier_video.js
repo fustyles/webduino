@@ -119,7 +119,11 @@ window.onload = function () {
   }
 
   async function predictClass(img) {
-    if (!document.getElementById('startdetection').checked) 
+    if (!document.getElementById('startdetection').checked) {
+      result.innerHTML = "";  
+      return;
+    }
+      
     document.getElementById("region").style.opacity = Number(document.getElementById("opacity").value);
     // Make a prediction.
     try
