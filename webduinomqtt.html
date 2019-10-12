@@ -13,8 +13,7 @@
  <body>
  </body>
 </html>
-<script id="jsbin-javascript">
-  (async function () {
+<script>
    var strUrl=location.search;
    if (strUrl.indexOf("?")!=-1)
      var message = strUrl.split("?")[1];
@@ -27,5 +26,4 @@
    if (message!="") {
      webduinoMQTTClient.send({topic: topic,message: message});
    }
-  }());
 </script> 	
