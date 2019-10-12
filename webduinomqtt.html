@@ -3,22 +3,8 @@
 <script src="https://blocklypro.webduino.io/dist/webduino-blockly.min.js"></script>
 <script src="https://blocklypro.webduino.io/dist/lib/firebase.min.js"></script>
 <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>
-<script src="https://blocklypro.webduino.io/node_modules/webduino-module-mqtt/mqttClient.min.js"></script>
-<script>
-var topic = "my/helloworld";
-var webduinoMQTTClient = new webduino.module.mqttClient();
-webduinoMQTTClient.connect({ server: 'wss://mqtt1.webduino.io/mqtt' });
-setTimeout(function(){
-  webduinoMQTTClient.subscribe(topic);
-  var strUrl=location.search;
-  if (strUrl.indexOf("?")!=-1) {
-    webduinoMQTTClient.send({topic: topic,message: strUrl.split("?")[1]});
-    document.write(strUrl.split("?")[1]);
-  } 
-},1000);
-</script>	  
+<script src="https://blocklypro.webduino.io/node_modules/webduino-module-mqtt/mqttClient.min.js"></script>  
 <script id="jsbin-javascript">
-  /*
 (async function () {
 var topic = "my/helloworld";
 var webduinoMQTTClient = new webduino.module.mqttClient();
@@ -30,5 +16,4 @@ if (strUrl.indexOf("?")!=-1) {
   document.write(strUrl.split("?")[1]);
 }  
 }());
-*/
 </script>	  
