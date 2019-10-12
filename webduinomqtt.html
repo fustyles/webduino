@@ -13,7 +13,8 @@
  <body>
  </body>
 </html>
-<script>
+<script id="jsbin-javascript">
+  (async function () {
    var strUrl=location.search;
    if (strUrl.indexOf("?")!=-1)
      var message = strUrl.split("?")[1];
@@ -21,9 +22,10 @@
      var message = "";
    var topic = "my/helloworld";
    var webduinoMQTTClient = new webduino.module.mqttClient();
-   webduinoMQTTClient.connect({ server: 'wss://mqtt1.webduino.io/mqtt' });
-   webduinoMQTTClient.subscribe(topic);
+   await webduinoMQTTClient.connect({ server: 'wss://mqtt1.webduino.io/mqtt' });
+   await webduinoMQTTClient.subscribe(topic);
    if (message!="") {
      webduinoMQTTClient.send({topic: topic,message: message});
    }
+  }());
 </script> 	
