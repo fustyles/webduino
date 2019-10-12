@@ -13,7 +13,7 @@ await webduinoMQTTClient.subscribe(topic);
 var strUrl=location.search;
 if (strUrl.indexOf("?")!=-1) {
   webduinoMQTTClient.send({topic: topic,message: strUrl.split("?")[1]});
-  window.close();
+  document.write(strUrl.split("?")[1]);
 }  
 }());
 </script>	  
