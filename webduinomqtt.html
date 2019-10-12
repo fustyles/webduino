@@ -11,24 +11,21 @@
   <script src="https://blocklypro.webduino.io/node_modules/webduino-module-mqtt/mqttClient.min.js"></script>
  </head>
  <body>
-    <span id="message"></span>
- </body>
-</html>
-<script>
-  var strUrl=location.search;
-  if (strUrl.indexOf("?")!=-1) {
-    document.getElementById('message').innerHTML = strUrl.split("?")[1];
-  }  
-</script>
 <script id="jsbin-javascript">
   (async function () {
+	var strUrl=location.search;
+	if (strUrl.indexOf("?")!=-1)
+	  var message = strUrl.split("?")[1];
+	else
+	  var message = "";
 	var topic = "my/helloworld";
 	var webduinoMQTTClient = new webduino.module.mqttClient();
 	await webduinoMQTTClient.connect({ server: 'wss://mqtt1.webduino.io/mqtt' });
 	await webduinoMQTTClient.subscribe(topic);
-	var message = document.getElementById('message').innerHTML;
 	if (message!="") {
 	  webduinoMQTTClient.send({topic: topic,message: message});
 	}
   }());
-</script> 
+</script> 	 
+ </body>
+</html>
