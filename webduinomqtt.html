@@ -9,8 +9,6 @@
   <script src="https://blocklypro.webduino.io/dist/lib/firebase.min.js"></script>
   <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>
   <script src="https://blocklypro.webduino.io/node_modules/webduino-module-mqtt/mqttClient.min.js"></script>
- </head>
- <body>
    <script>
    var strUrl=location.search;
    if (strUrl.indexOf("?")!=-1)
@@ -24,6 +22,8 @@
    if (message!="") {
      webduinoMQTTClient.send({topic: topic,message: message});
    }
-   </script> 	 
+   </script> 	    
+ </head>
+ <body>
  </body>
 </html>
