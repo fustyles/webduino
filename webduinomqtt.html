@@ -13,10 +13,11 @@
    var topic = "my/helloworld";
    var webduinoMQTTClient = new webduino.module.mqttClient();
    webduinoMQTTClient.connect({ server: 'wss://mqtt1.webduino.io/mqtt' });
-   webduinoMQTTClient.subscribe(topic);
   </script> 	    
  </head>
  <body>
+ </body>
+</html>
  <script>
    var strUrl=location.search;
    if (strUrl.indexOf("?")!=-1)
@@ -24,9 +25,7 @@
    else
      var message = "";   
    if (message!="") {
+     webduinoMQTTClient.subscribe(topic);
      webduinoMQTTClient.send({topic: topic,message: message});
    }
 </script>
- </body>
-</html>
-
