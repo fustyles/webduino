@@ -31,5 +31,7 @@
     </value>     
   </block>  
   <block type="azure_facedetection_get">
+  </block> 
+  <block type="azure_facedetection_get_persons">
   </block>  
 </category>
