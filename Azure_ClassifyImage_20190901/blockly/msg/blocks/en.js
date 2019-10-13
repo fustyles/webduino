@@ -1,7 +1,9 @@
 Blockly.Msg.AZURECLASSIFYIMAGE_WIDTH_SHOW = "Azure Custom Vision Width";
 Blockly.Msg.AZURECLASSIFYIMAGE_HEIGHT_SHOW = "Height";
 Blockly.Msg.AZURECLASSIFYIMAGE_DETECT_SHOW = "Azure Custom Vision";
-Blockly.Msg.AZURECLASSIFYIMAGE_GET_SHOW = "Azure Custom Vision Get Result";
+Blockly.Msg.AZURECLASSIFYIMAGE_GET_SHOW = "Get Result (Azure Custom Vision)";
+Blockly.Msg.AZUREFACEDETECTION_GET_OBJECTDATA_SHOW = "Get data (Azure Custom Vision) index ";
+Blockly.Msg.AZUREFACEDETECTION_GET_OBJECTS_SHOW = "Get number of data (Azure Custom Vision)";
 Blockly.Msg.AZURECLASSIFYIMAGE_RESULT_SHOW = "Result";
 Blockly.Msg.AZURECLASSIFYIMAGE_OPACITY_SHOW = "Opacity";
 Blockly.Msg.AZURECLASSIFYIMAGE_SETTINGS_SHOW ="Azure Custom Vision Settings";
