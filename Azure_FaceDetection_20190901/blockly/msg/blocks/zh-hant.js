@@ -3,6 +3,7 @@ Blockly.Msg.AZUREFACEDETECTION_WIDTH_SHOW = "視訊 (Azure Face Detection) 寬�
 Blockly.Msg.AZUREFACEDETECTION_HEIGHT_SHOW = "高度";
 Blockly.Msg.AZUREFACEDETECTION_DETECT_SHOW = "臉部執行偵測 (Azure)";
 Blockly.Msg.AZUREFACEDETECTION_GET_SHOW = "取得結果 (Azure Face Detection)";
+Blockly.Msg.AZUREFACEDETECTION_GET_PERSONS_SHOW = "取得偵測人數 (Azure Face Detection)";
 Blockly.Msg.AZUREFACEDETECTION_RESULT_SHOW = "結果";
 Blockly.Msg.AZUREFACEDETECTION_OPACITY_SHOW = "透明度";
 Blockly.Msg.AZUREFACEDETECTION_SETTINGS_SHOW ="臉部偵測 (Azure) 設定";
