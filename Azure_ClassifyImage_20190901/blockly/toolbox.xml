@@ -42,6 +42,15 @@
   </block>  
   <block type="azure_classifyimage_get">
   </block>  
+  <block type="azure_classifyimage_get_objectdata">
+    <value name="index_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>     
+  </block>   
+  <block type="azure_classifyimage_get_objects">
+  </block>    
   <block type="azure_classifyimage_max">
   </block>   
 </category>
