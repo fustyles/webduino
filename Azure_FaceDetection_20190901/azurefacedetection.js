@@ -34,6 +34,17 @@ function azurefacedetection_detect(input_showtime){
 function azurefacedetection_get(){
   return faceApi_returnResult.split("<br>");
 }
+		
+function azurefacedetection_get_persondata(input_index){
+  if (faceApi_returnResult=="nobody"||faceApi_returnResult=="")
+    return "";
+  else {
+    if (faceApi_returnResult.split("<br>")[input_index-1])
+      return faceApi_returnResult.split("<br>")[input_index-1];
+    else
+      return "";
+  }
+}
 	
 function azurefacedetection_get_persons(){
   if (faceApi_returnResult=="nobody"||faceApi_returnResult=="")
@@ -226,6 +237,7 @@ function DetectVideo() {
 window.azurefacedetection_settings = azurefacedetection_settings;
 window.azurefacedetection_detect = azurefacedetection_detect;
 window.azurefacedetection_get = azurefacedetection_get;
+window.azurefacedetection_get_persondata = azurefacedetection_get_persondata;	
 window.azurefacedetection_get_persons = azurefacedetection_get_persons;
 window.azurefacedetection_video = azurefacedetection_video;
 window.DetectVideo = DetectVideo;
