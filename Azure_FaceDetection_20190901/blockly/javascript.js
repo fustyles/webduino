@@ -18,7 +18,7 @@ Blockly.JavaScript['azure_facedetection_get'] = function(block) {
 
 Blockly.JavaScript['azure_facedetection_get_persondata'] = function(block) { 
   var value_index_ = Blockly.JavaScript.valueToCode(block, 'index_', Blockly.JavaScript.ORDER_ATOMIC);	  
-  var code = 'azurefacedetection_get_persondata(value_index_)';
+  var code = 'azurefacedetection_get_persondata(' + value_index_ + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
