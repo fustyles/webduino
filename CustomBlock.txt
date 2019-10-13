@@ -231,17 +231,17 @@ http://blocklypro.webduino.io/?demo=demo-area-01#X0pMVD5n9Z
 http://bit.webduino.io/blockly/#jqwMPzDxXx9yO
 http://bit.webduino.io/blockly/#Qq7l7e9j8KE3B
 [ ESP韌體 ]
-ESP32 Lcd1602 I2C
+<ESP32 Lcd1602 I2C>
 Library: 
 https://github.com/nhatuan84/esp32-lcd
 Firmware: 
 https://github.com/fustyles/Arduino/blob/master/ESP32_MyBlockly_JSON.ino
-ESP12E Lcd1602 I2C
+<ESP12E Lcd1602 I2C>
 Library: 
 https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library
 Firmware: 
 https://github.com/fustyles/Arduino/blob/master/ESP12E_MyBlockly_JSON.ino
-ESP01 Lcd1602 I2C
+<ESP01 Lcd1602 I2C>
 Library: 
 https://github.com/agnunez/ESP8266-I2C-LCD1602
 Firmware: 
