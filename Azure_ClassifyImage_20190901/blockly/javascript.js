@@ -19,6 +19,17 @@ Blockly.JavaScript['azure_classifyimage_get'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['azure_classifyimage_get_objectdata'] = function(block) { 
+  var value_index_ = Blockly.JavaScript.valueToCode(block, 'index_', Blockly.JavaScript.ORDER_ATOMIC);	  
+  var code = 'azureclassifyimage_get_objectdata(' + value_index_ + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['azure_classifyimage_get_objects'] = function(block) { 
+  var code = 'azureclassifyimage_get_objects()';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['azure_classifyimage_max'] = function(block) { 
   var value_property_ = block.getFieldValue('property_');  
   var code = 'azureclassifyimage_max("' + value_property_ + '")';
