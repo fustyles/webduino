@@ -50,6 +50,28 @@ Blockly.Blocks['azure_classifyimage_get'] = {
   }
 };
 
+Blockly.Blocks['azure_classifyimage_get_objectdata'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AZURECLASSIFYIMAGE_GET_OBJECTDATA_SHOW); 
+  this.appendValueInput("index_")
+      .setCheck("Number");  
+  this.setInputsInline(true);
+  this.setOutput(true, null);
+  this.setColour(65);
+  }
+};
+
+Blockly.Blocks['azure_classifyimage_get_objects'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AZURECLASSIFYIMAGE_GET_OBJECTS_SHOW); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null);
+  this.setColour(65);
+  }
+};
+
 Blockly.Blocks['azure_classifyimage_max'] = {
   init: function() { 
   this.appendDummyInput()  
