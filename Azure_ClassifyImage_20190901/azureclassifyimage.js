@@ -40,6 +40,25 @@ function azureclassifyimage_get(){
   return Prediction_returnResult.split("<br>");
 }
   
+function azureclassifyimage_get_objectdata(input_index){
+  if (Prediction_returnResult=="Error,0"||Prediction_returnResult=="")
+    return "";
+  else {
+    if (Prediction_returnResult.split("<br>")[input_index-1])
+      return Prediction_returnResult.split("<br>")[input_index-1].split(",");
+    else
+      return "";
+  }
+}
+	
+function azureclassifyimage_get_objects(){
+  if (Prediction_returnResult=="Error,0"||Prediction_returnResult=="")
+    return 0;
+  else {
+    return Prediction_returnResult.split("<br>").length;
+  }
+}
+  
 function azureclassifyimage_max(input_property){
   if (input_property=="tagName")
     return maxName;
@@ -140,6 +159,8 @@ function azureclassifyimage_detectvideo() {
 window.azureclassifyimage_settings = azureclassifyimage_settings;
 window.azureclassifyimage_detect = azureclassifyimage_detect;
 window.azureclassifyimage_get = azureclassifyimage_get;
+window.azureclassifyimage_get_objectdata = azureclassifyimage_get_objectdata;
+window.azureclassifyimage_get_objects = azureclassifyimage_get_objects;
 window.azureclassifyimage_video = azureclassifyimage_video;
 window.azureclassifyimage_detectvideo = azureclassifyimage_detectvideo;
 window.azureclassifyimage_max = azureclassifyimage_max;
