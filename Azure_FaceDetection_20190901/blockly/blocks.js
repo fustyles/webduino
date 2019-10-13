@@ -39,6 +39,18 @@ Blockly.Blocks['azure_facedetection_get'] = {
   }
 };
 
+Blockly.Blocks['azure_facedetection_get_persondata'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AZUREFACEDETECTION_GET_PERSONDATA_SHOW); 
+  this.appendValueInput("index_")
+      .setCheck("Number");  
+  this.setInputsInline(true);
+  this.setOutput(true, null);
+  this.setColour(65);
+  }
+};
+
 Blockly.Blocks['azure_facedetection_get_persons'] = {
   init: function() { 
   this.appendDummyInput()  
