@@ -40,7 +40,7 @@ function azurefacedetection_get_persondata(input_index){
     return "";
   else {
     if (faceApi_returnResult.split("<br>")[input_index-1])
-      return faceApi_returnResult.split("<br>")[input_index-1];
+      return faceApi_returnResult.split("<br>")[input_index-1].split(",");
     else
       return "";
   }
