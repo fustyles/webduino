@@ -182,7 +182,7 @@ function DetectVideo() {
 		  if (json[i]["faceAttributes"]["accessories"][0])
 		    faceApi_result += json[i]["faceAttributes"]["accessories"][0]["type"]+"_"+json[i]["faceAttributes"]["accessories"][0]["confidence"]; 	
 		  else 
-		    faceApi_result += "accessories__"; 	    
+		    faceApi_result += "null_0"; 	    
 		  faceApi_result += ",";
 		  faceApi_result += json[i]["faceAttributes"]["occlusion"]["foreheadOccluded"]+"_"+json[i]["faceAttributes"]["occlusion"]["eyeOccluded"]+"_"+json[i]["faceAttributes"]["occlusion"]["mouthOccluded"]; 			
 		  
