@@ -178,9 +178,12 @@ function DetectVideo() {
 		  faceApi_result += json[i]["faceAttributes"]["noise"]["noiseLevel"]+"_"+json[i]["faceAttributes"]["noise"]["value"]; 			
 		  faceApi_result += ",";	    
 		  faceApi_result += json[i]["faceAttributes"]["makeup"]["eyeMakeup"]+"_"+json[i]["faceAttributes"]["makeup"]["lipMakeup"]; 
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["accessories"][0]["type"]+"_"+json[i]["faceAttributes"]["accessories"][0]["confidence"]; 	
-		  faceApi_result += ",";	    
+		  faceApi_result += ",";
+		  if (json[i]["faceAttributes"]["accessories"][0]["type"]) {
+		    faceApi_result += json[i]["faceAttributes"]["accessories"][0]["type"]+"_"+json[i]["faceAttributes"]["accessories"][0]["confidence"]; 	
+		  else 
+		    faceApi_result += "accessories__"; 	    
+		  faceApi_result += ",";
 		  faceApi_result += json[i]["faceAttributes"]["occlusion"]["foreheadOccluded"]+"_"+json[i]["faceAttributes"]["occlusion"]["eyeOccluded"]+"_"+json[i]["faceAttributes"]["occlusion"]["mouthOccluded"]; 			
 		  
 		  max=json[i]["faceAttributes"]["hair"]["hairColor"][0]["confidence"];
