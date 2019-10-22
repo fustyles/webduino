@@ -1,9 +1,10 @@
 Blockly.Blocks['ws2812_expansion_code24'] = {
   init: function() {
     this.appendDummyInput() 
-        .appendField(new Blockly.FieldVariable('ws2812'), 'ws2812_')
-        .appendField("red<->green")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "change_");
+        .appendField(new Blockly.FieldVariable('ws2812'), 'ws2812_');
+    this.appendDummyInput()     
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "change_")
+        .appendField("red<->green");
     this.appendValueInput("color0_")
         .appendField("1")
         .setCheck("Colour"); 
