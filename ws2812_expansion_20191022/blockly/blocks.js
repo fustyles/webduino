@@ -20,6 +20,7 @@ Blockly.Blocks['ws2812_expansion_code24'] = {
     this.appendValueInput("color5_")
         .appendField("6")
         .setCheck("Colour"); 
+    this.appendDummyInput();    
     this.appendValueInput("color6_")
         .appendField("7")
         .setCheck("Colour"); 
@@ -41,6 +42,7 @@ Blockly.Blocks['ws2812_expansion_code24'] = {
     this.appendValueInput("color12_")
         .appendField("13")
         .setCheck("Colour"); 
+    this.appendDummyInput();     
     this.appendValueInput("color13_")
         .appendField("14")
         .setCheck("Colour"); 
@@ -59,6 +61,7 @@ Blockly.Blocks['ws2812_expansion_code24'] = {
     this.appendValueInput("color18_")
         .appendField("19")
         .setCheck("Colour"); 
+    this.appendDummyInput();     
     this.appendValueInput("color19_")
         .appendField("20")
         .setCheck("Colour"); 
@@ -74,7 +77,6 @@ Blockly.Blocks['ws2812_expansion_code24'] = {
     this.appendValueInput("color23_")
         .appendField("24")
         .setCheck("Colour"); 
-    this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(300);
