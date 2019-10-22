@@ -6,7 +6,7 @@
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "ws2812.js"    
+    "ws2812_expansion.js"    
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
