@@ -1,0 +1,1 @@
+﻿Blockly.Msg.WS2812EXPANSION_SHOW = "ws2812";
