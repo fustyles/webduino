@@ -17,16 +17,16 @@ Blockly.JavaScript['ws2812_expansion_code24'] = function (block) {
    
   console.log(ws2812Code);
 
-  if (ws2812Code.substring(0, 56) != "") {
+  if (ws2812Code.substring(0, 56)!="") {
     code += variable_ws2812+".setColor('"+ws2812Code.substring(0, 56)+"');\n";
   }
-  if (ws2812Code.substring(56, 112) != "") {
+  if (ws2812Code.substring(56, 112)!="") {
     code += variable_ws2812+".setColor('"+ws2812Code.substring(56, 112)+"');\n";
   }
-  if (ws2812Code.substring(112, 168) != "") {
+  if (ws2812Code.substring(112, 168)!="") {
     code += variable_ws2812+".setColor('"+ws2812Code.substring(112, 168)+"');\n";
   }
-  if (ws2812Code.substring(168, 192) != "") {
+  if (ws2812Code.substring(168, 192)!="") {
     code += variable_ws2812+".setColor('"+ws2812Code.substring(168, 192)+"');\n";
   }
 
