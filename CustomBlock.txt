@@ -3,7 +3,7 @@
 我寫的自訂積木、韌體、網頁等免費提供各級學校教學與個人使用，僅供測試，請勿用於商業販售產品！
 
 
-光環板自訂積木
+ws2812燈條(環)自訂積木
 https://fustyles.github.io/webduino/ws2812_expansion_20191022/blockly.json
 
 
