@@ -3,8 +3,8 @@ Blockly.Blocks['ws2812_expansion_1to8'] = {
     this.appendDummyInput() 
         .appendField(new Blockly.FieldVariable('ws2812'), 'ws2812_');
     this.appendDummyInput()     
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "change_")
-        .appendField("red<->green");
+        .appendField("red<->green")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "change_");
     this.appendValueInput("color0_")
         .appendField("1")
         .setCheck("Colour"); 
@@ -41,8 +41,8 @@ Blockly.Blocks['ws2812_expansion_9to16'] = {
     this.appendDummyInput() 
         .appendField(new Blockly.FieldVariable('ws2812'), 'ws2812_');
     this.appendDummyInput()     
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "change_")
-        .appendField("red<->green");
+        .appendField("red<->green")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "change_");
     this.appendValueInput("color8_")
         .appendField("9")
         .setCheck("Colour"); 
@@ -80,8 +80,8 @@ Blockly.Blocks['ws2812_expansion_17to24'] = {
     this.appendDummyInput() 
         .appendField(new Blockly.FieldVariable('ws2812'), 'ws2812_');
     this.appendDummyInput()     
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "change_")
-        .appendField("red<->green");
+        .appendField("red<->green")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "change_");
     this.appendValueInput("color16_")
         .appendField("17")
         .setCheck("Colour"); 
