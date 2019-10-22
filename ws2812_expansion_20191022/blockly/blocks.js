@@ -100,7 +100,8 @@ Blockly.Blocks['ws2812_expansion_code24'] = {
         .setCheck("Colour")
         .appendField("color"); 
     this.setInputsInline(true);
-    this.setOutput(true, null);  
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
     this.setColour(300);
   }
 };
