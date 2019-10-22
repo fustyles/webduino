@@ -4,6 +4,7 @@ Blockly.JavaScript['ws2812_expansion_code24'] = function (block) {
    var code = "";
    for (var i=0;i<=23;i++) {
        var value_color = Blockly.JavaScript.valueToCode(block, 'color'+i+'_', Blockly.JavaScript.ORDER_ATOMIC);
+       console.log(value_color);
        if (value_color!="#000000"&&value_color.length==7) {
          if (i<10)
            ws2812Code += "0" + i + value_color.replace("#","");
