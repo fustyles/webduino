@@ -10,10 +10,10 @@ Blockly.JavaScript['ws2812_expansion_code24'] = function (block) {
         value_color = value_color.substring(1,value_color.length-1);
       if (value_color!="#000000"&&value_color.length==7) {
         console.log(value_color);
-        if (i<10)
-          ws2812Code += "0" + i + value_color.replace("#","");
+        if (i<16)
+          ws2812Code += "0" + i.toString(16) + value_color.replace("#","");
         else
-          ws2812Code += i + value_color.replace("#","");
+          ws2812Code += i.toString(16) + value_color.replace("#","");
       }
   }
    
