@@ -76,8 +76,9 @@ Probability Limit
       //console.log('Predictions: ', Predictions);
       if (Predictions.length>0) {
         for (var i=0;i<Predictions.length;i++) {
-          if (Predictions[i].probability>=probabilitylimit)
+          if (Predictions[i].probability>=probabilitylimit) {
             result.innerHTML+= "[ "+i+" ] "+Math.round(Predictions[i].probability*100)+"%, "+Predictions[i].className+"<br>";
+          }
         }
       }
       else
