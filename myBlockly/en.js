@@ -2,8 +2,8 @@
 
 'use strict';
 
-goog.provide('Blockly.requires.Msg.en');
-goog.require('Blockly.requires.Msg');
+goog.provide('Blockly.Msg.en');
+goog.require('Blockly.Msg');
 
 Blockly.Msg.btnRun_TEXT = "Run";
 Blockly.Msg.btnRun1_TEXT = "Run";
