@@ -2,9 +2,6 @@
 
 'use strict';
 
-goog.provide('Blockly.Msg.en');
-goog.require('Blockly.Msg');
-
 Blockly.Msg.btnRun_TEXT = "Run";
 Blockly.Msg.btnRun1_TEXT = "Run";
 Blockly.Msg.btnexportcode_TEXT = "Export Code";
