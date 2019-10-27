@@ -11,7 +11,7 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_image/PoseDetection
   <meta charset="utf-8">
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.4"> </script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"> </script>  
 </head>
 <body>
@@ -54,12 +54,11 @@ function ObjectDetect() {
 }
   
 async function DetectImage() {
-  await Model.estimatePoses(ShowImage, {flipHorizontal: false, decodingMethod: 'single-person'}).then(pose => {
-    //console.log(pose.score);
+  await Model.estimateSinglePose(canvas, {flipHorizontal: false}).then(pose => {
+    console.log(pose);
     //console.log(pose.keypoints);
     result.innerHTML = "";
     var scoreLimit = Number(document.getElementById("scorelimit").value);
-    pose = pose[0];
     
     canvas.setAttribute("width", ShowImage.width);
     canvas.setAttribute("height", ShowImage.height);  
