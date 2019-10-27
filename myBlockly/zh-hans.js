@@ -2,9 +2,6 @@
 
 'use strict';
 
-goog.provide('Blockly.Msg.zh.hans');
-goog.require('Blockly.Msg');
-
 Blockly.Msg.hide_TEXT = "切换";
 Blockly.Msg.btnRun_TEXT = "执行";
 Blockly.Msg.btnRun1_TEXT = "执行";
