@@ -17,6 +17,8 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"> </script>  
 </head>
 <body>
+<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<br>
 Probability Limit
 <select id="probabilitylimit">
 <option value="0" selected>0%</option>  
@@ -30,8 +32,6 @@ Probability Limit
 <option value="0.8">80%</option>
 <option value="0.9">90%</option>
 </select><br>
-<video id="video" width="320" height="240" preload autoplay loop muted></video>
-<br>
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div>
   
 <script>
