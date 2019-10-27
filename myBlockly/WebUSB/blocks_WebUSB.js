@@ -1,7 +1,7 @@
 Blockly.Blocks['webusb_system'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("WebUSB System");
+        .appendField("WebUSB");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("cmd")
@@ -24,7 +24,7 @@ Blockly.Blocks['webusb_system'] = {
 Blockly.Blocks['webusb_custom'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("WebUSB Custom");   
+        .appendField("WebUSB");   
     this.appendValueInput("cmd")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
