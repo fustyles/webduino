@@ -11,7 +11,7 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
   <meta charset="utf-8">
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.4"> </script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"> </script>  
 </head>
 <body>
@@ -80,13 +80,13 @@ ScoreLimit
     context.translate((canvas.width + video.width) / 2, 0);
     context.scale(-1, 1);
     context.drawImage(video, 0, 0, video.width, video.height);
-    context.setTransform(1, 0, 0, 1, 0, 0);    
-    await Model.estimatePoses(canvas, {flipHorizontal: false, decodingMethod: 'single-person', maxPoseDetections: 5, scoreThreshold: 0.5, nmsRadius: 20}).then(pose => {
-      //console.log(pose.score);
+    context.setTransform(1, 0, 0, 1, 0, 0);  
+    
+    await Model.estimateSinglePose(canvas, {flipHorizontal: false}).then(pose => {
+      console.log(pose);
       //console.log(pose.keypoints);
       result.innerHTML = "";
       var scoreLimit = Number(document.getElementById("scorelimit").value);
-      pose = pose[0];
 
       if (pose.keypoints.length>0) {
         for (var i=0;i<pose.keypoints.length;i++) {
