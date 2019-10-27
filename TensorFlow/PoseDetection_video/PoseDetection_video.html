@@ -83,7 +83,7 @@ ScoreLimit
     context.setTransform(1, 0, 0, 1, 0, 0);  
     
     await Model.estimateSinglePose(canvas, {flipHorizontal: false}).then(pose => {
-      console.log(pose);
+      //console.log(pose);
       //console.log(pose.keypoints);
       result.innerHTML = "";
       var scoreLimit = Number(document.getElementById("scorelimit").value);
