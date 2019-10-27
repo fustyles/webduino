@@ -54,6 +54,7 @@ ScoreLimit
   function ObjectDetect() {
     posenet.load().then(function(net) {
       Model = net;
+      console.log(Model);
       result.innerHTML = "";
       startvideo();
     }); 
