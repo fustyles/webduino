@@ -2,9 +2,6 @@
 
 'use strict';
 
-goog.provide('Blockly.Msg.zh.hant');
-goog.require('Blockly.Msg');
-
 Blockly.Msg.hide_TEXT = "切換";
 Blockly.Msg.btnRun_TEXT = "執行";
 Blockly.Msg.btnRun1_TEXT = "執行";
