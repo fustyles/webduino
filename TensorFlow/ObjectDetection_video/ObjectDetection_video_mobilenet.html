@@ -31,6 +31,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   function ObjectDetect() {
     mobilenet.load().then(mobilenet_model => {
       Model = mobilenet_model;
+      console.log(Model);
       result.innerHTML = "";
       setTimeout(function(){ startvideo(); }, 2000);
     }); 
