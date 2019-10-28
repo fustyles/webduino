@@ -226,7 +226,7 @@ https://blocklypro.webduino.io/#7ggezB96Qa
 https://bit.webduino.io/blockly/#rybdwjzzGxQqk
 
 
-ESP8266 (ESP01、ESP12E、ESP32) 官方網址要改為http
+ESP8266 (ESP01、ESP12E、ESP32)、LinkIt7697 官方網址要改為http
 https://fustyles.github.io/webduino/ESP8266_20190128/blockly.json
 [ smart ]
 http://blocklypro.webduino.io/?demo=demo-area-01#kEqpZjVp6A
@@ -250,6 +250,11 @@ Library:
 https://github.com/agnunez/ESP8266-I2C-LCD1602
 Firmware: 
 https://github.com/fustyles/Arduino/blob/master/ESP01_MyBlockly_JSON.ino
+<LinkIt7697>
+Library: 
+https://bitbucket.org/fmalpartida/new-liquidcrystal/downloads/NewLiquidCrystal_1.5.1.zip
+Firmware: 
+https://github.com/fustyles/Arduino/blob/master/LinkIt7697_MyBlockly_JSON.ino
 
 
 [ 自訂積木 ] WebBit 官方網址要改為http
