@@ -162,8 +162,7 @@ Blockly.Blocks['esp8266_cmd'] = {
         ["thingspeakread(request)","thingspeakread"],
         ["linenotify(token\,request)","linenotify"],
         ["car(pinL1\,pinL2\,pinR1\,pinR2\,L_speed\,R_speed\,Delay\,state)","car"],
-        ["i2cLcd(address\,gpioSDA\,gpioSCL\,text1\,text2\)","i2cLcd"],
-        ["i2cLcd(address\,text1\,text2\)","i2cLcd"]
+        ["i2cLcd(address\,gpioSDA\,gpioSCL\,text1\,text2\) or (address\,text1\,text2\)","i2cLcd"]
       ]), "cmd");
   this.setInputsInline(true);
   this.setOutput(true, null); 
