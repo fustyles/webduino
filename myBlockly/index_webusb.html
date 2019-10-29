@@ -551,6 +551,11 @@ function exportHTML() {
       iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script>";
     }
 	  
+    //KNN-Classifier
+    if (xml_text.indexOf("knnclassifier")!=-1) {
+      iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/KnnClassifier/knnclassifier_video.js'\>\<\/script\>";
+    }		  
+	  
     iframe_code += "\<\/head\>\<body\>";
     //If WebUSB is used.
     if (xml_text.indexOf("webusb")!=-1) {
