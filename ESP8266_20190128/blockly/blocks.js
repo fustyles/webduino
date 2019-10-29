@@ -1,7 +1,7 @@
 Blockly.Blocks['esp8266_system'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("ESP8266 System");
+        .appendField("Wifi board");
     this.appendValueInput("url")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -28,7 +28,7 @@ Blockly.Blocks['esp8266_system'] = {
 Blockly.Blocks['esp8266_custom'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("ESP8266 Custom"); 
+        .appendField("Wifi board"); 
     this.appendValueInput("url")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -83,7 +83,7 @@ Blockly.Blocks['esp8266_custom'] = {
 Blockly.Blocks['esp8266_car'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("ESP8266 Car (ESP32)");  
+        .appendField("Wifi Car");  
     this.appendValueInput("url")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
