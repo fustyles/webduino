@@ -131,8 +131,9 @@ Blockly.Blocks['esp8266_car'] = {
 };
 
 Blockly.Blocks['esp8266_car_state'] = {
-  init: function () {    
+  init: function () {  
   this.appendDummyInput()
+      .appendField("Car")
       .appendField(new Blockly.FieldDropdown([["FORWARD","F"], ["BACKWARD","B"], ["TURNLEFT","L"], ["TURNRIGHT","R"], ["STOP","S"]]), "state");    
   this.setInputsInline(true);
   this.setOutput(true, null); 
