@@ -1,1 +1,1 @@
-MSG.catesp8266 = "ESP8266";
+MSG.catesp8266 = "MyFirmata";
