@@ -497,10 +497,16 @@ function exportHTML() {
 	  
     var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
     var xml_text = Blockly.Xml.domToText(xml);
+	  
     //Deep Learning
     if (xml_text.indexOf("teachable")!=-1) {
       iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/DeepLearning/teachablemachineboilerplate.js'\>\<\/script\>";
     }
+	  
+    //KNN-Classifier
+    if (xml_text.indexOf("knnclassifier")!=-1) {
+      iframe_code += "\<script src='https://fustyles.github.io/webduino/myBlockly/KnnClassifier/knnclassifier_video.js'\>\<\/script\>";
+    }		  
 	  
     iframe_code += "\<\/head\>\<body\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
     
