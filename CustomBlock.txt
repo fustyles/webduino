@@ -23,7 +23,7 @@ https://blocklypro.webduino.io/#XenY8MWLlw
 https://bit.webduino.io/blockly/#Z3kAOgKAQ2JRv
 
 
-Wibbit教育版 法蘭斯點矩陣(不可與官方積木混用)
+WebBit教育版 法蘭斯點矩陣(不可與官方積木混用)
 https://fustyles.github.io/webduino/EDU_bit_MatrixLed_20190827/blockly.json
 
 
@@ -77,7 +77,7 @@ https://bit.webduino.io/blockly/#XRODjBmBeVBqn
 http://bit.webduino.io/blockly/#VR9xMKbngoMy1
 
 
-Bit 法蘭斯點矩陣(不可與官方積木混用)
+WebBit 法蘭斯點矩陣(不可與官方積木混用)
 https://fustyles.github.io/webduino/bit_MatrixLed_20180810/blockly.json
 [Bit]
 https://bit.webduino.io/blockly/#ayxvLVa0o02qM
