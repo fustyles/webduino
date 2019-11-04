@@ -37,9 +37,8 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   ObjectDetect(); 
   
   function ObjectDetect() {
- const modelName = 'pascal';   // set to your preferred model, either `pascal`, `cityscapes` or `ade20k`
- const quantizationBytes = 2;  // either 1, 2 or 4
-
+    const modelName = 'pascal';   // set to your preferred model, either `pascal`, `cityscapes` or `ade20k`
+    const quantizationBytes = 2;  // either 1, 2 or 4
     deeplab.load({base: modelName, quantizationBytes}).then(deeplab_model => {
       Model = deeplab_model;
       result.innerHTML = "";
@@ -60,9 +59,9 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       .then(stream => {
         video.srcObject = stream
         video.onloadedmetadata = () => {       
-    Image.setAttribute("width", video.width);
+          Image.setAttribute("width", video.width);
           Image.setAttribute("height", video.height);  
-          setTimeout(function(){DetectVideo(); }, 100);
+          setTimeout(function(){DetectVideo(); }, 200);
         }
       })   
   }
@@ -72,12 +71,12 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
      Model.segment(Image)
       .then(
         ({legend,height,width,segmentationMap}) => 
-    {
-     result.innerHTML = JSON.stringify(legend);
-     displaySegmentationMap(Model, {legend, height, width, segmentationMap});
-    }
-  );
-  setTimeout(function(){DetectVideo(); }, 100);
+	    {
+	     result.innerHTML = JSON.stringify(legend);
+	     displaySegmentationMap(Model, {legend, height, width, segmentationMap});
+	    }
+	  );
+    setTimeout(function(){DetectVideo(); }, 200);
   }
 
   const displaySegmentationMap = (modelName, deeplabOutput) => {
