@@ -20,7 +20,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas><canvas id="Image" style="display:none"></canvas>
 <br>
-<div id="legend"></div>
+<div id="legendList"></div>
 <br>
 <br>
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div>
@@ -30,6 +30,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   var video = document.getElementById('video');
   var Image = document.getElementById('Image');
   var context1 = Image.getContext('2d');
+  var legendList = document.getElementById('legendList');
   var result = document.getElementById('result');
   var Model;
 
@@ -90,7 +91,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
     canvas.height = height;
     ctx.putImageData(segmentationMapData, 0, 0);
 
-    const legendList = document.getElementById('legend');
     while (legendList.firstChild) {
 	  legendList.removeChild(legendList.firstChild);
     }
