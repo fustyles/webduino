@@ -28,6 +28,8 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   
 <script>
   var video = document.getElementById('video');
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');	
   var Image = document.getElementById('Image');
   var context1 = Image.getContext('2d');
   var legendList = document.getElementById('legendList');
@@ -82,9 +84,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 
   const displaySegmentationMap = (modelName, deeplabOutput) => {
     const {legend, height, width, segmentationMap} = deeplabOutput;
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-
     const segmentationMapData = new ImageData(segmentationMap, width, height);
 
     canvas.width = width;
