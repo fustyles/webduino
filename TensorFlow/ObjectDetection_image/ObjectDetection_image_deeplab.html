@@ -1,0 +1,144 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/11/4 23:30
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetection_image_deeplab.html
+
+How to enable WebGL in Chrome.
+https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
+-->
+<!DOCTYPE html>
+<head>
+  <title>Object Detection (deeplab)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/deeplab"> </script>  
+</head>
+<body>
+<input type="file" id="selectimage" disabled="true"></input>
+<br><br>
+<img id="OriginImage" style="display:none">
+<canvas id="canvas"></canvas>
+<img id="ShowImage">
+<br>
+<div id="legend"></div>
+<br>
+<br>
+<div id="result" style="width:320px;color:red">Please wait for loading model.</div>
+
+  
+<script>
+  var OriginImage = document.getElementById('OriginImage');
+  var ShowImage = document.getElementById('ShowImage');
+  var ShowImageWidth = 500;
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  var legend = document.getElementById('legend');
+  var result = document.getElementById('result');
+  var Model;
+  
+  function ObjectDetect() {
+    const modelName = 'pascal';   // set to your preferred model, either `pascal`, `cityscapes` or `ade20k`
+    const quantizationBytes = 2;  // either 1, 2 or 4
+
+    deeplab.load({base: modelName, quantizationBytes}).then(deeplab_model => {
+      Model = deeplab_model;
+      result.innerHTML = "Please select one image.";
+	  document.getElementById('selectimage').disabled = false;
+    }); 
+  }
+                        
+  async function DetectImage() {
+    Model.segment(ShowImage)
+      .then(
+        ({legend,height,width,segmentationMap}) => 
+		{
+		 result.innerHTML = JSON.stringify(legend);
+		 displaySegmentationMap(Model, {legend, height, width, segmentationMap});
+		}
+    );
+  }
+
+  const displaySegmentationMap = (modelName, deeplabOutput) => {
+
+    const {legend, height, width, segmentationMap} = deeplabOutput;
+    const segmentationMapData = new ImageData(segmentationMap, width, height);
+
+    canvas.width = width;
+    canvas.height = height;
+    ctx.putImageData(segmentationMapData, 0, 0);
+
+    const legendList = document.getElementById('legend');
+    while (legendList.firstChild) {
+      legendList.removeChild(legendList.firstChild);
+    }
+
+    Object.keys(legend).forEach((label) => {
+		const tag = document.createElement('span');
+		tag.innerHTML = label;
+		const [red, green, blue] = legend[label];
+		tag.classList.add('column');
+		tag.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+		tag.style.padding = '1em';
+		tag.style.margin = '1em';
+		tag.style.color = '#ffffff';
+
+		legendList.appendChild(tag);
+    });
+
+    ShowImage.width = canvas.width;
+    ShowImage.height = canvas.height;
+ };
+
+  document.getElementById('selectimage').onchange = function (event) {
+    var target = event.target || window.event.srcElement;
+    var files = target.files;
+    if (FileReader && files && files.length) {
+		var fr = new FileReader();
+		fr.onload = function () {
+		  canvas.width = 0;
+		  canvas.height = 0;
+		  legend.innerHTML = "";
+		  result.innerHTML = "Loading image to detect...";
+		  OriginImage.src = fr.result;
+		}
+		fr.readAsDataURL(files[0]);
+    }
+  }
+    
+  document.getElementById('OriginImage').onload = function (event) {
+    try { 
+      document.createEvent("TouchEvent"); 
+      var width = document.body.clientWidth;
+    }
+    catch(e) { 
+      var width = ShowImageWidth;
+    } 
+    
+    if (OriginImage.height<OriginImage.width) {
+	  var height = width*OriginImage.height/OriginImage.width; 
+    }
+    else {
+	  var height = width;
+	  width = height*OriginImage.width/OriginImage.height; 
+    }
+    
+    var height = width*OriginImage.height/OriginImage.width;
+
+    ShowImage.width = width;
+    ShowImage.height = height;  
+    ShowImage.src = OriginImage.src;
+  }
+    
+  document.getElementById('ShowImage').onload = function (event) {
+	result.innerHTML = "Start Detection";
+    if (Model) setTimeout(function(){DetectImage();}, 1000);
+  }
+    
+  window.onload = function () { ObjectDetect(); }
+</script>
+
+</body>
+</html>
