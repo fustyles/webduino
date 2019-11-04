@@ -1,0 +1,116 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/16 23:00
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetection_video_deeplab.html
+
+How to enable WebGL in Chrome.
+https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
+-->
+<!DOCTYPE html>
+<head>
+  <title>Object Detection (deeplab)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/deeplab"> </script>  
+</head>
+<body>
+<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<canvas id="canvas"></canvas><canvas id="Image" style="display:none"></canvas>
+<br>
+<div id="legend"></div>
+<br>
+<br>
+<div id="result" style="width:320px;color:red">Please wait for loading model.</div>
+
+  
+<script>
+  var video = document.getElementById('video');
+  var Image = document.getElementById('Image');
+  var context1 = Image.getContext('2d');
+  var result = document.getElementById('result');
+  var Model;
+
+  ObjectDetect(); 
+  
+  function ObjectDetect() {
+	const modelName = 'pascal';   // set to your preferred model, either `pascal`, `cityscapes` or `ade20k`
+	const quantizationBytes = 2;  // either 1, 2 or 4
+
+    deeplab.load({base: modelName, quantizationBytes}).then(deeplab_model => {
+      Model = deeplab_model;
+	  //console.log(Model);
+      result.innerHTML = "";
+      setTimeout(function(){ startvideo(); }, 2000);
+    }); 
+  }
+  
+  function startvideo() {
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+        video: {
+          facingMode: "user",
+          width: 320,
+          height: 240
+        }
+      })
+      .then(stream => {
+        video.srcObject = stream
+        video.onloadedmetadata = () => {       
+		  Image.setAttribute("width", video.width);
+          Image.setAttribute("height", video.height);  
+          setTimeout(function(){DetectVideo(); }, 100);
+        }
+      })   
+  }
+                        
+  async function DetectVideo() {
+	context1.drawImage(video, 0, 0, video.width, video.height);
+	Model.segment(Image)
+    .then(
+        ({legend,height,width,segmentationMap}) => 
+		{
+			result.innerHTML = JSON.stringify(legend);
+			displaySegmentationMap(Model, {legend, height, width, segmentationMap});
+		}
+	);
+	setTimeout(function(){DetectVideo(); }, 0);
+  }
+
+const displaySegmentationMap = (modelName, deeplabOutput) => {
+  const {legend, height, width, segmentationMap} = deeplabOutput;
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+
+  const segmentationMapData = new ImageData(segmentationMap, width, height);
+
+  canvas.width = width;
+  canvas.height = height;
+  ctx.putImageData(segmentationMapData, 0, 0);
+
+  const legendList = document.getElementById('legend');
+  while (legendList.firstChild) {
+    legendList.removeChild(legendList.firstChild);
+  }
+
+  Object.keys(legend).forEach((label) => {
+    const tag = document.createElement('span');
+    tag.innerHTML = label;
+    const [red, green, blue] = legend[label];
+    tag.classList.add('column');
+    tag.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+    tag.style.padding = '1em';
+    tag.style.margin = '1em';
+    tag.style.color = '#ffffff';
+
+    legendList.appendChild(tag);
+  });
+};
+
+</script>
+
+</body>
+</html>
