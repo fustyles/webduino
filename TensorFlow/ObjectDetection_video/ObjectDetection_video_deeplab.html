@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/11/4 23:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/11/4 22:30
 https://www.facebook.com/francefu
 
 Try it!
@@ -36,14 +36,13 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   ObjectDetect(); 
   
   function ObjectDetect() {
-	const modelName = 'pascal';   // set to your preferred model, either `pascal`, `cityscapes` or `ade20k`
-	const quantizationBytes = 2;  // either 1, 2 or 4
+ const modelName = 'pascal';   // set to your preferred model, either `pascal`, `cityscapes` or `ade20k`
+ const quantizationBytes = 2;  // either 1, 2 or 4
 
     deeplab.load({base: modelName, quantizationBytes}).then(deeplab_model => {
       Model = deeplab_model;
-	  //console.log(Model);
       result.innerHTML = "";
-      setTimeout(function(){ startvideo(); }, 2000);
+      setTimeout(function(){ startvideo(); }, 100);
     }); 
   }
   
@@ -60,7 +59,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       .then(stream => {
         video.srcObject = stream
         video.onloadedmetadata = () => {       
-		  Image.setAttribute("width", video.width);
+    Image.setAttribute("width", video.width);
           Image.setAttribute("height", video.height);  
           setTimeout(function(){DetectVideo(); }, 100);
         }
@@ -68,35 +67,35 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   }
                         
   async function DetectVideo() {
-	context1.drawImage(video, 0, 0, video.width, video.height);
-	Model.segment(Image)
-    .then(
+     context1.drawImage(video, 0, 0, video.width, video.height);
+     Model.segment(Image)
+      .then(
         ({legend,height,width,segmentationMap}) => 
-		{
-			result.innerHTML = JSON.stringify(legend);
-			displaySegmentationMap(Model, {legend, height, width, segmentationMap});
-		}
-	);
-	setTimeout(function(){DetectVideo(); }, 200);
+    {
+     result.innerHTML = JSON.stringify(legend);
+     displaySegmentationMap(Model, {legend, height, width, segmentationMap});
+    }
+  );
+  setTimeout(function(){DetectVideo(); }, 100);
   }
 
-const displaySegmentationMap = (modelName, deeplabOutput) => {
-  const {legend, height, width, segmentationMap} = deeplabOutput;
-  const canvas = document.getElementById('canvas');
-  const ctx = canvas.getContext('2d');
+  const displaySegmentationMap = (modelName, deeplabOutput) => {
+    const {legend, height, width, segmentationMap} = deeplabOutput;
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
 
-  const segmentationMapData = new ImageData(segmentationMap, width, height);
+    const segmentationMapData = new ImageData(segmentationMap, width, height);
 
-  canvas.width = width;
-  canvas.height = height;
-  ctx.putImageData(segmentationMapData, 0, 0);
+    canvas.width = width;
+    canvas.height = height;
+    ctx.putImageData(segmentationMapData, 0, 0);
 
-  const legendList = document.getElementById('legend');
-  while (legendList.firstChild) {
-    legendList.removeChild(legendList.firstChild);
-  }
+    const legendList = document.getElementById('legend');
+    while (legendList.firstChild) {
+	  legendList.removeChild(legendList.firstChild);
+    }
 
-  Object.keys(legend).forEach((label) => {
+    Object.keys(legend).forEach((label) => {
     const tag = document.createElement('span');
     tag.innerHTML = label;
     const [red, green, blue] = legend[label];
@@ -107,8 +106,8 @@ const displaySegmentationMap = (modelName, deeplabOutput) => {
     tag.style.color = '#ffffff';
 
     legendList.appendChild(tag);
-  });
-};
+    });
+ };
 
 </script>
 
