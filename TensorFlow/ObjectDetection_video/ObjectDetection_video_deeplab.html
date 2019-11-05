@@ -44,7 +44,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
     deeplab.load({base: modelName, quantizationBytes}).then(deeplab_model => {
       Model = deeplab_model;
       result.innerHTML = "";
-      startvideo();
+      setTimeout(function(){startvideo();}, 1000);
     }); 
   }
   
@@ -79,8 +79,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 	     displaySegmentationMap(Model, {legend, height, width, segmentationMap});
 	    }
 	  );
-    //setTimeout(function(){DetectVideo();}, 200);
-    DetectVideo();
+    setTimeout(function(){DetectVideo();}, 200);
   }
 
   const displaySegmentationMap = (modelName, deeplabOutput) => {
