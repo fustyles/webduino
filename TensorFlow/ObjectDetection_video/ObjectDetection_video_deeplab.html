@@ -63,7 +63,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
         video.onloadedmetadata = () => {       
           Image.setAttribute("width", video.width);
           Image.setAttribute("height", video.height); 
-	  result.innerHTML = "Start Detection.";
+	  result.innerHTML = "Waiting for starting detection...";
           setTimeout(function(){DetectVideo(); }, 1000);
         }
       })   
