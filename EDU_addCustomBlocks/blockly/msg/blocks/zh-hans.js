@@ -1,1 +1,1 @@
-Blockly.Msg.ADDCUSTOMBLOCKS_SHOW = "点我新增";
+Blockly.Msg.ADDCUSTOMBLOCKS_SHOW = "自订积木";
