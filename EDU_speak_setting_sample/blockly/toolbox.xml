@@ -1,0 +1,16 @@
+<category id="catSpeakmodify">
+  <block type="speak_setting_dropdown">
+    <field name="lang_"></field>
+    <field name="pitch_">1</field>
+    <field name="rate_">1</field>
+  </block>
+  <block type="speak_setting_text">
+    <value name="lang_">
+      <block type="text">
+        <field name="TEXT">cmn_Hant_TW</field>
+      </block>
+    </value>
+    <field name="pitch_">1</field>
+    <field name="rate_">1</field>
+  </block>  
+</category>
