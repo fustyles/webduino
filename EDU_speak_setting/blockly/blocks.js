@@ -151,7 +151,8 @@ Blockly.Blocks['speak_setting_text'] = {
   init: function () {
     this.appendValueInput("lang_")
       .setCheck("String")
-      .appendField(Blockly.Msg.WEBDUINO_SPEAK_LANG)
+      .appendField(Blockly.Msg.WEBDUINO_SPEAK_LANG);
+    this.appendDummyInput()    
       .appendField(Blockly.Msg.WEBDUINO_SPEAK_PITCH)
       .appendField(new Blockly.FieldDropdown([
         [Blockly.Msg.WEBDUINO_SPEAK_P20, "2"],
