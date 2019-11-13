@@ -43,7 +43,7 @@
   
   function knn_classifier_train(input_class){
     document.getElementById("Class").value=input_class;
-    document.getElementById("addExample").click;
+    document.getElementById("addExample").click();
   }
   
   function knn_classifier_startdetect(input_check){
