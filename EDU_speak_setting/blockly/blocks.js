@@ -122,7 +122,8 @@ Blockly.Blocks['speak_setting_dropdown'] = {
         [Blockly.Msg.WEBDUINO_SPEAK_fa_IR,"fa-IR"],
         [Blockly.Msg.WEBDUINO_SPEAK_hi_IN,"hi-IN"],
         [Blockly.Msg.WEBDUINO_SPEAK_th_TH,"th-TH"]    
-      ]), "lang_")
+      ]), "lang_");
+    this.appendDummyInput()    
       .appendField(Blockly.Msg.WEBDUINO_SPEAK_PITCH)
       .appendField(new Blockly.FieldDropdown([
         [Blockly.Msg.WEBDUINO_SPEAK_P20, "2"],
