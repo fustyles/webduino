@@ -14,5 +14,9 @@
         <field name="NUM">240</field>
       </block>
     </value>     
-  </block>    
+  </block>
+  <block type="knn_classifier_train">  
+  </block>
+  <block type="knn_classifier_startdetect">  
+  </block>  
 </category>
