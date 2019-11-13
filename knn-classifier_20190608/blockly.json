@@ -1,5 +1,5 @@
 {
-  "types": ["knn_classifier_open", "knn_classifier_proportion", "knn_classifier_video"],
+  "types": ["knn_classifier_open", "knn_classifier_proportion", "knn_classifier_video", "knn_classifier_tran", "knn_classifier_startdetect"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
