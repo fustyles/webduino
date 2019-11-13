@@ -60,3 +60,41 @@ Blockly.Blocks['knn_classifier_video'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['knn_classifier_train'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.KNN_CLASSIFIER_TRAIN_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["0","0"],
+		["1","1"],
+		["2","2"],
+		["3","3"],
+		["4","4"],	  
+		["5","5"],
+		["6","6"],
+		["7","7"],
+		["8","8"],
+		["9","9"]	   
+  ]), "class_"); 	   
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['knn_classifier_startdetect'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.KNN_CLASSIFIER_STARTDETECT_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["Y","1"],
+		["N","0"]	   
+  ]), "check_"); 	   
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
