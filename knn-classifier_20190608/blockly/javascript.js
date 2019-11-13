@@ -18,3 +18,15 @@ Blockly.JavaScript['knn_classifier_video'] = function(block) {
   var code = 'knn_classifier_video(' + value_width_ + ',' + value_height_ + ',"' + value_result_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
   return code;
 };
+
+Blockly.JavaScript['knn_classifier_train'] = function (block) {
+  var value_class_ = block.getFieldValue('class_');
+  var code = 'knn_classifier_train("'+ value_class_ +'");\n';
+  return code;
+};
+
+Blockly.JavaScript['knn_classifier_startdetect'] = function (block) {
+  var value_check_ = block.getFieldValue('check_');
+  var code = 'knn_classifier_startdetect("'+ value_check_ +'");\n';
+  return code;
+};
