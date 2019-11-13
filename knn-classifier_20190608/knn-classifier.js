@@ -56,5 +56,7 @@
   window.knn_classifier_open = knn_classifier_open;
   window.knn_classifier_proportion = knn_classifier_proportion;
   window.knn_classifier_video = knn_classifier_video;
+  window.knn_classifier_train = knn_classifier_train;
+  window.knn_classifier_startdetect = knn_classifier_startdetect;  
 
 }(window, window.document));
