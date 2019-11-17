@@ -72,3 +72,18 @@ Blockly.Blocks['azure_facefindsimilar_get_persons'] = {
   this.setColour(65);
   }
 };
+
+Blockly.Blocks['azure_facefindsimilar_get_max'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AZUREFACEFINDSIMILAR_GET_MAX_SHOW); 
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([
+      ["FaceId","faceid"],
+      ["Confidence","confidence"]	  
+  ]), "property_"); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
