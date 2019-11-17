@@ -30,7 +30,7 @@ function azurefacefindsimilar_settings(input_resourceName, input_key, input_face
 function azurefacefindsimilar_detect(){
   faceApi_result = "";
   faceApi_returnResult = "";
-  processImage();
+  azurefacefindsimilar_processImage();
 }
   
 function azurefacefindsimilar_get(){
@@ -56,7 +56,7 @@ function azurefacefindsimilar_get_persons(){
   }
 }
   
-function processImage() {
+function azurefacefindsimilar_processImage() {
   if (faceApi_key == ""||faceApi_url == "") return;    
 	maxConfidence="";
 	maxFaceId="";
@@ -121,6 +121,6 @@ window.azurefacefindsimilar_detect = azurefacefindsimilar_detect;
 window.azurefacefindsimilar_get = azurefacefindsimilar_get;
 window.azurefacefindsimilar_get_persondata = azurefacefindsimilar_get_persondata;	
 window.azurefacefindsimilar_get_persons = azurefacefindsimilar_get_persons;
-window.processImage = processImage;
+window..azurefacefindsimilar_processImage = .azurefacefindsimilar_processImage;
 
 }(window, window.document));
