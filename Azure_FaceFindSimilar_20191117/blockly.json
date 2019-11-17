@@ -6,7 +6,6 @@
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "azurefacefindsimilar_video.js",
     "azurefacefindsimilar.js"
   ],
   "msg": "blockly/msg",
