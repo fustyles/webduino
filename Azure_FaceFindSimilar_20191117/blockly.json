@@ -1,5 +1,5 @@
 {
-  "types": ["azure_azurefacefindsimilar_settings", "azure_facefindsimilar_detect", "azure_facefindsimilar_get", "azure_facefindsimilar_get_persons", "azure_facefindsimilar_get_persondata"],
+  "types": ["azure_azurefacefindsimilar_settings", "azure_facefindsimilar_detect", "azure_facefindsimilar_get", "azure_facefindsimilar_get_persons", "azure_facefindsimilar_get_persondata", "azure_facefindsimilar_get_max"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
