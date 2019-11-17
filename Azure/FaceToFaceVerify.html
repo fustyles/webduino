@@ -1,0 +1,79 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/11/17
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/Azure/FaceToFaceVerify.html
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Verify Face To Face</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</head>
+<body>
+	
+	<h1>Verify Face To Face:</h1>
+	Resource Name: <input type="text" name="resourcename" id="resourcename" value="fustylesface" size="10"/><br>
+	Subscription Key: <input type="text" name="subscriptionKey" id="subscriptionKey" value="1fe2a100105145398002fceb87a82167a" size="30"/><br>
+	Face Id1: <input type="text" name="faceId1" id="faceId1"
+		value="2df64a51-70b3-4948-815d-eef9e15a5f1b" size="40"/><button onclick="document.getElementById('faceId1').value='';">Clear</button><br>
+	Face Id2: <input type="text" name="faceId2" id="faceId2"
+		value="7d7a2ae6-7c0d-43b0-bc30-9b1bd8d4cf2d"  size="40"/><button onclick="document.getElementById('faceId2').value='';">Clear</button><br><br>
+
+	<button onclick="processImage()">Verify face</button><br><br>
+	<div id="wrapper" style="width:1020px; display:table;">
+		<div id="jsonOutput" style="width:600px; display:table-cell;">
+			Response:<br><br>
+			<textarea id="responseTextArea" class="UIInput"
+				style="width:580px; height:400px;"></textarea>
+		</div>
+	</div>
+	
+</body>
+</html>
+
+<script type="text/javascript">
+    function processImage() {
+        // Replace <Subscription Key> with your valid subscription key.
+        var subscriptionKey = document.getElementById('subscriptionKey').value;
+    
+        var uriBase =
+            "https://"+document.getElementById('resourcename').value+".cognitiveservices.azure.com/face/v1.0/verify";
+    
+        // Request parameters.
+        var params = {
+            "faceId1": document.getElementById("faceId1").value,
+            "faceId2": document.getElementById("faceId2").value,
+        };
+    
+        // Perform the REST API call.
+        $.ajax({
+            url: uriBase,
+    
+            // Request headers.
+            beforeSend: function(xhrObj){
+                xhrObj.setRequestHeader("Content-Type","application/json");
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+            },
+            type: "POST",
+			data: JSON.stringify(params),
+        })
+    
+        .done(function(data) {
+            // Show formatted JSON on webpage.
+            $("#responseTextArea").val(JSON.stringify(data, null, 2));
+        })
+    
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            // Display error message.
+            var errorString = (errorThrown === "") ?
+                "Error. " : errorThrown + " (" + jqXHR.status + "): ";
+            errorString += (jqXHR.responseText === "") ?
+                "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
+                    jQuery.parseJSON(jqXHR.responseText).message :
+                        jQuery.parseJSON(jqXHR.responseText).error.message;
+            alert(errorString);
+        });
+    };
+</script>

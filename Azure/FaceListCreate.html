@@ -1,0 +1,79 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/11/17
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/Azure/FaceListCreate.html
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FaceList Create</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</head>
+<body>
+	
+	<h1>FaceList Create:</h1>
+	Resource Name: <input type="text" name="resourcename" id="resourcename" value="fustylesface" size="10"/><br>
+	Subscription Key: <input type="text" name="subscriptionKey" id="subscriptionKey" value="1fe2a100105145398002fceb87a82167a" size="30"/><br>
+	FaceList Id: <input type="text" name="facelist" id="facelist"
+		value="" size="20"/><br><br>
+	<button onclick="processImage()">FaceList Create</button><br><br>
+	<div id="wrapper" style="width:1020px; display:table;">
+		<div id="jsonOutput" style="width:600px; display:table-cell;">
+			Response:<br><br>
+			<textarea id="responseTextArea" class="UIInput"
+				style="width:580px; height:300px;"></textarea>
+		</div>
+	</div>
+	
+</body>
+</html>
+
+<script type="text/javascript">
+    function processImage() {
+        // Replace <Subscription Key> with your valid subscription key.
+        var subscriptionKey = document.getElementById('subscriptionKey').value;
+    
+        var uriBase =
+            "https://"+document.getElementById('resourcename').value+".cognitiveservices.azure.com/face/v1.0/facelists/" + document.getElementById("facelist").value;
+    
+        // Request parameters.
+        var params = {
+			"name": document.getElementById("facelist").value,
+			"userData": "User-provided data attached to the face list.",
+        };
+    
+        // Perform the REST API call.
+        $.ajax({
+            url: uriBase,
+    
+            // Request headers.
+            beforeSend: function(xhrObj){
+                xhrObj.setRequestHeader("Content-Type","application/json");
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+            },
+            type: "PUT",
+			data: JSON.stringify(params),
+        })
+    
+        .done(function(data) {
+            // Show formatted JSON on webpage.
+			var response = JSON.stringify(data, null, 2);
+			if (response=='""') response="Created";
+            $("#responseTextArea").val(response);
+        })
+    
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            // Display error message.
+            var errorString = (errorThrown === "") ?
+                "Error. " : errorThrown + " (" + jqXHR.status + "): ";
+            errorString += (jqXHR.responseText === "") ?
+                "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
+                    jQuery.parseJSON(jqXHR.responseText).message :
+                        jQuery.parseJSON(jqXHR.responseText).error.message;
+            //alert(errorString);
+			$("#responseTextArea").val(errorString);
+        });
+    };
+</script>

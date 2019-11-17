@@ -1,0 +1,84 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/11/17
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/Azure/FaceFindSimilar.html
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Find Similar Face Sample</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</head>
+<body>
+	
+	<h1>Find Similar Face:</h1>
+	Resource Name: <input type="text" name="resourcename" id="resourcename" value="fustylesface" size="10"/><br>
+	Subscription Key: <input type="text" name="subscriptionKey" id="subscriptionKey" value="1fe2a100105145398002fceb87a82167a" size="30"/><br>
+	FaceList Id: <input type="text" name="faceListId" id="faceListId" value="myfacelist1" size="10"/><br>
+	Face Id: <input type="text" name="faceId" id="faceId" value="" size="40"/><button onclick="document.getElementById('faceId').value='';">Clear</button><br>
+	maxNumOfCandidatesReturned: <input type="text" name="maxNumOfCandidatesReturned" id="maxNumOfCandidatesReturned" value="10" size="10"/><br>
+	mode: <input type="text" name="mode" id="mode" value="matchPerson" size="10"/><br><br>
+
+	<button onclick="processImage()">Find Similar Face</button><br><br>
+	<div id="wrapper" style="width:1020px; display:table;">
+		<div id="jsonOutput" style="width:600px; display:table-cell;">
+			Response:<br><br>
+			<textarea id="responseTextArea" class="UIInput"
+				style="width:580px; height:300px;"></textarea>
+		</div>
+	</div>
+	
+</body>
+</html>
+
+<script type="text/javascript">
+    function processImage() {
+        // Replace <Subscription Key> with your valid subscription key.
+        var subscriptionKey = document.getElementById('subscriptionKey').value;
+    
+        var uriBase =
+            "https://"+document.getElementById('resourcename').value+".cognitiveservices.azure.com/face/v1.0/findsimilars";
+    
+        // Request parameters.
+        var params = {
+			"faceId": document.getElementById("faceId").value,
+			"faceListId": document.getElementById("faceListId").value,
+			"maxNumOfCandidatesReturned": document.getElementById("maxNumOfCandidatesReturned").value,
+			"mode": document.getElementById("mode").value
+        };
+    
+        // Perform the REST API call.
+        $.ajax({
+            url: uriBase,
+    
+            // Request headers.
+            beforeSend: function(xhrObj){
+                xhrObj.setRequestHeader("Content-Type","application/json");
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+            },
+    
+            type: "POST",
+    
+            // Request body.
+            data: JSON.stringify(params),
+        })
+    
+        .done(function(data) {
+            // Show formatted JSON on webpage.
+            $("#responseTextArea").val(JSON.stringify(data, null, 2));
+        })
+    
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            // Display error message.
+            var errorString = (errorThrown === "") ?
+                "Error. " : errorThrown + " (" + jqXHR.status + "): ";
+            errorString += (jqXHR.responseText === "") ?
+                "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
+                    jQuery.parseJSON(jqXHR.responseText).message :
+                        jQuery.parseJSON(jqXHR.responseText).error.message;
+            alert(errorString);
+        });
+    };
+</script>
