@@ -1,12 +1,13 @@
-Blockly.Msg.AZUREFACEFINDSIMILAR_DETECT_SHOW = "Find Similar Face (Azure)";
+Blockly.Msg.AZUREFACEFINDSIMILAR_DETECT_SHOW = "Azure Find Similar Face";
 Blockly.Msg.AZUREFACEFINDSIMILAR_GET_SHOW = "Get Result (Azure Find Similar Face)";
 Blockly.Msg.AZUREFACEFINDSIMILAR_GET_PERSONDATA_SHOW = "Get person data (Azure Find Similar Face) inde ";
 Blockly.Msg.AZUREFACEFINDSIMILAR_GET_PERSONS_SHOW = "Get number of persons (Azure Find Similar Face)";
-Blockly.Msg.AZUREFACEFINDSIMILAR_RESULT_SHOW = "Result (Azure Face Detection)";
-Blockly.Msg.AZUREFACEFINDSIMILAR_SETTINGS_SHOW ="Find Similar Face (Azure) settings";
+Blockly.Msg.AZUREFACEFINDSIMILAR_RESULT_SHOW = "Result (Azure Find Similar Face)";
+Blockly.Msg.AZUREFACEFINDSIMILAR_SETTINGS_SHOW ="Azure Find Similar Face settings";
 Blockly.Msg.AZUREFACEFINDSIMILAR_RESOURCENAME_SHOW ="Resource Host";
 Blockly.Msg.AZUREFACEFINDSIMILAR_KEY_SHOW = "Ocp-Apim-Subscription-Key";
 Blockly.Msg.AZUREFACEFINDSIMILAR_FACELISTID_SHOW = "FaceList Id";
 Blockly.Msg.AZUREFACEFINDSIMILAR_FACEID_SHOW = "Face Id";
 Blockly.Msg.AZUREFACEFINDSIMILAR_MAXNUM_SHOW = "maxNumOfCandidatesReturned";
 Blockly.Msg.AZUREFACEFINDSIMILAR_MODE_SHOW = "Mode";
+Blockly.Msg.AZUREFACEFINDSIMILAR_GET_MAX_SHOW = "Azure Find Similar Face Get Max";
