@@ -1,0 +1,47 @@
+<category id="azurefacefindsimilar">  
+  <block type="azure_facefindsimilar_settings">
+    <value name="resourcename_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value> 
+    <value name="key_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value> 
+    <value name="facelistid_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value> 
+    <value name="faceid_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value> 
+    <value name="maxnum_">
+      <block type="math_number">
+        <field name="NUM">10</field>
+      </block>    
+    </value> 
+    <value name="mode_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value> 	
+  </block> 
+  <block type="azure_facefindsimilar_detect">  
+  </block>  
+  <block type="azure_facefindsimilar_get">
+  </block> 
+  <block type="azure_facefindsimilar_get_persondata">
+    <value name="index_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>     
+  </block>   
+  <block type="azure_facefindsimilar_get_persons">
+  </block>  
+</category>

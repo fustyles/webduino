@@ -1,0 +1,15 @@
+{
+  "types": ["azure_azurefacefindsimilar_settings", "azure_facefindsimilar_detect", "azure_facefindsimilar_get", "azure_facefindsimilar_get_persons", "azure_facefindsimilar_get_persondata"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "azurefacefindsimilar_video.js",
+    "azurefacefindsimilar.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}

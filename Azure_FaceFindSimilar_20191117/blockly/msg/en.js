@@ -1,0 +1,1 @@
+MSG.azurefacefindsimilar = "Find Similar Face (Azure)";
