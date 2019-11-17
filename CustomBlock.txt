@@ -5,7 +5,7 @@
 Azure Find Similar Face
 https://fustyles.github.io/webduino/Azure_FaceFindSimilar_20191117/blockly.json
 [Smart]
-https://blocklypro.webduino.io/?demo=demo-area-01#XJLOpEBdOE
+https://blocklypro.webduino.io/#XJLOpEBdOE
 [Webbit]
 https://bit.webduino.io/blockly/#XROD449XnEAqn
 
