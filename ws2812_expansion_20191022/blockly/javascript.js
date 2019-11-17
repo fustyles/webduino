@@ -2,7 +2,6 @@ Blockly.JavaScript['ws2812_expansion_1to24'] = function (block) {
   var variable_ws2812 = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('ws2812_'), Blockly.Variables.NAME_TYPE);
   var change = (block.getFieldValue('change_') == 'TRUE')?"1":"0";
   var code = "";
-  /*
   for (var i=0;i<=23;i++) {
       var value_color = Blockly.JavaScript.valueToCode(block, 'color'+i+'_', Blockly.JavaScript.ORDER_ATOMIC);  
       if ((value_color.indexOf("#000000")==-1&&value_color!="")||value_color.indexOf("colour_")!=-1) {
@@ -12,8 +11,8 @@ Blockly.JavaScript['ws2812_expansion_1to24'] = function (block) {
           code += variable_ws2812+".setColor("+i+","+value_color+");\n";
       }
   }
-  */
   
+  /*
   var colorcode = "";
   var count = 0;
   for (var i=0;i<=23;i++) {
@@ -41,6 +40,8 @@ Blockly.JavaScript['ws2812_expansion_1to24'] = function (block) {
       }
     }
   }
+  
+  */
   
   return code;
 };
