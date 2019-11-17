@@ -21,7 +21,7 @@ Blockly.JavaScript['ws2812_expansion_1to24'] = function (block) {
       }
   }
   //console.log(colorcode);
-  code = variable_ws2812+".setColor('"+colorcode+"');\n";
+  code = variable_ws2812+".setColor("+colorcode+");\n";
   
   /*
   for (var i=0;i<=23;i++) {
