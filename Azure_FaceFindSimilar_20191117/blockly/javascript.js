@@ -31,3 +31,9 @@ Blockly.JavaScript['azure_facefindsimilar_get_persons'] = function(block) {
   var code = 'azurefacefindsimilar_get_persons()';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['azure_facefindsimilar_get_max'] = function(block) { 
+  var value_property_ = block.getFieldValue('property_');  
+  var code = 'azurefacefindsimilar_get_max("' + value_property_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
