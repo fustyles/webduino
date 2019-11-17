@@ -25,11 +25,6 @@
         <field name="NUM">10</field>
       </block>    
     </value> 
-    <value name="mode_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>    
-    </value> 	
   </block> 
   <block type="azure_facefindsimilar_detect">  
   </block>  
