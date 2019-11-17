@@ -17,9 +17,12 @@ Blockly.Blocks['azure_facefindsimilar_settings'] = {
   this.appendValueInput("maxnum_")
       .setCheck("Number")
       .appendField(Blockly.Msg.AZUREFACEFINDSIMILAR_MAXNUM_SHOW);
-  this.appendValueInput("mode_")
-      .setCheck("String")
-      .appendField(Blockly.Msg.AZUREFACEFINDSIMILAR_MODE_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AZUREFACEFINDSIMILAR_MODE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+        ["matchPerson","matchPerson"],
+        ["matchFace","matchFace"]	  
+      ]), "mode_");     
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
