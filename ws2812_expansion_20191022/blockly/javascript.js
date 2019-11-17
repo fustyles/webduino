@@ -10,13 +10,13 @@ Blockly.JavaScript['ws2812_expansion_1to24'] = function (block) {
           if (i<10)
             colorcode += "'0"+i+"'+"+value_color+".substr(4,2)+"+value_color+".substr(2,2)+"+value_color+".substr(6,2)+";
           else
-            colorcode += i+value_color+".substr(4,2)+"+value_color+".substr(2,2)+"+value_color+".substr(6,2)+";
+            colorcode += i+"+"+value_color+".substr(4,2)+"+value_color+".substr(2,2)+"+value_color+".substr(6,2)+";
         }
         else {
           if (i<10)
             colorcode += "'0"+i+"'+"+value_color+".substr(2,6)+";
           else
-            colorcode += i+value_color+".substr(2,6)+";
+            colorcode += i+"+"+value_color+".substr(2,6)+";
         }
       }
   }
