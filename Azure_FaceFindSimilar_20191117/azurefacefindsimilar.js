@@ -68,7 +68,7 @@ function azurefacefindsimilar_processImage() {
 		"mode": faceApi_mode
 	};
 	$.ajax({
-		url: uriBase,
+		url: faceApi_url,
 		beforeSend: function(xhrObj){
 			xhrObj.setRequestHeader("Content-Type","application/json");
 			xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceApi_key);
