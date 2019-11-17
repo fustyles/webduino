@@ -55,6 +55,13 @@ function azurefacefindsimilar_get_persons(){
     return faceApi_returnResult.split("<br>").length;
   }
 }
+	
+function azurefacefindsimilar_get_max(input_property){
+  if (input_property=="faceid")
+    return maxFaceId;
+  else if (input_property=="confidence")
+    return Number(maxConfidence);
+}
   
 function azurefacefindsimilar_processImage() {
   if (faceApi_key == ""||faceApi_url == "") return;    
@@ -89,19 +96,15 @@ function azurefacefindsimilar_processImage() {
 		  faceApi_result += json[i]["persistedFaceId"]; 
 		  faceApi_result += ",";	    
 		  faceApi_result += json[i]["confidence"]; 
-
-			
 		  if (Number(json[i]["confidence"])>Number(maxConfidence)) {
 			maxFaceId = json[i]["persistedFaceId"];
 			maxConfidence = json[i]["confidence"];  
 		  }			
-			 
 		  if (i<json.length-1) faceApi_result += "<br>";
 		}
-		
 	}
 	catch (e) {
-      faceApi_result = "";
+      	  faceApi_result = "";
 	  console.log(e);
 	}
 
@@ -122,5 +125,6 @@ window.azurefacefindsimilar_get = azurefacefindsimilar_get;
 window.azurefacefindsimilar_get_persondata = azurefacefindsimilar_get_persondata;	
 window.azurefacefindsimilar_get_persons = azurefacefindsimilar_get_persons;
 window.azurefacefindsimilar_processImage = azurefacefindsimilar_processImage;
+window.azurefacefindsimilar_get_max = azurefacefindsimilar_get_max;
 
 }(window, window.document));
