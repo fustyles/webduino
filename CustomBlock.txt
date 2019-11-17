@@ -1,11 +1,11 @@
-資料更新：2019/9/3 09:00
+資料更新：2019/11/18 00:30
 
 我寫的自訂積木、韌體、網頁等免費提供各級學校教學與個人使用，僅供測試，請勿用於商業販售產品！
 
 Azure Find Similar Face
-https://fustyles.github.io/…/Azure_FaceFindSim…/blockly.json
+https://fustyles.github.io/webduino/Azure_FaceFindSimilar_20191117/blockly.json
 [Smart]
-https://blocklypro.webduino.io/dashboard?lang=zh-tw#
+https://blocklypro.webduino.io/?demo=demo-area-01#XJLOpEBdOE
 [Webbit]
 https://bit.webduino.io/blockly/#XROD449XnEAqn
 
