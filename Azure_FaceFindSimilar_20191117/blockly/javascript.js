@@ -4,9 +4,9 @@ Blockly.JavaScript['azure_facefindsimilar_settings'] = function(block) {
   var value_facelistid_ = Blockly.JavaScript.valueToCode(block, 'facelistid_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_faceid_ = Blockly.JavaScript.valueToCode(block, 'faceid_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_maxnum_ = Blockly.JavaScript.valueToCode(block, 'maxnum_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_mode_ = Blockly.JavaScript.valueToCode(block, 'mode_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_mode_ = block.getFieldValue('mode_');
 
-  var code = 'azurefacefindsimilar_settings(' + value_resourcename_ + ',' + value_key_ + ',' + value_facelistid_ + ',' + value_faceid_ + ',' + value_maxnum_ + ',' + value_mode_ + ');\n';
+  var code = 'azurefacefindsimilar_settings(' + value_resourcename_ + ',' + value_key_ + ',' + value_facelistid_ + ',' + value_faceid_ + ',' + value_maxnum_ + ',"' + value_mode_ + '");\n';
   return code;
 };
 
