@@ -39,4 +39,6 @@
   </block>   
   <block type="azure_facefindsimilar_get_persons">
   </block>  
+  <block type="azure_facefindsimilar_get_max">
+  </block>  
 </category>
