@@ -4,7 +4,6 @@
 
 'use strict';
   
-var result = document.getElementById('result');
 var faceApi_key = "";
 var faceApi_url = "";  
 var faceApi_FaceListId = "";
@@ -29,7 +28,6 @@ function azurefacefindsimilar_settings(input_resourceName, input_key, input_face
 }
 
 function azurefacefindsimilar_detect(){
-  result.innerHTML = "";
   faceApi_result = "";
   faceApi_returnResult = "";
   processImage();
@@ -80,7 +78,6 @@ function processImage() {
 	})
   .done(function(json) {
     json = eval(json);	  
-    result.innerHTML = "";
     faceApi_result = "";
     faceApi_returnResult = "";
 
@@ -112,12 +109,10 @@ function processImage() {
     if (faceApi_result=="") faceApi_result = "nobody";
     console.log(JSON.stringify(json));
     faceApi_returnResult = faceApi_result;
-    result.innerHTML = JSON.stringify(json);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     faceApi_result = "nobody";
-    faceApi_returnResult = faceApi_result;	  
-    result.innerHTML = "nobody";
+    faceApi_returnResult = faceApi_result;	
   });
 }
 
