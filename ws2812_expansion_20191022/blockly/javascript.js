@@ -22,9 +22,9 @@ Blockly.JavaScript['ws2812_expansion_1to24'] = function (block) {
   }
   //console.log(colorcode);
   if (colorcode!="") colorcode = colorcode.substr(0,colorcode.length-1)
-  code = variable_ws2812+".setColor("+colorcode+");\n";
+  console.log(variable_ws2812+".setColor("+colorcode+");\n");
   
-  /*
+ 
   for (var i=0;i<=23;i++) {
       var value_color = Blockly.JavaScript.valueToCode(block, 'color'+i+'_', Blockly.JavaScript.ORDER_ATOMIC); 
       if ((value_color.indexOf("#000000")==-1&&value_color!="")||value_color.indexOf("colour_")!=-1) {
@@ -34,7 +34,7 @@ Blockly.JavaScript['ws2812_expansion_1to24'] = function (block) {
           code += variable_ws2812+".setColor("+i+","+value_color+");\n";
       }
   }
-  */
+
   
    return code;
 };
