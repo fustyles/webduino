@@ -121,6 +121,6 @@ window.azurefacefindsimilar_detect = azurefacefindsimilar_detect;
 window.azurefacefindsimilar_get = azurefacefindsimilar_get;
 window.azurefacefindsimilar_get_persondata = azurefacefindsimilar_get_persondata;	
 window.azurefacefindsimilar_get_persons = azurefacefindsimilar_get_persons;
-window..azurefacefindsimilar_processImage = .azurefacefindsimilar_processImage;
+window.azurefacefindsimilar_processImage = azurefacefindsimilar_processImage;
 
 }(window, window.document));
