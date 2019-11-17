@@ -9,7 +9,7 @@ Blockly.JavaScript['ws2812_expansion_1to24'] = function (block) {
         if (change==1) {
           if (i<10)
             colorcode += "'0"+i+"'+"+value_color+".substr(4,2)+"+value_color+".substr(2,2)+"+value_color+".substr(6,2)+";
-          else
+          else 
             colorcode += i+"+"+value_color+".substr(4,2)+"+value_color+".substr(2,2)+"+value_color+".substr(6,2)+";
         }
         else {
@@ -21,6 +21,7 @@ Blockly.JavaScript['ws2812_expansion_1to24'] = function (block) {
       }
   }
   //console.log(colorcode);
+  if (colorcode!="") colorcode = colorcode.substr(0,colorcode.length-1)
   code = variable_ws2812+".setColor("+colorcode+");\n";
   
   /*
