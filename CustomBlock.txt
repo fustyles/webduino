@@ -19,7 +19,7 @@ https://blocklypro.webduino.io/#XenY8MWLlw
 https://bit.webduino.io/blockly/#Z3kAOgKAQ2JRv
 
 
-兩臉核對 (Azure Verify face to face)
+兩臉核對 (Azure Verify Face To Face)
 https://fustyles.github.io/webduino/Azure_FaceToFaceVerify_20191118/blockly.json
 [Smart]
 https://blocklypro.webduino.io/#RKzNN0yGnw
