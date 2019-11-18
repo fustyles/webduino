@@ -81,20 +81,28 @@ function DetectVideo() {
     context.drawImage(video, 0, 0, video.width, video.height);
     const DataURL = canvas.toDataURL('image/png');
     const Binary = atob(DataURL.split(',')[1]);
-    const mime = DataURL.split(',')[0].split(':')[1].split(';')[0];
+    const Mime = DataURL.split(',')[0].split(':')[1].split(';')[0];
     const Unicode = [];
     for (let i = 0; i < Binary.length; i++) {
       Unicode.push(Binary.charCodeAt(i));
     }
     var Uint8 = new Uint8Array(Unicode);
-    var photo = new Blob([Uint8],{type:mime});
+    var photo = new Blob([Uint8],{type:Mime});
     var processData = false;
     var contentType = "application/octet-stream";
   }
   else {
     var photo = '{"url": ' + '"' + imageUrl + '"}';
     var processData = true;
-    var contentType = "application/json";	  
+    var contentType = "application/json";
+    var img = document.createElement("img");
+    img.setAttribute("src", imageUrl);
+    img.setAttribute("width", video.width);
+    img.setAttribute("height", video.height);  
+    img.onload = function(event) {
+      context.drawImage(img, 0, 0, img.width, img.height);
+      img.remove();
+    }
   }
 
   // Perform the REST API call.
