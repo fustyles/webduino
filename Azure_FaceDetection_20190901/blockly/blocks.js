@@ -67,6 +67,38 @@ Blockly.Blocks['azure_facedetection_get_persondata'] = {
   }
 };
 
+Blockly.Blocks['azure_facedetection_get_persondata_property'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AZUREFACEDETECTION_GET_PERSONDATA_SHOW); 
+  this.appendValueInput("index_")
+      .setCheck("Number");  
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([
+		["index","index"],
+		["faceId","faceId"], 
+		["top","top"],
+		["left","left"], 
+		["width","width"],
+		["height","height"], 
+		["gender","gender"],
+		["age","age"], 
+		["emotionAnger","emotionAnger"],
+		["emotionContempt","emotionContempt"], 
+		["emotionDisgust","emotionDisgust"],
+		["emotionFear","emotionFear"], 
+		["emotionHappiness","emotionHappiness"],
+		["emotionNeutral","emotionNeutral"], 
+	  	["emotionSadness","emotionSadness"],
+		["emotionSadness","emotionSadness"], 
+		["emotionSurprise","emotionSurprise"]	  
+  	]), "property_"); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null);
+  this.setColour(65);
+  }
+};
+
 Blockly.Blocks['azure_facedetection_get_persons'] = {
   init: function() { 
   this.appendDummyInput()  
