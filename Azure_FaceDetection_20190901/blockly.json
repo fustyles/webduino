@@ -1,5 +1,5 @@
 {
-  "types": ["azure_facedetection_settings", "azure_facedetection_detect", "azure_facedetection_get", "azure_facedetection_video", "azure_facedetection_get_persons", "azure_facedetection_get_persondata"],
+  "types": ["azure_facedetection_settings", "azure_facedetection_detect", "azure_facedetection_get", "azure_facedetection_get_url", "azure_facedetection_video", "azure_facedetection_get_persons", "azure_facedetection_get_persondata"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
