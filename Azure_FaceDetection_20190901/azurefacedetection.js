@@ -104,7 +104,7 @@ function DetectVideo() {
     },
     type: "POST",
     data: photo,
-    processData: false
+    processData: processData
   })
   .done(function(json) {
     json = eval(json);	  
