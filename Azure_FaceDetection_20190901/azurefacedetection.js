@@ -79,10 +79,8 @@ function azurefacedetection_get_persondata_property(input_index,input_property){
         return data[6];	 	
       else if (input_property=="age")
         return data[7];	 	
-      else if (input_property=="height")
-        return data[8];	 
       else if (input_property=="emotion")
-        return data[9];	           
+        return data[8];	           
     }
     else
       return "";
