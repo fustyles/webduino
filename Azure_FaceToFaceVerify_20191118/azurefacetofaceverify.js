@@ -25,10 +25,7 @@ function azurefacetofaceverify_detect(){
   azurefacetofaceverify_processImage();
 }
   
-function azurefacetofaceverify_get(input_property){
-	console.log(input_property);
-	console.log(isIdentical);
-	console.log(Number(confidence));	
+function azurefacetofaceverify_get(input_property){	
   if (input_property=="isidentical")
     return isIdentical;
   else if (input_property=="confidence")
@@ -53,22 +50,22 @@ function azurefacetofaceverify_processImage() {
 		type: "POST",
 		data: JSON.stringify(params),
 	})
-  .done(function(json) {
-    json = eval(json);	  
-	try {
-      		isIdentical=json["isIdentical"];
-      		confidence=json["confidence"];
-	}
-	catch (e) {
-	  console.log(e);
-	}
+	  .done(function(json) {
+	    json = eval(json);	  
+		try {
+			isIdentical=json["isIdentical"];
+			confidence=json["confidence"];
+		}
+		catch (e) {
+		  console.log(e);
+		}
 
-    console.log(JSON.stringify(json));
-  })
-  .fail(function(jqXHR, textStatus, errorThrown) {
-      isIdentical="false";
-      confidence="0";
-  });
+	    console.log(JSON.stringify(json));
+	  })
+	  .fail(function(jqXHR, textStatus, errorThrown) {
+	      isIdentical="false";
+	      confidence="0";
+	  });
 }
 
 window.azurefacetofaceverify_settings = azurefacetofaceverify_settings;
