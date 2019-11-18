@@ -88,9 +88,12 @@ function DetectVideo() {
     }
     var Uint8 = new Uint8Array(Unicode);
     var photo = new Blob([Uint8],{type:mime});
+    var processData = false;
   }
-  else
+  else {
     var photo = "{'url': '" + imageUrl + "'}";
+    var processData = true;  
+  }
 
   // Perform the REST API call.
   $.ajax({
