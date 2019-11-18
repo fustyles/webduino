@@ -25,11 +25,15 @@ function azurefacetofaceverify_detect(){
   azurefacetofaceverify_processImage();
 }
   
-function azurefacetofaceverify_get(input_property){	
-  if (input_property=="isidentical")
-    return isIdentical;
-  else if (input_property=="confidence")
-    return Number(confidence);
+function azurefacetofaceverify_get(input_property){
+  if (confidence!="") {
+	  if (input_property=="isidentical")
+	    return isIdentical;
+	  else if (input_property=="confidence")
+	    return Number(confidence);
+	  }
+  else
+    return "";
 }
   
 function azurefacetofaceverify_processImage() {
