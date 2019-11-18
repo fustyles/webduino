@@ -26,14 +26,10 @@ function azurefacetofaceverify_detect(){
 }
   
 function azurefacetofaceverify_get(input_property){
-  if (confidence!="") {
    if (input_property=="isidentical")
-     return isIdentical;
+     return Boolean(isIdentical);
    else if (input_property=="confidence")
      return Number(confidence);
-   }
-  else
-    return "";
 }
   
 function azurefacetofaceverify_processImage() {
