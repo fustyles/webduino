@@ -61,8 +61,31 @@ function azurefacedetection_get_persondata_property(input_index,input_property){
   if (faceDetection_returnResult=="nobody"||faceDetection_returnResult=="")
     return "";
   else {
-    if (faceDetection_returnResult.split("<br>")[input_index-1])
-      return faceDetection_returnResult.split("<br>")[input_index-1].split(",");
+    if (faceDetection_returnResult.split("<br>")[input_index-1]) {
+      var data = faceDetection_returnResult.split("<br>")[input_index-1].split(",");
+      if (input_property=="index")
+        return data[0];
+      else if (input_property=="index")
+        return data[1];	 
+      else if (input_property=="faceId")
+        return data[2];	 
+      else if (input_property=="top")
+        return data[3];	 
+      else if (input_property=="left")
+        return data[4];	 
+      else if (input_property=="width")
+        return data[5];	 
+      else if (input_property=="height")
+        return data[6];	 	    
+      else if (input_property=="gender")
+        return data[7];	 	
+      else if (input_property=="age")
+        return data[8];	 	
+      else if (input_property=="height")
+        return data[9];	 
+      else if (input_property=="emotion")
+        return data[10];	           
+    }
     else
       return "";
   }
