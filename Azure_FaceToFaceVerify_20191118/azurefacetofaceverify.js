@@ -26,6 +26,7 @@ function azurefacetofaceverify_detect(){
 }
   
 function azurefacetofaceverify_get(input_property){
+	console.log(input_property);
   if (input_property=="isidentical")
     return isIdentical;
   else if (input_property=="confidence")
@@ -53,8 +54,6 @@ function azurefacetofaceverify_processImage() {
   .done(function(json) {
     json = eval(json);	  
 	try {
-		console.log(json["isIdentical"]);
-		console.log(json["confidence"]);
       		isIdentical=json["isIdentical"];
       		confidence=json["confidence"];
 	}
