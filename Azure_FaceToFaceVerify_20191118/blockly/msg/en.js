@@ -1,0 +1,1 @@
+MSG.azurefacetofaceverify = "Verify Face To Face (Azure)";

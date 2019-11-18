@@ -1,0 +1,28 @@
+<category id="azurefacetofaceverify">  
+  <block type="azure_facetofaceverify_settings">
+    <value name="resourcename_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value> 
+    <value name="key_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value> 
+    <value name="faceid1_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value> 
+    <value name="faceid2_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>    
+    </value> 
+  </block> 
+  <block type="azure_facetofaceverify_detect">  
+  </block>  
+  <block type="azure_facetofaceverify_get">
+  </block> 
+</category>
