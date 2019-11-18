@@ -4,55 +4,55 @@
 
 'use strict';
   
-var faceApi_key = "";
-var faceApi_url = "";  
-var faceApi_FaceListId = "";
-var faceApi_FaceId = "";
-var faceApi_maxNumOfCandidatesReturned = "";
-var faceApi_mode = "";
-var faceApi_result = ""; 
-var faceApi_returnResult = "";
+var faceFindSimilar_key = "";
+var faceFindSimilar_url = "";  
+var faceFindSimilar_FaceListId = "";
+var faceFindSimilar_FaceId = "";
+var faceFindSimilar_maxNumOfCandidatesReturned = "";
+var faceFindSimilar_mode = "";
+var faceFindSimilar_result = ""; 
+var faceFindSimilar_returnResult = "";
 var maxConfidence="";
 var maxFaceId="";
 
 function azurefacefindsimilar_settings(input_resourceName, input_key, input_faceListId, input_faceId, input_maxNum, input_mode){
   if (input_resourceName.toLowerCase().indexOf("http")==0)
-    faceApi_url = input_resourceName;
+    faceFindSimilar_url = input_resourceName;
   else
-    faceApi_url = "https://" + input_resourceName + "/face/v1.0/findsimilars";
-  faceApi_key = input_key;
-  faceApi_FaceListId = input_faceListId;
-  faceApi_FaceId = input_faceId;
-  faceApi_maxNumOfCandidatesReturned = input_maxNum;
-  faceApi_mode = input_mode;
+    faceFindSimilar_url = "https://" + input_resourceName + "/face/v1.0/findsimilars";
+  faceFindSimilar_key = input_key;
+  faceFindSimilar_FaceListId = input_faceListId;
+  faceFindSimilar_FaceId = input_faceId;
+  faceFindSimilar_maxNumOfCandidatesReturned = input_maxNum;
+  faceFindSimilar_mode = input_mode;
 }
 
 function azurefacefindsimilar_detect(){
-  faceApi_result = "";
-  faceApi_returnResult = "";
+  faceFindSimilar_result = "";
+  faceFindSimilar_returnResult = "";
   azurefacefindsimilar_processImage();
 }
   
 function azurefacefindsimilar_get(){
-  return faceApi_returnResult.split("<br>");
+  return faceFindSimilar_returnResult.split("<br>");
 }
 		
 function azurefacefindsimilar_get_persondata(input_index){
-  if (faceApi_returnResult=="nobody"||faceApi_returnResult=="")
+  if (faceFindSimilar_returnResult=="nobody"||faceFindSimilar_returnResult=="")
     return "";
   else {
-    if (faceApi_returnResult.split("<br>")[input_index-1])
-      return faceApi_returnResult.split("<br>")[input_index-1].split(",");
+    if (faceFindSimilar_returnResult.split("<br>")[input_index-1])
+      return faceFindSimilar_returnResult.split("<br>")[input_index-1].split(",");
     else
       return "";
   }
 }
 	
 function azurefacefindsimilar_get_persons(){
-  if (faceApi_returnResult=="nobody"||faceApi_returnResult=="")
+  if (faceFindSimilar_returnResult=="nobody"||faceFindSimilar_returnResult=="")
     return 0;
   else {
-    return faceApi_returnResult.split("<br>").length;
+    return faceFindSimilar_returnResult.split("<br>").length;
   }
 }
 	
@@ -64,58 +64,58 @@ function azurefacefindsimilar_get_max(input_property){
 }
   
 function azurefacefindsimilar_processImage() {
-  if (faceApi_key == ""||faceApi_url == "") return;    
+  if (faceFindSimilar_key == ""||faceFindSimilar_url == "") return;    
 	maxConfidence="";
 	maxFaceId="";
 
 	var params = {
-		"faceId": faceApi_FaceId,
-		"faceListId": faceApi_FaceListId,
-		"maxNumOfCandidatesReturned": faceApi_maxNumOfCandidatesReturned,
-		"mode": faceApi_mode
+		"faceId": faceFindSimilar_FaceId,
+		"faceListId": faceFindSimilar_FaceListId,
+		"maxNumOfCandidatesReturned": faceFindSimilar_maxNumOfCandidatesReturned,
+		"mode": faceFindSimilar_mode
 	};
 	$.ajax({
-		url: faceApi_url,
+		url: faceFindSimilar_url,
 		beforeSend: function(xhrObj){
 			xhrObj.setRequestHeader("Content-Type","application/json");
-			xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceApi_key);
+			xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceFindSimilar_key);
 		},
 		type: "POST",
 		data: JSON.stringify(params),
 	})
   .done(function(json) {
     json = eval(json);	  
-    faceApi_result = "";
-    faceApi_returnResult = "";
+    faceFindSimilar_result = "";
+    faceFindSimilar_returnResult = "";
 
 	try {
 		for (var i in json) 
 		{
-		  faceApi_result += i;      
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["persistedFaceId"]; 
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["confidence"]; 
+		  faceFindSimilar_result += i;      
+		  faceFindSimilar_result += ",";	    
+		  faceFindSimilar_result += json[i]["persistedFaceId"]; 
+		  faceFindSimilar_result += ",";	    
+		  faceFindSimilar_result += json[i]["confidence"]; 
 		  if (Number(json[i]["confidence"])>Number(maxConfidence)) {
 			maxFaceId = json[i]["persistedFaceId"];
 			maxConfidence = json[i]["confidence"];  
 		  }			
-		  if (i<json.length-1) faceApi_result += "<br>";
+		  if (i<json.length-1) faceFindSimilar_result += "<br>";
 		}
 	}
 	catch (e) {
-      	  faceApi_result = "";
+      	  faceFindSimilar_result = "";
 	  console.log(e);
 	}
 
 
-    if (faceApi_result=="") faceApi_result = "nobody";
+    if (faceFindSimilar_result=="") faceFindSimilar_result = "nobody";
     console.log(JSON.stringify(json));
-    faceApi_returnResult = faceApi_result;
+    faceFindSimilar_returnResult = faceFindSimilar_result;
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
-    faceApi_result = "nobody";
-    faceApi_returnResult = faceApi_result;	
+    faceFindSimilar_result = "nobody";
+    faceFindSimilar_returnResult = faceFindSimilar_result;	
   });
 }
 
