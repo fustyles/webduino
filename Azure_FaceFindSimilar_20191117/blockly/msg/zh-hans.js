@@ -1,1 +1,1 @@
-MSG.azurefacefindsimilar = "脸部相似度 (Azure)";
+MSG.azurefacefindsimilar = "寻找相似脸 (Azure)";
