@@ -23,6 +23,8 @@
   </block> 
   <block type="azure_facetofaceverify_detect">  
   </block>  
+  <block type="azure_facetofaceverify_getdata">
+  </block>   
   <block type="azure_facetofaceverify_get">
   </block> 
 </category>
