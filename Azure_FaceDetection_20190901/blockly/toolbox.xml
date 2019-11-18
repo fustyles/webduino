@@ -30,6 +30,18 @@
       </block>
     </value>     
   </block>  
+  <block type="azure_facedetection_detect_url">
+    <value name="url_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block> 
+    </value>      
+    <value name="showtime_">
+      <block type="math_number">
+        <field name="NUM">3</field>
+      </block>
+    </value>     
+  </block>    
   <block type="azure_facedetection_get">
   </block> 
   <block type="azure_facedetection_get_persondata">
