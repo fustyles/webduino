@@ -86,11 +86,11 @@ function DetectVideo() {
     for (let i = 0; i < Binary.length; i++) {
       Unicode.push(Binary.charCodeAt(i));
     }
-    const Uint8 = new Uint8Array(Unicode);
-    const photo = new Blob([Uint8],{type:mime});
+    var Uint8 = new Uint8Array(Unicode);
+    var photo = new Blob([Uint8],{type:mime});
   }
   else
-    const photo = "{'url': '" + imageUrl + "'}";
+    var photo = "{'url': '" + imageUrl + "'}";
 
   // Perform the REST API call.
   $.ajax({
