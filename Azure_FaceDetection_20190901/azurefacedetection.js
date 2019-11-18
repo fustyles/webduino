@@ -9,48 +9,48 @@ var video = document.getElementById('video');
 var canvas = document.getElementById('gamecanvas_azurefacedetection'); 
 var context = canvas.getContext('2d');
 var result = document.getElementById('result');
-var faceApi_key = "";
-var faceApi_url = "";  
-var faceApi_result = ""; 
-var faceApi_returnResult = "";
+var faceDetection_key = "";
+var faceDetection_url = "";  
+var faceDetection_result = ""; 
+var faceDetection_returnResult = "";
 var showTime = 3000;
 
 function azurefacedetection_settings(input_resourceName, input_key){
   if (input_resourceName.toLowerCase().indexOf("http")==0)
-    faceApi_url = input_resourceName;
+    faceDetection_url = input_resourceName;
   else
-    faceApi_url = "https://" + input_resourceName + "/face/v1.0/detect?returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise&returnFaceLandmarks=true";
-  faceApi_key = input_key;
+    faceDetection_url = "https://" + input_resourceName + "/face/v1.0/detect?returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise&returnFaceLandmarks=true";
+  faceDetection_key = input_key;
 }
 
 function azurefacedetection_detect(input_showtime){
   showTime = input_showtime*1000;
   result.innerHTML = "";
-  faceApi_result = "";
-  faceApi_returnResult = "";
+  faceDetection_result = "";
+  faceDetection_returnResult = "";
   DetectVideo();
 }
   
 function azurefacedetection_get(){
-  return faceApi_returnResult.split("<br>");
+  return faceDetection_returnResult.split("<br>");
 }
 		
 function azurefacedetection_get_persondata(input_index){
-  if (faceApi_returnResult=="nobody"||faceApi_returnResult=="")
+  if (faceDetection_returnResult=="nobody"||faceDetection_returnResult=="")
     return "";
   else {
-    if (faceApi_returnResult.split("<br>")[input_index-1])
-      return faceApi_returnResult.split("<br>")[input_index-1].split(",");
+    if (faceDetection_returnResult.split("<br>")[input_index-1])
+      return faceDetection_returnResult.split("<br>")[input_index-1].split(",");
     else
       return "";
   }
 }
 	
 function azurefacedetection_get_persons(){
-  if (faceApi_returnResult=="nobody"||faceApi_returnResult=="")
+  if (faceDetection_returnResult=="nobody"||faceDetection_returnResult=="")
     return 0;
   else {
-    return faceApi_returnResult.split("<br>").length;
+    return faceDetection_returnResult.split("<br>").length;
   }
 }
 
@@ -62,7 +62,7 @@ function azurefacedetection_video(input_width, input_height, input_result, input
 }
   
 function DetectVideo() {
-  if (faceApi_key == ""||faceApi_url == "") return;    
+  if (faceDetection_key == ""||faceDetection_url == "") return;    
 
   video.style.display = "none";
   canvas.style.display = "block";
@@ -79,10 +79,10 @@ function DetectVideo() {
 
   // Perform the REST API call.
   $.ajax({
-    url: faceApi_url,
+    url: faceDetection_url,
     beforeSend: function(xhrObj){
     xhrObj.setRequestHeader("Content-Type","application/octet-stream");
-    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceApi_key);     
+    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceDetection_key);     
     },
     type: "POST",
     data: photo,
@@ -91,8 +91,8 @@ function DetectVideo() {
   .done(function(json) {
     json = eval(json);	  
     result.innerHTML = "";
-    faceApi_result = "";
-    faceApi_returnResult = "";
+    faceDetection_result = "";
+    faceDetection_returnResult = "";
 
 	try {
 		for (var i in json) 
@@ -100,21 +100,21 @@ function DetectVideo() {
 		  var max="";
 		  var maxName="";
 		  
-		  faceApi_result += i;      
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceId"]; 
-		  faceApi_result += ",";
-		  faceApi_result += json[i]["faceRectangle"]["top"];
-		  faceApi_result += ",";
-		  faceApi_result += json[i]["faceRectangle"]["left"];
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceRectangle"]["width"];
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceRectangle"]["height"];
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["gender"]; 
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["age"]; 
+		  faceDetection_result += i;      
+		  faceDetection_result += ",";	    
+		  faceDetection_result += json[i]["faceId"]; 
+		  faceDetection_result += ",";
+		  faceDetection_result += json[i]["faceRectangle"]["top"];
+		  faceDetection_result += ",";
+		  faceDetection_result += json[i]["faceRectangle"]["left"];
+		  faceDetection_result += ",";	    
+		  faceDetection_result += json[i]["faceRectangle"]["width"];
+		  faceDetection_result += ",";	    
+		  faceDetection_result += json[i]["faceRectangle"]["height"];
+		  faceDetection_result += ",";	    
+		  faceDetection_result += json[i]["faceAttributes"]["gender"]; 
+		  faceDetection_result += ",";	    
+		  faceDetection_result += json[i]["faceAttributes"]["age"]; 
 
 			
 		  if (Number(json[i]["faceAttributes"]["emotion"]["anger"])>Number(max)) { 
@@ -149,8 +149,8 @@ function DetectVideo() {
 			maxName="surprise";
 			max = json[i]["faceAttributes"]["emotion"]["surprise"];
 		  } 
-		  faceApi_result += ",";	    
-		  faceApi_result += maxName;
+		  faceDetection_result += ",";	    
+		  faceDetection_result += maxName;
 			
 		  context.lineWidth = "3";
 		  context.strokeStyle = "red";
@@ -161,30 +161,30 @@ function DetectVideo() {
 		  context.fillStyle = "#99FF99";
 		  context.fillText(json[i]["faceAttributes"]["gender"]+", "+json[i]["faceAttributes"]["age"]+", "+maxName, json[i]["faceRectangle"]["left"],  json[i]["faceRectangle"]["top"]);     			
 			
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["smile"]; 
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["headPose"]["pitch"]+"_"+json[i]["faceAttributes"]["headPose"]["roll"]+"_"+json[i]["faceAttributes"]["headPose"]["yaw"]; 
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["facialHair"]["moustache"]+"_"+json[i]["faceAttributes"]["facialHair"]["beard"]+"_"+json[i]["faceAttributes"]["facialHair"]["sideburns"]; 
+		  faceDetection_result += ",";	    
+		  faceDetection_result += json[i]["faceAttributes"]["smile"]; 
+		  faceDetection_result += ",";	    
+		  faceDetection_result += json[i]["faceAttributes"]["headPose"]["pitch"]+"_"+json[i]["faceAttributes"]["headPose"]["roll"]+"_"+json[i]["faceAttributes"]["headPose"]["yaw"]; 
+		  faceDetection_result += ",";	    
+		  faceDetection_result += json[i]["faceAttributes"]["facialHair"]["moustache"]+"_"+json[i]["faceAttributes"]["facialHair"]["beard"]+"_"+json[i]["faceAttributes"]["facialHair"]["sideburns"]; 
 
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["glasses"]; 
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["blur"]["blurLevel"]+"_"+json[i]["faceAttributes"]["blur"]["value"]; 	
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["exposure"]["exposureLevel"]+"_"+json[i]["faceAttributes"]["exposure"]["value"];
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["noise"]["noiseLevel"]+"_"+json[i]["faceAttributes"]["noise"]["value"]; 			
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["makeup"]["eyeMakeup"]+"_"+json[i]["faceAttributes"]["makeup"]["lipMakeup"]; 
-		  faceApi_result += ",";
+		  faceDetection_result += ",";	    
+		  faceDetection_result += json[i]["faceAttributes"]["glasses"]; 
+		  faceDetection_result += ",";	    
+		  faceDetection_result += json[i]["faceAttributes"]["blur"]["blurLevel"]+"_"+json[i]["faceAttributes"]["blur"]["value"]; 	
+		  faceDetection_result += ",";	    
+		  faceDetection_result += json[i]["faceAttributes"]["exposure"]["exposureLevel"]+"_"+json[i]["faceAttributes"]["exposure"]["value"];
+		  faceDetection_result += ",";	    
+		  faceDetection_result += json[i]["faceAttributes"]["noise"]["noiseLevel"]+"_"+json[i]["faceAttributes"]["noise"]["value"]; 			
+		  faceDetection_result += ",";	    
+		  faceDetection_result += json[i]["faceAttributes"]["makeup"]["eyeMakeup"]+"_"+json[i]["faceAttributes"]["makeup"]["lipMakeup"]; 
+		  faceDetection_result += ",";
 		  if (json[i]["faceAttributes"]["accessories"][0])
-		    faceApi_result += json[i]["faceAttributes"]["accessories"][0]["type"]+"_"+json[i]["faceAttributes"]["accessories"][0]["confidence"]; 	
+		    faceDetection_result += json[i]["faceAttributes"]["accessories"][0]["type"]+"_"+json[i]["faceAttributes"]["accessories"][0]["confidence"]; 	
 		  else 
-		    faceApi_result += "null_0"; 	    
-		  faceApi_result += ",";
-		  faceApi_result += json[i]["faceAttributes"]["occlusion"]["foreheadOccluded"]+"_"+json[i]["faceAttributes"]["occlusion"]["eyeOccluded"]+"_"+json[i]["faceAttributes"]["occlusion"]["mouthOccluded"]; 			
+		    faceDetection_result += "null_0"; 	    
+		  faceDetection_result += ",";
+		  faceDetection_result += json[i]["faceAttributes"]["occlusion"]["foreheadOccluded"]+"_"+json[i]["faceAttributes"]["occlusion"]["eyeOccluded"]+"_"+json[i]["faceAttributes"]["occlusion"]["mouthOccluded"]; 			
 		  
 		  max=json[i]["faceAttributes"]["hair"]["hairColor"][0]["confidence"];
 		  maxName=json[i]["faceAttributes"]["hair"]["hairColor"][0]["color"];
@@ -210,28 +210,28 @@ function DetectVideo() {
 			max = json[i]["faceAttributes"]["hair"]["hairColor"][5]["confidence"];  
 		  }				
 			
-		  faceApi_result += ",";	    
-		  faceApi_result += json[i]["faceAttributes"]["hair"]["bald"]+"_"+json[i]["faceAttributes"]["hair"]["invisible"]+"_"+maxName+"_"+max; 
+		  faceDetection_result += ",";	    
+		  faceDetection_result += json[i]["faceAttributes"]["hair"]["bald"]+"_"+json[i]["faceAttributes"]["hair"]["invisible"]+"_"+maxName+"_"+max; 
 		
-		  if (i<json.length-1) faceApi_result += "<br>";
+		  if (i<json.length-1) faceDetection_result += "<br>";
 		}
 		
 	}
 	catch (e) {
-          faceApi_result = "";
+          faceDetection_result = "";
 	  console.log(e);
 	}
 
 
-    if (faceApi_result=="") faceApi_result = "nobody";
+    if (faceDetection_result=="") faceDetection_result = "nobody";
     console.log(JSON.stringify(json));
-    faceApi_returnResult = faceApi_result;
+    faceDetection_returnResult = faceDetection_result;
     result.innerHTML = JSON.stringify(json);
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, showTime);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
-    faceApi_result = "nobody";
-    faceApi_returnResult = faceApi_result;	  
+    faceDetection_result = "nobody";
+    faceDetection_returnResult = faceDetection_result;	  
     result.innerHTML = "nobody";
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, 0);
   });
