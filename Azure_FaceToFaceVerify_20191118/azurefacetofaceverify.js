@@ -8,6 +8,7 @@ var faceToFaceVerify_key = "";
 var faceToFaceVerify_url = "";  
 var faceToFaceVerify_FaceId1 = "";
 var faceToFaceVerify_FaceId2 = "";
+var faceToFaceVerify_result = "";
 var confidence="";
 var isIdentical="";
 
@@ -27,10 +28,14 @@ function azurefacetofaceverify_detect(){
   
 function azurefacetofaceverify_get(input_property){
    if (input_property=="isidentical")
-     return Boolean(isIdentical);
+     return isIdentical;
    else if (input_property=="confidence")
-     return Number(confidence);
+     return confidence;
 }
+  
+function azurefacetofaceverify_getdata(){
+  return faceToFaceVerify_result;
+} 
   
 function azurefacetofaceverify_processImage() {
   if (faceToFaceVerify_key == ""||faceToFaceVerify_url == "") return;    
@@ -53,14 +58,15 @@ function azurefacetofaceverify_processImage() {
      .done(function(json) {
        json = eval(json);   
       try {
-        isIdentical=json["isIdentical"];
-        confidence=json["confidence"];
+        isIdentical=Boolean(json["isIdentical"]);
+        confidence=Number(json["confidence"]);
       }
       catch (e) {
         console.log(e);
       }
 
      console.log(JSON.stringify(json));
+     faceToFaceVerify_result = JSON.stringify(json);
    })
    .fail(function(jqXHR, textStatus, errorThrown) {
        isIdentical="false";
@@ -71,6 +77,7 @@ function azurefacetofaceverify_processImage() {
 window.azurefacetofaceverify_settings = azurefacetofaceverify_settings;
 window.azurefacetofaceverify_detect = azurefacetofaceverify_detect;
 window.azurefacetofaceverify_get = azurefacetofaceverify_get;
+window.azurefacetofaceverify_getdata = azurefacetofaceverify_getdata;
 window.azurefacetofaceverify_processImage = azurefacetofaceverify_processImage;
 
 }(window, window.document));
