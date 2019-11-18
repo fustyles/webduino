@@ -73,7 +73,8 @@ https://fustyles.github.io/webduino/Azure/FaceToFaceVerify.html
                 "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
                     jQuery.parseJSON(jqXHR.responseText).message :
                         jQuery.parseJSON(jqXHR.responseText).error.message;
-            alert(errorString);
+            //alert(errorString);
+			$("#responseTextArea").val(errorString);
         });
     };
 </script>
