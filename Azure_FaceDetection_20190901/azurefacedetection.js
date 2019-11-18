@@ -78,6 +78,8 @@ function DetectVideo() {
   video.style.display = "none";
   canvas.style.display = "block";
   if (imageUrl=="") {
+    canvas.setAttribute("width", video.width);
+    canvas.setAttribute("height", video.height); 	  
     context.drawImage(video, 0, 0, video.width, video.height);
     const DataURL = canvas.toDataURL('image/png');
     const Binary = atob(DataURL.split(',')[1]);
@@ -97,9 +99,9 @@ function DetectVideo() {
     var contentType = "application/json";
     var img = document.createElement("img");
     img.setAttribute("src", imageUrl);
-    img.setAttribute("width", video.width);
-    img.setAttribute("height", video.height);  
     img.onload = function(event) {
+      canvas.setAttribute("width", img.width);
+      canvas.setAttribute("height", img.height); 	    
       context.drawImage(img, 0, 0, img.width, img.height);
       img.remove();
     }
