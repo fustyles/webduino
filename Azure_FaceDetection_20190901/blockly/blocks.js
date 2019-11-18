@@ -29,6 +29,22 @@ Blockly.Blocks['azure_facedetection_detect'] = {
   }
 };
 
+Blockly.Blocks['azure_facedetection_detect_url'] = {
+  init: function() {
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.AZUREFACEDETECTION_DETECT_URL_SHOW);
+  this.appendValueInput("url_")
+      .setCheck("String");  	  
+  this.appendValueInput("showtime_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.AZUREFACEDETECTION_SHOWTIME_SHOW);  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['azure_facedetection_get'] = {
   init: function() { 
   this.appendDummyInput()  
