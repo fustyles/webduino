@@ -66,7 +66,7 @@ function azurefacetofaceverify_processImage() {
         console.log(e);
       }
 
-     console.log(JSON.stringify(json));
+     //console.log(JSON.stringify(json));
      faceToFaceVerify_result = JSON.stringify(json);
    })
    .fail(function(jqXHR, textStatus, errorThrown) {
