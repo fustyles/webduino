@@ -53,8 +53,10 @@ function azurefacetofaceverify_processImage() {
   .done(function(json) {
     json = eval(json);	  
 	try {
-      isIdentical=json["isIdentical"];
-      confidence=json["confidence"];
+		console.log(json["isIdentical"]);
+		console.log(json["confidence"]);
+      		isIdentical=json["isIdentical"];
+      		confidence=json["confidence"];
 	}
 	catch (e) {
 	  console.log(e);
