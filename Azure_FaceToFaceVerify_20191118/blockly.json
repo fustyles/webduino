@@ -1,5 +1,5 @@
 {
-  "types": ["azure_azurefacetofaceverify_settings", "azure_facetofaceverify_detect", "azure_facetofaceverify_get"],
+  "types": ["azure_azurefacetofaceverify_settings", "azure_facetofaceverify_detect", "azure_facetofaceverify_get", "azure_facetofaceverify_getdata"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
