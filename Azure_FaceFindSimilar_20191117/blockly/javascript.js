@@ -11,7 +11,6 @@ Blockly.JavaScript['azure_facefindsimilar_settings'] = function(block) {
 };
 
 Blockly.JavaScript['azure_facefindsimilar_detect'] = function(block) {
-  var value_showtime_ = Blockly.JavaScript.valueToCode(block, 'showtime_', Blockly.JavaScript.ORDER_ATOMIC);	
   var code = 'azurefacefindsimilar_detect();\n';
   return code;
 };
