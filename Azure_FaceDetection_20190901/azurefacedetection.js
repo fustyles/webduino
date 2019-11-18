@@ -57,6 +57,17 @@ function azurefacedetection_get_persondata(input_index){
   }
 }
 	
+function azurefacedetection_get_persondata_property(input_index){
+  if (faceDetection_returnResult=="nobody"||faceDetection_returnResult=="")
+    return "";
+  else {
+    if (faceDetection_returnResult.split("<br>")[input_index-1])
+      return faceDetection_returnResult.split("<br>")[input_index-1].split(",");
+    else
+      return "";
+  }
+}
+	
 function azurefacedetection_get_persons(){
   if (faceDetection_returnResult=="nobody"||faceDetection_returnResult=="")
     return 0;
@@ -271,7 +282,8 @@ window.azurefacedetection_settings = azurefacedetection_settings;
 window.azurefacedetection_detect = azurefacedetection_detect;
 window.azurefacedetection_detect_url = azurefacedetection_detect_url;
 window.azurefacedetection_get = azurefacedetection_get;
-window.azurefacedetection_get_persondata = azurefacedetection_get_persondata;	
+window.azurefacedetection_get_persondata = azurefacedetection_get_persondata;
+window.azurefacedetection_get_persondata_property = azurefacedetection_get_persondata_property;
 window.azurefacedetection_get_persons = azurefacedetection_get_persons;
 window.azurefacedetection_video = azurefacedetection_video;
 window.DetectVideo = DetectVideo;
