@@ -91,7 +91,7 @@ function DetectVideo() {
     var processData = false;
   }
   else {
-    var photo = "{'url': '" + imageUrl + "'}";
+    var photo = '{"url": ' + '"' + imageUrl + '"}';
     var processData = true;  
   }
 
