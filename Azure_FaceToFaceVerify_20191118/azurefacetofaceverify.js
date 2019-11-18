@@ -27,6 +27,8 @@ function azurefacetofaceverify_detect(){
   
 function azurefacetofaceverify_get(input_property){
 	console.log(input_property);
+	console.log(isIdentical);
+	console.log(Number(confidence));	
   if (input_property=="isidentical")
     return isIdentical;
   else if (input_property=="confidence")
