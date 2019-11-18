@@ -1,7 +1,8 @@
 Blockly.Msg.AZUREFACEDETECTION_PART_SHOW = "脸部侦测 (Azure) 部位";
 Blockly.Msg.AZUREFACEDETECTION_WIDTH_SHOW = "视讯 (Azure Face Detection) 宽度";
 Blockly.Msg.AZUREFACEDETECTION_HEIGHT_SHOW = "高度";
-Blockly.Msg.AZUREFACEDETECTION_DETECT_SHOW = "脸部执行侦测 (Azure)";
+Blockly.Msg.AZUREFACEDETECTION_DETECT_SHOW = "视讯脸部执行侦测 (Azure)";
+Blockly.Msg.AZUREFACEDETECTION_DETECT_URL_SHOW = "图片脸部执行侦测 (Azure) 网址";
 Blockly.Msg.AZUREFACEDETECTION_GET_SHOW = "取得结果 (Azure Face Detection)";
 Blockly.Msg.AZUREFACEDETECTION_GET_PERSONDATA_SHOW = "取得侦测资料 (Azure Face Detection) 人次 ";
 Blockly.Msg.AZUREFACEDETECTION_GET_PERSONS_SHOW = "取得侦测人数 (Azure Face Detection)";
