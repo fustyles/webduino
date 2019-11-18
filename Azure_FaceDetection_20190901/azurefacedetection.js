@@ -57,7 +57,7 @@ function azurefacedetection_get_persondata(input_index){
   }
 }
 	
-function azurefacedetection_get_persondata_property(input_index){
+function azurefacedetection_get_persondata_property(input_index,input_property){
   if (faceDetection_returnResult=="nobody"||faceDetection_returnResult=="")
     return "";
   else {
