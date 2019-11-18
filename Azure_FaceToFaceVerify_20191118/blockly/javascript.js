@@ -18,3 +18,8 @@ Blockly.JavaScript['azure_facetofaceverify_get'] = function(block) {
   var code = 'azurefacetofaceverify_get("' + value_property_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['azure_facetofaceverify_getdata'] = function(block) { 
+  var code = 'azurefacetofaceverify_getdata()';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
