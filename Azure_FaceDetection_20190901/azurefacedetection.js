@@ -89,17 +89,19 @@ function DetectVideo() {
     var Uint8 = new Uint8Array(Unicode);
     var photo = new Blob([Uint8],{type:mime});
     var processData = false;
+    var contentType = "application/octet-stream";
   }
   else {
     var photo = '{"url": ' + '"' + imageUrl + '"}';
-    var processData = true;  
+    var processData = true;
+    var contentType = "application/json";	  
   }
 
   // Perform the REST API call.
   $.ajax({
     url: faceDetection_url,
     beforeSend: function(xhrObj){
-    xhrObj.setRequestHeader("Content-Type","application/octet-stream");
+    xhrObj.setRequestHeader("Content-Type",contentType);
     xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceDetection_key);     
     },
     type: "POST",
