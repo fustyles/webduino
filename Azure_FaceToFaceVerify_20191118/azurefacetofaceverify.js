@@ -27,49 +27,49 @@ function azurefacetofaceverify_detect(){
   
 function azurefacetofaceverify_get(input_property){
   if (confidence!="") {
-	  if (input_property=="isidentical")
-	    return isIdentical;
-	  else if (input_property=="confidence")
-	    return Number(confidence);
-	  }
+   if (input_property=="isidentical")
+     return isIdentical;
+   else if (input_property=="confidence")
+     return Number(confidence);
+   }
   else
     return "";
 }
   
 function azurefacetofaceverify_processImage() {
   if (faceToFaceVerify_key == ""||faceToFaceVerify_url == "") return;    
-	confidence="";
-	isIdentical="";
+   confidence="";
+   isIdentical="";
 
-	var params = {
-		"faceId1": faceToFaceVerify_FaceId1,
-		"faceId2": faceToFaceVerify_FaceId2
-	};
-	$.ajax({
-		url: faceToFaceVerify_url,
-		beforeSend: function(xhrObj){
-			xhrObj.setRequestHeader("Content-Type","application/json");
-			xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceToFaceVerify_key);
-		},
-		type: "POST",
-		data: JSON.stringify(params),
-	})
-	  .done(function(json) {
-	    json = eval(json);	  
-		try {
-			isIdentical=json["isIdentical"];
-			confidence=json["confidence"];
-		}
-		catch (e) {
-		  console.log(e);
-		}
+   var params = {
+    "faceId1": faceToFaceVerify_FaceId1,
+    "faceId2": faceToFaceVerify_FaceId2
+   };
+   $.ajax({
+    url: faceToFaceVerify_url,
+    beforeSend: function(xhrObj){
+       xhrObj.setRequestHeader("Content-Type","application/json");
+       xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceToFaceVerify_key);
+    },
+    type: "POST",
+    data: JSON.stringify(params),
+   })
+     .done(function(json) {
+       json = eval(json);   
+      try {
+        isIdentical=json["isIdentical"];
+        confidence=json["confidence"];
+      }
+      catch (e) {
+        console.log(e);
+      }
 
-	    console.log(JSON.stringify(json));
-	  })
-	  .fail(function(jqXHR, textStatus, errorThrown) {
-	      isIdentical="false";
-	      confidence="0";
-	  });
+     console.log(JSON.stringify(json));
+   })
+   .fail(function(jqXHR, textStatus, errorThrown) {
+       isIdentical="false";
+       confidence="0";
+   });
 }
 
 window.azurefacetofaceverify_settings = azurefacetofaceverify_settings;
