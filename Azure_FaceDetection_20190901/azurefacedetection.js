@@ -64,27 +64,25 @@ function azurefacedetection_get_persondata_property(input_index,input_property){
     if (faceDetection_returnResult.split("<br>")[input_index-1]) {
       var data = faceDetection_returnResult.split("<br>")[input_index-1].split(",");
       if (input_property=="index")
-        return data[0];
-      else if (input_property=="index")
-        return data[1];	 
+        return data[0]; 
       else if (input_property=="faceId")
-        return data[2];	 
+        return data[1];	 
       else if (input_property=="top")
-        return data[3];	 
+        return data[2];	 
       else if (input_property=="left")
-        return data[4];	 
+        return data[3];	 
       else if (input_property=="width")
-        return data[5];	 
+        return data[4];	 
       else if (input_property=="height")
-        return data[6];	 	    
+        return data[5];	 	    
       else if (input_property=="gender")
-        return data[7];	 	
+        return data[6];	 	
       else if (input_property=="age")
-        return data[8];	 	
+        return data[7];	 	
       else if (input_property=="height")
-        return data[9];	 
+        return data[8];	 
       else if (input_property=="emotion")
-        return data[10];	           
+        return data[9];	           
     }
     else
       return "";
