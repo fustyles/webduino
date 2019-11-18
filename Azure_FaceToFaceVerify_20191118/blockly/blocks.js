@@ -46,3 +46,13 @@ Blockly.Blocks['azure_facetofaceverify_get'] = {
   this.setColour(65);
   }
 };
+
+Blockly.Blocks['azure_facetofaceverify_getdata'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AZUREFACETOFACEVERIFY_GETDATA_SHOW);   
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
