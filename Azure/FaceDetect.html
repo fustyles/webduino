@@ -84,7 +84,8 @@ https://fustyles.github.io/webduino/Azure/FaceDetect.html
                 "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
                     jQuery.parseJSON(jqXHR.responseText).message :
                         jQuery.parseJSON(jqXHR.responseText).error.message;
-            alert(errorString);
+            //alert(errorString);
+			$("#responseTextArea").val(errorString);
         });
     };
 </script>
