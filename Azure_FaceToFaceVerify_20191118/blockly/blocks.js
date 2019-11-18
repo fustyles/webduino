@@ -10,10 +10,10 @@ Blockly.Blocks['azure_facetofaceverify_settings'] = {
       .appendField(Blockly.Msg.AZUREFACETOFACEVERIFY_KEY_SHOW);
   this.appendValueInput("faceid1_")
       .setCheck("String")
-      .appendField(Blockly.Msg.AZUREFACETOFACEVERIFY_FACEID_SHOW);
+      .appendField(Blockly.Msg.AZUREFACETOFACEVERIFY_FACEID1_SHOW);
   this.appendValueInput("faceid2_")
       .setCheck("String")
-      .appendField(Blockly.Msg.AZUREFACETOFACEVERIFY_FACEID_SHOW);
+      .appendField(Blockly.Msg.AZUREFACETOFACEVERIFY_FACEID2_SHOW);
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
