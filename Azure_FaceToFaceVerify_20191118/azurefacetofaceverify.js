@@ -38,23 +38,24 @@ function azurefacetofaceverify_getdata(){
 } 
   
 function azurefacetofaceverify_processImage() {
-  if (faceToFaceVerify_key == ""||faceToFaceVerify_url == "") return;    
-   confidence="";
-   isIdentical="";
+  if (faceToFaceVerify_key == ""||faceToFaceVerify_url == "") return;   
+    faceToFaceVerify_result = "";
+    confidence="";
+    isIdentical="";
 
-   var params = {
-    "faceId1": faceToFaceVerify_FaceId1,
-    "faceId2": faceToFaceVerify_FaceId2
-   };
-   $.ajax({
-    url: faceToFaceVerify_url,
-    beforeSend: function(xhrObj){
-       xhrObj.setRequestHeader("Content-Type","application/json");
-       xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceToFaceVerify_key);
-    },
-    type: "POST",
-    data: JSON.stringify(params),
-   })
+    var params = {
+     "faceId1": faceToFaceVerify_FaceId1,
+     "faceId2": faceToFaceVerify_FaceId2
+    };
+    $.ajax({
+      url: faceToFaceVerify_url,
+      beforeSend: function(xhrObj){
+        xhrObj.setRequestHeader("Content-Type","application/json");
+        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", faceToFaceVerify_key);
+      },
+      type: "POST",
+      data: JSON.stringify(params),
+     })
      .done(function(json) {
        json = eval(json);   
       try {
