@@ -35,7 +35,7 @@ Blockly.JavaScript['ws2812_expansion_1to24'] = function (block) {
   code += variable_ws2812+".setColor("+colorcode+");\n"; 
   */
   
-  return variable_ws2812+".off();\n"+code;
+  return variable_ws2812+".off();\nawait delay(0.1);\n"+code;
 };
 
 Blockly.JavaScript['ws2812_expansion_1to8'] = function (block) {
@@ -62,8 +62,8 @@ Blockly.JavaScript['ws2812_expansion_1to8'] = function (block) {
   }
   //console.log(colorcode);
   if (colorcode!="") colorcode = colorcode.substr(0,colorcode.length-1)
-  code = variable_ws2812+".off();\n"+variable_ws2812+".setColor("+colorcode+");\n";
-   return code;
+  code = variable_ws2812+".setColor("+colorcode+");\n";
+  return variable_ws2812+".off();\nawait delay(0.1);\n"+code;
 };
 
 Blockly.JavaScript['ws2812_expansion_9to16'] = function (block) {
@@ -79,7 +79,7 @@ Blockly.JavaScript['ws2812_expansion_9to16'] = function (block) {
           code += variable_ws2812+".setColor("+i+","+value_color+");\n";
       }
   }
-   return variable_ws2812+".off();\n"+code;
+   return variable_ws2812+".off();\nawait delay(0.1);\n"+code;
 };
 
 Blockly.JavaScript['ws2812_expansion_17to24'] = function (block) {
@@ -95,5 +95,5 @@ Blockly.JavaScript['ws2812_expansion_17to24'] = function (block) {
           code += variable_ws2812+".setColor("+i+","+value_color+");\n";
       }
   }
-   return variable_ws2812+".off();\n"+code;
+   return variable_ws2812+".off();\nawait delay(0.1);\n"+code;
 };
