@@ -91,7 +91,17 @@ Blockly.Blocks['azure_facedetection_get_persondata_property'] = {
 		["facialHair_moustache","facialHair_moustache"],
 		["facialHair_beard","facialHair_beard"], 
 		["facialHair_sideburns","facialHair_sideburns"], 
-		["glasses","glasses"]	  
+		["glasses","glasses"],
+		["blur_Level","blur_Level"],
+		["blur_value","blur_value"], 
+		["exposure_Level","exposure_Level"],
+		["exposure_value","exposure_value"], 
+		["noise_Level","noise_Level"],
+		["noise_value","noise_value"], 
+		["eye_Makeup","eye_Makeup"],
+		["lip_Makeup","lip_Makeup"], 
+		["accessories_type","accessories_type"],
+		["accessories_confidence","accessories_confidence"]
   	]), "property_"); 	  
   this.setInputsInline(true);
   this.setOutput(true, null);
