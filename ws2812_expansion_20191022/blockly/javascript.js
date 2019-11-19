@@ -45,9 +45,10 @@ Blockly.JavaScript['ws2812_expansion_1to4'] = function (block) {
   var colorcode = "";
   var j=0;
   for (var i=0;i<=3;i++) {
-      if (value_color.indexOf("#000000")==-1&&value_color!="") {
-        j=i;
-      }
+    var value_color = Blockly.JavaScript.valueToCode(block, 'color'+i+'_', Blockly.JavaScript.ORDER_ATOMIC); 
+    if (value_color.indexOf("#000000")==-1&&value_color!="") {
+      j=i;
+    }
   }
   for (var i=0;i<=j;i++) {
     var value_color = Blockly.JavaScript.valueToCode(block, 'color'+i+'_', Blockly.JavaScript.ORDER_ATOMIC); 
