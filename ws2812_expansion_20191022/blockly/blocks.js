@@ -84,6 +84,33 @@ Blockly.Blocks['ws2812_expansion_1to24'] = {
   }
 };
 
+
+Blockly.Blocks['ws2812_expansion_1to4'] = {
+  init: function() {
+    this.appendDummyInput() 
+        .appendField(new Blockly.FieldVariable('ws2812'), 'ws2812_');
+    this.appendDummyInput()     
+        .appendField("red ←→ green")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "change_");
+    this.appendValueInput("color0_")
+        .appendField("1")
+        .setCheck("Colour"); 
+    this.appendValueInput("color1_")
+        .appendField("2")
+        .setCheck("Colour"); 
+    this.appendValueInput("color2_")
+        .appendField("3")
+        .setCheck("Colour"); 
+    this.appendValueInput("color3_")
+        .appendField("4")
+        .setCheck("Colour"); 
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(300);
+  }
+};
+
 Blockly.Blocks['ws2812_expansion_1to8'] = {
   init: function() {
     this.appendDummyInput() 
