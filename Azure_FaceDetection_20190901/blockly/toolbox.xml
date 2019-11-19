@@ -44,13 +44,6 @@
   </block>    
   <block type="azure_facedetection_get">
   </block> 
-  <block type="azure_facedetection_get_persondata">
-    <value name="index_">
-      <block type="math_number">
-        <field name="NUM">1</field>
-      </block>
-    </value>     
-  </block> 
   <block type="azure_facedetection_get_persondata_property">
     <value name="index_">
       <block type="math_number">
