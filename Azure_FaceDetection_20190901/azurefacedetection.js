@@ -108,7 +108,47 @@ function azurefacedetection_get_persondata_property(input_index,input_property){
         return sideburns;
       }	  	
       else if (input_property=="glasses")
-        return data[12];		    
+        return data[12];
+      else if (input_property=="blur_Level") {
+	var Level =  data[13].split("_")[0];     
+        return Level;
+      }
+      else if (input_property=="blur_value") {
+	var value =  data[13].split("_")[1];     
+        return value;
+      }
+      else if (input_property=="exposure_Level") {
+	var Level =  data[14].split("_")[0];     
+        return Level;
+      }
+      else if (input_property=="exposure_value") {
+	var value =  data[14].split("_")[1];     
+        return value;
+      }
+      else if (input_property=="noise_Level") {
+	var Level =  data[15].split("_")[0];     
+        return Level;
+      }
+      else if (input_property=="noise_value") {
+	var value =  data[15].split("_")[1];     
+        return value;
+      }
+      else if (input_property=="eye_Makeup") {
+	var Makeup =  data[16].split("_")[0];     
+        return Makeup;
+      }
+      else if (input_property=="lip_Makeup") {
+	var Makeup =  data[16].split("_")[1];     
+        return Makeup;
+      }	    
+      else if (input_property=="accessories_type") {
+	var type =  data[17].split("_")[0];     
+        return type;
+      }
+      else if (input_property=="accessories_confidence") {
+	var confidence =  data[17].split("_")[1];     
+        return confidence;
+      }    
     }
     else
       return "";
