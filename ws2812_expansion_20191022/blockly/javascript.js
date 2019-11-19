@@ -79,7 +79,14 @@ Blockly.JavaScript['ws2812_expansion_1to8'] = function (block) {
   var change = (block.getFieldValue('change_') == 'TRUE')?"1":"0";
   var code = "";
   var colorcode = "";
+  var j=0;
   for (var i=0;i<=7;i++) {
+    var value_color = Blockly.JavaScript.valueToCode(block, 'color'+i+'_', Blockly.JavaScript.ORDER_ATOMIC); 
+    if (value_color.indexOf("#000000")==-1&&value_color!="") {
+      j=i;
+    }
+  }  
+  for (var i=0;i<=j;i++) {
     var value_color = Blockly.JavaScript.valueToCode(block, 'color'+i+'_', Blockly.JavaScript.ORDER_ATOMIC); 
     if (value_color!=""||value_color.indexOf("colour_")!=-1) {
       if (change==1) {
