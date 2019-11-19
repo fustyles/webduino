@@ -107,13 +107,21 @@ Blockly.JavaScript['ws2812_expansion_9to16'] = function (block) {
   var change = (block.getFieldValue('change_') == 'TRUE')?"1":"0";
   var code = "";
   for (var i=8;i<=15;i++) {
-      var value_color = Blockly.JavaScript.valueToCode(block, 'color'+i+'_', Blockly.JavaScript.ORDER_ATOMIC);  
-      if (value_color!=""||value_color.indexOf("colour_")!=-1) {
-        if (change==1)
-          code += variable_ws2812+".setColor("+i+",'#'+"+value_color+".substr(4,2)+"+value_color+".substr(2,2)+"+value_color+".substr(6,2));\n";
-        else
-          code += variable_ws2812+".setColor("+i+","+value_color+");\n";
+    var value_color = Blockly.JavaScript.valueToCode(block, 'color'+i+'_', Blockly.JavaScript.ORDER_ATOMIC);  
+    if (value_color!=""||value_color.indexOf("colour_")!=-1) {
+      if (change==1) {
+        if (i<10)
+          colorcode += "'0"+i+"'+"+value_color+".substr(3,2)+"+value_color+".substr(1,2)+"+value_color+".substr(5,2)+";
+        else 
+          colorcode += "'"+i+"'+"+value_color+".substr(3,2)+"+value_color+".substr(1,2)+"+value_color+".substr(5,2)+";
       }
+      else {
+        if (i<10)
+          colorcode += "'0"+i+"'+"+value_color+".substr(1,6)+";
+        else
+          colorcode += "'"+i+"'+"+value_color+".substr(1,6)+";
+      }
+    }
   }
    return code;
 };
@@ -123,13 +131,21 @@ Blockly.JavaScript['ws2812_expansion_17to24'] = function (block) {
   var change = (block.getFieldValue('change_') == 'TRUE')?"1":"0";
   var code = "";
   for (var i=16;i<=23;i++) {
-      var value_color = Blockly.JavaScript.valueToCode(block, 'color'+i+'_', Blockly.JavaScript.ORDER_ATOMIC);  
-      if (value_color!=""||value_color.indexOf("colour_")!=-1) {
-        if (change==1)
-          code += variable_ws2812+".setColor("+i+",'#'+"+value_color+".substr(4,2)+"+value_color+".substr(2,2)+"+value_color+".substr(6,2));\n";
-        else
-          code += variable_ws2812+".setColor("+i+","+value_color+");\n";
+    var value_color = Blockly.JavaScript.valueToCode(block, 'color'+i+'_', Blockly.JavaScript.ORDER_ATOMIC);  
+    if (value_color!=""||value_color.indexOf("colour_")!=-1) {
+      if (change==1) {
+        if (i<10)
+          colorcode += "'0"+i+"'+"+value_color+".substr(3,2)+"+value_color+".substr(1,2)+"+value_color+".substr(5,2)+";
+        else 
+          colorcode += "'"+i+"'+"+value_color+".substr(3,2)+"+value_color+".substr(1,2)+"+value_color+".substr(5,2)+";
       }
+      else {
+        if (i<10)
+          colorcode += "'0"+i+"'+"+value_color+".substr(1,6)+";
+        else
+          colorcode += "'"+i+"'+"+value_color+".substr(1,6)+";
+      }
+    }
   }
    return code;
 };
