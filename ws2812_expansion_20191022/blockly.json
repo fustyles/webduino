@@ -1,5 +1,5 @@
 {
-  "types": ["ws2812_expansion_1to24","ws2812_expansion_1to8","ws2812_expansion_9to16","ws2812_expansion_17to24"],
+  "types": ["ws2812_expansion_1to24","ws2812_expansion_1to4","ws2812_expansion_1to8","ws2812_expansion_9to16","ws2812_expansion_17to24"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
