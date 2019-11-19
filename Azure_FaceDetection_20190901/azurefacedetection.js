@@ -94,7 +94,21 @@ function azurefacedetection_get_persondata_property(input_index,input_property){
       else if (input_property=="headPose_yaw") {
 	var yaw =  data[10].split("_")[2];     
         return yaw;
-      }	    
+      }	   
+      else if (input_property=="facialHair_moustache") {
+	var moustache =  data[11].split("_")[0];     
+        return moustache;
+      }
+      else if (input_property=="facialHair_beard") {
+	var beard =  data[11].split("_")[1];     
+        return beard;
+      }
+      else if (input_property=="facialHair_sideburns") {
+	var sideburns =  data[11].split("_")[2];     
+        return sideburns;
+      }	  	
+      else if (input_property=="glasses")
+        return data[12];		    
     }
     else
       return "";
