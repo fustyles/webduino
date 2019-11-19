@@ -80,7 +80,21 @@ function azurefacedetection_get_persondata_property(input_index,input_property){
       else if (input_property=="age")
         return data[7];	 	
       else if (input_property=="emotion")
-        return data[8];	           
+        return data[8];	
+      else if (input_property=="smile")
+        return data[9];		
+      else if (input_property=="headPose_pitch") {
+	var pitch =  data[10].split("_")[0];     
+        return pitch;
+      }
+      else if (input_property=="headPose_roll") {
+	var roll =  data[10].split("_")[1];     
+        return roll;
+      }
+      else if (input_property=="headPose_yaw") {
+	var yaw =  data[10].split("_")[2];     
+        return yaw;
+      }	    
     }
     else
       return "";
