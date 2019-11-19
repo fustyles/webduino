@@ -6,9 +6,9 @@ Blockly.JavaScript['ws2812_expansion_1to24'] = function (block) {
       var value_color = Blockly.JavaScript.valueToCode(block, 'color'+i+'_', Blockly.JavaScript.ORDER_ATOMIC);  
       if ((value_color.indexOf("#000000")==-1&&value_color!="")||value_color.indexOf("colour_")!=-1) {
         if (change==1)
-          code += variable_ws2812+".off();\n"+variable_ws2812+".setColor("+i+",'#'+"+value_color+".substr(3,2)+"+value_color+".substr(1,2)+"+value_color+".substr(5,2));\n";
+          code += variable_ws2812+".setColor("+i+",'#'+"+value_color+".substr(3,2)+"+value_color+".substr(1,2)+"+value_color+".substr(5,2));\n";
         else
-          code += variable_ws2812+".off();\n"+variable_ws2812+".setColor("+i+","+value_color+");\n";
+          code += variable_ws2812+".setColor("+i+","+value_color+");\n";
       }
   }
   
@@ -35,7 +35,7 @@ Blockly.JavaScript['ws2812_expansion_1to24'] = function (block) {
   code += variable_ws2812+".setColor("+colorcode+");\n"; 
   */
   
-  return code;
+  return variable_ws2812+".off();\n"+code;
 };
 
 Blockly.JavaScript['ws2812_expansion_1to8'] = function (block) {
