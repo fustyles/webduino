@@ -83,7 +83,11 @@ Blockly.Blocks['azure_facedetection_get_persondata_property'] = {
 		["height","height"], 
 		["gender","gender"],
 		["age","age"], 
-		["emotion","emotion"]  
+		["emotion","emotion"],
+		["smile","smile"], 
+		["headPose_pitch","headPose_pitch"], 
+		["headPose_roll","headPose_roll"], 
+		["headPose_yaw","headPose_yaw"]	  
   	]), "property_"); 	  
   this.setInputsInline(true);
   this.setOutput(true, null);
