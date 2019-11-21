@@ -173,7 +173,7 @@ function azurefacedetection_video(input_width, input_height, input_result, input
 function DetectVideo() {
   if (faceDetection_key == ""||faceDetection_url == "") return;    
 
-  video.style.display = "none";
+  //video.style.display = "none";
   canvas.style.display = "block";
   if (imageUrl=="") {
     canvas.setAttribute("width", video.width);
