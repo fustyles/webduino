@@ -349,12 +349,12 @@ function DetectVideo() {
           faceDetection_result = "";
 	  console.log(e);
 	}
-
-
     if (faceDetection_result=="") faceDetection_result = "nobody";
     console.log(JSON.stringify(json));
     faceDetection_returnResult = faceDetection_result;
     result.innerHTML = JSON.stringify(json);
+    context.scale(0.5,0.5);
+    context.drawImage(canvas, 0, 0, canvas.width, canvas.height);
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, showTime);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
