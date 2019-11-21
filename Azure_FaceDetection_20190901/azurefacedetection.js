@@ -353,11 +353,6 @@ function DetectVideo() {
     console.log(JSON.stringify(json));
     faceDetection_returnResult = faceDetection_result;
     result.innerHTML = JSON.stringify(json);
-    context.scale(0.3,0.3);
-    context.drawImage(canvas, 0, 0, canvas.width, canvas.height);
-    canvas.setAttribute("width", video.width);
-    canvas.setAttribute("height", video.height);
-    context.scale(1,1);
     setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, showTime);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
