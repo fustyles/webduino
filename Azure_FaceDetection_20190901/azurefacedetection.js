@@ -198,6 +198,8 @@ function DetectVideo() {
     var img = document.createElement("img");
     img.setAttribute("src", imageUrl);
     img.onload = function(event) {
+      img.setAttribute("width", video.width);
+      img.setAttribute("height", video.height); 
       canvas.setAttribute("width", img.width);
       canvas.setAttribute("height", img.height); 	    
       context.drawImage(img, 0, 0, img.width, img.height);
