@@ -357,7 +357,7 @@ function DetectVideo() {
     result.innerHTML = JSON.stringify(json);
     canvas.style.display = "none";
     var img = document.createElement("img");
-    img.setAttribute("src", canvas.todataURL);
+    img.setAttribute("src", canvas.toDataURL('image/jpeg'));
     img.onload = function(event) {
       img.setAttribute("width", video.width);
       img.setAttribute("height", video.height); 
