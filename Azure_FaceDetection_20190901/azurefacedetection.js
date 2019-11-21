@@ -355,15 +355,7 @@ function DetectVideo() {
     console.log(JSON.stringify(json));
     faceDetection_returnResult = faceDetection_result;
     result.innerHTML = JSON.stringify(json);
-    
-    var img = document.createElement("img");
-    img.setAttribute("src", canvas.toDataURL('image/jpeg'));
-    canvas.style.display = "none";
-    img.onload = function(event) {
-      img.setAttribute("width", video.width);
-      img.setAttribute("height", video.height); 
-      setTimeout(function(){img.remove();video.style.display = "block";}, showTime);
-    }	  
+    setTimeout(function(){canvas.style.display = "none"; video.style.display = "block";}, showTime);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
     faceDetection_result = "nobody";
