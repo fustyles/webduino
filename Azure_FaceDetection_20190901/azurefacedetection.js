@@ -173,7 +173,7 @@ function azurefacedetection_video(input_width, input_height, input_result, input
 function DetectVideo() {
   if (faceDetection_key == ""||faceDetection_url == "") return;    
 
-  //video.style.display = "none";
+  video.style.display = "none";
   canvas.style.display = "block";
   if (imageUrl=="") {
     canvas.setAttribute("width", video.width);
@@ -353,7 +353,7 @@ function DetectVideo() {
     console.log(JSON.stringify(json));
     faceDetection_returnResult = faceDetection_result;
     result.innerHTML = JSON.stringify(json);
-    context.scale(video.width/canvas.width,video.width/canvas.width);
+    context.scale(0.3,0.3);
     context.drawImage(canvas, 0, 0, canvas.width, canvas.height);
     canvas.setAttribute("width", video.width);
     canvas.setAttribute("height", video.height);
