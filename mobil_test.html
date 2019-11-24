@@ -270,34 +270,32 @@
       } 
     }
     
-    if(window.DeviceOrientationEvent) {
-      window.addEventListener('deviceorientation', function(event) {
-        if (document.getElementById('mobile').checked) {
-          var alpha = event.alpha;
-          var beta = event.beta;
-          var gamma = event.gamma;
-          result.innerHTML = "alpha = "+event.alpha+"<br>beta = "+event.beta+"<br>gamma = "+event.gamma;
-          var label = "";
-          if ((alpha<15&&alpha>-15)&&(beta>=15)&&(gamma<15&&gamma>-15)) label = "1"; //前
-          else if ((alpha<15&&alpha>-15)&&(beta<15&&beta>-15)&&(gamma<=-15)) label = "2"; //左
-          else if ((alpha<15&&alpha>-15)&&(beta<15&&beta>-15)&&(gamma<15&&gamma>-15)) label = "3"; //停
-          else if ((alpha<15&&alpha>-15)&&(beta<15&&beta>-15)&&(gamma>=15)) label = "4"; //右
-          else if ((alpha<15&&alpha>-15)&&(beta<=-15)&&(gamma<15&&gamma>-15)) label = "5"; //後
-          else if ((alpha<15&&alpha>-15)&&(beta>=15)&&(gamma<=-15)) label = "6"; //左前
-          else if ((alpha<15&&alpha>-15)&&(beta>=15)&&(gamma>=15)) label = "7"; //右前
-          else if ((alpha<15&&alpha>-15)&&(beta<=-15)&&(gamma<=-15)) label = "8"; //左後
-          else if ((alpha<15&&alpha>-15)&&(beta<=-15)&&(gamma>=15)) label = "9"; //右後
-                                                                                                                          
-          if (message.innerHTML==label) return;
-          message.innerHTML= label;
-          ifr.src = document.getElementById('ip').value+'/control?var=car&val='+label;
-        }
-      }, false);
-      result.innerHTML = "Mobile";
-      console.log("Mobile");
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', deviceOrientationHandler, false);
     }
-    else {
-      result.innerHTML = "Not Mobile";
-      console.log("Not Mobile");
+    else
+      result.innerHTML = "No DeviceOrientationEvent";
+
+    function deviceOrientationHandler() {
+      if (document.getElementById('mobile').checked) {
+        var alpha = event.alpha;
+        var beta = event.beta;
+        var gamma = event.gamma;
+        result.innerHTML = "alpha = "+event.alpha+"<br>beta = "+event.beta+"<br>gamma = "+event.gamma;
+        var label = "";
+        if ((alpha<15&&alpha>-15)&&(beta<=-15)&&(gamma<15&&gamma>-15)) label = "1"; //前
+        else if ((alpha<15&&alpha>-15)&&(beta<15&&beta>-15)&&(gamma<=-15)) label = "2"; //左
+        else if ((alpha<15&&alpha>-15)&&(beta<15&&beta>-15)&&(gamma<15&&gamma>-15)) label = "3"; //停
+        else if ((alpha<15&&alpha>-15)&&(beta<15&&beta>-15)&&(gamma>=15)) label = "4"; //右
+        else if ((alpha<15&&alpha>-15)&&(beta>=15)&&(gamma<15&&gamma>-15)) label = "5"; //後
+        else if ((alpha<15&&alpha>-15)&&(beta<=-15)&&(gamma<=-15)) label = "6"; //左前
+        else if ((alpha<15&&alpha>-15)&&(beta<=-15)&&(gamma>=15)) label = "7"; //右前
+        else if ((alpha<15&&alpha>-15)&&(beta>=15)&&(gamma<=-15)) label = "8"; //左後
+        else if ((alpha<15&&alpha>-15)&&(beta>=15)&&(gamma>=15)) label = "9"; //右後
+                                                                                                                        
+        if (message.innerHTML==label) return;
+        message.innerHTML= label;
+        ifr.src = document.location.origin+'/control?var=car&val='+label;
+      }
     }
   </script>
