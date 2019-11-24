@@ -1,0 +1,10 @@
+<span id="alpha"></span><br>
+<span id="beta"></span><br>
+<span id="gamma"></span><br>
+<script>
+window.addEventListener('deviceorientation', function(event) {
+  document.getElementById("alpha").innerHTML = event.alpha;
+  document.getElementById("beta").innerHTML = event.beta;
+  document.getElementById("gamma").innerHTML = event.gamma;
+}, false);
+</script>
