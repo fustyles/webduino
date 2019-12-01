@@ -17,5 +17,49 @@
         <field name="NUM">240</field>
       </block>
     </value>     
-  </block>   
+  </block> 
+  <block type="posenet_distance">
+    <value name="x0_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="y0_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>    
+    <value name="x1_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="y1_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
+  </block>
+  <block type="posenet_angle">
+    <value name="x0_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="y0_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>    
+    <value name="x1_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="y1_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
+  </block>    
 </category>
