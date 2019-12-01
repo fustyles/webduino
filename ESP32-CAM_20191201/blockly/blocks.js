@@ -33,7 +33,7 @@ Blockly.Blocks['esp32cam_getstill'] = {
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("url"); 
-    this.setInputsInline(false);
+    this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
