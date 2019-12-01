@@ -1,7 +1,7 @@
 Blockly.Blocks['esp32cam_system'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("ESP32-CAM");
+        .appendField("ESP32-CAM System");
     this.appendValueInput("url")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -53,7 +53,7 @@ Blockly.Blocks['esp32cam_manager'] = {
 Blockly.Blocks['esp32cam_custom'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("ESP32-CAM"); 
+        .appendField("ESP32-CAM Custom"); 
     this.appendValueInput("url")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
