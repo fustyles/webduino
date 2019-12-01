@@ -126,6 +126,7 @@ Blockly.Blocks['esp32cam_cmd'] = {
 	["servo(value: 1700 to 8000)","servo"],	  
 	["servo1(value: 1700 to 8000)","servo1"],
 	["servo2(value: 1700 to 8000)","servo2"],
+	["sendCapturedImage2LineNotify(token)","sendCapturedImage2LineNotify"],  
         ["pinMode(pin)","pinmode"],
         ["digitalWrite(pin\,value)","digitalwrite"], 
         ["digitalRead(pin)","digitalread"], 
