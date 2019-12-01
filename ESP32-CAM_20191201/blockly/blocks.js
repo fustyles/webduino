@@ -25,24 +25,14 @@ Blockly.Blocks['esp32cam_system'] = {
   }
 };
 
-Blockly.Blocks['esp32cam_manager'] = {
+Blockly.Blocks['esp32cam_getstill'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("ESP32-CAM Manager");
+        .appendField("ESP32-CAM Get Still");
     this.appendValueInput("url")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("url"); 
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("cmd")
-        .appendField(new Blockly.FieldDropdown([        
-	["saveimage","saveimage"],
-        ["getstill","getstill"], 
-        ["listimages","listimages"], 
-        ["showimage","showimage"], 
-        ["deleteimage","deleteimage"]
-	]), "cmd");
     this.setInputsInline(false);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
