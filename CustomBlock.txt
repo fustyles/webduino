@@ -20,9 +20,9 @@ ESP32-CAM  (雲端平台網址須由https改成http)
 https://fustyles.github.io/webduino/ESP32-CAM_20191201/blockly.json
 [Smart]
 http://blocklypro.webduino.io/#XBBKx0dY0Y
-[bit]
+[Bit]
 http://bit.webduino.io/blockly/#XRODNd2k6BJqn
-[esp32-cam Firmware]
+[ESP32-CAM Firmware]
 https://github.com/fustyles/Arduino/tree/master/ESP32-CAM_MyBlockly_JSON
 
 
