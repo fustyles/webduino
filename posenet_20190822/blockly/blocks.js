@@ -101,3 +101,55 @@ Blockly.Blocks['posenet_video'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['posenet_distance'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_DISTANCE_SHOW);
+  this.appendValueInput("x0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("X0");
+  this.appendValueInput("y0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Y0"); 
+  this.appendValueInput("x1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("X1");
+  this.appendValueInput("y1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Y1");     
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['posenet_angle'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_ANGLE_SHOW);
+  this.appendValueInput("x0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("X0");
+  this.appendValueInput("y0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Y0"); 
+  this.appendValueInput("x1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("X1");
+  this.appendValueInput("y1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Y1");     
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
