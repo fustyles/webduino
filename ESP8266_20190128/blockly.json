@@ -1,5 +1,5 @@
 {
-  "types": ["esp8266_system","esp8266_custom","esp8266_car","esp8266_cmd","esp8266_getresponse","esp8266_clearresponse"],
+  "types": ["esp8266_system","esp8266_custom","esp8266_car","esp32cam_car_state","esp8266_cmd","esp8266_getresponse","esp8266_clearresponse"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
