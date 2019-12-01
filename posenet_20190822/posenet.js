@@ -26,8 +26,18 @@
     document.getElementById('skeleton').value = input_skeleton;
     document.getElementById('opacity').value = input_opacity;
   }
+	
+  function posenet_distance(input_x0,input_y0,input_x1,input_y1) {
+      return Math.sqrt(Math.pow((input_x1-input_x0), 2) + Math.pow((input_y1-input_y0), 2));
+  } 	
+	
+  function posenet_angle(input_x0,input_y0,input_x1,input_y1) {
+      return (Math.atan((input_y1-input_y0)/(input_x1-input_x0)) / Math.PI) * 180;
+  } 	
 
   window.posenet_person = posenet_person;
   window.posenet_video = posenet_video;
+  window.posenet_distance = posenet_distance;
+  window.posenet_angle = posenet_angle;	
 	
 }(window, window.document));
