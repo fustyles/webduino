@@ -107,7 +107,7 @@ Blockly.Blocks['esp32cam_car'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("state")
         .appendField(new Blockly.FieldDropdown([["Front","1"], ["Left","2"], ["Stop","3"], ["Right","4"], ["Back","5"], ["FrontLeft","6"], ["FrontRight","7"], ["LeftAfter","8"], ["RightAfter","9"]]), "state");
-    this.setInputsInline(false);
+    this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
