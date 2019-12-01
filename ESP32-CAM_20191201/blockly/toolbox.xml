@@ -16,7 +16,7 @@
           </block>
         </value>
     </block>
-    <block type="esp32cam_manager">
+    <block type="esp32cam_getstill">
         <value name="url">
           <block type="text">
             <field name="TEXT">http://</field>
