@@ -7,7 +7,7 @@ https://fustyles.github.io/webduino/ESP32-CAM_20191201/blockly.json
 [Smart]
 http://blocklypro.webduino.io/#XBBKx0dY0Y
 [bit]
-http://bit.webduino.io/blockly/#jqwMYXvEwvnyO
+http://bit.webduino.io/blockly/#XRODNd2k6BJqn
 [esp32-cam Firmware]
 https://github.com/fustyles/Arduino/tree/master/ESP32-CAM_MyBlockly_JSON
 
