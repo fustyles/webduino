@@ -129,13 +129,13 @@ Blockly.Blocks['esp32cam_cmd'] = {
   this.appendDummyInput()
       .appendField("cmd")
       .appendField(new Blockly.FieldDropdown([
-	["flash(value)","flash"],
-	["speedL(value)","speedL"],
-	["speedR(value)","speedR"],
+	["flash(value: 0 to 255)","flash"],
+	["speedL(value: 0 to 255)","speedL"],
+	["speedR(value: 0 to 255)","speedR"],
 	["decelerate(value \%)","decelerate"],
-	["servo(value)","servo"],	  
-	["servo1(value)","servo1"],
-	["servo2(value)","servo2"],
+	["servo(value: 1700 to 8000)","servo"],	  
+	["servo1(value: 1700 to 8000)","servo1"],
+	["servo2(value: 1700 to 8000)","servo2"],
         ["pinMode(pin)","pinmode"],
         ["digitalWrite(pin\,value)","digitalwrite"], 
         ["digitalRead(pin)","digitalread"], 
