@@ -8,3 +8,5 @@ Blockly.Msg.POSENET_RESULT_SHOW = "Result";
 Blockly.Msg.POSENET_SCORELIMIT_SHOW = "Score Limit";
 Blockly.Msg.POSENET_SKELETON_SHOW = "Skeleton";
 Blockly.Msg.POSENET_OPACITY_SHOW = "Opacity";
+Blockly.Msg.POSENET_DISTANCE_SHOW = "Distance";
+Blockly.Msg.POSENET_ANGLE_SHOW = "Angle";
