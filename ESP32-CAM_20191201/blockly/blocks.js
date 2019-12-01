@@ -37,11 +37,12 @@ Blockly.Blocks['esp32cam_manager'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("cmd")
         .appendField(new Blockly.FieldDropdown([        
-		["saveimage","saveimage"],
+	["saveimage","saveimage"],
         ["getstill","getstill"], 
         ["listimages","listimages"], 
         ["showimage","showimage"], 
-        ["deleteimage","deleteimage"]
+        ["deleteimage","deleteimage"],
+	["servo(pin\,value)","servo"]
 		]), "cmd");
     this.setInputsInline(false);
     this.setPreviousStatement(true);
