@@ -39,7 +39,7 @@ Blockly.JavaScript['esp32cam_custom'] = function(block) {
 Blockly.JavaScript['esp32cam_car'] = function(block) {
   var value_url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC);
   var value_state = block.getFieldValue('state');
-  var code = "esp32cam_car("+value_url+",'car','"+value_state+"','stop','','','','','','','');\n";
+  var code = "esp32cam_sendCommand("+value_url+",'car','"+value_state+"','stop','','','','','','','');\n";
   return code;
 };
 
