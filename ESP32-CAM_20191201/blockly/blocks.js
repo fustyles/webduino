@@ -143,9 +143,7 @@ Blockly.Blocks['esp32cam_cmd'] = {
         ["ifttt(event\,key\,value1\,value2\,value3)","ifttt"],
         ["thingspeakupdate(key\,field1\,field2\,field3\,field4\,field5\,field6\,field7\,field8)","thingspeakupdate"],
         ["thingspeakread(request)","thingspeakread"],
-        ["linenotify(token\,request)","linenotify"],
-        ["car(pinL1\,pinL2\,pinR1\,pinR2\,L_speed\,R_speed\,Delay\,state)","car"],
-        ["i2cLcd(address\,gpioSDA\,gpioSCL\,text1\,text2\) or (address\,text1\,text2\)","i2cLcd"]
+        ["linenotify(token\,request)","linenotify"]
       ]), "cmd");
   this.setInputsInline(true);
   this.setOutput(true, null); 
