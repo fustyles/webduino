@@ -41,8 +41,7 @@ Blockly.Blocks['esp32cam_manager'] = {
         ["getstill","getstill"], 
         ["listimages","listimages"], 
         ["showimage","showimage"], 
-        ["deleteimage","deleteimage"],
-	["servo(pin\,value)","servo"]
+        ["deleteimage","deleteimage"]
 		]), "cmd");
     this.setInputsInline(false);
     this.setPreviousStatement(true);
@@ -130,6 +129,13 @@ Blockly.Blocks['esp32cam_cmd'] = {
   this.appendDummyInput()
       .appendField("cmd")
       .appendField(new Blockly.FieldDropdown([
+	["flash(value)","flash"],
+	["speedL(value)","speedL"],
+	["speedR(value)","speedR"],
+	["decelerate(value \%)","decelerate"],
+	["servo(value)","servo"],	  
+	["servo1(value)","servo1"],
+	["servo2(value)","servo2"],
         ["pinMode(pin)","pinmode"],
         ["digitalWrite(pin\,value)","digitalwrite"], 
         ["digitalRead(pin)","digitalread"], 
