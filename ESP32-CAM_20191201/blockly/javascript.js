@@ -7,10 +7,9 @@ Blockly.JavaScript['esp32cam_system'] = function(block) {
   return code;
 };
 
-Blockly.JavaScript['esp32cam_manager'] = function(block) {
+Blockly.JavaScript['esp32cam_getstill'] = function(block) {
   var value_url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_cmd = block.getFieldValue('cmd');
-  var code = "esp32cam_manager("+value_url+",'"+value_cmd+"');\n";
+  var code = "esp32cam_getstill("+value_url+");\n";
   return code;
 };
 
