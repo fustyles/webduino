@@ -76,7 +76,7 @@ function esp32cam_clearData() {
 }
 
   window.esp32cam_sendCommand = esp32cam_sendCommand;
-  window.esp32cam_manager = esp32cam_manager;
+  window.esp32cam_getstill = esp32cam_getstill;
   window.esp32cam_getResponse = esp32cam_getResponse;
   window.esp32cam_clearData = esp32cam_clearData;
   
