@@ -1,0 +1,14 @@
+{
+  "types": ["esp32cam_system","esp32cam_custom","esp32cam_car","esp32cam_manager","esp32cam_cmd","esp32cam_getresponse","esp32cam_clearresponse"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "esp32cam.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
