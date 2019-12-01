@@ -42,7 +42,7 @@ Blockly.Blocks['esp32cam_manager'] = {
         ["listimages","listimages"], 
         ["showimage","showimage"], 
         ["deleteimage","deleteimage"]
-		]), "cmd");
+	]), "cmd");
     this.setInputsInline(false);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
