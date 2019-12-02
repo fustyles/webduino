@@ -48,6 +48,8 @@ function esp32cam_getstill(url) {
             obj.id = "gameimage_getstill";
             obj.src = json[0]["data"];
             obj.style.zIndex = 9999;
+            obj.style.left = '0px';
+            obj.style.top = '0px';
             obj.draggable="true";
             obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
             document.body.appendChild(obj); 
