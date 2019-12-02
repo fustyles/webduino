@@ -1,5 +1,5 @@
 {
-  "types": ["esp32cam_system","esp32cam_custom","esp32cam_car","esp32cam_getstill","esp32cam_cmd","esp32cam_getresponse","esp32cam_clearresponse"],
+  "types": ["esp32cam_system","esp32cam_custom","esp32cam_car","esp32cam_getstill","esp32cam_cmd","esp32cam_getangle","esp32cam_getresponse","esp32cam_clearresponse"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
