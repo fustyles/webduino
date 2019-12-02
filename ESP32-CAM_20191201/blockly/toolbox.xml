@@ -87,7 +87,14 @@
         </value>    
     </block>       
     <block type="esp32cam_cmd">
-    </block>   	 
+    </block> 
+    <block type="esp32cam_getangle">
+        <value name="angle">
+          <block type="math_number">
+            <field name="NUM">90</field>
+          </block>
+        </value>          
+    </block>     
     <block type="esp32cam_getresponse">
     </block> 
     <block type="esp32cam_clearresponse">
