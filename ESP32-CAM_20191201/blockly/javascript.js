@@ -43,6 +43,12 @@ Blockly.JavaScript['esp32cam_car'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['esp32cam_getangle'] = function(block) {
+  var value_angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = "esp32cam_getAngle("+value_angle+")";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['esp32cam_getresponse'] = function(block) {
   var code = "esp32cam_getResponse()";
   return [code, Blockly.JavaScript.ORDER_NONE];
