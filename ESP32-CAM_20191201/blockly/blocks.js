@@ -155,7 +155,7 @@ Blockly.Blocks['esp32cam_getangle'] = {
         .appendField("Servo Angle (0~180)");
     this.appendValueInput("angle")
         .setCheck("Number"); 	  
-    this.setInputsInline(false);
+    this.setInputsInline(true);
     this.setOutput(true, null); 
     this.setColour(200);
   }
