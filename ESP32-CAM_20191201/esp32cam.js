@@ -37,7 +37,7 @@ function esp32cam_getstill(url) {
       success: function(json)
       {
         json = eval(json);
-        console.log(json);
+        //console.log(json);
         if (json.length>0) {
           //console.log(json[0]["data"]);
           if (document.getElementById("gameimage_getstill"))
