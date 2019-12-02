@@ -149,6 +149,18 @@ Blockly.Blocks['esp32cam_cmd'] = {
   }
 };
 
+Blockly.Blocks['esp32cam_getangle'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Servo Angle (0~180)");
+    this.appendValueInput("angle")
+        .setCheck("Number"); 	  
+    this.setInputsInline(false);
+    this.setOutput(true, null); 
+    this.setColour(200);
+  }
+};
+
 Blockly.Blocks['esp32cam_getresponse'] = {
   init: function() {
     this.appendDummyInput()
