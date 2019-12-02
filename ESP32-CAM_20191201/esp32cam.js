@@ -63,6 +63,10 @@ function esp32cam_getstill(url) {
       }
    });
 }
+  
+function esp32cam_getAngle(val) {
+  return 1700+(8000-1700)*val/180;
+}
 
 function esp32cam_getResponse() {
  if (esp32cam_getstate == false) {
@@ -80,6 +84,7 @@ function esp32cam_clearData() {
 
   window.esp32cam_sendCommand = esp32cam_sendCommand;
   window.esp32cam_getstill = esp32cam_getstill;
+  window.esp32cam_getAngle = esp32cam_getAngle;
   window.esp32cam_getResponse = esp32cam_getResponse;
   window.esp32cam_clearData = esp32cam_clearData;
   
