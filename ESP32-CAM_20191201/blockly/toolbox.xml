@@ -23,6 +23,13 @@
           </block>
         </value>    
     </block>
+    <block type="esp32cam_stream">
+        <value name="url">
+          <block type="text">
+            <field name="TEXT">http://192.168.xxx.xxxx:81</field>
+          </block>
+        </value>    
+    </block>    
     <block type="esp32cam_custom">
         <value name="url">
           <block type="text">
