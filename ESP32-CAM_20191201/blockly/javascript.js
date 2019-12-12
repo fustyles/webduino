@@ -15,7 +15,7 @@ Blockly.JavaScript['esp32cam_getstill'] = function(block) {
 
 Blockly.JavaScript['esp32cam_stream'] = function(block) {
   var value_url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = '"<img id="gameimage_stream" src='+value_url+'>"';
+  var code = '"<img id=''gameimage_stream'' src='+value_url+'>"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
