@@ -13,6 +13,12 @@ Blockly.JavaScript['esp32cam_getstill'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['esp32cam_stream'] = function(block) {
+  var value_url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = "<img src='"+value_url+"'>";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['esp32cam_custom'] = function(block) {
   var value_url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC);
   var value_cmd = Blockly.JavaScript.valueToCode(block, 'cmd', Blockly.JavaScript.ORDER_ATOMIC);
