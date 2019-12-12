@@ -6,7 +6,7 @@ var esp32cam_Response=[];
 var esp32cam_getstate = false;
 
 function esp32cam_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str9) {
-  Response=[];
+  esp32cam_Response=[];
   var data = $.ajax({
       "type": "POST",
       "dataType": "json",
@@ -29,7 +29,6 @@ function esp32cam_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,st
 }
 
 function esp32cam_getstill(url) {
-  Response=[];
   var data = $.ajax({
       "type": "POST",
       "dataType": "json",
