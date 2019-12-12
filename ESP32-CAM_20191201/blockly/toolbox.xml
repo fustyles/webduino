@@ -98,5 +98,54 @@
     <block type="esp32cam_getresponse">
     </block> 
     <block type="esp32cam_clearresponse">
-    </block>     
+    </block>  
+  <block type="controls_whileUntil" id="sV@C8N:u~MCjkfM{^D2," x="38" y="-188">
+    <field name="MODE">WHILE</field>
+    <value name="BOOL">
+      <block type="logic_boolean" id="E?u8?6r@doM0!lk+OSu:">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>
+    <statement name="DO">
+      <block type="variables_set" id="(ds2]{esCkIQo1t+Bk^#">
+        <field name="VAR">Data</field>
+        <value name="VALUE">
+          <block type="esp32cam_getresponse" id="o4|KJr]PU+m?dFC]qK[`"></block>
+        </value>
+        <next>
+          <block type="controls_if" id="NQ^@j*;w[ub1;5f9=gn]">
+            <value name="IF0">
+              <block type="logic_compare" id=";rSy~[jTIRUMB;IF*Ptq">
+                <field name="OP">NEQ</field>
+                <value name="A">
+                  <block type="variables_get" id="rk1In0[zf:-ML/jp|L/.">
+                    <field name="VAR">Data</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="text" id=")lPOFDv8?*1k8t.94(Eu">
+                    <field name="TEXT"></field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="controls_flow_statements" id="tX/Bv|#z`ek5URDbC!9,">
+                <field name="FLOW">BREAK</field>
+              </block>
+            </statement>
+            <next>
+              <block type="delay" id="5QlEXAZn[J2_I=~ud)I*">
+                <value name="secs_">
+                  <block type="math_number" id="bQ9.L]`Uz7s;u:_US#)D">
+                    <field name="NUM">0.01</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>    
 </category>
