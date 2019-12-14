@@ -10,8 +10,9 @@ function esp32cam_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,st
   esp32cam_Response=[];
   var data = $.ajax({
       "type": "POST",
-      "async": true,
-      "crossDomain": true,
+      "async": true, 
+      "cache": true, 
+      "crossDomain": true 
       "dataType": "json",
       "url": url+"?"+cmd+"="+str1+";"+str2+";"+str3+";"+str4+";"+str5+";"+str6+";"+str7+";"+str8+";"+str9,
       success: function(json)
@@ -35,8 +36,9 @@ function esp32cam_getstill(url) {
   //console.log(url+"?getstill");
   var data = $.ajax({
       "type": "POST",
-      "async": true,
-      "crossDomain": true,
+      "async": true, 
+      "cache": true, 
+      "crossDomain": true 
       "dataType": "json",
       "url": url+"?getstill",
       success: function(json)
