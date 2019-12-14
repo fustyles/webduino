@@ -9,6 +9,7 @@ function esp32cam_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,st
   //console.log(url+"?"+cmd+"="+str1+";"+str2+";"+str3+";"+str4+";"+str5+";"+str6+";"+str7+";"+str8+";"+str9);
   esp32cam_Response=[];
   var data = $.ajax({
+      "headers": {'Access-Control-Allow-Origin': '*'},    
       "type": "POST",
       "async": true, 
       "cache": true, 
@@ -35,6 +36,7 @@ function esp32cam_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,st
 function esp32cam_getstill(url) {
   //console.log(url+"?getstill");
   var data = $.ajax({
+      "headers": {'Access-Control-Allow-Origin': '*'},    
       "type": "POST",
       "async": true, 
       "cache": true, 
