@@ -8,14 +8,16 @@ var esp32cam_getstate = false;
 function esp32cam_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str9) {
   //console.log(url+"?"+cmd+"="+str1+";"+str2+";"+str3+";"+str4+";"+str5+";"+str6+";"+str7+";"+str8+";"+str9);
   esp32cam_Response=[];
-  var data = $.ajax({
-      "headers": {'Access-Control-Allow-Origin': '*'},     
+  var data = $.ajax({    
       "type": "POST",
       "async": true, 
       "cache": true, 
       "crossDomain": true,
       "dataType": "json",
       "url": url+"?"+cmd+"="+str1+";"+str2+";"+str3+";"+str4+";"+str5+";"+str6+";"+str7+";"+str8+";"+str9,
+      beforeSend: function(request) {
+          request.setRequestHeader("Access-Control-Allow-Origin", "*");
+      },
       success: function(json)
       {
         json = eval(json);
@@ -36,13 +38,15 @@ function esp32cam_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,st
 function esp32cam_getstill(url) {
   //console.log(url+"?getstill");
   var data = $.ajax({
-      "headers": {'Access-Control-Allow-Origin': '*'},
       "type": "POST",
       "async": true, 
       "cache": true, 
       "crossDomain": true, 
       "dataType": "json",
       "url": url+"?getstill",
+      beforeSend: function(request) {
+          request.setRequestHeader("Access-Control-Allow-Origin", "*");
+      },    
       success: function(json)
       {
         json = eval(json);
