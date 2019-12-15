@@ -165,6 +165,45 @@ Blockly.Blocks['esp32cam_cmd'] = {
   }
 };
 
+Blockly.Blocks['iframe_open'] = {
+  init: function() {
+  this.appendValueInput("openid_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPEN_SHOW)
+      .appendField(Blockly.Msg.OPENID_SHOW);
+  this.appendValueInput("url_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.URL_SHOW);
+  this.appendValueInput("width_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.WIDTH_SHOW);
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.HEIGHT_SHOW);
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LEFT_SHOW);    
+    this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TOP_SHOW); 
+    this.appendValueInput("zindex_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ZINDEX_SHOW);    
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setTooltip('');
+  this.setColour(65);
+  this.setHelpUrl(mainUrl + 'basic/blockly/blockly-information.html' + utmUrl);
+  }
+};
+
 Blockly.Blocks['esp32cam_getangle'] = {
   init: function() {
     this.appendDummyInput()
@@ -194,5 +233,37 @@ Blockly.Blocks['esp32cam_clearresponse'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
+  }
+};
+
+Blockly.Blocks['esp32cam_iframe'] = {
+  init: function() {
+  this.appendValueInput("url_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("ESP32-CAM IFRAME url");
+  this.appendValueInput("width_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("width");
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("height");
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("left");    
+    this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("top"); 
+    this.appendValueInput("zindex_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("z-index");    
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(65);
   }
 };
