@@ -25,6 +25,7 @@ function esp32cam_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,st
       error: function(jqXHR, textStatus, errorThrown)
       {
         //console.log(errorThrown);
+        esp32cam_Response.push("-1");
       }
    });
 }
