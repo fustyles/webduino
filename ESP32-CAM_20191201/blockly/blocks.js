@@ -241,7 +241,7 @@ Blockly.Blocks['esp32cam_iframe'] = {
   this.appendValueInput("url_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("ESP32-CAM IFRAME url");
+      .appendField("ESP32-CAM IFRAME(enable CORS) url");
   this.appendValueInput("width_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
