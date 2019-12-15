@@ -82,11 +82,35 @@ function esp32cam_getResponse() {
 function esp32cam_clearData() {
  esp32cam_Response=[];
 }
+  
+function esp32cam_iframe(input_url,input_width,input_height,input_left,input_top,input_zindex) {
 
-  window.esp32cam_sendCommand = esp32cam_sendCommand;
-  window.esp32cam_getstill = esp32cam_getstill;
-  window.esp32cam_getAngle = esp32cam_getAngle;
-  window.esp32cam_getResponse = esp32cam_getResponse;
-  window.esp32cam_clearData = esp32cam_clearData;
+  var iframe = '<iframe src="' + input_url + '" style="width:' + input_width + 'px;height:' + input_height + 'px" frameborder="0" allow="autoplay; fullscreen; geolocation; microphone; camera"></iframe>';
+
+  if (document.getElementById("gamediv_esp32cam")) {
+        document.getElementById("gamediv_esp32cam").style.left = input_left + 'px';
+        document.getElementById("gamediv_esp32cam").style.top = input_top + 'px';
+        document.getElementById("gamediv_esp32cam").style.zIndex = input_zindex;
+        document.getElementById("gamediv_esp32cam").innerHTML = iframe;
+  }
+  else {
+      var div = document.createElement('div');
+      div.id = "gamediv_esp32cam";
+      div.style.position = 'absolute';      
+      div.style.left = input_left + 'px';
+      div.style.top = input_top + 'px';
+      div.style.zIndex = input_zindex;   
+      div.style.display = 'block';
+      div.innerHTML = iframe;
+      document.body.appendChild(div);
+  }
+}
+
+window.esp32cam_sendCommand = esp32cam_sendCommand;
+window.esp32cam_getstill = esp32cam_getstill;
+window.esp32cam_getAngle = esp32cam_getAngle;
+window.esp32cam_getResponse = esp32cam_getResponse;
+window.esp32cam_clearData = esp32cam_clearData;
+window.esp32cam_iframe = esp32cam_iframe;
   
 }(window, window.document));
