@@ -43,7 +43,7 @@ Blockly.Blocks['esp32cam_getstill'] = {
 Blockly.Blocks['esp32cam_stream'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("ESP32-CAM Get");
+        .appendField("ESP32-CAM Stream/Still");
     this.appendValueInput("url")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
