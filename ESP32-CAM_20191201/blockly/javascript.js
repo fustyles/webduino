@@ -70,3 +70,14 @@ Blockly.JavaScript['esp32cam_clearresponse'] = function(block) {
   var code = "esp32cam_clearData();\n";
   return code;
 };
+
+Blockly.JavaScript['esp32cam_iframe'] = function (block) {
+  var value_url = Blockly.JavaScript.valueToCode(block, 'url_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_width = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_height = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_left = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_= Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_zindex = Blockly.JavaScript.valueToCode(block, 'zindex_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'esp32cam_iframe(' + value_url + ','+ value_width + ',' + value_height + ',' + value_left + ',' + value_top_ + ',' + value_zindex + ');\n';
+  return code;
+};
