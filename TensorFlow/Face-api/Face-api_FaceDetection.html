@@ -116,7 +116,13 @@ let message = document.getElementById('message');
           result.detection.box.bottomRight
         ).draw(canvas)
       })
-      setTimeout(function(){DetectVideo(); }, 100);
+      try { 
+        document.createEvent("TouchEvent");
+        setTimeout(function(){DetectVideo();},250);
+      }
+      catch(e) { 
+        setTimeout(function(){DetectVideo();},150);
+      } 
   }
 </script>
 
