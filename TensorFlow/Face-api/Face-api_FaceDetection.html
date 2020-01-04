@@ -11,25 +11,22 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   <title>Face Detection</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src='face-api.min.js'></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src='face-api.min.js'></script>
 <style>
   #webcam-container {
     padding: 0;
   }
-  
   canvas {
     position: absolute;
     top: 0;
     left: 0;
   }
-
   video {
     position: absolute;
     top: 0;
     left: 0;
   }
-
   #message {
     position: absolute;
     top: 250px;
@@ -50,7 +47,7 @@ let currentStream;
 let displaySize = { width:320, height: 240 }
 let convas;
 let faceDetection;
-let result = document.getElementById('result'); 
+let message = document.getElementById('message'); 
   
   ObjectDetect();  
   
@@ -81,28 +78,26 @@ let result = document.getElementById('result');
         camera.srcObject = stream
         camera.onloadedmetadata = () => {       
           camera.play();
-  		if( document.getElementsByTagName("canvas").length == 0 )
-  		{
-    		canvas = faceapi.createCanvasFromMedia(camera)
-    		document.getElementById('webcam-container').append(canvas)
-    		faceapi.matchDimensions(canvas, displaySize)
-  		}  
-          //camera.style.visibility="hidden";
-          //camera.style.position="absolute";        
+          if( document.getElementsByTagName("canvas").length == 0 )
+          {
+            canvas = faceapi.createCanvasFromMedia(camera)
+            document.getElementById('webcam-container').append(canvas)
+            faceapi.matchDimensions(canvas, displaySize)
+          }  
+          //camera.style.visibility="hidden";     
           DetectVideo();
         }
       })   
   }
                         
   async function DetectVideo() {
-  faceDetection = setInterval(async () => {
-    const detections = await faceapi.detectAllFaces(camera, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
-    const resizedDetections = faceapi.resizeResults(detections, displaySize)
-    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-    faceapi.draw.drawDetections(canvas, resizedDetections)
-    faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-    faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
-    
+    faceDetection = setInterval(async () => {
+      const detections = await faceapi.detectAllFaces(camera, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
+      const resizedDetections = faceapi.resizeResults(detections, displaySize)
+      canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+      faceapi.draw.drawDetections(canvas, resizedDetections)
+      faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+      faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
       resizedDetections.forEach(result => {
         const { age, gender, genderProbability } = result
         message.innerHTML = JSON.stringify(result);
@@ -114,8 +109,7 @@ let result = document.getElementById('result');
           result.detection.box.bottomRight
         ).draw(canvas)
       })
-
-  }, 300)
+    }, 300)
   }
 </script>
 
