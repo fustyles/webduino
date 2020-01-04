@@ -99,7 +99,6 @@ let message = document.getElementById('message');
   }
                         
   async function DetectVideo() {
-    faceDetection = setInterval(async () => {
       const detections = await faceapi.detectAllFaces(camera, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
       const resizedDetections = faceapi.resizeResults(detections, displaySize)
       canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
@@ -117,7 +116,7 @@ let message = document.getElementById('message');
           result.detection.box.bottomRight
         ).draw(canvas)
       })
-    }, 300)
+      setTimeout(function(){DetectVideo(); }, 100);
   }
 </script>
 
