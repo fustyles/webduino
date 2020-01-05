@@ -1,0 +1,216 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/1/5 23:00
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix_video.html
+
+How to enable WebGL in Chrome.
+https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
+-->
+<!DOCTYPE html>
+<head>
+  <title>person and body part partSegmentation (BodyPix)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"> </script> 
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"> </script>  
+</head>
+<body>
+Style
+<select id="kind">
+<option value="1">drawMask</option>
+<option value="2">drawPixelatedMask</option>
+<option value="3">blurBodyPart</option>
+</select>
+<video id="video" width="320" height="240" preload autoplay loop muted></video><br>
+<div id="result" style="width:320px;color:red">Please wait for loading model.</div><br>
+<canvas id="canvas"></canvas><br>
+<canvas id="canvas1"></canvas><br>
+<canvas id="canvas2"></canvas><br>
+<canvas id="canvas3"></canvas><br>  
+<script>
+  var video = document.getElementById('video');
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+  var canvas1 = document.getElementById('canvas1'); 
+  var context1 = canvas1.getContext('2d');
+  var canvas2 = document.getElementById('canvas2');
+  var context2 = canvas2.getContext('2d');
+  var canvas3 = document.getElementById('canvas3');
+  var context3 = canvas3.getContext('2d');
+  var Model;
+  var outputStride = 16;
+  var segmentationThreshold = 0.5;
+
+  ObjectDetect(); 
+  
+  function ObjectDetect() {
+    bodyPix.load().then(function(net) {
+      Model = net;
+      result.innerHTML = ""; 
+      setTimeout(function(){ startvideo(); }, 100);
+    }); 
+  }
+  
+  function startvideo() {
+    video.style.visibility="hidden";
+    video.style.position="absolute";
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+        video: {
+          facingMode: "user",
+          width: 320,
+          height: 240
+        }
+      })
+      .then(stream => {
+        video.srcObject = stream
+        video.onloadedmetadata = () => {       
+          video.play();
+          canvas.setAttribute("width", video.width);
+          canvas.setAttribute("height", video.height);           
+          canvas1.setAttribute("width", video.width);
+          canvas1.setAttribute("height", video.height); 
+          canvas2.setAttribute("width", video.width);
+          canvas2.setAttribute("height", video.height);
+          canvas3.setAttribute("width", video.width);
+          canvas3.setAttribute("height", video.height);
+          setTimeout(function(){DetectVideo(); }, 100);
+        }
+      })   
+  }  
+                        
+async function DetectVideo() {
+  context.translate((canvas.width + video.width) / 2, 0);
+  context.scale(-1, 1);
+  context.drawImage(video, 0, 0, video.width, video.height);
+  context.setTransform(1, 0, 0, 1, 0, 0);  
+
+
+  await Model.segmentMultiPersonParts(canvas, {
+	  flipHorizontal: false,
+	  internalResolution: 'medium',
+	  segmentationThreshold: 0.7,
+	  maxDetections: 10,
+	  scoreThreshold: 0.2,
+	  nmsRadius: 20,
+	  minKeypointScore: 0.3,
+	  refineSteps: 10
+	}).then(partSegmentation => {
+    //console.log(partSegmentation);
+	const coloredPartImage = bodyPix.toColoredPartMask(partSegmentation);
+    const opacity = 0.7;
+    const maskBlurAmount = 0;
+    const flipHorizontal = false;
+	const pixelCellWidth = 10.0;
+	const backgroundBlurAmount = 10;
+	const edgeBlurAmount = 3;
+	const faceBodyPartIdsToBlur = [0, 1];
+
+	// draw the mask onto the image on a canvas.  With opacity set to 0.7 and maskBlurAmount set to 3, this will darken the background and blur the darkened background's edge.
+	if (kind.value=="1") {
+	  canvas1.style.display="block";
+	  bodyPix.drawMask(canvas1, canvas, coloredPartImage, opacity, maskBlurAmount, flipHorizontal);
+	  drawPoses(partSegmentation, flipHorizontal, context1);
+	} else
+	  canvas1.style.display="none";
+
+	if (kind.value=="2") {
+	  canvas2.style.display="block";
+		try {
+		  bodyPix.drawPixelatedMask(canvas2, canvas, coloredPartImage, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
+		  drawPoses(partSegmentation, flipHorizontal, context2);
+		}
+		catch (e){
+		  context2.drawImage(canvas, 0, 0, canvas.width, canvas.height);
+		}
+	} else
+	  canvas2.style.display="none";
+
+	if (kind.value=="3") {
+	  canvas3.style.display="block";
+	  bodyPix.blurBodyPart(canvas3, canvas, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
+	  //drawPoses(partSegmentation, flipHorizontal, context3);
+	} else
+	  canvas3.style.display="none";
+
+    setTimeout(function(){DetectVideo(); }, 100);
+  });
+}
+
+const COLOR = 'aqua';
+const BOUNDING_BOX_COLOR = 'red';
+const LINE_WIDTH = 2;
+
+function drawPoses(personOrPersonPartSegmentation, flipHorizontally, ctx) {
+  if (Array.isArray(personOrPersonPartSegmentation)) {
+    personOrPersonPartSegmentation.forEach(personSegmentation => {
+      let pose = personSegmentation.pose;
+      if (flipHorizontally) {
+        pose = bodyPix.flipPoseHorizontal(pose, personSegmentation.width);
+      }
+      drawKeypoints(pose.keypoints, 0.1, ctx);
+      drawSkeleton(pose.keypoints, 0.1, ctx);
+    });
+  } else {
+    personOrPersonPartSegmentation.allPoses.forEach(pose => {
+      if (flipHorizontally) {
+        pose = bodyPix.flipPoseHorizontal(
+            pose, personOrPersonPartSegmentation.width);
+      }
+      drawKeypoints(pose.keypoints, 0.1, ctx);
+      drawSkeleton(pose.keypoints, 0.1, ctx);
+    })
+  }
+}
+
+function drawPoint(ctx, y, x, r, color) {
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, 2 * Math.PI);
+  ctx.fillStyle = color;
+  ctx.fill();
+}
+
+function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
+  ctx.beginPath();
+  ctx.moveTo(ax * scale, ay * scale);
+  ctx.lineTo(bx * scale, by * scale);
+  ctx.lineWidth = LINE_WIDTH;
+  ctx.strokeStyle = color;
+  ctx.stroke();
+}
+
+function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
+  const adjacentKeyPoints =
+      posenet.getAdjacentKeyPoints(keypoints, minConfidence);
+
+  function toTuple({y, x}) {
+    return [y, x];
+  }
+
+  adjacentKeyPoints.forEach((keypoints) => {
+    drawSegment(
+        toTuple(keypoints[0].position), toTuple(keypoints[1].position), COLOR,
+        scale, ctx);
+  });
+}
+
+function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
+  for (let i = 0; i < keypoints.length; i++) {
+    const keypoint = keypoints[i];
+
+    if (keypoint.score < minConfidence) {
+      continue;
+    }
+
+    const {y, x} = keypoint.position;
+    drawPoint(ctx, y * scale, x * scale, 3, COLOR);
+  }
+}
+</script>
+
+</body>
+</html>
