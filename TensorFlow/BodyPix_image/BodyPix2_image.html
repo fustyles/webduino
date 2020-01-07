@@ -1,0 +1,218 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/7
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/BodyPix_image/BodyPix_image.html
+-->
+<!DOCTYPE html>
+<head>
+  <title>person and body part segmentation (BodyPix)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"> </script> 
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"> </script>  
+</head>
+<body>
+<input type="file" id="selectimage" disabled="true"></input>
+<br>
+<div id="result" style="width:350px;color:red">Please wait for loading model.</div>
+<br><br>
+<img id="OriginImage" style="display:none"><br>
+<canvas id="ShowImage"></canvas><br>
+<canvas id="canvas1"></canvas><br>
+<canvas id="canvas2"></canvas><br>
+<canvas id="canvas3"></canvas><br>
+
+<script>
+var OriginImage = document.getElementById('OriginImage');
+var ShowImage = document.getElementById('ShowImage');
+var context = ShowImage.getContext("2d");
+var ShowImageWidth = 500;
+var canvas1 = document.getElementById("canvas1");
+var context1 = canvas1.getContext("2d");
+var canvas2 = document.getElementById("canvas2");
+var context2 = canvas2.getContext("2d");
+var canvas3 = document.getElementById("canvas3");
+var context3 = canvas3.getContext("2d");
+var result = document.getElementById('result');
+var Model;
+  
+function ObjectDetect() {
+  bodyPix.load().then(function(net) {
+    Model = net;
+    result.innerHTML = "Please select one image.";
+    document.getElementById('selectimage').disabled = false;
+  }); 
+}
+  
+async function DetectImage() {
+	
+  await Model.segmentMultiPersonParts(ShowImage, {
+	  flipHorizontal: false,
+	  internalResolution: 'medium',
+	  segmentationThreshold: 0.7,
+	  maxDetections: 10,
+	  scoreThreshold: 0.2,
+	  nmsRadius: 20,
+	  minKeypointScore: 0.3,
+	  refineSteps: 10
+	}).then(partSegmentation => {
+    //console.log(partSegmentation);
+    canvas1.setAttribute("width", ShowImage.width);
+    canvas1.setAttribute("height", ShowImage.height);   
+    canvas2.setAttribute("width", ShowImage.width);
+    canvas2.setAttribute("height", ShowImage.height); 
+    canvas3.setAttribute("width", ShowImage.width);
+    canvas3.setAttribute("height", ShowImage.height);   
+
+
+	var coloredPartImage = bodyPix.toColoredPartMask(partSegmentation);
+	var opacity = 0.7;
+	var maskBlurAmount = 0;
+	var flipHorizontal = false;
+	var pixelCellWidth = 10.0;
+	var faceBodyPartIdsToBlur = [0, 1];
+	var backgroundBlurAmount = 10;
+	var edgeBlurAmount = 3;
+
+	bodyPix.drawMask(canvas1, ShowImage, coloredPartImage, opacity, maskBlurAmount, flipHorizontal);
+	drawPoses(partSegmentation, flipHorizontal, context1);
+
+	try {
+		coloredPartImage = bodyPix.toColoredPartMask(partSegmentation);
+		opacity = 0.7;
+		maskBlurAmount = 0;
+		flipHorizontal = false;
+		pixelCellWidth = 10.0;
+		bodyPix.drawPixelatedMask(canvas2, ShowImage, coloredPartImage, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
+		drawPoses(partSegmentation, flipHorizontal, context2);
+	}
+	catch (e){
+		context2.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
+	}
+
+	faceBodyPartIdsToBlur = [0, 1];
+	backgroundBlurAmount = 10;
+	edgeBlurAmount = 3;
+	flipHorizontal = false;
+	bodyPix.blurBodyPart(canvas3, ShowImage, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
+	drawPoses(partSegmentation, flipHorizontal, context3);
+	 
+    result.innerHTML = "";
+  });
+}
+    
+document.getElementById('selectimage').onchange = function (event) {
+  var target = event.target || window.event.srcElement;
+  var files = target.files;
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      result.innerHTML = "Loading image to detect...";  
+      OriginImage.src = fr.result;
+    }
+    fr.readAsDataURL(files[0]);
+  }
+}
+  
+document.getElementById('OriginImage').onload = function (event) {
+  try { 
+    document.createEvent("TouchEvent"); 
+    var width = document.body.clientWidth;
+  }
+  catch(e) { 
+    var width = ShowImageWidth;
+  } 
+  
+  if (OriginImage.height<OriginImage.width) {
+    var height = width*OriginImage.height/OriginImage.width; 
+  }
+  else {
+    var height = width;
+    width = height*OriginImage.width/OriginImage.height; 
+  }
+  
+  var height = width*OriginImage.height/OriginImage.width;
+  ShowImage.setAttribute("width", width);
+  ShowImage.setAttribute("height", height);
+  context.drawImage(OriginImage,0,0,OriginImage.width,OriginImage.height,0,0,ShowImage.width,ShowImage.height);
+  if (Model) DetectImage();
+}
+  
+window.onload = function () { ObjectDetect(); }
+
+const COLOR = 'aqua';
+const BOUNDING_BOX_COLOR = 'red';
+const LINE_WIDTH = 2;
+
+function drawPoses(personOrPersonPartSegmentation, flipHorizontally, ctx) {
+  if (Array.isArray(personOrPersonPartSegmentation)) {
+    personOrPersonPartSegmentation.forEach(personSegmentation => {
+      let pose = personSegmentation.pose;
+      if (flipHorizontally) {
+        pose = bodyPix.flipPoseHorizontal(pose, personSegmentation.width);
+      }
+      drawKeypoints(pose.keypoints, 0.1, ctx);
+      drawSkeleton(pose.keypoints, 0.1, ctx);
+    });
+  } else {
+    personOrPersonPartSegmentation.allPoses.forEach(pose => {
+      if (flipHorizontally) {
+        pose = bodyPix.flipPoseHorizontal(
+            pose, personOrPersonPartSegmentation.width);
+      }
+      drawKeypoints(pose.keypoints, 0.1, ctx);
+      drawSkeleton(pose.keypoints, 0.1, ctx);
+    })
+  }
+}
+
+function drawPoint(ctx, y, x, r, color) {
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, 2 * Math.PI);
+  ctx.fillStyle = color;
+  ctx.fill();
+}
+
+function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
+  ctx.beginPath();
+  ctx.moveTo(ax * scale, ay * scale);
+  ctx.lineTo(bx * scale, by * scale);
+  ctx.lineWidth = LINE_WIDTH;
+  ctx.strokeStyle = color;
+  ctx.stroke();
+}
+
+function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
+  const adjacentKeyPoints =
+      posenet.getAdjacentKeyPoints(keypoints, minConfidence);
+
+  function toTuple({y, x}) {
+    return [y, x];
+  }
+
+  adjacentKeyPoints.forEach((keypoints) => {
+    drawSegment(
+        toTuple(keypoints[0].position), toTuple(keypoints[1].position), COLOR,
+        scale, ctx);
+  });
+}
+
+function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
+  for (let i = 0; i < keypoints.length; i++) {
+    const keypoint = keypoints[i];
+
+    if (keypoint.score < minConfidence) {
+      continue;
+    }
+
+    const {y, x} = keypoint.position;
+    drawPoint(ctx, y * scale, x * scale, 3, COLOR);
+  }
+}
+</script>
+
+</body>
+</html>
