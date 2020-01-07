@@ -1,9 +1,9 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/1/5 23:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/1/7 23:00
 https://www.facebook.com/francefu
 
 Try it!
-https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_video.html
+https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix_video.html
 
 How to enable WebGL in Chrome.
 https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
@@ -28,7 +28,7 @@ Style
 <div id="result" style="width:320px;color:red">Please wait for loading model.</div><br>
 <canvas id="canvas1"></canvas><br>
 <canvas id="canvas2"></canvas><br>
-<canvas id="canvas3"></canvas><br> 
+<canvas id="canvas3"></canvas><br>  
 <canvas id="canvas"></canvas><br>
 <script>
   var video = document.getElementById('video');
@@ -41,8 +41,6 @@ Style
   var canvas3 = document.getElementById('canvas3');
   var context3 = canvas3.getContext('2d');
   var Model;
-  var outputStride = 16;
-  var segmentationThreshold = 0.5;
 
   ObjectDetect(); 
   
@@ -101,18 +99,14 @@ async function DetectVideo() {
 	  refineSteps: 10
 	}).then(partSegmentation => {
     //console.log(partSegmentation);
-	const coloredPartImage = bodyPix.toColoredPartMask(partSegmentation);
-    const opacity = 0.7;
-    const maskBlurAmount = 0;
-    const flipHorizontal = false;
-	const pixelCellWidth = 10.0;
-	const backgroundBlurAmount = 10;
-	const edgeBlurAmount = 3;
-	const faceBodyPartIdsToBlur = [0, 1];
 
-	// draw the mask onto the image on a canvas.  With opacity set to 0.7 and maskBlurAmount set to 3, this will darken the background and blur the darkened background's edge.
 	if (kind.value=="1") {
 	  canvas1.style.display="block";
+
+	  const coloredPartImage = bodyPix.toColoredPartMask(partSegmentation);
+	  const opacity = 0.7;
+	  const maskBlurAmount = 0;
+	  const flipHorizontal = false;
 	  bodyPix.drawMask(canvas1, canvas, coloredPartImage, opacity, maskBlurAmount, flipHorizontal);
 	  drawPoses(partSegmentation, flipHorizontal, context1);
 	} else
@@ -120,18 +114,29 @@ async function DetectVideo() {
 
 	if (kind.value=="2") {
 	  canvas2.style.display="block";
-		try {
-		  bodyPix.drawPixelatedMask(canvas2, canvas, coloredPartImage, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
-		  drawPoses(partSegmentation, flipHorizontal, context2);
-		}
-		catch (e){
-		  context2.drawImage(canvas, 0, 0, canvas.width, canvas.height);
-		}
+
+	  try {
+	    const coloredPartImage = bodyPix.toColoredPartMask(partSegmentation);
+	    const opacity = 0.7;
+	    const maskBlurAmount = 0;
+	    const flipHorizontal = false;
+	    const pixelCellWidth = 10.0;
+	    bodyPix.drawPixelatedMask(canvas2, canvas, coloredPartImage, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
+	    drawPoses(partSegmentation, flipHorizontal, context2);
+	  }
+	  catch (e){
+		context2.drawImage(canvas, 0, 0, canvas.width, canvas.height);
+	  }
 	} else
 	  canvas2.style.display="none";
 
 	if (kind.value=="3") {
 	  canvas3.style.display="block";
+
+	  const faceBodyPartIdsToBlur = [0, 1];
+	  const backgroundBlurAmount = 10;
+	  const edgeBlurAmount = 3;
+	  const flipHorizontal = false;
 	  bodyPix.blurBodyPart(canvas3, canvas, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
 	  //drawPoses(partSegmentation, flipHorizontal, context3);
 	} else
