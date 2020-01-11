@@ -2,7 +2,7 @@ document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></sc
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>');
 document.write('<div id="train" style="position:absolute;visibility:hidden;"></div><div id="probability" style="position:absolute;visibility:hidden;"></div>');
-document.write('<div id="region" style="z-index:999"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><br>MirrorImage<select id="mirrorimage"><option value="1">yes</option><option value="0">no</option></select>Opacity<select id="opacity"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><br><button id="saveModel">Save Model</button><input type="file" id="getModel"></input><br><button id="clearAllClasses">Clear All Classes</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="addExample">Train</button><select id="Class"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<span id="count" style="font-size:18px;color:red">0</span><div><input type="checkbox" id="startdetection">Start Detection</div><span id="message" style="color:red">Please wait for loading model.</span></div>');
+document.write('<div id="region" style="z-index:999"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><br>MirrorImage<select id="mirrorimage"><option value="1">yes</option><option value="0">no</option></select>Opacity<select id="opacity"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><br><button id="saveModel">Save Model</button><input type="file" id="getModel"></input><br><button id="clearAllClasses">Clear All Classes</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="addExample">Train</button><select id="Class"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<span id="count" style="font-size:18px;color:red">0</span><div><input type="checkbox" id="startdetection">Start Detection</div><span id="show" style="color:red">Please wait for loading model.</span></div>');
 
 window.onload = function () {
     
@@ -14,7 +14,7 @@ window.onload = function () {
   var clearAllClasses = document.getElementById('clearAllClasses');
   var addExample = document.getElementById('addExample');
   var Class = document.getElementById('Class');
-  var message = document.getElementById('message');
+  var show = document.getElementById('show');
   var count = document.getElementById('count');
 
   navigator.mediaDevices
@@ -50,7 +50,7 @@ window.onload = function () {
   }; 
     
   function clearAllClasses_onclick (event) {
-    //message.innerHTML = '';
+    show.innerHTML = '';
     count.innerHTML = "0";
     classifier.clearAllClasses();
   };
@@ -109,7 +109,7 @@ window.onload = function () {
   mobilenet.load().then(Module => {
     mobilenetModule = Module;
     setInterval(function(){ predictClass_onclick(); }, 200);
-    //message.innerHTML = '';
+    show.innerHTML = '';
   }); 
 
   function addExampleImage(img,index) {
@@ -121,7 +121,7 @@ window.onload = function () {
 
   async function predictClass(img) {
     if (!document.getElementById('startdetection').checked) {
-      //message.innerHTML = "";  
+      show.innerHTML = "";  
       return;
     }
       
@@ -137,9 +137,9 @@ window.onload = function () {
       for (i=0;i<Class.length;i++) {
         if (predict.confidences[i.toString()]>=0) msg += "[train "+i+"] " + predict.confidences[i.toString()] + "<br>";
       }
-      message.innerHTML = msg;
-      message.style.zIndex = "9999";
-      console.log(message.innerHTML);
+      show.innerHTML = msg;
+      show.style.zIndex = "9999";
+      console.log(show.innerHTML);
       train.innerHTML = predict.label;
       probability.innerHTML = predict.confidences[predict.label];
     }
