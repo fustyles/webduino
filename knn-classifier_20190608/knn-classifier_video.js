@@ -50,7 +50,7 @@ window.onload = function () {
   }; 
     
   function clearAllClasses_onclick (event) {
-    message.innerHTML = '';
+    //message.innerHTML = '';
     count.innerHTML = "0";
     classifier.clearAllClasses();
   };
@@ -109,7 +109,7 @@ window.onload = function () {
   mobilenet.load().then(Module => {
     mobilenetModule = Module;
     setInterval(function(){ predictClass_onclick(); }, 200);
-    message.innerHTML = '';
+    //message.innerHTML = '';
   }); 
 
   function addExampleImage(img,index) {
@@ -121,7 +121,7 @@ window.onload = function () {
 
   async function predictClass(img) {
     if (!document.getElementById('startdetection').checked) {
-      message.innerHTML = "";  
+      //message.innerHTML = "";  
       return;
     }
       
