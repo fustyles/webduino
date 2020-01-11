@@ -5,13 +5,11 @@
   'use strict';
 
   function knn_classifier_open() {
-    if (document.getElementById("train"))
-    {
+    if (document.getElementById("train")) {
       document.getElementById("train").innerHTML = "";
       document.getElementById("probability").innerHTML = "";
     }
-    else
-    {
+    else {
       var div = document.createElement('div');
       div.id = "train";
       div.style.position = 'absolute';
@@ -26,17 +24,17 @@
     }
   }
   
-  function knn_classifier_proportion(input_property){
+  function knn_classifier_proportion(input_property) {
     if (input_property=="train")
       return Number(document.getElementById("train").innerHTML);
     else if (input_property=="probability")
       return Number(document.getElementById("probability").innerHTML);
   }
   
-  function knn_classifier_video(input_width, input_height, input_message, input_mirrorimage, input_opacity) {
+  function knn_classifier_video(input_width, input_height, input_show, input_mirrorimage, input_opacity) {
     document.getElementById('video').width = input_width;
     document.getElementById('video').height = input_height;
-    document.getElementById('message').style.display = input_message;
+    document.getElementById('show').style.display = input_show;
     document.getElementById('mirrorimage').value = input_mirrorimage;
     document.getElementById('opacity').value = input_opacity;
   }	
