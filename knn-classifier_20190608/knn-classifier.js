@@ -33,10 +33,10 @@
       return Number(document.getElementById("probability").innerHTML);
   }
   
-  function knn_classifier_video(input_width, input_height, input_result, input_mirrorimage, input_opacity) {
+  function knn_classifier_video(input_width, input_height, input_message, input_mirrorimage, input_opacity) {
     document.getElementById('video').width = input_width;
     document.getElementById('video').height = input_height;
-    document.getElementById('result').style.display = input_result;
+    document.getElementById('message').style.display = input_message;
     document.getElementById('mirrorimage').value = input_mirrorimage;
     document.getElementById('opacity').value = input_opacity;
   }	
