@@ -136,7 +136,8 @@ window.onload = function () {
       for (i=0;i<Class.length;i++) {
         if (predict.confidences[i.toString()]>=0) msg += "[train "+i+"] " + predict.confidences[i.toString()] + "<br>";
       }
-      message.innerHTML = msg; 
+      message.innerHTML = msg;
+      console.log(msg);
       train.innerHTML = predict.label;
       probability.innerHTML = predict.confidences[predict.label];
     }
