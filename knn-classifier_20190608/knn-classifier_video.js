@@ -138,6 +138,7 @@ window.onload = function () {
         if (predict.confidences[i.toString()]>=0) msg += "[train "+i+"] " + predict.confidences[i.toString()] + "<br>";
       }
       message.innerHTML = msg;
+      message.style.zIndex = "9999";
       console.log(message.innerHTML);
       train.innerHTML = predict.label;
       probability.innerHTML = predict.confidences[predict.label];
