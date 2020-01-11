@@ -1,4 +1,4 @@
-document.write('<div id="region"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="gamecanvas_azureclassifyimage" style="display:none;"></canvas><br><div id="result" style="width:320px;color:red"></div></div>');
+document.write('<div id="region" style="z-index:999"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="gamecanvas_azureclassifyimage" style="display:none;"></canvas><br><div id="result" style="width:320px;color:red"></div></div>');
 
 window.onload = function () {
   var video = document.getElementById('video');
