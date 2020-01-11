@@ -34,7 +34,7 @@
   function knn_classifier_video(input_width, input_height, input_show, input_mirrorimage, input_opacity) {
     document.getElementById('video').width = input_width;
     document.getElementById('video').height = input_height;
-    document.getElementById('show').style.display = input_show;
+    //document.getElementById('show').style.display = input_show;
     document.getElementById('mirrorimage').value = input_mirrorimage;
     document.getElementById('opacity').value = input_opacity;
   }	
