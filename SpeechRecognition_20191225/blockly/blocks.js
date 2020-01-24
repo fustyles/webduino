@@ -125,6 +125,17 @@ Blockly.Blocks['SpeechRecognition_final_get'] = {
   }
 };
 
+Blockly.Blocks['SpeechRecognition_final_clear'] = {
+  init: function () {   
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_FINAL_CLEAR_SHOW); 
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['SpeechRecognition_interim_get'] = {
   init: function () {   
   this.appendDummyInput()  
