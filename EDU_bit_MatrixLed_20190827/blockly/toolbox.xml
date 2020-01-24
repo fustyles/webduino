@@ -1,11 +1,4 @@
-<category id="catMatrixLed">
-  <block type="addmyblocks">
-    <value name="url">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
-  </block>   
+<category id="catMatrixLed">  
   <block type="matrix_led_showstate">
     <field name="value_showstate_">1</field>
   </block>  
