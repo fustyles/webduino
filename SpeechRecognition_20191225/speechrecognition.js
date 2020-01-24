@@ -53,9 +53,9 @@
         }
         else {
           Recognition_final = "";
-          if (!document.getElementById("showText")) {
+          if (!document.getElementById("demo-area-01-show")) {
             var obj = document.createElement('div');
-            obj.id = "showText";
+            obj.id = "demo-area-01-show";
             obj.style.position = "absolute";
             obj.style.zIndex = "9999";
             obj.draggable="true";
@@ -63,13 +63,15 @@
             obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('div/plain',event.target.id);");
             document.body.appendChild(obj);
           }
-          document.getElementById("showText").innerHTML = Recognition_interim;
+          document.getElementById("demo-area-01-show").innerHTML = Recognition_interim;
           console.log("interim = " + Recognition_interim);
         }
       };
+      return true;
     }
     else {
       console.log('webkitSpeechRecognition failed.');
+      return false;
     }
   }
 
