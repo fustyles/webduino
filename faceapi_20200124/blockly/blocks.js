@@ -43,7 +43,7 @@ Blockly.Blocks['faceapi_video'] = {
 		["hide","none"]	  
   ]), "result_");
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSENET_OPACITY_SHOW)
+      .appendField(Blockly.Msg.FACEAPI_OPACITY_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		["1","1"],
 		["0.9","0.9"],
