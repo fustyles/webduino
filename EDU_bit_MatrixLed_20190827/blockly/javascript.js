@@ -1,8 +1,3 @@
-Blockly.JavaScript['addmyblocks'] = function (block) {
-  var code = '';
-  return code; 
-};
-
 Blockly.JavaScript['matrix_led_brightness'] = function (block) {
   var value_brightness_ = Blockly.JavaScript.valueToCode(block, 'brightness_', Blockly.JavaScript.ORDER_ATOMIC);
   var code = 'MatrixLed_brightness(' + value_brightness_ + ');\n';
