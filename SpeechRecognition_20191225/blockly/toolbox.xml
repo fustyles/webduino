@@ -54,6 +54,8 @@
   </block>
   <block type="SpeechRecognition_final_get">
   </block>  
+  <block type="SpeechRecognition_final_clear">
+  </block>   
   <block type="SpeechRecognition_interim_get">
   </block>  
 </category>
