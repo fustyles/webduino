@@ -1,7 +1,7 @@
 Blockly.Blocks['addmyblocks'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField(Blockly.Msg.ADDCUSTOMBLOCKS_SHOW);
+      .appendField(Blockly.Msg.ADDMYBLOCKS_SHOW);
   this.appendValueInput("url")
       .setCheck("String"); 
   this.appendDummyInput()
