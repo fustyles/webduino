@@ -1,19 +1,42 @@
 <category id="catSpeechRecognition">
-  <block type="SpeechRecognition_run">  
-  </block>       
-  <variables>
-  <variable type="" id="XET3`{C@a}F7i!;%jtKr">Result</variable></variables>
-  <block type="SpeechRecognition_listener" id="5@9068yeP@+Lv8J6dt[;" x="58" y="50">
+  <block type="SpeechRecognition_listener" id="5@9068yeP@+Lv8J6dt[;" x="62" y="63">
     <statement name="do_">
-      <block type="variables_set" id="WgoSc$V{4smbOP8+jr80">
-        <field name="VAR" id="XET3`{C@a}F7i!;%jtKr" variabletype="">Result</field>
+      <block type="variables_set" id="0YZNkG1bhG6/n+l,M)eC">
+        <field name="VAR">Interim</field>
         <value name="VALUE">
-          <block type="SpeechRecognition_final_get" id="]VM_67C(_2(3TXND*~)+">
-          </block>
+          <block type="SpeechRecognition_interim_get" id="~UYCQ_]CZ3T*Gg_6BCsV"></block>
         </value>
+        <next>
+          <block type="variables_set" id="WgoSc$V{4smbOP8+jr80">
+            <field name="VAR">Final</field>
+            <value name="VALUE">
+              <block type="SpeechRecognition_final_get" id="]VM_67C(_2(3TXND*~)+"></block>
+            </value>
+            <next>
+              <block type="controls_if" id="emLm@A^e6+_bq:KmjO)P">
+                <mutation else="1"></mutation>
+                <value name="IF0">
+                  <block type="logic_compare" id="=)v:bw5aV-.OEqY|4yw0">
+                    <field name="OP">NEQ</field>
+                    <value name="A">
+                      <block type="variables_get" id="28=5am()M~(9cN2(]IDg">
+                        <field name="VAR">Final</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="text" id="Q^U5@hC!hujmLH=#.rAL">
+                        <field name="TEXT"></field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
       </block>
     </statement>
-  </block> 
+  </block>
   <variables>
   <variable type="" id="XET3`{C@a}F7i!;%jtKr">Result</variable></variables>
   <block type="SpeechRecognition_keyword" id="uHnsYoYyi41B{]=^27?t" x="112" y="142">
