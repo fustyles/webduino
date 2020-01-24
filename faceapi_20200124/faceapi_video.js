@@ -1,11 +1,11 @@
 document.write('<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>');
-document.write('<script src="https://fustyles.github.io/webduino/TensorFlow/Face-api/face-api.min.js"></script>');
+document.write('<script src="https://fustyles.github.io/webduino/faceapi_20200124/face-api.min.js"></script>');
 document.write('<video id="webcam" width="320" height="240"  style="z-index:999;position:absolute" preload autoplay loop muted></video><div id="webcam-container" style="z-index:999;position:absolute"></div><div id="result" style="color:red;z-index:999;position:absolute">Please wait for loading model.</div>');
 
 window.onload = function () {
   var result = document.getElementById('result');
   const camera = document.getElementById('webcam');
-  const modelPath = 'https://fustyles.github.io/webduino/TensorFlow/Face-api/';
+  const modelPath = 'https://fustyles.github.io/webduino/faceapi_20200124/';
   let canvas;
   let currentStream;
   let displaySize = { width:320, height: 240 }
