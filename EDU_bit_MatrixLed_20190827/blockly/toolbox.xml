@@ -1,5 +1,5 @@
 <category id="catMatrixLed">
-  <block type="addcustomblocks">
+  <block type="addmyblocks">
     <value name="url">
       <block type="text">
         <field name="TEXT"></field>
