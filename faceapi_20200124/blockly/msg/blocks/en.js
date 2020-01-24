@@ -1,0 +1,10 @@
+Blockly.Msg.FACEAPI_FACE_SHOW = "Face Detection (tfjs) Index";
+Blockly.Msg.FACEAPI_POINT_SHOW = "Point";
+Blockly.Msg.FACEAPI_WIDTH_SHOW = "Face Detection (tfjs) Width";
+Blockly.Msg.FACEAPI_HEIGHT_SHOW = "Height";
+Blockly.Msg.FACEAPI_MIRRORIMAGE_SHOW = "Mirror Image";
+Blockly.Msg.FACEAPI_FACES_SHOW = "Faces";
+Blockly.Msg.FACEAPI_RESULT_SHOW = "Result";
+Blockly.Msg.FACEAPI_SCORELIMIT_SHOW = "Score Limit";
+Blockly.Msg.FACEAPI_SHOWPOINT_SHOW = "Point";
+Blockly.Msg.FACEAPI_OPACITY_SHOW = "Opacity";

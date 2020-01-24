@@ -1,0 +1,29 @@
+// Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
+
++(function (window, document) {
+
+  'use strict';
+
+ function faceapi_face(input_face, input_part){
+    var result = document.getElementById("result").innerHTML.split("<br>");
+    if (result.length>0) {
+      for (var i=0;i<result.length;i++) {
+	var result_detail = result[i].split(",");
+	if (result_detail[0]==input_face&&result_detail[1]==input_part) 
+	  return result_detail;
+      }
+    }
+    return "";
+  }
+	
+  function faceapi_video(input_width, input_height, input_showvideo, input_result) {
+    document.getElementById('webcam').width = input_width;
+    document.getElementById('webcam').height = input_height;
+    document.getElementById('webcam').style.display = input_showvideo;
+    document.getElementById('result').style.display = input_result;
+  }	
+
+  window.faceapi_face = faceapi_face;
+  window.faceapi_video = faceapi_video;
+	
+}(window, window.document));
