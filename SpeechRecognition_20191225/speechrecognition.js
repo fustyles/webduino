@@ -8,12 +8,13 @@
   var two_line = /\n\n/g;
   var one_line = /\n/g;
   var first_char = /\S/;
+  var recognition;
   var Recognition_interim = '';
   var Recognition_final = '';
 
   function Recognition_initial() {
     if ('webkitSpeechRecognition' in window) {
-      var recognition = new webkitSpeechRecognition();
+      recognition = new webkitSpeechRecognition();
       recognition.continuous = true;
       recognition.interimResults = true;
 
