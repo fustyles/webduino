@@ -1,4 +1,3 @@
-Blockly.Msg.ADDMYBLOCKS_SHOW = "自订积木 网址";
 Blockly.Msg.MATRIXLED_MATRIX_SHOW = "指示灯(单色)";
 Blockly.Msg.MATRIXLED_MATRIX_COLOR_SHOW = "指示灯(全彩)";
 Blockly.Msg.MATRIXLED_MATRIXCODE_SHOW = "指示灯(单色) 编码";
