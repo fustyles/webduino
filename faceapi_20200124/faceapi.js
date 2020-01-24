@@ -4,13 +4,16 @@
 
   'use strict';
 
- function faceapi_face(input_face, input_part){
+ function faceapi_face(input_index, input_property){
     var result = document.getElementById("result").innerHTML.split("<br>");
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
-	var result_detail = result[i].split(",");
-	if (result_detail[0]==input_face&&result_detail[1]==input_part) 
-	  return result_detail;
+		var result_detail = result[i].split(",");
+		if (result_detail[0]==input_index) {
+          for (var j=0;j<result_detail.length;j++) {
+		    if (result_detail[j]==input_property) return result_detail[j+1];
+		  }
+	    }
       }
     }
     return "";

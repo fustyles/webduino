@@ -4,26 +4,24 @@ Blockly.Blocks['faceapi_face'] = {
       .setCheck("Number")
       .appendField(Blockly.Msg.FACEAPI_FACE_SHOW);  
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.FACEAPI_POINT_SHOW)
+      .appendField(Blockly.Msg.FACEAPI_PROPERTY_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["nose","nose"],
-		["leftEye","leftEye"],
-		["rightEye","rightEye"],
-		["leftEar","leftEar"],
-		["rightEar","rightEar"],
-		["leftShoulder","leftShoulder"],
-		["rightShoulder","rightShoulder"],
-		["leftElbow","leftElbow"],
-		["rightElbow","rightElbow"],
-		["leftWrist","leftWrist"],
-		["rightWrist","rightWrist"],
-		["leftHip","leftHip"],
-		["rightHip","rightHip"],
-		["leftKnee","leftKnee"],
-		["rightKnee","rightKnee"],
-		["leftAnkle","leftAnkle"],
-		["rightAnkle","rightAnkle"]
-  ]), "point_");  	  
+		["age","age"],
+		["gender","gender"],
+		["genderProbability","genderProbability"],
+		["emotion","emotion"],
+		["neutral","neutral"],
+		["happy","happy"],
+		["sad","sad"],
+		["angry","angry"],
+		["fearful","fearful"],
+		["disgusted","disgusted"],
+		["surprised","surprised"],
+		["boxX","boxX"],
+		["boxY","boxY"],
+		["boxWidth","boxWidth"],
+		["boxHeight","boxHeight"]
+  ]), "property_");  	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);

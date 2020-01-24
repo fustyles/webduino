@@ -51,15 +51,44 @@ window.onload = function () {
   async function DetectVideo() {
       const detections = await faceapi.detectAllFaces(camera, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
       const resizedDetections = faceapi.resizeResults(detections, displaySize)
-      canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+	  canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
       faceapi.draw.drawDetections(canvas, resizedDetections)
       faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
       faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
+	  var i=0;
+	  result.innerHTML ="";
       resizedDetections.forEach(faceResult => {
-        const { age, gender, genderProbability } = faceResult
+        const { detection,expressions,gender,genderProbability,age } = faceResult
 		result.style.top = (camera.height+10) + "px";
-        result.innerHTML = JSON.stringify(faceResult);
-		console.log(result.innerHTML);
+        //result.innerHTML = JSON.stringify(faceResult);
+		var maxEmotion="neutral";
+		var maxProbability=expressions.neutral;
+        if (expressions.happy>maxProbability) {
+          maxProbability=expressions.happy;
+          maxEmotion="happy";
+        }
+        if (expressions.sad>maxProbability) {
+          maxProbability=expressions.sad;
+          maxEmotion="sad";
+        }
+        if (expressions.angry>maxProbability) {
+          maxProbability=expressions.angry;
+          maxEmotion="angry";
+        }
+        if (expressions.fearful>maxProbability) {
+          maxProbability=expressions.fearful;
+          maxEmotion="fearful";
+        }
+        if (expressions.disgusted>maxProbability) {
+          maxProbability=expressions.disgusted;
+          maxEmotion="disgusted";
+        }
+        if (expressions.surprised>maxProbability) {
+          maxProbability=expressions.surprised;
+          maxEmotion="surprised";
+        }
+
+		result.innerHTML+= i+",age,"+Math.round(age)+",gender,"+gender+",genderProbability,"+Round(genderProbability)+",emotion,"+maxEmotion+",neutral,"+Round(expressions.neutral)+",happy,"+Round(expressions.happy)+",sad,"+Round(expressions.sad)+",angry,"+Round(expressions.angry)+",fearful,"+Round(expressions.fearful)+",disgusted,"+Round(expressions.disgusted)+",surprised,"+Round(expressions.surprised)+",boxX,"+Round(detection._box._x)+",boxY,"+Round(detection._box._y)+",boxWidth,"+Round(detection._box._width)+",boxHeight,"+Round(detection._box._height)+"<br>";
         new faceapi.draw.DrawTextField(
           [
             `${faceapi.round(age, 0)} years`,
@@ -67,7 +96,11 @@ window.onload = function () {
           ],
           faceResult.detection.box.bottomRight
         ).draw(canvas)
+		i++;
       })
+	  if (result.innerHTML.length>0)
+		result.innerHTML = result.innerHTML.substring(0,result.innerHTML.length-4);
+
       try { 
         document.createEvent("TouchEvent");
         setTimeout(function(){DetectVideo();},250);
@@ -75,5 +108,9 @@ window.onload = function () {
       catch(e) { 
         setTimeout(function(){DetectVideo();},150);
       } 
+  }
+
+  function Round(n) {
+	return Math.round(Number(n)*100)/100;
   }
 }

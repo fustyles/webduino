@@ -1,7 +1,7 @@
 Blockly.JavaScript['faceapi_face'] = function(block) { 
   var value_face_ = Blockly.JavaScript.valueToCode(block, 'face_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_point_ = block.getFieldValue('point_');
-  var code = 'faceapi_face(' + value_face_ + ',"' + value_point_ + '")';
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'faceapi_face(' + value_face_ + ',"' + value_property_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
