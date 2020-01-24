@@ -1,1 +1,1 @@
-MSG.faceapi = "Face Detection (tfjs)";
+MSG.faceapi = "Face Detection (face-api.js)";

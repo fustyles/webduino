@@ -19,11 +19,11 @@
     return "";
   }
 	
-  function faceapi_video(input_width, input_height, input_showvideo, input_result) {
+  function faceapi_video(input_width, input_height, input_result, input_opacity) {
     document.getElementById('webcam').width = input_width;
     document.getElementById('webcam').height = input_height;
-    document.getElementById('webcam').style.display = input_showvideo;
     document.getElementById('result').style.display = input_result;
+    document.getElementById('webcam').style.opacity = Number(input_opacity);
   }	
 
   window.faceapi_face = faceapi_face;
