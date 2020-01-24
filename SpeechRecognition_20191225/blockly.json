@@ -5,8 +5,7 @@
     "blockly/blocks.js",
     "blockly/javascript.js"
   ],
-  "dependencies": [
-    "speechrecognition.js"    
+  "dependencies": [   
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
