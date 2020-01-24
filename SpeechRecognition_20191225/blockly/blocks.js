@@ -111,6 +111,7 @@ Blockly.Blocks['SpeechRecognition_run'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
+  this.getField('language_').setValue("en-US");    
   }
 };  
 
