@@ -66,6 +66,9 @@
       }
     };
   }
+  else {
+    console.log('webkitSpeechRecognition failed.');
+  }
 
   function linebreak(s) {
     return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
