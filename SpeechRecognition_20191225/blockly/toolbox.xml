@@ -1,5 +1,4 @@
-<xml>
-<category name="%{BKY_SPEECHRECOGNITION}" colour="%{BKY_SPEECHRECOGNITION_HUE}">
+<category id="catSpeechRecognition">
   <block type="SpeechRecognition_run">  
   </block>       
   <variables>
@@ -29,4 +28,3 @@
   </value>
   </block>
 </category>
-</xml>;
