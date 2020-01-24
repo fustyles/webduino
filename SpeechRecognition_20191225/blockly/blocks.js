@@ -114,10 +114,20 @@ Blockly.Blocks['SpeechRecognition_run'] = {
   }
 };  
 
-Blockly.Blocks['SpeechRecognition_get'] = {
+Blockly.Blocks['SpeechRecognition_final_get'] = {
   init: function () {   
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.SPEECHRECOGNITION_GET_SHOW); 
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_FINAL_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['SpeechRecognition_interim_get'] = {
+  init: function () {   
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_INTERIM_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
