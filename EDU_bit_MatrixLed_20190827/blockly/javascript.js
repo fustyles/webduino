@@ -1,4 +1,4 @@
-Blockly.JavaScript['addcustomblocks'] = function (block) {
+Blockly.JavaScript['addmyblocks'] = function (block) {
   var code = '';
   return code; 
 };
