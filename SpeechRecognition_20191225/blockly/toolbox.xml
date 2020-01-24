@@ -43,7 +43,7 @@
   <variable type="" id="XET3`{C@a}F7i!;%jtKr">Final</variable></variables>
   <block type="SpeechRecognition_keyword" id="uHnsYoYyi41B{]=^27?t" x="112" y="142">
   <value name="myVar_"><block type="variables_get" id="9xK~IcyR[i~}Z,a/U{cQ">
-  <field name="VAR" id="XET3`{C@a}F7i!;%jtKr" variabletype="">Result</field>
+  <field name="VAR" id="XET3`{C@a}F7i!;%jtKr" variabletype="">Final</field>
   </block>
   </value>
   <value name="keyword">
