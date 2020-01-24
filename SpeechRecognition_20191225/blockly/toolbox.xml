@@ -8,7 +8,7 @@
       <block type="variables_set" id="WgoSc$V{4smbOP8+jr80">
         <field name="VAR" id="XET3`{C@a}F7i!;%jtKr" variabletype="">Result</field>
         <value name="VALUE">
-          <block type="SpeechRecognition_get" id="]VM_67C(_2(3TXND*~)+">
+          <block type="SpeechRecognition_final_get" id="]VM_67C(_2(3TXND*~)+">
           </block>
         </value>
       </block>
@@ -27,4 +27,6 @@
   </block>
   </value>
   </block>
+  <block type="SpeechRecognition_interim_get">
+  </block>  
 </category>
