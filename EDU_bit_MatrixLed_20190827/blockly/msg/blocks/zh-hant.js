@@ -1,3 +1,4 @@
+Blockly.Msg.ADDMYBLOCKS_SHOW = "新增自訂積木  網址";
 Blockly.Msg.MATRIXLED_MATRIX_SHOW = "指示燈(單色)";
 Blockly.Msg.MATRIXLED_MATRIX_COLOR_SHOW = "指示燈(全彩)";
 Blockly.Msg.MATRIXLED_MATRIXCODE_SHOW = "指示燈(單色) 編碼";
