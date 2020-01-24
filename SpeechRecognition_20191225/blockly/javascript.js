@@ -10,8 +10,8 @@ Blockly.JavaScript['SpeechRecognition_final_get'] = function (block) {
 };
 
 Blockly.JavaScript['SpeechRecognition_final_clear'] = function (block) {
-  var code = 'Recognition_final_clear()';
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  var code = 'Recognition_final_clear();\n';
+  return code;
 };
 
 Blockly.JavaScript['SpeechRecognition_interim_get'] = function (block) {
