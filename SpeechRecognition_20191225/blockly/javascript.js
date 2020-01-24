@@ -1,6 +1,6 @@
 Blockly.JavaScript['SpeechRecognition_run'] = function (block) {
   var value_language_ = block.getFieldValue('language_');
-  var code = 'recognition.lang="'+value_language_+'";\nif (!recognizing) startButton(event);\n';
+  var code = 'Recognition_initial();\nrecognition.lang="'+value_language_+'";\nif (!recognizing) startButton(event);\n';
   return code;
 };
 
