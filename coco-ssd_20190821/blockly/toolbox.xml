@@ -1,16 +1,23 @@
 <category id="coco_ssd">
-  <block type="coco_ssd_object">
-  </block>
   <block type="coco_ssd_video">
     <value name="width_">
       <block type="math_number">
-        <field name="NUM">400</field>
+        <field name="NUM">320</field>
       </block>
     </value> 
     <value name="height_">
       <block type="math_number">
-        <field name="NUM">300</field>
+        <field name="NUM">240</field>
       </block>
     </value>     
-  </block>     
+  </block> 
+  <block type="coco_ssd_object">
+    <value name="index_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
+  </block>
+  <block type="coco_ssd_object_number">
+  </block>
 </category>

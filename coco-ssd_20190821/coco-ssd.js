@@ -4,17 +4,34 @@
 
   'use strict';
 
- function coco_ssd_object(input_object){
+ function coco_ssd_object(input_object, input_index) {
+	var n=0;
     var result = document.getElementById("result").innerHTML.split("<br>");
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
-	var result_detail = result[i].split(",");
-	if (result_detail[0]==input_object) {
-	  return result_detail;
-	}
+		var result_detail = result[i].split(",");
+		if (result_detail[0]==input_object) {
+		  if (n==input_index)
+		    return result_detail;
+		  n++;
+		}
       }
     }
     return "";
+  }
+
+ function coco_ssd_object_number(input_object) {
+	var n=0;
+    var result = document.getElementById("result").innerHTML.split("<br>");
+    if (result.length>0) {
+      for (var i=0;i<result.length;i++) {
+		var result_detail = result[i].split(",");
+		if (result_detail[0]==input_object) {
+		  n++;
+		}
+      }
+    }
+    return n;
   }
 	
   function coco_ssd_video(input_width, input_height, input_result, input_frame, input_mirrorimage, input_opacity) {
@@ -27,6 +44,7 @@
   }	
 
   window.coco_ssd_object = coco_ssd_object;
+  window.coco_ssd_object_number = coco_ssd_object_number;
   window.coco_ssd_video = coco_ssd_video;
 
 }(window, window.document));
