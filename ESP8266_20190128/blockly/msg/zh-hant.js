@@ -1,1 +1,1 @@
-MSG.catesp8266 = "MyFirmata";
+MSG.catesp8266 = "WiFiBoard";
