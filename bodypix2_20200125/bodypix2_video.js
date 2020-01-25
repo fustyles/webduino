@@ -81,7 +81,7 @@ window.onload = function () {
     if (func.value=="1") {
       canvas1.style.display="block";
 
-      const coloredPartImage = bodyPix.toColoredPartMask(partSegmentation);
+      const coloredPartImage = bodyPix.toColoredPartMask(partSegmentation);    //rainbow|warm|spectral
       const opacity = 0.7;
       const maskBlurAmount = 0;
       const flipHorizontal = false;
