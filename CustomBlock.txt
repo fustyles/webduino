@@ -270,7 +270,7 @@ https://blocklypro.webduino.io/#7ggezB96Qa
 https://bit.webduino.io/blockly/#rybdwjzzGxQqk
 
 
-ESP8266 (ESP01、ESP12E、ESP32)、LinkIt7697 官方網址要改為http
+WiFiBoard (ESP01、ESP12E、ESP32、LinkIt7697) 官方網址要改為http
 https://fustyles.github.io/webduino/ESP8266_20190128/blockly.json
 [ smart ]
 http://blocklypro.webduino.io/?demo=demo-area-01#kEqpZjVp6A
