@@ -1,0 +1,14 @@
+<category id="bodypix1">
+  <block type="bodypix1_video">
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">320</field>
+      </block>
+    </value> 
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">240</field>
+      </block>
+    </value>     
+  </block>    
+</category>
