@@ -1,5 +1,5 @@
-Blockly.Msg.COCOSSD_OBJECT_SHOW = "物件偵測(coco-ssd) 偵測物件";
-Blockly.Msg.COCOSSD_WIDTH_SHOW = "視訊 (coco-ssd) 寬度";
+Blockly.Msg.COCOSSD_OBJECT_SHOW = "物件偵測 (coco-ssd) 偵測物件";
+Blockly.Msg.COCOSSD_WIDTH_SHOW = "物件偵測 (coco-ssd) 視訊寬度";
 Blockly.Msg.COCOSSD_HEIGHT_SHOW = "高度";
 Blockly.Msg.COCOSSD_MIRRORIMAGE_SHOW = "鏡像";
 Blockly.Msg.COCOSSD_RESULT_SHOW = "結果";
