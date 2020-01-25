@@ -1,5 +1,5 @@
 {
-  "types": ["addCustomBlocks"],
+  "types": ["addMyBlocks"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
