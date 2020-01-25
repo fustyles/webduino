@@ -1,4 +1,4 @@
-Blockly.Blocks['addCustomBlocks'] = {
+Blockly.Blocks['addMyBlocks'] = {
   init: function() {
   this.appendDummyInput()
       .appendField(Blockly.Msg.ADDCUSTOMBLOCKS_SHOW);
