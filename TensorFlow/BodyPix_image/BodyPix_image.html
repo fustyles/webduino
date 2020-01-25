@@ -18,12 +18,13 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_image/BodyPix_image.html
 <br>
 <div id="result" style="width:350px;color:red">Please wait for loading model.</div>
 <br><br>
-<img id="OriginImage" style="display:none"><br>
+<img id="OriginImage" style="display:none">
 <canvas id="ShowImage"></canvas><br>
-<canvas id="canvas1"></canvas><br>
-<canvas id="canvas2"></canvas><br>
-<canvas id="canvas3"></canvas><br>
+<canvas id="canvas1"></canvas>
+<canvas id="canvas2"></canvas>
+<canvas id="canvas3"></canvas>
 <canvas id="canvas4"></canvas>
+<canvas id="canvas5"></canvas>
 
 <script>
 var OriginImage = document.getElementById('OriginImage');
@@ -34,6 +35,7 @@ var canvas1 = document.getElementById("canvas1");
 var canvas2 = document.getElementById("canvas2");
 var canvas3 = document.getElementById("canvas3");
 var canvas4 = document.getElementById("canvas4");
+var canvas5 = document.getElementById("canvas5");
 var result = document.getElementById('result');
 var Model;
 var outputStride = 16;
@@ -48,54 +50,90 @@ function ObjectDetect() {
 }
   
 async function DetectImage() {
+  //console.log(segmentation);
+  canvas1.setAttribute("width", ShowImage.width);
+  canvas1.setAttribute("height", ShowImage.height);   
+  canvas2.setAttribute("width", ShowImage.width);
+  canvas2.setAttribute("height", ShowImage.height); 
+  canvas3.setAttribute("width", ShowImage.width);
+  canvas3.setAttribute("height", ShowImage.height); 
+  canvas4.setAttribute("width", ShowImage.width);
+  canvas4.setAttribute("height", ShowImage.height);	
+  canvas5.setAttribute("width", ShowImage.width);
+  canvas5.setAttribute("height", ShowImage.height);
+	
+  var rainbow = [
+  [110, 64, 170], [143, 61, 178], [178, 60, 178], [210, 62, 167],
+  [238, 67, 149], [255, 78, 125], [255, 94, 99],  [255, 115, 75],
+  [255, 140, 56], [239, 167, 47], [217, 194, 49], [194, 219, 64],
+  [175, 240, 91], [135, 245, 87], [96, 247, 96],  [64, 243, 115],
+  [40, 234, 141], [28, 219, 169], [26, 199, 194], [33, 176, 213],
+  [47, 150, 224], [65, 125, 224], [84, 101, 214], [99, 81, 195]
+  ];
+
+  var warm = [
+  [110, 64, 170], [106, 72, 183], [100, 81, 196], [92, 91, 206],
+  [84, 101, 214], [75, 113, 221], [66, 125, 224], [56, 138, 226],
+  [48, 150, 224], [40, 163, 220], [33, 176, 214], [29, 188, 205],
+  [26, 199, 194], [26, 210, 182], [28, 219, 169], [33, 227, 155],
+  [41, 234, 141], [51, 240, 128], [64, 243, 116], [79, 246, 105],
+  [96, 247, 97],  [115, 246, 91], [134, 245, 88], [155, 243, 88]
+  ];
+  
+  var spectral = [
+  [158, 1, 66],  [181, 26, 71],   [202, 50, 74],   [219, 73, 74],
+  [232, 94, 73],   [242, 117, 75],  [248, 142, 83],  [251, 167, 96],
+  [253, 190, 112], [254, 210, 129], [254, 227, 149], [254, 240, 166],
+  [251, 248, 176], [243, 249, 172], [231, 245, 163], [213, 238, 159],
+  [190, 229, 160], [164, 218, 163], [137, 207, 165], [110, 192, 168],
+  [86, 173, 174],  [70, 150, 179],  [67, 127, 180],  [77, 103, 173]
+  ];
+
   await Model.estimatePersonSegmentation(ShowImage, outputStride, segmentationThreshold).then(segmentation => {
-    //console.log(segmentation);
-    canvas1.setAttribute("width", ShowImage.width);
-    canvas1.setAttribute("height", ShowImage.height);   
-    canvas2.setAttribute("width", ShowImage.width);
-    canvas2.setAttribute("height", ShowImage.height); 
-    canvas3.setAttribute("width", ShowImage.width);
-    canvas3.setAttribute("height", ShowImage.height); 
-    canvas4.setAttribute("width", ShowImage.width);
-    canvas4.setAttribute("height", ShowImage.height);	  
-    
-    const maskBackground = true;
-    // Convert the personSegmentation into a mask to darken the background.
-    // Since maskBackground is set to true, there will be 1s where the background is and 0s where the person is.
-    const backgroundDarkeningMask = bodyPix.toMaskImageData(segmentation, maskBackground);
-    const opacity = 0.8;
-    const maskBlurAmount = 3;
-    const flipHorizontal = false;
-    const backgroundBlurAmount = 3;
-    const edgeBlurAmount = 3;
-    // draw the mask onto the image on a canvas.  With opacity set to 0.7 and maskBlurAmount set to 3, this will darken the background and blur the darkened background's edge.
+    var maskBackground = true;
+    var backgroundDarkeningMask = bodyPix.toMaskImageData(segmentation, maskBackground);
+    var opacity = 0.8;
+    var maskBlurAmount = 3;
+    var flipHorizontal = false;
     bodyPix.drawMask(canvas1, ShowImage, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
-	  
+	
+	var backgroundBlurAmount = 5;
+	var edgeBlurAmount = 3;
+	var flipHorizontal = false;
     bodyPix.drawBokehEffect(canvas2, ShowImage, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
 	  
-    const rainbow = [
-      [110, 64, 170], [143, 61, 178], [178, 60, 178], [210, 62, 167],
-      [238, 67, 149], [255, 78, 125], [255, 94, 99],  [255, 115, 75],
-      [255, 140, 56], [239, 167, 47], [217, 194, 49], [194, 219, 64],
-      [175, 240, 91], [135, 245, 87], [96, 247, 96],  [64, 243, 115],
-      [40, 234, 141], [28, 219, 169], [26, 199, 194], [33, 176, 213],
-      [47, 150, 224], [65, 125, 224], [84, 101, 214], [99, 81, 195]
-    ];
-    const coloredPartImageData = bodyPix.toColoredPartImageData(segmentation, rainbow);
-    const pixelCellWidth = 10.0;
-    bodyPix.drawPixelatedMask(canvas3, ShowImage, coloredPartImageData, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);	  
-    
-	  const warm = [
-      [110, 64, 170], [106, 72, 183], [100, 81, 196], [92, 91, 206],
-      [84, 101, 214], [75, 113, 221], [66, 125, 224], [56, 138, 226],
-      [48, 150, 224], [40, 163, 220], [33, 176, 214], [29, 188, 205],
-      [26, 199, 194], [26, 210, 182], [28, 219, 169], [33, 227, 155],
-      [41, 234, 141], [51, 240, 128], [64, 243, 116], [79, 246, 105],
-      [96, 247, 97],  [115, 246, 91], [134, 245, 88], [155, 243, 88]
-    ];
-    const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
-    bodyPix.drawMask(canvas4, ShowImage, coloredPartImage, 1.0, maskBlurAmount, flipHorizontal);
-	 
+    var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, rainbow);
+    //var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
+    //var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, spectral);
+    var maskBackground = true;
+    var maskImage = bodyPix.toMaskImageData(segmentation, maskBackground);
+    var opacity = 0.7;
+    var maskBlurAmount = 3;
+    var flipHorizontal = false;
+    var pixelCellWidth = 10.0;
+    bodyPix.drawPixelatedMask(canvas3, ShowImage, maskImage, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
+
+    var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, rainbow);
+    //var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
+    //var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, spectral);
+    var invert = true;
+    var opacity = 1;
+    var flipHorizontal = false;
+    var maskBlurAmount = 0;
+    bodyPix.drawMask(canvas4, ShowImage, coloredPartImage, opacity, maskBlurAmount, flipHorizontal);
+
+    result.innerHTML = "";
+  });
+
+  await Model.estimatePartSegmentation(ShowImage, outputStride, segmentationThreshold).then(segmentation => {
+    var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, rainbow);
+    //var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
+    //var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, spectral);
+    var opacity = 0.7;
+    var flipHorizontal = false;
+    var maskBlurAmount = 0;
+    var pixelCellWidth = 10.0;
+    bodyPix.drawPixelatedMask(canvas5, ShowImage, coloredPartImage, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
     result.innerHTML = "";
   });
 }
