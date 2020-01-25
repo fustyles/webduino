@@ -123,7 +123,6 @@ window.onload = function () {
       canvas3.style.display="none";
 
 	//console.log(JSON.stringify(partSegmentation));
-console.log(partSegmentation.length);
 	result.innerHTML="";
 	if (partSegmentation.length>0) {
 	  for (var p=0;p<partSegmentation.length;p++) {
