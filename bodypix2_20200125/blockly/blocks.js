@@ -59,8 +59,8 @@ Blockly.Blocks['bodypix2_video'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.BODYPIX2_FUNCTION_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["drawMask","1"],
-		["drawPixelatedMask","2"],
+		["partMap","1"],
+		["pixelation","2"],
 		["blurBodyPart","3"]	  
   ]), "func_");  
   this.setInputsInline(true);	  
