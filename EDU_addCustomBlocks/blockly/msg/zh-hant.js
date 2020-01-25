@@ -1,1 +1,1 @@
-﻿MSG.catCustomBlocks = "新增自訂積木";
+﻿MSG.catMyBlocks = "自訂積木";
