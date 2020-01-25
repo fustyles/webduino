@@ -1,0 +1,15 @@
+{
+  "types": ["bodypix2_person","bodypix2_video"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "bodypix2_video.js",
+    "bodypix2.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}

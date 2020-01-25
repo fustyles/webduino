@@ -1,0 +1,9 @@
+Blockly.Msg.BODYPIX2_PERSON_SHOW = "身体侦测 (bodypix2) 索引";
+Blockly.Msg.BODYPIX2_PART_SHOW = "部位";
+Blockly.Msg.BODYPIX2_WIDTH_SHOW = "身体侦测 (bodypix2) 视讯宽度";
+Blockly.Msg.BODYPIX2_HEIGHT_SHOW = "高度";
+Blockly.Msg.BODYPIX2_MIRRORIMAGE_SHOW = "镜像";
+Blockly.Msg.BODYPIX2_RESULT_SHOW = "结果";
+Blockly.Msg.BODYPIX2_SKELETON_SHOW = "骨架";
+Blockly.Msg.BODYPIX2_FUNCTION_SHOW = "功能";
+Blockly.Msg.BODYPIX2_OPACITY_SHOW = "透明度";
