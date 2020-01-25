@@ -118,7 +118,9 @@ window.onload = function () {
       const edgeBlurAmount = 3;
       const flipHorizontal = false;
       bodyPix.blurBodyPart(canvas3, canvas, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
-      //drawPoses(partSegmentation, flipHorizontal, context3);
+      if (skeleton.value=="1")
+        drawPoses(partSegmentation, flipHorizontal, context3);
+      }
     } else
       canvas3.style.display="none";
 
