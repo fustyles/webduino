@@ -1,5 +1,5 @@
-<category id="catCustomBlocks">
-  <block type="addCustomBlocks">
+<category id="catMyBlocks">
+  <block type="addMyBlocks">
     <value name="url">
       <block type="text">
         <field name="TEXT"></field>
