@@ -146,7 +146,9 @@ async function DetectVideo() {
       [41, 234, 141], [51, 240, 128], [64, 243, 116], [79, 246, 105],
       [96, 247, 97],  [115, 246, 91], [134, 245, 88], [155, 243, 88]
       ];
-      const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
+		
+      const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, rainbow);
+      //const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
 	  const maskBlurAmount = 3;
 	  const flipHorizontal = false;
       bodyPix.drawMask(canvas4, canvas, coloredPartImage, 1.0, maskBlurAmount, flipHorizontal);
