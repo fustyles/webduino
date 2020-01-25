@@ -111,6 +111,15 @@ async function DetectVideo() {
       [96, 247, 97],  [115, 246, 91], [134, 245, 88], [155, 243, 88]
       ];
 	  
+      const spectral = [
+      [158, 1, 66],    [181, 26, 71],   [202, 50, 74],   [219, 73, 74],
+      [232, 94, 73],   [242, 117, 75],  [248, 142, 83],  [251, 167, 96],
+      [253, 190, 112], [254, 210, 129], [254, 227, 149], [254, 240, 166],
+      [251, 248, 176], [243, 249, 172], [231, 245, 163], [213, 238, 159],
+      [190, 229, 160], [164, 218, 163], [137, 207, 165], [110, 192, 168],
+      [86, 173, 174],  [70, 150, 179],  [67, 127, 180],  [77, 103, 173]
+      ];	  
+	  
 	if (kind.value=="1") {
 	  canvas1.style.display="block";
 
@@ -126,34 +135,32 @@ async function DetectVideo() {
 	if (kind.value=="2") {
 	  canvas2.style.display="block";
 
-      const backgroundBlurAmount = 3;
-      const edgeBlurAmount = 3;
-      const flipHorizontal = false;
-      bodyPix.drawBokehEffect(canvas2, canvas, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
+	  const backgroundBlurAmount = 3;
+	  const edgeBlurAmount = 3;
+	  const flipHorizontal = false;
+	  bodyPix.drawBokehEffect(canvas2, canvas, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
 	} else
 	  canvas2.style.display="none";
     
 	if (kind.value=="3") {
 	  canvas3.style.display="block";
-
-
-      const coloredPartImageData = bodyPix.toColoredPartImageData(segmentation, rainbow);
+	  const coloredPartImageData = bodyPix.toColoredPartImageData(segmentation, rainbow);
 	  const opacity = 0.7;
 	  const maskBlurAmount = 3;
 	  const flipHorizontal = false;
-      const pixelCellWidth = 10.0;
-      bodyPix.drawPixelatedMask(canvas3, canvas, coloredPartImageData, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
+	  const pixelCellWidth = 10.0;
+	  bodyPix.drawPixelatedMask(canvas3, canvas, coloredPartImageData, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
 	} else
 	  canvas3.style.display="none";
 
 	if (kind.value=="4") {
 	  canvas4.style.display="block";
 		
-      const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, rainbow);
-      //const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
+	  const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, rainbow);
+	  //const coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
 	  const maskBlurAmount = 3;
 	  const flipHorizontal = false;
-      bodyPix.drawMask(canvas4, canvas, coloredPartImage, 1.0, maskBlurAmount, flipHorizontal);
+	  bodyPix.drawMask(canvas4, canvas, coloredPartImage, 1.0, maskBlurAmount, flipHorizontal);
 	} else
 	  canvas4.style.display="none";
     
