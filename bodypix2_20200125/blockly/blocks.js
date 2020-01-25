@@ -51,7 +51,7 @@ Blockly.Blocks['bodypix2_video'] = {
 		["hide","0"]	  
   ]), "skeleton_");	  
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSENET_MIRRORIMAGE_SHOW)
+      .appendField(Blockly.Msg.BODYPIX2_MIRRORIMAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		["yes","1"],
 		["no","0"]	  
