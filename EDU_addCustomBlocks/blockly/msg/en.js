@@ -1,1 +1,1 @@
-MSG.catCustomBlocks = "Custom Blocks";
+MSG.catMyBlocks = "Custom Blocks";
