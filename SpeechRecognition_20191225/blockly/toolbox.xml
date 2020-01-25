@@ -1,43 +1,39 @@
 <category id="catSpeechRecognition">
   <block type="SpeechRecognition_run">
   </block>    
-  <block type="SpeechRecognition_listener">
-    <statement name="do_">
+  <block type="variables_set">
+    <field name="VAR">Interim</field>
+    <value name="VALUE">
+      <block type="SpeechRecognition_interim_get"></block>
+    </value>
+    <next>
       <block type="variables_set">
-        <field name="VAR">Interim</field>
+        <field name="VAR">Final</field>
         <value name="VALUE">
-          <block type="SpeechRecognition_interim_get"></block>
+          <block type="SpeechRecognition_final_get"></block>
         </value>
         <next>
-          <block type="variables_set">
-            <field name="VAR">Final</field>
-            <value name="VALUE">
-              <block type="SpeechRecognition_final_get"></block>
-            </value>
-            <next>
-              <block type="controls_if">
-                <mutation else="1"></mutation>
-                <value name="IF0">
-                  <block type="logic_compare">
-                    <field name="OP">NEQ</field>
-                    <value name="A">
-                      <block type="variables_get">
-                        <field name="VAR">Final</field>
-                      </block>
-                    </value>
-                    <value name="B">
-                      <block type="text">
-                        <field name="TEXT"></field>
-                      </block>
-                    </value>
+          <block type="controls_if">
+            <mutation else="1"></mutation>
+            <value name="IF0">
+              <block type="logic_compare">
+                <field name="OP">NEQ</field>
+                <value name="A">
+                  <block type="variables_get">
+                    <field name="VAR">Final</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="text">
+                    <field name="TEXT"></field>
                   </block>
                 </value>
               </block>
-            </next>
+            </value>
           </block>
         </next>
       </block>
-    </statement>
+    </next>
   </block>
   <variables>
   <variable type="">Final</variable></variables>
