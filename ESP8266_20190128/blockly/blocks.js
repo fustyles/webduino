@@ -183,7 +183,7 @@ Blockly.Blocks['esp8266_getresponse'] = {
 Blockly.Blocks['esp8266_clearresponse'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("MyFirmata Clear Response Data");
+        .appendField("WiFiBoard Clear Response Data");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
