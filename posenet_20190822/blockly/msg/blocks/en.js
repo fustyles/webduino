@@ -1,6 +1,6 @@
 Blockly.Msg.POSENET_PERSON_SHOW = "Pose Detection (posenet) Index";
 Blockly.Msg.POSENET_PART_SHOW = "Part";
-Blockly.Msg.POSENET_WIDTH_SHOW = "Video (posenet) Width";
+Blockly.Msg.POSENET_WIDTH_SHOW = "Pose Detection (posenet) Video Width";
 Blockly.Msg.POSENET_HEIGHT_SHOW = "Height";
 Blockly.Msg.POSENET_MIRRORIMAGE_SHOW = "Mirror Image";
 Blockly.Msg.POSENET_PERSONS_SHOW = "Persons";
