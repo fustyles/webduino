@@ -53,14 +53,16 @@ ScoreLimit
   function ObjectDetect() {
     //Model = new cvstfjs.ClassificationModel();
     Model = new cvstfjs.ObjectDetectionModel();
-  Model.loadModelAsync('model.json');
-  //console.log(Model);
-  document.getElementById('selectimage').disabled = false;
-  result.innerHTML = "";
+    Model.loadModelAsync('model.json');
+    //console.log(Model);
+    document.getElementById('selectimage').disabled = false;
+    result.innerHTML = "";
   }  
                         
 async function DetectImage() {
-    await Model.executeAsync(ShowImage).then(predictions => { 
+  tf.tidy(() => {
+
+    Model.executeAsync(ShowImage).then(predictions => { 
 	  //console.log('Predictions: ', Predictions);
 	  result.innerHTML = "";
 	  canvas.setAttribute("width", ShowImage.width);
@@ -107,9 +109,12 @@ async function DetectImage() {
       }
       else
         result.innerHTML = "Unrecognizable";
-      //console.log(tf.memory());
+
+	  console.log(tf.memory().numTensors);
     });
-  }
+
+  });
+}
 
 document.getElementById('selectimage').onchange = function (event) {
   var target = event.target || window.event.srcElement;
