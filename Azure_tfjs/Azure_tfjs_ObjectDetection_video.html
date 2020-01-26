@@ -47,10 +47,11 @@ ScoreLimit
   ObjectDetect();  
   
   function ObjectDetect() {
+    //Model = new cvstfjs.ClassificationModel();	  
     Model = new cvstfjs.ObjectDetectionModel();
-	Model.loadModelAsync('model.json');
-	//console.log(Model);
-	setTimeout(function(){ startvideo(); }, 5000); 
+    Model.loadModelAsync('model.json');
+    //console.log(Model);
+    setTimeout(function(){ startvideo(); }, 5000); 
   }  
   
   function startvideo() {
@@ -83,40 +84,40 @@ ScoreLimit
 
       //console.log(JSON. stringify(predictions));
       if (predictions.length>0) {
-		for (i=0;i<predictions[0].length;i++) {
-		  const x1 = Number(predictions[0][i][0])*video.width;
-		  const y1 = Number(predictions[0][i][1])*video.height;
-		  const width = [Number(predictions[0][i][2])-Number(predictions[0][i][0])]*video.width;
-		  const height = [Number(predictions[0][i][3])-Number(predictions[0][i][1])]*video.height;
+	for (i=0;i<predictions[0].length;i++) {
+		const x1 = Number(predictions[0][i][0])*video.width;
+		const y1 = Number(predictions[0][i][1])*video.height;
+		const width = [Number(predictions[0][i][2])-Number(predictions[0][i][0])]*video.width;
+		const height = [Number(predictions[0][i][3])-Number(predictions[0][i][1])]*video.height;
 
-		  var probability = Number(predictions[1][i]);
+		var probability = Number(predictions[1][i]);
 
-		  if (probability>=scoreLimit.value){
-			  if (predictions[2][i]==0) {
-				var className = "喬巴";
-			  }
-			  else if (predictions[2][i]==1) {
-				var className = "娜美";
-			  }
-			  else if (predictions[2][i]==2) {
-				var className = "魯夫";
-			  }
-			  else
-				var className = "未知";
+		if (probability>=scoreLimit.value){
+		  if (predictions[2][i]==0) {
+			var className = "喬巴";
+		  }
+		  else if (predictions[2][i]==1) {
+			var className = "娜美";
+		  }
+		  else if (predictions[2][i]==2) {
+			var className = "魯夫";
+		  }
+		  else
+			var className = "未知";
 
-			  context.lineWidth = "3";
-			  context.strokeStyle = "#00FFFF";
-			  context.beginPath();
-			  context.rect(x1, y1, width, height);
-			  context.stroke(); 
-			  context.lineWidth = "2";
-			  context.fillStyle = "red";
-			  context.font = "12px Arial";
-			  context.fillText(className+" "+Math.round(probability*100)+"%", x1, y1);
+		  context.lineWidth = "3";
+		  context.strokeStyle = "#00FFFF";
+		  context.beginPath();
+		  context.rect(x1, y1, width, height);
+		  context.stroke(); 
+		  context.lineWidth = "2";
+		  context.fillStyle = "red";
+		  context.font = "12px Arial";
+		  context.fillText(className+" "+Math.round(probability*100)+"%", x1, y1);
 
 		  result.innerHTML+= className+", "+Math.round(probability*100)+"%, "+Math.round(x1)+", "+Math.round(y1)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
-		  }
-	    }
+		}
+	}
       }
       else
         result.innerHTML = "Unrecognizable";
