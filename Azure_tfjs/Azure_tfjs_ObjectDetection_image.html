@@ -1,0 +1,158 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/1/26 14:30
+https://www.facebook.com/francefu
+
+Put the files in localhost domain path.
+
+How to enable WebGL in Chrome.
+https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
+-->
+
+<!DOCTYPE html>
+<head>
+  <title>Object Detection (coco-ssd)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.2/dist/tf.min.js"> </script>
+  <script src="https://unpkg.com/@microsoft/customvision-tfjs"> </script>  
+</head>
+<body>
+<input type="file" id="selectimage" disabled="true"></input>
+<br><br>
+<img id="OriginImage" style="display:none">
+<img id="ShowImage" style="display:none">
+<canvas id="canvas" width="0" height="0"></canvas>
+<br>
+ScoreLimit
+<select id="scorelimit">
+<option value="0" selected>0%</option>  
+<option value="0.1">10%</option>
+<option value="0.2">20%</option>
+<option value="0.3">30%</option>
+<option value="0.4">40%</option>
+<option value="0.5">50%</option>
+<option value="0.6">60%</option>
+<option value="0.7">70%</option>
+<option value="0.8">80%</option>
+<option value="0.9">90%</option>
+</select>
+<br>
+<div id="result" style="width:320px;color:red">Please wait for loading model.</div>
+  
+<script>
+	var OriginImage = document.getElementById('OriginImage');
+	var ShowImage = document.getElementById('ShowImage');
+	var ShowImageWidth = 500;
+	var canvas = document.getElementById("canvas");
+	var context = canvas.getContext("2d");  
+	var result = document.getElementById('result');
+	var Model;
+	var scoreLimit = document.getElementById("scorelimit");
+  
+  function ObjectDetect() {
+    Model = new cvstfjs.ObjectDetectionModel();
+	Model.loadModelAsync('model.json');
+	//console.log(Model);
+	document.getElementById('selectimage').disabled = false;
+	result.innerHTML = "";
+  }  
+                        
+async function DetectImage() {
+    await Model.executeAsync(ShowImage).then(predictions => { 
+		//console.log('Predictions: ', Predictions);
+		result.innerHTML = "";
+		canvas.setAttribute("width", ShowImage.width);
+		canvas.setAttribute("height", ShowImage.height);
+		context.drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
+		var s = (ShowImage.width>ShowImage.height)?ShowImage.width:ShowImage.height;
+
+      //console.log(JSON. stringify(predictions));
+      if (predictions.length>0) {
+		for (i=0;i<predictions[0].length;i++) {
+		  const x1 = Number(predictions[0][i][0])*ShowImage.width;
+		  const y1 = Number(predictions[0][i][1])*ShowImage.height;
+		  const width = [Number(predictions[0][i][2])-Number(predictions[0][i][0])]*ShowImage.width;
+		  const height = [Number(predictions[0][i][3])-Number(predictions[0][i][1])]*ShowImage.height;
+
+		  var probability = Number(predictions[1][i]);
+
+		  if (probability>=scoreLimit.value){
+			  if (predictions[2][i]==0) {
+				var className = "喬巴";
+			  }
+			  else if (predictions[2][i]==1) {
+				var className = "娜美";
+			  }
+			  else if (predictions[2][i]==2) {
+				var className = "魯夫";
+			  }
+			  else
+				var className = "未知";
+
+			  context.lineWidth = "3";
+			  context.strokeStyle = "#00FFFF";
+			  context.beginPath();
+			  context.rect(x1, y1, width, height);
+			  context.stroke(); 
+			  context.lineWidth = "2";
+			  context.fillStyle = "red";
+			  context.font = "12px Arial";
+			  context.fillText(className+" "+Math.round(probability*100)+"%", x1, y1);
+
+		  result.innerHTML+= className+", "+Math.round(probability*100)+"%, "+Math.round(x1)+", "+Math.round(y1)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+		  }
+	    }
+      }
+      else
+        result.innerHTML = "Unrecognizable";
+    });
+  }
+
+document.getElementById('selectimage').onchange = function (event) {
+  var target = event.target || window.event.srcElement;
+  var files = target.files;
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      result.innerHTML = "Loading image to detect...";
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.setAttribute("width", 0);
+      canvas.setAttribute("height", 0);      
+      OriginImage.src = fr.result;
+    }
+    fr.readAsDataURL(files[0]);
+  }
+}
+    
+document.getElementById('OriginImage').onload = function (event) {
+  try { 
+    document.createEvent("TouchEvent"); 
+    var width = document.body.clientWidth;
+  }
+  catch(e) { 
+    var width = ShowImageWidth;
+  } 
+  
+  if (OriginImage.height<OriginImage.width) {
+    var height = width*OriginImage.height/OriginImage.width; 
+  }
+  else {
+    var height = width;
+    width = height*OriginImage.width/OriginImage.height; 
+  }
+  
+  var height = width*OriginImage.height/OriginImage.width;
+  ShowImage.width = width;
+  ShowImage.height = height;  
+  ShowImage.src = OriginImage.src;
+}
+  
+document.getElementById('ShowImage').onload = function (event) {
+  if (Model) DetectImage();
+}
+  
+window.onload = function () { ObjectDetect(); }
+</script>
+
+</body>
+</html>
