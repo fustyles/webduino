@@ -138,7 +138,7 @@ async function DetectVideo() {
 	  const edgeBlurAmount = 3;
 	  const flipHorizontal = false;
 	  bodyPix.blurBodyPart(canvas3, canvas, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
-	  //drawPoses(partSegmentation, flipHorizontal, context3);
+	  drawPoses(partSegmentation, flipHorizontal, context3);
 	} else
 	  canvas3.style.display="none";
 
