@@ -1,0 +1,12 @@
+Blockly.Msg.CUSTOMVISION_TFJS_FUNCTION_SHOW = "功能";
+Blockly.Msg.CUSTOMVISION_TFJS_OBJECT_SHOW = "自訂視覺 (Azure-tfjs) 初始化 物件編號";
+Blockly.Msg.CUSTOMVISION_TFJS_OBJECT_NUMBER_SHOW = "自訂視覺 (Azure-tfjs) 取得物件數目 物件編號";
+Blockly.Msg.CUSTOMVISION_TFJS_INDEX_SHOW = "索引";
+Blockly.Msg.CUSTOMVISION_TFJS_WIDTH_SHOW = "寬度";
+Blockly.Msg.CUSTOMVISION_TFJS_HEIGHT_SHOW = "高度";
+Blockly.Msg.CUSTOMVISION_TFJS_RESULT_SHOW = "結果";
+Blockly.Msg.CUSTOMVISION_TFJS_PATH_SHOW = "模型路徑";
+Blockly.Msg.CUSTOMVISION_TFJS_MAX_SHOW = "自訂視覺 (Azure-tfjs) 取得最大可能物件";
+Blockly.Msg.CUSTOMVISION_TFJS_DETECT_SHOW = "自訂視覺 (Azure-tfjs) 偵測物件";
+Blockly.Msg.CUSTOMVISION_TFJS_TIMER_SHOW = "顯示時間(s)";
+Blockly.Msg.CUSTOMVISION_TFJS_SCORELIMIT_SHOW = "可能性底限";

@@ -1,0 +1,47 @@
+<category id="customvisiontfjs">
+  <block type="customvision_tfjs_video">
+    <value name="path_">
+      <block type="text">
+        <field name="TEXT">http://localhost:20975/blockly/</field>
+      </block>    
+    </value> 
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">320</field>
+      </block>
+    </value> 
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">240</field>
+      </block>
+    </value> 
+    <value name="timer_">
+      <block type="math_number">
+        <field name="NUM">3</field>
+      </block>
+    </value> 
+  </block> 
+  <block type="customvision_tfjs_object">
+    <value name="object_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>    
+    </value> 
+    <value name="index_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
+  </block>
+  <block type="customvision_tfjs_detect">
+  </block>
+  <block type="customvision_tfjs_object_number">
+    <value name="object_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>   
+    </value> 
+  </block>
+  <block type="customvision_tfjs_object_max">
+  </block>
+</category>

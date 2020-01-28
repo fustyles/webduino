@@ -1,0 +1,15 @@
+{
+  "types": ["customvision_tfjs_video", "customvision_tfjs_detect", "customvision_tfjs_object", "customvision_tfjs_object_number", "customvision_tfjs_object_max"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "customvision-tfjs_video.js",
+    "customvision-tfjs.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
