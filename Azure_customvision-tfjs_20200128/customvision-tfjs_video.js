@@ -1,5 +1,5 @@
 document.write('<canvas id="canvas" style="z-index:999;position:absolute;display:none"></canvas>');
-document.write('<div id="region" style="z-index:998;position:absolute"><video id="video" width="320" height="240" preload autoplay loop muted></video><br><div id="result" style="width:320px;color:red">Please wait for loading model.</div></div>');
+document.write('<div id="region" style="z-index:998;position:absolute"><video id="video" width="320" height="240" preload autoplay loop muted></video><br><div id="result" style="width:320px;color:red"></div></div>');
 
 var myFunc,modelPath,videoWidth,videoHeight,myResult,myTimer,scoreLimit;
 var Model,video,canvas,context,result; 
@@ -97,9 +97,10 @@ function DetectVideo() {
 		  else
 			result.innerHTML = "Unrecognizable";
 
+                  if (result.innerHTML=="") result.innerHTML = ",,,,,";
 		  console.log(tf.memory().numTensors);
 
-		  setTimeout('canvas.style.display = "none";', myTimer*1000);
+		  setTimeout('result.innerHTML="";canvas.style.display = "none";', myTimer*1000);
 		});
     });
   }
