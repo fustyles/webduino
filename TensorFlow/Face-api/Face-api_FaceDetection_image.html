@@ -30,7 +30,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 var OriginImage = document.getElementById('OriginImage');
 var ShowImage = document.getElementById('ShowImage');
 var ShowImageWidth = 500;
-var Model;
 
 const modelPath = './';
 let currentStream;
@@ -48,7 +47,7 @@ let message = document.getElementById('message');
       faceapi.nets.faceExpressionNet.load(modelPath),
       faceapi.nets.ageGenderNet.load(modelPath)
     ]).then(function(){
-      result.innerHTML = "Please select one image.";
+      message.innerHTML = "Please select one image.";
       document.getElementById('selectimage').disabled = false;
     })
   }  
@@ -117,7 +116,7 @@ document.getElementById('OriginImage').onload = function (event) {
 }
   
 document.getElementById('ShowImage').onload = function (event) {
-  if (Model) DetectImage(Model);
+  DetectImage();
 }
   
 window.onload = function () { ObjectDetect(); }
