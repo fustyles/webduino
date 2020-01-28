@@ -13,51 +13,29 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src='face-api.min.js'></script>
-<style>
-  #webcam-container {
-    padding: 0;
-  }
-  #hide {
-    position: absolute;
-    top: 250px;
-    left: 0;
-  }
-  #message {
-    position: absolute;
-    top: 280px;
-    left: 0;
-    color:red;
-  }
-  canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  video {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-</style>
 </head>
 <body>
-<video id="webcam" autoplay muted playsinline></video>
+<input type="file" id="selectimage" disabled="true"></input>
+<br><br>
+<img id="OriginImage" style="display:none">
+<img id="ShowImage">
+<canvas id="canvas" width="0" height="0"></canvas>
 <div id="webcam-container"></div>
-<div id="hide">
-<input type="checkbox" onclick="if (this.checked) camera.style.display='none'; else camera.style.display='block';" value="">Hide Video
-</div>
-<div id="message">Please wait for loading model.</div>
-  
+<br>
+<div id="message" style="width:350px;color:red">Please wait for loading model.</div>
+
 <script>
-const camera = document.getElementById('webcam');
+var OriginImage = document.getElementById('OriginImage');
+var ShowImage = document.getElementById('ShowImage');
+var ShowImageWidth = 500;
+var Model;
+
 const modelPath = './';
 let currentStream;
 let displaySize = { width:320, height: 240 }
 let canvas;
 let faceDetection;
 let message = document.getElementById('message'); 
-  
-  ObjectDetect();  
   
   function ObjectDetect() {
     $(".progress-bar").removeClass('d-none');
@@ -68,38 +46,12 @@ let message = document.getElementById('message');
       faceapi.nets.faceExpressionNet.load(modelPath),
       faceapi.nets.ageGenderNet.load(modelPath)
     ]).then(function(){
-      startvideo();
+
     })
   }  
-  
-  function startvideo() {
-    navigator.mediaDevices
-      .getUserMedia({
-        audio: false,
-        video: {
-          facingMode: "user",
-          width: 320,
-          height: 240
-        }
-      })
-      .then(stream => {
-        camera.srcObject = stream
-        camera.onloadedmetadata = () => {       
-          camera.play();
-          if( document.getElementsByTagName("canvas").length == 0 )
-          {
-            canvas = faceapi.createCanvasFromMedia(camera)
-            document.getElementById('webcam-container').append(canvas)
-            faceapi.matchDimensions(canvas, displaySize)
-          }  
-          //camera.style.visibility="hidden";     
-          DetectVideo();
-        }
-      })   
-  }
                         
-  async function DetectVideo() {
-      const detections = await faceapi.detectAllFaces(camera, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
+  async function DetectImage() {
+      const detections = await faceapi.detectAllFaces(ShowImage, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
       const resizedDetections = faceapi.resizeResults(detections, displaySize)
       canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
       faceapi.draw.drawDetections(canvas, resizedDetections)
@@ -124,6 +76,48 @@ let message = document.getElementById('message');
         setTimeout(function(){DetectVideo();},150);
       } 
   }
+
+document.getElementById('selectimage').onchange = function (event) {
+  var target = event.target || window.event.srcElement;
+  var files = target.files;
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      result.innerHTML = "Loading image to detect...";  
+      OriginImage.src = fr.result;
+    }
+    fr.readAsDataURL(files[0]);
+  }
+}
+    
+document.getElementById('OriginImage').onload = function (event) {
+  try { 
+    document.createEvent("TouchEvent"); 
+    var width = document.body.clientWidth;
+  }
+  catch(e) { 
+    var width = ShowImageWidth;
+  } 
+  
+  if (OriginImage.height<OriginImage.width) {
+    var height = width*OriginImage.height/OriginImage.width; 
+  }
+  else {
+    var height = width;
+    width = height*OriginImage.width/OriginImage.height; 
+  }
+  
+  var height = width*OriginImage.height/OriginImage.width;
+  ShowImage.width = width;
+  ShowImage.height = height;  
+  ShowImage.src = OriginImage.src;
+}
+  
+document.getElementById('ShowImage').onload = function (event) {
+  if (Model) DetectImage(Model);
+}
+  
+window.onload = function () { ObjectDetect(); }
 </script>
 
 </body>
