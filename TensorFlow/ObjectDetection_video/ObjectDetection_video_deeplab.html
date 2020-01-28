@@ -29,7 +29,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <script>
   var video = document.getElementById('video');
   var canvas = document.getElementById('canvas');
-  var ctx = canvas.getContext('2d');	
+  var context = canvas.getContext('2d');	
   var Image = document.getElementById('Image');
   var context1 = Image.getContext('2d');
   var legendList = document.getElementById('legendList');
@@ -88,7 +88,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 
     canvas.width = width;
     canvas.height = height;
-    ctx.putImageData(segmentationMapData, 0, 0);
+    context.putImageData(segmentationMapData, 0, 0);
 
     while (legendList.firstChild) {
 	  legendList.removeChild(legendList.firstChild);
