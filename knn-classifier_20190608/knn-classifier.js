@@ -5,13 +5,11 @@
   'use strict';
 
   function knn_classifier_open() {
-    if (document.getElementById("train"))
-    {
+    if (document.getElementById("train")) {
       document.getElementById("train").innerHTML = "";
       document.getElementById("probability").innerHTML = "";
     }
-    else
-    {
+    else {
       var div = document.createElement('div');
       div.id = "train";
       div.style.position = 'absolute';
@@ -26,7 +24,7 @@
     }
   }
   
-  function knn_classifier_proportion(input_property){
+  function knn_classifier_proportion(input_property) {
     if (input_property=="train")
       return Number(document.getElementById("train").innerHTML);
     else if (input_property=="probability")
