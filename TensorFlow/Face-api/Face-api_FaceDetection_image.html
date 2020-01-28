@@ -53,7 +53,7 @@ let message = document.getElementById('message');
   async function DetectImage() {
       if( document.getElementsByTagName("canvas").length == 0 ) {
         canvas = faceapi.createCanvasFromMedia(ShowImage)
-        document.body.insertAfter(canvas, ShowImage);
+        document.body.insertBefore(canvas, ShowImage.nextSibling);
         faceapi.matchDimensions(canvas, displaySize)
       }    
       canvas.setAttribute("width", ShowImage.width);
