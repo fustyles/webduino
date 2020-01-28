@@ -21,7 +21,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <br><br>
 <img id="OriginImage" style="display:none">
 <img id="ShowImage">
-<div id="webcam-container"></div>
 <br>
 <div id="message" style="width:350px;color:red">Please wait for loading model.</div>
 
@@ -54,7 +53,7 @@ let message = document.getElementById('message');
   async function DetectImage() {
       if( document.getElementsByTagName("canvas").length == 0 ) {
         canvas = faceapi.createCanvasFromMedia(ShowImage)
-        document.body.appendChild(canvas)
+        document.body.insertAfter(canvas, ShowImage);
         faceapi.matchDimensions(canvas, displaySize)
       }    
       canvas.setAttribute("width", ShowImage.width);
