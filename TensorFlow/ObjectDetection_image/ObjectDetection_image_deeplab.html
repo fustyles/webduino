@@ -20,8 +20,8 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <input type="file" id="selectimage" disabled="true"></input>
 <br><br>
 <img id="OriginImage" style="display:none">
-<canvas id="canvas"></canvas>
 <img id="ShowImage">
+<canvas id="canvas"></canvas>
 <br>
 <div id="legendList"></div>
 <br>
@@ -132,7 +132,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   }
     
   document.getElementById('ShowImage').onload = function (event) {
-	result.innerHTML = "Start Detection";
+	result.innerHTML = "Detecting...";
     if (Model) setTimeout(function(){DetectImage();}, 1000);
   }
     
