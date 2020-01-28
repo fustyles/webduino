@@ -1,7 +1,6 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/deeplab"></script>');
-document.write('<div id="region" style="z-index:999;position:absolute"><br><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><canvas id="Image" style="display:none"></canvas><br><div id="legendList"></div></div>');
-document.write('MirrorImage<select id="mirrorimage"><option value="1">yes</option><option value="0">no</option></select><br><div id="result" style="width:320px;color:red;z-index:999;position:absolute">Please wait for loading model.</div>');
+document.write('<div id="region" style="z-index:999;position:absolute">MirrorImage<select id="mirrorimage""><option value="1">yes</option><option value="0">no</option></select><br><div id="result" style="width:320px;color:red;z-index:999">Please wait for loading model.</div><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><canvas id="Image" style="display:none"></canvas><br><div id="legendList"></div></div>');
 
 window.onload = function () {
   var region = document.getElementById('region');
@@ -77,6 +76,8 @@ window.onload = function () {
     canvas.width = width;
     canvas.height = height;
     context.putImageData(segmentationMapData, 0, 0);
+	result.style.position = "absolute";
+	result.style.top = (canvas.height + 80) + "px";
 
     while (legendList.firstChild) {
 	  legendList.removeChild(legendList.firstChild);
