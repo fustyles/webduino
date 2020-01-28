@@ -57,10 +57,6 @@ let message = document.getElementById('message');
   }  
                         
   async function DetectImage() {
-      canvas.setAttribute("width", ShowImage.width);
-      canvas.setAttribute("height", ShowImage.height);  
-      context.drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height);  
-    
       const detections = await faceapi.detectAllFaces(ShowImage, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
       const resizedDetections = faceapi.resizeResults(detections, displaySize)
       faceapi.draw.drawDetections(canvas, resizedDetections)
