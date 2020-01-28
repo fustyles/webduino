@@ -46,17 +46,17 @@ let message = document.getElementById('message');
       faceapi.nets.faceExpressionNet.load(modelPath),
       faceapi.nets.ageGenderNet.load(modelPath)
     ]).then(function(){
-      if( document.getElementsByTagName("canvas").length == 0 ) {
-        canvas = faceapi.createCanvasFromMedia(camera)
-        document.getElementById('webcam-container').append(canvas)
-        faceapi.matchDimensions(canvas, displaySize)
-      }        
       message.innerHTML = "Please select one image.";
       document.getElementById('selectimage').disabled = false;
     })
   }  
                         
   async function DetectImage() {
+      if( document.getElementsByTagName("canvas").length == 0 ) {
+        canvas = faceapi.createCanvasFromMedia(ShowImage)
+        document.getElementById('webcam-container').append(canvas)
+        faceapi.matchDimensions(canvas, displaySize)
+      }      
       const detections = await faceapi.detectAllFaces(ShowImage, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
       const resizedDetections = faceapi.resizeResults(detections, displaySize)
       faceapi.draw.drawDetections(canvas, resizedDetections)
