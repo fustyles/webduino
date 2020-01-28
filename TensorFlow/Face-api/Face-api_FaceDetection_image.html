@@ -49,6 +49,7 @@ let message = document.getElementById('message');
       faceapi.nets.ageGenderNet.load(modelPath)
     ]).then(function(){
       result.innerHTML = "Please select one image.";
+      document.getElementById('selectimage').disabled = false;
     })
   }  
                         
