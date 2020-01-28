@@ -85,7 +85,7 @@ document.getElementById('selectimage').onchange = function (event) {
   if (FileReader && files && files.length) {
     var fr = new FileReader();
     fr.onload = function () {
-      result.innerHTML = "Loading image to detect...";  
+      message.innerHTML = "Loading image to detect...";  
       OriginImage.src = fr.result;
     }
     fr.readAsDataURL(files[0]);
