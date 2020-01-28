@@ -62,6 +62,7 @@ let message = document.getElementById('message');
       canvas.getContext('2d').drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
       
       const detections = await faceapi.detectAllFaces(ShowImage, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
+      displaySize = { width:ShowImage.width, height: ShowImage.height }
       const resizedDetections = faceapi.resizeResults(detections, displaySize)
       faceapi.draw.drawDetections(canvas, resizedDetections)
       faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
