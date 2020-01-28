@@ -21,7 +21,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <br><br>
 <img id="OriginImage" style="display:none">
 <img id="ShowImage">
-<canvas id="canvas"></canvas>
 <div id="webcam-container"></div>
 <br>
 <div id="message" style="width:350px;color:red">Please wait for loading model.</div>
@@ -30,12 +29,11 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 var OriginImage = document.getElementById('OriginImage');
 var ShowImage = document.getElementById('ShowImage');
 var ShowImageWidth = 500;
-var canvas = document.getElementById("canvas");
-var context = canvas.getContext("2d");  
 
 const modelPath = './';
 let currentStream;
 let displaySize = { width:320, height: 240 }
+let canvas;
 let faceDetection;
 let message = document.getElementById('message'); 
   
@@ -48,6 +46,11 @@ let message = document.getElementById('message');
       faceapi.nets.faceExpressionNet.load(modelPath),
       faceapi.nets.ageGenderNet.load(modelPath)
     ]).then(function(){
+      if( document.getElementsByTagName("canvas").length == 0 ) {
+        canvas = faceapi.createCanvasFromMedia(camera)
+        document.getElementById('webcam-container').append(canvas)
+        faceapi.matchDimensions(canvas, displaySize)
+      }        
       message.innerHTML = "Please select one image.";
       document.getElementById('selectimage').disabled = false;
     })
