@@ -48,7 +48,7 @@ let message = document.getElementById('message');
       faceapi.nets.faceExpressionNet.load(modelPath),
       faceapi.nets.ageGenderNet.load(modelPath)
     ]).then(function(){
-
+      result.innerHTML = "Please select one image.";
     })
   }  
                         
