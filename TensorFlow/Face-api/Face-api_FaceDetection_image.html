@@ -54,7 +54,7 @@ let message = document.getElementById('message');
   async function DetectImage() {
       if( document.getElementsByTagName("canvas").length == 0 ) {
         canvas = faceapi.createCanvasFromMedia(ShowImage)
-        document.getElementById('webcam-container').append(canvas)
+        document.body.appendChild(canvas)
         faceapi.matchDimensions(canvas, displaySize)
       }    
       canvas.setAttribute("width", ShowImage.width);
