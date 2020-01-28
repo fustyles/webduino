@@ -30,6 +30,8 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 var OriginImage = document.getElementById('OriginImage');
 var ShowImage = document.getElementById('ShowImage');
 var ShowImageWidth = 500;
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");  
 
 const modelPath = './';
 let currentStream;
