@@ -1,5 +1,5 @@
 {
-  "types": ["mobilenet_object", "mobilenet_video"],
+  "types": ["mobilenet_video", "mobilenet_object", "mobilenet_object_number"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",

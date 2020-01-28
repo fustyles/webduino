@@ -1,6 +1,4 @@
 <category id="mobilenet">
-  <block type="mobilenet_object">
-  </block>
   <block type="mobilenet_video">
     <value name="width_">
       <block type="math_number">
@@ -12,5 +10,14 @@
         <field name="NUM">300</field>
       </block>
     </value>     
-  </block>   
+  </block> 
+  <block type="mobilenet_object">
+    <value name="index_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
+  </block>
+  <block type="mobilenet_object_number">
+  </block>  
 </category>
