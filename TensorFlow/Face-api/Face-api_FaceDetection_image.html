@@ -54,7 +54,12 @@ let message = document.getElementById('message');
   }  
                         
   async function DetectImage() {
-      const detections = await faceapi.detectAllFaces(ShowImage, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
+      canvas.setAttribute("width", ShowImage.width);
+      canvas.setAttribute("height", ShowImage.height);  
+      context.drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height);  
+      var s = (ShowImage.width>ShowImage.height)?ShowImage.width:ShowImage.height;  
+    
+      const detections = await faceapi.detectAllFaces(canvas, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
       const resizedDetections = faceapi.resizeResults(detections, displaySize)
       canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
       faceapi.draw.drawDetections(canvas, resizedDetections)
