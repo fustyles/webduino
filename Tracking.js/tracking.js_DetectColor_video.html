@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>tracking.js - color with camera</title>
+  <script src="https://fustyles.github.io/webduino/Tracking_20190917/tracking-min.js"></script>
+</head>
+<body>
+<video id="video" width="320" height="240" style="visibility:hidden;position:absolute" preload autoplay loop muted></video>
+<canvas id="canvas"></canvas><br>
+<table>
+<tr>
+  <td>Color Name</td>
+  <td><input type="text" id="myColor" value="black"></td>
+</tr>
+<tr>
+  <td>Color R 
+  </td>
+  <td>min
+	  <select id="myColor_r_min">
+		  <script>
+			for (var i=0;i<=255 ;i++ ) {
+				document.write("<option value='"+i+"'>"+i+"</option>");
+			}
+		  </script>
+	  </select>
+	  max
+	  <select id="myColor_r_max">
+		  <script>
+			for (var i=0;i<=255 ;i++ ) {
+				document.write("<option value='"+i+"'>"+i+"</option>");
+			}
+		  </script>
+	  </select>
+  </td>
+</tr>
+<tr>
+  <td>Color G 
+  </td>
+  <td>min
+	  <select id="myColor_g_min">
+		  <script>
+			for (var i=0;i<=255 ;i++ ) {
+				document.write("<option value='"+i+"'>"+i+"</option>");
+			}
+		  </script>
+	  </select>
+	  max
+	  <select id="myColor_g_max">
+		  <script>
+			for (var i=0;i<=255 ;i++ ) {
+				document.write("<option value='"+i+"'>"+i+"</option>");
+			}
+		  </script>
+	  </select>
+  </td>
+</tr>
+<tr>
+  <td>Color B 
+  </td>
+  <td>min
+	  <select id="myColor_b_min">
+		  <script>
+			for (var i=0;i<=255 ;i++ ) {
+				document.write("<option value='"+i+"'>"+i+"</option>");
+			}
+		  </script>
+	  </select>
+	  max
+	  <select id="myColor_b_max">
+		  <script>
+			for (var i=0;i<=255 ;i++ ) {
+				document.write("<option value='"+i+"'>"+i+"</option>");
+			}
+		  </script>
+	  </select>
+  </td>
+</tr>
+</table>
+<button id="start" onclick="startDetect();">Start Detection</button>
+<div id="result" style="color:red"><div>
+
+  <script>
+    document.body.onload = function() {
+	  document.getElementById('myColor').value = "black";
+	  document.getElementById('myColor_r_max').value = "20";
+	  document.getElementById('myColor_g_max').value = "20";
+	  document.getElementById('myColor_b_max').value = "20";
+	}
+
+    function startDetect() {
+      var video = document.getElementById('video');
+      var canvas = document.getElementById('canvas');
+      var context = canvas.getContext('2d');
+	  var result = document.getElementById('result');
+
+      canvas.setAttribute("width", video.width);
+      canvas.setAttribute("height", video.height);
+
+      var tracker = new tracking.ColorTracker();
+
+      tracking.track('#video', tracker, { camera: true });
+
+	  var myColor = document.getElementById('myColor').value;
+	  var myColor_r_min = document.getElementById('myColor_r_min').value;
+	  var myColor_r_max = document.getElementById('myColor_r_max').value;
+	  var myColor_g_min = document.getElementById('myColor_g_min').value;
+	  var myColor_g_max = document.getElementById('myColor_g_max').value;
+	  var myColor_b_min = document.getElementById('myColor_b_min').value;
+	  var myColor_b_max = document.getElementById('myColor_b_max').value;
+
+	  tracking.ColorTracker.registerColor('custom', function(r, g, b) {
+	    if ((r>=myColor_r_min&&r<=myColor_r_max)&&(g>=myColor_g_min&&g<=myColor_g_max)&&(b>=myColor_b_min&&b<=myColor_b_max)) {
+	  	  return true;
+	    }
+	    return false;
+	  });
+
+      tracker.on('track', function(event) {
+        context.drawImage(video,0,0,video.width,video.height);
+		result.innerHTML = "";
+
+        event.data.forEach(function(rect) {
+		  //console.log(rect);
+          if (rect.color === 'custom') {
+            rect.color = tracker.customColor;
+          }
+
+          context.strokeStyle = rect.color;
+          context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+          //context.font = '11px Helvetica';
+          //context.fillStyle = "#fff";
+          //context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
+          //context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
+
+		  result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
+        });
+      });
+
+     initGUIControllers(tracker,myColor);
+    };
+
+
+
+	function initGUIControllers(tracker,myColor) {
+
+	  var trackedColors = {
+		custom: true
+	  };
+
+	  Object.keys(tracking.ColorTracker.knownColors_).forEach(function(color) {
+		trackedColors[color] = true;
+		console.log(color);
+	  });
+
+	  tracker.customColor = myColor;
+
+	  function createCustomColor(value) {
+		  console.log(value);
+		var components = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(value);
+		var customColorR = parseInt(components[1], 16);
+		var customColorG = parseInt(components[2], 16);
+		var customColorB = parseInt(components[3], 16);
+
+		var colorTotal = customColorR + customColorG + customColorB;
+
+		if (colorTotal === 0) {
+		  tracking.ColorTracker.registerColor('custom', function(r, g, b) {
+			return r + g + b < 10;
+		  });
+		} else {
+		  var rRatio = customColorR / colorTotal;
+		  var gRatio = customColorG / colorTotal;
+
+		  tracking.ColorTracker.registerColor('custom', function(r, g, b) {
+			var colorTotal2 = r + g + b;
+
+			if (colorTotal2 === 0) {
+			  if (colorTotal < 10) {
+				return true;
+			  }
+			  return false;
+			}
+
+			var rRatio2 = r / colorTotal2,
+			  gRatio2 = g / colorTotal2,
+			  deltaColorTotal = colorTotal / colorTotal2,
+			  deltaR = rRatio / rRatio2,
+			  deltaG = gRatio / gRatio2;
+
+			return deltaColorTotal > 0.9 && deltaColorTotal < 1.1 &&
+			  deltaR > 0.9 && deltaR < 1.1 &&
+			  deltaG > 0.9 && deltaG < 1.1;
+		  });
+		}
+
+		updateColors();
+	  }
+
+	  function updateColors() {
+		var colors = [];
+
+		for (var color in trackedColors) {
+		  if (trackedColors[color]) {
+			colors.push(color);
+		  }
+		}
+
+		tracker.setColors(colors);
+		console.log(colors);
+	  }
+
+	  updateColors();
+	}
+
+	var objectEmit_ = tracking.ObjectTracker.prototype.emit;
+	var colorEmit_ = tracking.ColorTracker.prototype.emit;
+
+	tracking.ObjectTracker.prototype.emit = function() {
+	  objectEmit_.apply(this, arguments);
+	};
+
+	tracking.ColorTracker.prototype.emit = function() {
+	  colorEmit_.apply(this, arguments);
+	};
+
+  </script>
+</body>
+</html>
