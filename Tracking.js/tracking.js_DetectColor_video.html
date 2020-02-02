@@ -7,11 +7,12 @@ https://htmlcolorcodes.com/color-names/
 
 Try it!
 https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_video.html
+
 -->
 <!doctype html>
 <html>
 <head>
-  <title>tracking.js - color with camera</title>	
+  <title>tracking.js - color with camera</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://fustyles.github.io/webduino/Tracking_20190917/tracking-min.js"></script>
@@ -21,7 +22,7 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_video.ht
 <canvas id="canvas"></canvas><br>
 <table>
 <tr>
-  <td>Color Name</td>
+  <td><a href="https://htmlcolorcodes.com/color-names/" target="_blank">Color Name</a></td>
   <td><input type="text" id="myColor" value="black"></td>
 </tr>
 <tr>
@@ -62,19 +63,19 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_video.ht
 	var myColor_b_max_v = document.getElementById('myColor_b_max_v');
 
     document.body.onload = function() {
-	  document.getElementById('myColor').value = "black";  // Color List: https://htmlcolorcodes.com/color-names/
-	  document.getElementById('myColor_r_min').value = "0";
-	  document.getElementById('myColor_r_min_v').innerHTML = "0";
-	  document.getElementById('myColor_r_max').value = "20";
-	  document.getElementById('myColor_r_max_v').innerHTML = "20";
-	  document.getElementById('myColor_g_min').value = "0";
-	  document.getElementById('myColor_g_min_v').innerHTML = "0";
-	  document.getElementById('myColor_g_max').value = "20";
-	  document.getElementById('myColor_g_max_v').innerHTML = "20";
-	  document.getElementById('myColor_b_min').value = "0";
-	  document.getElementById('myColor_b_min_v').innerHTML = "0";
-	  document.getElementById('myColor_b_max').value = "20";
-	  document.getElementById('myColor_b_max_v').innerHTML = "20";
+	  myColor.value = "black";  // Color List: https://htmlcolorcodes.com/color-names/
+	  myColor_r_min.value = "0";
+	  myColor_r_min_v.innerHTML = "0";
+	  myColor_r_max.value = "20";
+	  myColor_r_max_v.innerHTML = "20";
+	  myColor_g_min.value = "0";
+	  myColor_g_min_v.innerHTML = "0";
+	  myColor_g_max.value = "20";
+	  myColor_g_max_v.innerHTML = "20";
+	  myColor_b_min.value = "0";
+	  myColor_b_min_v.innerHTML = "0";
+	  myColor_b_max.value = "20";
+	  myColor_b_max_v.innerHTML = "20";
 	}
 
     function startDetect() {
