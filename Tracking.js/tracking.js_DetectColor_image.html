@@ -201,7 +201,6 @@ If you change the range of RGB setting, you must press button "Start Detection".
 	var canvasWidth = 500;
 	var result = document.getElementById('result');
 
-    //ªì©l¤Æ°»´úÃC¦â
     document.getElementById('myColor').value = "Black";
     document.getElementById('myColor_r_min').value = 0;
     document.getElementById('myColor_r_min_v').innerHTML = 0;
@@ -215,7 +214,8 @@ If you change the range of RGB setting, you must press button "Start Detection".
     document.getElementById('myColor_b_min_v').innerHTML = 0;
     document.getElementById('myColor_b_max').value = 20;
     document.getElementById('myColor_b_max_v').innerHTML = 20;
-	DetectImage();
+	  
+    DetectImage();
   
     function changeColor(detectColor) {
       var val = detectColor.split("_");
@@ -308,7 +308,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
           //context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
           //context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
 
-		  result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
+	  result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
         });
       });
 
