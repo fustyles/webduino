@@ -24,7 +24,7 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_video.ht
 <tr>
   <td><a href="https://en.wikipedia.org/wiki/Web_colors" target="_blank">Color Name</a></td>
   <td>
-  <select id="myColor" onchange="changeColor(this.options[this.selectedIndex].text);">
+  <select id="myColor" onchange="changeColor(this.options[this.selectedIndex].text);startDetect();">
 	<option value="Pink">Pink_255,192,203</option>
 	<option value="LightPink">LightPink_255,182,193</option>
 	<option value="HotPink">HotPink_255,105,180</option>
@@ -229,21 +229,22 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_video.ht
 	  myColor_b_max_v.innerHTML = "20";
 	}
 
-	function changeColor(color) {
-	  var property = color.split("_");
-	  myColor_r_min.value = property[1].split(",")[0];
-	  myColor_r_min_v.innerHTML = property[1].split(",")[0];
-	  myColor_r_max.value = property[1].split(",")[0];
-	  myColor_r_max_v.innerHTML = property[1].split(",")[0];
-	  myColor_g_min.value = property[1].split(",")[1];
-	  myColor_g_min_v.innerHTML = property[1].split(",")[1];
-	  myColor_g_max.value = property[1].split(",")[1];
-	  myColor_g_max_v.innerHTML = property[1].split(",")[1];
-	  myColor_b_min.value = property[1].split(",")[2];
-	  myColor_b_min_v.innerHTML = property[1].split(",")[2];
-	  myColor_b_max.value = property[1].split(",")[2];
-	  myColor_b_max_v.innerHTML = property[1].split(",")[2];
-	}
+    function changeColor(detectColor) {
+      var val = detectColor.split("_");
+      myColor_r_min.value = val[1].split(",")[0];
+      myColor_r_min_v.innerHTML = val[1].split(",")[0];
+      myColor_r_max.value = val[1].split(",")[0];
+      myColor_r_max_v.innerHTML = val[1].split(",")[0];
+      myColor_g_min.value = val[1].split(",")[1];
+      myColor_g_min_v.innerHTML = val[1].split(",")[1];
+      myColor_g_max.value = val[1].split(",")[1];
+      myColor_g_max_v.innerHTML = val[1].split(",")[1];
+      myColor_b_min.value = val[1].split(",")[2];
+      myColor_b_min_v.innerHTML = val[1].split(",")[2];
+      myColor_b_max.value = val[1].split(",")[2];
+      myColor_b_max_v.innerHTML = val[1].split(",")[2];
+    } 
+
 
     function startDetect() {
       canvas.setAttribute("width", video.width);
