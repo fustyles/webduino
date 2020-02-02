@@ -1,0 +1,311 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/2/3 01:00
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectFace_image.html
+-->
+<!doctype html>
+<html>
+<head>
+  <title>tracking.js - color with image</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://fustyles.github.io/webduino/Tracking_20190917/tracking-min.js"></script>
+  <script src="https://fustyles.github.io/webduino/Tracking_20190917/build/tracking.js"></script>
+  <script src="https://fustyles.github.io/webduino/Tracking_20190917/build/data/face-min.js"></script>
+  <script src="https://fustyles.github.io/webduino/Tracking_20190917/src/alignment/training/Landmarks.js"></script>
+  <script src="https://fustyles.github.io/webduino/Tracking_20190917/src/alignment/training/Regressor.js"></script>
+</head>
+<body>
+<input type="file" id="selectimage"></input>
+<br><br>
+<img id="OriginImage" style="display:none">
+<img id="resizeImage" style="display:none">
+<canvas id="canvas"></canvas>
+<br>
+<div id="result" style="width:320px;color:red"></div>
+<script>
+    var OriginImage = document.getElementById('OriginImage');
+	var selectimage = document.getElementById('selectimage');
+	var resizeImage = document.getElementById('resizeImage');
+	var canvas = document.getElementById('canvas');
+	var context = canvas.getContext("2d");
+	var canvasWidth = 500;
+	var result = document.getElementById('result');
+	var faceID;
+
+	selectimage.onchange = function (event) {
+	  var target = event.target || window.event.srcElement;
+	  var files = target.files;
+	  if (FileReader && files && files.length) {
+		var fr = new FileReader();
+		fr.onload = function () {
+		  result.innerHTML = "";  
+		  OriginImage.src = fr.result;
+		}
+		fr.readAsDataURL(files[0]);
+	  }
+	}
+	  
+	OriginImage.onload = function (event) {
+	  try { 
+		document.createEvent("TouchEvent"); 
+		var width = document.body.clientWidth;
+	  }
+	  catch(e) { 
+		var width = canvasWidth;
+	  } 
+	  
+	  if (OriginImage.height<OriginImage.width) {
+		var height = width*OriginImage.height/OriginImage.width; 
+	  }
+	  else {
+		var height = width;
+		width = height*OriginImage.width/OriginImage.height; 
+	  }
+	  
+	  var height = width*OriginImage.height/OriginImage.width;
+	  canvas.setAttribute("width", width);
+	  canvas.setAttribute("height", height);
+	  context.drawImage(OriginImage,0,0,OriginImage.width,OriginImage.height,0,0,canvas.width,canvas.height);
+      resizeImage.src = canvas.toDataURL('image/jpeg');
+	}
+
+	resizeImage.onload = function (event) {
+      DetectImage();
+	}
+
+	function DetectImage() {
+		var tracker = new tracking.LandmarksTracker();
+
+		// tracking.LBF.maxNumStages = 10
+		tracker.setEdgesDensity(0.1);
+		tracker.setInitialScale(4);
+		tracker.setStepSize(2);
+
+		tracker.setInitialScale(2);
+		tracker.setStepSize(1);
+
+		var trackerTask = tracking.track('#resizeImage', tracker);
+		console.log(trackerTask);
+		
+		var landmarksPerFace = 30
+		var landmarkFeatures = {
+			jaw : {
+					first: 0,
+					last: 8,
+					fillStyle: 'white',
+					closed: false,
+			},
+			nose : {
+					first:15,
+					last: 18,
+					fillStyle: 'green',
+					closed: true,
+			},
+			mouth : {
+					first:27,
+					last: 30,
+					fillStyle: 'red',
+					closed: true,
+			},
+			eyeL : {
+					first:19,
+					last: 22,
+					fillStyle: 'purple',
+					closed: false,
+			},
+			eyeR : {
+					first:23,
+					last: 26,
+					fillStyle: 'purple',
+					closed: false,
+			},
+			eyeBrowL : {
+					first: 9,
+					last: 11,
+					fillStyle: 'yellow',
+					closed: false,
+			},
+			eyeBrowR : {
+					first:12,
+					last: 14,
+					fillStyle: 'yellow',
+					closed: false,
+			},
+		}
+
+		var parameters = {
+			landmarkLerpFactor : 0.7,
+			boundinBoxVisible : true,
+			jawVisible : true,
+			eyeBrowLVisible : true,
+			eyeBrowRVisible : true,
+			noseVisible : true,
+			eyeLVisible : true,
+			eyeRVisible : true,
+			mouthVisible : true,
+		}
+
+		var lerpedFacesLandmarks = []
+			
+		tracker.on('track', function(event) {
+			console.log("OK2");
+			if( event.data === undefined ) return;
+
+			result.innerHTML = "";
+			event.data.faces.forEach(function(boundingBox, faceIndex) {
+				faceID = faceIndex;
+				var faceLandmarks = event.data.landmarks[faceIndex]
+				if( parameters.boundinBoxVisible === true ) 
+				  displayFaceLandmarksBoundingBox(boundingBox, faceIndex)
+				lerpFacesLandmarks(faceLandmarks)
+				displayFaceLandmarksDot(lerpedFacesLandmarks)
+			});
+		})
+
+
+		function lerpFacesLandmarks(newFaceLandmarks){
+			for(var i = 0; i < newFaceLandmarks.length; i++){
+				if( lerpedFacesLandmarks[i] !== undefined ) continue
+				lerpedFacesLandmarks[i] = [
+					newFaceLandmarks[i][0],
+					newFaceLandmarks[i][1],
+				]                        
+			}
+
+			for(var i = 0; i < newFaceLandmarks.length; i++){
+				var lerpFactor = parameters.landmarkLerpFactor
+				lerpedFacesLandmarks[i][0] = newFaceLandmarks[i][0] * lerpFactor  + lerpedFacesLandmarks[i][0] * (1-lerpFactor)
+				lerpedFacesLandmarks[i][1] = newFaceLandmarks[i][1] * lerpFactor  + lerpedFacesLandmarks[i][1] * (1-lerpFactor)
+			}
+		}
+
+		function displayFaceLandmarksBoundingBox(boundingBox, faceIndex){
+			// display the box
+			context.strokeStyle = '#a64ceb';
+			context.strokeRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height);
+
+			// display the size of the box
+			context.font = '11px Helvetica';
+			context.fillStyle = "#fff";
+			context.fillText('idx: '+faceIndex, boundingBox.x + boundingBox.width + 5, boundingBox.y + 11);
+			context.fillText('x: ' + boundingBox.x + 'px', boundingBox.x + boundingBox.width + 5, boundingBox.y + 22);
+			context.fillText('y: ' + boundingBox.y + 'px', boundingBox.x + boundingBox.width + 5, boundingBox.y + 33);
+
+			result.innerHTML += 
+				faceID+","+"boundingBoxX"+","+boundingBox.x+"<br>"+
+				faceID+","+"boundingBoxY"+","+boundingBox.y+"<br>"+
+				faceID+","+"boundingBoxWidth"+","+boundingBox.width+"<br>"+
+				faceID+","+"boundingBoxHeight"+","+boundingBox.height+"<br>";
+		}
+
+		function displayFaceLandmarksDot(faceLandmarks){
+			Object.keys(landmarkFeatures).forEach(function(featureLabel){
+				if( parameters[featureLabel+'Visible'] === false )  return
+				displayFaceLandmarksFeature(faceLandmarks, featureLabel)
+			})
+		}
+
+		function displayFaceLandmarksFeature(faceLandmarks, featureLabel){
+			var feature = landmarkFeatures[featureLabel]
+
+			// draw dots
+			context.fillStyle = feature.fillStyle
+			for(var i = feature.first; i <= feature.last; i++){
+				var xy = faceLandmarks[i]
+				context.beginPath();
+				context.arc(xy[0],xy[1],1,0,2*Math.PI);
+				context.fill();                                
+			}                
+
+			// draw lines
+			var feature = landmarkFeatures[featureLabel]
+			context.strokeStyle = feature.fillStyle
+			context.beginPath();
+			for(var i = feature.first; i <= feature.last; i++){
+				var x = faceLandmarks[i][0]
+				var y = faceLandmarks[i][1]
+				if( i === 0 ){
+					context.moveTo(x, y)
+				}else{
+					context.lineTo(x, y)
+				}
+			}                
+			if( feature.closed === true ){
+				var x = faceLandmarks[feature.first][0]
+				var y = faceLandmarks[feature.first][1]
+				context.lineTo(x, y)
+			}
+
+			context.stroke();
+
+			result.innerHTML += 
+				faceID+","+"jaw1X"+","+faceLandmarks[0][0]+"<br>"+
+				faceID+","+"jaw1Y"+","+faceLandmarks[0][1]+"<br>"+	
+				faceID+","+"jaw2X"+","+faceLandmarks[1][0]+"<br>"+
+				faceID+","+"jaw2Y"+","+faceLandmarks[1][1]+"<br>"+
+				faceID+","+"jaw3X"+","+faceLandmarks[2][0]+"<br>"+
+				faceID+","+"jaw3Y"+","+faceLandmarks[2][1]+"<br>"+	
+				faceID+","+"jaw4X"+","+faceLandmarks[3][0]+"<br>"+
+				faceID+","+"jaw4Y"+","+faceLandmarks[3][1]+"<br>"+	
+				faceID+","+"jaw5X"+","+faceLandmarks[4][0]+"<br>"+
+				faceID+","+"jaw5Y"+","+faceLandmarks[4][1]+"<br>"+
+				faceID+","+"jaw6X"+","+faceLandmarks[5][0]+"<br>"+	
+				faceID+","+"jaw6Y"+","+faceLandmarks[5][1]+"<br>"+
+				faceID+","+"jaw7X"+","+faceLandmarks[6][0]+"<br>"+
+				faceID+","+"jaw7Y"+","+faceLandmarks[6][1]+"<br>"+	
+				faceID+","+"jaw8X"+","+faceLandmarks[7][0]+"<br>"+	
+				faceID+","+"jaw8Y"+","+faceLandmarks[7][1]+"<br>"+
+				faceID+","+"jaw9X"+","+faceLandmarks[8][0]+"<br>"+	
+				faceID+","+"jaw9Y"+","+faceLandmarks[8][1]+"<br>"+
+				faceID+","+"nose1X"+","+faceLandmarks[15][0]+"<br>"+
+				faceID+","+"nose1Y"+","+faceLandmarks[15][1]+"<br>"+	
+				faceID+","+"nose2X"+","+faceLandmarks[16][0]+"<br>"+	
+				faceID+","+"nose2Y"+","+faceLandmarks[16][1]+"<br>"+
+				faceID+","+"nose3X"+","+faceLandmarks[17][0]+"<br>"+
+				faceID+","+"nose3Y"+","+faceLandmarks[17][1]+"<br>"+	
+				faceID+","+"nose4X"+","+faceLandmarks[18][0]+"<br>"+	
+				faceID+","+"nose4Y"+","+faceLandmarks[18][1]+"<br>"+
+				faceID+","+"mouth1X"+","+faceLandmarks[27][0]+"<br>"+	
+				faceID+","+"mouth1Y"+","+faceLandmarks[27][1]+"<br>"+	
+				faceID+","+"mouth2X"+","+faceLandmarks[28][0]+"<br>"+
+				faceID+","+"mouth2Y"+","+faceLandmarks[28][1]+"<br>"+	
+				faceID+","+"mouth3X"+","+faceLandmarks[29][0]+"<br>"+	
+				faceID+","+"mouth3Y"+","+faceLandmarks[29][1]+"<br>"+	
+				faceID+","+"mouth4X"+","+faceLandmarks[30][0]+"<br>"+
+				faceID+","+"mouth4Y"+","+faceLandmarks[30][1]+"<br>"+
+				faceID+","+"eyeL1X"+","+faceLandmarks[19][0]+"<br>"+	
+				faceID+","+"eyeL1Y"+","+faceLandmarks[19][1]+"<br>"+
+				faceID+","+"eyeL2X"+","+faceLandmarks[20][0]+"<br>"+	
+				faceID+","+"eyeL2Y"+","+faceLandmarks[20][1]+"<br>"+
+				faceID+","+"eyeL3X"+","+faceLandmarks[21][0]+"<br>"+	
+				faceID+","+"eyeL3Y"+","+faceLandmarks[21][1]+"<br>"+
+				faceID+","+"eyeL4X"+","+faceLandmarks[22][0]+"<br>"+	
+				faceID+","+"eyeL4Y"+","+faceLandmarks[22][1]+"<br>"+
+				faceID+","+"eyeR1X"+","+faceLandmarks[23][0]+"<br>"+
+				faceID+","+"eyeR1Y"+","+faceLandmarks[23][1]+"<br>"+	
+				faceID+","+"eyeR2X"+","+faceLandmarks[24][0]+"<br>"+	
+				faceID+","+"eyeR2Y"+","+faceLandmarks[24][1]+"<br>"+
+				faceID+","+"eyeR3X"+","+faceLandmarks[25][0]+"<br>"+
+				faceID+","+"eyeR3Y"+","+faceLandmarks[25][1]+"<br>"+	
+				faceID+","+"eyeR4X"+","+faceLandmarks[26][0]+"<br>"+	
+				faceID+","+"eyeR4Y"+","+faceLandmarks[26][1]+"<br>"+
+				faceID+","+"eyeBrowL1X"+","+faceLandmarks[9][0]+"<br>"+	
+				faceID+","+"eyeBrowL1Y"+","+faceLandmarks[9][1]+"<br>"+	
+				faceID+","+"eyeBrowL2X"+","+faceLandmarks[10][0]+"<br>"+
+				faceID+","+"eyeBrowL2Y"+","+faceLandmarks[10][1]+"<br>"+	
+				faceID+","+"eyeBrowL3X"+","+faceLandmarks[11][0]+"<br>"+	
+				faceID+","+"eyeBrowL3Y"+","+faceLandmarks[11][1]+"<br>"+
+				faceID+","+"eyeBrowR1X"+","+faceLandmarks[12][0]+"<br>"+
+				faceID+","+"eyeBrowR1Y"+","+faceLandmarks[12][1]+"<br>"+	
+				faceID+","+"eyeBrowR2X"+","+faceLandmarks[13][0]+"<br>"+
+				faceID+","+"eyeBrowR2Y"+","+faceLandmarks[13][1]+"<br>"+
+				faceID+","+"eyeBrowR3X"+","+faceLandmarks[14][0]+"<br>"+	
+				faceID+","+"eyeBrowR3Y"+","+faceLandmarks[14][1]+"<br>";
+		}
+	}
+</script>
+</body>
+</html>
