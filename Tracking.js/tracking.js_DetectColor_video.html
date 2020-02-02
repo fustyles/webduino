@@ -1,3 +1,14 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/2/2 11:00
+https://www.facebook.com/francefu
+
+Color List
+https://htmlcolorcodes.com/color-names/
+
+Try it!
+https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_video.html
+
+-->
 <!doctype html>
 <html>
 <head>
@@ -15,66 +26,21 @@
   <td><input type="text" id="myColor" value="black"></td>
 </tr>
 <tr>
-  <td>Color R 
-  </td>
-  <td>min
-	  <select id="myColor_r_min">
-		  <script>
-			for (var i=0;i<=255 ;i++ ) {
-				document.write("<option value='"+i+"'>"+i+"</option>");
-			}
-		  </script>
-	  </select>
-	  max
-	  <select id="myColor_r_max">
-		  <script>
-			for (var i=0;i<=255 ;i++ ) {
-				document.write("<option value='"+i+"'>"+i+"</option>");
-			}
-		  </script>
-	  </select>
+  <td>R</td>
+  <td>min<input type="range" id="myColor_r_min" min="0" max="255" step="1" onchange="myColor_r_min_v.innerHTML=this.value;"><span id="myColor_r_min_v">0</span><br>
+	  max<input type="range" id="myColor_r_max" min="0" max="255" step="1" onchange="myColor_r_max_v.innerHTML=this.value;"><span id="myColor_r_max_v">0</span>
   </td>
 </tr>
 <tr>
-  <td>Color G 
-  </td>
-  <td>min
-	  <select id="myColor_g_min">
-		  <script>
-			for (var i=0;i<=255 ;i++ ) {
-				document.write("<option value='"+i+"'>"+i+"</option>");
-			}
-		  </script>
-	  </select>
-	  max
-	  <select id="myColor_g_max">
-		  <script>
-			for (var i=0;i<=255 ;i++ ) {
-				document.write("<option value='"+i+"'>"+i+"</option>");
-			}
-		  </script>
-	  </select>
+  <td>G</td>
+  <td>min<input type="range" id="myColor_g_min" min="0" max="255" step="1" onchange="myColor_g_min_v.innerHTML=this.value;"><span id="myColor_g_min_v">0</span><br>
+	  max<input type="range" id="myColor_g_max" min="0" max="255" step="1" onchange="myColor_g_max_v.innerHTML=this.value;"><span id="myColor_g_max_v">0</span>
   </td>
 </tr>
 <tr>
-  <td>Color B 
-  </td>
-  <td>min
-	  <select id="myColor_b_min">
-		  <script>
-			for (var i=0;i<=255 ;i++ ) {
-				document.write("<option value='"+i+"'>"+i+"</option>");
-			}
-		  </script>
-	  </select>
-	  max
-	  <select id="myColor_b_max">
-		  <script>
-			for (var i=0;i<=255 ;i++ ) {
-				document.write("<option value='"+i+"'>"+i+"</option>");
-			}
-		  </script>
-	  </select>
+  <td>B</td>
+  <td>min<input type="range" id="myColor_b_min" min="0" max="255" step="1" onchange="myColor_b_min_v.innerHTML=this.value;"><span id="myColor_b_min_v">0</span><br>
+	  max<input type="range" id="myColor_b_max" min="0" max="255" step="1" onchange="myColor_b_max_v.innerHTML=this.value;"><span id="myColor_b_max_v">0</span>
   </td>
 </tr>
 </table>
@@ -82,11 +48,34 @@
 <div id="result" style="color:red"><div>
 
   <script>
+	var myColor = document.getElementById('myColor');
+	var myColor_r_min = document.getElementById('myColor_r_min');
+	var myColor_r_max = document.getElementById('myColor_r_max');
+	var myColor_g_min = document.getElementById('myColor_g_min');
+	var myColor_g_max = document.getElementById('myColor_g_max');
+	var myColor_b_min = document.getElementById('myColor_b_min');
+	var myColor_b_max = document.getElementById('myColor_b_max');
+	var myColor_r_min_v = document.getElementById('myColor_r_min_v');
+	var myColor_r_max_v = document.getElementById('myColor_r_max_v');
+	var myColor_g_min_v = document.getElementById('myColor_g_min_v');
+	var myColor_g_max_v = document.getElementById('myColor_g_max_v');
+	var myColor_b_min_v = document.getElementById('myColor_b_min_v');
+	var myColor_b_max_v = document.getElementById('myColor_b_max_v');
+
     document.body.onload = function() {
-	  document.getElementById('myColor').value = "black";
+	  document.getElementById('myColor').value = "black";  // Color List: https://htmlcolorcodes.com/color-names/
+	  document.getElementById('myColor_r_min').value = "0";
+	  document.getElementById('myColor_r_min_v').innerHTML = "0";
 	  document.getElementById('myColor_r_max').value = "20";
+	  document.getElementById('myColor_r_max_v').innerHTML = "20";
+	  document.getElementById('myColor_g_min').value = "0";
+	  document.getElementById('myColor_g_min_v').innerHTML = "0";
 	  document.getElementById('myColor_g_max').value = "20";
+	  document.getElementById('myColor_g_max_v').innerHTML = "20";
+	  document.getElementById('myColor_b_min').value = "0";
+	  document.getElementById('myColor_b_min_v').innerHTML = "0";
 	  document.getElementById('myColor_b_max').value = "20";
+	  document.getElementById('myColor_b_max_v').innerHTML = "20";
 	}
 
     function startDetect() {
@@ -151,7 +140,6 @@
 
 	  Object.keys(tracking.ColorTracker.knownColors_).forEach(function(color) {
 		trackedColors[color] = true;
-		console.log(color);
 	  });
 
 	  tracker.customColor = myColor;
@@ -208,7 +196,6 @@
 		}
 
 		tracker.setColors(colors);
-		console.log(colors);
 	  }
 
 	  updateColors();
