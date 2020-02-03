@@ -212,10 +212,10 @@ If you change the range of RGB setting, you must press button "Start Detection".
 
     //初始化偵測顏色
     document.getElementById('myColor').value = "Green";
-    document.getElementById('myColor_r_min').value = 130;
-    document.getElementById('myColor_r_min_v').innerHTML = 130;
-    document.getElementById('myColor_r_max').value = 181;
-    document.getElementById('myColor_r_max_v').innerHTML = 181;
+    document.getElementById('myColor_r_min').value = 118;
+    document.getElementById('myColor_r_min_v').innerHTML = 118;
+    document.getElementById('myColor_r_max').value = 164;
+    document.getElementById('myColor_r_max_v').innerHTML = 164;
     document.getElementById('myColor_g_min').value = 128;
     document.getElementById('myColor_g_min_v').innerHTML = 128;
     document.getElementById('myColor_g_max').value = 221;
@@ -267,7 +267,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
         context.drawImage(video,0,0,video.width,video.height);
 		result.innerHTML = "";
 		DetectImage(canvas);
-		state = "隨身未戴口罩";
+		state = "隨身未帶口罩";
 		
         event.data.forEach(function(rect) {
 		  //console.log(rect);
@@ -288,7 +288,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
 			state = "已戴上口罩";
 		  }
 		  else if (rect.color=="Green") {
-			state = "有口罩尚未戴上";
+			state = "有口罩未戴上";
 		  }
 
         });
