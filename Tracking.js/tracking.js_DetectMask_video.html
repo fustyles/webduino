@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/2/6 23:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/2/7 1:00
 https://www.facebook.com/francefu
 
 Color List
@@ -290,7 +290,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
 		context_custom.putImageData(imgData,0,0);
 
 		DetectImage(canvas);
-		state = "隨身未帶口罩";
+		state = "No mask";
 		
         event.data.forEach(function(rect) {
 		  //console.log(rect);
@@ -308,14 +308,14 @@ If you change the range of RGB setting, you must press button "Start Detection".
 		  result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
 
 		  if ((rect.color=="Green")&&(nose[0]>=rect.x)&&(nose[0]<=(rect.x+rect.width))&&(nose[1]>=rect.y)&&(nose[1]<=(rect.y+rect.height))) {
-			state = "已戴上口罩";
+			state = "Wear Mask";
 		  }
 		  else if (rect.color=="Green") {
-			if (state != "已戴上口罩") state = "有口罩未戴上";
+			if (state != "Wear mask") state = "Not wear Mask";
 		  }
 
         });
-		result.innerHTML = state + "<br>" + "nose,"+ nose + "<br>" +result.innerHTML;
+		result.innerHTML = state + "<br><br>" + "nose,"+ nose + "<br>" +result.innerHTML;
       });
 
      initGUIControllers(tracker,myColor);
