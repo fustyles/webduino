@@ -247,6 +247,8 @@ If you change the range of RGB setting, you must press button "Start Detection".
     function startDetect() {
       canvas.setAttribute("width", video.width);
       canvas.setAttribute("height", video.height);
+      canvas_custom.setAttribute("width", video.width);
+      canvas_custom.setAttribute("height", video.height);	    
 
       myColor = document.getElementById('myColor').value;
       myColor_r_min = document.getElementById('myColor_r_min').value;
