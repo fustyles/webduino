@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/2/2 14:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/2/6 22:00
 https://www.facebook.com/francefu
 
 Color List
@@ -20,7 +20,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
 </head>
 <body>
 <video id="video" width="320" height="240" style="visibility:hidden;position:absolute" preload autoplay loop muted></video>
-<canvas id="canvas"></canvas><br>
+<canvas id="canvas"></canvas><canvas id="canvas_custom"></canvas><br>
 <table>
 <tr>
   <td>Color Name</td>
@@ -198,6 +198,8 @@ If you change the range of RGB setting, you must press button "Start Detection".
     var video = document.getElementById('video');
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
+	var canvas_custom = document.getElementById('canvas_custom');
+    var context_custom = canvas_custom.getContext('2d');
 	var result = document.getElementById('result');
 
     //初始化偵測顏色
@@ -235,6 +237,8 @@ If you change the range of RGB setting, you must press button "Start Detection".
     function startDetect() {
       canvas.setAttribute("width", video.width);
       canvas.setAttribute("height", video.height);
+      canvas_custom.setAttribute("width", video.width);
+      canvas_custom.setAttribute("height", video.height);
 
       myColor = document.getElementById('myColor').value;
       myColor_r_min = document.getElementById('myColor_r_min').value;
@@ -257,6 +261,24 @@ If you change the range of RGB setting, you must press button "Start Detection".
         context.drawImage(video,0,0,video.width,video.height);
 		result.innerHTML = "";
 
+		var imgData=context.getImageData(0,0,canvas.width,canvas.height);
+		for (var i=0;i<imgData.data.length;i+=4)
+		  {
+			if ((imgData.data[i]>=myColor_r_min&&imgData.data[i]<=myColor_r_max)&&(imgData.data[i+1]>=myColor_g_min&&imgData.data[i+1]<=myColor_g_max)&&(imgData.data[i+2]>=myColor_b_min&&imgData.data[i+2]<=myColor_b_max)) {
+			  imgData.data[i]=0;
+			  imgData.data[i+1]=0;
+			  imgData.data[i+2]=0;
+			  imgData.data[i+3]=255;
+			}
+			else {
+			  imgData.data[i]=255;
+			  imgData.data[i+1]=255;
+			  imgData.data[i+2]=255;
+			  imgData.data[i+3]=255;
+			}
+		  }
+		context_custom.putImageData(imgData,0,0);
+
         event.data.forEach(function(rect) {
 		  //console.log(rect);
           if (rect.color === 'custom') {
@@ -274,10 +296,8 @@ If you change the range of RGB setting, you must press button "Start Detection".
         });
       });
 
-     initGUIControllers(tracker,myColor);
+      initGUIControllers(tracker,myColor);
     };
-
-
 
 	function initGUIControllers(tracker,myColor) {
 
