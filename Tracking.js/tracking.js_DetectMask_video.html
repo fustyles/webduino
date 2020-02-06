@@ -308,10 +308,10 @@ If you change the range of RGB setting, you must press button "Start Detection".
 		  result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
 
 		  if ((rect.color=="Green")&&(nose[0]>=rect.x)&&(nose[0]<=(rect.x+rect.width))&&(nose[1]>=rect.y)&&(nose[1]<=(rect.y+rect.height))) {
-			state = "Wear Mask";
+			state = "Wear mask";
 		  }
 		  else if (rect.color=="Green") {
-			if (state != "Wear mask") state = "Not wear Mask";
+			if (state != "Wear mask") state = "Not wear mask";
 		  }
 
         });
