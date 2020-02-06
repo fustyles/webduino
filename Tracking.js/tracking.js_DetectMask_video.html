@@ -311,7 +311,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
 			state = "已戴上口罩";
 		  }
 		  else if (rect.color=="Green") {
-			state = "有口罩未戴上";
+			if (state != "已戴上口罩") state = "有口罩未戴上";
 		  }
 
         });
