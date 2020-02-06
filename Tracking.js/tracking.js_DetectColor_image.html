@@ -22,7 +22,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
 <input type="file" id="selectimage"></input>
 <br><br>
 <img id="OriginImage" style="display:none">
-<canvas id="canvas"></canvas>
+<canvas id="canvas"></canvas><canvas id="canvas_custom"></canvas>
 <table>
 <tr>
   <td>Color Name</td>
@@ -198,6 +198,8 @@ If you change the range of RGB setting, you must press button "Start Detection".
 	var OriginImage = document.getElementById('OriginImage');
 	var canvas = document.getElementById('canvas');
 	var context = canvas.getContext("2d");
+	var canvas_custom = document.getElementById('canvas_custom');
+    var context_custom = canvas_custom.getContext('2d');
 	var canvasWidth = 500;
 	var result = document.getElementById('result');
 
@@ -266,13 +268,14 @@ If you change the range of RGB setting, you must press button "Start Detection".
 	  var height = width*OriginImage.height/OriginImage.width;
 	  canvas.setAttribute("width", width);
 	  canvas.setAttribute("height", height);
+      canvas_custom.setAttribute("width", width);
+      canvas_custom.setAttribute("height", height);
 	  DetectImage();
 	}
 
 
     function DetectImage() {
 	  context.drawImage(OriginImage,0,0,OriginImage.width,OriginImage.height,0,0,canvas.width,canvas.height);
-	  tracking.track('#canvas', tracker);
 
       myColor = document.getElementById('myColor').value;
       myColor_r_min = document.getElementById('myColor_r_min').value;
@@ -282,6 +285,25 @@ If you change the range of RGB setting, you must press button "Start Detection".
       myColor_b_min = document.getElementById('myColor_b_min').value;
       myColor_b_max = document.getElementById('myColor_b_max').value;
 
+	var imgData=context.getImageData(0,0,canvas.width,canvas.height);
+	for (var i=0;i<imgData.data.length;i+=4)
+	  {
+		if ((imgData.data[i]>=myColor_r_min&&imgData.data[i]<=myColor_r_max)&&(imgData.data[i+1]>=myColor_g_min&&imgData.data[i+1]<=myColor_g_max)&&(imgData.data[i+2]>=myColor_b_min&&imgData.data[i+2]<=myColor_b_max)) {
+		  imgData.data[i]=0;
+		  imgData.data[i+1]=0;
+		  imgData.data[i+2]=0;
+		  imgData.data[i+3]=255;
+		}
+		else {
+		  imgData.data[i]=255;
+		  imgData.data[i+1]=255;
+		  imgData.data[i+2]=255;
+		  imgData.data[i+3]=255;
+		}
+	  }
+	context_custom.putImageData(imgData,0,0);
+
+	  tracking.track('#canvas', tracker);
 	  tracker.customColor = myColor;
 
 	  tracking.ColorTracker.registerColor('custom', function(r, g, b) {
