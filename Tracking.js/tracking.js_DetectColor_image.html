@@ -195,13 +195,14 @@ If you change the range of RGB setting, you must press button "Start Detection".
   <script>
     var tracker = new tracking.ColorTracker();
     
-	var OriginImage = document.getElementById('OriginImage');
-	var canvas = document.getElementById('canvas');
-	var context = canvas.getContext("2d");
-	var canvas_custom = document.getElementById('canvas_custom');
+    var OriginImage = document.getElementById('OriginImage');
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext("2d");
+    var canvas_custom = document.getElementById('canvas_custom');
     var context_custom = canvas_custom.getContext('2d');
-	var canvasWidth = 500;
-	var result = document.getElementById('result');
+    var canvasWidth = 500;
+    var result = document.getElementById('result');
+    var myColor,myColor_r_min,myColor_r_max,myColor_g_min,myColor_g_max,myColor_b_min,myColor_b_max;	  
 
     document.getElementById('myColor').value = "Black";
     document.getElementById('myColor_r_min').value = 0;
