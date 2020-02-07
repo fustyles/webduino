@@ -198,9 +198,10 @@ If you change the range of RGB setting, you must press button "Start Detection".
     var video = document.getElementById('video');
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
-	var canvas_custom = document.getElementById('canvas_custom');
+    var canvas_custom = document.getElementById('canvas_custom');
     var context_custom = canvas_custom.getContext('2d');
-	var result = document.getElementById('result');
+    var result = document.getElementById('result');
+    var myColor,myColor_r_min,myColor_r_max,myColor_g_min,myColor_g_max,myColor_b_min,myColor_b_max;	  
 
     //初始化偵測顏色
     document.getElementById('myColor').value = "Black";
