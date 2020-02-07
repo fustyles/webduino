@@ -190,11 +190,12 @@ If you change the range of RGB setting, you must press button "Start Detection".
   </td>
 </tr>
 </table>
-<button id="start" onclick="startDetect();">Start Detection</button>
+<button id="start" onclick="startDetect();" diasbled="true">Start Detection</button>
 <div id="result" style="color:red"><div>
 
   <script>
     var video = document.getElementById('video');
+    var start = document.getElementById('start');	  
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
 	var canvas_custom = document.getElementById('canvas_custom');
@@ -207,6 +208,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
 	posenet.load().then(function(net) {
 	  Model = net;
       result.innerHTML = "PoseNet Model loaded successfully.";
+	  start.disabled=false;
 	}); 
 
     var tracker = new tracking.ColorTracker();
