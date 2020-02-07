@@ -249,14 +249,14 @@ If you change the range of RGB setting, you must press button "Start Detection".
       myColor_b_min = document.getElementById('myColor_b_min').value;
       myColor_b_max = document.getElementById('myColor_b_max').value;
 
-	  tracker.customColor = myColor;
+      tracker.customColor = myColor;
 
-	  tracking.ColorTracker.registerColor('custom', function(r, g, b) {
-	    if ((r>=myColor_r_min&&r<=myColor_r_max)&&(g>=myColor_g_min&&g<=myColor_g_max)&&(b>=myColor_b_min&&b<=myColor_b_max)) {
-	  	  return true;
-	    }
-	    return false;
-	  });
+      tracking.ColorTracker.registerColor('custom', function(r, g, b) {
+	if ((r>=myColor_r_min&&r<=myColor_r_max)&&(g>=myColor_g_min&&g<=myColor_g_max)&&(b>=myColor_b_min&&b<=myColor_b_max)) {
+	  return true;
+	}
+	return false;
+      });
 
       tracker.on('track', function(event) {
         context.drawImage(video,0,0,video.width,video.height);
@@ -283,7 +283,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
         event.data.forEach(function(rect) {
 		  //console.log(rect);
           if (rect.color === 'custom') {
-            rect.color = tracker.customColor;
+            rect.color = myColor;
           }
 
           context.strokeStyle = rect.color;
@@ -293,7 +293,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
           //context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
           //context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
 
-		  result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
+	  result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
         });
       });
 
@@ -310,10 +310,9 @@ If you change the range of RGB setting, you must press button "Start Detection".
 		trackedColors[color] = true;
 	  });
 
-	  tracker.customColor = document.getElementById('myColor').value;
+	  tracker.customColor = myColor;
 
 	  function createCustomColor(value) {
-		  console.log(value);
 		var components = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(value);
 		var customColorR = parseInt(components[1], 16);
 		var customColorG = parseInt(components[2], 16);
