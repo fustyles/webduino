@@ -321,7 +321,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
         event.data.forEach(function(rect) {
 		  //console.log(rect);
           if (rect.color === 'custom') {
-            rect.color = tracker.customColor;
+            rect.color = myColor;
           }
 
           context.strokeStyle = rect.color;
