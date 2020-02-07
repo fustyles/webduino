@@ -297,7 +297,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
         event.data.forEach(function(rect) {
 		  //console.log(rect);
           if (rect.color === 'custom') {
-            rect.color = tracker.customColor;
+            rect.color = myColor;
           }
 
           context.strokeStyle = rect.color;
@@ -309,10 +309,10 @@ If you change the range of RGB setting, you must press button "Start Detection".
 
 		  result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
 
-		  if ((rect.color==tracker.customColor)&&(nose[0]>=rect.x)&&(nose[0]<=(rect.x+rect.width))&&(nose[1]>=rect.y)&&(nose[1]<=(rect.y+rect.height))) {
+		  if ((rect.color==myColor)&&(nose[0]>=rect.x)&&(nose[0]<=(rect.x+rect.width))&&(nose[1]>=rect.y)&&(nose[1]<=(rect.y+rect.height))) {
 			state = "Wear mask";
 		  }
-		  else if (rect.color==tracker.customColor) {
+		  else if (rect.color==myColor) {
 			if (state != "Wear mask") state = "Not wear mask";
 		  }
 
