@@ -195,16 +195,18 @@ If you change the range of RGB setting, you must press button "Start Detection".
     var start = document.getElementById('start');	  
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
-	var canvas_custom = document.getElementById('canvas_custom');
+    var canvas_custom = document.getElementById('canvas_custom');
     var context_custom = canvas_custom.getContext('2d');
-	var result = document.getElementById('result');
+    var result = document.getElementById('result');
+    var myColor,myColor_r_min,myColor_r_max,myColor_g_min,myColor_g_max,myColor_b_min,myColor_b_max;
+
 
     var Model;
 	var nose = [];
-	var state="";
+	var state = "";
 	posenet.load().then(function(net) {
 	  Model = net;
-      result.innerHTML = "PoseNet Model loaded successfully.";
+      	  result.innerHTML = "PoseNet Model loaded successfully.";
 	  start.disabled=false;
 	}); 
 
@@ -294,7 +296,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
         event.data.forEach(function(rect) {
 		  //console.log(rect);
           if (rect.color === 'custom') {
-            rect.color = document.getElementById('myColor').value;
+            rect.color = myColor;
           }
 
           context.strokeStyle = rect.color;
@@ -332,7 +334,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
 		trackedColors[color] = true;
 	  });
 
-	  tracker.customColor = document.getElementById('myColor').value;
+	  tracker.customColor = myColor;
 
 	  function createCustomColor(value) {
 		var components = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(value);
