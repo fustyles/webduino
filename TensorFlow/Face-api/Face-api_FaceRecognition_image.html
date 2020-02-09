@@ -31,6 +31,7 @@ https://www.youtube.com/watch?v=AZ4PdALMqx0&feature=youtu.be
 var OriginImage = document.getElementById('OriginImage');
 var ShowImage = document.getElementById('ShowImage');
 var ShowImageWidth = 800;
+const distanceLimit = 0.4;
 
 const faceImagesPath = 'https://fustyles.github.io/webduino/TensorFlow/Face-api/facelist/';    
 const facelabels = ['France', 'Terry'];
@@ -67,7 +68,7 @@ let message = document.getElementById('message');
       canvas.getContext('2d').drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
       
 	  const labeledFaceDescriptors = await loadLabeledImages();
-	  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.4)
+	  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
 
       const detections = await faceapi.detectAllFaces(ShowImage).withFaceLandmarks().withFaceDescriptors();
       displaySize = { width:ShowImage.width, height: ShowImage.height };
