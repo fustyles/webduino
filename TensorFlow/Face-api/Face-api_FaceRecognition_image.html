@@ -77,9 +77,14 @@ let message = document.getElementById('message');
 	  const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor));
       
       results.forEach((result, i) => {
-		//console.log(result);
+		console.log(result.distance);
+
 		const box = resizedDetections[i].detection.box
-		const drawBox = new faceapi.draw.DrawBox(box, { label: result.toString()})
+		var drawBox;
+		if (result.distance<=distanceLimit)
+			drawBox = new faceapi.draw.DrawBox(box, { label: result.toString()})
+		else
+			drawBox = new faceapi.draw.DrawBox(box, { label: (Math.round(result.distance*100)/100).toString()})
 		drawBox.draw(canvas);
       })
   }
