@@ -542,20 +542,20 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectMask_MultiColo
     var canvas_custom = document.getElementById('canvas_custom');
     var context_custom = canvas_custom.getContext('2d');
     var result = document.getElementById('result');
-    var myColor1,myColor_r_min1,myColor_r_max1,myColor_g_min1,myColor_g_max1,myColor_b_min1,myColor_b_max1;
-    var myColor2,myColor_r_min2,myColor_r_max2,myColor_g_min2,myColor_g_max2,myColor_b_min2,myColor_b_max2;
-    var myColor3,myColor_r_min3,myColor_r_max3,myColor_g_min3,myColor_g_max3,myColor_b_min3,myColor_b_max3;
+    var myColor_r_min1,myColor_r_max1,myColor_g_min1,myColor_g_max1,myColor_b_min1,myColor_b_max1;
+    var myColor_r_min2,myColor_r_max2,myColor_g_min2,myColor_g_max2,myColor_b_min2,myColor_b_max2;
+    var myColor_r_min3,myColor_r_max3,myColor_g_min3,myColor_g_max3,myColor_b_min3,myColor_b_max3;
 
     var Model;
 	var nose = [];
 	var state = "";
 	posenet.load().then(function(net) {
 	  Model = net;
-      	  result.innerHTML = "PoseNet Model loaded successfully.";
+      result.innerHTML = "PoseNet Model loaded successfully.";
 	  start.disabled=false;
 	}); 
 
-    var tracker = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
+    var tracker = new tracking.ColorTracker();
     tracking.track('#video', tracker, { camera: true });
 
 	tracking.ColorTracker.registerColor('red', function(r, g, b) {
@@ -579,7 +579,22 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectMask_MultiColo
 		return false;
 	});
 
-	updateColors();
+	var trackedColors = {
+	  custom: true
+	};
+
+	Object.keys(tracking.ColorTracker.knownColors_).forEach(function(color) {
+	  trackedColors[color] = true;
+	});
+
+
+	var colors = [];
+	for (var color in trackedColors) {
+	  if (trackedColors[color]) {
+		colors.push(color);
+	  }
+	}
+	tracker.setColors(colors);
 
     function changeTab(tab) {
       if (tab=='red') divColor1.style.display="block"; else divColor1.style.display="none";
@@ -610,7 +625,6 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectMask_MultiColo
       canvas_custom.setAttribute("width", video.width);
       canvas_custom.setAttribute("height", video.height);	    
 
-      myColor1 = document.getElementById('myColor1').value;
       myColor_r_min1 = document.getElementById('myColor_r_min1').value;
       myColor_r_max1 = document.getElementById('myColor_r_max1').value;
       myColor_g_min1 = document.getElementById('myColor_g_min1').value;
@@ -618,7 +632,6 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectMask_MultiColo
       myColor_b_min1 = document.getElementById('myColor_b_min1').value;
       myColor_b_max1 = document.getElementById('myColor_b_max1').value;
 
-      myColor2 = document.getElementById('myColor2').value;
       myColor_r_min2 = document.getElementById('myColor_r_min2').value;
       myColor_r_max2 = document.getElementById('myColor_r_max2').value;
       myColor_g_min2 = document.getElementById('myColor_g_min2').value;
@@ -626,7 +639,6 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectMask_MultiColo
       myColor_b_min2 = document.getElementById('myColor_b_min2').value;
       myColor_b_max2 = document.getElementById('myColor_b_max2').value;
 
-      myColor3 = document.getElementById('myColor3').value;
       myColor_r_min3 = document.getElementById('myColor_r_min3').value;
       myColor_r_max3 = document.getElementById('myColor_r_max3').value;
       myColor_g_min3 = document.getElementById('myColor_g_min3').value;
@@ -686,38 +698,6 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectMask_MultiColo
 		result.innerHTML = state + "<br><br>" + "nose,"+ nose + "<br>" +result.innerHTML;
       });
     };
-
-	function updateColors() {
-		  var trackedColors = {
-			custom: true
-		  };
-
-		  Object.keys(tracking.ColorTracker.knownColors_).forEach(function(color) {
-			trackedColors[color] = true;
-		  });
-
-
-		var colors = [];
-
-		for (var color in trackedColors) {
-		  if (trackedColors[color]) {
-			colors.push(color);
-		  }
-		}
-
-		tracker.setColors(colors);
-	}
-
-	var objectEmit_ = tracking.ObjectTracker.prototype.emit;
-	var colorEmit_ = tracking.ColorTracker.prototype.emit;
-
-	tracking.ObjectTracker.prototype.emit = function() {
-	  objectEmit_.apply(this, arguments);
-	};
-
-	tracking.ColorTracker.prototype.emit = function() {
-	  colorEmit_.apply(this, arguments);
-	};
 
 	function DetectImage(canvas) {
 	  tf.tidy( () => {
