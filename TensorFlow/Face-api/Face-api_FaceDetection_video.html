@@ -13,7 +13,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   <title>Face Detection</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src='face-api.min.js'></script>
 <style>
   #webcam-container {
@@ -62,7 +61,6 @@ let message = document.getElementById('message');
   ObjectDetect();  
   
   function ObjectDetect() {
-    $(".progress-bar").removeClass('d-none');
     Promise.all([
       faceapi.nets.tinyFaceDetector.load(modelPath),
       faceapi.nets.faceLandmark68TinyNet.load(modelPath),
