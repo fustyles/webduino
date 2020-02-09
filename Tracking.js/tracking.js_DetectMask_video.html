@@ -337,17 +337,6 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectMask_video.htm
       });
     };
 
-	var objectEmit_ = tracking.ObjectTracker.prototype.emit;
-	var colorEmit_ = tracking.ColorTracker.prototype.emit;
-
-	tracking.ObjectTracker.prototype.emit = function() {
-	  objectEmit_.apply(this, arguments);
-	};
-
-	tracking.ColorTracker.prototype.emit = function() {
-	  colorEmit_.apply(this, arguments);
-	};
-
 	function DetectImage(canvas) {
 	  Model.estimateSinglePose(canvas, {flipHorizontal: false}).then(pose => {
 		if (pose.keypoints.length>0) {
