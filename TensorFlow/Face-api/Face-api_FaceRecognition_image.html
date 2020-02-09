@@ -45,7 +45,6 @@ let faceRecognition;
 let message = document.getElementById('message'); 
   
   function ObjectDetect() {
-    $(".progress-bar").removeClass('d-none');
     Promise.all([
       faceapi.nets.faceLandmark68Net.load(modelPath),
       faceapi.nets.faceRecognitionNet.load(modelPath),
