@@ -274,19 +274,13 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectMask_video.htm
 			trackedColors[color] = true;
 		});
 
-		function updateColors() {
-			var colors = [];
-
-			for (var color in trackedColors) {
-			  if (trackedColors[color]) {
-				colors.push(color);
-			  }
-			}
-
-			tracker.setColors(colors);
+		var colors = [];
+		for (var color in trackedColors) {
+		  if (trackedColors[color]) {
+			colors.push(color);
+		  }
 		}
-
-		updateColors();
+		tracker.setColors(colors);
 
 
       tracker.on('track', function(event) {
