@@ -32,12 +32,12 @@ var ShowImage = document.getElementById('ShowImage');
 var ShowImageWidth = 800;
 const distanceLimit = 0.4;
 
-const faceImagesPath = 'https://fustyles.github.io/webduino/TensorFlow/Face-api/facelist/';    
+const faceImagesPath = './facelist/';    
 const facelabels = ['France', 'Terry'];
 faceImagesCount = 2 ;
 // /LabelName/n.jpg  -->  /France/1.jpg, /France/2.jpg, /Terry/1.jpg, /Terry/2.jpg
 
-const modelPath = 'https://fustyles.github.io/webduino/TensorFlow/Face-api/';
+const modelPath = './';
 let currentStream;
 let displaySize = { width:320, height: 240 }
 let canvas;
