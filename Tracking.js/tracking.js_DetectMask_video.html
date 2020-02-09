@@ -201,7 +201,6 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectMask_video.htm
     var result = document.getElementById('result');
     var myColor_r_min,myColor_r_max,myColor_g_min,myColor_g_max,myColor_b_min,myColor_b_max;
 
-
     var Model;
 	var nose = [];
 	var state = "";
@@ -213,6 +212,29 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectMask_video.htm
 
     var tracker = new tracking.ColorTracker();
     tracking.track('#video', tracker, { camera: true });
+
+	tracking.ColorTracker.registerColor('red', function(r, g, b) {
+		if ((r>=myColor_r_min&&r<=myColor_r_max)&&(g>=myColor_g_min&&g<=myColor_g_max)&&(b>=myColor_b_min&&b<=myColor_b_max)) {
+		  return true;
+		}
+		return false;
+	});
+
+	var trackedColors = {
+		custom: true
+	};
+
+	Object.keys(tracking.ColorTracker.knownColors_).forEach(function(color) {
+		trackedColors[color] = true;
+	});
+
+	var colors = [];
+	for (var color in trackedColors) {
+	  if (trackedColors[color]) {
+		colors.push(color);
+	  }
+	}
+	tracker.setColors(colors);
 
     //初始化偵測顏色
     document.getElementById('myColor').value = "Green";
@@ -258,30 +280,6 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectMask_video.htm
       myColor_g_max = document.getElementById('myColor_g_max').value;
       myColor_b_min = document.getElementById('myColor_b_min').value;
       myColor_b_max = document.getElementById('myColor_b_max').value;
-
-	  tracking.ColorTracker.registerColor('red', function(r, g, b) {
-	    if ((r>=myColor_r_min&&r<=myColor_r_max)&&(g>=myColor_g_min&&g<=myColor_g_max)&&(b>=myColor_b_min&&b<=myColor_b_max)) {
-	  	  return true;
-	    }
-	    return false;
-	  });
-
-		var trackedColors = {
-			custom: true
-		};
-
-		Object.keys(tracking.ColorTracker.knownColors_).forEach(function(color) {
-			trackedColors[color] = true;
-		});
-
-		var colors = [];
-		for (var color in trackedColors) {
-		  if (trackedColors[color]) {
-			colors.push(color);
-		  }
-		}
-		tracker.setColors(colors);
-
 
       tracker.on('track', function(event) {
         context.drawImage(video,0,0,video.width,video.height);
