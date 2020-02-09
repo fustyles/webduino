@@ -23,7 +23,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
 <canvas id="canvas"></canvas><canvas id="canvas_custom"></canvas><br>
 <table>
 <tr>
-  <td>Color Name</td>
+  <td>Rect(Red)</td>
   <td>
   <select id="myColor" onchange="changeColor(this.options[this.selectedIndex].text);startDetect();">	  
 	<option value="AliceBlue">AliceBlue_240,248,255</option>
@@ -170,19 +170,19 @@ If you change the range of RGB setting, you must press button "Start Detection".
   </td>
 </tr>
 <tr>
-  <td>Range R</td>
+  <td align="right">R</td>
   <td>min<input type="range" id="myColor_r_min" min="0" max="255" step="1" onchange="myColor_r_min_v.innerHTML=this.value;startDetect();"><span id="myColor_r_min_v">0</span><br>
 	  max<input type="range" id="myColor_r_max" min="0" max="255" step="1" onchange="myColor_r_max_v.innerHTML=this.value;startDetect();"><span id="myColor_r_max_v">0</span>
   </td>
 </tr>
 <tr>
-  <td>Range G</td>
+  <td align="right">G</td>
   <td>min<input type="range" id="myColor_g_min" min="0" max="255" step="1" onchange="myColor_g_min_v.innerHTML=this.value;startDetect();"><span id="myColor_g_min_v">0</span><br>
 	  max<input type="range" id="myColor_g_max" min="0" max="255" step="1" onchange="myColor_g_max_v.innerHTML=this.value;startDetect();"><span id="myColor_g_max_v">0</span>
   </td>
 </tr>
 <tr>
-  <td>Range B</td>
+  <td align="right">B</td>
   <td>min<input type="range" id="myColor_b_min" min="0" max="255" step="1" onchange="myColor_b_min_v.innerHTML=this.value;startDetect();"><span id="myColor_b_min_v">0</span><br>
 	  max<input type="range" id="myColor_b_max" min="0" max="255" step="1" onchange="myColor_b_max_v.innerHTML=this.value;startDetect();"><span id="myColor_b_max_v">0</span>
   </td>
@@ -201,7 +201,30 @@ If you change the range of RGB setting, you must press button "Start Detection".
     var canvas_custom = document.getElementById('canvas_custom');
     var context_custom = canvas_custom.getContext('2d');
     var result = document.getElementById('result');
-    var myColor,myColor_r_min,myColor_r_max,myColor_g_min,myColor_g_max,myColor_b_min,myColor_b_max;	  
+    var myColor_r_min,myColor_r_max,myColor_g_min,myColor_g_max,myColor_b_min,myColor_b_max;
+	
+	tracking.ColorTracker.registerColor('red', function(r, g, b) {
+		if ((r>=myColor_r_min&&r<=myColor_r_max)&&(g>=myColor_g_min&&g<=myColor_g_max)&&(b>=myColor_b_min&&b<=myColor_b_max)) {
+		  return true;
+		}
+		return false;
+	});
+
+	var trackedColors = {
+		custom: true
+	};
+
+	Object.keys(tracking.ColorTracker.knownColors_).forEach(function(color) {
+		trackedColors[color] = true;
+	});
+
+	var colors = [];
+	for (var color in trackedColors) {
+		if (trackedColors[color]) {
+		  colors.push(color);
+		}
+	}
+	tracker.setColors(colors);
 
     //初始化偵測顏色
     document.getElementById('myColor').value = "Black";
@@ -241,22 +264,12 @@ If you change the range of RGB setting, you must press button "Start Detection".
       canvas_custom.setAttribute("width", video.width);
       canvas_custom.setAttribute("height", video.height);
 
-      myColor = document.getElementById('myColor').value;
       myColor_r_min = document.getElementById('myColor_r_min').value;
       myColor_r_max = document.getElementById('myColor_r_max').value;
       myColor_g_min = document.getElementById('myColor_g_min').value;
       myColor_g_max = document.getElementById('myColor_g_max').value;
       myColor_b_min = document.getElementById('myColor_b_min').value;
       myColor_b_max = document.getElementById('myColor_b_max').value;
-
-      tracker.customColor = myColor;
-
-      tracking.ColorTracker.registerColor('custom', function(r, g, b) {
-	if ((r>=myColor_r_min&&r<=myColor_r_max)&&(g>=myColor_g_min&&g<=myColor_g_max)&&(b>=myColor_b_min&&b<=myColor_b_max)) {
-	  return true;
-	}
-	return false;
-      });
 
       tracker.on('track', function(event) {
         context.drawImage(video,0,0,video.width,video.height);
@@ -282,10 +295,6 @@ If you change the range of RGB setting, you must press button "Start Detection".
 
         event.data.forEach(function(rect) {
 		  //console.log(rect);
-          if (rect.color === 'custom') {
-            rect.color = myColor;
-          }
-
           context.strokeStyle = rect.color;
           context.strokeRect(rect.x, rect.y, rect.width, rect.height);
           //context.font = '11px Helvetica';
@@ -293,92 +302,10 @@ If you change the range of RGB setting, you must press button "Start Detection".
           //context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
           //context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
 
-	  result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
+		  result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
         });
       });
-
-      initGUIControllers(tracker,myColor);
     };
-
-	function initGUIControllers(tracker,myColor) {
-
-	  var trackedColors = {
-		custom: true
-	  };
-
-	  Object.keys(tracking.ColorTracker.knownColors_).forEach(function(color) {
-		trackedColors[color] = true;
-	  });
-
-	  tracker.customColor = myColor;
-
-	  function createCustomColor(value) {
-		var components = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(value);
-		var customColorR = parseInt(components[1], 16);
-		var customColorG = parseInt(components[2], 16);
-		var customColorB = parseInt(components[3], 16);
-
-		var colorTotal = customColorR + customColorG + customColorB;
-
-		if (colorTotal === 0) {
-		  tracking.ColorTracker.registerColor('custom', function(r, g, b) {
-			return r + g + b < 10;
-		  });
-		} else {
-		  var rRatio = customColorR / colorTotal;
-		  var gRatio = customColorG / colorTotal;
-
-		  tracking.ColorTracker.registerColor('custom', function(r, g, b) {
-			var colorTotal2 = r + g + b;
-
-			if (colorTotal2 === 0) {
-			  if (colorTotal < 10) {
-				return true;
-			  }
-			  return false;
-			}
-
-			var rRatio2 = r / colorTotal2,
-			  gRatio2 = g / colorTotal2,
-			  deltaColorTotal = colorTotal / colorTotal2,
-			  deltaR = rRatio / rRatio2,
-			  deltaG = gRatio / gRatio2;
-
-			return deltaColorTotal > 0.9 && deltaColorTotal < 1.1 &&
-			  deltaR > 0.9 && deltaR < 1.1 &&
-			  deltaG > 0.9 && deltaG < 1.1;
-		  });
-		}
-
-		updateColors();
-	  }
-
-	  function updateColors() {
-		var colors = [];
-
-		for (var color in trackedColors) {
-		  if (trackedColors[color]) {
-			colors.push(color);
-		  }
-		}
-
-		tracker.setColors(colors);
-	  }
-
-	  updateColors();
-	}
-
-	var objectEmit_ = tracking.ObjectTracker.prototype.emit;
-	var colorEmit_ = tracking.ColorTracker.prototype.emit;
-
-	tracking.ObjectTracker.prototype.emit = function() {
-	  objectEmit_.apply(this, arguments);
-	};
-
-	tracking.ColorTracker.prototype.emit = function() {
-	  colorEmit_.apply(this, arguments);
-	};
-
   </script>
 </body>
 </html>
