@@ -84,7 +84,7 @@ const modelPath = './';
 	  const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor));
       
       results.forEach((result, i) => {
-		console.log(result.distance);
+		//console.log(result);
 
 		const box = resizedDetections[i].detection.box
 		var drawBox;
