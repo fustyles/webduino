@@ -29,7 +29,8 @@ var video = document.getElementById('video');
 var canvas = document.getElementById('canvas'); 
 var detect = document.getElementById('detect'); 
 var message = document.getElementById('message');
-
+let displaySize = { width:320, height: 240 };
+	
 const distanceLimit = 0.4;
 const faceImagesPath = './facelist/';   
 const facelabels = ['France', 'Terry'];
@@ -76,9 +77,7 @@ const modelPath = './';
       
 	  const labeledFaceDescriptors = await loadLabeledImages();
 	  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
-
       const detections = await faceapi.detectAllFaces(canvas).withFaceLandmarks().withFaceDescriptors();
-	  let displaySize = { width:320, height: 240 };
       const resizedDetections = faceapi.resizeResults(detections, displaySize);
 
 	  const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor));
