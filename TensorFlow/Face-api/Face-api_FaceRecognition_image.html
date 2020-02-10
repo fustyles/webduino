@@ -73,10 +73,9 @@ let message = document.getElementById('message');
       const resizedDetections = faceapi.resizeResults(detections, displaySize);
 
 	  const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor));
-      
+      message.innerHTML = JSON.stringify(results);
+	  
       results.forEach((result, i) => {
-		//console.log(result);
-
 		const box = resizedDetections[i].detection.box
 		var drawBox;
 		if (result.distance<=distanceLimit)
