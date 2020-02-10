@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/2/9 13:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/2/10 22:00
 https://www.facebook.com/francefu
 
 Try it!
@@ -21,7 +21,7 @@ https://www.youtube.com/watch?v=AZ4PdALMqx0&feature=youtu.be
 <body>
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas><br>
-<button id="detect" onclick="DetectVideo();" disabled>Detect</button><br>
+<button id="detect" onclick="this.disabled=true;DetectVideo();" disabled>Start Detection</button><br>
 <div id="message" style="width:350px;color:red">Please wait for loading model.</div>
 
 <script>
@@ -29,7 +29,6 @@ var video = document.getElementById('video');
 var canvas = document.getElementById('canvas'); 
 var detect = document.getElementById('detect'); 
 var message = document.getElementById('message');
-let displaySize = { width:320, height: 240 };
 	
 const distanceLimit = 0.4;
 const faceImagesPath = './facelist/';   
@@ -37,8 +36,12 @@ const facelabels = ['France', 'Terry'];
 faceImagesCount = 2 ;
 // /LabelName/n.jpg  -->  /France/1.jpg, /France/2.jpg, /Terry/1.jpg, /Terry/2.jpg
 const modelPath = './';
+let displaySize = { width:320, height: 240 };
 
-  function FaceDetect() {
+let labeledFaceDescriptors;
+let faceMatcher;
+
+  function loadModel() {
     Promise.all([
       faceapi.nets.faceLandmark68Net.load(modelPath),
       faceapi.nets.faceRecognitionNet.load(modelPath),
@@ -69,14 +72,16 @@ const modelPath = './';
   }
                         
   async function DetectVideo() { 
-	  detect.disabled=true;
 
 	  canvas.setAttribute("width", video.width);
 	  canvas.setAttribute("height", video.height); 
       canvas.getContext('2d').drawImage(video,0,0,video.width,video.height); 
-      
-	  const labeledFaceDescriptors = await loadLabeledImages();
-	  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
+
+	  if (!labeledFaceDescriptors) {
+	    labeledFaceDescriptors = await loadLabeledImages();
+	    faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
+	  }
+
       const detections = await faceapi.detectAllFaces(canvas).withFaceLandmarks().withFaceDescriptors();
       const resizedDetections = faceapi.resizeResults(detections, displaySize);
 
@@ -93,7 +98,7 @@ const modelPath = './';
 		drawBox.draw(canvas);
       })
 
-	  detect.disabled=false;
+	  setTimeout(function(){DetectVideo(); }, 100);
   }
 
   function loadLabeledImages() {
@@ -110,7 +115,7 @@ const modelPath = './';
 	)
   }
 
-  window.onload = function () { FaceDetect(); }
+  window.onload = function () { loadModel(); }
 </script>
 
 </body>
