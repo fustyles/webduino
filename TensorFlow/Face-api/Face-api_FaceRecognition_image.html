@@ -30,6 +30,9 @@ https://www.youtube.com/watch?v=AZ4PdALMqx0&feature=youtu.be
 var OriginImage = document.getElementById('OriginImage');
 var ShowImage = document.getElementById('ShowImage');
 var ShowImageWidth = 800;
+let message = document.getElementById('message'); 
+let displaySize = { width:320, height: 240 }	
+let canvas;
 	
 const distanceLimit = 0.4;
 const faceImagesPath = './facelist/';    
@@ -38,10 +41,6 @@ faceImagesCount = 2 ;
 // /LabelName/n.jpg  -->  /France/1.jpg, /France/2.jpg, /Terry/1.jpg, /Terry/2.jpg
 const modelPath = './';
 	
-let displaySize = { width:320, height: 240 }
-let canvas;
-let message = document.getElementById('message'); 
-  
   function ObjectDetect() {
     Promise.all([
       faceapi.nets.faceLandmark68Net.load(modelPath),
