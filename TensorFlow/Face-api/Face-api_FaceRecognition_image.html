@@ -66,6 +66,7 @@ let faceMatcher;
       canvas.getContext('2d').drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
       
 	  if (!labeledFaceDescriptors) {
+            message.innerHTML = "Loading face images...";		  
 	    labeledFaceDescriptors = await loadLabeledImages();
 	    faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
 	  }
