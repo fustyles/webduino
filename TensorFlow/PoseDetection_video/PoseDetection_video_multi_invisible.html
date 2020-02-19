@@ -88,8 +88,10 @@ ScoreLimit
           canvas.setAttribute("width", video.width);
           canvas.setAttribute("height", video.height); 
           canvas_show.setAttribute("width", video.width);
+		
           canvas_show.setAttribute("height", video.height); 
-		  //canvas_capture.setAttribute("width", video.width/2);
+	//canvas_capture.setAttribute("width", video.width/2);  //若只想覆蓋左半邊
+		
           canvas_capture.setAttribute("width", video.width);
           canvas_capture.setAttribute("height", video.height); 		  
           setTimeout(function(){DetectVideo(); }, 100);
@@ -98,7 +100,7 @@ ScoreLimit
   }
 
 function capture() {
-  //context_capture.drawImage(canvas, 0, 0, canvas.width/2, canvas.height, 0, 0, canvas_capture.width, canvas_capture.height);
+  //context_capture.drawImage(canvas, 0, 0, canvas.width/2, canvas.height, 0, 0, canvas_capture.width, canvas_capture.height);    //若只想覆蓋左半邊
   context_capture.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, canvas_capture.width, canvas_capture.height);
 }
                         
