@@ -52,6 +52,11 @@ Blockly.JavaScript['thingspeak_getresponse'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['thingspeak_getresponsecount'] = function(block) {
+  var code = "ThingSpeak_getResponseCount()";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['thingspeak_clearresponse'] = function(block) {
   var code = "ThingSpeak_clearResponse();\n";
   return code;
