@@ -37,13 +37,13 @@
      });
   }
   
-  function ThingSpeak_read(kind,key,index,count) {
+  function ThingSpeak_read(kind,key,index,count,api_key) {
     if (kind==1)
-      var url ="https://api.thingspeak.com/channels/"+key+"/feeds.json?results="+count;
+      var url ="https://api.thingspeak.com/channels/"+key+"/feeds.json?results="+count+"&api_key="+api_key;
     else if (kind==2)
-      var url ="https://api.thingspeak.com/channels/"+key+"/fields/"+index+".json?results="+count;
+      var url ="https://api.thingspeak.com/channels/"+key+"/fields/"+index+".json?results="+count+"&api_key="+api_key;
     else if (kind==3)
-      var url ="https://api.thingspeak.com/channels/"+key+"/status.json";
+      var url ="https://api.thingspeak.com/channels/"+key+"/status.json+"?api_key="+api_key;
 
     ThingSpeak_response=[];
     var data = $.ajax({
