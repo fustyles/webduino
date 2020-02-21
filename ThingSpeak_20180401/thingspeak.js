@@ -30,7 +30,6 @@
         success: function(html)
         {
           console.log(html);
-          ThingSpeak_count = html;
         },
         error: function(jqXHR, textStatus, errorThrown)
         {
@@ -48,7 +47,8 @@
       var url ="https://api.thingspeak.com/channels/"+key+"/status.json?api_key="+api_key;
     console.log(url);
     
-    ThingSpeak_response=[];
+    ThingSpeak_response = [];
+    ThingSpeak_count = 0;
     var data = $.ajax({
         "type": "POST",
         "dataType": "jsonp",
@@ -57,6 +57,7 @@
         {
           json = eval(json.feeds);
           ThingSpeak_getState = true;
+          ThingSpeak_count = json.length;
           for (var i=0;i<json.length;i++) {
             var Feedback= JSON.stringify(json[i]);
             Feedback= Feedback.replace(/},{/g,";");
@@ -90,6 +91,14 @@
     else
       return [];
   }
+  
+  function ThingSpeak_getResponseCount() {
+   if (ThingSpeak_getState == false) {
+     return ThingSpeak_count;
+    }
+    else
+      return 0;
+  }  
 
   function ThingSpeak_clearResponse() {
    ThingSpeak_response=[];
@@ -99,5 +108,6 @@
   window.ThingSpeak_read = ThingSpeak_read;
   window.ThingSpeak_getResponse = ThingSpeak_getResponse;
   window.ThingSpeak_clearResponse = ThingSpeak_clearResponse;
+  window.ThingSpeak_getResponseCount = ThingSpeak_getResponseCount;
 
 }(window, window.document));
