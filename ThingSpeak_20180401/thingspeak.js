@@ -58,6 +58,7 @@
           ThingSpeak_getState = true;
           for (var i=0;i<json.length;i++) {
             var Feedback= JSON.stringify(json[i]);
+            console.log(Feedback);
             Feedback= Feedback.replace(/},{/g,";");
             Feedback= Feedback.replace(/\":\"/g,",");
             Feedback= Feedback.replace(/\":/g,",");
