@@ -54,6 +54,7 @@
         success: function(json)
         {
           json = eval(json.feeds);
+          console.log(json);
           ThingSpeak_getState = true;
           for (var i=0;i<json.length;i++) {
             var Feedback= JSON.stringify(json[i]);
