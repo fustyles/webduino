@@ -1,5 +1,5 @@
 {
-  "types": ["thingspeak_update"],
+  "types": ["thingspeak_update","thingspeak_read1","thingspeak_read2","thingspeak_read3","thingspeak_getresponse"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
