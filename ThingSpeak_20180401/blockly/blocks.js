@@ -45,7 +45,6 @@ Blockly.Blocks['thingspeak_update'] = {
   }
 };
 
-
 Blockly.Blocks['thingspeak_read1'] = {
   init: function() {  
   this.appendDummyInput()
