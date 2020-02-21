@@ -97,12 +97,8 @@
       </block>
     </value>    
   </block> 
-  <block type="variables_set" id="Sh:0%7~`mHXezT$HAE*w">
-    <field name="VAR" id="ij_ZS;5L7fPB{t3^~CEl" variabletype="">data</field>
-    <value name="VALUE">
-      <block type="thingspeak_getresponse" id="2=MKa(/Y+!|LRUC=mwdG"></block>
-    </value>
-  </block>
+  <block type="thingspeak_getresponse"></block>
+  <block type="thingspeak_getresponsecount"></block>
   <block type="thingspeak_clearresponse"> 
   </block>    
 </category>
