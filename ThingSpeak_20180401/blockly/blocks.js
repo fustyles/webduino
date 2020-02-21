@@ -126,6 +126,22 @@ Blockly.Blocks['thingspeak_getresponse'] = {
   }
 };
 
+Blockly.Blocks['thingspeak_getresponsewait'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("ThingSpeak waiting for response timeout");
+    this.appendValueInput("timeout")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
+        .appendField("(ms)");    
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
+
 Blockly.Blocks['thingspeak_getresponsecount'] = {
   init: function() {
     this.appendDummyInput()
