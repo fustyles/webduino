@@ -52,6 +52,12 @@ Blockly.JavaScript['thingspeak_getresponse'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['thingspeak_getresponsewait'] = function (block) {
+  var timeout_ = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('timeout'), Blockly.Variables.NAME_TYPE);
+  var code = 'while ((ThingSpeak_getResponse()) == '') {\nawait delay(0.1);\n}\n';
+  return code;
+};
+
 Blockly.JavaScript['thingspeak_getresponsecount'] = function(block) {
   var code = "ThingSpeak_getResponseCount()";
   return [code, Blockly.JavaScript.ORDER_NONE];
