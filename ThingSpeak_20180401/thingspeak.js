@@ -44,7 +44,8 @@
       var url ="https://api.thingspeak.com/channels/"+key+"/fields/"+index+".json?results="+count+"&api_key="+api_key;
     else if (kind==3)
       var url ="https://api.thingspeak.com/channels/"+key+"/status.json?api_key="+api_key;
-
+    console.log(url);
+    
     ThingSpeak_response=[];
     var data = $.ajax({
         "type": "POST",
