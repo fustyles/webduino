@@ -4,6 +4,7 @@
 
   'use strict';
   
+  var ThingSpeak_count = 0;
   var ThingSpeak_response=[];
   var ThingSpeak_getState = false;  
 
@@ -29,10 +30,11 @@
         success: function(html)
         {
           console.log(html);
+          ThingSpeak_count = html;
         },
         error: function(jqXHR, textStatus, errorThrown)
         {
-          //console.log(errorThrown);
+          console.log(errorThrown);
         }
      });
   }
@@ -72,6 +74,7 @@
             Feedback= Feedback.replace(/\":/g,",");
             ThingSpeak_response.push(Feedback);
           }
+          console.log(ThingSpeak_response);
           ThingSpeak_getState = false;
         },
         error: function(jqXHR, textStatus, errorThrown)
