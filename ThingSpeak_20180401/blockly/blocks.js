@@ -57,6 +57,10 @@ Blockly.Blocks['thingspeak_read1'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("/feeds.json?results=");
+  this.appendValueInput("api_key")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("&api_key=");    
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -80,6 +84,10 @@ Blockly.Blocks['thingspeak_read2'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(".json?results=");
+  this.appendValueInput("api_key")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("&api_key=");     
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -96,7 +104,11 @@ Blockly.Blocks['thingspeak_read3'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("https://api.thingspeak.com/channels/");
   this.appendDummyInput()
-      .appendField("/status.json");  
+      .appendField("/status.json"); 
+  this.appendValueInput("api_key")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("?api_key=");     
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
