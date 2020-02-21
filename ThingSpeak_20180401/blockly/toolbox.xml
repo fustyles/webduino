@@ -57,6 +57,11 @@
         <field name="NUM">1</field>
       </block>
     </value>
+    <value name="api_key">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
   </block>        
   <block type="thingspeak_read2">
     <value name="key">
@@ -74,6 +79,11 @@
         <field name="NUM">1</field>
       </block>
     </value>
+    <value name="api_key">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
   </block>  
   <block type="thingspeak_read3">
     <value name="key">
@@ -81,6 +91,11 @@
         <field name="TEXT"></field>
       </block>
     </value>
+    <value name="api_key">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
   </block> 
   <block type="variables_set" id="Sh:0%7~`mHXezT$HAE*w">
     <field name="VAR" id="ij_ZS;5L7fPB{t3^~CEl" variabletype="">data</field>
