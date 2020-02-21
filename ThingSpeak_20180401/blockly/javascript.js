@@ -54,7 +54,7 @@ Blockly.JavaScript['thingspeak_getresponse'] = function(block) {
 
 Blockly.JavaScript['thingspeak_getresponsewait'] = function (block) {
   var timeout_ = Blockly.JavaScript.valueToCode(block, 'timeout', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'while ((ThingSpeak_getResponse()) == '') {\nawait delay(0.1);\n}\n';
+  var code = 'while ((ThingSpeak_getResponse()) == "") {\nawait delay(0.1);\n}\n';
   return code;
 };
 
