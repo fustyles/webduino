@@ -43,7 +43,7 @@
     else if (kind==2)
       var url ="https://api.thingspeak.com/channels/"+key+"/fields/"+index+".json?results="+count+"&api_key="+api_key;
     else if (kind==3)
-      var url ="https://api.thingspeak.com/channels/"+key+"/status.json+"?api_key="+api_key;
+      var url ="https://api.thingspeak.com/channels/"+key+"/status.json?api_key="+api_key;
 
     ThingSpeak_response=[];
     var data = $.ajax({
