@@ -126,6 +126,16 @@ Blockly.Blocks['thingspeak_getresponse'] = {
   }
 };
 
+Blockly.Blocks['thingspeak_getresponsecount'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("ThingSpeak get response count");
+    this.setInputsInline(false);
+    this.setOutput(true, null); 
+    this.setColour(200);
+  }
+};
+
 Blockly.Blocks['thingspeak_clearresponse'] = {
   init: function() {
     this.appendDummyInput()
