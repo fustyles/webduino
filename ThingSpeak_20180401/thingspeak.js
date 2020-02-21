@@ -56,11 +56,9 @@
         success: function(json)
         {
           json = eval(json.feeds);
-          console.log(json.length);
           ThingSpeak_getState = true;
           for (var i=0;i<json.length;i++) {
             var Feedback= JSON.stringify(json[i]);
-            console.log(Feedback);
             Feedback= Feedback.replace(/},{/g,";");
             Feedback= Feedback.replace(/\":\"/g,",");
             Feedback= Feedback.replace(/\":/g,",");
@@ -72,9 +70,8 @@
             Feedback= Feedback.replace(/\]/g,"");
             Feedback= Feedback.replace(/,\"/g,",");
             Feedback= Feedback.replace(/\":/g,",");
-            ThingSpeak_response.push(Feedback);
+            ThingSpeak_response.push(Feedback.split(","));
           }
-          console.log(ThingSpeak_response);
           ThingSpeak_getState = false;
         },
         error: function(jqXHR, textStatus, errorThrown)
