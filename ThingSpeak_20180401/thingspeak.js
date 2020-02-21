@@ -87,7 +87,7 @@
   function ThingSpeak_getResponse() {
    if (ThingSpeak_getState == false) {
      var res = ThingSpeak_response;
-     ThingSpeak_response=[];
+     //ThingSpeak_response=[];
      return res;
     }
     else
