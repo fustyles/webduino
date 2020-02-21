@@ -26,7 +26,8 @@ Blockly.JavaScript['thingspeak_update'] = function (block) {
 Blockly.JavaScript['thingspeak_read1'] = function (block) {
   var key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC);
   var count = Blockly.JavaScript.valueToCode(block, 'count', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'ThingSpeak_read(1,'+key+',"",'+count+');\n';
+  var api_key = Blockly.JavaScript.valueToCode(block, 'api_key', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'ThingSpeak_read(1,'+key+',"",'+count+','+api_key+');\n';
   return code; 
 };
 
@@ -34,13 +35,15 @@ Blockly.JavaScript['thingspeak_read2'] = function (block) {
   var key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC);
   var field = Blockly.JavaScript.valueToCode(block, 'field', Blockly.JavaScript.ORDER_ATOMIC);
   var count = Blockly.JavaScript.valueToCode(block, 'count', Blockly.JavaScript.ORDER_ATOMIC); 
-  var code = 'ThingSpeak_read(2,'+key+','+field+','+count+');\n';
+  var api_key = Blockly.JavaScript.valueToCode(block, 'api_key', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'ThingSpeak_read(2,'+key+','+field+','+count+','+api_key+');\n';
   return code; 
 };
 
 Blockly.JavaScript['thingspeak_read3'] = function (block) {
   var key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'ThingSpeak_read(3,'+key+',"","");\n';
+  var api_key = Blockly.JavaScript.valueToCode(block, 'api_key', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'ThingSpeak_read(3,'+key+',"","",'+api_key+');\n';
   return code; 
 };
 
