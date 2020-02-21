@@ -134,7 +134,7 @@ Blockly.Blocks['thingspeak_getresponsewait'] = {
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT);
     this.appendDummyInput()
-        .appendField("(ms)");    
+        .appendField("(s)");    
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
