@@ -1,4 +1,4 @@
-<!-- https://www.facebook.com/francefu    2020/2/22 23:30
+<!-- https://www.facebook.com/francefu    2020/2/23 00:00
 程式碼中有五個檔案(blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js)的網路連結與有中文註解的部分要修改成自訂積木的設定。
 若是要新增數個自訂積木，就是有網址或有中文註解的部分原處複製程式碼修改成數個自訂積木設定多次執行。
 -->
@@ -11,7 +11,7 @@
 	var xml = $.ajax({url: "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml", async: false}).responseXML;  // 取得自訂積木目錄
 	toolbox.children["category_external"].append(xml.firstChild);    //設定自訂積木的目錄要掛載的官方主目錄ID為category_external (main.html)
 
-	var myTimer = setTimeout(function(){
+	var myTimer = setInterval(function(){
 		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
 			clearInterval(myTimer);
 			if ((document.getElementById('select-lang-en').checked)) {
