@@ -25,7 +25,7 @@
 				$("body").append(s);
 			}
 			setTimeout(function(){
-				myCategory.setAttribute("name",Blockly.Msg.TEST_SHOW);  // 設定目錄顯示名稱 = Blockly.Msg.xxxxx (en.js)
+				myCategory.setAttribute("name",Blockly.Msg.TEST_SHOW);  // 設定目錄顯示名稱 = Blockly.Msg.xxxxx (en.js與zh-hant.js)
 				Blockly.updateToolbox(toolbox);
 			}, 2000);
 		}
