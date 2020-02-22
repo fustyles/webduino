@@ -1,4 +1,3 @@
-<xml>
 <category id="TEST" name="TEST">
   <block type="test_open">
     <value name="url_">
@@ -10,4 +9,3 @@
   <block type="test_close">
   </block>
 </category>
-</xml>
