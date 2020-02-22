@@ -18,7 +18,7 @@
 				addScript("https://fustyles.github.io/webduino/LinkIt7697/test/en.js");  // 載入英文語系
 			}
 			setTimeout(function(){
-				setCategoryName("TEST", Blockly.Msg.TEST_SHOW);  // 設定自訂積木ID為TEST的子目錄顯示名稱 = Blockly.Msg.xxxxx (語系.js)
+				setCategoryName("TEST", Blockly.Msg.TEST_SHOW);  // 設定自訂積木ID為TEST的目錄顯示名稱 = Blockly.Msg.xxxxx (語系.js)
 				Blockly.updateToolbox(toolbox);
 			}, 2000);
 		}
