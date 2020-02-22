@@ -5,12 +5,10 @@
 <script>
 	var toolbox_path = "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml";
 	var en_path = "https://fustyles.github.io/webduino/LinkIt7697/test/en.js";
-	var category_id = 'TEST';
-	var category_name = Blockly.Msg.TEST_SHOW;
 
 	var xml = $.ajax({url: toolbox_path, async: false}).responseXML;
 	document.getElementById('toolbox').children["category_external"].append(xml.firstChild);
-	$('#'+category_id).attr('name',category_name);
+	$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);  // #Category_Name = Blockly.Msg.TEST_SHOW
 
 	var myTimer = setTimeout(function(){
 		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
@@ -19,6 +17,10 @@
 				s.type = "text/javascript";
 				s.src = en_path;
 				$("body").append(s);
+				setTimeout(function(){
+					$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);  // #Category_Name = Blockly.Msg.TEST_SHOW
+					Blockly.updateToolbox(document.getElementById('toolbox'));
+				}, 2000);
 			}
 			clearInterval(myTimer);
 		}
