@@ -5,10 +5,12 @@
 <script>
 	var toolbox_path = "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml";
 	var en_path = "https://fustyles.github.io/webduino/LinkIt7697/test/en.js";
+	var category_id = 'TEST';
+	var category_name = Blockly.Msg.TEST_SHOW;
 
 	var xml = $.ajax({url: toolbox_path, async: false}).responseXML;
 	document.getElementById('toolbox').children["category_external"].append(xml.firstChild);
-	$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);
+	$('#'+category_id).attr('name',category_name);
 
 	var myTimer = setTimeout(function(){
 		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
