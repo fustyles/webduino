@@ -31,7 +31,7 @@
 		$("body").append(s);
 	}
 
-	function setCategoryName(categoryID, msgName) {
-		document.getElementById(categoryID).setAttribute("name",msgName);
+	function setCategoryName(myCategoryID, myMsgName) {
+		document.getElementById(myCategoryID).setAttribute("name", myMsgName);
 	}
 </script>
