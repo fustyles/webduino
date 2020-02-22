@@ -12,7 +12,7 @@
 	var toolbox = document.getElementById('toolbox');
 	toolbox.children[fatherCategoryID].append(xml.firstChild);
 	var myCategory = document.getElementById(myCategoryID);
-	myCategory.setAttribute("name",Blockly.Msg.TEST_SHOW);  // 設定目錄中文顯示名稱 Category Name = Blockly.Msg.xxxxx
+	myCategory.setAttribute("name",Blockly.Msg.TEST_SHOW);  // 設定目錄中文顯示名稱 = Blockly.Msg.xxxxx
 
 	var myTimer = setTimeout(function(){
 		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
@@ -22,7 +22,7 @@
 				s.src = myEN;
 				$("body").append(s);
 				setTimeout(function(){
-					myCategory.setAttribute("name",Blockly.Msg.TEST_SHOW);  // 切換目錄英文顯示名稱 Category Name = Blockly.Msg.xxxxx
+					myCategory.setAttribute("name",Blockly.Msg.TEST_SHOW);  // 切換目錄英文顯示名稱 = Blockly.Msg.xxxxx
 					Blockly.updateToolbox(toolbox);
 				}, 2000);
 			}
