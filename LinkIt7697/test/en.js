@@ -1,5 +1,7 @@
-var language = location.search.toLowerCase();
-console.log(language);
+var language = window.location.search.toLowerCase();
+console.log(window.location);
+console.log(window.location.search);
+
 if (language.indexOf("en")!=-1) { 
   Blockly.Msg["category_test"] = "TEST";
   Blockly.Msg["category_test_HUE"] = "280";  
