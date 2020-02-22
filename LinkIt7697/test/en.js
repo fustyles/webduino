@@ -1,3 +1,5 @@
+console.log(Blockly.Msg.CATEGORY_LOGIC);
+
 if (Blockly.Msg.CATEGORY_LOGIC == "Logic") { 
   Blockly.Msg["category_test"] = "TEST";
   Blockly.Msg["category_test_HUE"] = "280";  
