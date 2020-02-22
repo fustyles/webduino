@@ -4,7 +4,7 @@
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/javascript.js"></script>
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.js"></script>
 <script>
-	var xml = Blockly.Xml.textToDom(catTEST);
+	var xml = $.ajax({url: "https://fustyles.github.io/webduino/toolbox.xml", async: false}).responseXML;
 	document.getElementById('toolbox').children["category_external"].append(xml.firstChild);
 	$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);
 
