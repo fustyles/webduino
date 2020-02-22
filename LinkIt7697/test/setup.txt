@@ -7,8 +7,7 @@
 <script>
 	var toolbox = document.getElementById('toolbox');
 
-	var myToolbox = "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml";  // 取得自訂積木目錄
-	var xml = $.ajax({url: myToolbox, async: false}).responseXML;
+	var xml = $.ajax({url: "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml", async: false}).responseXML;  // 取得自訂積木目錄
 	toolbox.children["category_external"].append(xml.firstChild);    //設定自訂積木的目錄要掛載的官方主目錄ID為category_external (main.html)
 
 	var myTimer = setTimeout(function(){
