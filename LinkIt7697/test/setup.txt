@@ -1,0 +1,22 @@
+<!-- https://www.facebook.com/francefu -->
+<script src="https://fustyles.github.io/webduino/LinkIt7697/test/en.js"></script>
+<script src="https://fustyles.github.io/webduino/LinkIt7697/test/blocks.js"></script>
+<script src="https://fustyles.github.io/webduino/LinkIt7697/test/javascript.js"></script>
+<script src="https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.js"></script>
+<script>
+	var xml = Blockly.Xml.textToDom(catOpenURL);
+	document.getElementById('toolbox').children["category_external"].append(xml.firstChild);
+	$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);
+
+	setTimeout(function(){ 
+		if ((document.getElementById('select-lang-zh').checked)) {
+			var s = document.createElement("script");
+			s.type = "text/javascript";
+			s.src = "https://fustyles.github.io/webduino/LinkIt7697/test/zh-hant.js";
+			$("body").append(s);
+			//setTimeout(function(){ 
+			//	$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);
+			//}, 1000); 
+		}
+	}, 1000); 
+</script>
