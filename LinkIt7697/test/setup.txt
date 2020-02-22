@@ -3,23 +3,25 @@
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/blocks.js"></script>
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/javascript.js"></script>
 <script>
-	var toolbox_path = "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml";
-	var en_path = "https://fustyles.github.io/webduino/LinkIt7697/test/en.js";
+	var myToolbox = "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml";
+	var myEN = "https://fustyles.github.io/webduino/LinkIt7697/test/en.js";
+    var myCategoryID = "TEST";
 
-	var xml = $.ajax({url: toolbox_path, async: false}).responseXML;
+	var xml = $.ajax({url: myToolbox, async: false}).responseXML;
 	var toolbox = document.getElementById('toolbox');
 	toolbox.children["category_external"].append(xml.firstChild);
-	$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);  // #Category_ID -> Blockly.Msg.xxxxx
+	var myCategory = document.getElementById(myCategoryID);
+	myCategory.setAttribute("name",Blockly.Msg.TEST_SHOW);  // Category Name = Blockly.Msg.xxxxx
 
 	var myTimer = setTimeout(function(){
 		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
 			if ((document.getElementById('select-lang-en').checked)) {
 				var s = document.createElement("script");
 				s.type = "text/javascript";
-				s.src = en_path;
+				s.src = myEN;
 				$("body").append(s);
 				setTimeout(function(){
-					$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);  // #Category_ID -> Blockly.Msg.xxxxx
+					myCategory.setAttribute("name",Blockly.Msg.TEST_SHOW);  // Category Name = Blockly.Msg.xxxxx
 					Blockly.updateToolbox(toolbox);
 				}, 2000);
 			}
