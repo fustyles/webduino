@@ -1,12 +1,9 @@
 'use strict';
 
 goog.provide('Blockly.Msg.zh.hant');
-
 goog.require('Blockly.Msg');
 
-Blockly.Msg["category_test"] = "測試";
-Blockly.Msg["category_test_HUE"] = "280";
-
+Blockly.Msg.TEST_SHOW = "測試";
 Blockly.Msg.OPEN_SHOW = "開啟連結";
 Blockly.Msg.CLOSE_SHOW = "關閉連結";
 Blockly.Msg.OPENID_SHOW = "代碼";
