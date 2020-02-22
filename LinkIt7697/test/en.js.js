@@ -1,4 +1,4 @@
-Blockly.Msg["test"] = "OpenURL";
+Blockly.Msg["test"] = "TEST";
 Blockly.Msg["test_HUE"] = "280";
 
 Blockly.Msg.OPEN_SHOW = "Open Link";
