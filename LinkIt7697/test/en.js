@@ -3,6 +3,7 @@
 goog.require('Blockly.Msg');
 
 console.log(Blockly.Msg.CATEGORY_LOGIC);
+console.log("OK");
 
 if (Blockly.Msg.CATEGORY_LOGIC == "Logic") { 
   Blockly.Msg.TEST_SHOW = "TEST";
