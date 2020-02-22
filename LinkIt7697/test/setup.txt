@@ -1,5 +1,5 @@
 <!-- https://www.facebook.com/francefu -->
-<script src="https://fustyles.github.io/webduino/LinkIt7697/test/en.js"></script>
+<script src="https://fustyles.github.io/webduino/LinkIt7697/test/zh-hant.js"></script>
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/blocks.js"></script>
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/javascript.js"></script>
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.js"></script>
@@ -10,10 +10,10 @@
 
 	var myTimer = setTimeout(function(){
 		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
-			if ((document.getElementById('select-lang-zh').checked)) {
+			if ((document.getElementById('select-lang-en').checked)) {
 				var s = document.createElement("script");
 				s.type = "text/javascript";
-				s.src = "https://fustyles.github.io/webduino/LinkIt7697/test/zh-hant.js";
+				s.src = "https://fustyles.github.io/webduino/LinkIt7697/test/en.js";
 				$("body").append(s);
 				//setTimeout(function(){ 
 				//	$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);
