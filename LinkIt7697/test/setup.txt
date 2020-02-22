@@ -6,7 +6,7 @@
 <script>
 	var xml = Blockly.Xml.textToDom(catTEST);
 	document.getElementById('toolbox').children["category_external"].append(xml.firstChild);
-	//$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);
+	$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);
 
 	var myTimer = setTimeout(function(){
 		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
