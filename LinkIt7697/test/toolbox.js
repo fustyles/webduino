@@ -1,4 +1,4 @@
-var catOpenURL = '<xml>'+
+var catTEST = '<xml>'+
 '<category id="TEST" name="TEST">'+
 '  <block type="iframe_open">'+
 '    <value name="url_">'+
