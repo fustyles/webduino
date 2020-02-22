@@ -1,15 +1,16 @@
-<!-- https://www.facebook.com/francefu -->
+<!-- https://www.facebook.com/francefu    2020/2/22 22:30-->
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/zh-hant.js"></script>
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/blocks.js"></script>
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/javascript.js"></script>
 <script>
 	var myToolbox = "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml";
 	var myEN = "https://fustyles.github.io/webduino/LinkIt7697/test/en.js";
-    	var myCategoryID = "TEST";
+    var myCategoryID = "TEST";
 
+	var fatherCategoryID = "category_external";
 	var xml = $.ajax({url: myToolbox, async: false}).responseXML;
 	var toolbox = document.getElementById('toolbox');
-	toolbox.children["category_external"].append(xml.firstChild);
+	toolbox.children[fatherCategoryID].append(xml.firstChild);
 	var myCategory = document.getElementById(myCategoryID);
 	myCategory.setAttribute("name",Blockly.Msg.TEST_SHOW);  // Category Name = Blockly.Msg.xxxxx
 
