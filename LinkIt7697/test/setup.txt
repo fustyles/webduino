@@ -8,7 +8,7 @@
 
 	var xml = $.ajax({url: toolbox_path, async: false}).responseXML;
 	document.getElementById('toolbox').children["category_external"].append(xml.firstChild);
-	$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);  // #Category_Name = Blockly.Msg.TEST_SHOW
+	$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);  // #Category_ID -> Blockly.Msg.TEST_SHOW
 
 	var myTimer = setTimeout(function(){
 		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
@@ -18,7 +18,7 @@
 				s.src = en_path;
 				$("body").append(s);
 				setTimeout(function(){
-					$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);  // #Category_Name = Blockly.Msg.TEST_SHOW
+					$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);  // #Category_ID -> Blockly.Msg.TEST_SHOW
 					Blockly.updateToolbox(document.getElementById('toolbox'));
 				}, 2000);
 			}
