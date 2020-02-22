@@ -1,3 +1,9 @@
+'use strict';
+
+goog.provide('Blockly.Msg.zh.hant');
+
+goog.require('Blockly.Msg');
+
 Blockly.Msg["test"] = "測試積木";
 Blockly.Msg["test_HUE"] = "280";
 
