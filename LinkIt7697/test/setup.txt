@@ -15,7 +15,7 @@
 		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
 			clearInterval(myTimer);
 			if ((document.getElementById('select-lang-en').checked)) {
-				addScript("https://fustyles.github.io/webduino/LinkIt7697/test/en.js");  // 切換顯示英文介面
+				addScript("https://fustyles.github.io/webduino/LinkIt7697/test/en.js");  // 載入英文語系
 			}
 			setTimeout(function(){
 				setCategoryName("TEST", Blockly.Msg.TEST_SHOW);  // 設定自訂積木ID為TEST的子目錄顯示名稱 = Blockly.Msg.xxxxx (語系.js)
