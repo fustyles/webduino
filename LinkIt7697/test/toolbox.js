@@ -1,5 +1,5 @@
 var catOpenURL = '<xml>'+
-'<category name="OPENURL">'+
+'<category id="OPENURL" name="OPENURL">'+
 '  <block type="iframe_open">'+
 '    <value name="openid_">'+
 '      <block type="text">'+
