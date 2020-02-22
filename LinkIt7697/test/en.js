@@ -13,7 +13,7 @@ if (language.indexOf("en")!=-1) {
   Blockly.Msg.TOP_SHOW = "Top";
   Blockly.Msg.ZINDEX_SHOW = "Z-index";
 } 
-else if (language.indexOf("en")!=-1) {
+else if (language.indexOf("zh")!=-1) {
   Blockly.Msg["category_test"] = "測試";
   Blockly.Msg["category_test_HUE"] = "280";
   Blockly.Msg.OPEN_SHOW = "開啟連結";
