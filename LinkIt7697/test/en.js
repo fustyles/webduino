@@ -4,8 +4,8 @@ goog.provide('Blockly.Msg.en');
 
 goog.require('Blockly.Msg');
 
-Blockly.Msg["test"] = "OpenURL";
-Blockly.Msg["test_HUE"] = "280";
+Blockly.Msg["category_test"] = "TEST";
+Blockly.Msg["category_test_HUE"] = "280";
 
 Blockly.Msg.OPEN_SHOW = "Open Link";
 Blockly.Msg.CLOSE_SHOW = "Close Link";
