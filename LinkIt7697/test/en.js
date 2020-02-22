@@ -1,3 +1,7 @@
+'use strict';
+
+goog.require('Blockly.Msg');
+
 console.log(Blockly.Msg.CATEGORY_LOGIC);
 
 if (Blockly.Msg.CATEGORY_LOGIC == "Logic") { 
