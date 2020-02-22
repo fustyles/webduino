@@ -5,7 +5,7 @@
 <script>
 	var myToolbox = "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml";
 	var myEN = "https://fustyles.github.io/webduino/LinkIt7697/test/en.js";
-    var myCategoryID = "TEST";
+    	var myCategoryID = "TEST";
 
 	var xml = $.ajax({url: myToolbox, async: false}).responseXML;
 	var toolbox = document.getElementById('toolbox');
