@@ -1,4 +1,4 @@
-Blockly.Blocks['iframe_open'] = {
+Blockly.Blocks['test_open'] = {
   init: function() {
   this.appendValueInput("url_")
       .setCheck("String")
@@ -10,7 +10,7 @@ Blockly.Blocks['iframe_open'] = {
   }
 };
 
-Blockly.Blocks['iframe_close'] = {
+Blockly.Blocks['test_close'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.CLOSE_SHOW);     
