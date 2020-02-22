@@ -1,4 +1,6 @@
-<!-- https://www.facebook.com/francefu    2020/2/22 22:30-->
+<!-- https://www.facebook.com/francefu    2020/2/22 22:30
+程式碼中有五個檔案(blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js)的網路連結與四個有中文註解的部分要修改成自訂積木的設定。
+-->
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/zh-hant.js"></script>
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/blocks.js"></script>
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/javascript.js"></script>
