@@ -4,8 +4,8 @@ goog.provide('Blockly.Msg.zh.hant');
 
 goog.require('Blockly.Msg');
 
-Blockly.Msg["test"] = "測試積木";
-Blockly.Msg["test_HUE"] = "280";
+Blockly.Msg["category_test"] = "測試";
+Blockly.Msg["category_test_HUE"] = "280";
 
 Blockly.Msg.OPEN_SHOW = "開啟連結";
 Blockly.Msg.CLOSE_SHOW = "關閉連結";
