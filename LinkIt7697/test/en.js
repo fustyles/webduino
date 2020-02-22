@@ -1,3 +1,9 @@
+'use strict';
+
+goog.provide('Blockly.Msg.en');
+
+goog.require('Blockly.Msg');
+
 Blockly.Msg["test"] = "OpenURL";
 Blockly.Msg["test_HUE"] = "280";
 
