@@ -6,7 +6,7 @@
 	var myToolbox = "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml";
 	var myEN = "https://fustyles.github.io/webduino/LinkIt7697/test/en.js";
     	var myCategoryID = "TEST";    //自訂積木的目錄ID
-	var fatherCategoryID = "category_external";    //自訂積木的目錄要掛載的主目錄ID
+	var fatherCategoryID = "category_external";    //自訂積木的目錄要掛載的官方主目錄ID
 	
 	var xml = $.ajax({url: myToolbox, async: false}).responseXML;
 	var toolbox = document.getElementById('toolbox');
