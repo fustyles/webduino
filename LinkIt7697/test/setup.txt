@@ -8,15 +8,18 @@
 	document.getElementById('toolbox').children["category_external"].append(xml.firstChild);
 	//$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);
 
-	setTimeout(function(){ 
-		if ((document.getElementById('select-lang-zh').checked)) {
-			var s = document.createElement("script");
-			s.type = "text/javascript";
-			s.src = "https://fustyles.github.io/webduino/LinkIt7697/test/zh-hant.js";
-			$("body").append(s);
-			//setTimeout(function(){ 
-			//	$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);
-			//}, 1000); 
+	var myTimer = setTimeout(function(){
+		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
+			if ((document.getElementById('select-lang-zh').checked)) {
+				var s = document.createElement("script");
+				s.type = "text/javascript";
+				s.src = "https://fustyles.github.io/webduino/LinkIt7697/test/zh-hant.js";
+				$("body").append(s);
+				//setTimeout(function(){ 
+				//	$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);
+				//}, 1000); 
+			}
+			clearInterval(myTimer);
 		}
-	}, 1000); 
+	}, 100); 
 </script>
