@@ -1,5 +1,5 @@
 var catOpenURL = '<xml>'+
-'<category id="category_test" name="%{Blockly.Msg.TEST_SHOW}">'+
+'<category name="%{BKY_TEST}" colour="%{BKY_TEST_HUE}">'+
 '  <block type="iframe_open">'+
 '    <value name="url_">'+
 '      <block type="text">'+
