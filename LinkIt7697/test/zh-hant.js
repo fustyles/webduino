@@ -1,5 +1,5 @@
-Blockly.Msg["OPENURL"] = "開啟網址";
-Blockly.Msg["OPENURL_HUE"] = "280";
+Blockly.Msg["test"] = "測試積木";
+Blockly.Msg["test_HUE"] = "280";
 
 Blockly.Msg.OPEN_SHOW = "開啟連結";
 Blockly.Msg.CLOSE_SHOW = "關閉連結";
