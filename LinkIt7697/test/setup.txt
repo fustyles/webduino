@@ -15,9 +15,6 @@
 				s.type = "text/javascript";
 				s.src = "https://fustyles.github.io/webduino/LinkIt7697/test/en.js";
 				$("body").append(s);
-				//setTimeout(function(){ 
-				//	$('#TEST').attr('name',Blockly.Msg.TEST_SHOW);
-				//}, 1000); 
 			}
 			clearInterval(myTimer);
 		}
