@@ -1,33 +1,37 @@
-<!-- https://www.facebook.com/francefu    2020/2/22 23:00
-程式碼中有五個檔案(blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js)的網路連結與三個有中文註解的部分要修改成自訂積木的設定。
+<!-- https://www.facebook.com/francefu    2020/2/22 23:30
+程式碼中有五個檔案(blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js)的網路連結與有中文註解的部分要修改成自訂積木的設定。
 -->
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/zh-hant.js"></script>
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/blocks.js"></script>
 <script src="https://fustyles.github.io/webduino/LinkIt7697/test/javascript.js"></script>
 <script>
-	var myToolbox = "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml";
-	var myEN = "https://fustyles.github.io/webduino/LinkIt7697/test/en.js";
-    	var myCategoryID = "TEST";    //自訂積木的目錄ID (toolbox.xml)
-	var fatherCategoryID = "category_external";    //自訂積木的目錄要掛載的官方主目錄ID (main.html)
-	
-	var xml = $.ajax({url: myToolbox, async: false}).responseXML;
 	var toolbox = document.getElementById('toolbox');
-	toolbox.children[fatherCategoryID].append(xml.firstChild);
-	var myCategory = document.getElementById(myCategoryID);
+
+	var myToolbox = "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml";  // 取得自訂積木目錄
+	var xml = $.ajax({url: myToolbox, async: false}).responseXML;
+	toolbox.children["category_external"].append(xml.firstChild);    //設定自訂積木的目錄要掛載的官方主目錄ID為category_external (main.html)
 
 	var myTimer = setTimeout(function(){
 		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
 			clearInterval(myTimer);
 			if ((document.getElementById('select-lang-en').checked)) {
-				var s = document.createElement("script");
-				s.type = "text/javascript";
-				s.src = myEN;
-				$("body").append(s);
+				addScript("https://fustyles.github.io/webduino/LinkIt7697/test/en.js");  // 切換顯示英文介面
 			}
 			setTimeout(function(){
-				myCategory.setAttribute("name",Blockly.Msg.TEST_SHOW);  // 設定目錄顯示名稱 = Blockly.Msg.xxxxx (語系.js)
+				setCategoryName("TEST", Blockly.Msg.TEST_SHOW);  // 設定自訂積木ID為TEST的子目錄顯示名稱 = Blockly.Msg.xxxxx (語系.js)
 				Blockly.updateToolbox(toolbox);
 			}, 2000);
 		}
 	}, 100); 
+
+	function addScript(url) {
+		var s = document.createElement("script");
+		s.type = "text/javascript";
+		s.src = url;
+		$("body").append(s);
+	}
+
+	function setCategoryName(categoryID, msgName) {
+		document.getElementById(categoryID).setAttribute("name",msgName);
+	}
 </script>
