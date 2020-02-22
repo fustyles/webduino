@@ -6,6 +6,5 @@
       </block>
     </value>
   </block>
-  <block type="test_close">
-  </block>
+  <block type="test_close"></block>
 </category>
