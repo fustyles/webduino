@@ -16,7 +16,8 @@ Blockly.Blocks['test_code'] = {
     this.appendValueInput("text")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.CODE_SHOW);   
+        .appendField(Blockly.Msg.CODE_SHOW);  
+    this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(65);
