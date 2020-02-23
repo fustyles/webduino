@@ -1,4 +1,11 @@
 <category id="TEST" name="TEST">
+  <block type="test_head">
+    <value name="text">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>  
+  </block>   
   <block type="test_code">
     <value name="text">
       <block type="text">
@@ -12,12 +19,5 @@
         <field name="TEXT">Hello World</field>
       </block>
     </value>  
-  </block>
-  <block type="test_head">
-    <value name="text">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>  
-  </block>    
+  </block>   
 </category>
