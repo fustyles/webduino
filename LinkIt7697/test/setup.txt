@@ -50,3 +50,51 @@ GitHub上放置五個檔案(blocks.js, javascript.js, toolbox.xml, en.js, zh-han
 		toolbox.children[fatherCategoryID].append(xml.firstChild);
 	}
 </script>
+
+
+
+
+
+
+<!-- 
+https://www.facebook.com/francefu    2020/2/24 01:30
+適用 LinkIt 7697 BlocklyDuino v3
+
+GitHub上放置五個檔案(blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js)，
+程式碼中有中文註解的部分要修改成自訂積木的設定。
+若是要新增數個自訂積木，有中文註解的程式原處複製修改成數個自訂積木設定多次執行。
+在init.js檔中將以下程式碼插入在 Blockly.inject(document.getElementById('content_blocks'),{ 之前，
+並將init.js檔另存檔成UTF-8格式，否則無法顯示繁體中文。toolbox.html中自訂積木的name不可以用中文命名。
+-->
+
+	var en_path = "https://fustyles.github.io/webduino/LinkIt7697/test/en.js";  //載入自訂積木英文語系設定檔
+	var zhhant_path = "https://fustyles.github.io/webduino/LinkIt7697/test/zh-hant.js";  //載入自訂積木繁體語系設定檔(預設繁體語系)
+	var blocks_path = "https://fustyles.github.io/webduino/LinkIt7697/test/blocks.js";   //載入自訂積木定義檔
+	var javascript_path = "https://fustyles.github.io/webduino/LinkIt7697/test/javascript.js";   //載入自訂積木轉出程式碼檔
+	var toolbox_path = "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml";  //讀取自訂積木目錄檔
+	initial(en_path, zhhant_path, blocks_path, javascript_path, toolbox_path);  //載入自訂積木
+
+	function initial(en_path, zhhant_path, blocks_path, javascript_path, toolbox_path) {
+		addScript(zhhant_path);
+		addScript(blocks_path);
+		addScript(javascript_path);
+
+		if ((document.getElementById('select-lang-en').checked)) {
+			addScript(en_path);
+			var xml = $.ajax({url: toolbox_path, async: false}).responseXML;
+			xmlValue = '<xml id="toolbox">' + new XMLSerializer().serializeToString(xml.firstChild) + xmlValue.replace('<xml id="toolbox">',"");
+			xmlValue = xmlValue.replace('name="UNKNOW"','name="TEST"');  //更新自訂積木目錄英文名稱
+		} else {
+			var xml = $.ajax({url: toolbox_path, async: false}).responseXML;
+			xmlValue = '<xml id="toolbox">' + new XMLSerializer().serializeToString(xml.firstChild) + xmlValue.replace('<xml id="toolbox">',"");
+			xmlValue = xmlValue.replace('name="UNKNOW"','name="測試"');  //更新自訂積木目錄繁體中文名稱。init.js檔另存檔成UTF-8格式，否則無法顯示繁體中文。
+		}
+
+	}
+
+	function addScript(url) {
+		var s = document.createElement("script");
+		s.type = "text/javascript";
+		s.src = url;
+		$("body").append(s);
+	}
