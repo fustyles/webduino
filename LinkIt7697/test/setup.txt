@@ -4,20 +4,20 @@ https://www.facebook.com/francefu    2020/2/23 08:00
 若是要新增數個自訂積木，就是有網址或有中文註解的部分原處複製程式碼修改成數個自訂積木設定多次執行。
 -->
 <script>
-	addScript("https://fustyles.github.io/webduino/LinkIt7697/test/zh-hant.js");
-	addScript("https://fustyles.github.io/webduino/LinkIt7697/test/blocks.js");
-	addScript("https://fustyles.github.io/webduino/LinkIt7697/test/javascript.js");
+	addScript("https://fustyles.github.io/webduino/LinkIt7697/test/zh-hant.js");  //載入自訂積木繁體語系設定檔
+	addScript("https://fustyles.github.io/webduino/LinkIt7697/test/blocks.js");   //載入自訂積木定義檔
+	addScript("https://fustyles.github.io/webduino/LinkIt7697/test/javascript.js");   //載入自訂積木轉出程式碼檔
 
 	var toolbox = document.getElementById('toolbox');
 
-	var xml = $.ajax({url: "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml", async: false}).responseXML;  // 取得自訂積木目錄
+	var xml = $.ajax({url: "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml", async: false}).responseXML;  // 取得自訂積木目錄檔
 	toolbox.children["category_external"].append(xml.firstChild);    //設定自訂積木的目錄要掛載的官方主目錄ID為category_external (main.html)
 
 	var myTimer = setInterval(function(){
 		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
 			clearInterval(myTimer);
 			if ((document.getElementById('select-lang-en').checked)) {
-				addScript("https://fustyles.github.io/webduino/LinkIt7697/test/en.js");  // 載入英文語系
+				addScript("https://fustyles.github.io/webduino/LinkIt7697/test/en.js");  //載入自訂積木英文語系設定檔
 			}
 			setTimeout(function(){
 				setCategoryName("TEST", Blockly.Msg.TEST_SHOW);  // 設定自訂積木ID為TEST的目錄顯示名稱 = Blockly.Msg.TEST_SHOW (語系.js)
