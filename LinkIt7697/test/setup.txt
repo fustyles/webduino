@@ -27,7 +27,7 @@ GitHub上放置五個檔案(blocks.js, javascript.js, toolbox.xml, en.js, zh-han
 			setTimeout(function(){
 				setCategoryName("TEST", Blockly.Msg.TEST_SHOW);  //設定自訂積木Category ID為"TEST"的目錄(toolbox.xml)顯示名稱 = Blockly.Msg.TEST_SHOW (語系.js)
 				//Blockly.updateToolbox(toolbox);  //目前會造成目錄大風吹，可考慮不執行這行程式碼，目錄僅顯示toolbox.xml內設定的名稱
-			}, 1000);
+			}, 2000);
 		}
 	}, 100); 
 
