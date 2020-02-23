@@ -1,3 +1,14 @@
+Blockly.Arduino['test_head'] = function(block) { 
+  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
+  if ((text.indexOf('"')==0)&&(text.lastIndexOf('"')==text.length-1))
+    text = text.substring(1,text.length-1);
+  if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))
+    text = text.substring(1,text.length-1);
+  Blockly.JavaScript.definitions_['custom_head'] = text;
+  var code = '';
+  return code;
+};
+
 Blockly.Arduino['test_code'] = function (block) { 
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
   console.log(text);
@@ -18,15 +29,3 @@ Blockly.Arduino['test_comment'] = function(block) {
   var code = '//' + text+'\n';
   return code;
 };
-
-Blockly.Arduino['test_head'] = function(block) { 
-  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
-  if ((text.indexOf('"')==0)&&(text.lastIndexOf('"')==text.length-1))
-    text = text.substring(1,text.length-1);
-  if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))
-    text = text.substring(1,text.length-1);
-  Blockly.JavaScript.definitions_['custom_head'] = text;
-  var code = '';
-  return code;
-};
-
