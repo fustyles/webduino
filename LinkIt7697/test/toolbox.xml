@@ -2,7 +2,7 @@
   <block type="test_head">
     <value name="text">
       <block type="text">
-        <field name="TEXT">&#35;</field>
+        <field name="TEXT">&#35;include <LWiFi.h></field>
       </block>
     </value>  
   </block>   
