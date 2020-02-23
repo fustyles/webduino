@@ -19,6 +19,5 @@ Blockly.Blocks['test_close'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(65);
   }
 };
