@@ -4,7 +4,7 @@ Blockly.Arduino['test_head'] = function(block) {
     text = text.substring(1,text.length-1);
   if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))
     text = text.substring(1,text.length-1);
-  Blockly.Arduino.definitions_['custom_head'] = text;
+  Blockly.Arduino.definitions_['custom_head'] = text.replace(/<br\s*\/?>/mg,"\n");
   var code = '';
   return code;
 };
