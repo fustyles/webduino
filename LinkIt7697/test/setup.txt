@@ -17,7 +17,7 @@ https://www.facebook.com/francefu    2020/2/23 08:00
 		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
 			clearInterval(myTimer);
 			if ((document.getElementById('select-lang-en').checked)) {
-				addScript("https://fustyles.github.io/webduino/LinkIt7697/test/en.js");  //載入自訂積木英文語系設定檔
+				addScript("https://fustyles.github.io/webduino/LinkIt7697/test/en.js");  //載入自訂積木英文語系設定檔覆蓋繁體語系設定
 			}
 			setTimeout(function(){
 				setCategoryName("TEST", Blockly.Msg.TEST_SHOW);  //設定自訂積木ID為TEST的目錄顯示名稱 = Blockly.Msg.TEST_SHOW (語系.js)
