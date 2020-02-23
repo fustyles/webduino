@@ -4,7 +4,7 @@ Blockly.Blocks['test_head'] = {
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.HEAD_SHOW);     
-    this.setInputsInline(false);
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(65);    
@@ -17,7 +17,7 @@ Blockly.Blocks['test_code'] = {
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.CODE_SHOW);  
-    this.setInputsInline(false);    
+    this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(65);
@@ -29,7 +29,7 @@ Blockly.Blocks['test_code_get'] = {
     this.appendValueInput("text")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT);   
-    this.setInputsInline(false);
+    this.setInputsInline(true);
     this.setOutput(true, null); 
     this.setColour(200);
   }
@@ -41,7 +41,7 @@ Blockly.Blocks['test_comment'] = {
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.COMMENT_SHOW);     
-    this.setInputsInline(false);
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   }
