@@ -16,7 +16,7 @@
   <block type="test_head">
     <value name="text">
       <block type="text">
-        <field name="TEXT">#include <WiFi.h></field>
+        <field name="TEXT"></field>
       </block>
     </value>  
   </block>  
