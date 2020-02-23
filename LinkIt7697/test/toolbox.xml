@@ -1,12 +1,12 @@
 <category id="TEST" name="TEST">
-  <block type="test_open">
+  <block type="test_code">
     <value name="text">
       <block type="text">
         <field name="TEXT">String HelloWorld;</field>
       </block>
     </value>
   </block>
-  <block type="test_close">
+  <block type="test_comment">
     <value name="text">
       <block type="text">
         <field name="TEXT">Hello World</field>
