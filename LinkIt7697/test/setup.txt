@@ -5,7 +5,7 @@ https://www.facebook.com/francefu    2020/2/23 08:00
 GitHub上放置五個檔案(blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js)，
 程式碼中有中文註解的部分要修改成自訂積木的設定。
 若是要新增數個自訂積木，有中文註解的程式原處複製修改成數個自訂積木設定多次執行。
-將此以下程式碼置於main.html中</html>之後。
+將以下程式碼置於package.nw\main.html中</html>之後。
 -->
 <script>
 	var toolbox = document.getElementById('toolbox');
