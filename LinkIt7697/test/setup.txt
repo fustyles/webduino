@@ -19,7 +19,7 @@ https://www.facebook.com/francefu    2020/2/23 08:00
 				addScript("https://fustyles.github.io/webduino/LinkIt7697/test/en.js");  //載入自訂積木英文語系設定檔覆蓋繁體語系設定
 			}
 			setTimeout(function(){
-				setCategoryName("TEST", Blockly.Msg.TEST_SHOW);  //設定自訂積木ID為TEST的目錄顯示名稱 = Blockly.Msg.TEST_SHOW (語系.js)
+				setCategoryName("TEST", Blockly.Msg.TEST_SHOW);  //設定自訂積木ID為TEST的目錄(toolbox.xml)顯示名稱 = Blockly.Msg.TEST_SHOW (語系.js)
 				Blockly.updateToolbox(toolbox);
 			}, 2000);
 		}
