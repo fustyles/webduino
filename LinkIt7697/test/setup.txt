@@ -21,11 +21,12 @@ GitHub上放置五個檔案(blocks.js, javascript.js, toolbox.xml, en.js, zh-han
 		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
 			clearInterval(myTimer);
 			if ((document.getElementById('select-lang-en').checked)) {
-				addScript("https://fustyles.github.io/webduino/LinkIt7697/test/en.js");  //載入自訂積木英文語系設定檔覆蓋繁體語系設定
+				var en_path = "https://fustyles.github.io/webduino/LinkIt7697/test/en.js";  //載入自訂積木英文語系設定檔
+				addScript(en_path);  //載入自訂積木英文語系設定檔覆蓋繁體語系設定
 			}
 			setTimeout(function(){
 				setCategoryName("TEST", Blockly.Msg.TEST_SHOW);  //設定自訂積木Category ID為"TEST"的目錄(toolbox.xml)顯示名稱 = Blockly.Msg.TEST_SHOW (語系.js)
-				Blockly.updateToolbox(toolbox);  //目前會造成目錄大風吹，可考慮不執行這行程式碼
+				//Blockly.updateToolbox(toolbox);  //目前會造成目錄大風吹，可考慮不執行這行程式碼
 			}, 1000);
 		}
 	}, 100); 
