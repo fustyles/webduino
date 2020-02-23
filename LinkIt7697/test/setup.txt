@@ -9,7 +9,7 @@ https://www.facebook.com/francefu    2020/2/23 08:00
 	addScript("https://fustyles.github.io/webduino/LinkIt7697/test/zh-hant.js");  //載入自訂積木繁體語系設定檔
 	addScript("https://fustyles.github.io/webduino/LinkIt7697/test/blocks.js");   //載入自訂積木定義檔
 	addScript("https://fustyles.github.io/webduino/LinkIt7697/test/javascript.js");   //載入自訂積木轉出程式碼檔
-	var xml = $.ajax({url: "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml", async: false}).responseXML;  //載入自訂積木目錄檔
+	var xml = $.ajax({url: "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml", async: false}).responseXML;  //讀取自訂積木目錄檔
 	toolbox.children["category_external"].append(xml.firstChild);    //設定自訂積木的目錄(toolbox.xml)要掛載的官方主目錄ID為category_external (main.html)
 
 	var myTimer = setInterval(function(){
