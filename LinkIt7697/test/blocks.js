@@ -1,4 +1,4 @@
-Blockly.Blocks['test_open'] = {
+Blockly.Blocks['test_code'] = {
   init: function() {
     this.appendValueInput("text")
         .setCheck("String")
@@ -10,7 +10,7 @@ Blockly.Blocks['test_open'] = {
   }
 };
 
-Blockly.Blocks['test_close'] = {
+Blockly.Blocks['test_comment'] = {
   init: function() {
     this.appendValueInput("text")
         .setCheck("String")
