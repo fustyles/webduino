@@ -13,11 +13,5 @@
       </block>
     </value>  
   </block>
-  <block type="test_head">
-    <value name="text">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>  
-  </block>  
+
 </category>
