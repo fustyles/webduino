@@ -3,7 +3,7 @@ Blockly.Blocks['test_code'] = {
     this.appendValueInput("text")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.OPEN_SHOW);   
+        .appendField(Blockly.Msg.CODE_SHOW);   
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(65);
@@ -15,7 +15,7 @@ Blockly.Blocks['test_comment'] = {
     this.appendValueInput("text")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.CLOSE_SHOW);     
+        .appendField(Blockly.Msg.COMMENT_SHOW);     
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
