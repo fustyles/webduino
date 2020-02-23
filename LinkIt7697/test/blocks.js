@@ -1,12 +1,12 @@
 Blockly.Blocks['test_open'] = {
   init: function() {
-  this.appendValueInput("text")
-      .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.OPEN_SHOW);   
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(65);
+    this.appendValueInput("text")
+        .setCheck("String")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.OPEN_SHOW);   
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(65);
   }
 };
 
