@@ -1,10 +1,16 @@
 <category id="TEST" name="TEST">
   <block type="test_open">
-    <value name="url_">
+    <value name="text">
       <block type="text">
-        <field name="TEXT">about:blank</field>
+        <field name="TEXT">String HelloWorld;</field>
       </block>
     </value>
   </block>
-  <block type="test_close"></block>
+  <block type="test_close">
+    <value name="text">
+      <block type="text">
+        <field name="TEXT">Hello World</field>
+      </block>
+    </value>  
+  </block>
 </category>
