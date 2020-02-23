@@ -1,6 +1,6 @@
 Blockly.Blocks['test_open'] = {
   init: function() {
-  this.appendValueInput("url_")
+  this.appendValueInput("text")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPEN_SHOW);   
@@ -12,7 +12,9 @@ Blockly.Blocks['test_open'] = {
 
 Blockly.Blocks['test_close'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendValueInput("text")
+        .setCheck("String")
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.CLOSE_SHOW);     
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
