@@ -10,8 +10,8 @@ https://www.facebook.com/francefu    2020/2/23 08:00
 
 	var toolbox = document.getElementById('toolbox');
 
-	var xml = $.ajax({url: "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml", async: false}).responseXML;  // 取得自訂積木目錄檔
-	toolbox.children["category_external"].append(xml.firstChild);    //設定自訂積木的目錄要掛載的官方主目錄ID為category_external (main.html)
+	var xml = $.ajax({url: "https://fustyles.github.io/webduino/LinkIt7697/test/toolbox.xml", async: false}).responseXML;  //載入自訂積木目錄檔
+	toolbox.children["category_external"].append(xml.firstChild);    //設定自訂積木的目錄(toolbox.xml)要掛載的官方主目錄ID為category_external (main.html)
 
 	var myTimer = setInterval(function(){
 		if (document.getElementById('select-lang-en').checked!=document.getElementById('select-lang-zh').checked) {
@@ -20,7 +20,7 @@ https://www.facebook.com/francefu    2020/2/23 08:00
 				addScript("https://fustyles.github.io/webduino/LinkIt7697/test/en.js");  //載入自訂積木英文語系設定檔
 			}
 			setTimeout(function(){
-				setCategoryName("TEST", Blockly.Msg.TEST_SHOW);  // 設定自訂積木ID為TEST的目錄顯示名稱 = Blockly.Msg.TEST_SHOW (語系.js)
+				setCategoryName("TEST", Blockly.Msg.TEST_SHOW);  //設定自訂積木ID為TEST的目錄顯示名稱 = Blockly.Msg.TEST_SHOW (語系.js)
 				Blockly.updateToolbox(toolbox);
 			}, 2000);
 		}
