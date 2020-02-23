@@ -35,7 +35,7 @@ GitHub上放置五個檔案(blocks.js, javascript.js, toolbox.xml, en.js, zh-han
 		$("body").append(s);
 	}
 
-	function setCategoryName(myCategoryID, myMsgName) {
-		document.getElementById(myCategoryID).setAttribute("name", myMsgName);
+	function setCategoryName(categoryID, msgName) {
+		document.getElementById(categoryID).setAttribute("name", msgName);
 	}
 </script>
