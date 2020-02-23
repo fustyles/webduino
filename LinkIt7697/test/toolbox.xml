@@ -16,7 +16,7 @@
   <block type="test_code_get">
     <value name="text">
       <block type="text">
-        <field name="TEXT">Taiwan = </field>
+        <field name="TEXT">Taiwan()</field>
       </block>
     </value>
   </block>  
