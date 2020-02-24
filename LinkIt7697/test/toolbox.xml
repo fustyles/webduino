@@ -9,7 +9,7 @@
   <block type="test_code">
     <value name="text">
       <block type="text">
-        <field name="TEXT">String Taiwan;</field>
+        <field name="TEXT">String World;</field>
       </block>
     </value>
   </block>
