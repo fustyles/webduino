@@ -1,0 +1,142 @@
+<category id="FRANCEFU" name="FRANCEFU">
+  <category id="france1" name="customcode">
+	  <block type="customcode_head">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">&#35;include &#60;LWiFi.h&#62;</field>
+		  </block>
+		</value>  
+	  </block>   
+	  <block type="customcode_code">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">String World;</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_variable">
+		<value name="variable">
+		  <block type="text">
+			<field name="TEXT">String World</field>
+		  </block>
+		</value>
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">"123"</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">Taiwan()</field>
+		  </block>
+		</value>
+	  </block>  
+	  <block type="customcode_comment">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">Hello Taiwan</field>
+		  </block>
+		</value>  
+	  </block>  
+	  
+	  <block type="customcode_instruction1">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 
+	  <block type="customcode_instruction2">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text1">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text2">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 
+	  <block type="customcode_instruction3">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text1">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text2">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text3">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 
+  </category>
+  <category id="france2" name="module">
+	  <block type="tcp_https">
+		<value name="domain">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+		<value name="port">
+		  <block type="math_number">
+			<field name="NUM">443</field>
+		  </block>
+		</value> 
+		<value name="request">
+		  <block type="text">
+			<field name="TEXT">/xxx</field>
+		  </block>
+		</value> 
+		<value name="timeout">
+		  <block type="math_number">
+			<field name="NUM">3000</field>
+		  </block>
+		</value> 		
+	  </block>
+	  <block type="tcp_http">
+		<value name="domain">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+		<value name="port">
+		  <block type="math_number">
+			<field name="NUM">80</field>
+		  </block>
+		</value> 
+		<value name="request">
+		  <block type="text">
+			<field name="TEXT">/xxx</field>
+		  </block>
+		</value> 
+		<value name="timeout">
+		  <block type="math_number">
+			<field name="NUM">3000</field>
+		  </block>
+		</value>  
+	  </block>
+  </category>	  
+</category>
