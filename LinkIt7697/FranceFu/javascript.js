@@ -127,7 +127,7 @@ Blockly.Arduino['tcp_https'] = function(block) {
 											'  TLSClient client_tcp;\n'+
 											'  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n'+
 											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
-											'    Serial.println("GET " + request);\n'+
+											'    //Serial.println("Connected to "+domain+" successfully.");\n'+
 											'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 											'    client_tcp.println("Host: " + domain);\n'+
 											'    client_tcp.println("Connection: close");\n'+
@@ -171,7 +171,7 @@ Blockly.Arduino['tcp_http'] = function(block) {
 											'  String getAll="", getBody="";\n'+
 											'  WiFiClient client_tcp;\n'+
 											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
-											'	Serial.println("GET " + request);\n'+
+											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
 											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 											'	client_tcp.println("Host: " + domain);\n'+
 											'	client_tcp.println("Connection: close");\n'+
