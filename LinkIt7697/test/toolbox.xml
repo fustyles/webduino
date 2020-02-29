@@ -23,7 +23,7 @@
   <block type="test_comment">
     <value name="text">
       <block type="text">
-        <field name="TEXT">Hello&#60;br&#62;Taiwan</field>
+        <field name="TEXT">Hello Taiwan</field>
       </block>
     </value>  
   </block>   
