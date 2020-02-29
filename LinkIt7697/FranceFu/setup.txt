@@ -12,11 +12,11 @@ toolbox.xml中自訂積木的name不可以用中文命名。
 自訂積木新增的目錄會在最頂端。
 */
 
-	var en_path = "FranceFu/en.js";  //載入自訂積木英文語系設定檔
-	var zhhant_path = "FranceFu/zh-hant.js";  //載入自訂積木繁體語系設定檔(預設繁體語系)
-	var blocks_path = "FranceFu/blocks.js";   //載入自訂積木定義檔
-	var javascript_path = "FranceFu/javascript.js";   //載入自訂積木轉出程式碼檔
-	var toolbox_path = "FranceFu/toolbox.xml";  //讀取自訂積木目錄檔
+	var en_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/en.js";  //載入自訂積木英文語系設定檔
+	var zhhant_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/zh-hant.js";  //載入自訂積木繁體語系設定檔(預設繁體語系)
+	var blocks_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/blocks.js";   //載入自訂積木定義檔
+	var javascript_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/javascript.js";   //載入自訂積木轉出程式碼檔
+	var toolbox_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/toolbox.xml";  //讀取自訂積木目錄檔
 	initial(en_path, zhhant_path, blocks_path, javascript_path, toolbox_path);  //新增自訂積木
 
 	function initial(en_path, zhhant_path, blocks_path, javascript_path, toolbox_path) {
