@@ -1,6 +1,6 @@
 /*
 https://www.facebook.com/francefu    2020/2/29 23:30
-方法二：適用 LinkIt 7697 BlocklyDuino v3
+適用 LinkIt 7697 BlocklyDuino v3
 
 GitHub上放置五個檔案(blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js)，
 程式碼中有中文註解的部分要修改成自訂積木的設定。
