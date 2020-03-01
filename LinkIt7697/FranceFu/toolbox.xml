@@ -44,7 +44,7 @@
 		  </block>
 		</value>  
 	  </block>
-  </category>	  	
+  </category>	  
   <category id="france1" name="customcode">
 	  <block type="customcode_head">
 		<value name="text">
@@ -86,7 +86,6 @@
 		  </block>
 		</value>  
 	  </block>  
-	  
 	  <block type="customcode_instruction1">
 		<value name="instruction">
 		  <block type="text">
@@ -137,6 +136,65 @@
 			<field name="TEXT"></field>
 		  </block>
 		</value> 
+	  </block> 
+  </category>
+  <category id="france3" name="line">
+	  <block type="linenotify">
+		<value name="linenotify_token">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>   
+		<value name="linenotify_msg">
+		  <block type="linenotify_text">
+			<value name="value_text"> 
+			  <block type="text">
+				<field name="TEXT">Hello World</field>
+			  </block>			
+			</value>         
+		  </block>  
+		</value>
+	  </block>
+	  <block type="linenotify_text">
+		<value name="value_text">
+		  <block type="text">
+			<field name="TEXT">Hello World</field>
+		  </block>
+		</value>  
+	  </block> 
+	  <block type="linenotify_sticker">
+		<value name="value_text">
+		  <block type="text">
+			<field name="TEXT">Hello World</field>
+		  </block>
+		</value>  
+		<value name="value_packageId">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value>  
+		<value name="value_stickerId">
+		  <block type="math_number">
+			<field name="NUM">2</field>
+		  </block>
+		</value>  
+	  </block> 
+	  <block type="linenotify_image">
+		<value name="value_text">
+		  <block type="text">
+			<field name="TEXT">Hello World</field>
+		  </block>
+		</value>  
+		<value name="value_originalContentUrl">
+		  <block type="text">
+			<field name="TEXT">https://</field>
+		  </block>
+		</value>  
+		<value name="value_previewImageUrl">
+		  <block type="text">
+			<field name="TEXT">https://</field>
+		  </block>
+		</value>  
 	  </block> 
   </category>
 </category>

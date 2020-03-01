@@ -139,11 +139,11 @@ Blockly.Blocks['tcp_https'] = {
     this.appendValueInput("timeout")
         .setCheck("Number")
         .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW); 
-    this.appendDummyInput() 
-        .appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
-    this.setInputsInline(true);
-    this.setOutput(true, null);
-    this.setColour(20);   
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
+	this.setInputsInline(true);
+	this.setOutput(true, null);
+	this.setColour(20);   
   }
 };
 
@@ -167,10 +167,81 @@ Blockly.Blocks['tcp_http'] = {
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW); 
-    this.appendDummyInput() 
-        .appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
-    this.setInputsInline(true);
-    this.setOutput(true, null);
-    this.setColour(20);   
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
+	this.setInputsInline(true);
+	this.setOutput(true, null);
+	this.setColour(20);   
+  }
+};
+
+Blockly.Blocks['linenotify'] = {
+  init: function() {
+  this.appendValueInput("linenotify_token")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Line Notify   ")
+      .appendField("TOKEN");  
+  this.appendValueInput("linenotify_msg")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("MESSAGE");
+    this.setOutput(true, null);  
+    this.setColour(20);
+  }
+};
+
+Blockly.Blocks['linenotify_text'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Line Notify Text");
+    this.appendValueInput("value_text")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("text","text");
+    this.setOutput(true, null);  
+    this.setColour(20);
+  }
+};
+
+Blockly.Blocks['linenotify_sticker'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Line Notify Sticker");
+    this.appendValueInput("value_text")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("text","text");
+    this.appendValueInput("value_packageId")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("packageId","packageId");
+    this.appendValueInput("value_stickerId")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("stickerId","stickerId");
+    this.setOutput(true, null);  
+    this.setColour(20);
+  }
+};
+
+Blockly.Blocks['linenotify_image'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Line Notify Image");
+    this.appendValueInput("value_text")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("text","text");
+    this.appendValueInput("value_originalContentUrl")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("originalContentUrl","originalContentUrl");
+    this.appendValueInput("value_previewImageUrl")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("previewImageUrl","previewImageUrl");
+    this.setOutput(true, null);  
+    this.setColour(20);
   }
 };
