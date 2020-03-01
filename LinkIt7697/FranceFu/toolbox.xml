@@ -3,7 +3,7 @@
 	  <block type="tcp_https">
 		<value name="domain">
 		  <block type="text">
-			<field name="TEXT"></field>
+			<field name="TEXT">www.google.com</field>
 		  </block>
 		</value> 
 		<value name="port">
@@ -25,7 +25,7 @@
 	  <block type="tcp_http">
 		<value name="domain">
 		  <block type="text">
-			<field name="TEXT"></field>
+			<field name="TEXT">www.google.com</field>
 		  </block>
 		</value> 
 		<value name="port">
