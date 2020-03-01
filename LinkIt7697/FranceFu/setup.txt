@@ -8,8 +8,7 @@ Blockly.inject(document.getElementById('content_blocks'),{
 
 並將init.js檔另存檔成UTF-8格式，否則無法顯示繁體中文。
 自訂積木新增的目錄會在最頂端。
-若有異常狀況，請至 LinkIt開發社群留言。
-https://www.facebook.com/groups/1641811569367039/?multi_permalinks=2525090627705791
+若有異常狀況，請至LinkIt開發社群留言。
 */
 
 	var en_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/en.js";  //載入自訂積木英文語系設定檔
