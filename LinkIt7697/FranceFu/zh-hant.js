@@ -2,7 +2,7 @@ Blockly.Msg.FRANCEFU_SHOW = "法蘭斯";
 
 Blockly.Msg.FRANCE1_CUSTOMCODE_SHOW = "自訂程式碼";
 Blockly.Msg.FRANCE1_CODE_SHOW = "自訂程式碼";
-Blockly.Msg.FRANCE1_VARIABLE_SHOW = "自訂變數";
+Blockly.Msg.FRANCE1_VARIABLE_SHOW = "區域變數";
 Blockly.Msg.FRANCE1_COMMENT_SHOW = "註解";
 Blockly.Msg.FRANCE1_HEAD_SHOW = "自訂檔頭";
 Blockly.Msg.FRANCE1_INSTRUCTION_SHOW = "指令";
