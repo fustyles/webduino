@@ -200,7 +200,7 @@ Blockly.Blocks['linenotify_text'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("text","text");
     this.setOutput(true, null);  
-    this.setColour(20);
+    this.setColour(50);
   }
 };
 
@@ -221,7 +221,7 @@ Blockly.Blocks['linenotify_sticker'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("stickerId","stickerId");
     this.setOutput(true, null);  
-    this.setColour(20);
+    this.setColour(50);
   }
 };
 
@@ -242,6 +242,6 @@ Blockly.Blocks['linenotify_image'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("previewImageUrl","previewImageUrl");
     this.setOutput(true, null);  
-    this.setColour(20);
+    this.setColour(50);
   }
 };
