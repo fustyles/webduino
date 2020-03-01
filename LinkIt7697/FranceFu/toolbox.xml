@@ -115,7 +115,7 @@
 	  <block type="customcode_code">
 		<value name="text">
 		  <block type="text">
-			<field name="TEXT">String World;</field>
+			<field name="TEXT">String Hello;</field>
 		  </block>
 		</value>
 	  </block>
@@ -134,14 +134,14 @@
 	  <block type="customcode_code_input">
 		<value name="text">
 		  <block type="text">
-			<field name="TEXT">Taiwan()</field>
+			<field name="TEXT">Peace()</field>
 		  </block>
 		</value>
 	  </block>  
 	  <block type="customcode_comment">
 		<value name="text">
 		  <block type="text">
-			<field name="TEXT">Hello Taiwan</field>
+			<field name="TEXT">World Peace</field>
 		  </block>
 		</value>  
 	  </block>  

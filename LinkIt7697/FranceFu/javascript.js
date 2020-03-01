@@ -302,7 +302,7 @@ Blockly.Arduino['linenotify'] = function (block) {
 
 Blockly.Arduino['linenotify_text'] = function(block) {
   var text = Blockly.Arduino.valueToCode(block, 'value_text', Blockly.Arduino.ORDER_ATOMIC); 
-  if (!text) text='""';
+  if (!text) text='" "';
   if ((text.indexOf('"')==0)&&(text.lastIndexOf('"')==text.length-1))
     text = text.substring(1,text.length-1);
   if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))
@@ -317,7 +317,7 @@ Blockly.Arduino['linenotify_sticker'] = function(block) {
   var packageId = Blockly.Arduino.valueToCode(block, 'value_packageId', Blockly.Arduino.ORDER_ATOMIC);
   var stickerId = Blockly.Arduino.valueToCode(block, 'value_stickerId', Blockly.Arduino.ORDER_ATOMIC);  
   
-  if (!text) text='""';
+  if (!text) text='" "';
   if ((text.indexOf('"')==0)&&(text.lastIndexOf('"')==text.length-1))
     text = text.substring(1,text.length-1);
   if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))
@@ -344,7 +344,7 @@ Blockly.Arduino['linenotify_image'] = function(block) {
   var originalContentUrl = Blockly.Arduino.valueToCode(block, 'value_originalContentUrl', Blockly.Arduino.ORDER_ATOMIC);
   var previewImageUrl = Blockly.Arduino.valueToCode(block, 'value_previewImageUrl', Blockly.Arduino.ORDER_ATOMIC);  
   
-  if (!text) text='""';
+  if (!text) text='" "';
   if ((text.indexOf('"')==0)&&(text.lastIndexOf('"')==text.length-1))
     text = text.substring(1,text.length-1);
   if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))

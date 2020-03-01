@@ -138,10 +138,9 @@ Blockly.Blocks['tcp_https'] = {
         .appendField(Blockly.Msg.FRANCE2_REQUEST_SHOW); 	
     this.appendValueInput("timeout")
         .setCheck("Number")
-        .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW); 
-	this.appendDummyInput() 
+        .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW)
 		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
-	this.setInputsInline(true);
+	this.setInputsInline(false);
 	this.setOutput(true, null);
 	this.setColour(20);   
   }
@@ -153,23 +152,18 @@ Blockly.Blocks['tcp_http'] = {
 		.appendField(Blockly.Msg.FRANCE2_HEAD_HTTP_SHOW);
     this.appendValueInput("domain")
         .setCheck("String")
-        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.FRANCE2_DOMAIN_SHOW);  
     this.appendValueInput("port")
         .setCheck("String")
-        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.FRANCE2_PORT_SHOW); 		
     this.appendValueInput("request")
         .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.FRANCE2_REQUEST_SHOW); 	
     this.appendValueInput("timeout")
         .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW); 
-	this.appendDummyInput() 
+        .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW)
 		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
-	this.setInputsInline(true);
+	this.setInputsInline(false);
 	this.setOutput(true, null);
 	this.setColour(20);   
   }
