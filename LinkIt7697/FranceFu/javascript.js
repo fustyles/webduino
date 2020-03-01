@@ -248,6 +248,8 @@ Blockly.Arduino['linenotify'] = function (block) {
 											'  request.replace("%3CBR%20/%3E","%0D%0A");\n'+
 											'  request.replace("%20stickerPackageId","&stickerPackageId");\n'+
 											'  request.replace("%20stickerId","&stickerId");\n'+
+											'  request.replace("%20imageFullsize","&imageFullsize");\n'+
+											'  request.replace("%20imageThumbnail","&imageThumbnail");\n'+ 	  
 											'  TLSClient client_tcp;\n'+
 											'  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n'+
 											'  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
