@@ -17,6 +17,3 @@ Blockly.Msg.FRANCE2_TIMEOUT_SHOW = "Timeout";
 Blockly.Msg.FRANCE2_SECOND_SHOW = "(ms)"; 
 
 Blockly.Msg.FRANCE3_LINE_SHOW = "Line";
-       
-
-	
