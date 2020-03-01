@@ -19,20 +19,16 @@ Blockly.inject(document.getElementById('content_blocks'),{
 		addScript(zhhant_path);
 		addScript(blocks_path);
 		addScript(javascript_path);
+		var xml = $.ajax({url: toolbox_path, async: false}).responseXML;
+		xmlValue = '<xml id="toolbox">' + new XMLSerializer().serializeToString(xml.firstChild) + '<sep></sep>' + xmlValue.replace('<xml id="toolbox">',"");
 
 		if ((document.getElementById('select-lang-en').checked)) {
 			addScript(en_path);
-			var xml = $.ajax({url: toolbox_path, async: false}).responseXML;
-			xmlValue = '<xml id="toolbox">' + new XMLSerializer().serializeToString(xml.firstChild) + xmlValue.replace('<xml id="toolbox">',"");
 			xmlValue = xmlValue.replace('name="FRANCEFU"','name="FranceFu"');  //更新自訂積木目錄英文名稱
-
 			xmlValue = xmlValue.replace('name="customcode"','name="Custom Code"');  //更新自訂積木目錄英文名稱
 			xmlValue = xmlValue.replace('name="module"','name="Module"');  //更新自訂積木目錄英文名稱
 		} else {
-			var xml = $.ajax({url: toolbox_path, async: false}).responseXML;
-			xmlValue = '<xml id="toolbox">' + new XMLSerializer().serializeToString(xml.firstChild) + xmlValue.replace('<xml id="toolbox">',"");
 			xmlValue = xmlValue.replace('name="FRANCEFU"','name="法蘭斯"');  //更新自訂積木目錄繁體中文名稱。init.js檔另存檔成UTF-8格式，否則無法顯示繁體中文。
-
 			xmlValue = xmlValue.replace('name="customcode"','name="自訂程式碼"');  //更新自訂積木子目錄繁體中文名稱。
 			xmlValue = xmlValue.replace('name="module"','name="模組"');  //更新自訂積木子目錄繁體中文名稱。
 		}
@@ -46,3 +42,4 @@ Blockly.inject(document.getElementById('content_blocks'),{
 		s.src = url;
 		$("body").append(s);
 	}
+
