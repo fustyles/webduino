@@ -1,4 +1,50 @@
 <category id="FRANCEFU" name="FRANCEFU">
+  <category id="france2" name="module">
+	  <block type="tcp_https">
+		<value name="domain">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+		<value name="port">
+		  <block type="math_number">
+			<field name="NUM">443</field>
+		  </block>
+		</value> 
+		<value name="request">
+		  <block type="text">
+			<field name="TEXT">/xxx</field>
+		  </block>
+		</value> 
+		<value name="timeout">
+		  <block type="math_number">
+			<field name="NUM">3000</field>
+		  </block>
+		</value> 		
+	  </block>
+	  <block type="tcp_http">
+		<value name="domain">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+		<value name="port">
+		  <block type="math_number">
+			<field name="NUM">80</field>
+		  </block>
+		</value> 
+		<value name="request">
+		  <block type="text">
+			<field name="TEXT">/xxx</field>
+		  </block>
+		</value> 
+		<value name="timeout">
+		  <block type="math_number">
+			<field name="NUM">3000</field>
+		  </block>
+		</value>  
+	  </block>
+  </category>	  	
   <category id="france1" name="customcode">
 	  <block type="customcode_head">
 		<value name="text">
@@ -93,50 +139,4 @@
 		</value> 
 	  </block> 
   </category>
-  <category id="france2" name="module">
-	  <block type="tcp_https">
-		<value name="domain">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-		<value name="port">
-		  <block type="math_number">
-			<field name="NUM">443</field>
-		  </block>
-		</value> 
-		<value name="request">
-		  <block type="text">
-			<field name="TEXT">/xxx</field>
-		  </block>
-		</value> 
-		<value name="timeout">
-		  <block type="math_number">
-			<field name="NUM">3000</field>
-		  </block>
-		</value> 		
-	  </block>
-	  <block type="tcp_http">
-		<value name="domain">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-		<value name="port">
-		  <block type="math_number">
-			<field name="NUM">80</field>
-		  </block>
-		</value> 
-		<value name="request">
-		  <block type="text">
-			<field name="TEXT">/xxx</field>
-		  </block>
-		</value> 
-		<value name="timeout">
-		  <block type="math_number">
-			<field name="NUM">3000</field>
-		  </block>
-		</value>  
-	  </block>
-  </category>	  
 </category>
