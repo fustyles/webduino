@@ -181,11 +181,11 @@ Blockly.Blocks['linenotify'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Line Notify   ")
-      .appendField("TOKEN");  
+      .appendField("Token");  
   this.appendValueInput("linenotify_msg")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("MESSAGE");
+      .appendField("Message");
     this.setOutput(true, null);  
     this.setColour(20);
   }
