@@ -3,7 +3,9 @@ https://www.facebook.com/francefu    2020/2/29 23:30
 適用 LinkIt 7697 BlocklyDuino v3
 
 在BlocklyDuino3\package.nw\js\init.js檔中將以下程式碼插入在此行程式碼之前，
+
 Blockly.inject(document.getElementById('content_blocks'),{ 
+
 並將init.js檔另存檔成UTF-8格式，否則無法顯示繁體中文。
 自訂積木新增的目錄會在最頂端。
 */
