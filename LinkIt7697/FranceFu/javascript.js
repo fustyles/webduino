@@ -249,7 +249,7 @@ Blockly.Arduino['linenotify'] = function (block) {
 											'  request.replace("%20stickerPackageId","&stickerPackageId");\n'+
 											'  request.replace("%20stickerId","&stickerId");\n'+
 											'  request.replace("%20imageFullsize","&imageFullsize");\n'+
-											'  request.replace("%20imageThumbnail","&imageThumbnail");\n'+ 	  
+											'  request.replace("%20imageThumbnail","&imageThumbnail");\n'+ 
 											'  TLSClient client_tcp;\n'+
 											'  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n'+
 											'  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
@@ -362,6 +362,6 @@ Blockly.Arduino['linenotify_image'] = function(block) {
   if ((previewImageUrl.indexOf("(")==0)&&(previewImageUrl.lastIndexOf(")")==previewImageUrl.length-1))
     previewImageUrl = previewImageUrl.substring(1,previewImageUrl.length-1);
   
-  var code = 'message='+text+'&imageFullsize='+originalContentUrl+'&imageThumbnail='+previewImageUrl;
+  var code = 'message='+text+'&imageThumbnail='+previewImageUrl+'&imageFullsize='+originalContentUrl;
   return [code, Blockly.Arduino.ORDER_NONE];
 };
