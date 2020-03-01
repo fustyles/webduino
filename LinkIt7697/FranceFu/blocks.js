@@ -44,7 +44,7 @@ Blockly.Blocks['customcode_code_input'] = {
         .setCheck("String");   
     this.setInputsInline(true);
     this.setOutput(true, null); 
-    this.setColour(200);
+    this.setColour(20);
   }
 };
 
@@ -139,11 +139,11 @@ Blockly.Blocks['tcp_https'] = {
     this.appendValueInput("timeout")
         .setCheck("Number")
         .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW); 
-	this.appendDummyInput() 
-		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
-	this.setInputsInline(true);
-	this.setOutput(true, null);
-	this.setColour(65);   
+    this.appendDummyInput() 
+        .appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(20);   
   }
 };
 
@@ -167,10 +167,10 @@ Blockly.Blocks['tcp_http'] = {
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW); 
-	this.appendDummyInput() 
-		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
-	this.setInputsInline(true);
-	this.setOutput(true, null);
-	this.setColour(65);   
+    this.appendDummyInput() 
+        .appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(20);   
   }
 };
