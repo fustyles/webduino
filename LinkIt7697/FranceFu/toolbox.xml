@@ -94,12 +94,12 @@
 		</value>  
 		<value name="value_originalContentUrl">
 		  <block type="text">
-			<field name="TEXT">https://</field>
+			<field name="TEXT">https://img.epochtimes.com.tw/upload/images/2018/08/14/336855_medium.jpg</field>
 		  </block>
 		</value>  
 		<value name="value_previewImageUrl">
 		  <block type="text">
-			<field name="TEXT">https://</field>
+			<field name="TEXT">https://img.mm52.com/c/chiling_lin/chiling_lin_0005_128px.jpg</field>
 		  </block>
 		</value>  
 	  </block> 
