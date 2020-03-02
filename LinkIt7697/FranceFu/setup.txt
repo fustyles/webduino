@@ -1,5 +1,5 @@
 /*
-https://www.facebook.com/francefu    2020/3/2 00:30
+https://www.facebook.com/francefu    2020/3/2 11:00
 適用 LinkIt 7697 BlocklyDuino v3
 
 在BlocklyDuino3\package.nw\js\init.js檔中將以下程式碼插入在此行程式碼之前，
@@ -25,8 +25,17 @@ function initial(en_path, zhhant_path, blocks_path, javascript_path, toolbox_pat
 	addScript(blocks_path);
 	addScript(javascript_path);
 	var xml = $.ajax({url: toolbox_path, async: false}).responseXML;
-	xmlValue = '<xml id="toolbox">' + new XMLSerializer().serializeToString(xml.firstChild) + '<sep></sep>' + xmlValue.replace('<xml id="toolbox">',"");
 
+	var len = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes.length;
+	var xmlNewValue='<xml id="toolbox">'+new XMLSerializer().serializeToString(xml.firstChild);
+	if (len>0) {
+		for (var i=0;i<len;i++) {
+			xmlNewValue+=new XMLSerializer().serializeToString(new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes[i]);
+		}
+	}
+	xmlNewValue+='</xml><sep></sep>';
+	xmlValue = xmlNewValue;
+	
 	if ((document.getElementById('select-lang-en').checked)) {
 		addScript(en_path);
 		xmlValue = xmlValue.replace('name="FRANCEFU"','name="FranceFu"');  //更新自訂積木目錄英文名稱
