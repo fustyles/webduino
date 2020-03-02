@@ -2,7 +2,7 @@ Blockly.Msg.FRANCEFU_SHOW = "FranceFu";
 
 Blockly.Msg.FRANCE1_CUSTOMCODE_SHOW = "Custom Code";
 Blockly.Msg.FRANCE1_CODE_SHOW = "Custom Code";
-Blockly.Msg.FRANCE1_VARIABLE_SHOW = "Local Variable";
+Blockly.Msg.FRANCE1_VARIABLE_SHOW = "Custom Variable";
 Blockly.Msg.FRANCE1_COMMENT_SHOW = "Comment";
 Blockly.Msg.FRANCE1_HEAD_SHOW = "Custom Head";
 Blockly.Msg.FRANCE1_INSTRUCTION_SHOW = "Instruction";
