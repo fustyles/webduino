@@ -28,13 +28,13 @@ function initial(en_path, zhhant_path, blocks_path, javascript_path, toolbox_pat
 	var xml = $.ajax({url: toolbox_path, async: false}).responseXML;
 
 	var len = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes.length;
-	var xmlNewValue='<xml id="toolbox">'+new XMLSerializer().serializeToString(xml.firstChild);
+	var xmlNewValue='<xml id="toolbox">'+new XMLSerializer().serializeToString(xml.firstChild)+'<sep></sep>';
 	if (len>0) {
 		for (var i=0;i<len;i++) {
 			xmlNewValue+=new XMLSerializer().serializeToString(new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes[i]);
 		}
 	}
-	xmlNewValue+='</xml><sep></sep>';
+	xmlNewValue+='</xml>';
 	xmlValue = xmlNewValue;
 	
 	if ((document.getElementById('select-lang-en').checked)) {
@@ -49,8 +49,6 @@ function initial(en_path, zhhant_path, blocks_path, javascript_path, toolbox_pat
 		xmlValue = xmlValue.replace('name="tcp"','name="TCP"');  //更新自訂積木子目錄繁體中文名稱。
 		xmlValue = xmlValue.replace('name="line"','name="Line"');  //更新自訂積木目錄中文名稱
 	}
-	
-	document.getElementById('toolbox').xml = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
 }
 
 function addScript(url) {
