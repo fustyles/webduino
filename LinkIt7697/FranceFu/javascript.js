@@ -32,7 +32,10 @@ Blockly.Arduino['customcode_variable'] = function (block) {
     text = text.substring(1,text.length-1);
   if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))
     text = text.substring(1,text.length-1);
-  var code = variable + ' = ' + text + ';\n';
+  if (text) 
+    var code = variable + ' = ' + text + ';\n';
+  else
+    var code = variable + ';\n';
   return code;
 };
 
