@@ -105,6 +105,13 @@
 	  </block> 
   </category>
   <category id="france1" name="customcode">
+	  <block type="customcode_comment">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">World Peace</field>
+		  </block>
+		</value>  
+	  </block> 
 	  <block type="customcode_head">
 		<value name="text">
 		  <block type="text">
@@ -137,14 +144,7 @@
 			<field name="TEXT">Peace()</field>
 		  </block>
 		</value>
-	  </block>  
-	  <block type="customcode_comment">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">World Peace</field>
-		  </block>
-		</value>  
-	  </block>  
+	  </block>   
 	  <block type="customcode_instruction1">
 		<value name="instruction">
 		  <block type="text">
