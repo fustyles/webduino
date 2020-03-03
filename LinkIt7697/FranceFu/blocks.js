@@ -174,7 +174,7 @@ Blockly.Blocks['linenotify'] = {
   this.appendValueInput("linenotify_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Line Notify   ")
+      .appendField(Blockly.Msg.FRANCE3_HEAD_LINE_SHOW)
       .appendField("Token");  
   this.appendValueInput("linenotify_msg")
       .setCheck(null)
@@ -237,5 +237,78 @@ Blockly.Blocks['linenotify_image'] = {
         .appendField("previewImageUrl","previewImageUrl");
     this.setOutput(true, null);  
     this.setColour(50);
+  }
+};
+
+Blockly.Blocks['tcp_https_esp32'] = {
+  init: function() {
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg.FRANCE4_HEAD_HTTPS_SHOW);
+    this.appendValueInput("domain")
+        .setCheck("String")
+        .appendField(Blockly.Msg.FRANCE2_DOMAIN_SHOW);  
+    this.appendValueInput("port")
+        .setCheck("String")
+        .appendField(Blockly.Msg.FRANCE2_PORT_SHOW); 		
+    this.appendValueInput("request")
+        .setCheck("Number")
+        .appendField(Blockly.Msg.FRANCE2_REQUEST_SHOW); 	
+    this.appendValueInput("timeout")
+        .setCheck("Number")
+        .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW)
+		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
+	this.setInputsInline(false);
+	this.setOutput(true, null);
+	this.setColour(20);   
+  }
+};
+
+Blockly.Blocks['tcp_http_esp32'] = {
+  init: function() {
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg.FRANCE4_HEAD_HTTP_SHOW);
+    this.appendValueInput("domain")
+        .setCheck("String")
+        .appendField(Blockly.Msg.FRANCE2_DOMAIN_SHOW);  
+    this.appendValueInput("port")
+        .setCheck("String")
+        .appendField(Blockly.Msg.FRANCE2_PORT_SHOW); 		
+    this.appendValueInput("request")
+        .setCheck("Number")
+        .appendField(Blockly.Msg.FRANCE2_REQUEST_SHOW); 	
+    this.appendValueInput("timeout")
+        .setCheck("Number")
+        .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW)
+		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
+	this.setInputsInline(false);
+	this.setOutput(true, null);
+	this.setColour(20);   
+  }
+};
+
+Blockly.Blocks['linenotify_esp32'] = {
+  init: function() {
+  this.appendValueInput("linenotify_token")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FRANCE5_HEAD_LINE_SHOW)
+      .appendField("Token");  
+  this.appendValueInput("linenotify_msg")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Message");
+    this.setOutput(true, null);  
+    this.setColour(20);
+  }
+};
+
+Blockly.Blocks['close_powerdog'] = {
+  init: function() {
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg.FRANCE6_CLOSE_POWERDOG_SHOW);    
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(65);
   }
 };

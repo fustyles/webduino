@@ -17,3 +17,13 @@ Blockly.Msg.FRANCE2_TIMEOUT_SHOW = "Timeout";
 Blockly.Msg.FRANCE2_SECOND_SHOW = "(ms)"; 
 
 Blockly.Msg.FRANCE3_LINE_SHOW = "Line";
+Blockly.Msg.FRANCE3_HEAD_LINE_SHOW = "Line Notify ";
+
+Blockly.Msg.FRANCE4_TCP_SHOW = "TCP(ESP32)";
+Blockly.Msg.FRANCE4_HEAD_HTTPS_SHOW = "TCP HTTPS(ESP32)";
+Blockly.Msg.FRANCE4_HEAD_HTTP_SHOW = "TCP HTTP(ESP32)";
+
+Blockly.Msg.FRANCE5_LINE_SHOW = "Line(ESP32)";
+Blockly.Msg.FRANCE5_HEAD_LINE_SHOW = "Line Notify(ESP32) ";
+
+Blockly.Msg.FRANCE6_CLOSE_POWERDOG_SHOW = "Close Power Dog(ESP32)";
