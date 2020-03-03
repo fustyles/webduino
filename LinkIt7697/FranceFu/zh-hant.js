@@ -26,4 +26,4 @@ Blockly.Msg.FRANCE4_HEAD_HTTP_SHOW = "TCP HTTP(ESP32)";
 Blockly.Msg.FRANCE5_LINE_SHOW = "Line(ESP32)";
 Blockly.Msg.FRANCE5_HEAD_LINE_SHOW = "Line Notify(ESP32) ";
 
-Blockly.Msg.FRANCE6_CLOSE_POWERDOG_SHOW = "關閉電源不穩偵測(ESP32)";
+Blockly.Msg.FRANCE6_CLOSE_POWERDOG_SHOW = "關閉電源不穩重啟(ESP32)";
