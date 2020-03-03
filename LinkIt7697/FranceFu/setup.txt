@@ -1,5 +1,5 @@
 /*
-https://www.facebook.com/francefu    2020/3/3 23:30
+https://www.facebook.com/francefu    2020/3/4 01:00
 適用 LinkIt 7697 BlocklyDuino v3
 
 在BlocklyDuino3\package.nw\js\init.js檔中將以下程式碼插入在此行程式碼之前，
