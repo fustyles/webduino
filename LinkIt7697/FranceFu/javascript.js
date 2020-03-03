@@ -417,7 +417,6 @@ Blockly.Arduino['tcp_https_esp32'] = function(block) {
 
 Blockly.Arduino['tcp_http_esp32'] = function(block) {
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
-  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
