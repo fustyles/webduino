@@ -259,7 +259,7 @@ Blockly.Blocks['tcp_https_esp32'] = {
 		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
 	this.setInputsInline(false);
 	this.setOutput(true, null);
-	this.setColour(20);   
+	this.setColour(200);   
   }
 };
 
@@ -282,7 +282,7 @@ Blockly.Blocks['tcp_http_esp32'] = {
 		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
 	this.setInputsInline(false);
 	this.setOutput(true, null);
-	this.setColour(20);   
+	this.setColour(200);   
   }
 };
 
@@ -298,7 +298,7 @@ Blockly.Blocks['linenotify_esp32'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Message");
     this.setOutput(true, null);  
-    this.setColour(20);
+    this.setColour(200);
   }
 };
 
@@ -309,6 +309,6 @@ Blockly.Blocks['close_powerdog'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(65);
+    this.setColour(200);
   }
 };

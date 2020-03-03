@@ -22,7 +22,51 @@
 		  </block>
 		</value> 		
 	  </block>
+	  <block type="tcp_https_esp32">
+		<value name="domain">
+		  <block type="text">
+			<field name="TEXT">www.google.com</field>
+		  </block>
+		</value> 
+		<value name="port">
+		  <block type="math_number">
+			<field name="NUM">443</field>
+		  </block>
+		</value> 
+		<value name="request">
+		  <block type="text">
+			<field name="TEXT">/xxx</field>
+		  </block>
+		</value> 
+		<value name="timeout">
+		  <block type="math_number">
+			<field name="NUM">3000</field>
+		  </block>
+		</value> 		
+	  </block>
 	  <block type="tcp_http">
+		<value name="domain">
+		  <block type="text">
+			<field name="TEXT">www.google.com</field>
+		  </block>
+		</value> 
+		<value name="port">
+		  <block type="math_number">
+			<field name="NUM">80</field>
+		  </block>
+		</value> 
+		<value name="request">
+		  <block type="text">
+			<field name="TEXT">/xxx</field>
+		  </block>
+		</value> 
+		<value name="timeout">
+		  <block type="math_number">
+			<field name="NUM">3000</field>
+		  </block>
+		</value>  
+	  </block>
+	  <block type="tcp_http_esp32">
 		<value name="domain">
 		  <block type="text">
 			<field name="TEXT">www.google.com</field>
@@ -60,6 +104,22 @@
 			  </block>			
 			</value>         
 		  </block>  
+		</value>
+	  </block>
+	  <block type="linenotify_esp32">
+		<value name="linenotify_token">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>   
+		<value name="linenotify_msg"> 
+		  <block type="linenotify_text">
+			<value name="value_text"> 
+			  <block type="text">
+				<field name="TEXT">Hello World</field>
+			  </block>			
+			</value>         
+		  </block> 
 		</value>
 	  </block>
 	  <block type="linenotify_text">
@@ -196,64 +256,7 @@
 		  </block>
 		</value> 
 	  </block> 
-  </category>
-  <category id="france4" name="tcp_esp32">
-	  <block type="tcp_https_esp32">
-		<value name="domain">
-		  <block type="text">
-			<field name="TEXT">www.google.com</field>
-		  </block>
-		</value> 
-		<value name="port">
-		  <block type="math_number">
-			<field name="NUM">443</field>
-		  </block>
-		</value> 
-		<value name="request">
-		  <block type="text">
-			<field name="TEXT">/xxx</field>
-		  </block>
-		</value> 
-		<value name="timeout">
-		  <block type="math_number">
-			<field name="NUM">3000</field>
-		  </block>
-		</value> 		
-	  </block>
-	  <block type="tcp_http_esp32">
-		<value name="domain">
-		  <block type="text">
-			<field name="TEXT">www.google.com</field>
-		  </block>
-		</value> 
-		<value name="port">
-		  <block type="math_number">
-			<field name="NUM">80</field>
-		  </block>
-		</value> 
-		<value name="request">
-		  <block type="text">
-			<field name="TEXT">/xxx</field>
-		  </block>
-		</value> 
-		<value name="timeout">
-		  <block type="math_number">
-			<field name="NUM">3000</field>
-		  </block>
-		</value>  
-	  </block>
-  </category>	  
-  <category id="france5" name="line_esp32">
-	  <block type="linenotify_esp32">
-		<value name="linenotify_token">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>   
-		<value name="linenotify_msg"> 
-		</value>
-	  </block>
-  </category>
+  </category>	
   <category id="france6" name="close_powerdog">
 	  <block type="close_powerdog">
 	  </block>

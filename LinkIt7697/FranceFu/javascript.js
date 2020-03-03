@@ -22,7 +22,7 @@ Blockly.Arduino['customcode_code'] = function (block) {
 Blockly.Arduino['customcode_variable'] = function (block) {
   var variable = Blockly.Arduino.valueToCode(block, 'variable', Blockly.Arduino.ORDER_ATOMIC);
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
-
+  
   if ((variable.indexOf('"')==0)&&(variable.lastIndexOf('"')==variable.length-1))
     variable = variable.substring(1,variable.length-1);
   if ((variable.indexOf("(")==0)&&(variable.lastIndexOf(")")==variable.length-1))
@@ -33,9 +33,9 @@ Blockly.Arduino['customcode_variable'] = function (block) {
   if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))
     text = text.substring(1,text.length-1);
   if (text) 
-    var code = variable + ' = ' + text + ';\n';
+	var code = variable + ' = ' + text + ';\n';
   else
-    var code = variable + ';\n';
+	var code = variable + ';\n';
   return code;
 };
 
@@ -417,6 +417,7 @@ Blockly.Arduino['tcp_https_esp32'] = function(block) {
 
 Blockly.Arduino['tcp_http_esp32'] = function(block) {
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
@@ -531,7 +532,8 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
 };
 
 Blockly.Arduino['close_powerdog'] = function(block) { 
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';	
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['close_powerdog'] ='#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"';
   var code = 'WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n';
   return code; 
