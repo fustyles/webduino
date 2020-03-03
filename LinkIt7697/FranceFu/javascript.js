@@ -529,6 +529,8 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
 };
 
 Blockly.Arduino['close_powerdog'] = function(block) { 
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
   Blockly.Arduino.definitions_['close_powerdog'] ='#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"';
   var code = 'WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n';
   return code; 
