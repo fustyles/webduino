@@ -315,7 +315,6 @@ Blockly.Blocks['close_powerdog'] = {
 
 Blockly.Blocks['esp32_wifi_wait_until_ready'] = {
   init:function(){
-	this.setColour(Blockly.Blocks.linkit.HUE);
 	this.appendDummyInput().appendField(Blockly.Msg.ESP32_SET_WIFI_UNTIL_READY_TITLE);
 	this.appendValueInput("SSID")
 		.setCheck("String")
@@ -327,7 +326,7 @@ Blockly.Blocks['esp32_wifi_wait_until_ready'] = {
 		.appendField(Blockly.Msg.LINKIT_SET_WIFI_PASSWORD);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setTooltip(Blockly.Msg.LINKIT_SET_WIFI_TOOLTIP);
+	this.setColour(200);
   }
 };
 	
