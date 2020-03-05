@@ -538,3 +538,14 @@ Blockly.Arduino['close_powerdog'] = function(block) {
   var code = 'WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n';
   return code; 
 };
+
+Blockly.Arduino.esp32_wifi_wait_until_ready = function(block){
+  var ssid = Blockly.Arduino.valueToCode(block,"SSID",Blockly.Arduino.ORDER_ATOMIC)||"";
+  var pass = Blockly.Arduino.valueToCode(block,"PASSWORD",Blockly.Arduino.ORDER_ATOMIC)||"";
+  ssid = ssid.replace(/"/g,"");
+  pass = pass.replace(/"/g,"");
+  Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>";
+  Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = "'+ssid+'";';
+  Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = "'+pass+'";';
+  return "while (WiFi.begin(_lwifi_ssid, _lwifi_pass) != WL_CONNECTED) { delay(1000); }\n"
+};

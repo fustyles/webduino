@@ -312,3 +312,22 @@ Blockly.Blocks['close_powerdog'] = {
     this.setColour(200);
   }
 };
+
+Blockly.Blocks['esp32_wifi_wait_until_ready'] = {
+  init:function(){this.setHelpUrl(Blockly.Msg.LINKIT_SET_WIFI_HELPURL);
+	this.setColour(Blockly.Blocks.linkit.HUE);
+	this.appendDummyInput().appendField(Blockly.Msg.LINKIT_SET_WIFI_UNTIL_READY_TITLE);
+	this.appendValueInput("SSID")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.LINKIT_SET_WIFI_SSID);
+	this.appendValueInput("PASSWORD")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.LINKIT_SET_WIFI_PASSWORD);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setTooltip(Blockly.Msg.LINKIT_SET_WIFI_TOOLTIP);
+  }
+};
+	

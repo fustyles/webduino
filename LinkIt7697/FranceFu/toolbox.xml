@@ -200,6 +200,18 @@
   <category id="france6" name="esp32">
 	  <block type="close_powerdog">
 	  </block>
+	  <block type="esp32_wifi_wait_until_ready">
+		<value name="SSID">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="PASSWORD">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 		
+	  </block>
 	  <block type="tcp_https_esp32">
 		<value name="domain">
 		  <block type="text">
