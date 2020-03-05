@@ -251,13 +251,6 @@
 		  </block>
 		</value>   
 		<value name="linenotify_msg"> 
-		  <block type="linenotify_text">
-			<value name="value_text"> 
-			  <block type="text">
-				<field name="TEXT">Hello World</field>
-			  </block>			
-			</value>         
-		  </block> 
 		</value>
 	  </block>
   </category>
