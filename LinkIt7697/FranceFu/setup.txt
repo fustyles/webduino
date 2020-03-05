@@ -50,7 +50,7 @@ function initial(en_path, zhhant_path, blocks_path, javascript_path, toolbox_pat
 		xmlValue = xmlValue.replace('name="customcode"','name="自訂程式碼"');  //更新自訂積木子目錄繁體中文名稱。
 		xmlValue = xmlValue.replace('name="tcp"','name="TCP"');  //更新自訂積木子目錄繁體中文名稱。
 		xmlValue = xmlValue.replace('name="line"','name="Line"');  //更新自訂積木目錄中文名稱
-		xmlValue = xmlValue.replace('name="esp32"','name="電壓偵測ESP32"');  //更新自訂積木目錄中文名稱
+		xmlValue = xmlValue.replace('name="esp32"','name="ESP32"');  //更新自訂積木目錄中文名稱
 	}
 }
 
