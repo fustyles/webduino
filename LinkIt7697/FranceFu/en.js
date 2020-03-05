@@ -27,3 +27,5 @@ Blockly.Msg.FRANCE5_LINE_SHOW = "Line(ESP32)";
 Blockly.Msg.FRANCE5_HEAD_LINE_SHOW = "Line Notify(ESP32) ";
 
 Blockly.Msg.FRANCE6_CLOSE_POWERDOG_SHOW = "Close Power Dog";
+
+Blockly.Msg.ESP32_SET_WIFI_UNTIL_READY_TITLE = "Connect to Wi-Fi AP(ESP32)";
