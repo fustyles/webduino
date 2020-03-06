@@ -1,5 +1,5 @@
 /*
-https://www.facebook.com/francefu    2020/3/4 01:00
+https://www.facebook.com/francefu    2020/3/6 20:00
 適用 LinkIt 7697 BlocklyDuino v3
 
 在BlocklyDuino3\package.nw\js\init.js檔中將以下程式碼插入在此行程式碼之前，
@@ -45,12 +45,14 @@ function initial(en_path, zhhant_path, blocks_path, javascript_path, toolbox_pat
 		xmlValue = xmlValue.replace('name="tcp"','name="TCP"');  //更新自訂積木目錄英文名稱
 		xmlValue = xmlValue.replace('name="line"','name="Line"');  //更新自訂積木目錄英文名稱
 		xmlValue = xmlValue.replace('name="esp32"','name="ESP32"');  //更新自訂積木目錄英文名稱
+		xmlValue = xmlValue.replace('name="others"','name="OTHERS"');  //更新自訂積木目錄英文名稱
 	} else {
 		xmlValue = xmlValue.replace('name="FRANCEFU"','name="法蘭斯"');  //更新自訂積木目錄繁體中文名稱。init.js檔另存檔成UTF-8格式，否則無法顯示繁體中文。
 		xmlValue = xmlValue.replace('name="customcode"','name="自訂程式碼"');  //更新自訂積木子目錄繁體中文名稱。
 		xmlValue = xmlValue.replace('name="tcp"','name="TCP"');  //更新自訂積木子目錄繁體中文名稱。
 		xmlValue = xmlValue.replace('name="line"','name="Line"');  //更新自訂積木目錄中文名稱
 		xmlValue = xmlValue.replace('name="esp32"','name="ESP32"');  //更新自訂積木目錄中文名稱
+		xmlValue = xmlValue.replace('name="others"','name="OTHERS"');  //更新自訂積木目錄中文名稱
 	}
 }
 
