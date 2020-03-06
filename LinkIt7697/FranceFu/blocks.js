@@ -329,4 +329,27 @@ Blockly.Blocks['esp32_wifi_wait_until_ready'] = {
 	this.setColour(200);
   }
 };
-	
+
+Blockly.Blocks['showcode'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.FRANCE7_SHOWCODE_SHOW)
+      .appendField(new Blockly.FieldCheckbox("FALSE"), "continued");
+  this.setColour(20);
+  },
+  onchange: function (event) {
+    if (event.element=="click"&&this.getFieldValue("continued")=="FALSE") {
+      if (this.id==event.blockId) {
+        var workspace = Blockly.mainWorkspace;
+        var code = Blockly.Arduino.workspaceToCode(workspace);
+        console.clear();
+        console.log(code);
+      }
+    } else if (this.getFieldValue("continued")=="TRUE") {
+      var workspace = Blockly.mainWorkspace;
+      var code = Blockly.Arduino.workspaceToCode(workspace);
+      console.clear();
+      console.log(code);
+    }
+  }
+}; 

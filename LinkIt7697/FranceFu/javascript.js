@@ -550,3 +550,8 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   var code = "while (WiFi.begin(_lwifi_ssid, _lwifi_pass) != WL_CONNECTED) { delay(1000); }\n";
   return code; 
 };
+
+Blockly.Arduino['showcode'] = function (block) {
+  var code = '';
+  return code; 
+};
