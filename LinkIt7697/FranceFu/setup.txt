@@ -1,5 +1,5 @@
 /*
-https://www.facebook.com/francefu    2020/3/6 20:00
+https://www.facebook.com/francefu    2020/3/7 10:00
 適用 LinkIt 7697 BlocklyDuino v3
 
 在BlocklyDuino3\package.nw\js\init.js檔中將以下程式碼插入在此行程式碼之前，
@@ -21,9 +21,10 @@ var toolbox_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/tool
 var en_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/en.js";  //載入自訂積木英文語系設定檔	
 var zhhant_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/zh-hant.js";  //載入自訂積木繁體語系設定檔(預設繁體語系)
 
-initial(en_path, zhhant_path, blocks_path, javascript_path, toolbox_path);
-function initial(en_path, zhhant_path, blocks_path, javascript_path, toolbox_path) {
+initial(en_path, zhhant_path, zhhant_category_path, blocks_path, javascript_path, toolbox_path);
+function initial(en_path, zhhant_path, zhhant_category_path, blocks_path, javascript_path, toolbox_path) {
 	addScript(zhhant_path);
+	addScript(zhhant_category_path);
 	addScript(blocks_path);
 	addScript(javascript_path);
 	var xml = $.ajax({url: toolbox_path, async: false}).responseXML;
@@ -40,20 +41,10 @@ function initial(en_path, zhhant_path, blocks_path, javascript_path, toolbox_pat
 	
 	if ((document.getElementById('select-lang-en').checked)) {
 		addScript(en_path);
-		xmlValue = xmlValue.replace('name="FRANCEFU"','name="FranceFu"');  //更新自訂積木目錄英文名稱
-		xmlValue = xmlValue.replace('name="customcode"','name="Custom Code"');  //更新自訂積木目錄英文名稱
-		xmlValue = xmlValue.replace('name="tcp"','name="TCP"');  //更新自訂積木目錄英文名稱
-		xmlValue = xmlValue.replace('name="line"','name="Line"');  //更新自訂積木目錄英文名稱
-		xmlValue = xmlValue.replace('name="esp32"','name="ESP32"');  //更新自訂積木目錄英文名稱
-		xmlValue = xmlValue.replace('name="others"','name="OTHERS"');  //更新自訂積木目錄英文名稱
-	} else {
-		xmlValue = xmlValue.replace('name="FRANCEFU"','name="法蘭斯"');  //更新自訂積木目錄繁體中文名稱。init.js檔另存檔成UTF-8格式，否則無法顯示繁體中文。
-		xmlValue = xmlValue.replace('name="customcode"','name="自訂程式碼"');  //更新自訂積木子目錄繁體中文名稱。
-		xmlValue = xmlValue.replace('name="tcp"','name="TCP"');  //更新自訂積木子目錄繁體中文名稱。
-		xmlValue = xmlValue.replace('name="line"','name="Line"');  //更新自訂積木目錄中文名稱
-		xmlValue = xmlValue.replace('name="esp32"','name="ESP32"');  //更新自訂積木目錄中文名稱
-		xmlValue = xmlValue.replace('name="others"','name="OTHERS"');  //更新自訂積木目錄中文名稱
+		addScript(en_category_path);
 	}
+	for (var i=0;i<category.length;i++)
+		xmlValue = xmlValue.replace('name="'+category[i]+'"','name="'+category_replace[i]+'"');
 }
 
 function addScript(url) {
