@@ -21,8 +21,8 @@ var en_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/en.js";  
 var en_category_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/en_category.js";  //載入自訂積木目錄英文語系設定檔
 var zhhant_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/zh-hant.js";  //載入自訂積木繁體語系設定檔(預設繁體語系)
 var zhhant_category_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/zh-hant_category.js";  //載入自訂積木目錄繁體語系設定檔(預設繁體語系)
-
 initial(en_path, zhhant_path, zhhant_category_path, blocks_path, javascript_path, toolbox_path);
+
 function initial(en_path, zhhant_path, zhhant_category_path, blocks_path, javascript_path, toolbox_path) {
 	addScript(zhhant_path);
 	addScript(zhhant_category_path);
