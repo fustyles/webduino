@@ -1,4 +1,3 @@
-Blockly.Msg.FRANCEFU_SHOW = "FranceFu";
 Blockly.Msg.FRANCE1_CUSTOMCODE_SHOW = "Custom Code";
 Blockly.Msg.FRANCE1_CODE_SHOW = "Custom Code";
 Blockly.Msg.FRANCE1_VARIABLE_SHOW = "Custom Variable";
