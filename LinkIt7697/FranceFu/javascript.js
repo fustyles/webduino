@@ -555,3 +555,312 @@ Blockly.Arduino['showcode'] = function (block) {
   var code = '';
   return code; 
 };
+
+Blockly.Arduino['thingspeak_update'] = function (block) {
+  Blockly.Arduino.definitions_['certificate'] ='\n'+
+											'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'+
+											'"MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/\\r\\n"\n'+
+											'"MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT\\r\\n"\n'+
+											'"DkRTVCBSb290IENBIFgzMB4XDTAwMDkzMDIxMTIxOVoXDTIxMDkzMDE0MDExNVow\\r\\n"\n'+
+											'"PzEkMCIGA1UEChMbRGlnaXRhbCBTaWduYXR1cmUgVHJ1c3QgQ28uMRcwFQYDVQQD\\r\\n"\n'+
+											'"Ew5EU1QgUm9vdCBDQSBYMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\\r\\n"\n'+
+											'"AN+v6ZdQCINXtMxiZfaQguzH0yxrMMpb7NnDfcdAwRgUi+DoM3ZJKuM/IUmTrE4O\\r\\n"\n'+
+											'"rz5Iy2Xu/NMhD2XSKtkyj4zl93ewEnu1lcCJo6m67XMuegwGMoOifooUMM0RoOEq\\r\\n"\n'+
+											'"OLl5CjH9UL2AZd+3UWODyOKIYepLYYHsUmu5ouJLGiifSKOeDNoJjj4XLh7dIN9b\\r\\n"\n'+
+											'"xiqKqy69cK3FCxolkHRyxXtqqzTWMIn/5WgTe1QLyNau7Fqckh49ZLOMxt+/yUFw\\r\\n"\n'+
+											'"7BZy1SbsOFU5Q9D8/RhcQPGX69Wam40dutolucbY38EVAjqr2m7xPi71XAicPNaD\\r\\n"\n'+
+											'"aeQQmxkqtilX4+U9m5/wAl0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNV\\r\\n"\n'+
+											'"HQ8BAf8EBAMCAQYwHQYDVR0OBBYEFMSnsaR7LHH62+FLkHX/xBVghYkQMA0GCSqG\\r\\n"\n'+
+											'"SIb3DQEBBQUAA4IBAQCjGiybFwBcqR7uKGY3Or+Dxz9LwwmglSBd49lZRNI+DT69\\r\\n"\n'+
+											'"ikugdB/OEIKcdBodfpga3csTS7MgROSR6cz8faXbauX+5v3gTt23ADq1cEmv8uXr\\r\\n"\n'+
+											'"AvHRAosZy5Q6XkjEGB5YGV8eAlrwDPGxrancWYaLbumR9YbK+rlmM6pZW87ipxZz\\r\\n"\n'+
+											'"R8srzJmwN0jP41ZL9c8PDHIyh8bwRLtTcm1D9SZImlJnt1ir/md2cXjbDaJWFBM5\\r\\n"\n'+
+											'"JDGFoqgCWjBH4d1QB7wCCZAA62RjYJsWvIjJEubSfZGL+T0yjWW06XyxV3bqxbYo\\r\\n"\n'+
+											'"Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ\\r\\n"\n'+
+											'"-----END CERTIFICATE-----\\r\\n";\n';
+
+  Blockly.Arduino.definitions_['tcp_https'] ='\n'+
+											'String tcp_https(String domain,String request,int port,int waittime) {\n'+
+											'  String getAll="", getBody="";\n'+
+											'  TLSClient client_tcp;\n'+
+											'  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n'+
+											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
+											'    //Serial.println("Connected to "+domain+" successfully.");\n'+
+											'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
+											'    client_tcp.println("Host: " + domain);\n'+
+											'    client_tcp.println("Connection: close");\n'+
+											'    client_tcp.println();\n'+
+											'    boolean state = false;\n'+
+											'    long startTime = millis();\n'+
+											'    while ((startTime + waittime) > millis()) {\n'+
+											'      while (client_tcp.available()) {\n'+
+											'        char c = client_tcp.read();\n'+
+											'        if (c == \'\\n\') {\n'+
+											'          if (getAll.length()==0) state=true;\n'+
+											'           getAll = "";\n'+
+											'        }\n'+ 
+											'        else if (c != \'\\r\')\n'+
+											'          getAll += String(c);\n'+
+											'          if (state==true) getBody += String(c);\n'+
+											'          startTime = millis();\n'+
+											'        }\n'+
+											'        if (getBody.length()!= 0) break;\n'+
+											'      }\n'+
+											'      client_tcp.stop();\n'+
+											'  }\n'+
+											'  else {\n'+
+											'    getBody="Connected to "+domain+" failed.";\n'+
+											'    Serial.println("Connected to "+domain+" failed.");\n'+
+											'  }\n'+
+											'  return getBody;\n'+
+											'}\n';
+
+  var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
+  var field1 = Blockly.Arduino.valueToCode(block, 'field1', Blockly.Arduino.ORDER_ATOMIC);
+  var field2 = Blockly.Arduino.valueToCode(block, 'field2', Blockly.Arduino.ORDER_ATOMIC);
+  var field3 = Blockly.Arduino.valueToCode(block, 'field3', Blockly.Arduino.ORDER_ATOMIC);
+  var field4 = Blockly.Arduino.valueToCode(block, 'field4', Blockly.Arduino.ORDER_ATOMIC);
+  var field5 = Blockly.Arduino.valueToCode(block, 'field5', Blockly.Arduino.ORDER_ATOMIC);
+  var field6 = Blockly.Arduino.valueToCode(block, 'field6', Blockly.Arduino.ORDER_ATOMIC);
+  var field7 = Blockly.Arduino.valueToCode(block, 'field7', Blockly.Arduino.ORDER_ATOMIC);
+  var field8 = Blockly.Arduino.valueToCode(block, 'field8', Blockly.Arduino.ORDER_ATOMIC);
+  
+  if (!key) key="";
+  if ((key.indexOf('"')==0)&&(key.lastIndexOf('"')==key.length-1))
+    key = key.substring(1,key.length-1);
+  if ((key.indexOf("(")==0)&&(key.lastIndexOf(")")==key.length-1))
+    key = key.substring(1,key.length-1);
+  if (!field1) field1="";
+  if (!field2) field2="";
+  if (!field3) field3="";
+  if (!field4) field4="";
+  if (!field5) field5="";
+  if (!field6) field6="";
+  if (!field7) field7="";
+  if (!field8) field8="";
+
+  var request = '"/update?api_key='+key+'&field1='+String(field1)+'&field2='+String(field2)+'&field3='+String(field3)+'&field4='+String(field4)+'&field5='+String(field5)+'&field6='+String(field6)+'&field7='+String(field7)+'&field8='+String(field8)+'"';
+  var code = 'tcp_https("api.thingspeak.com", '+request+', 443, 3000)';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['thingspeak_read1'] = function (block) {
+  Blockly.Arduino.definitions_['certificate'] ='\n'+
+											'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'+
+											'"MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/\\r\\n"\n'+
+											'"MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT\\r\\n"\n'+
+											'"DkRTVCBSb290IENBIFgzMB4XDTAwMDkzMDIxMTIxOVoXDTIxMDkzMDE0MDExNVow\\r\\n"\n'+
+											'"PzEkMCIGA1UEChMbRGlnaXRhbCBTaWduYXR1cmUgVHJ1c3QgQ28uMRcwFQYDVQQD\\r\\n"\n'+
+											'"Ew5EU1QgUm9vdCBDQSBYMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\\r\\n"\n'+
+											'"AN+v6ZdQCINXtMxiZfaQguzH0yxrMMpb7NnDfcdAwRgUi+DoM3ZJKuM/IUmTrE4O\\r\\n"\n'+
+											'"rz5Iy2Xu/NMhD2XSKtkyj4zl93ewEnu1lcCJo6m67XMuegwGMoOifooUMM0RoOEq\\r\\n"\n'+
+											'"OLl5CjH9UL2AZd+3UWODyOKIYepLYYHsUmu5ouJLGiifSKOeDNoJjj4XLh7dIN9b\\r\\n"\n'+
+											'"xiqKqy69cK3FCxolkHRyxXtqqzTWMIn/5WgTe1QLyNau7Fqckh49ZLOMxt+/yUFw\\r\\n"\n'+
+											'"7BZy1SbsOFU5Q9D8/RhcQPGX69Wam40dutolucbY38EVAjqr2m7xPi71XAicPNaD\\r\\n"\n'+
+											'"aeQQmxkqtilX4+U9m5/wAl0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNV\\r\\n"\n'+
+											'"HQ8BAf8EBAMCAQYwHQYDVR0OBBYEFMSnsaR7LHH62+FLkHX/xBVghYkQMA0GCSqG\\r\\n"\n'+
+											'"SIb3DQEBBQUAA4IBAQCjGiybFwBcqR7uKGY3Or+Dxz9LwwmglSBd49lZRNI+DT69\\r\\n"\n'+
+											'"ikugdB/OEIKcdBodfpga3csTS7MgROSR6cz8faXbauX+5v3gTt23ADq1cEmv8uXr\\r\\n"\n'+
+											'"AvHRAosZy5Q6XkjEGB5YGV8eAlrwDPGxrancWYaLbumR9YbK+rlmM6pZW87ipxZz\\r\\n"\n'+
+											'"R8srzJmwN0jP41ZL9c8PDHIyh8bwRLtTcm1D9SZImlJnt1ir/md2cXjbDaJWFBM5\\r\\n"\n'+
+											'"JDGFoqgCWjBH4d1QB7wCCZAA62RjYJsWvIjJEubSfZGL+T0yjWW06XyxV3bqxbYo\\r\\n"\n'+
+											'"Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ\\r\\n"\n'+
+											'"-----END CERTIFICATE-----\\r\\n";\n';
+
+  Blockly.Arduino.definitions_['tcp_https'] ='\n'+
+											'String tcp_https(String domain,String request,int port,int waittime) {\n'+
+											'  String getAll="", getBody="";\n'+
+											'  TLSClient client_tcp;\n'+
+											'  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n'+
+											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
+											'    //Serial.println("Connected to "+domain+" successfully.");\n'+
+											'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
+											'    client_tcp.println("Host: " + domain);\n'+
+											'    client_tcp.println("Connection: close");\n'+
+											'    client_tcp.println();\n'+
+											'    boolean state = false;\n'+
+											'    long startTime = millis();\n'+
+											'    while ((startTime + waittime) > millis()) {\n'+
+											'      while (client_tcp.available()) {\n'+
+											'        char c = client_tcp.read();\n'+
+											'        if (c == \'\\n\') {\n'+
+											'          if (getAll.length()==0) state=true;\n'+
+											'           getAll = "";\n'+
+											'        }\n'+ 
+											'        else if (c != \'\\r\')\n'+
+											'          getAll += String(c);\n'+
+											'          if (state==true) getBody += String(c);\n'+
+											'          startTime = millis();\n'+
+											'        }\n'+
+											'        if (getBody.length()!= 0) break;\n'+
+											'      }\n'+
+											'      client_tcp.stop();\n'+
+											'  }\n'+
+											'  else {\n'+
+											'    getBody="Connected to "+domain+" failed.";\n'+
+											'    Serial.println("Connected to "+domain+" failed.");\n'+
+											'  }\n'+
+											'  return getBody;\n'+
+											'}\n';
+
+  var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
+  var count = Blockly.Arduino.valueToCode(block, 'count', Blockly.Arduino.ORDER_ATOMIC);
+  var api_key = Blockly.Arduino.valueToCode(block, 'api_key', Blockly.Arduino.ORDER_ATOMIC); 
+  var request = '"/channels/"+String('+key+')+"/feeds.json?results="+String('+count+')+"&api_key="+String('+api_key+')';
+  var code = 'tcp_https("api.thingspeak.com", '+request+', 443, 3000)';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['thingspeak_read2'] = function (block) {
+  Blockly.Arduino.definitions_['certificate'] ='\n'+
+											'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'+
+											'"MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/\\r\\n"\n'+
+											'"MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT\\r\\n"\n'+
+											'"DkRTVCBSb290IENBIFgzMB4XDTAwMDkzMDIxMTIxOVoXDTIxMDkzMDE0MDExNVow\\r\\n"\n'+
+											'"PzEkMCIGA1UEChMbRGlnaXRhbCBTaWduYXR1cmUgVHJ1c3QgQ28uMRcwFQYDVQQD\\r\\n"\n'+
+											'"Ew5EU1QgUm9vdCBDQSBYMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\\r\\n"\n'+
+											'"AN+v6ZdQCINXtMxiZfaQguzH0yxrMMpb7NnDfcdAwRgUi+DoM3ZJKuM/IUmTrE4O\\r\\n"\n'+
+											'"rz5Iy2Xu/NMhD2XSKtkyj4zl93ewEnu1lcCJo6m67XMuegwGMoOifooUMM0RoOEq\\r\\n"\n'+
+											'"OLl5CjH9UL2AZd+3UWODyOKIYepLYYHsUmu5ouJLGiifSKOeDNoJjj4XLh7dIN9b\\r\\n"\n'+
+											'"xiqKqy69cK3FCxolkHRyxXtqqzTWMIn/5WgTe1QLyNau7Fqckh49ZLOMxt+/yUFw\\r\\n"\n'+
+											'"7BZy1SbsOFU5Q9D8/RhcQPGX69Wam40dutolucbY38EVAjqr2m7xPi71XAicPNaD\\r\\n"\n'+
+											'"aeQQmxkqtilX4+U9m5/wAl0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNV\\r\\n"\n'+
+											'"HQ8BAf8EBAMCAQYwHQYDVR0OBBYEFMSnsaR7LHH62+FLkHX/xBVghYkQMA0GCSqG\\r\\n"\n'+
+											'"SIb3DQEBBQUAA4IBAQCjGiybFwBcqR7uKGY3Or+Dxz9LwwmglSBd49lZRNI+DT69\\r\\n"\n'+
+											'"ikugdB/OEIKcdBodfpga3csTS7MgROSR6cz8faXbauX+5v3gTt23ADq1cEmv8uXr\\r\\n"\n'+
+											'"AvHRAosZy5Q6XkjEGB5YGV8eAlrwDPGxrancWYaLbumR9YbK+rlmM6pZW87ipxZz\\r\\n"\n'+
+											'"R8srzJmwN0jP41ZL9c8PDHIyh8bwRLtTcm1D9SZImlJnt1ir/md2cXjbDaJWFBM5\\r\\n"\n'+
+											'"JDGFoqgCWjBH4d1QB7wCCZAA62RjYJsWvIjJEubSfZGL+T0yjWW06XyxV3bqxbYo\\r\\n"\n'+
+											'"Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ\\r\\n"\n'+
+											'"-----END CERTIFICATE-----\\r\\n";\n';
+
+  Blockly.Arduino.definitions_['tcp_https'] ='\n'+
+											'String tcp_https(String domain,String request,int port,int waittime) {\n'+
+											'  String getAll="", getBody="";\n'+
+											'  TLSClient client_tcp;\n'+
+											'  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n'+
+											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
+											'    //Serial.println("Connected to "+domain+" successfully.");\n'+
+											'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
+											'    client_tcp.println("Host: " + domain);\n'+
+											'    client_tcp.println("Connection: close");\n'+
+											'    client_tcp.println();\n'+
+											'    boolean state = false;\n'+
+											'    long startTime = millis();\n'+
+											'    while ((startTime + waittime) > millis()) {\n'+
+											'      while (client_tcp.available()) {\n'+
+											'        char c = client_tcp.read();\n'+
+											'        if (c == \'\\n\') {\n'+
+											'          if (getAll.length()==0) state=true;\n'+
+											'           getAll = "";\n'+
+											'        }\n'+ 
+											'        else if (c != \'\\r\')\n'+
+											'          getAll += String(c);\n'+
+											'          if (state==true) getBody += String(c);\n'+
+											'          startTime = millis();\n'+
+											'        }\n'+
+											'        if (getBody.length()!= 0) break;\n'+
+											'      }\n'+
+											'      client_tcp.stop();\n'+
+											'  }\n'+
+											'  else {\n'+
+											'    getBody="Connected to "+domain+" failed.";\n'+
+											'    Serial.println("Connected to "+domain+" failed.");\n'+
+											'  }\n'+
+											'  return getBody;\n'+
+											'}\n';
+
+  var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
+  var field = Blockly.Arduino.valueToCode(block, 'field', Blockly.Arduino.ORDER_ATOMIC);
+  var count = Blockly.Arduino.valueToCode(block, 'count', Blockly.Arduino.ORDER_ATOMIC); 
+  var api_key = Blockly.Arduino.valueToCode(block, 'api_key', Blockly.Arduino.ORDER_ATOMIC); 
+  var request = '"/channels/"+String('+key+')+"/fields/"+String('+field+')+".json?results="+String('+count+')+"&api_key="+String('+api_key+')';
+  var code = 'tcp_https("api.thingspeak.com", '+request+', 443, 3000)';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['thingspeak_read3'] = function (block) {
+  Blockly.Arduino.definitions_['certificate'] ='\n'+
+											'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'+
+											'"MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/\\r\\n"\n'+
+											'"MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT\\r\\n"\n'+
+											'"DkRTVCBSb290IENBIFgzMB4XDTAwMDkzMDIxMTIxOVoXDTIxMDkzMDE0MDExNVow\\r\\n"\n'+
+											'"PzEkMCIGA1UEChMbRGlnaXRhbCBTaWduYXR1cmUgVHJ1c3QgQ28uMRcwFQYDVQQD\\r\\n"\n'+
+											'"Ew5EU1QgUm9vdCBDQSBYMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\\r\\n"\n'+
+											'"AN+v6ZdQCINXtMxiZfaQguzH0yxrMMpb7NnDfcdAwRgUi+DoM3ZJKuM/IUmTrE4O\\r\\n"\n'+
+											'"rz5Iy2Xu/NMhD2XSKtkyj4zl93ewEnu1lcCJo6m67XMuegwGMoOifooUMM0RoOEq\\r\\n"\n'+
+											'"OLl5CjH9UL2AZd+3UWODyOKIYepLYYHsUmu5ouJLGiifSKOeDNoJjj4XLh7dIN9b\\r\\n"\n'+
+											'"xiqKqy69cK3FCxolkHRyxXtqqzTWMIn/5WgTe1QLyNau7Fqckh49ZLOMxt+/yUFw\\r\\n"\n'+
+											'"7BZy1SbsOFU5Q9D8/RhcQPGX69Wam40dutolucbY38EVAjqr2m7xPi71XAicPNaD\\r\\n"\n'+
+											'"aeQQmxkqtilX4+U9m5/wAl0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNV\\r\\n"\n'+
+											'"HQ8BAf8EBAMCAQYwHQYDVR0OBBYEFMSnsaR7LHH62+FLkHX/xBVghYkQMA0GCSqG\\r\\n"\n'+
+											'"SIb3DQEBBQUAA4IBAQCjGiybFwBcqR7uKGY3Or+Dxz9LwwmglSBd49lZRNI+DT69\\r\\n"\n'+
+											'"ikugdB/OEIKcdBodfpga3csTS7MgROSR6cz8faXbauX+5v3gTt23ADq1cEmv8uXr\\r\\n"\n'+
+											'"AvHRAosZy5Q6XkjEGB5YGV8eAlrwDPGxrancWYaLbumR9YbK+rlmM6pZW87ipxZz\\r\\n"\n'+
+											'"R8srzJmwN0jP41ZL9c8PDHIyh8bwRLtTcm1D9SZImlJnt1ir/md2cXjbDaJWFBM5\\r\\n"\n'+
+											'"JDGFoqgCWjBH4d1QB7wCCZAA62RjYJsWvIjJEubSfZGL+T0yjWW06XyxV3bqxbYo\\r\\n"\n'+
+											'"Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ\\r\\n"\n'+
+											'"-----END CERTIFICATE-----\\r\\n";\n';
+
+  Blockly.Arduino.definitions_['tcp_https'] ='\n'+
+											'String tcp_https(String domain,String request,int port,int waittime) {\n'+
+											'  String getAll="", getBody="";\n'+
+											'  TLSClient client_tcp;\n'+
+											'  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n'+
+											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
+											'    //Serial.println("Connected to "+domain+" successfully.");\n'+
+											'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
+											'    client_tcp.println("Host: " + domain);\n'+
+											'    client_tcp.println("Connection: close");\n'+
+											'    client_tcp.println();\n'+
+											'    boolean state = false;\n'+
+											'    long startTime = millis();\n'+
+											'    while ((startTime + waittime) > millis()) {\n'+
+											'      while (client_tcp.available()) {\n'+
+											'        char c = client_tcp.read();\n'+
+											'        if (c == \'\\n\') {\n'+
+											'          if (getAll.length()==0) state=true;\n'+
+											'           getAll = "";\n'+
+											'        }\n'+ 
+											'        else if (c != \'\\r\')\n'+
+											'          getAll += String(c);\n'+
+											'          if (state==true) getBody += String(c);\n'+
+											'          startTime = millis();\n'+
+											'        }\n'+
+											'        if (getBody.length()!= 0) break;\n'+
+											'      }\n'+
+											'      client_tcp.stop();\n'+
+											'  }\n'+
+											'  else {\n'+
+											'    getBody="Connected to "+domain+" failed.";\n'+
+											'    Serial.println("Connected to "+domain+" failed.");\n'+
+											'  }\n'+
+											'  return getBody;\n'+
+											'}\n';
+
+  var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
+  var api_key = Blockly.Arduino.valueToCode(block, 'api_key', Blockly.Arduino.ORDER_ATOMIC);
+  var request = '"/channels/"+String('+key+')+"/status.json?api_key="+String('+api_key+')';
+  var code = 'tcp_https("api.thingspeak.com", '+request+', 443, 3000)';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['thingspeak_format'] = function(block) { 
+  Blockly.Arduino.definitions_['transJSONtoCSV'] ='\n'+
+											'String transJSONtoCSV(String data) {\n'+
+											'  int s = data.indexOf("feeds");\n'+
+											'  int e = data.indexOf("}]}");\n'+
+											'  if ((s!=-1)&&(e!=-1))  {\n'+
+											'    String data_sub = data.substring(s+9,e);\n'+
+											'    data_sub.replace("\\":","\\",");\n'+
+											'    data_sub.replace("\\"","");\n'+
+											'    data_sub.replace("},{","\\n");\n'+
+											'    return data_sub;\n'+
+											'  }\n'+
+											'  else\n'+
+											'    return "";\n'+
+											'}\n';
+  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'transJSONtoCSV('+text+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};

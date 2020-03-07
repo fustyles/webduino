@@ -353,3 +353,129 @@ Blockly.Blocks['showcode'] = {
     }
   }
 }; 
+
+Blockly.Blocks['thingspeak_update'] = {
+  init: function() {   
+  this.appendValueInput("key")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("ThingSpeak   ")
+      .appendField("Write API Key");
+  this.appendValueInput("field1")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field1");
+  this.appendValueInput("field2")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field2");
+  this.appendValueInput("field3")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field3");  
+  this.appendValueInput("field4")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field4");
+  this.appendValueInput("field5")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field5");
+  this.appendValueInput("field6")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field6");  
+  this.appendValueInput("field7")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field7");
+  this.appendValueInput("field8")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field8");  
+	this.setOutput(true, null);  
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['thingspeak_read1'] = {
+  init: function() {  
+	this.appendDummyInput()
+	  .appendField("Get a Channel Feed");
+	this.appendValueInput("key")
+	  .setCheck(null)
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField("https://api.thingspeak.com/channels/");
+	this.appendValueInput("count")
+	  .setCheck("Number")
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField("/feeds.json?results=");
+	this.appendValueInput("api_key")
+	  .setCheck(null)
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField("&api_key=");    
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['thingspeak_read2'] = {
+  init: function() {  
+	this.appendDummyInput()
+	  .appendField("Get a Channel Feed");
+	this.appendValueInput("key")
+	  .setCheck(null)
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField("https://api.thingspeak.com/channels/");
+	this.appendValueInput("field")
+	  .setCheck("Number")
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField("/fields/");    
+	this.appendValueInput("count")
+	  .setCheck("Number")
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(".json?results=");
+	this.appendValueInput("api_key")
+	  .setCheck(null)
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField("&api_key=");     
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['thingspeak_read3'] = {
+  init: function() {  
+	this.appendDummyInput()
+	  .appendField("Get Channel Status Updates");
+	this.appendValueInput("key")
+	  .setCheck(null)
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField("https://api.thingspeak.com/channels/");
+	this.appendDummyInput()
+	  .appendField("/status.json"); 
+	this.appendValueInput("api_key")
+	  .setCheck(null)
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField("?api_key=");     
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(200);
+  }
+};
+
+Blockly.Blocks['thingspeak_format'] = {
+  init: function() {  
+	this.appendDummyInput()
+	  .appendField("Variable");
+	this.appendValueInput("text")
+	  .setCheck(null);
+	this.appendDummyInput()
+	  .appendField("toCSV");	
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(200);
+  }
+};
