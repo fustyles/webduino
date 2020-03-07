@@ -476,6 +476,6 @@ Blockly.Blocks['thingspeak_format'] = {
 	  .appendField("toCSV");	
 	this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(200);
+    this.setColour(280);
   }
 };
