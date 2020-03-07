@@ -626,10 +626,6 @@ Blockly.Arduino['thingspeak_update'] = function (block) {
   var field8 = Blockly.Arduino.valueToCode(block, 'field8', Blockly.Arduino.ORDER_ATOMIC);
   
   if (!key) key="";
-  if ((key.indexOf('"')==0)&&(key.lastIndexOf('"')==key.length-1))
-    key = key.substring(1,key.length-1);
-  if ((key.indexOf("(")==0)&&(key.lastIndexOf(")")==key.length-1))
-    key = key.substring(1,key.length-1);
   if (!field1) field1="";
   if (!field2) field2="";
   if (!field3) field3="";
@@ -639,7 +635,7 @@ Blockly.Arduino['thingspeak_update'] = function (block) {
   if (!field7) field7="";
   if (!field8) field8="";
 
-  var request = '"/update?api_key='+key+'&field1='+String(field1)+'&field2='+String(field2)+'&field3='+String(field3)+'&field4='+String(field4)+'&field5='+String(field5)+'&field6='+String(field6)+'&field7='+String(field7)+'&field8='+String(field8)+'"';
+  var request = '"/update?api_key="+String('+key+')+"&field1="+String('+field1+')+"&field2="+String('+field2+')+"&field3="+String('+field3+')+"&field4="+String('+field4+')+"&field5="+String('+field5+')+"&field6="+String('+field6+')+"&field7="+String('+field7+')+"&field8="+String('+field8+')';
   var code = 'tcp_https("api.thingspeak.com", '+request+', 443, 3000)';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
