@@ -33,9 +33,8 @@ function initial(en_path, zhhant_path, zhhant_category_path, blocks_path, javasc
 	var len = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes.length;
 	var xmlNewValue='<xml id="toolbox">'+new XMLSerializer().serializeToString(xml.firstChild)+'<sep></sep>';
 	if (len>0) {
-		for (var i=0;i<len;i++) {
+		for (var i=0;i<len;i++)
 			xmlNewValue+=new XMLSerializer().serializeToString(new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes[i]);
-		}
 	}
 	xmlNewValue+='</xml>';
 	xmlValue = xmlNewValue;
