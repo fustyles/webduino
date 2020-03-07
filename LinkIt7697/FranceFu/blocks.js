@@ -359,7 +359,7 @@ Blockly.Blocks['thingspeak_update'] = {
   this.appendValueInput("key")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("ThingSpeak   ")
+      .appendField("ThingSpeak ")
       .appendField("Write API Key");
   this.appendValueInput("field1")
       .setCheck("Number")
@@ -401,7 +401,7 @@ Blockly.Blocks['thingspeak_update'] = {
 Blockly.Blocks['thingspeak_read1'] = {
   init: function() {  
 	this.appendDummyInput()
-	  .appendField("Get a Channel Feed");
+	  .appendField("ThingSpeak Get a Channel Feed");
 	this.appendValueInput("key")
 	  .setCheck(null)
 	  .setAlign(Blockly.ALIGN_RIGHT)
@@ -423,7 +423,7 @@ Blockly.Blocks['thingspeak_read1'] = {
 Blockly.Blocks['thingspeak_read2'] = {
   init: function() {  
 	this.appendDummyInput()
-	  .appendField("Get a Channel Feed");
+	  .appendField("ThingSpeak Get a Channel Feed");
 	this.appendValueInput("key")
 	  .setCheck(null)
 	  .setAlign(Blockly.ALIGN_RIGHT)
@@ -449,7 +449,7 @@ Blockly.Blocks['thingspeak_read2'] = {
 Blockly.Blocks['thingspeak_read3'] = {
   init: function() {  
 	this.appendDummyInput()
-	  .appendField("Get Channel Status Updates");
+	  .appendField("ThingSpeak Get Channel Status Updates");
 	this.appendValueInput("key")
 	  .setCheck(null)
 	  .setAlign(Blockly.ALIGN_RIGHT)
@@ -469,7 +469,7 @@ Blockly.Blocks['thingspeak_read3'] = {
 Blockly.Blocks['thingspeak_format'] = {
   init: function() {  
 	this.appendDummyInput()
-	  .appendField("Variable");
+	  .appendField("ThingSpeak Variable");
 	this.appendValueInput("text")
 	  .setCheck(null);
 	this.appendDummyInput()
