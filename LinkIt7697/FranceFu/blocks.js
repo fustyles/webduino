@@ -469,11 +469,11 @@ Blockly.Blocks['thingspeak_read3'] = {
 Blockly.Blocks['thingspeak_format'] = {
   init: function() {  
 	this.appendDummyInput()
-	  .appendField("ThingSpeak ");
+	  .appendField("ThingSpeak Json");
 	this.appendValueInput("text")
 	  .setCheck(null);
 	this.appendDummyInput()
-	  .appendField("to CSV");	
+	  .appendField(" to CSV");	
 	this.setInputsInline(true);
     this.setOutput(true, null);  
     this.setColour(280);
