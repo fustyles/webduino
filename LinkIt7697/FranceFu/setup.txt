@@ -43,8 +43,9 @@ function initial(en_path, zhhant_path, zhhant_category_path, blocks_path, javasc
 		addScript(en_path);
 		addScript(en_category_path);
 	}
-	for (var i=0;i<category.length;i++)
+	for (var i=0;i<category.length;i++) {
 		//xmlValue = xmlValue.replace('name="'+category[i]+'"','name="'+category_replace[i]+'"');
+	}
 }
 
 function addScript(url) {
