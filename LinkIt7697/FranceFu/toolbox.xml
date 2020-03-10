@@ -227,17 +227,17 @@
 	  </block>
   </category>	  
   <category id="france7" name="others">
-	  <block type="showcode">
-	  </block> 
-  </category>
-  <category id="france1" name="customcode">
 	  <block type="customcode_comment">
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT">World Peace</field>
 		  </block>
 		</value>  
+	  </block> 	  
+	  <block type="showcode">
 	  </block> 
+  </category>
+  <category id="france1" name="customcode">
 	  <block type="customcode_head">
 		<value name="text">
 		  <block type="text">
