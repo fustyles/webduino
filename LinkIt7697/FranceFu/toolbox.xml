@@ -1,5 +1,4 @@
-<category id="FRANCEFU" name="FRANCEFU">
-  <category id="france3" name="line">
+<category id="FRANCEFU" name="FRANCEFU"><category id="france3" name="line">
 	  <block type="linenotify">
 		<value name="linenotify_token">
 		  <block type="text">
