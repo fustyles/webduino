@@ -479,3 +479,49 @@ Blockly.Blocks['thingspeak_format'] = {
     this.setColour(280);
   }
 };
+
+document.getElementById("dialog_export_ok").onclick= function(event) {
+  try {
+	var workspace = Blockly.mainWorkspace;
+    var xml = Blockly.Xml.workspaceToDom(workspace);
+    var xml_text = Blockly.Xml.domToText(xml);
+	  
+    var link = document.createElement('a');
+    link.download="project.xml";
+    link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  } catch (e) {
+    window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
+    alert(e);
+  }
+}
+
+document.getElementById("textarea_import").onclick= function(event) {
+  if (!document.getElementById("openfile")) {
+    var input=document.createElement('input');
+    input.type="file";
+	input.accept=".txt,.xml";
+	input.onchange = function(event) {
+		importBlocksFile(this);
+	}
+    setTimeout(function(){
+        $(input).click();
+    },200);
+  }
+}
+
+function importBlocksFile(element) {
+  try {	
+    var file = element.files[0];
+    var fr = new FileReader();           
+    fr.onload = function (event) {
+	  Blockly.mainWorkspace.clear();
+	  document.getElementById("textarea_import").value=event.target.result;
+    };
+    fr.readAsText(file);
+  } catch (e) {
+    alert(e);
+  }	  
+}
