@@ -480,6 +480,27 @@ Blockly.Blocks['thingspeak_format'] = {
   }
 };
 
+Blockly.Blocks['esp32_analogwrite'] = {
+  init: function() {  
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.ESP32_ANALOGWRITE);
+	this.appendValueInput("pin")
+	  .setCheck("Number");  
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.ESP32_VALUE);
+	this.appendValueInput("val")
+	  .setCheck("Number"); 	
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.ESP32_CHANNEL);
+	this.appendValueInput("channel")
+	  .setCheck("Number"); 	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
 document.getElementById("dialog_export_ok").onclick= function(event) {
   try {
 	var workspace = Blockly.mainWorkspace;

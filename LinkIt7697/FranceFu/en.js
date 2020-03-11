@@ -18,3 +18,6 @@ Blockly.Msg.FRANCE5_HEAD_LINE_SHOW = "Line Notify (ESP32) ";
 Blockly.Msg.FRANCE6_CLOSE_POWERDOG_SHOW = "Close Power Dog (ESP32)";
 Blockly.Msg.ESP32_SET_WIFI_UNTIL_READY_TITLE = "Connect to Wi-Fi AP (ESP32)";
 Blockly.Msg.FRANCE7_SHOWCODE_SHOW = "Monitor Code(Console)  Continued";
+Blockly.Msg.ESP32_ANALOGWRITE = "ESP32 analogWrite Pin";
+Blockly.Msg.ESP32_VALUE = "value ( 0 - 255 ) ";
+Blockly.Msg.ESP32_CHANNEL = "channel";

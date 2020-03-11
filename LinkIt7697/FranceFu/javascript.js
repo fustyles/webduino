@@ -860,3 +860,11 @@ Blockly.Arduino['thingspeak_format'] = function(block) {
   var code = 'transJSONtoCSV('+text+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
+
+Blockly.Arduino['esp32_analogwrite'] = function(block) { 
+  var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  var channel = Blockly.Arduino.valueToCode(block, 'channel', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'ledcAttachPin('+pin+', '+channel+');\nledcSetup('+channel+', 5000, 8);\nledcWrite('+channel+','+val+');\n';
+  return code;
+};

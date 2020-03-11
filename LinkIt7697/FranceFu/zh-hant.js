@@ -18,3 +18,6 @@ Blockly.Msg.FRANCE5_HEAD_LINE_SHOW = "Line Notify (ESP32) ";
 Blockly.Msg.FRANCE6_CLOSE_POWERDOG_SHOW = "關閉電壓不穩重啟 (ESP32)";
 Blockly.Msg.ESP32_SET_WIFI_UNTIL_READY_TITLE = "連線到 Wi-Fi AP (ESP32)";
 Blockly.Msg.FRANCE7_SHOWCODE_SHOW = "監看程式碼(主控台)  即時";
+Blockly.Msg.ESP32_ANALOGWRITE = "ESP32 類比寫入 Pin";
+Blockly.Msg.ESP32_VALUE = "數值 ( 0 - 255 ) ";
+Blockly.Msg.ESP32_CHANNEL = "通道";
