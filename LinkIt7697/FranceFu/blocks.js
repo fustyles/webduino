@@ -515,7 +515,5 @@ document.getElementById("textarea_import").onclick= function(event) {
 		alert(e);
 	  }	
 	}
-    setTimeout(function(){
-        input.click();
-    },200);
+    input.click();
 }
