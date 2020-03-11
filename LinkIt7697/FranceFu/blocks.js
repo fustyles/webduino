@@ -504,24 +504,20 @@ document.getElementById("textarea_import").onclick= function(event) {
     input.type="file";
 	input.accept=".txt,.xml";
 	input.onchange = function(event) {
-		importBlocksFile(this);
+	  try {	
+		var file = this.files[0];
+		var fr = new FileReader();           
+		fr.onload = function (event) {
+		  Blockly.mainWorkspace.clear();
+		  document.getElementById("textarea_import").value=event.target.result;
+		};
+		fr.readAsText(file);
+	  } catch (e) {
+		alert(e);
+	  }	
 	}
     setTimeout(function(){
         $(input).click();
     },200);
   }
-}
-
-function importBlocksFile(element) {
-  try {	
-    var file = element.files[0];
-    var fr = new FileReader();           
-    fr.onload = function (event) {
-	  Blockly.mainWorkspace.clear();
-	  document.getElementById("textarea_import").value=event.target.result;
-    };
-    fr.readAsText(file);
-  } catch (e) {
-    alert(e);
-  }	  
 }
