@@ -499,7 +499,6 @@ document.getElementById("dialog_export_ok").onclick= function(event) {
 }
 
 document.getElementById("textarea_import").onclick= function(event) {
-  if (!document.getElementById("openfile")) {
     var input=document.createElement('input');
     input.type="file";
 	input.accept=".txt,.xml";
@@ -517,7 +516,6 @@ document.getElementById("textarea_import").onclick= function(event) {
 	  }	
 	}
     setTimeout(function(){
-        $(input).click();
+        input.click();
     },200);
-  }
 }
