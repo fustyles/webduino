@@ -474,5 +474,82 @@
 		  </block>
 		</statement>
 	  </block>
+	  <block type="customcode_code_input" inline="true">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">cmd</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input" inline="true">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">Feedback</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input" inline="true">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P1</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input" inline="true">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P2</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input" inline="true">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P3</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input" inline="true">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P4</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input" inline="true">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P5</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input" inline="true">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P6</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input" inline="true">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P7</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input" inline="true">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P8</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input" inline="true">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P9</field>
+		  </block>
+		</value>
+	  </block>
     </category>
 </category>
