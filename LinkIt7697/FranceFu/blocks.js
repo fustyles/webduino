@@ -177,6 +177,29 @@ Blockly.Blocks['customcode_instruction4'] = {
   }
 };
 
+Blockly.Blocks['customcode_instruction5'] = {
+  init: function() {
+	  this.appendValueInput("instruction")
+		  .setCheck(null); 
+	  this.appendDummyInput()
+		  .appendField(".");
+	  this.appendDummyInput()    
+		  .appendField(new Blockly.FieldDropdown([
+			["toInt()","toInt()"],
+			["toDouble()","toDouble()"],	
+			["toFloat()","toFloat()"],
+			["toLowerCase()","toLowerCase()"],	
+			["toUpperCase()","toUpperCase()"],
+			["trim()","trim()"],	
+			["c_str()","c_str()"],
+			["length()","length()"]		  
+	  ]), "type");     
+	  this.setOutput(true, null);
+	  this.setInputsInline(true);
+	  this.setColour(20);
+  }
+};
+
 Blockly.Blocks['tcp_https'] = {
   init: function() {
 	this.appendDummyInput() 
@@ -579,28 +602,5 @@ Blockly.Blocks['linkit7697_myfirmata'] = {
         .setCheck(null);
     this.setInputsInline(true);
     this.setColour(210);
-  }
-};
-
-Blockly.Blocks['linkit7697_myfirmata_convertertype'] = {
-  init: function() {
-	  this.appendValueInput("instruction")
-		  .setCheck(null); 
-	  this.appendDummyInput()
-		  .appendField(".");
-	  this.appendDummyInput()    
-		  .appendField(new Blockly.FieldDropdown([
-			["toInt()","toInt()"],
-			["toDouble()","toDouble()"],	
-			["toFloat()","toFloat()"],
-			["toLowerCase()","toLowerCase()"],	
-			["toUpperCase()","toUpperCase()"],
-			["trim()","trim()"],	
-			["c_str()","c_str()"],
-			["length()","length()"]		  
-	  ]), "type");     
-	  this.setOutput(true, null);
-	  this.setInputsInline(true);
-	  this.setColour(20);
   }
 };

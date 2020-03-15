@@ -500,14 +500,14 @@
 		  </block>
 		</value>
 	  </block>
-	  <block type="linkit7697_myfirmata_convertertype" inline="true">
+	  <block type="customcode_instruction5" inline="true">
 		<value name="instruction">
 		  <block type="text">
 			<field name="TEXT">P1</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="linkit7697_myfirmata_convertertype" inline="true">
+	  <block type="customcode_instruction5" inline="true">
 		<value name="instruction">
 		  <block type="text">
 			<field name="TEXT">P2</field>
