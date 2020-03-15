@@ -981,7 +981,6 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'  else {\n  '+ 
 			statements_executecommand.replace(/\n/g,"\n  ")+
 			'}\n'+
-			'  if (Feedback=="") Feedback=Command;\n'+  
 			'}\n';
 
 	Blockly.Arduino.setups_.manual_add = '\n'+
@@ -1164,8 +1163,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'  }\n'+
 			'  else {\n  '+ 
 			statements_executecommand.replace(/\n/g,"\n  ")+
-			'}\n'+
-			'  if (Feedback=="") Feedback=Command;\n'+  
+			'}\n'+ 
 			'}\n';
 
 	Blockly.Arduino.setups_.manual_add = '\n'+
