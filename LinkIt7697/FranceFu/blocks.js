@@ -695,7 +695,7 @@ Blockly.Blocks['servermodule_cmd'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ESP32_SERVERMODULE_CMD_SHOW);
     this.appendValueInput("text")
-        .setCheck("String");   
+        .setCheck(null);   
     this.setInputsInline(true);
     this.setOutput(true, null); 
     this.setColour(20);
@@ -704,14 +704,14 @@ Blockly.Blocks['servermodule_cmd'] = {
 
 Blockly.Blocks['servermodule_feedback'] = {
   init: function() {
-	this.appendDummyInput()
+    this.appendDummyInput()
         .appendField(Blockly.Msg.ESP32_SERVERMODULE_FEEDBACK_SHOW);
     this.appendValueInput("text")
-        .setCheck("String");   
-	this.setInputsInline(true);
-	this.setPreviousStatement(!0);
-	this.setNextStatement(!0);
-	this.setColour(200);
+        .setCheck(null);   
+    this.setInputsInline(true);
+    this.setPreviousStatement(!0);
+    this.setNextStatement(!0);
+    this.setColour(200);
   }
 };
 
@@ -731,8 +731,8 @@ Blockly.Blocks['servermodule_parameter'] = {
 			["P8","P8"],
 			["P9","P9"],	  
 	  ]), "parameter"); 
-	this.appendDummyInput()
-        .appendField(" ");
+	  this.appendDummyInput()
+              .appendField(" ");
 	  this.appendDummyInput()    
 		  .appendField(new Blockly.FieldDropdown([
 			["",""],
@@ -768,9 +768,9 @@ Blockly.Blocks['servermodule_parameter_set'] = {
 			["P9","P9"],	  
 	  ]), "parameter"); 
 	this.appendDummyInput()
-        .appendField(" = ");
-    this.appendValueInput("text")
-        .setCheck("String");   
+            .appendField(" = ");
+        this.appendValueInput("text")
+            .setCheck("String");   
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
