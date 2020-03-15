@@ -179,6 +179,8 @@ Blockly.Blocks['customcode_instruction4'] = {
 
 Blockly.Blocks['customcode_instruction5'] = {
   init: function() {
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg.FRANCE1_VARIABLE_SHOW);
 	  this.appendValueInput("instruction")
 		  .setCheck(null); 
 	  this.appendDummyInput()
@@ -202,8 +204,6 @@ Blockly.Blocks['customcode_instruction5'] = {
 
 Blockly.Blocks['customcode_instruction6'] = {
   init: function() {
-	  this.appendDummyInput()
-	  	  .appendField(Blockly.Msg.FRANCE1_INSTRUCTION_SHOW);
 	  this.appendDummyInput()    
 		  .appendField(new Blockly.FieldDropdown([
 			["isAlpha","isAlpha"],
@@ -693,7 +693,7 @@ Blockly.Blocks['esp32_myfirmata'] = {
 Blockly.Blocks['servermodule_cmd'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.ESP32_SERVERMODULE_CMD_SHOW);
+        .appendField(Blockly.Msg.SERVERMODULE_CMD_SHOW);
     this.appendValueInput("text")
         .setCheck(null);   
     this.setInputsInline(true);
@@ -704,57 +704,57 @@ Blockly.Blocks['servermodule_cmd'] = {
 
 Blockly.Blocks['servermodule_feedback'] = {
   init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.ESP32_SERVERMODULE_FEEDBACK_SHOW);
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_FEEDBACK_SHOW);
     this.appendValueInput("text")
         .setCheck(null);   
-    this.setInputsInline(true);
-    this.setPreviousStatement(!0);
-    this.setNextStatement(!0);
-    this.setColour(200);
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
   }
 };
 
 Blockly.Blocks['servermodule_parameter'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.ESP32_SERVERMODULE_PARAMETER_GET_SHOW);
-	  this.appendDummyInput()    
-		  .appendField(new Blockly.FieldDropdown([
-			["P1","P1"],
-			["P2","P2"],
-			["P3","P3"],	
-			["P4","P4"],
-			["P5","P5"],
-			["P6","P6"],
-			["P7","P7"],	
-			["P8","P8"],
-			["P9","P9"],	  
-	  ]), "parameter"); 
-	  this.appendDummyInput()
-              .appendField(" ");
-	  this.appendDummyInput()    
-		  .appendField(new Blockly.FieldDropdown([
-			["",""],
-			[".toInt()",".toInt()"],
-			[".toDouble()",".toDouble()"],	
-			[".toFloat()",".toFloat()"],
-			[".toLowerCase()",".toLowerCase()"],	
-			[".toUpperCase()",".toUpperCase()"],
-			[".trim()",".trim()"],	
-			[".c_str()",".c_str()"],
-			[".length()",".length()"]		  
-	  ]), "type");     
-	  this.setOutput(true, null);
-	  this.setInputsInline(true);
-	  this.setColour(20);
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_GET_SHOW);
+	this.appendDummyInput()    
+	  .appendField(new Blockly.FieldDropdown([
+		["P1","P1"],
+		["P2","P2"],
+		["P3","P3"],	
+		["P4","P4"],
+		["P5","P5"],
+		["P6","P6"],
+		["P7","P7"],	
+		["P8","P8"],
+		["P9","P9"],	  
+	]), "parameter"); 
+	this.appendDummyInput()
+        .appendField(" ");
+	this.appendDummyInput()    
+	  .appendField(new Blockly.FieldDropdown([
+		["",""],
+		[".toInt()",".toInt()"],
+		[".toDouble()",".toDouble()"],	
+		[".toFloat()",".toFloat()"],
+		[".toLowerCase()",".toLowerCase()"],	
+		[".toUpperCase()",".toUpperCase()"],
+		[".trim()",".trim()"],	
+		[".c_str()",".c_str()"],
+		[".length()",".length()"]		  
+	]), "type");     
+	this.setOutput(true, null);
+	this.setInputsInline(true);
+	this.setColour(20);
   }
 };
 
 Blockly.Blocks['servermodule_parameter_set'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.ESP32_SERVERMODULE_PARAMETER_SET_SHOW);
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_SHOW);
 	this.appendDummyInput()    
 		  .appendField(new Blockly.FieldDropdown([
 			["P1","P1"],
@@ -768,9 +768,30 @@ Blockly.Blocks['servermodule_parameter_set'] = {
 			["P9","P9"],	  
 	  ]), "parameter"); 
 	this.appendDummyInput()
-            .appendField(" = ");
-        this.appendValueInput("text")
-            .setCheck("String");   
+        .appendField(" = ");
+    this.appendValueInput("text")
+        .setCheck("String");   
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['servermodule_pinmode'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PINMODE_PIN_SHOW);
+    this.appendValueInput("pin")
+        .setCheck("Number");   
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PINMODE_MODE_SHOW);
+	this.appendDummyInput()    
+	  .appendField(new Blockly.FieldDropdown([
+		["OUTPUT","OUTPUT"],
+		["INPUT","INPUT"],	
+		["INPUT_PULLUP","INPUT_PULLUP"]	  
+	]), "mode");     
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);

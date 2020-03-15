@@ -1305,3 +1305,10 @@ Blockly.Arduino['servermodule_parameter_set'] = function (block) {
   var code = parameter + ' = String(' + text + ');\n';
   return code;
 };
+
+Blockly.Arduino['servermodule_pinmode'] = function (block) {
+  var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
+  var mode = block.getFieldValue('mode');
+  var code = 'pinMode(' + pin + ', ' + mode + ');\n';
+  return code;
+};

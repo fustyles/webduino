@@ -72,6 +72,13 @@
 		  </block>
 		</value>
 	  </block>
+	  <block type="servermodule_pinmode">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">7</field>
+		  </block>
+		</value>
+	  </block>
     </category>
   <category id="france3" name="line">
 	  <block type="linenotify">
@@ -304,7 +311,7 @@
 	  <block type="customcode_instruction5">
 		<value name="instruction">
 		  <block type="text">
-			<field name="TEXT"></field>
+			<field name="TEXT">Hello</field>
 		  </block>
 		</value>
 	  </block>
@@ -584,6 +591,13 @@
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="servermodule_pinmode">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">2</field>
 		  </block>
 		</value>
 	  </block>
