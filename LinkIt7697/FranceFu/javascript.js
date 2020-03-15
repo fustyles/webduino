@@ -1061,7 +1061,7 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'            client.println("Access-Control-Allow-Origin: *");\n'+
 			'            client.println();\n'+
 			'            if (Feedback=="")\n'+
-			'              client.println("Hello World");\n'+
+			'              client.println("Hello Taiwan");\n'+
 			'            else\n'+
 			'              client.println(Feedback);\n'+
 			'            client.println();\n'+
@@ -1244,7 +1244,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'            client.println("Access-Control-Allow-Origin: *");\n'+
 			'            client.println();\n'+
 			'            if (Feedback=="")\n'+
-			'              client.println("Hello World");\n'+
+			'              client.println("Hello Taiwan");\n'+
 			'            else\n'+
 			'              client.println(Feedback);\n'+
 			'            client.println();\n'+
