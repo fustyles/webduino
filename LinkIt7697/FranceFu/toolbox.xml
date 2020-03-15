@@ -500,27 +500,17 @@
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_instruction4" inline="true">
+	  <block type="linkit7697_myfirmata_convertertype" inline="true">
 		<value name="instruction">
 		  <block type="text">
 			<field name="TEXT">P1</field>
 		  </block>
 		</value>
-		<value name="text1">
-		  <block type="text">
-			<field name="TEXT">toInt()</field>
-		  </block>
-		</value>
 	  </block>
-	  <block type="customcode_instruction4" inline="true">
+	  <block type="linkit7697_myfirmata_convertertype" inline="true">
 		<value name="instruction">
 		  <block type="text">
 			<field name="TEXT">P2</field>
-		  </block>
-		</value>
-		<value name="text1">
-		  <block type="text">
-			<field name="TEXT">toInt()</field>
 		  </block>
 		</value>
 	  </block>

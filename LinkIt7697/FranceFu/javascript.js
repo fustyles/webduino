@@ -1032,3 +1032,21 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
   code = '\n  getCommand();\n'+ statements_loop +'\n';
   return code;
 };
+
+Blockly.Arduino['linkit7697_myfirmata_convertertype'] = function (block) {
+  var instruction = Blockly.Arduino.valueToCode(block, 'instruction', Blockly.Arduino.ORDER_ATOMIC);
+  var type = block.getFieldValue('type');  
+  
+  if ((instruction.indexOf('"')==0)&&(instruction.lastIndexOf('"')==instruction.length-1))
+    instruction = instruction.substring(1,instruction.length-1);
+  if ((instruction.indexOf("(")==0)&&(instruction.lastIndexOf(")")==instruction.length-1))
+    instruction = instruction.substring(1,instruction.length-1);
+
+  if ((type.indexOf('"')==0)&&(type.lastIndexOf('"')==type.length-1))
+    type = type.substring(1,type.length-1);
+  if ((type.indexOf("(")==0)&&(type.lastIndexOf(")")==type.length-1))
+    type = type.substring(1,type.length-1);
+    
+  var code = instruction + "." + type;
+  return [code, Blockly.Arduino.ORDER_NONE]; 
+};
