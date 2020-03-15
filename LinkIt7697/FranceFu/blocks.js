@@ -596,13 +596,33 @@ Blockly.Blocks['esp32_analogwrite'] = {
 	this.appendValueInput("pin")
 	  .setCheck("Number");  
 	this.appendDummyInput()
-	  .appendField(Blockly.Msg.ESP32_VALUE_SHOW);
+	  .appendField(Blockly.Msg.ESP32_ANALOGWRITE_VALUE_SHOW);
 	this.appendValueInput("val")
 	  .setCheck("Number"); 	
 	this.appendDummyInput()
 	  .appendField(Blockly.Msg.ESP32_CHANNEL_SHOW);
 	this.appendValueInput("channel")
 	  .setCheck("Number"); 	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['esp32_digitalwrite'] = {
+  init: function() {  
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.ESP32_DIGITALWRITE_SHOW);
+	this.appendValueInput("pin")
+	  .setCheck("Number");  
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW);
+	this.appendDummyInput()    
+	  .appendField(new Blockly.FieldDropdown([
+		["HIGH","1"],
+		["LOW","0"]	  
+		]), "val"); 
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);

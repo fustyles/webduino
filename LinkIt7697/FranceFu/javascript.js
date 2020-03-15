@@ -914,6 +914,13 @@ Blockly.Arduino['esp32_analogwrite'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['esp32_digitalwrite'] = function(block) { 
+  var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
+  var val = block.getFieldValue('val');
+  var code = 'ledcDetachPin('+pin+');\npinMode('+pin+', 1);\ndigitalWrite('+pin+','+val+');\n';
+  return code;
+};
+
 Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <LWiFi.h>';
   var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);

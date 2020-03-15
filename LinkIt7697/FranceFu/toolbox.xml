@@ -352,6 +352,95 @@
   <category id="france6" name="esp32">
 	  <block type="close_powerdog">
 	  </block>
+	  <block type="esp32_wifi_wait_until_ready">
+		<value name="SSID">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="PASSWORD">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 		
+	  </block>
+	  <block type="tcp_https_esp32">
+		<value name="domain">
+		  <block type="text">
+			<field name="TEXT">www.google.com</field>
+		  </block>
+		</value> 
+		<value name="port">
+		  <block type="math_number">
+			<field name="NUM">443</field>
+		  </block>
+		</value> 
+		<value name="request">
+		  <block type="text">
+			<field name="TEXT">/xxx</field>
+		  </block>
+		</value> 
+		<value name="timeout">
+		  <block type="math_number">
+			<field name="NUM">3000</field>
+		  </block>
+		</value> 		
+	  </block>
+	  <block type="tcp_http_esp32">
+		<value name="domain">
+		  <block type="text">
+			<field name="TEXT">www.google.com</field>
+		  </block>
+		</value> 
+		<value name="port">
+		  <block type="math_number">
+			<field name="NUM">80</field>
+		  </block>
+		</value> 
+		<value name="request">
+		  <block type="text">
+			<field name="TEXT">/xxx</field>
+		  </block>
+		</value> 
+		<value name="timeout">
+		  <block type="math_number">
+			<field name="NUM">3000</field>
+		  </block>
+		</value>  
+	  </block>
+	  <block type="linenotify_esp32">
+		<value name="linenotify_token">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>   
+		<value name="linenotify_msg"> 
+		</value>
+	  </block>
+	  <block type="esp32_digitalwrite">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">2</field>
+		  </block>
+		</value> 
+	  </block>
+	  <block type="esp32_analogwrite">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">2</field>
+		  </block>
+		</value> 
+		<value name="val">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value> 
+		<value name="channel">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value> 
+	  </block>
 	  <block type="esp32_myfirmata">
 		<value name="ssid">
 		  <block type="text">
@@ -506,88 +595,6 @@
 			<field name="TEXT">P9</field>
 		  </block>
 		</value>
-	  </block>
-	  <block type="esp32_wifi_wait_until_ready">
-		<value name="SSID">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="PASSWORD">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 		
-	  </block>
-	  <block type="tcp_https_esp32">
-		<value name="domain">
-		  <block type="text">
-			<field name="TEXT">www.google.com</field>
-		  </block>
-		</value> 
-		<value name="port">
-		  <block type="math_number">
-			<field name="NUM">443</field>
-		  </block>
-		</value> 
-		<value name="request">
-		  <block type="text">
-			<field name="TEXT">/xxx</field>
-		  </block>
-		</value> 
-		<value name="timeout">
-		  <block type="math_number">
-			<field name="NUM">3000</field>
-		  </block>
-		</value> 		
-	  </block>
-	  <block type="tcp_http_esp32">
-		<value name="domain">
-		  <block type="text">
-			<field name="TEXT">www.google.com</field>
-		  </block>
-		</value> 
-		<value name="port">
-		  <block type="math_number">
-			<field name="NUM">80</field>
-		  </block>
-		</value> 
-		<value name="request">
-		  <block type="text">
-			<field name="TEXT">/xxx</field>
-		  </block>
-		</value> 
-		<value name="timeout">
-		  <block type="math_number">
-			<field name="NUM">3000</field>
-		  </block>
-		</value>  
-	  </block>
-	  <block type="linenotify_esp32">
-		<value name="linenotify_token">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>   
-		<value name="linenotify_msg"> 
-		</value>
-	  </block>
-	  <block type="esp32_analogwrite">
-		<value name="pin">
-		  <block type="math_number">
-			<field name="NUM">2</field>
-		  </block>
-		</value> 
-		<value name="val">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value> 
-		<value name="channel">
-		  <block type="math_number">
-			<field name="NUM">1</field>
-		  </block>
-		</value> 
 	  </block>
     </category>
 	<category id="france7" name="servermodule">
