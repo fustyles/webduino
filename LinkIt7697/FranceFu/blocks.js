@@ -521,15 +521,15 @@ Blockly.Blocks['thingspeak_format'] = {
 Blockly.Blocks['esp32_analogwrite'] = {
   init: function() {  
 	this.appendDummyInput()
-	  .appendField(Blockly.Msg.ESP32_ANALOGWRITE);
+	  .appendField(Blockly.Msg.ESP32_ANALOGWRITE_SHOW);
 	this.appendValueInput("pin")
 	  .setCheck("Number");  
 	this.appendDummyInput()
-	  .appendField(Blockly.Msg.ESP32_VALUE);
+	  .appendField(Blockly.Msg.ESP32_VALUE_SHOW);
 	this.appendValueInput("val")
 	  .setCheck("Number"); 	
 	this.appendDummyInput()
-	  .appendField(Blockly.Msg.ESP32_CHANNEL);
+	  .appendField(Blockly.Msg.ESP32_CHANNEL_SHOW);
 	this.appendValueInput("channel")
 	  .setCheck("Number"); 	
 	this.setInputsInline(true);
@@ -542,21 +542,23 @@ Blockly.Blocks['esp32_analogwrite'] = {
 Blockly.Blocks['linkit7697_myfirmata'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Wi-Fi SSID");
+        .appendField(Blockly.Msg.SERVERMODULE_SHOW);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
     this.appendValueInput("ssid")
         .setCheck(null);
     this.appendDummyInput()
-        .appendField("PASSWORD");
+        .appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
     this.appendValueInput("password")
         .setCheck(null);
     this.appendStatementInput("ExecuteCommand")
         .setCheck(null);
     this.appendDummyInput()
-        .appendField("setup");
+        .appendField(Blockly.Msg.SERVERMODULE_SETUP_SHOW);
     this.appendStatementInput("setup")
         .setCheck(null);
     this.appendDummyInput()
-        .appendField("loop");
+        .appendField(Blockly.Msg.SERVERMODULE_LOOP_SHOW);
     this.appendStatementInput("loop")
         .setCheck(null);
     this.setInputsInline(true);
