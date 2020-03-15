@@ -30,7 +30,7 @@ Blockly.Blocks['customcode_variable'] = {
 	this.appendDummyInput() 
 		.appendField(" = ");	
     this.appendValueInput("text")
-        .setCheck("String");
+        .setCheck(null);
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
