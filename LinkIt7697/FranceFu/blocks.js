@@ -683,3 +683,28 @@ Blockly.Blocks['esp32_myfirmata'] = {
     this.setColour(210);
   }
 };
+
+Blockly.Blocks['servermodule_cmd'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_SERVERMODULE_CMD_SHOW);
+    this.appendValueInput("text")
+        .setCheck("String");   
+    this.setInputsInline(true);
+    this.setOutput(true, null); 
+    this.setColour(20);
+  }
+};
+
+Blockly.Blocks['servermodule_feedback'] = {
+  init: function() {
+	      this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_SERVERMODULE_FEEDBACK_SHOW);
+    this.appendValueInput("text")
+        .setCheck("String");   
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};

@@ -29,3 +29,5 @@ Blockly.Msg.SERVERMODULE_LOOP_SHOW = "重複執行";
 Blockly.Msg.ESP32_SERVERMODULE_SHOW = "ESP32連線到 Wi-Fi AP  ";
 Blockly.Msg.ESP32_DIGITALWRITE_SHOW = "ESP32 數位寫入 Pin";
 Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW = "數值";
+Blockly.Msg.ESP32_SERVERMODULE_CMD_SHOW = "如果指令cmd等於";
+Blockly.Msg.ESP32_SERVERMODULE_FEEDBACK_SHOW = "設定回傳變數Feedback等於";

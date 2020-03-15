@@ -453,21 +453,11 @@
 		  </block>
 		</value>
 		<statement name="ExecuteCommand">
-		  <block type="controls_if" inline="false">
+		  <block type="controls_if">
 			<mutation else="1"></mutation>
 			<value name="IF0">
-			  <block type="logic_compare">
-				<field name="OP">EQ</field>
-				<value name="A">
-				  <block type="customcode_code_input">
-					<value name="text">
-					  <block type="text">
-						<field name="TEXT">cmd</field>
-					  </block>
-					</value>
-				  </block>
-				</value>
-				<value name="B">
+			  <block type="servermodule_cmd">
+				<value name="text">
 				  <block type="text">
 					<field name="TEXT">test</field>
 				  </block>
@@ -475,26 +465,16 @@
 			  </block>
 			</value>
 			<statement name="DO0">
-			  <block type="customcode_variable">
-				<value name="variable">
-				  <block type="text">
-					<field name="TEXT">Feedback</field>
-				  </block>
-				</value>
+			  <block type="servermodule_feedback">
 				<value name="text">
 				  <block type="text">
-					<field name="TEXT">Hello</field>
+					<field name="TEXT">Hello World</field>
 				  </block>
 				</value>
 			  </block>
 			</statement>
 			<statement name="ELSE">
-			  <block type="customcode_variable">
-				<value name="variable">
-				  <block type="text">
-					<field name="TEXT">Feedback</field>
-				  </block>
-				</value>
+			  <block type="servermodule_feedback">
 				<value name="text">
 				  <block type="text">
 					<field name="TEXT">Command is not defined.</field>
@@ -505,17 +485,17 @@
 		  </block>
 		</statement>
 	  </block>
-	  <block type="customcode_code_input">
+	  <block type="servermodule_cmd">
 		<value name="text">
 		  <block type="text">
-			<field name="TEXT">cmd</field>
+			<field name="TEXT"></field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_code_input">
+	  <block type="servermodule_feedback">
 		<value name="text">
 		  <block type="text">
-			<field name="TEXT">Feedback</field>
+			<field name="TEXT"></field>
 		  </block>
 		</value>
 	  </block>
@@ -610,21 +590,11 @@
 		  </block>
 		</value>
 		<statement name="ExecuteCommand">
-		  <block type="controls_if" inline="false">
+		  <block type="controls_if">
 			<mutation else="1"></mutation>
 			<value name="IF0">
-			  <block type="logic_compare">
-				<field name="OP">EQ</field>
-				<value name="A">
-				  <block type="customcode_code_input">
-					<value name="text">
-					  <block type="text">
-						<field name="TEXT">cmd</field>
-					  </block>
-					</value>
-				  </block>
-				</value>
-				<value name="B">
+			  <block type="servermodule_cmd">
+				<value name="text">
 				  <block type="text">
 					<field name="TEXT">test</field>
 				  </block>
@@ -632,26 +602,16 @@
 			  </block>
 			</value>
 			<statement name="DO0">
-			  <block type="customcode_variable">
-				<value name="variable">
-				  <block type="text">
-					<field name="TEXT">Feedback</field>
-				  </block>
-				</value>
+			  <block type="servermodule_feedback">
 				<value name="text">
 				  <block type="text">
-					<field name="TEXT">Hello</field>
+					<field name="TEXT">Hello World</field>
 				  </block>
 				</value>
 			  </block>
 			</statement>
 			<statement name="ELSE">
-			  <block type="customcode_variable">
-				<value name="variable">
-				  <block type="text">
-					<field name="TEXT">Feedback</field>
-				  </block>
-				</value>
+			  <block type="servermodule_feedback">
 				<value name="text">
 				  <block type="text">
 					<field name="TEXT">Command is not defined.</field>
@@ -662,17 +622,17 @@
 		  </block>
 		</statement>
 	  </block>
-	  <block type="customcode_code_input">
+	  <block type="servermodule_cmd">
 		<value name="text">
 		  <block type="text">
-			<field name="TEXT">cmd</field>
+			<field name="TEXT"></field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_code_input">
+	  <block type="servermodule_feedback">
 		<value name="text">
 		  <block type="text">
-			<field name="TEXT">Feedback</field>
+			<field name="TEXT"></field>
 		  </block>
 		</value>
 	  </block>

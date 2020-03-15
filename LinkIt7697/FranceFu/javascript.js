@@ -1279,3 +1279,15 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
   code = '\n  getCommand();\n'+ statements_loop +'\n';
   return code;
 };
+
+Blockly.Arduino['servermodule_cmd'] = function (block) {
+  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'cmd == ' + text;
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['servermodule_feedback'] = function (block) {
+  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'Feedback = ' + text + ';\n';
+  return code;
+};
