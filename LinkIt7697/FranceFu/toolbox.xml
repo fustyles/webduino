@@ -1,6 +1,11 @@
 <category id="FRANCEFU" name="FRANCEFU">
 	<category id="france7" name="servermodule">
 	  <block type="linkit7697_myfirmata">
+		<value name="mainpage">
+		  <block type="text">
+			<field name="TEXT">&#60;img src='https://www.ocac.gov.tw/ocac_manager/File/PageUpload/i-taiwan/taiwan-01.jpg'&#62;</field>
+		  </block>
+		</value>
 		<value name="ssid">
 		  <block type="text">
 			<field name="TEXT"></field>
@@ -579,6 +584,11 @@
 		</value> 
 	  </block>
 	  <block type="esp32_myfirmata">
+		<value name="mainpage">
+		  <block type="text">
+			<field name="TEXT">&#60;img src='https://www.ocac.gov.tw/ocac_manager/File/PageUpload/i-taiwan/taiwan-01.jpg'&#62;</field>
+		  </block>
+		</value>
 		<value name="ssid">
 		  <block type="text">
 			<field name="TEXT"></field>

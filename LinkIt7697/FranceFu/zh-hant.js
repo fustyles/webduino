@@ -31,3 +31,5 @@ Blockly.Msg.ESP32_DIGITALWRITE_SHOW = "ESP32 數位寫入 Pin";
 Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW = "數值";
 Blockly.Msg.ESP32_SERVERMODULE_CMD_SHOW = "如果指令cmd等於";
 Blockly.Msg.ESP32_SERVERMODULE_FEEDBACK_SHOW = "設定回傳變數Feedback等於";
+Blockly.Msg.SERVERMODULE_EXECUTE_SHOW = "自訂指令區";
+Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW = "首頁網頁";

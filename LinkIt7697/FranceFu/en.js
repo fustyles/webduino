@@ -31,3 +31,5 @@ Blockly.Msg.ESP32_DIGITALWRITE_SHOW = "ESP32 digitalWrite Pin";
 Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW = "value";
 Blockly.Msg.ESP32_SERVERMODULE_CMD_SHOW = "If variable cmd is equal to  ";
 Blockly.Msg.ESP32_SERVERMODULE_FEEDBACK_SHOW = "Set variable Feedback equal to ";
+Blockly.Msg.SERVERMODULE_EXECUTE_SHOW = "Custom Command Region";
+Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW = "Main Page";

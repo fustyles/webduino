@@ -634,14 +634,17 @@ Blockly.Blocks['linkit7697_myfirmata'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_SHOW);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
     this.appendValueInput("ssid")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
+        .setCheck(null)
+		.appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
     this.appendValueInput("password")
-        .setCheck(null);
+        .setCheck(null)
+		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
+    this.appendValueInput("mainpage")
+        .setCheck(null)
+		.appendField(Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
     this.appendStatementInput("ExecuteCommand")
         .setCheck(null);
     this.appendDummyInput()
@@ -652,7 +655,7 @@ Blockly.Blocks['linkit7697_myfirmata'] = {
         .appendField(Blockly.Msg.SERVERMODULE_LOOP_SHOW);
     this.appendStatementInput("loop")
         .setCheck(null);
-    this.setInputsInline(true);
+    this.setInputsInline(false);
     this.setColour(210);
   }
 };
@@ -661,14 +664,17 @@ Blockly.Blocks['esp32_myfirmata'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ESP32_SERVERMODULE_SHOW);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
     this.appendValueInput("ssid")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
+        .setCheck(null)
+		.appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
     this.appendValueInput("password")
-        .setCheck(null);
+        .setCheck(null)
+		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
+    this.appendValueInput("mainpage")
+        .setCheck(null)
+		.appendField(Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
     this.appendStatementInput("ExecuteCommand")
         .setCheck(null);
     this.appendDummyInput()
@@ -679,7 +685,7 @@ Blockly.Blocks['esp32_myfirmata'] = {
         .appendField(Blockly.Msg.SERVERMODULE_LOOP_SHOW);
     this.appendStatementInput("loop")
         .setCheck(null);
-    this.setInputsInline(true);
+    this.setInputsInline(false);
     this.setColour(210);
   }
 };

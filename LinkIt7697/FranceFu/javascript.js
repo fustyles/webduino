@@ -923,6 +923,7 @@ Blockly.Arduino['esp32_digitalwrite'] = function(block) {
 
 Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <LWiFi.h>';
+  var mainpage = Blockly.Arduino.valueToCode(block, 'mainpage', Blockly.Arduino.ORDER_ATOMIC);
   var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = '+ssid+';';
@@ -1061,7 +1062,7 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'            client.println("Access-Control-Allow-Origin: *");\n'+
 			'            client.println();\n'+
 			'            if (Feedback=="")\n'+
-			'              client.println("Hello Taiwan");\n'+
+			'              client.println('+mainpage+');\n'+
 			'            else\n'+
 			'              client.println(Feedback);\n'+
 			'            client.println();\n'+
@@ -1097,6 +1098,7 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 
 Blockly.Arduino['esp32_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+  var mainpage = Blockly.Arduino.valueToCode(block, 'mainpage', Blockly.Arduino.ORDER_ATOMIC);
   var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = '+ssid+';';
@@ -1244,7 +1246,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'            client.println("Access-Control-Allow-Origin: *");\n'+
 			'            client.println();\n'+
 			'            if (Feedback=="")\n'+
-			'              client.println("Hello Taiwan");\n'+
+			'              client.println('+mainpage+');\n'+
 			'            else\n'+
 			'              client.println(Feedback);\n'+
 			'            client.println();\n'+
