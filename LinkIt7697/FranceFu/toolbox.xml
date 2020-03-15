@@ -330,10 +330,24 @@
 		</value>  
 		<value name="text1">
 		  <block type="text">
-			<field name="TEXT">toInt()</field>
+			<field name="TEXT"></field>
 		  </block>
 		</value>  
-	  </block> 
+	  </block>
+	  <block type="customcode_instruction5">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_instruction6">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 	  
   </category>		
   <category id="france6" name="esp32">
 	  <block type="close_powerdog">
@@ -437,10 +451,10 @@
 		  <block type="controls_if" inline="false">
 			<mutation else="1"></mutation>
 			<value name="IF0">
-			  <block type="logic_compare" inline="true">
+			  <block type="logic_compare">
 				<field name="OP">EQ</field>
 				<value name="A">
-				  <block type="customcode_code_input" inline="true">
+				  <block type="customcode_code_input">
 					<value name="text">
 					  <block type="text">
 						<field name="TEXT">cmd</field>
@@ -456,7 +470,7 @@
 			  </block>
 			</value>
 			<statement name="DO0">
-			  <block type="customcode_variable" inline="true">
+			  <block type="customcode_variable">
 				<value name="variable">
 				  <block type="text">
 					<field name="TEXT">Feedback</field>
@@ -470,7 +484,7 @@
 			  </block>
 			</statement>
 			<statement name="ELSE">
-			  <block type="customcode_variable" inline="true">
+			  <block type="customcode_variable">
 				<value name="variable">
 				  <block type="text">
 					<field name="TEXT">Feedback</field>
@@ -486,91 +500,91 @@
 		  </block>
 		</statement>
 	  </block>
-	  <block type="customcode_code_input" inline="true">
+	  <block type="customcode_code_input">
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT">cmd</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_code_input" inline="true">
+	  <block type="customcode_code_input">
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT">Feedback</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_instruction5" inline="true">
+	  <block type="customcode_instruction5">
 		<value name="instruction">
 		  <block type="text">
 			<field name="TEXT">P1</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_instruction5" inline="true">
+	  <block type="customcode_instruction5">
 		<value name="instruction">
 		  <block type="text">
 			<field name="TEXT">P2</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_code_input" inline="true">
+	  <block type="customcode_code_input">
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT">P1</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_code_input" inline="true">
+	  <block type="customcode_code_input">
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT">P2</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_code_input" inline="true">
+	  <block type="customcode_code_input">
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT">P3</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_code_input" inline="true">
+	  <block type="customcode_code_input">
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT">P4</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_code_input" inline="true">
+	  <block type="customcode_code_input">
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT">P5</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_code_input" inline="true">
+	  <block type="customcode_code_input">
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT">P6</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_code_input" inline="true">
+	  <block type="customcode_code_input">
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT">P7</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_code_input" inline="true">
+	  <block type="customcode_code_input">
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT">P8</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_code_input" inline="true">
+	  <block type="customcode_code_input">
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT">P9</field>

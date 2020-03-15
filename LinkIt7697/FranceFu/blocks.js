@@ -200,6 +200,38 @@ Blockly.Blocks['customcode_instruction5'] = {
   }
 };
 
+Blockly.Blocks['customcode_instruction6'] = {
+  init: function() {
+	  this.appendDummyInput()
+	  	  .appendField(Blockly.Msg.FRANCE1_INSTRUCTION_SHOW);
+	  this.appendDummyInput()    
+		  .appendField(new Blockly.FieldDropdown([
+			["isAlpha","isAlpha"],
+			["isAlphaNumeric","isAlphaNumeric"],
+			["isAscii","isAscii"],
+			["isControl","isControl"],
+			["isDigit","isDigit"],
+			["isGraph","isGraph"],
+			["isHexadecimalDigit","isHexadecimalDigit"],
+			["isLowerCase","isLowerCase"],
+			["isPrintable","isPrintable"],
+			["isPunct","isPunct"],
+			["isSpace","isSpace"],
+			["isUpperCase","isUpperCase"],
+			["isWhitespace","isWhitespace"]	  
+			]), "instruction");    
+	  this.appendDummyInput()
+		  .appendField("( ");      
+	  this.appendValueInput("text")
+		  .setCheck(null);  
+	  this.appendDummyInput()
+		  .appendField(" )");      
+	  this.setOutput(true, null);
+	  this.setInputsInline(true);
+	  this.setColour(20);
+  }
+};
+
 Blockly.Blocks['tcp_https'] = {
   init: function() {
 	this.appendDummyInput() 

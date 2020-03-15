@@ -133,6 +133,19 @@ Blockly.Arduino['customcode_instruction5'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE]; 
 };
 
+Blockly.Arduino['customcode_instruction6'] = function (block) {
+  var instruction = block.getFieldValue('instruction');
+  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
+  
+  if ((instruction.indexOf('"')==0)&&(instruction.lastIndexOf('"')==instruction.length-1))
+    instruction = instruction.substring(1,instruction.length-1);
+  if ((instruction.indexOf("(")==0)&&(instruction.lastIndexOf(")")==instruction.length-1))
+    instruction = instruction.substring(1,instruction.length-1);
+    
+  var code = instruction + "(" + text + ")";
+  return [code, Blockly.Arduino.ORDER_NONE]; 
+};
+
 Blockly.Arduino['tcp_https'] = function(block) { 
   Blockly.Arduino.definitions_['certificate'] ='\n'+
 											'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'+
