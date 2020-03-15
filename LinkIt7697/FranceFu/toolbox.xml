@@ -351,7 +351,7 @@
 		</value> 
 		<value name="request">
 		  <block type="text">
-			<field name="TEXT">/xxx?yyy=zzz</field>
+			<field name="TEXT">/xxx</field>
 		  </block>
 		</value> 
 		<value name="timeout">
@@ -407,6 +407,72 @@
 			<field name="NUM">1</field>
 		  </block>
 		</value> 
+	  </block>
+    </category>
+	<category id="france7" name="servermodule">
+	  <block type="linkit7697_myfirmata">
+		<value name="ssid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="password">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<statement name="ExecuteCommand">
+		  <block type="controls_if" inline="false">
+			<mutation else="1"></mutation>
+			<value name="IF0">
+			  <block type="logic_compare" inline="true">
+				<field name="OP">EQ</field>
+				<value name="A">
+				  <block type="customcode_code_input" inline="true">
+					<value name="text">
+					  <block type="text">
+						<field name="TEXT">cmd</field>
+					  </block>
+					</value>
+				  </block>
+				</value>
+				<value name="B">
+				  <block type="text">
+					<field name="TEXT">test</field>
+				  </block>
+				</value>
+			  </block>
+			</value>
+			<statement name="DO0">
+			  <block type="customcode_variable" inline="true">
+				<value name="variable">
+				  <block type="text">
+					<field name="TEXT">Feedback</field>
+				  </block>
+				</value>
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT">Hello</field>
+				  </block>
+				</value>
+			  </block>
+			</statement>
+			<statement name="ELSE">
+			  <block type="customcode_variable" inline="true">
+				<value name="variable">
+				  <block type="text">
+					<field name="TEXT">Feedback</field>
+				  </block>
+				</value>
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT">Command is not defined.</field>
+				  </block>
+				</value>
+			  </block>
+			</statement>
+		  </block>
+		</statement>
 	  </block>
     </category>
 </category>

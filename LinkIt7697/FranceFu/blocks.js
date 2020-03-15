@@ -1,3 +1,41 @@
+document.getElementById("dialog_export_ok").onclick= function(event) {
+  try {
+	var workspace = Blockly.mainWorkspace;
+    var xml = Blockly.Xml.workspaceToDom(workspace);
+    var xml_text = Blockly.Xml.domToText(xml);
+	  
+    var link = document.createElement('a');
+    link.download="project.xml";
+    link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  } catch (e) {
+    window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
+    alert(e);
+  }
+}
+
+document.getElementById("textarea_import").onclick= function(event) {
+    var input=document.createElement('input');
+    input.type="file";
+	input.accept=".txt,.xml";
+	input.onchange = function(event) {
+	  try {	
+		var file = this.files[0];
+		var fr = new FileReader();           
+		fr.onload = function (event) {
+		  Blockly.mainWorkspace.clear();
+		  document.getElementById("textarea_import").value=event.target.result;
+		};
+		fr.readAsText(file);
+	  } catch (e) {
+		alert(e);
+	  }	
+	}
+    input.click();
+}
+
 Blockly.Blocks['customcode_head'] = {
   init: function() {
     this.appendValueInput("text")
@@ -501,40 +539,27 @@ Blockly.Blocks['esp32_analogwrite'] = {
   }
 };
 
-document.getElementById("dialog_export_ok").onclick= function(event) {
-  try {
-	var workspace = Blockly.mainWorkspace;
-    var xml = Blockly.Xml.workspaceToDom(workspace);
-    var xml_text = Blockly.Xml.domToText(xml);
-	  
-    var link = document.createElement('a');
-    link.download="project.xml";
-    link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  } catch (e) {
-    window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
-    alert(e);
+Blockly.Blocks['linkit7697_myfirmata'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Wi-Fi SSID");
+    this.appendValueInput("ssid")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("PASSWORD");
+    this.appendValueInput("password")
+        .setCheck(null);
+    this.appendStatementInput("ExecuteCommand")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("setup");
+    this.appendStatementInput("setup")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("loop");
+    this.appendStatementInput("loop")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setColour(210);
   }
-}
-
-document.getElementById("textarea_import").onclick= function(event) {
-    var input=document.createElement('input');
-    input.type="file";
-	input.accept=".txt,.xml";
-	input.onchange = function(event) {
-	  try {	
-		var file = this.files[0];
-		var fr = new FileReader();           
-		fr.onload = function (event) {
-		  Blockly.mainWorkspace.clear();
-		  document.getElementById("textarea_import").value=event.target.result;
-		};
-		fr.readAsText(file);
-	  } catch (e) {
-		alert(e);
-	  }	
-	}
-    input.click();
-}
+};
