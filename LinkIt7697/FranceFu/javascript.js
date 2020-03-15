@@ -1291,3 +1291,17 @@ Blockly.Arduino['servermodule_feedback'] = function (block) {
   var code = 'Feedback = String(' + text + ');\n';
   return code;
 };
+
+Blockly.Arduino['servermodule_parameter'] = function (block) {
+  var parameter = block.getFieldValue('parameter'); 
+  var type = block.getFieldValue('type');
+  var code = parameter + type;
+  return [code, Blockly.Arduino.ORDER_NONE]; 
+};
+
+Blockly.Arduino['servermodule_parameter_set'] = function (block) {
+  var parameter = block.getFieldValue('parameter');
+  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
+  var code = parameter + ' = String(' + text + ');\n';
+  return code;
+};

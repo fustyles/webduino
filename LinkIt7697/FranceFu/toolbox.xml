@@ -63,80 +63,12 @@
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_instruction5">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT">P1</field>
-		  </block>
-		</value>
+	  <block type="servermodule_parameter">
 	  </block>
-	  <block type="customcode_instruction5">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT">P2</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
+	  <block type="servermodule_parameter_set">
 		<value name="text">
 		  <block type="text">
-			<field name="TEXT">P1</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P2</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P3</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P4</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P5</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P6</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P7</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P8</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P9</field>
+			<field name="TEXT"></field>
 		  </block>
 		</value>
 	  </block>
@@ -646,80 +578,12 @@
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_instruction5">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT">P1</field>
-		  </block>
-		</value>
+	  <block type="servermodule_parameter">
 	  </block>
-	  <block type="customcode_instruction5">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT">P2</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
+	  <block type="servermodule_parameter_set">
 		<value name="text">
 		  <block type="text">
-			<field name="TEXT">P1</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P2</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P3</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P4</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P5</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P6</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P7</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P8</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">P9</field>
+			<field name="TEXT"></field>
 		  </block>
 		</value>
 	  </block>

@@ -704,8 +704,71 @@ Blockly.Blocks['servermodule_cmd'] = {
 
 Blockly.Blocks['servermodule_feedback'] = {
   init: function() {
-	      this.appendDummyInput()
+	this.appendDummyInput()
         .appendField(Blockly.Msg.ESP32_SERVERMODULE_FEEDBACK_SHOW);
+    this.appendValueInput("text")
+        .setCheck("String");   
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['servermodule_parameter'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_SERVERMODULE_PARAMETER_GET_SHOW);
+	  this.appendDummyInput()    
+		  .appendField(new Blockly.FieldDropdown([
+			["P1","P1"],
+			["P2","P2"],
+			["P3","P3"],	
+			["P4","P4"],
+			["P5","P5"],
+			["P6","P6"],
+			["P7","P7"],	
+			["P8","P8"],
+			["P9","P9"],	  
+	  ]), "parameter"); 
+	this.appendDummyInput()
+        .appendField(" ");
+	  this.appendDummyInput()    
+		  .appendField(new Blockly.FieldDropdown([
+			["",""],
+			[".toInt()",".toInt()"],
+			[".toDouble()",".toDouble()"],	
+			[".toFloat()",".toFloat()"],
+			[".toLowerCase()",".toLowerCase()"],	
+			[".toUpperCase()",".toUpperCase()"],
+			[".trim()",".trim()"],	
+			[".c_str()",".c_str()"],
+			[".length()",".length()"]		  
+	  ]), "type");     
+	  this.setOutput(true, null);
+	  this.setInputsInline(true);
+	  this.setColour(20);
+  }
+};
+
+Blockly.Blocks['servermodule_parameter_set'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_SERVERMODULE_PARAMETER_SET_SHOW);
+	this.appendDummyInput()    
+		  .appendField(new Blockly.FieldDropdown([
+			["P1","P1"],
+			["P2","P2"],
+			["P3","P3"],	
+			["P4","P4"],
+			["P5","P5"],
+			["P6","P6"],
+			["P7","P7"],	
+			["P8","P8"],
+			["P9","P9"],	  
+	  ]), "parameter"); 
+	this.appendDummyInput()
+        .appendField(" = ");
     this.appendValueInput("text")
         .setCheck("String");   
 	this.setInputsInline(true);
