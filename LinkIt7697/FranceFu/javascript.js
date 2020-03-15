@@ -1282,12 +1282,12 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 
 Blockly.Arduino['servermodule_cmd'] = function (block) {
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'cmd == ' + text;
+  var code = 'cmd == String(' + text + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['servermodule_feedback'] = function (block) {
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'Feedback = ' + text + ';\n';
+  var code = 'Feedback = String(' + text + ');\n';
   return code;
 };
