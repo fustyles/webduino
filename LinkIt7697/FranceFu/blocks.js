@@ -636,3 +636,30 @@ Blockly.Blocks['linkit7697_myfirmata'] = {
     this.setColour(210);
   }
 };
+
+Blockly.Blocks['esp32_myfirmata'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_SERVERMODULE_SHOW);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
+    this.appendValueInput("ssid")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
+    this.appendValueInput("password")
+        .setCheck(null);
+    this.appendStatementInput("ExecuteCommand")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_SETUP_SHOW);
+    this.appendStatementInput("setup")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_LOOP_SHOW);
+    this.appendStatementInput("loop")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setColour(210);
+  }
+};

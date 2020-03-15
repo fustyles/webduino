@@ -26,3 +26,4 @@ Blockly.Msg.SERVERMODULE_SSID_SHOW = "Wi-Fi ID";
 Blockly.Msg.SERVERMODULE_PASSWORD_SHOW = "Wi-Fi 密碼";
 Blockly.Msg.SERVERMODULE_SETUP_SHOW = "初始化";
 Blockly.Msg.SERVERMODULE_LOOP_SHOW = "重複執行";
+Blockly.Msg.ESP32_SERVERMODULE_SHOW = "ESP32連線到 Wi-Fi AP  ";

@@ -352,6 +352,161 @@
   <category id="france6" name="esp32">
 	  <block type="close_powerdog">
 	  </block>
+	  <block type="esp32_myfirmata">
+		<value name="ssid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="password">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<statement name="ExecuteCommand">
+		  <block type="controls_if" inline="false">
+			<mutation else="1"></mutation>
+			<value name="IF0">
+			  <block type="logic_compare">
+				<field name="OP">EQ</field>
+				<value name="A">
+				  <block type="customcode_code_input">
+					<value name="text">
+					  <block type="text">
+						<field name="TEXT">cmd</field>
+					  </block>
+					</value>
+				  </block>
+				</value>
+				<value name="B">
+				  <block type="text">
+					<field name="TEXT">test</field>
+				  </block>
+				</value>
+			  </block>
+			</value>
+			<statement name="DO0">
+			  <block type="customcode_variable">
+				<value name="variable">
+				  <block type="text">
+					<field name="TEXT">Feedback</field>
+				  </block>
+				</value>
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT">Hello</field>
+				  </block>
+				</value>
+			  </block>
+			</statement>
+			<statement name="ELSE">
+			  <block type="customcode_variable">
+				<value name="variable">
+				  <block type="text">
+					<field name="TEXT">Feedback</field>
+				  </block>
+				</value>
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT">Command is not defined.</field>
+				  </block>
+				</value>
+			  </block>
+			</statement>
+		  </block>
+		</statement>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">cmd</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">Feedback</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_instruction5">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT">P1</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_instruction5">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT">P2</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P1</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P2</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P3</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P4</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P5</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P6</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P7</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P8</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">P9</field>
+		  </block>
+		</value>
+	  </block>
 	  <block type="esp32_wifi_wait_until_ready">
 		<value name="SSID">
 		  <block type="text">
