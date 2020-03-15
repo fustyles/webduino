@@ -194,7 +194,7 @@
 		</value> 
 		<value name="request">
 		  <block type="text">
-			<field name="TEXT">/xxx</field>
+			<field name="TEXT">/xxx?yyy=zzz</field>
 		  </block>
 		</value> 
 		<value name="timeout">
@@ -260,7 +260,7 @@
 		</value>
 		<value name="text">
 		  <block type="text">
-			<field name="TEXT">"123"</field>
+			<field name="TEXT">123</field>
 		  </block>
 		</value>
 	  </block>
