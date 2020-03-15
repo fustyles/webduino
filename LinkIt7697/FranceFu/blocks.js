@@ -161,6 +161,22 @@ Blockly.Blocks['customcode_instruction3'] = {
   }
 };
 
+Blockly.Blocks['customcode_instruction4'] = {
+  init: function() {
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg.FRANCE1_INSTRUCTION_SHOW);
+	  this.appendValueInput("instruction")
+		  .setCheck(null); 
+	  this.appendDummyInput()
+		  .appendField(".");
+	  this.appendValueInput("text1")
+		  .setCheck(null);       
+	  this.setOutput(true, null);
+	  this.setInputsInline(true);
+	  this.setColour(20);
+  }
+};
+
 Blockly.Blocks['tcp_https'] = {
   init: function() {
 	this.appendDummyInput() 

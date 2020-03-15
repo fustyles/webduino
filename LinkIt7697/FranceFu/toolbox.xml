@@ -322,6 +322,18 @@
 		  </block>
 		</value> 
 	  </block> 
+	  <block type="customcode_instruction4">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text1">
+		  <block type="text">
+			<field name="TEXT">toInt()</field>
+		  </block>
+		</value>  
+	  </block> 
   </category>		
   <category id="france6" name="esp32">
 	  <block type="close_powerdog">
@@ -485,6 +497,30 @@
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT">Feedback</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_instruction4" inline="true">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT">P1</field>
+		  </block>
+		</value>
+		<value name="text1">
+		  <block type="text">
+			<field name="TEXT">toInt()</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_instruction4" inline="true">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT">P2</field>
+		  </block>
+		</value>
+		<value name="text1">
+		  <block type="text">
+			<field name="TEXT">toInt()</field>
 		  </block>
 		</value>
 	  </block>

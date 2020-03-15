@@ -97,6 +97,24 @@ Blockly.Arduino['customcode_instruction3'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE]; 
 };
 
+Blockly.Arduino['customcode_instruction4'] = function (block) {
+  var instruction = Blockly.Arduino.valueToCode(block, 'instruction', Blockly.Arduino.ORDER_ATOMIC);
+  var text1 = Blockly.Arduino.valueToCode(block, 'text1', Blockly.Arduino.ORDER_ATOMIC);
+  
+  if ((instruction.indexOf('"')==0)&&(instruction.lastIndexOf('"')==instruction.length-1))
+    instruction = instruction.substring(1,instruction.length-1);
+  if ((instruction.indexOf("(")==0)&&(instruction.lastIndexOf(")")==instruction.length-1))
+    instruction = instruction.substring(1,instruction.length-1);
+
+  if ((text1.indexOf('"')==0)&&(text1.lastIndexOf('"')==text1.length-1))
+    text1 = text1.substring(1,text1.length-1);
+  if ((text1.indexOf("(")==0)&&(text1.lastIndexOf(")")==text1.length-1))
+    text1 = text1.substring(1,text1.length-1);
+    
+  var code = instruction + "." + text1;
+  return [code, Blockly.Arduino.ORDER_NONE]; 
+};
+
 Blockly.Arduino['tcp_https'] = function(block) { 
   Blockly.Arduino.definitions_['certificate'] ='\n'+
 											'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'+
