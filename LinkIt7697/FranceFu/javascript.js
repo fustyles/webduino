@@ -949,10 +949,34 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'    Serial.println("STAIP: "+WiFi.localIP().toString());\n'+
 			'    Feedback=WiFi.localIP().toString();\n'+
 			'  }\n'+
-			'  else {\n  '+ statements_executecommand+
-			'  }'+
+  			'  else if (cmd=="inputpullup") {\n'+
+  			'    pinMode(P1.toInt(), INPUT_PULLUP);\n'+
+  			'  }\n'+
+  			'  else if (cmd=="pinmode") {\n'+
+  			'    if (P2.toInt()==1)\n'+
+  			'      pinMode(P1.toInt(), OUTPUT);\n'+
+  			'    else\n'+
+  			'      pinMode(P1.toInt(), INPUT);\n'+
+  			'  }\n'+
+  			'  else if (cmd=="digitalwrite") {\n'+
+  			'   pinMode(P1.toInt(), OUTPUT);\n'+
+  			'   digitalWrite(P1.toInt(), P2.toInt());\n'+
+  			'  }\n'+
+ 			'  else if (cmd=="digitalread") {\n'+
+ 			'   Feedback=String(digitalRead(P1.toInt()));\n'+
+			'  }\n'+
+			'  else if (cmd=="analogwrite") {\n'+
+			'    analogWrite(P1.toInt(), P2.toInt());\n'+
+			'  }\n'+
+			'  else if (cmd=="analogread") {\n'+
+			'    Feedback=String(analogRead(P1.toInt()));\n'+
+			'  }\n'+
+			'  else {\n  '+ 
+			statements_executecommand.replace(/\n/g,"\n  ")+
+			'}\n'+
 			'  if (Feedback=="") Feedback=Command;\n'+  
 			'}\n';
+
 	Blockly.Arduino.setups_.manual_add = '\n'+
 			'  Serial.begin(9600);\n'+ 
 			'  delay(10);\n'+ 
@@ -990,6 +1014,7 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'  Serial.println(WiFi.localIP());\n'+ 
 			'  server.begin();\n'+ statements_setup +
 			'\n';
+	
 
   Blockly.Arduino.definitions_.define_linkit_getCommand = '\n'+
 			'void getCommand() {\n'+
