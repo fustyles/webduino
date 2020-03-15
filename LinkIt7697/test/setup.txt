@@ -1,6 +1,6 @@
 <!--
 https://www.facebook.com/francefu    2020/2/23 10:30
-方法一：適用 LinkIt 7697 BlocklyDuino v3
+適用 LinkIt 7697 BlocklyDuino v3
 
 GitHub上放置五個檔案(blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js)，
 程式碼中有中文註解的部分要修改成自訂積木的設定。
@@ -47,57 +47,3 @@ GitHub上放置五個檔案(blocks.js, javascript.js, toolbox.xml, en.js, zh-han
 		toolbox.children[fatherCategoryID].append(xml.firstChild);
 	}
 </script>
-
-
-
-
-
-
-/*
-https://www.facebook.com/francefu    2020/2/24 01:30
-方法二：適用 LinkIt 7697 BlocklyDuino v3
-
-GitHub上放置五個檔案(blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js)，
-程式碼中有中文註解的部分要修改成自訂積木的設定。
-若是要新增數個自訂積木，有中文註解的程式原處複製修改成數個自訂積木設定多次執行。
-在BlocklyDuino3\package.nw\js\init.js檔中將以下程式碼插入在此行程式碼之前，
-Blockly.inject(document.getElementById('content_blocks'),{ 
-並將init.js檔另存檔成UTF-8格式，否則無法顯示繁體中文。
-toolbox.xml中自訂積木的name不可以用中文命名。
-自訂積木新增的目錄會在最頂端。
-*/
-
-	var en_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/en.js";  //載入自訂積木英文語系設定檔
-	var zhhant_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/zh-hant.js";  //載入自訂積木繁體語系設定檔(預設繁體語系)
-	var blocks_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/blocks.js";   //載入自訂積木定義檔
-	var javascript_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/javascript.js";   //載入自訂積木轉出程式碼檔
-	var toolbox_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/toolbox.xml";  //讀取自訂積木目錄檔
-	initial(en_path, zhhant_path, blocks_path, javascript_path, toolbox_path);  //新增自訂積木
-
-	function initial(en_path, zhhant_path, blocks_path, javascript_path, toolbox_path) {
-		addScript(zhhant_path);
-		addScript(blocks_path);
-		addScript(javascript_path);
-		var xml = $.ajax({url: toolbox_path, async: false}).responseXML;
-		xmlValue = '<xml id="toolbox">' + new XMLSerializer().serializeToString(xml.firstChild) + '<sep></sep>' + xmlValue.replace('<xml id="toolbox">',"");
-
-		if ((document.getElementById('select-lang-en').checked)) {
-			addScript(en_path);
-			xmlValue = xmlValue.replace('name="FRANCEFU"','name="FranceFu"');  //更新自訂積木目錄英文名稱
-			xmlValue = xmlValue.replace('name="customcode"','name="Custom Code"');  //更新自訂積木目錄英文名稱
-			xmlValue = xmlValue.replace('name="module"','name="Module"');  //更新自訂積木目錄英文名稱
-		} else {
-			xmlValue = xmlValue.replace('name="FRANCEFU"','name="法蘭斯"');  //更新自訂積木目錄繁體中文名稱。init.js檔另存檔成UTF-8格式，否則無法顯示繁體中文。
-			xmlValue = xmlValue.replace('name="customcode"','name="自訂程式碼"');  //更新自訂積木子目錄繁體中文名稱。
-			xmlValue = xmlValue.replace('name="module"','name="模組"');  //更新自訂積木子目錄繁體中文名稱。
-		}
-		
-		document.getElementById('toolbox').xml = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
-	}
-
-	function addScript(url) {
-		var s = document.createElement("script");
-		s.type = "text/javascript";
-		s.src = url;
-		$("body").append(s);
-	}
