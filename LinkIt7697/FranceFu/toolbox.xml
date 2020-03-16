@@ -93,7 +93,7 @@
 								<field name="OP">EQ</field>
 								<value name="A">
 								  <block type="servermodule_parameter_get">
-									<field name="parameter">P1</field>
+									<field name="parameter">P2</field>
 								  </block>
 								</value>
 								<value name="B">
@@ -692,7 +692,7 @@
 								<field name="OP">EQ</field>
 								<value name="A">
 								  <block type="servermodule_parameter_get">
-									<field name="parameter">P1</field>
+									<field name="parameter">P2</field>
 								  </block>
 								</value>
 								<value name="B">
