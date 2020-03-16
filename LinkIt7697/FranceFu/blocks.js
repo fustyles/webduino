@@ -794,7 +794,7 @@ Blockly.Blocks['servermodule_parameter_set'] = {
 	this.appendDummyInput()
         .appendField(" = ");
     this.appendValueInput("text")
-        .setCheck("String");   
+        .setCheck(null);   
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -805,11 +805,12 @@ Blockly.Blocks['servermodule_parameter_set'] = {
 Blockly.Blocks['servermodule_pinmode'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_PINMODE_PIN_SHOW);
+        .appendField(Blockly.Msg.SERVERMODULE_SET_SHOW)
+        .appendField(Blockly.Msg.SERVERMODULE_PIN_SHOW);
     this.appendValueInput("pin")
         .setCheck("Number");   
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_PINMODE_MODE_SHOW);
+        .appendField(Blockly.Msg.SERVERMODULE_MODE_SHOW);
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
 		["OUTPUT","OUTPUT"],
@@ -820,5 +821,44 @@ Blockly.Blocks['servermodule_pinmode'] = {
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['servermodule_pinwrite'] = {
+  init: function() {
+	this.appendDummyInput()    
+	  .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.SERVERMODULE_DIGITALWRITE_SHOW,"digitalWrite"],
+		[Blockly.Msg.SERVERMODULE_ANALOGWRITE_SHOW,"analogWrite"] 
+	]), "type");
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PIN_SHOW);
+    this.appendValueInput("pin")
+        .setCheck("Number");   
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_VALUE_SHOW);
+    this.appendValueInput("val")
+        .setCheck("Number");     
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['servermodule_pinread'] = {
+  init: function() {
+	this.appendDummyInput()    
+	  .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.SERVERMODULE_DIGITALREAD_SHOW,"digitalRead"],
+		[Blockly.Msg.SERVERMODULE_ANALOGREAD_SHOW,"analogRead"] 
+	]), "type");
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PIN_SHOW);
+    this.appendValueInput("pin")
+        .setCheck("Number");   
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(200);
   }
 };

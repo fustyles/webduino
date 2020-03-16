@@ -1318,3 +1318,18 @@ Blockly.Arduino['servermodule_pinmode'] = function (block) {
   var code = 'pinMode(' + pin + ', ' + mode + ');\n';
   return code;
 };
+
+Blockly.Arduino['servermodule_pinwrite'] = function (block) {
+  var type = block.getFieldValue('type');
+  var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  var code = type + '(' + pin + ', ' + val + ');\n';
+  return code;
+};
+
+Blockly.Arduino['servermodule_pinread'] = function (block) {
+  var type = block.getFieldValue('type');
+  var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
+  var code = type + '(' + pin + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
