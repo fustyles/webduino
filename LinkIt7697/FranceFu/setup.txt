@@ -72,7 +72,7 @@ function addScript(url) {
 
 
 <!--
-另法：不建議使用
+另法：無法改變目錄語系，不建議使用
 https://www.facebook.com/francefu    2020/2/23 10:30
 適用 LinkIt 7697 BlocklyDuino v3
 
