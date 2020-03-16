@@ -129,8 +129,8 @@ Blockly.Arduino['customcode_instruction5'] = function (block) {
   if ((type.indexOf("(")==0)&&(type.lastIndexOf(")")==type.length-1))
     type = type.substring(1,type.length-1);
     
-  var code = instruction + "." + type;
-  return [code, Blockly.Arduino.ORDER_NONE]; 
+  var code = instruction + "." + type + ';\n';
+  return code; 
 };
 
 Blockly.Arduino['customcode_instruction6'] = function (block) {
@@ -1295,8 +1295,14 @@ Blockly.Arduino['servermodule_feedback'] = function (block) {
 Blockly.Arduino['servermodule_parameter'] = function (block) {
   var parameter = block.getFieldValue('parameter'); 
   var type = block.getFieldValue('type');
-  var code = parameter + type;
-  return [code, Blockly.Arduino.ORDER_NONE]; 
+  var code = parameter + type + ';\n';
+  return code;
+};
+
+Blockly.Arduino['servermodule_parameter_get'] = function (block) {
+  var parameter = block.getFieldValue('parameter');
+  var code = parameter;
+  return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['servermodule_parameter_set'] = function (block) {

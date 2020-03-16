@@ -196,9 +196,10 @@ Blockly.Blocks['customcode_instruction5'] = {
 			["c_str()","c_str()"],
 			["length()","length()"]		  
 	  ]), "type");     
-	  this.setOutput(true, null);
-	  this.setInputsInline(true);
-	  this.setColour(20);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(200);
   }
 };
 
@@ -718,7 +719,7 @@ Blockly.Blocks['servermodule_feedback'] = {
 Blockly.Blocks['servermodule_parameter'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_GET_SHOW);
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_SHOW);
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
 		["P1","P1"],
@@ -745,9 +746,32 @@ Blockly.Blocks['servermodule_parameter'] = {
 		[".c_str()",".c_str()"],
 		[".length()",".length()"]		  
 	]), "type");     
-	this.setOutput(true, null);
 	this.setInputsInline(true);
-	this.setColour(20);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['servermodule_parameter_get'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_GET_SHOW);
+	this.appendDummyInput()    
+		  .appendField(new Blockly.FieldDropdown([
+			["P1","P1"],
+			["P2","P2"],
+			["P3","P3"],	
+			["P4","P4"],
+			["P5","P5"],
+			["P6","P6"],
+			["P7","P7"],	
+			["P8","P8"],
+			["P9","P9"],	  
+	  ]), "parameter");   
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(200);
   }
 };
 
