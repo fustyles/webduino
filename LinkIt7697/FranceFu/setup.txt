@@ -6,7 +6,6 @@ https://www.facebook.com/francefu    2020/3/10 23:00
 
 Blockly.inject(document.getElementById('content_blocks'),{ 
 
-並將init.js檔另存檔成UTF-8格式，否則目錄無法顯示繁體中文而呈亂碼。
 自訂積木新增的目錄"法蘭斯"會顯示在最頂端。
 若以自訂積木撰寫程式後存檔，還原載入前必須先新增自訂積木在介面。
 
