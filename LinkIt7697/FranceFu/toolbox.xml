@@ -587,6 +587,47 @@
 		<value name="linenotify_msg"> 
 		</value>
 	  </block>
+	  <block type="linenotify_text">
+		<value name="value_text">
+		  <block type="text">
+			<field name="TEXT">Hello World</field>
+		  </block>
+		</value>  
+	  </block> 
+	  <block type="linenotify_sticker">
+		<value name="value_text">
+		  <block type="text">
+			<field name="TEXT">Hello World</field>
+		  </block>
+		</value>  
+		<value name="value_packageId">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value>  
+		<value name="value_stickerId">
+		  <block type="math_number">
+			<field name="NUM">2</field>
+		  </block>
+		</value>  
+	  </block> 
+	  <block type="linenotify_image">
+		<value name="value_text">
+		  <block type="text">
+			<field name="TEXT">Hello World</field>
+		  </block>
+		</value>  
+		<value name="value_originalContentUrl">
+		  <block type="text">
+			<field name="TEXT">https://p1-news.hfcdn.com/p1-news/MTk3NjU3OW5ld3M,/3b25bee8d5ce01a8_1050x1575.jpg</field>
+		  </block>
+		</value>  
+		<value name="value_previewImageUrl">
+		  <block type="text">
+			<field name="TEXT">https://img.mm52.com/c/chiling_lin/chiling_lin_0005_128px.jpg</field>
+		  </block>
+		</value>  
+	  </block> 
 	  <block type="esp32_digitalwrite">
 		<value name="pin">
 		  <block type="math_number">
