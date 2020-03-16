@@ -44,7 +44,7 @@ Blockly.Blocks['customcode_head'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(65);    
+    this.setColour(200);    
   }
 };
 
@@ -56,7 +56,7 @@ Blockly.Blocks['customcode_code'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(65);
+    this.setColour(200);
   }
 };
 
@@ -72,7 +72,7 @@ Blockly.Blocks['customcode_variable'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(65);
+    this.setColour(200);
   }
 };
 
@@ -369,7 +369,7 @@ Blockly.Blocks['tcp_https_esp32'] = {
 		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
 	this.setInputsInline(false);
 	this.setOutput(true, null);
-	this.setColour(200);   
+	this.setColour(20);   
   }
 };
 
@@ -392,7 +392,7 @@ Blockly.Blocks['tcp_http_esp32'] = {
 		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
 	this.setInputsInline(false);
 	this.setOutput(true, null);
-	this.setColour(200);   
+	this.setColour(20);   
   }
 };
 
@@ -445,7 +445,7 @@ Blockly.Blocks['showcode'] = {
   this.appendDummyInput()
       .appendField(Blockly.Msg.FRANCE7_SHOWCODE_SHOW)
       .appendField(new Blockly.FieldCheckbox("FALSE"), "continued");
-  this.setColour(20);
+  this.setColour(200);
   },
   onchange: function (event) {
     if (event.element=="click"&&this.getFieldValue("continued")=="FALSE") {
@@ -504,7 +504,7 @@ Blockly.Blocks['thingspeak_update'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Field8");  
 	this.setOutput(true, null);  
-	this.setColour(200);
+	this.setColour(20);
   }
 };
 
@@ -526,7 +526,7 @@ Blockly.Blocks['thingspeak_read1'] = {
 	  .appendField("&api_key=");    
 	this.setInputsInline(true);
 	this.setOutput(true, null);  
-	this.setColour(200);
+	this.setColour(20);
   }
 };
 
@@ -552,7 +552,7 @@ Blockly.Blocks['thingspeak_read2'] = {
 	  .appendField("&api_key=");     
 	this.setInputsInline(true);
 	this.setOutput(true, null);  
-	this.setColour(200);
+	this.setColour(20);
   }
 };
 
@@ -572,7 +572,7 @@ Blockly.Blocks['thingspeak_read3'] = {
 	  .appendField("?api_key=");     
 	this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(200);
+    this.setColour(20);
   }
 };
 
@@ -586,7 +586,7 @@ Blockly.Blocks['thingspeak_format'] = {
 	  .appendField(" to CSV");	
 	this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(280);
+    this.setColour(50);
   }
 };
 
@@ -783,7 +783,7 @@ Blockly.Blocks['servermodule_parameter_variable'] = {
 	]), "type");     
 	this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(200);
+    this.setColour(20);
   }
 };
 
@@ -805,7 +805,7 @@ Blockly.Blocks['servermodule_parameter_get'] = {
 	  ]), "parameter");   
 	this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(200);
+    this.setColour(20);
   }
 };
 
@@ -893,6 +893,6 @@ Blockly.Blocks['servermodule_pinread'] = {
         .setCheck("Number");   
 	this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(200);
+    this.setColour(20);
   }
 };

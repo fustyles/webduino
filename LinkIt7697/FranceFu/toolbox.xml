@@ -27,11 +27,6 @@
 		</value>
 	  </block>
 	  <block type="linkit7697_myfirmata">
-		<value name="mainpage">
-		  <block type="text">
-			<field name="TEXT">&#60;img src='https://www.ocac.gov.tw/ocac_manager/File/PageUpload/i-taiwan/taiwan-01.jpg'&#62;</field>
-		  </block>
-		</value>
 		<value name="ssid">
 		  <block type="text">
 			<field name="TEXT"></field>
@@ -42,36 +37,96 @@
 			<field name="TEXT"></field>
 		  </block>
 		</value>
+		<value name="mainpage">
+		  <block type="text">
+			<field name="TEXT">&lt;img src='https://www.ocac.gov.tw/ocac_manager/File/PageUpload/i-taiwan/taiwan-01.jpg'&gt;</field>
+		  </block>
+		</value>
 		<statement name="ExecuteCommand">
-		  <block type="controls_if">
-			<mutation else="1"></mutation>
-			<value name="IF0">
-			  <block type="servermodule_cmd">
-				<value name="text">
-				  <block type="text">
-					<field name="TEXT">test</field>
-				  </block>
-				</value>
+		  <block type="customcode_comment">
+			<value name="text">
+			  <block type="text">
+				<field name="TEXT">http://192.168.xxx.xxx/?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9</field>
 			  </block>
 			</value>
-			<statement name="DO0">
-			  <block type="servermodule_feedback">
-				<value name="text">
-				  <block type="text">
-					<field name="TEXT">Hello World</field>
+			<next>
+			  <block type="controls_if">
+				<mutation else="1"></mutation>
+				<value name="IF0">
+				  <block type="servermodule_cmd">
+					<value name="text">
+					  <block type="text">
+						<field name="TEXT">led</field>
+					  </block>
+					</value>
 				  </block>
 				</value>
-			  </block>
-			</statement>
-			<statement name="ELSE">
-			  <block type="servermodule_feedback">
-				<value name="text">
-				  <block type="text">
-					<field name="TEXT">Command is not defined.</field>
+				<statement name="DO0">
+				  <block type="servermodule_pinwrite">
+					<field name="type">digitalWrite</field>
+					<value name="pin">
+					  <block type="servermodule_parameter_variable">
+						<field name="parameter">P1</field>
+						<field name="type">toInt()</field>
+					  </block>
+					</value>
+					<value name="val">
+					  <block type="servermodule_parameter_variable">
+						<field name="parameter">P2</field>
+						<field name="type">toInt()</field>
+					  </block>
+					</value>
+					<next>
+					  <block type="controls_if">
+						<mutation else="1"></mutation>
+						<value name="IF0">
+						  <block type="logic_compare">
+							<field name="OP">EQ</field>
+							<value name="A">
+							  <block type="servermodule_parameter_get">
+								<field name="parameter">P1</field>
+							  </block>
+							</value>
+							<value name="B">
+							  <block type="text">
+								<field name="TEXT">1</field>
+							  </block>
+							</value>
+						  </block>
+						</value>
+						<statement name="DO0">
+						  <block type="servermodule_feedback">
+							<value name="text">
+							  <block type="text">
+								<field name="TEXT">on</field>
+							  </block>
+							</value>
+						  </block>
+						</statement>
+						<statement name="ELSE">
+						  <block type="servermodule_feedback">
+							<value name="text">
+							  <block type="text">
+								<field name="TEXT">off</field>
+							  </block>
+							</value>
+						  </block>
+						</statement>
+					  </block>
+					</next>
 				  </block>
-				</value>
+				</statement>
+				<statement name="ELSE">
+				  <block type="servermodule_feedback">
+					<value name="text">
+					  <block type="text">
+						<field name="TEXT">Command is not defined.</field>
+					  </block>
+					</value>
+				  </block>
+				</statement>
 			  </block>
-			</statement>
+			</next>
 		  </block>
 		</statement>
 	  </block>
@@ -560,11 +615,6 @@
 		</value>
 	  </block>
 	  <block type="esp32_myfirmata">
-		<value name="mainpage">
-		  <block type="text">
-			<field name="TEXT">&#60;img src='https://www.ocac.gov.tw/ocac_manager/File/PageUpload/i-taiwan/taiwan-01.jpg'&#62;</field>
-		  </block>
-		</value>
 		<value name="ssid">
 		  <block type="text">
 			<field name="TEXT"></field>
@@ -575,36 +625,96 @@
 			<field name="TEXT"></field>
 		  </block>
 		</value>
+		<value name="mainpage">
+		  <block type="text">
+			<field name="TEXT">&lt;img src='https://www.ocac.gov.tw/ocac_manager/File/PageUpload/i-taiwan/taiwan-01.jpg'&gt;</field>
+		  </block>
+		</value>
 		<statement name="ExecuteCommand">
-		  <block type="controls_if">
-			<mutation else="1"></mutation>
-			<value name="IF0">
-			  <block type="servermodule_cmd">
-				<value name="text">
-				  <block type="text">
-					<field name="TEXT">test</field>
-				  </block>
-				</value>
+		  <block type="customcode_comment">
+			<value name="text">
+			  <block type="text">
+				<field name="TEXT">http://192.168.xxx.xxx/?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9</field>
 			  </block>
 			</value>
-			<statement name="DO0">
-			  <block type="servermodule_feedback">
-				<value name="text">
-				  <block type="text">
-					<field name="TEXT">Hello World</field>
+			<next>
+			  <block type="controls_if">
+				<mutation else="1"></mutation>
+				<value name="IF0">
+				  <block type="servermodule_cmd">
+					<value name="text">
+					  <block type="text">
+						<field name="TEXT">led</field>
+					  </block>
+					</value>
 				  </block>
 				</value>
-			  </block>
-			</statement>
-			<statement name="ELSE">
-			  <block type="servermodule_feedback">
-				<value name="text">
-				  <block type="text">
-					<field name="TEXT">Command is not defined.</field>
+				<statement name="DO0">
+				  <block type="servermodule_pinwrite">
+					<field name="type">digitalWrite</field>
+					<value name="pin">
+					  <block type="servermodule_parameter_variable">
+						<field name="parameter">P1</field>
+						<field name="type">toInt()</field>
+					  </block>
+					</value>
+					<value name="val">
+					  <block type="servermodule_parameter_variable">
+						<field name="parameter">P2</field>
+						<field name="type">toInt()</field>
+					  </block>
+					</value>
+					<next>
+					  <block type="controls_if">
+						<mutation else="1"></mutation>
+						<value name="IF0">
+						  <block type="logic_compare">
+							<field name="OP">EQ</field>
+							<value name="A">
+							  <block type="servermodule_parameter_get">
+								<field name="parameter">P1</field>
+							  </block>
+							</value>
+							<value name="B">
+							  <block type="text">
+								<field name="TEXT">1</field>
+							  </block>
+							</value>
+						  </block>
+						</value>
+						<statement name="DO0">
+						  <block type="servermodule_feedback">
+							<value name="text">
+							  <block type="text">
+								<field name="TEXT">on</field>
+							  </block>
+							</value>
+						  </block>
+						</statement>
+						<statement name="ELSE">
+						  <block type="servermodule_feedback">
+							<value name="text">
+							  <block type="text">
+								<field name="TEXT">off</field>
+							  </block>
+							</value>
+						  </block>
+						</statement>
+					  </block>
+					</next>
 				  </block>
-				</value>
+				</statement>
+				<statement name="ELSE">
+				  <block type="servermodule_feedback">
+					<value name="text">
+					  <block type="text">
+						<field name="TEXT">Command is not defined.</field>
+					  </block>
+					</value>
+				  </block>
+				</statement>
 			  </block>
-			</statement>
+			</next>
 		  </block>
 		</statement>
 	  </block>
