@@ -736,7 +736,6 @@ Blockly.Blocks['servermodule_parameter'] = {
         .appendField(" ");
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
-		["",""],
 		[".toInt()",".toInt()"],
 		[".toDouble()",".toDouble()"],	
 		[".toFloat()",".toFloat()"],
