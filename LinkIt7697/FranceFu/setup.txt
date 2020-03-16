@@ -1,5 +1,5 @@
 /*
-https://www.facebook.com/francefu    2020/3/10 23:00
+https://www.facebook.com/francefu    2020/3/17 00:30
 適用 LinkIt 7697 BlocklyDuino v3
 
 在BlocklyDuino3\package.nw\js\init.js檔中將以下程式碼插入在此行程式碼之前，
@@ -46,9 +46,12 @@ function initial(blocks_path, javascript_path, toolbox_path) {
 	}
 	
 	for (var i=0;i<xml.childNodes.length;i++) {
-		var ini = xml.childNodes[i].childNodes[0].firstChild.nodeValue;
-		var rep = xml.childNodes[i].childNodes[1].firstChild.nodeValue;
-		xmlValue = xmlValue.replace('name="'+ini+'"','name="'+rep+'"');
+		try {
+			var ini = xml.childNodes[i].childNodes[0].firstChild.nodeValue;
+			var rep = xml.childNodes[i].childNodes[1].firstChild.nodeValue;
+			xmlValue = xmlValue.replace('name="'+ini+'"','name="'+rep+'"');			
+		}
+		catch (e){}
 	}
 }
 
