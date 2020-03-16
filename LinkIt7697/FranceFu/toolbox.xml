@@ -454,32 +454,6 @@
   <category id="france6" name="esp32">
 	  <block type="close_powerdog">
 	  </block>
-	  <block type="servermodule_pinmode">
-		<value name="pin">
-		  <block type="math_number">
-			<field name="NUM">2</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="servermodule_pinwrite">
-		<value name="pin">
-		  <block type="math_number">
-			<field name="NUM">7</field>
-		  </block>
-		</value>
-		<value name="val">
-		  <block type="math_number">
-			<field name="NUM">1</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="servermodule_pinread">
-		<value name="pin">
-		  <block type="math_number">
-			<field name="NUM">7</field>
-		  </block>
-		</value>
-	  </block>
 	  <block type="esp32_wifi_wait_until_ready">
 		<value name="SSID">
 		  <block type="text">
@@ -568,6 +542,20 @@
 			<field name="NUM">1</field>
 		  </block>
 		</value> 
+	  </block>
+	  <block type="servermodule_pinmode">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">2</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="servermodule_pinread">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">7</field>
+		  </block>
+		</value>
 	  </block>
 	  <block type="esp32_myfirmata">
 		<value name="mainpage">
