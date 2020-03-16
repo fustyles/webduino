@@ -1295,8 +1295,15 @@ Blockly.Arduino['servermodule_feedback'] = function (block) {
 Blockly.Arduino['servermodule_parameter'] = function (block) {
   var parameter = block.getFieldValue('parameter'); 
   var type = block.getFieldValue('type');
-  var code = parameter + type + ';\n';
+  var code = parameter + "." + type + ';\n';
   return code;
+};
+
+Blockly.Arduino['servermodule_parameter_variable'] = function (block) {
+  var parameter = block.getFieldValue('parameter'); 
+  var type = block.getFieldValue('type');
+  var code = parameter + "." + type;
+  return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['servermodule_parameter_get'] = function (block) {

@@ -91,6 +91,8 @@
 	  </block>
 	  <block type="servermodule_parameter">
 	  </block>
+	  <block type="servermodule_parameter_variable">
+	  </block>
 	  <block type="servermodule_parameter_get">
 	  </block>
 	  <block type="servermodule_parameter_set">
@@ -621,6 +623,8 @@
 		</value>
 	  </block>
 	  <block type="servermodule_parameter">
+	  </block>
+	  <block type="servermodule_parameter_variable">
 	  </block>
 	  <block type="servermodule_parameter_get">
 	  </block>
