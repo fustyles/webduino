@@ -359,22 +359,20 @@ Blockly.Arduino['linenotify'] = function (block) {
   
   if (!linenotify_token) linenotify_token='""';
   if (!linenotify_msg) linenotify_msg='""';
+  if ((linenotify_msg.indexOf('"')==0)&&(linenotify_msg.lastIndexOf('"')==linenotify_msg.length-1))
+    linenotify_msg = linenotify_msg.substring(1,linenotify_msg.length-1);
   if ((linenotify_msg.indexOf("(")==0)&&(linenotify_msg.lastIndexOf(")")==linenotify_msg.length-1))
     linenotify_msg = linenotify_msg.substring(1,linenotify_msg.length-1);
   
-  var code = 'LineNotify('+linenotify_token+',"'+linenotify_msg+'")';
+  var code = 'LineNotify('+linenotify_token+','+linenotify_msg+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['linenotify_text'] = function(block) {
   var text = Blockly.Arduino.valueToCode(block, 'value_text', Blockly.Arduino.ORDER_ATOMIC); 
   if (!text) text='" "';
-  if ((text.indexOf('"')==0)&&(text.lastIndexOf('"')==text.length-1))
-    text = text.substring(1,text.length-1);
-  if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))
-    text = text.substring(1,text.length-1);
 
-  var code = 'message=' + text;
+  var code = '"message="+String(' + text + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -384,24 +382,10 @@ Blockly.Arduino['linenotify_sticker'] = function(block) {
   var stickerId = Blockly.Arduino.valueToCode(block, 'value_stickerId', Blockly.Arduino.ORDER_ATOMIC);  
   
   if (!text) text='" "';
-  if ((text.indexOf('"')==0)&&(text.lastIndexOf('"')==text.length-1))
-    text = text.substring(1,text.length-1);
-  if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))
-    text = text.substring(1,text.length-1);
-
   if (!packageId) packageId='""';
-  if ((packageId.indexOf('"')==0)&&(packageId.lastIndexOf('"')==packageId.length-1))
-    packageId = packageId.substring(1,packageId.length-1);
-  if ((packageId.indexOf("(")==0)&&(packageId.lastIndexOf(")")==packageId.length-1))
-    packageId = packageId.substring(1,packageId.length-1);
-
   if (!stickerId) stickerId='""';
-  if ((stickerId.indexOf('"')==0)&&(stickerId.lastIndexOf('"')==stickerId.length-1))
-    stickerId = stickerId.substring(1,stickerId.length-1);
-  if ((stickerId.indexOf("(")==0)&&(stickerId.lastIndexOf(")")==stickerId.length-1))
-    stickerId = stickerId.substring(1,stickerId.length-1);
   
-  var code = 'message='+text+'&stickerPackageId='+String(packageId)+'&stickerId='+String(stickerId);
+  var code = '"message="+String(' + text + ')+"&stickerPackageId="+String('+packageId+')+"&stickerId="+String('+stickerId+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -411,24 +395,10 @@ Blockly.Arduino['linenotify_image'] = function(block) {
   var previewImageUrl = Blockly.Arduino.valueToCode(block, 'value_previewImageUrl', Blockly.Arduino.ORDER_ATOMIC);  
   
   if (!text) text='" "';
-  if ((text.indexOf('"')==0)&&(text.lastIndexOf('"')==text.length-1))
-    text = text.substring(1,text.length-1);
-  if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))
-    text = text.substring(1,text.length-1);
-
   if (!originalContentUrl) originalContentUrl='""';
-  if ((originalContentUrl.indexOf('"')==0)&&(originalContentUrl.lastIndexOf('"')==originalContentUrl.length-1))
-    originalContentUrl = originalContentUrl.substring(1,originalContentUrl.length-1);
-  if ((originalContentUrl.indexOf("(")==0)&&(originalContentUrl.lastIndexOf(")")==originalContentUrl.length-1))
-    originalContentUrl = originalContentUrl.substring(1,originalContentUrl.length-1);
-
   if (!previewImageUrl) previewImageUrl='""';
-  if ((previewImageUrl.indexOf('"')==0)&&(previewImageUrl.lastIndexOf('"')==previewImageUrl.length-1))
-    previewImageUrl = previewImageUrl.substring(1,previewImageUrl.length-1);
-  if ((previewImageUrl.indexOf("(")==0)&&(previewImageUrl.lastIndexOf(")")==previewImageUrl.length-1))
-    previewImageUrl = previewImageUrl.substring(1,previewImageUrl.length-1);
   
-  var code = 'message='+text+'&imageThumbnail='+previewImageUrl+'&imageFullsize='+originalContentUrl;
+  var code = '"message="+String(' + text + ')+"&imageThumbnail="+String('+previewImageUrl + ')+"&imageFullsize="+String('+originalContentUrl+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
