@@ -203,6 +203,31 @@ Blockly.Blocks['customcode_instruction5'] = {
   }
 };
 
+Blockly.Blocks['customcode_instruction5_get'] = {
+  init: function() {
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg.FRANCE1_VARIABLE_SHOW);
+	  this.appendValueInput("instruction")
+		  .setCheck(null); 
+	  this.appendDummyInput()
+		  .appendField(".");
+	  this.appendDummyInput()    
+		  .appendField(new Blockly.FieldDropdown([
+			["toInt()","toInt()"],
+			["toDouble()","toDouble()"],	
+			["toFloat()","toFloat()"],
+			["toLowerCase()","toLowerCase()"],	
+			["toUpperCase()","toUpperCase()"],
+			["trim()","trim()"],	
+			["c_str()","c_str()"],
+			["length()","length()"]		  
+	  ]), "type");     
+	  this.setOutput(true, null);
+	  this.setInputsInline(true);
+	  this.setColour(20);
+  }
+};
+
 Blockly.Blocks['customcode_instruction6'] = {
   init: function() {
 	  this.appendDummyInput()    
