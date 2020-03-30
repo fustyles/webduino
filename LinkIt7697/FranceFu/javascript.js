@@ -51,7 +51,17 @@ Blockly.Arduino['customcode_comment'] = function(block) {
     text = text.substring(1,text.length-1);
   if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))
     text = text.substring(1,text.length-1);
-  var code = '//' + text.replace(/<br>/mg,"\n//") +'\n';
+  var code = '//' + text.replace(/<br>/mg,"\n//").replace(/\\\\n/mg,"\n//") +'\n';
+  return code;
+};
+
+Blockly.Arduino['customcode_comment_block'] = function(block) { 
+  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
+  if ((text.indexOf('"')==0)&&(text.lastIndexOf('"')==text.length-1))
+    text = text.substring(1,text.length-1);
+  if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))
+    text = text.substring(1,text.length-1);
+  var code = '/*\n  ' + text.replace(/<br>/mg,"\n  ").replace(/\\\\n/mg,"\n  ") +'\n*/\n';
   return code;
 };
 

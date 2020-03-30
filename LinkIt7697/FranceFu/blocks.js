@@ -97,6 +97,17 @@ Blockly.Blocks['customcode_comment'] = {
   }
 };
 
+Blockly.Blocks['customcode_comment_block'] = {
+  init: function() {
+    this.appendValueInput("text")
+        .setCheck("String")
+        .appendField(Blockly.Msg.FRANCE1_COMMENT_BLOCK_SHOW);     
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+  }
+};
+
 Blockly.Blocks['customcode_instruction1'] = {
   init: function() {
 	  this.appendValueInput("instruction")

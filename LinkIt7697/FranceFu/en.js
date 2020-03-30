@@ -2,6 +2,7 @@ Blockly.Msg.FRANCE1_CUSTOMCODE_SHOW = "Custom Code";
 Blockly.Msg.FRANCE1_CODE_SHOW = "Custom Code";
 Blockly.Msg.FRANCE1_VARIABLE_SHOW = "Custom Variable";
 Blockly.Msg.FRANCE1_COMMENT_SHOW = "Comment";
+Blockly.Msg.FRANCE1_COMMENT_BLOCK_SHOW = "Block Comment";
 Blockly.Msg.FRANCE1_HEAD_SHOW = "Custom Head";
 Blockly.Msg.FRANCE1_INSTRUCTION_SHOW = "Instruction";
 Blockly.Msg.FRANCE2_HEAD_HTTPS_SHOW = "TCP HTTPS";

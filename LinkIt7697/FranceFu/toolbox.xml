@@ -545,6 +545,13 @@
 		  </block>
 		</value>  
 	  </block> 
+	  <block type="customcode_comment_block">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">World Peace</field>
+		  </block>
+		</value>  
+	  </block>
 	  <block type="showcode">
 	  </block> 
   </category>  
