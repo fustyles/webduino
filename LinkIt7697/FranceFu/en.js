@@ -47,3 +47,6 @@ Blockly.Msg.SERVERMODULE_ANALOGREAD_SHOW = "AnalogRead";
 Blockly.Msg.MLX90614_SHOW = "Get MLX90614";
 Blockly.Msg.MLX90614_SCALE_SHOW = "Scale";
 Blockly.Msg.MLX90614_COMPENSATION_SHOW = "Compensation";
+Blockly.Msg.MLX90614_SCALE_CELCIUS_SHOW = "Celcius";
+Blockly.Msg.MLX90614_SCALE_FAHRENHEIT_SHOW = "Fahrenheit";
+Blockly.Msg.MLX90614_SCALE_KELVIN_SHOW = "Kelvin";

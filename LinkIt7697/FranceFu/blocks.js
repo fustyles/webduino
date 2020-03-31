@@ -947,9 +947,9 @@ Blockly.Blocks['MLX90614'] = {
         .appendField(Blockly.Msg.MLX90614_SCALE_SHOW);	
 	this.appendDummyInput()    
 		.appendField(new Blockly.FieldDropdown([
-		["Celcius","0"],
-		["Fahrenheit","1"],	
-		["Kelvin","2"]	  
+		[Blockly.Msg.MLX90614_SCALE_CELCIUS_SHOW,"0"],
+		[Blockly.Msg.MLX90614_SCALE_FAHRENHEIT_SHOW,"1"],	
+		[Blockly.Msg.MLX90614_SCALE_KELVIN_SHOW,"2"]	  
 		]), "scale");
 	this.appendDummyInput()    
 		.appendField(Blockly.Msg.MLX90614_COMPENSATION_SHOW);	
