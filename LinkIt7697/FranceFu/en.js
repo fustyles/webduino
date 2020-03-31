@@ -44,3 +44,6 @@ Blockly.Msg.SERVERMODULE_DIGITALWRITE_SHOW = "DigitalWrite";
 Blockly.Msg.SERVERMODULE_ANALOGWRITE_SHOW = "AnalogWrite";
 Blockly.Msg.SERVERMODULE_DIGITALREAD_SHOW = "DigitalRead";
 Blockly.Msg.SERVERMODULE_ANALOGREAD_SHOW = "AnalogRead";
+Blockly.Msg.MLX90614_SHOW = "Get MLX90614";
+Blockly.Msg.MLX90614_SCALE_SHOW = "Scale";
+Blockly.Msg.MLX90614_COMPENSATION_SHOW = "Compensation";

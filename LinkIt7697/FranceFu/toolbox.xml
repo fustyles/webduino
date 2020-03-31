@@ -867,4 +867,23 @@
 		</value>
 	  </block>
     </category>
+    <category id="france9" name="mlx90614">
+	  <block type="MLX90614">
+		<value name="sda">
+		  <block type="math_number">
+			<field name="NUM">9</field>
+		  </block>
+		</value> 
+		<value name="scl">
+		  <block type="math_number">
+			<field name="NUM">8</field>
+		  </block>
+		</value> 
+		<value name="compensation">
+		  <block type="math_number">
+			<field name="NUM">0.00</field>
+		  </block>
+		</value> 
+	  </block>
+    </category>
 </category>

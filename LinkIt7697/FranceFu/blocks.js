@@ -932,3 +932,31 @@ Blockly.Blocks['servermodule_pinread'] = {
     this.setColour(20);
   }
 };
+
+Blockly.Blocks['MLX90614'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.MLX90614_SHOW);
+    this.appendValueInput("sda")
+        .appendField("SDA")
+        .setCheck("Number");   
+    this.appendValueInput("scl")
+        .appendField("SCL")
+        .setCheck("Number"); 
+	this.appendDummyInput()    
+        .appendField(Blockly.Msg.MLX90614_SCALE_SHOW);	
+	this.appendDummyInput()    
+		.appendField(new Blockly.FieldDropdown([
+		["Celcius","0"],
+		["Fahrenheit","1"],	
+		["Kelvin","2"]	  
+		]), "scale");
+	this.appendDummyInput()    
+		.appendField(Blockly.Msg.MLX90614_COMPENSATION_SHOW);	
+    this.appendValueInput("compensation")
+        .setCheck("Number");	
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);
+  }
+};

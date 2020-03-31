@@ -1338,3 +1338,42 @@ Blockly.Arduino['servermodule_pinread'] = function (block) {
   var code = type + '(' + pin + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
+
+Blockly.Arduino['MLX90614'] = function(block) {
+  var sda = Blockly.Arduino.valueToCode(block, 'sda', Blockly.Arduino.ORDER_ATOMIC);
+  var scl = Blockly.Arduino.valueToCode(block, 'scl', Blockly.Arduino.ORDER_ATOMIC);
+  var scale = block.getFieldValue('scale');
+  var compensation = Blockly.Arduino.valueToCode(block, 'compensation', Blockly.Arduino.ORDER_ATOMIC);
+  console.log(scale);
+
+  Blockly.Arduino.definitions_['MLX90614_pin'] ='#include <SlowSoftI2CMaster.h>\nSlowSoftI2CMaster si = SlowSoftI2CMaster(' + sda + ', ' + scl + ', true);';
+  Blockly.Arduino.definitions_.getMLX90614 = '\n'+
+			'float getMLX90614(int scale, float compensation) {\n'+
+			'  int dev = 0x5A<<1;\n'+
+			'  int data_low = 0;\n'+
+			'  int data_high = 0;\n'+
+			'  int pec = 0;\n'+
+			'  si.i2c_start(dev+I2C_WRITE);\n'+
+			'  si.i2c_write(0x07);\n'+
+			'  si.i2c_rep_start(dev+I2C_READ);\n'+
+			'  data_low = si.i2c_read(false);\n'+
+			'  data_high = si.i2c_read(false);\n'+
+			'  pec = si.i2c_read(true);\n'+
+			'  si.i2c_stop();\n'+
+			'  double val = 0x0000;\n'+
+			'  val = (double)(((data_high & 0x007F) << 8) + data_low);\n'+
+			'  double myfactor = 0.02;\n'+
+			'  float kelvin = (val * myfactor)-0.01;\n'+
+			'  float celcius = kelvin - 273.15;\n'+
+			'  float fahrenheit = (celcius*1.8) + 32;\n'+
+ 			' if (scale==0)\n'+
+			'    return (celcius + compensation);\n'+
+			'  else if (scale==1)\n'+
+			'    return (fahrenheit + compensation);\n'+
+			'  else if (scale==2)\n'+
+			'    return (kelvin + compensation);\n'+
+			'}\n';
+	
+  code = 'getMLX90614(' + scale + ', ' + compensation + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
