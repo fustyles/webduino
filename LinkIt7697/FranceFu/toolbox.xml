@@ -371,6 +371,18 @@
 		  </block> 
 		</value>
 	  </block>
+	  <block type="thingspeak_field">
+	    <value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+		<value name="recordnumber">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value>
+	  </block>
   </category>	
   <category id="france2" name="tcp">
 	  <block type="tcp_https">

@@ -615,11 +615,40 @@ Blockly.Blocks['thingspeak_read3'] = {
 Blockly.Blocks['thingspeak_format'] = {
   init: function() {  
 	this.appendDummyInput()
-	  .appendField("ThingSpeak Json");
+	  .appendField("ThingSpeak Data to Json");
+	this.appendValueInput("text")
+	  .setCheck(null);
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(50);
+  }
+};
+
+Blockly.Blocks['thingspeak_field'] = {
+  init: function() {  
+	this.appendDummyInput()
+	  .appendField("Get ThingSpeak Json Data");
 	this.appendValueInput("text")
 	  .setCheck(null);
 	this.appendDummyInput()
-	  .appendField(" to CSV");	
+	  .appendField("RecordNumber");
+	this.appendValueInput("recordnumber")
+	  .setCheck("Number"); 
+	this.appendDummyInput()
+	  .appendField("FieldName");
+	this.appendDummyInput()    
+	  .appendField(new Blockly.FieldDropdown([
+		["created_at","created_at"],
+		["entry_id","entry_id"], 
+		["field1","field1"],
+		["field2","field2"],
+		["field3","field3"],
+		["field4","field4"],
+		["field5","field5"],
+		["field6","field6"],
+		["field7","field7"],
+		["field8","field8"]	
+		]), "fieldname"); 
 	this.setInputsInline(true);
     this.setOutput(true, null);  
     this.setColour(50);

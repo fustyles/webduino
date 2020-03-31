@@ -885,22 +885,51 @@ Blockly.Arduino['thingspeak_read3'] = function (block) {
 };
 
 Blockly.Arduino['thingspeak_format'] = function(block) { 
-  Blockly.Arduino.definitions_['transJSONtoCSV'] ='\n'+
-											'String transJSONtoCSV(String data) {\n'+
+  Blockly.Arduino.definitions_['ThingspeakJson'] ='\n'+
+											'String getThingspeakJson(String data) {\n'+
 											'  int s = data.indexOf("feeds");\n'+
 											'  int e = data.indexOf("}]}");\n'+
 											'  if ((s!=-1)&&(e!=-1))  {\n'+
-											'    String data_sub = data.substring(s+9,e);\n'+
-											'    data_sub.replace("\\":","\\",");\n'+
-											'    data_sub.replace("\\"","");\n'+
-											'    data_sub.replace("},{","\\n");\n'+
-											'    return data_sub;\n'+
+											'    String json = data.substring(s+9,e);\n'+
+											'    return "{"+json+"}";\n'+
 											'  }\n'+
 											'  else\n'+
 											'    return "";\n'+
 											'}\n';
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'transJSONtoCSV('+text+')';
+  var code = 'getThingspeakJson('+text+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['thingspeak_field'] = function(block) { 
+  Blockly.Arduino.definitions_['ThingspeakJson_library'] ='#include <ArduinoJson.h>';
+  Blockly.Arduino.definitions_['ThingspeakJson_field'] ='\n'+
+											'String getThingspeakField(String json, int recordNumber, String fieldName) {\n'+
+											'  String getRecord ="";\n'+
+											'  int s;\n'+
+											'  int e;\n'+
+											'  String data = json;\n'+
+											'  int fr=0;\n'+
+											'  for (int i=1;i<=100;i++) {\n'+
+ 											'    s = data.indexOf("{\\"created_at", fr);\n'+
+											'    e = data.indexOf("}", fr);\n'+
+											'    if ((s!=-1)&&(e!=-1)&&(i==recordNumber))  {\n'+
+											'      data = data.substring(s,e+1);\n'+
+											'      break;\n'+
+											'    }\n'+
+ 											'    else\n'+
+ 											'      fr = e+1;\n'+
+ 											'  }\n'+
+											'  DynamicJsonDocument doc(1024);\n'+
+											'  deserializeJson(doc, json);\n'+
+											'  JsonObject obj = doc.as<JsonObject>();\n'+
+											'  String res = obj[fieldName];\n'+
+											'  return res;\n'+
+											'}\n';
+  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
+  var recordnumber = Blockly.Arduino.valueToCode(block, 'recordnumber', Blockly.Arduino.ORDER_ATOMIC);
+  var fieldname = block.getFieldValue('fieldname');
+  var code = 'getThingspeakField('+text+', '+recordnumber+', "'+fieldname+'")';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
