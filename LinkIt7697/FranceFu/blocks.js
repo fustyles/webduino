@@ -966,14 +966,26 @@ Blockly.Blocks['MLX90614'] = {
   init: function() {
 	this.appendDummyInput()
         .appendField(Blockly.Msg.MLX90614_SHOW);
+	this.appendDummyInput()    
+		.appendField(new Blockly.FieldDropdown([
+		["MLX90615","MLX90615"],
+		["MLX90614","MLX90614"]  
+		]), "sensor");
     this.appendValueInput("sda")
         .appendField("SDA")
         .setCheck("Number");   
     this.appendValueInput("scl")
         .appendField("SCL")
-        .setCheck("Number"); 
+        .setCheck("Number");
 	this.appendDummyInput()    
-        .appendField(Blockly.Msg.MLX90614_SCALE_SHOW);	
+        .appendField(" ");		
+	this.appendDummyInput()    
+		.appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.MLX90614_KIND_OBJECT_SHOW,"object"],
+		[Blockly.Msg.MLX90614_KIND_AMBIENT_SHOW,"ambient"]  
+		]), "kind");
+	this.appendDummyInput()    
+        .appendField(Blockly.Msg.MLX90614_SCALE_SHOW);
 	this.appendDummyInput()    
 		.appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg.MLX90614_SCALE_CELCIUS_SHOW,"0"],

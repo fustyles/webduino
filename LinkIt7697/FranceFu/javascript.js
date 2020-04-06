@@ -1369,21 +1369,37 @@ Blockly.Arduino['servermodule_pinread'] = function (block) {
 };
 
 Blockly.Arduino['MLX90614'] = function(block) {
+  var sensor = block.getFieldValue('sensor');
+  var kind = block.getFieldValue('kind');
+  var addr, kindaddr;
+  if (sensor=="MLX90615") {
+      addr = "0x5B";
+	  if (kind=="ambient")
+		  kindaddr = "0x26";
+	  else if (kind=="object")
+		  kindaddr = "0x27";
+
+  } else if (sensor=="MLX90614") {
+      addr = "0x5A";
+	  if (kind=="ambient")
+		  kindaddr = "0x06";
+	  else if (kind=="object")
+		  kindaddr = "0x07";
+  }
   var sda = Blockly.Arduino.valueToCode(block, 'sda', Blockly.Arduino.ORDER_ATOMIC);
   var scl = Blockly.Arduino.valueToCode(block, 'scl', Blockly.Arduino.ORDER_ATOMIC);
   var scale = block.getFieldValue('scale');
   var compensation = Blockly.Arduino.valueToCode(block, 'compensation', Blockly.Arduino.ORDER_ATOMIC);
-  console.log(scale);
 
-  Blockly.Arduino.definitions_['MLX90614_pin'] ='#include <SlowSoftI2CMaster.h>\nSlowSoftI2CMaster si = SlowSoftI2CMaster(' + sda + ', ' + scl + ', true);';
-  Blockly.Arduino.definitions_.getMLX90614 = '\n'+
-			'float getMLX90614(int scale, float compensation) {\n'+
-			'  int dev = 0x5A<<1;\n'+
+  Blockly.Arduino.definitions_['MLX9061X_pin'] ='#include <SlowSoftI2CMaster.h>\nSlowSoftI2CMaster si = SlowSoftI2CMaster(' + sda + ', ' + scl + ', true);';
+  Blockly.Arduino.definitions_.getMLX9061X = '\n'+
+			'float getMLX9061X(int scale, float compensation) {\n'+
+			'  int dev = '+addr+'<<1;\n'+
 			'  int data_low = 0;\n'+
 			'  int data_high = 0;\n'+
 			'  int pec = 0;\n'+
 			'  si.i2c_start(dev+I2C_WRITE);\n'+
-			'  si.i2c_write(0x07);\n'+
+			'  si.i2c_write('+kindaddr+');\n'+
 			'  si.i2c_rep_start(dev+I2C_READ);\n'+
 			'  data_low = si.i2c_read(false);\n'+
 			'  data_high = si.i2c_read(false);\n'+
@@ -1403,6 +1419,6 @@ Blockly.Arduino['MLX90614'] = function(block) {
 			'    return (kelvin + compensation);\n'+
 			'}\n';
 	
-  code = 'getMLX90614(' + scale + ', ' + compensation + ')';
+  code = 'getMLX9061X(' + scale + ', ' + compensation + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
