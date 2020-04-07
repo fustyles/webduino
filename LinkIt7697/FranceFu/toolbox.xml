@@ -883,12 +883,12 @@
 	  <block type="MLX90614">
 		<value name="sda">
 		  <block type="math_number">
-			<field name="NUM">9</field>
+			<field name="NUM">2</field>
 		  </block>
 		</value> 
 		<value name="scl">
 		  <block type="math_number">
-			<field name="NUM">8</field>
+			<field name="NUM">3</field>
 		  </block>
 		</value> 
 		<value name="compensation">
