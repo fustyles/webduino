@@ -1375,16 +1375,16 @@ Blockly.Arduino['MLX90614'] = function(block) {
   if (sensor=="MLX90615") {
       addr = "0x5B";
 	  if (kind=="ambient")
-		  kindaddr = "0x26";
+		  obj = "0x26";
 	  else if (kind=="object")
-		  kindaddr = "0x27";
+		  obj = "0x27";
 
   } else if (sensor=="MLX90614") {
       addr = "0x5A";
 	  if (kind=="ambient")
-		  kindaddr = "0x06";
+		  obj = "0x06";
 	  else if (kind=="object")
-		  kindaddr = "0x07";
+		  obj = "0x07";
   }
   var sda = Blockly.Arduino.valueToCode(block, 'sda', Blockly.Arduino.ORDER_ATOMIC);
   var scl = Blockly.Arduino.valueToCode(block, 'scl', Blockly.Arduino.ORDER_ATOMIC);
@@ -1393,13 +1393,13 @@ Blockly.Arduino['MLX90614'] = function(block) {
 
   Blockly.Arduino.definitions_['MLX9061X_pin'] ='#include <SlowSoftI2CMaster.h>\nSlowSoftI2CMaster si = SlowSoftI2CMaster(' + sda + ', ' + scl + ', true);';
   Blockly.Arduino.definitions_.getMLX9061X = '\n'+
-			'float getMLX9061X(int scale, float compensation) {\n'+
-			'  int dev = '+addr+'<<1;\n'+
+			'float getMLX9061X(byte scale, float compensation, uint8_t addr ,uint8_t obj) {\n'+
+			'  int dev = addr<<1;\n'+
 			'  int data_low = 0;\n'+
 			'  int data_high = 0;\n'+
 			'  int pec = 0;\n'+
 			'  si.i2c_start(dev+I2C_WRITE);\n'+
-			'  si.i2c_write('+kindaddr+');\n'+
+			'  si.i2c_write(obj);\n'+
 			'  si.i2c_rep_start(dev+I2C_READ);\n'+
 			'  data_low = si.i2c_read(false);\n'+
 			'  data_high = si.i2c_read(false);\n'+
@@ -1419,6 +1419,6 @@ Blockly.Arduino['MLX90614'] = function(block) {
 			'    return (kelvin + compensation);\n'+
 			'}\n';
 	
-  code = 'getMLX9061X(' + scale + ', ' + compensation + ')';
+  code = 'getMLX9061X(' + scale + ', ' + compensation + ', ' + addr + ', ' + obj + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
