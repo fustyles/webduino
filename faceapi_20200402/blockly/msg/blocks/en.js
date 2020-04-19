@@ -1,0 +1,16 @@
+Blockly.Msg.FACEAPI_RECOGNITION_VIDEO_SHOW = "Face Recognition (face-api) Video Iintial";
+Blockly.Msg.FACEAPI_RECOGNITION_WIDTH_SHOW = "Width";
+Blockly.Msg.FACEAPI_RECOGNITION_HEIGHT_SHOW = "Height";
+Blockly.Msg.FACEAPI_RECOGNITION_RESULT_SHOW = "Show Result";
+Blockly.Msg.FACEAPI_RECOGNITION_TIMER_SHOW = "Show Image Time(s)";
+Blockly.Msg.FACEAPI_RECOGNITION_MODELPATH_SHOW = "Model Path";
+Blockly.Msg.FACEAPI_RECOGNITION_FACEIMAGEPATH_SHOW = "Face Images Path";
+Blockly.Msg.FACEAPI_RECOGNITION_FACELABEL_SHOW = "Face Labels";
+Blockly.Msg.FACEAPI_RECOGNITION_FACEIMAGECOUNT_SHOW = "Face Images Count";
+Blockly.Msg.FACEAPI_RECOGNITION_DISTANCE_SHOW = "Distance"; 
+Blockly.Msg.FACEAPI_RECOGNITION_DISTANCELIMIT_SHOW = "Distance Limit"; 
+Blockly.Msg.FACEAPI_RECOGNITION_DETECT_SHOW = "Face Recognition (face-api) Detect";
+Blockly.Msg.FACEAPI_RECOGNITION_NUMBER_SHOW = "Face Recognition (face-api) Number of Faces";
+Blockly.Msg.FACEAPI_RECOGNITION_GET_SHOW = "Face Recognition (face-api) Get FaceIndex ";
+Blockly.Msg.FACEAPI_RECOGNITION_NAME_SHOW = "Name";
+Blockly.Msg.FACEAPI_RECOGNITION_CLEAR_SHOW = "Face Recognition (face-api) Clear Result";

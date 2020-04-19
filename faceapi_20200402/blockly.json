@@ -1,0 +1,16 @@
+{
+  "types": ["faceapi_recognition_video", "faceapi_recognition_detect", "faceapi_recognition_number", "faceapi_recognition_get", "faceapi_recognition_clear"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "faceapi-recognition_video.js",
+    "faceapi-recognition.js",
+    "face-api.min.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
