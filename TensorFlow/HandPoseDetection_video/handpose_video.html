@@ -74,7 +74,6 @@ https://fustyles.github.io/webduino/TensorFlow/HandPoseDetection_video/handpose_
     context.scale(-1, 1);
     context.drawImage(video, 0, 0, video.width, video.height);
     context.setTransform(1, 0, 0, 1, 0, 0);
-	context.strokeStyle = "red";
     
     await Model.estimateHands(canvas).then(predictions => {
       result.innerHTML = "";
@@ -105,13 +104,13 @@ https://fustyles.github.io/webduino/TensorFlow/HandPoseDetection_video/handpose_
 
 function drawPoint(ctx, y, x, r) {
   ctx.beginPath();
+  ctx.fillStyle = "#00FFFF";
   ctx.arc(x, y, r, 0, 2 * Math.PI);
   ctx.fill();
 }
 
 function drawKeypoints(ctx, keypoints) {
   const keypointsArray = keypoints;
-
   for (let i = 0; i < keypointsArray.length; i++) {
     const y = keypointsArray[i][0];
     const x = keypointsArray[i][1];
@@ -127,6 +126,7 @@ function drawKeypoints(ctx, keypoints) {
 }
 
 function drawPath(ctx, points, closePath) {
+  ctx.strokeStyle = "red";
   const region = new Path2D();
   region.moveTo(points[0][0], points[0][1]);
   for (let i = 1; i < points.length; i++) {
