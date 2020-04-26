@@ -7,7 +7,7 @@ https://fustyles.github.io/webduino/TensorFlow/FacemeshDetection_video/facemesh_
 -->
 <!DOCTYPE html>
 <head>
-  <title>Handpose Detection (Camera)</title>
+  <title>Facemesh Detection (Camera)</title>
   <meta charset="utf-8">
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -81,10 +81,9 @@ https://fustyles.github.io/webduino/TensorFlow/FacemeshDetection_video/facemesh_
 					result.innerHTML += part[j]+","+i+","+annotations[part[j]][i][0]+","+annotations[part[j]][i][1]+","+annotations[part[j]][i][2]+","+boundingBox.topLeft[0][0]+","+boundingBox.topLeft[0][1]+","+boundingBox.bottomRight[0][0]+","+boundingBox.bottomRight[0][1]+"<br>";
 				  }
 			  }
+			  const res = predictions[k].scaledMesh;
+			  drawKeypoints(context, res, predictions[k].annotations);
 			}
-
-		  const res = predictions[0].scaledMesh;
-		  drawKeypoints(context, res, predictions[0].annotations);
 		}
 
       setTimeout(function(){DetectVideo(); }, 100);
