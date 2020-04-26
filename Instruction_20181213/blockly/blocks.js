@@ -5,7 +5,7 @@ Blockly.Blocks['cmd1'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(70);
+  this.setColour(90);
   }
 };
 
@@ -22,7 +22,7 @@ Blockly.Blocks['cmd2'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(70);
+  this.setColour(90);
   }
 };
 
@@ -43,7 +43,7 @@ Blockly.Blocks['cmd3'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(70);
+  this.setColour(90);
   }
 };
 
@@ -68,7 +68,7 @@ Blockly.Blocks['cmd4'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(50);
+  this.setColour(90);
   }
 };
 
@@ -89,7 +89,7 @@ Blockly.Blocks['cmd5'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(70);
+  this.setColour(90);
   }
 };
 
@@ -258,7 +258,7 @@ Blockly.Blocks['cmd9'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(70);
+  this.setColour(90);
   }
 };
 
@@ -277,7 +277,7 @@ Blockly.Blocks['cmd10'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(70);
+  this.setColour(90);
   }
 };
 
@@ -306,7 +306,7 @@ Blockly.Blocks['cmd11'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(70);
+  this.setColour(90);
   }
 };
 
@@ -329,7 +329,7 @@ Blockly.Blocks['cmd12'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(70);
+  this.setColour(90);
   }
 };
 
@@ -343,7 +343,7 @@ Blockly.Blocks['cmd13'] = {
   this.setNextStatement(true);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(80);
+  this.setColour(110);
   }
 };
 
@@ -361,7 +361,7 @@ Blockly.Blocks['cmd14'] = {
   this.setNextStatement(true);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(80);
+  this.setColour(110);
   }
 };
 
@@ -375,7 +375,7 @@ Blockly.Blocks['cmd15'] = {
   this.setNextStatement(true);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(80);
+  this.setColour(110);
   }
 };
 
