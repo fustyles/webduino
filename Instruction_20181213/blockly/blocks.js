@@ -1,20 +1,18 @@
 Blockly.Blocks['cmd1'] = {
   init: function() {
   this.appendValueInput("cmd1_0")
-      .setCheck("String")
-      .appendField("Get ");    
+      .setCheck("String");    
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(20);
+  this.setColour(70);
   }
 };
 
 Blockly.Blocks['cmd2'] = {
   init: function() {
   this.appendValueInput("cmd2_0")
-      .setCheck("String")
-      .appendField("Get ");   
+      .setCheck("String");   
   this.appendDummyInput()
       .appendField("( ");      
   this.appendValueInput("cmd2_1")
@@ -24,15 +22,14 @@ Blockly.Blocks['cmd2'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(20);
+  this.setColour(70);
   }
 };
 
 Blockly.Blocks['cmd3'] = {
   init: function() {
   this.appendValueInput("cmd3_0")
-      .setCheck("String")
-      .appendField("Get ");
+      .setCheck("String");
   this.appendDummyInput()
       .appendField("( ");    
   this.appendValueInput("cmd3_1")
@@ -46,14 +43,12 @@ Blockly.Blocks['cmd3'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(20);
+  this.setColour(70);
   }
 };
 
 Blockly.Blocks['cmd4'] = {
   init: function() {
-  this.appendDummyInput()
-      .appendField("Get ");
   this.appendValueInput("myVar")
       .setCheck(null); 
   this.appendDummyInput()
@@ -73,14 +68,12 @@ Blockly.Blocks['cmd4'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(20);
+  this.setColour(50);
   }
 };
 
 Blockly.Blocks['cmd5'] = {
   init: function() {
-  this.appendDummyInput()
-      .appendField("Get ");
   this.appendValueInput("myVar")
       .setCheck(null);  
   this.appendDummyInput()
@@ -96,7 +89,7 @@ Blockly.Blocks['cmd5'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(20);
+  this.setColour(70);
   }
 };
 
@@ -256,8 +249,6 @@ Blockly.Blocks['cmd8'] = {
 
 Blockly.Blocks['cmd9'] = {
   init: function() {
-  this.appendDummyInput()
-      .appendField("Get ");
   this.appendValueInput("myVar")
       .setCheck(null);  
   this.appendDummyInput()
@@ -267,14 +258,14 @@ Blockly.Blocks['cmd9'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(20);
+  this.setColour(70);
   }
 };
 
 Blockly.Blocks['cmd10'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField("Get  Array");
+      .appendField("Array");
   this.appendValueInput("myVar")
       .setCheck(null);  
   this.appendDummyInput()
@@ -286,14 +277,12 @@ Blockly.Blocks['cmd10'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(20);
+  this.setColour(70);
   }
 };
 
 Blockly.Blocks['cmd11'] = {
   init: function() {
-  this.appendDummyInput()
-      .appendField("Get ");
   this.appendValueInput("myVar")
       .setCheck(null); 
   this.appendDummyInput()
@@ -317,14 +306,14 @@ Blockly.Blocks['cmd11'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(20);
+  this.setColour(70);
   }
 };
 
 Blockly.Blocks['cmd12'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField("Get  Array");
+      .appendField("Array");
   this.appendValueInput("myVar")
       .setCheck(null);  
   this.appendDummyInput()
@@ -340,7 +329,7 @@ Blockly.Blocks['cmd12'] = {
   this.setOutput(true, null);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(20);
+  this.setColour(70);
   }
 };
 
@@ -354,7 +343,7 @@ Blockly.Blocks['cmd13'] = {
   this.setNextStatement(true);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(75);
+  this.setColour(80);
   }
 };
 
@@ -372,7 +361,7 @@ Blockly.Blocks['cmd14'] = {
   this.setNextStatement(true);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(75);
+  this.setColour(80);
   }
 };
 
@@ -386,7 +375,7 @@ Blockly.Blocks['cmd15'] = {
   this.setNextStatement(true);
   this.setInputsInline(true);
   this.setTooltip('');
-  this.setColour(75);
+  this.setColour(80);
   }
 };
 
