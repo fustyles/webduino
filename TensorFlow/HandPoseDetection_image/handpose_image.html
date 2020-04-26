@@ -40,6 +40,7 @@ var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");  
 var result = document.getElementById('result');
 var Model;
+var lastValue = -1;
 
 function HandDetect() {
 	handpose.load().then(function(net) {
@@ -149,13 +150,20 @@ function drawKeypoints(ctx, keypoints) {
 }
 
 function drawPath(ctx, points, closePath) {
-  ctx.strokeStyle = "red";
+  if (lastValue==-1||lastValue!=points[0][0]) {
+    ctx.strokeStyle = "#2828FF";
+  } else {
+    ctx.strokeStyle = "#00DB00";
+  }
+
   const region = new Path2D();
   region.moveTo(points[0][0], points[0][1]);
   for (let i = 1; i < points.length; i++) {
     const point = points[i];
     region.lineTo(point[0], point[1]);
   }
+
+  lastValue=points[0][0];
 
   if (closePath) {
     region.closePath();

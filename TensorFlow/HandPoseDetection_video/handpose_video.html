@@ -35,6 +35,7 @@ let fingerLookupIndices = {
   var context = canvas.getContext('2d');
   var result = document.getElementById('result');
   let Model; 
+  var lastValue = -1;
   
   HandDetect();
   
@@ -91,7 +92,7 @@ let fingerLookupIndices = {
 				if (i>=9&&i<=12) part="middleFinger";
 				if (i>=13&&i<=16) part="ringFinger";
 				if (i>=17&&i<=20) part="pinky";
-				result.innerHTML += part + "["+i+"] "+keypoints[i][0]+","+keypoints[i][1]+","+keypoints[i][2]+"<br>";
+				result.innerHTML += i+","+part+","+keypoints[i][0]+","+keypoints[i][1]+","+keypoints[i][2]+"<br>";
 			  }
 			}
 
@@ -105,7 +106,7 @@ let fingerLookupIndices = {
 
 function drawPoint(ctx, y, x, r) {
   ctx.beginPath();
-  ctx.fillStyle = "#00FFFF";
+  ctx.fillStyle = "red";
   ctx.arc(x, y, r, 0, 2 * Math.PI);
   ctx.fill();
 }
@@ -127,13 +128,20 @@ function drawKeypoints(ctx, keypoints) {
 }
 
 function drawPath(ctx, points, closePath) {
-  ctx.strokeStyle = "red";
+  if (lastValue==-1||lastValue!=points[0][0]) {
+    ctx.strokeStyle = "#2828FF";
+  } else {
+    ctx.strokeStyle = "#00DB00";
+  }
+
   const region = new Path2D();
   region.moveTo(points[0][0], points[0][1]);
   for (let i = 1; i < points.length; i++) {
     const point = points[i];
     region.lineTo(point[0], point[1]);
   }
+
+  lastValue=points[0][0];
 
   if (closePath) {
     region.closePath();
