@@ -1,9 +1,9 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/4/20 23:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/8/18 06:00
 https://www.facebook.com/francefu
 
 Try it!
-https://fustyles.github.io/webduino/TensorFlow/HandPoseDetection_video/handpose_video.html
+https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection_video.html
 -->
 <!DOCTYPE html>
 <head>
@@ -11,8 +11,9 @@ https://fustyles.github.io/webduino/TensorFlow/HandPoseDetection_video/handpose_
   <meta charset="utf-8">
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>
 </head>
 <body>
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
@@ -21,13 +22,13 @@ https://fustyles.github.io/webduino/TensorFlow/HandPoseDetection_video/handpose_
 <div id="result" style="color:red">Please wait for loading model.</div>
   
 <script>
-  let fingerLookupIndices = {
-    thumb: [0, 1, 2, 3, 4],
-    indexFinger: [0, 5, 6, 7, 8],
-    middleFinger: [0, 9, 10, 11, 12],
-    ringFinger: [0, 13, 14, 15, 16],
-    pinky: [0, 17, 18, 19, 20]
-  }; // for rendering each finger as a polyline
+let fingerLookupIndices = {
+  thumb: [0, 1, 2, 3, 4],
+  indexFinger: [0, 5, 6, 7, 8],
+  middleFinger: [0, 9, 10, 11, 12],
+  ringFinger: [0, 13, 14, 15, 16],
+  pinky: [0, 17, 18, 19, 20]
+};
   
   var video = document.getElementById('video');
   var canvas = document.getElementById('canvas'); 
