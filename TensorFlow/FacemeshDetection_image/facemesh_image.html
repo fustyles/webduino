@@ -33,7 +33,7 @@ var context = canvas.getContext("2d");
 var result = document.getElementById('result');
 var Model;
 
-function HandDetect() {
+function FaceMeshDetect() {
 	facemesh.load().then(function(net) {
 		Model = net
 		result.innerHTML = "Please select one image.";
@@ -110,7 +110,7 @@ document.getElementById('ShowImage').onload = function (event) {
   if (Model) DetectImage();
 }
   
-window.onload = function () { HandDetect(); }
+window.onload = function () { FaceMeshDetect(); }
 
 function drawPoint(ctx, y, x, r) {
   ctx.beginPath();
