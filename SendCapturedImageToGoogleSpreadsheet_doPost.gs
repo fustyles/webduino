@@ -1,5 +1,5 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/5/11 22:00
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/5/11 22:30
   https://www.facebook.com/francefu
 */
 
@@ -16,9 +16,13 @@ function doPost(e) {
   
   var ss = SpreadsheetApp.openByUrl('https://docs.google.com'+mySpreadsheet)
   ss.getActiveSheet().setHiddenGridlines(true);
+  
   var sheet = ss.getSheets()[0];
-  var images = sheet.getImages();
-  images.map(function(img){img.remove();});
   sheet.insertImage(blob, 1, 1);
+
+  var images = sheet.getImages();
+  if (images.length>2) {  
+    images[0].remove();
+  }
   return  ContentService.createTextOutput("ok");
 }
