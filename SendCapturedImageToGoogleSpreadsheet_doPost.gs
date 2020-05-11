@@ -1,7 +1,8 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/5/11 21:30
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/5/11 22:00
   https://www.facebook.com/francefu
 */
+
 
 function doPost(e) {
   var myFile = e.parameter.myFile;
@@ -14,6 +15,7 @@ function doPost(e) {
   var blob = Utilities.newBlob(data, contentType, myFilename);
   
   var ss = SpreadsheetApp.openByUrl('https://docs.google.com'+mySpreadsheet)
+  ss.getActiveSheet().setHiddenGridlines(true);
   var sheet = ss.getSheets()[0];
   var images = sheet.getImages();
   images.map(function(img){img.remove();});
