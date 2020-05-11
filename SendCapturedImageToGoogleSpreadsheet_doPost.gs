@@ -13,7 +13,7 @@ function doPost(e) {
   data = Utilities.base64Decode(data);
   var blob = Utilities.newBlob(data, contentType, myFilename);
   
-  var ss = SpreadsheetApp.openByUrl('https://docs.google.com/spreadsheets/d/1lndl5x1CpTASVXe8Q5hPp8lj2CNRklMkcr9HQDat8As/edit?usp=sharing')
+  var ss = SpreadsheetApp.openByUrl('https://docs.google.com/spreadsheets/d/*******************************/edit?usp=sharing')
   var sheet = ss.getSheets()[0];
   var images = sheet.getImages();
   images.map(function(img){img.remove();});
