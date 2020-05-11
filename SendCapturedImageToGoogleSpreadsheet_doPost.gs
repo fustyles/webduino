@@ -3,7 +3,6 @@
   https://www.facebook.com/francefu
 */
 
-
 function doPost(e) {
   var myFile = e.parameter.myFile;
   var myFilename = Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss")+"-"+e.parameter.myFilename;
