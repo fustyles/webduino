@@ -1,0 +1,52 @@
+﻿<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta http-equiv="Access-Control-Allow-Headers" content="Origin, X-Requested-With, Content-Type, Accept">
+        <meta http-equiv="Access-Control-Allow-Methods" content="GET,POST,PUT,DELETE,OPTIONS">
+        <meta http-equiv="Access-Control-Allow-Origin" content="*">
+        <title>Webbit MQTT</title>
+        <script src="http://blocklypro.webduino.io/components/jquery/dist/jquery.min.js"></script>
+        <script src="http://blocklypro.webduino.io/dist/lib/webduino-all-0.4.20.min.js"></script>
+        <script src="http://blocklypro.webduino.io/dist/webduino-blockly.min.js"></script>
+        <script src="http://blocklypro.webduino.io/dist/lib/firebase.min.js"></script>
+        <script src="http://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>
+        <script src="http://blocklypro.webduino.io/node_modules/webduino-module-mqtt/mqttClient.min.js"></script>
+    </head>
+    <body>
+
+    <script>
+      
+    </script>
+    Topic:<input type="text" id="topic"><br>
+    <input type="text" id="mqtt"><input type="checkbox" id="chk" style="display:none"><input type="button" value="send" onclick="document.getElementById('chk').checked=true;">
+
+    <script>
+      (async function () {      
+        if (!webduinoBroadcastor) {
+          var webduinoBroadcastor = new webduino.module.mqttClient();
+          await webduinoBroadcastor.connect({ server: 'wss://mqtt1.webduino.io/mqtt' });
+        }
+        var message = "";
+        var message_last = "";
+        var topic = "";
+        setInterval(async function () {
+          topic = document.getElementById('topic').value;
+          message = document.getElementById('mqtt').value;
+          if (document.getElementById('chk').checked==true&&message!="") {
+            document.getElementById('mqtt').value="";
+            if (message==message_last) return;
+            message_last=message;
+            if (webduinoBroadcastor) {
+              //console.log(message);
+              document.getElementById('chk').checked=false;
+              webduinoBroadcastor.send({topic: topic, message: message});
+            }
+          }
+        }, 100);
+      }());
+    </script>      
+
+    </body>
+</html>
