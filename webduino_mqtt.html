@@ -30,18 +30,18 @@
         }
         var message = "";
         var message_last = "";
-        var topic = "";
+        var Topic = "";
         setInterval(async function () {
-          topic = document.getElementById('topic').value;
+          Topic = document.getElementById('topic').value;
           message = document.getElementById('mqtt').value;
-          if (document.getElementById('chk').checked==true&&message!="") {
+          if (document.getElementById('chk').checked==true&&Topic!=""&&message!="") {
             document.getElementById('mqtt').value="";
             if (message==message_last) return;
             message_last=message;
             if (webduinoBroadcastor) {
               //console.log(message);
               document.getElementById('chk').checked=false;
-              webduinoBroadcastor.send({topic: topic, message: message});
+              webduinoBroadcastor.send({topic: Topic, message: message});
             }
           }
         }, 100);
