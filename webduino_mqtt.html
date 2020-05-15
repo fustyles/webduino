@@ -44,8 +44,8 @@
           msg = document.getElementById('mqtt').value;
           if (sendTopic==""||msg=="") return;
           if (document.getElementById('chkSend').checked==true) {
-            document.getElementById('mqtt').value="";
             if (webduinoBroadcastor) {
+              document.getElementById('mqtt').value="";
               document.getElementById('chkSend').checked=false;
               webduinoBroadcastor.send({topic: sendTopic, message: msg});
             }
