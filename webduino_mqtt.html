@@ -38,7 +38,6 @@
           await webduinoBroadcastor.connect({ server: 'wss://mqtt1.webduino.io/mqtt' });
         }
         var msg = "";
-        var msg_last = "";
         var sendTopic = "";
         setInterval(async function () {
           sendTopic = document.getElementById('sendTopic').value;
@@ -46,8 +45,6 @@
           msg = document.getElementById('mqtt').value;
           if (document.getElementById('chkSend').checked==true&&msg!="") {
             document.getElementById('mqtt').value="";
-            if (msg==msg_last) return;
-            msg_last=msg;
             if (webduinoBroadcastor) {
               document.getElementById('chkSend').checked=false;
               webduinoBroadcastor.send({topic: sendTopic, message: msg});
