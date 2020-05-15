@@ -55,7 +55,7 @@
           getTopic = document.getElementById('getTopic').value;
           if (getTopic=="") return;
           await webduinoBroadcastor.onMessage(getTopic, async (message) => {
-            console.log(message);
+            //console.log(message);
             document.getElementById('receive').innerHTML = message;
           });
         }, 100);        
