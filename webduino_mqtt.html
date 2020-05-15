@@ -44,7 +44,7 @@
           sendTopic = document.getElementById('sendTopic').value;
           if (sendTopic=="") return;
           msg = document.getElementById('mqtt').value;
-          if (document.getElementById('chkSend').checked==true&&sendTopic!=""&&msg!="") {
+          if (document.getElementById('chkSend').checked==true&&msg!="") {
             document.getElementById('mqtt').value="";
             if (msg==msg_last) return;
             msg_last=msg;
