@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -19,8 +19,17 @@
     <script>
       
     </script>
-    Topic:<input type="text" id="topic"><br>
-    <input type="text" id="mqtt"><input type="checkbox" id="chk" style="display:none"><input type="button" value="send" onclick="document.getElementById('chk').checked=true;">
+    Send Topic:
+    <input type="text" id="sendTopic" value="myGet">
+    <br>
+    <input type="text" id="mqtt">
+    <input type="checkbox" id="chkSend" style="display:none">
+    <input type="button" value="send" onclick="document.getElementById('chkSend').checked=true;">
+    <br>
+    Get Topic:
+    <input type="text" id="getTopic" value="mySend">
+    <br>
+    <div id="receive" style="color:red;"></div>
 
     <script>
       (async function () {      
@@ -28,25 +37,30 @@
           var webduinoBroadcastor = new webduino.module.mqttClient();
           await webduinoBroadcastor.connect({ server: 'wss://mqtt1.webduino.io/mqtt' });
         }
-        var message = "";
-        var message_last = "";
-        var Topic = "";
+        var msg = "";
+        var msg_last = "";
+        var sendTopic = "";
         setInterval(async function () {
-          Topic = document.getElementById('topic').value;
-          message = document.getElementById('mqtt').value;
-          if (document.getElementById('chk').checked==true&&Topic!=""&&message!="") {
+          sendTopic = document.getElementById('sendTopic').value;
+          msg = document.getElementById('mqtt').value;
+          if (document.getElementById('chkSend').checked==true&&sendTopic!=""&&msg!="") {
             document.getElementById('mqtt').value="";
-            if (message==message_last) return;
-            message_last=message;
+            if (msg==msg_last) return;
+            msg_last=msg;
             if (webduinoBroadcastor) {
-              //console.log(message);
-              document.getElementById('chk').checked=false;
-              webduinoBroadcastor.send({topic: Topic, message: message});
+              document.getElementById('chkSend').checked=false;
+              webduinoBroadcastor.send({topic: sendTopic, message: msg});
             }
           }
         }, 100);
+        setInterval(async function () {
+          getTopic = document.getElementById('getTopic').value;
+          await webduinoBroadcastor.onMessage(getTopic, async (message) => {
+            console.log(message);
+            document.getElementById('receive').innerHTML = message;
+          });
+        }, 100);        
       }());
     </script>      
-
     </body>
 </html>
