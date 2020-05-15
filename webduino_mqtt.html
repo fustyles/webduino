@@ -41,9 +41,9 @@
         var sendTopic = "";
         setInterval(async function () {
           sendTopic = document.getElementById('sendTopic').value;
-          if (sendTopic=="") return;
           msg = document.getElementById('mqtt').value;
-          if (document.getElementById('chkSend').checked==true&&msg!="") {
+          if (sendTopic==""||msg=="") return;
+          if (document.getElementById('chkSend').checked==true) {
             document.getElementById('mqtt').value="";
             if (webduinoBroadcastor) {
               document.getElementById('chkSend').checked=false;
