@@ -13,21 +13,40 @@
         <script src="https://blocklypro.webduino.io/dist/lib/firebase.min.js"></script>
         <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js"></script>
         <script src="https://blocklypro.webduino.io/node_modules/webduino-module-mqtt/mqttClient.min.js"></script>
+        <style>
+          input[type="button"]{
+            padding:1px 1px;
+            border:1px black solid;
+            cursor:pointer;
+            -webkit-border-radius: 5px;
+            border-radius: 3px; 
+          }
+          input[type="text"]{
+            border:1px black solid;
+            border-radius: 3px; 
+          }          
+        </style>
     </head>
     <body>
     <font color="green" size="6">Webduino MQTT</font>
     <br>
-    Send-Topic:
-    <input type="text" id="sendTopic">
-    <br>
-    <input type="text" id="mqtt">
-    <input type="button" value="send" onclick="sendMessage();">
-    <br>
-    <br>
-    Get-Topic:
-    <input type="text" id="getTopic">
-    <br>
+    <table>
+      <tr><td>Send-Topic:</td><td><input type="text" id="sendTopic"></td></tr>
+      <tr><td>Message:</td><td><input type="text" id="mqtt"></td></tr>
+      <tr><td></td><td><input type="button" value="send" onclick="sendMessage();"></td></tr> 
+      <tr><td></td><td></td></tr>            
+      <tr><td>Get-Topic:</td><td><input type="text" id="getTopic"></td></tr>          
+    </table>
     <div id="receive" style="color:red;"></div>
+    <br>
+    
+    
+    <br>
+    <br>
+    
+    
+    <br>
+    
 
     <script>
       var webduinoBroadcastor;    
