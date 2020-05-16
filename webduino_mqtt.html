@@ -26,7 +26,7 @@
     <br><br>
     <table>
       <tr><td>Send-Topic:</td><td><input type="text" id="sendTopic"></td></tr>
-      <tr><td>Message:</td><td><input type="text" id="mqtt"></td></tr>
+      <tr><td>Message:</td><td><input type="text" id="msg"></td></tr>
       <tr><td></td><td><input type="button" value="send" onclick="sendMessage();"></td></tr> 
       <tr><td></td><td></td></tr>            
       <tr><td>Get-Topic:</td><td><input type="text" id="getTopic"></td></tr>  
@@ -49,9 +49,9 @@
         }
         document.getElementById('receive').innerHTML = "";
         var sendTopic = document.getElementById('sendTopic').value;
-        var msg = document.getElementById('mqtt').value;
+        var msg = document.getElementById('msg').value;
         if (sendTopic==""||msg=="") return; 
-        document.getElementById('mqtt').value="";
+        document.getElementById('msg').value="";
         if (webduinoBroadcastor) {
           webduinoBroadcastor.send({topic: sendTopic, message: msg});
         }
