@@ -26,7 +26,7 @@
     <br><br>
     <table>
       <tr><td>Send-Topic:</td><td><input type="text" id="sendTopic"></td></tr>
-      <tr><td>Message:</td><td><input type="text" id="msg"></td></tr>
+      <tr><td>Message:</td><td><input type="text" id="message"></td></tr>
       <tr><td></td><td><input type="button" value="send" onclick="sendMessage();"></td></tr> 
       <tr><td></td><td></td></tr>            
       <tr><td>Get-Topic:</td><td><input type="text" id="getTopic"></td></tr>  
@@ -34,7 +34,12 @@
     </table>
     <div id="receive" style="color:red;"></div>
     <script>
-      var webduinoBroadcastor;    
+      var webduinoBroadcastor;
+      var sendTopic = document.getElementById('sendTopic');
+      var message = document.getElementById('message');
+      var getTopic = document.getElementById('getTopic');
+      var receive = document.getElementById('receive');
+
       (async function () {      
         if (!webduinoBroadcastor) {
           webduinoBroadcastor = new webduino.module.mqttClient();
@@ -44,29 +49,29 @@
 
       async function sendMessage() {
         if (!webduinoBroadcastor) {
-          document.getElementById('receive').innerHTML = "Connected to server failed.";
+          receive.innerHTML = "Connected to server failed.";
           return;
         }
-        document.getElementById('receive').innerHTML = "";
-        var sendTopic = document.getElementById('sendTopic').value;
-        var msg = document.getElementById('msg').value;
-        if (sendTopic==""||msg=="") return; 
-        document.getElementById('msg').value="";
+        receive.innerHTML = "";
+        if (sendTopic.value==""||message.value=="") return; 
+        var topic = sendTopic.value;
+        var msg = message.value;
+        message.value="";
         if (webduinoBroadcastor) {
-          webduinoBroadcastor.send({topic: sendTopic, message: msg});
+          webduinoBroadcastor.send({topic: topic, message: msg});
         }
       }  
       
       setInterval(async function () {
         if (!webduinoBroadcastor) {
-          document.getElementById('receive').innerHTML = "Connected to server failed.";
+          receive.innerHTML = "Connected to server failed.";
           return;
         }        
-        var getTopic = document.getElementById('getTopic').value;
-        if (getTopic=="") return;
-        await webduinoBroadcastor.onMessage(getTopic, async (message) => {
+        if (getTopic.value=="") return;
+        var topic = getTopic.value;
+        await webduinoBroadcastor.onMessage(topic, async (message) => {
           //console.log(message);
-          document.getElementById('receive').innerHTML = message;
+          receive.innerHTML = message;
         });
       }, 100);        
     </script>      
