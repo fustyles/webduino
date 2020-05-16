@@ -34,12 +34,16 @@
       (async function () {      
         if (!webduinoBroadcastor) {
           webduinoBroadcastor = new webduino.module.mqttClient();
-          await webduinoBroadcastor.connect({ server: 'wss://mqtt1.webduino.io/mqtt' });
+          await webduinoBroadcastor.connect({ server: 'wss://mqtt1.webduino.io/mqtt' });  
         }
-      
       }());
 
       async function sendMessage() {
+        if (!webduinoBroadcastor) {
+          document.getElementById('receive').innerHTML = "Connected to server failed.";
+          return;
+        }
+        document.getElementById('receive').innerHTML = "";
         var sendTopic = document.getElementById('sendTopic').value;
         var msg = document.getElementById('mqtt').value;
         if (sendTopic==""||msg=="") return; 
