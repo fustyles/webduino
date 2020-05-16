@@ -48,31 +48,26 @@
       }());
 
       async function sendMessage() {
-        if (!webduinoBroadcastor) {
-          receive.innerHTML = "Connected to server failed.";
-          return;
-        }
         receive.innerHTML = "";
         if (sendTopic.value==""||message.value=="") return; 
-        var topic = sendTopic.value;
-        var msg = message.value;
-        message.value="";
         if (webduinoBroadcastor) {
-          webduinoBroadcastor.send({topic: topic, message: msg});
+          webduinoBroadcastor.send({topic: sendTopic.value, message: message.value});
+          message.value="";
+        } else {
+          receive.innerHTML = "Connected to server failed.";
         }
       }  
       
-      setInterval(async function () {
-        if (!webduinoBroadcastor) {
-          receive.innerHTML = "Connected to server failed.";
-          return;
-        }        
+      setInterval(async function () {       
         if (getTopic.value=="") return;
-        var topic = getTopic.value;
-        await webduinoBroadcastor.onMessage(topic, async (message) => {
-          //console.log(message);
-          receive.innerHTML = message;
-        });
+        if (webduinoBroadcastor) {        
+          await webduinoBroadcastor.onMessage(getTopic.value, async (message) => {
+            //console.log(message);
+            receive.innerHTML = message;
+          });
+        } else {
+          receive.innerHTML = "Connected to server failed.";
+        }          
       }, 100);        
     </script>      
     </body>
