@@ -49,9 +49,8 @@
 
       async function sendMessage() {
         if (sendTopic.value==""||message.value=="") {
-          if (clear.checked) {
+          if (clear.checked)
             receive.innerHTML = "Please input Send-Topic and Message.";
-          }
           else
             receive.innerHTML = "Please input Send-Topic and Message." + "<br>" + receive.innerHTML;  
           return; 
