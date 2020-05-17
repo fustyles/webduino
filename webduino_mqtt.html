@@ -30,7 +30,7 @@
       <tr><td></td><td><input type="button" value="send" onclick="sendMessage();"></td></tr> 
       <tr><td></td><td></td></tr>            
       <tr><td>Get-Topic:</td><td><input type="text" id="getTopic"></td></tr>  
-      <tr><td>Message:</td><td></td></tr>              
+      <tr><td>Message:</td><td><input type="checkbox" id="clear" checked>Clear last message</td></tr>              
     </table>
     <div id="receive" style="color:red;"></div>
     <script>
@@ -38,7 +38,7 @@
       var sendTopic = document.getElementById('sendTopic');
       var message = document.getElementById('message');
       var getTopic = document.getElementById('getTopic');
-      var receive = document.getElementById('receive');
+      var clear = document.getElementById('clear');
 
       (async function () {      
         if (!webduinoBroadcastor) {
@@ -52,7 +52,7 @@
           receive.innerHTML = "Please input Send-Topic and Message.";
           return; 
         }
-        receive.innerHTML = "";
+        if (clear.checked) receive.innerHTML = "";
         if (webduinoBroadcastor) {
           webduinoBroadcastor.send({topic: sendTopic.value, message: message.value});
           message.value="";
@@ -68,7 +68,10 @@
         if (webduinoBroadcastor) {        
           await webduinoBroadcastor.onMessage(getTopic.value, async (message) => {
             //console.log(message);
-            receive.innerHTML = message;
+            if (clear.checked) 
+              receive.innerHTML = message;
+            else
+              receive.innerHTML = message + "<br>" + receive.innerHTML;
           });
         } else {
           receive.innerHTML = "Connected to server failed.";
