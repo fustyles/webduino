@@ -1,1 +1,1 @@
-MSG.catesp8266 = "WiFiBoard";
+MSG.catesp8266 = "WiFi單晶片模組";
