@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/5/30 21:90
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/6/14 21:90
 https://www.facebook.com/francefu
 
 Try it!
@@ -83,7 +83,8 @@ let fingerLookupIndices = {
 			for (let i = 0; i < predictions.length; i++) {
 			  const keypoints = predictions[i].landmarks;
 			  const boundingBox = predictions[i].boundingBox;
-
+			  const handInViewConfidence = predictions[i].handInViewConfidence;
+				
 			  var part="";
 			  for (let i = 0; i < keypoints.length; i++) {
 				if (i==0) part="wrist";
@@ -92,7 +93,7 @@ let fingerLookupIndices = {
 				if (i>=9&&i<=12) part="middleFinger";
 				if (i>=13&&i<=16) part="ringFinger";
 				if (i>=17&&i<=20) part="pinky";
-				result.innerHTML += i+","+part+","+keypoints[i][0]+","+keypoints[i][1]+","+keypoints[i][2]+","+boundingBox.topLeft[0]+","+boundingBox.topLeft[1]+","+boundingBox.bottomRight[0]+","+boundingBox.bottomRight[1]+"<br>";
+				result.innerHTML += i+","+part+","+keypoints[i][0]+","+keypoints[i][1]+","+keypoints[i][2]+","+boundingBox.topLeft[0]+","+boundingBox.topLeft[1]+","+boundingBox.bottomRight[0]+","+boundingBox.bottomRight[1]+","+handInViewConfidence+"<br>";
 			  }
 			}
 
