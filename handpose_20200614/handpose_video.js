@@ -68,16 +68,17 @@ window.onload = function () {
         for (let i = 0; i < predictions.length; i++) {
           const keypoints = predictions[i].landmarks;
           const boundingBox = predictions[i].boundingBox;
+          const handInViewConfidence = predictions[i].handInViewConfidence;
 
           var part="";
           for (let i = 0; i < keypoints.length; i++) {
-          if (i==0) part="wrist";
-          if (i>=1&&i<=4) part="thumb";
-          if (i>=5&&i<=8) part="indexFinger";
-          if (i>=9&&i<=12) part="middleFinger";
-          if (i>=13&&i<=16) part="ringFinger";
-          if (i>=17&&i<=20) part="pinky";
-          result.innerHTML += i+","+part+","+keypoints[i][0]+","+keypoints[i][1]+","+keypoints[i][2]+","+boundingBox.topLeft[0]+","+boundingBox.topLeft[1]+","+boundingBox.bottomRight[0]+","+boundingBox.bottomRight[1]+"<br>";
+            if (i==0) part="wrist";
+            if (i>=1&&i<=4) part="thumb";
+            if (i>=5&&i<=8) part="indexFinger";
+            if (i>=9&&i<=12) part="middleFinger";
+            if (i>=13&&i<=16) part="ringFinger";
+            if (i>=17&&i<=20) part="pinky";
+            result.innerHTML += i+","+part+","+keypoints[i][0]+","+keypoints[i][1]+","+keypoints[i][2]+","+boundingBox.topLeft[0]+","+boundingBox.topLeft[1]+","+boundingBox.bottomRight[0]+","+boundingBox.bottomRight[1]+","+handInViewConfidence+"<br>";
           }
         }
 
