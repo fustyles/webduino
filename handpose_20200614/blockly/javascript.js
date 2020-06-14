@@ -1,6 +1,6 @@
-Blockly.JavaScript['handpose_index'] = function(block) { 
-  var value_part_ = block.getFieldValue('part_');
-  var code = 'handpose_index("' + value_part_ + '")';
+Blockly.JavaScript['handpose_point'] = function(block) { 
+  var value_point_ = block.getFieldValue('point_');
+  var code = 'handpose_point("' + value_point_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 

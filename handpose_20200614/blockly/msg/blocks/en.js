@@ -1,4 +1,4 @@
-Blockly.Msg.HANDPOSE_PART_SHOW = "HandPose Part";
+Blockly.Msg.HANDPOSE_POINT_SHOW = "HandPose Point";
 Blockly.Msg.HANDPOSE_WIDTH_SHOW = "HandPose Detection Video Width";
 Blockly.Msg.HANDPOSE_HEIGHT_SHOW = "Height";
 Blockly.Msg.HANDPOSE_MIRRORIMAGE_SHOW = "Mirror Image";

@@ -1,7 +1,7 @@
-Blockly.Blocks['handpose_index'] = {
+Blockly.Blocks['handpose_point'] = {
   init: function() { 
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.HANDPOSE_PART_SHOW)
+      .appendField(Blockly.Msg.HANDPOSE_POINT_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		["0-wrist","0"],
 		["1-thumb","1"],
@@ -24,7 +24,7 @@ Blockly.Blocks['handpose_index'] = {
 		["18-pinky","18"],
 		["19-pinky","19"],
 		["20-pinky","20"]
-  ]), "part_");  	  
+  ]), "point_");  	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);

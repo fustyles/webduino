@@ -4,12 +4,12 @@
 
   'use strict';
 
- function handpose_index(input_part){
+ function handpose_point(input_point){
     var result = document.getElementById("result").innerHTML.split("<br>");
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
         var result_detail = result[i].split(",");
-        if (result_detail[0]==input_part) 
+        if (result_detail[0]==input_point) 
           return result_detail;
         }
       }
@@ -33,7 +33,7 @@
       return (Math.atan((input_y1-input_y0)/(input_x1-input_x0)) / Math.PI) * 180;
   } 	
 
-  window.handpose_index = handpose_index;
+  window.handpose_point = handpose_point;
   window.handpose_video = handpose_video;
   window.handpose_distance = handpose_distance;
   window.handpose_angle = handpose_angle;	

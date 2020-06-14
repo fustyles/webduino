@@ -1,4 +1,4 @@
-Blockly.Msg.HANDPOSE_PART_SHOW = "手勢偵測 (HandPose) 部位";
+Blockly.Msg.HANDPOSE_POINT_SHOW = "手勢偵測 (HandPose) 節點";
 Blockly.Msg.HANDPOSE_WIDTH_SHOW = "手勢偵測 (HandPose) 視訊寬度";
 Blockly.Msg.HANDPOSE_HEIGHT_SHOW = "高度";
 Blockly.Msg.HANDPOSE_MIRRORIMAGE_SHOW = "鏡像";

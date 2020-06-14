@@ -1,5 +1,5 @@
 <category id="handpose">
-  <block type="handpose_index">
+  <block type="handpose_point">
   </block>
   <block type="handpose_video">
     <value name="width_">
