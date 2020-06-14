@@ -7,6 +7,8 @@
  function handpose_point(input_point){
     var result = document.getElementById("result").innerHTML.split("<br>");
     if (result.length>0) {
+      if (input_point=='A') 
+        return result;
       for (var i=0;i<result.length;i++) {
         var result_detail = result[i].split(",");
         if (result_detail[0]==input_point) 

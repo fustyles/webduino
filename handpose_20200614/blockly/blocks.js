@@ -23,7 +23,8 @@ Blockly.Blocks['handpose_point'] = {
 		["17-pinky","17"],
 		["18-pinky","18"],
 		["19-pinky","19"],
-		["20-pinky","20"]
+        ["20-pinky","20"],
+        ["ALL","A"]
   ]), "point_");  	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
