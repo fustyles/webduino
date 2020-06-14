@@ -1,0 +1,9 @@
+Blockly.Msg.HANDPOSE_PART_SHOW = "HandPose Part";
+Blockly.Msg.HANDPOSE_WIDTH_SHOW = "HandPose Detection Video Width";
+Blockly.Msg.HANDPOSE_HEIGHT_SHOW = "Height";
+Blockly.Msg.HANDPOSE_MIRRORIMAGE_SHOW = "Mirror Image";
+Blockly.Msg.HANDPOSE_RESULT_SHOW = "Result";
+Blockly.Msg.HANDPOSE_SKELETON_SHOW = "Skeleton";
+Blockly.Msg.HANDPOSE_OPACITY_SHOW = "Opacity";
+Blockly.Msg.HANDPOSE_DISTANCE_SHOW = "Distance";
+Blockly.Msg.HANDPOSE_ANGLE_SHOW = "Angle";

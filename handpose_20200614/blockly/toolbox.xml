@@ -1,0 +1,60 @@
+<category id="handpose">
+  <block type="handpose_index">
+  </block>
+  <block type="handpose_video">
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">320</field>
+      </block>
+    </value> 
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">240</field>
+      </block>
+    </value>     
+  </block> 
+  <block type="handpose_distance">
+    <value name="x0_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="y0_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>    
+    <value name="x1_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="y1_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
+  </block>
+  <block type="handpose_angle">
+    <value name="x0_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="y0_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>    
+    <value name="x1_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="y1_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
+  </block>    
+</category>

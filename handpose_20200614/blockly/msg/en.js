@@ -1,0 +1,1 @@
+MSG.handpose = "HandPose Detection";
