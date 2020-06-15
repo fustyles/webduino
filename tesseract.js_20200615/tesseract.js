@@ -42,9 +42,14 @@ function tesseract_video(input_width, input_height, input_result, input_opacity,
   region.style.opacity = input_opacity;
   lang.value = input_lang;
 }
+  
+function tesseract_clear(){
+  result.innerHTML = "";
+}
 
 window.tesseract_recognition = tesseract_recognition;
 window.tesseract_get = tesseract_get;
 window.tesseract_video = tesseract_video;
+window.tesseract_clear = tesseract_clear;
 
 }(window, window.document));
