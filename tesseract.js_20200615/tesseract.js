@@ -6,7 +6,8 @@
   
 var region = document.getElementById('region');
 var video = document.getElementById('video');
-var canvas = document.getElementById('gamecanvas_tesseract'); 
+var canvas = document.getElementById('gamecanvas_tesseract');
+var context = canvas.getContext('2d');
 var result = document.getElementById('result');
 var lang = document.getElementById('lang');
 var showTime = 3000;
@@ -14,7 +15,20 @@ var showTime = 3000;
 function tesseract_recognition(input_showtime){
   showTime = input_showtime*1000;
   result.innerHTML = ""; 
-  recognitionText();
+  
+  context.drawImage(video, 0, 0, video.width, video.height);
+  canvas.style.display='block';
+  result.innerHTML = "";
+
+  Tesseract.recognize(
+      canvas,
+      lang.value,
+      { logger: m => console.log(m) }
+    ).then(({ data: { text } }) => {
+      console.log(text);
+      result.innerHTML = text;
+      setTimeout(function(){canvas.style.display='none';}, showTime);
+    }) 
 }
   
 function tesseract_get(){
