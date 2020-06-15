@@ -3,7 +3,7 @@ Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/15
 https://www.facebook.com/francefu
 
 Try it!
-https://fustyles.github.io/webduino/tesseract.js/Image2Text_image.html
+https://fustyles.github.io/webduino/tesseract.js/Image2Text_video.html
 -->
 <!DOCTYPE html>
 <head>
@@ -13,6 +13,9 @@ https://fustyles.github.io/webduino/tesseract.js/Image2Text_image.html
 <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
 </head>
 <body>
+<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<canvas id="canvas"></canvas>
+<br>
 <select id="lang">
 	<option value='afr'>Afrikaans</option>
 	<option value='amh'>Amharic</option>
@@ -117,81 +120,51 @@ https://fustyles.github.io/webduino/tesseract.js/Image2Text_image.html
 	<option value='vie'>Vietnamese</option>
 	<option value='yid'>Yiddish</option>
 </select>
-<input type="file" id="selectimage" disabled="true"></input>
-<br><br>
-<img id="OriginImage" style="display:none">
-<img id="ShowImage">
-<canvas id="canvas" width="0" height="0"></canvas>
+<button id="btnDetect" onclick="DetectText();" disabled>Detect</button>
 <br>
-<div id="result" style="width:350px;color:red"></div>
+<div id="result" style="width:320px;color:red"></div>
   
 <script>
-var OriginImage = document.getElementById('OriginImage');
-var ShowImage = document.getElementById('ShowImage');
-var ShowImageWidth = 500;
-var canvas = document.getElementById("canvas");
-var context = canvas.getContext("2d");  
+var video = document.getElementById('video');
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
 var result = document.getElementById('result');
-var lang = document.getElementById('lang');
+var btnDetect = document.getElementById('btnDetect');  
   
+navigator.mediaDevices
+	.getUserMedia({
+		audio: false,
+		video: {
+			facingMode: "user",
+			width: 320,
+			height: 240
+		}
+	})
+	.then(stream => {
+		video.srcObject = stream
+		video.onloadedmetadata = () => {       
+			video.play();
+			canvas.setAttribute("width", video.width);
+			canvas.setAttribute("height", video.height);
+			result.innerHTML = "";
+			btnDetect.disabled =false;
+		}
+	})   
 
-result.innerHTML = "Please select one image.";
-document.getElementById('selectimage').disabled = false;
   
-async function DetectImage() {
+function DetectText() {
+    context.drawImage(video, 0, 0, video.width, video.height);
+	result.innerHTML = "Detecting...";
 
 	Tesseract.recognize(
-	  ShowImage,
-	  lang.value,
-	  { logger: m => console.log(m) }
+		canvas,
+		lang.value,
+		{ logger: m => console.log(m) }
 	).then(({ data: { text } }) => {
-	  console.log(text);
-	  result.innerHTML = text;
+		//console.log(text);
+		result.innerHTML = text;
 	})  
-}
-  
-document.getElementById('selectimage').onchange = function (event) {
-  var target = event.target || window.event.srcElement;
-  var files = target.files;
-  if (FileReader && files && files.length) {
-    var fr = new FileReader();
-    fr.onload = function () {
-      result.innerHTML = "Loading image to detect...";
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      canvas.setAttribute("width", 0);
-      canvas.setAttribute("height", 0);      
-      OriginImage.src = fr.result;
-    }
-    fr.readAsDataURL(files[0]);
-  }
-}
-    
-document.getElementById('OriginImage').onload = function (event) {
-  try { 
-    document.createEvent("TouchEvent"); 
-    var width = document.body.clientWidth;
-  }
-  catch(e) { 
-    var width = ShowImageWidth;
-  } 
-  
-  if (OriginImage.height<OriginImage.width) {
-    var height = width*OriginImage.height/OriginImage.width; 
-  }
-  else {
-    var height = width;
-    width = height*OriginImage.width/OriginImage.height; 
-  }
-  
-  var height = width*OriginImage.height/OriginImage.width;
-  ShowImage.width = width;
-  ShowImage.height = height;  
-  ShowImage.src = OriginImage.src;
-}
-  
-document.getElementById('ShowImage').onload = function (event) {
-  DetectImage();
-}
+} 
 </script>
 
 </body>
