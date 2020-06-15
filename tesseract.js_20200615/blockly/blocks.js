@@ -31,7 +31,7 @@ Blockly.Blocks['tesseract_video'] = {
       .setCheck("Number")
       .appendField(Blockly.Msg.TESSERACT_HEIGHT_SHOW);
       this.appendDummyInput()  
-      .appendField(Blockly.Msg.TESSERACT_OPACITY_SHOW)
+      .appendField(Blockly.Msg.TESSERACT_LANG_SHOW)
       .appendField(new Blockly.FieldDropdown([
         ["Afrikaans","afr"],
         ["Amharic","amh"],
