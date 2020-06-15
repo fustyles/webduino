@@ -33,9 +33,9 @@ Blockly.Blocks['tesseract_video'] = {
       this.appendDummyInput()  
       .appendField(Blockly.Msg.TESSERACT_LANG_SHOW)
       .appendField(new Blockly.FieldDropdown([
-        ["English","eng"],	      
-        ["Chinese - Simplified","chi_sim"],
+        ["English","eng"],
         ["Chinese - Traditional","chi_tra"],	      
+        ["Chinese - Simplified","chi_sim"],
         ["Afrikaans","afr"],
         ["Amharic","amh"],
         ["Arabic","ara"],
