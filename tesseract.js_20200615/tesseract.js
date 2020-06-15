@@ -12,7 +12,7 @@ var result = document.getElementById('result');
 var lang = document.getElementById('lang');
 var showTime = 3000;
 
-function tesseract_recognition(input_showtime){
+function tesseract_recognition(Tesseract, input_showtime){
   showTime = input_showtime*1000;
   result.innerHTML = "";
   
