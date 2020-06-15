@@ -1,1 +1,1 @@
-MSG.tesseract = "影像转文字 (tesseract.js)";
+MSG.tesseract = "文字辨识 (tesseract.js)";
