@@ -1,6 +1,6 @@
 Blockly.JavaScript['tesseract_recognition'] = function(block) {
   var value_showtime_ = Blockly.JavaScript.valueToCode(block, 'showtime_', Blockly.JavaScript.ORDER_ATOMIC);	
-  var code = 'tesseract_recognition(' + value_showtime_ + ');\n';
+  var code = 'tesseract_recognition(Tesseract' + value_showtime_ + ');\n';
   return code;
 };
 
