@@ -2,7 +2,7 @@ document.write('<div id="region" style="z-index:999"><video id="video" width="32
 
 window.onload = function () {
   var video = document.getElementById('video');
-  var canvas = document.getElementById('canvas');
+  var canvas = document.getElementById('gamecanvas_tesseract');
   var context = canvas.getContext('2d');
   var result = document.getElementById('result');
   var lang = document.getElementById('lang');
