@@ -4,6 +4,10 @@
 
 手勢偵測 (tfjs handpose)
 https://fustyles.github.io/webduino/handpose_20200614/blockly.json
+[smart]
+https://blocklypro.webduino.io/#7AdzZgGGxr
+[bit]
+https://bit.webduino.io/blockly/#VR9xzWKOaMdy1
 
 臉部辨識 (tfjs face-api.js)
 https://fustyles.github.io/webduino/faceapi_20200402/blockly.json
