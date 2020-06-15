@@ -19,5 +19,7 @@
     </value>     
   </block>  
   <block type="tesseract_get">
-  </block>    
+  </block>  
+  <block type="tesseract_clear">
+  </block>   
 </category>
