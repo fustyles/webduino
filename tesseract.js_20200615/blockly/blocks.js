@@ -55,7 +55,7 @@ Blockly.Blocks['tesseract_video'] = {
         ["German","deu"],
         ["Dzongkha","dzo"],
         ["Greek, Modern (1453-)","ell"],
-        ["eng","English","],
+        ["English","eng"],
         ["English, Middle (1100-1500)","enm"],
         ["Esperanto","epo"],
         ["Estonian","est"],
