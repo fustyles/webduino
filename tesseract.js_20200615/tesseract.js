@@ -14,7 +14,6 @@ var showTime = 3000;
 function tesseract_recognition(input_showtime){
   showTime = input_showtime*1000;
   result.innerHTML = "";
-  recognitionText();
 }
   
 function tesseract_get(){
