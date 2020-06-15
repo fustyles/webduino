@@ -1,5 +1,5 @@
 {
-  "types": ["tesseract_recognition", "tesseract_get", "tesseract_video"],
+  "types": ["tesseract_recognition", "tesseract_get", "tesseract_video", "tesseract_clear"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
