@@ -3,9 +3,7 @@ document.write('<div id="region" style="z-index:999"><video id="video" width="32
 window.onload = function () {
   var video = document.getElementById('video');
   var canvas = document.getElementById('gamecanvas_tesseract');
-  var context = canvas.getContext('2d');
   var result = document.getElementById('result');
-  var lang = document.getElementById('lang');
 	
   navigator.mediaDevices
 	.getUserMedia({
@@ -24,23 +22,7 @@ window.onload = function () {
 			canvas.setAttribute("height", video.height);
 			result.innerHTML = "";
 		}
-  }) 
-	
-function recognitionText() {
-  context.drawImage(video, 0, 0, video.width, video.height);
-  canvas.style.display='block';
-  result.innerHTML = "";
-
-  Tesseract.recognize(
-      canvas,
-      lang.value,
-      { logger: m => console.log(m) }
-    ).then(({ data: { text } }) => {
-      console.log(text);
-      result.innerHTML = text;
-      setTimeout(function(){canvas.style.display='none';}, showTime);
-    }) 
-  }	
+         }) 	
 }
 
 
