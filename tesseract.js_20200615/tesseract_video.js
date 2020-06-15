@@ -25,20 +25,4 @@ window.onload = function () {
 			result.innerHTML = "";
 		}
   }) 
-  
-  function recognitionText() {
-    context.drawImage(video, 0, 0, video.width, video.height);
-    canvas.style.display='block';
-    result.innerHTML = "";
-
-    Tesseract.recognize(
-        canvas,
-        lang.value,
-        { logger: m => console.log(m) }
-      ).then(({ data: { text } }) => {
-        console.log(text);
-        result.innerHTML = text;
-        setTimeout(function(){canvas.style.display='none';}, showTime);
-      })  
-  } 
 }
