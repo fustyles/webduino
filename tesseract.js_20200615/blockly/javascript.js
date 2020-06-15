@@ -18,3 +18,8 @@ Blockly.JavaScript['tesseract_video'] = function(block) {
   var code = 'tesseract_video(' + value_width_ + ',' + value_height_ + ',"' + value_result_ + '","' + value_opacity_ + '","' + value_lang_ + '");\n';
   return code;
 };
+
+Blockly.JavaScript['tesseract_clear'] = function(block) { 
+  var code = 'tesseract_clear();\n';
+  return code;
+};
