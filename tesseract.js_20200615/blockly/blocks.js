@@ -163,3 +163,14 @@ Blockly.Blocks['tesseract_video'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['tesseract_clear'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TESSERACT_CLEAR_SHOW); 	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
