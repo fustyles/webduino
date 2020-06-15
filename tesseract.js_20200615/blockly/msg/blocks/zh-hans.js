@@ -6,3 +6,4 @@ Blockly.Msg.TESSERACT_RESULT_SHOW = "结果";
 Blockly.Msg.TESSERACT_OPACITY_SHOW = "透明度";
 Blockly.Msg.TESSERACT_SHOWTIME_SHOW = "显示截图(秒)";
 Blockly.Msg.TESSERACT_LANG_SHOW = "语言";
+Blockly.Msg.TESSERACT_CLEAR_SHOW = "清除辨识结果";
