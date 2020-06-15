@@ -7,7 +7,7 @@ https://fustyles.github.io/webduino/tesseract.js_20200615/blockly.json
 [Smart]
 https://blocklypro.webduino.io/#kv1WdB1xaG
 [Bit]
-https://bit.webduino.io/blockly/#7qZVB0aMwm2qO
+https://bit.webduino.io/blockly/#YqKrZW1A9BnR4
 
 
 手勢偵測 (tfjs handpose)
