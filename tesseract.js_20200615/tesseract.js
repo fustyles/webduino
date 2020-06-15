@@ -20,8 +20,6 @@ function tesseract_recognition(input_showtime){
   canvas.style.display='block';
   result.innerHTML = "";
   
-  console.log("ok");
-
   Tesseract.recognize(
       canvas,
       lang.value,
