@@ -19,6 +19,8 @@ function tesseract_recognition(input_showtime){
   context.drawImage(video, 0, 0, video.width, video.height);
   canvas.style.display='block';
   result.innerHTML = "";
+  
+  console.log("ok");
 
   Tesseract.recognize(
       canvas,
