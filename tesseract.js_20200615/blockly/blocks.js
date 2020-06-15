@@ -33,6 +33,9 @@ Blockly.Blocks['tesseract_video'] = {
       this.appendDummyInput()  
       .appendField(Blockly.Msg.TESSERACT_LANG_SHOW)
       .appendField(new Blockly.FieldDropdown([
+        ["English","eng"],	      
+        ["Chinese - Simplified","chi_sim"],
+        ["Chinese - Traditional","chi_tra"],	      
         ["Afrikaans","afr"],
         ["Amharic","amh"],
         ["Arabic","ara"],
@@ -47,15 +50,12 @@ Blockly.Blocks['tesseract_video'] = {
         ["Catalan; Valencian","cat"],
         ["Cebuano","ceb"],
         ["Czech","ces"],
-        ["Chinese - Simplified","chi_sim"],
-        ["Chinese - Traditional","chi_tra"],
         ["Cherokee","chr"],
         ["Welsh","cym"],
         ["Danish","dan"],
         ["German","deu"],
         ["Dzongkha","dzo"],
         ["Greek, Modern (1453-)","ell"],
-        ["English","eng"],
         ["English, Middle (1100-1500)","enm"],
         ["Esperanto","epo"],
         ["Estonian","est"],
