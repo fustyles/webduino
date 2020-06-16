@@ -1276,7 +1276,7 @@
       else if (input_property=="draggable")
         obj.draggable = input_value;
       else if (input_property=="style")
-        obj.style = input_value;	    
+	obj.setAttribute('style', input_value);     //obj.style = input_value;	    
     }
   }
  
