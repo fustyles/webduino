@@ -18,7 +18,7 @@ Blockly.Blocks['tesseract_get'] = {
       .appendField(Blockly.Msg.TESSERACT_GET_SHOW); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
