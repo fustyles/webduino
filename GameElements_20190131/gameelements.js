@@ -1262,7 +1262,7 @@
       else if (input_property=="value")
         obj.value = input_value;
       else if (input_property=="fontsize")
-        obj.fontSize = input_value + "px"; 	    
+        obj.fontSize = input_value; 	    
       else if (input_property=="zindex")
         obj.style.zIndex = input_value;
       else if (input_property=="display"){ 
