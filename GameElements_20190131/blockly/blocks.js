@@ -1644,7 +1644,7 @@ Blockly.Blocks['button_set'] = {
       .appendField(Blockly.Msg.BUTTON_ID_SHOW);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.BUTTON_SET_SHOW) 
-      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["borderradius","borderradius"], ["opacity","opacity"], ["background","background"], ["value","value"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["style","style"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["borderradius","borderradius"], ["opacity","opacity"], ["background","background"], ["value","value"], ["fontsize","fontsize"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["style","style"]]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -1662,7 +1662,7 @@ Blockly.Blocks['button_get'] = {
       .appendField(Blockly.Msg.BUTTON_ID_SHOW);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.BUTTON_GET_SHOW)
-      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["opacity","opacity"], ["background","background"], ["value","value"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["id","id"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["opacity","opacity"], ["background","background"], ["value","value"], ["fontsize","fontsize"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["id","id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
