@@ -1260,7 +1260,9 @@
       else if (input_property=="background")
         obj.style.background = input_value;
       else if (input_property=="value")
-        obj.value = input_value;      
+        obj.value = input_value;
+      else if (input_property=="fontsize")
+        obj.fontSize = input_value + "px"; 	    
       else if (input_property=="zindex")
         obj.style.zIndex = input_value;
       else if (input_property=="display"){ 
@@ -1275,10 +1277,8 @@
         obj.disabled = input_value;
       else if (input_property=="draggable")
         obj.draggable = input_value;
-      else if (input_property=="style") {
-	obj.style.cssText = input_value;
-	console.log(input_value);
-      }
+      else if (input_property=="style")
+	obj.style = input_value;
     }
   }
  
@@ -1305,6 +1305,8 @@
       }
       else if (input_property=="value")
         return obj.value;
+      else if (input_property=="fontsize")
+        return obj.fontSize;	    
       else if (input_property=="zindex")
         return obj.style.zIndex;
       else if (input_property=="display")
