@@ -1275,8 +1275,10 @@
         obj.disabled = input_value;
       else if (input_property=="draggable")
         obj.draggable = input_value;
-      else if (input_property=="style")
-	obj.setAttribute('style', input_value);     //obj.style = input_value;	    
+      else if (input_property=="style") {
+	obj.style.cssText = input_value;
+	console.log(input_value);
+      }
     }
   }
  
