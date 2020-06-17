@@ -2,6 +2,9 @@
 
 我寫的自訂積木、韌體、網頁等免費提供各級學校教學與個人使用，僅供測試，請勿用於商業販售產品！
 
+Webbit教育版 新增自訂積木
+https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json
+
 文字辨識 (tesseract.js)
 https://fustyles.github.io/webduino/tesseract.js_20200615/blockly.json
 [Smart]
@@ -58,10 +61,6 @@ https://fustyles.github.io/webduino/SpeechRecognition_20191225/blockly.json
 
 Webbit教育版 官方朗讀語言積木擴充
 https://fustyles.github.io/webduino/EDU_speak_setting/blockly.json
-
-
-Webbit教育版 新增自訂積木
-https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json
 
 
 WebBit教育版 法蘭斯點矩陣(不可與官方積木混用)
