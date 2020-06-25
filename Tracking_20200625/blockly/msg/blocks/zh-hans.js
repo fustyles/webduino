@@ -10,4 +10,4 @@ Blockly.Msg.TRACKCOLOR_TO_SHOW = "~";
 Blockly.Msg.TRACKCOLOR_GREEN_SHOW = "G范围";
 Blockly.Msg.TRACKCOLOR_BLUE_SHOW = "B范围";
 Blockly.Msg.TRACKCOLOR_GET_SHOW = "取得侦测结果";
-Blockly.Msg.TRACKCOLOR_GET_NUMBER_SHOW = "取得侦测结果总数";
+Blockly.Msg.TRACKCOLOR_GET_NUMBER_SHOW = "取得侦测结果区块数";
