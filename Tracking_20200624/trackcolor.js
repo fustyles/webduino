@@ -5,6 +5,7 @@
   'use strict';
   
   function trackcolor_set(input_width, input_height, input_display, input_pixel)  {
+    if (document.getElementById("canvas_custom")) {
 	var region = document.getElementById("region");
 	var canvas = document.getElementById("gamecanvas_trackingcolor");
 	var canvas_custom = document.getElementById("canvas_custom");
@@ -41,6 +42,7 @@
 	canvas_custom.setAttribute("height", video.height+"px");
 	canvas_custom.style.width = video.width+"px";
 	canvas_custom.style.height = video.height+"px";
+    }
   }
 
   function trackcolor_custom(input_rect, input_rmin, input_rmax, input_gmin, input_gmax, input_bmin, input_bmax)  {
