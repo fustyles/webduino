@@ -94,9 +94,9 @@ Blockly.Blocks['trackcolor_get_number'] = {
           ["magenta","magenta"], 
           ["cyan","cyan"],
           ["yellow","yellow"], 
-          ["red","red"],
-          ["green","green"],
-          ["blue","blue"],
+          ["RedRect","red"],
+          ["GreenRect","green"],
+          ["BlueRect","blue"],
           ["All","all"]
         ]), "rect_");
     this.setInputsInline(true);
