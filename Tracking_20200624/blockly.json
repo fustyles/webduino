@@ -1,0 +1,16 @@
+{
+  "types": ["trackcolor_set", "trackcolor_custom", "trackcolor_get", "trackcolor_get_number"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "trackcolor.js",
+    "tracking-min.js",
+    "trackcolor_video.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
