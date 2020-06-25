@@ -1,9 +1,19 @@
-資料更新：2020/6/15 18:00
+資料更新：2020/6/25 15:00
 
 我寫的自訂積木、韌體、網頁等免費提供各級學校教學與個人使用，僅供測試，請勿用於商業販售產品！
 
+
 Webbit教育版 新增自訂積木
 https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json
+
+
+顏色偵測 (Tracking.js)
+https://fustyles.github.io/webduino/Tracking_20200625/blockly.json
+[Smart]
+https://blocklypro.webduino.io/#X5OK82JzD8
+[Bit]
+https://bit.webduino.io/blockly/#NyWrLn7ZmZO3b
+
 
 文字辨識 (tesseract.js)
 https://fustyles.github.io/webduino/tesseract.js_20200615/blockly.json
