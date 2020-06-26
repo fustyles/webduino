@@ -44,20 +44,19 @@
   }
 
   function facemesh_get(input_point)  {
-	var n=0;
-	var result_arr = [];
+    var n=0;
     var result = document.getElementById("result").innerHTML.split("<br>");
-	if (input_point=="all") return result;
+    if (input_point=="all") return result;
 
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
 		var result_detail = result[i].split(",");
 		if (result_detail[0]==input_point) {
-		  result_arr.push(result_detail);
+		  return result_detail;
 		}
       }
     }
-    return result_arr;
+    return "";
   }
     
   window.facemesh_set = facemesh_set;
