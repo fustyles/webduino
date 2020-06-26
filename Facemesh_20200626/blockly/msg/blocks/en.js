@@ -1,6 +1,8 @@
 Blockly.Msg.FACEMESH_SET_SHOW = "Facemesh Window Set";
 Blockly.Msg.FACEMESH_WIDTH_SHOW = "Width";   
-Blockly.Msg.FACEMESH_HEIGHT_SHOW = "Height";	  
+Blockly.Msg.FACEMESH_HEIGHT_SHOW = "Height";
+Blockly.Msg.FACEMESH_VIDEO_SHOW = "Video";
+Blockly.Msg.FACEMESH_MIRRORIMAGE_SHOW = "Mirror Image";
 Blockly.Msg.FACEMESH_RESULT_SHOW = "Result";
 Blockly.Msg.FACEMESH_PERSON_SHOW = "Person";
 Blockly.Msg.FACEMESH_PART_SHOW = "Part";

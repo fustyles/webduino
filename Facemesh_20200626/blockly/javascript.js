@@ -1,9 +1,11 @@
 Blockly.JavaScript['facemesh_set'] = function(block) {
   var value_width = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC); 
-  var value_height = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);     
-  var value_point = Blockly.JavaScript.valueToCode(block, 'point_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_height = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_video = block.getFieldValue('video_');
+  var value_point = block.getFieldValue('point_');
   var value_result = block.getFieldValue('result_');
-  var code = 'facemesh_set(' + value_width + ',' + value_height + ',' + value_point + ',"' + value_result + '");\n';
+  var value_mirrorimage = block.getFieldValue('mirrorimage_');
+  var code = 'facemesh_set(' + value_width + ',' + value_height + ',"' + value_video + '","' + value_point + '","' + value_result + '","' + value_mirrorimage + '");\n';
   return code;
 };
 

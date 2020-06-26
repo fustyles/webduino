@@ -4,21 +4,15 @@
 
   'use strict';
   
-  function facemesh_set(input_width, input_height, input_point, input_result)  {
-	var result = document.getElementById("result");
+  function facemesh_set(input_width, input_height, input_video, input_point, input_result, input_mirrorimage)  {
 	var canvas = document.getElementById("gamecanvas_facemesh");
 	var canvas_point = document.getElementById("canvas_point");
+	var result = document.getElementById("result");
 
-	if (input_point==1) {
-	  canvas.style.display="none";
-	  canvas_point.style.display="block";
-	}
-	else {
-	  canvas.style.display="block";
-	  canvas_point.style.display="none";
-	}
-
+	canvas.style.display = input_video;
+	canvas_point.style.display = input_point;
     result.style.display = input_result;
+	document.getElementById("mirrorimage").value = input_mirrorimage;
 		
 	var video = document.getElementById("video");
 	video.width = input_width;

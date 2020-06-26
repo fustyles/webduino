@@ -9,16 +9,31 @@ Blockly.Blocks['facemesh_set'] = {
     this.appendValueInput("height_")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.FACEMESH_HEIGHT_SHOW); 	
-    this.appendValueInput("point_")
-		.setCheck(null)
-        .appendField(Blockly.Msg.FACEMESH_POINT_SHOW);
+		.appendField(Blockly.Msg.FACEMESH_HEIGHT_SHOW);
+    this.appendDummyInput()  
+	  .appendField(Blockly.Msg.FACEMESH_VIDEO_SHOW)
+	  .appendField(new Blockly.FieldDropdown([
+		["Y","block"],
+		["N","none"]	  
+	]), "video_");
+	this.appendDummyInput()  
+	  .appendField(Blockly.Msg.FACEMESH_POINT_SHOW)
+	  .appendField(new Blockly.FieldDropdown([
+		["Y","block"],
+		["N","none"]	  
+	]), "point_");
 	this.appendDummyInput()  
 	  .appendField(Blockly.Msg.FACEMESH_RESULT_SHOW)
 	  .appendField(new Blockly.FieldDropdown([
 		["Y","block"],
 		["N","none"]	  
 	]), "result_"); 
+	this.appendDummyInput()  
+	    .appendField(Blockly.Msg.FACEMESH_MIRRORIMAGE_SHOW)
+	    .appendField(new Blockly.FieldDropdown([
+		  ["Y","1"],
+		  ["N","0"]	  
+	  ]), "mirrorimage_");	
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

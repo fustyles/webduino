@@ -10,11 +10,6 @@
         <field name="NUM">300</field>
       </block>
     </value>    
-    <value name="point_">
-      <block type="logic_boolean">
-        <field name="BOOL">FALSE</field>
-      </block>
-    </value>
   </block>
   <block type="facemesh_get">   
   </block>       

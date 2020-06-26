@@ -1,6 +1,8 @@
 Blockly.Msg.FACEMESH_SET_SHOW = "臉部網格視窗設定";
 Blockly.Msg.FACEMESH_WIDTH_SHOW = "寬度";   
-Blockly.Msg.FACEMESH_HEIGHT_SHOW = "高度";	  
+Blockly.Msg.FACEMESH_HEIGHT_SHOW = "高度";
+Blockly.Msg.FACEMESH_VIDEO_SHOW = "視訊";
+Blockly.Msg.FACEMESH_MIRRORIMAGE_SHOW = "鏡像";
 Blockly.Msg.FACEMESH_RESULT_SHOW = "結果";
 Blockly.Msg.FACEMESH_PERSON_SHOW = "人次";
 Blockly.Msg.FACEMESH_PART_SHOW = "部位";

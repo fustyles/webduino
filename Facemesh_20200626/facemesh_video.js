@@ -1,6 +1,6 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/facemesh"></script>');
-document.write('<video id="video" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><canvas id="gamecanvas_facemesh"></canvas><canvas id="canvas_point"></canvas><br><div id="result" style="color:red;display:none;"></div>');
+document.write('<video id="video" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><canvas id="gamecanvas_facemesh"></canvas><canvas id="canvas_point"></canvas><select id="mirrorimage" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><br><div id="result" style="color:red;display:none;"></div>');
 	       
 window.onload = function () {
 	
@@ -49,10 +49,15 @@ window.onload = function () {
   }
   
   async function DetectVideo() {
-    context.translate((canvas.width + video.width) / 2, 0);
-    context.scale(-1, 1);
-    context.drawImage(video, 0, 0, video.width, video.height);
-    context.setTransform(1, 0, 0, 1, 0, 0);
+    var mirrorimage = Number(document.getElementById("mirrorimage").value);
+    if (mirrorimage==1) {
+      context.translate((canvas.width + video.width) / 2, 0);
+      context.scale(-1, 1);
+      context.drawImage(video, 0, 0, video.width, video.height);
+      context.setTransform(1, 0, 0, 1, 0, 0);
+    }
+    else
+      context.drawImage(video, 0, 0, video.width, video.height);
     
 	context_point.clearRect(0, 0, canvas.width, canvas.height);
 
