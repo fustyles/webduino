@@ -20,7 +20,7 @@ https://fustyles.github.io/webduino/Tracking_20200625/blockly.json
 [Smart]
 https://blocklypro.webduino.io/#X5OK82JzD8
 [Bit]
-https://bit.webduino.io/blockly/#N32paAGdBLrR9
+https://bit.webduino.io/blockly/#wqabPNNOGdp3Y
 
 
 文字辨識 (tesseract.js)
