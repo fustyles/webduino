@@ -1,6 +1,6 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/facemesh"></script>');
-document.write('<video id="video" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><canvas id="gamecanvas_facemesh"></canvas><canvas id="canvas_point"></canvas><br><div id="result" style="width:320px;color:red;display:none;"></div>');
+document.write('<video id="video" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><canvas id="gamecanvas_facemesh"></canvas><canvas id="canvas_point"></canvas><br><div id="result" style="color:red;display:none;"></div>');
 	       
 window.onload = function () {
 	
