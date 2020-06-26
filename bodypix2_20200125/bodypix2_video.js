@@ -1,7 +1,7 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>');
-document.write('<div id="region" style="z-index:999"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><canvas id="canvas1"></canvas><canvas id="canvas2"></canvas><canvas id="canvas3"></canvas><br>Function<select id="func"><option value="1">partMap</option><option value="2">pixelation</option><option value="3">blurBodyPart</option></select><br>Skeleton<select id="skeleton"><option value="1">show</option><option value="0">hide</option></select>MirrorImage<select id="mirrorimage"><option value="1">yes</option><option value="0">no</option></select><br><div id="result" style="width:320px;color:red">Please wait for loading model.</div></div>');
+document.write('<div id="region" style="z-index:999"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><canvas id="canvas1"></canvas><canvas id="canvas2"></canvas><canvas id="canvas3"></canvas><br>Function<select id="func"><option value="1">partMap</option><option value="2">pixelation</option><option value="3">blurBodyPart</option></select><br>Skeleton<select id="skeleton"><option value="1">show</option><option value="0">hide</option></select>MirrorImage<select id="mirrorimage"><option value="1">yes</option><option value="0">no</option></select><br><div id="result" style="color:red">Please wait for loading model.</div></div>');
 
 window.onload = function () {
   var video = document.getElementById('video');
