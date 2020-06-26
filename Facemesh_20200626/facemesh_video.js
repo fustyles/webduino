@@ -66,7 +66,7 @@ window.onload = function () {
 			  const boundingBox = predictions[k].boundingBox;
 			  for (let j = 0; j < part.length; j++) {
 				  for (let i = 0; i < annotations[part[j]].length; i++) {
-					result.innerHTML += part[j]+","+i+","+annotations[part[j]][i][0]+","+annotations[part[j]][i][1]+","+annotations[part[j]][i][2]+","+boundingBox.topLeft[0][0]+","+boundingBox.topLeft[0][1]+","+boundingBox.bottomRight[0][0]+","+boundingBox.bottomRight[0][1]+"<br>";
+					result.innerHTML += k+","+part[j]+","+i+","+annotations[part[j]][i][0]+","+annotations[part[j]][i][1]+","+annotations[part[j]][i][2]+","+boundingBox.topLeft[0][0]+","+boundingBox.topLeft[0][1]+","+boundingBox.bottomRight[0][0]+","+boundingBox.bottomRight[0][1]+"<br>";
 				  }
 			  }
 

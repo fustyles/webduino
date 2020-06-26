@@ -9,13 +9,16 @@ Blockly.Blocks['facemesh_set'] = {
     this.appendValueInput("height_")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.FACEMESH_HEIGHT_SHOW); 	  
-    this.appendValueInput("display_")
-		.setCheck(null)
-        .appendField(Blockly.Msg.FACEMESH_DISPLAY_SHOW);
+		.appendField(Blockly.Msg.FACEMESH_HEIGHT_SHOW); 	
     this.appendValueInput("point_")
 		.setCheck(null)
         .appendField(Blockly.Msg.FACEMESH_POINT_SHOW);
+	this.appendDummyInput()  
+	  .appendField(Blockly.Msg.FACEMESH_RESULT_SHOW)
+	  .appendField(new Blockly.FieldDropdown([
+		["Y","block"],
+		["N","none"]	  
+	]), "result_"); 
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -26,8 +29,14 @@ Blockly.Blocks['facemesh_set'] = {
 Blockly.Blocks['facemesh_get'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.FACEMESH_GET_SHOW);   	  
+        .appendField(Blockly.Msg.FACEMESH_GET_SHOW); 
     this.appendDummyInput()
+		.appendField(Blockly.Msg.FACEMESH_PERSON_SHOW)
+        .appendField(new Blockly.FieldDropdown([
+			["0","0"]
+        ]), "person_");	
+    this.appendDummyInput()
+		.appendField(Blockly.Msg.FACEMESH_PART_SHOW)
         .appendField(new Blockly.FieldDropdown([
 			["leftCheek","leftCheek"],
 			["leftEyeLower0","leftEyeLower0"],

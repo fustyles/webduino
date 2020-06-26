@@ -9,12 +9,7 @@
       <block type="math_number">
         <field name="NUM">300</field>
       </block>
-    </value>     
-    <value name="display_">
-      <block type="logic_boolean">
-        <field name="BOOL">TRUE</field>
-      </block>
-    </value>
+    </value>    
     <value name="point_">
       <block type="logic_boolean">
         <field name="BOOL">FALSE</field>
