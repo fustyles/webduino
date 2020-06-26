@@ -7,3 +7,4 @@ Blockly.Msg.HANDPOSE_SKELETON_SHOW = "Skeleton";
 Blockly.Msg.HANDPOSE_OPACITY_SHOW = "Opacity";
 Blockly.Msg.HANDPOSE_DISTANCE_SHOW = "Distance";
 Blockly.Msg.HANDPOSE_ANGLE_SHOW = "Angle";
+Blockly.Msg.HANDPOSE_VIDEO_SHOW = "Video";

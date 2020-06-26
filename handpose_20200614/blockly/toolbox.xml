@@ -1,6 +1,4 @@
 <category id="handpose">
-  <block type="handpose_point">
-  </block>
   <block type="handpose_video">
     <value name="width_">
       <block type="math_number">
@@ -12,7 +10,9 @@
         <field name="NUM">240</field>
       </block>
     </value>     
-  </block> 
+  </block>
+  <block type="handpose_point">
+  </block>  
   <block type="handpose_distance">
     <value name="x0_">
       <block type="math_number">

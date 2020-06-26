@@ -4,6 +4,31 @@
 
   'use strict';
 
+  function handpose_video(input_width, input_height, input_mirrorimage, input_result, input_point, input_opacity, input_video) {
+    var canvas = document.getElementById("gamecanvas_handpose");
+	var canvas_point = document.getElementById("canvas_point");
+	var result = document.getElementById("result");
+
+	canvas.style.display = input_video;
+	canvas_point.style.display = input_point;
+    result.style.display = input_result;
+	document.getElementById("mirrorimage").value = input_mirrorimage;
+	document.getElementById('opacity').value = input_opacity;
+		
+	var video = document.getElementById("video");
+	video.width = input_width;
+	video.height = input_height;   
+		
+	canvas.setAttribute("width", video.width+"px");
+	canvas.setAttribute("height", video.height+"px");
+	canvas.style.width = video.width+"px";
+	canvas.style.height = video.height+"px";
+	canvas_point.setAttribute("width", video.width+"px");
+	canvas_point.setAttribute("height", video.height+"px");
+	canvas_point.style.width = video.width+"px";
+	canvas_point.style.height = video.height+"px";
+  }
+
  function handpose_point(input_point){
     var result = document.getElementById("result").innerHTML.split("<br>");
     if (result.length>0) {
@@ -16,15 +41,6 @@
         }
       }
     return "";
-  }
-	
-  function handpose_video(input_width, input_height, input_mirrorimage, input_result, input_skeleton, input_opacity) {
-    document.getElementById('video').width = input_width;
-    document.getElementById('video').height = input_height;
-    document.getElementById('mirrorimage').value = input_mirrorimage;
-    document.getElementById('result').style.display = input_result;
-    document.getElementById('skeleton').value = input_skeleton;
-    document.getElementById('opacity').value = input_opacity;
   }
 	
   function handpose_distance(input_x0,input_y0,input_x1,input_y1) {

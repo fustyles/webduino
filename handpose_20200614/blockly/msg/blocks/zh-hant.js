@@ -7,3 +7,4 @@ Blockly.Msg.HANDPOSE_SKELETON_SHOW = "骨架";
 Blockly.Msg.HANDPOSE_OPACITY_SHOW = "透明度";
 Blockly.Msg.HANDPOSE_DISTANCE_SHOW = "距離";
 Blockly.Msg.HANDPOSE_ANGLE_SHOW = "角度";
+Blockly.Msg.HANDPOSE_VIDEO_SHOW = "視訊";

@@ -1,3 +1,57 @@
+Blockly.Blocks['handpose_video'] = {
+  init: function() {
+  this.appendValueInput("width_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.HANDPOSE_WIDTH_SHOW);  
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.HANDPOSE_HEIGHT_SHOW);	 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDPOSE_VIDEO_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["Y","block"],
+		["N","none"]	  
+  ]), "video_");	
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDPOSE_SKELETON_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["Y","block"],
+		["N","none"]	  
+  ]), "skeleton_");
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDPOSE_RESULT_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["Y","block"],
+		["N","none"]	  
+  ]), "result_");   
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDPOSE_MIRRORIMAGE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["Y","1"],
+		["N","0"]	  
+  ]), "mirrorimage_"); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDPOSE_OPACITY_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["1","1"],
+		["0.9","0.9"],
+		["0.8","0.8"],
+		["0.7","0.7"],
+		["0.6","0.6"],	  
+		["0.5","0.5"],
+		["0.4","0.4"],
+		["0.3","0.3"],
+		["0.2","0.2"],
+		["0.1","0.1"],	
+		["0","0"]	   
+  ]), "opacity_"); 	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['handpose_point'] = {
   init: function() { 
   this.appendDummyInput()  
@@ -29,54 +83,6 @@ Blockly.Blocks['handpose_point'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
-  }
-};
-
-Blockly.Blocks['handpose_video'] = {
-  init: function() {
-  this.appendValueInput("width_")
-      .setCheck("Number")
-      .appendField(Blockly.Msg.HANDPOSE_WIDTH_SHOW);  
-  this.appendValueInput("height_")
-      .setCheck("Number")
-      .appendField(Blockly.Msg.HANDPOSE_HEIGHT_SHOW);	 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HANDPOSE_RESULT_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["show","block"],
-		["hide","none"]	  
-  ]), "result_"); 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HANDPOSE_SKELETON_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["show","1"],
-		["hide","0"]	  
-  ]), "skeleton_");	  
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HANDPOSE_MIRRORIMAGE_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["yes","1"],
-		["no","0"]	  
-  ]), "mirrorimage_"); 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HANDPOSE_OPACITY_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["1","1"],
-		["0.9","0.9"],
-		["0.8","0.8"],
-		["0.7","0.7"],
-		["0.6","0.6"],	  
-		["0.5","0.5"],
-		["0.4","0.4"],
-		["0.3","0.3"],
-		["0.2","0.2"],
-		["0.1","0.1"],	
-		["0","0"]	   
-  ]), "opacity_"); 	  
-  this.setInputsInline(true);	  
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
   }
 };
 

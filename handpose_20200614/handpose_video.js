@@ -1,12 +1,15 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>');
-document.write('<div id="region" style="z-index:999"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="gamecanvas_handpose"></canvas><br>Skeleton<select id="skeleton"><option value="1">show</option><option value="0">hide</option></select>MirrorImage<select id="mirrorimage"><option value="1">yes</option><option value="0">no</option></select>Opacity<select id="opacity"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><br><div id="result" style="color:red">Please wait for loading model.</div></div>');
+document.write('<video id="video" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><canvas id="gamecanvas_handpose"></canvas><canvas id="canvas_point"></canvas><br><select id="point" style="position:absolute;visibility:hidden;"><option value="1">show</option><option value="0">hide</option></select><select id="mirrorimage" style="position:absolute;visibility:hidden;"><option value="1">yes</option><option value="0">no</option></select><select id="opacity" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><br><div id="result" style="color:red">Please wait for loading model.</div>');
 
 window.onload = function () {
   var video = document.getElementById('video');
   var canvas = document.getElementById('gamecanvas_handpose'); 
   var context = canvas.getContext('2d');
+  var canvas_point = document.getElementById('canvas_point');
+  var context_point = canvas_point.getContext('2d');
   var result = document.getElementById('result');
+  var opacity = document.getElementById("opacity");
   var Model; 
   var lastValue = -1;
 
@@ -43,7 +46,9 @@ window.onload = function () {
         video.onloadedmetadata = () => {       
           video.play();
           canvas.setAttribute("width", video.width);
-          canvas.setAttribute("height", video.height);          
+          canvas.setAttribute("height", video.height);
+		  canvas_point.setAttribute("width", video.width);
+          canvas_point.setAttribute("height", video.height);
           setTimeout(function(){DetectVideo(); }, 100);
         }
       })   
@@ -60,10 +65,12 @@ window.onload = function () {
     else
       context.drawImage(video, 0, 0, video.width, video.height);
 
+	context_point.clearRect(0, 0, canvas.width, canvas.height);
+
     await Model.estimateHands(canvas).then(predictions => {
       result.innerHTML = "";  
-      var skeleton = Number(document.getElementById("skeleton").value);
-      document.getElementById("region").style.opacity = Number(document.getElementById("opacity").value);
+      
+      canvas.style.opacity = Number(opacity.value);
       if (predictions.length > 0) {
         for (let i = 0; i < predictions.length; i++) {
           const keypoints = predictions[i].landmarks;
@@ -83,8 +90,10 @@ window.onload = function () {
         }
 
         const res = predictions[0].landmarks;
-        if (skeleton==1) 
-          drawKeypoints(context, res, predictions[0].annotations);
+		lastValue = -1;
+        drawKeypoints(context, res, predictions[0].annotations);
+		lastValue = -1;
+		drawKeypoints(context_point, res, predictions[0].annotations);
       } 
       setTimeout(function(){DetectVideo(); }, 100);
     });

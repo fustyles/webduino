@@ -11,7 +11,8 @@ Blockly.JavaScript['handpose_video'] = function(block) {
   var value_result_ = block.getFieldValue('result_');
   var value_skeleton_ = block.getFieldValue('skeleton_');
   var value_opacity_ = block.getFieldValue('opacity_');
-  var code = 'handpose_video(' + value_width_ + ',' + value_height_ + ',"' + value_mirrorimage_ + '","' + value_result_ + '","' + value_skeleton_ + '","' + value_opacity_ + '");\n';
+  var value_video_ = block.getFieldValue('video_');
+  var code = 'handpose_video(' + value_width_ + ',' + value_height_ + ',"' + value_mirrorimage_ + '","' + value_result_ + '","' + value_skeleton_ + '","' + value_opacity_ + '","' + value_video_ + '");\n';
   return code;
 };
 
