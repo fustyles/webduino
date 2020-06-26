@@ -5,7 +5,8 @@ Blockly.JavaScript['facemesh_set'] = function(block) {
   var value_point = block.getFieldValue('point_');
   var value_result = block.getFieldValue('result_');
   var value_mirrorimage = block.getFieldValue('mirrorimage_');
-  var code = 'facemesh_set(' + value_width + ',' + value_height + ',"' + value_video + '","' + value_point + '","' + value_result + '","' + value_mirrorimage + '");\n';
+  var value_opacity = block.getFieldValue('opacity_');
+  var code = 'facemesh_set(' + value_width + ',' + value_height + ',"' + value_video + '","' + value_point + '","' + value_result + '","' + value_mirrorimage + '","' + value_opacity + '");\n';
   return code;
 };
 

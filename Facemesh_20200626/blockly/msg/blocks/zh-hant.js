@@ -7,4 +7,5 @@ Blockly.Msg.FACEMESH_RESULT_SHOW = "結果";
 Blockly.Msg.FACEMESH_PERSON_SHOW = "人次";
 Blockly.Msg.FACEMESH_PART_SHOW = "部位";
 Blockly.Msg.FACEMESH_POINT_SHOW = "網格圖";
-Blockly.Msg.FACEMESH_GET_SHOW = "取得網格結果"; 	  
+Blockly.Msg.FACEMESH_GET_SHOW = "取得網格結果"; 
+Blockly.Msg.FACEMESH_OPACITY_SHOW = "透明度";

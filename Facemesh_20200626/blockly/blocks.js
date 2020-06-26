@@ -33,7 +33,22 @@ Blockly.Blocks['facemesh_set'] = {
 	    .appendField(new Blockly.FieldDropdown([
 		  ["Y","1"],
 		  ["N","0"]	  
-	  ]), "mirrorimage_");	
+	  ]), "mirrorimage_");
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEMESH_OPACITY_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["1","1"],
+		["0.9","0.9"],
+		["0.8","0.8"],
+		["0.7","0.7"],
+		["0.6","0.6"],	  
+		["0.5","0.5"],
+		["0.4","0.4"],
+		["0.3","0.3"],
+		["0.2","0.2"],
+		["0.1","0.1"],	
+		["0","0"]	   
+  ]), "opacity_"); 	
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

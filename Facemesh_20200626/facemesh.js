@@ -4,7 +4,7 @@
 
   'use strict';
   
-  function facemesh_set(input_width, input_height, input_video, input_point, input_result, input_mirrorimage)  {
+  function facemesh_set(input_width, input_height, input_video, input_point, input_result, input_mirrorimage, input_opacity)  {
 	var canvas = document.getElementById("gamecanvas_facemesh");
 	var canvas_point = document.getElementById("canvas_point");
 	var result = document.getElementById("result");
@@ -13,6 +13,7 @@
 	canvas_point.style.display = input_point;
     result.style.display = input_result;
 	document.getElementById("mirrorimage").value = input_mirrorimage;
+	document.getElementById('opacity').value = input_opacity;
 		
 	var video = document.getElementById("video");
 	video.width = input_width;

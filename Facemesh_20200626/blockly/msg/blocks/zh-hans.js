@@ -8,3 +8,4 @@ Blockly.Msg.FACEMESH_PERSON_SHOW = "人次";
 Blockly.Msg.FACEMESH_PART_SHOW = "部位";
 Blockly.Msg.FACEMESH_POINT_SHOW = "网格图";
 Blockly.Msg.FACEMESH_GET_SHOW = "取得网格结果";
+Blockly.Msg.FACEMESH_OPACITY_SHOW = "透明度";

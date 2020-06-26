@@ -1,6 +1,6 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/facemesh"></script>');
-document.write('<video id="video" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><canvas id="gamecanvas_facemesh"></canvas><canvas id="canvas_point"></canvas><select id="mirrorimage" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><br><div id="result" style="color:red;display:none;"></div>');
+document.write('<video id="video" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><canvas id="gamecanvas_facemesh"></canvas><canvas id="canvas_point"></canvas><select id="mirrorimage" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="opacity" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><br><div id="result" style="color:red;display:none;"></div>');
 	       
 window.onload = function () {
 	
@@ -10,6 +10,7 @@ window.onload = function () {
   var canvas_point = document.getElementById('canvas_point');
   var context_point = canvas_point.getContext('2d');
   var result = document.getElementById('result');
+  var opacity = document.getElementById("opacity");
   var Model; 
   
   HandDetect();
@@ -62,8 +63,9 @@ window.onload = function () {
 	context_point.clearRect(0, 0, canvas.width, canvas.height);
 
     await Model.estimateFaces(canvas).then(predictions => {
-      result.innerHTML = "";
-		
+        result.innerHTML = "";
+		canvas.style.opacity = Number(opacity.value);
+
 		if (predictions.length > 0) {
 			var part = ["leftCheek","leftEyeLower0","leftEyeLower1","leftEyeLower2","leftEyeLower3","leftEyeUpper0","leftEyeUpper1","leftEyeUpper2","leftEyebrowLower","leftEyebrowUpper","lipsLowerInner","lipsLowerOuter","lipsUpperInner","lipsUpperOuter","midwayBetweenEyes","noseBottom","noseLeftCorner","noseRightCorner","noseTip","rightCheek","rightEyeLower0","rightEyeLower1","rightEyeLower2","rightEyeLower3","rightEyeUpper0","rightEyeUpper1","rightEyeUpper2","rightEyebrowLower","rightEyebrowUpper","silhouette"];
 			for (let k = 0; k < predictions.length; k++) {
