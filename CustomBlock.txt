@@ -36,7 +36,7 @@ https://fustyles.github.io/webduino/handpose_20200614/blockly.json
 [smart]
 https://blocklypro.webduino.io/#7AdzZgGGxr
 [Bit]
-https://bit.webduino.io/blockly/#VR9xzWKOaMdy1
+https://bit.webduino.io/blockly/#nqnlxNnbvlpyZ
 
 
 臉部辨識 (tfjs face-api.js)
