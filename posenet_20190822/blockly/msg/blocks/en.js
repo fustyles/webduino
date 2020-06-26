@@ -10,3 +10,4 @@ Blockly.Msg.POSENET_SKELETON_SHOW = "Skeleton";
 Blockly.Msg.POSENET_OPACITY_SHOW = "Opacity";
 Blockly.Msg.POSENET_DISTANCE_SHOW = "Distance";
 Blockly.Msg.POSENET_ANGLE_SHOW = "Angle";
+Blockly.Msg.POSENET_VIDEO_SHOW = "Video";

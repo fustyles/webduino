@@ -4,7 +4,35 @@
 
   'use strict';
 
- function posenet_person(input_person, input_part){
+  function posenet_video(input_width, input_height, input_persons, input_scorelimit, input_mirrorimage, input_result, input_skeleton, input_opacity, input_video) {
+ 
+    var canvas = document.getElementById("gamecanvas_posenet");
+	var canvas_skeleton = document.getElementById("canvas_skeleton");
+	var result = document.getElementById("result");
+
+	canvas.style.display = input_video;
+	canvas_skeleton.style.display = input_skeleton;
+    result.style.display = input_result;
+	document.getElementById("mirrorimage").value = input_mirrorimage;
+	document.getElementById('opacity').value = input_opacity;
+	document.getElementById('persons').value = input_persons; 
+    document.getElementById('scorelimit').value = input_scorelimit;
+		
+	var video = document.getElementById("video");
+	video.width = input_width;
+	video.height = input_height;   
+		
+	canvas.setAttribute("width", video.width+"px");
+	canvas.setAttribute("height", video.height+"px");
+	canvas.style.width = video.width+"px";
+	canvas.style.height = video.height+"px";
+	canvas_skeleton.setAttribute("width", video.width+"px");
+	canvas_skeleton.setAttribute("height", video.height+"px");
+	canvas_skeleton.style.width = video.width+"px";
+	canvas_skeleton.style.height = video.height+"px";
+  }
+
+  function posenet_person(input_person, input_part){
     var result = document.getElementById("result").innerHTML.split("<br>");
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
@@ -14,17 +42,6 @@
       }
     }
     return "";
-  }
-	
-  function posenet_video(input_width, input_height, input_persons, input_scorelimit, input_mirrorimage, input_result, input_skeleton, input_opacity) {
-    document.getElementById('video').width = input_width;
-    document.getElementById('video').height = input_height;
-    document.getElementById('persons').value = input_persons; 
-    document.getElementById('scorelimit').value = input_scorelimit;
-    document.getElementById('mirrorimage').value = input_mirrorimage;
-    document.getElementById('result').style.display = input_result;
-    document.getElementById('skeleton').value = input_skeleton;
-    document.getElementById('opacity').value = input_opacity;
   }
 	
   function posenet_distance(input_x0,input_y0,input_x1,input_y1) {

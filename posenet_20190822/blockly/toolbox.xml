@@ -1,11 +1,4 @@
 <category id="posenet">
-  <block type="posenet_person">
-    <value name="person_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value> 
-  </block>
   <block type="posenet_video">
     <value name="width_">
       <block type="math_number">
@@ -17,7 +10,14 @@
         <field name="NUM">240</field>
       </block>
     </value>     
-  </block> 
+  </block>
+  <block type="posenet_person">
+    <value name="person_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
+  </block>  
   <block type="posenet_distance">
     <value name="x0_">
       <block type="math_number">

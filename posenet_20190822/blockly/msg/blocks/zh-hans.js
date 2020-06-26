@@ -10,3 +10,4 @@ Blockly.Msg.POSENET_SKELETON_SHOW = "骨架";
 Blockly.Msg.POSENET_OPACITY_SHOW = "透明度";
 Blockly.Msg.POSENET_DISTANCE_SHOW = "距离";
 Blockly.Msg.POSENET_ANGLE_SHOW = "角度";
+Blockly.Msg.POSENET_VIDEO_SHOW = "视讯";
