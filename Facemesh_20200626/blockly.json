@@ -1,0 +1,15 @@
+{
+  "types": ["facemesh_set", "facemesh_get"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "facemesh.js",
+    "facemesh_video.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
