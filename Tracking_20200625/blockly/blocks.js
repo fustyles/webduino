@@ -9,14 +9,47 @@ Blockly.Blocks['trackcolor_set'] = {
     this.appendValueInput("height_")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.TRACKCOLOR_HEIGHT_SHOW); 	  
-    this.appendValueInput("display_")
-		.setCheck(null)
-        .appendField(Blockly.Msg.TRACKCOLOR_DISPLAY_SHOW);
-    this.appendValueInput("pixel_")
-		.setCheck(null)
-        .appendField(Blockly.Msg.TRACKCOLOR_PIXEL_SHOW);
-    this.setInputsInline(true);
+		.appendField(Blockly.Msg.TRACKCOLOR_HEIGHT_SHOW); 
+	this.appendDummyInput()  
+	  .appendField(Blockly.Msg.TRACKCOLOR_DISPLAY_SHOW)
+	  .appendField(new Blockly.FieldDropdown([
+		["Y","block"],
+		["N","none"]	  
+		]), "display_"); 
+	this.appendDummyInput()  
+	  .appendField(Blockly.Msg.TRACKCOLOR_PIXEL_SHOW)
+	  .appendField(new Blockly.FieldDropdown([
+		["Y","block"],
+		["N","none"]	  
+		]), "pixel_"); 
+	this.appendDummyInput()  
+	  .appendField(Blockly.Msg.TRACKCOLOR_RESULT_SHOW)
+	  .appendField(new Blockly.FieldDropdown([
+		["Y","block"],
+		["N","none"]	  
+		]), "result_"); 
+	this.appendDummyInput()  
+	    .appendField(Blockly.Msg.TRACKCOLOR_MIRRORIMAGE_SHOW)
+	    .appendField(new Blockly.FieldDropdown([
+		  ["Y","1"],
+		  ["N","0"]	  
+	  ]), "mirrorimage_");
+	this.appendDummyInput()  
+	  .appendField(Blockly.Msg.TRACKCOLOR_OPACITY_SHOW)
+	  .appendField(new Blockly.FieldDropdown([
+		["1","1"],
+		["0.9","0.9"],
+		["0.8","0.8"],
+		["0.7","0.7"],
+		["0.6","0.6"],	  
+		["0.5","0.5"],
+		["0.4","0.4"],
+		["0.3","0.3"],
+		["0.2","0.2"],
+		["0.1","0.1"],	
+		["0","0"]	   
+	]), "opacity_"); 
+	this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(65);

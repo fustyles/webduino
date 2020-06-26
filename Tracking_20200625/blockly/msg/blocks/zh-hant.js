@@ -1,7 +1,7 @@
 Blockly.Msg.TRACKCOLOR_SET_SHOW = "追蹤顏色視窗設定";
 Blockly.Msg.TRACKCOLOR_WIDTH_SHOW = "寬度";   
 Blockly.Msg.TRACKCOLOR_HEIGHT_SHOW = "高度";	  
-Blockly.Msg.TRACKCOLOR_DISPLAY_SHOW = "顯示";
+Blockly.Msg.TRACKCOLOR_DISPLAY_SHOW = "視訊";
 Blockly.Msg.TRACKCOLOR_PIXEL_SHOW = "像素圖";
 Blockly.Msg.TRACKCOLOR_CUSTOM_SHOW = "自訂顏色範圍(0~255)";	  
 Blockly.Msg.TRACKCOLOR_RECT_SHOW = "矩形顏色";
@@ -11,3 +11,6 @@ Blockly.Msg.TRACKCOLOR_GREEN_SHOW = "G範圍";
 Blockly.Msg.TRACKCOLOR_BLUE_SHOW = "B範圍";	
 Blockly.Msg.TRACKCOLOR_GET_SHOW = "取得偵測結果"; 	  
 Blockly.Msg.TRACKCOLOR_GET_NUMBER_SHOW = "取得偵測結果區塊數";
+Blockly.Msg.TRACKCOLOR_MIRRORIMAGE_SHOW = "鏡像";
+Blockly.Msg.TRACKCOLOR_OPACITY_SHOW = "透明度";
+Blockly.Msg.TRACKCOLOR_RESULT_SHOW = "結果";

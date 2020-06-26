@@ -4,30 +4,18 @@
 
   'use strict';
   
-  function trackcolor_set(input_width, input_height, input_display, input_pixel)  {
+  function trackcolor_set(input_width, input_height, input_display, input_pixel, input_result, input_mirrorimage, input_opacity)  {
 	var region = document.getElementById("region");
 	var canvas = document.getElementById("gamecanvas_trackingcolor");
 	var canvas_custom = document.getElementById("canvas_custom");
+	var result = document.getElementById("result");
 
-	if (input_display==1) {
-	  canvas.style.display="block";
-	  canvas_custom.style.display="block";
-	  if (input_pixel==1) {
-	    canvas_custom.style.display="block";
-		region.style.display="block";
-	    canvas.style.display="none";
-	  }
-	  else {
-	    canvas_custom.style.display="none";
-		region.style.display="none";
-	    canvas.style.display="block";
-	  }
-	}
-	else {
-	  canvas.style.display="none";
-	  canvas_custom.style.display="none";
-	  region.style.display="none";
-	}
+	canvas.style.display = input_display;
+	canvas_custom.style.display = input_pixel;
+	region.style.display = input_pixel;
+	result.style.display = input_result;
+	document.getElementById("mirrorimage").value = input_mirrorimage;
+	document.getElementById('opacity').value = input_opacity;
 		
 	var video = document.getElementById("video");
 	video.width = input_width;

@@ -1,9 +1,12 @@
 Blockly.JavaScript['trackcolor_set'] = function(block) {
   var value_width = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_height = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);   
-  var value_display = Blockly.JavaScript.valueToCode(block, 'display_', Blockly.JavaScript.ORDER_ATOMIC);  
-  var value_pixel = Blockly.JavaScript.valueToCode(block, 'pixel_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'trackcolor_set(' + value_width + ',' + value_height + ',' + value_display + ',' + value_pixel + ');\n';
+  var value_display = block.getFieldValue('display_');
+  var value_pixel = block.getFieldValue('pixel_');
+  var value_result = block.getFieldValue('result_');
+  var value_mirrorimage = block.getFieldValue('mirrorimage_');
+  var value_opacity = block.getFieldValue('opacity_');
+  var code = 'trackcolor_set(' + value_width + ',' + value_height + ',"' + value_display + '","' + value_pixel + '","' + value_result + '","' + value_mirrorimage + '","' + value_opacity + '");\n';
   return code;
 };
 

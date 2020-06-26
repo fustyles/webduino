@@ -10,16 +10,6 @@
         <field name="NUM">300</field>
       </block>
     </value>     
-    <value name="display_">
-      <block type="logic_boolean">
-        <field name="BOOL">TRUE</field>
-      </block>
-    </value>
-    <value name="pixel_">
-      <block type="logic_boolean">
-        <field name="BOOL">FALSE</field>
-      </block>
-    </value>
   </block>
   <block type="trackcolor_custom">
     <value name="rmin_">
