@@ -4,11 +4,8 @@
 
   'use strict';
 
-  function blazeface_video(input_width, input_height, input_scorelimit, input_mirrorimage, input_result, input_opacity) {
-    var canvas = document.getElementById("gamecanvas_blazeface");
-    var result = document.getElementById("result");
-
-    result.style.display = input_result;
+  function blazeface_video(input_width, input_height, input_scorelimit, input_mirrorimage, input_result, input_opacity) {  
+    document.getElementById("result").style.display = input_result;
     document.getElementById("mirrorimage").value = input_mirrorimage;
     document.getElementById('opacity').value = input_opacity;
     document.getElementById('scorelimit').value = input_scorelimit;
@@ -17,6 +14,7 @@
     video.width = input_width;
     video.height = input_height;   
 		
+    var canvas = document.getElementById("gamecanvas_blazeface");  
     canvas.setAttribute("width", video.width+"px");
     canvas.setAttribute("height", video.height+"px");
     canvas.style.width = video.width+"px";
