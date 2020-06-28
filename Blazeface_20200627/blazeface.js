@@ -26,13 +26,13 @@
 
   function blazeface_get(input_person, input_part){
     var result = document.getElementById("result").innerHTML.split("<br>");
-	if (input_part=='All') 
+    if (input_part=='All') 
         return result;
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
-		var result_detail = result[i].split(",");
-		if (result_detail[0]==input_person&&result_detail[1]==input_part) 
-		  return result_detail;
+        var result_detail = result[i].split(",");
+        if (result_detail[0]==input_person&&result_detail[1]==input_part) 
+          return result_detail;
       }
     }
     return "";
