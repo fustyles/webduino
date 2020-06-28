@@ -12,6 +12,6 @@ Blockly.JavaScript['blazeface_video'] = function(block) {
 Blockly.JavaScript['blazeface_person'] = function(block) { 
   var value_person_ = Blockly.JavaScript.valueToCode(block, 'person_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_part_ = block.getFieldValue('part_');
-  var code = 'blazeface_person(' + value_person_ + ',"' + value_part_ + '")';
+  var code = 'blazeface_get(' + value_person_ + ',"' + value_part_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
