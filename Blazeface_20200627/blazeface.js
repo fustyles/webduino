@@ -5,23 +5,22 @@
   'use strict';
 
   function blazeface_video(input_width, input_height, input_scorelimit, input_mirrorimage, input_result, input_opacity) {
- 
     var canvas = document.getElementById("gamecanvas_blazeface");
-	var result = document.getElementById("result");
+    var result = document.getElementById("result");
 
     result.style.display = input_result;
-	document.getElementById("mirrorimage").value = input_mirrorimage;
-	document.getElementById('opacity').value = input_opacity;
+    document.getElementById("mirrorimage").value = input_mirrorimage;
+    document.getElementById('opacity').value = input_opacity;
     document.getElementById('scorelimit').value = input_scorelimit;
 		
-	var video = document.getElementById("video");
-	video.width = input_width;
-	video.height = input_height;   
+    var video = document.getElementById("video");
+    video.width = input_width;
+    video.height = input_height;   
 		
-	canvas.setAttribute("width", video.width+"px");
-	canvas.setAttribute("height", video.height+"px");
-	canvas.style.width = video.width+"px";
-	canvas.style.height = video.height+"px";
+    canvas.setAttribute("width", video.width+"px");
+    canvas.setAttribute("height", video.height+"px");
+    canvas.style.width = video.width+"px";
+    canvas.style.height = video.height+"px";
   }
 
   function blazeface_get(input_person, input_part){
