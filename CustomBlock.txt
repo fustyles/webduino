@@ -1,4 +1,4 @@
-資料更新：2020/6/27 21:00
+資料更新：2020/6/28 10:30
 
 我寫的自訂積木、韌體、網頁等免費提供各級學校教學與個人使用，僅供測試，請勿用於商業販售產品！
 
@@ -29,6 +29,14 @@ https://fustyles.github.io/webduino/Tracking_20200625/blockly.json
 https://blocklypro.webduino.io/#X5OK82JzD8
 [Bit]
 https://bit.webduino.io/blockly/#wqabPNNOGdp3Y
+
+
+臉部偵測 (Tracking.js)
+https://fustyles.github.io/webduino/Tracking_20190917/blockly.json
+[Smart]
+https://blocklypro.webduino.io/#RdWpgGq9az
+[Bit]
+https://bit.webduino.io/blockly/#py6lPwQYZXYqZ
 
 
 文字辨識 (tesseract.js)
