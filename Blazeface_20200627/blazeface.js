@@ -24,7 +24,7 @@
 	canvas.style.height = video.height+"px";
   }
 
-  function blazeface_person(input_person, input_part){
+  function blazeface_get(input_person, input_part){
     var result = document.getElementById("result").innerHTML.split("<br>");
 	if (input_part=='All') 
         return result;
@@ -39,6 +39,6 @@
   }	
 
   window.blazeface_video = blazeface_video;
-  window.blazeface_person = blazeface_person;
+  window.blazeface_get = blazeface_get;
 	
 }(window, window.document));
