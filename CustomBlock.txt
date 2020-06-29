@@ -65,7 +65,7 @@ https://bit.webduino.io/blockly/#VyjoVvVMmLQRY
 
 自訂視覺 (customvision-tfjs)
 https://fustyles.github.io/webduino/Azure_customvision-tfjs_20200128/blockly.json
-將訓練完成的模型匯出TensorFlow.js格式，解壓縮後覆蓋入此資料夾中。再將此資料夾移至積木網站設定的路徑！
+將Custom Vision訓練完成的模型匯出TensorFlow.js格式，解壓縮後覆蓋入此資料夾中。再將此資料夾移至積木網站設定的路徑！
 https://github.com/fustyles/webduino/tree/master/Azure/Azure_customvision-tfjs
 
 
