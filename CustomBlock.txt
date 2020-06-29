@@ -394,3 +394,6 @@ Bit & Smart 網頁控制介面
 https://fustyles.github.io/webduino/MyFirmata_smart.html?DeviceID
 [Bit] (網址末請填入裝置ID)
 https://fustyles.github.io/webduino/MyFirmata_bit.html?DeviceID
+
+Webduino MQTT
+https://fustyles.github.io/webduino/webduino_mqtt.html
