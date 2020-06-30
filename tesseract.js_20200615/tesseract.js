@@ -26,7 +26,7 @@ function tesseract_recognition(input_showtime){
       { logger: m => console.log(m) }
     ).then(({ data: { text } }) => {
       console.log(text);
-      result.innerHTML = text;
+      result.innerHTML = text.replace(/\n/g, "<br>");
       setTimeout(function(){canvas.style.display='none';}, showTime);
     }) 
 }
