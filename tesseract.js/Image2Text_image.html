@@ -148,7 +148,7 @@ async function DetectImage() {
 	  { logger: m => console.log(m) }
 	).then(({ data: { text } }) => {
 	  console.log(text);
-	  result.innerHTML = text;
+	  result.innerHTML = text.replace(/\n/g, "<br>");
 	})  
 }
   
