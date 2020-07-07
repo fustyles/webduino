@@ -29,7 +29,7 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__remove__(url);
                   this.getInputTargetBlock("url").setFieldValue("", "TEXT");
             }
-	                else if (this.getFieldValue('func')=='addAll') {
+	    else if (this.getFieldValue('func')=='addAll') {
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/Blazeface_20200627/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/Facemesh_20200626/blockly.json');
