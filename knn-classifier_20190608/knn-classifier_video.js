@@ -33,6 +33,7 @@ window.onload = function () {
     canvas.setAttribute("height", video.height);
     video.style.visibility="hidden";
     video.style.position="absolute";
+    region.style.opacity = Number(opacity.value);
     }
   })
     
