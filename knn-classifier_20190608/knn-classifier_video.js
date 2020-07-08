@@ -38,7 +38,8 @@ window.onload = function () {
     
   function opacity_onclick (event) {
     region.style.opacity = Number(opacity.value);
-  };    
+  }; 
+  opacity.addEventListener("click", opacity_onclick, true);
 
   function predictClass_onclick (event) {
     var mirrorimage = Number(document.getElementById("mirrorimage").value);
