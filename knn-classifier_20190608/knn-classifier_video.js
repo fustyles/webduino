@@ -31,9 +31,13 @@ window.onload = function () {
     canvas.setAttribute("width", video.width);
     canvas.setAttribute("height", video.height);
     video.style.visibility="hidden";
-    video.style.position="absolute";          
+    video.style.position="absolute";
     }
   })
+    
+  function region_onclick (event) {
+    region.style.opacity = Number(document.getElementById("opacity").value);
+  };    
 
   function predictClass_onclick (event) {
     var mirrorimage = Number(document.getElementById("mirrorimage").value);
@@ -125,7 +129,6 @@ window.onload = function () {
       return;
     }
       
-    region.style.opacity = Number(document.getElementById("opacity").value);
     // Make a prediction.
     try
     {
