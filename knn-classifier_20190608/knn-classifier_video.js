@@ -16,6 +16,7 @@ window.onload = function () {
   var result = document.getElementById('result');
   var count = document.getElementById('count');
   var region = document.getElementById('region');
+  var opacity = document.getElementById('opacity');
 
   navigator.mediaDevices
   .getUserMedia({
@@ -35,8 +36,8 @@ window.onload = function () {
     }
   })
     
-  function region_onclick (event) {
-    region.style.opacity = Number(document.getElementById("opacity").value);
+  function opacity_onclick (event) {
+    region.style.opacity = Number(opacity.value);
   };    
 
   function predictClass_onclick (event) {
