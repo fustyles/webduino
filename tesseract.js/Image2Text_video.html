@@ -166,7 +166,7 @@ function DetectText() {
 		{ logger: m => console.log(m) }
 	).then(({ data: { text } }) => {
 		result.innerHTML = text.replace(/\n/g, "<br>");
-		text = result.innerHTML.replace(/<br>/g, "")
+		text = result.innerHTML.replace(/<br>/g, "");
 		console.log(text);
 	})  
 } 
