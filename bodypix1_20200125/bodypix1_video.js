@@ -1,4 +1,4 @@
-document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0"></script>');
+document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@1.0.0"></script>');
 document.write('<div id="region" style="z-index:999"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><canvas id="canvas1"></canvas><canvas id="canvas2"></canvas><canvas id="canvas3"></canvas><canvas id="canvas4"></canvas><canvas id="canvas5"></canvas><br>Function<select id="func"><option value="1">backgroundDarkeningMask</option><option value="2">segmentation</option><option value="3">coloredPartImageData</option><option value="4">coloredPartImage</option><option value="5">drawPixelatedMask</option></select><br>MirrorImage<select id="mirrorimage"><option value="1">yes</option><option value="0">no</option></select><br><div id="result" style="color:red">Please wait for loading model.</div></div>');
 
