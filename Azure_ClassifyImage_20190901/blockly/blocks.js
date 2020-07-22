@@ -98,8 +98,8 @@ Blockly.Blocks['azure_classifyimage_video'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AZURECLASSIFYIMAGE_RESULT_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["show","block"],
-		["hide","none"]	  
+		["Y","block"],
+		["N","none"]	  
   ]), "result_"); 	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AZURECLASSIFYIMAGE_OPACITY_SHOW)
