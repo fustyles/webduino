@@ -69,8 +69,8 @@ Blockly.Blocks['blazeface_person'] = {
         ["mouth","mouth"],
         ["rightEar","rightEar"],
         ["leftEar","leftEar"],
-		["bandingBox","bandingBox"],
-		["All","All"]
+        ["bandingBox","bandingBox"],
+        ["All","All"]
   ]), "part_");  	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
