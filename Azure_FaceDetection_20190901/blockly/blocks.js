@@ -130,8 +130,8 @@ Blockly.Blocks['azure_facedetection_video'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AZUREFACEDETECTION_RESULT_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["show","block"],
-		["hide","none"]	  
+		["Y","block"],
+		["N","none"]	  
   ]), "result_"); 	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AZUREFACEDETECTION_OPACITY_SHOW)
