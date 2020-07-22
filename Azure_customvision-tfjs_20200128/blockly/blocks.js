@@ -58,8 +58,8 @@ Blockly.Blocks['customvision_tfjs_video'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.CUSTOMVISION_TFJS_RESULT_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["show","block"],
-		["hide","none"]	  
+		["Y","block"],
+		["N","none"]	  
   ]), "result_"); 	 
   this.appendValueInput("timer_")
       .setCheck("Number")
