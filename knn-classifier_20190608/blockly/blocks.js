@@ -30,14 +30,14 @@ Blockly.Blocks['knn_classifier_video'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.KNN_CLASSIFIER_RESULT_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["show","block"],
-		["hide","none"]	  
+		["Y","block"],
+		["N","none"]	  
   ]), "result_"); 	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.KNN_CLASSIFIER_MIRRORIMAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["yes","1"],
-		["no","0"]	  
+		["Y","1"],
+		["N","0"]	  
   ]), "mirrorimage_");
   this.appendDummyInput()  
       .appendField(Blockly.Msg.KNN_CLASSIFIER_OPACITY_SHOW)
