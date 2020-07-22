@@ -9,8 +9,8 @@ Blockly.Blocks['bodypix1_video'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.BODYPIX1_MIRRORIMAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["yes","1"],
-		["no","0"]	  
+		["Y","1"],
+		["N","0"]	  
   ]), "mirrorimage_"); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.BODYPIX1_FUNCTION_SHOW)
