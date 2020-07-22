@@ -198,20 +198,20 @@ Blockly.Blocks['coco_ssd_video'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_RESULT_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["show","block"],
-		["hide","none"]	  
+		["Y","block"],
+		["N","none"]	  
   ]), "result_"); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_FRAME_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["show","1"],
-		["hide","0"]	  
+		["Y","1"],
+		["N","0"]	  
   ]), "frame_");	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_MIRRORIMAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["yes","1"],
-		["no","0"]	  
+		["Y","1"],
+		["N","0"]	  
   ]), "mirrorimage_"); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_OPACITY_SHOW)
