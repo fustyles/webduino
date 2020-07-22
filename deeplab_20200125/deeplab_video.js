@@ -1,6 +1,6 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.6.1"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/deeplab"></script>');
-document.write('<div id="region" style="z-index:999;position:absolute">MirrorImage<select id="mirrorimage""><option value="1">yes</option><option value="0">no</option></select><br><div id="result" style="width:320px;color:red;z-index:999">Please wait for loading model.</div><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><canvas id="Image" style="display:none"></canvas><br><div id="legendList"></div></div>');
+document.write('<div id="region" style="z-index:999;position:absolute">MirrorImage<select id="mirrorimage""><option value="1">Y</option><option value="0">N</option></select><br><div id="result" style="width:320px;color:red;z-index:999">Please wait for loading model.</div><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><canvas id="Image" style="display:none"></canvas><br><div id="legendList"></div></div>');
 
 window.onload = function () {
   var region = document.getElementById('region');
