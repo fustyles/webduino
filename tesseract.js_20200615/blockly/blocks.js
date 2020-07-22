@@ -139,8 +139,8 @@ Blockly.Blocks['tesseract_video'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TESSERACT_RESULT_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["show","block"],
-		["hide","none"]	  
+		["Y","block"],
+		["N","none"]	  
   ]), "result_"); 	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TESSERACT_OPACITY_SHOW)
