@@ -2036,14 +2036,14 @@ Blockly.Blocks['mobilenet_video'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.MOBILENET_RESULT_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["show","block"],
-		["hide","none"]	  
+		["Y","block"],
+		["N","none"]	  
   ]), "result_"); 	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.MOBILENET_MIRRORIMAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["yes","1"],
-		["no","0"]	  
+		["Y","1"],
+		["N","0"]	  
   ]), "mirrorimage_"); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.MOBILENET_OPACITY_SHOW)
