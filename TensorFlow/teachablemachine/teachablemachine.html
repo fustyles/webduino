@@ -32,24 +32,24 @@ From https://teachablemachine.withgoogle.com/train/image<br>
 	result.innerHTML = "Please wait for loading model.";
 
 	// the link to your model provided by Teachable Machine export panel
-	const URL = document.getElementById('modelPath').value;
+	const URL = modelPath.value;
 	const modelURL = URL + "model.json";
 	const metadataURL = URL + "metadata.json";
 
 	model = await tmImage.load(modelURL, metadataURL);
-    maxPredictions = model.getTotalClasses();
+    	maxPredictions = model.getTotalClasses();
 	// load the model and metadata
 	// Refer to tmImage.loadFromFiles() in the API to support files from a file picker
 	// or files from your local hard drive
 	// Note: the pose library adds "tmImage" object to your window (window.tmImage)
-    // More API functions here:
-    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+    	// More API functions here:
+    	// https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
 	setTimeout(function(){ startvideo(); }, 2000);
   } 
 
   function startvideo() {
-	video.style.display="block";
+    video.style.display="block";
     navigator.mediaDevices
       .getUserMedia({
         audio: false,
@@ -62,9 +62,9 @@ From https://teachablemachine.withgoogle.com/train/image<br>
       .then(stream => {
         video.srcObject = stream
         video.onloadedmetadata = () => {       
-          video.play(); 
-		  result.innerHTML = "";
-          setTimeout(function(){predict(); }, 100);
+        video.play(); 
+	result.innerHTML = "";
+        setTimeout(function(){predict(); }, 100);
         }
       })   
   }
@@ -72,9 +72,9 @@ From https://teachablemachine.withgoogle.com/train/image<br>
     // run the webcam image through the image model
     async function predict() {
         // predict can take in an image, video or canvas html element
-		var data = "";
-		var maxClassName = "";
-		var maxProbability = "";
+	var data = "";
+	var maxClassName = "";
+	var maxProbability = "";
         const prediction = await model.predict(video);
         for (let i = 0; i < maxPredictions; i++) {
 			if (i==0) {
@@ -89,8 +89,8 @@ From https://teachablemachine.withgoogle.com/train/image<br>
 			}
             data += prediction[i].className + ": " + prediction[i].probability.toFixed(2) + "<br>";
         }
-		document.getElementById('result').innerHTML = data + "Result: " + maxClassName + " (" + maxProbability + ")";
-		setTimeout(function(){predict(); }, 100);
+	result.innerHTML = data + "Result: " + maxClassName + " (" + maxProbability + ")";
+	setTimeout(function(){predict(); }, 100);
     }
 </script>
 
