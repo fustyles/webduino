@@ -28,8 +28,8 @@ From https://teachablemachine.withgoogle.com/train/image<br>
 
     // Load the image model and setup the webcam
     async function init() {
-		// the link to your model provided by Teachable Machine export panel
-		const URL = document.getElementById('modelPath').value;
+	// the link to your model provided by Teachable Machine export panel
+	const URL = document.getElementById('modelPath').value;
 
         const modelURL = URL + "model.json";
         const metadataURL = URL + "metadata.json";
@@ -65,8 +65,8 @@ From https://teachablemachine.withgoogle.com/train/image<br>
     // run the webcam image through the image model
     async function predict() {
         // predict can take in an image, video or canvas html element
-		var maxClassName = "";
-		var maxProbability = "";
+	var maxClassName = "";
+	var maxProbability = "";
         const prediction = await model.predict(webcam.canvas);
         for (let i = 0; i < maxPredictions; i++) {
 			if (i==0) {
@@ -82,7 +82,8 @@ From https://teachablemachine.withgoogle.com/train/image<br>
             const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
             labelContainer.childNodes[i].innerHTML = classPrediction;
         }
-		document.getElementById('result').innerHTML = "Result: " + maxClassName + " (" + maxProbability + ")";
+	    
+	document.getElementById('result').innerHTML = "Result: " + maxClassName + " (" + maxProbability + ")";
     }
 </script>
 
