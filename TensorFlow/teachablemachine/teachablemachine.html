@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/7/26 18:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/7/26 17:30
 https://www.facebook.com/francefu
 
 Try it!
@@ -14,60 +14,68 @@ https://fustyles.github.io/webduino/TensorFlow/teachablemachine/teachablemachine
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
-
-Model Path： <input type="text" id="modelPath" size="40" value=""><button type="button" onclick="init()">Start</button><br>
+<video id="video" width="320" height="240" style="display:none" preload autoplay loop muted></video>
+<br>
+Model Path： <input type="text" id="modelPath" size="40" value=""><button type="button" onclick="ObjectDetect()">Start</button><br>
 From https://teachablemachine.withgoogle.com/train/image<br>
-<div id="webcam-container"></div>
-<div id="label-container"></div>
-<div id="result" style="color:red"></div>
+<div id="result" style="width:320px;color:red"></div>
 
 <script type="text/javascript">
-    // More API functions here:
-    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
-    let model, webcam, labelContainer, maxPredictions;
+  var video = document.getElementById('video');
+  var modelPath = document.getElementById('modelPath');
+  var result = document.getElementById('result'); 
+  let model; 
+  
+  async function ObjectDetect() {
+	if (modelPath.value=="") return;
 
-    // Load the image model and setup the webcam
-    async function init() {
+	result.innerHTML = "Please wait for loading model.";
+
 	// the link to your model provided by Teachable Machine export panel
 	const URL = document.getElementById('modelPath').value;
+	const modelURL = URL + "model.json";
+	const metadataURL = URL + "metadata.json";
 
-        const modelURL = URL + "model.json";
-        const metadataURL = URL + "metadata.json";
+	model = await tmImage.load(modelURL, metadataURL);
+    maxPredictions = model.getTotalClasses();
+	// load the model and metadata
+	// Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+	// or files from your local hard drive
+	// Note: the pose library adds "tmImage" object to your window (window.tmImage)
+    // More API functions here:
+    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
-        // load the model and metadata
-        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-        // or files from your local hard drive
-        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
-        model = await tmImage.load(modelURL, metadataURL);
-        maxPredictions = model.getTotalClasses();
+	setTimeout(function(){ startvideo(); }, 2000);
+  } 
 
-        // Convenience function to setup a webcam
-        const flip = true; // whether to flip the webcam
-        webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
-        await webcam.setup(); // request access to the webcam
-        await webcam.play();
-        window.requestAnimationFrame(loop);
-
-        // append elements to the DOM
-        document.getElementById("webcam-container").appendChild(webcam.canvas);
-        labelContainer = document.getElementById("label-container");
-        for (let i = 0; i < maxPredictions; i++) { // and class labels
-            labelContainer.appendChild(document.createElement("div"));
+  function startvideo() {
+	video.style.display="block";
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+        video: {
+          facingMode: "user",
+          width: 320,
+          height: 240
         }
-    }
-
-    async function loop() {
-        webcam.update(); // update the webcam frame
-        await predict();
-        window.requestAnimationFrame(loop);
-    }
+      })
+      .then(stream => {
+        video.srcObject = stream
+        video.onloadedmetadata = () => {       
+          video.play(); 
+		  result.innerHTML = "";
+          setTimeout(function(){predict(); }, 100);
+        }
+      })   
+  }
 
     // run the webcam image through the image model
     async function predict() {
         // predict can take in an image, video or canvas html element
-	var maxClassName = "";
-	var maxProbability = "";
-        const prediction = await model.predict(webcam.canvas);
+		var data = "";
+		var maxClassName = "";
+		var maxProbability = "";
+        const prediction = await model.predict(video);
         for (let i = 0; i < maxPredictions; i++) {
 			if (i==0) {
 				maxClassName = prediction[i].className;
@@ -79,11 +87,10 @@ From https://teachablemachine.withgoogle.com/train/image<br>
 					maxProbability = prediction[i].probability;
 				}
 			}
-            const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-            labelContainer.childNodes[i].innerHTML = classPrediction;
+            data += prediction[i].className + ": " + prediction[i].probability.toFixed(2) + "<br>";
         }
-	    
-	document.getElementById('result').innerHTML = "Result: " + maxClassName + " (" + maxProbability + ")";
+		document.getElementById('result').innerHTML = data + "Result: " + maxClassName + " (" + maxProbability + ")";
+		setTimeout(function(){predict(); }, 100);
     }
 </script>
 
