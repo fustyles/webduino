@@ -86,7 +86,17 @@ Blockly.Blocks['coco_ssd_object'] = {
   ]), "object_");    
   this.appendValueInput("index_")
       .setCheck("Number")
-      .appendField(Blockly.Msg.COCOSSD_INDEX_SHOW); 
+      .appendField(Blockly.Msg.COCOSSD_INDEX_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		["",""],
+		["class","class"],
+		["score","score"],
+		["x","x"],
+		["y","y"],
+		["width","width"],
+		["height","height"]
+  ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
@@ -99,6 +109,7 @@ Blockly.Blocks['coco_ssd_object_number'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_OBJECT_NUMBER_SHOW)
       .appendField(new Blockly.FieldDropdown([
+		["",""],
 		["airplane","airplane"],
 		["apple","apple"],
 		["backpack","backpack"],
@@ -179,7 +190,7 @@ Blockly.Blocks['coco_ssd_object_number'] = {
 		["vase","vase"],
 		["wine glass","wine glass"],
 		["zebra","zebra"]
-  ]), "object_");    
+  ]), "object_");     
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);

@@ -4,15 +4,33 @@
 
   'use strict';
 
- function coco_ssd_object(input_object, input_index) {
+ function coco_ssd_object(input_object, input_index, input_data) {
 	var n=0;
     var result = document.getElementById("result").innerHTML.split("<br>");
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
 		var result_detail = result[i].split(",");
 		if (result_detail[0]==input_object) {
-		  if (n==input_index)
+		  if (n==input_index&&input_data=="")
 		    return result_detail;
+		  else if (n==input_index&&input_data=="class") {
+		    return result_detail[0];
+		  }
+		  else if (n==input_index&&input_data=="score") {
+		    return result_detail[1];
+		  }
+		  else if (n==input_index&&input_data=="x") {
+		    return result_detail[2];
+		  }
+		  else if (n==input_index&&input_data=="y") {
+		    return result_detail[3];
+		  }
+		  else if (n==input_index&&input_data=="width") {
+		    return result_detail[4];
+		  }
+		  else if (n==input_index&&input_data=="height") {
+		    return result_detail[5];
+		  }
 		  n++;
 		}
       }
@@ -23,6 +41,7 @@
  function coco_ssd_object_number(input_object) {
 	var n=0;
     var result = document.getElementById("result").innerHTML.split("<br>");
+	if (input_object=="") return result.length-1;
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
 		var result_detail = result[i].split(",");
