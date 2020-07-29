@@ -62,6 +62,7 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/ShowCode_20181216/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/ESP8266_20190128/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/WebBit_20190225/blockly.json');
+		  Code.customTab.$__add__('https://fustyles.github.io/webduino/teachablemachine_20200729/blockly.json');
 
                   this.getInputTargetBlock("url").setFieldValue("", "TEXT");
             }
@@ -98,6 +99,7 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/ShowCode_20181216/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/ESP8266_20190128/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebBit_20190225/blockly.json');
+		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/teachablemachine_20200729/blockly.json');
 
                   this.getInputTargetBlock("url").setFieldValue("", "TEXT");
             }
