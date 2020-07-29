@@ -16,7 +16,7 @@ window.onload = function () {
 	async function ObjectDetect() {
 	  console.log(modelPath.value);
 	  if (modelPath.value=="") {
-	  	result.innerHTML = "Please set model path.";
+	  	result.innerHTML = "Please input model path.";
 		return;
 	  }
 	  const URL = modelPath.value;
