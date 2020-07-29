@@ -1,0 +1,23 @@
+<category id="teachablemachine">
+  <block type="teachablemachine_video">
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">400</field>
+      </block>
+    </value> 
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">300</field>
+      </block>
+    </value>     
+  </block> 
+  <block type="teachablemachine_model">
+    <value name="model_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+  </block>  
+  <block type="teachablemachine_result">
+  </block> 
+</category>
