@@ -1,10 +1,18 @@
-資料更新：2020/6/28 10:30
+資料更新：2020/7/30 00:00
 
 我寫的自訂積木、韌體、網頁等免費提供各級學校教學與個人使用，僅供測試，請勿用於商業販售產品！
 
 
 Webbit教育版 新增自訂積木
 https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json
+
+
+機器學習 (自訂模型)
+https://fustyles.github.io/webduino/teachablemachine_20200729/blockly.json
+[Smart ]
+https://blocklypro.webduino.io/#XLJd8QDWvN
+[Bit]
+https://bit.webduino.io/blockly/#jqwMJYo7PX7yO
 
 
 臉部偵測 (tfjs blazeface)
