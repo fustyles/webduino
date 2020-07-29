@@ -15,8 +15,10 @@ window.onload = function () {
 
 	async function ObjectDetect() {
 	  console.log(modelPath.value);
-	  if (modelPath.value=="") return;
-	  result.innerHTML = "Please wait for loading model.";
+	  if (modelPath.value=="") {
+	  	result.innerHTML = "Please set model path.";
+		return;
+	  }
 	  const URL = modelPath.value;
 	  const modelURL = URL + "model.json";
 	  const metadataURL = URL + "metadata.json";
