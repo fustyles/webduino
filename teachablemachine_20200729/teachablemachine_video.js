@@ -22,6 +22,7 @@ window.onload = function () {
 	  const metadataURL = URL + "metadata.json";
 	  Model = await tmImage.load(modelURL, metadataURL);
 	  maxPredictions = Model.getTotalClasses();
+	  result.innerHTML = "";
 	  startvideo();
 	}
   
