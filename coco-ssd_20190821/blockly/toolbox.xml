@@ -10,7 +10,9 @@
         <field name="NUM">240</field>
       </block>
     </value>     
-  </block> 
+  </block>
+  <block type="coco_ssd_list">
+  </block>  
   <block type="coco_ssd_object">
     <value name="index_">
       <block type="math_number">

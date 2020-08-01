@@ -4,6 +4,20 @@
 
   'use strict';
 
+ function coco_ssd_list(input_object) {
+    var result = document.getElementById("result").innerHTML.split("<br>");
+	var result_arr = [];
+    if (result.length>0) {
+      for (var i=0;i<result.length;i++) {
+		var result_detail = result[i].split(",");
+		if (input_object==""||result_detail[0]==input_object) {
+		    result_arr.push(result_detail);
+		}
+      }
+    }
+    return result_arr;
+  }
+
  function coco_ssd_object(input_object, input_index, input_data) {
 	var n=0;
     var result = document.getElementById("result").innerHTML.split("<br>");
@@ -39,9 +53,9 @@
   }
 
  function coco_ssd_object_number(input_object) {
-	var n=0;
     var result = document.getElementById("result").innerHTML.split("<br>");
-	if (input_object=="") return result.length-1;
+	if (input_object=="") return result.length;
+	var n=0;
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
 		var result_detail = result[i].split(",");
@@ -61,7 +75,8 @@
     document.getElementById('mirrorimage').value = input_mirrorimage;
     document.getElementById('opacity').value = input_opacity;
   }	
-
+	
+  window.coco_ssd_list = coco_ssd_list;
   window.coco_ssd_object = coco_ssd_object;
   window.coco_ssd_object_number = coco_ssd_object_number;
   window.coco_ssd_video = coco_ssd_video;

@@ -1,3 +1,9 @@
+Blockly.JavaScript['coco_ssd_list'] = function(block) { 
+  var value_object_ = block.getFieldValue('object_');
+  var code = 'coco_ssd_list("' + value_object_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['coco_ssd_object'] = function(block) { 
   var value_object_ = block.getFieldValue('object_');
   var value_index_ = Blockly.JavaScript.valueToCode(block, 'index_', Blockly.JavaScript.ORDER_ATOMIC);
