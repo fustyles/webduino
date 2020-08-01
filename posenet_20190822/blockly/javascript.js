@@ -12,10 +12,16 @@ Blockly.JavaScript['posenet_video'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['posenet_list'] = function(block) { 
+  var code = 'posenet_list()';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['posenet_person'] = function(block) { 
   var value_person_ = Blockly.JavaScript.valueToCode(block, 'person_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_part_ = block.getFieldValue('part_');
-  var code = 'posenet_person(' + value_person_ + ',"' + value_part_ + '")';
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'posenet_person(' + value_person_ + ',"' + value_part_ + '","' + value_data_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 

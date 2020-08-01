@@ -84,9 +84,12 @@ async function DetectVideo() {
                   context_skeleton.closePath();
                   context_skeleton.fill();
                
-              }      
-              result.innerHTML += n + "," + k[i].part + "," + Math.round(k[i].score*100)/100 + "," + Math.round(k[i].position.x) + "," + Math.round(k[i].position.y) + "<br>";
-            }
+				}      
+				result.innerHTML += n + "," + k[i].part + "," + Math.round(k[i].score*100)/100 + "," + Math.round(k[i].position.x) + "," + Math.round(k[i].position.y) + "<br>";
+			  }
+
+			  if (result.innerHTML!="")
+				result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4); 
             
               context.lineWidth = 2;
               var centerShoulderX = (k[5].position.x+k[6].position.x)/2;

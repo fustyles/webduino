@@ -76,6 +76,16 @@ Blockly.Blocks['posenet_video'] = {
   }
 };
 
+Blockly.Blocks['posenet_list'] = {
+  init: function() { 
+  this.appendDummyInput()  
+	  .appendField(Blockly.Msg.POSENET_RESULT_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
 Blockly.Blocks['posenet_person'] = {
   init: function() {
   this.appendValueInput("person_")
@@ -100,8 +110,17 @@ Blockly.Blocks['posenet_person'] = {
 		["leftKnee","leftKnee"],
 		["rightKnee","rightKnee"],
 		["leftAnkle","leftAnkle"],
-		["rightAnkle","rightAnkle"]
-  ]), "part_");  	  
+		["rightAnkle","rightAnkle"],
+		[" ",""]
+  ]), "part_");  	
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.POSENET_DATA_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		[" ",""],
+		["score","score"],
+		["x","x"],
+		["y","y"]
+  ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);

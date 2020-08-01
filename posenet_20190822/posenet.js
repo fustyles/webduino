@@ -5,7 +5,6 @@
   'use strict';
 
   function posenet_video(input_width, input_height, input_persons, input_scorelimit, input_mirrorimage, input_result, input_skeleton, input_opacity, input_video) {
- 
     var canvas = document.getElementById("gamecanvas_posenet");
 	var canvas_skeleton = document.getElementById("canvas_skeleton");
 	var result = document.getElementById("result");
@@ -32,13 +31,33 @@
 	canvas_skeleton.style.height = video.height+"px";
   }
 
-  function posenet_person(input_person, input_part){
+  function posenet_list(){
+    var result = document.getElementById("result").innerHTML.split("<br>");
+	var result_arr = [];
+    if (result.length>0) {
+      for (var i=0;i<result.length;i++) {
+		var result_detail = result[i].split(",");
+		result_arr.push(result_detail);
+      }
+    }
+    return result_arr;
+  }
+
+  function posenet_person(input_index, input_part, input_data){
     var result = document.getElementById("result").innerHTML.split("<br>");
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
-	var result_detail = result[i].split(",");
-	if (result_detail[0]==input_person&&result_detail[1]==input_part) 
-	  return result_detail;
+		var result_detail = result[i].split(",");
+		if (result_detail[0]==input_index&&result_detail[1]==input_part) {
+		  if (input_data=="")
+			return result_detail;
+		  else if (input_data=="score")
+			return result_detail[2];
+		  else if (input_data=="x")
+			return result_detail[3];
+		  else if (input_data=="y")
+			return result_detail[4];
+		}
       }
     }
     return "";
@@ -52,8 +71,9 @@
       return (Math.atan((input_y1-input_y0)/(input_x1-input_x0)) / Math.PI) * 180;
   } 	
 
-  window.posenet_person = posenet_person;
   window.posenet_video = posenet_video;
+  window.posenet_list = posenet_list;
+  window.posenet_person = posenet_person;
   window.posenet_distance = posenet_distance;
   window.posenet_angle = posenet_angle;	
 	
