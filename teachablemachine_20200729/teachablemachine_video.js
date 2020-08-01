@@ -71,7 +71,7 @@ window.onload = function () {
 			result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);  
 	}
 	else
-		result.innerHTML = "Unrecognizable";
+		result.innerHTML = "";
 
 	setTimeout(function(){predict(); }, 250);
   }
