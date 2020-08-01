@@ -11,5 +11,5 @@ Blockly.Msg.POSENET_OPACITY_SHOW = "Opacity";
 Blockly.Msg.POSENET_DISTANCE_SHOW = "Distance";
 Blockly.Msg.POSENET_ANGLE_SHOW = "Angle";
 Blockly.Msg.POSENET_VIDEO_SHOW = "Video";
-Blockly.Msg.POSENET_RESULT_SHOW= "Pose Detection (posenet) Result";
+Blockly.Msg.POSENET_LIST_SHOW= "Pose Detection (posenet) Result";
 Blockly.Msg.POSENET_DATA_SHOW= "Data";
