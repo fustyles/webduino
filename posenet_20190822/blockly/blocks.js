@@ -79,7 +79,7 @@ Blockly.Blocks['posenet_video'] = {
 Blockly.Blocks['posenet_list'] = {
   init: function() { 
   this.appendDummyInput()  
-	  .appendField(Blockly.Msg.POSENET_RESULT_SHOW); 
+	  .appendField(Blockly.Msg.POSENET_LIST_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
