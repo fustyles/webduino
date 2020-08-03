@@ -7,3 +7,5 @@ Blockly.Msg.BODYPIX2_RESULT_SHOW = "结果";
 Blockly.Msg.BODYPIX2_SKELETON_SHOW = "骨架";
 Blockly.Msg.BODYPIX2_FUNCTION_SHOW = "功能";
 Blockly.Msg.BODYPIX2_OPACITY_SHOW = "透明度";
+Blockly.Msg.BODYPIX2_DATA_SHOW= "属性";
+Blockly.Msg.BODYPIX2_LIST_SHOW= "身体侦测 (bodypix2) 结果";

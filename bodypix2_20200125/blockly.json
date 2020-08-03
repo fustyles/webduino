@@ -1,5 +1,5 @@
 {
-  "types": ["bodypix2_person","bodypix2_video"],
+  "types": ["bodypix2_video","bodypix2_list","bodypix2_person"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",

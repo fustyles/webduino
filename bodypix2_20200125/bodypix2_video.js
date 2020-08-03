@@ -1,7 +1,7 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>');
-document.write('<div id="region" style="z-index:999"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><canvas id="canvas1"></canvas><canvas id="canvas2"></canvas><canvas id="canvas3"></canvas><br>Function<select id="func"><option value="1">partMap</option><option value="2">pixelation</option><option value="3">blurBodyPart</option></select><br>Skeleton<select id="skeleton"><option value="1">Y</option><option value="0">N</option></select>MirrorImage<select id="mirrorimage"><option value="1">Y</option><option value="0">N</option></select><br><div id="result" style="color:red">Please wait for loading model.</div></div>');
+document.write('<div id="region" style="z-index:999"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="canvas"></canvas><canvas id="canvas1"></canvas><canvas id="canvas2"></canvas><canvas id="canvas3"></canvas><br>Function<select id="func"><option value="1">partMap</option><option value="2">pixelation</option><option value="3">blurBodyPart</option></select><br>Skeleton<select id="skeleton"><option value="1">Y</option><option value="0">N</option></select>MirrorImage<select id="mirrorimage"><option value="1">Y</option><option value="0">N</option></select><br><div id="result" style="color:red"></div></div>');
 
 window.onload = function () {
   var video = document.getElementById('video');
@@ -18,8 +18,8 @@ window.onload = function () {
   var func = document.getElementById('func');
   var Model;
   
-  ObjectDetect();
-  function ObjectDetect() {
+  LoadModel();
+  function LoadModel() {
     bodyPix.load().then(function(net) {
       Model = net;
       result.innerHTML = ""; 
@@ -87,7 +87,7 @@ window.onload = function () {
       const flipHorizontal = false;
       bodyPix.drawMask(canvas1, canvas, coloredPartImage, opacity, maskBlurAmount, flipHorizontal);
       if (skeleton.value=="1")
-      drawPoses(partSegmentation, flipHorizontal, context1);
+		drawPoses(partSegmentation, flipHorizontal, context1);
     } else
       canvas1.style.display="none";
 
@@ -95,17 +95,17 @@ window.onload = function () {
       canvas2.style.display="block";
 
       try {
-      const coloredPartImage = bodyPix.toColoredPartMask(partSegmentation);
-      const opacity = 0.7;
-      const maskBlurAmount = 0;
-      const flipHorizontal = false;
-      const pixelCellWidth = 10.0;
-      bodyPix.drawPixelatedMask(canvas2, canvas, coloredPartImage, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
-      if (skeleton.value=="1")
-        drawPoses(partSegmentation, flipHorizontal, context2);
+		  const coloredPartImage = bodyPix.toColoredPartMask(partSegmentation);
+		  const opacity = 0.7;
+		  const maskBlurAmount = 0;
+		  const flipHorizontal = false;
+		  const pixelCellWidth = 10.0;
+		  bodyPix.drawPixelatedMask(canvas2, canvas, coloredPartImage, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
+		  if (skeleton.value=="1")
+			drawPoses(partSegmentation, flipHorizontal, context2);
       }
       catch (e){
-      context2.drawImage(canvas, 0, 0, canvas.width, canvas.height);
+		  context2.drawImage(canvas, 0, 0, canvas.width, canvas.height);
       }
     } else
       canvas2.style.display="none";
@@ -120,7 +120,6 @@ window.onload = function () {
       bodyPix.blurBodyPart(canvas3, canvas, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
       if (skeleton.value=="1")
         drawPoses(partSegmentation, flipHorizontal, context3);
-      }
     } else
       canvas3.style.display="none";
 
@@ -132,12 +131,14 @@ window.onload = function () {
 		if (k.length>0) {
 			for (var i=0;i<k.length;i++) {    
 			  result.innerHTML += p + "," + k[i].part + "," + Math.round(k[i].score*100)/100 + "," + Math.round(k[i].position.x) + "," + Math.round(k[i].position.y) + "<br>";
-			}
-		  }
-	    }
+		    }
+		}
 	  }
-	  else
-		result.innerHTML = "Unrecognizable";
+	  if (result.innerHTML!="")
+			result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4); 
+	}
+	else
+	  result.innerHTML = "";
 
       setTimeout(function(){DetectVideo(); }, 100);
     });

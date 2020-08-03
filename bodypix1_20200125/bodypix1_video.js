@@ -20,8 +20,8 @@ window.onload = function () {
   var func = document.getElementById('func');
   var Model;
   
-  ObjectDetect();
-  function ObjectDetect() {
+  LoadModel();
+  function LoadModel() {
     bodyPix.load().then(function(net) {
       Model = net;
       result.innerHTML = ""; 

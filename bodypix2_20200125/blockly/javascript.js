@@ -1,7 +1,12 @@
+Blockly.JavaScript['bodypix2_list'] = function(block) { 
+  var code = 'bodypix2_list()';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
 Blockly.JavaScript['bodypix2_person'] = function(block) { 
   var value_person_ = Blockly.JavaScript.valueToCode(block, 'person_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_part_ = block.getFieldValue('part_');
-  var code = 'bodypix2_person(' + value_person_ + ',"' + value_part_ + '")';
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'bodypix2_person(' + value_person_ + ',"' + value_part_ + '","' + value_data_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 

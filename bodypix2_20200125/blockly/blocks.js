@@ -1,3 +1,13 @@
+Blockly.Blocks['bodypix2_list'] = {
+  init: function() { 
+  this.appendDummyInput()  
+	  .appendField(Blockly.Msg.BODYPIX2_LIST_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
 Blockly.Blocks['bodypix2_person'] = {
   init: function() {
   this.appendValueInput("person_")
@@ -23,7 +33,15 @@ Blockly.Blocks['bodypix2_person'] = {
 		["rightKnee","rightKnee"],
 		["leftAnkle","leftAnkle"],
 		["rightAnkle","rightAnkle"]
-  ]), "part_");  	  
+  ]), "part_");  
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.BODYPIX2_DATA_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		[" ",""],
+		["score","score"],
+		["x","x"],
+		["y","y"]
+  ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);

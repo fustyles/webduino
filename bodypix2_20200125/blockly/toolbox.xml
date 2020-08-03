@@ -1,4 +1,6 @@
 <category id="bodypix2">
+  <block type="bodypix2_list">
+  </block>  
   <block type="bodypix2_person">
     <value name="person_">
       <block type="math_number">
