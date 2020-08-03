@@ -9,8 +9,8 @@ window.onload = function () {
   var result = document.getElementById('result');
   var Model; 
   
-  FaceDetect();
-  function FaceDetect() {
+  LoadModel();
+  function LoadModel() {
     blazeface.load().then(function(net) {
       Model = net;
       result.innerHTML = "";
