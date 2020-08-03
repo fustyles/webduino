@@ -23,16 +23,17 @@
 
   function blazeface_get(input_person, input_part){
     var result = document.getElementById("result").innerHTML.split("<br>");
-    if (input_part=='All') 
-        return result;
+	var result_arr = [];
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
         var result_detail = result[i].split(",");
-        if (result_detail[0]==input_person&&result_detail[1]==input_part) 
+		if (input_part=='') 
+			result_arr.push(result_detail);
+        else if (result_detail[0]==input_person&&result_detail[1]==input_part) 
           return result_detail;
       }
     }
-    return "";
+    return result_arr;
   }	
 
   window.blazeface_video = blazeface_video;

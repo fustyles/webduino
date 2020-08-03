@@ -62,6 +62,7 @@ Blockly.Blocks['blazeface_person'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.BLAZEFACE_PART_SHOW)
       .appendField(new Blockly.FieldDropdown([
+        [" ",""],
         ["probability","probability"],
         ["rightEye","rightEye"],
         ["leftEye","leftEye"],
@@ -69,8 +70,7 @@ Blockly.Blocks['blazeface_person'] = {
         ["mouth","mouth"],
         ["rightEar","rightEar"],
         ["leftEar","leftEar"],
-        ["bandingBox","bandingBox"],
-        ["All","All"]
+        ["bandingBox","bandingBox"]
   ]), "part_");  	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
