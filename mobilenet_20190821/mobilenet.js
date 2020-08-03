@@ -6,15 +6,16 @@
 
  function mobilenet_object(input_object){
     var result = document.getElementById("result").innerHTML.split("<br>");
+    var result_arr = [];
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
 		var result_detail = result[i].split(",");
 		if (result_detail[0]==input_object) {
-		  return result_detail;
+		  result_arr.push(result_detail);
 		}
       }
     }
-    return "";
+    return result_arr;
   }
 
  function mobilenet_object_number(input_object) {
