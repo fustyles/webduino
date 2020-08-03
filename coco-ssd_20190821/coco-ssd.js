@@ -31,19 +31,19 @@
 		    return result_detail[0];
 		  }
 		  else if (n==input_index&&input_data=="score") {
-		    return result_detail[1];
+		    return Number(result_detail[1]));
 		  }
 		  else if (n==input_index&&input_data=="x") {
-		    return result_detail[2];
+		    return Number(result_detail[2]);
 		  }
 		  else if (n==input_index&&input_data=="y") {
-		    return result_detail[3];
+		    return Number(result_detail[3]);
 		  }
 		  else if (n==input_index&&input_data=="width") {
-		    return result_detail[4];
+		    return Number(result_detail[4]);
 		  }
 		  else if (n==input_index&&input_data=="height") {
-		    return result_detail[5];
+		    return Number(result_detail[5]);
 		  }
 		  n++;
 		}
