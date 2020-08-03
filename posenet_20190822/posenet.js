@@ -52,11 +52,11 @@
 		  if (input_data=="")
 			return result_detail;
 		  else if (input_data=="score")
-			return result_detail[2];
+			return Number(result_detail[2]);
 		  else if (input_data=="x")
-			return result_detail[3];
+			return Number(result_detail[3]);
 		  else if (input_data=="y")
-			return result_detail[4];
+			return Number(result_detail[4]);
 		}
       }
     }
