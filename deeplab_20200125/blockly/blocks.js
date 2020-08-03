@@ -7,6 +7,13 @@ Blockly.Blocks['deeplab_video'] = {
       .setCheck("Number")
       .appendField(Blockly.Msg.DEEPLAB_HEIGHT_SHOW); 
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.DEEPLAB_MODEL_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["pascal","pascal"],
+		["cityscapes","cityscapes"],	
+		["ade20k","ade20k"]	  
+  ]), "model_"); 
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.DEEPLAB_MIRRORIMAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		["Y","1"],
