@@ -31,7 +31,7 @@
 		    return result_detail[0];
 		  }
 		  else if (n==input_index&&input_data=="score") {
-		    return Number(result_detail[1]));
+		    return Number(result_detail[1]);
 		  }
 		  else if (n==input_index&&input_data=="x") {
 		    return Number(result_detail[2]);

@@ -182,6 +182,7 @@ Blockly.Blocks['coco_ssd_object'] = {
       .setCheck("Number")
       .appendField(Blockly.Msg.COCOSSD_INDEX_SHOW);
   this.appendDummyInput()
+      .appendField(Blockly.Msg.COCOSSD_DATA_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		[" ",""],
 		["class","class"],

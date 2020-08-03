@@ -7,3 +7,4 @@ Blockly.Msg.COCOSSD_MIRRORIMAGE_SHOW = "镜像";
 Blockly.Msg.COCOSSD_RESULT_SHOW = "结果";
 Blockly.Msg.COCOSSD_FRAME_SHOW = "框架";
 Blockly.Msg.COCOSSD_OPACITY_SHOW = "透明度";
+Blockly.Msg.COCOSSD_DATA_SHOW= "属性";

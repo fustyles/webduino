@@ -10,9 +10,8 @@ window.onload = function () {
   var result = document.getElementById('result'); 
   var Model; 
   
-  ObjectDetect();  
-  
-  function ObjectDetect() {
+  LoadModel();  
+  function LoadModel() {
     cocoSsd.load().then(cocoSsd_model => {
       Model = cocoSsd_model;
       result.innerHTML = "";
