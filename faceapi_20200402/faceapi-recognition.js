@@ -30,7 +30,7 @@
 		if (input_column=="name")
 			return result_detail[0];
 		else if (input_column=="distance")
-			return result_detail[1];
+			return Number(result_detail[1]);
 	  }
 	}
     return "";
