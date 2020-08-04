@@ -77,7 +77,7 @@ async function recognizeImage() {
 				maxProbability = prediction[i].probability;
 			}
 		}
-		data += prediction[i].className + ": " + prediction[i].probability.toFixed(2) + "<br>";
+		data += prediction[i].className + ": " + prediction[i].probability + "<br>";
 	}
 	result.innerHTML = data + "<br>Max Probability: " + maxClassName + " (" + maxProbability + ")";
 }
