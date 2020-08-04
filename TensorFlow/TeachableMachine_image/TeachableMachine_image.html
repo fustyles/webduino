@@ -79,7 +79,7 @@ async function recognizeImage() {
 		}
 		data += prediction[i].className + ": " + prediction[i].probability + "<br>";
 	}
-	result.innerHTML = data + "<br>Max Probability: " + maxClassName + " (" + maxProbability + ")";
+	result.innerHTML = data + "<br>Max ClassName: " + maxClassName + "<br>Max Probability: " + maxProbability;
 }
     
 document.getElementById('selectimage').onchange = function (event) {
