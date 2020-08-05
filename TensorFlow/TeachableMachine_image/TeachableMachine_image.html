@@ -15,13 +15,13 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_image/TeachableM
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
-Model Link： <input type="text" id="modelPath" size="40" value=""><button type="button" onclick="LoadModel()">Load Model</button><br>
+Model Link： 
+<input type="text" id="modelPath" size="40" value="">
+<button type="button" onclick="LoadModel()">Load Model</button><br>
 <a href="https://teachablemachine.withgoogle.com/train/image" target="_blank">Train Model</a>&nbsp;&nbsp;&nbsp;
-<input type="file" id="selectimage" disabled="true"></input>
-<br>
+<input type="file" id="selectimage" disabled="true"></input><br>
 <img id="OriginImage" style="display:none">
-<img id="ShowImage">
-<br>
+<img id="ShowImage"><br>
 <div id="result" style="color:red"></div>
   
 <script>
