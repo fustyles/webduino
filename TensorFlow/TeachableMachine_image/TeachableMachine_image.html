@@ -19,13 +19,14 @@ Model Link：
 <input type="text" id="modelPath" size="40" value="">
 <button type="button" onclick="LoadModel()">Load Model</button><br>
 <a href="https://teachablemachine.withgoogle.com/train/image" target="_blank">Train Model</a>&nbsp;&nbsp;&nbsp;
-<input type="file" id="selectimage" disabled="true"></input><br>
+<input type="file" id="selectImage" disabled="true"></input><br>
 <img id="OriginImage" style="display:none">
 <img id="ResizeImage"><br>
 <div id="result" style="color:red"></div>
   
 <script>
 var modelPath = document.getElementById('modelPath');
+var selectImage = document.getElementById('selectImage');
 var result = document.getElementById('result');
 var OriginImage = document.getElementById('OriginImage');	
 var ResizeImage = document.getElementById('ResizeImage');
@@ -53,11 +54,11 @@ async function LoadModel() {
 
 	if (Model) {
 		result.innerHTML = "Please select one image.";
-		document.getElementById('selectimage').disabled = false;
+		document.getElementById('selectImage').disabled = false;
 	}
 	else {
 		result.innerHTML = "Loading model failed.";
-		document.getElementById('selectimage').disabled = true;
+		document.getElementById('selectImage').disabled = true;
 	}
 }
   
@@ -80,7 +81,7 @@ async function recognizeImage(Image) {
 	result.innerHTML = data + "<br>Max Probability : " + maxClassName + " ( " + maxProbability + " )";
 }
     
-document.getElementById('selectimage').onchange = function (event) {
+selectImage.onchange = function (event) {
   var target = event.target || window.event.srcElement;
   var files = target.files;
   if (FileReader && files && files.length) {
@@ -93,7 +94,7 @@ document.getElementById('selectimage').onchange = function (event) {
   }
 }
   
-document.getElementById('OriginImage').onload = function (event) {
+OriginImage.onload = function (event) {
   try { 
     document.createEvent("TouchEvent"); 
     var width = document.body.clientWidth;
@@ -115,7 +116,7 @@ document.getElementById('OriginImage').onload = function (event) {
   ResizeImage.src = OriginImage.src;
 }
   
-document.getElementById('ResizeImage').onload = function (event) {
+ResizeImage.onload = function (event) {
   if (Model) recognizeImage(ResizeImage);
 }
 </script>
