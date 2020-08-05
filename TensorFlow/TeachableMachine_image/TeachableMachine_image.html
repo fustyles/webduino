@@ -76,9 +76,9 @@ async function recognizeImage(Image) {
 			maxClassName = prediction[i].className;
 			maxProbability = prediction[i].probability;
 		}
-		data += prediction[i].className + ": " + prediction[i].probability + "<br>";
+		data += prediction[i].className + ", " + prediction[i].probability + "<br>";
 	}
-	result.innerHTML = data + "<br>Max Probability : " + maxClassName + " ( " + maxProbability + " )";
+	result.innerHTML = data + "<br>Max Probability : " + maxClassName + ", " + maxProbability;
 }
     
 selectImage.onchange = function (event) {
