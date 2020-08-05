@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/8/5 23:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/8/5 23:30
 https://www.facebook.com/francefu
 
 Try it!
@@ -61,11 +61,11 @@ async function LoadModel() {
 	}
 }
   
-async function recognizeImage() {
+async function recognizeImage(img) {
 	var data = "";
 	var maxClassName = "";
 	var maxProbability = "";
-	const prediction = await Model.predict(ResizeImage);
+	const prediction = await Model.predict(img);
 	for (let i = 0; i < maxPredictions; i++) {
 		if (i==0) {
 			maxClassName = prediction[i].className;
@@ -116,7 +116,7 @@ document.getElementById('OriginImage').onload = function (event) {
 }
   
 document.getElementById('ResizeImage').onload = function (event) {
-  if (Model) recognizeImage();
+  if (Model) recognizeImage(ResizeImage);
 }
 </script>
 
