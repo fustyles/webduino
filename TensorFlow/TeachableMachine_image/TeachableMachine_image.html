@@ -61,11 +61,11 @@ async function LoadModel() {
 	}
 }
   
-async function recognizeImage(img) {
+async function recognizeImage(Image) {
 	var data = "";
 	var maxClassName = "";
 	var maxProbability = "";
-	const prediction = await Model.predict(img);
+	const prediction = await Model.predict(Image);
 	for (let i = 0; i < maxPredictions; i++) {
 		if (i==0) {
 			maxClassName = prediction[i].className;
