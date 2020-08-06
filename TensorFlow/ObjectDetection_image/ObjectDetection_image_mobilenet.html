@@ -3,7 +3,7 @@ Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/4
 https://www.facebook.com/francefu
 
 Try it!
-https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_image/ObjectDetection_image_mobilenet.html
+https://fustyles.github.io/webduino/TensorFlow/LoadModelion_image/LoadModelion_image_mobilenet.html
 -->
 <!DOCTYPE html>
 <head>
@@ -14,32 +14,33 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_image/ObjectDetec
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"> </script>  
 </head>
 <body>
-<input type="file" id="selectimage" disabled="true"></input>
+<input type="file" id="selectImage" disabled="true"></input>
 <br><br>
 
 <img id="OriginImage" style="display:none">
-<img id="ShowImage">
-<div id="result" style="width:350px;color:red">Please wait for loading model.</div>
+<img id="ResizeImage">
+<div id="result" style="color:red">Please wait for loading model.</div>
 
 <script>
+var selectImage = document.getElementById('selectImage');
 var OriginImage = document.getElementById('OriginImage');
-var ShowImage = document.getElementById('ShowImage');
-var ShowImageWidth = 500;
+var ResizeImage = document.getElementById('ResizeImage');
+var ResizeImageWidth = 500;
 var result = document.getElementById('result');
 var Model;
   
-function ObjectDetect() {
+function LoadModel() {
   mobilenet.load().then(mobilenet_Model => {
     Model = mobilenet_Model;
     result.innerHTML = "Please select one image.";
-    document.getElementById('selectimage').disabled = false;
+    document.getElementById('selectImage').disabled = false;
   }); 
 }
   
 async function DetectImage(Model) {
-  await Model.classify(ShowImage).then(Predictions => {
+  await Model.classify(ResizeImage).then(Predictions => {
     //console.log('Predictions: ', Predictions);
-    var s = (ShowImage.width>ShowImage.height)?ShowImage.width:ShowImage.height;
+    var s = (ResizeImage.width>ResizeImage.height)?ResizeImage.width:ResizeImage.height;
     
     if (Predictions.length>0) {
       result.innerHTML = "";
@@ -52,7 +53,7 @@ async function DetectImage(Model) {
   });   
 }
   
-document.getElementById('selectimage').onchange = function (event) {
+selectImage.onchange = function (event) {
   var target = event.target || window.event.srcElement;
   var files = target.files;
   if (FileReader && files && files.length) {
@@ -65,13 +66,13 @@ document.getElementById('selectimage').onchange = function (event) {
   }
 }
     
-document.getElementById('OriginImage').onload = function (event) {
+OriginImage.onload = function (event) {
   try { 
     document.createEvent("TouchEvent"); 
     var width = document.body.clientWidth;
   }
   catch(e) { 
-    var width = ShowImageWidth;
+    var width = ResizeImageWidth;
   } 
   
   if (OriginImage.height<OriginImage.width) {
@@ -83,16 +84,16 @@ document.getElementById('OriginImage').onload = function (event) {
   }
   
   var height = width*OriginImage.height/OriginImage.width;
-  ShowImage.width = width;
-  ShowImage.height = height;  
-  ShowImage.src = OriginImage.src;
+  ResizeImage.width = width;
+  ResizeImage.height = height;  
+  ResizeImage.src = OriginImage.src;
 }
   
-document.getElementById('ShowImage').onload = function (event) {
+ResizeImage.onload = function (event) {
   if (Model) DetectImage(Model);
 }
   
-window.onload = function () { ObjectDetect(); }
+window.onload = function () { LoadModel(); }
 </script>
 
 </body>

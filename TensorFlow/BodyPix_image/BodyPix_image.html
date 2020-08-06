@@ -14,12 +14,12 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_image/BodyPix_image.html
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@1.0.0"> </script> 
 </head>
 <body>
-<input type="file" id="selectimage" disabled="true"></input>
+<input type="file" id="selectImage" disabled="true"></input>
 <br>
-<div id="result" style="width:350px;color:red">Please wait for loading model.</div>
+<div id="result" style="color:red">Please wait for loading model.</div>
 <br><br>
 <img id="OriginImage" style="display:none">
-<canvas id="ShowImage"></canvas>
+<canvas id="ResizeImage"></canvas>
 <canvas id="canvas1"></canvas>
 <canvas id="canvas2"></canvas>
 <canvas id="canvas3"></canvas>
@@ -27,10 +27,11 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_image/BodyPix_image.html
 <canvas id="canvas5"></canvas>
 
 <script>
+var selectImage = document.getElementById('selectImage');
 var OriginImage = document.getElementById('OriginImage');
-var ShowImage = document.getElementById('ShowImage');
-var context = ShowImage.getContext("2d");
-var ShowImageWidth = 500;
+var ResizeImage = document.getElementById('ResizeImage');
+var context = ResizeImage.getContext("2d");
+var ResizeImageWidth = 500;
 var canvas1 = document.getElementById("canvas1");
 var canvas2 = document.getElementById("canvas2");
 var canvas3 = document.getElementById("canvas3");
@@ -41,26 +42,26 @@ var Model;
 var outputStride = 16;
 var segmentationThreshold = 0.5;
   
-function ObjectDetect() {
+function LoadModel() {
   bodyPix.load().then(function(net) {
     Model = net;
     result.innerHTML = "Please select one image.";
-    document.getElementById('selectimage').disabled = false;
+    document.getElementById('selectImage').disabled = false;
   }); 
 }
   
 async function DetectImage() {
   //console.log(segmentation);
-  canvas1.setAttribute("width", ShowImage.width);
-  canvas1.setAttribute("height", ShowImage.height);   
-  canvas2.setAttribute("width", ShowImage.width);
-  canvas2.setAttribute("height", ShowImage.height); 
-  canvas3.setAttribute("width", ShowImage.width);
-  canvas3.setAttribute("height", ShowImage.height); 
-  canvas4.setAttribute("width", ShowImage.width);
-  canvas4.setAttribute("height", ShowImage.height);	
-  canvas5.setAttribute("width", ShowImage.width);
-  canvas5.setAttribute("height", ShowImage.height);
+  canvas1.setAttribute("width", ResizeImage.width);
+  canvas1.setAttribute("height", ResizeImage.height);   
+  canvas2.setAttribute("width", ResizeImage.width);
+  canvas2.setAttribute("height", ResizeImage.height); 
+  canvas3.setAttribute("width", ResizeImage.width);
+  canvas3.setAttribute("height", ResizeImage.height); 
+  canvas4.setAttribute("width", ResizeImage.width);
+  canvas4.setAttribute("height", ResizeImage.height);	
+  canvas5.setAttribute("width", ResizeImage.width);
+  canvas5.setAttribute("height", ResizeImage.height);
 	
   var rainbow = [
   [110, 64, 170], [143, 61, 178], [178, 60, 178], [210, 62, 167],
@@ -89,18 +90,18 @@ async function DetectImage() {
   [86, 173, 174],  [70, 150, 179],  [67, 127, 180],  [77, 103, 173]
   ];
 
-  await Model.estimatePersonSegmentation(ShowImage, outputStride, segmentationThreshold).then(segmentation => {
+  await Model.estimatePersonSegmentation(ResizeImage, outputStride, segmentationThreshold).then(segmentation => {
     var maskBackground = true;
     var backgroundDarkeningMask = bodyPix.toMaskImageData(segmentation, maskBackground);
     var opacity = 0.8;
     var maskBlurAmount = 3;
     var flipHorizontal = false;
-    bodyPix.drawMask(canvas1, ShowImage, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
+    bodyPix.drawMask(canvas1, ResizeImage, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
 	
 	var backgroundBlurAmount = 5;
 	var edgeBlurAmount = 3;
 	var flipHorizontal = false;
-    bodyPix.drawBokehEffect(canvas2, ShowImage, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
+    bodyPix.drawBokehEffect(canvas2, ResizeImage, segmentation, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
 	  
     var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, rainbow);
     //var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
@@ -111,7 +112,7 @@ async function DetectImage() {
     var maskBlurAmount = 3;
     var flipHorizontal = false;
     var pixelCellWidth = 10.0;
-    bodyPix.drawPixelatedMask(canvas3, ShowImage, maskImage, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
+    bodyPix.drawPixelatedMask(canvas3, ResizeImage, maskImage, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
 
     var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, rainbow);
     //var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
@@ -120,12 +121,12 @@ async function DetectImage() {
     var opacity = 1;
     var flipHorizontal = false;
     var maskBlurAmount = 0;
-    bodyPix.drawMask(canvas4, ShowImage, coloredPartImage, opacity, maskBlurAmount, flipHorizontal);
+    bodyPix.drawMask(canvas4, ResizeImage, coloredPartImage, opacity, maskBlurAmount, flipHorizontal);
 
     result.innerHTML = "";
   });
 
-  await Model.estimatePartSegmentation(ShowImage, outputStride, segmentationThreshold).then(segmentation => {
+  await Model.estimatePartSegmentation(ResizeImage, outputStride, segmentationThreshold).then(segmentation => {
     var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, rainbow);
     //var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, warm);
     //var coloredPartImage = bodyPix.toColoredPartImageData(segmentation, spectral);
@@ -133,12 +134,12 @@ async function DetectImage() {
     var flipHorizontal = false;
     var maskBlurAmount = 0;
     var pixelCellWidth = 10.0;
-    bodyPix.drawPixelatedMask(canvas5, ShowImage, coloredPartImage, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
+    bodyPix.drawPixelatedMask(canvas5, ResizeImage, coloredPartImage, opacity, maskBlurAmount, flipHorizontal, pixelCellWidth);
     result.innerHTML = "";
   });
 }
     
-document.getElementById('selectimage').onchange = function (event) {
+selectImage.onchange = function (event) {
   var target = event.target || window.event.srcElement;
   var files = target.files;
   if (FileReader && files && files.length) {
@@ -151,13 +152,13 @@ document.getElementById('selectimage').onchange = function (event) {
   }
 }
   
-document.getElementById('OriginImage').onload = function (event) {
+OriginImage.onload = function (event) {
   try { 
     document.createEvent("TouchEvent"); 
     var width = document.body.clientWidth;
   }
   catch(e) { 
-    var width = ShowImageWidth;
+    var width = ResizeImageWidth;
   } 
   
   if (OriginImage.height<OriginImage.width) {
@@ -169,13 +170,13 @@ document.getElementById('OriginImage').onload = function (event) {
   }
   
   var height = width*OriginImage.height/OriginImage.width;
-  ShowImage.setAttribute("width", width);
-  ShowImage.setAttribute("height", height);
-  context.drawImage(OriginImage,0,0,OriginImage.width,OriginImage.height,0,0,ShowImage.width,ShowImage.height);
+  ResizeImage.setAttribute("width", width);
+  ResizeImage.setAttribute("height", height);
+  context.drawImage(OriginImage,0,0,OriginImage.width,OriginImage.height,0,0,ResizeImage.width,ResizeImage.height);
   if (Model) DetectImage();
 }
   
-window.onload = function () { ObjectDetect(); }
+window.onload = function () { LoadModel(); }
 </script>
 
 </body>

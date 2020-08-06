@@ -3,7 +3,7 @@ Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/11/4 23:30
 https://www.facebook.com/francefu
 
 Try it!
-https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_image/ObjectDetection_image_deeplab.html
+https://fustyles.github.io/webduino/TensorFlow/LoadModelion_image/LoadModelion_image_deeplab.html
 
 How to enable WebGL in Chrome.
 https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
@@ -13,45 +13,45 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   <title>Object Detection (deeplab)</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.6.1"> </script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/deeplab"> </script>  
 </head>
 <body>
-<input type="file" id="selectimage" disabled="true"></input>
+<input type="file" id="selectImage" disabled="true"></input>
 <br><br>
 <img id="OriginImage" style="display:none">
-<img id="ShowImage">
+<img id="ResizeImage">
 <canvas id="canvas"></canvas>
 <br>
 <div id="legendList"></div>
 <br>
 <br>
-<div id="result" style="width:320px;color:red">Please wait for loading model.</div>
+<div id="result" style="color:red">Please wait for loading model.</div>
 
-  
 <script>
+  var selectImage = document.getElementById('selectImage');
   var OriginImage = document.getElementById('OriginImage');
-  var ShowImage = document.getElementById('ShowImage');
-  var ShowImageWidth = 500;
+  var ResizeImage = document.getElementById('ResizeImage');
+  var ResizeImageWidth = 500;
   var canvas = document.getElementById('canvas');
-  var ctx = canvas.getContext('2d');
+  var context = canvas.getContext('2d');
   var legendList = document.getElementById('legendList');
   var result = document.getElementById('result');
   var Model;
   
-  function ObjectDetect() {
+  function LoadModel() {
     const modelName = 'pascal';   // set to your preferred model, either `pascal`, `cityscapes` or `ade20k`
     const quantizationBytes = 2;  // either 1, 2 or 4
 
     deeplab.load({base: modelName, quantizationBytes}).then(deeplab_model => {
       Model = deeplab_model;
       result.innerHTML = "Please select one image.";
-	  document.getElementById('selectimage').disabled = false;
+	  document.getElementById('selectImage').disabled = false;
     }); 
   }
                         
   async function DetectImage() {
-    Model.segment(ShowImage)
+    Model.segment(ResizeImage)
       .then(
         ({legend,height,width,segmentationMap}) => 
 		{
@@ -68,7 +68,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 
     canvas.width = width;
     canvas.height = height;
-    ctx.putImageData(segmentationMapData, 0, 0);
+    context.putImageData(segmentationMapData, 0, 0);
 
     while (legendList.firstChild) {
       legendList.removeChild(legendList.firstChild);
@@ -87,11 +87,11 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 	legendList.appendChild(tag);
     });
 
-    ShowImage.width = canvas.width;
-    ShowImage.height = canvas.height;
+    ResizeImage.width = canvas.width;
+    ResizeImage.height = canvas.height;
  };
 
-  document.getElementById('selectimage').onchange = function (event) {
+  selectImage.onchange = function (event) {
     var target = event.target || window.event.srcElement;
     var files = target.files;
     if (FileReader && files && files.length) {
@@ -107,13 +107,13 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
     }
   }
     
-  document.getElementById('OriginImage').onload = function (event) {
+  OriginImage.onload = function (event) {
     try { 
       document.createEvent("TouchEvent"); 
       var width = document.body.clientWidth;
     }
     catch(e) { 
-      var width = ShowImageWidth;
+      var width = ResizeImageWidth;
     } 
     
     if (OriginImage.height<OriginImage.width) {
@@ -126,17 +126,17 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
     
     var height = width*OriginImage.height/OriginImage.width;
 
-    ShowImage.width = width;
-    ShowImage.height = height;  
-    ShowImage.src = OriginImage.src;
+    ResizeImage.width = width;
+    ResizeImage.height = height;  
+    ResizeImage.src = OriginImage.src;
   }
     
-  document.getElementById('ShowImage').onload = function (event) {
+  ResizeImage.onload = function (event) {
 	result.innerHTML = "Detecting...";
     if (Model) setTimeout(function(){DetectImage();}, 1000);
   }
     
-  window.onload = function () { ObjectDetect(); }
+  window.onload = function () { LoadModel(); }
 </script>
 
 </body>

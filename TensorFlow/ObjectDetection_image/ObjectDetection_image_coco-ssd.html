@@ -3,7 +3,7 @@ Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/4
 https://www.facebook.com/francefu
 
 Try it!
-https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_image/ObjectDetection_image_coco-ssd.html
+https://fustyles.github.io/webduino/TensorFlow/LoadModelion_image/LoadModelion_image_coco-ssd.html
 -->
 <!DOCTYPE html>
 <head>
@@ -14,38 +14,39 @@ https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_image/ObjectDetec
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>  
 </head>
 <body>
-<input type="file" id="selectimage" disabled="true"></input>
+<input type="file" id="selectImage" disabled="true"></input>
 <br><br>
 <img id="OriginImage" style="display:none">
-<img id="ShowImage">
+<img id="ResizeImage">
 <canvas id="canvas" width="0" height="0"></canvas>
 <br>
-<div id="result" style="width:350px;color:red">Please wait for loading model.</div>
+<div id="result" style="color:red">Please wait for loading model.</div>
   
 <script>
+var selectImage = document.getElementById('selectImage');
 var OriginImage = document.getElementById('OriginImage');
-var ShowImage = document.getElementById('ShowImage');
-var ShowImageWidth = 500;
+var ResizeImage = document.getElementById('ResizeImage');
+var ResizeImageWidth = 500;
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");  
 var result = document.getElementById('result');
 var Model;
   
-function ObjectDetect() {
+function LoadModel() {
   cocoSsd.load().then(cocoSsd_Model => {
     Model = cocoSsd_Model;
     result.innerHTML = "Please select one image.";
-    document.getElementById('selectimage').disabled = false;
+    document.getElementById('selectImage').disabled = false;
   }); 
 }
   
 async function DetectImage() {
-  await Model.detect(ShowImage).then(Predictions => {
+  await Model.detect(ResizeImage).then(Predictions => {
     //console.log('Predictions: ', Predictions);
-    canvas.setAttribute("width", ShowImage.width);
-    canvas.setAttribute("height", ShowImage.height);
-    context.drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
-    var s = (ShowImage.width>ShowImage.height)?ShowImage.width:ShowImage.height;
+    canvas.setAttribute("width", ResizeImage.width);
+    canvas.setAttribute("height", ResizeImage.height);
+    context.drawImage(ResizeImage,0,0,ResizeImage.width,ResizeImage.height); 
+    var s = (ResizeImage.width>ResizeImage.height)?ResizeImage.width:ResizeImage.height;
     
     if (Predictions.length>0) {
       result.innerHTML = "";
@@ -72,7 +73,7 @@ async function DetectImage() {
   });   
 }
   
-document.getElementById('selectimage').onchange = function (event) {
+selectImage.onchange = function (event) {
   var target = event.target || window.event.srcElement;
   var files = target.files;
   if (FileReader && files && files.length) {
@@ -88,13 +89,13 @@ document.getElementById('selectimage').onchange = function (event) {
   }
 }
     
-document.getElementById('OriginImage').onload = function (event) {
+OriginImage.onload = function (event) {
   try { 
     document.createEvent("TouchEvent"); 
     var width = document.body.clientWidth;
   }
   catch(e) { 
-    var width = ShowImageWidth;
+    var width = ResizeImageWidth;
   } 
   
   if (OriginImage.height<OriginImage.width) {
@@ -106,16 +107,16 @@ document.getElementById('OriginImage').onload = function (event) {
   }
   
   var height = width*OriginImage.height/OriginImage.width;
-  ShowImage.width = width;
-  ShowImage.height = height;  
-  ShowImage.src = OriginImage.src;
+  ResizeImage.width = width;
+  ResizeImage.height = height;  
+  ResizeImage.src = OriginImage.src;
 }
   
-document.getElementById('ShowImage').onload = function (event) {
+ResizeImage.onload = function (event) {
   if (Model) DetectImage();
 }
   
-window.onload = function () { ObjectDetect(); }
+window.onload = function () { LoadModel(); }
 </script>
 
 </body>
