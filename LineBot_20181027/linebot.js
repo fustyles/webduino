@@ -61,6 +61,91 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
         }
      });
   }  
+
+  function linenotify_push_image(notify_token,notify_videoid) {
+	var video = document.getElementById(notify_videoid);
+
+	if (!document.getElementById("canvas")) {
+		var canvas = document.createElement('canvas');
+		canvas.id = "canvas";
+		document.body.appendChild(canvas);
+	}
+	else {
+		var canvas = document.getElementById("canvas");
+	}
+
+	if (!document.getElementById("iframe")) {
+		var iframe = document.createElement('iframe');
+		iframe.id = "iframe";
+		iframe.name = "iframe";
+		document.body.appendChild(iframe);
+	}
+	else {
+		var iframe = document.getElementById("iframe");
+	}
+
+	var context = canvas.getContext('2d');
+	canvas.setAttribute("width", video.width);
+    canvas.setAttribute("height", video.height);
+	context.drawImage(video, 0, 0, video.width, video.height);
+
+	if (!document.getElementById("myForm")) {
+		var myForm = document.createElement("form");
+		myForm.id = "myForm";
+		myForm.name = "myForm";
+		myForm.method = "POST";
+		myForm.target = "iframe";
+		myForm.action = "https://script.google.com/macros/s/AKfycbyp1xvWg-UCSrLsL8zt-ba_0n96uNTpAFyRry9ifCnRbtK-vgg/exec";
+		document.body.appendChild(myForm);
+	} 
+	else {
+		var myForm = document.getElementById("myForm");
+	}
+
+	if (!document.getElementById("myToken")) {
+		var myToken = document.createElement("input");
+		myToken.type = "hidden";
+		myToken.id = "myToken";
+		myToken.name = "myToken";
+		myForm.appendChild(myToken);
+	}
+	else {
+		var myToken = document.getElementById("myToken");
+	}
+	myToken.value = notify_token;
+
+	if (!document.getElementById("myFilename")) {
+		var myFilename = document.createElement("input");
+		myFilename.type = "hidden";
+		myFilename.id = "myFilename";
+		myFilename.name = "myFilename";
+		myForm.appendChild(myFilename);
+	}
+	else {
+		var myFilename = document.getElementById("myFilename");
+	}
+	var date = new Date();
+	myFilename.value = date.getFullYear()+"_"+(date.getMonth()+1)+"_"+date.getDate()+"_"+date.getHours()+"_"+date.getMinutes()+"_"+date.getSeconds()+".png";	
+
+	if (!document.getElementById("myFile")) {
+		var myFile = document.createElement("textarea");
+		myFile.id = "myFile";
+		myFile.name = "myFile";
+		myForm.appendChild(myFile);
+	}
+	else {
+		var myFile = document.getElementById("myFile");
+	}
+	myFile.value = canvas.toDataURL();
+
+    myForm.submit();
+	console.log(myToken.value);
+	console.log(myFoldername.value);
+	console.log(myFilename.value);
+	console.log(myToken.parentNode);
+	console.log(myFoldername.parentNode);
+	console.log(myFilename.parentNode);
+  } 
   
   function line_url_escape(line,type,parameter1,parameter2,parameter3,parameter4) {
     
@@ -98,6 +183,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
 
   window.linebot_push_message = linebot_push_message;
   window.linenotify_push_message = linenotify_push_message;
+  window.linenotify_push_image = linenotify_push_image;
   window.line_url_escape = line_url_escape;
 
 }(window, window.document));

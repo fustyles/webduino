@@ -51,3 +51,14 @@ Blockly.JavaScript['linenotify_type'] = function(block) {
   var code = 'line_url_escape("notify","'+type+'",'+parameter1+','+parameter2+','+parameter3+',"")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['linenotify_image'] = function (block) {
+  var notify_token = Blockly.JavaScript.valueToCode(block, 'notify_token', Blockly.JavaScript.ORDER_ATOMIC);  
+  var notify_videoid = Blockly.JavaScript.valueToCode(block, 'notify_videoid', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  if (!notify_token) notify_token='""';
+  if (!notify_videoid) notify_videoid='""';
+  
+  var code = 'linenotify_push_image('+notify_token+','+notify_videoid+');\n';
+  return code; 
+};

@@ -40,4 +40,16 @@
       </block>  
     </value>
   </block>
+  <block type="linenotify_image">
+    <value name="notify_token">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+    <value name="notify_videoid">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+  </block>
 </category>

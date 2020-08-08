@@ -243,3 +243,22 @@ Blockly.Blocks['linenotify_type'] = {
     }
   }
 };
+
+Blockly.Blocks['linenotify_image'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField("Line Notify Image ")
+  this.appendValueInput("notify_token")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("TOKEN");  
+  this.appendValueInput("notify_videoid")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("VideoID ");
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setTooltip('');
+  this.setColour(65);
+  }
+};
