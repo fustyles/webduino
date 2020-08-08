@@ -78,22 +78,23 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   
   <script>
     var classifier;
-    var mobilenetModule;
+    let Model;
     
     // Create the classifier.
     classifier = knnClassifier.create();
     
     // Load mobilenet.
-    mobilenet.load().then(Module => {
-      mobilenetModule = Module;
-      setInterval(function(){ predictClass_onclick(); }, 200);
+    mobilenet.load().then(model => {
+	  result.innerHTML = "Please wait for loading model.";
+      Model = model;
+      predictClass_onclick();
       result.innerHTML = '';
     }); 
     
     function addExampleImage(img,index) {
       // Add MobileNet activations to the model repeatedly for all classes.
       var Image = tf.browser.fromPixels(img);
-      var logits = mobilenetModule.infer(Image, 'conv_preds');
+      var logits = Model.infer(Image, 'conv_preds');
       classifier.addExample(logits, index);
     }
     
@@ -102,7 +103,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
       try
       {
         const Image = tf.browser.fromPixels(img);
-        const xlogits = mobilenetModule.infer(Image, 'conv_preds');
+        const xlogits = Model.infer(Image, 'conv_preds');
         const predict = await classifier.predictClass(xlogits);
         //console.log(predict);
         if (predict.label) {

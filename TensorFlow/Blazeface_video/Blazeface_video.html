@@ -8,7 +8,7 @@ https://fustyles.github.io/webduino/TensorFlow/Blazeface_video/Blazeface_video.h
 
 <!DOCTYPE html>
 <head>
-  <title>Blaze Face Detection (Camera)</title>
+  <title>Blaze Face Detection</title>
   <meta charset="utf-8">
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +19,7 @@ https://fustyles.github.io/webduino/TensorFlow/Blazeface_video/Blazeface_video.h
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas>
 <br>
-<div id="result" style="width:320px;color:red">Please wait for loading model.</div>
+<div id="result" style="color:red"></div>
   
 <script>
   var video = document.getElementById('video');
@@ -28,17 +28,17 @@ https://fustyles.github.io/webduino/TensorFlow/Blazeface_video/Blazeface_video.h
   var result = document.getElementById('result');
   var Model; 
   
-  ObjectDetect();
-  function ObjectDetect() {
-    blazeface.load().then(function(net) {
-      Model = net;
-      //console.log(Model);
-      result.innerHTML = "";
-      startvideo();
-    }); 
+  window.onload = function() {LoadModel();}
+  function LoadModel() {
+	result.innerHTML = "Please wait for loading model.";
+	blazeface.load().then(function(model) {
+	  Model = model;
+	  result.innerHTML = "";
+	  startVideo();
+	}); 
   }
   
-  function startvideo() {
+  function startVideo() {
     video.style.visibility="hidden";
     video.style.position="absolute";
     navigator.mediaDevices

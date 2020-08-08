@@ -7,7 +7,7 @@ https://fustyles.github.io/webduino/TensorFlow/HandPoseDetection_video/handpose_
 -->
 <!DOCTYPE html>
 <head>
-  <title>Handpose Detection (Camera)</title>
+  <title>Handpose Detection</title>
   <meta charset="utf-8">
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,16 +18,16 @@ https://fustyles.github.io/webduino/TensorFlow/HandPoseDetection_video/handpose_
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas>
 <br>
-<div id="result" style="color:red">Please wait for loading model.</div>
+<div id="result" style="color:red"></div>
   
 <script>
-let fingerLookupIndices = {
-  thumb: [0, 1, 2, 3, 4],
-  indexFinger: [0, 5, 6, 7, 8],
-  middleFinger: [0, 9, 10, 11, 12],
-  ringFinger: [0, 13, 14, 15, 16],
-  pinky: [0, 17, 18, 19, 20]
-};
+  let fingerLookupIndices = {
+	  thumb: [0, 1, 2, 3, 4],
+	  indexFinger: [0, 5, 6, 7, 8],
+	  middleFinger: [0, 9, 10, 11, 12],
+	  ringFinger: [0, 13, 14, 15, 16],
+	  pinky: [0, 17, 18, 19, 20]
+  };
   
   var video = document.getElementById('video');
   var canvas = document.getElementById('canvas'); 
@@ -36,18 +36,17 @@ let fingerLookupIndices = {
   let Model; 
   var lastValue = -1;
   
-  HandDetect();
-  
-  function HandDetect() {
-    handpose.load().then(function(net) {
-		Model = net
-		console.log(Model);
+  window.onload = function() {LoadModel();}
+  function LoadModel() {
+	result.innerHTML = "Please wait for loading model.";
+    handpose.load().then(function(model) {
+		Model = model;
 		result.innerHTML = "";
-		startvideo();
+		startVideo();
     });
   }
   
-  function startvideo() {
+  function startVideo() {
     video.style.visibility="hidden";
     video.style.position="absolute";
     navigator.mediaDevices

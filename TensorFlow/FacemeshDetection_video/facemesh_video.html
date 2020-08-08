@@ -5,9 +5,10 @@ https://www.facebook.com/francefu
 Try it!
 https://fustyles.github.io/webduino/TensorFlow/FacemeshDetection_video/facemesh_video.html
 -->
+
 <!DOCTYPE html>
 <head>
-  <title>Facemesh Detection (Camera)</title>
+  <title>Facemesh Detection</title>
   <meta charset="utf-8">
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +19,7 @@ https://fustyles.github.io/webduino/TensorFlow/FacemeshDetection_video/facemesh_
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas>
 <br>
-<div id="result" style="color:red">Please wait for loading model.</div>
+<div id="result" style="color:red"></div>
   
 <script> 
   var video = document.getElementById('video');
@@ -27,18 +28,17 @@ https://fustyles.github.io/webduino/TensorFlow/FacemeshDetection_video/facemesh_
   var result = document.getElementById('result');
   let Model; 
   
-  HandDetect();
-  
-  function HandDetect() {
-    facemesh.load().then(function(net) {
-		Model = net
-		console.log(Model);
+  window.onload = function() {LoadModel();}
+  function LoadModel() {
+	result.innerHTML = "Please wait for loading model.";
+    facemesh.load().then(function(model) {
+		Model = model;
 		result.innerHTML = "";
-		startvideo();
+		startVideo();
     });
   }
   
-  function startvideo() {
+  function startVideo() {
     video.style.visibility="hidden";
     video.style.position="absolute";
     navigator.mediaDevices

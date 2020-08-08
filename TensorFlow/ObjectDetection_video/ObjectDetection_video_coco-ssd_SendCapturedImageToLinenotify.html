@@ -12,9 +12,6 @@ You must allow anyone and anonymous to execute the google script.
 https://script.google.com/home
 https://script.google.com/home/executions
 https://drive.google.com/drive/my-drive
-
-How to enable WebGL in Chrome.
-https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 -->
 
 <!DOCTYPE html>
@@ -22,7 +19,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   <title>Object Detection (coco-ssd)</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"> </script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"> </script>  
 </head>
 <body>
@@ -56,20 +53,18 @@ Line Notify Token : <input type="text" id="myToken" name="myToken" value=""><br>
   var canvas = document.getElementById('canvas'); 
   var context = canvas.getContext('2d');
   var result = document.getElementById('result'); 
-  var Model; 
+  let Model; 
   
-  ObjectDetect();  
-  
-  function ObjectDetect() {
-    cocoSsd.load().then(cocoSsd_model => {
-      Model = cocoSsd_model;
-      //console.log(Model);
+  window.onload = function() {LoadModel();}  
+  function LoadModel() {
+    cocoSsd.load().then(model => {
+      Model = model;
       result.innerHTML = "";
-      setTimeout(function(){ startvideo(); }, 2000);
+      startVideo();
     }); 
   }  
   
-  function startvideo() {
+  function startVideo() {
     video.style.visibility="hidden";
     video.style.position="absolute";
     navigator.mediaDevices

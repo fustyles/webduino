@@ -4,13 +4,11 @@ https://www.facebook.com/francefu
 
 Try it!
 https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_video.html
-
-How to enable WebGL in Chrome.
-https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 -->
+
 <!DOCTYPE html>
 <head>
-  <title>person and body part partSegmentation (BodyPix)</title>
+  <title>Person and body part partSegmentation (BodyPix)</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"> </script>
@@ -18,18 +16,19 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"> </script>  
 </head>
 <body>
-Style
+Display
 <select id="kind">
 <option value="1">drawMask</option>
 <option value="2">drawPixelatedMask</option>
 <option value="3">blurBodyPart</option>
 </select>
 <video id="video" width="320" height="240" preload autoplay loop muted></video><br>
-<div id="result" style="width:320px;color:red">Please wait for loading model.</div><br>
+<div id="result" style="color:red"></div><br>
+<canvas id="canvas"></canvas>
 <canvas id="canvas1"></canvas>
 <canvas id="canvas2"></canvas>
 <canvas id="canvas3"></canvas> 
-<canvas id="canvas"></canvas>
+
 <script>
   var video = document.getElementById('video');
   var canvas = document.getElementById('canvas');
@@ -40,19 +39,19 @@ Style
   var context2 = canvas2.getContext('2d');
   var canvas3 = document.getElementById('canvas3');
   var context3 = canvas3.getContext('2d');
-  var Model;
+  let Model;
 
-  ObjectDetect(); 
-  
-  function ObjectDetect() {
-    bodyPix.load().then(function(net) {
-      Model = net;
+  window.onload = function() { LoadModel();} 
+  function LoadModel() {
+	result.innerHTML = "Please wait for loading model.";
+    bodyPix.load().then(function(model) {
+      Model = model;
       result.innerHTML = ""; 
-      setTimeout(function(){ startvideo(); }, 100);
+      startVideo();
     }); 
   }
   
-  function startvideo() {
+  function startVideo() {
     video.style.visibility="hidden";
     video.style.position="absolute";
     navigator.mediaDevices
@@ -86,7 +85,6 @@ async function DetectVideo() {
   context.scale(-1, 1);
   context.drawImage(video, 0, 0, video.width, video.height);
   context.setTransform(1, 0, 0, 1, 0, 0);  
-
 
   await Model.segmentMultiPersonParts(canvas, {
 	  flipHorizontal: false,

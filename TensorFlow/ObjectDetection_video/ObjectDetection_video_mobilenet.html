@@ -4,9 +4,6 @@ https://www.facebook.com/francefu
 
 Try it!
 https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetection_video_mobilenet.html
-
-How to enable WebGL in Chrome.
-https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 -->
 <!DOCTYPE html>
 <head>
@@ -19,38 +16,24 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <body>
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <br>
-Probability Limit
-<select id="probabilitylimit">
-<option value="0" selected>0%</option>  
-<option value="0.1">10%</option>
-<option value="0.2">20%</option>
-<option value="0.3">30%</option>
-<option value="0.4">40%</option>
-<option value="0.5">50%</option>
-<option value="0.6">60%</option>
-<option value="0.7">70%</option>
-<option value="0.8">80%</option>
-<option value="0.9">90%</option>
-</select><br>
-<div id="result" style="width:320px;color:red">Please wait for loading model.</div>
+<div id="result" style="color:red"></div>
   
 <script>
   var video = document.getElementById('video');
   var result = document.getElementById('result');
-  var Model;
+  let Model;
 
-  ObjectDetect(); 
-  
-  function ObjectDetect() {
-    mobilenet.load().then(mobilenet_model => {
-      Model = mobilenet_model;
-      console.log(Model);
-      result.innerHTML = "";
-      setTimeout(function(){ startvideo(); }, 2000);
+  window.onload = function() {LoadModel();}
+  function LoadModel() {
+	result.innerHTML = "Please wait for loading model.";
+    mobilenet.load().then(model => {
+      Model = model;
+      result.innerHTML = ".";
+      startVideo();
     }); 
   }
   
-  function startvideo() {
+  function startVideo() {
     navigator.mediaDevices
       .getUserMedia({
         audio: false,
@@ -72,13 +55,10 @@ Probability Limit
   async function DetectVideo() {
     await Model.classify(video).then(Predictions => { 
       result.innerHTML = "";
-      var probabilitylimit = Number(document.getElementById("probabilitylimit").value);
       //console.log('Predictions: ', Predictions);
       if (Predictions.length>0) {
         for (var i=0;i<Predictions.length;i++) {
-          if (Predictions[i].probability>=probabilitylimit) {
             result.innerHTML+= "[ "+i+" ] "+Math.round(Predictions[i].probability*100)+"%, "+Predictions[i].className+"<br>";
-          }
         }
       }
       else
