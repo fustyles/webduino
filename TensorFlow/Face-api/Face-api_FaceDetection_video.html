@@ -58,9 +58,8 @@ let canvas;
 let faceDetection;
 let message = document.getElementById('message'); 
   
-  ObjectDetect();  
-  
-  function ObjectDetect() {
+  window.onload = function() {LoadModel();}
+  function LoadModel() {
     Promise.all([
       faceapi.nets.tinyFaceDetector.load(modelPath),
       faceapi.nets.faceLandmark68TinyNet.load(modelPath),
@@ -68,11 +67,11 @@ let message = document.getElementById('message');
       faceapi.nets.faceExpressionNet.load(modelPath),
       faceapi.nets.ageGenderNet.load(modelPath)
     ]).then(function(){
-      startvideo();
+      startVideo();
     })
   }  
   
-  function startvideo() {
+  function startVideo() {
     navigator.mediaDevices
       .getUserMedia({
         audio: false,
