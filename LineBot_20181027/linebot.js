@@ -65,13 +65,13 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
   function linenotify_push_image(notify_token,notify_videoid) {
 	var video = document.getElementById(notify_videoid);
 
-	if (!document.getElementById("canvas")) {
-		var canvas = document.createElement('canvas');
-		canvas.id = "canvas";
-		document.body.appendChild(canvas);
+	if (!document.getElementById("myCanvas")) {
+		var myCanvas = document.createElement('canvas');
+		myCanvas.id = "myCanvas";
+		document.body.appendChild(myCanvas);
 	}
 	else {
-		var canvas = document.getElementById("canvas");
+		var myCanvas = document.getElementById("myCanvas");
 	}
 
 	if (!document.getElementById("iframe")) {
@@ -84,9 +84,9 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
 		var iframe = document.getElementById("iframe");
 	}
 
-	var context = canvas.getContext('2d');
-	canvas.setAttribute("width", video.width);
-    canvas.setAttribute("height", video.height);
+	var context = myCanvas.getContext('2d');
+	myCanvas.setAttribute("width", video.width);
+    myCanvas.setAttribute("height", video.height);
 	context.drawImage(video, 0, 0, video.width, video.height);
 
 	if (!document.getElementById("myForm")) {
@@ -136,7 +136,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
 	else {
 		var myFile = document.getElementById("myFile");
 	}
-	myFile.value = canvas.toDataURL();
+	myFile.value = myCanvas.toDataURL();
 
     myForm.submit();
 	console.log(myToken.value);
