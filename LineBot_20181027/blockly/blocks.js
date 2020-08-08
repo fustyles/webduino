@@ -255,7 +255,7 @@ Blockly.Blocks['linenotify_image'] = {
   this.appendValueInput("notify_videoid")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Element ID ");
+      .appendField("Element ID");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
