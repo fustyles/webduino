@@ -53,12 +53,14 @@ Blockly.JavaScript['linenotify_type'] = function(block) {
 };
 
 Blockly.JavaScript['linenotify_image'] = function (block) {
+  var notify_script = Blockly.JavaScript.valueToCode(block, 'notify_script', Blockly.JavaScript.ORDER_ATOMIC);
   var notify_token = Blockly.JavaScript.valueToCode(block, 'notify_token', Blockly.JavaScript.ORDER_ATOMIC);  
   var notify_videoid = Blockly.JavaScript.valueToCode(block, 'notify_videoid', Blockly.JavaScript.ORDER_ATOMIC);
   
+  if (!notify_script) notify_script='""';
   if (!notify_token) notify_token='""';
   if (!notify_videoid) notify_videoid='""';
   
-  var code = 'linenotify_push_image('+notify_token+','+notify_videoid+');\n';
+  var code = 'linenotify_push_image('+notify_script+','+notify_token+','+notify_videoid+');\n';
   return code; 
 };

@@ -62,7 +62,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
      });
   }  
 
-  function linenotify_push_image(notify_token,notify_videoid) {
+  function linenotify_push_image(notify_script,notify_token,notify_videoid) {
 	var video = document.getElementById(notify_videoid);
 
 	if (!document.getElementById("myCanvas")) {
@@ -95,7 +95,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
 		myForm.name = "myForm";
 		myForm.method = "POST";
 		myForm.target = "iframe";
-		myForm.action = "https://script.google.com/macros/s/AKfycbyp1xvWg-UCSrLsL8zt-ba_0n96uNTpAFyRry9ifCnRbtK-vgg/exec";
+		myForm.action = notify_script;
 		document.body.appendChild(myForm);
 	} 
 	else {

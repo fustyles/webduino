@@ -247,7 +247,11 @@ Blockly.Blocks['linenotify_type'] = {
 Blockly.Blocks['linenotify_image'] = {
   init: function() {
   this.appendDummyInput()
-	  .appendField("Line Notify Image ")
+	  .appendField("Line Notify Image ");
+  this.appendValueInput("notify_script")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("SCRIPT"); 
   this.appendValueInput("notify_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -255,7 +259,7 @@ Blockly.Blocks['linenotify_image'] = {
   this.appendValueInput("notify_videoid")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Element ID");
+      .appendField("VideoID ");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
