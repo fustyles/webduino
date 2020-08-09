@@ -63,38 +63,40 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
   }  
 
   function linenotify_push_image(notify_script,notify_token,notify_videoid) {
-	var video = document.getElementById(notify_videoid);
+	var myVideo = document.getElementById(notify_videoid);
 
 	if (!document.getElementById("myCanvas")) {
 		var myCanvas = document.createElement('canvas');
 		myCanvas.id = "myCanvas";
+		myCanvas.style.display = "none";
 		document.body.appendChild(myCanvas);
 	}
 	else {
 		var myCanvas = document.getElementById("myCanvas");
 	}
 
-	if (!document.getElementById("iframe")) {
-		var iframe = document.createElement('iframe');
-		iframe.id = "iframe";
-		iframe.name = "iframe";
-		document.body.appendChild(iframe);
+	if (!document.getElementById("myIframe")) {
+		var myIframe = document.createElement('iframe');
+		myIframe.id = "myIframe";
+		myIframe.name = "myIframe";
+		myIframe.style.display = "none";
+		document.body.appendChild(myIframe);
 	}
 	else {
-		var iframe = document.getElementById("iframe");
+		var myIframe = document.getElementById("myIframe");
 	}
 
-	var context = myCanvas.getContext('2d');
-	myCanvas.setAttribute("width", video.width);
-    myCanvas.setAttribute("height", video.height);
-	context.drawImage(video, 0, 0, video.width, video.height);
+	var myContext = myCanvas.getContext('2d');
+	myCanvas.setAttribute("width", myVideo.width);
+    myCanvas.setAttribute("height", myVideo.height);
+	myContext.drawImage(myVideo, 0, 0, myVideo.width, myVideo.height);
 
 	if (!document.getElementById("myForm")) {
 		var myForm = document.createElement("form");
 		myForm.id = "myForm";
 		myForm.name = "myForm";
 		myForm.method = "POST";
-		myForm.target = "iframe";
+		myForm.target = "myIframe";
 		myForm.action = notify_script;
 		document.body.appendChild(myForm);
 	} 
@@ -125,7 +127,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
 		var myFilename = document.getElementById("myFilename");
 	}
 	var date = new Date();
-	myFilename.value = date.getFullYear()+"_"+(date.getMonth()+1)+"_"+date.getDate()+"_"+date.getHours()+"_"+date.getMinutes()+"_"+date.getSeconds()+".png";	
+	myFilename.value = date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate()+" "+("0"+date.getHours()).substr(-2,2)+":"+("0"+date.getMinutes()).substr(-2,2)+":"+("0"+date.getSeconds()).substr(-2,2);	
 
 	if (!document.getElementById("myFile")) {
 		var myFile = document.createElement("textarea");
@@ -139,12 +141,6 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
 	myFile.value = myCanvas.toDataURL();
 
     myForm.submit();
-	console.log(myToken.value);
-	console.log(myFoldername.value);
-	console.log(myFilename.value);
-	console.log(myToken.parentNode);
-	console.log(myFoldername.parentNode);
-	console.log(myFilename.parentNode);
   } 
   
   function line_url_escape(line,type,parameter1,parameter2,parameter3,parameter4) {
