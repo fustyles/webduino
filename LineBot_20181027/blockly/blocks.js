@@ -251,15 +251,15 @@ Blockly.Blocks['linenotify_image'] = {
   this.appendValueInput("notify_script")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("SCRIPT"); 
+      .appendField("ScriptUrl"); 
   this.appendValueInput("notify_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("TOKEN");  
+      .appendField("Token");  
   this.appendValueInput("notify_videoid")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("VideoID ");
+      .appendField("ElemmentID");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
