@@ -36,7 +36,7 @@ https://github.com/fustyles/webduino/blob/gs/telegram_push_message.gs
 
 	var myContext = myCanvas.getContext('2d');
 	myCanvas.setAttribute("width", myVideo.width);
-    myCanvas.setAttribute("height", myVideo.height);
+    	myCanvas.setAttribute("height", myVideo.height);
 	myContext.drawImage(myVideo, 0, 0, myVideo.width, myVideo.height);
 
 	if (!document.getElementById("myForm")) {
