@@ -93,6 +93,7 @@ https://github.com/fustyles/webduino/blob/gs/telegram_push_message.gs
 		var myFile = document.createElement("textarea");
 		myFile.id = "myFile";
 		myFile.name = "myFile";
+		myFile.style.display = "none";
 		myForm.appendChild(myFile);
 	}
 	else {
