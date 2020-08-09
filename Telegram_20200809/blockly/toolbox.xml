@@ -1,0 +1,24 @@
+<category id="cattelegram">
+  <block type="telegram_image">
+    <value name="telegram_script">
+      <block type="text">
+        <field name="TEXT">https://script.google.com/macros/s/AKfycbzksC7Fu7vdLuJAmlEvBap-FYGbNvVygOjWYenS/exec</field>
+      </block>
+    </value> 
+    <value name="telegram_token">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+    <value name="telegram_chatid">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+    <value name="telegram_videoid">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+  </block>
+</category>
