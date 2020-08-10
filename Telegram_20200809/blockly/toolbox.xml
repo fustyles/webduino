@@ -1,4 +1,21 @@
 <category id="cattelegram">
+  <block type="telegram_message">
+    <value name="telegram_token">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+    <value name="telegram_chatid">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+    <value name="telegram_msg">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+  </block>
   <block type="telegram_image">
     <value name="telegram_script">
       <block type="text">
