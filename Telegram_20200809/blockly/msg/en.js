@@ -1,1 +1,1 @@
-MSG.cattelegram = "Telegram";
+MSG.cattelegram = "Telegram Bot";
