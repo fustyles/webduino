@@ -11,14 +11,14 @@ Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks
 Code.customTab.$__remove__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
 
-Telegram 傳送網頁元素影像 
+Telegram Bot
 https://fustyles.github.io/webduino/Telegram_20200809/blockly.json 
 [Smart]
 https://blocklypro.webduino.io/#72O9xaoN3n
 [Bit ]
 https://bit.webduino.io/blockly/#MqAlOnDGA2KRY
 
-Google Script 可自訂Script指令路徑 
+Google Script 可自訂上傳影像Script指令路徑 
 https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
 
 
