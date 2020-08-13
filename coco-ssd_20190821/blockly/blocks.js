@@ -187,8 +187,10 @@ Blockly.Blocks['coco_ssd_object'] = {
 		[" ",""],
 		["class","class"],
 		["score","score"],
-		["x","x"],
-		["y","y"],
+		["X","x"],
+		["Y","y"],
+		["middleX","middlex"],
+		["middleY","middley"],
 		["width","width"],
 		["height","height"]
   ]), "data_");   
