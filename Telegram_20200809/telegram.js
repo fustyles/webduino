@@ -106,13 +106,7 @@ https://github.com/fustyles/webduino/blob/gs/telegram_push_message.gs
 
   function telegram_get_id(input_tagname) {
 	var list = [];
-	if (input_tagname=="video") 
-		var element = document.getElementsByTagName("video");
-	else if (input_tagname=="canvas") 
-		var element = document.getElementsByTagName("canvas");
-	else if (input_tagname=="img") 
-		var element = document.getElementsByTagName("img");
-
+	var element = document.getElementsByTagName(input_tagname);
 	if (element.length>0) {
 		for (var i=0;i<element.length;i++) {
 			list.push(element[i].id);
