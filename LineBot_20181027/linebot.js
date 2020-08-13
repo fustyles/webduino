@@ -178,9 +178,27 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
     }
   }
 
+  function linenotify_get_id(input_tagname) {
+	var list = [];
+	if (input_tagname=="video") 
+		var element = document.getElementsByTagName("video");
+	else if (input_tagname=="canvas") 
+		var element = document.getElementsByTagName("canvas");
+	else if (input_tagname=="img") 
+		var element = document.getElementsByTagName("img");
+
+	if (element.length>0) {
+		for (var i=0;i<element.length;i++) {
+			list.push(element[i].id);
+		}
+	}
+	return list;
+  }
+
   window.linebot_push_message = linebot_push_message;
   window.linenotify_push_message = linenotify_push_message;
   window.linenotify_push_image = linenotify_push_image;
   window.line_url_escape = line_url_escape;
+  window.linenotify_get_id = linenotify_get_id;
 
 }(window, window.document));

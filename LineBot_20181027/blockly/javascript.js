@@ -64,3 +64,10 @@ Blockly.JavaScript['linenotify_image'] = function (block) {
   var code = 'linenotify_push_image('+notify_script+','+notify_token+','+notify_videoid+');\n';
   return code; 
 };
+
+Blockly.JavaScript['linenotify_getid'] = function (block) {
+  var linenotify_tagname = block.getFieldValue('tagname_');
+	
+  var code = 'linenotify_get_id("'+linenotify_tagname+'")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};

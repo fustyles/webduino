@@ -266,3 +266,19 @@ Blockly.Blocks['linenotify_image'] = {
   this.setColour(65);
   }
 };
+
+Blockly.Blocks['linenotify_getid'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.LINENOTIFY_GETID_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		["video","video"],
+		["canvas","canvas"],
+		["img","img"]
+  ]), "tagname_");
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
