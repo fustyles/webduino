@@ -1,1 +1,1 @@
-Blockly.Msg.ADDCUSTOMBLOCKS_SHOW = "Custom Blocks";
+Blockly.Msg.ADDCUSTOMBLOCKS_SHOW = "Custom Blocks URL";
