@@ -3,7 +3,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
 Google Script
 https://github.com/fustyles/webduino/blob/gs/linebot_push_message.gs
-https://github.com/fustyles/webduino/blob/gs/telegram_push_message.gs
+https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
 */
 
 +(function (window, document) {
