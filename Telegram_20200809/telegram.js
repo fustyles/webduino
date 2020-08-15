@@ -10,6 +10,59 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
 
   'use strict';
 
+  function telegram_push_message(token, chatid, msg) {
+	if (!document.getElementById("myFormMessage")) {
+		var myFormMessage = document.createElement("form");
+		myFormMessage.id = "myFormMessage";
+		myFormMessage.name = "myFormMessage";
+		myFormMessage.method = "POST";
+		myFormMessage.target = "myIframe";
+		document.body.appendChild(myFormMessage);
+	} 
+	else {
+		var myFormMessage = document.getElementById("myFormMessage");
+
+	}
+	myFormMessage.action = "https://api.telegram.org/bot"+token+"/sendMessage";
+
+	if (!document.getElementById("chat_id")) {
+		var myChatID = document.createElement("input");
+		myChatID.type = "hidden";
+		myChatID.id = "chat_id";
+		myChatID.name = "chat_id";
+		myFormMessage.appendChild(myChatID);
+	}
+	else {
+		var myChatID = document.getElementById("chat_id");
+	}
+	myChatID.value = chatid;
+
+	if (!document.getElementById("text")) {
+		var myText = document.createElement("input");
+		myText.type = "hidden";
+		myText.id = "text";
+		myText.name = "text";
+		myFormMessage.appendChild(myText);
+	}
+	else {
+		var myText = document.getElementById("text");
+	}
+	myText.value = msg;
+
+	if (!document.getElementById("myIframe")) {
+		var myIframe = document.createElement('iframe');
+		myIframe.id = "myIframe";
+		myIframe.name = "myIframe";
+		myIframe.style.display = "none";
+		document.body.appendChild(myIframe);
+	}
+	else {
+		var myIframe = document.getElementById("myIframe");
+	}
+
+	myFormMessage.submit();
+  } 
+  
   function telegram_push_image(input_script,input_token,input_chatid,input_videoid) {
 	var myVideo = document.getElementById(input_videoid);
 
@@ -115,6 +168,7 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
 	return list;
   }
   
+  window.telegram_push_message = telegram_push_message;
   window.telegram_push_image = telegram_push_image;
   window.telegram_get_id = telegram_get_id;
 

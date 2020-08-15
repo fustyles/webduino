@@ -1,5 +1,5 @@
 {
-  "types": ["telegram_image","telegram_getid"],
+  "types": ["telegram_message","telegram_image","telegram_getid"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
