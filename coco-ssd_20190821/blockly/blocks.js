@@ -88,7 +88,6 @@ Blockly.Blocks['coco_ssd_list'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
-  this.getField('object_').setValue("person");
   }
 };
 
@@ -197,7 +196,6 @@ Blockly.Blocks['coco_ssd_object'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
-  this.getField('object_').setValue("person");
   }
 };
 
@@ -291,7 +289,6 @@ Blockly.Blocks['coco_ssd_object_number'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
-  this.getField('object_').setValue("person");
   }
 };
 
