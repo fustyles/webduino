@@ -17,6 +17,7 @@ https://blog.minhazav.dev/research/html5-qrcode.html#scan-using-file
 		function onScanSuccess(qrCodeMessage) {
 			// handle on success condition with the decoded message
 			console.log(qrCodeMessage);
+			result.innerHTML = qrCodeMessage;
 		}
 
 		function onScanError(errorMessage) {
