@@ -44,14 +44,14 @@ function initial(blocks_path, javascript_path, toolbox_path) {
 		addScript(zhhant_path);
 		var xml = $.ajax({url: zhhant_category_path, async: false}).responseXML.firstChild;
 	}
+	xml = new DOMParser().parseFromString(new XMLSerializer().serializeToString(xml).replace(/\n/g, ""),"text/xml").firstChild;
 	
 	for (var i=0;i<xml.childNodes.length;i++) {
-		try {
+		if (xml.childNodes[i].nodeName=="category") {
 			var ini = xml.childNodes[i].childNodes[0].firstChild.nodeValue;
 			var rep = xml.childNodes[i].childNodes[1].firstChild.nodeValue;
-			xmlValue = xmlValue.replace('name="'+ini+'"','name="'+rep+'"');			
+			xmlValue = xmlValue.replace('name="'+ini+'"','name="'+rep+'"');	
 		}
-		catch (e){}
 	}
 }
 
