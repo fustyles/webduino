@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://blog.minhazav.dev/assets/research/html5qrcode/html5-qrcode.min.js"></script>
+<!--
+https://blog.minhazav.dev/research/html5-qrcode.html#scan-using-file
+<script src="https://blog.minhazav.dev/assets/research/html5qrcode/html5-qrcode.min.js"></script>
+-->
+</head>
+  <body>
+    <div id="reader" width="600px" height="600px"></div>
+	<div id="result" style="color:red"></div>
+
+    <script type="text/javascript">
+		var result = document.getElementById('result');
+
+		function onScanSuccess(qrCodeMessage) {
+			// handle on success condition with the decoded message
+			console.log(qrCodeMessage);
+		}
+
+		function onScanError(errorMessage) {
+			// handle on error condition, with error message
+			//console.log(errorMessage);
+		}
+
+		var html5QrcodeScanner = new Html5QrcodeScanner(
+			"reader", { fps: 1, qrbox: 250 });
+		html5QrcodeScanner.render(onScanSuccess, onScanError);
+
+    </script>
+  </body>
+</html>
