@@ -1,7 +1,6 @@
 <!--
 Try it
 https://fustyles.github.io/webduino/Instascan.js/Instascan_qrcode_esp32-cam_stream.html
-
 You must modify the code.
 static esp_err_t stream_handler(httpd_req_t *req){
     .........
@@ -10,12 +9,10 @@ static esp_err_t stream_handler(httpd_req_t *req){
     if(res != ESP_OK){
         return res;
     }
-
     httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");   //You must add the code to your firmware.
     ..........
     .........
 }
-
 Enabling mixed content in your browser
 https://docs.adobe.com/content/help/en/target/using/experiences/vec/troubleshoot-composer/mixed-content.html 
 -->
@@ -320,7 +317,7 @@ https://docs.adobe.com/content/help/en/target/using/experiences/vec/troubleshoot
     <body>
         <figure>
           <div id="stream-container" class="image-container hidden">
-          <div class="close" id="close-stream">¡Ñ</div>
+          <div class="close" id="close-stream">×</div>
 		    <video id="preview" style="display:none"></video>
             <img id="stream" src="" crossorigin="anonymous">
           </div>
@@ -328,7 +325,7 @@ https://docs.adobe.com/content/help/en/target/using/experiences/vec/troubleshoot
 		IP: <input type="text" id="ip" value="192.168.xxx.xxx">&nbsp;&nbsp;&nbsp;<input type="button" id="start" value="Set settings">
         <section id="buttons">
             <table>
-              <tr><td><button id="restart" onclick="try{fetch(document.location.origin+'/control?restart');}catch(e){}">Restart</button></td><td><button id="get-still">Get Still</button></td><td><button id="toggle-stream">Start Stream</button></td></tr>
+              <tr><td><button id="restart" onclick="try{fetch(document.location.origin+'/control?restart');}catch(e){}">Restart</button></td><td><button id="get-still" style="display:none">Get Still</button></td><td><button id="toggle-stream">Start Stream</button></td></tr>
             </table>
         </section>
         <section class="main">      
@@ -380,14 +377,14 @@ https://docs.adobe.com/content/help/en/target/using/experiences/vec/troubleshoot
                         <div class="input-group" id="hmirror-group">
                             <label for="hmirror">H-Mirror</label>
                             <div class="switch">
-                                <input id="hmirror" type="checkbox" class="default-action">
+                                <input id="hmirror" type="checkbox" class="default-action" checked="checked">
                                 <label class="slider" for="hmirror"></label>
                             </div>
                         </div>
                         <div class="input-group" id="vflip-group">
                             <label for="vflip">V-Flip</label>
                             <div class="switch">
-                                <input id="vflip" type="checkbox" class="default-action">
+                                <input id="vflip" type="checkbox" class="default-action" checked="checked">
                                 <label class="slider" for="vflip"></label>
                             </div>
                         </div>
