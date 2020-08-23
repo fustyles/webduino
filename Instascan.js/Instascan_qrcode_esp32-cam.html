@@ -298,7 +298,7 @@
     <body>
         <figure>
           <div id="stream-container" class="image-container hidden">
-          <div class="close" id="close-stream">ยกร‘</div>
+          <div class="close" id="close-stream">กั</div>
 		    <video id="preview" style="display:none"></video>
             <img id="stream" src="" crossorigin="anonymous">
           </div>
@@ -468,10 +468,13 @@
   
 	  const query = `${baseHost}/control?var=${el.id}&val=${value}`
   
+      $.ajax({url: query, async: false});
+	  /*
 	  fetch(query)
 		.then(response => {
 		  console.log(`request to ${query} finished, status: ${response.status}`)
 		})
+	  */
 	}
   
 	document
