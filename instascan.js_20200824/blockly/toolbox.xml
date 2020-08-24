@@ -1,0 +1,18 @@
+<category id="instascan">
+  <block type="instascan_video">
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">320</field>
+      </block>
+    </value> 
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">240</field>
+      </block>
+    </value>     
+  </block>   
+  <block type="instascan_get">
+  </block>  
+  <block type="instascan_clear">
+  </block>   
+</category>

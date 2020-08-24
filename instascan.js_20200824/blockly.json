@@ -1,0 +1,16 @@
+{
+  "types": ["instascan_recognition", "instascan_get", "instascan_video", "instascan_clear"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "instascan_video.js",
+    "instascan.js",
+    "instascan.min.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
