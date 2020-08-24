@@ -13,8 +13,9 @@ Code.customTab.$__remove__('https://fustyles.github.io/webduino/EDU_addCustomBlo
 QR code辨識
 https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json
 [Smart]
-
+https://blocklypro.webduino.io/#RV6QV8W50O
 [Bit ]
+https://bit.webduino.io/blockly/#Vyj6kP2OLrayY
 
 
 Telegram Bot
