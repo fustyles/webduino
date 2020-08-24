@@ -10,7 +10,7 @@ Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks
 開發人員工具Console移除自訂積木指令
 Code.customTab.$__remove__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
-QR code辨識
+QR code辨識 (instascan)
 https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json
 [Smart]
 https://blocklypro.webduino.io/#RV6QV8W50O
