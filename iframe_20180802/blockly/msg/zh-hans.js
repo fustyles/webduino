@@ -1,1 +1,1 @@
-MSG.catIframe = "显示网页";
+MSG.catIframe = "网页显示";
