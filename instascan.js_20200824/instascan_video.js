@@ -40,8 +40,8 @@ Instascan.Camera.getCameras().then(function (cameras) {
 	  scanner.start(cameras[0]);
 
 	  scanner.addListener('scan', function (content) {
-		console.log(content);
-		result.innerHTML = content;
+		console.log(utf8to16(content));
+		result.innerHTML = utf8to16(content);
 	  });
 	} else {
 	  console.error('No cameras found.');
@@ -51,4 +51,37 @@ Instascan.Camera.getCameras().then(function (cameras) {
 	console.error(e);
 	result.innerHTML = e;
 });
+
+function utf8to16(str) {
+	 var out, i, len, c;
+	 var char2, char3;
+	 out = "";
+	 len = str.length;
+	 i = 0;
+	 while(i < len) {
+		 c = str.charCodeAt(i++);
+		 switch(c >> 4)
+		 { 
+		   case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+			 // 0xxxxxxx
+			 out += str.charAt(i-1);
+			 break;
+		   case 12: case 13:
+			 // 110x xxxx    10xx xxxx
+			 char2 = str.charCodeAt(i++);
+			 out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
+			 break;
+		   case 14:
+			 // 1110 xxxx   10xx xxxx   10xx xxxx
+			 char2 = str.charCodeAt(i++);
+			 char3 = str.charCodeAt(i++);
+			 out += String.fromCharCode(((c & 0x0F) << 12) |
+											((char2 & 0x3F) << 6) |
+											((char3 & 0x3F) << 0));
+			 break;
+		 }
+	 }
+	 return out;
+}
+	
 }
