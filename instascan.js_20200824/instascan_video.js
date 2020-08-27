@@ -75,9 +75,7 @@ function utf8to16(str) {
 			 // 1110 xxxx   10xx xxxx   10xx xxxx
 			 char2 = str.charCodeAt(i++);
 			 char3 = str.charCodeAt(i++);
-			 out += String.fromCharCode(((c & 0x0F) << 12) |
-											((char2 & 0x3F) << 6) |
-											((char3 & 0x3F) << 0));
+			 out += String.fromCharCode(((c & 0x0F) << 12) | ((char2 & 0x3F) << 6) | ((char3 & 0x3F) << 0));
 			 break;
 		 }
 	 }
