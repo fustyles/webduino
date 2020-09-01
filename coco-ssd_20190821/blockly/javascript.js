@@ -28,3 +28,10 @@ Blockly.JavaScript['coco_ssd_video'] = function(block) {
   var code = 'coco_ssd_video(' + value_width_ + ',' + value_height_ + ',"' + value_result_ + '","' + value_frame_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
   return code;
 };
+
+Blockly.JavaScript['video_position'] = function(block) { 
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};

@@ -1,5 +1,5 @@
 {
-  "types": ["posenet_video","posenet_list","posenet_person","posenet_distance","posenet_angle"],
+  "types": ["posenet_video", "video_position", "posenet_list","posenet_person","posenet_distance","posenet_angle"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",

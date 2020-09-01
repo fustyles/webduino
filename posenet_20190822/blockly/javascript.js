@@ -42,3 +42,10 @@ Blockly.JavaScript['posenet_angle'] = function (block) {
   var code = 'posenet_angle(' + value_x0_ + ',' + value_y0_ + ','+ value_x1_ + ',' + value_y1_ + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['video_position'] = function(block) { 
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};

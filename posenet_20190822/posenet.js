@@ -69,12 +69,19 @@
 	
   function posenet_angle(input_x0,input_y0,input_x1,input_y1) {
       return (Math.atan((input_y1-input_y0)/(input_x1-input_x0)) / Math.PI) * 180;
-  } 	
+  } 
+  
+	function video_position(input_left, input_top) {
+	  region.style.position = "absolute";
+	  region.style.left = input_left + "px";
+	  region.style.top = input_top + "px";
+	}
 
   window.posenet_video = posenet_video;
   window.posenet_list = posenet_list;
   window.posenet_person = posenet_person;
   window.posenet_distance = posenet_distance;
   window.posenet_angle = posenet_angle;	
+  window.video_position = video_position;
 	
 }(window, window.document));

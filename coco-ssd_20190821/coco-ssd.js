@@ -81,10 +81,17 @@
     document.getElementById('mirrorimage').value = input_mirrorimage;
     document.getElementById('opacity').value = input_opacity;
   }	
+
+	function video_position(input_left, input_top) {
+	  region.style.position = "absolute";
+	  region.style.left = input_left + "px";
+	  region.style.top = input_top + "px";
+	}
 	
   window.coco_ssd_list = coco_ssd_list;
   window.coco_ssd_object = coco_ssd_object;
   window.coco_ssd_object_number = coco_ssd_object_number;
   window.coco_ssd_video = coco_ssd_video;
+  window.video_position = video_position;
 
 }(window, window.document));
