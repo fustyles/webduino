@@ -1750,7 +1750,7 @@ Blockly.Blocks['element_event'] = {
   init: function () {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT_SHOW)
-      .appendField(new Blockly.FieldDropdown([["window","window"],["document","document"],["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"],["div","div"]]), "element");
+      .appendField(new Blockly.FieldDropdown([["window","window"],["document","document"],["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"],["div","div"],["iframe","iframe"]]), "element");
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID_SHOW); 
@@ -1769,7 +1769,7 @@ Blockly.Blocks['element_event_stop'] = {
   init: function () {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT_SHOW)
-      .appendField(new Blockly.FieldDropdown([["window","window"],["document","document"],["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"],["div","div"]]), "element");
+      .appendField(new Blockly.FieldDropdown([["window","window"],["document","document"],["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"],["div","div"],["iframe","iframe"]]), "element");
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID_SHOW);    
@@ -2449,5 +2449,106 @@ Blockly.Blocks['position_angle'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
+  }
+};
+
+Blockly.Blocks['iframe_create'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.IFRAME_CREATE_SHOW)    
+      .appendField(Blockly.Msg.ID_SHOW);    
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LEFT_SHOW);    
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TOP_SHOW);   
+  this.appendValueInput("width_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.WIDTH_SHOW);
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.HEIGHT_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.IFRAME_FRAMEBORDER_SHOW)
+      .appendField(new Blockly.FieldDropdown([["0","0"], ["1","1"]]), "frameborder_");  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.IFRAME_SCROLLING_SHOW)
+      .appendField(new Blockly.FieldDropdown([["yes","yes"], ["no","no"], ["auto","auto"]]), "scrolling_");     
+  this.appendValueInput("src_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.IFRAME_SRC_SHOW); 
+  this.appendValueInput("srcdoc_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.IFRAME_SRCDOC_SHOW); 
+  this.appendValueInput("opacity_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPACITY_SHOW);
+  this.appendValueInput("zindex_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ZINDEX_SHOW);   
+  this.appendValueInput("display_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.DISPLAY_SHOW); 
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['iframe_set'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.IFRAME_ID_SHOW);      
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.IFRAME_SET_SHOW) 
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["frameborder","frameborder"], ["scrolling","scrolling"], ["src","src"], ["srcdoc","srcdoc"], ["sandbox","sandbox"], ["opacity","opacity"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["style","style"]]), "property_");
+  this.appendValueInput("value_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null);    
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['iframe_get'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.IFRAME_ID_SHOW);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.IFRAME_GET_SHOW)
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["frameborder","frameborder"], ["scrolling","scrolling"], ["src","src"], ["srcdoc","srcdoc"], ["sandbox","sandbox"], ["opacity","opacity"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["id","id"]]), "property_");
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['iframe_delete'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.IFRAME_ID_SHOW); 
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.IFRAME_DELETE_SHOW);  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
   }
 };

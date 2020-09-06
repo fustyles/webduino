@@ -1,6 +1,6 @@
 <category id="catGameElements"> 
 
-<category id="catGameElements_sub1"> 
+<category id="catGameElements_sub1" colour="120"> 
 
   <block type="time_delay">
     <value name="seconds">
@@ -214,7 +214,7 @@
   </block>   
   
   </category>
-  <category id="catGameElements_sub2"> 
+  <category id="catGameElements_sub2" colour="120"> 
 
   <block type="image_create">
     <value name="id_">
@@ -249,7 +249,7 @@
     </value>  
     <value name="zindex_">
       <block type="math_number">
-        <field name="NUM">0</field>
+        <field name="NUM">999</field>
       </block>
     </value> 
     <value name="display_">
@@ -404,7 +404,7 @@
   </block> 
   
   </category>
-  <category id="catGameElements_sub3"> 
+  <category id="catGameElements_sub3" colour="120"> 
 
   <block type="button_create"> 
     <value name="id_">
@@ -448,7 +448,7 @@
     </value>       
     <value name="zindex_">
       <block type="math_number">
-        <field name="NUM">0</field>
+        <field name="NUM">999</field>
       </block>
     </value> 
     <value name="display_">
@@ -492,7 +492,7 @@
   </block>   
   
   </category>
-  <category id="catGameElements_sub4"> 
+  <category id="catGameElements_sub4" colour="120"> 
 
   <block type="colorpicker_create"> 
     <value name="id_">
@@ -532,7 +532,7 @@
     </value>       
     <value name="zindex_">
       <block type="math_number">
-        <field name="NUM">0</field>
+        <field name="NUM">999</field>
       </block>
     </value> 
     <value name="display_">
@@ -576,7 +576,7 @@
   </block>     
   
   </category>
-  <category id="catGameElements_sub5"> 
+  <category id="catGameElements_sub5" colour="120"> 
 
   <block type="select_create"> 
     <value name="id_">
@@ -656,7 +656,7 @@
     </value>          
     <value name="zindex_">
       <block type="math_number">
-        <field name="NUM">0</field>
+        <field name="NUM">999</field>
       </block>
     </value> 
     <value name="display_">
@@ -700,7 +700,7 @@
   </block> 
 
   </category>
-  <category id="catGameElements_sub6"> 
+  <category id="catGameElements_sub6" colour="120"> 
 
   <block type="range_create"> 
     <value name="id_">
@@ -755,7 +755,7 @@
     </value>       
     <value name="zindex_">
       <block type="math_number">
-        <field name="NUM">0</field>
+        <field name="NUM">999</field>
       </block>
     </value> 
     <value name="display_">
@@ -799,7 +799,7 @@
   </block>
 
   </category>
-  <category id="catGameElements_sub7"> 
+  <category id="catGameElements_sub7" colour="120"> 
 
   <block type="text_create"> 
     <value name="id_">
@@ -854,7 +854,7 @@
     </value>       
     <value name="zindex_">
       <block type="math_number">
-        <field name="NUM">0</field>
+        <field name="NUM">999</field>
       </block>
     </value> 
     <value name="display_">
@@ -898,7 +898,7 @@
   </block> 
 
   </category>
-  <category id="catGameElements_sub8"> 
+  <category id="catGameElements_sub8" colour="120"> 
 
   <block type="table_create">  
     <value name="id_">
@@ -952,7 +952,7 @@
     </value>       
     <value name="zindex_">
       <block type="math_number">
-        <field name="NUM">0</field>
+        <field name="NUM">999</field>
       </block>
     </value> 
     <value name="display_">
@@ -1288,7 +1288,7 @@
   </block>
 
   </category>
-  <category id="catGameElements_sub9"> 
+  <category id="catGameElements_sub9" colour="120"> 
 
   <block type="canvas_create"> 
     <value name="id_">
@@ -1318,7 +1318,7 @@
     </value>  
     <value name="zindex_">
       <block type="math_number">
-        <field name="NUM">0</field>
+        <field name="NUM">999</field>
       </block>
     </value>     
   </block>
@@ -1830,7 +1830,7 @@
   </block>   
   
   </category>
-  <category id="catGameElements_sub10"> 
+  <category id="catGameElements_sub10" colour="120"> 
 
   <block type="div_create"> 
     <value name="id_">
@@ -1895,7 +1895,7 @@
     </value>       
     <value name="zindex_">
       <block type="math_number">
-        <field name="NUM">0</field>
+        <field name="NUM">999</field>
       </block>
     </value> 
     <value name="display_">
@@ -1924,6 +1924,98 @@
     </value>     
   </block>     
   <block type="div_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>  	
+
+  </category>
+  <category id="catGameElements_sub11" colour="120"> 
+
+  <block type="iframe_create">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">60</field>
+      </block>
+    </value>
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">30</field>
+      </block>
+    </value>  
+    <value name="frameborde_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>    
+    <value name="scrolling_">
+      <block type="text">
+        <field name="TEXT">auto</field>
+      </block>
+    </value>  
+    <value name="src_">  
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>  
+    <value name="srcdoc_">  
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>  	
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>         
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">999</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="iframe_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="iframe_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
+  <block type="iframe_delete">
     <value name="id_">
       <block type="text">
         <field name="TEXT"></field>
