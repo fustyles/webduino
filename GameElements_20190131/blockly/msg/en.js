@@ -1,1 +1,17 @@
 MSG.catGameElements = "Game Elements";
+MSG.catGameElements_sub1 = "General";
+MSG.catGameElements_sub2 = "Image";
+MSG.catGameElements_sub3 = "Button";
+MSG.catGameElements_sub4 = "Color";
+MSG.catGameElements_sub5 = "Select";
+MSG.catGameElements_sub6 = "Range";
+MSG.catGameElements_sub7 = "Text";
+MSG.catGameElements_sub8 = "Table";
+MSG.catGameElements_sub9 = "Canvas";
+MSG.catGameElements_sub10 = "Div";
+MSG.catGameElements_sub11 = "Iframe";
+MSG.catGameElements_sub12 = "Link";
+MSG.catGameElements_sub13 = "Checkbox";
+MSG.catGameElements_sub14 = "Video";
+MSG.catGameElements_sub15 = "Textarea";
+MSG.catGameElements_sub16 = "Label";

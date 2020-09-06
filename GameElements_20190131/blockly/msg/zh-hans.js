@@ -1,1 +1,17 @@
 MSG.catGameElements = "游戏元素";
+MSG.catGameElements_sub1 = "一般功能";
+MSG.catGameElements_sub2 = "图片";
+MSG.catGameElements_sub3 = "按钮";
+MSG.catGameElements_sub4 = "色彩工具";
+MSG.catGameElements_sub5 = "下拉选单";
+MSG.catGameElements_sub6 = "范围";
+MSG.catGameElements_sub7 = "文字";
+MSG.catGameElements_sub8 = "表格";
+MSG.catGameElements_sub9 = "画布";
+MSG.catGameElements_sub10 = "区块标签";
+MSG.catGameElements_sub11 = "内嵌框架";
+MSG.catGameElements_sub12 = "连结";
+MSG.catGameElements_sub13 = "核取方块";
+MSG.catGameElements_sub14 = "视讯";
+MSG.catGameElements_sub15 = "多行文字";
+MSG.catGameElements_sub16 = "标签";

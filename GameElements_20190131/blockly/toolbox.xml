@@ -1,4 +1,7 @@
 <category id="catGameElements"> 
+
+<category id="catGameElements_sub1"> 
+
   <block type="time_delay">
     <value name="seconds">
       <block type="math_number">
@@ -208,7 +211,11 @@
     </value>     
   </block>  
   <block type="music_delete"> 
-  </block>    
+  </block>   
+  
+  </category>
+  <category id="catGameElements_sub2"> 
+
   <block type="image_create">
     <value name="id_">
       <block type="text">
@@ -394,7 +401,11 @@
         <field name="TEXT"></field>
       </block>
     </value>       
-  </block>      
+  </block> 
+  
+  </category>
+  <category id="catGameElements_sub3"> 
+
   <block type="button_create"> 
     <value name="id_">
       <block type="text">
@@ -478,7 +489,11 @@
         <field name="TEXT"></field>
       </block>
     </value>         
-  </block>           
+  </block>   
+  
+  </category>
+  <category id="catGameElements_sub4"> 
+
   <block type="colorpicker_create"> 
     <value name="id_">
       <block type="text">
@@ -558,7 +573,11 @@
         <field name="TEXT"></field>
       </block>
     </value>         
-  </block>                
+  </block>     
+  
+  </category>
+  <category id="catGameElements_sub5"> 
+
   <block type="select_create"> 
     <value name="id_">
       <block type="text">
@@ -679,6 +698,10 @@
       </block>
     </value>         
   </block> 
+
+  </category>
+  <category id="catGameElements_sub6"> 
+
   <block type="range_create"> 
     <value name="id_">
       <block type="text">
@@ -774,6 +797,10 @@
       </block>
     </value>         
   </block>
+
+  </category>
+  <category id="catGameElements_sub7"> 
+
   <block type="text_create"> 
     <value name="id_">
       <block type="text">
@@ -869,6 +896,10 @@
       </block>
     </value>         
   </block> 
+
+  </category>
+  <category id="catGameElements_sub8"> 
+
   <block type="table_create">  
     <value name="id_">
       <block type="text">
@@ -1255,6 +1286,10 @@
       </block>
     </value>    
   </block>
+
+  </category>
+  <category id="catGameElements_sub9"> 
+
   <block type="canvas_create"> 
     <value name="id_">
       <block type="text">
@@ -1792,7 +1827,11 @@
         <field name="NUM">0</field>
       </block>
     </value>            
-  </block>    
+  </block>   
+  
+  </category>
+  <category id="catGameElements_sub10"> 
+
   <block type="div_create"> 
     <value name="id_">
       <block type="text">
@@ -1891,4 +1930,7 @@
       </block>
     </value>     
   </block>  	
+
+  </category>
+
 </category>
