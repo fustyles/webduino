@@ -2565,7 +2565,7 @@ Blockly.Blocks['ajax_get'] = {
       .appendField(Blockly.Msg.AJAX_URL_SHOW); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AJAX_TYPE_SHOW)
-      .appendField(new Blockly.FieldDropdown([["POST","POST"],["GET","GET"], ["DELETE","DELETE"]]), "type_"); 
+      .appendField(new Blockly.FieldDropdown([["GET","GET"], ["POST","POST"], ["DELETE","DELETE"]]), "type_"); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AJAX_DATATYPE_SHOW)
       .appendField(new Blockly.FieldDropdown([["text","text"],["html","html"], ["xml","xml"], ["script","script"], ["json","json"], ["jsonp","jsonp"]]), "datatype_"); 
