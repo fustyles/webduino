@@ -2514,7 +2514,7 @@ Blockly.Blocks['iframe_set'] = {
       .appendField(Blockly.Msg.IFRAME_ID_SHOW);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.IFRAME_SET_SHOW) 
-      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["frameborder","frameborder"], ["scrolling","scrolling"], ["src","src"], ["srcdoc","srcdoc"], ["sandbox","sandbox"], ["opacity","opacity"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["style","style"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["frameborder","frameborder"], ["scrolling","scrolling"], ["src","src"], ["srcdoc","srcdoc"], ["sandbox","sandbox"], ["allow","allow"], ["opacity","opacity"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["style","style"]]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -2532,7 +2532,7 @@ Blockly.Blocks['iframe_get'] = {
       .appendField(Blockly.Msg.IFRAME_ID_SHOW);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.IFRAME_GET_SHOW)
-      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["frameborder","frameborder"], ["scrolling","scrolling"], ["src","src"], ["srcdoc","srcdoc"], ["sandbox","sandbox"], ["opacity","opacity"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["id","id"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([["left","left"], ["top","top"], ["width","width"], ["height","height"], ["frameborder","frameborder"], ["scrolling","scrolling"], ["src","src"], ["srcdoc","srcdoc"], ["sandbox","sandbox"], ["allow","allow"], ["opacity","opacity"], ["zindex","zindex"], ["display","display"], ["position","position"], ["disabled","disabled"], ["draggable","draggable"], ["id","id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
