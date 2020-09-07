@@ -2590,7 +2590,7 @@ Blockly.Blocks['ajax_getdata'] = {
       .appendField(Blockly.Msg.AJAX_GETDATA_SHOW);
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AJAX_FORMAT_SHOW)
-      .appendField(new Blockly.FieldDropdown([["",""], ["JSON to String","JSON to String"], ["XML to String","XML to String"]]), "format_"); 
+      .appendField(new Blockly.FieldDropdown([[" ",""], ["JSON to String","JSON to String"], ["XML to String","XML to String"]]), "format_"); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
