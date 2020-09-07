@@ -435,7 +435,11 @@ Blockly.JavaScript['elements_collision'] = function (block) {
   else if (value_element1_=="text")
     var obj1= 'gametext_';   
   else if (value_element1_=="div")
-    var obj1= 'gamediv_';     
+    var obj1= 'gamediv_';   
+  else if (value_element1_=="iframe")
+    var obj1= 'gameiframe_';  
+  else if (value_element1_=="a")
+    var obj1= 'gamea_';    
   if (value_element2_=="table")
     var obj2= 'gametable_';
   else if (value_element2_=="canvas")
@@ -453,7 +457,11 @@ Blockly.JavaScript['elements_collision'] = function (block) {
   else if (value_element2_=="text")
     var obj2= 'gametext_';  
   else if (value_element2_=="div")
-    var obj2= 'gamediv_';  
+    var obj2= 'gamediv_'; 
+  else if (value_element2_=="iframe")
+    var obj2= 'gameiframe_'; 
+  else if (value_element2_=="a")
+    var obj2= 'gamea_';   
   var code = 'elements_collision("'+obj1+'",' + value_id1_ + ',"'+obj2+'",' + value_id2_ + ',"' + value_position_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
@@ -480,7 +488,11 @@ Blockly.JavaScript['elements_collision_color'] = function (block) {
   else if (value_element1_=="text")
     var obj1= 'gametext_';   
   else if (value_element1_=="div")
-    var obj1= 'gamediv_';     
+    var obj1= 'gamediv_'; 
+  else if (value_element1_=="iframe")
+    var obj1= 'gameiframe_';  
+    else if (value_element1_=="a")
+    var obj1= 'gamea_';  
   var code = 'elements_collision_color("'+obj1+'",' + value_id1_ + ',' + value_id2_ + ',' + value_color_ + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
@@ -801,6 +813,8 @@ Blockly.JavaScript['element_event'] = function (block) {
     var obj="document.getElementById('gamediv_'+"+value_id_+")"; 
   else if (element=="iframe")
     var obj="document.getElementById('gameiframe_'+"+value_id_+")";  
+  else if (element=="a")
+    var obj="document.getElementById('gamea_'+"+value_id_+")";  
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
  
@@ -836,6 +850,8 @@ Blockly.JavaScript['element_event_stop'] = function (block) {
     var obj="document.getElementById('gamediv_'+"+value_id_+")"; 
   else if (element=="iframe")
     var obj="document.getElementById('gameiframe_'+"+value_id_+")";  
+  else if (element=="a")
+    var obj="document.getElementById('gamea_'+"+value_id_+")"; 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
 
@@ -1182,3 +1198,54 @@ Blockly.JavaScript['ajax_cleardata'] = function (block) {
   var code = 'ajaxData_'+value_id_.replace(/'/g,"")+' = "";\n';
   return code;
 };
+
+
+
+
+
+
+
+
+Blockly.JavaScript['a_create'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_borderstyle_ = block.getFieldValue('borderstyle_');
+  var value_borderwidth_ = Blockly.JavaScript.valueToCode(block, 'borderwidth_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_bordercolor_ = Blockly.JavaScript.valueToCode(block, 'bordercolor_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_background_ = Blockly.JavaScript.valueToCode(block, 'background_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_fontsize_ = Blockly.JavaScript.valueToCode(block, 'fontsize_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_opacity_ = Blockly.JavaScript.valueToCode(block, 'opacity_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_innerHTML_ = Blockly.JavaScript.valueToCode(block, 'innerHTML_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_href_ = Blockly.JavaScript.valueToCode(block, 'href_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_target_ = block.getFieldValue('target_');
+  var value_zindex_ = Blockly.JavaScript.valueToCode(block, 'zindex_', Blockly.JavaScript.ORDER_ATOMIC);    
+  var value_display_ = Blockly.JavaScript.valueToCode(block, 'display_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'a_create(' + value_id_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ',"'+ value_borderstyle_ + '",' + value_borderwidth_ + ',' + value_bordercolor_ + ',' + value_background_ + ',' + value_color_ + ',' + value_fontsize_ + ',' + value_opacity_ + ',' + value_innerHTML_ + ',' + value_href_ + ',"' + value_target_ + '",' + value_zindex_ + ',' + value_display_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['a_set'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'a_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['a_get'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'a_get(' + value_id_ + ',"' + value_property_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['a_delete'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'a_delete(' + value_id_ + ');\n';
+  return code;
+};
+
