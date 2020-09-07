@@ -64,6 +64,7 @@ Blockly.Blocks['table_set'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
+	  .appendField(Blockly.Msg.TABLE_SHOW)
       .appendField(Blockly.Msg.TABLE_ID_SHOW);     
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TABLE_SET_SHOW)
@@ -82,6 +83,7 @@ Blockly.Blocks['table_get'] = {
   init: function () {   
   this.appendValueInput("id_")
       .setCheck(null)
+	  .appendField(Blockly.Msg.TABLE_SHOW)
       .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TABLE_GET_SHOW) 
@@ -96,6 +98,7 @@ Blockly.Blocks['table_clear'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
+	  .appendField(Blockly.Msg.TABLE_SHOW)
       .appendField(Blockly.Msg.TABLE_ID_SHOW);
   this.appendDummyInput()
       .appendField(Blockly.Msg.TABLE_CLEAR_SHOW);
@@ -136,6 +139,7 @@ Blockly.Blocks['table_td_set'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
+	  .appendField(Blockly.Msg.TABLE_SHOW)
       .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendValueInput("x_")
       .setCheck("Number")
@@ -162,6 +166,7 @@ Blockly.Blocks['table_border_set'] = {
   init: function() {
   this.appendValueInput("id_")
       .setCheck(null)
+	  .appendField(Blockly.Msg.TABLE_SHOW)
       .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TABLE_BORDER_SET_SHOW)
@@ -220,6 +225,7 @@ Blockly.Blocks['table_td_get'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
+	  .appendField(Blockly.Msg.TABLE_SHOW)
       .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendValueInput("x_")
       .setCheck("Number")
@@ -243,6 +249,7 @@ Blockly.Blocks['table_td_onclick_do'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
+	  .appendField(Blockly.Msg.TABLE_SHOW)
       .appendField(Blockly.Msg.TABLE_ID_SHOW);     
   this.appendValueInput("x_")
       .setCheck(null)
@@ -303,6 +310,7 @@ Blockly.Blocks['table_td_img_move'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
+	  .appendField(Blockly.Msg.TABLE_SHOW)
       .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendValueInput("imgid_")
       .setCheck(null)
@@ -328,6 +336,7 @@ Blockly.Blocks['table_td_canvas_move'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
+	  .appendField(Blockly.Msg.TABLE_SHOW)
       .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendValueInput("canvasid_")
       .setCheck(null)
@@ -441,6 +450,7 @@ Blockly.Blocks['table_td_clear'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
+	  .appendField(Blockly.Msg.TABLE_SHOW)
       .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendValueInput("x_")
       .setCheck("Number")
@@ -462,6 +472,7 @@ Blockly.Blocks['table_delete'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
+	  .appendField(Blockly.Msg.TABLE_SHOW)
       .appendField(Blockly.Msg.TABLE_ID_SHOW); 
   this.appendDummyInput() 
       .appendField(Blockly.Msg.TABLE_DELETE_SHOW);
@@ -1084,10 +1095,11 @@ Blockly.Blocks['canvas_getcolor'] = {
 
 Blockly.Blocks['image_create'] = {
   init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.IMAGE_CREATE_SHOW);
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.IMAGE_CREATE_SHOW)
       .appendField(Blockly.Msg.ID_SHOW); 
   this.appendValueInput("url_")
       .setCheck("String")
@@ -1590,9 +1602,11 @@ Blockly.Blocks['rotate_horizontal_flip'] = {
 
 Blockly.Blocks['button_create'] = {
   init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.BUTTON_CREATE_SHOW);
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.BUTTON_CREATE_SHOW)    
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.ID_SHOW);    
   this.appendValueInput("left_")
       .setCheck("Number")
@@ -1786,9 +1800,11 @@ Blockly.Blocks['element_event_stop'] = {
 
 Blockly.Blocks['colorpicker_create'] = {
   init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.COLORPICKER_CREATE_SHOW);
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.COLORPICKER_CREATE_SHOW)    
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.ID_SHOW);    
   this.appendValueInput("left_")
       .setCheck("Number")
@@ -1892,9 +1908,11 @@ Blockly.Blocks['colorpicker_onchange_do'] = {
 
 Blockly.Blocks['select_create'] = {
   init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.SELECT_CREATE_SHOW);
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.SELECT_CREATE_SHOW)    
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.ID_SHOW);    
   this.appendValueInput("left_")
       .setCheck("Number")
@@ -2014,9 +2032,11 @@ Blockly.Blocks['select_onchange_do'] = {
 
 Blockly.Blocks['range_create'] = {
   init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.RANGE_CREATE_SHOW);
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.RANGE_CREATE_SHOW)    
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.ID_SHOW);    
   this.appendValueInput("left_")
       .setCheck("Number")
@@ -2132,9 +2152,11 @@ Blockly.Blocks['range_onchange_do'] = {
 
 Blockly.Blocks['text_create'] = {
   init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.TEXT_CREATE_SHOW);
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.TEXT_CREATE_SHOW)    
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.ID_SHOW);    
   this.appendValueInput("left_")
       .setCheck("Number")
@@ -2250,9 +2272,11 @@ Blockly.Blocks['text_onchange_do'] = {
 
 Blockly.Blocks['div_create'] = {
   init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.DIV_CREATE_SHOW);
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.DIV_CREATE_SHOW)    
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.ID_SHOW);    
   this.appendValueInput("left_")
       .setCheck("Number")
@@ -2455,9 +2479,11 @@ Blockly.Blocks['position_angle'] = {
 
 Blockly.Blocks['iframe_create'] = {
   init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.IFRAME_CREATE_SHOW);
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.IFRAME_CREATE_SHOW)    
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.ID_SHOW);    
   this.appendValueInput("left_")
       .setCheck("Number")
@@ -2560,6 +2586,7 @@ Blockly.Blocks['ajax_get'] = {
       .appendField(Blockly.Msg.AJAX_SHOW);
   this.appendValueInput("id_")
       .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.AJAX_ID_SHOW); 
   this.appendValueInput("url_")
       .setCheck(null)
@@ -2616,9 +2643,11 @@ Blockly.Blocks['ajax_cleardata'] = {
 
 Blockly.Blocks['a_create'] = {
   init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.A_CREATE_SHOW);
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.A_CREATE_SHOW)    
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.ID_SHOW);    
   this.appendValueInput("left_")
       .setCheck("Number")
