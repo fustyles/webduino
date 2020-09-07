@@ -2125,43 +2125,43 @@ function HextoRgb(color) {
   function iframe_set(input_id,input_property,input_value) {
     if (document.getElementById("gameiframe_"+input_id)) {
         var obj = document.getElementById("gameiframe_"+input_id);
-	if (input_property=="left")
+    if (input_property=="left")
 	obj.style.left = input_value + "px";
-	else if (input_property=="top")
+    else if (input_property=="top")
 	obj.style.top = input_value + "px";
-	else if (input_property=="width")
+    else if (input_property=="width")
 	obj.style.width = input_value + "px";
-	else if (input_property=="height")
+    else if (input_property=="height")
 	obj.style.height = input_value + "px";
-	else if (input_property=="frameborder")
+    else if (input_property=="frameborder")
 	obj.frameBorder = input_value;
-	else if (input_property=="scrolling")
+    else if (input_property=="scrolling")
 	obj.scrolling = input_value;
-	else if (input_property=="src")
+    else if (input_property=="src")
 	obj.src = input_value; 
-	else if (input_property=="srcdoc")
+    else if (input_property=="srcdoc")
 	obj.srcdoc = input_value;    
-	else if (input_property=="sandbox")
+    else if (input_property=="sandbox")
 	obj.sandbox = input_value;  
-	else if (input_property=="allow")
+    else if (input_property=="allow")
 	obj.allow = input_value;  	    
-	else if (input_property=="opacity")
+    else if (input_property=="opacity")
 	obj.style.opacity = input_value;    
-	else if (input_property=="zindex")
+    else if (input_property=="zindex")
 	obj.style.zIndex = input_value;
-	else if (input_property=="display"){ 
-	if (input_value==1)
+    else if (input_property=="display"){ 
+    if (input_value==1)
 	  obj.style.display = "block";    
-	else if (input_value==0)
+    else if (input_value==0)
 	  obj.style.display = "none";
-	}
-	else if (input_property=="position")
+    }
+    else if (input_property=="position")
 	obj.style.position = input_value;		    
-	else if (input_property=="disabled")
+    else if (input_property=="disabled")
 	obj.disabled = input_value;
-	else if (input_property=="draggable")
+    else if (input_property=="draggable")
 	obj.draggable = input_value;
-	else if (input_property=="style")
+    else if (input_property=="style")
 	obj.style = input_value;	    
     }
   }
