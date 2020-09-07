@@ -2101,21 +2101,21 @@ function HextoRgb(color) {
     obj.style.top = input_top + 'px';
     obj.style.width = input_width + 'px';
     obj.style.height = input_height + 'px';
-	obj.frameBorder = input_frameborder;
+    obj.frameBorder = input_frameborder;
     obj.scrolling = input_scrolling;
-	if (input_src!="")
-		obj.src = input_src;
-	else
-		obj.srcdoc = input_srcdoc;
+    if (input_src!="")
+      obj.src = input_src;
+    else
+      obj.srcdoc = input_srcdoc;
     obj.style.opacity = input_opacity;
     obj.style.zIndex = input_zindex;
     if (input_display==0)
       obj.style.display = "none";
     else
       obj.style.display = "block";
-	obj.allow = "autoplay; fullscreen; geolocation; microphone; camera";
-	obj.sandbox = "allow-same-origin allow-scripts allow-popups allow-forms";
-	obj.allowfullscreen = true;
+    obj.allow = "autoplay; fullscreen; geolocation; microphone; camera";
+    obj.sandbox = "allow-same-origin allow-scripts allow-popups allow-forms";
+    obj.allowfullscreen = true;
     obj.draggable="true";
     obj.setAttribute("onclick", "javascript:onclickid_set(this);");
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('iframe/plain',event.target.id);");
@@ -2124,43 +2124,45 @@ function HextoRgb(color) {
 
   function iframe_set(input_id,input_property,input_value) {
     if (document.getElementById("gameiframe_"+input_id)) {
-	  var obj = document.getElementById("gameiframe_"+input_id);
-      if (input_property=="left")
-        obj.style.left = input_value + "px";
-      else if (input_property=="top")
-        obj.style.top = input_value + "px";
-      else if (input_property=="width")
-        obj.style.width = input_value + "px";
-      else if (input_property=="height")
-        obj.style.height = input_value + "px";
-      else if (input_property=="frameborder")
-        obj.frameBorder = input_value;
-      else if (input_property=="scrolling")
-        obj.scrolling = input_value;
-      else if (input_property=="src")
-        obj.src = input_value; 
-      else if (input_property=="srcdoc")
-        obj.srcdoc = input_value;    
-      else if (input_property=="sandbox")
-        obj.sandbox = input_value;   
-      else if (input_property=="opacity")
-        obj.style.opacity = input_value;    
-      else if (input_property=="zindex")
-        obj.style.zIndex = input_value;
-      else if (input_property=="display"){ 
-        if (input_value==1)
-          obj.style.display = "block";    
-        else if (input_value==0)
-          obj.style.display = "none";
-      }
-      else if (input_property=="position")
-        obj.style.position = input_value;		    
-      else if (input_property=="disabled")
-        obj.disabled = input_value;
-      else if (input_property=="draggable")
-        obj.draggable = input_value;
-      else if (input_property=="style")
-        obj.style = input_value;	    
+        var obj = document.getElementById("gameiframe_"+input_id);
+	if (input_property=="left")
+	obj.style.left = input_value + "px";
+	else if (input_property=="top")
+	obj.style.top = input_value + "px";
+	else if (input_property=="width")
+	obj.style.width = input_value + "px";
+	else if (input_property=="height")
+	obj.style.height = input_value + "px";
+	else if (input_property=="frameborder")
+	obj.frameBorder = input_value;
+	else if (input_property=="scrolling")
+	obj.scrolling = input_value;
+	else if (input_property=="src")
+	obj.src = input_value; 
+	else if (input_property=="srcdoc")
+	obj.srcdoc = input_value;    
+	else if (input_property=="sandbox")
+	obj.sandbox = input_value;  
+	else if (input_property=="allow")
+	obj.allow = input_value;  	    
+	else if (input_property=="opacity")
+	obj.style.opacity = input_value;    
+	else if (input_property=="zindex")
+	obj.style.zIndex = input_value;
+	else if (input_property=="display"){ 
+	if (input_value==1)
+	  obj.style.display = "block";    
+	else if (input_value==0)
+	  obj.style.display = "none";
+	}
+	else if (input_property=="position")
+	obj.style.position = input_value;		    
+	else if (input_property=="disabled")
+	obj.disabled = input_value;
+	else if (input_property=="draggable")
+	obj.draggable = input_value;
+	else if (input_property=="style")
+	obj.style = input_value;	    
     }
   }
 
@@ -2184,7 +2186,9 @@ function HextoRgb(color) {
       else if (input_property=="srcdoc")
         return obj.srcdoc;	  
       else if (input_property=="sandbox")
-        return obj.sandbox;   	  
+        return obj.sandbox;  
+      else if (input_property=="allow")
+        return obj.allow;	    
       else if (input_property=="opacity")
         return Number(obj.style.opacity);
       else if (input_property=="zindex")
