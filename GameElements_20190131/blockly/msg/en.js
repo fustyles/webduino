@@ -15,3 +15,4 @@ MSG.catGameElements_sub13 = "Checkbox";
 MSG.catGameElements_sub14 = "Video";
 MSG.catGameElements_sub15 = "Textarea";
 MSG.catGameElements_sub16 = "Label";
+MSG.catGameElements_sub17 = "AJAX";

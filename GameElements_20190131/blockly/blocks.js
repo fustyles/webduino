@@ -2552,3 +2552,63 @@ Blockly.Blocks['iframe_delete'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['ajax_get'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.AJAX_SHOW);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.AJAX_ID_SHOW); 
+  this.appendValueInput("url_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.AJAX_URL_SHOW); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AJAX_TYPE_SHOW)
+      .appendField(new Blockly.FieldDropdown([["POST","POST"],["GET","GET"], ["DELETE","DELETE"]]), "type_"); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AJAX_DATATYPE_SHOW)
+      .appendField(new Blockly.FieldDropdown([["text","text"],["html","html"], ["xml","xml"], ["script","script"], ["json","json"], ["jsonp","jsonp"]]), "datatype_"); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AJAX_ASYNC_SHOW)
+      .appendField(new Blockly.FieldDropdown([["false","false"], ["true","true"]]), "async_"); 
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['ajax_getdata'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.AJAX_SHOW);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.AJAX_ID_SHOW);
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.AJAX_GETDATA_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AJAX_FORMAT_SHOW)
+      .appendField(new Blockly.FieldDropdown([["",""], ["JSON to String","JSON to String"], ["XML to String","XML to String"]]), "format_"); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['ajax_cleardata'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.AJAX_SHOW);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.AJAX_ID_SHOW);
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.AJAX_CLEARDATA_SHOW);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};

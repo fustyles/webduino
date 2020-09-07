@@ -1148,3 +1148,37 @@ Blockly.JavaScript['iframe_delete'] = function (block) {
   var code = 'iframe_delete(' + value_id_ + ');\n';
   return code;
 };
+
+Blockly.JavaScript['ajax_get'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_url_ = Blockly.JavaScript.valueToCode(block, 'url_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_type_ = block.getFieldValue('type_');
+  var value_datatype_ = block.getFieldValue('datatype_');
+  var value_async_ = block.getFieldValue('async_');
+
+  Blockly.JavaScript.definitions_['ajax_variable'] = 'var ajaxData_'+value_id_.replace(/'/g,"")+';\n';
+
+  var code = '$.ajax({ type: "'+value_type_+'" , url: '+value_url_+' , dataType: "'+value_datatype_+'", async: '+value_async_+', success: function(data, textStatus) {ajaxData_'+value_id_.replace(/'/g,"")+' = data;} });\n';
+  return code;
+};
+
+Blockly.JavaScript['ajax_getdata'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_format_ = block.getFieldValue('format_');
+
+  if (value_format_=="XML to String")
+	var code = 'new XMLSerializer().serializeToString(ajaxData_'+value_id_.replace(/'/g,"")+')';
+  else if (value_format_=="JSON to String")
+	var code = 'JSON.stringify(ajaxData_'+value_id_.replace(/'/g,"")+')';
+  else
+	var code = 'ajaxData_'+value_id_.replace(/'/g,"");
+  
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['ajax_cleardata'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+
+  var code = 'ajaxData_'+value_id_.replace(/'/g,"")+' = "";\n';
+  return code;
+};

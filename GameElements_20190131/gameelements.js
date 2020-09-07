@@ -2113,6 +2113,9 @@ function HextoRgb(color) {
       obj.style.display = "none";
     else
       obj.style.display = "block";
+	obj.allow = "autoplay; fullscreen; geolocation; microphone; camera";
+	obj.sandbox = "allow-same-origin allow-scripts allow-popups allow-forms";
+	obj.allowfullscreen = true;
     obj.draggable="true";
     obj.setAttribute("onclick", "javascript:onclickid_set(this);");
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('iframe/plain',event.target.id);");
