@@ -1156,7 +1156,7 @@ Blockly.JavaScript['ajax_get'] = function (block) {
   var value_datatype_ = block.getFieldValue('datatype_');
   var value_async_ = block.getFieldValue('async_');
 
-  Blockly.JavaScript.definitions_['ajaxData_'+value_id_.replace(/'/g,"")] = 'var ajaxData_'+value_id_.replace(/'/g,"")+';\n';
+  Blockly.JavaScript.definitions_['ajaxData_'+value_id_.replace(/'/g,"")] = 'var ajaxData_'+value_id_.replace(/'/g,"")+';';
 
   var code = '$.ajax({ type: "'+value_type_+'" , url: '+value_url_+' , dataType: "'+value_datatype_+'", async: '+value_async_+', success: function(data, textStatus) {ajaxData_'+value_id_.replace(/'/g,"")+' = data;} });\n';
   return code;
