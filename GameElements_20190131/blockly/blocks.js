@@ -513,7 +513,6 @@ Blockly.Blocks['music_delete'] = {
     this.setColour(60);
   }
 };
-
 Blockly.Blocks['canvas_create'] = {
   init: function() {
   this.appendDummyInput()  
