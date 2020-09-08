@@ -445,7 +445,12 @@
       <block type="text">
         <field name="TEXT">button</field>
       </block>
-    </value>       
+    </value>  
+    <value name="fontsize_">
+      <block type="math_number">
+        <field name="NUM">12</field>
+      </block>
+    </value>      
     <value name="zindex_">
       <block type="math_number">
         <field name="NUM">999</field>

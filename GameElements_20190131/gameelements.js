@@ -1213,7 +1213,7 @@
     return Number(input_text);
   } 
 
-  function button_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_bgcolor,input_value,input_zindex,input_display) {
+  function button_create(input_id,input_width,input_height,input_left,input_top,input_opacity,input_bgcolor,input_value,input_fontsize,input_zindex,input_display) {
     if (document.getElementById("gamebutton_"+input_id)) 
       document.getElementById("gamebutton_"+input_id).parentNode.removeChild(document.getElementById("gamebutton_"+input_id));
     var obj = document.createElement('input');
@@ -1227,6 +1227,7 @@
     obj.style.opacity = input_opacity;
     obj.style.background = input_bgcolor;
     obj.value = input_value;
+    obj.style.fontSize = input_fontsize + 'px';
     obj.style.zIndex = input_zindex;
     if (input_display==0)
       obj.style.display = "none";

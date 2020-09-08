@@ -1636,6 +1636,10 @@ Blockly.Blocks['button_create'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.BUTTON_VALUE_SHOW); 
+  this.appendValueInput("fontsize_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FONTSIZE_SHOW); 
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
