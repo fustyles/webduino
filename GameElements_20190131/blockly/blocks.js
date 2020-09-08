@@ -1058,6 +1058,21 @@ Blockly.Blocks['canvas_onclick_do'] = {
   }
 };
 
+Blockly.Blocks['canvas_onclick_dom'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.CANVAS_ID_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_ONCLICK_DO_SHOW); 
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(220);
+  }
+};
+
 Blockly.Blocks['canvas_onclick_get'] = {
   init: function() {
   this.appendValueInput("id_")
@@ -1185,13 +1200,13 @@ Blockly.Blocks['image_delete'] = {
 Blockly.Blocks['elements_collision'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(new Blockly.FieldDropdown([["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"],["div","div"],["iframe","iframe"],["a","a"]]), "element1_");    
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"]]), "element1_");    
   this.appendValueInput("id1_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID_SHOW); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AND_SHOW)
-      .appendField(new Blockly.FieldDropdown([["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"],["div","div"],["iframe","iframe"],["a","a"]]), "element2_");    
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"]]), "element2_");    
   this.appendValueInput("id2_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID_SHOW);    
@@ -1207,7 +1222,7 @@ Blockly.Blocks['elements_collision'] = {
 Blockly.Blocks['elements_collision_color'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(new Blockly.FieldDropdown([["table","table"],["image","image"],["canvas","canvas"],["button","button"],["color","color"],["select","select"],["range","range"],["text","text"],["div","div"],["iframe","iframe"],["a","a"]]), "element1_");    
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"]]), "element1_");    
   this.appendValueInput("id1_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID_SHOW); 
@@ -1327,6 +1342,21 @@ Blockly.Blocks['image_onclick_do'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
+  }
+};
+
+Blockly.Blocks['image_onclick_dom'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.IMAGE_ID_SHOW);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.IMAGE_ONCLICK_DO_SHOW);  
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(220);
   }
 };
 
@@ -1712,7 +1742,7 @@ Blockly.Blocks['button_onclick_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(220);
   }
 };
 
@@ -1906,7 +1936,7 @@ Blockly.Blocks['colorpicker_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(220);
   }
 };
 
@@ -2030,7 +2060,7 @@ Blockly.Blocks['select_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(220);
   }
 };
 
@@ -2150,7 +2180,7 @@ Blockly.Blocks['range_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(220);
   }
 };
 
@@ -2215,6 +2245,8 @@ Blockly.Blocks['text_create'] = {
 
 Blockly.Blocks['text_set'] = {
   init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.TEXT_SHOW);
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.TEXT_ID_SHOW);      
@@ -2233,6 +2265,8 @@ Blockly.Blocks['text_set'] = {
 
 Blockly.Blocks['text_get'] = {
   init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.TEXT_SHOW);
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.TEXT_ID_SHOW);  
@@ -2247,6 +2281,8 @@ Blockly.Blocks['text_get'] = {
 
 Blockly.Blocks['text_delete'] = {
   init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.TEXT_SHOW);
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.TEXT_ID_SHOW); 
@@ -2261,6 +2297,8 @@ Blockly.Blocks['text_delete'] = {
 
 Blockly.Blocks['text_onchange_do'] = {
   init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.TEXT_SHOW);
   this.appendValueInput("id_")
     .setCheck(null)
     .appendField(Blockly.Msg.TEXT_ID_SHOW);
@@ -2270,7 +2308,7 @@ Blockly.Blocks['text_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(220);
   }
 };
 

@@ -300,6 +300,13 @@
       </block>
     </statement>
   </block>
+  <block type="image_onclick_dom">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+  </block>
   <block type="image_onclick_get">
     <value name="id_">
       <block type="text">
@@ -1808,6 +1815,13 @@
         </value>
       </block>
     </statement>
+  </block>
+  <block type="canvas_onclick_dom">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
   </block>    
   <block type="canvas_onclick_get">
     <value name="id_">

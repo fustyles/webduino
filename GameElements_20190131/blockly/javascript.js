@@ -364,6 +364,15 @@ Blockly.JavaScript['canvas_onclick_do'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['canvas_onclick_dom'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'async function gamecanvas_'+value_id_+'_onclick (event) {\n' + statements_do_ + '};\ngamecanvas_'+value_id_+'.addEventListener("click", gamecanvas_'+value_id_+'_onclick, true);\n';
+  return code;
+};
+
 Blockly.JavaScript['canvas_onclick_get'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   var code = 'canvas_onclick_get(' + value_id_ + ')';
@@ -543,6 +552,15 @@ Blockly.JavaScript['image_onclick_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'if (image_onclick_get(' + value_id_ + ')==1) {\n' + statements_do_ + '};\n';
+  return code;
+};
+
+Blockly.JavaScript['image_onclick_dom'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'async function gameimage_'+value_id_+'_onclick (event) {\n' + statements_do_ + '};\ngameimage_'+value_id_+'.addEventListener("click", gameimage_'+value_id_+'_onclick, true);\n';
   return code;
 };
 
