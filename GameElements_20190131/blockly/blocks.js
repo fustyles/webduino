@@ -2816,3 +2816,124 @@ Blockly.Blocks['a_delete'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['radio_create'] = {
+  init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.RADIO_CREATE_SHOW);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ID_SHOW);    
+  this.appendValueInput("name_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.RADIO_NAME_SHOW);  
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LEFT_SHOW);    
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TOP_SHOW);
+  this.appendValueInput("value_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.PROPERTY_VALUE);
+  this.appendValueInput("checked_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.PROPERTY_CHECKED);
+  this.appendValueInput("opacity_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPACITY_SHOW);
+  this.appendValueInput("zindex_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ZINDEX_SHOW);   
+  this.appendValueInput("display_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.DISPLAY_SHOW); 
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['radio_set'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.RADIO_ID_SHOW);      
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.RADIO_SET_SHOW) 
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT_SHOW,"left"], [Blockly.Msg.TOP_SHOW,"top"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_CHECKED,"checked"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"]]), "property_");
+  this.appendValueInput("value_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null);    
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['radio_get'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.RADIO_ID_SHOW);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.RADIO_GET_SHOW)
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT_SHOW,"left"], [Blockly.Msg.TOP_SHOW,"top"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_CHECKED,"checked"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID_SHOW,"id"], [Blockly.Msg.RADIO_NAME_SHOW,"name"]]), "property_");
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['radio_name_get'] = {
+  init: function () {
+  this.appendValueInput("name_")
+      .setCheck(null)
+	  .appendField(Blockly.Msg.RADIO_NAME_GET_SHOW)
+      .appendField(Blockly.Msg.RADIO_NAME_SHOW);  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+
+Blockly.Blocks['radio_delete'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.RADIO_ID_SHOW); 
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.RADIO_DELETE_SHOW);  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['radio_onclick_do'] = {
+  init: function () {
+  this.appendValueInput("id_")
+    .setCheck(null)
+    .appendField(Blockly.Msg.RADIO_ID_SHOW);
+  this.appendDummyInput()   
+    .appendField(Blockly.Msg.RADIO_ONCLICK_SHOW);
+  this.setInputsInline(true);
+  this.appendStatementInput("do_");
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(220);
+  }
+};

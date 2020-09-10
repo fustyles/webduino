@@ -2150,6 +2150,97 @@
   </block>  
 
   </category>
+  <category id="catGameElements_sub13" colour="120"> 
+
+  <block type="radio_create"> 
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+    <value name="name_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>	
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>	
+    <value name="checked_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value> 
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">999</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="radio_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="radio_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>  
+  <block type="radio_name_get">
+    <value name="name_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>    
+  <block type="radio_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block> 
+  <block type="radio_onclick_do">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>         
+  </block>  
+
+  </category>
   <category id="catGameElements_sub17" colour="120"> 
 
   <block type="ajax_get"> 

@@ -2353,6 +2353,109 @@ function HextoRgb(color) {
       document.getElementById("gamea_"+input_id).parentNode.removeChild(document.getElementById("gamea_"+input_id));
   }
 	
+  function radio_create(input_id,input_name,input_left,input_top,input_value,input_checked,input_opacity,input_zindex,input_display) {
+    if (document.getElementById("gameradio_"+input_id)) 
+      document.getElementById("gameradio_"+input_id).parentNode.removeChild(document.getElementById("gameradio_"+input_id));
+    var obj = document.createElement("input");
+	obj.setAttribute("type", "radio");
+    obj.id = "gameradio_"+input_id;
+	obj.name = "gameradio_"+input_name;
+    obj.style.position = "absolute";
+    obj.style.left = input_left + 'px';
+    obj.style.top = input_top + 'px';
+	obj.value = input_value;
+	if (input_checked==true)
+	  obj.checked = "checked";
+	else
+	  obj.checked = "";
+    obj.style.opacity = input_opacity;
+    obj.style.zIndex = input_zindex;
+    obj.draggable="true";
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
+    obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('radio/plain',event.target.id);");
+    document.body.appendChild(obj);
+  }
+
+  function radio_set(input_id,input_property,input_value) {
+    if (document.getElementById("gameradio_"+input_id)) {
+	  var obj = document.getElementById("gameradio_"+input_id);
+      if (input_property=="left")
+        obj.style.left = input_value + "px";
+      else if (input_property=="top")
+        obj.style.top = input_value + "px";	    
+      else if (input_property=="value")
+        obj.value = input_value;	  
+      else if (input_property=="opacity")
+        obj.style.opacity = input_value;    
+      else if (input_property=="zindex")
+        obj.style.zIndex = input_value;
+      else if (input_property=="display"){ 
+        if (input_value==1)
+          obj.style.display = "block";    
+        else if (input_value==0)
+          obj.style.display = "none";
+      }
+      else if (input_property=="position")
+        obj.style.position = input_value;
+      else if (input_property=="checked")
+        obj.checked = input_value;	  
+      else if (input_property=="disabled")
+        obj.disabled = input_value;
+      else if (input_property=="draggable")
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
+    }
+  }
+
+  function radio_get(input_id,input_property){
+    if (document.getElementById("gameradio_"+input_id)) {
+	  var obj = document.getElementById("gameradio_"+input_id);
+      if (input_property=="left")
+        return Number(obj.style.left.replace(/px/ig,""));
+      else if (input_property=="top")
+        return Number(obj.style.top.replace(/px/ig,""));
+      else if (input_property=="value")
+        return obj.value;	  
+      else if (input_property=="opacity")
+        return Number(obj.style.opacity);
+      else if (input_property=="zindex")
+        return obj.style.zIndex;
+      else if (input_property=="display")
+        return obj.style.display;
+      else if (input_property=="position")
+        return obj.style.position;
+      else if (input_property=="checked")
+        return obj.checked;	  
+      else if (input_property=="disabled")
+        return obj.disabled;
+      else if (input_property=="draggable")
+        return obj.draggable;
+      else if (input_property=='id')
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
+    }
+    else
+      return "";
+  }
+
+  function radio_name_get(input_name){
+    if (document.getElementById("gameradio_"+input_name)) {
+		var obj = document.getElementsByName("gameradio_"+input_name); 	
+		for(var i=0;i<obj.length;i++) { 
+			if(obj[i].type="radio") { 
+				if(obj[i].checked) return obj[i].value;
+			}
+		} 
+    }
+    return "";
+  }
+
+  function radio_delete(input_id) {
+    if (document.getElementById("gameradio_"+input_id))
+      document.getElementById("gameradio_"+input_id).parentNode.removeChild(document.getElementById("gameradio_"+input_id));
+  }
 
 
   window.table_create = table_create;
@@ -2447,5 +2550,10 @@ function HextoRgb(color) {
   window.a_set = a_set;
   window.a_get = a_get;
   window.a_delete = a_delete;
+  window.radio_create = radio_create;
+  window.radio_set = radio_set;
+  window.radio_get = radio_get;
+  window.radio_delete = radio_delete;
+  window.radio_name_get = radio_name_get;
 
 }(window, window.document));
