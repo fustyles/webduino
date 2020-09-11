@@ -140,7 +140,9 @@
       else if (input_property=="position")
         return obj.style.position;
       else if (input_property=='id')
-        return "gametable_"+input_id;
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
       else if (input_property=="onclickColumn"){
         if (onclickid.indexOf("gametable_td_"+input_id)==0){     
           if (onclickid.split("_").length>=5){
@@ -583,15 +585,17 @@
       else if (input_property=="border")
         return obj.style.border;	
       else if (input_property=="backgroundColor") {
-	var rgb = obj.style.backgroundColor;
-	var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
-	var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
-	var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
-	var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
-	return "#"+r+g+b;
+		var rgb = obj.style.backgroundColor;
+		var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
+		var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
+		var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
+		var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
+		return "#"+r+g+b;
       }
       else if (input_property=='id')
-        return "gamecanvas_"+input_id;
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
     }
     else
       return "";    
@@ -912,7 +916,9 @@
       else if (input_property=="draggable")
         return obj.draggable;	    
       else if (input_property=='id')
-        return "gameimage_"+input_id;
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
     }
     else
       return "";    
@@ -1319,7 +1325,9 @@
       else if (input_property=="draggable")
         return obj.draggable;
       else if (input_property=='id')
-        return "gamebutton_"+input_id;
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
     }
     else
       return "";
@@ -1356,6 +1364,7 @@
     var obj = document.createElement('input');
     obj.type="color";
     obj.id = "gamecolor_"+input_id;
+	obj.name = obj.id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -1434,7 +1443,9 @@
       else if (input_property=="draggable")
         return obj.draggable;	
       else if (input_property=='id')
-        return "gamecolor_"+input_id;
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
     }
     else
       return "";
@@ -1470,6 +1481,7 @@
       document.getElementById("gameselect_"+input_id).parentNode.removeChild(document.getElementById("gameselect_"+input_id));
     var obj = document.createElement("select");
     obj.id = "gameselect_"+input_id;
+	obj.name = obj.id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -1604,7 +1616,9 @@
       else if (input_property=="draggable")
         return obj.draggable;	
       else if (input_property=='id')
-        return "gameselect_"+input_id;
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
     }
     else
       return "";
@@ -1641,6 +1655,7 @@
     var obj = document.createElement('input');
     obj.type="range";
     obj.id = "gamerange_"+input_id;
+	obj.name = obj.id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -1734,7 +1749,9 @@
       else if (input_property=="draggable")
         return obj.draggable;
       else if (input_property=='id')
-        return "gamerange_"+input_id;	    
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;	  
     }
     else
       return "";
@@ -1771,6 +1788,7 @@
     var obj = document.createElement('input');
     obj.type="text";
     obj.id = "gametext_"+input_id;
+	obj.name = obj.id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -1878,7 +1896,9 @@
       else if (input_property=="draggable")
         return obj.draggable;
       else if (input_property=='id')
-        return "gametext_"+input_id;	    
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
     }
     else
       return "";
@@ -2027,7 +2047,9 @@
       else if (input_property=="draggable")
         return obj.draggable;
       else if (input_property=='id')
-        return "gamediv_"+input_id;	    
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
     }
     else
       return "";
@@ -2202,7 +2224,9 @@ function HextoRgb(color) {
       else if (input_property=="draggable")
         return obj.draggable;
       else if (input_property=='id')
-        return "gameiframe_"+input_id;	    
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
     }
     else
       return "";
@@ -2342,7 +2366,9 @@ function HextoRgb(color) {
       else if (input_property=="draggable")
         return obj.draggable;
       else if (input_property=='id')
-        return "gamea_"+input_id;	    
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
     }
     else
       return "";
