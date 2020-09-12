@@ -2180,7 +2180,7 @@
     </value>	
     <value name="checked_">
       <block type="logic_boolean">
-        <field name="BOOL">TRUE</field>
+        <field name="BOOL">FALSE</field>
       </block>
     </value> 
     <value name="opacity_">
@@ -2233,6 +2233,85 @@
     </value>     
   </block> 
   <block type="radio_onclick_do">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>         
+  </block>  
+
+  </category>
+  <category id="catGameElements_sub14" colour="120"> 
+
+  <block type="checkbox_create"> 
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>	
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>	
+    <value name="checked_">
+      <block type="logic_boolean">
+        <field name="BOOL">FALSE</field>
+      </block>
+    </value> 
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">999</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="checkbox_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="checkbox_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
+  <block type="checkbox_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block> 
+  <block type="checkbox_onclick_do">
     <value name="id_">
       <block type="text">
         <field name="TEXT"></field>

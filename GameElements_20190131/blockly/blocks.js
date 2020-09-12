@@ -2937,3 +2937,108 @@ Blockly.Blocks['radio_onclick_do'] = {
   this.setColour(220);
   }
 };
+
+
+Blockly.Blocks['checkbox_create'] = {
+  init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.CHECKBOX_CREATE);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LEFT);    
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TOP);
+  this.appendValueInput("value_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.PROPERTY_VALUE);
+  this.appendValueInput("checked_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.PROPERTY_CHECKED);
+  this.appendValueInput("opacity_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPACITY);
+  this.appendValueInput("zindex_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ZINDEX);   
+  this.appendValueInput("display_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.DISPLAY); 
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['checkbox_set'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.CHECKBOX_ID);      
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CHECKBOX_SET) 
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_CHECKED,"checked"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+  this.appendValueInput("value_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null);    
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['checkbox_get'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.CHECKBOX_ID);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CHECKBOX_GET)
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_CHECKED,"checked"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['checkbox_delete'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.CHECKBOX_ID); 
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.CHECKBOX_DELETE);  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['checkbox_onclick_do'] = {
+  init: function () {
+  this.appendValueInput("id_")
+    .setCheck(null)
+    .appendField(Blockly.Msg.CHECKBOX_ID);
+  this.appendDummyInput()   
+    .appendField(Blockly.Msg.CHECKBOX_ONCLICK);
+  this.setInputsInline(true);
+  this.appendStatementInput("do_");
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(220);
+  }
+};
