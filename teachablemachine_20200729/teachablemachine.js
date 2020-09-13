@@ -48,9 +48,20 @@
     document.getElementById('opacity').value = input_opacity;
   }	
 
+  function teachablemachine_state(input_state){
+    document.getElementById('teachablemachineState').innerHTML = input_state;
+  }	
+
+  function teachablemachine_video_position(input_left, input_top) {
+    region.style.position = "absolute";
+    region.style.left = input_left + "px";
+    region.style.top = input_top + "px";
+  }
+
   window.teachablemachine_video = teachablemachine_video;
   window.teachablemachine_model = teachablemachine_model;
   window.teachablemachine_result = teachablemachine_result;
-
+  window.teachablemachine_video_position = teachablemachine_video_position;
+  window.teachablemachine_state = teachablemachine_state;
 
 }(window, window.document));

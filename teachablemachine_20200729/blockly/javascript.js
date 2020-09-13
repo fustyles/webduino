@@ -20,3 +20,15 @@ Blockly.JavaScript['teachablemachine_result'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['teachablemachine_state'] = function(block) {
+  var value_state_ = block.getFieldValue('state_');
+  var code = 'teachablemachine_state(' + value_state_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['teachablemachine_video_position'] = function(block) { 
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'teachablemachine_video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};

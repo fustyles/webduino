@@ -19,5 +19,19 @@
     </value> 
   </block>  
   <block type="teachablemachine_result">
+  </block>
+  <block type="teachablemachine_state">
   </block> 
+  <block type="teachablemachine_video_position">
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
+  </block>   
 </category>

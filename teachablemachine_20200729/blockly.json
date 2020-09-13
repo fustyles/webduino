@@ -1,5 +1,5 @@
 {
-  "types": ["teachablemachine_video", "teachablemachine_model", "teachablemachine_result"],
+  "types": ["teachablemachine_video", "teachablemachine_model", "teachablemachine_result", "teachablemachine_state", "teachablemachine_video_position"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
