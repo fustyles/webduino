@@ -22,7 +22,9 @@
   </block>
   <block type="coco_ssd_object_number">
   </block>
-  <block type="video_position">
+  <block type="coco_ssd_state">
+  </block> 
+  <block type="coco_ssd_video_position">
     <value name="left_">
       <block type="math_number">
         <field name="NUM">0</field>

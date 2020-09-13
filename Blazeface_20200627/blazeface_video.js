@@ -1,6 +1,6 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>');
-document.write('<div id="region" style="z-index:999"><video id="video" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><canvas id="gamecanvas_blazeface"></canvas><br><select id="mirrorimage" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="opacity" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><select id="scorelimit" style="position:absolute;visibility:hidden;"><option value="0">0</option><option value="0.1" selected>0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5">0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select><br><div id="result" style="color:red"></div></div>');
+document.write('<div id="region" style="z-index:999"><video id="video" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><canvas id="gamecanvas_blazeface"></canvas><br><select id="mirrorimage" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="frame" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="opacity" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><select id="scorelimit" style="position:absolute;visibility:hidden;"><option value="0">0</option><option value="0.1" selected>0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5">0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select><br><div id="result" style="color:red"></div></div>');
 document.write('<div id="blazefaceState" style="position:absolute;display:none;">1</div>');
 
 window.onload = function () {
@@ -56,6 +56,8 @@ window.onload = function () {
 		  return;
 	  }
 
+	  var frame = Number(document.getElementById("frame").value);
+
 	  const returnTensors = false;
 	  await Model.estimateFaces(canvas, returnTensors).then(predictions => {
 		result.innerHTML = "";  
@@ -78,14 +80,16 @@ window.onload = function () {
 				result.innerHTML += i + ",leftEar," + predictions[i].landmarks[5][0] + "," + predictions[i].landmarks[5][1] + "<br>";
 				result.innerHTML += i + ",bandingBox," + predictions[i].topLeft[0] + "," + predictions[i].topLeft[1] + "," + predictions[i].bottomRight[0] + "," + predictions[i].bottomRight[1] + "<br>";
 
-				for (j=0;j<=5;j++) {
-					const x = predictions[i].landmarks[j][0];
-					const y = predictions[i].landmarks[j][1];
-					context.fillStyle="#00FFFF";
-					context.beginPath();
-					context.arc(x, y, 3, 0,2*Math.PI);
-					context.closePath();
-					context.fill();
+			    if (frame==1) {
+					for (j=0;j<=5;j++) {
+						const x = predictions[i].landmarks[j][0];
+						const y = predictions[i].landmarks[j][1];
+						context.fillStyle="#00FFFF";
+						context.beginPath();
+						context.arc(x, y, 3, 0,2*Math.PI);
+						context.closePath();
+						context.fill();
+					}
 				}
 			}
 		  }
@@ -93,13 +97,15 @@ window.onload = function () {
 			result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4); 
 		}  
 
-		for (let i = 0; i < predictions.length; i++) {
-		  const start = predictions[i].topLeft;
-		  const end = predictions[i].bottomRight;
-		  const size = [end[0] - start[0], end[1] - start[1]];
-		  context.strokeStyle = "#FF0000";
-		  context.lineWidth = 3;
-		  context.strokeRect(start[0], start[1], size[0], size[1]);
+		if (frame==1) {
+			for (let i = 0; i < predictions.length; i++) {
+			  const start = predictions[i].topLeft;
+			  const end = predictions[i].bottomRight;
+			  const size = [end[0] - start[0], end[1] - start[1]];
+			  context.strokeStyle = "#FF0000";
+			  context.lineWidth = 3;
+			  context.strokeRect(start[0], start[1], size[0], size[1]);
+			}
 		}
 
 		setTimeout(function(){DetectVideo(); }, 100);

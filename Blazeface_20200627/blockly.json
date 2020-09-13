@@ -1,5 +1,5 @@
 {
-  "types": ["blazeface_video","blazeface_person","blazeface_state", "video_position"],
+  "types": ["blazeface_video","blazeface_person","blazeface_state", "blazeface_video_position"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",

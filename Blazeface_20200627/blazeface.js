@@ -4,8 +4,9 @@
 
   'use strict';
   
-  function blazeface_video(input_width, input_height, input_scorelimit, input_mirrorimage, input_result, input_opacity) {  
+  function blazeface_video(input_width, input_height, input_scorelimit, input_frame, input_mirrorimage, input_result, input_opacity) {  
     document.getElementById("result").style.display = input_result;
+	document.getElementById("frame").value = input_frame;
     document.getElementById("mirrorimage").value = input_mirrorimage;
     document.getElementById('opacity').value = input_opacity;
     document.getElementById('scorelimit').value = input_scorelimit;

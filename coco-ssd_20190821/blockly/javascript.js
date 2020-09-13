@@ -29,7 +29,13 @@ Blockly.JavaScript['coco_ssd_video'] = function(block) {
   return code;
 };
 
-Blockly.JavaScript['video_position'] = function(block) { 
+Blockly.JavaScript['coco_ssd_state'] = function(block) {
+  var value_state_ = block.getFieldValue('state_');
+  var code = 'coco_ssd_state(' + value_state_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['coco_ssd_video_position'] = function(block) { 
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
   var code = 'video_position(' + value_left_ + ',' + value_top_ + ');\n';

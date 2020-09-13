@@ -19,7 +19,13 @@ Blockly.Blocks['blazeface_video'] = {
 		["0.7","0.7"],
 		["0.8","0.8"],
 		["0.9","0.9"]	  
-  ]), "scorelimit_"); 
+  ]), "scorelimit_");
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.BLAZEFACE_FRAME_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["Y","1"],
+		["N","0"]	  
+  ]), "frame_");  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.BLAZEFACE_MIRRORIMAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -93,14 +99,14 @@ Blockly.Blocks['blazeface_state'] = {
   }
 };
 
-Blockly.Blocks['video_position'] = {
+Blockly.Blocks['blazeface_video_position'] = {
   init: function() {
   this.appendValueInput("left_")
       .setCheck("Number")
-      .appendField(Blockly.Msg.VIDEO_LEFT_SHOW);  
+      .appendField(Blockly.Msg.BLAZEFACE_VIDEO_LEFT_SHOW);  
   this.appendValueInput("top_")
       .setCheck("Number")
-      .appendField(Blockly.Msg.VIDEO_TOP_SHOW);   	  
+      .appendField(Blockly.Msg.BLAZEFACE_VIDEO_TOP_SHOW);   	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);

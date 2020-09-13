@@ -1,6 +1,7 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"></script>');
-document.write('<div id="region" style="z-index:999"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="gamecanvas_cocossd"></canvas><br>Frame<select id="frame"><option value="1">Y</option><option value="0">N</option></select>MirrorImage<select id="mirrorimage"><option value="1">Y</option><option value="0">N</option></select>Opacity<select id="opacity"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><br><div id="result" style="color:red"></div></div>');
+document.write('<div id="region" style="z-index:999"><video id="video" width="320" height="240" preload autoplay loop muted></video><canvas id="gamecanvas_cocossd"></canvas><br><select id="frame" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="opacity" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><br><div id="result" style="color:red"></div></div>');
+document.write('<div id="cocossdState" style="position:absolute;display:none;">1</div>');
 
 window.onload = function () {
     
@@ -49,7 +50,13 @@ window.onload = function () {
       context.setTransform(1, 0, 0, 1, 0, 0);
     }
     else
-      context.drawImage(video, 0, 0, video.width, video.height);   
+      context.drawImage(video, 0, 0, video.width, video.height);  
+	
+	if (document.getElementById('cocossdState').innerHTML=="0") {
+	  setTimeout(function(){DetectVideo(); }, 100);
+	  return;
+	}
+
     await Model.detect(canvas).then(predictions => { 
       result.innerHTML = "";
       //console.log('Predictions: ', predictions);
