@@ -38,6 +38,6 @@ Blockly.JavaScript['coco_ssd_state'] = function(block) {
 Blockly.JavaScript['coco_ssd_video_position'] = function(block) { 
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  var code = 'coco_ssd_video_position(' + value_left_ + ',' + value_top_ + ');\n';
   return code;
 };

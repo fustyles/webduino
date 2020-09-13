@@ -71,17 +71,27 @@
       return (Math.atan((input_y1-input_y0)/(input_x1-input_x0)) / Math.PI) * 180;
   } 
   
-	function video_position(input_left, input_top) {
-	  region.style.position = "absolute";
-	  region.style.left = input_left + "px";
-	  region.style.top = input_top + "px";
-	}
+  function posenet_state(input_state){
+    document.getElementById('posenetState').innerHTML = input_state;
+  }	
+
+  function posenet_video_position(input_left, input_top) {
+    region.style.position = "absolute";
+    region.style.left = input_left + "px";
+    region.style.top = input_top + "px";
+  }
+
+  function posenet_persons(input_persons){
+    document.getElementById('persons').value = input_persons; 
+  }
 
   window.posenet_video = posenet_video;
   window.posenet_list = posenet_list;
   window.posenet_person = posenet_person;
   window.posenet_distance = posenet_distance;
   window.posenet_angle = posenet_angle;	
-  window.video_position = video_position;
+  window.posenet_video_position = posenet_video_position;
+  window.posenet_state = posenet_state;
+  window.posenet_persons = posenet_persons;
 	
 }(window, window.document));

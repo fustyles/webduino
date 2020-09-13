@@ -1,6 +1,7 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.4"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>');
-document.write('<div id="region" style="z-index:999"><video id="video" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><canvas id="gamecanvas_posenet"></canvas><canvas id="canvas_skeleton"></canvas><br><select id="skeleton" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select>MirrorImage<select id="mirrorimage"><option value="1">Y</option><option value="0">N</option></select><select id="opacity" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select>Persons<select id="persons"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="999">No Limit</option></select>ScoreLimit<select id="scorelimit"><option value="0">0</option><option value="0.1" selected>0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5">0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select><br><div id="result" style="color:red">Please wait for loading model.</div></div>');
+document.write('<div id="region" style="z-index:999"><video id="video" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><canvas id="gamecanvas_posenet"></canvas><canvas id="canvas_skeleton"></canvas><br><select id="skeleton" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="opacity" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><select id="persons" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="999">No Limit</option></select><select id="scorelimit" style="position:absolute;visibility:hidden;"><option value="0">0</option><option value="0.1" selected>0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5">0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select><br><div id="result" style="color:red">Please wait for loading model.</div></div>');
+document.write('<div id="posenetState" style="position:absolute;display:none;">1</div>');
 
 window.onload = function () {
   var video = document.getElementById('video');
@@ -53,6 +54,12 @@ async function DetectVideo() {
   }
   else
     context.drawImage(video, 0, 0, video.width, video.height);
+
+  if (document.getElementById('posenetState').innerHTML=="0") {
+	  result.innerHTML = "";
+	  setTimeout(function(){DetectVideo(); }, 100);
+	  return;
+  }
 
   context_skeleton.clearRect(0, 0, canvas.width, canvas.height);
 

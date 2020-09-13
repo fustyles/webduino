@@ -15,8 +15,8 @@ Blockly.Blocks['posenet_video'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSENET_SKELETON_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["Y","block"],
-		["N","none"]	  
+		["N","none"],
+		["Y","block"]
   ]), "skeleton_");	
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSENET_PERSONS_SHOW)
@@ -179,14 +179,48 @@ Blockly.Blocks['posenet_angle'] = {
   }
 };
 
-Blockly.Blocks['video_position'] = {
+Blockly.Blocks['posenet_state'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_STATE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+        ["Y","1"],
+        ["N","0"]
+  ]), "state_");   
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['posenet_video_position'] = {
   init: function() {
   this.appendValueInput("left_")
       .setCheck("Number")
-      .appendField(Blockly.Msg.VIDEO_LEFT_SHOW);  
+      .appendField(Blockly.Msg.POSENET_VIDEO_LEFT_SHOW);  
   this.appendValueInput("top_")
       .setCheck("Number")
-      .appendField(Blockly.Msg.VIDEO_TOP_SHOW);   	  
+      .appendField(Blockly.Msg.POSENET_VIDEO_TOP_SHOW);   	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['posenet_persons'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_PERSONS_NUMBER_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["1","1"],
+		["2","2"],
+		["3","3"],
+		["4","4"],
+		["5","5"],	  
+		["No Limit","999"]	  
+  ]), "persons_");   
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);

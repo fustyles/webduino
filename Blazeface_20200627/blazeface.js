@@ -41,7 +41,7 @@
     document.getElementById('blazefaceState').innerHTML = input_state;
   }	
 
-  function video_position(input_left, input_top) {
+  function blazeface_video_position(input_left, input_top) {
     region.style.position = "absolute";
     region.style.left = input_left + "px";
     region.style.top = input_top + "px";
@@ -49,7 +49,7 @@
 
   window.blazeface_video = blazeface_video;
   window.blazeface_get = blazeface_get;
-  window.video_position = video_position;
+  window.blazeface_video_position = blazeface_video_position;
   window.blazeface_state = blazeface_state;
 	
 }(window, window.document));
