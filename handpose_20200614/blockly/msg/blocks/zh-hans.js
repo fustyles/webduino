@@ -8,3 +8,6 @@ Blockly.Msg.HANDPOSE_OPACITY_SHOW = "透明度";
 Blockly.Msg.HANDPOSE_DISTANCE_SHOW = "距离";
 Blockly.Msg.HANDPOSE_ANGLE_SHOW = "角度";
 Blockly.Msg.HANDPOSE_VIDEO_SHOW = "视讯";
+Blockly.Msg.HANDPOSE_STATE_SHOW = "手势侦测 (HandPose) 侦测状态";
+Blockly.Msg.HANDPOSE_VIDEO_LEFT_SHOW = "手势侦测 (HandPose) 视讯画面 靠左距离";
+Blockly.Msg.HANDPOSE_VIDEO_TOP_SHOW = "靠上距离";

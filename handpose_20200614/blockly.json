@@ -1,5 +1,5 @@
 {
-  "types": ["handpose_point","handpose_video","handpose_distance","handpose_angle"],
+  "types": ["handpose_point", "handpose_video", "handpose_distance", "handpose_angle", "handpose_state", "handpose_video_position"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",

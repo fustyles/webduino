@@ -51,9 +51,21 @@
       return (Math.atan((input_y1-input_y0)/(input_x1-input_x0)) / Math.PI) * 180;
   } 	
 
+  function handpose_state(input_state){
+    document.getElementById('handposeState').innerHTML = input_state;
+  }	
+
+  function handpose_video_position(input_left, input_top) {
+    region.style.position = "absolute";
+    region.style.left = input_left + "px";
+    region.style.top = input_top + "px";
+  }
+
   window.handpose_point = handpose_point;
   window.handpose_video = handpose_video;
   window.handpose_distance = handpose_distance;
   window.handpose_angle = handpose_angle;	
-	
+  window.handpose_video_position = handpose_video_position;
+  window.handpose_state = handpose_state;
+
 }(window, window.document));

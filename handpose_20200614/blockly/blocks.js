@@ -15,8 +15,8 @@ Blockly.Blocks['handpose_video'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HANDPOSE_SKELETON_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["Y","block"],
-		["N","none"]	  
+		["N","none"],
+		["Y","block"]
   ]), "skeleton_");
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HANDPOSE_RESULT_SHOW)
@@ -100,7 +100,8 @@ Blockly.Blocks['handpose_distance'] = {
       .appendField("Y0"); 
   this.appendValueInput("x1_")
       .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)    
+      .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField("  ")
       .appendField("X1");
   this.appendValueInput("y1_")
       .setCheck("Number")
@@ -126,7 +127,8 @@ Blockly.Blocks['handpose_angle'] = {
       .appendField("Y0"); 
   this.appendValueInput("x1_")
       .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)    
+      .setAlign(Blockly.ALIGN_RIGHT)   
+	  .appendField("  ")
       .appendField("X1");
   this.appendValueInput("y1_")
       .setCheck("Number")
@@ -135,5 +137,35 @@ Blockly.Blocks['handpose_angle'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
+  }
+};
+
+Blockly.Blocks['handpose_state'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDPOSE_STATE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+        ["Y","1"],
+        ["N","0"]
+  ]), "state_");   
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['handpose_video_position'] = {
+  init: function() {
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.HANDPOSE_VIDEO_LEFT_SHOW);  
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.HANDPOSE_VIDEO_TOP_SHOW);   	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
   }
 };

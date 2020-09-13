@@ -1,6 +1,7 @@
-document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>');
+document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.1.0/dist/tf.min.js"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>');
-document.write('<video id="video" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><canvas id="gamecanvas_handpose"></canvas><canvas id="canvas_point"></canvas><br><select id="point" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="opacity" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><br><div id="result" style="color:red">Please wait for loading model.</div>');
+document.write('<div id="region" style="z-index:999"><video id="video" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><canvas id="gamecanvas_handpose"></canvas><canvas id="canvas_point"></canvas><br><select id="point" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="opacity" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><br><div id="result" style="color:red">Please wait for loading model.</div></div>');
+document.write('<div id="handposeState" style="position:absolute;display:none;">1</div>');
 
 window.onload = function () {
   var video = document.getElementById('video');
@@ -66,6 +67,12 @@ window.onload = function () {
       context.drawImage(video, 0, 0, video.width, video.height);
 
 	context_point.clearRect(0, 0, canvas.width, canvas.height);
+
+	if (document.getElementById('handposeState').innerHTML=="0") {
+	  result.innerHTML = "";
+	  setTimeout(function(){DetectVideo(); }, 100);
+	  return;
+	}
 
     await Model.estimateHands(canvas).then(predictions => {
       result.innerHTML = "";  
