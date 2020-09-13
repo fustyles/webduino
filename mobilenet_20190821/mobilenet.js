@@ -40,8 +40,20 @@
     document.getElementById('opacity').value = input_opacity;
   }	
 
+  function mobilenet_state(input_state){
+    document.getElementById('mobilenetState').innerHTML = input_state;
+  }	
+
+  function mobilenet_video_position(input_left, input_top) {
+    region.style.position = "absolute";
+    region.style.left = input_left + "px";
+    region.style.top = input_top + "px";
+  }
+
   window.mobilenet_object = mobilenet_object;
   window.mobilenet_object_number = mobilenet_object_number;
   window.mobilenet_video = mobilenet_video;
+  window.mobilenet_video_position = mobilenet_video_position;
+  window.mobilenet_state = mobilenet_state;
 
 }(window, window.document));
