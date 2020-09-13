@@ -32,3 +32,10 @@ Blockly.JavaScript['faceapi_recognition_clear'] = function(block) {
   var code = 'faceapi_recognition_clear();\n';
   return code;
 };
+
+Blockly.JavaScript['faceapi_recognition_video_position'] = function(block) { 
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'faceapi_recognition_video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};

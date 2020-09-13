@@ -63,7 +63,9 @@ function startvideo() {
 async function DetectVideo() { 
   canvas.style.display = "block";
   canvas.setAttribute("width", video.width);
-  canvas.setAttribute("height", video.height); 
+  canvas.setAttribute("height", video.height);
+  canvas.style.left = region.style.left;
+  canvas.style.top = region.style.top; 
   canvas.getContext('2d').drawImage(video,0,0,video.width,video.height); 
 
   if (!labeledFaceDescriptors) {
@@ -76,8 +78,8 @@ async function DetectVideo() {
 
   const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor));
   //message.innerHTML = JSON.stringify(results);
-  console.log(results);
-  console.log(results.length);
+  //console.log(results);
+  //console.log(results.length);
   if (results.length>0) {
 	  var res = "";
 	  for (var i=0;i<results.length;i++) {

@@ -1,5 +1,5 @@
 {
-  "types": ["faceapi_recognition_video", "faceapi_recognition_detect", "faceapi_recognition_number", "faceapi_recognition_get", "faceapi_recognition_clear"],
+  "types": ["faceapi_recognition_video", "faceapi_recognition_detect", "faceapi_recognition_number", "faceapi_recognition_get", "faceapi_recognition_clear", "faceapi_recognition_state", "faceapi_recognition_video_position"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",

@@ -81,3 +81,18 @@ Blockly.Blocks['faceapi_recognition_clear'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['faceapi_recognition_video_position'] = {
+  init: function() {
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPI_RECOGNITION_VIDEO_LEFT_SHOW);  
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPI_RECOGNITION_VIDEO_TOP_SHOW);   	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};

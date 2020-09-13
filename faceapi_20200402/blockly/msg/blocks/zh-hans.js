@@ -14,3 +14,5 @@ Blockly.Msg.FACEAPI_RECOGNITION_NUMBER_SHOW = "人脸辨识 (face-api) 取得人
 Blockly.Msg.FACEAPI_RECOGNITION_GET_SHOW = "人脸辨识 (face-api) 取得人脸 索引";
 Blockly.Msg.FACEAPI_RECOGNITION_NAME_SHOW = "人名";
 Blockly.Msg.FACEAPI_RECOGNITION_CLEAR_SHOW = "清除辨识结果";
+Blockly.Msg.FACEAPI_RECOGNITION_VIDEO_LEFT_SHOW = "人脸辨识 (face-api) 视讯画面 靠左距离";
+Blockly.Msg.FACEAPI_RECOGNITION_VIDEO_TOP_SHOW = "靠上距离";

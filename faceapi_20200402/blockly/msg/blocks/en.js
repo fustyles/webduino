@@ -14,3 +14,5 @@ Blockly.Msg.FACEAPI_RECOGNITION_NUMBER_SHOW = "Face Recognition (face-api) Numbe
 Blockly.Msg.FACEAPI_RECOGNITION_GET_SHOW = "Face Recognition (face-api) Get FaceIndex ";
 Blockly.Msg.FACEAPI_RECOGNITION_NAME_SHOW = "Name";
 Blockly.Msg.FACEAPI_RECOGNITION_CLEAR_SHOW = "Face Recognition (face-api) Clear Result";
+Blockly.Msg.FACEAPI_RECOGNITION_VIDEO_LEFT_SHOW = "Face Recognition (face-api) Video Left";
+Blockly.Msg.FACEAPI_RECOGNITION_VIDEO_TOP_SHOW = "TOP";

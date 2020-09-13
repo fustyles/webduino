@@ -40,10 +40,17 @@
 	message.innerHTML = "";
   }
 
+  function faceapi_recognition_video_position(input_left, input_top) {
+    region.style.position = "absolute";
+    region.style.left = input_left + "px";
+    region.style.top = input_top + "px";
+  }
+
   window.faceapi_recognition_number = faceapi_recognition_number;
   window.faceapi_recognition_get = faceapi_recognition_get;
   window.faceapi_recognition_video = faceapi_recognition_video;
   window.faceapi_recognition_detect = faceapi_recognition_detect;
   window.faceapi_recognition_clear = faceapi_recognition_clear;
+  window.faceapi_recognition_video_position = faceapi_recognition_video_position;
 
 }(window, window.document));
