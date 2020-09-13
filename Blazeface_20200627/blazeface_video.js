@@ -52,6 +52,7 @@ window.onload = function () {
 		context.drawImage(video, 0, 0, video.width, video.height);
 
 	  if (document.getElementById('blazefaceState').innerHTML=="0") {
+		  result.innerHTML = "";
 		  setTimeout(function(){DetectVideo(); }, 100);
 		  return;
 	  }
