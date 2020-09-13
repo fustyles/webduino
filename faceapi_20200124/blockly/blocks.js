@@ -35,7 +35,13 @@ Blockly.Blocks['faceapi_video'] = {
       .appendField(Blockly.Msg.FACEAPI_WIDTH_SHOW);  
   this.appendValueInput("height_")
       .setCheck("Number")
-      .appendField(Blockly.Msg.FACEAPI_HEIGHT_SHOW);	 
+      .appendField(Blockly.Msg.FACEAPI_HEIGHT_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPI_FRAME_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["Y","1"],
+		["N","0"]	  
+  ]), "frame_");    
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FACEAPI_RESULT_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -57,6 +63,36 @@ Blockly.Blocks['faceapi_video'] = {
 		["0.1","0.1"],	
 		["0","0"]	   
   ]), "opacity_");   
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['faceapi_state'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPI_STATE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+        ["Y","1"],
+        ["N","0"]
+  ]), "state_");   
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['faceapi_video_position'] = {
+  init: function() {
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPI_VIDEO_LEFT_SHOW);  
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPI_VIDEO_TOP_SHOW);   	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);

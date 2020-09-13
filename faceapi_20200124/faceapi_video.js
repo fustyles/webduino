@@ -1,6 +1,7 @@
 document.write('<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>');
 document.write('<script src="https://fustyles.github.io/webduino/faceapi_20200124/face-api.min.js"></script>');
-document.write('<video id="webcam" width="320" height="240"  style="z-index:999;position:absolute" preload autoplay loop muted></video><div id="webcam-container" style="z-index:999;position:absolute"></div><div id="result" style="color:red;z-index:999;position:absolute">Please wait for loading model.</div>');
+document.write('<div id="region" style="z-index:999"><video id="webcam" width="320" height="240"  style="z-index:999;position:absolute" preload autoplay loop muted></video><div id="webcam-container" style="z-index:999;position:absolute"></div><select id="frame" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><div id="result" style="color:red;z-index:999;position:absolute">Please wait for loading model.</div></div>');
+document.write('<div id="faceapiState" style="position:absolute;display:none;">1</div>');
 
 window.onload = function () {
   var result = document.getElementById('result');
@@ -49,12 +50,24 @@ window.onload = function () {
   }
                         
   async function DetectVideo() {
+	  canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+
+	  if (document.getElementById('faceapiState').innerHTML=="0") {
+		  result.innerHTML = "";
+		  setTimeout(function(){DetectVideo(); }, 100);
+		  return;
+	  }
+
       const detections = await faceapi.detectAllFaces(camera, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
       const resizedDetections = faceapi.resizeResults(detections, displaySize)
-	  canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-      faceapi.draw.drawDetections(canvas, resizedDetections)
-      faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-      faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
+	  
+	  var frame = Number(document.getElementById("frame").value);
+	  if (frame==1) {
+		  faceapi.draw.drawDetections(canvas, resizedDetections)
+		  faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+		  faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
+	  }
+
 	  var i=0;
 	  result.innerHTML ="";
       resizedDetections.forEach(faceResult => {
@@ -89,13 +102,16 @@ window.onload = function () {
         }
 
 		result.innerHTML+= i+",age,"+Math.round(age)+",gender,"+gender+",genderProbability,"+Round(genderProbability)+",emotion,"+maxEmotion+",neutral,"+Round(expressions.neutral)+",happy,"+Round(expressions.happy)+",sad,"+Round(expressions.sad)+",angry,"+Round(expressions.angry)+",fearful,"+Round(expressions.fearful)+",disgusted,"+Round(expressions.disgusted)+",surprised,"+Round(expressions.surprised)+",boxX,"+Round(detection._box._x)+",boxY,"+Round(detection._box._y)+",boxWidth,"+Round(detection._box._width)+",boxHeight,"+Round(detection._box._height)+"<br>";
-        new faceapi.draw.DrawTextField(
-          [
-            `${faceapi.round(age, 0)} years`,
-            `${gender} (${faceapi.round(genderProbability)})`
-          ],
-          faceResult.detection.box.bottomRight
-        ).draw(canvas)
+        if (frame==1) {
+			new faceapi.draw.DrawTextField(
+			  [
+				`${faceapi.round(age, 0)} years`,
+				`${gender} (${faceapi.round(genderProbability)})`
+			  ],
+			  faceResult.detection.box.bottomRight
+			).draw(canvas)
+		}
+
 		i++;
       })
 	  if (result.innerHTML.length>0)

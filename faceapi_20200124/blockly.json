@@ -1,5 +1,5 @@
 {
-  "types": ["faceapi_face","faceapi_video"],
+  "types": ["faceapi_face","faceapi_video", "faceapi_state", "faceapi_video_position"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",

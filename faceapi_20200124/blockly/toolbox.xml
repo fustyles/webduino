@@ -1,11 +1,4 @@
 <category id="faceapi">
-  <block type="faceapi_face">
-    <value name="face_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value> 
-  </block>
   <block type="faceapi_video">
     <value name="width_">
       <block type="math_number">
@@ -17,5 +10,26 @@
         <field name="NUM">240</field>
       </block>
     </value>     
+  </block>
+  <block type="faceapi_face">
+    <value name="face_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
   </block>  
+  <block type="faceapi_state">
+  </block> 
+  <block type="faceapi_video_position">
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
+  </block>   
 </category>

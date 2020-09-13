@@ -1,6 +1,10 @@
-Blockly.Msg.FACEAPI_INDEX_SHOW = "脸部侦测 索引";
+Blockly.Msg.FACEAPI_INDEX_SHOW = "脸部侦测 (faceapi.js) 索引";
 Blockly.Msg.FACEAPI_PROPERTY_SHOW = "属性";
 Blockly.Msg.FACEAPI_WIDTH_SHOW = "脸部侦测 视讯宽度";
 Blockly.Msg.FACEAPI_HEIGHT_SHOW = "高度";
 Blockly.Msg.FACEAPI_RESULT_SHOW = "结果";
 Blockly.Msg.FACEAPI_OPACITY_SHOW = "透明度";
+Blockly.Msg.FACEAPI_STATE_SHOW = "脸部侦测 (faceapi.js) 侦测状态";
+Blockly.Msg.FACEAPI_VIDEO_LEFT_SHOW = "脸部侦测 (faceapi.js) 视讯画面 靠左距离";
+Blockly.Msg.FACEAPI_VIDEO_TOP_SHOW = "靠上距离";
+Blockly.Msg.FACEAPI_FRAME_SHOW = "框架";

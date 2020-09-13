@@ -1,6 +1,10 @@
-Blockly.Msg.FACEAPI_INDEX_SHOW = "Face Detection Index";
+Blockly.Msg.FACEAPI_INDEX_SHOW = "Face Detection (faceapi.js) Index";
 Blockly.Msg.FACEAPI_PROPERTY_SHOW = "Property";
-Blockly.Msg.FACEAPI_WIDTH_SHOW = "Face Detection Video Width";
+Blockly.Msg.FACEAPI_WIDTH_SHOW = "Face Detection (faceapi.js) Video Width";
 Blockly.Msg.FACEAPI_HEIGHT_SHOW = "Height";
 Blockly.Msg.FACEAPI_RESULT_SHOW = "Result";
 Blockly.Msg.FACEAPI_OPACITY_SHOW = "Opacity";
+Blockly.Msg.FACEAPI_STATE_SHOW = "Face Detection (faceapi.js) Detect State";
+Blockly.Msg.FACEAPI_VIDEO_LEFT_SHOW = "Face Detection (faceapi.js) Video Left";
+Blockly.Msg.FACEAPI_VIDEO_TOP_SHOW = "TOP";
+Blockly.Msg.FACEAPI_FRAME_SHOW = "frame";
