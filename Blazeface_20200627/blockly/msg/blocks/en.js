@@ -6,3 +6,6 @@ Blockly.Msg.BLAZEFACE_MIRRORIMAGE_SHOW = "Mirror Image";
 Blockly.Msg.BLAZEFACE_RESULT_SHOW = "Result";
 Blockly.Msg.BLAZEFACE_SCORELIMIT_SHOW = "Score Limit";
 Blockly.Msg.BLAZEFACE_OPACITY_SHOW = "Opacity";
+Blockly.Msg.BLAZEFACE_STATE_SHOW = "Face Detection (blazeface) Detect State";
+Blockly.Msg.VIDEO_LEFT_SHOW = "Video Left";
+Blockly.Msg.VIDEO_TOP_SHOW = "TOP";

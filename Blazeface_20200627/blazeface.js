@@ -3,7 +3,7 @@
 +(function (window, document) {
 
   'use strict';
-
+  
   function blazeface_video(input_width, input_height, input_scorelimit, input_mirrorimage, input_result, input_opacity) {  
     document.getElementById("result").style.display = input_result;
     document.getElementById("mirrorimage").value = input_mirrorimage;
@@ -36,7 +36,19 @@
     return result_arr;
   }	
 
+  function blazeface_state(input_state){
+    document.getElementById('blazefaceState').innerHTML = input_state;
+  }	
+
+  function video_position(input_left, input_top) {
+    region.style.position = "absolute";
+    region.style.left = input_left + "px";
+    region.style.top = input_top + "px";
+  }
+
   window.blazeface_video = blazeface_video;
   window.blazeface_get = blazeface_get;
+  window.video_position = video_position;
+  window.blazeface_state = blazeface_state;
 	
 }(window, window.document));

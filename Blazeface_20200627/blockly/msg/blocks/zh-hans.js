@@ -6,3 +6,6 @@ Blockly.Msg.BLAZEFACE_MIRRORIMAGE_SHOW = "镜像";
 Blockly.Msg.BLAZEFACE_RESULT_SHOW = "结果";
 Blockly.Msg.BLAZEFACE_SCORELIMIT_SHOW = "信心底限";
 Blockly.Msg.BLAZEFACE_OPACITY_SHOW = "透明度";
+Blockly.Msg.BLAZEFACE_STATE_SHOW = "脸部侦测 (blazeface) 侦测状态";
+Blockly.Msg.VIDEO_LEFT_SHOW = "视讯 靠左距离";
+Blockly.Msg.VIDEO_TOP_SHOW = "靠上距离";
