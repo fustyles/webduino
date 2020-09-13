@@ -1,5 +1,5 @@
 {
-  "types": ["facemesh_set", "facemesh_get"],
+  "types": ["facemesh_set", "facemesh_get", "facemesh_state", "facemesh_video_position"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",

@@ -1,4 +1,4 @@
-Blockly.Msg.FACEMESH_SET_SHOW = "臉部網格視窗設定";
+Blockly.Msg.FACEMESH_SET_SHOW = "臉部網格 (facemesh) 視窗設定";
 Blockly.Msg.FACEMESH_WIDTH_SHOW = "寬度";   
 Blockly.Msg.FACEMESH_HEIGHT_SHOW = "高度";
 Blockly.Msg.FACEMESH_VIDEO_SHOW = "視訊";
@@ -9,3 +9,6 @@ Blockly.Msg.FACEMESH_PART_SHOW = "部位";
 Blockly.Msg.FACEMESH_POINT_SHOW = "網格圖";
 Blockly.Msg.FACEMESH_GET_SHOW = "取得網格結果"; 
 Blockly.Msg.FACEMESH_OPACITY_SHOW = "透明度";
+Blockly.Msg.FACEMESH_STATE_SHOW = "臉部網格 (facemesh) 偵測狀態";
+Blockly.Msg.FACEMESH_VIDEO_LEFT_SHOW = "臉部網格 (facemesh) 視訊畫面 靠左距離";
+Blockly.Msg.FACEMESH_VIDEO_TOP_SHOW = "靠上距離";

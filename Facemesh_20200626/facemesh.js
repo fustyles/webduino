@@ -45,8 +45,20 @@
     }
     return result_arr;
   }
-    
+
+  function facemesh_state(input_state){
+    document.getElementById('facemeshState').innerHTML = input_state;
+  }	
+
+  function facemesh_video_position(input_left, input_top) {
+    region.style.position = "absolute";
+    region.style.left = input_left + "px";
+    region.style.top = input_top + "px";
+  }
+
   window.facemesh_set = facemesh_set;
   window.facemesh_get = facemesh_get;
-  
+  window.facemesh_video_position = facemesh_video_position;
+  window.facemesh_state = facemesh_state;
+
 }(window, window.document));
