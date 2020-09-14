@@ -449,6 +449,11 @@ Blockly.JavaScript['elements_collision'] = function (block) {
     var obj1= 'gameiframe_';  
   else if (value_element1_=="a")
     var obj1= 'gamea_';    
+  else if (value_element1_=="radio")
+    var obj1= 'gameradio_';   
+  else if (value_element1_=="checkbox")
+    var obj1= 'gamecheckbox_';  
+
   if (value_element2_=="table")
     var obj2= 'gametable_';
   else if (value_element2_=="canvas")
@@ -471,6 +476,11 @@ Blockly.JavaScript['elements_collision'] = function (block) {
     var obj2= 'gameiframe_'; 
   else if (value_element2_=="a")
     var obj2= 'gamea_';   
+  else if (value_element2_=="radio")
+    var obj2= 'gameradio_';   
+  else if (value_element2_=="checkbox")
+    var obj2= 'gamecheckbox_';   
+
   var code = 'elements_collision("'+obj1+'",' + value_id1_ + ',"'+obj2+'",' + value_id2_ + ',"' + value_position_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
@@ -500,8 +510,13 @@ Blockly.JavaScript['elements_collision_color'] = function (block) {
     var obj1= 'gamediv_'; 
   else if (value_element1_=="iframe")
     var obj1= 'gameiframe_';  
-    else if (value_element1_=="a")
+  else if (value_element1_=="a")
     var obj1= 'gamea_';  
+  else if (value_element1_=="radio")
+    var obj1= 'gameradio_';   
+  else if (value_element1_=="checkbox")
+    var obj1= 'gamecheckbox_';  
+
   var code = 'elements_collision_color("'+obj1+'",' + value_id1_ + ',' + value_id2_ + ',' + value_color_ + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
