@@ -12,6 +12,12 @@
     document.getElementById('result').style.display = input_result;
   }	
 
+  function deeplab_get(){
+    var result = document.getElementById("result").innerHTML.split("<br>");
+	return result;
+  }	
+
   window.deeplab_video = deeplab_video;
+  window.deeplab_get = deeplab_get;
 	
 }(window, window.document));

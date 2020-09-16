@@ -11,4 +11,6 @@
       </block>
     </value>     
   </block>    
+  <block type="deeplab_get"> 
+  </block>  
 </category>

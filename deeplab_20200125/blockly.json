@@ -1,5 +1,5 @@
 {
-  "types": ["deeplab_video"],
+  "types": ["deeplab_video", "deeplab_get"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",

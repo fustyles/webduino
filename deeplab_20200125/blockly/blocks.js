@@ -10,7 +10,7 @@ Blockly.Blocks['deeplab_video'] = {
       .appendField(Blockly.Msg.DEEPLAB_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		["pascal","pascal"],
-		["cityscapes","cityscapes"],	
+		//["cityscapes","cityscapes"],	
 		["ade20k","ade20k"]	  
   ]), "model_"); 
   this.appendDummyInput()  
@@ -29,5 +29,15 @@ Blockly.Blocks['deeplab_video'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
+  }
+};
+
+Blockly.Blocks['deeplab_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.DEEPLAB_GET_SHOW);  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
   }
 };
