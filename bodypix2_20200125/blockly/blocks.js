@@ -55,13 +55,14 @@ Blockly.Blocks['bodypix2_video'] = {
       .appendField(Blockly.Msg.BODYPIX2_WIDTH_SHOW);  
   this.appendValueInput("height_")
       .setCheck("Number")
-      .appendField(Blockly.Msg.BODYPIX2_HEIGHT_SHOW);	 
+      .appendField(Blockly.Msg.BODYPIX2_HEIGHT_SHOW);
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.BODYPIX2_RESULT_SHOW)
+      .appendField(Blockly.Msg.BODYPIX2_FUNCTION_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["Y","block"],
-		["N","none"]	  
-  ]), "result_"); 
+		["partMap","1"],
+		["pixelation","2"],
+		["blurBodyPart","3"]	  
+  ]), "func_");   
   this.appendDummyInput()  
       .appendField(Blockly.Msg.BODYPIX2_SKELETON_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -73,14 +74,13 @@ Blockly.Blocks['bodypix2_video'] = {
       .appendField(new Blockly.FieldDropdown([
 		["Y","1"],
 		["N","0"]	  
-  ]), "mirrorimage_"); 
+  ]), "mirrorimage_");  
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.BODYPIX2_FUNCTION_SHOW)
+      .appendField(Blockly.Msg.BODYPIX2_RESULT_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["partMap","1"],
-		["pixelation","2"],
-		["blurBodyPart","3"]	  
-  ]), "func_");  
+		["Y","block"],
+		["N","none"]	  
+  ]), "result_"); 
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
