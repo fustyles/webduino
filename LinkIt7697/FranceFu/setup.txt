@@ -6,7 +6,7 @@ https://www.facebook.com/francefu    2020/9/20 22:30
 
 Blockly.inject(document.getElementById('content_blocks'),{ 
 
-自訂積木新增的目錄"法蘭斯"可修改程式碼指定要插入在哪個目錄前。
+自訂積木新增的目錄"法蘭斯"可修改程式碼指定要插入在哪個目錄後。
 若以自訂積木撰寫程式後存檔，還原載入前必須先新增自訂積木在介面。
 
 本自訂積木主要提供教師教學及學生學習使用，並不負擔責任與保固！
@@ -33,9 +33,9 @@ function initial(blocks_path, javascript_path, toolbox_path) {
 	if (len>0) {
 		for (var i=0;i<len;i++){
 			var node = new XMLSerializer().serializeToString(new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes[i]);
-			if (node.indexOf("category_linkit_wifi")!=-1)  //可以自訂要插入在哪個目錄名稱前
-				xmlNewValue+=new XMLSerializer().serializeToString(xml.firstChild)+'<sep></sep>';
 			xmlNewValue+=node;
+			if (node.indexOf("category_servo")!=-1)  //可以自訂要插入在哪個目錄名稱前
+				xmlNewValue+='<sep></sep>'+new XMLSerializer().serializeToString(xml.firstChild);
 		}
 	}
 	xmlNewValue+='</xml>';
