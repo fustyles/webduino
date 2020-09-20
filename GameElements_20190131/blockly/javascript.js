@@ -1046,10 +1046,6 @@ Blockly.JavaScript['position_angle'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-
-
-
-
 Blockly.JavaScript['iframe_create'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
