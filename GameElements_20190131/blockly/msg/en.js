@@ -14,5 +14,4 @@ MSG.catGameElements_sub12 = "Link";
 MSG.catGameElements_sub13 = "radio";
 MSG.catGameElements_sub14 = "Checkbox";
 MSG.catGameElements_sub15 = "Textarea";
-MSG.catGameElements_sub16 = "Video";
-MSG.catGameElements_sub17 = "AJAX";
+MSG.catGameElements_sub16 = "AJAX";

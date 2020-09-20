@@ -427,59 +427,9 @@ Blockly.JavaScript['elements_collision'] = function (block) {
   var value_element2_ = block.getFieldValue('element2_');
   var value_id2_ = Blockly.JavaScript.valueToCode(block, 'id2_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_position_ = block.getFieldValue('position_');
-  if (value_element1_=="table")
-    var obj1= 'gametable_';
-  else if (value_element1_=="canvas")
-    var obj1= 'gamecanvas_';
-  else if (value_element1_=="image")
-    var obj1= 'gameimage_';
-  else if (value_element1_=="button")
-    var obj1= 'gamebutton_';
-  else if (value_element1_=="color")
-    var obj1= 'gamecolor_';
-  else if (value_element1_=="select")
-    var obj1= 'gameselect_';
-  else if (value_element1_=="range")
-    var obj1= 'gamerange_';
-  else if (value_element1_=="text")
-    var obj1= 'gametext_';   
-  else if (value_element1_=="div")
-    var obj1= 'gamediv_';   
-  else if (value_element1_=="iframe")
-    var obj1= 'gameiframe_';  
-  else if (value_element1_=="a")
-    var obj1= 'gamea_';    
-  else if (value_element1_=="radio")
-    var obj1= 'gameradio_';   
-  else if (value_element1_=="checkbox")
-    var obj1= 'gamecheckbox_';  
 
-  if (value_element2_=="table")
-    var obj2= 'gametable_';
-  else if (value_element2_=="canvas")
-    var obj2= 'gamecanvas_';
-  else if (value_element2_=="image")
-    var obj2= 'gameimage_';
-  else if (value_element2_=="button")
-    var obj2= 'gamebutton_';
-  else if (value_element2_=="color")
-    var obj2= 'gamecolor_';
-  else if (value_element2_=="select")
-    var obj2= 'gameselect_';
-  else if (value_element2_=="range")
-    var obj2= 'gamerange_';
-  else if (value_element2_=="text")
-    var obj2= 'gametext_';  
-  else if (value_element2_=="div")
-    var obj2= 'gamediv_'; 
-  else if (value_element2_=="iframe")
-    var obj2= 'gameiframe_'; 
-  else if (value_element2_=="a")
-    var obj2= 'gamea_';   
-  else if (value_element2_=="radio")
-    var obj2= 'gameradio_';   
-  else if (value_element2_=="checkbox")
-    var obj2= 'gamecheckbox_';   
+  var obj1= 'game'+value_element1_+'_';    
+  var obj2= 'game'+value_element2_+'_'; 
 
   var code = 'elements_collision("'+obj1+'",' + value_id1_ + ',"'+obj2+'",' + value_id2_ + ',"' + value_position_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
@@ -490,32 +440,8 @@ Blockly.JavaScript['elements_collision_color'] = function (block) {
   var value_id1_ = Blockly.JavaScript.valueToCode(block, 'id1_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_id2_ = Blockly.JavaScript.valueToCode(block, 'id2_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
-  if (value_element1_=="table")
-    var obj1= 'gametable_';
-  else if (value_element1_=="canvas")
-    var obj1= 'gamecanvas_';
-  else if (value_element1_=="image")
-    var obj1= 'gameimage_';
-  else if (value_element1_=="button")
-    var obj1= 'gamebutton_';
-  else if (value_element1_=="color")
-    var obj1= 'gamecolor_';
-  else if (value_element1_=="select")
-    var obj1= 'gameselect_';
-  else if (value_element1_=="range")
-    var obj1= 'gamerange_';
-  else if (value_element1_=="text")
-    var obj1= 'gametext_';   
-  else if (value_element1_=="div")
-    var obj1= 'gamediv_'; 
-  else if (value_element1_=="iframe")
-    var obj1= 'gameiframe_';  
-  else if (value_element1_=="a")
-    var obj1= 'gamea_';  
-  else if (value_element1_=="radio")
-    var obj1= 'gameradio_';   
-  else if (value_element1_=="checkbox")
-    var obj1= 'gamecheckbox_';  
+
+  var obj1= 'game'+value_element1_+'_'; 
 
   var code = 'elements_collision_color("'+obj1+'",' + value_id1_ + ',' + value_id2_ + ',' + value_color_ + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
@@ -828,28 +754,9 @@ Blockly.JavaScript['element_event'] = function (block) {
     var obj="window";
   else if (element=="document")
     var obj="document";
-  else if (element=="table")
-    var obj="document.getElementById('gametable_'+"+value_id_+")";  
-  else if (element=="canvas")
-    var obj="document.getElementById('gamecanvas_'+"+value_id_+")"; 
-  else if (element=="image")
-    var obj="document.getElementById('gameimage_'+"+value_id_+")";
-  else if (element=="button")
-    var obj="document.getElementById('gamebutton_'+"+value_id_+")"; 
-  else if (element=="color")
-    var obj="document.getElementById('gamecolor_'+"+value_id_+")";  
-  else if (element=="select")
-    var obj="document.getElementById('gameselect_'+"+value_id_+")"; 
-  else if (element=="range")
-    var obj="document.getElementById('gamerange_'+"+value_id_+")"; 
-  else if (element=="text")
-    var obj="document.getElementById('gametext_'+"+value_id_+")";  
-  else if (element=="div")
-    var obj="document.getElementById('gamediv_'+"+value_id_+")"; 
-  else if (element=="iframe")
-    var obj="document.getElementById('gameiframe_'+"+value_id_+")";  
-  else if (element=="a")
-    var obj="document.getElementById('gamea_'+"+value_id_+")";  
+  else
+    var obj="document.getElementById('game"+element+"_'+"+value_id_+")";
+
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
  
@@ -865,28 +772,9 @@ Blockly.JavaScript['element_event_stop'] = function (block) {
     var obj="window";
   else if (element=="document")
     var obj="document";
-  else if (element=="table")
-    var obj="document.getElementById('gametable_'+"+value_id_+")";  
-  else if (element=="canvas")
-    var obj="document.getElementById('gamecanvas_'+"+value_id_+")"; 
-  else if (element=="image")
-    var obj="document.getElementById('gameimage_'+"+value_id_+")";
-  else if (element=="button")
-    var obj="document.getElementById('gamebutton_'+"+value_id_+")"; 
-  else if (element=="color")
-    var obj="document.getElementById('gamecolor_'+"+value_id_+")";  
-  else if (element=="select")
-    var obj="document.getElementById('gameselect_'+"+value_id_+")"; 
-  else if (element=="range")
-    var obj="document.getElementById('gamerange_'+"+value_id_+")"; 
-  else if (element=="text")
-    var obj="document.getElementById('gametext_'+"+value_id_+")";  
-  else if (element=="div")
-    var obj="document.getElementById('gamediv_'+"+value_id_+")"; 
-  else if (element=="iframe")
-    var obj="document.getElementById('gameiframe_'+"+value_id_+")";  
-  else if (element=="a")
-    var obj="document.getElementById('gamea_'+"+value_id_+")"; 
+  else
+    var obj="document.getElementById('game"+element+"_'+"+value_id_+")";
+
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
 
@@ -1327,7 +1215,6 @@ Blockly.JavaScript['radio_onclick_do'] = function (block) {
   return code;
 };
 
-
 Blockly.JavaScript['checkbox_create'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
@@ -1368,5 +1255,49 @@ Blockly.JavaScript['checkbox_onclick_do'] = function (block) {
     value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gamecheckbox_'+value_id_+'_onclick (event) {\n' + statements_do_ + '};\ngamecheckbox_'+value_id_+'.addEventListener("click", gamecheckbox_'+value_id_+'_onclick, true);\n';
+  return code;
+};
+
+Blockly.JavaScript['textarea_create'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_cols_ = Blockly.JavaScript.valueToCode(block, 'cols_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_rows_ = Blockly.JavaScript.valueToCode(block, 'rows_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_opacity_ = Blockly.JavaScript.valueToCode(block, 'opacity_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_zindex_ = Blockly.JavaScript.valueToCode(block, 'zindex_', Blockly.JavaScript.ORDER_ATOMIC);    
+  var value_display_ = Blockly.JavaScript.valueToCode(block, 'display_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'textarea_create(' + value_id_ + ','+ value_left_ + ',' + value_top_ + ',' + value_cols_ + ',' + value_rows_ + ',' + value_value_ + ',' + value_opacity_ + ',' + value_zindex_ + ',' + value_display_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['textarea_set'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'textarea_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['textarea_get'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'textarea_get(' + value_id_ + ',"' + value_property_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['textarea_delete'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'textarea_delete(' + value_id_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['textarea_onchange_do'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'async function gametextarea_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\ngametextarea_'+value_id_+'.addEventListener("change", gametextarea_'+value_id_+'_onchange, true);\n';
   return code;
 };

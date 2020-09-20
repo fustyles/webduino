@@ -842,7 +842,7 @@ Blockly.Blocks['canvas_text'] = {
       .appendField(Blockly.Msg.FONTSIZE);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TEXTALIGN)
-      .appendField(new Blockly.FieldDropdown([["start","start"], ["end","end"], [Blockly.Msg.PROPERTY_CENTER,"center"], [Blockly.Msg.PROPERTY_LEFT,"left"], [Blockly.Msg.PROPERTY_RIGHT,"right"]]), "textalign_");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_START,"start"], [Blockly.Msg.PROPERTY_END,"end"], [Blockly.Msg.PROPERTY_CENTER,"center"], [Blockly.Msg.PROPERTY_LEFT,"left"], [Blockly.Msg.PROPERTY_RIGHT,"right"]]), "textalign_");
   this.appendValueInput("fill_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -1208,13 +1208,13 @@ Blockly.Blocks['image_delete'] = {
 Blockly.Blocks['elements_collision'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"]]), "element1_");    
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"]]), "element1_");    
   this.appendValueInput("id1_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AND)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"]]), "element2_");    
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"]]), "element2_");    
   this.appendValueInput("id2_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID);    
@@ -1230,7 +1230,7 @@ Blockly.Blocks['elements_collision'] = {
 Blockly.Blocks['elements_collision_color'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"]]), "element1_");    
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"]]), "element1_");    
   this.appendValueInput("id1_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID); 
@@ -1428,7 +1428,7 @@ Blockly.Blocks['mouse_coordinate_get'] = {
   init: function() {
   this.appendDummyInput()
       .appendField(Blockly.Msg.MOUSE_COORDINATE_GET)
-      .appendField(new Blockly.FieldDropdown([["X","X"], ["Y","Y"], ["offsetX","offsetX"], ["offsetY","offsetY"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_PAGEX,"pageX"], [Blockly.Msg.PROPERTY_PAGEY,"pageY"], [Blockly.Msg.PROPERTY_OFFSETX,"offsetX"], [Blockly.Msg.PROPERTY_OFFSETY,"offsetY"], [Blockly.Msg.PROPERTY_CLIENTX,"clientX"], [Blockly.Msg.PROPERTY_CLIENTY,"clientY"], [Blockly.Msg.PROPERTY_SCREENX,"screenX"], [Blockly.Msg.PROPERTY_SCREENY,"screenY"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -1807,18 +1807,105 @@ Blockly.Blocks['element_event'] = {
   init: function () {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_WINDOW,"window"],[Blockly.Msg.ELEMENT_DOCUMENT,"document"],[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"],[Blockly.Msg.ELEMENT_RADIO,"radio"],[Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"]]), "element");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_WINDOW,"window"],[Blockly.Msg.ELEMENT_DOCUMENT,"document"],[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"],[Blockly.Msg.ELEMENT_RADIO,"radio"],[Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],[Blockly.Msg.ELEMENT_TEXTAREA,"textarea"]]), "element");
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT_EVENT)
-      .appendField(new Blockly.FieldDropdown([["abort","abort"],["afterprint","afterprint"],["animationend","animationend"],["animationiteration","animationiteration"],["animationstart","animationstart"],["beforeprint","beforeprint"],["beforeunload","beforeunload"],["blur","blur"],["canplay","canplay"],["canplaythrough","canplaythrough"],["change","change"],["click","click"],["contextmenu","contextmenu"],["copy","copy"],["cut","cut"],["dblclick","dblclick"],["drag","drag"],["dragend","dragend"],["dragenter","dragenter"],["dragleave","dragleave"],["dragover","dragover"],["dragstart","dragstart"],["drop","drop"],["durationchange","durationchange"],["ended","ended"],["error","error"],["focus","focus"],["focusin","focusin"],["focusout","focusout"],["fullscreenchange","fullscreenchange"],["fullscreenerror","fullscreenerror"],["hashchange","hashchange"],["input","input"],["invalid","invalid"],["keydown","keydown"],["keypress","keypress"],["keyup","keyup"],["load","load"],["loadeddata","loadeddata"],["loadedmetadata","loadedmetadata"],["loadstart","loadstart"],["message","message"],["mousedown","mousedown"],["mouseenter","mouseenter"],["mouseleave","mouseleave"],["mousemove","mousemove"],["mouseover","mouseover"],["mouseout","mouseout"],["mouseup","mouseup"],["mousewheel","mousewheel"],["offline","offline"],["online","online"],["open","open"],["pagehide","pagehide"],["pageshow","pageshow"],["paste","paste"],["pause","pause"],["play","play"],["playing","playing"],["popstate","popstate"],["progress","progress"],["ratechange","ratechange"],["resize","resize"],["reset","reset"],["scroll","scroll"],["search","search"],["seeked","seeked"],["seeking","seeking"],["select","select"],["show","show"],["stalled","stalled"],["storage","storage"],["submit","submit"],["suspend","suspend"],["timeupdate","timeupdate"],["toggle","toggle"],["touchcancel","touchcancel"],["touchend","touchend"],["touchmove","touchmove"],["touchstart","touchstart"],["transitionend","transitionend"],["unload","unload"],["volumechange","volumechange"],["waiting","waiting"],["wheel","wheel"],["deviceorientation","deviceorientation"]]), "event");
+      .appendField(new Blockly.FieldDropdown([
+		["abort","abort"],
+		["afterprint","afterprint"],
+		["animationend","animationend"],
+		["animationiteration","animationiteration"],
+		["animationstart","animationstart"],
+		["beforeprint","beforeprint"],
+		["beforeunload","beforeunload"],
+		["blur","blur"],
+		["canplay","canplay"],
+		["canplaythrough","canplaythrough"],
+		["change","change"],
+		["click","click"],
+		["contextmenu","contextmenu"],
+		["copy","copy"],
+		["cut","cut"],
+		["dblclick","dblclick"],
+		["drag","drag"],
+		["dragend","dragend"],
+		["dragenter","dragenter"],
+		["dragleave","dragleave"],
+		["dragover","dragover"],
+		["dragstart","dragstart"],
+		["drop","drop"],
+		["durationchange","durationchange"],
+		["ended","ended"],
+		["error","error"],
+		["focus","focus"],
+		["focusin","focusin"],
+		["focusout","focusout"],
+		["fullscreenchange","fullscreenchange"],
+		["fullscreenerror","fullscreenerror"],
+		["hashchange","hashchange"],
+		["input","input"],
+		["invalid","invalid"],
+		["keydown","keydown"],
+		["keypress","keypress"],
+		["keyup","keyup"],
+		["load","load"],
+		["loadeddata","loadeddata"],
+		["loadedmetadata","loadedmetadata"],
+		["loadstart","loadstart"],
+		["message","message"],
+		["mousedown","mousedown"],
+		["mouseenter","mouseenter"],
+		["mouseleave","mouseleave"],
+		["mousemove","mousemove"],
+		["mouseover","mouseover"],
+		["mouseout","mouseout"],
+		["mouseup","mouseup"],
+		["mousewheel","mousewheel"],
+		["offline","offline"],
+		["online","online"],
+		["open","open"],
+		["pagehide","pagehide"],
+		["pageshow","pageshow"],
+		["paste","paste"],
+		["pause","pause"],
+		["play","play"],
+		["playing","playing"],
+		["popstate","popstate"],
+		["progress","progress"],
+		["ratechange","ratechange"],
+		["resize","resize"],
+		["reset","reset"],
+		["scroll","scroll"],
+		["search","search"],
+		["seeked","seeked"],
+		["seeking","seeking"],
+		["select","select"],
+		["show","show"],
+		["stalled","stalled"],
+		["storage","storage"],
+		["submit","submit"],
+		["suspend","suspend"],
+		["timeupdate","timeupdate"],
+		["toggle","toggle"],
+		["touchcancel","touchcancel"],
+		["touchend","touchend"],
+		["touchmove","touchmove"],
+		["touchstart","touchstart"],
+		["transitionend","transitionend"],
+		["unload","unload"],
+		["volumechange","volumechange"],
+		["waiting","waiting"],
+		["wheel","wheel"]
+	  ]), "event");
   this.appendStatementInput("statement");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
+  this.setHelpUrl("https://fustyles.github.io/webduino/GameElements_20190131/HTML%20DOM%20EVENTS.txt");
   }
 };
 
@@ -1826,17 +1913,104 @@ Blockly.Blocks['element_event_stop'] = {
   init: function () {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_WINDOW,"window"],[Blockly.Msg.ELEMENT_DOCUMENT,"document"],[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"],[Blockly.Msg.ELEMENT_RADIO,"radio"],[Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"]]), "element");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_WINDOW,"window"],[Blockly.Msg.ELEMENT_DOCUMENT,"document"],[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"],[Blockly.Msg.ELEMENT_RADIO,"radio"],[Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],[Blockly.Msg.ELEMENT_TEXTAREA,"textarea"]]), "element");
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID);    
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT_EVENT_STOP)
-      .appendField(new Blockly.FieldDropdown([["abort","abort"],["afterprint","afterprint"],["animationend","animationend"],["animationiteration","animationiteration"],["animationstart","animationstart"],["beforeprint","beforeprint"],["beforeunload","beforeunload"],["blur","blur"],["canplay","canplay"],["canplaythrough","canplaythrough"],["change","change"],["click","click"],["contextmenu","contextmenu"],["copy","copy"],["cut","cut"],["dblclick","dblclick"],["drag","drag"],["dragend","dragend"],["dragenter","dragenter"],["dragleave","dragleave"],["dragover","dragover"],["dragstart","dragstart"],["drop","drop"],["durationchange","durationchange"],["ended","ended"],["error","error"],["focus","focus"],["focusin","focusin"],["focusout","focusout"],["fullscreenchange","fullscreenchange"],["fullscreenerror","fullscreenerror"],["hashchange","hashchange"],["input","input"],["invalid","invalid"],["keydown","keydown"],["keypress","keypress"],["keyup","keyup"],["load","load"],["loadeddata","loadeddata"],["loadedmetadata","loadedmetadata"],["loadstart","loadstart"],["message","message"],["mousedown","mousedown"],["mouseenter","mouseenter"],["mouseleave","mouseleave"],["mousemove","mousemove"],["mouseover","mouseover"],["mouseout","mouseout"],["mouseup","mouseup"],["mousewheel","mousewheel"],["offline","offline"],["online","online"],["open","open"],["pagehide","pagehide"],["pageshow","pageshow"],["paste","paste"],["pause","pause"],["play","play"],["playing","playing"],["popstate","popstate"],["progress","progress"],["ratechange","ratechange"],["resize","resize"],["reset","reset"],["scroll","scroll"],["search","search"],["seeked","seeked"],["seeking","seeking"],["select","select"],["show","show"],["stalled","stalled"],["storage","storage"],["submit","submit"],["suspend","suspend"],["timeupdate","timeupdate"],["toggle","toggle"],["touchcancel","touchcancel"],["touchend","touchend"],["touchmove","touchmove"],["touchstart","touchstart"],["transitionend","transitionend"],["unload","unload"],["volumechange","volumechange"],["waiting","waiting"],["wheel","wheel"],["deviceorientation","deviceorientation"]]), "event");
+      .appendField(new Blockly.FieldDropdown([
+		["abort","abort"],
+		["afterprint","afterprint"],
+		["animationend","animationend"],
+		["animationiteration","animationiteration"],
+		["animationstart","animationstart"],
+		["beforeprint","beforeprint"],
+		["beforeunload","beforeunload"],
+		["blur","blur"],
+		["canplay","canplay"],
+		["canplaythrough","canplaythrough"],
+		["change","change"],
+		["click","click"],
+		["contextmenu","contextmenu"],
+		["copy","copy"],
+		["cut","cut"],
+		["dblclick","dblclick"],
+		["drag","drag"],
+		["dragend","dragend"],
+		["dragenter","dragenter"],
+		["dragleave","dragleave"],
+		["dragover","dragover"],
+		["dragstart","dragstart"],
+		["drop","drop"],
+		["durationchange","durationchange"],
+		["ended","ended"],
+		["error","error"],
+		["focus","focus"],
+		["focusin","focusin"],
+		["focusout","focusout"],
+		["fullscreenchange","fullscreenchange"],
+		["fullscreenerror","fullscreenerror"],
+		["hashchange","hashchange"],
+		["input","input"],
+		["invalid","invalid"],
+		["keydown","keydown"],
+		["keypress","keypress"],
+		["keyup","keyup"],
+		["load","load"],
+		["loadeddata","loadeddata"],
+		["loadedmetadata","loadedmetadata"],
+		["loadstart","loadstart"],
+		["message","message"],
+		["mousedown","mousedown"],
+		["mouseenter","mouseenter"],
+		["mouseleave","mouseleave"],
+		["mousemove","mousemove"],
+		["mouseover","mouseover"],
+		["mouseout","mouseout"],
+		["mouseup","mouseup"],
+		["mousewheel","mousewheel"],
+		["offline","offline"],
+		["online","online"],
+		["open","open"],
+		["pagehide","pagehide"],
+		["pageshow","pageshow"],
+		["paste","paste"],
+		["pause","pause"],
+		["play","play"],
+		["playing","playing"],
+		["popstate","popstate"],
+		["progress","progress"],
+		["ratechange","ratechange"],
+		["resize","resize"],
+		["reset","reset"],
+		["scroll","scroll"],
+		["search","search"],
+		["seeked","seeked"],
+		["seeking","seeking"],
+		["select","select"],
+		["show","show"],
+		["stalled","stalled"],
+		["storage","storage"],
+		["submit","submit"],
+		["suspend","suspend"],
+		["timeupdate","timeupdate"],
+		["toggle","toggle"],
+		["touchcancel","touchcancel"],
+		["touchend","touchend"],
+		["touchmove","touchmove"],
+		["touchstart","touchstart"],
+		["transitionend","transitionend"],
+		["unload","unload"],
+		["volumechange","volumechange"],
+		["waiting","waiting"],
+		["wheel","wheel"]
+	  ]), "event");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
+  this.setHelpUrl("https://fustyles.github.io/webduino/GameElements_20190131/HTML%20DOM%20EVENTS.txt");
   }
 };
 
@@ -3035,6 +3209,114 @@ Blockly.Blocks['checkbox_onclick_do'] = {
     .appendField(Blockly.Msg.CHECKBOX_ID);
   this.appendDummyInput()   
     .appendField(Blockly.Msg.CHECKBOX_ONCLICK);
+  this.setInputsInline(true);
+  this.appendStatementInput("do_");
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(220);
+  }
+};
+
+Blockly.Blocks['textarea_create'] = {
+  init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.TEXTAREA_CREATE);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LEFT);    
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TOP);
+  this.appendValueInput("cols_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.PROPERTY_COLUMNS);
+  this.appendValueInput("rows_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.PROPERTY_ROWS);
+  this.appendValueInput("value_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.PROPERTY_VALUE);
+  this.appendValueInput("opacity_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPACITY);
+  this.appendValueInput("zindex_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ZINDEX);   
+  this.appendValueInput("display_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.DISPLAY); 
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['textarea_set'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TEXTAREA_ID);      
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEXTAREA_SET) 
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_COLUMNS,"cols"], [Blockly.Msg.PROPERTY_ROWS,"rows"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_READONLY,"readonly"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+  this.appendValueInput("value_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null);    
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['textarea_get'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TEXTAREA_ID);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEXTAREA_GET)
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_COLUMNS,"cols"], [Blockly.Msg.PROPERTY_ROWS,"rows"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_READONLY,"readonly"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['textarea_delete'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TEXTAREA_ID); 
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.TEXTAREA_DELETE);  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['textarea_onchange_do'] = {
+  init: function () {
+  this.appendValueInput("id_")
+    .setCheck(null)
+    .appendField(Blockly.Msg.TEXTAREA_ID);
+  this.appendDummyInput()   
+    .appendField(Blockly.Msg.TEXTAREA_ONCHANGE);
   this.setInputsInline(true);
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);

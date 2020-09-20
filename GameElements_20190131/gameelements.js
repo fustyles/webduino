@@ -9,7 +9,7 @@
   var onclickid = "";
   var onclicktime = 200;
   var onclicktimerid;
-  var mouse_x,mouse_y,mouse_offsetx,mouse_offsety;
+  var mouse_pageX,mouse_pageY,mouse_offsetX,mouse_offsetY,mouse_clientX,mouse_clientY,mouse_screenX,mouse_screenY;
   var ImageWidth,ImageHeight;
                       
   function table_create(input_id,input_width,input_height,input_left,input_top,input_trcount,input_tdcount,input_borderstyle,input_borderwidth,input_bordercolor,input_bgcolor,input_zindex,input_display) {
@@ -1183,36 +1183,56 @@
   function mouse_coordinate_get_start() {       
       document.onmousemove = function(e){  
         e=e||window.event;
-        mouse_x = e.pageX;
-        mouse_y = e.pageY;
-        mouse_offsetx = e.offsetX;
-        mouse_offsety = e.offsetY;        
+        mouse_pageX = e.pageX;
+        mouse_pageY = e.pageY;
+        mouse_offsetX = e.offsetX;
+        mouse_offsetY = e.offsetY;   
+        mouse_clientX = e.clientX;
+        mouse_clientY = e.clientY;
+        mouse_screenX = e.screenX;
+        mouse_screenY = e.screenY;  		
       }	  
   }
 
   function mouse_coordinate_get(input_property) {
     if (!document.onmousemove)
     {
-      mouse_x = 0;
-      mouse_y = 0;
-      mouse_offsetx = 0;
-      mouse_offsety = 0;       
+      mouse_pageX = 0;
+      mouse_pageY = 0;
+      mouse_offsetX = 0;
+      mouse_offsetY = 0;  
+	  mouse_clientX = 0;
+	  mouse_clientY = 0;
+	  mouse_screenX = 0;
+	  mouse_screenY = 0;	  
       document.onmousemove = function(e){  
         e=e||window.event;
-        mouse_x = e.pageX;
-        mouse_y = e.pageY;
-        mouse_offsetx = e.offsetX;
-        mouse_offsety = e.offsetY;        
+        mouse_pageX = e.pageX;
+        mouse_pageY = e.pageY;
+        mouse_offsetX = e.offsetX;
+        mouse_offsetY = e.offsetY;   
+        mouse_clientX = e.clientX;
+        mouse_clientY = e.clientY;
+        mouse_screenX = e.screenX;
+        mouse_screenY = e.screenY;       
       }
     }
-    if (input_property=="X")
-      return mouse_x;
-    else if (input_property=="Y")
-      return mouse_y;
+    if (input_property=="pageX")
+      return mouse_pageX;
+    else if (input_property=="pageY")
+      return mouse_pageY;
     else if (input_property=="offsetX")
-      return mouse_offsetx;
+      return mouse_offsetX;
     else if (input_property=="offsetY")
-      return mouse_offsety;    
+      return mouse_offsetY;    
+    else if (input_property=="clientX")
+      return mouse_clientX;
+    else if (input_property=="clientY")
+      return mouse_clientY;
+    else if (input_property=="screenX")
+      return mouse_screenX;
+    else if (input_property=="screenY")
+      return mouse_screenY;   
   } 
   
   function text_to_number(input_text) {
@@ -2575,6 +2595,103 @@ function HextoRgb(color) {
       document.getElementById("gamecheckbox_"+input_id).parentNode.removeChild(document.getElementById("gamecheckbox_"+input_id));
   }
 
+  function textarea_create(input_id,input_left,input_top,input_cols,input_rows,input_innerHTML,input_opacity,input_zindex,input_display) {
+    if (document.getElementById("gametextarea_"+input_id)) 
+      document.getElementById("gametextarea_"+input_id).parentNode.removeChild(document.getElementById("gametextarea_"+input_id));
+    var obj = document.createElement("textarea");
+    obj.id = "gametextarea_"+input_id;
+	obj.name = obj.id;
+    obj.style.position = "absolute";
+    obj.style.left = input_left + 'px';
+    obj.style.top = input_top + 'px';
+	obj.cols = input_cols;
+	obj.rows = input_rows;
+	obj.innerHTML = input_innerHTML;
+    obj.style.opacity = input_opacity;
+    obj.style.zIndex = input_zindex;
+    obj.draggable="true";
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
+    obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('textarea/plain',event.target.id);");
+    document.body.appendChild(obj);
+  }
+
+  function textarea_set(input_id,input_property,input_value) {
+    if (document.getElementById("gametextarea_"+input_id)) {
+	  var obj = document.getElementById("gametextarea_"+input_id);
+      if (input_property=="left")
+        obj.style.left = input_value + "px";
+      else if (input_property=="top")
+        obj.style.top = input_value + "px";	
+      else if (input_property=="cols")
+        obj.cols = input_value;
+      else if (input_property=="rows")
+        obj.rows = input_value;	  
+      else if (input_property=="value")
+        obj.value = input_value;
+      else if (input_property=="readonly")
+        obj.readonly = input_value;	  
+      else if (input_property=="opacity")
+        obj.style.opacity = input_value;    
+      else if (input_property=="zindex")
+        obj.style.zIndex = input_value;
+      else if (input_property=="display"){ 
+        if (input_value==1)
+          obj.style.display = "block";    
+        else if (input_value==0)
+          obj.style.display = "none";
+      }
+      else if (input_property=="position")
+        obj.style.position = input_value;  
+      else if (input_property=="disabled")
+        obj.disabled = input_value;
+      else if (input_property=="draggable")
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
+    }
+  }
+
+  function textarea_get(input_id,input_property){
+    if (document.getElementById("gametextarea_"+input_id)) {
+	  var obj = document.getElementById("gametextarea_"+input_id);
+      if (input_property=="left")
+        return Number(obj.style.left.replace(/px/ig,""));
+      else if (input_property=="top")
+        return Number(obj.style.top.replace(/px/ig,""));
+      else if (input_property=="cols")
+        return obj.cols;
+      else if (input_property=="rows")
+        return obj.rows;	  
+      else if (input_property=="value")
+        return obj.value;
+      else if (input_property=="readonly")
+        return obj.readonly;	   
+      else if (input_property=="opacity")
+        return Number(obj.style.opacity);
+      else if (input_property=="zindex")
+        return obj.style.zIndex;
+      else if (input_property=="display")
+        return obj.style.display;
+      else if (input_property=="position")
+        return obj.style.position;  
+      else if (input_property=="disabled")
+        return obj.disabled;
+      else if (input_property=="draggable")
+        return obj.draggable;
+      else if (input_property=='id')
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
+    }
+    else
+      return "";
+  }
+
+  function textarea_delete(input_id) {
+    if (document.getElementById("gametextarea_"+input_id))
+      document.getElementById("gametextarea_"+input_id).parentNode.removeChild(document.getElementById("gametextarea_"+input_id));
+  }
+
   window.table_create = table_create;
   window.table_set = table_set;
   window.table_get = table_get;
@@ -2676,5 +2793,9 @@ function HextoRgb(color) {
   window.checkbox_set = checkbox_set;
   window.checkbox_get = checkbox_get;
   window.checkbox_delete = checkbox_delete;
+  window.textarea_create = textarea_create;
+  window.textarea_set = textarea_set;
+  window.textarea_get = textarea_get;
+  window.textarea_delete = textarea_delete;
 
 }(window, window.document));
