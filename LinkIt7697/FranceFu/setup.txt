@@ -34,7 +34,7 @@ function initial(blocks_path, javascript_path, toolbox_path) {
 		for (var i=0;i<len;i++){
 			var node = new XMLSerializer().serializeToString(new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes[i]);
 			xmlNewValue+=node;
-			if (node.indexOf("category_servo")!=-1)  //可以自訂要插入在哪個目錄名稱前
+			if (node.indexOf("category_servo")!=-1)  //可以自訂要插入在哪個目錄名稱後
 				xmlNewValue+='<sep></sep>'+new XMLSerializer().serializeToString(xml.firstChild);
 		}
 	}
