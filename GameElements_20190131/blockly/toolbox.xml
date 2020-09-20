@@ -739,20 +739,15 @@
       <block type="math_number">
         <field name="NUM">30</field>
       </block>
-    </value>   
-    <value name="opacity_">
-      <block type="math_number">
-        <field name="NUM">1</field>
-      </block>
-    </value>   
-    <value name="max_">  
-      <block type="math_number">
-        <field name="NUM">100</field>
-      </block>
-    </value>  
+    </value> 
     <value name="min_">  
       <block type="math_number">
         <field name="NUM">0</field>
+      </block>
+    </value> 
+    <value name="max_">  
+      <block type="math_number">
+        <field name="NUM">100</field>
       </block>
     </value>  
     <value name="step_">  
@@ -764,7 +759,12 @@
       <block type="math_number">
         <field name="NUM">0</field>
       </block>
-    </value>       
+    </value> 	
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>         
     <value name="zindex_">
       <block type="math_number">
         <field name="NUM">999</field>
@@ -818,17 +818,7 @@
       <block type="text">
         <field name="TEXT"></field>
       </block>
-    </value>     
-    <value name="left_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
-    <value name="top_">
-      <block type="math_number">
-        <field name="NUM">100</field>
-      </block>
-    </value> 
+    </value>  
     <value name="width_">
       <block type="math_number">
         <field name="NUM">60</field>
@@ -838,7 +828,17 @@
       <block type="math_number">
         <field name="NUM">30</field>
       </block>
-    </value>   
+    </value>  	
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value>  
     <value name="background_">
       <block type="colour_picker">
         <field name="COLOUR">#ffffff</field>
@@ -2402,6 +2402,501 @@
       </block>
     </value>         
   </block>  
+
+  </category>
+  <category id="catGameElements_sub17" colour="120"> 
+
+  <block type="number_create"> 
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">50</field>
+      </block>
+    </value>
+    <value name="min_">  
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>  
+    <value name="max_">  
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value>  
+    <value name="step_">  
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>  
+    <value name="value_">  
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 	
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>         
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">999</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="number_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="number_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
+  <block type="number_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>    
+  <block type="number_onchange_do">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>         
+  </block>
+
+  </category>
+  <category id="catGameElements_sub18" colour="120"> 
+
+  <block type="date_create"> 
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="min_">  
+      <block type="text">
+        <field name="TEXT">1900-01-01</field>
+      </block>
+    </value>  
+    <value name="max_">  
+      <block type="text">
+        <field name="TEXT">2100-12-31</field>
+      </block>
+    </value> 
+    <value name="value_">  
+      <block type="text">
+        <field name="TEXT">2020-09-28</field>
+      </block>
+    </value> 	
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>         
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">999</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="date_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="date_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
+  <block type="date_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>    
+  <block type="date_onchange_do">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>         
+  </block>
+
+  </category>
+  <category id="catGameElements_sub19" colour="120"> 
+
+  <block type="time_create"> 
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="value_">  
+      <block type="text">
+        <field name="TEXT">00:00:00</field>
+      </block>
+    </value> 	
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>         
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">999</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="time_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="time_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
+  <block type="time_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>    
+  <block type="time_onchange_do">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>         
+  </block>
+
+  </category>
+  <category id="catGameElements_sub20" colour="120"> 
+
+  <block type="datetime_create"> 
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="value_">  
+      <block type="text">
+        <field name="TEXT">2020-09-28T00:00</field>
+      </block>
+    </value> 	
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>         
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">999</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="datetime_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="datetime_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
+  <block type="datetime_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>    
+  <block type="datetime_onchange_do">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>         
+  </block>
+
+  </category>
+  <category id="catGameElements_sub21" colour="120"> 
+
+  <block type="progress_create"> 
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="max_">  
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="value_">  
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 	
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>         
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">999</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="progress_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="progress_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
+  <block type="progress_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>
+
+  </category>
+  <category id="catGameElements_sub22" colour="120"> 
+
+  <block type="password_create"> 
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">60</field>
+      </block>
+    </value>
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">30</field>
+      </block>
+    </value>  	
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value>  
+    <value name="maxlength_">  
+      <block type="math_number">
+        <field name="NUM">20</field>
+      </block>
+    </value> 
+    <value name="value_">  
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+    <value name="background_">
+      <block type="colour_picker">
+        <field name="COLOUR">#ffffff</field>
+      </block>
+    </value>
+    <value name="color_">
+      <block type="colour_picker">
+        <field name="COLOUR">#000000</field>
+      </block>
+    </value>    
+    <value name="fontsize_">
+      <block type="math_number">
+        <field name="NUM">14</field>
+      </block>
+    </value>       
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>          
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">999</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="password_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="password_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
+  <block type="password_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>
 
   </category>
   <category id="catGameElements_sub16" colour="120"> 
