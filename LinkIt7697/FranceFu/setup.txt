@@ -1,5 +1,5 @@
 /*
-https://www.facebook.com/francefu    2020/9/20 22:30
+https://www.facebook.com/francefu    2020/9/21 07:30
 適用 LinkIt 7697 BlocklyDuino v3
 
 在BlocklyDuino3\package.nw\js\init.js檔中將以下程式碼插入在此行程式碼之前，
@@ -20,8 +20,9 @@ var en_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/en.js";  
 var en_category_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/en_category.xml";  //載入積木目錄文字英文語系設定檔
 var zhhant_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/zh-hant.js";  //載入積木文字繁體語系設定檔(預設繁體語系)
 var zhhant_category_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/zh-hant_category.xml";  //載入積木目錄文字繁體語系設定檔(預設繁體語系)
+var insertAfterCategoryName = "category_servo";
 
-initial(blocks_path, javascript_path, toolbox_path);
+initial(blocks_path, javascript_path, toolbox_path, insertAfterCategoryName);
 
 function initial(blocks_path, javascript_path, toolbox_path) {
 	addScript(blocks_path);
@@ -34,7 +35,7 @@ function initial(blocks_path, javascript_path, toolbox_path) {
 		for (var i=0;i<len;i++){
 			var node = new XMLSerializer().serializeToString(new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes[i]);
 			xmlNewValue+=node;
-			if (node.indexOf("category_servo")!=-1)  //可以自訂要插入在哪個目錄名稱後
+			if (node.indexOf(insertAfterCategoryName)!=-1)  //可以自訂要插入在哪個目錄名稱後
 				xmlNewValue+='<sep></sep>'+new XMLSerializer().serializeToString(xml.firstChild);
 		}
 	}
