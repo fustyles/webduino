@@ -20,7 +20,7 @@ var en_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/en.js";  
 var en_category_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/en_category.xml";  //載入積木目錄文字英文語系設定檔
 var zhhant_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/zh-hant.js";  //載入積木文字繁體語系設定檔(預設繁體語系)
 var zhhant_category_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/zh-hant_category.xml";  //載入積木目錄文字繁體語系設定檔(預設繁體語系)
-var insertAfterCategoryName = "category_servo";
+var insertAfterCategoryName = "category_servo";  //可將自訂積木插入在指定目錄後
 
 initial(blocks_path, javascript_path, toolbox_path, insertAfterCategoryName);
 
@@ -35,7 +35,7 @@ function initial(blocks_path, javascript_path, toolbox_path) {
 		for (var i=0;i<len;i++){
 			var node = new XMLSerializer().serializeToString(new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes[i]);
 			xmlNewValue+=node;
-			if (node.indexOf(insertAfterCategoryName)!=-1)  //可以自訂要插入在哪個目錄名稱後
+			if (node.indexOf(insertAfterCategoryName)!=-1)
 				xmlNewValue+='<sep></sep>'+new XMLSerializer().serializeToString(xml.firstChild);
 		}
 	}
