@@ -31,7 +31,7 @@ Blockly.Msg.ESP32_SERVERMODULE_SHOW = "ESP32連線到 Wi-Fi AP  ";
 Blockly.Msg.ESP32_DIGITALWRITE_SHOW = "ESP32 數位寫入 Pin";
 Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW = "數值";
 Blockly.Msg.SERVERMODULE_CMD_SHOW = "自訂指令 cmd == ";
-Blockly.Msg.SERVERMODULE_FEEDBACK_SHOW = "回傳網頁";
+Blockly.Msg.SERVERMODULE_FEEDBACK_SHOW = "回傳網頁 Feedback = ";
 Blockly.Msg.SERVERMODULE_EXECUTE_SHOW = "自訂指令區";
 Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW = "首頁網頁";
 Blockly.Msg.SERVERMODULE_PARAMETER_GET_SHOW = "取得參數";
