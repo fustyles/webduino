@@ -2676,7 +2676,7 @@
     </value> 
     <value name="value_">  
       <block type="text">
-        <field name="TEXT">2020-09-28T00:00</field>
+        <field name="TEXT">2020-09-28 00:00</field>
       </block>
     </value> 	
     <value name="opacity_">
