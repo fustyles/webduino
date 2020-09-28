@@ -3952,3 +3952,125 @@ Blockly.Blocks['password_delete'] = {
   this.setColour(60);
   }
 };
+
+
+Blockly.Blocks['form_create'] = {
+  init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FORM_CREATE);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("action_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FORM_ACTION); 
+  this.appendValueInput("target_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FORM_TARGET);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FORM_METHOD)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_GET,"get"], [Blockly.Msg.PROPERTY_POST,"post"]]), "method_");
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FORM_ENCTYPE) 
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_APPLICATION,"application/x-www-form-urlencoded"], [Blockly.Msg.PROPERTY_MULTIPART,"multipart/form-data"], [Blockly.Msg.PROPERTY_TEXT,"text/plain"]]), "enctype_");
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['form_set'] = {
+  init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.ELEMENT_FORM);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.FORM_ID);      
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FORM_SET) 
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FORM_ACTION,"action"], [Blockly.Msg.FORM_TARGET,"target"]]), "property_");
+  this.appendValueInput("value_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null);    
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['form_get'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.ELEMENT_FORM);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.FORM_ID);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FORM_GET)
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FORM_ACTION,"action"], [Blockly.Msg.FORM_TARGET,"target"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['form_delete'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.ELEMENT_FORM);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.FORM_ID); 
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FORM_DELETE);  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['form_insert'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.ELEMENT_FORM);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.FORM_ID);
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FORM_INSERT);
+ this.appendDummyInput()  
+      .appendField(Blockly.Msg.ELEMENT)
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_RADIO,"radio"],[Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],[Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],[Blockly.Msg.ELEMENT_NUMBER,"number"],[Blockly.Msg.ELEMENT_DATE,"date"],[Blockly.Msg.ELEMENT_TIME,"time"],[Blockly.Msg.ELEMENT_DATETIME,"datetime"],[Blockly.Msg.ELEMENT_PROGRESS,"progress"],[Blockly.Msg.ELEMENT_PASSWORD,"password"],[Blockly.Msg.ELEMENT_COLOR,"color"]]), "element_");
+  this.appendValueInput("elementid_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.ELEMENT_ID);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['form_submit'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.ELEMENT_FORM);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.FORM_ID);
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FORM_SUBMIT);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};

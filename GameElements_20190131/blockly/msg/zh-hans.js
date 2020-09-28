@@ -21,3 +21,4 @@ MSG.catGameElements_sub19 = "时间栏位";
 MSG.catGameElements_sub20 = "日期时间栏位";
 MSG.catGameElements_sub21 = "进度";
 MSG.catGameElements_sub22 = "密码栏位";
+MSG.catGameElements_sub23 = "表单";

@@ -1,5 +1,6 @@
 {
-  "types": ["table_create","table_set","table_get","table_clear","table_change_colsrows","table_td_set","table_border_set","table_td_border_set","table_td_get","table_td_onclick_do","table_td_insert_img","table_td_img_move","table_td_canvas_move","table_td_copy_move","table_td_img_get","table_td_insert_text","table_td_clear","table_delete",
+  "types": [
+            "table_create","table_set","table_get","table_clear","table_change_colsrows","table_td_set","table_border_set","table_td_border_set","table_td_get","table_td_onclick_do","table_td_insert_img","table_td_img_move","table_td_canvas_move","table_td_copy_move","table_td_img_get","table_td_insert_text","table_td_clear","table_delete",
             "music_create","music_delete",
 	    "canvas_create","canvas_set","canvas_get","canvas_line","canvas_rect","canvas_arc","canvas_img_url","canvas_img","canvas_text","canvas_quadraticcurve","canvas_beziercurve","canvas_clearrect","canvas_clear","canvas_delete","canvas_onclick_do","canvas_onclick_get",
 	    "image_create","image_set","image_get","image_delete","image_collision","image_boundary","image_boundary_collision","image_boundary_collision_do","image_sys_get","image_onclick_listener","image_onclick_do","image_onclick_get","image_move","image_resize",
@@ -24,7 +25,8 @@
 	    "time_create","time_set","time_get","time_delete","time_onchange_do",
 	    "datetime_create","datetime_set","datetime_get","datetime_delete","datetime_onchange_do",
 	    "progress_create","progress_set","progress_get","progress_delete",
-	    "password_create","password_set","password_get","password_delete"
+	    "password_create","password_set","password_get","password_delete",
+	    "form_create","form_set","form_get","form_delete","form_insert","form_submit"
 	    ],
   "category": "catPlus",
   "scripts": [

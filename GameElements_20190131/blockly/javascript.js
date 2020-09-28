@@ -1546,3 +1546,49 @@ Blockly.JavaScript['password_delete'] = function (block) {
   var code = 'password_delete(' + value_id_ + ');\n';
   return code;
 };
+
+
+Blockly.JavaScript['form_create'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_action_ = Blockly.JavaScript.valueToCode(block, 'action_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_enctype_ = block.getFieldValue('enctype_');
+  var value_method_ = block.getFieldValue('method_');
+  var value_target_ = Blockly.JavaScript.valueToCode(block, 'target_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var code = 'form_create(' + value_id_ + ','+ value_action_ + ',"' + value_enctype_ + '","' + value_method_ + '",' + value_target_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['form_set'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'form_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['form_get'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'form_get(' + value_id_ + ',"' + value_property_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['form_delete'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'form_delete(' + value_id_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['form_insert'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_element_ = block.getFieldValue('element_');
+  var value_elementid_ = Blockly.JavaScript.valueToCode(block, 'elementid_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var code = 'form_insert(' + value_id_ + ',"' + value_element_ + '",' + value_elementid_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['form_submit'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'form_submit(' + value_id_ + ');\n';
+  return code;
+};

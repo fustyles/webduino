@@ -1364,7 +1364,7 @@
     var obj = document.createElement('input');
     obj.type="color";
     obj.id = "gamecolor_"+input_id;
-	obj.name = obj.id;
+	obj.name = input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -1461,7 +1461,7 @@
       document.getElementById("gameselect_"+input_id).parentNode.removeChild(document.getElementById("gameselect_"+input_id));
     var obj = document.createElement("select");
     obj.id = "gameselect_"+input_id;
-	obj.name = obj.id;
+	obj.name = input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -1615,7 +1615,7 @@
     var obj = document.createElement('input');
     obj.type="range";
     obj.id = "gamerange_"+input_id;
-	obj.name = obj.id;
+	obj.name = input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -1728,7 +1728,7 @@
     var obj = document.createElement('input');
     obj.type="text";
     obj.id = "gametext_"+input_id;
-	obj.name = obj.id;
+	obj.name = input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -1749,7 +1749,6 @@
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(obj);
     obj.value = input_value;
-	  console.log(input_value);
   }
 
   function text_set(input_id,input_property,input_value) {
@@ -2038,6 +2037,7 @@ function HextoRgb(color) {
       document.getElementById("gameiframe_"+input_id).parentNode.removeChild(document.getElementById("gameiframe_"+input_id));
     var obj = document.createElement('iframe');
     obj.id = "gameiframe_"+input_id;
+	obj.name = obj.id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -2305,7 +2305,7 @@ function HextoRgb(color) {
     var obj = document.createElement("input");
 	obj.setAttribute("type", "radio");
     obj.id = "gameradio_"+input_id;
-	obj.name = "gameradio_"+input_name;
+	obj.name = input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -2409,7 +2409,7 @@ function HextoRgb(color) {
     var obj = document.createElement("input");
 	obj.setAttribute("type", "checkbox");
     obj.id = "gamecheckbox_"+input_id;
-	obj.name = obj.id;
+	obj.name = input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -2500,7 +2500,7 @@ function HextoRgb(color) {
       document.getElementById("gametextarea_"+input_id).parentNode.removeChild(document.getElementById("gametextarea_"+input_id));
     var obj = document.createElement("textarea");
     obj.id = "gametextarea_"+input_id;
-	obj.name = obj.id;
+	obj.name = input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -2598,7 +2598,7 @@ function HextoRgb(color) {
     var obj = document.createElement('input');
     obj.type="number";
     obj.id = "gamenumber_"+input_id;
-	obj.name = obj.id;
+	obj.name = input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -2706,7 +2706,7 @@ function HextoRgb(color) {
     var obj = document.createElement('input');
     obj.type="date";
     obj.id = "gamedate_"+input_id;
-	obj.name = obj.id;
+	obj.name = input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -2810,7 +2810,7 @@ function HextoRgb(color) {
     var obj = document.createElement('input');
     obj.type="time";
     obj.id = "gametime_"+input_id;
-	obj.name = obj.id;
+	obj.name = input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -2904,7 +2904,7 @@ function HextoRgb(color) {
     var obj = document.createElement('input');
     obj.type="datetime-local";
     obj.id = "gamedatetime_"+input_id;
-	obj.name = obj.id;
+	obj.name = input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -2922,7 +2922,7 @@ function HextoRgb(color) {
   }
 
   function datetime_format(input_datetime) {
-    input_datetime = input_datetime.split(" ");
+    input_datetime = input_datetime.split("T");
 	var input_date = input_datetime[0].trim().split("-");
 	var input_time = input_datetime[1].trim().split(":");
 	var d = "1900-01-01", t = "00:00";
@@ -3005,7 +3005,7 @@ function HextoRgb(color) {
       document.getElementById("gameprogress_"+input_id).parentNode.removeChild(document.getElementById("gameprogress_"+input_id));
     var obj = document.createElement('progress');
     obj.id = "gameprogress_"+input_id;
-	obj.name = obj.id;
+	obj.name = input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -3098,7 +3098,7 @@ function HextoRgb(color) {
     var obj = document.createElement('input');
     obj.type="password";
     obj.id = "gamepassword_"+input_id;
-	obj.name = obj.id;
+	obj.name = input_id;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -3224,6 +3224,64 @@ function HextoRgb(color) {
   function password_delete(input_id) {
     if (document.getElementById("gamepassword_"+input_id))
       document.getElementById("gamepassword_"+input_id).parentNode.removeChild(document.getElementById("gamepassword_"+input_id));
+  }
+
+  function form_create(input_id,input_action,input_enctype,input_method,input_target) {
+    if (document.getElementById("gameform_"+input_id)) 
+      document.getElementById("gameform_"+input_id).parentNode.removeChild(document.getElementById("gameform_"+input_id));
+    var obj = document.createElement('form');
+    obj.id = "gameform_"+input_id;
+	obj.name = input_id;
+	obj.action = input_action;
+    obj.enctype = input_enctype;
+    obj.method = input_method;
+	obj.acceptCharset = "UTF-8";
+	if (!document.getElementById("gameiframe_"+input_target))
+	  iframe_create(input_target, 300, 200, 0, 100, "1", "yes", '', '', 1, 999, true);
+    obj.target = "gameiframe_"+input_target;
+    document.body.appendChild(obj);
+  }
+
+  function form_set(input_id,input_property,input_value) {
+    if (document.getElementById("gameform_"+input_id)) {
+	  var obj = document.getElementById("gameform_"+input_id);
+      if (input_property=="action")
+        obj.action = input_value;
+      else if (input_property=="target")
+        obj.target = input_value;	    
+    }
+  }
+
+  function form_get(input_id,input_property){
+    if (document.getElementById("gameform_"+input_id)) {
+	  var obj = document.getElementById("gameform_"+input_id);
+      if (input_property=="action")
+        return obj.action;		    
+      else if (input_property=="target")
+        return obj.target;
+      else if (input_property=='id')
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
+    }
+    else
+      return "";
+  }
+
+  function form_delete(input_id) {
+    if (document.getElementById("gameform_"+input_id))
+      document.getElementById("gameform_"+input_id).parentNode.removeChild(document.getElementById("gameform_"+input_id));
+  }
+
+  function form_insert(input_id,input_element,input_elementid) {
+    if (document.getElementById("gameform_"+input_id)&&document.getElementById("game"+input_element+"_"+input_elementid))
+		document.getElementById("gameform_"+input_id).appendChild(document.getElementById("game"+input_element+"_"+input_elementid));
+      
+  }
+
+  function form_submit(input_id) {
+    if (document.getElementById("gameform_"+input_id))
+      document.getElementById("gameform_"+input_id).submit();
   }
 
   window.table_create = table_create;
@@ -3353,5 +3411,11 @@ function HextoRgb(color) {
   window.password_set = password_set;
   window.password_get = password_get;
   window.password_delete = password_delete;
+  window.form_create = form_create;
+  window.form_set = form_set;
+  window.form_get = form_get;
+  window.form_delete = form_delete;
+  window.form_insert = form_insert;
+  window.form_submit = form_submit;
 
 }(window, window.document));
