@@ -459,7 +459,7 @@
     else if (extname_flash.indexOf("."+substr[substr.length-1]+",")!=-1)
         var src = '<embed src="' + input_url + '" style="width:0px;height:0px" type="application/x-shockwave-flash"></embed>';
     else 
-        var src = '<iframe src="' + input_url + '" style="width:0px;height:0px" frameborder="0" allow="geolocation; microphone; camera"></iframe>';
+        var src = '<iframe src="' + input_url + '" style="width:0px;height:0px" frameborder="0" allow="autoplay; fullscreen; geolocation; microphone; camera" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation"></iframe>';
     
     if (document.getElementById("gamemusic_"))
         document.getElementById("gamemusic_").parentNode.removeChild(document.getElementById("gamemusic_"));
@@ -2056,7 +2056,7 @@ function HextoRgb(color) {
     else
       obj.style.display = "block";
     obj.allow = "autoplay; fullscreen; geolocation; microphone; camera";
-    obj.sandbox = "allow-same-origin allow-scripts allow-popups allow-forms";
+    obj.sandbox = "allow-same-origin allow-scripts allow-popups allow-forms allow-presentation";
     obj.allowfullscreen = true;
     obj.draggable="true";
     obj.setAttribute("onclick", "javascript:onclickid_set(this);");
