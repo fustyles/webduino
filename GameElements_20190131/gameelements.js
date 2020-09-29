@@ -2387,8 +2387,8 @@ function HextoRgb(color) {
   }
 
   function radio_name_get(input_name){
-    if (document.getElementById("gameradio_"+input_name)) {
-		var obj = document.getElementsByName("gameradio_"+input_name); 	
+    if (document.getElementsByName(input_name)) {
+		var obj = document.getElementsByName(input_name); 	
 		for(var i=0;i<obj.length;i++) { 
 			if(obj[i].type="radio") { 
 				if(obj[i].checked) return obj[i].value;
