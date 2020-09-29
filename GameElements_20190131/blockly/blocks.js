@@ -3074,8 +3074,11 @@ Blockly.Blocks['radio_name_get'] = {
   init: function () {
   this.appendValueInput("name_")
       .setCheck(null)
+	  .appendField(Blockly.Msg.ELEMENT_RADIO)
 	  .appendField(Blockly.Msg.PROPERTY_NAME_GET)
       .appendField(Blockly.Msg.PROPERTY_NAME);  
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.VALUE); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
