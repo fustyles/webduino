@@ -2592,7 +2592,7 @@ function HextoRgb(color) {
       document.getElementById("gametextarea_"+input_id).parentNode.removeChild(document.getElementById("gametextarea_"+input_id));
   }
 
-  function number_create(input_id,input_left,input_top,input_width,input_max,input_min,input_step,input_value,input_opacity,input_zindex,input_display) {
+  function number_create(input_id,input_left,input_top,input_width,input_height,input_fontsize,input_max,input_min,input_step,input_value,input_opacity,input_zindex,input_display) {
     if (document.getElementById("gamenumber_"+input_id)) 
       document.getElementById("gamenumber_"+input_id).parentNode.removeChild(document.getElementById("gamenumber_"+input_id));
     var obj = document.createElement('input');
@@ -2603,9 +2603,11 @@ function HextoRgb(color) {
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
     obj.style.width = input_width + 'px';
-	obj.max = input_max;
-	obj.min = input_min;
-	obj.step = input_step;
+    obj.style.height = input_height + 'px';
+    obj.style.fontSize = input_fontsize + "px";
+    obj.max = input_max;
+    obj.min = input_min;
+    obj.step = input_step;
     obj.value = input_value;
     obj.style.opacity = input_opacity;
     obj.style.zIndex = input_zindex;
@@ -2628,6 +2630,14 @@ function HextoRgb(color) {
         obj.style.top = input_value + "px";
       else if (input_property=="width")
         obj.style.width = input_value + "px";
+      else if (input_property=="height")
+        obj.style.height = input_value + "px";
+      else if (input_property=="background")
+        obj.style.background = input_value;
+      else if (input_property=="color")
+        obj.style.color = input_value;
+      else if (input_property=="fontsize")
+        obj.style.fontSize = input_value + "px";
       else if (input_property=="max")
         obj.max = input_value;      
       else if (input_property=="min")
