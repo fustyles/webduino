@@ -2305,7 +2305,7 @@ function HextoRgb(color) {
     var obj = document.createElement("input");
 	obj.setAttribute("type", "radio");
     obj.id = "gameradio_"+input_id;
-	obj.name = input_id;
+	obj.name = input_name;
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
