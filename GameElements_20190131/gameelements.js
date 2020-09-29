@@ -2973,7 +2973,7 @@ function HextoRgb(color) {
       else if (input_property=="top")
         return Number(obj.style.top.replace(/px/ig,""));
       else if (input_property=="value")
-        return obj.value.replace("T"," ");
+        return obj.value;
       else if (input_property=="opacity")
         return Number(obj.style.opacity);
       else if (input_property=="zindex")
