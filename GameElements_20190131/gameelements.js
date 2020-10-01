@@ -3319,7 +3319,6 @@ function HextoRgb(color) {
 			if (meta[i].name=="viewport")
 			{
 				meta[i].content='width=device-width, initial-scale='+input_initialscale+', minimum-scale='+input_minimumscale+', maximum-scale='+input_maximumscale+', user-scalable='+input_scalable;
-				console.log(meta[i]);
 				return;
 			}
 		}
