@@ -10,12 +10,12 @@
     </value>
     <value name="minimumscale_">
       <block type="math_number">
-        <field name="NUM">0</field>
+        <field name="NUM">1</field>
       </block>
     </value>
     <value name="maximumscale_">
       <block type="math_number">
-        <field name="NUM">100</field>
+        <field name="NUM">2</field>
       </block>
     </value>
   </block> 
