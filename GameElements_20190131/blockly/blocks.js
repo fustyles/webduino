@@ -3011,6 +3011,10 @@ Blockly.Blocks['radio_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TOP);
+  this.appendValueInput("size_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.SIZE);
   this.appendValueInput("value_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3132,6 +3136,10 @@ Blockly.Blocks['checkbox_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TOP);
+  this.appendValueInput("size_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.SIZE);
   this.appendValueInput("value_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)

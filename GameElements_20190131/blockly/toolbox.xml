@@ -2173,6 +2173,11 @@
         <field name="NUM">100</field>
       </block>
     </value> 
+    <value name="size_">
+      <block type="math_number">
+        <field name="NUM">12</field>
+      </block>
+    </value> 
     <value name="value_">
       <block type="text">
         <field name="TEXT"></field>
@@ -2257,6 +2262,11 @@
     <value name="top_">
       <block type="math_number">
         <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="size_">
+      <block type="math_number">
+        <field name="NUM">12</field>
       </block>
     </value> 
     <value name="value_">

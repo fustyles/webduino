@@ -2299,7 +2299,7 @@ function HextoRgb(color) {
       document.getElementById("gamea_"+input_id).parentNode.removeChild(document.getElementById("gamea_"+input_id));
   }
 	
-  function radio_create(input_id,input_name,input_left,input_top,input_value,input_checked,input_opacity,input_zindex,input_display) {
+  function radio_create(input_id,input_name,input_left,input_top,input_size,input_value,input_checked,input_opacity,input_zindex,input_display) {
     if (document.getElementById("gameradio_"+input_id)) 
       document.getElementById("gameradio_"+input_id).parentNode.removeChild(document.getElementById("gameradio_"+input_id));
     var obj = document.createElement("input");
@@ -2309,6 +2309,8 @@ function HextoRgb(color) {
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
+	obj.style.width = input_size + 'px';
+	obj.style.height = input_size + 'px';
 	obj.value = input_value;
 	if (input_checked==true)
 	  obj.checked = "checked";
@@ -2409,7 +2411,7 @@ function HextoRgb(color) {
       document.getElementById("gameradio_"+input_id).parentNode.removeChild(document.getElementById("gameradio_"+input_id));
   }
 
-  function checkbox_create(input_id,input_left,input_top,input_value,input_checked,input_opacity,input_zindex,input_display) {
+  function checkbox_create(input_id,input_left,input_top,input_size,input_value,input_checked,input_opacity,input_zindex,input_display) {
     if (document.getElementById("gamecheckbox_"+input_id)) 
       document.getElementById("gamecheckbox_"+input_id).parentNode.removeChild(document.getElementById("gamecheckbox_"+input_id));
     var obj = document.createElement("input");
@@ -2419,6 +2421,8 @@ function HextoRgb(color) {
     obj.style.position = "absolute";
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
+	obj.style.width = input_size + 'px';
+	obj.style.height = input_size + 'px';
 	obj.value = input_value;
 	if (input_checked==true)
 	  obj.checked = "checked";
