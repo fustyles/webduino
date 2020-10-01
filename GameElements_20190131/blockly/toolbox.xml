@@ -5,7 +5,7 @@
   <block type="head_add_viewport">
     <value name="initialscale_">
       <block type="math_number">
-        <field name="NUM">1.5</field>
+        <field name="NUM">1</field>
       </block>
     </value>
     <value name="minimumscale_">

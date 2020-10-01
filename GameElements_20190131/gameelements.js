@@ -3312,10 +3312,22 @@ function HextoRgb(color) {
 
   function head_add_viewport(input_initialscale,input_minimumscale,input_maximumscale,input_scalable) {
 	var head = document.getElementsByTagName('head')[0];
-	var meta = document.createElement('meta'); 
-	meta.setAttribute('name', 'viewport'); 
-	meta.setAttribute('content', 'width=device-width, initial-scale='+input_initialscale+', minimum-scale='+input_minimumscale+', maximum-scale='+input_maximumscale+', user-scalable='+input_scalable); 
-	head.appendChild(meta);
+	var meta = head.getElementsByTagName('meta');
+	if (meta.length>0) {
+		for (var i=0;i<meta.length;i++ )
+		{
+			if (meta[i].name=="viewport")
+			{
+				meta[i].content='width=device-width, initial-scale='+input_initialscale+', minimum-scale='+input_minimumscale+', maximum-scale='+input_maximumscale+', user-scalable='+input_scalable;
+				return;
+			}
+		}
+	}
+
+	var meta_new = document.createElement('meta'); 
+	meta_new.setAttribute('name', 'viewport'); 
+	meta_new.setAttribute('content', 'width=device-width, initial-scale='+input_initialscale+', minimum-scale='+input_minimumscale+', maximum-scale='+input_maximumscale+', user-scalable='+input_scalable); 
+	head.appendChild(meta_new);
   }
 
   window.table_create = table_create;
