@@ -4110,7 +4110,7 @@ Blockly.Blocks['head_add_viewport'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.SCALABLE)
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"yes"], [Blockly.Msg.PROPERTY_NO,"no"]]), "scalable_");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"1"], [Blockly.Msg.PROPERTY_NO,"0"]]), "scalable_");
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
