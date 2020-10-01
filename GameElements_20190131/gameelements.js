@@ -3310,13 +3310,15 @@ function HextoRgb(color) {
       document.getElementById("gameform_"+input_id).submit();
   }
 
-  function head_add_viewport(input_width,input_initialscale,input_minimumscale,input_maximumscale,input_scalable) {
+  function head_add_viewport(input_initialscale,input_minimumscale,input_maximumscale,input_scalable) {
 	var head = document.getElementsByTagName('head')[0];
 	var meta = head.getElementsByTagName('meta');
 	if (meta.length>0) {
-		for (var i=0;i<meta.length;i++) {
-			if (meta[i].name=="viewport") {
-				meta[i].content='width='+input_width+', initial-scale='+input_initialscale+', minimum-scale='+input_minimumscale+', maximum-scale='+input_maximumscale+', user-scalable='+input_scalable;
+		for (var i=0;i<meta.length;i++ )
+		{
+			if (meta[i].name=="viewport")
+			{
+				meta[i].content='width=device-width, initial-scale='+input_initialscale+', minimum-scale='+input_minimumscale+', maximum-scale='+input_maximumscale+', user-scalable='+input_scalable;
 				return;
 			}
 		}
@@ -3326,6 +3328,161 @@ function HextoRgb(color) {
 	meta_new.setAttribute('name', 'viewport'); 
 	meta_new.setAttribute('content', 'width=device-width, initial-scale='+input_initialscale+', minimum-scale='+input_minimumscale+', maximum-scale='+input_maximumscale+', user-scalable='+input_scalable); 
 	head.appendChild(meta_new);
+  }
+
+  function video_create(input_id,input_width,input_height,input_left,input_top,input_cam,input_src,input_autoplay,input_loop,input_muted,input_controls,input_preload,input_opacity,input_zindex,input_display) {
+    if (document.getElementById("gamevideo_"+input_id)) 
+      document.getElementById("gamevideo_"+input_id).parentNode.removeChild(document.getElementById("gamevideo_"+input_id));
+    var obj = document.createElement('video');
+    obj.id = "gamevideo_"+input_id;
+    obj.style.position = "absolute";
+    obj.style.left = input_left + 'px';
+    obj.style.top = input_top + 'px';
+    obj.style.width = input_width + 'px';
+    obj.style.height = input_height + 'px';
+	if (input_cam==true){
+      navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+        video: {
+          facingMode: "user"
+        }
+      })
+      .then(stream => {
+        obj.srcObject = stream
+        obj.onloadedmetadata = () => {       
+          obj.play();
+        }
+      })    
+	}
+	else
+		obj.src = input_src;
+    obj.autoplay = input_autoplay;
+    obj.loop = input_loop;
+    obj.muted = input_muted;
+    obj.controls = input_controls;
+	obj.preload = input_preload;
+    obj.style.opacity = input_opacity;
+    obj.style.zIndex = input_zindex;
+    obj.crossOrigin = "anonymous";
+    if (input_display==0)
+      obj.style.display = "none";
+    else
+      obj.style.display = "block";
+    obj.draggable="true";
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
+    obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
+    document.body.appendChild(obj);
+	console.log(obj);
+  }
+
+  function video_set(input_id,input_property,input_value) {
+    if (document.getElementById("gamevideo_"+input_id)) {
+	  var obj = document.getElementById("gamevideo_"+input_id);
+      if (input_property=="left")
+        obj.style.left = input_value + "px";
+      else if (input_property=="top")
+        obj.style.top = input_value + "px";
+      else if (input_property=="width")
+        obj.style.width = input_value + "px";
+      else if (input_property=="height")
+        obj.style.height = input_value + "px";
+      else if (input_property=="cam")
+        if (input_value==true) {
+		  navigator.mediaDevices
+		  .getUserMedia({
+			audio: false,
+			video: {
+			  facingMode: "user"
+			}
+		  })
+		  .then(stream => {
+			obj.srcObject = stream
+			obj.onloadedmetadata = () => {       
+			  obj.play();
+			}
+		  })  
+        }
+      else if (input_property=="src")
+        obj.src = input_value;
+      else if (input_property=="autoplay")
+        obj.autoplay = input_value;
+      else if (input_property=="loop")
+        obj.loop = input_value; 
+      else if (input_property=="muted")
+        obj.muted = input_value;
+      else if (input_property=="controls")
+        obj.controls= input_value; 
+      else if (input_property=="preload")
+        obj.preload = input_value;
+      else if (input_property=="opacity")
+        obj.style.opacity = input_value; 
+      else if (input_property=="zindex")
+        obj.style.zIndex = input_value;
+      else if (input_property=="display"){ 
+        if (input_value==1)
+          obj.style.display = "block";    
+        else if (input_value==0)
+          obj.style.display = "none";
+      }
+      else if (input_property=="position")
+        obj.style.position = input_value;		    
+      else if (input_property=="disabled")
+        obj.disabled = input_value;
+      else if (input_property=="draggable")
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
+    }
+  }
+
+  function video_get(input_id,input_property){
+    if (document.getElementById("gamevideo_"+input_id)) {
+	  var obj = document.getElementById("gamevideo_"+input_id);
+      if (input_property=="left")
+        return Number(obj.style.left.replace(/px/ig,""));
+      else if (input_property=="top")
+        return Number(obj.style.top.replace(/px/ig,""));
+      else if (input_property=="width")
+        return Number(obj.style.width.replace(/px/ig,""));
+      else if (input_property=="height")
+        return Number(obj.style.height.replace(/px/ig,""));
+      else if (input_property=="src")
+        return obj.src;
+      else if (input_property=="autoplay")
+        return obj.autoplay;
+      else if (input_property=="loop")
+        return obj.loop;
+      else if (input_property=="muted")
+        return obj.muted;
+      else if (input_property=="controls")
+        return obj.controls;
+      else if (input_property=="preload")
+        return obj.preload;
+      else if (input_property=="opacity")
+        return Number(obj.style.opacity);
+      else if (input_property=="zindex")
+        return obj.style.zIndex;
+      else if (input_property=="display")
+        return obj.style.display;
+      else if (input_property=="position")
+        return obj.style.position;		    
+      else if (input_property=="disabled")
+        return obj.disabled;
+      else if (input_property=="draggable")
+        return obj.draggable;
+      else if (input_property=='id')
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
+    }
+    else
+      return "";
+  }
+
+  function video_delete(input_id) {
+    if (document.getElementById("gamevideo_"+input_id))
+      document.getElementById("gamevideo_"+input_id).parentNode.removeChild(document.getElementById("gamevideo_"+input_id));
   }
 
   window.table_create = table_create;
@@ -3462,5 +3619,9 @@ function HextoRgb(color) {
   window.form_insert = form_insert;
   window.form_submit = form_submit;
   window.head_add_viewport = head_add_viewport;
+  window.video_create = video_create;
+  window.video_set = video_set;
+  window.video_get = video_get;
+  window.video_delete = video_delete;
 
 }(window, window.document));

@@ -22,3 +22,4 @@ MSG.catGameElements_sub20 = "Date and Time";
 MSG.catGameElements_sub21 = "Progress";
 MSG.catGameElements_sub22 = "Password";
 MSG.catGameElements_sub23 = "Form";
+MSG.catGameElements_sub24 = "Video";

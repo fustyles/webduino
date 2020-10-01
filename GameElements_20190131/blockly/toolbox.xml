@@ -3,11 +3,6 @@
 <category id="catGameElements_sub1" colour="120"> 
 
   <block type="head_add_viewport">
-    <value name="width_">
-      <block type="text">
-        <field name="TEXT">device-width</field>
-      </block> 
-    </value>
     <value name="initialscale_">
       <block type="math_number">
         <field name="NUM">1</field>
@@ -20,7 +15,7 @@
     </value>
     <value name="maximumscale_">
       <block type="math_number">
-        <field name="NUM">2</field>
+        <field name="NUM">1</field>
       </block>
     </value>
   </block> 
@@ -3000,6 +2995,83 @@
   </block> 	
 
   </category>
+  <category id="catGameElements_sub24" colour="120"> 
+
+  <block type="video_create"> 
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value> 
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">320</field>
+      </block>
+    </value>
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">240</field>
+      </block>
+    </value>  
+    <value name="src_">  
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+    <value name="opacity_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value> 
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">999</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>
+  <block type="video_set">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+    <value name="value_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+  </block>  
+  <block type="video_get">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>     
+  <block type="video_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
+  </block>  
+
+  </category>
   <category id="catGameElements_sub16" colour="120"> 
 
   <block type="ajax_get"> 
@@ -3030,5 +3102,4 @@
   </block> 
 
   </category>
-
 </category>
