@@ -2,13 +2,23 @@
 
 <category id="catGameElements_sub1" colour="120"> 
 
-  <block type="time_delay">
-    <value name="seconds">
+  <block type="head_add_viewport">
+    <value name="initialscale_">
       <block type="math_number">
         <field name="NUM">1</field>
       </block>
     </value>
-  </block>  
+    <value name="minimumscale_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="maximumscale_">
+      <block type="math_number">
+        <field name="NUM">100</field>
+      </block>
+    </value>
+  </block> 
   <block type="body_set"> 
     <value name="value_">
       <block type="colour_picker">

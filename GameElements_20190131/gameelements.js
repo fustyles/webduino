@@ -3310,6 +3310,14 @@ function HextoRgb(color) {
       document.getElementById("gameform_"+input_id).submit();
   }
 
+  function head_add_viewport(input_initialscale,input_minimumscale,input_maximumscale,input_scalable) {
+	var head = document.getElementsByTagName('head')[0];
+	var meta = document.createElement('meta'); 
+	meta.setAttribute('name', 'viewport'); 
+	meta.setAttribute('content', 'width=device-width, initial-scale='+input_initialscale+', minimum-scale='+input_minimumscale+', maximum-scale='+input_maximumscale+', user-scalable='+input_scalable); 
+	head.appendChild(meta);
+  }
+
   window.table_create = table_create;
   window.table_set = table_set;
   window.table_get = table_get;
@@ -3443,5 +3451,6 @@ function HextoRgb(color) {
   window.form_delete = form_delete;
   window.form_insert = form_insert;
   window.form_submit = form_submit;
+  window.head_add_viewport = head_add_viewport;
 
 }(window, window.document));

@@ -4093,3 +4093,27 @@ Blockly.Blocks['form_submit'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['head_add_viewport'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.VIEWPORT);
+  this.appendValueInput("initialscale_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.INITIALSCALE);
+  this.appendValueInput("minimumscale_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.MINIMUMSCALE);
+  this.appendValueInput("maximumscale_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.MAXIMUMSCALE);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.SCALABLE)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"yes"], [Blockly.Msg.PROPERTY_NO,"no"]]), "scalable_");
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
