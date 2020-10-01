@@ -4098,6 +4098,9 @@ Blockly.Blocks['head_add_viewport'] = {
   init: function () {
   this.appendDummyInput()   
       .appendField(Blockly.Msg.VIEWPORT);
+  this.appendValueInput("width_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.WIDTH);
   this.appendValueInput("initialscale_")
       .setCheck(null)
       .appendField(Blockly.Msg.INITIALSCALE);

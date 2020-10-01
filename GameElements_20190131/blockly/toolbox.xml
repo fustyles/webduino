@@ -3,6 +3,11 @@
 <category id="catGameElements_sub1" colour="120"> 
 
   <block type="head_add_viewport">
+    <value name="width_">
+      <block type="text">
+        <field name="TEXT">device-width</field>
+      </block> 
+    </value>
     <value name="initialscale_">
       <block type="math_number">
         <field name="NUM">1</field>

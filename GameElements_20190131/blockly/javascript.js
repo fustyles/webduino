@@ -1598,10 +1598,11 @@ Blockly.JavaScript['form_submit'] = function (block) {
 };
 
 Blockly.JavaScript['head_add_viewport'] = function (block) {
+  var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_initialscale_ = Blockly.JavaScript.valueToCode(block, 'initialscale_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_minimumscale_ = Blockly.JavaScript.valueToCode(block, 'minimumscale_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_maximumscale_ = Blockly.JavaScript.valueToCode(block, 'maximumscale_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_scalable_ = block.getFieldValue('scalable_');
-  var code = 'head_add_viewport(' + value_initialscale_ + ',' + value_minimumscale_ + ',' + value_maximumscale_ + ',"' + value_scalable_ + '");\n';
+  var code = 'head_add_viewport(' + value_width_ + ',' + value_initialscale_ + ',' + value_minimumscale_ + ',' + value_maximumscale_ + ',"' + value_scalable_ + '");\n';
   return code;
 };

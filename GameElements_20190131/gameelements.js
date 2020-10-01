@@ -3310,15 +3310,13 @@ function HextoRgb(color) {
       document.getElementById("gameform_"+input_id).submit();
   }
 
-  function head_add_viewport(input_initialscale,input_minimumscale,input_maximumscale,input_scalable) {
+  function head_add_viewport(input_width,input_initialscale,input_minimumscale,input_maximumscale,input_scalable) {
 	var head = document.getElementsByTagName('head')[0];
 	var meta = head.getElementsByTagName('meta');
 	if (meta.length>0) {
-		for (var i=0;i<meta.length;i++ )
-		{
-			if (meta[i].name=="viewport")
-			{
-				meta[i].content='width=device-width, initial-scale='+input_initialscale+', minimum-scale='+input_minimumscale+', maximum-scale='+input_maximumscale+', user-scalable='+input_scalable;
+		for (var i=0;i<meta.length;i++) {
+			if (meta[i].name=="viewport") {
+				meta[i].content='width='+input_width+', initial-scale='+input_initialscale+', minimum-scale='+input_minimumscale+', maximum-scale='+input_maximumscale+', user-scalable='+input_scalable;
 				return;
 			}
 		}
