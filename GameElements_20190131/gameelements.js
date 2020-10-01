@@ -2328,7 +2328,11 @@ function HextoRgb(color) {
       if (input_property=="left")
         obj.style.left = input_value + "px";
       else if (input_property=="top")
-        obj.style.top = input_value + "px";	    
+        obj.style.top = input_value + "px";	  
+      else if (input_property=="size") {
+        obj.style.width = input_value + "px";	
+        obj.style.height = input_value + "px";
+	  }
       else if (input_property=="value")
         obj.value = input_value;	  
       else if (input_property=="opacity")
@@ -2361,6 +2365,8 @@ function HextoRgb(color) {
         return Number(obj.style.left.replace(/px/ig,""));
       else if (input_property=="top")
         return Number(obj.style.top.replace(/px/ig,""));
+      else if (input_property=="size")
+        return Number(obj.style.width.replace(/px/ig,""));
       else if (input_property=="value")
         return obj.value;	  
       else if (input_property=="opacity")
@@ -2432,7 +2438,11 @@ function HextoRgb(color) {
       if (input_property=="left")
         obj.style.left = input_value + "px";
       else if (input_property=="top")
-        obj.style.top = input_value + "px";	    
+        obj.style.top = input_value + "px";	
+      else if (input_property=="size") {
+        obj.style.width = input_value + "px";	
+        obj.style.height = input_value + "px";
+	  }	  
       else if (input_property=="value")
         obj.value = input_value;	  
       else if (input_property=="opacity")
@@ -2465,6 +2475,8 @@ function HextoRgb(color) {
         return Number(obj.style.left.replace(/px/ig,""));
       else if (input_property=="top")
         return Number(obj.style.top.replace(/px/ig,""));
+      else if (input_property=="size")
+        return Number(obj.style.width.replace(/px/ig,""));
       else if (input_property=="value")
         return obj.value;	  
       else if (input_property=="opacity")

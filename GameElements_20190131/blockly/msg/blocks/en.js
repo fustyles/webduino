@@ -410,3 +410,4 @@ Blockly.Msg.FORM_DELETE = "Delete";
 Blockly.Msg.FORM_INSERT = "Insert";
 Blockly.Msg.ELEMENT_ID = "Element ID";
 Blockly.Msg.FORM_SUBMIT = "Submit";
+Blockly.Msg.SIZE = "Size";

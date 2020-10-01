@@ -410,3 +410,4 @@ Blockly.Msg.FORM_DELETE = "删除";
 Blockly.Msg.FORM_INSERT = "插入";
 Blockly.Msg.ELEMENT_ID = "元素ID";
 Blockly.Msg.FORM_SUBMIT = "送出";
+Blockly.Msg.SIZE = "尺寸";
