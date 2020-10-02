@@ -4065,8 +4065,6 @@ Blockly.Blocks['form_create'] = {
 
 Blockly.Blocks['form_set'] = {
   init: function() {
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg.ELEMENT_FORM);
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.FORM_ID);      
@@ -4085,8 +4083,6 @@ Blockly.Blocks['form_set'] = {
 
 Blockly.Blocks['form_get'] = {
   init: function () {
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg.ELEMENT_FORM);
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.FORM_ID);  
@@ -4101,8 +4097,6 @@ Blockly.Blocks['form_get'] = {
 
 Blockly.Blocks['form_delete'] = {
   init: function () {
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg.ELEMENT_FORM);
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.FORM_ID); 
@@ -4117,8 +4111,6 @@ Blockly.Blocks['form_delete'] = {
 
 Blockly.Blocks['form_insert'] = {
   init: function () {
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg.ELEMENT_FORM);
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.FORM_ID);
@@ -4139,8 +4131,6 @@ Blockly.Blocks['form_insert'] = {
 
 Blockly.Blocks['form_submit'] = {
   init: function () {
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg.ELEMENT_FORM);
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.FORM_ID);
