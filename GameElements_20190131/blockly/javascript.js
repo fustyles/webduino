@@ -1646,3 +1646,9 @@ Blockly.JavaScript['video_delete'] = function (block) {
   var code = 'video_delete(' + value_id_ + ');\n';
   return code;
 };
+
+Blockly.JavaScript['video_base64'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'video_base64(' + value_id_ + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};

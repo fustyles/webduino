@@ -428,3 +428,4 @@ Blockly.Msg.VIDEO_SET = "Set";
 Blockly.Msg.VIDEO_GET = "Get";
 Blockly.Msg.VIDEO_DELETE = "Delete";
 Blockly.Msg.PROPERTY_CAM = "Web Cam";
+Blockly.Msg.VIDEO_BASE64 = "transfer into Base64 string";

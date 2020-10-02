@@ -4234,3 +4234,16 @@ Blockly.Blocks['video_delete'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['video_base64'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.VIDEO_ID);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.VIDEO_BASE64);
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};

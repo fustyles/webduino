@@ -3339,7 +3339,9 @@ function HextoRgb(color) {
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
     obj.style.width = input_width + 'px';
+    obj.width = input_width;
     obj.style.height = input_height + 'px';
+	obj.height = input_height;
 	if (input_cam==true){
       navigator.mediaDevices
       .getUserMedia({
@@ -3373,7 +3375,6 @@ function HextoRgb(color) {
     obj.setAttribute("onclick", "javascript:onclickid_set(this);");
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(obj);
-	console.log(obj);
   }
 
   function video_set(input_id,input_property,input_value) {
@@ -3383,10 +3384,14 @@ function HextoRgb(color) {
         obj.style.left = input_value + "px";
       else if (input_property=="top")
         obj.style.top = input_value + "px";
-      else if (input_property=="width")
+      else if (input_property=="width") {
         obj.style.width = input_value + "px";
-      else if (input_property=="height")
+		obj.width = input_value;
+	  }
+      else if (input_property=="height") {
         obj.style.height = input_value + "px";
+		obj.height = input_value;
+	  }
       else if (input_property=="cam")
         if (input_value==true) {
 		  navigator.mediaDevices
@@ -3483,6 +3488,24 @@ function HextoRgb(color) {
   function video_delete(input_id) {
     if (document.getElementById("gamevideo_"+input_id))
       document.getElementById("gamevideo_"+input_id).parentNode.removeChild(document.getElementById("gamevideo_"+input_id));
+  }
+
+  function video_base64(input_id) {
+    if (document.getElementById("gamevideo_"+input_id)) {
+		var video = document.getElementById("gamevideo_"+input_id);
+		var canvas = document.createElement('canvas');
+		canvas.id = 'tmp';
+		canvas.style.position = "absolute";
+		canvas.style.display = "none";
+		document.body.appendChild(canvas);
+		canvas.setAttribute("width", video.width);
+		canvas.setAttribute("height", video.height);
+		var context = canvas.getContext("2d");
+		context.drawImage(video,0,0,video.width,video.height);
+		var base64 = canvas.toDataURL();
+		document.getElementById("tmp").parentNode.removeChild(document.getElementById("tmp"));
+		return base64;
+	}
   }
 
   window.table_create = table_create;
@@ -3623,5 +3646,6 @@ function HextoRgb(color) {
   window.video_set = video_set;
   window.video_get = video_get;
   window.video_delete = video_delete;
+  window.video_base64 = video_base64;
 
 }(window, window.document));

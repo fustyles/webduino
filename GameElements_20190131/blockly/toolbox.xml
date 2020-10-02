@@ -3070,6 +3070,13 @@
       </block>
     </value>     
   </block>  
+  <block type="video_base64">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>   
+  </block> 
 
   </category>
   <category id="catGameElements_sub16" colour="120"> 

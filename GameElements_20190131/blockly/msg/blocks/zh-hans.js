@@ -428,3 +428,4 @@ Blockly.Msg.VIDEO_SET = "设定";
 Blockly.Msg.VIDEO_GET = "取得";
 Blockly.Msg.VIDEO_DELETE = "删除";
 Blockly.Msg.PROPERTY_CAM = "网路摄影机";
+Blockly.Msg.VIDEO_BASE64 = "截图转换Base64字串";

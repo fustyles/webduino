@@ -428,3 +428,4 @@ Blockly.Msg.VIDEO_SET = "設定";
 Blockly.Msg.VIDEO_GET = "取得";
 Blockly.Msg.VIDEO_DELETE = "刪除";
 Blockly.Msg.PROPERTY_CAM = "網路攝影機";
+Blockly.Msg.VIDEO_BASE64 = "截圖轉換Base64字串";
