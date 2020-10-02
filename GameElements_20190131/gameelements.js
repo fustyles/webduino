@@ -675,6 +675,25 @@
         context.drawImage(img,input_x0,input_y0);
     }
   } 
+
+  function canvas_capturevideo(input_canvasid,input_videoid,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height,input_rotate,input_globalAlpha) {
+    if (document.getElementById("gamecanvas_"+input_canvasid)&&document.getElementById("gamevideo_"+input_videoid)) {
+      var video = document.getElementById("gamevideo_"+input_videoid);
+      var context = document.getElementById("gamecanvas_"+input_canvasid).getContext("2d");
+      context.rotate(input_rotate * Math.PI / 180);
+      context.globalAlpha = input_globalAlpha;	  
+	  console.log(input_swidth);
+	  console.log(input_sheight);
+	  console.log();
+	  console.log();
+      if ((input_swidth>0)&&(input_sheight>0))
+        context.drawImage(video,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height);
+      else if (((input_swidth==0)||(input_sheight==0))&&((input_width>0)&&(input_height>0)))
+        context.drawImage(video,input_x0,input_y0,input_width,input_height);
+      else
+        context.drawImage(video,input_x0,input_y0);
+    }
+  }
   
   function canvas_text(input_id,input_text,input_x0,input_y0,input_fontname,input_fontsize,input_textalign,input_fill,input_color,input_rotate,input_globalAlpha) {
     if (document.getElementById("gamecanvas_"+input_id)) {
@@ -3347,7 +3366,10 @@ function HextoRgb(color) {
       .getUserMedia({
         audio: false,
         video: {
-          facingMode: "user"
+          facingMode: "user",          
+		  width: input_width,
+          height: input_height
+
         }
       })
       .then(stream => {
@@ -3542,6 +3564,7 @@ function HextoRgb(color) {
   window.canvas_delete = canvas_delete;
   window.canvas_onclick_get = canvas_onclick_get;
   window.canvas_getcolor = canvas_getcolor;
+  window.canvas_capturevideo = canvas_capturevideo;
   window.image_create = image_create;
   window.image_set = image_set;
   window.image_get = image_get;

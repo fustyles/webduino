@@ -1363,6 +1363,173 @@
       </block>
     </value> 
   </block>
+  <block type="canvas_clearrect">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>      
+    <value name="x_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="y_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>        
+  </block> 
+  <block type="canvas_clear">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>      
+  </block>  
+  <block type="canvas_delete">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>      
+  </block>
+  <block type="canvas_capturevideo">
+    <value name="canvasid_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+    <value name="videoid_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>	
+    <value name="sx_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="sy_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
+    <value name="swidth_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="sheight_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>       
+    <value name="x0_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="y0_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+    <value name="rotate_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+    <value name="globalAlpha_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>      
+  </block>
+  <block type="canvas_img_url">   
+    <value name="url_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+  </block>   
+  <block type="canvas_img">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>      
+    <value name="sx_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="sy_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
+    <value name="swidth_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="sheight_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>       
+    <value name="x0_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="y0_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
+    <value name="width_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="height_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+    <value name="rotate_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+    <value name="globalAlpha_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>      
+  </block>  
   <block type="canvas_line">  
     <value name="id_">
       <block type="text">
@@ -1524,70 +1691,6 @@
       </block>
     </value>      
   </block> 
-  <block type="canvas_img_url">   
-    <value name="url_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
-  </block>   
-  <block type="canvas_img">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>      
-    <value name="sx_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
-    <value name="sy_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>     
-    <value name="swidth_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
-    <value name="sheight_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>       
-    <value name="x0_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
-    <value name="y0_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>     
-    <value name="width_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
-    <value name="height_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>   
-    <value name="rotate_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>   
-    <value name="globalAlpha_">
-      <block type="math_number">
-        <field name="NUM">1</field>
-      </block>
-    </value>      
-  </block>
   <block type="canvas_text">
     <value name="id_">
       <block type="text">
@@ -1774,47 +1877,6 @@
       </block>
     </value>      
   </block>
-  <block type="canvas_clearrect">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>      
-    <value name="x_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
-    <value name="y_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>     
-    <value name="width_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
-    <value name="height_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>        
-  </block> 
-  <block type="canvas_clear">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>      
-  </block>  
-  <block type="canvas_delete">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>      
-  </block>  
   <block type="image_onclick_listener" id="_u]I^KFlA[UgTzFj#]rD" x="10" y="22">
     <statement name="do_">
       <block type="canvas_onclick_do" id=":9%fzFFPrN)HQ7gF9WON">
