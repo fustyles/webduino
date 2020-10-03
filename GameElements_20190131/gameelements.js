@@ -485,9 +485,9 @@
     var obj = document.createElement('canvas');
     obj.style.position = "absolute";
     obj.id = "gamecanvas_"+input_id;
-    obj.setAttribute("width",input_width + 'px');
+    obj.setAttribute("width",input_width);
     obj.style.width = input_width + 'px';
-    obj.setAttribute("height",input_height + 'px');
+    obj.setAttribute("height",input_height);
     obj.style.height = input_height + 'px';
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
@@ -511,11 +511,11 @@
     {
       var obj = document.getElementById("gamecanvas_"+input_id);
       if (input_property=='width') {
-        obj.setAttribute("width",input_value + 'px');
+        obj.setAttribute("width",input_value);
         obj.style.width = input_value + 'px';
       }
       else if (input_property=='height') {
-        obj.setAttribute("height",input_value + 'px');
+        obj.setAttribute("height",input_value);
         obj.style.height = input_value + 'px';
       }
       else if (input_property=='left')
