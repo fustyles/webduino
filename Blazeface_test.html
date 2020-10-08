@@ -54,6 +54,7 @@ https://fustyles.github.io/webduino/TensorFlow/Blazeface_video/Blazeface_video.h
 		.then(function(devices) {
 		  console.log(devices);
 		  devices.forEach(function(device) {
+			  document.getElementById('result1').innerHTML += device.kind+", "+device.label+"<br>";
 			  if (device.kind=='videoinput'&&device.label.toLowerCase().indexOf("back")!=-1) {
 				if (device.deviceId=='')
 					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
@@ -67,9 +68,7 @@ https://fustyles.github.io/webduino/TensorFlow/Blazeface_video/Blazeface_video.h
 	  var userMedia = back;
 	else
 	  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
-
-    document.getElementById('result1').innerHTML = JSON.stringify(back);
-	  
+  
     video.style.visibility="hidden";
     video.style.position="absolute";
     navigator.mediaDevices
