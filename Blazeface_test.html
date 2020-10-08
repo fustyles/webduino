@@ -20,6 +20,7 @@ https://fustyles.github.io/webduino/TensorFlow/Blazeface_video/Blazeface_video.h
 <canvas id="canvas"></canvas>
 <br>
 <div id="result" style="color:red"></div>
+<div id="result1" style="color:red"></div>
   
 <script>
   var video = document.getElementById('video');
@@ -48,10 +49,11 @@ https://fustyles.github.io/webduino/TensorFlow/Blazeface_video/Blazeface_video.h
 	var videoWidth = 320;
 	var videoHeight = 240;
 	
-    var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+        var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
 	navigator.mediaDevices.enumerateDevices()
 		.then(function(devices) {
 		  console.log(devices);
+		  document.getElementById('result1').innerHTML = devices;
 		  devices.forEach(function(device) {
 			  if (device.kind=='videoinput'&&device.label.toLowerCase().indexOf("back")!=-1) {
 				if (device.deviceId=='')
