@@ -60,6 +60,8 @@ https://fustyles.github.io/webduino/TensorFlow/Blazeface_video/Blazeface_video.h
 					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
 				else
 					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+			        document.getElementById('result1').innerHTML += JSON.stringify(back);
+				break;
 			  }
 		  });
 		})
