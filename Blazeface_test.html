@@ -62,28 +62,31 @@ https://fustyles.github.io/webduino/TensorFlow/Blazeface_video/Blazeface_video.h
 					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
 			  }
 		  });
-		})
-	
-	if (location.search.toLowerCase().indexOf("?back")!=-1)
-	  var userMedia = back;
-	else
-	  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
-	  
-	  document.getElementById('result1').innerHTML = JSON.stringify(userMedia);
-  
-    video.style.visibility="hidden";
-    video.style.position="absolute";
-    navigator.mediaDevices
-      .getUserMedia(userMedia)
-      .then(stream => {
-        video.srcObject = stream
-        video.onloadedmetadata = () => {       
-          video.play();
-          canvas.setAttribute("width", video.width);
-          canvas.setAttribute("height", video.height);          
-          setTimeout(function(){DetectVideo(); }, 100);
-        }
-      })   
+		
+		
+		if (location.search.toLowerCase().indexOf("?back")!=-1)
+		  var userMedia = back;
+		else
+		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+		  document.getElementById('result1').innerHTML = JSON.stringify(userMedia);
+
+		    video.style.visibility="hidden";
+		    video.style.position="absolute";
+		    navigator.mediaDevices
+		      .getUserMedia(userMedia)
+		      .then(stream => {
+			video.srcObject = stream
+			video.onloadedmetadata = () => {       
+			  video.play();
+			  canvas.setAttribute("width", video.width);
+			  canvas.setAttribute("height", video.height);          
+			  setTimeout(function(){DetectVideo(); }, 100);
+			}
+		      })  
+		
+		
+		}) 
   } 
                         
 async function DetectVideo() {
