@@ -62,14 +62,40 @@
    * @param {object} opt_options Optional configuration to the tracker.
    */
   tracking.initUserMedia_ = function(element, opt_options) {
-    window.navigator.mediaDevices.getUserMedia({
-      video: true,
-      audio: (opt_options && opt_options.audio) ? true : false,
-    }).then(function(stream) {
-      element.srcObject = stream;
-    }).catch(function(err) {
-      throw Error('Cannot capture user camera.');
-    });
+		if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+		  console.log("enumerateDevices() not supported.");
+		}
+
+		var videoWidth = 320;
+		var videoHeight = 240;
+		
+		var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+		navigator.mediaDevices.enumerateDevices()
+			.then(function(devices) {
+			  devices.forEach(function(device) {
+				  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+					if (device.deviceId=='')
+						back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+					else
+						back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				  }
+			  });
+			
+			
+			if (location.search.toLowerCase().indexOf("?back")!=-1)
+			  var userMedia = back;
+			else
+			  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+			navigator.mediaDevices
+			  .getUserMedia(userMedia)
+			  .then(stream => {
+				video.srcObject = stream
+				video.onloadedmetadata = () => {       
+				  video.play();
+				}
+			 })  
+		}) 
   };
 
   /**
