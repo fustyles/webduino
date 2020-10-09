@@ -18,7 +18,7 @@ https://github.com/naptha/tesseract.js#tesseractjs
 </head>
 <body>
 <button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
-<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<video id="video" width="320" height="240" style="visibility:hidden;position:absolute" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas>
 <br>
 <select id="lang">
@@ -129,8 +129,8 @@ https://github.com/naptha/tesseract.js#tesseractjs
 <br>
 black-and-white
 <select id="bw">
-	<option value='1'>Y</option>
 	<option value='0'>N</option>
+	<option value='1'>Y</option>
 </select>
 <br>
 <table>
@@ -237,7 +237,7 @@ navigator.mediaDevices.enumerateDevices()
 						}
 					}
 					context.putImageData(imgData,0,0);
-			},300);
+			},100);
 		}
 	 })  
 }) 

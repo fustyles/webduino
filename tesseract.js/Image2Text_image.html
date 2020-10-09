@@ -19,7 +19,7 @@ https://github.com/naptha/tesseract.js#tesseractjs
 <body>
 <input type="file" id="selectimage" disabled="true"></input><br>
 <img id="OriginImage" style="display:none">
-<img id="ShowImage">
+<img id="ShowImage" style="visibility:hidden;position:absolute">
 <canvas id="canvas"></canvas>
 <br>
 <select id="lang">
@@ -130,8 +130,8 @@ https://github.com/naptha/tesseract.js#tesseractjs
 <br>
 black-and-white
 <select id="bw" onclick="black_and_white();">
-	<option value='1'>Y</option>
 	<option value='0'>N</option>
+	<option value='1'>Y</option>
 </select>
 <br>
 <table>
