@@ -24,7 +24,7 @@ https://fustyles.github.io/webduino/Instascan.js/Instascan_qrcode.html
 	var videoWidth = 320;
 	var videoHeight = 240;
 	
-    var back = 0;
+        var back = 0;
 	var userMedia = 0;
 	navigator.mediaDevices.enumerateDevices()
 		.then(function(devices) {
@@ -41,7 +41,7 @@ https://fustyles.github.io/webduino/Instascan.js/Instascan_qrcode.html
 	}) 
 
 
-	  var result = document.getElementById('result');
+      var result = document.getElementById('result');
       let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
       scanner.addListener('scan', function (content) {
         console.log(utf8to16(content));
