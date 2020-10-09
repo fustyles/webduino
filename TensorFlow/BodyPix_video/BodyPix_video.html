@@ -15,6 +15,7 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix_video.html
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@1.0.0"> </script>  
 </head>
 <body>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
 Display
 <select id="kind">
 	<option value="1">backgroundDarkeningMask</option>
@@ -54,36 +55,56 @@ Display
   }
   
   function startVideo() {
-    video.style.visibility="hidden";
-    video.style.position="absolute";
-    navigator.mediaDevices
-      .getUserMedia({
-        audio: false,
-        video: {
-          facingMode: "user",
-          width: 320,
-          height: 240
-        }
-      })
-      .then(stream => {
-        video.srcObject = stream
-        video.onloadedmetadata = () => {       
-          video.play();
-          canvas.setAttribute("width", video.width);
-          canvas.setAttribute("height", video.height);           
-          canvas1.setAttribute("width", video.width);
-          canvas1.setAttribute("height", video.height);  
-          canvas2.setAttribute("width", video.width);
-          canvas2.setAttribute("height", video.height);  
-          canvas3.setAttribute("width", video.width);
-          canvas3.setAttribute("height", video.height);     
-          canvas4.setAttribute("width", video.width);
-          canvas4.setAttribute("height", video.height);
-          canvas5.setAttribute("width", video.width);
-          canvas5.setAttribute("height", video.height);
-          setTimeout(function(){DetectVideo(); }, 100);
-        }
-      })   
+	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+	  console.log("enumerateDevices() not supported.");
+	  return;
+	}
+
+	var videoWidth = 320;
+	var videoHeight = 240;
+	
+    var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+	navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+		  devices.forEach(function(device) {
+			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+				if (device.deviceId=='')
+					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				else
+					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+			  }
+		  });
+		
+		
+		if (location.search.toLowerCase().indexOf("?back")!=-1)
+		  var userMedia = back;
+		else
+		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+		video.style.visibility="hidden";
+		video.style.position="absolute";
+		navigator.mediaDevices
+		  .getUserMedia(userMedia)
+		  .then(stream => {
+			video.srcObject = stream
+			video.onloadedmetadata = () => {       
+			  video.play();
+			  canvas.setAttribute("width", video.width);
+			  canvas.setAttribute("height", video.height);           
+			  canvas1.setAttribute("width", video.width);
+			  canvas1.setAttribute("height", video.height);  
+			  canvas2.setAttribute("width", video.width);
+			  canvas2.setAttribute("height", video.height);  
+			  canvas3.setAttribute("width", video.width);
+			  canvas3.setAttribute("height", video.height);     
+			  canvas4.setAttribute("width", video.width);
+			  canvas4.setAttribute("height", video.height);
+			  canvas5.setAttribute("width", video.width);
+			  canvas5.setAttribute("height", video.height);
+			  setTimeout(function(){DetectVideo(); }, 100);
+			}
+		 })  
+	})  
   }  
                         
 async function DetectVideo() {

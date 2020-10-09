@@ -15,7 +15,7 @@ https://fustyles.github.io/webduino/TensorFlow/Blazeface_video/Blazeface_video.h
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
 </head>
 <body>
-<button onclick="location.href=location.pathname;">User</button><button onclick="location.href='?back';">Environment</button><br>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas>
 <br>
@@ -39,7 +39,6 @@ https://fustyles.github.io/webduino/TensorFlow/Blazeface_video/Blazeface_video.h
   }
   
   function startVideo() {
-
 	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
 	  console.log("enumerateDevices() not supported.");
 	  return;
@@ -80,7 +79,7 @@ https://fustyles.github.io/webduino/TensorFlow/Blazeface_video/Blazeface_video.h
 			}
 		 })  
 	}) 
-  } 
+} 
                         
 async function DetectVideo() {
   context.translate((canvas.width + video.width) / 2, 0);

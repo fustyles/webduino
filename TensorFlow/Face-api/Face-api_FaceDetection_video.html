@@ -45,6 +45,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <video id="webcam" autoplay muted playsinline></video>
 <div id="webcam-container"></div>
 <div id="hide">
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button>
 <input type="checkbox" onclick="if (this.checked) camera.style.display='none'; else camera.style.display='block';" value="">Hide Video
 </div>
 <div id="message">Please wait for loading model.</div>
@@ -72,29 +73,50 @@ let message = document.getElementById('message');
   }  
   
   function startVideo() {
-    navigator.mediaDevices
-      .getUserMedia({
-        audio: false,
-        video: {
-          facingMode: "user",
-          width: 320,
-          height: 240
-        }
-      })
-      .then(stream => {
-        camera.srcObject = stream
-        camera.onloadedmetadata = () => {       
-          camera.play();
-          if( document.getElementsByTagName("canvas").length == 0 )
-          {
-            canvas = faceapi.createCanvasFromMedia(camera)
-            document.getElementById('webcam-container').append(canvas)
-            faceapi.matchDimensions(canvas, displaySize)
-          }  
-          //camera.style.visibility="hidden";     
-          DetectVideo();
-        }
-      })   
+	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+	  console.log("enumerateDevices() not supported.");
+	  return;
+	}
+
+	var videoWidth = 320;
+	var videoHeight = 240;
+	
+    var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+	navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+		  devices.forEach(function(device) {
+			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+				if (device.deviceId=='')
+					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				else
+					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+			  }
+		  });
+		
+		
+		if (location.search.toLowerCase().indexOf("?back")!=-1)
+		  var userMedia = back;
+		else
+		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+		navigator.mediaDevices
+		  .getUserMedia(userMedia)
+		  .then(stream => {
+			camera.srcObject = stream
+			camera.onloadedmetadata = () => {       
+			  camera.play();
+			  if( document.getElementsByTagName("canvas").length == 0 )
+			  {
+				canvas = faceapi.createCanvasFromMedia(camera)
+				document.getElementById('webcam-container').append(canvas)
+				faceapi.matchDimensions(canvas, displaySize)
+			  }  
+			  //camera.style.visibility="hidden";     
+			  DetectVideo();
+			}
+		 })  
+	}) 
+
   }
                         
   async function DetectVideo() {

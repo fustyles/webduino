@@ -15,6 +15,7 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_video/TeachableM
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
 <video id="video" width="320" height="240" style="display:none" preload autoplay loop muted></video>
 <br>
 Model Path： <input type="text" id="modelPath" size="40" value=""><br>
@@ -59,24 +60,44 @@ Model Path： <input type="text" id="modelPath" size="40" value=""><br>
   } 
 
   function startVideo() {
-    video.style.display="block";
-    navigator.mediaDevices
-      .getUserMedia({
-        audio: false,
-        video: {
-          facingMode: "user",
-          width: 320,
-          height: 240
-        }
-      })
-      .then(stream => {
-        video.srcObject = stream
-        video.onloadedmetadata = () => {       
-        video.play(); 
-		result.innerHTML = "";
-        setTimeout(function(){predict(); }, 100);
-        }
-      })   
+	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+	  console.log("enumerateDevices() not supported.");
+	  return;
+	}
+
+	var videoWidth = 320;
+	var videoHeight = 240;
+	
+    var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+	navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+		  devices.forEach(function(device) {
+			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+				if (device.deviceId=='')
+					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				else
+					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+			  }
+		  });
+		
+		
+		if (location.search.toLowerCase().indexOf("?back")!=-1)
+		  var userMedia = back;
+		else
+		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+		video.style.display="block";
+		navigator.mediaDevices
+		  .getUserMedia(userMedia)
+		  .then(stream => {
+			video.srcObject = stream
+			video.onloadedmetadata = () => {       
+				video.play(); 
+				result.innerHTML = "";
+				setTimeout(function(){predict(); }, 100);
+			}
+		 })  
+	})   
   }
 
     // run the webcam image through the image model

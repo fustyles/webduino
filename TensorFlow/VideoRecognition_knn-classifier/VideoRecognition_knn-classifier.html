@@ -17,38 +17,58 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
     <meta http-equiv="Access-Control-Request-Method" content="*">
     <meta http-equiv="Access-Control-Allow-Headers" content="*">    
     <!-- Load TensorFlow.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"></script>
     <!-- Load MobileNet -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"></script>
     <!-- Load KNN Classifier -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
  </head>
 
  <body>
-   <video id="video" width="320" height="240" preload autoplay loop muted></video><br>
-   <button onclick="saveModel();">Save Model</button><input type="file" id="getModel"></input><br>
-   <button id="clearAllClasses">Clear All Classes</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="addExample">Train</button>
-   <select id="Class"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>&nbsp;&nbsp;&nbsp;&nbsp;
-   <span id="count" style="font-size:18px;color:red">0</span>
-   <div id="result" style="color:red">Please wait for loading model.</div>
- </body>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
+<video id="video" width="320" height="240" preload autoplay loop muted></video><br>
+<button onclick="saveModel();">Save Model</button><input type="file" id="getModel"></input><br>
+<button id="clearAllClasses">Clear All Classes</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="addExample">Train</button>
+<select id="Class"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>&nbsp;&nbsp;&nbsp;&nbsp;
+<span id="count" style="font-size:18px;color:red">0</span>
+<div id="result" style="color:red">Please wait for loading model.</div>
+</body>
 
  <script>
-    navigator.mediaDevices
-    .getUserMedia({
-      audio: false,
-      video: {
-        facingMode: "user",
-        width: 320,
-        height: 240
-      }
-    })
-    .then(stream => {
-      video.srcObject = stream
-      video.onloadedmetadata = () => {       
-        video.play();
-      }
-    })
+	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+	  console.log("enumerateDevices() not supported.");
+	}
+
+	var videoWidth = 320;
+	var videoHeight = 240;
+	
+    var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+	navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+		  devices.forEach(function(device) {
+			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+				if (device.deviceId=='')
+					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				else
+					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+			  }
+		  });
+		
+		
+		if (location.search.toLowerCase().indexOf("?back")!=-1)
+		  var userMedia = back;
+		else
+		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+		navigator.mediaDevices
+		  .getUserMedia(userMedia)
+		  .then(stream => {
+			  video.srcObject = stream
+			  video.onloadedmetadata = () => {       
+				video.play();
+			  }
+		 })  
+	}) 
     
     var video = document.getElementById('video');
     var clearAllClasses = document.getElementById('clearAllClasses');
@@ -87,19 +107,17 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
     mobilenet.load().then(model => {
 	  result.innerHTML = "Please wait for loading model.";
       Model = model;
-      predictClass_onclick();
       result.innerHTML = '';
+	  setInterval(function(){predictClass_onclick();},250);
     }); 
     
     function addExampleImage(img,index) {
-      // Add MobileNet activations to the model repeatedly for all classes.
       var Image = tf.browser.fromPixels(img);
       var logits = Model.infer(Image, 'conv_preds');
       classifier.addExample(logits, index);
     }
     
     async function predictClass(img) {
-      // Make a prediction.
       try
       {
         const Image = tf.browser.fromPixels(img);

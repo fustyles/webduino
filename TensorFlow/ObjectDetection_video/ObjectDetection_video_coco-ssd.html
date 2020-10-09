@@ -17,7 +17,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"> </script>  
 </head>
 <body>
-<button onclick="location.href=location.pathname;">User</button><button onclick="location.href='?back';">Environment</button><br>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas>
 <br>
@@ -41,7 +41,6 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   }  
   
   function startVideo() {
-
 	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
 	  console.log("enumerateDevices() not supported.");
 	  return;

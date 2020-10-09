@@ -19,6 +19,7 @@ https://www.youtube.com/watch?v=AZ4PdALMqx0
   <script src='face-api.min.js'></script>
 </head>
 <body>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas><br>
 <button id="detect" onclick="this.disabled=true;DetectVideo();" disabled>Start Detection</button><br>
@@ -52,23 +53,43 @@ let faceMatcher;
   }
   
   function startvideo() {
-    navigator.mediaDevices
-      .getUserMedia({
-        audio: false,
-        video: {
-          facingMode: "user",
-          width: 320,
-          height: 240
-        }
-      })
-      .then(stream => {
-        video.srcObject = stream
-        video.onloadedmetadata = () => {   		
-          video.play();
-		  detect.disabled=false;
-		  message.innerHTML = "";
-        }
-      })   
+	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+	  console.log("enumerateDevices() not supported.");
+	  return;
+	}
+
+	var videoWidth = 320;
+	var videoHeight = 240;
+	
+    var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+	navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+		  devices.forEach(function(device) {
+			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+				if (device.deviceId=='')
+					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				else
+					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+			  }
+		  });
+		
+		
+		if (location.search.toLowerCase().indexOf("?back")!=-1)
+		  var userMedia = back;
+		else
+		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+		navigator.mediaDevices
+		  .getUserMedia(userMedia)
+		  .then(stream => {
+			video.srcObject = stream
+			video.onloadedmetadata = () => {   		
+			  video.play();
+			  detect.disabled=false;
+			  message.innerHTML = "";
+			}
+		 })  
+	})   
   }
                         
   async function DetectVideo() { 
