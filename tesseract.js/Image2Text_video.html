@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/10/9 14:20
 https://www.facebook.com/francefu
 
 Try it!
@@ -7,6 +7,7 @@ https://fustyles.github.io/webduino/tesseract.js/Image2Text_video.html
 
 https://github.com/naptha/tesseract.js#tesseractjs
 -->
+
 <!DOCTYPE html>
 <head>
 <title>Text recognition (tesseract.js)</title>
@@ -16,6 +17,7 @@ https://github.com/naptha/tesseract.js#tesseractjs
 <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
 </head>
 <body>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas>
 <br>
@@ -123,7 +125,7 @@ https://github.com/naptha/tesseract.js#tesseractjs
 	<option value='vie'>Vietnamese</option>
 	<option value='yid'>Yiddish</option>
 </select>
-<button id="btnDetect" onclick="DetectText();" disabled>Text recognition</button>
+<button id="btnDetect" onclick="DetectText();" disabled>Recognition</button>
 <br>
 <div id="result" style="width:320px;color:red"></div>
   
@@ -134,17 +136,36 @@ var context = canvas.getContext('2d');
 var result = document.getElementById('result');
 var lang = document.getElementById('lang');
 var btnDetect = document.getElementById('btnDetect');  
-  
-navigator.mediaDevices
-	.getUserMedia({
-		audio: false,
-		video: {
-			facingMode: "user",
-			width: 320,
-			height: 240
-		}
-	})
-	.then(stream => {
+
+
+if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+  console.log("enumerateDevices() not supported.");
+}
+
+var videoWidth = 320;
+var videoHeight = 240;
+
+var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+navigator.mediaDevices.enumerateDevices()
+	.then(function(devices) {
+	  devices.forEach(function(device) {
+		  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+			if (device.deviceId=='')
+				back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+			else
+				back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+		  }
+	  });
+	
+	
+	if (location.search.toLowerCase().indexOf("?back")!=-1)
+	  var userMedia = back;
+	else
+	  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+	navigator.mediaDevices
+	  .getUserMedia(userMedia)
+	  .then(stream => {
 		video.srcObject = stream
 		video.onloadedmetadata = () => {       
 			video.play();
@@ -153,8 +174,8 @@ navigator.mediaDevices
 			result.innerHTML = "";
 			btnDetect.disabled =false;
 		}
-	})   
-
+	 })  
+}) 
   
 function DetectText() {
     context.drawImage(video, 0, 0, video.width, video.height);
