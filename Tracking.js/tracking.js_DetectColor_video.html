@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/2/11 20:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/15 14:00
 https://www.facebook.com/francefu
 
 Color List
@@ -16,9 +16,10 @@ If you change the range of RGB setting, you must press button "Start Detection".
   <title>tracking.js - color with camera</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://fustyles.github.io/webduino/Tracking_20190917/tracking-min.js"></script>
+  <script src="tracking-min.js"></script>
 </head>
 <body>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
 <video id="video" width="320" height="240" style="visibility:hidden;position:absolute" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas><canvas id="canvas_custom"></canvas><br>
 <table>
@@ -551,7 +552,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
 	canvas.setAttribute("height", video.height);
 	canvas_custom.setAttribute("width", video.width);
 	canvas_custom.setAttribute("height", video.height);	
-	
+
     var tracker = new tracking.ColorTracker();
     tracking.track('#video', tracker, { camera: true });
 
