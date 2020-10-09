@@ -16,6 +16,7 @@ https://github.com/naptha/tesseract.js#tesseractjs
 <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
 </head>
 <body>
+<input type="file" id="selectimage" disabled="true"></input><br>
 <select id="lang">
 	<option value='afr'>Afrikaans</option>
 	<option value='amh'>Amharic</option>
@@ -120,12 +121,38 @@ https://github.com/naptha/tesseract.js#tesseractjs
 	<option value='vie'>Vietnamese</option>
 	<option value='yid'>Yiddish</option>
 </select>
-<input type="file" id="selectimage" disabled="true"></input>
+<button id="btnDetect" onclick="DetectText();" disabled>Recognition</button>
 <br><br>
 <img id="OriginImage" style="display:none">
 <img id="ShowImage">
-<canvas id="canvas" width="0" height="0"></canvas>
+<canvas id="canvas"></canvas>
 <br>
+<table>
+<tr>
+  <td colspan="3">
+	<div id="divColor1">
+	  <table style="border:2px red solid;">
+		<tr>
+		  <td align="right">R</td>
+		  <td colspan="2">min<input type="range" id="myColor_r_min" min="0" max="255" value="0" step="1" onchange="myColor_r_min_v.innerHTML=this.value;black_and_white();"><span id="myColor_r_min_v">0</span><br>
+			  max<input type="range" id="myColor_r_max" min="0" max="255" value="255" step="1" onchange="myColor_r_max_v.innerHTML=this.value;black_and_white();"><span id="myColor_r_max_v">0</span>
+		  </td>
+		</tr>
+		<tr>
+		  <td align="right">G</td>
+		  <td colspan="2">min<input type="range" id="myColor_g_min" min="0" max="255" value="0" step="1" onchange="myColor_g_min_v.innerHTML=this.value;black_and_white();"><span id="myColor_g_min_v">0</span><br>
+			  max<input type="range" id="myColor_g_max" min="0" max="255" value="255" step="1" onchange="myColor_g_max_v.innerHTML=this.value;black_and_white();"><span id="myColor_g_max_v">0</span>
+		  </td>
+		</tr>
+		<tr>
+		  <td align="right">B</td>
+		  <td colspan="2">min<input type="range" id="myColor_b_min" min="0" max="255" value="0" step="1" onchange="myColor_b_min_v.innerHTML=this.value;black_and_white();"><span id="myColor_b_min_v">0</span><br>
+			  max<input type="range" id="myColor_b_max" min="0" max="255" value="128" step="1" onchange="myColor_b_max_v.innerHTML=this.value;black_and_white();"><span id="myColor_b_max_v">0</span>
+		  </td>
+		</tr>
+		</table>
+	</div>
+</table>
 <div id="result" style="width:350px;color:red"></div>
   
 <script>
@@ -136,15 +163,18 @@ var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");  
 var result = document.getElementById('result');
 var lang = document.getElementById('lang');
+var btnDetect = document.getElementById('btnDetect'); 
   
 
 result.innerHTML = "Please select one image.";
 document.getElementById('selectimage').disabled = false;
   
-async function DetectImage() {
+async function DetectText() {
+	result.innerHTML = "Start detection..."; 
+	black_and_white();
 
 	Tesseract.recognize(
-	  ShowImage,
+	  canvas,
 	  lang.value,
 	  { logger: m => console.log(m) }
 	).then(({ data: { text } }) => {
@@ -153,6 +183,41 @@ async function DetectImage() {
 	  console.log(text);
 	})  
 }
+
+function black_and_white() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  canvas.setAttribute("width", ShowImage.width);
+  canvas.setAttribute("height", ShowImage.height); 
+
+	context.drawImage(ShowImage, 0, 0, canvas.width, canvas.height);
+	var myColor_r_min = document.getElementById('myColor_r_min').value;
+	var myColor_r_max = document.getElementById('myColor_r_max').value;
+	var myColor_g_min = document.getElementById('myColor_g_min').value;
+	var myColor_g_max = document.getElementById('myColor_g_max').value;
+	var myColor_b_min = document.getElementById('myColor_b_min').value;
+	var myColor_b_max = document.getElementById('myColor_b_max').value;
+
+	var imgData=context.getImageData(0,0,canvas.width,canvas.height);
+	for (var i=0;i<imgData.data.length;i+=4) {
+		var r=0;
+		var g=0;
+		var b=0;
+
+		if ((imgData.data[i]>=myColor_r_min&&imgData.data[i]<=myColor_r_max)&&(imgData.data[i+1]>=myColor_g_min&&imgData.data[i+1]<=myColor_g_max)&&(imgData.data[i+2]>=myColor_b_min&&imgData.data[i+2]<=myColor_b_max)) {
+			imgData.data[i]=0;
+			imgData.data[i+1]=0;
+			imgData.data[i+2]=0;
+			imgData.data[i+3]=255;
+		}
+		else {
+			imgData.data[i]=255;
+			imgData.data[i+1]=255;
+			imgData.data[i+2]=255;
+			imgData.data[i+3]=255;
+		}
+	}
+	context.putImageData(imgData,0,0);
+}
   
 document.getElementById('selectimage').onchange = function (event) {
   var target = event.target || window.event.srcElement;
@@ -160,10 +225,7 @@ document.getElementById('selectimage').onchange = function (event) {
   if (FileReader && files && files.length) {
     var fr = new FileReader();
     fr.onload = function () {
-      result.innerHTML = "Loading image to detect...";
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      canvas.setAttribute("width", 0);
-      canvas.setAttribute("height", 0);      
+      result.innerHTML = "";     
       OriginImage.src = fr.result;
     }
     fr.readAsDataURL(files[0]);
@@ -191,10 +253,11 @@ document.getElementById('OriginImage').onload = function (event) {
   ShowImage.width = width;
   ShowImage.height = height;  
   ShowImage.src = OriginImage.src;
+  btnDetect.disabled =false;
 }
   
 document.getElementById('ShowImage').onload = function (event) {
-  DetectImage();
+  black_and_white();
 }
 </script>
 

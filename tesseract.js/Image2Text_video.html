@@ -127,6 +127,32 @@ https://github.com/naptha/tesseract.js#tesseractjs
 </select>
 <button id="btnDetect" onclick="DetectText();" disabled>Recognition</button>
 <br>
+<table>
+<tr>
+  <td colspan="3">
+	<div id="divColor1">
+	  <table style="border:2px red solid;">
+		<tr>
+		  <td align="right">R</td>
+		  <td colspan="2">min<input type="range" id="myColor_r_min" min="0" max="255" value="0" step="1" onchange="myColor_r_min_v.innerHTML=this.value;"><span id="myColor_r_min_v">0</span><br>
+			  max<input type="range" id="myColor_r_max" min="0" max="255" value="255" step="1" onchange="myColor_r_max_v.innerHTML=this.value;"><span id="myColor_r_max_v">0</span>
+		  </td>
+		</tr>
+		<tr>
+		  <td align="right">G</td>
+		  <td colspan="2">min<input type="range" id="myColor_g_min" min="0" max="255" value="0" step="1" onchange="myColor_g_min_v.innerHTML=this.value;"><span id="myColor_g_min_v">0</span><br>
+			  max<input type="range" id="myColor_g_max" min="0" max="255" value="255" step="1" onchange="myColor_g_max_v.innerHTML=this.value;"><span id="myColor_g_max_v">0</span>
+		  </td>
+		</tr>
+		<tr>
+		  <td align="right">B</td>
+		  <td colspan="2">min<input type="range" id="myColor_b_min" min="0" max="255" value="0" step="1" onchange="myColor_b_min_v.innerHTML=this.value;"><span id="myColor_b_min_v">0</span><br>
+			  max<input type="range" id="myColor_b_max" min="0" max="255" value="128" step="1" onchange="myColor_b_max_v.innerHTML=this.value;"><span id="myColor_b_max_v">0</span>
+		  </td>
+		</tr>
+		</table>
+	</div>
+</table>
 <div id="result" style="width:320px;color:red"></div>
   
 <script>
@@ -173,12 +199,42 @@ navigator.mediaDevices.enumerateDevices()
 			canvas.setAttribute("height", video.height);
 			result.innerHTML = "";
 			btnDetect.disabled =false;
+
+			setInterval(function() {
+					context.drawImage(video, 0, 0, video.width, video.height);
+					var myColor_r_min = document.getElementById('myColor_r_min').value;
+					var myColor_r_max = document.getElementById('myColor_r_max').value;
+					var myColor_g_min = document.getElementById('myColor_g_min').value;
+					var myColor_g_max = document.getElementById('myColor_g_max').value;
+					var myColor_b_min = document.getElementById('myColor_b_min').value;
+					var myColor_b_max = document.getElementById('myColor_b_max').value;
+
+					var imgData=context.getImageData(0,0,canvas.width,canvas.height);
+					for (var i=0;i<imgData.data.length;i+=4) {
+						var r=0;
+						var g=0;
+						var b=0;
+
+						if ((imgData.data[i]>=myColor_r_min&&imgData.data[i]<=myColor_r_max)&&(imgData.data[i+1]>=myColor_g_min&&imgData.data[i+1]<=myColor_g_max)&&(imgData.data[i+2]>=myColor_b_min&&imgData.data[i+2]<=myColor_b_max)) {
+							imgData.data[i]=0;
+							imgData.data[i+1]=0;
+							imgData.data[i+2]=0;
+							imgData.data[i+3]=255;
+						}
+						else {
+							imgData.data[i]=255;
+							imgData.data[i+1]=255;
+							imgData.data[i+2]=255;
+							imgData.data[i+3]=255;
+						}
+					}
+					context.putImageData(imgData,0,0);
+			},300);
 		}
 	 })  
 }) 
   
 function DetectText() {
-    context.drawImage(video, 0, 0, video.width, video.height);
 	result.innerHTML = "Recognizing...";
 
 	Tesseract.recognize(
