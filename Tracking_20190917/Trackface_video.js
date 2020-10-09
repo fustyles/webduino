@@ -14,9 +14,6 @@ window.onload = function () {
         tracker.setEdgesDensity(0.1);
         tracker.setInitialScale(4);
         tracker.setStepSize(2);
-
-        tracker.setInitialScale(2);
-        tracker.setStepSize(1);
 	
         var videoElement = document.querySelector('#video')
         // tracking.track(videoElement, tracker);
