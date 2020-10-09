@@ -49,8 +49,8 @@ https://fustyles.github.io/webduino/Instascan.js/Instascan_qrcode.html
 		result.innerHTML = utf8to16(content);
       });
       Instascan.Camera.getCameras().then(function (cameras) {
-		result.innerHTML = JSON.stringify(cameras);
         if (cameras.length > 0) {
+		result.innerHTML = userMedia + ", " +JSON.stringify(cameras[userMedia]);
           scanner.start(cameras[userMedia]);
         } else {
           console.error('No cameras found.');
