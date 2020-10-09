@@ -1,3 +1,10 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/10/9 13:00
+https://www.facebook.com/francefu
+Try it!
+https://fustyles.github.io/webduino/Instascan.js/Instascan_qrcode.html
+-->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,9 +12,35 @@
     <script type="text/javascript" src="instascan.min.js"></script>
   </head>
   <body>
+	<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
     <video id="preview"></video>
 	<div id="result" style="color:red"></div>
     <script type="text/javascript">
+
+	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+	  console.log("enumerateDevices() not supported.");
+	}
+
+	var videoWidth = 320;
+	var videoHeight = 240;
+	
+    var back = 0;
+	var userMedia = 0;
+	navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+		  var i=-1;
+		  devices.forEach(function(device) {
+			  if (device.kind=="videoinput") {
+				  i++;
+				  if (device.label.includes("facing back")) back=i;
+				
+			  }
+		  });
+		
+		if (location.search.toLowerCase().indexOf("?back")!=-1) var userMedia = back;
+	}) 
+
+
 	  var result = document.getElementById('result');
       let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
       scanner.addListener('scan', function (content) {
@@ -15,8 +48,9 @@
 		result.innerHTML = utf8to16(content);
       });
       Instascan.Camera.getCameras().then(function (cameras) {
+		
         if (cameras.length > 0) {
-          scanner.start(cameras[0]);
+          scanner.start(cameras[userMedia]);
         } else {
           console.error('No cameras found.');
         }
