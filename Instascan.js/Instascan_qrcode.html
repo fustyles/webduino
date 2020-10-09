@@ -39,25 +39,23 @@ https://fustyles.github.io/webduino/Instascan.js/Instascan_qrcode.html
 		  });
 		
 		if (location.search.toLowerCase().indexOf("?back")!=-1) var userMedia = back;
-	}) 
-
-
-      var result = document.getElementById('result');
-      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-      scanner.addListener('scan', function (content) {
-        console.log(utf8to16(content));
+		
+	      var result = document.getElementById('result');
+	      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+	      scanner.addListener('scan', function (content) {
+		console.log(utf8to16(content));
 		result.innerHTML = utf8to16(content);
-      });
-      Instascan.Camera.getCameras().then(function (cameras) {
-        if (cameras.length > 0) {
-		result.innerHTML = userMedia + ", " +JSON.stringify(cameras[userMedia]);
-          scanner.start(cameras[userMedia]);
-        } else {
-          console.error('No cameras found.');
-        }
-      }).catch(function (e) {
-        console.error(e);
-      });
+	      });
+	      Instascan.Camera.getCameras().then(function (cameras) {
+		if (cameras.length > 0) {
+		  scanner.start(cameras[userMedia]);
+		} else {
+		  console.error('No cameras found.');
+		}
+	      }).catch(function (e) {
+		console.error(e);
+	      });		
+	}) 
 	    
 	function utf8to16(str) {
 	     var out, i, len, c;
