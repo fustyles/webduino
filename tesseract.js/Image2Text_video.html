@@ -127,6 +127,12 @@ https://github.com/naptha/tesseract.js#tesseractjs
 </select>
 <button id="btnDetect" onclick="DetectText();" disabled>Recognition</button>
 <br>
+black-and-white
+<select id="bw">
+	<option value='1'>Y</option>
+	<option value='0'>N</option>
+</select>
+<br>
 <table>
 <tr>
   <td colspan="3">
@@ -153,7 +159,7 @@ https://github.com/naptha/tesseract.js#tesseractjs
 		</table>
 	</div>
 </table>
-<div id="result" style="width:320px;color:red"></div>
+<div id="result" style="color:red"></div>
   
 <script>
 var video = document.getElementById('video');
@@ -161,8 +167,8 @@ var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
 var result = document.getElementById('result');
 var lang = document.getElementById('lang');
-var btnDetect = document.getElementById('btnDetect');  
-
+var btnDetect = document.getElementById('btnDetect'); 
+var bw = document.getElementById('bw'); 
 
 if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
   console.log("enumerateDevices() not supported.");
@@ -202,6 +208,8 @@ navigator.mediaDevices.enumerateDevices()
 
 			setInterval(function() {
 					context.drawImage(video, 0, 0, video.width, video.height);
+
+					if (bw.value=="0") return;
 					var myColor_r_min = document.getElementById('myColor_r_min').value;
 					var myColor_r_max = document.getElementById('myColor_r_max').value;
 					var myColor_g_min = document.getElementById('myColor_g_min').value;
