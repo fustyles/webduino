@@ -24,15 +24,14 @@ If you change the range of RGB setting, you must press button "Start Detection".
 <canvas id="canvas"></canvas><canvas id="canvas_custom"></canvas><br>
 <table>
 <tr>
-  <td style="border:2px red solid;"><a style="color:red;" onclick="changeTab('red');">Tab(Red)</a>
-  <td style="border:2px green solid;"><a style="color:green" onclick="changeTab('green');">Tab(Green)</a></td>
-  <td style="border:2px blue solid;"><a style="color:blue" onclick="changeTab('blue');">Tab(Blue)</a></td>
-</td>
+  <td style="border:0px;background-color:red;color:white;"><a onclick="changeTab('red');">Tab(Red)</a></td>
+  <td style="border:0px;background-color:green;color:white;"><a onclick="changeTab('green');">Tab(Green)</a></td>
+  <td style="border:0px;background-color:blue;color:white;"><a onclick="changeTab('blue');">Tab(Blue)</a></td>
 </tr>
 <tr>
   <td colspan="3">
 	<div id="divColor1">
-	  <table style="border:2px red solid;"><tr>
+	  <table style="border:3px red solid;"><tr>
 		  <td colspan="2">
 		  <select id="myColor1" onchange="changeColor(this.options[this.selectedIndex].text,1);">
 			<option value="">Initial_-1,-1,-1</option>
@@ -200,7 +199,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
 		</table>
 	</div>
 	<div id="divColor2" style="display:none">
-	  <table style="border:2px green solid;"><tr>
+	  <table style="border:3px green solid;"><tr>
 		  <td colspan="3">
 		  <select id="myColor2" onchange="changeColor(this.options[this.selectedIndex].text,2);">
 		    <option value="">Initial_-1,-1,-1</option>
@@ -368,7 +367,7 @@ If you change the range of RGB setting, you must press button "Start Detection".
 		</table>
 	</div>
 	<div id="divColor3" style="display:none">
-	  <table style="border:2px blue solid;"><tr>
+	  <table style="border:3px blue solid;"><tr>
 		  <td colspan="3">
 		  <select id="myColor3" onchange="changeColor(this.options[this.selectedIndex].text,3);">
 			<option value="">Initial_-1,-1,-1</option>
