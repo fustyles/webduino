@@ -139,15 +139,9 @@ Image Processing
 <br>
 <table id="menu" style="display:none">
 <tr>
-  <td style="border:2px red solid;color:red;">Custom</td>
-  <td style="border:2px green solid;color:green;">Black words</td>
-  <td style="border:2px blue solid;color:blue;">White words</td>
-</td>
-</tr>
-<tr>
   <td colspan="3">
 	<div id="divColor1" style="display:none">
-		<table style="border:2px red solid;">
+		<table>
 			<tr>
 			  <td align="right" style="color:red">R</td>
 			  <td colspan="2">min<input type="range" id="myColor_r_min" min="0" max="255" value="0" step="1" onchange="myColor_r_min_v.innerHTML=this.value;black_and_white();"><span id="myColor_r_min_v">0</span><br>
@@ -169,7 +163,7 @@ Image Processing
 		</table>
 	</div>
 	<div id="divColor2" style="display:none">
-	  <table style="border:2px green solid;">
+	  <table>
 		<tr>
 		  <td align="right" style="color:green">Max</td>
 		  <td colspan="2"><input type="range" id="myColor_r_2" min="0" max="255" value="100" step="1" onchange="myColor_r_v2.innerHTML=this.value;black_and_white();"><span id="myColor_r_v2">100</span>
@@ -178,7 +172,7 @@ Image Processing
 		</table>
 	</div>
 	<div id="divColor3" style="display:none">
-	  <table style="border:2px blue solid;">
+	  <table>
 		<tr>
 		  <td align="right" style="color:blue">Min</td>
 		  <td colspan="2"><input type="range" id="myColor_r_3" min="0" max="255" value="150" step="1" onchange="myColor_r_v3.innerHTML=this.value;black_and_white();"><span id="myColor_r_v3">150</span>
