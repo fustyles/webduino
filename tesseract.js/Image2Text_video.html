@@ -18,7 +18,7 @@ https://github.com/naptha/tesseract.js#tesseractjs
 </head>
 <body>
 <button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
-<video id="video" width="320" height="240" style="visibility:hidden;position:absolute" preload autoplay loop muted></video>
+<video id="video" width="480" height="360" style="visibility:hidden;position:absolute" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas>
 <br>
 <select id="lang">
@@ -174,8 +174,8 @@ if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
   console.log("enumerateDevices() not supported.");
 }
 
-var videoWidth = 320;
-var videoHeight = 240;
+var videoWidth = 480;
+var videoHeight = 360;
 
 var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
 navigator.mediaDevices.enumerateDevices()
