@@ -128,7 +128,7 @@ https://github.com/naptha/tesseract.js#tesseractjs
 <button id="btnDetect" onclick="DetectText();" disabled>Recognition</button>
 <br>
 black-and-white
-<select id="bw">
+<select id="bw" onclick="changeTab(this.value);">
 	<option value='0'>Color</option>
 	<option value='1'>Custom</option>
 	<option value='2'>Black words</option>
@@ -136,31 +136,57 @@ black-and-white
 	<option value='4'>Gray Scale</option>
 </select>
 <br>
-<table>
+<table id="menu" style="display:none">
+<tr>
+  <td style="border:2px red solid;"><a style="color:red;" onclick="changeTab('1');">Custom</a>
+  <td style="border:2px green solid;"><a style="color:green" onclick="changeTab('2');">Black words</a></td>
+  <td style="border:2px blue solid;"><a style="color:blue" onclick="changeTab('3');">White words</a></td>
+</td>
+</tr>
 <tr>
   <td colspan="3">
-	<div id="divColor1">
-	  <table style="border:2px red solid;">
+	<div id="divColor1" style="display:none">
+		<table style="border:2px red solid;">
+			<tr>
+			  <td align="right" style="color:red">R</td>
+			  <td colspan="2">min<input type="range" id="myColor_r_min" min="0" max="255" value="0" step="1" onchange="myColor_r_min_v.innerHTML=this.value;"><span id="myColor_r_min_v">0</span><br>
+				  max<input type="range" id="myColor_r_max" min="0" max="255" value="255" step="1" onchange="myColor_r_max_v.innerHTML=this.value;"><span id="myColor_r_max_v">255</span>
+			  </td>
+			</tr>
+			<tr>
+			  <td align="right" style="color:red">G</td>
+			  <td colspan="2">min<input type="range" id="myColor_g_min" min="0" max="255" value="0" step="1" onchange="myColor_g_min_v.innerHTML=this.value;"><span id="myColor_g_min_v">0</span><br>
+				  max<input type="range" id="myColor_g_max" min="0" max="255" value="255" step="1" onchange="myColor_g_max_v.innerHTML=this.value;"><span id="myColor_g_max_v">255</span>
+			  </td>
+			</tr>
+			<tr>
+			  <td align="right" style="color:red">B</td>
+			  <td colspan="2">min<input type="range" id="myColor_b_min" min="0" max="255" value="0" step="1" onchange="myColor_b_min_v.innerHTML=this.value;"><span id="myColor_b_min_v">0</span><br>
+				  max<input type="range" id="myColor_b_max" min="0" max="255" value="100" step="1" onchange="myColor_b_max_v.innerHTML=this.value;"><span id="myColor_b_max_v">100</span>
+			  </td>
+			</tr>
+		</table>
+	</div>
+	<div id="divColor2" style="display:none">
+	  <table style="border:2px green solid;">
 		<tr>
-		  <td align="right">R</td>
-		  <td colspan="2">min<input type="range" id="myColor_r_min" min="0" max="255" value="0" step="1" onchange="myColor_r_min_v.innerHTML=this.value;"><span id="myColor_r_min_v">0</span><br>
-			  max<input type="range" id="myColor_r_max" min="0" max="255" value="255" step="1" onchange="myColor_r_max_v.innerHTML=this.value;"><span id="myColor_r_max_v">255</span>
-		  </td>
-		</tr>
-		<tr>
-		  <td align="right">G</td>
-		  <td colspan="2">min<input type="range" id="myColor_g_min" min="0" max="255" value="0" step="1" onchange="myColor_g_min_v.innerHTML=this.value;"><span id="myColor_g_min_v">0</span><br>
-			  max<input type="range" id="myColor_g_max" min="0" max="255" value="255" step="1" onchange="myColor_g_max_v.innerHTML=this.value;"><span id="myColor_g_max_v">255</span>
-		  </td>
-		</tr>
-		<tr>
-		  <td align="right">B</td>
-		  <td colspan="2">min<input type="range" id="myColor_b_min" min="0" max="255" value="0" step="1" onchange="myColor_b_min_v.innerHTML=this.value;"><span id="myColor_b_min_v">0</span><br>
-			  max<input type="range" id="myColor_b_max" min="0" max="255" value="100" step="1" onchange="myColor_b_max_v.innerHTML=this.value;"><span id="myColor_b_max_v">100</span>
+		  <td align="right" style="color:green">Max Average</td>
+		  <td colspan="2"><input type="range" id="myColor_r_2" min="0" max="255" value="100" step="1" onchange="myColor_r_v2.innerHTML=this.value;"><span id="myColor_r_v2">100</span>
 		  </td>
 		</tr>
 		</table>
 	</div>
+	<div id="divColor3" style="display:none">
+	  <table style="border:2px blue solid;">
+		<tr>
+		  <td align="right" style="color:blue">Min Average</td>
+		  <td colspan="2"><input type="range" id="myColor_r_3" min="0" max="255" value="150" step="1" onchange="myColor_r_v3.innerHTML=this.value;"><span id="myColor_r_v3">150</span>
+		  </td>
+		</tr>
+		</table>
+	</div>
+  </td>
+</tr>
 </table>
 <div id="result" style="color:red"></div>
   
@@ -172,6 +198,7 @@ var result = document.getElementById('result');
 var lang = document.getElementById('lang');
 var btnDetect = document.getElementById('btnDetect'); 
 var bw = document.getElementById('bw'); 
+var menu = document.getElementById('menu');
 
 if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
   console.log("enumerateDevices() not supported.");
@@ -219,6 +246,8 @@ navigator.mediaDevices.enumerateDevices()
 					var myColor_g_max = document.getElementById('myColor_g_max').value;
 					var myColor_b_min = document.getElementById('myColor_b_min').value;
 					var myColor_b_max = document.getElementById('myColor_b_max').value;
+					var myColor_r_2 = document.getElementById('myColor_r_2').value;
+					var myColor_r_3 = document.getElementById('myColor_r_3').value;
 
 					var imgData=context.getImageData(0,0,canvas.width,canvas.height);
 					for (var i=0;i<imgData.data.length;i+=4) {
@@ -242,7 +271,7 @@ navigator.mediaDevices.enumerateDevices()
 						}
 						else if(bw.value=="2") {
 							var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
-							if (arg<=100) {
+							if (arg<=Number(myColor_r_2)) {
 								imgData.data[i]=0;
 								imgData.data[i+1]=0;
 								imgData.data[i+2]=0;
@@ -257,7 +286,7 @@ navigator.mediaDevices.enumerateDevices()
 						}
 						else if(bw.value=="3") {
 							var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
-							if (arg>=150) {
+							if (arg>=Number(myColor_r_3)) {
 								imgData.data[i]=0;
 								imgData.data[i+1]=0;
 								imgData.data[i+2]=0;
@@ -297,6 +326,13 @@ function DetectText() {
 		console.log(text);
 	})  
 } 
+
+function changeTab(tab) {
+  menu.style.display="none";
+  if (tab=='1') {divColor1.style.display="block";menu.style.display="block";} else {divColor1.style.display="none"};
+  if (tab=='2') {divColor2.style.display="block";menu.style.display="block";} else {divColor2.style.display="none"};
+  if (tab=='3') {divColor3.style.display="block";menu.style.display="block";} else {divColor3.style.display="none"};
+}
 </script>
 
 </body>
