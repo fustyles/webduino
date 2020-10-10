@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/10/10 12:00
 https://www.facebook.com/francefu
 
 Try it!
@@ -130,8 +130,11 @@ https://github.com/naptha/tesseract.js#tesseractjs
 <br>
 black-and-white
 <select id="bw" onclick="black_and_white();">
-	<option value='0'>N</option>
-	<option value='1'>Y</option>
+	<option value='0'>Color</option>
+	<option value='1'>Custom</option>
+	<option value='2'>Black words</option>
+	<option value='3'>White words</option>
+	<option value='4'>Gray Scale</option>
 </select>
 <br>
 <table>
@@ -212,16 +215,55 @@ function black_and_white() {
 		var g=0;
 		var b=0;
 
-		if ((imgData.data[i]>=myColor_r_min&&imgData.data[i]<=myColor_r_max)&&(imgData.data[i+1]>=myColor_g_min&&imgData.data[i+1]<=myColor_g_max)&&(imgData.data[i+2]>=myColor_b_min&&imgData.data[i+2]<=myColor_b_max)) {
-			imgData.data[i]=0;
-			imgData.data[i+1]=0;
-			imgData.data[i+2]=0;
-			imgData.data[i+3]=255;
+		if (bw.value=="1") {
+			if ((imgData.data[i]>=myColor_r_min&&imgData.data[i]<=myColor_r_max)&&(imgData.data[i+1]>=myColor_g_min&&imgData.data[i+1]<=myColor_g_max)&&(imgData.data[i+2]>=myColor_b_min&&imgData.data[i+2]<=myColor_b_max)) {
+				imgData.data[i]=0;
+				imgData.data[i+1]=0;
+				imgData.data[i+2]=0;
+				imgData.data[i+3]=255;
+			}
+			else {
+				imgData.data[i]=255;
+				imgData.data[i+1]=255;
+				imgData.data[i+2]=255;
+				imgData.data[i+3]=255;
+			}
 		}
-		else {
-			imgData.data[i]=255;
-			imgData.data[i+1]=255;
-			imgData.data[i+2]=255;
+		else if(bw.value=="2") {
+			var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
+			if (arg<=100) {
+				imgData.data[i]=0;
+				imgData.data[i+1]=0;
+				imgData.data[i+2]=0;
+				imgData.data[i+3]=255;
+			}
+			else {
+				imgData.data[i]=255;
+				imgData.data[i+1]=255;
+				imgData.data[i+2]=255;
+				imgData.data[i+3]=255;
+			}
+		}
+		else if(bw.value=="3") {
+			var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
+			if (arg>=150) {
+				imgData.data[i]=0;
+				imgData.data[i+1]=0;
+				imgData.data[i+2]=0;
+				imgData.data[i+3]=255;
+			}
+			else {
+				imgData.data[i]=255;
+				imgData.data[i+1]=255;
+				imgData.data[i+2]=255;
+				imgData.data[i+3]=255;
+			}
+		}
+		else if(bw.value=="4") {
+			var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
+			imgData.data[i]=arg;
+			imgData.data[i+1]=arg;
+			imgData.data[i+2]=arg;
 			imgData.data[i+3]=255;
 		}
 	}
