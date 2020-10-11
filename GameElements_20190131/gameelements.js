@@ -3468,6 +3468,8 @@ function HextoRgb(color) {
   function video_get(input_id,input_property){
     if (document.getElementById("gamevideo_"+input_id)) {
 	  var obj = document.getElementById("gamevideo_"+input_id);
+    else
+	  var obj = document.getElementById("video"); 
       if (input_property=="left")
         return Number(obj.style.left.replace(/px/ig,""));
       else if (input_property=="top")
