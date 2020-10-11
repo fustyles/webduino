@@ -3402,8 +3402,6 @@ function HextoRgb(color) {
   function video_set(input_id,input_property,input_value) {
     if (document.getElementById("gamevideo_"+input_id)) {
 	  var obj = document.getElementById("gamevideo_"+input_id);
-    else
-	  var obj = document.getElementById("video");   
       if (input_property=="left")
         obj.style.left = input_value + "px";
       else if (input_property=="top")
@@ -3468,8 +3466,6 @@ function HextoRgb(color) {
   function video_get(input_id,input_property){
     if (document.getElementById("gamevideo_"+input_id)) {
 	  var obj = document.getElementById("gamevideo_"+input_id);
-    else
-	  var obj = document.getElementById("video"); 
       if (input_property=="left")
         return Number(obj.style.left.replace(/px/ig,""));
       else if (input_property=="top")
