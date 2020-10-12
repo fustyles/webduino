@@ -5,7 +5,7 @@
   'use strict';
 
 	function cocossd_video(input_result, input_frame, input_mirrorimage, input_opacity) {
-		document.getElementById('result').style.display = input_result;
+		document.getElementById('gamediv_cocossd').style.display = input_result;
 		document.getElementById('frame').value = input_frame;
 		document.getElementById('mirrorimage').value = input_mirrorimage;
 		document.getElementById('opacity').value = input_opacity;
@@ -13,7 +13,7 @@
 	}
 
 	function cocossd_list(input_object) {
-		var result = document.getElementById("result").innerHTML.split("<br>");
+		var result = document.getElementById("gamediv_cocossd").innerHTML.split("<br>");
 		var result_arr = [];
 		if (result.length>0) {
 			for (var i=0;i<result.length;i++) {
@@ -28,7 +28,7 @@
 
 	function cocossd_object(input_object, input_index, input_data) {
 		var n=0;
-		var result = document.getElementById("result").innerHTML.split("<br>");
+		var result = document.getElementById("gamediv_cocossd").innerHTML.split("<br>");
 		if (result.length>0) {
 			for (var i=0;i<result.length;i++) {
 				var result_detail = result[i].split(",");
@@ -60,7 +60,7 @@
 	}
 
 	function cocossd_object_number(input_object) {
-		var result = document.getElementById("result").innerHTML.split("<br>");
+		var result = document.getElementById("gamediv_cocossd").innerHTML.split("<br>");
 		if (input_object=="") 
 			return result.length;
 		var n=0;

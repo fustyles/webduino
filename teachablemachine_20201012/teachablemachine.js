@@ -5,7 +5,7 @@
 	'use strict';
 
 	function teachablemachine_video(input_result, input_mirrorimage, input_opacity) {
-		document.getElementById('result').style.display = input_result;
+		document.getElementById('gamediv_teachablemachine').style.display = input_result;
 		document.getElementById('mirrorimage').value = input_mirrorimage;
 		document.getElementById('opacity').value = input_opacity;
 		document.getElementById("region").style.opacity = Number(input_opacity);
@@ -16,7 +16,7 @@
 	}
 
 	function teachablemachine_result(input_proportion) {
-		var result = document.getElementById("result").innerHTML.split("<br>");
+		var result = document.getElementById("gamediv_teachablemachine").innerHTML.split("<br>");
 		var result_arr = [];
 		var maxClass = "";
 		var maxProbability = "";

@@ -1,14 +1,14 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"></script>');
-document.write('<div id="region" style="z-index:999"><video id="gamevideo_cocossd" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimg_cocossd" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_cocossd"></canvas><br><select id="frame" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="opacity" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><br><div id="result" style="color:red"></div></div>');
+document.write('<div id="region" style="z-index:999"><video id="gamevideo_cocossd" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimg_cocossd" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_cocossd"></canvas><br><select id="frame" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="opacity" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><br><div id="gamediv_cocossd" style="color:red"></div></div>');
 document.write('<div id="cocossdState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId" style="position:absolute;display:none;"></div>');
 
 window.onload = function () {
-	var video = document.getElementById('video');
+	var video = document.getElementById('gamevideo_cocossd');
 	var canvas = document.getElementById('gamecanvas_cocossd'); 
 	var context = canvas.getContext('2d');
-	var result = document.getElementById('result'); 
+	var result = document.getElementById('gamediv_cocossd'); 
 	var Model; 
 	var sourceTimer;  
   
