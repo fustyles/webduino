@@ -13,5 +13,5 @@ Blockly.Msg.BLAZEFACE_VIDEO_TOP_SHOW = "TOP";
 Blockly.Msg.BLAZEFACE_FRAME_SHOW = "Frame";
 Blockly.Msg.BLAZEFACE_FACING_SHOW = "Camera Facing";
 Blockly.Msg.BLAZEFACE_FACING_FRONT_SHOW = "Front";
-Blockly.Msg.BLAZEFACE_FACING_BACK_SHOW = "Back";0
+Blockly.Msg.BLAZEFACE_FACING_BACK_SHOW = "Back";
 Blockly.Msg.BLAZEFACE_SRC_SHOW = "Stream URL";
