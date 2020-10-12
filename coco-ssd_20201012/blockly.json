@@ -1,0 +1,15 @@
+{
+  "types": ["cocossd_video", "cocossd_list", "cocossd_object", "cocossd_state", "cocossd_object_number", "cocossd_video_position", "cocossd_startvideo_media", "cocossd_startvideo_stream"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "coco-ssd_video.js",
+    "coco-ssd.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
