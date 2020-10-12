@@ -6,13 +6,13 @@
 
 	function teachablemachine_video(input_result, input_mirrorimage, input_opacity) {
 		document.getElementById('gamediv_teachablemachine').style.display = input_result;
-		document.getElementById('mirrorimage').value = input_mirrorimage;
-		document.getElementById('opacity').value = input_opacity;
-		document.getElementById("region").style.opacity = Number(input_opacity);
+		document.getElementById('mirrorimage_teachablemachine').value = input_mirrorimage;
+		document.getElementById('opacity_teachablemachine').value = input_opacity;
+		document.getElementById("region_teachablemachine").style.opacity = Number(input_opacity);
 	}	
 
 	function teachablemachine_model(input_model){
-		document.getElementById("modelPath").value = input_model;
+		document.getElementById("modelPath_teachablemachine").value = input_model;
 	}
 
 	function teachablemachine_result(input_proportion) {
@@ -50,6 +50,7 @@
 	}	
 
 	function teachablemachine_video_position(input_left, input_top) {
+		var region = document.getElementById("region_teachablemachine");
 		region.style.position = "absolute";
 		region.style.left = input_left + "px";
 		region.style.top = input_top + "px";
@@ -79,7 +80,6 @@
 			var i=-1;
 			var userMedia = "";
 			devices.forEach(function(device) {
-				console.log(device);
 				if (device.kind=="videoinput"&&device.label.includes("facing back")&&input_facing=="back") {
 					i++;
 					if (i==input_videoInputIndex) {
@@ -104,7 +104,7 @@
 					video.srcObject = stream
 					video.onloadedmetadata = () => {       
 						video.play();
-						document.getElementById("sourceId").innerHTML = "gamevideo_teachablemachine";
+						document.getElementById("sourceId_teachablemachine").innerHTML = "gamevideo_teachablemachine";
 					}
 				}) 
 			}
@@ -113,7 +113,7 @@
 
   	function teachablemachine_startvideo_stream(url) {
 		document.getElementById("gameimg_teachablemachine").src = url;
-		document.getElementById("sourceId").innerHTML = "gameimg_teachablemachine";	
+		document.getElementById("sourceId_teachablemachine").innerHTML = "gameimg_teachablemachine";	
 	}  
 
 	window.teachablemachine_video = teachablemachine_video;

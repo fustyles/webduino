@@ -6,11 +6,11 @@
 
 	function blazeface_video(input_scorelimit, input_frame, input_mirrorimage, input_result, input_opacity) {  
 		document.getElementById("gamediv_blazeface").style.display = input_result;
-		document.getElementById("frame").value = input_frame;
-		document.getElementById("mirrorimage").value = input_mirrorimage;
-		document.getElementById('opacity').value = input_opacity;
-		document.getElementById("region").style.opacity = Number(input_opacity);
-		document.getElementById('scorelimit').value = input_scorelimit;
+		document.getElementById("frame_blazeface").value = input_frame;
+		document.getElementById("mirrorimage_blazeface").value = input_mirrorimage;
+		document.getElementById('opacity_blazeface').value = input_opacity;
+		document.getElementById("region_blazeface").style.opacity = Number(input_opacity);
+		document.getElementById('scorelimit_blazeface').value = input_scorelimit;
 	}
 
 	function blazeface_get(input_person, input_part){
@@ -33,6 +33,7 @@
 	}	
 
 	function blazeface_video_position(input_left, input_top) {
+		var region = document.getElementById("region_blazeface");
 		region.style.position = "absolute";
 		region.style.left = input_left + "px";
 		region.style.top = input_top + "px";
@@ -62,7 +63,6 @@
 			var i=-1;
 			var userMedia = "";
 			devices.forEach(function(device) {
-				console.log(device);
 				if (device.kind=="videoinput"&&device.label.includes("facing back")&&input_facing=="back") {
 					i++;
 					if (i==input_videoInputIndex) {
@@ -87,7 +87,7 @@
 					video.srcObject = stream
 					video.onloadedmetadata = () => {       
 						video.play();
-						document.getElementById("sourceId").innerHTML = "gamevideo_blazeface";
+						document.getElementById("sourceId_blazeface").innerHTML = "gamevideo_blazeface";
 					}
 				}) 
 			}
@@ -96,7 +96,7 @@
 
   	function blazeface_startvideo_stream(url) {
 		document.getElementById("gameimg_blazeface").src = url;
-		document.getElementById("sourceId").innerHTML = "gameimg_blazeface";	
+		document.getElementById("sourceId_blazeface").innerHTML = "gameimg_blazeface";	
 	}
 
 	window.blazeface_video = blazeface_video;

@@ -6,10 +6,10 @@
 
 	function cocossd_video(input_result, input_frame, input_mirrorimage, input_opacity) {
 		document.getElementById('gamediv_cocossd').style.display = input_result;
-		document.getElementById('frame').value = input_frame;
-		document.getElementById('mirrorimage').value = input_mirrorimage;
-		document.getElementById('opacity').value = input_opacity;
-		document.getElementById("region").style.opacity = Number(input_opacity);
+		document.getElementById('frame_cocossd').value = input_frame;
+		document.getElementById('mirrorimage_cocossd').value = input_mirrorimage;
+		document.getElementById('opacity_cocossd').value = input_opacity;
+		document.getElementById("region_cocossd").style.opacity = Number(input_opacity);
 	}
 
 	function cocossd_list(input_object) {
@@ -79,6 +79,7 @@
 	}	
 
 	function cocossd_video_position(input_left, input_top) {
+		var region = document.getElementById("region_cocossd");
 		region.style.position = "absolute";
 		region.style.left = input_left + "px";
 		region.style.top = input_top + "px";
@@ -108,7 +109,6 @@
 			var i=-1;
 			var userMedia = "";
 			devices.forEach(function(device) {
-				console.log(device);
 				if (device.kind=="videoinput"&&device.label.includes("facing back")&&input_facing=="back") {
 					i++;
 					if (i==input_videoInputIndex) {
@@ -133,7 +133,7 @@
 					video.srcObject = stream
 					video.onloadedmetadata = () => {       
 						video.play();
-						document.getElementById("sourceId").innerHTML = "gamevideo_cocossd";
+						document.getElementById("sourceId_cocossd").innerHTML = "gamevideo_cocossd";
 					}
 				}) 
 			}
@@ -142,7 +142,7 @@
 
   	function cocossd_startvideo_stream(url) {
 		document.getElementById("gameimg_cocossd").src = url;
-		document.getElementById("sourceId").innerHTML = "gameimg_cocossd";	
+		document.getElementById("sourceId_cocossd").innerHTML = "gameimg_cocossd";	
 	}
    
 	

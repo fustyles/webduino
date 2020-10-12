@@ -1,8 +1,8 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"></script>');
-document.write('<div id="region" style="z-index:999"><video id="gamevideo_cocossd" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimg_cocossd" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_cocossd"></canvas><br><select id="frame" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="opacity" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><br><div id="gamediv_cocossd" style="color:red"></div></div>');
+document.write('<div id="region_cocossd" style="z-index:999"><video id="gamevideo_cocossd" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimg_cocossd" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_cocossd"></canvas><br><select id="frame_cocossd" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage_cocossd" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="opacity_cocossd" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><br><div id="gamediv_cocossd" style="color:red"></div></div>');
 document.write('<div id="cocossdState" style="position:absolute;display:none;">1</div>');
-document.write('<div id="sourceId" style="position:absolute;display:none;"></div>');
+document.write('<div id="sourceId_cocossd" style="position:absolute;display:none;"></div>');
 
 window.onload = function () {
 	var video = document.getElementById('gamevideo_cocossd');
@@ -17,7 +17,7 @@ window.onload = function () {
 		result.innerHTML = "";
 		sourceTimer = setInterval(
 		function(){
-			var source = document.getElementById("sourceId");
+			var source = document.getElementById("sourceId_cocossd");
 			if (source.innerHTML!="") {
 				clearInterval(sourceTimer);
 				DetectVideo(document.getElementById(source.innerHTML));
@@ -29,9 +29,9 @@ window.onload = function () {
 	async function DetectVideo(obj) {
 		canvas.setAttribute("width", obj.width);
 		canvas.setAttribute("height", obj.height);
-		document.getElementById("region").style.opacity = Number(document.getElementById("opacity").value);
+		document.getElementById("region_cocossd").style.opacity = Number(document.getElementById("opacity_cocossd").value);
 		
-		var mirrorimage = Number(document.getElementById("mirrorimage").value);
+		var mirrorimage = Number(document.getElementById("mirrorimage_cocossd").value);
 		if (mirrorimage==1) {
 			context.translate((canvas.width + obj.width) / 2, 0);
 			context.scale(-1, 1);
@@ -51,7 +51,7 @@ window.onload = function () {
 			result.innerHTML = "";
 			//console.log('Predictions: ', predictions);
 			
-			var frame = Number(document.getElementById("frame").value);
+			var frame = Number(document.getElementById("frame_cocossd").value);
 			
 			if (predictions.length>0) {
 				for (var i=0;i<predictions.length;i++) {
