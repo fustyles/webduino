@@ -1,0 +1,17 @@
+Blockly.Msg.BLAZEFACE_SHOW = "Face Detection (blazeface)";
+Blockly.Msg.BLAZEFACE_PERSON_SHOW = "Face Detection (blazeface) Index";
+Blockly.Msg.BLAZEFACE_PART_SHOW = "Part";
+Blockly.Msg.BLAZEFACE_WIDTH_SHOW = "Width";
+Blockly.Msg.BLAZEFACE_HEIGHT_SHOW = "Height";
+Blockly.Msg.BLAZEFACE_MIRRORIMAGE_SHOW = "Mirror Image";
+Blockly.Msg.BLAZEFACE_RESULT_SHOW = "Result";
+Blockly.Msg.BLAZEFACE_SCORELIMIT_SHOW = "Score Limit";
+Blockly.Msg.BLAZEFACE_OPACITY_SHOW = "Opacity";
+Blockly.Msg.BLAZEFACE_STATE_SHOW = "Face Detection (blazeface) Detect State";
+Blockly.Msg.BLAZEFACE_VIDEO_LEFT_SHOW = "Face Detection (blazeface) Video Left";
+Blockly.Msg.BLAZEFACE_VIDEO_TOP_SHOW = "TOP";
+Blockly.Msg.BLAZEFACE_FRAME_SHOW = "Frame";
+Blockly.Msg.BLAZEFACE_FACING_SHOW = "Camera Facing";
+Blockly.Msg.BLAZEFACE_FACING_FRONT_SHOW = "Front";
+Blockly.Msg.BLAZEFACE_FACING_BACK_SHOW = "Back";0
+Blockly.Msg.BLAZEFACE_SRC_SHOW = "Stream URL";

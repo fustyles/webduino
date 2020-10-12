@@ -1,0 +1,17 @@
+Blockly.Msg.BLAZEFACE_SHOW = "臉部偵測 (blazeface)";
+Blockly.Msg.BLAZEFACE_PERSON_SHOW = "臉部偵測 (blazeface) 索引";
+Blockly.Msg.BLAZEFACE_PART_SHOW = "部位";
+Blockly.Msg.BLAZEFACE_WIDTH_SHOW = "寬度";
+Blockly.Msg.BLAZEFACE_HEIGHT_SHOW = "高度";
+Blockly.Msg.BLAZEFACE_MIRRORIMAGE_SHOW = "鏡像";
+Blockly.Msg.BLAZEFACE_RESULT_SHOW = "結果";
+Blockly.Msg.BLAZEFACE_SCORELIMIT_SHOW = "信心底限";
+Blockly.Msg.BLAZEFACE_OPACITY_SHOW = "透明度";
+Blockly.Msg.BLAZEFACE_STATE_SHOW = "臉部偵測 (blazeface) 偵測狀態";
+Blockly.Msg.BLAZEFACE_VIDEO_LEFT_SHOW = "臉部偵測 (blazeface) 視訊畫面 靠左距離";
+Blockly.Msg.BLAZEFACE_VIDEO_TOP_SHOW = "靠上距離";
+Blockly.Msg.BLAZEFACE_FRAME_SHOW = "框架";
+Blockly.Msg.BLAZEFACE_FACING_SHOW = "鏡頭";
+Blockly.Msg.BLAZEFACE_FACING_FRONT_SHOW = "前置";
+Blockly.Msg.BLAZEFACE_FACING_BACK_SHOW = "後置";
+Blockly.Msg.BLAZEFACE_SRC_SHOW = "串流網址";

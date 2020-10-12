@@ -1,0 +1,15 @@
+{
+  "types": ["blazeface_video","blazeface_person","blazeface_state","blazeface_video_position","blazeface_startvideo_media","blazeface_startvideo_stream"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "blazeface_video.js",
+    "blazeface.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
