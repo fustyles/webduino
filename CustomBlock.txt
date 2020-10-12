@@ -5,6 +5,10 @@
 
 (新版) 臉部偵測 (tfjs blazeface) 
 https://fustyles.github.io/webduino/Blazeface_20201012/blockly.json
+(新版) 物件偵測 (tfjs coco-ssd)
+https://fustyles.github.io/webduino/coco-ssd_20201012/blockly.json
+若使用ESP32-CAM串流，請安裝我的韌體。
+https://github.com/fustyles/Arduino/tree/master/ESP32-CAM_MyBlockly_STREAM
 
 
 Webbit教育版 & KebbixWebbit 新增自訂積木
