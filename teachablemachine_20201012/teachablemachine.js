@@ -4,48 +4,65 @@
 
 	'use strict';
 
-	function blazeface_video(input_scorelimit, input_frame, input_mirrorimage, input_result, input_opacity) {  
-		document.getElementById("result").style.display = input_result;
-		document.getElementById("frame").value = input_frame;
-		document.getElementById("mirrorimage").value = input_mirrorimage;
+	function teachablemachine_video(input_result, input_mirrorimage, input_opacity) {
+		document.getElementById('result').style.display = input_result;
+		document.getElementById('mirrorimage').value = input_mirrorimage;
 		document.getElementById('opacity').value = input_opacity;
 		document.getElementById("region").style.opacity = Number(input_opacity);
-		document.getElementById('scorelimit').value = input_scorelimit;
+	}	
+
+	function teachablemachine_model(input_model){
+		document.getElementById("modelPath").value = input_model;
 	}
 
-	function blazeface_get(input_person, input_part){
+	function teachablemachine_result(input_proportion) {
 		var result = document.getElementById("result").innerHTML.split("<br>");
 		var result_arr = [];
+		var maxClass = "";
+		var maxProbability = "";
+
 		if (result.length>0) {
 			for (var i=0;i<result.length;i++) {
 				var result_detail = result[i].split(",");
-				if (input_part=='') 
-					result_arr.push(result_detail);
-				else if (result_detail[0]==input_person&&result_detail[1]==input_part) 
-					return result_detail;
+				if (i==0) {
+					maxClass = result_detail[0];
+					maxProbability = result_detail[1];
+				} else {
+					if (result_detail[1]>maxProbability) {
+						maxClass = result_detail[0];
+						maxProbability = result_detail[1];
+					}
+				}
+				result_arr.push(result_detail);
 			}
 		}
-		return result_arr;
+
+		if (input_proportion=="")
+			return result_arr;
+		else if (input_proportion=="maxClass")
+			return maxClass;
+		else if (input_proportion=="maxProbability")
+			return Number(maxProbability);
+	}
+
+	function teachablemachine_state(input_state){
+		document.getElementById('teachablemachineState').innerHTML = input_state;
 	}	
 
-	function blazeface_state(input_state){
-		document.getElementById('blazefaceState').innerHTML = input_state;
-	}	
-
-	function blazeface_video_position(input_left, input_top) {
+	function teachablemachine_video_position(input_left, input_top) {
 		region.style.position = "absolute";
 		region.style.left = input_left + "px";
 		region.style.top = input_top + "px";
 	}
   
-  	function blazeface_startvideo_media(input_width, input_height, input_facing, input_videoInputIndex) {
-		var video = document.getElementById("gamevideo_blazeface");
+  	function teachablemachine_startvideo_media(input_width, input_height, input_facing, input_videoInputIndex) {
+		var video = document.getElementById("gamevideo_teachablemachine");
 		video.width = input_width;
 		video.height = input_height;
 		video.style.width = input_width+"px";
 		video.style.height = input_height+"px";		
 
-		var canvas = document.getElementById("gamecanvas_blazeface");  
+		var canvas = document.getElementById("gamecanvas_teachablemachine");  
 		canvas.setAttribute("width", video.width);
 		canvas.setAttribute("height", video.height);
 		canvas.style.width = video.width+"px";
@@ -87,23 +104,24 @@
 					video.srcObject = stream
 					video.onloadedmetadata = () => {       
 						video.play();
-						document.getElementById("sourceId").innerHTML = "gamevideo_blazeface";
+						document.getElementById("sourceId").innerHTML = "gamevideo_teachablemachine";
 					}
 				}) 
 			}
 		}) 
 	}
 
-  	function blazeface_startvideo_stream(url) {
-		document.getElementById("gameimg_blazeface").src = url;
-		document.getElementById("sourceId").innerHTML = "gameimg_blazeface";	
-	}
+  	function teachablemachine_startvideo_stream(url) {
+		document.getElementById("gameimg_teachablemachine").src = url;
+		document.getElementById("sourceId").innerHTML = "gameimg_teachablemachine";	
+	}  
 
-	window.blazeface_video = blazeface_video;
-	window.blazeface_get = blazeface_get;
-	window.blazeface_video_position = blazeface_video_position;
-	window.blazeface_state = blazeface_state;
-	window.blazeface_startvideo_media = blazeface_startvideo_media;
-	window.blazeface_startvideo_stream = blazeface_startvideo_stream;
-	
+	window.teachablemachine_video = teachablemachine_video;
+	window.teachablemachine_model = teachablemachine_model;
+	window.teachablemachine_result = teachablemachine_result;
+	window.teachablemachine_video_position = teachablemachine_video_position;
+	window.teachablemachine_state = teachablemachine_state;
+	window.teachablemachine_startvideo_media = teachablemachine_startvideo_media;
+	window.teachablemachine_startvideo_stream = teachablemachine_startvideo_stream;  
+
 }(window, window.document));

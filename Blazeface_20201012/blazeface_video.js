@@ -29,21 +29,23 @@ window.onload = function () {
                         
 	async function DetectVideo(obj) {
 		canvas.setAttribute("width", obj.width);
-		canvas.setAttribute("height", obj.height);		
+		canvas.setAttribute("height", obj.height);
+		document.getElementById("region").style.opacity = Number(document.getElementById("opacity").value);
+		
 		var mirrorimage = Number(document.getElementById("mirrorimage").value);
 		if (mirrorimage==1) {
-		context.translate((canvas.width + obj.width) / 2, 0);
-		context.scale(-1, 1);
-		context.drawImage(obj, 0, 0, obj.width, obj.height);
-		context.setTransform(1, 0, 0, 1, 0, 0);
+			context.translate((canvas.width + obj.width) / 2, 0);
+			context.scale(-1, 1);
+			context.drawImage(obj, 0, 0, obj.width, obj.height);
+			context.setTransform(1, 0, 0, 1, 0, 0);
 		}
 		else
-		context.drawImage(obj, 0, 0, obj.width, obj.height);
+			context.drawImage(obj, 0, 0, obj.width, obj.height);
 
 		if (document.getElementById('blazefaceState').innerHTML=="0") {
-		  result.innerHTML = "";
-		  setTimeout(function(){DetectVideo(obj);}, 100);
-		  return;
+			result.innerHTML = "";
+			setTimeout(function(){DetectVideo(obj);}, 100);
+			return;
 		}
 
 		var frame = Number(document.getElementById("frame").value);

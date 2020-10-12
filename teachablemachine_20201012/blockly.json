@@ -1,0 +1,15 @@
+{
+  "types": ["teachablemachine_video", "teachablemachine_model", "teachablemachine_result", "teachablemachine_state", "teachablemachine_video_position","teachablemachine_startvideo_media","teachablemachine_startvideo_stream"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "teachablemachine_video.js",
+    "teachablemachine.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}

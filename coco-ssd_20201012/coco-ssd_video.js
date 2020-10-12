@@ -29,6 +29,7 @@ window.onload = function () {
 	async function DetectVideo(obj) {
 		canvas.setAttribute("width", obj.width);
 		canvas.setAttribute("height", obj.height);
+		document.getElementById("region").style.opacity = Number(document.getElementById("opacity").value);
 		
 		var mirrorimage = Number(document.getElementById("mirrorimage").value);
 		if (mirrorimage==1) {
@@ -49,7 +50,7 @@ window.onload = function () {
 		await Model.detect(canvas).then(predictions => { 
 			result.innerHTML = "";
 			//console.log('Predictions: ', predictions);
-			document.getElementById("region").style.opacity = Number(document.getElementById("opacity").value);
+			
 			var frame = Number(document.getElementById("frame").value);
 			
 			if (predictions.length>0) {
