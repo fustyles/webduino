@@ -42,7 +42,7 @@ window.onload = function () {
 
 		if (document.getElementById('blazefaceState').innerHTML=="0") {
 		  result.innerHTML = "";
-		  setTimeout(function(){DetectVideo();}, 100);
+		  setTimeout(function(){DetectVideo(obj);}, 100);
 		  return;
 		}
 
