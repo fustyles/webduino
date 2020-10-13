@@ -3,6 +3,9 @@
 我寫的自訂積木、韌體、網頁等免費提供各級學校教學與個人使用，僅供測試，請勿用於商業販售用途！
 
 
+
+(新版) 姿態偵測 (tfjs posenet)
+https://fustyles.github.io/webduino/posenet_20201012/blockly.json
 (新版) 臉部偵測 (tfjs blazeface) 
 https://fustyles.github.io/webduino/Blazeface_20201012/blockly.json
 (新版) 物件偵測 (tfjs coco-ssd)
