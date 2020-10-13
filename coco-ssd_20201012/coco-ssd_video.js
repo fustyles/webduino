@@ -20,15 +20,19 @@ window.onload = function () {
 			var source = document.getElementById("sourceId_cocossd");
 			if (source.innerHTML!="") {
 				clearInterval(sourceTimer);
-				DetectVideo(document.getElementById(source.innerHTML));
+				setTimeout(function(){DetectVideo(document.getElementById(source.innerHTML))}, 3000);
 			}				
 		}
 		, 100);		
 	}); 
 
 	async function DetectVideo(obj) {
+		obj.style.width = obj.width + 'px';
+		obj.style.height = obj.height + 'px';		
 		canvas.setAttribute("width", obj.width);
 		canvas.setAttribute("height", obj.height);
+		canvas.style.width = obj.style.width;
+		canvas.style.height = obj.style.height;		
 		document.getElementById("region_cocossd").style.opacity = Number(document.getElementById("opacity_cocossd").value);
 		
 		var mirrorimage = Number(document.getElementById("mirrorimage_cocossd").value);

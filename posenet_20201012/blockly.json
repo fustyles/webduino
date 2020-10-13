@@ -1,0 +1,15 @@
+{
+  "types": ["posenet_video", "posenet_list", "posenet_person", "posenet_distance", "posenet_angle", "posenet_state", "posenet_video_position", "posenet_persons","posenet_startvideo_media","posenet_startvideo_stream"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "posenet_video.js",
+    "posenet.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
