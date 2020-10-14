@@ -10,7 +10,7 @@ https://fustyles.github.io/webduino/posenet_20201012/blockly.json
 https://fustyles.github.io/webduino/Blazeface_20201012/blockly.json
 (新版) 物件偵測 (tfjs coco-ssd)
 https://fustyles.github.io/webduino/coco-ssd_20201012/blockly.json
-(新版) 機器學習 (自訂模型)
+(新版) 機器學習 (tfjs teachablemachine)
 https://fustyles.github.io/webduino/teachablemachine_20201012/blockly.json
 若使用ESP32-CAM串流，請安裝我的韌體。
 https://github.com/fustyles/Arduino/tree/master/ESP32-CAM_MyBlockly_STREAM
@@ -42,7 +42,7 @@ Google Script 可自訂上傳影像Script指令路徑
 https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
 
 
-機器學習 (自訂模型)
+機器學習 (tfjs teachablemachine)
 https://fustyles.github.io/webduino/teachablemachine_20200729/blockly.json
 [Smart]
 https://blocklypro.webduino.io/#XLJd8QDWvN
