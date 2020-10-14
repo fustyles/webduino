@@ -13,7 +13,7 @@ https://fustyles.github.io/webduino/coco-ssd_20201012/blockly.json
 (新版) 機器學習 (tfjs teachablemachine)
 https://fustyles.github.io/webduino/teachablemachine_20201012/blockly.json
 若使用ESP32-CAM串流，請安裝我的韌體。
-https://github.com/fustyles/Arduino/tree/master/ESP32-CAM_MyBlockly_STREAM
+https://github.com/fustyles/Arduino/tree/master/ESP32-CAM_MyBlockly_STREAM_JSON
 
 
 Webbit教育版 & KebbixWebbit 新增自訂積木
