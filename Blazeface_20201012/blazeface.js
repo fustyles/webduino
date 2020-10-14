@@ -95,8 +95,12 @@
 	}
 
   	function blazeface_startvideo_stream(url) {
-		document.getElementById("gameimg_blazeface").src = url;
-		document.getElementById("sourceId_blazeface").innerHTML = "gameimg_blazeface";	
+		var img = document.getElementById("gameimg_blazeface");
+		img.style.visibility = "visible";
+		img.src = url;
+		img.onload = function() {
+			document.getElementById("sourceId_blazeface").innerHTML = "gameimg_blazeface";
+		}	
 	}
 
 	window.blazeface_video = blazeface_video;

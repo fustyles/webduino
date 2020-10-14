@@ -132,8 +132,12 @@
 	}
 
   	function posenet_startvideo_stream(url) {
-		document.getElementById("gameimg_posenet").src = url;
-		document.getElementById("sourceId_posenet").innerHTML = "gameimg_posenet";	
+		var img = document.getElementById("gameimg_posenet");
+		img.style.visibility = "visible";
+		img.src = url;
+		img.onload = function() {
+			document.getElementById("sourceId_posenet").innerHTML = "gameimg_posenet";
+		}	
 	}  
 
 	window.posenet_video = posenet_video;

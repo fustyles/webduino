@@ -141,8 +141,12 @@
 	}
 
   	function cocossd_startvideo_stream(url) {
-		document.getElementById("gameimg_cocossd").src = url;
-		document.getElementById("sourceId_cocossd").innerHTML = "gameimg_cocossd";	
+		var img = document.getElementById("gameimg_cocossd");
+		img.style.visibility = "visible";
+		img.src = url;
+		img.onload = function() {
+			document.getElementById("sourceId_cocossd").innerHTML = "gameimg_cocossd";
+		}	
 	}
    
 	

@@ -112,8 +112,12 @@
 	}
 
   	function teachablemachine_startvideo_stream(url) {
-		document.getElementById("gameimg_teachablemachine").src = url;
-		document.getElementById("sourceId_teachablemachine").innerHTML = "gameimg_teachablemachine";	
+		var img = document.getElementById("gameimg_teachablemachine");
+		img.style.visibility = "visible";
+		img.src = url;
+		img.onload = function() {
+			document.getElementById("sourceId_teachablemachine").innerHTML = "gameimg_teachablemachine";
+		}	
 	}  
 
 	window.teachablemachine_video = teachablemachine_video;
