@@ -137,7 +137,7 @@ Blockly.Blocks['esp32cam_cmd'] = {
 	["car speedL(value: 0 to 255)","speedL"],
 	["car speedR(value: 0 to 255)","speedR"],
 	["car turn decelerate(value: 0 to 100)","decelerate"],
-	["servo(value: 1700 to 8000\,channel: )","servo"],
+	["servo(value: 1700 to 8000\,channel: 9 to 11)","servo"],
 	["framesize(size: CIF\,QVGA\,HQVGA\,QQVGA)","framesize"],  
 	["getstill","getstill"],	  
 	["sendCapturedImageToLineNotify(token)","sendCapturedImageToLineNotify"],  
