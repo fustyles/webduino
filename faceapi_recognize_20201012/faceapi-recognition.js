@@ -81,7 +81,10 @@
 				else if (device.kind=="videoinput"&&input_facing=="front") {
 					i++;
 					if (i==input_videoInputIndex) {
-						userMedia = {audio: false,video: {facingMode: 'user', width: video.width, height: video.height}};
+						if (device.deviceId=='')
+							userMedia = {audio: false,video: {facingMode: 'user', width: video.width, height: video.height} };
+						else
+							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'user', width: video.width, height: video.height} };
 					}
 				}
 			});
