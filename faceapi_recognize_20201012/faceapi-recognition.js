@@ -6,9 +6,9 @@
   
   var obj = "";
 
-  function faceapirecognize_video(input_result, input_timer, input_modelpath, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit) {
+  function faceapirecognize_video(input_result, input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit) {
 	input_facelabel = input_facelabel.split(";");
-	StartFaceRecognition(input_result, input_timer, input_modelpath, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit);
+	StartFaceRecognition(input_result, input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit);
   }	
   
   function faceapirecognize_detect() {
@@ -54,7 +54,7 @@
 		video.width = input_width;
 		video.height = input_height;
 		video.style.width = input_width+"px";
-		video.style.height = input_height+"px";		
+		video.style.height = input_height+"px";	
 
 	    document.getElementById("size_faceapirecognize").innerHTML = "{\"width\":"+input_width+", \"height\": "+input_height+"}";
 		
@@ -102,7 +102,6 @@
 
   	function faceapirecognize_startvideo_stream(url) {
 		var img = document.getElementById("gameimg_faceapirecognize");
-		img.style.visibility = "visible";
 		img.src = url;
 		img.onload = function() {
 			document.getElementById("size_faceapirecognize").innerHTML = "{\"width\":"+img.width+", \"height\": "+img.height+"}";

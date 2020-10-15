@@ -1,10 +1,5 @@
 <category id="faceapirecognize">
   <block type="faceapirecognize_video">
-    <value name="modelpath">
-      <block type="text">
-        <field name="TEXT">https://fustyles.github.io/webduino/faceapi_recognize_20201012/</field>
-      </block>    
-    </value> 
     <value name="faceimagepath">
       <block type="text">
         <field name="TEXT">https://fustyles.github.io/webduino/faceapi_recognize_20201012/facelist/</field>

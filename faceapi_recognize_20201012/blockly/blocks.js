@@ -2,9 +2,6 @@ Blockly.Blocks['faceapirecognize_video'] = {
   init: function() {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FACEAPIRECOGNIZE_VIDEO_SHOW);	 
-  this.appendValueInput("modelpath")
-      .setCheck("String")
-      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_MODELPATH_SHOW); 
   this.appendValueInput("faceimagepath")
       .setCheck("String")
       .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGEPATH_SHOW);

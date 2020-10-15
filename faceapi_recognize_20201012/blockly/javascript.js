@@ -1,13 +1,12 @@
 Blockly.JavaScript['faceapirecognize_video'] = function(block) { 
   var value_result = block.getFieldValue('result'); 
   var value_timer = Blockly.JavaScript.valueToCode(block, 'timer', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_modelpath = Blockly.JavaScript.valueToCode(block, 'modelpath', Blockly.JavaScript.ORDER_ATOMIC);
   var value_faceimagepath = Blockly.JavaScript.valueToCode(block, 'faceimagepath', Blockly.JavaScript.ORDER_ATOMIC);
   var value_facelabel = Blockly.JavaScript.valueToCode(block, 'facelabel', Blockly.JavaScript.ORDER_ATOMIC);
   var value_faceimagecount = Blockly.JavaScript.valueToCode(block, 'faceimagecount', Blockly.JavaScript.ORDER_ATOMIC);
   var value_distancelimit = Blockly.JavaScript.valueToCode(block, 'distancelimit', Blockly.JavaScript.ORDER_ATOMIC);
 
-  var code = 'faceapirecognize_video("' + value_result + '",' + value_timer + ',' + value_modelpath + ',' + value_faceimagepath + ',' + value_facelabel + ',' + value_faceimagecount + ',' + value_distancelimit + ');\n';
+  var code = 'faceapirecognize_video("' + value_result + '",' + value_timer + ',' + value_faceimagepath + ',' + value_facelabel + ',' + value_faceimagecount + ',' + value_distancelimit + ');\n';
   return code;
 };
 

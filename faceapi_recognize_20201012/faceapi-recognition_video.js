@@ -1,8 +1,9 @@
-document.write('<canvas id="gamecanvas_faceapirecognize" style="z-index:999;position:absolute;display:none"></canvas>');
-document.write('<div id="region_faceapirecognize" style="z-index:998;position:absolute"><video id="gamevideo_faceapirecognize" style="position:absolute;" preload autoplay loop muted></video><img id="gameimg_faceapirecognize" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><br><button id="detect_faceapirecognize" onclick="this.disabled=true;DetectVideo();" style="display:none" disabled>Start Detection</button><br><div id="message_faceapirecognize" style="color:red"></div></div>');
+document.write('<div id="region_faceapirecognize" style="z-index:999;position:absolute"><video id="gamevideo_faceapirecognize" style="position:absolute;z-index:998;" preload autoplay loop muted></video><img id="gameimg_faceapirecognize" style="position:absolute;z-index:998;" crossorigin="anonymous"><canvas id="gamecanvas_faceapirecognize" style="z-index:999;"></canvas><br><br><div id="message_faceapirecognize" style="color:red;position:absolute; style="z-index:997;"></div></div>');
 document.write('<div id="_faceapirecognizeState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_faceapirecognize" style="position:absolute;display:none;"></div>');
 document.write('<div id="size_faceapirecognize" style="position:absolute;display:none;"></div>');
+
+var modelPath = "https://fustyles.github.io/webduino/faceapi_recognize_20201012/";
 
 var video = document.getElementById('gamevideo_faceapirecognize');
 var canvas = document.getElementById('gamecanvas_faceapirecognize');
@@ -14,13 +15,13 @@ var size = document.getElementById("size_faceapirecognize");
 var sourceTimer; 
 	
 var myResult,myTimer;
-var modelPath,distanceLimit,faceImagesPath,facelabels,faceImagesCount;
+var distanceLimit,faceImagesPath,facelabels,faceImagesCount;
 var Model,video,canvas,context,result; 
 
 let labeledFaceDescriptors;
 let faceMatcher;
 
-function StartFaceRecognition(input_result, input_timer, input_modelpath, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit) {
+function StartFaceRecognition(input_result, input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit) {
 	myResult = input_result;
 	myTimer = input_timer;
 	
@@ -28,7 +29,6 @@ function StartFaceRecognition(input_result, input_timer, input_modelpath, input_
 	faceImagesPath = input_faceimagepath;
 	facelabels = input_facelabel;
 	faceImagesCount = input_faceimagecount ;
-	modelPath = input_modelpath;
 
 	Promise.all([
 	  faceapi.nets.faceLandmark68Net.load(modelPath),
@@ -44,17 +44,18 @@ function StartFaceRecognition(input_result, input_timer, input_modelpath, input_
 					DetectVideo(obj);
 				}				
 			}
-		, 1000);
+		, 200);
 	})
 }
 
-async function DetectVideo(obj) { 
-  canvas.style.display = "block";
+async function DetectVideo(obj) {
+	canvas.style.display = "block";
   canvas.setAttribute("width", obj.width);
   canvas.setAttribute("height", obj.height);
-  canvas.style.left = region.style.left;
-  canvas.style.top = region.style.top; 
+canvas.style.width = obj.width+"px";
+canvas.style.height = obj.height+"px";
   canvas.getContext('2d').drawImage(obj,0,0,obj.width,obj.height); 
+    
   if (!labeledFaceDescriptors) {
 	labeledFaceDescriptors = await loadLabeledImages();
 	faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
