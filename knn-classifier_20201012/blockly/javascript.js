@@ -45,6 +45,12 @@ Blockly.JavaScript['knnclassifier_loadmodel'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['knnclassifier_loadmodelurl'] = function (block) {
+  var value_url_ = Blockly.JavaScript.valueToCode(block, 'url_', Blockly.JavaScript.ORDER_ATOMIC); 	
+  var code = 'knnclassifier_loadmodelurl('+ value_url_ +');\n';
+  return code;
+};
+
 Blockly.JavaScript['knnclassifier_startvideo_media'] = function(block) { 
   var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);

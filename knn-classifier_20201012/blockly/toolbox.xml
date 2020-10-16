@@ -41,7 +41,14 @@
   <block type="knnclassifier_savemodel">  
   </block>  
   <block type="knnclassifier_loadmodel">  
-  </block>    
+  </block>   
+  <block type="knnclassifier_loadmodelurl"> 
+      <value name="url_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+  </block>   
   <block type="knnclassifier_proportion">
   </block>  
 </category>

@@ -44,6 +44,10 @@
 	function knnclassifier_loadmodel(){
 		document.getElementById('loadModel_knnclassifier').click();
 	}  
+	
+	function knnclassifier_loadmodelurl(target){
+		document.getElementById('modelurl_knnclassifier').innerHTML = target;
+	} 	
 
 	function knnclassifier_startvideo_media(input_width, input_height, input_facing, input_videoInputIndex) {
 		var video = document.getElementById("gamevideo_knnclassifier");
@@ -118,4 +122,5 @@
 	window.knnclassifier_clearclasses= knnclassifier_clearclasses;
 	window.knnclassifier_savemodel = knnclassifier_savemodel;
 	window.knnclassifier_loadmodel = knnclassifier_loadmodel;
+	window.knnclassifier_loadmodelurl = knnclassifier_loadmodelurl;
 }(window, window.document));

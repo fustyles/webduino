@@ -153,6 +153,20 @@ Blockly.Blocks['knnclassifier_loadmodel'] = {
   }
 };
 
+Blockly.Blocks['knnclassifier_loadmodelurl'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.KNNCLASSIFIER_SHOW);		  
+  this.appendValueInput("url_")
+      .appendField(Blockly.Msg.KNNCLASSIFIER_LOADMODELURL_SHOW)
+	  .setCheck("String");   
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['knnclassifier_startvideo_media'] = {
   init: function() { 
   this.appendDummyInput()  
