@@ -21,7 +21,7 @@
   <block type="knnclassifier_startvideo_stream">
     <value name="src_">
       <block type="text">
-        <field name="TEXT">http://192.168.1.199:81/stream</field>
+        <field name="TEXT">http://192.168.***.***:81/stream</field>
       </block>
     </value> 
   </block>  
