@@ -45,7 +45,7 @@
   <block type="knnclassifier_loadmodelurl"> 
       <value name="url_">
       <block type="text">
-        <field name="TEXT"></field>
+        <field name="TEXT">https://***.***.***.***/*****.json</field>
       </block>
     </value>
   </block>   
