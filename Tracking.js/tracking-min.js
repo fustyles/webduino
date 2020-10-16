@@ -18,19 +18,19 @@
 		navigator.mediaDevices.enumerateDevices()
 			.then(function(devices) {
 			  devices.forEach(function(device) {
-				  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+				  if (device.kind=="videoinput"&&device.label.includes("facing back")&&location.search.toLowerCase().indexOf("?back")!=-1) {
 					if (device.deviceId=='')
-						back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+						userMedia = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
 					else
-						back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+						userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				  }
+				  else if (device.kind=="videoinput") {
+					if (device.deviceId=='')
+						userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight} };
+					else
+						userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'user',width: videoWidth,height: videoHeight} };
 				  }
 			  });
-			
-			
-			if (location.search.toLowerCase().indexOf("?back")!=-1)
-			  var userMedia = back;
-			else
-			  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
 
 			navigator.mediaDevices
 			  .getUserMedia(userMedia)
