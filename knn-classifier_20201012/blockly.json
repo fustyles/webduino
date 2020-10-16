@@ -1,0 +1,15 @@
+{
+  "types": ["knnclassifier_open", "knnclassifier_proportion", "knnclassifier_video", "knnclassifier_class", "knnclassifier_tran", "knnclassifier_clearclasses", "knnclassifier_savemodel", "knnclassifier_loadmodel", "knnclassifier_startdetect","knnclassifier_startvideo_media","knnclassifier_startvideo_stream"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "knn-classifier_video.js",
+    "knn-classifier.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
