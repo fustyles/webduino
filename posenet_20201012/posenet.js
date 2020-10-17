@@ -11,7 +11,8 @@
 	document.getElementById("result_posenet").style.display = input_result;
 	document.getElementById("gamecanvas_skeleton").style.display = input_skeleton;
 	document.getElementById('opacity_posenet').value = input_opacity;
-    document.getElementById("gamecanvas_posenet").style.display = input_video;
+	document.getElementById("region_posenet").style.opacity = Number(input_opacity);
+	document.getElementById("gamecanvas_posenet").style.display = input_video;
 	document.getElementById("modelname_posenet").innerHTML = input_modelname;
   }
 
