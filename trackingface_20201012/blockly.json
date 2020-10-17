@@ -1,0 +1,19 @@
+{
+  "types": ["trackingface_set","trackingface_get","trackingface_drawimage","trackingface_startvideo_media","trackingface_startvideo_stream"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "trackingface.js",
+    "build/tracking.js",
+    "build/data/face-min.js",
+    "src/alignment/training/Landmarks.js",
+    "src/alignment/training/Regressor.js",
+    "trackingface_video.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
