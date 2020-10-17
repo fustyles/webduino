@@ -1,0 +1,15 @@
+Blockly.Msg.MOBILENET_SHOW = "物件偵測 (mobilenet)";
+Blockly.Msg.MOBILENET_OBJECT_SHOW = "物件偵測 (mobilenet) 偵測物件";
+Blockly.Msg.MOBILENET_OBJECT_NUMBER_SHOW = "物件偵測(mobilenet) 偵測物件數目";
+Blockly.Msg.MOBILENET_WIDTH_SHOW = "寬度";
+Blockly.Msg.MOBILENET_HEIGHT_SHOW = "高度";
+Blockly.Msg.MOBILENET_MIRRORIMAGE_SHOW = "鏡像";
+Blockly.Msg.MOBILENET_RESULT_SHOW = "結果";
+Blockly.Msg.MOBILENET_OPACITY_SHOW = "透明度";
+Blockly.Msg.MOBILENET_STATE_SHOW = "物件偵測 (mobilenet) 偵測狀態";
+Blockly.Msg.MOBILENET_VIDEO_LEFT_SHOW = "物件偵測 (mobilenet) 畫面 靠左距離";
+Blockly.Msg.MOBILENET_VIDEO_TOP_SHOW = "靠上距離";
+Blockly.Msg.MOBILENET_FACING_SHOW = "鏡頭";
+Blockly.Msg.MOBILENET_FACING_FRONT_SHOW = "前置";
+Blockly.Msg.MOBILENET_FACING_BACK_SHOW = "後置";
+Blockly.Msg.MOBILENET_SRC_SHOW = "串流網址";

@@ -1,0 +1,15 @@
+Blockly.Msg.MOBILENET_SHOW = "Object Detection (mobilenet)";
+Blockly.Msg.MOBILENET_OBJECT_SHOW = "Object Detection (mobilenet) Object";
+Blockly.Msg.MOBILENET_OBJECT_NUMBER_SHOW = "Object Detection (mobilenet) Object Number";
+Blockly.Msg.MOBILENET_WIDTH_SHOW = "Width";
+Blockly.Msg.MOBILENET_HEIGHT_SHOW = "Height";
+Blockly.Msg.MOBILENET_MIRRORIMAGE_SHOW = "MirrorImage";
+Blockly.Msg.MOBILENET_RESULT_SHOW = "Result";
+Blockly.Msg.MOBILENET_OPACITY_SHOW = "Opacity";
+Blockly.Msg.MOBILENET_STATE_SHOW = "Object Detection (mobilenet) Detect State";
+Blockly.Msg.MOBILENET_VIDEO_LEFT_SHOW = "Object Detection (mobilenet) Screen Left";
+Blockly.Msg.MOBILENET_VIDEO_TOP_SHOW = "TOP";
+Blockly.Msg.MOBILENET_FACING_SHOW = "Camera Facing";
+Blockly.Msg.MOBILENET_FACING_FRONT_SHOW = "Front";
+Blockly.Msg.MOBILENET_FACING_BACK_SHOW = "Back";
+Blockly.Msg.MOBILENET_SRC_SHOW = "Stream URL";

@@ -1,0 +1,15 @@
+{
+  "types": ["mobilenet_video", "mobilenet_object", "mobilenet_object_number", "mobilenet_state", "mobilenet_video_position","mobilenet_startvideo_media","mobilenet_startvideo_stream"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "mobilenet_video.js",
+    "mobilenet.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
