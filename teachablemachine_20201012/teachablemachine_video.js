@@ -8,6 +8,7 @@ window.onload = function () {
 	var video = document.getElementById('gamevideo_teachablemachine');
 	var canvas = document.getElementById('gamecanvas_teachablemachine');
 	var context = canvas.getContext('2d');
+	var mirrorimage = document.getElementById("mirrorimage_teachablemachine");
 	var result = document.getElementById('gamediv_teachablemachine');
 	var modelPath = document.getElementById('modelPath_teachablemachine');
 	let Model;
@@ -43,10 +44,8 @@ window.onload = function () {
 		canvas.setAttribute("height", obj.height);
 		canvas.style.width = obj.width+"px";
 		canvas.style.height = obj.height+"px";
-		document.getElementById("region_teachablemachine").style.opacity = Number(document.getElementById("opacity_teachablemachine").value);
 
-		var mirrorimage = Number(document.getElementById("mirrorimage_teachablemachine").value);
-		if (mirrorimage==1) {
+		if (mirrorimage.value==1) {
 			context.translate((canvas.width + obj.width) / 2, 0);
 			context.scale(-1, 1);
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
