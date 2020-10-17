@@ -10,6 +10,8 @@ window.onload = function () {
 	var context = canvas.getContext('2d');
 	var mirrorimage = document.getElementById("mirrorimage_blazeface");
 	var result = document.getElementById('gamediv_blazeface');
+	var blazefaceState = document.getElementById('blazefaceState').innerHTML;
+	var frame = Number(document.getElementById("frame_blazeface").value);
 	var Model;
 	var sourceTimer;
 
@@ -45,13 +47,11 @@ window.onload = function () {
 		else
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
 
-		if (document.getElementById('blazefaceState').innerHTML=="0") {
+		if (blazefaceState=="0") {
 			result.innerHTML = "";
 			setTimeout(function(){DetectVideo(obj);}, 100);
 			return;
 		}
-
-		var frame = Number(document.getElementById("frame_blazeface").value);
 
 		const returnTensors = false;
 		await Model.estimateFaces(canvas, returnTensors).then(predictions => {

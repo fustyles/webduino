@@ -3,6 +3,7 @@ Blockly.Msg.FACEAPIRECOGNIZE_VIDEO_SHOW = "Face Recognition (face-api) Video Iin
 Blockly.Msg.FACEAPIRECOGNIZE_WIDTH_SHOW = "Width";
 Blockly.Msg.FACEAPIRECOGNIZE_HEIGHT_SHOW = "Height";
 Blockly.Msg.FACEAPIRECOGNIZE_RESULT_SHOW = "Show Result";
+Blockly.Msg.FACEAPIRECOGNIZE_OPACITY_SHOW = "Opacity";
 Blockly.Msg.FACEAPIRECOGNIZE_TIMER_SHOW = "Show Image Time(s)";
 Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGEPATH_SHOW = "Face Images Path";
 Blockly.Msg.FACEAPIRECOGNIZE_FACELABEL_SHOW = "Face Labels(split with semicolon)";

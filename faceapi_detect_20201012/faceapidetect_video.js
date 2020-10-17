@@ -8,7 +8,8 @@ document.write('<div id="size_faceapidetect" style="position:absolute;display:no
 window.onload = function () {
 	var result = document.getElementById('result_faceapidetect');
 	var video = document.getElementById('gamevideo_faceapidetect');
-	var frame = document.getElementById("frame_faceapidetect");
+	var frame = document.getElementById("frame_faceapidetect").value;
+	var faceapiState = document.getElementById('faceapiState').innerHTML;
 	const modelPath = 'https://fustyles.github.io/webduino/faceapi_detect_20201012/';
 	let canvas;
 	var sourceTimer;  
@@ -51,7 +52,7 @@ window.onload = function () {
 		canvas.style.height = obj.height+"px";	  
 		canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
 
-		if (document.getElementById('faceapiState').innerHTML=="0") {
+		if (faceapiState=="0") {
 			result.innerHTML = "";
 			setTimeout(function(){DetectVideo(obj); }, 100);
 			return;
@@ -60,7 +61,7 @@ window.onload = function () {
 		const detections = await faceapi.detectAllFaces(obj, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(document.getElementById("size_faceapidetect").innerHTML))
 
-		if (frame.value==1) {
+		if (frame==1) {
 			faceapi.draw.drawDetections(canvas, resizedDetections)
 			faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
 			faceapi.draw.drawFaceExpressions(canvas, resizedDetections)

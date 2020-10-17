@@ -8,7 +8,9 @@ window.onload = function () {
 	var video = document.getElementById('gamevideo_cocossd');
 	var canvas = document.getElementById('gamecanvas_cocossd'); 
 	var context = canvas.getContext('2d');
-	var mirrorimage = document.getElementById("mirrorimage_cocossd");
+	var mirrorimage = document.getElementById("mirrorimage_cocossd").value;
+	var cocossdState = document.getElementById('cocossdState').innerHTML;
+	var frame = Number(document.getElementById("frame_cocossd").value);
 	var result = document.getElementById('gamediv_cocossd'); 
 	var Model; 
 	var sourceTimer;  
@@ -35,7 +37,7 @@ window.onload = function () {
 		canvas.style.width = obj.style.width;
 		canvas.style.height = obj.style.height;		
 		
-		if (mirrorimage.value==1) {
+		if (mirrorimage==1) {
 			context.translate((canvas.width + obj.width) / 2, 0);
 			context.scale(-1, 1);
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
@@ -44,7 +46,7 @@ window.onload = function () {
 		else
 			context.drawImage(obj, 0, 0, obj.width, obj.height);  
 
-		if (document.getElementById('cocossdState').innerHTML=="0") {
+		if (cocossdState=="0") {
 			result.innerHTML = "";
 			setTimeout(function(){DetectVideo(obj);}, 100);
 			return;
@@ -53,8 +55,6 @@ window.onload = function () {
 		await Model.detect(canvas).then(predictions => { 
 			result.innerHTML = "";
 			//console.log('Predictions: ', predictions);
-			
-			var frame = Number(document.getElementById("frame_cocossd").value);
 			
 			if (predictions.length>0) {
 				for (var i=0;i<predictions.length;i++) {

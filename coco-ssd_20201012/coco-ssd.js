@@ -9,7 +9,7 @@
 		document.getElementById('frame_cocossd').value = input_frame;
 		document.getElementById('mirrorimage_cocossd').value = input_mirrorimage;
 		document.getElementById('opacity_cocossd').value = input_opacity;
-		document.getElementById("region_cocossd").style.opacity = Number(input_opacity);
+		document.getElementById("region_cocossd").style.opacity = input_opacity;
 	}
 
 	function cocossd_list(input_object) {
