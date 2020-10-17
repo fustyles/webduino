@@ -4,7 +4,7 @@
 
 
 (新版) 顏色偵測 (Tracking.js)
-https://fustyles.github.io/webduino/Trackingcolor_20201012/blockly.json
+https://fustyles.github.io/webduino/trackingcolor_20201012/blockly.json
 (新版) 深度學習 (tfjs KNN-Classifier)
 https://fustyles.github.io/webduino/knn-classifier_20201012/blockly.json
 (新版) 人臉辨識 (tfjs face-api.js)
