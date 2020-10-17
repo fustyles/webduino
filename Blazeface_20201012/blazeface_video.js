@@ -1,6 +1,6 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>');
-document.write('<div id="region_blazeface" style="z-index:999"><video id="gamevideo_blazeface" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimg_blazeface" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_blazeface"></canvas><br><select id="mirrorimage_blazeface" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="frame_blazeface" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="opacity_blazeface" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><select id="scorelimit_blazeface" style="position:absolute;visibility:hidden;"><option value="0">0</option><option value="0.1" selected>0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5">0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select><br><div id="gamediv_blazeface" style="color:red"></div></div>');
+document.write('<div id="region_blazeface" style="z-index:999"><video id="gamevideo_blazeface" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimg_blazeface" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_blazeface"></canvas><br><select id="mirrorimage_blazeface" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="frame_blazeface" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="scorelimit_blazeface" style="position:absolute;visibility:hidden;"><option value="0">0</option><option value="0.1" selected>0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5">0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select><br><div id="gamediv_blazeface" style="color:red"></div></div>');
 document.write('<div id="blazefaceState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_blazeface" style="position:absolute;display:none;"></div>');
 
@@ -8,7 +8,7 @@ window.onload = function () {
 	var video = document.getElementById('gamevideo_blazeface');
 	var canvas = document.getElementById('gamecanvas_blazeface');
 	var context = canvas.getContext('2d');
-	var mirrorimage = document.getElementById("mirrorimage_blazeface");
+	var mirrorimage = document.getElementById("mirrorimage_blazeface").value;
 	var result = document.getElementById('gamediv_blazeface');
 	var blazefaceState = document.getElementById('blazefaceState').innerHTML;
 	var frame = Number(document.getElementById("frame_blazeface").value);
@@ -38,7 +38,7 @@ window.onload = function () {
 		canvas.style.width = obj.width+"px";
 		canvas.style.height = obj.height+"px";
 		
-		if (mirrorimage.value==1) {
+		if (mirrorimage==1) {
 			context.translate((canvas.width + obj.width) / 2, 0);
 			context.scale(-1, 1);
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
@@ -57,7 +57,6 @@ window.onload = function () {
 		await Model.estimateFaces(canvas, returnTensors).then(predictions => {
 			result.innerHTML = "";
 			var scoreLimit = Number(document.getElementById("scorelimit_blazeface").value);
-			canvas.style.opacity = Number(document.getElementById("opacity_blazeface").value);
 
 			//console.log(predictions.score);
 			//console.log(predictions.keypoints);

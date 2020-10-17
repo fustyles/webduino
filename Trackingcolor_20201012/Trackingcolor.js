@@ -5,19 +5,11 @@
   'use strict';
   
   function trackingcolor_set(input_display, input_pixel, input_result, input_mirrorimage, input_opacity)  {
-	var region = document.getElementById("region_trackingcolor");
-	var result = document.getElementById("gamediv_trackingcolor");
-	var canvas = document.getElementById("gamecanvas_trackingcolor");
-	var canvas_custom = document.getElementById("gamecanvas_custom");
-	var mirrorimage = document.getElementById("mirrorimage_trackingcolor")
-	var opacity = document.getElementById('opacity_trackingcolor')	
-	
-	canvas.style.display = input_display;
-	canvas_custom.style.display = input_pixel;
-	result.style.display = input_result;
-	region.style.opacity = input_opacity;
-	mirrorimage.value = input_mirrorimage;
-	opacity.value = input_opacity;	
+	document.getElementById("gamecanvas_trackingcolor").style.display = input_display;
+	document.getElementById("gamecanvas_custom").style.display = input_pixel;
+	document.getElementById("gamediv_trackingcolor").style.display = input_result;
+	document.getElementById("region_trackingcolor").style.opacity = input_opacity;
+	document.getElementById("mirrorimage_trackingcolor").value = input_mirrorimage;
   }
 
   function trackingcolor_custom(input_rect, input_rmin, input_rmax, input_gmin, input_gmax, input_bmin, input_bmax)  {

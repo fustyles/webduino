@@ -8,7 +8,6 @@
 		document.getElementById("gamediv_blazeface").style.display = input_result;
 		document.getElementById("frame_blazeface").value = input_frame;
 		document.getElementById("mirrorimage_blazeface").value = input_mirrorimage;
-		document.getElementById('opacity_blazeface').value = input_opacity;
 		document.getElementById("region_blazeface").style.opacity = input_opacity;
 		document.getElementById('scorelimit_blazeface').value = input_scorelimit;
 	}

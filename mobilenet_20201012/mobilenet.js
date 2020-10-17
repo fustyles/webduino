@@ -3,6 +3,13 @@
 +(function (window, document) {
 
 	'use strict';
+	
+	function mobilenet_video(input_result, input_mirrorimage, input_opacity) {
+		document.getElementById('gamediv_mobilenet').style.display = input_result;
+		document.getElementById('mirrorimage_mobilenet').value = input_mirrorimage;
+		document.getElementById('opacity_mobilenet').value = input_opacity;
+		document.getElementById("region_mobilenet").style.opacity = input_opacity;
+	}	
 
 	function mobilenet_object(input_object){
 		var result = document.getElementById("gamediv_mobilenet").innerHTML.split("<br>");
@@ -29,13 +36,6 @@
 		}
 		return n;
 	}
-
-	function mobilenet_video(input_result, input_mirrorimage, input_opacity) {
-		document.getElementById('gamediv_mobilenet').style.display = input_result;
-		document.getElementById('mirrorimage_mobilenet').value = input_mirrorimage;
-		document.getElementById('opacity_mobilenet').value = input_opacity;
-		document.getElementById("region_mobilenet").style.opacity = input_opacity;
-	}	
 
 	function mobilenet_state(input_state){
 		document.getElementById('mobilenetState').innerHTML = input_state;

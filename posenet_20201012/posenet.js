@@ -8,16 +8,15 @@
 	document.getElementById('persons_posenet').value = input_persons; 
 	document.getElementById('scorelimit_posenet').value = input_scorelimit;
 	document.getElementById("mirrorimage_posenet").value = input_mirrorimage;
-	document.getElementById("result_posenet").style.display = input_result;
+	document.getElementById("gamediv_posenet").style.display = input_result;
 	document.getElementById("gamecanvas_skeleton").style.display = input_skeleton;
-	document.getElementById('opacity_posenet').value = input_opacity;
-	document.getElementById("region_posenet").style.opacity = Number(input_opacity);
-	document.getElementById("gamecanvas_posenet").style.display = input_video;
+	document.getElementById("region_posenet").style.opacity = input_opacity;
+    document.getElementById("gamecanvas_posenet").style.display = input_video;
 	document.getElementById("modelname_posenet").innerHTML = input_modelname;
   }
 
   function posenet_list(){
-    var result = document.getElementById("result_posenet").innerHTML.split("<br>");
+    var result = document.getElementById("gamediv_posenet").innerHTML.split("<br>");
 	var result_arr = [];
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
@@ -29,7 +28,7 @@
   }
 
   function posenet_person(input_index, input_part, input_data){
-    var result = document.getElementById("result_posenet").innerHTML.split("<br>");
+    var result = document.getElementById("gamediv_posenet").innerHTML.split("<br>");
     if (result.length>0) {
       for (var i=0;i<result.length;i++) {
 		var result_detail = result[i].split(",");

@@ -7,7 +7,6 @@
 	function teachablemachine_video(input_result, input_mirrorimage, input_opacity) {
 		document.getElementById('gamediv_teachablemachine').style.display = input_result;
 		document.getElementById('mirrorimage_teachablemachine').value = input_mirrorimage;
-		document.getElementById('opacity_teachablemachine').value = input_opacity;
 		document.getElementById("region_teachablemachine").style.opacity = Number(input_opacity);
 	}	
 

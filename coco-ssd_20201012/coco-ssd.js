@@ -8,7 +8,6 @@
 		document.getElementById('gamediv_cocossd').style.display = input_result;
 		document.getElementById('frame_cocossd').value = input_frame;
 		document.getElementById('mirrorimage_cocossd').value = input_mirrorimage;
-		document.getElementById('opacity_cocossd').value = input_opacity;
 		document.getElementById("region_cocossd").style.opacity = input_opacity;
 	}
 

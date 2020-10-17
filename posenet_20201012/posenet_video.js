@@ -1,6 +1,6 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.4"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>');
-document.write('<div id="region_posenet" style="z-index:999"><video id="gamevideo_posenet" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimg_posenet" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_posenet" style="position:absolute;"></canvas><canvas id="gamecanvas_skeleton" style="position:absolute;"></canvas><canvas id="gamecanvas_temp" style="visibility:hidden;"></canvas><br><select id="skeleton_posenet" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage_posenet" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="opacity_posenet" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><select id="persons_posenet" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="999">No Limit</option></select><select id="scorelimit_posenet" style="position:absolute;visibility:hidden;"><option value="0">0</option><option value="0.1" selected>0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5">0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select><br><div id="result_posenet" style="color:red"></div></div>');
+document.write('<div id="region_posenet" style="z-index:999"><video id="gamevideo_posenet" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimg_posenet" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_posenet" style="position:absolute;"></canvas><canvas id="gamecanvas_skeleton" style="position:absolute;"></canvas><canvas id="gamecanvas_temp" style="visibility:hidden;"></canvas><br><select id="skeleton_posenet" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage_posenet" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="persons_posenet" style="position:absolute;visibility:hidden;"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="999">No Limit</option></select><select id="scorelimit_posenet" style="position:absolute;visibility:hidden;"><option value="0">0</option><option value="0.1" selected>0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5">0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select><br><div id="gamediv_posenet" style="color:red"></div></div>');
 document.write('<div id="posenetState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_posenet" style="position:absolute;display:none;"></div>');
 document.write('<div id="modelname_posenet" style="position:absolute;display:none;"></div>');
@@ -11,8 +11,8 @@ window.onload = function () {
 	var canvas_skeleton = document.getElementById('gamecanvas_skeleton');
 	var context_skeleton = canvas_skeleton.getContext('2d');
 	var canvas_temp = document.getElementById('gamecanvas_temp');
-	var mirrorimage = document.getElementById("mirrorimage_posenet");
-	var result = document.getElementById('result_posenet');
+	var mirrorimage = document.getElementById("mirrorimage_posenet").value;
+	var result = document.getElementById('gamediv_posenet');
 	var Model; 
 	var modelnameTimer, sourceTimer; 
 
@@ -82,7 +82,7 @@ window.onload = function () {
 			canvas_temp.style.height = "0px";
 		}
 
-		if (mirrorimage.value==1) {
+		if (mirrorimage==1) {
 			context.translate((canvas.width + obj.width) / 2, 0);
 			context.scale(-1, 1);
 			context.drawImage(obj, 0, 0, obj.width, obj.height);

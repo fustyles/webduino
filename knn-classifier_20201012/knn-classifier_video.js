@@ -1,7 +1,7 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>');
-document.write('<div id="region_knnclassifier" style="z-index:999"><video id="gamevideo_knnclassifier" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimg_knnclassifier" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_knnclassifier"></canvas><br><br><select id="mirrorimage_knnclassifier" style="position:absolute;display:none;"><option value="1">Y</option><option value="0">N</option></select><select id="opacity_knnclassifier" style="position:absolute;display:none;"><option value="1">1</option><option value="0.9">0.9</option><option value="0.8">0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1</option><option value="0">0</option></select><button id="saveModel_knnclassifier" style="position:absolute;display:none;">Save Model</button><input type="file" id="loadModel_knnclassifier" style="position:absolute;display:none;"></input><button id="clearAllClasses_knnclassifier" style="position:absolute;display:none;">Clear All Classes</button><button id="addExample_knnclassifier" style="position:absolute;display:none;">Train</button><select id="class_knnclassifier" style="position:absolute;display:none;"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select><span id="count_knnclassifier" style="position:absolute;display:none;">0</span><button id="Detect_knnclassifier" style="position:absolute;display:none;">Detect</button><div id="gamediv_knnclassifier" style="color:red"></div><div id="maxclass_knnclassifier" style="position:absolute;display:none;"></div><div id="maxprobability_knnclassifier" style="position:absolute;display:none;"></div></div>');
+document.write('<div id="region_knnclassifier" style="z-index:999"><video id="gamevideo_knnclassifier" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimg_knnclassifier" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_knnclassifier"></canvas><br><br><select id="mirrorimage_knnclassifier" style="position:absolute;display:none;"><option value="1">Y</option><option value="0">N</option></select><button id="saveModel_knnclassifier" style="position:absolute;display:none;">Save Model</button><input type="file" id="loadModel_knnclassifier" style="position:absolute;display:none;"></input><button id="clearAllClasses_knnclassifier" style="position:absolute;display:none;">Clear All Classes</button><button id="addExample_knnclassifier" style="position:absolute;display:none;">Train</button><select id="class_knnclassifier" style="position:absolute;display:none;"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select><span id="count_knnclassifier" style="position:absolute;display:none;">0</span><button id="Detect_knnclassifier" style="position:absolute;display:none;">Detect</button><div id="gamediv_knnclassifier" style="color:red"></div><div id="maxclass_knnclassifier" style="position:absolute;display:none;"></div><div id="maxprobability_knnclassifier" style="position:absolute;display:none;"></div></div>');
 document.write('<div id="knnclassifierState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_knnclassifier" style="position:absolute;display:none;"></div>');
 document.write('<div id="modelurl_knnclassifier" style="position:absolute;display:none;"></div>');
@@ -21,9 +21,8 @@ window.onload = function () {
 	var result = document.getElementById('gamediv_knnclassifier');
 	var count = document.getElementById('count_knnclassifier');
 	var region = document.getElementById('region_knnclassifier');
-	var opacity = document.getElementById('opacity_knnclassifier');
 	var Detect = document.getElementById('Detect_knnclassifier');
-	var mirrorimage = document.getElementById("mirrorimage_knnclassifier");
+	var mirrorimage = document.getElementById("mirrorimage_knnclassifier").value;
 	var obj;
 
 	var classifier;
@@ -46,12 +45,11 @@ window.onload = function () {
 					obj.style.height = obj.height + 'px';				
 					setInterval(
 						function(){
-							region.style.opacity = Number(opacity.value);
 							canvas.setAttribute("width", obj.width);
 							canvas.setAttribute("height", obj.height);
 							canvas.style.width = obj.width+"px";
 							canvas.style.height = obj.height+"px";
-							if (mirrorimage.value==1) {
+							if (mirrorimage==1) {
 								context.translate((canvas.width + obj.width) / 2, 0);
 								context.scale(-1, 1);
 								context.drawImage(obj, 0, 0, obj.width, obj.height);
@@ -66,11 +64,6 @@ window.onload = function () {
 		, 100);
 		result.innerHTML = '';
 	});
-
-	function opacity_onclick (event) {
-		region.style.opacity = Number(opacity.value);
-	};
-	opacity.addEventListener("click", opacity_onclick, true);
 
 	function Detect_onclick (event) {
 		DetectVideo();

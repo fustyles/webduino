@@ -8,7 +8,7 @@
 	function knnclassifier_video(input_result, input_mirrorimage, input_opacity) {
 		document.getElementById('gamediv_knnclassifier').style.display = input_result;
 		document.getElementById('mirrorimage_knnclassifier').value = input_mirrorimage;
-		document.getElementById('opacity_knnclassifier').value = input_opacity;
+		document.getElementById('region_knnclassifier').style.opacity = input_opacity;
 	}	
 
 	function knnclassifier_proportion(input_property) {
