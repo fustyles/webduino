@@ -32,7 +32,7 @@ window.onload = function () {
 						function(){
 							tracking.track(obj, tracker);
 						}
-					,300);
+					,100);
 					
 				}
 
