@@ -135,7 +135,6 @@
 		var img = document.getElementById("gameimg_trackingface");
 		var canvas = document.getElementById("gamecanvas_trackingface"); 
 
-		img.style.visibility = "visible";
 		img.src = url;
 		img.onload = function() {
 			canvas.setAttribute("width", img.width);

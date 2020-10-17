@@ -15,7 +15,7 @@ window.onload = function () {
 			var source = document.getElementById("sourceId_trackingface");
 			if (source.innerHTML!="") {
 				clearInterval(sourceTimer);
-				obj = document.querySelector('#'+source.innerHTML)
+				
 					
 				// tracking.LBF.maxNumStages = 10
 				var tracker = new tracking.LandmarksTracker();
@@ -24,7 +24,17 @@ window.onload = function () {
 				tracker.setStepSize(2);
 
 				// tracking.track(obj, tracker);
-				tracking.track(obj, tracker, { camera: true });
+				obj = document.querySelector('#'+source.innerHTML)
+				if (document.getElementById(source.innerHTML).tagName=="VIDEO")
+					tracking.track(obj, tracker, { camera: true });
+				else {
+					setInterval(
+						function(){
+							tracking.track(obj, tracker);
+						}
+					,300);
+					
+				}
 
 				var landmarksPerFace = 30
 				var landmarkFeatures = {
@@ -90,6 +100,7 @@ window.onload = function () {
 				var lerpedFacesLandmarks = []
 
 				tracker.on('track', function(event) {
+					console.log(event);
 					context.clearRect(0,0,canvas.width, canvas.height);
 
 					if( event.data === undefined ) return;
