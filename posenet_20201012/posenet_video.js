@@ -11,6 +11,7 @@ window.onload = function () {
 	var canvas_skeleton = document.getElementById('gamecanvas_skeleton');
 	var context_skeleton = canvas_skeleton.getContext('2d');
 	var canvas_temp = document.getElementById('gamecanvas_temp');
+	var mirrorimage = document.getElementById("mirrorimage_posenet");
 	var result = document.getElementById('result_posenet');
 	var Model; 
 	var modelnameTimer, sourceTimer; 
@@ -80,10 +81,8 @@ window.onload = function () {
 			canvas_temp.style.width = "0px";
 			canvas_temp.style.height = "0px";
 		}
-		document.getElementById("region_posenet").style.opacity = Number(document.getElementById("opacity_posenet").value);
 
-		var mirrorimage = Number(document.getElementById("mirrorimage_posenet").value);
-		if (mirrorimage==1) {
+		if (mirrorimage.value==1) {
 			context.translate((canvas.width + obj.width) / 2, 0);
 			context.scale(-1, 1);
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
