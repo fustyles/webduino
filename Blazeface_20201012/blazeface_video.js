@@ -8,6 +8,7 @@ window.onload = function () {
 	var video = document.getElementById('gamevideo_blazeface');
 	var canvas = document.getElementById('gamecanvas_blazeface');
 	var context = canvas.getContext('2d');
+	var mirrorimage = document.getElementById("mirrorimage_blazeface");
 	var result = document.getElementById('gamediv_blazeface');
 	var Model;
 	var sourceTimer;
@@ -34,10 +35,8 @@ window.onload = function () {
 		canvas.setAttribute("height", obj.height);
 		canvas.style.width = obj.width+"px";
 		canvas.style.height = obj.height+"px";
-		document.getElementById("region_blazeface").style.opacity = Number(document.getElementById("opacity_blazeface").value);
 		
-		var mirrorimage = Number(document.getElementById("mirrorimage_blazeface").value);
-		if (mirrorimage==1) {
+		if (mirrorimage.value==1) {
 			context.translate((canvas.width + obj.width) / 2, 0);
 			context.scale(-1, 1);
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
