@@ -21,6 +21,13 @@ Blockly.JavaScript['trackingcolor_custom'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['trackingcolor_video_position'] = function(block) { 
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'trackingcolor_video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};
+
 Blockly.JavaScript['trackingcolor_get'] = function(block) { 
   var value_rect = block.getFieldValue('rect_');
   var code = 'trackingcolor_get("' + value_rect + '")';

@@ -33,6 +33,13 @@
 	document.getElementById('myColor_b_max'+n).value = input_bmax;
 	document.getElementById('myColor_b_max_v'+n).innerHTML = input_bmax;
   }
+  
+	function trackingcolor_video_position(input_left, input_top) {
+		var region = document.getElementById("region_trackingcolor");
+		region.style.position = "absolute";
+		region.style.left = input_left + "px";
+		region.style.top = input_top + "px";
+	}  
 
   function trackingcolor_get(input_rect)  {
 	var n=0;
@@ -110,6 +117,7 @@
 	
 	window.trackingcolor_set = trackingcolor_set;
 	window.trackingcolor_custom = trackingcolor_custom;
+	window.trackingcolor_video_position = trackingcolor_video_position;
 	window.trackingcolor_get = trackingcolor_get;
 	window.trackingcolor_get_number = trackingcolor_get_number;
 	window.trackingcolor_startvideo_media = trackingcolor_startvideo_media;

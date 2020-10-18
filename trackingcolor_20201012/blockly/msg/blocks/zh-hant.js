@@ -22,3 +22,5 @@ Blockly.Msg.TRACKINGCOLOR_SRC_SHOW = "串流網址";
 Blockly.Msg.TRACKINGCOLOR_REDRECT_SHOW = "紅色";
 Blockly.Msg.TRACKINGCOLOR_GREENRECT_SHOW = "綠色";
 Blockly.Msg.TRACKINGCOLOR_BLUERECT_SHOW = "藍色";
+Blockly.Msg.TRACKINGCOLOR_VIDEO_LEFT_SHOW = "追蹤顏色 (Tracking) 畫面 靠左距離";
+Blockly.Msg.TRACKINGCOLOR_VIDEO_TOP_SHOW = "靠上距離";
