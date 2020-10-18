@@ -3,6 +3,9 @@
 我寫的自訂積木、韌體、網頁等免費提供各級學校教學與個人使用，僅供測試，請勿用於商業販售用途！
 
 
+
+(新版) 文字辨識 (tesseract.js)
+https://fustyles.github.io/webduino/tesseract.js_20201012/blockly.json
 (新版) 臉部偵測 (Tracking.js)
 https://fustyles.github.io/webduino/trackingface_20201012/blockly.json
 (新版) 顏色偵測 (Tracking.js)
