@@ -8,6 +8,7 @@ window.onload = function () {
 	var context = canvas.getContext('2d');
 	var frame = document.getElementById("frame_trackingface").value;
 	var result = document.getElementById('gamediv_trackingface');
+	var sourceTimer;
 	var obj;
 
 	sourceTimer = setInterval(
