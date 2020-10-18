@@ -158,6 +158,21 @@ Blockly.Blocks['tesseract_imageprocessing'] = {
   }
 };
 
+Blockly.Blocks['tesseract_video_position'] = {
+  init: function() {
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.TESSERACT_VIDEO_LEFT_SHOW);  
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.TESSERACT_VIDEO_TOP_SHOW);   	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['tesseract_recognition'] = {
   init: function() {
   this.appendDummyInput() 

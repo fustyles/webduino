@@ -17,3 +17,5 @@ Blockly.Msg.TESSERACT_COLOR_SHOW = "彩色";
 Blockly.Msg.TESSERACT_BLACKWORDS_SHOW = "白底黑字";
 Blockly.Msg.TESSERACT_WHITEWORDS_SHOW = "黑底白字";
 Blockly.Msg.TESSERACT_GRAYSCALE_SHOW = "灰階";
+Blockly.Msg.TESSERACT_VIDEO_LEFT_SHOW = "文字辨識 (tesseract) 畫面 靠左距離";
+Blockly.Msg.TESSERACT_VIDEO_TOP_SHOW = "靠上距離";

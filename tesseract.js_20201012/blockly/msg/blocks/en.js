@@ -17,3 +17,5 @@ Blockly.Msg.TESSERACT_COLOR_SHOW = "Color";
 Blockly.Msg.TESSERACT_BLACKWORDS_SHOW = "Black Words";
 Blockly.Msg.TESSERACT_WHITEWORDS_SHOW = "White Words";
 Blockly.Msg.TESSERACT_GRAYSCALE_SHOW = "Gray Scale";
+Blockly.Msg.TESSERACT_VIDEO_LEFT_SHOW = "Text Recognition (tesseract) Screen Left";
+Blockly.Msg.TESSERACT_VIDEO_TOP_SHOW = "TOP";

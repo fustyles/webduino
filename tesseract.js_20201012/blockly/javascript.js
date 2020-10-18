@@ -13,6 +13,13 @@ Blockly.JavaScript['tesseract_imageprocessing'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['tesseract_video_position'] = function(block) { 
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'tesseract_video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};
+
 Blockly.JavaScript['tesseract_recognition'] = function(block) {
   var code = 'tesseract_recognition();\n';
   return code;

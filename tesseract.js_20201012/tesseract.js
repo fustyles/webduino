@@ -22,7 +22,13 @@
 	function tesseract_imageprocessing(input_mode, input_reference) {
 		mode.value = input_mode;
 		reference.value = input_reference;
-	}	
+	}
+
+	function tesseract_video_position(input_left, input_top) {
+		region.style.position = "absolute";
+		region.style.left = input_left + "px";
+		region.style.top = input_top + "px";
+	}
 	
 	function tesseract_recognition() {
 		DetectVideo();
@@ -106,6 +112,7 @@
 	
 	window.tesseract_video = tesseract_video;
 	window.tesseract_imageprocessing = tesseract_imageprocessing;
+	window.tesseract_video_position = tesseract_video_position;
 	window.tesseract_get = tesseract_get;
 	window.tesseract_recognition = tesseract_recognition;
 	window.tesseract_clear = tesseract_clear;
