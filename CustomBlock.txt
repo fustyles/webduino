@@ -19,6 +19,8 @@ https://fustyles.github.io/webduino/posenet_20201012/blockly.json
 https://fustyles.github.io/webduino/Blazeface_20201012/blockly.json
 (新版) 物件偵測 (tfjs coco-ssd)
 https://fustyles.github.io/webduino/coco-ssd_20201012/blockly.json
+(新版) 物件偵測 (tfjs mobilenet_20201012)
+https://fustyles.github.io/webduino/mobilenet_20201012/blockly.json
 (新版) 機器學習 (tfjs teachablemachine)
 https://fustyles.github.io/webduino/teachablemachine_20201012/blockly.json
 若使用ESP32-CAM影像串流，請安裝我的韌體。
