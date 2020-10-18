@@ -8,7 +8,7 @@
   "dependencies": [
     "tesseract_video.js",
     "tesseract.js",
-    "https://unpkg.com/tesseract.js/dist/tesseract.min.js"
+    "tesseract.min.js"
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
