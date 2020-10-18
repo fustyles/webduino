@@ -5,7 +5,7 @@
         <field name="BOOL">TRUE</field>
       </block>
     </value>
-  </block>
+  </block> 
   <block type="trackingface_startvideo_media">
     <value name="width_">
       <block type="math_number">
@@ -29,7 +29,19 @@
         <field name="TEXT">http://192.168.***.***:81/stream</field>
       </block>
     </value> 
-  </block>     
+  </block>
+  <block type="trackingface_video_position">
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
+  </block> 
   <block type="trackingface_get">
     <value name="index_">
       <block type="math_number">

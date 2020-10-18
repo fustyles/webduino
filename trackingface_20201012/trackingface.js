@@ -16,6 +16,13 @@
 		document.getElementById("frame_trackingface").value = input_frame;
 		document.getElementById("region_trackingface").style.opacity = input_opacity;
 	}
+	
+	function trackingface_video_position(input_left, input_top) {
+		var region = document.getElementById("region_trackingface");
+		region.style.position = "absolute";
+		region.style.left = input_left + "px";
+		region.style.top = input_top + "px";
+	} 	
 
 	function trackingface_get(input_index, input_property) {
 		if (document.getElementById("gamediv_trackingface").innerHTML == "") return -1;
@@ -146,6 +153,7 @@
 	}
 
 	window.trackingface_display = trackingface_display;
+	window.trackingface_video_position = trackingface_video_position;
 	window.trackingface_get = trackingface_get;
 	window.trackingface_drawimage = trackingface_drawimage;
 	window.trackingface_startvideo_media = trackingface_startvideo_media;

@@ -17,3 +17,5 @@ Blockly.Msg.TRACKINGFACE_FACING_SHOW = "镜头";
 Blockly.Msg.TRACKINGFACE_FACING_FRONT_SHOW = "前置";
 Blockly.Msg.TRACKINGFACE_FACING_BACK_SHOW = "后置";
 Blockly.Msg.TRACKINGFACE_SRC_SHOW = "串流网址";
+Blockly.Msg.TRACKINGFACE_VIDEO_LEFT_SHOW = "追踪人脸 (Tracking) 画面 靠左距离";
+Blockly.Msg.TRACKINGFACE_VIDEO_TOP_SHOW = "靠上距离";

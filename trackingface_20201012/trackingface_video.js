@@ -100,7 +100,6 @@ window.onload = function () {
 				var lerpedFacesLandmarks = []
 
 				tracker.on('track', function(event) {
-					console.log(event);
 					context.clearRect(0,0,canvas.width, canvas.height);
 
 					if( event.data === undefined ) return;

@@ -17,3 +17,5 @@ Blockly.Msg.TRACKINGFACE_FACING_SHOW = "Camera Facing";
 Blockly.Msg.TRACKINGFACE_FACING_FRONT_SHOW = "Front";
 Blockly.Msg.TRACKINGFACE_FACING_BACK_SHOW = "Back";
 Blockly.Msg.TRACKINGFACE_SRC_SHOW = "Stream URL";
+Blockly.Msg.TRACKINGFACE_VIDEO_LEFT_SHOW = "Track Face (Tracking) Screen Left";
+Blockly.Msg.TRACKINGFACE_VIDEO_TOP_SHOW = "TOP";

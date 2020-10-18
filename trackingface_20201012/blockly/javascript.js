@@ -7,6 +7,13 @@ Blockly.JavaScript['trackingface_set'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['trackingface_video_position'] = function(block) { 
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'trackingface_video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};
+
 Blockly.JavaScript['trackingface_get'] = function(block) {
   var value_index = Blockly.JavaScript.valueToCode(block, 'index_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_property = block.getFieldValue('property_');

@@ -1,5 +1,5 @@
 {
-  "types": ["trackingface_set","trackingface_get","trackingface_drawimage","trackingface_startvideo_media","trackingface_startvideo_stream"],
+  "types": ["trackingface_set","trackingface_video_position","trackingface_get","trackingface_drawimage","trackingface_startvideo_media","trackingface_startvideo_stream"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
