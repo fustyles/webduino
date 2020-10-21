@@ -1597,13 +1597,13 @@
       else if (input_property=="opacity")
         return Number(obj.style.opacity);
       else if (input_property=="selectedValue") {
-	if (obj.selectedIndex!=--1)
+	if (obj.selectedIndex!=-1)
           return obj.options[obj.selectedIndex].value;
 	else
           return "";		
       }
       else if (input_property=="selectedText") {
-	if (obj.selectedIndex!=--1)	      
+	if (obj.selectedIndex!=-1)	      
         	return obj.options[obj.selectedIndex].text;
 	else
           return "";
