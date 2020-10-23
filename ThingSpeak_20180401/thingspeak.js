@@ -83,9 +83,8 @@
   }
 
   function ThingSpeak_getResponse() {
-   if (ThingSpeak_getState == false) {
+   if (ThingSpeak_response) {
      var res = ThingSpeak_response;
-     //ThingSpeak_response=[];
      return res;
     }
     else
@@ -93,7 +92,7 @@
   }
   
   function ThingSpeak_getResponseCount() {
-   if (ThingSpeak_getState == false) {
+   if (ThingSpeak_count) {
      return ThingSpeak_count;
     }
     else
