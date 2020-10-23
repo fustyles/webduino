@@ -78,12 +78,13 @@
         error: function(jqXHR, textStatus, errorThrown)
         {
           console.log(errorThrown);
+          ThingSpeak_getState = false;
         }
      });  
   }
 
   function ThingSpeak_getResponse() {
-   if (ThingSpeak_response) {
+   if (ThingSpeak_getState == false) {
      var res = ThingSpeak_response;
      return res;
     }
@@ -92,7 +93,7 @@
   }
   
   function ThingSpeak_getResponseCount() {
-   if (ThingSpeak_count) {
+   if (ThingSpeak_getState == false) {
      return ThingSpeak_count;
     }
     else
