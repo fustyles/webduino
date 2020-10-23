@@ -51,7 +51,7 @@
     ThingSpeak_count = 0;
     var data = $.ajax({
         "type": "POST",
-        "dataType": "jsonp",
+        "dataType": "json",
         "url": url,
         success: function(json)
         {
