@@ -79,6 +79,7 @@
         {
           console.log(errorThrown);
           ThingSpeak_getState = false;
+          ThingSpeak_count = 0;
         }
      });  
   }
