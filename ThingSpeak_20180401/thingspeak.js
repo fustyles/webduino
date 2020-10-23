@@ -55,6 +55,7 @@
         "url": url,
         success: function(json)
         {
+          console.log(JSON.stringify(json));
           json = eval(json.feeds);
           ThingSpeak_getState = true;
           ThingSpeak_count = json.length;
