@@ -86,9 +86,16 @@ window.onload = function () {
 					context_custom.putImageData(imgData,0,0);
 
 					event.data.forEach(function(rect) {
-					  context.strokeStyle = rect.color;
-					  context.strokeRect(rect.x, rect.y, rect.width, rect.height);
-					  result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
+						if (mirrorimage==1) {
+							context.strokeStyle = rect.color;
+							context.strokeRect(video.width-rect.x-rect.width, rect.y, rect.width, rect.height);
+							result.innerHTML+= rect.color+","+(video.width-rect.x-rect.width)+","+rect.y+","+rect.width+","+rect.height+"<br>";
+						}
+						else {
+							context.strokeStyle = rect.color;
+							context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+							result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
+						}
 					});
 
 					if (result.innerHTML!="")
