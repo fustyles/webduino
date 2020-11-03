@@ -97,14 +97,7 @@
       </block>
     </value>    
   </block> 
-  <block type="thingspeak_getresponse"></block>
-  <block type="thingspeak_getresponsewait">
-    <value name="timeout">
-      <block type="math_number">
-        <field name="NUM">3</field>
-      </block>
-    </value>    
-  </block>  
+  <block type="thingspeak_getresponse"></block> 
   <block type="thingspeak_getresponsecount"></block>
   <block type="thingspeak_clearresponse"> 
   </block>    
