@@ -50,8 +50,9 @@
     ThingSpeak_response = [];
     ThingSpeak_count = 0;
     var data = $.ajax({
-        "type": "POST",
-        "dataType": "jsonp",
+        "type": "GET",
+        "dataType": "json",
+        "async": false,
         "url": url,
         success: function(json)
         {
