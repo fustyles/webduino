@@ -4,7 +4,7 @@
   console.log("msg="+msg.events[0]);
 
   if (Number(msg.events[0].message.text)>=1&&Number(msg.events[0].message.text)<=25) {
-    var response = "https://eocodu03flx4lkrzl29rca-on.drv.tw/MyWeb/LineControl.html?gbpSD8CLAiMDTkahK3&"+msg.events[0].message.text;
+    var response = "Command: "+msg.events[0].message.text;
     var userMessage = response;
   }
   else
