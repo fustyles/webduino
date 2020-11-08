@@ -1,14 +1,7 @@
 ﻿function doPost(e) {
   var CHANNEL_ACCESS_TOKEN = 'xxxxx';
   var msg = JSON.parse(e.postData.contents);
-  console.log("msg="+msg.events[0]);
-
-  if (Number(msg.events[0].message.text)>=1&&Number(msg.events[0].message.text)<=25) {
-    var response = "Command: "+msg.events[0].message.text;
-    var userMessage = response;
-  }
-  else
-    var userMessage = "Command is not defined";
+  var userMessage = "Command: " + msg.events[0].message.text;
     
   var replyToken = msg.events[0].replyToken;  
   if (typeof replyToken === 'undefined') {
