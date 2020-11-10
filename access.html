@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Access db Connection</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+    
+	
+	var pad = "C:\\Users\\FU\\Desktop\\mydb.accdb";
+    //var strConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + pad;
+    var strConn = "Provider=microsoft.ace.oledb.12.0;Data Source=" + pad;
+	//var strConn = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq="+pad+";Uid=;Pwd=;"
+    var conn = new ActiveXObject("ADODB.Connection");
+
+    conn.Open(strConn);
+    var rs = new ActiveXObject("ADODB.Recordset");
+    var SQL = "SELECT * FROM test"; 
+	
+	rs.Open(SQL, conn, 1, 3);
+    if(!rs.bof) {
+		rs.MoveFirst();
+		if(!rs.eof) {
+			document.write("<p><br>" + rs.fields(1).value + ", ");
+			document.write("<br>" + rs.fields(2).value + ", ");
+			document.write("<br>" + rs.fields(3).value + ".</p>");
+		}
+    }
+    else {
+		document.write("No data found");
+    };
+    rs.Close();
+    conn.Close();
+
+    </script>
+</body>
+</html>
