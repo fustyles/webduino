@@ -14,7 +14,7 @@ window.onload = function () {
 	let Model;
 	var sourceTimer;
 	
-	loadModel();
+	setTimeout(function(){loadModel();}, 5000);
 	async function loadModel() {
 		if (modelPath.value=="") {
 			result.innerHTML = "Please input model path.";
