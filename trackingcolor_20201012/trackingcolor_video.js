@@ -93,7 +93,6 @@ window.onload = function () {
 					context_custom.putImageData(imgData,0,0);
 
 					event.data.forEach(function(rect) {
-						console.log(obj.width);
 						if (mirrorimage==1) {
 							context.strokeStyle = rect.color;
 							context.strokeRect(obj.width-rect.x-rect.width, rect.y, rect.width, rect.height);
