@@ -95,8 +95,8 @@ window.onload = function () {
 					event.data.forEach(function(rect) {
 						if (mirrorimage==1) {
 							context.strokeStyle = rect.color;
-							context.strokeRect(video.width-rect.x-rect.width, rect.y, rect.width, rect.height);
-							result.innerHTML+= rect.color+","+(video.width-rect.x-rect.width)+","+rect.y+","+rect.width+","+rect.height+"<br>";
+							context.strokeRect(obj.width-rect.x-rect.width, rect.y, rect.width, rect.height);
+							result.innerHTML+= rect.color+","+(obj.width-rect.x-rect.width)+","+rect.y+","+rect.width+","+rect.height+"<br>";
 						}
 						else {
 							context.strokeStyle = rect.color;
