@@ -29,7 +29,7 @@ window.onload = function () {
 				if (source.innerHTML=="gameimg_trackingcolor") {
 					setInterval(function(){
 						tracking.track('#gameimg_trackingcolor', tracker);
-					}, 500);
+					}, 300);
 				}
 				else 
 					tracking.track('#gamevideo_trackingcolor', tracker, { camera: true });
