@@ -25,7 +25,11 @@ window.onload = function () {
 				obj = document.getElementById(source.innerHTML);
 				
 				var tracker = new tracking.ColorTracker();
-				tracking.track('#gamevideo_trackingcolor', tracker, { camera: true });
+				
+				if (source.innerHTML=="gameimg_trackingcolor")
+					tracking.track('#canvas', tracker);
+				else 
+					tracking.track('#gamevideo_trackingcolor', tracker, { camera: true });
 	
 				tracker.on('track', function(event) {
 					
