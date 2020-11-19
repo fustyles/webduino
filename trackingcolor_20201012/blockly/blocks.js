@@ -136,10 +136,10 @@ Blockly.Blocks['trackingcolor_get_number'] = {
           ["magenta","magenta"], 
           ["cyan","cyan"],
           ["yellow","yellow"], 
-          ["RedRect","red"],
-          ["GreenRect","green"],
-          ["BlueRect","blue"],
-          ["All","all"]
+          ["red(rect)","red"],
+          ["green(rect)","green"],
+          ["blue(rect)","blue"],
+          ["all","all"]
         ]), "rect_");
     this.setInputsInline(true);
     this.setOutput(true, null); 
