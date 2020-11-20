@@ -4,14 +4,14 @@
 
 	'use strict';
 
-	function teachablemachine_video(input_project, input_result, input_mirrorimage, input_opacity) {
-		document.getElementById('project_teachablemachine').innerHTML = input_project;
+	function teachablemachine_video(input_result, input_mirrorimage, input_opacity) {
 		document.getElementById('gamediv_teachablemachine').style.display = input_result;
 		document.getElementById('mirrorimage_teachablemachine').value = input_mirrorimage;
 		document.getElementById("region_teachablemachine").style.opacity = Number(input_opacity);
 	}	
 
-	function teachablemachine_model(input_model){
+	function teachablemachine_model(input_project, input_model){
+		document.getElementById('project_teachablemachine').innerHTML = input_project;
 		document.getElementById("modelPath_teachablemachine").value = input_model;
 	}
 
