@@ -4,9 +4,7 @@
 
   'use strict';
   
-  function trackingcolor_set(input_display, input_pixel, input_result, input_mirrorimage, input_opacity)  {
-	document.getElementById("gameimg_trackingcolor").style.display = input_display;
-	document.getElementById("gamevideo_trackingcolor").style.display = input_display;	  
+  function trackingcolor_set(input_display, input_pixel, input_result, input_mirrorimage, input_opacity)  {  
 	document.getElementById("gamecanvas_trackingcolor").style.display = input_display;
 	document.getElementById("gamecanvas_custom").style.display = input_pixel;
 	document.getElementById("gamediv_trackingcolor").style.display = input_result;
