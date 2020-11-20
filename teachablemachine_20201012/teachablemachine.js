@@ -4,7 +4,8 @@
 
 	'use strict';
 
-	function teachablemachine_video(input_result, input_mirrorimage, input_opacity) {
+	function teachablemachine_video(input_project, input_result, input_mirrorimage, input_opacity) {
+		document.getElementById('project_teachablemachine').innerHTML = input_project;
 		document.getElementById('gamediv_teachablemachine').style.display = input_result;
 		document.getElementById('mirrorimage_teachablemachine').value = input_mirrorimage;
 		document.getElementById("region_teachablemachine").style.opacity = Number(input_opacity);

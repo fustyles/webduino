@@ -1,7 +1,13 @@
 Blockly.Blocks['teachablemachine_video'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.TEACHABLEMACHINE_SHOW); 
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_PROJECT_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["image","image"],
+		["pose","pose"]	  
+  ]), "project_"); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TEACHABLEMACHINE_RESULT_SHOW)
       .appendField(new Blockly.FieldDropdown([

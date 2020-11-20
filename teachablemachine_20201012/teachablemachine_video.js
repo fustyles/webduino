@@ -1,8 +1,10 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>');
 document.write('<div id="region_teachablemachine" style="z-index:999"><video id="gamevideo_teachablemachine" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimg_teachablemachine" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_teachablemachine"></canvas><br><select id="mirrorimage_teachablemachine" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><input type="text" id="modelPath_teachablemachine" value="" style="position:absolute;visibility:hidden;"><br><div id="gamediv_teachablemachine" style="color:red"></div></div>');
+document.write('<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>');
 document.write('<div id="teachablemachineState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_teachablemachine" style="position:absolute;display:none;"></div>');
+document.write('<div id="project_teachablemachine" style="position:absolute;display:none;"></div>');
 
 window.onload = function () {
 	var video = document.getElementById('gamevideo_teachablemachine');
@@ -11,6 +13,8 @@ window.onload = function () {
 	var mirrorimage = document.getElementById("mirrorimage_teachablemachine").value;
 	var result = document.getElementById('gamediv_teachablemachine');
 	var modelPath = document.getElementById('modelPath_teachablemachine');
+	var source = document.getElementById("sourceId_teachablemachine");
+	var project = document.getElementById("project_teachablemachine");
 	let Model;
 	var sourceTimer;
 	
@@ -23,12 +27,17 @@ window.onload = function () {
 		const URL = modelPath.value;
 		const modelURL = URL + "model.json";
 		const metadataURL = URL + "metadata.json";
-		Model = await tmImage.load(modelURL, metadataURL);
+		if (project.innerHTML=="image") {
+			Model = await tmImage.load(modelURL, metadataURL);
+		}
+		else if (project.innerHTML=="pose") {
+			Model = await tmPose.load(modelURL, metadataURL);
+		}			
 		maxPredictions = Model.getTotalClasses();
+
 		result.innerHTML = "";
 		sourceTimer = setInterval(
 			function(){
-				var source = document.getElementById("sourceId_teachablemachine");
 				if (source.innerHTML!="") {
 					clearInterval(sourceTimer);
 					setTimeout(function(){DetectVideo(document.getElementById(source.innerHTML))}, 3000);
@@ -61,7 +70,12 @@ window.onload = function () {
 		}
 
 		var data = "";
-		const prediction = await Model.predict(canvas);
+		if (project.innerHTML=="image")
+			var prediction = await Model.predict(canvas);
+		else if (project.innerHTML=="pose") {
+			var { pose, posenetOutput } = await Model.estimatePose(canvas);
+			var prediction = await Model.predict(posenetOutput);
+		}			
 		if (maxPredictions>0) {
 			for (let i = 0;i < maxPredictions;i++)
 				data += prediction[i].className + "," + prediction[i].probability.toFixed(2) + "<br>";
