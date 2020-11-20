@@ -1,15 +1,15 @@
 Blockly.JavaScript['teachablemachine_video'] = function(block) { 
-  var value_project_ = block.getFieldValue('project_');
   var value_result_ = block.getFieldValue('result_');
   var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
   var value_opacity_ = block.getFieldValue('opacity_');
-  var code = 'teachablemachine_video("' + value_project_ + '","' + value_result_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
+  var code = 'teachablemachine_video("' + value_result_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
   return code;
 };
 
 Blockly.JavaScript['teachablemachine_model'] = function(block) {
+  var value_project_ = block.getFieldValue('project_');
   var value_model_ = Blockly.JavaScript.valueToCode(block, 'model_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'teachablemachine_model(' + value_model_ + ');\n';
+  var code = 'teachablemachine_model("' + value_project_ + '",' + value_model_ + ');\n';
   return code;
 };
 
