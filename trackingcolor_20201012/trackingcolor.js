@@ -100,7 +100,6 @@
 		var canvas = document.getElementById("gamecanvas_trackingcolor");
 		var canvas_custom = document.getElementById("gamecanvas_custom"); 
 		
-		img.style.visibility = "visible";
 		img.src = url;
 		img.onload = function() {
 			canvas.setAttribute("width", img.width);
