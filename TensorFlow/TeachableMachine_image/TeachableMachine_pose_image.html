@@ -1,0 +1,128 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/11/21 00:30
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_image/TeachableMachine_image.html
+-->
+
+<!DOCTYPE html>
+<head>
+  <title>Teachable Machine (pose)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+</head>
+<body>
+Model Link： 
+<input type="text" id="modelPath" size="40" value=""><br>
+<a href="https://teachablemachine.withgoogle.com/train/image" target="_blank">Train Model</a>&nbsp;&nbsp;&nbsp;
+<button type="button" onclick="LoadModel()">Load Model</button><br>
+<input type="file" id="selectImage" disabled="true"></input><br>
+<img id="OriginImage" style="display:none">
+<img id="ResizeImage"><br>
+<div id="result" style="color:red"></div>
+  
+<script>
+var modelPath = document.getElementById('modelPath');
+var selectImage = document.getElementById('selectImage');
+var result = document.getElementById('result');
+var OriginImage = document.getElementById('OriginImage');	
+var ResizeImage = document.getElementById('ResizeImage');
+var ResizeImageWidth = 320;	
+let Model;
+  
+async function LoadModel() {
+	if (modelPath.value=="") {
+		result.innerHTML = "Please input Model Link.";
+		return;
+	}
+	else
+		result.innerHTML = "Please wait for loading model.";
+
+	const URL = modelPath.value;
+	const modelURL = URL + "model.json";
+	const metadataURL = URL + "metadata.json";
+
+	try {
+		Model = await tmPose.load(modelURL, metadataURL);
+		maxPredictions = Model.getTotalClasses();
+	}
+	catch (e){}
+
+
+	if (Model) {
+		result.innerHTML = "Please select one image.";
+		document.getElementById('selectImage').disabled = false;
+	}
+	else {
+		result.innerHTML = "Loading model failed.";
+		document.getElementById('selectImage').disabled = true;
+	}
+}
+  
+async function recognizeImage(Image) {
+	var data = "";
+	var maxClassName = "";
+	var maxProbability = "";
+	const { pose, posenetOutput } = await Model.estimatePose(Image);
+		// Prediction 2: run input through teachable machine classification model
+	const prediction = await Model.predict(posenetOutput);
+
+	for (let i = 0; i < maxPredictions; i++) {
+		if (i==0) {
+			maxClassName = prediction[i].className;
+			maxProbability = prediction[i].probability;
+		}
+		else if (prediction[i].probability>maxProbability) {
+			maxClassName = prediction[i].className;
+			maxProbability = prediction[i].probability;
+		}
+		data += prediction[i].className + ", " + prediction[i].probability + "<br>";
+	}
+	result.innerHTML = data + "<br>Max Probability : " + maxClassName + ", " + maxProbability;
+}
+    
+selectImage.onchange = function (event) {
+  var target = event.target || window.event.srcElement;
+  var files = target.files;
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      result.innerHTML = "Loading image to recognize...";     
+      OriginImage.src = fr.result;
+    }
+    fr.readAsDataURL(files[0]);
+  }
+}
+  
+OriginImage.onload = function (event) {
+  try { 
+    document.createEvent("TouchEvent"); 
+    var width = document.body.clientWidth;
+  }
+  catch(e) { 
+    var width = ResizeImageWidth;
+  } 
+  
+  if (OriginImage.height<OriginImage.width) {
+    var height = width*OriginImage.height/OriginImage.width; 
+  }
+  else {
+    var height = width;
+    width = height*OriginImage.width/OriginImage.height; 
+  }
+
+  ResizeImage.width = width;
+  ResizeImage.height = height;  
+  ResizeImage.src = OriginImage.src;
+}
+  
+ResizeImage.onload = function (event) {
+  if (Model) recognizeImage(ResizeImage);
+}
+</script>
+
+</body>
+</html>
