@@ -1,5 +1,5 @@
-Blockly.Msg.TRACKINGCOLOR_SHOW = "追踪颜色 (Tracking)";
-Blockly.Msg.TRACKINGCOLOR_SET_SHOW = "追踪颜色 (Tracking) 视窗设定";
+Blockly.Msg.TRACKINGCOLOR_SHOW = "颜色追踪 (Tracking)";
+Blockly.Msg.TRACKINGCOLOR_SET_SHOW = "颜色追踪 (Tracking) 视窗设定";
 Blockly.Msg.TRACKINGCOLOR_WIDTH_SHOW = "宽度";
 Blockly.Msg.TRACKINGCOLOR_HEIGHT_SHOW = "高度";
 Blockly.Msg.TRACKINGCOLOR_DISPLAY_SHOW = "视讯";
@@ -22,5 +22,5 @@ Blockly.Msg.TRACKINGCOLOR_SRC_SHOW = "串流网址";
 Blockly.Msg.TRACKINGCOLOR_REDRECT_SHOW = "红色";
 Blockly.Msg.TRACKINGCOLOR_GREENRECT_SHOW = "绿色";
 Blockly.Msg.TRACKINGCOLOR_BLUERECT_SHOW = "蓝色";
-Blockly.Msg.TRACKINGCOLOR_VIDEO_LEFT_SHOW = "追踪颜色 (Tracking) 画面 靠左距离";
+Blockly.Msg.TRACKINGCOLOR_VIDEO_LEFT_SHOW = "颜色追踪 (Tracking) 画面 靠左距离";
 Blockly.Msg.TRACKINGCOLOR_VIDEO_TOP_SHOW = "靠上距离";
