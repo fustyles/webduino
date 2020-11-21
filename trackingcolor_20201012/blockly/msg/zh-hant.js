@@ -1,1 +1,1 @@
-MSG.catTrackingColor = "追蹤顏色(Tracking)";
+MSG.catTrackingColor = "顏色追蹤(Tracking)";
