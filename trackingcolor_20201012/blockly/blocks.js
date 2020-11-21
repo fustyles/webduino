@@ -44,7 +44,7 @@ Blockly.Blocks['trackingcolor_set'] = {
 	this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(65);
+    this.setColour(60);
   }
 };
 
@@ -88,7 +88,7 @@ Blockly.Blocks['trackingcolor_custom'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(65);
+    this.setColour(60);
   }
 };
 
