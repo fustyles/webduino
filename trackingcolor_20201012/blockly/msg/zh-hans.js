@@ -1,1 +1,1 @@
-MSG.catTrackingColor = "追踪颜色(Tracking)"
+MSG.catTrackingColor = "颜色追踪(Tracking)"
