@@ -3459,6 +3459,7 @@ function HextoRgb(color) {
           obj.style.display = "block";    
         else if (input_value==0)
           obj.style.display = "none";
+	      console.log(input_value);
       }
       else if (input_property=="position")
         obj.style.position = input_value;		    
