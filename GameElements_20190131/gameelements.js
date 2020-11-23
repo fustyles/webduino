@@ -3409,7 +3409,8 @@ function HextoRgb(color) {
 
   function video_set(input_id,input_property,input_value) {
     if (document.getElementById("gamevideo_"+input_id)) {
-	  var obj = document.getElementById("gamevideo_"+input_id);
+	  var obj = document.getElementById("gamevideo_"+input_id); 
+	    
 	    
 	      console.log(obj);
 	      console.log(input_property);    
@@ -3464,6 +3465,7 @@ function HextoRgb(color) {
           obj.style.display = "block";    
         else if (input_value==0)
           obj.style.display = "none";
+	      console.log("ok");	      
       }
       else if (input_property=="position")
         obj.style.position = input_value;		    
@@ -3478,7 +3480,7 @@ function HextoRgb(color) {
 
   function video_get(input_id,input_property){
     if (document.getElementById("gamevideo_"+input_id)) {
-	  var obj = document.getElementById("gamevideo_"+input_id);
+	  var obj = document.getElementById("gamevideo_"+input_id); 
       if (input_property=="left")
         return Number(obj.style.left.replace(/px/ig,""));
       else if (input_property=="top")
