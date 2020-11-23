@@ -3409,13 +3409,7 @@ function HextoRgb(color) {
 
   function video_set(input_id,input_property,input_value) {
     if (document.getElementById("gamevideo_"+input_id)) {
-	  var obj = document.getElementById("gamevideo_"+input_id); 
-	    
-	    
-	      console.log(obj);
-	      console.log(input_property);    
-	      console.log(input_value);
-	    
+      var obj = document.getElementById("gamevideo_"+input_id); 
       if (input_property=="left")
         obj.style.left = input_value + "px";
       else if (input_property=="top")
@@ -3464,8 +3458,7 @@ function HextoRgb(color) {
         if (input_value==1)
           obj.style.display = "block";    
         else if (input_value==0)
-          obj.style.display = "none";
-	      console.log("ok");	      
+          obj.style.display = "none";      
       }
       else if (input_property=="position")
         obj.style.position = input_value;		    
@@ -3474,7 +3467,9 @@ function HextoRgb(color) {
       else if (input_property=="draggable")
         obj.draggable = input_value;
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	    
+	console.log(obj.style.opacity);
     }
   }
 
