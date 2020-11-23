@@ -3422,22 +3422,6 @@ function HextoRgb(color) {
         obj.style.height = input_value + "px";
 		obj.height = input_value;
 	  }
-      else if (input_property=="cam")
-        if (input_value==true) {
-		  navigator.mediaDevices
-		  .getUserMedia({
-			audio: false,
-			video: {
-			  facingMode: "user"
-			}
-		  })
-		  .then(stream => {
-			obj.srcObject = stream
-			obj.onloadedmetadata = () => {       
-			  obj.play();
-			}
-		  })  
-        }
       else if (input_property=="src")
         obj.src = input_value;
       else if (input_property=="autoplay")
