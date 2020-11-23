@@ -3452,8 +3452,6 @@ function HextoRgb(color) {
         obj.draggable = input_value;
       else if (input_property=="style")
         obj.style = input_value;
-	    
-	console.log(obj.style.opacity);
     }
   }
 
