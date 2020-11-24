@@ -25,7 +25,14 @@
         <field name="COLOUR">#ffffff</field>
       </block>
     </value>    
-  </block>  
+  </block>
+  <block type="video_base64">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>   
+  </block> 	
   <block type="image_boundary">
     <value name="left_">
       <block type="math_number">
@@ -3132,13 +3139,6 @@
       </block>
     </value>     
   </block>  
-  <block type="video_base64">
-    <value name="id_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>   
-  </block> 
 
   </category>
   <category id="catGameElements_sub16" colour="120"> 
