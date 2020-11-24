@@ -106,11 +106,11 @@
 	}
 
 	function faceapirecognize_startvideo_stream(url) {
-		var img = document.getElementById("gameimg_faceapirecognize");
+		var img = document.getElementById("gameimage_faceapirecognize");
 		img.src = url;
 		img.onload = function() {
 			document.getElementById("size_faceapirecognize").innerHTML = "{\"width\":"+img.width+", \"height\": "+img.height+"}";
-			obj = "gameimg_faceapirecognize";
+			obj = "gameimage_faceapirecognize";
 		}
 	}    
 

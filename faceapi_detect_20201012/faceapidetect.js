@@ -92,12 +92,12 @@
 	}
 
   	function faceapidetect_startvideo_stream(url) {
-		var img = document.getElementById("gameimg_faceapidetect");
+		var img = document.getElementById("gameimage_faceapidetect");
 		img.style.visibility = "visible";
 		img.src = url;
 		img.onload = function() {
 			document.getElementById("size_faceapidetect").innerHTML = "{\"width\":"+img.width+", \"height\": "+img.height+"}";
-			document.getElementById("sourceId_faceapidetect").innerHTML = "gameimg_faceapidetect";
+			document.getElementById("sourceId_faceapidetect").innerHTML = "gameimage_faceapidetect";
 		}
 				
 	}  

@@ -97,11 +97,11 @@
 	}
 
   	function blazeface_startvideo_stream(url) {
-		var img = document.getElementById("gameimg_blazeface");
+		var img = document.getElementById("gameimage_blazeface");
 		img.style.visibility = "visible";
 		img.src = url;
 		img.onload = function() {
-			document.getElementById("sourceId_blazeface").innerHTML = "gameimg_blazeface";
+			document.getElementById("sourceId_blazeface").innerHTML = "gameimage_blazeface";
 		}	
 	}
 
