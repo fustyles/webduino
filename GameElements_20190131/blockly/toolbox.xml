@@ -32,7 +32,7 @@
         <field name="TEXT"></field>
       </block>
     </value>   
-  </block> 	
+  </block> 
   <block type="image_boundary">
     <value name="left_">
       <block type="math_number">
@@ -275,6 +275,38 @@
       </block>
     </value>     
   </block> 
+  <block type="image_create_stream">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>    
+    <value name="url_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>  
+    <value name="zindex_">
+      <block type="math_number">
+        <field name="NUM">999</field>
+      </block>
+    </value> 
+    <value name="display_">
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>     
+  </block>   
   <block type="image_collision">
     <value name="id1_">
       <block type="text">
@@ -3139,7 +3171,7 @@
       </block>
     </value>     
   </block>  
-
+  
   </category>
   <category id="catGameElements_sub16" colour="120"> 
 

@@ -852,6 +852,27 @@
     document.body.appendChild(obj);
   }
   
+  function image_create_stream(input_id,input_url,input_left,input_top,input_zindex,input_display) {
+    if (document.getElementById("gameimage_"+input_id))
+      document.getElementById("gameimage_"+input_id).parentNode.removeChild(document.getElementById("gameimage_"+input_id));
+    var obj = document.createElement('img');
+    obj.style.position = "absolute";
+    obj.id = "gameimage_"+input_id;
+    obj.src = input_url;
+    obj.style.left = input_left + 'px';
+    obj.style.top = input_top + 'px';
+    obj.style.zIndex = input_zindex;
+    if (input_display==0)
+      obj.style.display = "none";
+    else
+      obj.style.display = "block";
+	obj.crossOrigin = "anonymous";
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
+    obj.draggable="true";
+    obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
+    document.body.appendChild(obj);
+  }  
+  
   function image_set(input_id,input_property,input_value) {
     if (document.getElementById("gameimage_"+input_id))
     {
@@ -3592,6 +3613,7 @@ function HextoRgb(color) {
   window.canvas_getcolor = canvas_getcolor;
   window.canvas_capturevideo = canvas_capturevideo;
   window.image_create = image_create;
+  window.image_create_stream = image_create_stream;  
   window.image_set = image_set;
   window.image_get = image_get;
   window.image_delete = image_delete;

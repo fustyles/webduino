@@ -432,3 +432,4 @@ Blockly.Msg.VIDEO_DELETE = "刪除";
 Blockly.Msg.PROPERTY_CAM = "網路攝影機";
 Blockly.Msg.VIDEO_BASE64 = "截圖轉換Base64字串";
 Blockly.Msg.CANVAS_CAPTUREVIDEO = "畫布 捕捉視訊畫面";
+Blockly.Msg.STREAMURL = "串流網址";
