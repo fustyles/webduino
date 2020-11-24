@@ -102,11 +102,11 @@
 	}
 
 	function tesseract_startvideo_stream(url) {
-		var img = document.getElementById("gameimg_tesseract");
+		var img = document.getElementById("gameimage_tesseract");
 		img.style.visibility = "visible";
 		img.src = url;
 		img.onload = function() {
-			document.getElementById("sourceId_tesseract").innerHTML = "gameimg_tesseract";
+			document.getElementById("sourceId_tesseract").innerHTML = "gameimage_tesseract";
 		}	
 	}
 	
