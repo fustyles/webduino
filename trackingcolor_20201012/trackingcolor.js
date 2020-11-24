@@ -96,7 +96,7 @@
 	}
 
   	function trackingcolor_startvideo_stream(url) {
-		var img = document.getElementById("gameimg_trackingcolor");
+		var img = document.getElementById("gameimage_trackingcolor");
 		var canvas = document.getElementById("gamecanvas_trackingcolor");
 		var canvas_custom = document.getElementById("gamecanvas_custom"); 
 		
@@ -110,7 +110,7 @@
 			canvas_custom.setAttribute("height", img.height);
 			canvas_custom.style.width = img.width+"px";
 			canvas_custom.style.height = img.height+"px";				
-			document.getElementById("sourceId_trackingcolor").innerHTML = "gameimg_trackingcolor";
+			document.getElementById("sourceId_trackingcolor").innerHTML = "gameimage_trackingcolor";
 		}	
 	}
 	
