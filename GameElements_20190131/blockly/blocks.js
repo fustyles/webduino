@@ -747,10 +747,11 @@ Blockly.Blocks['canvas_img_url'] = {
   init: function() {
   this.appendDummyInput() 
       .appendField(Blockly.Msg.CANVAS_IMG);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.URL,"url"], [Blockly.Msg.IMAGE+Blockly.Msg.ID,"imageid"]]), "source_");
   this.appendValueInput("url_")
       .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.URL);
+      .setAlign(Blockly.ALIGN_RIGHT);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -4286,9 +4287,11 @@ Blockly.Blocks['video_delete'] = {
 
 Blockly.Blocks['video_base64'] = {
   init: function () {
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.VIDEO,"video"], [Blockly.Msg.CANVAS,"canvas"], [Blockly.Msg.IMAGE,"image"]]), "source_");
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.VIDEO_ID);  
+      .appendField(Blockly.Msg.ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.VIDEO_BASE64);
   this.setInputsInline(true);

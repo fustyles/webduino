@@ -650,15 +650,43 @@
     }
   } 
 
-  function canvas_img_url(input_url) {
+  function canvas_img_url(input_source, input_value) {
     if (!document.getElementById("gamecanvasimg")) {
       var img = document.createElement('img');
       img.id = "gamecanvasimg";
       img.style.display = "none";
       document.body.appendChild(img);
     }    
-    var img = document.getElementById("gamecanvasimg");
-    if (input_url!=""&&img.src!=input_url) img.src = input_url;
+	else 
+		var img = document.getElementById("gamecanvasimg");
+		
+	if (input_source=="url") { 
+		if (input_value!=""&&img.src!=input_value) 
+		  img.src = input_value;
+	}
+	else if (input_source=="imageid") { 
+		if (document.getElementById("gameimage_"+input_value)) {
+			var obj = document.getElementById("gameimage_"+input_value);
+			var canvas = document.createElement('canvas');
+			canvas.id = 'tmp';
+			canvas.style.position = "absolute";
+			canvas.style.left = "300px";
+			canvas.style.display = "none";
+			document.body.appendChild(canvas);
+			canvas.setAttribute("width", obj.width);
+			canvas.setAttribute("height", obj.height);
+			var context = canvas.getContext("2d");
+			try {
+				context.drawImage(obj,0,0,obj.width,obj.height);
+				var base64 = canvas.toDataURL();
+			}
+			catch(e) {
+				//console.log(e);
+			}
+			document.getElementById("tmp").parentNode.removeChild(document.getElementById("tmp"));
+			img.src = base64;
+		}
+	}
   } 
   
   function canvas_img(input_id,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height,input_rotate,input_globalAlpha) {
@@ -3505,18 +3533,24 @@ function HextoRgb(color) {
   }
 
   function video_base64(input_id) {
-    if (document.getElementById("gamevideo_"+input_id)) {
-		var video = document.getElementById("gamevideo_"+input_id);
+    if (document.getElementById(input_id)) {	
+		var obj = document.getElementById(input_id);
 		var canvas = document.createElement('canvas');
 		canvas.id = 'tmp';
 		canvas.style.position = "absolute";
 		canvas.style.display = "none";
 		document.body.appendChild(canvas);
-		canvas.setAttribute("width", video.width);
-		canvas.setAttribute("height", video.height);
+		canvas.setAttribute("width", obj.width);
+		canvas.setAttribute("height", obj.height);
 		var context = canvas.getContext("2d");
-		context.drawImage(video,0,0,video.width,video.height);
-		var base64 = canvas.toDataURL();
+		var base64 = "";
+		try {
+			context.drawImage(obj,0,0,obj.width,obj.height);
+			base64 = canvas.toDataURL();
+		}
+		catch(e) {
+			//console.log(e);
+		}
 		document.getElementById("tmp").parentNode.removeChild(document.getElementById("tmp"));
 		return base64;
 	}
