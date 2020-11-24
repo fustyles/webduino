@@ -35,7 +35,7 @@
 		video.style.width = input_width+"px";
 		video.style.height = input_height+"px";
 		video.style.visibility = "visible";
-		var img = document.getElementById("gameimg_instascan");
+		var img = document.getElementById("gameimage_instascan");
 		img.style.position = "absolute";		
 		
 		document.getElementById("sourceId_video").innerHTML = input_index;
@@ -43,13 +43,13 @@
 	}
 
   	function instascan_startvideo_stream(url) {
-		var img = document.getElementById("gameimg_instascan");
+		var img = document.getElementById("gameimage_instascan");
 		img.style.visibility = "visible";
 		var video = document.getElementById("gamevideo_instascan");
 		video.style.position = "absolute";	
 		img.src = url;
 		img.onload = function() {
-			document.getElementById("sourceId_instascan").innerHTML = "gameimg_instascan";
+			document.getElementById("sourceId_instascan").innerHTML = "gameimage_instascan";
 		}	
 	}
 

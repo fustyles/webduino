@@ -103,11 +103,11 @@
 	}
 
 	function knnclassifier_startvideo_stream(url) {
-		var img = document.getElementById("gameimg_knnclassifier");
+		var img = document.getElementById("gameimage_knnclassifier");
 		img.style.visibility = "visible";
 		img.src = url;
 		img.onload = function() {
-			obj = "gameimg_knnclassifier";
+			obj = "gameimage_knnclassifier";
 			document.getElementById("sourceId_knnclassifier").innerHTML = obj;			
 		}	
 	}  

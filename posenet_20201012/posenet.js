@@ -135,11 +135,11 @@
 	}
 
   	function posenet_startvideo_stream(url) {
-		var img = document.getElementById("gameimg_posenet");
+		var img = document.getElementById("gameimage_posenet");
 		img.style.visibility = "visible";
 		img.src = url;
 		img.onload = function() {
-			document.getElementById("sourceId_posenet").innerHTML = "gameimg_posenet";
+			document.getElementById("sourceId_posenet").innerHTML = "gameimage_posenet";
 		}	
 	}  
 

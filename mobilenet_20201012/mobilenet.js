@@ -107,10 +107,10 @@
 	}
 
   	function mobilenet_startvideo_stream(url) {
-		var img = document.getElementById("gameimg_mobilenet");
+		var img = document.getElementById("gameimage_mobilenet");
 		img.src = url;
 		img.onload = function() {
-			document.getElementById("sourceId_mobilenet").innerHTML = "gameimg_mobilenet";
+			document.getElementById("sourceId_mobilenet").innerHTML = "gameimage_mobilenet";
 		}	
 	}
 	

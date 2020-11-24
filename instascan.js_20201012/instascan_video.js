@@ -1,4 +1,4 @@
-document.write('<div id="region_instascan" style="z-index:999;"><video id="gamevideo_instascan" style="visibility:hidden;" preload autoplay loop muted></video><img id="gameimg_instascan" style="visibility:hidden;" crossorigin="anonymous"><br><div id="gamediv_instascan" style="color:red;"></div></div>');
+document.write('<div id="region_instascan" style="z-index:999;"><video id="gamevideo_instascan" style="visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_instascan" style="visibility:hidden;" crossorigin="anonymous"><br><div id="gamediv_instascan" style="color:red;"></div></div>');
 document.write('<div id="sourceId_video" style="position:absolute;display:none;">0</div>');
 document.write('<div id="sourceId_instascan" style="position:absolute;display:none;"></div>');
 
