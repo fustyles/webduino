@@ -139,7 +139,7 @@
 	}
 
 	function trackingface_startvideo_stream(url) {
-		var img = document.getElementById("gameimg_trackingface");
+		var img = document.getElementById("gameimage_trackingface");
 		var canvas = document.getElementById("gamecanvas_trackingface"); 
 
 		img.src = url;
@@ -148,7 +148,7 @@
 			canvas.setAttribute("height", img.height);
 			canvas.style.width = img.width+"px";
 			canvas.style.height = img.height+"px";				
-			document.getElementById("sourceId_trackingface").innerHTML = "gameimg_trackingface";
+			document.getElementById("sourceId_trackingface").innerHTML = "gameimage_trackingface";
 		}	
 	}
 
