@@ -4333,3 +4333,14 @@ Blockly.Blocks['video_base64'] = {
   this.setColour(200);
   }
 };
+
+Blockly.Blocks['custom_comment'] = {
+  init: function() {
+  this.appendValueInput("text")
+      .setCheck(null)
+      .appendField(Blockly.Msg.CUSTOM_COMMENT_SHOW); 
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  }
+};
