@@ -1323,6 +1323,7 @@
     obj.value = input_value;
     obj.style.fontSize = input_fontsize + 'px';
     obj.style.zIndex = input_zindex;
+    obj.style.outlineStyle = "none";
     if (input_display==0)
       obj.style.display = "none";
     else
