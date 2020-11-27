@@ -1844,7 +1844,7 @@
       else if (input_property=="height")
         obj.style.height = input_value + "px";
       else if (input_property=="background")
-        obj.style.background = input_value;
+        obj.style.backgroundImage = "url('"+input_value+"')";
       else if (input_property=="color")
         obj.style.color = input_value;
       else if (input_property=="fontsize")
@@ -1883,14 +1883,8 @@
         return Number(obj.style.width.replace(/px/ig,""));
       else if (input_property=="height")
         return Number(obj.style.height.replace(/px/ig,""));
-      else if (input_property=="background") {
-       var rgb = obj.style.background;
-       var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
-       var r = Number(hexcolor[0]).toString(16).length==1?"0"+Number(hexcolor[0]).toString(16):Number(hexcolor[0]).toString(16);
-       var g = Number(hexcolor[1]).toString(16).length==1?"0"+Number(hexcolor[1]).toString(16):Number(hexcolor[1]).toString(16);
-       var b = Number(hexcolor[2]).toString(16).length==1?"0"+Number(hexcolor[2]).toString(16):Number(hexcolor[2]).toString(16);
-       return "#"+r+g+b;
-      }
+      else if (input_property=="background")
+        return obj.style.backgroundImage;
       else if (input_property=="color") {
        var rgb = obj.style.color;
        var hexcolor = rgb.replace(/rgb\(/ig,"").replace(/\)/ig,"").replace(/\ /ig,"").split(",");
