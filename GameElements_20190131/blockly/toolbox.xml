@@ -2,6 +2,13 @@
 
 <category id="catGameElements_sub1" colour="120"> 
 
+  <block type="custom_comment">
+    <value name="text">
+      <block type="text">
+        <field name="TEXT">Make coding fun and interesting</field>
+      </block>
+    </value>
+  </block>
   <block type="head_add_viewport">
     <value name="initialscale_">
       <block type="math_number">
