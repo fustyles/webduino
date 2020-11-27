@@ -710,10 +710,6 @@
       var context = document.getElementById("gamecanvas_"+input_canvasid).getContext("2d");
       context.rotate(input_rotate * Math.PI / 180);
       context.globalAlpha = input_globalAlpha;	  
-	  console.log(input_swidth);
-	  console.log(input_sheight);
-	  console.log();
-	  console.log();
       if ((input_swidth>0)&&(input_sheight>0))
         context.drawImage(video,input_sx,input_sy,input_swidth,input_sheight,input_x0,input_y0,input_width,input_height);
       else if (((input_swidth==0)||(input_sheight==0))&&((input_width>0)&&(input_height>0)))
