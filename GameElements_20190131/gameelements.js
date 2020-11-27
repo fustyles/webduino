@@ -1353,7 +1353,7 @@
       else if (input_property=="opacity")
         obj.style.opacity = input_value;
       else if (input_property=="background")
-        obj.style.background = input_value;
+        obj.style.backgroundImage = input_value;
       else if (input_property=="value")
         obj.value = input_value;
       else if (input_property=="fontsize")
