@@ -5,7 +5,7 @@
   <block type="custom_comment">
     <value name="text">
       <block type="text">
-        <field name="TEXT">Make coding fun and interesting</field>
+        <field name="TEXT"></field>
       </block>
     </value>
   </block>
