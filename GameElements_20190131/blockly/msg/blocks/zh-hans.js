@@ -433,3 +433,4 @@ Blockly.Msg.PROPERTY_CAM = "网路摄影机";
 Blockly.Msg.VIDEO_BASE64 = "截图转换Base64字串";
 Blockly.Msg.CANVAS_CAPTUREVIDEO = "画布 捕捉视讯画面";
 Blockly.Msg.STREAMURL = "串流网址";
+Blockly.Msg.CUSTOM_COMMENT_SHOW = "注解";
