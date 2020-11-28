@@ -258,7 +258,7 @@ Blockly.Blocks['linenotify_image'] = {
   this.appendValueInput("notify_videoid")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);
+      .appendField(Blockly.Msg.LINENOTIFY_ID);
   this.appendValueInput("notify_script")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
