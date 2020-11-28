@@ -248,10 +248,6 @@ Blockly.Blocks['linenotify_image'] = {
   init: function() {
   this.appendDummyInput()
 	  .appendField(Blockly.Msg.LINENOTIFY_IMAGE_SHOW);
-  this.appendValueInput("notify_script")
-      .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("ScriptUrl"); 
   this.appendValueInput("notify_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -263,6 +259,10 @@ Blockly.Blocks['linenotify_image'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.ID);
+  this.appendValueInput("notify_script")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("ScriptUrl"); 	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
