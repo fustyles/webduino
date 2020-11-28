@@ -443,4 +443,4 @@ Blockly.Msg.VIDEO_BASE64_SPREADSHEETURL = "Google试算表网址";
 Blockly.Msg.VIDEO_BASE64_SPREADSHEETNAME = "工作表名称";
 Blockly.Msg.VIDEO_BASE64_COLUMN = "行";
 Blockly.Msg.VIDEO_BASE64_ROW = "列";
-Blockly.Msg.VIDEO_BASE64_SCRIPTURL = "APP Script网址";
+Blockly.Msg.VIDEO_BASE64_SCRIPTURL = "Script网址";
