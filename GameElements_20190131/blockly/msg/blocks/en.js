@@ -437,3 +437,4 @@ Blockly.Msg.CUSTOM_COMMENT_SHOW = "Comment";
 Blockly.Msg.AJAX_DATA = "Json Data";
 Blockly.Msg.AJAX_INDEX = "Index";
 Blockly.Msg.AJAX_FIELDNAME = "Field Name";
+Blockly.Msg.AJAX_DATA_COUNT = "Count";

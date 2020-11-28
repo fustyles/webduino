@@ -3588,6 +3588,16 @@ function HextoRgb(color) {
 	  }
 	  return data;
   }
+  
+  function ajax_getdata_json_count(input_json) {
+	  if(!input_json) return "";
+	  var json = eval(input_json);
+	  var count = 0;
+	  for (var i in json) {
+		count++;
+	  }
+	  return count;
+  }  
 
   window.table_create = table_create;
   window.table_set = table_set;
@@ -3731,5 +3741,6 @@ function HextoRgb(color) {
   window.video_delete = video_delete;
   window.video_base64 = video_base64;
   window.ajax_getdata_json = ajax_getdata_json;
+  window.ajax_getdata_json_count = ajax_getdata_json_count;
 
 }(window, window.document));

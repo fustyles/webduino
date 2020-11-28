@@ -2965,6 +2965,21 @@ Blockly.Blocks['ajax_getdata_json'] = {
   }
 };
 
+Blockly.Blocks['ajax_getdata_json_count'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.AJAX);
+  this.appendValueInput("json_")
+      .setCheck(null) 
+      .appendField(Blockly.Msg.AJAX_DATA);
+  this.appendDummyInput()   	  
+      .appendField(Blockly.Msg.AJAX_DATA_COUNT);	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
 Blockly.Blocks['ajax_cleardata'] = {
   init: function () {
   this.appendDummyInput()   

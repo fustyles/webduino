@@ -437,3 +437,4 @@ Blockly.Msg.CUSTOM_COMMENT_SHOW = "注解";
 Blockly.Msg.AJAX_DATA = "Json资料";
 Blockly.Msg.AJAX_INDEX = "资料索引";
 Blockly.Msg.AJAX_FIELDNAME = "栏位名称";
+Blockly.Msg.AJAX_DATA_COUNT = "笔数";

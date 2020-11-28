@@ -1150,6 +1150,14 @@ Blockly.JavaScript['ajax_getdata_json'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['ajax_getdata_json_count'] = function (block) {
+  var value_json_ = Blockly.JavaScript.valueToCode(block, 'json_', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  code = 'ajax_getdata_json_count('+value_json_+')';
+  
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['ajax_cleardata'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
 
