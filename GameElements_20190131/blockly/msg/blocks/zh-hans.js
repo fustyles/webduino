@@ -434,3 +434,6 @@ Blockly.Msg.VIDEO_BASE64 = "截图转换Base64字串";
 Blockly.Msg.CANVAS_CAPTUREVIDEO = "画布 捕捉视讯画面";
 Blockly.Msg.STREAMURL = "串流网址";
 Blockly.Msg.CUSTOM_COMMENT_SHOW = "注解";
+Blockly.Msg.AJAX_DATA = "Json资料";
+Blockly.Msg.AJAX_INDEX = "资料索引";
+Blockly.Msg.AJAX_FIELDNAME = "栏位名称";

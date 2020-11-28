@@ -434,3 +434,6 @@ Blockly.Msg.VIDEO_BASE64 = "截圖轉換Base64字串";
 Blockly.Msg.CANVAS_CAPTUREVIDEO = "畫布 捕捉視訊畫面";
 Blockly.Msg.STREAMURL = "串流網址";
 Blockly.Msg.CUSTOM_COMMENT_SHOW = "註解";
+Blockly.Msg.AJAX_DATA = "Json資料";
+Blockly.Msg.AJAX_INDEX = "資料索引";
+Blockly.Msg.AJAX_FIELDNAME = "欄位名稱";

@@ -1140,6 +1140,16 @@ Blockly.JavaScript['ajax_getdata'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['ajax_getdata_json'] = function (block) {
+  var value_json_ = Blockly.JavaScript.valueToCode(block, 'json_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_index_ = Blockly.JavaScript.valueToCode(block, 'index_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_fieldname_ = Blockly.JavaScript.valueToCode(block, 'fieldname_', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  code = 'ajax_getdata_json('+value_json_+','+ value_index_+','+ value_fieldname_+')';
+  
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['ajax_cleardata'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
 

@@ -13,7 +13,7 @@
 	    "div_create","div_set","div_get","div_delete",
 	    "position_distance","position_angle",
 	    "iframe_create","iframe_set","iframe_get","iframe_delete",
-	    "ajax_get","ajax_getdata","ajax_cleardata",
+	    "ajax_get","ajax_getdata","ajax_cleardata","ajax_getdata_json",
 	    "a_create","a_set","a_get","a_delete",
 	    "radio_create","radio_set","radio_get","radio_delete","radio_onclick_do","radio_name_get",
 	    "checkbox_create","checkbox_set","checkbox_get","checkbox_delete","checkbox_onclick_do",

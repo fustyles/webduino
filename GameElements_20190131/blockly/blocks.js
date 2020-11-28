@@ -2946,6 +2946,25 @@ Blockly.Blocks['ajax_getdata'] = {
   }
 };
 
+Blockly.Blocks['ajax_getdata_json'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.AJAX);
+  this.appendValueInput("json_")
+      .setCheck(null) 
+      .appendField(Blockly.Msg.AJAX_DATA);
+  this.appendValueInput("index_")
+      .setCheck("Number") 
+      .appendField(Blockly.Msg.AJAX_INDEX);	  
+  this.appendValueInput("fieldname_")
+      .setCheck("String") 
+      .appendField(Blockly.Msg.AJAX_FIELDNAME);
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
 Blockly.Blocks['ajax_cleardata'] = {
   init: function () {
   this.appendDummyInput()   

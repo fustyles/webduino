@@ -3571,6 +3571,23 @@ function HextoRgb(color) {
 		return base64;
 	}
   }
+  
+  function ajax_getdata_json(input_json, input_index, input_fieldname) {
+	  if(!input_json) return "";
+	  var json = eval(input_json);
+	  var data = "";
+	  var j=-1;
+	  for (var i in json) {
+		j++;
+		if (j==input_index||input_index==-1) {
+			if (json[i][input_fieldname]) {
+			  console.log(json[i][input_fieldname]);
+			  data = json[i][input_fieldname];
+			}
+		}
+	  }
+	  return data;
+  }
 
   window.table_create = table_create;
   window.table_set = table_set;
@@ -3713,5 +3730,6 @@ function HextoRgb(color) {
   window.video_get = video_get;
   window.video_delete = video_delete;
   window.video_base64 = video_base64;
+  window.ajax_getdata_json = ajax_getdata_json;
 
 }(window, window.document));

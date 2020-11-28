@@ -434,3 +434,6 @@ Blockly.Msg.VIDEO_BASE64 = "transfer into Base64 string";
 Blockly.Msg.CANVAS_CAPTUREVIDEO = "Canvas capture video screen";
 Blockly.Msg.STREAMURL = "Stream URL";
 Blockly.Msg.CUSTOM_COMMENT_SHOW = "Comment";
+Blockly.Msg.AJAX_DATA = "Json Data";
+Blockly.Msg.AJAX_INDEX = "Index";
+Blockly.Msg.AJAX_FIELDNAME = "Field Name";
