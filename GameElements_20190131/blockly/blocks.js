@@ -4371,7 +4371,8 @@ Blockly.Blocks['video_base64'] = {
 
 Blockly.Blocks['video_base64_spreadsheet'] = {
   init: function () {
-  this.appendDummyInput()  
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)		  
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.VIDEO,"video"], [Blockly.Msg.CANVAS,"canvas"], [Blockly.Msg.IMAGE,"image"]]), "source_");
   this.appendValueInput("id_")
       .setCheck(null)
