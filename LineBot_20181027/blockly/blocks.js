@@ -256,10 +256,13 @@ Blockly.Blocks['linenotify_image'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Token");  
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.VIDEO,"video"], [Blockly.Msg.CANVAS,"canvas"], [Blockly.Msg.IMAGE,"image"]]), "notify_source");
   this.appendValueInput("notify_videoid")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("ElemmentID");
+      .appendField(Blockly.Msg.ID);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
