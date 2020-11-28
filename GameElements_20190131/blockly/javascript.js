@@ -1710,6 +1710,30 @@ Blockly.JavaScript['video_base64'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['video_base64_spreadsheet'] = function (block) {
+  var value_source_ = block.getFieldValue('source_');
+  
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  var source_id;
+  if (value_source_=="video")
+	source_id = 'gamevideo_'+value_id_;
+  else if (value_source_=="canvas")
+	source_id = 'gamecanvas_'+value_id_;
+  else if (value_source_=="image")
+	source_id = 'gameimage_'+value_id_;
+	
+  var value_spreadsheeturl_ = Blockly.JavaScript.valueToCode(block, 'spreadsheeturl_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_spreadsheetname_ = Blockly.JavaScript.valueToCode(block, 'spreadsheetname_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_column_ = Blockly.JavaScript.valueToCode(block, 'column_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_row_ = Blockly.JavaScript.valueToCode(block, 'row_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_spreadsheet_script_ = Blockly.JavaScript.valueToCode(block, 'spreadsheet_script_', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  var code = 'video_base64_spreadsheet("' + source_id + '",'+value_spreadsheeturl_+','+value_spreadsheetname_+','+value_column_+','+value_row_+','+value_spreadsheet_script_+');\n';
+  return code;
+};
+
 Blockly.JavaScript['custom_comment'] = function (block) {
   var text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
   if ((text.indexOf("'")==0)&&(text.lastIndexOf("'")==text.length-1))

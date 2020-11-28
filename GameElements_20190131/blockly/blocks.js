@@ -3055,7 +3055,8 @@ Blockly.Blocks['a_create'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.A_HREF); 
-  this.appendDummyInput()  
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.A_TARGET)
       .appendField(new Blockly.FieldDropdown([["_blank","_blank"], ["_parent","_parent"], ["_self","_self"], ["_top","_top"]]), "target_"); 
   this.appendValueInput("zindex_")
@@ -4365,6 +4366,44 @@ Blockly.Blocks['video_base64'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
+  }
+};
+
+Blockly.Blocks['video_base64_spreadsheet'] = {
+  init: function () {
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.VIDEO,"video"], [Blockly.Msg.CANVAS,"canvas"], [Blockly.Msg.IMAGE,"image"]]), "source_");
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.ID);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEET);
+  this.appendValueInput("spreadsheeturl_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEETURL);
+  this.appendValueInput("spreadsheetname_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEETNAME);
+  this.appendValueInput("column_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.VIDEO_BASE64_COLUMN);
+  this.appendValueInput("row_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.VIDEO_BASE64_ROW);
+  this.appendValueInput("spreadsheet_script_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL); 	  
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
   }
 };
 

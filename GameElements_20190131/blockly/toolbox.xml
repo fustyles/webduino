@@ -40,6 +40,38 @@
       </block>
     </value>   
   </block> 
+  <block type="video_base64_spreadsheet">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>  
+	    <value name="spreadsheeturl_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+    <value name="spreadsheetname_">
+      <block type="text">
+        <field name="TEXT">工作表1</field>
+      </block>
+    </value> 
+	<value name="column_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value> 
+    <value name="row_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value> 
+	<value name="spreadsheet_script_">
+      <block type="text">
+        <field name="TEXT">https://script.google.com/macros/s/AKfycbzQh5b7ug63Db4PkKIlIZkAvDRav5Yv6LDS0yNUY6EzLoujIac/exec</field>
+      </block>
+    </value> 
+  </block> 
   <block type="image_boundary">
     <value name="left_">
       <block type="math_number">

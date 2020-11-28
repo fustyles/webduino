@@ -3572,6 +3572,49 @@ function HextoRgb(color) {
 	}
   }
   
+  function video_base64_spreadsheet(input_id, mySpreadsheet, mySpreadsheetName, myCellCol, myCellRow, myScriptUrl) {
+    if (document.getElementById(input_id)) {	
+		var obj = document.getElementById(input_id);
+		var canvas = document.createElement('canvas');
+		canvas.id = 'tmp';
+		canvas.style.position = "absolute";
+		canvas.style.display = "none";
+		document.body.appendChild(canvas);
+		canvas.setAttribute("width", obj.width);
+		canvas.setAttribute("height", obj.height);
+		var context = canvas.getContext("2d");
+		try {
+			context.drawImage(obj,0,0,obj.width,obj.height);
+			var myFile = canvas.toDataURL();
+
+			$.ajax({
+				"type": "POST",
+				"dataType": "json",
+				"url": myScriptUrl,
+				"data": {
+							"mySpreadsheet":mySpreadsheet,
+							"mySpreadsheetName":mySpreadsheetName,
+							"myCellCol":myCellCol,
+							"myCellRow":myCellRow,
+							"myFile":myFile
+						},
+				success: function(jsonp)
+				{
+				  console.log(jsonp);
+				},
+				error: function(jqXHR, textStatus, errorThrown)
+				{
+				  //console.log(errorThrown);
+				}
+			 });
+		}
+		catch(e) {
+			console.log(e);
+		}
+		document.getElementById("tmp").parentNode.removeChild(document.getElementById("tmp"));
+	}
+  }
+  
   function ajax_getdata_json(input_json, input_index, input_fieldname) {
 	  if(!input_json) return "";
 	  var json = eval(input_json);
@@ -3742,5 +3785,5 @@ function HextoRgb(color) {
   window.video_base64 = video_base64;
   window.ajax_getdata_json = ajax_getdata_json;
   window.ajax_getdata_json_count = ajax_getdata_json_count;
-
+  window.video_base64_spreadsheet = video_base64_spreadsheet;
 }(window, window.document));
