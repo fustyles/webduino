@@ -71,7 +71,6 @@ Blockly.JavaScript['linenotify_image'] = function (block) {
   else if (notify_source=="image")
 	source_id = 'gameimage_'+notify_videoid;
 	
-  
   var code = 'linenotify_push_image('+notify_script+','+notify_token+','+source_id+');\n';
   return code; 
 };
