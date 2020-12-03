@@ -1,0 +1,171 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/4/26 20:00
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/FacemeshDetection_video/facemesh_video.html
+-->
+
+<!DOCTYPE html>
+<head>
+  <title>Facemesh Landmarks Detection</title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Require the peer dependencies of face-landmarks-detection. -->
+	<script src="https://unpkg.com/@tensorflow/tfjs-core@2.4.0/dist/tf-core.js"></script>
+	<script src="https://unpkg.com/@tensorflow/tfjs-converter@2.4.0/dist/tf-converter.js"></script>
+
+	<!-- You must explicitly require a TF.js backend if you're not using the tfjs union bundle. -->
+	<script src="https://unpkg.com/@tensorflow/tfjs-backend-webgl@2.4.0/dist/tf-backend-webgl.js"></script>
+	<!-- Alternatively you can use the WASM backend: <script src="https://unpkg.com/@tensorflow/tfjs-backend-wasm@2.4.0/dist/tf-backend-wasm.js"></script> -->
+
+	<!-- Require face-landmarks-detection itself. -->
+	<script src="https://unpkg.com/@tensorflow-models/face-landmarks-detection@0.0.1/dist/face-landmarks-detection.js"></script>
+</head>
+<body>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
+<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<canvas id="canvas"></canvas>
+<br>
+<div id="result" style="color:red"></div>
+  
+<script> 
+  var video = document.getElementById('video');
+  var canvas = document.getElementById('canvas'); 
+  var context = canvas.getContext('2d');
+  var result = document.getElementById('result');
+  let Model; 
+  
+  window.onload = function() {LoadModel();}
+  function LoadModel() {
+	result.innerHTML = "Please wait for loading model.";
+	faceLandmarksDetection.load(faceLandmarksDetection.SupportedPackages.mediapipeFacemesh).then(function(model) {
+		Model = model;
+		result.innerHTML = "";
+		startVideo();
+    });
+  }
+  
+  function startVideo() {
+	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+	  console.log("enumerateDevices() not supported.");
+	  return;
+	}
+
+	var videoWidth = 320;
+	var videoHeight = 240;
+	
+    var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+	navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+		  devices.forEach(function(device) {
+			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+				if (device.deviceId=='')
+					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				else
+					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+			  }
+		  });
+		
+		
+		if (location.search.toLowerCase().indexOf("?back")!=-1)
+		  var userMedia = back;
+		else
+		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+		video.style.visibility="hidden";
+		video.style.position="absolute";
+		navigator.mediaDevices
+		  .getUserMedia(userMedia)
+		  .then(stream => {
+			video.srcObject = stream
+			video.onloadedmetadata = () => {       
+			  video.play();
+			  canvas.setAttribute("width", video.width);
+			  canvas.setAttribute("height", video.height);          
+			  setTimeout(function(){DetectVideo(); }, 100);
+			}
+		 })  
+	})   
+  }
+  
+  async function DetectVideo() {
+    context.translate((canvas.width + video.width) / 2, 0);
+    context.scale(-1, 1);
+    context.drawImage(video, 0, 0, video.width, video.height);
+    context.setTransform(1, 0, 0, 1, 0, 0);
+    
+	await Model.estimateFaces({input: canvas}).then(predictions => {
+      result.innerHTML = "";
+		
+		if (predictions.length > 0) {
+			/*
+			`predictions` is an array of objects describing each detected face, for example:
+
+			[
+			  {
+				faceInViewConfidence: 1, // The probability of a face being present.
+				boundingBox: { // The bounding box surrounding the face.
+				  topLeft: [232.28, 145.26],
+				  bottomRight: [449.75, 308.36],
+				},
+				mesh: [ // The 3D coordinates of each facial landmark.
+				  [92.07, 119.49, -17.54],
+				  [91.97, 102.52, -30.54],
+				  ...
+				],
+				scaledMesh: [ // The 3D coordinates of each facial landmark, normalized.
+				  [322.32, 297.58, -17.54],
+				  [322.18, 263.95, -30.54]
+				],
+				annotations: { // Semantic groupings of the `scaledMesh` coordinates.
+				  silhouette: [
+					[326.19, 124.72, -3.82],
+					[351.06, 126.30, -3.00],
+					...
+				  ],
+				  ...
+				}
+			  }
+			]
+			*/
+			
+			var part = ["leftCheek","leftEyeLower0","leftEyeLower1","leftEyeLower2","leftEyeLower3","leftEyeUpper0","leftEyeUpper1","leftEyeUpper2","leftEyebrowLower","leftEyebrowUpper","lipsLowerInner","lipsLowerOuter","lipsUpperInner","lipsUpperOuter","midwayBetweenEyes","noseBottom","noseLeftCorner","noseRightCorner","noseTip","rightCheek","rightEyeLower0","rightEyeLower1","rightEyeLower2","rightEyeLower3","rightEyeUpper0","rightEyeUpper1","rightEyeUpper2","rightEyebrowLower","rightEyebrowUpper","silhouette"];
+			for (let k = 0; k < predictions.length; k++) {
+			  const annotations = predictions[k].annotations;
+			  const boundingBox = predictions[k].boundingBox;
+			  for (let j = 0; j < part.length; j++) {
+				  for (let i = 0; i < annotations[part[j]].length; i++) {
+					result.innerHTML += k+","+part[j]+","+i+","+annotations[part[j]][i][0]+","+annotations[part[j]][i][1]+","+annotations[part[j]][i][2]+","+boundingBox.topLeft[0]+","+boundingBox.topLeft[1]+","+boundingBox.bottomRight[0]+","+boundingBox.bottomRight[1]+"<br>";
+				  }
+			  }
+			  const res = predictions[k].scaledMesh;
+			  drawKeypoints(context, res, predictions[k].annotations);
+			}
+		}
+
+      setTimeout(function(){DetectVideo(); }, 100);
+    });
+  }
+
+function drawPoint(ctx, y, x, r) {
+  ctx.beginPath();
+  ctx.fillStyle = "red";
+  ctx.arc(x, y, r, 0, 2 * Math.PI);
+  ctx.fill();
+}
+
+function drawKeypoints(ctx, keypoints) {
+  const keypointsArray = keypoints;
+  for (let i = 0; i < keypointsArray.length; i++) {
+    const y = keypointsArray[i][0];
+    const x = keypointsArray[i][1];
+    drawPoint(ctx, x, y, 1);
+  }
+}
+
+</script>
+
+</body>
+</html>
