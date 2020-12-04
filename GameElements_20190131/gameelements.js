@@ -3589,7 +3589,7 @@ function HextoRgb(color) {
 
 			$.ajax({
 				"type": "GET",
-				"dataType": "jsonp",
+				"dataType": "json",
 				"url": myScriptUrl,
 				"data": {
 							"mySpreadsheet":mySpreadsheet,
