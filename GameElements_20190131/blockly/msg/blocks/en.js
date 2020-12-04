@@ -444,3 +444,4 @@ Blockly.Msg.VIDEO_BASE64_SPREADSHEETNAME = "Sheet Name";
 Blockly.Msg.VIDEO_BASE64_COLUMN = "Column";
 Blockly.Msg.VIDEO_BASE64_ROW = "Row";
 Blockly.Msg.VIDEO_BASE64_SCRIPTURL = "Script URL";
+Blockly.Msg.VIDEO_BASE64_FORMAT = "Format";
