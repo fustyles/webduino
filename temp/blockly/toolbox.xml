@@ -40,21 +40,4 @@
       </block>  
     </value>
   </block>
-  <block type="linenotify_image">
-    <value name="notify_script">
-      <block type="text">
-        <field name="TEXT">https://script.google.com/macros/s/AKfycbyp1xvWg-UCSrLsL8zt-ba_0n96uNTpAFyRry9ifCnRbtK-vgg/exec</field>
-      </block>
-    </value> 
-    <value name="notify_token">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value> 
-    <value name="notify_videoid">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value> 
-  </block>
 </category>
