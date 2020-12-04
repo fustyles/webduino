@@ -3590,6 +3590,10 @@ function HextoRgb(color) {
 			$.ajax({
 				"type": "POST",
 				"dataType": "json",
+				"headers": { 
+				  'Content-Type': 'application/x-www-form-urlencoded',
+				  'Access-Control-Allow-Origin': '*'
+				},				
 				"url": myScriptUrl,
 				"data": {
 							"mySpreadsheet":mySpreadsheet,
