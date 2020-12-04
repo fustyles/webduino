@@ -444,3 +444,4 @@ Blockly.Msg.VIDEO_BASE64_SPREADSHEETNAME = "工作表名称";
 Blockly.Msg.VIDEO_BASE64_COLUMN = "行";
 Blockly.Msg.VIDEO_BASE64_ROW = "列";
 Blockly.Msg.VIDEO_BASE64_SCRIPTURL = "Script网址";
+Blockly.Msg.VIDEO_BASE64_FORMAT = "格式";
