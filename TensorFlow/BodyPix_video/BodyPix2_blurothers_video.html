@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/5 07:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/5 08:00
 https://www.facebook.com/francefu
 
 Try it!
@@ -17,9 +17,10 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_blurothers
 </head>
 <body>
 <button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
-<video id="video" width="320" height="240" preload autoplay loop muted></video><br>
+<select id="kind"><option value="0">Unblur first person</option><option value="1">Unblur max Face area</option><option value="2">Blur All persons</option></select>
+<video id="video" width="320" height="240"  style="display:none" preload autoplay loop muted></video><br>
 <div id="result" style="color:red"></div><br>
-<canvas id="canvas"></canvas>
+<canvas id="canvas" style="display:none"></canvas>
 <canvas id="canvas3"></canvas> 
 
 <script>
@@ -28,6 +29,7 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_blurothers
   var context = canvas.getContext('2d');
   var canvas3 = document.getElementById('canvas3');
   var context3 = canvas3.getContext('2d');
+  var kind = document.getElementById('kind');
   let Model;
 
   window.onload = function() { LoadModel();} 
@@ -67,8 +69,6 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_blurothers
 		else
 		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
 
-		video.style.visibility="hidden";
-		video.style.position="absolute";
 		navigator.mediaDevices
 		  .getUserMedia(userMedia)
 		  .then(stream => {
@@ -101,11 +101,34 @@ async function DetectVideo() {
 	  minKeypointScore: 0.3,
 	  refineSteps: 10
 	}).then(partSegmentation => {
-	
-	  if (partSegmentation.length>0) {
-		for (var i=0;i<partSegmentation[0].data.length;i++) {
-		    partSegmentation[0].data[i] = -1;
-		}
+
+	  if (kind.value == "0") {
+		  if (partSegmentation.length>0) {
+			for (var i=0;i<partSegmentation[0].data.length;i++) {
+				partSegmentation[0].data[i] = -1;
+			}
+		  }
+	  }
+	  else if (kind.value == "1") {
+		  if (partSegmentation.length>0) {
+			var maxIndex = 0;
+			var maxCount = 0;
+			var Count = 0;
+			for (var i=0;i<partSegmentation.length;i++) {
+				Count = 0;
+				for (var j=0;j<partSegmentation[i].data.length;j++) {
+					if (partSegmentation[i].data[j]!=-1)
+					  Count++;
+				}
+				if (Count>=maxCount) {
+					maxCount=Count;
+					maxIndex=i;
+				}
+			}
+			for (var k=0;k<partSegmentation[maxIndex].data.length;k++) {
+				partSegmentation[maxIndex].data[k] = -1;
+			}
+		  }
 	  }
 	
 	  const faceBodyPartIdsToBlur = [0, 1];
