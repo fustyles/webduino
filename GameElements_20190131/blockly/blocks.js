@@ -4398,7 +4398,7 @@ Blockly.Blocks['video_base64_spreadsheet'] = {
       .appendField(Blockly.Msg.VIDEO_BASE64_ROW);
   this.appendDummyInput()  
       .appendField(Blockly.Msg.VIDEO_BASE64_FORMAT)	  
-      .appendField(new Blockly.FieldDropdown([["STRING","string"], ["IMAGE","image"]]), "format_");	  
+      .appendField(new Blockly.FieldDropdown([["image","image"], ["base64","string"]]), "format_");	  
   this.appendValueInput("spreadsheet_script_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
