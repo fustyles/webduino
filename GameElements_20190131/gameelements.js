@@ -3588,7 +3588,7 @@ function HextoRgb(color) {
 			var myFile = canvas.toDataURL();
 
 			$.ajax({
-				"type": "GET",
+				"type": "POST",
 				"dataType": "json",
 				"url": myScriptUrl,
 				"data": {
