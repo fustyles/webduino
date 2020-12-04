@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/4 22:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/5 07:00
 https://www.facebook.com/francefu
 
 Try it!
@@ -101,29 +101,20 @@ async function DetectVideo() {
 	  minKeypointScore: 0.3,
 	  refineSteps: 10
 	}).then(partSegmentation => {
+	
+	  if (partSegmentation.length>0) {
+		for (var i=0;i<partSegmentation[0].data.length;i++) {
+		    partSegmentation[0].data[i] = -1;
+		}
+	  }
+	
 	  const faceBodyPartIdsToBlur = [0, 1];
 	  const backgroundBlurAmount = 5;
 	  const edgeBlurAmount = 3;
 	  const flipHorizontal = false;
+	  
 	  bodyPix.blurBodyPart(canvas3, canvas, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
 	  //drawPoses(partSegmentation, flipHorizontal, context3);
-	  
-	  if (partSegmentation.length>0) {
-		var imgData=context3.getImageData(0,0,canvas3.width,canvas3.height);
-		var imgData_source=context.getImageData(0,0,canvas.width,canvas.height);
-        var j=0;
-		for (var i=0;i<imgData.data.length;i+=4) {
-		    if (partSegmentation[0].data[j]==1||partSegmentation[0].data[j]==0) {
-				imgData.data[i]=imgData_source.data[i];
-				imgData.data[i+1]=imgData_source.data[i+1];
-				imgData.data[i+2]=imgData_source.data[i+2];
-				imgData.data[i+3]=imgData_source.data[i+3];
-			}
-			j++;
-		}
-		context3.putImageData(imgData,0,0);
-
-	  }
 
 	  setTimeout(function(){DetectVideo(); }, 100);
   });
