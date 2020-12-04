@@ -3597,7 +3597,7 @@ function HextoRgb(color) {
 							"myCellCol":myCellCol,
 							"myCellRow":myCellRow,
 							"myFile":myFile,
-							"myFileFormat":myFileFormat,					
+							"myFileFormat":myFileFormat					
 						},
 				success: function(jsonp)
 				{
