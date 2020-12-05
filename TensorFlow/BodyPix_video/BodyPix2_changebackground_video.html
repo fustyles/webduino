@@ -1,0 +1,176 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/5 23:00
+https://www.facebook.com/francefu
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_changebackground_video.html
+-->
+
+<!DOCTYPE html>
+<head>
+  <title>Person and body part partSegmentation (BodyPix)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"> </script> 
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"> </script>  
+</head>
+<body>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
+<video id="video" width="320" height="240"  style="display:none" preload autoplay loop muted></video><br>
+<canvas id="canvas"></canvas>
+<canvas id="canvas_show"></canvas>
+<canvas id="canvas_capture" style="display:none"></canvas>
+<br>
+<button onclick="capture();">Capture background image</button>
+<br>
+Background Blur Amount<select id="backgroundbluramount"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select>
+<br>
+Max Detections<select id="maxdetections"><option value="5">5</option><option value="10" selected>10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option></select>
+<br>
+Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</option></select>
+<br>
+<div id="result" style="color:red"></div>
+
+<script>
+	var video = document.getElementById('video');
+	var canvas = document.getElementById('canvas'); 
+	var context = canvas.getContext('2d');
+	var canvas_show = document.getElementById('canvas_show'); 
+	var context_show = canvas_show.getContext('2d');
+	var canvas_capture = document.getElementById('canvas_capture'); 
+	var context_capture = canvas_capture.getContext('2d');
+	var kind = document.getElementById('kind');
+	var maxdetections = document.getElementById('maxdetections'); 
+	var backgroundbluramount = document.getElementById('backgroundbluramount');
+	var mirror = document.getElementById('mirror');
+	let Model;
+	
+	function capture() {
+	  context_capture.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, canvas_capture.width, canvas_capture.height);
+	}	
+
+	window.onload = function() { LoadModel();} 
+	
+	function LoadModel() {
+		result.innerHTML = "Please wait for loading model.";
+		bodyPix.load().then(function(model) {
+			Model = model;
+			result.innerHTML = ""; 
+			startVideo();
+		}); 
+	}
+
+	function startVideo() {
+		if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+		console.log("enumerateDevices() not supported.");
+		return;
+	}
+
+	var videoWidth = 320;
+	var videoHeight = 240;
+
+	var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+	navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+			devices.forEach(function(device) {
+				if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+					if (device.deviceId=='')
+						back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+					else
+						back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				}
+			});
+
+
+			if (location.search.toLowerCase().indexOf("?back")!=-1) {
+				var userMedia = back;
+				mirror.value=0;
+			}
+			else
+				var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+			navigator.mediaDevices
+			.getUserMedia(userMedia)
+			.then(stream => {
+				video.srcObject = stream
+				video.onloadedmetadata = () => {       
+					video.play();
+					canvas.setAttribute("width", video.width);
+					canvas.setAttribute("height", video.height);
+					canvas_show.setAttribute("width", video.width);
+					canvas_show.setAttribute("height", video.height);
+					canvas_capture.setAttribute("width", video.width);
+					canvas_capture.setAttribute("height", video.height);
+					video.alt = "OFF";  
+					setTimeout(function(){DetectVideo(); }, 100);
+				}
+			})  
+		})  
+	}  
+
+	async function DetectVideo() {
+		if (mirror.value==1) {
+			context.translate((canvas.width + video.width) / 2, 0);
+			context.scale(-1, 1);
+			context.drawImage(video, 0, 0, video.width, video.height);
+			context.setTransform(1, 0, 0, 1, 0, 0);
+		}
+		else
+			context.drawImage(video, 0, 0, video.width, video.height);
+					
+		await Model.segmentMultiPersonParts(canvas, {
+			flipHorizontal: false,
+			internalResolution: 'full',
+			segmentationThreshold: 0.7,
+			maxDetections: Number(maxdetections.value),
+			scoreThreshold: 0.2,
+			nmsRadius: 30,
+			minKeypointScore: 0.3,
+			refineSteps: 10
+		}).then(partSegmentation => {
+		
+			if (partSegmentation.length>0) {		
+				var imgData_capture = context_capture.getImageData(0,0,canvas_capture.width,canvas_capture.height);
+				var imgData = context.getImageData(0,0,canvas.width,canvas.height);
+				
+				var maxIndex = 0;
+				var maxCount = 0;
+				var Count = 0;
+				for (var i=0;i<partSegmentation.length;i++) {
+					Count = 0;
+					for (var j=0;j<partSegmentation[i].data.length;j++) {
+						if (partSegmentation[i].data[j]==0||partSegmentation[i].data[j]==1)
+							Count++;
+					}
+					if (Count>=maxCount) {
+						maxCount=Count;
+						maxIndex=i;
+					}
+				}				
+				
+				for (var i=0;i<partSegmentation.length;i++) {
+					if (i==maxIndex) {
+						for (var j=0;j<partSegmentation[i].data.length;j++) {
+							if (partSegmentation[i].data[j]!=-1) {
+								imgData_capture.data[j*4]=imgData.data[j*4];
+								imgData_capture.data[j*4+1]=imgData.data[j*4+1];
+								imgData_capture.data[j*4+2]=imgData.data[j*4+2];
+								imgData_capture.data[j*4+3]=imgData.data[j*4+3];
+							}
+						}
+					}
+				}
+
+				context_show.putImageData(imgData_capture,0,0);				
+			} 
+			else {
+				context_show.drawImage(canvas, 0, 0, canvas.width, canvas.height);
+			}
+
+			setTimeout(function(){DetectVideo(); }, 100);
+		});
+	}
+</script>
+
+</body>
+</html>
