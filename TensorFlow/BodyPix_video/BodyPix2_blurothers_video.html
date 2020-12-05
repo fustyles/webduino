@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/5 09:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/5 08:30
 https://www.facebook.com/francefu
 Try it!
 https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_blurothers_video.html
@@ -26,188 +26,186 @@ Max Detections<select id="maxdetections"><option value="5">5</option><option val
 <canvas id="canvas"></canvas>
 
 <script>
-  var video = document.getElementById('video');
-  var canvas = document.getElementById('canvas');
-  var context = canvas.getContext('2d');
-  var kind = document.getElementById('kind');
-  var maxdetections = document.getElementById('maxdetections'); 
-  var backgroundbluramount = document.getElementById('backgroundbluramount');
-  let Model;
+	var video = document.getElementById('video');
+	var canvas = document.getElementById('canvas');
+	var context = canvas.getContext('2d');
+	var kind = document.getElementById('kind');
+	var maxdetections = document.getElementById('maxdetections'); 
+	var backgroundbluramount = document.getElementById('backgroundbluramount');
+	let Model;
 
-  window.onload = function() { LoadModel();} 
-  function LoadModel() {
-	result.innerHTML = "Please wait for loading model.";
-    bodyPix.load().then(function(model) {
-      Model = model;
-      result.innerHTML = ""; 
-      startVideo();
-    }); 
-  }
-  
-  function startVideo() {
-	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-	  console.log("enumerateDevices() not supported.");
-	  return;
+	window.onload = function() { LoadModel();} 
+	
+	function LoadModel() {
+		result.innerHTML = "Please wait for loading model.";
+		bodyPix.load().then(function(model) {
+			Model = model;
+			result.innerHTML = ""; 
+			startVideo();
+		}); 
+	}
+
+	function startVideo() {
+		if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+		console.log("enumerateDevices() not supported.");
+		return;
 	}
 
 	var videoWidth = 320;
 	var videoHeight = 240;
-	
-    var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+	var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
 	navigator.mediaDevices.enumerateDevices()
 		.then(function(devices) {
-		  devices.forEach(function(device) {
-			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
-				if (device.deviceId=='')
-					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
-				else
-					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
-			  }
-		  });
-		
-		
-		if (location.search.toLowerCase().indexOf("?back")!=-1)
-		  var userMedia = back;
-		else
-		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
-
-		navigator.mediaDevices
-		  .getUserMedia(userMedia)
-		  .then(stream => {
-			video.srcObject = stream
-			video.onloadedmetadata = () => {       
-			  video.play();
-			  canvas.setAttribute("width", video.width);
-			  canvas.setAttribute("height", video.height);   
-			  setTimeout(function(){DetectVideo(); }, 100);
-			}
-		 })  
-	})  
-  }  
-                        
-async function DetectVideo() {
-  await Model.segmentMultiPersonParts(video, {
-	  flipHorizontal: true,
-	  internalResolution: 'medium',
-	  segmentationThreshold: 0.7,
-	  maxDetections: Number(maxdetections.value),
-	  scoreThreshold: 0.2,
-	  nmsRadius: 30,
-	  minKeypointScore: 0.3,
-	  refineSteps: 10
-	}).then(partSegmentation => {
-
-	  if (kind.value == "0") {
-		  if (partSegmentation.length>0) {
-			for (var i=0;i<partSegmentation[0].data.length;i++) {
-				partSegmentation[0].data[i] = -1;
-			}
-		  }
-	  }
-	  else if (kind.value == "1") {
-		  if (partSegmentation.length>0) {
-			var maxIndex = 0;
-			var maxCount = 0;
-			var Count = 0;
-			for (var i=0;i<partSegmentation.length;i++) {
-				Count = 0;
-				for (var j=0;j<partSegmentation[i].data.length;j++) {
-					if (partSegmentation[i].data[j]!=-1)
-					  Count++;
+			devices.forEach(function(device) {
+				if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+					if (device.deviceId=='')
+						back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+					else
+						back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
 				}
-				if (Count>=maxCount) {
-					maxCount=Count;
-					maxIndex=i;
+			});
+
+
+			if (location.search.toLowerCase().indexOf("?back")!=-1)
+				var userMedia = back;
+			else
+				var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+			navigator.mediaDevices
+			.getUserMedia(userMedia)
+			.then(stream => {
+				video.srcObject = stream
+				video.onloadedmetadata = () => {       
+					video.play();
+					canvas.setAttribute("width", video.width);
+					canvas.setAttribute("height", video.height);   
+					setTimeout(function(){DetectVideo(); }, 100);
+				}
+			})  
+		})  
+	}  
+
+	async function DetectVideo() {
+		await Model.segmentMultiPersonParts(video, {
+			flipHorizontal: true,
+			internalResolution: 'medium',
+			segmentationThreshold: 0.7,
+			maxDetections: Number(maxdetections.value),
+			scoreThreshold: 0.2,
+			nmsRadius: 30,
+			minKeypointScore: 0.3,
+			refineSteps: 10
+		}).then(partSegmentation => {
+			if (kind.value == "0") {
+				if (partSegmentation.length>0) {
+					for (var i=0;i<partSegmentation[0].data.length;i++) {
+						partSegmentation[0].data[i] = -1;
+					}
 				}
 			}
-			for (var k=0;k<partSegmentation[maxIndex].data.length;k++) {
-				partSegmentation[maxIndex].data[k] = -1;
+			else if (kind.value == "1") {
+				if (partSegmentation.length>0) {
+					var maxIndex = 0;
+					var maxCount = 0;
+					var Count = 0;
+					for (var i=0;i<partSegmentation.length;i++) {
+						Count = 0;
+						for (var j=0;j<partSegmentation[i].data.length;j++) {
+							if (partSegmentation[i].data[j]!=-1)
+								Count++;
+						}
+						if (Count>=maxCount) {
+							maxCount=Count;
+							maxIndex=i;
+						}
+					}
+					for (var k=0;k<partSegmentation[maxIndex].data.length;k++)
+						partSegmentation[maxIndex].data[k] = -1;
+				}
 			}
-		  }
-	  }
-	
-	  const faceBodyPartIdsToBlur = [0, 1];
-	  const backgroundBlurAmount = Number(backgroundbluramount.value);
-	  const edgeBlurAmount = 3;
-	  const flipHorizontal = true;
-	  
-	  bodyPix.blurBodyPart(canvas, video, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
-	  //drawPoses(partSegmentation, flipHorizontal, context3);
 
-	  setTimeout(function(){DetectVideo(); }, 100);
-  });
-}
+			const faceBodyPartIdsToBlur = [0, 1];
+			const backgroundBlurAmount = Number(backgroundbluramount.value);
+			const edgeBlurAmount = 3;
+			const flipHorizontal = true;
 
-const COLOR = 'aqua';
-const BOUNDING_BOX_COLOR = 'red';
-const LINE_WIDTH = 2;
+			bodyPix.blurBodyPart(canvas, video, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
+			//drawPoses(partSegmentation, flipHorizontal, context3);
 
-function drawPoses(personOrPersonPartSegmentation, flipHorizontally, ctx) {
-  if (Array.isArray(personOrPersonPartSegmentation)) {
-    personOrPersonPartSegmentation.forEach(personSegmentation => {
-      let pose = personSegmentation.pose;
-      if (flipHorizontally) {
-        pose = bodyPix.flipPoseHorizontal(pose, personSegmentation.width);
-      }
-      drawKeypoints(pose.keypoints, 0.1, ctx);
-      drawSkeleton(pose.keypoints, 0.1, ctx);
-    });
-  } else {
-    personOrPersonPartSegmentation.allPoses.forEach(pose => {
-      if (flipHorizontally) {
-        pose = bodyPix.flipPoseHorizontal(
-            pose, personOrPersonPartSegmentation.width);
-      }
-      drawKeypoints(pose.keypoints, 0.1, ctx);
-      drawSkeleton(pose.keypoints, 0.1, ctx);
-    })
-  }
-}
+			setTimeout(function(){DetectVideo(); }, 100);
+		});
+	}
 
-function drawPoint(ctx, y, x, r, color) {
-  ctx.beginPath();
-  ctx.arc(x, y, r, 0, 2 * Math.PI);
-  ctx.fillStyle = color;
-  ctx.fill();
-}
+	const COLOR = 'aqua';
+	const BOUNDING_BOX_COLOR = 'red';
+	const LINE_WIDTH = 2;
 
-function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
-  ctx.beginPath();
-  ctx.moveTo(ax * scale, ay * scale);
-  ctx.lineTo(bx * scale, by * scale);
-  ctx.lineWidth = LINE_WIDTH;
-  ctx.strokeStyle = color;
-  ctx.stroke();
-}
+	function drawPoses(personOrPersonPartSegmentation, flipHorizontally, ctx) {
+		if (Array.isArray(personOrPersonPartSegmentation)) {
+			personOrPersonPartSegmentation.forEach(personSegmentation => {
+				let pose = personSegmentation.pose;
+				if (flipHorizontally) {
+					pose = bodyPix.flipPoseHorizontal(pose, personSegmentation.width);
+				}
+				drawKeypoints(pose.keypoints, 0.1, ctx);
+				drawSkeleton(pose.keypoints, 0.1, ctx);
+			});
+		} else {
+			personOrPersonPartSegmentation.allPoses.forEach(pose => {
+				if (flipHorizontally) {
+					pose = bodyPix.flipPoseHorizontal(
+					pose, personOrPersonPartSegmentation.width);
+				}
+				drawKeypoints(pose.keypoints, 0.1, ctx);
+				drawSkeleton(pose.keypoints, 0.1, ctx);
+			})
+		}
+	}
 
-function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
-  const adjacentKeyPoints =
-      posenet.getAdjacentKeyPoints(keypoints, minConfidence);
+	function drawPoint(ctx, y, x, r, color) {
+		ctx.beginPath();
+		ctx.arc(x, y, r, 0, 2 * Math.PI);
+		ctx.fillStyle = color;
+		ctx.fill();
+	}
 
-  function toTuple({y, x}) {
-    return [y, x];
-  }
+	function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
+		ctx.beginPath();
+		ctx.moveTo(ax * scale, ay * scale);
+		ctx.lineTo(bx * scale, by * scale);
+		ctx.lineWidth = LINE_WIDTH;
+		ctx.strokeStyle = color;
+		ctx.stroke();
+	}
 
-  adjacentKeyPoints.forEach((keypoints) => {
-    drawSegment(
-        toTuple(keypoints[0].position), toTuple(keypoints[1].position), COLOR,
-        scale, ctx);
-  });
+	function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
+		const adjacentKeyPoints =
+		posenet.getAdjacentKeyPoints(keypoints, minConfidence);
 
-}
+		function toTuple({y, x}) {
+			return [y, x];
+		}
 
-function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
-  for (let i = 0; i < keypoints.length; i++) {
-    const keypoint = keypoints[i];
+		adjacentKeyPoints.forEach((keypoints) => {
+			drawSegment(
+				toTuple(keypoints[0].position), toTuple(keypoints[1].position), COLOR,
+			scale, ctx);
+		});
+	}
 
-    if (keypoint.score < minConfidence) {
-      continue;
-    }
+	function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
+		for (let i = 0; i < keypoints.length; i++) {
+			const keypoint = keypoints[i];
 
-    const {y, x} = keypoint.position;
-    drawPoint(ctx, y * scale, x * scale, 3, COLOR);
-  }
-}
+			if (keypoint.score < minConfidence) {
+				continue;
+			}
+
+			const {y, x} = keypoint.position;
+			drawPoint(ctx, y * scale, x * scale, 3, COLOR);
+		}
+	}
 </script>
 
 </body>
