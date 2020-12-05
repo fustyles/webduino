@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/5 09:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/5 10:00
 https://www.facebook.com/francefu
 Try it!
 https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_blurothers_video.html
@@ -97,14 +97,12 @@ Max Detections<select id="maxdetections"><option value="5">5</option><option val
 			minKeypointScore: 0.3,
 			refineSteps: 10
 		}).then(partSegmentation => {
-			if (kind.value == "0") {
-				if (partSegmentation.length>0) {
-					for (var i=0;i<partSegmentation[0].data.length;i++) {
+		
+			if (partSegmentation.length>0) {
+				if (kind.value == "0") {
+					for (var i=0;i<partSegmentation[0].data.length;i++)
 						partSegmentation[0].data[i] = -1;
-					}
-				}
-			} else if (kind.value == "1") {
-				if (partSegmentation.length>0) {
+				} else if (kind.value == "1") {
 					var maxIndex = 0;
 					var maxCount = 0;
 					var Count = 0;
@@ -122,15 +120,21 @@ Max Detections<select id="maxdetections"><option value="5">5</option><option val
 					for (var k=0;k<partSegmentation[maxIndex].data.length;k++)
 						partSegmentation[maxIndex].data[k] = -1;
 				}
+				
+				const faceBodyPartIdsToBlur = [0, 1];
+				const backgroundBlurAmount = Number(backgroundbluramount.value);
+				const edgeBlurAmount = 3;
+				const flipHorizontal = true;
+
+				bodyPix.blurBodyPart(canvas, video, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
+				//drawPoses(partSegmentation, flipHorizontal, context3);				
+			} 
+			else {
+				context.translate((canvas.width + video.width) / 2, 0);
+				context.scale(-1, 1);
+				context.drawImage(video, 0, 0, video.width, video.height);
+				context.setTransform(1, 0, 0, 1, 0, 0);
 			}
-
-			const faceBodyPartIdsToBlur = [0, 1];
-			const backgroundBlurAmount = Number(backgroundbluramount.value);
-			const edgeBlurAmount = 3;
-			const flipHorizontal = true;
-
-			bodyPix.blurBodyPart(canvas, video, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
-			//drawPoses(partSegmentation, flipHorizontal, context3);
 
 			setTimeout(function(){DetectVideo(); }, 100);
 		});
