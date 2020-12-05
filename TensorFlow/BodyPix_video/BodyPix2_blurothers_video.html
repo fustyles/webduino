@@ -21,6 +21,8 @@ Object<select id="kind"><option value="0">Unblur first person</option><option va
 Background Blur Amount<select id="backgroundbluramount"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select>
 <br>
 Max Detections<select id="maxdetections"><option value="5">5</option><option value="10" selected>10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option></select>
+<br>
+Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</option></select>
 <video id="video" width="320" height="240"  style="display:none" preload autoplay loop muted></video><br>
 <div id="result" style="color:red"></div><br>
 <canvas id="canvas"></canvas>
@@ -32,6 +34,7 @@ Max Detections<select id="maxdetections"><option value="5">5</option><option val
 	var kind = document.getElementById('kind');
 	var maxdetections = document.getElementById('maxdetections'); 
 	var backgroundbluramount = document.getElementById('backgroundbluramount');
+	var mirror = document.getElementById('mirror');
 	let Model;
 
 	window.onload = function() { LoadModel();} 
@@ -67,8 +70,10 @@ Max Detections<select id="maxdetections"><option value="5">5</option><option val
 			});
 
 
-			if (location.search.toLowerCase().indexOf("?back")!=-1)
+			if (location.search.toLowerCase().indexOf("?back")!=-1) {
 				var userMedia = back;
+				mirror.value=0;
+			}
 			else
 				var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
 
@@ -88,7 +93,7 @@ Max Detections<select id="maxdetections"><option value="5">5</option><option val
 
 	async function DetectVideo() {
 		await Model.segmentMultiPersonParts(video, {
-			flipHorizontal: true,
+			flipHorizontal: Number(mirror.value),
 			internalResolution: 'medium',
 			segmentationThreshold: 0.7,
 			maxDetections: Number(maxdetections.value),
@@ -124,16 +129,20 @@ Max Detections<select id="maxdetections"><option value="5">5</option><option val
 				const faceBodyPartIdsToBlur = [0, 1];
 				const backgroundBlurAmount = Number(backgroundbluramount.value);
 				const edgeBlurAmount = 3;
-				const flipHorizontal = true;
+				const flipHorizontal = Number(mirror.value);
 
 				bodyPix.blurBodyPart(canvas, video, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
 				//drawPoses(partSegmentation, flipHorizontal, context3);				
 			} 
 			else {
-				context.translate((canvas.width + video.width) / 2, 0);
-				context.scale(-1, 1);
-				context.drawImage(video, 0, 0, video.width, video.height);
-				context.setTransform(1, 0, 0, 1, 0, 0);
+				if (mirror.value==1) {
+					context.translate((canvas.width + video.width) / 2, 0);
+					context.scale(-1, 1);
+					context.drawImage(video, 0, 0, video.width, video.height);
+					context.setTransform(1, 0, 0, 1, 0, 0);
+				}
+				else
+					context.drawImage(video, 0, 0, video.width, video.height);
 			}
 
 			setTimeout(function(){DetectVideo(); }, 100);
