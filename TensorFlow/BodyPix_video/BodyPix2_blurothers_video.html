@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/5 08:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/5 08:20
 https://www.facebook.com/francefu
 
 Try it!
@@ -17,7 +17,9 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_blurothers
 </head>
 <body>
 <button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
-<select id="kind"><option value="0">Unblur first person</option><option value="1">Unblur max Face area</option><option value="2">Blur All persons</option></select>
+Object<select id="kind"><option value="0">Unblur first person</option><option value="1">Unblur max Face area</option><option value="2">Blur All persons</option></select>
+<br>
+Max Detections<select id="maxdetections"><option value="5">5</option><option value="10" selected>10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option></select>
 <video id="video" width="320" height="240"  style="display:none" preload autoplay loop muted></video><br>
 <div id="result" style="color:red"></div><br>
 <canvas id="canvas" style="display:none"></canvas>
@@ -30,6 +32,7 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_blurothers
   var canvas3 = document.getElementById('canvas3');
   var context3 = canvas3.getContext('2d');
   var kind = document.getElementById('kind');
+  var maxdetections = document.getElementById('maxdetections');  
   let Model;
 
   window.onload = function() { LoadModel();} 
@@ -95,9 +98,9 @@ async function DetectVideo() {
 	  flipHorizontal: false,
 	  internalResolution: 'medium',
 	  segmentationThreshold: 0.7,
-	  maxDetections: 10,
+	  maxDetections: Number(maxdetections.value),
 	  scoreThreshold: 0.2,
-	  nmsRadius: 20,
+	  nmsRadius: 30,
 	  minKeypointScore: 0.3,
 	  refineSteps: 10
 	}).then(partSegmentation => {
