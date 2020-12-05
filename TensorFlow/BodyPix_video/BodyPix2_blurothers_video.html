@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/5 08:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/5 09:00
 https://www.facebook.com/francefu
 Try it!
 https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_blurothers_video.html
@@ -23,15 +23,12 @@ Background Blur Amount<select id="backgroundbluramount"><option value="1">1</opt
 Max Detections<select id="maxdetections"><option value="5">5</option><option value="10" selected>10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option></select>
 <video id="video" width="320" height="240"  style="display:none" preload autoplay loop muted></video><br>
 <div id="result" style="color:red"></div><br>
-<canvas id="canvas" style="display:none"></canvas>
-<canvas id="canvas3"></canvas> 
+<canvas id="canvas"></canvas>
 
 <script>
   var video = document.getElementById('video');
   var canvas = document.getElementById('canvas');
   var context = canvas.getContext('2d');
-  var canvas3 = document.getElementById('canvas3');
-  var context3 = canvas3.getContext('2d');
   var kind = document.getElementById('kind');
   var maxdetections = document.getElementById('maxdetections'); 
   var backgroundbluramount = document.getElementById('backgroundbluramount');
@@ -82,8 +79,6 @@ Max Detections<select id="maxdetections"><option value="5">5</option><option val
 			  video.play();
 			  canvas.setAttribute("width", video.width);
 			  canvas.setAttribute("height", video.height);   
-			  canvas3.setAttribute("width", video.width);
-			  canvas3.setAttribute("height", video.height);
 			  setTimeout(function(){DetectVideo(); }, 100);
 			}
 		 })  
@@ -91,13 +86,8 @@ Max Detections<select id="maxdetections"><option value="5">5</option><option val
   }  
                         
 async function DetectVideo() {
-  context.translate((canvas.width + video.width) / 2, 0);
-  context.scale(-1, 1);
-  context.drawImage(video, 0, 0, video.width, video.height);
-  context.setTransform(1, 0, 0, 1, 0, 0);  
-
-  await Model.segmentMultiPersonParts(canvas, {
-	  flipHorizontal: false,
+  await Model.segmentMultiPersonParts(video, {
+	  flipHorizontal: true,
 	  internalResolution: 'medium',
 	  segmentationThreshold: 0.7,
 	  maxDetections: Number(maxdetections.value),
@@ -139,9 +129,9 @@ async function DetectVideo() {
 	  const faceBodyPartIdsToBlur = [0, 1];
 	  const backgroundBlurAmount = Number(backgroundbluramount.value);
 	  const edgeBlurAmount = 3;
-	  const flipHorizontal = false;
+	  const flipHorizontal = true;
 	  
-	  bodyPix.blurBodyPart(canvas3, canvas, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
+	  bodyPix.blurBodyPart(canvas, video, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
 	  //drawPoses(partSegmentation, flipHorizontal, context3);
 
 	  setTimeout(function(){DetectVideo(); }, 100);
