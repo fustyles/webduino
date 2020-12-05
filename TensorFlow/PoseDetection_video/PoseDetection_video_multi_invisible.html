@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/2/19 21:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/5 19:30
 https://www.facebook.com/francefu
 
 1. Press "capture" button to capture background screen when there is nobody in front of the camera.
@@ -19,35 +19,44 @@ https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"> </script>  
 </head>
 <body>
-<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
-<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<button onclick="location.href=location.pathname;">Front Camera</button>
+&nbsp;&nbsp;
+<button onclick="location.href='?back';">Rear Camera</button>
+<br>
+<video id="video" width="320" height="240" style="display:none" preload autoplay loop muted></video>
 <canvas id="canvas" style="display:none"></canvas>
 <canvas id="canvas_show"></canvas>
 <canvas id="canvas_capture" style="display:none"></canvas>
 <br>
-<button onclick="capture();">capture</button>
+<button onclick="capture();">Capture background image</button>
 <br>
 Persons
 <select id="persons">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="999" selected>max</option>		
+<option value="1">1</option>	
 </select>
 ScoreLimit
 <select id="scorelimit">
-<option value="0" selected>0</option>  
+<option value="0">0</option>  
 <option value="0.1">0.1</option>
 <option value="0.2">0.2</option>
 <option value="0.3">0.3</option>
 <option value="0.4">0.4</option>
 <option value="0.5">0.5</option>
-<option value="0.6">0.6</option>
+<option value="0.6" selected>0.6</option>
 <option value="0.7">0.7</option>
 <option value="0.8">0.8</option>
 <option value="0.9">0.9</option>
+</select>
+<br>
+Point
+<select id="point">
+<option value="0">N</option>
+<option value="1">Y</option>
+</select>
+Skeleton
+<select id="skeleton">
+<option value="0">N</option>
+<option value="1">Y</option>
 </select>
 <br>
 <div id="result" style="color:red"></div>
@@ -60,6 +69,8 @@ ScoreLimit
   var context_show = canvas_show.getContext('2d');
   var canvas_capture = document.getElementById('canvas_capture'); 
   var context_capture = canvas_capture.getContext('2d');
+  var point = document.getElementById('point');  
+  var skeleton = document.getElementById('skeleton');
   var result = document.getElementById('result');
   var Model; 
   
@@ -85,16 +96,15 @@ ScoreLimit
     var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
 	navigator.mediaDevices.enumerateDevices()
 		.then(function(devices) {
-		  devices.forEach(function(device) {
-			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
-				if (device.deviceId=='')
-					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
-				else
-					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
-			  }
-		  });
-		
-		
+		devices.forEach(function(device) {
+		  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+			if (device.deviceId=='')
+				back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+			else
+				back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+		  }
+		});
+
 		if (location.search.toLowerCase().indexOf("?back")!=-1)
 		  var userMedia = back;
 		else
@@ -110,12 +120,11 @@ ScoreLimit
 			  video.play();
 			  canvas.setAttribute("width", video.width);
 			  canvas.setAttribute("height", video.height);
-			  
 			  canvas_show.setAttribute("width", video.width);
 			  canvas_show.setAttribute("height", video.height);
-			
-			  canvas_capture.setAttribute("width", video.width/2);  //若只想覆蓋畫面左半邊
-			  canvas_capture.setAttribute("height", video.height); 		  
+			  canvas_capture.setAttribute("width", video.width);
+			  canvas_capture.setAttribute("height", video.height);
+			  video.alt = "OFF";
 			  setTimeout(function(){DetectVideo(); }, 100);
 			}
 		 })  
@@ -123,8 +132,7 @@ ScoreLimit
   }
 
 function capture() {
-  context_capture.drawImage(canvas, 0, 0, canvas.width/2, canvas.height, 0, 0, canvas_capture.width, canvas_capture.height);    //若只想覆蓋畫面左半邊
-  //context_capture.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, canvas_capture.width, canvas_capture.height);
+  context_capture.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, canvas_capture.width, canvas_capture.height);
 }
                         
 async function DetectVideo() {
@@ -143,119 +151,123 @@ async function DetectVideo() {
         if (n<Number(document.getElementById("persons").value)) {
           var k = pose[n].keypoints;
           if (k.length>0) {
-            for (var i=0;i<k.length;i++) {
-              if (k[i].score>=scoreLimit) {
-                const x = k[i].position.x;
-                const y = k[i].position.y;
-                context.fillStyle="#00FFFF";
-                context.beginPath();
-                context.arc(x, y, 3, 0,2*Math.PI);
-                context.closePath();
-                context.fill();
-              }      
-              result.innerHTML += n + "," + k[i].part + "," + Math.round(k[i].score*100)/100+ "," + Math.round(k[i].position.x) + "," + Math.round(k[i].position.y) + "<br>";
-            }
-
-            context.lineWidth = 2;
-            var centerShoulderX = (k[5].position.x+k[6].position.x)/2;
-            var centerShoulderY = (k[5].position.y+k[6].position.y)/2; 
-            if (k[5].score>=scoreLimit&&k[6].score>=scoreLimit) {
-              context.beginPath();
-              context.arc(centerShoulderX, centerShoulderY, 3, 0,2*Math.PI);
-              context.closePath();
-              context.fill();
-            }              
-            if (k[0].score>=scoreLimit) {
-              context.strokeStyle = "#0000FF";
-              context.beginPath();
-              context.moveTo(k[0].position.x,k[0].position.y);
-              context.lineTo(centerShoulderX, centerShoulderY);
-              context.stroke(); 
-            }
-            if (k[5].score>=scoreLimit) {
-              context.strokeStyle = "#FF3333";
-              context.beginPath();
-              context.moveTo(centerShoulderX, centerShoulderY);
-              context.lineTo(k[5].position.x,k[5].position.y);
-              context.stroke();
-            }
-            if (k[6].score>=scoreLimit) {
-              context.strokeStyle = "#FF8800";
-              context.beginPath();
-              context.moveTo(centerShoulderX, centerShoulderY);
-              context.lineTo(k[6].position.x,k[6].position.y);
-              context.stroke();              
-            }
-            if (k[5].score>=scoreLimit&&k[7].score>=scoreLimit) {
-              context.strokeStyle = "#FFCC22";
-              context.beginPath();
-              context.moveTo(k[5].position.x,k[5].position.y);
-              context.lineTo(k[7].position.x,k[7].position.y);
-              context.stroke();
-            }
-            if (k[6].score>=scoreLimit&&k[8].score>=scoreLimit) {
-              context.strokeStyle = "#66DD00";
-              context.beginPath();
-              context.moveTo(k[6].position.x,k[6].position.y);
-              context.lineTo(k[8].position.x,k[8].position.y);
-              context.stroke();
-            }
-            if (k[7].score>=scoreLimit&&k[9].score>=scoreLimit) {
-              context.strokeStyle = "#FFFF77";
-              context.beginPath();
-              context.moveTo(k[7].position.x,k[7].position.y);
-              context.lineTo(k[9].position.x,k[9].position.y);
-              context.stroke(); 
-            }
-            if (k[8].score>=scoreLimit&&k[10].score>=scoreLimit) {
-              context.strokeStyle = "#BBFF66";
-              context.beginPath();
-              context.moveTo(k[8].position.x,k[8].position.y);
-              context.lineTo(k[10].position.x,k[10].position.y);
-              context.stroke();      
-            }
-            if (k[11].score>=scoreLimit) {
-              context.strokeStyle = "#227700";
-              context.beginPath();
-              context.moveTo(centerShoulderX, centerShoulderY);
-              context.lineTo(k[11].position.x,k[11].position.y);
-              context.stroke(); 
-            }
-            if (k[12].score>=scoreLimit) {
-              context.strokeStyle = "#9999FF";
-              context.beginPath();
-              context.moveTo(centerShoulderX, centerShoulderY);
-              context.lineTo(k[12].position.x,k[12].position.y);
-              context.stroke();    
-            }
-            if (k[11].score>=scoreLimit&&k[13].score>=scoreLimit) {
-              context.strokeStyle = "#77FF00";
-              context.beginPath();
-              context.moveTo(k[11].position.x,k[11].position.y);
-              context.lineTo(k[13].position.x,k[13].position.y);
-              context.stroke(); 
-            }
-            if (k[12].score>=scoreLimit&&k[14].score>=scoreLimit) {
-              context.strokeStyle = "#0066FF";
-              context.beginPath();
-              context.moveTo(k[12].position.x,k[12].position.y);
-              context.lineTo(k[14].position.x,k[14].position.y);
-              context.stroke();  
-            }
-            if (k[13].score>=scoreLimit&&k[15].score>=scoreLimit) {
-              context.strokeStyle = "#99FF99";
-              context.beginPath();
-              context.moveTo(k[13].position.x,k[13].position.y);
-              context.lineTo(k[15].position.x,k[15].position.y);
-              context.stroke(); 
-            }
-            if (k[14].score>=scoreLimit&&k[16].score>=scoreLimit) {
-              context.strokeStyle = "#0000CC";
-              context.beginPath();
-              context.moveTo(k[14].position.x,k[14].position.y);
-              context.lineTo(k[16].position.x,k[16].position.y);
-              context.stroke(); 
-            }
+			for (var i=0;i<k.length;i++) {
+				if (point.value==1) {
+				  if (k[i].score>=scoreLimit) {
+					const x = k[i].position.x;
+					const y = k[i].position.y;
+					context.fillStyle="#00FFFF";
+					context.beginPath();
+					context.arc(x, y, 3, 0,2*Math.PI);
+					context.closePath();
+					context.fill();
+				  } 
+				}				  
+			  result.innerHTML += n + "," + k[i].part + "," + Math.round(k[i].score*100)/100+ "," + Math.round(k[i].position.x) + "," + Math.round(k[i].position.y) + "<br>";
+			}
+			
+			if (skeleton.value==1) {
+				context.lineWidth = 2;
+				var centerShoulderX = (k[5].position.x+k[6].position.x)/2;
+				var centerShoulderY = (k[5].position.y+k[6].position.y)/2; 
+				if (k[5].score>=scoreLimit&&k[6].score>=scoreLimit) {
+				  context.beginPath();
+				  context.arc(centerShoulderX, centerShoulderY, 3, 0,2*Math.PI);
+				  context.closePath();
+				  context.fill();
+				}              
+				if (k[0].score>=scoreLimit) {
+				  context.strokeStyle = "#0000FF";
+				  context.beginPath();
+				  context.moveTo(k[0].position.x,k[0].position.y);
+				  context.lineTo(centerShoulderX, centerShoulderY);
+				  context.stroke(); 
+				}
+				if (k[5].score>=scoreLimit) {
+				  context.strokeStyle = "#FF3333";
+				  context.beginPath();
+				  context.moveTo(centerShoulderX, centerShoulderY);
+				  context.lineTo(k[5].position.x,k[5].position.y);
+				  context.stroke();
+				}
+				if (k[6].score>=scoreLimit) {
+				  context.strokeStyle = "#FF8800";
+				  context.beginPath();
+				  context.moveTo(centerShoulderX, centerShoulderY);
+				  context.lineTo(k[6].position.x,k[6].position.y);
+				  context.stroke();              
+				}
+				if (k[5].score>=scoreLimit&&k[7].score>=scoreLimit) {
+				  context.strokeStyle = "#FFCC22";
+				  context.beginPath();
+				  context.moveTo(k[5].position.x,k[5].position.y);
+				  context.lineTo(k[7].position.x,k[7].position.y);
+				  context.stroke();
+				}
+				if (k[6].score>=scoreLimit&&k[8].score>=scoreLimit) {
+				  context.strokeStyle = "#66DD00";
+				  context.beginPath();
+				  context.moveTo(k[6].position.x,k[6].position.y);
+				  context.lineTo(k[8].position.x,k[8].position.y);
+				  context.stroke();
+				}
+				if (k[7].score>=scoreLimit&&k[9].score>=scoreLimit) {
+				  context.strokeStyle = "#FFFF77";
+				  context.beginPath();
+				  context.moveTo(k[7].position.x,k[7].position.y);
+				  context.lineTo(k[9].position.x,k[9].position.y);
+				  context.stroke(); 
+				}
+				if (k[8].score>=scoreLimit&&k[10].score>=scoreLimit) {
+				  context.strokeStyle = "#BBFF66";
+				  context.beginPath();
+				  context.moveTo(k[8].position.x,k[8].position.y);
+				  context.lineTo(k[10].position.x,k[10].position.y);
+				  context.stroke();      
+				}
+				if (k[11].score>=scoreLimit) {
+				  context.strokeStyle = "#227700";
+				  context.beginPath();
+				  context.moveTo(centerShoulderX, centerShoulderY);
+				  context.lineTo(k[11].position.x,k[11].position.y);
+				  context.stroke(); 
+				}
+				if (k[12].score>=scoreLimit) {
+				  context.strokeStyle = "#9999FF";
+				  context.beginPath();
+				  context.moveTo(centerShoulderX, centerShoulderY);
+				  context.lineTo(k[12].position.x,k[12].position.y);
+				  context.stroke();    
+				}
+				if (k[11].score>=scoreLimit&&k[13].score>=scoreLimit) {
+				  context.strokeStyle = "#77FF00";
+				  context.beginPath();
+				  context.moveTo(k[11].position.x,k[11].position.y);
+				  context.lineTo(k[13].position.x,k[13].position.y);
+				  context.stroke(); 
+				}
+				if (k[12].score>=scoreLimit&&k[14].score>=scoreLimit) {
+				  context.strokeStyle = "#0066FF";
+				  context.beginPath();
+				  context.moveTo(k[12].position.x,k[12].position.y);
+				  context.lineTo(k[14].position.x,k[14].position.y);
+				  context.stroke();  
+				}
+				if (k[13].score>=scoreLimit&&k[15].score>=scoreLimit) {
+				  context.strokeStyle = "#99FF99";
+				  context.beginPath();
+				  context.moveTo(k[13].position.x,k[13].position.y);
+				  context.lineTo(k[15].position.x,k[15].position.y);
+				  context.stroke(); 
+				}
+				if (k[14].score>=scoreLimit&&k[16].score>=scoreLimit) {
+				  context.strokeStyle = "#0000CC";
+				  context.beginPath();
+				  context.moveTo(k[14].position.x,k[14].position.y);
+				  context.lineTo(k[16].position.x,k[16].position.y);
+				  context.stroke(); 
+				}
+			}
           }
         }
       }
@@ -281,6 +293,7 @@ async function DetectVideo() {
 
 		var noseLeft = Number(nose[3]);
 		var noseTop = Number(nose[4]);
+		var noseScore = Number(nose[2]);
 		var leftEyeLeft = Number(leftEye[3]);
 		var leftEyeTop = Number(leftEye[4]);
 		var rightEyeLeft = Number(rightEye[3]);
@@ -299,8 +312,10 @@ async function DetectVideo() {
 		var rightElbowTop = Number(rightElbow[4]);
 		var leftWristLeft = Number(leftWrist[3]);
 		var leftWristTop = Number(leftWrist[4]);
+		var leftWristScore = Number(leftWrist[2]);
 		var rightWristLeft = Number(rightWrist[3]);
 		var rightWristTop = Number(rightWrist[4]);
+		var rightWristScore = Number(rightWrist[2]);
 		var leftHipLeft = Number(leftHip[3]);
 		var leftHipTop = Number(leftHip[4]);
 		var rightHipLeft = Number(rightHip[3]);
@@ -314,10 +329,18 @@ async function DetectVideo() {
 		var rightAnkleLeft = Number(rightAnkle[3]);
 		var rightAnkleTop = Number(rightAnkle[4]);
 		
-		context_show.drawImage(canvas, 0, 0, canvas.width, canvas.height);
-		if (rightWristTop<noseTop||leftWristTop<noseTop) {      
-		  context_show.drawImage(canvas_capture, 0, 0, canvas_capture.width, canvas_capture.height);
+		if (noseScore>=scoreLimit&&leftWristScore>=scoreLimit&&rightWristScore>=scoreLimit) {
+			if (rightWristTop<noseTop&&leftWristTop<noseTop) {
+				video.alt = "ON";
+			} else if (Math.abs(rightWristLeft - leftWristLeft) * 2 <= Math.abs(rightShoulderLeft - leftShoulderLeft) && (rightWristTop > rightShoulderTop && leftWristTop > rightShoulderTop)) {
+				video.alt = "OFF";
+			}
 		}
+		
+		if (video.alt == "ON")
+			context_show.drawImage(canvas_capture, 0, 0, canvas_capture.width, canvas_capture.height);
+		else if (video.alt == "OFF")
+			context_show.drawImage(canvas, 0, 0, canvas.width, canvas.height);
 	} else {
 	  context_show.drawImage(canvas, 0, 0, canvas.width, canvas.height);
 	}
