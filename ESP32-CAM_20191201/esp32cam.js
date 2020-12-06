@@ -90,7 +90,7 @@ function esp32cam_iframe(input_url,input_width,input_height,input_left,input_top
 }
 
 window.esp32cam_sendCommand = esp32cam_sendCommand;
-window.esp32cam_getstill = esp32cam_getstill;
+window.esp32cam_imgsrc = esp32cam_imgsrc;
 window.esp32cam_getAngle = esp32cam_getAngle;
 window.esp32cam_getResponse = esp32cam_getResponse;
 window.esp32cam_clearData = esp32cam_clearData;
