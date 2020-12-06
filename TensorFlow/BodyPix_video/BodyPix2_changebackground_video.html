@@ -16,12 +16,15 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_changeback
 </head>
 <body>
 <button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
-<video id="video" width="320" height="240"  style="display:none" preload autoplay loop muted></video><br>
+<video id="video" width="320" height="240" style="display:none" preload autoplay loop muted></video><br>
 <canvas id="canvas"></canvas>
 <canvas id="canvas_show"></canvas>
-<canvas id="canvas_capture" style="display:none"></canvas>
+<canvas id="canvas_capture"></canvas>
+<img id="backgroundImage" style="display:none">
 <br>
 <button onclick="capture();">Capture background image</button>
+<br>
+Select background image<input type="file" id="selectImage"></input>
 <br>
 Background Blur Amount<select id="backgroundbluramount"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select>
 <br>
@@ -39,6 +42,7 @@ Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</optio
 	var context_show = canvas_show.getContext('2d');
 	var canvas_capture = document.getElementById('canvas_capture'); 
 	var context_capture = canvas_capture.getContext('2d');
+	var backgroundImage = document.getElementById('backgroundImage');
 	var kind = document.getElementById('kind');
 	var maxdetections = document.getElementById('maxdetections'); 
 	var backgroundbluramount = document.getElementById('backgroundbluramount');
@@ -47,6 +51,23 @@ Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</optio
 	
 	function capture() {
 	  context_capture.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, canvas_capture.width, canvas_capture.height);
+	}
+
+	selectImage.onchange = function (event) {
+	  var target = event.target || window.event.srcElement;
+	  var files = target.files;
+	  if (FileReader && files && files.length) {
+		var fr = new FileReader();
+		fr.onload = function () {
+		  backgroundImage.src = fr.result;
+		}
+		fr.readAsDataURL(files[0]);
+	  }
+	}
+	
+	backgroundImage.onload = function (event) {
+		context_capture.clearRect(0, 0, canvas_capture.width, canvas_capture.height);    
+		context_capture.drawImage(backgroundImage, 0, 0, backgroundImage.width, backgroundImage.height, 0, 0, canvas_capture.width, canvas_capture.height);
 	}	
 
 	window.onload = function() { LoadModel();} 
@@ -100,7 +121,7 @@ Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</optio
 					canvas_show.setAttribute("width", video.width);
 					canvas_show.setAttribute("height", video.height);
 					canvas_capture.setAttribute("width", video.width);
-					canvas_capture.setAttribute("height", video.height);
+					canvas_capture.setAttribute("height", video.height);					
 					video.alt = "OFF";  
 					setTimeout(function(){DetectVideo(); }, 100);
 				}
