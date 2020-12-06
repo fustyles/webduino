@@ -31,39 +31,21 @@ function esp32cam_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,st
 }
 
 function esp32cam_getstill(url) {
-  //console.log(url+"?getstill");
-  var data = $.ajax({
-      "type": "POST",
-      "dataType": "json",
-      "url": url+"/control?getstill",   
-      success: function(json)
-      {
-        json = eval(json);
-        //console.log(json);
-        if (json.length>0) {
-          //console.log(json[0]["data"]);
-          if (document.getElementById("gameimage_getstill"))
-            document.getElementById("gameimage_getstill").src = json[0]["data"];
-          else {
-            var obj = document.createElement('img');
-            obj.style.position = "absolute";
-            obj.id = "gameimage_getstill";
-            obj.src = json[0]["data"];
-            obj.style.zIndex = 9999;
-            obj.style.left = '0px';
-            obj.style.top = '0px';
-            obj.style.display = "block";
-            obj.draggable="true";
-            obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
-            document.body.appendChild(obj); 
-          }
-        }
-      },
-      error: function(jqXHR, textStatus, errorThrown)
-      {
-        console.log(errorThrown);
-      }
-   });
+  if (document.getElementById("gameimage_getstill"))
+    document.getElementById("gameimage_getstill").src = url+"/capture";
+  else {
+    var obj = document.createElement('img');
+    obj.style.position = "absolute";
+    obj.id = "gameimage_getstill";
+    obj.src = url+"/capture";
+    obj.style.zIndex = 9999;
+    obj.style.left = '0px';
+    obj.style.top = '0px';
+    obj.style.display = "block";
+    obj.draggable="true";
+    obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
+    document.body.appendChild(obj); 
+  }
 }
   
 function esp32cam_getAngle(val) {
