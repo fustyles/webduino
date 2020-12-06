@@ -6,7 +6,7 @@ var esp32cam_Response=[];
 var esp32cam_getstate = false;
 
 function esp32cam_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,str9) {
-  if (!document.getElementById('metainsecure') {
+  if (!document.getElementById('metainsecure')) {
     var el = document.createElement('meta');
     e1.id = 'metainsecure';
     el.setAttribute('http-equiv', 'Content-Security-Policy');
