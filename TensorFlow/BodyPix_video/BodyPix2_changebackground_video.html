@@ -74,11 +74,7 @@ Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</optio
 	
 	function LoadModel() {
 		result.innerHTML = "Please wait for loading model.";
-		bodyPix.load({
-		  architecture: 'ResNet50',
-		  outputStride: 32,
-		  quantBytes: 2
-		}).then(function(model) {
+		bodyPix.load().then(function(model) {
 			Model = model;
 			result.innerHTML = ""; 
 			startVideo();
