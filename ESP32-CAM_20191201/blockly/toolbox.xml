@@ -26,7 +26,7 @@
     <block type="esp32cam_stream">
         <value name="url">
           <block type="text">
-            <field name="TEXT">http://192.168.xxx.xxxx:81/stream</field>
+            <field name="TEXT">http://192.168.xxx.xxx:81/stream</field>
           </block>
         </value>    
     </block>    
