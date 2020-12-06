@@ -19,7 +19,7 @@
     <block type="esp32cam_getstill">
         <value name="url">
           <block type="text">
-            <field name="TEXT">http://</field>
+            <field name="TEXT">http://192.168.xxx.xxxx/capture</field>
           </block>
         </value>    
     </block>
