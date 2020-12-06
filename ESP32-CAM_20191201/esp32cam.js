@@ -37,7 +37,7 @@ function esp32cam_imgsrc(url) {
     var obj = document.createElement('img');
     obj.style.position = "absolute";
     obj.id = "gameimage_esp32-cam";
-    obj.src = url+"/capture";
+    obj.src = url;
     obj.style.zIndex = 9999;
     obj.style.left = '0px';
     obj.style.top = '0px';
