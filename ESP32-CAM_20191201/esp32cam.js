@@ -42,6 +42,7 @@ function esp32cam_imgsrc(url) {
     obj.style.left = '0px';
     obj.style.top = '0px';
     obj.style.display = "block";
+    obj.crossOrigin = "anonymous";
     obj.draggable="true";
     obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
     document.body.appendChild(obj); 
