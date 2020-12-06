@@ -160,7 +160,7 @@ WebBit教育版 法蘭斯點矩陣(不可與官方積木混用)
 https://fustyles.github.io/webduino/EDU_bit_MatrixLed_20190827/blockly.json
 
 
-ESP32-CAM  (雲端平台網址須由https改成http)
+ESP32-CAM  (網站設定"不安全內容"須更改為"允許")
 https://fustyles.github.io/webduino/ESP32-CAM_20191201/blockly.json
 [Smart]
 http://blocklypro.webduino.io/#XBBKx0dY0Y
