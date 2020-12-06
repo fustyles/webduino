@@ -30,13 +30,13 @@ function esp32cam_sendCommand(url,cmd,str1,str2,str3,str4,str5,str6,str7,str8,st
    });
 }
 
-function esp32cam_getstill(url) {
-  if (document.getElementById("gameimage_getstill"))
-    document.getElementById("gameimage_getstill").src = url+"/capture";
+function esp32cam_imgsrc(url) {
+  if (document.getElementById("gameimage_esp32-cam"))
+    document.getElementById("gameimage_esp32-cam").src = url;
   else {
     var obj = document.createElement('img');
     obj.style.position = "absolute";
-    obj.id = "gameimage_getstill";
+    obj.id = "gameimage_esp32-cam";
     obj.src = url+"/capture";
     obj.style.zIndex = 9999;
     obj.style.left = '0px';
