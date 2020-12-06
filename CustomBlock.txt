@@ -167,7 +167,7 @@ http://blocklypro.webduino.io/#XBBKx0dY0Y
 [Bit]
 http://bit.webduino.io/blockly/#ayxvNYgQkLDqM
 [ESP32-CAM Firmware]
-https://github.com/fustyles/Arduino/tree/master/ESP32-CAM_MyBlockly_JSON
+https://github.com/fustyles/Arduino/tree/master/ESP32-CAM_MyBlockly_STREAM_JSON
 
 
 物件偵測 (Microsoft Azure Custom Vision) 
