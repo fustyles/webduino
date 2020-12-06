@@ -28,7 +28,7 @@ Blockly.Blocks['esp32cam_system'] = {
 Blockly.Blocks['esp32cam_getstill'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("ESP32-CAM Get Still");
+        .appendField("ESP32-CAM Still");
     this.appendValueInput("url")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -43,14 +43,15 @@ Blockly.Blocks['esp32cam_getstill'] = {
 Blockly.Blocks['esp32cam_stream'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("ESP32-CAM Stream/Still");
+        .appendField("ESP32-CAM Stream");
     this.appendValueInput("url")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("url"); 
     this.setInputsInline(true);
-    this.setOutput(true, null); 
-    this.setColour(200);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
   }
 };
 
