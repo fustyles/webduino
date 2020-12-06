@@ -2,7 +2,7 @@
     <block type="esp32cam_system">
         <value name="url">
           <block type="text">
-            <field name="TEXT">http://</field>
+            <field name="TEXT">http://192.168.xxx.xxx</field>
           </block>
         </value>    
         <value name="P1">
@@ -33,7 +33,7 @@
     <block type="esp32cam_custom">
         <value name="url">
           <block type="text">
-            <field name="TEXT">http://</field>
+            <field name="TEXT">http://192.168.xxx.xxx</field>
           </block>
         </value>    
         <value name="cmd">
