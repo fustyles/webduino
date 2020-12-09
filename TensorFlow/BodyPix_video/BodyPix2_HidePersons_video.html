@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/6 17:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/10 00:00
 https://www.facebook.com/francefu
 Try it!
 https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_HidePersons_video.html
@@ -17,18 +17,20 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_HidePerson
 <body>
 <button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
 <video id="video" width="320" height="240" style="display:none" preload autoplay loop muted></video><br>
-<canvas id="canvas"></canvas>
 <canvas id="canvas_show"></canvas>
+<canvas id="canvas"></canvas>
 <canvas id="canvas_capture"></canvas>
 <img id="backgroundImage" style="display:none">
 <br>
 <button onclick="capture();">Capture background image (Nobody)</button>
 <br>
+<input type="checkbox" id="hidevideo">Hide Video<input type="checkbox" id="hidebackgroundimage">Hide Background Image
+<br>
+<input type="checkbox" id="mirror">Mirror
+<br>
 Background Blur Amount<select id="backgroundbluramount"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select>
 <br>
 Max Detections<select id="maxdetections"><option value="5">5</option><option value="10" selected>10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option></select>
-<br>
-Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</option></select>
 <br>
 <div id="result" style="color:red"></div>
 
@@ -41,6 +43,8 @@ Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</optio
 	var canvas_capture = document.getElementById('canvas_capture'); 
 	var context_capture = canvas_capture.getContext('2d');
 	var backgroundImage = document.getElementById('backgroundImage');
+	var hidevideo = document.getElementById('hidevideo'); 
+	var hidebackgroundimage = document.getElementById('hidebackgroundimage'); 
 	var kind = document.getElementById('kind');
 	var maxdetections = document.getElementById('maxdetections'); 
 	var backgroundbluramount = document.getElementById('backgroundbluramount');
@@ -50,6 +54,20 @@ Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</optio
 	function capture() {
 	  context_capture.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, canvas_capture.width, canvas_capture.height);
 	}
+	
+	hidebackgroundimage.onclick = function () {
+		if (hidebackgroundimage.checked)
+			canvas_capture.style.visibility = "hidden";
+		else
+			canvas_capture.style.visibility = "visible";
+	} 
+
+	hidevideo.onclick = function () {
+		if (hidevideo.checked)
+			canvas.style.visibility = "hidden";
+		else
+			canvas.style.visibility = "visible";
+	} 
 	
 	backgroundImage.onload = function (event) {
 		context_capture.clearRect(0, 0, canvas_capture.width, canvas_capture.height);    
@@ -116,7 +134,7 @@ Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</optio
 	}  
 
 	async function DetectVideo() {
-		if (mirror.value==1) {
+		if (mirror.checked) {
 			context.translate((canvas.width + video.width) / 2, 0);
 			context.scale(-1, 1);
 			context.drawImage(video, 0, 0, video.width, video.height);
