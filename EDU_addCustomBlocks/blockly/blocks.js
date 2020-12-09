@@ -10,7 +10,9 @@ Blockly.Blocks['addMyBlocks'] = {
         ["add","add"], 
         ["remove","remove"],
         ["addAll","addAll"], 
-        ["removeAll","removeAll"]
+        ["removeAll","removeAll"],
+        ["addAll(New AI)","addAllNewAI"], 
+        ["removeAll(New AI)","removeAllNewAI"]	  
       ]), "func");
   this.setTooltip('');
   this.setColour(20);
@@ -109,7 +111,7 @@ Blockly.Blocks['addMyBlocks'] = {
 
                   this.getInputTargetBlock("url").setFieldValue("", "TEXT");
             }
-	    else if (this.getFieldValue('func')=='addAllNew') {
+	    else if (this.getFieldValue('func')=='addAllNewAI') {
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json');
@@ -140,7 +142,7 @@ Blockly.Blocks['addMyBlocks'] = {
 				  
                   this.getInputTargetBlock("url").setFieldValue("", "TEXT");
           }
-          else if (this.getFieldValue('func')=='removeAllNew') {
+          else if (this.getFieldValue('func')=='removeAllNewAI') {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/tesseract.js_20201012/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/trackingface_20201012/blockly.json');
