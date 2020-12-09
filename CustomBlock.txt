@@ -8,6 +8,12 @@ Code.customTab.$__add__('自訂積木設定網址');
 Webbit教育版、Kebbi x Webbit 開發人員工具Console移除自訂積木指令
 Code.customTab.$__remove__('自訂積木設定網址');
 
+
+Webbit教育版 & KebbixWebbit 新增自訂積木
+https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json
+Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
+
+
 (新版) QR code辨識 (instascan)
 https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json
 (新版) 文字辨識 (tesseract.js)
@@ -35,9 +41,6 @@ https://fustyles.github.io/webduino/teachablemachine_20201012/blockly.json
 若使用ESP32-CAM影像串流(若採光不足畫面暗時無法辨識)，請安裝我的韌體，三個檔下載放同目錄。
 https://github.com/fustyles/Arduino/tree/master/ESP32-CAM_MyBlockly_STREAM_JSON
 
-
-Webbit教育版 & KebbixWebbit 新增自訂積木
-https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json
 
 QR code辨識 (instascan)
 https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json
