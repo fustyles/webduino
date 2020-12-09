@@ -38,6 +38,4 @@
       </block>
     </value> 
   </block>
-  <block type="telegram_getid">
-  </block>
 </category>
