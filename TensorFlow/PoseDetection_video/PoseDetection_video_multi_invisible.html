@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/10 23:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/10 00:00
 https://www.facebook.com/francefu
 
 1. Press "capture" button to capture background screen when there is nobody in front of the camera.
@@ -48,7 +48,7 @@ ScoreLimit
 <option value="0.9">0.9</option>
 </select>
 <br>
-<input type="checkbox" id="hidebackgroundimage">Hide Backgroud Image
+<input type="checkbox" id="hidebackgroundimage">Hide Background Image
 <br>
 <input type="checkbox" id="point">Show Point
 <input type="checkbox" id="skeleton">Show Skeleton
@@ -70,13 +70,10 @@ ScoreLimit
   var Model;
 
   hidebackgroundimage.onclick = function () {
-	if (hidebackgroundimage.checked) {
+	if (hidebackgroundimage.checked)
 		canvas_capture.style.visibility = "hidden";
-	}
-	else {
-		canvas_capture.style.position = "";
+	else
 		canvas_capture.style.visibility = "visible";
-	}
   }  
   
   window.onload = function() {LoadModel();}
