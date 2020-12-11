@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/10 00:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/11 18:00
 https://www.facebook.com/francefu
 
 1. Press "capture" button to capture background screen when there is nobody in front of the camera.
@@ -68,6 +68,8 @@ ScoreLimit
   var skeleton = document.getElementById('skeleton');
   var result = document.getElementById('result');
   var Model;
+  var videoWidth = 320;
+  var videoHeight = 240;  
 
   hidebackgroundimage.onclick = function () {
 	if (hidebackgroundimage.checked)
@@ -91,9 +93,6 @@ ScoreLimit
 	  console.log("enumerateDevices() not supported.");
 	  return;
 	}
-
-	var videoWidth = 320;
-	var videoHeight = 240;
 	
     var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
 	navigator.mediaDevices.enumerateDevices()
