@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/5 10:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/11 18:00
 https://www.facebook.com/francefu
 Try it!
 https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_blurothers_video.html
@@ -15,17 +15,19 @@ https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_blurothers
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"> </script>  
 </head>
 <body>
-<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button>
+<video id="video" width="320" height="240"  style="display:none" preload autoplay loop muted></video>
+<br>
+<canvas id="canvas"></canvas>
+<br>
 Object<select id="kind"><option value="0">Unblur first face</option><option value="1" selected>Unblur max area of face(Closest to the lens)</option><option value="2">Blur all faces</option></select>
 <br>
 Background Blur Amount<select id="backgroundbluramount"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select>
 <br>
 Max Detections<select id="maxdetections"><option value="5">5</option><option value="10" selected>10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option></select>
 <br>
-Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</option></select>
-<video id="video" width="320" height="240"  style="display:none" preload autoplay loop muted></video><br>
+<input type="checkbox" id="mirror">Mirror
 <div id="result" style="color:red"></div><br>
-<canvas id="canvas"></canvas>
 
 <script>
 	var video = document.getElementById('video');
@@ -36,6 +38,8 @@ Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</optio
 	var backgroundbluramount = document.getElementById('backgroundbluramount');
 	var mirror = document.getElementById('mirror');
 	let Model;
+	var videoWidth = 320;
+	var videoHeight = 240;	
 
 	window.onload = function() { LoadModel();} 
 	
@@ -50,29 +54,26 @@ Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</optio
 
 	function startVideo() {
 		if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-		console.log("enumerateDevices() not supported.");
-		return;
-	}
+			console.log("enumerateDevices() not supported.");
+			return;
+		}
 
-	var videoWidth = 320;
-	var videoHeight = 240;
-
-	var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
-	navigator.mediaDevices.enumerateDevices()
-		.then(function(devices) {
-			devices.forEach(function(device) {
-				if (device.kind=="videoinput"&&device.label.includes("facing back")) {
-					if (device.deviceId=='')
-						back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
-					else
-						back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
-				}
-			});
+		var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+		navigator.mediaDevices.enumerateDevices()
+			.then(function(devices) {
+				devices.forEach(function(device) {
+					if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+						if (device.deviceId=='')
+							back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+						else
+							back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+					}
+				});
 
 
 			if (location.search.toLowerCase().indexOf("?back")!=-1) {
 				var userMedia = back;
-				mirror.value=0;
+				mirror.checked = false;
 			}
 			else
 				var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
@@ -93,7 +94,7 @@ Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</optio
 
 	async function DetectVideo() {
 		await Model.segmentMultiPersonParts(video, {
-			flipHorizontal: Number(mirror.value),
+			flipHorizontal: Number(mirror.checked),
 			internalResolution: 'medium',
 			segmentationThreshold: 0.7,
 			maxDetections: Number(maxdetections.value),
@@ -129,13 +130,13 @@ Mirror<select id="mirror"><option value="1">Y</option><option value="0">N</optio
 				const faceBodyPartIdsToBlur = [0, 1];
 				const backgroundBlurAmount = Number(backgroundbluramount.value);
 				const edgeBlurAmount = 3;
-				const flipHorizontal = Number(mirror.value);
+				const flipHorizontal = Number(mirror.checked);
 
 				bodyPix.blurBodyPart(canvas, video, partSegmentation, faceBodyPartIdsToBlur, backgroundBlurAmount, edgeBlurAmount, flipHorizontal);
 				//drawPoses(partSegmentation, flipHorizontal, context3);				
 			} 
 			else {
-				if (mirror.value==1) {
+				if (mirror.checked) {
 					context.translate((canvas.width + video.width) / 2, 0);
 					context.scale(-1, 1);
 					context.drawImage(video, 0, 0, video.width, video.height);
