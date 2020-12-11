@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/10 00:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/11 18:00
 https://www.facebook.com/francefu
 Try it!
 https://fustyles.github.io/webduino/TensorFlow/BodyPix_video/BodyPix2_HidePersons_video.html
@@ -50,6 +50,8 @@ Max Detections<select id="maxdetections"><option value="5">5</option><option val
 	var backgroundbluramount = document.getElementById('backgroundbluramount');
 	var mirror = document.getElementById('mirror');
 	let Model;
+	var videoWidth = 320;
+	var videoHeight = 240;	
 	
 	function capture() {
 	  context_capture.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, canvas_capture.width, canvas_capture.height);
@@ -87,24 +89,21 @@ Max Detections<select id="maxdetections"><option value="5">5</option><option val
 
 	function startVideo() {
 		if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-		console.log("enumerateDevices() not supported.");
-		return;
-	}
+			console.log("enumerateDevices() not supported.");
+			return;
+		}
 
-	var videoWidth = 320;
-	var videoHeight = 240;
-
-	var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
-	navigator.mediaDevices.enumerateDevices()
-		.then(function(devices) {
-			devices.forEach(function(device) {
-				if (device.kind=="videoinput"&&device.label.includes("facing back")) {
-					if (device.deviceId=='')
-						back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
-					else
-						back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
-				}
-			});
+		var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+		navigator.mediaDevices.enumerateDevices()
+			.then(function(devices) {
+				devices.forEach(function(device) {
+					if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+						if (device.deviceId=='')
+							back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+						else
+							back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+					}
+				});
 
 
 			if (location.search.toLowerCase().indexOf("?back")!=-1) {
