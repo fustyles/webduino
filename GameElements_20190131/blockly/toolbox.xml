@@ -1492,7 +1492,27 @@
 			  <block type="text">
 				<field name="TEXT"></field>
 			  </block>
-			</value>          
+			</value>
+			<value name="x0_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="y0_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>     
+			<value name="width_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="height_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>			
 		  </block> 
       </value>
   </block>
@@ -1506,7 +1526,17 @@
 		<block type="variables_get">
 		  <field name="VAR" id="{}=:kAN[Oiy:WY6$6?=n">imageData</field>
 		</block>
-    </value>            
+    </value>
+	<value name="x0_">
+	  <block type="math_number">
+		<field name="NUM">0</field>
+	  </block>
+	</value>
+	<value name="y0_">
+	  <block type="math_number">
+		<field name="NUM">0</field>
+	  </block>
+	</value> 
   </block>   
   <block type="canvas_capturevideo">
     <value name="canvasid_">

@@ -601,23 +601,23 @@
       return "";    
   }  
   
-  function canvas_getimagedata(input_id) {
+  function canvas_getimagedata(input_id, input_x0, input_y0, input_width, input_height) {
     if (document.getElementById("gamecanvas_"+input_id))
     {
 	  var canvas = document.getElementById("gamecanvas_"+input_id);
       var context = canvas.getContext('2d');
-      return context.getImageData(0,0,canvas.width,canvas.height);
+      return context.getImageData(input_x0, input_y0, input_width, input_height);
 	}
 	else
       return [];    
   } 
   
-   function canvas_setimagedata(input_id, input_data) {
+   function canvas_setimagedata(input_id, input_data, input_x0, input_y0) {
     if (document.getElementById("gamecanvas_"+input_id))
     {
 	  var canvas = document.getElementById("gamecanvas_"+input_id);
       var context = canvas.getContext('2d');
-      context.putImageData(input_data,0,0);
+      context.putImageData(input_data,input_x0,input_y0);
 	}   
   }  
   

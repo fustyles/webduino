@@ -1182,7 +1182,23 @@ Blockly.Blocks['canvas_getimagedata'] = {
       .setAlign(Blockly.ALIGN_RIGHT) 
       .appendField(Blockly.Msg.CANVAS_ID); 
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.CANVAS_GETIMAGEDATA); 
+      .appendField(Blockly.Msg.CANVAS_GETIMAGEDATA);	  
+  this.appendValueInput("x0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.CANVAS_X0);
+  this.appendValueInput("y0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.CANVAS_Y0);
+  this.appendValueInput("width_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.WIDTH);
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.HEIGHT);	   
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -1194,12 +1210,20 @@ Blockly.Blocks['canvas_setimagedata'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT) 
-      .appendField(Blockly.Msg.CANVAS_ID); 
+      .appendField(Blockly.Msg.CANVAS_ID);
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.CANVAS_SETIMAGEDATA);
+      .appendField(Blockly.Msg.CANVAS_SETIMAGEDATA);	  
   this.appendValueInput("data_")
       .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT); 	  
+      .setAlign(Blockly.ALIGN_RIGHT);
+  this.appendValueInput("x0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.CANVAS_X0);
+  this.appendValueInput("y0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.CANVAS_Y0);  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -4427,7 +4451,8 @@ Blockly.Blocks['video_base64_spreadsheet'] = {
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg.VIDEO_BASE64_ROW);
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.VIDEO_BASE64_FORMAT)	  
+      .appendField(Blockly.Msg.VIDEO_BASE64_FORMAT)
+	  .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(new Blockly.FieldDropdown([["image","image"], ["base64","string"]]), "format_");	  
   this.appendValueInput("spreadsheet_script_")
       .setCheck("String")
