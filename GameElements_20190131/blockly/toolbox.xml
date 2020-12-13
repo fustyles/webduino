@@ -1484,6 +1484,30 @@
       </block>
     </value>      
   </block>
+  <block type="variables_set">
+      <field name="VAR" id="{}=:kAN[Oiy:WY6$6?=n">imageData</field>
+      <value name="VALUE">
+		  <block type="canvas_getimagedata">  
+			<value name="id_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>          
+		  </block> 
+      </value>
+  </block>
+  <block type="canvas_setimagedata">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="data_">
+		<block type="variables_get">
+		  <field name="VAR" id="{}=:kAN[Oiy:WY6$6?=n">imageData</field>
+		</block>
+    </value>            
+  </block>   
   <block type="canvas_capturevideo">
     <value name="canvasid_">
       <block type="text">
@@ -1998,8 +2022,7 @@
         <field name="NUM">0</field>
       </block>
     </value>            
-  </block>   
-  
+  </block>  
   </category>
   <category id="catGameElements_sub10" colour="120"> 
 

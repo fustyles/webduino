@@ -529,7 +529,7 @@ Blockly.Blocks['canvas_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)    
-      .appendField(Blockly.Msg.CANVAS_ID); 
+      .appendField(Blockly.Msg.ID); 
   this.appendValueInput("width_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -596,7 +596,7 @@ Blockly.Blocks['canvas_line'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT) 
-      .appendField(Blockly.Msg.CANVAS_ID);
+      .appendField(Blockly.Msg.ID);
   this.appendValueInput("linewidth_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)  
@@ -642,7 +642,7 @@ Blockly.Blocks['canvas_rect'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT) 
-      .appendField(Blockly.Msg.CANVAS_ID);
+      .appendField(Blockly.Msg.ID);
   this.appendValueInput("linewidth_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)   
@@ -692,7 +692,7 @@ Blockly.Blocks['canvas_arc'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT) 
-      .appendField(Blockly.Msg.CANVAS_ID);
+      .appendField(Blockly.Msg.ID);
   this.appendValueInput("linewidth_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)   
@@ -766,7 +766,7 @@ Blockly.Blocks['canvas_img'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_ID);  
+      .appendField(Blockly.Msg.ID);  
   this.appendValueInput("sx_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -812,7 +812,6 @@ Blockly.Blocks['canvas_img'] = {
   this.setColour(60);
   }
 };
-
 
 Blockly.Blocks['canvas_capturevideo'] = {
   init: function() {
@@ -879,7 +878,7 @@ Blockly.Blocks['canvas_text'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_ID);
+      .appendField(Blockly.Msg.ID);
   this.appendValueInput("text_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)   
@@ -933,7 +932,7 @@ Blockly.Blocks['canvas_quadraticcurve'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT) 
-      .appendField(Blockly.Msg.CANVAS_ID);  
+      .appendField(Blockly.Msg.ID);  
   this.appendValueInput("x0_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)     
@@ -991,7 +990,7 @@ Blockly.Blocks['canvas_beziercurve'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)    
-      .appendField(Blockly.Msg.CANVAS_ID);  
+      .appendField(Blockly.Msg.ID);  
   this.appendValueInput("x0_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)    
@@ -1057,15 +1056,15 @@ Blockly.Blocks['canvas_clearrect'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)     
-      .appendField(Blockly.Msg.CANVAS_ID);  
+      .appendField(Blockly.Msg.ID);  
   this.appendValueInput("x_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)    
-      .appendField(Blockly.Msg.CANVAS_X);
+      .appendField(Blockly.Msg.CANVAS_X0);
   this.appendValueInput("y_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_Y); 
+      .appendField(Blockly.Msg.CANVAS_Y0); 
   this.appendValueInput("width_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -1088,7 +1087,7 @@ Blockly.Blocks['canvas_clear'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT) 
-      .appendField(Blockly.Msg.CANVAS_ID);
+      .appendField(Blockly.Msg.ID);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -1103,7 +1102,7 @@ Blockly.Blocks['canvas_delete'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT) 
-      .appendField(Blockly.Msg.CANVAS_ID);
+      .appendField(Blockly.Msg.ID);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -1173,6 +1172,37 @@ Blockly.Blocks['canvas_getcolor'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
+  }
+};
+
+Blockly.Blocks['canvas_getimagedata'] = {
+  init: function() {  
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT) 
+      .appendField(Blockly.Msg.CANVAS_ID); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_GETIMAGEDATA); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['canvas_setimagedata'] = {
+  init: function() {  
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT) 
+      .appendField(Blockly.Msg.CANVAS_ID); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.CANVAS_SETIMAGEDATA);
+  this.appendValueInput("data_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT); 	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
   }
 };
 
@@ -4419,6 +4449,7 @@ Blockly.Blocks['custom_comment'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
+  this.setColour(60);  
   }
 };
 

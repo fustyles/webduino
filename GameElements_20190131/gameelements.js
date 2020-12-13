@@ -600,7 +600,27 @@
     else
       return "";    
   }  
-
+  
+  function canvas_getimagedata(input_id) {
+    if (document.getElementById("gamecanvas_"+input_id))
+    {
+	  var canvas = document.getElementById("gamecanvas_"+input_id);
+      var context = canvas.getContext('2d');
+      return context.getImageData(0,0,canvas.width,canvas.height);
+	}
+	else
+      return [];    
+  } 
+  
+   function canvas_setimagedata(input_id, input_data) {
+    if (document.getElementById("gamecanvas_"+input_id))
+    {
+	  var canvas = document.getElementById("gamecanvas_"+input_id);
+      var context = canvas.getContext('2d');
+      context.putImageData(input_data,0,0);
+	}   
+  }  
+  
   function canvas_line(input_id,input_linewidth,input_x0,input_y0,input_x1,input_y1,input_color,input_rotate,input_globalAlpha) {
     if (document.getElementById("gamecanvas_"+input_id)) {
       var obj = document.getElementById("gamecanvas_"+input_id);
@@ -3681,6 +3701,8 @@ function HextoRgb(color) {
   window.canvas_onclick_get = canvas_onclick_get;
   window.canvas_getcolor = canvas_getcolor;
   window.canvas_capturevideo = canvas_capturevideo;
+  window.canvas_getimagedata = canvas_getimagedata;
+  window.canvas_setimagedata = canvas_setimagedata;
   window.image_create = image_create;
   window.image_create_stream = image_create_stream;  
   window.image_set = image_set;

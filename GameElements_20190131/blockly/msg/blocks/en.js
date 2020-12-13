@@ -446,3 +446,5 @@ Blockly.Msg.VIDEO_BASE64_ROW = "Row";
 Blockly.Msg.VIDEO_BASE64_SCRIPTURL = "Script URL";
 Blockly.Msg.VIDEO_BASE64_FORMAT = "Format";
 Blockly.Msg.VARIABLE_BOARD = "official variable of board";
+Blockly.Msg.CANVAS_GETIMAGEDATA = "Get image data";
+Blockly.Msg.CANVAS_SETIMAGEDATA = "Set image data";

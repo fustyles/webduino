@@ -405,6 +405,19 @@ Blockly.JavaScript['canvas_getcolor'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['canvas_getimagedata'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var code = 'canvas_getimagedata(' + value_id_ + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['canvas_setimagedata'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_data_ = Blockly.JavaScript.valueToCode(block, 'data_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'canvas_setimagedata(' + value_id_ + ',' + value_data_ + ');\n';
+  return code;
+};
+
 Blockly.JavaScript['image_create'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_url_ = Blockly.JavaScript.valueToCode(block, 'url_', Blockly.JavaScript.ORDER_ATOMIC);
