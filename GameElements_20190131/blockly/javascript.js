@@ -1744,3 +1744,8 @@ Blockly.JavaScript['custom_comment'] = function (block) {
   var code = '//' + text+'\n';
   return code;
 };
+
+Blockly.JavaScript['variable_board'] = function (block) {
+  var code = 'board';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};

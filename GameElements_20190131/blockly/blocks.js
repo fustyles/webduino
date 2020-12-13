@@ -4421,3 +4421,13 @@ Blockly.Blocks['custom_comment'] = {
   this.setNextStatement(true);
   }
 };
+
+Blockly.Blocks['variable_board'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.VARIABLE_BOARD);
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};

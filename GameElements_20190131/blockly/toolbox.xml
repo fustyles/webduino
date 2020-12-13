@@ -213,7 +213,9 @@
         <field name="COLOUR">#000000</field>
       </block>
     </value>      
-  </block>        
+  </block>
+  <block type="variable_board">   
+  </block>
   <block type="async_function">
     <value name="name_">
       <block type="text">
