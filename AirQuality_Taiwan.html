@@ -101,6 +101,7 @@ window.onload = function() {
    var strUrl=location.search;
    if (strUrl.indexOf("?")!=-1) {
      document.getElementById("site").value = strUrl.split("?")[1];
+      console.log(strUrl.split("?")[1]);
    } 
    
    if (site!="") {
