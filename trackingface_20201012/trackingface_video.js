@@ -6,7 +6,7 @@ window.onload = function () {
 
 	var canvas = document.querySelector('#gamecanvas_trackingface');	
 	var context = canvas.getContext('2d');
-	var frame = document.getElementById("frame_trackingface").value;
+	var frame = document.getElementById("frame_trackingface");
 	var result = document.getElementById('gamediv_trackingface');
 	var sourceTimer;
 	var obj;
@@ -160,7 +160,7 @@ window.onload = function () {
 				function displayFaceLandmarksFeature(faceLandmarks, featureLabel) {
 					var feature = landmarkFeatures[featureLabel]
 
-					if (frame==1) {
+					if (frame.value==1) {
 						// draw dots
 						context.fillStyle = feature.fillStyle
 						for(var i = feature.first; i <= feature.last; i++){
