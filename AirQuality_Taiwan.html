@@ -98,6 +98,7 @@
 window.onload = function() {
    var site = document.getElementById("site").value;
    
+   var strUrl=location.search;
    if (strUrl.indexOf("?")!=-1) {
      document.getElementById("site").value = strUrl.split("?")[1];
    } 
