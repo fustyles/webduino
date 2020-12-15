@@ -93,13 +93,15 @@
 </html>
 
 <script>
-setInterval(function(){ 
-   var site = document.getElementById("site").value;
-   if (site!="") {
-       getData();
-       setTimeout(function(){getSite();}, 5000);
-   }
-}, 60000);
+window.onload = function() {
+   setInterval(function(){ 
+      var site = document.getElementById("site").value;
+      if (site!="") {
+          getData();
+          setTimeout(function(){getSite();}, 5000);
+      }
+   }, 60000);
+}
           
 function getData() {
    var message = document.getElementById("message");
