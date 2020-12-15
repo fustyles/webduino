@@ -92,7 +92,15 @@
 </body>
 </html>
 
-<script>        
+<script>
+setInterval(function(){ 
+   var site = document.getElementById("site").value;
+   if (site!="") {
+       getData();
+       setTimeout(function(){ getSite(); }, 5000);
+   }
+}, 60000);
+          
 function getData() {
 pmgov_link('https://opendata.epa.gov.tw/webapi/Data/REWIQA/?$orderby=SiteName&$skip=0&$top=1000&format=json',"JSON");
 //pmgov_link('http://opendata2.epa.gov.tw/AQI.xml',"XML");
