@@ -96,6 +96,7 @@
 
 <script>
 window.onload = function() {
+   getData();
    var site = document.getElementById("site").value;
    
    var strUrl=location.search;
@@ -104,7 +105,6 @@ window.onload = function() {
    } 
    
    if (site!="") {
-       getData();
        setTimeout(function(){getSite();}, 5000);
    }
    
