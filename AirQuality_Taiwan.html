@@ -87,6 +87,7 @@
 <option value="金門縣-金門">金門縣-金門</option>
 <option value="澎湖縣-馬公">澎湖縣-馬公</option>
 </select>
+<br>
 <span id="message" style="color:red"></span>
 <br>
 <div id="data"></div>
@@ -144,6 +145,6 @@ function getSite(){
   '<tr><td>Latitude:</td><td>'+pmgov_get(site,"Latitude")+'</td></tr>'+  
   '<tr><td>Longitude:</td><td>'+pmgov_get(site,"Longitude")+'</td></tr>'+
   '</table>';
-  message.innerHTML = "更新時間：" + new Date();
+  message.innerHTML = new Date();
 }
 </script>
