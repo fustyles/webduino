@@ -97,6 +97,11 @@
 <script>
 window.onload = function() {
    var site = document.getElementById("site").value;
+   
+   if (strUrl.indexOf("?")!=-1) {
+     document.getElementById("site").value = strUrl.split("?")[1];
+   } 
+   
    if (site!="") {
        getData();
        setTimeout(function(){getSite();}, 5000);
