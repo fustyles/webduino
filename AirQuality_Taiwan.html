@@ -102,6 +102,7 @@ setInterval(function(){
 }, 60000);
           
 function getData() {
+   var message = document.getElementById("message");
    message.innerHTML = "遠端資料載入中...";
    pmgov_link('https://opendata.epa.gov.tw/webapi/Data/REWIQA/?$orderby=SiteName&$skip=0&$top=1000&format=json',"JSON");
    message.innerHTML = "";
