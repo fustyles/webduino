@@ -145,6 +145,8 @@ function getSite(){
   '<tr><td>Latitude:</td><td>'+pmgov_get(site,"Latitude")+'</td></tr>'+  
   '<tr><td>Longitude:</td><td>'+pmgov_get(site,"Longitude")+'</td></tr>'+
   '</table>';
-  message.innerHTML = new Date();
+  var d = new Date().toString();
+  d = d.substr(0,a.indexOf("GMT"));
+  message.innerHTML = d;
 }
 </script>
