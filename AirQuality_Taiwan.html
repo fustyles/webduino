@@ -7,7 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 </head>
 <body>
-<select name="site" id="site" onclick="getData();getSite();"><span id="message" style="color:red"></span>
+<select name="site" id="site" onclick="getData();getSite();"><div id="msg" style="color:red"></div>
 <option value=""></option>
 <option value="基隆市-基隆">基隆市-基隆</option>
 <option value="新北市-汐止">新北市-汐止</option>
@@ -110,16 +110,16 @@ window.onload = function() {
 }
           
 function getData() {
-   var message = document.getElementById("message");
-   message.innerHTML = "遠端資料載入中...";
+   var msg = document.getElementById("message");
+   msg.innerHTML = "遠端資料載入中...";
    pmgov_link('https://opendata.epa.gov.tw/webapi/Data/REWIQA/?$orderby=SiteName&$skip=0&$top=1000&format=json',"JSON");
-   message.innerHTML = "";
+   msg.innerHTML = "";
 }
           
 function getSite(){ 
   var site = document.getElementById("site").value;
-  var message = document.getElementById("message");
-  message.innerHTML = "讀取資料中...";
+  var msg = document.getElementById("message");
+  msg.innerHTML = "讀取資料中...";
   document.getElementById("data").innerHTML= "<table>" +
   '<tr><td>Site:</td><td>'+pmgov_get(site,"County")+'-'+pmgov_get(site,"SiteName")+'</td></tr>'+
   '<tr><td>AQI:</td><td>'+pmgov_get(site,"AQI")+'</td></tr>'+
@@ -143,6 +143,6 @@ function getSite(){
   '<tr><td>Latitude:</td><td>'+pmgov_get(site,"Latitude")+'</td></tr>'+  
   '<tr><td>Longitude:</td><td>'+pmgov_get(site,"Longitude")+'</td></tr>'+
   '</table>';
-  message.innerHTML = "";
+  msg.innerHTML = "";
 }
 </script>
