@@ -8,7 +8,7 @@ document.write('<div id="size_faceapidetect" style="position:absolute;display:no
 window.onload = function () {
 	var result = document.getElementById('result_faceapidetect');
 	var video = document.getElementById('gamevideo_faceapidetect');
-	var frame = document.getElementById("frame_faceapidetect").value;
+	var frame = document.getElementById("frame_faceapidetect");
 	var faceapiState = document.getElementById('faceapiState').innerHTML;
 	const modelPath = 'https://fustyles.github.io/webduino/faceapi_detect_20201012/';
 	let canvas;
@@ -61,7 +61,7 @@ window.onload = function () {
 		const detections = await faceapi.detectAllFaces(obj, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(document.getElementById("size_faceapidetect").innerHTML))
                 
-		if (frame==1) {
+		if (frame.value==1) {
 			faceapi.draw.drawDetections(canvas, resizedDetections)
 			faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
 			faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
@@ -101,7 +101,7 @@ window.onload = function () {
 			}
 
 			result.innerHTML+= i+",age,"+Math.round(age)+",gender,"+gender+",genderProbability,"+Round(genderProbability)+",emotion,"+maxEmotion+",neutral,"+Round(expressions.neutral)+",happy,"+Round(expressions.happy)+",sad,"+Round(expressions.sad)+",angry,"+Round(expressions.angry)+",fearful,"+Round(expressions.fearful)+",disgusted,"+Round(expressions.disgusted)+",surprised,"+Round(expressions.surprised)+",boxX,"+Round(detection._box._x)+",boxY,"+Round(detection._box._y)+",boxWidth,"+Round(detection._box._width)+",boxHeight,"+Round(detection._box._height)+"<br>";
-			if (frame==1) {
+			if (frame.value==1) {
 				new faceapi.draw.DrawTextField(
 					[
 						`${faceapi.round(age, 0)} years`,
