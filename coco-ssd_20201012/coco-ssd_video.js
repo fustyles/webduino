@@ -10,7 +10,7 @@ window.onload = function () {
 	var context = canvas.getContext('2d');
 	var mirrorimage = document.getElementById("mirrorimage_cocossd").value;
 	var cocossdState = document.getElementById('cocossdState').innerHTML;
-	var frame = Number(document.getElementById("frame_cocossd").value);
+	var frame = document.getElementById("frame_cocossd");
 	var result = document.getElementById('gamediv_cocossd'); 
 	var Model; 
 	var sourceTimer;  
@@ -62,7 +62,7 @@ window.onload = function () {
 					const y = predictions[i].bbox[1];
 					const width = predictions[i].bbox[2];
 					const height = predictions[i].bbox[3];
-					if (frame==1) {
+					if (frame.value==1) {
 						context.lineWidth = "3";
 						context.strokeStyle = "#00FFFF";
 						context.beginPath();
