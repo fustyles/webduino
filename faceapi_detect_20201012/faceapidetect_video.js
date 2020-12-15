@@ -57,10 +57,10 @@ window.onload = function () {
 			setTimeout(function(){DetectVideo(obj); }, 100);
 			return;
 		}
-console.log(frame);
+
 		const detections = await faceapi.detectAllFaces(obj, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(document.getElementById("size_faceapidetect").innerHTML))
-
+                
 		if (frame==1) {
 			faceapi.draw.drawDetections(canvas, resizedDetections)
 			faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
@@ -101,7 +101,7 @@ console.log(frame);
 			}
 
 			result.innerHTML+= i+",age,"+Math.round(age)+",gender,"+gender+",genderProbability,"+Round(genderProbability)+",emotion,"+maxEmotion+",neutral,"+Round(expressions.neutral)+",happy,"+Round(expressions.happy)+",sad,"+Round(expressions.sad)+",angry,"+Round(expressions.angry)+",fearful,"+Round(expressions.fearful)+",disgusted,"+Round(expressions.disgusted)+",surprised,"+Round(expressions.surprised)+",boxX,"+Round(detection._box._x)+",boxY,"+Round(detection._box._y)+",boxWidth,"+Round(detection._box._width)+",boxHeight,"+Round(detection._box._height)+"<br>";
-			if (frame.value==1) {
+			if (frame==1) {
 				new faceapi.draw.DrawTextField(
 					[
 						`${faceapi.round(age, 0)} years`,
