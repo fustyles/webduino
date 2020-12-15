@@ -11,7 +11,7 @@ window.onload = function () {
 	var mirrorimage = document.getElementById("mirrorimage_blazeface").value;
 	var result = document.getElementById('gamediv_blazeface');
 	var blazefaceState = document.getElementById('blazefaceState').innerHTML;
-	var frame = Number(document.getElementById("frame_blazeface").value);
+	var frame = document.getElementById("frame_blazeface");
 	var Model;
 	var sourceTimer;
 
@@ -74,7 +74,7 @@ window.onload = function () {
 						result.innerHTML += i + ",leftEar," + predictions[i].landmarks[5][0] + "," + predictions[i].landmarks[5][1] + "<br>";
 						result.innerHTML += i + ",bandingBox," + predictions[i].topLeft[0] + "," + predictions[i].topLeft[1] + "," + predictions[i].bottomRight[0] + "," + predictions[i].bottomRight[1] + "<br>";
 
-						if (frame==1) {
+						if (frame.value==1) {
 							for (j=0;j<=5;j++) {
 								const x = predictions[i].landmarks[j][0];
 								const y = predictions[i].landmarks[j][1];
@@ -91,7 +91,7 @@ window.onload = function () {
 					result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);
 			}  
 
-			if (frame==1) {
+			if (frame.value==1) {
 				for (let i = 0;i < predictions.length;i++) {
 					const start = predictions[i].topLeft;
 					const end = predictions[i].bottomRight;
