@@ -57,7 +57,7 @@ window.onload = function () {
 			setTimeout(function(){DetectVideo(obj); }, 100);
 			return;
 		}
-
+console.log(frame);
 		const detections = await faceapi.detectAllFaces(obj, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(document.getElementById("size_faceapidetect").innerHTML))
 
