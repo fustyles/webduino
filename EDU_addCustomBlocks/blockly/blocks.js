@@ -152,6 +152,8 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/coco-ssd_20201012/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/mobilenet_20201012/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/teachablemachine_20201012/blockly.json');
+		    
+		  Code.customTab.$__add__('https://fustyles.github.io/webduino/GameElements_20190131/blockly.json');
 				  
                   this.getInputTargetBlock("url").setFieldValue("", "TEXT");
           }
