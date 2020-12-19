@@ -13,112 +13,140 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_image/TeachableM
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script></head>    
 </head>
 <body>
-Model Link： 
-<input type="text" id="modelPath" size="40" value=""><br>
-<a href="https://teachablemachine.withgoogle.com/train/image" target="_blank">Train Model</a>&nbsp;&nbsp;&nbsp;
-<button type="button" onclick="LoadModel()">Load Model</button><br>
-<input type="file" id="selectImage" disabled="true"></input><br>
+<table>
+<tr><td>Model：</td><td>
+<select id="kind">
+<option value="image">image</option>
+<option value="pose">pose</option>
+</select>
+</td></tr>
+<tr><td>Model URL：</td><td><input type="text" id="modelPath" size="40" value=""></td></tr>
+<tr><td><a href="https://teachablemachine.withgoogle.com/train/image" target="_blank">Train Model</a></td>
+<td><button type="button" onclick="LoadModel()">Load Model</button></td>
+</tr>
+<tr><td>Open file：</td><td><input type="file" id="selectImage" disabled="true"></input></td></tr>
+</table>
+<br>
 <img id="OriginImage" style="display:none">
 <img id="ResizeImage"><br>
 <div id="result" style="color:red"></div>
   
 <script>
-var modelPath = document.getElementById('modelPath');
-var selectImage = document.getElementById('selectImage');
-var result = document.getElementById('result');
-var OriginImage = document.getElementById('OriginImage');	
-var ResizeImage = document.getElementById('ResizeImage');
-var ResizeImageWidth = 500;	
-let Model;
-  
-async function LoadModel() {
-	if (modelPath.value=="") {
-		result.innerHTML = "Please input Model Link.";
-		return;
-	}
-	else
-		result.innerHTML = "Please wait for loading model.";
-
-	const URL = modelPath.value;
-	const modelURL = URL + "model.json";
-	const metadataURL = URL + "metadata.json";
-
-	try {
-		Model = await tmImage.load(modelURL, metadataURL);
-		maxPredictions = Model.getTotalClasses();
-	}
-	catch (e){}
-
-
-	if (Model) {
-		result.innerHTML = "Please select one image.";
-		document.getElementById('selectImage').disabled = false;
-	}
-	else {
-		result.innerHTML = "Loading model failed.";
-		document.getElementById('selectImage').disabled = true;
-	}
-}
-  
-async function recognizeImage(Image) {
-	var data = "";
-	var maxClassName = "";
-	var maxProbability = "";
-	const prediction = await Model.predict(Image);
-	for (let i = 0; i < maxPredictions; i++) {
-		if (i==0) {
-			maxClassName = prediction[i].className;
-			maxProbability = prediction[i].probability;
+	var modelPath = document.getElementById('modelPath');
+	var selectImage = document.getElementById('selectImage');
+	var result = document.getElementById('result');
+	var OriginImage = document.getElementById('OriginImage');	
+	var ResizeImage = document.getElementById('ResizeImage');
+	var kind = document.getElementById('kind');
+	var ResizeImageWidth = 500;	
+	let model;
+	  
+	async function LoadModel() {
+		if (modelPath.value=="") {
+			result.innerHTML = "Please input Model Link.";
+			return;
 		}
-		else if (prediction[i].probability>maxProbability) {
-			maxClassName = prediction[i].className;
-			maxProbability = prediction[i].probability;
-		}
-		data += prediction[i].className + ", " + prediction[i].probability + "<br>";
-	}
-	result.innerHTML = data + "<br>Max Probability : " + maxClassName + ", " + maxProbability;
-}
-    
-selectImage.onchange = function (event) {
-  var target = event.target || window.event.srcElement;
-  var files = target.files;
-  if (FileReader && files && files.length) {
-    var fr = new FileReader();
-    fr.onload = function () {
-      result.innerHTML = "Loading image to recognize...";     
-      OriginImage.src = fr.result;
-    }
-    fr.readAsDataURL(files[0]);
-  }
-}
-  
-OriginImage.onload = function (event) {
-  try { 
-    document.createEvent("TouchEvent"); 
-    var width = document.body.clientWidth;
-  }
-  catch(e) { 
-    var width = ResizeImageWidth;
-  } 
-  
-  if (OriginImage.height<OriginImage.width) {
-    var height = width*OriginImage.height/OriginImage.width; 
-  }
-  else {
-    var height = width;
-    width = height*OriginImage.width/OriginImage.height; 
-  }
+		else
+			result.innerHTML = "Please wait for loading model.";
 
-  ResizeImage.width = width;
-  ResizeImage.height = height;  
-  ResizeImage.src = OriginImage.src;
-}
-  
-ResizeImage.onload = function (event) {
-  if (Model) recognizeImage(ResizeImage);
-}
+		const URL = modelPath.value;
+		const modelURL = URL + "model.json";
+		const metadataURL = URL + "metadata.json";
+
+		try {
+			if (kind.value=="image") {
+				model = await tmImage.load(modelURL, metadataURL);
+			}
+			else if (kind.value=="pose") {
+				model = await tmPose.load(modelURL, metadataURL);
+			}
+			maxPredictions = model.getTotalClasses();
+			cnsole.log(maxPredictions);
+		}
+		catch (e){}
+
+
+		if (model) {
+			result.innerHTML = "Please select one image.";
+			document.getElementById('selectImage').disabled = false;
+		}
+		else {
+			result.innerHTML = "Loading model failed.";
+			document.getElementById('selectImage').disabled = true;
+		}
+	}
+	  
+	async function recognizeImage(Image) {
+		var data = "";
+		var maxClassName = "";
+		var maxProbability = "";
+		
+		if (kind.value=="image")
+			var prediction = await model.predict(Image);
+		else if (kind.value=="pose") {
+			var { pose, posenetOutput } = await model.estimatePose(Image);
+			var prediction = await model.predict(posenetOutput);
+		}
+		
+		if (maxPredictions>0) {
+			for (let i = 0; i < maxPredictions; i++) {
+				if (i==0) {
+					maxClassName = prediction[i].className;
+					maxProbability = prediction[i].probability;
+				}
+				else if (prediction[i].probability>maxProbability) {
+					maxClassName = prediction[i].className;
+					maxProbability = prediction[i].probability;
+				}
+				data += prediction[i].className + ", " + prediction[i].probability + "<br>";
+			}
+			result.innerHTML = data + "<br>Max Probability : " + maxClassName + ", " + maxProbability;		
+		}
+		else
+			result.innerHTML = "";
+	}
+		
+	selectImage.onchange = function (event) {
+	  var target = event.target || window.event.srcElement;
+	  var files = target.files;
+	  if (FileReader && files && files.length) {
+		var fr = new FileReader();
+		fr.onload = function () {
+		  result.innerHTML = "Loading image to recognize...";     
+		  OriginImage.src = fr.result;
+		}
+		fr.readAsDataURL(files[0]);
+	  }
+	}
+	  
+	OriginImage.onload = function (event) {
+	  try { 
+		document.createEvent("TouchEvent"); 
+		var width = document.body.clientWidth;
+	  }
+	  catch(e) { 
+		var width = ResizeImageWidth;
+	  } 
+	  
+	  if (OriginImage.height<OriginImage.width) {
+		var height = width*OriginImage.height/OriginImage.width; 
+	  }
+	  else {
+		var height = width;
+		width = height*OriginImage.width/OriginImage.height; 
+	  }
+
+	  ResizeImage.width = width;
+	  ResizeImage.height = height;  
+	  ResizeImage.src = OriginImage.src;
+	}
+	  
+	ResizeImage.onload = function (event) {
+	  if (model) recognizeImage(ResizeImage);
+	}
 </script>
 
 </body>
