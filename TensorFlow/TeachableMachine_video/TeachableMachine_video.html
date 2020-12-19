@@ -8,7 +8,7 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_video/TeachableM
 
 <!DOCTYPE html>
 <head>
-  <title>Teachable Machine</title>
+  <title>Teachable Machine (video)</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
@@ -26,21 +26,23 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_video/TeachableM
 <option value="pose">pose</option>
 </select>
 </td></tr>
-<tr><td>Model URL：</td><td><input type="text" id="modelUrl" size="40" value=""></td></tr>
-<tr><td><a href="https://teachablemachine.withgoogle.com/train/image" target="_blank">Train Model</a></td><td><button type="button" onclick="LoadModel()">Start Recognition</button></td></tr>
+<tr><td>Model URL：</td><td><input type="text" id="modelPath" size="40" value=""></td></tr>
+<tr><td><a href="https://teachablemachine.withgoogle.com/train/image" target="_blank">Train Model</a></td>
+<td><button type="button" onclick="LoadModel()">Start Recognition</button></td>
+</tr>
 </table>
 <br>
 <div id="result" style="color:red"></div>
 
 <script type="text/javascript">
   var video = document.getElementById('video');
-  var modelUrl = document.getElementById('modelUrl');
+  var modelPath = document.getElementById('modelPath');
   var result = document.getElementById('result'); 
   var kind = document.getElementById('kind');
   let model; 
   
   async function LoadModel() {
-	if (modelUrl.value=="") {
+	if (modelPath.value=="") {
 		result.innerHTML = "Please input Model Link.";
 		return;
 	}
@@ -48,7 +50,7 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_video/TeachableM
 		result.innerHTML = "Please wait for loading model.";
 
 	// the link to your model provided by Teachable Machine export panel
-	const URL = modelUrl.value;
+	const URL = modelPath.value;
 	const modelURL = URL + "model.json";
 	const metadataURL = URL + "metadata.json";
 	try {
@@ -118,30 +120,35 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_video/TeachableM
     // run the webcam image through the image model
     async function predict() {
         // predict can take in an image, video or canvas html element
-	var data = "";
-	var maxClassName = "";
-	var maxProbability = "";
+		var data = "";
+		var maxClassName = "";
+		var maxProbability = "";
 		if (kind.value=="image")
 			var prediction = await model.predict(video);
 		else if (kind.value=="pose") {
 			var { pose, posenetOutput } = await model.estimatePose(video);
 			var prediction = await model.predict(posenetOutput);
 		}		
-        for (let i = 0; i < maxPredictions; i++) {
-			if (i==0) {
-				maxClassName = prediction[i].className;
-				maxProbability = prediction[i].probability;
-			}
-			else {
-				if (prediction[i].probability>maxProbability) {
+
+		if (maxPredictions>0) {
+			for (let i = 0; i < maxPredictions; i++) {
+				if (i==0) {
 					maxClassName = prediction[i].className;
 					maxProbability = prediction[i].probability;
 				}
+				else {
+					if (prediction[i].probability>maxProbability) {
+						maxClassName = prediction[i].className;
+						maxProbability = prediction[i].probability;
+					}
+				}
+				data += prediction[i].className + ": " + prediction[i].probability.toFixed(2) + "<br>";
 			}
-            data += prediction[i].className + ": " + prediction[i].probability.toFixed(2) + "<br>";
-        }
-	result.innerHTML = data + "Result: " + maxClassName + " (" + maxProbability + ")";
-	setTimeout(function(){predict(); }, 100);
+			result.innerHTML = data + "<br>Max Probability : " + maxClassName + ", " + maxProbability;		
+		}
+		else
+			result.innerHTML = "";
+		setTimeout(function(){predict(); }, 100);
     }
 </script>
 
