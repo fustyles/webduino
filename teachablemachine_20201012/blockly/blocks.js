@@ -60,8 +60,8 @@ Blockly.Blocks['teachablemachine_result'] = {
       .appendField(Blockly.Msg.TEACHABLEMACHINE_PROPORTION_SHOW)
       .appendField(new Blockly.FieldDropdown([
 	  ["",""],
-	  ["maxClass","maxClass"], 
-	  ["maxProbability","maxProbability"]
+	  [Blockly.Msg.TEACHABLEMACHINE_MAXCLASS_SHOW,"maxClass"], 
+	  [Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW,"maxProbability"]
 	  ]), "result_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
