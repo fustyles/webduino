@@ -43,6 +43,7 @@ Blockly.Blocks['telegram_image'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TELEGRAM_ID);
+  this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
