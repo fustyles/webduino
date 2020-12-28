@@ -42,7 +42,7 @@ Blockly.Blocks['telegram_image'] = {
   this.appendValueInput("telegram_videoid")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Element ID");
+      .appendField(Blockly.Msg.TELEGRAM_ID);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
