@@ -155,3 +155,13 @@ Blockly.Blocks['faceapirecognize_startvideo_stream'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['faceapirecognize_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
