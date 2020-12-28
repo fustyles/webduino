@@ -54,3 +54,8 @@ Blockly.JavaScript['faceapirecognize_startvideo_stream'] = function(block) {
   var code = 'faceapirecognize_startvideo_stream(' + value_src_ + ');\n';
   return code;
 };
+
+Blockly.JavaScript['faceapirecognize_canvas_get'] = function(block) { 
+  var code = '"faceapirecognize"';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
