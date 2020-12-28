@@ -36,6 +36,9 @@ Blockly.Blocks['telegram_image'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("ChatID"); 
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.TELEGRAM_VIDEO,"video"], [Blockly.Msg.TELEGRAM_CANVAS,"canvas"], [Blockly.Msg.TELEGRAM_IMAGE,"image"]]), "telegram_source");
   this.appendValueInput("telegram_videoid")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
