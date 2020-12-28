@@ -65,6 +65,8 @@ Blockly.JavaScript['linenotify_image'] = function (block) {
     notify_videoid = notify_videoid.substring(1,notify_videoid.length-1);	
   if ((notify_videoid.indexOf("'")==0)&&(notify_videoid.lastIndexOf("'")==notify_videoid.length-1))
     notify_videoid = notify_videoid.substring(1,notify_videoid.length-1);
+  if ((notify_videoid.indexOf('"')==0)&&(notify_videoid.lastIndexOf('"')==notify_videoid.length-1))
+    notify_videoid = notify_videoid.substring(1,notify_videoid.length-1);	
 	console.log(notify_videoid);
   var source_id;
   if (notify_source=="video")
