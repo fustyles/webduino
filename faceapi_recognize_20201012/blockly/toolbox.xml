@@ -74,5 +74,7 @@
         <field name="NUM">0</field>
       </block>
     </value>     
-  </block> 
+  </block>
+  <block type="faceapirecognize_canvas_get">
+  </block>  
 </category>
