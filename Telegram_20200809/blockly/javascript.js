@@ -36,7 +36,7 @@ Blockly.JavaScript['telegram_image'] = function (block) {
   else if (telegram_source=="image")
 	source_id = 'gameimage_'+telegram_videoid;
 	
-  var code = 'telegram_push_image('+telegram_script+','+telegram_token+','+telegram_chatid+','+source_id+');\n';
+  var code = 'telegram_push_image('+telegram_script+','+telegram_token+','+telegram_chatid+',"'+source_id+'");\n';
   return code; 
 };
 
