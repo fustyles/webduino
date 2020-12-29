@@ -1731,7 +1731,7 @@ Blockly.JavaScript['video_base64'] = function (block) {
 
 Blockly.JavaScript['video_base64_spreadsheet'] = function (block) {
   var value_source_ = block.getFieldValue('source_');
-  var value_height_ = block.getFieldValue('height_');
+  var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
 	
   if ((value_id_.indexOf("(")==0)&&(value_id_.lastIndexOf(")")==value_id_.length-1))
