@@ -82,7 +82,12 @@
       <block type="text">
         <field name="TEXT"></field>
       </block>
-    </value>  
+    </value>
+    <value name="foldername_">
+      <block type="text">
+        <field name="TEXT">FaceRecognition</field>
+      </block>
+    </value>  	  
     <value name="filename_">
       <block type="text">
         <field name="TEXT">FaceRecognition.jpg</field>
