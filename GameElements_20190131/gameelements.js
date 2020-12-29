@@ -3641,7 +3641,7 @@ function HextoRgb(color) {
   }
 
   
-  function video_base64_drive(input_id, myFileName, myScriptUrl) {
+  function video_base64_drive(input_id, myFolderName, myFileName, myScriptUrl) {
     if (document.getElementById(input_id)) {	
 		var obj = document.getElementById(input_id);
 		var canvas = document.createElement('canvas');
@@ -3664,6 +3664,7 @@ function HextoRgb(color) {
 				},				
 				"url": myScriptUrl,
 				"data": {
+							"myFolderName":myFolderName,
 							"myFileName":myFileName,
 							"myFile":myFile					
 						},
