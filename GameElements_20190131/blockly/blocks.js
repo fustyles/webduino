@@ -4481,6 +4481,10 @@ Blockly.Blocks['video_base64_drive'] = {
       .appendField(Blockly.Msg.ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.VIDEO_BASE64_DRIVE);
+  this.appendValueInput("foldername_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.VIDEO_BASE64_FOLDERNAME);	  
   this.appendValueInput("filename_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
