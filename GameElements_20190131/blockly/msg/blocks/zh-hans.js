@@ -451,3 +451,4 @@ Blockly.Msg.CANVAS_SETIMAGEDATA = "设定像素资料";
 Blockly.Msg.VIDEO_BASE64_DRIVE = "截图插入Google云端硬碟";
 Blockly.Msg.VIDEO_BASE64_FILENAME = "档案名称";
 Blockly.Msg.VIDEO_BASE64_SCRIPTURL = "Script网址";
+Blockly.Msg.VIDEO_BASE64_FOLDERNAME = "资料夹名称";
