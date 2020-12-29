@@ -1731,6 +1731,7 @@ Blockly.JavaScript['video_base64'] = function (block) {
 
 Blockly.JavaScript['video_base64_spreadsheet'] = function (block) {
   var value_source_ = block.getFieldValue('source_');
+  var value_height_ = block.getFieldValue('height_');
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
 	
   if ((value_id_.indexOf("(")==0)&&(value_id_.lastIndexOf(")")==value_id_.length-1))
@@ -1755,7 +1756,7 @@ Blockly.JavaScript['video_base64_spreadsheet'] = function (block) {
   var value_spreadsheet_script_ = Blockly.JavaScript.valueToCode(block, 'spreadsheet_script_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_format_ = block.getFieldValue('format_');
   
-  var code = 'video_base64_spreadsheet("' + source_id + '",'+value_spreadsheeturl_+','+value_spreadsheetname_+','+value_column_+','+value_row_+',"'+value_format_+'",'+value_spreadsheet_script_+');\n';
+  var code = 'video_base64_spreadsheet("' + source_id + '",'+value_spreadsheeturl_+','+value_spreadsheetname_+','+value_column_+','+value_row_+','+value_height_+',"'+value_format_+'",'+value_spreadsheet_script_+');\n';
   return code;
 };
 
