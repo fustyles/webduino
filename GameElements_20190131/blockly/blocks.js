@@ -4450,6 +4450,10 @@ Blockly.Blocks['video_base64_spreadsheet'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg.VIDEO_BASE64_ROW);
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.HEIGHT);	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.VIDEO_BASE64_FORMAT)
 	  .setAlign(Blockly.ALIGN_RIGHT)
