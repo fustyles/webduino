@@ -3639,7 +3639,51 @@ function HextoRgb(color) {
 		document.getElementById("tmp").parentNode.removeChild(document.getElementById("tmp"));
 	}
   }
+
   
+  function video_base64_drive(input_id, myFileName, myScriptUrl) {
+    if (document.getElementById(input_id)) {	
+		var obj = document.getElementById(input_id);
+		var canvas = document.createElement('canvas');
+		canvas.id = 'tmp';
+		canvas.style.position = "absolute";
+		canvas.style.display = "none";
+		document.body.appendChild(canvas);
+		canvas.setAttribute("width", obj.width);
+		canvas.setAttribute("height", obj.height);
+		var context = canvas.getContext("2d");
+		try {
+			context.drawImage(obj,0,0,obj.width,obj.height);
+			var myFile = canvas.toDataURL();
+
+			$.ajax({
+				"type": "POST",
+				"dataType": "json",
+				"headers": { 
+				  "Content-Type": "application/x-www-form-urlencoded"
+				},				
+				"url": myScriptUrl,
+				"data": {
+							"myFileName":myFileName,
+							"myFile":myFile					
+						},
+				success: function(jsonp)
+				{
+				  console.log(jsonp);
+				},
+				error: function(jqXHR, textStatus, errorThrown)
+				{
+				  //console.log(errorThrown);
+				}
+			 });
+		}
+		catch(e) {
+			console.log(e);
+		}
+		document.getElementById("tmp").parentNode.removeChild(document.getElementById("tmp"));
+	}
+  }
+	
   function ajax_getdata_json(input_json, input_index, input_fieldname) {
 	  if(!input_json) return "";
 	  var json = eval(input_json);
@@ -3813,4 +3857,5 @@ function HextoRgb(color) {
   window.ajax_getdata_json = ajax_getdata_json;
   window.ajax_getdata_json_count = ajax_getdata_json_count;
   window.video_base64_spreadsheet = video_base64_spreadsheet;
+  window.video_base64_drive = video_base64_drive;
 }(window, window.document));
