@@ -1779,10 +1779,11 @@ Blockly.JavaScript['video_base64_drive'] = function (block) {
   else if (value_source_=="image")
 	source_id = 'gameimage_'+value_id_;
 	
+  var value_foldername_ = Blockly.JavaScript.valueToCode(block, 'foldername_', Blockly.JavaScript.ORDER_ATOMIC);	
   var value_filename_ = Blockly.JavaScript.valueToCode(block, 'filename_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_drive_script_ = Blockly.JavaScript.valueToCode(block, 'drive_script_', Blockly.JavaScript.ORDER_ATOMIC);
   
-  var code = 'video_base64_drive("' + source_id + '",'+value_filename_+','+value_drive_script_+');\n';
+  var code = 'video_base64_drive("' + source_id + '",'+value_foldername_+','+value_filename_+','+value_drive_script_+');\n';
   return code;
 };
 
