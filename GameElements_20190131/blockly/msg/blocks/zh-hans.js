@@ -448,3 +448,6 @@ Blockly.Msg.VIDEO_BASE64_FORMAT = "格式";
 Blockly.Msg.VARIABLE_BOARD = "函式代入官方开发板board变数";
 Blockly.Msg.CANVAS_GETIMAGEDATA = "取得像素资料";
 Blockly.Msg.CANVAS_SETIMAGEDATA = "设定像素资料";
+Blockly.Msg.VIDEO_BASE64_DRIVE = "截图插入Google云端硬碟";
+Blockly.Msg.VIDEO_BASE64_FILENAME = "档案名称";
+Blockly.Msg.VIDEO_BASE64_SCRIPTURL = "Script网址";
