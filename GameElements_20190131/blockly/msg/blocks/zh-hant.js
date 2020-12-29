@@ -449,5 +449,6 @@ Blockly.Msg.VARIABLE_BOARD = "函式代入官方開發板board變數";
 Blockly.Msg.CANVAS_GETIMAGEDATA = "取得像素資料";
 Blockly.Msg.CANVAS_SETIMAGEDATA = "設定像素資料";
 Blockly.Msg.VIDEO_BASE64_DRIVE = "截圖插入Google雲端硬碟";
+Blockly.Msg.VIDEO_BASE64_FOLDERNAME = "資料夾名稱";	  
 Blockly.Msg.VIDEO_BASE64_FILENAME = "檔案名稱";	  	  
 Blockly.Msg.VIDEO_BASE64_SCRIPTURL = "Script網址";
