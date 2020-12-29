@@ -1760,6 +1760,32 @@ Blockly.JavaScript['video_base64_spreadsheet'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['video_base64_drive'] = function (block) {
+  var value_source_ = block.getFieldValue('source_');
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+	
+  if ((value_id_.indexOf("(")==0)&&(value_id_.lastIndexOf(")")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);	
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);	
+	
+  var source_id;
+  if (value_source_=="video")
+	source_id = 'gamevideo_'+value_id_;
+  else if (value_source_=="canvas")
+	source_id = 'gamecanvas_'+value_id_;
+  else if (value_source_=="image")
+	source_id = 'gameimage_'+value_id_;
+	
+  var value_filename_ = Blockly.JavaScript.valueToCode(block, 'filename_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_drive_script_ = Blockly.JavaScript.valueToCode(block, 'drive_script_', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  var code = 'video_base64_drive("' + source_id + '",'+value_filename_+','+value_drive_script_+');\n';
+  return code;
+};
+
 Blockly.JavaScript['custom_comment'] = function (block) {
   var text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
   if ((text.indexOf("'")==0)&&(text.lastIndexOf("'")==text.length-1))
