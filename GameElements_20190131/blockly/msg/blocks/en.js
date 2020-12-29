@@ -451,3 +451,4 @@ Blockly.Msg.CANVAS_SETIMAGEDATA = "Set image data";
 Blockly.Msg.VIDEO_BASE64_DRIVE = "Insert still to Google Drive";
 Blockly.Msg.VIDEO_BASE64_FILENAME = "FILE NAME";
 Blockly.Msg.VIDEO_BASE64_SCRIPTURL = "Script URL";
+Blockly.Msg.VIDEO_BASE64_FOLDERNAME = "Folder Name";
