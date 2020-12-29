@@ -4470,6 +4470,33 @@ Blockly.Blocks['video_base64_spreadsheet'] = {
   }
 };
 
+Blockly.Blocks['video_base64_drive'] = {
+  init: function () {
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)		  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.VIDEO,"video"], [Blockly.Msg.CANVAS,"canvas"], [Blockly.Msg.IMAGE,"image"]]), "source_");
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.ID);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.VIDEO_BASE64_DRIVE);
+  this.appendValueInput("filename_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.VIDEO_BASE64_FILENAME);	  	  
+  this.appendValueInput("drive_script_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL); 	  
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['custom_comment'] = {
   init: function() {
   this.appendValueInput("text")
