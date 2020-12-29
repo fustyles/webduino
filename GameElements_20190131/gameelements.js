@@ -3592,7 +3592,7 @@ function HextoRgb(color) {
 	}
   }
   
-  function video_base64_spreadsheet(input_id, mySpreadsheet, mySpreadsheetName, myCellCol, myCellRow, myFileFormat, myScriptUrl) {
+  function video_base64_spreadsheet(input_id, mySpreadsheet, mySpreadsheetName, myCellCol, myCellRow, myCellColHeight, myFileFormat, myScriptUrl) {
     if (document.getElementById(input_id)) {	
 		var obj = document.getElementById(input_id);
 		var canvas = document.createElement('canvas');
@@ -3619,6 +3619,7 @@ function HextoRgb(color) {
 							"mySpreadsheetName":mySpreadsheetName,
 							"myCellCol":myCellCol,
 							"myCellRow":myCellRow,
+							"myCellColHeight":myCellColHeight,
 							"myFile":myFile,
 							"myFileFormat":myFileFormat					
 						},
