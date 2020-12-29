@@ -77,6 +77,23 @@
       </block>
     </value> 
   </block> 
+  <block type="video_base64_drive">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>  
+    <value name="filename_">
+      <block type="text">
+        <field name="TEXT">FaceRecognition.jpg</field>
+      </block>
+    </value>  	  
+    <value name="drive_script_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+  </block> 
   <block type="image_boundary">
     <value name="left_">
       <block type="math_number">
