@@ -4,7 +4,8 @@ Blockly.Blocks['tello_initial'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TELLO_SHOW)
-      .appendField(Blockly.Msg.INITIAL_SHOW); 
+      .appendField(Blockly.Msg.INITIAL_SHOW)
+      .appendField(Blockly.Msg.IP_SHOW); 
   this.appendValueInput("delaytime_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -16,20 +17,6 @@ Blockly.Blocks['tello_initial'] = {
   this.setHelpUrl('https://dl-cdn.ryzerobotics.com/downloads/Tello/Tello_SDK_2.0_%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.pdf');
   }
 };
-
-
-
-Blockly.Msg.COMMAND_SHOW = "進入程控模式";	  
-Blockly.Msg.TAKEOFF_SHOW = "自動起飛";
-Blockly.Msg.LAND_SHOW = "自動降落";
-Blockly.Msg.EMERGENCY_SHOW = "停止轉動";	
-Blockly.Msg.UP_SHOW = "向上飛行";
-Blockly.Msg.DOWN_SHOW = "向下飛行";
-Blockly.Msg.LEFT_SHOW = "向左飛行";
-Blockly.Msg.RIGHT_SHOW = "向右飛行";
-Blockly.Msg.FORWARD_SHOW = "向前飛行";
-Blockly.Msg.BACK_SHOW = "向後飛行";
-
 
 Blockly.Blocks['tello_basic'] = {
   init: function() {
