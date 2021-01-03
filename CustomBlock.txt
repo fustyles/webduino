@@ -21,7 +21,8 @@ https://nodejs.org/zh-tw/download/
 https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.js
 https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.js.bat
 3.執行Webduino_Tello.js.bat
-
+4.Tello僅AP模式，以桌機wifi連接Tello AP，IP設為192.168.10.1
+5.Tello edu有AP與Station兩種模式
 
 (新版) QR code辨識 (instascan)
 https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json
