@@ -4,11 +4,11 @@ Blockly.Blocks['tello_initial'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TELLO_SHOW)
-      .appendField(Blockly.Msg.INITIAL_SHOW)
       .appendField(Blockly.Msg.IP_SHOW); 
   this.appendValueInput("delaytime_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.INITIAL_SHOW)
       .appendField(Blockly.Msg.DELAYTIME_SHOW);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
