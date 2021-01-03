@@ -13,6 +13,15 @@ Webbit教育版 & KebbixWebbit 新增自訂積木
 https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json
 Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
+Tello
+https://fustyles.github.io/webduino/Tello_20210103/blockly.json
+1.安裝node.js
+https://nodejs.org/zh-tw/download/
+2.下載兩個檔放在同目錄下
+https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.js
+https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.js.bat
+3.執行Webduino_Tello.js.bat
+
 
 (新版) QR code辨識 (instascan)
 https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json
