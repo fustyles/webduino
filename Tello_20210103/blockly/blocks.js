@@ -1,3 +1,22 @@
+Blockly.Blocks['tello_initial'] = {
+  init: function() {
+  this.appendValueInput("ip_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_SHOW)
+      .appendField(Blockly.Msg.INITIAL_SHOW); 
+  this.appendValueInput("delaytime_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.DELAYTIME_SHOW);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(65);
+  this.setHelpUrl('https://dl-cdn.ryzerobotics.com/downloads/Tello/Tello_SDK_2.0_%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.pdf');
+  }
+};
+
 Blockly.Blocks['tello_basic'] = {
   init: function() {
   this.appendValueInput("ip_")

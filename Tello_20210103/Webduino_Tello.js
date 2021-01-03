@@ -30,7 +30,7 @@ var res_receive_cnt = 5;
 // var PORT2 = 41235;
 // var HOST2 = '127.0.0.1';
 
-var blockCmd = ['emergency','rc','stop']  // 阻塞指令
+var blockCmd = ['emergency','rc','stop']   // 阻塞指令
 var notBlockCmd = ['reset_all']            // 非阻塞，遇到直接执行下一个指令
 
 var dgram = require('dgram');
@@ -38,9 +38,9 @@ const client = dgram.createSocket('udp4');
 client.bind(localPort);
 const server = dgram.createSocket('udp4');
 
-// 维护一个命令数组
+// 維護一個命令組
 var order = []
-// 正在执行等待cmd，则锁住
+// 若正在執行等待cmd，則鎖住
 let lock = false
 
 let send_ack_flag = 0
@@ -57,7 +57,7 @@ let sendMethod = function (cmd)
 	{
 		if (err) 
 		{
-			console.log('连接出错', err)
+			console.log('Connection failed', err)
 			throw err;
 		}
 	});
@@ -98,7 +98,7 @@ let sendCmd = function (cmd)
 	}
 
 	order.push(cmd);
-	!lock && carryCMD(); // 每次第一次触发sendCmd时候， 触发执行。之所以这么做，是因为所有的carrycmd都是在接收到回复时被触发的，但必须有第一个主动发送来产生第一次的回复触发
+	!lock && carryCMD(); // 每次第一次觸發sendCmd的時候， 觸發執行。之所以這麼做，是因為所有的carrycmd都是在接收到回复時被觸發的，但必須有第一個主動發送來產生第一次的回复觸發
 };
 
 
@@ -152,7 +152,7 @@ client.on('message', function (msg, info) {
 	}	
 });
 
-// 监听本机server
+// 監聽本機server
 let listenState = function () 
 {
 	server.on('message', (msg, rinfo) => 
@@ -166,16 +166,6 @@ let listenState = function ()
 
 	server.bind(PORT2, HOST2);
 };
-
-// 发送command到tello
-let msgCommand = Buffer.from('command');
-
-client.send(msgCommand, 0, msgCommand.length, PORT, HOST, (err) => {
-  if(err) {
-	console.log('连接出错，连接关闭', err)
-    client.close();
-  }
-});
 
 console.log('---------------------------------------');
 console.log('Tello Ext running at http://127.0.0.1:8001/');
@@ -205,6 +195,17 @@ http.createServer(function (request, response)
 		order = [];
 		lock = false
 		response.end('reset');
+	}
+	else if (command=='command') {
+		// 發送command到tello
+		let msgCommand = Buffer.from('command');
+
+		client.send(msgCommand, 0, msgCommand.length, PORT, HOST, (err) => {
+		  if(err) {
+			console.log('Connection failed', err)
+			throw err;
+		  }
+		});
 	}
 	else if(command=='takeoff') {
 		sendCmd('command');

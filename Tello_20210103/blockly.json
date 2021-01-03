@@ -1,5 +1,5 @@
 {
-  "types": ["tello_basic"],
+  "types": ["tello_initial","tello_basic"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
