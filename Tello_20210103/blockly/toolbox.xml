@@ -11,7 +11,41 @@
       </block>
     </value>
   </block>
-  <block type="tello_basic">
+  <block type="tello_wifi">
+    <value name="ip_">
+      <block type="text">
+        <field name="TEXT">192.168.10.1</field>
+      </block>
+    </value>    
+    <value name="ssid_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="pass_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>	
+    <value name="delaytime_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>
+  </block>   
+  <block type="tello_cmd1">
+    <value name="ip_">
+      <block type="text">
+        <field name="TEXT">192.168.10.1</field>
+      </block>
+    </value>    
+    <value name="delaytime_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>
+  </block>
+  <block type="tello_cmd2">
     <value name="ip_">
       <block type="text">
         <field name="TEXT">192.168.10.1</field>
@@ -28,4 +62,21 @@
       </block>
     </value>
   </block>
+  <block type="tello_cmd3">
+    <value name="ip_">
+      <block type="text">
+        <field name="TEXT">192.168.10.1</field>
+      </block>
+    </value>    
+    <value name="val_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="delaytime_">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>
+  </block> 
  </category>

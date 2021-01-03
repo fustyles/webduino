@@ -1,5 +1,5 @@
 {
-  "types": ["tello_initial","tello_basic"],
+  "types": ["tello_initial","tello_wifi","tello_cmd1","tello_cmd2","tello_cmd3"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",

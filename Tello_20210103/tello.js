@@ -4,9 +4,7 @@
 
   'use strict';
 
-  function execURL(input_url) {
-    console.log(input_url.trim());
-	
+  function tello_command(input_url) {
     var innerHTML_ = '<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation" src="' + input_url.trim() + '" style="width:240px;height:320px" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen; geolocation; microphone; camera"></iframe>';
     
     if (document.getElementById("div_tello")) {
@@ -24,6 +22,6 @@
     }
   }
 
-  window.execURL = execURL;
+  window.tello_command = tello_command;
 
 }(window, window.document));
