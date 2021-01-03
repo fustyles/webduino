@@ -17,6 +17,20 @@ Blockly.Blocks['tello_initial'] = {
   }
 };
 
+
+
+Blockly.Msg.COMMAND_SHOW = "進入程控模式";	  
+Blockly.Msg.TAKEOFF_SHOW = "自動起飛";
+Blockly.Msg.LAND_SHOW = "自動降落";
+Blockly.Msg.EMERGENCY_SHOW = "停止轉動";	
+Blockly.Msg.UP_SHOW = "向上飛行";
+Blockly.Msg.DOWN_SHOW = "向下飛行";
+Blockly.Msg.LEFT_SHOW = "向左飛行";
+Blockly.Msg.RIGHT_SHOW = "向右飛行";
+Blockly.Msg.FORWARD_SHOW = "向前飛行";
+Blockly.Msg.BACK_SHOW = "向後飛行";
+
+
 Blockly.Blocks['tello_basic'] = {
   init: function() {
   this.appendValueInput("ip_")
@@ -25,33 +39,33 @@ Blockly.Blocks['tello_basic'] = {
       .appendField(Blockly.Msg.TELLO_SHOW)	  
       .appendField(Blockly.Msg.IP_SHOW);
   this.appendDummyInput() 
-      .appendField(Blockly.Msg.COMMAND_SHOW)
+      .appendField(Blockly.Msg.CMD_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["command","command"],	  
-		["takeoff","takeoff"],
-		["land","land"],
-		["emergency","emergency"],		
-		["up [20-500]","up"],	
-		["down [20-500]","down"],	
-		["left [20-500])","left"],	
-		["right [20-500]","right"],	
-		["forward [20-500]","forward"],
-		["back [20-500]","back"],	
-		["cw [1-360]","cw"],	
-		["ccw [1-360]","ccw"],	
+		[Blockly.Msg.COMMAND_SHOW,"command"],	  
+		[Blockly.Msg.TAKEOFF_SHOW,"takeoff"],
+		[Blockly.Msg.LAND_SHOW,"land"],
+		[Blockly.Msg.EMERGENCY_SHOW,"emergency"],		
+		[Blockly.Msg.UP_SHOW+" [20-500]","up"],	
+		[Blockly.Msg.DOWN_SHOW+" [20-500]","down"],	
+		[Blockly.Msg.LEFT_SHOW+" [20-500])","left"],	
+		[Blockly.Msg.RIGHT_SHOW+" [20-500]","right"],	
+		[Blockly.Msg.FORWARD_SHOW+" [20-500]","forward"],
+		[Blockly.Msg.BACK_SHOW+" [20-500]","back"],	
+		[Blockly.Msg.CW_SHOW+" [1-360]","cw"],	
+		[Blockly.Msg.CCW_SHOW+" [1-360]","ccw"],	
 		["flip (l/r/f/b)","flip"],	
-		["go (x y z speed)","go"],	
-		["stop","stop"],	
+		[Blockly.Msg.GO_SHOW+" (x y z speed)","go"],	
+		[Blockly.Msg.STOP_SHOW,"stop"],	
 		["curve (x1 y1 z1 x2 y2 z2 speed)","curve"],
 		["jump (x y z speed yaw mid1 mid2)","jump"],	
-		["speed [10-100]","speed"],	
+		[Blockly.Msg.SPEED_SHOW+" [10-100]","speed"],	
 		["rc (a b c d)[-100-100]","rc"],	
-		["wifi (ssid pass)","wifi"],	
+		[Blockly.Msg.WIFI_SHOW+" (ssid pass)","wifi"],	
 		["mon","mon"],	
 		["moff","moff"],	
 		["mdirection[0/1/2]","mdirection"],
-		["ap (ssid pass)","ap"],			
-  ]), "command_"); 
+		[Blockly.Msg.AP_SHOW+" (ssid pass)","ap"]
+  ]), "cmd_"); 
   this.appendValueInput("val_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
