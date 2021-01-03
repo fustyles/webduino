@@ -22,8 +22,8 @@ https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.j
 https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.js.bat
 3.執行Webduino_Tello.js.bat轉傳指令
 4.Tello僅AP模式，以桌機wifi連接Tello AP，IP設為192.168.10.1
-5.Tello edu有AP模式與Station模式，可以指令設定Station帳密切換模式。
-6.電源按鍵按5秒可回復原廠設定AP模式。
+5.Tello edu有AP模式與Station模式，可以積木指令設定Station連線帳密切換模式。
+6.電源按鍵按5秒可回復原廠設定回到AP模式。
 
 (新版) QR code辨識 (instascan)
 https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json
