@@ -15,12 +15,12 @@ Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks
 
 Tello (限教育版)
 https://fustyles.github.io/webduino/Tello_20210103/blockly.json
-1.安裝node.js
+1.安裝Node.js
 https://nodejs.org/zh-tw/download/
 2.下載兩個檔放在同目錄下
 https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.js
 https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.js.bat
-3.執行Webduino_Tello.js.bat
+3.執行Webduino_Tello.js.bat轉傳指令
 4.Tello僅AP模式，以桌機wifi連接Tello AP，IP設為192.168.10.1
 5.Tello edu有AP與Station兩種模式
 
