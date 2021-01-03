@@ -48,7 +48,8 @@ let send_ack_flag = 0
 let sendMethod = function (cmd) 
 {
   var message = Buffer.from(cmd);
-  console.log('send:', cmd)
+  console.log(HOST + '  send:', cmd);
+  
   for (var i=1;i<6;i++)
   {
 	var message_combine = 'Re0' + cmd_send_cnt + '0' + i +' '+ message
@@ -72,10 +73,10 @@ let carryCMD = function ()
 	{
 		let cmd = order[0]
 		cmd = decodeURI(cmd);
-		console.log('carryCMD: %s\n',cmd);
+		//console.log(HOST + '  carryCMD: %s\n',cmd);
 		sendMethod(cmd)
 	} else {
-		console.log('carryCMD:no_command\n');
+		console.log(HOST + '  carryCMD:no_command\n');
 		lock = false
 	}
 }
@@ -111,6 +112,7 @@ client.on('message', function (msg, info) {
 		if (res_receive_cnt_tmp != res_receive_cnt)
 		{
 			console.log('Data received from server : ' + msg.toString().slice(7));
+			console.log('');
 			res = msg.toString().slice(7);
 			cmd_response = msg.toString().slice(7);			
 			//console.log('[lhp_debug]command of ack %s\n',order[0]);
@@ -132,6 +134,7 @@ client.on('message', function (msg, info) {
 	else {
 			console.log('Data received from server : ' + msg.toString());
 			console.log('Received %d bytes from %s:%d\n', msg.length, info.address, info.port);
+			console.log('');
 			cmd_response = msg.toString()
 			let k = 'response';
 			osdData[k] = cmd_response;
@@ -178,10 +181,10 @@ http.createServer(function (request, response)
 	if (url_params.length < 3) return;
 	let command = url_params[2];
 	command = decodeURI(command);
-	console.log('command = ', command)
+	//console.log('command = ', command)
 	
 	HOST = url_params[1].toString();
-	console.log('HOST = ', HOST)
+	//console.log('HOST = ', HOST)
 	
 	if(command=='poll') {
 		let rst = '';
