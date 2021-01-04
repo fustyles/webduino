@@ -73,7 +73,7 @@ Blockly.Blocks['tello_iframe1'] = {
       .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(40);
+  this.setColour(70);
   this.setHelpUrl('https://dl-cdn.ryzerobotics.com/downloads/Tello/Tello_SDK_2.0_%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.pdf');
   }
 };
@@ -109,7 +109,7 @@ Blockly.Blocks['tello_iframe2'] = {
       .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(40);
+  this.setColour(80);
   this.setHelpUrl('https://dl-cdn.ryzerobotics.com/downloads/Tello/Tello_SDK_2.0_%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.pdf');
   }
 };
@@ -122,9 +122,8 @@ Blockly.Blocks['tello_iframe3'] = {
       .appendField(Blockly.Msg.TELLO_SHOW)	  
       .appendField(Blockly.Msg.TELLO_IP_SHOW);
   this.appendDummyInput() 
-      .appendField(new Blockly.FieldDropdown([	
-		[Blockly.Msg.TELLO_GO_SHOW,"go"]
-  ]), "cmd_"); 
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .appendField(Blockly.Msg.TELLO_GO_SHOW); 
   this.appendValueInput("x_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -148,7 +147,8 @@ Blockly.Blocks['tello_iframe3'] = {
   this.appendValueInput("delaytime_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);	  
+      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);
+  this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(40);
@@ -164,9 +164,8 @@ Blockly.Blocks['tello_iframe4'] = {
       .appendField(Blockly.Msg.TELLO_SHOW)	  
       .appendField(Blockly.Msg.TELLO_IP_SHOW);
   this.appendDummyInput() 
-      .appendField(new Blockly.FieldDropdown([	
-		[Blockly.Msg.TELLO_CURVE_SHOW,"curve"]
-  ]), "cmd_"); 
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .appendField(Blockly.Msg.TELLO_CURVE_SHOW); 
   this.appendValueInput("x1_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -202,7 +201,8 @@ Blockly.Blocks['tello_iframe4'] = {
   this.appendValueInput("delaytime_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);	  
+      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);
+  this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(40);
@@ -218,9 +218,8 @@ Blockly.Blocks['tello_iframe5'] = {
       .appendField(Blockly.Msg.TELLO_SHOW)	  
       .appendField(Blockly.Msg.TELLO_IP_SHOW);
   this.appendDummyInput() 
-      .appendField(new Blockly.FieldDropdown([	
-		[Blockly.Msg.TELLO_JUMP_SHOW,"jump"]
-  ]), "cmd_"); 
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .appendField(Blockly.Msg.TELLO_JUMP_SHOW); 
   this.appendValueInput("x_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -252,7 +251,8 @@ Blockly.Blocks['tello_iframe5'] = {
   this.appendValueInput("delaytime_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);	  
+      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);
+  this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(40);
@@ -268,9 +268,8 @@ Blockly.Blocks['tello_iframe6'] = {
       .appendField(Blockly.Msg.TELLO_SHOW)	  
       .appendField(Blockly.Msg.TELLO_IP_SHOW);
   this.appendDummyInput() 
-      .appendField(new Blockly.FieldDropdown([		
-		[Blockly.Msg.TELLO_RC_SHOW+" (a b c d)[-100-100]","rc"]
-  ]), "cmd_"); 
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .appendField(Blockly.Msg.TELLO_RC_SHOW); 
   this.appendValueInput("a_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -290,7 +289,8 @@ Blockly.Blocks['tello_iframe6'] = {
   this.appendValueInput("delaytime_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);	  
+      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);
+  this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(40);

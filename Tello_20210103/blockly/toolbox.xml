@@ -85,7 +85,7 @@
     </value>
     <value name="speed_">
       <block type="math_number">
-        <field name="NUM">20</field>
+        <field name="NUM">10</field>
       </block>
     </value>
 	<value name="mid_">
@@ -137,7 +137,7 @@
     </value>	
     <value name="speed_">
       <block type="math_number">
-        <field name="NUM">20</field>
+        <field name="NUM">10</field>
       </block>
     </value>
 	    <value name="mid_">
@@ -174,7 +174,7 @@
     </value>
     <value name="speed_">
       <block type="math_number">
-        <field name="NUM">20</field>
+        <field name="NUM">10</field>
       </block>
     </value>
     <value name="yaw_">
