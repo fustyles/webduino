@@ -25,6 +25,7 @@ https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.j
 5.Tello僅AP模式，以桌機wifi連接Tello AP，IP設為192.168.10.1
 6.Tello edu有AP模式與Station模式，可以積木指令設定Station連線帳密切換模式與桌機一同連接手機熱點，由手機中查出Static IP。
 7.電源按鍵按5秒可回復原廠設定回到AP模式。
+8.撰寫積木需要加適當的等待時間，等待前一個動作完成才能執行下一個動作。
 
 
 (新版) QR code辨識 (instascan)
