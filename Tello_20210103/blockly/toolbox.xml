@@ -5,11 +5,6 @@
         <field name="TEXT">192.168.10.1</field>
       </block>
     </value>    
-    <value name="delaytime_">
-      <block type="math_number">
-        <field name="NUM">1</field>
-      </block>
-    </value>
   </block>
   <block type="tello_wifi">
     <value name="ip_">
@@ -27,11 +22,6 @@
         <field name="TEXT"></field>
       </block>
     </value>	
-    <value name="delaytime_">
-      <block type="math_number">
-        <field name="NUM">1</field>
-      </block>
-    </value>
   </block>   
   <block type="tello_iframe1">
     <value name="ip_">
@@ -39,11 +29,6 @@
         <field name="TEXT">192.168.10.1</field>
       </block>
     </value>    
-    <value name="delaytime_">
-      <block type="math_number">
-        <field name="NUM">1</field>
-      </block>
-    </value>
   </block>
   <block type="tello_iframe2">
     <value name="ip_">
@@ -54,11 +39,6 @@
     <value name="val_">
       <block type="text">
         <field name="TEXT"></field>
-      </block>
-    </value>
-    <value name="delaytime_">
-      <block type="math_number">
-        <field name="NUM">1</field>
       </block>
     </value>
   </block>
@@ -91,11 +71,6 @@
 	<value name="mid_">
       <block type="text">
         <field name="TEXT"></field>
-      </block>
-    </value>
-    <value name="delaytime_">
-      <block type="math_number">
-        <field name="NUM">1</field>
       </block>
     </value>
   </block> 
@@ -140,14 +115,9 @@
         <field name="NUM">10</field>
       </block>
     </value>
-	    <value name="mid_">
+	<value name="mid_">
       <block type="text">
         <field name="TEXT"></field>
-      </block>
-    </value>
-    <value name="delaytime_">
-      <block type="math_number">
-        <field name="NUM">1</field>
       </block>
     </value>
   </block>   
@@ -192,11 +162,6 @@
         <field name="TEXT"></field>
       </block>
     </value>	
-    <value name="delaytime_">
-      <block type="math_number">
-        <field name="NUM">1</field>
-      </block>
-    </value>
   </block>   
   <block type="tello_iframe6">
     <value name="ip_">
@@ -222,11 +187,6 @@
     <value name="d_">
       <block type="math_number">
         <field name="NUM">0</field>
-      </block>
-    </value>
-    <value name="delaytime_">
-      <block type="math_number">
-        <field name="NUM">1</field>
       </block>
     </value>
   </block>  

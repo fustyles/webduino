@@ -2,7 +2,6 @@ Blockly.Msg.TELLO_SHOW = "Tello";
 Blockly.Msg.TELLO_IP_SHOW = "IP";
 Blockly.Msg.TELLO_CMD_SHOW = "Command";
 Blockly.Msg.TELLO_VALUE_SHOW = "Settings";
-Blockly.Msg.TELLO_DELAYTIME_SHOW = "Wait Time(S)";
 Blockly.Msg.TELLO_INITIAL_SHOW = "Initial";
 Blockly.Msg.TELLO_COMMAND_SHOW = "SDK Mode";	  
 Blockly.Msg.TELLO_TAKEOFF_SHOW = "takeoff";

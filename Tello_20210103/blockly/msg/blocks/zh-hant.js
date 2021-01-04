@@ -2,7 +2,6 @@ Blockly.Msg.TELLO_SHOW = "Tello";
 Blockly.Msg.TELLO_IP_SHOW = "IP";
 Blockly.Msg.TELLO_CMD_SHOW = "指令";
 Blockly.Msg.TELLO_VALUE_SHOW = "設定值";
-Blockly.Msg.TELLO_DELAYTIME_SHOW = "等待時間(S)";
 Blockly.Msg.TELLO_INITIAL_SHOW = "初始化";
 Blockly.Msg.TELLO_COMMAND_SHOW = "進入SDK模式";	  
 Blockly.Msg.TELLO_TAKEOFF_SHOW = "自動起飛";

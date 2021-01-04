@@ -4,12 +4,9 @@ Blockly.Blocks['tello_initial'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TELLO_SHOW)
-      .appendField(Blockly.Msg.TELLO_IP_SHOW); 
-  this.appendValueInput("delaytime_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELLO_INITIAL_SHOW)
-      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);
+      .appendField(Blockly.Msg.TELLO_IP_SHOW);
+  this.appendDummyInput() 	  
+	  .appendField(Blockly.Msg.TELLO_INITIAL_SHOW);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -26,6 +23,7 @@ Blockly.Blocks['tello_wifi'] = {
       .appendField(Blockly.Msg.TELLO_SHOW)	  
       .appendField(Blockly.Msg.TELLO_IP_SHOW);
   this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)   
       .appendField(new Blockly.FieldDropdown([	
 		[Blockly.Msg.TELLO_WIFI_SHOW,"wifi"],
 		[Blockly.Msg.TELLO_AP_SHOW,"ap"]
@@ -37,11 +35,7 @@ Blockly.Blocks['tello_wifi'] = {
   this.appendValueInput("pass_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELLO_PASS_SHOW);	  
-  this.appendValueInput("delaytime_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);	
+      .appendField(Blockly.Msg.TELLO_PASS_SHOW);	  	
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -58,6 +52,7 @@ Blockly.Blocks['tello_iframe1'] = {
       .appendField(Blockly.Msg.TELLO_SHOW)	  
       .appendField(Blockly.Msg.TELLO_IP_SHOW);
   this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)   
       .appendField(new Blockly.FieldDropdown([	  
 		[Blockly.Msg.TELLO_TAKEOFF_SHOW,"takeoff"],
 		[Blockly.Msg.TELLO_LAND_SHOW,"land"],
@@ -67,10 +62,7 @@ Blockly.Blocks['tello_iframe1'] = {
 		[Blockly.Msg.TELLO_MOFF_SHOW,"moff"],
 		[Blockly.Msg.TELLO_COMMAND_SHOW,"command"]		
   ]), "cmd_"); 
-  this.appendValueInput("delaytime_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);	  
+  this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(70);
@@ -103,10 +95,7 @@ Blockly.Blocks['tello_iframe2'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TELLO_VALUE_SHOW); 
-  this.appendValueInput("delaytime_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);	  
+  this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(80);
@@ -144,10 +133,6 @@ Blockly.Blocks['tello_iframe3'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("mid");
-  this.appendValueInput("delaytime_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -198,10 +183,6 @@ Blockly.Blocks['tello_iframe4'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("mid");	  
-  this.appendValueInput("delaytime_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -248,10 +229,6 @@ Blockly.Blocks['tello_iframe5'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("mid2");	  
-  this.appendValueInput("delaytime_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -286,10 +263,6 @@ Blockly.Blocks['tello_iframe6'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TELLO_D_SHOW+" [-100-100]");
-  this.appendValueInput("delaytime_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
