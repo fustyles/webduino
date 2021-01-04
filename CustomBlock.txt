@@ -24,17 +24,17 @@ https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.j
 6.Tello僅AP模式，以桌機wifi網卡連接Tello AP，IP設為192.168.10.1，
 此時與網路相關積木功能皆無法使用，Webduino雲端平台無法使用積木。
 7.Tello edu有AP模式與Station模式，可以積木指令設定Station模式連線帳密重啟後與桌機一同連接手機熱點，
-由手機中查出Static IP。若使用Station模式則Webduino教育版及雲端平台皆可使積木。
+由手機中查出Static IP。若使用Station模式則Webduino教育版及雲端平台皆可使積木控制Tello。
 8.電源按鍵按5秒可回復原廠設定回到AP模式。
 
 若使用AP模式，Tello或Tello edu皆可用，
 但因佔用wifi網卡切斷對外網路而無法使用其他網路積木功能。
-因此可在AP模式下利用積木設定Station模式手機熱點帳密，
-讓Tello與桌機接連接手機熱點同區網控制，
-避免佔用wifi網卡，
+因此可在AP模式下利用積木設定Station模式手機熱點連線帳密，
+讓Tello與桌機皆連接手機熱點位於區網內控制，
+因為佔用wifi網卡，
 則其他網路積木功能皆可正常使用，
-串連物聯網及影像辨識控制Tello。
-此積木可輪流同時控制數個同區網不同IP的Tello edu，
+可串連物聯網及影像辨識控制Tello運行。
+此積木可輪流控制數個同區網不同IP的Tello edu，
 但尚無法做到異步廣播。
 每一台皆須先執行一次初始化積木進入SDK模式。
 
