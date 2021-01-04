@@ -14,7 +14,7 @@ https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json
 Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
 Tello (限教育版)  
-1.將積木下載安裝在本機C:\Webduino\WebBit\package.nw\目錄下(積木設定http://localhost:20975/Tello_20210103/blockly.json)
+1.將Tello_20210103積木下載安裝在本機C:\Webduino\WebBit\package.nw\目錄下(積木設定http://localhost:20975/Tello_20210103/blockly.json)
 C:\Webduino\WebBit\package.nw\Tello_20210103
 2.桌機安裝Node.js
 https://nodejs.org/zh-tw/download/
