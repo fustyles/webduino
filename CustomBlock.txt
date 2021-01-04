@@ -25,6 +25,7 @@ https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.j
 此時與網路相關積木功能皆無法使用，Webduino雲端平台無法使用積木。
 7.Tello edu有AP模式與Station模式，可以積木指令設定Station模式連線帳密重啟後與桌機一同連接手機熱點，
 由手機中查出Static IP。若使用Station模式則Webduino教育版及雲端平台皆可使積木控制Tello。
+但此法必須將自訂積木安裝在本機才可執行，因對外網路必須切斷了。
 8.電源按鍵按5秒可回復原廠設定回到AP模式。
 
 若使用AP模式，Tello或Tello edu皆可用，
