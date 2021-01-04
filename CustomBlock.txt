@@ -15,16 +15,17 @@ Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks
 
 Tello (限教育版)  
 https://fustyles.github.io/webduino/Tello_20210103/blockly.json
-1.桌機安裝Node.js
+1.若Tello非edu版須將積木安裝在本機package.nw目錄下執行(http://localhost:20975/Tello_20210103/blockly.json)
+2.桌機安裝Node.js
 https://nodejs.org/zh-tw/download/
-2.下載兩個檔放在桌機同目錄下
+3.下載兩個檔放在桌機同目錄下
 https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.js
 https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.js.bat
-3.執行Webduino_Tello.js.bat批次檔轉傳Tello指令
-4.Tello僅AP模式，以桌機wifi連接Tello AP，IP設為192.168.10.1
-5.Tello edu有AP模式與Station模式，可以積木指令設定Station連線帳密切換模式與桌機一同連接手機熱點，由手機中查出Static IP。
-6.電源按鍵按5秒可回復原廠設定回到AP模式。
-7.若Tello非edu版須將積木安裝在本機上執行(http://localhost:20975/Tello_20210103/blockly.json)
+4.執行Webduino_Tello.js.bat批次檔轉傳Tello指令
+5.Tello僅AP模式，以桌機wifi連接Tello AP，IP設為192.168.10.1
+6.Tello edu有AP模式與Station模式，可以積木指令設定Station連線帳密切換模式與桌機一同連接手機熱點，由手機中查出Static IP。
+7.電源按鍵按5秒可回復原廠設定回到AP模式。
+
 
 (新版) QR code辨識 (instascan)
 https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json
