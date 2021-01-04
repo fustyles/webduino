@@ -26,7 +26,6 @@ Blockly.Blocks['tello_wifi'] = {
       .appendField(Blockly.Msg.TELLO_SHOW)	  
       .appendField(Blockly.Msg.TELLO_IP_SHOW);
   this.appendDummyInput() 
-      .appendField(Blockly.Msg.TELLO_CMD_SHOW)
       .appendField(new Blockly.FieldDropdown([	
 		[Blockly.Msg.TELLO_WIFI_SHOW,"wifi"],
 		[Blockly.Msg.TELLO_AP_SHOW,"ap"]
@@ -51,7 +50,7 @@ Blockly.Blocks['tello_wifi'] = {
   }
 };
 
-Blockly.Blocks['tello_cmd1'] = {
+Blockly.Blocks['tello_iframe1'] = {
   init: function() {
   this.appendValueInput("ip_")
       .setCheck("String")
@@ -59,7 +58,6 @@ Blockly.Blocks['tello_cmd1'] = {
       .appendField(Blockly.Msg.TELLO_SHOW)	  
       .appendField(Blockly.Msg.TELLO_IP_SHOW);
   this.appendDummyInput() 
-      .appendField(Blockly.Msg.TELLO_CMD_SHOW)
       .appendField(new Blockly.FieldDropdown([	  
 		[Blockly.Msg.TELLO_TAKEOFF_SHOW,"takeoff"],
 		[Blockly.Msg.TELLO_LAND_SHOW,"land"],
@@ -80,8 +78,7 @@ Blockly.Blocks['tello_cmd1'] = {
   }
 };
 
-
-Blockly.Blocks['tello_cmd2'] = {
+Blockly.Blocks['tello_iframe2'] = {
   init: function() {
   this.appendValueInput("ip_")
       .setCheck("String")
@@ -89,7 +86,6 @@ Blockly.Blocks['tello_cmd2'] = {
       .appendField(Blockly.Msg.TELLO_SHOW)	  
       .appendField(Blockly.Msg.TELLO_IP_SHOW);
   this.appendDummyInput() 
-      .appendField(Blockly.Msg.TELLO_CMD_SHOW)
       .appendField(new Blockly.FieldDropdown([		
 		[Blockly.Msg.TELLO_UP_SHOW+" [20-500]","up"],	
 		[Blockly.Msg.TELLO_DOWN_SHOW+" [20-500]","down"],	
@@ -118,7 +114,7 @@ Blockly.Blocks['tello_cmd2'] = {
   }
 };
 
-Blockly.Blocks['tello_cmd3'] = {
+Blockly.Blocks['tello_iframe3'] = {
   init: function() {
   this.appendValueInput("ip_")
       .setCheck("String")
@@ -126,17 +122,171 @@ Blockly.Blocks['tello_cmd3'] = {
       .appendField(Blockly.Msg.TELLO_SHOW)	  
       .appendField(Blockly.Msg.TELLO_IP_SHOW);
   this.appendDummyInput() 
-      .appendField(Blockly.Msg.TELLO_CMD_SHOW)
       .appendField(new Blockly.FieldDropdown([	
-		[Blockly.Msg.TELLO_GO_SHOW+" (x y z speed)","go"],
-		[Blockly.Msg.TELLO_CURVE_SHOW+" (x1 y1 z1 x2 y2 z2 speed)","curve"],
-		[Blockly.Msg.TELLO_JUMP_SHOW+" (x y z speed yaw mid1 mid2)","jump"],	
-		[Blockly.Msg.TELLO_RC_SHOW+" (a b c d)[-100-100]","rc"]
+		[Blockly.Msg.TELLO_GO_SHOW,"go"]
   ]), "cmd_"); 
-  this.appendValueInput("val_")
+  this.appendValueInput("x_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("x [-500-500]"); 
+  this.appendValueInput("y_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("y [-500-500]");
+  this.appendValueInput("z_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("z [0-500]");
+  this.appendValueInput("speed_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_SPEED_SHOW+" [10-100]");
+  this.appendValueInput("mid_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELLO_VALUE_SHOW); 
+      .appendField("mid");
+  this.appendValueInput("delaytime_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(40);
+  this.setHelpUrl('https://dl-cdn.ryzerobotics.com/downloads/Tello/Tello_SDK_2.0_%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.pdf');
+  }
+};
+
+Blockly.Blocks['tello_iframe4'] = {
+  init: function() {
+  this.appendValueInput("ip_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_SHOW)	  
+      .appendField(Blockly.Msg.TELLO_IP_SHOW);
+  this.appendDummyInput() 
+      .appendField(new Blockly.FieldDropdown([	
+		[Blockly.Msg.TELLO_CURVE_SHOW,"curve"]
+  ]), "cmd_"); 
+  this.appendValueInput("x1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("x1 [-500-500]"); 
+  this.appendValueInput("y1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("y1 [0-500]");
+  this.appendValueInput("z1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("z1 [-500-500]");
+  this.appendValueInput("x2_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("x2 [-500-500]"); 
+  this.appendValueInput("y2_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("y2 [-500-500]");
+  this.appendValueInput("z2_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("z2 [0-500]");
+  this.appendValueInput("speed_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_SPEED_SHOW+" [10-100]");
+  this.appendValueInput("mid_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("mid");	  
+  this.appendValueInput("delaytime_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(40);
+  this.setHelpUrl('https://dl-cdn.ryzerobotics.com/downloads/Tello/Tello_SDK_2.0_%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.pdf');
+  }
+};
+
+Blockly.Blocks['tello_iframe5'] = {
+  init: function() {
+  this.appendValueInput("ip_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_SHOW)	  
+      .appendField(Blockly.Msg.TELLO_IP_SHOW);
+  this.appendDummyInput() 
+      .appendField(new Blockly.FieldDropdown([	
+		[Blockly.Msg.TELLO_JUMP_SHOW,"jump"]
+  ]), "cmd_"); 
+  this.appendValueInput("x_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("x [-500-500]"); 
+  this.appendValueInput("y_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("y [-500-500]");
+  this.appendValueInput("z_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("z [-500-500]");
+  this.appendValueInput("speed_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_SPEED_SHOW+" [10-100]");
+  this.appendValueInput("yaw_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("yaw"); 
+  this.appendValueInput("mid1_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("mid1");
+  this.appendValueInput("mid2_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("mid2");	  
+  this.appendValueInput("delaytime_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(40);
+  this.setHelpUrl('https://dl-cdn.ryzerobotics.com/downloads/Tello/Tello_SDK_2.0_%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.pdf');
+  }
+};
+
+Blockly.Blocks['tello_iframe6'] = {
+  init: function() {
+  this.appendValueInput("ip_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_SHOW)	  
+      .appendField(Blockly.Msg.TELLO_IP_SHOW);
+  this.appendDummyInput() 
+      .appendField(new Blockly.FieldDropdown([		
+		[Blockly.Msg.TELLO_RC_SHOW+" (a b c d)[-100-100]","rc"]
+  ]), "cmd_"); 
+  this.appendValueInput("a_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_A_SHOW+" [-100-100]"); 
+  this.appendValueInput("b_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_B_SHOW+" [-100-100]");
+  this.appendValueInput("c_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_C_SHOW+" [-100-100]");
+  this.appendValueInput("d_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_D_SHOW+" [-100-100]");
   this.appendValueInput("delaytime_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)

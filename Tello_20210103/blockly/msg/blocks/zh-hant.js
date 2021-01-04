@@ -1,5 +1,5 @@
 Blockly.Msg.TELLO_SHOW = "Tello";  
-Blockly.Msg.TELLO_IP_SHOW = "IP位址";
+Blockly.Msg.TELLO_IP_SHOW = "IP";
 Blockly.Msg.TELLO_CMD_SHOW = "指令";
 Blockly.Msg.TELLO_VALUE_SHOW = "設定值";
 Blockly.Msg.TELLO_DELAYTIME_SHOW = "等待時間(S)";
@@ -30,3 +30,8 @@ Blockly.Msg.TELLO_JUMP_SHOW = "飛向定點懸停轉向";
 Blockly.Msg.TELLO_RC_SHOW = "設置遙控器";
 Blockly.Msg.TELLO_SSID_SHOW = "帳號";
 Blockly.Msg.TELLO_PASS_SHOW = "密碼";
+Blockly.Msg.TELLO_SPEED_SHOW = "速度";
+Blockly.Msg.TELLO_A_SHOW = "橫滾";
+Blockly.Msg.TELLO_B_SHOW = "俯仰";
+Blockly.Msg.TELLO_C_SHOW = "油門";
+Blockly.Msg.TELLO_D_SHOW = "偏航";
