@@ -21,7 +21,8 @@ Tello
 https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.js
 https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.js.bat
 5.執行Webduino_Tello.js.bat批次檔執行Webduino_Tello.js，用以轉傳指令給Tello。
-6.Tello僅AP模式，以桌機wifi網卡連接Tello AP，IP設為192.168.10.1，此時與網路相關積木功能皆無法使用。
+6.Tello僅AP模式，以桌機wifi網卡連接Tello AP，IP設為192.168.10.1，
+此時與網路相關積木功能皆無法使用，Webduino雲端平台無法使用積木。
 7.Tello edu有AP模式與Station模式，可以積木指令設定Station模式連線帳密重啟後與桌機一同連接手機熱點，
 由手機中查出Static IP。若使用Station模式則Webduino教育版及雲端平台皆可使積木。
 8.電源按鍵按5秒可回復原廠設定回到AP模式。
