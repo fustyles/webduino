@@ -13,7 +13,7 @@ Webbit教育版 & KebbixWebbit 新增自訂積木
 https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json
 Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
-Tello (限教育版)
+Tello (限教育版)  
 https://fustyles.github.io/webduino/Tello_20210103/blockly.json
 1.桌機安裝Node.js
 https://nodejs.org/zh-tw/download/
@@ -24,6 +24,7 @@ https://github.com/fustyles/webduino/blob/master/Tello_20210103/Webduino_Tello.j
 4.Tello僅AP模式，以桌機wifi連接Tello AP，IP設為192.168.10.1
 5.Tello edu有AP模式與Station模式，可以積木指令設定Station連線帳密切換模式與桌機一同連接手機熱點，由手機中查出Static IP。
 6.電源按鍵按5秒可回復原廠設定回到AP模式。
+7.若Tello非edu版須將積木安裝在本機上執行(http://localhost:20975/Tello_20210103/blockly.json)
 
 (新版) QR code辨識 (instascan)
 https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json
