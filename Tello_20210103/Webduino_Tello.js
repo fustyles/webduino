@@ -10,6 +10,7 @@
 */
 
 var res = "";
+var cmd_response = ' ';
 
 var osdData = {};
 
@@ -67,6 +68,7 @@ let sendMethod = function (cmd)
   cmd_send_cnt = cmd_send_cnt + 1
   if(cmd_send_cnt == 10)cmd_send_cnt = 1
 }
+
 let carryCMD = function () 
 {
 	lock = true
@@ -103,10 +105,9 @@ let sendCmd = function (cmd)
 	!lock && carryCMD(); // 每次第一次觸發sendCmd的時候， 觸發執行。之所以這麼做，是因為所有的carrycmd都是在接收到回复時被觸發的，但必須有第一個主動發送來產生第一次的回复觸發
 };
 
-
 client.on('message', function (msg, info) {
 	var response_sof = msg.toString().slice(0,2);
-	var cmd_response = ' ';
+	cmd_response = ' ';
 	if (response_sof == 'Re')
 	{
 		var res_receive_cnt_tmp = msg.toString().slice(3,4)
@@ -136,6 +137,7 @@ client.on('message', function (msg, info) {
 			console.log('Data received from server : ' + msg.toString());
 			console.log('Received %d bytes from %s:%d\n', msg.length, info.address, info.port);
 			console.log('');
+			res = msg.toString();
 			cmd_response = msg.toString()
 			let k = 'response';
 			osdData[k] = cmd_response;
@@ -177,6 +179,7 @@ console.log('---------------------------------------');
 
 http.createServer(function (request, response) 
 {
+	response.setHeader("Access-Control-Allow-Origin", "*");
 	
 	let url_params = request.url.split('/');
 	if (url_params.length < 3) return;
@@ -201,6 +204,9 @@ http.createServer(function (request, response)
 		response.end('reset');
 	}
 	else if (command=='command') {
+		order = [];
+		lock = false;
+		
 		// 發送command到tello
 		let msgCommand = Buffer.from('command');
 
@@ -211,6 +217,10 @@ http.createServer(function (request, response)
 		  }
 		});
 	}
+	else if (command == 'response')
+	{
+		sendCmd('response');
+	}	
 	else if(command=='takeoff') {
 		sendCmd('command');
 		sendCmd('mon');
@@ -228,12 +238,12 @@ http.createServer(function (request, response)
 		send_ack_flag = 0;
 	}
 	
-	if (res!="") {
-		response.end(command + ": " + res);
-		res = "";
+	if (command == 'response')
+	{
+		response.end(res);
 	}
 	else
-		response.end(command);
+		response.end('Hello Tello');
 }).listen(8001);
 
 process.on('SIGINT', function (){

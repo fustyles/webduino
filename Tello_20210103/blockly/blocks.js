@@ -270,3 +270,37 @@ Blockly.Blocks['tello_iframe6'] = {
   this.setHelpUrl('https://dl-cdn.ryzerobotics.com/downloads/Tello/Tello_SDK_2.0_%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.pdf');
   }
 };
+
+Blockly.Blocks['tello_request'] = {
+  init: function() {
+  this.appendValueInput("ip_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_SHOW)	  
+      .appendField(Blockly.Msg.TELLO_IP_SHOW);
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .appendField(Blockly.Msg.TELLO_REQUEST_SHOW)
+	  .appendField(new Blockly.FieldVariable("tello_request"), "tello_request")
+      .appendField(" = ");	  
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)   
+      .appendField(new Blockly.FieldDropdown([	  
+		[Blockly.Msg.TELLO_SPEED_SHOW,"speed?"],
+		[Blockly.Msg.TELLO_BATTERY_SHOW,"battery?"],
+		[Blockly.Msg.TELLO_TIME_SHOW,"time?"],	
+		[Blockly.Msg.TELLO_WIFI_SHOW,"wifi?"],
+		[Blockly.Msg.TELLO_SDK_SHOW,"sdk?"],	
+		[Blockly.Msg.TELLO_SN_SHOW,"sn?"]	
+  ]), "state_");
+  this.appendValueInput("delaytime_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TELLO_DELAYTIME_SHOW);  
+  this.setInputsInline(true);  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(40);
+  this.setHelpUrl('https://dl-cdn.ryzerobotics.com/downloads/Tello/Tello_SDK_2.0_%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.pdf');
+  }
+};
