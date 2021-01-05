@@ -86,7 +86,7 @@ Blockly.JavaScript['tello_iframe6'] = function (block) {
 
 Blockly.JavaScript['tello_request'] = function(block) { 
   var value_ip = Blockly.JavaScript.valueToCode(block, 'ip_', Blockly.JavaScript.ORDER_ATOMIC);
-  var variable_tello_request = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('tello_request'), Blockly.Variables.NAME_TYPE);
+  var variable_tello_response = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('tello_response'), Blockly.Variables.NAME_TYPE);
   var value_state = block.getFieldValue('state_'); 
   var value_delaytime = Blockly.JavaScript.valueToCode(block, 'delaytime_', Blockly.JavaScript.ORDER_ATOMIC);
   
@@ -95,7 +95,7 @@ Blockly.JavaScript['tello_request'] = function(block) {
 	  code += 'fetch("http://127.0.0.1:8001/"+'+value_ip + '+"/'+value_state + '");\n';
 	  code += 'await delay(1, true);\n';
   }
-  code += 'fetch("http://127.0.0.1:8001/"+'+value_ip + '+"/response").then(function(response) {return response.text();}).then(function(text) {' + variable_tello_request + ' = text;});\n';
+  code += 'fetch("http://127.0.0.1:8001/"+'+value_ip + '+"/response").then(function(response) {return response.text();}).then(function(text) {' + variable_tello_response + ' = text;});\n';
   code += 'await delay('+value_delaytime + ', true);\n';
   return code;
 };

@@ -281,7 +281,7 @@ Blockly.Blocks['tello_request'] = {
   this.appendDummyInput() 
       .setAlign(Blockly.ALIGN_RIGHT)  
       .appendField(Blockly.Msg.TELLO_REQUEST_SHOW)
-	  .appendField(new Blockly.FieldVariable("tello_request"), "tello_request")
+	  .appendField(new Blockly.FieldVariable("tello_response"), "tello_response")
       .appendField(" = ");	  
   this.appendDummyInput() 
       .setAlign(Blockly.ALIGN_RIGHT)   
