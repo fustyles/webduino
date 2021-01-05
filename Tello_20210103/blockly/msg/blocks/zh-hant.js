@@ -35,3 +35,4 @@ Blockly.Msg.TELLO_B_SHOW = "俯仰";
 Blockly.Msg.TELLO_C_SHOW = "油門";
 Blockly.Msg.TELLO_D_SHOW = "偏航";
 Blockly.Msg.TELLO_MID_SHOW = "探測挑戰卡";
+Blockly.Msg.TELLO_YAW_SHOW = "偏航";
