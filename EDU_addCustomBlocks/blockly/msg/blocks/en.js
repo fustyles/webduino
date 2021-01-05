@@ -1,1 +1,7 @@
 Blockly.Msg.ADDCUSTOMBLOCKS_SHOW = "Custom Blocks URL";
+Blockly.Msg.ADDCUSTOMBLOCKS_ADD_SHOW = "add one";
+Blockly.Msg.ADDCUSTOMBLOCKS_REMOVE_SHOW = "remove one";
+Blockly.Msg.ADDCUSTOMBLOCKS_ADDALL_SHOW = "add All";
+Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEALL_SHOW = "remove All";
+Blockly.Msg.ADDCUSTOMBLOCKS_ADDAINEW_SHOW = "add new AI"; 
+Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEAINEW_SHOW = "remove new AI";

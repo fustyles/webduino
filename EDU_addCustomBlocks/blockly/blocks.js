@@ -7,12 +7,12 @@ Blockly.Blocks['addMyBlocks'] = {
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
         ["",""],
-        ["add","add"], 
-        ["remove","remove"],
-        ["addAll","addAll"], 
-        ["removeAll","removeAll"],
-        ["addAll(New AI)","addAllNewAI"], 
-        ["removeAll(New AI)","removeAllNewAI"]	  
+        [Blockly.Msg.ADDCUSTOMBLOCKS_ADD_SHOW,"add"], 
+        [Blockly.Msg.ADDCUSTOMBLOCKS_REMOVE_SHOW,"remove"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_ADDALL_SHOW,"addAll"], 
+        [Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEALL_SHOW,"removeAll"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_ADDAINEW_SHOW,"addAllNewAI"], 
+        [Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEAINEW_SHOW,"removeAllNewAI"]	  
       ]), "func");
   this.setTooltip('');
   this.setColour(20);
