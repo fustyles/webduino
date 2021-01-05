@@ -124,7 +124,7 @@ Blockly.Blocks['tello_iframe3'] = {
   this.appendValueInput("z_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("z [0-500]");
+      .appendField("z [-500-500]");
   this.appendValueInput("speed_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -158,7 +158,7 @@ Blockly.Blocks['tello_iframe4'] = {
   this.appendValueInput("y1_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("y1 [0-500]");
+      .appendField("y1 [-500-500]");
   this.appendValueInput("z1_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -174,7 +174,7 @@ Blockly.Blocks['tello_iframe4'] = {
   this.appendValueInput("z2_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("z2 [0-500]");
+      .appendField("z2 [-500-500]");
   this.appendValueInput("speed_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
