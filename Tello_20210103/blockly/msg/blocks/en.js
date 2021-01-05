@@ -43,3 +43,4 @@ Blockly.Msg.TELLO_WIFI_SHOW = "wifi";
 Blockly.Msg.TELLO_SDK_SHOW = "sdk";
 Blockly.Msg.TELLO_SN_SHOW = "sn";
 Blockly.Msg.TELLO_DELAYTIME_SHOW = "delaytime";
+Blockly.Msg.TELLO_STATE_SHOW = "Cmd state";

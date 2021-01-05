@@ -291,7 +291,8 @@ Blockly.Blocks['tello_request'] = {
 		[Blockly.Msg.TELLO_TIME_SHOW,"time?"],	
 		[Blockly.Msg.TELLO_WIFI_SHOW,"wifi?"],
 		[Blockly.Msg.TELLO_SDK_SHOW,"sdk?"],	
-		[Blockly.Msg.TELLO_SN_SHOW,"sn?"]	
+		[Blockly.Msg.TELLO_SN_SHOW,"sn?"],	
+		[Blockly.Msg.TELLO_STATE_SHOW,""]		
   ]), "state_");
   this.appendValueInput("delaytime_")
       .setCheck("Number")

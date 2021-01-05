@@ -1,12 +1,10 @@
 /*
-
 	Rzye Tello
-
 	Scratch Ext 1.0.0.1
-
 	http://www.ryzerobotics.com
-
 	4/7/2018
+	
+	Modify： https://www.facebook.com/francefu   2021/1/5
 */
 
 var res = "";
@@ -239,10 +237,7 @@ http.createServer(function (request, response)
 	
 	if (command == 'response')
 	{
-		if (res!="ok")
-			response.end(res);
-		else
-			response.end('');
+		response.end(res);
 	}
 	else
 		response.end('Hello Tello');

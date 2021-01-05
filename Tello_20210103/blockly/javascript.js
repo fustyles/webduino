@@ -90,9 +90,12 @@ Blockly.JavaScript['tello_request'] = function(block) {
   var value_state = block.getFieldValue('state_'); 
   var value_delaytime = Blockly.JavaScript.valueToCode(block, 'delaytime_', Blockly.JavaScript.ORDER_ATOMIC);
   
-  var code = 'fetch("http://127.0.0.1:8001/"+'+value_ip + '+"/'+value_state + '");\n';
-  code += 'await delay(1, true);\n';
-  code += 'fetch("http://127.0.0.1:8001/"+'+value_ip + '+"/response").then(function(response) {return response.text();}).then(function(text) {' + variable_tello_request + ' = text;console.log(text);});\n';
+  var code = "";
+  if (value_state!="") {
+	  code += 'fetch("http://127.0.0.1:8001/"+'+value_ip + '+"/'+value_state + '");\n';
+	  code += 'await delay(1, true);\n';
+  }
+  code += 'fetch("http://127.0.0.1:8001/"+'+value_ip + '+"/response").then(function(response) {return response.text();}).then(function(text) {' + variable_tello_request + ' = text;});\n';
   code += 'await delay('+value_delaytime + ', true);\n';
   return code;
 };

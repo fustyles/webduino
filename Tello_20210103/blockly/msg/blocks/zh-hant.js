@@ -43,3 +43,4 @@ Blockly.Msg.TELLO_WIFI_SHOW = "WIFI信噪比";
 Blockly.Msg.TELLO_SDK_SHOW = "SDK版本";	
 Blockly.Msg.TELLO_SN_SHOW = "SN碼";
 Blockly.Msg.TELLO_DELAYTIME_SHOW = "等待取回時間(秒)";
+Blockly.Msg.TELLO_STATE_SHOW = "執行狀態";
