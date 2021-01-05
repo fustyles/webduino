@@ -237,6 +237,8 @@ http.createServer(function (request, response)
 	
 	if (command == 'response')
 	{
+		console.log(HOST + '  send:', command);
+		console.log('Data received from server : ' + res);		
 		response.end(res);
 	}
 	else
