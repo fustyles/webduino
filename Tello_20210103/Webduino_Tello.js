@@ -77,7 +77,7 @@ let carryCMD = function ()
 		//console.log(HOST + '  carryCMD: %s\n',cmd);
 		sendMethod(cmd)
 	} else {
-		console.log(HOST + '  carryCMD: no_command\n');
+		//console.log(HOST + '  carryCMD: no_command\n');
 		lock = false
 	}
 }
