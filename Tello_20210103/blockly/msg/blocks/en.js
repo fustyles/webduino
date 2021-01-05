@@ -35,3 +35,4 @@ Blockly.Msg.TELLO_B_SHOW = "b";
 Blockly.Msg.TELLO_C_SHOW = "c";
 Blockly.Msg.TELLO_D_SHOW = "d";
 Blockly.Msg.TELLO_MID_SHOW = "mid";
+Blockly.Msg.TELLO_YAW_SHOW = "yaw";
