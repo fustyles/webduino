@@ -132,7 +132,7 @@ Blockly.Blocks['tello_iframe3'] = {
   this.appendValueInput("mid_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("mid [m-1/m-2/m1-m8]");
+      .appendField(Blockly.Msg.TELLO_MID_SHOW+" [m-1/m-2/m1-m8]");
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -182,7 +182,7 @@ Blockly.Blocks['tello_iframe4'] = {
   this.appendValueInput("mid_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("mid [m-1/m-2/m1-m8]");	  
+      .appendField(Blockly.Msg.TELLO_MID_SHOW+" [m-1/m-2/m1-m8]");	  
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -224,11 +224,11 @@ Blockly.Blocks['tello_iframe5'] = {
   this.appendValueInput("mid1_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("mid1 [m-1/m-2/m1-m8]");
+      .appendField(Blockly.Msg.TELLO_MID_SHOW+"1 [m-1/m-2/m1-m8]");
   this.appendValueInput("mid2_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("mid2 [m-1/m-2/m1-m8]");	  
+      .appendField(Blockly.Msg.TELLO_MID_SHOW+"2 [m-1/m-2/m1-m8]");	  
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
