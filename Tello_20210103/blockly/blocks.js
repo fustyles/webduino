@@ -25,8 +25,8 @@ Blockly.Blocks['tello_wifi'] = {
   this.appendDummyInput() 
       .setAlign(Blockly.ALIGN_RIGHT)   
       .appendField(new Blockly.FieldDropdown([	
-		[Blockly.Msg.TELLO_WIFI_SHOW,"wifi"],
-		[Blockly.Msg.TELLO_AP_SHOW,"ap"]
+		[Blockly.Msg.TELLO_WIFIMODE_SHOW,"wifi"],
+		[Blockly.Msg.TELLO_APMODE_SHOW,"ap"]
   ]), "cmd_"); 
   this.appendValueInput("ssid_")
       .setCheck(null)
