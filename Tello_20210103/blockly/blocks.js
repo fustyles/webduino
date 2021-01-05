@@ -132,7 +132,7 @@ Blockly.Blocks['tello_iframe3'] = {
   this.appendValueInput("mid_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("mid");
+      .appendField("mid+ [-1/-2/1-8]");
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -182,7 +182,7 @@ Blockly.Blocks['tello_iframe4'] = {
   this.appendValueInput("mid_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("mid");	  
+      .appendField("mid+ [-1/-2/1-8]");	  
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -224,11 +224,11 @@ Blockly.Blocks['tello_iframe5'] = {
   this.appendValueInput("mid1_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("mid1");
+      .appendField("mid1+ [-1/-2/1-8]");
   this.appendValueInput("mid2_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("mid2");	  
+      .appendField("mid2+ [-1/-2/1-8]");	  
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
