@@ -15,8 +15,9 @@ Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks
 
 Tello  
 1.雲端積木設定 https://fustyles.github.io/webduino/Tello_20210103/blockly.json
+雲端首頁 https://webbit.webduino.io/blockly/
 2.教育版本機積木設定 http://localhost:20975/Tello_20210103/blockly.json
-教育版本機首頁 http://localhost:20975/blockly/
+本機首頁 http://localhost:20975/blockly/
 3.若產生跨網域封鎖，須更改瀏覽器設定允許執行「不安全的內容」。
 4.桌機安裝Node.js  https://nodejs.org/zh-tw/download/
 5.下載檔案解壓縮放在桌機同目錄下  https://github.com/fustyles/Workshop/blob/master/Webduino_Tello_nodejs.zip
