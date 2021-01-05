@@ -199,7 +199,7 @@
     <field id="D~s:.T0JlLY@#L%wFeda" name="tello_request">tello_request</field>	
     <value name="delaytime_">
       <block type="math_number">
-        <field name="NUM">2</field>
+        <field name="NUM">1</field>
       </block>
     </value>	
   </block>  

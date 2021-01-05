@@ -90,6 +90,9 @@ let sendCmd = function (cmd)
 	if (cmd == 'favicon.ico') {
 		return
 	}
+	if (cmd == 'response') {
+		return
+	}	
 	if (notBlockCmd.indexOf(cmd) >= 0) 
 	{
 		return
@@ -216,10 +219,6 @@ http.createServer(function (request, response)
 			throw err;
 		  }
 		});
-	}
-	else if (command == 'response')
-	{
-		sendCmd('response');
 	}	
 	else if(command=='takeoff') {
 		sendCmd('command');
@@ -240,7 +239,10 @@ http.createServer(function (request, response)
 	
 	if (command == 'response')
 	{
-		response.end(res);
+		if (res!="ok")
+			response.end(res);
+		else
+			response.end('');
 	}
 	else
 		response.end('Hello Tello');
