@@ -224,7 +224,7 @@ Blockly.Blocks['tello_iframe5'] = {
   this.appendValueInput("mid1_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("mid1+ [-1/-2/1-8]");
+      .appendField("mid1 [-1/-2/1-8]");
   this.appendValueInput("mid2_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
