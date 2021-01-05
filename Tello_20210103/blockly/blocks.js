@@ -220,7 +220,7 @@ Blockly.Blocks['tello_iframe5'] = {
   this.appendValueInput("yaw_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("yaw"); 
+      .appendField("yaw [1-360]"); 
   this.appendValueInput("mid1_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
