@@ -94,24 +94,24 @@ Blockly.Blocks['posenet_person'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSENET_PART_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["nose","nose"],
-		["leftEye","leftEye"],
-		["rightEye","rightEye"],
-		["leftEar","leftEar"],
-		["rightEar","rightEar"],
-		["leftShoulder","leftShoulder"],
-		["rightShoulder","rightShoulder"],
-		["leftElbow","leftElbow"],
-		["rightElbow","rightElbow"],
-		["leftWrist","leftWrist"],
-		["rightWrist","rightWrist"],
-		["leftHip","leftHip"],
-		["rightHip","rightHip"],
-		["leftKnee","leftKnee"],
-		["rightKnee","rightKnee"],
-		["leftAnkle","leftAnkle"],
-		["rightAnkle","rightAnkle"],
-		[" ",""]
+		[Blockly.Msg.POSENET_NOSE_SHOW,"nose"],
+		[Blockly.Msg.POSENET_LEFTEYE_SHOW,"leftEye"],
+		[Blockly.Msg.POSENET_RIGHTEYE_SHOW,"rightEye"],
+		[Blockly.Msg.POSENET_LEFTEAR_SHOW,"leftEar"],
+		[Blockly.Msg.POSENET_RIGHTEAR_SHOW,"rightEar"],
+		[Blockly.Msg.POSENET_LEFTSHOULDER_SHOW,"leftShoulder"],
+		[Blockly.Msg.POSENET_RIGHTSHOULDER_SHOW,"rightShoulder"],
+		[Blockly.Msg.POSENET_LEFTELBOW_SHOW,"leftElbow"],
+		[Blockly.Msg.POSENET_RIGHTELBOW_SHOW,"rightElbow"],
+		[Blockly.Msg.POSENET_LEFTWRIST_SHOW,"leftWrist"],
+		[Blockly.Msg.POSENET_RIGHTWRIST_SHOW,"rightWrist"],
+		[Blockly.Msg.POSENET_LEFTHIP_SHOW,"leftHip"],
+		[Blockly.Msg.POSENET_RIGHTHIP_SHOW,"rightHip"],
+		[Blockly.Msg.POSENET_LEFTKNEE_SHOW,"leftKnee"],
+		[Blockly.Msg.POSENET_RIGHTKNEE_SHOW,"rightKnee"],
+		[Blockly.Msg.POSENET_LEFTANKLE_SHOW,"leftAnkle"],
+		[Blockly.Msg.POSENET_RIGHTANKLE_SHOW,"rightAnkle"],
+		[Blockly.Msg.POSENET_ALL_SHOW,""]
   ]), "part_");  	
   this.appendDummyInput()
       .appendField(Blockly.Msg.POSENET_DATA_SHOW)
