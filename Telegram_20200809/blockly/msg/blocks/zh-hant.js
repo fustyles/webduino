@@ -4,6 +4,6 @@ Blockly.Msg.TELEGRAM_GETID_SHOW = "取得影像元素 ID";
 Blockly.Msg.TELEGRAM_ID_SHOW = "代碼";
 Blockly.Msg.TELEGRAM_VIDEO_SHOW = "視訊媒體";
 Blockly.Msg.TELEGRAM_CANVAS_SHOW = "畫布";
-Blockly.Msg.TELEGRAM_IMAGE_SHOW = "圖片";
+Blockly.Msg.TELEGRAM_IMAGE_SHOW = "Telegram 圖片";
 Blockly.Msg.TELEGRAM_GETUPDATES_SHOW = "Telegram 取得訊息";
 Blockly.Msg.TELEGRAM_GETMESSAGE_SHOW = " = Telegram 訊息";
