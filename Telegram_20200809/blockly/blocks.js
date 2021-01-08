@@ -38,12 +38,42 @@ Blockly.Blocks['telegram_image'] = {
       .appendField("ChatID"); 
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.TELEGRAM_VIDEO,"video"], [Blockly.Msg.TELEGRAM_CANVAS,"canvas"], [Blockly.Msg.TELEGRAM_IMAGE,"image"]]), "telegram_source");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.TELEGRAM_VIDEO_SHOW,"video"], [Blockly.Msg.TELEGRAM_CANVAS_SHOW,"canvas"], [Blockly.Msg.TELEGRAM_IMAGE_SHOW,"image"]]), "telegram_source");
   this.appendValueInput("telegram_videoid")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TELEGRAM_ID);
+      .appendField(Blockly.Msg.TELEGRAM_ID_SHOW);
   this.setInputsInline(false);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setTooltip('');
+  this.setColour(65);
+  }
+};
+
+Blockly.Blocks['telegram_getupdates'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.TELEGRAM_GETUPDATES_SHOW);
+  this.appendValueInput("telegram_token")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Token");
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setTooltip('');
+  this.setColour(65);
+  }
+};
+
+Blockly.Blocks['telegram_getmessage'] = {
+  init: function() {
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(new Blockly.FieldVariable("telegram_response"), "telegram_response")
+	  .appendField(Blockly.Msg.TELEGRAM_GETMESSAGE_SHOW);
+  this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');

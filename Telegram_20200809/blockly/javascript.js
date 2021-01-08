@@ -40,6 +40,18 @@ Blockly.JavaScript['telegram_image'] = function (block) {
   return code; 
 };
 
+Blockly.JavaScript['telegram_getupdates'] = function (block) {
+  var telegram_token = Blockly.JavaScript.valueToCode(block, 'telegram_token', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'telegram_getupdates('+telegram_token+');\n';
+  return code; 
+};
+
+Blockly.JavaScript['telegram_getmessage'] = function (block) {
+  var variable_telegram_response = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('telegram_response'), Blockly.Variables.NAME_TYPE);	
+  var code = variable_telegram_response + ' = telegram_getmessage();\n';
+  return code;
+};
+
 Blockly.JavaScript['telegram_getid'] = function (block) {
   var telegram_tagname = block.getFieldValue('tagname_');
 	

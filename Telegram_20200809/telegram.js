@@ -9,58 +9,30 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
 +(function (window, document) {
 
   'use strict';
+  
+  var telegram_messageid = "";
+  var telegram_text = "";
 
   function telegram_push_message(token, chatid, msg) {
-	if (!document.getElementById("myFormMessage")) {
-		var myFormMessage = document.createElement("form");
-		myFormMessage.id = "myFormMessage";
-		myFormMessage.name = "myFormMessage";
-		myFormMessage.method = "POST";
-		myFormMessage.target = "myIframe";
-		document.body.appendChild(myFormMessage);
-	} 
-	else {
-		var myFormMessage = document.getElementById("myFormMessage");
 
-	}
-	myFormMessage.action = "https://api.telegram.org/bot"+token+"/sendMessage";
-
-	if (!document.getElementById("chat_id")) {
-		var myChatID = document.createElement("input");
-		myChatID.type = "hidden";
-		myChatID.id = "chat_id";
-		myChatID.name = "chat_id";
-		myFormMessage.appendChild(myChatID);
-	}
-	else {
-		var myChatID = document.getElementById("chat_id");
-	}
-	myChatID.value = chatid;
-
-	if (!document.getElementById("text")) {
-		var myText = document.createElement("input");
-		myText.type = "hidden";
-		myText.id = "text";
-		myText.name = "text";
-		myFormMessage.appendChild(myText);
-	}
-	else {
-		var myText = document.getElementById("text");
-	}
-	myText.value = msg;
-
-	if (!document.getElementById("myIframe")) {
-		var myIframe = document.createElement('iframe');
-		myIframe.id = "myIframe";
-		myIframe.name = "myIframe";
-		myIframe.style.display = "none";
-		document.body.appendChild(myIframe);
-	}
-	else {
-		var myIframe = document.getElementById("myIframe");
-	}
-
-	myFormMessage.submit();
+	$.ajax({
+		"type": "POST",
+		"headers": { 
+		  "Content-Type": "application/x-www-form-urlencoded"
+		},
+		data: {
+		  chat_id: chatid,
+		  text: msg
+		},		
+		"url": "https://api.telegram.org/bot"+token+"/sendMessage?parse_mode=HTML",
+		success: function(jsonp)
+		{
+		},
+		error: function(jqXHR, textStatus, errorThrown)
+		{
+		  //console.log(errorThrown);
+		}
+	 });
   } 
   
   function telegram_push_image(input_script,input_token,input_chatid,input_videoid) {
@@ -156,6 +128,36 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
 
     myForm.submit();
   } 
+  
+  function telegram_getupdates(input_token) {
+	$.ajax({
+		"type": "POST",
+		"dataType": "json",
+		"headers": { 
+		  "Content-Type": "application/x-www-form-urlencoded"
+		},				
+		"url": "https://api.telegram.org/bot"+input_token+"/getUpdates?limit=1&offset=-1&allowed_updates=message",
+		success: function(jsonp)
+		{
+		  if (String(jsonp["result"][0]["message"]["message_id"])!=telegram_messageid) {
+			if (telegram_messageid!="")
+				telegram_text = String(jsonp["result"][0]["message"]["text"]);
+			telegram_messageid = String(jsonp["result"][0]["message"]["message_id"]);
+		  }
+		},
+		error: function(jqXHR, textStatus, errorThrown)
+		{
+		  //console.log(errorThrown);
+		  telegram_text = "error";
+		}
+	 });
+  }  
+  
+  function telegram_getmessage() {
+	var response = telegram_text;
+	telegram_text = "";
+	return response;
+  }  
 
   function telegram_get_id(input_tagname) {
 	var list = [];
@@ -170,6 +172,8 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
   
   window.telegram_push_message = telegram_push_message;
   window.telegram_push_image = telegram_push_image;
+  window.telegram_getupdates = telegram_getupdates;
+  window.telegram_getmessage = telegram_getmessage;
   window.telegram_get_id = telegram_get_id;
 
 }(window, window.document));
