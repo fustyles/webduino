@@ -81,6 +81,18 @@ Blockly.Blocks['telegram_getmessage'] = {
   }
 };
 
+Blockly.Blocks['telegram_pre'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.TELEGRAM_PRE_SHOW);
+  this.appendValueInput("telegram_comment")
+      .setCheck(null);
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
 Blockly.Blocks['telegram_getid'] = {
   init: function() {
   this.appendDummyInput()

@@ -52,6 +52,12 @@ Blockly.JavaScript['telegram_getmessage'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['telegram_pre'] = function (block) {
+  var telegram_comment = Blockly.JavaScript.valueToCode(block, 'telegram_comment', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '" ***"+' + telegram_comment + '+"*** "';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['telegram_getid'] = function (block) {
   var telegram_tagname = block.getFieldValue('tagname_');
 	

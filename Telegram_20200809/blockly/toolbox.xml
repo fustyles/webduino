@@ -45,6 +45,13 @@
       </block>
     </value> 
   </block>  
+  <block type="telegram_pre">
+    <value name="telegram_comment">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
+  </block>    
   <block type="telegram_getmessage">
     <field id="D~s:.T0JlLY@#L%wFeda" name="telegram_request">telegram_response</field>  
   </block>    

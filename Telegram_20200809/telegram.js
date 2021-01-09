@@ -14,7 +14,7 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
   var telegram_text = "";
 
   function telegram_push_message(token, chatid, msg) {
-
+console.log(msg.replace(/\*\*\*/g,'\n'));
 	$.ajax({
 		"type": "POST",
 		"headers": { 
@@ -22,7 +22,7 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
 		},
 		data: {
 		  chat_id: chatid,
-		  text: msg
+		  text: msg.replace(/\*\*\*/g,'\n')
 		},		
 		"url": "https://api.telegram.org/bot"+token+"/sendMessage?parse_mode=HTML",
 		success: function(jsonp)
@@ -148,7 +148,7 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
 		error: function(jqXHR, textStatus, errorThrown)
 		{
 		  //console.log(errorThrown);
-		  telegram_text = "error";
+		  telegram_text = "Please start your telegram bot.";
 		}
 	 });
   }  

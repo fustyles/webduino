@@ -6,3 +6,4 @@ Blockly.Msg.TELEGRAM_VIDEO_SHOW = "視訊媒體";
 Blockly.Msg.TELEGRAM_CANVAS_SHOW = "畫布";
 Blockly.Msg.TELEGRAM_GETUPDATES_SHOW = "Telegram 取得最新訊息";
 Blockly.Msg.TELEGRAM_GETMESSAGE_SHOW = " = Telegram 最新訊息";
+Blockly.Msg.TELEGRAM_PRE_SHOW = "Telegram 訊息換行註解";
