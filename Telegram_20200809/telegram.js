@@ -14,7 +14,6 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
   var telegram_text = "";
 
   function telegram_push_message(token, chatid, msg) {
-console.log(msg.replace(/\*\*\*/g,'\n'));
 	$.ajax({
 		"type": "POST",
 		"headers": { 
