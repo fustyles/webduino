@@ -81,10 +81,10 @@ Blockly.Blocks['telegram_getmessage'] = {
   }
 };
 
-Blockly.Blocks['telegram_pre'] = {
+Blockly.Blocks['telegram_br'] = {
   init: function() {
   this.appendDummyInput()
-	  .appendField(Blockly.Msg.TELEGRAM_PRE_SHOW);
+	  .appendField(Blockly.Msg.TELEGRAM_BR_SHOW);
   this.appendValueInput("telegram_comment")
       .setCheck(null);
   this.setInputsInline(true);

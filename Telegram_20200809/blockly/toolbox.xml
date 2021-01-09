@@ -45,7 +45,7 @@
       </block>
     </value> 
   </block>  
-  <block type="telegram_pre">
+  <block type="telegram_br">
     <value name="telegram_comment">
       <block type="text">
         <field name="TEXT"></field>

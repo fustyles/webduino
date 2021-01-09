@@ -6,4 +6,4 @@ Blockly.Msg.TELEGRAM_VIDEO_SHOW = "Video";
 Blockly.Msg.TELEGRAM_CANVAS_SHOW = "Canvas";
 Blockly.Msg.TELEGRAM_GETUPDATES_SHOW = "Telegram get the latest message";
 Blockly.Msg.TELEGRAM_GETMESSAGE_SHOW = " = Telegram latest message";
-Blockly.Msg.TELEGRAM_PRE_SHOW = "Telegram command comment";
+Blockly.Msg.TELEGRAM_BR_SHOW = "Telegram command comment";
