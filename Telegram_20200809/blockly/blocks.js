@@ -46,7 +46,7 @@ Blockly.Blocks['telegram_image'] = {
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setTooltip('');
+  this.setTooltip('https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs');
   this.setColour(65);
   }
 };
