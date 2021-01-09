@@ -13,7 +13,7 @@ Blockly.Blocks['telegram_message'] = {
   this.appendValueInput("telegram_msg")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Message");
+      .appendField(Blockly.Msg.TELEGRAM_TEXT_SHOW);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
@@ -36,7 +36,7 @@ Blockly.Blocks['telegram_photo'] = {
   this.appendValueInput("telegram_url")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("photoURL"); 
+      .appendField(Blockly.Msg.TELEGRAM_PHOTOURL_SHOW); 
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -132,13 +132,13 @@ Blockly.Blocks['telegram_reply_markup'] = {
   this.appendValueInput("telegram_msg")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Message");
+      .appendField(Blockly.Msg.TELEGRAM_TEXT_SHOW);
   this.appendValueInput("telegram_keyboard")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("replyKeyboard");
+      .appendField(Blockly.Msg.TELEGRAM_REPLYKEYBOARD_SHOW);
   this.appendDummyInput()
-      .appendField("onTime")  
+      .appendField(Blockly.Msg.TELEGRAM_ONTIME_SHOW)  
       .appendField(new Blockly.FieldDropdown([
 		["false","false"],	  
 		["true","true"]

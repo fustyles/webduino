@@ -9,3 +9,7 @@ Blockly.Msg.TELEGRAM_GETUPDATES_SHOW = "Telegram 取得最新讯息";
 Blockly.Msg.TELEGRAM_GETMESSAGE_SHOW = " = Telegram 最新讯息";
 Blockly.Msg.TELEGRAM_BR_SHOW = "Telegram 讯息换行";
 Blockly.Msg.TELEGRAM_REPLYMARKUP_SHOW = "Telegram 按钮";
+Blockly.Msg.TELEGRAM_TEXT_SHOW = "文字讯息";
+Blockly.Msg.TELEGRAM_PHOTOURL_SHOW = "图片网址";
+Blockly.Msg.TELEGRAM_REPLYKEYBOARD_SHOW = "按钮指令";
+Blockly.Msg.TELEGRAM_ONTIME_SHOW = "点击后隐藏";

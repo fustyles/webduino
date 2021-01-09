@@ -9,3 +9,7 @@ Blockly.Msg.TELEGRAM_GETUPDATES_SHOW = "Telegram get the latest message";
 Blockly.Msg.TELEGRAM_GETMESSAGE_SHOW = " = Telegram latest message";
 Blockly.Msg.TELEGRAM_BR_SHOW = "Telegram Line-Break ";
 Blockly.Msg.TELEGRAM_REPLYMARKUP_SHOW = "Telegram replyKeyboard";
+Blockly.Msg.TELEGRAM_TEXT_SHOW = "message";
+Blockly.Msg.TELEGRAM_PHOTOURL_SHOW = "Photo URL";
+Blockly.Msg.TELEGRAM_REPLYKEYBOARD_SHOW = "replyKeyboard";
+Blockly.Msg.TELEGRAM_ONTIME_SHOW = "onTime";

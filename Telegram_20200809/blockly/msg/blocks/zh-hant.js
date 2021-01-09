@@ -9,3 +9,7 @@ Blockly.Msg.TELEGRAM_GETUPDATES_SHOW = "Telegram 取得最新訊息";
 Blockly.Msg.TELEGRAM_GETMESSAGE_SHOW = " = Telegram 最新訊息";
 Blockly.Msg.TELEGRAM_BR_SHOW = "Telegram 訊息換行";
 Blockly.Msg.TELEGRAM_REPLYMARKUP_SHOW = "Telegram 按鈕";
+Blockly.Msg.TELEGRAM_TEXT_SHOW = "文字訊息";
+Blockly.Msg.TELEGRAM_PHOTOURL_SHOW = "圖片網址";
+Blockly.Msg.TELEGRAM_REPLYKEYBOARD_SHOW = "按鈕指令";
+Blockly.Msg.TELEGRAM_ONTIME_SHOW = "點擊後隱藏";
