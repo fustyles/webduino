@@ -10,6 +10,16 @@ Blockly.JavaScript['telegram_message'] = function (block) {
   var code = 'telegram_push_message('+telegram_token+','+telegram_chatid+','+telegram_msg+');\n';
   return code; 
 };
+
+Blockly.JavaScript['telegram_photo'] = function (block) {
+  var telegram_token = Blockly.JavaScript.valueToCode(block, 'telegram_token', Blockly.JavaScript.ORDER_ATOMIC); 
+  var telegram_chatid = Blockly.JavaScript.valueToCode(block, 'telegram_chatid', Blockly.JavaScript.ORDER_ATOMIC);
+  var telegram_url = Blockly.JavaScript.valueToCode(block, 'telegram_url', Blockly.JavaScript.ORDER_ATOMIC);	
+	
+  var code = 'telegram_push_photo('+telegram_token+','+telegram_chatid+','+telegram_url+');\n';
+  return code; 
+};
+
 Blockly.JavaScript['telegram_image'] = function (block) {
   var telegram_script = Blockly.JavaScript.valueToCode(block, 'telegram_script', Blockly.JavaScript.ORDER_ATOMIC);
   var telegram_token = Blockly.JavaScript.valueToCode(block, 'telegram_token', Blockly.JavaScript.ORDER_ATOMIC); 

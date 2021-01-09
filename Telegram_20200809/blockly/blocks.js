@@ -20,6 +20,31 @@ Blockly.Blocks['telegram_message'] = {
   this.setColour(65);
   }
 };
+
+Blockly.Blocks['telegram_photo'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.TELEGRAM_PHOTO_SHOW);
+  this.appendValueInput("telegram_token")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Token");  
+  this.appendValueInput("telegram_chatid")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("ChatID"); 
+  this.appendValueInput("telegram_url")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("photoURL"); 
+  this.setInputsInline(false);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setTooltip('');
+  this.setColour(65);
+  }
+};
+
 Blockly.Blocks['telegram_image'] = {
   init: function() {
   this.appendDummyInput()

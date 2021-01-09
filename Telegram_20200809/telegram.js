@@ -34,6 +34,27 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
 	 });
   } 
   
+  function telegram_push_photo(token, chatid, url) {
+	$.ajax({
+		"type": "POST",
+		"headers": { 
+		  "Content-Type": "application/x-www-form-urlencoded"
+		},
+		data: {
+		  chat_id: chatid,
+		  photo: url
+		},		
+		"url": "https://api.telegram.org/bot"+token+"/sendPhoto?parse_mode=HTML",
+		success: function(jsonp)
+		{
+		},
+		error: function(jqXHR, textStatus, errorThrown)
+		{
+		  //console.log(errorThrown);
+		}
+	 });
+  }   
+  
   function telegram_push_image(input_script,input_token,input_chatid,input_videoid) {
 	var myVideo = document.getElementById(input_videoid);
 
@@ -204,6 +225,7 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
   
   window.telegram_push_message = telegram_push_message;
   window.telegram_push_image = telegram_push_image;
+  window.telegram_push_photo = telegram_push_photo;
   window.telegram_getupdates = telegram_getupdates;
   window.telegram_getmessage = telegram_getmessage;
   window.telegram_reply_markup = telegram_reply_markup;
