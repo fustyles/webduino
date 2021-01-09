@@ -152,6 +152,39 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
 	 });
   }  
   
+  function telegram_reply_markup(token, chatid, msg, keyboard, ontime) {
+	var replyKeyboard = [[]];
+	if (keyboard.length>0) {
+		for (var i=0;i<keyboard.length;i++) {
+			replyKeyboard[0].push({text:keyboard[i]});
+		}
+	}
+	
+	$.ajax({
+		"type": "POST",
+		"headers": { 
+		  "Content-Type": "application/json"
+		},
+		data: JSON.stringify({
+			chat_id: chatid,
+			text: msg.replace(/\*\*\*/g,'\n'),
+			reply_markup: {
+			  keyboard: replyKeyboard,
+			  resize_keyboard: true,
+			  one_time_keyboard: ontime
+			}
+		  }),
+		"url": "https://api.telegram.org/bot"+token+"/sendMessage?parse_mode=HTML",
+		success: function(jsonp)
+		{
+		},
+		error: function(jqXHR, textStatus, errorThrown)
+		{
+		  //console.log(errorThrown);
+		}
+	 });
+  }
+  
   function telegram_getmessage() {
 	var response = telegram_text;
 	telegram_text = "";
@@ -173,6 +206,7 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
   window.telegram_push_image = telegram_push_image;
   window.telegram_getupdates = telegram_getupdates;
   window.telegram_getmessage = telegram_getmessage;
+  window.telegram_reply_markup = telegram_reply_markup;
   window.telegram_get_id = telegram_get_id;
 
 }(window, window.document));

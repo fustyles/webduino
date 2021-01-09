@@ -46,7 +46,7 @@ Blockly.Blocks['telegram_image'] = {
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setTooltip('https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs');
+  this.setTooltip('');
   this.setColour(65);
   }
 };
@@ -89,6 +89,40 @@ Blockly.Blocks['telegram_br'] = {
   this.setOutput(true, null); 
   this.setColour(65);
   this.setTooltip('Line-Break: ***'); 	  
+  }
+};
+
+Blockly.Blocks['telegram_reply_markup'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.TELEGRAM_REPLYMARKUP_SHOW);
+  this.appendValueInput("telegram_token")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Token");  
+  this.appendValueInput("telegram_chatid")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("ChatID"); 
+  this.appendValueInput("telegram_msg")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Message");
+  this.appendValueInput("telegram_keyboard")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("replyKeyboard");
+  this.appendDummyInput()
+      .appendField("onTime")  
+      .appendField(new Blockly.FieldDropdown([
+		["true","true"],
+		["false","false"]
+  ]), "telegram_ontime");
+  this.setInputsInline(false);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setTooltip('');
+  this.setColour(65);  
   }
 };
 

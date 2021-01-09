@@ -7,3 +7,4 @@ Blockly.Msg.TELEGRAM_CANVAS_SHOW = "Canvas";
 Blockly.Msg.TELEGRAM_GETUPDATES_SHOW = "Telegram get the latest message";
 Blockly.Msg.TELEGRAM_GETMESSAGE_SHOW = " = Telegram latest message";
 Blockly.Msg.TELEGRAM_BR_SHOW = "Telegram Line-Break ";
+Blockly.Msg.TELEGRAM_REPLYMARKUP_SHOW = "Telegram replyKeyboard";

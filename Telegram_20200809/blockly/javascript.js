@@ -57,6 +57,17 @@ Blockly.JavaScript['telegram_br'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['telegram_reply_markup'] = function (block) {
+  var telegram_token = Blockly.JavaScript.valueToCode(block, 'telegram_token', Blockly.JavaScript.ORDER_ATOMIC); 
+  var telegram_chatid = Blockly.JavaScript.valueToCode(block, 'telegram_chatid', Blockly.JavaScript.ORDER_ATOMIC);
+  var telegram_msg = Blockly.JavaScript.valueToCode(block, 'telegram_msg', Blockly.JavaScript.ORDER_ATOMIC);
+  var telegram_keyboard = Blockly.JavaScript.valueToCode(block, 'telegram_keyboard', Blockly.JavaScript.ORDER_ATOMIC); 
+  var telegram_ontime = block.getFieldValue('telegram_ontime');
+  
+  var code = 'telegram_reply_markup('+telegram_token+','+telegram_chatid+','+telegram_msg+','+telegram_keyboard+','+telegram_ontime+');\n';
+  return code;
+};
+
 Blockly.JavaScript['telegram_getid'] = function (block) {
   var telegram_tagname = block.getFieldValue('tagname_');
 	
