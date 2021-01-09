@@ -115,8 +115,8 @@ Blockly.Blocks['telegram_reply_markup'] = {
   this.appendDummyInput()
       .appendField("onTime")  
       .appendField(new Blockly.FieldDropdown([
-		["true","true"],
-		["false","false"]
+		["false","false"],	  
+		["true","true"]
   ]), "telegram_ontime");
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
