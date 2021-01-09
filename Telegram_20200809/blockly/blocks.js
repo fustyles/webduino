@@ -88,6 +88,7 @@ Blockly.Blocks['telegram_br'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
+  this.setTooltip('Line-Break: ***'); 	  
   }
 };
 
