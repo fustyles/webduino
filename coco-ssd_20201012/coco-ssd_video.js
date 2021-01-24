@@ -9,7 +9,7 @@ window.onload = function () {
 	var canvas = document.getElementById('gamecanvas_cocossd'); 
 	var context = canvas.getContext('2d');
 	var mirrorimage = document.getElementById("mirrorimage_cocossd").value;
-	var cocossdState = document.getElementById('cocossdState').innerHTML;
+	var cocossdState = document.getElementById('cocossdState');
 	var frame = document.getElementById("frame_cocossd");
 	var result = document.getElementById('gamediv_cocossd'); 
 	var Model; 
@@ -46,7 +46,7 @@ window.onload = function () {
 		else
 			context.drawImage(obj, 0, 0, obj.width, obj.height);  
 
-		if (cocossdState=="0") {
+		if (cocossdState.innerHTML=="0") {
 			result.innerHTML = "";
 			setTimeout(function(){DetectVideo(obj);}, 100);
 			return;
