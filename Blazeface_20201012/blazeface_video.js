@@ -10,7 +10,7 @@ window.onload = function () {
 	var context = canvas.getContext('2d');
 	var mirrorimage = document.getElementById("mirrorimage_blazeface").value;
 	var result = document.getElementById('gamediv_blazeface');
-	var blazefaceState = document.getElementById('blazefaceState').innerHTML;
+	var blazefaceState = document.getElementById('blazefaceState');
 	var frame = document.getElementById("frame_blazeface");
 	var Model;
 	var sourceTimer;
@@ -47,7 +47,7 @@ window.onload = function () {
 		else
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
 
-		if (blazefaceState=="0") {
+		if (blazefaceState.innerHTML=="0") {
 			result.innerHTML = "";
 			setTimeout(function(){DetectVideo(obj);}, 100);
 			return;
