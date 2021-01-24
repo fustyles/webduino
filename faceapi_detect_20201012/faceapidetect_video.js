@@ -51,7 +51,7 @@ window.onload = function () {
 		canvas.style.width = obj.width+"px";
 		canvas.style.height = obj.height+"px";	  
 		canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-
+console.log(faceapiState);
 		if (faceapiState=="0") {
 			result.innerHTML = "";
 			setTimeout(function(){DetectVideo(obj); }, 100);
