@@ -9,7 +9,7 @@ window.onload = function () {
 	var result = document.getElementById('result_faceapidetect');
 	var video = document.getElementById('gamevideo_faceapidetect');
 	var frame = document.getElementById("frame_faceapidetect");
-	var faceapiState = document.getElementById('faceapiState').innerHTML;
+	var faceapiState = document.getElementById('faceapiState');
 	const modelPath = 'https://fustyles.github.io/webduino/faceapi_detect_20201012/';
 	let canvas;
 	var sourceTimer;  
@@ -52,7 +52,7 @@ window.onload = function () {
 		canvas.style.height = obj.height+"px";	  
 		canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
 
-		if (faceapiState=="0") {
+		if (faceapiState.innerHTML=="0") {
 			result.innerHTML = "";
 			setTimeout(function(){DetectVideo(obj); }, 100);
 			return;
