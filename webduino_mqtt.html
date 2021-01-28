@@ -30,15 +30,20 @@
       <tr><td></td><td><input type="button" value="send" onclick="sendMessage();"></td></tr> 
       <tr><td></td><td>&nbsp;</td></tr>            
       <tr><td>Get-Topic:</td><td><input type="text" id="getTopic"></td></tr>  
-      <tr><td>Message:</td><td><input type="checkbox" id="clear" checked>Clear last message</td></tr>              
+      <tr><td>Message:</td><td><input type="checkbox" id="clear" checked>Clear last message</td></tr>
+      <tr><td></td><td>&nbsp;</td></tr>	  
+	  <tr><td>Room ID:</td><td><input type="text" id="ID" size="15"><input type="checkbox" id="chkid" checked></td></tr>	
     </table>
     <div id="receive" style="color:red;"></div>
     <script>
       var webduinoBroadcastor;
       var sendTopic = document.getElementById('sendTopic');
       var message = document.getElementById('message');
+	  var msg = "";
       var getTopic = document.getElementById('getTopic');
       var clear = document.getElementById('clear');
+	  var ID = document.getElementById('ID');
+	  var chkid = document.getElementById('chkid');
 
       (async function () {      
         if (!webduinoBroadcastor) {
@@ -56,8 +61,13 @@
           return; 
         }
         if (clear.checked) receive.innerHTML = "";
+		
+		if (chkid.checked&&ID.value!="")
+			msg = "[ " + ID.value + "] " + message.value;
+		else
+			msg = message.value;
         if (webduinoBroadcastor) {
-          webduinoBroadcastor.send({topic: sendTopic.value, message: message.value});
+          webduinoBroadcastor.send({topic: sendTopic.value, message: msg});
           message.value="";
         } else {
           receive.innerHTML = "Connected to server failed.";
