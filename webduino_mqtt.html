@@ -25,14 +25,13 @@
     <font color="green" size="6">Webduino MQTT</font>
     <br><br>
     <table>
+      <tr><td>Room ID:</td><td><input type="text" id="ID" size="15"><input type="checkbox" id="chkid" checked></td></tr>	    
       <tr><td>Send-Topic:</td><td><input type="text" id="sendTopic"></td></tr>
       <tr><td>Message:</td><td><input type="text" id="message"></td></tr>
       <tr><td></td><td><input type="button" value="send" onclick="sendMessage();"></td></tr> 
       <tr><td></td><td>&nbsp;</td></tr>            
       <tr><td>Get-Topic:</td><td><input type="text" id="getTopic"></td></tr>  
-      <tr><td>Message:</td><td><input type="checkbox" id="clear" checked>Clear last message</td></tr>
-      <tr><td></td><td>&nbsp;</td></tr>	  
-	  <tr><td>Room ID:</td><td><input type="text" id="ID" size="15"><input type="checkbox" id="chkid" checked></td></tr>	
+      <tr><td>Message:</td><td><input type="checkbox" id="clear" checked>Clear last message</td></tr>	
     </table>
     <div id="receive" style="color:red;"></div>
     <script>
