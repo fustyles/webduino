@@ -8,6 +8,7 @@ https://fustyles.github.io/webduino/NKNU_Classroom_Safety.html
 How to enable WebGL in Chrome.
 https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 -->
+
 <!DOCTYPE html>
 <head>
   <title>Object Detection (coco-ssd)</title>
@@ -132,15 +133,20 @@ alarm <input type="text" id="aud" size="39" value="http://www.fionasplace.net/cr
 		  const width = Number(predictions[i].bbox[2]);
 		  const height = Number(predictions[i].bbox[3]);		
 		  
-		  if (predictions[i].class=="person"&&predictions[i].score>0.7) {
+		  if (predictions[i].class=="person") {
 			  context.fillStyle="#00FFFF";			  
 			  context.beginPath();
 			  context.arc(x+width/2,y+height,5,0,Math.PI*2,true);
 			  context.fill();
 			  context.closePath();
 			  
+			  var lt = Number(lefttop.value)+0.1;
+			  var rt = Number(righttop.value);
+			  var lb = Number(leftbottom.value)+0.1;
+			  var rb = Number(rightbottom.value);
+			  
 			  var p1,p2;
-			  var tx1 =  (0 - videoWidth) / (Number(lefttop.value) - Number(righttop.value)) * ((y+height) - Number(righttop.value)) + videoWidth;
+			  var tx1 =  (0 - videoWidth) / (lt - rt) * ((y+height) - rt) + videoWidth;
 			  if (tx1>(x+width/2)) {
 				p1 = 1;
 			  }
@@ -148,7 +154,7 @@ alarm <input type="text" id="aud" size="39" value="http://www.fionasplace.net/cr
 				p1 = 0;
 			  }
 			  
-			  var tx2 =  (0 - videoWidth) / (Number(leftbottom.value) - Number(rightbottom.value)) * ((y+height) - Number(rightbottom.value)) + videoWidth;
+			  var tx2 =  (0 - videoWidth) / (lb - rb) * ((y+height) - rb) + videoWidth;
 			  if (tx2>(x+width/2)) {
 				p2 = 1;
 			  }
@@ -156,38 +162,37 @@ alarm <input type="text" id="aud" size="39" value="http://www.fionasplace.net/cr
 				p2 = 0;
 			  }		
 
-              if ((Number(lefttop.value)>=Number(righttop.value))&&(Number(leftbottom.value)>=Number(rightbottom.value))) {
+              if ((lt>rt)&&(lb>rb)) {
 				  if (p1==1)
 					position.innerHTML = "1";
 				  else if (p1==0&&p2==1)
 					position.innerHTML = "2";
 				  else if (p2==0)
 					position.innerHTML = "3";	
-			  } else if ((Number(lefttop.value)<=Number(righttop.value))&&(Number(leftbottom.value)<=Number(rightbottom.value))) {
+			  } else if ((lt<rt)&&(lb<rb)) {
 				  if (p1==0)
 					position.innerHTML = "1";
 				  else if (p1==1&&p2==0)
 					position.innerHTML = "2";
 				  else if (p2==1)
 					position.innerHTML = "3";
-			  }  else if ((Number(lefttop.value)>=Number(righttop.value))&&(Number(leftbottom.value)<=Number(rightbottom.value))) {
+			  }  else if ((lt>rt)&&(lb<rb)) {
 				  if (p1==1)
 					position.innerHTML = "1";
 				  else if (p1==0&&p2==0)
 					position.innerHTML = "2";
 				  else if (p2==1)
 					position.innerHTML = "3";
-			  }  else if ((Number(leftbottom.value)>=Number(rightbottom.value))&&(Number(lefttop.value)<=Number(righttop.value))) {
+			  }  else if ((lt<rt)&&(lb>rb)) {
 				  if (p1==0)
 					position.innerHTML = "1";
 				  else if (p1==1&&p2==1)
 					position.innerHTML = "2";
 			      else if (p2==0)
 					position.innerHTML = "3";
-			  }		
-
+			  }
+			  
 			  if (position.innerHTML == "2") {
-				
 				alarm.play();
 			  }
 		  }
