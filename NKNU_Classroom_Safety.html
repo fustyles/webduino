@@ -1,10 +1,8 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/2/4 21:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/2/6 12:00
 https://www.facebook.com/francefu
-
 Try it!
 https://fustyles.github.io/webduino/NKNU_Classroom_Safety.html
-
 How to enable WebGL in Chrome.
 https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 -->
@@ -22,18 +20,45 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <table>
 <tr>
-<td align="left"><input type="number" id="lefttop" min="0" max="240" value="80"></td>
-<td align="right"><input type="number" id="righttop" min="0" max="240" value="80"></td>
+<td align="left"><input type="number" id="lefttop" min="0" max="240" value="80" step="10" list="defaultNumbers" required></td>
+<td align="right"><input type="number" id="righttop" min="0" max="240" value="80" step="10" list="defaultNumbers" required></td>
 </tr>
 <tr>
 <td colspan="2"><canvas id="canvas"></canvas></td>
 </tr>
 <tr>
-<td align="left"><input type="number" id="leftbottom" min="0" max="240" value="160"></td>
-<td align="right"><input type="number" id="rightbottom" min="0" max="240" value="160"></td>
+<td align="left"><input type="number" id="leftbottom" min="0" max="240" value="160" step="10" list="defaultNumbers" required></td>
+<td align="right"><input type="number" id="rightbottom" min="0" max="240" value="160" step="10" list="defaultNumbers" required></td>
 </tr>
 </table>
-alarm <input type="text" id="aud" size="39" value="http://www.fionasplace.net/creepysounds/CAT2.WAV">alarm <input type="text" id="aud" size="30" value="http://www.fionasplace.net/creepysounds/CAT2.WAV"><input type="button" id="setsource" value="set" onclick="alarm.src=document.getElementById('aud').value;">
+<datalist id="defaultNumbers">
+  <option value="0">
+  <option value="10">
+  <option value="20">
+  <option value="30">
+  <option value="40">
+  <option value="50">
+  <option value="60">
+  <option value="70">
+  <option value="80">
+  <option value="90">
+  <option value="100">
+  <option value="110">
+  <option value="120">
+  <option value="130">
+  <option value="140">
+  <option value="150">
+  <option value="160">
+  <option value="170">
+  <option value="180">
+  <option value="190">
+  <option value="200">
+  <option value="210">
+  <option value="220">
+  <option value="230">
+  <option value="240">  
+</datalist>
+alarm <input type="text" id="aud" size="30" value="http://www.fionasplace.net/creepysounds/BONES02.WAV"><input type="button" id="setsource" value="set" onclick="alarm.src=document.getElementById('aud').value;">
 <br>
 <div id="position" style="color:blue;font-size:40px"></div>
 <div id="result" style="color:red"></div>
