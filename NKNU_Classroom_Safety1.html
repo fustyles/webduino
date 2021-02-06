@@ -171,7 +171,7 @@ alarm<input type="text" id="aud" size="20" value="http://www.fionasplace.net/cre
 			  else if (p2==0)
 				position.innerHTML = "3";
 			  
-			  if (position.innerHTML == "2") {
+			  if (position.innerHTML == "2"&&(alarm.paused||alarm.ended)) {			  
 				alarm.play();
 			  }
 		  }
