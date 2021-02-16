@@ -1,0 +1,1 @@
+MSG.barcode = "Barcode reader";

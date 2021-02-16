@@ -1,0 +1,15 @@
+Blockly.Msg.BARCODE_SHOW = "條碼掃描";
+Blockly.Msg.BARCODE_WIDTH_SHOW = "寬度";
+Blockly.Msg.BARCODE_HEIGHT_SHOW = "高度";
+Blockly.Msg.BARCODE_VIDEO_LEFT_SHOW = "條碼掃描 視訊 靠左距離";
+Blockly.Msg.BARCODE_VIDEO_TOP_SHOW = "靠上距離";
+Blockly.Msg.BARCODE_GET_SHOW = "條碼掃描 取得結果";
+Blockly.Msg.BARCODE_RESULT_SHOW = "結果";
+Blockly.Msg.BARCODE_OPACITY_SHOW = "透明度";
+Blockly.Msg.BARCODE_CLEAR_SHOW = "條碼掃描 清除結果";
+Blockly.Msg.BARCODE_CAMERAID_SHOW = "視訊鏡頭索引";
+Blockly.Msg.BARCODE_SRC_SHOW = "串流網址";
+Blockly.Msg.BARCODE_CODE_SHOW = "條碼";
+Blockly.Msg.BARCODE_FACING_SHOW = "鏡頭";
+Blockly.Msg.BARCODE_FACING_FRONT_SHOW = "前置";
+Blockly.Msg.BARCODE_FACING_BACK_SHOW = "後置";

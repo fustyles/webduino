@@ -1,0 +1,15 @@
+Blockly.Msg.BARCODE_SHOW = "Barcode reader";
+Blockly.Msg.BARCODE_WIDTH_SHOW = "Width";
+Blockly.Msg.BARCODE_HEIGHT_SHOW = "Height";
+Blockly.Msg.BARCODE_VIDEO_LEFT_SHOW = "Barcode reader Video Left";
+Blockly.Msg.BARCODE_VIDEO_TOP_SHOW = "TOP";
+Blockly.Msg.BARCODE_GET_SHOW = "Get Result (Barcode reader)";
+Blockly.Msg.BARCODE_RESULT_SHOW = "Result";
+Blockly.Msg.BARCODE_OPACITY_SHOW = "Opacity";
+Blockly.Msg.BARCODE_CLEAR_SHOW = "Clear Result (Barcode reader)";
+Blockly.Msg.BARCODE_CAMERAID_SHOW = "CameraID";
+Blockly.Msg.BARCODE_SRC_SHOW = "Stream URL";
+Blockly.Msg.BARCODE_CODE_SHOW = "Code";
+Blockly.Msg.BARCODE_FACING_SHOW = "Camera Facing";
+Blockly.Msg.BARCODE_FACING_FRONT_SHOW = "Front";
+Blockly.Msg.BARCODE_FACING_BACK_SHOW = "Back";

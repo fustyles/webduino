@@ -1,0 +1,16 @@
+{
+  "types": ["barcode_recognition", "barcode_get", "barcode_video", "barcode_video_position", "barcode_clear", "barcode_startvideo_media", "barcode_startvideo_stream"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "barcode_video.js",
+    "barcode.js",
+    "barcode-reader.umd.min.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
