@@ -108,7 +108,9 @@ https://fustyles.github.io/webduino/barcode-reader.js/barcode-reader.html
 
 	function scanbarcode() {
 		canvas.style = "border-width:3px;border-style:solid;border-color:red;";
+		setTimeout(function(){ canvas.style = ""; }, 1000);
 		result.innerHTML = "";
+		
 		javascriptBarcodeReader({
 			/* Image file Path || {data: Uint8ClampedArray, width, height} || HTML5 Canvas ImageData */
 			image: canvas,
@@ -133,12 +135,10 @@ https://fustyles.github.io/webduino/barcode-reader.js/barcode-reader.html
 		.then(code => {
 			console.log(code);
 			result.innerHTML = code;
-			setTimeout(function(){ canvas.style = ""; }, 1000);
 		})
 		.catch(err => {
 			console.log(err)
 			//result.innerHTML = err;
-			setTimeout(function(){ canvas.style = ""; }, 1000);
 		})
 	}
     </script>
