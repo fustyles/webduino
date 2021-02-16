@@ -1,0 +1,147 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/2/15 01:00
+https://www.facebook.com/francefu
+Try it!
+https://fustyles.github.io/webduino/
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Barcode Scanner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">	  
+    <script type="text/javascript" src="barcode-reader.umd.min.js"></script>
+  </head>
+  <body>
+	<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
+    <video id="video" width="320" height="240" style="display:none" preload autoplay loop muted></video>
+	<canvas id="canvas"></canvas>
+	<table>
+		<tr>
+		<td colspan="2"><input type="checkbox" id="chkGray">Gray Scale</td>
+		</td>
+		</tr>
+		<tr>
+		<td align="right" style="color:green">Code</td>
+		<td colspan="2">
+			<select id="code">
+				<option value="ean-13">EAN-13</option>
+				<option value="ean-8">EAN-8</option>
+				<option value="code-39">Code-39</option>
+				<option value="code-2of5" selected>Code-2of5</option>
+				<option value="codabar">Codabar</option>
+				<option value="code-128">Code-128</option>
+			</select>
+			<button onclick="scanbarcode();">Scan Barcode</button>
+		</td>
+		</tr>		
+	</table>
+
+	<div id="result" style="color:red"></div>
+    <script type="text/javascript">		
+	/*
+	EAN-13
+	EAN-8
+	Code-39
+	Code-93
+	Code-2of5
+	standard
+	Interleaved
+	Codabar
+	Code-128 (UCC/EAN-128)
+	*/	
+		
+	var video = document.getElementById('video');
+	var canvas = document.getElementById('canvas'); 
+	var context = canvas.getContext('2d');	
+	var result = document.getElementById('result');
+	var code = document.getElementById('code');
+	var reference = document.getElementById('reference');
+	var chkGray = document.getElementById('chkGray');
+  
+	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+	  console.log("enumerateDevices() not supported.");
+	}
+
+	var videoWidth = 320;
+	var videoHeight = 240;
+	
+    var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+	navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+		  devices.forEach(function(device) {
+			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+				if (device.deviceId=='')
+					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				else
+					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+			  }
+		  });
+		
+		
+		if (location.search.toLowerCase().indexOf("?back")!=-1)
+		  var userMedia = back;
+		else
+		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+		navigator.mediaDevices
+		  .getUserMedia(userMedia)
+		  .then(stream => {
+			video.srcObject = stream
+			video.onloadedmetadata = () => {       
+				video.play();
+				setInterval(function(){ 
+					drawImage();
+				}, 300);
+				setInterval(function(){ 
+					scanbarcode();
+				}, 5000);
+			}
+		 })  
+	}) 
+	
+	function drawImage() {
+		canvas.setAttribute("width", video.width);
+		canvas.setAttribute("height", video.height);
+		context.drawImage(video, 0, 0, video.width, video.height);
+		if (chkGray.checked) {
+			var imgData=context.getImageData(0,0,canvas.width,canvas.height);
+			for (var i=0;i<imgData.data.length;i+=4) {
+				var r=0;
+				var g=0;
+				var b=0;	
+				
+				var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
+				imgData.data[i]=arg;
+				imgData.data[i+1]=arg;
+				imgData.data[i+2]=arg;
+				imgData.data[i+3]=255;
+			}
+			context.putImageData(imgData,0,0);
+		}
+	}
+
+	function scanbarcode() {
+		result.innerHTML = "";
+		javascriptBarcodeReader({
+			/* Image file Path || {data: Uint8ClampedArray, width, height} || HTML5 Canvas ImageData */
+			image: canvas,
+			barcode: code.value,
+			// barcodeType: 'industrial',
+			options: {
+			// useAdaptiveThreshold: true
+			// singlePass: true
+			}
+		})
+		.then(code => {
+			console.log(code);
+			result.innerHTML = code;
+		})
+		.catch(err => {
+			console.log(err)
+			//result.innerHTML = err;
+		})
+	}
+    </script>
+  </body>
+</html>
