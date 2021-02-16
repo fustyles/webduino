@@ -54,7 +54,7 @@ window.onload = function () {
 						})
 						.catch(err => {
 							console.log(err)
-							//result.innerHTML = err;
+							result.innerHTML = "";
 						})
 					}
 				, 5000);	
