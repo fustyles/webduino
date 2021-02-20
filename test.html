@@ -53,6 +53,7 @@ ScoreLimit
 		var rect = canvas.getBoundingClientRect();
 		touch_x0 = e.touches[0].clientX - rect.left;
 		touch_y0 = e.touches[0].clientY - rect.top;
+		result.innerHTML = touch_x0 +", "+ touch_y0;
 	}, false);
 
 	canvas.addEventListener("touchend", function (e) {
@@ -60,6 +61,7 @@ ScoreLimit
 		touch_x = e.touches[0].clientX - rect.left;
 		touch_y = e.touches[0].clientY - rect.top;
 		touchState = false;
+		result.innerHTML +=  ", "+touch_x +", "+ touch_y;
 	}, false);
 
 
@@ -162,7 +164,6 @@ async function DetectVideo() {
                 context.closePath();
                 context.fill();
               }      
-              result.innerHTML += "[" + n + "]" + k[i].part + ", " + Math.round(k[i].score*100) + "%, " + Math.round(k[i].position.x) + ", " + Math.round(k[i].position.y) + "<br>";
             }
 
             context.lineWidth = 2;
