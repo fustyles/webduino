@@ -51,16 +51,14 @@ ScoreLimit
 	canvas.addEventListener("touchstart", function (e) {
 		touchState = true;		
 		e.preventDefault();
-		var rect = canvas.getBoundingClientRect();
-		touch_x0 = e.touches[0].clientX - rect.left;
-		touch_y0 = e.touches[0].clientY - rect.top;
+		touch_x0 = e.touches[0].clientX;
+		touch_y0 = e.touches[0].clientY;
 		result.innerHTML = touch_x0 +", "+ touch_y0;
 	}, false);
 	canvas.addEventListener("touchmove", function (e) {	
 		e.preventDefault();
-		var rect = canvas.getBoundingClientRect();
-		touch_x = e.touches[0].clientX - rect.left;
-		touch_y = e.touches[0].clientY - rect.top;
+		touch_x = e.touches[0].clientX;
+		touch_y = e.touches[0].clientY;
 	}, false);	
 	canvas.addEventListener("touchcancel", function (e) {
 		e.preventDefault();
