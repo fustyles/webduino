@@ -146,7 +146,6 @@ async function DetectVideo() {
   await Model.estimatePoses(canvas, {flipHorizontal: false, decodingMethod: 'multi-person', maxPoseDetections: 5, scoreThreshold: 0.5, nmsRadius: 20}).then(pose => {
     //console.log(pose.score);
     //console.log(pose.keypoints);
-    result.innerHTML = "";  
     var scoreLimit = Number(document.getElementById("scorelimit").value);
 
     if (pose.length>0) {
