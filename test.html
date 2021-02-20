@@ -56,6 +56,9 @@ ScoreLimit
 		touch_y0 = e.touches[0].clientY - rect.top;
 		result.innerHTML = touch_x0 +", "+ touch_y0;
 	}, false);
+	canvas.addEventListener("touchmove", function (e) {	
+		e.preventDefault();
+	}, false);	
 	canvas.addEventListener("touchcancel", function (e) {
 		e.preventDefault();
 		var rect = canvas.getBoundingClientRect();
