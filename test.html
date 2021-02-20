@@ -58,6 +58,16 @@ ScoreLimit
 			result.innerHTML = touch_x0 +", "+ touch_y0;
 		}
 	}, false);
+	document.body.addEventListener("touchcancel", function (e) {
+		if (e.target == canvas) {
+			e.preventDefault();
+			var rect = canvas.getBoundingClientRect();
+			touch_x = e.touches[0].clientX - rect.left;
+			touch_y = e.touches[0].clientY - rect.top;
+			result.innerHTML +=  ", "+touch_x +", "+ touch_y;
+			touchState = false;	
+		}
+	}, false);
 	document.body.addEventListener("touchend", function (e) {
 		if (e.target == canvas) {
 			e.preventDefault();
@@ -68,7 +78,6 @@ ScoreLimit
 			touchState = false;	
 		}
 	}, false);
-
 
 
 	
