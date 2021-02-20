@@ -1,134 +1,286 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/6/20 00:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/8/18 06:00
 https://www.facebook.com/francefu
 
 Try it!
-https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetection_video_coco-ssd.html
-
-Google Script
-https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToGoogleDriveAndLinenotify_doPost.gs
-You must allow anyone and anonymous to execute the google script.
-
-How to enable WebGL in Chrome.
-https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
+https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection_video_multi.html
 -->
+
 <!DOCTYPE html>
 <head>
-  <title>Object Detection (coco-ssd)</title>
+  <title>Multi Pose Detection</title>
   <meta charset="utf-8">
+  <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"> </script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"> </script>   
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"> </script>  
 </head>
 <body>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
-<canvas id="canvas"></canvas><br>
-
-<form id="myForm" action="" method="post" target="sendcapturedimage">
-<button onclick="SendCapturedImage();">Send Captured Image </button><input type="checkbox" id="myStartDetection" name="myStartDetection">Start Person Detection (15s)<br>
-Google Script Url : <input type="text" id="myGoogleScript" name="myGoogleScript" value="https://script.google.com/macros/s/AKfycbyacDRLUMaOxoJ2IKR6_oqvah8-ma2YuwIW94q5Wn5ZxeHQsgw/exec"><br>
-Google Folder Name : <input type="text" id="myFoldername" name="myFoldername" value="ESP32-CAM"><br>
-Line Notify Token : <input type="text" id="myToken" name="myToken" value="lHaUbj8vv1ZCvoxzwhpoarxNYR4PKYIHtVOS72qS6Lt"><br>
-<input type="text" id="myFilename" name="myFilename" style="display:none">
-<textarea id="myFile" name="myFile" rows="10" cols="50" style="display:none"></textarea><br>
-</form>
-<iframe id="sendcapturedimage" name="sendcapturedimage" style="display:none"></iframe>
-
-<div id="result" style="width:320px;color:red">Please wait for loading model.</div>
+<canvas id="canvas"></canvas>
+<br>
+Persons
+<select id="persons">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="999" selected>max</option>
+</select>
+ScoreLimit
+<select id="scorelimit">
+<option value="0">0</option>  
+<option value="0.1">0.1</option>
+<option value="0.2">0.2</option>
+<option value="0.3">0.3</option>
+<option value="0.4">0.4</option>
+<option value="0.5">0.5</option>
+<option value="0.6">0.6</option>
+<option value="0.7">0.7</option>
+<option value="0.8" selected>0.8</option>
+<option value="0.9">0.9</option>
+</select>
+<div id="result" style="color:red"></div>
   
 <script>
-  var myForm = document.getElementById('myForm');
-  var myStartDetection = document.getElementById('myStartDetection');
-  var myGoogleScript = document.getElementById('myGoogleScript');
-  var myFoldername = document.getElementById('myFoldername');
-  var myFilename = document.getElementById('myFilename');
-  var myFile = document.getElementById('myFile');
-  var myToken = document.getElementById('myToken');
-  var personState = false;
-	
+
   var video = document.getElementById('video');
   var canvas = document.getElementById('canvas'); 
   var context = canvas.getContext('2d');
-  var result = document.getElementById('result'); 
+  var result = document.getElementById('result');
   var Model; 
   
-  ObjectDetect();  
   
-  function ObjectDetect() {
-    cocoSsd.load().then(cocoSsd_model => {
-      Model = cocoSsd_model;
-      //console.log(Model);
+  
+  
+	var touch_x0=0, touch_y0=0, touch_x=0, touch_y=0;
+
+	canvas.addEventListener("touchstart", function (e) {
+		var rect = canvas.getBoundingClientRect();
+		touch_x0 = e.touches[0].clientX - rect.left;
+		touch_x = touch_x0;
+		touch_y0 = e.touches[0].clientY - rect.top;
+		touch_y = touch_y0
+	}, false);
+
+	canvas.addEventListener("touchend", function (e) {
+		var rect = canvas.getBoundingClientRect();
+		touch_x = e.touches[0].clientX - rect.left;
+		touch_y = e.touches[0].clientY - rect.top;
+	}, false);
+
+
+
+	
+  
+  window.onload = function() {LoadModel();}
+  
+  function LoadModel() {
+	result.innerHTML = "Please wait for loading model.";
+    posenet.load().then(function(model) {
+      Model = model;
       result.innerHTML = "";
-      setTimeout(function(){ startvideo(); }, 2000);
+      startVideo();
     }); 
-  }  
-  
-  function startvideo() {
-    video.style.visibility="hidden";
-    video.style.position="absolute";
-    navigator.mediaDevices
-      .getUserMedia({
-        audio: false,
-        video: {
-          facingMode: "user",
-          width: 320,
-          height: 240
-        }
-      })
-      .then(stream => {
-        video.srcObject = stream
-        video.onloadedmetadata = () => {       
-          video.play();
-          canvas.setAttribute("width", video.width);
-          canvas.setAttribute("height", video.height);          
-          setTimeout(function(){DetectVideo(); }, 100);
-        }
-      })   
   }
+  
+  function startVideo() {
+	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+	  console.log("enumerateDevices() not supported.");
+	  return;
+	}
+
+	var videoWidth = 320;
+	var videoHeight = 240;
+	
+    var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+	navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+		  devices.forEach(function(device) {
+			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+				if (device.deviceId=='')
+					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				else
+					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+			  }
+		  });
+		
+		
+		if (location.search.toLowerCase().indexOf("?back")!=-1)
+		  var userMedia = back;
+		else
+		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+		video.style.visibility="hidden";
+		video.style.position="absolute";
+		navigator.mediaDevices
+		  .getUserMedia(userMedia)
+		  .then(stream => {
+			video.srcObject = stream
+			video.onloadedmetadata = () => {       
+			  video.play();
+			  canvas.setAttribute("width", video.width);
+			  canvas.setAttribute("height", video.height);          
+			  setTimeout(function(){DetectVideo(); }, 100);
+			}
+		 })  
+	})  
+  } 
                         
-  async function DetectVideo() {
-    context.drawImage(video, 0, 0, video.width, video.height);    
-    await Model.detect(canvas).then(predictions => { 
-      result.innerHTML = "";
-      //console.log('Predictions: ', predictions);
-      if (predictions.length>0) {
-        for (var i=0;i<predictions.length;i++) {
-          const x = predictions[i].bbox[0];
-          const y = predictions[i].bbox[1];
-          const width = predictions[i].bbox[2];
-          const height = predictions[i].bbox[3];
-          context.lineWidth = "3";
-          context.strokeStyle = "#00FFFF";
-          context.beginPath();
-          context.rect(x, y, width, height);
-          context.stroke(); 
-          context.lineWidth = "2";
-          context.fillStyle = "red";
-          context.font = "12px Arial";
-          context.fillText(predictions[i].class, x, y);
-          result.innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
-          if ((myStartDetection.checked)&&(personState == false)&&(predictions[i].class=="person")) {
-            personState = true;
-            SendCapturedImage();
-            setTimeout(function(){ personState = false; }, 15000);
+async function DetectVideo() {
+  context.translate((canvas.width + video.width) / 2, 0);
+  context.scale(-1, 1);
+  context.drawImage(video, 0, 0, video.width, video.height);
+  context.setTransform(1, 0, 0, 1, 0, 0);  
+  
+  
+  
+  
+  context.beginPath();
+  context.lineWidth = "2";
+  context.strokeStyle = "red";  
+  context.rect(touch_x0, touch_y0, touch_x, touch_y);
+  context.stroke();
+  
+  
+  
+  
+  
+  
+  
+  await Model.estimatePoses(canvas, {flipHorizontal: false, decodingMethod: 'multi-person', maxPoseDetections: 5, scoreThreshold: 0.5, nmsRadius: 20}).then(pose => {
+    //console.log(pose.score);
+    //console.log(pose.keypoints);
+    result.innerHTML = "";  
+    var scoreLimit = Number(document.getElementById("scorelimit").value);
+
+    if (pose.length>0) {
+      for (var n=0;n<pose.length;n++) {
+        if (n<Number(document.getElementById("persons").value)) {
+          var k = pose[n].keypoints;
+          if (k.length>0) {
+            for (var i=0;i<k.length;i++) {
+              if (k[i].score>=scoreLimit) {
+                const x = k[i].position.x;
+                const y = k[i].position.y;
+                context.fillStyle="#00FFFF";
+                context.beginPath();
+                context.arc(x, y, 3, 0,2*Math.PI);
+                context.closePath();
+                context.fill();
+              }      
+              result.innerHTML += "[" + n + "]" + k[i].part + ", " + Math.round(k[i].score*100) + "%, " + Math.round(k[i].position.x) + ", " + Math.round(k[i].position.y) + "<br>";
+            }
+
+            context.lineWidth = 2;
+            var centerShoulderX = (k[5].position.x+k[6].position.x)/2;
+            var centerShoulderY = (k[5].position.y+k[6].position.y)/2; 
+            if (k[5].score>=scoreLimit&&k[6].score>=scoreLimit) {
+              context.beginPath();
+              context.arc(centerShoulderX, centerShoulderY, 3, 0,2*Math.PI);
+              context.closePath();
+              context.fill();
+            }              
+            if (k[0].score>=scoreLimit) {
+              context.strokeStyle = "#0000FF";
+              context.beginPath();
+              context.moveTo(k[0].position.x,k[0].position.y);
+              context.lineTo(centerShoulderX, centerShoulderY);
+              context.stroke(); 
+            }
+            if (k[5].score>=scoreLimit) {
+              context.strokeStyle = "#FF3333";
+              context.beginPath();
+              context.moveTo(centerShoulderX, centerShoulderY);
+              context.lineTo(k[5].position.x,k[5].position.y);
+              context.stroke();
+            }
+            if (k[6].score>=scoreLimit) {
+              context.strokeStyle = "#FF8800";
+              context.beginPath();
+              context.moveTo(centerShoulderX, centerShoulderY);
+              context.lineTo(k[6].position.x,k[6].position.y);
+              context.stroke();              
+            }
+            if (k[5].score>=scoreLimit&&k[7].score>=scoreLimit) {
+              context.strokeStyle = "#FFCC22";
+              context.beginPath();
+              context.moveTo(k[5].position.x,k[5].position.y);
+              context.lineTo(k[7].position.x,k[7].position.y);
+              context.stroke();
+            }
+            if (k[6].score>=scoreLimit&&k[8].score>=scoreLimit) {
+              context.strokeStyle = "#66DD00";
+              context.beginPath();
+              context.moveTo(k[6].position.x,k[6].position.y);
+              context.lineTo(k[8].position.x,k[8].position.y);
+              context.stroke();
+            }
+            if (k[7].score>=scoreLimit&&k[9].score>=scoreLimit) {
+              context.strokeStyle = "#FFFF77";
+              context.beginPath();
+              context.moveTo(k[7].position.x,k[7].position.y);
+              context.lineTo(k[9].position.x,k[9].position.y);
+              context.stroke(); 
+            }
+            if (k[8].score>=scoreLimit&&k[10].score>=scoreLimit) {
+              context.strokeStyle = "#BBFF66";
+              context.beginPath();
+              context.moveTo(k[8].position.x,k[8].position.y);
+              context.lineTo(k[10].position.x,k[10].position.y);
+              context.stroke();      
+            }
+            if (k[11].score>=scoreLimit) {
+              context.strokeStyle = "#227700";
+              context.beginPath();
+              context.moveTo(centerShoulderX, centerShoulderY);
+              context.lineTo(k[11].position.x,k[11].position.y);
+              context.stroke(); 
+            }
+            if (k[12].score>=scoreLimit) {
+              context.strokeStyle = "#9999FF";
+              context.beginPath();
+              context.moveTo(centerShoulderX, centerShoulderY);
+              context.lineTo(k[12].position.x,k[12].position.y);
+              context.stroke();    
+            }
+            if (k[11].score>=scoreLimit&&k[13].score>=scoreLimit) {
+              context.strokeStyle = "#77FF00";
+              context.beginPath();
+              context.moveTo(k[11].position.x,k[11].position.y);
+              context.lineTo(k[13].position.x,k[13].position.y);
+              context.stroke(); 
+            }
+            if (k[12].score>=scoreLimit&&k[14].score>=scoreLimit) {
+              context.strokeStyle = "#0066FF";
+              context.beginPath();
+              context.moveTo(k[12].position.x,k[12].position.y);
+              context.lineTo(k[14].position.x,k[14].position.y);
+              context.stroke();  
+            }
+            if (k[13].score>=scoreLimit&&k[15].score>=scoreLimit) {
+              context.strokeStyle = "#99FF99";
+              context.beginPath();
+              context.moveTo(k[13].position.x,k[13].position.y);
+              context.lineTo(k[15].position.x,k[15].position.y);
+              context.stroke(); 
+            }
+            if (k[14].score>=scoreLimit&&k[16].score>=scoreLimit) {
+              context.strokeStyle = "#0000CC";
+              context.beginPath();
+              context.moveTo(k[14].position.x,k[14].position.y);
+              context.lineTo(k[16].position.x,k[16].position.y);
+              context.stroke(); 
+            }
           }
         }
       }
-      else
-        result.innerHTML = "Unrecognizable";
-
-      setTimeout(function(){DetectVideo(); }, 100);
-    });
-  }
-
-  function SendCapturedImage() {
-    // Upload captured image to Google Drive and send a line message to LineNotify.
-    myForm.action = myGoogleScript.value;
-    var date = new Date();
-    myFilename.value = date.getFullYear()+"_"+(date.getMonth()+1)+"_"+date.getDate()+"_"+date.getHours()+"_"+date.getMinutes()+"_"+date.getSeconds()+".png";
-    myFile.value = canvas.toDataURL();
-    myForm.submit();
-  }
+    }  
+    setTimeout(function(){DetectVideo(); }, 100);
+  });
+}
 </script>
 
 </body>
