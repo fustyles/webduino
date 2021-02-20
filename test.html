@@ -61,9 +61,7 @@ ScoreLimit
 		touchState = true;
 		var rect = canvas.getBoundingClientRect();
 		touch_x0 = e.touches[0].clientX - rect.left;
-		touch_x = touch_x0;
 		touch_y0 = e.touches[0].clientY - rect.top;
-		touch_y = touch_y0
 	}, false);
 
 	canvas.addEventListener("touchend", function (e) {
