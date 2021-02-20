@@ -64,12 +64,10 @@ ScoreLimit
 	}, false);	
 	canvas.addEventListener("touchcancel", function (e) {
 		e.preventDefault();
-		result.innerHTML = ", "+ touch_x +", "+ touch_y;
 		touchState = false;
 	}, false);
 	canvas.addEventListener("touchend", function (e) {
 		e.preventDefault();
-		result.innerHTML = ", "+ touch_x +", "+ touch_y;
 		touchState = false;	
 	}, false);
 
@@ -174,6 +172,7 @@ async function DetectVideo() {
                 context.closePath();
                 context.fill();
               }      
+              result.innerHTML += "[" + n + "]" + k[i].part + ", " + Math.round(k[i].score*100) + "%, " + Math.round(k[i].position.x) + ", " + Math.round(k[i].position.y) + "<br>";
             }
 
             context.lineWidth = 2;
