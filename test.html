@@ -138,13 +138,16 @@ async function DetectVideo() {
   
   
   
+	
+	
+	
   if (touchState == false) {
 	  context.beginPath();
 	  context.lineWidth = "2";
 	  context.strokeStyle = "red";  
-	  context.rect(touch_x0, touch_y0, touch_x, touch_y);
+	  context.rect(touch_x0, touch_y0, touch_x-touch_x0, touch_y-touch_y0);
 	  context.stroke();
-}
+  }
   
   
   
