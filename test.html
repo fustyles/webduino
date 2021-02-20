@@ -60,8 +60,8 @@ ScoreLimit
 		var rect = canvas.getBoundingClientRect();
 		touch_x = e.touches[0].clientX - rect.left;
 		touch_y = e.touches[0].clientY - rect.top;
-		touchState = false;
 		result.innerHTML +=  ", "+touch_x +", "+ touch_y;
+		touchState = false;		
 	}, false);
 
 
