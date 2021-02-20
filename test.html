@@ -49,6 +49,7 @@ ScoreLimit
 	var touch_x0=0, touch_y0=0, touch_x=0, touch_y=0;
         var touchState = false;
 	canvas.addEventListener("touchstart", function (e) {
+		e.preventDefault();
 		touchState = true;
 		var rect = canvas.getBoundingClientRect();
 		touch_x0 = e.touches[0].clientX - rect.left;
@@ -57,6 +58,7 @@ ScoreLimit
 	}, false);
 
 	canvas.addEventListener("touchend", function (e) {
+		e.preventDefault();
 		var rect = canvas.getBoundingClientRect();
 		touch_x = e.touches[0].clientX - rect.left;
 		touch_y = e.touches[0].clientY - rect.top;
