@@ -1,0 +1,188 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/2/6 14:00
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetection_video_coco-ssd_DangerZone_MouseTouch.html
+
+How to enable WebGL in Chrome.
+https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
+-->
+
+<!DOCTYPE html>
+<head>
+  <title>Object Detection (coco-ssd)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"> </script>  
+</head>
+<body>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
+<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<canvas id="canvas"></canvas><br>
+Audio&nbsp;&nbsp;<input type="text" id="aud" size="25" value="http://www.fionasplace.net/creepysounds/BONES02.WAV"><input type="button" id="setsource" value="set" onclick="alarm.src=document.getElementById('aud').value;">
+<br>
+<div id="position" style="color:blue;font-size:40px"></div>
+<div id="result" style="color:red"></div>
+  
+<script>
+	var video = document.getElementById('video');
+	var canvas = document.getElementById('canvas'); 
+	var context = canvas.getContext('2d');
+	var position = document.getElementById('position');   
+	var result = document.getElementById('result'); 
+
+	var aud = document.getElementById('aud');
+	var alarm = new Audio(aud.value);
+
+	let Model; 
+
+	var videoWidth = 320;
+	var videoHeight = 240;  
+  
+	var touch_x0=0, touch_y0=0, touch_x=0, touch_y=0;
+    var touchState = false;
+	canvas.addEventListener("touchstart", function (e) {
+		touch_x0=0;touch_y0=0;touch_x=0;touch_y=0;
+		touchState = true;		
+		e.preventDefault();
+		var rect = canvas.getBoundingClientRect();
+		touch_x0 = e.touches[0].clientX-rect.left;
+		touch_y0 = e.touches[0].clientY-rect.top;
+		touch_x = touch_x0 ;
+		touch_y = touch_y0;
+	}, false);
+	canvas.addEventListener("touchmove", function (e) {	
+		e.preventDefault();
+		var rect = canvas.getBoundingClientRect();
+		touch_x = e.touches[0].clientX-rect.left;
+		touch_y = e.touches[0].clientY-rect.top;
+	}, false);	
+	canvas.addEventListener("touchcancel", function (e) {
+		e.preventDefault();
+		touchState = false;
+	}, false);
+	canvas.addEventListener("touchend", function (e) {
+		e.preventDefault();
+		touchState = false;	
+	}, false);
+	canvas.addEventListener("mousedown", function (e) {
+		touch_x0=0;touch_y0=0;touch_x=0;touch_y=0;
+		touchState = true;		
+		e.preventDefault();
+		var rect = canvas.getBoundingClientRect();
+		touch_x0 = e.clientX-rect.left;
+		touch_y0 = e.clientY-rect.top;
+		touch_x = touch_x0 ;
+		touch_y = touch_y0;		
+	}, false);
+	canvas.addEventListener("mouseup", function (e) {	
+		e.preventDefault();
+		var rect = canvas.getBoundingClientRect();
+		touch_x = e.clientX-rect.left;
+		touch_y = e.clientY-rect.top;
+		touchState = false;	
+	}, false);  
+  
+	window.onload = function() {LoadModel();}  
+	function LoadModel() {
+		result.innerHTML = "Please wait for loading model.";
+		cocoSsd.load().then(model => {
+			Model = model;
+			result.innerHTML = "";
+			startVideo();
+		}); 
+	}  
+
+	function startVideo() {
+		if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+			console.log("enumerateDevices() not supported.");
+			return;
+		}
+
+		var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+		navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+			devices.forEach(function(device) {
+				if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+				if (device.deviceId=='')
+					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				else
+					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				}
+			});
+
+			if (location.search.toLowerCase().indexOf("?back")!=-1)
+			var userMedia = back;
+			else
+			var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+			video.style.visibility="hidden";
+			video.style.position="absolute";
+			navigator.mediaDevices
+			.getUserMedia(userMedia)
+			.then(stream => {
+				video.srcObject = stream
+				video.onloadedmetadata = () => {       
+					video.play();
+					canvas.setAttribute("width", video.width);
+					canvas.setAttribute("height", video.height);          
+					setTimeout(function(){DetectVideo(); }, 100);
+				}
+			})  
+		}) 
+	} 
+
+	async function DetectVideo() {
+		context.drawImage(video, 0, 0, video.width, video.height);
+		
+		if (touchState == false) {
+			context.beginPath();
+			context.lineWidth = "2";
+			context.strokeStyle = "red";  
+			context.rect(touch_x0, touch_y0, touch_x-touch_x0, touch_y-touch_y0);
+			context.stroke();
+		}
+  
+		await Model.detect(canvas).then(predictions => { 
+			result.innerHTML = "";  
+
+			if (predictions.length>0) {
+				for (var i=0;i<predictions.length;i++) {
+					const x = Number(predictions[i].bbox[0]);
+					const y = Number(predictions[i].bbox[1]);
+					const width = Number(predictions[i].bbox[2]);
+					const height = Number(predictions[i].bbox[3]);		
+
+					if (predictions[i].class=="person") {
+					    var bottom_x = x+width/2;
+						var bottom_y = y+height;
+						context.fillStyle="#00FFFF";			  
+						context.beginPath();
+						context.arc(bottom_x,bottom_y,5,0,Math.PI*2,true);
+						context.fill();
+						context.closePath();
+						
+						if (((bottom_x-touch_x0)*(bottom_x-touch_x)<=0)&&((bottom_y-touch_y0)*(bottom_y-touch_y)<=0)&&(alarm.paused||alarm.ended)) {
+							position.innerHTML = "alarm";
+							alarm.play();
+						}
+					}
+
+					result.innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+				}
+				if (result.innerHTML.indexOf("person")==-1)
+					position.innerHTML = "";
+			}
+			else {
+				position.innerHTML = "";
+				result.innerHTML = "Unrecognizable";
+			}
+			setTimeout(function(){DetectVideo(); }, 100);
+		});
+	}
+</script>
+
+</body>
+</html>
