@@ -55,6 +55,8 @@ ScoreLimit
 		var rect = canvas.getBoundingClientRect();
 		touch_x0 = e.touches[0].clientX-rect.left;
 		touch_y0 = e.touches[0].clientY-rect.top;
+		touch_x = touch_x0 ;
+		touch_y = touch_y0;
 	}, false);
 	canvas.addEventListener("touchmove", function (e) {	
 		e.preventDefault();
@@ -77,6 +79,8 @@ ScoreLimit
 		var rect = canvas.getBoundingClientRect();
 		touch_x0 = e.clientX-rect.left;
 		touch_y0 = e.clientY-rect.top;
+		touch_x = touch_x0 ;
+		touch_y = touch_y0;		
 	}, false);
 	canvas.addEventListener("mouseup", function (e) {	
 		e.preventDefault();
