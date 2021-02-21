@@ -49,6 +49,7 @@ ScoreLimit
 	var touch_x0=0, touch_y0=0, touch_x=0, touch_y=0;
     var touchState = false;
 	canvas.addEventListener("touchstart", function (e) {
+		touch_x0=0;touch_y0=0;touch_x=0;touch_y=0;
 		touchState = true;		
 		e.preventDefault();
 		var rect = canvas.getBoundingClientRect();
@@ -70,6 +71,7 @@ ScoreLimit
 		touchState = false;	
 	}, false);
 	canvas.addEventListener("mousedown", function (e) {
+		touch_x0=0;touch_y0=0;touch_x=0;touch_y=0;
 		touchState = true;		
 		e.preventDefault();
 		var rect = canvas.getBoundingClientRect();
