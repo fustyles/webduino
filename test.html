@@ -47,7 +47,7 @@ ScoreLimit
   
   
 	var touch_x0=0, touch_y0=0, touch_x=0, touch_y=0;
-        var touchState = false;
+    var touchState = false;
 	canvas.addEventListener("touchstart", function (e) {
 		touchState = true;		
 		e.preventDefault();
@@ -69,7 +69,20 @@ ScoreLimit
 		e.preventDefault();
 		touchState = false;	
 	}, false);
-
+	canvas.addEventListener("mousedown", function (e) {
+		touchState = true;		
+		e.preventDefault();
+		var rect = canvas.getBoundingClientRect();
+		touch_x0 = e.clientX-rect.left;
+		touch_y0 = e.clientY-rect.top;
+	}, false);
+	canvas.addEventListener("mouseup", function (e) {	
+		e.preventDefault();
+		var rect = canvas.getBoundingClientRect();
+		touch_x = e.clientX-rect.left;
+		touch_y = e.clientY-rect.top;
+		touchState = false;	
+	}, false);
 
 	
   
