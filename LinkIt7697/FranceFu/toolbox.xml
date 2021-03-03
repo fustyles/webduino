@@ -622,17 +622,19 @@
 	  <block type="lcd1602_initial">
 		<value name="sda">
 		  <block type="math_number">
-			<field name="NUM">12</field>
+			<field name="NUM">25</field>
 		  </block>
 		</value>
 		<value name="scl">
 		  <block type="math_number">
-			<field name="NUM">14</field>
+			<field name="NUM">26</field>
 		  </block>
 		</value>		
 	  </block>
 	  <block type="lcd1602_backlight">
 	  </block>	
+	  <block type="lcd1602_clear">
+	  </block>		  
 	  <block type="lcd1602_print">
 		<value name="str">
 		  <block type="text">

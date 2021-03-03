@@ -924,6 +924,17 @@ Blockly.Blocks['lcd1602_backlight'] = {
   }
 };
 
+Blockly.Blocks['lcd1602_clear'] = {
+  init: function() {  
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg.ESP32_LCD1602_CLEAR_SHOW);	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
 Blockly.Blocks['lcd1602_print'] = {
   init: function() {  
 	this.appendDummyInput()
@@ -931,9 +942,9 @@ Blockly.Blocks['lcd1602_print'] = {
 	this.appendDummyInput()    
 		.appendField(new Blockly.FieldDropdown([
 			["0","0"],
-			["1","1"]	  
-		]), "col")
-	    .appendField(Blockly.Msg.ESP32_LCD1602_COL_SHOW);	  
+			["1","1"]	
+		]), "row")
+	    .appendField(Blockly.Msg.ESP32_LCD1602_ROW_SHOW);		
 	this.appendDummyInput()    
 		.appendField(new Blockly.FieldDropdown([
 			["0","0"],
@@ -951,9 +962,9 @@ Blockly.Blocks['lcd1602_print'] = {
 			["12","12"],
 			["13","13"],
 			["14","14"],
-			["15","15"]			
-		]), "row")
-	    .appendField(Blockly.Msg.ESP32_LCD1602_ROW_SHOW);
+			["15","15"]			  
+		]), "col")
+	    .appendField(Blockly.Msg.ESP32_LCD1602_COL_SHOW);	  
 	this.appendValueInput("str")
 	    .setCheck(null)	
 	    .appendField(Blockly.Msg.ESP32_LCD1602_STR_SHOW);	  
