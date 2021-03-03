@@ -1,41 +1,3 @@
-document.getElementById("dialog_export_ok").onclick= function(event) {
-  try {
-	var workspace = Blockly.mainWorkspace;
-    var xml = Blockly.Xml.workspaceToDom(workspace);
-    var xml_text = Blockly.Xml.domToText(xml);
-	  
-    var link = document.createElement('a');
-    link.download="project.xml";
-    link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  } catch (e) {
-    window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
-    alert(e);
-  }
-}
-
-document.getElementById("textarea_import").onclick= function(event) {
-    var input=document.createElement('input');
-    input.type="file";
-	input.accept=".txt,.xml";
-	input.onchange = function(event) {
-	  try {	
-		var file = this.files[0];
-		var fr = new FileReader();           
-		fr.onload = function (event) {
-		  Blockly.mainWorkspace.clear();
-		  document.getElementById("textarea_import").value=event.target.result;
-		};
-		fr.readAsText(file);
-	  } catch (e) {
-		alert(e);
-	  }	
-	}
-    input.click();
-}
-
 Blockly.Blocks['customcode_head'] = {
   init: function() {
     this.appendValueInput("text")
@@ -269,68 +231,6 @@ Blockly.Blocks['customcode_instruction6'] = {
   }
 };
 
-Blockly.Blocks['tcp_https'] = {
-  init: function() {
-	this.appendDummyInput() 
-		.appendField(Blockly.Msg.FRANCE2_HEAD_HTTPS_SHOW);
-    this.appendValueInput("domain")
-        .setCheck("String")
-        .appendField(Blockly.Msg.FRANCE2_DOMAIN_SHOW);  
-    this.appendValueInput("port")
-        .setCheck("String")
-        .appendField(Blockly.Msg.FRANCE2_PORT_SHOW); 		
-    this.appendValueInput("request")
-        .setCheck("Number")
-        .appendField(Blockly.Msg.FRANCE2_REQUEST_SHOW); 	
-    this.appendValueInput("timeout")
-        .setCheck("Number")
-        .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW)
-		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
-	this.setInputsInline(false);
-	this.setOutput(true, null);
-	this.setColour(20);   
-  }
-};
-
-Blockly.Blocks['tcp_http'] = {
-  init: function() {
-	this.appendDummyInput() 
-		.appendField(Blockly.Msg.FRANCE2_HEAD_HTTP_SHOW);
-    this.appendValueInput("domain")
-        .setCheck("String")
-        .appendField(Blockly.Msg.FRANCE2_DOMAIN_SHOW);  
-    this.appendValueInput("port")
-        .setCheck("String")
-        .appendField(Blockly.Msg.FRANCE2_PORT_SHOW); 		
-    this.appendValueInput("request")
-        .setCheck("Number")
-        .appendField(Blockly.Msg.FRANCE2_REQUEST_SHOW); 	
-    this.appendValueInput("timeout")
-        .setCheck("Number")
-        .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW)
-		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
-	this.setInputsInline(false);
-	this.setOutput(true, null);
-	this.setColour(20);   
-  }
-};
-
-Blockly.Blocks['linenotify'] = {
-  init: function() {
-  this.appendValueInput("linenotify_token")
-      .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.FRANCE3_HEAD_LINE_SHOW)
-      .appendField("Token");  
-  this.appendValueInput("linenotify_msg")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Message");
-    this.setOutput(true, null);  
-    this.setColour(20);
-  }
-};
-
 Blockly.Blocks['linenotify_text'] = {
   init: function() {
     this.appendDummyInput()
@@ -385,6 +285,7 @@ Blockly.Blocks['linenotify_image'] = {
     this.setColour(50);
   }
 };
+
 
 Blockly.Blocks['tcp_https_esp32'] = {
   init: function() {
@@ -476,29 +377,6 @@ Blockly.Blocks['esp32_wifi_wait_until_ready'] = {
   }
 };
 
-Blockly.Blocks['showcode'] = {
-  init: function() {
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.FRANCE7_SHOWCODE_SHOW)
-      .appendField(new Blockly.FieldCheckbox("FALSE"), "continued");
-  this.setColour(200);
-  },
-  onchange: function (event) {
-    if (event.element=="click"&&this.getFieldValue("continued")=="FALSE") {
-      if (this.id==event.blockId) {
-        var workspace = Blockly.mainWorkspace;
-        var code = Blockly.Arduino.workspaceToCode(workspace);
-        console.clear();
-        console.log(code);
-      }
-    } else if (this.getFieldValue("continued")=="TRUE") {
-      var workspace = Blockly.mainWorkspace;
-      var code = Blockly.Arduino.workspaceToCode(workspace);
-      console.clear();
-      console.log(code);
-    }
-  }
-}; 
 
 Blockly.Blocks['thingspeak_update'] = {
   init: function() {   
@@ -693,36 +571,6 @@ Blockly.Blocks['esp32_digitalwrite'] = {
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(200);
-  }
-};
-
-Blockly.Blocks['linkit7697_myfirmata'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_SHOW);
-    this.appendValueInput("ssid")
-        .setCheck(null)
-		.appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
-    this.appendValueInput("password")
-        .setCheck(null)
-		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
-    this.appendValueInput("mainpage")
-        .setCheck(null)
-		.appendField(Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
-    this.appendStatementInput("ExecuteCommand")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_SETUP_SHOW);
-    this.appendStatementInput("setup")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_LOOP_SHOW);
-    this.appendStatementInput("loop")
-        .setCheck(null);
-    this.setInputsInline(false);
-    this.setColour(210);
   }
 };
 
@@ -999,5 +847,119 @@ Blockly.Blocks['MLX90614'] = {
 	this.setInputsInline(true);
     this.setOutput(true, null);  
     this.setColour(20);
+  }
+};
+
+Blockly.Blocks['dht11_pin'] = {
+  init: function() {  
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.ESP32_DHT11_PIN_SHOW);
+	this.appendValueInput("pin")
+	  .setCheck("Number");	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['dht11_read'] = {
+  init: function() {  
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.ESP32_DHT11_READ_SHOW);	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['dht11_get'] = {
+  init: function() {  
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.ESP32_DHT11_GET_SHOW);
+	this.appendDummyInput()    
+		.appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.ESP32_DHT11_TEMPERATURE_SHOW,"temperature"],
+		[Blockly.Msg.ESP32_DHT11_HUMIDITY_SHOW,"humidity"]	  
+		]), "type");	
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);
+  }
+};
+
+
+Blockly.Blocks['lcd1602_initial'] = {
+  init: function() {  
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg.ESP32_LCD1602_SHOW);
+	this.appendDummyInput()    
+		.appendField(new Blockly.FieldDropdown([
+			["0x27","0x27"],
+			["0x3F","0x3F"]	  
+		]), "address")
+		.appendField(Blockly.Msg.ESP32_LCD1602_ADDRESS_SHOW);
+	this.appendValueInput("sda")
+	    .setCheck("Number")
+	    .appendField(Blockly.Msg.ESP32_LCD1602_SDA_SHOW);	  
+	this.appendValueInput("scl")
+	    .setCheck("Number") 
+	    .appendField(Blockly.Msg.ESP32_LCD1602_SCL_SHOW);
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['lcd1602_backlight'] = {
+  init: function() {  
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg.ESP32_LCD1602_BACKLIGHT_SHOW);	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['lcd1602_print'] = {
+  init: function() {  
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg.ESP32_LCD1602_PRINT_SHOW);
+	this.appendDummyInput()    
+		.appendField(new Blockly.FieldDropdown([
+			["0","0"],
+			["1","1"]	  
+		]), "col")
+	    .appendField(Blockly.Msg.ESP32_LCD1602_COL_SHOW);	  
+	this.appendDummyInput()    
+		.appendField(new Blockly.FieldDropdown([
+			["0","0"],
+			["1","1"],	
+			["2","2"],
+			["3","3"],
+			["4","4"],
+			["5","5"],
+			["6","6"],
+			["7","7"],
+			["8","8"],
+			["9","9"],	
+			["10","10"],
+			["11","11"],
+			["12","12"],
+			["13","13"],
+			["14","14"],
+			["15","15"]			
+		]), "row")
+	    .appendField(Blockly.Msg.ESP32_LCD1602_ROW_SHOW);
+	this.appendValueInput("str")
+	    .setCheck(null)	
+	    .appendField(Blockly.Msg.ESP32_LCD1602_STR_SHOW);	  
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
   }
 };

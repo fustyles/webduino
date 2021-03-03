@@ -174,209 +174,6 @@ Blockly.Arduino['customcode_instruction6'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE]; 
 };
 
-Blockly.Arduino['tcp_https'] = function(block) { 
-  Blockly.Arduino.definitions_['certificate'] ='\n'+
-											'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'+
-											'"MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/\\r\\n"\n'+
-											'"MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT\\r\\n"\n'+
-											'"DkRTVCBSb290IENBIFgzMB4XDTAwMDkzMDIxMTIxOVoXDTIxMDkzMDE0MDExNVow\\r\\n"\n'+
-											'"PzEkMCIGA1UEChMbRGlnaXRhbCBTaWduYXR1cmUgVHJ1c3QgQ28uMRcwFQYDVQQD\\r\\n"\n'+
-											'"Ew5EU1QgUm9vdCBDQSBYMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\\r\\n"\n'+
-											'"AN+v6ZdQCINXtMxiZfaQguzH0yxrMMpb7NnDfcdAwRgUi+DoM3ZJKuM/IUmTrE4O\\r\\n"\n'+
-											'"rz5Iy2Xu/NMhD2XSKtkyj4zl93ewEnu1lcCJo6m67XMuegwGMoOifooUMM0RoOEq\\r\\n"\n'+
-											'"OLl5CjH9UL2AZd+3UWODyOKIYepLYYHsUmu5ouJLGiifSKOeDNoJjj4XLh7dIN9b\\r\\n"\n'+
-											'"xiqKqy69cK3FCxolkHRyxXtqqzTWMIn/5WgTe1QLyNau7Fqckh49ZLOMxt+/yUFw\\r\\n"\n'+
-											'"7BZy1SbsOFU5Q9D8/RhcQPGX69Wam40dutolucbY38EVAjqr2m7xPi71XAicPNaD\\r\\n"\n'+
-											'"aeQQmxkqtilX4+U9m5/wAl0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNV\\r\\n"\n'+
-											'"HQ8BAf8EBAMCAQYwHQYDVR0OBBYEFMSnsaR7LHH62+FLkHX/xBVghYkQMA0GCSqG\\r\\n"\n'+
-											'"SIb3DQEBBQUAA4IBAQCjGiybFwBcqR7uKGY3Or+Dxz9LwwmglSBd49lZRNI+DT69\\r\\n"\n'+
-											'"ikugdB/OEIKcdBodfpga3csTS7MgROSR6cz8faXbauX+5v3gTt23ADq1cEmv8uXr\\r\\n"\n'+
-											'"AvHRAosZy5Q6XkjEGB5YGV8eAlrwDPGxrancWYaLbumR9YbK+rlmM6pZW87ipxZz\\r\\n"\n'+
-											'"R8srzJmwN0jP41ZL9c8PDHIyh8bwRLtTcm1D9SZImlJnt1ir/md2cXjbDaJWFBM5\\r\\n"\n'+
-											'"JDGFoqgCWjBH4d1QB7wCCZAA62RjYJsWvIjJEubSfZGL+T0yjWW06XyxV3bqxbYo\\r\\n"\n'+
-											'"Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ\\r\\n"\n'+
-											'"-----END CERTIFICATE-----\\r\\n";\n';
-
-  Blockly.Arduino.definitions_['tcp_https'] ='\n'+
-											'String tcp_https(String domain,String request,int port,int waittime) {\n'+
-											'  String getAll="", getBody="";\n'+
-											'  TLSClient client_tcp;\n'+
-											'  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n'+
-											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
-											'    //Serial.println("Connected to "+domain+" successfully.");\n'+
-											'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-											'    client_tcp.println("Host: " + domain);\n'+
-											'    client_tcp.println("Connection: close");\n'+
-											'    client_tcp.println();\n'+
-											'    boolean state = false;\n'+
-											'    long startTime = millis();\n'+
-											'    while ((startTime + waittime) > millis()) {\n'+
-											'      while (client_tcp.available()) {\n'+
-											'        char c = client_tcp.read();\n'+
-											'        if (c == \'\\n\') {\n'+
-											'          if (getAll.length()==0) state=true;\n'+
-											'           getAll = "";\n'+
-											'        }\n'+ 
-											'        else if (c != \'\\r\')\n'+
-											'          getAll += String(c);\n'+
-											'          if (state==true) getBody += String(c);\n'+
-											'          startTime = millis();\n'+
-											'        }\n'+
-											'        if (getBody.length()!= 0) break;\n'+
-											'      }\n'+
-											'      client_tcp.stop();\n'+
-											'  }\n'+
-											'  else {\n'+
-											'    getBody="Connected to "+domain+" failed.";\n'+
-											'    Serial.println("Connected to "+domain+" failed.");\n'+
-											'  }\n'+
-											'  return getBody;\n'+
-											'}\n';
-
-  var domain = Blockly.Arduino.valueToCode(block, 'domain', Blockly.Arduino.ORDER_ATOMIC);
-  var port = Blockly.Arduino.valueToCode(block, 'port', Blockly.Arduino.ORDER_ATOMIC);
-  var request = Blockly.Arduino.valueToCode(block, 'request', Blockly.Arduino.ORDER_ATOMIC);
-  var timeout = Blockly.Arduino.valueToCode(block, 'timeout', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'tcp_https('+domain+', '+request+', '+port+', '+timeout+')';
-  return [code, Blockly.Arduino.ORDER_NONE]; 
-};
-
-Blockly.Arduino['tcp_http'] = function(block) {
-  Blockly.Arduino.definitions_['tcp_http'] ='\n'+
-											'String tcp_http(String domain,String request,int port,int waittime) {\n'+
-											'  String getAll="", getBody="";\n'+
-											'  WiFiClient client_tcp;\n'+
-											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
-											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
-											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-											'	client_tcp.println("Host: " + domain);\n'+
-											'	client_tcp.println("Connection: close");\n'+
-											'	client_tcp.println();\n'+
-											'	boolean state = false;\n'+
-											'	long startTime = millis();\n'+
-											'	while ((startTime + waittime) > millis()) {\n'+
-											'	  while (client_tcp.available()) {\n'+
-											'		char c = client_tcp.read();\n'+
-											'		if (c == \'\\n\') {\n'+
-											'		  if (getAll.length()==0) state=true; \n'+
-											'		  getAll = "";\n'+
-											'		} \n'+
-											'		else if (c != \'\\r\')\n'+
-											'		  getAll += String(c);\n'+
-											'		if (state==true) getBody += String(c);\n'+
-											'		startTime = millis();\n'+
-											'	  }\n'+
-											'	  if (getBody.length()!= 0) break;\n'+
-											'	}\n'+
-											'	client_tcp.stop();\n'+
-											'  }\n'+
-											'  else {\n'+
-											'	getBody="Connected to "+domain+" failed.";\n'+
-											'	Serial.println("Connected to "+domain+" failed.");\n'+
-											'  }\n'+
-											'  return getBody;\n'+ 
-											'}\n';
-
-  var domain = Blockly.Arduino.valueToCode(block, 'domain', Blockly.Arduino.ORDER_ATOMIC);
-  var port = Blockly.Arduino.valueToCode(block, 'port', Blockly.Arduino.ORDER_ATOMIC);
-  var request = Blockly.Arduino.valueToCode(block, 'request', Blockly.Arduino.ORDER_ATOMIC);
-  var timeout = Blockly.Arduino.valueToCode(block, 'timeout', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'tcp_http('+domain+', '+request+', '+port+', '+timeout+')';
-  return [code, Blockly.Arduino.ORDER_NONE]; 
-};
-
-Blockly.Arduino['linenotify'] = function (block) {
-  Blockly.Arduino.definitions_['certificate'] ='\n'+
-											'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'+
-											'"MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/\\r\\n"\n'+
-											'"MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT\\r\\n"\n'+
-											'"DkRTVCBSb290IENBIFgzMB4XDTAwMDkzMDIxMTIxOVoXDTIxMDkzMDE0MDExNVow\\r\\n"\n'+
-											'"PzEkMCIGA1UEChMbRGlnaXRhbCBTaWduYXR1cmUgVHJ1c3QgQ28uMRcwFQYDVQQD\\r\\n"\n'+
-											'"Ew5EU1QgUm9vdCBDQSBYMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\\r\\n"\n'+
-											'"AN+v6ZdQCINXtMxiZfaQguzH0yxrMMpb7NnDfcdAwRgUi+DoM3ZJKuM/IUmTrE4O\\r\\n"\n'+
-											'"rz5Iy2Xu/NMhD2XSKtkyj4zl93ewEnu1lcCJo6m67XMuegwGMoOifooUMM0RoOEq\\r\\n"\n'+
-											'"OLl5CjH9UL2AZd+3UWODyOKIYepLYYHsUmu5ouJLGiifSKOeDNoJjj4XLh7dIN9b\\r\\n"\n'+
-											'"xiqKqy69cK3FCxolkHRyxXtqqzTWMIn/5WgTe1QLyNau7Fqckh49ZLOMxt+/yUFw\\r\\n"\n'+
-											'"7BZy1SbsOFU5Q9D8/RhcQPGX69Wam40dutolucbY38EVAjqr2m7xPi71XAicPNaD\\r\\n"\n'+
-											'"aeQQmxkqtilX4+U9m5/wAl0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNV\\r\\n"\n'+
-											'"HQ8BAf8EBAMCAQYwHQYDVR0OBBYEFMSnsaR7LHH62+FLkHX/xBVghYkQMA0GCSqG\\r\\n"\n'+
-											'"SIb3DQEBBQUAA4IBAQCjGiybFwBcqR7uKGY3Or+Dxz9LwwmglSBd49lZRNI+DT69\\r\\n"\n'+
-											'"ikugdB/OEIKcdBodfpga3csTS7MgROSR6cz8faXbauX+5v3gTt23ADq1cEmv8uXr\\r\\n"\n'+
-											'"AvHRAosZy5Q6XkjEGB5YGV8eAlrwDPGxrancWYaLbumR9YbK+rlmM6pZW87ipxZz\\r\\n"\n'+
-											'"R8srzJmwN0jP41ZL9c8PDHIyh8bwRLtTcm1D9SZImlJnt1ir/md2cXjbDaJWFBM5\\r\\n"\n'+
-											'"JDGFoqgCWjBH4d1QB7wCCZAA62RjYJsWvIjJEubSfZGL+T0yjWW06XyxV3bqxbYo\\r\\n"\n'+
-											'"Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ\\r\\n"\n'+
-											'"-----END CERTIFICATE-----\\r\\n";\n';
-
-  Blockly.Arduino.definitions_['linenotify'] ='\n'+
-											'String LineNotify(String token, String request) {\n'+
-											'  String getAll="", getBody="";\n'+
-											'  request.replace(" ","%20");\n'+
-											'  request.replace("&","%20");\n'+
-											'  request.replace("#","%20");\n'+
-											'  request.replace("\\"","%22");\n'+
-											'  request.replace("\\n","%0D%0A");\n'+
-											'  request.replace("%3Cbr%3E","%0D%0A");\n'+
-											'  request.replace("%3Cbr/%3E","%0D%0A");\n'+
-											'  request.replace("%3Cbr%20/%3E","%0D%0A");\n'+
-											'  request.replace("%3CBR%3E","%0D%0A");\n'+
-											'  request.replace("%3CBR/%3E","%0D%0A");\n'+
-											'  request.replace("%3CBR%20/%3E","%0D%0A");\n'+
-											'  request.replace("%20stickerPackageId","&stickerPackageId");\n'+
-											'  request.replace("%20stickerId","&stickerId");\n'+
-											'  request.replace("%20imageFullsize","&imageFullsize");\n'+
-											'  request.replace("%20imageThumbnail","&imageThumbnail");\n'+ 
-											'  TLSClient client_tcp;\n'+
-											'  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n'+
-											'  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
-											'    client_tcp.println("POST /api/notify HTTP/1.1");\n'+
-											'    client_tcp.println("Connection: close");\n'+
-											'    client_tcp.println("Host: notify-api.line.me");\n'+
-											'    client_tcp.println("User-Agent: ESP8266/1.0");\n'+
-											'    client_tcp.println("Authorization: Bearer " + token);\n'+
-											'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-											'    client_tcp.println("Content-Length: " + String(request.length()));\n'+
-											'    client_tcp.println();\n'+
-											'    client_tcp.println(request);\n'+
-											'    client_tcp.println();\n'+
-											'    boolean state = false;\n'+
-											'    long startTime = millis();\n'+
-											'    while ((startTime + 3000) > millis()) {\n'+
-											'      while (client_tcp.available()) {\n'+
-											'        char c = client_tcp.read();\n'+
-											'        if (c == \'\\n\') {\n'+
-											'          if (getAll.length()==0) state=true;\n'+
-											'           getAll = "";\n'+
-											'        }\n'+ 
-											'        else if (c != \'\\r\')\n'+
-											'          getAll += String(c);\n'+
-											'          if (state==true) getBody += String(c);\n'+
-											'          startTime = millis();\n'+
-											'        }\n'+
-											'        if (getBody.length()!= 0) break;\n'+
-											'      }\n'+
-											'      client_tcp.stop();\n'+
-											'  }\n'+
-											'  else {\n'+
-											'    getBody="Connected tonotify-api.line.me failed.";\n'+
-											'    Serial.println("Connected to notify-api.line.me failed.");\n'+
-											'  }\n'+
-											'  return getBody;\n'+
-											'}\n';
-
-  var linenotify_token = Blockly.Arduino.valueToCode(block, 'linenotify_token', Blockly.Arduino.ORDER_ATOMIC);  
-  var linenotify_msg = Blockly.Arduino.valueToCode(block, 'linenotify_msg', Blockly.Arduino.ORDER_ATOMIC);
-  
-  if (!linenotify_token) linenotify_token='""';
-  if (!linenotify_msg) linenotify_msg='""';
-  if ((linenotify_msg.indexOf('"')==0)&&(linenotify_msg.lastIndexOf('"')==linenotify_msg.length-1))
-    linenotify_msg = linenotify_msg.substring(1,linenotify_msg.length-1);
-  if ((linenotify_msg.indexOf("(")==0)&&(linenotify_msg.lastIndexOf(")")==linenotify_msg.length-1))
-    linenotify_msg = linenotify_msg.substring(1,linenotify_msg.length-1);
-  
-  var code = 'LineNotify('+linenotify_token+','+linenotify_msg+')';
-  return [code, Blockly.Arduino.ORDER_NONE];
-};
 
 Blockly.Arduino['linenotify_text'] = function(block) {
   var text = Blockly.Arduino.valueToCode(block, 'value_text', Blockly.Arduino.ORDER_ATOMIC); 
@@ -554,6 +351,7 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
 											'        if (getBody.length()!= 0) break;\n'+
 											'      }\n'+
 											'      client_tcp.stop();\n'+
+											'      Serial.println(getBody);\n'+
 											'  }\n'+
 											'  else {\n'+
 											'    getBody="Connected tonotify-api.line.me failed.";\n'+
@@ -565,12 +363,12 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
   var linenotify_token = Blockly.Arduino.valueToCode(block, 'linenotify_token', Blockly.Arduino.ORDER_ATOMIC);  
   var linenotify_msg = Blockly.Arduino.valueToCode(block, 'linenotify_msg', Blockly.Arduino.ORDER_ATOMIC);
   
-  if (!linenotify_token) linenotify_token='""';
-  if (!linenotify_msg) linenotify_msg='""';
+  if ((linenotify_msg.indexOf('"')==0)&&(linenotify_msg.lastIndexOf('"')==linenotify_msg.length-1))
+    linenotify_msg = linenotify_msg.substring(1,linenotify_msg.length-1);	
   if ((linenotify_msg.indexOf("(")==0)&&(linenotify_msg.lastIndexOf(")")==linenotify_msg.length-1))
     linenotify_msg = linenotify_msg.substring(1,linenotify_msg.length-1);
-  
-  var code = 'LineNotify_esp32('+linenotify_token+',"'+linenotify_msg+'")';
+
+  var code = 'LineNotify_esp32('+linenotify_token+','+linenotify_msg+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -594,68 +392,43 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   return code; 
 };
 
-Blockly.Arduino['showcode'] = function (block) {
-  var code = '';
-  return code; 
-};
 
 Blockly.Arduino['thingspeak_update'] = function (block) {
-  Blockly.Arduino.definitions_['certificate'] ='\n'+
-											'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'+
-											'"MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/\\r\\n"\n'+
-											'"MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT\\r\\n"\n'+
-											'"DkRTVCBSb290IENBIFgzMB4XDTAwMDkzMDIxMTIxOVoXDTIxMDkzMDE0MDExNVow\\r\\n"\n'+
-											'"PzEkMCIGA1UEChMbRGlnaXRhbCBTaWduYXR1cmUgVHJ1c3QgQ28uMRcwFQYDVQQD\\r\\n"\n'+
-											'"Ew5EU1QgUm9vdCBDQSBYMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\\r\\n"\n'+
-											'"AN+v6ZdQCINXtMxiZfaQguzH0yxrMMpb7NnDfcdAwRgUi+DoM3ZJKuM/IUmTrE4O\\r\\n"\n'+
-											'"rz5Iy2Xu/NMhD2XSKtkyj4zl93ewEnu1lcCJo6m67XMuegwGMoOifooUMM0RoOEq\\r\\n"\n'+
-											'"OLl5CjH9UL2AZd+3UWODyOKIYepLYYHsUmu5ouJLGiifSKOeDNoJjj4XLh7dIN9b\\r\\n"\n'+
-											'"xiqKqy69cK3FCxolkHRyxXtqqzTWMIn/5WgTe1QLyNau7Fqckh49ZLOMxt+/yUFw\\r\\n"\n'+
-											'"7BZy1SbsOFU5Q9D8/RhcQPGX69Wam40dutolucbY38EVAjqr2m7xPi71XAicPNaD\\r\\n"\n'+
-											'"aeQQmxkqtilX4+U9m5/wAl0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNV\\r\\n"\n'+
-											'"HQ8BAf8EBAMCAQYwHQYDVR0OBBYEFMSnsaR7LHH62+FLkHX/xBVghYkQMA0GCSqG\\r\\n"\n'+
-											'"SIb3DQEBBQUAA4IBAQCjGiybFwBcqR7uKGY3Or+Dxz9LwwmglSBd49lZRNI+DT69\\r\\n"\n'+
-											'"ikugdB/OEIKcdBodfpga3csTS7MgROSR6cz8faXbauX+5v3gTt23ADq1cEmv8uXr\\r\\n"\n'+
-											'"AvHRAosZy5Q6XkjEGB5YGV8eAlrwDPGxrancWYaLbumR9YbK+rlmM6pZW87ipxZz\\r\\n"\n'+
-											'"R8srzJmwN0jP41ZL9c8PDHIyh8bwRLtTcm1D9SZImlJnt1ir/md2cXjbDaJWFBM5\\r\\n"\n'+
-											'"JDGFoqgCWjBH4d1QB7wCCZAA62RjYJsWvIjJEubSfZGL+T0yjWW06XyxV3bqxbYo\\r\\n"\n'+
-											'"Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ\\r\\n"\n'+
-											'"-----END CERTIFICATE-----\\r\\n";\n';
-
-  Blockly.Arduino.definitions_['tcp_https'] ='\n'+
-											'String tcp_https(String domain,String request,int port,int waittime) {\n'+
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
+  Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
+											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
-											'  TLSClient client_tcp;\n'+
-											'  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n'+
+											'  WiFiClient client_tcp;\n'+
 											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
-											'    //Serial.println("Connected to "+domain+" successfully.");\n'+
-											'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-											'    client_tcp.println("Host: " + domain);\n'+
-											'    client_tcp.println("Connection: close");\n'+
-											'    client_tcp.println();\n'+
-											'    boolean state = false;\n'+
-											'    long startTime = millis();\n'+
-											'    while ((startTime + waittime) > millis()) {\n'+
-											'      while (client_tcp.available()) {\n'+
-											'        char c = client_tcp.read();\n'+
-											'        if (c == \'\\n\') {\n'+
-											'          if (getAll.length()==0) state=true;\n'+
-											'           getAll = "";\n'+
-											'        }\n'+ 
-											'        else if (c != \'\\r\')\n'+
-											'          getAll += String(c);\n'+
-											'          if (state==true) getBody += String(c);\n'+
-											'          startTime = millis();\n'+
-											'        }\n'+
-											'        if (getBody.length()!= 0) break;\n'+
-											'      }\n'+
-											'      client_tcp.stop();\n'+
+											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
+											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
+											'	client_tcp.println("Host: " + domain);\n'+
+											'	client_tcp.println("Connection: close");\n'+
+											'	client_tcp.println();\n'+
+											'	boolean state = false;\n'+
+											'	long startTime = millis();\n'+
+											'	while ((startTime + waittime) > millis()) {\n'+
+											'	  while (client_tcp.available()) {\n'+
+											'		char c = client_tcp.read();\n'+
+											'		if (c == \'\\n\') {\n'+
+											'		  if (getAll.length()==0) state=true; \n'+
+											'		  getAll = "";\n'+
+											'		} \n'+
+											'		else if (c != \'\\r\')\n'+
+											'		  getAll += String(c);\n'+
+											'		if (state==true) getBody += String(c);\n'+
+											'		startTime = millis();\n'+
+											'	  }\n'+
+											'	  if (getBody.length()!= 0) break;\n'+
+											'	}\n'+
+											'	client_tcp.stop();\n'+
 											'  }\n'+
 											'  else {\n'+
-											'    getBody="Connected to "+domain+" failed.";\n'+
-											'    Serial.println("Connected to "+domain+" failed.");\n'+
+											'	getBody="Connected to "+domain+" failed.";\n'+
+											'	Serial.println("Connected to "+domain+" failed.");\n'+
 											'  }\n'+
-											'  return getBody;\n'+
+											'  return getBody;\n'+ 
 											'}\n';
 
   var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
@@ -684,62 +457,41 @@ Blockly.Arduino['thingspeak_update'] = function (block) {
 };
 
 Blockly.Arduino['thingspeak_read1'] = function (block) {
-  Blockly.Arduino.definitions_['certificate'] ='\n'+
-											'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'+
-											'"MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/\\r\\n"\n'+
-											'"MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT\\r\\n"\n'+
-											'"DkRTVCBSb290IENBIFgzMB4XDTAwMDkzMDIxMTIxOVoXDTIxMDkzMDE0MDExNVow\\r\\n"\n'+
-											'"PzEkMCIGA1UEChMbRGlnaXRhbCBTaWduYXR1cmUgVHJ1c3QgQ28uMRcwFQYDVQQD\\r\\n"\n'+
-											'"Ew5EU1QgUm9vdCBDQSBYMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\\r\\n"\n'+
-											'"AN+v6ZdQCINXtMxiZfaQguzH0yxrMMpb7NnDfcdAwRgUi+DoM3ZJKuM/IUmTrE4O\\r\\n"\n'+
-											'"rz5Iy2Xu/NMhD2XSKtkyj4zl93ewEnu1lcCJo6m67XMuegwGMoOifooUMM0RoOEq\\r\\n"\n'+
-											'"OLl5CjH9UL2AZd+3UWODyOKIYepLYYHsUmu5ouJLGiifSKOeDNoJjj4XLh7dIN9b\\r\\n"\n'+
-											'"xiqKqy69cK3FCxolkHRyxXtqqzTWMIn/5WgTe1QLyNau7Fqckh49ZLOMxt+/yUFw\\r\\n"\n'+
-											'"7BZy1SbsOFU5Q9D8/RhcQPGX69Wam40dutolucbY38EVAjqr2m7xPi71XAicPNaD\\r\\n"\n'+
-											'"aeQQmxkqtilX4+U9m5/wAl0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNV\\r\\n"\n'+
-											'"HQ8BAf8EBAMCAQYwHQYDVR0OBBYEFMSnsaR7LHH62+FLkHX/xBVghYkQMA0GCSqG\\r\\n"\n'+
-											'"SIb3DQEBBQUAA4IBAQCjGiybFwBcqR7uKGY3Or+Dxz9LwwmglSBd49lZRNI+DT69\\r\\n"\n'+
-											'"ikugdB/OEIKcdBodfpga3csTS7MgROSR6cz8faXbauX+5v3gTt23ADq1cEmv8uXr\\r\\n"\n'+
-											'"AvHRAosZy5Q6XkjEGB5YGV8eAlrwDPGxrancWYaLbumR9YbK+rlmM6pZW87ipxZz\\r\\n"\n'+
-											'"R8srzJmwN0jP41ZL9c8PDHIyh8bwRLtTcm1D9SZImlJnt1ir/md2cXjbDaJWFBM5\\r\\n"\n'+
-											'"JDGFoqgCWjBH4d1QB7wCCZAA62RjYJsWvIjJEubSfZGL+T0yjWW06XyxV3bqxbYo\\r\\n"\n'+
-											'"Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ\\r\\n"\n'+
-											'"-----END CERTIFICATE-----\\r\\n";\n';
-
-  Blockly.Arduino.definitions_['tcp_https'] ='\n'+
-											'String tcp_https(String domain,String request,int port,int waittime) {\n'+
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
+  Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
+											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
-											'  TLSClient client_tcp;\n'+
-											'  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n'+
+											'  WiFiClient client_tcp;\n'+
 											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
-											'    //Serial.println("Connected to "+domain+" successfully.");\n'+
-											'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-											'    client_tcp.println("Host: " + domain);\n'+
-											'    client_tcp.println("Connection: close");\n'+
-											'    client_tcp.println();\n'+
-											'    boolean state = false;\n'+
-											'    long startTime = millis();\n'+
-											'    while ((startTime + waittime) > millis()) {\n'+
-											'      while (client_tcp.available()) {\n'+
-											'        char c = client_tcp.read();\n'+
-											'        if (c == \'\\n\') {\n'+
-											'          if (getAll.length()==0) state=true;\n'+
-											'           getAll = "";\n'+
-											'        }\n'+ 
-											'        else if (c != \'\\r\')\n'+
-											'          getAll += String(c);\n'+
-											'          if (state==true) getBody += String(c);\n'+
-											'          startTime = millis();\n'+
-											'        }\n'+
-											'        if (getBody.length()!= 0) break;\n'+
-											'      }\n'+
-											'      client_tcp.stop();\n'+
+											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
+											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
+											'	client_tcp.println("Host: " + domain);\n'+
+											'	client_tcp.println("Connection: close");\n'+
+											'	client_tcp.println();\n'+
+											'	boolean state = false;\n'+
+											'	long startTime = millis();\n'+
+											'	while ((startTime + waittime) > millis()) {\n'+
+											'	  while (client_tcp.available()) {\n'+
+											'		char c = client_tcp.read();\n'+
+											'		if (c == \'\\n\') {\n'+
+											'		  if (getAll.length()==0) state=true; \n'+
+											'		  getAll = "";\n'+
+											'		} \n'+
+											'		else if (c != \'\\r\')\n'+
+											'		  getAll += String(c);\n'+
+											'		if (state==true) getBody += String(c);\n'+
+											'		startTime = millis();\n'+
+											'	  }\n'+
+											'	  if (getBody.length()!= 0) break;\n'+
+											'	}\n'+
+											'	client_tcp.stop();\n'+
 											'  }\n'+
 											'  else {\n'+
-											'    getBody="Connected to "+domain+" failed.";\n'+
-											'    Serial.println("Connected to "+domain+" failed.");\n'+
+											'	getBody="Connected to "+domain+" failed.";\n'+
+											'	Serial.println("Connected to "+domain+" failed.");\n'+
 											'  }\n'+
-											'  return getBody;\n'+
+											'  return getBody;\n'+ 
 											'}\n';
 
   var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
@@ -751,62 +503,41 @@ Blockly.Arduino['thingspeak_read1'] = function (block) {
 };
 
 Blockly.Arduino['thingspeak_read2'] = function (block) {
-  Blockly.Arduino.definitions_['certificate'] ='\n'+
-											'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'+
-											'"MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/\\r\\n"\n'+
-											'"MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT\\r\\n"\n'+
-											'"DkRTVCBSb290IENBIFgzMB4XDTAwMDkzMDIxMTIxOVoXDTIxMDkzMDE0MDExNVow\\r\\n"\n'+
-											'"PzEkMCIGA1UEChMbRGlnaXRhbCBTaWduYXR1cmUgVHJ1c3QgQ28uMRcwFQYDVQQD\\r\\n"\n'+
-											'"Ew5EU1QgUm9vdCBDQSBYMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\\r\\n"\n'+
-											'"AN+v6ZdQCINXtMxiZfaQguzH0yxrMMpb7NnDfcdAwRgUi+DoM3ZJKuM/IUmTrE4O\\r\\n"\n'+
-											'"rz5Iy2Xu/NMhD2XSKtkyj4zl93ewEnu1lcCJo6m67XMuegwGMoOifooUMM0RoOEq\\r\\n"\n'+
-											'"OLl5CjH9UL2AZd+3UWODyOKIYepLYYHsUmu5ouJLGiifSKOeDNoJjj4XLh7dIN9b\\r\\n"\n'+
-											'"xiqKqy69cK3FCxolkHRyxXtqqzTWMIn/5WgTe1QLyNau7Fqckh49ZLOMxt+/yUFw\\r\\n"\n'+
-											'"7BZy1SbsOFU5Q9D8/RhcQPGX69Wam40dutolucbY38EVAjqr2m7xPi71XAicPNaD\\r\\n"\n'+
-											'"aeQQmxkqtilX4+U9m5/wAl0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNV\\r\\n"\n'+
-											'"HQ8BAf8EBAMCAQYwHQYDVR0OBBYEFMSnsaR7LHH62+FLkHX/xBVghYkQMA0GCSqG\\r\\n"\n'+
-											'"SIb3DQEBBQUAA4IBAQCjGiybFwBcqR7uKGY3Or+Dxz9LwwmglSBd49lZRNI+DT69\\r\\n"\n'+
-											'"ikugdB/OEIKcdBodfpga3csTS7MgROSR6cz8faXbauX+5v3gTt23ADq1cEmv8uXr\\r\\n"\n'+
-											'"AvHRAosZy5Q6XkjEGB5YGV8eAlrwDPGxrancWYaLbumR9YbK+rlmM6pZW87ipxZz\\r\\n"\n'+
-											'"R8srzJmwN0jP41ZL9c8PDHIyh8bwRLtTcm1D9SZImlJnt1ir/md2cXjbDaJWFBM5\\r\\n"\n'+
-											'"JDGFoqgCWjBH4d1QB7wCCZAA62RjYJsWvIjJEubSfZGL+T0yjWW06XyxV3bqxbYo\\r\\n"\n'+
-											'"Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ\\r\\n"\n'+
-											'"-----END CERTIFICATE-----\\r\\n";\n';
-
-  Blockly.Arduino.definitions_['tcp_https'] ='\n'+
-											'String tcp_https(String domain,String request,int port,int waittime) {\n'+
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
+  Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
+											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
-											'  TLSClient client_tcp;\n'+
-											'  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n'+
+											'  WiFiClient client_tcp;\n'+
 											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
-											'    //Serial.println("Connected to "+domain+" successfully.");\n'+
-											'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-											'    client_tcp.println("Host: " + domain);\n'+
-											'    client_tcp.println("Connection: close");\n'+
-											'    client_tcp.println();\n'+
-											'    boolean state = false;\n'+
-											'    long startTime = millis();\n'+
-											'    while ((startTime + waittime) > millis()) {\n'+
-											'      while (client_tcp.available()) {\n'+
-											'        char c = client_tcp.read();\n'+
-											'        if (c == \'\\n\') {\n'+
-											'          if (getAll.length()==0) state=true;\n'+
-											'           getAll = "";\n'+
-											'        }\n'+ 
-											'        else if (c != \'\\r\')\n'+
-											'          getAll += String(c);\n'+
-											'          if (state==true) getBody += String(c);\n'+
-											'          startTime = millis();\n'+
-											'        }\n'+
-											'        if (getBody.length()!= 0) break;\n'+
-											'      }\n'+
-											'      client_tcp.stop();\n'+
+											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
+											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
+											'	client_tcp.println("Host: " + domain);\n'+
+											'	client_tcp.println("Connection: close");\n'+
+											'	client_tcp.println();\n'+
+											'	boolean state = false;\n'+
+											'	long startTime = millis();\n'+
+											'	while ((startTime + waittime) > millis()) {\n'+
+											'	  while (client_tcp.available()) {\n'+
+											'		char c = client_tcp.read();\n'+
+											'		if (c == \'\\n\') {\n'+
+											'		  if (getAll.length()==0) state=true; \n'+
+											'		  getAll = "";\n'+
+											'		} \n'+
+											'		else if (c != \'\\r\')\n'+
+											'		  getAll += String(c);\n'+
+											'		if (state==true) getBody += String(c);\n'+
+											'		startTime = millis();\n'+
+											'	  }\n'+
+											'	  if (getBody.length()!= 0) break;\n'+
+											'	}\n'+
+											'	client_tcp.stop();\n'+
 											'  }\n'+
 											'  else {\n'+
-											'    getBody="Connected to "+domain+" failed.";\n'+
-											'    Serial.println("Connected to "+domain+" failed.");\n'+
+											'	getBody="Connected to "+domain+" failed.";\n'+
+											'	Serial.println("Connected to "+domain+" failed.");\n'+
 											'  }\n'+
-											'  return getBody;\n'+
+											'  return getBody;\n'+ 
 											'}\n';
 
   var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
@@ -819,62 +550,41 @@ Blockly.Arduino['thingspeak_read2'] = function (block) {
 };
 
 Blockly.Arduino['thingspeak_read3'] = function (block) {
-  Blockly.Arduino.definitions_['certificate'] ='\n'+
-											'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'+
-											'"MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/\\r\\n"\n'+
-											'"MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT\\r\\n"\n'+
-											'"DkRTVCBSb290IENBIFgzMB4XDTAwMDkzMDIxMTIxOVoXDTIxMDkzMDE0MDExNVow\\r\\n"\n'+
-											'"PzEkMCIGA1UEChMbRGlnaXRhbCBTaWduYXR1cmUgVHJ1c3QgQ28uMRcwFQYDVQQD\\r\\n"\n'+
-											'"Ew5EU1QgUm9vdCBDQSBYMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\\r\\n"\n'+
-											'"AN+v6ZdQCINXtMxiZfaQguzH0yxrMMpb7NnDfcdAwRgUi+DoM3ZJKuM/IUmTrE4O\\r\\n"\n'+
-											'"rz5Iy2Xu/NMhD2XSKtkyj4zl93ewEnu1lcCJo6m67XMuegwGMoOifooUMM0RoOEq\\r\\n"\n'+
-											'"OLl5CjH9UL2AZd+3UWODyOKIYepLYYHsUmu5ouJLGiifSKOeDNoJjj4XLh7dIN9b\\r\\n"\n'+
-											'"xiqKqy69cK3FCxolkHRyxXtqqzTWMIn/5WgTe1QLyNau7Fqckh49ZLOMxt+/yUFw\\r\\n"\n'+
-											'"7BZy1SbsOFU5Q9D8/RhcQPGX69Wam40dutolucbY38EVAjqr2m7xPi71XAicPNaD\\r\\n"\n'+
-											'"aeQQmxkqtilX4+U9m5/wAl0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNV\\r\\n"\n'+
-											'"HQ8BAf8EBAMCAQYwHQYDVR0OBBYEFMSnsaR7LHH62+FLkHX/xBVghYkQMA0GCSqG\\r\\n"\n'+
-											'"SIb3DQEBBQUAA4IBAQCjGiybFwBcqR7uKGY3Or+Dxz9LwwmglSBd49lZRNI+DT69\\r\\n"\n'+
-											'"ikugdB/OEIKcdBodfpga3csTS7MgROSR6cz8faXbauX+5v3gTt23ADq1cEmv8uXr\\r\\n"\n'+
-											'"AvHRAosZy5Q6XkjEGB5YGV8eAlrwDPGxrancWYaLbumR9YbK+rlmM6pZW87ipxZz\\r\\n"\n'+
-											'"R8srzJmwN0jP41ZL9c8PDHIyh8bwRLtTcm1D9SZImlJnt1ir/md2cXjbDaJWFBM5\\r\\n"\n'+
-											'"JDGFoqgCWjBH4d1QB7wCCZAA62RjYJsWvIjJEubSfZGL+T0yjWW06XyxV3bqxbYo\\r\\n"\n'+
-											'"Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ\\r\\n"\n'+
-											'"-----END CERTIFICATE-----\\r\\n";\n';
-
-  Blockly.Arduino.definitions_['tcp_https'] ='\n'+
-											'String tcp_https(String domain,String request,int port,int waittime) {\n'+
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
+  Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
+											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
-											'  TLSClient client_tcp;\n'+
-											'  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n'+
+											'  WiFiClient client_tcp;\n'+
 											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
-											'    //Serial.println("Connected to "+domain+" successfully.");\n'+
-											'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-											'    client_tcp.println("Host: " + domain);\n'+
-											'    client_tcp.println("Connection: close");\n'+
-											'    client_tcp.println();\n'+
-											'    boolean state = false;\n'+
-											'    long startTime = millis();\n'+
-											'    while ((startTime + waittime) > millis()) {\n'+
-											'      while (client_tcp.available()) {\n'+
-											'        char c = client_tcp.read();\n'+
-											'        if (c == \'\\n\') {\n'+
-											'          if (getAll.length()==0) state=true;\n'+
-											'           getAll = "";\n'+
-											'        }\n'+ 
-											'        else if (c != \'\\r\')\n'+
-											'          getAll += String(c);\n'+
-											'          if (state==true) getBody += String(c);\n'+
-											'          startTime = millis();\n'+
-											'        }\n'+
-											'        if (getBody.length()!= 0) break;\n'+
-											'      }\n'+
-											'      client_tcp.stop();\n'+
+											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
+											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
+											'	client_tcp.println("Host: " + domain);\n'+
+											'	client_tcp.println("Connection: close");\n'+
+											'	client_tcp.println();\n'+
+											'	boolean state = false;\n'+
+											'	long startTime = millis();\n'+
+											'	while ((startTime + waittime) > millis()) {\n'+
+											'	  while (client_tcp.available()) {\n'+
+											'		char c = client_tcp.read();\n'+
+											'		if (c == \'\\n\') {\n'+
+											'		  if (getAll.length()==0) state=true; \n'+
+											'		  getAll = "";\n'+
+											'		} \n'+
+											'		else if (c != \'\\r\')\n'+
+											'		  getAll += String(c);\n'+
+											'		if (state==true) getBody += String(c);\n'+
+											'		startTime = millis();\n'+
+											'	  }\n'+
+											'	  if (getBody.length()!= 0) break;\n'+
+											'	}\n'+
+											'	client_tcp.stop();\n'+
 											'  }\n'+
 											'  else {\n'+
-											'    getBody="Connected to "+domain+" failed.";\n'+
-											'    Serial.println("Connected to "+domain+" failed.");\n'+
+											'	getBody="Connected to "+domain+" failed.";\n'+
+											'	Serial.println("Connected to "+domain+" failed.");\n'+
 											'  }\n'+
-											'  return getBody;\n'+
+											'  return getBody;\n'+ 
 											'}\n';
 
   var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
@@ -933,6 +643,7 @@ Blockly.Arduino['thingspeak_field'] = function(block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+
 Blockly.Arduino['esp32_analogwrite'] = function(block) { 
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
   var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
@@ -945,181 +656,6 @@ Blockly.Arduino['esp32_digitalwrite'] = function(block) {
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
   var val = block.getFieldValue('val');
   var code = 'ledcDetachPin('+pin+');\npinMode('+pin+', 1);\ndigitalWrite('+pin+','+val+');\n';
-  return code;
-};
-
-Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <LWiFi.h>';
-  var mainpage = Blockly.Arduino.valueToCode(block, 'mainpage', Blockly.Arduino.ORDER_ATOMIC);
-  var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
-  var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = '+ssid+';';
-  Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = '+pass+';';
-  Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);';
-  Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",P1="",P2="",P3="",P4="",P5="",P6="",P7="",P8="",P9="";\nbyte ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;';
-
-  var statements_setup = Blockly.Arduino.statementToCode(block, 'setup');
-  var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');
-  var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
-
-  Blockly.Arduino.definitions_.define_linkit_ExecuteCommand = '\n'+
-			'void ExecuteCommand() {\n'+
-			'  Serial.println("");\n'+
-			'  //Serial.println("Command: "+Command);\n'+
-			'  Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
-			'  Serial.println("");\n'+
-			'  if (cmd=="ip") {\n'+
-			'    Feedback=WiFi.localIP().toString();\n'+
-			'  }\n'+
-			'  else if (cmd=="resetwifi") {\n'+
-			'    WiFi.begin(P1.c_str(), P2.c_str());\n'+
-			'    Serial.print("Connecting to ");\n'+
-			'    Serial.println(P1);\n'+
-			'    long int StartTime=millis();\n'+
-			'    while (WiFi.status() != WL_CONNECTED) {\n'+
-			'        delay(500);\n'+
-			'        if ((StartTime+5000) < millis()) break;\n'+
-			'    }\n'+
-			'    Serial.println("");\n'+
-			'    Serial.println("STAIP: "+WiFi.localIP().toString());\n'+
-			'    Feedback=WiFi.localIP().toString();\n'+
-			'  }\n'+
-  			'  else if (cmd=="inputpullup") {\n'+
-  			'    pinMode(P1.toInt(), INPUT_PULLUP);\n'+
-  			'  }\n'+
-  			'  else if (cmd=="pinmode") {\n'+
-  			'    if (P2.toInt()==1)\n'+
-  			'      pinMode(P1.toInt(), OUTPUT);\n'+
-  			'    else\n'+
-  			'      pinMode(P1.toInt(), INPUT);\n'+
-  			'  }\n'+
-  			'  else if (cmd=="digitalwrite") {\n'+
-  			'   pinMode(P1.toInt(), OUTPUT);\n'+
-  			'   digitalWrite(P1.toInt(), P2.toInt());\n'+
-  			'  }\n'+
- 			'  else if (cmd=="digitalread") {\n'+
- 			'   Feedback=String(digitalRead(P1.toInt()));\n'+
-			'  }\n'+
-			'  else if (cmd=="analogwrite") {\n'+
-			'    analogWrite(P1.toInt(), P2.toInt());\n'+
-			'  }\n'+
-			'  else if (cmd=="analogread") {\n'+
-			'    Feedback=String(analogRead(P1.toInt()));\n'+
-			'  }\n'+
-			'  else {\n  '+ 
-			statements_executecommand.replace(/\n/g,"\n  ")+
-			'}\n'+
-			'}\n';
-
-	Blockly.Arduino.setups_.manual_add = '\n'+
-			'  Serial.begin(9600);\n'+ 
-			'  delay(10);\n'+ 
-			'  //WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
-			'  WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+ 
-			'  delay(1000);\n'+ 
-			'  Serial.println("");\n'+ 
-			'  Serial.print("Connecting to ");\n'+ 
-			'  Serial.println(_lwifi_ssid);\n'+ 
-			'  long int StartTime=millis();\n'+ 
-			'  while (WiFi.status() != WL_CONNECTED) {\n'+ 
-			'      delay(500);\n'+ 
-			'      if ((StartTime+10000) < millis()) break;\n'+ 
-			'  }\n'+ 
-			'  if (WiFi.status() == WL_CONNECTED) {\n'+ 
-			'    pinMode(LED_BUILTIN, OUTPUT);\n'+ 
-			'    for (int i=0;i<5;i++) {\n'+ 
-			'      digitalWrite(LED_BUILTIN,HIGH);\n'+ 
-			'      delay(100);\n'+ 
-			'      digitalWrite(LED_BUILTIN,LOW);\n'+ 
-			'      delay(100);\n'+ 
-			'    }\n'+ 
-			'  }\n'+ 
-			'  else {\n'+ 
-			'    pinMode(LED_BUILTIN, OUTPUT);\n'+ 
-			'    for (int i=0;i<3;i++) {\n'+ 
-			'      digitalWrite(LED_BUILTIN,HIGH);\n'+ 
-			'      delay(500);\n'+ 
-			'      digitalWrite(LED_BUILTIN,LOW);\n'+ 
-			'      delay(500);\n'+ 
-			'    }\n'+ 
-			'  }\n'+ 
-			'  Serial.println("");\n'+ 
-			'  Serial.println("STAIP address: ");\n'+ 
-			'  Serial.println(WiFi.localIP());\n'+ 
-			'  server.begin();\n'+ statements_setup +
-			'\n';
-	
-
-  Blockly.Arduino.definitions_.define_linkit_getCommand = '\n'+
-			'void getCommand() {\n'+
-			'  Command="";cmd="";P1="";P2="";P3="";P4="";P5="";P6="";P7="";P8="";P9="";\n'+
-			'  ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;\n'+
-			'  WiFiClient client = server.available();\n'+
-			'  if (client) { \n'+
-			'    String currentLine = "";\n'+
-			'    while (client.connected()) {\n'+
-			'      if (client.available()) {\n'+
-			'        char c = client.read(); \n'+
-			'        if (c==\'?\') ReceiveState=1;\n'+
-			'        if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) ReceiveState=0;\n'+
-			'        if (ReceiveState==1) {\n'+
-			'          Command=Command+String(c);\n'+
-			'          if (c==\'=\') cmdState=0;\n'+
-			'          if (c==\';\') strState++;\n'+
-			'          if ((cmdState==1)&&((c!=\'?\')||(questionstate==1))) cmd=cmd+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==1)&&((c!=\'=\')||(equalstate==1))) P1=P1+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==2)&&(c!=\';\')) P2=P2+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==3)&&(c!=\';\')) P3=P3+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==4)&&(c!=\';\')) P4=P4+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==5)&&(c!=\';\')) P5=P5+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==6)&&(c!=\';\')) P6=P6+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==7)&&(c!=\';\')) P7=P7+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==8)&&(c!=\';\')) P8=P8+String(c);\n'+
-			'          if ((cmdState==0)&&(strState>=9)&&((c!=\';\')||(semicolonstate==1))) P9=P9+String(c);\n'+
-			'          if (c==\'?\') questionstate=1;\n'+
-			'          if (c==\'=\') equalstate=1;\n'+
-			'          if ((strState>=9)&&(c==\';\')) semicolonstate=1;\n'+
-			'        }\n'+
-			'        if (c == \'\\n\') {\n'+
-			'          if (currentLine.length() == 0) {\n'+
-			'            client.println("HTTP/1.1 200 OK");\n'+
-			'            client.println("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");\n'+
-			'            client.println("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");\n'+
-			'            client.println("Content-Type: text/html; charset=utf-8");\n'+
-			'            client.println("Access-Control-Allow-Origin: *");\n'+
-			'            client.println();\n'+
-			'            if (Feedback=="")\n'+
-			'              client.println('+mainpage+');\n'+
-			'            else\n'+
-			'              client.println(Feedback);\n'+
-			'            client.println();\n'+
-			'            Feedback="";\n'+
-			'            break;\n'+
-			'          } else {\n'+
-			'            currentLine = "";\n'+
-			'          }\n'+
-			'        } \n'+
-			'        else if (c != \'\\r\') {\n'+
-			'          currentLine += c;\n'+
-			'        }\n'+
-			'        if ((currentLine.indexOf("/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
-			'          if (Command.indexOf("stop")!=-1) {\n'+
-			'            client.println();\n'+
-			'            client.println();\n'+
-			'            client.stop();\n'+
-			'          }\n'+
-			'          currentLine="";\n'+
-			'          Feedback="";\n'+
-			'          ExecuteCommand();\n'+
-			'        }\n'+
-			'      }\n'+
-			'    }\n'+
-			'    delay(1);\n'+
-			'    client.stop();\n'+
-			'  }\n'+
-			'}';
-
-  code = '\n  getCommand();\n'+ statements_loop +'\n';
   return code;
 };
 
@@ -1210,20 +746,20 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'      if ((StartTime+10000) < millis()) break;\n'+ 
 			'  }\n'+ 
 			'  if (WiFi.status() == WL_CONNECTED) {\n'+ 
-			'    pinMode(LED_BUILTIN, OUTPUT);\n'+ 
+			'    pinMode(2, OUTPUT);\n'+ 
 			'    for (int i=0;i<5;i++) {\n'+ 
-			'      digitalWrite(LED_BUILTIN,HIGH);\n'+ 
+			'      digitalWrite(2,HIGH);\n'+ 
 			'      delay(100);\n'+ 
-			'      digitalWrite(LED_BUILTIN,LOW);\n'+ 
+			'      digitalWrite(2,LOW);\n'+ 
 			'      delay(100);\n'+ 
 			'    }\n'+ 
 			'  }\n'+ 
 			'  else {\n'+ 
-			'    pinMode(LED_BUILTIN, OUTPUT);\n'+ 
+			'    pinMode(2, OUTPUT);\n'+ 
 			'    for (int i=0;i<3;i++) {\n'+ 
-			'      digitalWrite(LED_BUILTIN,HIGH);\n'+ 
+			'      digitalWrite(2,HIGH);\n'+ 
 			'      delay(500);\n'+ 
-			'      digitalWrite(LED_BUILTIN,LOW);\n'+ 
+			'      digitalWrite(2,LOW);\n'+ 
 			'      delay(500);\n'+ 
 			'    }\n'+ 
 			'  }\n'+ 
@@ -1421,4 +957,54 @@ Blockly.Arduino['MLX90614'] = function(block) {
 	
   code = 'getMLX9061X(' + scale + ', ' + compensation + ', ' + addr + ', ' + obj + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['dht11_pin'] = function(block) { 
+  var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
+  Blockly.Arduino.definitions_['dht11_initial'] = "#include <SimpleDHT.h>\nSimpleDHT11 dht11("+pin+");\nbyte dht11_temperature = 0;\nbyte dht11_humidity = 0;";
+  Blockly.Arduino.definitions_['dht11_read'] ='\n'+
+											'void dht11_read() {\n'+
+											'  dht11_temperature = 0;\n'+ 											
+											'  dht11_humidity = 0;\n'+
+											'  dht11.read(&dht11_temperature, &dht11_humidity, NULL);\n'+
+											'}\n';
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino['dht11_read'] = function(block) {
+  code = 'dht11_read();\n';
+  return code;
+};
+
+Blockly.Arduino['dht11_get'] = function(block) { 
+  var type = block.getFieldValue('type');
+  if (type=="temperature")
+	var code = 'dht11_temperature';
+  else
+	var code = 'dht11_humidity';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['lcd1602_initial'] = function(block) { 
+  var address = block.getFieldValue('address');
+  var sda = Blockly.Arduino.valueToCode(block, 'sda', Blockly.Arduino.ORDER_ATOMIC);
+  var scl = Blockly.Arduino.valueToCode(block, 'scl', Blockly.Arduino.ORDER_ATOMIC);
+  Blockly.Arduino.definitions_['lcd1602_initial'] = "#include <Wire.h>\n#include <LiquidCrystal_I2C.h>\nLiquidCrystal_I2C lcd("+address+",16,2);";
+  Blockly.Arduino.setups_.manual_add = '\nlcd.begin('+sda+', '+scl+');';
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino['lcd1602_backlight'] = function(block) {
+  code = 'lcd.backlight();\n';
+  return code;
+};
+
+Blockly.Arduino['lcd1602_print'] = function(block) { 
+  var col = block.getFieldValue('col');
+  var row = block.getFieldValue('row');
+  var str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+  code = 'lcd.setCursor('+col+','+row+');\nlcd.print('+str+');\n';
+  return code;
 };
