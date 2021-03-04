@@ -399,7 +399,7 @@ Blockly.Arduino['thingspeak_update'] = function (block) {
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
-											'  WiFiClient client_tcp;\n'+
+											'  WiFiClientSecure client_tcp;\n'+
 											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
 											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
 											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
@@ -452,7 +452,7 @@ Blockly.Arduino['thingspeak_update'] = function (block) {
   if (!field8) field8="";
 
   var request = '"/update?api_key="+String('+key+')+"&field1="+String('+field1+')+"&field2="+String('+field2+')+"&field3="+String('+field3+')+"&field4="+String('+field4+')+"&field5="+String('+field5+')+"&field6="+String('+field6+')+"&field7="+String('+field7+')+"&field8="+String('+field8+')';
-  var code = 'tcp_https("api.thingspeak.com", '+request+', 443, 3000)';
+  var code = 'tcp_http_esp32("api.thingspeak.com", '+request+', 443, 3000)';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -462,7 +462,7 @@ Blockly.Arduino['thingspeak_read1'] = function (block) {
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
-											'  WiFiClient client_tcp;\n'+
+											'  WiFiClientSecure client_tcp;\n'+
 											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
 											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
 											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
@@ -498,7 +498,7 @@ Blockly.Arduino['thingspeak_read1'] = function (block) {
   var count = Blockly.Arduino.valueToCode(block, 'count', Blockly.Arduino.ORDER_ATOMIC);
   var api_key = Blockly.Arduino.valueToCode(block, 'api_key', Blockly.Arduino.ORDER_ATOMIC); 
   var request = '"/channels/"+String('+key+')+"/feeds.json?results="+String('+count+')+"&api_key="+String('+api_key+')';
-  var code = 'tcp_https("api.thingspeak.com", '+request+', 443, 3000)';
+  var code = 'tcp_http_esp32("api.thingspeak.com", '+request+', 443, 3000)';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -545,7 +545,7 @@ Blockly.Arduino['thingspeak_read2'] = function (block) {
   var count = Blockly.Arduino.valueToCode(block, 'count', Blockly.Arduino.ORDER_ATOMIC); 
   var api_key = Blockly.Arduino.valueToCode(block, 'api_key', Blockly.Arduino.ORDER_ATOMIC); 
   var request = '"/channels/"+String('+key+')+"/fields/"+String('+field+')+".json?results="+String('+count+')+"&api_key="+String('+api_key+')';
-  var code = 'tcp_https("api.thingspeak.com", '+request+', 443, 3000)';
+  var code = 'tcp_http_esp32("api.thingspeak.com", '+request+', 443, 3000)';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -555,7 +555,7 @@ Blockly.Arduino['thingspeak_read3'] = function (block) {
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
-											'  WiFiClient client_tcp;\n'+
+											'  WiFiClientSecure client_tcp;\n'+
 											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
 											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
 											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
@@ -590,7 +590,7 @@ Blockly.Arduino['thingspeak_read3'] = function (block) {
   var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
   var api_key = Blockly.Arduino.valueToCode(block, 'api_key', Blockly.Arduino.ORDER_ATOMIC);
   var request = '"/channels/"+String('+key+')+"/status.json?api_key="+String('+api_key+')';
-  var code = 'tcp_https("api.thingspeak.com", '+request+', 443, 3000)';
+  var code = 'tcp_http_esp32("api.thingspeak.com", '+request+', 443, 3000)';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -656,7 +656,8 @@ Blockly.Arduino['esp32_analogwrite'] = function(block) {
 Blockly.Arduino['esp32_digitalwrite'] = function(block) { 
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
   var val = block.getFieldValue('val');
-  var code = 'ledcDetachPin('+pin+');\npinMode('+pin+', 1);\ndigitalWrite('+pin+','+val+');\n';
+  Blockly.Arduino.setups_['digitalwrite_'+pin] = 'pinMode('+pin+', OUTPUT);\n';
+  var code = 'digitalWrite('+pin+', '+val+');\n';
   return code;
 };
 
