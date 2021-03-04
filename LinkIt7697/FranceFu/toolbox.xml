@@ -1,19 +1,5 @@
 <category id="FRANCEFU" name="FRANCEFU">
-	<category id="france6" name="basic">
-	  <block type="close_powerdog">
-	  </block>
-	  <block type="esp32_wifi_wait_until_ready">
-		<value name="SSID">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="PASSWORD">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 		
-	  </block>
+	<category id="france11" name="io">
 	  <block type="esp32_digitalwrite">
 		<value name="pin">
 		  <block type="math_number">
@@ -38,34 +24,78 @@
 		  </block>
 		</value> 
 	  </block>
-	  <block type="servermodule_pinmode">
+	  <block type="esp32_pinmode">
 		<value name="pin">
 		  <block type="math_number">
 			<field name="NUM">2</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="servermodule_pinread">
+	  <block type="esp32_pinread">
 		<value name="pin">
 		  <block type="math_number">
 			<field name="NUM">7</field>
 		  </block>
 		</value>
 	  </block>
-	  <block type="customcode_comment">
-		<value name="text">
+	</category>
+	<category id="france6" name="client">
+	  <block type="esp32_wifi_wait_until_ready">
+		<value name="SSID">
 		  <block type="text">
-			<field name="TEXT">World Peace</field>
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="PASSWORD">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 		
+	  </block>	
+	  <block type="tcp_https_esp32">
+		<value name="domain">
+		  <block type="text">
+			<field name="TEXT">www.google.com</field>
+		  </block>
+		</value> 
+		<value name="port">
+		  <block type="math_number">
+			<field name="NUM">443</field>
+		  </block>
+		</value> 
+		<value name="request">
+		  <block type="text">
+			<field name="TEXT">/xxx</field>
+		  </block>
+		</value> 
+		<value name="timeout">
+		  <block type="math_number">
+			<field name="NUM">3000</field>
+		  </block>
+		</value> 		
+	  </block>
+	  <block type="tcp_http_esp32">
+		<value name="domain">
+		  <block type="text">
+			<field name="TEXT">www.google.com</field>
+		  </block>
+		</value> 
+		<value name="port">
+		  <block type="math_number">
+			<field name="NUM">80</field>
+		  </block>
+		</value> 
+		<value name="request">
+		  <block type="text">
+			<field name="TEXT">/xxx</field>
+		  </block>
+		</value> 
+		<value name="timeout">
+		  <block type="math_number">
+			<field name="NUM">3000</field>
 		  </block>
 		</value>  
-	  </block> 
-	  <block type="customcode_comment_block">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">World Peace</field>
-		  </block>
-		</value>  
-	  </block>	  
+	  </block>
     </category>
 	<category id="france7" name="servermodule">
 	  <block type="esp32_myfirmata">
@@ -81,7 +111,7 @@
 		</value>
 		<value name="mainpage">
 		  <block type="text">
-			<field name="TEXT">&lt;img src='https://www.ocac.gov.tw/ocac_manager/File/PageUpload/i-taiwan/taiwan-01.jpg'&gt;</field>
+			<field name="TEXT"></field>
 		  </block>
 		</value>
 		<statement name="ExecuteCommand">
@@ -125,7 +155,7 @@
 				  </block>
 				</value>
 				<statement name="DO0">
-				  <block type="servermodule_pinmode">
+				  <block type="esp32_pinmode">
 					<field name="mode">OUTPUT</field>
 					<value name="pin">
 					  <block type="servermodule_parameter_variable">
@@ -254,52 +284,163 @@
 		</value>
 	  </block>
     </category>	
-    <category id="france2" name="tcp">	
-	  <block type="tcp_https_esp32">
-		<value name="domain">
+	<category id="france1" name="customcode">
+	  <block type="customcode_instruction5">
+		<value name="instruction">
 		  <block type="text">
-			<field name="TEXT">www.google.com</field>
+			<field name="TEXT">Hello</field>
 		  </block>
-		</value> 
-		<value name="port">
-		  <block type="math_number">
-			<field name="NUM">443</field>
-		  </block>
-		</value> 
-		<value name="request">
-		  <block type="text">
-			<field name="TEXT">/xxx</field>
-		  </block>
-		</value> 
-		<value name="timeout">
-		  <block type="math_number">
-			<field name="NUM">3000</field>
-		  </block>
-		</value> 		
+		</value>
 	  </block>
-	  <block type="tcp_http_esp32">
-		<value name="domain">
+	  <block type="customcode_instruction5_get">
+		<value name="instruction">
 		  <block type="text">
-			<field name="TEXT">www.google.com</field>
+			<field name="TEXT">Hello</field>
 		  </block>
-		</value> 
-		<value name="port">
-		  <block type="math_number">
-			<field name="NUM">80</field>
-		  </block>
-		</value> 
-		<value name="request">
+		</value>
+	  </block>
+	  <block type="customcode_instruction6">
+		<value name="text">
 		  <block type="text">
-			<field name="TEXT">/xxx</field>
+			<field name="TEXT"></field>
 		  </block>
 		</value> 
-		<value name="timeout">
-		  <block type="math_number">
-			<field name="NUM">3000</field>
+	  </block> 
+	  <block type="customcode_head">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">&#35;include &#60;LWiFi.h&#62;</field>
 		  </block>
 		</value>  
+	  </block>   
+	  <block type="customcode_code">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">String Hello;</field>
+		  </block>
+		</value>
 	  </block>
-	</category>
+	  <block type="customcode_variable">
+		<value name="variable">
+		  <block type="text">
+			<field name="TEXT">String World</field>
+		  </block>
+		</value>
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">123</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">Peace()</field>
+		  </block>
+		</value>
+	  </block>   
+	  <block type="customcode_instruction1">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 
+	  <block type="customcode_instruction2">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text1">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text2">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 
+	  <block type="customcode_instruction3">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text1">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text2">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text3">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 
+	  <block type="customcode_instruction4">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text1">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+	  </block>	  
+	</category>	
+	<category id="france9" name="DHT11">
+	  <block type="dht11_pin">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">14</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="dht11_read">
+	  </block>	
+	  <block type="dht11_get">
+	  </block>	 
+	</category>	
+	<category id="france10" name="LCD1602">
+	  <block type="lcd1602_initial">
+		<value name="sda">
+		  <block type="math_number">
+			<field name="NUM">25</field>
+		  </block>
+		</value>
+		<value name="scl">
+		  <block type="math_number">
+			<field name="NUM">26</field>
+		  </block>
+		</value>		
+	  </block>
+	  <block type="lcd1602_backlight">
+	  </block>	
+	  <block type="lcd1602_clear">
+	  </block>		  
+	  <block type="lcd1602_print">
+		<value name="str">
+		  <block type="text">
+			<field name="TEXT">Hello World</field>
+		  </block>
+		</value> 	  
+	  </block>	 
+	</category>	
     <category id="france3" name="line">
 	  <block type="linenotify_esp32">
 		<value name="linenotify_token">
@@ -486,164 +627,22 @@
 		</value>
 	  </block>
   </category>		
-	<category id="france1" name="customcode">
-	  <block type="customcode_instruction5">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT">Hello</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_instruction5_get">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT">Hello</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_instruction6">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-	  </block> 
-	  <block type="customcode_head">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">&#35;include &#60;LWiFi.h&#62;</field>
-		  </block>
-		</value>  
-	  </block>   
-	  <block type="customcode_code">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">String Hello;</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_variable">
-		<value name="variable">
-		  <block type="text">
-			<field name="TEXT">String World</field>
-		  </block>
-		</value>
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">123</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">Peace()</field>
-		  </block>
-		</value>
-	  </block>   
-	  <block type="customcode_instruction1">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-	  </block> 
-	  <block type="customcode_instruction2">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text1">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text2">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-	  </block> 
-	  <block type="customcode_instruction3">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text1">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text2">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text3">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-	  </block> 
-	  <block type="customcode_instruction4">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text1">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-	  </block>	  
-	</category>	
-	<category id="france9" name="DHT11">
-	  <block type="dht11_pin">
-		<value name="pin">
-		  <block type="math_number">
-			<field name="NUM">14</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="dht11_read">
-	  </block>	
-	  <block type="dht11_get">
-	  </block>	 
-	</category>	
-	<category id="france10" name="LCD1602">
-	  <block type="lcd1602_initial">
-		<value name="sda">
-		  <block type="math_number">
-			<field name="NUM">25</field>
-		  </block>
-		</value>
-		<value name="scl">
-		  <block type="math_number">
-			<field name="NUM">26</field>
-		  </block>
-		</value>		
-	  </block>
-	  <block type="lcd1602_backlight">
-	  </block>	
-	  <block type="lcd1602_clear">
-	  </block>		  
-	  <block type="lcd1602_print">
-		<value name="str">
-		  <block type="text">
-			<field name="TEXT">Hello World</field>
-		  </block>
-		</value> 	  
-	  </block>	 
-	</category>	
 	<category id="france7" name="others">
-
+	  <block type="close_powerdog">
+	  </block>
+	  <block type="customcode_comment">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">World Peace</field>
+		  </block>
+		</value>  
+	  </block> 
+	  <block type="customcode_comment_block">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">World Peace</field>
+		  </block>
+		</value>  
+	  </block>
 	</category>
 </category>

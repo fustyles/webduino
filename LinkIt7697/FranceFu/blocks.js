@@ -749,7 +749,7 @@ Blockly.Blocks['servermodule_parameter_set'] = {
   }
 };
 
-Blockly.Blocks['servermodule_pinmode'] = {
+Blockly.Blocks['esp32_pinmode'] = {
   init: function() {
 	this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_SET_SHOW)
@@ -793,7 +793,7 @@ Blockly.Blocks['servermodule_pinwrite'] = {
   }
 };
 
-Blockly.Blocks['servermodule_pinread'] = {
+Blockly.Blocks['esp32_pinread'] = {
   init: function() {
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
