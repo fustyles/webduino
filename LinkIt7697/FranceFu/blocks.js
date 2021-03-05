@@ -234,7 +234,7 @@ Blockly.Blocks['customcode_instruction6'] = {
 Blockly.Blocks['linenotify_text'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Line Notify Text");
+        .appendField(Blockly.Msg.ESP32_LINE_TEXT_SHOW);
     this.appendValueInput("value_text")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -247,7 +247,7 @@ Blockly.Blocks['linenotify_text'] = {
 Blockly.Blocks['linenotify_sticker'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Line Notify Sticker");
+        .appendField(Blockly.Msg.ESP32_LINE_STICKER_SHOW);
     this.appendValueInput("value_text")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -268,7 +268,7 @@ Blockly.Blocks['linenotify_sticker'] = {
 Blockly.Blocks['linenotify_image'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Line Notify Image");
+        .appendField(Blockly.Msg.ESP32_LINE_IMAGE_SHOW);
     this.appendValueInput("value_text")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
