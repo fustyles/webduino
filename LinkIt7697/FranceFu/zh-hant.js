@@ -66,3 +66,6 @@ Blockly.Msg.ESP32_LCD1602_PRINT_SHOW = "LCD1602寫入文字";
 Blockly.Msg.ESP32_LCD1602_COL_SHOW = "行";	  
 Blockly.Msg.ESP32_LCD1602_ROW_SHOW = "列";
 Blockly.Msg.ESP32_LCD1602_STR_SHOW = "文字";
+Blockly.Msg.ESP32_LINE_TEXT_SHOW = "文字";
+Blockly.Msg.ESP32_LINE_STICKER_SHOW = "貼圖";
+Blockly.Msg.ESP32_LINE_IMAGE_SHOW = "圖片";
