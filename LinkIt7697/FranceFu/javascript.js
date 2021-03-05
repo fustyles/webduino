@@ -307,6 +307,7 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
   Blockly.Arduino.definitions_['linenotify_esp32'] ='\n'+
 											'String LineNotify_esp32(String token, String request) {\n'+
 											'  String getAll="", getBody="";\n'+
+											'  request.replace("%","%25");\n'+
 											'  request.replace(" ","%20");\n'+
 											'  request.replace("&","%20");\n'+
 											'  request.replace("#","%20");\n'+
