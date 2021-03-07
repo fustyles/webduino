@@ -313,12 +313,6 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
 											'  request.replace("#","%20");\n'+
 											'  request.replace("\\"","%22");\n'+
 											'  request.replace("\\n","%0D%0A");\n'+
-											'  request.replace("%3Cbr%3E","%0D%0A");\n'+
-											'  request.replace("%3Cbr/%3E","%0D%0A");\n'+
-											'  request.replace("%3Cbr%20/%3E","%0D%0A");\n'+
-											'  request.replace("%3CBR%3E","%0D%0A");\n'+
-											'  request.replace("%3CBR/%3E","%0D%0A");\n'+
-											'  request.replace("%3CBR%20/%3E","%0D%0A");\n'+
 											'  request.replace("%20stickerPackageId","&stickerPackageId");\n'+
 											'  request.replace("%20stickerId","&stickerId");\n'+
 											'  request.replace("%20imageFullsize","&imageFullsize");\n'+
@@ -369,7 +363,7 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
   if ((linenotify_msg.indexOf("(")==0)&&(linenotify_msg.lastIndexOf(")")==linenotify_msg.length-1))
     linenotify_msg = linenotify_msg.substring(1,linenotify_msg.length-1);
 
-  var code = 'LineNotify_esp32('+linenotify_token+','+linenotify_msg+')';
+  var code = 'LineNotify_esp32('+linenotify_token+','+linenotify_msg.replace(/\\/g,"\\")+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
