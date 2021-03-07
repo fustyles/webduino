@@ -363,7 +363,7 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
   if ((linenotify_msg.indexOf("(")==0)&&(linenotify_msg.lastIndexOf(")")==linenotify_msg.length-1))
     linenotify_msg = linenotify_msg.substring(1,linenotify_msg.length-1);
 
-  var code = 'LineNotify_esp32('+linenotify_token+','+linenotify_msg.replace(/\\/g,"\\")+')';
+  var code = 'LineNotify_esp32('+linenotify_token+','+linenotify_msg.replace(/\\\\/g,"\\")+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
