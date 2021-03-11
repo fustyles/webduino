@@ -44,21 +44,21 @@ Blockly.Blocks['faceapidetect_face'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FACEAPIDETECT_PROPERTY_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["age","age"],
-		["gender","gender"],
-		["genderProbability","genderProbability"],
-		["emotion","emotion"],
-		["neutral","neutral"],
-		["happy","happy"],
-		["sad","sad"],
-		["angry","angry"],
-		["fearful","fearful"],
-		["disgusted","disgusted"],
-		["surprised","surprised"],
-		["boxX","boxX"],
-		["boxY","boxY"],
-		["boxWidth","boxWidth"],
-		["boxHeight","boxHeight"]
+		[Blockly.Msg.FACEAPIDETECT_AGE_SHOW,"age"],
+		[Blockly.Msg.FACEAPIDETECT_GENDER_SHOW,"gender"],
+		[Blockly.Msg.FACEAPIDETECT_GENDERPROBABILITY_SHOW,"genderProbability"],
+		[Blockly.Msg.FACEAPIDETECT_EMOTION_SHOW,"emotion"],
+		[Blockly.Msg.FACEAPIDETECT_NEUTRAL_SHOW,"neutral"],
+		[Blockly.Msg.FACEAPIDETECT_HAPPY_SHOW,"happy"],
+		[Blockly.Msg.FACEAPIDETECT_SAD_SHOW,"sad"],
+		[Blockly.Msg.FACEAPIDETECT_ANGRY_SHOW,"angry"],
+		[Blockly.Msg.FACEAPIDETECT_FEARFUL_SHOW,"fearful"],
+		[Blockly.Msg.FACEAPIDETECT_DISGUSTED_SHOW,"disgusted"],
+		[Blockly.Msg.FACEAPIDETECT_SURPRISED_SHOW,"surprised"],
+		[Blockly.Msg.FACEAPIDETECT_BOXX_SHOW,"boxX"],
+		[Blockly.Msg.FACEAPIDETECT_BOXY_SHOW,"boxY"],
+		[Blockly.Msg.FACEAPIDETECT_BOXWIDTH_SHOW,"boxWidth"],
+		[Blockly.Msg.FACEAPIDETECT_BOXHEIGHT_SHOW,"boxHeight"]
   ]), "property_");  	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
