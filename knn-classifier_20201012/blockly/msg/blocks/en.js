@@ -1,5 +1,5 @@
 Blockly.Msg.KNNCLASSIFIER_SHOW = "Machine Learning(KNN)";
-Blockly.Msg.KNNCLASSIFIER_PROPORTION_SHOW = "Machine Learning(KNN) Max";
+Blockly.Msg.KNNCLASSIFIER_PROPORTION_SHOW = "Machine Learning(KNN) Max Class";
 Blockly.Msg.KNNCLASSIFIER_WIDTH_SHOW = "Width";
 Blockly.Msg.KNNCLASSIFIER_HEIGHT_SHOW = "Height";
 Blockly.Msg.KNNCLASSIFIER_MIRRORIMAGE_SHOW = "MirrorImage";
@@ -17,3 +17,4 @@ Blockly.Msg.KNNCLASSIFIER_CLEARCLASSES_SHOW = "Clear All Classes";
 Blockly.Msg.KNNCLASSIFIER_SAVEMODEL_SHOW = "Save Model";
 Blockly.Msg.KNNCLASSIFIER_LOADMODEL_SHOW = "Load Model";
 Blockly.Msg.KNNCLASSIFIER_LOADMODELURL_SHOW = "Load Model Url";
+Blockly.Msg.KNNCLASSIFIER_PROBABILITY_SHOW = "Probability";
