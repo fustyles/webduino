@@ -2,7 +2,10 @@ Blockly.Blocks['knnclassifier_proportion'] = {
   init: function() {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.KNNCLASSIFIER_PROPORTION_SHOW)
-      .appendField(new Blockly.FieldDropdown([["class","class"], ["probability","probability"]]), "property_");    
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.KNNCLASSIFIER_CLASSNAME_SHOW,"class"], 
+	  [Blockly.Msg.KNNCLASSIFIER_PROBABILITY_SHOW,"probability"]
+  ]), "property_");    
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
