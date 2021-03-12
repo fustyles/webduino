@@ -1,5 +1,5 @@
 Blockly.Msg.KNNCLASSIFIER_SHOW = "Machine Learning(KNN)";
-Blockly.Msg.KNNCLASSIFIER_PROPORTION_SHOW = "Machine Learning(KNN) Max Class";
+Blockly.Msg.KNNCLASSIFIER_PROPORTION_SHOW = "Machine Learning(KNN) Max Probability Of Class";
 Blockly.Msg.KNNCLASSIFIER_WIDTH_SHOW = "Width";
 Blockly.Msg.KNNCLASSIFIER_HEIGHT_SHOW = "Height";
 Blockly.Msg.KNNCLASSIFIER_MIRRORIMAGE_SHOW = "MirrorImage";
