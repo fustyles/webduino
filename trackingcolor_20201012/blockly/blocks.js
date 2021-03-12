@@ -133,13 +133,13 @@ Blockly.Blocks['trackingcolor_get_number'] = {
         .appendField(Blockly.Msg.TRACKINGCOLOR_GET_NUMBER_SHOW);   	  
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
-          ["magenta","magenta"], 
-          ["cyan","cyan"],
-          ["yellow","yellow"], 
-          ["red(rect)","red"],
-          ["green(rect)","green"],
-          ["blue(rect)","blue"],
-          ["all","all"]
+          [Blockly.Msg.TRACKINGCOLOR_GET_MAGENTA_SHOW,"magenta"], 
+          [Blockly.Msg.TRACKINGCOLOR_GET_CYAN_SHOW,"cyan"],
+          [Blockly.Msg.TRACKINGCOLOR_GET_YELLOW_SHOW,"yellow"], 
+          [Blockly.Msg.TRACKINGCOLOR_GET_RED_SHOW,"red"],
+          [Blockly.Msg.TRACKINGCOLOR_GET_GREEN_SHOW,"green"],
+          [Blockly.Msg.TRACKINGCOLOR_GET_BLUE_SHOW,"blue"],
+          [Blockly.Msg.TRACKINGCOLOR_GET_ALL_SHOW,"all"]
         ]), "rect_");
     this.setInputsInline(true);
     this.setOutput(true, null); 
