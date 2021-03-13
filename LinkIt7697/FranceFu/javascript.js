@@ -958,7 +958,7 @@ Blockly.Arduino['MLX90614'] = function(block) {
 
 Blockly.Arduino['dht11_pin'] = function(block) { 
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.definitions_['dht11_initial'] = "#include <SimpleDHT.h>\nSimpleDHT11 dht11("+pin+");\nbyte dht11_temperature = 0;\nbyte dht11_humidity = 0;";
+  Blockly.Arduino.definitions_['dht11_initial'] = "#include \<SimpleDHT.h\>\nSimpleDHT11 dht11("+pin+");\nbyte dht11_temperature = 0;\nbyte dht11_humidity = 0;";
   Blockly.Arduino.definitions_['dht11_read'] ='\n'+
 											'void dht11_read() {\n'+
 											'  dht11_temperature = 0;\n'+ 											
