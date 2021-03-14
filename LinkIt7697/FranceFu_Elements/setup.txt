@@ -1,0 +1,68 @@
+/*
+https://www.facebook.com/francefu    2020/9/21 07:30
+適用 LinkIt 7697 BlocklyDuino v3
+
+在BlocklyDuino3\package.nw\js\init.js檔中將以下程式碼插入在此行程式碼之前，
+
+Blockly.inject(document.getElementById('content_blocks'),{ 
+
+自訂積木新增的目錄"法蘭斯"可修改程式碼指定要插入在哪個目錄後。
+若以自訂積木撰寫程式後存檔，還原載入前必須先新增自訂積木在介面。
+
+本自訂積木主要提供教師教學及學生學習使用，並不負擔責任與保固！
+*/
+
+	
+var blocks_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/blocks.js";   //載入自訂積木定義檔	
+var javascript_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/javascript.js";   //載入自訂積木轉出程式碼檔	
+var toolbox_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/toolbox.xml";  //載入自訂積木目錄檔	
+var en_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/en.js";  //載入積木文字英文語系設定檔	
+var en_category_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/en_category.xml";  //載入積木目錄文字英文語系設定檔
+var zhhant_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/zh-hant.js";  //載入積木文字繁體語系設定檔(預設繁體語系)
+var zhhant_category_path = "https://fustyles.github.io/webduino/LinkIt7697/FranceFu/zh-hant_category.xml";  //載入積木目錄文字繁體語系設定檔(預設繁體語系)
+var insertAfterCategoryName = "category_servo";  //可將自訂積木插入在指定目錄後
+
+initial(blocks_path, javascript_path, toolbox_path, insertAfterCategoryName);
+
+function initial(blocks_path, javascript_path, toolbox_path) {
+	addScript(blocks_path);
+	addScript(javascript_path);
+	var xml = $.ajax({url: toolbox_path, async: false}).responseXML;
+
+	var len = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes.length;
+	var xmlNewValue='<xml id="toolbox">';
+	if (len>0) {
+		for (var i=0;i<len;i++){
+			var node = new XMLSerializer().serializeToString(new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes[i]);
+			xmlNewValue+=node;
+			if (node.indexOf(insertAfterCategoryName)!=-1)
+				xmlNewValue+='<sep></sep>'+new XMLSerializer().serializeToString(xml.firstChild);
+		}
+	}
+	xmlNewValue+='</xml>';
+	xmlValue = xmlNewValue;
+	
+	if ((document.getElementById('select-lang-en').checked)) {
+		addScript(en_path);
+		var xml = $.ajax({url: en_category_path, async: false}).responseXML.firstChild;
+	} else {
+		addScript(zhhant_path);
+		var xml = $.ajax({url: zhhant_category_path, async: false}).responseXML.firstChild;
+	}
+	xml = new DOMParser().parseFromString(new XMLSerializer().serializeToString(xml).replace(/\n/g, "").replace(/\r/g, "").replace(/\t/g, "").replace(/ /g, ""),"text/xml").firstChild;
+	
+	for (var i=0;i<xml.childNodes.length;i++) {
+		if (xml.childNodes[i].nodeName.toLowerCase()=="category") {
+			var ini = xml.childNodes[i].childNodes[0].firstChild.nodeValue;
+			var rep = xml.childNodes[i].childNodes[1].firstChild.nodeValue;
+			xmlValue = xmlValue.replace('name="'+ini+'"','name="'+rep+'"');	
+		}
+	}
+}
+
+function addScript(url) {
+	var s = document.createElement("script");
+	s.type = "text/javascript";
+	s.src = url;
+	$("body").append(s);
+}
