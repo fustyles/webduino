@@ -958,7 +958,7 @@ Blockly.Arduino['MLX90614'] = function(block) {
 
 Blockly.Arduino['dht11_pin'] = function(block) { 
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.definitions_['dht11_initial'] = "#include \<SimpleDHT.h\>\nSimpleDHT11 dht11("+pin+");\nbyte dht11_temperature = 0;\nbyte dht11_humidity = 0;";
+  Blockly.Arduino.definitions_['dht11_initial'] = "#include <SimpleDHT.h>\nSimpleDHT11 dht11("+pin+");\nbyte dht11_temperature = 0;\nbyte dht11_humidity = 0;";
   Blockly.Arduino.definitions_['dht11_read'] ='\n'+
 											'void dht11_read() {\n'+
 											'  dht11_temperature = 0;\n'+ 											
@@ -987,7 +987,7 @@ Blockly.Arduino['lcd1602_initial'] = function(block) {
   var address = block.getFieldValue('address');
   var sda = Blockly.Arduino.valueToCode(block, 'sda', Blockly.Arduino.ORDER_ATOMIC);
   var scl = Blockly.Arduino.valueToCode(block, 'scl', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.definitions_['lcd1602_initial'] = "#include \<Wire.h\>\n#include \<LiquidCrystal_I2C.h\>\nLiquidCrystal_I2C lcd("+address+", 16, 2);";
+  Blockly.Arduino.definitions_['lcd1602_initial'] = "#include <Wire.h>\n#include <LiquidCrystal_I2C.h>\nLiquidCrystal_I2C lcd("+address+", 16, 2);";
   var statements_setup = Blockly.Arduino.statementToCode(block, 'setup');
   Blockly.Arduino.setups_.lcd1602 = '\n  lcd.begin('+sda+', '+scl+');'+statements_setup;
   var code = '';
