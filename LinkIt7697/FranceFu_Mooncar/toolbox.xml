@@ -1,0 +1,115 @@
+<category id="catMooncar" name="catMooncar">
+    <block type="webbit_mooncar_pin">
+        <value name="R1">
+            <block type="math_number">
+                <field name="NUM">12</field>
+            </block>
+        </value>
+        <value name="R2">
+            <block type="math_number">
+                <field name="NUM">18</field>
+            </block>
+        </value>
+		<value name="L1">
+            <block type="math_number">
+                <field name="NUM">16</field>
+            </block>
+        </value>
+        <value name="L2">
+            <block type="math_number">
+                <field name="NUM">19</field>
+            </block>
+        </value>		
+    </block>
+    <block type="webbit_mooncar_move_car">
+        <value name="RSPEED">
+            <block type="math_number">
+                <field name="NUM">255</field>
+                </block>
+        </value>
+        <value name="LSPEED">
+            <block type="math_number">
+                <field name="NUM">255</field>
+                </block>
+        </value>		
+    </block>
+    <block type="webbit_mooncar_tracker_pin">
+        <value name="PINR">
+            <block type="math_number">
+                <field name="NUM">23</field>
+            </block>
+        </value>
+        <value name="PINL">
+            <block type="math_number">
+                <field name="NUM">5</field>
+            </block>
+        </value>	
+    </block>	
+    <block type="webbit_mooncar_tracker"></block>
+    <block type="webbit_mooncar_sonar_pin">
+        <value name="TRIG">
+            <block type="math_number">
+                <field name="NUM">13</field>
+            </block>
+        </value>
+        <value name="ECHO">
+            <block type="math_number">
+                <field name="NUM">17</field>
+            </block>
+        </value>	
+    </block>	
+    <block type="webbit_mooncar_sonar"></block>
+    <block type="webbit_mooncar_button_pin">
+        <value name="PINA">
+            <block type="math_number">
+                <field name="NUM">35</field>
+            </block>
+        </value>
+        <value name="PINB">
+            <block type="math_number">
+                <field name="NUM">27</field>
+            </block>
+        </value>	
+    </block>	
+    <block type="webbit_mooncar_button"></block>
+    <block type="webbit_mooncar_init_tcs"></block>
+    <block type="webbit_mooncar_read_tcs"></block>
+    <block type="webbit_mooncar_flash_light"></block>
+    <block type="webbit_mooncar_record_tcs"></block>
+    <block type="webbit_mooncar_chack_tcs"></block>
+    <block type="webbit_mooncar_ir_remote_read"></block>
+    <block type="webbit_mooncar_ir_remote_read_value"></block>
+    <block type="webbit_mooncar_ir_remote_read_type"></block>
+    <block type="webbit_mooncar_ir_remote_send"></block>
+    <block type="neopixel_begin"></block>
+    <block type="neopixel_setpixelcolor">
+        <value name="TARGET">
+            <block type="math_number">
+                <field name="NUM">0</field>
+            </block>
+        </value>
+    </block>
+    <block type="neopixel_custom_setpixelcolor">
+        <value name="TARGET">
+            <block type="math_number">
+                <field name="NUM">0</field>
+            </block>
+        </value>
+        <value name="R">
+            <block type="math_number">
+                <field name="NUM">255</field>
+            </block>
+        </value>
+        <value name="G">
+            <block type="math_number">
+                <field name="NUM">0</field>
+            </block>
+        </value>
+        <value name="B">
+            <block type="math_number">
+                <field name="NUM">0</field>
+            </block>
+        </value>
+    </block>
+    <block type="neopixel_show"></block>
+</category>
