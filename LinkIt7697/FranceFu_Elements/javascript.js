@@ -612,24 +612,45 @@ Blockly.Arduino['document_timer_once_novar'] = function (block) {
 };
 
 Blockly.Arduino['document_timer'] = function (block) {
-  var variable_myTimer_ = Blockly.Arduino.variableDB_.getName(block.getFieldValue('myTimer_'), Blockly.Variables.NAME_TYPE);
+  var value_var_ = Blockly.Arduino.valueToCode(block, 'var_', Blockly.Arduino.ORDER_ATOMIC);	
   var statements_do_ = Blockly.Arduino.statementToCode(block, 'do_');
   var value_intervals_ = Blockly.Arduino.valueToCode(block, 'intervals_', Blockly.Arduino.ORDER_ATOMIC);
-  var code = variable_myTimer_+' = setInterval(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
+  if ((value_var_.indexOf("'")==0)&&(value_var_.lastIndexOf("'")==value_var_.length-1))
+    value_var_ = value_var_.substring(1,value_var_.length-1);
+  if ((value_var_.indexOf('"')==0)&&(value_var_.lastIndexOf('"')==value_var_.length-1))
+    value_var_ = value_var_.substring(1,value_var_.length-1);
+  if ((value_var_.indexOf("(")==0)&&(value_var_.lastIndexOf(")")==value_var_.length-1))
+    value_var_ = value_var_.substring(1,value_var_.length-1);
+	
+  var code = value_var_+' = setInterval(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
   return code;
 };
 
 Blockly.Arduino['document_timer_once'] = function (block) {
-  var variable_myTimerOnce_ = Blockly.Arduino.variableDB_.getName(block.getFieldValue('myTimerOnce_'), Blockly.Variables.NAME_TYPE);
+  var value_var_ = Blockly.Arduino.valueToCode(block, 'var_', Blockly.Arduino.ORDER_ATOMIC);
   var statements_do_ = Blockly.Arduino.statementToCode(block, 'do_');
   var value_intervals_ = Blockly.Arduino.valueToCode(block, 'intervals_', Blockly.Arduino.ORDER_ATOMIC);
-  var code = variable_myTimerOnce_+' = setTimeout(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
+  if ((value_var_.indexOf("'")==0)&&(value_var_.lastIndexOf("'")==value_var_.length-1))
+    value_var_ = value_var_.substring(1,value_var_.length-1);
+  if ((value_var_.indexOf('"')==0)&&(value_var_.lastIndexOf('"')==value_var_.length-1))
+    value_var_ = value_var_.substring(1,value_var_.length-1);
+  if ((value_var_.indexOf("(")==0)&&(value_var_.lastIndexOf(")")==value_var_.length-1))
+    value_var_ = value_var_.substring(1,value_var_.length-1);
+	
+  var code = value_var_+' = setTimeout(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
   return code;
 };
 
 Blockly.Arduino['document_timer_stop'] = function (block) {
-  var variable_myTimer_ = Blockly.Arduino.variableDB_.getName(block.getFieldValue('myTimer_'), Blockly.Variables.NAME_TYPE);
-  var code = 'clearInterval(' + variable_myTimer_ + ');\n';
+  var value_var_ = Blockly.Arduino.valueToCode(block, 'var_', Blockly.Arduino.ORDER_ATOMIC);
+  if ((value_var_.indexOf("'")==0)&&(value_var_.lastIndexOf("'")==value_var_.length-1))
+    value_var_ = value_var_.substring(1,value_var_.length-1);
+  if ((value_var_.indexOf('"')==0)&&(value_var_.lastIndexOf('"')==value_var_.length-1))
+    value_var_ = value_var_.substring(1,value_var_.length-1);
+  if ((value_var_.indexOf("(")==0)&&(value_var_.lastIndexOf(")")==value_var_.length-1))
+    value_var_ = value_var_.substring(1,value_var_.length-1);
+	
+  var code = 'clearInterval(' + value_var_ + ');\n';
   return code;
 };
 

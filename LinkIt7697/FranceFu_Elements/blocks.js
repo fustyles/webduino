@@ -1598,7 +1598,7 @@ Blockly.Blocks['document_timer_novar'] = {
 };
 
 Blockly.Blocks['document_timer_once_novar'] = {
-  init: function () {
+  init: function () {  
     this.appendValueInput("intervals_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
@@ -1613,10 +1613,12 @@ Blockly.Blocks['document_timer_once_novar'] = {
 
 Blockly.Blocks['document_timer'] = {
   init: function () {
+	this.appendValueInput("var_")
+        .setCheck("String")
+        .appendField(Blockly.Msg.VARIABLE_NAME);		  
     this.appendValueInput("intervals_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
-        .appendField(new Blockly.FieldVariable('myTimer'), 'myTimer_')
         .appendField(Blockly.Msg.DOCUMENT_TIMER);  
     this.setInputsInline(true);    
     this.appendStatementInput("do_");
@@ -1628,10 +1630,12 @@ Blockly.Blocks['document_timer'] = {
 
 Blockly.Blocks['document_timer_once'] = {
   init: function () {
+	this.appendValueInput("var_")
+        .setCheck("String")
+        .appendField(Blockly.Msg.VARIABLE_NAME);	  
     this.appendValueInput("intervals_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
-        .appendField(new Blockly.FieldVariable('myTimerOnce'), 'myTimerOnce_')
         .appendField(Blockly.Msg.DOCUMENT_TIMER_ONCE);   
     this.setInputsInline(true);    
     this.appendStatementInput("do_");
@@ -1643,9 +1647,12 @@ Blockly.Blocks['document_timer_once'] = {
 
 Blockly.Blocks['document_timer_stop'] = {
   init: function () {
+	this.appendValueInput("var_")
+        .setCheck("String")
+        .appendField(Blockly.Msg.VARIABLE_NAME);	  
     this.appendDummyInput()
-      .appendField(Blockly.Msg.DOCUMENT_TIMER_STOP)
-      .appendField(new Blockly.FieldVariable('myTimer'), 'myTimer_');
+      .appendField(Blockly.Msg.DOCUMENT_TIMER_STOP);
+    this.setInputsInline(true);  	  
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
