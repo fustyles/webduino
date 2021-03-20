@@ -222,7 +222,7 @@ Blockly.Blocks['BitMatrixLed_matrix'] = {
         .setAlign(Blockly.ALIGN_CENTRE)
         .appendField(Blockly.Msg.ESP32_MATRIX_SHOW);
 	this.appendDummyInput()
-		.appendField(new Blockly.FieldColour("#000000"),"RGB")
+		.appendField(new Blockly.FieldColour("#FF0000"),"RGB")
 		.appendField(Blockly.Msg.ESP32_MATRIX_CHOICECOLOR_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L01")
@@ -301,11 +301,163 @@ Blockly.Blocks['BitMatrixLed_matrix_color'] = {
   }
 };
 
-Blockly.Blocks['BitMatrixLed_sample'] = {
+Blockly.Blocks['BitMatrixLed_sample1'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.WEBBIT_SAMPLE_SHOW)
-        .appendField(new Blockly.FieldDropdown([["♥","♥"], ["♡","♡"], ["↑","↑"], ["↓","↓"], ["←","←"], ["→","→"], ["↖","↖"], ["↙","↙"], ["↗","↗"], ["↘","↘"], ["▲","▲"], ["▼","▼"], ["◄","◄"], ["►","►"], ["O","O"], ["X","X"], ["V","V"]]), "value_sample_");     
+        .appendField(Blockly.Msg.ESP32_SAMPLE_SHOW)
+        .appendField(new Blockly.FieldDropdown([
+			["♥","0110010010010011001001100"],
+			["♡","0110011110011111111001100"],  
+			["↑","0010001000111110100000100"],
+			["↓","0010000010111110001000100"],
+			["←","0010001110101010010000100"],
+			["→","0010000100101010111000100"],
+			["↖","1111011000101001001000001"],
+			["↙","0111100011001010100110000"],
+			["↗","0000110010101001100011110"],
+			["↘","1000001001001010001101111"],
+			["▲","0000100111111110011100001"],
+			["▼","1000011100111111110010000"],
+			["◄","0010000100011100111011111"],
+			["►","1111101110011100010000100"],
+			[",","0000000001000100000000000"],
+			[".","0000000001000000000000000"],
+			["?","0100010000100111010001000"],
+			["!","0000000000111010000000000"],   
+			[";","0000000001010100000000000"],
+			[":","0000000000010100000000000"],
+			["(","0000001110100010000000000"],
+			[")","0000000000100010111000000"],
+			["[","0000011111100010000000000"],
+			["]","0000000000100011111100000"],
+			["{","0000000100111111000100000"],
+			["}","0000010001111110010000000"],
+			["'","0000000000110000010000000"],
+			["\\","1100000100110000010000000"],
+			["-","0000000100001000010000000"],
+			["", "0000000000000000000000000"]			
+		]), "value_sample_");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.ESP32_MATRIX_CHOICECOLOR_SHOW);		
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldColour("#FF0000"),"RGB");
+	this.setInputsInline(!0);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(345);	
+  }
+};
+
+Blockly.Blocks['BitMatrixLed_sample2'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_SAMPLE_SHOW)
+        .appendField(new Blockly.FieldDropdown([
+			["0","0000011111100011111100000"],
+			["1","0000001001111110000100000"],
+			["2","0000010111101011110100000"],
+			["3","0000010101101011111100000"],
+			["4","0000011100001001111100000"],
+			["5","0000011101101011011100000"],
+			["6","0000011111101011011100000"],
+			["7","0000011000100001111100000"],
+			["8","0000011111101011111100000"],
+			["9","0000011101101011111100000"],
+			["", "0000000000000000000000000"]
+		]), "value_sample_");  
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.ESP32_MATRIX_CHOICECOLOR_SHOW);		
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldColour("#FF0000"),"RGB");	
+	this.setInputsInline(!0);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(345);	
+  }
+};
+
+Blockly.Blocks['BitMatrixLed_sample3'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_SAMPLE_SHOW)
+        .appendField(new Blockly.FieldDropdown([
+			["A","0111110010100101001001111"],
+			["B","1111110101101011010101010"],
+			["C","0111010001100011000110001"],
+			["D","1111110001100011000101110"],
+			["E","1111110101101011010110101"],
+			["F","1111110100101001010010100"],
+			["G","0111010001101011010110111"],
+			["H","1111100100001000010011111"],
+			["I","1000110001111111000110001"],
+			["J","1001110001111111000010000"],
+			["K","1111100010001000101010001"],
+			["L","1111100001000010000100001"],
+			["M","1111101000001000100011111"],
+			["N","1111101000001000001011111"],
+			["O","0111010001100011000101110"],
+			["P","1111110010100101001001100"],
+			["Q","0111010001101011001001101"],
+			["R","1111110100101001010001011"],
+			["S","0100110101101011010110010"],
+			["T","1000010000111111000010000"],
+			["U","1111000001000010000111110"],
+			["V","1110000010000010001011100"],
+			["W","1111000001111100000111110"],
+			["X","1000101010001000101010001"],
+			["Y","1000001000001110100010000"],   
+			["Z","1000110011101011100110001"],
+			["", "0000000000000000000000000"]
+		]), "value_sample_");  
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.ESP32_MATRIX_CHOICECOLOR_SHOW);		
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldColour("#FF0000"),"RGB");
+	this.setInputsInline(!0);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(345);	
+  }
+};
+
+Blockly.Blocks['BitMatrixLed_sample4'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_SAMPLE_SHOW)
+        .appendField(new Blockly.FieldDropdown([
+			["a","0000000110010010011000001"],
+			["b","0000011111001010001000000"],
+			["c","0000000110010010100100000"],
+			["d","0000000010001011111100000"],
+			["e","0000000110010110010100000"],
+			["f","0000000100111111010000000"],
+			["g","0000000101010110011000000"],
+			["h","0000011111001000001100000"],
+			["i","0000000000101110000000000"],
+			["j","0000000001101110000000000"],
+			["k","0000011111000100010100000"],
+			["l","0000000000111110000000000"],
+			["m","0011100100000110010000011"],
+			["n","0000000111001000001100000"],
+			["o","0000000010001010001000000"],
+			["p","0000001111010100010000000"],
+			["q","0000000100010100111100000"],
+			["r","0000000111000100010000000"],
+			["s","0000001001101011001000000"],
+			["t","0000000100011110010100000"],
+			["u","0000000110000010011000001"],
+			["v","0000000110000010011000000"],
+			["w","0011000001001100000100110"],
+			["x","0000000101000100010100000"],
+			["y","0000000101000100010000000"],   
+			["z","0000101011011010100000000"],
+			["", "0000000000000000000000000"]			
+		]), "value_sample_");  
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.ESP32_MATRIX_CHOICECOLOR_SHOW);		
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldColour("#FF0000"),"RGB");
+	this.setInputsInline(!0);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(345);	

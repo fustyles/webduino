@@ -248,7 +248,7 @@ Blockly.Arduino.BitMatrixLed_matrix_pin = function(){
 											'  String hex ="0123456789abcdef";\n'+
 											'  return hex.indexOf(val);\n'+
 											'}\n'; 
-	Blockly.Arduino.setups_["setup_webbit_matrix"]="strip.Begin();\n  delay(2000);\n";
+	Blockly.Arduino.setups_["setup_webbit_matrix"]="strip.Begin();\n  delay(3000);\n";
 
 	var code = '';
 	return code;
@@ -322,8 +322,73 @@ Blockly.Arduino['BitMatrixLed_matrix_color'] = function() {
 	return code;
 };
 
-Blockly.Arduino['BitMatrixLed_sample'] = function(block) {
-  var value_sample_ = this.getFieldValue('value_sample_');
-  var code = 'BitMatrixLed_sample("'+ value_sample_ +'");\n';
-  return code;
+Blockly.Arduino['BitMatrixLed_sample1'] = function(block) {
+	var rgb = this.getFieldValue("RGB").substr(1,6);
+	var leds = this.getFieldValue('value_sample_');
+	leds = ledsMirror(leds, rgb);
+
+	var code = 'MatrixLed("'+leds+'");\n';
+	return code;
 };
+
+Blockly.Arduino['BitMatrixLed_sample2'] = function(block) {
+	var rgb = this.getFieldValue("RGB").substr(1,6);
+	var leds = this.getFieldValue('value_sample_');
+	leds = ledsMirror(leds, rgb);
+
+	var code = 'MatrixLed("'+leds+'");\n';
+	return code;
+};
+
+Blockly.Arduino['BitMatrixLed_sample3'] = function(block) {
+	var rgb = this.getFieldValue("RGB").substr(1,6);
+	var leds = this.getFieldValue('value_sample_');
+	leds = ledsMirror(leds, rgb);
+
+	var code = 'MatrixLed("'+leds+'");\n';
+	return code;
+};
+
+Blockly.Arduino['BitMatrixLed_sample4'] = function(block) {
+	var rgb = this.getFieldValue("RGB").substr(1,6);
+	var leds = this.getFieldValue('value_sample_');
+	leds = ledsMirror(leds, rgb);
+
+	var code = 'MatrixLed("'+leds+'");\n';
+	return code;
+};
+
+function ledsMirror(str, rgb) {
+	var leds = "";
+	for (var i=20;i<25;i++) {
+		if (str.substr(i, 1)=="1")
+			leds += rgb;
+		else
+			leds += "000000";		
+	}
+	for (var i=15;i<20;i++) {
+		if (str.substr(i, 1)=="1")
+			leds += rgb;
+		else
+			leds += "000000";		
+	}
+	for (var i=10;i<15;i++) {
+		if (str.substr(i, 1)=="1")
+			leds += rgb;
+		else
+			leds += "000000";		
+	}
+	for (var i=5;i<10;i++) {
+		if (str.substr(i, 1)=="1")
+			leds += rgb;
+		else
+			leds += "000000";		
+	}
+	for (var i=0;i<5;i++) {
+		if (str.substr(i, 1)=="1")
+			leds += rgb;
+		else
+			leds += "000000";		
+	}
+	return leds;	
+}
