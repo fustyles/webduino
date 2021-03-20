@@ -9,3 +9,7 @@ Blockly.Msg.ESP32_LUM_PIN_LEFT = "左方";
 Blockly.Msg.ESP32_LUM_PIN_RIGHT = "右方";
 Blockly.Msg.ESP32_TEMPERATURE_PIN = "ESP32 溫度感測器腳位設定 ";
 Blockly.Msg.ESP32_TEMPERATURE = "ESP32 溫度感測器";
+Blockly.Msg.ESP32_BUZZER_PIN = "ESP32 蜂鳴器腳位設定 ";
+Blockly.Msg.ESP32_BUZZER = "ESP32 蜂鳴器";
+Blockly.Msg.ESP32_BUZZER_FREQUENCY = "音階頻率";
+Blockly.Msg.ESP32_BUZZER_DELAYTIME = "持續時間";

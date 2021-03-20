@@ -9,3 +9,7 @@ Blockly.Msg.ESP32_LUM_PIN_LEFT = "Left";
 Blockly.Msg.ESP32_LUM_PIN_RIGHT = "Right";
 Blockly.Msg.ESP32_TEMPERATURE_PIN = "ESP32 Temperature sensor Set Pins ";
 Blockly.Msg.ESP32_TEMPERATURE = "ESP32 Temperature sensor";
+Blockly.Msg.ESP32_BUZZER_PIN = "ESP32 Buzzer Set Pins ";
+Blockly.Msg.ESP32_BUZZER = "ESP32 Buzzer";
+Blockly.Msg.ESP32_BUZZER_FREQUENCY = "frequency";
+Blockly.Msg.ESP32_BUZZER_DELAYTIME = "delaytime";

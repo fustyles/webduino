@@ -12,6 +12,7 @@
         </value>	
     </block>	
     <block type="esp32_button"></block>
+	
     <block type="esp32_lum_pin">
         <value name="l">
             <block type="math_number">
@@ -32,5 +33,35 @@
             </block>
         </value>	
     </block>	
-    <block type="esp32_temperature"></block>		
+    <block type="esp32_temperature"></block>	
+	
+    <block type="esp32_buzzer">
+        <value name="pin">
+            <block type="math_number">
+                <field name="NUM">25</field>
+            </block>
+        </value>
+		<value name="delaytime">
+		  <block type="text">
+			<field name="TEXT">1000</field>
+		  </block>
+		</value>
+    </block>	
+    <block type="esp32_buzzer1">
+        <value name="pin">
+            <block type="math_number">
+                <field name="NUM">25</field>
+            </block>
+        </value>
+		<value name="frequency">
+		  <block type="text">
+			<field name="TEXT">261</field>
+		  </block>
+		</value>
+		<value name="delaytime">
+		  <block type="text">
+			<field name="TEXT">1000</field>
+		  </block>
+		</value>
+    </block>	
 </category>
