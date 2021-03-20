@@ -77,7 +77,7 @@ Blockly.Blocks.webbit_mooncar_sonar={init:function(){
   this.setOutput(!0,"Number");
 }
 };
-Blockly.Blocks.webbit_mooncar_init_tcs={init:function(){
+Blockly.Blocks.webbit_mooncar_tcs_init={init:function(){
   this.appendDummyInput()
       .appendField(Blockly.Msg.INIT_TCS);
   this.setInputsInline(!0);
@@ -85,10 +85,17 @@ Blockly.Blocks.webbit_mooncar_init_tcs={init:function(){
   this.setNextStatement(!0,null);
 }
 };
-Blockly.Blocks.webbit_mooncar_read_tcs={init:function(){
+Blockly.Blocks.webbit_mooncar_tcs_read={init:function(){
   this.appendDummyInput()
       .appendField(Blockly.Msg.READ_TCS)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.RED,"RED"],[Blockly.Msg.GREEN,"GREEN"],[Blockly.Msg.BLUE,"BLUE"]]),"TCS");
+      .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.RED,"RED"],
+		  [Blockly.Msg.GREEN,"GREEN"],
+		  [Blockly.Msg.BLUE,"BLUE"],
+		  [Blockly.Msg.YELLO,"YELLO"],
+		  [Blockly.Msg.AZURE,"AZURE"],
+		  [Blockly.Msg.PURPLE,"PURPLE"]
+	  ]),"color");
   this.appendDummyInput()
       .appendField(Blockly.Msg.READ_VALUE);
   this.setInputsInline(!0);
@@ -96,33 +103,14 @@ Blockly.Blocks.webbit_mooncar_read_tcs={init:function(){
 }
 };
 Blockly.Blocks.webbit_mooncar_flash_light={init:function(){
+  this.appendValueInput("pin")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FLASH_LIGHT);
   this.appendDummyInput()
-      .appendField(Blockly.Msg.FLASH_LIGHT)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ON,"ON"],[Blockly.Msg.OFF,"OFF"]]),"TCS_LIGHT");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ON,"LOW"],[Blockly.Msg.OFF,"HIGH"]]),"state");
   this.setInputsInline(!0);
   this.setPreviousStatement(!0,null);
   this.setNextStatement(!0,null);
-}
-};
-Blockly.Blocks.webbit_mooncar_record_tcs={init:function(){
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.RECORD_TCS)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.RED,"RED"],[Blockly.Msg.GREEN,"GREEN"],[Blockly.Msg.BLUE,"BLUE"],[Blockly.Msg.YELLO,"YELLO"],[Blockly.Msg.AZURE,"AZURE"],[Blockly.Msg.PURPLE,"PURPLE"],[Blockly.Msg.C1,"C1"],[Blockly.Msg.C2,"C2"],[Blockly.Msg.C3,"C3"]]),"RECORD_TCS");
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.RECORD_VALUE);
-  this.setInputsInline(!0);
-  this.setPreviousStatement(!0,null);
-  this.setNextStatement(!0,null);
-}
-};
-Blockly.Blocks.webbit_mooncar_chack_tcs={init:function(){
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.CHACK_TCS)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.RED,"RED"],[Blockly.Msg.GREEN,"GREEN"],[Blockly.Msg.BLUE,"BLUE"],[Blockly.Msg.YELLO,"YELLO"],[Blockly.Msg.AZURE,"AZURE"],[Blockly.Msg.PURPLE,"PURPLE"],[Blockly.Msg.C1,"C1"],[Blockly.Msg.C2,"C2"],[Blockly.Msg.C3,"C3"]]),"RECORD_TCS");
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.CHACK_VALUE);
-  this.setInputsInline(!0);
-  this.setOutput(!0,"Boolean");
 }
 };
 Blockly.Blocks.webbit_mooncar_ir_remote_read={init:function(){

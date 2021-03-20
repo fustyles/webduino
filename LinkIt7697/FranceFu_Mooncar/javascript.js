@@ -64,109 +64,53 @@ Blockly.Arduino.webbit_mooncar_sonar_pin=function(){
 Blockly.Arduino.webbit_mooncar_sonar=function(){
   return ["ultrasonic_.convert(ultrasonic_.timing(), Ultrasonic::CM)", Blockly.Arduino.ORDER_ATOMIC];
 };
-Blockly.Arduino.webbit_mooncar_init_tcs=function(){
-  Blockly.Arduino.definitions_.define_write="#include <Wire.h>";
-  Blockly.Arduino.definitions_.define_tcs="#include \"Adafruit_TCS34725.h\"";
-  Blockly.Arduino.definitions_.define_tcs_var="int now[3], rec_r[3], rec_g[3], rec_b[3], rec_y[3], rec_a[3], rec_p[3], rec_c1[3], rec_c2[3], rec_c3[3], range_ = 50;";
-  Blockly.Arduino.definitions_["define_class_tcs_"]="Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_24MS, TCS34725_GAIN_1X);";
-  Blockly.Arduino.definitions_["define_class_tcs_init"]="uint16_t r_, g_, b_, c_;";
-  Blockly.Arduino.definitions_.define_tcs_red="int tcs_read_red()\n{\n  tcs.getRawData(&r_, &g_, &b_, &c_);\n  return r_;\n}\n";
-  Blockly.Arduino.definitions_.define_tcs_green="int tcs_read_green()\n{\n  tcs.getRawData(&r_, &g_, &b_, &c_);\n  return g_;\n}\n";
-  Blockly.Arduino.definitions_.define_tcs_blue="int tcs_read_blue()\n{\n  tcs.getRawData(&r_, &g_, &b_, &c_);\n  return b_;\n}\n";
-  Blockly.Arduino.setups_["tcs_"]||(Blockly.Arduino.setups_["tcs_"]="tcs.begin();");
-  return"digitalWrite(7, LOW);\n";
+Blockly.Arduino.webbit_mooncar_tcs_init=function(){
+  Blockly.Arduino.definitions_['define_wire']='#include <Wire.h>';
+  Blockly.Arduino.definitions_['define_tcs']='#include "Adafruit_TCS34725.h"\n'+
+										     'Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_700MS, TCS34725_GAIN_1X);\n'+
+										     'uint16_t r, g, b, c, colorTemp, lux;\n';
+  Blockly.Arduino.definitions_['tcs_read']='\n'+
+											'int tcs_read(String color) {\n'+
+											'  tcs.getRawData(&r, &g, &b, &c);\n'+
+											'  if (color=="r")\n'+
+											'    return r;\n'+
+											'  else if (color=="g")\n'+
+											'    return g;\n'+	
+											'  else if (color=="b")\n'+
+											'    return b;\n'+	
+											'  else\n'+
+											'    return 0;\n'+												
+											'}\n';											 
+  Blockly.Arduino.setups_['tcs_begin'] = 'tcs.begin();\n';
+  var code = '';
+  return code;
 };
-Blockly.Arduino.webbit_mooncar_read_tcs=function(){
-  var a=this.getFieldValue("TCS");
-  if (a == "RED") {
-    return["tcs_read_red()",Blockly.Arduino.ORDER_ATOMIC];
-  }
-  else if (a == "GREEN") {
-    return["tcs_read_green()",Blockly.Arduino.ORDER_ATOMIC];
-  }
-  else {
-    return["tcs_read_blue()",Blockly.Arduino.ORDER_ATOMIC];
-  }
+Blockly.Arduino.webbit_mooncar_tcs_read=function(){
+  var color=this.getFieldValue("color");
+  if (color == "RED")
+    var code = 'tcs_read("r")';
+  else if (color == "GREEN")
+    var code = 'tcs_read("g")';
+  else if (color == "BLUE")
+    var code = 'tcs_read("b")';
+  else if (color == "YELLOW")
+    var code = 'tcs_read("y")';
+  else if (color == "AZURE")
+    var code = 'tcs_read("a")';	
+  else if (color == "PURPLE")
+    var code = 'tcs_read("p")';
+  return [code, Blockly.Arduino.ORDER_NONE];	
 };
+
 Blockly.Arduino.webbit_mooncar_flash_light=function(){
-  var a=this.getFieldValue("TCS_LIGHT");
-  Blockly.Arduino.setups_["setup_flash_light_"]="pinMode(7, OUTPUT);\n";
-  if (a == "ON") {
-    return"digitalWrite(7, LOW);\n";
-  }
-  else {
-    return"digitalWrite(7, HIGH);\n";
-  }
+  var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
+  var state=this.getFieldValue("state");
+  Blockly.Arduino.setups_["setup_flash_light_"+pin]="pinMode("+pin+", OUTPUT);\n";
+  
+  code = "digitalWrite("+pin+", "+state+");\n";
+  return code;
 };
-Blockly.Arduino.webbit_mooncar_record_tcs=function(){
-  var a=this.getFieldValue("RECORD_TCS");
-  if (a == "RED") {
-    return"delay(100);\ntcs.getRawData(&r_, &g_, &b_, &c_);\nrec_r[0] = r_;\nrec_r[1] = g_;\nrec_r[2] = b_;\n";
-  }
-  else if (a == "GREEN") {
-    return"delay(100);\ntcs.getRawData(&r_, &g_, &b_, &c_);\nrec_g[0] = r_;\nrec_g[1] = g_;\nrec_g[2] = b_;\n";
-  }
-  else if (a == "BLUE") {
-    return"delay(100);\ntcs.getRawData(&r_, &g_, &b_, &c_);\nrec_b[0] = r_;\nrec_b[1] = g_;\nrec_b[2] = b_;\n";
-  }
-  else if (a == "YELLO") {
-    return"delay(100);\ntcs.getRawData(&r_, &g_, &b_, &c_);\nrec_y[0] = r_;\nrec_y[1] = g_;\nrec_y[2] = b_;\n";
-  }
-  else if (a == "AZURE") {
-    return"delay(100);\ntcs.getRawData(&r_, &g_, &b_, &c_);\nrec_a[0] = r_;\nrec_a[1] = g_;\nrec_a[2] = b_;\n";
-  }
-  else if (a == "PURPLE") {
-    return"delay(100);\ntcs.getRawData(&r_, &g_, &b_, &c_);\nrec_p[0] = r_;\nrec_p[1] = g_;\nrec_p[2] = b_;\n";
-  }
-  else if (a == "C1") {
-    return"delay(100);\ntcs.getRawData(&r_, &g_, &b_, &c_);\nrec_c1[0] = r_;\nrec_c1[1] = g_;\nrec_c1[2] = b_;\n";
-  }
-  else if (a == "C2") {
-    return"delay(100);\ntcs.getRawData(&r_, &g_, &b_, &c_);\nrec_c2[0] = r_;\nrec_c2[1] = g_;\nrec_c2[2] = b_;\n";
-  }
-  else {
-    return"delay(100);\ntcs.getRawData(&r_, &g_, &b_, &c_);\nrec_c3[0] = r_;\nrec_c3[1] = g_;\nrec_c3[2] = b_;\n";
-  }
-};
-Blockly.Arduino.webbit_mooncar_chack_tcs=function(){
-  var a=this.getFieldValue("RECORD_TCS");
-  if (a == "RED") {
-    Blockly.Arduino.definitions_.define_color_1="int tcs_check_1()\n{\n  tcs.getRawData(&r_, &g_, &b_, &c_);now[0] = r_;now[1] = g_;now[2] = b_;int count = 0;for (int i=0;i<3;i++) {if (abs(now[i] - rec_r[i]) < range_) {count += 1;}}if (count == 3) {return true;} else {return false;}\n}\n";
-    return["tcs_check_1()",Blockly.Arduino.ORDER_ATOMIC];
-  }
-  else if (a == "GREEN") {
-    Blockly.Arduino.definitions_.define_color_2="int tcs_check_2()\n{\n  tcs.getRawData(&r_, &g_, &b_, &c_);now[0] = r_;now[1] = g_;now[2] = b_;int count = 0;for (int i=0;i<3;i++) {if (abs(now[i] - rec_g[i]) < range_) {count += 1;}}if (count == 3) {return true;} else {return false;}\n}\n";
-    return["tcs_check_2()",Blockly.Arduino.ORDER_ATOMIC];
-  }
-  else if (a == "BLUE") {
-    Blockly.Arduino.definitions_.define_color_3="int tcs_check_3()\n{\n  tcs.getRawData(&r_, &g_, &b_, &c_);now[0] = r_;now[1] = g_;now[2] = b_;int count = 0;for (int i=0;i<3;i++) {if (abs(now[i] - rec_b[i]) < range_) {count += 1;}}if (count == 3) {return true;} else {return false;}\n}\n";
-    return["tcs_check_3()",Blockly.Arduino.ORDER_ATOMIC];
-  }
-  else if (a == "YELLO") {
-    Blockly.Arduino.definitions_.define_color_4="int tcs_check_4()\n{\n  tcs.getRawData(&r_, &g_, &b_, &c_);now[0] = r_;now[1] = g_;now[2] = b_;int count = 0;for (int i=0;i<3;i++) {if (abs(now[i] - rec_y[i]) < range_) {count += 1;}}if (count == 3) {return true;} else {return false;}\n}\n";
-    return["tcs_check_4()",Blockly.Arduino.ORDER_ATOMIC];
-  }
-  else if (a == "AZURE") {
-    Blockly.Arduino.definitions_.define_color_5="int tcs_check_5()\n{\n  tcs.getRawData(&r_, &g_, &b_, &c_);now[0] = r_;now[1] = g_;now[2] = b_;int count = 0;for (int i=0;i<3;i++) {if (abs(now[i] - rec_a[i]) < range_) {count += 1;}}if (count == 3) {return true;} else {return false;}\n}\n";
-    return["tcs_check_5()",Blockly.Arduino.ORDER_ATOMIC];
-  }
-  else if (a == "PURPLE") {
-    Blockly.Arduino.definitions_.define_color_6="int tcs_check_6()\n{\n  tcs.getRawData(&r_, &g_, &b_, &c_);now[0] = r_;now[1] = g_;now[2] = b_;int count = 0;for (int i=0;i<3;i++) {if (abs(now[i] - rec_p[i]) < range_) {count += 1;}}if (count == 3) {return true;} else {return false;}\n}\n";
-    return["tcs_check_6()",Blockly.Arduino.ORDER_ATOMIC];
-  }
-  else if (a == "C1") {
-    Blockly.Arduino.definitions_.define_color_7="int tcs_check_7()\n{\n  tcs.getRawData(&r_, &g_, &b_, &c_);now[0] = r_;now[1] = g_;now[2] = b_;int count = 0;for (int i=0;i<3;i++) {if (abs(now[i] - rec_c1[i]) < range_) {count += 1;}}if (count == 3) {return true;} else {return false;}\n}\n";
-    return["tcs_check_7()",Blockly.Arduino.ORDER_ATOMIC];
-  }
-  else if (a == "C2") {
-    Blockly.Arduino.definitions_.define_color_8="int tcs_check_8()\n{\n  tcs.getRawData(&r_, &g_, &b_, &c_);now[0] = r_;now[1] = g_;now[2] = b_;int count = 0;for (int i=0;i<3;i++) {if (abs(now[i] - rec_c2[i]) < range_) {count += 1;}}if (count == 3) {return true;} else {return false;}\n}\n";
-    return["tcs_check_8()",Blockly.Arduino.ORDER_ATOMIC];
-  }
-  else {
-    Blockly.Arduino.definitions_.define_color_9="int tcs_check_9()\n{\n  tcs.getRawData(&r_, &g_, &b_, &c_);now[0] = r_;now[1] = g_;now[2] = b_;int count = 0;for (int i=0;i<3;i++) {if (abs(now[i] - rec_c3[i]) < range_) {count += 1;}}if (count == 3) {return true;} else {return false;}\n}\n";
-    return["tcs_check_9()",Blockly.Arduino.ORDER_ATOMIC];
-  }
-};
+
 Blockly.Arduino.webbit_mooncar_ir_remote_read=function(){
   Blockly.Arduino.definitions_.define_irremote="#include <IRremote.h>";
   Blockly.Arduino.definitions_.define_irremote_init="IRrecv irrecv(15);";
