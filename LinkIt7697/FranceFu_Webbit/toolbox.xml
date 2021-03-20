@@ -1,0 +1,36 @@
+<category id="catWebbit" name="catWebbit">
+    <block type="esp32_button_pin">
+        <value name="PINA">
+            <block type="math_number">
+                <field name="NUM">35</field>
+            </block>
+        </value>
+        <value name="PINB">
+            <block type="math_number">
+                <field name="NUM">27</field>
+            </block>
+        </value>	
+    </block>	
+    <block type="esp32_button"></block>
+    <block type="esp32_lum_pin">
+        <value name="l">
+            <block type="math_number">
+                <field name="NUM">36</field>
+            </block>
+        </value>
+        <value name="r">
+            <block type="math_number">
+                <field name="NUM">39</field>
+            </block>
+        </value>	
+    </block>	
+    <block type="esp32_lum"></block>	
+    <block type="esp32_temperature_pin">
+        <value name="pin">
+            <block type="math_number">
+                <field name="NUM">34</field>
+            </block>
+        </value>	
+    </block>	
+    <block type="esp32_temperature"></block>		
+</category>

@@ -1,0 +1,11 @@
+Blockly.Msg.ESP32_BUTTON = "ESP32 button ";
+Blockly.Msg.ESP32_BUTTON_PIN = "ESP32 Button Set Pins ";
+Blockly.Msg.ESP32_BUTTON_PIN_A = "A";
+Blockly.Msg.ESP32_BUTTON_PIN_B = "B";
+Blockly.Msg.ESP32_BUTTON_CHECK = "pressed?";
+Blockly.Msg.ESP32_LUM = "ESP32 Lum sensor";
+Blockly.Msg.ESP32_LUM_PIN = "ESP32 Lum sensor Set Pins ";
+Blockly.Msg.ESP32_LUM_PIN_LEFT = "Left";
+Blockly.Msg.ESP32_LUM_PIN_RIGHT = "Right";
+Blockly.Msg.ESP32_TEMPERATURE_PIN = "ESP32 Temperature sensor Set Pins ";
+Blockly.Msg.ESP32_TEMPERATURE = "ESP32 Temperature sensor";

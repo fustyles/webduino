@@ -59,19 +59,6 @@
         </value>	
     </block>	
     <block type="webbit_mooncar_sonar"></block>
-    <block type="webbit_mooncar_button_pin">
-        <value name="PINA">
-            <block type="math_number">
-                <field name="NUM">35</field>
-            </block>
-        </value>
-        <value name="PINB">
-            <block type="math_number">
-                <field name="NUM">27</field>
-            </block>
-        </value>	
-    </block>	
-    <block type="webbit_mooncar_button"></block>
     <block type="webbit_mooncar_init_tcs"></block>
     <block type="webbit_mooncar_read_tcs"></block>
     <block type="webbit_mooncar_flash_light"></block>

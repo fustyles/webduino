@@ -64,33 +64,6 @@ Blockly.Arduino.webbit_mooncar_sonar_pin=function(){
 Blockly.Arduino.webbit_mooncar_sonar=function(){
   return ["ultrasonic_.convert(ultrasonic_.timing(), Ultrasonic::CM)", Blockly.Arduino.ORDER_ATOMIC];
 };
-Blockly.Arduino.webbit_mooncar_button_pin=function(){
-  var A=Blockly.Arduino.valueToCode(this,"PINA",Blockly.Arduino.ORDER_ATOMIC);
-  var B=Blockly.Arduino.valueToCode(this,"PINB",Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.definitions_['define_button']='\n'+
-											'int pin_ButtonA = '+A+';\n'+
-											'int pin_ButtonB = '+B+';\n';  
-  Blockly.Arduino.setups_["setup_button"]="pinMode(pin_ButtonA, INPUT_PULLUP);\n  pinMode(pin_ButtonB, INPUT_PULLUP);\n";
-  var code = '';
-  return code;
-};
-Blockly.Arduino.webbit_mooncar_button=function(){
-  var a=this.getFieldValue("AB_BUTTON");
-  
-  Blockly.Arduino.definitions_.define_button_a="bool a_button()\n{\n  if (digitalRead(pin_ButtonA) == 0 && digitalRead(pin_ButtonB) == 1) {\n    return true;\n  } else {\n    return false;\n  }\n}\n";
-  Blockly.Arduino.definitions_.define_button_b="bool b_button()\n{\n  if (digitalRead(pin_ButtonA) == 1 && digitalRead(pin_ButtonB) == 0) {\n    return true;\n  } else {\n    return false;\n  }\n}\n";
-  Blockly.Arduino.definitions_.define_button_c="bool c_button()\n{\n  if (digitalRead(pin_ButtonA) == 0 && digitalRead(pin_ButtonB) == 0) {\n    return true;\n  } else {\n    return false;\n  }\n}\n";
-
-  if (a == "A_") {
-    return["a_button()",Blockly.Arduino.ORDER_ATOMIC];
-  }
-  else if (a == "B_") {
-    return["b_button()",Blockly.Arduino.ORDER_ATOMIC];
-  }
-  else {
-    return["c_button()",Blockly.Arduino.ORDER_ATOMIC];
-  }
-};
 Blockly.Arduino.webbit_mooncar_init_tcs=function(){
   Blockly.Arduino.definitions_.define_write="#include <Wire.h>";
   Blockly.Arduino.definitions_.define_tcs="#include \"Adafruit_TCS34725.h\"";

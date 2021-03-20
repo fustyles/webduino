@@ -77,30 +77,6 @@ Blockly.Blocks.webbit_mooncar_sonar={init:function(){
   this.setOutput(!0,"Number");
 }
 };
-Blockly.Blocks.webbit_mooncar_button_pin={init:function(){
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.MOONCAR_BUTTON_PIN);
-  this.appendValueInput("PINA")
-      .setCheck("Number")
-	  .appendField(Blockly.Msg.MOONCAR_BUTTON_PIN_A);
-  this.appendValueInput("PINB")
-      .setCheck("Number")
-	  .appendField(Blockly.Msg.MOONCAR_BUTTON_PIN_B);
-  this.setInputsInline(!0);
-  this.setPreviousStatement(!0,null);
-  this.setNextStatement(!0,null);
-}
-};
-Blockly.Blocks.webbit_mooncar_button={init:function(){
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.BUTTON)
-      .appendField(new Blockly.FieldDropdown([["A","A_"],["B","B_"],["AB","AB_"]]),"AB_BUTTON");
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.BUTTON_CHECK);
-  this.setInputsInline(!0);
-  this.setOutput(!0,"Boolean");
-}
-};
 Blockly.Blocks.webbit_mooncar_init_tcs={init:function(){
   this.appendDummyInput()
       .appendField(Blockly.Msg.INIT_TCS);
