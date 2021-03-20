@@ -146,3 +146,136 @@ Blockly.Blocks.esp32_buzzer1={
 		this.setHelpUrl("https://zh.wikipedia.org/wiki/%E9%9F%B3%E9%AB%98");
 	}
 };
+
+Blockly.Blocks.esp32_mpu9250_pin={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.ESP32_MPU9250_PIN);
+		this.appendValueInput("sda")
+			.setCheck("Number")
+			.appendField(Blockly.Msg.ESP32_MPU9250_SDA);			
+		this.appendValueInput("scl")
+			.setCheck("Number")
+			.appendField(Blockly.Msg.ESP32_MPU9250_SCL);				
+		this.setInputsInline(!0);
+		this.setPreviousStatement(!0,null);
+		this.setNextStatement(!0,null);
+	}
+};
+
+Blockly.Blocks.esp32_mpu9250={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.ESP32_MPU9250);
+		this.appendDummyInput()
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg.ESP32_MPU9250_ACCELX,"accelX"],
+				[Blockly.Msg.ESP32_MPU9250_ACCELY,"accelY"],
+				[Blockly.Msg.ESP32_MPU9250_ACCELZ,"accelZ"],
+				[Blockly.Msg.ESP32_MPU9250_ACCELSQRT,"accelSqrt"],
+				[Blockly.Msg.ESP32_MPU9250_GYROX,"gyroX"],
+				[Blockly.Msg.ESP32_MPU9250_GYROY,"gyroY"],
+				[Blockly.Msg.ESP32_MPU9250_GYROZ,"gyroZ"],
+				[Blockly.Msg.ESP32_MPU9250_MAGX,"magX"],
+				[Blockly.Msg.ESP32_MPU9250_MAGY,"magY"],	
+				[Blockly.Msg.ESP32_MPU9250_MAGZ,"magZ"],
+				[Blockly.Msg.ESP32_MPU9250_MAGHORIZDIRECTION,"magHorizDirection"]
+			]),"mpu");		
+		this.setInputsInline(!0);
+		this.setOutput(!0,"Boolean");
+		this.setHelpUrl("https://bit.webduino.io/site/en/docs/mpu9250.html");
+	}
+};
+
+Blockly.Blocks['BitMatrixLed_matrix'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_CENTRE)
+        .appendField(Blockly.Msg.WEBBIT_MATRIX_SHOW);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L01")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L06")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L11")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L16")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L21");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L02")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L07")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L12")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L17")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L22");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L03")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L08")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L13")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L18")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L23");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L04")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L09")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L14")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L19")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L24");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L05")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L10")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L15")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L20")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "L25");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(345);	
+  }
+};
+
+Blockly.Blocks['BitMatrixLed_matrix_color'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_CENTRE)
+        .appendField(Blockly.Msg.WEBBIT_MATRIX_COLOR_SHOW);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour("#000000"), 'L01')
+        .appendField(new Blockly.FieldColour("#000000"), 'L06')
+        .appendField(new Blockly.FieldColour("#000000"), 'L11')
+        .appendField(new Blockly.FieldColour("#000000"), 'L16')
+        .appendField(new Blockly.FieldColour("#000000"), 'L21')
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour("#000000"), 'L02')
+        .appendField(new Blockly.FieldColour("#000000"), 'L07')
+        .appendField(new Blockly.FieldColour("#000000"), 'L12')
+        .appendField(new Blockly.FieldColour("#000000"), 'L17')
+        .appendField(new Blockly.FieldColour("#000000"), 'L22')
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour("#000000"), 'L03')
+        .appendField(new Blockly.FieldColour("#000000"), 'L08')
+        .appendField(new Blockly.FieldColour("#000000"), 'L13')
+        .appendField(new Blockly.FieldColour("#000000"), 'L18')
+        .appendField(new Blockly.FieldColour("#000000"), 'L23')
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour("#000000"), 'L04')
+        .appendField(new Blockly.FieldColour("#000000"), 'L09')
+        .appendField(new Blockly.FieldColour("#000000"), 'L14')
+        .appendField(new Blockly.FieldColour("#000000"), 'L19')
+        .appendField(new Blockly.FieldColour("#000000"), 'L24')
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour("#000000"), 'L05')
+        .appendField(new Blockly.FieldColour("#000000"), 'L10')
+        .appendField(new Blockly.FieldColour("#000000"), 'L15')
+        .appendField(new Blockly.FieldColour("#000000"), 'L20')
+        .appendField(new Blockly.FieldColour("#000000"), 'L25')
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(345);	
+  }
+};
+
+Blockly.Blocks['BitMatrixLed_sample'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBIT_SAMPLE_SHOW)
+        .appendField(new Blockly.FieldDropdown([["♥","♥"], ["♡","♡"], ["↑","↑"], ["↓","↓"], ["←","←"], ["→","→"], ["↖","↖"], ["↙","↙"], ["↗","↗"], ["↘","↘"], ["▲","▲"], ["▼","▼"], ["◄","◄"], ["►","►"], ["O","O"], ["X","X"], ["V","V"]]), "value_sample_");     
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(345);	
+  }
+};

@@ -63,5 +63,77 @@
 			<field name="TEXT">1000</field>
 		  </block>
 		</value>
+    </block>
+
+    <block type="esp32_mpu9250_pin">
+        <value name="sda">
+            <block type="math_number">
+                <field name="NUM">21</field>
+            </block>		
+        </value>
+        <value name="scl">
+            <block type="math_number">
+                <field name="NUM">22</field>
+            </block>			
+        </value>	
     </block>	
+    <block type="esp32_mpu9250"></block>	
+	
+	<block type="BitMatrixLed_matrix">
+		<field name="L01">FALSE</field>
+		<field name="L06">FALSE</field>
+		<field name="L11">FALSE</field>
+		<field name="L16">FALSE</field>
+		<field name="L21">FALSE</field>
+		<field name="L02">FALSE</field>
+		<field name="L07">FALSE</field>
+		<field name="L12">FALSE</field>
+		<field name="L17">FALSE</field>
+		<field name="L22">FALSE</field>
+		<field name="L03">FALSE</field>
+		<field name="L08">FALSE</field>
+		<field name="L13">FALSE</field>
+		<field name="L18">FALSE</field>
+		<field name="L23">FALSE</field>
+		<field name="L04">FALSE</field>
+		<field name="L09">FALSE</field>
+		<field name="L14">FALSE</field>
+		<field name="L19">FALSE</field>
+		<field name="L24">FALSE</field>
+		<field name="L05">FALSE</field>
+		<field name="L10">FALSE</field>
+		<field name="L15">FALSE</field>
+		<field name="L20">FALSE</field>
+		<field name="L25">FALSE</field>
+	</block>
+	<block type="BitMatrixLed_matrix_color">
+		<field name="L01">#000000</field>
+		<field name="L06">#000000</field>
+		<field name="L11">#000000</field>
+		<field name="L16">#000000</field>
+		<field name="L21">#000000</field>
+		<field name="L02">#000000</field>
+		<field name="L07">#000000</field>
+		<field name="L12">#000000</field>
+		<field name="L17">#000000</field>
+		<field name="L22">#000000</field>
+		<field name="L03">#000000</field>
+		<field name="L08">#000000</field>
+		<field name="L13">#000000</field>
+		<field name="L18">#000000</field>
+		<field name="L23">#000000</field>
+		<field name="L04">#000000</field>
+		<field name="L09">#000000</field>
+		<field name="L14">#000000</field>
+		<field name="L19">#000000</field>
+		<field name="L24">#000000</field>
+		<field name="L05">#000000</field>
+		<field name="L10">#000000</field>
+		<field name="L15">#000000</field>
+		<field name="L20">#000000</field>
+		<field name="L25">#000000</field>
+	</block>	
+	<block type="BitMatrixLed_sample">
+		<field name="value_sample_">♥</field>
+	</block>	
 </category>
