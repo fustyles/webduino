@@ -977,3 +977,18 @@ Blockly.Blocks['lcd1602_print'] = {
 	this.setColour(200);
   }
 };
+
+Blockly.Blocks['esp32_setuploop'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_SETUP_SHOW);
+    this.appendStatementInput("setup")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_LOOP_SHOW);
+    this.appendStatementInput("loop")
+        .setCheck(null);
+    this.setInputsInline(false);
+    this.setColour(40);
+  }
+};

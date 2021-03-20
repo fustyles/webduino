@@ -1012,3 +1012,12 @@ Blockly.Arduino['lcd1602_print'] = function(block) {
   code = 'lcd.setCursor('+col+','+row+');\nlcd.print('+str+');\n';
   return code;
 };
+
+Blockly.Arduino['esp32_setuploop'] = function(block) {
+  var statements_setup = Blockly.Arduino.statementToCode(block, 'setup');
+  var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');	
+  Blockly.Arduino.setups_.manual_add = '\n'+ statements_setup + '\n';	
+  
+  code = '\n' + statements_loop +'\n';
+  return code;
+};

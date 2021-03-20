@@ -644,5 +644,9 @@
 		  </block>
 		</value>  
 	  </block>
+	  <block type="esp32_setuploop">
+		<statement name="setup">
+		</statement>
+	  </block>	  
 	</category>
 </category>
