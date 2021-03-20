@@ -350,8 +350,8 @@ Blockly.Blocks['BitMatrixLed_sample1'] = {
 		]), "value_sample_");
 	this.appendDummyInput()
 		.appendField(Blockly.Msg.ESP32_MATRIX_CHOICECOLOR_SHOW);		
-	this.appendDummyInput()
-		.appendField(new Blockly.FieldColour("#FF0000"),"RGB");
+	this.appendValueInput("RGB")
+		.setCheck("String");
 	this.setInputsInline(!0);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -378,8 +378,8 @@ Blockly.Blocks['BitMatrixLed_sample2'] = {
 		]), "value_sample_");  
 	this.appendDummyInput()
 		.appendField(Blockly.Msg.ESP32_MATRIX_CHOICECOLOR_SHOW);		
-	this.appendDummyInput()
-		.appendField(new Blockly.FieldColour("#FF0000"),"RGB");	
+	this.appendValueInput("RGB")
+		.setCheck("String");	
 	this.setInputsInline(!0);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -422,8 +422,8 @@ Blockly.Blocks['BitMatrixLed_sample3'] = {
 		]), "value_sample_");  
 	this.appendDummyInput()
 		.appendField(Blockly.Msg.ESP32_MATRIX_CHOICECOLOR_SHOW);		
-	this.appendDummyInput()
-		.appendField(new Blockly.FieldColour("#FF0000"),"RGB");
+	this.appendValueInput("RGB")
+		.setCheck("String");
 	this.setInputsInline(!0);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -466,11 +466,41 @@ Blockly.Blocks['BitMatrixLed_sample4'] = {
 		]), "value_sample_");  
 	this.appendDummyInput()
 		.appendField(Blockly.Msg.ESP32_MATRIX_CHOICECOLOR_SHOW);		
-	this.appendDummyInput()
-		.appendField(new Blockly.FieldColour("#FF0000"),"RGB");
+	this.appendValueInput("RGB")
+		.setCheck("String");
 	this.setInputsInline(!0);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(345);	
+  }
+};
+
+Blockly.Blocks['BitMatrixLed_matrix_color_one'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_MATRIX_COLOR_SHOW);
+	this.appendValueInput("X")
+        .appendField("X[1~5]")	
+		.setCheck("Number"); 
+	this.appendValueInput("Y")
+        .appendField("Y[1~5]")	
+		.setCheck("Number"); 		
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.ESP32_MATRIX_CHOICECOLOR_SHOW);		
+	this.appendValueInput("RGB")
+		.setCheck("String");
+	this.setInputsInline(!0);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(345);	
+  }
+};
+
+Blockly.Blocks['BitMatrixLed_color'] = {
+  init: function() {	
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldColour("#FF0000"),"RGB");
+	this.setInputsInline(!0);
+	this.setOutput(!0,"Boolean");	
   }
 };
