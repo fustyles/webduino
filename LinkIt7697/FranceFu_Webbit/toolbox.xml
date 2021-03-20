@@ -79,6 +79,25 @@
     </block>	
     <block type="esp32_mpu9250"></block>	
 	
+    <block type="BitMatrixLed_matrix_pin">
+        <value name="pin">
+            <block type="math_number">
+                <field name="NUM">4</field>
+            </block>		
+        </value>
+        <value name="leds">
+            <block type="math_number">
+                <field name="NUM">25</field>
+            </block>			
+        </value>	
+    </block>	
+    <block type="BitMatrixLed_matrix_brightness">
+        <value name="brightness">
+            <block type="math_number">
+                <field name="NUM">0.5</field>
+            </block>		
+        </value>
+    </block>		
 	<block type="BitMatrixLed_matrix">
 		<field name="L01">FALSE</field>
 		<field name="L06">FALSE</field>

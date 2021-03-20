@@ -223,63 +223,102 @@ Blockly.Arduino.esp32_mpu9250 = function(){
 	return[code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
+Blockly.Arduino.BitMatrixLed_matrix_pin = function(){
+	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
+	var leds=Blockly.Arduino.valueToCode(this,"leds",Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['define_webbit_matrix']='\n'+
+											'#include \<NeoPixelBus.h\>\n'+
+											'const uint16_t PixelCount = '+leds+';\n'+
+											'const uint8_t PixelPin = '+pin+';\n'+
+											'NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> strip(PixelCount, PixelPin);\n'+											
+											'float matrixBrightness = 0.5;\n';  
+	Blockly.Arduino.definitions_['define_webbit_matrix_func']='\n'+
+											'void MatrixLed(String leds) {\n'+
+											'  int R,G,B;\n'+
+											'  for (int i=0;i<leds.length()/6;i++) {\n'+
+    											'    R = (HextoRGB(leds[i*6])*16+HextoRGB(leds[i*6+1]))*matrixBrightness;\n'+
+    											'    G = (HextoRGB(leds[i*6+2])*16+HextoRGB(leds[i*6+3]))*matrixBrightness;\n'+
+    											'    B = (HextoRGB(leds[i*6+4])*16+HextoRGB(leds[i*6+5]))*matrixBrightness;\n'+
+    											'    strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    											'  }\n'+
+    											'  strip.Show();\n'+
+											'}\n'+
+											'\n'+										
+											'int HextoRGB(char val) {\n'+
+											'  String hex ="0123456789abcdef";\n'+
+											'  return hex.indexOf(val);\n'+
+											'}\n'; 
+	Blockly.Arduino.setups_["setup_webbit_matrix"]="strip.Begin();\n  delay(2000);\n";
+
+	var code = '';
+	return code;
+};
+
+Blockly.Arduino.BitMatrixLed_matrix_brightness = function(){
+	var brightness=Blockly.Arduino.valueToCode(this,"brightness",Blockly.Arduino.ORDER_ATOMIC);
+
+	var code = 'matrixBrightness = '+brightness+';\n';
+	return code;
+};
+
 Blockly.Arduino['BitMatrixLed_matrix'] = function() {
-	var L01 = (this.getFieldValue('L01') == 'TRUE')?"1":"0";
-	var L02 = (this.getFieldValue('L02') == 'TRUE')?"1":"0";
-	var L03 = (this.getFieldValue('L03') == 'TRUE')?"1":"0";
-	var L04 = (this.getFieldValue('L04') == 'TRUE')?"1":"0";
-	var L05 = (this.getFieldValue('L05') == 'TRUE')?"1":"0";
-	var L06 = (this.getFieldValue('L06') == 'TRUE')?"1":"0";
-	var L07 = (this.getFieldValue('L07') == 'TRUE')?"1":"0";
-	var L08 = (this.getFieldValue('L08') == 'TRUE')?"1":"0";
-	var L09 = (this.getFieldValue('L09') == 'TRUE')?"1":"0";
-	var L10 = (this.getFieldValue('L10') == 'TRUE')?"1":"0";
-	var L11 = (this.getFieldValue('L11') == 'TRUE')?"1":"0";
-	var L12 = (this.getFieldValue('L12') == 'TRUE')?"1":"0";
-	var L13 = (this.getFieldValue('L13') == 'TRUE')?"1":"0";
-	var L14 = (this.getFieldValue('L14') == 'TRUE')?"1":"0";
-	var L15 = (this.getFieldValue('L15') == 'TRUE')?"1":"0";
-	var L16 = (this.getFieldValue('L16') == 'TRUE')?"1":"0";
-	var L17 = (this.getFieldValue('L17') == 'TRUE')?"1":"0";
-	var L18 = (this.getFieldValue('L18') == 'TRUE')?"1":"0";
-	var L19 = (this.getFieldValue('L19') == 'TRUE')?"1":"0";
-	var L20 = (this.getFieldValue('L20') == 'TRUE')?"1":"0";
-	var L21 = (this.getFieldValue('L21') == 'TRUE')?"1":"0";
-	var L22 = (this.getFieldValue('L22') == 'TRUE')?"1":"0";
-	var L23 = (this.getFieldValue('L23') == 'TRUE')?"1":"0";
-	var L24 = (this.getFieldValue('L24') == 'TRUE')?"1":"0";
-	var L25 = (this.getFieldValue('L25') == 'TRUE')?"1":"0";
-	var code = 'BitMatrixLed_matrix("'+L01+L02+L03+L04+L05+L06+L07+L08+L09+L10+L11+L12+L13+L14+L15+L16+L17+L18+L19+L20+L21+L22+L23+L24+L25+'");\n';
+	var rgb = this.getFieldValue("RGB").substr(1,6);
+	var L01 = (this.getFieldValue('L01') == 'TRUE')?rgb:"000000";
+	var L02 = (this.getFieldValue('L02') == 'TRUE')?rgb:"000000";
+	var L03 = (this.getFieldValue('L03') == 'TRUE')?rgb:"000000";
+	var L04 = (this.getFieldValue('L04') == 'TRUE')?rgb:"000000";
+	var L05 = (this.getFieldValue('L05') == 'TRUE')?rgb:"000000";
+	var L06 = (this.getFieldValue('L06') == 'TRUE')?rgb:"000000";
+	var L07 = (this.getFieldValue('L07') == 'TRUE')?rgb:"000000";
+	var L08 = (this.getFieldValue('L08') == 'TRUE')?rgb:"000000";
+	var L09 = (this.getFieldValue('L09') == 'TRUE')?rgb:"000000";
+	var L10 = (this.getFieldValue('L10') == 'TRUE')?rgb:"000000";
+	var L11 = (this.getFieldValue('L11') == 'TRUE')?rgb:"000000";
+	var L12 = (this.getFieldValue('L12') == 'TRUE')?rgb:"000000";
+	var L13 = (this.getFieldValue('L13') == 'TRUE')?rgb:"000000";
+	var L14 = (this.getFieldValue('L14') == 'TRUE')?rgb:"000000";
+	var L15 = (this.getFieldValue('L15') == 'TRUE')?rgb:"000000";
+	var L16 = (this.getFieldValue('L16') == 'TRUE')?rgb:"000000";
+	var L17 = (this.getFieldValue('L17') == 'TRUE')?rgb:"000000";
+	var L18 = (this.getFieldValue('L18') == 'TRUE')?rgb:"000000";
+	var L19 = (this.getFieldValue('L19') == 'TRUE')?rgb:"000000";
+	var L20 = (this.getFieldValue('L20') == 'TRUE')?rgb:"000000";
+	var L21 = (this.getFieldValue('L21') == 'TRUE')?rgb:"000000";
+	var L22 = (this.getFieldValue('L22') == 'TRUE')?rgb:"000000";
+	var L23 = (this.getFieldValue('L23') == 'TRUE')?rgb:"000000";
+	var L24 = (this.getFieldValue('L24') == 'TRUE')?rgb:"000000";
+	var L25 = (this.getFieldValue('L25') == 'TRUE')?rgb:"000000";
+	var code = 'MatrixLed("'+L21+L22+L23+L24+L25+L16+L17+L18+L19+L20+L11+L12+L13+L14+L15+L06+L07+L08+L09+L10+L01+L02+L03+L04+L05+'");\n';
 	return code;
 };
 
 Blockly.Arduino['BitMatrixLed_matrix_color'] = function() {
-	var L01 = this.getFieldValue('L01');
-	var L02 = this.getFieldValue('L02');
-	var L03 = this.getFieldValue('L03');
-	var L04 = this.getFieldValue('L04');
-	var L05 = this.getFieldValue('L05');
-	var L06 = this.getFieldValue('L06');
-	var L07 = this.getFieldValue('L07');
-	var L08 = this.getFieldValue('L08');
-	var L09 = this.getFieldValue('L09');
-	var L10 = this.getFieldValue('L10');
-	var L11 = this.getFieldValue('L11');
-	var L12 = this.getFieldValue('L12');
-	var L13 = this.getFieldValue('L13');
-	var L14 = this.getFieldValue('L14');
-	var L15 = this.getFieldValue('L15');
-	var L16 = this.getFieldValue('L16');
-	var L17 = this.getFieldValue('L17');
-	var L18 = this.getFieldValue('L18');
-	var L19 = this.getFieldValue('L19');
-	var L20 = this.getFieldValue('L20');
-	var L21 = this.getFieldValue('L21');
-	var L22 = this.getFieldValue('L22');
-	var L23 = this.getFieldValue('L23');
-	var L24 = this.getFieldValue('L24');
-	var L25 = this.getFieldValue('L25');
-	var code = 'BitMatrixLed_matrix_color(["'+L01+'","'+L02+'","'+L03+'","'+L04+'","'+L05+'","'+L06+'","'+L07+'","'+L08+'","'+L09+'","'+L10+'","'+L11+'","'+L12+'","'+L13+'","'+L14+'","'+L15+'","'+L16+'","'+L17+'","'+L18+'","'+L19+'","'+L20+'","'+L21+'","'+L22+'","'+L23+'","'+L24+'","'+L25+'"]);\n';
+	var L01 = this.getFieldValue('L01').substr(1,6);
+	var L02 = this.getFieldValue('L02').substr(1,6);
+	var L03 = this.getFieldValue('L03').substr(1,6);
+	var L04 = this.getFieldValue('L04').substr(1,6);
+	var L05 = this.getFieldValue('L05').substr(1,6);
+	var L06 = this.getFieldValue('L06').substr(1,6);
+	var L07 = this.getFieldValue('L07').substr(1,6);
+	var L08 = this.getFieldValue('L08').substr(1,6);
+	var L09 = this.getFieldValue('L09').substr(1,6);
+	var L10 = this.getFieldValue('L10').substr(1,6);
+	var L11 = this.getFieldValue('L11').substr(1,6);
+	var L12 = this.getFieldValue('L12').substr(1,6);
+	var L13 = this.getFieldValue('L13').substr(1,6);
+	var L14 = this.getFieldValue('L14').substr(1,6);
+	var L15 = this.getFieldValue('L15').substr(1,6);
+	var L16 = this.getFieldValue('L16').substr(1,6);
+	var L17 = this.getFieldValue('L17').substr(1,6);
+	var L18 = this.getFieldValue('L18').substr(1,6);
+	var L19 = this.getFieldValue('L19').substr(1,6);
+	var L20 = this.getFieldValue('L20').substr(1,6);
+	var L21 = this.getFieldValue('L21').substr(1,6);
+	var L22 = this.getFieldValue('L22').substr(1,6);
+	var L23 = this.getFieldValue('L23').substr(1,6);
+	var L24 = this.getFieldValue('L24').substr(1,6);
+	var L25 = this.getFieldValue('L25').substr(1,6);
+	var code = 'MatrixLed("'+L21+L22+L23+L24+L25+L16+L17+L18+L19+L20+L11+L12+L13+L14+L15+L06+L07+L08+L09+L10+L01+L02+L03+L04+L05+'");\n';
 	return code;
 };
 
