@@ -77,7 +77,9 @@ Blockly.Arduino.webbit_mooncar_tcs_init=function(){
 											'  else if (color=="g")\n'+
 											'    return g;\n'+	
 											'  else if (color=="b")\n'+
-											'    return b;\n'+	
+											'    return b;\n'+
+											'  else if (color=="lux")\n'+
+											'    return tcs.calculateLux(r, g, b);\n'+											
 											'  else\n'+
 											'    return 0;\n'+												
 											'}\n';											 
@@ -93,6 +95,8 @@ Blockly.Arduino.webbit_mooncar_tcs_read=function(){
     var code = 'tcs_read("g")';
   else if (color == "BLUE")
     var code = 'tcs_read("b")';
+  else if (color == "LUX")
+    var code = 'tcs_read("lux")';	
   else if (color == "YELLOW")
     var code = 'tcs_read("y")';
   else if (color == "AZURE")

@@ -92,6 +92,7 @@ Blockly.Blocks.webbit_mooncar_tcs_read={init:function(){
 		  [Blockly.Msg.RED,"RED"],
 		  [Blockly.Msg.GREEN,"GREEN"],
 		  [Blockly.Msg.BLUE,"BLUE"],
+		  [Blockly.Msg.LUX,"LUX"],		  
 		  [Blockly.Msg.YELLO,"YELLO"],
 		  [Blockly.Msg.AZURE,"AZURE"],
 		  [Blockly.Msg.PURPLE,"PURPLE"]
