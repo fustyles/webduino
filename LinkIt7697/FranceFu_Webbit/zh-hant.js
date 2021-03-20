@@ -35,3 +35,4 @@ Blockly.Msg.ESP32_SAMPLE_SHOW = "矩陣LED燈 顯示圖案";
 Blockly.Msg.ESP32_MATRIX_PIN = "矩陣LED燈 設定腳位 ";
 Blockly.Msg.ESP32_MATRIX_LEDS = "燈數";
 Blockly.Msg.ESP32_MATRIX_BRIGHTNESS = "矩陣LED燈 設定亮度(0~1)";
+Blockly.Msg.ESP32_MATRIX_CLEAR = "矩陣LED燈 清除亮燈";

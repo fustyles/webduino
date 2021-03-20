@@ -248,7 +248,7 @@ Blockly.Arduino.BitMatrixLed_matrix_pin = function(){
 											'  String hex ="0123456789abcdef";\n'+
 											'  return hex.indexOf(val);\n'+
 											'}\n'; 
-	Blockly.Arduino.setups_["setup_webbit_matrix"]="strip.Begin();\n  delay(3000);\n";
+	Blockly.Arduino.setups_["setup_webbit_matrix"]="strip.Begin();\n";
 
 	var code = '';
 	return code;
@@ -261,6 +261,11 @@ Blockly.Arduino.BitMatrixLed_matrix_brightness = function(){
 	return code;
 };
 
+Blockly.Arduino.BitMatrixLed_matrix_clear = function(){
+	var code = 'MatrixLed("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");\n';
+	return code;
+};
+  
 Blockly.Arduino['BitMatrixLed_matrix'] = function() {
 	var rgb = this.getFieldValue("RGB").substr(1,6);
 	var L01 = (this.getFieldValue('L01') == 'TRUE')?rgb:"000000";

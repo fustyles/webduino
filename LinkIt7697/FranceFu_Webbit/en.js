@@ -35,3 +35,4 @@ Blockly.Msg.ESP32_SAMPLE_SHOW = "Matrix Led Show Sample";
 Blockly.Msg.ESP32_MATRIX_PIN = "Matrix Led Set Pins ";
 Blockly.Msg.ESP32_MATRIX_LEDS = "Leds";
 Blockly.Msg.ESP32_MATRIX_BRIGHTNESS = "Matrix Led Set Brightness (0~1)";
+Blockly.Msg.ESP32_MATRIX_CLEAR = "Matrix Led Clear Leds";
