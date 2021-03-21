@@ -220,3 +220,136 @@ Blockly.Blocks.webbit_mooncar_ir_remote_send={init:function(){
   this.setColour(10);  
 }
 };
+
+Blockly.Blocks['webbit_mooncar_ws2812_pin'] = {
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.FRANCEFU_WS2812_PIN);
+		this.appendValueInput("pin")
+			.setCheck("Number");			
+		this.appendValueInput("leds")
+			.setCheck("Number")
+			.appendField(Blockly.Msg.FRANCEFU_WS2812_LEDS);
+		this.setInputsInline(!0);
+		this.setPreviousStatement(!0,null);
+		this.setNextStatement(!0,null);
+		this.setColour(210);			
+	}
+};
+
+Blockly.Blocks['webbit_mooncar_ws2812_brightness'] = {
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.FRANCEFU_WS2812_BRIGHTNESS);
+		this.appendValueInput("brightness")
+			.setCheck("Number");
+		this.setInputsInline(!0);
+		this.setPreviousStatement(!0,null);
+		this.setNextStatement(!0,null);
+		this.setColour(210);			
+	}
+};
+
+Blockly.Blocks['webbit_mooncar_ws2812_clear'] = {
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.FRANCEFU_WS2812_CLEAR);
+		this.setInputsInline(!0);
+		this.setPreviousStatement(!0,null);
+		this.setNextStatement(!0,null);
+		this.setColour(210);			
+	}
+};
+
+Blockly.Blocks['webbit_mooncar_ws2812_color'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_CENTRE)
+        .appendField(Blockly.Msg.FRANCEFU_WS2812_COLOR_SHOW);
+    this.appendDummyInput()
+        .appendField('   ')
+        .appendField(new Blockly.FieldColour("#000000"), 'L06')
+        .appendField('   ')
+        .appendField(new Blockly.FieldColour("#000000"), 'L16')
+        .appendField('   ');
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour("#000000"), 'L02')
+        .appendField('   ')
+        .appendField('   ')
+        .appendField('   ')
+        .appendField(new Blockly.FieldColour("#000000"), 'L22');
+    this.appendDummyInput()
+        .appendField('   ')
+        .appendField('   ')
+        .appendField('   ')
+        .appendField('   ')
+        .appendField('   ');
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour("#000000"), 'L04')
+        .appendField('   ')
+        .appendField('   ')
+        .appendField('   ')
+        .appendField(new Blockly.FieldColour("#000000"), 'L24');
+    this.appendDummyInput()
+        .appendField('   ')
+        .appendField(new Blockly.FieldColour("#000000"), 'L10')
+        .appendField('   ')
+        .appendField(new Blockly.FieldColour("#000000"), 'L20')
+        .appendField('   ');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(210);	
+  }
+};
+
+Blockly.Blocks['webbit_mooncar_ws2812_color_one_n'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.FRANCEFU_WS2812_COLOR_SHOW);
+	this.appendValueInput("N")
+        .appendField(Blockly.Msg.FRANCEFU_WS2812_LEDS_N)	
+		.setCheck("Number");		
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.FRANCEFU_WS2812_CHOICECOLOR_SHOW);		
+	this.appendValueInput("RGB")
+		.setCheck("String");
+	this.setInputsInline(!0);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(210);	
+  }
+};
+
+Blockly.Blocks['webbit_mooncar_ws2812_rgb_one_n'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.FRANCEFU_WS2812_COLOR_SHOW);
+	this.appendValueInput("N")
+        .appendField(Blockly.Msg.FRANCEFU_WS2812_LEDS_N)	
+		.setCheck("Number");		
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.FRANCEFU_WS2812_CHOICECOLOR_SHOW+"[0~255]");		
+	this.appendValueInput("R")
+        .appendField("R")	
+		.setCheck("Number");
+	this.appendValueInput("G")
+        .appendField("G")	
+		.setCheck("Number");
+	this.appendValueInput("B")
+        .appendField("B")	
+		.setCheck("Number");
+	this.setInputsInline(!0);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(210);	
+  }
+};
+
+Blockly.Blocks['webbit_mooncar_choice_color'] = {
+  init: function() {	
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldColour("#FF0000"),"RGB");
+	this.setInputsInline(!0);
+	this.setOutput(!0,"Boolean");	
+  }
+};

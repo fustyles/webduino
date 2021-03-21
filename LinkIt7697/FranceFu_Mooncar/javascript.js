@@ -143,7 +143,7 @@ Blockly.Arduino.webbit_mooncar_flash_light=function(){
 
 Blockly.Arduino.webbit_mooncar_ir_remote_read=function(){
   Blockly.Arduino.definitions_.define_irremote="#include <IRremote.h>";
-  Blockly.Arduino.definitions_.define_irremote_init="IRrecv irrecv(15);";
+  Blockly.Arduino.definitions_.define_irremote_init="IRrecv irrecv(32);";
   Blockly.Arduino.definitions_.define_irremote_decode="decode_results results;";
   Blockly.Arduino.setups_["irremote_"]||(Blockly.Arduino.setups_["irremote_"]="irrecv.enableIRIn();\n");
   return"if (irrecv.decode(&results)) {\n  "+Blockly.Arduino.statementToCode(this,"IR_READ")+"\n  irrecv.resume();\n}\n";
@@ -157,9 +157,9 @@ Blockly.Arduino.webbit_mooncar_ir_remote_read_type=function(){
 };
 Blockly.Arduino.webbit_mooncar_ir_remote_send=function(){
   var a=this.getFieldValue("IR_TYPE"),
-      b=Blockly.Arduino.valueToCode(this,"IR_SEND",Blockly.Arduino.ORDER_ATOMIC)||"0";
+  b=Blockly.Arduino.valueToCode(this,"IR_SEND",Blockly.Arduino.ORDER_ATOMIC)||"0";
   Blockly.Arduino.definitions_.define_irremote="#include <IRremote.h>";
-  Blockly.Arduino.definitions_.define_irremote_init="IRsend irsend;";
+  Blockly.Arduino.definitions_.define_irremote_init1="IRsend irsend(33);";
   Blockly.Arduino.definitions_.define_ir_type="int x2i(char *s)\n{\n  int x = 0;\n  for(;;) {\n    char c = *s;\n    if (c >= '0' && c <= '9') {\n      x *= 16;\n      x += c - '0';\n    }    else if (c >= 'a' && c <= 'f') {\n      x *= 16;\n      x += (c - 'a') + 10;\n    }\n    else break;\n    s++;\n  }\n  return x;\n}";
   if (a == "NEC") {
     return"irsend.sendNEC(x2i("+b+"), 32);\n"
@@ -170,4 +170,95 @@ Blockly.Arduino.webbit_mooncar_ir_remote_send=function(){
   } else {
     return"irsend.sendRC6(x2i("+b+"), 20);\n"
   }
+};
+
+
+Blockly.Arduino.webbit_mooncar_ws2812_pin = function(){
+	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
+	var leds=Blockly.Arduino.valueToCode(this,"leds",Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['define_webbit_matrix']='\n'+
+											'#include \<NeoPixelBus.h\>\n'+
+											'const uint16_t PixelCount = '+leds+';\n'+
+											'const uint8_t PixelPin = '+pin+';\n'+
+											'NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> strip(PixelCount, PixelPin);\n'+											
+											'float matrixBrightness = 0.5;\n';											
+	Blockly.Arduino.definitions_['define_webbit_matrix_func']='\n'+
+											'void MatrixLed(String leds) {\n'+
+											'  int R,G,B;\n'+
+											'  for (int i=0;i<leds.length()/6;i++) {\n'+
+    										'    R = (HextoRGB(leds[i*6])*16+HextoRGB(leds[i*6+1]))*matrixBrightness;\n'+
+    										'    G = (HextoRGB(leds[i*6+2])*16+HextoRGB(leds[i*6+3]))*matrixBrightness;\n'+
+    										'    B = (HextoRGB(leds[i*6+4])*16+HextoRGB(leds[i*6+5]))*matrixBrightness;\n'+
+    										'    strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'  }\n'+
+    										'  strip.Show();\n'+
+											'}\n'+
+											'\n'+
+											'void MatrixLedOne(int i, String leds) {\n'+
+											'  int R,G,B;\n'+
+    										'  R = (HextoRGB(leds[0])*16+HextoRGB(leds[1]))*matrixBrightness;\n'+
+    										'  G = (HextoRGB(leds[2])*16+HextoRGB(leds[3]))*matrixBrightness;\n'+
+    										'  B = (HextoRGB(leds[4])*16+HextoRGB(leds[5]))*matrixBrightness;\n'+
+    										'  strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'  strip.Show();\n'+
+											'}\n'+
+											'\n'+											
+											'int HextoRGB(char val) {\n'+
+											'  String hex ="0123456789abcdef";\n'+
+											'  return hex.indexOf(val);\n'+
+											'}\n'; 
+	Blockly.Arduino.setups_["setup_webbit_matrix"]="strip.Begin();\n";
+
+	var code = '';
+	return code;
+};
+
+Blockly.Arduino.webbit_mooncar_ws2812_brightness = function(){
+	var brightness=Blockly.Arduino.valueToCode(this,"brightness",Blockly.Arduino.ORDER_ATOMIC);
+
+	var code = 'matrixBrightness = '+brightness+';\n';
+	return code;
+};
+
+Blockly.Arduino.webbit_mooncar_ws2812_clear = function(){
+	var code = 'MatrixLed("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");\n';
+	return code;
+};
+
+Blockly.Arduino['webbit_mooncar_ws2812_color'] = function() {
+	var L02 = this.getFieldValue('L02').substr(1,6);
+	var L04 = this.getFieldValue('L04').substr(1,6);
+	var L06 = this.getFieldValue('L06').substr(1,6);
+	var L10 = this.getFieldValue('L10').substr(1,6);
+	var L16 = this.getFieldValue('L16').substr(1,6);
+	var L20 = this.getFieldValue('L20').substr(1,6);
+	var L22 = this.getFieldValue('L22').substr(1,6);
+	var L24 = this.getFieldValue('L24').substr(1,6);
+	var code = 'MatrixLed("'+L22+L16+L06+L02+L04+L10+L20+L24+'");\n';
+	return code;
+};
+
+Blockly.Arduino['webbit_mooncar_ws2812_color_one_n'] = function(block) {
+	var N=Blockly.Arduino.valueToCode(this,"N",Blockly.Arduino.ORDER_ATOMIC);
+	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC).substr(1,6);
+	
+	var code = 'MatrixLedOne(('+N+'-1),"'+rgb+'");\n';
+	return code;
+};
+
+Blockly.Arduino['webbit_mooncar_ws2812_rgb_one_n'] = function(block) {
+	var N=Blockly.Arduino.valueToCode(this,"N",Blockly.Arduino.ORDER_ATOMIC);
+	var r = Number(Blockly.Arduino.valueToCode(this,"R",Blockly.Arduino.ORDER_ATOMIC));
+	var g = Number(Blockly.Arduino.valueToCode(this,"G",Blockly.Arduino.ORDER_ATOMIC));
+	var b = Number(Blockly.Arduino.valueToCode(this,"B",Blockly.Arduino.ORDER_ATOMIC));
+    var r2 = r.toString(16).length==1?"0"+r.toString(16):r.toString(16);
+    var g2 = g.toString(16).length==1?"0"+g.toString(16):g.toString(16);
+    var b2 = b.toString(16).length==1?"0"+b.toString(16):b.toString(16);
+	var code = 'MatrixLedOne(('+N+'-1),"'+r2+g2+b2+'");\n';
+	return code;
+};
+
+Blockly.Arduino['webbit_mooncar_choice_color'] = function(block) {
+	var rgb = this.getFieldValue("RGB");
+	return[rgb, Blockly.Arduino.ORDER_ATOMIC];
 };

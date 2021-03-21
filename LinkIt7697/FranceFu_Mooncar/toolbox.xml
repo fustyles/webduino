@@ -93,30 +93,60 @@
         </value>				
 	</block>	
     <block type="webbit_mooncar_tcs_detect"></block>	
-    <block type="webbit_mooncar_ir_remote_read"></block>
-    <block type="webbit_mooncar_ir_remote_read_value"></block>
-    <block type="webbit_mooncar_ir_remote_read_type"></block>
-    <block type="webbit_mooncar_ir_remote_send"></block>
-    <block type="neopixel_begin"></block>
-    <block type="neopixel_setpixelcolor">
-        <value name="TARGET">
+    <block type="webbit_mooncar_ws2812_pin">
+        <value name="pin">
             <block type="math_number">
-                <field name="NUM">0</field>
+                <field name="NUM">26</field>
+            </block>		
+        </value>
+        <value name="leds">
+            <block type="math_number">
+                <field name="NUM">8</field>
+            </block>			
+        </value>	
+    </block>	
+    <block type="webbit_mooncar_ws2812_brightness">
+        <value name="brightness">
+            <block type="math_number">
+                <field name="NUM">0.5</field>
+            </block>		
+        </value>
+    </block>	
+    <block type="webbit_mooncar_ws2812_clear">
+    </block>			
+	<block type="webbit_mooncar_ws2812_color">
+		<field name="L06">#000000</field>
+		<field name="L16">#000000</field>
+		<field name="L02">#000000</field>
+		<field name="L22">#000000</field>
+		<field name="L04">#000000</field>
+		<field name="L24">#000000</field>
+		<field name="L10">#000000</field>
+		<field name="L20">#000000</field>
+	</block>	
+	<block type="webbit_mooncar_ws2812_color_one_n">
+        <value name="N">
+            <block type="math_number">
+                <field name="NUM">1</field>
             </block>
         </value>
-    </block>
-    <block type="neopixel_custom_setpixelcolor">
-        <value name="TARGET">
+        <value name="RGB">
+			<block type="webbit_mooncar_choice_color">
+			</block>
+        </value>		
+    </block>	
+	<block type="webbit_mooncar_ws2812_rgb_one_n">
+        <value name="N">
             <block type="math_number">
-                <field name="NUM">0</field>
+                <field name="NUM">1</field>
             </block>
         </value>
         <value name="R">
             <block type="math_number">
-                <field name="NUM">255</field>
+                <field name="NUM">0</field>
             </block>
         </value>
-        <value name="G">
+		<value name="G">
             <block type="math_number">
                 <field name="NUM">0</field>
             </block>
@@ -125,7 +155,11 @@
             <block type="math_number">
                 <field name="NUM">0</field>
             </block>
-        </value>
-    </block>
-    <block type="neopixel_show"></block>
+        </value>		
+    </block>	
+	
+    <block type="webbit_mooncar_ir_remote_read"></block>
+    <block type="webbit_mooncar_ir_remote_read_value"></block>
+    <block type="webbit_mooncar_ir_remote_read_type"></block>
+    <block type="webbit_mooncar_ir_remote_send"></block>
 </category>
