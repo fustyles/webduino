@@ -4541,3 +4541,13 @@ Blockly.Blocks['servermodule_javascript'] = {
   this.setColour(200);
   }
 };
+
+Blockly.Blocks['choice_color'] = {
+  init: function() {	
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldColour("#FF0000"),"RGB");
+  this.setInputsInline(true);
+  this.setOutput(true, null);
+  this.setColour(110);  
+  }
+};

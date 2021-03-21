@@ -4,7 +4,9 @@
 	<block type="servermodule_javascript">
 		<statement name="js">
 		</statement>
-	</block>	
+	</block>
+    <block type="choice_color">
+    </block>	
 	<block type="custom_comment">
 	<value name="text">
 	  <block type="text">

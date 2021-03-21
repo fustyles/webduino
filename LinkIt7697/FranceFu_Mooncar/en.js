@@ -1,4 +1,4 @@
-Blockly.Msg.MOONCAR_PIN = "MoonCar Motor";
+Blockly.Msg.MOONCAR_PIN = "Car Motor";
 Blockly.Msg.MOONCAR_PIN_R1 = "PIN R1";
 Blockly.Msg.MOONCAR_PIN_R2 = "PIN R2";
 Blockly.Msg.MOONCAR_PIN_L1 = "PIN L1";
@@ -10,7 +10,7 @@ Blockly.Msg.TURNLEFT = "LEFT";
 Blockly.Msg.TURNRIGHT = "RIGHT";
 Blockly.Msg.STOP = "STOP";
 Blockly.Msg.MOVE_SPEED = "Speed(0~255)";
-Blockly.Msg.MOVE_CAR_TOOLTIP = "MoonCar";
+Blockly.Msg.MOVE_CAR_TOOLTIP = "Car";
 Blockly.Msg.MOVE_MOTOR_L = "L speed";
 Blockly.Msg.MOVE_MOTOR_R = "R speed";
 Blockly.Msg.TRACKER = "Tracker Sensor";
