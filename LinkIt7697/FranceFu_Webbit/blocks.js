@@ -11,6 +11,7 @@ Blockly.Blocks.esp32_button_pin={
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0,null);
 		this.setNextStatement(!0,null);
+		this.setColour(80);		
 	}
 };
 
@@ -23,6 +24,7 @@ Blockly.Blocks.esp32_button={
 			.appendField(Blockly.Msg.ESP32_BUTTON_CHECK);
 		this.setInputsInline(!0);
 		this.setOutput(!0,"Boolean");
+		this.setColour(80);			
 	}
 };
 
@@ -39,6 +41,7 @@ Blockly.Blocks.esp32_lum_pin={
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0,null);
 		this.setNextStatement(!0,null);
+		this.setColour(140);			
 	}
 };
 
@@ -49,6 +52,7 @@ Blockly.Blocks.esp32_lum={
 			.appendField(new Blockly.FieldDropdown([[Blockly.Msg.ESP32_LUM_PIN_LEFT,"l"],[Blockly.Msg.ESP32_LUM_PIN_RIGHT,"r"]]),"side");
 		this.setInputsInline(!0);
 		this.setOutput(!0,"Boolean");
+		this.setColour(140);			
 	}
 };
 
@@ -61,6 +65,7 @@ Blockly.Blocks.esp32_temperature_pin={
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0,null);
 		this.setNextStatement(!0,null);
+		this.setColour(200);			
 	}
 };
 
@@ -70,6 +75,7 @@ Blockly.Blocks.esp32_temperature={
 			.appendField(Blockly.Msg.ESP32_TEMPERATURE);
 		this.setInputsInline(!0);
 		this.setOutput(!0,"Boolean");
+		this.setColour(200);			
 	}
 };
 
@@ -125,6 +131,7 @@ Blockly.Blocks.esp32_buzzer={
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0,null);
 		this.setNextStatement(!0,null);
+		this.setColour(260);			
 	}
 };
 
@@ -144,6 +151,7 @@ Blockly.Blocks.esp32_buzzer1={
 		this.setPreviousStatement(!0,null);
 		this.setNextStatement(!0,null);
 		this.setHelpUrl("https://zh.wikipedia.org/wiki/%E9%9F%B3%E9%AB%98");
+		this.setColour(260);			
 	}
 };
 
@@ -160,6 +168,7 @@ Blockly.Blocks.esp32_mpu9250_pin={
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0,null);
 		this.setNextStatement(!0,null);
+		this.setColour(320);			
 	}
 };
 
@@ -184,6 +193,7 @@ Blockly.Blocks.esp32_mpu9250={
 		this.setInputsInline(!0);
 		this.setOutput(!0,"Boolean");
 		this.setHelpUrl("https://bit.webduino.io/site/en/docs/mpu9250.html");
+		this.setColour(320);			
 	}
 };
 
@@ -199,7 +209,7 @@ Blockly.Blocks['BitMatrixLed_matrix_pin'] = {
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0,null);
 		this.setNextStatement(!0,null);
-		this.setColour(345);			
+		this.setColour(20);			
 	}
 };
 
@@ -212,7 +222,7 @@ Blockly.Blocks['BitMatrixLed_matrix_brightness'] = {
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0,null);
 		this.setNextStatement(!0,null);
-		this.setColour(345);			
+		this.setColour(20);			
 	}
 };
 
@@ -223,7 +233,7 @@ Blockly.Blocks['BitMatrixLed_matrix_clear'] = {
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0,null);
 		this.setNextStatement(!0,null);
-		this.setColour(345);			
+		this.setColour(20);			
 	}
 };
 
@@ -267,7 +277,7 @@ Blockly.Blocks['BitMatrixLed_matrix'] = {
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L25");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(345);	
+    this.setColour(20);	
   }
 };
 
@@ -308,7 +318,7 @@ Blockly.Blocks['BitMatrixLed_matrix_color'] = {
         .appendField(new Blockly.FieldColour("#000000"), 'L25')
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(345);	
+    this.setColour(20);	
   }
 };
 
@@ -355,7 +365,7 @@ Blockly.Blocks['BitMatrixLed_sample1'] = {
 	this.setInputsInline(!0);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(345);	
+    this.setColour(20);	
   }
 };
 
@@ -383,7 +393,7 @@ Blockly.Blocks['BitMatrixLed_sample2'] = {
 	this.setInputsInline(!0);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(345);	
+    this.setColour(20);	
   }
 };
 
@@ -427,7 +437,7 @@ Blockly.Blocks['BitMatrixLed_sample3'] = {
 	this.setInputsInline(!0);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(345);	
+    this.setColour(20);	
   }
 };
 
@@ -471,7 +481,7 @@ Blockly.Blocks['BitMatrixLed_sample4'] = {
 	this.setInputsInline(!0);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(345);	
+    this.setColour(20);	
   }
 };
 
@@ -492,7 +502,7 @@ Blockly.Blocks['BitMatrixLed_matrix_color_one'] = {
 	this.setInputsInline(!0);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(345);	
+    this.setColour(20);	
   }
 };
 
@@ -510,7 +520,7 @@ Blockly.Blocks['BitMatrixLed_matrix_color_one_n'] = {
 	this.setInputsInline(!0);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(345);	
+    this.setColour(20);	
   }
 };
 
@@ -535,7 +545,7 @@ Blockly.Blocks['BitMatrixLed_matrix_rgb_one_n'] = {
 	this.setInputsInline(!0);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(345);	
+    this.setColour(20);	
   }
 };
 
