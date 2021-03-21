@@ -59,15 +59,40 @@
         </value>	
     </block>	
     <block type="webbit_mooncar_sonar"></block>
-    <block type="webbit_mooncar_tcs_init"></block>
-    <block type="webbit_mooncar_tcs_read"></block>
     <block type="webbit_mooncar_flash_light">
         <value name="pin">
             <block type="math_number">
                 <field name="NUM">27</field>
             </block>
         </value>
+	</block>	
+    <block type="webbit_mooncar_tcs_init"></block>
+    <block type="webbit_mooncar_tcs_read"></block>
+    <block type="webbit_mooncar_tcs_set">
+        <value name="R">
+            <block type="math_number">
+                <field name="NUM">0</field>
+            </block>
+        </value>	
+        <value name="G">
+            <block type="math_number">
+                <field name="NUM">0</field>
+            </block>
+        </value>	
+		<value name="B">
+            <block type="math_number">
+                <field name="NUM">0</field>
+            </block>
+        </value>	
 	</block>
+    <block type="webbit_mooncar_tcs_range">
+        <value name="range">
+            <block type="math_number">
+                <field name="NUM">0.1</field>
+            </block>
+        </value>				
+	</block>	
+    <block type="webbit_mooncar_tcs_detect"></block>	
     <block type="webbit_mooncar_ir_remote_read"></block>
     <block type="webbit_mooncar_ir_remote_read_value"></block>
     <block type="webbit_mooncar_ir_remote_read_type"></block>

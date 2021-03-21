@@ -68,42 +68,68 @@ Blockly.Arduino.webbit_mooncar_tcs_init=function(){
   Blockly.Arduino.definitions_['define_wire']='#include <Wire.h>';
   Blockly.Arduino.definitions_['define_tcs']='#include "Adafruit_TCS34725.h"\n'+
 										     'Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_700MS, TCS34725_GAIN_1X);\n'+
-										     'uint16_t r, g, b, c, colorTemp, lux;\n';
+										     'uint16_t r_, g_, b_, c_, colorTemp_, lux_;\n'+
+											 'float range_ = 0.2;\n'+											 
+										     'int rgb[27] = {2291, 838, 931 ,1166, 2210, 1331 ,580, 1000, 2071 ,4739, 4995, 1993, 1203, 3457, 6170 ,1388, 1119, 2211, 0, 0, 0, 0, 0, 0, 0, 0, 0};\n';											 
   Blockly.Arduino.definitions_['tcs_read']='\n'+
 											'int tcs_read(String color) {\n'+
-											'  tcs.getRawData(&r, &g, &b, &c);\n'+
+											'  tcs.getRawData(&r_, &g_, &b_, &c_);\n'+
 											'  if (color=="r")\n'+
-											'    return r;\n'+
+											'    return r_;\n'+
 											'  else if (color=="g")\n'+
-											'    return g;\n'+	
+											'    return g_;\n'+	
 											'  else if (color=="b")\n'+
-											'    return b;\n'+
-											'  else if (color=="lux")\n'+
-											'    return tcs.calculateLux(r, g, b);\n'+											
+											'    return b_;\n'+
+											'  else if (color=="l")\n'+
+											'    return tcs.calculateLux(r_, g_, b_);\n'+											
 											'  else\n'+
 											'    return 0;\n'+												
-											'}\n';											 
+											'}\n'+
+											'void tcs_set(int color, int r, int g, int b) {\n'+
+											'    rgb[color*3+0] = r;\n'+
+											'    rgb[color*3+1] = g;\n'+
+											'    rgb[color*3+2] = b;\n'+											
+											'}\n'+
+											'boolean tcs_detect(int color) {\n'+
+											'  tcs.getRawData(&r_, &g_, &b_, &c_);\n'+
+											'  boolean rs=(((float)abs(rgb[color*3+0]-r_)/(float)rgb[color*3+0])<=range_);\n'+
+											'  boolean gs=(((float)abs(rgb[color*3+1]-g_)/(float)rgb[color*3+1])<=range_);\n'+
+											'  boolean bs=(((float)abs(rgb[color*3+2]-b_)/(float)rgb[color*3+2])<=range_); \n'+
+											'  if (rs&&gs&&bs)\n'+
+											'    return true;\n'+
+											'  else\n'+
+											'    return false;\n'+
+											'}\n';						
   Blockly.Arduino.setups_['tcs_begin'] = 'tcs.begin();\n';
   var code = '';
   return code;
 };
+
 Blockly.Arduino.webbit_mooncar_tcs_read=function(){
   var color=this.getFieldValue("color");
-  if (color == "RED")
-    var code = 'tcs_read("r")';
-  else if (color == "GREEN")
-    var code = 'tcs_read("g")';
-  else if (color == "BLUE")
-    var code = 'tcs_read("b")';
-  else if (color == "LUX")
-    var code = 'tcs_read("lux")';	
-  else if (color == "YELLOW")
-    var code = 'tcs_read("y")';
-  else if (color == "AZURE")
-    var code = 'tcs_read("a")';	
-  else if (color == "PURPLE")
-    var code = 'tcs_read("p")';
+  var code = 'tcs_read("'+color+'")';
   return [code, Blockly.Arduino.ORDER_NONE];	
+};
+
+Blockly.Arduino.webbit_mooncar_tcs_set=function(){
+  var color=this.getFieldValue("color");
+  var r=Blockly.Arduino.valueToCode(this,"R",Blockly.Arduino.ORDER_ATOMIC);
+  var g=Blockly.Arduino.valueToCode(this,"G",Blockly.Arduino.ORDER_ATOMIC);
+  var b=Blockly.Arduino.valueToCode(this,"B",Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'tcs_set('+color+', '+r+', '+g+', '+b+');\n';
+  return code;	
+};
+
+Blockly.Arduino.webbit_mooncar_tcs_detect=function(){
+  var color=this.getFieldValue("color");
+  var code = 'tcs_detect('+color+')';
+  return [code, Blockly.Arduino.ORDER_NONE];	
+};
+
+Blockly.Arduino.webbit_mooncar_tcs_range=function(){
+  var range=Blockly.Arduino.valueToCode(this,"range",Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'range_ = '+range+';\n';
+  return code;	
 };
 
 Blockly.Arduino.webbit_mooncar_flash_light=function(){
