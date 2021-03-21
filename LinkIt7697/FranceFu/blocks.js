@@ -541,7 +541,8 @@ Blockly.Blocks['esp32_analogwrite'] = {
 	this.appendDummyInput()
 	  .appendField(Blockly.Msg.ESP32_ANALOGWRITE_SHOW);
 	this.appendValueInput("pin")
-	  .setCheck("Number");  
+	  .setCheck("Number")
+      .appendField(Blockly.Msg.SERVERMODULE_PIN_SHOW);	  
 	this.appendDummyInput()
 	  .appendField(Blockly.Msg.ESP32_ANALOGWRITE_VALUE_SHOW);
 	this.appendValueInput("val")
@@ -562,7 +563,8 @@ Blockly.Blocks['esp32_digitalwrite'] = {
 	this.appendDummyInput()
 	  .appendField(Blockly.Msg.ESP32_DIGITALWRITE_SHOW);
 	this.appendValueInput("pin")
-	  .setCheck("Number");  
+	  .setCheck("Number")
+	  .appendField(Blockly.Msg.SERVERMODULE_PIN_SHOW);
 	this.appendDummyInput()
 	  .appendField(Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW);
 	this.appendDummyInput()    

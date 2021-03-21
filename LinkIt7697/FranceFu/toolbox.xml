@@ -15,7 +15,7 @@
 		</value> 
 		<value name="val">
 		  <block type="math_number">
-			<field name="NUM">0</field>
+			<field name="NUM">255</field>
 		  </block>
 		</value> 
 		<value name="channel">
