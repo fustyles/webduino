@@ -141,38 +141,6 @@ Blockly.Arduino.webbit_mooncar_flash_light=function(){
   return code;
 };
 
-Blockly.Arduino.webbit_mooncar_ir_remote_read=function(){
-  Blockly.Arduino.definitions_.define_irremote="#include <IRremote.h>";
-  Blockly.Arduino.definitions_.define_irremote_init="IRrecv irrecv(32);";
-  Blockly.Arduino.definitions_.define_irremote_decode="decode_results results;";
-  Blockly.Arduino.setups_["irremote_"]||(Blockly.Arduino.setups_["irremote_"]="irrecv.enableIRIn();\n");
-  return"if (irrecv.decode(&results)) {\n  "+Blockly.Arduino.statementToCode(this,"IR_READ")+"\n  irrecv.resume();\n}\n";
-};
-Blockly.Arduino.webbit_mooncar_ir_remote_read_value=function(){
-  return["String(results.value, HEX)",Blockly.Arduino.ORDER_ATOMIC];
-};
-Blockly.Arduino.webbit_mooncar_ir_remote_read_type=function(){
-  Blockly.Arduino.definitions_.define_ir_type="String ir_type(int tip)\n{\n  if (tip == 1) {\n    return\"RC5\";\n  } else if (tip == 2){\n    return\"RC6\";\n  } else if (tip == 3){\n    return\"NEC\";\n  } else {\n    return\"Sony\";\n  }\n}\n";
-  return["ir_type(results.decode_type)",Blockly.Arduino.ORDER_ATOMIC];
-};
-Blockly.Arduino.webbit_mooncar_ir_remote_send=function(){
-  var a=this.getFieldValue("IR_TYPE"),
-  b=Blockly.Arduino.valueToCode(this,"IR_SEND",Blockly.Arduino.ORDER_ATOMIC)||"0";
-  Blockly.Arduino.definitions_.define_irremote="#include <IRremote.h>";
-  Blockly.Arduino.definitions_.define_irremote_init1="IRsend irsend(33);";
-  Blockly.Arduino.definitions_.define_ir_type="int x2i(char *s)\n{\n  int x = 0;\n  for(;;) {\n    char c = *s;\n    if (c >= '0' && c <= '9') {\n      x *= 16;\n      x += c - '0';\n    }    else if (c >= 'a' && c <= 'f') {\n      x *= 16;\n      x += (c - 'a') + 10;\n    }\n    else break;\n    s++;\n  }\n  return x;\n}";
-  if (a == "NEC") {
-    return"irsend.sendNEC(x2i("+b+"), 32);\n"
-  } else if (a == "SONY"){
-    return"irsend.sendSony(x2i("+b+"), 12);\n"
-  } else if (a == "RC5") {
-    return"irsend.sendRC5(x2i("+b+"), 12);\n"
-  } else {
-    return"irsend.sendRC6(x2i("+b+"), 20);\n"
-  }
-};
-
-
 Blockly.Arduino.webbit_mooncar_ws2812_pin = function(){
 	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
 	var leds=Blockly.Arduino.valueToCode(this,"leds",Blockly.Arduino.ORDER_ATOMIC);
@@ -261,4 +229,49 @@ Blockly.Arduino['webbit_mooncar_ws2812_rgb_one_n'] = function(block) {
 Blockly.Arduino['webbit_mooncar_choice_color'] = function(block) {
 	var rgb = this.getFieldValue("RGB");
 	return[rgb, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino.webbit_mooncar_ir_remote_read_pin=function(){
+  var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
+  Blockly.Arduino.definitions_.define_irremote="#include <IRremote.h>";
+  Blockly.Arduino.definitions_.define_irremote_init="IRrecv irrecv("+pin+");";
+  Blockly.Arduino.definitions_.define_irremote_decode="decode_results results;";
+  Blockly.Arduino.setups_.define_irremote_init = "irrecv.enableIRIn();";
+  var code = '';
+  return code;
+};
+Blockly.Arduino.webbit_mooncar_ir_remote_read=function(){
+  var statement = Blockly.Arduino.statementToCode(this,"IR_READ");
+  var code = "if (irrecv.decode(&results)) {\n  "+ statement +"\n  irrecv.resume();\n}\n";
+  return code;
+};
+Blockly.Arduino.webbit_mooncar_ir_remote_read_value=function(){
+  var code = "String(results.value, HEX)";
+  return [code,Blockly.Arduino.ORDER_ATOMIC];
+};
+Blockly.Arduino.webbit_mooncar_ir_remote_read_type=function(){
+  Blockly.Arduino.definitions_.define_ir_type="String ir_type(int tip)\n{\n  if (tip == 1) {\n    return\"RC5\";\n  } else if (tip == 2){\n    return\"RC6\";\n  } else if (tip == 3){\n    return\"NEC\";\n  } else {\n    return\"Sony\";\n  }\n}\n";
+  var code = "ir_type(results.decode_type)";
+  return [code,Blockly.Arduino.ORDER_ATOMIC];
+};
+Blockly.Arduino.webbit_mooncar_ir_remote_send_pin=function(){
+  var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
+  Blockly.Arduino.definitions_.define_irremote="#include <IRremote.h>";
+  Blockly.Arduino.definitions_.define_irremote_init1="IRsend irsend("+pin+");";
+  Blockly.Arduino.definitions_.define_ir_type="int x2i(char *s)\n{\n  int x = 0;\n  for(;;) {\n    char c = *s;\n    if (c >= '0' && c <= '9') {\n      x *= 16;\n      x += c - '0';\n    }    else if (c >= 'a' && c <= 'f') {\n      x *= 16;\n      x += (c - 'a') + 10;\n    }\n    else break;\n    s++;\n  }\n  return x;\n}";
+  var code = "";
+  return code;
+};
+Blockly.Arduino.webbit_mooncar_ir_remote_send=function(){
+  var a=this.getFieldValue("IR_TYPE"),
+  b=Blockly.Arduino.valueToCode(this,"IR_SEND",Blockly.Arduino.ORDER_ATOMIC)||"0";
+  if (a == "NEC") {
+    return"irsend.sendNEC(x2i("+b+"), 32);\n"
+  } else if (a == "SONY"){
+    return"irsend.sendSony(x2i("+b+"), 12);\n"
+  } else if (a == "RC5") {
+    return"irsend.sendRC5(x2i("+b+"), 12);\n"
+  } else {
+    return"irsend.sendRC6(x2i("+b+"), 20);\n"
+  }
 };

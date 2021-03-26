@@ -180,46 +180,6 @@ Blockly.Blocks.webbit_mooncar_flash_light={init:function(){
   this.setColour(180);   
 }
 };
-Blockly.Blocks.webbit_mooncar_ir_remote_read={init:function(){
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.FRANCEFU_IR_REMOTE_READ);
-  this.setInputsInline(!0);
-  this.appendStatementInput("IR_READ");
-  this.setPreviousStatement(!0);
-  this.setNextStatement(!0);
-  this.setColour(10);    
-}
-};
-Blockly.Blocks.webbit_mooncar_ir_remote_read_value={init:function(){
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.FRANCEFU_IR_REMOTE_READ_VALUE);
-  this.setInputsInline(!0);
-  this.setOutput(!0,null);
-  this.setColour(10);   
-}
-};
-Blockly.Blocks.webbit_mooncar_ir_remote_read_type={init:function(){
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.FRANCEFU_IR_REMOTE_READ_TYPE);
-  this.setInputsInline(!0);
-  this.setOutput(!0,null);
-  this.setColour(10);   
-}
-};
-Blockly.Blocks.webbit_mooncar_ir_remote_send={init:function(){
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.FRANCEFU_IR_REMOTE_TYPE)
-      .appendField(new Blockly.FieldDropdown([["NEC","NEC"],["Sony","SONY"],["RC5","RC5"],["RC6","RC6"]]),"IR_TYPE");
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.FRANCEFU_IR_REMOTE_SEND);
-  this.appendValueInput("IR_SEND")
-      .setCheck("String");
-  this.setInputsInline(!0);
-  this.setPreviousStatement(!0,null);
-  this.setNextStatement(!0,null);
-  this.setColour(10);  
-}
-};
 
 Blockly.Blocks['webbit_mooncar_ws2812_pin'] = {
 	init:function(){
@@ -352,4 +312,69 @@ Blockly.Blocks['webbit_mooncar_choice_color'] = {
 	this.setInputsInline(!0);
 	this.setOutput(!0,"Boolean");	
   }
+};
+
+Blockly.Blocks.webbit_mooncar_ir_remote_read_pin = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.FRANCEFU_IR_REMOTE_READ_PIN);
+	this.appendValueInput("pin")	
+		.setCheck("Number");
+	this.setInputsInline(!0);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(10);  	
+  }
+};
+Blockly.Blocks.webbit_mooncar_ir_remote_read={init:function(){
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.FRANCEFU_IR_REMOTE_READ);
+  this.setInputsInline(!0);
+  this.appendStatementInput("IR_READ");
+  this.setPreviousStatement(!0);
+  this.setNextStatement(!0);
+  this.setColour(10);    
+}
+};
+Blockly.Blocks.webbit_mooncar_ir_remote_read_value={init:function(){
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.FRANCEFU_IR_REMOTE_READ_VALUE);
+  this.setInputsInline(!0);
+  this.setOutput(!0,null);
+  this.setColour(10);   
+}
+};
+Blockly.Blocks.webbit_mooncar_ir_remote_read_type={init:function(){
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.FRANCEFU_IR_REMOTE_READ_TYPE);
+  this.setInputsInline(!0);
+  this.setOutput(!0,null);
+  this.setColour(10);   
+}
+};
+Blockly.Blocks.webbit_mooncar_ir_remote_send_pin = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.FRANCEFU_IR_REMOTE_SEND_PIN);
+	this.appendValueInput("pin")	
+		.setCheck("Number");
+	this.setInputsInline(!0);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(10);  	
+  }
+};
+Blockly.Blocks.webbit_mooncar_ir_remote_send={init:function(){
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.FRANCEFU_IR_REMOTE_TYPE)
+      .appendField(new Blockly.FieldDropdown([["NEC","NEC"],["Sony","SONY"],["RC5","RC5"],["RC6","RC6"]]),"IR_TYPE");
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.FRANCEFU_IR_REMOTE_SEND);
+  this.appendValueInput("IR_SEND")
+      .setCheck("String");
+  this.setInputsInline(!0);
+  this.setPreviousStatement(!0,null);
+  this.setNextStatement(!0,null);
+  this.setColour(10);  
+}
 };

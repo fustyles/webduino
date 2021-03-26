@@ -157,9 +157,22 @@
             </block>
         </value>		
     </block>	
-	
+	<block type="webbit_mooncar_ir_remote_read_pin">
+        <value name="pin">
+            <block type="math_number">
+                <field name="NUM">32</field>
+            </block>
+        </value>	
+	</block>
     <block type="webbit_mooncar_ir_remote_read"></block>
     <block type="webbit_mooncar_ir_remote_read_value"></block>
     <block type="webbit_mooncar_ir_remote_read_type"></block>
+	<block type="webbit_mooncar_ir_remote_send_pin">
+        <value name="pin">
+            <block type="math_number">
+                <field name="NUM">33</field>
+            </block>
+        </value>
+	</block>
     <block type="webbit_mooncar_ir_remote_send"></block>
 </category>
