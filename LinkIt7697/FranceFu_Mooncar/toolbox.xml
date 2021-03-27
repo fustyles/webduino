@@ -174,5 +174,11 @@
             </block>
         </value>
 	</block>
-    <block type="webbit_mooncar_ir_remote_send"></block>
+    <block type="webbit_mooncar_ir_remote_send">
+		<value name="IR_SEND">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	</block>
 </category>

@@ -232,39 +232,13 @@ Blockly.Arduino.BitMatrixLed_matrix_pin = function(){
 											'const uint16_t PixelCount = '+leds+';\n'+
 											'const uint8_t PixelPin = '+pin+';\n'+
 											'NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> strip(PixelCount, PixelPin);\n'+											
-											'float matrixBrightness = 0.5;\n';											
-	Blockly.Arduino.definitions_['define_webbit_matrix_func']='\n'+
-											'void MatrixLed(String color) {\n'+
-											'  matrixString = color;\n'+
-											'  int R,G,B;\n'+
-											'  for (int i=0;i<color.length()/6;i++) {\n'+
-    										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]))*matrixBrightness;\n'+
-    										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]))*matrixBrightness;\n'+
-    										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]))*matrixBrightness;\n'+
-    										'    strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
-    										'  }\n'+
-    										'  strip.Show();\n'+
-											'}\n'+
-											'\n'+
-											'void MatrixLedOne(int i, String color) {\n'+
-											'  matrixString[i*6+0] = color[0];\n'+
-											'  matrixString[i*6+1] = color[1];\n'+
-											'  matrixString[i*6+2] = color[2];\n'+
-											'  matrixString[i*6+3] = color[3];\n'+
-											'  matrixString[i*6+4] = color[4];\n'+
-											'  matrixString[i*6+5] = color[5];\n'+
-											'  int R,G,B;\n'+
-    										'  R = (HextoRGB(color[0])*16+HextoRGB(color[1]))*matrixBrightness;\n'+
-    										'  G = (HextoRGB(color[2])*16+HextoRGB(color[3]))*matrixBrightness;\n'+
-    										'  B = (HextoRGB(color[4])*16+HextoRGB(color[5]))*matrixBrightness;\n'+
-    										'  strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
-    										'  strip.Show();\n'+
-											'}\n'+
-											'\n'+											
+											'float matrixBrightness = 0.5;\n'+
+											'String strTemp_ = "";\n';	
+	Blockly.Arduino.definitions_['define_webbit_matrix_HextoRGB']='\n'+
 											'int HextoRGB(char val) {\n'+
 											'  String hex ="0123456789abcdef";\n'+
 											'  return hex.indexOf(val);\n'+
-											'}\n'; 
+											'}\n'; 												
 	Blockly.Arduino.setups_["setup_webbit_matrix"]="strip.Begin();\n";
 
 	var code = '';
@@ -278,17 +252,36 @@ Blockly.Arduino.BitMatrixLed_matrix_brightness = function(){
 };
 
 Blockly.Arduino.BitMatrixLed_matrix_clear = function(){
+	Blockly.Arduino.definitions_['define_webbit_matrix_leds']='\n'+
+											'void MatrixLed(String color) {\n'+
+											'  matrixString = color;\n'+
+											'  int R,G,B;\n'+
+											'  for (int i=0;i<color.length()/6;i++) {\n'+
+    										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]))*matrixBrightness;\n'+
+    										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]))*matrixBrightness;\n'+
+    										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]))*matrixBrightness;\n'+
+    										'    strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'  }\n'+
+    										'  strip.Show();\n'+
+											'}\n';	
 	var code = 'MatrixLed("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");\n';
 	return code;
 };
   
 Blockly.Arduino['BitMatrixLed_matrix'] = function() {
-	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
-	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
-		rgb = rgb.substring(1,rgb.length-1);
-	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
-		rgb = rgb.substring(1,rgb.length-1);	
-	rgb = rgb.substr(1,6);
+	Blockly.Arduino.definitions_['define_webbit_matrix_leds']='\n'+
+											'void MatrixLed(String color) {\n'+
+											'  matrixString = color;\n'+
+											'  int R,G,B;\n'+
+											'  for (int i=0;i<color.length()/6;i++) {\n'+
+    										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]))*matrixBrightness;\n'+
+    										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]))*matrixBrightness;\n'+
+    										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]))*matrixBrightness;\n'+
+    										'    strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'  }\n'+
+    										'  strip.Show();\n'+
+											'}\n';	
+	var rgb = this.getFieldValue("RGB").replace(/#/g,"");
 	var L01 = (this.getFieldValue('L01') == 'TRUE')?rgb:"000000";
 	var L02 = (this.getFieldValue('L02') == 'TRUE')?rgb:"000000";
 	var L03 = (this.getFieldValue('L03') == 'TRUE')?rgb:"000000";
@@ -321,6 +314,7 @@ Blockly.Arduino['BitMatrixLed_matrix'] = function() {
 Blockly.Arduino['BitMatrixLed_matrix_reverse'] = function(block) {
 	Blockly.Arduino.definitions_['define_webbit_matrix_reverse']='\n'+
 											'void MatrixLedReverse(String color) {\n'+
+											'  color.replace("#","");\n'+
 											'  int R,G,B;\n'+											
 											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
     										'    if (matrixString.substring(i*6,i*6+6)=="000000") {\n'+
@@ -344,50 +338,78 @@ Blockly.Arduino['BitMatrixLed_matrix_reverse'] = function(block) {
 											'    strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
     										'  }\n'+
     										'  strip.Show();\n'+
-											'}\n'+
-											'\n';	
+											'}\n';	
 	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
 	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
-		rgb = rgb.substring(1,rgb.length-1);	
-	rgb = rgb.substr(1,6);
+		rgb = rgb.substring(1,rgb.length-1);
+	if (rgb.indexOf("#")!=-1)
+		rgb = '"'+rgb.replace(/#/g,"")+'"';
 	
-	var code = 'MatrixLedReverse("'+rgb+'");\n';
+	var code = 'MatrixLedReverse('+rgb+');\n';
 	return code;
 };
 
 Blockly.Arduino['BitMatrixLed_matrix_color'] = function() {
-	var L01 = this.getFieldValue('L01').substr(1,6);
-	var L02 = this.getFieldValue('L02').substr(1,6);
-	var L03 = this.getFieldValue('L03').substr(1,6);
-	var L04 = this.getFieldValue('L04').substr(1,6);
-	var L05 = this.getFieldValue('L05').substr(1,6);
-	var L06 = this.getFieldValue('L06').substr(1,6);
-	var L07 = this.getFieldValue('L07').substr(1,6);
-	var L08 = this.getFieldValue('L08').substr(1,6);
-	var L09 = this.getFieldValue('L09').substr(1,6);
-	var L10 = this.getFieldValue('L10').substr(1,6);
-	var L11 = this.getFieldValue('L11').substr(1,6);
-	var L12 = this.getFieldValue('L12').substr(1,6);
-	var L13 = this.getFieldValue('L13').substr(1,6);
-	var L14 = this.getFieldValue('L14').substr(1,6);
-	var L15 = this.getFieldValue('L15').substr(1,6);
-	var L16 = this.getFieldValue('L16').substr(1,6);
-	var L17 = this.getFieldValue('L17').substr(1,6);
-	var L18 = this.getFieldValue('L18').substr(1,6);
-	var L19 = this.getFieldValue('L19').substr(1,6);
-	var L20 = this.getFieldValue('L20').substr(1,6);
-	var L21 = this.getFieldValue('L21').substr(1,6);
-	var L22 = this.getFieldValue('L22').substr(1,6);
-	var L23 = this.getFieldValue('L23').substr(1,6);
-	var L24 = this.getFieldValue('L24').substr(1,6);
-	var L25 = this.getFieldValue('L25').substr(1,6);
+	Blockly.Arduino.definitions_['define_webbit_matrix_leds']='\n'+
+											'void MatrixLed(String color) {\n'+
+											'  matrixString = color;\n'+
+											'  int R,G,B;\n'+
+											'  for (int i=0;i<color.length()/6;i++) {\n'+
+    										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]))*matrixBrightness;\n'+
+    										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]))*matrixBrightness;\n'+
+    										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]))*matrixBrightness;\n'+
+    										'    strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'  }\n'+
+    										'  strip.Show();\n'+
+											'}\n';	
+	var L01 = this.getFieldValue('L01').replace(/#/g,"");
+	var L02 = this.getFieldValue('L02').replace(/#/g,"");
+	var L03 = this.getFieldValue('L03').replace(/#/g,"");
+	var L04 = this.getFieldValue('L04').replace(/#/g,"");
+	var L05 = this.getFieldValue('L05').replace(/#/g,"");
+	var L06 = this.getFieldValue('L06').replace(/#/g,"");
+	var L07 = this.getFieldValue('L07').replace(/#/g,"");
+	var L08 = this.getFieldValue('L08').replace(/#/g,"");
+	var L09 = this.getFieldValue('L09').replace(/#/g,"");
+	var L10 = this.getFieldValue('L10').replace(/#/g,"");
+	var L11 = this.getFieldValue('L11').replace(/#/g,"");
+	var L12 = this.getFieldValue('L12').replace(/#/g,"");
+	var L13 = this.getFieldValue('L13').replace(/#/g,"");
+	var L14 = this.getFieldValue('L14').replace(/#/g,"");
+	var L15 = this.getFieldValue('L15').replace(/#/g,"");
+	var L16 = this.getFieldValue('L16').replace(/#/g,"");
+	var L17 = this.getFieldValue('L17').replace(/#/g,"");
+	var L18 = this.getFieldValue('L18').replace(/#/g,"");
+	var L19 = this.getFieldValue('L19').replace(/#/g,"");
+	var L20 = this.getFieldValue('L20').replace(/#/g,"");
+	var L21 = this.getFieldValue('L21').replace(/#/g,"");
+	var L22 = this.getFieldValue('L22').replace(/#/g,"");
+	var L23 = this.getFieldValue('L23').replace(/#/g,"");
+	var L24 = this.getFieldValue('L24').replace(/#/g,"");
+	var L25 = this.getFieldValue('L25').replace(/#/g,"");
 	var code = 'MatrixLed("'+L21+L22+L23+L24+L25+L16+L17+L18+L19+L20+L11+L12+L13+L14+L15+L06+L07+L08+L09+L10+L01+L02+L03+L04+L05+'");\n';
 	return code;
 };
 
 Blockly.Arduino['BitMatrixLed_matrix_color_one'] = function(block) {
+	Blockly.Arduino.definitions_['define_webbit_matrix_leds_one']='\n'+
+											'void MatrixLedOne(int i, String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  matrixString[i*6+0] = color[0];\n'+
+											'  matrixString[i*6+1] = color[1];\n'+
+											'  matrixString[i*6+2] = color[2];\n'+
+											'  matrixString[i*6+3] = color[3];\n'+
+											'  matrixString[i*6+4] = color[4];\n'+
+											'  matrixString[i*6+5] = color[5];\n'+
+											'  int R,G,B;\n'+
+    										'  R = (HextoRGB(color[0])*16+HextoRGB(color[1]))*matrixBrightness;\n'+
+    										'  G = (HextoRGB(color[2])*16+HextoRGB(color[3]))*matrixBrightness;\n'+
+    										'  B = (HextoRGB(color[4])*16+HextoRGB(color[5]))*matrixBrightness;\n'+
+    										'  strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'  strip.Show();\n'+
+											'}\n';
 	var X=Blockly.Arduino.valueToCode(this,"X",Blockly.Arduino.ORDER_ATOMIC);
 	var Y=Blockly.Arduino.valueToCode(this,"Y",Blockly.Arduino.ORDER_ATOMIC);
 	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
@@ -395,37 +417,78 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one'] = function(block) {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
-	rgb = rgb.substr(1,6);
+	if (rgb.indexOf("#")!=-1)
+		rgb = '"'+rgb.replace(/#/g,"")+'"';
 	
-	var code = 'MatrixLedOne((5-'+X+')*5 + ('+Y+'-1),"'+rgb+'");\n';
+	var code = 'MatrixLedOne((5-'+X+')*5 + ('+Y+'-1),'+rgb+');\n';
 	return code;
 };
 
 Blockly.Arduino['BitMatrixLed_matrix_color_one_n'] = function(block) {
+	Blockly.Arduino.definitions_['define_webbit_matrix_leds_one']='\n'+
+											'void MatrixLedOne(int i, String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  matrixString[i*6+0] = color[0];\n'+
+											'  matrixString[i*6+1] = color[1];\n'+
+											'  matrixString[i*6+2] = color[2];\n'+
+											'  matrixString[i*6+3] = color[3];\n'+
+											'  matrixString[i*6+4] = color[4];\n'+
+											'  matrixString[i*6+5] = color[5];\n'+
+											'  int R,G,B;\n'+
+    										'  R = (HextoRGB(color[0])*16+HextoRGB(color[1]))*matrixBrightness;\n'+
+    										'  G = (HextoRGB(color[2])*16+HextoRGB(color[3]))*matrixBrightness;\n'+
+    										'  B = (HextoRGB(color[4])*16+HextoRGB(color[5]))*matrixBrightness;\n'+
+    										'  strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'  strip.Show();\n'+
+											'}\n';
 	var N=Blockly.Arduino.valueToCode(this,"N",Blockly.Arduino.ORDER_ATOMIC);
 	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
 	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
-	rgb = rgb.substr(1,6);
+	if (rgb.indexOf("#")!=-1)
+		rgb = '"'+rgb.replace(/#/g,"")+'"';
 	
-	var code = 'MatrixLedOne(('+N+'-1),"'+rgb+'");\n';
+	var code = 'MatrixLedOne(('+N+'-1),'+rgb+');\n';
 	return code;
 };
 
 Blockly.Arduino['BitMatrixLed_matrix_rgb_one_n'] = function(block) {
+	Blockly.Arduino.definitions_['define_webbit_matrix_leds_one']='\n'+
+											'void MatrixLedOne(int i, String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  matrixString[i*6+0] = color[0];\n'+
+											'  matrixString[i*6+1] = color[1];\n'+
+											'  matrixString[i*6+2] = color[2];\n'+
+											'  matrixString[i*6+3] = color[3];\n'+
+											'  matrixString[i*6+4] = color[4];\n'+
+											'  matrixString[i*6+5] = color[5];\n'+
+											'  int R,G,B;\n'+
+    										'  R = (HextoRGB(color[0])*16+HextoRGB(color[1]))*matrixBrightness;\n'+
+    										'  G = (HextoRGB(color[2])*16+HextoRGB(color[3]))*matrixBrightness;\n'+
+    										'  B = (HextoRGB(color[4])*16+HextoRGB(color[5]))*matrixBrightness;\n'+
+    										'  strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'  strip.Show();\n'+
+											'}\n';	
+	Blockly.Arduino.definitions_['define_webbit_matrix_hexReverse']='\n'+	
+											'char HexReverse(int val, int pos) {\n'+
+											'  int i = 0;\n'+
+											'  String s = "0123456789abcdef";\n'+											
+											'  if (pos==1)\n'+
+											'    i = (val-val%16)/16;\n'+
+											'  else if (pos==2)\n'+
+											'    i = val%16;\n'+
+											'  return s[i];\n'+
+											'}\n'; 	
 	var N=Blockly.Arduino.valueToCode(this,"N",Blockly.Arduino.ORDER_ATOMIC);
-	var r = Number(Blockly.Arduino.valueToCode(this,"R",Blockly.Arduino.ORDER_ATOMIC));
-	var g = Number(Blockly.Arduino.valueToCode(this,"G",Blockly.Arduino.ORDER_ATOMIC));
-	var b = Number(Blockly.Arduino.valueToCode(this,"B",Blockly.Arduino.ORDER_ATOMIC));
-    var r2 = r.toString(16).length==1?"0"+r.toString(16):r.toString(16);
-    var g2 = g.toString(16).length==1?"0"+g.toString(16):g.toString(16);
-    var b2 = b.toString(16).length==1?"0"+b.toString(16):b.toString(16);
-	var code = 'MatrixLedOne(('+N+'-1),"'+r2+g2+b2+'");\n';
+	var R = Blockly.Arduino.valueToCode(this,"R",Blockly.Arduino.ORDER_ATOMIC);
+	var G = Blockly.Arduino.valueToCode(this,"G",Blockly.Arduino.ORDER_ATOMIC);
+	var B = Blockly.Arduino.valueToCode(this,"B",Blockly.Arduino.ORDER_ATOMIC);
+
+	var code = 'strTemp_ = HexReverse('+R+', 1)+HexReverse('+R+', 2)+HexReverse('+G+', 1)+HexReverse('+G+', 2)+HexReverse('+B+', 1)+HexReverse('+B+', 2);\nMatrixLedOne(('+N+'-1), strTemp_);\n';
 	return code;
 };
-
 
 Blockly.Arduino['BitMatrixLed_matrix_color_reverse'] = function(block) {
 	Blockly.Arduino.definitions_['define_webbit_matrix_reverse']='\n'+
@@ -444,8 +507,8 @@ Blockly.Arduino['BitMatrixLed_matrix_color_reverse'] = function(block) {
 											'    matrixString[i*6+5] = HexReverse(B, 2);\n'+													
     										'  }\n'+
     										'  strip.Show();\n'+						
-											'}\n'+
-											'\n'+	
+											'}\n';
+	Blockly.Arduino.definitions_['define_webbit_matrix_hexReverse']='\n'+	
 											'char HexReverse(int val, int pos) {\n'+
 											'  int i = 0;\n'+
 											'  String s = "0123456789abcdef";\n'+											
@@ -576,77 +639,177 @@ Blockly.Arduino['BitMatrixLed_matrix_one_getcolor'] = function(block) {
 };
 
 Blockly.Arduino['BitMatrixLed_sample1'] = function(block) {
-	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC).substr(1,6);
+	Blockly.Arduino.definitions_['define_webbit_matrix_sample']='\n'+
+											'void MatrixLed_sample(String str, String rgb) {\n'+
+											'  rgb.replace("#","");\n'+
+											'  String leds = "";\n'+
+											'  int i = 0;\n'+
+											'  for (i=0;i<25;i++) {\n'+											
+											'  	if (str.substring(i,i+1)=="1")\n'+
+											'  		leds += rgb;\n'+
+											'  	else\n'+
+											'  		leds += "000000";\n'+	
+											'  }\n'+
+											'  matrixString = leds;\n'+
+											'  Serial.println(matrixString);\n'+
+											'  int R,G,B;\n'+
+											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
+    										'    R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
+    										'    G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
+    										'    B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+
+    										'    strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'  }\n'+
+    										'  strip.Show();\n'+
+											'}\n';
+	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
+	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);
+	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);	
+	if (rgb.indexOf("#")!=-1)
+		rgb = '"'+rgb.replace(/#/g,"")+'"';	
 	var leds = this.getFieldValue('value_sample_');
-	leds = ledsMirror(leds, rgb);
 
-	var code = 'MatrixLed("'+leds+'");\n';
+	var code = 'MatrixLed_sample("'+leds+'",'+rgb+');\n';
 	return code;
 };
 
 Blockly.Arduino['BitMatrixLed_sample2'] = function(block) {
-	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC).substr(1,6);
+	Blockly.Arduino.definitions_['define_webbit_matrix_sample']='\n'+
+											'void MatrixLed_sample(String str, String rgb) {\n'+
+											'  rgb.replace("#","");\n'+
+											'  String leds = "";\n'+
+											'  int i = 0;\n'+
+											'  for (i=0;i<25;i++) {\n'+
+											'  	if (str.substring(i,i+1)=="1")\n'+
+											'  		leds += rgb;\n'+
+											'  	else\n'+
+											'  		leds += "000000";\n'+	
+											'  }\n'+
+											'  matrixString = leds;\n'+
+											'  Serial.println(matrixString);\n'+
+											'  int R,G,B;\n'+
+											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
+    										'    R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
+    										'    G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
+    										'    B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+
+    										'    strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'  }\n'+
+    										'  strip.Show();\n'+
+											'}\n';
+	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
+	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);
+	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);	
+	if (rgb.indexOf("#")!=-1)
+		rgb = '"'+rgb.replace(/#/g,"")+'"';	
 	var leds = this.getFieldValue('value_sample_');
-	leds = ledsMirror(leds, rgb);
 
-	var code = 'MatrixLed("'+leds+'");\n';
+	var code = 'MatrixLed_sample("'+leds+'",'+rgb+');\n';
 	return code;
 };
 
 Blockly.Arduino['BitMatrixLed_sample3'] = function(block) {
-	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC).substr(1,6);
+	Blockly.Arduino.definitions_['define_webbit_matrix_sample']='\n'+
+											'void MatrixLed_sample(String str, String rgb) {\n'+
+											'  rgb.replace("#","");\n'+
+											'  String leds = "";\n'+
+											'  int i = 0;\n'+
+											'  for (i=0;i<25;i++) {\n'+
+											'  	if (str.substring(i,i+1)=="1")\n'+
+											'  		leds += rgb;\n'+
+											'  	else\n'+
+											'  		leds += "000000";\n'+	
+											'  }\n'+
+											'  matrixString = leds;\n'+
+											'  Serial.println(matrixString);\n'+
+											'  int R,G,B;\n'+
+											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
+    										'    R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
+    										'    G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
+    										'    B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+
+    										'    strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'  }\n'+
+    										'  strip.Show();\n'+
+											'}\n';
+	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
+	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);
+	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);	
+	if (rgb.indexOf("#")!=-1)
+		rgb = '"'+rgb.replace(/#/g,"")+'"';	
 	var leds = this.getFieldValue('value_sample_');
-	leds = ledsMirror(leds, rgb);
 
-	var code = 'MatrixLed("'+leds+'");\n';
+	var code = 'MatrixLed_sample("'+leds+'",'+rgb+');\n';
 	return code;
 };
 
 Blockly.Arduino['BitMatrixLed_sample4'] = function(block) {
-	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC).substr(1,6);
+	Blockly.Arduino.definitions_['define_webbit_matrix_sample']='\n'+
+											'void MatrixLed_sample(String str, String rgb) {\n'+
+											'  rgb.replace("#","");\n'+
+											'  String leds = "";\n'+
+											'  for (int i=0;i<25;i++) {\n'+										
+											'  	if (str.substring(i,i+1)=="1")\n'+
+											'  		leds += rgb;\n'+
+											'  	else\n'+
+											'  		leds += "000000";\n'+	
+											'  }\n'+
+											'  matrixString = leds;\n'+
+											'  int R,G,B;\n'+
+											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
+    										'    R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
+    										'    G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
+    										'    B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+
+    										'    strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'  }\n'+
+    										'  strip.Show();\n'+
+											'}\n';
+	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
+	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);
+	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);	
+	if (rgb.indexOf("#")!=-1)
+		rgb = '"'+rgb.replace(/#/g,"")+'"';	
 	var leds = this.getFieldValue('value_sample_');
-	leds = ledsMirror(leds, rgb);
 
-	var code = 'MatrixLed("'+leds+'");\n';
+	var code = 'MatrixLed_sample("'+leds+'",'+rgb+');\n';
 	return code;
 };
 
-function ledsMirror(str, rgb) {
-	var leds = "";
-	for (var i=20;i<25;i++) {
-		if (str.substr(i, 1)=="1")
-			leds += rgb;
-		else
-			leds += "000000";		
-	}
-	for (var i=15;i<20;i++) {
-		if (str.substr(i, 1)=="1")
-			leds += rgb;
-		else
-			leds += "000000";		
-	}
-	for (var i=10;i<15;i++) {
-		if (str.substr(i, 1)=="1")
-			leds += rgb;
-		else
-			leds += "000000";		
-	}
-	for (var i=5;i<10;i++) {
-		if (str.substr(i, 1)=="1")
-			leds += rgb;
-		else
-			leds += "000000";		
-	}
-	for (var i=0;i<5;i++) {
-		if (str.substr(i, 1)=="1")
-			leds += rgb;
-		else
-			leds += "000000";		
-	}
-	return leds;	
-}
+
 
 Blockly.Arduino['BitMatrixLed_color'] = function(block) {
 	var rgb = '"'+this.getFieldValue("RGB")+'"';
 	return[rgb, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['BitMatrixLed_color_random'] = function(block) {
+	Blockly.Arduino.definitions_['define_webbit_matrix_color_random']='\n'+
+											'String MatrixLedColorRandom() {\n'+	
+											'  String s = "0123456789abcdef";\n'+
+											'  String color = "#000000";\n'+												
+											'  int R = random(0, 255);\n'+
+											'  int G = random(0, 255);\n'+
+											'  int B = random(0, 255);\n'+	
+											'  int r1 = (R-R%16)/16;\n'+
+											'  int r2 = R%16;\n'+
+											'  int g1 = (G-G%16)/16;\n'+
+											'  int g2 = G%16;\n'+
+											'  int b1 = (B-B%16)/16;\n'+
+											'  int b2 = B%16;\n'+
+											'  color[1] = s[r1];\n'+
+											'  color[2] = s[r2];\n'+
+											'  color[3] = s[g1];\n'+
+											'  color[4] = s[g2];\n'+
+											'  color[5] = s[b1];\n'+
+											'  color[6] = s[b2];\n'+											
+											'  Serial.println(color);\n'+	
+											'  return color;\n'+
+											'}\n'; 
+	var code = 'MatrixLedColorRandom()';
+	return [code, Blockly.Arduino.ORDER_ATOMIC];
 };

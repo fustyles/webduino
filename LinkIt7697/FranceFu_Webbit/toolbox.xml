@@ -21,10 +21,6 @@
     <block type="BitMatrixLed_matrix_clear">
     </block>			
 	<block type="BitMatrixLed_matrix">
-        <value name="RGB">
-			<block type="BitMatrixLed_color">
-			</block>
-        </value>
 		<field name="L01">FALSE</field>
 		<field name="L06">FALSE</field>
 		<field name="L11">FALSE</field>
@@ -51,6 +47,10 @@
 		<field name="L20">FALSE</field>
 		<field name="L25">FALSE</field>
 	</block>
+	<block type="BitMatrixLed_color">		
+    </block>
+	<block type="BitMatrixLed_color_random">		
+    </block>		
 	<block type="BitMatrixLed_matrix_reverse">
         <value name="RGB">
 			<block type="BitMatrixLed_color">
@@ -157,9 +157,7 @@
                 <field name="NUM">1</field>
             </block>
         </value>		
-    </block>	
-	<block type="BitMatrixLed_color">		
-    </block>	
+    </block>			
 	<block type="BitMatrixLed_sample1">
         <value name="RGB">
 			<block type="BitMatrixLed_color">
