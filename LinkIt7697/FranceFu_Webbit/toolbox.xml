@@ -147,6 +147,13 @@
             </block>
         </value>		
     </block>
+	<block type="BitMatrixLed_matrix_one_getcolor">
+        <value name="N">
+            <block type="math_number">
+                <field name="NUM">1</field>
+            </block>
+        </value>		
+    </block>	
 	<block type="BitMatrixLed_color">		
     </block>	
 	<block type="BitMatrixLed_sample1">

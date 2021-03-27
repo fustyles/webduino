@@ -626,7 +626,26 @@
 		  </block>
 		</value>
 	  </block>
-  </category>		
+    </category>
+	<category id="france12" name="MLX90614">
+	  <block type="MLX90614">
+		<value name="sda">
+		  <block type="math_number">
+			<field name="NUM">9</field>
+		  </block>
+		</value>
+		<value name="scl">
+		  <block type="math_number">
+			<field name="NUM">8</field>
+		  </block>
+		</value>
+		<value name="compensation">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>			
+	  </block>   
+	</category>  
 	<category id="france7" name="others">
 	  <block type="close_powerdog">
 	  </block>

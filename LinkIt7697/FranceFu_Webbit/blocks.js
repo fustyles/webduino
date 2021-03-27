@@ -598,6 +598,19 @@ Blockly.Blocks['BitMatrixLed_matrix_getcolor'] = {
   }
 };
 
+Blockly.Blocks['BitMatrixLed_matrix_one_getcolor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_MATRIX_GETCOLOR);
+	this.appendValueInput("N")
+        .appendField(Blockly.Msg.ESP32_MATRIX_LEDS_N)	
+		.setCheck("Number");	
+	this.setInputsInline(true);
+	this.setOutput(true);
+	this.setColour(20);
+  }
+};
+
 Blockly.Blocks['BitMatrixLed_color'] = {
   init: function() {	
 	this.appendDummyInput()

@@ -472,6 +472,18 @@ Blockly.Arduino['BitMatrixLed_matrix_getcolor'] = function(block) {
 	return[code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
+Blockly.Arduino['BitMatrixLed_matrix_one_getcolor'] = function(block) {
+	Blockly.Arduino.definitions_['define_webbit_matrix_getcolor']='\n'+
+											'String MatrixLedGetColor(int i) {\n'+
+											'  return matrixString.substring(i*6,i*6+6);\n'+
+											'}\n'; 
+											
+	var N=Blockly.Arduino.valueToCode(this,"N",Blockly.Arduino.ORDER_ATOMIC);
+	
+	var code = '("#"+MatrixLedGetColor('+N+'-1))';
+	return[code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
 Blockly.Arduino['BitMatrixLed_sample1'] = function(block) {
 	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC).substr(1,6);
 	var leds = this.getFieldValue('value_sample_');
