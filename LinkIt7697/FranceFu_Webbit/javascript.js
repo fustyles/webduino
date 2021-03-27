@@ -459,6 +459,97 @@ Blockly.Arduino['BitMatrixLed_matrix_color_reverse'] = function(block) {
 	return code;
 };
 
+Blockly.Arduino['BitMatrixLed_matrix_rotate'] = function(block) {
+	Blockly.Arduino.definitions_['define_webbit_matrix_rotate']='\n'+
+											'void MatrixLedColorRotate(int direction) {\n'+
+											'  int R,G,B;\n'+
+											'  String s = matrixString;\n'+
+											'  int n=0;\n'+
+											'    if (direction==1) {\n'+
+											'		for (int i=4;i>=0;i--) {\n'+
+											'		  for (int j=0;j<=4;j++) {\n'+
+											'			matrixString[n*6+0]=s[(i+5*j)*6+0];\n'+
+											'			matrixString[n*6+1]=s[(i+5*j)*6+1];\n'+
+											'			matrixString[n*6+2]=s[(i+5*j)*6+2];\n'+
+											'			matrixString[n*6+3]=s[(i+5*j)*6+3];\n'+
+											'			matrixString[n*6+4]=s[(i+5*j)*6+4];\n'+
+											'			matrixString[n*6+5]=s[(i+5*j)*6+5];\n'+											
+											'			n++;\n'+
+											'		  }\n'+
+											'		}\n'+
+											'    }\n'+
+											'    else {\n'+
+											'		for (int i=0;i<=4;i++) {\n'+    
+											'		  for (int j=4;j>=0;j--) {\n'+
+											'			matrixString[n*6+0]=s[(i+5*j)*6+0];\n'+
+											'			matrixString[n*6+1]=s[(i+5*j)*6+1];\n'+
+											'			matrixString[n*6+2]=s[(i+5*j)*6+2];\n'+
+											'			matrixString[n*6+3]=s[(i+5*j)*6+3];\n'+
+											'			matrixString[n*6+4]=s[(i+5*j)*6+4];\n'+
+											'			matrixString[n*6+5]=s[(i+5*j)*6+5];\n'+	
+											'			n++;\n'+
+											'		  }\n'+
+											'		}\n'+	
+											'    }\n'+
+											'  for (int k=0;k<matrixString.length()/6;k++) {\n'+
+    										'    R = (HextoRGB(matrixString[k*6+0])*16+HextoRGB(matrixString[k*6+1]))*matrixBrightness;\n'+
+    										'    G = (HextoRGB(matrixString[k*6+2])*16+HextoRGB(matrixString[k*6+3]))*matrixBrightness;\n'+
+    										'    B = (HextoRGB(matrixString[k*6+4])*16+HextoRGB(matrixString[k*6+5]))*matrixBrightness;\n'+											
+											'    strip.SetPixelColor(k, RgbColor(R, G, B));\n'+													
+    										'  }\n'+											
+    										'  strip.Show();\n'+											
+											'}\n'; 
+	var direction = block.getFieldValue('direction');
+	var code = 'MatrixLedColorRotate('+direction+');\n';
+	return code;
+};
+
+
+Blockly.Arduino['BitMatrixLed_matrix_flip'] = function(block) {
+	Blockly.Arduino.definitions_['define_webbit_matrix_flip']='\n'+
+											'void MatrixLedColorFlip(int direction) {\n'+
+											'  int R,G,B;\n'+
+											'  String s = matrixString;\n'+
+											'  int n=0;\n'+
+											'    if (direction==1) {\n'+
+											'		for (int i=0;i<=4;i++) {\n'+
+											'		  for (int j=4;j>=0;j--) {\n'+
+											'			matrixString[n*6+0]=s[(j+5*i)*6+0];\n'+
+											'			matrixString[n*6+1]=s[(j+5*i)*6+1];\n'+
+											'			matrixString[n*6+2]=s[(j+5*i)*6+2];\n'+
+											'			matrixString[n*6+3]=s[(j+5*i)*6+3];\n'+
+											'			matrixString[n*6+4]=s[(j+5*i)*6+4];\n'+
+											'			matrixString[n*6+5]=s[(j+5*i)*6+5];\n'+											
+											'			n++;\n'+
+											'		  }\n'+
+											'		}\n'+
+											'    }\n'+
+											'    else {\n'+
+											'		for (int i=4;i>=0;i--) {\n'+    
+											'		  for (int j=0;j<=4;j++) {\n'+
+											'			matrixString[n*6+0]=s[(j+5*i)*6+0];\n'+
+											'			matrixString[n*6+1]=s[(j+5*i)*6+1];\n'+
+											'			matrixString[n*6+2]=s[(j+5*i)*6+2];\n'+
+											'			matrixString[n*6+3]=s[(j+5*i)*6+3];\n'+
+											'			matrixString[n*6+4]=s[(j+5*i)*6+4];\n'+
+											'			matrixString[n*6+5]=s[(j+5*i)*6+5];\n'+	
+											'			n++;\n'+
+											'		  }\n'+
+											'		}\n'+	
+											'    }\n'+
+											'  for (int k=0;k<matrixString.length()/6;k++) {\n'+
+    										'    R = (HextoRGB(matrixString[k*6+0])*16+HextoRGB(matrixString[k*6+1]))*matrixBrightness;\n'+
+    										'    G = (HextoRGB(matrixString[k*6+2])*16+HextoRGB(matrixString[k*6+3]))*matrixBrightness;\n'+
+    										'    B = (HextoRGB(matrixString[k*6+4])*16+HextoRGB(matrixString[k*6+5]))*matrixBrightness;\n'+											
+											'    strip.SetPixelColor(k, RgbColor(R, G, B));\n'+													
+    										'  }\n'+											
+    										'  strip.Show();\n'+											
+											'}\n'; 
+	var direction = block.getFieldValue('direction');
+	var code = 'MatrixLedColorFlip('+direction+');\n';
+	return code;
+};
+
 Blockly.Arduino['BitMatrixLed_matrix_getcolor'] = function(block) {
 	Blockly.Arduino.definitions_['define_webbit_matrix_getcolor']='\n'+
 											'String MatrixLedGetColor(int i) {\n'+

@@ -134,7 +134,11 @@
         </value>		
     </block>
 	<block type="BitMatrixLed_matrix_color_reverse">
-	</block>	
+	</block>
+	<block type="BitMatrixLed_matrix_rotate">
+	</block>
+	<block type="BitMatrixLed_matrix_flip">
+	</block>
 	<block type="BitMatrixLed_matrix_getcolor">
         <value name="X">
             <block type="math_number">

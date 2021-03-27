@@ -355,6 +355,38 @@ Blockly.Blocks['BitMatrixLed_matrix_color_reverse'] = {
   }
 };
 
+Blockly.Blocks['BitMatrixLed_matrix_rotate'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_MATRIX_ROTATE);
+	  this.appendDummyInput()    
+		  .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.ESP32_MATRIX_ROTATE_CLOCKWISE,"0"],
+			[Blockly.Msg.ESP32_MATRIX_ROTATE_COUNTERCLOCKWISE,"1"]		  
+	  ]), "direction");		
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(20);	
+  }
+};
+
+Blockly.Blocks['BitMatrixLed_matrix_flip'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_MATRIX_FLIP);
+	  this.appendDummyInput()    
+		  .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.ESP32_MATRIX_ROTATE_VERTICALFLIP,"0"],
+			[Blockly.Msg.ESP32_MATRIX_ROTATE_HORIZONTALFLIP,"1"]		  
+	  ]), "direction");		
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(20);	
+  }
+};
+
 Blockly.Blocks['BitMatrixLed_sample1'] = {
   init: function() {
     this.appendDummyInput()

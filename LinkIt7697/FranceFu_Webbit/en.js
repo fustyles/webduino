@@ -40,3 +40,6 @@ Blockly.Msg.ESP32_MATRIX_CLEAR = "WS2812 Leds Clear Leds";
 Blockly.Msg.ESP32_MATRIX_REVERE = "WS2812 Leds Reverse";
 Blockly.Msg.ESP32_MATRIX_GETCOLOR = "WS2812 Leds Get Color";
 Blockly.Msg.ESP32_MATRIX_COLOR_REVERE = "WS2812 Leds Reverse (color)";
+Blockly.Msg.ESP32_MATRIX_FLIP = "WS2812 Leds Flip";
+Blockly.Msg.ESP32_MATRIX_ROTATE_VERTICALFLIP = "Vertical";
+Blockly.Msg.ESP32_MATRIX_ROTATE_HORIZONTALFLIP = "Horizontal";
