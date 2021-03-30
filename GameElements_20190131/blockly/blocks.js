@@ -4494,7 +4494,7 @@ Blockly.Blocks['video_base64_drive'] = {
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL); 
-  this.setTooltip("https://github.com/fustyles/webduino/blob/gs/WebduinoDrive.gs");
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/WebduinoDrive.gs");
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
