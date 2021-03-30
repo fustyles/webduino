@@ -250,6 +250,7 @@ Blockly.Msg.PROPERTY_AUTO = "自动";
 Blockly.Msg.PROPERTY_URL = "网址";
 Blockly.Msg.PROPERTY_BACKGROUNDCOLOR = "背景颜色";
 Blockly.Msg.PROPERTY_BACKGROUNDIMAGE = "背景图片";
+Blockly.Msg.PROPERTY_BACKGROUNDREPEAT = "背景图片重复";
 Blockly.Msg.PROPERTY_OVERFLOW = "内容溢出视窗处理方式";
 Blockly.Msg.PROPERTY_FULLSCREEN = "允许全萤幕";
 Blockly.Msg.PROPERTY_STYLE = "样式";
