@@ -685,23 +685,23 @@ Blockly.Arduino['move_to_mouse'] = function (block) {
   var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC); 
   var value_position = block.getFieldValue('position');
   if (value_position=="center")
-    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("X")-image_get('+value_id_+',"width")/2));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("Y")-image_get('+value_id_+',"height")/2));\n';
+    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("pageX")-image_get('+value_id_+',"width")/2));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("pageY")-image_get('+value_id_+',"height")/2));\n';
   else if (value_position=="up")
-    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("X")-image_get('+value_id_+',"width")/2));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("Y")));\n';
+    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("pageX")-image_get('+value_id_+',"width")/2));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("pageY")));\n';
   else if (value_position=="down")
-    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("X")-image_get('+value_id_+',"width")/2));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("Y")-image_get('+value_id_+',"height")));\n';
+    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("pageX")-image_get('+value_id_+',"width")/2));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("pageY")-image_get('+value_id_+',"height")));\n';
   else if (value_position=="left")
-    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("X")));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("Y")-image_get('+value_id_+',"height")/2));\n';
+    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("pageX")));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("pageY")-image_get('+value_id_+',"height")/2));\n';
   else if (value_position=="right")
-    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("X")-image_get('+value_id_+',"width")));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("Y")-image_get('+value_id_+',"height")/2));\n';
+    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("pageX")-image_get('+value_id_+',"width")));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("pageY")-image_get('+value_id_+',"height")/2));\n';
   else if (value_position=="upperLeft")
-    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("X")));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("Y")));\n';
+    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("pageX")));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("pageY")));\n';
   else if (value_position=="lowerLeft")
-    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("X")));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("Y")-image_get('+value_id_+',"height")));\n';
+    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("pageX")));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("pageY")-image_get('+value_id_+',"height")));\n';
   else if (value_position=="upperRight")
-    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("X")-image_get('+value_id_+',"width")));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("Y")));\n';
+    var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("pageX")-image_get('+value_id_+',"width")));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("pageY")));\n';
   else if (value_position=="lowerRight")
-   var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("X")-image_get('+value_id_+',"width")));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("Y")-image_get('+value_id_+',"height")));\n';
+   var code = 'image_set('+value_id_+',"left",(mouse_coordinate_get("pageX")-image_get('+value_id_+',"width")));\nimage_set('+value_id_+',"top",(mouse_coordinate_get("pageY")-image_get('+value_id_+',"height")));\n';
   return code;
 };
 
