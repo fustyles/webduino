@@ -2094,6 +2094,8 @@ function HextoRgb(color) {
       document.body.style.backgroundColor = input_value;
     else if (input_property=="backgroundImage") 
       document.body.style.backgroundImage = "url('"+input_value+"')";
+    else if (input_property=="backgroundRepeat") 
+      document.body.style.backgroundRepeat = input_value;  
     else if (input_property=="overflow") 
       document.body.style.overflow = input_value;
     else if (input_property=="style")
