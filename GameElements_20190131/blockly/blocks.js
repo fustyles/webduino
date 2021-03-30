@@ -1580,6 +1580,7 @@ Blockly.Blocks['mouse_coordinate_get'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
+  this.setHelpUrl("https://www.w3schools.com/jsref/obj_mouseevent.asp");
   }
 };
 
