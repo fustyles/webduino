@@ -73,7 +73,7 @@
     </value> 	  
     <value name="spreadsheet_script_">
       <block type="text">
-        <field name="TEXT">https://script.google.com/macros/s/AKfycbzQh5b7ug63Db4PkKIlIZkAvDRav5Yv6LDS0yNUY6EzLoujIac/exec</field>
+        <field name="TEXT">https://script.google.com/macros/s/AKfycbyJYudkmWPcFj6b7zluKkA8roI993hgLcq3AukQRmoLlmJFexJgcCGTPbNeTT7AXTDH/exec</field>
       </block>
     </value> 
   </block> 
