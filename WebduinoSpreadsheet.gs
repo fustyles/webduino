@@ -22,7 +22,7 @@ function doPost(e) {
   ss.getActiveSheet().setHiddenGridlines(true);
   var sheet = ss.getSheetByName(mySpreadsheetName);
   if (myFileFormat=="string")
-    sheet.getRange(myCellRow, myCellCol).setValue(myFile);
+    sheet.getRange(myCellCol, myCellRow).setValue(myFile);
   else
     sheet.insertImage(blob, myCellRow, myCellCol);
 
