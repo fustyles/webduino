@@ -16,6 +16,7 @@ Blockly.Blocks['addMyBlocks'] = {
       ]), "func");
   this.setTooltip('');
   this.setColour(20);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/CustomBlock.txt");
   },
   onchange: function (event) {
     if (event.element=="field") {
