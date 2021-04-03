@@ -48,6 +48,7 @@ Blockly.Blocks['faceapidetect_face'] = {
 		[Blockly.Msg.FACEAPIDETECT_GENDER_SHOW,"gender"],
 		[Blockly.Msg.FACEAPIDETECT_GENDERPROBABILITY_SHOW,"genderProbability"],
 		[Blockly.Msg.FACEAPIDETECT_EMOTION_SHOW,"emotion"],
+		[Blockly.Msg.FACEAPIDETECT_EMOTIONPROBABILITY_SHOW,"emotionProbability"],	  
 		[Blockly.Msg.FACEAPIDETECT_BOXX_SHOW,"boxX"],
 		[Blockly.Msg.FACEAPIDETECT_BOXY_SHOW,"boxY"],
 		[Blockly.Msg.FACEAPIDETECT_BOXWIDTH_SHOW,"boxWidth"],
