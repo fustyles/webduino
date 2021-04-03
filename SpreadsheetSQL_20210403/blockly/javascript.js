@@ -12,6 +12,11 @@ Blockly.JavaScript['spreadsheetsql_getData'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['spreadsheetsql_getDataCount'] = function (block) {
+  var code = 'spreadsheetsql_getDataCount()';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['spreadsheetsql_clearData'] = function (block) {
   var code = 'spreadsheetsql_clearData();\n';
   return code; 

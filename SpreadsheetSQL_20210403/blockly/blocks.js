@@ -32,6 +32,16 @@ Blockly.Blocks['spreadsheetsql_getData'] = {
   }
 };
 
+Blockly.Blocks['spreadsheetsql_getDataCount'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.SPREADSHEETSQL_GETDATACOUNT_SHOW);
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
 Blockly.Blocks['spreadsheetsql_clearData'] = {
   init: function() {
   this.appendDummyInput()
