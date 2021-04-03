@@ -13,7 +13,8 @@ Blockly.JavaScript['spreadsheetsql_getData'] = function (block) {
 };
 
 Blockly.JavaScript['spreadsheetsql_getDataCount'] = function (block) {
-  var code = 'spreadsheetsql_getDataCount()';
+  var value_count = block.getFieldValue('count'); 
+  var code = 'spreadsheetsql_getDataCount("'+value_count+'")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 

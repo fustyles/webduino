@@ -46,6 +46,18 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   
   function spreadsheetsql_getDataCount() {
 	  return spreadsheetsql_response.length;
+  }
+
+  function spreadsheetsql_getDataCount(count) {
+	if (count=="ROWS")
+		return spreadsheetsql_response.length;
+	else if (count=="COLS") {
+		var cols = 0;
+		if (spreadsheetsql_response.length>0)
+			cols = spreadsheetsql_response[0].length;
+		return cols;
+	}
+	return 0;
   }  
   
   function spreadsheetsql_clearData() {

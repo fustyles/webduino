@@ -36,6 +36,11 @@ Blockly.Blocks['spreadsheetsql_getDataCount'] = {
   init: function() {
   this.appendDummyInput()
       .appendField(Blockly.Msg.SPREADSHEETSQL_GETDATACOUNT_SHOW);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+          [Blockly.Msg.SPREADSHEETSQL_GETDATACOUNTROWS_SHOW,"ROWS"],		
+          [Blockly.Msg.SPREADSHEETSQL_GETDATACOUNTCOLS_SHOW,"COLS"]
+        ]), "count"); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
