@@ -17,6 +17,7 @@ Blockly.Msg.FACEAPIDETECT_AGE_SHOW = "年齡";
 Blockly.Msg.FACEAPIDETECT_GENDER_SHOW = "性別";
 Blockly.Msg.FACEAPIDETECT_GENDERPROBABILITY_SHOW = "性別可能性";
 Blockly.Msg.FACEAPIDETECT_EMOTION_SHOW = "表情";
+Blockly.Msg.FACEAPIDETECT_EMOTIONPROBABILITY_SHOW = "表情可能性";
 Blockly.Msg.FACEAPIDETECT_NEUTRAL_SHOW = "中性(neutral)表情可能性";
 Blockly.Msg.FACEAPIDETECT_HAPPY_SHOW = "快樂(happy)表情可能性";
 Blockly.Msg.FACEAPIDETECT_SAD_SHOW = "悲傷(sad)表情可能性";
