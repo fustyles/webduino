@@ -160,6 +160,10 @@ Blockly.Blocks['addMyBlocks'] = {
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/barcode_20210216/blockly.json');
 		    
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/GameElements_20190131/blockly.json');
+		  Code.customTab.$__add__('https://fustyles.github.io/webduino/Telegram_20200809/blockly.json');
+                  Code.customTab.$__add__('https://fustyles.github.io/webduino/LineBot_20181027/blockly.json');
+		  Code.customTab.$__add__('https://fustyles.github.io/webduino/Tello_20210103/blockly.json');
+		  Code.customTab.$__add__('https://fustyles.github.io/webduino/SpreadsheetSQL_20210403/blockly.json');
 				  
                   this.getInputTargetBlock("url").setFieldValue("", "TEXT");
           }
