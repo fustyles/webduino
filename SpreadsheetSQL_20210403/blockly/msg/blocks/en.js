@@ -1,6 +1,6 @@
 Blockly.Msg.SPREADSHEETSQL_SHOW = "Google Spreadsheet SQL Settings";
 Blockly.Msg.SPREADSHEETSQL_EXECUTESQL_SHOW = "Google Spreadsheet SQL Query";
-Blockly.Msg.SPREADSHEETSQL_ID_SHOW = "ID";
+Blockly.Msg.SPREADSHEETSQL_ID_SHOW = "Spreadsheet ID";
 Blockly.Msg.SPREADSHEETSQL_NAME_SHOW = "Sheet Name";
 Blockly.Msg.SPREADSHEETSQL_SQL_SHOW = "SQL";
 Blockly.Msg.SPREADSHEETSQL_GETDATA_SHOW = "Google Spreadsheet Get SQL Response";
