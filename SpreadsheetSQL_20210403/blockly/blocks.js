@@ -10,10 +10,21 @@ Blockly.Blocks['spreadsheetsql_queryData'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.SPREADSHEETSQL_NAME_SHOW);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setTooltip('');
+  this.setColour(65);
+  this.setHelpUrl("https://developers.google.com/chart/interactive/docs/querylanguage");
+  }
+};
+
+Blockly.Blocks['spreadsheetsql_executeSql'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.SPREADSHEETSQL_EXECUTESQL_SHOW);
   this.appendValueInput("spreadsheet_sql")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.SPREADSHEETSQL_SQL_SHOW);
+      .setCheck("String");
+  this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');

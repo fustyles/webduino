@@ -3,7 +3,16 @@ Blockly.JavaScript['spreadsheetsql_queryData'] = function (block) {
   var spreadsheet_name = Blockly.JavaScript.valueToCode(block, 'spreadsheet_name', Blockly.JavaScript.ORDER_ATOMIC);
   var spreadsheet_sql = Blockly.JavaScript.valueToCode(block, 'spreadsheet_sql', Blockly.JavaScript.ORDER_ATOMIC);
   
-  var code = 'spreadsheetsql_queryData('+spreadsheet_id+','+spreadsheet_name+','+spreadsheet_sql+');\n';
+  var code = 'spreadsheetsql_settings('+spreadsheet_id+','+spreadsheet_name+');\n';
+  return code; 
+};
+
+Blockly.JavaScript['spreadsheetsql_executeSql'] = function (block) {
+  var spreadsheet_id = Blockly.JavaScript.valueToCode(block, 'spreadsheet_id', Blockly.JavaScript.ORDER_ATOMIC);  
+  var spreadsheet_name = Blockly.JavaScript.valueToCode(block, 'spreadsheet_name', Blockly.JavaScript.ORDER_ATOMIC);
+  var spreadsheet_sql = Blockly.JavaScript.valueToCode(block, 'spreadsheet_sql', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  var code = 'spreadsheetsql_executeSql('+spreadsheet_sql+');\n';
   return code; 
 };
 

@@ -1,5 +1,5 @@
 {
-  "types": ["spreadsheetsql_queryData","spreadsheetsql_getData","spreadsheetsql_getDataCount","spreadsheetsql_clearData"],
+  "types": ["spreadsheetsql_queryData","spreadsheetsql_executeSql","spreadsheetsql_getData","spreadsheetsql_getDataCount","spreadsheetsql_clearData"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
