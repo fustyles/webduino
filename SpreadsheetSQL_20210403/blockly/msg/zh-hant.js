@@ -1,1 +1,1 @@
-MSG.catspreadsheetsql = "Google試算表查詢";
+MSG.catspreadsheetsql = "Google試算表SQL查詢";
