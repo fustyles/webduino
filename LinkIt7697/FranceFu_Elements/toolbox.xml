@@ -88,17 +88,17 @@
 	</value>
 	<value name="foldername_">
 	  <block type="text">
-		<field name="TEXT">FaceRecognition</field>
+		<field name="TEXT">capture</field>
 	  </block>
 	</value>  	  
 	<value name="filename_">
 	  <block type="text">
-		<field name="TEXT">FaceRecognition.jpg</field>
+		<field name="TEXT">capture.jpg</field>
 	  </block>
 	</value>  	  
 	<value name="drive_script_">
 	  <block type="text">
-		<field name="TEXT">https://script.google.com/macros/s/AKfycbzDT6-TxfHoWiV5tR6gGZctj5HchjHOFOL0ukgAKzmw3DwFTjc/exec</field>
+		<field name="TEXT">https://script.google.com/macros/s/AKfycbzDT6-TxfHoWiV5tR6gGZctj5HchjHOFOL0ukgAKzmw3DwFTjc123/exec</field>
 	  </block>
 	</value> 
 	</block> 

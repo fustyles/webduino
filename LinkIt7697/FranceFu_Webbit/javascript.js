@@ -227,6 +227,8 @@ Blockly.Arduino.BitMatrixLed_matrix_pin = function(){
 	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
 	var leds=Blockly.Arduino.valueToCode(this,"leds",Blockly.Arduino.ORDER_ATOMIC);
 	Blockly.Arduino.definitions_['define_webbit_matrix_variable']='String matrixString = "";\n';
+    Blockly.Arduino.definitions_['define_webbit_matrix_marquee_time']='int MatrixLed_marquee_time = 500;\n';
+ 	Blockly.Arduino.definitions_['define_webbit_matrix_marquee_direction']='int MatrixLed_marquee_rotate = 0;\n';
 	Blockly.Arduino.definitions_['define_webbit_matrix_NeoPixelBus']='\n'+
 											'#include <NeoPixelBus.h>\n';
 	Blockly.Arduino.definitions_['define_webbit_matrix']='\n'+
@@ -809,6 +811,521 @@ Blockly.Arduino['BitMatrixLed_color_random'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
+Blockly.Arduino['BitMatrixLed_matrix_texttocode'] = function(block) {
+  var value_text_ = Blockly.Arduino.valueToCode(block, 'value_text_', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['define_webbit_matrix_samplecode']='\n'+  
+											'String Sample2LedString(char sample) {\n'+
+											'  String c = String(sample);\n'+
+											'  String reverse = "0000000000000000000000000";\n'+
+											'  if (c=="♥") reverse = "0110011110011111111001100";\n'+
+											'  if (c=="♡") reverse = "0110010010010011001001100";\n'+
+											'  if (c=="↑") reverse = "0010001000111110100000100";\n'+
+											'  if (c=="↓") reverse = "0010000010111110001000100";\n'+
+											'  if (c=="←") reverse = "0010000100101010111000100";\n'+
+											'  if (c=="→") reverse = "0010001110101010010000100";\n'+
+											'  if (c=="↖") reverse = "0000110010101001100011110";\n'+
+											'  if (c=="↙") reverse = "1000001001001010001101111";\n'+
+											'  if (c=="↗") reverse = "1111011000101001001000001";\n'+
+											'  if (c=="↘") reverse = "0111100011001010100110000";\n'+
+											'  if (c=="▲") reverse = "0000100111111110011100001";\n'+
+											'  if (c=="▼") reverse = "1000011100111111110010000";\n'+
+											'  if (c=="◄") reverse = "1111101110011100010000100";\n'+
+											'  if (c=="►") reverse = "0010000100011100111011111";\n'+
+											'  if (c=="=") reverse = "0000000000000100000100000";\n'+
+											'  if (c==".") reverse = "0000000000000000000100000";\n'+
+											'  if (c=="?") reverse = "0100010100100111000001000";\n'+
+											'  if (c=="!") reverse = "0000000000111010000000000";\n'+
+											'  if (c==";") reverse = "0000000000010100000100000";\n'+
+											'  if (c==":") reverse = "0000000000010100000000000";\n'+
+											'  if (c=="(") reverse = "0000000000100010111000000";\n'+
+											'  if (c==")") reverse = "0000001110100010000000000";\n'+
+											'  if (c=="]") reverse = "0000011111100010000000000";\n'+
+											'  if (c=="{") reverse = "0000010001111110010000000";\n'+
+											'  if (c=="}") reverse = "0000000100111111000100000";\n'+
+											'  if (c=="\\\'") reverse = "0000000100110000000000000";\n'+
+											'  if (c=="\\\\") reverse = "0000000100110000010011000";\n'+
+											'  if (c=="-") reverse = "0000000100001000010000000";\n'+
+											'  if (c=="0") reverse = "0000011111100011111100000";\n'+
+											'  if (c=="1") reverse = "0000000001111110100100000";\n'+
+											'  if (c=="2") reverse = "0000011101101011011100000";\n'+
+											'  if (c=="3") reverse = "0000011111101011010100000";\n'+
+											'  if (c=="4") reverse = "0000011111001001110000000";\n'+
+											'  if (c=="5") reverse = "0000010111101011110100000";\n'+
+											'  if (c=="6") reverse = "0000010111101011111100000";\n'+
+											'  if (c=="7") reverse = "0000011111100001100000000";\n'+
+											'  if (c=="8") reverse = "0000011111101011111100000";\n'+
+											'  if (c=="9") reverse = "0000011111101011110100000";\n'+
+											'  if (c=="A") reverse = "0111110010100101001001111";\n'+
+											'  if (c=="B") reverse = "0101010101101011010111111";\n'+
+											'  if (c=="C") reverse = "1000110001100011000101110";\n'+
+											'  if (c=="D") reverse = "0111010001100011000111111";\n'+
+											'  if (c=="E") reverse = "1010110101101011010111111";\n'+
+											'  if (c=="F") reverse = "1010010100101001010011111";\n'+
+											'  if (c=="G") reverse = "1011110101101011000101110";\n'+
+											'  if (c=="H") reverse = "1111100100001000010011111";\n'+
+											'  if (c=="I") reverse = "1000110001111111000110001";\n'+
+											'  if (c=="J") reverse = "1000010000111111000110011";\n'+
+											'  if (c=="K") reverse = "1000101010001000001011111";\n'+
+											'  if (c=="L") reverse = "0000100001000010000111111";\n'+
+											'  if (c=="M") reverse = "1111101000001000100011111";\n'+
+											'  if (c=="N") reverse = "1111100010001000100011111";\n'+
+											'  if (c=="O") reverse = "0111010001100011000101110";\n'+
+											'  if (c=="P") reverse = "0110010010100101001011111";\n'+
+											'  if (c=="Q") reverse = "0110110010101011000101110";\n'+
+											'  if (c=="R") reverse = "0101110100101001010011111";\n'+
+											'  if (c=="S") reverse = "1001010101101011010101001";\n'+
+											'  if (c=="T") reverse = "1000010000111111000010000";\n'+
+											'  if (c=="U") reverse = "1111000001000010000111110";\n'+
+											'  if (c=="V") reverse = "1110000010000010001011100";\n'+
+											'  if (c=="W") reverse = "1111000001111100000111110";\n'+
+											'  if (c=="X") reverse = "1000101010001000101010001";\n'+
+											'  if (c=="Y") reverse = "1000001000001110100010000";\n'+
+											'  if (c=="Z") reverse = "1000111001101011001110001";\n'+
+											'  if (c=="a") reverse = "0000100110010010011000000";\n'+
+											'  if (c=="b") reverse = "0000000010001011111100000";\n'+
+											'  if (c=="c") reverse = "0000001001010010011000000";\n'+
+											'  if (c=="d") reverse = "0000011111001010001000000";\n'+
+											'  if (c=="e") reverse = "0000000101010110011000000";\n'+
+											'  if (c=="f") reverse = "0000010100111110010000000";\n'+
+											'  if (c=="g") reverse = "0000000110010110010100000";\n'+
+											'  if (c=="h") reverse = "0000000011001001111100000";\n'+
+											'  if (c=="i") reverse = "0000000000101110000000000";\n'+
+											'  if (c=="j") reverse = "0000000000101110000100000";\n'+
+											'  if (c=="k") reverse = "0000000101000101111100000";\n'+
+											'  if (c=="l") reverse = "0000000000111110000000000";\n'+
+											'  if (c=="m") reverse = "0001100100000110010000111";\n'+
+											'  if (c=="n") reverse = "0000000011001000011100000";\n'+
+											'  if (c=="o") reverse = "0000000010001010001000000";\n'+
+											'  if (c=="p") reverse = "0000000100010100111100000";\n'+
+											'  if (c=="q") reverse = "0000001111010100010000000";\n'+
+											'  if (c=="r") reverse = "0000000100000100011100000";\n'+
+											'  if (c=="s") reverse = "0000010010101010100100000";\n'+
+											'  if (c=="t") reverse = "0000000101011110010000000";\n'+
+											'  if (c=="u") reverse = "0000100110000010011000000";\n'+
+											'  if (c=="v") reverse = "0000000110000010011000000";\n'+
+											'  if (c=="w") reverse = "0011000001001100000100110";\n'+
+											'  if (c=="x") reverse = "0000000101000100010100000";\n'+
+											'  if (c=="y") reverse = "0000000100000100010100000";\n'+
+											'  if (c=="z") reverse = "0000001000011010101100001";\n'+
+											'  String str = "";\n'+
+											'  for (int i=reverse.length()-1;i>=0;i--) {\n'+
+											'  	str = str + String(reverse[i]);\n'+
+											'  }\n'+
+											'  return str;\n'+											
+											'}\n';  
+	Blockly.Arduino.definitions_['define_webbit_matrix_texttocode']='\n'+
+											'String MatrixLedTextToCode(String text) {\n'+
+											'  String s = "";\n'+	
+											'  if (text.length()>0) {	\n'+										
+											'    for (int i=0;i<text.length();i++) {\n'+
+    										'      s = s + Sample2LedString(text[i]);\n'+
+    										'    }\n'+
+											'  }\n'+
+    										'  return s;\n'+
+											'}\n'; 
+  var code = 'MatrixLedTextToCode('+value_text_+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['BitMatrixLed_matrix_indentcode'] = function(block) {
+	Blockly.Arduino.definitions_['define_webbit_matrix_indentcode']='\n'+
+											'String MatrixLedIndentcode(String text) {\n'+
+											'  int i=0,j=0;\n'+
+											'  if (text.length()>=30) {\n'+
+											'    for (i=0;i<(text.length()/5-1);i++) {\n'+
+											'      if (text.substring(i*5,i*5+10)=="0000000000") {\n'+
+											'	     for (j=i*5;j<i*5+10;j++) {\n'+
+											'		   text[j]=\'2\';\n'+
+											'	     }\n'+
+											'        text.replace("2222222222","00000");\n'+
+											'        i--;\n'+
+											'	   }\n'+
+    										'    }\n'+
+											'  }\n'+
+    										'  return text;\n'+
+											'}\n'; 	
+  var value_indentcode_ = Blockly.Arduino.valueToCode(block, 'value_indentcode_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'MatrixLedIndentcode('+value_indentcode_+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['BitMatrixLed_matrix_marquee_time'] = function(block) {		
+  var value_marquee_time_ = Blockly.Arduino.valueToCode(block, 'value_marquee_time_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'MatrixLed_marquee_time = '+ value_marquee_time_ +';\n';
+  return code;
+};
+
+Blockly.Arduino['BitMatrixLed_matrix_marquee'] = function(block) {
+	Blockly.Arduino.definitions_['define_webbit_matrix_marquee']='\n'+
+											'void MatrixLed_marquee(String str, String rgb) {\n'+
+											'  int R,G,B,i,j;\n'+												
+											'  rgb.replace("#","");\n'+										
+											'  String leds = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+
+											'  for (i=0;i<str.length();i++) {\n'+										
+											'  	if (str.substring(i,i+1)=="1")\n'+
+											'  		leds += rgb;\n'+
+											'  	else\n'+
+											'  		leds += "000000";\n'+	
+											'  }\n'+
+											'  leds += "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+											
+											'  while (true) {\n'+
+											'    for (j=0;j<(leds.length()/30-5);j++) {\n'+										
+											'      matrixString = leds.substring(j*30,j*30+150);\n'+
+											'    String s = matrixString;\n'+
+											'    int n=0;\n'+
+											'    if (MatrixLed_marquee_rotate==1) {\n'+
+											'		for (int i=4;i>=0;i--) {\n'+
+											'		  for (int j=0;j<=4;j++) {\n'+
+											'			matrixString[n*6+0]=s[(i+5*j)*6+0];\n'+
+											'			matrixString[n*6+1]=s[(i+5*j)*6+1];\n'+
+											'			matrixString[n*6+2]=s[(i+5*j)*6+2];\n'+
+											'			matrixString[n*6+3]=s[(i+5*j)*6+3];\n'+
+											'			matrixString[n*6+4]=s[(i+5*j)*6+4];\n'+
+											'			matrixString[n*6+5]=s[(i+5*j)*6+5];\n'+											
+											'			n++;\n'+
+											'		  }\n'+
+											'		}\n'+
+											'    }\n'+
+											'    else if (MatrixLed_marquee_rotate==2) {\n'+
+											'		for (int i=0;i<=4;i++) {\n'+    
+											'		  for (int j=4;j>=0;j--) {\n'+
+											'			matrixString[n*6+0]=s[(i+5*j)*6+0];\n'+
+											'			matrixString[n*6+1]=s[(i+5*j)*6+1];\n'+
+											'			matrixString[n*6+2]=s[(i+5*j)*6+2];\n'+
+											'			matrixString[n*6+3]=s[(i+5*j)*6+3];\n'+
+											'			matrixString[n*6+4]=s[(i+5*j)*6+4];\n'+
+											'			matrixString[n*6+5]=s[(i+5*j)*6+5];\n'+	
+											'			n++;\n'+
+											'		  }\n'+
+											'		}\n'+	
+											'    }\n'+											
+											'      for (i=0;i<matrixString.length()/6;i++) {\n'+
+    										'        R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
+    										'        G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
+    										'        B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+    										
+											'        strip.SetPixelColor(24-i, RgbColor(R, G, B));\n'+									
+    										'      }\n'+											
+    										'      strip.Show();\n'+
+    										'      delay(MatrixLed_marquee_time);\n'+
+    										'    }\n'+
+											'  }\n'+
+											'}\n';
+	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
+	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);
+	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);	
+	if (rgb.indexOf("#")!=-1)
+		rgb = '"'+rgb.replace(/#/g,"")+'"';												
+	var value_marquee_ = Blockly.Arduino.valueToCode(block, 'value_marquee_', Blockly.Arduino.ORDER_ATOMIC);
+	var code = 'MatrixLed_marquee('+ value_marquee_ +','+rgb+');\n';
+	return code;
+};
+
+Blockly.Arduino['BitMatrixLed_matrix_marquee_times'] = function(block) {
+	Blockly.Arduino.definitions_['define_webbit_matrix_marquee_times']='\n'+
+											'void MatrixLed_marquee_times(String str, int times, String rgb) {\n'+
+											'  int R,G,B,i,j,k;\n'+											
+											'  rgb.replace("#","");\n'+										
+											'  String leds = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+
+											'  for (i=0;i<str.length();i++) {\n'+										
+											'  	if (str.substring(i,i+1)=="1")\n'+
+											'  		leds += rgb;\n'+
+											'  	else\n'+
+											'  		leds += "000000";\n'+	
+											'  }\n'+
+											'  leds += "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+											
+											'  for (k=0;k<times;k++) {\n'+											
+											'    for (j=0;j<(leds.length()/30-5);j++) {\n'+										
+											'      matrixString = leds.substring(j*30,j*30+150);\n'+
+											'    String s = matrixString;\n'+
+											'    int n=0;\n'+
+											'    if (MatrixLed_marquee_rotate==1) {\n'+
+											'		for (int i=4;i>=0;i--) {\n'+
+											'		  for (int j=0;j<=4;j++) {\n'+
+											'			matrixString[n*6+0]=s[(i+5*j)*6+0];\n'+
+											'			matrixString[n*6+1]=s[(i+5*j)*6+1];\n'+
+											'			matrixString[n*6+2]=s[(i+5*j)*6+2];\n'+
+											'			matrixString[n*6+3]=s[(i+5*j)*6+3];\n'+
+											'			matrixString[n*6+4]=s[(i+5*j)*6+4];\n'+
+											'			matrixString[n*6+5]=s[(i+5*j)*6+5];\n'+											
+											'			n++;\n'+
+											'		  }\n'+
+											'		}\n'+
+											'    }\n'+
+											'    else if (MatrixLed_marquee_rotate==2) {\n'+
+											'		for (int i=0;i<=4;i++) {\n'+    
+											'		  for (int j=4;j>=0;j--) {\n'+
+											'			matrixString[n*6+0]=s[(i+5*j)*6+0];\n'+
+											'			matrixString[n*6+1]=s[(i+5*j)*6+1];\n'+
+											'			matrixString[n*6+2]=s[(i+5*j)*6+2];\n'+
+											'			matrixString[n*6+3]=s[(i+5*j)*6+3];\n'+
+											'			matrixString[n*6+4]=s[(i+5*j)*6+4];\n'+
+											'			matrixString[n*6+5]=s[(i+5*j)*6+5];\n'+	
+											'			n++;\n'+
+											'		  }\n'+
+											'		}\n'+	
+											'    }\n'+	
+											'      for (i=0;i<matrixString.length()/6;i++) {\n'+
+    										'        R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
+    										'        G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
+    										'        B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+    										
+											'        strip.SetPixelColor(24-i, RgbColor(R, G, B));\n'+
+    										'      }\n'+											
+    										'      strip.Show();\n'+
+    										'      delay(MatrixLed_marquee_time);\n'+
+    										'    }\n'+
+											'  }\n'+
+											'}\n';
+	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
+	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);
+	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);	
+	if (rgb.indexOf("#")!=-1)
+		rgb = '"'+rgb.replace(/#/g,"")+'"';		
+	var value_marquee_ = Blockly.Arduino.valueToCode(block, 'value_marquee_', Blockly.Arduino.ORDER_ATOMIC);
+	var value_times_ = Blockly.Arduino.valueToCode(block, 'value_times_', Blockly.Arduino.ORDER_ATOMIC);
+	var code = 'MatrixLed_marquee_times('+ value_marquee_ +','+value_times_+','+rgb+');\n';
+	return code;
+};
+
+Blockly.Arduino['BitMatrixLed_matrix_marquee_color'] = function(block) {
+	Blockly.Arduino.definitions_['define_webbit_matrix_marquee_color']='\n'+
+											'void MatrixLed_marquee_color(String str) {\n'+
+											'  str.replace("#","");\n'+												
+											'  int R,G,B,i,j;\n'+
+											'  String leds = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+
+											'  leds += str;\n'+
+											'  leds += "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+											
+											'  while (true) {\n'+
+											'    for (j=0;j<(leds.length()/30-5);j++) {\n'+										
+											'      matrixString = leds.substring(j*30,j*30+150);\n'+
+											'      String s = matrixString;\n'+
+											'      int n=0;\n'+
+											'	   for (int i=0;i<=4;i++) {\n'+
+											'		 for (int j=4;j>=0;j--) {\n'+
+											'		   matrixString[n*6+0]=s[(j+5*i)*6+0];\n'+
+											'		   matrixString[n*6+1]=s[(j+5*i)*6+1];\n'+
+											'		   matrixString[n*6+2]=s[(j+5*i)*6+2];\n'+
+											'		   matrixString[n*6+3]=s[(j+5*i)*6+3];\n'+
+											'		   matrixString[n*6+4]=s[(j+5*i)*6+4];\n'+
+											'		   matrixString[n*6+5]=s[(j+5*i)*6+5];\n'+											
+											'		   n++;\n'+
+											'		 }\n'+
+											'	   }\n'+
+											'      s = matrixString;\n'+											
+											'      n=0;\n'+
+											'      if (MatrixLed_marquee_rotate==1) {\n'+
+											'  		 for (int i=4;i>=0;i--) {\n'+
+											'	  	   for (int j=0;j<=4;j++) {\n'+
+											'  	  		  matrixString[n*6+0]=s[(i+5*j)*6+0];\n'+
+											'	  		  matrixString[n*6+1]=s[(i+5*j)*6+1];\n'+
+											'	  		  matrixString[n*6+2]=s[(i+5*j)*6+2];\n'+
+											'	  		  matrixString[n*6+3]=s[(i+5*j)*6+3];\n'+
+											'			  matrixString[n*6+4]=s[(i+5*j)*6+4];\n'+
+											'	 		  matrixString[n*6+5]=s[(i+5*j)*6+5];\n'+											
+											'			  n++;\n'+
+											'		    }\n'+
+											'		  }\n'+
+											'      }\n'+
+											'      else if (MatrixLed_marquee_rotate==2) {\n'+
+											'		  for (int i=0;i<=4;i++) {\n'+    
+											'		    for (int j=4;j>=0;j--) {\n'+
+											'			  matrixString[n*6+0]=s[(i+5*j)*6+0];\n'+
+											'			  matrixString[n*6+1]=s[(i+5*j)*6+1];\n'+
+											'			  matrixString[n*6+2]=s[(i+5*j)*6+2];\n'+
+											'			  matrixString[n*6+3]=s[(i+5*j)*6+3];\n'+
+											'			  matrixString[n*6+4]=s[(i+5*j)*6+4];\n'+
+											'			  matrixString[n*6+5]=s[(i+5*j)*6+5];\n'+	
+											'			  n++;\n'+
+											'		    }\n'+
+											'		  }\n'+	
+											'      }\n'+	
+											'      for (i=0;i<matrixString.length()/6;i++) {\n'+
+    										'        R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
+    										'        G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
+    										'        B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+    										
+											'        strip.SetPixelColor(24-i, RgbColor(R, G, B));\n'+
+    										'      }\n'+											
+    										'      strip.Show();\n'+
+    										'      delay(MatrixLed_marquee_time);\n'+
+    										'    }\n'+
+											'  }\n'+
+											'}\n';	
+  var value_marquee_ = Blockly.Arduino.valueToCode(block, 'value_marquee_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'MatrixLed_marquee_color('+ value_marquee_ +');\n';
+  return code;
+};
+
+Blockly.Arduino['BitMatrixLed_matrix_marquee_color_times'] = function(block) {
+	Blockly.Arduino.definitions_['define_webbit_matrix_marquee_color_times']='\n'+
+											'void MatrixLed_marquee_color_times(String str) {\n'+
+											'  str.replace("#","");\n'+												
+											'  int R,G,B,i,j,k;\n'+
+											'  String leds = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+
+											'  leds += str;\n'+
+											'  leds += "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+											
+											'  for (k=0;k<times;k++) {\n'+
+											'    for (j=0;j<(leds.length()/30-5);j++) {\n'+										
+											'      matrixString = leds.substring(j*30,j*30+150);\n'+
+											'      String s = matrixString;\n'+
+											'      int n=0;\n'+
+											'	   for (int i=0;i<=4;i++) {\n'+
+											'		 for (int j=4;j>=0;j--) {\n'+
+											'		   matrixString[n*6+0]=s[(j+5*i)*6+0];\n'+
+											'		   matrixString[n*6+1]=s[(j+5*i)*6+1];\n'+
+											'		   matrixString[n*6+2]=s[(j+5*i)*6+2];\n'+
+											'		   matrixString[n*6+3]=s[(j+5*i)*6+3];\n'+
+											'		   matrixString[n*6+4]=s[(j+5*i)*6+4];\n'+
+											'		   matrixString[n*6+5]=s[(j+5*i)*6+5];\n'+											
+											'		   n++;\n'+
+											'		 }\n'+
+											'	   }\n'+
+											'      s = matrixString;\n'+											
+											'      n=0;\n'+
+											'      if (MatrixLed_marquee_rotate==1) {\n'+
+											'  		 for (int i=4;i>=0;i--) {\n'+
+											'	  	   for (int j=0;j<=4;j++) {\n'+
+											'  	  		  matrixString[n*6+0]=s[(i+5*j)*6+0];\n'+
+											'	  		  matrixString[n*6+1]=s[(i+5*j)*6+1];\n'+
+											'	  		  matrixString[n*6+2]=s[(i+5*j)*6+2];\n'+
+											'	  		  matrixString[n*6+3]=s[(i+5*j)*6+3];\n'+
+											'			  matrixString[n*6+4]=s[(i+5*j)*6+4];\n'+
+											'	 		  matrixString[n*6+5]=s[(i+5*j)*6+5];\n'+											
+											'			  n++;\n'+
+											'		    }\n'+
+											'		  }\n'+
+											'      }\n'+
+											'      else if (MatrixLed_marquee_rotate==2) {\n'+
+											'		  for (int i=0;i<=4;i++) {\n'+    
+											'		    for (int j=4;j>=0;j--) {\n'+
+											'			  matrixString[n*6+0]=s[(i+5*j)*6+0];\n'+
+											'			  matrixString[n*6+1]=s[(i+5*j)*6+1];\n'+
+											'			  matrixString[n*6+2]=s[(i+5*j)*6+2];\n'+
+											'			  matrixString[n*6+3]=s[(i+5*j)*6+3];\n'+
+											'			  matrixString[n*6+4]=s[(i+5*j)*6+4];\n'+
+											'			  matrixString[n*6+5]=s[(i+5*j)*6+5];\n'+	
+											'			  n++;\n'+
+											'		    }\n'+
+											'		  }\n'+	
+											'      }\n'+	
+											'      for (i=0;i<matrixString.length()/6;i++) {\n'+
+    										'        R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
+    										'        G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
+    										'        B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+    										
+											'        strip.SetPixelColor(24-i, RgbColor(R, G, B));\n'+
+    										'      }\n'+											
+    										'      strip.Show();\n'+
+    										'      delay(MatrixLed_marquee_time);\n'+
+    										'    }\n'+
+											'  }\n'+
+											'}\n';		
+  var value_marquee_ = Blockly.Arduino.valueToCode(block, 'value_marquee_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'MatrixLed_marquee_color_times('+ value_marquee_ +');\n';
+  return code;
+};
+
+Blockly.Arduino['BitMatrixLed_matrix_marquee_degree'] = function(block) {
+  var value_marquee_direction_ = block.getFieldValue('value_marquee_direction_');
+  var value_marquee_degree_ = Blockly.Arduino.valueToCode(block, 'value_marquee_degree_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'MatrixLed_marquee_degree('+ value_marquee_direction_ +','+ value_marquee_degree_ +');\n';
+  return code;
+};
+
+Blockly.Arduino['BitMatrixLed_matrix_marquee_color_degree'] = function(block) {
+  var value_marquee_direction_ = block.getFieldValue('value_marquee_direction_');
+  var value_marquee_degree_ = Blockly.Arduino.valueToCode(block, 'value_marquee_degree_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'MatrixLed_marquee_color_degree('+ value_marquee_direction_ +','+ value_marquee_degree_ +');\n';
+  return code;
+};
+
+Blockly.Arduino['BitMatrixLed_matrix_matrixcode'] = function(block) {
+  var L01 = (block.getFieldValue('L01') == 'TRUE')?"1":"0";
+  var L02 = (block.getFieldValue('L02') == 'TRUE')?"1":"0";
+  var L03 = (block.getFieldValue('L03') == 'TRUE')?"1":"0";
+  var L04 = (block.getFieldValue('L04') == 'TRUE')?"1":"0";
+  var L05 = (block.getFieldValue('L05') == 'TRUE')?"1":"0";
+  var L06 = (block.getFieldValue('L06') == 'TRUE')?"1":"0";
+  var L07 = (block.getFieldValue('L07') == 'TRUE')?"1":"0";
+  var L08 = (block.getFieldValue('L08') == 'TRUE')?"1":"0";
+  var L09 = (block.getFieldValue('L09') == 'TRUE')?"1":"0";
+  var L10 = (block.getFieldValue('L10') == 'TRUE')?"1":"0";
+  var L11 = (block.getFieldValue('L11') == 'TRUE')?"1":"0";
+  var L12 = (block.getFieldValue('L12') == 'TRUE')?"1":"0";
+  var L13 = (block.getFieldValue('L13') == 'TRUE')?"1":"0";
+  var L14 = (block.getFieldValue('L14') == 'TRUE')?"1":"0";
+  var L15 = (block.getFieldValue('L15') == 'TRUE')?"1":"0";
+  var L16 = (block.getFieldValue('L16') == 'TRUE')?"1":"0";
+  var L17 = (block.getFieldValue('L17') == 'TRUE')?"1":"0";
+  var L18 = (block.getFieldValue('L18') == 'TRUE')?"1":"0";
+  var L19 = (block.getFieldValue('L19') == 'TRUE')?"1":"0";
+  var L20 = (block.getFieldValue('L20') == 'TRUE')?"1":"0";
+  var L21 = (block.getFieldValue('L21') == 'TRUE')?"1":"0";
+  var L22 = (block.getFieldValue('L22') == 'TRUE')?"1":"0";
+  var L23 = (block.getFieldValue('L23') == 'TRUE')?"1":"0";
+  var L24 = (block.getFieldValue('L24') == 'TRUE')?"1":"0";
+  var L25 = (block.getFieldValue('L25') == 'TRUE')?"1":"0";
+  var code = '"'+L01+L02+L03+L04+L05+L06+L07+L08+L09+L10+L11+L12+L13+L14+L15+L16+L17+L18+L19+L20+L21+L22+L23+L24+L25+'"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['BitMatrixLed_matrix_matrixcode_color'] = function(block) {
+  var L01 = block.getFieldValue('L01');
+  var L02 = block.getFieldValue('L02');
+  var L03 = block.getFieldValue('L03');
+  var L04 = block.getFieldValue('L04');
+  var L05 = block.getFieldValue('L05');
+  var L06 = block.getFieldValue('L06');
+  var L07 = block.getFieldValue('L07');
+  var L08 = block.getFieldValue('L08');
+  var L09 = block.getFieldValue('L09');
+  var L10 = block.getFieldValue('L10');
+  var L11 = block.getFieldValue('L11');
+  var L12 = block.getFieldValue('L12');
+  var L13 = block.getFieldValue('L13');
+  var L14 = block.getFieldValue('L14');
+  var L15 = block.getFieldValue('L15');
+  var L16 = block.getFieldValue('L16');
+  var L17 = block.getFieldValue('L17');
+  var L18 = block.getFieldValue('L18');
+  var L19 = block.getFieldValue('L19');
+  var L20 = block.getFieldValue('L20');
+  var L21 = block.getFieldValue('L21');
+  var L22 = block.getFieldValue('L22');
+  var L23 = block.getFieldValue('L23');
+  var L24 = block.getFieldValue('L24');
+  var L25 = block.getFieldValue('L25');
+  var code = '"'+L01+L02+L03+L04+L05+L06+L07+L08+L09+L10+L11+L12+L13+L14+L15+L16+L17+L18+L19+L20+L21+L22+L23+L24+L25+'"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['BitMatrixLed_matrix_matrixcode_line_color'] = function(block) {
+  var L01 = block.getFieldValue('L01');
+  var L02 = block.getFieldValue('L02');
+  var L03 = block.getFieldValue('L03');
+  var L04 = block.getFieldValue('L04');
+  var L05 = block.getFieldValue('L05');
+  var code = '"'+L01+L02+L03+L04+L05+'"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['BitMatrixLed_matrix_marquee_stop'] = function(block) {
+  var code = 'MatrixLed_marquee_stop();\n';
+  return code;
+};
+
+Blockly.Arduino['BitMatrixLed_matrix_marquee_resume'] = function(block) {
+  var code = 'MatrixLed_marquee_resume();\n';
+  return code;
+};
+
+Blockly.Arduino['BitMatrixLed_matrix_marquee_rotate'] = function(block) {
+	var direction = block.getFieldValue('direction');	
+	var code = 'MatrixLed_marquee_rotate = '+direction+';\n';
+	return code;
+};
+
 Blockly.Arduino.webbit_mooncar_pin=function(){
   var r1=Blockly.Arduino.valueToCode(this,"R1",Blockly.Arduino.ORDER_ATOMIC);
   var r2=Blockly.Arduino.valueToCode(this,"R2",Blockly.Arduino.ORDER_ATOMIC);
@@ -1132,3 +1649,26 @@ Blockly.Arduino.webbit_mooncar_ir_remote_send=function(){
     return"irsend.sendRC6(x2i("+b+"), 20);\n"
   }
 };
+
+/*
+		  <block type="BitMatrixLed_matrix_marquee_degree">
+			<field name="value_marquee_direction_">1</field>
+			<value name="value_marquee_degree_">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+		  </block>  		  
+		  <block type="BitMatrixLed_matrix_marquee_color_degree">
+			<field name="value_marquee_direction_">1</field>
+			<value name="value_marquee_degree_">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+		  </block> 
+		  <block type="BitMatrixLed_matrix_marquee_stop">
+		  </block>
+		  <block type="BitMatrixLed_matrix_marquee_resume">
+		  </block>
+*/

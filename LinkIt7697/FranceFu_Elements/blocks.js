@@ -1580,6 +1580,7 @@ Blockly.Blocks['mouse_coordinate_get'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
+  this.setHelpUrl("https://www.w3schools.com/jsref/obj_mouseevent.asp");
   }
 };
 
@@ -2794,7 +2795,7 @@ Blockly.Blocks['body_set'] = {
   init: function() {    
   this.appendDummyInput()  
       .appendField(Blockly.Msg.SETWINDOW)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_BACKGROUNDCOLOR,"backgroundColor"], [Blockly.Msg.PROPERTY_BACKGROUNDIMAGE,"backgroundImage"], [Blockly.Msg.PROPERTY_OVERFLOW,"overflow"], [Blockly.Msg.PROPERTY_FULLSCREEN,"fullscreen"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_DROPPABLE,"droppable"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_BACKGROUNDCOLOR,"backgroundColor"], [Blockly.Msg.PROPERTY_BACKGROUNDIMAGE,"backgroundImage"], [Blockly.Msg.PROPERTY_BACKGROUNDREPEAT,"backgroundRepeat"], [Blockly.Msg.PROPERTY_OVERFLOW,"overflow"], [Blockly.Msg.PROPERTY_FULLSCREEN,"fullscreen"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_DROPPABLE,"droppable"]]), "property_");
   this.appendValueInput("value_")
       .setCheck(null)
 	  .appendField(Blockly.Msg.PROPERTY_VALUE);    
@@ -4500,7 +4501,8 @@ Blockly.Blocks['video_base64_drive'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL); 	  
+      .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/WebduinoDrive.gs");
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);

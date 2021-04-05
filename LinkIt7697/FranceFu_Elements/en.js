@@ -250,6 +250,7 @@ Blockly.Msg.PROPERTY_AUTO = "AUTO";
 Blockly.Msg.PROPERTY_URL = "URL";
 Blockly.Msg.PROPERTY_BACKGROUNDCOLOR = "background color";
 Blockly.Msg.PROPERTY_BACKGROUNDIMAGE = "background image";
+Blockly.Msg.PROPERTY_BACKGROUNDREPEAT = "background image repeat";
 Blockly.Msg.PROPERTY_OVERFLOW = "content overflow";
 Blockly.Msg.PROPERTY_FULLSCREEN = "allow fullscreen";
 Blockly.Msg.PROPERTY_STYLE = "style";

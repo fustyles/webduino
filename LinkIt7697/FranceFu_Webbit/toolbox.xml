@@ -183,7 +183,231 @@
 				</block>
 			</value>	
 		</block>
+		<block type="BitMatrixLed_matrix_texttocode">
+			<value name="value_text_">
+			</value>
+		</block>
+		<block type="BitMatrixLed_matrix_indentcode">
+			<value name="value_indentcode_">
+			</value>
+		</block>  
+		  <block type="BitMatrixLed_matrix_marquee_time">
+			<value name="value_marquee_time_">
+			  <block type="math_number">
+				<field name="NUM">500</field>
+			  </block>
+			</value>
+		  </block>
 
+		  <block type="BitMatrixLed_matrix_marquee">
+			<value name="value_marquee_">
+				<block type="BitMatrixLed_matrix_indentcode">
+				  <value name="value_indentcode_">
+					<block type="BitMatrixLed_matrix_texttocode">
+					  <value name="value_text_">
+						<block type="text">
+						  <field name="TEXT">Hello</field>
+						</block>
+					</value>
+				  </block>           
+				</value>
+			  </block>
+			</value>
+			<value name="RGB">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>			
+		  </block>
+		  <block type="BitMatrixLed_matrix_marquee_times">
+			<value name="value_times_">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>    
+			<value name="value_marquee_">
+			  <block type="BitMatrixLed_matrix_indentcode">
+				  <value name="value_indentcode_">
+					<block type="BitMatrixLed_matrix_texttocode">
+					  <value name="value_text_">
+						<block type="text">
+						  <field name="TEXT"> ♥ webduino ♡ </field>
+						</block>
+					</value>
+				  </block>           
+				</value>
+			  </block>
+			</value>
+			<value name="RGB">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>			
+		  </block>   
+		  <block type="BitMatrixLed_matrix_marquee_color">
+			<value name="value_marquee_">
+			  <block type="text_join">
+				<mutation items="2"></mutation>
+				<value name="ADD0">
+				  <block type="BitMatrixLed_matrix_matrixcode_color">
+					<field name="L01">#000000</field>
+					<field name="L06">#000000</field>
+					<field name="L11">#000000</field>
+					<field name="L16">#000000</field>
+					<field name="L21">#000000</field>
+					<field name="L02">#000000</field>
+					<field name="L07">#000000</field>
+					<field name="L12">#000000</field>
+					<field name="L17">#000000</field>
+					<field name="L22">#000000</field>
+					<field name="L03">#000000</field>
+					<field name="L08">#000000</field>
+					<field name="L13">#000000</field>
+					<field name="L18">#000000</field>
+					<field name="L23">#000000</field>
+					<field name="L04">#000000</field>
+					<field name="L09">#000000</field>
+					<field name="L14">#000000</field>
+					<field name="L19">#000000</field>
+					<field name="L24">#000000</field>
+					<field name="L05">#000000</field>
+					<field name="L10">#000000</field>
+					<field name="L15">#000000</field>
+					<field name="L20">#000000</field>
+					<field name="L25">#000000</field>
+				  </block> 
+				</value>
+				<value name="ADD1">
+				  <block type="BitMatrixLed_matrix_matrixcode_color">
+					<field name="L01">#000000</field>
+					<field name="L06">#000000</field>
+					<field name="L11">#000000</field>
+					<field name="L16">#000000</field>
+					<field name="L21">#000000</field>
+					<field name="L02">#000000</field>
+					<field name="L07">#000000</field>
+					<field name="L12">#000000</field>
+					<field name="L17">#000000</field>
+					<field name="L22">#000000</field>
+					<field name="L03">#000000</field>
+					<field name="L08">#000000</field>
+					<field name="L13">#000000</field>
+					<field name="L18">#000000</field>
+					<field name="L23">#000000</field>
+					<field name="L04">#000000</field>
+					<field name="L09">#000000</field>
+					<field name="L14">#000000</field>
+					<field name="L19">#000000</field>
+					<field name="L24">#000000</field>
+					<field name="L05">#000000</field>
+					<field name="L10">#000000</field>
+					<field name="L15">#000000</field>
+					<field name="L20">#000000</field>
+					<field name="L25">#000000</field>
+				  </block> 
+				</value>
+			  </block>
+			</value>
+		  </block>
+		  <block type="BitMatrixLed_matrix_marquee_color_times">
+			<value name="value_marquee_">
+			  <block type="text_join">
+				<mutation items="2"></mutation>
+				<value name="ADD0">
+				  <block type="BitMatrixLed_matrix_matrixcode_color">
+					<field name="L01">#000000</field>
+					<field name="L06">#000000</field>
+					<field name="L11">#000000</field>
+					<field name="L16">#000000</field>
+					<field name="L21">#000000</field>
+					<field name="L02">#000000</field>
+					<field name="L07">#000000</field>
+					<field name="L12">#000000</field>
+					<field name="L17">#000000</field>
+					<field name="L22">#000000</field>
+					<field name="L03">#000000</field>
+					<field name="L08">#000000</field>
+					<field name="L13">#000000</field>
+					<field name="L18">#000000</field>
+					<field name="L23">#000000</field>
+					<field name="L04">#000000</field>
+					<field name="L09">#000000</field>
+					<field name="L14">#000000</field>
+					<field name="L19">#000000</field>
+					<field name="L24">#000000</field>
+					<field name="L05">#000000</field>
+					<field name="L10">#000000</field>
+					<field name="L15">#000000</field>
+					<field name="L20">#000000</field>
+					<field name="L25">#000000</field>
+				  </block> 
+				</value>
+				<value name="ADD1">
+				  <block type="BitMatrixLed_matrix_matrixcode_color">
+					<field name="L01">#000000</field>
+					<field name="L06">#000000</field>
+					<field name="L11">#000000</field>
+					<field name="L16">#000000</field>
+					<field name="L21">#000000</field>
+					<field name="L02">#000000</field>
+					<field name="L07">#000000</field>
+					<field name="L12">#000000</field>
+					<field name="L17">#000000</field>
+					<field name="L22">#000000</field>
+					<field name="L03">#000000</field>
+					<field name="L08">#000000</field>
+					<field name="L13">#000000</field>
+					<field name="L18">#000000</field>
+					<field name="L23">#000000</field>
+					<field name="L04">#000000</field>
+					<field name="L09">#000000</field>
+					<field name="L14">#000000</field>
+					<field name="L19">#000000</field>
+					<field name="L24">#000000</field>
+					<field name="L05">#000000</field>
+					<field name="L10">#000000</field>
+					<field name="L15">#000000</field>
+					<field name="L20">#000000</field>
+					<field name="L25">#000000</field>
+				  </block> 
+				</value>
+			  </block>      
+			</value>
+		  </block>
+		<block type="BitMatrixLed_matrix_matrixcode_color">
+			<field name="L01">#000000</field>
+			<field name="L06">#000000</field>
+			<field name="L11">#000000</field>
+			<field name="L16">#000000</field>
+			<field name="L21">#000000</field>
+			<field name="L02">#000000</field>
+			<field name="L07">#000000</field>
+			<field name="L12">#000000</field>
+			<field name="L17">#000000</field>
+			<field name="L22">#000000</field>
+			<field name="L03">#000000</field>
+			<field name="L08">#000000</field>
+			<field name="L13">#000000</field>
+			<field name="L18">#000000</field>
+			<field name="L23">#000000</field>
+			<field name="L04">#000000</field>
+			<field name="L09">#000000</field>
+			<field name="L14">#000000</field>
+			<field name="L19">#000000</field>
+			<field name="L24">#000000</field>
+			<field name="L05">#000000</field>
+			<field name="L10">#000000</field>
+			<field name="L15">#000000</field>
+			<field name="L20">#000000</field>
+			<field name="L25">#000000</field>
+		</block> 
+		  <block type="BitMatrixLed_matrix_matrixcode_line_color">
+			<field name="L01">#000000</field>
+			<field name="L02">#000000</field>
+			<field name="L03">#000000</field>
+			<field name="L04">#000000</field>
+			<field name="L05">#000000</field>
+		  </block>
+		  <block type="BitMatrixLed_matrix_marquee_rotate">
+		  </block> 
 		<block type="esp32_button_pin">
 			<value name="PINA">
 				<block type="math_number">
