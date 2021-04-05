@@ -707,11 +707,11 @@ Blockly.Blocks['BitMatrixLed_matrix_marquee'] = {
 Blockly.Blocks['BitMatrixLed_matrix_marquee_times'] = {
   init: function() {
     this.appendValueInput("value_times_")
-        .setCheck("Number")       
-        .appendField(Blockly.Msg.MATRIXLED_MARQUEE_ONCE_SHOW);  
+        .setCheck("Number")   
+        .appendField(Blockly.Msg.MATRIXLED_MARQUEE_SHOW);		 
     this.appendValueInput("value_marquee_")
         .setCheck("String")
-        .appendField(Blockly.Msg.MATRIXLED_MARQUEE_TIMES_SHOW);
+        .appendField(Blockly.Msg.MATRIXLED_MARQUEE_TIMES_SHOW); 		
 	this.appendDummyInput()
 		.appendField(Blockly.Msg.ESP32_MATRIX_CHOICECOLOR);		
 	this.appendValueInput("RGB")
@@ -751,8 +751,12 @@ Blockly.Blocks['BitMatrixLed_matrix_marquee_color'] = {
 Blockly.Blocks['BitMatrixLed_matrix_marquee_color_times'] = {
   init: function() {
     this.appendValueInput("value_marquee_")
-        .setCheck("String")   
-        .appendField(Blockly.Msg.MATRIXLED_MARQUEE_COLOR_ONCE_SHOW); 
+        .setCheck("String")
+        .appendField(Blockly.Msg.MATRIXLED_MARQUEE_COLOR_SHOW);			
+    this.appendValueInput("value_times_")
+        .setCheck("Number")
+ 		.setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.MATRIXLED_MARQUEE_COLOR_TIMES_SHOW);  
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);   

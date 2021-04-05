@@ -307,7 +307,12 @@
 			  </block>
 			</value>
 		  </block>
-		  <block type="BitMatrixLed_matrix_marquee_color_times">
+		  <block type="BitMatrixLed_matrix_marquee_color_times">			
+		    <value name="value_times_">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
 			<value name="value_marquee_">
 			  <block type="text_join">
 				<mutation items="2"></mutation>

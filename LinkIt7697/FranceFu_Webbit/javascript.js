@@ -1160,7 +1160,7 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee_color'] = function(block) {
 
 Blockly.Arduino['BitMatrixLed_matrix_marquee_color_times'] = function(block) {
 	Blockly.Arduino.definitions_['define_webbit_matrix_marquee_color_times']='\n'+
-											'void MatrixLed_marquee_color_times(String str) {\n'+
+											'void MatrixLed_marquee_color_times(String str, int times) {\n'+
 											'  str.replace("#","");\n'+												
 											'  int R,G,B,i,j,k;\n'+
 											'  String leds = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+
@@ -1221,9 +1221,10 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee_color_times'] = function(block) {
     										'    }\n'+
 											'  }\n'+
 											'}\n';		
-  var value_marquee_ = Blockly.Arduino.valueToCode(block, 'value_marquee_', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'MatrixLed_marquee_color_times('+ value_marquee_ +');\n';
-  return code;
+	var value_marquee_ = Blockly.Arduino.valueToCode(block, 'value_marquee_', Blockly.Arduino.ORDER_ATOMIC);
+	var value_times_ = Blockly.Arduino.valueToCode(block, 'value_times_', Blockly.Arduino.ORDER_ATOMIC);
+	var code = 'MatrixLed_marquee_color_times('+ value_marquee_ +','+value_times_+');\n';
+	return code;
 };
 
 Blockly.Arduino['BitMatrixLed_matrix_marquee_degree'] = function(block) {
