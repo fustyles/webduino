@@ -4,7 +4,7 @@ Blockly.Arduino.esp32_button_pin = function(){
 	Blockly.Arduino.definitions_['define_webbit_button']='\n'+
 											'int pin_ButtonA = '+A+';\n'+
 											'int pin_ButtonB = '+B+';\n';  
-	Blockly.Arduino.setups_["setup_webbit_button"]="pinMode(pin_ButtonA, INPUT_PULLUP);\n  pinMode(pin_ButtonB, INPUT_PULLUP);\n";
+	Blockly.Arduino.setups_["setup_webbit_button"]="pinMode(pin_ButtonA, INPUT);\n  pinMode(pin_ButtonB, INPUT);\n";
 
 	var code = '';
 	return code;
@@ -14,10 +14,10 @@ Blockly.Arduino.esp32_button = function(){
 	var kind=this.getFieldValue("AB_BUTTON");
 
 	if (kind == "A") {
-		var code = "(!digitalRead(pin_ButtonA))";
+		var code = "(digitalRead(pin_ButtonA))";
 	}
 	else if (kind == "B") {
-		var code = "(!digitalRead(pin_ButtonB))";
+		var code = "(digitalRead(pin_ButtonB))";
 	}
 	else
 		var code = "";
@@ -282,7 +282,22 @@ Blockly.Arduino['BitMatrixLed_matrix'] = function() {
     										'  }\n'+
     										'  strip.Show();\n'+
 											'}\n';	
-	var rgb = this.getFieldValue("RGB").replace(/#/g,"");
+	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
+	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);
+	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);
+	if (rgb.indexOf("#")!=-1)
+		rgb = rgb.replace(/#/g,"");
+	else {
+		Blockly.Arduino.definitions_['define_webbit_matrix_color_clear_poundsign']='\n'+
+											'String color_clear_poundsign(String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  return color;\n'+											
+											'}\n';		
+		rgb = '"+color_clear_poundsign('+rgb+')+"';
+		
+	}
 	var L01 = (this.getFieldValue('L01') == 'TRUE')?rgb:"000000";
 	var L02 = (this.getFieldValue('L02') == 'TRUE')?rgb:"000000";
 	var L03 = (this.getFieldValue('L03') == 'TRUE')?rgb:"000000";
@@ -472,22 +487,22 @@ Blockly.Arduino['BitMatrixLed_matrix_rgb_one_n'] = function(block) {
     										'  strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
     										'  strip.Show();\n'+
 											'}\n';	
-	Blockly.Arduino.definitions_['define_webbit_matrix_hexReverse']='\n'+	
-											'char HexReverse(int val, int pos) {\n'+
+	Blockly.Arduino.definitions_['define_webbit_matrix_hexReverse_s']='\n'+	
+											'String HexReverse_s(int val, int pos) {\n'+
 											'  int i = 0;\n'+
 											'  String s = "0123456789abcdef";\n'+											
 											'  if (pos==1)\n'+
 											'    i = (val-val%16)/16;\n'+
 											'  else if (pos==2)\n'+
 											'    i = val%16;\n'+
-											'  return s[i];\n'+
+											'  return String(s[i]);\n'+
 											'}\n'; 	
 	var N=Blockly.Arduino.valueToCode(this,"N",Blockly.Arduino.ORDER_ATOMIC);
 	var R = Blockly.Arduino.valueToCode(this,"R",Blockly.Arduino.ORDER_ATOMIC);
 	var G = Blockly.Arduino.valueToCode(this,"G",Blockly.Arduino.ORDER_ATOMIC);
 	var B = Blockly.Arduino.valueToCode(this,"B",Blockly.Arduino.ORDER_ATOMIC);
 
-	var code = 'strTemp_ = HexReverse('+R+', 1)+HexReverse('+R+', 2)+HexReverse('+G+', 1)+HexReverse('+G+', 2)+HexReverse('+B+', 1)+HexReverse('+B+', 2);\nMatrixLedOne(('+N+'-1), strTemp_);\n';
+	var code = 'strTemp_ = HexReverse_s('+R+', 1)+HexReverse_s('+R+', 2)+HexReverse_s('+G+', 1)+HexReverse_s('+G+', 2)+HexReverse_s('+B+', 1)+HexReverse_s('+B+', 2);\nMatrixLedOne(('+N+'-1), strTemp_);\n';
 	return code;
 };
 
@@ -844,7 +859,9 @@ Blockly.Arduino['BitMatrixLed_matrix_texttocode'] = function(block) {
 											'  if (c=="}") reverse = "0000000100111111000100000";\n'+
 											'  if (c=="\\\'") reverse = "0000000100110000000000000";\n'+
 											'  if (c=="\\\\") reverse = "0000000100110000010011000";\n'+
+											'  if (c=="+") reverse = "0000000100011100010000000";\n'+
 											'  if (c=="-") reverse = "0000000100001000010000000";\n'+
+											'  if (c=="#") reverse = "0101011111010101111101010";\n'+											
 											'  if (c=="0") reverse = "0000011111100011111100000";\n'+
 											'  if (c=="1") reverse = "0000000001111110100100000";\n'+
 											'  if (c=="2") reverse = "0000011101101011011100000";\n'+
@@ -1587,22 +1604,22 @@ Blockly.Arduino['webbit_mooncar_ws2812_rgb_one_n'] = function(block) {
     										'  strip_mooncar.SetPixelColor(i, RgbColor(R, G, B));\n'+
     										'  strip_mooncar.Show();\n'+
 											'}\n';	
-	Blockly.Arduino.definitions_['define_webbit_matrix_hexReverse']='\n'+	
-											'char HexReverse(int val, int pos) {\n'+
+	Blockly.Arduino.definitions_['define_webbit_matrix_hexReverse_s']='\n'+	
+											'String HexReverse_s(int val, int pos) {\n'+
 											'  int i = 0;\n'+
 											'  String s = "0123456789abcdef";\n'+											
 											'  if (pos==1)\n'+
 											'    i = (val-val%16)/16;\n'+
 											'  else if (pos==2)\n'+
 											'    i = val%16;\n'+
-											'  return s[i];\n'+
+											'  return String(s[i]);\n'+
 											'}\n'; 	
 	var N=Blockly.Arduino.valueToCode(this,"N",Blockly.Arduino.ORDER_ATOMIC);
 	var R = Blockly.Arduino.valueToCode(this,"R",Blockly.Arduino.ORDER_ATOMIC);
 	var G = Blockly.Arduino.valueToCode(this,"G",Blockly.Arduino.ORDER_ATOMIC);
 	var B = Blockly.Arduino.valueToCode(this,"B",Blockly.Arduino.ORDER_ATOMIC);
 
-	var code = 'strTemp_mooncar = HexReverse('+R+', 1)+HexReverse('+R+', 2)+HexReverse('+G+', 1)+HexReverse('+G+', 2)+HexReverse('+B+', 1)+HexReverse('+B+', 2);\nMatrixLedOne_mooncar(('+N+'-1), strTemp_mooncar);\n';
+	var code = 'strTemp_mooncar = HexReverse_s('+R+', 1)+HexReverse_s('+R+', 2)+HexReverse_s('+G+', 1)+HexReverse_s('+G+', 2)+HexReverse_s('+B+', 1)+HexReverse_s('+B+', 2);\nMatrixLedOne_mooncar(('+N+'-1), strTemp_mooncar);\n';
 	return code;
 };
 

@@ -22,6 +22,10 @@
 		<block type="BitMatrixLed_matrix_clear">
 		</block>			
 		<block type="BitMatrixLed_matrix">
+			<value name="RGB">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>		
 			<field name="L01">FALSE</field>
 			<field name="L06">FALSE</field>
 			<field name="L11">FALSE</field>
