@@ -205,6 +205,7 @@ Blockly.Blocks['customcode_instruction6'] = {
   init: function() {
 	  this.appendDummyInput()    
 		  .appendField(new Blockly.FieldDropdown([
+			["String","String"],	  
 			["isAlpha","isAlpha"],
 			["isAlphaNumeric","isAlphaNumeric"],
 			["isAscii","isAscii"],
