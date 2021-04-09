@@ -543,6 +543,12 @@
 			  </block>
 			</value>
 		</block>
+		<block type="esp32_buzzer_tone1">
+		</block>	
+		<block type="esp32_buzzer_tone2">
+		</block>	
+		<block type="esp32_buzzer_tone3">
+		</block>			
 		<block type="esp32_mpu9250_pin">
 			<value name="sda">
 				<block type="math_number">

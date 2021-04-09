@@ -227,6 +227,21 @@ Blockly.Arduino.esp32_buzzer1 = function(){
 	return code;
 };
 
+Blockly.Arduino.esp32_buzzer_tone1 = function(){											
+	var frequency=this.getFieldValue("frequency");
+	return[frequency, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino.esp32_buzzer_tone2 = function(){											
+	var frequency=this.getFieldValue("frequency");
+	return[frequency, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino.esp32_buzzer_tone3 = function(){											
+	var frequency=this.getFieldValue("frequency");
+	return[frequency, Blockly.Arduino.ORDER_ATOMIC];
+};
+
 Blockly.Arduino.esp32_mpu9250_pin = function(){
 	var sda=Blockly.Arduino.valueToCode(this,"sda",Blockly.Arduino.ORDER_ATOMIC);
 	var scl=Blockly.Arduino.valueToCode(this,"scl",Blockly.Arduino.ORDER_ATOMIC);
