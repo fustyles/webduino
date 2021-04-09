@@ -112,6 +112,43 @@ Blockly.Arduino.esp32_buzzer = function(){
 	return code;
 };
 
+Blockly.Arduino.esp32_buzzer2 = function(){
+	Blockly.Arduino.definitions_['define_webbit_buzzer_func']='\n'+
+											'void playBuzzer(int pin, String frequency, String delaytime) {\n'+
+											'  int freq = 2000;\n'+
+											'  int channel = 10;\n'+
+											'  int resolution = 8;\n'+
+											'  ledcSetup(channel, freq, resolution);\n'+
+											'  ledcAttachPin(pin, channel);\n'+
+											'  String f="",d="",split=",";\n'+
+											'  int s1=0;\n'+
+											'  frequency+=",";\n'+
+											'  delaytime+=",";\n'+
+											'  for (int i=0;i<frequency.length();i++) {\n'+
+											'    if (frequency[i]==split[0]) {\n'+
+											'  	   f=frequency.substring(s1,i);\n'+
+											'  	   s1=i+1;\n'+
+											'  	   for (int j=0;j<delaytime.length();j++) {\n'+
+											'  	      if (delaytime[j]==split[0]) {\n'+
+											'  		    d=delaytime.substring(0,j);\n'+
+											'  		    ledcWriteTone(channel, f.toInt());\n'+
+											'  		    delay(d.toInt());\n'+
+											'  		    delaytime=delaytime.substring(j+1);\n'+
+											'  		    break;\n'+
+											'  	      }\n'+
+											'  	    }\n'+
+											'    }\n'+
+											'  }\n'+
+											'  ledcWriteTone(channel, 0); \n'+
+											'}\n'; 
+
+	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);											
+	var frequency=this.getFieldValue("frequency");
+	var delaytime=Blockly.Arduino.valueToCode(this,"delaytime",Blockly.Arduino.ORDER_ATOMIC);
+	var code = 'playBuzzer('+pin+', "'+frequency+'", '+delaytime+');\n';
+	return code;
+};
+
 Blockly.Arduino.esp32_buzzer1 = function(){
 	Blockly.Arduino.definitions_['define_webbit_buzzer_func']='\n'+
 											'void playBuzzer(int pin, String frequency, String delaytime) {\n'+

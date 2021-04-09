@@ -135,6 +135,62 @@ Blockly.Blocks.esp32_buzzer={
 	}
 };
 
+Blockly.Blocks.esp32_buzzer2={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.ESP32_BUZZER_PIN);
+		this.appendValueInput("pin")
+			.setCheck("Number");
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.ESP32_BUZZER_FREQUENCY)
+			.appendField(new Blockly.FieldDropdown([
+				["C 6 [1047]","1047"],
+				["C# 6 [1109]","1109"],
+				["D 6 [1175]","1175"],
+				["D# 6 [1245]","1245"],
+				["E 6 [1319]","1319"],
+				["F 6 [1397]","1397"],
+				["F# 6 [1480]","1480"],
+				["G 6 [1568]","1568"],
+				["G# 6 [1661]","1661"],
+				["A 6 [1760]","1760"],
+				["A# 6 [1864]","1864"],
+				["B 6 [1975]","1975"],
+				["C 7 [2093]","2093"],
+				["C# 7 [2218]","2218"],
+				["D 7 [2349]","2349"],
+				["D# 7 [2489]","2489"],
+				["E 7 [2637]","2637"],
+				["F 7 [2794]","2794"],
+				["F# 7 [2960]","2960"],
+				["G 7 [3136]","3136"],
+				["G# 7 [3322]","3322"],
+				["A 7 [3520]","3520"],
+				["A# 7 [3729]","3729"],
+				["B 7 [3951]","3951"],
+				["C 8 [4186]","4186"],
+				["C# 8 [4435]","4435"],
+				["D 8 [4699]","4699"],
+				["D# 8 [4978]","4978"],
+				["E 8 [5274]","5274"],
+				["F 8 [5588]","5588"],
+				["F# 8 [5920]","5920"],
+				["G 8 [6272]","6272"],
+				["G# 8 [6645]","6645"],
+				["A 8 [7040]","7040"],
+				["A# 8 [7459]","7459"],
+				["B 8 [7902]","7902"]
+			]),"frequency");
+		this.appendValueInput("delaytime")
+			.setCheck("String")
+			.appendField(Blockly.Msg.ESP32_BUZZER_DELAYTIME);			
+		this.setInputsInline(true);
+		this.setPreviousStatement(true,null);
+		this.setNextStatement(true,null);
+		this.setColour(260);			
+	}
+};
+
 Blockly.Blocks.esp32_buzzer1={
 	init:function(){
 		this.appendDummyInput()
