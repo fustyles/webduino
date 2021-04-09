@@ -142,10 +142,10 @@ Blockly.Blocks.esp32_buzzer1={
 		this.appendValueInput("pin")
 			.setCheck("Number");
 		this.appendValueInput("frequency")
-			.setCheck("String")
+			.setCheck(null)
 			.appendField(Blockly.Msg.ESP32_BUZZER_FREQUENCY);
 		this.appendValueInput("delaytime")
-			.setCheck("String")
+			.setCheck(null)
 			.appendField(Blockly.Msg.ESP32_BUZZER_DELAYTIME);			
 		this.setInputsInline(true);
 		this.setPreviousStatement(true,null);

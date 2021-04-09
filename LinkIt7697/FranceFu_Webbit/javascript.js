@@ -143,8 +143,12 @@ Blockly.Arduino.esp32_buzzer1 = function(){
 											'}\n'; 
 
 	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);											
-	var frequency=Blockly.Arduino.valueToCode(this,"frequency",Blockly.Arduino.ORDER_ATOMIC);
-	var delaytime=Blockly.Arduino.valueToCode(this,"delaytime",Blockly.Arduino.ORDER_ATOMIC);
+	var frequency=Blockly.Arduino.valueToCode(this,"frequency",Blockly.Arduino.ORDER_ATOMIC).replace(/{/g,"").replace(/}/g,"").replace(/", "/g,",").replace(/ /g,"");
+	if (frequency.indexOf('"')==-1)
+		frequency = '"'+frequency+'"';
+	var delaytime=Blockly.Arduino.valueToCode(this,"delaytime",Blockly.Arduino.ORDER_ATOMIC).replace(/{/g,"").replace(/}/g,"").replace(/", "/g,",").replace(/ /g,"");
+	if (delaytime.indexOf('"')==-1)
+		delaytime = '"'+delaytime+'"';	
 	var code = "playBuzzer("+pin+", "+frequency+", "+delaytime+");\n";
 	return code;
 };
