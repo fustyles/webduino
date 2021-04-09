@@ -226,7 +226,7 @@ Blockly.Arduino.esp32_mpu9250 = function(){
 Blockly.Arduino.BitMatrixLed_matrix_pin = function(){
 	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
 	var leds=Blockly.Arduino.valueToCode(this,"leds",Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_['define_webbit_matrix_variable']='String matrixString = "";\n';
+	Blockly.Arduino.definitions_['define_webbit_matrix_variable']='String matrixString = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n';
     Blockly.Arduino.definitions_['define_webbit_matrix_marquee_time']='int MatrixLed_marquee_time = 500;\n';
  	Blockly.Arduino.definitions_['define_webbit_matrix_marquee_direction']='int MatrixLed_marquee_rotate = 0;\n';
 	Blockly.Arduino.definitions_['define_webbit_matrix_NeoPixelBus']='\n'+
