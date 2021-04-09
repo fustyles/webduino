@@ -288,7 +288,7 @@ Blockly.Arduino['BitMatrixLed_matrix'] = function() {
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);
 	if (rgb.indexOf("#")!=-1)
-		rgb = rgb.replace(/#/g,"");
+		rgb = rgb.toLowerCase().replace(/#/g,"");
 	else {
 		Blockly.Arduino.definitions_['define_webbit_matrix_color_clear_poundsign']='\n'+
 											'String color_clear_poundsign(String color) {\n'+
@@ -361,7 +361,7 @@ Blockly.Arduino['BitMatrixLed_matrix_reverse'] = function(block) {
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);
 	if (rgb.indexOf("#")!=-1)
-		rgb = '"'+rgb.replace(/#/g,"")+'"';
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
 	
 	var code = 'MatrixLedReverse('+rgb+');\n';
 	return code;
@@ -434,7 +434,7 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one'] = function(block) {
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
 	if (rgb.indexOf("#")!=-1)
-		rgb = '"'+rgb.replace(/#/g,"")+'"';
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
 	
 	var code = 'MatrixLedOne((5-'+X+')*5 + ('+Y+'-1),'+rgb+');\n';
 	return code;
@@ -464,7 +464,7 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_n'] = function(block) {
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
 	if (rgb.indexOf("#")!=-1)
-		rgb = '"'+rgb.replace(/#/g,"")+'"';
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
 	
 	var code = 'MatrixLedOne(('+N+'-1),'+rgb+');\n';
 	return code;
@@ -511,10 +511,10 @@ Blockly.Arduino['BitMatrixLed_matrix_color_reverse'] = function(block) {
 											'void MatrixLedColorReverse() {\n'+
 											'  int R,G,B;\n'+											
 											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
-    										'    R = (255-HextoRGB(matrixString[i*6+0])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
-    										'    G = (255-HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
-    										'    B = (255-HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+											
-											'    strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'    R = (255-HextoRGB(matrixString[i*6+0])*16-HextoRGB(matrixString[i*6+1]));\n'+
+    										'    G = (255-HextoRGB(matrixString[i*6+2])*16-HextoRGB(matrixString[i*6+3]));\n'+
+    										'    B = (255-HextoRGB(matrixString[i*6+4])*16-HextoRGB(matrixString[i*6+5]));\n'+										
+											'    strip.SetPixelColor(i, RgbColor(int(R*matrixBrightness), int(G*matrixBrightness), int(B*matrixBrightness)));\n'+
 											'    matrixString[i*6+0] = HexReverse(R, 1);\n'+
 											'    matrixString[i*6+1] = HexReverse(R, 2);\n'+
 											'    matrixString[i*6+2] = HexReverse(G, 1);\n'+
@@ -682,7 +682,7 @@ Blockly.Arduino['BitMatrixLed_sample1'] = function(block) {
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
 	if (rgb.indexOf("#")!=-1)
-		rgb = '"'+rgb.replace(/#/g,"")+'"';	
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';	
 	var leds = this.getFieldValue('value_sample_');
 
 	var code = 'MatrixLed_sample("'+leds+'",'+rgb+');\n';
@@ -717,7 +717,7 @@ Blockly.Arduino['BitMatrixLed_sample2'] = function(block) {
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
 	if (rgb.indexOf("#")!=-1)
-		rgb = '"'+rgb.replace(/#/g,"")+'"';	
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';	
 	var leds = this.getFieldValue('value_sample_');
 
 	var code = 'MatrixLed_sample("'+leds+'",'+rgb+');\n';
@@ -752,7 +752,7 @@ Blockly.Arduino['BitMatrixLed_sample3'] = function(block) {
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
 	if (rgb.indexOf("#")!=-1)
-		rgb = '"'+rgb.replace(/#/g,"")+'"';	
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';	
 	var leds = this.getFieldValue('value_sample_');
 
 	var code = 'MatrixLed_sample("'+leds+'",'+rgb+');\n';
@@ -786,7 +786,7 @@ Blockly.Arduino['BitMatrixLed_sample4'] = function(block) {
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
 	if (rgb.indexOf("#")!=-1)
-		rgb = '"'+rgb.replace(/#/g,"")+'"';	
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';	
 	var leds = this.getFieldValue('value_sample_');
 
 	var code = 'MatrixLed_sample("'+leds+'",'+rgb+');\n';
@@ -1033,7 +1033,7 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee'] = function(block) {
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
 	if (rgb.indexOf("#")!=-1)
-		rgb = '"'+rgb.replace(/#/g,"")+'"';												
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';												
 	var value_marquee_ = Blockly.Arduino.valueToCode(block, 'value_marquee_', Blockly.Arduino.ORDER_ATOMIC);
 	var code = 'MatrixLed_marquee('+ value_marquee_ +','+rgb+');\n';
 	return code;
@@ -1100,7 +1100,7 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee_times'] = function(block) {
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
 	if (rgb.indexOf("#")!=-1)
-		rgb = '"'+rgb.replace(/#/g,"")+'"';		
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';		
 	var value_marquee_ = Blockly.Arduino.valueToCode(block, 'value_marquee_', Blockly.Arduino.ORDER_ATOMIC);
 	var value_times_ = Blockly.Arduino.valueToCode(block, 'value_times_', Blockly.Arduino.ORDER_ATOMIC);
 	var code = 'MatrixLed_marquee_times('+ value_marquee_ +','+value_times_+','+rgb+');\n';
@@ -1581,7 +1581,7 @@ Blockly.Arduino['webbit_mooncar_ws2812_color_one_n'] = function(block) {
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
 	if (rgb.indexOf("#")!=-1)
-		rgb = '"'+rgb.replace(/#/g,"")+'"';
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
 	
 	var code = 'MatrixLedOne_mooncar(('+N+'-1),'+rgb+');\n';
 	return code;
