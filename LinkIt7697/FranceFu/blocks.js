@@ -212,7 +212,7 @@ Blockly.Blocks['customcode_instruction6'] = {
 			["int","int"],
 			["long","long"],
 			["word","word"],
-			["sizeof","sizeof"],
+			["sizeof","sizeof"],		  
 			["isAlpha","isAlpha"],
 			["isAlphaNumeric","isAlphaNumeric"],
 			["isAscii","isAscii"],

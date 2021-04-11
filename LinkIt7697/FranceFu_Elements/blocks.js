@@ -4518,7 +4518,6 @@ Blockly.Blocks['custom_comment'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(0);  
   }
 };
 
