@@ -1583,7 +1583,7 @@ Blockly.Arduino.webbit_mooncar_flash_light=function(){
 Blockly.Arduino.webbit_mooncar_ws2812_pin = function(){
 	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
 	var leds=Blockly.Arduino.valueToCode(this,"leds",Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_['define_webbit_matrix_variable_mooncar']='String matrixString_mooncar = "";\n';
+	Blockly.Arduino.definitions_['define_webbit_matrix_variable_mooncar']='String matrixString_mooncar = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n';
 	Blockly.Arduino.definitions_['define_webbit_matrix_NeoPixelBus']='\n'+
 											'#include <NeoPixelBus.h>\n';
 	Blockly.Arduino.definitions_['define_webbit_matrix_mooncar']='\n'+
