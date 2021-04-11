@@ -182,11 +182,23 @@
 			</value>	
 		</block>
 		<block type="BitMatrixLed_sample4">
+		
 			<value name="RGB">
 				<block type="BitMatrixLed_color">
 				</block>
 			</value>	
 		</block>
+		<block type="BitMatrixLed_sample5">
+			<value name="sample">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>		
+			<value name="RGB">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+		</block>		
 		<block type="BitMatrixLed_matrix_texttocode">
 			<value name="value_text_">
 			</value>

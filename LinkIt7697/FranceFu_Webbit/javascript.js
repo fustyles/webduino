@@ -886,7 +886,142 @@ Blockly.Arduino['BitMatrixLed_sample4'] = function(block) {
 	return code;
 };
 
-
+Blockly.Arduino['BitMatrixLed_sample5'] = function(block) {
+	Blockly.Arduino.definitions_['define_webbit_matrix_sample']='\n'+
+											'void MatrixLed_sample(String str, String rgb) {\n'+
+											'  rgb.replace("#","");\n'+
+											'  String leds = "";\n'+
+											'  for (int i=0;i<25;i++) {\n'+										
+											'  	if (str.substring(i,i+1)=="1")\n'+
+											'  		leds += rgb;\n'+
+											'  	else\n'+
+											'  		leds += "000000";\n'+	
+											'  }\n'+
+											'  Serial.println(leds);\n'+											
+											'  matrixString = leds;\n'+
+											'  int R,G,B;\n'+
+											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
+    										'    R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
+    										'    G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
+    										'    B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+
+    										'    strip.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'  }\n'+
+    										'  strip.Show();\n'+
+											'}\n';
+	Blockly.Arduino.definitions_['define_webbit_matrix_samplecode1']='\n'+  
+											'String Sample2LedString1(String c) {\n'+
+											'  String sample = "0000000000000000000000000";\n'+
+											'  if (c=="♥") sample = "0110011110011111111001100";\n'+
+											'  if (c=="♡") sample = "0110010010010011001001100";\n'+
+											'  if (c=="↑") sample = "0010001000111110100000100";\n'+
+											'  if (c=="↓") sample = "0010000010111110001000100";\n'+
+											'  if (c=="←") sample = "0010000100101010111000100";\n'+
+											'  if (c=="→") sample = "0010001110101010010000100";\n'+
+											'  if (c=="↖") sample = "0000110010101001100011110";\n'+
+											'  if (c=="↙") sample = "1000001001001010001101111";\n'+
+											'  if (c=="↗") sample = "1111011000101001001000001";\n'+
+											'  if (c=="↘") sample = "0111100011001010100110000";\n'+
+											'  if (c=="▲") sample = "0000100111111110011100001";\n'+
+											'  if (c=="▼") sample = "1000011100111111110010000";\n'+
+											'  if (c=="◄") sample = "1111101110011100010000100";\n'+
+											'  if (c=="►") sample = "0010000100011100111011111";\n'+
+											'  if (c=="=") sample = "0000000000000100000100000";\n'+
+											'  if (c==".") sample = "0000000000000000000100000";\n'+
+											'  if (c=="?") sample = "0100010100100111000001000";\n'+
+											'  if (c=="!") sample = "0000000000111010000000000";\n'+
+											'  if (c==";") sample = "0000000000010100000100000";\n'+
+											'  if (c==":") sample = "0000000000010100000000000";\n'+
+											'  if (c=="(") sample = "0000000000100010111000000";\n'+
+											'  if (c==")") sample = "0000001110100010000000000";\n'+
+											'  if (c=="]") sample = "0000011111100010000000000";\n'+
+											'  if (c=="{") sample = "0000010001111110010000000";\n'+
+											'  if (c=="}") sample = "0000000100111111000100000";\n'+
+											'  if (c=="\\\'") sample = "0000000100110000000000000";\n'+
+											'  if (c=="\\\\") sample = "0000000100110000010011000";\n'+
+											'  if (c=="+") sample = "0000000100011100010000000";\n'+
+											'  if (c=="-") sample = "0000000100001000010000000";\n'+
+											'  if (c=="#") sample = "0101011111010101111101010";\n'+											
+											'  if (c=="0") sample = "0000011111100011111100000";\n'+
+											'  if (c=="1") sample = "0000000001111110100100000";\n'+
+											'  if (c=="2") sample = "0000011101101011011100000";\n'+
+											'  if (c=="3") sample = "0000011111101011010100000";\n'+
+											'  if (c=="4") sample = "0000011111001001110000000";\n'+
+											'  if (c=="5") sample = "0000010111101011110100000";\n'+
+											'  if (c=="6") sample = "0000010111101011111100000";\n'+
+											'  if (c=="7") sample = "0000011111100001100000000";\n'+
+											'  if (c=="8") sample = "0000011111101011111100000";\n'+
+											'  if (c=="9") sample = "0000011111101011110100000";\n'+
+											'  if (c=="A") sample = "0111110010100101001001111";\n'+
+											'  if (c=="B") sample = "0101010101101011010111111";\n'+
+											'  if (c=="C") sample = "1000110001100011000101110";\n'+
+											'  if (c=="D") sample = "0111010001100011000111111";\n'+
+											'  if (c=="E") sample = "1010110101101011010111111";\n'+
+											'  if (c=="F") sample = "1010010100101001010011111";\n'+
+											'  if (c=="G") sample = "1011110101101011000101110";\n'+
+											'  if (c=="H") sample = "1111100100001000010011111";\n'+
+											'  if (c=="I") sample = "1000110001111111000110001";\n'+
+											'  if (c=="J") sample = "1000010000111111000110011";\n'+
+											'  if (c=="K") sample = "1000101010001000001011111";\n'+
+											'  if (c=="L") sample = "0000100001000010000111111";\n'+
+											'  if (c=="M") sample = "1111101000001000100011111";\n'+
+											'  if (c=="N") sample = "1111100010001000100011111";\n'+
+											'  if (c=="O") sample = "0111010001100011000101110";\n'+
+											'  if (c=="P") sample = "0110010010100101001011111";\n'+
+											'  if (c=="Q") sample = "0110110010101011000101110";\n'+
+											'  if (c=="R") sample = "0101110100101001010011111";\n'+
+											'  if (c=="S") sample = "1001010101101011010101001";\n'+
+											'  if (c=="T") sample = "1000010000111111000010000";\n'+
+											'  if (c=="U") sample = "1111000001000010000111110";\n'+
+											'  if (c=="V") sample = "1110000010000010001011100";\n'+
+											'  if (c=="W") sample = "1111000001111100000111110";\n'+
+											'  if (c=="X") sample = "1000101010001000101010001";\n'+
+											'  if (c=="Y") sample = "1000001000001110100010000";\n'+
+											'  if (c=="Z") sample = "1000111001101011001110001";\n'+
+											'  if (c=="a") sample = "0000100110010010011000000";\n'+
+											'  if (c=="b") sample = "0000000010001011111100000";\n'+
+											'  if (c=="c") sample = "0000001001010010011000000";\n'+
+											'  if (c=="d") sample = "0000011111001010001000000";\n'+
+											'  if (c=="e") sample = "0000000101010110011000000";\n'+
+											'  if (c=="f") sample = "0000010100111110010000000";\n'+
+											'  if (c=="g") sample = "0000000110010110010100000";\n'+
+											'  if (c=="h") sample = "0000000011001001111100000";\n'+
+											'  if (c=="i") sample = "0000000000101110000000000";\n'+
+											'  if (c=="j") sample = "0000000000101110000100000";\n'+
+											'  if (c=="k") sample = "0000000101000101111100000";\n'+
+											'  if (c=="l") sample = "0000000000111110000000000";\n'+
+											'  if (c=="m") sample = "0001100100000110010000111";\n'+
+											'  if (c=="n") sample = "0000000011001000011100000";\n'+
+											'  if (c=="o") sample = "0000000010001010001000000";\n'+
+											'  if (c=="p") sample = "0000000100010100111100000";\n'+
+											'  if (c=="q") sample = "0000001111010100010000000";\n'+
+											'  if (c=="r") sample = "0000000100000100011100000";\n'+
+											'  if (c=="s") sample = "0000010010101010100100000";\n'+
+											'  if (c=="t") sample = "0000000101011110010000000";\n'+
+											'  if (c=="u") sample = "0000100110000010011000000";\n'+
+											'  if (c=="v") sample = "0000000110000010011000000";\n'+
+											'  if (c=="w") sample = "0011000001001100000100110";\n'+
+											'  if (c=="x") sample = "0000000101000100010100000";\n'+
+											'  if (c=="y") sample = "0000000100000100010100000";\n'+
+											'  if (c=="z") sample = "0000001000011010101100001";\n'+
+											'  return sample;\n'+											
+											'}\n'; 									
+	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
+	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);
+	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);	
+	if (rgb.indexOf("#")!=-1)
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';	
+	var sample = Blockly.Arduino.valueToCode(this,"sample",Blockly.Arduino.ORDER_ATOMIC);
+	if ((sample.indexOf("'")==0)&&(sample.lastIndexOf("'")==sample.length-1))
+		sample = '"'+sample.substring(1,sample.length-1).substring(0, 1)+'"';
+	else if ((sample.indexOf('"')==0)&&(sample.lastIndexOf('"')==sample.length-1))
+		sample = '"'+sample.substring(1,sample.length-1).substring(0, 1)+'"';
+	else
+		sample = sample+'.substring(0,1)';
+	var code = 'MatrixLed_sample(Sample2LedString1(String('+sample+')),'+rgb+');\n';
+	return code;
+};
 
 Blockly.Arduino['BitMatrixLed_color'] = function(block) {
 	var rgb = '"'+this.getFieldValue("RGB")+'"';
@@ -1583,7 +1718,7 @@ Blockly.Arduino.webbit_mooncar_flash_light=function(){
 Blockly.Arduino.webbit_mooncar_ws2812_pin = function(){
 	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
 	var leds=Blockly.Arduino.valueToCode(this,"leds",Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_['define_webbit_matrix_variable_mooncar']='String matrixString_mooncar = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n';
+	Blockly.Arduino.definitions_['define_webbit_matrix_variable_mooncar']='String matrixString_mooncar = "000000000000000000000000000000000000000000000000";\n';
 	Blockly.Arduino.definitions_['define_webbit_matrix_NeoPixelBus']='\n'+
 											'#include <NeoPixelBus.h>\n';
 	Blockly.Arduino.definitions_['define_webbit_matrix_mooncar']='\n'+

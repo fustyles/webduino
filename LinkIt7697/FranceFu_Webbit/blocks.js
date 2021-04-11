@@ -731,6 +731,23 @@ Blockly.Blocks['BitMatrixLed_sample4'] = {
   }
 };
 
+Blockly.Blocks['BitMatrixLed_sample5'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_SAMPLE);
+	this.appendValueInput("sample")
+		.setCheck(null); 
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.ESP32_MATRIX_CHOICECOLOR);		
+	this.appendValueInput("RGB")
+		.setCheck("String");
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(300);	
+  }
+};
+
 Blockly.Blocks['BitMatrixLed_matrix_color_one'] = {
   init: function() {
     this.appendDummyInput()
