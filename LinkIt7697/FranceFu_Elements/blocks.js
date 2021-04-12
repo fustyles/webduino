@@ -4552,3 +4552,13 @@ Blockly.Blocks['choice_color'] = {
   this.setColour(110);  
   }
 };
+
+Blockly.Blocks['text_br'] = {
+  init: function() {	
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_BR_SHOW);
+  this.setInputsInline(true);
+  this.setOutput(true, null);
+  this.setColour(110);  
+  }
+};

@@ -455,3 +455,4 @@ Blockly.Msg.VIDEO_BASE64_FILENAME = "檔案名稱";
 Blockly.Msg.VIDEO_BASE64_SCRIPTURL = "Script網址";
 Blockly.Msg.SERVERMODULE_JAVASCRIPT_SHOW = "網頁元素(Javascript)區塊";
 Blockly.Msg.VARIABLE_NAME = "變數";
+Blockly.Msg.SERVERMODULE_BR_SHOW = "換行";

@@ -1882,3 +1882,8 @@ Blockly.Arduino['choice_color'] = function(block) {
 	var rgb = "'"+this.getFieldValue("RGB")+"'";
 	return[rgb, Blockly.Arduino.ORDER_ATOMIC];
 };
+
+Blockly.Arduino['text_br'] = function (block) {
+  var code = '"<br>"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};

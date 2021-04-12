@@ -6,6 +6,8 @@
 		</statement>
 	</block>
     <block type="choice_color">
+    </block>
+    <block type="text_br">
     </block>	
 	<block type="custom_comment">
 	<value name="text">

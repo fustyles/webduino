@@ -455,3 +455,4 @@ Blockly.Msg.VIDEO_BASE64_SCRIPTURL = "Script URL";
 Blockly.Msg.VIDEO_BASE64_FOLDERNAME = "Folder Name";
 Blockly.Msg.SERVERMODULE_JAVASCRIPT_SHOW = "Page Elements(Javascript) Block";
 Blockly.Msg.VARIABLE_NAME = "Variable";
+Blockly.Msg.SERVERMODULE_BR_SHOW = "New Line";
