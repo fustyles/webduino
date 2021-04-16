@@ -377,6 +377,16 @@ Blockly.Blocks['linenotify_esp32_no'] = {
   }
 };
 
+Blockly.Blocks['linenotify_esp32_br'] = {
+  init: function() {
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg.ESP32_LINE_BR_SHOW);
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(20);
+  }
+};
+
 Blockly.Blocks['close_powerdog'] = {
   init: function() {
 	this.appendDummyInput() 

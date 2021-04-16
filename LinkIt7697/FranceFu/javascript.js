@@ -367,7 +367,6 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
-
 Blockly.Arduino['linenotify_esp32_no'] = function (block) {
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
@@ -434,6 +433,11 @@ Blockly.Arduino['linenotify_esp32_no'] = function (block) {
   return code;
 };
 
+Blockly.Arduino['linenotify_esp32_br'] = function (block) {
+  var code = '"\\n"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['close_powerdog'] = function(block) { 
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
@@ -450,7 +454,20 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>";
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = "'+ssid+'";';
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = "'+pass+'";';
-  var code = "while (WiFi.begin(_lwifi_ssid, _lwifi_pass) != WL_CONNECTED) { delay(1000); }\n";
+  var code = 'pinMode(2, OUTPUT);\n'+
+			 'while (WiFi.begin(_lwifi_ssid, _lwifi_pass) != WL_CONNECTED){\n'+
+			 '  digitalWrite(2,HIGH);\n'+
+			 '  delay(100);\n'+
+			 '  digitalWrite(2,LOW);\n'+
+			 '  delay(900);\n'+
+			 '}\n'+
+			 'pinMode(2, OUTPUT);\n'+
+			 'for (int i=0;i<5;i++) {\n'+
+			 '  digitalWrite(2,HIGH);\n'+
+			 '  delay(100);\n'+
+			 '  digitalWrite(2,LOW);\n'+
+			 '  delay(100);\n'+
+			 '}\n';
   return code; 
 };
 

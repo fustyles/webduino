@@ -561,6 +561,8 @@
 		</value>   
 		<value name="linenotify_msg"> 
 		</value>
+	  </block>
+	  <block type="linenotify_esp32_br">
 	  </block>	  
   </category>	
     <category id="france8" name="thingspeak">
