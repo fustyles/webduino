@@ -241,13 +241,10 @@ Blockly.Blocks['customcode_instruction6'] = {
 
 Blockly.Blocks['linenotify_text'] = {
   init: function() {
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)	  
-        .appendField(Blockly.Msg.ESP32_LINE_TEXT_SHOW);
     this.appendValueInput("value_text")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("text","text");
+        .appendField(Blockly.Msg.ESP32_LINE_MESSAGE_SHOW);
     this.setOutput(true, null);  
     this.setColour(50);
   }
@@ -255,21 +252,18 @@ Blockly.Blocks['linenotify_text'] = {
 
 Blockly.Blocks['linenotify_sticker'] = {
   init: function() {
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)	  
-        .appendField(Blockly.Msg.ESP32_LINE_STICKER_SHOW);
     this.appendValueInput("value_text")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("text","text");
+        .appendField(Blockly.Msg.ESP32_LINE_MESSAGE_SHOW);
     this.appendValueInput("value_packageId")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("packageId","packageId");
+        .appendField(Blockly.Msg.ESP32_LINE_PACKAGEID_SHOW);
     this.appendValueInput("value_stickerId")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("stickerId","stickerId");
+        .appendField(Blockly.Msg.ESP32_LINE_STICKERID_SHOW);
     this.setOutput(true, null);  
     this.setColour(50);
   }
@@ -277,21 +271,18 @@ Blockly.Blocks['linenotify_sticker'] = {
 
 Blockly.Blocks['linenotify_image'] = {
   init: function() {
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)	  
-        .appendField(Blockly.Msg.ESP32_LINE_IMAGE_SHOW);
     this.appendValueInput("value_text")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("text","text");
+        .appendField(Blockly.Msg.ESP32_LINE_MESSAGE_SHOW);
     this.appendValueInput("value_originalContentUrl")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("originalContentUrl","originalContentUrl");
+        .appendField(Blockly.Msg.ESP32_LINE_ORIGINALCONTENTURL_SHOW);
     this.appendValueInput("value_previewImageUrl")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("previewImageUrl","previewImageUrl");
+        .appendField(Blockly.Msg.ESP32_LINE_PREVIEWIMAGEURL_SHOW);
     this.setOutput(true, null);  
     this.setColour(50);
   }
@@ -350,11 +341,11 @@ Blockly.Blocks['linenotify_esp32'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.FRANCE5_HEAD_LINE_SHOW)
-      .appendField("Token");  
+      .appendField(Blockly.Msg.ESP32_LINE_TOKEN_SHOW);  
   this.appendValueInput("linenotify_msg")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Message");
+      .appendField(Blockly.Msg.ESP32_LINE_NOTIFY_SHOW);
     this.setOutput(true, null);  
     this.setColour(200);
   }
@@ -366,11 +357,11 @@ Blockly.Blocks['linenotify_esp32_no'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.FRANCE5_HEAD_LINE_SHOW)
-      .appendField("Token");  
+      .appendField(Blockly.Msg.ESP32_LINE_TOKEN_SHOW);  
   this.appendValueInput("linenotify_msg")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Message");
+      .appendField(Blockly.Msg.ESP32_LINE_NOTIFY_SHOW);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(200);
