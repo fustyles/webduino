@@ -70,3 +70,4 @@ Blockly.Msg.ESP32_LCD1602_STR_SHOW = "String";
 Blockly.Msg.ESP32_LINE_TEXT_SHOW = "Text";
 Blockly.Msg.ESP32_LINE_STICKER_SHOW = "Sticker";
 Blockly.Msg.ESP32_LINE_IMAGE_SHOW = "Image";
+Blockly.Msg.ESP32_LINE_BR_SHOW = "New Line";
