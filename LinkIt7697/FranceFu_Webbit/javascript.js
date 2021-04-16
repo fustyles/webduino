@@ -896,8 +896,7 @@ Blockly.Arduino['BitMatrixLed_sample5'] = function(block) {
 											'  		leds += rgb;\n'+
 											'  	else\n'+
 											'  		leds += "000000";\n'+	
-											'  }\n'+
-											'  Serial.println(leds);\n'+											
+											'  }\n'+											
 											'  matrixString = leds;\n'+
 											'  int R,G,B;\n'+
 											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
