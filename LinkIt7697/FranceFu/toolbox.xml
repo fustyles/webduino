@@ -488,8 +488,7 @@
 	  <block type="linenotify_esp32_no">
 		<value name="linenotify_token">
 		  <block type="text">
-			<field name="TEXT">			
-			</field>
+			<field name="TEXT"></field>
 		  </block>		
 		</value>   
 		<value name="linenotify_msg">
@@ -505,8 +504,7 @@
 	  <block type="linenotify_esp32_no">
 		<value name="linenotify_token">
 		  <block type="text">
-			<field name="TEXT">		
-			</field>
+			<field name="TEXT"></field>
 		  </block>
 		</value>   
 		<value name="linenotify_msg">
@@ -532,8 +530,7 @@
 	  <block type="linenotify_esp32_no">
 		<value name="linenotify_token">
 		  <block type="text">
-			<field name="TEXT">
-			</field>
+			<field name="TEXT"></field>
 		  </block>
 		</value>   
 		<value name="linenotify_msg">
