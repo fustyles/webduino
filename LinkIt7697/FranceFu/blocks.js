@@ -360,6 +360,23 @@ Blockly.Blocks['linenotify_esp32'] = {
   }
 };
 
+Blockly.Blocks['linenotify_esp32_no'] = {
+  init: function() {
+  this.appendValueInput("linenotify_token")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FRANCE5_HEAD_LINE_SHOW)
+      .appendField("Token");  
+  this.appendValueInput("linenotify_msg")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Message");
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
 Blockly.Blocks['close_powerdog'] = {
   init: function() {
 	this.appendDummyInput() 
