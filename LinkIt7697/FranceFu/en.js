@@ -30,6 +30,8 @@ Blockly.Msg.SERVERMODULE_LOOP_SHOW = "loop";
 Blockly.Msg.ESP32_SERVERMODULE_SHOW = "ESP32 connect to Wi-Fi AP  ";
 Blockly.Msg.ESP32_DIGITALWRITE_SHOW = "ESP32 digitalWrite Pin";
 Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW = "value";
+Blockly.Msg.ESP32_DIGITALWRITE_HIGH_SHOW = "HIGH";
+Blockly.Msg.ESP32_DIGITALWRITE_LOW_SHOW = "LOW";
 Blockly.Msg.SERVERMODULE_CMD_SHOW = "cmd == ";
 Blockly.Msg.SERVERMODULE_FEEDBACK_SHOW = "Feedback = ";
 Blockly.Msg.SERVERMODULE_EXECUTE_SHOW = "Custom Command Region";

@@ -595,8 +595,8 @@ Blockly.Blocks['esp32_digitalwrite'] = {
 	  .appendField(Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW);
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
-		["HIGH","HIGH"],
-		["LOW","LOW"]	  
+		[Blockly.Msg.ESP32_DIGITALWRITE_HIGH_SHOW,"HIGH"],
+		[Blockly.Msg.ESP32_DIGITALWRITE_LOW_SHOW,"LOW"]	  
 		]), "val"); 
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
