@@ -495,7 +495,7 @@
 			  <block type="linenotify_text">
 				<value name="value_text">
 				  <block type="text">
-					<field name="TEXT">\nHello World</field>
+					<field name="TEXT">Hello World</field>
 				  </block>
 				</value>  
 			  </block>		
@@ -511,7 +511,7 @@
 			  <block type="linenotify_sticker">
 				<value name="value_text">
 				  <block type="text">
-					<field name="TEXT">\nHello World</field>
+					<field name="TEXT">Hello World</field>
 				  </block>
 				</value>  
 				<value name="value_packageId">
@@ -537,7 +537,7 @@
 			  <block type="linenotify_image">
 				<value name="value_text">
 				  <block type="text">
-					<field name="TEXT">\nHello World</field>
+					<field name="TEXT">Hello World</field>
 				  </block>
 				</value>  
 				<value name="value_originalContentUrl">
