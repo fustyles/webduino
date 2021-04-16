@@ -610,6 +610,20 @@
 					</block>
 			</value>		
 		</block>
+		<block type="webbit_mooncar_move1_car">
+			<value name="SPEED">
+				<block type="math_number">
+					<field name="NUM">255</field>
+					</block>
+			</value>
+			<value name="RATIO">
+				<block type="math_number">
+					<field name="NUM">0.8</field>
+					</block>
+			</value>		
+		</block>
+		<block type="webbit_mooncar_stop_car">		
+		</block>		
 		<block type="webbit_mooncar_tracker_pin">
 			<value name="PINR">
 				<block type="math_number">

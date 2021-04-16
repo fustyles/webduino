@@ -1138,7 +1138,7 @@ Blockly.Blocks.webbit_mooncar_pin={init:function(){
 Blockly.Blocks.webbit_mooncar_move_car={init:function(){
   this.appendDummyInput()
       .appendField(Blockly.Msg.FRANCEFU_MOVE_CAR)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FRANCEFU_FORWARD,"FORWARD"],[Blockly.Msg.FRANCEFU_BACKWARD,"BACKWARD"],[Blockly.Msg.FRANCEFU_TURNLEFT,"LEFT"],[Blockly.Msg.FRANCEFU_TURNRIGHT,"RIGHT"],[Blockly.Msg.FRANCEFU_STOP,"STOP"]]),"STAT");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FRANCEFU_FORWARD,"FORWARD"],[Blockly.Msg.FRANCEFU_BACKWARD,"BACKWARD"],[Blockly.Msg.FRANCEFU_TURNLEFT,"LEFT"],[Blockly.Msg.FRANCEFU_TURNRIGHT,"RIGHT"]]),"STAT");
   this.appendDummyInput()
       .appendField(Blockly.Msg.FRANCEFU_MOVE_MOTOR_R);
   this.appendValueInput("RSPEED")
@@ -1151,6 +1151,33 @@ Blockly.Blocks.webbit_mooncar_move_car={init:function(){
   this.setPreviousStatement(!0,null);
   this.setNextStatement(!0,null);
   this.setColour(90);  
+}
+};
+Blockly.Blocks.webbit_mooncar_move1_car={init:function(){
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.FRANCEFU_MOVE_CAR)
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FRANCEFU_LEFTFRONT,"LEFTFRONT"],[Blockly.Msg.FRANCEFU_RIGHTFRONT,"RIGHTFRONT"],[Blockly.Msg.FRANCEFU_LEFTREAR,"LEFTREAR"],[Blockly.Msg.FRANCEFU_RIGHTREAR,"RIGHTREAR"]]),"STAT");
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.FRANCEFU_MOVE_SPEED);
+  this.appendValueInput("SPEED")
+      .setCheck("Number");
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.FRANCEFU_MOVE_MOTOR_RATIO);
+  this.appendValueInput("RATIO")
+      .setCheck("Number");
+  this.setInputsInline(!0);
+  this.setPreviousStatement(!0,null);
+  this.setNextStatement(!0,null);
+  this.setColour(90);
+}
+};
+Blockly.Blocks.webbit_mooncar_stop_car={init:function(){
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.FRANCEFU_MOVE_CAR + " " +Blockly.Msg.FRANCEFU_STOP);
+  this.setInputsInline(!0);
+  this.setPreviousStatement(!0,null);
+  this.setNextStatement(!0,null);
+  this.setColour(90);
 }
 };
 Blockly.Blocks.webbit_mooncar_tracker_pin={init:function(){

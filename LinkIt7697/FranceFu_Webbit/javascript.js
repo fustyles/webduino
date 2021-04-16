@@ -1617,6 +1617,40 @@ Blockly.Arduino.webbit_mooncar_move_car=function(){
     return code;
   }
 };
+Blockly.Arduino.webbit_mooncar_move1_car=function(){
+  var a=this.getFieldValue("STAT");
+  var speed=Blockly.Arduino.valueToCode(this,"SPEED",Blockly.Arduino.ORDER_ATOMIC);
+  var ratio=Blockly.Arduino.valueToCode(this,"RATIO",Blockly.Arduino.ORDER_ATOMIC);  
+  Blockly.Arduino.setups_['analogwrite_12'] = 'ledcAttachPin(pin_r1, 5);\n  ledcSetup(5, 5000, 8);\n';
+  Blockly.Arduino.setups_['analogwrite_18'] = 'ledcAttachPin(pin_r2, 6);\n  ledcSetup(6, 5000, 8);\n';
+  Blockly.Arduino.setups_['analogwrite_16'] = 'ledcAttachPin(pin_l1, 7);\n  ledcSetup(7, 5000, 8);\n';
+  Blockly.Arduino.setups_['analogwrite_19'] = 'ledcAttachPin(pin_l2, 8);\n  ledcSetup(8, 5000, 8);\n';
+  Blockly.Arduino.definitions_['mooncar_motor'] ='\n'+
+											'void mooncar_motor(int r1,int r2,int l1,int l2) {\n'+
+											'  ledcWrite(5, r1);\n  ledcWrite(6, r2);\n  ledcWrite(7, l1);\n  ledcWrite(8, l2);\n'+
+											'}\n';
+											
+  if (a == "LEFTFRONT") {
+	var code = 'mooncar_motor('+speed+', 0, int('+speed+'*'+ratio+'), 0);\n';	  
+    return code;
+  } else if (a == "RIGHTFRONT") {
+	var code = 'mooncar_motor(int('+speed+'*'+ratio+'), 0, '+speed+', 0);\n';
+    return code;
+  } else if (a == "LEFTREAR") {
+	var code = 'mooncar_motor(0, '+speed+', 0, int('+speed+'*'+ratio+'));\n';	  
+    return code;
+  } else if (a == "RIGHTREAR") {
+	var code = 'mooncar_motor(0, int('+speed+'*'+ratio+'), 0, '+speed+');\n';
+    return code;
+  } else {
+	var code = 'mooncar_motor(0, 0, 0, 0);\n';
+    return code;
+  }
+};
+Blockly.Arduino.webbit_mooncar_stop_car=function(){
+  var code = 'mooncar_motor(0, 0, 0, 0);\n';
+  return code;
+};
 Blockly.Arduino.webbit_mooncar_tracker_pin=function(){
   var r=Blockly.Arduino.valueToCode(this,"PINR",Blockly.Arduino.ORDER_ATOMIC);
   var l=Blockly.Arduino.valueToCode(this,"PINL",Blockly.Arduino.ORDER_ATOMIC);	
