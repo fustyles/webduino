@@ -130,5 +130,5 @@ Blockly.Msg.FRANCEFU_WS2812_COLOR_SHOW = "WS2812 ";
 Blockly.Msg.FRANCEFU_WS2812_PIN = "WS2812 Set Pins ";
 Blockly.Msg.FRANCEFU_WS2812_LEDS = "Leds";
 Blockly.Msg.FRANCEFU_WS2812_LEDS_N = "Number[1~8]";
-Blockly.Msg.FRANCEFU_WS2812_BRIGHTNESS = "WS2812 Set Brightness (0~1)";
+Blockly.Msg.FRANCEFU_WS2812_BRIGHTNESS = "WS2812 Set Brightness (0~255)";
 Blockly.Msg.FRANCEFU_WS2812_CLEAR = "WS2812 Clear Leds";

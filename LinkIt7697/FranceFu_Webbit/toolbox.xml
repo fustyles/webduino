@@ -699,7 +699,7 @@
 		<block type="webbit_mooncar_ws2812_brightness">
 			<value name="brightness">
 				<block type="math_number">
-					<field name="NUM">0.5</field>
+					<field name="NUM">30</field>
 				</block>		
 			</value>
 		</block>	

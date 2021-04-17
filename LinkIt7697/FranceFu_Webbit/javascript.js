@@ -324,16 +324,23 @@ Blockly.Arduino.BitMatrixLed_matrix_pin = function(){
  	Blockly.Arduino.definitions_['define_webbit_matrix_marquee_direction']='int MatrixLed_marquee_rotate = 0;\n';
 	Blockly.Arduino.definitions_['define_webbit_matrix_NeoPixelBus']='\n'+
 											'#include <NeoPixelBus.h>\n';
-	Blockly.Arduino.definitions_['define_webbit_matrix']='\n'+
-											'NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> strip('+leds+', '+pin+');\n'+											
-											'float matrixBrightness = 0.5;\n'+
-											'String strTemp_ = "";\n';	
+	if (!Blockly.Arduino.definitions_['define_webbit_matrix']) {											
+		Blockly.Arduino.definitions_['define_webbit_matrix']='\n'+
+												'NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> strip = {'+leds+', '+pin+'};\n';	
+	} else {
+		var tmp = Blockly.Arduino.definitions_['define_webbit_matrix'];
+		Blockly.Arduino.definitions_['define_webbit_matrix']= tmp.replace("{0, 0}","{"+leds+", "+pin+"}");
+	}
+	Blockly.Arduino.definitions_['define_webbit_matrix_NeoPixelBus matrixBrightness']='\n'+
+													'float matrixBrightness = 0.5;\n';
+	Blockly.Arduino.definitions_['define_webbit_matrix_NeoPixelBus_strTemp']='\n'+												
+													'String strTemp_ = "";\n';	
 	Blockly.Arduino.definitions_['define_webbit_matrix_HextoRGB']='\n'+
 											'int HextoRGB(char val) {\n'+
 											'  String hex ="0123456789abcdef";\n'+
 											'  return hex.indexOf(val);\n'+
 											'}\n'; 												
-	Blockly.Arduino.setups_["setup_webbit_matrix"]="strip.Begin();\n  delay(1000);\n";
+	Blockly.Arduino.setups_["setup_webbit_matrix"]='strip.Begin();  strip.Show();\n';
 
 	var code = '';
 	return code;
@@ -1754,18 +1761,18 @@ Blockly.Arduino.webbit_mooncar_ws2812_pin = function(){
 	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
 	var leds=Blockly.Arduino.valueToCode(this,"leds",Blockly.Arduino.ORDER_ATOMIC);
 	Blockly.Arduino.definitions_['define_webbit_matrix_variable_mooncar']='String matrixString_mooncar = "000000000000000000000000000000000000000000000000";\n';
-	Blockly.Arduino.definitions_['define_webbit_matrix_NeoPixelBus']='\n'+
-											'#include <NeoPixelBus.h>\n';
+	Blockly.Arduino.definitions_['define_webbit_matrix_NeoPixel_mooncar']='\n'+
+											'#include <Adafruit_NeoPixel.h>\n';
 	Blockly.Arduino.definitions_['define_webbit_matrix_mooncar']='\n'+
-											'NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> strip_mooncar('+leds+', '+pin+');\n'+
-											'float matrixBrightness_mooncar = 0.5;\n'+
-											'String strTemp_mooncar = "";\n';	
+												'Adafruit_NeoPixel pixels = Adafruit_NeoPixel('+leds+', '+pin+', NEO_GRB + NEO_KHZ800);\n';	
+	Blockly.Arduino.definitions_['define_webbit_matrix_NeoPixelBus_strTemp_mooncar']='\n'+												
+													'String strTemp_mooncar = "";\n';
 	Blockly.Arduino.definitions_['define_webbit_matrix_HextoRGB']='\n'+
 											'int HextoRGB(char val) {\n'+
 											'  String hex ="0123456789abcdef";\n'+
 											'  return hex.indexOf(val);\n'+
 											'}\n'; 												
-	Blockly.Arduino.setups_["setup_webbit_matrix_mooncar"]="strip_mooncar.Begin();\n";
+	Blockly.Arduino.setups_["setup_webbit_matrix_mooncar"]='pixels.begin();\n  pixels.show();\n';
 
 	var code = '';
 	return code;
@@ -1774,7 +1781,7 @@ Blockly.Arduino.webbit_mooncar_ws2812_pin = function(){
 Blockly.Arduino.webbit_mooncar_ws2812_brightness = function(){
 	var brightness=Blockly.Arduino.valueToCode(this,"brightness",Blockly.Arduino.ORDER_ATOMIC);
 
-	var code = 'matrixBrightness_mooncar = '+brightness+';\n';
+	var code = 'pixels.setBrightness('+brightness+');\n';
 	return code;
 };
 
@@ -1784,12 +1791,12 @@ Blockly.Arduino.webbit_mooncar_ws2812_clear = function(){
 											'  matrixString_mooncar = color;\n'+
 											'  int R,G,B;\n'+
 											'  for (int i=0;i<color.length()/6;i++) {\n'+
-    										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]))*matrixBrightness_mooncar;\n'+
-    										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]))*matrixBrightness_mooncar;\n'+
-    										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]))*matrixBrightness_mooncar;\n'+
-    										'    strip_mooncar.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]));\n'+
+    										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]));\n'+
+    										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]));\n'+
+    										'    pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
     										'  }\n'+
-    										'  strip_mooncar.Show();\n'+
+    										'  pixels.show();\n'+
 											'}\n';	
 	var code = 'MatrixLed_mooncar("000000000000000000000000000000000000000000000000");\n';
 	return code;
@@ -1801,12 +1808,12 @@ Blockly.Arduino['webbit_mooncar_ws2812_color'] = function() {
 											'  matrixString_mooncar = color;\n'+
 											'  int R,G,B;\n'+
 											'  for (int i=0;i<color.length()/6;i++) {\n'+
-    										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]))*matrixBrightness_mooncar;\n'+
-    										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]))*matrixBrightness_mooncar;\n'+
-    										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]))*matrixBrightness_mooncar;\n'+
-    										'    strip_mooncar.SetPixelColor(i, RgbColor(R, G, B));\n'+
+    										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]));\n'+
+    										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]));\n'+
+    										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]));\n'+
+    										'    pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
     										'  }\n'+
-    										'  strip_mooncar.Show();\n'+
+    										'  pixels.show();\n'+
 											'}\n';		
 	var L02 = this.getFieldValue('L02').replace(/#/g,"");
 	var L04 = this.getFieldValue('L04').replace(/#/g,"");
@@ -1831,11 +1838,11 @@ Blockly.Arduino['webbit_mooncar_ws2812_color_one_n'] = function(block) {
 											'  matrixString_mooncar[i*6+4] = color[4];\n'+
 											'  matrixString_mooncar[i*6+5] = color[5];\n'+
 											'  int R,G,B;\n'+
-    										'  R = (HextoRGB(color[0])*16+HextoRGB(color[1]))*matrixBrightness_mooncar;\n'+
-    										'  G = (HextoRGB(color[2])*16+HextoRGB(color[3]))*matrixBrightness_mooncar;\n'+
-    										'  B = (HextoRGB(color[4])*16+HextoRGB(color[5]))*matrixBrightness_mooncar;\n'+
-    										'  strip_mooncar.SetPixelColor(i, RgbColor(R, G, B));\n'+
-    										'  strip_mooncar.Show();\n'+
+    										'  R = (HextoRGB(color[0])*16+HextoRGB(color[1]));\n'+
+    										'  G = (HextoRGB(color[2])*16+HextoRGB(color[3]));\n'+
+    										'  B = (HextoRGB(color[4])*16+HextoRGB(color[5]));\n'+
+    										'  pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+    										'  pixels.show();\n'+
 											'}\n';
 	var N=Blockly.Arduino.valueToCode(this,"N",Blockly.Arduino.ORDER_ATOMIC);
 	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
@@ -1861,11 +1868,11 @@ Blockly.Arduino['webbit_mooncar_ws2812_rgb_one_n'] = function(block) {
 											'  matrixString_mooncar[i*6+4] = color[4];\n'+
 											'  matrixString_mooncar[i*6+5] = color[5];\n'+
 											'  int R,G,B;\n'+
-    										'  R = (HextoRGB(color[0])*16+HextoRGB(color[1]))*matrixBrightness_mooncar;\n'+
-    										'  G = (HextoRGB(color[2])*16+HextoRGB(color[3]))*matrixBrightness_mooncar;\n'+
-    										'  B = (HextoRGB(color[4])*16+HextoRGB(color[5]))*matrixBrightness_mooncar;\n'+
-    										'  strip_mooncar.SetPixelColor(i, RgbColor(R, G, B));\n'+
-    										'  strip_mooncar.Show();\n'+
+    										'  R = (HextoRGB(color[0])*16+HextoRGB(color[1]));\n'+
+    										'  G = (HextoRGB(color[2])*16+HextoRGB(color[3]));\n'+
+    										'  B = (HextoRGB(color[4])*16+HextoRGB(color[5]));\n'+
+    										'  pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+    										'  pixels.show();\n'+
 											'}\n';	
 	Blockly.Arduino.definitions_['define_webbit_matrix_hexReverse_s']='\n'+	
 											'String HexReverse_s(int val, int pos) {\n'+
