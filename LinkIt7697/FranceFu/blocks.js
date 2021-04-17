@@ -819,6 +819,24 @@ Blockly.Blocks['servermodule_parameter_set_address'] = {
   }
 };
 
+Blockly.Blocks['servermodule_parameter_set_address1'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_ADDRESS_SHOW);
+    this.appendValueInput("cmd")
+        .setCheck(null);   
+    this.appendValueInput("P1")
+        .appendField("=")	
+        .setCheck(null); 
+    this.appendValueInput("P2")
+        .appendField(";")	
+        .setCheck(null);		
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);
+  }
+};
+
 Blockly.Blocks['esp32_pinmode'] = {
   init: function() {
 	this.appendDummyInput()

@@ -483,6 +483,23 @@
 		  </block>
 		</value>
 	  </block>
+	  <block type="servermodule_parameter_set_address1">
+		<value name="cmd">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="P1">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="P2">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>		
+	  </block>	  	  
 	  <block type="servermodule_parameter_set_address">
 		<value name="cmd">
 		  <block type="text">
