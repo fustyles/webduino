@@ -434,22 +434,16 @@
 		  </block>
 		</statement>
 		<statement name="setup">
-		  <block type="variables_set">
-			<field name="TYPE">String</field>
-			<field name="VAR">item</field>
-			<value name="VALUE">
-			  <block type="linenotify_esp32">
-				<value name="linenotify_token">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="linenotify_msg">
-				  <block type="linenotify_text">
-					<value name="value_text">
-					  <block type="linkit_wifi_ip_address"></block>
-					</value>
-				  </block>
+		  <block type="linenotify_esp32_no">
+			<value name="linenotify_token">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>
+			<value name="linenotify_msg">
+			  <block type="linenotify_text">
+				<value name="value_text">
+				  <block type="linkit_wifi_ip_address"></block>
 				</value>
 			  </block>
 			</value>
@@ -621,7 +615,7 @@
 				</value>  
 			  </block> 	
 		</value>
-	  </block>		
+	  </block>	  
 	  <block type="linenotify_esp32">
 		<value name="linenotify_token">
 		  <block type="text">
@@ -633,7 +627,7 @@
 	  </block>
 	  <block type="linenotify_esp32_br">
 	  </block>	  
-  </category>	
+    </category>	
     <category id="france8" name="thingspeak">
 	  <block type="thingspeak_update">  
 		<value name="key">
