@@ -964,6 +964,21 @@ Blockly.Arduino['servermodule_parameter_set'] = function (block) {
   return code;
 };
 
+Blockly.Arduino['servermodule_parameter_set_address'] = function (block) {
+  var cmd = Blockly.Arduino.valueToCode(block, 'cmd', Blockly.Arduino.ORDER_ATOMIC);
+  var P1 = Blockly.Arduino.valueToCode(block, 'P1', Blockly.Arduino.ORDER_ATOMIC);
+  var P2 = Blockly.Arduino.valueToCode(block, 'P2', Blockly.Arduino.ORDER_ATOMIC);
+  var P3 = Blockly.Arduino.valueToCode(block, 'P3', Blockly.Arduino.ORDER_ATOMIC);
+  var P4 = Blockly.Arduino.valueToCode(block, 'P4', Blockly.Arduino.ORDER_ATOMIC);
+  var P5 = Blockly.Arduino.valueToCode(block, 'P5', Blockly.Arduino.ORDER_ATOMIC);
+  var P6 = Blockly.Arduino.valueToCode(block, 'P6', Blockly.Arduino.ORDER_ATOMIC);
+  var P7 = Blockly.Arduino.valueToCode(block, 'P7', Blockly.Arduino.ORDER_ATOMIC);
+  var P8 = Blockly.Arduino.valueToCode(block, 'P8', Blockly.Arduino.ORDER_ATOMIC);
+  var P9 = Blockly.Arduino.valueToCode(block, 'P9', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = '"?"+String('+cmd+')+"="+String('+P1+')+";"+String('+P2+')+";"+String('+P3+')+";"+String('+P4+')+";"+String('+P5+')+";"+String('+P6+')+";"+String('+P7+')+";"+String('+P8+')+";"+String('+P9+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['esp32_pinmode'] = function (block) {
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
   var mode = block.getFieldValue('mode');
