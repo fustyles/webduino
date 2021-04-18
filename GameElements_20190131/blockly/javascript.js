@@ -1802,7 +1802,7 @@ Blockly.JavaScript['variable_board'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.Arduino['custom_style'] = function (block) {
+Blockly.JavaScript['custom_style'] = function (block) {
   var element = block.getFieldValue('element');
   var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
   var style = block.getFieldValue('style');
