@@ -995,13 +995,13 @@ Blockly.Blocks['dht11_get'] = {
 Blockly.Blocks['lcd1602_initial'] = {
   init: function() {  
 	this.appendDummyInput()
-	    .appendField(Blockly.Msg.ESP32_LCD1602_SHOW);
+	    .appendField(Blockly.Msg.ESP32_LCD1602_SHOW)
+		.appendField(Blockly.Msg.ESP32_LCD1602_ADDRESS_SHOW);
 	this.appendDummyInput()    
 		.appendField(new Blockly.FieldDropdown([
 			["0x27","0x27"],
 			["0x3F","0x3F"]	  
-		]), "address")
-		.appendField(Blockly.Msg.ESP32_LCD1602_ADDRESS_SHOW);
+		]), "address");
 	this.appendValueInput("sda")
 	    .setCheck("Number")
 	    .appendField(Blockly.Msg.ESP32_LCD1602_SDA_SHOW);	  
@@ -1018,6 +1018,7 @@ Blockly.Blocks['lcd1602_initial'] = {
 Blockly.Blocks['lcd1602_backlight'] = {
   init: function() {  
 	this.appendDummyInput()
+	    .appendField(Blockly.Msg.ESP32_LCD1602_SHOW)
 	    .appendField(Blockly.Msg.ESP32_LCD1602_BACKLIGHT_SHOW);	
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
@@ -1029,6 +1030,7 @@ Blockly.Blocks['lcd1602_backlight'] = {
 Blockly.Blocks['lcd1602_clear'] = {
   init: function() {  
 	this.appendDummyInput()
+	    .appendField(Blockly.Msg.ESP32_LCD1602_SHOW)
 	    .appendField(Blockly.Msg.ESP32_LCD1602_CLEAR_SHOW);	
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
@@ -1040,6 +1042,7 @@ Blockly.Blocks['lcd1602_clear'] = {
 Blockly.Blocks['lcd1602_print'] = {
   init: function() {  
 	this.appendDummyInput()
+	    .appendField(Blockly.Msg.ESP32_LCD1602_SHOW)
 	    .appendField(Blockly.Msg.ESP32_LCD1602_PRINT_SHOW);
 	this.appendDummyInput()    
 		.appendField(new Blockly.FieldDropdown([

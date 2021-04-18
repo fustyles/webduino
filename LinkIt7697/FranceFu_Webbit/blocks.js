@@ -955,13 +955,14 @@ Blockly.Blocks['BitMatrixLed_matrix_marquee_color'] = {
 
 Blockly.Blocks['BitMatrixLed_matrix_marquee_color_times'] = {
   init: function() {
-    this.appendValueInput("value_marquee_")
-        .setCheck("String")
-        .appendField(Blockly.Msg.MATRIXLED_MARQUEE_COLOR_SHOW);			
+	this.appendDummyInput()	  
+	    .appendField(Blockly.Msg.MATRIXLED_MARQUEE_COLOR_SHOW);	
     this.appendValueInput("value_times_")
         .setCheck("Number")
  		.setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.MATRIXLED_MARQUEE_COLOR_TIMES_SHOW);  
+        .appendField(Blockly.Msg.MATRIXLED_MARQUEE_COLOR_TIMES_SHOW);  	  
+    this.appendValueInput("value_marquee_")
+        .setCheck("String");		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);   
