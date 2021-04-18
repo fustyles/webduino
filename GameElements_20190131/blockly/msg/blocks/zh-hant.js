@@ -453,3 +453,4 @@ Blockly.Msg.VIDEO_BASE64_DRIVE = "截圖插入Google雲端硬碟";
 Blockly.Msg.VIDEO_BASE64_FOLDERNAME = "資料夾名稱";	  
 Blockly.Msg.VIDEO_BASE64_FILENAME = "檔案名稱";	  	  
 Blockly.Msg.VIDEO_BASE64_SCRIPTURL = "Script網址";
+Blockly.Msg.CUSTOM_STYLE_SHOW = "設定樣式";
