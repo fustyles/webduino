@@ -340,7 +340,7 @@ Blockly.Arduino.BitMatrixLed_matrix_pin = function(){
 											'  String hex ="0123456789abcdef";\n'+
 											'  return hex.indexOf(val);\n'+
 											'}\n'; 												
-	Blockly.Arduino.setups_["setup_webbit_matrix"]='strip.Begin();  strip.Show();\n';
+	Blockly.Arduino.setups_["setup_webbit_matrix"]='strip.Begin();\n  strip.Show();\n';
 
 	var code = '';
 	return code;
