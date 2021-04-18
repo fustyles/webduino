@@ -1831,9 +1831,9 @@ Blockly.Arduino['custom_style'] = function (block) {
     cmd="document.getElementById('game"+el+"_"+id+"')";
 
   if (style=="")
-	cmd = cmd+"."+property+" = "+val+";";
+	cmd = cmd+"."+property+" = "+val+";\n";
   else
-	cmd = cmd+".style."+property+" = "+val+";";
+	cmd = cmd+".style."+property+" = "+val+";\n";
   var code = cmd;
   return code;
 };
