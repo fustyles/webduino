@@ -1540,6 +1540,7 @@ Blockly.Blocks['image_move'] = {
   this.appendValueInput("step_")
       .setCheck("Number")
       .appendField(Blockly.Msg.IMAGE_MOVE_STEP);
+  this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -1556,6 +1557,7 @@ Blockly.Blocks['image_resize'] = {
       .appendField(Blockly.Msg.IMAGE_RESIZE); 
   this.appendDummyInput()
       .appendField(Blockly.Msg.PERCENTAGE);
+  this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -1743,7 +1745,8 @@ Blockly.Blocks['move_to_coordinate'] = {
   this.appendValueInput("top_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TOP); 
+      .appendField(Blockly.Msg.TOP);
+  this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
