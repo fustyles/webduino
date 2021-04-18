@@ -246,7 +246,7 @@
 					<block type="BitMatrixLed_matrix_texttocode">
 					  <value name="value_text_">
 						<block type="text">
-						  <field name="TEXT"> ♥ webduino ♡ </field>
+						  <field name="TEXT">Hello</field>
 						</block>
 					</value>
 				  </block>           

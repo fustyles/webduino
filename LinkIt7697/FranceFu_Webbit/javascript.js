@@ -357,7 +357,9 @@ Blockly.Arduino.BitMatrixLed_matrix_clear = function(){
 											'void MatrixLed(String color) {\n'+
 											'  matrixString = color;\n'+
 											'  int R,G,B;\n'+
-											'  for (int i=0;i<color.length()/6;i++) {\n'+
+											'  int range;\n'+	
+											'  range = color.length()/6;\n'+											
+											'  for (int i=0;i<range;i++) {\n'+
     										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]))*matrixBrightness;\n'+
     										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]))*matrixBrightness;\n'+
     										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]))*matrixBrightness;\n'+
@@ -374,7 +376,9 @@ Blockly.Arduino['BitMatrixLed_matrix'] = function() {
 											'void MatrixLed(String color) {\n'+
 											'  matrixString = color;\n'+
 											'  int R,G,B;\n'+
-											'  for (int i=0;i<color.length()/6;i++) {\n'+
+											'  int range;\n'+	
+											'  range = color.length()/6;\n'+											
+											'  for (int i=0;i<range;i++) {\n'+
     										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]))*matrixBrightness;\n'+
     										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]))*matrixBrightness;\n'+
     										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]))*matrixBrightness;\n'+
@@ -431,8 +435,10 @@ Blockly.Arduino['BitMatrixLed_matrix_reverse'] = function(block) {
 	Blockly.Arduino.definitions_['define_webbit_matrix_reverse']='\n'+
 											'void MatrixLedReverse(String color) {\n'+
 											'  color.replace("#","");\n'+
-											'  int R,G,B;\n'+											
-											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
+											'  int R,G,B;\n'+
+											'  int range;\n'+	
+											'  range = matrixString.length()/6;\n'+
+											'  for (int i=0;i<range;i++) {\n'+
     										'    if (matrixString.substring(i*6,i*6+6)=="000000") {\n'+
 											'       matrixString[i*6+0] = color[0];\n'+
 											'  		matrixString[i*6+1] = color[1];\n'+
@@ -472,7 +478,9 @@ Blockly.Arduino['BitMatrixLed_matrix_color'] = function() {
 											'void MatrixLed(String color) {\n'+
 											'  matrixString = color;\n'+
 											'  int R,G,B;\n'+
-											'  for (int i=0;i<color.length()/6;i++) {\n'+
+											'  int range;\n'+	
+											'  range = color.length()/6;\n'+									
+											'  for (int i=0;i<range;i++) {\n'+
     										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]))*matrixBrightness;\n'+
     										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]))*matrixBrightness;\n'+
     										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]))*matrixBrightness;\n'+
@@ -609,8 +617,10 @@ Blockly.Arduino['BitMatrixLed_matrix_rgb_one_n'] = function(block) {
 Blockly.Arduino['BitMatrixLed_matrix_color_reverse'] = function(block) {
 	Blockly.Arduino.definitions_['define_webbit_matrix_reverse']='\n'+
 											'void MatrixLedColorReverse() {\n'+
-											'  int R,G,B;\n'+											
-											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
+											'  int R,G,B;\n'+
+											'  int range;\n'+	
+											'  range = matrixString.length()/6;\n'+	
+											'  for (int i=0;i<range;i++) {\n'+
     										'    R = (255-HextoRGB(matrixString[i*6+0])*16-HextoRGB(matrixString[i*6+1]));\n'+
     										'    G = (255-HextoRGB(matrixString[i*6+2])*16-HextoRGB(matrixString[i*6+3]));\n'+
     										'    B = (255-HextoRGB(matrixString[i*6+4])*16-HextoRGB(matrixString[i*6+5]));\n'+										
@@ -670,7 +680,9 @@ Blockly.Arduino['BitMatrixLed_matrix_rotate'] = function(block) {
 											'		  }\n'+
 											'		}\n'+	
 											'    }\n'+
-											'  for (int k=0;k<matrixString.length()/6;k++) {\n'+
+											'  int range;\n'+	
+											'  range = matrixString.length()/6;\n'+	
+											'  for (int k=0;k<range;k++) {\n'+
     										'    R = (HextoRGB(matrixString[k*6+0])*16+HextoRGB(matrixString[k*6+1]))*matrixBrightness;\n'+
     										'    G = (HextoRGB(matrixString[k*6+2])*16+HextoRGB(matrixString[k*6+3]))*matrixBrightness;\n'+
     										'    B = (HextoRGB(matrixString[k*6+4])*16+HextoRGB(matrixString[k*6+5]))*matrixBrightness;\n'+											
@@ -716,7 +728,9 @@ Blockly.Arduino['BitMatrixLed_matrix_flip'] = function(block) {
 											'		  }\n'+
 											'		}\n'+	
 											'    }\n'+
-											'  for (int k=0;k<matrixString.length()/6;k++) {\n'+
+											'  int range;\n'+	
+											'  range = matrixString.length()/6;\n'+	
+											'  for (int k=0;k<range;k++) {\n'+
     										'    R = (HextoRGB(matrixString[k*6+0])*16+HextoRGB(matrixString[k*6+1]))*matrixBrightness;\n'+
     										'    G = (HextoRGB(matrixString[k*6+2])*16+HextoRGB(matrixString[k*6+3]))*matrixBrightness;\n'+
     										'    B = (HextoRGB(matrixString[k*6+4])*16+HextoRGB(matrixString[k*6+5]))*matrixBrightness;\n'+											
@@ -759,8 +773,7 @@ Blockly.Arduino['BitMatrixLed_sample1'] = function(block) {
 											'void MatrixLed_sample(String str, String rgb) {\n'+
 											'  rgb.replace("#","");\n'+
 											'  String leds = "";\n'+
-											'  int i = 0;\n'+
-											'  for (i=0;i<25;i++) {\n'+											
+											'  for (int i=0;i<25;i++) {\n'+											
 											'  	if (str.substring(i,i+1)=="1")\n'+
 											'  		leds += rgb;\n'+
 											'  	else\n'+
@@ -768,7 +781,9 @@ Blockly.Arduino['BitMatrixLed_sample1'] = function(block) {
 											'  }\n'+
 											'  matrixString = leds;\n'+	
 											'  int R,G,B;\n'+
-											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
+											'  int range;\n'+	
+											'  range = matrixString.length()/6;\n'+	
+											'  for (int i=0;i<range;i++) {\n'+
     										'    R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
     										'    G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
     										'    B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+
@@ -794,8 +809,7 @@ Blockly.Arduino['BitMatrixLed_sample2'] = function(block) {
 											'void MatrixLed_sample(String str, String rgb) {\n'+
 											'  rgb.replace("#","");\n'+
 											'  String leds = "";\n'+
-											'  int i = 0;\n'+
-											'  for (i=0;i<25;i++) {\n'+
+											'  for (int i=0;i<25;i++) {\n'+
 											'  	if (str.substring(i,i+1)=="1")\n'+
 											'  		leds += rgb;\n'+
 											'  	else\n'+
@@ -803,7 +817,9 @@ Blockly.Arduino['BitMatrixLed_sample2'] = function(block) {
 											'  }\n'+
 											'  matrixString = leds;\n'+
 											'  int R,G,B;\n'+
-											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
+											'  int range;\n'+	
+											'  range = matrixString.length()/6;\n'+	
+											'  for (int i=0;i<range;i++) {\n'+
     										'    R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
     										'    G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
     										'    B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+
@@ -829,8 +845,7 @@ Blockly.Arduino['BitMatrixLed_sample3'] = function(block) {
 											'void MatrixLed_sample(String str, String rgb) {\n'+
 											'  rgb.replace("#","");\n'+
 											'  String leds = "";\n'+
-											'  int i = 0;\n'+
-											'  for (i=0;i<25;i++) {\n'+
+											'  for (int i=0;i<25;i++) {\n'+
 											'  	if (str.substring(i,i+1)=="1")\n'+
 											'  		leds += rgb;\n'+
 											'  	else\n'+
@@ -838,7 +853,9 @@ Blockly.Arduino['BitMatrixLed_sample3'] = function(block) {
 											'  }\n'+
 											'  matrixString = leds;\n'+
 											'  int R,G,B;\n'+
-											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
+											'  int range;\n'+	
+											'  range = matrixString.length()/6;\n'+	
+											'  for (int i=0;i<range;i++) {\n'+
     										'    R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
     										'    G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
     										'    B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+
@@ -872,7 +889,9 @@ Blockly.Arduino['BitMatrixLed_sample4'] = function(block) {
 											'  }\n'+
 											'  matrixString = leds;\n'+
 											'  int R,G,B;\n'+
-											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
+											'  int range;\n'+	
+											'  range = matrixString.length()/6;\n'+	
+											'  for (int i=0;i<range;i++) {\n'+
     										'    R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
     										'    G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
     										'    B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+
@@ -906,7 +925,9 @@ Blockly.Arduino['BitMatrixLed_sample5'] = function(block) {
 											'  }\n'+											
 											'  matrixString = leds;\n'+
 											'  int R,G,B;\n'+
-											'  for (int i=0;i<matrixString.length()/6;i++) {\n'+
+											'  int range;\n'+	
+											'  range = matrixString.length()/6;\n'+	
+											'  for (int i=0;i<range;i++) {\n'+
     										'    R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
     										'    G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
     										'    B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+
@@ -1211,10 +1232,10 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee_time'] = function(block) {
 Blockly.Arduino['BitMatrixLed_matrix_marquee'] = function(block) {
 	Blockly.Arduino.definitions_['define_webbit_matrix_marquee']='\n'+
 											'void MatrixLed_marquee(String str, String rgb) {\n'+
-											'  int R,G,B,i,j;\n'+												
+											'  int R,G,B;\n'+												
 											'  rgb.replace("#","");\n'+										
 											'  String leds = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+
-											'  for (i=0;i<str.length();i++) {\n'+										
+											'  for (int i=0;i<str.length();i++) {\n'+										
 											'  	if (str.substring(i,i+1)=="1")\n'+
 											'  		leds += rgb;\n'+
 											'  	else\n'+
@@ -1222,8 +1243,8 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee'] = function(block) {
 											'  }\n'+
 											'  leds += "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+											
 											'  while (true) {\n'+
-											'    for (j=0;j<(leds.length()/30-5);j++) {\n'+										
-											'      matrixString = leds.substring(j*30,j*30+150);\n'+
+											'    for (int k=0;k<(leds.length()/30-5);k++) {\n'+										
+											'      matrixString = leds.substring(k*30,k*30+150);\n'+
 											'    String s = matrixString;\n'+
 											'    int n=0;\n'+
 											'    if (MatrixLed_marquee_rotate==1) {\n'+
@@ -1252,7 +1273,9 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee'] = function(block) {
 											'		  }\n'+
 											'		}\n'+	
 											'    }\n'+											
-											'      for (i=0;i<matrixString.length()/6;i++) {\n'+
+											'  int range;\n'+	
+											'  range = matrixString.length()/6;\n'+	
+											'  for (int i=0;i<range;i++) {\n'+
     										'        R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
     										'        G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
     										'        B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+    										
@@ -1278,18 +1301,18 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee'] = function(block) {
 Blockly.Arduino['BitMatrixLed_matrix_marquee_times'] = function(block) {
 	Blockly.Arduino.definitions_['define_webbit_matrix_marquee_times']='\n'+
 											'void MatrixLed_marquee_times(String str, int times, String rgb) {\n'+
-											'  int R,G,B,i,j,k;\n'+											
+											'  int R,G,B;\n'+											
 											'  rgb.replace("#","");\n'+										
 											'  String leds = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+
-											'  for (i=0;i<str.length();i++) {\n'+										
+											'  for (int i=0;i<str.length();i++) {\n'+										
 											'  	if (str.substring(i,i+1)=="1")\n'+
 											'  		leds += rgb;\n'+
 											'  	else\n'+
 											'  		leds += "000000";\n'+	
 											'  }\n'+
 											'  leds += "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+											
-											'  for (k=0;k<times;k++) {\n'+											
-											'    for (j=0;j<(leds.length()/30-5);j++) {\n'+										
+											'  for (int k=0;k<times;k++) {\n'+											
+											'    for (int j=0;j<(leds.length()/30-5);j++) {\n'+										
 											'      matrixString = leds.substring(j*30,j*30+150);\n'+
 											'    String s = matrixString;\n'+
 											'    int n=0;\n'+
@@ -1319,7 +1342,9 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee_times'] = function(block) {
 											'		  }\n'+
 											'		}\n'+	
 											'    }\n'+	
-											'      for (i=0;i<matrixString.length()/6;i++) {\n'+
+											'  int range;\n'+	
+											'  range = matrixString.length()/6;\n'+	
+											'  for (int i=0;i<range;i++) {\n'+
     										'        R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
     										'        G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
     										'        B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+    										
@@ -1347,13 +1372,13 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee_color'] = function(block) {
 	Blockly.Arduino.definitions_['define_webbit_matrix_marquee_color']='\n'+
 											'void MatrixLed_marquee_color(String str) {\n'+
 											'  str.replace("#","");\n'+												
-											'  int R,G,B,i,j;\n'+
+											'  int R,G,B;\n'+
 											'  String leds = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+
 											'  leds += str;\n'+
 											'  leds += "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+											
 											'  while (true) {\n'+
-											'    for (j=0;j<(leds.length()/30-5);j++) {\n'+										
-											'      matrixString = leds.substring(j*30,j*30+150);\n'+
+											'    for (int k=0;k<(leds.length()/30-5);k++) {\n'+										
+											'      matrixString = leds.substring(k*30,k*30+150);\n'+
 											'      String s = matrixString;\n'+
 											'      int n=0;\n'+
 											'	   for (int i=0;i<=4;i++) {\n'+
@@ -1395,7 +1420,9 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee_color'] = function(block) {
 											'		    }\n'+
 											'		  }\n'+	
 											'      }\n'+	
-											'      for (i=0;i<matrixString.length()/6;i++) {\n'+
+											'  int range;\n'+	
+											'  range = matrixString.length()/6;\n'+	
+											'  for (int i=0;i<range;i++) {\n'+
     										'        R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
     										'        G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
     										'        B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+    										
@@ -1415,13 +1442,14 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee_color_times'] = function(block) {
 	Blockly.Arduino.definitions_['define_webbit_matrix_marquee_color_times']='\n'+
 											'void MatrixLed_marquee_color_times(String str, int times) {\n'+
 											'  str.replace("#","");\n'+												
-											'  int R,G,B,i,j,k;\n'+
+											'  int R,G,B,range;\n'+
 											'  String leds = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+
 											'  leds += str;\n'+
 											'  leds += "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";\n'+											
-											'  for (k=0;k<times;k++) {\n'+
-											'    for (j=0;j<(leds.length()/30-5);j++) {\n'+										
-											'      matrixString = leds.substring(j*30,j*30+150);\n'+
+											'  for (int k=0;k<times;k++) {\n'+
+											'    range = leds.length()/30;\n'+
+											'    for (int m=0;m<range;m++) {\n'+										
+											'      matrixString = leds.substring(m*30,m*30+150);\n'+
 											'      String s = matrixString;\n'+
 											'      int n=0;\n'+
 											'	   for (int i=0;i<=4;i++) {\n'+
@@ -1463,7 +1491,9 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee_color_times'] = function(block) {
 											'		    }\n'+
 											'		  }\n'+	
 											'      }\n'+	
-											'      for (i=0;i<matrixString.length()/6;i++) {\n'+
+											'  int range;\n'+	
+											'  range = matrixString.length()/6;\n'+	
+											'  for (int i=0;i<range;i++) {\n'+
     										'        R = (HextoRGB(matrixString[i*6])*16+HextoRGB(matrixString[i*6+1]))*matrixBrightness;\n'+
     										'        G = (HextoRGB(matrixString[i*6+2])*16+HextoRGB(matrixString[i*6+3]))*matrixBrightness;\n'+
     										'        B = (HextoRGB(matrixString[i*6+4])*16+HextoRGB(matrixString[i*6+5]))*matrixBrightness;\n'+    										
