@@ -1801,3 +1801,39 @@ Blockly.JavaScript['variable_board'] = function (block) {
   var code = 'board';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.Arduino['custom_style'] = function (block) {
+  var element = block.getFieldValue('element');
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var style = block.getFieldValue('style');
+  var property = Blockly.Arduino.valueToCode(block, 'property', Blockly.Arduino.ORDER_ATOMIC);
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  if ((id.indexOf("'")==0)&&(id.lastIndexOf("'")==id.length-1))
+    id = id.substring(1,id.length-1);
+  if ((id.indexOf('"')==0)&&(id.lastIndexOf('"')==id.length-1))
+    id = id.substring(1,id.length-1);
+  var el = element;
+  if ((element.indexOf("'")==0)&&(element.lastIndexOf("'")==element.length-1))
+    el = element.substring(1,element.length-1);
+  if ((element.indexOf('"')==0)&&(element.lastIndexOf('"')==element.length-1))
+    el = element.substring(1,element.length-1); 
+  if ((property.indexOf("'")==0)&&(property.lastIndexOf("'")==property.length-1))
+    property = property.substring(1,property.length-1);
+  if ((property.indexOf('"')==0)&&(property.lastIndexOf('"')==property.length-1))
+    property = property.substring(1,property.length-1); 
+
+  var cmd = "";
+  if (element=="window")
+    cmd="window";
+  else if (element=="document")
+    cmd="document";
+  else
+    cmd="document.getElementById('game"+el+"_"+id+"')";
+
+  if (style=="")
+	cmd = cmd+"."+property+" = "+val+";";
+  else
+	cmd = cmd+".style."+property+" = "+val+";";
+  var code = cmd;
+  return code;
+};
