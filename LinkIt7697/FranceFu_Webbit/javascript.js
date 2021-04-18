@@ -1790,7 +1790,9 @@ Blockly.Arduino.webbit_mooncar_ws2812_clear = function(){
 											'void MatrixLed_mooncar(String color) {\n'+
 											'  matrixString_mooncar = color;\n'+
 											'  int R,G,B;\n'+
-											'  for (int i=0;i<color.length()/6;i++) {\n'+
+											'  int range;\n'+	
+											'  range = color.length()/6;\n'+											
+											'  for (int i=0;i<range;i++) {\n'+
     										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]));\n'+
     										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]));\n'+
     										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]));\n'+
