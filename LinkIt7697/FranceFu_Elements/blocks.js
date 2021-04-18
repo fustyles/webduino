@@ -4470,8 +4470,7 @@ Blockly.Blocks['video_base64_spreadsheet'] = {
 	  .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(new Blockly.FieldDropdown([["image","image"], ["base64","string"]]), "format_");	  
   this.appendValueInput("spreadsheet_script_")
-      .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .setCheck("String")	  
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL); 	  
   this.setInputsInline(false);
@@ -4563,5 +4562,31 @@ Blockly.Blocks['text_br'] = {
   this.setInputsInline(true);
   this.setOutput(true, null);
   this.setColour(110);  
+  }
+};
+
+Blockly.Blocks['custom_style'] = {
+  init: function() {	
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.CUSTOM_STYLE_SHOW);
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_WINDOW,"window"],[Blockly.Msg.ELEMENT_DOCUMENT,"document"],[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"],[Blockly.Msg.ELEMENT_RADIO,"radio"],[Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],[Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],[Blockly.Msg.ELEMENT_NUMBER,"number"],[Blockly.Msg.ELEMENT_DATE,"date"],[Blockly.Msg.ELEMENT_TIME,"time"],[Blockly.Msg.ELEMENT_DATETIME,"datetime"],[Blockly.Msg.ELEMENT_PROGRESS,"progress"],[Blockly.Msg.ELEMENT_PASSWORD,"password"]]), "element");
+  this.appendValueInput("id")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.ID);   
+  this.appendDummyInput()
+	  .appendField(".")  
+      .appendField(new Blockly.FieldDropdown([["style","style"],["　",""]]), "style");    
+  this.appendValueInput("property")
+      .setCheck("String")
+	  .appendField(".");
+  this.appendValueInput("val")
+      .setCheck(null)
+	  .appendField(" = ");	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(110);   
   }
 };

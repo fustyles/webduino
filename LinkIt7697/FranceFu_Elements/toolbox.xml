@@ -16,6 +16,23 @@
 	  </block>
 	</value>
 	</block>
+	<block type="custom_style">
+	<value name="id">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>
+	<value name="property">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>
+	<value name="val">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+	</block>
 	<block type="head_add_viewport">
 	<value name="initialscale_">
 	  <block type="math_number">
@@ -571,7 +588,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="width_">
@@ -664,7 +681,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="width_">
@@ -746,7 +763,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="width_">
@@ -876,7 +893,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="width_">
@@ -985,7 +1002,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value>  
 	<value name="background_">
@@ -1070,7 +1087,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">50</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="borderwidth_">
@@ -1462,7 +1479,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value>  
 	<value name="zindex_">
@@ -2112,7 +2129,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="width_">
@@ -2208,7 +2225,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="width_">
@@ -2290,7 +2307,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="width_">
@@ -2396,7 +2413,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="size_">
@@ -2487,7 +2504,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="size_">
@@ -2571,7 +2588,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="cols_">
@@ -2655,7 +2672,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="width_">
@@ -2759,7 +2776,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="min_">  
@@ -2843,7 +2860,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="value_">  
@@ -2917,7 +2934,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="value_">  
@@ -2991,7 +3008,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="max_">  
@@ -3073,7 +3090,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value>  
 	<value name="maxlength_">  
@@ -3222,7 +3239,7 @@
 	</value>
 	<value name="top_">
 	  <block type="math_number">
-		<field name="NUM">100</field>
+		<field name="NUM">0</field>
 	  </block>
 	</value> 
 	<value name="width_">
