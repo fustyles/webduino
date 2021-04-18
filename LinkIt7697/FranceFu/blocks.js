@@ -295,15 +295,19 @@ Blockly.Blocks['tcp_https_esp32'] = {
 		.appendField(Blockly.Msg.FRANCE4_HEAD_HTTPS_SHOW);
     this.appendValueInput("domain")
         .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_DOMAIN_SHOW);  
     this.appendValueInput("port")
         .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_PORT_SHOW); 		
     this.appendValueInput("request")
         .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_REQUEST_SHOW); 	
     this.appendValueInput("timeout")
         .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW)
 		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
 	this.setInputsInline(false);
@@ -318,15 +322,19 @@ Blockly.Blocks['tcp_http_esp32'] = {
 		.appendField(Blockly.Msg.FRANCE4_HEAD_HTTP_SHOW);
     this.appendValueInput("domain")
         .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_DOMAIN_SHOW);  
     this.appendValueInput("port")
         .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_PORT_SHOW); 		
     this.appendValueInput("request")
         .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_REQUEST_SHOW); 	
     this.appendValueInput("timeout")
         .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW)
 		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
 	this.setInputsInline(false);
@@ -395,11 +403,11 @@ Blockly.Blocks['esp32_wifi_wait_until_ready'] = {
 	this.appendValueInput("SSID")
 		.setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.LINKIT_SET_WIFI_SSID);
+		.appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
 	this.appendValueInput("PASSWORD")
 		.setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.LINKIT_SET_WIFI_PASSWORD);
+		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(200);
@@ -611,12 +619,15 @@ Blockly.Blocks['esp32_myfirmata'] = {
         .appendField(Blockly.Msg.ESP32_SERVERMODULE_SHOW);
     this.appendValueInput("ssid")
         .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
     this.appendValueInput("password")
         .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
     this.appendValueInput("mainpage")
         .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW);
     this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
@@ -638,7 +649,8 @@ Blockly.Blocks['esp32_myfirmata'] = {
 Blockly.Blocks['servermodule_cmd'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_CMD_SHOW);
+        .appendField(Blockly.Msg.SERVERMODULE_CMD_SHOW)
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_EQUAL_SHOW);
     this.appendValueInput("text")
         .setCheck(null);   
     this.setInputsInline(true);
@@ -677,7 +689,7 @@ Blockly.Blocks['servermodule_parameter'] = {
 		["P9","P9"],	  
 	]), "parameter"); 
 	this.appendDummyInput()
-        .appendField(" ");
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_FORMAT_SHOW);
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
 		["toInt()","toInt()"],
@@ -713,7 +725,7 @@ Blockly.Blocks['servermodule_parameter_variable'] = {
 		["P9","P9"],	  
 	]), "parameter"); 
 	this.appendDummyInput()
-        .appendField(" ");
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_FORMAT_SHOW);
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
 		["toInt()","toInt()"],
@@ -770,7 +782,7 @@ Blockly.Blocks['servermodule_parameter_set'] = {
 			["P9","P9"],	  
 	  ]), "parameter"); 
 	this.appendDummyInput()
-        .appendField(" = ");
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_EQUAL_SHOW);
     this.appendValueInput("text")
         .setCheck(null);   
 	this.setInputsInline(true);
@@ -785,33 +797,34 @@ Blockly.Blocks['servermodule_parameter_set_address'] = {
 	this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_ADDRESS_SHOW);
     this.appendValueInput("cmd")
+        .appendField("cmd")	
         .setCheck(null);   
     this.appendValueInput("P1")
-        .appendField("=")	
+        .appendField("P1")	
         .setCheck(null); 
     this.appendValueInput("P2")
-        .appendField(";")	
+        .appendField("P2")	
         .setCheck(null); 
 	this.appendValueInput("P3")
-        .appendField(";")	
+        .appendField("P3")	
         .setCheck(null); 
     this.appendValueInput("P4")
-        .appendField(";")	
+        .appendField("P4")	
         .setCheck(null); 
     this.appendValueInput("P5")
-        .appendField(";")	
+        .appendField("P5")	
         .setCheck(null); 		
     this.appendValueInput("P6")
-        .appendField(";")	
+        .appendField("P6")	
         .setCheck(null); 
     this.appendValueInput("P7")
-        .appendField(";")	
+        .appendField("P7")	
         .setCheck(null); 
     this.appendValueInput("P8")
-        .appendField(";")	
+        .appendField("P8")	
         .setCheck(null);
     this.appendValueInput("P9")
-        .appendField(";")	
+        .appendField("P9")	
         .setCheck(null);  		
 	this.setInputsInline(true);
     this.setOutput(true, null);  
@@ -824,12 +837,13 @@ Blockly.Blocks['servermodule_parameter_set_address1'] = {
 	this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_ADDRESS_SHOW);
     this.appendValueInput("cmd")
+        .appendField("cmd")		
         .setCheck(null);   
     this.appendValueInput("P1")
-        .appendField("=")	
+        .appendField("P1")	
         .setCheck(null); 
     this.appendValueInput("P2")
-        .appendField(";")	
+        .appendField("P2")	
         .setCheck(null);		
 	this.setInputsInline(true);
     this.setOutput(true, null);  
