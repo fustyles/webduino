@@ -468,8 +468,10 @@
 	  </block>
 	  <block type="servermodule_parameter_variable">
 	  </block>
-	  <block type="servermodule_parameter_get">
+	  <block type="servermodule_parameter_variable_urldecode">
 	  </block>
+	  <block type="servermodule_parameter_get">
+	  </block>	  
 	  <block type="servermodule_parameter_set">
 		<value name="text">
 		  <block type="text">

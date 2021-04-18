@@ -743,6 +743,30 @@ Blockly.Blocks['servermodule_parameter_variable'] = {
   }
 };
 
+Blockly.Blocks['servermodule_parameter_variable_urldecode'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_GET_SHOW);
+	this.appendDummyInput()    
+	  .appendField(new Blockly.FieldDropdown([
+		["P1","P1"],
+		["P2","P2"],
+		["P3","P3"],	
+		["P4","P4"],
+		["P5","P5"],
+		["P6","P6"],
+		["P7","P7"],	
+		["P8","P8"],
+		["P9","P9"],	  
+	]), "parameter"); 
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_URLDECODE_SHOW);    
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);
+  }
+};
+
 Blockly.Blocks['servermodule_parameter_get'] = {
   init: function() {
 	this.appendDummyInput()
