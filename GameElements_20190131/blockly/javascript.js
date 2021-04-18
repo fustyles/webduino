@@ -1804,10 +1804,10 @@ Blockly.JavaScript['variable_board'] = function (block) {
 
 Blockly.JavaScript['custom_style'] = function (block) {
   var element = block.getFieldValue('element');
-  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
   var style = block.getFieldValue('style');
-  var property = Blockly.Arduino.valueToCode(block, 'property', Blockly.Arduino.ORDER_ATOMIC);
-  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  var property = Blockly.JavaScript.valueToCode(block, 'property', Blockly.JavaScript.ORDER_ATOMIC);
+  var val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC);
   if ((id.indexOf("'")==0)&&(id.lastIndexOf("'")==id.length-1))
     id = id.substring(1,id.length-1);
   if ((id.indexOf('"')==0)&&(id.lastIndexOf('"')==id.length-1))
