@@ -406,3 +406,13 @@ Blockly.Blocks['cocossd_startvideo_stream'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['cocossd_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
