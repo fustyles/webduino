@@ -14,3 +14,4 @@ Blockly.Msg.LINENOTIFY_ORIGINALCONTENTURL_SHOW = "OriginalContentUrl";
 Blockly.Msg.LINENOTIFY_PREVIEWIMAGEURL_SHOW = "PreviewImageUrl";
 Blockly.Msg.LINENOTIFY_TOKEN_SHOW = "Token";
 Blockly.Msg.LINENOTIFY_NOTIFY_SHOW = "Notify";
+Blockly.Msg.LINENOTIFY_USERID_SHOW = "User ID";
