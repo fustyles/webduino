@@ -50,4 +50,6 @@
       </block>
     </value>     
   </block> 
+  <block type="cocossd_canvas_get">
+  </block>   
 </category>
