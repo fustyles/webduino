@@ -1,9 +1,10 @@
 Blockly.Blocks['linebot_notify'] = {
   init: function() {
+  this.appendDummyInput()
+      .appendField("Line Bot");	  
   this.appendValueInput("bot_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Line Bot")
       .appendField(Blockly.Msg.LINENOTIFY_TOKEN_SHOW);    
   this.appendValueInput("bot_userid")
       .setCheck("String")
@@ -158,11 +159,12 @@ Blockly.Blocks['linebot_type'] = {
 
 Blockly.Blocks['linenotify'] = {
   init: function() {
+  this.appendDummyInput()
+      .appendField("Line")
+      .appendField(Blockly.Msg.LINENOTIFY_NOTIFY_SHOW);	  
   this.appendValueInput("notify_token")
       .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Line")
-      .appendField(Blockly.Msg.LINENOTIFY_NOTIFY_SHOW)	  
+      .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg.LINENOTIFY_TOKEN_SHOW);  
   this.appendValueInput("notify_msg")
       .setCheck(null)
