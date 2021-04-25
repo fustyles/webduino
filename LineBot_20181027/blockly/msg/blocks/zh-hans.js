@@ -14,6 +14,7 @@ Blockly.Msg.LINENOTIFY_ORIGINALCONTENTURL_SHOW = "原始图档网址";
 Blockly.Msg.LINENOTIFY_PREVIEWIMAGEURL_SHOW = "预览图档网址";
 Blockly.Msg.LINENOTIFY_TOKEN_SHOW = "权杖";
 Blockly.Msg.LINENOTIFY_NOTIFY_SHOW = "通知";
+Blockly.Msg.LINENOTIFY_KIND_SHOW = "类型";
 Blockly.Msg.LINENOTIFY_USERID_SHOW = "使用者代码";
 Blockly.Msg.LINENOTIFY_VIDEO_SHOW = "影片";
 Blockly.Msg.LINENOTIFY_AUDIO_SHOW = "音訊";
