@@ -54,3 +54,8 @@ Blockly.JavaScript['cocossd_startvideo_stream'] = function(block) {
   var code = 'cocossd_startvideo_stream(' + value_src_ + ');\n';
   return code;
 };
+
+Blockly.JavaScript['cocossd_canvas_get'] = function(block) { 
+  var code = '"cocossd"';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
