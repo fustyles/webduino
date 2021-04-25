@@ -17,3 +17,4 @@ Blockly.Msg.COCOSSD_FACING_SHOW = "镜头";
 Blockly.Msg.COCOSSD_FACING_FRONT_SHOW = "前置";
 Blockly.Msg.COCOSSD_FACING_BACK_SHOW = "后置";
 Blockly.Msg.COCOSSD_SRC_SHOW = "串流网址";
+Blockly.Msg.COCOSSD_CANVAS_GET_SHOW = "物件偵測(coco-ssd) 取得畫布代碼";
