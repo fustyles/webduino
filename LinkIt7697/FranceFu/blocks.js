@@ -224,19 +224,19 @@ Blockly.Blocks['customcode_instruction6'] = {
 			["cos","cos"],
 			["sin","sin"],
 			["tan","tan"],
+			["isLowerCase","isLowerCase"],	
+			["isUpperCase","isUpperCase"],	
+			["isDigit","isDigit"],		  
 			["isAlpha","isAlpha"],
 			["isAlphaNumeric","isAlphaNumeric"],
+			["isHexadecimalDigit","isHexadecimalDigit"],		  
 			["isAscii","isAscii"],
-			["isControl","isControl"],
-			["isDigit","isDigit"],
-			["isGraph","isGraph"],
-			["isHexadecimalDigit","isHexadecimalDigit"],
-			["isLowerCase","isLowerCase"],
-			["isPrintable","isPrintable"],
-			["isPunct","isPunct"],
 			["isSpace","isSpace"],
-			["isUpperCase","isUpperCase"],
-			["isWhitespace","isWhitespace"]	  
+			["isWhitespace","isWhitespace"],		  
+			["isControl","isControl"],
+			["isGraph","isGraph"],
+			["isPrintable","isPrintable"],
+			["isPunct","isPunct"]
 			]), "instruction");    
 	  this.appendDummyInput()
 		  .appendField("( ");      
