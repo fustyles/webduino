@@ -17,3 +17,4 @@ Blockly.Msg.COCOSSD_FACING_SHOW = "Camera Facing";
 Blockly.Msg.COCOSSD_FACING_FRONT_SHOW = "Front";
 Blockly.Msg.COCOSSD_FACING_BACK_SHOW = "Back";
 Blockly.Msg.COCOSSD_SRC_SHOW = "Stream URL";
+Blockly.Msg.COCOSSD_CANVAS_GET_SHOW = "Object Detection (coco-ssd) Get Canvas ID";
