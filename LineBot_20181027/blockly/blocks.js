@@ -248,7 +248,9 @@ Blockly.Blocks['linenotify_type'] = {
 Blockly.Blocks['linenotify_image'] = {
   init: function() {
   this.appendDummyInput()
-	  .appendField(Blockly.Msg.LINENOTIFY_IMAGE_SHOW);
+      .appendField("Line")
+      .appendField(Blockly.Msg.LINENOTIFY_NOTIFY_SHOW)	  
+      .appendField(Blockly.Msg.LINENOTIFY_IMAGE_SHOW);
   this.appendValueInput("notify_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
