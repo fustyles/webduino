@@ -94,8 +94,8 @@ Blockly.Blocks['linebot_type'] = {
         this.getInput('value_parameter3').setVisible(false);
         this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "video") {
-        this.getField('p1').setValue(Blockly.Msg.LINENOTIFY_ORIGINALCONTENTURL_SHOW);
-        this.getField('p2').setValue(Blockly.Msg.LINENOTIFY_PREVIEWIMAGEURL_SHOW);  
+        this.getField('p1').setValue(Blockly.Msg.LINENOTIFY_ORIGINALCONTENTURL_VIDEO_SHOW);
+        this.getField('p2').setValue(Blockly.Msg.LINENOTIFY_PREVIEWIMAGEURL_VIDEO_SHOW);  
         this.getField('p3').setValue("");
         this.getField('p4').setValue(""); 
         this.getField('p1').setVisible(true);
@@ -109,7 +109,7 @@ Blockly.Blocks['linebot_type'] = {
         this.getInput('value_parameter3').setVisible(false);
         this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "audio") {
-        this.getField('p1').setValue(Blockly.Msg.LINENOTIFY_ORIGINALCONTENTURL_SHOW);
+        this.getField('p1').setValue(Blockly.Msg.LINENOTIFY_ORIGINALCONTENTURL_AUDIO_SHOW);
         this.getField('p2').setValue(Blockly.Msg.LINENOTIFY_DURATION_SHOW);    
         this.getField('p3').setValue("");
         this.getField('p4').setValue(""); 
