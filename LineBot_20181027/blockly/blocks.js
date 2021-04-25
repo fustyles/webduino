@@ -14,7 +14,7 @@ Blockly.Blocks['linebot_notify'] = {
   this.appendValueInput("bot_msg")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.LINENOTIFY_NOTIFY_SHOW);
+      .appendField(Blockly.Msg.LINENOTIFY_KIND_SHOW);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
@@ -170,7 +170,7 @@ Blockly.Blocks['linenotify'] = {
   this.appendValueInput("notify_msg")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.LINENOTIFY_NOTIFY_SHOW);
+      .appendField(Blockly.Msg.LINENOTIFY_KIND_SHOW);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
