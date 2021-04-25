@@ -1,7 +1,8 @@
 Blockly.Blocks['linebot_notify'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField("Line Bot");	  
+      .appendField("Line")
+      .appendField(Blockly.Msg.LINEBOT_SHOW);
   this.appendValueInput("bot_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
