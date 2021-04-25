@@ -26,3 +26,4 @@ Blockly.Msg.LINENOTIFY_TITLE_SHOW = "title";
 Blockly.Msg.LINENOTIFY_ADDRESS_SHOW = "address";
 Blockly.Msg.LINENOTIFY_LATITUDE_SHOW = "latitude";
 Blockly.Msg.LINENOTIFY_LONGITUDE_SHOW = "longitude";
+Blockly.Msg.LINEBOT_SHOW = "Bot";
