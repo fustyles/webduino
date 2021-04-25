@@ -23,7 +23,6 @@ Blockly.Blocks['linebot_notify'] = {
 Blockly.Blocks['linebot_type'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Bot")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LINENOTIFY_TEXT_SHOW,"text"], [Blockly.Msg.LINENOTIFY_STICKER_SHOW,"sticker"], [Blockly.Msg.LINENOTIFY_IMAGE,"image"], [Blockly.Msg.LINENOTIFY_VIDEO_SHOW,"video"], [Blockly.Msg.LINENOTIFY_AUDIO_SHOW,"audio"], [Blockly.Msg.LINENOTIFY_LOCATION_SHOW,"location"]]), "value_type");
     this.appendValueInput("value_parameter1")
@@ -50,7 +49,7 @@ Blockly.Blocks['linebot_type'] = {
   onchange: function(event) {
     //if (event.type=="change") {
       if (this.getField('value_type').getValue() == 'text') {
-        this.getField('p1').setValue("text");  
+        this.getField('p1').setValue(Blockly.Msg.LINENOTIFY_TEXT_SHOW);  
         this.getField('p2').setValue("");
         this.getField('p3').setValue("");
         this.getField('p4').setValue("");
@@ -65,8 +64,8 @@ Blockly.Blocks['linebot_type'] = {
         this.getInput('value_parameter3').setVisible(false);
         this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "sticker") {
-        this.getField('p1').setValue("packageId");
-        this.getField('p2').setValue("stickerId");  
+        this.getField('p1').setValue(Blockly.Msg.LINENOTIFY_PACKAGEID_SHOW);
+        this.getField('p2').setValue(Blockly.Msg.LINENOTIFY_STICKERID_SHOW);  
         this.getField('p3').setValue("");
         this.getField('p4').setValue(""); 
         this.getField('p1').setVisible(true);
@@ -80,8 +79,8 @@ Blockly.Blocks['linebot_type'] = {
         this.getInput('value_parameter3').setVisible(false);
         this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "image") {
-        this.getField('p1').setValue("originalContentUrl");
-        this.getField('p2').setValue("previewImageUrl"); 
+        this.getField('p1').setValue(Blockly.Msg.LINENOTIFY_ORIGINALCONTENTURL_SHOW);
+        this.getField('p2').setValue(Blockly.Msg.LINENOTIFY_PREVIEWIMAGEURL_SHOW); 
         this.getField('p3').setValue("");
         this.getField('p4').setValue(""); 
         this.getField('p1').setVisible(true);
@@ -95,8 +94,8 @@ Blockly.Blocks['linebot_type'] = {
         this.getInput('value_parameter3').setVisible(false);
         this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "video") {
-        this.getField('p1').setValue("originalContentUrl");
-        this.getField('p2').setValue("previewImageUrl");  
+        this.getField('p1').setValue(Blockly.Msg.LINENOTIFY_ORIGINALCONTENTURL_SHOW);
+        this.getField('p2').setValue(Blockly.Msg.LINENOTIFY_PREVIEWIMAGEURL_SHOW);  
         this.getField('p3').setValue("");
         this.getField('p4').setValue(""); 
         this.getField('p1').setVisible(true);
@@ -110,8 +109,8 @@ Blockly.Blocks['linebot_type'] = {
         this.getInput('value_parameter3').setVisible(false);
         this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "audio") {
-        this.getField('p1').setValue("originalContentUrl");
-        this.getField('p2').setValue("duration");    
+        this.getField('p1').setValue(Blockly.Msg.LINENOTIFY_ORIGINALCONTENTURL_SHOW);
+        this.getField('p2').setValue(Blockly.Msg.LINENOTIFY_DURATION_SHOW);    
         this.getField('p3').setValue("");
         this.getField('p4').setValue(""); 
         this.getField('p1').setVisible(true);
@@ -125,10 +124,10 @@ Blockly.Blocks['linebot_type'] = {
         this.getInput('value_parameter3').setVisible(false);
         this.getInput('value_parameter4').setVisible(false);
       } else if (this.getField('value_type').getValue() == "location") {
-        this.getField('p1').setValue("title");
-        this.getField('p2').setValue("address");        
-        this.getField('p3').setValue("latitude");  
-        this.getField('p4').setValue("longitude");  
+        this.getField('p1').setValue(Blockly.Msg.LINENOTIFY_TITLE_SHOW);
+        this.getField('p2').setValue(Blockly.Msg.LINENOTIFY_ADDRESS_SHOW);        
+        this.getField('p3').setValue(Blockly.Msg.LINENOTIFY_LATITUDE_SHOW);  
+        this.getField('p4').setValue(Blockly.Msg.LINENOTIFY_LONGITUDE_SHOW);  
         this.getField('p1').setVisible(true);
         this.getField('p2').setVisible(true);
         this.getField('p3').setVisible(true);
@@ -179,7 +178,6 @@ Blockly.Blocks['linenotify'] = {
 Blockly.Blocks['linenotify_type'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Notify")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LINENOTIFY_TEXT_SHOW,"text"], [Blockly.Msg.LINENOTIFY_STICKER_SHOW,"sticker"], [Blockly.Msg.LINENOTIFY_IMAGE,"image"]]), "value_type");
     this.appendValueInput("value_parameter1")
