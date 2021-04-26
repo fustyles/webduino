@@ -91,8 +91,45 @@
 		canvas_custom.setAttribute("height", video.height);
 		canvas_custom.style.width = video.width+"px";
 		canvas_custom.style.height = video.height+"px";
-	
-		document.getElementById("sourceId_trackingcolor").innerHTML = "gamevideo_trackingcolor";
+
+		var videoinput = false;
+		navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+			var i=-1;
+			var userMedia = "";
+			devices.forEach(function(device) {
+				if (device.kind=="videoinput"&&device.label.includes("facing back")&&input_facing=="back") {
+					i++;
+					if (i==input_videoInputIndex) {
+						if (device.deviceId=='')
+							userMedia = {audio: false,video: {facingMode: 'environment', width: video.width, height: video.height} };
+						else
+							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment', width: video.width, height: video.height} };
+					}
+				}				
+				else if (device.kind=="videoinput"&&input_facing=="front") {
+					i++;
+					if (i==input_videoInputIndex) {
+						if (device.deviceId=='')
+							userMedia = {audio: false,video: {facingMode: 'user', width: video.width, height: video.height} };
+						else
+							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'user', width: video.width, height: video.height} };
+					}
+				}
+			});
+
+			if (userMedia!="") {
+				navigator.mediaDevices
+				.getUserMedia(userMedia)
+				.then(stream => {
+					video.srcObject = stream
+					video.onloadedmetadata = () => {       
+						video.play();
+						document.getElementById("sourceId_trackingcolor").innerHTML = "gamevideo_trackingcolor";
+					}
+				}) 
+			}
+		}) 
 	}
 
   	function trackingcolor_startvideo_stream(url) {

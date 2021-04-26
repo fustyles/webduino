@@ -32,7 +32,7 @@ window.onload = function () {
 					}, 300);
 				}
 				else 
-					tracking.track('#gamevideo_trackingcolor', tracker, { camera: true });
+					tracking.track('#gamevideo_trackingcolor', tracker);
 	
 				tracker.on('track', function(event) {
 					
