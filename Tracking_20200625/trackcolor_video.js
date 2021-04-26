@@ -14,13 +14,27 @@ window.onload = function () {
     var myColor_r_min2,myColor_r_max2,myColor_g_min2,myColor_g_max2,myColor_b_min2,myColor_b_max2;
     var myColor_r_min3,myColor_r_max3,myColor_g_min3,myColor_g_max3,myColor_b_min3,myColor_b_max3;
 
-	canvas.setAttribute("width", video.width);
-	canvas.setAttribute("height", video.height);
-	canvas_custom.setAttribute("width", video.width);
-	canvas_custom.setAttribute("height", video.height);	
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+        video: {
+          facingMode: "user"
+        }
+      })
+      .then(stream => {
+        video.srcObject = stream
+        video.onloadedmetadata = () => {       
+          video.play();
+        }
+      }) 
+	
+    canvas.setAttribute("width", video.width);
+    canvas.setAttribute("height", video.height);
+    canvas_custom.setAttribute("width", video.width);
+    canvas_custom.setAttribute("height", video.height);	
 	
     var tracker = new tracking.ColorTracker();
-    tracking.track('#video', tracker, { camera: true });
+    tracking.track('#video', tracker);
 
 	tracking.ColorTracker.registerColor('red', function(r, g, b) {
 		if ((r>=myColor_r_min1&&r<=myColor_r_max1)&&(g>=myColor_g_min1&&g<=myColor_g_max1)&&(b>=myColor_b_min1&&b<=myColor_b_max1)) {
