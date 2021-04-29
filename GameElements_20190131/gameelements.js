@@ -3660,7 +3660,7 @@ function HextoRgb(color) {
 
 			$.ajax({
 				"type": "POST",
-				"dataType": "jsonp",
+				"dataType": "json",
 				"headers": { 
 				  "Content-Type": "application/x-www-form-urlencoded"
 				},				
