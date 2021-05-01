@@ -646,35 +646,6 @@ Blockly.Blocks['esp32_myfirmata'] = {
   }
 };
 
-Blockly.Blocks['esp32_myfirmata_bluetooth'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.ESP32_BLUETOOTH_SHOW);
-    this.appendValueInput("baudrate")
-        .setCheck("Number")
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg.ESP32_BLUETOOTH_BAUDRATE_SHOW);
-    this.appendValueInput("blename")
-        .setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg.ESP32_BLUETOOTH_NAME_SHOW);		
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
-    this.appendStatementInput("ExecuteCommand")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_SETUP_SHOW);
-    this.appendStatementInput("setup")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_LOOP_SHOW);
-    this.appendStatementInput("loop")
-        .setCheck(null);
-    this.setInputsInline(false);
-    this.setColour(210);
-  }
-};
-
 Blockly.Blocks['servermodule_cmd'] = {
   init: function() {
     this.appendDummyInput()
@@ -692,19 +663,6 @@ Blockly.Blocks['servermodule_feedback'] = {
   init: function() {
 	this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_FEEDBACK_SHOW);
-    this.appendValueInput("text")
-        .setCheck(null);   
-	this.setInputsInline(true);
-	this.setPreviousStatement(!0);
-	this.setNextStatement(!0);
-	this.setColour(200);
-  }
-};
-
-Blockly.Blocks['servermodule_bluetooth_feedback'] = {
-  init: function() {
-	this.appendDummyInput()
-        .appendField(Blockly.Msg.ESP32_BLUETOOTH_FEEDBACK_SHOW);
     this.appendValueInput("text")
         .setCheck(null);   
 	this.setInputsInline(true);
@@ -942,7 +900,10 @@ Blockly.Blocks['esp32_pinmode'] = {
 Blockly.Blocks['servermodule_pinwrite'] = {
   init: function() {
 	this.appendDummyInput()    
-	    .appendField(Blockly.Msg.ESP32_DIGITALWRITE_SHOW);
+	  .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.SERVERMODULE_DIGITALWRITE_SHOW,"digitalWrite"],
+		[Blockly.Msg.SERVERMODULE_ANALOGWRITE_SHOW,"analogWrite"] 
+	]), "type");
 	this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_PIN_SHOW);
     this.appendValueInput("pin")

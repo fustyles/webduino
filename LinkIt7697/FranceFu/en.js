@@ -83,7 +83,3 @@ Blockly.Msg.ESP32_LINE_ORIGINALCONTENTURL_SHOW = "OriginalContentUrl";
 Blockly.Msg.ESP32_LINE_PREVIEWIMAGEURL_SHOW = "PreviewImageUrl";
 Blockly.Msg.ESP32_LINE_TOKEN_SHOW = "Token";
 Blockly.Msg.ESP32_LINE_NOTIFY_SHOW = "Notify";
-Blockly.Msg.ESP32_BLUETOOTH_SHOW = "Bluetooth Module";
-Blockly.Msg.ESP32_BLUETOOTH_BAUDRATE_SHOW = "Baud Rate";
-Blockly.Msg.ESP32_BLUETOOTH_NAME_SHOW = "Name";
-Blockly.Msg.ESP32_BLUETOOTH_FEEDBACK_SHOW = "Bluetooth Feedback";

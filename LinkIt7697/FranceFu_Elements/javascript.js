@@ -1871,7 +1871,7 @@ Blockly.Arduino['variable_board'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
-Blockly.Arduino['servermodule_javascript'] = function(block) {
+Blockly.Arduino['servermodule_Arduino'] = function(block) {
   var statements_js = Blockly.Arduino.statementToCode(block, 'js');
 
   code = '"<!DOCTYPE html><head><meta charset=\'utf-8\'><script src=\'https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js\'></script><script src=\'https://fustyles.github.io/webduino/GameElements_20190131/gameelements.js\'></script></head><body><script>'+ statements_js.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null") +'</script></body></html>"';

@@ -7,18 +7,6 @@
 		  </block>
 		</value> 
 	  </block>
-	  <block type="servermodule_pinwrite">
-		<value name="pin">
-		  <block type="math_number">
-			<field name="NUM">2</field>
-		  </block>
-		</value> 
-		<value name="val">
-		  <block type="math_number">
-			<field name="NUM">1</field>
-		  </block>
-		</value> 		
-	  </block>	  
 	  <block type="esp32_analogwrite">
 		<value name="pin">
 		  <block type="math_number">
@@ -462,133 +450,14 @@
 		  </block>
 		</statement>
 	  </block>
-	  <block type="esp32_myfirmata_bluetooth">
-		<value name="baudrate">
-		  <block type="math_number">
-			<field name="NUM">9600</field>
-		  </block>
-		</value>
-		<value name="blename">
-		  <block type="text">
-			<field name="TEXT">ESP32 BLE</field>
-		  </block>
-		</value>
-		<statement name="ExecuteCommand">
-		</statement>
-		<statement name="setup">
-		</statement>
-	  </block>	  
-	  <block type="esp32_myfirmata_bluetooth" id="3" inline="false">
-		<value name="baudrate">
-		  <block type="math_number" id="4">
-			<field name="NUM">9600</field>
-		  </block>
-		</value>
-		<value name="blename">
-		  <block type="text" id="5">
-			<field name="TEXT">ESP32 BLE</field>
-		  </block>
-		</value>
-		<statement name="ExecuteCommand">
-		  <block type="customcode_comment" id="6" inline="true">
-			<value name="text">
-			  <block type="text" id="7">
-				<field name="TEXT">?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9</field>
-			  </block>
-			</value>
-			<next>
-			  <block type="controls_if" id="8" inline="false">
-				<mutation else="1"></mutation>
-				<value name="IF0">
-				  <block type="servermodule_cmd" id="9" inline="true">
-					<value name="text">
-					  <block type="text" id="10">
-						<field name="TEXT">led</field>
-					  </block>
-					</value>
-				  </block>
-				</value>
-				<statement name="DO0">
-				  <block type="esp32_pinmode" id="15" inline="true">
-					<field name="mode">OUTPUT</field>
-					<value name="pin">
-					  <block type="servermodule_parameter_variable" id="16">
-						<field name="parameter">P1</field>
-						<field name="type">toInt()</field>
-					  </block>
-					</value>
-					<next>
-					  <block type="servermodule_pinwrite" id="17" inline="true">
-						<value name="pin">
-						  <block type="servermodule_parameter_variable" id="18">
-							<field name="parameter">P1</field>
-							<field name="type">toInt()</field>
-						  </block>
-						</value>
-						<value name="val">
-						  <block type="servermodule_parameter_variable" id="19">
-							<field name="parameter">P2</field>
-							<field name="type">toInt()</field>
-						  </block>
-						</value>
-						<next>
-						  <block type="controls_if" id="20" inline="false">
-							<mutation else="1"></mutation>
-							<value name="IF0">
-							  <block type="logic_compare" id="21" inline="true">
-								<field name="OP">EQ</field>
-								<value name="A">
-								  <block type="servermodule_parameter_variable" id="22">
-									<field name="parameter">P2</field>
-									<field name="type">toInt()</field>
-								  </block>
-								</value>
-								<value name="B">
-								  <block type="math_number" id="23">
-									<field name="NUM">1</field>
-								  </block>
-								</value>
-							  </block>
-							</value>
-							<statement name="DO0">
-							  <block type="servermodule_bluetooth_feedback" id="24" inline="true">
-								<value name="text">
-								  <block type="text" id="25">
-									<field name="TEXT">on</field>
-								  </block>
-								</value>
-							  </block>
-							</statement>
-							<statement name="ELSE">
-							  <block type="servermodule_bluetooth_feedback" id="26" inline="true">
-								<value name="text">
-								  <block type="text" id="27">
-									<field name="TEXT">off</field>
-								  </block>
-								</value>
-							  </block>
-							</statement>
-						  </block>
-						</next>
-					  </block>
-					</next>
-				  </block>
-				</statement>
-				<statement name="ELSE">
-				  <block type="servermodule_bluetooth_feedback" id="28" inline="true">
-					<value name="text">
-					  <block type="text" id="29">
-						<field name="TEXT">undefined</field>
-					  </block>
-					</value>
-				  </block>
-				</statement>
-			  </block>
-			</next>
-		  </block>
-		</statement>
-	  </block>  
 	  <block type="servermodule_cmd">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="servermodule_feedback">
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT"></field>
@@ -610,20 +479,6 @@
 		  </block>
 		</value>
 	  </block>
-	  <block type="servermodule_feedback">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>		  
-	  <block type="servermodule_bluetooth_feedback">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>		  
 	  <block type="servermodule_parameter_set_address1">
 		<value name="cmd">
 		  <block type="text">

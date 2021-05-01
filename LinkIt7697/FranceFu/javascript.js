@@ -807,9 +807,6 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'  else if (cmd=="analogread") {\n'+
 			'    Feedback=String(analogRead(P1.toInt()));\n'+
 			'  }\n'+
-			'  else if (cmd=="touchread") {\n'+
-			'    Feedback=String(touchRead(P1.toInt()));\n'+
-			'  }\n'+
 			'  else {\n  '+ 
 			statements_executecommand.replace(/\n/g,"\n  ")+
 			'}\n'+ 
@@ -928,113 +925,6 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
   return code;
 };
 
-Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
-    var baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
-    var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_.define_esp32_bluetooth_include = '#include "BluetoothSerial.h"\n'+
-																	'#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)\n'+
-																	'  #error Bluetooth is not enabled! Please run `make menuconfig` to and enable it\n'+
-																	'#endif\n'+
-																	'BluetoothSerial SerialBT;\n';
-	Blockly.Arduino.definitions_.define_esp32_bluetooth_command = 'String ReceiveData="", Command="",cmd="",P1="",P2="",P3="",P4="",P5="",P6="",P7="",P8="",P9="";\n'+
-																  'byte ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;\n';
-
-	var statements_setup = Blockly.Arduino.statementToCode(block, 'setup');
-	var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');
-	var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
-
-	Blockly.Arduino.definitions_.define_esp32_ExecuteCommand = '\n'+
-			'void ExecuteCommand() {\n'+
-			'  Serial.println("");\n'+
-			'  Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
-			'  Serial.println("");\n'+
-			'  if (cmd=="yourcmd") {\n'+
-			'    //you can do anything\n'+
-			'  }\n'+
-			'  else if (cmd=="restart") {\n'+
-			'    ESP.restart();\n'+
-			'  }\n'+			
-			'  else if (cmd=="inputpullup") {\n'+
-			'    pinMode(P1.toInt(), INPUT_PULLUP);\n'+
-			'  }\n'+
-			'  else if (cmd=="pinmode") {\n'+
-			'    pinMode(P1.toInt(), P2.toInt());\n'+
-			'  }\n'+     
-			'  else if (cmd=="digitalwrite") {\n'+
-			'    ledcDetachPin(P1.toInt());\n'+
-			'    pinMode(P1.toInt(), OUTPUT);\n'+
-			'    digitalWrite(P1.toInt(),P2.toInt());\n'+
-			'  }\n'+  
-			'  else if (cmd=="digitalread") {\n'+
-			'    SendData(String(digitalRead(P1.toInt())));\n'+
-			'  }\n'+ 
-			'  else if (cmd=="touchread") {\n'+
-			'    SendData(String(touchRead(P1.toInt())));\n'+
-			'  }\n'+
-			'  else if (cmd=="analogwrite") {\n'+
-			'    ledcAttachPin(P1.toInt(), 1);\n'+
-			'    ledcSetup(1, 5000, 8);\n'+
-			'    ledcWrite(1,P2.toInt());\n'+
-			'  }\n'+   
-			'  else if (cmd=="analogread") {\n'+
-			'    SendData(String(analogRead(P1.toInt())));\n'+
-			'  }\n'+
-			'  else {\n  '+statements_executecommand.replace(/\n/g,"\n  ")+
-			'}\n'+ 
-			'}\n';
-
-	Blockly.Arduino.setups_.manual_add = '\n'+
-			'  Serial.begin('+baudrate+');\n'+ 
-			'  SerialBT.begin('+blename+');\n'+ 
-			'  delay(10);\n'+ statements_setup +
-			'\n';
-
-	Blockly.Arduino.definitions_.define_esp32_senddata = '\n'+
-			'void SendData(String data) {\n'+
-			'  SerialBT.print(data);\n'+
-			'}\n';
-			
-
-    Blockly.Arduino.definitions_.define_bluetooth_getCommand = '\n'+
-			'void getCommand() {\n'+
-			'  ReceiveData="";Command="";cmd="";P1="";P2="";P3="";P4="";P5="";P6="";P7="";P8="";P9="";\n'+
-			'  ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;\n'+
-  			'  if (SerialBT.available()) {\n'+
-  			'    while (SerialBT.available()) {\n'+
-  			'      char c=SerialBT.read();\n'+
-  			'      ReceiveData=ReceiveData+String(c);\n'+
-  			'      if (c==\'?\') ReceiveState=1;\n'+
-  			'      if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) ReceiveState=0;\n'+
-  			'      if (ReceiveState==1) {\n'+
-  			'        Command=Command+String(c);\n'+
-  			'        if (c==\'=\') cmdState=0;\n'+
-  			'        if (c==\';\') strState++;\n'+
-  			'        if ((cmdState==1)&&((c!=\'?\')||(questionstate==1))) cmd=cmd+String(c);\n'+
-  			'        if ((cmdState==0)&&(strState==1)&&((c!=\'=\')||(equalstate==1))) P1=P1+String(c);\n'+
-  			'        if ((cmdState==0)&&(strState==2)&&(c!=\';\')) P2=P2+String(c);\n'+
-  			'        if ((cmdState==0)&&(strState==3)&&(c!=\';\')) P3=P3+String(c);\n'+
-  			'        if ((cmdState==0)&&(strState==4)&&(c!=\';\')) P4=P4+String(c);\n'+
- 			'        if ((cmdState==0)&&(strState==5)&&(c!=\';\')) P5=P5+String(c);\n'+
- 			'        if ((cmdState==0)&&(strState==6)&&(c!=\';\')) P6=P6+String(c);\n'+
- 			'        if ((cmdState==0)&&(strState==7)&&(c!=\';\')) P7=P7+String(c);\n'+
- 			'        if ((cmdState==0)&&(strState==8)&&(c!=\';\')) P8=P8+String(c);\n'+
- 			'        if ((cmdState==0)&&(strState>=9)&&((c!=\';\')||(semicolonstate==1))) P9=P9+String(c);\n'+
-  			'        if (c==\'?\') questionstate=1;\n'+
-  			'        if (c==\'=\') equalstate=1;\n'+
-  			'        if ((strState>=9)&&(c==\';\')) semicolonstate=1;\n'+
-  			'      }\n'+
-  			'      delay(1);\n'+
-  			'     }\n'+
-  			'  }\n'+
-			'}';
-			
-  code = '\n  getCommand();\n'+ 
-		 '  if (ReceiveData.indexOf("?")==0) {\n'+
-         '    ExecuteCommand();\n'+
-         '  }\n'+ statements_loop +'\n';
-  return code;
-};
-
 Blockly.Arduino['servermodule_cmd'] = function (block) {
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
   var code = 'cmd == String(' + text + ')';
@@ -1044,12 +934,6 @@ Blockly.Arduino['servermodule_cmd'] = function (block) {
 Blockly.Arduino['servermodule_feedback'] = function (block) {
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
   var code = 'Feedback = String(' + text + ');\n';
-  return code;
-};
-
-Blockly.Arduino['servermodule_bluetooth_feedback'] = function (block) {
-  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'SendData(String('+text+'));\n';
   return code;
 };
 
@@ -1153,9 +1037,10 @@ Blockly.Arduino['esp32_pinmode'] = function (block) {
 };
 
 Blockly.Arduino['servermodule_pinwrite'] = function (block) {
+  var type = block.getFieldValue('type');
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
   var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'digitalWrite(' + pin + ', ' + val + ');\n';
+  var code = type + '(' + pin + ', ' + val + ');\n';
   return code;
 };
 
