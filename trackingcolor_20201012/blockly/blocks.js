@@ -3,7 +3,7 @@ Blockly.Blocks['trackingcolor_set'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.TRACKINGCOLOR_SET_SHOW);	  
 	this.appendDummyInput()  
-	  .appendField(Blockly.Msg.TRACKINGCOLOR_DISPLAY_SHOW)
+	  .appendField(Blockly.Msg.TRACKINGCOLOR_VIDEO_SHOW)
 	  .appendField(new Blockly.FieldDropdown([
 		["Y","block"],
 		["N","none"]	  
@@ -41,6 +41,37 @@ Blockly.Blocks['trackingcolor_set'] = {
 		["0.1","0.1"],	
 		["0","0"]	   
 	]), "opacity_"); 
+	this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(60);
+  }
+};
+
+Blockly.Blocks['trackingcolor_range_set'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TRACKINGCOLOR_RANGE_SET_SHOW);
+	this.appendDummyInput()	
+		.appendField(Blockly.Msg.TRACKINGCOLOR_RECT_SHOW)
+		.setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+          [Blockly.Msg.TRACKINGCOLOR_REDRECT_SHOW,"red"], 
+          [Blockly.Msg.TRACKINGCOLOR_GREENRECT_SHOW,"green"],
+          [Blockly.Msg.TRACKINGCOLOR_BLUERECT_SHOW,"blue"]
+        ]), "rect_"); 
+	this.appendDummyInput()  
+	  .appendField(Blockly.Msg.TRACKINGCOLOR_DISPLAY_SHOW)
+	  .appendField(new Blockly.FieldDropdown([
+		["Y","block"],
+		["N","none"]	  
+		]), "display_"); 
+    this.appendValueInput("left_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.TRACKINGCOLOR_VIDEO_LEFT_SHOW);  
+    this.appendValueInput("top_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.TRACKINGCOLOR_VIDEO_TOP_SHOW);    
 	this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -96,6 +127,7 @@ Blockly.Blocks['trackingcolor_video_position'] = {
   init: function() {
   this.appendValueInput("left_")
       .setCheck("Number")
+      .appendField(Blockly.Msg.TRACKINGCOLOR_SHOW)	  
       .appendField(Blockly.Msg.TRACKINGCOLOR_VIDEO_LEFT_SHOW);  
   this.appendValueInput("top_")
       .setCheck("Number")
@@ -183,5 +215,37 @@ Blockly.Blocks['trackingcolor_startvideo_stream'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
+  }
+};
+
+Blockly.Blocks['trackingcolor_object'] = {
+  init: function() {
+    this.appendDummyInput()
+		.appendField(Blockly.Msg.TRACKINGCOLOR_GET_SHOW)	
+		.appendField(Blockly.Msg.TRACKINGCOLOR_RECT_SHOW)
+		.setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+          [Blockly.Msg.TRACKINGCOLOR_REDRECT_SHOW,"red"], 
+          [Blockly.Msg.TRACKINGCOLOR_GREENRECT_SHOW,"green"],
+          [Blockly.Msg.TRACKINGCOLOR_BLUERECT_SHOW,"blue"]
+        ]), "rect_");  
+  this.appendValueInput("index_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.TRACKINGCOLOR_RECT_INDEX_SHOW);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.TRACKINGCOLOR_RECT_DATA_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		[" ",""],
+		[Blockly.Msg.TRACKINGCOLOR_RECT_SHOW,"color"],
+		["X","x"],
+		["Y","y"],
+		[Blockly.Msg.TRACKINGCOLOR_MIDDLEX_SHOW,"middlex"],
+		[Blockly.Msg.TRACKINGCOLOR_MIDDLEY_SHOW,"middley"],
+		[Blockly.Msg.TRACKINGCOLOR_WIDTH_SHOW,"width"],
+		[Blockly.Msg.TRACKINGCOLOR_HEIGHT_SHOW,"height"]
+  ]), "data_");   
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
   }
 };

@@ -11,6 +11,12 @@
 	document.getElementById("region_trackingcolor").style.opacity = input_opacity;
 	document.getElementById("mirrorimage_trackingcolor").value = input_mirrorimage;
   }
+  
+  function trackingcolor_range_set(input_rect, input_display, input_left, input_top)  { 
+	document.getElementById(input_rect+"rect").style.display = input_display;
+	document.getElementById(input_rect+"rect").style.left = input_left+"px";
+	document.getElementById(input_rect+"rect").style.top = input_top+"px";
+  }  
 
   function trackingcolor_custom(input_rect, input_rmin, input_rmax, input_gmin, input_gmax, input_bmin, input_bmax)  {
 	var n = "1";
@@ -57,6 +63,37 @@
     }
     return result_arr;
   }
+  
+	function trackingcolor_object(input_rect, input_index, input_data) {
+		var n=0;
+		var result = document.getElementById("gamediv_trackingcolor").innerHTML.split("<br>");
+		if (result.length>0) {
+			for (var i=0;i<result.length;i++) {
+				var result_detail = result[i].split(",");
+				if (result_detail[0]==input_rect) {
+					if (n==input_index&&input_data=="")
+						return result_detail;
+					else if (n==input_index&&input_data=="color")
+						return result_detail[0];
+					else if (n==input_index&&input_data=="x")
+						return Number(result_detail[1]);
+					else if (n==input_index&&input_data=="y")
+						return Number(result_detail[2]);
+					else if (n==input_index&&input_data=="middlex")
+						return Number(result_detail[1])+Number(result_detail[3])/2;
+					else if (n==input_index&&input_data=="middley")
+						return Number(result_detail[2])+Number(result_detail[4])/2;
+					else if (n==input_index&&input_data=="width")
+						return Number(result_detail[3]);
+					else if (n==input_index&&input_data=="height")
+						return Number(result_detail[4]);
+					
+					n++;
+				}
+			}
+		}
+		return "";
+	}  
 
   function trackingcolor_get_number(input_rect)  {
 	var n=0;
@@ -152,9 +189,11 @@
 	}
 	
 	window.trackingcolor_set = trackingcolor_set;
+	window.trackingcolor_range_set = trackingcolor_range_set;	
 	window.trackingcolor_custom = trackingcolor_custom;
 	window.trackingcolor_video_position = trackingcolor_video_position;
 	window.trackingcolor_get = trackingcolor_get;
+	window.trackingcolor_object = trackingcolor_object;
 	window.trackingcolor_get_number = trackingcolor_get_number;
 	window.trackingcolor_startvideo_media = trackingcolor_startvideo_media;
 	window.trackingcolor_startvideo_stream = trackingcolor_startvideo_stream;  

@@ -8,6 +8,15 @@ Blockly.JavaScript['trackingcolor_set'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['trackingcolor_range_set'] = function(block) {
+  var value_rect = block.getFieldValue('rect_');
+  var value_display = block.getFieldValue('display_');
+  var value_left = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'trackingcolor_range_set("' + value_rect + '","' + value_display + '",' + value_left + ',' + value_top + ');\n';
+  return code;
+};
+
 Blockly.JavaScript['trackingcolor_custom'] = function(block) {
   var value_rect = block.getFieldValue('rect_');
   var value_rmin = Blockly.JavaScript.valueToCode(block, 'rmin_', Blockly.JavaScript.ORDER_ATOMIC);  
@@ -31,6 +40,14 @@ Blockly.JavaScript['trackingcolor_video_position'] = function(block) {
 Blockly.JavaScript['trackingcolor_get'] = function(block) { 
   var value_rect = block.getFieldValue('rect_');
   var code = 'trackingcolor_get("' + value_rect + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['trackingcolor_object'] = function(block) { 
+  var value_rect = block.getFieldValue('rect_');
+  var value_index = Blockly.JavaScript.valueToCode(block, 'index_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_data = block.getFieldValue('data_');
+  var code = 'trackingcolor_object("' + value_rect + '",' + value_index + ',"' + value_data + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
