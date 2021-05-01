@@ -992,8 +992,10 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 	Blockly.Arduino.definitions_.define_esp32_senddata = '\n'+
 			'void SendData(String data) {\n'+
 			'  SerialBT.print(data);\n'+
-			'}\n';
-			
+			'}\n'+
+			'void SendDataln(String data) {\n'+
+			'  SerialBT.println(data);\n'+
+			'}\n';		
 
     Blockly.Arduino.definitions_.define_bluetooth_getCommand = '\n'+
 			'void getCommand() {\n'+
@@ -1050,6 +1052,12 @@ Blockly.Arduino['servermodule_feedback'] = function (block) {
 Blockly.Arduino['servermodule_bluetooth_feedback'] = function (block) {
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
   var code = 'SendData(String('+text+'));\n';
+  return code;
+};
+
+Blockly.Arduino['servermodule_bluetooth_feedback_newline'] = function (block) {
+  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'SendDataln(String('+text+'));\n';
   return code;
 };
 

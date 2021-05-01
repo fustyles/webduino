@@ -665,7 +665,14 @@
 			<field name="TEXT"></field>
 		  </block>
 		</value>
-	  </block>		  
+	  </block>
+	  <block type="servermodule_bluetooth_feedback_newline">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>	  
 	  <block type="servermodule_parameter_set_address1">
 		<value name="cmd">
 		  <block type="text">

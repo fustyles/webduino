@@ -714,6 +714,19 @@ Blockly.Blocks['servermodule_bluetooth_feedback'] = {
   }
 };
 
+Blockly.Blocks['servermodule_bluetooth_feedback_newline'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_BLUETOOTH_FEEDBACK_NEWLINE_SHOW);
+    this.appendValueInput("text")
+        .setCheck(null);   
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
 Blockly.Blocks['servermodule_parameter'] = {
   init: function() {
 	this.appendDummyInput()
