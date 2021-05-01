@@ -1837,3 +1837,123 @@ Blockly.JavaScript['custom_style'] = function (block) {
   var code = cmd;
   return code;
 };
+
+Blockly.JavaScript['font_text'] = function (block) {
+  var value_size = Blockly.JavaScript.valueToCode(block, 'size_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_color = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_face = Blockly.JavaScript.valueToCode(block, 'face_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1); 
+  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+
+  var code = '"<font size='+value_size + ' color=' + value_color + ' face=' + value_face + '>' + value_text + '</font>"';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['font_b'] = function (block) {
+  var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1); 
+  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+
+  var code = '<b>' + value_text + '</b>';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['font_i'] = function (block) {
+  var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1); 
+  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+
+  var code = '<I>' + value_text + '</I>';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['font_u'] = function (block) {
+  var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1); 
+  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+
+  var code = '<u>' + value_text + '</u>';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['font_spu'] = function (block) {
+  var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1); 
+  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+
+  var code = '<spu>' + value_text + '</spu>';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['font_sbu'] = function (block) {
+  var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1); 
+  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+
+  var code = '<sbu>' + value_text + '</sbu>';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['font_em'] = function (block) {
+  var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1); 
+  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+
+  var code = '<em>' + value_text + '</em>';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['font_strong'] = function (block) {
+  var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1); 
+  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+
+  var code = '<strong>' + value_text + '</strong>';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['font_code'] = function (block) {
+  var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1); 
+  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
+    value_text = value_text.substring(1,value_text.length-1);
+
+  var code = '<code>' + value_text + '</code>';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};

@@ -3349,4 +3349,86 @@
   </block> 
 
   </category>
+  <category id="catGameElements_sub25" colour="120"> 
+  
+  <block type="font_text"> 
+	<value name="size_">
+      <block type="math_number">
+        <field name="NUM">2</field>
+      </block>
+	</value> 
+    <value name="color_">
+      <block type="colour_picker">
+       <field name="COLOUR">#ff0000</field>
+     </block>
+    </value> 
+	<value name="face_">
+	  <block type="text">
+		<field name="TEXT">Arial</field>
+	  </block>
+	</value> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value> 	
+  </block>  
+  <block type="font_b"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+  </block>  
+  <block type="font_i"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+  </block>  
+  <block type="font_u"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+  </block>  
+    <block type="font_spu"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+  </block>  
+  <block type="font_sbu"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+  </block>  
+  <block type="font_em"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+  </block>  
+  <block type="font_strong"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+  </block>  
+  <block type="font_code"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+  </block>   
+  
+  </category>
 </category>

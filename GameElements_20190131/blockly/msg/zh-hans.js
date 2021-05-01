@@ -23,3 +23,4 @@ MSG.catGameElements_sub21 = "进度";
 MSG.catGameElements_sub22 = "密码栏位";
 MSG.catGameElements_sub23 = "表单";
 MSG.catGameElements_sub24 = "视讯媒体";
+MSG.catGameElements_sub25 = "字型";
