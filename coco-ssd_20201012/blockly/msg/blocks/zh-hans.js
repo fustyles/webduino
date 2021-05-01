@@ -18,3 +18,7 @@ Blockly.Msg.COCOSSD_FACING_FRONT_SHOW = "前置";
 Blockly.Msg.COCOSSD_FACING_BACK_SHOW = "后置";
 Blockly.Msg.COCOSSD_SRC_SHOW = "串流网址";
 Blockly.Msg.COCOSSD_CANVAS_GET_SHOW = "物件偵測(coco-ssd) 取得畫布代碼";
+Blockly.Msg.COCOSSD_DATA_CLASS_SHOW = "分类名称";
+Blockly.Msg.COCOSSD_DATA_SCORE_SHOW = "信心分数";
+Blockly.Msg.COCOSSD_DATA_MIDDLEX_SHOW = "中间X";
+Blockly.Msg.COCOSSD_DATA_MIDDLEY_SHOW = "中间Y";

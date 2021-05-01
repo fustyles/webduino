@@ -18,3 +18,7 @@ Blockly.Msg.COCOSSD_FACING_FRONT_SHOW = "Front";
 Blockly.Msg.COCOSSD_FACING_BACK_SHOW = "Back";
 Blockly.Msg.COCOSSD_SRC_SHOW = "Stream URL";
 Blockly.Msg.COCOSSD_CANVAS_GET_SHOW = "Object Detection (coco-ssd) Get Canvas ID";
+Blockly.Msg.COCOSSD_DATA_CLASS_SHOW = "Class";
+Blockly.Msg.COCOSSD_DATA_SCORE_SHOW = "Score";
+Blockly.Msg.COCOSSD_DATA_MIDDLEX_SHOW = "Middle X";
+Blockly.Msg.COCOSSD_DATA_MIDDLEY_SHOW = "Middle Y";

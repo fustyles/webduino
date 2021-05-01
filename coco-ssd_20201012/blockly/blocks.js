@@ -229,14 +229,14 @@ Blockly.Blocks['cocossd_object'] = {
       .appendField(Blockly.Msg.COCOSSD_DATA_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		[" ",""],
-		["class","class"],
-		["score","score"],
+		[Blockly.Msg.COCOSSD_DATA_CLASS_SHOW,"class"],
+		[Blockly.Msg.COCOSSD_DATA_SCORE_SHOW,"score"],
 		["X","x"],
 		["Y","y"],
-		["middleX","middlex"],
-		["middleY","middley"],
-		["width","width"],
-		["height","height"]
+		[Blockly.Msg.COCOSSD_DATA_MIDDLEX_SHOW,"middlex"],
+		[Blockly.Msg.COCOSSD_DATA_MIDDLEY_SHOW,"middley"],
+		[Blockly.Msg.COCOSSD_WIDTH_SHOW,"width"],
+		[Blockly.Msg.COCOSSD_HEIGHT_SHOW,"height"]
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
