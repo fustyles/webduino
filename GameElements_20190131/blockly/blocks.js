@@ -4610,10 +4610,10 @@ Blockly.Blocks['font_u'] = {
   }
 };
 
-Blockly.Blocks['font_spu'] = {
+Blockly.Blocks['font_sup'] = {
   init: function() {	
   this.appendDummyInput()
-	  .appendField(Blockly.Msg.FONT_SPU_SHOW);
+	  .appendField(Blockly.Msg.FONT_SUP_SHOW);
   this.appendValueInput("text_")
       .setCheck(null);  
   this.setInputsInline(true);
@@ -4622,10 +4622,10 @@ Blockly.Blocks['font_spu'] = {
   }
 };
 
-Blockly.Blocks['font_sbu'] = {
+Blockly.Blocks['font_sub'] = {
   init: function() {	
   this.appendDummyInput()
-	  .appendField(Blockly.Msg.FONT_SBU_SHOW);
+	  .appendField(Blockly.Msg.FONT_SUB_SHOW);
   this.appendValueInput("text_")
       .setCheck(null);  
   this.setInputsInline(true);
