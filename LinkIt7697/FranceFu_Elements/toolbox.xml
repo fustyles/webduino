@@ -1,5 +1,5 @@
 <category id="catGameElements" name="catGameElements"> 
-
+  
 	<category id="catGameElements_sub1" name="catGameElements_sub1" colour="120"> 
 	<block type="servermodule_javascript">
 		<statement name="js">
@@ -343,7 +343,7 @@
 	<block type="music_delete"> 
 	</block>    
 
-	</category>
+	</category>	
 	<category id="catGameElements_sub2" name="catGameElements_sub2" colour="120"> 
 
 	<block type="image_create">
@@ -3301,6 +3301,87 @@
 	</block>  
 
 	</category>
+	<category id="catGameElements_sub25" name="catGameElements_sub25" colour="120"> 
+
+	<block type="font_text"> 
+	<value name="size_">
+	  <block type="math_number">
+		<field name="NUM">2</field>
+	  </block>
+	</value> 
+	<value name="color_">
+		<block type="choice_color">
+		</block>
+	</value> 
+	<value name="face_">
+	  <block type="text">
+		<field name="TEXT">Arial</field>
+	  </block>
+	</value> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value> 	
+	</block>  
+	<block type="font_b"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+	</block>  
+	<block type="font_i"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+	</block>  
+	<block type="font_u"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+	</block>  
+	<block type="font_sup"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+	</block>  
+	<block type="font_sub"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+	</block>  
+	<block type="font_em"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+	</block>  
+	<block type="font_strong"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+	</block>  
+	<block type="font_code"> 	
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+	</block>   
+
+	</category>		
 	<category id="catGameElements_sub16" name="catGameElements_sub16" colour="120"> 
 
 	<block type="ajax_get"> 

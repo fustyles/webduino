@@ -239,7 +239,7 @@ Blockly.Blocks['table_td_get'] = {
       .appendField(Blockly.Msg.TABLE_TD_Y); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.PROPERTY)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_TEXT,"text"], [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], [Blockly.Msg.PROPERTY_IMAGE,"image"], [Blockly.Msg.PROPERTY_CHILDLENGTH,"childlength"], [Blockly.Msg.PROPERTY_CHILDID,"childid"], [Blockly.Msg.PROPERTY_TDID,"tdid"]]), "property_");  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_TEXT_SHOW,"text"], [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], [Blockly.Msg.PROPERTY_IMAGE,"image"], [Blockly.Msg.PROPERTY_CHILDLENGTH,"childlength"], [Blockly.Msg.PROPERTY_CHILDID,"childid"], [Blockly.Msg.PROPERTY_TDID,"tdid"]]), "property_");  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -2982,7 +2982,7 @@ Blockly.Blocks['ajax_get'] = {
       .appendField(new Blockly.FieldDropdown([["GET","GET"], ["POST","POST"], ["DELETE","DELETE"]]), "type_"); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AJAX_DATATYPE)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_TEXT,"text"],["html","html"], ["xml","xml"], ["script","script"], ["json","json"], ["jsonp","jsonp"]]), "datatype_"); 
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_TEXT_SHOW,"text"],["html","html"], ["xml","xml"], ["script","script"], ["json","json"], ["jsonp","jsonp"]]), "datatype_"); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AJAX_ASYNC)
       .appendField(new Blockly.FieldDropdown([["false","false"], ["true","true"]]), "async_"); 
@@ -4190,7 +4190,7 @@ Blockly.Blocks['form_create'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FORM_ENCTYPE) 
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_APPLICATION,"application/x-www-form-urlencoded"], [Blockly.Msg.PROPERTY_MULTIPART,"multipart/form-data"], [Blockly.Msg.PROPERTY_TEXT,"text/plain"]]), "enctype_");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_APPLICATION,"application/x-www-form-urlencoded"], [Blockly.Msg.PROPERTY_MULTIPART,"multipart/form-data"], [Blockly.Msg.PROPERTY_TEXT_SHOW,"text/plain"]]), "enctype_");
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -4588,5 +4588,124 @@ Blockly.Blocks['custom_style'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(110);   
+  }
+};
+
+Blockly.Blocks['font_text'] = {
+  init: function() {	
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.FONT_TEXT_SHOW);
+  this.appendValueInput("size_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+	  .appendField(Blockly.Msg.FONT_SIZE_SHOW);
+  this.appendValueInput("color_")
+      .setCheck(null)
+	  .appendField(Blockly.Msg.PROPERTY_COLOR);
+  this.appendValueInput("face_")
+      .setCheck("String")
+	  .appendField(Blockly.Msg.FONT_FACE_SHOW);	  
+  this.appendValueInput("text_")
+      .setCheck(null)
+	  .appendField(Blockly.Msg.PROPERTY_TEXT_SHOW);	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200); 
+  }
+};
+
+Blockly.Blocks['font_b'] = {
+  init: function() {	
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.FONT_B_SHOW);
+  this.appendValueInput("text_")
+      .setCheck(null);	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);  
+  }
+};
+
+Blockly.Blocks['font_i'] = {
+  init: function() {	
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.FONT_I_SHOW);
+  this.appendValueInput("text_")
+      .setCheck(null); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200); 
+  }
+};
+
+Blockly.Blocks['font_u'] = {
+  init: function() {	
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.FONT_U_SHOW);
+  this.appendValueInput("text_")
+      .setCheck(null); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['font_sup'] = {
+  init: function() {	
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.FONT_SPU_SHOW);
+  this.appendValueInput("text_")
+      .setCheck(null);  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200); 
+  }
+};
+
+Blockly.Blocks['font_sub'] = {
+  init: function() {	
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.FONT_SBU_SHOW);
+  this.appendValueInput("text_")
+      .setCheck(null);  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);  
+  }
+};
+
+Blockly.Blocks['font_em'] = {
+  init: function() {	
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.FONT_EM_SHOW);
+  this.appendValueInput("text_")
+      .setCheck(null);  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);  
+  }
+};
+
+Blockly.Blocks['font_strong'] = {
+  init: function() {	
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.FONT_STRONG_SHOW);
+  this.appendValueInput("text_")
+      .setCheck(null);  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);  
+  }
+};
+
+Blockly.Blocks['font_code'] = {
+  init: function() {	
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.FONT_CODE_SHOW);
+  this.appendValueInput("text_")
+      .setCheck(null);  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200); 
   }
 };

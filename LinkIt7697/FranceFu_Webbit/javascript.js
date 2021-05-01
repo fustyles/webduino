@@ -1801,8 +1801,8 @@ Blockly.Arduino.webbit_mooncar_ws2812_pin = function(){
 											'int HextoRGB(char val) {\n'+
 											'  String hex ="0123456789abcdef";\n'+
 											'  return hex.indexOf(val);\n'+
-											'}\n';		
-	Blockly.Arduino.setups_["setup_webbit_matrix_mooncar"]='pixels.begin();\n';
+											'}\n'; 												
+	Blockly.Arduino.setups_["setup_webbit_matrix_mooncar"]='pixels.begin();\n  pixels.show();\n';
 
 	var code = '';
 	return code;

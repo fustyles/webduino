@@ -456,16 +456,16 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = "'+pass+'";';
   var code = 'pinMode(2, OUTPUT);\n'+
 			 'while (WiFi.begin(_lwifi_ssid, _lwifi_pass) != WL_CONNECTED){\n'+
-			 '  digitalWrite(2,HIGH);\n'+
+			 '  digitalWrite(2, HIGH);\n'+
 			 '  delay(100);\n'+
-			 '  digitalWrite(2,LOW);\n'+
+			 '  digitalWrite(2, LOW);\n'+
 			 '  delay(900);\n'+
 			 '}\n'+
 			 'pinMode(2, OUTPUT);\n'+
 			 'for (int i=0;i<5;i++) {\n'+
-			 '  digitalWrite(2,HIGH);\n'+
+			 '  digitalWrite(2, HIGH);\n'+
 			 '  delay(100);\n'+
-			 '  digitalWrite(2,LOW);\n'+
+			 '  digitalWrite(2, LOW);\n'+
 			 '  delay(100);\n'+
 			 '}\n';
   return code; 
@@ -829,18 +829,18 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'  if (WiFi.status() == WL_CONNECTED) {\n'+ 
 			'    pinMode(2, OUTPUT);\n'+ 
 			'    for (int i=0;i<5;i++) {\n'+ 
-			'      digitalWrite(2,HIGH);\n'+ 
+			'      digitalWrite(2, HIGH);\n'+ 
 			'      delay(100);\n'+ 
-			'      digitalWrite(2,LOW);\n'+ 
+			'      digitalWrite(2, LOW);\n'+ 
 			'      delay(100);\n'+ 
 			'    }\n'+ 
 			'  }\n'+ 
 			'  else {\n'+ 
 			'    pinMode(2, OUTPUT);\n'+ 
 			'    for (int i=0;i<3;i++) {\n'+ 
-			'      digitalWrite(2,HIGH);\n'+ 
+			'      digitalWrite(2, HIGH);\n'+ 
 			'      delay(500);\n'+ 
-			'      digitalWrite(2,LOW);\n'+ 
+			'      digitalWrite(2, LOW);\n'+ 
 			'      delay(500);\n'+ 
 			'    }\n'+ 
 			'  }\n'+ 
