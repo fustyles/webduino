@@ -573,7 +573,7 @@
 						  </block>
 						</value>
 						<statement name="DO0">
-						  <block type="servermodule_bluetooth_feedback" id="249" inline="true">
+						  <block type="servermodule_bluetooth_feedback_newline" id="249" inline="true">
 							<value name="text">
 							  <block type="text" id="250">
 								<field name="TEXT">on</field>
@@ -582,7 +582,7 @@
 						  </block>
 						</statement>
 						<statement name="ELSE">
-						  <block type="servermodule_bluetooth_feedback" id="251" inline="true">
+						  <block type="servermodule_bluetooth_feedback_newline" id="251" inline="true">
 							<value name="text">
 							  <block type="text" id="252">
 								<field name="TEXT">off</field>
@@ -595,7 +595,7 @@
 				  </block>
 				</statement>
 				<statement name="ELSE">
-				  <block type="servermodule_bluetooth_feedback" id="253" inline="true">
+				  <block type="servermodule_bluetooth_feedback_newline" id="253" inline="true">
 					<value name="text">
 					  <block type="text" id="254">
 						<field name="TEXT">undefined</field>

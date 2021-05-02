@@ -964,10 +964,10 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 			'    digitalWrite(P1.toInt(),P2.toInt());\n'+
 			'  }\n'+  
 			'  else if (cmd=="digitalread") {\n'+
-			'    SendData(String(digitalRead(P1.toInt())));\n'+
+			'    SerialBT.println(String(digitalRead(P1.toInt())));\n'+
 			'  }\n'+ 
 			'  else if (cmd=="touchread") {\n'+
-			'    SendData(String(touchRead(P1.toInt())));\n'+
+			'    SerialBT.println(String(touchRead(P1.toInt())));\n'+
 			'  }\n'+
 			'  else if (cmd=="analogwrite") {\n'+
 			'    ledcAttachPin(P1.toInt(), 1);\n'+
@@ -975,7 +975,7 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 			'    ledcWrite(1,P2.toInt());\n'+
 			'  }\n'+   
 			'  else if (cmd=="analogread") {\n'+
-			'    SendData(String(analogRead(P1.toInt())));\n'+
+			'    SerialBT.println(String(analogRead(P1.toInt())));\n'+
 			'  }\n'+
 			'  else {\n  '+statements_executecommand.replace(/\n/g,"\n  ")+
 			'}\n'+ 
@@ -985,15 +985,7 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 			'  Serial.begin('+baudrate+');\n'+ 
 			'  SerialBT.begin('+blename+');\n'+ 
 			'  delay(10);\n'+ statements_setup +
-			'\n';
-
-	Blockly.Arduino.definitions_.define_esp32_senddata = '\n'+
-			'void SendData(String data) {\n'+
-			'  SerialBT.print(data);\n'+
-			'}\n'+
-			'void SendDataln(String data) {\n'+
-			'  SerialBT.println(data);\n'+
-			'}\n';		
+			'\n';	
 
     Blockly.Arduino.definitions_.define_bluetooth_getCommand = '\n'+
 			'void getCommand() {\n'+
@@ -1049,13 +1041,13 @@ Blockly.Arduino['servermodule_feedback'] = function (block) {
 
 Blockly.Arduino['servermodule_bluetooth_feedback'] = function (block) {
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'SendData(String('+text+'));\n';
+  var code = 'SerialBT.print(String('+text+'));\n';
   return code;
 };
 
 Blockly.Arduino['servermodule_bluetooth_feedback_newline'] = function (block) {
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'SendDataln(String('+text+'));\n';
+  var code = 'SerialBT.println(String('+text+'));\n';
   return code;
 };
 
