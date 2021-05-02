@@ -727,16 +727,14 @@ Blockly.Arduino['esp32_analogwrite'] = function(block) {
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
   var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
   var channel = Blockly.Arduino.valueToCode(block, 'channel', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.setups_['analogwrite_'+pin] = 'ledcAttachPin('+pin+', '+channel+');\n  ledcSetup('+channel+', 5000, 8);\n';
-  var code = 'ledcWrite('+channel+','+val+');\n';
+  var code = 'ledcAttachPin('+pin+', '+channel+');\nledcSetup('+channel+', 5000, 8);\nledcWrite('+channel+','+val+');\n';
   return code;
 };
 
 Blockly.Arduino['esp32_digitalwrite'] = function(block) { 
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
   var val = block.getFieldValue('val');
-  Blockly.Arduino.setups_['digitalwrite_'+pin] = 'pinMode('+pin+', OUTPUT);\n';
-  var code = 'digitalWrite('+pin+', '+val+');\n';
+  var code = 'pinMode('+pin+', OUTPUT);\ndigitalWrite('+pin+', '+val+');\n';
   return code;
 };
 
@@ -1163,7 +1161,7 @@ Blockly.Arduino['esp32_pinmode'] = function (block) {
 Blockly.Arduino['servermodule_pinwrite'] = function (block) {
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
   var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'digitalWrite(' + pin + ', ' + val + ');\n';
+  var code = 'pinMode(' + pin + ', OUTPUT);\ndigitalWrite(' + pin + ', ' + val + ');\n';
   return code;
 };
 
