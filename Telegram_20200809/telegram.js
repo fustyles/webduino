@@ -168,7 +168,7 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
 		error: function(jqXHR, textStatus, errorThrown)
 		{
 		  //console.log(errorThrown);
-		  telegram_text = "Please check telegram settings and start your bot in Telegram APP";
+		  telegram_text = "";
 		}
 	 });
   }  
