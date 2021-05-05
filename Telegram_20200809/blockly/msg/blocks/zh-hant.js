@@ -13,3 +13,5 @@ Blockly.Msg.TELEGRAM_TEXT_SHOW = "文字訊息";
 Blockly.Msg.TELEGRAM_PHOTOURL_SHOW = "圖片網址";
 Blockly.Msg.TELEGRAM_REPLYKEYBOARD_SHOW = "按鈕指令";
 Blockly.Msg.TELEGRAM_ONTIME_SHOW = "點擊後隱藏";
+Blockly.Msg.TELEGRAM_TOKEN_SHOW = "權杖";
+Blockly.Msg.TELEGRAM_CHATID_SHOW = "聊天室代碼";
