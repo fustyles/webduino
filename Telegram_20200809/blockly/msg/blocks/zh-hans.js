@@ -6,7 +6,7 @@ Blockly.Msg.TELEGRAM_ID_SHOW = "代码";
 Blockly.Msg.TELEGRAM_VIDEO_SHOW = "视讯媒体";
 Blockly.Msg.TELEGRAM_CANVAS_SHOW = "画布";
 Blockly.Msg.TELEGRAM_GETUPDATES_SHOW = "Telegram機器人 取得最新讯息";
-Blockly.Msg.TELEGRAM_GETMESSAGE_SHOW = " = Telegram機器人 最新讯息";
+Blockly.Msg.TELEGRAM_GETMESSAGE_SHOW = " 取得 Telegram機器人 最新讯息";
 Blockly.Msg.TELEGRAM_BR_SHOW = "Telegram機器人 讯息换行";
 Blockly.Msg.TELEGRAM_REPLYMARKUP_SHOW = "Telegram機器人 按钮";
 Blockly.Msg.TELEGRAM_TEXT_SHOW = "文字讯息";
