@@ -6,7 +6,7 @@ Blockly.Msg.TELEGRAM_ID_SHOW = "ID";
 Blockly.Msg.TELEGRAM_VIDEO_SHOW = "Video";
 Blockly.Msg.TELEGRAM_CANVAS_SHOW = "Canvas";
 Blockly.Msg.TELEGRAM_GETUPDATES_SHOW = "Telegram Bot get the latest message";
-Blockly.Msg.TELEGRAM_GETMESSAGE_SHOW = " = Telegram Bot latest message";
+Blockly.Msg.TELEGRAM_GETMESSAGE_SHOW = " Get Telegram Bot latest message";
 Blockly.Msg.TELEGRAM_BR_SHOW = "Telegram Bot Line-Break ";
 Blockly.Msg.TELEGRAM_REPLYMARKUP_SHOW = "Telegram Bot replyKeyboard";
 Blockly.Msg.TELEGRAM_TEXT_SHOW = "message";
