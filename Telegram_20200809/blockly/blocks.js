@@ -5,11 +5,11 @@ Blockly.Blocks['telegram_message'] = {
   this.appendValueInput("telegram_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Token");  
+      .appendField(Blockly.Msg.TELEGRAM_TOKEN_SHOW);  
   this.appendValueInput("telegram_chatid")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("ChatID"); 
+      .appendField(Blockly.Msg.TELEGRAM_CHATID_SHOW); 
   this.appendValueInput("telegram_msg")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -28,11 +28,11 @@ Blockly.Blocks['telegram_photo'] = {
   this.appendValueInput("telegram_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Token");  
+      .appendField(Blockly.Msg.TELEGRAM_TOKEN_SHOW);  
   this.appendValueInput("telegram_chatid")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("ChatID"); 
+      .appendField(Blockly.Msg.TELEGRAM_CHATID_SHOW); 
   this.appendValueInput("telegram_url")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -52,11 +52,11 @@ Blockly.Blocks['telegram_image'] = {
   this.appendValueInput("telegram_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Token");  
+      .appendField(Blockly.Msg.TELEGRAM_TOKEN_SHOW);  
   this.appendValueInput("telegram_chatid")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("ChatID"); 
+      .appendField(Blockly.Msg.TELEGRAM_CHATID_SHOW); 
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.TELEGRAM_VIDEO_SHOW,"video"], [Blockly.Msg.TELEGRAM_CANVAS_SHOW,"canvas"], [Blockly.Msg.TELEGRAM_IMAGE_SHOW,"image"]]), "telegram_source");
@@ -83,7 +83,7 @@ Blockly.Blocks['telegram_getupdates'] = {
   this.appendValueInput("telegram_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Token");
+      .appendField(Blockly.Msg.TELEGRAM_TOKEN_SHOW);
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -124,11 +124,11 @@ Blockly.Blocks['telegram_reply_markup'] = {
   this.appendValueInput("telegram_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Token");  
+      .appendField(Blockly.Msg.TELEGRAM_TOKEN_SHOW);  
   this.appendValueInput("telegram_chatid")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("ChatID"); 
+      .appendField(Blockly.Msg.TELEGRAM_CHATID_SHOW); 
   this.appendValueInput("telegram_msg")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
