@@ -13,3 +13,5 @@ Blockly.Msg.TELEGRAM_TEXT_SHOW = "message";
 Blockly.Msg.TELEGRAM_PHOTOURL_SHOW = "Photo URL";
 Blockly.Msg.TELEGRAM_REPLYKEYBOARD_SHOW = "replyKeyboard";
 Blockly.Msg.TELEGRAM_ONTIME_SHOW = "onTime";
+Blockly.Msg.TELEGRAM_TOKEN_SHOW ="Token";
+Blockly.Msg.TELEGRAM_CHATID_SHOW ="Chat ID";
