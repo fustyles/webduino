@@ -21,4 +21,4 @@ Blockly.Msg.FACEAPIRECOGNIZE_FACING_SHOW = "Camera Facing";
 Blockly.Msg.FACEAPIRECOGNIZE_FACING_FRONT_SHOW = "Front";
 Blockly.Msg.FACEAPIRECOGNIZE_FACING_BACK_SHOW = "Back";
 Blockly.Msg.FACEAPIRECOGNIZE_SRC_SHOW = "Stream URL";
-Blockly.Msg.FACEAPIRECOGNIZE_CANVAS_GET_SHOW = "Face Recognition (face-api) Get Canvas ID";
+Blockly.Msg.FACEAPIRECOGNIZE_CANVAS_GET_SHOW = "Face Recognition (face-api) Get Video ID";
