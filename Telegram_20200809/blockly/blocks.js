@@ -1,7 +1,7 @@
 Blockly.Blocks['telegram_message'] = {
   init: function() {
   this.appendDummyInput()
-	  .appendField(Blockly.Msg.TELEGRAM_MESSAGE_SHOW);
+	  .appendField(Blockly.Msg.TELEGRAM_SENDMESSAGE_SHOW);
   this.appendValueInput("telegram_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -24,7 +24,7 @@ Blockly.Blocks['telegram_message'] = {
 Blockly.Blocks['telegram_photo'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField(Blockly.Msg.TELEGRAM_PHOTO_SHOW);
+      .appendField(Blockly.Msg.TELEGRAM_SENDPHOTO_SHOW);
   this.appendValueInput("telegram_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -48,7 +48,7 @@ Blockly.Blocks['telegram_photo'] = {
 Blockly.Blocks['telegram_image'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField(Blockly.Msg.TELEGRAM_VIDEO_SHOW);
+      .appendField(Blockly.Msg.TELEGRAM_SENDVIDEO_SHOW);
   this.appendValueInput("telegram_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
