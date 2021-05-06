@@ -1,6 +1,6 @@
 Blockly.Msg.TELEGRAM_SENDMESSAGE_SHOW = "Telegram Bot Message";
 Blockly.Msg.TELEGRAM_SENDPHOTO_SHOW = "Telegram Bot Photo";
-Blockly.Msg.TELEGRAM_SENDVIDEO_SHOW = "Telegram Bot Image";
+Blockly.Msg.TELEGRAM_SENDVIDEO_SHOW = "Telegram Bot Video Still";
 Blockly.Msg.TELEGRAM_GETID_SHOW = "Get Element ID";
 Blockly.Msg.TELEGRAM_ID_SHOW = "ID";
 Blockly.Msg.TELEGRAM_VIDEO_SHOW = "Video";
