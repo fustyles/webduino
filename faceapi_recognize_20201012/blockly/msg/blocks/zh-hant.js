@@ -21,4 +21,4 @@ Blockly.Msg.FACEAPIRECOGNIZE_FACING_SHOW = "鏡頭";
 Blockly.Msg.FACEAPIRECOGNIZE_FACING_FRONT_SHOW = "前置";
 Blockly.Msg.FACEAPIRECOGNIZE_FACING_BACK_SHOW = "後置";
 Blockly.Msg.FACEAPIRECOGNIZE_SRC_SHOW = "串流網址";
-Blockly.Msg.FACEAPIRECOGNIZE_CANVAS_GET_SHOW = "人臉辨識 (face-api) 取得畫布代碼";
+Blockly.Msg.FACEAPIRECOGNIZE_CANVAS_GET_SHOW = "人臉辨識 (face-api) 取得影像代碼";
