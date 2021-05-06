@@ -1,10 +1,11 @@
 Blockly.Msg.TELEGRAM_MESSAGE_SHOW = "Telegram Bot Message";
 Blockly.Msg.TELEGRAM_PHOTO_SHOW = "Telegram Bot Photo";
-Blockly.Msg.TELEGRAM_IMAGE_SHOW = "Telegram Bot Image";
+Blockly.Msg.TELEGRAM_VIDEO_SHOW = "Telegram Bot Image";
 Blockly.Msg.TELEGRAM_GETID_SHOW = "Get Element ID";
 Blockly.Msg.TELEGRAM_ID_SHOW = "ID";
 Blockly.Msg.TELEGRAM_VIDEO_SHOW = "Video";
 Blockly.Msg.TELEGRAM_CANVAS_SHOW = "Canvas";
+Blockly.Msg.TELEGRAM_IMAGE_SHOW = "Image";
 Blockly.Msg.TELEGRAM_GETUPDATES_SHOW = "Telegram Bot get the latest message";
 Blockly.Msg.TELEGRAM_GETMESSAGE_SHOW = " Get Telegram Bot latest message";
 Blockly.Msg.TELEGRAM_BR_SHOW = "Telegram Bot Line-Break ";
