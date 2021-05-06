@@ -48,7 +48,7 @@ Blockly.Blocks['telegram_photo'] = {
 Blockly.Blocks['telegram_image'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField(Blockly.Msg.TELEGRAM_IMAGE_SHOW);
+      .appendField(Blockly.Msg.TELEGRAM_VIDEO_SHOW);
   this.appendValueInput("telegram_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
