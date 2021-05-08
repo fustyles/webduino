@@ -493,6 +493,106 @@
 		  </block>
 		</statement>
 	  </block>
+	  <block type="servermodule_cmd">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="servermodule_parameter">
+	  </block>
+	  <block type="servermodule_parameter_variable">
+	  </block>
+	  <block type="servermodule_parameter_variable_urldecode">
+	  </block>
+	  <block type="servermodule_parameter_get">
+	  </block>	  
+	  <block type="servermodule_parameter_set">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="servermodule_feedback">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>		  
+	  <block type="servermodule_parameter_set_address1">
+		<value name="cmd">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="P1">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="P2">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>		
+	  </block>	  	  
+	  <block type="servermodule_parameter_set_address">
+		<value name="cmd">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="P1">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="P2">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="P3">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="P4">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="P5">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="P6">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="P7">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="P8">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="P9">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>		
+	  </block>	  
+    </category>
+	<category id="france7" name="bluetoothmodule">
 	  <block type="esp32_myfirmata_bluetooth">
 		<value name="baudrate">
 		  <block type="math_number">
@@ -508,7 +608,7 @@
 		</statement>
 		<statement name="setup">
 		</statement>
-	  </block>	  
+	  </block>	
 	  <block type="esp32_myfirmata_bluetooth" id="232" inline="false">
 		<value name="baudrate">
 		  <block type="math_number" id="233">
@@ -608,6 +708,20 @@
 		  </block>
 		</statement>
 	  </block>
+	  <block type="servermodule_bluetooth_feedback">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="servermodule_bluetooth_feedback_newline">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>
 	  <block type="servermodule_cmd">
 		<value name="text">
 		  <block type="text">
@@ -619,32 +733,9 @@
 	  </block>
 	  <block type="servermodule_parameter_variable">
 	  </block>
-	  <block type="servermodule_parameter_variable_urldecode">
-	  </block>
 	  <block type="servermodule_parameter_get">
 	  </block>	  
 	  <block type="servermodule_parameter_set">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="servermodule_feedback">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>		  
-	  <block type="servermodule_bluetooth_feedback">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="servermodule_bluetooth_feedback_newline">
 		<value name="text">
 		  <block type="text">
 			<field name="TEXT"></field>
@@ -719,7 +810,7 @@
 			<field name="TEXT"></field>
 		  </block>
 		</value>		
-	  </block>	  
+	  </block>	 
     </category>
     <category id="france3" name="line">	
 	  <block type="linenotify_esp32_no">
