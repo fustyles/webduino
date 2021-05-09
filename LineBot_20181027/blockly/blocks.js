@@ -255,7 +255,7 @@ Blockly.Blocks['linenotify_image'] = {
   this.appendValueInput("notify_token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Token");  
+      .appendField(Blockly.Msg.LINENOTIFY_TOKEN_SHOW);  
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LINENOTIFY_VIDEO,"video"], [Blockly.Msg.LINENOTIFY_CANVAS,"canvas"], [Blockly.Msg.LINENOTIFY_IMAGE,"image"]]), "notify_source");
