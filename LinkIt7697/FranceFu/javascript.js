@@ -1285,3 +1285,47 @@ Blockly.Arduino['esp32_setuploop'] = function(block) {
   code = '\n' + statements_loop +'\n';
   return code;
 };
+
+Blockly.Arduino['esp32_bluetooth_initial'] = function(block) {
+    var baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
+    var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
+	var statements_setup = Blockly.Arduino.statementToCode(block, 'setup');
+
+	Blockly.Arduino.definitions_.define_esp32_bluetooth_include = '#include "BluetoothSerial.h"\n'+
+																	'#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)\n'+
+																	'  #error Bluetooth is not enabled! Please run `make menuconfig` to and enable it\n'+
+																	'#endif\n'+
+																	'BluetoothSerial SerialBT;\n'+
+																	'String BluetoothData = "";\n';
+
+    code = 'Serial.begin('+baudrate+');\n'+ 
+		   'SerialBT.begin('+blename+');\n'+ 
+		   'delay(10);\n'+ statements_setup +
+		   '\n';
+  return code;
+};
+
+Blockly.Arduino['esp32_bluetooth_readdata'] = function(block) {
+			
+  code ='if (SerialBT.available()) {\n'+
+		'  BluetoothData = "";\n'+
+		'  while (SerialBT.available()) {\n'+
+		'    char c=SerialBT.read();\n'+
+		'    BluetoothData=BluetoothData+String(c);\n'+
+		'    delay(1);\n'+
+		'  }\n'+		
+		'}\n';
+  return code;
+};
+
+Blockly.Arduino['esp32_bluetooth_getdata'] = function(block) {
+	Blockly.Arduino.definitions_.define_esp32_bluetooth_getdata = '\n'+
+			'String BluetoothGetData() {\n'+
+			'  String Data = BluetoothData;\n'+
+			'  BluetoothData = "";\n'+
+			'  return Data;\n'+
+			'}\n';
+			
+  code = 'BluetoothGetData()';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};

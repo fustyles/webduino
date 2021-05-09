@@ -646,6 +646,46 @@ Blockly.Blocks['esp32_myfirmata'] = {
   }
 };
 
+Blockly.Blocks['esp32_bluetooth_initial'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_BLUETOOTH_INITIAL_SHOW);
+    this.appendValueInput("baudrate")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_BLUETOOTH_BAUDRATE_SHOW);
+    this.appendValueInput("blename")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_BLUETOOTH_NAME_SHOW);		
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['esp32_bluetooth_readdata'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_BLUETOOTH_READDATA_SHOW);   
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['esp32_bluetooth_getdata'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_BLUETOOTH_GETDATA_SHOW);   
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);
+  }
+};
+
 Blockly.Blocks['esp32_myfirmata_bluetooth'] = {
   init: function() {
     this.appendDummyInput()

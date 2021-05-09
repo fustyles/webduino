@@ -88,3 +88,6 @@ Blockly.Msg.ESP32_BLUETOOTH_BAUDRATE_SHOW = "Baud Rate";
 Blockly.Msg.ESP32_BLUETOOTH_NAME_SHOW = "Name";
 Blockly.Msg.ESP32_BLUETOOTH_FEEDBACK_SHOW = "Bluetooth Feedback";
 Blockly.Msg.ESP32_BLUETOOTH_FEEDBACK_NEWLINE_SHOW = "Bluetooth Feedback(\\n)";
+Blockly.Msg.ESP32_BLUETOOTH_GETDATA_SHOW = "Bluetooth Get Data";
+Blockly.Msg.ESP32_BLUETOOTH_INITIAL_SHOW = "Bluetooth Initial";
+Blockly.Msg.ESP32_BLUETOOTH_READDATA_SHOW = "Bluetooth Read Data";
