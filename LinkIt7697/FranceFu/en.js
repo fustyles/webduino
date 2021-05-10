@@ -16,6 +16,7 @@ Blockly.Msg.FRANCE3_HEAD_LINE_SHOW = "Line Notify";
 Blockly.Msg.FRANCE4_HEAD_HTTPS_SHOW = "TCP HTTPS (ESP32)";
 Blockly.Msg.FRANCE4_HEAD_HTTP_SHOW = "TCP HTTP (ESP32)";
 Blockly.Msg.FRANCE5_HEAD_LINE_SHOW = "Line Notify (ESP32)";
+Blockly.Msg.FRANCE5_LINE_HTTP_SHOW = "Line Notify (http)";
 Blockly.Msg.FRANCE6_CLOSE_POWERDOG_SHOW = "ESP32 Close Power Dog";
 Blockly.Msg.ESP32_SET_WIFI_UNTIL_READY_TITLE = "ESP32 connect to Wi-Fi AP";
 Blockly.Msg.FRANCE7_SHOWCODE_SHOW = "Monitor Code(Console)  Continued";

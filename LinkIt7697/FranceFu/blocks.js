@@ -386,6 +386,25 @@ Blockly.Blocks['linenotify_esp32_br'] = {
   }
 };
 
+Blockly.Blocks['linenotify_http'] = {
+  init: function() {
+	this.appendDummyInput() 
+      .appendField(Blockly.Msg.FRANCE5_LINE_HTTP_SHOW)  
+  this.appendValueInput("linenotify_token")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ESP32_LINE_TOKEN_SHOW);  
+  this.appendValueInput("linenotify_msg")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ESP32_LINE_NOTIFY_SHOW);
+	this.setInputsInline(true);	  
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
 Blockly.Blocks['close_powerdog'] = {
   init: function() {
 	this.appendDummyInput() 

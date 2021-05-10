@@ -16,6 +16,7 @@ Blockly.Msg.FRANCE3_HEAD_LINE_SHOW = "Line 通知";
 Blockly.Msg.FRANCE4_HEAD_HTTPS_SHOW = "TCP HTTPS (ESP32)";
 Blockly.Msg.FRANCE4_HEAD_HTTP_SHOW = "TCP HTTP (ESP32)";
 Blockly.Msg.FRANCE5_HEAD_LINE_SHOW = "Line 通知 (ESP32)";
+Blockly.Msg.FRANCE5_LINE_HTTP_SHOW = "Line 通知 (LinkIt7697)";
 Blockly.Msg.FRANCE6_CLOSE_POWERDOG_SHOW = "ESP32 關閉電壓不穩重啟";
 Blockly.Msg.ESP32_SET_WIFI_UNTIL_READY_TITLE = "ESP32連線到Wi-Fi熱點";
 Blockly.Msg.FRANCE7_SHOWCODE_SHOW = "監看程式碼(主控台) 即時";

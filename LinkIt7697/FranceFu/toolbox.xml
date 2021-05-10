@@ -639,6 +639,16 @@
 		  </block>
 		</statement>
 		<statement name="setup">
+		  <block type="linenotify_http" id="34" inline="true">
+			<value name="linenotify_token">
+			  <block type="text" id="35">
+				<field name="TEXT"></field>
+			  </block>
+			</value>
+			<value name="linenotify_msg">
+			  <block type="linkit_wifi_ip_address" id="36"></block>
+			</value>
+		  </block>		
 		</statement>
 	  </block>
 	  <block type="servermodule_cmd">
@@ -1067,6 +1077,18 @@
 		<value name="linenotify_msg">	
 		</value>
 	  </block>
+	  <block type="linenotify_http">
+		<value name="linenotify_token">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>		
+		</value>   
+		<value name="linenotify_msg">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>		
+		</value>
+	  </block>	  
 	  <block type="linenotify_esp32_br">
 	  </block>	  
     </category>	

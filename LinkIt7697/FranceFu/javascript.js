@@ -438,6 +438,39 @@ Blockly.Arduino['linenotify_esp32_br'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['linenotify_http'] = function (block) {
+  Blockly.Arduino.definitions_['define_httpclient'] ='WiFiClient client;\n';
+  Blockly.Arduino.definitions_['linenotify_http'] ='\n'+
+													'String LineNotify_http_get(String token, String message) {\n'+
+													'  String getAll="", getBody="";\n'+
+													'  message.replace("%","%25");\n'+
+													'  message.replace(" ","%20");\n'+
+													'  message.replace("&","%20");\n'+
+													'  message.replace("#","%20");\n'+
+													'  message.replace("\\"","%22");\n'+
+													'  message.replace("\\n","%0D%0A");\n'+
+													'  if (client.connect("linenotify.com", 80)) {\n'+
+													'      client.println("GET /notify.php?token="+token+"&message="+message+" HTTP/1.0");\n'+
+													'      client.println("Host: linenotify.com");\n'+
+													'      client.println("Accept: */*");\n'+
+													'      client.println("Connection: close");\n'+
+													'      client.println();\n'+
+													'      delay(10);\n'+
+													'  }\n'+
+													'}\n';													
+
+  var linenotify_token = Blockly.Arduino.valueToCode(block, 'linenotify_token', Blockly.Arduino.ORDER_ATOMIC);  
+  var linenotify_msg = Blockly.Arduino.valueToCode(block, 'linenotify_msg', Blockly.Arduino.ORDER_ATOMIC);
+  
+  if ((linenotify_msg.indexOf('"')==0)&&(linenotify_msg.lastIndexOf('"')==linenotify_msg.length-1))
+    linenotify_msg = linenotify_msg.substring(1,linenotify_msg.length-1);	
+  if ((linenotify_msg.indexOf("(")==0)&&(linenotify_msg.lastIndexOf(")")==linenotify_msg.length-1))
+    linenotify_msg = linenotify_msg.substring(1,linenotify_msg.length-1);
+
+  var code = 'LineNotify_http_get('+linenotify_token+','+linenotify_msg.replace(/\\\\/g,"\\")+');\n';
+  return code;
+};
+
 Blockly.Arduino['close_powerdog'] = function(block) { 
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
