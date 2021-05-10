@@ -100,4 +100,4 @@ Blockly.Msg.SERVERMODULE_TOLOWERCASE_SHOW = "轉換為小寫字串";
 Blockly.Msg.SERVERMODULE_TOUPPERCASE_SHOW = "轉換為大寫字串";
 Blockly.Msg.SERVERMODULE_TRIM_SHOW = "刪除兩側空格";
 Blockly.Msg.SERVERMODULE_C_STR_SHOW = "轉換為NULL結尾字串";
-Blockly.Msg.SERVERMODULE_LENGTH_SHOW = "長度";
+Blockly.Msg.SERVERMODULE_LENGTH_SHOW = "字串長度";
