@@ -1210,3 +1210,36 @@ Blockly.Blocks['esp32_setuploop'] = {
     this.setColour(40);
   }
 };
+
+Blockly.Blocks['linkit7697_myfirmata'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.LINKIT7697_SERVERMODULE_SHOW);
+    this.appendValueInput("ssid")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
+    this.appendValueInput("password")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
+    this.appendValueInput("mainpage")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
+    this.appendStatementInput("ExecuteCommand")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_SETUP_SHOW);
+    this.appendStatementInput("setup")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_LOOP_SHOW);
+    this.appendStatementInput("loop")
+        .setCheck(null);
+    this.setInputsInline(false);
+    this.setColour(210);
+  }
+};

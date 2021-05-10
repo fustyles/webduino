@@ -91,3 +91,4 @@ Blockly.Msg.ESP32_BLUETOOTH_FEEDBACK_NEWLINE_SHOW = "Bluetooth Feedback(\\n)";
 Blockly.Msg.ESP32_BLUETOOTH_GETDATA_SHOW = "Bluetooth Get Data";
 Blockly.Msg.ESP32_BLUETOOTH_INITIAL_SHOW = "Bluetooth Initial";
 Blockly.Msg.ESP32_BLUETOOTH_READDATA_SHOW = "Bluetooth Read Data";
+Blockly.Msg.LINKIT7697_SERVERMODULE_SHOW = "LinkIt7697 connect to Wi-Fi AP";
