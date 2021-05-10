@@ -787,14 +787,14 @@ Blockly.Blocks['servermodule_parameter'] = {
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_FORMAT_SHOW);
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
-		["toInt()","toInt()"],
-		["toDouble()","toDouble()"],	
-		["toFloat()","toFloat()"],
-		["toLowerCase()","toLowerCase()"],	
-		["toUpperCase()","toUpperCase()"],
-		["trim()","trim()"],	
-		["c_str()","c_str()"],
-		["length()","length()"]		  
+		[Blockly.Msg.SERVERMODULE_TOINT_SHOW,"toInt()"],
+		[Blockly.Msg.SERVERMODULE_TODOUBLE_SHOW,"toDouble()"],	
+		[Blockly.Msg.SERVERMODULE_TOFLOAT_SHOW,"toFloat()"],
+		[Blockly.Msg.SERVERMODULE_TOLOWERCASE_SHOW,"toLowerCase()"],	
+		[Blockly.Msg.SERVERMODULE_TOUPPERCASE_SHOW,"toUpperCase()"],
+		[Blockly.Msg.SERVERMODULE_TRIM_SHOW,"trim()"],	
+		[Blockly.Msg.SERVERMODULE_C_STR_SHOW,"c_str()"],
+		[Blockly.Msg.SERVERMODULE_LENGTH_SHOW,"length()"]		  
 	]), "type");     
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
@@ -823,14 +823,14 @@ Blockly.Blocks['servermodule_parameter_variable'] = {
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_FORMAT_SHOW);
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
-		["toInt()","toInt()"],
-		["toDouble()","toDouble()"],	
-		["toFloat()","toFloat()"],
-		["toLowerCase()","toLowerCase()"],	
-		["toUpperCase()","toUpperCase()"],
-		["trim()","trim()"],	
-		["c_str()","c_str()"],
-		["length()","length()"]		  
+		[Blockly.Msg.SERVERMODULE_TOINT_SHOW,"toInt()"],
+		[Blockly.Msg.SERVERMODULE_TODOUBLE_SHOW,"toDouble()"],	
+		[Blockly.Msg.SERVERMODULE_TOFLOAT_SHOW,"toFloat()"],
+		[Blockly.Msg.SERVERMODULE_TOLOWERCASE_SHOW,"toLowerCase()"],	
+		[Blockly.Msg.SERVERMODULE_TOUPPERCASE_SHOW,"toUpperCase()"],
+		[Blockly.Msg.SERVERMODULE_TRIM_SHOW,"trim()"],	
+		[Blockly.Msg.SERVERMODULE_C_STR_SHOW,"c_str()"],
+		[Blockly.Msg.SERVERMODULE_LENGTH_SHOW,"length()"]		  
 	]), "type");     
 	this.setInputsInline(true);
     this.setOutput(true, null);  
