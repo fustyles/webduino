@@ -354,6 +354,7 @@ Blockly.Blocks['linenotify_esp32'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.ESP32_LINE_NOTIFY_SHOW);
+	this.setInputsInline(true);		  
     this.setOutput(true, null);  
     this.setColour(200);
   }
@@ -370,6 +371,7 @@ Blockly.Blocks['linenotify_esp32_no'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.ESP32_LINE_NOTIFY_SHOW);
+	this.setInputsInline(true);		  
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(200);
