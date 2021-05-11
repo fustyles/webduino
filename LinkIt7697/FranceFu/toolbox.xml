@@ -326,22 +326,6 @@
 		</block>	
 		<block type="BitMatrixLed_matrix_clear">
 		</block>				
-		<block type="BitMatrixLed_matrix_color_one">
-			<value name="X">
-				<block type="math_number">
-					<field name="NUM">1</field>
-				</block>
-			</value>
-			<value name="Y">
-				<block type="math_number">
-					<field name="NUM">1</field>
-				</block>
-			</value>
-			<value name="RGB">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>		
-		</block>
 		<block type="BitMatrixLed_matrix_color_one_n">
 			<value name="N">
 				<block type="math_number">
@@ -375,30 +359,12 @@
 				</block>
 			</value>		
 		</block>
-		<block type="BitMatrixLed_matrix_getcolor">
-			<value name="X">
-				<block type="math_number">
-					<field name="NUM">1</field>
-				</block>
-			</value>
-			<value name="Y">
-				<block type="math_number">
-					<field name="NUM">1</field>
-				</block>
-			</value>		
-		</block>
 		<block type="BitMatrixLed_matrix_one_getcolor">
 			<value name="N">
 				<block type="math_number">
 					<field name="NUM">1</field>
 				</block>
 			</value>		
-		</block>
-		<block type="BitMatrixLed_matrix_reverse">
-			<value name="RGB">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>
 		</block>			
 		<block type="BitMatrixLed_color">		
 		</block>
@@ -481,19 +447,19 @@
 		</block>	
 	</category>
 	<category id="france12" name="ultrasonicsensor">
-		<block type="webbit_mooncar_tracker_pin">
-			<value name="PINR">
+		<block type="webbit_mooncar_sonar_pin">
+			<value name="TRIG">
 				<block type="math_number">
-					<field name="NUM">23</field>
+					<field name="NUM">13</field>
 				</block>
 			</value>
-			<value name="PINL">
+			<value name="ECHO">
 				<block type="math_number">
-					<field name="NUM">5</field>
+					<field name="NUM">17</field>
 				</block>
 			</value>	
 		</block>	
-		<block type="webbit_mooncar_tracker"></block>
+		<block type="webbit_mooncar_sonar"></block>
 	</category>
 	<category id="france9" name="mpu9250">
 		<block type="esp32_mpu9250_pin">
