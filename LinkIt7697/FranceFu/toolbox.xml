@@ -325,7 +325,105 @@
 			</value>
 		</block>	
 		<block type="BitMatrixLed_matrix_clear">
-		</block>				
+		</block>
+				<block type="BitMatrixLed_matrix_color_one_3">
+			<value name="L21">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L22">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L23">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>			
+		</block>
+		<block type="BitMatrixLed_matrix_color_one_8">
+			<value name="L21">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L22">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L23">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L24">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L25">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L16">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L17">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L18">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>			
+		</block>
+		<block type="BitMatrixLed_matrix_color_one_12">
+			<value name="L21">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L22">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L23">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L24">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L25">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L16">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L17">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L18">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L19">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L20">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L11">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L12">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>				
+		</block>
 		<block type="BitMatrixLed_matrix_color_one_n">
 			<value name="N">
 				<block type="math_number">

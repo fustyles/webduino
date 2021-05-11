@@ -788,6 +788,108 @@ Blockly.Blocks['BitMatrixLed_matrix_color_one_n'] = {
   }
 };
 
+Blockly.Blocks['BitMatrixLed_matrix_color_one_3'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_MATRIX_COLOR);	
+	this.appendValueInput("L21")
+		.setCheck("String")
+        .appendField("1");
+	this.appendValueInput("L22")
+		.setCheck("String")
+        .appendField("2");
+	this.appendValueInput("L23")
+		.setCheck("String")
+        .appendField("3");		
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(300);	
+  }
+};
+
+Blockly.Blocks['BitMatrixLed_matrix_color_one_8'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_MATRIX_COLOR);	
+	this.appendValueInput("L21")
+		.setCheck("String")
+        .appendField("1");
+	this.appendValueInput("L22")
+		.setCheck("String")
+        .appendField("2");
+	this.appendValueInput("L23")
+		.setCheck("String")
+        .appendField("3");
+	this.appendValueInput("L24")
+		.setCheck("String")
+        .appendField("4");
+	this.appendValueInput("L25")
+		.setCheck("String")
+        .appendField("5");
+	this.appendValueInput("L16")
+		.setCheck("String")
+        .appendField("6");
+	this.appendValueInput("L17")
+		.setCheck("String")
+        .appendField("7");
+	this.appendValueInput("L18")
+		.setCheck("String")
+        .appendField("8");	
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(300);	
+  }
+};
+
+Blockly.Blocks['BitMatrixLed_matrix_color_one_12'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_MATRIX_COLOR);	
+	this.appendValueInput("L21")
+		.setCheck("String")
+        .appendField("1");
+	this.appendValueInput("L22")
+		.setCheck("String")
+        .appendField("2");
+	this.appendValueInput("L23")
+		.setCheck("String")
+        .appendField("3");
+	this.appendValueInput("L24")
+		.setCheck("String")
+        .appendField("4");
+	this.appendValueInput("L25")
+		.setCheck("String")
+        .appendField("5");
+	this.appendValueInput("L16")
+		.setCheck("String")
+        .appendField("6");
+	this.appendValueInput("L17")
+		.setCheck("String")
+        .appendField("7");
+	this.appendValueInput("L18")
+		.setCheck("String")
+        .appendField("8");	
+	this.appendValueInput("L19")
+		.setCheck("String")
+        .appendField("9");
+	this.appendValueInput("L20")
+		.setCheck("String")
+        .appendField("10");
+	this.appendValueInput("L11")
+		.setCheck("String")
+        .appendField("11");
+	this.appendValueInput("L12")
+		.setCheck("String")
+        .appendField("12");	
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(300);	
+  }
+};
+
 Blockly.Blocks['BitMatrixLed_matrix_rgb_one_n'] = {
   init: function() {
     this.appendDummyInput()
