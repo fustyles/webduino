@@ -193,6 +193,104 @@
 	  </block>	  
 	</category>
 	<sep id="category_sep"></sep>	
+	<category id="france9" name="buzzer">
+		<block type="esp32_buzzer">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">25</field>
+				</block>
+			</value>
+			<value name="delaytime">
+			  <block type="text">
+				<field name="TEXT">1000</field>
+			  </block>
+			</value>
+		</block>
+		<block type="esp32_buzzer2">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">25</field>
+				</block>
+			</value>
+			<value name="delaytime">
+			  <block type="text">
+				<field name="TEXT">1000</field>
+			  </block>
+			</value>
+		</block>
+		<block type="esp32_buzzer3">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">25</field>
+				</block>
+			</value>
+			<value name="delaytime">
+			  <block type="text">
+				<field name="TEXT">1000</field>
+			  </block>
+			</value>
+		</block>			
+		<block type="esp32_buzzer1">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">25</field>
+				</block>
+			</value>
+			<value name="frequency">
+			  <block type="text">
+				<field name="TEXT">261</field>
+			  </block>
+			</value>
+			<value name="delaytime">
+			  <block type="text">
+				<field name="TEXT">1000</field>
+			  </block>
+			</value>
+		</block>
+		<block type="esp32_buzzer1">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">25</field>
+				</block>
+			</value>
+			<value name="frequency">
+			  <block type="array_create_with" id="105" inline="false">
+				<mutation items="2"></mutation>
+				<value name="ADD0">
+				  <block type="text" id="117">
+					<field name="TEXT">392</field>
+				  </block>
+				</value>
+				<value name="ADD1">
+				  <block type="text" id="118">
+					<field name="TEXT">330</field>
+				  </block>
+				</value>
+			  </block>
+			</value>
+			<value name="delaytime">
+			  <block type="array_create_with" id="119" inline="false">
+				<mutation items="2"></mutation>
+				<value name="ADD0">
+				  <block type="text" id="120">
+					<field name="TEXT">1000</field>
+				  </block>
+				</value>
+				<value name="ADD1">
+				  <block type="text" id="121">
+					<field name="TEXT">500</field>
+				  </block>
+				</value>
+			  </block>
+			</value>
+		</block>
+		<block type="esp32_buzzer_tone1">
+		</block>	
+		<block type="esp32_buzzer_tone2">
+		</block>	
+		<block type="esp32_buzzer_tone3">
+		</block>			
+	</category>
 	<category id="france9" name="DHT11">
 	  <block type="dht11_pin">
 		<value name="pin">
@@ -206,6 +304,107 @@
 	  <block type="dht11_get">
 	  </block>	 
 	</category>	
+	<category id="france9" name="ws2816">
+		<block type="BitMatrixLed_matrix_pin">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">4</field>
+				</block>		
+			</value>
+			<value name="leds">
+				<block type="math_number">
+					<field name="NUM">25</field>
+				</block>			
+			</value>	
+		</block>	
+		<block type="BitMatrixLed_matrix_brightness">
+			<value name="brightness">
+				<block type="math_number">
+					<field name="NUM">0.5</field>
+				</block>		
+			</value>
+		</block>	
+		<block type="BitMatrixLed_matrix_clear">
+		</block>				
+		<block type="BitMatrixLed_matrix_color_one">
+			<value name="X">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="Y">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="RGB">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>		
+		</block>
+		<block type="BitMatrixLed_matrix_color_one_n">
+			<value name="N">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="RGB">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>		
+		</block>
+		<block type="BitMatrixLed_matrix_rgb_one_n">
+			<value name="N">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="R">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="G">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="B">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>		
+		</block>
+		<block type="BitMatrixLed_matrix_getcolor">
+			<value name="X">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="Y">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>		
+		</block>
+		<block type="BitMatrixLed_matrix_one_getcolor">
+			<value name="N">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>		
+		</block>
+		<block type="BitMatrixLed_matrix_reverse">
+			<value name="RGB">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+		</block>			
+		<block type="BitMatrixLed_color">		
+		</block>
+		<block type="BitMatrixLed_color_random">		
+		</block>
+	</category>		
 	<category id="france10" name="LCD1602">
 	  <block type="lcd1602_initial">
 		<value name="sda">
@@ -230,7 +429,144 @@
 		  </block>
 		</value> 	  
 	  </block>	 
-    </category>	
+    </category>
+	<category id="france12" name="motordriveric">
+		<block type="webbit_mooncar_pin">
+			<value name="R1">
+				<block type="math_number">
+					<field name="NUM">12</field>
+				</block>
+			</value>
+			<value name="R2">
+				<block type="math_number">
+					<field name="NUM">18</field>
+				</block>
+			</value>
+			<value name="L1">
+				<block type="math_number">
+					<field name="NUM">16</field>
+				</block>
+			</value>
+			<value name="L2">
+				<block type="math_number">
+					<field name="NUM">19</field>
+				</block>
+			</value>		
+		</block>
+		<block type="webbit_mooncar_move_car">
+			<value name="RSPEED">
+				<block type="math_number">
+					<field name="NUM">255</field>
+					</block>
+			</value>
+			<value name="LSPEED">
+				<block type="math_number">
+					<field name="NUM">255</field>
+					</block>
+			</value>		
+		</block>
+		<block type="webbit_mooncar_move1_car">
+			<value name="SPEED">
+				<block type="math_number">
+					<field name="NUM">255</field>
+					</block>
+			</value>
+			<value name="RATIO">
+				<block type="math_number">
+					<field name="NUM">0.8</field>
+					</block>
+			</value>		
+		</block>
+		<block type="webbit_mooncar_stop_car">		
+		</block>	
+	</category>
+	<category id="france12" name="ultrasonicsensor">
+		<block type="webbit_mooncar_tracker_pin">
+			<value name="PINR">
+				<block type="math_number">
+					<field name="NUM">23</field>
+				</block>
+			</value>
+			<value name="PINL">
+				<block type="math_number">
+					<field name="NUM">5</field>
+				</block>
+			</value>	
+		</block>	
+		<block type="webbit_mooncar_tracker"></block>
+	</category>
+	<category id="france9" name="mpu9250">
+		<block type="esp32_mpu9250_pin">
+			<value name="sda">
+				<block type="math_number">
+					<field name="NUM">21</field>
+				</block>		
+			</value>
+			<value name="scl">
+				<block type="math_number">
+					<field name="NUM">22</field>
+				</block>			
+			</value>	
+		</block>	
+		<block type="esp32_mpu9250"></block>
+	</category>	
+	<category id="france12" name="colorsensor">
+		<block type="webbit_mooncar_tcs_init"></block>
+		<block type="webbit_mooncar_tcs_read"></block>
+		<block type="webbit_mooncar_tcs_set">
+			<value name="R">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>	
+			<value name="G">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>	
+			<value name="B">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>	
+		</block>
+		<block type="webbit_mooncar_tcs_range">
+			<value name="range">
+				<block type="math_number">
+					<field name="NUM">0.1</field>
+				</block>
+			</value>				
+		</block>	
+		<block type="webbit_mooncar_tcs_detect"></block>
+	</category>
+	<category id="france12" name="irread">
+		<block type="webbit_mooncar_ir_remote_read_pin">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">32</field>
+				</block>
+			</value>	
+		</block>
+		<block type="webbit_mooncar_ir_remote_read"></block>
+		<block type="webbit_mooncar_ir_remote_read_value"></block>
+		<block type="webbit_mooncar_ir_remote_read_type"></block>
+	</category>
+	<category id="france12" name="irsend">
+		<block type="webbit_mooncar_ir_remote_send_pin">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">33</field>
+				</block>
+			</value>
+		</block>
+		<block type="webbit_mooncar_ir_remote_send">
+			<value name="IR_SEND">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value> 
+		</block>
+	</category>
 	<category id="france12" name="MLX90614">
 	  <block type="MLX90614">
 		<value name="sda">

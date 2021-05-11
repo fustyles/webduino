@@ -286,8 +286,6 @@
 	  <block type="logic_null"></block>
 	</value>      
 	</block>
-	<block type="variable_board">   
-	</block>
 	<block type="async_function">
 	<value name="name_">
 	  <block type="text">
