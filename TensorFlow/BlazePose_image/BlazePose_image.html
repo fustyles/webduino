@@ -3,24 +3,21 @@ Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/5/16 20:00
 https://www.facebook.com/francefu
 
 Try it!
-https://fustyles.github.io/webduino/TensorFlow/BlazePose_video/BlazePose_video.html
+https://fustyles.github.io/webduino/TensorFlow/BlazePose_image/BlazePose_image.html
 -->
-
 <!DOCTYPE html>
 <head>
-	<title>BlazePose</title>
-	<meta charset="utf-8">
-	<meta name="robots" content="noindex">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multi Pose Detection (Image)</title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
 </head>
 <body>
-<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
-<video id="video" width="320" height="240" preload autoplay loop muted></video>
-<canvas id="canvas"></canvas>
+<input type="file" id="selectImage" disabled="true"></input>
 <br>
 Model
 <select id="model" onchange="LoadModel();">
@@ -41,26 +38,32 @@ ScoreLimit
 <option value="0.8">0.8</option>
 <option value="0.9">0.9</option>
 </select>
-<div id="result" style="color:red"></div>
+<br>
+<img id="OriginImage" style="display:none">
+<img id="ResizeImage">
+<canvas id="canvas" width="0" height="0"></canvas>
+<br>
+<div id="result" style="color:red">Please wait for loading model.</div>
   
 <script>
-  var video = document.getElementById('video');
-  var canvas = document.getElementById('canvas'); 
-  var context = canvas.getContext('2d');
-  var result = document.getElementById('result');
-  var model = document.getElementById('model');
-  var scorelimit = document.getElementById('scorelimit');
-  var Model;
-  var mod;
-  var scoreThreshold;
-  var posename;
-  var posename1 = ["nose","left_eye","right_eye","left_ear","right_ear","left_shoulder","right_shoulder","left_elbow","right_elbow","left_wrist","right_wrist","left_hip","right_hip","left_knee","right_knee","left_ankle","right_ankle"];
-  var posename2 = ["nose","left_eye_inner","left","left_eye_outer","right_eye_inner","right_eye","right_eye_outer","left_ear","right_ear","mouth_left","mouth_right","left_shoulder","right_shoulder","left_elbow","right_elbow","left_wrist","right_wrist","left_pinky","right_pinky","left_index","right_index","left_thumb","right_thumb","left_hip","right_hip","left_knee","right_knee","left_ankle","right_ankle","left_heel","right_heel","left_foot_index","right_foot_index"];
+var selectImage = document.getElementById('selectImage');
+var OriginImage = document.getElementById('OriginImage');
+var ResizeImage = document.getElementById('ResizeImage');
+var ResizeImageWidth = 500;
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");  
+var result = document.getElementById('result');
+var model = document.getElementById('model');
+var scorelimit = document.getElementById('scorelimit');
+var Model;
+var mod;
+var scoreThreshold;
+var posename;
+var posename1 = ["nose","left_eye","right_eye","left_ear","right_ear","left_shoulder","right_shoulder","left_elbow","right_elbow","left_wrist","right_wrist","left_hip","right_hip","left_knee","right_knee","left_ankle","right_ankle"];
+var posename2 = ["nose","left_eye_inner","left","left_eye_outer","right_eye_inner","right_eye","right_eye_outer","left_ear","right_ear","mouth_left","mouth_right","left_shoulder","right_shoulder","left_elbow","right_elbow","left_wrist","right_wrist","left_pinky","right_pinky","left_index","right_index","left_thumb","right_thumb","left_hip","right_hip","left_knee","right_knee","left_ankle","right_ankle","left_heel","right_heel","left_foot_index","right_foot_index"];
 
-  window.onload = function() {LoadModel();}
-  function LoadModel() {
-	result.innerHTML = "Please wait for loading model.";
-	
+window.onload = function () { LoadModel(); }
+function LoadModel() {
 	if (model.value=="MoveNet") {
 	  posename = posename1;
 	  mod = poseDetection.SupportedModels.MoveNet;
@@ -81,65 +84,21 @@ ScoreLimit
 	}
 
     poseDetection.createDetector(mod).then(function(detector) {
-      Model = detector;
-      result.innerHTML = "";
-      startVideo();
-    }); 
-  }
+		Model = detector;
+		result.innerHTML = "Please select one image.";
+		document.getElementById('selectImage').disabled = false;
+		DetectImage();
+	}); 
+}
   
-  function startVideo() {
-	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-	  console.log("enumerateDevices() not supported.");
-	  return;
-	}
-
-	var videoWidth = 320;
-	var videoHeight = 240;
-	
-    var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
-	navigator.mediaDevices.enumerateDevices()
-		.then(function(devices) {
-		  devices.forEach(function(device) {
-			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
-				if (device.deviceId=='')
-					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
-				else
-					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
-			  }
-		  });
-		
-		
-		if (location.search.toLowerCase().indexOf("?back")!=-1)
-		  var userMedia = back;
-		else
-		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
-
-		video.style.visibility="hidden";
-		video.style.position="absolute";
-		navigator.mediaDevices
-		  .getUserMedia(userMedia)
-		  .then(stream => {
-			video.srcObject = stream
-			video.onloadedmetadata = () => {       
-			  video.play();
-			  canvas.setAttribute("width", video.width);
-			  canvas.setAttribute("height", video.height);          
-			  setTimeout(function(){DetectVideo(); }, 100);
-			}
-		 })  
-	})  
-  } 
-                        
-async function DetectVideo() {
-  context.translate((canvas.width + video.width) / 2, 0);
-  context.scale(-1, 1);
-  context.drawImage(video, 0, 0, video.width, video.height);
-  context.setTransform(1, 0, 0, 1, 0, 0); 
-  
-  await Model.estimatePoses(canvas).then(poses => {
-    //console.log(pose);
+async function DetectImage() {
+  await Model.estimatePoses(ResizeImage).then(poses => {
+    canvas.setAttribute("width", ResizeImage.width);
+    canvas.setAttribute("height", ResizeImage.height);
+    context.drawImage(ResizeImage,0,0,ResizeImage.width,ResizeImage.height);
+    var s = (ResizeImage.width>ResizeImage.height)?ResizeImage.width:ResizeImage.height;
+    
     result.innerHTML = "";  
-	
     if (poses.length>0) {
 		for (var n=0;n<poses.length;n++) {
 			var k = poses[n].keypoints;
@@ -160,8 +119,51 @@ async function DetectVideo() {
 		scoreThreshold = scorelimit.value;
 		drawResults(poses);		
     }
-    setTimeout(function(){DetectVideo(); }, 100);
+    else
+      result.innerHTML = "Unrecognizable"; 
   });
+}
+    
+selectImage.onchange = function (event) {
+  var target = event.target || window.event.srcElement;
+  var files = target.files;
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      result.innerHTML = "Loading image to detect...";
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.setAttribute("width", 0);
+      canvas.setAttribute("height", 0);      
+      OriginImage.src = fr.result;
+    }
+    fr.readAsDataURL(files[0]);
+  }
+}
+  
+OriginImage.onload = function (event) {
+  try { 
+    document.createEvent("TouchEvent"); 
+    var width = document.body.clientWidth;
+  }
+  catch(e) { 
+    var width = ResizeImageWidth;
+  } 
+  
+  if (OriginImage.height<OriginImage.width) {
+    var height = width*OriginImage.height/OriginImage.width; 
+  }
+  else {
+    var height = width;
+    width = height*OriginImage.width/OriginImage.height; 
+  }
+
+  ResizeImage.width = width;
+  ResizeImage.height = height;  
+  ResizeImage.src = OriginImage.src;
+}
+  
+ResizeImage.onload = function (event) {
+  if (Model) DetectImage();
 }
 
 
