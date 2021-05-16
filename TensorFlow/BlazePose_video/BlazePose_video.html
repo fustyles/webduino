@@ -24,10 +24,22 @@ https://fustyles.github.io/webduino/TensorFlow/BlazePose_video/BlazePose_video.h
 <br>
 Model
 <select id="model" onchange="if (this.value!='') LoadModel();">
-<option value=""></option>
 <option value="MoveNet">MoveNet</option>
 <option value="BlazePose">BlazePose</option>
 <option value="PoseNet">PoseNet</option>
+</select>
+ScoreLimit
+<select id="scorelimit">
+<option value="0">0</option>  
+<option value="0.1">0.1</option>
+<option value="0.2">0.2</option>
+<option value="0.3" selected>0.3</option>
+<option value="0.4">0.4</option>
+<option value="0.5">0.5</option>
+<option value="0.6">0.6</option>
+<option value="0.7">0.7</option>
+<option value="0.8">0.8</option>
+<option value="0.9">0.9</option>
 </select>
 <div id="result" style="color:red"></div>
   
@@ -36,16 +48,19 @@ Model
   var canvas = document.getElementById('canvas'); 
   var context = canvas.getContext('2d');
   var result = document.getElementById('result');
-  var model = document.getElementById('model');  
+  var model = document.getElementById('model');
+  var scorelimit = document.getElementById('scorelimit');
   var Model;
   var mod;
   var scoreThreshold;
   var posename;
   var posename1 = ["nose","left_eye","right_eye","left_ear","right_ear","left_shoulder","right_shoulder","left_elbow","right_elbow","left_wrist","right_wrist","left_hip","right_hip","left_knee","right_knee","left_ankle","right_ankle"];
   var posename2 = ["nose","left_eye_inner","left","left_eye_outer","right_eye_inner","right_eye","right_eye_outer","left_ear","right_ear","mouth_left","mouth_right","left_shoulder","right_shoulder","left_elbow","right_elbow","left_wrist","right_wrist","left_pinky","right_pinky","left_index","right_index","left_thumb","right_thumb","left_hip","right_hip","left_knee","right_knee","left_ankle","right_ankle","left_heel","right_heel","left_foot_index","right_foot_index"];
-   
+
+  window.onload = function() {LoadModel();}
   function LoadModel() {
 	result.innerHTML = "Please wait for loading model.";
+	
 	if (model.value=="MoveNet") {
 	  posename = posename1;
 	  mod = poseDetection.SupportedModels.MoveNet;
@@ -140,6 +155,7 @@ async function DetectVideo() {
 			}
 		}
     }
+	scoreThreshold = scorelimit.value;
 	drawResults(poses);
     setTimeout(function(){DetectVideo(); }, 100);
   });
@@ -190,7 +206,7 @@ async function DetectVideo() {
 
   function drawKeypoint(keypoint) {
     // If score is null, just show the keypoint.
-    const score = (keypoint.score != null ? keypoint.score : 1;
+    const score = (keypoint.score != null ? keypoint.score : 1);
     if (score >= scoreThreshold) {
       const circle = new Path2D();
       circle.arc(keypoint.x, keypoint.y, 4, 0, 2 * Math.PI);
