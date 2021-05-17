@@ -71,7 +71,9 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_video/Holistic_video.htm
   } 
   
   function DetectVideo() { 
-	holistic.send({image: video}).then(result => {setTimeout(function(){DetectVideo(); }, 10)});
+	holistic.send({image: video}).then(result => {
+		setTimeout(function(){DetectVideo(); }, 10)
+	});
   }
   
 function onResults(results) {
@@ -93,7 +95,12 @@ function onResults(results) {
                  {color: '#00CC00', lineWidth: 2});
   drawLandmarks(canvasCtx, results.rightHandLandmarks,
                 {color: '#FF0000', lineWidth: 2});
-  canvasCtx.restore();  
+  canvasCtx.restore();
+  
+  //console.log(JSON.stringify(results.poseLandmarks));
+  //console.log(JSON.stringify(results.faceLandmarks));
+  //console.log(JSON.stringify(results.leftHandLandmarks));
+  //console.log(JSON.stringify(results.rightHandLandmarks));
 }
 
 const holistic = new Holistic({locateFile: (file) => {
