@@ -1,0 +1,145 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/15 00:00
+https://www.facebook.com/francefu
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/Blazeface_video/Blazeface_video.html
+-->
+
+<!DOCTYPE html>
+<head>
+  <title>Blaze Face Detection</title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
+</head>
+<body>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
+<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<canvas id="canvas"></canvas>
+<br>
+<div id="result" style="color:red"></div>
+  
+<script>
+  var video = document.getElementById('video');
+  var canvas = document.getElementById('canvas'); 
+  var context = canvas.getContext('2d');
+  var result = document.getElementById('result');
+  var Model; 
+  
+  window.onload = function() {LoadModel();}
+  function LoadModel() {
+	result.innerHTML = "Please wait for loading model.";
+	blazeface.load().then(function(model) {
+	  Model = model;
+	  result.innerHTML = "";
+	  startVideo();
+	}); 
+  }
+  
+  function startVideo() {
+	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+	  console.log("enumerateDevices() not supported.");
+	  return;
+	}
+
+	var videoWidth = 320;
+	var videoHeight = 240;
+	
+    var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+	navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+		  devices.forEach(function(device) {
+			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+				if (device.deviceId=='')
+					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				else
+					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+			  }
+		  });
+		
+		
+		if (location.search.toLowerCase().indexOf("?back")!=-1)
+		  var userMedia = back;
+		else
+		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+		video.style.visibility="hidden";
+		video.style.position="absolute";
+		navigator.mediaDevices
+		  .getUserMedia(userMedia)
+		  .then(stream => {
+			video.srcObject = stream
+			video.onloadedmetadata = () => {       
+			  video.play();
+			  canvas.setAttribute("width", video.width);
+			  canvas.setAttribute("height", video.height);          
+			  setTimeout(function(){DetectVideo(); }, 100);
+			}
+		 })  
+	}) 
+} 
+                        
+async function DetectVideo() {
+  context.translate((canvas.width + video.width) / 2, 0);
+  context.scale(-1, 1);
+  context.drawImage(video, 0, 0, video.width, video.height);
+  context.setTransform(1, 0, 0, 1, 0, 0); 
+  
+  const returnTensors = false;
+  await Model.estimateFaces(canvas, returnTensors).then(predictions => {
+    //console.log(predictions.score);
+    //console.log(predictions.keypoints);
+    result.innerHTML = "";  
+
+    if (predictions.length>0) {
+      for (var i=0;i<predictions.length;i++) {  
+		result.innerHTML += i + "," + 
+		predictions[i].topLeft[0] + "," + 
+		predictions[i].topLeft[1] + "," + 
+		predictions[i].bottomRight[0] + "," + 
+		predictions[i].bottomRight[1] + "," + 
+		predictions[i].probability[0] + "," + 
+		predictions[i].landmarks[0][0] + "," + 
+		predictions[i].landmarks[0][1] + "," + 
+		predictions[i].landmarks[1][0] + "," + 
+		predictions[i].landmarks[1][1] + "," + 
+		predictions[i].landmarks[2][0] + "," + 
+		predictions[i].landmarks[2][1] + "," + 
+		predictions[i].landmarks[3][0] + "," + 
+		predictions[i].landmarks[3][1] + "," + 
+		predictions[i].landmarks[4][0] + "," + 
+		predictions[i].landmarks[4][1] + "," + 
+		predictions[i].landmarks[5][0] + "," + 
+		predictions[i].landmarks[5][1] + "," + 
+		"<br>";
+
+		for (j=0;j<=5;j++) {
+			const x = predictions[i].landmarks[j][0];
+			const y = predictions[i].landmarks[j][1];
+			context.fillStyle="#00FFFF";
+			context.beginPath();
+			context.arc(x, y, 3, 0,2*Math.PI);
+			context.closePath();
+			context.fill();
+		}
+      }
+    }  
+
+    for (let i = 0; i < predictions.length; i++) {
+      const start = predictions[i].topLeft;
+      const end = predictions[i].bottomRight;
+      const size = [end[0] - start[0], end[1] - start[1]];
+	  context.strokeStyle = "#FF0000";
+	  context.lineWidth = 3;
+      context.strokeRect(start[0], start[1], size[0], size[1]);
+    }
+
+    setTimeout(function(){DetectVideo(); }, 100);
+  });
+}
+</script>
+
+</body>
+</html>
