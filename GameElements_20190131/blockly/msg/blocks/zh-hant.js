@@ -465,3 +465,6 @@ Blockly.Msg.FONT_SUB_SHOW = "文字下標";
 Blockly.Msg.FONT_EM_SHOW = "強調文字";
 Blockly.Msg.FONT_STRONG_SHOW = "加強文字";
 Blockly.Msg.FONT_CODE_SHOW = "原始碼字串";
+Blockly.Msg.VIDEO_BASE64_EMAIL = "截圖傳送電子信箱";
+Blockly.Msg.VIDEO_BASE64_RECIPIENT = "收件者";
+Blockly.Msg.VIDEO_BASE64_SUBJECT = "郵件標題";

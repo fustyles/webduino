@@ -116,6 +116,28 @@
       </block>
     </value> 
   </block> 
+  <block type="video_base64_email">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="recipient_">
+      <block type="text">
+        <field name="TEXT">***@***.com</field>
+      </block>
+    </value>  	
+    <value name="subject_">
+      <block type="text">
+        <field name="TEXT">Hello World</field>
+      </block>
+    </value>  	  
+    <value name="email_script_">
+      <block type="text">
+        <field name="TEXT">https://script.google.com/macros/s/AKfycbw7skDzXZhAoMNWU22FvmoS5TewKmB7xMmoftq9PVqeum95yeo123/exec</field>
+      </block>
+    </value> 
+  </block>   
   <block type="image_boundary">
     <value name="left_">
       <block type="math_number">
