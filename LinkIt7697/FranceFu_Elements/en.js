@@ -468,3 +468,6 @@ Blockly.Msg.FONT_SBU_SHOW = "Font SUB";
 Blockly.Msg.FONT_EM_SHOW = "Font EM";
 Blockly.Msg.FONT_STRONG_SHOW = "Font STRONG";
 Blockly.Msg.FONT_CODE_SHOW = "Font CODE";
+Blockly.Msg.VIDEO_BASE64_EMAIL = "Mail the still";
+Blockly.Msg.VIDEO_BASE64_RECIPIENT = "Recipient";
+Blockly.Msg.VIDEO_BASE64_SUBJECT = "Subject";
