@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/5/16 20:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/5/22 20:00
 https://www.facebook.com/francefu
 
 Try it!
@@ -7,7 +7,7 @@ https://fustyles.github.io/webduino/TensorFlow/BlazePose_image/BlazePose_image.h
 -->
 <!DOCTYPE html>
 <head>
-  <title>Multi Pose Detection (Image)</title>
+  <title>BlazePose (Image)</title>
   <meta charset="utf-8">
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,26 +69,43 @@ function LoadModel() {
 	  mod = poseDetection.SupportedModels.MoveNet;
 	  scorelimit.value = 0.3;
 	  //scoreThreshold = 0.3;
+		poseDetection.createDetector(mod).then(function(detector) {
+			Model = detector;
+			result.innerHTML = "Please select one image.";
+			document.getElementById('selectImage').disabled = false;
+			DetectImage();
+		}); 	  
 	}
 	else if (model.value=="BlazePose") {
 	  posename = posename2;	
-	  mod = poseDetection.SupportedModels.MediapipeBlazepose;
+	  mod = poseDetection.SupportedModels.BlazePose;
 	  scorelimit.value = 0.6;
-	  //scoreThreshold = 0.65;	  
+	  //scoreThreshold = 0.65;
+		poseDetection.createDetector(mod, {
+          runtime:'tfjs',
+          modelType: 'full',
+          solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/pose'
+        }).then(function(detector) {
+			Model = detector;
+			result.innerHTML = "Please select one image.";
+			document.getElementById('selectImage').disabled = false;
+			DetectImage();
+		}); 	  
+	  
 	}
 	else if (model.value=="PoseNet") {
 	  posename = posename1;	
 	  mod = poseDetection.SupportedModels.PoseNet;
 	  scorelimit.value = 0.5;
-	  //scoreThreshold = 0.5;	  
+	  //scoreThreshold = 0.5;
+		poseDetection.createDetector(mod).then(function(detector) {
+			Model = detector;
+			result.innerHTML = "Please select one image.";
+			document.getElementById('selectImage').disabled = false;
+			DetectImage();
+		}); 	  
+	  
 	}
-
-    poseDetection.createDetector(mod).then(function(detector) {
-		Model = detector;
-		result.innerHTML = "Please select one image.";
-		document.getElementById('selectImage').disabled = false;
-		DetectImage();
-	}); 
 }
   
 async function DetectImage() {
@@ -211,7 +228,9 @@ ResizeImage.onload = function (event) {
 
   function drawKeypoint(keypoint) {
     // If score is null, just show the keypoint.
-    const score = (keypoint.score != null ? keypoint.score : 1);
+	var score = 1;
+	if (keypoint.score)
+		score = keypoint.score;
     if (score >= scoreThreshold) {
       const circle = new Path2D();
       circle.arc(keypoint.x, keypoint.y, 4, 0, 2 * Math.PI);
