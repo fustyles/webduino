@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/5/17 20:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/5/22 14:30
 https://www.facebook.com/francefu
 
 Try it!
@@ -11,8 +11,6 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_image/Holistic_image.htm
 	<meta charset="utf-8">
 	<meta name="robots" content="noindex">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -21,6 +19,10 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_image/Holistic_image.htm
 <img id="ResizeImage">
 <canvas id="canvas"></canvas>
 <br>
+<input type="checkbox" id="face" checked>Face
+<input type="checkbox" id="pose" checked>Pose
+<input type="checkbox" id="lefthand" checked>Left Hand
+<input type="checkbox" id="righthand" checked>Right hand
 <div id="result" style="color:red"></div>
   
 <script>
@@ -29,7 +31,11 @@ var OriginImage = document.getElementById('OriginImage');
 var ResizeImage = document.getElementById('ResizeImage');
 var ResizeImageWidth = 500;
 var canvasElement = document.getElementById("canvas");
-var canvasCtx = canvasElement.getContext("2d");  
+var canvasCtx = canvasElement.getContext("2d"); 
+var face = document.getElementById('face');
+var pose = document.getElementById('pose');
+var lefthand = document.getElementById('lefthand');
+var righthand = document.getElementById('righthand');	 
 var result = document.getElementById('result');
     
 selectImage.onchange = function (event) {
@@ -73,35 +79,37 @@ OriginImage.onload = function (event) {
 }
 
 ResizeImage.onload = function (event) {
+  result.innerHTML = "Detecting...";
   holistic.send({image: ResizeImage});
   result.innerHTML = "";
 }
 
 function onResults(results) {
-  canvasCtx.save();
-  canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-  canvasCtx.drawImage(
-      results.image, 0, 0, canvasElement.width, canvasElement.height);
-  drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS,
-                 {color: '#00FF00', lineWidth: 2});
-  drawLandmarks(canvasCtx, results.poseLandmarks,
-                {color: '#FF0000', lineWidth: 2});
-  drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION,
-                 {color: '#C0C0C070', lineWidth: 1});
-  drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS,
-                 {color: '#CC0000', lineWidth: 2});
-  drawLandmarks(canvasCtx, results.leftHandLandmarks,
-                {color: '#00FF00', lineWidth: 2});
-  drawConnectors(canvasCtx, results.rightHandLandmarks, HAND_CONNECTIONS,
-                 {color: '#00CC00', lineWidth: 2});
-  drawLandmarks(canvasCtx, results.rightHandLandmarks,
-                {color: '#FF0000', lineWidth: 2});
-  canvasCtx.restore();
-  
-  //console.log(JSON.stringify(results.poseLandmarks));
-  //console.log(JSON.stringify(results.faceLandmarks));
-  //console.log(JSON.stringify(results.leftHandLandmarks));
-  //console.log(JSON.stringify(results.rightHandLandmarks));
+    result.innerHTML = "";
+	canvasCtx.save();
+	canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+	canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
+
+	if (pose.checked) {
+		drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, {color: '#00CCCC', lineWidth: 2});
+		drawLandmarks(canvasCtx, results.poseLandmarks, {color: '#FFFF00', lineWidth: 2});
+		//console.log(JSON.stringify(results.poseLandmarks));
+	}
+	if (face.checked) {
+		drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION, {color: '#C0C0C070', lineWidth: 1});
+		//console.log(JSON.stringify(results.faceLandmarks));
+	}
+	if (lefthand.checked) {
+		drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS, {color: '#CC0000', lineWidth: 2});
+		drawLandmarks(canvasCtx, results.leftHandLandmarks, {color: '#00FF00', lineWidth: 2});
+		//console.log(JSON.stringify(results.leftHandLandmarks));
+	}
+	if (righthand.checked) {
+		drawConnectors(canvasCtx, results.rightHandLandmarks, HAND_CONNECTIONS, {color: '#00CC00', lineWidth: 2});
+		drawLandmarks(canvasCtx, results.rightHandLandmarks, {color: '#FF0000', lineWidth: 2});
+		//console.log(JSON.stringify(results.rightHandLandmarks));
+	}
+	canvasCtx.restore();	
 }
 
 const holistic = new Holistic({locateFile: (file) => {
