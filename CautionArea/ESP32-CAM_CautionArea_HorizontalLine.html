@@ -414,7 +414,7 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容
 		  function initial() {
 			var strUrl=location.search;
 			if (strUrl.indexOf("?")!=-1) {
-				ip.value = strUrl.split("?")[1];
+				ip.value = strUrl.split("?")[1].replace(/http:\/\//g,"");
 			}
 			aud.value = aud.value.replace(/\\\//g,"/");
 			loadModel();
