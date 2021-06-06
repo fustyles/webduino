@@ -395,14 +395,16 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容
             touchState = false; 
           }, false);  
 		  
-		  function setIP() {
+		  function initial() {
 			var strUrl=location.search;
 			if (strUrl.indexOf("?")!=-1) {
 				ip.value = strUrl.split("?")[1];
 			}
+			aud.value = aud.value.replace(/\\\//g,"/");
+			loadModel();			
 		  }
                           
-          window.onload = function () { setIP();loadModel();}
+          window.onload = function () { initial();}
                     
           function loadModel() {
             cocoSsd.load().then(cocoSsd_Model => {
