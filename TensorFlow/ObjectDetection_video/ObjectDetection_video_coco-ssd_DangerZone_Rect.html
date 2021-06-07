@@ -11,17 +11,17 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 
 <!DOCTYPE html>
 <head>
-  <title>Object Detection (coco-ssd)</title>
+  <title>框選區域警示區(桌機視訊)</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"> </script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"> </script>  
 </head>
 <body>
-<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
-<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<button onclick="location.href=location.pathname;">前視鏡頭</button>&nbsp;&nbsp;<button onclick="location.href='?back';">後視鏡頭</button><br>
+<video id="video" width="320" height="240" style="display:none" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas><br>
-Audio&nbsp;&nbsp;<input type="text" id="aud" size="25" value="https://fustyles.github.io/webduino/paino_c.mp3"><input type="button" id="setsource" value="set" onclick="alarm.src=document.getElementById('aud').value;">
+警示音網址&nbsp;&nbsp;<input type="text" id="aud" size="20" value="https://fustyles.github.io/webduino/paino_c.mp3"><input type="button" id="setsource" value="重設" onclick="alarm.src=document.getElementById('aud').value;">
 <br>
 <div id="position" style="color:blue;font-size:40px"></div>
 <div id="result" style="color:red"></div>
@@ -87,7 +87,7 @@ Audio&nbsp;&nbsp;<input type="text" id="aud" size="25" value="https://fustyles.g
   
 	window.onload = function() {LoadModel();}  
 	function LoadModel() {
-		result.innerHTML = "Please wait for loading model.";
+		result.innerHTML = "請等待下載物件辨識模型...";
 		cocoSsd.load().then(model => {
 			Model = model;
 			result.innerHTML = "";
@@ -165,7 +165,7 @@ Audio&nbsp;&nbsp;<input type="text" id="aud" size="25" value="https://fustyles.g
 						context.closePath();
 						
 						if (((bottom_x-touch_x0)*(bottom_x-touch_x)<=0)&&((bottom_y-touch_y0)*(bottom_y-touch_y)<=0)&&(alarm.paused||alarm.ended)) {
-							position.innerHTML = "alarm";
+							//position.innerHTML = "alarm";
 							alarm.play();
 						}
 					}
