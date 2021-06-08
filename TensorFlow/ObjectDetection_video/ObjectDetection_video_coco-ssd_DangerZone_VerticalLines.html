@@ -11,15 +11,15 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 
 <!DOCTYPE html>
 <head>
-  <title>垂直區域警示區(桌機視訊)</title>
+  <title>Object Detection (coco-ssd)</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"> </script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"> </script>  
 </head>
 <body>
-<button onclick="location.href=location.pathname;">前視鏡頭</button>&nbsp;&nbsp;<button onclick="location.href='?back';">後視鏡頭</button><br>
-<video id="video" width="320" height="240" style="display:none" preload autoplay loop muted></video>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
+<video id="video" width="320" height="240" preload autoplay loop muted></video>
 <table>
 <tr>
 <td align="left"><input type="range" id="lefttop" min="0" max="320" value="80" step="1" required></td>
@@ -33,7 +33,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
 <td align="right"><input type="range" id="rightbottom" min="0" max="320" value="240" step="1" required></td>
 </tr>
 </table>
-警示音網址&nbsp;&nbsp;<input type="text" id="aud" size="20" value="https://fustyles.github.io/webduino/paino_c.mp3"><input type="button" id="setsource" value="重設" onclick="alarm.src=document.getElementById('aud').value;">
+Audio&nbsp;&nbsp;<input type="text" id="aud" size="25" value="http://www.fionasplace.net/creepysounds/BONES02.WAV"><input type="button" id="setsource" value="set" onclick="alarm.src=document.getElementById('aud').value;">
 <br>
 <div id="position" style="color:blue;font-size:40px"></div>
 <div id="result" style="color:red"></div>
@@ -60,7 +60,7 @@ https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
   
   window.onload = function() {LoadModel();}  
   function LoadModel() {
-	result.innerHTML = "請等待下載物件辨識模型...";
+	result.innerHTML = "Please wait for loading model.";
     cocoSsd.load().then(model => {
       Model = model;
       result.innerHTML = "";
