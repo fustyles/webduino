@@ -1,0 +1,189 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/2/6 14:00
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/ObjectDetection_video/ObjectDetection_video_coco-ssd_DangerZone_VerticalLines.html
+
+How to enable WebGL in Chrome.
+https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
+-->
+
+<!DOCTYPE html>
+<head>
+  <title>垂直區域警示區(桌機視訊)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"> </script>  
+</head>
+<body>
+<button onclick="location.href=location.pathname;">前視鏡頭</button>&nbsp;&nbsp;<button onclick="location.href='?back';">後視鏡頭</button><br>
+<video id="video" width="320" height="240" style="display:none" preload autoplay loop muted></video>
+<table>
+<tr>
+<td align="left"><input type="range" id="lefttop" min="0" max="320" value="80" step="1" required></td>
+<td align="right"><input type="range" id="righttop" min="0" max="320" value="240" step="1" required></td>
+</tr>
+<tr>
+<td colspan="2"><canvas id="canvas"></canvas></td>
+</tr>
+<tr>
+<td align="left"><input type="range" id="leftbottom" min="0" max="320" value="80" step="1" required></td>
+<td align="right"><input type="range" id="rightbottom" min="0" max="320" value="240" step="1" required></td>
+</tr>
+</table>
+警示音網址&nbsp;&nbsp;<input type="text" id="aud" size="20" value="https://fustyles.github.io/webduino/paino_c.mp3"><input type="button" id="setsource" value="重設" onclick="alarm.src=document.getElementById('aud').value;">
+<br>
+<div id="position" style="color:blue;font-size:40px"></div>
+<div id="result" style="color:red"></div>
+  
+<script>
+  var video = document.getElementById('video');
+  var canvas = document.getElementById('canvas'); 
+  var context = canvas.getContext('2d');
+  var position = document.getElementById('position');   
+  var result = document.getElementById('result'); 
+  
+  var lefttop = document.getElementById('lefttop');
+  var righttop = document.getElementById('righttop');
+  var leftbuttom = document.getElementById('leftbottom');
+  var rightbuttom = document.getElementById('rightbottom');
+  
+  var aud = document.getElementById('aud');
+  var alarm = new Audio(aud.value);
+	
+  let Model; 
+  
+  var videoWidth = 320;
+  var videoHeight = 240;  
+  
+  window.onload = function() {LoadModel();}  
+  function LoadModel() {
+	result.innerHTML = "請等待下載物件辨識模型...";
+    cocoSsd.load().then(model => {
+      Model = model;
+      result.innerHTML = "";
+      startVideo();
+    }); 
+  }  
+  
+  function startVideo() {
+	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+	  console.log("enumerateDevices() not supported.");
+	  return;
+	}
+
+    var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+	navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+		  devices.forEach(function(device) {
+			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+				if (device.deviceId=='')
+					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				else
+					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+			  }
+		  });
+		
+		
+		if (location.search.toLowerCase().indexOf("?back")!=-1)
+		  var userMedia = back;
+		else
+		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+		video.style.visibility="hidden";
+		video.style.position="absolute";
+		navigator.mediaDevices
+		  .getUserMedia(userMedia)
+		  .then(stream => {
+			video.srcObject = stream
+			video.onloadedmetadata = () => {       
+			  video.play();
+			  canvas.setAttribute("width", video.width);
+			  canvas.setAttribute("height", video.height);          
+			  setTimeout(function(){DetectVideo(); }, 100);
+			}
+		 })  
+	}) 
+  } 
+                        
+  async function DetectVideo() {
+    context.drawImage(video, 0, 0, video.width, video.height);
+    await Model.detect(canvas).then(predictions => { 
+      result.innerHTML = "";
+
+      //console.log('Predictions: ', predictions);
+	  context.strokeStyle = 'red';
+	  context.lineWidth = 5;	  
+	  context.beginPath();
+	  context.moveTo(lefttop.value, 0);
+	  context.lineTo(leftbottom.value, videoHeight);
+	  context.stroke();
+	  context.beginPath();
+	  context.moveTo(righttop.value, 0);
+	  context.lineTo(rightbottom.value, videoWidth);
+	  context.stroke();	  
+		  
+      if (predictions.length>0) {
+        for (var i=0;i<predictions.length;i++) {
+		  const x = Number(predictions[i].bbox[0]);
+		  const y = Number(predictions[i].bbox[1]);
+		  const width = Number(predictions[i].bbox[2]);
+		  const height = Number(predictions[i].bbox[3]);		
+		  
+		  if (predictions[i].class=="person") {
+			  context.fillStyle="#00FFFF";			  
+			  context.beginPath();
+			  context.arc(x+width/2,y+height,5,0,Math.PI*2,true);
+			  context.fill();
+			  context.closePath();
+			  
+			  var lt = Number(lefttop.value)+0.1;
+			  var rt = Number(righttop.value)+0.1;
+			  var lb = Number(leftbottom.value);
+			  var rb = Number(rightbottom.value);
+			  
+			  var p1,p2;
+			  var tx1 =  (lt - lb) / (0 - videoHeight) * ((y+height) - videoHeight) + lb;
+			  if (tx1>(x+width/2)) {
+				p1 = 1;
+			  }
+			  else {
+				p1 = 0;
+			  }
+			  
+			  var tx2 =  (rt - rb) / (0 - videoHeight) * ((y+height) - videoHeight) + rb;
+			  if (tx2>(x+width/2)) {
+				p2 = 1;
+			  }
+			  else {
+				p2 = 0;
+			  }	
+
+			  if (p1==1)
+				position.innerHTML = "1";
+			  else if (p1==0&&p2==1)
+				position.innerHTML = "2";
+			  else if (p2==0)
+				position.innerHTML = "3";
+			  
+			  if (position.innerHTML == "2"&&(alarm.paused||alarm.ended)) {			  
+				alarm.play();
+			  }
+		  }
+
+          result.innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+        }
+      }
+      else {
+	    position.innerHTML = "";
+        result.innerHTML = "Unrecognizable";
+	  }
+      setTimeout(function(){DetectVideo(); }, 100);
+    });
+  }
+</script>
+
+</body>
+</html>
