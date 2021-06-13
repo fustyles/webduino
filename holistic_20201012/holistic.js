@@ -108,9 +108,9 @@
 			var canvasElement = document.getElementById('canvasElement');
 			if (result["data"].length>0) {
 				if (input_data=="x")
-					return Number(result["data"][input_index].x)*Number(canvasElement.width);
+					return Number(result["data"][input_index].x);
 				else if (input_data=="y")
-					return Number(result["data"][input_index].y)*Number(canvasElement.height);
+					return Number(result["data"][input_index].y);
 				else if (input_data=="z")
 					return Number(result["data"][input_index].z);
 			}

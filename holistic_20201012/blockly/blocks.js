@@ -101,9 +101,9 @@ Blockly.Blocks['holistic_face_position'] = {
   this.appendDummyInput()
       .appendField(Blockly.Msg.HOLISTIC_DATA_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["score","score"],
 		["x","x"],
-		["y","y"]
+		["y","y"],
+		["z","z"]
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 

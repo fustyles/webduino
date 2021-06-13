@@ -1,5 +1,5 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js" crossorigin="anonymous"></script>');
-document.write('<div id="region_holistic" style="z-index:999"><video id="gamevideo_holistic" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_holistic" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_holistic" style="position:absolute;display:none"></canvas><canvas id="canvasElement" style="position:absolute;"></canvas><br><select id="face_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="pose_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="lefthand_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="righthand_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="scorelimit_holistic" style="position:absolute;visibility:hidden;"><option value="0">0</option><option value="0.1" selected>0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5">0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select><br></div>');
+document.write('<div id="region_holistic" style="z-index:999"><video id="gamevideo_holistic" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_holistic" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_holistic" style="position:absolute;display:none"></canvas><canvas id="canvasElement" style="position:absolute;"></canvas><br><select id="face_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="pose_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="lefthand_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="righthand_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="scorelimit_holistic" style="position:absolute;visibility:hidden;"><option value="0">0</option><option value="0.1" selected>0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5" selected>0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select><br></div>');
 document.write('<div id="holisticState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_holistic" style="position:absolute;display:none;"></div>');
 document.write('<div id="gamediv_face_holistic" style="position:absolute;display:none;"></div>');
@@ -13,6 +13,7 @@ window.onload = function () {
 	var canvasElement = document.getElementById('canvasElement'); 
 	var canvasCtx = canvasElement.getContext('2d');
 	var mirrorimage = document.getElementById("mirrorimage_holistic");
+	var scorelimit = document.getElementById("scorelimit_holistic");
 	var result = document.getElementById('gamediv_holistic');
 	var holisticState = document.getElementById('holisticState');
 	var sourceTimer;
@@ -84,6 +85,12 @@ window.onload = function () {
 
 		if (face.value==1) {
 			drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION, {color: '#C0C0C070', lineWidth: 1});
+			drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_RIGHT_EYE,{color: '#FF3030', lineWidth: 1});
+			drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_RIGHT_EYEBROW,{color: '#FF3030', lineWidth: 1});
+			drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_LEFT_EYE,{color: '#30FF30', lineWidth: 1});
+			drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_LEFT_EYEBROW,{color: '#30FF30', lineWidth: 1});
+			drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_FACE_OVAL,{color: '#E0E0E0', lineWidth: 1});
+			drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_LIPS,{color: '#00C0FF', lineWidth: 1});
 		}
 		result_face.innerHTML = JSON.stringify(results.faceLandmarks);
 		if (pose.value==1) {
@@ -112,8 +119,8 @@ window.onload = function () {
 	holistic.setOptions({
 	  modelComplexity: 1,
 	  smoothLandmarks: true,
-	  minDetectionConfidence: 0.5,
-	  minTrackingConfidence: 0.5
+	  minDetectionConfidence: Number(scorelimit.value),
+	  minTrackingConfidence: Number(scorelimit.value)
 	});
 	holistic.onResults(onResults);
 		
