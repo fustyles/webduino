@@ -6,9 +6,8 @@ Blockly.JavaScript['holistic_video'] = function(block) {
   var value_righthand_ = block.getFieldValue('righthand_');	
   var value_scorelimit_ = block.getFieldValue('scorelimit_');
   var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
-  var value_result_ = block.getFieldValue('result_');
   var value_opacity_ = block.getFieldValue('opacity_');
-  var code = 'holistic_video("' + value_video_ + '","' + value_face_ + '","' + value_pose_ + '","' + value_lefthand_ + '","' + value_righthand_ + '","' + value_scorelimit_ + '","' + value_mirrorimage_ + '","' + value_result_ + '","' + value_opacity_ + '");\n';
+  var code = 'holistic_video("' + value_video_ + '","' + value_face_ + '","' + value_pose_ + '","' + value_lefthand_ + '","' + value_righthand_ + '","' + value_scorelimit_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
   return code;
 };
 

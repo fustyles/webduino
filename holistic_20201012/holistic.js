@@ -4,14 +4,13 @@
 
   'use strict';
 
-  function holistic_video(input_video, input_face, input_pose, input_lefthand, input_righthand, input_scorelimit, input_mirrorimage, input_result, input_opacity) {
+  function holistic_video(input_video, input_face, input_pose, input_lefthand, input_righthand, input_scorelimit, input_mirrorimage, input_opacity) {
 	document.getElementById('scorelimit_holistic').value = input_scorelimit;
 	document.getElementById("mirrorimage_holistic").value = input_mirrorimage;
 	document.getElementById("face_holistic").value = input_face;
 	document.getElementById("pose_holistic").value = input_pose;
 	document.getElementById("lefthand_holistic").value = input_lefthand;
 	document.getElementById("righthand_holistic").value = input_righthand;		
-	document.getElementById("gamediv_holistic").style.display = input_result;
 	document.getElementById("region_holistic").style.opacity = input_opacity;
     document.getElementById("gamecanvas_holistic").style.display = input_video;
   }
@@ -102,42 +101,36 @@
 		}	
 	} 
 
-	function holistic_face_position(input_part, input_data){
-		var result = document.getElementById("holistic_face_position").innerHTML.split("<br>");
-		if (result.length>0) {
-		  for (var i=0;i<result.length;i++) {
-			var result_detail = result[i].split(",");
-			if (result_detail[0]==input_index&&result_detail[1]==input_part) {
-			  if (input_data=="")
-				return result_detail;
-			  else if (input_data=="score")
-				return Number(result_detail[2]);
-			  else if (input_data=="x")
-				return Number(result_detail[3]);
-			  else if (input_data=="y")
-				return Number(result_detail[4]);
+	function holistic_face_position(input_index, input_data){
+		var json = document.getElementById("gamediv_face_holistic").innerHTML;
+		if (json!=""&&json!="undefined") {
+			var result = JSON.parse('{"data":'+json+'}');
+			var canvasElement = document.getElementById('canvasElement');
+			if (result["data"].length>0) {
+				if (input_data=="x")
+					return Number(result["data"][input_index].x)*Number(canvasElement.width);
+				else if (input_data=="y")
+					return Number(result["data"][input_index].y)*Number(canvasElement.height);
+				else if (input_data=="z")
+					return Number(result["data"][input_index].z);
 			}
-		  }
 		}
 		return "";
 	}
 
-	function holistic_pose_position(input_part, input_data){
-		var result = document.getElementById("holistic_pose_position").innerHTML.split("<br>");
-		if (result.length>0) {
-		  for (var i=0;i<result.length;i++) {
-			var result_detail = result[i].split(",");
-			if (result_detail[0]==input_index&&result_detail[1]==input_part) {
-			  if (input_data=="")
-				return result_detail;
-			  else if (input_data=="score")
-				return Number(result_detail[2]);
-			  else if (input_data=="x")
-				return Number(result_detail[3]);
-			  else if (input_data=="y")
-				return Number(result_detail[4]);
+	function holistic_pose_position(input_index, input_data){
+		var json = document.getElementById("gamediv_pose_holistic").innerHTML;
+		if (json!=""&&json!="undefined") {
+			var result = JSON.parse('{"data":'+json+'}');
+			var canvasElement = document.getElementById('canvasElement');
+			if (result["data"].length>0) {
+				if (input_data=="x")
+					return Number(result["data"][input_index].x)*Number(canvasElement.width);
+				else if (input_data=="y")
+					return Number(result["data"][input_index].y)*Number(canvasElement.height);
+				else if (input_data=="z")
+					return Number(result["data"][input_index].z);
 			}
-		  }
 		}
 		return "";
 	}

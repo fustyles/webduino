@@ -45,13 +45,7 @@ Blockly.Blocks['holistic_video'] = {
 		["0.7","0.7"],
 		["0.8","0.8"],
 		["0.9","0.9"]	  
-  ]), "scorelimit_"); 	 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HOLISTIC_RESULT_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["Y","block"],
-		["N","none"]	  
-  ]), "result_");   
+  ]), "scorelimit_"); 	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_MIRRORIMAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -122,31 +116,46 @@ Blockly.Blocks['holistic_pose_position'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_POSE_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.HOLISTIC_NOSE_SHOW,"nose"],
-		[Blockly.Msg.HOLISTIC_LEFTEYE_SHOW,"leftEye"],
-		[Blockly.Msg.HOLISTIC_RIGHTEYE_SHOW,"rightEye"],
-		[Blockly.Msg.HOLISTIC_LEFTEAR_SHOW,"leftEar"],
-		[Blockly.Msg.HOLISTIC_RIGHTEAR_SHOW,"rightEar"],
-		[Blockly.Msg.HOLISTIC_LEFTSHOULDER_SHOW,"leftShoulder"],
-		[Blockly.Msg.HOLISTIC_RIGHTSHOULDER_SHOW,"rightShoulder"],
-		[Blockly.Msg.HOLISTIC_LEFTELBOW_SHOW,"leftElbow"],
-		[Blockly.Msg.HOLISTIC_RIGHTELBOW_SHOW,"rightElbow"],
-		[Blockly.Msg.HOLISTIC_LEFTWRIST_SHOW,"leftWrist"],
-		[Blockly.Msg.HOLISTIC_RIGHTWRIST_SHOW,"rightWrist"],
-		[Blockly.Msg.HOLISTIC_LEFTHIP_SHOW,"leftHip"],
-		[Blockly.Msg.HOLISTIC_RIGHTHIP_SHOW,"rightHip"],
-		[Blockly.Msg.HOLISTIC_LEFTKNEE_SHOW,"leftKnee"],
-		[Blockly.Msg.HOLISTIC_RIGHTKNEE_SHOW,"rightKnee"],
-		[Blockly.Msg.HOLISTIC_LEFTANKLE_SHOW,"leftAnkle"],
-		[Blockly.Msg.HOLISTIC_RIGHTANKLE_SHOW,"rightAnkle"],
-		[Blockly.Msg.HOLISTIC_ALL_SHOW,""]
+		[Blockly.Msg.HOLISTIC_NOSE_SHOW,"0"],
+		[Blockly.Msg.HOLISTIC_LEFTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_RIGHT_SHOW+")","1"],
+		[Blockly.Msg.HOLISTIC_LEFTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_CENTER_SHOW+")","2"],
+		[Blockly.Msg.HOLISTIC_LEFTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_LEFT_SHOW+")","3"],		
+		[Blockly.Msg.HOLISTIC_RIGHTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_LEFT_SHOW+")","4"],
+		[Blockly.Msg.HOLISTIC_RIGHTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_CENTER_SHOW+")","5"],
+		[Blockly.Msg.HOLISTIC_RIGHTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_RIGHT_SHOW+")","6"],		
+		[Blockly.Msg.HOLISTIC_LEFTEAR_SHOW,"7"],
+		[Blockly.Msg.HOLISTIC_RIGHTEAR_SHOW,"8"],
+		[Blockly.Msg.HOLISTIC_MOUTH_SHOW+"("+Blockly.Msg.HOLISTIC_LEFT_SHOW+")","9"],
+		[Blockly.Msg.HOLISTIC_MOUTH_SHOW+"("+Blockly.Msg.HOLISTIC_RIGHT_SHOW+")","10"],		
+		[Blockly.Msg.HOLISTIC_LEFTSHOULDER_SHOW,"11"],
+		[Blockly.Msg.HOLISTIC_RIGHTSHOULDER_SHOW,"12"],
+		[Blockly.Msg.HOLISTIC_LEFTELBOW_SHOW,"13"],
+		[Blockly.Msg.HOLISTIC_RIGHTELBOW_SHOW,"14"],
+		[Blockly.Msg.HOLISTIC_LEFTWRIST_SHOW,"15"],
+		[Blockly.Msg.HOLISTIC_RIGHTWRIST_SHOW,"16"],
+		[Blockly.Msg.HOLISTIC_LEFTPINKY_SHOW,"17"],
+		[Blockly.Msg.HOLISTIC_RIGHTPINKY_SHOW,"18"],		
+		[Blockly.Msg.HOLISTIC_LEFTINDEX_SHOW,"19"],
+		[Blockly.Msg.HOLISTIC_RIGHTINDEX_SHOW,"20"],
+		[Blockly.Msg.HOLISTIC_LEFTTHUMB_SHOW,"21"],
+		[Blockly.Msg.HOLISTIC_RIGHTTHUMB_SHOW,"22"],
+		[Blockly.Msg.HOLISTIC_LEFTHIP_SHOW,"23"],
+		[Blockly.Msg.HOLISTIC_RIGHTHIP_SHOW,"24"],
+		[Blockly.Msg.HOLISTIC_LEFTKNEE_SHOW,"25"],
+		[Blockly.Msg.HOLISTIC_RIGHTKNEE_SHOW,"26"],
+		[Blockly.Msg.HOLISTIC_LEFTANKLE_SHOW,"27"],
+		[Blockly.Msg.HOLISTIC_RIGHTANKLE_SHOW,"28"],
+		[Blockly.Msg.HOLISTIC_LEFTHEEL_SHOW,"29"],
+		[Blockly.Msg.HOLISTIC_RIGHTHEEL_SHOW,"30"],
+		[Blockly.Msg.HOLISTIC_LEFTFOOTINDEX_SHOW,"31"],
+		[Blockly.Msg.HOLISTIC_RIGHTFOOTINDEX_SHOW,"32"]
   ]), "part_");  	
   this.appendDummyInput()
       .appendField(Blockly.Msg.HOLISTIC_DATA_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["score","score"],
 		["x","x"],
-		["y","y"]
+		["y","y"],
+		["z","z"]
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
