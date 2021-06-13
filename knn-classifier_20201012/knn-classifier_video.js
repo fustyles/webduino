@@ -22,7 +22,7 @@ window.onload = function () {
 	var count = document.getElementById('count_knnclassifier');
 	var region = document.getElementById('region_knnclassifier');
 	var Detect = document.getElementById('Detect_knnclassifier');
-	var mirrorimage = document.getElementById("mirrorimage_knnclassifier").value;
+	var mirrorimage = document.getElementById("mirrorimage_knnclassifier");
 	var obj;
 
 	var classifier;
@@ -49,7 +49,7 @@ window.onload = function () {
 							canvas.setAttribute("height", obj.height);
 							canvas.style.width = obj.width+"px";
 							canvas.style.height = obj.height+"px";
-							if (mirrorimage==1) {
+							if (mirrorimage.value==1) {
 								context.translate((canvas.width + obj.width) / 2, 0);
 								context.scale(-1, 1);
 								context.drawImage(obj, 0, 0, obj.width, obj.height);
