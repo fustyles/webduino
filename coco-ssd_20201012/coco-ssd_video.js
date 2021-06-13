@@ -8,7 +8,7 @@ window.onload = function () {
 	var video = document.getElementById('gamevideo_cocossd');
 	var canvas = document.getElementById('gamecanvas_cocossd'); 
 	var context = canvas.getContext('2d');
-	var mirrorimage = document.getElementById("mirrorimage_cocossd").value;
+	var mirrorimage = document.getElementById("mirrorimage_cocossd");
 	var cocossdState = document.getElementById('cocossdState');
 	var frame = document.getElementById("frame_cocossd");
 	var result = document.getElementById('gamediv_cocossd'); 
@@ -37,7 +37,7 @@ window.onload = function () {
 		canvas.style.width = obj.style.width;
 		canvas.style.height = obj.style.height;		
 		
-		if (mirrorimage==1) {
+		if (mirrorimage.value==1) {
 			context.translate((canvas.width + obj.width) / 2, 0);
 			context.scale(-1, 1);
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
