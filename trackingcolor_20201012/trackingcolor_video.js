@@ -13,8 +13,8 @@ window.onload = function () {
     var canvas_custom = document.getElementById('gamecanvas_custom');
     var context_custom = canvas_custom.getContext('2d');
     var result = document.getElementById('gamediv_trackingcolor');
-	var mirrorimage = document.getElementById("mirrorimage_trackingcolor").value;
-	var region = document.getElementById("region_trackingcolor");
+    var mirrorimage = document.getElementById("mirrorimage_trackingcolor");
+    var region = document.getElementById("region_trackingcolor");
     var myColor_r_min1,myColor_r_max1,myColor_g_min1,myColor_g_max1,myColor_b_min1,myColor_b_max1;
     var myColor_r_min2,myColor_r_max2,myColor_g_min2,myColor_g_max2,myColor_b_min2,myColor_b_max2;
     var myColor_r_min3,myColor_r_max3,myColor_g_min3,myColor_g_max3,myColor_b_min3,myColor_b_max3;
@@ -97,7 +97,7 @@ window.onload = function () {
 					context_custom.putImageData(imgData,0,0);
 
 					event.data.forEach(function(rect) {
-						if (mirrorimage==1) {
+						if (mirrorimage.value==1) {
 							context.strokeStyle = rect.color;
 							context.strokeRect(obj.width-rect.x-rect.width, rect.y, rect.width, rect.height);
 							result.innerHTML+= rect.color+","+(obj.width-rect.x-rect.width)+","+rect.y+","+rect.width+","+rect.height+"<br>";
