@@ -43,7 +43,8 @@ Tello edu可在AP模式下利用積木設定Station模式手機熱點連線帳�
 此積木可輪流控制區域網路不同IP的Tello edu，但尚無法做到異步控制，若使用MQTT積木則可利用數台桌機分別控制一台做到異步群控。
 每一台Tello皆須先執行初始化積木進入SDK模式才可控制。
 
-
+(新版) 全身辨識 (MediaPipe Holistic)
+https://fustyles.github.io/webduino/holistic_20201012/blockly.json
 (新版) QR code辨識 (instascan)
 https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json
 (新版) 文字辨識 (tesseract.js)
