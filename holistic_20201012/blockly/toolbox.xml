@@ -26,7 +26,20 @@
     </value> 
   </block>    
   <block type="holistic_face_position">
+    <value name="part_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
   </block>
+  <block type="holistic_face_lefteye_position">
+  </block>
+  <block type="holistic_face_righteye_position">
+  </block>
+  <block type="holistic_face_nose_position">
+  </block>
+  <block type="holistic_face_mouth_position">
+  </block>  
   <block type="holistic_pose_position">
   </block>
   <block type="holistic_lefthand_position">

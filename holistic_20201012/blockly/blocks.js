@@ -77,27 +77,160 @@ Blockly.Blocks['holistic_video'] = {
 Blockly.Blocks['holistic_face_position'] = {
   init: function() {	  
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.HOLISTIC_FACE_SHOW)
+      .appendField(Blockly.Msg.HOLISTIC_FACE_SHOW+" [1-468]");
+  this.appendValueInput("part_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_DATA_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.HOLISTIC_NOSE_SHOW,"nose"],
-		[Blockly.Msg.HOLISTIC_LEFTEYE_SHOW,"leftEye"],
-		[Blockly.Msg.HOLISTIC_RIGHTEYE_SHOW,"rightEye"],
-		[Blockly.Msg.HOLISTIC_LEFTEAR_SHOW,"leftEar"],
-		[Blockly.Msg.HOLISTIC_RIGHTEAR_SHOW,"rightEar"],
-		[Blockly.Msg.HOLISTIC_LEFTSHOULDER_SHOW,"leftShoulder"],
-		[Blockly.Msg.HOLISTIC_RIGHTSHOULDER_SHOW,"rightShoulder"],
-		[Blockly.Msg.HOLISTIC_LEFTELBOW_SHOW,"leftElbow"],
-		[Blockly.Msg.HOLISTIC_RIGHTELBOW_SHOW,"rightElbow"],
-		[Blockly.Msg.HOLISTIC_LEFTWRIST_SHOW,"leftWrist"],
-		[Blockly.Msg.HOLISTIC_RIGHTWRIST_SHOW,"rightWrist"],
-		[Blockly.Msg.HOLISTIC_LEFTHIP_SHOW,"leftHip"],
-		[Blockly.Msg.HOLISTIC_RIGHTHIP_SHOW,"rightHip"],
-		[Blockly.Msg.HOLISTIC_LEFTKNEE_SHOW,"leftKnee"],
-		[Blockly.Msg.HOLISTIC_RIGHTKNEE_SHOW,"rightKnee"],
-		[Blockly.Msg.HOLISTIC_LEFTANKLE_SHOW,"leftAnkle"],
-		[Blockly.Msg.HOLISTIC_RIGHTANKLE_SHOW,"rightAnkle"],
-		[Blockly.Msg.HOLISTIC_ALL_SHOW,""]
-  ]), "part_");  	
+		["x","x"],
+		["y","y"],
+		["z","z"]
+  ]), "data_");   
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
+Blockly.Blocks['holistic_face_lefteye_position'] = {
+  init: function() {	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_FACE_SHOW+" "+Blockly.Msg.HOLISTIC_LEFTEYE_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		["362"+" ("+Blockly.Msg.HOLISTIC_RIGHT_SHOW+")","361"],
+		["398","397"],	
+		["384","383"],
+		["385","384"],
+		["386"+" ("+Blockly.Msg.HOLISTIC_UP_SHOW+")","385"],
+		["387","386"],	
+		["388","387"],
+		["466","465"],
+		["263"+" ("+Blockly.Msg.HOLISTIC_LEFT_SHOW+")","262"],
+		["249","248"],	
+		["390","389"],
+		["373","372"],
+		["374"+" ("+Blockly.Msg.HOLISTIC_DOWN_SHOW+")","373"],
+		["380","379"],	
+		["381","380"],
+		["382","381"]
+  ]), "part_"); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_DATA_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["x","x"],
+		["y","y"],
+		["z","z"]
+  ]), "data_");   
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
+Blockly.Blocks['holistic_face_righteye_position'] = {
+  init: function() {	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_FACE_SHOW+" "+Blockly.Msg.HOLISTIC_RIGHTEYE_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		["133"+" ("+Blockly.Msg.HOLISTIC_RIGHT_SHOW+")","132"],
+		["173","172"],	
+		["157","156"],
+		["158","157"],
+		["159"+" ("+Blockly.Msg.HOLISTIC_UP_SHOW+")","158"],
+		["160","159"],	
+		["161","160"],
+		["246","245"],
+		["33"+" ("+Blockly.Msg.HOLISTIC_LEFT_SHOW+")","32"],
+		["7","6"],	
+		["163","162"],
+		["144","143"],
+		["145"+" ("+Blockly.Msg.HOLISTIC_DOWN_SHOW+")","144"],
+		["153","152"],	
+		["154","153"],
+		["155","154"]
+  ]), "part_"); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_DATA_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["x","x"],
+		["y","y"],
+		["z","z"]
+  ]), "data_");   
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
+Blockly.Blocks['holistic_face_nose_position'] = {
+  init: function() {	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_FACE_SHOW+" "+Blockly.Msg.HOLISTIC_NOSE_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		["5"+" ("+Blockly.Msg.HOLISTIC_UP_SHOW+")","4"],
+		["281","280"],	
+		["363","362"],
+		["360","359"],
+		["279","278"],
+		["331"+" ("+Blockly.Msg.HOLISTIC_LEFT_SHOW+")","330"],	
+		["294","293"],
+		["460","459"],
+		["326","325"],
+		["2"+" ("+Blockly.Msg.HOLISTIC_DOWN_SHOW+")","1"],	
+		["97","96"],
+		["240","239"],
+		["64","63"],
+		["102"+" ("+Blockly.Msg.HOLISTIC_RIGHT_SHOW+")","101"],	
+		["49","48"],
+		["131","130"],	
+		["134","133"],		
+		["51","50"]
+  ]), "part_"); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_DATA_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["x","x"],
+		["y","y"],
+		["z","z"]
+  ]), "data_");   
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
+Blockly.Blocks['holistic_face_mouth_position'] = {
+  init: function() {	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_FACE_SHOW+" "+Blockly.Msg.HOLISTIC_MOUTH_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		["13"+" ("+Blockly.Msg.HOLISTIC_UP_SHOW+")","12"],
+		["14"+" ("+Blockly.Msg.HOLISTIC_DOWN_SHOW+")","13"],	
+		["312","311"],
+		["317","316"],
+		["311","310"],
+		["402","401"],	
+		["310","309"],
+		["318","317"],
+		["415","414"],
+		["324","323"],	
+		["308"+" ("+Blockly.Msg.HOLISTIC_LEFT_SHOW+")","307"],
+		["82","81"],
+		["87","86"],
+		["81","80"],	
+		["178","177"],
+		["80","79"],	
+		["88","87"],
+		["191","190"],	
+		["95","94"],		
+		["78"+" ("+Blockly.Msg.HOLISTIC_RIGHT_SHOW+")","77"]
+  ]), "part_"); 
   this.appendDummyInput()
       .appendField(Blockly.Msg.HOLISTIC_DATA_SHOW)
       .appendField(new Blockly.FieldDropdown([

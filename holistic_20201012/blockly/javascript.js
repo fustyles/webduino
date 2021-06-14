@@ -12,6 +12,34 @@ Blockly.JavaScript['holistic_video'] = function(block) {
 };
 
 Blockly.JavaScript['holistic_face_position'] = function(block) {
+  var value_part_ = Blockly.JavaScript.valueToCode(block, 'part_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'holistic_face_position(' + value_part_ + ',"' + value_data_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['holistic_face_lefteye_position'] = function(block) {
+  var value_part_ = block.getFieldValue('part_');
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'holistic_face_position("' + value_part_ + '","' + value_data_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['holistic_face_righteye_position'] = function(block) {
+  var value_part_ = block.getFieldValue('part_');
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'holistic_face_position("' + value_part_ + '","' + value_data_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['holistic_face_nose_position'] = function(block) {
+  var value_part_ = block.getFieldValue('part_');
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'holistic_face_position("' + value_part_ + '","' + value_data_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['holistic_face_mouth_position'] = function(block) {
   var value_part_ = block.getFieldValue('part_');
   var value_data_ = block.getFieldValue('data_');
   var code = 'holistic_face_position("' + value_part_ + '","' + value_data_ + '")';
