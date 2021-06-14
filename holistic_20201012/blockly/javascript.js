@@ -111,3 +111,8 @@ Blockly.JavaScript['holistic_startvideo_stream'] = function(block) {
   var code = 'holistic_startvideo_stream(' + value_src_ + ');\n';
   return code;
 };
+
+Blockly.JavaScript['holistic_canvas_get'] = function(block) { 
+  var code = '"canvasElement"';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};

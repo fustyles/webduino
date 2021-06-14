@@ -11,7 +11,7 @@
 	document.getElementById("lefthand_holistic").value = input_lefthand;
 	document.getElementById("righthand_holistic").value = input_righthand;		
 	document.getElementById("region_holistic").style.opacity = input_opacity;
-    document.getElementById("gamecanvas_holistic").style.display = input_video;
+    document.getElementById("gamecanvas_canvasElement").style.display = input_video;
   }
 	
   function holistic_distance(input_x0,input_y0,input_x1,input_y1) {
@@ -104,7 +104,7 @@
 		var json = document.getElementById("gamediv_face_holistic").innerHTML;
 		if (json!=""&&json!="undefined") {
 			var result = JSON.parse('{"data":'+json+'}');
-			var canvasElement = document.getElementById('canvasElement');
+			var canvasElement = document.getElementById('gamecanvas_canvasElement');
 			if (result["data"].length>0) {
 				if (input_data=="x")
 					return Number(result["data"][input_index].x)*Number(canvasElement.width);
@@ -121,7 +121,7 @@
 		var json = document.getElementById("gamediv_pose_holistic").innerHTML;
 		if (json!=""&&json!="undefined") {
 			var result = JSON.parse('{"data":'+json+'}');
-			var canvasElement = document.getElementById('canvasElement');
+			var canvasElement = document.getElementById('gamecanvas_canvasElement');
 			if (result["data"].length>0) {
 				if (input_data=="x")
 					return Number(result["data"][input_index].x)*Number(canvasElement.width);
@@ -138,7 +138,7 @@
 		var json = document.getElementById("gamediv_lefthand_holistic").innerHTML;
 		if (json!=""&&json!="undefined") {
 			var result = JSON.parse('{"data":'+json+'}');
-			var canvasElement = document.getElementById('canvasElement');
+			var canvasElement = document.getElementById('gamecanvas_canvasElement');
 			if (result["data"].length>0) {
 				if (input_data=="x")
 					return Number(result["data"][input_index].x)*Number(canvasElement.width);
@@ -151,11 +151,11 @@
 		return "";
 	}
 
-	function holistic_righthand_position(input_part, input_data){
+	function holistic_righthand_position(input_index, input_data){
 		var json = document.getElementById("gamediv_righthand_holistic").innerHTML;
 		if (json!=""&&json!="undefined") {
 			var result = JSON.parse('{"data":'+json+'}');
-			var canvasElement = document.getElementById('canvasElement');
+			var canvasElement = document.getElementById('gamecanvas_canvasElement');
 			if (result["data"].length>0) {
 				if (input_data=="x")
 					return Number(result["data"][input_index].x)*Number(canvasElement.width);

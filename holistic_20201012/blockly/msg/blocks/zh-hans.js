@@ -81,3 +81,4 @@ Blockly.Msg.HOLISTIC_HAND17_SHOW = "小指1";
 Blockly.Msg.HOLISTIC_HAND18_SHOW = "小指2";
 Blockly.Msg.HOLISTIC_HAND19_SHOW = "小指3";
 Blockly.Msg.HOLISTIC_HAND20_SHOW = "小指4";
+Blockly.Msg.HOLISTIC_CANVAS_GET_SHOW = "全身侦测 (MediaPipe) 取得画面代码";

@@ -18,20 +18,34 @@
       </block>
     </value> 
   </block> 
-    <block type="holistic_startvideo_stream">
+  <block type="holistic_startvideo_stream">
     <value name="src_">
       <block type="text">
         <field name="TEXT">http://192.168.1.199:81/stream</field>
       </block>
     </value> 
   </block>    
+  <block type="holistic_state">
+  </block> 
+  <block type="holistic_video_position">
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
+  </block>
   <block type="holistic_face_position">
     <value name="part_">
       <block type="math_number">
         <field name="NUM">1</field>
       </block>
     </value> 
-  </block>
+  </block>  
   <block type="holistic_face_lefteye_position">
   </block>
   <block type="holistic_face_righteye_position">
@@ -45,7 +59,9 @@
   <block type="holistic_lefthand_position">
   </block>
   <block type="holistic_righthand_position">
-  </block>  
+  </block>
+  <block type="holistic_canvas_get">
+  </block>   
   <block type="holistic_distance">
     <value name="x0_">
       <block type="math_number">
@@ -89,19 +105,5 @@
         <field name="NUM">0</field>
       </block>
     </value>     
-  </block>   
-  <block type="holistic_state">
-  </block> 
-  <block type="holistic_video_position">
-    <value name="left_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value> 
-    <value name="top_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>     
-  </block>     
+  </block>       
 </category>

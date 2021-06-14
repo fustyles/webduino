@@ -77,6 +77,7 @@ Blockly.Blocks['holistic_face_position'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");  
   }
 };
 
@@ -113,6 +114,7 @@ Blockly.Blocks['holistic_face_lefteye_position'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");   
   }
 };
 
@@ -149,6 +151,7 @@ Blockly.Blocks['holistic_face_righteye_position'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");   
   }
 };
 
@@ -176,6 +179,7 @@ Blockly.Blocks['holistic_face_nose_position'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");   
   }
 };
 
@@ -236,6 +240,7 @@ Blockly.Blocks['holistic_face_mouth_position'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");   
   }
 };
 
@@ -288,6 +293,7 @@ Blockly.Blocks['holistic_pose_position'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/pose_landmarks.png");  
   }
 };
 
@@ -328,6 +334,7 @@ Blockly.Blocks['holistic_lefthand_position'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/hand_landmarks.png");   
   }
 };
 
@@ -368,6 +375,7 @@ Blockly.Blocks['holistic_righthand_position'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/hand_landmarks.png");   
   }
 };
 
@@ -489,5 +497,15 @@ Blockly.Blocks['holistic_startvideo_stream'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
+  }
+};
+
+Blockly.Blocks['holistic_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
   }
 };
