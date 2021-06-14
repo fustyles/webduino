@@ -119,8 +119,8 @@ window.onload = function () {
 	holistic.setOptions({
 	  modelComplexity: 1,
 	  smoothLandmarks: true,
-	  minDetectionConfidence: Number(scorelimit.value),
-	  minTrackingConfidence: Number(scorelimit.value)
+	  minDetectionConfidence: 0.5,
+	  minTrackingConfidence: 0.5
 	});
 	holistic.onResults(onResults);
 		

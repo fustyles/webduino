@@ -4,8 +4,7 @@
 
   'use strict';
 
-  function holistic_video(input_video, input_face, input_pose, input_lefthand, input_righthand, input_scorelimit, input_mirrorimage, input_opacity) {
-	document.getElementById('scorelimit_holistic').value = input_scorelimit;
+  function holistic_video(input_video, input_face, input_pose, input_lefthand, input_righthand, input_mirrorimage, input_opacity) {
 	document.getElementById("mirrorimage_holistic").value = input_mirrorimage;
 	document.getElementById("face_holistic").value = input_face;
 	document.getElementById("pose_holistic").value = input_pose;

@@ -28,7 +28,7 @@
   <block type="holistic_face_position">
     <value name="part_">
       <block type="math_number">
-        <field name="NUM">0</field>
+        <field name="NUM">1</field>
       </block>
     </value> 
   </block>

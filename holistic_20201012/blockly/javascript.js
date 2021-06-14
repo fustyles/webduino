@@ -4,17 +4,16 @@ Blockly.JavaScript['holistic_video'] = function(block) {
   var value_pose_ = block.getFieldValue('pose_');
   var value_lefthand_ = block.getFieldValue('lefthand_');
   var value_righthand_ = block.getFieldValue('righthand_');	
-  var value_scorelimit_ = block.getFieldValue('scorelimit_');
   var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
   var value_opacity_ = block.getFieldValue('opacity_');
-  var code = 'holistic_video("' + value_video_ + '","' + value_face_ + '","' + value_pose_ + '","' + value_lefthand_ + '","' + value_righthand_ + '","' + value_scorelimit_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
+  var code = 'holistic_video("' + value_video_ + '","' + value_face_ + '","' + value_pose_ + '","' + value_lefthand_ + '","' + value_righthand_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
   return code;
 };
 
 Blockly.JavaScript['holistic_face_position'] = function(block) {
   var value_part_ = Blockly.JavaScript.valueToCode(block, 'part_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_data_ = block.getFieldValue('data_');
-  var code = 'holistic_face_position(' + value_part_ + ',"' + value_data_ + '")';
+  var code = 'holistic_face_position(Number(' + value_part_ + ')-1,"' + value_data_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
