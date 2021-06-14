@@ -60,6 +60,8 @@
   </block>
   <block type="holistic_righthand_position">
   </block>
+  <block type="holistic_all_poistion">
+  </block>
   <block type="holistic_canvas_get">
   </block>   
   <block type="holistic_distance">

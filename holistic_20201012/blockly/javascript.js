@@ -116,3 +116,9 @@ Blockly.JavaScript['holistic_canvas_get'] = function(block) {
   var code = '"canvasElement"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['holistic_all_poistion'] = function(block) {
+  var value_part_ = block.getFieldValue('part_'); 
+  var code = 'holistic_all_position("' + value_part_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};

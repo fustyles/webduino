@@ -57,6 +57,7 @@ Blockly.Blocks['holistic_video'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
+  this.setHelpUrl("https://google.github.io/mediapipe/solutions/holistic.html");   
   }
 };
 
@@ -504,6 +505,23 @@ Blockly.Blocks['holistic_canvas_get'] = {
   init: function() {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
+Blockly.Blocks['holistic_all_poistion'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_ALL_SHOW); 
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.HOLISTIC_FACE_SHOW,"face"],
+		[Blockly.Msg.HOLISTIC_POSE_SHOW,"pose"],
+		[Blockly.Msg.HOLISTIC_LEFTHAND_SHOW,"lefthand"],
+		[Blockly.Msg.HOLISTIC_RIGHTHAND_SHOW,"righthand"]		
+  ]), "part_"); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);

@@ -82,3 +82,4 @@ Blockly.Msg.HOLISTIC_HAND18_SHOW = "Pinky Finger 2";
 Blockly.Msg.HOLISTIC_HAND19_SHOW = "Pinky Finger 3";
 Blockly.Msg.HOLISTIC_HAND20_SHOW = "Pinky Finger 4";
 Blockly.Msg.HOLISTIC_CANVAS_GET_SHOW = "Holistic Detect (MediaPipe)  Get Canvas ID";
+Blockly.Msg.HOLISTIC_ALL_SHOW = "Holistic Detect (MediaPipe) Get array data";

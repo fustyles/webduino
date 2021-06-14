@@ -166,13 +166,42 @@
 			}
 		}
 		return "";
-	}	
+	}
+
+	function holistic_all_position(input_part){
+		if (input_part=="face")
+			var json = document.getElementById("gamediv_face_holistic").innerHTML
+		else if (input_part=="pose")
+			var json = document.getElementById("gamediv_pose_holistic").innerHTML
+		else if (input_part=="lefthand")
+			var json = document.getElementById("gamediv_lefthand_holistic").innerHTML
+		else if (input_part=="righthand")			
+			var json = document.getElementById("gamediv_righthand_holistic").innerHTML
+	
+		var result_arr = [];
+		var result_property_arr = [];
+		if (json!=""&&json!="undefined") {
+			var result = JSON.parse('{"data":'+json+'}');
+			var canvasElement = document.getElementById('gamecanvas_canvasElement');
+			if (result["data"].length>0) {
+				for (var i=0;i<result["data"].length;i++) {
+					result_property_arr = [];
+					result_property_arr.push(Number(result["data"][i].x)*Number(canvasElement.width));
+					result_property_arr.push(Number(result["data"][i].y)*Number(canvasElement.height));
+					result_property_arr.push(Number(result["data"][i].z));
+					result_arr.push(result_property_arr);
+				}
+			}
+		}
+		return result_arr;
+	}
 
 	window.holistic_video = holistic_video;
 	window.holistic_face_position = holistic_face_position;
 	window.holistic_pose_position = holistic_pose_position;
 	window.holistic_lefthand_position = holistic_lefthand_position;
-	window.holistic_righthand_position = holistic_righthand_position;	
+	window.holistic_righthand_position = holistic_righthand_position;
+	window.holistic_all_position = holistic_all_position;	
 	window.holistic_distance = holistic_distance;
 	window.holistic_angle = holistic_angle;	
 	window.holistic_video_position = holistic_video_position;
