@@ -162,7 +162,9 @@ Blockly.Blocks['holistic_face_nose_position'] = {
       .appendField(Blockly.Msg.HOLISTIC_FACE_SHOW+" "+Blockly.Msg.HOLISTIC_NOSE_SHOW);
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
-		["196"+" ("+Blockly.Msg.HOLISTIC_UP_SHOW+")","195"],
+		["7"+" ("+Blockly.Msg.HOLISTIC_UP_SHOW+")","6"],
+		["198","197"],	
+		["196","195"],
 		["6","5"],	
 		["5","4"],
 		["2","1"],
