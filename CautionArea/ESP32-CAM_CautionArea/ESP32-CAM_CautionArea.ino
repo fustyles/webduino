@@ -41,10 +41,10 @@ http://192.168.xxx.xxx/control?var=flash&val=value        // value = 0 ~ 255
 查詢Client端IP：
 查詢IP：http://192.168.4.1/?ip
 
-音效下載 (將音效剪輯長度成0.3秒再使用)
+音效下載
 https://taira-komori.jpn.org/freesoundtw.html
 
-線上音效剪輯
+線上音效剪輯 (將音效剪輯長度成0.3秒再使用)
 https://mp3cut.net/tw/
 */
 
