@@ -36,24 +36,17 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
                 <tr>
                   <td colspan="3">
                     <table>
-                      <tbody><tr> 
-                        <td>
-                          分數下限
-                          <select id="score">
-                          <option value="1.0">1</option>
-                          <option value="0.9">0.9</option>
-                          <option value="0.8">0.8</option>
-                          <option value="0.7">0.7</option>
-                          <option value="0.6">0.6</option>
-                          <option value="0.5" selected="selected">0.5</option>
-                          <option value="0.4">0.4</option>
-                          <option value="0.3">0.3</option>
-                          <option value="0.2">0.2</option>
-                          <option value="0.1">0.1</option>
-                          <option value="0">0</option>
+                      <tbody>
+					  <tr> 
+                        <td colspan="2">
+                          物件定位
+                          <select id="mark">
+                          <option value="center">中</option>							  
+                          <option value="upper">上</option>
+                          <option value="lower" selected="selected">下</option>
+                          <option value="left">左</option>
+                          <option value="right">右</option>
                           </select>
-                        </td>
-                        <td>
                             物件追蹤
                             <select id="object" onchange="count.innerHTML='';">
                               <option value="person" selected="selected">person</option>
@@ -137,12 +130,31 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
                               <option value="hair drier">hair drier</option>
                               <option value="toothbrush">toothbrush</option>
                             </select>
-                            <span id="count" style="color:red">0</span></td>
-                      </tr>                    
+                            <span id="count" style="color:red">0</span>
+						</td>							
+                      </tr>
+					  <tr> 
+                        <td colspan="2">
+                          分數下限
+                          <select id="score">
+                          <option value="1.0">1</option>
+                          <option value="0.9">0.9</option>
+                          <option value="0.8">0.8</option>
+                          <option value="0.7">0.7</option>
+                          <option value="0.6">0.6</option>
+                          <option value="0.5" selected="selected">0.5</option>
+                          <option value="0.4">0.4</option>
+                          <option value="0.3">0.3</option>
+                          <option value="0.2">0.2</option>
+                          <option value="0.1">0.1</option>
+                          <option value="0">0</option>
+                          </select>
+                        </td>
+                      </tr> 				
                       <tr><td>閃光燈</td><td><input type="range" id="flash" min="0" max="255" value="0" onchange="try{fetch(baseHost+'/control?flash='+this.value);}catch(e){}"></td></tr>
                       <tr><td><input type="checkbox" id="chkAud">警示音效網址</td><td><input type="text" id="aud" size="20" value="https:\/\/fustyles.github.io/webduino/paino_c.mp3"></td></tr> 
                       <tr><td><input type="checkbox" id="chkBuzzer">蜂鳴器(IO2)</td><td></td></tr>
-                      <tr><td><input type="checkbox" id="chkLine">Line通知權杖</td><td><input type="text" id="token" size="20" value=""></td></tr> 
+                      <tr><td colspan="2"><input type="checkbox" id="chkLine">Line通知權杖<input type="text" id="token" size="10" value=""><input type="button" value="傳送影像" onclick="SendCapturedImage();"></td></tr> 
                       <tr><td colspan="2"><span id="message" style="display:none"></span></td><td></td></tr> 
                     </tbody></table> 
                   </td>
@@ -157,37 +169,37 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
                     <input type="checkbox" id="nav-toggle-cb">
                     <nav id="menu">
                         <div class="input-group" id="flash-group">
-                            <label for="flash">Flash</label>
+                            <label for="flash">閃光燈</label>
                             <div class="range-min">0</div>
                             <input type="range" id="flash" min="0" max="255" value="0" class="default-action">
                             <div class="range-max">255</div>
                         </div>
                         <div class="input-group" id="framesize-group">
-                            <label for="framesize">Resolution</label>
+                            <label for="framesize">解析度</label>
                             <select id="framesize" class="default-action">
                               <option value="4">QVGA(320x240)</option>
                             </select>
                         </div>
                         <div class="input-group" id="quality-group">
-                            <label for="quality">Quality</label>
+                            <label for="quality">畫質</label>
                             <div class="range-min">10</div>
                             <input type="range" id="quality" min="10" max="63" value="10" class="default-action">
                             <div class="range-max">63</div>
                         </div>
                         <div class="input-group" id="brightness-group">
-                            <label for="brightness">Brightness</label>
+                            <label for="brightness">亮度</label>
                             <div class="range-min">-2</div>
                             <input type="range" id="brightness" min="-2" max="2" value="0" class="default-action">
                             <div class="range-max">2</div>
                         </div>
                         <div class="input-group" id="contrast-group">
-                            <label for="contrast">Contrast</label>
+                            <label for="contrast">對比</label>
                             <div class="range-min">-2</div>
                             <input type="range" id="contrast" min="-2" max="2" value="0" class="default-action">
                             <div class="range-max">2</div>
                         </div>
                         <div class="input-group" id="hmirror-group">
-                            <label for="hmirror">H-Mirror</label>
+                            <label for="hmirror">鏡像</label>
                             <div class="switch">
                                 <input id="hmirror" type="checkbox" class="default-action">
                                 <label class="slider" for="hmirror"></label>
@@ -199,7 +211,17 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
         </section>
         <iframe id="ifr" style="display:none;position:absolute" src=""></iframe>
         <div id="position" style="display:none;color:blue;font-size:40px"></div>
-        <div id="result" style="color:red">正在載入物件辨識模型...</div>        
+        <div id="result" style="color:red">正在載入物件辨識模型...</div> 
+		
+		<div style="display:none">
+		<form id="myForm" action="https://script.google.com/macros/s/AKfycbyp1xvWg-UCSrLsL8zt-ba_0n96uNTpAFyRry9ifCnRbtK-vgg/exec" method="post" target="sendcapturedimage">
+		<input type="text" id="myFilename" name="myFilename" value="Caution Area" style="display:none">
+		<input type="text" id="myToken" name="myToken" value="" style="display:none">
+		<textarea id="myFile" name="myFile" rows="10" cols="50" style="display:none"></textarea><br>
+		</form>
+		<iframe id="sendcapturedimage" name="sendcapturedimage" style="display:none"></iframe>
+		</div>
+		
         <script>
 		  var baseHost = "";
           var streamUrl = "";
@@ -337,6 +359,7 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
           var example = document.getElementById('example');
           var result = document.getElementById('result');
           var count = document.getElementById('count');
+		  var score = document.getElementById('score');
           var getStill = document.getElementById('get-still');
           var hmirror = document.getElementById('hmirror'); 
           var ifr = document.getElementById('ifr');
@@ -351,7 +374,8 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
           var chkBuzzer = document.getElementById('chkBuzzer');
           var alarm = new Audio(aud.value);
           var position = document.getElementById('position'); 
-      
+		  var mark = document.getElementById('mark');
+		  
           var Model; 
 
           var touch_x0=0, touch_y0=0, touch_x=0, touch_y=0;
@@ -454,12 +478,34 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
                   const y = Predictions[i].bbox[1];
                   const width = Predictions[i].bbox[2];
                   const height = Predictions[i].bbox[3];
-                  
+				  var mark_x = 0;
+				  var mark_y = 0;
+				  if (mark.value=="upper") {
+					mark_x = x + width/2;
+					mark_y = y;
+				  } 
+				  else if (mark.value=="lower") {
+					mark_x = x + width/2;
+					mark_y = y + height;
+				  }
+				  else if (mark.value=="left") {
+					mark_x = x;
+					mark_y = y + height/2;
+				  }
+				  else if (mark.value=="right") {
+					mark_x = x + width;
+					mark_y = y + height/2;
+				  }
+				  else if (mark.value=="center") {
+					mark_x = x + width/2;
+					mark_y = y + height/2;
+				  }	
+				  
                   result.innerHTML+= "[ "+i+" ] "+Predictions[i].class+", "+Math.round(Predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
 
                   if (Predictions[i].class==object.value&&Predictions[i].score>=score.value) {   
-                    var bottom_x = x+width/2;
-                    var bottom_y = y+height;
+                    var bottom_x = mark_x;
+                    var bottom_y = mark_y;
                     context.fillStyle="#00FFFF";        
                     context.beginPath();
                     context.arc(bottom_x,bottom_y,5,0,Math.PI*2,true);
@@ -514,8 +560,14 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
                 result.innerHTML = 'fail';
               }
             });
-          }      
+          } 
+
+		  function SendCapturedImage() {
+			//var date = new Date();
+			//myFilename.value = date.getFullYear()+"_"+(date.getMonth()+1)+"_"+date.getDate()+"_"+date.getHours()+"_"+date.getMinutes()+"_"+date.getSeconds()+".png";
+			myFile.value = canvas.toDataURL();
+			myToken.value = token.value;
+			myForm.submit();
+		  }		  
         </script>
-    
-        
 </body></html>
