@@ -1,9 +1,9 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/6/8 9:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/6/18 00:00
 https://www.facebook.com/francefu
 
 Try it
-https://fustyles.github.io/webduino/CautionArea/ESP32-CAM-Video-Recorder-junior-Page.html
+https://fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_HorizontalLine.html
 
 Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加密連結會被阻擋無法串流！若將網頁下載到本機執行，則不用更改安全性設定。
 瀏覽器網址執行 chrome://settings/content/siteDetails?site=https://fustyles.github.io
@@ -29,7 +29,7 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
             <section id="buttons">
                 <table>
 				<tr><td><button id="restart" onclick="fetch(baseHost+'/control?restart');">重啟電源</button></td><td align="right"><button id="get-still">取得截圖</button></td><td><button id="toggle-stream">開始串流</button></td></tr>
-                <tr><td align="right"><button onclick="showIframe();ifr.src = baseHost+'/list';">檔案列表</button></td><td><button onclick="hideIframe();getMessage(baseHost+'/control?record');getRecordState();">開始錄影</button></td><td><button onclick="hideIframe();clearTimeout(recordTimer);getMessage(baseHost+'/control?stop');">停止錄影</button></td></tr>
+                <tr><td align="right"><button onclick="showIframe();ifr.src = baseHost+'/list';">檔案列表</button></td><td><button onclick="hideIframe();getMessage(baseHost+'/control?record');">開始錄影</button></td><td><button onclick="hideIframe();clearTimeout(recordTimer);getMessage(baseHost+'/control?stop');">停止錄影</button></td></tr>
                 </table>
 			</section>         
             <div id="logo">
@@ -59,7 +59,7 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
                         <div class="input-group" id="avilength-group">
                             <label for="avilength">影片長度(秒)</label>
                             <div class="range-min"></div>
-                            <input type="range" id="avilength" min="10" max="3600"  step="10" value="180" class="default-action">
+                            <input type="range" id="avilength" min="10" max="3600" step="10" value="180" class="default-action">
                             <div id="len" class="range-max">180</div>
                         </div>					
                         <div class="input-group" id="recordonce-group">
@@ -259,6 +259,7 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
 		ip.onchange = function(event) {
 			baseHost = "http://"+ip.value;
 			streamUrl = baseHost + ':81';
+			getRecordState();
 		}
     		  
 		function execute(val) {
