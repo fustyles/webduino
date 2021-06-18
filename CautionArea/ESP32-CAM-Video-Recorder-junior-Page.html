@@ -19,7 +19,7 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
     </head>
     <body>
     <figure>
-	  ESP32-CAM IP：<input type="text" id="ip" size="20" value="192.168.">&nbsp;&nbsp;<a href="https://github.com/fustyles/Arduino/blob/master/ESP32-CAM-Video-Recorder-junior-Page/ESP32-CAM-Video-Recorder-junior-Page.ino" target="_blank">韌體</a>
+	  ESP32-CAM IP：<input type="text" id="ip" size="20" value="192.168."><input type="button" value="設定" onclick="setIP();">&nbsp;&nbsp;<a href="https://github.com/fustyles/Arduino/blob/master/ESP32-CAM-Video-Recorder-junior-Page/ESP32-CAM-Video-Recorder-junior-Page.ino" target="_blank">韌體</a>
       <div id="stream-container" class="image-container hidden">
         <div class="close" id="close-stream">×</div>
         <img id="stream" src="" crossorigin="anonymous" style="background-color:#000000;">
@@ -256,9 +256,11 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
 		var message = document.getElementById("message");
 		var recordTimer;
 		
-		ip.onchange = function(event) {
+		function setIP() {
 			baseHost = "http://"+ip.value;
 			streamUrl = baseHost + ':81';
+			console.log(baseHost);
+			console.log(streamUrl);
 			getRecordState();
 		}
     		  
