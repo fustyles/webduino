@@ -255,7 +255,7 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
 				message.innerHTML=baseHost+" 連線成功";
 				setTimeout(function(){getRecordState(); }, 2000);
 			}).catch(function(error) {
-				message.innerHTML=error;
+				message.innerHTML=baseHost+" 連線失敗";
 			});
 		}
     		  
@@ -270,11 +270,11 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
 			getRecordState();
 
 			fetch(url).then(function(response) {
-				return response.text();}
-			).then(function(text) {
-				//if (text=="Do nothing") 
-				//	clearTimeout(recordTimer);
+				return response.text();
+			}).then(function(text) {
 				message.innerHTML=text;
+			}).catch(function(error) {
+				message.innerHTML="連線執行指令失敗";
 			});
 		}
 		
