@@ -34,7 +34,7 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
 			</section>         
             <div id="logo">
 				<span id="message" style="color:yellow"></span><br>
-				<iframe id="ifr" width="300" height="200" style="border: 0px solid white;background:white;display:none"></iframe><br>
+				<iframe id="ifr" width="320" height="200" style="border: 0px solid white;background:white;display:none"></iframe><br>
 				<label for="nav-toggle-cb" id="nav-toggle">☰&nbsp;&nbsp;設定</label>
             </div>
             <div id="content">
@@ -171,10 +171,8 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
 			  }
 			  value
               const query = `${baseHost}/control?var=${el.id}&val=${value}`
-              fetch(query)
-                .then(response => {
-                  console.log(`request to ${query} finished, status: ${response.status}`)
-                })
+			  
+			  getMessage(query);
             }
             document
               .querySelectorAll('.close')
@@ -183,20 +181,7 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
                   hide(el.parentNode)
                 }
               })
-            // read initial values
-			/*
-            fetch(`${baseHost}/status`)
-              .then(function (response) {
-                return response.json()
-              })
-              .then(function (state) {
-                document
-                  .querySelectorAll('.default-action')
-                  .forEach(el => {
-                    updateValue(el, state[el.id], false)
-                  })
-              })
-			*/
+			  
             const view = document.getElementById('stream')
             const viewContainer = document.getElementById('stream-container')
             const stillButton = document.getElementById('get-still')
@@ -257,11 +242,21 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
 		var recordTimer;
 		
 		function setIP() {
+		    message.innerHTML="";
 			baseHost = "http://"+ip.value;
 			streamUrl = baseHost + ':81';
 			console.log(baseHost);
 			console.log(streamUrl);
-			getRecordState();
+			
+			message.innerHTML=baseHost+" 嘗試連線中...";
+			fetch(baseHost).then(function(response) {
+				return response.text();
+			}).then(function(text) {
+				message.innerHTML=baseHost+" 連線成功";
+				setTimeout(function(){getRecordState(); }, 2000);
+			}).catch(function(error) {
+				message.innerHTML=error;
+			});
 		}
     		  
 		function execute(val) {
@@ -271,11 +266,14 @@ Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加�
 		}
 		
 		function getMessage(url) {
+		    clearTimeout(recordTimer);
+			getRecordState();
+
 			fetch(url).then(function(response) {
 				return response.text();}
 			).then(function(text) {
-				if (text=="Do nothing") 
-				clearTimeout(recordTimer);
+				//if (text=="Do nothing") 
+				//	clearTimeout(recordTimer);
 				message.innerHTML=text;
 			});
 		}
