@@ -1,6 +1,6 @@
 /*
 ESP32-CAM Caution area (tfjs coco-ssd)
-Author : ChungYi Fu (Kaohsiung, Taiwan)  2021-6-8 16:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)  2021-6-21 23:30
 https://www.facebook.com/francefu
 
 物件類別
@@ -10,6 +10,7 @@ http://192.168.xxx.xxx             //網頁首頁管理介面
 http://192.168.xxx.xxx:81/stream   //取得串流影像       <img src="http://192.168.xxx.xxx:81/stream">
 http://192.168.xxx.xxx/capture     //取得影像          <img src="http://192.168.xxx.xxx/capture">
 http://192.168.xxx.xxx/status      //取得視訊參數值
+http://192.168.xxx.xxx/wifi        //設定區域網路Wi-Fi帳號密碼  
 
 自訂指令格式 :  
 http://APIP/control?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9
@@ -288,9 +289,10 @@ void setup() {
     }
   }  
 
+  Serial.println();
   Serial.println("APIP address: ");
   Serial.println(WiFi.softAPIP()); 
-  Serial.println("");
+  Serial.println();
   startCameraServer(); 
 
   //設定閃光燈為低電位
@@ -324,44 +326,54 @@ static size_t jpg_encode_stream(void * arg, size_t index, const void* data, size
     return len;
 }
 
-//自訂網頁首頁
-static const char PROGMEM INDEX_HTML_WIFI[] = R"rawliteral(
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>ESP32-CAM Caution Area</title>  
-    </head>
-    <body>
-    WIFI SSID: <input type="text" id="ssid"><br>
-    WIFI  PWD: <input type="text" id="pwd"><br>
-    <input type="button" value="設定" onclick="location.href='/control?resetwifi='+document.getElementById('ssid').value+';'+document.getElementById('pwd').value;">
-    </body>
-</html>        
+static const char PROGMEM index_html[] = R"rawliteral(
+  <!doctype html>
+  <html>
+      <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>ESP32-CAM Caution Area</title>  
+      </head>
+      <body>
+      請將WiFi改連接對外網路後再點選按鈕，設定隱私權和安全性允許不安全的內容。<br>
+      <font size="4" color="red">chrome:\/\/settings/content/siteDetails?site=https:\/\/fustyles.github.io</font><br>
+      <button onclick="location.href='/wifi';">設定Wi-Fi</button>
+      <button onclick="location.href='http'+':\/\/fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_HorizontalLine.html?'+document.location.origin;">垂直警示區</button>
+      <button onclick="location.href='http'+':\/\/fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_VerticalLine.html?'+document.location.origin;">水平警示區</button>
+      <button onclick="location.href='http'+':\/\/fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_Rect.html?'+document.location.origin;">框選警示區</button>
+      </body>
+  </html>        
 )rawliteral";
 
-static const char PROGMEM INDEX_HTML_ONLINE[] = R"rawliteral(
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>ESP32-CAM Caution Area</title>  
-    </head>
-    <body>
-    請將WiFi改連接對外網路後再點選按鈕，設定隱私權和安全性允許不安全的內容。<br>
-    <font size="4" color="red">chrome:\/\/settings/content/siteDetails?site=https:\/\/fustyles.github.io</font><br>
-    <button onclick="location.href='http'+':\/\/fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_HorizontalLine.html?'+document.location.origin;">垂直警示區</button>
-    <button onclick="location.href='http'+':\/\/fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_VerticalLine.html?'+document.location.origin;">水平警示區</button>
-    <button onclick="location.href='http'+':\/\/fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_Rect.html?'+document.location.origin;">框選警示區</button>
-    <br><br>
-    WIFI SSID: <input type="text" id="ssid"><br>
-    WIFI  PWD: <input type="text" id="pwd"><br>
-    <input type="button" value="設定" onclick="location.href='/control?resetwifi='+document.getElementById('ssid').value+';'+document.getElementById('pwd').value;">
-    </body>
-</html>        
+//網頁首頁   http://192.168.xxx.xxx
+static esp_err_t index_handler(httpd_req_t *req){
+  httpd_resp_set_type(req, "text/html");  //設定回傳資料格式
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");  //允許跨網域讀取
+  return httpd_resp_send(req, (const char *)index_html, strlen(index_html));
+}
+
+static const char index_wifi_html[] PROGMEM = R"rawliteral(
+  <!doctype html>
+  <html>
+      <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>ESP32-CAM Caution Area</title>  
+      </head>
+      <body>
+      WIFI SSID: <input type="text" id="ssid"><br>
+      WIFI  PWD: <input type="text" id="pwd"><br>
+      <input type="button" value="設定" onclick="location.href='/control?resetwifi='+document.getElementById('ssid').value+';'+document.getElementById('pwd').value;">
+      </body>
+  </html>        
 )rawliteral";
+
+static esp_err_t index_wifi_handler(httpd_req_t *req) {
+  httpd_resp_set_type(req, "text/html");
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+  httpd_resp_send(req, (const char *)index_wifi_html, strlen(index_wifi_html));
+  return ESP_OK;
+}
 
 //影像截圖
 static esp_err_t capture_handler(httpd_req_t *req){
@@ -680,9 +692,9 @@ static esp_err_t cmd_handler(httpd_req_t *req){
         httpd_resp_set_type(req, "text/html");  //設定回傳資料格式
         httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");  //允許跨網域讀取
         if (WiFi.status() == WL_CONNECTED)
-          return httpd_resp_send(req, (const char *)INDEX_HTML_ONLINE, strlen(INDEX_HTML_ONLINE));
+          return httpd_resp_send(req, (const char *)index_html, strlen(index_html));
         else
-          return httpd_resp_send(req, (const char *)INDEX_HTML_WIFI, strlen(INDEX_HTML_WIFI)); 
+          return httpd_resp_send(req, (const char *)index_wifi_html, strlen(index_wifi_html)); 
       } else {
         const char *resp = Feedback.c_str();
         httpd_resp_set_type(req, "text/html");  //設定回傳資料格式
@@ -760,16 +772,6 @@ static esp_err_t status_handler(httpd_req_t *req){
     return httpd_resp_send(req, json_response, strlen(json_response));
 }
 
-//網頁首頁   http://192.168.xxx.xxx
-static esp_err_t index_handler(httpd_req_t *req){
-    httpd_resp_set_type(req, "text/html");  //設定回傳資料格式
-    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");  //允許跨網域讀取
-    if (WiFi.status() == WL_CONNECTED)
-      return httpd_resp_send(req, (const char *)INDEX_HTML_ONLINE, strlen(INDEX_HTML_ONLINE));
-    else
-      return httpd_resp_send(req, (const char *)INDEX_HTML_WIFI, strlen(INDEX_HTML_WIFI));  
-}
-
 //自訂網址路徑要執行的函式
 void startCameraServer(){
   httpd_config_t config = HTTPD_DEFAULT_CONFIG();  //可在HTTPD_DEFAULT_CONFIG()中設定Server Port 
@@ -813,6 +815,12 @@ void startCameraServer(){
       .handler   = stream_handler,
       .user_ctx  = NULL
   };
+  httpd_uri_t wifi_uri = {
+    .uri       = "/wifi",
+    .method    = HTTP_GET,
+    .handler   = index_wifi_handler,
+    .user_ctx  = NULL
+  };   
   
   ra_filter_init(&ra_filter, 20);
   
@@ -823,6 +831,7 @@ void startCameraServer(){
       httpd_register_uri_handler(camera_httpd, &cmd_uri);
       httpd_register_uri_handler(camera_httpd, &status_uri);
       httpd_register_uri_handler(camera_httpd, &capture_uri);
+      httpd_register_uri_handler(camera_httpd, &wifi_uri);      
   }
   
   config.server_port += 1;  //Stream Port
