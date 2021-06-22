@@ -5,6 +5,23 @@
   'use strict';
 
   function openURL(input_id_,input_url_,input_width_,input_height_,input_left_,input_top_,input_zindex_) {
+     
+    var head = document.getElementsByTagName('head')[0];
+    var meta = head.getElementsByTagName('meta');
+    var exist = false;
+    if (meta.length>0) {
+      for (var i=0;i<meta.length;i++ ) {
+        if (meta[i].name=="Content-Security-Policy") {
+          exist = true;
+        }
+      }
+    }
+    if (exist==false) {
+      var meta_new = document.createElement('meta'); 
+      meta_new.setAttribute('name', 'Content-Security-Policy'); 
+      meta_new.setAttribute('content', "frame-src 'self' docs.google.com"); 
+      head.appendChild(meta_new);
+    }
     
     var substr = input_url_.toLowerCase().split('.');
     var extname_av = ".aac,.au,.aif,.aiff,.aiffc,.alac,.ape,.asf,.avi,.cda,.dat,.divx,.flac,.m2ts,.m4a,.mid,.mov,.mp2,.mp3,.mp4,.mpc,.mpg,.mpeg,.mv2,.ogg,.pdf,.ra,.ram,.raw,.rcp,.rm,.rmvb,.snd,.tak,.tta,.vob,.voc,.wma,.wav,.webm,.wmf,.wmv,.wv,.xmi,";
