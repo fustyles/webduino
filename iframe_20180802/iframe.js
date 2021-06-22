@@ -20,7 +20,7 @@
     if (exist==false) {
       var meta_new = document.createElement('meta'); 
       meta_new.setAttribute('name', 'Content-Security-Policy'); 
-      meta_new.setAttribute('content', "frame-src https://*.google.com"); 
+      meta_new.setAttribute('content', "frame-src 'self' *.google.com"); 
       head.appendChild(meta_new);
     }
     
