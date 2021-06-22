@@ -11,6 +11,7 @@
     var exist = false;
     if (meta.length>0) {
       for (var i=0;i<meta.length;i++ ) {
+        console.log(meta[i]);
         if (meta[i].name=="Content-Security-Policy") {
           exist = true;
         }
