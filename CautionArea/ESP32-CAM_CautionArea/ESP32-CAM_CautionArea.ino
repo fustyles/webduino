@@ -1,6 +1,6 @@
 /*
 ESP32-CAM Caution area (tfjs coco-ssd)
-Author : ChungYi Fu (Kaohsiung, Taiwan)  2021-6-21 23:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)  2021-6-24 10:30
 https://www.facebook.com/francefu
 
 物件類別
@@ -235,7 +235,7 @@ void setup() {
   WiFi.mode(WIFI_AP_STA);
 
   Serial.println();
-  //清除Wi-Fi設定
+  //設定預設區域網路Wi-Fi帳號與密碼，或清除Wi-Fi設定
   //Preferences_write("wifi", "ssid", "");
   //Preferences_write("wifi", "password", "");
         
@@ -338,8 +338,8 @@ static const char PROGMEM index_html[] = R"rawliteral(
       請將WiFi改連接對外網路後再點選按鈕，設定隱私權和安全性允許不安全的內容。<br>
       <font size="4" color="red">chrome:\/\/settings/content/siteDetails?site=https:\/\/fustyles.github.io</font><br>
       <button onclick="location.href='/wifi';">設定Wi-Fi</button>
-      <button onclick="location.href='http'+':\/\/fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_HorizontalLine.html?'+document.location.origin;">垂直警示區</button>
-      <button onclick="location.href='http'+':\/\/fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_VerticalLine.html?'+document.location.origin;">水平警示區</button>
+      <button onclick="location.href='http'+':\/\/fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_HorizontalLine.html?'+document.location.origin;">水平警示區</button>
+      <button onclick="location.href='http'+':\/\/fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_VerticalLine.html?'+document.location.origin;">垂直警示區</button>
       <button onclick="location.href='http'+':\/\/fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_Rect.html?'+document.location.origin;">框選警示區</button>
       </body>
   </html>        
