@@ -18,7 +18,7 @@ https://fustyles.github.io/webduino/Tracking.js/ESP32-CAM_ColorTracking.html
     </head>
     <body>
     <figure>
-	  ESP32-CAM IP：<input type="text" id="ip" size="15" value="192.168.">像素圖<input type="checkbox" id="chkpixel">
+	  ESP32-CAM IP：<input type="text" id="ip" size="12" value="192.168.">像素圖<input type="checkbox" id="chkpixel">
       <div id="stream-container" class="image-container hidden">
         <div class="close" id="close-stream">×</div>
         <img id="stream" src="" crossorigin="anonymous" style="background-color:#000000;display:none;">
@@ -366,8 +366,8 @@ https://fustyles.github.io/webduino/Tracking.js/ESP32-CAM_ColorTracking.html
 			var yl = ShowImage.height/2;
 			var xr = ShowImage.width/2+rightpoint.value*ShowImage.width/2;
 			var yr = ShowImage.height/2;
-			var xls = 1;
-			var xrs = 1;
+			var xls = -1;
+			var xrs = -1;
 			if (xl<rect.x)
 				var xls = 0;
 			else if (xl>=rect.x&&xl<=(rect.x+rect.width))
@@ -383,9 +383,9 @@ https://fustyles.github.io/webduino/Tracking.js/ESP32-CAM_ColorTracking.html
 				var xrs = 2;
 			
 			if (xls==0&&xrs==0)
-				result.innerHTML= "偏左遠離";
+				result.innerHTML= "偏左太遠";
 			else if (xls==0&&xrs==2)
-				result.innerHTML= "定位點過寬";
+				result.innerHTML= "正常";
 			else if (xls==0&&xrs==1)
 				result.innerHTML= "偏左";
 			else if (xls==1&&xrs==1)
@@ -393,9 +393,9 @@ https://fustyles.github.io/webduino/Tracking.js/ESP32-CAM_ColorTracking.html
 			else if (xls==1&&xrs==2)
 				result.innerHTML= "偏右";
 			else if (xls==2&&xrs==2)
-				result.innerHTML= "偏右遠離";
+				result.innerHTML= "偏右太遠";
 			else
-				result.innerHTML= "";
+				result.innerHTML= "無法判別";
 				
 			context.font = '30px Helvetica';
 			context.fillStyle = "#fff";
