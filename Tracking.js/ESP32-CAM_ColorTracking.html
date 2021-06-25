@@ -36,30 +36,30 @@ https://fustyles.github.io/webduino/Tracking.js/ESP32-CAM_ColorTracking.html
         <section class="main">
             <section id="buttons">
                 <table>
-				<tr><td><button id="restart" onclick="try{fetch(baseHost+'/control?restart');}catch(e){}">重啟電源</button></td><td><button id="pixel">像素圖</button><button id="toggle-stream" style="display:none">Start Stream</button></td><td align="right"><button id="get-still">啟動視訊</button></td></tr>
+				<tr><td><button id="restart" onclick="try{fetch(baseHost+'/control?restart');}catch(e){}">重啟電源</button></td><td><button id="pixel">顯示像素圖</button><button id="toggle-stream" style="display:none">Start Stream</button></td><td align="right"><button id="get-still">啟動視訊</button></td></tr>
 				<tr><td colspan="3"></td>
 				</tr>
 				<tr>
-					<td align="center" bgcolor="black">辨識範圍</td>
-					<td colspan="2">高度&nbsp;&nbsp;&nbsp;<input type="range" id="rectheight" min="20" max="320" value="30" step="10" style="width:140px" onchange="rectheight_value.innerHTML=this.value+'px';"><span id="rectheight_value">30px</span>
+					<td align="center" bgcolor="purple">辨識範圍</td>
+					<td colspan="2">高度&nbsp;&nbsp;&nbsp;&nbsp;<input type="range" id="rectheight" min="20" max="320" value="30" step="10" style="width:140px" onchange="rectheight_value.innerHTML=this.value;"><span id="rectheight_value">30</span>
 					</td>
 				</tr>				
 				<tr>
 					<td align="center" bgcolor="red">R</td>
-					<td colspan="2">最小值<input type="range" id="myColor_r_min" min="0" max="255" value="0" step="1" style="width:150px" onchange="myColor_r_min_v1.innerHTML=this.value;"><span id="myColor_r_min_v1">0</span><br>
-					最大值<input type="range" id="myColor_r_max" min="0" max="255" value="0" step="1" style="width:150px" onchange="myColor_r_max_v1.innerHTML=this.value;"><span id="myColor_r_max_v1">0</span>
+					<td colspan="2">最小值<input type="range" id="myColor_r_min" min="0" max="255" value="0" step="1" style="width:140px" onchange="myColor_r_min_v.innerHTML=this.value;"><span id="myColor_r_min_v">0</span><br>
+					最大值<input type="range" id="myColor_r_max" min="0" max="255" value="0" step="1" style="width:140px" onchange="myColor_r_max_v.innerHTML=this.value;"><span id="myColor_r_max_v">0</span>
 					</td>
 				</tr>
 				<tr>
 					<td align="center" bgcolor="green">G</td>
-					<td colspan="2">最小值<input type="range" id="myColor_g_min" min="0" max="255" value="0" step="1" style="width:150px" onchange="myColor_g_min_v1.innerHTML=this.value;"><span id="myColor_g_min_v1">0</span><br>
-					最大值<input type="range" id="myColor_g_max" min="0" max="255" value="0" step="1" style="width:150px" onchange="myColor_g_max_v1.innerHTML=this.value;"><span id="myColor_g_max_v1">0</span>
+					<td colspan="2">最小值<input type="range" id="myColor_g_min" min="0" max="255" value="0" step="1" style="width:140px" onchange="myColor_g_min_v.innerHTML=this.value;"><span id="myColor_g_min_v">0</span><br>
+					最大值<input type="range" id="myColor_g_max" min="0" max="255" value="0" step="1" style="width:140px" onchange="myColor_g_max_v.innerHTML=this.value;"><span id="myColor_g_max_v">0</span>
 					</td>
 				</tr>
 				<tr>
 					<td align="center" bgcolor="blue">B</td>
-					<td colspan="2">最小值<input type="range" id="myColor_b_min" min="0" max="255" value="0" step="1" style="width:150px" onchange="myColor_b_min_v1.innerHTML=this.value;"><span id="myColor_b_min_v1">0</span><br>
-					最大值<input type="range" id="myColor_b_max" min="0" max="255" value="0" step="1" style="width:150px" onchange="myColor_b_max_v1.innerHTML=this.value;"><span id="myColor_b_max_v1">0</span>
+					<td colspan="2">最小值<input type="range" id="myColor_b_min" min="0" max="255" value="0" step="1" style="width:140px" onchange="myColor_b_min_v.innerHTML=this.value;"><span id="myColor_b_min_v">0</span><br>
+					最大值<input type="range" id="myColor_b_max" min="0" max="255" value="0" step="1" style="width:140px" onchange="myColor_b_max_v.innerHTML=this.value;"><span id="myColor_b_max_v">0</span>
 					</td>
 				</tr>
 						            
@@ -261,7 +261,7 @@ https://fustyles.github.io/webduino/Tracking.js/ESP32-CAM_ColorTracking.html
 		var context = canvas.getContext("2d"); 
 		var canvas_pixel = document.getElementById('canvas_pixel');
 		var context_pixel = canvas_pixel.getContext('2d'); 
-		var chkpixel = document.getElementById('chkpixel');
+		var pixel = document.getElementById('pixel');
 		var rectheight = document.getElementById('rectheight');
 		var myColor = document.getElementById('myColor'); 
 		var result = document.getElementById('result');
@@ -409,10 +409,13 @@ https://fustyles.github.io/webduino/Tracking.js/ESP32-CAM_ColorTracking.html
 		});  
 		
 		pixel.onclick = function() {
-			if (canvas_pixel.style.display=='none')
+			if (canvas_pixel.style.display=='none') {
 				canvas_pixel.style.display='block';
-			else
+				pixel.innerHTML = "隱藏像素圖";
+			} else {
 				canvas_pixel.style.display='none';
+				pixel.innerHTML = "顯示像素圖";
+			}
 		}
 		
 		window.onload = function() {
