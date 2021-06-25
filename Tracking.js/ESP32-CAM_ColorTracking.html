@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/6/24 23:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/6/25 16:30
 https://www.facebook.com/francefu
 
 Try it
@@ -18,7 +18,7 @@ https://fustyles.github.io/webduino/Tracking.js/ESP32-CAM_ColorTracking.html
     </head>
     <body>
     <figure>
-	  ESP32-CAM IP：<input type="text" id="ip" size="12" value="192.168.">像素圖<input type="checkbox" id="chkpixel">
+	  ESP32-CAM IP：<input type="text" id="ip" size="12" value="192.168.">
       <div id="stream-container" class="image-container hidden">
         <div class="close" id="close-stream">×</div>
         <img id="stream" src="" crossorigin="anonymous" style="background-color:#000000;display:none;">
@@ -36,24 +36,30 @@ https://fustyles.github.io/webduino/Tracking.js/ESP32-CAM_ColorTracking.html
         <section class="main">
             <section id="buttons">
                 <table>
-				<tr><td><button id="restart" onclick="try{fetch(baseHost+'/control?restart');}catch(e){}">重啟電源</button></td><td><button id="toggle-stream" style="display:none">Start Stream</button></td><td align="right"><button id="face_enroll" style="display:none" class="disabled" disabled="disabled"></button><button id="get-still">啟動視訊</button></td></tr>
-
+				<tr><td><button id="restart" onclick="try{fetch(baseHost+'/control?restart');}catch(e){}">重啟電源</button></td><td><button id="pixel">像素圖</button><button id="toggle-stream" style="display:none">Start Stream</button></td><td align="right"><button id="get-still">啟動視訊</button></td></tr>
+				<tr><td colspan="3"></td>
+				</tr>
+				<tr>
+					<td align="center" bgcolor="black">辨識範圍</td>
+					<td colspan="2">高度&nbsp;&nbsp;&nbsp;<input type="range" id="rectheight" min="20" max="320" value="30" step="10" style="width:140px" onchange="rectheight_value.innerHTML=this.value+'px';"><span id="rectheight_value">30px</span>
+					</td>
+				</tr>				
 				<tr>
 					<td align="center" bgcolor="red">R</td>
-					<td colspan="2">min<input type="range" id="myColor_r_min" min="0" max="255" value="0" step="1" style="width:180px" onchange="myColor_r_min_v1.innerHTML=this.value;"><span id="myColor_r_min_v1">0</span><br>
-					max<input type="range" id="myColor_r_max" min="0" max="255" value="0" step="1" style="width:180px" onchange="myColor_r_max_v1.innerHTML=this.value;"><span id="myColor_r_max_v1">0</span>
+					<td colspan="2">最小值<input type="range" id="myColor_r_min" min="0" max="255" value="0" step="1" style="width:150px" onchange="myColor_r_min_v1.innerHTML=this.value;"><span id="myColor_r_min_v1">0</span><br>
+					最大值<input type="range" id="myColor_r_max" min="0" max="255" value="0" step="1" style="width:150px" onchange="myColor_r_max_v1.innerHTML=this.value;"><span id="myColor_r_max_v1">0</span>
 					</td>
 				</tr>
 				<tr>
 					<td align="center" bgcolor="green">G</td>
-					<td colspan="2">min<input type="range" id="myColor_g_min" min="0" max="255" value="0" step="1" style="width:180px" onchange="myColor_g_min_v1.innerHTML=this.value;"><span id="myColor_g_min_v1">0</span><br>
-					max<input type="range" id="myColor_g_max" min="0" max="255" value="0" step="1" style="width:180px" onchange="myColor_g_max_v1.innerHTML=this.value;"><span id="myColor_g_max_v1">0</span>
+					<td colspan="2">最小值<input type="range" id="myColor_g_min" min="0" max="255" value="0" step="1" style="width:150px" onchange="myColor_g_min_v1.innerHTML=this.value;"><span id="myColor_g_min_v1">0</span><br>
+					最大值<input type="range" id="myColor_g_max" min="0" max="255" value="0" step="1" style="width:150px" onchange="myColor_g_max_v1.innerHTML=this.value;"><span id="myColor_g_max_v1">0</span>
 					</td>
 				</tr>
 				<tr>
 					<td align="center" bgcolor="blue">B</td>
-					<td colspan="2">min<input type="range" id="myColor_b_min" min="0" max="255" value="0" step="1" style="width:180px" onchange="myColor_b_min_v1.innerHTML=this.value;"><span id="myColor_b_min_v1">0</span><br>
-					max<input type="range" id="myColor_b_max" min="0" max="255" value="0" step="1" style="width:180px" onchange="myColor_b_max_v1.innerHTML=this.value;"><span id="myColor_b_max_v1">0</span>
+					<td colspan="2">最小值<input type="range" id="myColor_b_min" min="0" max="255" value="0" step="1" style="width:150px" onchange="myColor_b_min_v1.innerHTML=this.value;"><span id="myColor_b_min_v1">0</span><br>
+					最大值<input type="range" id="myColor_b_max" min="0" max="255" value="0" step="1" style="width:150px" onchange="myColor_b_max_v1.innerHTML=this.value;"><span id="myColor_b_max_v1">0</span>
 					</td>
 				</tr>
 						            
@@ -256,6 +262,7 @@ https://fustyles.github.io/webduino/Tracking.js/ESP32-CAM_ColorTracking.html
 		var canvas_pixel = document.getElementById('canvas_pixel');
 		var context_pixel = canvas_pixel.getContext('2d'); 
 		var chkpixel = document.getElementById('chkpixel');
+		var rectheight = document.getElementById('rectheight');
 		var myColor = document.getElementById('myColor'); 
 		var result = document.getElementById('result');
 		var myColor_r_min,myColor_r_max,myColor_g_min,myColor_g_max,myColor_b_min,myColor_b_max;
@@ -286,14 +293,8 @@ https://fustyles.github.io/webduino/Tracking.js/ESP32-CAM_ColorTracking.html
 		  }
 		}
 		tracker.setColors(colors);
-		
-		
-	     
+	
 		ShowImage.onload = function (event) {
-		  if (chkpixel.checked)
-			canvas_pixel.style.display="block";
-		  else
-			canvas_pixel.style.display="none";
 		  
 		  canvas.setAttribute("width", ShowImage.width);
 		  canvas.setAttribute("height", ShowImage.height);
@@ -309,8 +310,8 @@ https://fustyles.github.io/webduino/Tracking.js/ESP32-CAM_ColorTracking.html
 		  myColor_b_max = document.getElementById('myColor_b_max').value;
 				 
 		  var imgData=context.getImageData(0,0,canvas.width,canvas.height);
-		  var y1 = ShowImage.height/2-15;
-		  var y2 = ShowImage.height/2+15;
+		  var y1 = ShowImage.height/2-Number(rectheight.value)/2;
+		  var y2 = ShowImage.height/2+Number(rectheight.value)/2;
 		  
 		  for (var i=0;i<imgData.data.length;i+=4) {
 			var r=0;
@@ -406,7 +407,22 @@ https://fustyles.github.io/webduino/Tracking.js/ESP32-CAM_ColorTracking.html
 						
 		  });
 		});  
-		window.onload = function() {getStill.click();}
+		
+		pixel.onclick = function() {
+			if (canvas_pixel.style.display=='none')
+				canvas_pixel.style.display='block';
+			else
+				canvas_pixel.style.display='none';
+		}
+		
+		window.onload = function() {
+			for (var i = 20; i<=320; i=i+10){
+				var opt = document.createElement('option');
+				opt.value = i;
+				opt.innerHTML = i;
+				rectheight.appendChild(opt);
+			}
+		getStill.click();}
 	  </script>
               
     </body>
