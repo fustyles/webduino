@@ -1491,7 +1491,11 @@ static esp_err_t cmd_handler(httpd_req_t *req){
             break;
           }
         }
-      }                 
+      }
+      else if (cmd=="clearwifi") {  //清除閃存中Wi-Fi資料  
+        Preferences_write("wifi", "ssid", "");
+        Preferences_write("wifi", "password", "");
+      }      
       else if (cmd=="record") {
           Serial.println("");
           Serial.println("Start recording");
