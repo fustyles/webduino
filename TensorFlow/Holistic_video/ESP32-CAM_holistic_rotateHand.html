@@ -560,36 +560,36 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_video/ESP32-CAM_holistic
 			//console.log(JSON.stringify(results.rightHandLandmarks));
 		  }
 		  context.restore();
-		  
-          //自訂左手掌中指指尖與手腕連線角度條件判斷
-          var Wrist0x = (holistic_lefthand_position("0", "x"));
-          var Wrist0y = (holistic_lefthand_position("0", "y"));
-          var middlefinger12x = (holistic_lefthand_position("12", "x"));
-          var middlefinger12y = (holistic_lefthand_position("12", "y"));
-          var handangle = (holistic_angle(Wrist0x, Wrist0y, middlefinger12x, middlefinger12y));
-          if (handangle) {
-            if (Wrist0y>=middlefinger12y) {
-              if (handangle < 0) {
-                handangle+=180;
-              }
-              var query_flash = "http:\/\/"+ip.value+"/control?flash="+Math.floor(handangle*255/180);
-              //var query_flash = "http:\/\/"+ip.value+"/control?servo=2;"+Math.floor(handangle);     //control servo (IO2)
-            } else {
-              var query_flash = "http:\/\/"+ip.value+"/control?flash=0";
-              //var query_flash = "http:\/\/"+ip.value+"/control?servo=2;0";     //control servo (IO2)
-            }
-          }
-          else {
-            var query_flash = "http:\/\/"+ip.value+"/control?flash=0";
-            //var query_flash = "http:\/\/"+ip.value+"/control?servo=2;0";     //control servo (IO2)
-          }
-          if (query_last!=query_flash) {
-            query_last=query_flash;             
-            fetch(query_flash)
-                .then(response => {
-                  console.log(`request to ${query_flash} finished, status: ${response.status}`)
-                })
-          }          		  
+
+		  //自訂左手掌中指指尖與手腕連線角度條件判斷
+		  var Wrist0x = (holistic_lefthand_position("0", "x"));
+		  var Wrist0y = (holistic_lefthand_position("0", "y"));
+		  var middlefinger12x = (holistic_lefthand_position("12", "x"));
+		  var middlefinger12y = (holistic_lefthand_position("12", "y"));
+		  var handangle = (holistic_angle(Wrist0x, Wrist0y, middlefinger12x, middlefinger12y));
+		  if (handangle) {
+		    if (Wrist0y>=middlefinger12y) {
+		      if (handangle < 0) {
+			handangle+=180;
+		      }
+		      var query_flash = "http:\/\/"+ip.value+"/control?flash="+Math.floor(handangle*255/180);
+		      //var query_flash = "http:\/\/"+ip.value+"/control?servo=2;"+Math.floor(handangle);     //control servo (IO2)
+		    } else {
+		      var query_flash = "http:\/\/"+ip.value+"/control?flash=0";
+		      //var query_flash = "http:\/\/"+ip.value+"/control?servo=2;0";     //control servo (IO2)
+		    }
+		  }
+		  else {
+		    var query_flash = "http:\/\/"+ip.value+"/control?flash=0";
+		    //var query_flash = "http:\/\/"+ip.value+"/control?servo=2;0";     //control servo (IO2)
+		  }
+		  if (query_last!=query_flash) {
+		    query_last=query_flash;             
+		    fetch(query_flash)
+			.then(response => {
+			  console.log(`request to ${query_flash} finished, status: ${response.status}`)
+			})
+		  }          		  
 		}
 		
 		const holistic = new Holistic({locateFile: (file) => {
