@@ -111,7 +111,7 @@
 				else if (input_data=="y")
 					return Number(result["data"][input_index].y)*Number(canvasElement.height);
 				else if (input_data=="z")
-					return Number(result["data"][input_index].z);
+					return Number(result["data"][input_index].z)*Number(canvasElement.width);
 			}
 		}
 		return "";
@@ -128,7 +128,7 @@
 				else if (input_data=="y")
 					return Number(result["data"][input_index].y)*Number(canvasElement.height);
 				else if (input_data=="z")
-					return Number(result["data"][input_index].z);
+					return Number(result["data"][input_index].z)*Number(canvasElement.width);
 			}
 		}
 		return "";
@@ -145,7 +145,7 @@
 				else if (input_data=="y")
 					return Number(result["data"][input_index].y)*Number(canvasElement.height);
 				else if (input_data=="z")
-					return Number(result["data"][input_index].z);
+					return Number(result["data"][input_index].z)*Number(canvasElement.width);
 			}
 		}
 		return "";
@@ -162,7 +162,7 @@
 				else if (input_data=="y")
 					return Number(result["data"][input_index].y)*Number(canvasElement.height);
 				else if (input_data=="z")
-					return Number(result["data"][input_index].z);
+					return Number(result["data"][input_index].z)*Number(canvasElement.width);
 			}
 		}
 		return "";
@@ -188,7 +188,7 @@
 					result_property_arr = [];
 					result_property_arr.push(Number(result["data"][i].x)*Number(canvasElement.width));
 					result_property_arr.push(Number(result["data"][i].y)*Number(canvasElement.height));
-					result_property_arr.push(Number(result["data"][i].z));
+					result_property_arr.push(Number(result["data"][i].z)*Number(canvasElement.width));
 					result_arr.push(result_property_arr);
 				}
 			}
