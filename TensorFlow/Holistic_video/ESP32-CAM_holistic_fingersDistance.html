@@ -6,7 +6,7 @@ Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/7/7 20:00
 https://www.facebook.com/francefu
 
 Try it!
-https://fustyles.github.io/webduino/TensorFlow/Holistic_video/ESP32-CAM_holistic.html
+https://fustyles.github.io/webduino/TensorFlow/Holistic_video/ESP32-CAM_holistic_fingersDistance.html
 -->
 
 <!doctype html>
@@ -515,6 +515,8 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_video/ESP32-CAM_holistic
 		const poseResult = document.getElementById('poseResult');
 		const lefthandResult = document.getElementById('lefthandResult');
 		const righthandResult = document.getElementById('righthandResult');
+		var query_last = "";  
+        var maxValue = 0;
 		
 		async function DetectImage() {
 		  holistic.send({image: aiView}).then(res => {
@@ -558,6 +560,33 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_video/ESP32-CAM_holistic
 			//console.log(JSON.stringify(results.rightHandLandmarks));
 		  }
 		  context.restore();
+		  
+          //自訂拇指尖與食指尖距離條件判斷
+          var thumb4x = (holistic_lefthand_position("4", "x"));
+          var thumb4y = (holistic_lefthand_position("4", "y"));
+          var forefinger4x = (holistic_lefthand_position("8", "x"));
+          var forefinger4y = (holistic_lefthand_position("8", "y"));
+          var distance4 = (holistic_distance(thumb4x, thumb4y, forefinger4x, forefinger4y));
+          if (distance4) {
+            if (distance4 > maxValue) {
+              maxValue = distance4;
+            }                       
+            var val = Math.floor((distance4/maxValue)*255);
+            val= Math.floor(val/((maxValue-distance4)*0.1+1));
+            if (val<3) val=0;
+            var query_flash = "http:\/\/"+ip.value+"/control?flash=" + val;
+            //var query_flash = "http:\/\/"+ip.value+"/control?servo=2;" + Math.floor((distance4 / maxValue) * 180);     //control servo
+          } else {
+            var query_flash = "http:\/\/"+ip.value+"/control?flash=0";
+            //var query_flash = "http:\/\/"+ip.value+"/control?servo=2;0";     //control servo
+          }
+          if (query_last!=query_flash) {
+            query_last=query_flash;             
+            fetch(query_flash)
+                .then(response => {
+                  console.log(`request to ${query_flash} finished, status: ${response.status}`)
+                })
+          }          		  
 		}
 		
 		const holistic = new Holistic({locateFile: (file) => {
