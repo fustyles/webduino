@@ -2122,7 +2122,10 @@ function HextoRgb(color) {
   } 	
 	
   function position_angle(input_x0,input_y0,input_x1,input_y1) {
-      return (Math.atan((input_y1-input_y0)/(input_x1-input_x0)) / Math.PI) * 180;
+      var angle = (Math.atan((input_y1-input_y0)/(input_x1-input_x0)) / Math.PI) * 180;
+      if (angle<0) angle = 180 + angle;
+      if (input_y0<input_y1) angle = 180 + angle;
+      return angle;
   } 	
 
   function iframe_create(input_id,input_width,input_height,input_left,input_top,input_frameborder,input_scrolling,input_src,input_srcdoc,input_opacity,input_zindex,input_display) {
