@@ -79,7 +79,7 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_video/Holistic_video.htm
   function DetectVideo() { 
 	holistic.send({image: video}).then(res => {
 		result.innerHTML = "";
-		setTimeout(function(){DetectVideo(); }, 100)
+		setTimeout(function(){DetectVideo(); }, 10)
 	});
   }
   
