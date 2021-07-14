@@ -1,0 +1,236 @@
+<!--
+Try it
+https://fustyles.github.io/webduino/CautionArea/ESP32-CAM_Monitor_9.html
+
+Chrome瀏覽器設定須更改：允許開啟不安全內容。否則http未加密連結會被阻擋無法串流！若將網頁下載到本機執行，則不用更改安全性設定。
+瀏覽器網址執行 chrome://settings/content/siteDetails?site=https://fustyles.github.io
+-->
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+  <title>ESP32-CAM Monitor 9</title>
+	<style>
+	th, td {
+	  padding: 0px;
+	}
+	</style>  
+</head>
+<body>
+		
+<table Cellspacing="5">
+	<tr>
+		<td>
+			IP1：<input type="text" id="ip1" size="10" value="192.168.">
+			解析度
+			<select id="sel1" onchange="changeFramesize(1, this.value);" title="UXGA(1600x1200), SXGA(1280x1024), XGA(1024x768), SVGA(800x600), VGA(640x480), CIF(400x296), QVGA(320x240), HQVGA(240x176), QQVGA(160x120)">
+			<option value="">　</option>
+			<option value="10">UXGA</option>
+			<option value="9">SXGA</option>
+			<option value="8">XGA</option>
+			<option value="7">SVGA</option>
+			<option value="6">VGA</option>
+			<option value="5">CIF</option>
+			<option value="4">QVGA</option>
+			<option value="3">HQVGA</option>
+			<option value="0">QQVGA</option>
+			</select>
+			<button onclick="startStream(1);">串流</button>
+			<button onclick="stopStream(1);">停止</button>
+		</td>
+		<td>
+			IP2：<input type="text" id="ip2" size="10" value="192.168.">
+			解析度
+			<select id="sel2" onchange="changeFramesize(2, this.value);" title="UXGA(1600x1200), SXGA(1280x1024), XGA(1024x768), SVGA(800x600), VGA(640x480), CIF(400x296), QVGA(320x240), HQVGA(240x176), QQVGA(160x120)">
+			<option value="">　</option>
+			<option value="10">UXGA</option>
+			<option value="9">SXGA</option>
+			<option value="8">XGA</option>
+			<option value="7">SVGA</option>
+			<option value="6">VGA</option>
+			<option value="5">CIF</option>
+			<option value="4">QVGA</option>
+			<option value="3">HQVGA</option>
+			<option value="0">QQVGA</option>
+			</select>
+			<button onclick="startStream(2);">串流</button>
+			<button onclick="stopStream(2);">停止</button>
+		</td>
+		<td>
+			IP3：<input type="text" id="ip3" size="10" value="192.168.">
+			解析度
+			<select id="sel3" onchange="changeFramesize(3, this.value);" title="UXGA(1600x1200), SXGA(1280x1024), XGA(1024x768), SVGA(800x600), VGA(640x480), CIF(400x296), QVGA(320x240), HQVGA(240x176), QQVGA(160x120)">
+			<option value="">　</option>
+			<option value="10">UXGA</option>
+			<option value="9">SXGA</option>
+			<option value="8">XGA</option>
+			<option value="7">SVGA</option>
+			<option value="6">VGA</option>
+			<option value="5">CIF</option>
+			<option value="4">QVGA</option>
+			<option value="3">HQVGA</option>
+			<option value="0">QQVGA</option>
+			</select>
+			<button onclick="startStream(3);">串流</button>
+			<button onclick="stopStream(3);">停止</button>
+		</td>		
+	</tr>
+	<tr>
+		<td>
+			<img id="img1" src="">
+		</td>
+		<td>
+			<img id="img2" src="">
+		</td>
+		<td>
+			<img id="img3" src="">
+		</td>		
+	</tr>
+	<tr>
+		<td>
+			IP4：<input type="text" id="ip4" size="10" value="192.168.">
+			解析度
+			<select id="sel4" onchange="changeFramesize(4, this.value);" title="UXGA(1600x1200), SXGA(1280x1024), XGA(1024x768), SVGA(800x600), VGA(640x480), CIF(400x296), QVGA(320x240), HQVGA(240x176), QQVGA(160x120)">
+			<option value="">　</option>
+			<option value="10">UXGA</option>
+			<option value="9">SXGA</option>
+			<option value="8">XGA</option>
+			<option value="7">SVGA</option>
+			<option value="6">VGA</option>
+			<option value="5">CIF</option>
+			<option value="4">QVGA</option>
+			<option value="3">HQVGA</option>
+			<option value="0">QQVGA</option>
+			</select>
+			<button onclick="startStream(4);">串流</button>
+			<button onclick="stopStream(4);">停止</button>
+		</td>
+		<td>
+			IP5：<input type="text" id="ip5" size="10" value="192.168.">
+			解析度
+			<select id="sel5" onchange="changeFramesize(5, this.value);" title="UXGA(1600x1200), SXGA(1280x1024), XGA(1024x768), SVGA(800x600), VGA(640x480), CIF(400x296), QVGA(320x240), HQVGA(240x176), QQVGA(160x120)">
+			<option value="">　</option>
+			<option value="10">UXGA</option>
+			<option value="9">SXGA</option>
+			<option value="8">XGA</option>
+			<option value="7">SVGA</option>
+			<option value="6">VGA</option>
+			<option value="5">CIF</option>
+			<option value="4">QVGA</option>
+			<option value="3">HQVGA</option>
+			<option value="0">QQVGA</option>
+			</select>
+			<button onclick="startStream(5);">串流</button>
+			<button onclick="stopStream(5);">停止</button>
+		</td>
+		<td>
+			IP6：<input type="text" id="ip6" size="10" value="192.168.">
+			解析度
+			<select id="sel6" onchange="changeFramesize(6, this.value);" title="UXGA(1600x1200), SXGA(1280x1024), XGA(1024x768), SVGA(800x600), VGA(640x480), CIF(400x296), QVGA(320x240), HQVGA(240x176), QQVGA(160x120)">
+			<option value="">　</option>
+			<option value="10">UXGA</option>
+			<option value="9">SXGA</option>
+			<option value="8">XGA</option>
+			<option value="7">SVGA</option>
+			<option value="6">VGA</option>
+			<option value="5">CIF</option>
+			<option value="4">QVGA</option>
+			<option value="3">HQVGA</option>
+			<option value="0">QQVGA</option>
+			</select>
+			<button onclick="startStream(6);">串流</button>
+			<button onclick="stopStream(6);">停止</button>
+		</td>		
+	</tr>
+	<tr>
+		<td>
+			<img id="img4" src="">
+		</td>
+		<td>
+			<img id="img5" src="">
+		</td>
+		<td>
+			<img id="img6" src="">
+		</td>		
+	</tr>
+	<tr>
+		<td>
+			IP7：<input type="text" id="ip7" size="10" value="192.168.">
+			解析度
+			<select id="sel7" onchange="changeFramesize(7, this.value);" title="UXGA(1600x1200), SXGA(1280x1024), XGA(1024x768), SVGA(800x600), VGA(640x480), CIF(400x296), QVGA(320x240), HQVGA(240x176), QQVGA(160x120)">
+			<option value="">　</option>
+			<option value="10">UXGA</option>
+			<option value="9">SXGA</option>
+			<option value="8">XGA</option>
+			<option value="7">SVGA</option>
+			<option value="6">VGA</option>
+			<option value="5">CIF</option>
+			<option value="4">QVGA</option>
+			<option value="3">HQVGA</option>
+			<option value="0">QQVGA</option>
+			</select>
+			<button onclick="startStream(7);">串流</button>
+			<button onclick="stopStream(7);">停止</button>
+		</td>
+		<td>
+			IP8：<input type="text" id="ip8" size="10" value="192.168.">
+			解析度
+			<select id="sel8" onchange="changeFramesize(8, this.value);" title="UXGA(1600x1200), SXGA(1280x1024), XGA(1024x768), SVGA(800x600), VGA(640x480), CIF(400x296), QVGA(320x240), HQVGA(240x176), QQVGA(160x120)">
+			<option value="">　</option>
+			<option value="10">UXGA</option>
+			<option value="9">SXGA</option>
+			<option value="8">XGA</option>
+			<option value="7">SVGA</option>
+			<option value="6">VGA</option>
+			<option value="5">CIF</option>
+			<option value="4">QVGA</option>
+			<option value="3">HQVGA</option>
+			<option value="0">QQVGA</option>
+			</select>
+			<button onclick="startStream(8);">串流</button>
+			<button onclick="stopStream(8);">停止</button>
+		</td>
+		<td>
+			IP9：<input type="text" id="ip9" size="10" value="192.168.">
+			解析度
+			<select id="sel9" onchange="changeFramesize(9, this.value);" title="UXGA(1600x1200), SXGA(1280x1024), XGA(1024x768), SVGA(800x600), VGA(640x480), CIF(400x296), QVGA(320x240), HQVGA(240x176), QQVGA(160x120)">
+			<option value="">　</option>
+			<option value="10">UXGA</option>
+			<option value="9">SXGA</option>
+			<option value="8">XGA</option>
+			<option value="7">SVGA</option>
+			<option value="6">VGA</option>
+			<option value="5">CIF</option>
+			<option value="4">QVGA</option>
+			<option value="3">HQVGA</option>
+			<option value="0">QQVGA</option>
+			</select>
+			<button onclick="startStream(9);">串流</button>
+			<button onclick="stopStream(9);">停止</button>
+		</td>		
+	</tr>
+	<tr>
+		<td>
+			<img id="img7" src="">
+		</td>
+		<td>
+			<img id="img8" src="">
+		</td>
+		<td>
+			<img id="img9" src="">
+		</td>		
+	</tr>	
+</table>
+</body>
+</html>
+<script>
+	function startStream(n) {
+		document.getElementById("img"+n).src = 'http://'+document.getElementById("ip"+n).value+':81/stream';
+	}
+	function stopStream(n) {
+		document.getElementById("img"+n).src = '';
+	}	
+	function changeFramesize(n, val) {
+		if (val!="") fetch('http://'+document.getElementById("ip"+n).value+'/control?var=framesize&val='+val);
+	}	
+</script>
