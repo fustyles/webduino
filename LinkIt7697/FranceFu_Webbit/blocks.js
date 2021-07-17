@@ -353,7 +353,7 @@ Blockly.Blocks.esp32_mpu9250_pin={
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.ESP32_MPU9250_ADDRESS)		
 		  	.appendField(new Blockly.FieldDropdown([
-			["",""],
+			["　",""],
 			["0x68","0x68"],
 			["0x69","0x69"]			
 			]), "address");		
