@@ -245,10 +245,12 @@ Blockly.Arduino.esp32_buzzer_tone3 = function(){
 Blockly.Arduino.esp32_mpu9250_pin = function(){
 	var sda=Blockly.Arduino.valueToCode(this,"sda",Blockly.Arduino.ORDER_ATOMIC);
 	var scl=Blockly.Arduino.valueToCode(this,"scl",Blockly.Arduino.ORDER_ATOMIC);
+	var address=this.getFieldValue("address");
+	if (address!="") address="("+address+")";
 	Blockly.Arduino.definitions_['define_webbit_mpu9250']='\n'+
 											'#include \<MPU9250_asukiaaa.h\>\n'+
 											'#include \<Wire.h\>\n'+
-											'MPU9250_asukiaaa mySensor;\n'; 
+											'MPU9250_asukiaaa mySensor'+address+';\n'; 
 	Blockly.Arduino.definitions_['define_webbit_mpu9250_func']='\n'+
 																'float getMPU9250(String val) {\n'+
 																'  if (val.indexOf("accel")!=-1) {	\n'+									
