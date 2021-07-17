@@ -76,7 +76,7 @@ function onResults(results) {
   Ctx.drawImage(results.segmentationMask, 0, 0,
                       canvas.width, canvas.height);
   Ctx.globalCompositeOperation = 'source-out';
-  Ctx.fillStyle = '#FFFFFF';
+  Ctx.fillStyle = '#000000';
   Ctx.fillRect(0, 0, canvas.width, canvas.height);
   
   Ctx.globalCompositeOperation = 'destination-atop';
@@ -102,9 +102,9 @@ function onResults(results) {
   Ctx2.fillStyle = '#000000';
   Ctx2.fillRect(0, 0, canvas2.width, canvas2.height);
   
-  Ctx2.globalCompositeOperation = 'destination-atop';
-  Ctx2.fillStyle = '#FFFFFF';
-  Ctx2.fillRect(0, 0, canvas2.width, canvas2.height);
+  Ctx2.globalCompositeOperation = 'source-out';
+  Ctx2.drawImage(
+      img0, 0, 0, canvas2.width, canvas2.height);
 }
 
 const selfieSegmentation = new SelfieSegmentation({locateFile: (file) => {
