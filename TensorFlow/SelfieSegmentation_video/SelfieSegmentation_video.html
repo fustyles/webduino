@@ -21,7 +21,8 @@ https://fustyles.github.io/webduino/TensorFlow/SelfieSegmentation_video/SelfieSe
     <video class="input_video" style="display:none"></video>
     <canvas class="output_canvas" width="320px" height="240px" onclick="state=!state;"></canvas>
 	<canvas id="canvas" width="320px" height="240px"></canvas>
-	<canvas id="canvas1" width="320px" height="240px"></canvas><br>	
+	<canvas id="canvas1" width="320px" height="240px"></canvas>
+	<canvas id="canvas2" width="320px" height="240px"></canvas><br>	
   </div>
   <img id="img0" src="https://cdn2.ettoday.net/images/3366/d3366096.jpg" width="320" height="240" style="display:none">  
   <img id="img1" src="https://cdn2.ettoday.net/images/3366/d3366096.jpg" width="320" height="240" onclick="img0.src=this.src;">
@@ -39,6 +40,8 @@ const canvas = document.getElementById('canvas');
 const Ctx = canvas.getContext('2d');
 const canvas1 = document.getElementById('canvas1');
 const Ctx1 = canvas1.getContext('2d');
+const canvas2 = document.getElementById('canvas2');
+const Ctx2 = canvas2.getContext('2d');
 const operation = document.getElementById('operation');
 const img0 = document.getElementById('img0');
 const img1 = document.getElementById('img1');
@@ -49,7 +52,6 @@ var state = true;
 
 function onResults(results) {
 
-  canvasCtx.save();
   canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
   canvasCtx.drawImage(results.segmentationMask, 0, 0,
                       canvasElement.width, canvasElement.height);
@@ -68,11 +70,8 @@ function onResults(results) {
   canvasCtx.drawImage(
       results.image, 0, 0, canvasElement.width, canvasElement.height);
 
-  //canvasCtx.restore();
   
   
-  
-  Ctx.save();
   Ctx.clearRect(0, 0, canvas.width, canvas.height);
   Ctx.drawImage(results.segmentationMask, 0, 0,
                       canvas.width, canvas.height);
@@ -86,7 +85,6 @@ function onResults(results) {
 
 	  
 
-  Ctx1.save();
   Ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
   Ctx1.drawImage(results.segmentationMask, 0, 0,
                       canvas1.width, canvas1.height);
@@ -94,7 +92,19 @@ function onResults(results) {
   Ctx1.globalCompositeOperation = "xor";
   Ctx1.drawImage(
       results.image, 0, 0, canvas1.width, canvas1.height);		  
- 
+
+
+
+  Ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+  Ctx2.drawImage(results.segmentationMask, 0, 0,
+                      canvas2.width, canvas2.height);
+  Ctx2.globalCompositeOperation = 'source-out';
+  Ctx2.fillStyle = '#000000';
+  Ctx2.fillRect(0, 0, canvas2.width, canvas2.height);
+  
+  Ctx2.globalCompositeOperation = 'destination-atop';
+  Ctx2.fillStyle = '#FFFFFF';
+  Ctx2.fillRect(0, 0, canvas2.width, canvas2.height);
 }
 
 const selfieSegmentation = new SelfieSegmentation({locateFile: (file) => {
