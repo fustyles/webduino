@@ -349,7 +349,14 @@ Blockly.Blocks.esp32_mpu9250_pin={
 			.appendField(Blockly.Msg.ESP32_MPU9250_SDA);			
 		this.appendValueInput("scl")
 			.setCheck("Number")
-			.appendField(Blockly.Msg.ESP32_MPU9250_SCL);				
+			.appendField(Blockly.Msg.ESP32_MPU9250_SCL);
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.ESP32_MPU9250_ADDRESS)		
+		  	.appendField(new Blockly.FieldDropdown([
+			["",""],
+			["0x68","0x68"],
+			["0x69","0x69"]			
+			]), "address");		
 		this.setInputsInline(true);
 		this.setPreviousStatement(true,null);
 		this.setNextStatement(true,null);
