@@ -1,0 +1,83 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/7/17 23:00
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/SelfieSegmentation_video/SelfieSegmentation_video.html
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <video class="input_video" style="display:none"></video>
+    <canvas class="output_canvas" width="320px" height="240px" onclick="state=!state;"></canvas>
+  </div>
+  <img id="img0" src="https://cdn2.ettoday.net/images/3366/d3366096.jpg" width="320" height="240" style="display:none">  
+  <img id="img1" src="https://cdn2.ettoday.net/images/3366/d3366096.jpg" width="320" height="240" onclick="img0.src=this.src;">
+  <img id="img2" src="https://res.klook.com/image/upload/fl_lossy.progressive/q_65/c_fill,w_1360/blogtw/2018/06/%E5%98%89%E7%BE%A9-%E6%BE%8E%E6%B9%96%E4%BE%86%E5%9B%9E%E8%88%B9%E7%A5%A8%E5%A5%97%E7%A5%A8.jpg" width="320" height="240" onclick="img0.src=this.src;">
+  <img id="img3" src="https://i0.wp.com/blog.settour.com.tw/wp-content/uploads/2020/07/106365243_2994739013906616_1895566109696674005_n.jpg" width="320" height="240" onclick="img0.src=this.src;">
+  <img id="img4" src="https://content.skyscnr.com/m/52a30dbb6a99d005/original/GettyImages-167323945.jpg" width="320" height="240" onclick="img0.src=this.src;">  
+</body>
+</html>
+
+<script>
+const videoElement = document.getElementsByClassName('input_video')[0];
+const canvasElement = document.getElementsByClassName('output_canvas')[0];
+const canvasCtx = canvasElement.getContext('2d');
+const img0 = document.getElementById('img0');
+const img1 = document.getElementById('img1');
+const img2 = document.getElementById('img2');
+const img3 = document.getElementById('img3');
+const img4 = document.getElementById('img4');
+var state = true;
+
+function onResults(results) {
+//console.log(results.segmentationMask);
+  canvasCtx.save();
+  canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+  canvasCtx.drawImage(results.segmentationMask, 0, 0,
+                      canvasElement.width, canvasElement.height);
+
+  // Only overwrite missing pixels.
+  if (state==true) 
+	canvasCtx.globalCompositeOperation = 'source-in';
+  else
+	canvasCtx.globalCompositeOperation = 'source-out';
+	
+  canvasCtx.drawImage(
+      img0, 0, 0, canvasElement.width, canvasElement.height);
+	  
+  // Only overwrite missing pixels.
+  canvasCtx.globalCompositeOperation = 'destination-atop';
+  canvasCtx.drawImage(
+      results.image, 0, 0, canvasElement.width, canvasElement.height);
+
+  //canvasCtx.restore();
+}
+
+const selfieSegmentation = new SelfieSegmentation({locateFile: (file) => {
+  return `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}`;
+}});
+selfieSegmentation.setOptions({
+  modelSelection: 1,
+});
+selfieSegmentation.onResults(onResults);
+
+const camera = new Camera(videoElement, {
+  onFrame: async () => {
+    await selfieSegmentation.send({image: videoElement});
+  },
+  width: 320,
+  height: 240
+});
+camera.start();
+</script>
