@@ -1,0 +1,233 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/7/18 23:30
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_Rect_video.html
+
+-->
+
+<!DOCTYPE html>
+<head>
+  <title>Tracking Color (Tracking.js)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https:\/\/fustyles.github.io/webduino/Tracking_20190917/tracking-min.js"></script>     
+    </head>
+<body>
+<button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
+<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<canvas id="canvas"></canvas><canvas id="canvas_pixel"></canvas><br>
+<div id="result" style="color:red"></div>
+  
+<script>
+	const video = document.getElementById('video');
+	const canvas = document.getElementById('canvas'); 
+	const context = canvas.getContext('2d');
+	const canvas_pixel = document.getElementById('canvas_pixel');
+	var context_pixel = canvas_pixel.getContext('2d'); 	  
+	const result = document.getElementById('result'); 
+	const videoWidth = 320;
+	const videoHeight = 240; 
+	const tracker = new tracking.ColorTracker();
+					
+	var touch_x0=0, touch_y0=0, touch_x=0, touch_y=0;
+    var touchState = false;
+	var getColorState = false;
+	var Rmax = 0;
+	var Rmin = 0;	
+	var Gmax = 0;
+	var Gmin = 0;
+	var Bmax = 0;
+	var Bmin = 0;
+	
+	canvas.addEventListener("touchstart", function (e) {
+		touch_x0=0;touch_y0=0;touch_x=0;touch_y=0;
+		touchState = true;		
+		e.preventDefault();
+		var rect = canvas.getBoundingClientRect();
+		touch_x0 = e.touches[0].clientX-rect.left;
+		touch_y0 = e.touches[0].clientY-rect.top;
+		touch_x = touch_x0 ;
+		touch_y = touch_y0;
+	}, false);
+	canvas.addEventListener("touchmove", function (e) {	
+		e.preventDefault();
+		var rect = canvas.getBoundingClientRect();
+		touch_x = e.touches[0].clientX-rect.left;
+		touch_y = e.touches[0].clientY-rect.top;
+	}, false);	
+	canvas.addEventListener("touchcancel", function (e) {
+		e.preventDefault();		
+		setStateFalse();
+	}, false);
+	canvas.addEventListener("touchend", function (e) {
+		e.preventDefault();
+		setStateFalse();	
+	}, false);
+	canvas.addEventListener("mousedown", function (e) {
+		touch_x0=0;touch_y0=0;touch_x=0;touch_y=0;
+		touchState = true;		
+		e.preventDefault();
+		var rect = canvas.getBoundingClientRect();
+		touch_x0 = e.clientX-rect.left;
+		touch_y0 = e.clientY-rect.top;
+		touch_x = touch_x0 ;
+		touch_y = touch_y0;		
+	}, false);
+	canvas.addEventListener("mouseup", function (e) {	
+		e.preventDefault();
+		var rect = canvas.getBoundingClientRect();
+		touch_x = e.clientX-rect.left;
+		touch_y = e.clientY-rect.top;
+		setStateFalse();	
+	}, false);  
+
+	function setStateFalse() {
+		Rmax = 0;
+		Rmin = 0;	
+		Gmax = 0;
+		Gmin = 0;
+		Bmax = 0;
+		Bmin = 0;		
+		touchState = false;
+		getColorState = true;
+	}
+	
+	startVideo();
+
+	function startVideo() {
+		if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+			console.log("enumerateDevices() not supported.");
+			return;
+		}
+
+		var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+		navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+			devices.forEach(function(device) {
+				if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+				if (device.deviceId=='')
+					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				else
+					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+				}
+			});
+
+			if (location.search.toLowerCase().indexOf("?back")!=-1)
+			var userMedia = back;
+			else
+			var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+			navigator.mediaDevices
+			.getUserMedia(userMedia)
+			.then(stream => {
+				video.srcObject = stream
+				video.onloadedmetadata = () => {       
+					video.play();
+					startDetectColor();
+				}
+			})  
+		}) 
+	}
+
+	function startDetectColor() {
+		canvas.setAttribute("width", video.width);
+		canvas.setAttribute("height", video.height);
+		canvas_pixel.setAttribute("width", video.width);
+		canvas_pixel.setAttribute("height", video.height);			
+		context.drawImage(video, 0, 0, video.width, video.height);	
+		
+		if (touchState == false&&getColorState==true) {			
+			if ((touch_x-touch_x0==0)||(touch_y-touch_y0==0)) return;
+			var imgData=context.getImageData(touch_x0, touch_y0, touch_x-touch_x0, touch_y-touch_y0);
+			for (var i=0;i<imgData.data.length;i+=4) {
+				if (i==0) {
+					Rmax = imgData.data[i];
+					Rmin = imgData.data[i];	
+					Gmax = imgData.data[i+1];
+					Gmin = imgData.data[i+1];
+					Bmax = imgData.data[i+2];
+					Bmin = imgData.data[i+2];
+				}
+				if (Rmax < imgData.data[i]) Rmax = imgData.data[i];
+				if (Rmin > imgData.data[i]) Rmin = imgData.data[i];
+				if (Gmax < imgData.data[i+1]) Gmax = imgData.data[i+1];
+				if (Gmin > imgData.data[i+1]) Gmin = imgData.data[i+1];
+				if (Bmax < imgData.data[i+2]) Bmax = imgData.data[i+2];
+				if (Bmin > imgData.data[i+2]) Bmin = imgData.data[i+2];				
+			}
+
+			result.innerHTML = Rmax +"<br>"; 
+			result.innerHTML += Rmin +"<br>"; 
+			result.innerHTML += Gmax +"<br>"; 
+			result.innerHTML += Gmin +"<br>"; 
+			result.innerHTML += Bmax +"<br>"; 
+			result.innerHTML += Bmin; 
+			getColorState = false;
+		}
+			
+		var imgData=context.getImageData(0, 0, canvas.width, canvas.height);
+		for (var i=0;i<imgData.data.length;i+=4) {
+			var r=0;
+			var g=0;
+			var b=0;
+			if ((imgData.data[i]>=Rmin&&imgData.data[i]<=Rmax)&&(imgData.data[i+1]>=Gmin&&imgData.data[i+1]<=Gmax)&&(imgData.data[i+2]>=Bmin&&imgData.data[i+2]<=Bmax)) {
+			  r=255;
+			}
+
+			imgData.data[i]=r;
+			imgData.data[i+1]=g;
+			imgData.data[i+2]=b;
+			imgData.data[i+3]=255;					
+		}				
+		
+		context_pixel.putImageData(imgData,0,0);
+
+		tracking.track('#canvas_pixel', tracker);
+	}
+	
+	tracking.ColorTracker.registerColor('red', function(r, g, b) {
+	  if ((r==255)&&(g==0)&&(b==0)) {
+		return true;
+	  }		  
+	  return false;
+	});
+
+	var trackedColors = {
+	  custom: true
+	};
+
+	Object.keys(tracking.ColorTracker.knownColors_).forEach(function(color) {
+	  trackedColors[color] = true;
+	});
+
+	var colors = [];
+	for (var color in trackedColors) {
+	  if (trackedColors[color]) {
+	  colors.push(color);
+	  }
+	}
+	tracker.setColors(colors);
+
+	tracker.on('track', function(event) {
+		result.innerHTML="";
+		event.data.forEach(function(rect) {
+			context.strokeStyle = "yellow";
+			context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+			result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
+		})
+		
+		try { 
+			document.createEvent("TouchEvent");
+			setTimeout(function(){startDetectColor();},250);
+		}
+		catch(e) { 
+			setTimeout(function(){startDetectColor();},150);
+		}		
+	});            	
+
+</script>
+
+</body>
+</html>
