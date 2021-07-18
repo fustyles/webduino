@@ -1,17 +1,15 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/7/18 23:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/7/19 01:30
 https://www.facebook.com/francefu
-
 Try it!
 https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_Rect_video.html
-
 -->
 
 <!DOCTYPE html>
-<head>
-  <title>Tracking Color (Tracking.js)</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+	  <title>Tracking Color (Tracking.js)</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https:\/\/fustyles.github.io/webduino/Tracking_20190917/tracking-min.js"></script>     
     </head>
 <body>
@@ -163,8 +161,8 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_Rect_vid
 			result.innerHTML += Gmax +"<br>"; 
 			result.innerHTML += Gmin +"<br>"; 
 			result.innerHTML += Bmax +"<br>"; 
-			result.innerHTML += Bmin; 
-			getColorState = false;
+			result.innerHTML += Bmin;
+					
 		}
 			
 		var imgData=context.getImageData(0, 0, canvas.width, canvas.height);
@@ -174,6 +172,7 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_Rect_vid
 			var b=0;
 			if ((imgData.data[i]>=Rmin&&imgData.data[i]<=Rmax)&&(imgData.data[i+1]>=Gmin&&imgData.data[i+1]<=Gmax)&&(imgData.data[i+2]>=Bmin&&imgData.data[i+2]<=Bmax)) {
 			  r=255;
+			  g=255;			  
 			}
 
 			imgData.data[i]=r;
@@ -185,10 +184,20 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_Rect_vid
 		context_pixel.putImageData(imgData,0,0);
 
 		tracking.track('#canvas_pixel', tracker);
+
+		if (getColorState == true) {
+			context.beginPath();
+			context.lineWidth = "2";
+			context.strokeStyle = "red";  
+			context.rect(touch_x0, touch_y0, touch_x-touch_x0, touch_y-touch_y0);
+			context.stroke();
+		}
+		
+		getColorState = false;
 	}
 	
-	tracking.ColorTracker.registerColor('red', function(r, g, b) {
-	  if ((r==255)&&(g==0)&&(b==0)) {
+	tracking.ColorTracker.registerColor('yellow', function(r, g, b) {
+	  if ((r==255)&&(g==255)&&(b==0)) {
 		return true;
 	  }		  
 	  return false;
@@ -217,7 +226,7 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_Rect_vid
 			context.strokeRect(rect.x, rect.y, rect.width, rect.height);
 			result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
 		})
-		
+				
 		try { 
 			document.createEvent("TouchEvent");
 			setTimeout(function(){startDetectColor();},250);
