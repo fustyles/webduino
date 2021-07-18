@@ -223,7 +223,7 @@
 	  <block type="customcode_code_input">
 		<value name="text">
 		  <block type="text">
-			<field name="TEXT">var myTimer</field>
+			<field name="TEXT">myTimer</field>
 		  </block>
 		</value>
 	  </block>    
@@ -239,7 +239,7 @@
 	  <block type="customcode_code_input">
 		<value name="text">
 		  <block type="text">
-			<field name="TEXT">var myTimerOnce</field>
+			<field name="TEXT">myTimerOnce</field>
 		  </block>
 		</value>
 	  </block>  
