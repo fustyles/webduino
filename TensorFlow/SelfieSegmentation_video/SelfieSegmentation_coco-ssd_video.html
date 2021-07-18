@@ -1,0 +1,180 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/7/17 23:00
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/SelfieSegmentation_video/SelfieSegmentation_coco-ssd_video.html
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"> </script>  
+</head>
+
+<body>
+  <div class="container">
+    <video class="input_video" style="display:none"></video>
+    <canvas class="output_canvas" width="320px" height="240px" onclick="state=!state;"></canvas>
+	<canvas id="canvas" width="320px" height="240px"></canvas>
+	<canvas id="canvas1" width="320px" height="240px"></canvas>
+	<canvas id="canvas2" width="320px" height="240px"></canvas>
+	<canvas id="canvas3" width="320px" height="240px"></canvas><br>	
+  </div>
+  <div id="result" style="color:red"></div>
+  <img id="img0" src="https://cdn2.ettoday.net/images/3366/d3366096.jpg" width="320" height="240" style="display:none">  
+  <img id="img1" src="https://cdn2.ettoday.net/images/3366/d3366096.jpg" width="320" height="240" onclick="img0.src=this.src;">
+  <img id="img2" src="https://res.klook.com/image/upload/fl_lossy.progressive/q_65/c_fill,w_1360/blogtw/2018/06/%E5%98%89%E7%BE%A9-%E6%BE%8E%E6%B9%96%E4%BE%86%E5%9B%9E%E8%88%B9%E7%A5%A8%E5%A5%97%E7%A5%A8.jpg" width="320" height="240" onclick="img0.src=this.src;">
+  <img id="img3" src="https://i0.wp.com/blog.settour.com.tw/wp-content/uploads/2020/07/106365243_2994739013906616_1895566109696674005_n.jpg" width="320" height="240" onclick="img0.src=this.src;">
+  <img id="img4" src="https://content.skyscnr.com/m/52a30dbb6a99d005/original/GettyImages-167323945.jpg" width="320" height="240" onclick="img0.src=this.src;">  
+</body>
+</html>
+
+<script>
+const videoElement = document.getElementsByClassName('input_video')[0];
+const canvasElement = document.getElementsByClassName('output_canvas')[0];
+const canvasCtx = canvasElement.getContext('2d');
+const canvas = document.getElementById('canvas');
+const Ctx = canvas.getContext('2d');
+const canvas1 = document.getElementById('canvas1');
+const Ctx1 = canvas1.getContext('2d');
+const canvas2 = document.getElementById('canvas2');
+const Ctx2 = canvas2.getContext('2d');
+const canvas3 = document.getElementById('canvas3');
+const Ctx3 = canvas3.getContext('2d');
+const operation = document.getElementById('operation');
+const img0 = document.getElementById('img0');
+const img1 = document.getElementById('img1');
+const img2 = document.getElementById('img2');
+const img3 = document.getElementById('img3');
+const img4 = document.getElementById('img4');
+var state = true;
+
+function onResults(results) {
+
+  canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+  canvasCtx.drawImage(results.segmentationMask, 0, 0,
+                      canvasElement.width, canvasElement.height);
+					  	
+  // Only overwrite missing pixels.
+  if (state==false) 
+	canvasCtx.globalCompositeOperation = 'source-in';
+  else
+	canvasCtx.globalCompositeOperation = 'source-out';
+	
+  canvasCtx.drawImage(
+      img0, 0, 0, canvasElement.width, canvasElement.height);
+	  
+  // Only overwrite missing pixels.
+  canvasCtx.globalCompositeOperation = "destination-atop";
+  canvasCtx.drawImage(
+      results.image, 0, 0, canvasElement.width, canvasElement.height);
+
+  
+  
+  Ctx.clearRect(0, 0, canvas.width, canvas.height);
+  Ctx.drawImage(results.segmentationMask, 0, 0,
+                      canvas.width, canvas.height);
+  Ctx.globalCompositeOperation = 'source-out';
+  Ctx.fillStyle = '#000000';
+  Ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  Ctx.globalCompositeOperation = 'destination-atop';
+  Ctx.drawImage(
+      results.image, 0, 0, canvas.width, canvas.height);
+
+	  
+
+  Ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+  Ctx1.drawImage(results.segmentationMask, 0, 0,
+                      canvas1.width, canvas1.height);
+	  
+  Ctx1.globalCompositeOperation = "xor";
+  Ctx1.drawImage(
+      results.image, 0, 0, canvas1.width, canvas1.height);		  
+
+
+
+  Ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+  Ctx2.drawImage(results.segmentationMask, 0, 0,
+                      canvas2.width, canvas2.height);
+  Ctx2.globalCompositeOperation = 'source-out';
+  Ctx2.fillStyle = '#000000';
+  Ctx2.fillRect(0, 0, canvas2.width, canvas2.height);
+  
+  Ctx2.globalCompositeOperation = 'source-out';
+  Ctx2.drawImage(
+      img0, 0, 0, canvas2.width, canvas2.height);
+}
+
+const selfieSegmentation = new SelfieSegmentation({locateFile: (file) => {
+  return `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}`;
+}});
+selfieSegmentation.setOptions({
+  modelSelection: 1,
+});
+selfieSegmentation.onResults(onResults);
+
+const camera = new Camera(videoElement, {
+  onFrame: async () => {
+    await selfieSegmentation.send({image: videoElement});
+  },
+  width: 320,
+  height: 240
+});
+camera.start();
+
+window.onload = function() {LoadModel();}  
+function LoadModel() {
+	cocoSsd.load().then(model => {
+	  Model = model;
+	  DetectVideo();
+	}); 
+}  
+
+  async function DetectVideo() {
+	result.innerHTML = "";
+	canvas3.setAttribute("width", canvas.width);
+	canvas3.setAttribute("height", canvas.height);
+	Ctx3.drawImage(canvas,0,0,canvas.width,canvas.height); 	
+	
+    await Model.detect(canvas3).then(predictions => { 
+      //console.log('predictions: ', predictions);
+      if (predictions.length>0) {
+		var s = (canvas3.width>canvas3.height)?canvas3.width:canvas3.height;
+        for (var i=0;i<predictions.length;i++) {
+          const x = predictions[i].bbox[0];
+          const y = predictions[i].bbox[1];
+          const width = predictions[i].bbox[2];
+          const height = predictions[i].bbox[3];
+
+		  Ctx3.lineWidth = Math.round(s/200);
+		  Ctx3.strokeStyle = "#00FFFF";
+		  Ctx3.beginPath();
+		  Ctx3.rect(x, y, width, height);
+		  Ctx3.stroke(); 
+		
+		  Ctx3.lineWidth = "3";
+		  Ctx3.fillStyle = "#00FFFF";
+		  Ctx3.font = Math.round(s/20) + "px Arial";
+		  Ctx3.fillText(predictions[i].class, x, y-(s/40));
+		  
+		  result.innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+        }
+      }
+	  try { 
+		document.createEvent("TouchEvent");
+		setTimeout(function(){DetectVideo();},250);
+	  }
+	  catch(e) { 
+		setTimeout(function(){DetectVideo();},150);
+	  } 
+    });
+  }
+</script>
