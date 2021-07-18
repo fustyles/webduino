@@ -622,7 +622,7 @@ Blockly.Arduino['document_timer'] = function (block) {
   if ((value_var_.indexOf("(")==0)&&(value_var_.lastIndexOf(")")==value_var_.length-1))
     value_var_ = value_var_.substring(1,value_var_.length-1);
 	
-  var code = value_var_+' = setInterval(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
+  var code = 'var '+value_var_+' = setInterval(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
   return code;
 };
 
@@ -637,7 +637,7 @@ Blockly.Arduino['document_timer_once'] = function (block) {
   if ((value_var_.indexOf("(")==0)&&(value_var_.lastIndexOf(")")==value_var_.length-1))
     value_var_ = value_var_.substring(1,value_var_.length-1);
 	
-  var code = value_var_+' = setTimeout(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
+  var code = 'var '+value_var_+' = setTimeout(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
   return code;
 };
 
