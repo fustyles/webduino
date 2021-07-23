@@ -1,4 +1,4 @@
-MSG.catGameElements = "游戏元素";
+MSG.catGameElements = "网页元素";
 MSG.catGameElements_sub1 = "一般功能";
 MSG.catGameElements_sub2 = "图片";
 MSG.catGameElements_sub3 = "按钮";
