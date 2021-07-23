@@ -1,4 +1,4 @@
-MSG.catGameElements = "Game Elements";
+MSG.catGameElements = "Page Elements";
 MSG.catGameElements_sub1 = "General";
 MSG.catGameElements_sub2 = "Image";
 MSG.catGameElements_sub3 = "Button";
