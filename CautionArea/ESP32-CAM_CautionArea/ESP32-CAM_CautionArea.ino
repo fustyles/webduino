@@ -1,6 +1,6 @@
 /*
-ESP32-CAM Caution area (tfjs coco-ssd)
-Author : ChungYi Fu (Kaohsiung, Taiwan)  2021-6-24 10:30
+ESP32-CAM Caution area for Cellphone (tfjs coco-ssd)
+Author : ChungYi Fu (Kaohsiung, Taiwan)  2021-7-28 16:00
 https://www.facebook.com/francefu
 
 物件類別
@@ -10,14 +10,13 @@ http://192.168.xxx.xxx             //網頁首頁管理介面
 http://192.168.xxx.xxx:81/stream   //取得串流影像       <img src="http://192.168.xxx.xxx:81/stream">
 http://192.168.xxx.xxx/capture     //取得影像          <img src="http://192.168.xxx.xxx/capture">
 http://192.168.xxx.xxx/status      //取得視訊參數值
-http://192.168.xxx.xxx/wifi        //設定區域網路Wi-Fi帳號密碼  
-
+http://192.168.xxx.xxx/wifi        //設定區域網路Wi-Fi帳號密碼 
+ 
 自訂指令格式 :  
 http://APIP/control?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9
 http://STAIP/control?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9
 
 預設AP端IP： 192.168.4.1
-
 自訂指令格式 http://192.168.xxx.xxx/control?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9
 http://192.168.xxx.xxx/control?ip                      //取得APIP, STAIP
 http://192.168.xxx.xxx/control?mac                     //取得MAC位址
@@ -306,12 +305,10 @@ static const char PROGMEM index_html[] = R"rawliteral(
           <title>ESP32-CAM Caution Area</title>  
       </head>
       <body>
-      請將WiFi改連接對外網路後再點選按鈕，設定隱私權和安全性允許不安全的內容。<br>
-      <font size="4" color="red">chrome:\/\/settings/content/siteDetails?site=https:\/\/fustyles.github.io</font><br>
       <button onclick="location.href='/wifi';">設定Wi-Fi</button>
-      <button onclick="location.href='http'+':\/\/fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_HorizontalLine.html?'+document.location.origin;">水平警示區</button>
-      <button onclick="location.href='http'+':\/\/fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_VerticalLine.html?'+document.location.origin;">垂直警示區</button>
-      <button onclick="location.href='http'+':\/\/fustyles.github.io/webduino/CautionArea/ESP32-CAM_CautionArea_Rect.html?'+document.location.origin;">框選警示區</button>
+      <button onclick="location.href='/HorizontalLine';">水平警示區</button>
+      <button onclick="location.href='/VerticalLine';">垂直警示區</button>
+      <button onclick="location.href='/Rect';">框選警示區</button>
       </body>
   </html>        
 )rawliteral";
@@ -343,6 +340,1679 @@ static esp_err_t index_wifi_handler(httpd_req_t *req) {
   httpd_resp_set_type(req, "text/html");
   httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
   httpd_resp_send(req, (const char *)index_wifi_html, strlen(index_wifi_html));
+  return ESP_OK;
+}
+
+
+
+      
+static const char index_HorizontalLine_html[] PROGMEM = R"rawliteral(
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>ESP32-CAM Caution Area</title>
+        <style>
+          body{font-family:Arial,Helvetica,sans-serif;background:#181818;color:#EFEFEF;font-size:16px}h2{font-size:18px}section.main{display:flex}#menu,section.main{flex-direction:column}#menu{display:none;flex-wrap:nowrap;min-width:340px;background:#363636;padding:8px;border-radius:4px;margin-top:-10px;margin-right:10px}#content{display:flex;flex-wrap:wrap;align-items:stretch}figure{padding:0;margin:0;-webkit-margin-before:0;margin-block-start:0;-webkit-margin-after:0;margin-block-end:0;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:0;margin-inline-end:0}figure img{display:block;width:100%;height:auto;border-radius:4px;margin-top:8px}@media (min-width: 800px) and (orientation:landscape){#content{display:flex;flex-wrap:nowrap;align-items:stretch}figure img{display:block;max-width:100%;max-height:calc(100vh - 40px);width:auto;height:auto}figure{padding:0;margin:0;-webkit-margin-before:0;margin-block-start:0;-webkit-margin-after:0;margin-block-end:0;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:0;margin-inline-end:0}}section#buttons{display:flex;flex-wrap:nowrap;justify-content:space-between}#nav-toggle{cursor:pointer;display:block}#nav-toggle-cb{outline:0;opacity:0;width:0;height:0}#nav-toggle-cb:checked+#menu{display:flex}.input-group{display:flex;flex-wrap:nowrap;line-height:22px;margin:5px 0}.input-group>label{display:inline-block;padding-right:10px;min-width:47%}.input-group input,.input-group select{flex-grow:1}.range-max,.range-min{display:inline-block;padding:0 5px}button{display:block;margin:5px;padding:0 12px;border:0;line-height:28px;cursor:pointer;color:#fff;background:#ff3034;border-radius:5px;font-size:16px;outline:0}button:hover{background:#ff494d}button:active{background:#f21c21}button.disabled{cursor:default;background:#a0a0a0}input[type=range]{-webkit-appearance:none;width:100%;height:22px;background:#363636;cursor:pointer;margin:0}input[type=range]:focus{outline:0}input[type=range]::-webkit-slider-runnable-track{width:100%;height:2px;cursor:pointer;background:#EFEFEF;border-radius:0;border:0 solid #EFEFEF}input[type=range]::-webkit-slider-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer;-webkit-appearance:none;margin-top:-11.5px}input[type=range]:focus::-webkit-slider-runnable-track{background:#EFEFEF}input[type=range]::-moz-range-track{width:100%;height:2px;cursor:pointer;background:#EFEFEF;border-radius:0;border:0 solid #EFEFEF}input[type=range]::-moz-range-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer}input[type=range]::-ms-track{width:100%;height:2px;cursor:pointer;background:0 0;border-color:transparent;color:transparent}input[type=range]::-ms-fill-lower{background:#EFEFEF;border:0 solid #EFEFEF;border-radius:0}input[type=range]::-ms-fill-upper{background:#EFEFEF;border:0 solid #EFEFEF;border-radius:0}input[type=range]::-ms-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer;height:2px}input[type=range]:focus::-ms-fill-lower{background:#EFEFEF}input[type=range]:focus::-ms-fill-upper{background:#363636}.switch{display:block;position:relative;line-height:22px;font-size:16px;height:22px}.switch input{outline:0;opacity:0;width:0;height:0}.slider{width:50px;height:22px;border-radius:22px;cursor:pointer;background-color:grey}.slider,.slider:before{display:inline-block;transition:.4s}.slider:before{position:relative;content:"";border-radius:50%;height:16px;width:16px;left:4px;top:3px;background-color:#fff}input:checked+.slider{background-color:#ff3034}input:checked+.slider:before{-webkit-transform:translateX(26px);transform:translateX(26px)}select{border:1px solid #363636;font-size:14px;height:22px;outline:0;border-radius:5px}.image-container{position:relative;min-width:160px}.close{position:absolute;right:5px;top:5px;background:#ff3034;width:16px;height:16px;border-radius:100px;color:#fff;text-align:center;line-height:18px;cursor:pointer}.hidden{display:none}
+        </style>
+        <script src="https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script src="https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"> </script>
+        <script src="https:\/\/cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"> </script>      
+    </head>
+    <body>
+    <figure>
+      <div id="stream-container" class="image-container hidden">
+        <div class="close" id="close-stream">×</div>
+        <img id="stream" src="" crossorigin="anonymous" style="background-color:#000000;display:none;">
+        <table>
+          <tr>
+          <td align="left"><input type="range" id="lefttop" min="0" max="240" value="80" step="1" required></td>
+          <td align="right"><input type="range" id="righttop" min="0" max="240" value="80" step="1" required></td>
+          </tr>
+          <tr>
+          <td colspan="2"><canvas id="canvas" width="320" height="240"></canvas></td>
+          </tr>
+          <tr>
+          <td align="left"><input type="range" id="leftbottom" min="0" max="240" value="160" step="1" required></td>
+          <td align="right"><input type="range" id="rightbottom" min="0" max="240" value="160" step="1" required></td>
+          </tr>
+        </table>
+      </div>
+    </figure>
+        <section class="main">
+            <section id="buttons">
+                <table>
+                <tr><td><button id="restart" onclick="try{fetch(document.location.origin+'/control?restart');}catch(e){}">重啟電源</button></td><td><button id="toggle-stream" style="display:none"></button></td><td align="right"><button id="face_enroll" style="display:none" class="disabled" disabled="disabled"></button><button id="get-still">啟動視訊</button></td></tr>
+                <tr>
+                  <td colspan="3">
+                    <table>
+                      <tr> 
+                        <td colspan="2">
+                          物件定位
+                          <select id="mark">
+                          <option value="center">中</option>                
+                          <option value="upper">上</option>
+                          <option value="lower" selected="selected">下</option>
+                          <option value="left">左</option>
+                          <option value="right">右</option>
+                          </select>
+                            物件追蹤
+                            <select id="object" onchange="count.innerHTML='';">
+                              <option value="person" selected="selected">person</option>
+                              <option value="bicycle">bicycle</option>
+                              <option value="car">car</option>
+                              <option value="motorcycle">motorcycle</option>
+                              <option value="airplane">airplane</option>
+                              <option value="bus">bus</option>
+                              <option value="train">train</option>
+                              <option value="truck">truck</option>
+                              <option value="boat">boat</option>
+                              <option value="traffic light">traffic light</option>
+                              <option value="fire hydrant">fire hydrant</option>
+                              <option value="stop sign">stop sign</option>
+                              <option value="parking meter">parking meter</option>
+                              <option value="bench">bench</option>
+                              <option value="bird">bird</option>
+                              <option value="cat">cat</option>
+                              <option value="dog">dog</option>
+                              <option value="horse">horse</option>
+                              <option value="sheep">sheep</option>
+                              <option value="cow">cow</option>
+                              <option value="elephant">elephant</option>
+                              <option value="bear">bear</option>
+                              <option value="zebra">zebra</option>
+                              <option value="giraffe">giraffe</option>
+                              <option value="backpack">backpack</option>
+                              <option value="umbrella">umbrella</option>
+                              <option value="handbag">handbag</option>
+                              <option value="tie">tie</option>
+                              <option value="suitcase">suitcase</option>
+                              <option value="frisbee">frisbee</option>
+                              <option value="skis">skis</option>
+                              <option value="snowboard">snowboard</option>
+                              <option value="sports ball">sports ball</option>
+                              <option value="kite">kite</option>
+                              <option value="baseball bat">baseball bat</option>
+                              <option value="baseball glove">baseball glove</option>
+                              <option value="skateboard">skateboard</option>
+                              <option value="surfboard">surfboard</option>
+                              <option value="tennis racket">tennis racket</option>
+                              <option value="bottle">bottle</option>
+                              <option value="wine glass">wine glass</option>
+                              <option value="cup">cup</option>
+                              <option value="fork">fork</option>
+                              <option value="knife">knife</option>
+                              <option value="spoon">spoon</option>
+                              <option value="bowl">bowl</option>
+                              <option value="banana">banana</option>
+                              <option value="apple">apple</option>
+                              <option value="sandwich">sandwich</option>
+                              <option value="orange">orange</option>
+                              <option value="broccoli">broccoli</option>
+                              <option value="carrot">carrot</option>
+                              <option value="hot dog">hot dog</option>
+                              <option value="pizza">pizza</option>
+                              <option value="donut">donut</option>
+                              <option value="cake">cake</option>
+                              <option value="chair">chair</option>
+                              <option value="couch">couch</option>
+                              <option value="potted plant">potted plant</option>
+                              <option value="bed">bed</option>
+                              <option value="dining table">dining table</option>
+                              <option value="toilet">toilet</option>
+                              <option value="tv">tv</option>
+                              <option value="laptop">laptop</option>
+                              <option value="mouse">mouse</option>
+                              <option value="remote">remote</option>
+                              <option value="keyboard">keyboard</option>
+                              <option value="cell phone">cell phone</option>
+                              <option value="microwave">microwave</option>
+                              <option value="oven">oven</option>
+                              <option value="toaster">toaster</option>
+                              <option value="sink">sink</option>
+                              <option value="refrigerator">refrigerator</option>
+                              <option value="book">book</option>
+                              <option value="clock">clock</option>
+                              <option value="vase">vase</option>
+                              <option value="scissors">scissors</option>
+                              <option value="teddy bear">teddy bear</option>
+                              <option value="hair drier">hair drier</option>
+                              <option value="toothbrush">toothbrush</option>
+                            </select>
+                            <span id="count" style="color:red">0</span>
+            </td>             
+                      </tr>
+            <tr> 
+                        <td colspan="2">
+                          分數下限
+                          <select id="score">
+                          <option value="1.0">1</option>
+                          <option value="0.9">0.9</option>
+                          <option value="0.8">0.8</option>
+                          <option value="0.7">0.7</option>
+                          <option value="0.6">0.6</option>
+                          <option value="0.5" selected="selected">0.5</option>
+                          <option value="0.4">0.4</option>
+                          <option value="0.3">0.3</option>
+                          <option value="0.2">0.2</option>
+                          <option value="0.1">0.1</option>
+                          <option value="0">0</option>
+                          </select>
+                        </td>
+                      </tr>             
+                      <tr><td>閃光燈</td><td><input type="range" id="flash" min="0" max="255" value="0" onchange="try{fetch(document.location.origin+'/control?flash='+this.value);}catch(e){}"></td></tr>
+                      <tr><td><input type="checkbox" id="chkAud">警示音效網址</td><td><input type="text" id="aud" size="20" value="https:\/\/fustyles.github.io/webduino/paino_c.mp3"></td></tr> 
+                      <tr><td><input type="checkbox" id="chkBuzzer">蜂鳴器(IO2)</td><td></td></tr>
+                      <tr><td colspan="2"><input type="checkbox" id="chkLine">Line通知權杖<input type="text" id="token" size="10" value=""><input type="button" value="傳送影像" onclick="SendCapturedImage();"></td></tr> 
+                      <tr><td colspan="2"><span id="message" style="display:none"></span></td><td></td></tr> 
+                    </table> 
+                  </td>
+                </tr>                
+                </table>
+            </section>         
+            <div id="logo">
+                <label for="nav-toggle-cb" id="nav-toggle">&#9776;&nbsp;&nbsp;視訊設定</label>
+            </div>
+            <div id="content">
+                <div id="sidebar">
+                    <input type="checkbox" id="nav-toggle-cb">
+                    <nav id="menu">
+                        <div class="input-group" id="flash-group">
+                            <label for="flash">閃光燈</label>
+                            <div class="range-min">0</div>
+                            <input type="range" id="flash" min="0" max="255" value="0" class="default-action">
+                            <div class="range-max">255</div>
+                        </div>
+                        <div class="input-group" id="framesize-group">
+                            <label for="framesize">解析度</label>
+                            <select id="framesize" class="default-action">
+                              <option value="4">QVGA(320x240)</option>
+                            </select>
+                        </div>
+                        <div class="input-group" id="quality-group">
+                            <label for="quality">畫質</label>
+                            <div class="range-min">10</div>
+                            <input type="range" id="quality" min="10" max="63" value="10" class="default-action">
+                            <div class="range-max">63</div>
+                        </div>
+                        <div class="input-group" id="brightness-group">
+                            <label for="brightness">亮度</label>
+                            <div class="range-min">-2</div>
+                            <input type="range" id="brightness" min="-2" max="2" value="0" class="default-action">
+                            <div class="range-max">2</div>
+                        </div>
+                        <div class="input-group" id="contrast-group">
+                            <label for="contrast">對比</label>
+                            <div class="range-min">-2</div>
+                            <input type="range" id="contrast" min="-2" max="2" value="0" class="default-action">
+                            <div class="range-max">2</div>
+                        </div>
+                        <div class="input-group" id="hmirror-group">
+                            <label for="hmirror">鏡像</label>
+                            <div class="switch">
+                                <input id="hmirror" type="checkbox" class="default-action">
+                                <label class="slider" for="hmirror"></label>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <div style="display:none">
+        <form id="myForm" action="https:\/\/script.google.com/macros/s/AKfycbyp1xvWg-UCSrLsL8zt-ba_0n96uNTpAFyRry9ifCnRbtK-vgg/exec" method="post" target="sendcapturedimage">
+        <input type="text" id="myFilename" name="myFilename" value="警示區" style="display:none">
+        <input type="text" id="myToken" name="myToken" value="" style="display:none">
+        <textarea id="myFile" name="myFile" rows="10" cols="50" style="display:none"></textarea><br>
+        </form>
+        <iframe id="sendcapturedimage" name="sendcapturedimage" style="display:none"></iframe>
+        </div>
+            
+        <iframe id="ifr" style="display:none;position:absolute"></iframe>
+        <div id="position" style="display:none;color:blue;font-size:40px"></div>
+        <div id="result" style="color:red">請等待載入物件辨識模型...</div>        
+        <script>
+          document.addEventListener('DOMContentLoaded', function (event) {
+            var baseHost = document.location.origin
+            var streamUrl = baseHost + ':81'
+            const hide = el => {
+              el.classList.add('hidden')
+            }
+            const show = el => {
+              el.classList.remove('hidden')
+            }
+            const disable = el => {
+              el.classList.add('disabled')
+              el.disabled = true
+            }
+            const enable = el => {
+              el.classList.remove('disabled')
+              el.disabled = false
+            }
+            const updateValue = (el, value, updateRemote) => {
+              updateRemote = updateRemote == null ? true : updateRemote
+              let initialValue
+              if (el.type === 'checkbox') {
+                initialValue = el.checked
+                value = !!value
+                el.checked = value
+              } else {
+                initialValue = el.value
+                el.value = value
+              }
+              if (updateRemote && initialValue !== value) {
+                updateConfig(el);
+              } 
+            }
+            function updateConfig (el) {
+              let value
+              switch (el.type) {
+                case 'checkbox':
+                  value = el.checked ? 1 : 0
+                  break
+                case 'range':
+                case 'select-one':
+                  value = el.value
+                  break
+                case 'button':
+                case 'submit':
+                  value = '1'
+                  break
+                default:
+                  return
+              }
+              const query = `${baseHost}/control?var=${el.id}&val=${value}`
+              fetch(query)
+                .then(response => {
+                  console.log(`request to ${query} finished, status: ${response.status}`)
+                })
+            }
+            document
+              .querySelectorAll('.close')
+              .forEach(el => {
+                el.onclick = () => {
+                  hide(el.parentNode)
+                }
+              })
+            // read initial values
+            fetch(`${baseHost}/status`)
+              .then(function (response) {
+                return response.json()
+              })
+              .then(function (state) {
+                document
+                  .querySelectorAll('.default-action')
+                  .forEach(el => {
+                    updateValue(el, state[el.id], false)
+                  })
+              })
+            const view = document.getElementById('stream')
+            const viewContainer = document.getElementById('stream-container')
+            const stillButton = document.getElementById('get-still')
+            const streamButton = document.getElementById('toggle-stream')
+            const closeButton = document.getElementById('close-stream')
+            const stopStream = () => {
+              //window.stop();
+              streamButton.innerHTML = 'Start Stream'
+            }
+            const startStream = () => {
+              view.src = `${streamUrl}/stream`
+              show(viewContainer)
+              streamButton.innerHTML = 'Stop Stream'
+            }
+            // Attach actions to buttons
+            stillButton.onclick = () => {
+              stopStream()
+              try{
+                view.src = `${baseHost}/capture?_cb=${Date.now()}`
+              }
+              catch(e) {
+                view.src = `${baseHost}/capture?_cb=${Date.now()}`  
+              }
+              show(viewContainer)
+            }
+            closeButton.onclick = () => {
+              stopStream()
+              hide(viewContainer)
+            }
+            streamButton.onclick = () => {
+              const streamEnabled = streamButton.innerHTML === 'Stop Stream'
+              if (streamEnabled) {
+                stopStream()
+              } else {
+                startStream()
+              }
+            }
+            // Attach default on change action
+            document
+              .querySelectorAll('.default-action')
+              .forEach(el => {
+                el.onchange = () => updateConfig(el)
+              })
+          })
+        </script>
+        <script>
+          var canvas = document.getElementById('canvas');
+          var context = canvas.getContext("2d"); 
+          var ShowImage = document.getElementById('stream');
+          var example = document.getElementById('example');
+          var result = document.getElementById('result');
+          var count = document.getElementById('count');
+          var score = document.getElementById('score');
+          var getStill = document.getElementById('get-still');
+          var hmirror = document.getElementById('hmirror'); 
+          var ifr = document.getElementById('ifr');
+          var videoWidth = 320;
+          var videoHeight = 240;
+          var lefttop = document.getElementById('lefttop');
+          var righttop = document.getElementById('righttop');
+          var leftbuttom = document.getElementById('leftbottom');
+          var rightbuttom = document.getElementById('rightbottom');
+          var token = document.getElementById('token');         
+          var aud = document.getElementById('aud');
+          var chkAud = document.getElementById('chkAud');
+          var chkLine = document.getElementById('chkLine');
+          var chkBuzzer = document.getElementById('chkBuzzer');
+          var alarm = new Audio(aud.value);
+          var position = document.getElementById('position');
+          var mark = document.getElementById('mark'); 
+      
+          var Model;       
+          window.onload = function () {loadModel();}
+                    
+          function loadModel() {
+            cocoSsd.load().then(cocoSsd_Model => {
+              Model = cocoSsd_Model;
+              result.innerHTML = "";
+              getStill.style.display = "block";
+              getStill.click();
+            }); 
+          }
+          
+          ShowImage.onload = function (event) {
+            if (Model) {
+              try { 
+                document.createEvent("TouchEvent");
+                DetectImage();
+              }
+              catch(e) { 
+                DetectImage();
+              }   
+            }     
+          }  
+          
+          function DetectImage() {
+            canvas.setAttribute("width", ShowImage.width);
+            canvas.setAttribute("height", ShowImage.height);
+            context.drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
+                       
+            Model.detect(canvas).then(Predictions => {    
+              var objectCount=0;  //紀錄偵測到物件總數
+              context.strokeStyle = 'red';
+              context.lineWidth = 5;    
+              context.beginPath();
+              context.moveTo(0, lefttop.value);
+              context.lineTo(videoWidth, righttop.value);
+              context.stroke();
+              context.beginPath();
+              context.moveTo(0, leftbottom.value);
+              context.lineTo(videoWidth, rightbottom.value);
+              context.stroke(); 
+    
+              //console.log('Predictions: ', Predictions);
+              if (Predictions.length>0) {
+                result.innerHTML = "";
+                var s = (canvas.width>canvas.height)?canvas.width:canvas.height;
+                for (var i=0;i<Predictions.length;i++) {
+                  const x = Predictions[i].bbox[0];
+                  const y = Predictions[i].bbox[1];
+                  const width = Predictions[i].bbox[2];
+                  const height = Predictions[i].bbox[3];
+                  var mark_x = 0;
+                  var mark_y = 0;
+                  if (mark.value=="upper") {
+                    mark_x = x + width/2;
+                    mark_y = y;
+                  } 
+                  else if (mark.value=="lower") {
+                    mark_x = x + width/2;
+                    mark_y = y + height;
+                  }
+                  else if (mark.value=="left") {
+                    mark_x = x;
+                    mark_y = y + height/2;
+                  }
+                  else if (mark.value=="right") {
+                    mark_x = x + width;
+                    mark_y = y + height/2;
+                  }
+                  else if (mark.value=="center") {
+                    mark_x = x + width/2;
+                    mark_y = y + height/2;
+                  }
+          
+                  result.innerHTML+= "[ "+i+" ] "+Predictions[i].class+", "+Math.round(Predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+                  if (Predictions[i].class==object.value&&Predictions[i].score>=score.value) {   
+                    context.fillStyle="#00FFFF";        
+                    context.beginPath();
+                    context.arc(mark_x, mark_y,5,0,Math.PI*2,true);
+                    context.fill();
+                    context.closePath();
+                    
+                    var lt = Number(lefttop.value)+0.1;
+                    var rt = Number(righttop.value);
+                    var lb = Number(leftbottom.value)+0.1;
+                    var rb = Number(rightbottom.value);
+                    
+                    var p1,p2;
+                    var tx1 =  (0 - videoWidth) / (lt - rt) * (mark_y - rt) + videoWidth;
+                    if (tx1>mark_x) {
+                      p1 = 1;
+                    }
+                    else {
+                      p1 = 0;
+                    }
+                    
+                    var tx2 =  (0 - videoWidth) / (lb - rb) * (mark_y - rb) + videoWidth;
+                    if (tx2>mark_x) {
+                      p2 = 1;
+                    }
+                    else {
+                      p2 = 0;
+                    }   
+            
+                    if ((lt>rt)&&(lb>rb)) {
+                      if (p1==1)
+                        position.innerHTML = "1";
+                      else if (p1==0&&p2==1)
+                        position.innerHTML = "2";
+                      else if (p2==0)
+                        position.innerHTML = "3"; 
+                    } else if ((lt<rt)&&(lb<rb)) {
+                      if (p1==0)
+                        position.innerHTML = "1";
+                      else if (p1==1&&p2==0)
+                        position.innerHTML = "2";
+                      else if (p2==1)
+                        position.innerHTML = "3";
+                    }  else if ((lt>rt)&&(lb<rb)) {
+                      if (p1==1)
+                        position.innerHTML = "1";
+                      else if (p1==0&&p2==0)
+                        position.innerHTML = "2";
+                      else if (p2==1)
+                        position.innerHTML = "3";
+                    }  else if ((lt<rt)&&(lb>rb)) {
+                      if (p1==0)
+                        position.innerHTML = "1";
+                      else if (p1==1&&p2==1)
+                        position.innerHTML = "2";
+                      else if (p2==0)
+                        position.innerHTML = "3";
+                    }
+                    
+                    if (position.innerHTML == "2"&&(alarm.paused||alarm.ended)) {
+                      if (chkAud.checked) {
+                        alarm.src = aud.value;
+                        alarm.play();
+                      }
+                      if (chkLine.checked)
+                        ifr.src = 'http://linenotify.com/notify.php?token='+token.value+'&message=警示區內有人員';                        
+                      if (chkBuzzer.checked)
+                        $.ajax({url: document.location.origin+'/control?buzzer='+position.innerHTML, async: false}); 
+                    } 
+                  }
+                            
+                  if (Predictions[i].class==object.value) {
+                    objectCount++;
+                  }  
+                }
+                count.innerHTML = objectCount;
+              }
+              else {
+                position.innerHTML = "";                
+                result.innerHTML = "Unrecognizable";
+                count.innerHTML = "0";
+              }
+              
+              try { 
+                document.createEvent("TouchEvent");
+                setTimeout(function(){getStill.click();},250);
+              }
+              catch(e) { 
+                setTimeout(function(){getStill.click();},150);
+              } 
+            });
+          }
+      
+          function getFeedback(target) {
+            var data = $.ajax({
+            type: "get",
+            dataType: "text",
+            url: target,
+            success: function(response)
+              {
+                result.innerHTML = response;
+              },
+              error: function(exception)
+              {
+                result.innerHTML = 'fail';
+              }
+            });
+          }    
+            
+          function SendCapturedImage() {
+            //var date = new Date();
+            //myFilename.value = date.getFullYear()+"_"+(date.getMonth()+1)+"_"+date.getDate()+"_"+date.getHours()+"_"+date.getMinutes()+"_"+date.getSeconds()+".png";
+            myFile.value = canvas.toDataURL();
+            myToken.value = token.value;
+            myForm.submit();
+          }           
+        </script>
+    </body>
+</html>   
+)rawliteral";
+
+static esp_err_t index_HorizontalLine_handler(httpd_req_t *req) {
+  httpd_resp_set_type(req, "text/html");
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+  httpd_resp_send(req, (const char *)index_HorizontalLine_html, strlen(index_HorizontalLine_html));
+  return ESP_OK;
+}
+
+static const char index_VerticalLine_html[] PROGMEM = R"rawliteral(
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>ESP32 OV2460</title>
+        <style>
+          body{font-family:Arial,Helvetica,sans-serif;background:#181818;color:#EFEFEF;font-size:16px}h2{font-size:18px}section.main{display:flex}#menu,section.main{flex-direction:column}#menu{display:none;flex-wrap:nowrap;min-width:340px;background:#363636;padding:8px;border-radius:4px;margin-top:-10px;margin-right:10px}#content{display:flex;flex-wrap:wrap;align-items:stretch}figure{padding:0;margin:0;-webkit-margin-before:0;margin-block-start:0;-webkit-margin-after:0;margin-block-end:0;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:0;margin-inline-end:0}figure img{display:block;width:100%;height:auto;border-radius:4px;margin-top:8px}@media (min-width: 800px) and (orientation:landscape){#content{display:flex;flex-wrap:nowrap;align-items:stretch}figure img{display:block;max-width:100%;max-height:calc(100vh - 40px);width:auto;height:auto}figure{padding:0;margin:0;-webkit-margin-before:0;margin-block-start:0;-webkit-margin-after:0;margin-block-end:0;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:0;margin-inline-end:0}}section#buttons{display:flex;flex-wrap:nowrap;justify-content:space-between}#nav-toggle{cursor:pointer;display:block}#nav-toggle-cb{outline:0;opacity:0;width:0;height:0}#nav-toggle-cb:checked+#menu{display:flex}.input-group{display:flex;flex-wrap:nowrap;line-height:22px;margin:5px 0}.input-group>label{display:inline-block;padding-right:10px;min-width:47%}.input-group input,.input-group select{flex-grow:1}.range-max,.range-min{display:inline-block;padding:0 5px}button{display:block;margin:5px;padding:0 12px;border:0;line-height:28px;cursor:pointer;color:#fff;background:#ff3034;border-radius:5px;font-size:16px;outline:0}button:hover{background:#ff494d}button:active{background:#f21c21}button.disabled{cursor:default;background:#a0a0a0}input[type=range]{-webkit-appearance:none;width:100%;height:22px;background:#363636;cursor:pointer;margin:0}input[type=range]:focus{outline:0}input[type=range]::-webkit-slider-runnable-track{width:100%;height:2px;cursor:pointer;background:#EFEFEF;border-radius:0;border:0 solid #EFEFEF}input[type=range]::-webkit-slider-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer;-webkit-appearance:none;margin-top:-11.5px}input[type=range]:focus::-webkit-slider-runnable-track{background:#EFEFEF}input[type=range]::-moz-range-track{width:100%;height:2px;cursor:pointer;background:#EFEFEF;border-radius:0;border:0 solid #EFEFEF}input[type=range]::-moz-range-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer}input[type=range]::-ms-track{width:100%;height:2px;cursor:pointer;background:0 0;border-color:transparent;color:transparent}input[type=range]::-ms-fill-lower{background:#EFEFEF;border:0 solid #EFEFEF;border-radius:0}input[type=range]::-ms-fill-upper{background:#EFEFEF;border:0 solid #EFEFEF;border-radius:0}input[type=range]::-ms-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer;height:2px}input[type=range]:focus::-ms-fill-lower{background:#EFEFEF}input[type=range]:focus::-ms-fill-upper{background:#363636}.switch{display:block;position:relative;line-height:22px;font-size:16px;height:22px}.switch input{outline:0;opacity:0;width:0;height:0}.slider{width:50px;height:22px;border-radius:22px;cursor:pointer;background-color:grey}.slider,.slider:before{display:inline-block;transition:.4s}.slider:before{position:relative;content:"";border-radius:50%;height:16px;width:16px;left:4px;top:3px;background-color:#fff}input:checked+.slider{background-color:#ff3034}input:checked+.slider:before{-webkit-transform:translateX(26px);transform:translateX(26px)}select{border:1px solid #363636;font-size:14px;height:22px;outline:0;border-radius:5px}.image-container{position:relative;min-width:160px}.close{position:absolute;right:5px;top:5px;background:#ff3034;width:16px;height:16px;border-radius:100px;color:#fff;text-align:center;line-height:18px;cursor:pointer}.hidden{display:none}
+        </style>
+        <script src="https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script src="https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"> </script>
+        <script src="https:\/\/cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"> </script>      
+    </head>
+    <body>
+    <figure>
+      <div id="stream-container" class="image-container hidden">
+        <div class="close" id="close-stream">×</div>
+        <img id="stream" src="" crossorigin="anonymous" style="background-color:#000000;display:none;">
+        <table>
+          <tr>
+          <td align="left"><input type="range" id="lefttop" min="0" max="320" value="80" step="1" required></td>
+          <td align="right"><input type="range" id="righttop" min="0" max="320" value="240" step="1" required></td>
+          </tr>
+          <tr>
+          <td colspan="2"><canvas id="canvas"></canvas></td>
+          </tr>
+          <tr>
+          <td align="left"><input type="range" id="leftbottom" min="0" max="320" value="80" step="1" required></td>
+          <td align="right"><input type="range" id="rightbottom" min="0" max="320" value="240" step="1" required></td>
+          </tr>
+        </table>
+      </div>
+    </figure>
+        <section class="main">
+            <section id="buttons">
+                <table>
+                <tr><td><button id="restart" onclick="try{fetch(document.location.origin+'/control?restart');}catch(e){}">重啟電源</button></td><td><button id="toggle-stream" style="display:none"></button></td><td align="right"><button id="face_enroll" style="display:none" class="disabled" disabled="disabled"></button><button id="get-still">啟動視訊</button></td></tr>
+                <tr>
+                  <td colspan="3">
+                    <table>
+                      <tr> 
+                        <td colspan="2">
+                          物件定位
+                          <select id="mark">
+                          <option value="center">中</option>                
+                          <option value="upper">上</option>
+                          <option value="lower" selected="selected">下</option>
+                          <option value="left">左</option>
+                          <option value="right">右</option>
+                          </select>
+                            物件追蹤
+                            <select id="object" onchange="count.innerHTML='';">
+                              <option value="person" selected="selected">person</option>
+                              <option value="bicycle">bicycle</option>
+                              <option value="car">car</option>
+                              <option value="motorcycle">motorcycle</option>
+                              <option value="airplane">airplane</option>
+                              <option value="bus">bus</option>
+                              <option value="train">train</option>
+                              <option value="truck">truck</option>
+                              <option value="boat">boat</option>
+                              <option value="traffic light">traffic light</option>
+                              <option value="fire hydrant">fire hydrant</option>
+                              <option value="stop sign">stop sign</option>
+                              <option value="parking meter">parking meter</option>
+                              <option value="bench">bench</option>
+                              <option value="bird">bird</option>
+                              <option value="cat">cat</option>
+                              <option value="dog">dog</option>
+                              <option value="horse">horse</option>
+                              <option value="sheep">sheep</option>
+                              <option value="cow">cow</option>
+                              <option value="elephant">elephant</option>
+                              <option value="bear">bear</option>
+                              <option value="zebra">zebra</option>
+                              <option value="giraffe">giraffe</option>
+                              <option value="backpack">backpack</option>
+                              <option value="umbrella">umbrella</option>
+                              <option value="handbag">handbag</option>
+                              <option value="tie">tie</option>
+                              <option value="suitcase">suitcase</option>
+                              <option value="frisbee">frisbee</option>
+                              <option value="skis">skis</option>
+                              <option value="snowboard">snowboard</option>
+                              <option value="sports ball">sports ball</option>
+                              <option value="kite">kite</option>
+                              <option value="baseball bat">baseball bat</option>
+                              <option value="baseball glove">baseball glove</option>
+                              <option value="skateboard">skateboard</option>
+                              <option value="surfboard">surfboard</option>
+                              <option value="tennis racket">tennis racket</option>
+                              <option value="bottle">bottle</option>
+                              <option value="wine glass">wine glass</option>
+                              <option value="cup">cup</option>
+                              <option value="fork">fork</option>
+                              <option value="knife">knife</option>
+                              <option value="spoon">spoon</option>
+                              <option value="bowl">bowl</option>
+                              <option value="banana">banana</option>
+                              <option value="apple">apple</option>
+                              <option value="sandwich">sandwich</option>
+                              <option value="orange">orange</option>
+                              <option value="broccoli">broccoli</option>
+                              <option value="carrot">carrot</option>
+                              <option value="hot dog">hot dog</option>
+                              <option value="pizza">pizza</option>
+                              <option value="donut">donut</option>
+                              <option value="cake">cake</option>
+                              <option value="chair">chair</option>
+                              <option value="couch">couch</option>
+                              <option value="potted plant">potted plant</option>
+                              <option value="bed">bed</option>
+                              <option value="dining table">dining table</option>
+                              <option value="toilet">toilet</option>
+                              <option value="tv">tv</option>
+                              <option value="laptop">laptop</option>
+                              <option value="mouse">mouse</option>
+                              <option value="remote">remote</option>
+                              <option value="keyboard">keyboard</option>
+                              <option value="cell phone">cell phone</option>
+                              <option value="microwave">microwave</option>
+                              <option value="oven">oven</option>
+                              <option value="toaster">toaster</option>
+                              <option value="sink">sink</option>
+                              <option value="refrigerator">refrigerator</option>
+                              <option value="book">book</option>
+                              <option value="clock">clock</option>
+                              <option value="vase">vase</option>
+                              <option value="scissors">scissors</option>
+                              <option value="teddy bear">teddy bear</option>
+                              <option value="hair drier">hair drier</option>
+                              <option value="toothbrush">toothbrush</option>
+                            </select>
+                            <span id="count" style="color:red">0</span>
+            </td>             
+                      </tr>
+            <tr> 
+                        <td colspan="2">
+                          分數下限
+                          <select id="score">
+                          <option value="1.0">1</option>
+                          <option value="0.9">0.9</option>
+                          <option value="0.8">0.8</option>
+                          <option value="0.7">0.7</option>
+                          <option value="0.6">0.6</option>
+                          <option value="0.5" selected="selected">0.5</option>
+                          <option value="0.4">0.4</option>
+                          <option value="0.3">0.3</option>
+                          <option value="0.2">0.2</option>
+                          <option value="0.1">0.1</option>
+                          <option value="0">0</option>
+                          </select>
+                        </td>
+                      </tr>                         
+                      <tr><td>閃光燈</td><td><input type="range" id="flash" min="0" max="255" value="0" onchange="try{fetch(document.location.origin+'/control?flash='+this.value);}catch(e){}"></td></tr>
+                      <tr><td><input type="checkbox" id="chkAud">警示音效網址</td><td><input type="text" id="aud" size="20" value="https:\/\/fustyles.github.io/webduino/paino_c.mp3"></td></tr> 
+                      <tr><td><input type="checkbox" id="chkBuzzer">蜂鳴器(IO2)</td><td></td></tr>
+                      <tr><td colspan="2"><input type="checkbox" id="chkLine">Line通知權杖<input type="text" id="token" size="10" value=""><input type="button" value="傳送影像" onclick="SendCapturedImage();"></td></tr> 
+                      <tr><td colspan="2"><span id="message" style="display:none"></span></td><td></td></tr> 
+                    </table>
+                  </td>
+                </tr>                
+                </table>
+            </section>         
+            <div id="logo">
+                <label for="nav-toggle-cb" id="nav-toggle">&#9776;&nbsp;&nbsp;視訊設定</label>
+            </div>
+            <div id="content">
+                <div id="sidebar">
+                    <input type="checkbox" id="nav-toggle-cb">
+                    <nav id="menu">
+                        <div class="input-group" id="flash-group">
+                            <label for="flash">閃光燈</label>
+                            <div class="range-min">0</div>
+                            <input type="range" id="flash" min="0" max="255" value="0" class="default-action">
+                            <div class="range-max">255</div>
+                        </div>
+                        <div class="input-group" id="framesize-group">
+                            <label for="framesize">解析度</label>
+                            <select id="framesize" class="default-action">
+                              <option value="4">QVGA(320x240)</option>
+                            </select>
+                        </div>
+                        <div class="input-group" id="quality-group">
+                            <label for="quality">畫質</label>
+                            <div class="range-min">10</div>
+                            <input type="range" id="quality" min="10" max="63" value="10" class="default-action">
+                            <div class="range-max">63</div>
+                        </div>
+                        <div class="input-group" id="brightness-group">
+                            <label for="brightness">亮度</label>
+                            <div class="range-min">-2</div>
+                            <input type="range" id="brightness" min="-2" max="2" value="0" class="default-action">
+                            <div class="range-max">2</div>
+                        </div>
+                        <div class="input-group" id="contrast-group">
+                            <label for="contrast">對比</label>
+                            <div class="range-min">-2</div>
+                            <input type="range" id="contrast" min="-2" max="2" value="0" class="default-action">
+                            <div class="range-max">2</div>
+                        </div>
+                        <div class="input-group" id="hmirror-group">
+                            <label for="hmirror">鏡像</label>
+                            <div class="switch">
+                                <input id="hmirror" type="checkbox" class="default-action">
+                                <label class="slider" for="hmirror"></label>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <form id="myForm" action="https:\/\/script.google.com/macros/s/AKfycbyp1xvWg-UCSrLsL8zt-ba_0n96uNTpAFyRry9ifCnRbtK-vgg/exec" method="post" target="sendcapturedimage">
+        <input type="text" id="myFilename" name="myFilename" value="警示區" style="display:none">
+        <input type="text" id="myToken" name="myToken" value="" style="display:none">
+        <textarea id="myFile" name="myFile" rows="10" cols="50" style="display:none"></textarea><br>
+        </form>
+        <iframe id="sendcapturedimage" name="sendcapturedimage" style="display:none"></iframe>
+        </div>
+                
+        <iframe id="ifr" style="display:none;position:absolute"></iframe>
+        <div id="position" style="display:none;color:blue;font-size:40px"></div>
+        <div id="result" style="color:red">請等待載入物件辨識模型...</div>        
+        <script>
+          document.addEventListener('DOMContentLoaded', function (event) {
+            var baseHost = document.location.origin
+            var streamUrl = baseHost + ':81'
+            const hide = el => {
+              el.classList.add('hidden')
+            }
+            const show = el => {
+              el.classList.remove('hidden')
+            }
+            const disable = el => {
+              el.classList.add('disabled')
+              el.disabled = true
+            }
+            const enable = el => {
+              el.classList.remove('disabled')
+              el.disabled = false
+            }
+            const updateValue = (el, value, updateRemote) => {
+              updateRemote = updateRemote == null ? true : updateRemote
+              let initialValue
+              if (el.type === 'checkbox') {
+                initialValue = el.checked
+                value = !!value
+                el.checked = value
+              } else {
+                initialValue = el.value
+                el.value = value
+              }
+              if (updateRemote && initialValue !== value) {
+                updateConfig(el);
+              } 
+            }
+            function updateConfig (el) {
+              let value
+              switch (el.type) {
+                case 'checkbox':
+                  value = el.checked ? 1 : 0
+                  break
+                case 'range':
+                case 'select-one':
+                  value = el.value
+                  break
+                case 'button':
+                case 'submit':
+                  value = '1'
+                  break
+                default:
+                  return
+              }
+              const query = `${baseHost}/control?var=${el.id}&val=${value}`
+              fetch(query)
+                .then(response => {
+                  console.log(`request to ${query} finished, status: ${response.status}`)
+                })
+            }
+            document
+              .querySelectorAll('.close')
+              .forEach(el => {
+                el.onclick = () => {
+                  hide(el.parentNode)
+                }
+              })
+            // read initial values
+            fetch(`${baseHost}/status`)
+              .then(function (response) {
+                return response.json()
+              })
+              .then(function (state) {
+                document
+                  .querySelectorAll('.default-action')
+                  .forEach(el => {
+                    updateValue(el, state[el.id], false)
+                  })
+              })
+            const view = document.getElementById('stream')
+            const viewContainer = document.getElementById('stream-container')
+            const stillButton = document.getElementById('get-still')
+            const streamButton = document.getElementById('toggle-stream')
+            const closeButton = document.getElementById('close-stream')
+            const stopStream = () => {
+              //window.stop();
+              streamButton.innerHTML = 'Start Stream'
+            }
+            const startStream = () => {
+              view.src = `${streamUrl}/stream`
+              show(viewContainer)
+              streamButton.innerHTML = 'Stop Stream'
+            }
+            // Attach actions to buttons
+            stillButton.onclick = () => {
+              stopStream()
+              try{
+                view.src = `${baseHost}/capture?_cb=${Date.now()}`
+              }
+              catch(e) {
+                view.src = `${baseHost}/capture?_cb=${Date.now()}`  
+              }
+              show(viewContainer)
+            }
+            closeButton.onclick = () => {
+              stopStream()
+              hide(viewContainer)
+            }
+            streamButton.onclick = () => {
+              const streamEnabled = streamButton.innerHTML === 'Stop Stream'
+              if (streamEnabled) {
+                stopStream()
+              } else {
+                startStream()
+              }
+            }
+            // Attach default on change action
+            document
+              .querySelectorAll('.default-action')
+              .forEach(el => {
+                el.onchange = () => updateConfig(el)
+              })
+          })
+        </script>
+        <script>
+          var canvas = document.getElementById('canvas');
+          var context = canvas.getContext("2d"); 
+          var ShowImage = document.getElementById('stream');
+          var example = document.getElementById('example');
+          var result = document.getElementById('result');
+          var count = document.getElementById('count');
+          var score = document.getElementById('score');
+          var getStill = document.getElementById('get-still');
+          var hmirror = document.getElementById('hmirror');
+          var ifr = document.getElementById('ifr');
+          var videoWidth = 320;
+          var videoHeight = 240;
+          var lefttop = document.getElementById('lefttop');
+          var righttop = document.getElementById('righttop');
+          var token = document.getElementById('token');         
+          var aud = document.getElementById('aud');
+          var chkAud = document.getElementById('chkAud');
+          var chkLine = document.getElementById('chkLine');
+          var chkBuzzer = document.getElementById('chkBuzzer');
+          var alarm = new Audio(aud.value);
+          var position = document.getElementById('position');
+          var mark = document.getElementById('mark'); 
+      
+          var Model;       
+          window.onload = function () {loadModel();}
+                    
+          function loadModel() {
+            cocoSsd.load().then(cocoSsd_Model => {
+              Model = cocoSsd_Model;
+              result.innerHTML = "";
+              getStill.style.display = "block";
+              getStill.click();
+            }); 
+          }
+          
+          ShowImage.onload = function (event) {
+            if (Model) {
+              try { 
+                document.createEvent("TouchEvent");
+                DetectImage();
+              }
+              catch(e) { 
+                DetectImage();
+              }   
+            }     
+          }  
+          
+          function DetectImage() {
+            canvas.setAttribute("width", ShowImage.width);
+            canvas.setAttribute("height", ShowImage.height);
+            context.drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
+                       
+            Model.detect(canvas).then(Predictions => {    
+              var objectCount=0;  //紀錄偵測到物件總數
+              context.strokeStyle = 'red';
+              context.lineWidth = 5;    
+              context.beginPath();
+              context.moveTo(lefttop.value, 0);
+              context.lineTo(leftbottom.value, videoHeight);
+              context.stroke();
+              context.beginPath();
+              context.moveTo(righttop.value, 0);
+              context.lineTo(rightbottom.value, videoWidth);
+              context.stroke(); 
+    
+              //console.log('Predictions: ', Predictions);
+              if (Predictions.length>0) {
+                result.innerHTML = "";
+                var s = (canvas.width>canvas.height)?canvas.width:canvas.height;
+                for (var i=0;i<Predictions.length;i++) {
+                  const x = Predictions[i].bbox[0];
+                  const y = Predictions[i].bbox[1];
+                  const width = Predictions[i].bbox[2];
+                  const height = Predictions[i].bbox[3];
+                  var mark_x = 0;
+                  var mark_y = 0;
+                  if (mark.value=="upper") {
+                    mark_x = x + width/2;
+                    mark_y = y;
+                  } 
+                  else if (mark.value=="lower") {
+                    mark_x = x + width/2;
+                    mark_y = y + height;
+                  }
+                  else if (mark.value=="left") {
+                    mark_x = x;
+                    mark_y = y + height/2;
+                  }
+                  else if (mark.value=="right") {
+                    mark_x = x + width;
+                    mark_y = y + height/2;
+                  }
+                  else if (mark.value=="center") {
+                    mark_x = x + width/2;
+                    mark_y = y + height/2;
+                  }
+                  
+                  result.innerHTML+= "[ "+i+" ] "+Predictions[i].class+", "+Math.round(Predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+                  if (Predictions[i].class==object.value&&Predictions[i].score>=score.value) {   
+                    context.fillStyle="#00FFFF";        
+                    context.beginPath();
+                    context.arc(mark_x,mark_y,5,0,Math.PI*2,true);
+                    context.fill();
+                    context.closePath();
+                    
+                    var lt = Number(lefttop.value)+0.1;
+                    var rt = Number(righttop.value)+0.1;
+                    var lb = Number(leftbottom.value);
+                    var rb = Number(rightbottom.value);
+                    
+                    var p1,p2;
+                    var tx1 =  (lt - lb) / (0 - videoHeight) * (mark_y - videoHeight) + lb;
+                    if (tx1>mark_x) {
+                      p1 = 1;
+                    }
+                    else {
+                      p1 = 0;
+                    }
+                    
+                    var tx2 =  (rt - rb) / (0 - videoHeight) * (mark_y - videoHeight) + rb;
+                    if (tx2>mark_x) {
+                      p2 = 1;
+                    }
+                    else {
+                      p2 = 0;
+                    } 
+                    
+                    if (p1==1)
+                      position.innerHTML = "1";
+                    else if (p1==0&&p2==1)
+                      position.innerHTML = "2";
+                    else if (p2==0)
+                      position.innerHTML = "3";
+                    
+                    if (position.innerHTML == "2"&&(alarm.paused||alarm.ended)) {       
+                      if (chkAud.checked) {
+                        alarm.src = aud.value;
+                        alarm.play();
+                      }
+                      if (chkLine.checked)
+                        ifr.src = 'http://linenotify.com/notify.php?token='+token.value+'&message=警示區內有人員';                        
+                      if (chkBuzzer.checked)
+                        $.ajax({url: document.location.origin+'/control?buzzer='+position.innerHTML, async: false}); 
+                    }
+                  }
+                            
+                  if (Predictions[i].class==object.value) {
+                    objectCount++;
+                  }  
+                }
+                count.innerHTML = objectCount;
+              }
+              else {
+                position.innerHTML = "";                
+                result.innerHTML = "Unrecognizable";
+                count.innerHTML = "0";
+              }
+              
+              try { 
+                document.createEvent("TouchEvent");
+                setTimeout(function(){getStill.click();},250);
+              }
+              catch(e) { 
+                setTimeout(function(){getStill.click();},150);
+              } 
+            });
+          }
+      
+          function getFeedback(target) {
+            var data = $.ajax({
+            type: "get",
+            dataType: "text",
+            url: target,
+            success: function(response)
+              {
+                result.innerHTML = response;
+              },
+              error: function(exception)
+              {
+                result.innerHTML = 'fail';
+              }
+            });
+          }   
+          function SendCapturedImage() {
+            //var date = new Date();
+            //myFilename.value = date.getFullYear()+"_"+(date.getMonth()+1)+"_"+date.getDate()+"_"+date.getHours()+"_"+date.getMinutes()+"_"+date.getSeconds()+".png";
+            myFile.value = canvas.toDataURL();
+            myToken.value = token.value;
+            myForm.submit();
+          }              
+        </script>
+    </body>
+</html>    
+)rawliteral";
+
+static esp_err_t index_VerticalLine_handler(httpd_req_t *req) {
+  httpd_resp_set_type(req, "text/html");
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+  httpd_resp_send(req, (const char *)index_VerticalLine_html, strlen(index_VerticalLine_html));
+  return ESP_OK;
+}
+
+static const char index_Rect_html[] PROGMEM = R"rawliteral(
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>ESP32 OV2460</title>
+        <style>
+          body{font-family:Arial,Helvetica,sans-serif;background:#181818;color:#EFEFEF;font-size:16px}h2{font-size:18px}section.main{display:flex}#menu,section.main{flex-direction:column}#menu{display:none;flex-wrap:nowrap;min-width:340px;background:#363636;padding:8px;border-radius:4px;margin-top:-10px;margin-right:10px}#content{display:flex;flex-wrap:wrap;align-items:stretch}figure{padding:0;margin:0;-webkit-margin-before:0;margin-block-start:0;-webkit-margin-after:0;margin-block-end:0;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:0;margin-inline-end:0}figure img{display:block;width:100%;height:auto;border-radius:4px;margin-top:8px}@media (min-width: 800px) and (orientation:landscape){#content{display:flex;flex-wrap:nowrap;align-items:stretch}figure img{display:block;max-width:100%;max-height:calc(100vh - 40px);width:auto;height:auto}figure{padding:0;margin:0;-webkit-margin-before:0;margin-block-start:0;-webkit-margin-after:0;margin-block-end:0;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:0;margin-inline-end:0}}section#buttons{display:flex;flex-wrap:nowrap;justify-content:space-between}#nav-toggle{cursor:pointer;display:block}#nav-toggle-cb{outline:0;opacity:0;width:0;height:0}#nav-toggle-cb:checked+#menu{display:flex}.input-group{display:flex;flex-wrap:nowrap;line-height:22px;margin:5px 0}.input-group>label{display:inline-block;padding-right:10px;min-width:47%}.input-group input,.input-group select{flex-grow:1}.range-max,.range-min{display:inline-block;padding:0 5px}button{display:block;margin:5px;padding:0 12px;border:0;line-height:28px;cursor:pointer;color:#fff;background:#ff3034;border-radius:5px;font-size:16px;outline:0}button:hover{background:#ff494d}button:active{background:#f21c21}button.disabled{cursor:default;background:#a0a0a0}input[type=range]{-webkit-appearance:none;width:100%;height:22px;background:#363636;cursor:pointer;margin:0}input[type=range]:focus{outline:0}input[type=range]::-webkit-slider-runnable-track{width:100%;height:2px;cursor:pointer;background:#EFEFEF;border-radius:0;border:0 solid #EFEFEF}input[type=range]::-webkit-slider-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer;-webkit-appearance:none;margin-top:-11.5px}input[type=range]:focus::-webkit-slider-runnable-track{background:#EFEFEF}input[type=range]::-moz-range-track{width:100%;height:2px;cursor:pointer;background:#EFEFEF;border-radius:0;border:0 solid #EFEFEF}input[type=range]::-moz-range-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer}input[type=range]::-ms-track{width:100%;height:2px;cursor:pointer;background:0 0;border-color:transparent;color:transparent}input[type=range]::-ms-fill-lower{background:#EFEFEF;border:0 solid #EFEFEF;border-radius:0}input[type=range]::-ms-fill-upper{background:#EFEFEF;border:0 solid #EFEFEF;border-radius:0}input[type=range]::-ms-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer;height:2px}input[type=range]:focus::-ms-fill-lower{background:#EFEFEF}input[type=range]:focus::-ms-fill-upper{background:#363636}.switch{display:block;position:relative;line-height:22px;font-size:16px;height:22px}.switch input{outline:0;opacity:0;width:0;height:0}.slider{width:50px;height:22px;border-radius:22px;cursor:pointer;background-color:grey}.slider,.slider:before{display:inline-block;transition:.4s}.slider:before{position:relative;content:"";border-radius:50%;height:16px;width:16px;left:4px;top:3px;background-color:#fff}input:checked+.slider{background-color:#ff3034}input:checked+.slider:before{-webkit-transform:translateX(26px);transform:translateX(26px)}select{border:1px solid #363636;font-size:14px;height:22px;outline:0;border-radius:5px}.image-container{position:relative;min-width:160px}.close{position:absolute;right:5px;top:5px;background:#ff3034;width:16px;height:16px;border-radius:100px;color:#fff;text-align:center;line-height:18px;cursor:pointer}.hidden{display:none}
+        </style>
+        <script src="https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script src="https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"> </script>
+        <script src="https:\/\/cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"> </script>      
+    </head>
+    <body>
+    <figure>
+      <div id="stream-container" class="image-container hidden">
+        <div class="close" id="close-stream">×</div>
+        <img id="stream" src="" crossorigin="anonymous" style="background-color:#000000;display:none;">
+        <canvas id="canvas" width="320" height="240"></canvas>
+      </div>
+    </figure>
+        <section class="main">
+            <section id="buttons">
+                <table>
+                <tr><td><button id="restart" onclick="try{fetch(document.location.origin+'/control?restart');}catch(e){}">重啟電源</button></td><td><button id="toggle-stream" style="display:none"></button></td><td align="right"><button id="face_enroll" style="display:none" class="disabled" disabled="disabled"></button><button id="get-still">啟動視訊</button></td></tr>
+                <tr>
+                  <td colspan="3">
+                    <table>
+                      <tr> 
+                        <td colspan="2">
+                          物件定位
+                          <select id="mark">
+                          <option value="center">中</option>                
+                          <option value="upper">上</option>
+                          <option value="lower" selected="selected">下</option>
+                          <option value="left">左</option>
+                          <option value="right">右</option>
+                          </select>
+                            物件追蹤
+                            <select id="object" onchange="count.innerHTML='';">
+                              <option value="person" selected="selected">person</option>
+                              <option value="bicycle">bicycle</option>
+                              <option value="car">car</option>
+                              <option value="motorcycle">motorcycle</option>
+                              <option value="airplane">airplane</option>
+                              <option value="bus">bus</option>
+                              <option value="train">train</option>
+                              <option value="truck">truck</option>
+                              <option value="boat">boat</option>
+                              <option value="traffic light">traffic light</option>
+                              <option value="fire hydrant">fire hydrant</option>
+                              <option value="stop sign">stop sign</option>
+                              <option value="parking meter">parking meter</option>
+                              <option value="bench">bench</option>
+                              <option value="bird">bird</option>
+                              <option value="cat">cat</option>
+                              <option value="dog">dog</option>
+                              <option value="horse">horse</option>
+                              <option value="sheep">sheep</option>
+                              <option value="cow">cow</option>
+                              <option value="elephant">elephant</option>
+                              <option value="bear">bear</option>
+                              <option value="zebra">zebra</option>
+                              <option value="giraffe">giraffe</option>
+                              <option value="backpack">backpack</option>
+                              <option value="umbrella">umbrella</option>
+                              <option value="handbag">handbag</option>
+                              <option value="tie">tie</option>
+                              <option value="suitcase">suitcase</option>
+                              <option value="frisbee">frisbee</option>
+                              <option value="skis">skis</option>
+                              <option value="snowboard">snowboard</option>
+                              <option value="sports ball">sports ball</option>
+                              <option value="kite">kite</option>
+                              <option value="baseball bat">baseball bat</option>
+                              <option value="baseball glove">baseball glove</option>
+                              <option value="skateboard">skateboard</option>
+                              <option value="surfboard">surfboard</option>
+                              <option value="tennis racket">tennis racket</option>
+                              <option value="bottle">bottle</option>
+                              <option value="wine glass">wine glass</option>
+                              <option value="cup">cup</option>
+                              <option value="fork">fork</option>
+                              <option value="knife">knife</option>
+                              <option value="spoon">spoon</option>
+                              <option value="bowl">bowl</option>
+                              <option value="banana">banana</option>
+                              <option value="apple">apple</option>
+                              <option value="sandwich">sandwich</option>
+                              <option value="orange">orange</option>
+                              <option value="broccoli">broccoli</option>
+                              <option value="carrot">carrot</option>
+                              <option value="hot dog">hot dog</option>
+                              <option value="pizza">pizza</option>
+                              <option value="donut">donut</option>
+                              <option value="cake">cake</option>
+                              <option value="chair">chair</option>
+                              <option value="couch">couch</option>
+                              <option value="potted plant">potted plant</option>
+                              <option value="bed">bed</option>
+                              <option value="dining table">dining table</option>
+                              <option value="toilet">toilet</option>
+                              <option value="tv">tv</option>
+                              <option value="laptop">laptop</option>
+                              <option value="mouse">mouse</option>
+                              <option value="remote">remote</option>
+                              <option value="keyboard">keyboard</option>
+                              <option value="cell phone">cell phone</option>
+                              <option value="microwave">microwave</option>
+                              <option value="oven">oven</option>
+                              <option value="toaster">toaster</option>
+                              <option value="sink">sink</option>
+                              <option value="refrigerator">refrigerator</option>
+                              <option value="book">book</option>
+                              <option value="clock">clock</option>
+                              <option value="vase">vase</option>
+                              <option value="scissors">scissors</option>
+                              <option value="teddy bear">teddy bear</option>
+                              <option value="hair drier">hair drier</option>
+                              <option value="toothbrush">toothbrush</option>
+                            </select>
+                            <span id="count" style="color:red">0</span>
+                        </td>             
+                      </tr>
+                      <tr> 
+                        <td colspan="2">
+                          分數下限
+                          <select id="score">
+                          <option value="1.0">1</option>
+                          <option value="0.9">0.9</option>
+                          <option value="0.8">0.8</option>
+                          <option value="0.7">0.7</option>
+                          <option value="0.6">0.6</option>
+                          <option value="0.5" selected="selected">0.5</option>
+                          <option value="0.4">0.4</option>
+                          <option value="0.3">0.3</option>
+                          <option value="0.2">0.2</option>
+                          <option value="0.1">0.1</option>
+                          <option value="0">0</option>
+                          </select>
+                        </td>
+                      </tr>                    
+                      <tr><td>閃光燈</td><td><input type="range" id="flash" min="0" max="255" value="0" onchange="try{fetch(document.location.origin+'/control?flash='+this.value);}catch(e){}"></td></tr>
+                      <tr><td><input type="checkbox" id="chkAud">警示音效網址</td><td><input type="text" id="aud" size="20" value="https:\/\/fustyles.github.io/webduino/paino_c.mp3"></td></tr> 
+                      <tr><td><input type="checkbox" id="chkBuzzer">蜂鳴器(IO2)</td><td></td></tr>
+                      <tr><td colspan="2"><input type="checkbox" id="chkLine">Line通知權杖<input type="text" id="token" size="10" value=""><input type="button" value="傳送影像" onclick="SendCapturedImage();"></td></tr> 
+                      <tr><td colspan="2"><span id="message" style="display:none"></span></td><td></td></tr> 
+                    </table> 
+                  </td>
+                </tr>                
+                </table>
+            </section>         
+            <div id="logo">
+                <label for="nav-toggle-cb" id="nav-toggle">&#9776;&nbsp;&nbsp;視訊設定</label>
+            </div>
+            <div id="content">
+                <div id="sidebar">
+                    <input type="checkbox" id="nav-toggle-cb">
+                    <nav id="menu">
+                        <div class="input-group" id="flash-group">
+                            <label for="flash">閃光燈</label>
+                            <div class="range-min">0</div>
+                            <input type="range" id="flash" min="0" max="255" value="0" class="default-action">
+                            <div class="range-max">255</div>
+                        </div>
+                        <div class="input-group" id="framesize-group">
+                            <label for="framesize">解析度</label>
+                            <select id="framesize" class="default-action">
+                              <option value="4">QVGA(320x240)</option>
+                            </select>
+                        </div>
+                        <div class="input-group" id="quality-group">
+                            <label for="quality">畫質</label>
+                            <div class="range-min">10</div>
+                            <input type="range" id="quality" min="10" max="63" value="10" class="default-action">
+                            <div class="range-max">63</div>
+                        </div>
+                        <div class="input-group" id="brightness-group">
+                            <label for="brightness">亮度</label>
+                            <div class="range-min">-2</div>
+                            <input type="range" id="brightness" min="-2" max="2" value="0" class="default-action">
+                            <div class="range-max">2</div>
+                        </div>
+                        <div class="input-group" id="contrast-group">
+                            <label for="contrast">對比</label>
+                            <div class="range-min">-2</div>
+                            <input type="range" id="contrast" min="-2" max="2" value="0" class="default-action">
+                            <div class="range-max">2</div>
+                        </div>
+                        <div class="input-group" id="hmirror-group">
+                            <label for="hmirror">鏡像</label>
+                            <div class="switch">
+                                <input id="hmirror" type="checkbox" class="default-action">
+                                <label class="slider" for="hmirror"></label>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <form id="myForm" action="https:\/\/script.google.com/macros/s/AKfycbyp1xvWg-UCSrLsL8zt-ba_0n96uNTpAFyRry9ifCnRbtK-vgg/exec" method="post" target="sendcapturedimage">
+        <input type="text" id="myFilename" name="myFilename" value="警示區" style="display:none">
+        <input type="text" id="myToken" name="myToken" value="" style="display:none">
+        <textarea id="myFile" name="myFile" rows="10" cols="50" style="display:none"></textarea><br>
+        </form>
+        <iframe id="sendcapturedimage" name="sendcapturedimage" style="display:none"></iframe>
+        </div>
+                
+        <iframe id="ifr" style="display:none;position:absolute"></iframe>
+        <div id="position" style="color:blue;font-size:40px"></div>
+        <div id="result" style="color:red">請等待載入物件辨識模型...</div>        
+        <script>
+          document.addEventListener('DOMContentLoaded', function (event) {
+            var baseHost = document.location.origin
+            var streamUrl = baseHost + ':81'
+            const hide = el => {
+              el.classList.add('hidden')
+            }
+            const show = el => {
+              el.classList.remove('hidden')
+            }
+            const disable = el => {
+              el.classList.add('disabled')
+              el.disabled = true
+            }
+            const enable = el => {
+              el.classList.remove('disabled')
+              el.disabled = false
+            }
+            const updateValue = (el, value, updateRemote) => {
+              updateRemote = updateRemote == null ? true : updateRemote
+              let initialValue
+              if (el.type === 'checkbox') {
+                initialValue = el.checked
+                value = !!value
+                el.checked = value
+              } else {
+                initialValue = el.value
+                el.value = value
+              }
+              if (updateRemote && initialValue !== value) {
+                updateConfig(el);
+              } 
+            }
+            function updateConfig (el) {
+              let value
+              switch (el.type) {
+                case 'checkbox':
+                  value = el.checked ? 1 : 0
+                  break
+                case 'range':
+                case 'select-one':
+                  value = el.value
+                  break
+                case 'button':
+                case 'submit':
+                  value = '1'
+                  break
+                default:
+                  return
+              }
+              const query = `${baseHost}/control?var=${el.id}&val=${value}`
+              fetch(query)
+                .then(response => {
+                  console.log(`request to ${query} finished, status: ${response.status}`)
+                })
+            }
+            document
+              .querySelectorAll('.close')
+              .forEach(el => {
+                el.onclick = () => {
+                  hide(el.parentNode)
+                }
+              })
+            // read initial values
+            fetch(`${baseHost}/status`)
+              .then(function (response) {
+                return response.json()
+              })
+              .then(function (state) {
+                document
+                  .querySelectorAll('.default-action')
+                  .forEach(el => {
+                    updateValue(el, state[el.id], false)
+                  })
+              })
+            const view = document.getElementById('stream')
+            const viewContainer = document.getElementById('stream-container')
+            const stillButton = document.getElementById('get-still')
+            const streamButton = document.getElementById('toggle-stream')
+            const closeButton = document.getElementById('close-stream')
+            const stopStream = () => {
+              //window.stop();
+              streamButton.innerHTML = 'Start Stream'
+            }
+            const startStream = () => {
+              view.src = `${streamUrl}/stream`
+              show(viewContainer)
+              streamButton.innerHTML = 'Stop Stream'
+            }
+            // Attach actions to buttons
+            stillButton.onclick = () => {
+              stopStream()
+              try{
+                view.src = `${baseHost}/capture?_cb=${Date.now()}`
+              }
+              catch(e) {
+                view.src = `${baseHost}/capture?_cb=${Date.now()}`  
+              }
+              show(viewContainer)
+            }
+            closeButton.onclick = () => {
+              stopStream()
+              hide(viewContainer)
+            }
+            streamButton.onclick = () => {
+              const streamEnabled = streamButton.innerHTML === 'Stop Stream'
+              if (streamEnabled) {
+                stopStream()
+              } else {
+                startStream()
+              }
+            }
+            // Attach default on change action
+            document
+              .querySelectorAll('.default-action')
+              .forEach(el => {
+                el.onchange = () => updateConfig(el)
+              })
+          })
+        </script>
+        <script>
+          var canvas = document.getElementById('canvas');
+          var context = canvas.getContext("2d"); 
+          var ShowImage = document.getElementById('stream');
+          var example = document.getElementById('example');
+          var result = document.getElementById('result');
+          var count = document.getElementById('count');
+          var score = document.getElementById('score');
+          var getStill = document.getElementById('get-still');
+          var hmirror = document.getElementById('hmirror'); 
+          var ifr = document.getElementById('ifr');
+          var videoWidth = 320;
+          var videoHeight = 240;
+          
+          var token = document.getElementById('token');         
+          var aud = document.getElementById('aud');
+          var chkAud = document.getElementById('chkAud');
+          var chkLine = document.getElementById('chkLine');
+          var chkBuzzer = document.getElementById('chkBuzzer');
+          var alarm = new Audio(aud.value);
+          var position = document.getElementById('position');
+          var mark = document.getElementById('mark'); 
+      
+          var Model; 
+          var touch_x0=0, touch_y0=0, touch_x=0, touch_y=0;
+          var touchState = false;
+          canvas.addEventListener("touchstart", function (e) {
+            touch_x0=0;touch_y0=0;touch_x=0;touch_y=0;
+            touchState = true;    
+            e.preventDefault();
+            var rect = canvas.getBoundingClientRect();
+            touch_x0 = e.touches[0].clientX-rect.left;
+            touch_y0 = e.touches[0].clientY-rect.top;
+            touch_x = touch_x0 ;
+            touch_y = touch_y0;
+          }, false);
+          canvas.addEventListener("touchmove", function (e) { 
+            e.preventDefault();
+            var rect = canvas.getBoundingClientRect();
+            touch_x = e.touches[0].clientX-rect.left;
+            touch_y = e.touches[0].clientY-rect.top;
+          }, false);  
+          canvas.addEventListener("touchcancel", function (e) {
+            e.preventDefault();
+            touchState = false;
+          }, false);
+          canvas.addEventListener("touchend", function (e) {
+            e.preventDefault();
+            touchState = false; 
+          }, false);
+          canvas.addEventListener("mousedown", function (e) {
+            touch_x0=0;touch_y0=0;touch_x=0;touch_y=0;
+            touchState = true;    
+            e.preventDefault();
+            var rect = canvas.getBoundingClientRect();
+            touch_x0 = e.clientX-rect.left;
+            touch_y0 = e.clientY-rect.top;
+            touch_x = touch_x0 ;
+            touch_y = touch_y0;   
+          }, false);
+          canvas.addEventListener("mouseup", function (e) { 
+            e.preventDefault();
+            var rect = canvas.getBoundingClientRect();
+            touch_x = e.clientX-rect.left;
+            touch_y = e.clientY-rect.top;
+            touchState = false; 
+          }, false);  
+                          
+          window.onload = function () {loadModel();}
+                    
+          function loadModel() {
+            cocoSsd.load().then(cocoSsd_Model => {
+              Model = cocoSsd_Model;
+              result.innerHTML = "";
+              getStill.style.display = "block";
+              getStill.click();
+            }); 
+          }
+          
+          ShowImage.onload = function (event) {
+            if (Model) {
+              try { 
+                document.createEvent("TouchEvent");
+                DetectImage();
+              }
+              catch(e) { 
+                DetectImage();
+              }   
+            }     
+          }  
+          
+          function DetectImage() {
+            canvas.setAttribute("width", ShowImage.width);
+            canvas.setAttribute("height", ShowImage.height);
+            context.drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
+            
+            if (touchState == false) {
+              context.beginPath();
+              context.lineWidth = "2";
+              context.strokeStyle = "red";  
+              context.rect(touch_x0, touch_y0, touch_x-touch_x0, touch_y-touch_y0);
+              context.stroke();
+            }  
+          
+            Model.detect(canvas).then(Predictions => {    
+              var objectCount=0;  //紀錄偵測到物件總數
+    
+              //console.log('Predictions: ', Predictions);
+              if (Predictions.length>0) {
+                result.innerHTML = "";
+                var s = (canvas.width>canvas.height)?canvas.width:canvas.height;
+                for (var i=0;i<Predictions.length;i++) {
+                  const x = Predictions[i].bbox[0];
+                  const y = Predictions[i].bbox[1];
+                  const width = Predictions[i].bbox[2];
+                  const height = Predictions[i].bbox[3];
+                  var mark_x = 0;
+                  var mark_y = 0;
+                  if (mark.value=="upper") {
+                    mark_x = x + width/2;
+                    mark_y = y;
+                  } 
+                  else if (mark.value=="lower") {
+                    mark_x = x + width/2;
+                    mark_y = y + height;
+                  }
+                  else if (mark.value=="left") {
+                    mark_x = x;
+                    mark_y = y + height/2;
+                  }
+                  else if (mark.value=="right") {
+                    mark_x = x + width;
+                    mark_y = y + height/2;
+                  }
+                  else if (mark.value=="center") {
+                    mark_x = x + width/2;
+                    mark_y = y + height/2;
+                  }
+                  
+                  result.innerHTML+= "[ "+i+" ] "+Predictions[i].class+", "+Math.round(Predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";
+                  if (Predictions[i].class==object.value&&Predictions[i].score>=score.value) {   
+                    var bottom_x = mark_x;
+                    var bottom_y = mark_y;
+                    context.fillStyle="#00FFFF";        
+                    context.beginPath();
+                    context.arc(bottom_x,bottom_y,5,0,Math.PI*2,true);
+                    context.fill();
+                    context.closePath();
+                    
+                    if (((bottom_x-touch_x0)*(bottom_x-touch_x)<=0)&&((bottom_y-touch_y0)*(bottom_y-touch_y)<=0)&&(alarm.paused||alarm.ended)) {
+                      if (chkAud.checked) {
+                        alarm.src = aud.value;
+                        alarm.play();
+                      }
+                      if (chkLine.checked)
+                        ifr.src = 'http://linenotify.com/notify.php?token='+token.value+'&message=警示區內有人員';                        
+                      if (chkBuzzer.checked)
+                        $.ajax({url: document.location.origin+'/control?buzzer', async: false}); 
+                    } 
+                  }
+                            
+                  if (Predictions[i].class==object.value) {
+                    objectCount++;
+                  }  
+                }
+                count.innerHTML = objectCount;
+              }
+              else {
+                position.innerHTML = "";                
+                result.innerHTML = "Unrecognizable";
+                count.innerHTML = "0";
+              }
+              
+              try { 
+                document.createEvent("TouchEvent");
+                setTimeout(function(){getStill.click();},250);
+              }
+              catch(e) { 
+                setTimeout(function(){getStill.click();},150);
+              } 
+            });
+          }
+      
+          function getFeedback(target) {
+            var data = $.ajax({
+            type: "get",
+            dataType: "text",
+            url: target,
+            success: function(response)
+              {
+                result.innerHTML = response;
+              },
+              error: function(exception)
+              {
+                result.innerHTML = 'fail';
+              }
+            });
+          }    
+          function SendCapturedImage() {
+            //var date = new Date();
+            //myFilename.value = date.getFullYear()+"_"+(date.getMonth()+1)+"_"+date.getDate()+"_"+date.getHours()+"_"+date.getMinutes()+"_"+date.getSeconds()+".png";
+            myFile.value = canvas.toDataURL();
+            myToken.value = token.value;
+            myForm.submit();
+          }            
+        </script>
+    </body>
+</html>      
+)rawliteral";
+
+static esp_err_t index_Rect_handler(httpd_req_t *req) {
+  httpd_resp_set_type(req, "text/html");
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+  httpd_resp_send(req, (const char *)index_Rect_html, strlen(index_Rect_html));
   return ESP_OK;
 }
 
@@ -698,6 +2368,7 @@ void startCameraServer(){
       .handler   = stream_handler,
       .user_ctx  = NULL
   };
+  
   httpd_uri_t wifi_uri = {
     .uri       = "/wifi",
     .method    = HTTP_GET,
@@ -705,6 +2376,27 @@ void startCameraServer(){
     .user_ctx  = NULL
   };   
   
+  httpd_uri_t HorizontalLine_uri = {
+    .uri       = "/HorizontalLine",
+    .method    = HTTP_GET,
+    .handler   = index_HorizontalLine_handler,
+    .user_ctx  = NULL
+  };
+      
+  httpd_uri_t VerticalLine_uri = {
+    .uri       = "/VerticalLine",
+    .method    = HTTP_GET,
+    .handler   = index_VerticalLine_handler,
+    .user_ctx  = NULL
+  };
+  
+  httpd_uri_t Rect_uri = {
+    .uri       = "/Rect",
+    .method    = HTTP_GET,
+    .handler   = index_Rect_handler,
+    .user_ctx  = NULL
+  };
+    
   Serial.printf("Starting web server on port: '%d'\n", config.server_port);  //Server Port
   if (httpd_start(&camera_httpd, &config) == ESP_OK) {
       //註冊自訂網址路徑對應執行的函式
@@ -712,7 +2404,10 @@ void startCameraServer(){
       httpd_register_uri_handler(camera_httpd, &cmd_uri);
       httpd_register_uri_handler(camera_httpd, &status_uri);
       httpd_register_uri_handler(camera_httpd, &capture_uri);
-      httpd_register_uri_handler(camera_httpd, &wifi_uri);      
+      httpd_register_uri_handler(camera_httpd, &wifi_uri); 
+      httpd_register_uri_handler(camera_httpd, &HorizontalLine_uri);
+      httpd_register_uri_handler(camera_httpd, &VerticalLine_uri);
+      httpd_register_uri_handler(camera_httpd, &Rect_uri);
   }
   
   config.server_port += 1;  //Stream Port
