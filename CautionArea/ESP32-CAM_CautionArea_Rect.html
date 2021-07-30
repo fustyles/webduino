@@ -140,7 +140,7 @@ https://mp3cut.net/tw/
 						</td>							
                       </tr>
 					  <tr> 
-                        <td colspan="2">
+                        <td>
                           分數下限
                           <select id="score">
                           <option value="1.0">1</option>
@@ -156,8 +156,10 @@ https://mp3cut.net/tw/
                           <option value="0">0</option>
                           </select>
                         </td>
+						<td>
+						<input id="complementary" type="checkbox">區域反向偵測
+						</td>
                       </tr> 				
-                      <tr><td>閃光燈</td><td><input type="range" id="flash" min="0" max="255" value="0" onchange="try{fetch(baseHost+'/control?flash='+this.value);}catch(e){}"></td></tr>
                       <tr><td><input type="checkbox" id="chkAud">警示音效網址</td><td><input type="text" id="aud" size="20" value="https:\/\/fustyles.github.io/webduino/paino_c.mp3"></td></tr> 
                       <tr><td><input type="checkbox" id="chkBuzzer">蜂鳴器(IO2)</td><td></td></tr>
                       <tr><td colspan="2"><input type="checkbox" id="chkLine">Line通知權杖<input type="text" id="token" size="10" value=""><input type="button" value="傳送影像" onclick="SendCapturedImage();"></td></tr> 
@@ -366,6 +368,7 @@ https://mp3cut.net/tw/
           var result = document.getElementById('result');
           var count = document.getElementById('count');
 		  var score = document.getElementById('score');
+		  var complementary = document.getElementById('complementary'); 
           var getStill = document.getElementById('get-still');
           var hmirror = document.getElementById('hmirror'); 
           var ifr = document.getElementById('ifr');
@@ -517,8 +520,15 @@ https://mp3cut.net/tw/
                     context.arc(bottom_x,bottom_y,5,0,Math.PI*2,true);
                     context.fill();
                     context.closePath();
-                    
-                    if (((bottom_x-touch_x0)*(bottom_x-touch_x)<=0)&&((bottom_y-touch_y0)*(bottom_y-touch_y)<=0)&&(alarm.paused||alarm.ended)) {
+					
+					var state =false;
+					if (((bottom_x-touch_x0)*(bottom_x-touch_x)<=0)&&((bottom_y-touch_y0)*(bottom_y-touch_y)<=0)&&(!complementary.checked)&&(alarm.paused||alarm.ended)) {
+						state=true;
+					}
+					else if (!(((bottom_x-touch_x0)*(bottom_x-touch_x)<=0)&&((bottom_y-touch_y0)*(bottom_y-touch_y)<=0))&&(complementary.checked)&&(alarm.paused||alarm.ended)) {
+						state=true;
+					}
+					if (state==true) {
                       if (chkAud.checked) {
                         alarm.src = aud.value;
                         alarm.play();
@@ -526,8 +536,8 @@ https://mp3cut.net/tw/
                       if (chkLine.checked)
                         ifr.src = 'http://linenotify.com/notify.php?token='+token.value+'&message=警示區內有人員';                        
                       if (chkBuzzer.checked)
-                        $.ajax({url: baseHost+'/control?buzzer', async: false}); 
-                    } 
+                        $.ajax({url: baseHost+'/control?buzzer', async: false}); 	
+					}
                   }
                             
                   if (Predictions[i].class==object.value) {
