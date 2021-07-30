@@ -28,15 +28,15 @@ https://mp3cut.net/tw/
 <video id="video" width="320" height="240" style="display:none" preload autoplay loop muted></video>
 <table>
 <tr>
-<td align="left"><input type="range" id="lefttop" min="0" max="240" value="80" step="1" required></td>
-<td align="right"><input type="range" id="righttop" min="0" max="240" value="80" step="1" required></td>
+<td align="left"><input type="range" id="lefttop" min="0" max="100" value="25" step="1" required></td>
+<td align="right"><input type="range" id="righttop" min="0" max="100" value="25" step="1" required></td>
 </tr>
 <tr>
-<td colspan="2"><canvas id="canvas"></canvas></td>
+<td colspan="2"><canvas id="canvas" width="320" height="240"></canvas></td>
 </tr>
 <tr>
-<td align="left"><input type="range" id="leftbottom" min="0" max="240" value="160" step="1" required></td>
-<td align="right"><input type="range" id="rightbottom" min="0" max="240" value="160" step="1" required></td>
+<td align="left"><input type="range" id="leftbottom" min="0" max="100" value="75" step="1" required></td>
+<td align="right"><input type="range" id="rightbottom" min="0" max="100" value="75" step="1" required></td>
 </tr>
 <tr> 
 <td colspan="2">
@@ -152,12 +152,13 @@ https://mp3cut.net/tw/
   </select>
 </td>
 <td>
-  水平鏡像
-  <input id="hmirror" type="checkbox">
+<input id="complementary" type="checkbox">區域反向偵測
 </td>
 </tr> 				
 </table>
-<input type="checkbox" id="chkAud">警示音網址&nbsp;&nbsp;<input type="text" id="aud" size="13" value="https://fustyles.github.io/webduino/paino_c.mp3"><input type="button" id="setsource" value="重設來源" onclick="alarm.src=document.getElementById('aud').value;">
+<input id="hmirror" type="checkbox">水平鏡像
+<br><br>
+<input type="checkbox" id="chkAud">警示音效(mp3)&nbsp;&nbsp;<input type="text" id="aud" size="13" value="https://fustyles.github.io/webduino/paino_c.mp3"><input type="button" id="setsource" value="重設來源" onclick="alarm.src=document.getElementById('aud').value;">
 <br>
 <input type="checkbox" id="chkLine">Line通知權杖<input type="text" id="token" size="12" value=""><input type="button" value="傳送影像" onclick="SendCapturedImage();">
 <br>
@@ -187,7 +188,8 @@ https://mp3cut.net/tw/
   var rightbuttom = document.getElementById('rightbottom');
   
   var mark = document.getElementById('mark');
-  var hmirror = document.getElementById('hmirror'); 
+  var hmirror = document.getElementById('hmirror');
+  var complementary = document.getElementById('complementary');   
   var score = document.getElementById('score');
   var count = document.getElementById('count');
 
@@ -195,9 +197,6 @@ https://mp3cut.net/tw/
   var alarm = new Audio(aud.value);
 	
   let Model; 
-  
-  var videoWidth = 320;
-  var videoHeight = 240;  
   
   window.onload = function() {LoadModel();}  
   function LoadModel() {
@@ -215,15 +214,15 @@ https://mp3cut.net/tw/
 	  return;
 	}
 
-    var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+    var back = {audio: false,video: {facingMode: 'user',width: video.width,height: video.height}};
 	navigator.mediaDevices.enumerateDevices()
 		.then(function(devices) {
 		  devices.forEach(function(device) {
 			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
 				if (device.deviceId=='')
-					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+					back = {audio: false,video: {facingMode: 'environment',width: video.width,height: video.height} };
 				else
-					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: video.width,height: video.height} };
 			  }
 		  });
 		
@@ -231,7 +230,7 @@ https://mp3cut.net/tw/
 		if (location.search.toLowerCase().indexOf("?back")!=-1)
 		  var userMedia = back;
 		else
-		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+		  var userMedia = {audio: false,video: {facingMode: 'user',width: video.width,height: video.height}};
 
 		video.style.visibility="hidden";
 		video.style.position="absolute";
@@ -265,16 +264,16 @@ https://mp3cut.net/tw/
       result.innerHTML = "";
 
       //console.log('Predictions: ', predictions);
-	  context.strokeStyle = 'red';
-	  context.lineWidth = 5;	  
+	  context.strokeStyle = 'yellow';
+	  context.lineWidth = 5;    
 	  context.beginPath();
-	  context.moveTo(0, lefttop.value);
-	  context.lineTo(videoWidth, righttop.value);
+	  context.moveTo(0, lefttop.value*video.height/100);
+	  context.lineTo(video.width, righttop.value*video.height/100);
 	  context.stroke();
 	  context.beginPath();
-	  context.moveTo(0, leftbottom.value);
-	  context.lineTo(videoWidth, rightbottom.value);
-	  context.stroke();	  
+	  context.moveTo(0, leftbottom.value*video.height/100);
+	  context.lineTo(video.width, rightbottom.value*video.height/100);
+	  context.stroke();   
 		  
       if (predictions.length>0) {
         for (var i=0;i<predictions.length;i++) {
@@ -312,13 +311,13 @@ https://mp3cut.net/tw/
 			  context.fill();
 			  context.closePath();
 			  
-			  var lt = Number(lefttop.value)+0.1;
-			  var rt = Number(righttop.value);
-			  var lb = Number(leftbottom.value)+0.1;
-			  var rb = Number(rightbottom.value);
+				var lt = Number(lefttop.value*video.height/100)+0.1;
+				var rt = Number(righttop.value*video.height/100);
+				var lb = Number(leftbottom.value*video.height/100)+0.1;
+				var rb = Number(rightbottom.value*video.height/100);
 			  
 			  var p1,p2;
-			  var tx1 =  (0 - videoWidth) / (lt - rt) * (mark_y - rt) + videoWidth;
+			  var tx1 =  (0 - video.width) / (lt - rt) * (mark_y - rt) + video.width;
 			  if (tx1>mark_x) {
 				p1 = 1;
 			  }
@@ -326,7 +325,7 @@ https://mp3cut.net/tw/
 				p1 = 0;
 			  }
 			  
-			  var tx2 =  (0 - videoWidth) / (lb - rb) * (mark_y - rb) + videoWidth;
+			  var tx2 =  (0 - video.width) / (lb - rb) * (mark_y - rb) + video.width;
 			  if (tx2>mark_x) {
 				p2 = 1;
 			  }
@@ -364,14 +363,22 @@ https://mp3cut.net/tw/
 					position.innerHTML = "3";
 			  }
 			  
-			  if (position.innerHTML == "2"&&(alarm.paused||alarm.ended)) {
+				var state = false;
+				if (position.innerHTML == "2"&&!complementary.checked&&(alarm.paused||alarm.ended)) {       
+					state=true;
+				}
+				else if (position.innerHTML != "2"&&complementary.checked&&(alarm.paused||alarm.ended)) {       
+					state=true;
+				}
+				
+				if (state==true) {
 				  if (chkAud.checked) {
 					alarm.src = aud.value;
 					alarm.play();
 				  }
 				  if (chkLine.checked)
-					ifr.src = 'http://linenotify.com/notify.php?token='+token.value+'&message=警示區內有人員';
-			  } 
+					ifr.src = 'http://linenotify.com/notify.php?token='+token.value+'&message=警示區內有人員';     
+				}
 		  }
 
           result.innerHTML+= "[ "+i+" ] "+predictions[i].class+", "+Math.round(predictions[i].score*100)+"%, "+Math.round(x)+", "+Math.round(y)+", "+Math.round(width)+", "+Math.round(height)+"<br>";

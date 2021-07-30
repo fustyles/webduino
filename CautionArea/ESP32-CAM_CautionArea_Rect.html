@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/6/8 9:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/7/30 22:30
 https://www.facebook.com/francefu
 
 Try it
@@ -28,17 +28,17 @@ https://mp3cut.net/tw/
     </head>
     <body>
     <figure>
-	  ESP32-CAM IP：<input type="text" id="ip" size="20" value="192.168.">
+	  ESP32-CAM IP：<input type="text" id="ip" size="14" value="192.168.">&nbsp;&nbsp;<input type="button" value="設定" onclick="start();">
       <div id="stream-container" class="image-container">
         <div class="close" id="close-stream">×</div>
         <img id="stream" src="" crossorigin="anonymous" style="background-color:#000000;display:none;">
-        <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+        <canvas id="canvas" style="display:none;"></canvas>
       </div>
     </figure>
         <section class="main">
             <section id="buttons">
                 <table>
-				<tr><td><button id="restart" onclick="try{fetch(baseHost+'/control?restart');}catch(e){}">重啟電源</button></td><td><button id="toggle-stream" style="display:none">Start Stream</button></td><td align="right"><button id="face_enroll" style="display:none" class="disabled" disabled="disabled"></button><button id="get-still" style="display:none;">啟動視訊</button></td></tr>
+				<tr><td><button id="restartButton">重啟電源</button></td><td><button id="toggle-stream" style="display:none">Start Stream</button></td><td align="right"><button id="face_enroll" style="display:none" class="disabled" disabled="disabled"></button><button id="get-still" style="display:none;">啟動視訊</button></td></tr>
                 <tr>
                   <td colspan="3">
                     <table>
@@ -160,7 +160,7 @@ https://mp3cut.net/tw/
 						<input id="complementary" type="checkbox">區域反向偵測
 						</td>
                       </tr> 				
-                      <tr><td><input type="checkbox" id="chkAud">警示音效網址</td><td><input type="text" id="aud" size="20" value="https:\/\/fustyles.github.io/webduino/paino_c.mp3"></td></tr> 
+                      <tr><td><input type="checkbox" id="chkAud">警示音效(mp3)</td><td><input type="text" id="aud" size="20" value="https:\/\/fustyles.github.io/webduino/paino_c.mp3"></td></tr> 
                       <tr><td><input type="checkbox" id="chkBuzzer">蜂鳴器(IO2)</td><td></td></tr>
                       <tr><td colspan="2"><input type="checkbox" id="chkLine">Line通知權杖<input type="text" id="token" size="10" value=""><input type="button" value="傳送影像" onclick="SendCapturedImage();"></td></tr> 
                       <tr><td colspan="2"><span id="message" style="display:none"></span></td><td></td></tr> 
@@ -185,7 +185,15 @@ https://mp3cut.net/tw/
                         <div class="input-group" id="framesize-group">
                             <label for="framesize">解析度</label>
                             <select id="framesize" class="default-action">
-                              <option value="4">QVGA(320x240)</option>
+                                <option value="10">UXGA(1600x1200)</option>
+                                <option value="9">SXGA(1280x1024)</option>
+                                <option value="8">XGA(1024x768)</option>
+                                <option value="7">SVGA(800x600)</option>
+                                <option value="6">VGA(640x480)</option>
+                                <option value="5">CIF(400x296)</option>
+                                <option value="4" selected="selected">QVGA(320x240)</option>
+                                <option value="3">HQVGA(240x176)</option>
+                                <option value="0">QQVGA(160x120)</option>
                             </select>
                         </div>
                         <div class="input-group" id="quality-group">
@@ -231,9 +239,9 @@ https://mp3cut.net/tw/
 		</div>
 		
         <script>
-		  var baseHost = "";
-          var streamUrl = "";
-          document.addEventListener('DOMContentLoaded', function (event) {
+        function start() {
+			var baseHost = 'http://'+document.getElementById("ip").value;  //var baseHost = document.location.origin
+			var streamUrl = baseHost + ':81';		  
             const hide = el => {
               el.classList.add('hidden')
             }
@@ -294,7 +302,6 @@ https://mp3cut.net/tw/
                 }
               })
             // read initial values
-			/*
             fetch(`${baseHost}/status`)
               .then(function (response) {
                 return response.json()
@@ -306,9 +313,10 @@ https://mp3cut.net/tw/
                     updateValue(el, state[el.id], false)
                   })
               })
-			*/
+			
             const view = document.getElementById('stream')
             const viewContainer = document.getElementById('stream-container')
+			const restartButton = document.getElementById('restartButton')
             const stillButton = document.getElementById('get-still')
             const streamButton = document.getElementById('toggle-stream')
             const closeButton = document.getElementById('close-stream')
@@ -321,6 +329,12 @@ https://mp3cut.net/tw/
               show(viewContainer)
               streamButton.innerHTML = 'Stop Stream'
             }
+			
+            //新增重啟電源按鈕點選事件 (自訂指令格式：http://192.168.xxx.xxx/control?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9)
+            restartButton.onclick = () => {
+              fetch(baseHost+"/control?restart");
+            }  
+			
             // Attach actions to buttons
             stillButton.onclick = () => {
               stopStream()
@@ -356,7 +370,7 @@ https://mp3cut.net/tw/
               .forEach(el => {
                 el.onchange = () => updateConfig(el)
               })
-          })
+          }
         </script>
         <script>
 		  var ip = document.getElementById('ip');
@@ -372,9 +386,6 @@ https://mp3cut.net/tw/
           var getStill = document.getElementById('get-still');
           var hmirror = document.getElementById('hmirror'); 
           var ifr = document.getElementById('ifr');
-
-          var videoWidth = 320;
-          var videoHeight = 240;
           
           var token = document.getElementById('token');         
           var aud = document.getElementById('aud');
@@ -430,18 +441,7 @@ https://mp3cut.net/tw/
             touch_y = e.clientY-rect.top;
             touchState = false; 
           }, false);  
-		  
-		  function initial() {
-			var strUrl=location.search;
-			if (strUrl.indexOf("?")!=-1) {
-				ip.value = strUrl.split("?")[1].replace(/http:\/\//g,"");
-			}
-			aud.value = aud.value.replace(/\\\//g,"/");
-			loadModel();			
-		  }
-                          
-          window.onload = function () { initial();}
-                    
+		    
           function loadModel() {
             cocoSsd.load().then(cocoSsd_Model => {
               Model = cocoSsd_Model;
@@ -470,7 +470,7 @@ https://mp3cut.net/tw/
             if (touchState == false) {
               context.beginPath();
               context.lineWidth = "2";
-              context.strokeStyle = "red";  
+              context.strokeStyle = "yellow";  
               context.rect(touch_x0, touch_y0, touch_x-touch_x0, touch_y-touch_y0);
               context.stroke();
             }  
@@ -561,22 +561,6 @@ https://mp3cut.net/tw/
               } 
             });
           }
-      
-          function getFeedback(target) {
-            var data = $.ajax({
-            type: "get",
-            dataType: "text",
-            url: target,
-            success: function(response)
-              {
-                result.innerHTML = response;
-              },
-              error: function(exception)
-              {
-                result.innerHTML = 'fail';
-              }
-            });
-          } 
 
 		  function SendCapturedImage() {
 			//var date = new Date();
@@ -584,6 +568,21 @@ https://mp3cut.net/tw/
 			myFile.value = canvas.toDataURL();
 			myToken.value = token.value;
 			myForm.submit();
-		  }		  
+		  }
+
+        //  網址/?192.168.1.38  可自動帶入?後參數IP值
+        var href=location.href;
+        if (href.indexOf("?")!=-1) {
+          ip.value = location.search.split("?")[1].replace(/http:\/\//g,"");
+          start();
+        }
+        else if (href.indexOf("http")!=-1) {
+          ip.value = location.host;
+          start();
+        }	
+
+		aud.value = aud.value.replace(/\\\//g,"/");
+		loadModel();				
         </script>
-</body></html>
+</body>
+</html>

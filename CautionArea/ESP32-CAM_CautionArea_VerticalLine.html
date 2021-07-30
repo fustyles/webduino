@@ -28,21 +28,21 @@ https://mp3cut.net/tw/
     </head>
     <body>
     <figure>
-	  ESP32-CAM IP：<input type="text" id="ip" size="20" value="192.168.">
+	  ESP32-CAM IP：<input type="text" id="ip" size="14" value="192.168.">&nbsp;&nbsp;<input type="button" value="設定" onclick="start();">
       <div id="stream-container" class="image-container hidden">
         <div class="close" id="close-stream">×</div>
         <img id="stream" src="" crossorigin="anonymous" style="background-color:#000000;display:none;">
         <table>
           <tr>
-          <td align="left"><input type="range" id="lefttop" min="0" max="320" value="80" step="1" required></td>
-          <td align="right"><input type="range" id="righttop" min="0" max="320" value="240" step="1" required></td>
+          <td align="left"><input type="range" id="lefttop" min="0" max="100" value="25" step="1" required></td>
+          <td align="right"><input type="range" id="righttop" min="0" max="100" value="75" step="1" required></td>
           </tr>
           <tr>
           <td colspan="2"><canvas id="canvas"></canvas></td>
           </tr>
           <tr>
-          <td align="left"><input type="range" id="leftbottom" min="0" max="320" value="80" step="1" required></td>
-          <td align="right"><input type="range" id="rightbottom" min="0" max="320" value="240" step="1" required></td>
+          <td align="left"><input type="range" id="leftbottom" min="0" max="100" value="25" step="1" required></td>
+          <td align="right"><input type="range" id="rightbottom" min="0" max="100" value="75" step="1" required></td>
           </tr>
         </table>
       </div>
@@ -50,7 +50,7 @@ https://mp3cut.net/tw/
         <section class="main">
             <section id="buttons">
                 <table>
-				<tr><td><button id="restart" onclick="try{fetch(baseHost+'/control?restart');}catch(e){}">重啟電源</button></td><td><button id="toggle-stream" style="display:none">Start Stream</button></td><td align="right"><button id="face_enroll" style="display:none" class="disabled" disabled="disabled"></button><button id="get-still" style="display:none;">啟動視訊</button></td></tr>
+				<tr><td><button id="restartButton">重啟電源</button></td><td><button id="toggle-stream" style="display:none">Start Stream</button></td><td align="right"><button id="face_enroll" style="display:none" class="disabled" disabled="disabled"></button><button id="get-still" style="display:none;">啟動視訊</button></td></tr>
                 <tr>
                   <td colspan="3">
                     <table>
@@ -152,7 +152,7 @@ https://mp3cut.net/tw/
 						</td>							
                       </tr>
 					  <tr> 
-                        <td colspan="2">
+                        <td>
                           分數下限
                           <select id="score">
                           <option value="1.0">1</option>
@@ -168,9 +168,11 @@ https://mp3cut.net/tw/
                           <option value="0">0</option>
                           </select>
                         </td>
+						<td>
+						<input id="complementary" type="checkbox">區域反向偵測
+						</td>						
                       </tr> 				 
-                      <tr><td>閃光燈</td><td><input type="range" id="flash" min="0" max="255" value="0" onchange="try{fetch(baseHost+'/control?flash='+this.value);}catch(e){}"></td></tr>
-                      <tr><td><input type="checkbox" id="chkAud">警示音效網址</td><td><input type="text" id="aud" size="20" value="https:\/\/fustyles.github.io/webduino/paino_c.mp3"></td></tr> 
+                      <tr><td><input type="checkbox" id="chkAud">警示音效(mp3)</td><td><input type="text" id="aud" size="20" value="https:\/\/fustyles.github.io/webduino/paino_c.mp3"></td></tr> 
                       <tr><td><input type="checkbox" id="chkBuzzer">蜂鳴器(IO2)</td><td></td></tr>
                       <tr><td colspan="2"><input type="checkbox" id="chkLine">Line通知權杖<input type="text" id="token" size="10" value=""><input type="button" value="傳送影像" onclick="SendCapturedImage();"></td></tr> 
                       <tr><td colspan="2"><span id="message" style="display:none"></span></td><td></td></tr> 
@@ -195,7 +197,15 @@ https://mp3cut.net/tw/
                         <div class="input-group" id="framesize-group">
                             <label for="framesize">解析度</label>
                             <select id="framesize" class="default-action">
-                              <option value="4">QVGA(320x240)</option>
+                                <option value="10">UXGA(1600x1200)</option>
+                                <option value="9">SXGA(1280x1024)</option>
+                                <option value="8">XGA(1024x768)</option>
+                                <option value="7">SVGA(800x600)</option>
+                                <option value="6">VGA(640x480)</option>
+                                <option value="5">CIF(400x296)</option>
+                                <option value="4" selected="selected">QVGA(320x240)</option>
+                                <option value="3">HQVGA(240x176)</option>
+                                <option value="0">QQVGA(160x120)</option>
                             </select>
                         </div>
                         <div class="input-group" id="quality-group">
@@ -241,9 +251,9 @@ https://mp3cut.net/tw/
 		</div>
 		
         <script>
-		  var baseHost = "";
-          var streamUrl = "";
-          document.addEventListener('DOMContentLoaded', function (event) {
+        function start() {
+			var baseHost = 'http://'+document.getElementById("ip").value;  //var baseHost = document.location.origin
+			var streamUrl = baseHost + ':81';
             const hide = el => {
               el.classList.add('hidden')
             }
@@ -304,7 +314,7 @@ https://mp3cut.net/tw/
                 }
               })
             // read initial values
-			/*
+			
             fetch(`${baseHost}/status`)
               .then(function (response) {
                 return response.json()
@@ -316,9 +326,10 @@ https://mp3cut.net/tw/
                     updateValue(el, state[el.id], false)
                   })
               })
-			*/
+			
             const view = document.getElementById('stream')
             const viewContainer = document.getElementById('stream-container')
+			const restartButton = document.getElementById('restartButton')
             const stillButton = document.getElementById('get-still')
             const streamButton = document.getElementById('toggle-stream')
             const closeButton = document.getElementById('close-stream')
@@ -331,6 +342,12 @@ https://mp3cut.net/tw/
               show(viewContainer)
               streamButton.innerHTML = 'Stop Stream'
             }
+			
+            //新增重啟電源按鈕點選事件 (自訂指令格式：http://192.168.xxx.xxx/control?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9)
+            restartButton.onclick = () => {
+              fetch(baseHost+"/control?restart");
+            }  
+			
             // Attach actions to buttons
             stillButton.onclick = () => {
               stopStream()
@@ -366,7 +383,7 @@ https://mp3cut.net/tw/
               .forEach(el => {
                 el.onchange = () => updateConfig(el)
               })
-          })
+          }
         </script>
         <script>
 		  var ip = document.getElementById('ip');
@@ -378,12 +395,10 @@ https://mp3cut.net/tw/
           var result = document.getElementById('result');
           var count = document.getElementById('count');
 		  var score = document.getElementById('score');
+		  var complementary = document.getElementById('complementary');
           var getStill = document.getElementById('get-still');
           var hmirror = document.getElementById('hmirror');
           var ifr = document.getElementById('ifr');
-		  
-          var videoWidth = 320;
-          var videoHeight = 240;
 		  
           var lefttop = document.getElementById('lefttop');
           var righttop = document.getElementById('righttop');
@@ -397,18 +412,7 @@ https://mp3cut.net/tw/
 		  var mark = document.getElementById('mark');
 		  
           var Model; 
-		  
-		  function initial() {
-			var strUrl=location.search;
-			if (strUrl.indexOf("?")!=-1) {
-				ip.value = strUrl.split("?")[1].replace(/http:\/\//g,"");
-			}
-			aud.value = aud.value.replace(/\\\//g,"/");
-			loadModel();			
-		  }
-                          
-          window.onload = function () { initial();}
-                    
+		     
           function loadModel() {
             cocoSsd.load().then(cocoSsd_Model => {
               Model = cocoSsd_Model;
@@ -436,15 +440,15 @@ https://mp3cut.net/tw/
                        
             Model.detect(canvas).then(Predictions => {    
               var objectCount=0;  //紀錄偵測到物件總數
-              context.strokeStyle = 'red';
+              context.strokeStyle = 'yellow';
               context.lineWidth = 5;    
               context.beginPath();
-              context.moveTo(lefttop.value, 0);
-              context.lineTo(leftbottom.value, videoHeight);
+              context.moveTo(lefttop.value*ShowImage.width/100, 0);
+              context.lineTo(leftbottom.value*ShowImage.width/100, ShowImage.height);
               context.stroke();
               context.beginPath();
-              context.moveTo(righttop.value, 0);
-              context.lineTo(rightbottom.value, videoWidth);
+              context.moveTo(righttop.value*ShowImage.width/100, 0);
+              context.lineTo(rightbottom.value*ShowImage.width/100, ShowImage.height);
               context.stroke(); 
     
               //console.log('Predictions: ', Predictions);
@@ -487,13 +491,13 @@ https://mp3cut.net/tw/
                     context.fill();
                     context.closePath();
                     
-                    var lt = Number(lefttop.value)+0.1;
-                    var rt = Number(righttop.value)+0.1;
-                    var lb = Number(leftbottom.value);
-                    var rb = Number(rightbottom.value);
+                    var lt = Number(lefttop.value*ShowImage.width/100)+0.1;
+                    var rt = Number(righttop.value*ShowImage.width/100)+0.1;
+                    var lb = Number(leftbottom.value*ShowImage.width/100);
+                    var rb = Number(rightbottom.value*ShowImage.width/100);
                     
                     var p1,p2;
-                    var tx1 =  (lt - lb) / (0 - videoHeight) * (mark_y - videoHeight) + lb;
+                    var tx1 =  (lt - lb) / (0 - ShowImage.height) * (mark_y - ShowImage.height) + lb;
                     if (tx1>mark_x) {
                       p1 = 1;
                     }
@@ -501,7 +505,7 @@ https://mp3cut.net/tw/
                       p1 = 0;
                     }
                     
-                    var tx2 =  (rt - rb) / (0 - videoHeight) * (mark_y - videoHeight) + rb;
+                    var tx2 =  (rt - rb) / (0 - ShowImage.height) * (mark_y - ShowImage.height) + rb;
                     if (tx2>mark_x) {
                       p2 = 1;
                     }
@@ -516,7 +520,15 @@ https://mp3cut.net/tw/
                     else if (p2==0)
                       position.innerHTML = "3";
                     
-                    if (position.innerHTML == "2"&&(alarm.paused||alarm.ended)) {       
+					var state = false;
+                    if (position.innerHTML == "2"&&!complementary.checked&&(alarm.paused||alarm.ended)) {       
+						state=true;
+                    }
+                    else if (position.innerHTML != "2"&&complementary.checked&&(alarm.paused||alarm.ended)) {       
+						state=true;
+                    }
+					
+					if (state==true) {
                       if (chkAud.checked) {
                         alarm.src = aud.value;
                         alarm.play();
@@ -525,7 +537,7 @@ https://mp3cut.net/tw/
                         ifr.src = 'http://linenotify.com/notify.php?token='+token.value+'&message=警示區內有人員';                      
                       if (chkBuzzer.checked)
                         $.ajax({url: baseHost+'/control?buzzer='+position.innerHTML, async: false}); 
-                    }
+					}
                   }
                             
                   if (Predictions[i].class==object.value) {
@@ -549,22 +561,6 @@ https://mp3cut.net/tw/
               } 
             });
           }
-      
-          function getFeedback(target) {
-            var data = $.ajax({
-            type: "get",
-            dataType: "text",
-            url: target,
-            success: function(response)
-              {
-                result.innerHTML = response;
-              },
-              error: function(exception)
-              {
-                result.innerHTML = 'fail';
-              }
-            });
-          }  
 
 		  function SendCapturedImage() {
 			//var date = new Date();
@@ -573,6 +569,20 @@ https://mp3cut.net/tw/
 			myToken.value = token.value;
 			myForm.submit();
 		  }	
+		  
+        //  網址/?192.168.1.38  可自動帶入?後參數IP值
+        var href=location.href;
+        if (href.indexOf("?")!=-1) {
+          ip.value = location.search.split("?")[1].replace(/http:\/\//g,"");
+          start();
+        }
+        else if (href.indexOf("http")!=-1) {
+          ip.value = location.host;
+          start();
+        }	
+
+		aud.value = aud.value.replace(/\\\//g,"/");
+		loadModel();				
         </script>
     </body>
 </html>        
