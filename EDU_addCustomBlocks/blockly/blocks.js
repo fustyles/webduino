@@ -12,7 +12,26 @@ Blockly.Blocks['addMyBlocks'] = {
         [Blockly.Msg.ADDCUSTOMBLOCKS_ADDALL_SHOW,"addAll"], 
         [Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEALL_SHOW,"removeAll"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_ADDAINEW_SHOW,"addAllNewAI"], 
-        [Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEAINEW_SHOW,"removeAllNewAI"]	  
+        [Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEAINEW_SHOW,"removeAllNewAI"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_GAMEELEMENTS_SHOW,"GameElements_20190131"],		
+        [Blockly.Msg.ADDCUSTOMBLOCKS_HOLISTIC_SHOW,"holistic_20201012"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_COCO_SSD_SHOW,"coco_ssd_20201012"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_TRACKINGCOLOR_SHOW,"trackingcolor_20201012"], 
+        [Blockly.Msg.ADDCUSTOMBLOCKS_FACEAPI_RECOGNIZE_SHOW,"faceapi_recognize_20201012"], 
+        [Blockly.Msg.ADDCUSTOMBLOCKS_FACEAPI_DETECT_SHOW,"faceapi_detect_20201012"],
+ 		[Blockly.Msg.ADDCUSTOMBLOCKS_TEACHABLEMACHINE_SHOW,"teachablemachine_20201012"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_INSTASCAN_SHOW,"instascan.js_20201012"],		
+        [Blockly.Msg.ADDCUSTOMBLOCKS_KNN_CLASSIFIER_SHOW,"knn_classifier_20201012"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_TELEGRAM_SHOW,"Telegram_20200809"],	
+        [Blockly.Msg.ADDCUSTOMBLOCKS_LINEBOT_SHOW,"LineBot_20181027"],	
+        [Blockly.Msg.ADDCUSTOMBLOCKS_TELLO_SHOW,"Tello_20210103"],
+		[Blockly.Msg.ADDCUSTOMBLOCKS_SPREADSHEETSQL_SHOW,"SpreadsheetSQL_20210403"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_TESSERACT_SHOW,"tesseract.js_20201012"], 
+        [Blockly.Msg.ADDCUSTOMBLOCKS_TRACKINGFACE_SHOW,"trackingface_20201012"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_POSENET_SHOW,"posenet_20201012"], 
+        [Blockly.Msg.ADDCUSTOMBLOCKS_BLAZEFACE_SHOW,"Blazeface_20201012"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_MOBILENET_SHOW,"mobilenet_20201012"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_BARCODE_SHOW,"barcode_20210216"]
       ]), "func");
   this.setTooltip('');
   this.setColour(20);
@@ -26,13 +45,13 @@ Blockly.Blocks['addMyBlocks'] = {
             var url = this.getInputTargetBlock("url").getFieldValue("TEXT");
             if (this.getFieldValue('func')=='add') {
                   Code.customTab.$__add__(url);
-                  this.getInputTargetBlock("url").setFieldValue("", "TEXT");
+				  this.getInputTargetBlock("url").setFieldValue("", "TEXT");
             }
             else if (this.getFieldValue('func')=='remove') {
                   Code.customTab.$__remove__(url);
-                  this.getInputTargetBlock("url").setFieldValue("", "TEXT");
+				  this.getInputTargetBlock("url").setFieldValue("", "TEXT");
             }
-	    else if (this.getFieldValue('func')=='addAll') {
+			else if (this.getFieldValue('func')=='addAll') {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/tesseract.js_20201012/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/trackingface_20201012/blockly.json');
@@ -81,11 +100,9 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/WebBit_20190225/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/Telegram_20200809/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/LineBot_20181027/blockly.json');
-		  Code.customTab.$__add__('https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json');
-		  Code.customTab.$__add__('https://fustyles.github.io/webduino/Tello_20210103/blockly.json');
-		  Code.customTab.$__add__('https://fustyles.github.io/webduino/SpreadsheetSQL_20210403/blockly.json');
-
-                  this.getInputTargetBlock("url").setFieldValue("", "TEXT");
+				  Code.customTab.$__add__('https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json');
+				  Code.customTab.$__add__('https://fustyles.github.io/webduino/Tello_20210103/blockly.json');
+				  Code.customTab.$__add__('https://fustyles.github.io/webduino/SpreadsheetSQL_20210403/blockly.json');
             }
             else if (this.getFieldValue('func')=='removeAll') {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
@@ -123,13 +140,11 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebBit_20190225/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/Telegram_20200809/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/LineBot_20181027/blockly.json');
-		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json');
-		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/Tello_20210103/blockly.json');
-		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/SpreadsheetSQL_20210403/blockly.json');
-		    
-                  this.getInputTargetBlock("url").setFieldValue("", "TEXT");
+				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json');
+				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/Tello_20210103/blockly.json');
+				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/SpreadsheetSQL_20210403/blockly.json');
             }
-	    else if (this.getFieldValue('func')=='addAllNewAI') {
+			else if (this.getFieldValue('func')=='addAllNewAI') {
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json');
@@ -157,18 +172,16 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/coco-ssd_20201012/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/mobilenet_20201012/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/teachablemachine_20201012/blockly.json');
-		  Code.customTab.$__add__('https://fustyles.github.io/webduino/barcode_20210216/blockly.json');
-		    
-		  Code.customTab.$__add__('https://fustyles.github.io/webduino/GameElements_20190131/blockly.json');
-		  Code.customTab.$__add__('https://fustyles.github.io/webduino/Telegram_20200809/blockly.json');
-                  Code.customTab.$__add__('https://fustyles.github.io/webduino/LineBot_20181027/blockly.json');
-		  Code.customTab.$__add__('https://fustyles.github.io/webduino/Tello_20210103/blockly.json');
-		  Code.customTab.$__add__('https://fustyles.github.io/webduino/SpreadsheetSQL_20210403/blockly.json');
-		  Code.customTab.$__add__('https://fustyles.github.io/webduino/holistic_20201012/blockly.json');
+				  Code.customTab.$__add__('https://fustyles.github.io/webduino/barcode_20210216/blockly.json');
+				  Code.customTab.$__add__('https://fustyles.github.io/webduino/holistic_20201012/blockly.json');
 				  
-                  this.getInputTargetBlock("url").setFieldValue("", "TEXT");
-          }
-          else if (this.getFieldValue('func')=='removeAllNewAI') {
+				  Code.customTab.$__add__('https://fustyles.github.io/webduino/GameElements_20190131/blockly.json');
+				  Code.customTab.$__add__('https://fustyles.github.io/webduino/Telegram_20200809/blockly.json');
+				  Code.customTab.$__add__('https://fustyles.github.io/webduino/LineBot_20181027/blockly.json');
+				  Code.customTab.$__add__('https://fustyles.github.io/webduino/Tello_20210103/blockly.json');
+				  Code.customTab.$__add__('https://fustyles.github.io/webduino/SpreadsheetSQL_20210403/blockly.json');
+			  }
+			  else if (this.getFieldValue('func')=='removeAllNewAI') {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/tesseract.js_20201012/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/trackingface_20201012/blockly.json');
@@ -183,12 +196,79 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/teachablemachine_20201012/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/barcode_20210216/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/holistic_20201012/blockly.json');
-		  
-                  this.getInputTargetBlock("url").setFieldValue("", "TEXT");
-            }
-	      
-            this.getField('func').setValue("");
-          }
+			  }
+			  else if (this.getFieldValue('func')=='instascan.js_20201012') {
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json');
+                  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='tesseract.js_20201012') {
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/tesseract.js_20200615/blockly.json');
+                  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/tesseract.js_20201012/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='trackingface_20201012') {
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/Tracking_20190917/blockly.json');
+                  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/trackingface_20201012/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='trackingcolor_20201012') {
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/Tracking_20200625/blockly.json');
+                  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/trackingcolor_20201012/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='knn_classifier_20201012') {
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/knn-classifier_20190608/blockly.json');
+                  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/knn-classifier_20201012/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='faceapi_recognize_20201012') {
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/faceapi_recognize_20201012/blockly.json');
+                  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/faceapi_recognize_20201012/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='faceapi_detect_20201012') {
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/faceapi_20200402/blockly.json');
+                  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/faceapi_detect_20201012/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='posenet_20201012') {
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/posenet_20190822/blockly.json');
+                  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/posenet_20201012/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='Blazeface_20201012') {
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/Blazeface_20200627/blockly.json');
+                  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/Blazeface_20201012/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='coco_ssd_20201012') {
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/coco-ssd_20190821/blockly.json');
+                  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/coco-ssd_20201012/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='mobilenet_20201012') {
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/mobilenet_20190821/blockly.json');
+                  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/mobilenet_20201012/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='teachablemachine_20201012') {
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/teachablemachine_20200729/blockly.json');
+                  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/teachablemachine_20201012/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='barcode_20210216') {
+				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/barcode_20210216/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='holistic_20201012') {
+				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/holistic_20201012/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='GameElements_20190131') {
+				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/GameElements_20190131/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='Telegram_20200809') {
+				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/Telegram_20200809/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='LineBot_20181027') {
+				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/LineBot_20181027/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='Tello_20210103') {
+				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/Tello_20210103/blockly.json", "TEXT");
+			  }
+			  else if (this.getFieldValue('func')=='SpreadsheetSQL_20210403') {
+				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/SpreadsheetSQL_20210403/blockly.json", "TEXT");
+			  }
+			
+			this.getField('func').setValue("");
+	    }
       }
     }
   }
