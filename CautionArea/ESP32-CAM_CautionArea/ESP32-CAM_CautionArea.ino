@@ -1,6 +1,6 @@
 /*
 ESP32-CAM Caution area for Cellphone (tfjs coco-ssd)
-Author : ChungYi Fu (Kaohsiung, Taiwan)  2021-7-30 23:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)  2021-7-31 00:00
 https://www.facebook.com/francefu
 
 物件類別
@@ -206,8 +206,8 @@ void setup() {
 
   Serial.println();
   //設定預設區域網路Wi-Fi帳號與密碼，或清除Wi-Fi設定
-  Preferences_write("wifi", "ssid", "3COM");
-  Preferences_write("wifi", "password", "godblessyou");
+  //Preferences_write("wifi", "ssid", "");
+  //Preferences_write("wifi", "password", "");
         
   wifi_ssid = Preferences_read("wifi", "ssid");
   wifi_password = Preferences_read("wifi", "password");
