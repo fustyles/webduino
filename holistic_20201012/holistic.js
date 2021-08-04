@@ -199,6 +199,185 @@
 		return result_arr;
 	}
 
+  function holistic_part_angle(input_part, input_P1, input_P2, input_axis, input_adjust) {
+	  if (input_part=="face") {
+		  if (input_axis=="x") {
+			var faceP1y = (holistic_face_position(input_P1, "y"));
+			var faceP1z = (holistic_face_position(input_P1, "z"));
+			var faceP2y = (holistic_face_position(input_P2, "y"));
+			var faceP2z = (holistic_face_position(input_P2, "z"));
+			var rotateAngleX = (holistic_angle(faceP1y, faceP1z, faceP2y, faceP2z));
+			if (rotateAngleX) {
+				var valX = rotateAngleX-90+input_adjust;
+				if (valX<0) valX+=360
+					return valX;
+			}
+			else
+				return null;
+		  }
+		  else if (input_axis=="y") {
+			var faceP1x = (holistic_face_position(input_P1, "x"));
+			var faceP1z = (holistic_face_position(input_P1, "z"));
+			var faceP2x = (holistic_face_position(input_P2, "x"));
+			var faceP2z = (holistic_face_position(input_P2, "z"));
+			var rotateAngleY = (holistic_angle(faceP1x, faceP1z, faceP2x, faceP2z));
+			if (rotateAngleY) {
+				var valY = rotateAngleY-90+input_adjust;
+				if (valY<0) valY+=360
+					return valY;
+			}
+			else
+				return null;
+		  }
+		  else if (input_axis=="z") {
+			var faceP1x = (holistic_face_position(input_P1, "x"));
+			var faceP1y = (holistic_face_position(input_P1, "y"));
+			var faceP2x = (holistic_face_position(input_P2, "x"));
+			var faceP2y = (holistic_face_position(input_P2, "y"));
+			var rotateAngleZ = (holistic_angle(faceP1x, faceP1y, faceP2x, faceP2y));
+			if (rotateAngleZ) {
+				var valZ = rotateAngleZ-180+input_adjust;
+				if (valZ<0) valZ+=360
+					return valZ;
+			}
+			else
+				return null;
+		  }
+	  }
+	  else if (input_part=="pose") {
+		  if (input_axis=="x") {
+			var poseP1y = (holistic_pose_position(input_P1, "y"));
+			var poseP1z = (holistic_pose_position(input_P1, "z"));
+			var poseP2y = (holistic_pose_position(input_P2, "y"));
+			var poseP2z = (holistic_pose_position(input_P2, "z"));
+			var rotateAngleX = (holistic_angle(poseP1y, poseP1z, poseP2y, poseP2z));
+			if (rotateAngleX) {
+				var valX = rotateAngleX-180+input_adjust;
+				if (valX<0) valX+=360
+					return valX;
+			}
+			else
+				return null;
+		  }
+		  else if (input_axis=="y") {
+			var poseP1x = (holistic_pose_position(input_P1, "x"));
+			var poseP1z = (holistic_pose_position(input_P1, "z"));
+			var poseP2x = (holistic_pose_position(input_P2, "x"));
+			var poseP2z = (holistic_pose_position(input_P2, "z"));
+			var rotateAngleY = (holistic_angle(poseP1x, poseP1z, poseP2x, poseP2z));
+			if (rotateAngleY) {
+				var valY = rotateAngleY-90+input_adjust;
+				if (valY<0) valY+=360
+					return valY;
+			}
+			else
+				return null;
+		  }
+		  else if (input_axis=="z") {
+			var poseP1x = (holistic_pose_position(input_P1, "x"));
+			var poseP1y = (holistic_pose_position(input_P1, "y"));
+			var poseP2x = (holistic_pose_position(input_P2, "x"));
+			var poseP2y = (holistic_pose_position(input_P2, "y"));
+			var rotateAngleZ = (holistic_angle(poseP1x, poseP1y, poseP2x, poseP2y));
+			if (rotateAngleZ) {
+				var valZ = rotateAngleZ-90+input_adjust;
+				if (valZ<0) valZ+=360
+					return valZ;
+			}
+			else
+				return null;
+		  }
+	  }
+	  else if (input_part=="lefthand") {
+		  if (input_axis=="x") {
+			var lefthandP1y = (holistic_lefthand_position(input_P1, "y"));
+			var lefthandP1z = (holistic_lefthand_position(input_P1, "z"));
+			var lefthandP2y = (holistic_lefthand_position(input_P2, "y"));
+			var lefthandP2z = (holistic_lefthand_position(input_P2, "z"));
+			var rotateAngleX = (holistic_angle(lefthandP1y, lefthandP1z, lefthandP2y, lefthandP2z));
+			if (rotateAngleX) {
+				var valX = rotateAngleX+input_adjust;
+				if (valX<0) valX+=360
+					return valX;
+			}
+			else
+				return null;
+		  }
+		  else if (input_axis=="y") {
+			var lefthandP1x = (holistic_lefthand_position(input_P1, "x"));
+			var lefthandP1z = (holistic_lefthand_position(input_P1, "z"));
+			var lefthandP2x = (holistic_lefthand_position(input_P2, "x"));
+			var lefthandP2z = (holistic_lefthand_position(input_P2, "z"));
+			var rotateAngleY = (holistic_angle(lefthandP1x, lefthandP1z, lefthandP2x, lefthandP2z));
+			if (rotateAngleY) {
+				var valY = rotateAngleY-90+input_adjust;
+				if (valY<0) valY+=360
+					return valY;
+			}
+			else
+				return null;
+		  }
+		  else if (input_axis=="z") {
+			var lefthandP1x = (holistic_lefthand_position(input_P1, "x"));
+			var lefthandP1y = (holistic_lefthand_position(input_P1, "y"));
+			var lefthandP2x = (holistic_lefthand_position(input_P2, "x"));
+			var lefthandP2y = (holistic_lefthand_position(input_P2, "y"));
+			var rotateAngleZ = (holistic_angle(lefthandP1x, lefthandP1y, lefthandP2x, lefthandP2y));
+			if (rotateAngleZ) {
+				var valZ = rotateAngleZ-90+input_adjust;
+				if (valZ<0) valZ+=360
+					return valZ;
+			}
+			else
+				return null;
+		  }
+	  }
+	  else if (input_part=="righthand") {
+		  if (input_axis=="x") {
+			var righthandP1y = (holistic_righthand_position(input_P1, "y"));
+			var righthandP1z = (holistic_righthand_position(input_P1, "z"));
+			var righthandP2y = (holistic_righthand_position(input_P2, "y"));
+			var righthandP2z = (holistic_righthand_position(input_P2, "z"));
+			var rotateAngleX = (holistic_angle(righthandP1y, righthandP1z, righthandP2y, righthandP2z));
+			if (rotateAngleX) {
+				var valX = rotateAngleX+input_adjust;
+				if (valX<0) valX+=360
+					return valX;
+			}
+			else
+				return null;
+		  }
+		  else if (input_axis=="y") {
+			var righthandP1x = (holistic_righthand_position(input_P1, "x"));
+			var righthandP1z = (holistic_righthand_position(input_P1, "z"));
+			var righthandP2x = (holistic_righthand_position(input_P2, "x"));
+			var righthandP2z = (holistic_righthand_position(input_P2, "z"));
+			var rotateAngleY = (holistic_angle(righthandP1x, righthandP1z, righthandP2x, righthandP2z));
+			if (rotateAngleY) {
+				var valY = rotateAngleY-270+input_adjust;
+				if (valY<0) valY+=360
+					return valY;
+			}
+			else
+				return null;
+		  }
+		  else if (input_axis=="z") {
+			var righthandP1x = (holistic_righthand_position(input_P1, "x"));
+			var righthandP1y = (holistic_righthand_position(input_P1, "y"));
+			var righthandP2x = (holistic_righthand_position(input_P2, "x"));
+			var righthandP2y = (holistic_righthand_position(input_P2, "y"));
+			var rotateAngleZ = (holistic_angle(righthandP1x, righthandP1y, righthandP2x, righthandP2y));
+			if (rotateAngleZ) {
+				var valZ = rotateAngleZ-270+input_adjust;
+				if (valZ<0) valZ+=360
+					return valZ;
+			}
+			else
+				return null;
+		  }
+	  }	  
+  } 	
+
 	window.holistic_video = holistic_video;
 	window.holistic_face_position = holistic_face_position;
 	window.holistic_pose_position = holistic_pose_position;
@@ -206,7 +385,8 @@
 	window.holistic_righthand_position = holistic_righthand_position;
 	window.holistic_all_position = holistic_all_position;	
 	window.holistic_distance = holistic_distance;
-	window.holistic_angle = holistic_angle;	
+	window.holistic_angle = holistic_angle;
+	window.holistic_part_angle =  holistic_part_angle;	
 	window.holistic_video_position = holistic_video_position;
 	window.holistic_state = holistic_state;
 	window.holistic_startvideo_media = holistic_startvideo_media;

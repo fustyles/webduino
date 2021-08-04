@@ -122,3 +122,39 @@ Blockly.JavaScript['holistic_all_poistion'] = function(block) {
   var code = 'holistic_all_position("' + value_part_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['holistic_face_angle'] = function (block) {
+  var value_part1 = Blockly.JavaScript.valueToCode(block, 'part1_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_part2 = Blockly.JavaScript.valueToCode(block, 'part2_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_axis = block.getFieldValue('axis_');
+  var value_adjust = Blockly.JavaScript.valueToCode(block, 'adjust_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'holistic_part_angle("face", Number(' + value_part1 + ')-1, Number(' + value_part2 + ')-1,"' + value_axis + '",' + value_adjust + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['holistic_pose_angle'] = function (block) {
+  var value_part1 = block.getFieldValue('part1_');
+  var value_part2 = block.getFieldValue('part2_');
+  var value_axis = block.getFieldValue('axis_');
+  var value_adjust = Blockly.JavaScript.valueToCode(block, 'adjust_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'holistic_part_angle("pose", Number(' + value_part1 + '), Number(' + value_part2 + '),"' + value_axis + '",' + value_adjust + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];  
+};
+
+Blockly.JavaScript['holistic_lefthand_angle'] = function (block) {
+  var value_part1 = block.getFieldValue('part1_');
+  var value_part2 = block.getFieldValue('part2_'); 
+  var value_axis = block.getFieldValue('axis_');
+  var value_adjust = Blockly.JavaScript.valueToCode(block, 'adjust_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'holistic_part_angle("lefthand", Number(' + value_part1 + '), Number(' + value_part2 + '),"' + value_axis + '",' + value_adjust + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];  
+};
+
+Blockly.JavaScript['holistic_righthand_angle'] = function (block) {
+  var value_part1 = block.getFieldValue('part1_');
+  var value_part2 = block.getFieldValue('part2_');  
+  var value_axis = block.getFieldValue('axis_');
+  var value_adjust = Blockly.JavaScript.valueToCode(block, 'adjust_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'holistic_part_angle("righthand", Number(' + value_part1 + '), Number(' + value_part2 + '),"' + value_axis + '",' + value_adjust + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];  
+};

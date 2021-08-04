@@ -107,5 +107,86 @@
         <field name="NUM">0</field>
       </block>
     </value>     
-  </block>       
+  </block> 
+  <block type="holistic_face_angle">
+	<field name="axis_">x</field>   
+    <value name="part1_">
+      <block type="math_number">
+        <field name="NUM">11</field>
+      </block>
+    </value>
+    <value name="part2_">
+      <block type="math_number">
+        <field name="NUM">153</field>
+      </block>
+    </value>    
+    <value name="adjust_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+  </block>
+  <block type="holistic_face_angle">
+	<field name="axis_">y</field>  
+    <value name="part1_">
+      <block type="math_number">
+        <field name="NUM">163</field>
+      </block>
+    </value>
+    <value name="part2_">
+      <block type="math_number">
+        <field name="NUM">390</field>
+      </block>
+    </value>    
+    <value name="adjust_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+  </block>
+  <block type="holistic_face_angle">
+	<field name="axis_">z</field>   
+    <value name="part1_">
+      <block type="math_number">
+        <field name="NUM">11</field>
+      </block>
+    </value>
+    <value name="part2_">
+      <block type="math_number">
+        <field name="NUM">153</field>
+      </block>
+    </value>    
+    <value name="adjust_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+  </block>  
+  <block type="holistic_pose_angle">
+	<field name="part1_">12</field>                 
+	<field name="part2_">11</field>
+    <value name="adjust_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+  </block>
+  <block type="holistic_lefthand_angle">
+	<field name="part1_">4</field>                 
+	<field name="part2_">20</field>  
+    <value name="adjust_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+  </block>
+  <block type="holistic_righthand_angle">
+	<field name="part1_">4</field>                 
+	<field name="part2_">20</field>  
+    <value name="adjust_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>   
+  </block>  
 </category>

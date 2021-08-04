@@ -529,3 +529,277 @@ Blockly.Blocks['holistic_all_poistion'] = {
   this.setColour(65);
   }
 };
+
+
+
+
+
+Blockly.Blocks['holistic_face_angle'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_FACE_ANGLE_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		["X","x"],	
+		["Y","y"],
+		["Z","z"]
+  ]), "axis_");
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_AXIS_SHOW);  
+  this.appendValueInput("part1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(Blockly.Msg.HOLISTIC_PART_SHOW);
+  this.appendValueInput("part2_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(Blockly.Msg.HOLISTIC_PART_SHOW);
+  this.appendValueInput("adjust_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(Blockly.Msg.HOLISTIC_ADJUST_SHOW);	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['holistic_pose_angle'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_POSE_ANGLE_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		["X","x"],	
+		["Y","y"],
+		["Z","z"]
+  ]), "axis_");
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_AXIS_SHOW);  
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_PART_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.HOLISTIC_NOSE_SHOW,"0"],
+		[Blockly.Msg.HOLISTIC_LEFTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_RIGHT_SHOW+")","1"],
+		[Blockly.Msg.HOLISTIC_LEFTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_CENTER_SHOW+")","2"],
+		[Blockly.Msg.HOLISTIC_LEFTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_LEFT_SHOW+")","3"],		
+		[Blockly.Msg.HOLISTIC_RIGHTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_LEFT_SHOW+")","4"],
+		[Blockly.Msg.HOLISTIC_RIGHTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_CENTER_SHOW+")","5"],
+		[Blockly.Msg.HOLISTIC_RIGHTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_RIGHT_SHOW+")","6"],		
+		[Blockly.Msg.HOLISTIC_LEFTEAR_SHOW,"7"],
+		[Blockly.Msg.HOLISTIC_RIGHTEAR_SHOW,"8"],
+		[Blockly.Msg.HOLISTIC_MOUTH_SHOW+"("+Blockly.Msg.HOLISTIC_LEFT_SHOW+")","9"],
+		[Blockly.Msg.HOLISTIC_MOUTH_SHOW+"("+Blockly.Msg.HOLISTIC_RIGHT_SHOW+")","10"],		
+		[Blockly.Msg.HOLISTIC_LEFTSHOULDER_SHOW,"11"],
+		[Blockly.Msg.HOLISTIC_RIGHTSHOULDER_SHOW,"12"],
+		[Blockly.Msg.HOLISTIC_LEFTELBOW_SHOW,"13"],
+		[Blockly.Msg.HOLISTIC_RIGHTELBOW_SHOW,"14"],
+		[Blockly.Msg.HOLISTIC_LEFTWRIST_SHOW,"15"],
+		[Blockly.Msg.HOLISTIC_RIGHTWRIST_SHOW,"16"],
+		[Blockly.Msg.HOLISTIC_LEFTPINKY_SHOW,"17"],
+		[Blockly.Msg.HOLISTIC_RIGHTPINKY_SHOW,"18"],		
+		[Blockly.Msg.HOLISTIC_LEFTINDEX_SHOW,"19"],
+		[Blockly.Msg.HOLISTIC_RIGHTINDEX_SHOW,"20"],
+		[Blockly.Msg.HOLISTIC_LEFTTHUMB_SHOW,"21"],
+		[Blockly.Msg.HOLISTIC_RIGHTTHUMB_SHOW,"22"],
+		[Blockly.Msg.HOLISTIC_LEFTHIP_SHOW,"23"],
+		[Blockly.Msg.HOLISTIC_RIGHTHIP_SHOW,"24"],
+		[Blockly.Msg.HOLISTIC_LEFTKNEE_SHOW,"25"],
+		[Blockly.Msg.HOLISTIC_RIGHTKNEE_SHOW,"26"],
+		[Blockly.Msg.HOLISTIC_LEFTANKLE_SHOW,"27"],
+		[Blockly.Msg.HOLISTIC_RIGHTANKLE_SHOW,"28"],
+		[Blockly.Msg.HOLISTIC_LEFTHEEL_SHOW,"29"],
+		[Blockly.Msg.HOLISTIC_RIGHTHEEL_SHOW,"30"],
+		[Blockly.Msg.HOLISTIC_LEFTFOOTINDEX_SHOW,"31"],
+		[Blockly.Msg.HOLISTIC_RIGHTFOOTINDEX_SHOW,"32"]
+  ]), "part1_");
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_PART_SHOW)  
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.HOLISTIC_NOSE_SHOW,"0"],
+		[Blockly.Msg.HOLISTIC_LEFTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_RIGHT_SHOW+")","1"],
+		[Blockly.Msg.HOLISTIC_LEFTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_CENTER_SHOW+")","2"],
+		[Blockly.Msg.HOLISTIC_LEFTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_LEFT_SHOW+")","3"],		
+		[Blockly.Msg.HOLISTIC_RIGHTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_LEFT_SHOW+")","4"],
+		[Blockly.Msg.HOLISTIC_RIGHTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_CENTER_SHOW+")","5"],
+		[Blockly.Msg.HOLISTIC_RIGHTEYE_SHOW+"("+Blockly.Msg.HOLISTIC_RIGHT_SHOW+")","6"],		
+		[Blockly.Msg.HOLISTIC_LEFTEAR_SHOW,"7"],
+		[Blockly.Msg.HOLISTIC_RIGHTEAR_SHOW,"8"],
+		[Blockly.Msg.HOLISTIC_MOUTH_SHOW+"("+Blockly.Msg.HOLISTIC_LEFT_SHOW+")","9"],
+		[Blockly.Msg.HOLISTIC_MOUTH_SHOW+"("+Blockly.Msg.HOLISTIC_RIGHT_SHOW+")","10"],		
+		[Blockly.Msg.HOLISTIC_LEFTSHOULDER_SHOW,"11"],
+		[Blockly.Msg.HOLISTIC_RIGHTSHOULDER_SHOW,"12"],
+		[Blockly.Msg.HOLISTIC_LEFTELBOW_SHOW,"13"],
+		[Blockly.Msg.HOLISTIC_RIGHTELBOW_SHOW,"14"],
+		[Blockly.Msg.HOLISTIC_LEFTWRIST_SHOW,"15"],
+		[Blockly.Msg.HOLISTIC_RIGHTWRIST_SHOW,"16"],
+		[Blockly.Msg.HOLISTIC_LEFTPINKY_SHOW,"17"],
+		[Blockly.Msg.HOLISTIC_RIGHTPINKY_SHOW,"18"],		
+		[Blockly.Msg.HOLISTIC_LEFTINDEX_SHOW,"19"],
+		[Blockly.Msg.HOLISTIC_RIGHTINDEX_SHOW,"20"],
+		[Blockly.Msg.HOLISTIC_LEFTTHUMB_SHOW,"21"],
+		[Blockly.Msg.HOLISTIC_RIGHTTHUMB_SHOW,"22"],
+		[Blockly.Msg.HOLISTIC_LEFTHIP_SHOW,"23"],
+		[Blockly.Msg.HOLISTIC_RIGHTHIP_SHOW,"24"],
+		[Blockly.Msg.HOLISTIC_LEFTKNEE_SHOW,"25"],
+		[Blockly.Msg.HOLISTIC_RIGHTKNEE_SHOW,"26"],
+		[Blockly.Msg.HOLISTIC_LEFTANKLE_SHOW,"27"],
+		[Blockly.Msg.HOLISTIC_RIGHTANKLE_SHOW,"28"],
+		[Blockly.Msg.HOLISTIC_LEFTHEEL_SHOW,"29"],
+		[Blockly.Msg.HOLISTIC_RIGHTHEEL_SHOW,"30"],
+		[Blockly.Msg.HOLISTIC_LEFTFOOTINDEX_SHOW,"31"],
+		[Blockly.Msg.HOLISTIC_RIGHTFOOTINDEX_SHOW,"32"]
+  ]), "part2_");
+  this.appendValueInput("adjust_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(Blockly.Msg.HOLISTIC_ADJUST_SHOW);		  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['holistic_lefthand_angle'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_LEFTHAND_ANGLE_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		["X","x"],	
+		["Y","y"],
+		["Z","z"]
+  ]), "axis_");
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_AXIS_SHOW);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_PART_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.HOLISTIC_HAND0_SHOW,"0"],	  
+		[Blockly.Msg.HOLISTIC_HAND1_SHOW,"1"],
+		[Blockly.Msg.HOLISTIC_HAND2_SHOW,"2"],
+		[Blockly.Msg.HOLISTIC_HAND3_SHOW,"3"],
+		[Blockly.Msg.HOLISTIC_HAND4_SHOW,"4"],
+		[Blockly.Msg.HOLISTIC_HAND5_SHOW,"5"],
+		[Blockly.Msg.HOLISTIC_HAND6_SHOW,"6"],
+		[Blockly.Msg.HOLISTIC_HAND7_SHOW,"7"],
+		[Blockly.Msg.HOLISTIC_HAND8_SHOW,"8"],
+		[Blockly.Msg.HOLISTIC_HAND9_SHOW,"9"],
+		[Blockly.Msg.HOLISTIC_HAND10_SHOW,"10"],
+		[Blockly.Msg.HOLISTIC_HAND11_SHOW,"11"],
+		[Blockly.Msg.HOLISTIC_HAND12_SHOW,"12"],
+		[Blockly.Msg.HOLISTIC_HAND13_SHOW,"13"],
+		[Blockly.Msg.HOLISTIC_HAND14_SHOW,"14"],
+		[Blockly.Msg.HOLISTIC_HAND15_SHOW,"15"],
+		[Blockly.Msg.HOLISTIC_HAND16_SHOW,"16"],
+		[Blockly.Msg.HOLISTIC_HAND17_SHOW,"17"],
+		[Blockly.Msg.HOLISTIC_HAND18_SHOW,"18"],
+		[Blockly.Msg.HOLISTIC_HAND19_SHOW,"19"],
+		[Blockly.Msg.HOLISTIC_HAND20_SHOW,"20"]
+  ]), "part1_"); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_PART_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.HOLISTIC_HAND0_SHOW,"0"],	  
+		[Blockly.Msg.HOLISTIC_HAND1_SHOW,"1"],
+		[Blockly.Msg.HOLISTIC_HAND2_SHOW,"2"],
+		[Blockly.Msg.HOLISTIC_HAND3_SHOW,"3"],
+		[Blockly.Msg.HOLISTIC_HAND4_SHOW,"4"],
+		[Blockly.Msg.HOLISTIC_HAND5_SHOW,"5"],
+		[Blockly.Msg.HOLISTIC_HAND6_SHOW,"6"],
+		[Blockly.Msg.HOLISTIC_HAND7_SHOW,"7"],
+		[Blockly.Msg.HOLISTIC_HAND8_SHOW,"8"],
+		[Blockly.Msg.HOLISTIC_HAND9_SHOW,"9"],
+		[Blockly.Msg.HOLISTIC_HAND10_SHOW,"10"],
+		[Blockly.Msg.HOLISTIC_HAND11_SHOW,"11"],
+		[Blockly.Msg.HOLISTIC_HAND12_SHOW,"12"],
+		[Blockly.Msg.HOLISTIC_HAND13_SHOW,"13"],
+		[Blockly.Msg.HOLISTIC_HAND14_SHOW,"14"],
+		[Blockly.Msg.HOLISTIC_HAND15_SHOW,"15"],
+		[Blockly.Msg.HOLISTIC_HAND16_SHOW,"16"],
+		[Blockly.Msg.HOLISTIC_HAND17_SHOW,"17"],
+		[Blockly.Msg.HOLISTIC_HAND18_SHOW,"18"],
+		[Blockly.Msg.HOLISTIC_HAND19_SHOW,"19"],
+		[Blockly.Msg.HOLISTIC_HAND20_SHOW,"20"]
+  ]), "part2_"); 
+  this.appendValueInput("adjust_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(Blockly.Msg.HOLISTIC_ADJUST_SHOW);	 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['holistic_righthand_angle'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_RIGHTHAND_ANGLE_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		["X","x"],	
+		["Y","y"],
+		["Z","z"]
+  ]), "axis_");
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_AXIS_SHOW);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_PART_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.HOLISTIC_HAND0_SHOW,"0"],	  
+		[Blockly.Msg.HOLISTIC_HAND1_SHOW,"1"],
+		[Blockly.Msg.HOLISTIC_HAND2_SHOW,"2"],
+		[Blockly.Msg.HOLISTIC_HAND3_SHOW,"3"],
+		[Blockly.Msg.HOLISTIC_HAND4_SHOW,"4"],
+		[Blockly.Msg.HOLISTIC_HAND5_SHOW,"5"],
+		[Blockly.Msg.HOLISTIC_HAND6_SHOW,"6"],
+		[Blockly.Msg.HOLISTIC_HAND7_SHOW,"7"],
+		[Blockly.Msg.HOLISTIC_HAND8_SHOW,"8"],
+		[Blockly.Msg.HOLISTIC_HAND9_SHOW,"9"],
+		[Blockly.Msg.HOLISTIC_HAND10_SHOW,"10"],
+		[Blockly.Msg.HOLISTIC_HAND11_SHOW,"11"],
+		[Blockly.Msg.HOLISTIC_HAND12_SHOW,"12"],
+		[Blockly.Msg.HOLISTIC_HAND13_SHOW,"13"],
+		[Blockly.Msg.HOLISTIC_HAND14_SHOW,"14"],
+		[Blockly.Msg.HOLISTIC_HAND15_SHOW,"15"],
+		[Blockly.Msg.HOLISTIC_HAND16_SHOW,"16"],
+		[Blockly.Msg.HOLISTIC_HAND17_SHOW,"17"],
+		[Blockly.Msg.HOLISTIC_HAND18_SHOW,"18"],
+		[Blockly.Msg.HOLISTIC_HAND19_SHOW,"19"],
+		[Blockly.Msg.HOLISTIC_HAND20_SHOW,"20"]
+  ]), "part1_"); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_PART_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.HOLISTIC_HAND0_SHOW,"0"],	  
+		[Blockly.Msg.HOLISTIC_HAND1_SHOW,"1"],
+		[Blockly.Msg.HOLISTIC_HAND2_SHOW,"2"],
+		[Blockly.Msg.HOLISTIC_HAND3_SHOW,"3"],
+		[Blockly.Msg.HOLISTIC_HAND4_SHOW,"4"],
+		[Blockly.Msg.HOLISTIC_HAND5_SHOW,"5"],
+		[Blockly.Msg.HOLISTIC_HAND6_SHOW,"6"],
+		[Blockly.Msg.HOLISTIC_HAND7_SHOW,"7"],
+		[Blockly.Msg.HOLISTIC_HAND8_SHOW,"8"],
+		[Blockly.Msg.HOLISTIC_HAND9_SHOW,"9"],
+		[Blockly.Msg.HOLISTIC_HAND10_SHOW,"10"],
+		[Blockly.Msg.HOLISTIC_HAND11_SHOW,"11"],
+		[Blockly.Msg.HOLISTIC_HAND12_SHOW,"12"],
+		[Blockly.Msg.HOLISTIC_HAND13_SHOW,"13"],
+		[Blockly.Msg.HOLISTIC_HAND14_SHOW,"14"],
+		[Blockly.Msg.HOLISTIC_HAND15_SHOW,"15"],
+		[Blockly.Msg.HOLISTIC_HAND16_SHOW,"16"],
+		[Blockly.Msg.HOLISTIC_HAND17_SHOW,"17"],
+		[Blockly.Msg.HOLISTIC_HAND18_SHOW,"18"],
+		[Blockly.Msg.HOLISTIC_HAND19_SHOW,"19"],
+		[Blockly.Msg.HOLISTIC_HAND20_SHOW,"20"]
+  ]), "part2_"); 
+  this.appendValueInput("adjust_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(Blockly.Msg.HOLISTIC_ADJUST_SHOW);	 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
