@@ -22,3 +22,7 @@ Blockly.Msg.COCOSSD_DATA_CLASS_SHOW = "Class";
 Blockly.Msg.COCOSSD_DATA_SCORE_SHOW = "Score";
 Blockly.Msg.COCOSSD_DATA_MIDDLEX_SHOW = "Middle X";
 Blockly.Msg.COCOSSD_DATA_MIDDLEY_SHOW = "Middle Y";
+Blockly.Msg.COCOSSD_DATA_UPPERX_SHOW = "Upper X";
+Blockly.Msg.COCOSSD_DATA_UPPERY_SHOW = "Upper Y";
+Blockly.Msg.COCOSSD_DATA_BOTTOMX_SHOW = "Bottom X";
+Blockly.Msg.COCOSSD_DATA_BOTTOMY_SHOW = "Bottom Y";
