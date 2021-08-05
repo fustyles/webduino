@@ -42,10 +42,18 @@
 						return Number(result_detail[2]);
 					else if (n==input_index&&input_data=="y")
 						return Number(result_detail[3]);
+					else if (n==input_index&&input_data=="upperx")
+						return Number(result_detail[2])+Number(result_detail[4])/2;
+					else if (n==input_index&&input_data=="uppery")
+						return Number(result_detail[3]);					
 					else if (n==input_index&&input_data=="middlex")
 						return Number(result_detail[2])+Number(result_detail[4])/2;
 					else if (n==input_index&&input_data=="middley")
 						return Number(result_detail[3])+Number(result_detail[5])/2;
+					else if (n==input_index&&input_data=="bottomx")
+						return Number(result_detail[2])+Number(result_detail[4])/2;
+					else if (n==input_index&&input_data=="bottomy")
+						return Number(result_detail[3])+Number(result_detail[5]);					
 					else if (n==input_index&&input_data=="width")
 						return Number(result_detail[4]);
 					else if (n==input_index&&input_data=="height")
