@@ -22,3 +22,7 @@ Blockly.Msg.COCOSSD_DATA_CLASS_SHOW = "分類名稱";
 Blockly.Msg.COCOSSD_DATA_SCORE_SHOW = "信心分數";
 Blockly.Msg.COCOSSD_DATA_MIDDLEX_SHOW = "中間X";
 Blockly.Msg.COCOSSD_DATA_MIDDLEY_SHOW = "中間Y";
+Blockly.Msg.COCOSSD_DATA_UPPERX_SHOW = "上方X";
+Blockly.Msg.COCOSSD_DATA_UPPERY_SHOW = "上方Y";
+Blockly.Msg.COCOSSD_DATA_BOTTOMX_SHOW = "下方X";
+Blockly.Msg.COCOSSD_DATA_BOTTOMY_SHOW = "下方Y";
