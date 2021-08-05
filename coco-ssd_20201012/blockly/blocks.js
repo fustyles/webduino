@@ -233,8 +233,12 @@ Blockly.Blocks['cocossd_object'] = {
 		[Blockly.Msg.COCOSSD_DATA_SCORE_SHOW,"score"],
 		["X","x"],
 		["Y","y"],
+		[Blockly.Msg.COCOSSD_DATA_UPPERX_SHOW,"upperx"],
+		[Blockly.Msg.COCOSSD_DATA_UPPERY_SHOW,"uppery"],	  
 		[Blockly.Msg.COCOSSD_DATA_MIDDLEX_SHOW,"middlex"],
 		[Blockly.Msg.COCOSSD_DATA_MIDDLEY_SHOW,"middley"],
+		[Blockly.Msg.COCOSSD_DATA_BOTTOMX_SHOW,"bottomx"],
+		[Blockly.Msg.COCOSSD_DATA_BOTTOMY_SHOW,"bottomy"],	  
 		[Blockly.Msg.COCOSSD_WIDTH_SHOW,"width"],
 		[Blockly.Msg.COCOSSD_HEIGHT_SHOW,"height"]
   ]), "data_");   
