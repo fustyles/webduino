@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/19 17:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/8/7 14:30
 https://www.facebook.com/francefu
 
 Try it!
@@ -18,16 +18,27 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_video/TeachableM
 <body>
 <button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
 <video id="video" width="320" height="240" style="display:none" preload autoplay loop muted></video>
+<canvas id="canvas" style="display:none"></canvas>
 <br>
 <table>
-<tr><td>Model：</td><td>
+<tr>
+<td>Model：</td>
+<td>
 <select id="kind">
 <option value="image">image</option>
 <option value="pose">pose</option>
 </select>
-</td></tr>
-<tr><td>Model URL：</td><td><input type="text" id="modelPath" size="40" value=""></td></tr>
-<tr><td><a href="https://teachablemachine.withgoogle.com/train/image" target="_blank">Train Model</a></td>
+</td>
+</tr>
+<tr>
+<td>Model URL：</td>
+<td><input type="text" id="modelPath" size="40" value=""></td></tr>
+<tr>
+<td>Flip Horizontal：</td>
+<td><input type="checkbox" id="flipHorizontal"></td>
+</tr>
+<tr>
+<td><a href="https://teachablemachine.withgoogle.com/train/image" target="_blank">Train Model</a></td>
 <td><button type="button" onclick="LoadModel()">Start Recognition</button></td>
 </tr>
 </table>
@@ -36,9 +47,12 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_video/TeachableM
 
 <script type="text/javascript">
   var video = document.getElementById('video');
+  var canvas = document.getElementById('canvas'); 
+  var context = canvas.getContext('2d');  
   var modelPath = document.getElementById('modelPath');
   var result = document.getElementById('result'); 
   var kind = document.getElementById('kind');
+  var flipHorizontal = document.getElementById('flipHorizontal');
   let model; 
   
   async function LoadModel() {
@@ -119,14 +133,23 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_video/TeachableM
 
     // run the webcam image through the image model
     async function predict() {
+		if (flipHorizontal.checked) {	
+			  context.translate((canvas.width + video.width) / 2, 0);
+			  context.scale(-1, 1);
+			  context.drawImage(video, 0, 0, video.width, video.height);
+			  context.setTransform(1, 0, 0, 1, 0, 0);  
+		}
+		else
+			context.drawImage(video, 0, 0, video.width, video.height); 
+			
         // predict can take in an image, video or canvas html element
 		var data = "";
 		var maxClassName = "";
 		var maxProbability = "";
 		if (kind.value=="image")
-			var prediction = await model.predict(video);
+			var prediction = await model.predict(canvas);
 		else if (kind.value=="pose") {
-			var { pose, posenetOutput } = await model.estimatePose(video);
+			var { pose, posenetOutput } = await model.estimatePose(canvas);
 			var prediction = await model.predict(posenetOutput);
 		}		
 
@@ -144,7 +167,7 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_video/TeachableM
 				}
 				data += prediction[i].className + ": " + prediction[i].probability.toFixed(2) + "<br>";
 			}
-			result.innerHTML = data + "<br>Max Probability : <br>" + maxClassName + ", " + maxProbability;		
+			result.innerHTML = data + "<br>Max Probability : " + maxClassName + ", " + maxProbability;		
 		}
 		else
 			result.innerHTML = "";
