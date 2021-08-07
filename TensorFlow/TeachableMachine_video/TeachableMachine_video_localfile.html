@@ -137,7 +137,7 @@ Local video file : <input id="selectVideo" type="file" accept="video/*"/>
 	  if (files && files.length) {
 	    var file = files[0];
 		if (video.canPlayType(file.type)!="") {
-			var fileURL = URL.createObjectURL(file)
+			var fileURL = URL.createObjectURL(file);
 			video.src = fileURL;
 		}
 		else
