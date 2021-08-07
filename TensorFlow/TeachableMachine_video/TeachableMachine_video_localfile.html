@@ -89,7 +89,7 @@ Local video file : <input id="selectVideo" type="file" accept="video/*"/>
 		}
 	} 
 
-    async function predict() {
+    	async function predict() {
 		if (flipHorizontal.checked) {	
 			  context.translate((canvas.width + video.width) / 2, 0);
 			  context.scale(-1, 1);
@@ -129,7 +129,7 @@ Local video file : <input id="selectVideo" type="file" accept="video/*"/>
 		else
 			result.innerHTML = "";
 		setTimeout(function(){predict(); }, 100);
-    }
+    	}
 
 	selectVideo.onchange = function (event) {
 	  var target = event.target || window.event.srcElement;
