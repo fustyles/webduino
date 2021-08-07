@@ -131,7 +131,7 @@ Local video file : <input id="selectVideo" type="file" accept="video/*"/>
 				}
 				data += prediction[i].className + ": " + prediction[i].probability.toFixed(2) + "<br>";
 			}
-			result.innerHTML = data + "<br>Max Probability : <br>" + maxClassName + ", " + maxProbability;		
+			result.innerHTML = data + "<br>Max Probability : <br>" + maxClassName + ", " + maxProbability.toFixed(2);		
 		}
 		else
 			result.innerHTML = "";
