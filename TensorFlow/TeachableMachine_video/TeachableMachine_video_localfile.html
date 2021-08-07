@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/8/7 13:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/8/7 17:00
 https://www.facebook.com/francefu
 
 Try it!
@@ -18,7 +18,9 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_video/TeachableM
 <body>
 Local video file : <input id="selectVideo" type="file" accept="video/*"/>
 <br>
-<video id="video" width="320" height="240" src="" preload autoplay loop muted controls></video>
+<video id="video"  width="320" height="240" src="" preload autoplay loop muted controls></video>
+<br>
+<br>
 <canvas id="canvas" style="display:none"></canvas>
 <br>
 <table>
@@ -103,7 +105,7 @@ Local video file : <input id="selectVideo" type="file" accept="video/*"/>
 			  context.setTransform(1, 0, 0, 1, 0, 0);  
 		}
 		else
-			context.drawImage(video, 0, 0, video.width, video.height);  
+			context.drawImage(video, 0, 0, video.width, video.height); 		
   
         // predict can take in an image, video or canvas html element
 		var data = "";
@@ -152,6 +154,11 @@ Local video file : <input id="selectVideo" type="file" accept="video/*"/>
 			result.innerHTML = "The file type is not supported.";
 	  }
 	}
+	
+	video.addEventListener( "loadedmetadata", function () {
+		canvas.setAttribute("width", video.videoWidth);
+		canvas.setAttribute("height", video.videoHeight);
+	}, false );	
 </script>
 </body>
 </html>
