@@ -1,0 +1,156 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/8/7 13:30
+https://www.facebook.com/francefu
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_video/TeachableMachine_video_localfile.html
+-->
+
+<!DOCTYPE html>
+<head>
+  <title>Teachable Machine</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+</head>
+<body>
+Local video file : <input id="selectVideo" type="file" accept="video/*"/>
+<br>
+<video id="video" width="320" height="240" src="" preload autoplay loop muted></video>
+<canvas id="canvas" style="display:none"></canvas>
+<br>
+<table>
+<tr>
+<td>Model：</td>
+<td>
+<select id="Type">
+<option value="pose">pose</option>
+<option value="image">image</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>Model URL：</td>
+<td><input type="text" id="modelPath" size="40" value="https://teachablemachine.withgoogle.com/models/o57P36L0l/"></td>
+</tr>
+<tr>
+<td>Flip Horizontal：</td>
+<td><input type="checkbox" id="flipHorizontal"></td>
+</tr>
+<tr>
+<td><a href="https://teachablemachine.withgoogle.com/train/" target="_blank">Train Model</a></td>
+<td><button type="button" onclick="LoadModel()">Start Recognition</button></td>
+</tr>
+</table>
+<br>
+<div id="message"></div>
+<div id="result" style="color:red"></div>
+
+<script type="text/javascript">
+  var video = document.getElementById('video');
+  var canvas = document.getElementById('canvas'); 
+  var context = canvas.getContext('2d');
+  var selectVideo = document.getElementById('selectVideo');
+  var modelPath = document.getElementById('modelPath');
+  var result = document.getElementById('result'); 
+  var Type = document.getElementById('Type');
+  var flipHorizontal = document.getElementById('flipHorizontal');
+  let model; 
+  
+  async function LoadModel() {
+	if (modelPath.value=="") {
+		result.innerHTML = "Please input Model Link.";
+		return;
+	}
+	else
+		result.innerHTML = "Please wait for loading model.";
+
+	// the link to your model provided by Teachable Machine export panel
+	const URL = modelPath.value;
+	const modelURL = URL + "model.json";
+	const metadataURL = URL + "metadata.json";
+	try {
+		if (Type.value=="image") {
+			model = await tmImage.load(modelURL, metadataURL);
+		}
+		else if (Type.value=="pose") {
+			model = await tmPose.load(modelURL, metadataURL);
+		}	
+		maxPredictions = model.getTotalClasses();
+		// load the model and metadata
+		// Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+		// or files from your local hard drive
+		// Note: the pose library adds "tmImage" object to your window (window.tmImage)
+		// More API functions here:
+		// https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+
+		result.innerHTML = "";
+		predict();
+	}
+	catch (e){
+		result.innerHTML = "Loading model failed.";
+	}
+  } 
+
+    // run the webcam image through the image model
+    async function predict() {
+		if (flipHorizontal.checked) {	
+			  context.translate((canvas.width + video.width) / 2, 0);
+			  context.scale(-1, 1);
+			  context.drawImage(video, 0, 0, video.width, video.height);
+			  context.setTransform(1, 0, 0, 1, 0, 0);  
+		}
+		else
+			context.drawImage(video, 0, 0, video.width, video.height);  
+  
+        // predict can take in an image, video or canvas html element
+		var data = "";
+		var maxClassName = "";
+		var maxProbability = "";
+		
+		if (Type.value=="image")
+			var prediction = await model.predict(canvas);
+		else if (Type.value=="pose") {
+			var { pose, posenetOutput } = await model.estimatePose(canvas);
+			var prediction = await model.predict(posenetOutput);
+		}		
+
+		if (maxPredictions>0) {
+			for (let i = 0; i < maxPredictions; i++) {
+				if (i==0) {
+					maxClassName = prediction[i].className;
+					maxProbability = prediction[i].probability;
+				}
+				else {
+					if (prediction[i].probability>maxProbability) {
+						maxClassName = prediction[i].className;
+						maxProbability = prediction[i].probability;
+					}
+				}
+				data += prediction[i].className + ": " + prediction[i].probability.toFixed(2) + "<br>";
+			}
+			result.innerHTML = data + "<br>Max Probability : <br>" + maxClassName + ", " + maxProbability;		
+		}
+		else
+			result.innerHTML = "";
+		setTimeout(function(){predict(); }, 100);
+    }
+
+	selectVideo.onchange = function (event) {
+	  var target = event.target || window.event.srcElement;
+	  var files = target.files;
+	  if (files && files.length) {
+	    var file = files[0];
+		if (video.canPlayType(file.type)!="") {
+			var fileURL = URL.createObjectURL(file)
+			//console.log(fileURL);
+			video.src = fileURL;
+		}
+		else
+			result.innerHTML = "The file type is not supported.";
+	  }
+	}
+</script>
+</body>
+</html>
