@@ -51,52 +51,44 @@ Local video file : <input id="selectVideo" type="file" accept="video/*"/>
 <div id="result" style="color:red"></div>
 
 <script type="text/javascript">
-  var video = document.getElementById('video');
-  var canvas = document.getElementById('canvas'); 
-  var context = canvas.getContext('2d');
-  var selectVideo = document.getElementById('selectVideo');
-  var modelPath = document.getElementById('modelPath');
-  var result = document.getElementById('result'); 
-  var Type = document.getElementById('Type');
-  var flipHorizontal = document.getElementById('flipHorizontal');
-  let model; 
-  
-  async function LoadModel() {
-	if (modelPath.value=="") {
-		result.innerHTML = "Please input Model Link.";
-		return;
-	}
-	else
-		result.innerHTML = "Please wait for loading model.";
+	var video = document.getElementById('video');
+	var canvas = document.getElementById('canvas'); 
+	var context = canvas.getContext('2d');
+	var selectVideo = document.getElementById('selectVideo');
+	var modelPath = document.getElementById('modelPath');
+	var result = document.getElementById('result'); 
+	var Type = document.getElementById('Type');
+	var flipHorizontal = document.getElementById('flipHorizontal');
+	let model; 
 
-	// the link to your model provided by Teachable Machine export panel
-	const URL = modelPath.value;
-	const modelURL = URL + "model.json";
-	const metadataURL = URL + "metadata.json";
-	try {
-		if (Type.value=="image") {
-			model = await tmImage.load(modelURL, metadataURL);
+	async function LoadModel() {
+		if (modelPath.value=="") {
+			result.innerHTML = "Please input Model Link.";
+			return;
 		}
-		else if (Type.value=="pose") {
-			model = await tmPose.load(modelURL, metadataURL);
-		}	
-		maxPredictions = model.getTotalClasses();
-		// load the model and metadata
-		// Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-		// or files from your local hard drive
-		// Note: the pose library adds "tmImage" object to your window (window.tmImage)
-		// More API functions here:
-		// https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+		else
+			result.innerHTML = "Please wait for loading model.";
 
-		result.innerHTML = "";
-		predict();
-	}
-	catch (e){
-		result.innerHTML = "Loading model failed.";
-	}
-  } 
+		const URL = modelPath.value;
+		const modelURL = URL + "model.json";
+		const metadataURL = URL + "metadata.json";
+		try {
+			if (Type.value=="image") {
+				model = await tmImage.load(modelURL, metadataURL);
+			}
+			else if (Type.value=="pose") {
+				model = await tmPose.load(modelURL, metadataURL);
+			}	
+			maxPredictions = model.getTotalClasses();
 
-    // run the webcam image through the image model
+			result.innerHTML = "";
+			predict();
+		}
+		catch (e){
+			result.innerHTML = "Loading model failed.";
+		}
+	} 
+
     async function predict() {
 		if (flipHorizontal.checked) {	
 			  context.translate((canvas.width + video.width) / 2, 0);
@@ -107,7 +99,6 @@ Local video file : <input id="selectVideo" type="file" accept="video/*"/>
 		else
 			context.drawImage(video, 0, 0, video.width, video.height); 		
   
-        // predict can take in an image, video or canvas html element
 		var data = "";
 		var maxClassName = "";
 		var maxProbability = "";
@@ -147,7 +138,6 @@ Local video file : <input id="selectVideo" type="file" accept="video/*"/>
 	    var file = files[0];
 		if (video.canPlayType(file.type)!="") {
 			var fileURL = URL.createObjectURL(file)
-			//console.log(fileURL);
 			video.src = fileURL;
 		}
 		else
