@@ -17,26 +17,43 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_image/TeachableM
 </head>
 <body>
 <table>
-<tr><td>Model：</td><td>
+<tr>
+<td>Model：</td>
+<td>
 <select id="kind">
 <option value="image">image</option>
 <option value="pose">pose</option>
 </select>
-</td></tr>
-<tr><td>Model URL：</td><td><input type="text" id="modelPath" size="40" value=""></td></tr>
-<tr><td><a href="https://teachablemachine.withgoogle.com/train/image" target="_blank">Train Model</a></td>
+</td>
+</tr>
+<tr>
+<td>Model URL：</td>
+<td><input type="text" id="modelPath" size="40" value=""></td>
+</tr>
+<tr>
+<td><a href="https://teachablemachine.withgoogle.com/train/image" target="_blank">Train Model</a></td>
 <td><button type="button" onclick="LoadModel()">Load Model</button></td>
 </tr>
-<tr><td>Open file：</td><td><input type="file" id="selectImage" disabled="true"></input></td></tr>
+<tr>
+<td>Open file：</td>
+<td><input type="file" id="selectImage" disabled="true"></input></td>
+</tr>
+<tr>
+<td>Flip Horizontal：</td>
+<td><input type="checkbox" id="flipHorizontal"></td>
+</tr>
 </table>
 <br>
 <img id="OriginImage" style="display:none">
 <img id="ResizeImage"><br>
+<canvas id="canvas" style="display:none"></canvas>
 <div id="result" style="color:red"></div>
   
 <script>
 	var modelPath = document.getElementById('modelPath');
 	var selectImage = document.getElementById('selectImage');
+    var canvas = document.getElementById('canvas'); 
+    var context = canvas.getContext('2d'); 	
 	var result = document.getElementById('result');
 	var OriginImage = document.getElementById('OriginImage');	
 	var ResizeImage = document.getElementById('ResizeImage');
@@ -80,14 +97,23 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_image/TeachableM
 	}
 	  
 	async function recognizeImage(Image) {
+		if (flipHorizontal.checked) {	
+			  context.translate((canvas.width + Image.width) / 2, 0);
+			  context.scale(-1, 1);
+			  context.drawImage(Image, 0, 0, Image.width, Image.height);
+			  context.setTransform(1, 0, 0, 1, 0, 0);  
+		}
+		else
+			context.drawImage(Image, 0, 0, Image.width, Image.height); 
+			
 		var data = "";
 		var maxClassName = "";
 		var maxProbability = "";
 		
 		if (kind.value=="image")
-			var prediction = await model.predict(Image);
+			var prediction = await model.predict(canvas);
 		else if (kind.value=="pose") {
-			var { pose, posenetOutput } = await model.estimatePose(Image);
+			var { pose, posenetOutput } = await model.estimatePose(canvas);
 			var prediction = await model.predict(posenetOutput);
 		}
 		
@@ -101,9 +127,9 @@ https://fustyles.github.io/webduino/TensorFlow/TeachableMachine_image/TeachableM
 					maxClassName = prediction[i].className;
 					maxProbability = prediction[i].probability;
 				}
-				data += prediction[i].className + ", " + prediction[i].probability + "<br>";
+				data += prediction[i].className + ", " + prediction[i].probability.toFixed(2) + "<br>";
 			}
-			result.innerHTML = data + "<br>Max Probability : " + maxClassName + ", " + maxProbability;		
+			result.innerHTML = data + "<br>Max Probability : <br>" + maxClassName + ", " + maxProbability.toFixed(2);		
 		}
 		else
 			result.innerHTML = "";
