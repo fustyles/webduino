@@ -2074,3 +2074,13 @@ Blockly.Arduino['font_code'] = function (block) {
   var code = '<code>' + value_text + '</code>';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
+
+Blockly.Arduino['location'] = function (block) {
+  var value_property = block.getFieldValue('value_property'); 
+
+  if (value_property=="hosturl")
+	var code = 'window.location.protocol+"//"+window.location.host+"/"';
+  else
+	var code = 'window.location.' + value_property;
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
