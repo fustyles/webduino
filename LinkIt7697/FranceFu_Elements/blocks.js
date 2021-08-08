@@ -4740,3 +4740,24 @@ Blockly.Blocks['font_code'] = {
   this.setColour(200); 
   }
 };
+
+Blockly.Blocks['location'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.LOCATION_SHOW)
+        .appendField(new Blockly.FieldDropdown([
+          [Blockly.Msg.LOCATION_HOSTURL_SHOW,"hosturl"],	
+          [Blockly.Msg.LOCATION_HOST_SHOW,"host"],
+          [Blockly.Msg.LOCATION_HOSTNAME_SHOW,"hostname"],    
+          [Blockly.Msg.LOCATION_HREF_SHOW,"href"],
+          [Blockly.Msg.LOCATION_PATHNAME_SHOW,"pathname"],    
+          [Blockly.Msg.LOCATION_PORT_SHOW,"port"],
+          [Blockly.Msg.LOCATION_PROTOCAL_SHOW,"protocol"],    
+          [Blockly.Msg.LOCATION_SEARCH_SHOW,"search"],
+          [Blockly.Msg.LOCATION_HASH_SHOW,"hash"]		  
+        ]), "value_property");
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(200); 
+  }  
+};
