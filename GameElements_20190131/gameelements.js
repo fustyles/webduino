@@ -3758,7 +3758,7 @@ function HextoRgb(color) {
 		count++;
 	  }
 	  return count;
-  }  
+  }
 
   window.table_create = table_create;
   window.table_set = table_set;

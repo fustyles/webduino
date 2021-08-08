@@ -50,6 +50,8 @@
       </block>
     </value>    
   </block>
+  <block type="location">  
+  </block>  
   <block type="video_base64">
     <value name="id_">
       <block type="text">

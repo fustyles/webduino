@@ -1984,3 +1984,13 @@ Blockly.JavaScript['font_code'] = function (block) {
   var code = '<code>' + value_text + '</code>';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['location'] = function (block) {
+  var value_property = block.getFieldValue('value_property'); 
+
+  if (value_property=="hosturl")
+	var code = 'window.location.protocol+"//"+window.location.host+"/"';
+  else
+	var code = 'window.location.' + value_property;
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
