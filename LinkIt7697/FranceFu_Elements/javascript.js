@@ -1955,123 +1955,65 @@ Blockly.Arduino['font_text'] = function (block) {
   var value_size = Blockly.Arduino.valueToCode(block, 'size_', Blockly.Arduino.ORDER_ATOMIC);
   var value_color = Blockly.Arduino.valueToCode(block, 'color_', Blockly.Arduino.ORDER_ATOMIC);
   var value_face = Blockly.Arduino.valueToCode(block, 'face_', Blockly.Arduino.ORDER_ATOMIC); 
-  if ((value_face.indexOf("'")==0)&&(value_face.lastIndexOf("'")==value_face.length-1))
-    value_face = value_face.substring(1,value_face.length-1);
-  if ((value_face.indexOf('"')==0)&&(value_face.lastIndexOf('"')==value_face.length-1))
-    value_face = value_face.substring(1,value_face.length-1);  
   var value_text = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC);
-  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
-  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1); 
-  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
-
-  var code = '"<font size=\''+value_size + '\' color=' + value_color + ' face=\'' + value_face + '\'>' + value_text + '</font>"';
+	
+  var code = 'fontText('+value_size + ',' + value_color + ',' + value_face + ',' + value_text + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['font_b'] = function (block) {
   var value_text = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC);
-  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
-  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1); 
-  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<b>' + value_text + '</b>';
+  var code = 'fontB(' + value_text + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['font_i'] = function (block) {
   var value_text = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC);
-  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
-  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1); 
-  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<I>' + value_text + '</I>';
+  var code = 'fontI(' + value_text + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['font_u'] = function (block) {
   var value_text = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC);
-  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
-  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1); 
-  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<u>' + value_text + '</u>';
+  var code = 'fontU(' + value_text + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['font_sup'] = function (block) {
   var value_text = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC);
-  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
-  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1); 
-  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<sup>' + value_text + '</sup>';
+  var code = 'fontSup(' + value_text + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['font_sub'] = function (block) {
   var value_text = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC);
-  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
-  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1); 
-  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<sub>' + value_text + '</sub>';
+  var code = 'fontSub(' + value_text + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['font_em'] = function (block) {
   var value_text = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC);
-  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
-  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1); 
-  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<em>' + value_text + '</em>';
+  var code = 'fontEm(' + value_text + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['font_strong'] = function (block) {
   var value_text = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC);
-  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
-  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1); 
-  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<strong>' + value_text + '</strong>';
+  var code = 'fontStrong(' + value_text + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['font_code'] = function (block) {
   var value_text = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC);
-  if ((value_text.indexOf("'")==0)&&(value_text.lastIndexOf("'")==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
-  if ((value_text.indexOf('"')==0)&&(value_text.lastIndexOf('"')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1); 
-  if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
-    value_text = value_text.substring(1,value_text.length-1);
-
-  var code = '<code>' + value_text + '</code>';
+	
+  var code = 'fontCode(' + value_text + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
