@@ -1877,7 +1877,7 @@ Blockly.JavaScript['font_text'] = function (block) {
   if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
     value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '"<font size='+value_size + ' color=' + value_color + ' face=' + value_face + '>' + value_text + '</font>"';
+  var code = 'fontText('+value_size + ',' + value_color + ',' + value_face + ',' + value_text + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -1890,7 +1890,7 @@ Blockly.JavaScript['font_b'] = function (block) {
   if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
     value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<b>' + value_text + '</b>';
+  var code = 'fontB(' + value_text + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -1903,7 +1903,7 @@ Blockly.JavaScript['font_i'] = function (block) {
   if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
     value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<I>' + value_text + '</I>';
+  var code = 'fontI(' + value_text + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -1916,7 +1916,7 @@ Blockly.JavaScript['font_u'] = function (block) {
   if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
     value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<u>' + value_text + '</u>';
+  var code = 'fontU(' + value_text + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -1929,7 +1929,7 @@ Blockly.JavaScript['font_sup'] = function (block) {
   if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
     value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<sup>' + value_text + '</sup>';
+  var code = 'fontSup(' + value_text + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -1942,7 +1942,7 @@ Blockly.JavaScript['font_sub'] = function (block) {
   if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
     value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<sub>' + value_text + '</sub>';
+  var code = 'fontSub(' + value_text + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -1955,7 +1955,7 @@ Blockly.JavaScript['font_em'] = function (block) {
   if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
     value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<em>' + value_text + '</em>';
+  var code = 'fontEm(' + value_text + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -1968,7 +1968,7 @@ Blockly.JavaScript['font_strong'] = function (block) {
   if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
     value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<strong>' + value_text + '</strong>';
+  var code = 'fontStrong(' + value_text + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -1981,7 +1981,7 @@ Blockly.JavaScript['font_code'] = function (block) {
   if ((value_text.indexOf('(')==0)&&(value_text.lastIndexOf(')')==value_text.length-1))
     value_text = value_text.substring(1,value_text.length-1);
 
-  var code = '<code>' + value_text + '</code>';
+  var code = 'fontCode(' + value_text + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 

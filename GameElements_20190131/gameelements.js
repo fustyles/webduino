@@ -3759,6 +3759,43 @@ function HextoRgb(color) {
 	  }
 	  return count;
   }
+  
+  function fontText(input_size, input_color, input_face, input_text) {
+	  return '<font size="' + input_size + '" color="' + input_color + '" face="' + input_face + '">' + input_text + '</font>';
+  }
+  
+  function fontB(input_text) {
+	  return '<b>' + input_text + '</b>';
+  }
+  
+  function fontI(input_text) {
+	  return '<I>' + input_text + '</I>';
+  }
+  
+  function fontU(input_text) {
+	  return '<u>' + input_text + '</u>';
+  }
+  
+  function fontSup(input_text) {
+	  return '<sup>' + input_text + '</sup>';
+  }
+  
+  function fontSub(input_text) {
+	  return '<sub>' + input_text + '</sub>';
+  }
+  
+  function fontEm(input_text) {
+	  return '<em>' + input_text + '</em>';
+  }
+  
+  function fontStrong(input_text) {
+	  return '<strong>' + input_text + '</strong>';
+  }
+  
+  function fontCode(input_text) {
+	  return '<code>' + input_text + '</code>';
+  }
+  
 
   window.table_create = table_create;
   window.table_set = table_set;
@@ -3908,4 +3945,14 @@ function HextoRgb(color) {
   window.video_base64_spreadsheet = video_base64_spreadsheet;
   window.video_base64_drive = video_base64_drive;
   window.video_base64_email = video_base64_email;
+  window.fontText = fontText;
+  window.fontB = fontB;
+  window.fontI = fontI;
+  window.fontU = fontU;
+  window.fontSup = fontSup;
+  window.fontSub = fontSub;
+  window.fontEm = fontEm;
+  window.fontStrong = fontStrong;
+  window.fontCode = fontCode;
+  
 }(window, window.document));
