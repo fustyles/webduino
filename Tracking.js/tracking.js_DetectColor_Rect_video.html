@@ -14,8 +14,9 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_Rect_vid
     </head>
 <body>
 <button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
-<video id="video" width="320" height="240" preload autoplay loop muted></video>
+<video id="video" width="320" height="240" style="display:none" preload autoplay loop muted></video>
 <canvas id="canvas"></canvas><canvas id="canvas_pixel"></canvas><br>
+<div id="rect" style="color:blue"></div>
 <div id="result" style="color:red"></div>
   
 <script>
@@ -23,7 +24,8 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_Rect_vid
 	const canvas = document.getElementById('canvas'); 
 	const context = canvas.getContext('2d');
 	const canvas_pixel = document.getElementById('canvas_pixel');
-	var context_pixel = canvas_pixel.getContext('2d'); 	  
+	var context_pixel = canvas_pixel.getContext('2d'); 
+    const rect = document.getElementById('rect');	
 	const result = document.getElementById('result'); 
 	const videoWidth = 320;
 	const videoHeight = 240; 
@@ -156,12 +158,7 @@ https://fustyles.github.io/webduino/Tracking.js/tracking.js_DetectColor_Rect_vid
 				if (Bmin > imgData.data[i+2]) Bmin = imgData.data[i+2];				
 			}
 
-			result.innerHTML = Rmax +"<br>"; 
-			result.innerHTML += Rmin +"<br>"; 
-			result.innerHTML += Gmax +"<br>"; 
-			result.innerHTML += Gmin +"<br>"; 
-			result.innerHTML += Bmax +"<br>"; 
-			result.innerHTML += Bmin;
+			rect.innerHTML = "R("+Rmin+","+Rmax +"), "+"G("+Gmin+","+Gmax +"), "+"B("+Rmin+","+Rmax +")";
 					
 		}
 			
