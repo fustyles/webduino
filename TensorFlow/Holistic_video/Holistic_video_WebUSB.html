@@ -37,7 +37,7 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_video/Holistic_video_Web
 <div id="righthandResult" style="color:yellow;display:none;"><div>
   
 <script>
-var commandState = false;
+var commandString = "";
 const connect = document.getElementById('connect');
 const command = document.getElementById('command');
 const send = document.getElementById('send');
@@ -137,16 +137,14 @@ function onResults(results) {
 	if (connect.textContent.indexOf('Disconnect')!=-1) {
 		if ((holistic_pose_position("12", "x")) && (holistic_pose_position("11", "x"))) {
 			if ((holistic_pose_position("15", "y")) < (holistic_pose_position("11", "y")) && (holistic_pose_position("16", "y")) < (holistic_pose_position("12", "y"))) {
-				if (commandState == false) {
-					commandState = true;
+				if (commandString != "?digitalwrite=13;1") {
+					commandString = "?digitalwrite=13;1";
 					command.value = "?digitalwrite=13;1";
-					setTimeout(function(){ commandState = false; }, 50);
 				}
 			} else {
-				if (commandState == false) {
-					commandState = true;
+				if (commandString != "?digitalwrite=13;0") {
+					commandString = "?digitalwrite=13;0";
 					command.value = "?digitalwrite=13;0";
-					setTimeout(function(){ commandState = false; }, 50);
 				}
 			}
 		}
