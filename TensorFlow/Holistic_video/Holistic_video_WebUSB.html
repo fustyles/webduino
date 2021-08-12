@@ -34,61 +34,61 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_video/Holistic_video_Web
 <div id="result" style="color:red">Loading model...</div>
   
 <script>
-  var commandState = false;
-			
-  var video = document.getElementById('video');
-  var canvasElement = document.getElementById('canvasElement'); 
-  var canvasCtx = canvasElement.getContext('2d');
-  var face = document.getElementById('face');
-  var pose = document.getElementById('pose');
-  var lefthand = document.getElementById('lefthand');
-  var righthand = document.getElementById('righthand');	
-  
-	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-	  console.log("enumerateDevices() not supported.");
-	  return;
-	}
+var commandState = false;
 
-	var videoWidth = 320;
-	var videoHeight = 240;
-	
-	var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
-	navigator.mediaDevices.enumerateDevices()
-		.then(function(devices) {
-		  devices.forEach(function(device) {
-			  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
-				if (device.deviceId=='')
-					back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
-				else
-					back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
-			  }
-		  });
-		
-		
-		if (location.search.toLowerCase().indexOf("?back")!=-1)
-		  var userMedia = back;
-		else
-		  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+var video = document.getElementById('video');
+var canvasElement = document.getElementById('canvasElement'); 
+var canvasCtx = canvasElement.getContext('2d');
+var face = document.getElementById('face');
+var pose = document.getElementById('pose');
+var lefthand = document.getElementById('lefthand');
+var righthand = document.getElementById('righthand');
+var message = document.getElementById('message');
 
-		navigator.mediaDevices
-		  .getUserMedia(userMedia)
-		  .then(stream => {
-			video.srcObject = stream
-			video.onloadedmetadata = () => {       
-			  video.play();
-			  canvasElement.setAttribute("width", video.width);
-			  canvasElement.setAttribute("height", video.height);			  
-			  setTimeout(function(){DetectVideo(); }, 2000);
-			}
-		 })  
-	})
-  
-  function DetectVideo() { 
-	holistic.send({image: video}).then(res => {
-		result.innerHTML = "";
-		setTimeout(function(){DetectVideo(); }, 10)
-	});
-  }
+if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+  console.log("enumerateDevices() not supported.");
+}
+
+var videoWidth = 320;
+var videoHeight = 240;
+
+var back = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+navigator.mediaDevices.enumerateDevices()
+	.then(function(devices) {
+	  devices.forEach(function(device) {
+		  if (device.kind=="videoinput"&&device.label.includes("facing back")) {
+			if (device.deviceId=='')
+				back = {audio: false,video: {facingMode: 'environment',width: videoWidth,height: videoHeight} };
+			else
+				back = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment',width: videoWidth,height: videoHeight} };
+		  }
+	  });
+
+
+	if (location.search.toLowerCase().indexOf("?back")!=-1)
+	  var userMedia = back;
+	else
+	  var userMedia = {audio: false,video: {facingMode: 'user',width: videoWidth,height: videoHeight}};
+
+	navigator.mediaDevices
+	  .getUserMedia(userMedia)
+	  .then(stream => {
+		video.srcObject = stream
+		video.onloadedmetadata = () => {       
+		  video.play();
+		  canvasElement.setAttribute("width", video.width);
+		  canvasElement.setAttribute("height", video.height);			  
+		  setTimeout(function(){DetectVideo(); }, 2000);
+		}
+	 })  
+})
+
+function DetectVideo() { 
+holistic.send({image: video}).then(res => {
+	result.innerHTML = "";
+	setTimeout(function(){DetectVideo(); }, 10)
+});
+}
   
 function onResults(results) {
 	canvasCtx.save();
