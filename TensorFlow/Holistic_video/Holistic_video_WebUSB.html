@@ -1,7 +1,6 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/5/22 14:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/8/12 22:00
 https://www.facebook.com/francefu
-
 Try it!
 https://fustyles.github.io/webduino/TensorFlow/Holistic_video/Holistic_video_WebUSB.html
 -->
@@ -25,25 +24,36 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_video/Holistic_video_Web
 <span id="response" style="color:red"></span><br>
 <br>
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
-<canvas id="canvasElement"></canvas>
+<canvas id="canvas"></canvas>
 <br>
 <input type="checkbox" id="face" checked>Face
 <input type="checkbox" id="pose" checked>Pose
 <input type="checkbox" id="lefthand" checked>Left Hand
 <input type="checkbox" id="righthand" checked>Right hand
-<div id="result" style="color:red">Loading model...</div>
+<div id="result" style="color:yellow"><div>
+<div id="faceResult" style="color:yellow;display:none;"><div>
+<div id="poseResult" style="color:yellow;display:none;"><div>
+<div id="lefthandResult" style="color:yellow;display:none;"><div>
+<div id="righthandResult" style="color:yellow;display:none;"><div>
   
 <script>
 var commandState = false;
+const connect = document.getElementById('connect');
+const command = document.getElementById('command');
+const send = document.getElementById('send');
 
-var video = document.getElementById('video');
-var canvasElement = document.getElementById('canvasElement'); 
-var canvasCtx = canvasElement.getContext('2d');
-var face = document.getElementById('face');
-var pose = document.getElementById('pose');
-var lefthand = document.getElementById('lefthand');
-var righthand = document.getElementById('righthand');
-var message = document.getElementById('message');
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');     
+var context = canvas.getContext("2d");  
+const face = document.getElementById('face');
+const pose = document.getElementById('pose');
+const lefthand = document.getElementById('lefthand');
+const righthand = document.getElementById('righthand');
+const faceResult = document.getElementById('faceResult');
+const poseResult = document.getElementById('poseResult');
+const lefthandResult = document.getElementById('lefthandResult');
+const righthandResult = document.getElementById('righthandResult');
+var result = document.getElementById('result');
 
 if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
   console.log("enumerateDevices() not supported.");
@@ -76,52 +86,58 @@ navigator.mediaDevices.enumerateDevices()
 		video.srcObject = stream
 		video.onloadedmetadata = () => {       
 		  video.play();
-		  canvasElement.setAttribute("width", video.width);
-		  canvasElement.setAttribute("height", video.height);			  
+		  canvas.setAttribute("width", video.width);
+		  canvas.setAttribute("height", video.height);			  
 		  setTimeout(function(){DetectVideo(); }, 2000);
 		}
 	 })  
 })
 
 function DetectVideo() { 
-holistic.send({image: video}).then(res => {
-	result.innerHTML = "";
-	setTimeout(function(){DetectVideo(); }, 10)
-});
+	holistic.send({image: video}).then(res => {
+		result.innerHTML = "";
+		setTimeout(function(){DetectVideo(); }, 10)
+	});
 }
   
 function onResults(results) {
-	canvasCtx.save();
-	canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-	canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
+	canvas.setAttribute("width", results.image.width);
+	canvas.setAttribute("height", results.image.height);
+	context.save();
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.drawImage(results.image, 0, 0, canvas.width, canvas.height);
+	
+	faceResult.innerHTML = JSON.stringify(results.faceLandmarks);
+	poseResult.innerHTML = JSON.stringify(results.poseLandmarks); 
+	lefthandResult.innerHTML = JSON.stringify(results.leftHandLandmarks);
+	righthandResult.innerHTML = JSON.stringify(results.rightHandLandmarks);	
 
 	if (pose.checked) {
-		drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, {color: '#00CCCC', lineWidth: 2});
-		drawLandmarks(canvasCtx, results.poseLandmarks, {color: '#FFFF00', lineWidth: 2});
+		drawConnectors(context, results.poseLandmarks, POSE_CONNECTIONS, {color: '#00CCCC', lineWidth: 2});
+		drawLandmarks(context, results.poseLandmarks, {color: '#FFFF00', lineWidth: 2});
 		//console.log(JSON.stringify(results.poseLandmarks));
 	}
 	if (face.checked) {
-		drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION, {color: '#C0C0C070', lineWidth: 1});
+		drawConnectors(context, results.faceLandmarks, FACEMESH_TESSELATION, {color: '#C0C0C070', lineWidth: 1});
 		//console.log(JSON.stringify(results.faceLandmarks));
 	}
 	if (lefthand.checked) {
-		drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS, {color: '#CC0000', lineWidth: 2});
-		drawLandmarks(canvasCtx, results.leftHandLandmarks, {color: '#00FF00', lineWidth: 2});
+		drawConnectors(context, results.leftHandLandmarks, HAND_CONNECTIONS, {color: '#CC0000', lineWidth: 2});
+		drawLandmarks(context, results.leftHandLandmarks, {color: '#00FF00', lineWidth: 2});
 		//console.log(JSON.stringify(results.leftHandLandmarks));
 	}
 	if (righthand.checked) {
-		drawConnectors(canvasCtx, results.rightHandLandmarks, HAND_CONNECTIONS, {color: '#00CC00', lineWidth: 2});
-		drawLandmarks(canvasCtx, results.rightHandLandmarks, {color: '#FF0000', lineWidth: 2});
+		drawConnectors(context, results.rightHandLandmarks, HAND_CONNECTIONS, {color: '#00CC00', lineWidth: 2});
+		drawLandmarks(context, results.rightHandLandmarks, {color: '#FF0000', lineWidth: 2});
 		//console.log(JSON.stringify(results.rightHandLandmarks));
 	}
-	canvasCtx.restore();	
+	context.restore();	
 	
 	if ((holistic_pose_position("12", "x")) && (holistic_pose_position("11", "x"))) {
 		if ((holistic_pose_position("15", "y")) < (holistic_pose_position("11", "y")) && (holistic_pose_position("16", "y")) < (holistic_pose_position("12", "y"))) {
-			if (connectButton.textContent.indexOf('Disconnect')==-1&&commandState == false) {
+			if (connect.textContent.indexOf('Disconnect')==-1&&commandState == false) {
 				commandState = true;
-				command.value = "?digitalwrite==13;1";
-				onUpdate();
+				command.value = "?digitalwrite=13;1";
 				setTimeout(function(){ commandState = false; }, 1000);
 			}
 		}
