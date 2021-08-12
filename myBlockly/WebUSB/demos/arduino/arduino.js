@@ -21,7 +21,7 @@
             response.value = textDecoder.decode(data);
           }
           else {
-            response.innerHTML = textDecoder.decode(data);
+            response.textContent = textDecoder.decode(data);
           }          
         }
         port.onReceiveError = error => {
