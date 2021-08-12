@@ -134,16 +134,23 @@ function onResults(results) {
 	}
 	context.restore();	
 	
-	if ((holistic_pose_position("12", "x")) && (holistic_pose_position("11", "x"))) {
-		if ((holistic_pose_position("15", "y")) < (holistic_pose_position("11", "y")) && (holistic_pose_position("16", "y")) < (holistic_pose_position("12", "y"))) {
-			if (connect.textContent.indexOf('Disconnect')!=-1&&commandState == false) {
-				commandState = true;
-				command.value = "?digitalwrite=13;1";
-				setTimeout(function(){ commandState = false; }, 50);
+	if (connect.textContent.indexOf('Disconnect')!=-1) {
+		if ((holistic_pose_position("12", "x")) && (holistic_pose_position("11", "x"))) {
+			if ((holistic_pose_position("15", "y")) < (holistic_pose_position("11", "y")) && (holistic_pose_position("16", "y")) < (holistic_pose_position("12", "y"))) {
+				if (commandState == false) {
+					commandState = true;
+					command.value = "?digitalwrite=13;1";
+					setTimeout(function(){ commandState = false; }, 50);
+				}
+			} else {
+				if (commandState == false) {
+					commandState = true;
+					command.value = "?digitalwrite=13;0";
+					setTimeout(function(){ commandState = false; }, 50);
+				}
 			}
 		}
 	}
-	console.log(response.innerHTML);
 }
 
 const holistic = new Holistic({locateFile: (file) => {
