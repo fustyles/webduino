@@ -142,7 +142,8 @@ function onResults(results) {
 				setTimeout(function(){ commandState = false; }, 50);
 			}
 		}
-	}	
+	}
+	console.log(response.innerHTML);
 }
 
 const holistic = new Holistic({locateFile: (file) => {
