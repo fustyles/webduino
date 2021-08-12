@@ -138,7 +138,7 @@ function onResults(results) {
 			if (connect.textContent.indexOf('Disconnect')!=-1&&commandState == false) {
 				commandState = true;
 				command.value = "?digitalwrite=13;1";
-				setTimeout(function(){ commandState = false; }, 1000);
+				setTimeout(function(){ commandState = false; }, 200);
 			}
 		}
 	}	
