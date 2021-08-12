@@ -34,7 +34,7 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_video/Holistic_video_Web
 <div id="result" style="color:red">Loading model...</div>
   
 <script>
-
+  var commandState = false;
 			
   var video = document.getElementById('video');
   var canvasElement = document.getElementById('canvasElement'); 
@@ -118,9 +118,11 @@ function onResults(results) {
 	
 	if ((holistic_pose_position("12", "x")) && (holistic_pose_position("11", "x"))) {
 		if ((holistic_pose_position("15", "y")) < (holistic_pose_position("11", "y")) && (holistic_pose_position("16", "y")) < (holistic_pose_position("12", "y"))) {
-			if (connectButton.textContent.indexOf('Disconnect')==-1) {
+			if (connectButton.textContent.indexOf('Disconnect')==-1&&commandState == false) {
+				commandState = true;
 				command.value = "?digitalwrite==13;1";
 				onUpdate();
+				setTimeout(function(){ commandState = false; }, 1000);
 			}
 		}
 	}	
@@ -129,6 +131,7 @@ function onResults(results) {
 const holistic = new Holistic({locateFile: (file) => {
   return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic/${file}`;
 }});
+	
 holistic.setOptions({
   modelComplexity: 1,
   smoothLandmarks: true,
