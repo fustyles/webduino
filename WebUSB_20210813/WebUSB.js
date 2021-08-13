@@ -28,6 +28,7 @@
 		response.innerHTML = "";
 	}	
 
+	window.webusb_wait = webusb_wait;
 	window.webusb_send = webusb_send;
 	window.webusb_get = webusb_get;
 	window.webusb_clear = webusb_clear;
