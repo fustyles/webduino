@@ -15,7 +15,7 @@
 		<block type="BitMatrixLed_matrix_brightness">
 			<value name="brightness">
 				<block type="math_number">
-					<field name="NUM">10</field>
+					<field name="NUM">0.5</field>
 				</block>		
 			</value>
 		</block>	
@@ -684,7 +684,7 @@
 			</value>				
 		</block>	
 		<block type="webbit_mooncar_tcs_detect"></block>	
-		<block type="BitMatrixLed_matrix_pin">
+		<block type="webbit_mooncar_ws2812_pin">
 			<value name="pin">
 				<block type="math_number">
 					<field name="NUM">26</field>
@@ -696,14 +696,14 @@
 				</block>			
 			</value>	
 		</block>	
-		<block type="BitMatrixLed_matrix_brightness">
+		<block type="webbit_mooncar_ws2812_brightness">
 			<value name="brightness">
 				<block type="math_number">
-					<field name="NUM">10</field>
+					<field name="NUM">30</field>
 				</block>		
 			</value>
 		</block>	
-		<block type="BitMatrixLed_matrix_clear">
+		<block type="webbit_mooncar_ws2812_clear">
 		</block>			
 		<block type="webbit_mooncar_ws2812_color">
 			<field name="L06">#000000</field>
@@ -719,7 +719,7 @@
 		</block>
 		<block type="BitMatrixLed_color_random">		
 		</block>
-		<block type="BitMatrixLed_matrix_color_one_n">
+		<block type="webbit_mooncar_ws2812_color_one_n">
 			<value name="N">
 				<block type="math_number">
 					<field name="NUM">1</field>
@@ -730,7 +730,7 @@
 				</block>
 			</value>		
 		</block>	
-		<block type="BitMatrixLed_matrix_rgb_one_n">
+		<block type="webbit_mooncar_ws2812_rgb_one_n">
 			<value name="N">
 				<block type="math_number">
 					<field name="NUM">1</field>
