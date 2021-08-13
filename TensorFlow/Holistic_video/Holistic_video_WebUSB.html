@@ -135,7 +135,7 @@ function onResults(results) {
 	}
 	context.restore();	
 	
-	if (connect.textContent.indexOf('Disconnect')!=-1) {
+	if (connect.value.indexOf('Disconnect')!=-1) {
 		if ((holistic_pose_position("12", "x")) && (holistic_pose_position("11", "x"))) {
 			if ((holistic_pose_position("15", "y")) < (holistic_pose_position("11", "y")) && (holistic_pose_position("16", "y")) < (holistic_pose_position("12", "y"))) {
 				if (commandString != "?digitalwrite=13;1") {
