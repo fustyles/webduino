@@ -14,7 +14,7 @@
 		connect.style.display = input_show;
 	}
 	
-	function webusb_wait() {
+	function webusb_state() {
 		if (connect.value.indexOf('Disconnect')!=-1)
 			return true;
 		else
@@ -40,7 +40,7 @@
 	}	
 
 	window.webusb_button = webusb_button;
-	window.webusb_wait = webusb_wait;
+	window.webusb_state = webusb_state;
 	window.webusb_send = webusb_send;
 	window.webusb_get = webusb_get;
 	window.webusb_clear = webusb_clear;
