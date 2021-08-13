@@ -16,8 +16,7 @@ Blockly.JavaScript['webusb_send'] = function(block) {
 };
 
 Blockly.JavaScript['webusb_get'] = function(block) {
-  var value_wait = Blockly.JavaScript.valueToCode(block, 'wait_', Blockly.JavaScript.ORDER_ATOMIC);  
-  var code = 'webusb_get('+value_wait+')';
+  var code = 'webusb_get()';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
