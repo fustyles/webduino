@@ -17,7 +17,6 @@
         
         port.onReceive = data => {       
           let textDecoder = new TextDecoder();
-          response.innerText = textDecoder.decode(data);
           response.innerHTML = textDecoder.decode(data);
         }
         port.onReceiveError = error => {
