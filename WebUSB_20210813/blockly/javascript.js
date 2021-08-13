@@ -4,8 +4,8 @@ Blockly.JavaScript['webusb_button'] = function(block) {
   return code;
 };
 
-Blockly.JavaScript['webusb_wait'] = function(block) {
-  var code = 'webusb_wait()';
+Blockly.JavaScript['webusb_state'] = function(block) {
+  var code = 'webusb_state()';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
