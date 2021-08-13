@@ -1,14 +1,3 @@
-Blockly.Blocks['webusb_link'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.WEBUSB_LINK_SHOW);
-    this.setInputsInline(true);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(300);
-  }  
-};
-
 Blockly.Blocks['webusb_send'] = {
   init: function() {
     this.appendDummyInput()
