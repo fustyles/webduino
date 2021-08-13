@@ -17,7 +17,7 @@
         
         port.onReceive = data => {       
           let textDecoder = new TextDecoder();
-          response.innerHTML = textDecoder.decode(data);
+          response.innerText = textDecoder.decode(data);
         }
         port.onReceiveError = error => {
           connectButton.textContent = 'Connect to Arduino(USB)';
