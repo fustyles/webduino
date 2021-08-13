@@ -32,7 +32,6 @@
 			if (waitState==false) break;
 		}
 		clearTimeout(Timer);
-		waitState=false;
 		return response.innerHTML;
 	}
 	
