@@ -44,7 +44,8 @@ Blockly.Blocks['webusb_get'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBUSB_WAITTIME_SHOW);
     this.appendValueInput("wait_")
-	.setCheck("Number");	  
+	.setCheck("Number");
+    this.setInputsInline(true);	 	  
     this.setOutput(true, null);  
     this.setColour(300);
   }  
