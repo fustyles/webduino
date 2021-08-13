@@ -1,0 +1,15 @@
+<category id="catwebusb">
+  <block type="webusb_link">
+  </block>  
+  <block type="webusb_send">
+    <value name="cmd_">
+		<block type="text">
+			<field name="TEXT"></field>
+		</block>
+    </value>
+  </block> 
+  <block type="webusb_get">   
+  </block>  
+  <block type="webusb_clear">   
+  </block>  
+ </category>

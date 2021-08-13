@@ -1,0 +1,17 @@
+{
+  "types": ["webusb_link","weusb_send","weusb_get","weusb_clear"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+	"https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/serial.js",
+	"https://fustyles.github.io/webduino/myBlockly/WebUSB/demos/arduino/arduino.js",
+	"WebUSB_elements.js",
+    "WebUSB.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
