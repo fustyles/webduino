@@ -25,11 +25,11 @@
 	}
 
 	function webusb_get() {
-		return response.innerHTML;
+		return response.innerText;
 	}
 	
 	function webusb_clear() {
-		response.innerHTML = "";
+		response.innerText = "";
 	}	
 
 	window.webusb_button = webusb_button;
