@@ -11,18 +11,21 @@
 
     function connect() {
       port.connect().then(() => {
-        statusDisplay.textContent = port.device_.productName+" is connected.";
-        connectButton.textContent = 'Disconnect to Arduino(USB)';
+        //statusDisplay.textContent = port.device_.productName+" is connected.";
+        statusDisplay.innerHTML = port.device_.productName+" is connected.";
+        //connectButton.textContent = 'Disconnect to Arduino(USB)';
         connectButton.value = 'Disconnect to Arduino(USB)';
         
         port.onReceive = data => {       
           let textDecoder = new TextDecoder();
+          //response.textContent = textDecoder.decode(data);
           response.innerHTML = textDecoder.decode(data);
         }
         port.onReceiveError = error => {
-          connectButton.textContent = 'Connect to Arduino(USB)';
+          //connectButton.textContent = 'Connect to Arduino(USB)';
           connectButton.value = 'Connect to Arduino(USB)';
-          statusDisplay.textContent = error;
+          //statusDisplay.textContent = error;
+          statusDisplay.innerHTML = error;
         };
       }, error => {
         connectButton.textContent = 'Connect to Arduino(USB)';
