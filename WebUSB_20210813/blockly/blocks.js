@@ -1,3 +1,12 @@
+Blockly.Blocks['webusb_wait'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBUSB_WAIT_SHOW);
+    this.setOutput(true, null);  
+    this.setColour(300);
+  }  
+};
+
 Blockly.Blocks['webusb_send'] = {
   init: function() {
     this.appendDummyInput()
