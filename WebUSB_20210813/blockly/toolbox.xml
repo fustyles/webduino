@@ -1,4 +1,6 @@
 <category id="catwebusb">
+  <block type="webusb_button">   
+  </block>	
   <block type="webusb_wait">   
   </block>	
   <block type="webusb_send">
