@@ -18,6 +18,7 @@ Blockly.Blocks['webusb_state'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBUSB_STATE_SHOW);
+    this.setInputsInline(true);	  
     this.setOutput(true, null);  
     this.setColour(300);
   }  
