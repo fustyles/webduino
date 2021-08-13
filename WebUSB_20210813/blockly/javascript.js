@@ -1,5 +1,5 @@
 Blockly.JavaScript['webusb_wait'] = function(block) {
-  var code = 'weusb_wait()';
+  var code = 'webusb_wait()';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -10,7 +10,7 @@ Blockly.JavaScript['webusb_send'] = function(block) {
 };
 
 Blockly.JavaScript['webusb_get'] = function(block) {
-  var code = 'weusb_get()';
+  var code = 'webusb_get()';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
