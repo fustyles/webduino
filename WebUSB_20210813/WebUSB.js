@@ -14,7 +14,7 @@
 	}
 	
 	function webusb_wait() {
-		if (connect.textContent.indexOf('Disconnect')!=-1)
+		if (connect.value.indexOf('Disconnect')!=-1)
 			return true;
 		else
 			return false
