@@ -8,7 +8,6 @@
 	var command = document.getElementById('command');
 	var send = document.getElementById('send');
 	var response = document.getElementById('response');
-	var waitState=false;
 
 	function webusb_button(input_show) {
 		connect.style.display = input_show;
@@ -26,12 +25,11 @@
 	}
 
 	function webusb_get(input_wait) {
-		waitState = true;
-		var Timer = setTimeout(function(){ waitState==false; }, input_wait); 
+		var s = Math.round(new Date().getTime()/1000000);
 		while (response.innerHTML=="") {
-			if (waitState==false) break;
+			if (Math.round(new Date().getTime()/1000000 - s)>=input_wait) 
+				break;
 		}
-		clearTimeout(Timer);
 		return response.innerHTML;
 	}
 	
