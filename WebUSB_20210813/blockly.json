@@ -1,5 +1,5 @@
 {
-  "types": ["weusb_send","weusb_get","weusb_clear"],
+  "types": ["weusb_wait","weusb_send","weusb_get","weusb_clear"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
