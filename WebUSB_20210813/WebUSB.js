@@ -9,6 +9,13 @@
 	const send = document.getElementById('send');
 	const response = document.getElementById('response');	
 
+	function webusb_wait() {
+		if (connect.textContent.indexOf('Disconnect')!=-1)
+			return true;
+		else
+			return false
+	}
+	
 	function webusb_send(input_cmd) {
 		command.value = input_cmd;
 	}
