@@ -9,6 +9,10 @@
 	const send = document.getElementById('send');
 	const response = document.getElementById('response');	
 
+	function webusb_button(input_value) {
+		connect.style.display = input_value;
+	}
+	
 	function webusb_wait() {
 		if (connect.textContent.indexOf('Disconnect')!=-1)
 			return true;
@@ -28,6 +32,7 @@
 		response.innerHTML = "";
 	}	
 
+	window.webusb_button = webusb_button;
 	window.webusb_wait = webusb_wait;
 	window.webusb_send = webusb_send;
 	window.webusb_get = webusb_get;
