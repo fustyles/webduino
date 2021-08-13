@@ -7,7 +7,8 @@
 	var connect = document.getElementById('connect');
 	var command = document.getElementById('command');
 	var send = document.getElementById('send');
-	var response = document.getElementById('response');	
+	var response = document.getElementById('response');
+	var waitState=false;
 
 	function webusb_button(input_show) {
 		connect.style.display = input_show;
@@ -24,8 +25,14 @@
 		command.value = input_cmd;
 	}
 
-	function webusb_get() {
-		console.log(response.innerHTML);
+	function webusb_get(input_wait) {
+		waitState = true;
+		var Timer = setTimeout(function(){ waitState==false; }, input_wait); 
+		while (response.innerHTML=="") {
+			if (waitState==false) break;
+		}
+		clearTimeout(Timer);
+		waitState=false;
 		return response.innerHTML;
 	}
 	
