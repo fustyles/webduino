@@ -25,6 +25,7 @@
 	}
 
 	function webusb_get() {
+		console.log(response.innerText);
 		return response.innerText;
 	}
 	
