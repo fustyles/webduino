@@ -40,6 +40,10 @@ Blockly.Blocks['webusb_get'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBUSB_GET_SHOW);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBUSB_WAIT_SHOW);
+    this.appendValueInput("wait_")
+	.setCheck("Number");	  
     this.setOutput(true, null);  
     this.setColour(300);
   }  
