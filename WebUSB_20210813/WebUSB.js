@@ -4,10 +4,10 @@
 
 	'use strict';
 	
-	const connect = document.getElementById('connect');
-	const command = document.getElementById('command');
-	const send = document.getElementById('send');
-	const response = document.getElementById('response');	
+	var connect = document.getElementById('connect');
+	var command = document.getElementById('command');
+	var send = document.getElementById('send');
+	var response = document.getElementById('response');	
 
 	function webusb_button(input_show) {
 		connect.style.display = input_show;
