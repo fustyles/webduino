@@ -24,12 +24,7 @@
 		command.value = input_cmd;
 	}
 
-	function webusb_get(input_wait) {
-		var s = Math.round(new Date().getTime()/1000000);
-		while (response.innerHTML=="") {
-			if (Math.round(new Date().getTime()/1000000 - s)>=input_wait) 
-				break;
-		}
+	function webusb_get() {
 		return response.innerHTML;
 	}
 	
