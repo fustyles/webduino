@@ -5,12 +5,17 @@
   </block>	
   <block type="webusb_send">
     <value name="cmd_">
-		<block type="text">
-			<field name="TEXT"></field>
-		</block>
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
     </value>
   </block> 
-  <block type="webusb_get">   
+  <block type="webusb_get">
+    <value name="wait_">
+      <block type="math_number">
+        <field name="NUM">1000</field>
+      </block>
+    </value>	  
   </block>  
   <block type="webusb_clear">   
   </block>  
