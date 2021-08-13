@@ -1,3 +1,19 @@
+Blockly.Blocks['webusb_button'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBUSB_BUTTON_SHOW);
+    this.appendDummyInput()  
+        .appendField(new Blockly.FieldDropdown([
+		["Y","block"],
+		["N","none"]
+  	]), "show_"); 	    
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(300);
+  }  
+};
+
 Blockly.Blocks['webusb_wait'] = {
   init: function() {
     this.appendDummyInput()
