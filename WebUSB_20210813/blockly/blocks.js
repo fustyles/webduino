@@ -14,10 +14,10 @@ Blockly.Blocks['webusb_button'] = {
   }  
 };
 
-Blockly.Blocks['webusb_wait'] = {
+Blockly.Blocks['webusb_state'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.WEBUSB_WAIT_SHOW);
+        .appendField(Blockly.Msg.WEBUSB_STATE_SHOW);
     this.setOutput(true, null);  
     this.setColour(300);
   }  
