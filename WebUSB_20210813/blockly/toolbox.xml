@@ -1,4 +1,6 @@
 <category id="catwebusb">
+  <block type="webusb_wait">   
+  </block>	
   <block type="webusb_send">
     <value name="cmd_">
 		<block type="text">
