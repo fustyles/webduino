@@ -1,7 +1,7 @@
 <category id="catwebusb">
   <block type="webusb_button">   
   </block>	
-  <block type="webusb_wait">   
+  <block type="webusb_state">   
   </block>	
   <block type="webusb_send">
     <value name="cmd_">
