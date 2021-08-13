@@ -25,12 +25,12 @@
 	}
 
 	function webusb_get() {
-		console.log(response.innerText);
-		return response.innerText;
+		console.log(response.innerHTML);
+		return response.innerHTML;
 	}
 	
 	function webusb_clear() {
-		response.innerText = "";
+		response.innerHTML = "";
 	}	
 
 	window.webusb_button = webusb_button;
