@@ -15,6 +15,10 @@ Chrome瀏覽器console指令新增自訂積木
 Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
 
+WebUSB
+https://fustyles.github.io/webduino/WebUSB_20210813/blockly.json
+WebUSB韌體  (適用https://webbit.webduino.io/blockly/)
+https://github.com/fustyles/webduino/tree/master/WebUSB_20210813/WebUSB_Leonardo_Webduino
 
 (新版) 全身辨識 (MediaPipe Holistic)
 https://fustyles.github.io/webduino/holistic_20201012/blockly.json
