@@ -5,6 +5,14 @@ Blockly.JavaScript['webusb_button'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['webusb_button_position'] = function(block) { 
+  var value_id = block.getFieldValue('id_');   
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'webusb_button_position("'+value_id+'",' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};
+
 Blockly.JavaScript['webusb_state'] = function(block) {
   var code = 'webusb_state()';
   return [code, Blockly.JavaScript.ORDER_NONE];
