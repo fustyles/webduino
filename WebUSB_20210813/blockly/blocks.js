@@ -3,12 +3,12 @@ Blockly.Blocks['webusb_button'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBUSB_ELEMENT_SHOW);
     this.appendDummyInput()
-        .appendField(Blockly.Msg.WEBUSB_SHOW_SHOW)	  
         .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg.WEBUSB_CONNECT_SHOW,"connect"],
 		[Blockly.Msg.WEBUSB_STATUS_SHOW,"status"]
   	]), "id_");	  
     this.appendDummyInput()  
+	.appendField(Blockly.Msg.WEBUSB_SHOW_SHOW)	  
         .appendField(new Blockly.FieldDropdown([
 		["Y","block"],
 		["N","none"]
