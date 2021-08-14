@@ -7,3 +7,5 @@ Blockly.Msg.WEBUSB_WAITTIME_SHOW = "逾時(毫秒)";
 Blockly.Msg.WEBUSB_CLEAR_SHOW = "WebUSB 清除回傳資料";
 Blockly.Msg.WEBUSB_CONNECT_SHOW = "開發板連結";
 Blockly.Msg.WEBUSB_STATUS_SHOW = "狀態";
+Blockly.Msg.WEBUSB_BUTTON_LEFT_SHOW = "靠左距離"; 
+Blockly.Msg.WEBUSB_BUTTON_TOP_SHOW = "靠上距離";
