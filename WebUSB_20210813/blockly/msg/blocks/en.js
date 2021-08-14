@@ -6,3 +6,5 @@ Blockly.Msg.WEBUSB_WAITTIME_SHOW = "Wait(ms)";
 Blockly.Msg.WEBUSB_CLEAR_SHOW = "WebUSB clear data";
 Blockly.Msg.WEBUSB_CONNECT_SHOW = "CONNECT";
 Blockly.Msg.WEBUSB_STATUS_SHOW = "STATUS";
+Blockly.Msg.WEBUSB_BUTTON_LEFT_SHOW = "Left"; 
+Blockly.Msg.WEBUSB_BUTTON_TOP_SHOW = "Top";
