@@ -16,7 +16,7 @@ Blockly.Blocks['webusb_button'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(300);
+    this.setColour(60);
   }  
 };
 
@@ -61,7 +61,7 @@ Blockly.Blocks['webusb_send'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(300);
+    this.setColour(60);
     this.setHelpUrl("https://github.com/fustyles/webduino/tree/master/WebUSB_20210813/WebUSB_Leonardo_Webduino");
   }  
 };
@@ -83,6 +83,6 @@ Blockly.Blocks['webusb_clear'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(300);
+    this.setColour(60);
   }  
 };
