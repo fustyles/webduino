@@ -20,6 +20,28 @@ Blockly.Blocks['webusb_button'] = {
   }  
 };
 
+Blockly.Blocks['webusb_button_position'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBUSB_ELEMENT_SHOW);	  
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.WEBUSB_CONNECT_SHOW,"connect"],
+		[Blockly.Msg.WEBUSB_STATUS_SHOW,"status"]
+  	]), "id_");	  
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.WEBUSB_BUTTON_LEFT_SHOW);  
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.WEBUSB_BUTTON_TOP_SHOW);   	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['webusb_state'] = {
   init: function() {
     this.appendDummyInput()
