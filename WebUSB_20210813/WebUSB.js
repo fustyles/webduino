@@ -9,8 +9,8 @@
 	var send = document.getElementById('send');
 	var response = document.getElementById('response');
 
-	function webusb_button(input_show) {
-		connect.style.display = input_show;
+	function webusb_button(input_id, input_show) {
+		document.getElementById(input_id).style.display = input_show;
 	}
 	
 	function webusb_state() {
