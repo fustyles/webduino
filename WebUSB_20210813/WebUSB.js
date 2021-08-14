@@ -13,6 +13,10 @@
 		document.getElementById(input_id).style.display = input_show;
 	}
 	
+	function webusb_button_position(input_id, input_left, input_top) {
+		
+	}
+	
 	function webusb_state() {
 		if (connect.value.indexOf('Disconnect')!=-1)
 			return true;
@@ -33,6 +37,7 @@
 	}	
 
 	window.webusb_button = webusb_button;
+	window.webusb_button_position = webusb_button_position;
 	window.webusb_state = webusb_state;
 	window.webusb_send = webusb_send;
 	window.webusb_get = webusb_get;
