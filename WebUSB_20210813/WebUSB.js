@@ -14,7 +14,8 @@
 	}
 	
 	function webusb_button_position(input_id, input_left, input_top) {
-		
+		document.getElementById(input_id).style.left = input_left;
+		document.getElementById(input_id).style.top = input_top;		
 	}
 	
 	function webusb_state() {
