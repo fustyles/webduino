@@ -208,8 +208,10 @@ d?", "+a:"")+")"}return[b,Blockly.Arduino.ORDER_FUNCTION_CALL]};
 Blockly.Arduino.lists_sort=function(a){var b=Blockly.Arduino.valueToCode(a,"LIST",Blockly.Arduino.ORDER_FUNCTION_CALL)||"[]",c="1"===a.getFieldValue("DIRECTION")?1:-1;a=a.getFieldValue("TYPE");var d=Blockly.Arduino.provideFunction_("listsGetSortCompare",["function "+Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_+"(type, direction) {","  var compareFuncs = {",'    "NUMERIC": function(a, b) {',"        return Number(a) - Number(b); },",'    "TEXT": function(a, b) {',"        return a.toString() > b.toString() ? 1 : -1; },",
 '    "IGNORE_CASE": function(a, b) {',"        return a.toString().toLowerCase() > b.toString().toLowerCase() ? 1 : -1; },","  };","  var compare = compareFuncs[type];","  return function(a, b) { return compare(a, b) * direction; }","}"]);return[b+".slice().sort("+d+'("'+a+'", '+c+"))",Blockly.Arduino.ORDER_FUNCTION_CALL]};
 Blockly.Arduino.lists_split=function(a){var b=Blockly.Arduino.valueToCode(a,"INPUT",Blockly.Arduino.ORDER_MEMBER),c=Blockly.Arduino.valueToCode(a,"DELIM",Blockly.Arduino.ORDER_NONE)||"''";a=a.getFieldValue("MODE");if("SPLIT"==a)b||(b="''"),a="split";else if("JOIN"==a)b||(b="[]"),a="join";else throw Error("Unknown mode: "+a);return[b+"."+a+"("+c+")",Blockly.Arduino.ORDER_FUNCTION_CALL]};
-Blockly.Arduino.lists_reverse=function(a){return[(Blockly.Arduino.valueToCode(a,"LIST",Blockly.Arduino.ORDER_FUNCTION_CALL)||"[]")+".slice().reverse()",Blockly.Arduino.ORDER_FUNCTION_CALL]};Blockly.Arduino.logic={};
+Blockly.Arduino.lists_reverse=function(a){return[(Blockly.Arduino.valueToCode(a,"LIST",Blockly.Arduino.ORDER_FUNCTION_CALL)||"[]")+".slice().reverse()",Blockly.Arduino.ORDER_FUNCTION_CALL]};
 
+
+Blockly.Arduino.logic={};
 Blockly.Arduino.logic_compare=function(a){var b={EQ:"==",NEQ:"!=",LT:"<",LTE:"<=",GT:">",GTE:">="}[a.getFieldValue("OP")],c="=="==b||"!="==b?Blockly.Arduino.ORDER_EQUALITY:Blockly.Arduino.ORDER_RELATIONAL,d=Blockly.Arduino.valueToCode(a,"A",c)||"0";a=Blockly.Arduino.valueToCode(a,"B",c)||"0";return[d+" "+b+" "+a,c]};
 Blockly.Arduino.logic_operation=function(a){var b="AND"==a.getFieldValue("OP")?"&&":"||",c="&&"==b?Blockly.Arduino.ORDER_LOGICAL_AND:Blockly.Arduino.ORDER_LOGICAL_OR,d=Blockly.Arduino.valueToCode(a,"A",c);a=Blockly.Arduino.valueToCode(a,"B",c);if(d||a){var e="&&"==b?"true":"false";d||(d=e);a||(a=e)}else a=d="false";return[d+" "+b+" "+a,c]};
 Blockly.Arduino.logic_negate=function(a){var b=Blockly.Arduino.ORDER_LOGICAL_NOT;return["!"+(Blockly.Arduino.valueToCode(a,"BOOL",b)||"true"),b]};
@@ -230,12 +232,13 @@ Blockly.Arduino.controls_forEach=function(a){var b=Blockly.Arduino.variableDB_.g
 "_index",Blockly.VARIABLE_CATEGORY_NAME);d=Blockly.Arduino.INDENT+b+" = "+e+"["+c+"];\n"+d;return a+("for (int "+c+" in "+e+") {\n"+d+"}\n")};
 Blockly.Arduino.controls_flow_statements=function(a){var b="";Blockly.Arduino.STATEMENT_PREFIX&&(b+=Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_PREFIX,a));Blockly.Arduino.STATEMENT_SUFFIX&&(b+=Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX,a));if(Blockly.Arduino.STATEMENT_PREFIX){var c=Blockly.Constants.Loops.CONTROL_FLOW_IN_LOOP_CHECK_MIXIN.getSurroundLoop(a);c&&!c.suppressPrefixSuffix&&(b+=Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_PREFIX,
 c))}switch(a.getFieldValue("FLOW")){case "BREAK":return b+"break;\n";case "CONTINUE":return b+"continue;\n"}throw Error("Unknown flow statement.");};
+
 Blockly.Arduino.getAdjusted=function(a,b,c,d,e){c=c||0;e=e||this.ORDER_NONE;a.workspace.options.oneBasedIndex&&c--;var f=a.workspace.options.oneBasedIndex?"1":"0";a=0<c?this.valueToCode(a,b,this.ORDER_ADDITION)||f:0>c?this.valueToCode(a,b,this.ORDER_SUBTRACTION)||f:d?this.valueToCode(a,b,this.ORDER_UNARY_NEGATION)||f:this.valueToCode(a,b,e)||f;if(Blockly.isNumber(a))a=Number(a)+c,d&&(a=-a);else{if(0<c){a=a+" + "+c;var g=this.ORDER_ADDITION}else 0>c&&(a=a+" - "+-c,g=this.ORDER_SUBTRACTION);d&&(a=
 c?"-("+a+")":"-"+a,g=this.ORDER_UNARY_NEGATION);g=Math.floor(g);e=Math.floor(e);g&&e>=g&&(a="("+a+")")}return a};
 
 
 
-Blockly.Arduino.texts={};
+Blockly.Arduino.text={};
 Blockly.Arduino.text=function(a){return[Blockly.Arduino.quote_(a.getFieldValue("TEXT")),Blockly.Arduino.ORDER_ATOMIC]};
 Blockly.Arduino.text_multiline=function(a){a=Blockly.Arduino.multiline_quote_(a.getFieldValue("TEXT"));var b=-1!=a.indexOf("+")?Blockly.Arduino.ORDER_ADDITION:Blockly.Arduino.ORDER_ATOMIC;return[a,b]};
 Blockly.Arduino.text.forceString_=function(a){return Blockly.Arduino.text.forceString_.strRegExp.test(a)?[a,Blockly.Arduino.ORDER_ATOMIC]:["String("+a+")",Blockly.Arduino.ORDER_FUNCTION_CALL]};Blockly.Arduino.text.forceString_.strRegExp=/^\s*'([^']|\\')*'\s*$/;
@@ -412,6 +415,8 @@ Blockly.Arduino.array_for = function() {
   return code;
 };
 
+
+
 Blockly.Arduino.variables={};
 Blockly.Arduino.variables_get=function(a){
   var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
@@ -507,7 +512,7 @@ Blockly.Arduino.i2c_sevenseg={};
 Blockly.Arduino.i2c_sevenseg_begin=function(){var a=this.getFieldValue("ADDRESS");Blockly.Arduino.definitions_.define_wire="#include <Wire.h>";Blockly.Arduino.definitions_.define_adafruit_ledbackpack='#include "Adafruit_LEDBackpack.h"';Blockly.Arduino.definitions_.define_adafruit_gfx='#include "Adafruit_GFX.h"';Blockly.Arduino.definitions_.define_sevenseg="Adafruit_7segment sevenseg = Adafruit_7segment();\n";Blockly.Arduino.setups_["setup_sevenseg_"+a]="sevenseg.begin("+a+");";return""};
 Blockly.Arduino.i2c_sevenseg_print=function(){var a=Blockly.Arduino.valueToCode(this,"NUM",Blockly.Arduino.ORDER_ATOMIC)||"7777";9999<a?a=9999:0>a&&(a=1);return"sevenseg.print("+a+");\n"};Blockly.Arduino.i2c_sevenseg_writedisplay=function(){return"sevenseg.writeDisplay();\n"};
 Blockly.Arduino.i2c_sevenseg_writedigitnum=function(){var a=Blockly.Arduino.valueToCode(this,"POSITION",Blockly.Arduino.ORDER_ATOMIC)||"0",b=Blockly.Arduino.valueToCode(this,"NUM",Blockly.Arduino.ORDER_ATOMIC)||"0",c=Blockly.Arduino.valueToCode(this,"DOTS",Blockly.Arduino.ORDER_NONE)||"false";9<b&&(b=9);return"sevenseg.writeDigitNum("+a+","+b+","+c+");\n"};
-Blockly.Arduino.i2c_sevenseg_drawcolon=function(){return"sevenseg.drawColon("+(Blockly.Arduino.valueToCode(this,"DOTS",Blockly.Arduino.ORDER_NONE)||"false")+");\n"};Blockly.Arduino.i2c_sevenseg_boolean=function(){return["TRUE"==this.getFieldValue("BOOL")?"true":"false",Blockly.Arduino.ORDER_ATOMIC]};Blockly.Arduino.logic={};
+Blockly.Arduino.i2c_sevenseg_drawcolon=function(){return"sevenseg.drawColon("+(Blockly.Arduino.valueToCode(this,"DOTS",Blockly.Arduino.ORDER_NONE)||"false")+");\n"};Blockly.Arduino.i2c_sevenseg_boolean=function(){return["TRUE"==this.getFieldValue("BOOL")?"true":"false",Blockly.Arduino.ORDER_ATOMIC]};
 
 
 Blockly.Arduino.delayMicroseconds=function(){return"delayMicroseconds("+this.getFieldValue("DELAY_TIME")+");\n"};Blockly.Arduino.millis=function(){return["millis()",Blockly.Arduino.ORDER_ATOMIC]};Blockly.Arduino.micros=function(){return["micros()",Blockly.Arduino.ORDER_ATOMIC]};
