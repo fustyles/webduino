@@ -1,6 +1,6 @@
 <category id="catGameElements" name="catGameElements"> 
   
-	<category id="catGameElements_sub1" name="catGameElements_sub1" colour="120"> 
+	<category id="catGameElements_sub1" name="catGameElements_sub1"> 
 	<block type="servermodule_javascript">
 		<statement name="js">
 		</statement>
