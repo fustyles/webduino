@@ -1,5 +1,4 @@
 <category id="catGameElements" name="catGameElements"> 
-  
 	<category id="catGameElements_sub1" name="catGameElements_sub1"> 
 	<block type="servermodule_javascript">
 		<statement name="js">
@@ -366,7 +365,7 @@
 	</block>    
 
 	</category>	
-	<category id="catGameElements_sub2" name="catGameElements_sub2" colour="120"> 
+	<category id="catGameElements_sub2" name="catGameElements_sub2"> 
 
 	<block type="image_create">
 	<value name="id_">
@@ -595,7 +594,7 @@
 	</block> 
 
 	</category>
-	<category id="catGameElements_sub3" name="catGameElements_sub3" colour="120"> 
+	<category id="catGameElements_sub3" name="catGameElements_sub3"> 
 
 	<block type="button_create"> 
 	<value name="id_">
@@ -688,7 +687,7 @@
 	</block>   
 
 	</category>
-	<category id="catGameElements_sub4" name="catGameElements_sub4" colour="120"> 
+	<category id="catGameElements_sub4" name="catGameElements_sub4"> 
 
 	<block type="colorpicker_create"> 
 	<value name="id_">
@@ -770,7 +769,7 @@
 	</block>     
 
 	</category>
-	<category id="catGameElements_sub5" name="catGameElements_sub5" colour="120"> 
+	<category id="catGameElements_sub5" name="catGameElements_sub5"> 
 
 	<block type="select_create"> 
 	<value name="id_">
@@ -900,7 +899,7 @@
 	</block> 
 
 	</category>
-	<category id="catGameElements_sub6" name="catGameElements_sub6" colour="120"> 
+	<category id="catGameElements_sub6" name="catGameElements_sub6"> 
 
 	<block type="range_create"> 
 	<value name="id_">
@@ -999,7 +998,7 @@
 	</block>
 
 	</category>
-	<category id="catGameElements_sub7" name="catGameElements_sub7" colour="120"> 
+	<category id="catGameElements_sub7" name="catGameElements_sub7"> 
 
 	<block type="text_create"> 
 	<value name="id_">
@@ -1094,7 +1093,7 @@
 	</block> 
 
 	</category>
-	<category id="catGameElements_sub8" name="catGameElements_sub8" colour="120"> 
+	<category id="catGameElements_sub8" name="catGameElements_sub8"> 
 
 	<block type="table_create">  
 	<value name="id_">
@@ -1476,7 +1475,7 @@
 	</block> 
 
 	</category>
-	<category id="catGameElements_sub9" name="catGameElements_sub9" colour="120"> 
+	<category id="catGameElements_sub9" name="catGameElements_sub9"> 
 
 	<block type="canvas_create"> 
 	<value name="id_">
@@ -2136,7 +2135,7 @@
 	</value>            
 	</block>  
 	</category>
-	<category id="catGameElements_sub10" name="catGameElements_sub10" colour="120"> 
+	<category id="catGameElements_sub10" name="catGameElements_sub10"> 
 
 	<block type="div_create"> 
 	<value name="id_">
@@ -2232,7 +2231,7 @@
 	</block>  	
 
 	</category>
-	<category id="catGameElements_sub11" name="catGameElements_sub11" colour="120"> 
+	<category id="catGameElements_sub11" name="catGameElements_sub11"> 
 
 	<block type="iframe_create">
 	<value name="id_">
@@ -2314,7 +2313,7 @@
 	</block>  
 
 	</category>
-	<category id="catGameElements_sub12" name="catGameElements_sub12" colour="120"> 
+	<category id="catGameElements_sub12" name="catGameElements_sub12"> 
 
 	<block type="a_create"> 
 	<value name="id_">
@@ -2415,7 +2414,7 @@
 	</block>  
 
 	</category>
-	<category id="catGameElements_sub13" name="catGameElements_sub13" colour="120"> 
+	<category id="catGameElements_sub13" name="catGameElements_sub13"> 
 
 	<block type="radio_create"> 
 	<value name="id_">
@@ -2511,7 +2510,7 @@
 	</block>  
 
 	</category>
-	<category id="catGameElements_sub14" name="catGameElements_sub14" colour="120"> 
+	<category id="catGameElements_sub14" name="catGameElements_sub14"> 
 
 	<block type="checkbox_create"> 
 	<value name="id_">
@@ -2595,7 +2594,7 @@
 	</block>  
 
 	</category>
-	<category id="catGameElements_sub15" name="catGameElements_sub15" colour="120"> 
+	<category id="catGameElements_sub15" name="catGameElements_sub15"> 
 
 	<block type="textarea_create"> 
 	<value name="id_">
@@ -2679,7 +2678,7 @@
 	</block>  
 
 	</category>
-	<category id="catGameElements_sub17" name="catGameElements_sub17" colour="120"> 
+	<category id="catGameElements_sub17" name="catGameElements_sub17"> 
 
 	<block type="number_create"> 
 	<value name="id_">
@@ -2783,7 +2782,7 @@
 	</block>
 
 	</category>
-	<category id="catGameElements_sub18" name="catGameElements_sub18" colour="120"> 
+	<category id="catGameElements_sub18" name="catGameElements_sub18"> 
 
 	<block type="date_create"> 
 	<value name="id_">
@@ -2867,7 +2866,7 @@
 	</block>
 
 	</category>
-	<category id="catGameElements_sub19" name="catGameElements_sub19" colour="120"> 
+	<category id="catGameElements_sub19" name="catGameElements_sub19"> 
 
 	<block type="time_create"> 
 	<value name="id_">
@@ -2941,7 +2940,7 @@
 	</block>
 
 	</category>
-	<category id="catGameElements_sub20" name="catGameElements_sub20" colour="120"> 
+	<category id="catGameElements_sub20" name="catGameElements_sub20"> 
 
 	<block type="datetime_create"> 
 	<value name="id_">
@@ -3015,7 +3014,7 @@
 	</block>
 
 	</category>
-	<category id="catGameElements_sub21" name="catGameElements_sub21" colour="120"> 
+	<category id="catGameElements_sub21" name="catGameElements_sub21"> 
 
 	<block type="progress_create"> 
 	<value name="id_">
@@ -3087,7 +3086,7 @@
 	</block>
 
 	</category>
-	<category id="catGameElements_sub22" name="catGameElements_sub22" colour="120"> 
+	<category id="catGameElements_sub22" name="catGameElements_sub22"> 
 
 	<block type="password_create"> 
 	<value name="id_">
@@ -3180,7 +3179,7 @@
 	</block>
 
 	</category>
-	<category id="catGameElements_sub23" name="catGameElements_sub23" colour="120"> 
+	<category id="catGameElements_sub23" name="catGameElements_sub23"> 
 
 	<block type="form_create"> 
 	<value name="id_">
@@ -3246,7 +3245,7 @@
 	</block> 	
 
 	</category>
-	<category id="catGameElements_sub24" name="catGameElements_sub24" colour="120"> 
+	<category id="catGameElements_sub24" name="catGameElements_sub24"> 
 
 	<block type="video_create"> 
 	<value name="id_">
@@ -3323,7 +3322,7 @@
 	</block>  
 
 	</category>
-	<category id="catGameElements_sub25" name="catGameElements_sub25" colour="120"> 
+	<category id="catGameElements_sub25" name="catGameElements_sub25"> 
 
 	<block type="font_text"> 
 	<value name="size_">
@@ -3404,7 +3403,7 @@
 	</block>   
 
 	</category>		
-	<category id="catGameElements_sub16" name="catGameElements_sub16" colour="120"> 
+	<category id="catGameElements_sub16" name="catGameElements_sub16"> 
 
 	<block type="ajax_get"> 
 	<value name="id_">
@@ -3450,6 +3449,5 @@
 	  </block>
 	</value> 
 	</block> 
-
 	</category>	
 </category>
