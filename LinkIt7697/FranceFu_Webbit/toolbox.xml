@@ -1,4 +1,4 @@
-<category id="catWebbit" name="catWebbit">
+<category id="catWebbit" name="catWebbit" colour="215">
 	<category id="catWebbitBoard" name="catWebbitBoard">
 		<block type="BitMatrixLed_matrix_pin">
 			<value name="pin">
