@@ -209,16 +209,17 @@ Blockly.Arduino.lists_sort=function(a){var b=Blockly.Arduino.valueToCode(a,"LIST
 '    "IGNORE_CASE": function(a, b) {',"        return a.toString().toLowerCase() > b.toString().toLowerCase() ? 1 : -1; },","  };","  var compare = compareFuncs[type];","  return function(a, b) { return compare(a, b) * direction; }","}"]);return[b+".slice().sort("+d+'("'+a+'", '+c+"))",Blockly.Arduino.ORDER_FUNCTION_CALL]};
 Blockly.Arduino.lists_split=function(a){var b=Blockly.Arduino.valueToCode(a,"INPUT",Blockly.Arduino.ORDER_MEMBER),c=Blockly.Arduino.valueToCode(a,"DELIM",Blockly.Arduino.ORDER_NONE)||"''";a=a.getFieldValue("MODE");if("SPLIT"==a)b||(b="''"),a="split";else if("JOIN"==a)b||(b="[]"),a="join";else throw Error("Unknown mode: "+a);return[b+"."+a+"("+c+")",Blockly.Arduino.ORDER_FUNCTION_CALL]};
 Blockly.Arduino.lists_reverse=function(a){return[(Blockly.Arduino.valueToCode(a,"LIST",Blockly.Arduino.ORDER_FUNCTION_CALL)||"[]")+".slice().reverse()",Blockly.Arduino.ORDER_FUNCTION_CALL]};Blockly.Arduino.logic={};
-Blockly.Arduino.controls_if=function(a){var b=0,c="";Blockly.Arduino.STATEMENT_PREFIX&&(c+=Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_PREFIX,a));do{var d=Blockly.Arduino.valueToCode(a,"IF"+b,Blockly.Arduino.ORDER_NONE)||"false";var e=Blockly.Arduino.statementToCode(a,"DO"+b);Blockly.Arduino.STATEMENT_SUFFIX&&(e=Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX,a),Blockly.Arduino.INDENT)+e);c+=(0<b?" else ":"")+"if ("+
-d+") {\n"+e+"}";++b}while(a.getInput("IF"+b));if(a.getInput("ELSE")||Blockly.Arduino.STATEMENT_SUFFIX)e=Blockly.Arduino.statementToCode(a,"ELSE"),Blockly.Arduino.STATEMENT_SUFFIX&&(e=Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX,a),Blockly.Arduino.INDENT)+e),c+=" else {\n"+e+"}";return c+"\n"};
-Blockly.Arduino.controls_ifelse=Blockly.Arduino.controls_if;
+
 Blockly.Arduino.logic_compare=function(a){var b={EQ:"==",NEQ:"!=",LT:"<",LTE:"<=",GT:">",GTE:">="}[a.getFieldValue("OP")],c="=="==b||"!="==b?Blockly.Arduino.ORDER_EQUALITY:Blockly.Arduino.ORDER_RELATIONAL,d=Blockly.Arduino.valueToCode(a,"A",c)||"0";a=Blockly.Arduino.valueToCode(a,"B",c)||"0";return[d+" "+b+" "+a,c]};
 Blockly.Arduino.logic_operation=function(a){var b="AND"==a.getFieldValue("OP")?"&&":"||",c="&&"==b?Blockly.Arduino.ORDER_LOGICAL_AND:Blockly.Arduino.ORDER_LOGICAL_OR,d=Blockly.Arduino.valueToCode(a,"A",c);a=Blockly.Arduino.valueToCode(a,"B",c);if(d||a){var e="&&"==b?"true":"false";d||(d=e);a||(a=e)}else a=d="false";return[d+" "+b+" "+a,c]};
 Blockly.Arduino.logic_negate=function(a){var b=Blockly.Arduino.ORDER_LOGICAL_NOT;return["!"+(Blockly.Arduino.valueToCode(a,"BOOL",b)||"true"),b]};
 Blockly.Arduino.logic_boolean=function(a){return["TRUE"==a.getFieldValue("BOOL")?"true":"false",Blockly.Arduino.ORDER_ATOMIC]};
 Blockly.Arduino.logic_null=function(a){return["null",Blockly.Arduino.ORDER_ATOMIC]};
 Blockly.Arduino.logic_ternary=function(a){var b=Blockly.Arduino.valueToCode(a,"IF",Blockly.Arduino.ORDER_CONDITIONAL)||"false",c=Blockly.Arduino.valueToCode(a,"THEN",Blockly.Arduino.ORDER_CONDITIONAL)||"null";a=Blockly.Arduino.valueToCode(a,"ELSE",Blockly.Arduino.ORDER_CONDITIONAL)||"null";return["("+b+") ? "+c+" : "+a,Blockly.Arduino.ORDER_CONDITIONAL]};
-Blockly.Arduino.loops={};
+
+Blockly.Arduino.controls_if=function(a){var b=0,c="";Blockly.Arduino.STATEMENT_PREFIX&&(c+=Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_PREFIX,a));do{var d=Blockly.Arduino.valueToCode(a,"IF"+b,Blockly.Arduino.ORDER_NONE)||"false";var e=Blockly.Arduino.statementToCode(a,"DO"+b);Blockly.Arduino.STATEMENT_SUFFIX&&(e=Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX,a),Blockly.Arduino.INDENT)+e);c+=(0<b?" else ":"")+"if ("+
+d+") {\n"+e+"}";++b}while(a.getInput("IF"+b));if(a.getInput("ELSE")||Blockly.Arduino.STATEMENT_SUFFIX)e=Blockly.Arduino.statementToCode(a,"ELSE"),Blockly.Arduino.STATEMENT_SUFFIX&&(e=Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX,a),Blockly.Arduino.INDENT)+e),c+=" else {\n"+e+"}";return c+"\n"};
+Blockly.Arduino.controls_ifelse=Blockly.Arduino.controls_if;
 Blockly.Arduino.controls_repeat_ext=function(a){var b=a.getField("TIMES")?String(Number(a.getFieldValue("TIMES"))):Blockly.Arduino.valueToCode(a,"TIMES",Blockly.Arduino.ORDER_ASSIGNMENT)||"0",c=Blockly.Arduino.statementToCode(a,"DO");c=Blockly.Arduino.addLoopTrap(c,a);a="";var d=Blockly.Arduino.variableDB_.getDistinctName("count",Blockly.VARIABLE_CATEGORY_NAME),e=b;b.match(/^\w+$/)||Blockly.isNumber(b)||(e=Blockly.Arduino.variableDB_.getDistinctName("repeat_end",Blockly.VARIABLE_CATEGORY_NAME),
 a+="int "+e+" = "+b+";\n");return a+("for (int "+d+" = 0; "+d+" < "+e+"; "+d+"++) {\n"+c+"}\n")};Blockly.Arduino.controls_repeat=Blockly.Arduino.controls_repeat_ext;
 Blockly.Arduino.controls_whileUntil=function(a){var b="UNTIL"==a.getFieldValue("MODE"),c=Blockly.Arduino.valueToCode(a,"BOOL",b?Blockly.Arduino.ORDER_LOGICAL_NOT:Blockly.Arduino.ORDER_NONE)||"false",d=Blockly.Arduino.statementToCode(a,"DO");d=Blockly.Arduino.addLoopTrap(d,a);b&&(c="!"+c);return"while ("+c+") {\n"+d+"}\n"};
@@ -233,16 +234,184 @@ Blockly.Arduino.getAdjusted=function(a,b,c,d,e){c=c||0;e=e||this.ORDER_NONE;a.wo
 c?"-("+a+")":"-"+a,g=this.ORDER_UNARY_NEGATION);g=Math.floor(g);e=Math.floor(e);g&&e>=g&&(a="("+a+")")}return a};
 
 
-Blockly.Arduino.involt={};Blockly.Arduino.involt_directmode=function(){var a="TRUE"==this.getFieldValue("BOOL")?"true":"false";Blockly.Arduino.definitions_.define_directmode="boolean directMode = "+a+";\n";return""};
-Blockly.Arduino.involt_chromereceive=function(){Blockly.Arduino.definitions_.define_chromeDigital="int chromeDigital[] = {};\n";Blockly.Arduino.definitions_.define_stringV='String V = "V";\n';Blockly.Arduino.setups_["setup_serial_"+profile["default"].serial]="Serial.begin(115200);\n";Blockly.Arduino.definitions_.define_chromeSend='void chromeSend(int pinNumber, int sendValue)\n{\n  String A = "A";\n  String E = "E";\n  Serial.println(A+pinNumber+V+sendValue+E);\n}\n\n';Blockly.Arduino.definitions_.define_chromeReceive=
-'void chromeReceive()\n{\n  String chrome;\n  String pwm = "P";\n  String dig = "D";\n  int pin;\n  int val;\n  int chromeLen;\n  if(Serial.available() > 0){\n    String chrome = Serial.readStringUntil(\'\u00a5n\');\n    int chromeLen = chrome.length();\n    String pinRaw = chrome.substring(1,chrome.indexOf(V));\n    String valRaw = chrome.substring(chrome.indexOf(V)+1,chromeLen);\n    pin = pinRaw.toInt();\n    val = valRaw.toInt();\n    \n    if(directMode){\n      if (chrome.indexOf(dig) == 0){\n        digitalWrite(pin, val);\n      }\n      else if (chrome.indexOf(pwm) == 0 ){\n        analogWrite(pin, val);\n      }\n    }\n    else{\n      chromeDigital[pin]=val;\n    }\n  }\n}\n\n';
-return"chromeReceive();\n"};
-Blockly.Arduino.involt_sendvalue=function(){
-  return"pinMode("+this.getFieldValue("PIN")+",OUTPUT);\n"
+
+Blockly.Arduino.texts={};
+Blockly.Arduino.text=function(a){return[Blockly.Arduino.quote_(a.getFieldValue("TEXT")),Blockly.Arduino.ORDER_ATOMIC]};
+Blockly.Arduino.text_multiline=function(a){a=Blockly.Arduino.multiline_quote_(a.getFieldValue("TEXT"));var b=-1!=a.indexOf("+")?Blockly.Arduino.ORDER_ADDITION:Blockly.Arduino.ORDER_ATOMIC;return[a,b]};
+Blockly.Arduino.text.forceString_=function(a){return Blockly.Arduino.text.forceString_.strRegExp.test(a)?[a,Blockly.Arduino.ORDER_ATOMIC]:["String("+a+")",Blockly.Arduino.ORDER_FUNCTION_CALL]};Blockly.Arduino.text.forceString_.strRegExp=/^\s*'([^']|\\')*'\s*$/;
+Blockly.Arduino.text_join=function(a){
+	switch(a.itemCount_){
+		case 0:
+			return["''",Blockly.Arduino.ORDER_ATOMIC];
+		case 1:
+			return a=Blockly.Arduino.valueToCode(a,"ADD0",Blockly.Arduino.ORDER_NONE)||"''",Blockly.Arduino.text.forceString_(a);
+		default:
+			var code = "";
+			for(var c=0;c<a.itemCount_;c++) {
+				if ((c+1)<a.itemCount_)
+					code+="String("+Blockly.Arduino.valueToCode(a,"ADD"+c,Blockly.Arduino.ORDER_NONE)+")+";
+				else
+					code+="String("+Blockly.Arduino.valueToCode(a,"ADD"+c,Blockly.Arduino.ORDER_NONE)+")";
+			}
+			return[code,Blockly.Arduino.ORDER_FUNCTION_CALL]
+	}
 };
-Blockly.Arduino.involt_receivevalue=function(){
-  return"chromeSend(0, analogRead("+this.getFieldValue("PIN")+"));\n"
+Blockly.Arduino.text_append=function(a){var b=Blockly.Arduino.nameDB_.getName(a.getFieldValue("VAR"),Blockly.VARIABLE_CATEGORY_NAME);a=Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_NONE)||"''";return b+" += "+Blockly.Arduino.text.forceString_(a)[0]+";\n"};
+Blockly.Arduino.text_length=function(a){return[(Blockly.Arduino.valueToCode(a,"VALUE",Blockly.Arduino.ORDER_MEMBER)||"''")+".length()",Blockly.Arduino.ORDER_MEMBER]};
+Blockly.Arduino.text_isEmpty=function(a){return["!"+(Blockly.Arduino.valueToCode(a,"VALUE",Blockly.Arduino.ORDER_MEMBER)||"''")+".length()",Blockly.Arduino.ORDER_LOGICAL_NOT]};
+Blockly.Arduino.text_indexOf=function(a){var b="FIRST"==a.getFieldValue("END")?"indexOf":"lastIndexOf",c=Blockly.Arduino.valueToCode(a,"FIND",Blockly.Arduino.ORDER_NONE)||"''";b=(Blockly.Arduino.valueToCode(a,"VALUE",Blockly.Arduino.ORDER_MEMBER)||"''")+"."+b+"("+c+")";return a.workspace.options.oneBasedIndex?[b,Blockly.Arduino.ORDER_ADDITION]:[b,Blockly.Arduino.ORDER_FUNCTION_CALL]};
+Blockly.Arduino.text_charAt=function(a){
+	var b=a.getFieldValue("WHERE")||"FROM_START",c=Blockly.Arduino.valueToCode(a,"VALUE","RANDOM"==b?Blockly.Arduino.ORDER_NONE:Blockly.Arduino.ORDER_MEMBER)||"''";
+	switch(b){
+		case "FIRST":
+			return[c+".charAt(0)",Blockly.Arduino.ORDER_FUNCTION_CALL];
+		case "LAST":
+			return[c+".charAt("+c+".length()-1)",Blockly.Arduino.ORDER_FUNCTION_CALL];
+		case "FROM_START":
+			return a=Blockly.Arduino.getAdjusted(a,"AT"),[c+".charAt("+a+")",Blockly.Arduino.ORDER_FUNCTION_CALL];
+		case "FROM_END":
+			return a=Blockly.Arduino.getAdjusted(a,"AT",1,!0),[c+".charAt("+c+".length()"+a+")",Blockly.Arduino.ORDER_FUNCTION_CALL];
+		case "RANDOM":
+			return[Blockly.Arduino.provideFunction_("textRandomLetter",["char "+Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_+"(String text) {","  int x = random(text.length());","  return text[x];","}"])+"("+c+")",Blockly.Arduino.ORDER_FUNCTION_CALL]
+	}
+	throw Error("Unhandled option (text_charAt).");
 };
+Blockly.Arduino.text.getIndex_=function(a,b,c){return"FIRST"==b?"0":"FROM_END"==b?a+".length - 1 - "+c:"LAST"==b?a+".length - 1":c};
+Blockly.Arduino.text_getSubstring=function(a){
+	var b=a.getFieldValue("WHERE1"),c=a.getFieldValue("WHERE2"),d="FROM_END"!=b&&"LAST"!=b&&"FROM_END"!=c&&"LAST"!=c,e=Blockly.Arduino.valueToCode(a,"STRING",d?Blockly.Arduino.ORDER_MEMBER:Blockly.Arduino.ORDER_NONE)||"''";if("FIRST"==b&&"LAST"==c)
+		return[e,Blockly.Arduino.ORDER_NONE];
+	if(e.match(/^'?\w+'?$/)||d){
+		switch(b){
+			case "FROM_START":
+				d=Blockly.Arduino.valueToCode(a,"AT1",Blockly.Arduino.ORDER_NONE);
+				break;
+			case "FROM_END":
+				d=Blockly.Arduino.valueToCode(a,"AT1",Blockly.Arduino.ORDER_NONE);
+				d=e+".length() - "+d;
+				break;
+			case "FIRST":
+				d="1";
+				break;
+			default:
+				throw Error("Unhandled option (text_getSubstring).");
+		}
+		switch(c){
+			case "FROM_START":
+				a=Number(Blockly.Arduino.valueToCode(a,"AT2",Blockly.Arduino.ORDER_NONE))+1;
+				break;
+			case "FROM_END":
+				a=Blockly.Arduino.valueToCode(a,"AT2",Blockly.Arduino.ORDER_NONE);
+				a=e+".length() - "+a;
+				break;
+			case "LAST":
+				a=e+".length() - 1";
+				break;
+			default:
+				throw Error("Unhandled option (text_getSubstring).");
+		}
+		b=e+".substring("+d+", "+a+")"
+	}
+	else
+	{
+		d=Blockly.Arduino.getAdjusted(a,"AT1");
+		a=Blockly.Arduino.getAdjusted(a,"AT2");
+		var f=Blockly.Arduino.text.getIndex_,g={FIRST:"First",LAST:"Last",FROM_START:"FromStart",FROM_END:"FromEnd"};
+		b=Blockly.Arduino.provideFunction_("subsequence"+g[b]+g[c],["String "+Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_+"(sequence"+("FROM_END"==b||"FROM_START"==b?", at1":"")+("FROM_END"==c||"FROM_START"==c?", at2":"")+") {","  var start = "+f("sequence",b,"at1")+";","  var end = "+f("sequence",c,"at2")+" + 1;","  return sequence.substring(start, end);","}"])+"("+e+("FROM_END"==b||"FROM_START"==b?", "+d:"")+("FROM_END"==c||"FROM_START"==c?", "+a:"")+")"
+	}
+	return[b,Blockly.Arduino.ORDER_FUNCTION_CALL]
+};
+Blockly.Arduino.text_changeCase=function(a){
+	var CASE=a.getFieldValue("CASE");
+	var TEXT=Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_NONE);
+	if (CASE=="UPPERCASE")
+		var code = TEXT+".toUpperCase()";
+	else
+		var code = TEXT+".toLowerCase()";	
+	return [code,Blockly.Arduino.ORDER_FUNCTION_CALL]
+}
+Blockly.Arduino.variable_changeCase=function(a){
+	var CASE=a.getFieldValue("CASE");
+	var VAR=Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
+	if (CASE=="UPPERCASE")
+		var code = VAR+".toUpperCase();\n";
+	else
+		var code = VAR+".toLowerCase();\n";	
+	return code;
+}
+Blockly.Arduino.text_trim=function(a){var b={LEFT:".replace(/^[\\s\\xa0]+/, '')",RIGHT:".replace(/[\\s\\xa0]+$/, '')",BOTH:".trim()"}[a.getFieldValue("MODE")];return[(Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_MEMBER)||"''")+b,Blockly.Arduino.ORDER_FUNCTION_CALL]};Blockly.Arduino.text_print=function(a){return"window.alert("+(Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_NONE)||"''")+");\n"};
+Blockly.Arduino.text_prompt_ext=function(a){var b="window.prompt("+(a.getField("TEXT")?Blockly.Arduino.quote_(a.getFieldValue("TEXT")):Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_NONE)||"''")+")";"NUMBER"==a.getFieldValue("TYPE")&&(b="Number("+b+")");return[b,Blockly.Arduino.ORDER_FUNCTION_CALL]};Blockly.Arduino.text_prompt=Blockly.Arduino.text_prompt_ext;
+Blockly.Arduino.text_count=function(a){var b=Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_NONE)||"''";a=Blockly.Arduino.valueToCode(a,"SUB",Blockly.Arduino.ORDER_NONE)||"''";return[Blockly.Arduino.provideFunction_("textCount",["function "+Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_+"(haystack, needle) {","  if (needle.length === 0) {","    return haystack.length + 1;","  } else {","    return haystack.split(needle).length - 1;","  }","}"])+"("+b+", "+a+")",Blockly.Arduino.ORDER_FUNCTION_CALL]};
+Blockly.Arduino.text_replace=function(a){var b=Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_NONE)||"''",c=Blockly.Arduino.valueToCode(a,"FROM",Blockly.Arduino.ORDER_NONE)||"''";a=Blockly.Arduino.valueToCode(a,"TO",Blockly.Arduino.ORDER_NONE)||"''";return[Blockly.Arduino.provideFunction_("textReplace",["function "+Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_+"(haystack, needle, replacement) {",'  needle = needle.replace(/([-()\\[\\]{}+?*.$\\^|,:#<!\\\\])/g,"\\\\$1")',
+'                 .replace(/\\x08/g,"\\\\x08");',"  return haystack.replace(new RegExp(needle, 'g'), replacement);","}"])+"("+b+", "+c+", "+a+")",Blockly.Arduino.ORDER_FUNCTION_CALL]};
+Blockly.Arduino.text_reverse=function(a){return[(Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_MEMBER)||"''")+".split('').reverse().join('')",Blockly.Arduino.ORDER_FUNCTION_CALL]};
+
+
+Blockly.Arduino.array={};
+Blockly.Arduino.array_create_with=function(){for(var a=Array(this.itemCount_),b=0;b<this.itemCount_;b++)a[b]=Blockly.Arduino.valueToCode(this,"ADD"+b,Blockly.Arduino.ORDER_COMMA)||"null";a="{"+a.join(", ")+"}";return[a,Blockly.Arduino.ORDER_ATOMIC]};
+Blockly.Arduino.array_modify = function(block) {
+  var value_indice = Blockly.Arduino.valueToCode(block, 'indice', Blockly.Arduino.ORDER_ATOMIC)||"0";
+  var value_name = Blockly.Arduino.valueToCode(block, 'name', Blockly.Arduino.ORDER_ATOMIC);
+  var value_value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC);
+  var code = value_name+'['+value_indice+'] = '+value_value+';\n';
+  return code;
+};
+Blockly.Arduino.array_getIndex=function(){
+  var a=Blockly.Arduino.valueToCode(this,"AT",Blockly.Arduino.ORDER_UNARY_NEGATION)||"0",
+      b=Blockly.Arduino.valueToCode(this,"ITEM",Blockly.Arduino.ORDER_MEMBER)||"[]";
+  Blockly.isNumber(a)&&(a=parseFloat(a));
+  return[b+"["+a+"]",Blockly.Arduino.ORDER_MEMBER]
+};
+Blockly.Arduino.array_sizeof=function(){
+  var a=Blockly.Arduino.valueToCode(this,"ITEM",Blockly.Arduino.ORDER_MEMBER)||"[]";
+  Blockly.a=parseFloat(a);
+  return["sizeof("+a+")/sizeof("+a+"[0])",Blockly.Arduino.ORDER_MEMBER]
+
+};
+Blockly.Arduino.array_for = function() {
+  // For loop.
+  var variable0 = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
+  var argument0 = Blockly.Arduino.valueToCode(this, 'FROM',
+      Blockly.Arduino.ORDER_ASSIGNMENT) || '0';
+  var argument1 = Blockly.Arduino.valueToCode(this, 'TO',
+      Blockly.Arduino.ORDER_ASSIGNMENT) || '0';
+  var branch = Blockly.Arduino.statementToCode(this, 'DO');
+  if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
+    branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g,
+        '\'' + this.id + '\'') + branch;
+  }
+  var code;
+  if (argument0.match(/^-?\d+(\.\d+)?$/) &&
+      argument1.match(/^-?\d+(\.\d+)?$/)) {
+    // Both arguments are simple numbers.
+    var up = parseFloat(argument0) <= parseFloat(argument1);
+    code = 'for (' + variable0 + ' = ' + argument0 + '; ' +
+        variable0 + (up ? ' <= ' : ' >= ') + argument1 + '; ' +
+        variable0 + (up ? '++' : '--') + ') {\n' +
+        branch + '}\n';
+  } else {
+    code = '';
+    // Cache non-trivial values to variables to prevent repeated look-ups.
+    var startVar = argument0;
+    if (!argument0.match(/^\w+$/) && !argument0.match(/^-?\d+(\.\d+)?$/)) {
+      var startVar = Blockly.Arduino.variableDB_.getDistinctName(
+          variable0 + '_start', Blockly.Variables.NAME_TYPE);
+      code += 'int ' + startVar + ' = ' + argument0 + ';\n';
+    }
+    var endVar = argument1;
+    var endVar = Blockly.Arduino.variableDB_.getDistinctName(
+        variable0 + '_end', Blockly.Variables.NAME_TYPE);
+    code += 'int ' + endVar + "= (sizeof("+ argument1 +")/sizeof("+ argument1 + "[0]));\n";
+
+    code += 'for (' + variable0 + ' = ' + startVar + ';\n' +
+        '    (' + startVar + ' <= ' + endVar + ') ? ' +
+        variable0 + ' < ' + endVar + ' : ' +
+        variable0 + ' > ' + endVar + ';\n' +
+        '    ' + variable0 + ' += (' + startVar + ' <= ' + endVar +') ? 1 : -1) {\n' +
+        branch + '}\n';
+  }
+  return code;
+};
+
 Blockly.Arduino.variables={};
 Blockly.Arduino.variables_get=function(a){
   var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
@@ -251,7 +420,6 @@ Blockly.Arduino.variables_get=function(a){
 
   return varName;
 };
-
 Blockly.Arduino.variables_set = function(block) {
   // Variable setter.
   var varPosition = this.getFieldValue('POSITION');
@@ -272,7 +440,6 @@ Blockly.Arduino.variables_set = function(block) {
   }
   return code;
 };
-
 Blockly.Arduino.variables_set1 = function(block) {
   // Variable setter.
   var varType = this.getFieldValue('TYPE');
@@ -290,6 +457,51 @@ Blockly.Arduino.variables_set1 = function(block) {
   Blockly.Arduino.definitions_[varName1] = varType+ ' ' + varName + '['+ variableLen +'] = ' + argument0 + ';\n';
   return '';
 };
+
+
+
+Blockly.Arduino.procedures={};
+Blockly.Arduino.procedures_defreturn=function(a){
+	var b=Blockly.Arduino.nameDB_.getName(a.getFieldValue("NAME"),Blockly.PROCEDURE_CATEGORY_NAME),c="";
+	Blockly.Arduino.STATEMENT_PREFIX&&(c+=Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_PREFIX,a));
+	Blockly.Arduino.STATEMENT_SUFFIX&&(c+=Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX,a));
+	c&&(c=Blockly.Arduino.prefixLines(c,Blockly.Arduino.INDENT));
+	var d="";
+	Blockly.Arduino.INFINITE_LOOP_TRAP&&(d=Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.INFINITE_LOOP_TRAP,a),Blockly.Arduino.INDENT));
+	var e=Blockly.Arduino.statementToCode(a,"STACK"),f=Blockly.Arduino.valueToCode(a,"RETURN",Blockly.Arduino.ORDER_NONE)||"",g="";e&&f&&(g=c);f&&(f=Blockly.Arduino.INDENT+"return "+f+";\n");
+	for(var h=[],l=a.getVars(),k=0;k<l.length;k++)
+		h[k]=Blockly.Arduino.nameDB_.getName(l[k],Blockly.VARIABLE_CATEGORY_NAME);c="void "+b+"("+h.join(", ")+") {\n"+c+d+e+g+f+"}";
+	c=Blockly.Arduino.scrub_(a,c);
+	Blockly.Arduino.definitions_["%"+b]=c;
+	return null
+};
+Blockly.Arduino.procedures_defnoreturn=Blockly.Arduino.procedures_defreturn;
+Blockly.Arduino.procedures_callreturn=function(a){
+	for(var b=Blockly.Arduino.nameDB_.getName(a.getFieldValue("NAME"),Blockly.PROCEDURE_CATEGORY_NAME),c=[],d=a.getVars(),e=0;e<d.length;e++)
+		c[e]=Blockly.Arduino.valueToCode(a,"ARG"+e,Blockly.Arduino.ORDER_NONE)||"null";
+	return[b+"("+c.join(", ")+")",Blockly.Arduino.ORDER_FUNCTION_CALL]
+};
+Blockly.Arduino.procedures_callnoreturn=function(a){
+	return Blockly.Arduino.procedures_callreturn(a)[0]+";\n"
+};
+Blockly.Arduino.procedures_ifreturn=function(a){
+	var b="if ("+(Blockly.Arduino.valueToCode(a,"CONDITION",Blockly.Arduino.ORDER_NONE)||"false")+") {\n";
+	Blockly.Arduino.STATEMENT_SUFFIX&&(b+=Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX,a),Blockly.Arduino.INDENT));a.hasReturnValue_?(a=Blockly.Arduino.valueToCode(a,"VALUE",Blockly.Arduino.ORDER_NONE)||"null",b+=Blockly.Arduino.INDENT+"return "+a+";\n"):b+=Blockly.Arduino.INDENT+"return;\n";return b+"}\n"
+};
+
+
+
+Blockly.Arduino.involt={};Blockly.Arduino.involt_directmode=function(){var a="TRUE"==this.getFieldValue("BOOL")?"true":"false";Blockly.Arduino.definitions_.define_directmode="boolean directMode = "+a+";\n";return""};
+Blockly.Arduino.involt_chromereceive=function(){Blockly.Arduino.definitions_.define_chromeDigital="int chromeDigital[] = {};\n";Blockly.Arduino.definitions_.define_stringV='String V = "V";\n';Blockly.Arduino.setups_["setup_serial_"+profile["default"].serial]="Serial.begin(115200);\n";Blockly.Arduino.definitions_.define_chromeSend='void chromeSend(int pinNumber, int sendValue)\n{\n  String A = "A";\n  String E = "E";\n  Serial.println(A+pinNumber+V+sendValue+E);\n}\n\n';Blockly.Arduino.definitions_.define_chromeReceive=
+'void chromeReceive()\n{\n  String chrome;\n  String pwm = "P";\n  String dig = "D";\n  int pin;\n  int val;\n  int chromeLen;\n  if(Serial.available() > 0){\n    String chrome = Serial.readStringUntil(\'\u00a5n\');\n    int chromeLen = chrome.length();\n    String pinRaw = chrome.substring(1,chrome.indexOf(V));\n    String valRaw = chrome.substring(chrome.indexOf(V)+1,chromeLen);\n    pin = pinRaw.toInt();\n    val = valRaw.toInt();\n    \n    if(directMode){\n      if (chrome.indexOf(dig) == 0){\n        digitalWrite(pin, val);\n      }\n      else if (chrome.indexOf(pwm) == 0 ){\n        analogWrite(pin, val);\n      }\n    }\n    else{\n      chromeDigital[pin]=val;\n    }\n  }\n}\n\n';
+return"chromeReceive();\n"};
+Blockly.Arduino.involt_sendvalue=function(){
+  return"pinMode("+this.getFieldValue("PIN")+",OUTPUT);\n"
+};
+Blockly.Arduino.involt_receivevalue=function(){
+  return"chromeSend(0, analogRead("+this.getFieldValue("PIN")+"));\n"
+};
+
 
 Blockly.Arduino.i2c_sevenseg={};
 Blockly.Arduino.i2c_sevenseg_begin=function(){var a=this.getFieldValue("ADDRESS");Blockly.Arduino.definitions_.define_wire="#include <Wire.h>";Blockly.Arduino.definitions_.define_adafruit_ledbackpack='#include "Adafruit_LEDBackpack.h"';Blockly.Arduino.definitions_.define_adafruit_gfx='#include "Adafruit_GFX.h"';Blockly.Arduino.definitions_.define_sevenseg="Adafruit_7segment sevenseg = Adafruit_7segment();\n";Blockly.Arduino.setups_["setup_sevenseg_"+a]="sevenseg.begin("+a+");";return""};
@@ -537,106 +749,14 @@ Blockly.Arduino.otto_led_matrix_init=function(){var a=this.getFieldValue("DIN"),
 b;Blockly.Arduino.definitions_.define_define_otto_led_matrix_init_din="#define OTTO_PIN_LED_CLK_PIN "+c;Blockly.Arduino.setups_.setup_otto_led_matrix_init="__otto.initLEDMatrix(OTTO_PIN_LED_DIN, OTTO_PIN_LED_CS_PIN, "+d+");";return""};Blockly.Arduino.lcd_i2c={};Blockly.Arduino.lcd_i2c_setting=function(){var a=this.getFieldValue("LCD_DIM"),b=this.getFieldValue("I2C_ADDRESS");Blockly.Arduino.definitions_.lcd_i2c_def="#include <LiquidCrystal_I2C.h>\n"+("LiquidCrystal_I2C lcd_i2c("+b+");\n");b=2;var c=16;switch(a){case "1602":c=16;b=2;break;case "2004":c=20,b=4}Blockly.Arduino.setups_.lcd_i2c_setup="lcd_i2c.begin("+c+", "+b+");";return""};
 Blockly.Arduino.lcd_i2c_light=function(){return"ON"==this.getFieldValue("BACKLIGHT_STATE")?"lcd_i2c.backlight();\n":"lcd_i2c.noBacklight();\n"};Blockly.Arduino.lcd_i2c_clear=function(){return"lcd_i2c.clear();\n"};Blockly.Arduino.lcd_i2c_set_cursor=function(){var a=Blockly.Arduino.valueToCode(this,"ROW",Blockly.Arduino.ORDER_NONE)||"0";return"lcd_i2c.setCursor("+(Blockly.Arduino.valueToCode(this,"COL",Blockly.Arduino.ORDER_NONE)||"0")+","+a+");\n"};
 Blockly.Arduino.lcd_i2c_put=function(){return"lcd_i2c.print("+Blockly.Arduino.valueToCode(this,"VALUE",Blockly.Arduino.ORDER_ATOMIC)+");\n"};
-Blockly.Arduino.array={};Blockly.Arduino.array_create_with=function(){for(var a=Array(this.itemCount_),b=0;b<this.itemCount_;b++)a[b]=Blockly.Arduino.valueToCode(this,"ADD"+b,Blockly.Arduino.ORDER_COMMA)||"null";a="{"+a.join(", ")+"}";return[a,Blockly.Arduino.ORDER_ATOMIC]};
-Blockly.Arduino.array_modify = function(block) {
-  var value_indice = Blockly.Arduino.valueToCode(block, 'indice', Blockly.Arduino.ORDER_ATOMIC)||"0";
-  var value_name = Blockly.Arduino.valueToCode(block, 'name', Blockly.Arduino.ORDER_ATOMIC);
-  var value_value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC);
-  var code = value_name+'['+value_indice+'] = '+value_value+';\n';
-  return code;
-};
-Blockly.Arduino.array_getIndex=function(){
-  var a=Blockly.Arduino.valueToCode(this,"AT",Blockly.Arduino.ORDER_UNARY_NEGATION)||"0",
-      b=Blockly.Arduino.valueToCode(this,"ITEM",Blockly.Arduino.ORDER_MEMBER)||"[]";
-  Blockly.isNumber(a)&&(a=parseFloat(a));
-  return[b+"["+a+"]",Blockly.Arduino.ORDER_MEMBER]
-};
-Blockly.Arduino.array_sizeof=function(){
-  var a=Blockly.Arduino.valueToCode(this,"ITEM",Blockly.Arduino.ORDER_MEMBER)||"[]";
-  Blockly.a=parseFloat(a);
-  return["sizeof("+a+")/sizeof("+a+"[0])",Blockly.Arduino.ORDER_MEMBER]
 
-};
-Blockly.Arduino.array_for = function() {
-  // For loop.
-  var variable0 = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
-  var argument0 = Blockly.Arduino.valueToCode(this, 'FROM',
-      Blockly.Arduino.ORDER_ASSIGNMENT) || '0';
-  var argument1 = Blockly.Arduino.valueToCode(this, 'TO',
-      Blockly.Arduino.ORDER_ASSIGNMENT) || '0';
-  var branch = Blockly.Arduino.statementToCode(this, 'DO');
-  if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
-    branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g,
-        '\'' + this.id + '\'') + branch;
-  }
-  var code;
-  if (argument0.match(/^-?\d+(\.\d+)?$/) &&
-      argument1.match(/^-?\d+(\.\d+)?$/)) {
-    // Both arguments are simple numbers.
-    var up = parseFloat(argument0) <= parseFloat(argument1);
-    code = 'for (' + variable0 + ' = ' + argument0 + '; ' +
-        variable0 + (up ? ' <= ' : ' >= ') + argument1 + '; ' +
-        variable0 + (up ? '++' : '--') + ') {\n' +
-        branch + '}\n';
-  } else {
-    code = '';
-    // Cache non-trivial values to variables to prevent repeated look-ups.
-    var startVar = argument0;
-    if (!argument0.match(/^\w+$/) && !argument0.match(/^-?\d+(\.\d+)?$/)) {
-      var startVar = Blockly.Arduino.variableDB_.getDistinctName(
-          variable0 + '_start', Blockly.Variables.NAME_TYPE);
-      code += 'int ' + startVar + ' = ' + argument0 + ';\n';
-    }
-    var endVar = argument1;
-    var endVar = Blockly.Arduino.variableDB_.getDistinctName(
-        variable0 + '_end', Blockly.Variables.NAME_TYPE);
-    code += 'int ' + endVar + "= (sizeof("+ argument1 +")/sizeof("+ argument1 + "[0]));\n";
-
-    code += 'for (' + variable0 + ' = ' + startVar + ';\n' +
-        '    (' + startVar + ' <= ' + endVar + ') ? ' +
-        variable0 + ' < ' + endVar + ' : ' +
-        variable0 + ' > ' + endVar + ';\n' +
-        '    ' + variable0 + ' += (' + startVar + ' <= ' + endVar +') ? 1 : -1) {\n' +
-        branch + '}\n';
-  }
-  return code;
-};
 
 Blockly.Arduino.mfrc522={};
 Blockly.Arduino.mfrc522_read=function(){Blockly.Arduino.definitions_.define_spi_include="#include <SPI.h>\n";Blockly.Arduino.definitions_.define_mfrc522_include="#include <MFRC522.h>\n";Blockly.Arduino.definitions_.define_mfrc522_inst="MFRC522 rfid(/*SS_PIN*/ 10, /*RST_PIN*/ UINT8_MAX);\n";Blockly.Arduino.definitions_.define_mfrc522_readid='\nString mfrc522_readID()\n{\n  String ret;\n  if (rfid.PICC_IsNewCardPresent() && rfid.PICC_ReadCardSerial())\n  {\n    MFRC522::PICC_Type piccType = rfid.PICC_GetType(rfid.uid.sak);\n\n    for (byte i = 0; i < rfid.uid.size; i++) {\n      ret += (rfid.uid.uidByte[i] < 0x10 ? "0" : "");\n      ret += String(rfid.uid.uidByte[i], HEX);\n    }\n  }\n  \n  // Halt PICC\n  rfid.PICC_HaltA();\n\n  // Stop encryption on PCD\n  rfid.PCD_StopCrypto1();\n  return ret;\n}\n';Blockly.Arduino.setups_.setup_mfrc522=
 "SPI.begin();\n  rfid.PCD_Init();\n";return["mfrc522_readID()",Blockly.Arduino.ORDER_ATOMIC]};
 
-Blockly.Arduino.procedures={};
-Blockly.Arduino.procedures_defreturn=function(a){
-	var b=Blockly.Arduino.nameDB_.getName(a.getFieldValue("NAME"),Blockly.PROCEDURE_CATEGORY_NAME),c="";
-	Blockly.Arduino.STATEMENT_PREFIX&&(c+=Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_PREFIX,a));
-	Blockly.Arduino.STATEMENT_SUFFIX&&(c+=Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX,a));
-	c&&(c=Blockly.Arduino.prefixLines(c,Blockly.Arduino.INDENT));
-	var d="";
-	Blockly.Arduino.INFINITE_LOOP_TRAP&&(d=Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.INFINITE_LOOP_TRAP,a),Blockly.Arduino.INDENT));
-	var e=Blockly.Arduino.statementToCode(a,"STACK"),f=Blockly.Arduino.valueToCode(a,"RETURN",Blockly.Arduino.ORDER_NONE)||"",g="";e&&f&&(g=c);f&&(f=Blockly.Arduino.INDENT+"return "+f+";\n");
-	for(var h=[],l=a.getVars(),k=0;k<l.length;k++)
-		h[k]=Blockly.Arduino.nameDB_.getName(l[k],Blockly.VARIABLE_CATEGORY_NAME);c="void "+b+"("+h.join(", ")+") {\n"+c+d+e+g+f+"}";
-	c=Blockly.Arduino.scrub_(a,c);
-	Blockly.Arduino.definitions_["%"+b]=c;
-	return null
-};
-Blockly.Arduino.procedures_defnoreturn=Blockly.Arduino.procedures_defreturn;
-Blockly.Arduino.procedures_callreturn=function(a){
-	for(var b=Blockly.Arduino.nameDB_.getName(a.getFieldValue("NAME"),Blockly.PROCEDURE_CATEGORY_NAME),c=[],d=a.getVars(),e=0;e<d.length;e++)
-		c[e]=Blockly.Arduino.valueToCode(a,"ARG"+e,Blockly.Arduino.ORDER_NONE)||"null";
-	return[b+"("+c.join(", ")+")",Blockly.Arduino.ORDER_FUNCTION_CALL]
-};
-Blockly.Arduino.procedures_callnoreturn=function(a){
-	return Blockly.Arduino.procedures_callreturn(a)[0]+";\n"
-};
-Blockly.Arduino.procedures_ifreturn=function(a){
-	var b="if ("+(Blockly.Arduino.valueToCode(a,"CONDITION",Blockly.Arduino.ORDER_NONE)||"false")+") {\n";
-	Blockly.Arduino.STATEMENT_SUFFIX&&(b+=Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX,a),Blockly.Arduino.INDENT));a.hasReturnValue_?(a=Blockly.Arduino.valueToCode(a,"VALUE",Blockly.Arduino.ORDER_NONE)||"null",b+=Blockly.Arduino.INDENT+"return "+a+";\n"):b+=Blockly.Arduino.INDENT+"return;\n";return b+"}\n"
-};
 
 Blockly.Arduino.interrupts_attach=function(){var a=this.getFieldValue("PIN"),b=this.getFieldValue("MODE"),c=Blockly.Arduino.statementToCode(this,"CONTENT");Blockly.Arduino.setups_["setup_interrupt_"+a]="attachInterrupt("+a+",interrupt_"+a+","+b+");";Blockly.Arduino.definitions_["define_interrupt_"+a]="void interrupt_"+a+"(){\n"+c+"}\n";return""};Blockly.Arduino.interrupts_detach=function(){return"detachInterrupt("+this.getFieldValue("PIN")+");\n"};Blockly.Arduino.interrupts=function(){return"interrupts();\n"};
-
 Blockly.Arduino.interrupts_no=function(){return"noInterrupts();\n"};Blockly.Arduino.mpr121={};Blockly.Arduino.mpr121_begin=function(){Blockly.Arduino.definitions_.define_wire="#include <Wire.h>";Blockly.Arduino.definitions_.define_mpr121="#include <Adafruit_MPR121.h>\nAdafruit_MPR121 cap = Adafruit_MPR121();\nuint16_t lasttouched = 0;\nuint16_t currtouched = 0;";Blockly.Arduino.setups_.setup_cap_begin="cap.begin(0x5A);\n";return"currtouched = cap.touched();\n"};
 Blockly.Arduino.mpr121_touched=function(){var a=Blockly.Arduino.valueToCode(this,"CH",Blockly.Arduino.ORDER_ATOMIC)||"0";Blockly.Arduino.definitions_.define_wire="#include <Wire.h>";Blockly.Arduino.definitions_.define_mpr121="#include <Adafruit_MPR121.h>\nAdafruit_MPR121 cap = Adafruit_MPR121();\nuint16_t lasttouched = 0;\nuint16_t currtouched = 0;";Blockly.Arduino.setups_.setup_cap_begin="cap.begin(0x5A);\n";return["(currtouched & _BV("+a+")) && !(lasttouched & _BV("+a+"))",Blockly.Arduino.ORDER_ATOMIC]};
 Blockly.Arduino.mpr121_released=function(){var a=Blockly.Arduino.valueToCode(this,"CH",Blockly.Arduino.ORDER_ATOMIC)||"0";Blockly.Arduino.definitions_.define_wire="#include <Wire.h>";Blockly.Arduino.definitions_.define_mpr121="#include <Adafruit_MPR121.h>\nAdafruit_MPR121 cap = Adafruit_MPR121();\nuint16_t lasttouched = 0;\nuint16_t currtouched = 0;";Blockly.Arduino.setups_.setup_cap_begin="cap.begin(0x5A);\n";return["!(currtouched & _BV("+a+")) && (lasttouched & _BV("+a+"))",Blockly.Arduino.ORDER_ATOMIC]};
@@ -899,119 +1019,6 @@ Blockly.Arduino.neopixel_show=function(){
   return"pixels.show();\n"
 };
 
-
-
-Blockly.Arduino.texts={};
-Blockly.Arduino.text=function(a){return[Blockly.Arduino.quote_(a.getFieldValue("TEXT")),Blockly.Arduino.ORDER_ATOMIC]};
-Blockly.Arduino.text_multiline=function(a){a=Blockly.Arduino.multiline_quote_(a.getFieldValue("TEXT"));var b=-1!=a.indexOf("+")?Blockly.Arduino.ORDER_ADDITION:Blockly.Arduino.ORDER_ATOMIC;return[a,b]};
-Blockly.Arduino.text.forceString_=function(a){return Blockly.Arduino.text.forceString_.strRegExp.test(a)?[a,Blockly.Arduino.ORDER_ATOMIC]:["String("+a+")",Blockly.Arduino.ORDER_FUNCTION_CALL]};Blockly.Arduino.text.forceString_.strRegExp=/^\s*'([^']|\\')*'\s*$/;
-
-Blockly.Arduino.text_join=function(a){
-	switch(a.itemCount_){
-		case 0:
-			return["''",Blockly.Arduino.ORDER_ATOMIC];
-		case 1:
-			return a=Blockly.Arduino.valueToCode(a,"ADD0",Blockly.Arduino.ORDER_NONE)||"''",Blockly.Arduino.text.forceString_(a);
-		default:
-			var code = "";
-			for(var c=0;c<a.itemCount_;c++) {
-				if ((c+1)<a.itemCount_)
-					code+="String("+Blockly.Arduino.valueToCode(a,"ADD"+c,Blockly.Arduino.ORDER_NONE)+")+";
-				else
-					code+="String("+Blockly.Arduino.valueToCode(a,"ADD"+c,Blockly.Arduino.ORDER_NONE)+")";
-			}
-			return[code,Blockly.Arduino.ORDER_FUNCTION_CALL]
-	}
-};
-
-Blockly.Arduino.text_append=function(a){var b=Blockly.Arduino.nameDB_.getName(a.getFieldValue("VAR"),Blockly.VARIABLE_CATEGORY_NAME);a=Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_NONE)||"''";return b+" += "+Blockly.Arduino.text.forceString_(a)[0]+";\n"};
-Blockly.Arduino.text_length=function(a){return[(Blockly.Arduino.valueToCode(a,"VALUE",Blockly.Arduino.ORDER_MEMBER)||"''")+".length()",Blockly.Arduino.ORDER_MEMBER]};
-Blockly.Arduino.text_isEmpty=function(a){return["!"+(Blockly.Arduino.valueToCode(a,"VALUE",Blockly.Arduino.ORDER_MEMBER)||"''")+".length()",Blockly.Arduino.ORDER_LOGICAL_NOT]};
-Blockly.Arduino.text_indexOf=function(a){var b="FIRST"==a.getFieldValue("END")?"indexOf":"lastIndexOf",c=Blockly.Arduino.valueToCode(a,"FIND",Blockly.Arduino.ORDER_NONE)||"''";b=(Blockly.Arduino.valueToCode(a,"VALUE",Blockly.Arduino.ORDER_MEMBER)||"''")+"."+b+"("+c+")";return a.workspace.options.oneBasedIndex?[b,Blockly.Arduino.ORDER_ADDITION]:[b,Blockly.Arduino.ORDER_FUNCTION_CALL]};
-Blockly.Arduino.text_charAt=function(a){
-	var b=a.getFieldValue("WHERE")||"FROM_START",c=Blockly.Arduino.valueToCode(a,"VALUE","RANDOM"==b?Blockly.Arduino.ORDER_NONE:Blockly.Arduino.ORDER_MEMBER)||"''";
-	switch(b){
-		case "FIRST":
-			return[c+".charAt(0)",Blockly.Arduino.ORDER_FUNCTION_CALL];
-		case "LAST":
-			return[c+".charAt("+c+".length()-1)",Blockly.Arduino.ORDER_FUNCTION_CALL];
-		case "FROM_START":
-			return a=Blockly.Arduino.getAdjusted(a,"AT"),[c+".charAt("+a+")",Blockly.Arduino.ORDER_FUNCTION_CALL];
-		case "FROM_END":
-			return a=Blockly.Arduino.getAdjusted(a,"AT",1,!0),[c+".charAt("+c+".length()"+a+")",Blockly.Arduino.ORDER_FUNCTION_CALL];
-		case "RANDOM":
-			return[Blockly.Arduino.provideFunction_("textRandomLetter",["char "+Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_+"(String text) {","  int x = random(text.length());","  return text[x];","}"])+"("+c+")",Blockly.Arduino.ORDER_FUNCTION_CALL]
-	}
-	throw Error("Unhandled option (text_charAt).");
-};
-Blockly.Arduino.text.getIndex_=function(a,b,c){return"FIRST"==b?"0":"FROM_END"==b?a+".length - 1 - "+c:"LAST"==b?a+".length - 1":c};
-Blockly.Arduino.text_getSubstring=function(a){
-	var b=a.getFieldValue("WHERE1"),c=a.getFieldValue("WHERE2"),d="FROM_END"!=b&&"LAST"!=b&&"FROM_END"!=c&&"LAST"!=c,e=Blockly.Arduino.valueToCode(a,"STRING",d?Blockly.Arduino.ORDER_MEMBER:Blockly.Arduino.ORDER_NONE)||"''";if("FIRST"==b&&"LAST"==c)
-		return[e,Blockly.Arduino.ORDER_NONE];
-	if(e.match(/^'?\w+'?$/)||d){
-		switch(b){
-			case "FROM_START":
-				d=Blockly.Arduino.valueToCode(a,"AT1",Blockly.Arduino.ORDER_NONE);
-				break;
-			case "FROM_END":
-				d=Blockly.Arduino.valueToCode(a,"AT1",Blockly.Arduino.ORDER_NONE);
-				d=e+".length() - "+d;
-				break;
-			case "FIRST":
-				d="1";
-				break;
-			default:
-				throw Error("Unhandled option (text_getSubstring).");
-		}
-		switch(c){
-			case "FROM_START":
-				a=Number(Blockly.Arduino.valueToCode(a,"AT2",Blockly.Arduino.ORDER_NONE))+1;
-				break;
-			case "FROM_END":
-				a=Blockly.Arduino.valueToCode(a,"AT2",Blockly.Arduino.ORDER_NONE);
-				a=e+".length() - "+a;
-				break;
-			case "LAST":
-				a=e+".length() - 1";
-				break;
-			default:
-				throw Error("Unhandled option (text_getSubstring).");
-		}
-		b=e+".substring("+d+", "+a+")"
-	}
-	else
-	{
-		d=Blockly.Arduino.getAdjusted(a,"AT1");
-		a=Blockly.Arduino.getAdjusted(a,"AT2");
-		var f=Blockly.Arduino.text.getIndex_,g={FIRST:"First",LAST:"Last",FROM_START:"FromStart",FROM_END:"FromEnd"};
-		b=Blockly.Arduino.provideFunction_("subsequence"+g[b]+g[c],["String "+Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_+"(sequence"+("FROM_END"==b||"FROM_START"==b?", at1":"")+("FROM_END"==c||"FROM_START"==c?", at2":"")+") {","  var start = "+f("sequence",b,"at1")+";","  var end = "+f("sequence",c,"at2")+" + 1;","  return sequence.substring(start, end);","}"])+"("+e+("FROM_END"==b||"FROM_START"==b?", "+d:"")+("FROM_END"==c||"FROM_START"==c?", "+a:"")+")"
-	}
-	return[b,Blockly.Arduino.ORDER_FUNCTION_CALL]
-};
-Blockly.Arduino.text_changeCase=function(a){
-	var CASE=a.getFieldValue("CASE");
-	var TEXT=Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_NONE);
-	if (CASE=="UPPERCASE")
-		var code = TEXT+".toUpperCase()";
-	else
-		var code = TEXT+".toLowerCase()";	
-	return [code,Blockly.Arduino.ORDER_FUNCTION_CALL]
-}
-Blockly.Arduino.variable_changeCase=function(a){
-	var CASE=a.getFieldValue("CASE");
-	var VAR=Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
-	if (CASE=="UPPERCASE")
-		var code = VAR+".toUpperCase();\n";
-	else
-		var code = VAR+".toLowerCase();\n";	
-	return code;
-}
-
-Blockly.Arduino.text_trim=function(a){var b={LEFT:".replace(/^[\\s\\xa0]+/, '')",RIGHT:".replace(/[\\s\\xa0]+$/, '')",BOTH:".trim()"}[a.getFieldValue("MODE")];return[(Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_MEMBER)||"''")+b,Blockly.Arduino.ORDER_FUNCTION_CALL]};Blockly.Arduino.text_print=function(a){return"window.alert("+(Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_NONE)||"''")+");\n"};
-Blockly.Arduino.text_prompt_ext=function(a){var b="window.prompt("+(a.getField("TEXT")?Blockly.Arduino.quote_(a.getFieldValue("TEXT")):Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_NONE)||"''")+")";"NUMBER"==a.getFieldValue("TYPE")&&(b="Number("+b+")");return[b,Blockly.Arduino.ORDER_FUNCTION_CALL]};Blockly.Arduino.text_prompt=Blockly.Arduino.text_prompt_ext;
-Blockly.Arduino.text_count=function(a){var b=Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_NONE)||"''";a=Blockly.Arduino.valueToCode(a,"SUB",Blockly.Arduino.ORDER_NONE)||"''";return[Blockly.Arduino.provideFunction_("textCount",["function "+Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_+"(haystack, needle) {","  if (needle.length === 0) {","    return haystack.length + 1;","  } else {","    return haystack.split(needle).length - 1;","  }","}"])+"("+b+", "+a+")",Blockly.Arduino.ORDER_FUNCTION_CALL]};
-Blockly.Arduino.text_replace=function(a){var b=Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_NONE)||"''",c=Blockly.Arduino.valueToCode(a,"FROM",Blockly.Arduino.ORDER_NONE)||"''";a=Blockly.Arduino.valueToCode(a,"TO",Blockly.Arduino.ORDER_NONE)||"''";return[Blockly.Arduino.provideFunction_("textReplace",["function "+Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_+"(haystack, needle, replacement) {",'  needle = needle.replace(/([-()\\[\\]{}+?*.$\\^|,:#<!\\\\])/g,"\\\\$1")',
-'                 .replace(/\\x08/g,"\\\\x08");',"  return haystack.replace(new RegExp(needle, 'g'), replacement);","}"])+"("+b+", "+c+", "+a+")",Blockly.Arduino.ORDER_FUNCTION_CALL]};Blockly.Arduino.text_reverse=function(a){return[(Blockly.Arduino.valueToCode(a,"TEXT",Blockly.Arduino.ORDER_MEMBER)||"''")+".split('').reverse().join('')",Blockly.Arduino.ORDER_FUNCTION_CALL]};Blockly.Arduino.variables={};Blockly.Arduino.variables_get=function(a){return[Blockly.Arduino.nameDB_.getName(a.getFieldValue("VAR"),Blockly.VARIABLE_CATEGORY_NAME),Blockly.Arduino.ORDER_ATOMIC]};
 
 Blockly.Arduino.adxl={};
 Blockly.Arduino.adxl345_setup=function(){Blockly.Arduino.definitions_.define_wire="#include <Wire.h>";Blockly.Arduino.definitions_.define_sensor_include="#include <adxl345_blockly.h>";Blockly.Arduino.definitions_.define_adxl_inst="ADXL345Block adxl345;";Blockly.Arduino.setups_.setup_adxl345="adxl345.begin();"};Blockly.Arduino.adxl345_read=function(){Blockly.Arduino.adxl345_setup();return["adxl345.get"+this.getFieldValue("AXIS")+"()",Blockly.Arduino.ORDER_ATOMIC]};
