@@ -1,4 +1,4 @@
-<category id="FRANCEFU" name="FRANCEFU">
+<category id="FRANCEFU" name="FRANCEFU" colour="290">
 	<category id="france11" name="io">
 	  <block type="esp32_digitalwrite">
 		<value name="pin">
