@@ -18,6 +18,18 @@
 			<field name="NUM">1</field>
 		  </block>
 		</value> 		
+	  </block>
+	  <block type="arduino_analogwrite">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">2</field>
+		  </block>
+		</value> 
+		<value name="val">
+		  <block type="math_number">
+			<field name="NUM">255</field>
+		  </block>
+		</value>
 	  </block>	  
 	  <block type="esp32_analogwrite">
 		<value name="pin">
@@ -50,147 +62,6 @@
 		  </block>
 		</value>
 	  </block>
-	</category>
-	<category id="france7" name="others">
-	  <block type="esp32_setuploop">
-		<statement name="setup">
-		</statement>
-	  </block>		
-	  <block type="close_powerdog">
-	  </block>
-	  <block type="customcode_comment">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">World Peace</field>
-		  </block>
-		</value>  
-	  </block> 
-	  <block type="customcode_comment_block">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">World Peace</field>
-		  </block>
-		</value>  
-	  </block>  
-	</category>	
-	<category id="france1" name="customcode">
-	  <block type="customcode_instruction5">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT">Hello</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_instruction5_get">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT">Hello</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_instruction6">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-	  </block> 
-	  <block type="customcode_head">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">&#35;include &#60;LWiFi.h&#62;</field>
-		  </block>
-		</value>  
-	  </block>   
-	  <block type="customcode_code">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">String Hello;</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_variable">
-		<value name="variable">
-		  <block type="text">
-			<field name="TEXT">String World</field>
-		  </block>
-		</value>
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">123</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">Peace()</field>
-		  </block>
-		</value>
-	  </block>   
-	  <block type="customcode_instruction1">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-	  </block> 
-	  <block type="customcode_instruction2">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text1">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text2">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-	  </block> 
-	  <block type="customcode_instruction3">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text1">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text2">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text3">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-	  </block> 
-	  <block type="customcode_instruction4">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text1">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-	  </block>	  
 	</category>
 	<sep id="category_sep"></sep>	
 	<category id="france9" name="buzzer">
@@ -709,541 +580,145 @@
 		</value>  
 	  </block>
     </category>
-	<category id="france7" name="servermodule">
-	  <block type="esp32_myfirmata">
-		<value name="ssid">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="password">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="mainpage">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<statement name="ExecuteCommand">
-		</statement>
-		<statement name="setup">
-		</statement>
-	  </block>	  
-	  <block type="esp32_myfirmata" id="99" inline="false">
-		<value name="ssid">
-		  <block type="text" id="100">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="password">
-		  <block type="text" id="101">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="mainpage">
-		  <block type="servermodule_javascript" id="102">
-			<statement name="js">
-			  <block type="image_create" id="103" inline="false">
-				<value name="id_">
-				  <block type="text" id="104">
+	<category id="france7" name="servermodule">  
+		<category id="france20" name="serveresp32"> 
+			  <block type="esp32_myfirmata" id="99" inline="false">
+				<value name="ssid">
+				  <block type="text" id="100">
 					<field name="TEXT"></field>
 				  </block>
 				</value>
-				<value name="url_">
-				  <block type="text" id="105">
-					<field name="TEXT">https://www.ocac.gov.tw/ocac_manager/File/PageUpload/i-taiwan/taiwan-01.jpg</field>
+				<value name="password">
+				  <block type="text" id="101">
+					<field name="TEXT"></field>
 				  </block>
 				</value>
-				<value name="width_">
-				  <block type="math_number" id="106">
-					<field name="NUM">200</field>
+				<value name="mainpage">
+				  <block type="servermodule_javascript" id="102">
+					<statement name="js">
+					  <block type="image_create" id="103" inline="false">
+						<value name="id_">
+						  <block type="text" id="104">
+							<field name="TEXT"></field>
+						  </block>
+						</value>
+						<value name="url_">
+						  <block type="text" id="105">
+							<field name="TEXT">https://www.ocac.gov.tw/ocac_manager/File/PageUpload/i-taiwan/taiwan-01.jpg</field>
+						  </block>
+						</value>
+						<value name="width_">
+						  <block type="math_number" id="106">
+							<field name="NUM">200</field>
+						  </block>
+						</value>
+						<value name="height_">
+						  <block type="math_number" id="107">
+							<field name="NUM">300</field>
+						  </block>
+						</value>
+						<value name="left_">
+						  <block type="math_number" id="108">
+							<field name="NUM">0</field>
+						  </block>
+						</value>
+						<value name="top_">
+						  <block type="math_number" id="109">
+							<field name="NUM">0</field>
+						  </block>
+						</value>
+						<value name="zindex_">
+						  <block type="math_number" id="110">
+							<field name="NUM">999</field>
+						  </block>
+						</value>
+						<value name="display_">
+						  <block type="logic_boolean" id="111">
+							<field name="BOOL">TRUE</field>
+						  </block>
+						</value>
+					  </block>
+					</statement>
 				  </block>
 				</value>
-				<value name="height_">
-				  <block type="math_number" id="107">
-					<field name="NUM">300</field>
-				  </block>
-				</value>
-				<value name="left_">
-				  <block type="math_number" id="108">
-					<field name="NUM">0</field>
-				  </block>
-				</value>
-				<value name="top_">
-				  <block type="math_number" id="109">
-					<field name="NUM">0</field>
-				  </block>
-				</value>
-				<value name="zindex_">
-				  <block type="math_number" id="110">
-					<field name="NUM">999</field>
-				  </block>
-				</value>
-				<value name="display_">
-				  <block type="logic_boolean" id="111">
-					<field name="BOOL">TRUE</field>
-				  </block>
-				</value>
-			  </block>
-			</statement>
-		  </block>
-		</value>
-		<statement name="ExecuteCommand">
-		  <block type="customcode_comment" id="112" inline="true">
-			<value name="text">
-			  <block type="text" id="113">
-				<field name="TEXT">http://192.168.xxx.xxx/?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9</field>
-			  </block>
-			</value>
-			<next>
-			  <block type="controls_if" id="114" inline="false">
-				<mutation else="1"></mutation>
-				<value name="IF0">
-				  <block type="servermodule_cmd" id="115" inline="true">
+				<statement name="ExecuteCommand">
+				  <block type="customcode_comment" id="112" inline="true">
 					<value name="text">
-					  <block type="text" id="116">
-						<field name="TEXT">led</field>
-					  </block>
-					</value>
-				  </block>
-				</value>
-				<statement name="DO0">
-				  <block type="servermodule_pinwrite" id="119" inline="true">
-					<value name="pin">
-					  <block type="servermodule_parameter_variable" id="120">
-						<field name="parameter">P1</field>
-						<field name="type">toInt()</field>
-					  </block>
-					</value>
-					<value name="val">
-					  <block type="servermodule_parameter_variable" id="121">
-						<field name="parameter">P2</field>
-						<field name="type">toInt()</field>
+					  <block type="text" id="113">
+						<field name="TEXT">http://192.168.xxx.xxx/?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9</field>
 					  </block>
 					</value>
 					<next>
-					  <block type="controls_if" id="122" inline="false">
+					  <block type="controls_if" id="114" inline="false">
 						<mutation else="1"></mutation>
 						<value name="IF0">
-						  <block type="logic_compare" id="123" inline="true">
-							<field name="OP">EQ</field>
-							<value name="A">
-							  <block type="servermodule_parameter_get" id="124">
-								<field name="parameter">P2</field>
-							  </block>
-							</value>
-							<value name="B">
-							  <block type="text" id="125">
-								<field name="TEXT">1</field>
+						  <block type="servermodule_cmd" id="115" inline="true">
+							<value name="text">
+							  <block type="text" id="116">
+								<field name="TEXT">led</field>
 							  </block>
 							</value>
 						  </block>
 						</value>
 						<statement name="DO0">
-						  <block type="servermodule_feedback" id="126" inline="true">
-							<value name="text">
-							  <block type="text" id="127">
-								<field name="TEXT">on</field>
+						  <block type="servermodule_pinwrite" id="119" inline="true">
+							<value name="pin">
+							  <block type="servermodule_parameter_variable" id="120">
+								<field name="parameter">P1</field>
+								<field name="type">toInt()</field>
 							  </block>
 							</value>
-						  </block>
-						</statement>
-						<statement name="ELSE">
-						  <block type="servermodule_feedback" id="128" inline="true">
-							<value name="text">
-							  <block type="text" id="129">
-								<field name="TEXT">off</field>
-							  </block>
-							</value>
-						  </block>
-						</statement>
-					  </block>
-					</next>
-				  </block>
-				</statement>
-				<statement name="ELSE">
-				  <block type="servermodule_feedback" id="130" inline="true">
-					<value name="text">
-					  <block type="text" id="131">
-						<field name="TEXT">Command is not defined.</field>
-					  </block>
-					</value>
-				  </block>
-				</statement>
-			  </block>
-			</next>
-		  </block>
-		</statement>
-		<statement name="setup">
-		  <block type="linenotify_esp32_no" id="132" inline="false">
-			<value name="linenotify_token">
-			  <block type="text" id="133">
-				<field name="TEXT"></field>
-			  </block>
-			</value>
-			<value name="linenotify_msg">
-			  <block type="linenotify_text" id="134" inline="false">
-				<value name="value_text">
-				  <block type="linkit_wifi_ip_address" id="135"></block>
-				</value>
-			  </block>
-			</value>
-		  </block>
-		</statement>
-	  </block>
-	  <block type="linkit7697_myfirmata" id="99" inline="false">
-		<value name="ssid">
-		  <block type="text" id="100">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="password">
-		  <block type="text" id="101">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="mainpage">
-		  <block type="servermodule_javascript" id="102">
-			<statement name="js">
-			  <block type="image_create" id="103" inline="false">
-				<value name="id_">
-				  <block type="text" id="104">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="url_">
-				  <block type="text" id="105">
-					<field name="TEXT">https://www.ocac.gov.tw/ocac_manager/File/PageUpload/i-taiwan/taiwan-01.jpg</field>
-				  </block>
-				</value>
-				<value name="width_">
-				  <block type="math_number" id="106">
-					<field name="NUM">200</field>
-				  </block>
-				</value>
-				<value name="height_">
-				  <block type="math_number" id="107">
-					<field name="NUM">300</field>
-				  </block>
-				</value>
-				<value name="left_">
-				  <block type="math_number" id="108">
-					<field name="NUM">0</field>
-				  </block>
-				</value>
-				<value name="top_">
-				  <block type="math_number" id="109">
-					<field name="NUM">0</field>
-				  </block>
-				</value>
-				<value name="zindex_">
-				  <block type="math_number" id="110">
-					<field name="NUM">999</field>
-				  </block>
-				</value>
-				<value name="display_">
-				  <block type="logic_boolean" id="111">
-					<field name="BOOL">TRUE</field>
-				  </block>
-				</value>
-			  </block>
-			</statement>
-		  </block>
-		</value>
-		<statement name="ExecuteCommand">
-		  <block type="customcode_comment" id="112" inline="true">
-			<value name="text">
-			  <block type="text" id="113">
-				<field name="TEXT">http://192.168.xxx.xxx/?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9</field>
-			  </block>
-			</value>
-			<next>
-			  <block type="controls_if" id="114" inline="false">
-				<mutation else="1"></mutation>
-				<value name="IF0">
-				  <block type="servermodule_cmd" id="115" inline="true">
-					<value name="text">
-					  <block type="text" id="116">
-						<field name="TEXT">led</field>
-					  </block>
-					</value>
-				  </block>
-				</value>
-				<statement name="DO0">
-				  <block type="servermodule_pinwrite" id="119" inline="true">
-					<value name="pin">
-					  <block type="servermodule_parameter_variable" id="120">
-						<field name="parameter">P1</field>
-						<field name="type">toInt()</field>
-					  </block>
-					</value>
-					<value name="val">
-					  <block type="servermodule_parameter_variable" id="121">
-						<field name="parameter">P2</field>
-						<field name="type">toInt()</field>
-					  </block>
-					</value>
-					<next>
-					  <block type="controls_if" id="122" inline="false">
-						<mutation else="1"></mutation>
-						<value name="IF0">
-						  <block type="logic_compare" id="123" inline="true">
-							<field name="OP">EQ</field>
-							<value name="A">
-							  <block type="servermodule_parameter_get" id="124">
-								<field name="parameter">P2</field>
-							  </block>
-							</value>
-							<value name="B">
-							  <block type="text" id="125">
-								<field name="TEXT">1</field>
-							  </block>
-							</value>
-						  </block>
-						</value>
-						<statement name="DO0">
-						  <block type="servermodule_feedback" id="126" inline="true">
-							<value name="text">
-							  <block type="text" id="127">
-								<field name="TEXT">on</field>
-							  </block>
-							</value>
-						  </block>
-						</statement>
-						<statement name="ELSE">
-						  <block type="servermodule_feedback" id="128" inline="true">
-							<value name="text">
-							  <block type="text" id="129">
-								<field name="TEXT">off</field>
-							  </block>
-							</value>
-						  </block>
-						</statement>
-					  </block>
-					</next>
-				  </block>
-				</statement>
-				<statement name="ELSE">
-				  <block type="servermodule_feedback" id="130" inline="true">
-					<value name="text">
-					  <block type="text" id="131">
-						<field name="TEXT">Command is not defined.</field>
-					  </block>
-					</value>
-				  </block>
-				</statement>
-			  </block>
-			</next>
-		  </block>
-		</statement>
-		<statement name="setup">
-		  <block type="linenotify_http" id="34" inline="true">
-			<value name="linenotify_token">
-			  <block type="text" id="35">
-				<field name="TEXT"></field>
-			  </block>
-			</value>
-			<value name="linenotify_msg">
-			  <block type="linkit_wifi_ip_address" id="36"></block>
-			</value>
-		  </block>		
-		</statement>
-	  </block>
-	  <block type="servermodule_cmd">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="servermodule_parameter">
-	  </block>
-	  <block type="servermodule_parameter_variable">
-	  </block>
-	  <block type="servermodule_parameter_variable_urldecode">
-	  </block>
-	  <block type="servermodule_parameter_get">
-	  </block>	  
-	  <block type="servermodule_parameter_set">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="servermodule_feedback">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>		  
-	  <block type="servermodule_parameter_set_address1">
-		<value name="cmd">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P1">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P2">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>		
-	  </block>	  	  
-	  <block type="servermodule_parameter_set_address">
-		<value name="cmd">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P1">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P2">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P3">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P4">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P5">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P6">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P7">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P8">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P9">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>		
-	  </block>	  
-    </category>
-	<category id="france7" name="bluetoothmodule">
-	  <block type="esp32_myfirmata_bluetooth">
-		<value name="baudrate">
-		  <block type="math_number">
-			<field name="NUM">9600</field>
-		  </block>
-		</value>
-		<value name="blename">
-		  <block type="text">
-			<field name="TEXT">ESP32 BLE</field>
-		  </block>
-		</value>
-		<statement name="ExecuteCommand">
-		</statement>
-		<statement name="setup">
-		</statement>
-	  </block>	
-	  <block type="esp32_myfirmata_bluetooth" id="232" inline="false">
-		<value name="baudrate">
-		  <block type="math_number" id="233">
-			<field name="NUM">9600</field>
-		  </block>
-		</value>
-		<value name="blename">
-		  <block type="text" id="234">
-			<field name="TEXT">ESP32 BLE</field>
-		  </block>
-		</value>
-		<statement name="ExecuteCommand">
-		  <block type="customcode_comment" id="235" inline="true">
-			<value name="text">
-			  <block type="text" id="236">
-				<field name="TEXT">?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9</field>
-			  </block>
-			</value>
-			<next>
-			  <block type="controls_if" id="237" inline="false">
-				<mutation else="1"></mutation>
-				<value name="IF0">
-				  <block type="servermodule_cmd" id="238" inline="true">
-					<value name="text">
-					  <block type="text" id="239">
-						<field name="TEXT">led</field>
-					  </block>
-					</value>
-				  </block>
-				</value>
-				<statement name="DO0">
-				  <block type="servermodule_pinwrite" id="242" inline="true">
-					<value name="pin">
-					  <block type="servermodule_parameter_variable" id="243">
-						<field name="parameter">P1</field>
-						<field name="type">toInt()</field>
-					  </block>
-					</value>
-					<value name="val">
-					  <block type="servermodule_parameter_variable" id="244">
-						<field name="parameter">P2</field>
-						<field name="type">toInt()</field>
-					  </block>
-					</value>
-					<next>
-					  <block type="controls_if" id="245" inline="false">
-						<mutation else="1"></mutation>
-						<value name="IF0">
-						  <block type="logic_compare" id="246" inline="true">
-							<field name="OP">EQ</field>
-							<value name="A">
-							  <block type="servermodule_parameter_variable" id="247">
+							<value name="val">
+							  <block type="servermodule_parameter_variable" id="121">
 								<field name="parameter">P2</field>
 								<field name="type">toInt()</field>
 							  </block>
 							</value>
-							<value name="B">
-							  <block type="math_number" id="248">
-								<field name="NUM">1</field>
+							<next>
+							  <block type="controls_if" id="122" inline="false">
+								<mutation else="1"></mutation>
+								<value name="IF0">
+								  <block type="logic_compare" id="123" inline="true">
+									<field name="OP">EQ</field>
+									<value name="A">
+									  <block type="servermodule_parameter_get" id="124">
+										<field name="parameter">P2</field>
+									  </block>
+									</value>
+									<value name="B">
+									  <block type="text" id="125">
+										<field name="TEXT">1</field>
+									  </block>
+									</value>
+								  </block>
+								</value>
+								<statement name="DO0">
+								  <block type="servermodule_feedback" id="126" inline="true">
+									<value name="text">
+									  <block type="text" id="127">
+										<field name="TEXT">on</field>
+									  </block>
+									</value>
+								  </block>
+								</statement>
+								<statement name="ELSE">
+								  <block type="servermodule_feedback" id="128" inline="true">
+									<value name="text">
+									  <block type="text" id="129">
+										<field name="TEXT">off</field>
+									  </block>
+									</value>
+								  </block>
+								</statement>
 							  </block>
-							</value>
-						  </block>
-						</value>
-						<statement name="DO0">
-						  <block type="servermodule_bluetooth_feedback_newline" id="249" inline="true">
-							<value name="text">
-							  <block type="text" id="250">
-								<field name="TEXT">on</field>
-							  </block>
-							</value>
+							</next>
 						  </block>
 						</statement>
 						<statement name="ELSE">
-						  <block type="servermodule_bluetooth_feedback_newline" id="251" inline="true">
+						  <block type="servermodule_feedback" id="130" inline="true">
 							<value name="text">
-							  <block type="text" id="252">
-								<field name="TEXT">off</field>
+							  <block type="text" id="131">
+								<field name="TEXT">Command is not defined.</field>
 							  </block>
 							</value>
 						  </block>
@@ -1252,153 +727,711 @@
 					</next>
 				  </block>
 				</statement>
-				<statement name="ELSE">
-				  <block type="servermodule_bluetooth_feedback_newline" id="253" inline="true">
-					<value name="text">
-					  <block type="text" id="254">
-						<field name="TEXT">undefined</field>
+				<statement name="setup">
+				  <block type="linenotify_esp32_no" id="132" inline="false">
+					<value name="linenotify_token">
+					  <block type="text" id="133">
+						<field name="TEXT"></field>
+					  </block>
+					</value>
+					<value name="linenotify_msg">
+					  <block type="linenotify_text" id="134" inline="false">
+						<value name="value_text">
+						  <block type="linkit_wifi_ip_address" id="135"></block>
+						</value>
 					  </block>
 					</value>
 				  </block>
 				</statement>
 			  </block>
-			</next>
-		  </block>
-		</statement>
-	  </block>
-	  <block type="servermodule_bluetooth_feedback">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="servermodule_bluetooth_feedback_newline">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="servermodule_cmd">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="servermodule_parameter">
-	  </block>
-	  <block type="servermodule_parameter_variable">
-	  </block>
-	  <block type="servermodule_parameter_get">
-	  </block>	  
-	  <block type="servermodule_parameter_set">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>	  
-	  <block type="servermodule_parameter_set_address1">
-		<value name="cmd">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P1">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P2">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>		
-	  </block>	  	  
-	  <block type="servermodule_parameter_set_address">
-		<value name="cmd">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P1">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P2">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P3">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P4">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P5">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P6">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P7">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P8">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="P9">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>		
-	  </block>	 
-    </category>
-	<category id="france7" name="bluetooth">
-	<block type="esp32_setuploop">
-		<statement name="setup">
-		  <block type="esp32_bluetooth_initial" id="4" inline="true">
+		</category>  
+		  
+		  
+		<category id="france21" name="serveresp32cam">   
+			  <block type="esp32_cam_myfirmata" id="99" inline="false">
+				<value name="ssid">
+				  <block type="text" id="100">
+					<field name="TEXT">teacher</field>
+				  </block>
+				</value>
+				<value name="password">
+				  <block type="text" id="101">
+					<field name="TEXT">87654321</field>
+				  </block>
+				</value>
+				<value name="ssid_ap">
+				  <block type="text" id="100">
+					<field name="TEXT">esp32-cam</field>
+				  </block>
+				</value>
+				<value name="password_ap">
+				  <block type="text" id="101">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>
+				<field name="framesize">CIF</field>				
+				<value name="mainpage">
+				  <block type="servermodule_javascript" id="102">
+					<statement name="js">
+					  <block type="image_create" id="103" inline="false">
+						<value name="id_">
+						  <block type="text" id="104">
+							<field name="TEXT"></field>
+						  </block>
+						</value>
+						<value name="url_">
+						  <block type="text" id="105">
+							<field name="TEXT">https://www.ocac.gov.tw/ocac_manager/File/PageUpload/i-taiwan/taiwan-01.jpg</field>
+						  </block>
+						</value>
+						<value name="width_">
+						  <block type="math_number" id="106">
+							<field name="NUM">200</field>
+						  </block>
+						</value>
+						<value name="height_">
+						  <block type="math_number" id="107">
+							<field name="NUM">300</field>
+						  </block>
+						</value>
+						<value name="left_">
+						  <block type="math_number" id="108">
+							<field name="NUM">0</field>
+						  </block>
+						</value>
+						<value name="top_">
+						  <block type="math_number" id="109">
+							<field name="NUM">0</field>
+						  </block>
+						</value>
+						<value name="zindex_">
+						  <block type="math_number" id="110">
+							<field name="NUM">999</field>
+						  </block>
+						</value>
+						<value name="display_">
+						  <block type="logic_boolean" id="111">
+							<field name="BOOL">TRUE</field>
+						  </block>
+						</value>
+					  </block>
+					</statement>
+				  </block>
+				</value>
+				<statement name="ExecuteCommand">
+				  <block type="customcode_comment" id="112" inline="true">
+					<value name="text">
+					  <block type="text" id="113">
+						<field name="TEXT">http://192.168.xxx.xxx/?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9</field>
+					  </block>
+					</value>
+					<next>
+					  <block type="controls_if" id="114" inline="false">
+						<mutation else="1"></mutation>
+						<value name="IF0">
+						  <block type="servermodule_cmd" id="115" inline="true">
+							<value name="text">
+							  <block type="text" id="116">
+								<field name="TEXT">led</field>
+							  </block>
+							</value>
+						  </block>
+						</value>
+						<statement name="DO0">
+						  <block type="servermodule_pinwrite" id="119" inline="true">
+							<value name="pin">
+							  <block type="servermodule_parameter_variable" id="120">
+								<field name="parameter">P1</field>
+								<field name="type">toInt()</field>
+							  </block>
+							</value>
+							<value name="val">
+							  <block type="servermodule_parameter_variable" id="121">
+								<field name="parameter">P2</field>
+								<field name="type">toInt()</field>
+							  </block>
+							</value>
+							<next>
+							  <block type="controls_if" id="122" inline="false">
+								<mutation else="1"></mutation>
+								<value name="IF0">
+								  <block type="logic_compare" id="123" inline="true">
+									<field name="OP">EQ</field>
+									<value name="A">
+									  <block type="servermodule_parameter_get" id="124">
+										<field name="parameter">P2</field>
+									  </block>
+									</value>
+									<value name="B">
+									  <block type="text" id="125">
+										<field name="TEXT">1</field>
+									  </block>
+									</value>
+								  </block>
+								</value>
+								<statement name="DO0">
+								  <block type="servermodule_feedback" id="126" inline="true">
+									<value name="text">
+									  <block type="text" id="127">
+										<field name="TEXT">on</field>
+									  </block>
+									</value>
+								  </block>
+								</statement>
+								<statement name="ELSE">
+								  <block type="servermodule_feedback" id="128" inline="true">
+									<value name="text">
+									  <block type="text" id="129">
+										<field name="TEXT">off</field>
+									  </block>
+									</value>
+								  </block>
+								</statement>
+							  </block>
+							</next>
+						  </block>
+						</statement>
+						<statement name="ELSE">
+						  <block type="servermodule_feedback" id="130" inline="true">
+							<value name="text">
+							  <block type="text" id="131">
+								<field name="TEXT">Command is not defined.</field>
+							  </block>
+							</value>
+						  </block>
+						</statement>
+					  </block>
+					</next>
+				  </block>
+				</statement>
+				<statement name="setup">
+				  <block type="linenotify_http" id="34" inline="true">
+					<value name="linenotify_token">
+					  <block type="text" id="35">
+						<field name="TEXT"></field>
+					  </block>
+					</value>
+					<value name="linenotify_msg">
+					  <block type="linkit_wifi_ip_address" id="36"></block>
+					</value>
+				  </block>		
+				</statement>
+			  </block>	  
+		</category>	
+
+		
+		<category id="france22" name="serverlinkit7697"> 	  
+			  <block type="linkit7697_myfirmata" id="99" inline="false">
+				<value name="ssid">
+				  <block type="text" id="100">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="password">
+				  <block type="text" id="101">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="mainpage">
+				  <block type="servermodule_javascript" id="102">
+					<statement name="js">
+					  <block type="image_create" id="103" inline="false">
+						<value name="id_">
+						  <block type="text" id="104">
+							<field name="TEXT"></field>
+						  </block>
+						</value>
+						<value name="url_">
+						  <block type="text" id="105">
+							<field name="TEXT">https://www.ocac.gov.tw/ocac_manager/File/PageUpload/i-taiwan/taiwan-01.jpg</field>
+						  </block>
+						</value>
+						<value name="width_">
+						  <block type="math_number" id="106">
+							<field name="NUM">200</field>
+						  </block>
+						</value>
+						<value name="height_">
+						  <block type="math_number" id="107">
+							<field name="NUM">300</field>
+						  </block>
+						</value>
+						<value name="left_">
+						  <block type="math_number" id="108">
+							<field name="NUM">0</field>
+						  </block>
+						</value>
+						<value name="top_">
+						  <block type="math_number" id="109">
+							<field name="NUM">0</field>
+						  </block>
+						</value>
+						<value name="zindex_">
+						  <block type="math_number" id="110">
+							<field name="NUM">999</field>
+						  </block>
+						</value>
+						<value name="display_">
+						  <block type="logic_boolean" id="111">
+							<field name="BOOL">TRUE</field>
+						  </block>
+						</value>
+					  </block>
+					</statement>
+				  </block>
+				</value>
+				<statement name="ExecuteCommand">
+				  <block type="customcode_comment" id="112" inline="true">
+					<value name="text">
+					  <block type="text" id="113">
+						<field name="TEXT">http://192.168.xxx.xxx/?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9</field>
+					  </block>
+					</value>
+					<next>
+					  <block type="controls_if" id="114" inline="false">
+						<mutation else="1"></mutation>
+						<value name="IF0">
+						  <block type="servermodule_cmd" id="115" inline="true">
+							<value name="text">
+							  <block type="text" id="116">
+								<field name="TEXT">led</field>
+							  </block>
+							</value>
+						  </block>
+						</value>
+						<statement name="DO0">
+						  <block type="servermodule_pinwrite" id="119" inline="true">
+							<value name="pin">
+							  <block type="servermodule_parameter_variable" id="120">
+								<field name="parameter">P1</field>
+								<field name="type">toInt()</field>
+							  </block>
+							</value>
+							<value name="val">
+							  <block type="servermodule_parameter_variable" id="121">
+								<field name="parameter">P2</field>
+								<field name="type">toInt()</field>
+							  </block>
+							</value>
+							<next>
+							  <block type="controls_if" id="122" inline="false">
+								<mutation else="1"></mutation>
+								<value name="IF0">
+								  <block type="logic_compare" id="123" inline="true">
+									<field name="OP">EQ</field>
+									<value name="A">
+									  <block type="servermodule_parameter_get" id="124">
+										<field name="parameter">P2</field>
+									  </block>
+									</value>
+									<value name="B">
+									  <block type="text" id="125">
+										<field name="TEXT">1</field>
+									  </block>
+									</value>
+								  </block>
+								</value>
+								<statement name="DO0">
+								  <block type="servermodule_feedback" id="126" inline="true">
+									<value name="text">
+									  <block type="text" id="127">
+										<field name="TEXT">on</field>
+									  </block>
+									</value>
+								  </block>
+								</statement>
+								<statement name="ELSE">
+								  <block type="servermodule_feedback" id="128" inline="true">
+									<value name="text">
+									  <block type="text" id="129">
+										<field name="TEXT">off</field>
+									  </block>
+									</value>
+								  </block>
+								</statement>
+							  </block>
+							</next>
+						  </block>
+						</statement>
+						<statement name="ELSE">
+						  <block type="servermodule_feedback" id="130" inline="true">
+							<value name="text">
+							  <block type="text" id="131">
+								<field name="TEXT">Command is not defined.</field>
+							  </block>
+							</value>
+						  </block>
+						</statement>
+					  </block>
+					</next>
+				  </block>
+				</statement>
+				<statement name="setup">
+				  <block type="linenotify_http" id="34" inline="true">
+					<value name="linenotify_token">
+					  <block type="text" id="35">
+						<field name="TEXT"></field>
+					  </block>
+					</value>
+					<value name="linenotify_msg">
+					  <block type="linkit_wifi_ip_address" id="36"></block>
+					</value>
+				  </block>		
+				</statement>
+			  </block>
+		</category>	  
+			  
+		<category id="france23" name="servercommand"> 			  
+			  <block type="servermodule_cmd">
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			  </block>
+			  <block type="servermodule_parameter">
+			  </block>
+			  <block type="servermodule_parameter_variable">
+			  </block>
+			  <block type="servermodule_parameter_variable_urldecode">
+			  </block>
+			  <block type="servermodule_parameter_get">
+			  </block>	  
+			  <block type="servermodule_parameter_set">
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			  </block>
+			  <block type="servermodule_feedback">
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			  </block>
+			  <block type="servermodule_parameter_set_address2">
+				<value name="cmd">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>		
+			  </block>	
+			  <block type="servermodule_parameter_set_address1">
+				<value name="cmd">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P2">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>		
+			  </block>	  	  
+			  <block type="servermodule_parameter_set_address">
+				<value name="cmd">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P2">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P3">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P4">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P5">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P6">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P7">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P8">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P9">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>		
+			  </block>	  
+		</category>	  
+		 <sep id="category_sep"></sep>
+		<category id="france7" name="bluetoothmodule">
+		  <block type="esp32_myfirmata_bluetooth" id="232" inline="false">
 			<value name="baudrate">
-			  <block type="math_number" id="5">
+			  <block type="math_number" id="233">
 				<field name="NUM">9600</field>
 			  </block>
 			</value>
 			<value name="blename">
-			  <block type="text" id="6">
+			  <block type="text" id="234">
 				<field name="TEXT">ESP32 BLE</field>
 			  </block>
 			</value>
+			<statement name="ExecuteCommand">
+			  <block type="customcode_comment" id="235" inline="true">
+				<value name="text">
+				  <block type="text" id="236">
+					<field name="TEXT">?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9</field>
+				  </block>
+				</value>
+				<next>
+				  <block type="controls_if" id="237" inline="false">
+					<mutation else="1"></mutation>
+					<value name="IF0">
+					  <block type="servermodule_cmd" id="238" inline="true">
+						<value name="text">
+						  <block type="text" id="239">
+							<field name="TEXT">led</field>
+						  </block>
+						</value>
+					  </block>
+					</value>
+					<statement name="DO0">
+					  <block type="servermodule_pinwrite" id="242" inline="true">
+						<value name="pin">
+						  <block type="servermodule_parameter_variable" id="243">
+							<field name="parameter">P1</field>
+							<field name="type">toInt()</field>
+						  </block>
+						</value>
+						<value name="val">
+						  <block type="servermodule_parameter_variable" id="244">
+							<field name="parameter">P2</field>
+							<field name="type">toInt()</field>
+						  </block>
+						</value>
+						<next>
+						  <block type="controls_if" id="245" inline="false">
+							<mutation else="1"></mutation>
+							<value name="IF0">
+							  <block type="logic_compare" id="246" inline="true">
+								<field name="OP">EQ</field>
+								<value name="A">
+								  <block type="servermodule_parameter_variable" id="247">
+									<field name="parameter">P2</field>
+									<field name="type">toInt()</field>
+								  </block>
+								</value>
+								<value name="B">
+								  <block type="math_number" id="248">
+									<field name="NUM">1</field>
+								  </block>
+								</value>
+							  </block>
+							</value>
+							<statement name="DO0">
+							  <block type="servermodule_bluetooth_feedback_newline" id="249" inline="true">
+								<value name="text">
+								  <block type="text" id="250">
+									<field name="TEXT">on</field>
+								  </block>
+								</value>
+							  </block>
+							</statement>
+							<statement name="ELSE">
+							  <block type="servermodule_bluetooth_feedback_newline" id="251" inline="true">
+								<value name="text">
+								  <block type="text" id="252">
+									<field name="TEXT">off</field>
+								  </block>
+								</value>
+							  </block>
+							</statement>
+						  </block>
+						</next>
+					  </block>
+					</statement>
+					<statement name="ELSE">
+					  <block type="servermodule_bluetooth_feedback_newline" id="253" inline="true">
+						<value name="text">
+						  <block type="text" id="254">
+							<field name="TEXT">undefined</field>
+						  </block>
+						</value>
+					  </block>
+					</statement>
+				  </block>
+				</next>
+			  </block>
+			</statement>
 		  </block>
-		</statement>
-		<statement name="loop">
-		  <block type="esp32_bluetooth_readdata" id="8">
-			<next>
-			  <block type="serial_println" id="9" inline="false">
-				<value name="CONTENT">
-				  <block type="esp32_bluetooth_getdata" id="10"></block>
+		 
+			<block type="esp32_setuploop">
+				<statement name="setup">
+				  <block type="esp32_bluetooth_initial" id="4" inline="true">
+					<value name="baudrate">
+					  <block type="math_number" id="5">
+						<field name="NUM">9600</field>
+					  </block>
+					</value>
+					<value name="blename">
+					  <block type="text" id="6">
+						<field name="TEXT">ESP32 BLE</field>
+					  </block>
+					</value>
+				  </block>
+				</statement>
+				<statement name="loop">
+				  <block type="esp32_bluetooth_readdata" id="8">
+					<next>
+					  <block type="serial_println" id="9" inline="false">
+						<value name="CONTENT">
+						  <block type="esp32_bluetooth_getdata" id="10"></block>
+						</value>
+					  </block>
+					</next>
+				  </block>
+				</statement>
+			</block>		  
+		</category>
+		<category id="france7" name="bluetooth">
+			  <block type="servermodule_bluetooth_feedback">
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
 				</value>
 			  </block>
-			</next>
-		  </block>
-		</statement>
-	</block>
-    </category>	  
+			  <block type="servermodule_bluetooth_feedback_newline">
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			  </block>
+			  <block type="servermodule_cmd">
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			  </block>
+			  <block type="servermodule_parameter">
+			  </block>
+			  <block type="servermodule_parameter_variable">
+			  </block>
+			  <block type="servermodule_parameter_get">
+			  </block>	  
+			  <block type="servermodule_parameter_set">
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			  </block>
+			  <block type="servermodule_parameter_set_address2">
+				<value name="cmd">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>		
+			  </block>				  
+			  <block type="servermodule_parameter_set_address1">
+				<value name="cmd">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P2">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>		
+			  </block>	  	  
+			  <block type="servermodule_parameter_set_address">
+				<value name="cmd">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P2">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P3">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P4">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P5">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P6">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P7">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P8">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P9">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>		
+			  </block>	 
+		</category>	  			  
+    </category>
+	<sep id="category_sep"></sep>
     <category id="france3" name="line">	
 	  <block type="linenotify_esp32_no">
 		<value name="linenotify_token">
@@ -1633,4 +1666,146 @@
 		</value>
 	  </block>
     </category>	
+	<sep id="category_sep"></sep>
+	<category id="france7" name="others">
+	  <block type="esp32_setuploop">
+		<statement name="setup">
+		</statement>
+	  </block>		
+	  <block type="close_powerdog">
+	  </block>
+	  <block type="customcode_comment">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">World Peace</field>
+		  </block>
+		</value>  
+	  </block> 
+	  <block type="customcode_comment_block">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">World Peace</field>
+		  </block>
+		</value>  
+	  </block>  
+	</category>	
+	<category id="france1" name="customcode">
+	  <block type="customcode_instruction5">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT">Hello</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_instruction5_get">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT">Hello</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_instruction6">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 
+	  <block type="customcode_head">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">&#35;include &#60;LWiFi.h&#62;</field>
+		  </block>
+		</value>  
+	  </block>   
+	  <block type="customcode_code">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">String Hello;</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_variable">
+		<value name="variable">
+		  <block type="text">
+			<field name="TEXT">String World</field>
+		  </block>
+		</value>
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">123</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">Peace()</field>
+		  </block>
+		</value>
+	  </block>   
+	  <block type="customcode_instruction1">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 
+	  <block type="customcode_instruction2">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text1">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text2">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 
+	  <block type="customcode_instruction3">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text1">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text2">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text3">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 
+	  <block type="customcode_instruction4">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text1">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+	  </block>	  
+	</category>	
 </category>
