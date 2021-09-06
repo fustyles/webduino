@@ -365,15 +365,15 @@ Blockly.Blocks['linenotify_esp32'] = {
 
 Blockly.Blocks['linenotify_esp32_no'] = {
   init: function() {
-  this.appendValueInput("linenotify_token")
-      .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.FRANCE5_HEAD_LINE_SHOW)
-      .appendField(Blockly.Msg.ESP32_LINE_TOKEN_SHOW);  
-  this.appendValueInput("linenotify_msg")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ESP32_LINE_NOTIFY_SHOW);
+	this.appendValueInput("linenotify_token")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.FRANCE5_HEAD_LINE_SHOW)
+		.appendField(Blockly.Msg.ESP32_LINE_TOKEN_SHOW);  
+	this.appendValueInput("linenotify_msg")
+		.setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_LINE_NOTIFY_SHOW);
 	this.setInputsInline(true);		  
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -815,8 +815,7 @@ Blockly.Blocks['esp32_myfirmata_bluetooth'] = {
 Blockly.Blocks['servermodule_cmd'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_CMD_SHOW)
-        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_EQUAL_SHOW);
+        .appendField(Blockly.Msg.SERVERMODULE_CMD_SHOW);
     this.appendValueInput("text")
         .setCheck(null);   
     this.setInputsInline(true);

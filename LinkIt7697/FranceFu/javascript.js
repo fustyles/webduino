@@ -441,7 +441,7 @@ Blockly.Arduino['linenotify_esp32_br'] = function (block) {
 Blockly.Arduino['linenotify_http'] = function (block) {
   Blockly.Arduino.definitions_['define_httpclient'] ='WiFiClient client;\n';
   Blockly.Arduino.definitions_['linenotify_http'] ='\n'+
-													'String LineNotify_http_get(String token, String message) {\n'+
+													'void LineNotify_http_get(String token, String message) {\n'+
 													'  String getAll="", getBody="";\n'+
 													'  message.replace("%","%25");\n'+
 													'  message.replace(" ","%20");\n'+
@@ -999,7 +999,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = '+pass+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_apssid='const char* apssid = '+ssid_ap+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_appass='const char* appassword = '+pass_ap+';';  
-  Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);\nWiFiClient client;\n';
+  Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);\n';
   Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",P1="",P2="",P3="",P4="",P5="",P6="",P7="",P8="",P9="";\nbyte ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;';
 
   var statements_setup = Blockly.Arduino.statementToCode(block, 'setup');
@@ -1211,50 +1211,79 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'void getCommand() {\n'+
 			'  Command="";cmd="";P1="";P2="";P3="";P4="";P5="";P6="";P7="";P8="";P9="";\n'+
 			'  ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;\n'+
-			'  client = server.available();\n'+
-			'  if (client) { \n'+
+			'  WiFiClient client_cam = server.available();\n'+
+			'  if (client_cam) { \n'+
 			'    String currentLine = "";\n'+
-			'    while (client.connected()) {\n'+
-			'      if (client.available()) {\n'+
-			'        char c = client.read(); \n'+
+			'    while (client_cam.connected()) {\n'+
+			'      if (client_cam.available()) {\n'+
+			'        char c = client_cam.read(); \n'+
 			'        if (c==\'?\') ReceiveState=1;\n'+
 			'        if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) ReceiveState=0;\n'+
 			'        if (ReceiveState==1) {\n'+
-			'          Command=Command+String(c);\n'+
-			'          if (c==\'=\') cmdState=0;\n'+
-			'          if (c==\';\') strState++;\n'+
-			'          if ((cmdState==1)&&((c!=\'?\')||(questionstate==1))) cmd=cmd+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==1)&&((c!=\'=\')||(equalstate==1))) P1=P1+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==2)&&(c!=\';\')) P2=P2+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==3)&&(c!=\';\')) P3=P3+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==4)&&(c!=\';\')) P4=P4+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==5)&&(c!=\';\')) P5=P5+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==6)&&(c!=\';\')) P6=P6+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==7)&&(c!=\';\')) P7=P7+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==8)&&(c!=\';\')) P8=P8+String(c);\n'+
-			'          if ((cmdState==0)&&(strState>=9)&&((c!=\';\')||(semicolonstate==1))) P9=P9+String(c);\n'+
-			'          if (c==\'?\') questionstate=1;\n'+
-			'          if (c==\'=\') equalstate=1;\n'+
-			'          if ((strState>=9)&&(c==\';\')) semicolonstate=1;\n'+
+			'            Command=Command+String(c);\n'+
+			'            if (c==\'=\') cmdState=0;\n'+
+			'            if (c==\';\') strState++;\n'+
+			'            if ((cmdState==1)&&((c!=\'?\')||(questionstate==1))) cmd=cmd+String(c);\n'+
+			'            if ((cmdState==0)&&(strState==1)&&((c!=\'=\')||(equalstate==1))) P1=P1+String(c);\n'+
+			'            if ((cmdState==0)&&(strState==2)&&(c!=\';\')) P2=P2+String(c);\n'+
+			'            if ((cmdState==0)&&(strState==3)&&(c!=\';\')) P3=P3+String(c);\n'+
+			'            if ((cmdState==0)&&(strState==4)&&(c!=\';\')) P4=P4+String(c);\n'+
+			'            if ((cmdState==0)&&(strState==5)&&(c!=\';\')) P5=P5+String(c);\n'+
+			'            if ((cmdState==0)&&(strState==6)&&(c!=\';\')) P6=P6+String(c);\n'+
+			'            if ((cmdState==0)&&(strState==7)&&(c!=\';\')) P7=P7+String(c);\n'+
+			'            if ((cmdState==0)&&(strState==8)&&(c!=\';\')) P8=P8+String(c);\n'+
+			'            if ((cmdState==0)&&(strState>=9)&&((c!=\';\')||(semicolonstate==1))) P9=P9+String(c);\n'+
+			'            if (c==\'?\') questionstate=1;\n'+
+			'            if (c==\'=\') equalstate=1;\n'+
+			'           if ((strState>=9)&&(c==\';\')) semicolonstate=1;\n'+
 			'        }\n'+
 			'        if (c == \'\\n\') {\n'+
-			'          if (currentLine.length() == 0) {\n'+
+			'            if (currentLine.length() == 0) {\n'+
 			'   	        if (cmd=="getstill") {\n'+
-			'   	            getStill();\n'+
-			'   	        }\n'+
-			'   	        else {\n'+
-			'   	        	client.println("HTTP/1.1 200 OK");\n'+
-			'   	        	client.println("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");\n'+
-			'   	        	client.println("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");\n'+
-			'   	        	client.println("Content-Type: text/html; charset=utf-8");\n'+
-			'   	        	client.println("Access-Control-Allow-Origin: *");\n'+
-			'   	        	client.println("X-Content-Type-Options: nosniff");\n'+
-			'   	        	client.println();\n'+
+			'     	            camera_fb_t * fb = NULL;\n'+
+			'     	            fb = esp_camera_fb_get();\n'+  
+			'   	            if(!fb) {\n'+
+			'   	                Serial.println("Camera capture failed");\n'+
+			'   	                delay(1000);\n'+
+			'   	                ESP.restart();\n'+
+			'   	            }\n'+
+			'   	            client_cam.println("HTTP/1.1 200 OK");\n'+
+			'   	            client_cam.println("Access-Control-Allow-Origin: *");\n'+            
+			'   	            client_cam.println("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");\n'+
+			'   	            client_cam.println("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");\n'+
+			'   	            client_cam.println("Content-Type: image/jpeg");\n'+
+			'   	            client_cam.println("Content-Disposition: form-data; name=\\\"imageFile\\\"; filename=\\\"picture.jpg\\\"");\n'+ 
+			'   	            client_cam.println("Content-Length: " + String(fb->len));\n'+             
+			'   	            client_cam.println("Connection: close");\n'+
+			'   	            client_cam.println();\n'+
+			'   	            uint8_t *fbBuf = fb->buf;\n'+
+			'   	            size_t fbLen = fb->len;\n'+
+			'   	            for (size_t n=0;n<fbLen;n=n+1024) {\n'+
+			'   	                if (n+1024<fbLen) {\n'+
+			'   	                client_cam.write(fbBuf, 1024);\n'+
+			'   	                fbBuf += 1024;\n'+
+			'   	            }\n'+
+			'   	            else if (fbLen%1024>0) {\n'+
+			'   	                size_t remainder = fbLen%1024;\n'+
+			'   	                client_cam.write(fbBuf, remainder);\n'+
+			'   	              }\n'+
+			'   	            }\n'+
+			'   	            esp_camera_fb_return(fb);\n'+
+			'   	            pinMode(4, OUTPUT);\n'+
+			'   	            digitalWrite(4, LOW);\n'+ 
+			'   	        } else {\n'+
+			'   	        	client_cam.println("HTTP/1.1 200 OK");\n'+
+			'   	        	client_cam.println("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");\n'+
+			'   	        	client_cam.println("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");\n'+
+			'   	        	client_cam.println("Content-Type: text/html; charset=utf-8");\n'+
+			'   	        	client_cam.println("Access-Control-Allow-Origin: *");\n'+
+			'   	        	client_cam.println("X-Content-Type-Options: nosniff");\n'+
+			'   	        	client_cam.println();\n'+
 			'   	        	if (Feedback=="")\n'+
-			'   	        		client.println('+mainpage+');\n'+
+			'   	        		client_cam.println('+mainpage+');\n'+
 			'   	        	else\n'+
-			'   	        		client.println(Feedback);\n'+
-			'   	        	client.println();\n'+
+			'   	        		client_cam.println(Feedback);\n'+
+			'   	        	client_cam.println();\n'+
 			'   	        }\n'+
 			'   	        Feedback="";\n'+
 			'   	        break;\n'+
@@ -1267,9 +1296,9 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'      }\n'+
 			'      if ((currentLine.indexOf("/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
 			'          if (Command.indexOf("stop")!=-1) {\n'+
-			'            client.println();\n'+
-			'            client.println();\n'+
-			'            client.stop();\n'+
+			'            client_cam.println();\n'+
+			'            client_cam.println();\n'+
+			'            client_cam.stop();\n'+
 			'          }\n'+
 			'          currentLine="";\n'+
 			'          Feedback="";\n'+
@@ -1278,47 +1307,12 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'      }\n'+
 			'    }\n'+
 			'    delay(1);\n'+
-			'    client.stop();\n'+
+			'    client_cam.stop();\n'+
 			'  }\n'+
 			'}';
-
-	Blockly.Arduino.definitions_.define_getStill = '\n'+			
-			'void getStill() {\n'+
-			'  camera_fb_t * fb = NULL;\n'+
-			'  fb = esp_camera_fb_get();\n'+  
-			'  if(!fb) {\n'+
-			'    Serial.println("Camera capture failed");\n'+
-			'    delay(1000);\n'+
-			'    ESP.restart();\n'+
-			'  }\n'+
-			'  client.println("HTTP/1.1 200 OK");\n'+
-			'  client.println("Access-Control-Allow-Origin: *");\n'+            
-			'  client.println("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");\n'+
-			'  client.println("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");\n'+
-			'  client.println("Content-Type: image/jpeg");\n'+
-			'  client.println("Content-Disposition: form-data; name=\\\"imageFile\\\"; filename=\\\"picture.jpg\\\"");\n'+ 
-			'  client.println("Content-Length: " + String(fb->len));\n'+             
-			'  client.println("Connection: close");\n'+
-			'  client.println();\n'+
-			'  uint8_t *fbBuf = fb->buf;\n'+
-			'  size_t fbLen = fb->len;\n'+
-			'  for (size_t n=0;n<fbLen;n=n+1024) {\n'+
-			'    if (n+1024<fbLen) {\n'+
-			'      client.write(fbBuf, 1024);\n'+
-			'      fbBuf += 1024;\n'+
-			'    }\n'+
-			'    else if (fbLen%1024>0) {\n'+
-			'      size_t remainder = fbLen%1024;\n'+
-			'      client.write(fbBuf, remainder);\n'+
-			'    }\n'+
-			'  }\n'+
-			'  esp_camera_fb_return(fb);\n'+
-			'  pinMode(4, OUTPUT);\n'+
-			'  digitalWrite(4, LOW);\n'+              
-			'}\n';			
-
-  code = '\n  getCommand();\n'+ statements_loop +'\n';
-  return code;
+			
+    code = '\n  getCommand();\n'+ statements_loop +'\n';
+    return code;
 };
 
 Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {

@@ -9,7 +9,7 @@
 <category><name>serveresp32</name><replace>ESP32網頁模組</replace></category>
 <category><name>serveresp32cam</name><replace>ESP32-CAM網頁模組</replace></category>
 <category><name>serverlinkit7697</name><replace>LinkIt7697網頁模組</replace></category>
-<category><name>servercommand</name><replace>網頁模組指令</replace></category>
+<category><name>servercommand</name><replace>模組指令參數</replace></category>
 <category><name>bluetoothmodule</name><replace>藍芽模組</replace></category>
 <category><name>bluetooth</name><replace>藍芽模組指令</replace></category>
 <category><name>mlx90614</name><replace>MLX9061X</replace></category>
