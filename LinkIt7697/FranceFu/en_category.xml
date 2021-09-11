@@ -16,7 +16,7 @@
 <category><name>DHT11</name><replace>DHT11</replace></category>
 <category><name>buzzer</name><replace>Buzzer</replace></category>
 <category><name>mpu9250</name><replace>MPU9250</replace></category>
-<category><name>ws2816</name><replace>WS2816</replace></category>
+<category><name>ws2816</name><replace>WS2812</replace></category>
 <category><name>motordriveric</name><replace>Motor Driver IC</replace></category>
 <category><name>ultrasonicsensor</name><replace>Ultrasonic Sensor</replace></category>
 <category><name>colorsensor</name><replace>Color Sensor</replace></category>
