@@ -1,5 +1,4 @@
 // Inject Blockly.
-
 const workspace = Blockly.inject('blocklyDiv', {
     toolbox: toolboxCategories,
 });
