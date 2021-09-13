@@ -1,6 +1,6 @@
 // Inject Blockly.<br>
 const workspace = Blockly.inject('blocklyDiv', {<br>
-    toolbox: toolboxCategories,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;toolbox: toolboxCategories,<br>
 });<br><br>
 
 // Initialize plugin.<br>
