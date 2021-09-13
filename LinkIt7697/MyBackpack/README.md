@@ -8,4 +8,5 @@ const myBackpack = new MyBackpack(workspace);<br><br>
 
 // Initialize plugin.<br>
 const myBackpack = new MyBackpack(workspace, "category_functions" , true);<br>
-//Parameter 3 --> true: insert after "category_functions", false :insert before "category_functions"
+//Parameter 2 --> Category ID<br>
+//Parameter 3 --> true: insertAfter, false :insertBefore
