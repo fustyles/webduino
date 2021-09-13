@@ -1,3 +1,5 @@
+<script src="mybackpack.js"></script><br><br>
+
 // Inject Blockly.<br>
 const workspace = Blockly.inject('blocklyDiv', {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;toolbox: toolboxCategories,<br>
