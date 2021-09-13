@@ -7,4 +7,4 @@ const workspace = Blockly.inject('blocklyDiv', {<br>
 const myBackpack = new MyBackpack(workspace);<br><br>
 
 // Initialize plugin.<br>
-const myBackpack = new MyBackpack(workspace, "category_functions" , true);    //true(insertAfter), false(insertBefore)
+const myBackpack = new MyBackpack(workspace, "category_functions" , true);&nbsp;&nbsp;&nbsp;&nbsp;//true (insert After "category_functions"), false (insert Before "category_functions")
