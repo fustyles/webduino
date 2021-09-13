@@ -6,5 +6,5 @@ const workspace = Blockly.inject('blocklyDiv', {<br>
 // Initialize plugin. (appendChild)<br>
 const myBackpack = new MyBackpack(workspace);<br><br>
 
-// Initialize plugin.  (parameter 3 -> true: inserAfter, false: insertBefore, null: appendChild)<br>
+// Initialize plugin.  (parameter 3 -> true: inserAfter, false: insertBefore)<br>
 const myBackpack = new MyBackpack(workspace, "category_functions" , true);   
