@@ -34,7 +34,7 @@ const myBackpack = new MyBackpack(workspace, "category_functions" , true);
 'use strict';
 
 Blockly.Msg["MYBACKPACK_ADD"] = "Copy block to my backpack";
-Blockly.Msg["MYBACKPACK_REMOVE"] = "Remove from my backpack";
+Blockly.Msg["MYBACKPACK_REMOVE"] = "Remove block from my backpack";
 Blockly.Msg["MYBACKPACK_REMOVE_ALL"] = "Remove all blocks from my backpack";
 Blockly.Msg["MYBACKPACK_REMOVE_ALL_TITLE"] = "Are you sure that remove all my backpack?";
 Blockly.Msg["MYBACKPACK_IMPORT_FILE"] = "Copy blocks to my backpack from backpack file";
