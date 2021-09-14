@@ -61,9 +61,11 @@ class MyBackpack {
 						break;
 					}
 				}
+			} 
+			else {
+				if (xml.hasChildNodes())
+					xml.insertBefore(xmlDoc.documentElement, xml.childNodes[0]);
 			}
-			else
-				xml.appendChild(xmlDoc.documentElement);
 			
 			this.workspace_.updateToolbox(xml);
 		}
