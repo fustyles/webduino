@@ -7,7 +7,7 @@
 /**
  * @fileoverview My Backpack.
  * @author https://www.facebook.com/francefu/ (ChungYi Fu)
- * @Update 9/14/2021 09:30 (Taiwan Standard Time)
+ * @Update 9/14/2021 10:30 (Taiwan Standard Time)
  */
  
  /*
@@ -86,6 +86,8 @@ class MyBackpack {
 			else {
 				if (xml.hasChildNodes())
 					xml.insertBefore(xmlDoc.documentElement, xml.childNodes[0]);
+				else
+					xml.appendChild(xmlDoc.documentElement);
 			}
 			
 			this.workspace_.updateToolbox(xml);
