@@ -1,0 +1,10 @@
+Blockly.Msg.MYBACKPACK_ADD = "新增到暂存积木";
+Blockly.Msg.MYBACKPACK_REMOVE = "移除从暂存积木";
+Blockly.Msg.MYBACKPACK_REMOVE_ALL = "移除所有暂存积木";
+Blockly.Msg.MYBACKPACK_REMOVE_ALL_TITLE = "你确定要移除所有暂存积木？";
+Blockly.Msg.MYBACKPACK_IMPORT_FILE = "汇入暂存积木档至暂存积木";
+Blockly.Msg.MYBACKPACK_IMPORT_WORKSPACE = "汇入工作区积木至暂存积木";
+Blockly.Msg.MYBACKPACK_IMPORT_WORKSPACE_TITLE = "你确定要从工作区积木汇入暂存积木？";
+Blockly.Msg.MYBACKPACK_WORKSPACE_EXPORT_FILE = "汇出工作区积木至暂存积木档";
+Blockly.Msg.MYBACKPACK_MYBACKPACK_EXPORT_FILE = "汇出所有暂存积木至暂存积木档";
+Blockly.Msg.MYBACKPACK_TITLE = "暂存积木";
