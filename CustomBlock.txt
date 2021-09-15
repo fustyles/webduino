@@ -11,8 +11,10 @@ Code.customTab.$__remove__('自訂積木設定網址');
 
 Webbit教育版 & KebbixWebbit 新增自訂積木
 https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json
-Chrome瀏覽器console指令新增自訂積木
+Chrome瀏覽器console指令：新增自訂積木
 Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
+Chrome瀏覽器console指令：移除自訂積木
+Code.customTab.$__remove__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
 
 暫存積木 (適用教育版)
