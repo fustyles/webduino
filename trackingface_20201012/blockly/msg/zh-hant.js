@@ -1,1 +1,1 @@
-MSG.catTrackingFace = "追蹤人臉(Tracking)";
+MSG.catTrackingFace = "人臉追蹤(Tracking)";
