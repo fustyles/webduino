@@ -1,10 +1,10 @@
 Blockly.Msg.ADDCUSTOMBLOCKS_SHOW = "Custom Blocks URL";
-Blockly.Msg.ADDCUSTOMBLOCKS_ADD_SHOW = "add one";
-Blockly.Msg.ADDCUSTOMBLOCKS_REMOVE_SHOW = "remove one";
-Blockly.Msg.ADDCUSTOMBLOCKS_ADDALL_SHOW = "add old blocks";
-Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEALL_SHOW = "remove old blocks";
-Blockly.Msg.ADDCUSTOMBLOCKS_ADDAINEW_SHOW = "add new blocks"; 
-Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEAINEW_SHOW = "remove new blocks";
+Blockly.Msg.ADDCUSTOMBLOCKS_ADD_SHOW = "add one custom block";
+Blockly.Msg.ADDCUSTOMBLOCKS_REMOVE_SHOW = "remove one custom block";
+Blockly.Msg.ADDCUSTOMBLOCKS_ADDALL_SHOW = "add old custom blocks";
+Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEALL_SHOW = "remove all custom blocks";
+Blockly.Msg.ADDCUSTOMBLOCKS_ADDAINEW_SHOW = "add new custom blocks"; 
+Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEAINEW_SHOW = "remove new custom blocks";
 Blockly.Msg.ADDCUSTOMBLOCKS_INSTASCAN_SHOW = "[link] QR Code(instascan.js)";
 Blockly.Msg.ADDCUSTOMBLOCKS_TESSERACT_SHOW = "[link] Text Recognition(tesseract.js)";
 Blockly.Msg.ADDCUSTOMBLOCKS_TRACKINGFACE_SHOW = "[link] Track face(tracking.js)";
