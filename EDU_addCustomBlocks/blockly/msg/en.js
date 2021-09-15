@@ -1,1 +1,1 @@
-MSG.catMyBlocks = "Custom Blocks";
+MSG.catMyBlocks = "Custom Blocks Manager";
