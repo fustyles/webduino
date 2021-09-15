@@ -1,10 +1,10 @@
 ﻿Blockly.Msg.ADDCUSTOMBLOCKS_SHOW = "自訂積木 網址";
-Blockly.Msg.ADDCUSTOMBLOCKS_ADD_SHOW = "新增 單一積木";
-Blockly.Msg.ADDCUSTOMBLOCKS_REMOVE_SHOW = "移除 單一積木";
-Blockly.Msg.ADDCUSTOMBLOCKS_ADDALL_SHOW = "新增 所有積木";
-Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEALL_SHOW = "移除 所有舊版積木";
-Blockly.Msg.ADDCUSTOMBLOCKS_ADDAINEW_SHOW = "新增 所有新版積木"; 
-Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEAINEW_SHOW = "移除 所有新版積木";
+Blockly.Msg.ADDCUSTOMBLOCKS_ADD_SHOW = "新增 一個自訂積木";
+Blockly.Msg.ADDCUSTOMBLOCKS_REMOVE_SHOW = "移除 一個自訂積木";
+Blockly.Msg.ADDCUSTOMBLOCKS_ADDALL_SHOW = "新增 所有舊版自訂積木";
+Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEALL_SHOW = "移除 所有自訂積木";
+Blockly.Msg.ADDCUSTOMBLOCKS_ADDAINEW_SHOW = "新增 所有新版自訂積木"; 
+Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEAINEW_SHOW = "移除 所有新版自訂積木";
 Blockly.Msg.ADDCUSTOMBLOCKS_INSTASCAN_SHOW = "[取得連結] QR Code辨識(instascan.js)";
 Blockly.Msg.ADDCUSTOMBLOCKS_TESSERACT_SHOW = "[取得連結] 文字辨識(tesseract.js)";
 Blockly.Msg.ADDCUSTOMBLOCKS_TRACKINGFACE_SHOW = "[取得連結] 臉部追蹤(tracking.js)";
