@@ -1,1 +1,1 @@
-MSG.catTrackingFace = "追踪人脸(Tracking)"
+MSG.catTrackingFace = "人脸追踪(Tracking)"
