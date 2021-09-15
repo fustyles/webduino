@@ -1,10 +1,10 @@
 Blockly.Msg.ADDCUSTOMBLOCKS_SHOW = "自订积木 网址";
-Blockly.Msg.ADDCUSTOMBLOCKS_ADD_SHOW = "新增 单一积木";
-Blockly.Msg.ADDCUSTOMBLOCKS_REMOVE_SHOW = "移除 单一积木";
-Blockly.Msg.ADDCUSTOMBLOCKS_ADDALL_SHOW = "新增 所有积木";
-Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEALL_SHOW = "移除 所有旧版积木";
-Blockly.Msg.ADDCUSTOMBLOCKS_ADDAINEW_SHOW = "新增 所有新版积木"; 
-Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEAINEW_SHOW = "移除 所有新版积木";
+Blockly.Msg.ADDCUSTOMBLOCKS_ADD_SHOW = "新增 一个自订积木";
+Blockly.Msg.ADDCUSTOMBLOCKS_REMOVE_SHOW = "移除 一个自订积木";
+Blockly.Msg.ADDCUSTOMBLOCKS_ADDALL_SHOW = "新增 所有旧版自订积木";
+Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEALL_SHOW = "移除 所有自订积木";
+Blockly.Msg.ADDCUSTOMBLOCKS_ADDAINEW_SHOW = "新增 所有新版自订积木"; 
+Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEAINEW_SHOW = "移除 所有新版自订积木";
 Blockly.Msg.ADDCUSTOMBLOCKS_INSTASCAN_SHOW = "[取得连结] QR Code辨识(instascan.js)";
 Blockly.Msg.ADDCUSTOMBLOCKS_TESSERACT_SHOW = "[取得连结] 文字辨识(tesseract.js)";
 Blockly.Msg.ADDCUSTOMBLOCKS_TRACKINGFACE_SHOW = "[取得连结] 脸部追踪(tracking.js)";
