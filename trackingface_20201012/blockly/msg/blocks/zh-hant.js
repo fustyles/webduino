@@ -1,6 +1,6 @@
-Blockly.Msg.TRACKINGFACE_SHOW = "追蹤人臉 (Tracking)";
-Blockly.Msg.TRACKINGFACE_SET_SHOW = "追蹤人臉 (Tracking) 視窗設定";
-Blockly.Msg.TRACKINGFACE_GET_SHOW = "追蹤人臉 (Tracking) 取得";
+Blockly.Msg.TRACKINGFACE_SHOW = "人臉追蹤 (Tracking)";
+Blockly.Msg.TRACKINGFACE_SET_SHOW = "人臉追蹤 (Tracking) 視窗設定";
+Blockly.Msg.TRACKINGFACE_GET_SHOW = "人臉追蹤 (Tracking) 取得";
 Blockly.Msg.TRACKINGFACE_WIDTH_SHOW = "寬度";
 Blockly.Msg.TRACKINGFACE_HEIGHT_SHOW = "高度";
 Blockly.Msg.TRACKINGFACE_DISPLAY_SHOW = "顯示";
@@ -17,5 +17,5 @@ Blockly.Msg.TRACKINGFACE_FACING_SHOW = "鏡頭";
 Blockly.Msg.TRACKINGFACE_FACING_FRONT_SHOW = "前置";
 Blockly.Msg.TRACKINGFACE_FACING_BACK_SHOW = "後置";
 Blockly.Msg.TRACKINGFACE_SRC_SHOW = "串流網址";
-Blockly.Msg.TRACKINGFACE_VIDEO_LEFT_SHOW = "追蹤人臉 (Tracking) 畫面 靠左距離";
+Blockly.Msg.TRACKINGFACE_VIDEO_LEFT_SHOW = "人臉追蹤 (Tracking) 畫面 靠左距離";
 Blockly.Msg.TRACKINGFACE_VIDEO_TOP_SHOW = "靠上距離";
