@@ -24,3 +24,5 @@ Blockly.Msg.ADDCUSTOMBLOCKS_TELEGRAM_SHOW = "[取得連結] Telegram";
 Blockly.Msg.ADDCUSTOMBLOCKS_LINEBOT_SHOW = "[取得連結] LineBot";
 Blockly.Msg.ADDCUSTOMBLOCKS_TELLO_SHOW = "[取得連結] Tello";
 Blockly.Msg.ADDCUSTOMBLOCKS_SPREADSHEETSQL_SHOW = "[取得連結] Google試算表SQL查詢";
+Blockly.Msg.ADDCUSTOMBLOCKS_WEBUSB_SHOW = "[取得連結] WEBUSB";
+Blockly.Msg.ADDCUSTOMBLOCKS_MYBACKPACK_SHOW = "[取得連結] 暫存積木";
