@@ -1,1 +1,1 @@
-MSG.faceapidetect = "脸部侦测 (face-api)";
+MSG.faceapidetect = "人臉侦测 (face-api)";
