@@ -1,1 +1,1 @@
-﻿MSG.catMyBlocks = "自订积木";
+﻿MSG.catMyBlocks = "自订积木管理";
