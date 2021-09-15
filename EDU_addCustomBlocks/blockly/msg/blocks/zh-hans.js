@@ -25,4 +25,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_LINEBOT_SHOW = "[取得连结] LineBot";
 Blockly.Msg.ADDCUSTOMBLOCKS_TELLO_SHOW = "[取得连结] Tello";
 Blockly.Msg.ADDCUSTOMBLOCKS_SPREADSHEETSQL_SHOW = "[取得连结] Google试算表SQL查询";
 Blockly.Msg.ADDCUSTOMBLOCKS_WEBUSB_SHOW = "[取得连结] WEBUSB";
-Blockly.Msg.ADDCUSTOMBLOCKS_MYBACKPACK_SHOW = "[取得连结] 暂存积木";
+Blockly.Msg.ADDCUSTOMBLOCKS_MYBACKPACK_SHOW = "[取得连结] 暂存积木(教育版)";
