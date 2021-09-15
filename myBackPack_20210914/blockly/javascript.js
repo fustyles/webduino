@@ -15,9 +15,7 @@ Blockly.myBackpack.Blocks=[];
 Blockly.myBackpack.flyoutCategory=function(a){
 	var c=[];
 	var b = Blockly.myBackpack.Blocks;
-	console.log(b);
 	for (var i=0;i<b.length;i++) {
-		console.log(b[i]);
 		c.push(b[i]);
 	}
 	return c
