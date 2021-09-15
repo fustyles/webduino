@@ -15,6 +15,9 @@ Chrome瀏覽器console指令新增自訂積木
 Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
 
+暫存積木
+https://fustyles.github.io/webduino/myBackPack_20210914/blockly.json
+          
 WebUSB
 https://fustyles.github.io/webduino/WebUSB_20210813/blockly.json
 WebUSB韌體  (適用https://webbit.webduino.io/blockly/)
