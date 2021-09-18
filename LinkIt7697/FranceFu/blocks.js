@@ -299,15 +299,15 @@ Blockly.Blocks['tcp_https_esp32'] = {
     this.appendValueInput("domain")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-        .appendField(Blockly.Msg.FRANCE2_DOMAIN_SHOW);  
-    this.appendValueInput("port")
+        .appendField(Blockly.Msg.FRANCE2_DOMAIN_SHOW);
+    this.appendValueInput("request")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-        .appendField(Blockly.Msg.FRANCE2_PORT_SHOW); 		
-    this.appendValueInput("request")
+        .appendField(Blockly.Msg.FRANCE2_REQUEST_SHOW); 	  
+    this.appendValueInput("port")
         .setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-        .appendField(Blockly.Msg.FRANCE2_REQUEST_SHOW); 	
+        .appendField(Blockly.Msg.FRANCE2_PORT_SHOW); 
     this.appendValueInput("timeout")
         .setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)		
