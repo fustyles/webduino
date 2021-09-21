@@ -66,6 +66,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}	
 	
+	//開啟
+	document.getElementById('tool_open').onclick = function () {
+		var link = document.createElement('a');
+		link.target="_blank";
+		link.href="https://blockly-demo.appspot.com/static/demos/blockfactory/index.html";
+		document.body.appendChild(link);
+		link.click();
+		link.remove();
+	}	
+	
 	//程式碼區塊調整大小功能	
 	$(function() {
 		$( "#code_content" ).draggable();
