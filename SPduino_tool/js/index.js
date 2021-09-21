@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		var div_code = document.getElementById('showcode');
 		var code = Blockly.Arduino.workspaceToCode();			
 		div_code.innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");				
-	}, 500);
+	}, 300);
 
 	//程式碼區塊顯示
 	document.getElementById('arduino_code').onclick = function () {
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}	
 	
-	//開啟
+	//開啟Blockly Developer Tools
 	document.getElementById('tool_open').onclick = function () {
 		var link = document.createElement('a');
 		link.target="_blank";
