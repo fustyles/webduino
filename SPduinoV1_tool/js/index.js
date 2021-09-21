@@ -91,15 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		var result = confirm(Blockly.Msg.BUTTON_RESET);
 		if (result) newFile();
 	}
-	
-	//切換頁籤
-	var tabs = ['arduino_content','category_content'];
-	function displayTab(id) {
-		for (var i in tabs) {
-			document.getElementById(tabs[i]).style.display= (tabs[i]==id)?"block":"none";
-			if (tabs[i]=='arduino_content') arduinoCode();
-		}
-	}
 
 	function arduinoCode() {
 		var code = Blockly.Arduino.workspaceToCode();
