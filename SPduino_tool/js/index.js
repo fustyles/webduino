@@ -3,10 +3,6 @@
  * @fileoverview SPduino V1
  * @author https://www.facebook.com/francefu/ (ChungYi Fu)
 */
- 
-var arduino_version = "1.8.16";
-var lang = "zh-hant";
-var last_code;
 
 document.addEventListener('DOMContentLoaded', function() {
 
