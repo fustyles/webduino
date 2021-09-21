@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('insertBlocks').onclick = function () {
 		newFile();
 		try {
-			eval(document.getElementById('blocks_function').value);
+			eval(document.getElementById('blocks_function').value.replace(/Javascript/g,"Arduino"));
 		} catch (e) {
 			if (e instanceof SyntaxError) {
 				alert(e.message);
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			}			
 		}
 		try {
-			eval(document.getElementById('arduino_function').value);
+			eval(document.getElementById('arduino_function').value.replace(/Javascript/g,"Arduino"));
 		} catch (e) {
 			if (e instanceof SyntaxError) {
 				alert(e.message);
