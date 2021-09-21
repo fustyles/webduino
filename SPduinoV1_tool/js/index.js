@@ -106,8 +106,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		"  var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);\n"+
 		"  var value_val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);\n"+
 		"  // TODO: Assemble Arduino into code variable.\n"+
-		"  var code = 'digitalWrite(%1, %2)'.replace('%1',value_pin).replace('%2',value_val);\n"+
-		"  return code;\n"+
+		"  var code = 'digitalWrite(%1, %2);\\n'.replace('%1',value_pin).replace('%2',value_val);\n"+
+		"  return code;"+
 		"};";
 		
 	document.getElementById('category_function').value = ''+
