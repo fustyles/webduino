@@ -52,6 +52,20 @@ document.addEventListener('DOMContentLoaded', function() {
 			div.style.display = "none";
 	}
 	
+	//工作區顯示
+	document.getElementById('workspace_show').onclick = function () {
+		document.getElementById('code_content').style.display = "none";
+		var div = document.getElementById('category_content');
+		if (div.style.display == "none") {
+			div.style.display = "block";
+			document.getElementById('developertool').style.height = "220px";
+		}
+		else {
+			div.style.display = "none";
+			document.getElementById('developertool').style.height = "calc(100vh - 100px)";
+		}
+	}	
+	
 	//程式碼區塊調整大小功能	
 	$(function() {
 		$( "#code_content" ).draggable();
