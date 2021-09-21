@@ -1,0 +1,334 @@
+<!--
+ * Copyright 2021 Taiwan
+ * @fileoverview SPduino V1
+ * @author https://www.facebook.com/francefu/ (ChungYi Fu)
+-->
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>SPduino V1 (Developer Tool)</title>
+	<link rel="icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="stylesheet" href="css/icon.css" />
+	<link rel="stylesheet" href="css/custom.css" />
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<script src="js/blockly_compressed.js"></script>
+	<script src="js/blocks_compressed.js"></script>
+	<script src="js/arduino_compressed.js"></script>
+	<script src="js/index.js"></script>
+	<script src="msg/js/en.js"></script>	
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.js"></script>	
+</head>
+<body class="root">
+<main id="main" class="has-tabs" >
+    <!-- PAGE TABS -->
+	<table>
+		<tr>
+			<td style="width: calc(100vw - 100px)">
+				<ul id="tabs">
+					<li><a onclick="displayTab('category_content');">Toolbox</a></li>
+					<li><a onclick="displayTab('arduino_content');">Arduino Code</a></li>
+				</ul>
+			</td>			
+			<td style="width: 100px">
+				<ul id="tabs">
+					<a href="#" id="arduino_code" title="Show/Hide Code"><i class="small material-icons">list_alt</i></a>
+					<a href="#" id="workspace_show" title="Show/Hide workspace"><i class="small material-icons">format_line_spacing</i></a>
+					<a href="#" id="button_new" title="Reset workspace"><i class="small material-icons">create</i></a>
+					<a href="#" id="tool_open" title="Blockly Developer Tools"><i class="small material-icons">construction</i></a>
+				</ul>
+			</td>
+		</tr>					
+	</table>	
+	  
+	<!-- CONTENT  -->
+	<div class="drop-shadow"></div>
+	<div id="category_content" class="content">
+		<div id="root"></div>
+		<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+			<category id="category_logic" name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
+				<block type="controls_if"></block>
+				<block type="controls_switch">
+					<value name="VALUE">
+						<block type="variables_get">
+							<field name="VAR"></field>
+						</block>
+					</value>
+					<value name="CASE0">
+						<block type="text_quotationmark">
+						</block>
+					</value>				
+				</block>
+				<block type="logic_compare"></block>
+				<block type="logic_operation"></block>
+				<block type="logic_negate"></block>
+				<block type="logic_boolean"></block>
+				<block type="logic_null"></block>
+				<block type="logic_ternary"></block>
+				<block type="text_isEmpty">
+					<value name="VALUE">
+					</value>
+				</block>			
+			</category>
+			<category id="category_loops" name="%{BKY_CATLOOPS}" colour="%{BKY_LOGIC_HUE}">
+				<block type="controls_repeat_ext">
+					<value name="TIMES">
+						<block type="math_number">
+							<field name="NUM">10</field>
+						</block>
+					</value>
+				</block>
+				<block type="controls_whileUntil"></block>
+				<block type="controls_for">
+					<value name="FROM">
+						<block type="math_number">
+							<field name="NUM">1</field>
+						</block>
+					</value>
+					<value name="TO">
+						<block type="math_number">
+							<field name="NUM">10</field>
+						</block>
+					</value>
+					<value name="BY">
+						<block type="math_number">
+							<field name="NUM">1</field>
+						</block>
+					</value>
+				</block>
+				<!--	
+				<block type="controls_forEach"></block>
+				-->
+				<block type="controls_flow_statements"></block>			
+			</category>
+			<category id="category_lists" name="%{BKY_CATLISTS}" colour="%{BKY_LISTS_HUE}">
+				<block type="lists_create_with">
+					<mutation items="0"></mutation>
+				</block>
+				<block type="lists_create_with"></block>
+				<!--
+				<block type="lists_repeat">
+					<value name="NUM">
+						<block type="math_number">
+							<field name="NUM">5</field>
+						</block>
+					</value>
+				</block>
+				-->
+				<block type="lists_length"></block>
+				<block type="lists_isEmpty"></block>
+				<block type="lists_indexOf">
+					<value name="VALUE">
+						<block type="variables_get">
+							<field name="VAR"></field>
+						</block>
+					</value>
+					<value name="FIND">
+						<block type="math_number">
+							<field name="NUM">0</field>
+						</block>
+					</value>				
+				</block>
+				<block type="lists_getIndex">
+					<value name="VALUE">
+						<block type="variables_get">
+							<field name="VAR"></field>
+						</block>
+					</value>
+					<value name="AT">
+						<block type="math_number">
+							<field name="NUM">0</field>
+						</block>
+					</value>					
+				</block>
+				<block type="lists_setIndex">
+					<value name="LIST">
+						<block type="variables_get">
+							<field name="VAR"></field>
+						</block>
+					</value>
+					<value name="AT">
+						<block type="math_number">
+							<field name="NUM">0</field>
+						</block>
+					</value>					
+				</block>
+				<!--			
+				<block type="lists_getSublist">
+					<value name="LIST">
+						<block type="variables_get">
+							<field name="VAR">item</field>
+						</block>
+					</value>
+					<value name="AT1">
+						<block type="math_number">
+							<field name="NUM">0</field>
+						</block>
+					</value>	
+					<value name="AT2">
+						<block type="math_number">
+							<field name="NUM">0</field>
+						</block>
+					</value>					
+				</block>
+				<block type="lists_split">
+					<value name="DELIM">
+						<block type="text">
+							<field name="TEXT">,</field>
+						</block>
+					</value>
+				</block>
+				<block type="lists_sort"></block>
+				-->			
+			</category>
+			<category id="category_math" name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">
+				<block type="math_number"></block>
+				<block type="math_change">
+					<value name="VAR">
+						<block type="variables_get">
+							<field name="VAR"></field>
+						</block>
+					</value>
+					<value name="DELTA">
+						<block type="math_number">
+							<field name="NUM">1</field>
+						</block>
+					</value>
+				</block>
+				<block type="math_arithmetic"></block>
+				<block type="math_single"></block>
+				<!--				
+				<block type="math_constrain"></block>
+				-->					
+				<block type="math_pow"></block>
+				<block type="math_random_max_min"></block>
+				<block type="math_map_int"></block>
+				<!--			
+				<block type="math_map_float"></block>
+				-->				
+				<block type="math_degree_to_radian"></block>
+				<block type="math_radian_to_degree"></block>			
+			</category>
+			<category id="category_texts" name="%{BKY_CATTEXTS}" colour="%{BKY_TEXTS_HUE}">
+				<block type="text"></block>
+				<block type="text_join"></block>
+				<block type="text_append">
+					<value name="TEXT">
+						<block type="text"></block>
+					</value>
+				</block>
+				<block type="text_replace">
+					<value name="FROM">
+						<block type="text">
+							<field name="TEXT"></field>
+						</block>			
+					</value>
+					<value name="TO">
+						<block type="text">
+							<field name="TEXT"></field>
+						</block>
+					</value>
+				</block>		
+				<block type="text_length">
+					<value name="VALUE">
+					</value>
+				</block>					
+				<block type="text_indexOf">
+					<value name="VALUE">
+					</value>
+					<value name="FIND">
+						<block type="text">
+							<field name="TEXT"></field>
+						</block>
+					</value>
+				</block>
+				<block type="text_with">
+					<value name="VALUE">			
+					</value>
+					<value name="FIND">
+						<block type="text">
+							<field name="TEXT"></field>
+						</block>				
+					</value>				
+				</block>		
+				<block type="text_charAt">
+					<value name="VALUE">
+					</value>
+				</block>
+				<block type="text_getSubstring">
+					<value name="STRING">
+					</value>
+				</block>		
+				<block type="text_quotationmark"></block>
+				<!--	
+				<block type="text_changeCase">
+					<value name="TEXT">
+						<block type="text">
+							<field name="TEXT">abc</field>
+						</block>
+					</value>
+				</block>
+				<block type="variable_changeCase">
+					<field name="VAR">item</field>
+				</block>		
+				<block type="text_trim">
+					<value name="TEXT">	
+						<block type="variables_get">
+							<field name="VAR"></field>
+						</block>
+					</value>
+				</block>					
+				<block type="text_print">
+					<value name="TEXT">
+						<block type="text">
+							<field name="TEXT">abc</field>
+						</block>
+					</value>
+				</block>
+				<block type="text_prompt_ext">
+					<value name="TEXT">
+						<block type="text">
+							<field name="TEXT">abc</field>
+						</block>
+					</value>
+				</block>
+				-->					
+			</category>
+			<category id="category_transform" name="%{BKY_CATTRANSFORM}" colour="%{BKY_TRANSFORM_HUE}">
+				<block type="cast_number"></block>
+				<block type="cast_type"></block>
+				<block type="cast_type1"></block>
+			</category>
+			<category id="category_variables" custom="VARIABLE" name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}"></category>
+			<category id="category_procedures" custom="PROCEDURE" name="%{BKY_CATPROCEDURES}" colour="%{BKY_PROCEDURES_HUE}"></category>
+			<sep id="category_sep"></sep>
+			<category id="category_initializes" name="%{BKY_CATINITIALIZES}" colour="0">
+				<block type="initializes_setup"><next><block type="initializes_loop"></block></next></block>
+			</category>	
+		</xml>
+	</div>
+	
+	<div id="arduino_content" class="arduino_content"></div>
+	<div id="code_content" class="ui-widget-content">
+		<h3 id="arduino_title" class="ui-widget-header">Arduino Code</h3>
+		<div id="showcode"></div>	
+	</div>
+	<div id="developertool">
+		<table style="width:100%; height:100%">
+			<tr style="height:12px">
+				<td>Blocks Definition</td><td>Generate Code</td><td>Category&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <button id="insertBlocks">Update Toolbox</button></td>
+			</tr>
+			<tr>
+				<td style="width:33%;"><textarea id="blocks_function" style="resize: horizontal;"></textarea></td>
+				<td style="width:33%;"><textarea id="arduino_function" style="resize: horizontal;"></textarea></td>
+				<td style="width:33%;"><textarea id="category_function" style="resize: horizontal;"></textarea></td>
+			</tr>
+		</table>
+	</div>
+</div>
+</main>
+
+</body>
+</html>
