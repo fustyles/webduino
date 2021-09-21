@@ -3782,68 +3782,6 @@ Blockly.ContextMenuItems.registerDownload=function(){
 		}
 	)
 };
-Blockly.ContextMenuItems.registerBackPackPlugin=function(){
-	Blockly.ContextMenuRegistry.registry.register(
-		{
-			displayText:function(){return Blockly.Msg.BACKPACKPLUGIN;}
-			,preconditionFn:function(a){return "enabled"}
-			,callback:function(a){
-				const BackpackPlugin = new Backpack(a.workspace);
-				BackpackPlugin.init();
-			}
-			,scopeType:Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id:"blockBackPackPlugin",weight:12
-		}
-	)
-};
-Blockly.ContextMenuItems.registerHighLightPlugin=function(){
-	Blockly.ContextMenuRegistry.registry.register(
-		{
-			displayText:function(){return Blockly.Msg.HIGHLIGHTPLUGIN;}
-			,preconditionFn:function(a){return "enabled"}
-			,callback:function(a){
-				// Initialize plugin.
-				const contentHighlight = new ContentHighlight(a.workspace);
-				contentHighlight.init();
-			}
-			,scopeType:Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id:"blockHighLightPlugin",weight:13
-		}
-	)
-};
-Blockly.ContextMenuItems.registerScrollPlugin=function(){
-	Blockly.ContextMenuRegistry.registry.register(
-		{
-			displayText:function(){
-				if (ScrollBlockDragger.edgeScrollEnabled==true) {
-					return Blockly.Msg.SCROLLPLUGIN_FALSE;
-				} else {
-					return Blockly.Msg.SCROLLPLUGIN_TRUE;
-				}
-			}
-			,preconditionFn:function(a){return "enabled"}
-			,callback:function(a){
-				ScrollBlockDragger.edgeScrollEnabled = !ScrollBlockDragger.edgeScrollEnabled;
-			}
-			,scopeType:Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id:"blockScrollPlugin",weight:14
-		}
-	)
-};
-Blockly.ContextMenuItems.registerLoadLastBlocks=function(){
-	Blockly.ContextMenuRegistry.registry.register(
-		{
-			displayText:function(){return Blockly.Msg.LOADLASTBLOCKS;}
-			,preconditionFn:function(a){return "enabled"}
-			,callback:function(a){
-				chrome.storage.local.get(['CODE'], function(item){
-					if (item.CODE) {
-						Blockly.mainWorkspace.clear();		
-						Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(item.CODE), Blockly.mainWorkspace);
-					}
-				});
-			}
-			,scopeType:Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id:"blockLoadLastBlocks",weight:15
-		}
-	)
-};
 //測試
 Blockly.ContextMenuItems.registerTest=function(){
 	Blockly.ContextMenuRegistry.registry.register(
@@ -3980,10 +3918,6 @@ Blockly.ContextMenuItems.registerBlockOptions_=function(){
 	Blockly.ContextMenuItems.registerDelete();
 	Blockly.ContextMenuItems.registerHelp();
 	Blockly.ContextMenuItems.registerDownload();
-	Blockly.ContextMenuItems.registerScrollPlugin();
-	Blockly.ContextMenuItems.registerHighLightPlugin();
-	Blockly.ContextMenuItems.registerBackPackPlugin();	
-	Blockly.ContextMenuItems.registerLoadLastBlocks();
 	//Blockly.ContextMenuItems.registerHideToolbox();
 	//Blockly.ContextMenuItems.registerTest();	//測試	
 };
