@@ -58,11 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (div.style.display == "none") {
 			div.style.display = "block";
 			document.getElementById('developertool').style.height = "220px";
-			//Blockly.getMainWorkspace().resize();
+			document.getElementById('insertBlocks').disabled = false;
 		}
 		else {
 			div.style.display = "none";
 			document.getElementById('developertool').style.height = "calc(100vh - 100px)";
+			document.getElementById('insertBlocks').disabled = true;
 		}
 	}	
 	
