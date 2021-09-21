@@ -3,7 +3,7 @@
  * @fileoverview SPduino V1
  * @author https://www.facebook.com/francefu/ (ChungYi Fu)
 */
-
+ 
 document.addEventListener('DOMContentLoaded', function() {
 
 	//初始化工作區	
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		var div_code = document.getElementById('showcode');
 		var code = Blockly.Arduino.workspaceToCode();			
 		div_code.innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");				
-	}, 300);
+	}, 500);
 
 	//程式碼區塊顯示
 	document.getElementById('arduino_code').onclick = function () {
@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (div.style.display == "none") {
 			div.style.display = "block";
 			document.getElementById('developertool').style.height = "220px";
+			Blockly.getMainWorkspace().resize();
 		}
 		else {
 			div.style.display = "none";
@@ -92,6 +93,21 @@ document.addEventListener('DOMContentLoaded', function() {
 		var code = Blockly.Arduino.workspaceToCode();
 		document.getElementById('arduino_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 	}
+	
+	//儲存內容
+	document.getElementById('save').onclick = function () {
+		var content = "" +
+			document.getElementById('blocks_function').value + "\n\n" +
+			document.getElementById('arduino_function').value + "\n\n" +
+			document.getElementById('category_function').value;	
+
+		var link = document.createElement('a');
+		link.download="blocks.txt";
+		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
+		document.body.appendChild(link);
+		link.click();
+		link.remove();			
+	}	
 	
 	document.getElementById('blocks_function').value = ''+
 		'Blockly.Blocks["test"] = {\n'+

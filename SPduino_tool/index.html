@@ -38,6 +38,7 @@
 					<a href="#" id="workspace_show" title="Show/Hide workspace"><i class="small material-icons">format_line_spacing</i></a>
 					<a href="#" id="button_new" title="Reset workspace"><i class="small material-icons">create</i></a>
 					<a href="#" id="tool_open" title="Blockly Developer Tools"><i class="small material-icons">construction</i></a>
+					<a href="#" id="save" title="Save"><i class="small material-icons">save</i></a>
 				</ul>
 			</td>
 		</tr>					
@@ -98,9 +99,6 @@
 						</block>
 					</value>
 				</block>
-				<!--	
-				<block type="controls_forEach"></block>
-				-->
 				<block type="controls_flow_statements"></block>			
 			</category>
 			<category id="category_lists" name="%{BKY_CATLISTS}" colour="%{BKY_LISTS_HUE}">
@@ -108,15 +106,6 @@
 					<mutation items="0"></mutation>
 				</block>
 				<block type="lists_create_with"></block>
-				<!--
-				<block type="lists_repeat">
-					<value name="NUM">
-						<block type="math_number">
-							<field name="NUM">5</field>
-						</block>
-					</value>
-				</block>
-				-->
 				<block type="lists_length"></block>
 				<block type="lists_isEmpty"></block>
 				<block type="lists_indexOf">
@@ -154,34 +143,7 @@
 							<field name="NUM">0</field>
 						</block>
 					</value>					
-				</block>
-				<!--			
-				<block type="lists_getSublist">
-					<value name="LIST">
-						<block type="variables_get">
-							<field name="VAR">item</field>
-						</block>
-					</value>
-					<value name="AT1">
-						<block type="math_number">
-							<field name="NUM">0</field>
-						</block>
-					</value>	
-					<value name="AT2">
-						<block type="math_number">
-							<field name="NUM">0</field>
-						</block>
-					</value>					
-				</block>
-				<block type="lists_split">
-					<value name="DELIM">
-						<block type="text">
-							<field name="TEXT">,</field>
-						</block>
-					</value>
-				</block>
-				<block type="lists_sort"></block>
-				-->			
+				</block>		
 			</category>
 			<category id="category_math" name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">
 				<block type="math_number"></block>
@@ -199,15 +161,9 @@
 				</block>
 				<block type="math_arithmetic"></block>
 				<block type="math_single"></block>
-				<!--				
-				<block type="math_constrain"></block>
-				-->					
 				<block type="math_pow"></block>
 				<block type="math_random_max_min"></block>
 				<block type="math_map_int"></block>
-				<!--			
-				<block type="math_map_float"></block>
-				-->				
 				<block type="math_degree_to_radian"></block>
 				<block type="math_radian_to_degree"></block>			
 			</category>
@@ -261,40 +217,7 @@
 					<value name="STRING">
 					</value>
 				</block>		
-				<block type="text_quotationmark"></block>
-				<!--	
-				<block type="text_changeCase">
-					<value name="TEXT">
-						<block type="text">
-							<field name="TEXT">abc</field>
-						</block>
-					</value>
-				</block>
-				<block type="variable_changeCase">
-					<field name="VAR">item</field>
-				</block>		
-				<block type="text_trim">
-					<value name="TEXT">	
-						<block type="variables_get">
-							<field name="VAR"></field>
-						</block>
-					</value>
-				</block>					
-				<block type="text_print">
-					<value name="TEXT">
-						<block type="text">
-							<field name="TEXT">abc</field>
-						</block>
-					</value>
-				</block>
-				<block type="text_prompt_ext">
-					<value name="TEXT">
-						<block type="text">
-							<field name="TEXT">abc</field>
-						</block>
-					</value>
-				</block>
-				-->					
+				<block type="text_quotationmark"></block>			
 			</category>
 			<category id="category_transform" name="%{BKY_CATTRANSFORM}" colour="%{BKY_TRANSFORM_HUE}">
 				<block type="cast_number"></block>
