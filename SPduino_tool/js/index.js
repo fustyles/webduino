@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (div.style.display == "none") {
 			div.style.display = "block";
 			document.getElementById('developertool').style.height = "220px";
-			Blockly.getMainWorkspace().resize();
+			//Blockly.getMainWorkspace().resize();
 		}
 		else {
 			div.style.display = "none";
