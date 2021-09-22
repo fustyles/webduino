@@ -98,6 +98,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.getElementById('arduino_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 	}
 	
+	//複製程式碼到剪貼簿
+	document.getElementById('copycode').onclick = function () {
+		var text = document.getElementById('showcode').innerText;
+		navigator.clipboard.writeText(text).then(function() {
+			console.log('Async: Copying to clipboard was successful!');
+		}, function(err) {
+			console.error('Async: Could not copy text: ', err);
+		});
+	}	
+	
 	//儲存內容
 	document.getElementById('save').onclick = function () {
 		var content = "" +

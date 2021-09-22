@@ -1,6 +1,6 @@
 <!--
  * Copyright 2021 Taiwan
- * @fileoverview SpBlockly
+ * @fileoverview SPduino
  * @author https://www.facebook.com/francefu/ (ChungYi Fu)
 -->
 
@@ -8,7 +8,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>SpBlockly (Developer Tool)</title>
+	<title>SPduino (Developer Tool)</title>
 	<link rel="icon" type="image/x-icon" href="favicon.ico" />
 	<link rel="stylesheet" href="css/icon.css" />
 	<link rel="stylesheet" href="css/custom.css" />
@@ -237,7 +237,12 @@
 	
 	<div id="arduino_content" class="arduino_content"></div>
 	<div id="code_content" class="ui-widget-content">
-		<h3 id="arduino_title" class="ui-widget-header">Arduino Code</h3>
+		<div id="arduino_title" class="ui-widget-header">
+			&nbsp;&nbsp;
+			<a href="#" id="copycode" title="copy the code"><i class="material-icons" style="vertical-align: middle; color: white;">featured_play_list</i></a>
+			&nbsp;&nbsp;
+			<span id="text_uploader_status" style="vertical-align: middle;">Arduino Code</span>
+		</div>
 		<div id="showcode"></div>	
 	</div>
 	<div id="developertool">
