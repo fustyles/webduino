@@ -179,6 +179,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		'	</block>\n'+		
 		'</category>';
 		
+	//清除自訂積木區內容
+	document.getElementById('clearContents').onclick = function () {
+		var result = confirm(Blockly.Msg.BUTTON_CLEARAREAS_TITLE);
+		if (result)	{
+			document.getElementById('blocks_function').value = "";
+			document.getElementById('arduino_function').value = "";
+			document.getElementById('category_function').value = "";
+		}
+	}
+		
 	//載入自訂積木
 	document.getElementById('insertBlocks').onclick = function () {
 		newFile();

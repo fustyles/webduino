@@ -1696,3 +1696,4 @@ Blockly.Msg.BUTTON_SERIAL_TITLE = "序列埠監看視窗";
 Blockly.Msg.BUTTON_UPLOAD_TITLE = "燒錄韌體";
 Blockly.Msg.BUTTON_UPLOAD_START = "正在上傳韌體...";
 Blockly.Msg.BUTTON_UPLOAD_CODE = "程式碼";
+Blockly.Msg.BUTTON_CLEARAREAS_TITLE = "你確定要清除自訂積木區內容？";

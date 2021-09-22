@@ -1364,3 +1364,4 @@ Blockly.Msg.BUTTON_SERIAL_TITLE = "SERIAL PORT MONITER";
 Blockly.Msg.BUTTON_UPLOAD_TITLE = "UPLOAD CODE";
 Blockly.Msg.BUTTON_UPLOAD_START = "Uploading...";
 Blockly.Msg.BUTTON_UPLOAD_CODE = "Reload Code";
+Blockly.Msg.BUTTON_CLEARAREAS_TITLE = "Are you sure to clear all blocks contents?";
