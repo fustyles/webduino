@@ -3827,23 +3827,6 @@ Blockly.ContextMenuItems.registerScrollPlugin=function(){
 		}
 	)
 };
-Blockly.ContextMenuItems.registerLoadLastBlocks=function(){
-	Blockly.ContextMenuRegistry.registry.register(
-		{
-			displayText:function(){return Blockly.Msg.LOADLASTBLOCKS;}
-			,preconditionFn:function(a){return "enabled"}
-			,callback:function(a){
-				chrome.storage.local.get(['CODE'], function(item){
-					if (item.CODE) {
-						Blockly.mainWorkspace.clear();		
-						Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(item.CODE), Blockly.mainWorkspace);
-					}
-				});
-			}
-			,scopeType:Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id:"blockLoadLastBlocks",weight:15
-		}
-	)
-};
 //測試
 Blockly.ContextMenuItems.registerTest=function(){
 	Blockly.ContextMenuRegistry.registry.register(
@@ -3983,7 +3966,6 @@ Blockly.ContextMenuItems.registerBlockOptions_=function(){
 	Blockly.ContextMenuItems.registerScrollPlugin();
 	Blockly.ContextMenuItems.registerHighLightPlugin();
 	Blockly.ContextMenuItems.registerBackPackPlugin();	
-	Blockly.ContextMenuItems.registerLoadLastBlocks();
 	//Blockly.ContextMenuItems.registerHideToolbox();
 	//Blockly.ContextMenuItems.registerTest();	//測試	
 };
