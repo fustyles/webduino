@@ -112,9 +112,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('copycode').onclick = function () {
 		var text = document.getElementById('showcode').innerText;
 		navigator.clipboard.writeText(text).then(function() {
-			console.log('Async: Copying to clipboard was successful!');
+			//console.log('Copying to clipboard was successful!');
 		}, function(err) {
-			console.error('Async: Could not copy text: ', err);
+			console.error(err);
 		});
 	}	
 	
@@ -203,6 +203,18 @@ document.addEventListener('DOMContentLoaded', function() {
 		xml.appendChild(dom);
 		Blockly.getMainWorkspace().updateToolbox(xml);
 	}
+	
+	document.getElementById('updateGenerate').onclick = function () {
+		try {
+			eval(document.getElementById('arduino_function').value.replace(/Javascript/g,"Arduino"));
+		} catch (e) {
+			if (e instanceof SyntaxError) {
+				alert(e.message);
+			} else {
+				throw e;
+			}	
+		}
+	}		
 	
 	var category = document.getElementById('toolbox');
 	var xmlValue='<xml id="toolbox">';
