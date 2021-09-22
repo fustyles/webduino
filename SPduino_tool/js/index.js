@@ -222,7 +222,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	//更新自訂積木
-	document.getElementById('updateAll').onclick = function () {
+	document.getElementById('addBlocks').onclick = function () {
+		document.getElementById('updateDefinition').disabled = false;
+		document.getElementById('updateGenerate').disabled = false;
+		document.getElementById('updateCategory').disabled = false;
+		
 		newFile();
 		try {
 			eval(document.getElementById('blocks_function').value);
