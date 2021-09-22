@@ -63,16 +63,18 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//工作區顯示
 	document.getElementById('workspace_show').onclick = function () {
-		document.getElementById('code_content').style.display = "none";
-		var div = document.getElementById('category_content');
-		if (div.style.display == "none") {
-			div.style.display = "block";
-			document.getElementById('developertool').style.height = "220px";
+		var developertool = document.getElementById('developertool');
+		if (developertool.style.height != "220px"&&developertool.style.height != "") {
+			displayTab('category_content');
+			document.getElementById('code_content').style.display = "block";
+			developertool.style.height = "220px";
 			document.getElementById('insertBlocks').disabled = false;
 		}
 		else {
-			div.style.display = "none";
-			document.getElementById('developertool').style.height = "calc(100vh - 100px)";
+			document.getElementById('category_content').style.display = "none";
+			document.getElementById('arduino_content').style.display = "none";
+			document.getElementById('code_content').style.display = "none";
+			developertool.style.height = "calc(100vh - 100px)";
 			document.getElementById('insertBlocks').disabled = true;
 		}
 	}	
