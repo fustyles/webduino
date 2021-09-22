@@ -20,9 +20,19 @@ document.addEventListener('DOMContentLoaded', function() {
 				},
 				drag: true,
 				wheel: true
-			}	
+			}
+			,plugins: {
+				'blockDragger': ScrollBlockDragger,
+				'metricsManager': ScrollMetricsManager,
+			}		
 		}
 	);
+	
+	//新增邊緣捲動插件
+	//const AutoScrollOptionsPlugin = new AutoScroll(workspace);
+	const scrollOptionsPlugin = new ScrollOptions(workspace);
+	scrollOptionsPlugin.init({enableWheelScroll: true, enableEdgeScroll: true});
+	ScrollBlockDragger.edgeScrollEnabled = false;	
 	
 	//新增暫存積木插件
 	const myBackpack = new MyBackpack(workspace, "category_initializes" , true);
