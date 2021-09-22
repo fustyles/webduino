@@ -102,7 +102,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	//重設工作區
 	document.getElementById('button_new').onclick = function () {
 		var result = confirm(Blockly.Msg.BUTTON_RESET);
-		if (result) newFile();
+		if (result) {
+			newFile();
+			document.getElementById('blocks_function').value = "";
+			document.getElementById('arduino_function').value = "";
+			document.getElementById('category_function').value = "";
+		}
 	}
 
 	function arduinoCode() {
@@ -178,16 +183,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		'		</value>\n'+
 		'	</block>\n'+		
 		'</category>';
-		
-	//清除自訂積木區內容
-	document.getElementById('clearContents').onclick = function () {
-		var result = confirm(Blockly.Msg.BUTTON_CLEARAREAS_TITLE);
-		if (result)	{
-			document.getElementById('blocks_function').value = "";
-			document.getElementById('arduino_function').value = "";
-			document.getElementById('category_function').value = "";
-		}
-	}
 		
 	//載入自訂積木
 	document.getElementById('insertBlocks').onclick = function () {
