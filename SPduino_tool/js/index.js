@@ -184,8 +184,38 @@ document.addEventListener('DOMContentLoaded', function() {
 		'	</block>\n'+		
 		'</category>';
 		
-	//載入自訂積木
-	document.getElementById('insertBlocks').onclick = function () {
+	//更新積木定義函式
+	document.getElementById('updateDefinition').onclick = function () {
+		try {
+			eval(document.getElementById('blocks_function').value);
+			var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+			Blockly.getMainWorkspace().clear();
+			Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());
+		} catch (e) {
+			if (e instanceof SyntaxError) {
+				alert(e.message);
+			} else {
+				throw e;
+			}	
+		}
+	}
+	
+	//更新產出程式碼函式
+	document.getElementById('updateGenerate').onclick = function () {
+		try {
+			eval(document.getElementById('arduino_function').value.replace(/Javascript/g,"Arduino"));
+		} catch (e) {
+			if (e instanceof SyntaxError) {
+				alert(e.message);
+			} else {
+				throw e;
+			}	
+		}
+	}
+	
+
+	//更新目錄
+	document.getElementById('updateCategory').onclick = function () {
 		newFile();
 		try {
 			eval(document.getElementById('blocks_function').value.replace(/Javascript/g,"Arduino"));
@@ -210,18 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		xml.appendChild(dom);
 		Blockly.getMainWorkspace().updateToolbox(xml);
 	}
-	
-	document.getElementById('updateGenerate').onclick = function () {
-		try {
-			eval(document.getElementById('arduino_function').value.replace(/Javascript/g,"Arduino"));
-		} catch (e) {
-			if (e instanceof SyntaxError) {
-				alert(e.message);
-			} else {
-				throw e;
-			}	
-		}
-	}		
 	
 	var category = document.getElementById('toolbox');
 	var xmlValue='<xml id="toolbox">';
