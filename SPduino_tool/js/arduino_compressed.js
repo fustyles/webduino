@@ -56,12 +56,13 @@ led_backpack_address:[["0x70","0x70"],["0x71","0x71"],["0x72","0x72"],["0x73","0
 
 Blockly.Arduino.init=function(a){
 	Object.getPrototypeOf(Blockly.Arduino).init.call(Blockly.Arduino);
-	Blockly.Arduino.definitions_=Object.create(null);
 	
 	Blockly.Arduino.variableDB_?Blockly.Arduino.variableDB_.reset():Blockly.Arduino.variableDB_=new Blockly.Names(Blockly.Arduino.RESERVED_WORDS_);
 	Blockly.Arduino.variableDB_.setVariableMap(a.getVariableMap());
 	Blockly.Arduino.variableDB_.populateVariables(a);
 	Blockly.Arduino.variableDB_.populateProcedures(a);
+	
+	Blockly.Arduino.definitions_=Object.create(null);
 	Blockly.Arduino.setups_=Object.create(null);
 	Blockly.Arduino.finals_=Object.create(null);
 };
@@ -86,6 +87,8 @@ Blockly.Arduino.finish=function(a){
 	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n\n")+a+"\n\n"+f.join("\n\n");
 	return b
 };
+
+
 Blockly.Arduino.scrubNakedValue=function(a){return a+";\n"};
 Blockly.Arduino.quote_=function(a){a=a.replace(/\\/g,"\\\\").replace(/\n/g,"\\\n").replace(/\$/g,"\\$").replace(/'/g,"\\'");return'"'+a+'"'};
 Blockly.Arduino.quote_quotationmark_=function(a){a=a.replace(/\\/g,"\\\\").replace(/\n/g,"\\\n").replace(/\$/g,"\\$").replace(/'/g,"\\'");return"'"+a+"'"};
@@ -102,7 +105,19 @@ Blockly.Arduino.scrub_=function(a,b){
 	e=Blockly.Arduino.blockToCode(e);
 	return c+b+e
 };
-Blockly.Arduino.loops={};
+
+
+Blockly.Arduino.initializes={};
+Blockly.Arduino.initializes_setup=function(){
+	var a=Blockly.Arduino.statementToCode(this,"CONTENT");
+	a=a.replace(/(^\s+)|(\s+$)/g,"");
+	Blockly.Arduino.setups_.manual_add=a;
+	return ""
+};
+Blockly.Arduino.initializes_loop=function(){
+	var a=Blockly.Arduino.statementToCode(this,"CONTENT");
+	return a=a.replace(/(^\s+)|(\s+$)/g,"")
+};
 
 
 Blockly.Arduino.lists={};
@@ -761,11 +776,3 @@ Blockly.Arduino.cast_type1=function(){
 	var a=this.getFieldValue("TYPE"),b=Blockly.Arduino.valueToCode(this,"VAR",Blockly.Arduino.ORDER_ATOMIC)||"";
 	return [b+"."+a,Blockly.Arduino.ORDER_NONE]
 };
-
-Blockly.Arduino.initializes={};
-Blockly.Arduino.initializes_setup=function(){var a=Blockly.Arduino.statementToCode(this,"CONTENT");a=a.replace(/(^\s+)|(\s+$)/g,"");
-	Blockly.Arduino.setups_.manual_add=a;
-	return ""
-};
-Blockly.Arduino.initializes_loop=function(){var a=Blockly.Arduino.statementToCode(this,"CONTENT");return a=a.replace(/(^\s+)|(\s+$)/g,"")};
-Blockly.Arduino.initializes_temp=function(){return""};
