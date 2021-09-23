@@ -55,7 +55,6 @@ led_backpack_address:[["0x70","0x70"],["0x71","0x71"],["0x72","0x72"],["0x73","0
 "A2"],["A3","A3"],["A4","A4"],["A5","A5"],["A6","A6"],["A7","A7"],["A8","A8"],["A9","A9"],["A10","A10"],["A11","A11"],["A12","A12"],["A13","A13"],["A14","A14"],["A15","A15"]]}};profile["default"]=profile.arduino;
 
 Blockly.Arduino.init=function(a){
-
 	Object.getPrototypeOf(Blockly.Arduino).init.call(Blockly.Arduino);
 	Blockly.Arduino.definitions_=Object.create(null);
 	
@@ -63,8 +62,8 @@ Blockly.Arduino.init=function(a){
 	Blockly.Arduino.variableDB_.setVariableMap(a.getVariableMap());
 	Blockly.Arduino.variableDB_.populateVariables(a);
 	Blockly.Arduino.variableDB_.populateProcedures(a);
-	//Blockly.Arduino.variableDB_.populateBackpack(a);
 	Blockly.Arduino.setups_=Object.create(null);
+	Blockly.Arduino.finals_=Object.create(null);
 };
 
 Blockly.Arduino.finish=function(a){
@@ -79,9 +78,13 @@ Blockly.Arduino.finish=function(a){
 	d=[];
 	for(e in Blockly.Arduino.setups_)
 		d.push(Blockly.Arduino.setups_[e]);
+	var f=[];
+	for(e in Blockly.Arduino.finals_)
+		f.push(Blockly.Arduino.finals_[e]);		
 	var e=new Date((new Date).getTime());
 	b=b.join("\n")+"\n\n"+c.join("\n")+"\n\nvoid setup() \n{\n  "+d.join("\n  ")+"\n}\n\n";
-	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n\n")+a;return b="\n"+b
+	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n\n")+a+"\n\n"+f.join("\n\n");
+	return b
 };
 Blockly.Arduino.scrubNakedValue=function(a){return a+";\n"};
 Blockly.Arduino.quote_=function(a){a=a.replace(/\\/g,"\\\\").replace(/\n/g,"\\\n").replace(/\$/g,"\\$").replace(/'/g,"\\'");return'"'+a+'"'};
