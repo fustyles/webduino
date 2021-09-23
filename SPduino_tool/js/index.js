@@ -64,20 +64,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	//工作區顯示
 	document.getElementById('workspace_show').onclick = function () {
 		var developertool = document.getElementById('developertool');
-		if (developertool.style.height != "220px"&&developertool.style.height != "") {
+		if (developertool.style.height == "220px"||developertool.style.height == "") {
 			displayTab('category_content');
-			document.getElementById('code_content').style.display = "block";
-			developertool.style.height = "220px";
-			document.getElementById('updateCategory').disabled = false;
-			document.getElementById('addBlocks').disabled = false;
-		}
-		else {
 			document.getElementById('category_content').style.display = "none";
 			document.getElementById('arduino_content').style.display = "none";
 			document.getElementById('code_content').style.display = "none";
 			developertool.style.height = "calc(100vh - 100px)";
-			document.getElementById('updateCategory').disabled = true;
-			document.getElementById('addBlocks').disabled = true;
+		}
+		else {
+
+			displayTab('category_content');
+			document.getElementById('code_content').style.display = "block";	
 		}
 	}
 	
@@ -188,6 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 	//更新積木定義函式
 	document.getElementById('updateDefinition').onclick = function () {
+		displayTab('category_content');
 		try {
 			eval(document.getElementById('blocks_function').value);
 			var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
@@ -204,6 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//更新產出程式碼函式
 	document.getElementById('updateGenerate').onclick = function () {
+		displayTab('category_content');
 		try {
 			eval(document.getElementById('arduino_function').value.replace(/Javascript/g,"Arduino"));
 		} catch (e) {
@@ -217,6 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	//更新目錄
 	document.getElementById('updateCategory').onclick = function () {
+		displayTab('category_content');
 		var xml = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
 		var dom = new DOMParser().parseFromString(document.getElementById('category_function').value,"text/xml").firstChild;
 		xml.appendChild(dom);
@@ -274,6 +274,7 @@ function displayTab(id) {
 		document.getElementById(tabs[i]).style.display= (tabs[i]==id)?"block":"none";
 		if (tabs[i]=='arduino_content') arduinoCode();
 	}
+	developertool.style.height = "220px";
 }
 
 function arduinoCode() {

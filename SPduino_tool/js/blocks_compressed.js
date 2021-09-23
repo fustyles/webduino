@@ -1084,7 +1084,19 @@ Blockly.Blocks.procedures_defnoreturn={
 	,getProcedureDef:function(){return[this.getFieldValue("NAME"),this.arguments_,!1]}
 	,getVars:function(){return this.arguments_}
 	,renameVar:function(a,b){for(var d=!1,c=0;c<this.arguments_.length;c++)Blockly.Names.equals(a,this.arguments_[c])&&(this.arguments_[c]=b,d=!0);if(d&&(this.updateParams_(),this.mutator.isVisible())){d=this.mutator.workspace_.getAllBlocks();c=0;for(var e;e=d[c];c++)"procedures_mutatorarg"==e.type&&Blockly.Names.equals(a,e.getFieldValue("NAME"))&&e.setFieldValue(b,"NAME")}}
-	,customContextMenu:function(a){var b={enabled:!0},d=this.getFieldValue("NAME");b.text=Blockly.Msg.PROCEDURES_CREATE_DO.replace("%1",d);var c=goog.dom.createDom("mutation");c.setAttribute("name",d);for(var e=0;e<this.arguments_.length;e++)d=goog.dom.createDom("arg"),d.setAttribute("name",this.arguments_[e]),c.appendChild(d);c=goog.dom.createDom("block",null,c);c.setAttribute("type",this.callType_);b.callback=Blockly.ContextMenu.callbackFactory(this,c);a.push(b);if(!this.isCollapsed())for(e=0;e<this.arguments_.length;e++)b={enabled:!0},d=this.arguments_[e],b.text=Blockly.Msg.VARIABLES_SET_CREATE_GET.replace("%1",d),c=goog.dom.createDom("field",null,d),c.setAttribute("name","VAR"),c=goog.dom.createDom("block",null,c),c.setAttribute("type","variables_get"),b.callback=Blockly.ContextMenu.callbackFactory(this,c),a.push(b)}
+	,customContextMenu:function(a){var b={enabled:!0},d=this.getFieldValue("NAME");b.text=Blockly.Msg.PROCEDURES_CREATE_DO.replace("%1",d);var c=goog.dom.createDom("mutation");c.setAttribute("name",d);for(var e=0;e<this.arguments_.length;e++)d=goog.dom.createDom("arg"),d.setAttribute("name",this.arguments_[e]),c.appendChild(d);c=goog.dom.createDom("block",null,c);c.setAttribute("type",this.callType_);
+	if (this.getInput("VAR").connection.targetBlock()) {
+		var t = this.getInput("VAR").connection.targetBlock();
+		if (t.type=="lists_create_with") {
+			if (t.itemCount_==0)
+				c.appendChild(Blockly.Xml.textToDom('<value name="VAR"><shadow type="lists_create_with"><mutation items="0"></mutation></shadow></value>'));
+			else
+				c.appendChild(Blockly.Xml.textToDom('<value name="VAR"><block type="lists_create_with"><mutation items="'+t.itemCount_+'"></mutation></block></value>'));
+		}
+	}
+	else
+		c.appendChild(Blockly.Xml.textToDom('<shadow type="lists_create_with"><mutation items="0"></mutation></shadow>'));	
+	b.callback=Blockly.ContextMenu.callbackFactory(this,c);a.push(b);if(!this.isCollapsed())for(e=0;e<this.arguments_.length;e++)b={enabled:!0},d=this.arguments_[e],b.text=Blockly.Msg.VARIABLES_SET_CREATE_GET.replace("%1",d),c=goog.dom.createDom("field",null,d),c.setAttribute("name","VAR"),c=goog.dom.createDom("block",null,c),c.setAttribute("type","variables_get"),b.callback=Blockly.ContextMenu.callbackFactory(this,c),a.push(b)}
 	,callType_:"procedures_callnoreturn"
 };
 Blockly.Blocks.procedures_defreturn={
@@ -1143,7 +1155,19 @@ Blockly.Blocks.procedures_defreturn={
 	,getProcedureDef:function(){return[this.getFieldValue("NAME"),this.arguments_,!1]}
 	,getVars:function(){return this.arguments_}
 	,renameVar:function(a,b){for(var d=!1,c=0;c<this.arguments_.length;c++)Blockly.Names.equals(a,this.arguments_[c])&&(this.arguments_[c]=b,d=!0);if(d&&(this.updateParams_(),this.mutator.isVisible())){d=this.mutator.workspace_.getAllBlocks();c=0;for(var e;e=d[c];c++)"procedures_mutatorarg"==e.type&&Blockly.Names.equals(a,e.getFieldValue("NAME"))&&e.setFieldValue(b,"NAME")}}
-	,customContextMenu:function(a){var b={enabled:!0},d=this.getFieldValue("NAME");b.text=Blockly.Msg.PROCEDURES_CREATE_DO.replace("%1",d);var c=goog.dom.createDom("mutation");c.setAttribute("name",d);for(var e=0;e<this.arguments_.length;e++)d=goog.dom.createDom("arg"),d.setAttribute("name",this.arguments_[e]),c.appendChild(d);c=goog.dom.createDom("block",null,c);c.setAttribute("type",this.callType_);b.callback=Blockly.ContextMenu.callbackFactory(this,c);a.push(b);if(!this.isCollapsed())for(e=0;e<this.arguments_.length;e++)b={enabled:!0},d=this.arguments_[e],b.text=Blockly.Msg.VARIABLES_SET_CREATE_GET.replace("%1",d),c=goog.dom.createDom("field",null,d),c.setAttribute("name","VAR"),c=goog.dom.createDom("block",null,c),c.setAttribute("type","variables_get"),b.callback=Blockly.ContextMenu.callbackFactory(this,c),a.push(b)}
+	,customContextMenu:function(a){var b={enabled:!0},d=this.getFieldValue("NAME");b.text=Blockly.Msg.PROCEDURES_CREATE_DO.replace("%1",d);var c=goog.dom.createDom("mutation");c.setAttribute("name",d);for(var e=0;e<this.arguments_.length;e++)d=goog.dom.createDom("arg"),d.setAttribute("name",this.arguments_[e]),c.appendChild(d);c=goog.dom.createDom("block",null,c);c.setAttribute("type",this.callType_);
+	if (this.getInput("VAR").connection.targetBlock()) {
+		var t = this.getInput("VAR").connection.targetBlock();
+		if (t.type=="lists_create_with") {
+			if (t.itemCount_==0)
+				c.appendChild(Blockly.Xml.textToDom('<value name="VAR"><shadow type="lists_create_with"><mutation items="0"></mutation></shadow></value>'));
+			else
+				c.appendChild(Blockly.Xml.textToDom('<value name="VAR"><block type="lists_create_with"><mutation items="'+t.itemCount_+'"></mutation></block></value>'));
+		}
+	}
+	else
+		c.appendChild(Blockly.Xml.textToDom('<shadow type="lists_create_with"><mutation items="0"></mutation></shadow>'));	
+	b.callback=Blockly.ContextMenu.callbackFactory(this,c);a.push(b);if(!this.isCollapsed())for(e=0;e<this.arguments_.length;e++)b={enabled:!0},d=this.arguments_[e],b.text=Blockly.Msg.VARIABLES_SET_CREATE_GET.replace("%1",d),c=goog.dom.createDom("field",null,d),c.setAttribute("name","VAR"),c=goog.dom.createDom("block",null,c),c.setAttribute("type","variables_get"),b.callback=Blockly.ContextMenu.callbackFactory(this,c),a.push(b)}
 	,callType_:"procedures_callreturn"
 };
 Blockly.Blocks.procedures_return={
