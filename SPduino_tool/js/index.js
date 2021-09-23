@@ -68,16 +68,18 @@ document.addEventListener('DOMContentLoaded', function() {
 			displayTab('category_content');
 			document.getElementById('code_content').style.display = "block";
 			developertool.style.height = "220px";
-			document.getElementById('insertBlocks').disabled = false;
+			document.getElementById('updateCategory').disabled = false;
+			document.getElementById('addBlocks').disabled = false;
 		}
 		else {
 			document.getElementById('category_content').style.display = "none";
 			document.getElementById('arduino_content').style.display = "none";
 			document.getElementById('code_content').style.display = "none";
 			developertool.style.height = "calc(100vh - 100px)";
-			document.getElementById('insertBlocks').disabled = true;
+			document.getElementById('updateCategory').disabled = true;
+			document.getElementById('addBlocks').disabled = true;
 		}
-	}	
+	}
 	
 	//開啟Blockly Developer Tools
 	document.getElementById('tool_open').onclick = function () {
@@ -228,6 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.getElementById('updateCategory').disabled = false;
 		
 		newFile();
+		
 		try {
 			eval(document.getElementById('blocks_function').value);
 		} catch (e) {
@@ -246,6 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				throw e;
 			}	
 		}		
+		
 		var xml = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
 		var dom = new DOMParser().parseFromString(document.getElementById('category_function').value,"text/xml").firstChild;
 		xml.appendChild(dom);
