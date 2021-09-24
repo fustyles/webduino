@@ -160,9 +160,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 	document.getElementById('arduino_function').value = ""+
 		"Blockly.Arduino['test'] = function(block) {\n"+
+		"  //Blockly.Arduino.definitions_['name'] = '\/\/Happy World\\n';\n"+
+		"  //Blockly.Arduino.setups_['name'] = '\/\/Happy World\\n';\n"+
+		"  //Blockly.Arduino.finals_['name'] = 'String app() {\\n  return \"Happy World\";\\n}\\n';\n\n"+
 		"  var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);\n"+
 		"  var value_val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);\n"+
-		"  // TODO: Assemble Arduino into code variable.\n"+
 		"  var code = 'digitalWrite(%1, %2);\\n'.replace('%1',value_pin).replace('%2',value_val);\n"+
 		"  return code;\n"+
 		"};";
@@ -225,36 +227,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//更新自訂積木
 	document.getElementById('addBlocks').onclick = function () {
-		document.getElementById('updateDefinition').disabled = false;
-		document.getElementById('updateGenerate').disabled = false;
-		document.getElementById('updateCategory').disabled = false;
-		
 		newFile();
-		
-		try {
-			eval(document.getElementById('blocks_function').value);
-		} catch (e) {
-			if (e instanceof SyntaxError) {
-				alert(e.message);
-			} else {
-				throw e;
-			}	
-		}
-		try {
-			eval(document.getElementById('arduino_function').value.replace(/Javascript/g,"Arduino"));
-		} catch (e) {
-			if (e instanceof SyntaxError) {
-				alert(e.message);
-			} else {
-				throw e;
-			}	
-		}		
-		
-		var xml = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
-		var dom = new DOMParser().parseFromString(document.getElementById('category_function').value,"text/xml").firstChild;
-		xml.appendChild(dom);
-		Blockly.getMainWorkspace().updateToolbox(xml);
-	}	
+		document.getElementById('updateDefinition').click();
+		document.getElementById('updateGenerate').click();		
+		document.getElementById('updateCategory').click();
+	}
 	
 	var category = document.getElementById('toolbox');
 	var xmlValue='<xml id="toolbox">';
