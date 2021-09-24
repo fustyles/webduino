@@ -1,6 +1,6 @@
 /*
  * Copyright 2021 Taiwan
- * @fileoverview SPduino V1
+ * @fileoverview SpBlockly tool
  * @author https://www.facebook.com/francefu/ (ChungYi Fu)
 */
  
