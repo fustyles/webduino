@@ -725,7 +725,7 @@ Blockly.Arduino.procedures_defreturn=function(){
 	
 	b=d+" "+a+"("+g+") {\n"+b+c+"}\n";
 	b=Blockly.Arduino.scrub_(this,b);
-	Blockly.Arduino.definitions_[a]=b;
+	Blockly.Arduino.finals_[a]=b;
 	return null
 };
 Blockly.Arduino.procedures_return=function(){
@@ -744,7 +744,7 @@ Blockly.Arduino.procedures_defnoreturn=function(){
 	
 	b="void "+a+"("+g+") {\n"+b+c+"}\n";
 	b=Blockly.Arduino.scrub_(this,b);
-	Blockly.Arduino.definitions_[a]=b;
+	Blockly.Arduino.finals_[a]=b;
 	return null
 };
 Blockly.Arduino.procedures_callnoreturn=function(){
@@ -754,7 +754,9 @@ Blockly.Arduino.procedures_callnoreturn=function(){
 	g=g.replace("{","").replace("}","");
 	return a+"("+g+");\n"
 };
-Blockly.Arduino.procedures_ifreturn=function(){var a="if ("+(Blockly.Arduino.valueToCode(this,"CONDITION",Blockly.Arduino.ORDER_NONE)||"false")+") {\n";if(this.hasReturnValue_){var b=Blockly.Arduino.valueToCode(this,"VALUE",Blockly.Arduino.ORDER_NONE)||"null";a+="  return "+b+";\n"}else a+="  return;\n";return a+"}\n"};
+Blockly.Arduino.procedures_ifreturn=function(){
+	var a="if ("+(Blockly.Arduino.valueToCode(this,"CONDITION",Blockly.Arduino.ORDER_NONE)||"false")+") {\n";if(this.hasReturnValue_){var b=Blockly.Arduino.valueToCode(this,"VALUE",Blockly.Arduino.ORDER_NONE)||"null";a+="  return "+b+";\n"}else a+="  return;\n";return a+"}\n"
+};
 Blockly.Arduino.procedures_callreturn=function(){
 	var a=Blockly.Arduino.variableDB_.getName(this.getFieldValue("NAME"),Blockly.Procedures.NAME_TYPE);
 	var g=Blockly.Arduino.valueToCode(this,"VAR",Blockly.Arduino.ORDER_NONE)||"";

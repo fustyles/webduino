@@ -1179,7 +1179,7 @@ Blockly.Msg.MODE_LOAD = "讀取";
 
 
 Blockly.Msg["CATVARIABLES"] = "變數";
-Blockly.Msg["CATPROCEDURES"] = "流程";
+Blockly.Msg["CATPROCEDURES"] = "函數";
 Blockly.Msg["CATLOGIC"] = "邏輯";
 Blockly.Msg["CATLOOPS"] = "迴圈";
 Blockly.Msg["CATMATH"] = "數值";
