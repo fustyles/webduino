@@ -160,9 +160,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 	document.getElementById('arduino_function').value = ""+
 		"Blockly.Arduino['test'] = function(block) {\n"+
-		"  //Blockly.Arduino.definitions_['name'] = '\/\/Happy World\\n';\n"+
-		"  //Blockly.Arduino.setups_['name'] = '\/\/Happy World\\n';\n"+
-		"  //Blockly.Arduino.finals_['name'] = 'String app() {\\n  return \"Happy World\";\\n}\\n';\n\n"+
+		"  //Blockly.Arduino.definitions_['name'] = '\/\/Happy World';\n"+
+		"  //Blockly.Arduino.setups_['name'] = '\/\/Happy World';\n"+
+		"  //Blockly.Arduino.finals_['name'] = 'String app() {\\n  return \"Happy World\";\\n}';\n\n"+
 		"  var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);\n"+
 		"  var value_val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);\n"+
 		"  var code = 'digitalWrite(%1, %2);\\n'.replace('%1',value_pin).replace('%2',value_val);\n"+

@@ -83,8 +83,8 @@ Blockly.Arduino.finish=function(a){
 	for(e in Blockly.Arduino.finals_)
 		f.push(Blockly.Arduino.finals_[e]);		
 	var e=new Date((new Date).getTime());
-	b=b.join("\n")+"\n\n"+c.join("\n")+"\n\nvoid setup() \n{\n  "+d.join("\n  ")+"\n}\n\n";
-	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n\n")+a+"\n\n"+f.join("\n\n");
+	b=b.join("\n")+"\n\n"+c.join("\n")+"\n\nvoid setup() \n{\n  "+d.join("\n  ")+"\n}";
+	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n")+a+"\n\n"+f.join("\n\n");
 	return b
 };
 
