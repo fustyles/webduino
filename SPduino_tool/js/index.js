@@ -37,23 +37,32 @@ document.addEventListener('DOMContentLoaded', function() {
 	//新增暫存積木插件
 	const myBackpack = new MyBackpack(workspace, "category_initializes" , true);
 	
+	//程式碼區塊調整大小功能	
+	$(function() {
+		$( "#code_content" ).draggable();
+	});
+	
+	//程式碼區塊拖曳功能
+	$(function() {
+		$( "#code_content" ).resizable();
+	});	
+	
+	setInterval(function(){ 
+		var div_code = document.getElementById('arduino_code');
+		var code = Blockly.Arduino.workspaceToCode();			
+		div_code.innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");				
+	}, 500);	
+	
 	//新增初始化積木
 	function newFile() {
 		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="initializes_setup" id="0" x="100" y="50"><next><block type="initializes_loop" id="1"></block></next></block></xml>');
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
 	}
-	
 	newFile();
 	
-	setInterval(function(){ 
-		var div_code = document.getElementById('showcode');
-		var code = Blockly.Arduino.workspaceToCode();			
-		div_code.innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");				
-	}, 500);
-
 	//程式碼區塊顯示
-	document.getElementById('arduino_code').onclick = function () {
+	document.getElementById('button_code').onclick = function () {
 		var div = document.getElementById('code_content');
 		if (div.style.display == "none")
 			div.style.display = "block";
@@ -62,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	//工作區顯示
-	document.getElementById('workspace_show').onclick = function () {
+	document.getElementById('button_workspace').onclick = function () {
 		var developertool = document.getElementById('developertool');
 		if (developertool.style.height == "220px"||developertool.style.height == "") {
 			displayTab('category_content');
@@ -76,27 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			displayTab('category_content');
 			document.getElementById('code_content').style.display = "block";	
 		}
-	}
-	
-	//開啟Blockly Developer Tools
-	document.getElementById('tool_open').onclick = function () {
-		var link = document.createElement('a');
-		link.target="_blank";
-		link.href="https://blockly-demo.appspot.com/static/demos/blockfactory/index.html";
-		document.body.appendChild(link);
-		link.click();
-		link.remove();
 	}	
-	
-	//程式碼區塊調整大小功能	
-	$(function() {
-		$( "#code_content" ).draggable();
-	});
-	
-	//程式碼區塊拖曳功能
-	$(function() {
-		$( "#code_content" ).resizable();
-	});	
 	
 	//重設工作區
 	document.getElementById('button_new').onclick = function () {
@@ -109,23 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
-	function arduinoCode() {
-		var code = Blockly.Arduino.workspaceToCode();
-		document.getElementById('arduino_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
-	}
-	
-	//複製程式碼到剪貼簿
-	document.getElementById('copycode').onclick = function () {
-		var text = document.getElementById('showcode').innerText;
-		navigator.clipboard.writeText(text).then(function() {
-			alert('Copying to clipboard was successful!');
-		}, function(err) {
-			console.error(err);
-		});
-	}	
-	
 	//儲存內容
-	document.getElementById('save').onclick = function () {
+	document.getElementById('button_save').onclick = function () {
 		var content = "" +
 			document.getElementById('blocks_function').value + "\n\n" +
 			document.getElementById('arduino_function').value + "\n\n" +
@@ -139,6 +113,27 @@ document.addEventListener('DOMContentLoaded', function() {
 		link.remove();			
 	}	
 	
+	//開啟Blockly Developer Tools
+	document.getElementById('button_tool').onclick = function () {
+		var link = document.createElement('a');
+		link.target="_blank";
+		link.href="https://blockly-demo.appspot.com/static/demos/blockfactory/index.html";
+		document.body.appendChild(link);
+		link.click();
+		link.remove();
+	}
+
+	//複製程式碼到剪貼簿
+	document.getElementById('button_copycode').onclick = function () {
+		var text = document.getElementById('arduino_code').innerText;
+		navigator.clipboard.writeText(text).then(function() {
+			alert('Copying to clipboard was successful!');
+		}, function(err) {
+			console.error(err);
+		});
+	}
+	
+	//積木定義
 	document.getElementById('blocks_function').value = ''+
 		'Blockly.Blocks["test"] = {\n'+
 		' init: function() {\n'+
@@ -158,6 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		'  }\n'+
 		'};';
 		
+	//程式碼產出
 	document.getElementById('arduino_function').value = ""+
 		"Blockly.Arduino['test'] = function(block) {\n"+
 		"  //Blockly.Arduino.definitions_['name'] = '\/\/Hello World';\n"+
@@ -169,6 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		"  return code;\n"+
 		"};";
 		
+	//工具箱目錄
 	document.getElementById('category_function').value = ''+
 		'<category id="category_custom" name="MYBLOCKS" colour="0">\n'+
 		'	<block type="test">\n'+
@@ -186,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		'</category>';
 		
 	//更新積木定義函式
-	document.getElementById('updateDefinition').onclick = function () {
+	document.getElementById('button_updateDefinition').onclick = function () {
 		displayTab('category_content');
 		try {
 			eval(document.getElementById('blocks_function').value);
@@ -202,8 +199,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 	
-	//更新產出程式碼函式
-	document.getElementById('updateGenerate').onclick = function () {
+	//更新程式碼產出函式
+	document.getElementById('button_updateGenerate').onclick = function () {
 		displayTab('category_content');
 		try {
 			eval(document.getElementById('arduino_function').value.replace(/Javascript/g,"Arduino"));
@@ -216,8 +213,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
-	//更新目錄
-	document.getElementById('updateCategory').onclick = function () {
+	//更新工具箱目錄
+	document.getElementById('button_updateCategory').onclick = function () {
 		displayTab('category_content');
 		var xml = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
 		var dom = new DOMParser().parseFromString(document.getElementById('category_function').value,"text/xml").firstChild;
@@ -225,14 +222,15 @@ document.addEventListener('DOMContentLoaded', function() {
 		Blockly.getMainWorkspace().updateToolbox(xml);
 	}
 	
-	//更新自訂積木
+	//新增自訂積木
 	document.getElementById('addBlocks').onclick = function () {
 		newFile();
-		document.getElementById('updateDefinition').click();
-		document.getElementById('updateGenerate').click();		
-		document.getElementById('updateCategory').click();
+		document.getElementById('button_updateDefinition').click();
+		document.getElementById('button_updateGenerate').click();		
+		document.getElementById('button_updateCategory').click();
 	}
 	
+	//紀錄工具箱目錄原始內容
 	var category = document.getElementById('toolbox');
 	var xmlValue='<xml id="toolbox">';
 	if (category.childNodes.length>0) {
@@ -245,16 +243,27 @@ document.addEventListener('DOMContentLoaded', function() {
 });	
 
 //切換頁籤
-var tabs = ['arduino_content','category_content'];
+var tabs = ['arduino_content','xml_content','category_content'];
 function displayTab(id) {
 	for (var i in tabs) {
 		document.getElementById(tabs[i]).style.display= (tabs[i]==id)?"block":"none";
-		if (tabs[i]=='arduino_content') arduinoCode();
+		if (tabs[i]=='arduino_content') 
+			arduinoCode();
+		else if (tabs[i]=='xml_content') 
+			xmlCode();
 	}
 	developertool.style.height = "220px";
 }
 
+//Arduino原始碼顯示
 function arduinoCode() {
 	var code = Blockly.Arduino.workspaceToCode();
 	document.getElementById('arduino_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
+}
+
+//XML原始碼顯示
+function xmlCode() {
+	var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace, true);
+	var code = Blockly.Xml.domToPrettyText(xml);
+	document.getElementById('xml_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 }

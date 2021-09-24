@@ -24,9 +24,9 @@ const workspace = Blockly.inject('blocklyDiv', {
 // Initialize plugin.
 const myBackpack = new MyBackpack(workspace);
 
-const myBackpack = new MyBackpack(workspace, "category_functions" , true);
-//Parameter 1 --> Workspace
-//Parameter 2 --> Category ID that exists in the toolbox category.
+const myBackpack = new MyBackpack(workspace, "category_logic" , true);
+//Parameter 1 --> Blockly Workspace
+//Parameter 2 --> Category ID that exists in the toolbox.
 //Parameter 3 --> true: insertAfter, false :insertBefore
 
  */

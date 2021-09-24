@@ -40,16 +40,17 @@
 			<td style="width: calc(100vw - 100px)">
 				<ul id="tabs">
 					<li><a onclick="displayTab('category_content');">Toolbox</a></li>
+					<li><a onclick="displayTab('xml_content');">XML</a></li>
 					<li><a onclick="displayTab('arduino_content');">Arduino Code</a></li>
 				</ul>
 			</td>			
 			<td style="width: 100px">
 				<ul id="tabs">
-					<a href="#" id="arduino_code" title="Show/Hide Code"><i class="small material-icons">list_alt</i></a>
-					<a href="#" id="workspace_show" title="Show/Hide workspace"><i class="small material-icons">format_line_spacing</i></a>
+					<a href="#" id="button_code" title="Show/Hide Code"><i class="small material-icons">list_alt</i></a>
+					<a href="#" id="button_workspace" title="Show/Hide workspace"><i class="small material-icons">format_line_spacing</i></a>
 					<a href="#" id="button_new" title="Reset workspace"><i class="small material-icons">create</i></a>
-					<a href="#" id="save" title="Save"><i class="small material-icons">save</i></a>					
-					<a href="#" id="tool_open" title="Blockly Developer Tools"><i class="small material-icons">construction</i></a>
+					<a href="#" id="button_save" title="Save"><i class="small material-icons">save</i></a>					
+					<a href="#" id="button_tool" title="Blockly Developer Tools"><i class="small material-icons">construction</i></a>
 				</ul>
 			</td>
 		</tr>					
@@ -245,19 +246,20 @@
 	</div>
 	
 	<div id="arduino_content" class="arduino_content"></div>
+	<div id="xml_content" class="xml_content"></div>
 	<div id="code_content" class="ui-widget-content">
 		<div id="arduino_title" class="ui-widget-header">
 			&nbsp;&nbsp;
-			<a href="#" id="copycode" title="copy the code"><i class="material-icons" style="vertical-align: middle; color: white;">featured_play_list</i></a>
+			<a href="#" id="button_copycode" title="copy the code"><i class="material-icons" style="vertical-align: middle; color: white;">featured_play_list</i></a>
 			&nbsp;&nbsp;
 			<span id="text_uploader_status" style="vertical-align: middle;">Arduino Code</span>
 		</div>
-		<div id="showcode"></div>	
+		<div id="arduino_code"></div>	
 	</div>
 	<div id="developertool">
 		<table style="width:100%; height:100%">
 			<tr style="height:12px">
-				<td>Blocks Definition&nbsp;<button id="updateDefinition">Update</button></td><td>Generate Code&nbsp;<button id="updateGenerate" >Update</button></td><td>Category&nbsp;<button id="updateCategory">Update</button> &nbsp; &nbsp; <button id="addBlocks">Build Blocks</button></td>
+				<td>Blocks Definition&nbsp;<button id="button_updateDefinition">Update</button></td><td>Generate Code&nbsp;<button id="button_updateGenerate" >Update</button></td><td>Category&nbsp;<button id="button_updateCategory">Update</button> &nbsp; &nbsp; <button id="addBlocks">Build Blocks</button></td>
 			</tr>
 			<tr>
 				<td style="width:33%;"><textarea id="blocks_function" style="resize: horizontal;" spellcheck="false"></textarea></td>
