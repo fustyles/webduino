@@ -847,7 +847,7 @@ Blockly.Msg.EEPROM_VALUE = "value"
 
 
 Blockly.Msg["CATVARIABLES"] = "VARIABLES";
-Blockly.Msg["CATPROCEDURES"] = "PROCEDURES";
+Blockly.Msg["CATPROCEDURES"] = "FUNCTIONS";
 Blockly.Msg["CATLOGIC"] = "LOGIC";
 Blockly.Msg["CATLOOPS"] = "LOOPS";
 Blockly.Msg["CATMATH"] = "MATH";
