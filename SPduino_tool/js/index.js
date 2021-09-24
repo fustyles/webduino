@@ -246,10 +246,11 @@ document.addEventListener('DOMContentLoaded', function() {
 var tabs = ['arduino_content','xml_content','category_content'];
 function displayTab(id) {
 	for (var i in tabs) {
-		document.getElementById(tabs[i]).style.display= (tabs[i]==id)?"block":"none";
-		if (tabs[i]=='arduino_content') 
+		const tab = document.getElementById(tabs[i]);
+		tab.style.display = (tabs[i]==id)?"block":"none";
+		if (id=='arduino_content') 
 			arduinoCode();
-		else if (tabs[i]=='xml_content') 
+		else if (id=='xml_content') 
 			xmlCode();
 	}
 	developertool.style.height = "220px";
@@ -257,12 +258,14 @@ function displayTab(id) {
 
 //Arduino原始碼顯示
 function arduinoCode() {
+	document.getElementById('code_content').style.display = "block";
 	var code = Blockly.Arduino.workspaceToCode();
 	document.getElementById('arduino_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 }
 
 //XML原始碼顯示
 function xmlCode() {
+	document.getElementById('code_content').style.display = "none";
 	var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace, true);
 	var code = Blockly.Xml.domToPrettyText(xml);
 	document.getElementById('xml_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
