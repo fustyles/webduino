@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		'	this.setInputsInline(true);\n'+
 		'	this.setPreviousStatement(true, null);\n'+
 		'	this.setNextStatement(true, null);\n'+
-		'	this.setColour(230);\n'+
+		'	this.setColour(330);\n'+
 		'   this.setTooltip("");\n'+
 		'   this.setHelpUrl("");\n'+
 		'  }\n'+
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		"Blockly.Arduino['test'] = function(block) {\n"+
 		"  //Blockly.Arduino.definitions_['name'] = '\/\/Hello World';\n"+
 		"  //Blockly.Arduino.setups_['name'] = '\/\/Hello World';\n"+
-		"  //Blockly.Arduino.functions_['name'] = 'String Blockly() {\\n  return \"Hello World\";\\n}';\n\n"+
+		"  //Blockly.Arduino.functions_['name'] = 'String blockly() {\\n  return \"Hello World\";\\n}';\n\n"+
 		"  var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);\n"+
 		"  var value_val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);\n"+
 		"  var code = 'digitalWrite(%1, %2);\\n'.replace('%1',value_pin).replace('%2',value_val);\n"+
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 	//工具箱目錄
 	document.getElementById('category_function').value = ''+
-		'<category id="category_custom" name="MYBLOCKS" colour="0">\n'+
+		'<category id="category_custom" name="MYBLOCKS" colour="100">\n'+
 		'	<block type="test">\n'+
 		'		<value name="pin">\n'+
 		'			<shadow type="math_number">\n'+
