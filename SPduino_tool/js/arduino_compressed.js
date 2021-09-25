@@ -64,13 +64,14 @@ Blockly.Arduino.init=function(a){
 	
 	Blockly.Arduino.definitions_=Object.create(null);
 	Blockly.Arduino.setups_=Object.create(null);
-	Blockly.Arduino.finals_=Object.create(null);
+	Blockly.Arduino.functions_=Object.create(null);
 };
 
 Blockly.Arduino.finish=function(a){
 	a="  "+a.replace(/\n/g,"\n");
 	a=a.replace(/\n\s+$/,"\n");
 	a="void loop() \n{\n"+a+"\n}";
+	
 	var b=[],c=[];
 	for(e in Blockly.Arduino.definitions_){
 		var d=Blockly.Arduino.definitions_[e];
@@ -80,9 +81,10 @@ Blockly.Arduino.finish=function(a){
 	for(e in Blockly.Arduino.setups_)
 		d.push(Blockly.Arduino.setups_[e]);
 	var f=[];
-	for(e in Blockly.Arduino.finals_)
-		f.push(Blockly.Arduino.finals_[e]);		
+	for(e in Blockly.Arduino.functions_)
+		f.push(Blockly.Arduino.functions_[e]);		
 	var e=new Date((new Date).getTime());
+	
 	b=b.join("\n")+"\n\n"+c.join("\n")+"\n\nvoid setup() \n{\n  "+d.join("\n  ")+"\n}";
 	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n")+a+"\n\n"+f.join("\n\n");
 	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n");
@@ -725,7 +727,7 @@ Blockly.Arduino.procedures_defreturn=function(){
 	
 	b=d+" "+a+"("+g+") {\n"+b+c+"}\n";
 	b=Blockly.Arduino.scrub_(this,b);
-	Blockly.Arduino.finals_[a]=b;
+	Blockly.Arduino.functions_[a]=b;
 	return null
 };
 Blockly.Arduino.procedures_return=function(){
@@ -744,7 +746,7 @@ Blockly.Arduino.procedures_defnoreturn=function(){
 	
 	b="void "+a+"("+g+") {\n"+b+c+"}\n";
 	b=Blockly.Arduino.scrub_(this,b);
-	Blockly.Arduino.finals_[a]=b;
+	Blockly.Arduino.functions_[a]=b;
 	return null
 };
 Blockly.Arduino.procedures_callnoreturn=function(){
