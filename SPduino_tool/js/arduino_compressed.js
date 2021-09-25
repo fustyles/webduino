@@ -731,8 +731,11 @@ Blockly.Arduino.procedures_defreturn=function(){
 	return null
 };
 Blockly.Arduino.procedures_return=function(){
-	var a=Blockly.Arduino.valueToCode(this,"RETURN",Blockly.Arduino.ORDER_NONE)||"null";
-	var code="return ("+a+");\n";
+	var a=Blockly.Arduino.valueToCode(this,"RETURN",Blockly.Arduino.ORDER_NONE)||"";
+	if (a=="")
+		var code="return "+a+";\n";
+	else
+		var code="return ("+a+");\n";
 	return code;
 };
 Blockly.Arduino.procedures_defnoreturn=function(){
