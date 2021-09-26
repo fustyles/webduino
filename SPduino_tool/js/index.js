@@ -264,14 +264,12 @@ function displayTab(id) {
 
 //Arduino原始碼顯示
 function arduinoCode() {
-	document.getElementById('code_content').style.display = "block";
 	var code = Blockly.Arduino.workspaceToCode();
 	document.getElementById('arduino_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 }
 
 //XML原始碼顯示
 function xmlCode() {
-	document.getElementById('code_content').style.display = "none";
 	var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace, true);
 	var code = Blockly.Xml.domToPrettyText(xml);
 	document.getElementById('xml_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");

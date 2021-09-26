@@ -16,4 +16,4 @@ main .xml_content{height: calc(100vh - 90px); padding: 2ex; color:white; backgro
 #updateCategory_content { width: calc(26vw); height: 240px; left: calc(72vw); top:calc(100vh - 260px); padding: 0em; position: absolute !important; font-size: 14px !important; z-index:99999 !important;}
 .update_code { width: 100%; height:200px; padding:0px; background:white; border: 0px solid #8E8E8E;}
 
-.textarea_content { width: 100%; height: calc(100% - 40px); white-space:nowrap; padding:0px; background:white; border: 0px solid #8E8E8E; resize: none; overflow: auto; position:absolute}
+.textarea_content { width: 100%; height: calc(100% - 40px); white-space:nowrap; padding:0px; background:white; border: 0px solid #8E8E8E; resize: none; overflow: scroll; position:absolute}
