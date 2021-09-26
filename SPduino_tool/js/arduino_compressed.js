@@ -47,6 +47,7 @@ Blockly.Arduino.ORDER_NONE=99;
 
 Blockly.Arduino.ORDER_OVERRIDES=[[Blockly.Arduino.ORDER_FUNCTION_CALL,Blockly.Arduino.ORDER_MEMBER],[Blockly.Arduino.ORDER_FUNCTION_CALL,Blockly.Arduino.ORDER_FUNCTION_CALL],[Blockly.Arduino.ORDER_MEMBER,Blockly.Arduino.ORDER_MEMBER],[Blockly.Arduino.ORDER_MEMBER,Blockly.Arduino.ORDER_FUNCTION_CALL],[Blockly.Arduino.ORDER_LOGICAL_NOT,Blockly.Arduino.ORDER_LOGICAL_NOT],[Blockly.Arduino.ORDER_MULTIPLICATION,Blockly.Arduino.ORDER_MULTIPLICATION],[Blockly.Arduino.ORDER_ADDITION,
 Blockly.Arduino.ORDER_ADDITION],[Blockly.Arduino.ORDER_LOGICAL_AND,Blockly.Arduino.ORDER_LOGICAL_AND],[Blockly.Arduino.ORDER_LOGICAL_OR,Blockly.Arduino.ORDER_LOGICAL_OR]];
+
 Blockly.Arduino.isInitialized=!1;
 
 Blockly.Arduino.init=function(a){
@@ -91,7 +92,6 @@ Blockly.Arduino.finish=function(a){
 	a=a.replace("%4",i.join("\n")!=""?i.join("\n")+("\n  "):"");
 	a=a.replace(/  \n}/g,"}");
 	b=b.join("\n")+"\n\n"+c.join("\n")+"\n"+a+"\n"+j.join("\n\n");
-	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n");
 	
 	this.isInitialized=!1;
 	this.nameDB_.reset();
