@@ -86,11 +86,11 @@ Blockly.Arduino.finish=function(a){
 	for(e in Blockly.Arduino.loops_bottom_)
 		i.push(Blockly.Arduino.loops_bottom_[e]);
 	a=a.replace("%4",i.join("\n")!=""?i.join("\n")+("\n  "):"");
-a=a.replace(/  \n}/g,"}");
 	
 	for(e in Blockly.Arduino.functions_)
 		j.push(Blockly.Arduino.functions_[e]);
 	
+	a=a.replace(/  \n}/g,"}");
 	b=b.join("\n")+"\n\n"+c.join("\n")+"\n"+a+"\n"+j.join("\n\n");
 	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n");
 	
