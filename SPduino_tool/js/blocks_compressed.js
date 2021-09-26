@@ -42,7 +42,6 @@ Blockly.Blocks.main={
 		this.appendStatementInput("LOOP")
 		this.setInputsInline(!1);
 		this.setPreviousStatement(!0);
-		this.setNextStatement(!0);
 		this.setStyle("initializes_blocks");
 	}
 };

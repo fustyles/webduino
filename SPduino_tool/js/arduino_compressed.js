@@ -76,20 +76,19 @@ Blockly.Arduino.finish=function(a){
 
 	for(e in Blockly.Arduino.setups_top_)
 		f.push(Blockly.Arduino.setups_top_[e]);
-	a=a.replace("%1",f.join("\n")!=""?f.join("\n")+("  "):"");
 	for(e in Blockly.Arduino.setups_bottom_)
 		g.push(Blockly.Arduino.setups_bottom_[e]);
-	a=a.replace("%2",g.join("\n")!=""?g.join("\n")+("\n  "):"");
 	for(e in Blockly.Arduino.loops_top_)
 		h.push(Blockly.Arduino.loops_top_[e]);
-	a=a.replace("%3",h.join("\n")!=""?h.join("\n")+"  ":"");
 	for(e in Blockly.Arduino.loops_bottom_)
 		i.push(Blockly.Arduino.loops_bottom_[e]);
-	a=a.replace("%4",i.join("\n")!=""?i.join("\n")+("\n  "):"");
-	
 	for(e in Blockly.Arduino.functions_)
 		j.push(Blockly.Arduino.functions_[e]);
 	
+	a=a.replace("%1",f.join("\n")!=""?f.join("\n")+("  "):"");
+	a=a.replace("%2",g.join("\n")!=""?g.join("\n")+("\n  "):"");
+	a=a.replace("%3",h.join("\n")!=""?h.join("\n")+"  ":"");
+	a=a.replace("%4",i.join("\n")!=""?i.join("\n")+("\n  "):"");
 	a=a.replace(/  \n}/g,"}");
 	b=b.join("\n")+"\n\n"+c.join("\n")+"\n"+a+"\n"+j.join("\n\n");
 	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n");
