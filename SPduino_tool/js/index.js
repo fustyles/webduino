@@ -231,7 +231,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//新增自訂積木
 	document.getElementById('button_addBlocks').onclick = function () {
-		newFile();
 		document.getElementById('button_updateDefinition').click();
 		document.getElementById('button_updateGenerate').click();		
 		document.getElementById('button_updateCategory').click();
