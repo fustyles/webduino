@@ -92,9 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		var result = confirm(Blockly.Msg.BUTTON_RESET);
 		if (result) {
 			newFile();
-			document.getElementById('blocks_function').value = "";
-			document.getElementById('arduino_function').value = "";
-			document.getElementById('category_function').value = "";
+			document.getElementById('blocks_function').value = code[0];
+			document.getElementById('arduino_function').value = code[1];
+			document.getElementById('category_function').value = code[2];
 		}
 	}
 
@@ -133,8 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	}
 	
-	//積木定義
-	document.getElementById('blocks_function').value = ''+
+	var code = [
 		'Blockly.Blocks["test"] = {\n'+
 		' init: function() {\n'+
 		'	this.appendValueInput("pin")\n'+
@@ -151,10 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		'   this.setTooltip("Blocks definition");\n'+
 		'   this.setHelpUrl("https://developers.google.com/blockly/guides/create-custom-blocks/overview");\n'+
 		'  }\n'+
-		'};';
-		
-	//程式碼產出
-	document.getElementById('arduino_function').value = ""+
+		'};',
 		"Blockly.Arduino['test'] = function(block) {\n"+
 		"  //Blockly.Arduino.definitions_['name'] = '\/\/definitions_\\n';\n"+
 		"  //Blockly.Arduino.setups_top_['name'] = '\/\/setups_top_\\n';\n"+
@@ -166,10 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		"  var value_val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);\n"+
 		"  var code = 'digitalWrite(%1, %2);\\n'.replace('%1',value_pin).replace('%2',value_val);\n"+
 		"  return code;\n"+
-		"};";
-		
-	//工具箱目錄
-	document.getElementById('category_function').value = ''+
+		"};",
 		'<category id="category_custom" name="MYBLOCKS" colour="200">\n'+
 		'	<block type="test">\n'+
 		'		<value name="pin">\n'+
@@ -183,7 +176,18 @@ document.addEventListener('DOMContentLoaded', function() {
 		'			</shadow>\n'+
 		'		</value>\n'+
 		'	</block>\n'+		
-		'</category>';
+		'</category>'
+	]
+		
+		
+	//積木定義
+	document.getElementById('blocks_function').value = code[0];
+		
+	//程式碼產出
+	document.getElementById('arduino_function').value = code[1];
+		
+	//工具箱目錄
+	document.getElementById('category_function').value = code[2];
 		
 	//更新積木定義函式
 	document.getElementById('button_updateDefinition').onclick = function () {
