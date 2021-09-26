@@ -32,7 +32,7 @@ Blockly.Msg.BLOCKS = "Blocks";
 Blockly.Msg.BLUE = "Blue";
 
 Blockly.Msg.CAST_NUMBER_HELPURL = "https://www.arduino.cc/en/Reference/Cast";
-Blockly.Msg.CAST_NUMBER_TITLE = "轉換成";
+Blockly.Msg.CAST_NUMBER_TITLE = "transform to";
 Blockly.Msg.CAST_NUMBER_TOOLTIP = "The cast operator translates one variable type into another and forces calculations to be performed in the cast type.";  // untranslated
 Blockly.Msg.CONTROLS_FLOW_STATEMENTS_HELPURL = "https://github.com/google/blockly/wiki/Loops#loop-termination-blocks";
 Blockly.Msg.CONTROLS_FLOW_STATEMENTS_OPERATOR_BREAK = "break out of loop";
