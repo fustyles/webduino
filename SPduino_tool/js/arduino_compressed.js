@@ -58,21 +58,40 @@ Blockly.Arduino.init=function(a){
 	this.nameDB_.populateProcedures(a);
 	
 	this.definitions_=Object.create(null);
+	this.setups_top_=Object.create(null);
+	this.setups_bottom_=Object.create(null);
+	this.loops_top_=Object.create(null);
+	this.loops_bottom_=Object.create(null);
 	this.functions_=Object.create(null);
 	
 	this.isInitialized=!0
 };
 
 Blockly.Arduino.finish=function(a){
-	var b=[],c=[],d=[],e,f=[];
+	var b=[],c=[],d=[],e,f=[],g=[],h=[],i=[],j=[];
 	for(e in Blockly.Arduino.definitions_){
 		var d=Blockly.Arduino.definitions_[e];
 		d.match(/^#include/)?b.push(d):c.push(d)
 	}
-	for(e in Blockly.Arduino.functions_)
-		f.push(Blockly.Arduino.functions_[e]);	
+
+	for(e in Blockly.Arduino.setups_top_)
+		f.push(Blockly.Arduino.setups_top_[e]);
+	a=a.replace("%1",f.join("\n")!=""?f.join("\n")+("  "):"");
+	for(e in Blockly.Arduino.setups_bottom_)
+		g.push(Blockly.Arduino.setups_bottom_[e]);
+	a=a.replace("%2",g.join("\n")!=""?g.join("\n")+("\n  "):"");
+	for(e in Blockly.Arduino.loops_top_)
+		h.push(Blockly.Arduino.loops_top_[e]);
+	a=a.replace("%3",h.join("\n")!=""?h.join("\n")+"  ":"");
+	for(e in Blockly.Arduino.loops_bottom_)
+		i.push(Blockly.Arduino.loops_bottom_[e]);
+	a=a.replace("%4",i.join("\n")!=""?i.join("\n")+("\n  "):"");
+a=a.replace(/  \n}/g,"}");
 	
-	b=b.join("\n")+"\n\n"+c.join("\n")+"\n\n"+a+"\n\n"+f.join("\n\n");
+	for(e in Blockly.Arduino.functions_)
+		j.push(Blockly.Arduino.functions_[e]);
+	
+	b=b.join("\n")+"\n\n"+c.join("\n")+"\n"+a+"\n"+j.join("\n\n");
 	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n");
 	
 	this.isInitialized=!1;
@@ -101,11 +120,11 @@ Blockly.Arduino.scrub_=function(a,b){
 
 
 Blockly.Arduino.main=function(){
-	var a=Blockly.Arduino.statementToCode(this,"SETUP");
-	var b=Blockly.Arduino.statementToCode(this,"LOOP");
-	a=a.replace(/(^\s+)|(\s+$)/g,"");
-	b=b.replace(/(^\s+)|(\s+$)/g,"");
-	var code = "setup () \n{\n  " + a + "\n}\n\n"+"loop() \n{\n  "+ b +"\n}\n";
+	var a=Blockly.Arduino.statementToCode(this,"SETUP")||"";
+	var b=Blockly.Arduino.statementToCode(this,"LOOP")||"";
+	a=a.replace(/(^\s+)|(\s+$)/g,"")+(a!=""?"\n  ":"");
+	b=b.replace(/(^\s+)|(\s+$)/g,"")+(b!=""?"\n  ":"");
+	var code = "setup () \n{\n  %1" + a + "%2\n}\n\n"+"loop() \n{\n  %3"+ b +"%4\n}\n";
 	return code
 };
 

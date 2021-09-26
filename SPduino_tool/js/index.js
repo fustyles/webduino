@@ -156,7 +156,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	//程式碼產出
 	document.getElementById('arduino_function').value = ""+
 		"Blockly.Arduino['test'] = function(block) {\n"+
-		"  //Blockly.Arduino.definitions_['name'] = '\/\/Hello World';\n"+
+		"  //Blockly.Arduino.definitions_['name'] = '\/\/definitions_\\n';\n"+
+		"  //Blockly.Arduino.setups_top_['name'] = '\/\/setups_top_\\n';\n"+
+		"  //Blockly.Arduino.setups_bottom_['name'] = '\/\/setups_bottom_';\n"+
+		"  //Blockly.Arduino.loops_top_['name'] = '\/\/loops_top_\\n';\n"+
+		"  //Blockly.Arduino.loops_bottom_['name'] = '\/\/loops_bottom_';\n"+
 		"  //Blockly.Arduino.functions_['name'] = 'String blockly() {\\n  return \"Hello World\";\\n}';\n\n"+
 		"  var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);\n"+
 		"  var value_val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);\n"+
