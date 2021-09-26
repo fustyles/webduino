@@ -1191,7 +1191,7 @@ Blockly.Msg["CATINITIALIZES"] = "程式流程";
 
 Blockly.Msg["MATH_HUE"] = "230";
 Blockly.Msg["LOOPS_HUE"] = "120";
-Blockly.Msg["LISTS_HUE"] = "260";
+Blockly.Msg["LISTS_HUE"] = "20";
 Blockly.Msg["LOGIC_HUE"] = "210";
 Blockly.Msg["VARIABLES_HUE"] = "330";
 Blockly.Msg["TEXTS_HUE"] = "160";
@@ -1199,6 +1199,7 @@ Blockly.Msg["PROCEDURES_HUE"] = "290";
 Blockly.Msg["COLOUR_HUE"] = "20";
 Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
 Blockly.Msg["TRANSFORM_HUE"] = "250";
+Blockly.Msg["CATINITIALIZES_HUE"] = "50";
 
 Blockly.Msg["ADD_COMMENT"] = "加入註解";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "無法刪除變數「%1」，因為這是功能「%2」定義的一部份內容";

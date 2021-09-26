@@ -716,7 +716,7 @@ Blockly.Extensions.registerMutator("text_charAt_mutator",Blockly.Constants.Text.
 
 //舊版相容
 Blockly.Blocks.array={};
-Blockly.Msg["LISTS_HUE"]=260;
+Blockly.Msg["LISTS_HUE"]=20;
 Blockly.Blocks.array_create_with=Blockly.Blocks.lists_create_with;
 Blockly.Blocks.array_create_with_item=Blockly.Blocks.lists_create_with_item;
 Blockly.Blocks.array_create_with_container=Blockly.Blocks.lists_create_with_container;
