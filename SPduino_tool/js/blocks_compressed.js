@@ -30,8 +30,6 @@
 
 Blockly.Constants={};
 
-Blockly.Blocks.initializes={};
-Blockly.Blocks.initializes.HUE=0;
 Blockly.Blocks.main={
 	init:function() {
 		this.appendDummyInput()
