@@ -58,30 +58,21 @@ Blockly.Arduino.init=function(a){
 	this.nameDB_.populateProcedures(a);
 	
 	this.definitions_=Object.create(null);
-	this.setups_=Object.create(null);
 	this.functions_=Object.create(null);
 	
 	this.isInitialized=!0
 };
 
 Blockly.Arduino.finish=function(a){
-	a="  "+a.replace(/\n/g,"\n");
-	a=a.replace(/\n\s+$/,"\n");
-	a="void loop() \n{\n"+a+"\n}";
-	
-	var b=[],c=[],d=[],f=[];
+	var b=[],c=[],d=[],e,f=[];
 	for(e in Blockly.Arduino.definitions_){
 		var d=Blockly.Arduino.definitions_[e];
 		d.match(/^#include/)?b.push(d):c.push(d)
 	}
-	for(e in Blockly.Arduino.setups_)
-		d.push(Blockly.Arduino.setups_[e]);
 	for(e in Blockly.Arduino.functions_)
 		f.push(Blockly.Arduino.functions_[e]);	
 	
-	var e=new Date((new Date).getTime());
-	b=b.join("\n")+"\n\n"+c.join("\n")+"\n\nvoid setup() \n{\n  "+d.join("\n  ")+"\n}";
-	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n")+a+"\n\n"+f.join("\n\n");
+	b=b.join("\n")+"\n\n"+c.join("\n")+"\n\n"+a+"\n\n"+f.join("\n\n");
 	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n");
 	
 	this.isInitialized=!1;
@@ -109,18 +100,14 @@ Blockly.Arduino.scrub_=function(a,b){
 };
 
 
-Blockly.Arduino.initializes={};
-Blockly.Arduino.initializes_setup=function(){
-	var a=Blockly.Arduino.statementToCode(this,"CONTENT");
+Blockly.Arduino.main=function(){
+	var a=Blockly.Arduino.statementToCode(this,"SETUP");
+	var b=Blockly.Arduino.statementToCode(this,"LOOP");
 	a=a.replace(/(^\s+)|(\s+$)/g,"");
-	Blockly.Arduino.setups_.manual_add=a;
-	return ""
+	b=b.replace(/(^\s+)|(\s+$)/g,"");
+	var code = "setup () \n{\n  " + a + "\n}\n\n"+"loop() \n{\n  "+ b +"\n}\n";
+	return code
 };
-Blockly.Arduino.initializes_loop=function(){
-	var a=Blockly.Arduino.statementToCode(this,"CONTENT");
-	return a=a.replace(/(^\s+)|(\s+$)/g,"")
-};
-
 
 Blockly.Arduino.lists={};
 Blockly.Arduino.lists_create_empty=function(a){return["{}",Blockly.Arduino.ORDER_ATOMIC]};

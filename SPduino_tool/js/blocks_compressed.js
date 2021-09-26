@@ -32,8 +32,20 @@ Blockly.Constants={};
 
 Blockly.Blocks.initializes={};
 Blockly.Blocks.initializes.HUE=0;
-Blockly.Blocks.initializes_setup={init:function(){this.setHelpUrl(Blockly.Msg.INITIALIZES_SETUP_HELPURL);this.setColour(Blockly.Blocks.initializes.HUE);this.appendDummyInput().appendField(Blockly.Msg.INITIALIZES_SETUP_APPENDTEXT);this.appendStatementInput("CONTENT");this.setInputsInline(!0);this.setNextStatement(!0);this.setTooltip(Blockly.Msg.INITIALIZES_SETUP_TOOLTIP)}};
-Blockly.Blocks.initializes_loop={init:function(){this.setHelpUrl(Blockly.Msg.INITIALIZES_LOOP_HELPURL);this.setColour(Blockly.Blocks.initializes.HUE);this.appendDummyInput().appendField(Blockly.Msg.INITIALIZES_LOOP_APPENDTEXT);this.appendStatementInput("CONTENT");this.setInputsInline(!0);this.setPreviousStatement(!0);this.setTooltip(Blockly.Msg.INITIALIZES_LOOP_TOOLTIP)}};
+Blockly.Blocks.main={
+	init:function() {
+		this.appendDummyInput()
+			.appendField("setup");
+		this.appendStatementInput("SETUP")
+		this.appendDummyInput()
+			.appendField("loop");
+		this.appendStatementInput("LOOP")
+		this.setInputsInline(!1);
+		this.setPreviousStatement(!0);
+		this.setNextStatement(!0);
+		this.setStyle("initializes_blocks");
+	}
+};
 
 Blockly.defineBlocksWithJsonArray([{type:"lists_create_empty",message0:"%{BKY_LISTS_CREATE_EMPTY_TITLE}",output:"Array",style:"list_blocks",tooltip:"%{BKY_LISTS_CREATE_EMPTY_TOOLTIP}",helpUrl:"%{BKY_LISTS_CREATE_EMPTY_HELPURL}"},{type:"lists_repeat",message0:"%{BKY_LISTS_REPEAT_TITLE}",args0:[{type:"input_value",name:"ITEM"},{type:"input_value",name:"NUM",check:"Number"}],output:"Array",style:"list_blocks",tooltip:"%{BKY_LISTS_REPEAT_TOOLTIP}",helpUrl:"%{BKY_LISTS_REPEAT_HELPURL}"},{type:"lists_reverse",
 message0:"%{BKY_LISTS_REVERSE_MESSAGE0}",args0:[{type:"input_value",name:"LIST",check:"Array"}],output:"Array",inputsInline:!0,style:"list_blocks",tooltip:"%{BKY_LISTS_REVERSE_TOOLTIP}",helpUrl:"%{BKY_LISTS_REVERSE_HELPURL}"},{type:"lists_isEmpty",message0:"%{BKY_LISTS_ISEMPTY_TITLE}",args0:[{type:"input_value",name:"VALUE",check:["String","Array"]}],output:"Boolean",style:"list_blocks",tooltip:"%{BKY_LISTS_ISEMPTY_TOOLTIP}",helpUrl:"%{BKY_LISTS_ISEMPTY_HELPURL}"},{type:"lists_length",message0:"%{BKY_LISTS_LENGTH_TITLE}",args0:[{type:"input_value",name:"VALUE",check:["String","Array"]}],output:"Number",style:"list_blocks",tooltip:"%{BKY_LISTS_LENGTH_TOOLTIP}",helpUrl:"%{BKY_LISTS_LENGTH_HELPURL}"}
