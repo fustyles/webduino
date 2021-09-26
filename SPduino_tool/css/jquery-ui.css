@@ -920,6 +920,8 @@ body .ui-tooltip {
 	background: #8E8E8E;
 	color: #ffffff;
 	font-weight: bold;
+	text-align: center;
+	height: 40px;
 }
 .ui-widget-header a {
 	color: #ffffff;
