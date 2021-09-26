@@ -147,9 +147,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		'	this.setInputsInline(true);\n'+
 		'	this.setPreviousStatement(true, null);\n'+
 		'	this.setNextStatement(true, null);\n'+
-		'	this.setColour(330);\n'+
-		'   this.setTooltip("");\n'+
-		'   this.setHelpUrl("");\n'+
+		'	this.setColour(200);\n'+
+		'   this.setTooltip("Blocks definition");\n'+
+		'   this.setHelpUrl("https://developers.google.com/blockly/guides/create-custom-blocks/overview");\n'+
 		'  }\n'+
 		'};';
 		
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 	//工具箱目錄
 	document.getElementById('category_function').value = ''+
-		'<category id="category_custom" name="MYBLOCKS" colour="100">\n'+
+		'<category id="category_custom" name="MYBLOCKS" colour="200">\n'+
 		'	<block type="test">\n'+
 		'		<value name="pin">\n'+
 		'			<shadow type="math_number">\n'+

@@ -44,27 +44,24 @@ Blockly.Arduino.ORDER_ASSIGNMENT=16;
 Blockly.Arduino.ORDER_YIELD=17;
 Blockly.Arduino.ORDER_COMMA=18;
 Blockly.Arduino.ORDER_NONE=99;
+
 Blockly.Arduino.ORDER_OVERRIDES=[[Blockly.Arduino.ORDER_FUNCTION_CALL,Blockly.Arduino.ORDER_MEMBER],[Blockly.Arduino.ORDER_FUNCTION_CALL,Blockly.Arduino.ORDER_FUNCTION_CALL],[Blockly.Arduino.ORDER_MEMBER,Blockly.Arduino.ORDER_MEMBER],[Blockly.Arduino.ORDER_MEMBER,Blockly.Arduino.ORDER_FUNCTION_CALL],[Blockly.Arduino.ORDER_LOGICAL_NOT,Blockly.Arduino.ORDER_LOGICAL_NOT],[Blockly.Arduino.ORDER_MULTIPLICATION,Blockly.Arduino.ORDER_MULTIPLICATION],[Blockly.Arduino.ORDER_ADDITION,
 Blockly.Arduino.ORDER_ADDITION],[Blockly.Arduino.ORDER_LOGICAL_AND,Blockly.Arduino.ORDER_LOGICAL_AND],[Blockly.Arduino.ORDER_LOGICAL_OR,Blockly.Arduino.ORDER_LOGICAL_OR]];
-//Blockly.Arduino.isInitialized=!1;
-
-var profile={common:{number_type:"Number Byte Unsigned_Int Long Unsigned_Long Word Char Float Double Volatile_Int".split(" ")},arduino:{description:"Arduino standard-compatible board",digital:[["0 - UART","0"],["1 - UART","1"],["2","2"],["3","3"],["4","4"],["5","5"],["6","6"],["7","7"],["8 - I2C","8"],["9 - I2C","9"],["10 - SPI","10"],["11 - SPI","11"],["12 - SPI","12"],["13 - SPI","13"],["14","14"],["15","15"],["16","16"],["17","17"]],grove_digital:[["D2","2"],["D3","3"],["D4","4"],["D5","5"],["D6",
-"6"],["D7","7"],["D8","8"],["D10","10"],["D11","11"],["D12","12"],["A0","A0"],["A1","A1"],["A2","A2"],["A3","A3"]],analog:[["A0","A0"],["A1","A1"],["A2","A2"],["A3","A3"],["A4","A4"],["A5","A5"],["A6","A6"],["A7","A7"]],grove_analog:[["A0","A0"],["A1","A1"],["A2","A2"],["A3","A3"]],pwm:[["0","0"],["1","1"],["2","2"],["3","3"],["4","4"],["5","5"],["6","6"],["7","7"],["8","8"],["9","9"],["10","10"],["11","11"],["12","12"],["13","13"],["14","14"],["15","15"],["16","16"],["17","17"]],serial:9600,tone:[["C:Do",
-"262"],["D:Re","294"],["E:Mi","330"],["F:Fa","349"],["G:So","392"],["A:La","440"],["B:Ti","494"],["C:Do","523"]],lcd:[["-","-"],["0","0"],["1","1"],["2","2"],["3","3"],["4","4"],["5","5"],["6","6"],["7","7"],["8","8"],["9","9"],["10","10"],["11","11"],["12","12"],["13","13"],["A0","A0"],["A1","A1"],["A2","A2"],["A3","A3"],["A4","A4"],["A5","A5"]],dht:[["DHT11","DHT11"],["DHT21","DHT21"],["DHT22","DHT22"]],i2c_matrix_type:[["8x8","8x8matrix"],["16x8","8x16matrix"],["bi_color8x8","BicolorMatrix"]],
-led_backpack_address:[["0x70","0x70"],["0x71","0x71"],["0x72","0x72"],["0x73","0x73"]],blynk_merge_index:[["0","0"],["1","1"],["2","2"]],shield_bot_sensor:[["1","1"],["2","2"],["3","3"],["4","4"],["5","5"]],interrupt:[["6","6"],["1","1"],["2","2"],["3","3"]],ir_remote_button:[["Power","POWER"],["A","A"],["B","B"],["C","C"],["Up","UP"],["Down","DOWN"],["Left","LEFT"],["Right","RIGHT"],["Select","SELECT"]]},arduino_mega:{description:"Arduino Mega-compatible board",analog:[["A0","A0"],["A1","A1"],["A2",
-"A2"],["A3","A3"],["A4","A4"],["A5","A5"],["A6","A6"],["A7","A7"],["A8","A8"],["A9","A9"],["A10","A10"],["A11","A11"],["A12","A12"],["A13","A13"],["A14","A14"],["A15","A15"]]}};profile["default"]=profile.arduino;
+Blockly.Arduino.isInitialized=!1;
 
 Blockly.Arduino.init=function(a){
-	Object.getPrototypeOf(Blockly.Arduino).init.call(Blockly.Arduino);
+	Object.getPrototypeOf(this).init.call(this);
 	
-	Blockly.Arduino.variableDB_?Blockly.Arduino.variableDB_.reset():Blockly.Arduino.variableDB_=new Blockly.Names(Blockly.Arduino.RESERVED_WORDS_);
-	Blockly.Arduino.variableDB_.setVariableMap(a.getVariableMap());
-	Blockly.Arduino.variableDB_.populateVariables(a);
-	Blockly.Arduino.variableDB_.populateProcedures(a);
+	this.nameDB_?this.nameDB_.reset():this.nameDB_=new Blockly.Names(this.RESERVED_WORDS_);
+	this.nameDB_.setVariableMap(a.getVariableMap());
+	this.nameDB_.populateVariables(a);
+	this.nameDB_.populateProcedures(a);
 	
-	Blockly.Arduino.definitions_=Object.create(null);
-	Blockly.Arduino.setups_=Object.create(null);
-	Blockly.Arduino.functions_=Object.create(null);
+	this.definitions_=Object.create(null);
+	this.setups_=Object.create(null);
+	this.functions_=Object.create(null);
+	
+	this.isInitialized=!0
 };
 
 Blockly.Arduino.finish=function(a){
@@ -72,22 +69,24 @@ Blockly.Arduino.finish=function(a){
 	a=a.replace(/\n\s+$/,"\n");
 	a="void loop() \n{\n"+a+"\n}";
 	
-	var b=[],c=[];
+	var b=[],c=[],d=[],f=[];
 	for(e in Blockly.Arduino.definitions_){
 		var d=Blockly.Arduino.definitions_[e];
 		d.match(/^#include/)?b.push(d):c.push(d)
 	}
-	d=[];
 	for(e in Blockly.Arduino.setups_)
 		d.push(Blockly.Arduino.setups_[e]);
-	var f=[];
 	for(e in Blockly.Arduino.functions_)
-		f.push(Blockly.Arduino.functions_[e]);		
-	var e=new Date((new Date).getTime());
+		f.push(Blockly.Arduino.functions_[e]);	
 	
+	var e=new Date((new Date).getTime());
 	b=b.join("\n")+"\n\n"+c.join("\n")+"\n\nvoid setup() \n{\n  "+d.join("\n  ")+"\n}";
 	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n")+a+"\n\n"+f.join("\n\n");
 	b=b.replace(/\n\n+/g,"\n\n").replace(/\n*$/,"\n\n");
+	
+	this.isInitialized=!1;
+	this.nameDB_.reset();
+	
 	return b
 };
 
@@ -177,7 +176,7 @@ Blockly.Arduino.lists_getIndex=function(a){
 Blockly.Arduino.lists_setIndex=function(a){
 	function b(){
 		if(c.match(/^\w+$/))return"";
-		var g=Blockly.Arduino.variableDB_.getDistinctName("tmpList",Blockly.VARIABLE_CATEGORY_NAME),h="int "+g+" = "+c+";\n";
+		var g=Blockly.Arduino.nameDB_.getDistinctName("tmpList",Blockly.VARIABLE_CATEGORY_NAME),h="int "+g+" = "+c+";\n";
 		c=g;
 		return h
 	}
@@ -204,7 +203,7 @@ Blockly.Arduino.lists_setIndex=function(a){
 			break;
 		case "RANDOM":
 			a=b();
-			e=Blockly.Arduino.variableDB_.getDistinctName("tmpX",Blockly.VARIABLE_CATEGORY_NAME);
+			e=Blockly.Arduino.nameDB_.getDistinctName("tmpX",Blockly.VARIABLE_CATEGORY_NAME);
 			a+="int "+e+" = Math.floor(Math.random() * "+c+".length);\n";
 			if("SET"==d)return a+(c+"["+e+"] = "+f+";\n");
 			if("INSERT"==d)return a+(c+".splice("+e+", 0, "+f+");\n")
@@ -248,7 +247,7 @@ Blockly.Arduino.array_sizeof=function(){
 };
 Blockly.Arduino.array_for = function() {
   // For loop.
-  var variable0 = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
+  var variable0 = Blockly.Arduino.nameDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
   var argument0 = Blockly.Arduino.valueToCode(this, 'FROM',
       Blockly.Arduino.ORDER_ASSIGNMENT) || '0';
   var argument1 = Blockly.Arduino.valueToCode(this, 'TO',
@@ -272,12 +271,12 @@ Blockly.Arduino.array_for = function() {
     // Cache non-trivial values to variables to prevent repeated look-ups.
     var startVar = argument0;
     if (!argument0.match(/^\w+$/) && !argument0.match(/^-?\d+(\.\d+)?$/)) {
-      var startVar = Blockly.Arduino.variableDB_.getDistinctName(
+      var startVar = Blockly.Arduino.nameDB_.getDistinctName(
           variable0 + '_start', Blockly.Variables.NAME_TYPE);
       code += 'int ' + startVar + ' = ' + argument0 + ';\n';
     }
     var endVar = argument1;
-    var endVar = Blockly.Arduino.variableDB_.getDistinctName(
+    var endVar = Blockly.Arduino.nameDB_.getDistinctName(
         variable0 + '_end', Blockly.Variables.NAME_TYPE);
     code += 'int ' + endVar + "= (sizeof("+ argument1 +")/sizeof("+ argument1 + "[0]));\n";
 
@@ -341,11 +340,11 @@ Blockly.Arduino.controls_switch=function(a){
 Blockly.Arduino.controls_switch_case=Blockly.Arduino.controls_switch;
 
 
-Blockly.Arduino.controls_repeat_ext=function(a){var b=a.getField("TIMES")?String(Number(a.getFieldValue("TIMES"))):Blockly.Arduino.valueToCode(a,"TIMES",Blockly.Arduino.ORDER_ASSIGNMENT)||"0",c=Blockly.Arduino.statementToCode(a,"DO");c=Blockly.Arduino.addLoopTrap(c,a);a="";var d=Blockly.Arduino.variableDB_.getDistinctName("count",Blockly.VARIABLE_CATEGORY_NAME),e=b;b.match(/^\w+$/)||Blockly.isNumber(b)||(e=Blockly.Arduino.variableDB_.getDistinctName("repeat_end",Blockly.VARIABLE_CATEGORY_NAME),
+Blockly.Arduino.controls_repeat_ext=function(a){var b=a.getField("TIMES")?String(Number(a.getFieldValue("TIMES"))):Blockly.Arduino.valueToCode(a,"TIMES",Blockly.Arduino.ORDER_ASSIGNMENT)||"0",c=Blockly.Arduino.statementToCode(a,"DO");c=Blockly.Arduino.addLoopTrap(c,a);a="";var d=Blockly.Arduino.nameDB_.getDistinctName("count",Blockly.VARIABLE_CATEGORY_NAME),e=b;b.match(/^\w+$/)||Blockly.isNumber(b)||(e=Blockly.Arduino.nameDB_.getDistinctName("repeat_end",Blockly.VARIABLE_CATEGORY_NAME),
 a+="int "+e+" = "+b+";\n");return a+("for (int "+d+" = 0; "+d+" < "+e+"; "+d+"++) {\n"+c+"}\n")};Blockly.Arduino.controls_repeat=Blockly.Arduino.controls_repeat_ext;
 Blockly.Arduino.controls_whileUntil=function(a){var b="UNTIL"==a.getFieldValue("MODE"),c=Blockly.Arduino.valueToCode(a,"BOOL",b?Blockly.Arduino.ORDER_LOGICAL_NOT:Blockly.Arduino.ORDER_NONE)||"false",d=Blockly.Arduino.statementToCode(a,"DO");d=Blockly.Arduino.addLoopTrap(d,a);b&&(c="!"+c);return"while ("+c+") {\n"+d+"}\n"};
 Blockly.Arduino.controls_for=function(a){
-	var b=Blockly.Arduino.variableDB_.getName(a.getFieldValue("VAR"),Blockly.VARIABLE_CATEGORY_NAME)
+	var b=Blockly.Arduino.nameDB_.getName(a.getFieldValue("VAR"),Blockly.VARIABLE_CATEGORY_NAME)
 	,c=Blockly.Arduino.valueToCode(a,"FROM",Blockly.Arduino.ORDER_ASSIGNMENT)
 	,d=Blockly.Arduino.valueToCode(a,"TO",Blockly.Arduino.ORDER_ASSIGNMENT)
 	,e=Blockly.Arduino.valueToCode(a,"BY",Blockly.Arduino.ORDER_ASSIGNMENT)||"1"
@@ -366,10 +365,10 @@ Blockly.Arduino.controls_for=function(a){
 	/*	
 	else {
 		a=""
-		,g=c,c.match(/^\w+$/)||Blockly.isNumber(c)||(g=Blockly.Arduino.variableDB_.getDistinctName(b+"_start",Blockly.VARIABLE_CATEGORY_NAME),a+="int "+g+" = "+c+";\n")
+		,g=c,c.match(/^\w+$/)||Blockly.isNumber(c)||(g=Blockly.Arduino.nameDB_.getDistinctName(b+"_start",Blockly.VARIABLE_CATEGORY_NAME),a+="int "+g+" = "+c+";\n")
 		,c=d
-		,d.match(/^\w+$/)||Blockly.isNumber(d)||(c=Blockly.Arduino.variableDB_.getDistinctName(b+"_end",Blockly.VARIABLE_CATEGORY_NAME),a+="int "+c+" = "+d+";\n")
-		,d=Blockly.Arduino.variableDB_.getDistinctName(b+"_inc",Blockly.VARIABLE_CATEGORY_NAME)
+		,d.match(/^\w+$/)||Blockly.isNumber(d)||(c=Blockly.Arduino.nameDB_.getDistinctName(b+"_end",Blockly.VARIABLE_CATEGORY_NAME),a+="int "+c+" = "+d+";\n")
+		,d=Blockly.Arduino.nameDB_.getDistinctName(b+"_inc",Blockly.VARIABLE_CATEGORY_NAME)
 		,a+="int "+d+" = ",a=Blockly.isNumber(e)?a+(Math.abs(e)+";\n"):a+("Math.abs("+e+");\n")
 		,a=a+("if ("+g+" > "+c+") {\n")+(Blockly.Arduino.INDENT+d+" = -"+d+";\n")
 		,a+="}\n"
@@ -534,7 +533,7 @@ Blockly.Arduino.text_with=function(a){
 	
 };
 Blockly.Arduino.text_replace=function(a){
-	var VAR=Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
+	var VAR=Blockly.Arduino.nameDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
 	var from=Blockly.Arduino.valueToCode(a,"FROM",Blockly.Arduino.ORDER_NONE);
 	var to=Blockly.Arduino.valueToCode(a,"TO",Blockly.Arduino.ORDER_NONE);
 				
@@ -613,7 +612,7 @@ Blockly.Arduino.text_changeCase=function(a){
 }
 Blockly.Arduino.variable_changeCase=function(a){
 	var CASE=a.getFieldValue("CASE");
-	var VAR=Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
+	var VAR=Blockly.Arduino.nameDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
 	if (CASE=="UPPERCASE")
 		var code = VAR+".toUpperCase();\n";
 	else
@@ -630,7 +629,7 @@ Blockly.Arduino.text_reverse=function(a){return[(Blockly.Arduino.valueToCode(a,"
 
 Blockly.Arduino.variables={};
 Blockly.Arduino.variables_get=function(a){
-  var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
+  var varName = Blockly.Arduino.nameDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
   var varName1 = this.getFieldValue('VAR');	
   var v = Blockly.Variables.allVariables(a);
 
@@ -640,7 +639,7 @@ Blockly.Arduino.variables_set = function(block) {
   // Variable setter.
   var varPosition = this.getFieldValue('POSITION');
   var varType = this.getFieldValue('TYPE');
-  var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
+  var varName = Blockly.Arduino.nameDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
   var varName1 = this.getFieldValue('VAR');
   var argument0 = Blockly.Arduino.valueToCode(block, 'VALUE',Blockly.Arduino.ORDER_ASSIGNMENT);
   if (varPosition=="global") {
@@ -665,7 +664,7 @@ Blockly.Arduino.variables_set1 = function(block) {
   // Variable setter.
   var varPosition = this.getFieldValue('POSITION');  
   var varType = this.getFieldValue('TYPE');
-  var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
+  var varName = Blockly.Arduino.nameDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
   var varName1 = this.getFieldValue('VAR');
   var variableLen = Blockly.Arduino.valueToCode(block, 'LEN',Blockly.Arduino.ORDER_ASSIGNMENT);
   var argument0 = Blockly.Arduino.valueToCode(block, 'VALUE',Blockly.Arduino.ORDER_ASSIGNMENT);  
@@ -690,25 +689,25 @@ Blockly.Arduino.variables_set1 = function(block) {
 };
 Blockly.Arduino.variables_set2 = function(block) {
   var varType = this.getFieldValue('TYPE');
-  var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
+  var varName = Blockly.Arduino.nameDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
 
   return [varType+ ' ' + varName, Blockly.Arduino.ORDER_FUNCTION_CALL];
 };
 Blockly.Arduino.variables_set3=function(a) {
-  var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
+  var varName = Blockly.Arduino.nameDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
   var argument0 = Blockly.Arduino.valueToCode(this, 'DELTA', Blockly.Arduino.ORDER_NONE) || '0';
 
   return varName + ' = ' + argument0 + ';\n';
 };
 Blockly.Arduino.variables_set4 = function(block) {
-  var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
+  var varName = Blockly.Arduino.nameDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
   var variableIndex = Blockly.Arduino.valueToCode(block, 'INDEX',Blockly.Arduino.ORDER_ASSIGNMENT);
   var argument0 = Blockly.Arduino.valueToCode(block, 'VALUE',Blockly.Arduino.ORDER_ASSIGNMENT);
 
   return varName + '['+variableIndex+'] = ' + argument0 + ';\n';
 };
 Blockly.Arduino.variables_set5 = function(block) {
-  var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
+  var varName = Blockly.Arduino.nameDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
   var variableIndex = Blockly.Arduino.valueToCode(block, 'INDEX',Blockly.Arduino.ORDER_ASSIGNMENT);
 
   return [varName + '['+variableIndex+']',Blockly.Arduino.ORDER_NONE]
@@ -717,7 +716,7 @@ Blockly.Arduino.variables_set5 = function(block) {
 
 Blockly.Arduino.procedures={};
 Blockly.Arduino.procedures_defreturn=function(){
-	var a=Blockly.Arduino.variableDB_.getName(this.getFieldValue("NAME"),Blockly.Procedures.NAME_TYPE);
+	var a=Blockly.Arduino.nameDB_.getName(this.getFieldValue("NAME"),Blockly.Procedures.NAME_TYPE);
 	var b=Blockly.Arduino.statementToCode(this,"STACK");
 	Blockly.Arduino.INFINITE_LOOP_TRAP&&(b=Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g,"'"+this.id+"'")+b);
 	var c=Blockly.Arduino.valueToCode(this,"RETURN",Blockly.Arduino.ORDER_NONE)||"";
@@ -739,7 +738,7 @@ Blockly.Arduino.procedures_return=function(){
 	return code;
 };
 Blockly.Arduino.procedures_defnoreturn=function(){
-	var a=Blockly.Arduino.variableDB_.getName(this.getFieldValue("NAME"),Blockly.Procedures.NAME_TYPE);
+	var a=Blockly.Arduino.nameDB_.getName(this.getFieldValue("NAME"),Blockly.Procedures.NAME_TYPE);
 	var b=Blockly.Arduino.statementToCode(this,"STACK");
 	Blockly.Arduino.INFINITE_LOOP_TRAP&&(b=Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g,"'"+this.id+"'")+b);
 	var c=Blockly.Arduino.valueToCode(this,"RETURN",Blockly.Arduino.ORDER_NONE)||"";
@@ -753,7 +752,7 @@ Blockly.Arduino.procedures_defnoreturn=function(){
 	return null
 };
 Blockly.Arduino.procedures_callnoreturn=function(){
-	var a=Blockly.Arduino.variableDB_.getName(this.getFieldValue("NAME"),Blockly.Procedures.NAME_TYPE);
+	var a=Blockly.Arduino.nameDB_.getName(this.getFieldValue("NAME"),Blockly.Procedures.NAME_TYPE);
 	var g=Blockly.Arduino.valueToCode(this,"VAR",Blockly.Arduino.ORDER_NONE)||"";
 
 	g=g.replace("{","").replace("}","");
@@ -763,7 +762,7 @@ Blockly.Arduino.procedures_ifreturn=function(){
 	var a="if ("+(Blockly.Arduino.valueToCode(this,"CONDITION",Blockly.Arduino.ORDER_NONE)||"false")+") {\n";if(this.hasReturnValue_){var b=Blockly.Arduino.valueToCode(this,"VALUE",Blockly.Arduino.ORDER_NONE)||"null";a+="  return "+b+";\n"}else a+="  return;\n";return a+"}\n"
 };
 Blockly.Arduino.procedures_callreturn=function(){
-	var a=Blockly.Arduino.variableDB_.getName(this.getFieldValue("NAME"),Blockly.Procedures.NAME_TYPE);
+	var a=Blockly.Arduino.nameDB_.getName(this.getFieldValue("NAME"),Blockly.Procedures.NAME_TYPE);
 	var g=Blockly.Arduino.valueToCode(this,"VAR",Blockly.Arduino.ORDER_NONE)||"";
 
 	g=g.replace("{","").replace("}","");

@@ -397,7 +397,7 @@ Blockly.Blocks.math_number={
 		this.setStyle("math_blocks");
 		this.appendDummyInput()
 			.appendField(new Blockly.FieldTextInput("0",Blockly.FieldTextInput.numberValidator),"NUM");
-		this.setOutput(!0,profile.common.number_type);
+		this.setOutput(!0);
 		this.setTooltip(Blockly.Msg.MATH_NUMBER_TOOLTIP)
 	}
 };
@@ -493,7 +493,7 @@ Blockly.Blocks.math_single={
 		this.setInputsInline(!0);			
 		this.setHelpUrl(Blockly.Msg.MATH_SINGLE_HELPURL);
 		this.setStyle("math_blocks");
-		this.setOutput(!0,profile.common.number_type);
+		this.setOutput(!0);
 	}
 };
 Blockly.Blocks.math_trig={init:function(){var a=[[Blockly.Msg.MATH_TRIG_SIN,"SIN"],[Blockly.Msg.MATH_TRIG_COS,"COS"],[Blockly.Msg.MATH_TRIG_TAN,"TAN"],[Blockly.Msg.MATH_TRIG_ASIN,"ASIN"],[Blockly.Msg.MATH_TRIG_ACOS,"ACOS"],[Blockly.Msg.MATH_TRIG_ATAN,"ATAN"]];this.setHelpUrl(Blockly.Msg.MATH_TRIG_HELPURL);this.setStyle("math_blocks");this.setOutput(!0,"Number");this.appendValueInput("NUM").setCheck("Number").appendField(new Blockly.FieldDropdown(a),"OP");var b=this;this.setTooltip(function(){var a=
