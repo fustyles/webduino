@@ -3018,8 +3018,8 @@ Blockly.Procedures.flyoutCategory=function(a){
 	else
 		v="";
 	
-	Blockly.Blocks.procedures_defnoreturn&&c.push(Blockly.Xml.textToDom('<block type="procedures_defnoreturn" gap="16"><field name="NAME">func</field><value name="VAR"><shadow type="lists_create_with"><mutation items="0"></mutation></shadow></value></block>'))
-	Blockly.Blocks.procedures_defreturn&&c.push(Blockly.Xml.textToDom('<block type="procedures_defreturn" gap="16"><field name="TYPE">void</field><field name="NAME">func</field><value name="VAR"><shadow type="lists_create_with"><mutation items="0"></mutation></shadow></value></block>'))
+	Blockly.Blocks.procedures_defnoreturn&&c.push(Blockly.Xml.textToDom('<block type="procedures_defnoreturn" gap="16"><field name="NAME">myFunc</field><value name="VAR"><shadow type="lists_create_with"><mutation items="0"></mutation></shadow></value></block>'))
+	Blockly.Blocks.procedures_defreturn&&c.push(Blockly.Xml.textToDom('<block type="procedures_defreturn" gap="16"><field name="TYPE">void</field><field name="NAME">myFunc</field><value name="VAR"><shadow type="lists_create_with"><mutation items="0"></mutation></shadow></value></block>'))
 	Blockly.Blocks.procedures_return&&c.push(Blockly.Xml.textToDom('<block type="procedures_return" gap="16"><value name="RETURN"></value></block>'))
 	//Blockly.Blocks.lists_create_with&&c.push(Blockly.Xml.textToDom('<block type="lists_create_with"><mutation items="1"></mutation><value name="ADD0"><block type="variables_set2" gap="16"><field name="TYPE">int</field><field name="VAR">'+v+'</field></block></value></block>'))
 	Blockly.Blocks.variables_set2&&c.push(Blockly.Xml.textToDom('<block type="variables_set2" gap="16"><field name="TYPE">int</field><field name="VAR">'+v+'</field></block>'))

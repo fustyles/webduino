@@ -46,8 +46,9 @@
 			</td>			
 			<td style="width: 100px">
 				<ul id="tabs">
-					<a href="#" id="button_code" title="Show/Hide Code"><i class="small material-icons">list_alt</i></a>
-					<a href="#" id="button_workspace" title="Show/Hide workspace"><i class="small material-icons">format_line_spacing</i></a>
+					<a href="#" id="button_addBlocks" title="Update Blocks"><i class="material-icons">published_with_changes</i></a>
+					<a href="#" id="button_code" title="Show/Hide Arduino Code"><i class="small material-icons">list_alt</i></a>
+					<a href="#" id="button_developertool" title="Show/Hide developer tool"><i class="small material-icons">build</i></a>
 					<a href="#" id="button_new" title="Reset workspace"><i class="small material-icons">create</i></a>
 					<a href="#" id="button_save" title="Save"><i class="small material-icons">save</i></a>					
 					<a href="#" id="button_tool" title="Blockly Developer Tools"><i class="small material-icons">construction</i></a>
@@ -256,18 +257,34 @@
 		</div>
 		<div id="arduino_code"></div>	
 	</div>
-	<div id="developertool">
-		<table style="width:100%; height:100%">
-			<tr style="height:12px">
-				<td>Blocks Definition&nbsp;<button id="button_updateDefinition">Update</button></td><td>Generate Code&nbsp;<button id="button_updateGenerate" >Update</button></td><td>Category&nbsp;<button id="button_updateCategory">Update</button> &nbsp; &nbsp; <button id="addBlocks">Build Blocks</button></td>
-			</tr>
-			<tr>
-				<td style="width:33%;"><textarea id="blocks_function" style="resize: horizontal;" spellcheck="false"></textarea></td>
-				<td style="width:33%;"><textarea id="arduino_function" style="resize: horizontal;" spellcheck="false"></textarea></td>
-				<td style="width:33%;"><textarea id="category_function" style="resize: horizontal;" spellcheck="false"></textarea></td>
-			</tr>
-		</table>
+	
+	<div id="updateDefinition_content" class="ui-widget-content">
+		<div id="updateDefinition_title" class="ui-widget-header">
+			<span id="text_updateDefinition" style="vertical-align: middle;">Blocks Definition</span><a href="#" id="button_updateDefinition" title="Update Definition"><i class="material-icons" style="vertical-align: middle; color: white;">publish</i></a>
+		</div>
+		<div id="updateDefinition_code">
+			<textarea id="blocks_function" class="textarea_content" spellcheck="false"></textarea>
+		</div>	
 	</div>
+
+	<div id="updateGenerate_content" class="ui-widget-content">
+		<div id="updateGenerate_title" class="ui-widget-header">
+			<span id="text_updateGenerate" style="vertical-align: middle;">Generate Code</span><a href="#" id="button_updateGenerate" title="Update Generation"><i class="material-icons" style="vertical-align: middle; color: white;">publish</i></a>
+		</div>
+		<div id="updateGenerate_code">
+			<textarea id="arduino_function" class="textarea_content" spellcheck="false"></textarea>
+		</div>	
+	</div>
+	
+	<div id="updateCategory_content" class="ui-widget-content">
+		<div id="updateCategory_title" class="ui-widget-header">
+			<span id="text_updateCategory" style="vertical-align: middle; width:calc(100% - 20px)">Category<a href="#" id="button_updateCategory" title="Update Category"><i class="material-icons" style="vertical-align: middle; color: white;">publish</i></a></span>
+		</div>
+		<div id="updateCategory_code">
+			<textarea id="category_function" class="textarea_content" spellcheck="false"></textarea>
+		</div>	
+	</div>
+
 </div>
 </main>
 

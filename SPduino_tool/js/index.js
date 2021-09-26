@@ -37,14 +37,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	//新增暫存積木插件
 	const myBackpack = new MyBackpack(workspace, "category_initializes" , true);
 	
-	//程式碼區塊調整大小功能	
+	//程式碼區塊拖曳與調整大小功能	
 	$(function() {
 		$( "#code_content" ).draggable();
-	});
-	
-	//程式碼區塊拖曳功能
-	$(function() {
 		$( "#code_content" ).resizable();
+		$( "#updateDefinition_content" ).draggable();
+		$( "#updateDefinition_content" ).resizable();
+		$( "#updateGenerate_content" ).draggable();
+		$( "#updateGenerate_content" ).resizable();
+		$( "#updateCategory_content" ).draggable();
+		$( "#updateCategory_content" ).resizable();		
 	});	
 	
 	setInterval(function(){ 
@@ -71,19 +73,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	//工作區顯示
-	document.getElementById('button_workspace').onclick = function () {
-		var developertool = document.getElementById('developertool');
-		if (developertool.style.height == "220px"||developertool.style.height == "") {
-			displayTab('category_content');
-			document.getElementById('category_content').style.display = "none";
-			document.getElementById('arduino_content').style.display = "none";
-			document.getElementById('code_content').style.display = "none";
-			developertool.style.height = "calc(100vh - 100px)";
+	document.getElementById('button_developertool').onclick = function () {
+		var content = document.getElementById('updateDefinition_content');
+		if (content.style.display == "block"||content.style.display == "") {
+			document.getElementById('updateDefinition_content').style.display = "none";
+			document.getElementById('updateGenerate_content').style.display = "none";
+			document.getElementById('updateCategory_content').style.display = "none";
 		}
 		else {
-
-			displayTab('category_content');
-			document.getElementById('code_content').style.display = "block";	
+			document.getElementById('updateDefinition_content').style.display = "block";
+			document.getElementById('updateGenerate_content').style.display = "block";
+			document.getElementById('updateCategory_content').style.display = "block";
 		}
 	}	
 	
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	//新增自訂積木
-	document.getElementById('addBlocks').onclick = function () {
+	document.getElementById('button_addBlocks').onclick = function () {
 		newFile();
 		document.getElementById('button_updateDefinition').click();
 		document.getElementById('button_updateGenerate').click();		
@@ -256,7 +256,6 @@ function displayTab(id) {
 		else if (id=='xml_content') 
 			xmlCode();
 	}
-	developertool.style.height = "220px";
 }
 
 //Arduino原始碼顯示

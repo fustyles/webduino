@@ -742,7 +742,6 @@ Blockly.Blocks.array_modify = {
 Blockly.Blocks.array_getIndex={
   init:function(){
 	this.setStyle("list_blocks");
-    this.setHelpUrl(Blockly.Msg.ARRAY_GETINDEX);
     this.setColour(Blockly.Msg["LISTS_HUE"]);
     this.appendValueInput("ITEM")
         .setCheck("Array")
