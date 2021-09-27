@@ -117,7 +117,7 @@ Blockly.Arduino.main=function(){
 	var b=Blockly.Arduino.statementToCode(this,"LOOP")||"";
 	a=a.replace(/(^\s+)|(\s+$)/g,"")+(a!=""?"\n  ":"");
 	b=b.replace(/(^\s+)|(\s+$)/g,"")+(b!=""?"\n  ":"");
-	var code = "setup () \n{\n  %1" + a + "%2\n}\n\n"+"loop() \n{\n  %3"+ b +"%4\n}\n";
+	var code = "setup() \n{\n  %1" + a + "%2\n}\n\n"+"loop() \n{\n  %3"+ b +"%4\n}\n";
 	return code
 };
 
