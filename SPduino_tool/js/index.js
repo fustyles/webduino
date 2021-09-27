@@ -261,6 +261,17 @@ function displayTab(id) {
 	}
 }
 
+//切換視窗上層顯示
+var contents = ['updateDefinition_content','updateGenerate_content','updateCategory_content','code_content'];
+function textareaFocus(id) {
+	console.log(id);
+	for (var i in contents) {
+		const content = document.getElementById(contents[i]);
+		content.style.zIndex = (contents[i]==id)?"999999":"999998";
+		console.log(content.style.zIndex);
+	}
+}
+
 //Arduino原始碼顯示
 function arduinoCode() {
 	var code = Blockly.Arduino.workspaceToCode();
