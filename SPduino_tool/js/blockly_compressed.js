@@ -2853,7 +2853,7 @@ Blockly.Variables.flyoutCategory=function(a){
 	var v=a.getVariablesOfType("");
 	v.sort(Blockly.VariableModel.compareByName);
 	if(v.length>0) 
-		v=v[v.length-1].name;
+		v = v[v.length-1].name;
 	else
 		v="";
 	
@@ -2867,17 +2867,17 @@ Blockly.Variables.flyoutCategory=function(a){
 };
 Blockly.Variables.flyoutCategoryBlocks=function(a){
 	var f = a.getAllBlocks();
-	a=a.getVariablesOfType("");
+	var v = a.getVariablesOfType("");
+	v.sort(Blockly.VariableModel.compareByName);
 	var b=[];
-	if(0<a.length){
-		var c=a[a.length-1];
+	if(0<v.length){
+		a = v[v.length-1].name;
 		
-		Blockly.Blocks.variables_set5&&b.push(Blockly.Xml.textToDom('<block type="variables_set5"><field name="VAR">'+c.name+'</field><value name="INDEX"><block type="math_number"><field name="NUM">0</field></block></value></block>'));
+		Blockly.Blocks.variables_set5&&b.push(Blockly.Xml.textToDom('<block type="variables_set5"><field name="VAR">'+a+'</field><value name="INDEX"><block type="math_number"><field name="NUM">0</field></block></value></block>'));
 
 		if(Blockly.Blocks.variables_get){
-			a.sort(Blockly.VariableModel.compareByName);
 			var c=0;
-			for(var e;e=a[c];c++) {
+			for(var e;e=v[c];c++) {
 				var d=Blockly.utils.xml.createElement("block");
 				d.setAttribute("type","variables_get");
 				d.setAttribute("gap",8);
