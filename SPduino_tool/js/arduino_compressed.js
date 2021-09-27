@@ -81,10 +81,10 @@ Blockly.Arduino.finish=function(a){
 	i=Blockly.utils.object.values(this.loops_bottom_);
 	j=Blockly.utils.object.values(this.functions_);
 	
-	a=a.replace("%1",f.join("\n")!=""?f.join("\n").replace(/\n/g,"\n  "):"");
-	a=a.replace("%2",g.join("\n")!=""?g.join("\n").replace(/\n/g,"\n  ")+("\n  "):"");
-	a=a.replace("%3",h.join("\n")!=""?h.join("\n").replace(/\n/g,"\n  "):"");
-	a=a.replace("%4",i.join("\n")!=""?i.join("\n").replace(/\n/g,"\n  ")+("\n  "):"");
+	a=a.replace(" %1 ",f.join("\n")?f.join("\n").replace(/\n/g,"\n  "):"");
+	a=a.replace(" %2 ",g.join("\n")?g.join("\n").replace(/\n/g,"\n  ")+("\n  "):"");
+	a=a.replace(" %3 ",h.join("\n")?h.join("\n").replace(/\n/g,"\n  "):"");
+	a=a.replace(" %4 ",i.join("\n")?i.join("\n").replace(/\n/g,"\n  ")+("\n  "):"");
 	a=a.replace(/  \n}/g,"}");
 	a=Object.getPrototypeOf(this).finish.call(this,a);
 	
@@ -119,7 +119,7 @@ Blockly.Arduino.main=function(){
 	var b=Blockly.Arduino.statementToCode(this,"LOOP")||"";
 	a=a.replace(/(^\s+)|(\s+$)/g,"")+(a!=""?"\n  ":"");
 	b=b.replace(/(^\s+)|(\s+$)/g,"")+(b!=""?"\n  ":"");
-	var code = "setup() \n{\n  %1" + a + "%2\n}\n\n"+"loop() \n{\n  %3"+ b +"%4\n}\n";
+	var code = "setup() \n{\n   %1 " + a + " %2 \n}\n\n"+"loop() \n{\n   %3 "+ b +" %4 \n}\n";
 	return code
 };
 
