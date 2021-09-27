@@ -95,6 +95,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('blocks_function').value = code[0];
 			document.getElementById('arduino_function').value = code[1];
 			document.getElementById('category_function').value = code[2];
+			
+			document.getElementById('code_content').attributeStyleMap.clear();
+			document.getElementById('updateDefinition_content').attributeStyleMap.clear();
+			document.getElementById('updateGenerate_content').attributeStyleMap.clear();
+			document.getElementById('updateCategory_content').attributeStyleMap.clear();
 		}
 	}
 
@@ -264,11 +269,9 @@ function displayTab(id) {
 //切換視窗上層顯示
 var contents = ['updateDefinition_content','updateGenerate_content','updateCategory_content','code_content'];
 function textareaFocus(id) {
-	console.log(id);
 	for (var i in contents) {
 		const content = document.getElementById(contents[i]);
 		content.style.zIndex = (contents[i]==id)?"999999":"999998";
-		console.log(content.style.zIndex);
 	}
 }
 
