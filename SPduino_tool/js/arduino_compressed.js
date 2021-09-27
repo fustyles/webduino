@@ -74,6 +74,7 @@ Blockly.Arduino.finish=function(a){
 		var d=this.definitions_[e];
 		d.match(/^#include/)?b.push(d):c.push(d)
 	}
+	
 	f=Blockly.utils.object.values(this.setups_top_);
 	g=Blockly.utils.object.values(this.setups_bottom_);
 	h=Blockly.utils.object.values(this.loops_top_);
@@ -81,9 +82,10 @@ Blockly.Arduino.finish=function(a){
 	j=Blockly.utils.object.values(this.functions_);
 	
 	a=a.replace("%1",f.join("\n")!=""?f.join("\n").replace(/\n/g,"\n  "):"");
-	a=a.replace("%2",g.join("\n")!=""?g.join("\n").replace(/\n/g,"\n  "):"");
+	a=a.replace("%2",g.join("\n")!=""?g.join("\n").replace(/\n/g,"\n  ")+("\n  "):"");
 	a=a.replace("%3",h.join("\n")!=""?h.join("\n").replace(/\n/g,"\n  "):"");
-	a=a.replace("%4",i.join("\n")!=""?i.join("\n").replace(/\n/g,"\n  "):"");
+	a=a.replace("%4",i.join("\n")!=""?i.join("\n").replace(/\n/g,"\n  ")+("\n  "):"");
+	a=a.replace(/  \n}/g,"}");
 	a=Object.getPrototypeOf(this).finish.call(this,a);
 	
 	b=b.join("\n")+"\n\n"+c.join("\n")+"\n"+a+"\n"+j.join("\n\n");
