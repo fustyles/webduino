@@ -60,10 +60,11 @@ Blockly.Blocks.main={
 			if (this.parentBlock_)
 				this.unplug();
 			
-			var enabledBlockList = ["main","procedures_defnoreturn","procedures_defreturn"];
+			var enabledBlockList = ["main","variables_set","variables_set1","procedures_defnoreturn","procedures_defreturn"];
 			blocks = this.workspace.getAllBlocks();
+			var p;
 			for (var i=0;i<blocks.length;i++) {
-				var p = blocks[i];
+				p = blocks[i];
 				if (enabledBlockList.includes(p.type)) {
 					blocks[i].setEnabled(true);
 					continue;
@@ -76,9 +77,9 @@ Blockly.Blocks.main={
 					}
 					p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
 				}
-				if (p.type!="main")
+				if (!enabledBlockList.includes(p.type))
 					blocks[i].setEnabled(false);
-			}
+			}		
 		}
 	}
 };
