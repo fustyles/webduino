@@ -59,6 +59,26 @@ Blockly.Blocks.main={
 			}
 			if (this.parentBlock_)
 				this.unplug();
+			
+			var enabledList = ["main","procedures_defnoreturn","procedures_defreturn"];
+			blocks = this.workspace.getAllBlocks();
+			for (var i=0;i<blocks.length;i++) {
+				var p = blocks[i];
+				if (enabledList.includes(p.type)) {
+					blocks[i].setEnabled(true);
+					continue;
+				}
+				p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
+				while(p) {
+					if (enabledList.includes(p.type)) {
+						blocks[i].setEnabled(true);
+						break;
+					}
+					p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
+				}
+				if (p.type!="main")
+					blocks[i].setEnabled(false);
+			}
 		}
 	}
 };
