@@ -2853,7 +2853,7 @@ Blockly.Variables.flyoutCategory=function(a){
 	var v=a.getVariablesOfType("");
 	v.sort(Blockly.VariableModel.compareByName);
 	if(v.length>0) 
-		v = v[v.length-1].name;
+		v=v[v.length-1].name;
 	else
 		v="";
 	
@@ -3118,8 +3118,8 @@ Blockly.checkBlockColourConstant_("TEXTS_HUE",["Blocks","texts","HUE"],void 0);
 Blockly.checkBlockColourConstant_("TEXTS_HUE",["Constants","Text","HUE"],160);
 Blockly.checkBlockColourConstant_("LISTS_HUE",["Blocks","lists","HUE"],void 0);
 Blockly.checkBlockColourConstant_("LISTS_HUE",["Constants","Lists","HUE"],260);
-Blockly.checkBlockColourConstant_("TRANSFORM_HUE",["Blocks","transform","HUE"],void 0);
-Blockly.checkBlockColourConstant_("TRANSFORM_HUE",["Constants","transform","HUE"],250);
+Blockly.checkBlockColourConstant_("CAST_HUE",["Blocks","transform","HUE"],void 0);
+Blockly.checkBlockColourConstant_("CAST_HUE",["Constants","transform","HUE"],250);
 Blockly.checkBlockColourConstant_("COLOUR_HUE",["Blocks","colour","HUE"],void 0);
 Blockly.checkBlockColourConstant_("COLOUR_HUE",["Constants","Colour","HUE"],20);
 Blockly.checkBlockColourConstant_("VARIABLES_HUE",["Blocks","variables","HUE"],void 0);

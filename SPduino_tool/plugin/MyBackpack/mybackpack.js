@@ -1,12 +1,12 @@
 /**
  * @license
- * Copyright 2021 Taiwan (ChungYi Fu)
+ * Copyright 2021 Taiwan
  * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
  * @fileoverview My Backpack.
- * @author https://www.facebook.com/francefu/
+ * @author https://www.facebook.com/francefu/ (ChungYi Fu)
  * @Update 9/14/2021 09:30 (Taiwan Standard Time)
  */
  

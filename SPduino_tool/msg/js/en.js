@@ -129,9 +129,7 @@ Blockly.Msg.DROPDOWN_DISCARD = "Block discard";
 Blockly.Msg.DROPDOWN_SAVE_AS = "Save as...";
 Blockly.Msg.DUPLICATE_BLOCK = "Duplicate";
 Blockly.Msg.ELEVATION = "Elevation";
-Blockly.Msg.EMAIL_ADDRESS = "Address";
-Blockly.Msg.EMAIL_BODY = "Body";
-Blockly.Msg.EMAIL_TITLE = "Title";
+
 Blockly.Msg.ENABLE_BLOCK = "Enable Block";
 Blockly.Msg.ERROR_BETA_WARNING = 'YOUR ARE USING A PRE-RELEASE VERSION! PLEASE USE A STABLE RELEASE INSTEAD!';
 Blockly.Msg.ERROR_FILENAME = "Please Entry Filename!";
@@ -151,15 +149,7 @@ Blockly.Msg.HELP = "Help";
 Blockly.Msg.INDEX = "Index";
 Blockly.Msg.INFO_FILENAME = "Filename: ";
 Blockly.Msg.INFO_TITLE = "[no document loaded]";
-Blockly.Msg.INITIALIZES_SETUP_APPENDTEXT = "setup";
-Blockly.Msg.INITIALIZES_LOOP_APPENDTEXT = "loop";
-Blockly.Msg.INITIALIZES_SETUP_HELPURL = "http://www.arduino.cc/en/Reference/Setup";
-Blockly.Msg.INITIALIZES_SETUP_TOOLTIP = "The setup() function is called when a sketch starts. ";
-Blockly.Msg.INITIALIZES_LOOP_HELPURL = "http://www.arduino.cc/en/Reference/Loop";
-Blockly.Msg.INITIALIZES_LOOP_TOOLTIP = "After creating a setup() function, the loop() function loops consecutively, allowing your program to change and respond.";
-Blockly.Msg.INITIALIZES_TEMP_APPENDTEXT = "Temp";
-Blockly.Msg.INITIALIZES_TEMP_HELPURL = "";
-Blockly.Msg.INITIALIZES_SETUP_TOOLTIP = "Blocks within this scope will not be generate.";
+
 Blockly.Msg.INLINE_INPUTS = "Inline Inputs";
 
 Blockly.Msg.INTEGER = "Integer";
@@ -399,8 +389,6 @@ Blockly.Msg.MODE = "Mode";
 
 Blockly.Msg.NEW_VARIABLE = "New variable...";
 Blockly.Msg.NEW_VARIABLE_TITLE = "New variable name:";
-Blockly.Msg.OFF = "Off";
-Blockly.Msg.ON = "On";
 Blockly.Msg.ORDINAL_NUMBER_SUFFIX = "";
 Blockly.Msg.POPUP_SAVE_DONE = "Save Done";
 Blockly.Msg.PROCEDURES_ALLOW_STATEMENTS = "allow statements";
@@ -434,10 +422,6 @@ Blockly.Msg.PROCEDURES_MUTATORARG_TITLE = "input name:";
 Blockly.Msg.PROCEDURES_MUTATORARG_TOOLTIP = "Add an input to the function.";
 Blockly.Msg.PROCEDURES_MUTATORCONTAINER_TITLE = "inputs";
 Blockly.Msg.PROCEDURES_MUTATORCONTAINER_TOOLTIP = "Add, remove, or reorder inputs to this function.";
-Blockly.Msg.RANGE_TITLE = "Interval (min)";
-Blockly.Msg.RE = "re";
-Blockly.Msg.REBOOT = "Please Reboot";
-Blockly.Msg.RED = "Red";
 Blockly.Msg.REMOVE_COMMENT = "Remove Comment";
 Blockly.Msg.RENAME_VARIABLE = "Rename variable...";
 Blockly.Msg.RENAME_VARIABLE_TITLE = "Rename all '%1' variables to:";
@@ -529,9 +513,6 @@ Blockly.Msg.TEXT_TRIM_OPERATOR_LEFT = "trim spaces from left side of";
 Blockly.Msg.TEXT_TRIM_OPERATOR_RIGHT = "trim spaces from right side of";
 Blockly.Msg.TEXT_TRIM_TOOLTIP = "Return a copy of the text with spaces removed from one or both ends.";
 
-Blockly.Msg.TODAY = "Today";
-
-Blockly.Msg.URL = "URL";
 Blockly.Msg.VALUE = "Value";
 Blockly.Msg.VARIABLE = "Variable";
 Blockly.Msg.VARIABLES_DEFAULT_NAME = "item";
@@ -628,7 +609,7 @@ Blockly.Msg["CATLOGIC"] = "LOGIC";
 Blockly.Msg["CATLOOPS"] = "LOOPS";
 Blockly.Msg["CATMATH"] = "MATH";
 Blockly.Msg["CATTEXTS"] = "TEXT";
-Blockly.Msg["CATTRANSFORM"] = "CAST";
+Blockly.Msg["CATCAST"] = "CAST";
 Blockly.Msg["CATLISTS"] = "LISTS";
 Blockly.Msg["CATCOLOUR"] = "COLOUR";
 Blockly.Msg["CATINITIALIZES"] = "INITIALIZES";
@@ -642,7 +623,7 @@ Blockly.Msg["TEXTS_HUE"] = "160";
 Blockly.Msg["PROCEDURES_HUE"] = "290";
 Blockly.Msg["COLOUR_HUE"] = "20";
 Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
-Blockly.Msg["TRANSFORM_HUE"] = "250";
+Blockly.Msg["CAST_HUE"] = "250";
 Blockly.Msg["CATINITIALIZES_HUE"] = "50";
 
 Blockly.Msg["ADD_COMMENT"] = "Add Comment";
@@ -1094,7 +1075,7 @@ Blockly.Msg.DOWNLOAD = "Download PNG"
 Blockly.Msg.PREVIOUSSTEP = "Previous step"
 Blockly.Msg.NEXTSTEP = "Next Step"
 
-Blockly.Msg.CATEGORY_TRANSFORM = "Transform";
+Blockly.Msg.CATEGORY_CAST = "Cast";
 Blockly.Msg.SCROLLPLUGIN = "Switch Edge Scroll";
 Blockly.Msg.SCROLLPLUGIN_TRUE = "Enable Edge Scroll";
 Blockly.Msg.SCROLLPLUGIN_FALSE = "Disable Edge Scroll";

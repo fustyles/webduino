@@ -41,53 +41,7 @@ Blockly.Msg.BUTTON_SAVE = "儲存";
 Blockly.Msg.CAST_NUMBER_HELPURL = "https://www.arduino.cc/en/Reference/Cast";
 Blockly.Msg.CAST_NUMBER_TITLE = "Type cast";
 Blockly.Msg.CAST_NUMBER_TOOLTIP = "The cast operator translates one variable type into another and forces calculations to be performed in the cast type.";
-Blockly.Msg.CATEGORY_ADAFRUIT = "Adafruit";
-Blockly.Msg.CATEGORY_AEROBOT = "AERobot";
-Blockly.Msg.CATEGORY_ANALOG = "類比 I/O";
-Blockly.Msg.CATEGORY_ARRAY = "陣列";
-Blockly.Msg.CATEGORY_BYLNK = "Blynk";
-Blockly.Msg.CATEGORY_CLOUD_SERVICE = "雲端服務";
-Blockly.Msg.CATEGORY_DIGITAL = "數位 I/O";
-Blockly.Msg.CATEGORY_ETHERNET = "乙太網路";
-Blockly.Msg.CATEGORY_ETHERNET_CLIENT = "連線端";
-Blockly.Msg.CATEGORY_ETHERNET_INIT = "初始化";
-Blockly.Msg.CATEGORY_FUNCTIONS = "函數";
-Blockly.Msg.CATEGORY_GROVE = "Grove模組";
-Blockly.Msg.CATEGORY_GROVE_ANALOG = "Grove 類比";
-Blockly.Msg.CATEGORY_GROVE_INPUT = "輸入";
-Blockly.Msg.CATEGORY_GROVE_LCD_RGB = "LCD RGB";
-Blockly.Msg.CATEGORY_GROVE_MOTOR = "Grove 馬達";
-Blockly.Msg.CATEGORY_GROVE_OUTPUT = "輸出";
-Blockly.Msg.CATEGORY_GROVE_ACTUATOR = "執行器";
-Blockly.Msg.CATEGORY_GROVE_DISPLAY = "顯示";
-Blockly.Msg.CATEGORY_GROVE_SENSOR = "感應器";
-Blockly.Msg.CATEGORY_OTTO = "Otto";
-Blockly.Msg.CATEGORY_I2C_MATRIX = "LED 矩陣";
-Blockly.Msg.CATEGORY_I2C_SEVENSEG = "7 段 LED";
-Blockly.Msg.CATEGORY_IFTTT = "IFTTT";
-Blockly.Msg.CATEGORY_INITIALIZES = "程式流程";
-Blockly.Msg.CATEGORY_INOUT = "輸入/輸出";
-Blockly.Msg.CATEGORY_INTERRUPTS = "中斷訊號";
-Blockly.Msg.CATEGORY_EEPROM = "EEPROM";
-Blockly.Msg.CATEGORY_INVOLT = "involt";  // untranslated
-Blockly.Msg.CATEGORY_LCD = "液晶顯示";  // untranslated
-Blockly.Msg.CATEGORY_LOGIC = "邏輯";
-Blockly.Msg.CATEGORY_LOOPS = "迴圈";  // untranslated
-Blockly.Msg.CATEGORY_M2X = "M2X";  // untranslated
-Blockly.Msg.CATEGORY_MATH = "數學";
-Blockly.Msg.CATEGORY_MPR121 = "電容感應器";
-Blockly.Msg.CATEGORY_NEOPIXEL = "彩色燈條";  // untranslated
-Blockly.Msg.CATEGORY_OTHERS = "音調";
-Blockly.Msg.CATEGORY_OTHER_SENSOR = "其他感應器";
-Blockly.Msg.CATEGORY_RGBLED = "RGBLed(ws8211)";  // untranslated
-Blockly.Msg.CATEGORY_ROBOT = "機器人";
-Blockly.Msg.CATEGORY_SERIAL = "序列埠 I/O";
-Blockly.Msg.CATEGORY_SERVO = "伺服馬達";  // untranslated
-Blockly.Msg.CATEGORY_SHIELD_BOT = "ShieldBot";  // untranslated
-Blockly.Msg.CATEGORY_TEXT = "字串";
-Blockly.Msg.CATEGORY_TIME = "時間";
-Blockly.Msg.CATEGORY_ULTRA_SONIC = "超音波";
-Blockly.Msg.CATEGORY_VARIABLES = "變數";
+
 Blockly.Msg.CHANGE = "變更";
 Blockly.Msg.CHANGE_LANG = "變更語言";
 Blockly.Msg.CHANGE_VALUE_TITLE = "修改值：";
@@ -207,10 +161,7 @@ Blockly.Msg.DOWNLOAD_CHROME_APP = "下載離線版編輯器";
 Blockly.Msg.DROPDOWN_DISCARD = "放棄積木"
 Blockly.Msg.DROPDOWN_SAVE_AS = "另存新檔...";
 Blockly.Msg.DUPLICATE_BLOCK = "複製";
-Blockly.Msg.ELEVATION = "評估";
-Blockly.Msg.EMAIL_ADDRESS = "電子信箱";
-Blockly.Msg.EMAIL_BODY = "內容";
-Blockly.Msg.EMAIL_TITLE = "標題";
+
 Blockly.Msg.ENABLE_BLOCK = "啟用積木";
 Blockly.Msg.ERROR_BETA_WARNING = '您正在使用測試版本，請改用穩定版本！';
 Blockly.Msg.ERROR_FILENAME = "請輸入檔案名稱！";
@@ -230,15 +181,7 @@ Blockly.Msg.HELP = "說明";
 Blockly.Msg.INDEX = "Index";  // untranslated
 Blockly.Msg.INFO_FILENAME = "檔案名稱：";
 Blockly.Msg.INFO_TITLE = "[無已載入的文件]";
-Blockly.Msg.INITIALIZES_SETUP_APPENDTEXT = "初始化";
-Blockly.Msg.INITIALIZES_LOOP_APPENDTEXT = "重複執行";
-Blockly.Msg.INITIALIZES_SETUP_HELPURL = "http://www.arduino.cc/en/Reference/Setup";
-Blockly.Msg.INITIALIZES_SETUP_TOOLTIP = "setup()，在程式執行之初執行一次這些步驟。";
-Blockly.Msg.INITIALIZES_LOOP_HELPURL = "http://www.arduino.cc/en/Reference/Loop";
-Blockly.Msg.INITIALIZES_LOOP_TOOLTIP = "loop()，在程式執行過程中不斷重複執行這些步驟。";
-Blockly.Msg.INITIALIZES_TEMP_APPENDTEXT = "暫存區";
-Blockly.Msg.INITIALIZES_TEMP_HELPURL = "";
-Blockly.Msg.INITIALIZES_SETUP_TOOLTIP = "此區域內的模塊將不會被轉換為程式碼。";
+
 Blockly.Msg.INLINE_INPUTS = "單行輸入";
 音。";
 Blockly.Msg.INTEGER = "整數";
@@ -353,9 +296,7 @@ Blockly.Msg.LOGIC_TERNARY_HELPURL = "https://en.wikipedia.org/wiki/%3F:";
 Blockly.Msg.LOGIC_TERNARY_IF_FALSE = "如果為非";
 Blockly.Msg.LOGIC_TERNARY_IF_TRUE = "如果為真";
 Blockly.Msg.LOGIC_TERNARY_TOOLTIP = "檢查 'test' 中的條件。如果條件為 真，將返回 '如果為 真' 值 ；否則，返回 '如果為 否' 的值。";
-Blockly.Msg.LONGITUDE = "Longitude";  // untranslated
-Blockly.Msg.LOW = "低";
-Blockly.Msg.HIGH = "高";
+
 
 Blockly.Msg.MATH_ADDITION_SYMBOL = "+";  // untranslated
 Blockly.Msg.MATH_ARITHMETIC_HELPURL = "https://en.wikipedia.org/wiki/Arithmetic";
@@ -480,10 +421,7 @@ Blockly.Msg.MODE = "模式";
 
 Blockly.Msg.NEW_VARIABLE = "新變數...";
 Blockly.Msg.NEW_VARIABLE_TITLE = "新變數名稱:";
-Blockly.Msg.OFF = "關";  // untranslated
-Blockly.Msg.ON = "開";  // untranslated
 Blockly.Msg.ORDINAL_NUMBER_SUFFIX = "";  // untranslated
-Blockly.Msg.PIN = "Pin";  // untranslated
 Blockly.Msg.POPUP_SAVE_DONE = "儲存完成";  // untranslated
 Blockly.Msg.PORT = "連接埠";  // untranslated
 Blockly.Msg.PROCEDURES_ALLOW_STATEMENTS = "allow statements";  // untranslated
@@ -518,9 +456,7 @@ Blockly.Msg.PROCEDURES_MUTATORARG_TOOLTIP = "Add an input to the function.";  //
 Blockly.Msg.PROCEDURES_MUTATORCONTAINER_TITLE = "參數";
 Blockly.Msg.PROCEDURES_MUTATORCONTAINER_TOOLTIP = "Add, remove, or reorder inputs to this function.";  // untranslated
 Blockly.Msg.RANGE_TITLE = "間隔（分）";  // untranslated
-Blockly.Msg.RE = "re";  // untranslated
-Blockly.Msg.REBOOT = "請重新啟動開發板";
-Blockly.Msg.RED = "紅";  // untranslated
+
 Blockly.Msg.REMOVE_COMMENT = "移除註解";
 Blockly.Msg.RENAME_VARIABLE = "重新命名變數...";
 Blockly.Msg.RENAME_VARIABLE_TITLE = "將所有 \"%1\" 變數重新命名為:";
@@ -529,9 +465,6 @@ Blockly.Msg.RENAME_VARIABLE_TITLE2 = "\" 變數重新命名為:";
 Blockly.Msg.REPLACE_TEXT1 = "取代既有的積木？";
 Blockly.Msg.REPLACE_TEXT2 = "[Cancel] will merge.";  // untranslated
 
-Blockly.Msg.RIGHT = "右";  // untranslated
-Blockly.Msg.RISING = "上升邊緣";
-Blockly.Msg.ROW = "Row";  // untranslated
 Blockly.Msg.SAVE_XML = "儲存 XML";  // untranslated
 Blockly.Msg.SAVE_FIRST = "請先儲存檔案，方能在IDE中開啟"
 
@@ -614,7 +547,6 @@ Blockly.Msg.TEXT_TRIM_TOOLTIP = "複製這段字串的同時刪除兩端多餘�
 
 
 
-Blockly.Msg.URL = "URL";
 Blockly.Msg.VALUE = "數值";
 Blockly.Msg.VARIABLE = "變數";
 Blockly.Msg.VARIABLES_DEFAULT_NAME = "項目";
@@ -696,17 +628,6 @@ Blockly.Msg.CONTROLS_IF_ELSEIF_TITLE_ELSEIF = Blockly.Msg.CONTROLS_IF_MSG_ELSEIF
 Blockly.Msg.TEXT_APPEND_VARIABLE = Blockly.Msg.VARIABLES_DEFAULT_NAME;
 Blockly.Msg.CONTROLS_IF_ELSE_TITLE_ELSE = Blockly.Msg.CONTROLS_IF_MSG_ELSE;
 
-Blockly.Msg.CATEGORY_EXTERNAL = "其他元件";
-Blockly.Msg.CATEGORY_BETA = "未測試元件";
-Blockly.Msg.CATEGORY_SENSOR = "感測模組";
-Blockly.Msg.CATEGORY_DISPLAY = "顯示模組";
-Blockly.Msg.CATEGORY_SENSING_ENV = "環境感測";
-Blockly.Msg.CATEGORY_SENSING_DIST = "距離感測";
-Blockly.Msg.CATEGORY_SENSING_MOTION = "動態感測";
-Blockly.Msg.CATEGORY_TRANSCEIVER = "傳輸模組";
-Blockly.Msg.CATEGORY_INFRARED = "紅外線";
-Blockly.Msg.CATEGORY_RFID = "RFID";
-
 Blockly.Msg.BUTTON_UPLOAD = "燒錄";
 Blockly.Msg.BUTTON_LAUNCH_IDE = "啟動 Arduino IDE";
 Blockly.Msg.BUTTON_BOARD_SETTINGS = "開發板設定";
@@ -716,14 +637,13 @@ Blockly.Msg.TEXT_COM_PORT = "連接埠";
 Blockly.Msg.DROPDOWN_SCANNING = "掃描連接埠當中...";
 
 
-
 Blockly.Msg["CATVARIABLES"] = "變數";
 Blockly.Msg["CATPROCEDURES"] = "函數";
 Blockly.Msg["CATLOGIC"] = "邏輯";
 Blockly.Msg["CATLOOPS"] = "迴圈";
 Blockly.Msg["CATMATH"] = "數值";
 Blockly.Msg["CATTEXTS"] = "字串";
-Blockly.Msg["CATTRANSFORM"] = "轉換";
+Blockly.Msg["CATCAST"] = "轉換";
 Blockly.Msg["CATLISTS"] = "列表";
 Blockly.Msg["CATCOLOUR"] = "顏色";
 Blockly.Msg["CATINITIALIZES"] = "程式流程";
@@ -737,7 +657,7 @@ Blockly.Msg["TEXTS_HUE"] = "160";
 Blockly.Msg["PROCEDURES_HUE"] = "290";
 Blockly.Msg["COLOUR_HUE"] = "20";
 Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
-Blockly.Msg["TRANSFORM_HUE"] = "250";
+Blockly.Msg["CAST_HUE"] = "250";
 Blockly.Msg["CATINITIALIZES_HUE"] = "50";
 
 Blockly.Msg["ADD_COMMENT"] = "加入註解";
@@ -1189,7 +1109,7 @@ Blockly.Msg.DOWNLOAD = "下載積木圖片"
 Blockly.Msg.PREVIOUSSTEP = "還原"
 Blockly.Msg.NEXTSTEP = "重做"
 
-Blockly.Msg.CATEGORY_TRANSFORM = "轉換";
+Blockly.Msg.CATEGORY_CAST = "轉換";
 Blockly.Msg.SCROLLPLUGIN = "切換邊緣捲動";
 Blockly.Msg.SCROLLPLUGIN_TRUE = "啟用邊緣捲動";
 Blockly.Msg.SCROLLPLUGIN_FALSE = "停用邊緣捲動";
