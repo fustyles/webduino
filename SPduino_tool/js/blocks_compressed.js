@@ -57,7 +57,7 @@ Blockly.Blocks.main={
 				}
 			}
 			
-			var enabledBlockList = ["main","variables_set","variables_set1","procedures_defnoreturn","procedures_defreturn"];
+			var enabledBlockList = ["main","procedures_defnoreturn","procedures_defreturn"];
 			blocks = this.workspace.getAllBlocks();
 			var p;
 			for (var i=0;i<blocks.length;i++) {
