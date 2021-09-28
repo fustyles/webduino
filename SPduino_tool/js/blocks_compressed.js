@@ -39,7 +39,6 @@ Blockly.Blocks.main={
 			.appendField("loop");
 		this.appendStatementInput("LOOP")
 		this.setInputsInline(!1);
-		this.setPreviousStatement(!0);
 		this.setStyle("initializes_blocks");
 	},onchange: function(event) {
 		if (!this.workspace) {
@@ -57,8 +56,6 @@ Blockly.Blocks.main={
 					blocks[i].dispose();
 				}
 			}
-			if (this.parentBlock_)
-				this.unplug();
 			
 			var enabledBlockList = ["main","variables_set","variables_set1","procedures_defnoreturn","procedures_defreturn"];
 			blocks = this.workspace.getAllBlocks();
