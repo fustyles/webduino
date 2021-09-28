@@ -52,9 +52,13 @@ Blockly.Blocks.main={
 		}
 		if (event.type=="move"&&this.type=="main") {
 			var blocks = this.workspace.getBlocksByType("main");
-			if (blocks.length>1)
-				for (var i=1;i<blocks.length;i++)
+			if (blocks.length>1) {
+				for (var i=1;i<blocks.length;i++) {
 					blocks[i].dispose();
+				}
+			}
+			if (this.parentBlock_)
+				this.unplug();
 		}
 	}
 };
