@@ -50,9 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	});	
 	
 	setInterval(function(){ 
-		var div_code = document.getElementById('arduino_code');
-		var code = Blockly.Arduino.workspaceToCode();			
-		div_code.innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");				
+		if (Blockly.getMainWorkspace().getBlocksByType("main").length==1) {
+			var code = Blockly.Arduino.workspaceToCode();			
+			document.getElementById('arduino_code').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");	
+		}
+		else
+			document.getElementById('arduino_code').innerHTML = "";
 	}, 500);	
 	
 	//新增初始化積木
