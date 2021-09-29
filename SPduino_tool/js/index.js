@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	ScrollBlockDragger.edgeScrollEnabled = false;	
 	
 	//新增暫存積木插件
-	const myBackpack = new MyBackpack(workspace, "category_initializes" , true);
+	const myBackpack = new MyBackpack(workspace, "category_sep_main" , true);
 	
 	//程式碼區塊拖曳與調整大小功能	
 	$(function() {
