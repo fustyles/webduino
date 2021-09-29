@@ -88,7 +88,7 @@ Blockly.Arduino.finish=function(a){
 	a=a.replace(/  \n}/g,"}");
 	a=Object.getPrototypeOf(this).finish.call(this,a);
 	
-	b=b.join("\n")+"\n\n"+c.join("\n")+"\n"+a+"\n"+j.join("\n\n");
+	b=b.join("\n")+"\n\n"+c.join("\n")+"\n\n"+a+"\n"+j.join("\n\n");
 	
 	this.isInitialized=!1;
 	this.nameDB_.reset();
@@ -645,10 +645,10 @@ Blockly.Arduino.variables_set = function(block) {
   var argument0 = Blockly.Arduino.valueToCode(block, 'VALUE',Blockly.Arduino.ORDER_ASSIGNMENT);
   if (varPosition=="global") {
 	  if (argument0!="") {
-		Blockly.Arduino.definitions_[varName1] = varType+ ' ' + varName + ' = ' + argument0 + ';\n';		  
+		Blockly.Arduino.definitions_[varName1] = varType+ ' ' + varName + ' = ' + argument0 + ';';		  
 		var code = '';
 	  } else {
-		Blockly.Arduino.definitions_[varName1] = varType+ ' ' + varName + ';\n';
+		Blockly.Arduino.definitions_[varName1] = varType+ ' ' + varName + ';';
 		var code = '';
 	  }
   }
@@ -672,10 +672,10 @@ Blockly.Arduino.variables_set1 = function(block) {
   if (variableLen=="0") variableLen="";
   if (varPosition=="global") {
 	  if (argument0!=""&&argument0!="{null}") {
-		Blockly.Arduino.definitions_[varName1] = varType+ ' ' + varName + '['+ variableLen +'] = ' + argument0 + ';\n';		  
+		Blockly.Arduino.definitions_[varName1] = varType+ ' ' + varName + '['+ variableLen +'] = ' + argument0 + ';';		  
 		var code = '';
 	  } else {
-		Blockly.Arduino.definitions_[varName1] = varType+ ' ' + varName + '['+ variableLen +'] = {};\n';	  
+		Blockly.Arduino.definitions_[varName1] = varType+ ' ' + varName + '['+ variableLen +'] = {};';	  
 		var code = '';
 	  }
   }
