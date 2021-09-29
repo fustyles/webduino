@@ -171,8 +171,10 @@ Blockly.Blocks.lists_create_with={
 			else if (this.mutator.block_.parentBlock_.type=="procedures_defnoreturn"||this.mutator.block_.parentBlock_.type=="procedures_defreturn") {	
 				if (this.inputList[0].name!="EMPTY")
 					this.setShadow(false);
-				else
+				else {
 					this.setShadow(true);
+					this.setInputsInline(!0);
+				}
 				
 				if (this.itemCount_) {
 					for (var i=0;i<this.itemCount_;i++) {
@@ -192,7 +194,6 @@ Blockly.Blocks.lists_create_with={
 				}
 				this.getField("TITLE").setValue(Blockly.Msg.LISTS_CREATE_WITH_INPUT_WITH_PROCEDURE);
 				this.getField("TITLE").isDirty_=true;
-				//this.setInputsInline(!0);
 				this.workspace.render();
 				return;
 			}	
