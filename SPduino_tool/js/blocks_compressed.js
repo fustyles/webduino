@@ -182,6 +182,12 @@ Blockly.Blocks.lists_create_with={
 								targetBlock.unplug();
 							}
 						}
+						else {
+							const variables_set2_ = Blockly.getMainWorkspace().newBlock('variables_set2');
+							variables_set2_.initSvg();
+							Blockly.getMainWorkspace().render();
+							this.getInput('ADD'+i).connection.connect(variables_set2_.outputConnection);
+						}						
 					}
 				}
 				this.getField("TITLE").setValue(Blockly.Msg.LISTS_CREATE_WITH_INPUT_WITH_PROCEDURE);
