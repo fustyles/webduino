@@ -2861,20 +2861,19 @@ Blockly.Variables.flyoutCategory=function(a){
 	Blockly.Blocks.variables_set3&&b.push(Blockly.Xml.textToDom('<block type="variables_set3"><field name="VAR">'+v+'</field><value name="DELTA"><shadow type="math_number"></shadow></value></block>'))
 	Blockly.Blocks.variables_set1&&b.push(Blockly.Xml.textToDom('<block type="variables_set1"><field name="POSITION">global</field><field name="TYPE">String</field><field name="VAR">'+v+'</field><value name="LEN"><block type="math_number"><field name="NUM">0</field></block></value><value name="VALUE"><shadow type="text"></shadow></value></block>'))
 	Blockly.Blocks.variables_set4&&b.push(Blockly.Xml.textToDom('<block type="variables_set4"><field name="VAR">'+v+'</field><value name="INDEX"><block type="math_number"><field name="NUM">0</field></block></value><value name="VALUE"><shadow type="math_number"></shadow></value></block>'))
+	Blockly.Blocks.variables_set5&&b.push(Blockly.Xml.textToDom('<block type="variables_set5"><field name="VAR">'+v+'</field><value name="INDEX"><block type="math_number"><field name="NUM">0</field></block></value></block>'));
 	Blockly.Blocks.variables_set7&&b.push(Blockly.Xml.textToDom('<block type="variables_set7"><field name="VAR">'+v+'</field><value name="VALUE"><shadow type="math_number"></shadow></value></block>'))
 
 	a=Blockly.Variables.flyoutCategoryBlocks(a);
 	return b=b.concat(a)
 };
 Blockly.Variables.flyoutCategoryBlocks=function(a){
-	var f = a.getAllBlocks();
 	var v = a.getVariablesOfType("");
 	v.sort(Blockly.VariableModel.compareByName);
 	var b=[];
 	if(0<v.length){
-		a = v[v.length-1].name;
-		
-		Blockly.Blocks.variables_set5&&b.push(Blockly.Xml.textToDom('<block type="variables_set5"><field name="VAR">'+a+'</field><value name="INDEX"><block type="math_number"><field name="NUM">0</field></block></value></block>'));
+		//a = v[v.length-1].name;
+		//Blockly.Blocks.variables_set5&&b.push(Blockly.Xml.textToDom('<block type="variables_set5"><field name="VAR">'+a+'</field><value name="INDEX"><block type="math_number"><field name="NUM">0</field></block></value></block>'));
 
 		if(Blockly.Blocks.variables_get){
 			var c=0;
