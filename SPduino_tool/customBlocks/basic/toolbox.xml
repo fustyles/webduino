@@ -1,0 +1,14 @@
+<category id="category_io" name="%{BKY_IO_TITLE}" colour="200">
+	<block type="fu_digitalWrite">
+		<value name="pin">
+			<shadow type="math_number">
+			<field name="NUM">2</field>
+			</shadow>
+		</value>
+		<value name="val">
+			<shadow type="math_number">
+			<field name="NUM">0</field>
+			</shadow>
+		</value>
+	</block>
+</category>
