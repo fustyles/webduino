@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//新增初始化積木
 	function newFile() {
-		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="main" id="0" x="100" y="50" deletable="false" movable="false" editable="false"></block></xml>');
+		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="main" id="0" x="100" y="50" deletable="false" editable="false"></block></xml>');
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
 	}
