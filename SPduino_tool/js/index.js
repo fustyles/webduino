@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	});	
 	
 	setInterval(function(){
+		/*
 		if (Blockly.getMainWorkspace().getBlocksByType("main").length==0) {
 			const main_ = Blockly.getMainWorkspace().newBlock('main');
 			main_.initSvg();
@@ -57,16 +58,19 @@ document.addEventListener('DOMContentLoaded', function() {
 			main_.moveBy(100,50);
 		}
 		if (Blockly.getMainWorkspace().getBlocksByType("main").length==1) {
+		*/
 			var code = Blockly.Arduino.workspaceToCode();			
-			document.getElementById('arduino_code').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");	
+			document.getElementById('arduino_code').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
+		/*
 		}		
 		else
 			document.getElementById('arduino_code').innerHTML = "";
+		*/
 	}, 500);	
 	
 	//新增初始化積木
 	function newFile() {
-		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="main" id="0" x="100" y="50"></block></xml>');
+		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="main" id="0" x="100" y="50" deletable="false" movable="false" editable="false"></block></xml>');
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
 	}
