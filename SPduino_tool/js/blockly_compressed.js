@@ -3023,6 +3023,7 @@ Blockly.Procedures.flyoutCategory=function(a){
 	Blockly.Blocks.procedures_return&&c.push(Blockly.Xml.textToDom('<block type="procedures_return" gap="16"><value name="RETURN"></value></block>'))
 	//Blockly.Blocks.lists_create_with&&c.push(Blockly.Xml.textToDom('<block type="lists_create_with"><mutation items="1"></mutation><value name="ADD0"><block type="variables_set2" gap="16"><field name="TYPE">int</field><field name="VAR">'+v+'</field></block></value></block>'))
 	Blockly.Blocks.variables_set2&&c.push(Blockly.Xml.textToDom('<block type="variables_set2" gap="16"><field name="TYPE">int</field><field name="VAR">'+v+'</field></block>'))
+	Blockly.Blocks.variables_set6&&c.push(Blockly.Xml.textToDom('<block type="variables_set6" gap="16"><field name="TYPE">int</field><field name="VAR">'+v+'</field><value name="LEN"><shadow type="math_number"></shadow></value></block>'))	
 			
 	var t=Blockly.Procedures.allProcedures(a);
 	addCallBlock(t[0],"procedures_callnoreturn");

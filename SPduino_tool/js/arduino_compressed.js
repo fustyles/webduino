@@ -713,7 +713,14 @@ Blockly.Arduino.variables_set5 = function(block) {
 
   return [varName + '['+variableIndex+']',Blockly.Arduino.ORDER_NONE]
 };
-
+Blockly.Arduino.variables_set6 = function(block) {
+  var varType = this.getFieldValue('TYPE');
+  var varName = Blockly.Arduino.nameDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
+  var variableLen = Blockly.Arduino.valueToCode(block, 'LEN',Blockly.Arduino.ORDER_ASSIGNMENT);
+  if (variableLen=="0") variableLen="";
+  
+  return [varType+ ' ' + varName + '['+ variableLen +']', Blockly.Arduino.ORDER_FUNCTION_CALL];
+};
 
 Blockly.Arduino.procedures={};
 Blockly.Arduino.procedures_defreturn=function(){
