@@ -1,7 +1,7 @@
 /*
- * Copyright 2021 Taiwan
+ * Copyright 2021 ChungYi Fu, Taiwan
  * @fileoverview SpBlockly V1
- * @author https://www.facebook.com/francefu/ (ChungYi Fu)
+ * @author https://www.facebook.com/francefu/
 */
 
   'use strict';
@@ -720,6 +720,13 @@ Blockly.Arduino.variables_set6 = function(block) {
   if (variableLen=="0") variableLen="";
   
   return [varType+ ' ' + varName + '['+ variableLen +']', Blockly.Arduino.ORDER_FUNCTION_CALL];
+};
+Blockly.Arduino.variables_set7 = function(block) {
+  var varName = Blockly.Arduino.nameDB_.getName(this.getFieldValue('VAR'),Blockly.VARIABLE_CATEGORY_NAME);
+  var varName1 = this.getFieldValue('VAR');
+  var argument0 = Blockly.Arduino.valueToCode(block, 'VALUE',Blockly.Arduino.ORDER_ASSIGNMENT);
+  Blockly.Arduino.definitions_[varName1] = '#define ' + varName + ' ' + argument0;
+  return "";
 };
 
 Blockly.Arduino.procedures={};

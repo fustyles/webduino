@@ -1,7 +1,7 @@
 /*
- * Copyright 2021 Taiwan
+ * Copyright 2021 ChungYi Fu, Taiwan
  * @fileoverview SpBlockly V1
- * @author https://www.facebook.com/francefu/ (ChungYi Fu)
+ * @author https://www.facebook.com/francefu/
 */
 
   'use strict';
@@ -2861,6 +2861,7 @@ Blockly.Variables.flyoutCategory=function(a){
 	Blockly.Blocks.variables_set3&&b.push(Blockly.Xml.textToDom('<block type="variables_set3"><field name="VAR">'+v+'</field><value name="DELTA"><shadow type="math_number"></shadow></value></block>'))
 	Blockly.Blocks.variables_set1&&b.push(Blockly.Xml.textToDom('<block type="variables_set1"><field name="POSITION">global</field><field name="TYPE">String</field><field name="VAR">'+v+'</field><value name="LEN"><block type="math_number"><field name="NUM">0</field></block></value><value name="VALUE"><shadow type="text"></shadow></value></block>'))
 	Blockly.Blocks.variables_set4&&b.push(Blockly.Xml.textToDom('<block type="variables_set4"><field name="VAR">'+v+'</field><value name="INDEX"><block type="math_number"><field name="NUM">0</field></block></value><value name="VALUE"><shadow type="math_number"></shadow></value></block>'))
+	Blockly.Blocks.variables_set7&&b.push(Blockly.Xml.textToDom('<block type="variables_set7"><field name="VAR">'+v+'</field><value name="VALUE"><shadow type="math_number"></shadow></value></block>'))
 
 	a=Blockly.Variables.flyoutCategoryBlocks(a);
 	return b=b.concat(a)
