@@ -1048,7 +1048,7 @@ Blockly.Blocks.variables_set7={
 		this.setPreviousStatement(!0);
 		this.setNextStatement(!0);
 		this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP);
-		this.setColour(Blockly.Msg["VARIABLES_HUE"]);
+		this.setColour(400);
 	}
 };
 
