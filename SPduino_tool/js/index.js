@@ -171,6 +171,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		'};',
 		"Blockly.Arduino['test'] = function(block) {\n"+
 		"  //Blockly.Arduino.definitions_['name'] = '\/\/definitions_\\n';\n"+
+		//"  //Blockly.Arduino.setups_top_['name'] = '\/\/setups_top_\\n';\n"+
+		//"  //Blockly.Arduino.setups_bottom_['name'] = '\/\/setups_bottom_';\n"+
+		//"  //Blockly.Arduino.loops_top_['name'] = '\/\/loops_top_\\n';\n"+
+		//"  //Blockly.Arduino.loops_bottom_['name'] = '\/\/loops_bottom_';\n"+		
 		"  //Blockly.Arduino.functions_['name'] = 'String blockly() {\\n  return \"Hello World\";\\n}';\n\n"+
 		"  var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);\n"+
 		"  var value_val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);\n"+
@@ -252,9 +256,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//新增遠端自訂積木
 	document.getElementById('button_addRemoteBlocks').onclick = function () {
-		var customBlocksPath = prompt('Please input remote path.', 'customBlocks/basic/');
-		if (customBlocksPath!="")
-			addCustomBlocks(customBlocksPath, "en");
+		var customBlocksPath = prompt('Please input remote custom blocks path.\n Including blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js', 'customBlocks/basic/');
+		if (customBlocksPath) {
+			if (!customBlocksPath.endsWith("/"))
+				customBlocksPath+="/";
+			var lang = "en";
+			addCustomBlocks(customBlocksPath, lang);
+		}
 	}
 	
 	//載入自訂積木
@@ -311,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						}
 						xmlValue_last = xmlValue;
 					} catch (error) {
-						console.log(error);
+						//console.log(error);
 					}					
 				} catch (error) {
 					console.log(error);
