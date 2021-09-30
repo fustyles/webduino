@@ -876,7 +876,8 @@ Blockly.Blocks.variables_get={
 		}
 };
 Blockly.Blocks.variables_set={
-  init:function(){ 
+  init:function(){
+	this.setStyle("variable_blocks");
 	this.appendDummyInput()
 		.appendField(Blockly.Msg.VARIABLES_SET_TITLE)	
 		.appendField(new Blockly.FieldDropdown(Blockly.Variables.positionTypes()), "POSITION");   
@@ -896,7 +897,7 @@ Blockly.Blocks.variables_set={
   }
 };
 Blockly.Blocks.variables_set1={
-	init:function(){ 
+	init:function(){
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.VARIABLES_SET_TITLE)	
 			.appendField(new Blockly.FieldDropdown(Blockly.Variables.positionTypes()), "POSITION");    
@@ -940,7 +941,8 @@ Blockly.Blocks.variables_set1={
 	}
 };
 Blockly.Blocks.variables_set2={
-  init:function(){    
+  init:function(){ 
+	this.setStyle("variable_blocks");  
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown(Blockly.Variables.allTypes1()), "TYPE");  
     this.appendDummyInput()
@@ -962,11 +964,10 @@ Blockly.Blocks.variables_set3={
 			.setAlign(Blockly.ALIGN_RIGHT)
 			.appendField(Blockly.Msg.VARIABLES_SET_TAIL);
 		this.setHelpUrl(Blockly.Msg.MATH_CHANGE_HELPURL);
-		this.setStyle("math_blocks");
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0);
 		this.setNextStatement(!0);
-		this.setColour(330);
+		this.setStyle("variable_blocks");
 	}
 };
 Blockly.Blocks.variables_set4={
@@ -986,7 +987,7 @@ Blockly.Blocks.variables_set4={
 		this.setPreviousStatement(!0);
 		this.setNextStatement(!0);
 		this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP);
-		this.setColour(Blockly.Msg["VARIABLES_HUE"]);
+		this.setStyle("variable_blocks");
 	}
 };
 Blockly.Blocks.variables_set5={
@@ -999,7 +1000,7 @@ Blockly.Blocks.variables_set5={
 		this.setInputsInline(true);
 		this.setOutput(!0);		
 		this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP);
-		this.setColour(Blockly.Msg["VARIABLES_HUE"]);
+		this.setStyle("variable_blocks");
 	}
 };
 Blockly.Blocks.variables_set6={
