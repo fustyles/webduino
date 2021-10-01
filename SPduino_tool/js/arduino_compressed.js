@@ -788,7 +788,7 @@ Blockly.Arduino.procedures_callreturn=function(){
 
 
 
-
+Blockly.Arduino.cast={};
 Blockly.Arduino.cast_number=function(){
 	var a=this.getFieldValue("TYPE")
 	,b=Blockly.Arduino.valueToCode(this,"VAR",Blockly.Arduino.ORDER_ATOMIC)||"";

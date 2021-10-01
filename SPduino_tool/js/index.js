@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 	
-	//載入自訂積木
+	//載入遠端自訂積木
 	function addCustomRemoteBlocks(customBlocksPath, lang) {
 		var blocks_path = customBlocksPath+"blocks.js";   //載入自訂積木定義檔	
 		var javascript_path = customBlocksPath+"javascript.js";   //載入自訂積木轉出程式碼檔	
