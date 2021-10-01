@@ -4,8 +4,7 @@
  * @author https://www.facebook.com/francefu/
 */
 
-  'use strict';
-  
+'use strict';
 
 var $jscomp=$jscomp||{};$jscomp.scope={};var COMPILED=!0,goog=goog||{};goog.global=this||self;goog.isDef=function(a){return void 0!==a};goog.isString=function(a){return"string"==typeof a};goog.isBoolean=function(a){return"boolean"==typeof a};goog.isNumber=function(a){return"number"==typeof a};
 goog.exportPath_=function(a,b,c){a=a.split(".");c=c||goog.global;a[0]in c||"undefined"==typeof c.execScript||c.execScript("var "+a[0]);for(var d;a.length&&(d=a.shift());)!a.length&&goog.isDef(b)?c[d]=b:c=c[d]&&c[d]!==Object.prototype[d]?c[d]:c[d]={}};
@@ -2049,7 +2048,7 @@ Blockly.Theme.defineTheme=function(a,b){var c=new Blockly.Theme(a),d=b.base;d&&(
 
 Blockly.Themes={};
 Blockly.Themes.Classic={};
-Blockly.Themes.Classic.defaultBlockStyles={colour_blocks:{colourPrimary:"20"},list_blocks:{colourPrimary:"20"},logic_blocks:{colourPrimary:"210"},loop_blocks:{colourPrimary:"120"},math_blocks:{colourPrimary:"230"},procedure_blocks:{colourPrimary:"290"},text_blocks:{colourPrimary:"160"},variable_blocks:{colourPrimary:"330"},variable_dynamic_blocks:{colourPrimary:"310"},hat_blocks:{colourPrimary:"330",hat:"cap"},initializes_blocks:{colourPrimary:null}};
+Blockly.Themes.Classic.defaultBlockStyles={colour_blocks:{colourPrimary:"20"},list_blocks:{colourPrimary:"20"},logic_blocks:{colourPrimary:"210"},loop_blocks:{colourPrimary:"120"},math_blocks:{colourPrimary:"230"},procedure_blocks:{colourPrimary:"290"},text_blocks:{colourPrimary:"160"},variable_blocks:{colourPrimary:"330"},variable_dynamic_blocks:{colourPrimary:"310"},hat_blocks:{colourPrimary:"330",hat:"cap"},initializes_blocks:{colourPrimary:"20"}};
 Blockly.Themes.Classic.categoryStyles={colour_category:{colour:"20"},list_category:{colour:"260"},logic_category:{colour:"210"},loop_category:{colour:"120"},math_category:{colour:"230"},procedure_category:{colour:"290"},text_category:{colour:"160"},variable_category:{colour:"330"},variable_dynamic_category:{colour:"310"}};Blockly.Themes.Classic=new Blockly.Theme("classic",Blockly.Themes.Classic.defaultBlockStyles,Blockly.Themes.Classic.categoryStyles);
 
 Blockly.utils.IdGenerator={};
