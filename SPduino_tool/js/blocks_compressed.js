@@ -52,7 +52,7 @@ Blockly.Blocks.main={
 					}
 					p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
 				}
-				if (!enabledBlockList.includes(p.type))
+				if (!enabledBlockList.includes(p.type)&&!["variables_set","variables_set1","variables_set7"].includes(blocks[i].type))
 					blocks[i].setEnabled(false);
 			}		
 		}
