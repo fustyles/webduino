@@ -261,12 +261,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (!customBlocksPath.endsWith("/"))
 				customBlocksPath+="/";
 			var lang = "en";
-			addCustomBlocks(customBlocksPath, lang);
+			addCustomRemoteBlocks(customBlocksPath, lang);
 		}
 	}
 	
 	//載入自訂積木
-	function addCustomBlocks(customBlocksPath, lang) {
+	function addCustomRemoteBlocks(customBlocksPath, lang) {
 		var blocks_path = customBlocksPath+"blocks.js";   //載入自訂積木定義檔	
 		var javascript_path = customBlocksPath+"javascript.js";   //載入自訂積木轉出程式碼檔	
 		var toolbox_path = customBlocksPath+"toolbox.xml";  //載入自訂積木目錄檔	

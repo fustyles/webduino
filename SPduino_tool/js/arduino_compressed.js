@@ -729,6 +729,8 @@ Blockly.Arduino.variables_set7 = function(block) {
   return "";
 };
 
+
+
 Blockly.Arduino.procedures={};
 Blockly.Arduino.procedures_defreturn=function(){
 	var a=Blockly.Arduino.nameDB_.getName(this.getFieldValue("NAME"),Blockly.Procedures.NAME_TYPE);
@@ -783,6 +785,8 @@ Blockly.Arduino.procedures_callreturn=function(){
 	g=g.replace("{","").replace("}","");
 	return[a+"("+g+")",Blockly.Arduino.ORDER_NONE]
 };
+
+
 
 
 Blockly.Arduino.cast_number=function(){

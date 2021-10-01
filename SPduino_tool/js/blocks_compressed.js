@@ -757,14 +757,12 @@ Blockly.Extensions.registerMutator("text_charAt_mutator",Blockly.Constants.Text.
 
 //舊版相容
 Blockly.Blocks.array={};
-Blockly.Msg["LISTS_HUE"]=20;
 Blockly.Blocks.array_create_with=Blockly.Blocks.lists_create_with;
 Blockly.Blocks.array_create_with_item=Blockly.Blocks.lists_create_with_item;
 Blockly.Blocks.array_create_with_container=Blockly.Blocks.lists_create_with_container;
 Blockly.Blocks.array_modify = {
   init: function() {
 	this.setStyle("list_blocks");
-    this.setColour(Blockly.Msg["LISTS_HUE"]);
     this.appendValueInput("name")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -786,7 +784,6 @@ Blockly.Blocks.array_modify = {
 Blockly.Blocks.array_getIndex={
   init:function(){
 	this.setStyle("list_blocks");
-    this.setColour(Blockly.Msg["LISTS_HUE"]);
     this.appendValueInput("ITEM")
         .setCheck("Array")
         .appendField(Blockly.Msg.ARRAY_GETINDEX_ITEM);
@@ -815,7 +812,6 @@ Blockly.Blocks.array_for={
   init:function(){
 	this.setStyle("list_blocks");
     this.setHelpUrl(Blockly.Msg.CONTROLS_FOR_HELPURL);
-    this.setColour(Blockly.Msg["LISTS_HUE"]);
     this.appendDummyInput()
         .appendField(Blockly.Msg.CONTROLS_FOR_INPUT_WITH)
         .appendField(new Blockly.FieldVariable(null),"VAR");
@@ -862,18 +858,17 @@ Blockly.Blocks.array_for={
 // Copyright 2012 Google Inc.  Apache License 2.0
 Blockly.Blocks.variables={};
 Blockly.Constants.Variables={};
-Blockly.Constants.Variables.HUE=330;
 Blockly.Blocks.variables_get={
 	init:function(){
-			this.setHelpUrl(Blockly.Msg.VARIABLES_GET_HELPURL);
-			this.setColour(Blockly.Msg["VARIABLES_HUE"]);
-			this.appendDummyInput()
-				.appendField(Blockly.Msg.VARIABLES_GET_TITLE)
-				.appendField(new Blockly.FieldVariable(null),"VAR")
-				.appendField(Blockly.Msg.VARIABLES_GET_TAIL);
-			this.setOutput(!0);
-			this.setTooltip(Blockly.Msg.VARIABLES_GET_TOOLTIP);		
-		}
+		this.setHelpUrl(Blockly.Msg.VARIABLES_GET_HELPURL);
+		this.setStyle("variable_blocks");
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.VARIABLES_GET_TITLE)
+			.appendField(new Blockly.FieldVariable(null),"VAR")
+			.appendField(Blockly.Msg.VARIABLES_GET_TAIL);
+		this.setOutput(!0);
+		this.setTooltip(Blockly.Msg.VARIABLES_GET_TOOLTIP);		
+	}
 };
 Blockly.Blocks.variables_set={
   init:function(){
@@ -889,7 +884,7 @@ Blockly.Blocks.variables_set={
         .setCheck(null)
         .appendField(Blockly.Msg.VARIABLES_SET_TAIL);		
     this.setHelpUrl(Blockly.Msg.VARIABLES_SET_HELPURL);
-    this.setColour(400);
+    this.setColour(50);
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
     this.setNextStatement(!0);
@@ -916,7 +911,7 @@ Blockly.Blocks.variables_set1={
 		this.setPreviousStatement(!0);
 		this.setNextStatement(!0);
 		this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP);
-		this.setColour(400);
+		this.setColour(50);
 	}
     ,onchange: function(event) {
 		if (!this.workspace || this.workspace.isFlyout) {
@@ -951,7 +946,7 @@ Blockly.Blocks.variables_set2={
 	this.setInputsInline(true);
 	this.setOutput(!0);
     this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP);
-	this.setColour(400);
+	this.setColour(50);
   }
 };
 Blockly.Blocks.variables_set3={
@@ -1016,7 +1011,7 @@ Blockly.Blocks.variables_set6={
 	this.setInputsInline(true);
 	this.setOutput(!0);
 	this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP);
-	this.setColour(400);
+	this.setColour(50);
 	}
 	,onchange: function(event) {
 		if (!this.workspace) {
@@ -1049,7 +1044,7 @@ Blockly.Blocks.variables_set7={
 		this.setPreviousStatement(!0);
 		this.setNextStatement(!0);
 		this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP);
-		this.setColour(400);
+		this.setColour(50);
 	}
 };
 
