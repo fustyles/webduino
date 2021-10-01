@@ -1542,42 +1542,38 @@
 	  </block>
 	</value>      
 	</block>
-	<block type="customcode_variable">
-		<value name="variable">
-		  <block type="text">
-			<field name="TEXT">var imageData</field>
-		  </block>
-		</value>
-		<value name="text">
-			<block type="canvas_getimagedata">  
-				<value name="id_">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="x0_">
-				  <block type="math_number">
-					<field name="NUM">0</field>
-				  </block>
-				</value>
-				<value name="y0_">
-				  <block type="math_number">
-					<field name="NUM">0</field>
-				  </block>
-				</value>     
-				<value name="width_">
-				  <block type="math_number">
-					<field name="NUM">0</field>
-				  </block>
-				</value>
-				<value name="height_">
-				  <block type="math_number">
-					<field name="NUM">0</field>
-				  </block>
-				</value>			
-			</block>
-		</value>
-	</block>
+	<block type="variables_set">
+            <field name="VAR" id="{}=:kAN[Oiy:WY6$6?=n">imageData</field>
+                <value name="VALUE">
+		  <block type="canvas_getimagedata">  
+			<value name="id_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>
+			<value name="x0_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="y0_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>     
+			<value name="width_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="height_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>			
+		  </block> 
+            </value>
+        </block>
 	<block type="canvas_setimagedata">
 	<value name="id_">
 	  <block type="text">
