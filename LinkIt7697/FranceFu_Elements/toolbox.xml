@@ -219,48 +219,21 @@
 	  </block>
 	</value>  
 	</block>  	
-	<block type="document_timer">
-	<value name="var_">
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">myTimer</field>
-		  </block>
-		</value>
-	  </block>    
-	</value> 	
+	<block type="document_timer">	
 	<value name="intervals_">
 	  <block type="math_number">
 		<field name="NUM">100</field>
 	  </block>
 	</value>  
 	</block>  
-	<block type="document_timer_once">
-	<value name="var_">
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">myTimerOnce</field>
-		  </block>
-		</value>
-	  </block>  
-	</value> 	
+	<block type="document_timer_once">	
 	<value name="intervals_">
 	  <block type="math_number">
 		<field name="NUM">1000</field>
 	  </block>
 	</value>  
 	</block>  
-	<block type="document_timer_stop">
-	<value name="var_">
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">myTimer</field>
-		  </block>
-		</value>
-	  </block>   
-	</value> 	
+	<block type="document_timer_stop">	
 	</block> 
 	<block type="element_event">  
 	<value name="id_">
