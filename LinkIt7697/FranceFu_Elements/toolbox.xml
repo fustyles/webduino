@@ -1575,20 +1575,16 @@
             </value>
         </block>
 	<block type="canvas_setimagedata">
-	<value name="id_">
-	  <block type="text">
-		<field name="TEXT"></field>
-	  </block>
-	</value>
-	<value name="data_">
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">imageData</field>
-		  </block>
-		</value>
-	  </block> 	
-	</value>
+        <value name="id_">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="data_">
+		<block type="variables_get">
+		  <field name="VAR" id="{}=:kAN[Oiy:WY6$6?=n">imageData</field>
+		</block>
+        </value>
 	<value name="x0_">
 	  <block type="math_number">
 		<field name="NUM">0</field>
@@ -1599,7 +1595,7 @@
 		<field name="NUM">0</field>
 	  </block>
 	</value> 
-	</block>   
+        </block>   
 	<block type="canvas_capturevideo">
 	<value name="canvasid_">
 	  <block type="text">
