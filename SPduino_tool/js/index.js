@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		'	this.setInputsInline(true);\n'+
 		'	this.setPreviousStatement(true, null);\n'+
 		'	this.setNextStatement(true, null);\n'+
-		'	this.setColour(200);\n'+
+		'	this.setColour(Blockly.Msg["MYBLOCKS_HUE"]);\n'+
 		'   this.setTooltip("Blocks definition");\n'+
 		'   this.setHelpUrl("https://developers.google.com/blockly/guides/create-custom-blocks/overview");\n'+
 		'  }\n'+
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		"  var code = 'digitalWrite(%1, %2);\\n'.replace('%1',value_pin).replace('%2',value_val);\n"+
 		"  return code;\n"+
 		"};",
-		'<category id="category_custom" name="%{BKY_MYBLOCKS}" colour="200">\n'+
+		'<category id="category_custom" name="%{BKY_MYBLOCKS}" colour="%{BKY_MYBLOCKS_HUE}">\n'+
 		'	<block type="test">\n'+
 		'		<value name="pin">\n'+
 		'			<shadow type="math_number">\n'+
@@ -203,7 +203,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		'		</value>\n'+
 		'	</block>\n'+		
 		'</category>',
-		'Blockly.Msg["MYBLOCKS"] = "MY BLOCKS";'
+		'Blockly.Msg["MYBLOCKS"] = "MY BLOCKS";\n'+
+		'Blockly.Msg["MYBLOCKS_HUE"] = "350";'		
 	]
 		
 		
@@ -264,6 +265,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		displayTab('category_content');
 		try {
 			eval(document.getElementById('message_function').value);
+			document.getElementById('button_updateDefinition').click();	
 			document.getElementById('button_updateCategory').click();
 		} catch (e) {
 			if (e instanceof SyntaxError) {
