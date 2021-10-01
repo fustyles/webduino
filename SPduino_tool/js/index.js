@@ -46,7 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		$( "#updateGenerate_content" ).draggable();
 		$( "#updateGenerate_content" ).resizable();
 		$( "#updateCategory_content" ).draggable();
-		$( "#updateCategory_content" ).resizable();		
+		$( "#updateCategory_content" ).resizable();
+		$( "#updateMessage_content" ).draggable();
+		$( "#updateMessage_content" ).resizable();			
 	});	
 	
 	setInterval(function(){
@@ -92,11 +94,13 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('updateDefinition_content').style.display = "none";
 			document.getElementById('updateGenerate_content').style.display = "none";
 			document.getElementById('updateCategory_content').style.display = "none";
+			document.getElementById('updateMessage_content').style.display = "none";			
 		}
 		else {
 			document.getElementById('updateDefinition_content').style.display = "block";
 			document.getElementById('updateGenerate_content').style.display = "block";
 			document.getElementById('updateCategory_content').style.display = "block";
+			document.getElementById('updateMessage_content').style.display = "block";
 		}
 	}	
 	
@@ -105,14 +109,17 @@ document.addEventListener('DOMContentLoaded', function() {
 		var result = confirm(Blockly.Msg.BUTTON_RESET);
 		if (result) {
 			newFile();
+			
 			document.getElementById('blocks_function').value = code[0];
 			document.getElementById('arduino_function').value = code[1];
 			document.getElementById('category_function').value = code[2];
+			document.getElementById('message_function').value = code[3];
 			
 			document.getElementById('code_content').attributeStyleMap.clear();
 			document.getElementById('updateDefinition_content').attributeStyleMap.clear();
 			document.getElementById('updateGenerate_content').attributeStyleMap.clear();
 			document.getElementById('updateCategory_content').attributeStyleMap.clear();
+			document.getElementById('updateMessage_content').attributeStyleMap.clear();
 		}
 	}
 
@@ -121,7 +128,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		var content = "" +
 			document.getElementById('blocks_function').value + "\n\n" +
 			document.getElementById('arduino_function').value + "\n\n" +
-			document.getElementById('category_function').value;	
+			document.getElementById('category_function').value + "\n\n" +
+			document.getElementById('message_function').value;	
 
 		var link = document.createElement('a');
 		link.download="blocks.txt";
@@ -181,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		"  var code = 'digitalWrite(%1, %2);\\n'.replace('%1',value_pin).replace('%2',value_val);\n"+
 		"  return code;\n"+
 		"};",
-		'<category id="category_custom" name="MYBLOCKS" colour="200">\n'+
+		'<category id="category_custom" name="%{BKY_MYBLOCKS}" colour="200">\n'+
 		'	<block type="test">\n'+
 		'		<value name="pin">\n'+
 		'			<shadow type="math_number">\n'+
@@ -194,7 +202,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		'			</shadow>\n'+
 		'		</value>\n'+
 		'	</block>\n'+		
-		'</category>'
+		'</category>',
+		'Blockly.Msg["MYBLOCKS"] = "MY BLOCKS";'
 	]
 		
 		
@@ -206,6 +215,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 	//工具箱目錄
 	document.getElementById('category_function').value = code[2];
+	
+	//語言
+	document.getElementById('message_function').value = code[3];	
 		
 	//更新積木定義函式
 	document.getElementById('button_updateDefinition').onclick = function () {
@@ -247,8 +259,24 @@ document.addEventListener('DOMContentLoaded', function() {
 		Blockly.getMainWorkspace().updateToolbox(xml);
 	}
 	
+	//更新語言
+	document.getElementById('button_updateMessage').onclick = function () {
+		displayTab('category_content');
+		try {
+			eval(document.getElementById('message_function').value);
+			document.getElementById('button_updateCategory').click();
+		} catch (e) {
+			if (e instanceof SyntaxError) {
+				alert(e.message);
+			} else {
+				throw e;
+			}	
+		}
+	}	
+	
 	//新增自訂積木
 	document.getElementById('button_addBlocks').onclick = function () {
+		document.getElementById('button_updateMessage').click();		
 		document.getElementById('button_updateDefinition').click();
 		document.getElementById('button_updateGenerate').click();		
 		document.getElementById('button_updateCategory').click();
@@ -256,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//新增遠端自訂積木
 	document.getElementById('button_addRemoteBlocks').onclick = function () {
-		var customBlocksPath = prompt('Please input remote custom blocks path.\n Including blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js', 'customBlocks/basic/');
+		var customBlocksPath = prompt(Blockly.Msg["CUSTOMBLOCKS_TITLE"], 'customBlocks/basic/');
 		if (customBlocksPath) {
 			if (!customBlocksPath.endsWith("/"))
 				customBlocksPath+="/";
@@ -367,7 +395,7 @@ function displayTab(id) {
 }
 
 //切換視窗上層顯示
-var contents = ['updateDefinition_content','updateGenerate_content','updateCategory_content','code_content'];
+var contents = ['updateDefinition_content','updateGenerate_content','updateCategory_content','updateMessage_content','code_content'];
 function textareaFocus(id) {
 	for (var i in contents) {
 		const content = document.getElementById(contents[i]);
