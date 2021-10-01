@@ -125,19 +125,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	//儲存內容
 	document.getElementById('button_save').onclick = function () {
-		var content = "" +
-			document.getElementById('blocks_function').value + "\n\n" +
-			document.getElementById('arduino_function').value + "\n\n" +
-			document.getElementById('category_function').value + "\n\n" +
-			document.getElementById('message_function').value;	
-
+		var content = document.getElementById('blocks_function').value;
 		var link = document.createElement('a');
-		link.download="blocks.txt";
+		link.download="blocks.js";
+		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
+		document.body.appendChild(link);
+		link.click();
+		link.remove();	
+
+		var content = document.getElementById('arduino_function').value;
+		var link = document.createElement('a');
+		link.download="javascript.js";
+		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
+		document.body.appendChild(link);
+		link.click();
+		link.remove();	
+
+		var content = document.getElementById('category_function').value;
+		var link = document.createElement('a');
+		link.download="toolbox.xml";
+		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
+		document.body.appendChild(link);
+		link.click();
+		link.remove();	
+
+		var content = document.getElementById('message_function').value;
+		var link = document.createElement('a');
+		link.download="en.js";
+		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
+		document.body.appendChild(link);
+		link.click();
+		link.remove();	
+
+		var content = document.getElementById('message_function').value;
+		var link = document.createElement('a');
+		link.download="zh-hant.js";
 		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
 		document.body.appendChild(link);
 		link.click();
 		link.remove();			
-	}	
+	}		
 	
 	//開啟Blockly Developer Tools
 	document.getElementById('button_tool').onclick = function () {
