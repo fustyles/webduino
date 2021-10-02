@@ -355,11 +355,9 @@ document.addEventListener('DOMContentLoaded', function() {
 				
 				try {
 					var category = document.getElementById('toolbox');
-					console.log(Blockly.getMainWorkspace());
 					var xmlNewValue='<xml id="toolbox">';
 					if (category.childNodes.length>0) {
 						for (var i=0;i<category.childNodes.length;i++){
-							console.log(category.childNodes[i]);
 							var node = new XMLSerializer().serializeToString(category.childNodes[i]);
 							xmlNewValue+=node;
 						}
