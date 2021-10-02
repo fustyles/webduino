@@ -6,7 +6,7 @@
 
 var lang = "en";
 var last_code;
-var customCategory = [];
+var customCategory = [['','']];
 var customCategoryInsertAfter = "category_sep_main";
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//新增初始化積木
 	function newFile() {
-		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="main" id="0" x="100" y="50" deletable="false" editable="false"></block></xml>');
+		var xmlDoc = Blockly.Xml.textToDom('<xml><block type="main" id="0" x="100" y="50" deletable="false" editable="false"></block></xml>');
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
 	}
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button_updateDefinition').onclick = function () {
 		displayTab('category_content');
 		try {
-			eval(document.getElementById('blocks_function').value);
+			eval(document.getElementById('blocks_function').value.replace(/Javascript/g,"Arduino"));
 			var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
 			Blockly.getMainWorkspace().clear();
 			Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());
@@ -286,27 +286,30 @@ document.addEventListener('DOMContentLoaded', function() {
 	//更新工具箱目錄
 	document.getElementById('button_updateCategory').onclick = function () {
 		displayTab('category_content');
-		var xml = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
-		var category = document.getElementById('category_function').value;
-		if (!checkCategoryExist(category))
-			customCategory.push([category, customCategoryInsertAfter]);
-		for (var i=0;i<customCategory.length;i++) {
-			var dom = new DOMParser().parseFromString(customCategory[i][0],"text/xml").firstChild;
-			for (var j=0;j<xml.childNodes.length;j++) {
-				if (xml.childNodes[j].id) {
-					if (xml.childNodes[j].id==customCategory[i][1])
-						xml.insertBefore(dom, xml.childNodes[j].nextSibling);
-				}
+		
+		var xml = document.getElementById('category_function').value.replace(/Javascript/g,"Arduino");
+		if (customCategory[0][0]!= xml) {
+			customCategory[0][0] = xml;
+			customCategory[0][1] = customCategoryInsertAfter;
+		}
+		var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
+		if (category.childNodes.length>0) {
+			for (var j=0;j<customCategory.length;j++) {
+				for (var i=0;i<category.childNodes.length;i++){
+					if (category.childNodes[i].id==customCategory[j][1])
+						category.insertBefore(new DOMParser().parseFromString(customCategory[j][0],"text/xml").firstChild,category.childNodes[i].nextSibling);
+				}								
 			}
 		}
-		Blockly.getMainWorkspace().updateToolbox(xml);
+			
+		Blockly.getMainWorkspace().updateToolbox(category);
 	}
 	
 	//更新語言
 	document.getElementById('button_updateMessage').onclick = function () {
 		displayTab('category_content');
 		try {
-			eval(document.getElementById('message_function').value);
+			eval(document.getElementById('message_function').value.replace(/Javascript/g,"Arduino"));
 			document.getElementById('button_updateDefinition').click();	
 			document.getElementById('button_updateCategory').click();
 		} catch (e) {
@@ -361,47 +364,32 @@ document.addEventListener('DOMContentLoaded', function() {
 			timeout: 3000,
 			async: false,
 			success: function(xml, textStatus) {
-				var firstchild = new XMLSerializer().serializeToString(xml.firstChild);
-				if (firstchild) {
-					if (!checkCategoryExist(firstchild))
-						customCategory.push([firstchild, customCategoryInsertAfter]);
-				}
-				try {
-					var category = document.getElementById('toolbox');
-					var xmlNewValue='<xml id="toolbox">';
-					if (category.childNodes.length>0) {
-						for (var i=0;i<category.childNodes.length;i++){
-							var node = new XMLSerializer().serializeToString(category.childNodes[i]);
-							xmlNewValue+=node;
-							for (var j=0;j<customCategory.length;j++) {
-								if (node.indexOf(customCategory[j][1])!=-1)
-									xmlNewValue+=customCategory[j][0];
-							}								
-						}
-					}
-					xmlNewValue+='</xml>';
-					
+				if (xml.firstChild) {
+					var category_ = new XMLSerializer().serializeToString(xml.firstChild);
 					try {
 						if (lang=="en") {
-							var xml = $.ajax({url: en_category_path, async: false}).responseXML.firstChild;
+							var xmlCustom = $.ajax({url: en_category_path, async: false}).responseXML.firstChild;
 						} else {
-							var xml = $.ajax({url: zhhant_category_path, async: false}).responseXML.firstChild;
+							var xmlCustom = $.ajax({url: zhhant_category_path, async: false}).responseXML.firstChild;
 						}
-						xml = new DOMParser().parseFromString(new XMLSerializer().serializeToString(xml).replace(/\n/g, "").replace(/\r/g, "").replace(/\t/g, ""),"text/xml").firstChild;
-						for (var i=0;i<xml.childNodes.length;i++) {
-							if (xml.childNodes[i].nodeName.toLowerCase()=="category") {
-								var ini = xml.childNodes[i].childNodes[0].firstChild.nodeValue;
-								var rep = xml.childNodes[i].childNodes[1].firstChild.nodeValue;
-								xmlNewValue = xmlNewValue.replace('name="'+ini+'"','name="'+rep+'"');	
+						for (var i=0;i<xmlCustom.childNodes.length;i++) {
+							if (xmlCustom.childNodes[i].nodeName.toLowerCase()=="category") {
+								var ini = xmlCustom.childNodes[i].childNodes[0].firstChild.nodeValue;
+								var rep = xmlCustom.childNodes[i].childNodes[1].firstChild.nodeValue;
+								category_ = category_.replace('name="'+ini+'"','name="'+rep+'"');								
 							}
 						}
-					} catch (error) {
-						//console.log(error);
-					}					
-				} catch (error) {
-					console.log(error);
-				}
-				Blockly.getMainWorkspace().updateToolbox(Blockly.Xml.textToDom(xmlNewValue));
+					}
+					catch (e) {
+						//console.log(e);
+					}
+					
+					if (!checkCategoryExist(category_)) {
+						customCategory.push([category_, customCategoryInsertAfter]);
+					}
+					
+					document.getElementById('button_updateCategory').click();					
+				}				
 			},
 			error: function (jqXHR, textStatus, errorThrown) {
 				console.log(jqXHR.statusText);
@@ -416,15 +404,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		$("body").append(s);
 	}
 
-	function checkCategoryExist(firstchild) {
-		for (var i=0;i<customCategory.length;i++) {
-			if (firstchild==customCategory[i][0])
+	function checkCategoryExist(child) {
+		for (var i=1;i<customCategory.length;i++) {
+			if (child==customCategory[i][0])
 				return true;
 		}
 		return false;
-	}	
+	}
 	
-	//紀錄工具箱目錄原始內容
 	var category = document.getElementById('toolbox');
 	var xmlValue='<xml id="toolbox">';
 	if (category.childNodes.length>0) {
@@ -433,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			xmlValue+=node;
 		}
 	}
-	xmlValue+='</xml>';
+	xmlValue+='</xml>';	
 });	
 
 //切換頁籤
