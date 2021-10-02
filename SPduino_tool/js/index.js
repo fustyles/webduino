@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.body.appendChild(link);
 		link.click();
 		link.remove();			
-	}		
+	}	
 	
 	//開啟Blockly Developer Tools
 	document.getElementById('button_tool').onclick = function () {
@@ -206,8 +206,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		'};',
 		"Blockly.Arduino['test'] = function(block) {\n"+
 		"  //Blockly.Arduino.definitions_['name'] = '\/\/definitions_\\n';\n"+
-		//"  //Blockly.Arduino.setups_top_['name'] = '\/\/setups_top_\\n';\n"+
-		//"  //Blockly.Arduino.setups_bottom_['name'] = '\/\/setups_bottom_';\n"+
+		"  //Blockly.Arduino.setups_top_['name'] = '\/\/setups_top_\\n';\n"+
+		"  //Blockly.Arduino.setups_bottom_['name'] = '\/\/setups_bottom_';\n"+
 		//"  //Blockly.Arduino.loops_top_['name'] = '\/\/loops_top_\\n';\n"+
 		//"  //Blockly.Arduino.loops_bottom_['name'] = '\/\/loops_bottom_';\n"+		
 		"  //Blockly.Arduino.functions_['name'] = 'String blockly() {\\n  return \"Hello World\";\\n}';\n\n"+
@@ -282,8 +282,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button_updateCategory').onclick = function () {
 		displayTab('category_content');
 		var xml = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
-		var dom = new DOMParser().parseFromString(document.getElementById('category_function').value,"text/xml").firstChild;
-		xml.appendChild(dom);
+		customCategory[0] = document.getElementById('category_function').value;
+		for (var i=0;i<customCategory.length;i++) {
+			var dom = new DOMParser().parseFromString(customCategory[i],"text/xml").firstChild;
+			xml.appendChild(dom);
+		}
 		Blockly.getMainWorkspace().updateToolbox(xml);
 	}
 	
@@ -323,6 +326,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	//載入遠端自訂積木
+	var customCategory = [''];
 	function addCustomRemoteBlocks(customBlocksPath, lang) {
 		var blocks_path = customBlocksPath+"blocks.js";   //載入自訂積木定義檔	
 		var javascript_path = customBlocksPath+"javascript.js";   //載入自訂積木轉出程式碼檔	
@@ -346,19 +350,23 @@ document.addEventListener('DOMContentLoaded', function() {
 			timeout: 3000,
 			async: false,
 			success: function(xml, textStatus) {
+				if (new XMLSerializer().serializeToString(xml.firstChild))
+					customCategory.push(new XMLSerializer().serializeToString(xml.firstChild));
+				
 				try {
-					xmlValue_last = xmlValue;
+					var category = document.getElementById('toolbox');
+					console.log(Blockly.getMainWorkspace());
 					var xmlNewValue='<xml id="toolbox">';
-					var len = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes.length;
-					if (len>0) {
-						for (var i=0;i<len;i++){
-							var node = new XMLSerializer().serializeToString(new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes[i]);
+					if (category.childNodes.length>0) {
+						for (var i=0;i<category.childNodes.length;i++){
+							console.log(category.childNodes[i]);
+							var node = new XMLSerializer().serializeToString(category.childNodes[i]);
 							xmlNewValue+=node;
 						}
 					}
-					xmlNewValue+=new XMLSerializer().serializeToString(xml.firstChild);
+					for (var i=0;i<customCategory.length;i++)
+						xmlNewValue+=customCategory[i];
 					xmlNewValue+='</xml>';
-					xmlValue = xmlNewValue;
 					
 					try {
 						if (lang=="en") {
@@ -371,19 +379,17 @@ document.addEventListener('DOMContentLoaded', function() {
 							if (xml.childNodes[i].nodeName.toLowerCase()=="category") {
 								var ini = xml.childNodes[i].childNodes[0].firstChild.nodeValue;
 								var rep = xml.childNodes[i].childNodes[1].firstChild.nodeValue;
-								xmlValue = xmlValue.replace('name="'+ini+'"','name="'+rep+'"');	
+								xmlNewValue = xmlNewValue.replace('name="'+ini+'"','name="'+rep+'"');	
 							}
 						}
-						xmlValue_last = xmlValue;
 					} catch (error) {
 						//console.log(error);
 					}					
 				} catch (error) {
 					console.log(error);
-					xmlValue = xmlValue_last;
 				}
-				
-				Blockly.getMainWorkspace().updateToolbox(Blockly.Xml.textToDom(xmlValue));
+				console.log(xmlNewValue);
+				Blockly.getMainWorkspace().updateToolbox(Blockly.Xml.textToDom(xmlNewValue));
 			},
 			error: function (jqXHR, textStatus, errorThrown) {
 				console.log(jqXHR.statusText);
@@ -407,7 +413,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			xmlValue+=node;
 		}
 	}
-	xmlValue+='</xml>';		
+	xmlValue+='</xml>';
 });	
 
 //切換頁籤
