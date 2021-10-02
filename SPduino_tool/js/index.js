@@ -3,7 +3,11 @@
  * @fileoverview SpBlockly tool
  * @author https://www.facebook.com/francefu/
 */
- 
+
+var lang = "en";
+var last_code;
+var customCategory = [''];
+
 document.addEventListener('DOMContentLoaded', function() {
 
 	//初始化工作區	
@@ -326,7 +330,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	//載入遠端自訂積木
-	var customCategory = [''];
 	function addCustomRemoteBlocks(customBlocksPath, lang) {
 		var blocks_path = customBlocksPath+"blocks.js";   //載入自訂積木定義檔	
 		var javascript_path = customBlocksPath+"javascript.js";   //載入自訂積木轉出程式碼檔	
