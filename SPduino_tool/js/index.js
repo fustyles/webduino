@@ -386,7 +386,6 @@ document.addEventListener('DOMContentLoaded', function() {
 				} catch (error) {
 					console.log(error);
 				}
-				console.log(xmlNewValue);
 				Blockly.getMainWorkspace().updateToolbox(Blockly.Xml.textToDom(xmlNewValue));
 			},
 			error: function (jqXHR, textStatus, errorThrown) {
