@@ -1,7 +1,7 @@
 /*
- * Copyright 2021 Taiwan
+ * Copyright 2021 Taiwan (ChungYi Fu)
  * @fileoverview SpBlockly tool
- * @author https://www.facebook.com/francefu/ (ChungYi Fu)
+ * @author https://www.facebook.com/francefu/
 */
  
 document.addEventListener('DOMContentLoaded', function() {
