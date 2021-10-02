@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Taiwan (ChungYi Fu)
+ * Copyright 2021 ChungYi Fu, Taiwan
  * @fileoverview SpBlockly tool
  * @author https://www.facebook.com/francefu/
 */
