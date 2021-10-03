@@ -1,0 +1,27 @@
+{
+	"name": "SpBlockly",
+	"app": {
+		"background": {
+			"persistent": true,
+			"scripts": [
+				"background.js"
+			]
+		}
+	},
+	"description": "SpBlockly V1",
+	"version": "1.0.0",
+	"window": {
+		"title": "SpBlockly V1",
+		"icon": "link.png",
+		"toolbar": true,
+		"frame": true,
+		"width": 1000,
+		"height": 600,
+			"min_width":1000,
+			"min_height":600,
+		"position": "center"
+	},
+	"dependencies": {
+	"iconv-lite": "^0.4.19"
+	}	
+}
