@@ -350,12 +350,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		var zhhant_path = customBlocksPath+"zh-hant.js";  //載入積木文字繁體語系設定檔(預設繁體語系)
 		var zhhant_category_path = customBlocksPath+"zh-hant_category.xml";  //載入積木目錄文字繁體語系設定檔(預設繁體語系)
 		
-		addScript(blocks_path);
-		addScript(javascript_path);
 		if (lang=="en")
 			addScript(en_path);
 		else
-			addScript(zhhant_path);
+			addScript(zhhant_path);		
+		addScript(blocks_path);
+		addScript(javascript_path);
 		
 		$.ajax({
 			type: "GET" ,
@@ -388,7 +388,17 @@ document.addEventListener('DOMContentLoaded', function() {
 						customCategory.push([category_, customCategoryInsertAfter]);
 					}
 					
-					document.getElementById('button_updateCategory').click();					
+					var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
+					if (category.childNodes.length>0) {
+						for (var j=0;j<customCategory.length;j++) {
+							for (var i=0;i<category.childNodes.length;i++){
+								if (category.childNodes[i].id==customCategory[j][1]&&customCategory[j][0])
+									category.insertBefore(new DOMParser().parseFromString(customCategory[j][0],"text/xml").firstChild,category.childNodes[i].nextSibling);
+							}								
+						}
+					}
+						
+					Blockly.getMainWorkspace().updateToolbox(category);				
 				}				
 			},
 			error: function (jqXHR, textStatus, errorThrown) {
@@ -412,11 +422,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		return false;
 	}
 	
-	var category = document.getElementById('toolbox');
+	var xml = document.getElementById('toolbox');
 	var xmlValue='<xml id="toolbox">';
-	if (category.childNodes.length>0) {
-		for (var i=0;i<category.childNodes.length;i++){
-			var node = new XMLSerializer().serializeToString(category.childNodes[i]);
+	if (xml.childNodes.length>0) {
+		for (var i=0;i<xml.childNodes.length;i++){
+			var node = new XMLSerializer().serializeToString(xml.childNodes[i]);
 			xmlValue+=node;
 		}
 	}
