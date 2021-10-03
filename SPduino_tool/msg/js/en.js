@@ -1123,8 +1123,12 @@ Blockly.Msg.BUTTON_UPLOAD_TITLE = "UPLOAD CODE";
 Blockly.Msg.BUTTON_UPLOAD_START = "Uploading...";
 Blockly.Msg.BUTTON_UPLOAD_CODE = "Reload Code";
 Blockly.Msg.BUTTON_CLEARAREAS_TITLE = "Are you sure to clear all blocks contents?";
+Blockly.Msg.BUTTON_CUSTOMBLOCKS = "Add Custom Blocks";
 
 Blockly.Msg["VARIABLES_DEFINE"] = "define";
+Blockly.Msg["BUTTON_CUSTOMBLOCKS"] = "Add Custom Blocks";
 Blockly.Msg["CUSTOMBLOCKS_TITLE"] = "Please input remote custom blocks url.\nIncluding files: blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js\n\nAnother way, You can add the url to \\package.nw\\customBlocks\\customblocks.js";
 Blockly.Msg["BUTTON_COPYCODE"] = "Copy arduino code to clipboard";
 Blockly.Msg["BUTTON_COPYCODE_SUCCESS"] = "Copyto clipboard successful";
+
+Blockly.Msg.BAUDRATE = "Buad Rate";

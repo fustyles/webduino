@@ -305,6 +305,56 @@ document.addEventListener('DOMContentLoaded', function() {
 		Blockly.getMainWorkspace().updateToolbox(category);
 	}
 	
+	//工具箱目錄顯示選單
+	document.getElementById('button_toolbox').onclick = function () {
+		toolboxCategory();
+		var opt = {
+			draggable: true,			
+			autoOpen: false,
+			resizable: true,
+			modal: false,
+			//show: "blind",
+			//hide: "blind",			
+			width: 600,
+			height: 450,
+			buttons: [
+				{
+					text: Blockly.Msg.BUTTON_CLOSE,
+					click: function() {
+						$(this).dialog("close");
+					}
+				}
+			],
+			title: Blockly.Msg.TOOLBOX_DISPLAY
+		};
+		$("#dialog_toolbox").dialog(opt).dialog("open");
+		event.preventDefault();
+	}
+	
+	//工具箱目錄顯示選單內容
+	function toolboxCategory() {
+		var categorymenu = '<table width="580">';
+		var items = Blockly.getMainWorkspace().getToolbox().getToolboxItems();
+		var j=0;
+		var checked = "";
+		for (var i=0;i<items.length;i++) {
+			if (items[i].toolboxItemDef_.kind=="CATEGORY"&&!items[i].parent_) {
+				checked = items[i].isHidden_?"":" checked";
+				j++;
+				if (j%3==1) categorymenu +="<tr>";
+				if (items[i].toolboxItemDef_.name.indexOf("%{BKY_")!=-1)
+					categorymenu +='<td><input type="checkbox" onchange="toolbox_display(this,\''+items[i].toolboxItemDef_.id+'\')" '+checked+'></td><td align="left">'+eval(items[i].toolboxItemDef_.name.replace("%{BKY_","Blockly.Msg[\"").replace("}","\"]"))+'</td>';
+				else
+					categorymenu +='<td><input type="checkbox" onchange="toolbox_display(this,\''+items[i].toolboxItemDef_.id+'\')" '+checked+'></td><td align="left">'+items[i].toolboxItemDef_.name+'</td>';
+				if (j%3==0) categorymenu +="</tr>";
+			}
+			
+		}
+		if (j%3!=0) categorymenu +="</tr>";
+		categorymenu +="<table>";
+		document.getElementById('dialog_toolbox').innerHTML = categorymenu;
+	}	
+	
 	//更新語言
 	document.getElementById('button_updateMessage').onclick = function () {
 		displayTab('category_content');
@@ -443,6 +493,23 @@ function displayTab(id) {
 			arduinoCode();
 		else if (id=='xml_content') 
 			xmlCode();
+	}
+}
+
+//工具箱目錄顯示與紀錄
+function toolbox_display(chk, categoryid) {
+	var category =  Blockly.getMainWorkspace().getToolbox().getToolboxItems();
+	for (var i=0;i<category.length;i++) {
+		if (category[i].toolboxItemDef_.id==categoryid)
+			chk.checked==false?category[i].hide():category[i].show();
+	}
+	Blockly.getMainWorkspace().resize();
+	
+	category =  Blockly.getMainWorkspace().getToolbox().getToolboxItems();
+	var items = [];
+	for (var i=0;i<category.length;i++) {
+		if (category[i].toolboxItemDef_.id!="category_sep")
+			items.push([category[i].toolboxItemDef_.id , category[i].isHidden_==true?0:1]);
 	}
 }
 

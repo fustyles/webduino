@@ -1158,7 +1158,10 @@ Blockly.Msg.BUTTON_UPLOAD_START = "正在上傳韌體...";
 Blockly.Msg.BUTTON_UPLOAD_CODE = "程式碼";
 Blockly.Msg.BUTTON_CLEARAREAS_TITLE = "你確定要清除自訂積木區內容？";
 
-Blockly.Msg["VARIABLES_DEFINE"] = "定義常數";
+Blockly.Msg["VARIABLES_DEFINE"] = "宣告常數";
+Blockly.Msg["BUTTON_CUSTOMBLOCKS"] = "新增自訂積木";
 Blockly.Msg["CUSTOMBLOCKS_TITLE"] = "請輸入自訂積木連結網址。\n目錄中包含檔案 blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js\n\n若要永久加入自訂積木連結，可開啟檔案\\package.nw\\customBlocks\\customblocks.js將連結手動加入清單";
 Blockly.Msg["BUTTON_COPYCODE"] = "複製程式碼到剪貼簿";
 Blockly.Msg["BUTTON_COPYCODE_SUCCESS"] = "複製程式碼到剪貼簿成功！";
+
+Blockly.Msg.BAUDRATE = "鮑率";
