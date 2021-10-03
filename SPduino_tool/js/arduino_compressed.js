@@ -9,41 +9,7 @@
 Blockly.Arduino=new Blockly.Generator("Arduino");
 Blockly.Arduino.addReservedWords("setup,loop,if,else,for,switch,case,while,do,break,continue,return,goto,define,include,HIGH,LOW,INPUT,OUTPUT,INPUT_PULLUP,true,false,interger, constants,floating,point,void,bookean,char,unsigned,byte,int,word,long,float,double,string,String,array,static, volatile,const,sizeof,pinMode,digitalWrite,digitalRead,analogReference,analogRead,analogWrite,tone,noTone,shiftOut,shitIn,pulseIn,millis,micros,delay,delayMicroseconds,min,max,abs,constrain,map,pow,sqrt,sin,cos,tan,randomSeed,random,lowByte,highByte,bitRead,bitWrite,bitSet,bitClear,bit,attachInterrupt,detachInterrupt,interrupts,noInterrupts,map,mapFloat");
 
-Blockly.Arduino.ORDER_ATOMIC=0;
-Blockly.Arduino.ORDER_NEW=1.1;
-Blockly.Arduino.ORDER_MEMBER=1.2;
-Blockly.Arduino.ORDER_FUNCTION_CALL=2;
-Blockly.Arduino.ORDER_INCREMENT=3;
-Blockly.Arduino.ORDER_DECREMENT=3;
-Blockly.Arduino.ORDER_BITWISE_NOT=4.1;
-Blockly.Arduino.ORDER_UNARY_PLUS=4.2;
-Blockly.Arduino.ORDER_UNARY_NEGATION=4.3;
-Blockly.Arduino.ORDER_LOGICAL_NOT=4.4;
-Blockly.Arduino.ORDER_TYPEOF=4.5;
-Blockly.Arduino.ORDER_VOID=4.6;
-Blockly.Arduino.ORDER_DELETE=4.7;
-Blockly.Arduino.ORDER_AWAIT=4.8;
-Blockly.Arduino.ORDER_EXPONENTIATION=5;
-Blockly.Arduino.ORDER_MULTIPLICATION=5.1;
-Blockly.Arduino.ORDER_DIVISION=5.2;
-Blockly.Arduino.ORDER_MODULUS=5.3;
-Blockly.Arduino.ORDER_SUBTRACTION=6.1;
-Blockly.Arduino.ORDER_ADDITION=6.2;
-Blockly.Arduino.ORDER_BITWISE_SHIFT=7;
-Blockly.Arduino.ORDER_RELATIONAL=8;
-Blockly.Arduino.ORDER_IN=8;
-Blockly.Arduino.ORDER_INSTANCEOF=8;
-Blockly.Arduino.ORDER_EQUALITY=9;
-Blockly.Arduino.ORDER_BITWISE_AND=10;
-Blockly.Arduino.ORDER_BITWISE_XOR=11;
-Blockly.Arduino.ORDER_BITWISE_OR=12;
-Blockly.Arduino.ORDER_LOGICAL_AND=13;
-Blockly.Arduino.ORDER_LOGICAL_OR=14;
-Blockly.Arduino.ORDER_CONDITIONAL=15;
-Blockly.Arduino.ORDER_ASSIGNMENT=16;
-Blockly.Arduino.ORDER_YIELD=17;
-Blockly.Arduino.ORDER_COMMA=18;
-Blockly.Arduino.ORDER_NONE=99;
+Blockly.Arduino.ORDER_ATOMIC=0;Blockly.Arduino.ORDER_NEW=1.1;Blockly.Arduino.ORDER_MEMBER=1.2;Blockly.Arduino.ORDER_FUNCTION_CALL=2;Blockly.Arduino.ORDER_INCREMENT=3;Blockly.Arduino.ORDER_DECREMENT=3;Blockly.Arduino.ORDER_BITWISE_NOT=4.1;Blockly.Arduino.ORDER_UNARY_PLUS=4.2;Blockly.Arduino.ORDER_UNARY_NEGATION=4.3;Blockly.Arduino.ORDER_LOGICAL_NOT=4.4;Blockly.Arduino.ORDER_TYPEOF=4.5;Blockly.Arduino.ORDER_VOID=4.6;Blockly.Arduino.ORDER_DELETE=4.7;Blockly.Arduino.ORDER_AWAIT=4.8;Blockly.Arduino.ORDER_EXPONENTIATION=5;Blockly.Arduino.ORDER_MULTIPLICATION=5.1;Blockly.Arduino.ORDER_DIVISION=5.2;Blockly.Arduino.ORDER_MODULUS=5.3;Blockly.Arduino.ORDER_SUBTRACTION=6.1;Blockly.Arduino.ORDER_ADDITION=6.2;Blockly.Arduino.ORDER_BITWISE_SHIFT=7;Blockly.Arduino.ORDER_RELATIONAL=8;Blockly.Arduino.ORDER_IN=8;Blockly.Arduino.ORDER_INSTANCEOF=8;Blockly.Arduino.ORDER_EQUALITY=9;Blockly.Arduino.ORDER_BITWISE_AND=10;Blockly.Arduino.ORDER_BITWISE_XOR=11;Blockly.Arduino.ORDER_BITWISE_OR=12;Blockly.Arduino.ORDER_LOGICAL_AND=13;Blockly.Arduino.ORDER_LOGICAL_OR=14;Blockly.Arduino.ORDER_CONDITIONAL=15;Blockly.Arduino.ORDER_ASSIGNMENT=16;Blockly.Arduino.ORDER_YIELD=17;Blockly.Arduino.ORDER_COMMA=18;Blockly.Arduino.ORDER_NONE=99;
 
 Blockly.Arduino.ORDER_OVERRIDES=[[Blockly.Arduino.ORDER_FUNCTION_CALL,Blockly.Arduino.ORDER_MEMBER],[Blockly.Arduino.ORDER_FUNCTION_CALL,Blockly.Arduino.ORDER_FUNCTION_CALL],[Blockly.Arduino.ORDER_MEMBER,Blockly.Arduino.ORDER_MEMBER],[Blockly.Arduino.ORDER_MEMBER,Blockly.Arduino.ORDER_FUNCTION_CALL],[Blockly.Arduino.ORDER_LOGICAL_NOT,Blockly.Arduino.ORDER_LOGICAL_NOT],[Blockly.Arduino.ORDER_MULTIPLICATION,Blockly.Arduino.ORDER_MULTIPLICATION],[Blockly.Arduino.ORDER_ADDITION,
 Blockly.Arduino.ORDER_ADDITION],[Blockly.Arduino.ORDER_LOGICAL_AND,Blockly.Arduino.ORDER_LOGICAL_AND],[Blockly.Arduino.ORDER_LOGICAL_OR,Blockly.Arduino.ORDER_LOGICAL_OR]];
