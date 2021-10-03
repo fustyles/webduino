@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	//儲存內容
 	document.getElementById('button_save').onclick = function () {
-		var content = document.getElementById('blocks_function').value;
+		var content = document.getElementById('blocks_function').value.replace(/Javascript/g,"Arduino");
 		var link = document.createElement('a');
 		link.download="blocks.js";
 		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		link.click();
 		link.remove();	
 
-		var content = document.getElementById('arduino_function').value;
+		var content = document.getElementById('arduino_function').value.replace(/Javascript/g,"Arduino");
 		var link = document.createElement('a');
 		link.download="javascript.js";
 		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		link.click();
 		link.remove();	
 
-		var content = document.getElementById('category_function').value;
+		var content = document.getElementById('category_function').value.replace(/Javascript/g,"Arduino");
 		var link = document.createElement('a');
 		link.download="toolbox.xml";
 		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		link.click();
 		link.remove();	
 
-		var content = document.getElementById('message_function').value;
+		var content = document.getElementById('message_function').value.replace(/Javascript/g,"Arduino");
 		var link = document.createElement('a');
 		link.download="en.js";
 		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		link.click();
 		link.remove();	
 
-		var content = document.getElementById('message_function').value;
+		var content = document.getElementById('message_function').value.replace(/Javascript/g,"Arduino");
 		var link = document.createElement('a');
 		link.download="zh-hant.js";
 		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
