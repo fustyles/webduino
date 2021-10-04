@@ -41,20 +41,26 @@ Blockly.Blocks.main={
 			var p;
 			for (var i=0;i<blocks.length;i++) {
 				p = blocks[i];
-				if (enabledBlockList.includes(p.type)) {
+				if (enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)) {
 					blocks[i].setEnabled(true);
 					continue;
 				}
 				p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
 				while(p) {
-					if (enabledBlockList.includes(p.type)) {
+					if ((enabledBlockList.includes(p.type)||variableBlockList.includes(p.type))&&!p.getParent()) {
 						blocks[i].setEnabled(true);
 						break;
 					}
 					p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
 				}
-				if (!enabledBlockList.includes(p.type))
-					blocks[i].setEnabled(false);			
+				if (!p) {
+					blocks[i].setEnabled(false);
+				}
+				if (blocks[i].getParent()&&blocks[i].getPreviousBlock()) {
+					if (variableBlockList.includes(p.type)&&variableBlockList.includes(blocks[i].getParent().type)) {
+						blocks[i].unplug();
+					}
+				}
 			}		
 		}
 	}
