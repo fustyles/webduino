@@ -28,7 +28,7 @@ Blockly.Blocks.main={
 		  return;
 		}
 		if (event.type=="move") {
-			var enabledBlockList = ["main","procedures_defnoreturn","procedures_defreturn",];
+			var enabledBlockList = ["main","procedures_defnoreturn","procedures_defreturn"];
 			var variableBlockList = ["variables_set","variables_set1","variables_set7"];
 			blocks = this.workspace.getAllBlocks();
 			var p;
