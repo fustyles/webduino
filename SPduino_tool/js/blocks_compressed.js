@@ -48,7 +48,7 @@ Blockly.Blocks.main={
 				}
 				if (!enabledBlockList.includes(p.type))
 					blocks[i].setEnabled(false);			
-			}		
+			}
 		}
 	}
 };
