@@ -55,6 +55,10 @@ Blockly.Blocks.main={
 				}
 				if (!enabledBlockList.includes(p.type)&&!variableBlockList.includes(blocks[i].type))
 					blocks[i].setEnabled(false);
+				if (blocks[i].getParent()) {
+					if (variableBlockList.includes(blocks[i].getParent().type)&&!blocks[i].getPreviousBlock())
+						blocks[i].setEnabled(true);
+				}				
 			}		
 		}
 	}
