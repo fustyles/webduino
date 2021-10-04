@@ -35,9 +35,8 @@ Blockly.Blocks.main={
 				}
 			}
 			
-			var enabledBlockList = ["main","procedures_defnoreturn","procedures_defreturn"];
-			var variableBlockList = ["variables_set","variables_set1","variables_set7"];
-			blocks = this.workspace.getAllBlocks();
+			var enabledBlockList = ["initializes_setup","initializes_loop","procedures_defnoreturn","procedures_defreturn"];
+			var blocks = this.workspace.getAllBlocks();
 			var p;
 			for (var i=0;i<blocks.length;i++) {
 				p = blocks[i];
@@ -53,13 +52,9 @@ Blockly.Blocks.main={
 					}
 					p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
 				}
-				if (!enabledBlockList.includes(p.type)&&!variableBlockList.includes(blocks[i].type))
+				if (!enabledBlockList.includes(p.type))
 					blocks[i].setEnabled(false);
-				if (blocks[i].getParent()) {
-					if (variableBlockList.includes(blocks[i].getParent().type)&&!blocks[i].getPreviousBlock())
-						blocks[i].setEnabled(true);
-				}				
-			}		
+			}			
 		}
 	}
 };
