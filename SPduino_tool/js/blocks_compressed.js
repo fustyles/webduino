@@ -28,6 +28,13 @@ Blockly.Blocks.main={
 		  return;
 		}
 		if (event.type=="move") {
+			var blocks = this.workspace.getBlocksByType("main");
+			if (blocks.length>1) {
+				for (var i=1;i<blocks.length;i++) {
+					blocks[i].dispose();
+				}
+			}
+			
 			var enabledBlockList = ["main","procedures_defnoreturn","procedures_defreturn"];
 			var variableBlockList = ["variables_set","variables_set1","variables_set7"];
 			blocks = this.workspace.getAllBlocks();
@@ -48,7 +55,7 @@ Blockly.Blocks.main={
 				}
 				if (!enabledBlockList.includes(p.type))
 					blocks[i].setEnabled(false);			
-			}
+			}		
 		}
 	}
 };
