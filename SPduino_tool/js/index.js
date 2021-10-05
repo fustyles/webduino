@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	//儲存內容
-	document.getElementById('button_save').onclick = function () {
+	document.getElementById('button_save_blocks').onclick = function () {
 		var content = document.getElementById('blocks_function').value.replace(/Javascript/g,"Arduino");
 		var link = document.createElement('a');
 		link.download="blocks.js";
@@ -169,7 +169,22 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.body.appendChild(link);
 		link.click();
 		link.remove();			
-	}	
+	}
+
+	//儲存ino檔
+	document.getElementById('button_save_ino').onclick = function () {
+		try {
+			var code = Blockly.Arduino.workspaceToCode();			
+			var link = document.createElement('a');
+			link.download="project.ino";
+			link.href="data:application/octet-stream;utf-8," + encodeURIComponent(code);
+			document.body.appendChild(link);
+			link.click();
+			link.remove();			
+		} catch (e) {
+			alert(e);
+		}
+	}
 	
 	//開啟Blockly Developer Tools
 	document.getElementById('button_tool').onclick = function () {
