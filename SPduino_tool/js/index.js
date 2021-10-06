@@ -549,3 +549,16 @@ function xmlCode() {
 	var code = Blockly.Xml.domToPrettyText(xml);
 	document.getElementById('xml_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 }
+
+function contentZoom(content) {
+	const div_content = document.getElementById(content+"_content");
+	const div_code = document.getElementById(content+"_code");
+	if (div_content.style.height!= "40px") {
+		div_content.style.height = "40px";
+		div_code.style.display = "none";
+	}
+	else {
+		div_content.style.height = "240px";
+		div_code.style.display = "block";
+	}
+}
