@@ -125,6 +125,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('updateGenerate_content').attributeStyleMap.clear();
 			document.getElementById('updateCategory_content').attributeStyleMap.clear();
 			document.getElementById('updateMessage_content').attributeStyleMap.clear();
+			document.getElementById('updateDefinition_code').attributeStyleMap.clear();
+			document.getElementById('updateGenerate_code').attributeStyleMap.clear();
+			document.getElementById('updateCategory_code').attributeStyleMap.clear();
+			document.getElementById('updateMessage_code').attributeStyleMap.clear();			
 		}
 	}
 
@@ -554,11 +558,12 @@ function contentZoom(content) {
 	const div_content = document.getElementById(content+"_content");
 	const div_code = document.getElementById(content+"_code");
 	if (div_content.style.height!= "40px") {
+		div_content.tip = div_content.style.height;
 		div_content.style.height = "40px";
 		div_code.style.display = "none";
 	}
 	else {
-		div_content.style.height = "240px";
+		div_content.style.height = div_content.tip;
 		div_code.style.display = "block";
 	}
 }
