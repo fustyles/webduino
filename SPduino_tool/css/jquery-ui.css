@@ -921,18 +921,14 @@ body .ui-tooltip {
 	color: #ffffff;
 	font-weight: bold;
 	text-align: center;
+	line-height: 43px;
+	vertical-align: middle;
+	align-items:center;
+    justify-content:center;
 	height: 40px;
 }
 .ui-widget-header a {
 	color: #ffffff;
-}
-.ui-widget-header1 {
-	border: 1px solid #8E8E8E;
-	background: #8E8E8E;
-	color: #ffffff;
-	font-weight: bold;
-	text-align: right;
-	height: 40px;
 }
 
 /* Interaction states
