@@ -244,12 +244,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		'	<block type="test">\n'+
 		'		<value name="pin">\n'+
 		'			<shadow type="math_number">\n'+
-		'			<field name="NUM">2</field>\n'+
+		'				<field name="NUM">2</field>\n'+
 		'			</shadow>\n'+
 		'		</value>\n'+
 		'		<value name="val">\n'+
 		'			<shadow type="math_number">\n'+
-		'			<field name="NUM">0</field>\n'+
+		'				<field name="NUM">0</field>\n'+
 		'			</shadow>\n'+
 		'		</value>\n'+
 		'	</block>\n'+		
