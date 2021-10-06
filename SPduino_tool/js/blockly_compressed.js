@@ -2794,7 +2794,7 @@ Blockly.WorkspaceSvg.prototype.cleanUp = function() {
       continue;
     }
     var xy = block.getRelativeToSurfaceXY();
-    block.moveBy(-xy.x + 80, cursorY - xy.y);
+    block.moveBy(-xy.x + 80, cursorY - xy.y + (i == 0?20:0));
     block.snapToGrid();
     cursorY = block.getRelativeToSurfaceXY().y +
         block.getHeightWidth().height +
