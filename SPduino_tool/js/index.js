@@ -5,7 +5,6 @@
 */
 
 var lang = "en";
-var last_code;
 var customCategory = [['','']];
 var customCategoryInsertAfter = "category_sep_main";
 
@@ -44,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//程式碼區塊拖曳與調整大小功能	
 	$(function() {
-		$( "#code_content" ).draggable();
-		$( "#code_content" ).resizable();
+		$( "#arduino_content" ).draggable();
+		$( "#arduino_content" ).resizable();
 		$( "#updateDefinition_content" ).draggable();
 		$( "#updateDefinition_content" ).resizable();
 		$( "#updateGenerate_content" ).draggable();
@@ -85,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//程式碼區塊顯示
 	document.getElementById('button_code').onclick = function () {
-		var div = document.getElementById('code_content');
+		var div = document.getElementById('arduino_content');
 		if (div.style.display == "none")
 			div.style.display = "block";
 		else
@@ -120,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('category_function').value = code[2];
 			document.getElementById('message_function').value = code[3];
 			
-			document.getElementById('code_content').attributeStyleMap.clear();
+			document.getElementById('arduino_content').attributeStyleMap.clear();
 			document.getElementById('updateDefinition_content').attributeStyleMap.clear();
 			document.getElementById('updateGenerate_content').attributeStyleMap.clear();
 			document.getElementById('updateCategory_content').attributeStyleMap.clear();
@@ -503,12 +502,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });	
 
 //切換頁籤
-var tabs = ['arduino_content','xml_content','category_content'];
+var tabs = ['code_content','xml_content','category_content'];
 function displayTab(id) {
 	for (var i in tabs) {
 		const tab = document.getElementById(tabs[i]);
 		tab.style.display = (tabs[i]==id)?"block":"none";
-		if (id=='arduino_content') 
+		if (id=='code_content') 
 			arduinoCode();
 		else if (id=='xml_content') 
 			xmlCode();
@@ -533,7 +532,7 @@ function toolbox_display(chk, categoryid) {
 }
 
 //切換視窗上層顯示
-var contents = ['updateDefinition_content','updateGenerate_content','updateCategory_content','updateMessage_content','code_content'];
+var contents = ['updateDefinition_content','updateGenerate_content','updateCategory_content','updateMessage_content','arduino_content'];
 function textareaFocus(id) {
 	for (var i in contents) {
 		const content = document.getElementById(contents[i]);
@@ -544,7 +543,7 @@ function textareaFocus(id) {
 //Arduino原始碼顯示
 function arduinoCode() {
 	var code = Blockly.Arduino.workspaceToCode();
-	document.getElementById('arduino_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
+	document.getElementById('code_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 }
 
 //XML原始碼顯示
@@ -557,16 +556,23 @@ function xmlCode() {
 function contentZoom(content) {
 	const div_content = document.getElementById(content+"_content");
 	const div_code = document.getElementById(content+"_code");
+	console.log(div_content.style.width);
+	console.log(div_content.style.height);
 	if (div_content.style.height!= "40px") {
 		div_content.tip1 = div_content.style.width;
 		div_content.tip2 = div_content.style.height;
+		
 		div_content.style.width = "calc(20vw)";
 		div_content.style.height = "40px";
 		div_code.style.display = "none";
+	console.log(div_content.style.width);
+	console.log(div_content.style.height);		
 	}
 	else {
 		div_content.style.width = div_content.tip1;
 		div_content.style.height = div_content.tip2;
 		div_code.style.display = "block";
+	console.log(div_content.style.width);
+	console.log(div_content.style.height);		
 	}
 }
