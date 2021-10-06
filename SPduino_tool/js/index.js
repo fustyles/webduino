@@ -558,12 +558,15 @@ function contentZoom(content) {
 	const div_content = document.getElementById(content+"_content");
 	const div_code = document.getElementById(content+"_code");
 	if (div_content.style.height!= "40px") {
-		div_content.tip = div_content.style.height;
+		div_content.tip1 = div_content.style.width;
+		div_content.tip2 = div_content.style.height;
+		div_content.style.width = "calc(20vw)";
 		div_content.style.height = "40px";
 		div_code.style.display = "none";
 	}
 	else {
-		div_content.style.height = div_content.tip;
+		div_content.style.width = div_content.tip1;
+		div_content.style.height = div_content.tip2;
 		div_code.style.display = "block";
 	}
 }
