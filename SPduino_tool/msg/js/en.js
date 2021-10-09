@@ -1,5 +1,3 @@
-// This file was automatically generated.  Do not modify.
-
 'use strict';
 
 Blockly.Msg.ADD_COMMENT = "Add Comment";
@@ -1133,3 +1131,25 @@ Blockly.Msg["BUTTON_COPYCODE"] = "Copy arduino code to clipboard";
 Blockly.Msg["BUTTON_COPYCODE_SUCCESS"] = "Copyto clipboard successful";
 
 Blockly.Msg.BAUDRATE = "Buad Rate";
+
+Blockly.Msg["MYBACKPACK_TITLE"] = "BACKPACK";
+
+Blockly.Msg["MSG_TOOLBOX"] = "Toolbox";
+Blockly.Msg["MSG_XML"] = "XML";
+Blockly.Msg["MSG_CODE"] = "Arduino Code";
+Blockly.Msg["BUTTON_ADDBLOCKS"] = "Import your blocks";
+Blockly.Msg["BUTTON_CODE"] = "Show/Hide Arduino Code";
+Blockly.Msg["BUTTON_DEVELOPERTOOL"] = "Show/Hide Custom Blocks Content";
+Blockly.Msg["BUTTON_RESET"] = "Reset Workspace";
+Blockly.Msg["BUTTON_EXPORT_BLOCKS"] = "Export Custom Blocks Content";
+Blockly.Msg["BUTTON_SAVE_INO"] = "Save ino File";
+Blockly.Msg["BUTTON_TOOLBOX"] = "Show/Hide Toolbox Category";
+Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"] = "Import remote custom blocks";
+Blockly.Msg["BUTTON_TOOL"] = "Open Blockly Developer Tools";
+Blockly.Msg["BUTTON_LANG"] = "Select Language";
+Blockly.Msg["BUTTON_COPYCODE"] = "Copy the code to clipboard";
+Blockly.Msg["TEXT_UPLOADER_STATUS"] = "Arduino Code&nbsp;&nbsp;";
+Blockly.Msg["TEXT_UPDATEDEFINITION"] = "Block Definition&nbsp;&nbsp;";
+Blockly.Msg["TEXT_UPDATEGENERATE"] = "Generate Code&nbsp;&nbsp;";
+Blockly.Msg["TEXT_UPDATECATEGORY"] = "Category&nbsp;&nbsp;";
+Blockly.Msg["TEXT_UPDATEMESSAGE"] = "Message&nbsp;&nbsp;";

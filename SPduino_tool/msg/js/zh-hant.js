@@ -1,5 +1,3 @@
-// This file was automatically generated.  Do not modify.
-
 'use strict';
 
 Blockly.Msg.ADD_COMMENT = "加入註解";
@@ -183,7 +181,6 @@ Blockly.Msg.INFO_FILENAME = "檔案名稱：";
 Blockly.Msg.INFO_TITLE = "[無已載入的文件]";
 
 Blockly.Msg.INLINE_INPUTS = "單行輸入";
-音。";
 Blockly.Msg.INTEGER = "整數";
 
 
@@ -1166,3 +1163,25 @@ Blockly.Msg["BUTTON_COPYCODE"] = "複製程式碼到剪貼簿";
 Blockly.Msg["BUTTON_COPYCODE_SUCCESS"] = "複製程式碼到剪貼簿成功！";
 
 Blockly.Msg.BAUDRATE = "鮑率";
+
+Blockly.Msg["MYBACKPACK_TITLE"] = "暫存積木";
+
+Blockly.Msg["MSG_TOOLBOX"] = "工具箱";
+Blockly.Msg["MSG_XML"] = "XML";
+Blockly.Msg["MSG_CODE"] = "程式碼";
+Blockly.Msg["BUTTON_ADDBLOCKS"] = "新增你的自訂積木";
+Blockly.Msg["BUTTON_CODE"] = "顯示/隱藏 程式碼區塊";
+Blockly.Msg["BUTTON_DEVELOPERTOOL"] = "顯示/隱藏 自訂積木區塊";
+Blockly.Msg["BUTTON_RESET"] = "重設工作區";
+Blockly.Msg["BUTTON_EXPORT_BLOCKS"] = "匯出自訂積木檔案";
+Blockly.Msg["BUTTON_SAVE_INO"] = "儲存INO檔";
+Blockly.Msg["BUTTON_TOOLBOX"] = "顯示/隱藏 工具箱";
+Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"] = "新增遠端自訂積木";
+Blockly.Msg["BUTTON_TOOL"] = "開啟積木開發工具";
+Blockly.Msg["BUTTON_LANG"] = "選擇語言";
+Blockly.Msg["BUTTON_COPYCODE"] = "複製程式碼到剪貼簿";
+Blockly.Msg["TEXT_UPLOADER_STATUS"] = "程式碼&nbsp;&nbsp;";
+Blockly.Msg["TEXT_UPDATEDEFINITION"] = "積木定義&nbsp;&nbsp;";
+Blockly.Msg["TEXT_UPDATEGENERATE"] = "程式碼產出&nbsp;&nbsp;";
+Blockly.Msg["TEXT_UPDATECATEGORY"] = "積木目錄&nbsp;&nbsp;";
+Blockly.Msg["TEXT_UPDATEMESSAGE"] = "語系變數&nbsp;&nbsp;";

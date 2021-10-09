@@ -55,23 +55,21 @@ document.addEventListener('DOMContentLoaded', function() {
 		$( "#updateMessage_content" ).resizable();			
 	});	
 	
-	setInterval(function(){
-		/*
-		if (Blockly.getMainWorkspace().getBlocksByType("main").length==0) {
-			const main_ = Blockly.getMainWorkspace().newBlock('main');
-			main_.initSvg();
-			Blockly.getMainWorkspace().render();
-			main_.moveBy(100,50);
+	function updateMsg() {
+		if (typeof msg != "undefined") {
+			for (var i=0;i<msg.length;i++) {
+				if (msg[i][1]=="innerHTML")
+					document.getElementById(msg[i][0]).innerHTML=msg[i][2];
+				else if (msg[i][1]=="title")
+					document.getElementById(msg[i][0]).title=msg[i][2];
+			}
 		}
-		if (Blockly.getMainWorkspace().getBlocksByType("main").length==1) {
-		*/
-			var code = Blockly.Arduino.workspaceToCode();			
-			document.getElementById('arduino_code').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
-		/*
-		}		
-		else
-			document.getElementById('arduino_code').innerHTML = "";
-		*/
+	}
+	updateMsg();
+	
+	setInterval(function(){
+		var code = Blockly.Arduino.workspaceToCode();			
+		document.getElementById('arduino_code').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 	}, 500);	
 	
 	//新增初始化積木
@@ -109,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}	
 	
 	//重設工作區
-	document.getElementById('button_new').onclick = function () {
+	document.getElementById('button_reset').onclick = function () {
 		var result = confirm(Blockly.Msg.BUTTON_RESET);
 		if (result) {
 			newFile();
@@ -132,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	//儲存內容
-	document.getElementById('button_save_blocks').onclick = function () {
+	document.getElementById('button_export_blocks').onclick = function () {
 		var content = document.getElementById('blocks_function').value.replace(/Javascript/g,"Arduino");
 		var link = document.createElement('a');
 		link.download="blocks.js";
@@ -198,6 +196,22 @@ document.addEventListener('DOMContentLoaded', function() {
 		link.click();
 		link.remove();
 	}
+	
+	//切換語言
+	document.getElementById('button_lang').onclick = function () {
+		if (lang == "en") {
+			lang = "zh-hant";
+			addScript("msg/js/zh-hant.js");
+		}
+		else {
+			lang = "en";
+			addScript("msg/js/en.js");
+		}
+		addScript("js/message.js");
+		var category = document.getElementById('toolbox');
+		Blockly.getMainWorkspace().updateToolbox(category);	
+		updateMsg();
+	}	
 
 	//複製程式碼到剪貼簿
 	document.getElementById('button_copycode').onclick = function () {
@@ -373,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.getElementById('dialog_toolbox').innerHTML = categorymenu;
 	}	
 	
-	//更新語言
+	//更新文字
 	document.getElementById('button_updateMessage').onclick = function () {
 		displayTab('category_content');
 		try {

@@ -1,0 +1,21 @@
+var msg = [
+["msg_toolbox", "innerHTML", Blockly.Msg["MSG_TOOLBOX"]],
+["msg_xml", "innerHTML", Blockly.Msg["MSG_XML"]],
+["msg_code", "innerHTML", Blockly.Msg["MSG_CODE"]],
+["button_addBlocks", "title", Blockly.Msg["BUTTON_ADDBLOCKS"]],
+["button_code", "title", Blockly.Msg["BUTTON_CODE"]],
+["button_developertool", "title", Blockly.Msg["BUTTON_DEVELOPERTOOL"]],
+["button_reset", "title", Blockly.Msg["BUTTON_RESET"]],
+["button_export_blocks", "title", Blockly.Msg["BUTTON_EXPORT_BLOCKS"]],
+["button_save_ino", "title", Blockly.Msg["BUTTON_SAVE_INO"]],
+["button_toolbox", "title", Blockly.Msg["BUTTON_TOOLBOX"]],
+["button_addRemoteBlocks", "title", Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"]],
+["button_tool", "title", Blockly.Msg["BUTTON_TOOL"]],
+["button_lang", "title", Blockly.Msg["BUTTON_LANG"]],
+["button_copycode", "title", Blockly.Msg["BUTTON_COPYCODE"]],
+["text_uploader_status", "innerHTML", Blockly.Msg["TEXT_UPLOADER_STATUS"]],
+["text_updateDefinition", "innerHTML", Blockly.Msg["TEXT_UPDATEDEFINITION"]],
+["text_updateGenerate", "innerHTML", Blockly.Msg["TEXT_UPDATEGENERATE"]],
+["text_updateCategory", "innerHTML", Blockly.Msg["TEXT_UPDATECATEGORY"]],
+["text_updateMessage", "innerHTML", Blockly.Msg["TEXT_UPDATEMESSAGE"]]
+];
