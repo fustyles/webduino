@@ -177,11 +177,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button_lang').onclick = function () {
 		if (lang == "en") {
 			lang = "zh-hant";
-			addScript("msg/js/zh-hant.js");
+			addScript("msg/zh-hant.js");
 		}
 		else {
 			lang = "en";
-			addScript("msg/js/en.js");
+			addScript("msg/en.js");
 		}
 		addScript("js/message.js");
 		var category = document.getElementById('toolbox');
