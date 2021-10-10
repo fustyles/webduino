@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button_tool').onclick = function () {
 		var link = document.createElement('a');
 		link.target="_blank";
-		link.href="tool/index.html";
+		link.href="https://fustyles.github.io/webduino/SPduino_tool/index.html";
 		document.body.appendChild(link);
 		link.click();
 		link.remove();
