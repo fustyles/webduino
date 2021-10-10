@@ -2019,7 +2019,7 @@ Blockly.Msg.MODE_LOAD = "讀取";
 
 
 Blockly.Msg["CATVARIABLES"] = "變數";
-Blockly.Msg["CATPROCEDURES"] = "函數";
+Blockly.Msg["CATPROCEDURES"] = "函式";
 Blockly.Msg["CATLOGIC"] = "邏輯";
 Blockly.Msg["CATLOOPS"] = "迴圈";
 Blockly.Msg["CATMATH"] = "數值";
@@ -2313,7 +2313,7 @@ Blockly.Msg["MATH_TRIG_ACOS"] = "acos";  // untranslated
 Blockly.Msg["MATH_TRIG_ASIN"] = "asin";  // untranslated
 Blockly.Msg["MATH_TRIG_ATAN"] = "atan";  // untranslated
 Blockly.Msg["MATH_TRIG_COS"] = "cos";  // untranslated
-Blockly.Msg["MATH_TRIG_HELPURL"] = "https://zh.wikipedia.org/wiki/三角函數";
+Blockly.Msg["MATH_TRIG_HELPURL"] = "https://zh.wikipedia.org/wiki/三角函式";
 Blockly.Msg["MATH_TRIG_SIN"] = "sin";  // untranslated
 Blockly.Msg["MATH_TRIG_TAN"] = "tan";  // untranslated
 Blockly.Msg["MATH_TRIG_TOOLTIP_ACOS"] = "返回指定角度的反餘弦值(非弧度）。";
@@ -2341,7 +2341,7 @@ Blockly.Msg["PROCEDURES_DEFNORETURN_COMMENT"] = "描述此函式...";
 Blockly.Msg["PROCEDURES_DEFNORETURN_DO"] = "";  // untranslated
 Blockly.Msg["PROCEDURES_DEFNORETURN_HELPURL"] = "https://zh.wikipedia.org/wiki/子程式";
 Blockly.Msg["PROCEDURES_DEFNORETURN_PROCEDURE"] = "myFunc";
-Blockly.Msg["PROCEDURES_DEFNORETURN_TITLE"] = "函數";
+Blockly.Msg["PROCEDURES_DEFNORETURN_TITLE"] = "函式";
 Blockly.Msg["PROCEDURES_DEFNORETURN_TOOLTIP"] = "創建一個無回傳值的函式。";
 Blockly.Msg["PROCEDURES_DEFRETURN_HELPURL"] = "https://zh.wikipedia.org/wiki/子程式";
 Blockly.Msg["PROCEDURES_DEFRETURN_RETURN"] = "返回";
