@@ -279,8 +279,12 @@ document.addEventListener('DOMContentLoaded', function() {
 				}
 				if (Blockly.getMainWorkspace().getBlocksByType("main").length==1) {
 				*/
-					var code = Blockly.Arduino.workspaceToCode();			
-					document.getElementById('arduino_code').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;").replace("部份程式由吉哥積木產生","ljj");
+					var code = Blockly.Arduino.workspaceToCode();
+					var code1 = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
+					if	(code1.split("&nbsp;&nbsp;*/")[2])				
+						document.getElementById('arduino_code').innerHTML = code1.split("&nbsp;&nbsp;*/")[2].replace("<br><br><br>","");
+					else
+						document.getElementById('arduino_code').innerHTML = code;
 				/*
 				}		
 				else
@@ -531,7 +535,11 @@ function displayTab(id) {
 
 function arduinoCode() {
 	var code = Blockly.Arduino.workspaceToCode();
-	document.getElementById('code_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;").replace("部份程式由吉哥積木產生","ljj");
+	var code1 = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
+	if	(code1.split("&nbsp;&nbsp;*/")[2])				
+		document.getElementById('code_content').innerHTML = code1.split("&nbsp;&nbsp;*/")[2].replace("<br><br><br>","");
+	else
+		document.getElementById('code_content').innerHTML = code;
 }
 
 //工具箱目錄顯示與紀錄
