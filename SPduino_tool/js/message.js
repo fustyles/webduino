@@ -13,7 +13,7 @@ var msg = [
 ["button_tool", "title", Blockly.Msg["BUTTON_TOOL"]],
 ["button_lang", "title", Blockly.Msg["BUTTON_LANG"]],
 ["button_copycode", "title", Blockly.Msg["BUTTON_COPYCODE"]],
-["text_uploader_status", "innerHTML", Blockly.Msg["TEXT_UPLOADER_STATUS"]],
+["title_code", "innerHTML", Blockly.Msg["MSG_CODE"]],
 ["text_updateDefinition", "innerHTML", Blockly.Msg["TEXT_UPDATEDEFINITION"]],
 ["text_updateGenerate", "innerHTML", Blockly.Msg["TEXT_UPDATEGENERATE"]],
 ["text_updateCategory", "innerHTML", Blockly.Msg["TEXT_UPDATECATEGORY"]],
