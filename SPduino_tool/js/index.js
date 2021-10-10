@@ -131,45 +131,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	//儲存內容
 	document.getElementById('button_export_blocks').onclick = function () {
-		var content = document.getElementById('blocks_function').value.replace(/Javascript/g,"Arduino");
+		exportToFile("blocks_function","blocks.js");
+		exportToFile("arduino_function","javascript.js");
+		exportToFile("category_function","toolbox.xml");
+		exportToFile("message_function","en.js");
+		exportToFile("message_function","zh-hant.js");			
+	}
+	
+	function exportToFile(id, filename) {
+		var content = document.getElementById(id).value.replace(/Javascript/g,"Arduino");
 		var link = document.createElement('a');
-		link.download="blocks.js";
+		link.download = filename;
 		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
 		document.body.appendChild(link);
 		link.click();
 		link.remove();	
-
-		var content = document.getElementById('arduino_function').value.replace(/Javascript/g,"Arduino");
-		var link = document.createElement('a');
-		link.download="javascript.js";
-		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
-		document.body.appendChild(link);
-		link.click();
-		link.remove();	
-
-		var content = document.getElementById('category_function').value.replace(/Javascript/g,"Arduino");
-		var link = document.createElement('a');
-		link.download="toolbox.xml";
-		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
-		document.body.appendChild(link);
-		link.click();
-		link.remove();	
-
-		var content = document.getElementById('message_function').value.replace(/Javascript/g,"Arduino");
-		var link = document.createElement('a');
-		link.download="en.js";
-		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
-		document.body.appendChild(link);
-		link.click();
-		link.remove();	
-
-		var content = document.getElementById('message_function').value.replace(/Javascript/g,"Arduino");
-		var link = document.createElement('a');
-		link.download="zh-hant.js";
-		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
-		document.body.appendChild(link);
-		link.click();
-		link.remove();			
 	}
 
 	//儲存ino檔
