@@ -64,7 +64,13 @@ Blockly.Blocks.initializes_loop={
 				for (var i=1;i<blocks.length;i++) {
 					blocks[i].dispose();
 				}
-			}			
+			}
+			var blocks = this.workspace.getBlocksByType("board_initializes_setup");
+			if (blocks.length>1) {
+				for (var i=1;i<blocks.length;i++) {
+					blocks[i].dispose();
+				}
+			}				
 			
 			var enabledBlockList = ["initializes_setup","initializes_loop","procedures_defnoreturn","procedures_defreturn","board_initializes_setup"];
 			var variableBlockList = ["variables_set","variables_set1","variables_set7"];
