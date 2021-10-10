@@ -1,0 +1,1322 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+	<category id="category_logic" name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
+		<block type="controls_if"></block>
+		<block type="controls_switch">
+			<value name="VALUE">
+				<block type="variables_get">
+					<field name="VAR"></field>
+				</block>
+			</value>
+			<value name="CASE0">
+				<block type="text_quotationmark">
+				</block>
+			</value>				
+		</block>
+		<block type="logic_compare"></block>
+		<block type="logic_operation"></block>
+		<block type="logic_negate"></block>
+		<block type="logic_boolean"></block>
+		<block type="logic_null"></block>
+		<block type="logic_ternary"></block>
+		<block type="text_isEmpty">
+			<value name="VALUE">
+			</value>
+		</block>			
+	</category>
+	<category id="category_loops" name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">
+		<block type="controls_repeat_ext">
+			<value name="TIMES">
+				<block type="math_number">
+					<field name="NUM">10</field>
+				</block>
+			</value>
+		</block>
+		<block type="controls_whileUntil"></block>
+		<block type="controls_for">
+			<value name="FROM">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="TO">
+				<block type="math_number">
+					<field name="NUM">10</field>
+				</block>
+			</value>
+			<value name="BY">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+		</block>
+		<!--	
+		<block type="controls_forEach"></block>
+		-->
+		<block type="controls_flow_statements"></block>			
+	</category>
+	<category id="category_lists" name="%{BKY_CATLISTS}" colour="%{BKY_LISTS_HUE}">
+		<block type="lists_create_with">
+			<mutation items="0"></mutation>
+		</block>
+		<block type="lists_create_with"></block>
+		<!--
+		<block type="lists_repeat">
+			<value name="NUM">
+				<block type="math_number">
+					<field name="NUM">5</field>
+				</block>
+			</value>
+		</block>
+		-->
+		<block type="lists_length"></block>
+		<block type="lists_isEmpty"></block>
+		<block type="lists_indexOf">
+			<value name="VALUE">
+				<block type="variables_get">
+					<field name="VAR"></field>
+				</block>
+			</value>
+			<value name="FIND">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>				
+		</block>
+		<block type="lists_getIndex">
+			<value name="VALUE">
+				<block type="variables_get">
+					<field name="VAR"></field>
+				</block>
+			</value>
+			<value name="AT">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>					
+		</block>
+		<block type="lists_setIndex">
+			<value name="LIST">
+				<block type="variables_get">
+					<field name="VAR"></field>
+				</block>
+			</value>
+			<value name="AT">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>					
+		</block>
+		<!--			
+		<block type="lists_getSublist">
+			<value name="LIST">
+				<block type="variables_get">
+					<field name="VAR">item</field>
+				</block>
+			</value>
+			<value name="AT1">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>	
+			<value name="AT2">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>					
+		</block>
+		<block type="lists_split">
+			<value name="DELIM">
+				<block type="text">
+					<field name="TEXT">,</field>
+				</block>
+			</value>
+		</block>
+		<block type="lists_sort"></block>
+		-->			
+	</category>
+	<category id="category_math" name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">
+		<block type="math_number"></block>
+		<block type="math_change">
+			<value name="VAR">
+				<block type="variables_get">
+					<field name="VAR"></field>
+				</block>
+			</value>
+			<value name="DELTA">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+		</block>
+		<block type="math_arithmetic"></block>
+		<block type="math_single"></block>
+		<!--				
+		<block type="math_constrain"></block>
+		-->					
+		<block type="math_pow"></block>
+		<block type="math_random_max_min"></block>
+		<block type="math_map_int"></block>
+		<!--			
+		<block type="math_map_float"></block>
+		-->				
+		<block type="math_degree_to_radian"></block>
+		<block type="math_radian_to_degree"></block>			
+	</category>
+	<category id="category_texts" name="%{BKY_CATTEXTS}" colour="%{BKY_TEXTS_HUE}">
+		<block type="text"></block>
+		<block type="text_join"></block>
+		<block type="text_append">
+			<value name="TEXT">
+				<block type="text"></block>
+			</value>
+		</block>
+		<block type="text_replace">
+			<value name="FROM">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>			
+			</value>
+			<value name="TO">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>		
+		<block type="text_length">
+			<value name="VALUE">
+			</value>
+		</block>					
+		<block type="text_indexOf">
+			<value name="VALUE">
+			</value>
+			<value name="FIND">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
+		<block type="text_with">
+			<value name="VALUE">			
+			</value>
+			<value name="FIND">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>				
+			</value>				
+		</block>		
+		<block type="text_charAt">
+			<value name="VALUE">
+			</value>
+		</block>
+		<block type="text_getSubstring">
+			<value name="STRING">
+			</value>
+		</block>		
+		<block type="text_quotationmark"></block>
+		<!--	
+		<block type="text_changeCase">
+			<value name="TEXT">
+				<block type="text">
+					<field name="TEXT">abc</field>
+				</block>
+			</value>
+		</block>
+		<block type="variable_changeCase">
+			<field name="VAR">item</field>
+		</block>		
+		<block type="text_trim">
+			<value name="TEXT">	
+				<block type="variables_get">
+					<field name="VAR"></field>
+				</block>
+			</value>
+		</block>					
+		<block type="text_print">
+			<value name="TEXT">
+				<block type="text">
+					<field name="TEXT">abc</field>
+				</block>
+			</value>
+		</block>
+		<block type="text_prompt_ext">
+			<value name="TEXT">
+				<block type="text">
+					<field name="TEXT">abc</field>
+				</block>
+			</value>
+		</block>
+		-->					
+	</category>
+	<category id="category_transform" name="%{BKY_CATCAST}" colour="%{BKY_CAST_HUE}">
+		<block type="cast_number"></block>
+		<block type="cast_type"></block>
+		<block type="cast_type1"></block>
+	</category>
+	<category id="category_variables" custom="VARIABLE" name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}"></category>
+	<category id="category_procedures" custom="PROCEDURE" name="%{BKY_CATPROCEDURES}" colour="%{BKY_PROCEDURES_HUE}"></category>
+	<sep id="category_sep_main"></sep>
+	<category id="category_digital" name="數位 I/O" colour="230">
+		<!--<block type="inout_digitalpin"></block>-->
+		<block type="inout_digital_write"></block>
+		<block type="inout_digital_read"></block>
+		<block type="inout_buildin_led"></block>
+		<block type="inout_digital_buildin_read"></block>
+		<block type="inout_highlow"></block>
+		<block type="inout_custom_digital_write">
+			<value name="PIN">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="STAT">
+				<block type="inout_highlow">
+					<field name="BOOL">HIGH</field>
+				</block>
+			</value>
+		</block>
+		<block type="inout_custom_digital_read">
+			<value name="PIN_READ">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+		</block>
+		<!--<block type="inout_enable_pullup"></block>-->
+		<block type="inout_custom_digital_read_pullup">
+			<value name="PIN_READ">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+		</block>
+	</category>
+	<category id="category_analog" name="類比 I/O" colour="230">
+		<block type="inout_analog_read"></block>
+		<block type="inout_analog_write">
+			<value name="NUM">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+		</block>
+		<block type="inout_custom_analog_read">
+			<value name="PIN_ANALOGREAD">
+				<block type="math_number">
+					<field name="NUM">14</field>
+				</block>
+			</value>
+		</block>
+		<block type="inout_custom_analog_write">
+			<value name="PIN_ANALOGWRITE">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="NUM">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+		</block>
+	</category>
+	<category id="category_serial" name="序列埠 I/O" colour="200">
+		<block type="serial_init"></block>
+		<block type="serial_available"></block>
+		<block type="serial_print">
+			<value name="CONTENT">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
+		<block type="serial_println">
+			<value name="CONTENT">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
+		<block type="serial_read"></block>
+		<!--<block type="serial_byte_number"></block>-->
+	</category>
+	<category id="category_others" name="音調" colour="30">
+		<!--<block type="pulsein"></block>-->
+		<block type="tone"></block>
+		<block type="no_tone"></block>
+		<block type="custom_tone">
+			<value name="PIN">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="FREQ">
+				<block type="math_number">
+					<field name="NUM">255</field>
+				</block>
+			</value>
+			<value name="DURATION">
+				<block type="math_number">
+					<field name="NUM">300</field>
+				</block>
+			</value>
+		</block>
+	</category>
+	<category id="category_time" name="時間" colour="90">
+		<block type="millis"></block>
+		<block type="micros"></block>
+		<block type="delay_custom">
+			<value name="DELAY_TIME">
+				<block type="math_number">
+					<field name="NUM">1000</field>
+				</block>
+			</value>
+		</block>
+		<block type="delayMicroseconds_custom">
+			<value name="DELAY_TIME">
+				<block type="math_number">
+					<field name="NUM">1000</field>
+				</block>
+			</value>
+		</block>
+
+		<block type="ntp_get_datetime"></block>
+		<block type="rtc_set_time_from_string"></block>
+		<block type="rtc_get_time"></block>
+		<block type="rtc_get_time_field"></block>
+		<block type="rtc_set_time_from_number"></block>
+	</category>
+	<category id="category_interrupts" name="中斷訊號" colour="290">
+		<block type="interrupts_attach"></block>
+		<!--block type="interrupts_detach"></block-->
+		<block type="interrupts_no"></block>
+		<block type="interrupts"></block>
+	</category>
+	<category id="category_servo" name="伺服馬達" colour="215">
+		<block type="servo_write">
+			<value name="ANGLE">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+		</block>
+		<block type="servo_read"></block>
+		<!-- <block type="servo_attached"></block> -->
+		<!-- <block type="servo_attach"></block> -->
+		<block type="servo_custom_attach"></block>
+		<!-- <block type="servo_detach"></block> -->
+		<block type="servo_writeus">
+			<value name="ANGLE_US">
+				<block type="math_number">
+					<field name="NUM">1500</field>
+				</block>
+			</value>
+		</block>
+	</category>
+	<sep id="category_sep"></sep>
+	<category id="category_linkit_wifi" name="Wi-Fi" colour="0">
+		<block type="linkit_wifi_wait_until_ready">
+			<value name="SSID">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+			<value name="PASSWORD">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
+		<block type="linkit_wifi_disconnect"></block>
+		<block type="linkit_wifi_ip_address"></block>
+	</category>
+	<category id="category_linkit_mcs" name="MCS" colour="230">
+		<block type="mcs">
+			<value name="DEVICEID">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+			<value name="DEVICEKEY">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
+		<block type="mcslite">
+			<value name="DEVICEIDL">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+			<value name="DEVICEKEYL">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+			<value name="SERV">
+				<block type="text">
+					<field name="TEXT">192.168.1.2</field>
+				</block>
+			</value>
+			<value name="PORT">
+				<block type="math_number">
+					<field name="NUM">3000</field>
+				</block>
+			</value>
+		</block>
+		<block type="mcs_set_control_channel">
+			<value name="CONTROL_CHANNEL">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
+		<block type="mcs_set_display_channel">
+			<value name="DISPLAY_CHANNEL">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
+		<block type="mcs_process"></block>
+		<block type="mcs_channel_value">
+			<value name="CHANNEL_VALUE">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
+		<block type="mcs_channel2_value">
+			<value name="CHANNEL2_VALUE">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
+		<block type="mcs_channel_updated">
+			<value name="CHANNEL_UPDATED">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
+	</category>
+	<category id="category_linkit_lremote" name="遙控器" colour="30">
+		<block type="linkit_lremote"> 
+			<value name="DEVICEID">
+				<block type="text">
+					<field name="TEXT">LinkIt 7697</field>
+				</block>
+			</value>
+			<value name="COLUMN">
+				<block type="math_number">
+					<field name="NUM">3</field>
+				</block>
+			</value>
+			<value name="ROW">
+				<block type="math_number">
+					<field name="NUM">5</field>
+				</block>
+			</value>
+		</block>
+		<block type="linkit_lremote_settext">
+			<value name="NAME">
+				<block type="text">
+					<field name="TEXT">label1</field>
+				</block>
+			</value>
+			<value name="CONTENT">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+			<value name="COLUMN">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="ROW">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="WIDTH">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="HEIGHT">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+		</block>
+		<block type="linkit_lremote_setbuttonsquare">
+			<value name="NAME">
+				<block type="text">
+					<field name="TEXT">button1</field>
+				</block>
+			</value>
+			<value name="CONTENT">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+			<value name="COLUMN">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="ROW">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="WIDTH">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="HEIGHT">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+		</block>
+		<block type="linkit_lremote_setbuttoncircle">
+			<value name="NAME">
+				<block type="text">
+					<field name="TEXT">circle1</field>
+				</block>
+			</value>
+			<value name="CONTENT">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+			<value name="COLUMN">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="ROW">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="WIDTH">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="HEIGHT">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+		</block>
+		<block type="linkit_lremote_setswitch">
+			<value name="NAME">
+				<block type="text">
+					<field name="TEXT">switch1</field>
+				</block>
+			</value>
+			<value name="CONTENT">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+			<value name="COLUMN">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="ROW">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="WIDTH">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="HEIGHT">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+		</block>
+		<block type="linkit_lremote_setslider">
+			<value name="NAME">
+				<block type="text">
+					<field name="TEXT">slider1</field>
+				</block>
+			</value>
+			<value name="CONTENT">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+			<value name="COLUMN">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="ROW">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="WIDTH">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="HEIGHT">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="MINIMUM">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="MAXIMUM">
+				<block type="math_number">
+					<field name="NUM">100</field>
+				</block>
+			</value>
+			<value name="INITIAL">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+		</block>
+		<block type="linkit_lremote_setjoystick">
+			<value name="NAME">
+				<block type="text">
+					<field name="TEXT">joystick1</field>
+				</block>
+			</value>
+			<value name="CONTENT">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+			<value name="COLUMN">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="ROW">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="WIDTH">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="HEIGHT">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+		</block>
+		<block type="linkit_lremote_connect_status"></block>
+		<block type="linkit_lremote_process"></block>
+		<block type="linkit_lremote_is_written">
+		</block>
+		<block type="linkit_lremote_read_value">
+		</block>
+		<block type="linkit_lremote_update_textlabel">
+			<value name="CONTENT">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
+	</category>
+	<category id="category_linkit_ble" name="BLE 周邊" colour="90">
+		<!--
+		<block type="linkit_ble_wait_until_ready"></block>
+		<block type="linkit_ble_ready"></block>
+		<block type="linkit_ble_get_address"></block>
+		<block type="linkit_ble_central_scan"></block>
+		<block type="linkit_ble_central_scan_count"></block>
+		<block type="linkit_ble_central_get_peripheral_with_index">
+		  <value name="INDEX">
+			  <block type="math_number">
+				  <field name="NUM">0</field>
+			  </block>
+		  </value>
+		</block>
+		-->
+
+		<!--
+		<block type="linkit_ble_periphral">
+			<value name="NAME">
+				<block type="text">
+					<field name="TEXT">LinkIt 7697</field>
+				</block>
+			</value>
+			<value name="SERVICE">
+				<block type="text">
+					<field name="TEXT">951A6899-6F0F-456F-8AE0-5E0B4352D85B</field>
+				</block>
+			</value>
+			<value name="CHARACTERISTIC">
+				<block type="text">
+					<field name="TEXT">B77D53AC-D590-41E0-B75A-6DA442F543F6</field>
+				</block>
+			</value>
+		</block>
+		-->
+
+		<block type="linkit_ble_periphral">
+			<value name="NAME">
+				<block type="text">
+					<field name="TEXT">LinkIt 7697</field>
+				</block>
+			</value>
+			<value name="SERVICE">
+				<block type="text">
+					<field name="TEXT">951A6899-6F0F-456F-8AE0-5E0B4352D85B</field>
+				</block>
+			</value>
+		</block>
+
+		<block type="linkit_ble_get_address"></block>
+
+		<block type="linkit_ble_Characteristic">
+			<value name="CHARACTERISTIC">
+				<block type="text">
+					<field name="TEXT">B77D53AC-D590-41E0-B75A-6DA442F543F6</field>
+				</block>
+			</value>
+		</block>
+
+		<block type="linkit_ble_periphral_is_written">
+			<value name="CHARACTERISTIC">
+				<block type="text">
+					<field name="TEXT">B77D53AC-D590-41E0-B75A-6DA442F543F6</field>
+				</block>
+			</value>
+		</block>
+		<block type="linkit_ble_periphral_get_value">
+			<value name="CHARACTERISTIC">
+				<block type="text">
+					<field name="TEXT">B77D53AC-D590-41E0-B75A-6DA442F543F6</field>
+				</block>
+			</value>
+		</block>
+		<block type="linkit_ble_periphral_write">
+			<value name="CHARACTERISTIC">
+				<block type="text">
+					<field name="TEXT">B77D53AC-D590-41E0-B75A-6DA442F543F6</field>
+				</block>
+			</value>
+		</block>
+	</category>
+	<category id="category_linkit_ble_ibeacon" name="BLE Beacon" colour="290">
+		<block type="linkit_ble_ibeacon">
+			<value name="UUID">
+				<block type="text">
+					<field name="TEXT">74278BDA-B644-4520-8F0C-720EAF059935</field>
+				</block>
+			</value>
+			<value name="MAJOR">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="MINOR">
+				<block type="math_number">
+					<field name="NUM">2</field>
+				</block>
+			</value>
+			<value name="RSSI">
+				<block type="math_number">
+					<field name="NUM">-40</field>
+				</block>
+			</value>
+		</block>
+		<block type="linkit_ble_eddy">
+			<value name="URL">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
+	</category>
+	<sep id="category_sep"></sep>
+	<category id="category_sensor" name="感測模組" colour="215">
+		<category id="category_sensor_env" name="環境感測">
+			<block type="dht_read"></block>
+			<block type="htu21d_read"></block>
+			<block type="pms_read"></block>
+		</category>
+		<category id="category_sensor_dist" name="距離感測">
+			<block type="ultrasonic_read"></block>
+		</category>
+		<category id="category_sensor_motion" name="動態感測">
+			<block type="adxl345_read"></block>
+			<block type="adxl345_read_attitude"></block>
+			<block type="adxl345_detect"></block>
+			<block type="adxl345_gesture_detected"></block>
+
+			<block type="mpu9250_read_acc"></block>
+			<block type="mpu9250_read_gyro"></block>
+			<block type="mpu9250_read_mag"></block>
+			<block type="mpu9250_read_attitude"></block>
+			<block type="mpu9250_read_north"></block>
+		</category>
+	</category>
+	<category id="category_display" name="顯示模組" colour="0">
+		<category id="category_oled" name="OLED顯示">
+			<block type="oled_display_setting"></block>
+			<block type="oled_display_clear"></block>
+			
+			<block type="oled_display_draw_commands">
+				<statement name="DRAW_CMD">
+					<block type="oled_display_draw_text">
+						<value name="START_X">
+							<block type="math_number">
+								<field name="NUM">0</field>
+							</block>
+						</value>
+						<value name="START_Y">
+							<block type="math_number">
+								<field name="NUM">0</field>
+							</block>
+						</value>
+						<value name="CONTENT">
+							<block type="text">
+								<field name="TEXT">HELLO</field>
+							</block>
+						</value>
+						<next>
+							<block type="oled_display_draw_line">
+								<value name="START_X">
+									<block type="math_number">
+										<field name="NUM">0</field>
+									</block>
+								</value>
+								<value name="START_Y">
+									<block type="math_number">
+										<field name="NUM">11</field>
+									</block>
+								</value>
+								<value name="END_X">
+									<block type="math_number">
+										<field name="NUM">30</field>
+									</block>
+								</value>
+								<value name="END_Y">
+									<block type="math_number">
+										<field name="NUM">11</field>
+									</block>
+								</value>
+							</block>
+						</next>
+					</block>
+				</statement>
+			</block>
+
+			<block type="oled_display_draw_line">
+				<value name="START_X">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="START_Y">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="END_X">
+					<block type="math_number">
+						<field name="NUM">40</field>
+					</block>
+				</value>
+				<value name="END_Y">
+					<block type="math_number">
+						<field name="NUM">40</field>
+					</block>
+				</value>
+			</block>
+			<block type="oled_display_draw_box">
+				<value name="START_X">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="START_Y">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="END_X">
+					<block type="math_number">
+						<field name="NUM">40</field>
+					</block>
+				</value>
+				<value name="END_Y">
+					<block type="math_number">
+						<field name="NUM">40</field>
+					</block>
+				</value>
+			</block>
+			<block type="oled_display_draw_frame">
+				<value name="START_X">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="START_Y">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="END_X">
+					<block type="math_number">
+						<field name="NUM">40</field>
+					</block>
+				</value>
+				<value name="END_Y">
+					<block type="math_number">
+						<field name="NUM">40</field>
+					</block>
+				</value>
+			</block>
+			<block type="oled_display_draw_disc">
+				<value name="CENTER_X">
+					<block type="math_number">
+						<field name="NUM">20</field>
+					</block>
+				</value>
+				<value name="CENTER_Y">
+					<block type="math_number">
+						<field name="NUM">20</field>
+					</block>
+				</value>
+				<value name="RADIUS">
+					<block type="math_number">
+						<field name="NUM">15</field>
+					</block>
+				</value>
+			</block>
+			<block type="oled_display_draw_circle">
+				<value name="CENTER_X">
+					<block type="math_number">
+						<field name="NUM">20</field>
+					</block>
+				</value>
+				<value name="CENTER_Y">
+					<block type="math_number">
+						<field name="NUM">20</field>
+					</block>
+				</value>
+				<value name="RADIUS">
+					<block type="math_number">
+						<field name="NUM">15</field>
+					</block>
+				</value>
+			</block>
+			<block type="oled_display_set_font">
+			</block>
+			<block type="oled_display_draw_text">
+				<value name="START_X">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="START_Y">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="CONTENT">
+					<block type="text">
+						<field name="TEXT">HELLO</field>
+					</block>
+				</value>
+			</block>
+		</category>
+		<category id="category_lcd" name="液晶顯示">
+			<block type="lcd_i2c_setting"></block>
+			<block type="lcd_i2c_light"></block>
+			<block type="lcd_i2c_clear"></block>
+			<block type="lcd_i2c_set_cursor">
+				<value name="ROW">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="COL">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+			</block>
+			<block type="lcd_i2c_put">
+				<value name="VALUE">
+					<block type="text">
+						<field name="TEXT">HELLO</field>
+					</block>
+				</value>
+			</block>
+		</category>
+
+		<category id="category_neopixel" name="彩色燈條">
+			<block type="neopixel_begin"></block>
+			<!--
+			<block type="neopixel_begin2">
+			  <value name="PIN">
+				<block type="math_number">
+				  <field name="NUM">0</field>
+				</block>
+			  </value>
+			</block>
+			-->
+			<block type="neopixel_setpixelcolor">
+				<value name="TARGET">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+			</block>
+			<block type="neopixel_custom_setpixelcolor">
+				<value name="TARGET">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="R">
+					<block type="math_number">
+						<field name="NUM">255</field>
+					</block>
+				</value>
+				<value name="G">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="B">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+			</block>
+			<block type="neopixel_show"></block>
+		</category>
+	</category>
+	<category id="category_transceiver" name="傳輸模組" colour="230">
+		<category id="category_rfid" name="RFID">
+			<block type="mfrc522_read"></block>
+		</category>
+	</category>
+	<sep id="category_sep"></sep>
+	<category id="category_grove" name="Grove模組" colour="30">
+		<category id="category_grove_sensor" name="感應器">
+			<block type="grove_light_sensor"></block>
+			<block type="grove_ultrasonic_ranger"></block>
+			<block type="grove_temporature_humidity_sensor"></block>
+			<block type="grove_imu_9dof_read_acc"></block>
+			<block type="grove_imu_9dof_read_gyro"></block>
+			<block type="grove_imu_9dof_read_mag"></block>
+			<block type="grove_imu_9dof_read_attitude"></block>
+			<block type="grove_imu_9dof_read_north"></block>
+		</category>
+		<category id="category_grove_actuator" name="執行器">
+			<block type="grove_relay"></block>
+		</category>
+		<category id="category_grove_display" name="顯示">
+			<block type="grove_led_bar">
+				<value name="LEVEL">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+			</block>
+			<block type="grove_oled_display_clear"></block>
+			<block type="grove_oled_display_set_cursor">
+				<value name="ROW">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="COL">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+			</block>
+			<block type="grove_oled_display_put">
+				<value name="VALUE"></value>
+			</block>
+		</category>
+	</category>
+	<sep id="category_sep"></sep>
+	<category id="category_external" name="其他元件" colour="90">
+		<category id="category_otto" name="Otto">
+			<block type="otto_init"></block>
+			<block type="otto_calibrate">
+				<value name="YL">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="YR">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="RL">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+				<value name="RR">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+			</block>
+			<block type="otto_home"></block>
+			<block type="otto_walk">
+				<value name="DISTANCE">
+					<block type="math_number">
+						<field name="NUM">4</field>
+					</block>
+				</value>
+				<value name="DURATION">
+					<block type="math_number">
+						<field name="NUM">1000</field>
+					</block>
+				</value>
+			</block>
+			<block type="otto_turn">
+				<value name="DISTANCE">
+					<block type="math_number">
+						<field name="NUM">4</field>
+					</block>
+				</value>
+				<value name="DURATION">
+					<block type="math_number">
+						<field name="NUM">1000</field>
+					</block>
+				</value>
+			</block>
+			<block type="otto_bend">
+				<value name="DISTANCE">
+					<block type="math_number">
+						<field name="NUM">1</field>
+					</block>
+				</value>
+				<value name="DURATION">
+					<block type="math_number">
+						<field name="NUM">1400</field>
+					</block>
+				</value>
+			</block>
+			<block type="otto_shake_leg">
+				<value name="DISTANCE">
+					<block type="math_number">
+						<field name="NUM">1</field>
+					</block>
+				</value>
+				<value name="DURATION">
+					<block type="math_number">
+						<field name="NUM">2000</field>
+					</block>
+				</value>
+			</block>
+			<block type="otto_freestyle">
+				<value name="DISTANCE">
+					<block type="math_number">
+						<field name="NUM">1</field>
+					</block>
+				</value>
+				<value name="DURATION">
+					<block type="math_number">
+						<field name="NUM">1000</field>
+					</block>
+				</value>
+				<value name="HEIGHT">
+					<block type="otto_height"></block>
+				</value>
+			</block>
+			<block type="otto_moonwalk">
+				<value name="DISTANCE">
+					<block type="math_number">
+						<field name="NUM">4</field>
+					</block>
+				</value>
+				<value name="DURATION">
+					<block type="math_number">
+						<field name="NUM">1000</field>
+					</block>
+				</value>
+				<value name="HEIGHT">
+					<block type="otto_height"></block>
+				</value>
+			</block>
+			<block type="otto_crusaito">
+				<value name="DISTANCE">
+					<block type="math_number">
+						<field name="NUM">4</field>
+					</block>
+				</value>
+				<value name="DURATION">
+					<block type="math_number">
+						<field name="NUM">1000</field>
+					</block>
+				</value>
+				<value name="HEIGHT">
+					<block type="otto_height"></block>
+				</value>
+			</block>
+			<block type="otto_flapping">
+				<value name="DISTANCE">
+					<block type="math_number">
+						<field name="NUM">4</field>
+					</block>
+				</value>
+				<value name="DURATION">
+					<block type="math_number">
+						<field name="NUM">1000</field>
+					</block>
+				</value>
+				<value name="HEIGHT">
+					<block type="otto_height"></block>
+				</value>
+			</block>
+			<block type="otto_height"></block>
+			<block type="otto_ultrasonic_init"></block>
+			<block type="otto_ultrasonic_distance"></block>
+			<block type="otto_buzzer_init"></block>
+			<block type="otto_buzzer_sing"></block>
+			<block type="otto_mouth"></block>
+			<block type="otto_led_matrix_init"></block>
+		</category>
+		<category id="category_ifttt" name="IFTTT">
+			<block type="ifttt_get_url">
+				<value name="EVENT">
+					<block type="text">
+						<field name="TEXT">event name</field>
+					</block>
+				</value>
+				<value name="KEY">
+					<block type="text">
+						<field name="TEXT">your IFTTT key</field>
+					</block>
+				</value>
+			</block>
+		</category>
+	</category>	
+	<sep id="category_sep_custom"></sep>	
+</xml>
