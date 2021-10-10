@@ -1129,11 +1129,7 @@ Blockly.Msg["BUTTON_CUSTOMBLOCKS"] = "Add Custom Blocks";
 Blockly.Msg["CUSTOMBLOCKS_TITLE"] = "Please input remote custom blocks url.\nIncluding files: blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js\n\nAnother way, You can add the url to \\package.nw\\customBlocks\\customblocks.js";
 Blockly.Msg["BUTTON_COPYCODE"] = "Copy arduino code to clipboard";
 Blockly.Msg["BUTTON_COPYCODE_SUCCESS"] = "Copyto clipboard successful";
-
-Blockly.Msg.BAUDRATE = "Buad Rate";
-
 Blockly.Msg["MYBACKPACK_TITLE"] = "BACKPACK";
-
 Blockly.Msg["MSG_TOOLBOX"] = "Toolbox";
 Blockly.Msg["MSG_XML"] = "XML";
 Blockly.Msg["MSG_CODE"] = "Arduino Code";
@@ -1153,3 +1149,5 @@ Blockly.Msg["TEXT_UPDATEDEFINITION"] = "Block Definition&nbsp;&nbsp;";
 Blockly.Msg["TEXT_UPDATEGENERATE"] = "Generate Code&nbsp;&nbsp;";
 Blockly.Msg["TEXT_UPDATECATEGORY"] = "Category&nbsp;&nbsp;";
 Blockly.Msg["TEXT_UPDATEMESSAGE"] = "Message&nbsp;&nbsp;";
+Blockly.Msg["INITIAL_SETUP"] = "setup";
+Blockly.Msg["INITIAL_LOOP"] = "loop";

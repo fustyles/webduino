@@ -11,10 +11,10 @@ Blockly.Constants={};
 Blockly.Blocks.main={
 	init:function() {
 		this.appendDummyInput()
-			.appendField("setup");
+			.appendField("%{BKY_INITIAL_SETUP}");
 		this.appendStatementInput("SETUP")
 		this.appendDummyInput()
-			.appendField("loop");
+			.appendField("%{BKY_INITIAL_LOOP}");
 		this.appendStatementInput("LOOP")
 		this.setInputsInline(!1);
 		this.setStyle("initializes_blocks");

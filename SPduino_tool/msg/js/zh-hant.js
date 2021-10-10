@@ -1161,11 +1161,7 @@ Blockly.Msg["BUTTON_CUSTOMBLOCKS"] = "新增自訂積木";
 Blockly.Msg["CUSTOMBLOCKS_TITLE"] = "請輸入自訂積木連結網址。\n目錄中包含檔案 blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js\n\n若要永久加入自訂積木連結，可開啟檔案\\package.nw\\customBlocks\\customblocks.js將連結手動加入清單";
 Blockly.Msg["BUTTON_COPYCODE"] = "複製程式碼到剪貼簿";
 Blockly.Msg["BUTTON_COPYCODE_SUCCESS"] = "複製程式碼到剪貼簿成功！";
-
-Blockly.Msg.BAUDRATE = "鮑率";
-
 Blockly.Msg["MYBACKPACK_TITLE"] = "暫存積木";
-
 Blockly.Msg["MSG_TOOLBOX"] = "工具箱";
 Blockly.Msg["MSG_XML"] = "XML";
 Blockly.Msg["MSG_CODE"] = "程式碼";
@@ -1185,3 +1181,5 @@ Blockly.Msg["TEXT_UPDATEDEFINITION"] = "積木定義&nbsp;&nbsp;";
 Blockly.Msg["TEXT_UPDATEGENERATE"] = "程式碼產出&nbsp;&nbsp;";
 Blockly.Msg["TEXT_UPDATECATEGORY"] = "積木目錄&nbsp;&nbsp;";
 Blockly.Msg["TEXT_UPDATEMESSAGE"] = "語系變數&nbsp;&nbsp;";
+Blockly.Msg["INITIAL_SETUP"] = "設定";
+Blockly.Msg["INITIAL_LOOP"] = "迴圈";
