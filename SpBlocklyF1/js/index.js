@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				if (Blockly.getMainWorkspace().getBlocksByType("main").length==1) {
 				*/
 					var code = Blockly.Arduino.workspaceToCode();			
-					document.getElementById('arduino_code').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
+					document.getElementById('arduino_code').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;").replace("部份程式由吉哥積木產生","ljj");
 				/*
 				}		
 				else
@@ -531,7 +531,7 @@ function displayTab(id) {
 
 function arduinoCode() {
 	var code = Blockly.Arduino.workspaceToCode();
-	document.getElementById('code_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
+	document.getElementById('code_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;").replace("部份程式由吉哥積木產生","ljj");
 }
 
 //工具箱目錄顯示與紀錄
