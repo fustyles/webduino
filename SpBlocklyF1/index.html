@@ -1,0 +1,90 @@
+<!--
+ * Copyright 2021 Taiwan
+ * @fileoverview SPduino F1
+ * @author https://www.facebook.com/francefu/ (ChungYi Fu)
+-->
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>SpBlockly F1</title>
+	<link rel="icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="stylesheet" href="css/icon.css" />
+	<link rel="stylesheet" href="css/custom.css" />
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<script src="js/blockly_compressed.js"></script>
+	<script src="js/blocks_compressed.js"></script>
+	<script src="js/arduino_compressed.js"></script>
+	<script src="js/index.js"></script>
+	<script src="msg/en.js"></script>	
+	<script src="js/message.js"></script>
+	<script src="js/language.js"></script>		
+	<script src="customBlocks/customblocks.js"></script>	
+	<script src="plugin/ScreenShot/screenshot.js"></script>
+	<script src="plugin/Scroll/AutoScroll.js"></script>
+	<script src="plugin/Scroll/Scroll.js"></script>
+	<script src="plugin/Scroll/ScrollBlockDragger.js"></script>
+	<script src="plugin/Scroll/ScrollMetricsManager.js"></script>
+	<script src="plugin/ContentHighLight/ContentHighLight.js"></script>	
+	<script src="plugin/WorkspaceBackpack/backpack.js"></script>	
+	<script src="plugin/WorkspaceBackpack/backpack_helpers.js"></script>
+	<script src="plugin/WorkspaceBackpack/options.js"></script>	
+	<script src="plugin/WorkspaceBackpack/ui_events.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.js"></script>	
+	<script src="js/jquery.ui.touch-punch.min.js"></script>		
+</head>
+<body class="root">
+
+<main id="main" class="has-tabs" >
+    <!-- PAGE TABS -->
+	<table>
+		<tr>
+			<td style="width: calc(100vw - 900px)">
+				<ul id="tabs">
+					<li><a id="msg_toolbox" onclick="displayTab('category_content');">工具箱</a></li>
+					<li><a id="msg_code" onclick="displayTab('code_content');">程式碼</a></li>
+				</ul>
+			</td>
+			<td style="width: 620px">
+			</td>				
+			<td>
+				<ul id="tabs">				
+					<a href="#" id="button_code" title="Arduino Code"><i class="small material-icons">dvr</i></a>
+					<a href="#" id="button_reset" title="Reset workspace"><i class="small material-icons">create</i></a>
+					<a href="#" id="button_open_ino" title="Open ino file"><i class="small material-icons">open_in_new</i></a>
+					<a href="#" id="button_open_xml" title="Open xml file"><i class="small material-icons">folder_open</i></a>
+					<a href="#" id="button_save_ino" title="Save files"><i class="small material-icons">save</i></a>
+					<a href="#" id="button_toolbox" title="Show/Hide Category Menu"><i class="small material-icons">playlist_add_check</i></a>
+					<a href="#" id="button_addRemoteBlocks" title="Import remote custom blocks"><i class="material-icons">note_add</i></a>
+					<a href="#" id="button_tool" title="Open Developer Tool"><i class="small material-icons">construction</i></a>
+					<i style="text-align: center;line-height: 50px;-align: middle;">
+						<select id="lang-selector" style="height:24px;font-size:18px;display:none">
+						</select>
+					</i>
+				</ul>
+			</td>
+		</tr>					
+	</table>	
+	  
+	<!-- CONTENT  -->
+	<div class="drop-shadow"></div>
+	<div id="category_content" class="content">
+		<div id="root"></div>
+		<xml id="toolbox" style="display: none"></xml>
+	</div>
+	<div id="code_content" class="code_content"></div>
+	<div id="arduino_content" class="ui-widget-content">
+		<div id="arduino_title" class="ui-widget-header">
+			<span id="title_code">Arduino Code</span>
+			<span class="contentzoom"><a href="#" id="button_copycode" title="Copy to clipboard"><i class="material-icons" style="vertical-align: middle; color: white;">featured_play_list</i></a></span>
+		</div>
+		<div id="arduino_code"></div>	
+	</div>
+	<div id="dialog_toolbox"></div>
+</div>
+</main>
+
+</body>
+</html>
