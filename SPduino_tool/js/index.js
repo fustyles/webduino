@@ -211,6 +211,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		var category = document.getElementById('toolbox');
 		Blockly.getMainWorkspace().updateToolbox(category);	
 		updateMsg();
+		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+		Blockly.getMainWorkspace().clear();
+		Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());		
 	}	
 
 	//複製程式碼到剪貼簿
