@@ -396,7 +396,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (customBlocksPath) {
 			if (!customBlocksPath.endsWith("/"))
 				customBlocksPath+="/";
-			var lang = "en";
 			addCustomRemoteBlocks(customBlocksPath);
 		}
 	}
