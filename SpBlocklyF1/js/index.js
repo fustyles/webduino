@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				if (Blockly.getMainWorkspace().getBlocksByType("main").length==1) {
 				*/
 					var code = Blockly.Arduino.workspaceToCode();			
-					document.getElementById('arduino_code').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;").replace("<br><br><br>","<br>").replace(/\/\*(\S+)\*\//g,"");
+					document.getElementById('arduino_code').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 				/*
 				}		
 				else
@@ -531,7 +531,7 @@ function displayTab(id) {
 
 function arduinoCode() {
 	var code = Blockly.Arduino.workspaceToCode();
-	document.getElementById('code_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;").replace("<br><br><br>","<br>").replace(/\/\*(\S+)\*\//g,"");
+	document.getElementById('code_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 }
 
 //工具箱目錄顯示與紀錄
