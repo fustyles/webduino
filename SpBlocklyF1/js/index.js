@@ -281,8 +281,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				*/
 					var code = Blockly.Arduino.workspaceToCode();
 					var code1 = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
-					if	(code1.split("&nbsp;&nbsp;*/")[2])				
-						document.getElementById('arduino_code').innerHTML = code1.split("&nbsp;&nbsp;*/")[2];
+					if	(code1.split("*/")[3])				
+						document.getElementById('arduino_code').innerHTML = code1.split("*/")[0] + "*/<br>" + code1.split("*/")[3];
 					else
 						document.getElementById('arduino_code').innerHTML = code;
 				/*
@@ -536,8 +536,8 @@ function displayTab(id) {
 function arduinoCode() {
 	var code = Blockly.Arduino.workspaceToCode();
 	var code1 = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
-	if	(code1.split("&nbsp;&nbsp;*/")[2])				
-		document.getElementById('code_content').innerHTML = code1.split("&nbsp;&nbsp;*/")[2];
+	if	(code1.split("*/")[3])				
+		document.getElementById('code_content').innerHTML = code1.split("*/")[0] + "*/<br>" + code1.split("*/")[3];
 	else
 		document.getElementById('code_content').innerHTML = code;
 }
