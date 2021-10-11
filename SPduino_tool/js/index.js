@@ -297,7 +297,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			addScript("msg/en.js");
 		}
 		addScript("js/message.js");
-		document.getElementById('button_updateCategory').click();
+		
+		const category = JSON.parse(JSON.stringify(customCategory));
+		for (var i=0;i<category.length;i++) {
+			console.log(category[i][2]);
+			if (category[i][2]!='') addCustomRemoteBlocks(category[i][2]);
+		}	
+		
+		//document.getElementById('button_updateCategory').click();
 		updateMsg();
 		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
 		Blockly.getMainWorkspace().clear();
@@ -416,6 +423,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			customCategory[0][1] = customCategoryInsertAfter;
 			customCategory[0][2] = '';
 		}
+	
 		var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
 		if (category.childNodes.length>0) {
 			for (var j=0;j<customCategory.length;j++) {
@@ -532,7 +540,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		var en_category_path = customBlocksPath+"en_category.xml";  //載入積木目錄文字英文語系設定檔
 		var zhhant_path = customBlocksPath+"zh-hant.js";  //載入積木文字繁體語系設定檔(預設繁體語系)
 		var zhhant_category_path = customBlocksPath+"zh-hant_category.xml";  //載入積木目錄文字繁體語系設定檔(預設繁體語系)
-		
+		console.log(customBlocksPath);
 		if (lang=="en")
 			addScript(en_path);
 		else
@@ -569,6 +577,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					
 					checkCategoryExist(customBlocksPath);
 					customCategory.push([category_, customCategoryInsertAfter, customBlocksPath]);
+					console.log(customCategory);
 					
 					var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
 					if (category.childNodes.length>0) {
