@@ -60,16 +60,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	xmlValue+='</xml>';	
 	var xmlValue_last = xmlValue;
 	
-	/*
-	if (typeof customBlocks != "undefined") {
-		for (var i=0;i<customBlocks.length;i++) {
-			var customBlocksPath = customBlocks[i][0];  //自訂積木連結
-			var insertAfterCategoryName = customBlocks[i][1];  //可將自訂積木插入在指定目錄後
-
+	if (typeof systemBlocks != "undefined") {
+		for (var i=0;i<systemBlocks.length;i++) {
+			var customBlocksPath = systemBlocks[i][0];  //自訂積木連結
+			var insertAfterCategoryName = systemBlocks[i][1];  //可將自訂積木插入在指定目錄後
 			addCustomBlocks(customBlocksPath, insertAfterCategoryName);
 		}
 	}
-	*/
 
 	function addCustomBlocks(customBlocksPath, insertAfterCategoryName) {
 		var blocks_path = customBlocksPath+"blocks.js";   //載入自訂積木定義檔	
