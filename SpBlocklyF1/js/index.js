@@ -516,8 +516,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}	
 	
 	function flashToolbox() {
-		var category = customCategory;
-		customCategory = [];
+		const category = JSON.parse(JSON.stringify(customCategory));
 		for (var i=0;i<category.length;i++) {
 			var path = category[i][2];
 			addCustomRemoteBlocks(path);
