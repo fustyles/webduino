@@ -1140,6 +1140,7 @@ Blockly.Msg["BUTTON_EXPORT_BLOCKS"] = "Export Custom Blocks Content";
 Blockly.Msg["BUTTON_SAVE_INO"] = "Save to ino File";
 Blockly.Msg["BUTTON_TOOLBOX"] = "Show/Hide Toolbox Category";
 Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"] = "Import remote custom blocks";
+Blockly.Msg["BUTTON_ADDEXTENSIONBLOCKS"] = "Import extension custom blocks";
 Blockly.Msg["BUTTON_TOOL"] = "Open Blockly Developer Tools";
 Blockly.Msg["BUTTON_LANG"] = "English / Traditional Chinese";
 Blockly.Msg["BUTTON_COPYCODE"] = "Copy to clipboard";

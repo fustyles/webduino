@@ -10,10 +10,113 @@ var customCategoryInsertAfter = "category_sep_main";
 
 document.addEventListener('DOMContentLoaded', function() {
 
+	//載入自訂積木
+	var category = document.getElementById('toolbox');
+	var xmlValue='<xml id="toolbox">';
+	if (category.childNodes.length>0) {
+		for (var i=0;i<category.childNodes.length;i++){
+			var node = new XMLSerializer().serializeToString(category.childNodes[i]);
+			xmlValue+=node;
+		}
+	}
+	xmlValue+='</xml>';	
+	var xmlValue_last = xmlValue;
+	
+	if (typeof systemBlocks != "undefined") {
+		for (var i=0;i<systemBlocks.length;i++) {
+			var customBlocksPath = systemBlocks[i][0];  //自訂積木連結
+			var insertAfterCategoryName = systemBlocks[i][1];  //可將自訂積木插入在指定目錄後
+			addCustomBlocks(customBlocksPath, insertAfterCategoryName);
+		}
+	}
+
+	function addCustomBlocks(customBlocksPath, insertAfterCategoryName) {
+		var blocks_path = customBlocksPath+"blocks.js";   //載入自訂積木定義檔	
+		var javascript_path = customBlocksPath+"javascript.js";   //載入自訂積木轉出程式碼檔	
+		var toolbox_path = customBlocksPath+"toolbox.xml";  //載入自訂積木目錄檔	
+		var en_path = customBlocksPath+"en.js";  //載入積木文字英文語系設定檔	
+		var en_category_path = customBlocksPath+"en_category.xml";  //載入積木目錄文字英文語系設定檔
+		var zhhant_path = customBlocksPath+"zh-hant.js";  //載入積木文字繁體語系設定檔(預設繁體語系)
+		var zhhant_category_path = customBlocksPath+"zh-hant_category.xml";  //載入積木目錄文字繁體語系設定檔(預設繁體語系)
+		
+		if (lang=="en")
+			addScript(en_path);
+		else
+			addScript(zhhant_path);	
+		
+		addScript(blocks_path);
+		addScript(javascript_path);
+		
+		$.ajax({
+			type: "GET" ,
+			url: toolbox_path ,
+			dataType: "xml",
+			timeout: 3000,
+			async: false,
+			success: function(xml, textStatus) {
+				if (new XMLSerializer().serializeToString(xml.firstChild))
+					customCategory.push(new XMLSerializer().serializeToString(xml.firstChild));
+				
+				try {
+					var len = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes.length;
+					var xmlNewValue='<xml id="toolbox">';
+					if (len>0) {
+							var exist = false;
+							for (var i=0;i<len;i++){
+								if (insertAfterCategoryName=="") {
+									xmlNewValue+=new XMLSerializer().serializeToString(xml.firstChild);
+									insertAfterCategoryName="insertTop";
+									exist = true;
+								}
+								var node = new XMLSerializer().serializeToString(new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes[i]);
+								xmlNewValue+=node;
+								if (node.indexOf(insertAfterCategoryName)!=-1&&insertAfterCategoryName!="") {
+									xmlNewValue+=new XMLSerializer().serializeToString(xml.firstChild);
+									exist = true;
+								}
+							}
+							if (exist == false)
+								xmlNewValue+=new XMLSerializer().serializeToString(xml.firstChild);
+					}
+					xmlNewValue+='</xml>';
+					xmlValue = xmlNewValue;
+					
+					try {
+					
+						if (document.getElementById('lang-selector').value=="en") {
+							var xml = $.ajax({url: en_category_path, async: false}).responseXML.firstChild;
+						} else {
+							var xml = $.ajax({url: zhhant_category_path, async: false}).responseXML.firstChild;
+						}
+						xml = new DOMParser().parseFromString(new XMLSerializer().serializeToString(xml).replace(/\n/g, "").replace(/\r/g, "").replace(/\t/g, ""),"text/xml").firstChild;
+						for (var i=0;i<xml.childNodes.length;i++) {
+							if (xml.childNodes[i].nodeName.toLowerCase()=="category") {
+								var ini = xml.childNodes[i].childNodes[0].firstChild.nodeValue;
+								var rep = xml.childNodes[i].childNodes[1].firstChild.nodeValue;
+								xmlValue = xmlValue.replace('name="'+ini+'"','name="'+rep+'"');	
+							}
+						}
+						xmlValue_last = xmlValue;
+						
+					} catch (error) {
+						//console.log(error);
+					}
+				} catch (error) {
+					//console.log(error);
+					xmlValue = xmlValue_last;
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				console.log(jqXHR.statusText);
+				xmlValue = xmlValue_last;
+			}
+		});	
+	}
+	
 	//初始化工作區	
 	const workspace = Blockly.inject('root',{
 			media: 'media/'
-			,toolbox: document.getElementById('toolbox')
+			,toolbox: xmlValue
 			,grid:{spacing: 20,length: 3,colour: '#eee',snap: true}
 			,zoom:{controls: true, wheel: false, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2}
 			,trashcan: true
@@ -389,6 +492,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.getElementById('button_updateGenerate').click();		
 		document.getElementById('button_updateCategory').click();
 	}
+
+	//新增擴充自訂積木
+	document.getElementById('button_addExtensionBlocks').onclick = function () {
+		if (typeof customBlocks != "undefined") {
+			for (var i=0;i<customBlocks.length;i++) {
+				var customBlocksPath = customBlocks[i][0];  //自訂積木連結
+				addCustomRemoteBlocks(customBlocksPath);
+			}
+		}
+	}	
 	
 	//新增遠端自訂積木
 	document.getElementById('button_addRemoteBlocks').onclick = function () {
