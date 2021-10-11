@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//新增遠端自訂積木
 	document.getElementById('button_addRemoteBlocks').onclick = function () {
-		var customBlocksPath = prompt(Blockly.Msg["CUSTOMBLOCKS_TITLE"], 'customBlocks/basic/');
+		var customBlocksPath = prompt(Blockly.Msg["CUSTOMBLOCKS_TITLE"], '');
 		if (customBlocksPath) {
 			if (!customBlocksPath.endsWith("/"))
 				customBlocksPath+="/";
