@@ -141,9 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	scrollOptionsPlugin.init({enableWheelScroll: true, enableEdgeScroll: true});
 	ScrollBlockDragger.edgeScrollEnabled = false;	
 	
-	//新增暫存積木插件
-	const myBackpack = new MyBackpack(workspace, "category_sep_main" , true);
-	
 	//程式碼區塊拖曳與調整大小功能	
 	$(function() {
 		$( "#arduino_content" ).draggable();
