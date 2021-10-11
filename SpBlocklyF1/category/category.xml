@@ -255,6 +255,10 @@
 	<category id="category_variables" custom="VARIABLE" name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}"></category>
 	<category id="category_procedures" custom="PROCEDURE" name="%{BKY_CATPROCEDURES}" colour="%{BKY_PROCEDURES_HUE}"></category>
 	<sep id="category_sep_main"></sep>
+	<category id="category_initializes" name="%{BKY_CATEGORY_INITIALIZES}" colour="30">
+		<block type="initializes_setup"></block>
+		<block type="initializes_loop"></block>
+	</category>	
 	<category id="category_digital" name="數位 I/O" colour="230">
 		<!--<block type="inout_digitalpin"></block>-->
 		<block type="inout_digital_write"></block>
