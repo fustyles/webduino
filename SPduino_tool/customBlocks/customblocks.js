@@ -1,4 +1,7 @@
-var customBlocks = [];
+var customBlocks = [
+["customBlocks/basic/","category_sep_custom"]
+];
+
 /*
 var customBlocks = [
 ["https://circuspi.github.io/ICSHOP/","category_sep_custom"]

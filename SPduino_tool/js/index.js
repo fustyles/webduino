@@ -141,8 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	scrollOptionsPlugin.init({enableWheelScroll: true, enableEdgeScroll: true});
 	ScrollBlockDragger.edgeScrollEnabled = false;	
 	
-	//新增暫存積木
-	const myBackpack = new MyBackpack(workspace, customCategoryInsertAfter , true);
 	
 	//程式碼區塊拖曳與調整大小功能	
 	$(function() {
@@ -298,14 +296,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		addScript("js/message.js");
 		
-		const category = JSON.parse(JSON.stringify(customCategory));
-		for (var i=0;i<category.length;i++) {
-			console.log(category[i][2]);
-			if (category[i][2]!='') addCustomRemoteBlocks(category[i][2]);
-		}	
-		
-		//document.getElementById('button_updateCategory').click();
 		updateMsg();
+		
+		const category = JSON.parse(JSON.stringify(customCategory));
+		for (var i=1;i<category.length;i++) {
+			if (category[i][2]!='') addCustomRemoteBlocks(category[i][2]);
+		}
+		document.getElementById('button_addBlocks').click();
+		
 		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());
@@ -523,7 +521,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//新增遠端自訂積木
 	document.getElementById('button_addRemoteBlocks').onclick = function () {
-		var customBlocksPath = prompt(Blockly.Msg["CUSTOMBLOCKS_TITLE"], 'customBlocks/basic/');
+		var customBlocksPath = prompt(Blockly.Msg["CUSTOMBLOCKS_TITLE"], '');
 		if (customBlocksPath) {
 			if (!customBlocksPath.endsWith("/"))
 				customBlocksPath+="/";
@@ -540,7 +538,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		var en_category_path = customBlocksPath+"en_category.xml";  //載入積木目錄文字英文語系設定檔
 		var zhhant_path = customBlocksPath+"zh-hant.js";  //載入積木文字繁體語系設定檔(預設繁體語系)
 		var zhhant_category_path = customBlocksPath+"zh-hant_category.xml";  //載入積木目錄文字繁體語系設定檔(預設繁體語系)
-		console.log(customBlocksPath);
+		
 		if (lang=="en")
 			addScript(en_path);
 		else
@@ -577,7 +575,6 @@ document.addEventListener('DOMContentLoaded', function() {
 					
 					checkCategoryExist(customBlocksPath);
 					customCategory.push([category_, customCategoryInsertAfter, customBlocksPath]);
-					console.log(customCategory);
 					
 					var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
 					if (category.childNodes.length>0) {
