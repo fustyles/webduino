@@ -5,7 +5,7 @@
 */
 
 var lang = "en";
-var customCategory = [['','']];
+var customCategory = [['','','']];
 var customCategoryInsertAfter = "category_sep_main";
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			async: false,
 			success: function(xml, textStatus) {
 				if (new XMLSerializer().serializeToString(xml.firstChild))
-					customCategory.push(new XMLSerializer().serializeToString(xml.firstChild));
+					customCategory.push([new XMLSerializer().serializeToString(xml.firstChild) ,insertAfterCategoryName ,'']);
 				
 				try {
 					var len = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes.length;
@@ -297,12 +297,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			addScript("msg/en.js");
 		}
 		addScript("js/message.js");
-		var category = document.getElementById('toolbox');
-		Blockly.getMainWorkspace().updateToolbox(category);	
+		document.getElementById('button_updateCategory').click();
 		updateMsg();
 		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
 		Blockly.getMainWorkspace().clear();
-		Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());		
+		Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());
 	}	
 
 	//複製程式碼到剪貼簿
@@ -415,6 +414,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (customCategory[0][0]!= xml) {
 			customCategory[0][0] = xml;
 			customCategory[0][1] = customCategoryInsertAfter;
+			customCategory[0][2] = '';
 		}
 		var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
 		if (category.childNodes.length>0) {
@@ -567,9 +567,8 @@ document.addEventListener('DOMContentLoaded', function() {
 						//console.log(e);
 					}
 					
-					if (!checkCategoryExist(category_)) {
-						customCategory.push([category_, customCategoryInsertAfter]);
-					}
+					checkCategoryExist(customBlocksPath);
+					customCategory.push([category_, customCategoryInsertAfter, customBlocksPath]);
 					
 					var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
 					if (category.childNodes.length>0) {
@@ -599,10 +598,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	function checkCategoryExist(child) {
 		for (var i=1;i<customCategory.length;i++) {
-			if (child==customCategory[i][0])
-				return true;
+			if (child==customCategory[i][2])
+				customCategory.splice(i, 1);
 		}
-		return false;
 	}
 	
 	var xml = document.getElementById('toolbox');
