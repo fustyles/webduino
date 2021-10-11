@@ -248,16 +248,26 @@ document.addEventListener('DOMContentLoaded', function() {
 		link.remove();	
 	}
 
-	//儲存ino檔
+	//匯出工作區積木與原始檔
 	document.getElementById('button_save_ino').onclick = function () {
 		try {
+			var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+			var xmlText = Blockly.Xml.domToText(xml);
+
+			var link = document.createElement('a');
+			link.download="project.xml";
+			link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xmlText);
+			document.body.appendChild(link);
+			link.click();
+			link.remove();
+			
 			var code = Blockly.Arduino.workspaceToCode();			
 			var link = document.createElement('a');
 			link.download="project.ino";
 			link.href="data:application/octet-stream;utf-8," + encodeURIComponent(code);
 			document.body.appendChild(link);
 			link.click();
-			link.remove();			
+			link.remove();				
 		} catch (e) {
 			alert(e);
 		}
