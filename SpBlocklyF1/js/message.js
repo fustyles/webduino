@@ -10,6 +10,7 @@ var msg = [
 ["button_save_ino", "title", Blockly.Msg["BUTTON_SAVE_INO"]],
 ["button_toolbox", "title", Blockly.Msg["BUTTON_TOOLBOX"]],
 ["button_addRemoteBlocks", "title", Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"]],
+["button_addExtensionBlocks", "title", Blockly.Msg["BUTTON_ADDEXTENSIONBLOCKS"]],
 ["button_copycode", "title", Blockly.Msg["BUTTON_COPYCODE"]],
 ["button_tool", "title", Blockly.Msg["BUTTON_TOOL"]],
 ["title_code", "innerHTML", Blockly.Msg["MSG_CODE"]],

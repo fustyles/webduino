@@ -2559,6 +2559,7 @@ Blockly.Msg["BUTTON_OPEN_XML"] = "開啟積木檔匯入積木";
 Blockly.Msg["BUTTON_SAVE_INO"] = "儲存INO檔";
 Blockly.Msg["BUTTON_TOOLBOX"] = "顯示/隱藏 工具箱目錄";
 Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"] = "新增遠端自訂積木";
+Blockly.Msg["BUTTON_ADDEXTENSIONBLOCKS"] = "新增內建擴充自訂積木";
 Blockly.Msg["BUTTON_LANG"] = "英文 / 中文";
 Blockly.Msg["BUTTON_COPYCODE"] = "複製程式碼到剪貼簿";
 Blockly.Msg["BUTTON_TOOL"] = "開啟積木製作工具";

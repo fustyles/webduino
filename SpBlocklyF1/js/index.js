@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	xmlValue+='</xml>';	
 	var xmlValue_last = xmlValue;
 	
+	/*
 	if (typeof customBlocks != "undefined") {
 		for (var i=0;i<customBlocks.length;i++) {
 			var customBlocksPath = customBlocks[i][0];  //自訂積木連結
@@ -68,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			addCustomBlocks(customBlocksPath, insertAfterCategoryName);
 		}
 	}
+	*/
 
 	function addCustomBlocks(customBlocksPath, insertAfterCategoryName) {
 		var blocks_path = customBlocksPath+"blocks.js";   //載入自訂積木定義檔	
@@ -465,6 +467,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		link.remove();
 	}
 	
+	//新增擴充自訂積木
+	document.getElementById('button_addExtensionBlocks').onclick = function () {
+		if (typeof customBlocks != "undefined") {
+			for (var i=0;i<customBlocks.length;i++) {
+				var customBlocksPath = customBlocks[i][0];  //自訂積木連結
+				addCustomRemoteBlocks(customBlocksPath);
+			}
+		}
+	}
+	
 	//切換語言
 	document.getElementById('lang-selector').onchange = function () {
 		if (this.selectedIndex!=-1) 
@@ -531,7 +543,7 @@ function displayTab(id) {
 
 function arduinoCode() {
 	var code = Blockly.Arduino.workspaceToCode();
-	document.getElementById('code_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
+	document.getElementById('code_content').innerHTML = code.replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 }
 
 //工具箱目錄顯示與紀錄
