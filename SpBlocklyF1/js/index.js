@@ -280,11 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				if (Blockly.getMainWorkspace().getBlocksByType("main").length==1) {
 				*/
 					var code = Blockly.Arduino.workspaceToCode();
-					var code1 = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
-					if	(code1.split("*/")[3])				
-						document.getElementById('arduino_code').innerHTML = code1.split("*/")[0] + "*/<br>" + code1.split("*/")[3];
-					else
-						document.getElementById('arduino_code').innerHTML = code;
+					document.getElementById('arduino_code').innerHTML = code.replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 				/*
 				}		
 				else
