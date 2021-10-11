@@ -298,11 +298,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		updateMsg();
 		
-		const category = JSON.parse(JSON.stringify(customCategory));
+		var category = JSON.parse(JSON.stringify(customCategory));
 		for (var i=1;i<category.length;i++) {
-			if (category[i][2]!='') addCustomRemoteBlocks(category[i][2]);
+			if (category[i][2]) addCustomRemoteBlocks(category[i][2]);
 		}
-		document.getElementById('button_addBlocks').click();
+		updateCategory();
 		
 		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
 		Blockly.getMainWorkspace().clear();
@@ -422,6 +422,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			customCategory[0][2] = '';
 		}
 	
+		updateCategory();
+	}
+	
+	function updateCategory() {
 		var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
 		if (category.childNodes.length>0) {
 			for (var j=0;j<customCategory.length;j++) {
@@ -431,9 +435,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				}								
 			}
 		}
-			
 		Blockly.getMainWorkspace().updateToolbox(category);
-	}
+	}		
 	
 	//工具箱目錄顯示選單
 	document.getElementById('button_toolbox').onclick = function () {
