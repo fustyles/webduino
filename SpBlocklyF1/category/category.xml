@@ -259,7 +259,7 @@
 		<block type="initializes_setup"></block>
 		<block type="initializes_loop"></block>
 	</category>	
-	<category id="category_digital" name="數位 I/O" colour="230">
+	<category id="category_digital" name="%{BKY_CATEGORY_DIGITAL}" colour="230">
 		<!--<block type="inout_digitalpin"></block>-->
 		<block type="inout_digital_write"></block>
 		<block type="inout_digital_read"></block>
@@ -294,7 +294,7 @@
 			</value>
 		</block>
 	</category>
-	<category id="category_analog" name="類比 I/O" colour="230">
+	<category id="category_analog" name="%{BKY_CATEGORY_ANALOG}" colour="230">
 		<block type="inout_analog_read"></block>
 		<block type="inout_analog_write">
 			<value name="NUM">
@@ -323,7 +323,7 @@
 			</value>
 		</block>
 	</category>
-	<category id="category_serial" name="序列埠 I/O" colour="200">
+	<category id="category_serial" name="%{BKY_CATEGORY_SERIAL}" colour="200">
 		<block type="serial_init"></block>
 		<block type="serial_available"></block>
 		<block type="serial_print">
@@ -343,7 +343,7 @@
 		<block type="serial_read"></block>
 		<!--<block type="serial_byte_number"></block>-->
 	</category>
-	<category id="category_others" name="音調" colour="30">
+	<category id="category_others" name="%{BKY_CATEGORY_OTHERS}" colour="30">
 		<!--<block type="pulsein"></block>-->
 		<block type="tone"></block>
 		<block type="no_tone"></block>
@@ -365,7 +365,7 @@
 			</value>
 		</block>
 	</category>
-	<category id="category_time" name="時間" colour="90">
+	<category id="category_time" name="%{BKY_CATEGORY_TIME}" colour="90">
 		<block type="millis"></block>
 		<block type="micros"></block>
 		<block type="delay_custom">
@@ -389,13 +389,13 @@
 		<block type="rtc_get_time_field"></block>
 		<block type="rtc_set_time_from_number"></block>
 	</category>
-	<category id="category_interrupts" name="中斷訊號" colour="290">
+	<category id="category_interrupts" name="%{BKY_CATEGORY_INTERRUPTS}" colour="290">
 		<block type="interrupts_attach"></block>
 		<!--block type="interrupts_detach"></block-->
 		<block type="interrupts_no"></block>
 		<block type="interrupts"></block>
 	</category>
-	<category id="category_servo" name="伺服馬達" colour="215">
+	<category id="category_servo" name="%{BKY_CATEGORY_SERVO}" colour="215">
 		<block type="servo_write">
 			<value name="ANGLE">
 				<block type="math_number">
@@ -417,7 +417,7 @@
 		</block>
 	</category>
 	<sep id="category_sep"></sep>
-	<category id="category_linkit_wifi" name="Wi-Fi" colour="0">
+	<category id="category_linkit_wifi" name="%{BKY_CATEGORY_LINKIT_WIFI}" colour="0">
 		<block type="linkit_wifi_wait_until_ready">
 			<value name="SSID">
 				<block type="text">
@@ -433,7 +433,7 @@
 		<block type="linkit_wifi_disconnect"></block>
 		<block type="linkit_wifi_ip_address"></block>
 	</category>
-	<category id="category_linkit_mcs" name="MCS" colour="230">
+	<category id="category_linkit_mcs" name="%{BKY_CATEGORY_LINKIT_MCS}" colour="230">
 		<block type="mcs">
 			<value name="DEVICEID">
 				<block type="text">
@@ -505,7 +505,7 @@
 			</value>
 		</block>
 	</category>
-	<category id="category_linkit_lremote" name="遙控器" colour="30">
+	<category id="category_linkit_lremote" name="%{BKY_CATEGORY_LINKIT_LREMOTE}" colour="30">
 		<block type="linkit_lremote"> 
 			<value name="DEVICEID">
 				<block type="text">
@@ -744,7 +744,7 @@
 			</value>
 		</block>
 	</category>
-	<category id="category_linkit_ble" name="BLE 周邊" colour="90">
+	<category id="category_linkit_ble" name="%{BKY_CATEGORY_LINKIT_BLE}" colour="90">
 		<!--
 		<block type="linkit_ble_wait_until_ready"></block>
 		<block type="linkit_ble_ready"></block>
@@ -825,7 +825,7 @@
 			</value>
 		</block>
 	</category>
-	<category id="category_linkit_ble_ibeacon" name="BLE Beacon" colour="290">
+	<category id="category_linkit_ble_ibeacon" name="%{BKY_CATEGORY_LINKIT_BLE_BEACON}" colour="290">
 		<block type="linkit_ble_ibeacon">
 			<value name="UUID">
 				<block type="text">
@@ -857,16 +857,16 @@
 		</block>
 	</category>
 	<sep id="category_sep"></sep>
-	<category id="category_sensor" name="感測模組" colour="215">
-		<category id="category_sensor_env" name="環境感測">
+	<category id="category_sensor" name="%{BKY_CATEGORY_SENSOR}" colour="215">
+		<category id="category_sensor_env" name="%{BKY_CATEGORY_SENSING_ENV}">
 			<block type="dht_read"></block>
 			<block type="htu21d_read"></block>
 			<block type="pms_read"></block>
 		</category>
-		<category id="category_sensor_dist" name="距離感測">
+		<category id="category_sensor_dist" name="%{BKY_CATEGORY_SENSING_DIST}">
 			<block type="ultrasonic_read"></block>
 		</category>
-		<category id="category_sensor_motion" name="動態感測">
+		<category id="category_sensor_motion" name="%{BKY_CATEGORY_SENSING_MOTION}">
 			<block type="adxl345_read"></block>
 			<block type="adxl345_read_attitude"></block>
 			<block type="adxl345_detect"></block>
@@ -879,8 +879,8 @@
 			<block type="mpu9250_read_north"></block>
 		</category>
 	</category>
-	<category id="category_display" name="顯示模組" colour="0">
-		<category id="category_oled" name="OLED顯示">
+	<category id="category_display" name="%{BKY_CATEGORY_DISPLAY}" colour="0">
+		<category id="category_oled" name="%{BKY_CATEGORY_OLED}">
 			<block type="oled_display_setting"></block>
 			<block type="oled_display_clear"></block>
 			
@@ -1050,7 +1050,7 @@
 				</value>
 			</block>
 		</category>
-		<category id="category_lcd" name="液晶顯示">
+		<category id="category_lcd" name="%{BKY_CATEGORY_LCD}">
 			<block type="lcd_i2c_setting"></block>
 			<block type="lcd_i2c_light"></block>
 			<block type="lcd_i2c_clear"></block>
@@ -1075,7 +1075,7 @@
 			</block>
 		</category>
 
-		<category id="category_neopixel" name="彩色燈條">
+		<category id="category_neopixel" name="%{BKY_CATEGORY_NEOPIXEL}">
 			<block type="neopixel_begin"></block>
 			<!--
 			<block type="neopixel_begin2">
@@ -1118,14 +1118,14 @@
 			<block type="neopixel_show"></block>
 		</category>
 	</category>
-	<category id="category_transceiver" name="傳輸模組" colour="230">
+	<category id="category_transceiver" name="%{BKY_CATEGORY_TRANSCEIVER}" colour="230">
 		<category id="category_rfid" name="RFID">
 			<block type="mfrc522_read"></block>
 		</category>
 	</category>
 	<sep id="category_sep"></sep>
-	<category id="category_grove" name="Grove模組" colour="30">
-		<category id="category_grove_sensor" name="感應器">
+	<category id="category_grove" name="%{BKY_CATEGORY_GROVE}" colour="30">
+		<category id="category_grove_sensor" name="%{BKY_CATEGORY_GROVE_SENSOR}">
 			<block type="grove_light_sensor"></block>
 			<block type="grove_ultrasonic_ranger"></block>
 			<block type="grove_temporature_humidity_sensor"></block>
@@ -1135,10 +1135,10 @@
 			<block type="grove_imu_9dof_read_attitude"></block>
 			<block type="grove_imu_9dof_read_north"></block>
 		</category>
-		<category id="category_grove_actuator" name="執行器">
+		<category id="category_grove_actuator" name="%{BKY_CATEGORY_GROVE_ACTUATOR}">
 			<block type="grove_relay"></block>
 		</category>
-		<category id="category_grove_display" name="顯示">
+		<category id="category_grove_display" name="%{BKY_CATEGORY_GROVE_DISPLAY}">
 			<block type="grove_led_bar">
 				<value name="LEVEL">
 					<block type="math_number">
@@ -1165,8 +1165,8 @@
 		</category>
 	</category>
 	<sep id="category_sep"></sep>
-	<category id="category_external" name="其他元件" colour="90">
-		<category id="category_otto" name="Otto">
+	<category id="category_external" name="%{BKY_CATEGORY_EXTERNAL}" colour="90">
+		<category id="category_otto" name="%{BKY_CATEGORY_OTTO}">
 			<block type="otto_init"></block>
 			<block type="otto_calibrate">
 				<value name="YL">
@@ -1307,7 +1307,7 @@
 			<block type="otto_mouth"></block>
 			<block type="otto_led_matrix_init"></block>
 		</category>
-		<category id="category_ifttt" name="IFTTT">
+		<category id="category_ifttt" name="%{BKY_CATEGORY_IFTTT}">
 			<block type="ifttt_get_url">
 				<value name="EVENT">
 					<block type="text">

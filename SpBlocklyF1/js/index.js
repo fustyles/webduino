@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			timeout: 3000,
 			async: false,
 			success: function(xml, textStatus) {
-				if (new XMLSerializer().serializeToString(xml.firstChild))
-					customCategory.push(new XMLSerializer().serializeToString(xml.firstChild));
+				//if (new XMLSerializer().serializeToString(xml.firstChild))
+					//customCategory.push([new XMLSerializer().serializeToString(xml.firstChild) ,insertAfterCategoryName ,'']);
 				
 				try {
 					var len = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild.childNodes.length;
@@ -195,9 +195,8 @@ document.addEventListener('DOMContentLoaded', function() {
 						//console.log(e);
 					}
 					
-					if (!checkCategoryExist(category_)) {
-						customCategory.push([category_, customCategoryInsertAfter]);
-					}
+					checkCategoryExist(customBlocksPath);
+					customCategory.push([category_, customCategoryInsertAfter, customBlocksPath]);
 					
 					var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
 					if (category.childNodes.length>0) {
@@ -226,11 +225,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	function checkCategoryExist(child) {
-		for (var i=1;i<customCategory.length;i++) {
-			if (child==customCategory[i][0])
-				return true;
+		for (var i=0;i<customCategory.length;i++) {
+			if (child==customCategory[i][2])
+				customCategory.splice(i, 1);
 		}
-		return false;
 	}	
 	
 	setTimeout(function(){
@@ -382,6 +380,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.getElementById('arduino_content').attributeStyleMap.clear();
 	}
 	
+	//新增擴充自訂積木
+	document.getElementById('button_addExtensionBlocks').onclick = function () {
+		if (typeof customBlocks != "undefined") {
+			for (var i=0;i<customBlocks.length;i++) {
+				var customBlocksPath = customBlocks[i][0];  //自訂積木連結
+				addCustomRemoteBlocks(customBlocksPath);
+			}
+		}
+	}	
+	
 	//新增遠端自訂積木
 	document.getElementById('button_addRemoteBlocks').onclick = function () {
 		var customBlocksPath = prompt(Blockly.Msg["CUSTOMBLOCKS_TITLE"], '');
@@ -464,16 +472,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		link.remove();
 	}
 	
-	//新增擴充自訂積木
-	document.getElementById('button_addExtensionBlocks').onclick = function () {
-		if (typeof customBlocks != "undefined") {
-			for (var i=0;i<customBlocks.length;i++) {
-				var customBlocksPath = customBlocks[i][0];  //自訂積木連結
-				addCustomRemoteBlocks(customBlocksPath);
-			}
-		}
-	}
-	
 	//切換語言
 	document.getElementById('lang-selector').onchange = function () {
 		if (this.selectedIndex!=-1) 
@@ -485,6 +483,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			chrome.runtime.reload();
 		}
 		*/
+	}
+	
+	//切換語言
+	document.getElementById('lang-selector').onchange = function () {
+		if (this.selectedIndex!=-1) 
+			lang = this.options[this.selectedIndex].value;
+		console.log('store language setting to ' + lang);
+		changeLanguage();
 	}
 	
 	//切換語言
@@ -502,15 +508,21 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		}
 		addScript("js/message.js");
+		flashToolbox();
 		updateMsg();
-		
-		var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
-		Blockly.getMainWorkspace().updateToolbox(category);	
-		
 		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
 		Blockly.getMainWorkspace().clear();
-		Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());		
+		Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());
 	}	
+	
+	function flashToolbox() {
+		var category = customCategory;
+		customCategory = [];
+		for (var i=0;i<category.length;i++) {
+			var path = category[i][2];
+			addCustomRemoteBlocks(path);
+		}	
+	}
 	
 	//新增初始化積木
 	function newFile() {
