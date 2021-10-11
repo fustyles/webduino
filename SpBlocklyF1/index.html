@@ -39,17 +39,25 @@
 
 <main id="main" class="has-tabs" >
     <!-- PAGE TABS -->
-	<table>
+	<div style="background-color:#49801f">			
+		<a href="https://labs.mediatek.com/en.html" target="_blank" class="brand-logo">
+			<span>　</span>
+			<img src="./media/icon_128.png" style="height: 35px;margin-right: 20px;vertical-align: middle;" title="Hi!">
+			<span style="font-size: 30px; color:white; vertical-align: bottom;">BlocklyDuino Editor</span>
+			<span style="font-size: 1.0rem; color:white; vertical-align: bottom;">F1</span>
+		</a>
+	</div>	
+	<table>	
 		<tr>
-			<td style="width: calc(100vw - 900px)">
+			<td style="height:20px !important; width: calc(100vw - 900px)">
 				<ul id="tabs">
 					<li><a id="msg_toolbox" onclick="displayTab('category_content');">工具箱</a></li>
 					<li><a id="msg_code" onclick="displayTab('code_content');">程式碼</a></li>
 				</ul>
 			</td>
-			<td style="width: 650px">
+			<td style="height:20px !important; width: 650px">
 			</td>				
-			<td>
+			<td style="height:20px !important;">
 				<ul id="tabs">				
 					<a href="#" id="button_code" title="Arduino Code"><i class="small material-icons">dvr</i></a>
 					<a href="#" id="button_reset" title="Reset workspace"><i class="small material-icons">create</i></a>
