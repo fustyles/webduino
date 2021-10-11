@@ -516,11 +516,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	}	
 	
 	function flashToolbox() {
-		const category = JSON.parse(JSON.stringify(customCategory));
-		for (var i=0;i<category.length;i++) {
-			var path = category[i][2];
-			addCustomRemoteBlocks(path);
-		}	
+		var category = JSON.parse(JSON.stringify(customCategory));
+		if (category.length>0) {
+			for (var i=0;i<category.length;i++) {
+				if (category[i][2]) addCustomRemoteBlocks(category[i][2]);
+			}
+		}
+		else {
+			var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
+			Blockly.getMainWorkspace().updateToolbox(category);	
+		}
 	}
 	
 	//新增初始化積木
