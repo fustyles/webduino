@@ -8,16 +8,16 @@ var arduino_version = "1.8.16";
 var lang = "zh-hant";
 var customCategory = [];
 var customCategoryInsertAfter = "category_sep_main";
+var languageList = "msg/language.js";
 
 document.addEventListener('DOMContentLoaded', function() {
-	
 	//載入語言選單
 	if (typeof language != "undefined") {
 		for (var i=0;i<language.length;i++) {
 			if (language[i][0]==lang)
 				addScript(language[i][1]);
 		}
-		addScript("js/language.js");
+		addScript(languageList);
 		var select = document.getElementById('lang-selector');
 		for (var i=0;i<language.length;i++) {
 			select.add(new Option(language[i][2], language[i][0]));
@@ -495,14 +495,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//切換語言
 	function changeLanguage() {
-		addScript("js/language.js");
+		addScript(languageList);
 		if (typeof language != "undefined") {
 			for (var i=0;i<language.length;i++) {
 				if (language[i][0]==lang) {
 					addScript(language[i][1]);
 				}
 			}
-			addScript("js/language.js");			
+			addScript(languageList);			
 			for (var i=0;i<language.length;i++) {
 				document.getElementById('lang-selector').options[i].text = language[i][2];
 			}
