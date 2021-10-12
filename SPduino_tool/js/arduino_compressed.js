@@ -47,9 +47,9 @@ Blockly.Arduino.finish=function(a){
 	i=Blockly.utils.object.values(this.loops_bottom_);
 	j=Blockly.utils.object.values(this.functions_);
 	
-	a=a.replace(" %1 ",f.join("\n")?f.join("\n").replace(/\n/g,"\n  "):"");
+	a=a.replace(" %1 ",f.join("\n")?f.join("\n").replace(/\n/g,"\n  ")+"\n  ":"");
 	a=a.replace(" %2 ",g.join("\n")?g.join("\n").replace(/\n/g,"\n  ")+("\n  "):"");
-	a=a.replace(" %3 ",h.join("\n")?h.join("\n").replace(/\n/g,"\n  "):"");
+	a=a.replace(" %3 ",h.join("\n")?h.join("\n").replace(/\n/g,"\n  ")+"\n  ":"");
 	a=a.replace(" %4 ",i.join("\n")?i.join("\n").replace(/\n/g,"\n  ")+("\n  "):"");
 	a=a.replace(/  \n}/g,"}");
 	a=Object.getPrototypeOf(this).finish.call(this,a);
