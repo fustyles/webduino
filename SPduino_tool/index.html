@@ -1,6 +1,6 @@
 <!--
  * Copyright 2021 Taiwan (ChungYi Fu)
- * @fileoverview SpBlockly
+ * @fileoverview SpBlockly (Developer Tool)
  * @author https://www.facebook.com/francefu/ 
 -->
 
@@ -17,8 +17,9 @@
 	<script src="js/blocks_compressed.js"></script>
 	<script src="js/arduino_compressed.js"></script>
 	<script src="js/index.js"></script>
+	<script src="js/message.js"></script>	
 	<script src="msg/en.js"></script>	
-	<script src="js/message.js"></script>
+	<script src="msg/language.js"></script>	
 	<script src="customBlocks/systemblocks.js"></script>
 	<script src="customBlocks/customblocks.js"></script>
 	<script src="plugin/ScreenShot/screenshot.js"></script>
@@ -59,7 +60,12 @@
 					<a href="#" id="button_addExtensionBlocks" title="Import extension custom blocks"><i class="material-icons">extension</i></a>
 					<a href="#" id="button_addRemoteBlocks" title="Import remote custom blocks"><i class="material-icons">note_add</i></a>
 					<a href="#" id="button_tool" title="Open Blockly Developer Tools"><i class="small material-icons">construction</i></a>
-					<a href="#" id="button_lang" title="Select Language"><i class="material-icons">language</i></a>
+					<i>　</i>
+				    <i class="material-icons">language</i>
+					<i style="text-align: center;line-height: 50px;-align: middle;">
+						<select id="lang-selector" style="height:24px;font-size:18px">
+						</select>
+					</i>
 					<i>　</i>
 				</ul>
 			</td>
@@ -254,17 +260,20 @@
 	<div id="dialog_toolbox"></div>
 	<div id="code_content" class="code_content"></div>
 	<div id="xml_content" class="xml_content"></div>
+	
 	<div id="arduino_content" class="ui-widget-content" onmousedown="textareaFocus('arduino_content');" ontouchstart="textareaFocus('arduino_content');">
 		<div id="arduino_title" class="ui-widget-header">
-			<span id="title_code">Arduino Code</span>
-			<span class="contentzoom"><a href="#" id="button_copycode" title="Copy to clipboard"><i class="material-icons" style="vertical-align: middle; color: white;">featured_play_list</i></a></span>
+			<span id="title_code">Arduino Code</span><span>　</span>
+			<span><a href="#" id="button_copycode" title="Copy to clipboard"><i class="material-icons" style="vertical-align: middle; color: white;">featured_play_list</i></a></span>
+			<span class="contentzoom"><a onclick="contentZoom('arduino');" style="cursor: pointer" title="Show/Hide"><i class="material-icons" style="vertical-align: middle; color: white;">unfold_more</i></a></span>
 		</div>
-		<div id="arduino_code" class="update_code"></div>	
+		<div id="arduino_code" class="update_code"></div>
 	</div>
 	
 	<div id="updateDefinition_content" class="ui-widget-content" onmousedown="textareaFocus('updateDefinition_content');" ontouchstart="textareaFocus('updateDefinition_content');">
 		<div id="updateDefinition_title" class="ui-widget-header">
-			<span id="text_updateDefinition">Block Definition&nbsp;&nbsp;</span><span><a href="#" id="button_updateDefinition" title="Update Definition"><i class="material-icons" style="vertical-align: middle; color: white;">publish</i></a></span><span class="contentzoom"><a onclick="contentZoom('updateDefinition');" style="cursor: pointer" title="Show/Hide"><i class="material-icons" style="vertical-align: middle; color: white;">unfold_more</i></a></span>
+			<span id="text_updateDefinition">Block Definition</span><span>　</span>
+			<span><a href="#" id="button_updateDefinition" title="Update Definition"><i class="material-icons" style="vertical-align: middle; color: white;">publish</i></a></span><span class="contentzoom"><a onclick="contentZoom('updateDefinition');" style="cursor: pointer" title="Show/Hide"><i class="material-icons" style="vertical-align: middle; color: white;">unfold_more</i></a></span>
 		</div>
 		<div id="updateDefinition_code" class="update_code">
 			<textarea id="blocks_function" class="textarea_content" spellcheck="false"></textarea>
@@ -273,7 +282,8 @@
 
 	<div id="updateGenerate_content" class="ui-widget-content" onmousedown="textareaFocus('updateGenerate_content');" ontouchstart="textareaFocus('updateGenerate_content');">
 		<div id="updateGenerate_title" class="ui-widget-header">
-			<span id="text_updateGenerate">Generate Code&nbsp;&nbsp;</span><span><a href="#" id="button_updateGenerate" title="Update Generation"><i class="material-icons" style="vertical-align: middle; color: white;">publish</i></a></span><span class="contentzoom"><a onclick="contentZoom('updateGenerate');" style="cursor: pointer" title="Show/Hide"><i class="material-icons" style="vertical-align: middle; color: white;">unfold_more</i></a></span>
+			<span id="text_updateGenerate">Generate Code</span><span>　</span>
+			<span><a href="#" id="button_updateGenerate" title="Update Generation"><i class="material-icons" style="vertical-align: middle; color: white;">publish</i></a></span><span class="contentzoom"><a onclick="contentZoom('updateGenerate');" style="cursor: pointer" title="Show/Hide"><i class="material-icons" style="vertical-align: middle; color: white;">unfold_more</i></a></span>
 		</div>
 		<div id="updateGenerate_code" class="update_code">
 			<textarea id="arduino_function" class="textarea_content" spellcheck="false"></textarea>
@@ -282,7 +292,8 @@
 	
 	<div id="updateCategory_content" class="ui-widget-content" onmousedown="textareaFocus('updateCategory_content');" ontouchstart="textareaFocus('updateCategory_content');">
 		<div id="updateCategory_title" class="ui-widget-header">
-			<span id="text_updateCategory">Category&nbsp;&nbsp;</span><span><a href="#" id="button_updateCategory" title="Update Category"><i class="material-icons" style="vertical-align: middle; color: white;">publish</i></a></span><span class="contentzoom"><a onclick="contentZoom('updateCategory');" style="cursor: pointer" title="Show/Hide"><i class="material-icons" style="vertical-align: middle; color: white;">unfold_more</i></a></span>
+			<span id="text_updateCategory">Category</span><span>　</span>
+			<span><a href="#" id="button_updateCategory" title="Update Category"><i class="material-icons" style="vertical-align: middle; color: white;">publish</i></a></span><span class="contentzoom"><a onclick="contentZoom('updateCategory');" style="cursor: pointer" title="Show/Hide"><i class="material-icons" style="vertical-align: middle; color: white;">unfold_more</i></a></span>
 		</div>
 		<div id="updateCategory_code" class="update_code">
 			<textarea id="category_function" class="textarea_content" spellcheck="false"></textarea>
@@ -291,7 +302,8 @@
 	
 	<div id="updateMessage_content" class="ui-widget-content" onmousedown="textareaFocus('updateMessage_content');" ontouchstart="textareaFocus('updateMessage_content');">
 		<div id="updateMessage_title" class="ui-widget-header">
-			<span id="text_updateMessage">Message&nbsp;&nbsp;</span><span><a href="#" id="button_updateMessage" title="Update Message"><i class="material-icons" style="vertical-align: middle; color: white;">publish</i></a></span><span class="contentzoom"><a onclick="contentZoom('updateMessage');" style="cursor: pointer" title="Show/Hide"><i class="material-icons" style="vertical-align: middle; color: white;">unfold_more</i></a></span>
+			<span id="text_updateMessage">Message</span><span>　</span>
+			<span><a href="#" id="button_updateMessage" title="Update Message"><i class="material-icons" style="vertical-align: middle; color: white;">publish</i></a></span><span class="contentzoom"><a onclick="contentZoom('updateMessage');" style="cursor: pointer" title="Show/Hide"><i class="material-icons" style="vertical-align: middle; color: white;">unfold_more</i></a></span>
 		</div>
 		<div id="updateMessage_code" class="update_code">
 			<textarea id="message_function" class="textarea_content" spellcheck="false"></textarea>
