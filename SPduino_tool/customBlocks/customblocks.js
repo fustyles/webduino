@@ -1,5 +1,6 @@
 var customBlocks = [
-["customBlocks/sample/","category_sep_custom"]
+["customBlocks/fu_time/","category_sep_main"],
+["customBlocks/fu_io/","category_sep_main"]
 ];
 
 /*
