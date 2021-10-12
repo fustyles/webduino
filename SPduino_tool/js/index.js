@@ -443,7 +443,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		'  }\n'+
 		'};',
 		"Blockly.Arduino['test'] = function(block) {\n"+
-		"  //Blockly.Arduino.definitions_['name'] = '\/\/definitions_\\n';\n"+
+		"  //Blockly.Arduino.definitions_['name'] = '\/\/definitions_';\n"+
 		"  //Blockly.Arduino.setups_top_['name'] = '\/\/setups_top_';\n"+
 		"  //Blockly.Arduino.setups_bottom_['name'] = '\/\/setups_bottom_';\n"+
 		//"  //Blockly.Arduino.loops_top_['name'] = '\/\/loops_top_';\n"+
