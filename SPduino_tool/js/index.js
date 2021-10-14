@@ -40,11 +40,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		for (var i=0;i<systemBlocks.length;i++) {
 			var customBlocksPath = systemBlocks[i][0];  //自訂積木連結
 			var insertAfterCategoryName = systemBlocks[i][1];  //可將自訂積木插入在指定目錄後
-			addCustomBlocks(customBlocksPath, insertAfterCategoryName);
+			addSystemBlocks(customBlocksPath, insertAfterCategoryName);
 		}
 	}
 
-	function addCustomBlocks(customBlocksPath, insertAfterCategoryName) {
+	function addSystemBlocks(customBlocksPath, insertAfterCategoryName) {
 		var blocks_path = customBlocksPath+"blocks.js";   //載入自訂積木定義檔	
 		var javascript_path = customBlocksPath+"javascript.js";   //載入自訂積木轉出程式碼檔	
 		var toolbox_path = customBlocksPath+"toolbox.xml";  //載入自訂積木目錄檔	
