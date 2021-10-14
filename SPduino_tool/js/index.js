@@ -673,7 +673,7 @@ var contents = ['updateDefinition_content','updateGenerate_content','updateCateg
 function textareaFocus(id) {
 	for (var i in contents) {
 		const content = document.getElementById(contents[i]);
-		content.style.zIndex = (contents[i]==id)?"999999":"999998";
+		content.style.zIndex = (contents[i]==id)?"99":"98";
 	}
 }
 
