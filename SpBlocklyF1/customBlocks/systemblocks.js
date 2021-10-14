@@ -1,3 +1,1 @@
-var systemBlocks = [
-["customBlocks/myBackPack/","category_sep_main"]
-];
+var systemBlocks = [];

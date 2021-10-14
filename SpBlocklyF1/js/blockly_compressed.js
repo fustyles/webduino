@@ -4010,7 +4010,7 @@ Blockly.ContextMenuItems.registerBlockOptions_=function(){
 	Blockly.ContextMenuItems.registerScrollPlugin();
 	Blockly.ContextMenuItems.registerHighLightPlugin();
 	Blockly.ContextMenuItems.registerBackPackPlugin();	
-	Blockly.ContextMenuItems.registerLoadLastBlocks();
+	//Blockly.ContextMenuItems.registerLoadLastBlocks();
 	//Blockly.ContextMenuItems.registerHideToolbox();
 	//Blockly.ContextMenuItems.registerTest();	//測試	
 };
