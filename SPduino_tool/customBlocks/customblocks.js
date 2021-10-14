@@ -1,6 +1,5 @@
 var customBlocks = [
-["customBlocks/fu_time/","category_sep_main"]
-,["customBlocks/fu_io/","category_sep_main"]
+["customBlocks/fu_system/","category_sep_main"]
 ,["customBlocks/myBackPack/","category_sep_main"]
 ];
 
