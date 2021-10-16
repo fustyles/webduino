@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('arduino_function').value = "";
 			document.getElementById('category_function').value = '<category id="category_custom" name="MyBlocks" colour="100">\n\n</category>';
 			
-			document.getElementById('message_function').value = "";
+			document.getElementById('message_function').value = 'Blockly.Msg["MYBLOCKS"] = "MyBlocks";';
 			
 			document.getElementById('arduino_content').attributeStyleMap.clear();
 			document.getElementById('updateDefinition_content').attributeStyleMap.clear();
