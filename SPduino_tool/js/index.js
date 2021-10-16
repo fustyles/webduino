@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	function exportToFile(id, filename) {
-		var content = document.getElementById(id).value.replace(/Javascript/g,"Arduino");
+		var content = document.getElementById(id).value.replace(/JavaScript/g,"Arduino");
 		var link = document.createElement('a');
 		link.download = filename;
 		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
@@ -489,8 +489,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	//更新積木定義函式
 	document.getElementById('button_updateDefinition').onclick = function () {
 		displayTab('category_content');
+		var code = document.getElementById('blocks_function').value;
 		try {
-			eval(document.getElementById('blocks_function').value.replace(/Javascript/g,"Arduino"));
+			eval(code.replace(/JavaScript/g,"Arduino"));
 			var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
 			Blockly.getMainWorkspace().clear();
 			Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());
@@ -506,8 +507,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	//更新程式碼產出函式
 	document.getElementById('button_updateGenerate').onclick = function () {
 		displayTab('category_content');
+		var code = document.getElementById('arduino_function').value;
 		try {
-			eval(document.getElementById('arduino_function').value.replace(/Javascript/g,"Arduino"));
+			eval(code.replace(/JavaScript/g,"Arduino"));
 		} catch (e) {
 			if (e instanceof SyntaxError) {
 				alert(e.message);
@@ -520,8 +522,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	//更新工具箱目錄
 	document.getElementById('button_updateCategory').onclick = function () {
 		displayTab('category_content');
-		
-		var xml = document.getElementById('category_function').value.replace(/Javascript/g,"Arduino");
+		var code = document.getElementById('category_function').value;
+		var xml = code.replace(/JavaScript/g,"Arduino");
 		if (customCategory[0][0]!= xml) {
 			customCategory[0][0] = xml;
 			customCategory[0][1] = customCategoryInsertAfter;
@@ -598,7 +600,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button_updateMessage').onclick = function () {
 		displayTab('category_content');
 		try {
-			eval(document.getElementById('message_function').value.replace(/Javascript/g,"Arduino"));
+			eval(document.getElementById('message_function').value.replace(/JavaScript/g,"Arduino"));
 			document.getElementById('button_updateDefinition').click();	
 			document.getElementById('button_updateCategory').click();
 		} catch (e) {
@@ -612,9 +614,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//新增自訂積木
 	document.getElementById('button_addBlocks').onclick = function () {
-		document.getElementById('button_updateMessage').click();		
+		document.getElementById('button_updateMessage').click();
+		document.getElementById('button_updateGenerate').click();
 		document.getElementById('button_updateDefinition').click();
-		document.getElementById('button_updateGenerate').click();		
 		document.getElementById('button_updateCategory').click();
 	}
 
