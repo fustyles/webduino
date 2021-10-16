@@ -66,7 +66,7 @@
 						<select id="lang-selector" style="height:24px;font-size:18px">
 						</select>
 					</i>
-					<i>　</i>
+					<i>　　</i>
 				</ul>
 			</td>
 		</tr>					
@@ -257,15 +257,15 @@
 			<sep id="category_sep_main"></sep>
 		</xml>
 	</div>
-	<div id="dialog_toolbox"></div>
 	<div id="code_content" class="code_content"></div>
 	<div id="xml_content" class="xml_content"></div>
+	<div id="dialog_toolbox" onmousedown="textareaFocus('dialog_toolbox_parent');" ontouchstart="textareaFocus('dialog_toolbox_parent');"></div>
 	
 	<div id="arduino_content" class="ui-widget-content" onmousedown="textareaFocus('arduino_content');" ontouchstart="textareaFocus('arduino_content');">
 		<div id="arduino_title" class="ui-widget-header">
 			<span id="title_code">Arduino Code</span><span>　</span>
 			<span><a href="#" id="button_copycode" title="Copy to clipboard"><i class="material-icons" style="vertical-align: middle; color: white;">featured_play_list</i></a></span>
-			<span class="contentzoom"><a onclick="contentZoom('arduino');" style="cursor: pointer" title="Show/Hide"><i class="material-icons" style="vertical-align: middle; color: white;">unfold_more</i></a></span>
+			<span class="contentzoom_right"><a onclick="contentZoom('arduino');" style="cursor: pointer" title="Show/Hide"><i class="material-icons" style="vertical-align: middle; color: white;">unfold_more</i></a></span>
 		</div>
 		<div id="arduino_code" class="update_code"></div>
 	</div>
@@ -308,7 +308,7 @@
 		<div id="updateMessage_code" class="update_code">
 			<textarea id="message_function" class="textarea_content" spellcheck="false"></textarea>
 		</div>	
-	</div>	
+	</div>
 
 </div>
 </main>

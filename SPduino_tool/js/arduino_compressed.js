@@ -25,9 +25,9 @@ Blockly.Arduino.init=function(a){
 	this.nameDB_.populateProcedures(a);
 	
 	this.definitions_=Object.create(null);
-	this.setups_top_=Object.create(null);
+	this.setups_=Object.create(null);
 	this.setups_bottom_=Object.create(null);
-	this.loops_top_=Object.create(null);
+	this.loops_=Object.create(null);
 	this.loops_bottom_=Object.create(null);
 	this.functions_=Object.create(null);
 	
@@ -41,9 +41,9 @@ Blockly.Arduino.finish=function(a){
 		d.match(/^#include/)?b.push(d):c.push(d)
 	}
 	
-	f=Blockly.utils.object.values(this.setups_top_);
+	f=Blockly.utils.object.values(this.setups_);
 	g=Blockly.utils.object.values(this.setups_bottom_);
-	h=Blockly.utils.object.values(this.loops_top_);
+	h=Blockly.utils.object.values(this.loops_);
 	i=Blockly.utils.object.values(this.loops_bottom_);
 	j=Blockly.utils.object.values(this.functions_);
 	

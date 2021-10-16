@@ -306,10 +306,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (result) {
 			newFile();
 			
-			document.getElementById('blocks_function').value = code[0];
-			document.getElementById('arduino_function').value = code[1];
-			document.getElementById('category_function').value = code[2];
-			document.getElementById('message_function').value = code[3];
+			document.getElementById('blocks_function').value = "";
+			document.getElementById('arduino_function').value = "";
+			document.getElementById('category_function').value = '<category id="category_custom" name="MyBlocks" colour="100">\n\n</category>';
+			
+			document.getElementById('message_function').value = "";
 			
 			document.getElementById('arduino_content').attributeStyleMap.clear();
 			document.getElementById('updateDefinition_content').attributeStyleMap.clear();
@@ -444,9 +445,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		'};',
 		"Blockly.Arduino['test'] = function(block) {\n"+
 		"  //Blockly.Arduino.definitions_['name'] = '\/\/definitions_';\n"+
-		"  //Blockly.Arduino.setups_top_['name'] = '\/\/setups_top_';\n"+
+		"  //Blockly.Arduino.setups_['name'] = '\/\/setups_';\n"+
 		"  //Blockly.Arduino.setups_bottom_['name'] = '\/\/setups_bottom_';\n"+
-		//"  //Blockly.Arduino.loops_top_['name'] = '\/\/loops_top_';\n"+
+		//"  //Blockly.Arduino.loops_['name'] = '\/\/loops_';\n"+
 		//"  //Blockly.Arduino.loops_bottom_['name'] = '\/\/loops_bottom_';\n"+		
 		"  //Blockly.Arduino.functions_['name'] = 'String blockly() {\\n  return \"Hello World\";\\n}';\n\n"+
 		"  var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);\n"+
@@ -468,8 +469,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		'		</value>\n'+
 		'	</block>\n'+		
 		'</category>',
-		'Blockly.Msg["MYBLOCKS"] = "MY BLOCKS";\n'+
-		'Blockly.Msg["MYBLOCKS_HUE"] = "350";'		
+		'Blockly.Msg["MYBLOCKS"] = "MyBlocks";\n'+
+		'Blockly.Msg["MYBLOCKS_HUE"] = "100";'		
 	]
 		
 		
@@ -668,15 +669,6 @@ function toolbox_display(chk, categoryid) {
 	}
 }
 
-//切換視窗上層顯示
-var contents = ['updateDefinition_content','updateGenerate_content','updateCategory_content','updateMessage_content','arduino_content'];
-function textareaFocus(id) {
-	for (var i in contents) {
-		const content = document.getElementById(contents[i]);
-		content.style.zIndex = (contents[i]==id)?"99":"98";
-	}
-}
-
 //Arduino原始碼顯示
 function arduinoCode() {
 	var code = Blockly.Arduino.workspaceToCode();
@@ -690,20 +682,42 @@ function xmlCode() {
 	document.getElementById('xml_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 }
 
+//視窗最上層顯示
+var contents = ['updateDefinition_content','updateGenerate_content','updateCategory_content','updateMessage_content','arduino_content'];
+function textareaFocus(id) {
+	for (var i in contents) {
+		const content = document.getElementById(contents[i]);
+		content.style.zIndex = (contents[i]==id)?"99":"98";
+	}
+}
+
+//縮放視窗
 function contentZoom(content) {
 	const div_content = document.getElementById(content+"_content");
 	const div_code = document.getElementById(content+"_code");
 	if (div_content.style.height!= "40px") {
 		div_content.w = div_content.style.width;
 		div_content.h = div_content.style.height;
+		div_content.l = div_content.style.left;
+		div_content.t = div_content.style.top;
 		
 		div_content.style.width = "calc(20vw)";
 		div_content.style.height = "40px";
-		div_code.style.display = "none";	
+		div_code.style.display = "none";
+
+		if (content=="arduino") {
+			div_content.style.left = "calc(98% - 20vw)";
+			div_content.style.top = "64px";
+		}
 	}
 	else {
 		div_content.style.width = div_content.w;
 		div_content.style.height = div_content.h;
 		div_code.style.display = "block";	
+		
+		if (content=="arduino") {
+			div_content.style.left = div_content.l;	
+			div_content.style.top = div_content.t;	
+		}			
 	}
 }

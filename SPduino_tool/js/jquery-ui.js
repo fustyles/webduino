@@ -12300,7 +12300,8 @@ $.widget( "ui.dialog", {
 
 				// Setting tabIndex makes the div focusable
 				tabIndex: -1,
-				role: "dialog"
+				role: "dialog",
+				id: this.element.uniqueId().attr( "id" )+"_parent"
 			} )
 			.appendTo( this._appendTo() );
 

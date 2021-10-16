@@ -580,6 +580,7 @@ button.ui-button::-moz-focus-inner {
 	left: 0;
 	padding: .2em;
 	outline: 0;
+	z-index: 1000 !important;
 }
 .ui-dialog .ui-dialog-titlebar {
 	padding: .4em 1em;
