@@ -261,10 +261,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	updateMsg();
 	
+	/*
 	setInterval(function(){
 		var code = Blockly.Arduino.workspaceToCode();			
-		document.getElementById('arduino_code').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
-	}, 500);	
+		//document.getElementById('arduino_code').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
+		editor.setValue(code);
+	}, 500);
+	*/	
 	
 	//新增初始化積木
 	function newFile() {
@@ -309,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('blocks_function').value = "";
 			document.getElementById('arduino_function').value = "";
 			document.getElementById('category_function').value = '<category id="category_custom" name="MyBlocks" colour="100">\n\n</category>';
-			document.getElementById('message_function').value = '//Blockly.Msg["MYBLOCKS"] = "MyBlocks";\n//Blockly.Msg["MYBLOCKS_HUE"] = "100";'	
+			document.getElementById('message_function').value = '//Blockly.Msg["MYBLOCKS"] = "MyBlocks";\n//Blockly.Msg["MYBLOCKS_HUE"] = "100";'
 			
 			document.getElementById('arduino_content').attributeStyleMap.clear();
 			document.getElementById('updateDefinition_content').attributeStyleMap.clear();

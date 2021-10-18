@@ -13,6 +13,8 @@
 	<link rel="stylesheet" href="css/icon.css" />
 	<link rel="stylesheet" href="css/custom.css" />
 	<link rel="stylesheet" href="css/jquery-ui.css">
+	<link rel="stylesheet" href="vs\arduino.css">
+	<link rel="stylesheet" href="vs\editor\editor.main.css">	
 	<script src="js/blockly_compressed.js"></script>
 	<script src="js/blocks_compressed.js"></script>
 	<script src="js/arduino_compressed.js"></script>
@@ -257,17 +259,35 @@
 			<sep id="category_sep_main"></sep>
 		</xml>
 	</div>
-	<div id="code_content" class="code_content"></div>
+	<div id="code_content" class="code_content">
+	</div>
 	<div id="xml_content" class="xml_content"></div>
 	<div id="dialog_toolbox" onmousedown="textareaFocus('dialog_toolbox_parent');" ontouchstart="textareaFocus('dialog_toolbox_parent');"></div>
 	
 	<div id="arduino_content" class="ui-widget-content" onmousedown="textareaFocus('arduino_content');" ontouchstart="textareaFocus('arduino_content');">
 		<div id="arduino_title" class="ui-widget-header">
 			<span id="title_code">Arduino Code</span><span>　</span>
-			<span><a href="#" id="button_copycode" title="Copy to clipboard"><i class="material-icons" style="vertical-align: middle; color: white;">featured_play_list</i></a></span>
+			<span class="contentzoom"><a href="#" id="button_copycode" title="Copy to clipboard"><i class="material-icons" style="vertical-align: middle; color: white;">featured_play_list</i></a></span>
 			<span class="contentzoom_right"><a onclick="contentZoom('arduino');" style="cursor: pointer" title="Show/Hide"><i class="material-icons" style="vertical-align: middle; color: white;">unfold_more</i></a></span>
 		</div>
-		<div id="arduino_code" class="update_code"></div>
+		<div id="arduino_code" class="update_code">
+			<section class="try">
+				<div class="container">
+					<div class="editor row">
+						<div class="span9">
+							<div class="editor-frame">
+								<div class="loading editor" style="display: none;">
+									<div class="progress progress-striped active">
+										<div class="bar"></div>
+									</div>
+								</div>
+								<div id="editor"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>			
+		</div>
 	</div>
 	
 	<div id="updateDefinition_content" class="ui-widget-content" onmousedown="textareaFocus('updateDefinition_content');" ontouchstart="textareaFocus('updateDefinition_content');">
@@ -313,5 +333,11 @@
 </div>
 </main>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/bootstrap.min.js" integrity="sha256-u+l2mGjpmGK/mFgUncmMcFKdMijvV+J3odlDJZSNUu8=" crossorigin="anonymous"></script>
+
+<script src="vs/loader.js"></script>
+<script src="vs/editor/editor.main.nls.js"></script>
+<script src="vs/editor/editor.main.js"></script>
+<script src="vs/arduino.js"></script>
 </body>
 </html>

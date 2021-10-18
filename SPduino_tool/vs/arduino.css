@@ -1,0 +1,8 @@
+ * Bootstrap Responsive v2.3.0
+ *
+ * Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+.try .editor.row{padding:18px 0}.try .row h4{padding-bottom:6px}.try .editor.row .control-label{display:inline-block;position:relative;top:-4px;margin-right:4px}.try .editor .editor-frame{position:relative}.try .editor .editor-frame #diff-editor,.try .editor .editor-frame #editor{height:calc(100vh - 155px);margin-bottom:0px;border:0px solid #eee}.try .editor .editor-frame .loading{position:absolute;height:100%;width:100%;background-color:rgba(255,255,255,.5);margin:0 auto;display:none;z-index:100}.try .editor .editor-frame .progress{width:50%;margin:15% auto 0}.try .editor .editor-frame .progress .bar{width:100%;background-color:#4bb1cf}.try .editor .editor-frame #diff-editor .alert,.try .editor .editor-frame #editor .alert{margin:18% auto 0;width:30%;text-align:center;color:#b94a48;background-color:#f2dede;border-color:#eed3d7}@media (min-width:1200px){.try .editor .row{margin-left:0}}@media (max-width:767px){.try .container{margin:0 24px}.try .editor>.span9 .row .span4{float:left;width:50%}.try .editor h4{margin-top:0}}@media (max-width:520px){.try .editor>.span3 h4,.try .editor>.span3 p{display:none}}@media (max-width:320px){.try .editor>.span9{display:none}}
