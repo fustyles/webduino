@@ -1,6 +1,6 @@
 //SERIAL
 Blockly.Msg["FU_SERIAL_HUE"] = "60";
-Blockly.Msg["FU_SERIAL"] = "Serial"
+Blockly.Msg["FU_SERIAL"] = "SERIAL"
 Blockly.Msg["FU_SERIAL_BAUDRATE"] = "Baud Rate";
 Blockly.Msg["FU_SERIAL_CONFIG"] = "Config";
 Blockly.Msg["FU_SERIAL_READY"] = "Wait for ready";
