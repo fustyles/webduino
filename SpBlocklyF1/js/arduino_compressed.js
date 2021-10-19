@@ -61,7 +61,7 @@ Blockly.Arduino.finish=function(a){
 	this.nameDB_.reset();
 	this.variableDB_.reset();
 	
-	return b="/*\n  BlocklyDuino (Update date: 2021/10/4 00:00) \n  https://github.com/MediaTek-Labs/BlocklyDuino-for-LinkIt\n  Date: "+e.toUTCString()+"\n*/\n\n"+b
+	return b
 };
 Blockly.Arduino.scrubNakedValue=function(a){return a+";\n"};
 Blockly.Arduino.quote_=function(a){a=a.replace(/\\/g,"\\\\").replace(/\n/g,"\\\n").replace(/\$/g,"\\$").replace(/'/g,"\\'");return'"'+a+'"'};
