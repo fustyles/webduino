@@ -559,3 +559,34 @@ function toolbox_display(chk, categoryid) {
 			items.push([category[i].toolboxItemDef_.id , category[i].isHidden_==true?0:1]);
 	}
 }
+
+//縮放視窗
+function contentZoom(content) {
+	const div_content = document.getElementById(content+"_content");
+	const div_code = document.getElementById(content+"_code");
+	if (div_content.style.height!= "40px") {
+		div_content.w = div_content.style.width;
+		div_content.h = div_content.style.height;
+		div_content.l = div_content.style.left;
+		div_content.t = div_content.style.top;
+		
+		div_content.style.width = "calc(20vw)";
+		div_content.style.height = "40px";
+		div_code.style.display = "none";
+
+		if (content=="arduino") {
+			div_content.style.left = "calc(98% - 20vw)";
+			div_content.style.top = "155px";
+		}
+	}
+	else {
+		div_content.style.width = div_content.w;
+		div_content.style.height = div_content.h;
+		div_code.style.display = "block";	
+		
+		if (content=="arduino") {
+			div_content.style.left = div_content.l;	
+			div_content.style.top = div_content.t;	
+		}			
+	}
+}
