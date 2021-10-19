@@ -43,10 +43,10 @@ $(document).ready(function() {
 		monaco.editor.defineTheme('myTheme', {
 			base: 'vs-dark',
 			inherit: true,
-			rules: [{ background: '330033' }],
+			rules: [{ background: '000000' }],
 			colors: {
 				'editor.foreground': '#AAAA00',
-				'editor.background': '#330033',
+				'editor.background': '#000000',
 				'editorCursor.foreground': '#8B0000',
 				'editor.lineHighlightBackground': '#0000FF20',
 				'editorLineNumber.foreground': '#eeee88',
