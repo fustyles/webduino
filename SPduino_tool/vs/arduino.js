@@ -41,7 +41,7 @@ $(document).ready(function() {
 			
 		// The editor colors can be customized through CSS or through JS
 		monaco.editor.defineTheme('myTheme', {
-			base: 'hc-black',
+			base: 'vs-dark',
 			inherit: true,
 			rules: [{ background: '330033' }],
 			colors: {
