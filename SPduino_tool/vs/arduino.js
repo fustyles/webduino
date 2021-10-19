@@ -39,7 +39,7 @@ $(document).ready(function() {
 			changeTheme(this.selectedIndex);
 		});
 			
-		monaco.editor.setTheme('vs');
+		monaco.editor.setTheme('vs-dark');
 	});
 
 	window.onresize = function () {
