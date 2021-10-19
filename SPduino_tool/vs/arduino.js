@@ -1,4 +1,16 @@
-"use strict";
+/*!-----------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Version: 0.29.2(df04357573e045be658960bd50ff0a45d6d1eadb)
+ * Released under the MIT license
+ * https://github.com/microsoft/vscode/blob/main/LICENSE.txt
+ *-----------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+ 
+ "use strict";
 
 var editor = null;
 
@@ -8,6 +20,10 @@ $(document).ready(function() {
 			$('#editor').empty();
 			editor = monaco.editor.create(document.getElementById('editor'), {
 				model: null,
+				minimap: {
+				  enabled: false,
+				},
+				cursorStyle: 'block',
 			});
 		}
 
@@ -23,7 +39,7 @@ $(document).ready(function() {
 			changeTheme(this.selectedIndex);
 		});
 			
-		monaco.editor.setTheme('vs-dark');
+		monaco.editor.setTheme('vs');
 	});
 
 	window.onresize = function () {
