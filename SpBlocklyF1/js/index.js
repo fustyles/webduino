@@ -576,7 +576,7 @@ function contentZoom(content) {
 
 		if (content=="arduino") {
 			div_content.style.left = "calc(98% - 20vw)";
-			div_content.style.top = "155px";
+			div_content.style.top = "112px";
 		}
 	}
 	else {
