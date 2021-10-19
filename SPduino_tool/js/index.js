@@ -264,10 +264,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	/*
 	setInterval(function(){
 		var code = Blockly.Arduino.workspaceToCode();			
-		//document.getElementById('arduino_code').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
-		editor.setValue(code);
+		document.getElementById('arduino_code').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 	}, 500);
-	*/	
+	*/
 	
 	//新增初始化積木
 	function newFile() {
