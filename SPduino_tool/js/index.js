@@ -414,8 +414,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());
 	}
 	
-	
-
 	//複製程式碼到剪貼簿
 	document.getElementById('button_copycode').onclick = function () {
 		var text = document.getElementById('arduino_code').innerText;
@@ -425,6 +423,42 @@ document.addEventListener('DOMContentLoaded', function() {
 			console.error(err);
 		});
 	}
+	
+	//匯入備份積木檔
+	document.getElementById('button_open_xml').onclick = function () {
+		var e = document.getElementById("importBlocks");
+		if (e) {
+			e.click();
+			return;
+		}
+		
+		var input=document.createElement('input');
+		input.type="file";
+		input.id="importBlocks";
+		input.style.display = "none";
+		input.accept=".xml";
+		input.onchange = function(element) {
+			try {	
+				var file = this.files[0];
+				if (file) {
+					var fr = new FileReader();           
+					fr.onload = function (event) {
+						Blockly.getMainWorkspace().clear();
+						var blocks = Blockly.Xml.textToDom(event.target.result);
+						Blockly.Xml.domToWorkspace(blocks, Blockly.mainWorkspace);
+					};
+					fr.readAsText(file);
+				}
+			} catch (e) {
+				alert(e);
+			}	  
+		}
+
+		document.body.appendChild(input);
+		setTimeout(function(){
+			input.click();
+		},500);
+	}	
 	
 	var code = [
 		'Blockly.Blocks["test"] = {\n'+
