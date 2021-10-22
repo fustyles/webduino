@@ -1137,6 +1137,7 @@ Blockly.Msg["BUTTON_CODE"] = "Show/Hide Arduino Code";
 Blockly.Msg["BUTTON_DEVELOPERTOOL"] = "Show/Hide Custom blocks content";
 Blockly.Msg["BUTTON_RESET"] = "Reset workspace";
 Blockly.Msg["BUTTON_EXPORT_BLOCKS"] = "Export your blocks content";
+Blockly.Msg["BUTTON_OPEN_XML"] = "Import blocks to workspace";
 Blockly.Msg["BUTTON_SAVE_INO"] = "Export to xml and ino files";
 Blockly.Msg["BUTTON_TOOLBOX"] = "Show/Hide Toolbox category";
 Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"] = "Import remote custom blocks";

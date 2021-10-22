@@ -1169,6 +1169,7 @@ Blockly.Msg["BUTTON_CODE"] = "顯示/隱藏 程式碼區塊";
 Blockly.Msg["BUTTON_DEVELOPERTOOL"] = "顯示/隱藏 自訂積木區塊";
 Blockly.Msg["BUTTON_RESET"] = "重設工作區";
 Blockly.Msg["BUTTON_EXPORT_BLOCKS"] = "匯出你的自訂積木檔案";
+Blockly.Msg["BUTTON_OPEN_XML"] = "開啟積木檔匯入工作區";
 Blockly.Msg["BUTTON_SAVE_INO"] = "匯出XML與INO檔";
 Blockly.Msg["BUTTON_TOOLBOX"] = "顯示/隱藏 工具箱目錄";
 Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"] = "新增遠端自訂積木";

@@ -8,6 +8,7 @@ var msg = [
 ["button_reset", "title", Blockly.Msg["BUTTON_RESET"]],
 ["button_export_blocks", "title", Blockly.Msg["BUTTON_EXPORT_BLOCKS"]],
 ["button_save_ino", "title", Blockly.Msg["BUTTON_SAVE_INO"]],
+["button_open_xml", "title", Blockly.Msg["BUTTON_OPEN_XML"]],
 ["button_toolbox", "title", Blockly.Msg["BUTTON_TOOLBOX"]],
 ["button_addRemoteBlocks", "title", Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"]],
 ["button_addExtensionBlocks", "title", Blockly.Msg["BUTTON_ADDEXTENSIONBLOCKS"]],
