@@ -1556,7 +1556,7 @@ Blockly.Arduino['esp32_pinread'] = function (block) {
   var type = block.getFieldValue('type');
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
   var statements_setup = Blockly.Arduino.statementToCode(block, 'setup');
-  Blockly.Arduino.setups_["pinRead_"+pin] = statements_setup + '\n  pinMode(' + pin + ', INPUT);\n';
+  Blockly.Arduino.setups_["pinRead_"+pin] = statements_setup + '\npinMode(' + pin + ', INPUT);';
   var code = type + '(' + pin + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
