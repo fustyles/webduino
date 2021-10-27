@@ -1475,7 +1475,7 @@ Blockly.Blocks['image_sys_get'] = {
   }
 };
 
-Blockly.Blocks['image_onclick_listener'] = {
+Blockly.Blocks['image_onload_listener'] = {
   init: function () {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ONCLICK_LISTENER);
@@ -1508,6 +1508,21 @@ Blockly.Blocks['image_onclick_dom'] = {
       .appendField(Blockly.Msg.IMAGE_ID);
   this.appendDummyInput()
       .appendField(Blockly.Msg.IMAGE_ONCLICK_DO);  
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(220);
+  }
+};
+
+Blockly.Blocks['image_onload_dom'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.IMAGE_ID);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.IMAGE_ONLOAD_DO);  
   this.appendStatementInput("do_");
   this.setInputsInline(true);
   this.setPreviousStatement(true);

@@ -553,6 +553,15 @@ Blockly.JavaScript['image_onclick_dom'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['image_onload_dom'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'async function gameimage_'+value_id_+'_onload (event) {\n' + statements_do_ + '};\ndocument.getElementById("gameimage_'+value_id_+'").addEventListener("load", gameimage_'+value_id_+'_onload, true);\n';
+  return code;
+};
+
 Blockly.JavaScript['image_onclick_get'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   var code = 'image_onclick_get(' + value_id_ + ')';
