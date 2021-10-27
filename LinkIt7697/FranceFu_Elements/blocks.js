@@ -1516,6 +1516,21 @@ Blockly.Blocks['image_onclick_dom'] = {
   }
 };
 
+Blockly.Blocks['image_onload_dom'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.IMAGE_ID);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.IMAGE_ONLOAD_DO);  
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(220);
+  }
+};
+
 Blockly.Blocks['image_onclick_get'] = {
   init: function() {
   this.appendValueInput("id_")
