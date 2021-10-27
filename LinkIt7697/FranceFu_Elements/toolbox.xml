@@ -463,6 +463,13 @@
 	  </block>
 	</value>
 	</block>
+	<block type="image_onload_dom">
+	  <value name="id_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	  </value>
+	</block>		
 	<block type="image_onclick_get">
 	<value name="id_">
 	  <block type="text">
