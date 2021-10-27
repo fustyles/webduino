@@ -98,6 +98,7 @@ Blockly.Msg.MOVE_TO_COORDINATE = "定位到";
 Blockly.Msg.IMAGE_RESIZE = "調整大小";
 Blockly.Msg.PERCENTAGE = "%";
 Blockly.Msg.IMAGE_ONCLICK_DO = "被點擊後執行";
+Blockly.Msg.IMAGE_ONLOAD_DO = "被載入後執行";
 Blockly.Msg.IMAGE_ONCLICK_DO_IF = "如果為點擊狀態後執行";
 Blockly.Msg.BOUNDARY_COLLISION_DO = "如果碰撞邊界";
 Blockly.Msg.TABLE_TD_IMAGE_MOVE = "移動到";
