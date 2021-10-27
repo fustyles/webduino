@@ -98,6 +98,7 @@ Blockly.Msg.MOVE_TO_COORDINATE = "Move to ";
 Blockly.Msg.IMAGE_RESIZE = "Resize";
 Blockly.Msg.PERCENTAGE = "%";
 Blockly.Msg.IMAGE_ONCLICK_DO = "is clicked ";
+Blockly.Msg.IMAGE_ONLOAD_DO = "is loaded";
 Blockly.Msg.IMAGE_ONCLICK_DO_IF = "if clicked-state is equal to true";
 Blockly.Msg.BOUNDARY_COLLISION_DO = "collision with sides of screen";
 Blockly.Msg.TABLE_TD_IMAGE_MOVE = "Move to";
