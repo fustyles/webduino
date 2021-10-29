@@ -747,7 +747,9 @@
 		</category>  
 		  
 		  
-		<category id="france21" name="serveresp32cam">   
+		<category id="france21" name="serveresp32cam">
+			  <block type="esp32_cam_tfjs_cocossd">
+			  </block>
 			  <block type="esp32_cam_myfirmata" id="99">
 				<value name="ssid">
 				  <block type="text" id="100">
@@ -826,64 +828,12 @@
 						  <block type="servermodule_cmd" id="115" inline="true">
 							<value name="text">
 							  <block type="text" id="116">
-								<field name="TEXT">led</field>
+								<field name="TEXT">result</field>
 							  </block>
 							</value>
 						  </block>
 						</value>
 						<statement name="DO0">
-						  <block type="servermodule_pinwrite" id="119" inline="true">
-							<value name="pin">
-							  <block type="servermodule_parameter_variable" id="120">
-								<field name="parameter">P1</field>
-								<field name="type">toInt()</field>
-							  </block>
-							</value>
-							<value name="val">
-							  <block type="servermodule_parameter_variable" id="121">
-								<field name="parameter">P2</field>
-								<field name="type">toInt()</field>
-							  </block>
-							</value>
-							<next>
-							  <block type="controls_if" id="122">
-								<mutation else="1"></mutation>
-								<value name="IF0">
-								  <block type="logic_compare" id="123" inline="true">
-									<field name="OP">EQ</field>
-									<value name="A">
-									  <block type="servermodule_parameter_get" id="124">
-										<field name="parameter">P2</field>
-									  </block>
-									</value>
-									<value name="B">
-									  <block type="text" id="125">
-										<field name="TEXT">1</field>
-									  </block>
-									</value>
-								  </block>
-								</value>
-								<statement name="DO0">
-								  <block type="servermodule_feedback" id="126" inline="true">
-									<value name="text">
-									  <block type="text" id="127">
-										<field name="TEXT">on</field>
-									  </block>
-									</value>
-								  </block>
-								</statement>
-								<statement name="ELSE">
-								  <block type="servermodule_feedback" id="128" inline="true">
-									<value name="text">
-									  <block type="text" id="129">
-										<field name="TEXT">off</field>
-									  </block>
-									</value>
-								  </block>
-								</statement>
-							  </block>
-							</next>
-						  </block>
 						</statement>
 						<statement name="ELSE">
 						  <block type="servermodule_feedback" id="130" inline="true">
@@ -1247,6 +1197,23 @@
 			  </block>
 			  <block type="servermodule_parameter_variable_urldecode">
 			  </block>
+			  <block type="servermodule_parameter_set_address3">
+				<value name="P1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P2">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="P3">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
+			  </block>			  
 			  <block type="servermodule_parameter_set_address2">
 				<value name="cmd">
 				  <block type="text">

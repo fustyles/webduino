@@ -853,7 +853,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'}\n';
 
 	Blockly.Arduino.setups_.manual_add = '\n'+
-			'  Serial.begin(9600);\n'+ 
+			'  Serial.begin(115200);\n'+ 
 			'  delay(10);\n'+ 
 			'  //WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
 			'  WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+ 
@@ -891,9 +891,8 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'\n';
 	
 
-  Blockly.Arduino.definitions_.define_linkit_getCommand = '\n'+
-			'void getCommand() {\n'+
-			'  Command="";cmd="";P1="";P2="";P3="";P4="";P5="";P6="";P7="";P8="";P9="";\n'+
+			var getCommand = ''+
+			'Command="";cmd="";P1="";P2="";P3="";P4="";P5="";P6="";P7="";P8="";P9="";\n'+
 			'  ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;\n'+
 			'  WiFiClient client = server.available();\n'+
 			'  if (client) { \n'+
@@ -958,10 +957,9 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'    }\n'+
 			'    delay(1);\n'+
 			'    client.stop();\n'+
-			'  }\n'+
-			'}';
+			'  }';
 
-  code = '\n  getCommand();\n'+ statements_loop +'\n';
+  code = '\n  '+getCommand+'\n'+ statements_loop +'\n';
   return code;
 };
 
@@ -1010,7 +1008,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'void ExecuteCommand() {\n'+
 			'  Serial.println("");\n'+
 			'  //Serial.println("Command: "+Command);\n'+
-			'  Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
+			'  //Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
 			'  Serial.println("");\n'+
 			'  if (cmd=="ip") {\n'+
 			'    Feedback="AP IP: "+WiFi.softAPIP().toString();\n'+
@@ -1116,7 +1114,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 
 	Blockly.Arduino.setups_.manual_add = '\n'+
 			'  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n'+
-			'  Serial.begin(9600);\n'+
+			'  Serial.begin(115200);\n'+
 			'  Serial.setDebugOutput(true);\n'+
 			'  Serial.println();\n'+
 			'  camera_config_t config;\n'+
@@ -1207,8 +1205,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'\n';
 	
 
-  Blockly.Arduino.definitions_.define_linkit_getCommand = '\n'+
-			'void getCommand() {\n'+
+			var getCommand = '\n'+
 			'  Command="";cmd="";P1="";P2="";P3="";P4="";P5="";P6="";P7="";P8="";P9="";\n'+
 			'  ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;\n'+
 			'  WiFiClient client_cam = server.available();\n'+
@@ -1308,10 +1305,9 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'    }\n'+
 			'    delay(1);\n'+
 			'    client_cam.stop();\n'+
-			'  }\n'+
-			'}';
+			'  }';
 			
-    code = '\n  getCommand();\n'+ statements_loop +'\n';
+    code = '\n  '+getCommand+'\n'+ statements_loop +'\n';
     return code;
 };
 
@@ -6032,4 +6028,23 @@ Blockly.Arduino.webbit_mooncar_ir_remote_send=function(){
   } else {
     return"irsend.sendRC6(x2i("+b+"), 20);\n"
   }
+};
+
+Blockly.Arduino['esp32_cam_tfjs_cocossd'] = function(block) {
+	var object=this.getFieldValue("object");
+	var score=this.getFieldValue("score");
+	var statements_javascript = Blockly.Arduino.statementToCode(block, 'javascript');
+	
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js'></script><script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js''></script><script src='https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0','></script><script src='https://fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/LinkIt7697/France/coco-ssd.js'></script></head><body><img id='ShowImage' style='display:none' crossorigin='anonymous'><canvas id='canvas'></canvas><span id='object' style='display:none'>"+object+"</span><span id='score' style='display:none'>"+score+"</span><script>"+statements_javascript.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null")+"</script></body></html>\"";
+
+  return [code,Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['servermodule_parameter_set_address3'] = function (block) {
+  var cmd = this.getFieldValue("cmd");
+  var P1 = Blockly.Arduino.valueToCode(block, 'P1', Blockly.Arduino.ORDER_ATOMIC);
+  var P2 = Blockly.Arduino.valueToCode(block, 'P2', Blockly.Arduino.ORDER_ATOMIC); 
+  var P3 = Blockly.Arduino.valueToCode(block, 'P3', Blockly.Arduino.ORDER_ATOMIC);   
+  var code = '"?"+String('+cmd+')+"="+String('+P1+')+";"+String('+P2+')+";"+String('+P2+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
 };

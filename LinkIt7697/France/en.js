@@ -34,6 +34,7 @@ Blockly.Msg.SERVERMODULE_SETUP_SHOW = "setup";
 Blockly.Msg.SERVERMODULE_LOOP_SHOW = "loop";
 Blockly.Msg.ESP32_SERVERMODULE_SHOW = "ESP32 connect to Wi-Fi AP";
 Blockly.Msg.ESP32_CAM_SERVERMODULE_SHOW = "ESP32-CAM connect to Wi-Fi AP";
+Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_SHOW = "tfjs coco-ssd Page";
 Blockly.Msg.ESP32_DIGITALWRITE_SHOW = "ESP32 digitalWrite Pin";
 Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW = "value";
 Blockly.Msg.ESP32_DIGITALWRITE_HIGH_SHOW = "HIGH";
@@ -725,3 +726,6 @@ Blockly.Msg.FRANCEFU_WS2812_LEDS = "Leds";
 Blockly.Msg.FRANCEFU_WS2812_LEDS_N = "Number[1~8]";
 Blockly.Msg.FRANCEFU_WS2812_BRIGHTNESS = "WS2812 Set Brightness (0~255)";
 Blockly.Msg.FRANCEFU_WS2812_CLEAR = "WS2812 Clear Leds";
+
+Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_OBJECT_SHOW = "Object";
+Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_SCORE_SHOW = "Score";

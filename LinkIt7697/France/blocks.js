@@ -7726,7 +7726,7 @@ Blockly.Blocks.webbit_mooncar_ir_remote_read_type={init:function(){
   this.setInputsInline(!0);
   this.setOutput(!0,null);
   this.setColour(10);   
-}
+	}
 };
 Blockly.Blocks.webbit_mooncar_ir_remote_send_pin = {
   init: function() {
@@ -7753,4 +7753,163 @@ Blockly.Blocks.webbit_mooncar_ir_remote_send={init:function(){
   this.setNextStatement(!0,null);
   this.setColour(10);  
 }
+};
+
+Blockly.Blocks['esp32_cam_tfjs_cocossd'] = {
+  init: function() {
+    this.appendDummyInput()
+      .appendField(Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_SHOW);
+	this.appendDummyInput()
+      .appendField(Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_OBJECT_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["person","person"],	  
+		["airplane","airplane"],
+		["apple","apple"],
+		["backpack","backpack"],
+		["banana","banana"],
+		["baseball bat","baseball bat"],
+		["baseball glove","baseball glove"],
+		["bear","bear"],
+		["bed","bed"],
+		["bench","bench"],
+		["bicycle","bicycle"],
+		["bird","bird"],
+		["boat","boat"],
+		["book","book"],
+		["bottle","bottle"],
+		["bowl","bowl"],
+		["broccoli","broccoli"],
+		["bus","bus"],
+		["cake","cake"],
+		["car","car"],
+		["carrot","carrot"],
+		["cat","cat"],
+		["cell phone","cell phone"],
+		["chair","chair"],
+		["clock","clock"],
+		["couch","couch"],
+		["cow","cow"],
+		["cup","cup"],
+		["dining table","dining table"],
+		["dog","dog"],
+		["donut","donut"],
+		["elephant","elephant"],
+		["fire hydrant","fire hydrant"],
+		["fork","fork"],
+		["frisbee","frisbee"],
+		["giraffe","giraffe"],
+		["hair drier","hair drier"],
+		["handbag","handbag"],
+		["horse","horse"],
+		["hot dog","hot dog"],
+		["keyboard","keyboard"],
+		["kite","kite"],
+		["knife","knife"],
+		["laptop","laptop"],
+		["microwave","microwave"],
+		["motorcycle","motorcycle"],
+		["mouse","mouse"],
+		["orange","orange"],
+		["oven","oven"],
+		["parking meter","parking meter"],
+		["pizza","pizza"],
+		["potted plant","potted plant"],
+		["refrigerator","refrigerator"],
+		["remote","remote"],
+		["sandwich","sandwich"],
+		["scissors","scissors"],
+		["sheep","sheep"],
+		["sink","sink"],
+		["skateboard","skateboard"],
+		["skis","skis"],
+		["snowboard","snowboard"],
+		["spoon","spoon"],
+		["sports ball","sports ball"],
+		["stop sign","stop sign"],
+		["suitcase","suitcase"],
+		["surfboard","surfboard"],
+		["teddy bear","teddy bear"],
+		["tennis racket","tennis racket"],
+		["tie","tie"],
+		["toaster","toaster"],
+		["toilet","toilet"],
+		["toothbrush","toothbrush"],
+		["traffic light","traffic light"],
+		["train","train"],
+		["truck","truck"],
+		["tv","tv"],
+		["umbrella","umbrella"],
+		["vase","vase"],
+		["wine glass","wine glass"],
+		["zebra","zebra"]
+		]), "object"); 
+	this.appendDummyInput()
+      .appendField(Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_SCORE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["0","0"],
+		["0.1","0.1"],
+		["0.2","0.2"],
+		["0.3","0.3"],
+		["0.4","0.4"],
+		["0.5","0.5"],
+		["0.6","0.6"],
+		["0.7","0.7"],
+		["0.8","0.8"],
+		["0.9","0.9"],		
+		["1","0.999"]
+	]), "score");
+    this.appendDummyInput()
+		.appendField(Blockly.Msg.SERVERMODULE_JAVASCRIPT_SHOW);
+    this.appendStatementInput("javascript")
+        .setCheck(null);
+	this.setInputsInline(false);
+    this.setOutput(true, null);  
+    this.setColour(20)
+	}
+};
+
+
+
+Blockly.Blocks['servermodule_parameter_set_address3'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_ADDRESS_SHOW);
+	this.appendDummyInput()
+      .appendField("cmd")
+      .appendField(new Blockly.FieldDropdown([
+		["ip(0)","ip"],
+		["mac(0)","mac"],
+		["restart(0)","restart"],
+		["digitalwrite(2)","digitalwrite"],
+		["digitalread(2)","digitalread"],
+		["analogwrite(1)","analogwrite"],
+		["analogread(1)","analogread"],
+		["touchread(1)","touchread"],
+		["servo(2)","servo"],		
+		["relay(1)","relay"],
+		["getstill(0)","getstill"],		
+		["flash(1)","flash"],		
+		["framesize(1)","framesize"],
+		["quality(1)","quality"],
+		["contrast(1)","contrast"],
+		["brightness(1)","brightness"],
+		["saturation(1)","saturation"],
+		["special_effect(1)","special_effect"],
+		["hmirror(1)","hmirror"],
+		["vflip(1)","vflip"]
+		]), "cmd"); 
+    this.appendValueInput("P1")
+        .appendField("P1")	
+        .setCheck(null); 
+    this.appendValueInput("P2")
+        .appendField("P2")	
+        .setCheck(null);
+    this.appendValueInput("P3")
+        .appendField("P3")	
+        .setCheck(null);		
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);
+	this.setHelpUrl("https://github.com/fustyles/Arduino/blob/master/ESP32-CAM_CameraWebServer_FakeStream/ESP32-CAM_CameraWebServer_FakeStream.ino");	
+  }
 };
