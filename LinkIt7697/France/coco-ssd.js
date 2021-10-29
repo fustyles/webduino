@@ -1,7 +1,6 @@
-window.onload = function () {
-	addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js',1);
-	addScript('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js',1);
-	addScript('https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0',0);
+addScript('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js',1);
+addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js',1);
+addScript('https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0',0);
 
 	function addScript(url, pos) {
 		var s=document.createElement('script');
@@ -12,7 +11,8 @@ window.onload = function () {
 		else
 			document.body.append(s);		
 	}
-	
+
+window.onload = function () {
 	document.write('<img id="ShowImage" style="display:none" crossorigin="anonymous"><canvas id="canvas"></canvas>');
 	document.write('<span id="object" style="display:none"></span><span id="score" style="display:none"></span>');
 	var ShowImage = document.getElementById('ShowImage');
