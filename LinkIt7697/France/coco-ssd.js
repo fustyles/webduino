@@ -1,7 +1,7 @@
 addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js',1);
 addScript('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js',1);
 addScript('https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0',1);
-document.write('<img id="ShowImage" style="display:none" crossorigin="anonymous"><canvas id="canvas"></canvas><span id="object" style="display:none"></span><span id="score" style="display:none"></span>');
+document.write('<img id="ShowImage" style="display:none" crossorigin="anonymous"><canvas id="canvas"></canvas>');
 
 function addScript(url, pos) {
 	var s=document.createElement('script');
