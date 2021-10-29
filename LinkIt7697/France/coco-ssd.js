@@ -14,8 +14,6 @@ function addScript(url, pos) {
 }
 
 window.onload = function () {
-	console.log(object);
-	console.log(score);
 	document.write('<img id="ShowImage" style="display:none" crossorigin="anonymous"><canvas id="canvas"></canvas>');
 	document.write('<span id="object" style="display:none">person</span><span id="score" style="display:none">0.8</span>');
 	var ShowImage = document.getElementById('ShowImage');
