@@ -41,13 +41,19 @@ window.onload = function () {
 	function DetectImage() {
 	  Model.detect(canvas).then(Predictions => {    
 		var s = (canvas.width>canvas.height)?canvas.width:canvas.height;
-		if (Predictions.length>0) {
+		if (Predictions.length>0) {  
+		    var count = 0;
+		    for (var j=0;j<Predictions.length;j++) {
+			    if (Predictions[j].class==object.innerHTML&&Number(Predictions[j].score)>=Number(score.innerHTML)) {
+				count++;    
+			    }
+		    }
 		    for (var i=0;i<Predictions.length;i++) {
 			    console.log(Predictions[i].class);
 			    console.log(object.innerHTML);
 			    console.log(Number(Predictions[i].score));
 			    console.log(Number(score.innerHTML));
-				//if (Predictions[i].class==object.innerHTML&&Number(Predictions[i].score)>=Number(score.innerHTML)) {
+				if (Predictions[i].class==object.innerHTML&&Number(Predictions[i].score)>=Number(score.innerHTML)) {
 					const x = Predictions[i].bbox[0];
 					const y = Predictions[i].bbox[1];
 					const width = Predictions[i].bbox[2];
@@ -61,10 +67,10 @@ window.onload = function () {
 					context.fillStyle = "yellow";
 					context.font = Math.round(s/30) + "px Arial";
 					context.fillText(Predictions[i].class, x, y);
-					var result = Predictions[i].class+";"+Math.round(Predictions[i].score*100)+";"+Math.round(x)+";"+Math.round(y)+";"+Math.round(width)+";"+Math.round(height)+";"+Predictions.length;
+					var result = Predictions[i].class+";"+Math.round(Predictions[i].score*100)+";"+Math.round(x)+";"+Math.round(y)+";"+Math.round(width)+";"+Math.round(height)+";"+count;
 					console.log(document.location.origin+'/?result='+result+';stop');
 			    		$.ajax({url: document.location.origin+'/?result='+result+';stop', async: false});					
-				//}
+				}
 		    }
 		}
 		
