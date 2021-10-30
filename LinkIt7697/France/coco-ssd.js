@@ -43,6 +43,10 @@ window.onload = function () {
 		var s = (canvas.width>canvas.height)?canvas.width:canvas.height;
 		if (Predictions.length>0) {
 		    for (var i=0;i<Predictions.length;i++) {
+			    console.log(Predictions[i].class);
+			    console.log(object.innerHTML);
+			    console.log(Number(Predictions[i].score));
+			    console.log(Number(score.innerHTML));
 				//if (Predictions[i].class==object.innerHTML&&Number(Predictions[i].score)>=Number(score.innerHTML)) {
 					const x = Predictions[i].bbox[0];
 					const y = Predictions[i].bbox[1];
