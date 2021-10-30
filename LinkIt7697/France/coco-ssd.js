@@ -43,7 +43,7 @@ window.onload = function () {
 		var s = (canvas.width>canvas.height)?canvas.width:canvas.height;
 		if (Predictions.length>0) {
 		    for (var i=0;i<Predictions.length;i++) {
-				if (Predictions[i].class==object.innerHTML&&Number(Predictions[i].score)>=Number(score.innerHTML)) {
+				//if (Predictions[i].class==object.innerHTML&&Number(Predictions[i].score)>=Number(score.innerHTML)) {
 					const x = Predictions[i].bbox[0];
 					const y = Predictions[i].bbox[1];
 					const width = Predictions[i].bbox[2];
@@ -59,7 +59,7 @@ window.onload = function () {
 					context.fillText(Predictions[i].class, x, y);
 					var result = Predictions[i].class+";"+Math.round(Predictions[i].score*100)+";"+Math.round(x)+";"+Math.round(y)+";"+Math.round(width)+";"+Math.round(height);
 					$.ajax({url: document.location.origin+'/?result='+result+';stop', async: false});					
-				}
+				//}
 		    }
 		}
 		
