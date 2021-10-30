@@ -28,8 +28,8 @@ Blockly.Blocks.main={
 		  return;
 		}
 		
-		//var code = Blockly.Arduino.workspaceToCode();			
-		//editor.setValue(code);
+		var code = Blockly.Arduino.workspaceToCode();			
+		editor.setValue(code);		
 		
 		var blocks = this.workspace.getBlocksByType("main");
 		if (blocks.length>1) {

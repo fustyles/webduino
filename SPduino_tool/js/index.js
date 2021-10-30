@@ -543,8 +543,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button_updateGenerate').onclick = function () {
 		displayTab('category_content');
 		var code = document.getElementById('arduino_function').value;
+		console.log(code);
 		try {
 			eval(code.replace(/JavaScript/g,"Arduino"));
+			var code = Blockly.Arduino.workspaceToCode();			
+			editor.setValue(code);
 		} catch (e) {
 			if (e instanceof SyntaxError) {
 				alert(e.message);
@@ -605,12 +608,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		};
 		$("#dialog_toolbox").dialog(opt).dialog("open");
 		event.preventDefault();
-	}
-	
-	setInterval(function(){
-		var code = Blockly.Arduino.workspaceToCode();			
-		editor.setValue(code);
-	}, 500);	
+	}	
 	
 	//工具箱目錄顯示選單內容
 	function toolboxCategory() {
