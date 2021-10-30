@@ -61,7 +61,7 @@ window.onload = function () {
 					context.fillStyle = "yellow";
 					context.font = Math.round(s/30) + "px Arial";
 					context.fillText(Predictions[i].class, x, y);
-					var result = Predictions[i].class+";"+Math.round(Predictions[i].score*100)+";"+Math.round(x)+";"+Math.round(y)+";"+Math.round(width)+";"+Math.round(height);
+					var result = Predictions[i].class+";"+Math.round(Predictions[i].score*100)+";"+Math.round(x)+";"+Math.round(y)+";"+Math.round(width)+";"+Math.round(height)+";"+Predictions.length;
 					console.log(document.location.origin+'/?result='+result+';stop');
 			    		$.ajax({url: document.location.origin+'/?result='+result+';stop', async: false});					
 				//}
