@@ -49,29 +49,29 @@ window.onload = function () {
 			    }
 		    }
 		    for (var i=0;i<Predictions.length;i++) {
+			    const x = Predictions[i].bbox[0];
+			    const y = Predictions[i].bbox[1];
+			    const width = Predictions[i].bbox[2];
+			    const height = Predictions[i].bbox[3];
+			    context.lineWidth = Math.round(s/200);
+			    context.strokeStyle = "#00FFFF";
+			    context.beginPath();
+			    context.rect(x, y, width, height);
+			    context.stroke(); 
+			    context.lineWidth = "3";
+			    context.fillStyle = "yellow";
+			    context.font = Math.round(s/30) + "px Arial";
+			    context.fillText(Predictions[i].class, x, y);
+			    
 			    console.log(Predictions[i].class);
 			    console.log(object.innerHTML);
 			    console.log(Number(Predictions[i].score));
 			    console.log(Number(score.innerHTML));
-				
-					const x = Predictions[i].bbox[0];
-					const y = Predictions[i].bbox[1];
-					const width = Predictions[i].bbox[2];
-					const height = Predictions[i].bbox[3];
-					context.lineWidth = Math.round(s/200);
-					context.strokeStyle = "#00FFFF";
-					context.beginPath();
-					context.rect(x, y, width, height);
-					context.stroke(); 
-					context.lineWidth = "3";
-					context.fillStyle = "yellow";
-					context.font = Math.round(s/30) + "px Arial";
-					context.fillText(Predictions[i].class, x, y);
-			    	if (Predictions[i].class==object.innerHTML&&Number(Predictions[i].score)>=Number(score.innerHTML)) {
-					var result = Predictions[i].class+";"+Math.round(Predictions[i].score*100)+";"+Math.round(x)+";"+Math.round(y)+";"+Math.round(width)+";"+Math.round(height)+";"+count;
-					console.log(document.location.origin+'/?result='+result+';stop');
-			    		$.ajax({url: document.location.origin+'/?result='+result+';stop', async: false});					
-				}
+			    if (Predictions[i].class==object.innerHTML&&Number(Predictions[i].score)>=Number(score.innerHTML)) {
+				var result = Predictions[i].class+";"+Math.round(Predictions[i].score*100)+";"+Math.round(x)+";"+Math.round(y)+";"+Math.round(width)+";"+Math.round(height)+";"+count;
+				console.log(document.location.origin+'/?result='+result+';stop');
+			    	$.ajax({url: document.location.origin+'/?result='+result+';stop', async: false});					
+			    }
 		    }
 		}
 		
