@@ -53,7 +53,7 @@ window.onload = function () {
 			    console.log(object.innerHTML);
 			    console.log(Number(Predictions[i].score));
 			    console.log(Number(score.innerHTML));
-				if (Predictions[i].class==object.innerHTML&&Number(Predictions[i].score)>=Number(score.innerHTML)) {
+				
 					const x = Predictions[i].bbox[0];
 					const y = Predictions[i].bbox[1];
 					const width = Predictions[i].bbox[2];
@@ -67,6 +67,7 @@ window.onload = function () {
 					context.fillStyle = "yellow";
 					context.font = Math.round(s/30) + "px Arial";
 					context.fillText(Predictions[i].class, x, y);
+			    	if (Predictions[i].class==object.innerHTML&&Number(Predictions[i].score)>=Number(score.innerHTML)) {
 					var result = Predictions[i].class+";"+Math.round(Predictions[i].score*100)+";"+Math.round(x)+";"+Math.round(y)+";"+Math.round(width)+";"+Math.round(height)+";"+count;
 					console.log(document.location.origin+'/?result='+result+';stop');
 			    		$.ajax({url: document.location.origin+'/?result='+result+';stop', async: false});					
