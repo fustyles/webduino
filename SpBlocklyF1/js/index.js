@@ -514,7 +514,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//新增初始化積木
 	function newFile() {
-		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="initializes_setup" id="0" x="100" y="50" deletable="false" editable="false"><next><block type="initializes_loop" id="1" deletable="false"  editable="false"></block></next></block></xml>');
+		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="initializes_setup" id="0" x="100" y="50"><next><block type="initializes_loop" id="1"></block></next></block></xml>');
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
 	}
