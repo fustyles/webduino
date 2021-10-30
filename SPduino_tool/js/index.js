@@ -607,6 +607,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		event.preventDefault();
 	}
 	
+	setInterval(function(){
+		var code = Blockly.Arduino.workspaceToCode();			
+		editor.setValue(code);
+	}, 500);	
+	
 	//工具箱目錄顯示選單內容
 	function toolboxCategory() {
 		var categorymenu = '<table width="580">';
