@@ -7,6 +7,7 @@ window.onload = function () {
 	var myTimer;
 	var restartCount=0;
 	var Model;
+	var lastCount = 0;
 
 	cocoSsd.load().then(cocoSsd_Model => {
 		Model = cocoSsd_Model;
@@ -41,8 +42,8 @@ window.onload = function () {
 	function DetectImage() {
 	  Model.detect(canvas).then(Predictions => {    
 		var s = (canvas.width>canvas.height)?canvas.width:canvas.height;
+		var count = 0;
 		if (Predictions.length>0) {  
-		    var count = 0;
 		    for (var j=0;j<Predictions.length;j++) {
 			    if (Predictions[j].class==object.innerHTML&&Number(Predictions[j].score)>=Number(score.innerHTML)) {
 				count++;    
@@ -67,7 +68,13 @@ window.onload = function () {
 				var result = Predictions[i].class+";"+Math.round(Predictions[i].score*100)+";"+Math.round(x)+";"+Math.round(y)+";"+Math.round(width)+";"+Math.round(height)+";"+count;
 				$.ajax({url: document.location.origin+'/?result='+result+';stop', async: false});					
 			    }
-		    }
+		   }
+		   lastCount = count;
+		}
+		  
+		if (lastCount!=0&&count==0) {
+			lastCount = count;
+			$.ajax({url: document.location.origin+'/?result=;;;;;;0;stop', async: false});
 		}
 		
 		try { 
