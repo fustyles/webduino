@@ -852,9 +852,8 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'}\n'+ 
 			'}\n';
 
+	Blockly.Arduino.setups_["setup_serial_9600"]="Serial.begin(115200);\ndelay(10);\n";
 	Blockly.Arduino.setups_.manual_add = '\n'+
-			'  Serial.begin(115200);\n'+ 
-			'  delay(10);\n'+ 
 			'  //WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
 			'  WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+ 
 			'  delay(1000);\n'+ 
@@ -1111,10 +1110,9 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			statements_executecommand.replace(/\n/g,"\n  ")+
 			'}\n'+ 
 			'}\n';
-
+	
+	Blockly.Arduino.setups_["setup_serial_9600"]="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\nSerial.begin(115200);\ndelay(10);\n";
 	Blockly.Arduino.setups_.manual_add = '\n'+
-			'  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n'+
-			'  Serial.begin(115200);\n'+
 			'  Serial.setDebugOutput(true);\n'+
 			'  Serial.println();\n'+
 			'  camera_config_t config;\n'+
