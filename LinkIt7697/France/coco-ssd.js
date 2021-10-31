@@ -7,7 +7,7 @@ window.onload = function () {
 	var myTimer;
 	var restartCount=0;
 	var Model;
-	var lastCount = 0;
+	var lastCount = -1;
 
 	cocoSsd.load().then(cocoSsd_Model => {
 		Model = cocoSsd_Model;
@@ -72,9 +72,9 @@ window.onload = function () {
 		}
 		  
 		if (lastCount!=0&&count==0) {
-			lastCount = count;
 			$.ajax({url: document.location.origin+'/?result=;;;;;;0;stop', async: false});
 		}
+		lastCount = count;
 		
 		try { 
 		  document.createEvent("TouchEvent");
