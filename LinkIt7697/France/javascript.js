@@ -793,10 +793,10 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 
   Blockly.Arduino.definitions_.define_linkit_ExecuteCommand = '\n'+
 			'void ExecuteCommand() {\n'+
-			'  Serial.println("");\n'+
+			'  //Serial.println("");\n'+
 			'  //Serial.println("Command: "+Command);\n'+
-			'  Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
-			'  Serial.println("");\n'+
+			'  //Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
+			'  //Serial.println("");\n'+
 			'  if (cmd=="ip") {\n'+
 			'    Feedback=WiFi.localIP().toString();\n'+
 			'  }\n'+
@@ -1005,10 +1005,10 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 
   Blockly.Arduino.definitions_.define_linkit_ExecuteCommand = '\n'+
 			'void ExecuteCommand() {\n'+
-			'  Serial.println("");\n'+
+			'  //Serial.println("");\n'+
 			'  //Serial.println("Command: "+Command);\n'+
 			'  //Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
-			'  Serial.println("");\n'+
+			'  //Serial.println("");\n'+
 			'  if (cmd=="ip") {\n'+
 			'    Feedback="AP IP: "+WiFi.softAPIP().toString();\n'+
 			'    Feedback+="<br>";\n'+
@@ -1326,9 +1326,9 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 
 	Blockly.Arduino.definitions_.define_esp32_ExecuteCommand = '\n'+
 			'void ExecuteCommand() {\n'+
-			'  Serial.println("");\n'+
-			'  Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
-			'  Serial.println("");\n'+
+			'  //Serial.println("");\n'+
+			'  //Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
+			'  //Serial.println("");\n'+
 			'  if (cmd=="yourcmd") {\n'+
 			'    //you can do anything\n'+
 			'  }\n'+
