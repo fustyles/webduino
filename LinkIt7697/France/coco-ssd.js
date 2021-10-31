@@ -69,7 +69,6 @@ window.onload = function () {
 				$.ajax({url: document.location.origin+'/?result='+result+';stop', async: false});					
 			    }
 		   }
-		   lastCount = count;
 		}
 		  
 		if (lastCount!=0&&count==0) {
