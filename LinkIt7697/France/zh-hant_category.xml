@@ -22,7 +22,8 @@
 <category><name>colorsensor</name><replace>顏色感測器</replace></category>
 <category><name>irread</name><replace>紅外線接收器</replace></category>
 <category><name>irsend</name><replace>紅外線發送器</replace></category>
-<category><name>io</name><replace>I/O腳位控制</replace></category>
+<category><name>io</name><replace>I/O 引腳</replace></category>
+<category><name>SERIAL</name><replace>序列埠</replace></category>
 <category><name>MLX90614</name><replace>MLX90614</replace></category>
 <category><name>catWebbit</name><replace>Webbit</replace></category>
 <category><name>catWebbitBoard</name><replace>Web:bit</replace></category>

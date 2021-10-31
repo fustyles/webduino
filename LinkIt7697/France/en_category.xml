@@ -23,6 +23,7 @@
 <category><name>irread</name><replace>IR Read</replace></category>
 <category><name>irsend</name><replace>IR Send</replace></category>
 <category><name>io</name><replace>I/O</replace></category>
+<category><name>SERIAL</name><replace>Serial</replace></category>
 <category><name>MLX90614</name><replace>MLX90614</replace></category>
 <category><name>catWebbit</name><replace>Webbit</replace></category>
 <category><name>catWebbitBoard</name><replace>Web:bit</replace></category>

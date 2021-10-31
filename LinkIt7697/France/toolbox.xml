@@ -63,7 +63,71 @@
 		</value>
 	  </block>
 	</category>
-	<sep id="category_sep"></sep>	
+	<category id="category_fu_serial" name="SERIAL">
+		<block type="fu_serial_begin">
+			<value name="baudrate">
+				<shadow type="math_number">
+					<field name="NUM">9600</field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_begin_config">
+			<field name="config">SERIAL_8N1</field>
+			<value name="baudrate">
+				<shadow type="math_number">
+					<field name="NUM">9600</field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_ready"></block>
+		<block type="fu_serial_end"></block>
+		<block type="fu_serial_print">
+			<value name="data">
+				<shadow type="text">
+					<field name="TEXT"></field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_print_format">
+			<field name="format">BIN</field>
+			<value name="data">
+				<shadow type="math_number">
+					<field name="NUM">0</field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_println">
+			<value name="data">
+				<shadow type="text">
+					<field name="TEXT"></field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_println_format">
+			<field name="format">BIN</field>
+			<value name="data">
+				<shadow type="math_number">
+					<field name="NUM">0</field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_write">
+			<value name="data">
+				<shadow type="math_number">
+					<field name="NUM">0</field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_write_format">
+			<field name="format">BIN</field>
+			<value name="data">
+				<shadow type="math_number">
+					<field name="NUM">0</field>
+				</shadow>
+			</value>
+		</block>	
+	</category>	
+	<sep id="category_sep"></sep>
 	<category id="france9" name="buzzer">
 		<block type="esp32_buzzer">
 			<value name="pin">
@@ -728,18 +792,14 @@
 				  </block>
 				</statement>
 				<statement name="setup">
-				  <block type="linenotify_esp32_no" id="132">
+				  <block type="linenotify_http" id="34" inline="true">
 					<value name="linenotify_token">
-					  <block type="text" id="133">
+					  <block type="text" id="35">
 						<field name="TEXT"></field>
 					  </block>
 					</value>
 					<value name="linenotify_msg">
-					  <block type="linenotify_text" id="134">
-						<value name="value_text">
-						  <block type="linkit_wifi_ip_address" id="135"></block>
-						</value>
-					  </block>
+					  <block type="linkit_wifi_ip_address" id="36"></block>
 					</value>
 				  </block>
 				</statement>

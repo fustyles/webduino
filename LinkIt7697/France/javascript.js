@@ -1111,7 +1111,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'}\n'+ 
 			'}\n';
 	
-	Blockly.Arduino.setups_["setup_serial"]="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin(115200);\n  delay(10);\n";
+	Blockly.Arduino.setups_["setup_serial"]="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin(115200);\n  delay(10);";
 	Blockly.Arduino.setups_.manual_add = '\n'+
 			'  Serial.setDebugOutput(true);\n'+
 			'  Serial.println();\n'+
@@ -1326,9 +1326,9 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 
 	Blockly.Arduino.definitions_.define_esp32_ExecuteCommand = '\n'+
 			'void ExecuteCommand() {\n'+
-			'  //Serial.println("");\n'+
-			'  //Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
-			'  //Serial.println("");\n'+
+			'  Serial.println("");\n'+
+			'  Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
+			'  Serial.println("");\n'+
 			'  if (cmd=="yourcmd") {\n'+
 			'    //you can do anything\n'+
 			'  }\n'+
@@ -6045,4 +6045,67 @@ Blockly.Arduino['servermodule_parameter_set_address3'] = function (block) {
   var P3 = Blockly.Arduino.valueToCode(block, 'P3', Blockly.Arduino.ORDER_ATOMIC);   
   var code = '"?"+String('+cmd+')+"="+String('+P1+')+";"+String('+P2+')+";"+String('+P2+')';
   return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+//SERIAL
+Blockly.Arduino['fu_serial_begin'] = function(block) {
+  var value_baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
+  Blockly.Arduino.setups_['Serial.begin'] = 'Serial.begin(%1);'.replace("%1", value_baudrate);
+  return '';
+};
+
+Blockly.Arduino['fu_serial_begin_config'] = function(block) {
+  var value_baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_config = block.getFieldValue('config');
+  Blockly.Arduino.setups_['Serial.begin'] = 'Serial.begin(%1, %2);'.replace("%1", value_baudrate).replace("%2", dropdown_config);
+  return '';
+};
+
+Blockly.Arduino['fu_serial_ready'] = function(block) {
+  var code = 'while (!Serial) {}\n';
+  return code;
+};
+
+Blockly.Arduino['fu_serial_end'] = function(block) {
+  var code = 'Serial.end();\n';
+  return code;
+};
+
+Blockly.Arduino['fu_serial_print'] = function(block) {
+  var value_data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'Serial.print(%1);\n'.replace("%1", value_data);
+  return code;
+};
+
+Blockly.Arduino['fu_serial_print_format'] = function(block) {
+  var value_data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_format = block.getFieldValue('format');
+  var code = 'Serial.print(%1, %2);\n'.replace("%1", value_data).replace("%2", dropdown_format);
+  return code;
+};
+
+Blockly.Arduino['fu_serial_println'] = function(block) {
+  var value_data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'Serial.println(%1);\n'.replace("%1", value_data);
+  return code;
+};
+
+Blockly.Arduino['fu_serial_println_format'] = function(block) {
+  var value_data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_format = block.getFieldValue('format');
+  var code = 'Serial.println(%1, %2);\n'.replace("%1", value_data).replace("%2", dropdown_format);
+  return code;
+};
+
+Blockly.Arduino['fu_serial_write'] = function(block) {
+  var value_data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'Serial.write(%1);\n'.replace("%1", value_data);
+  return code;
+};
+
+Blockly.Arduino['fu_serial_write_format'] = function(block) {
+  var value_data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_format = block.getFieldValue('format');
+  var code = 'Serial.write(%1, %2);\n'.replace("%1", value_data).replace("%2", dropdown_format);
+  return code;
 };
