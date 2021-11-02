@@ -37,7 +37,7 @@ Blockly.Blocks['fu_oled_initial'] = {
 Blockly.Blocks['fu_oled_sendBuffer'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.ALIGN_LEFT)
         .appendField("EZ+")
         .appendField("OLED")
         .appendField("開始繪圖(使用記憶體)");
@@ -55,7 +55,7 @@ Blockly.Blocks['fu_oled_sendBuffer'] = {
 Blockly.Blocks['fu_oled_nextPage'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.ALIGN_LEFT)
         .appendField("EZ+")
         .appendField("OLED")
         .appendField("開始繪圖");
@@ -73,7 +73,7 @@ Blockly.Blocks['fu_oled_nextPage'] = {
 Blockly.Blocks['fu_oled_clear'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.ALIGN_LEFT)
         .appendField("EZ+")
         .appendField("OLED")
         .appendField("清除畫面");
@@ -89,7 +89,7 @@ Blockly.Blocks['fu_oled_clear'] = {
 Blockly.Blocks['fu_oled_home'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.ALIGN_LEFT)
         .appendField("EZ+")
         .appendField("OLED")
         .appendField("游標回到原點");
@@ -102,10 +102,28 @@ Blockly.Blocks['fu_oled_home'] = {
   }
 };
 
+Blockly.Blocks['fu_oled_setFont'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("EZ+")
+        .appendField("OLED")
+        .appendField("設定字型");
+    this.appendValueInput("font")
+        .setCheck("String");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("");
+ this.setHelpUrl("https://github.com/olikraus/u8g2/wiki/fntlistall");
+  }
+};
+
 Blockly.Blocks['fu_oled_drawStr'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.ALIGN_LEFT)
         .appendField("EZ+")
         .appendField("OLED")
         .appendField("描繪文字");
@@ -127,10 +145,112 @@ Blockly.Blocks['fu_oled_drawStr'] = {
   }
 };
 
+Blockly.Blocks['fu_oled_drawGlyph'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("EZ+")
+        .appendField("OLED")
+        .appendField("描繪Unicode字符");
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");
+    this.appendValueInput("str")
+        .setCheck(null)
+        .appendField("值");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_oled_drawUTF8'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("EZ+")
+        .appendField("OLED")
+        .appendField("描繪UTF8編碼字符串");
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");
+    this.appendValueInput("str")
+        .setCheck(null)
+        .appendField("字符串");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_oled_PROGMEM'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("EZ+")
+        .appendField("OLED");
+    this.appendDummyInput()
+        .appendField("PROGMEM變數")	
+        .appendField(new Blockly.FieldVariable("logo"), "variable");
+    this.appendValueInput("PROGMEM")
+        .setCheck("String")
+        .appendField("圖形內容");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_oled_drawXBMP'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("EZ+")
+        .appendField("OLED")
+        .appendField("描繪圖像");
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");
+    this.appendValueInput("width")
+        .setCheck("Number")
+        .appendField("寬度");
+    this.appendValueInput("height")
+        .setCheck("Number")
+        .appendField("高度");
+    this.appendDummyInput()
+        .appendField("PROGMEM變數")	
+        .appendField(new Blockly.FieldTextInput("logo"), "bitmap");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['fu_oled_drawBox'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.ALIGN_LEFT)
         .appendField("EZ+")
         .appendField("OLED")
         .appendField("描繪實心方形");
@@ -155,10 +275,38 @@ Blockly.Blocks['fu_oled_drawBox'] = {
   }
 };
 
+Blockly.Blocks['fu_oled_drawFrame'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("EZ+")
+        .appendField("OLED")
+        .appendField("描繪空心方形");
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");
+    this.appendValueInput("width")
+        .setCheck("Number")
+        .appendField("寬度");
+    this.appendValueInput("height")
+        .setCheck("Number")
+        .appendField("高度");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['fu_oled_drawCircle'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.ALIGN_LEFT)
         .appendField("EZ+")
         .appendField("OLED")
         .appendField("描繪空心圓");
@@ -192,7 +340,7 @@ Blockly.Blocks['fu_oled_drawCircle'] = {
 Blockly.Blocks['fu_oled_drawDisc'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.ALIGN_LEFT)
         .appendField("EZ+")
         .appendField("OLED")
         .appendField("描繪實心圓");
@@ -226,7 +374,7 @@ Blockly.Blocks['fu_oled_drawDisc'] = {
 Blockly.Blocks['fu_oled_drawEllipse'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.ALIGN_LEFT)
         .appendField("EZ+")
         .appendField("OLED")
         .appendField("描繪空心橢圓");
@@ -263,7 +411,7 @@ Blockly.Blocks['fu_oled_drawEllipse'] = {
 Blockly.Blocks['fu_oled_drawFilledEllipse'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.ALIGN_LEFT)
         .appendField("EZ+")
         .appendField("OLED")
         .appendField("描繪實心橢圓");
@@ -288,6 +436,106 @@ Blockly.Blocks['fu_oled_drawFilledEllipse'] = {
 		["左下圓弧","U8G2_DRAW_LOWER_LEFT"], 
 		["右下圓弧","U8G2_DRAW_LOWER_RIGHT"]			
 	]), "option");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_oled_drawHLine'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("EZ+")
+        .appendField("OLED")
+        .appendField("描繪水平線");
+    this.appendValueInput("x0")
+        .setCheck("Number")
+        .appendField("起點x");
+    this.appendValueInput("y0")
+        .setCheck("Number")
+        .appendField("起點y");
+    this.appendValueInput("width")
+        .setCheck("Number")
+        .appendField("寬度");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_oled_drawVLine'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("EZ+")
+        .appendField("OLED")
+        .appendField("描繪垂直線");
+    this.appendValueInput("x0")
+        .setCheck("Number")
+        .appendField("起點x");
+    this.appendValueInput("y0")
+        .setCheck("Number")
+        .appendField("起點y");
+    this.appendValueInput("height")
+        .setCheck("Number")
+        .appendField("高度");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_oled_drawLine'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("EZ+")
+        .appendField("OLED")
+        .appendField("描繪斜直線");
+    this.appendValueInput("x0")
+        .setCheck("Number")
+        .appendField("起點x");
+    this.appendValueInput("y0")
+        .setCheck("Number")
+        .appendField("起點y");
+    this.appendValueInput("x1")
+        .setCheck("Number")
+        .appendField("終點x");
+    this.appendValueInput("y1")
+        .setCheck("Number")
+        .appendField("終點y");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_oled_drawPixel'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("EZ+")
+        .appendField("OLED")
+        .appendField("描繪像素點");
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
