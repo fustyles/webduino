@@ -63,6 +63,21 @@ Blockly.Arduino['fu_oled_drawStr'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['fu_oled_setCursor'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.setCursor('+value_x+','+value_y+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_Print'] = function(block) {
+  var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.Print('+value_str+');\n';
+  return code;
+};
+
 Blockly.Arduino['fu_oled_drawGlyph'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
