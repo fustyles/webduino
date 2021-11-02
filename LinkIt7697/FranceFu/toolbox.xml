@@ -67,21 +67,31 @@
 	
 	
 	<category id="oled" name="oled">
-    	<block type="fu_oled_initial">
+    <block type="fu_oled_initial">
 		<field name="font">u8g2_font_ncenB08_tr</field>		  
-    	</block>
-    	<block type="fu_oled_setPowerSave"></block>		
-    	<block type="fu_oled_sendBuffer"></block>
-    	<block type="fu_oled_nextPage"></block>		
-    	<block type="fu_oled_clear"></block>
-    	<block type="fu_oled_home"></block>	
+    </block>
+    <block type="fu_oled_setPowerSave"></block>	
+    <block type="fu_oled_sendBuffer"></block>
+    <block type="fu_oled_nextPage"></block>		
+    <block type="fu_oled_clear"></block>
+    <block type="fu_oled_home"></block>
+	<block type="fu_oled_setContrast">
+		<value name="value">
+		  <shadow type="math_number">
+			<field name="NUM">100</field>
+		  </shadow>
+		</value>
+	</block>
+	<block type="fu_oled_setBitmapMode"></block>	
 	<block type="fu_oled_setFont">
 		<value name="font">		
-          		<block type="text">
-            			<field name="TEXT">u8g2_font_ncenB08_tr</field>
-          		</block>
+          <block type="text">
+            <field name="TEXT">u8g2_font_ncenB08_tr</field>
+          </block>
 		</value>		  
-    	</block>	
+    </block>
+    <block type="fu_oled_setFontDirection"></block>		
+    <block type="fu_oled_setDrawColor"></block>	
 	<block type="fu_oled_drawStr">
 		<value name="x">
 		  <shadow type="math_number">
@@ -98,7 +108,7 @@
             <field name="TEXT"></field>
           </block>
 		</value>		  
-    	</block>
+    </block>
 	<block type="fu_oled_setCursor">
 		<value name="x">
 		  <shadow type="math_number">
@@ -110,14 +120,14 @@
 			<field name="NUM">0</field>
 		  </shadow>
 		</value>		  
-    	</block>	
+    </block>	
 	<block type="fu_oled_Print">
 		<value name="str">		
-          		<block type="text">
-            		<field name="TEXT"></field>
-          		</block>
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
 		</value>		  
-    	</block>		
+    </block>	
 	<block type="fu_oled_drawGlyph">
 		<value name="x">
 		  <shadow type="math_number">
@@ -130,11 +140,11 @@
 		  </shadow>
 		</value>
 		<value name="str">		
-          		<block type="text">
-            			<field name="TEXT"></field>
-          		</block>
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
 		</value>		  
-    	</block>
+    </block>
 	<block type="fu_oled_drawUTF8">
 		<value name="x">
 		  <shadow type="math_number">
@@ -151,15 +161,14 @@
             <field name="TEXT"></field>
           </block>
 		</value>		  
-    	</block>
+    </block>
 	<block type="fu_oled_PROGMEM">
 		<value name="PROGMEM">
           <block type="text">
             <field name="TEXT"></field>
           </block>
 		</value>		
-    	</block>
-	<block type="fu_oled_setBitmapMode"></block>		
+    </block>
 	<block type="fu_oled_drawXBMP">
 		<value name="x">
 		  <shadow type="math_number">
@@ -181,7 +190,7 @@
 			<field name="NUM">10</field>
 		  </shadow>
 		</value>		
-    	</block>	
+    </block>	
 	<block type="fu_oled_drawBox">
 		<value name="x">
 		  <shadow type="math_number">
@@ -203,7 +212,7 @@
 			<field name="NUM">10</field>
 		  </shadow>
 		</value>		  
-    	</block>
+    </block>
 	<block type="fu_oled_drawFrame">
 		<value name="x">
 		  <shadow type="math_number">
@@ -225,7 +234,7 @@
 			<field name="NUM">10</field>
 		  </shadow>
 		</value>		  
-    	</block>	
+    </block>	
 	<block type="fu_oled_drawCircle">
 		<value name="x0">
 		  <shadow type="math_number">
@@ -242,7 +251,7 @@
 			<field name="NUM">10</field>
 		  </shadow>
 		</value>		  
-    	</block>
+    </block>
 	<block type="fu_oled_drawDisc">
 		<value name="x0">
 		  <shadow type="math_number">
@@ -259,7 +268,7 @@
 			<field name="NUM">10</field>
 		  </shadow>
 		</value>		  
-    	</block>
+    </block>
 	<block type="fu_oled_drawEllipse">
 		<value name="x0">
 		  <shadow type="math_number">
@@ -281,7 +290,7 @@
 			<field name="NUM">10</field>
 		  </shadow>
 		</value>		  
-    	</block>
+    </block>
 	<block type="fu_oled_drawFilledEllipse">
 		<value name="x0">
 		  <shadow type="math_number">
@@ -303,7 +312,7 @@
 			<field name="NUM">10</field>
 		  </shadow>
 		</value>		  
-    	</block>
+    </block>
 	<block type="fu_oled_drawHLine">
 		<value name="x0">
 		  <shadow type="math_number">
@@ -320,7 +329,7 @@
 			<field name="NUM">10</field>
 		  </shadow>
 		</value>	  
-    	</block>
+    </block>
 	<block type="fu_oled_drawVLine">
 		<value name="x0">
 		  <shadow type="math_number">
@@ -337,7 +346,7 @@
 			<field name="NUM">10</field>
 		  </shadow>
 		</value>	  
-    	</block>	
+    </block>	
 	<block type="fu_oled_drawLine">
 		<value name="x0">
 		  <shadow type="math_number">
@@ -359,7 +368,7 @@
 			<field name="NUM">10</field>
 		  </shadow>
 		</value>		  
-    	</block>
+    </block>
 	<block type="fu_oled_drawPixel">
 		<value name="x">
 		  <shadow type="math_number">
@@ -371,9 +380,8 @@
 			<field name="NUM">10</field>
 		  </shadow>
 		</value>		  
-    	</block>
-	
-	</category>
+    </block>
+	</category>	
 	
 	
 	
