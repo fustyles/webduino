@@ -136,6 +136,8 @@
     <block type="fu_oled_initial">
 		<field name="font">u8g2_font_ncenB08_tr</field>		  
     </block>
+    <block type="fu_oled_sendBuffer"></block>
+    <block type="fu_oled_nextPage"></block>		
     <block type="fu_oled_setPowerSave"></block>	
 	<block type="fu_oled_setContrast">
 		<value name="value">
@@ -151,12 +153,17 @@
           </block>
 		</value>		  
     </block>
+	<block type="fu_oled_setFont">
+		<value name="font">		
+          <block type="text">
+            <field name="TEXT">u8g2_font_unifont_t_chinese2</field>
+          </block>
+		</value>		  
+    </block>	
     <block type="fu_oled_setFontDirection"></block>		
     <block type="fu_oled_setDrawColor"></block>	
     <block type="fu_oled_clear"></block>
     <block type="fu_oled_home"></block>		
-    <block type="fu_oled_sendBuffer"></block>
-    <block type="fu_oled_nextPage"></block>	
 	<block type="fu_oled_drawStr">
 		<value name="x">
 		  <shadow type="math_number">
@@ -447,18 +454,16 @@
 		  </shadow>
 		</value>		  
     </block>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	</category>	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<category id="france9" name="buzzer">
 		<block type="esp32_buzzer">
 			<value name="pin">
