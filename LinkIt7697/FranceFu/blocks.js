@@ -166,6 +166,46 @@ Blockly.Blocks['fu_oled_drawStr'] = {
   }
 };
 
+Blockly.Blocks['fu_oled_setCursor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("EZ+")
+        .appendField("OLED")
+        .appendField("設定游標位置");
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_oled_Print'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("EZ+")
+        .appendField("OLED")
+        .appendField("游標處描繪文字");
+    this.appendValueInput("str")
+        .setCheck(null)
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['fu_oled_drawGlyph'] = {
   init: function() {
     this.appendDummyInput()
