@@ -277,6 +277,28 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
   }
 };
 
+Blockly.Blocks['fu_oled_setBitmapMode'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("EZ+")
+        .appendField("OLED")
+        .appendField("描繪圖像背景顏色");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField(new Blockly.FieldDropdown([
+		["啟用","0"], 
+		["停用","1"]		
+	]), "mode");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['fu_oled_drawXBMP'] = {
   init: function() {
     this.appendDummyInput()
