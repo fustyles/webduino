@@ -16,7 +16,7 @@ Blockly.Blocks['fu_oled_initial'] = {
 	]), "display");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)	
-        .appendField("UTF8")
+        .appendField("UTF8(中文)")
         .appendField(new Blockly.FieldDropdown([
 		["停用","N"], 
 		["啟用","Y"]			
