@@ -14,6 +14,13 @@ Blockly.Arduino['fu_oled_initial'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['fu_oled_setPowerSave'] = function(block) {
+  var dropdown_power = block.getFieldValue('power');
+
+  var code = 'u8g2.setPowerSave('+dropdown_power+');\n';
+  return code;
+};
+
 Blockly.Arduino['fu_oled_sendBuffer'] = function(block) {
   var statements_draw = Blockly.Arduino.statementToCode(block, 'draw');
   var code = 'u8g2.clearBuffer();\n'+ 
