@@ -1,16 +1,23 @@
 Blockly.Arduino['fu_oled_initial'] = function(block) {
   var dropdown_display = block.getFieldValue('display');
-  var dropdown_utf8 = (block.getFieldValue('utf8')=='Y')?"  u8g2.enableUTF8Print();":"";
+  var dropdown_utf8 = (block.getFieldValue('utf8')=='Y')?"  u8g2.enableUTF8Print();":"  u8g2.disableUTF8Print();";
   var text_font = block.getFieldValue('font');
   
   Blockly.Arduino.definitions_['u8g2_definition'] = '#include <U8g2lib.h>\n'+
-						    '#include <Wire.h>\n'+
-						    'U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2('+dropdown_display+', /* reset=*/ U8X8_PIN_NONE);';												  
+												  '#include <Wire.h>\n'+
+												  'U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2('+dropdown_display+', /* reset=*/ U8X8_PIN_NONE);';												  
   Blockly.Arduino.setups_['u8g2_setup'] = 'u8g2.begin();\n  '+
-					'u8g2.setFont('+text_font+');\n'+
-					dropdown_utf8;
+										  'u8g2.setFont('+text_font+');\n'+
+										  dropdown_utf8;
   
   var code = '';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_setDisplayRotation'] = function(block) {
+  var dropdown_display = block.getFieldValue('display');
+  
+  var code = 'u8g2.setDisplayRotation('+dropdown_display+');\n';
   return code;
 };
 
@@ -47,10 +54,31 @@ Blockly.Arduino['fu_oled_home'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['fu_oled_setContrast'] = function(block) {
+  var value_value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.setContrast('+value_value+');\n';
+  return code;
+};
+
 Blockly.Arduino['fu_oled_setFont'] = function(block) {
   var value_font = Blockly.Arduino.valueToCode(block, 'font', Blockly.Arduino.ORDER_ATOMIC);
 
   var code = 'u8g2.setFont('+value_font.replace(/"/g,'').replace(/'/g,"")+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_setFontDirection'] = function(block) {
+  var dropdown_display = block.getFieldValue('display');
+  
+  var code = 'u8g2.setFontDirection('+dropdown_display+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_setDrawColor'] = function(block) {
+  var dropdown_mode = block.getFieldValue('mode');
+  
+  var code = 'u8g2.setDrawColor('+dropdown_mode+');\n';
   return code;
 };
 
