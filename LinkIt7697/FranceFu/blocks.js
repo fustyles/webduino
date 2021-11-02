@@ -19,13 +19,34 @@ Blockly.Blocks['fu_oled_initial'] = {
         .setAlign(Blockly.ALIGN_LEFT)	
         .appendField("UTF8")
         .appendField(new Blockly.FieldDropdown([
-		["禁用","N"], 
+		["停用","N"], 
 		["啟用","Y"]			
 	]), "utf8");
     this.appendDummyInput()
         .appendField("預設字型")	
         .appendField(new Blockly.FieldTextInput("u8g2_font_ncenB08_tr"), "font");
     this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(260);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_oled_setPowerSave'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("EZ+")
+        .appendField("OLED 省電模式");		
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField(new Blockly.FieldDropdown([
+		["停用","0"], 
+		["啟用","1"]			
+	]), "power");
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(260);
@@ -92,7 +113,7 @@ Blockly.Blocks['fu_oled_home'] = {
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("EZ+")
         .appendField("OLED")
-        .appendField("游標回到原點");
+        .appendField("游標回到左上角原點");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
