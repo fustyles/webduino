@@ -129,7 +129,7 @@ Blockly.Blocks['fu_oled_setDisplayRotation'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("OLED 描繪方式");		
+        .appendField("OLED 顯示方式");		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldDropdown([
