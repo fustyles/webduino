@@ -106,6 +106,13 @@
           </block>
 		</value>		  
     </block>
+	<block type="fu_oled_setFont">
+		<value name="font">		
+          <block type="text">
+            <field name="TEXT">u8g2_font_unifont_t_chinese2</field>
+          </block>
+		</value>		  
+    </block>		
     <block type="fu_oled_setFontDirection"></block>		
     <block type="fu_oled_setDrawColor"></block>	
     <block type="fu_oled_clear"></block>
