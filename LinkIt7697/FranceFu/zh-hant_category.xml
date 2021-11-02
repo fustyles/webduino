@@ -24,4 +24,5 @@
 <category><name>irsend</name><replace>紅外線發送器</replace></category>
 <category><name>io</name><replace>I/O腳位控制</replace></category>
 <category><name>MLX90614</name><replace>MLX90614</replace></category>
+<category><name>oled</name><replace>OLED(128*64)</replace></category>
 </xml>
