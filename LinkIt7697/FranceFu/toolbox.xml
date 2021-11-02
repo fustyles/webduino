@@ -69,7 +69,8 @@
 	<category id="oled" name="oled">
     	<block type="fu_oled_initial">
 		<field name="font">u8g2_font_ncenB08_tr</field>		  
-    	</block>	
+    	</block>
+    	<block type="fu_oled_setPowerSave"></block>		
     	<block type="fu_oled_sendBuffer"></block>
     	<block type="fu_oled_nextPage"></block>		
     	<block type="fu_oled_clear"></block>
