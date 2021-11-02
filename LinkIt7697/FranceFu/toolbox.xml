@@ -158,7 +158,8 @@
             <field name="TEXT"></field>
           </block>
 		</value>		
-    	</block>	
+    	</block>
+	<block type="fu_oled_setBitmapMode"></block>		
 	<block type="fu_oled_drawXBMP">
 		<value name="x">
 		  <shadow type="math_number">
