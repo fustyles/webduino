@@ -87,7 +87,7 @@ Blockly.Blocks['fu_oled_setFontDirection'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("OLED 字型繪製方向");		
+        .appendField("OLED 字型描繪方向");		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldDropdown([
@@ -129,7 +129,7 @@ Blockly.Blocks['fu_oled_setDisplayRotation'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("OLED 顯示方式");		
+        .appendField("OLED 描繪方式");		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldDropdown([
@@ -189,7 +189,7 @@ Blockly.Blocks['fu_oled_sendBuffer'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("開始繪圖(使用記憶體)");
+        .appendField("開始描繪(使用記憶體)");
     this.appendStatementInput("draw")
         .setCheck(null);
     this.setInputsInline(true);
@@ -206,7 +206,7 @@ Blockly.Blocks['fu_oled_nextPage'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("開始繪圖");
+        .appendField("開始描繪");
     this.appendStatementInput("draw")
         .setCheck(null);
     this.setInputsInline(true);
