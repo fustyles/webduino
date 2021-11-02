@@ -1,3 +1,112 @@
+Blockly.Arduino['fu_oled_initial'] = function(block) {
+  var dropdown_display = block.getFieldValue('display');
+  var dropdown_utf8 = (block.getFieldValue('utf8')=='Y')?"  u8g2.enableUTF8Print();":"";
+  var text_font = block.getFieldValue('font');
+  
+  Blockly.Arduino.definitions_['u8g2_definition'] = '#include <U8g2lib.h>\n'+
+												  '#include <Wire.h>\n'+
+												  'U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2('+dropdown_display+', /* reset=*/ U8X8_PIN_NONE);';												  
+  Blockly.Arduino.setups_['u8g2_setup'] = 'u8g2.begin();\n  '+
+										  'u8g2.setFont('+text_font+');\n'+
+										  dropdown_utf8;
+  
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_sendBuffer'] = function(block) {
+  var statements_draw = Blockly.Arduino.statementToCode(block, 'draw');
+  var code = 'u8g2.clearBuffer();\n'+ 
+			 statements_draw +
+			 'u8g2.sendBuffer();\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_nextPage'] = function(block) {
+  var statements_draw = Blockly.Arduino.statementToCode(block, 'draw');
+  var code = 'u8g2.firstPage();\ndo {\n'+ 
+			 statements_draw +
+			 '} while ( u8g2.nextPage() );\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_clear'] = function(block) {
+  var code = 'u8g2.clear();\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_home'] = function(block) {
+  var code = 'u8g2.home();\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawStr'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawStr('+value_x+','+value_y+',String('+value_str+').c_str());\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawBox'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawBox('+value_x+', '+value_y+', '+value_width+', '+value_height+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawCircle'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_radius = Blockly.Arduino.valueToCode(block, 'radius', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_option = block.getFieldValue('option');
+
+  var code = 'u8g2.drawCircle('+value_x0+', '+value_y0+', '+value_radius+', '+dropdown_option+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawDisc'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_radius = Blockly.Arduino.valueToCode(block, 'radius', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_option = block.getFieldValue('option');
+
+  var code = 'u8g2.drawDisc('+value_x0+', '+value_y0+', '+value_radius+', '+dropdown_option+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawEllipse'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);
+  var value_ry = Blockly.Arduino.valueToCode(block, 'ry', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_option = block.getFieldValue('option');
+
+  var code = 'u8g2.drawEllipse('+value_x0+', '+value_y0+', '+value_rx+', '+value_ry+', '+dropdown_option+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawFilledEllipse'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);
+  var value_ry = Blockly.Arduino.valueToCode(block, 'ry', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_option = block.getFieldValue('option');
+
+  var code = 'u8g2.drawFilledEllipse('+value_x0+', '+value_y0+', '+value_rx+', '+value_ry+', '+dropdown_option+');\n';
+  return code;
+};
+
+
+
+
+
+
+
 Blockly.Arduino['customcode_head'] = function(block) { 
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
   if ((text.indexOf('"')==0)&&(text.lastIndexOf('"')==text.length-1))
