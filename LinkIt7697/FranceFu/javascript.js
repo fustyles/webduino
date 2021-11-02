@@ -96,6 +96,13 @@ Blockly.Arduino['fu_oled_drawUTF8'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['fu_oled_setBitmapMode'] = function(block) {
+  var dropdown_mode = block.getFieldValue('mode');
+  
+  var code = 'u8g2.setBitmapMode('+dropdown_mode+');\n';
+  return code;
+};
+
 Blockly.Arduino['fu_oled_drawXBMP'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
