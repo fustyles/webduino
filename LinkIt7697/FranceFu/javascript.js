@@ -254,7 +254,6 @@ Blockly.Arduino['fu_oled_drawPixel'] = function(block) {
 
 
 
-
 Blockly.Arduino['customcode_head'] = function(block) { 
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
   if ((text.indexOf('"')==0)&&(text.lastIndexOf('"')==text.length-1))
