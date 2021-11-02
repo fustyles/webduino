@@ -4,11 +4,11 @@ Blockly.Arduino['fu_oled_initial'] = function(block) {
   var text_font = block.getFieldValue('font');
   
   Blockly.Arduino.definitions_['u8g2_definition'] = '#include <U8g2lib.h>\n'+
-												  '#include <Wire.h>\n'+
-												  'U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2('+dropdown_display+', /* reset=*/ U8X8_PIN_NONE);';												  
+						    '#include <Wire.h>\n'+
+						    'U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2('+dropdown_display+', /* reset=*/ U8X8_PIN_NONE);';												  
   Blockly.Arduino.setups_['u8g2_setup'] = 'u8g2.begin();\n  '+
-										  'u8g2.setFont('+text_font+');\n'+
-										  dropdown_utf8;
+					'u8g2.setFont('+text_font+');\n'+
+					dropdown_utf8;
   
   var code = '';
   return code;
@@ -40,12 +40,58 @@ Blockly.Arduino['fu_oled_home'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['fu_oled_setFont'] = function(block) {
+  var value_font = Blockly.Arduino.valueToCode(block, 'font', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.setFont('+value_font.replace(/"/g,'').replace(/'/g,"")+');\n';
+  return code;
+};
+
 Blockly.Arduino['fu_oled_drawStr'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
   var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
 
   var code = 'u8g2.drawStr('+value_x+','+value_y+',String('+value_str+').c_str());\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawGlyph'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawGlyph('+value_x+','+value_y+','+value_str+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawUTF8'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawUTF8('+value_x+','+value_y+',String('+value_str+').c_str());\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawXBMP'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+  var value_bitmap = block.getFieldValue('bitmap');
+  
+  var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+value_bitmap+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_PROGMEM'] = function(block) {
+  var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
+  var value_PROGMEM = Blockly.Arduino.valueToCode(block, 'PROGMEM', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'static const unsigned char PROGMEM '+variable_variable+'[] = {\n'+
+			  value_PROGMEM.replace(/"/g,'').replace(/'/g,"") +
+			  '\n};\n';
   return code;
 };
 
@@ -56,6 +102,16 @@ Blockly.Arduino['fu_oled_drawBox'] = function(block) {
   var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
 
   var code = 'u8g2.drawBox('+value_x+', '+value_y+', '+value_width+', '+value_height+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawFrame'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawFrame('+value_x+', '+value_y+', '+value_width+', '+value_height+');\n';
   return code;
 };
 
@@ -101,6 +157,41 @@ Blockly.Arduino['fu_oled_drawFilledEllipse'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['fu_oled_drawHLine'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawHLine('+value_x0+', '+value_y0+', '+value_width+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawVLine'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawVLine('+value_x0+', '+value_y0+', '+value_height+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawLine'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_x1 = Blockly.Arduino.valueToCode(block, 'x1', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y1 = Blockly.Arduino.valueToCode(block, 'y1', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawLine('+value_x0+', '+value_y0+', '+value_x1+', '+value_y1+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawPixel'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawPixel('+value_x+', '+value_y+');\n';
+  return code;
+};
 
 
 
