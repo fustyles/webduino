@@ -71,6 +71,20 @@ Blockly.Arduino['fu_oled_setFont'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['fu_oled_setFont_chinese'] = function(block) {
+  var dropdown_font = block.getFieldValue('font');
+
+  var code = 'u8g2.setFont('+dropdown_font+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_setFont_all'] = function(block) {
+  var dropdown_font = block.getFieldValue('font');
+
+  var code = 'u8g2.setFont('+dropdown_font+');\n';
+  return code;
+};
+
 Blockly.Arduino['fu_oled_setFontDirection'] = function(block) {
   var dropdown_display = block.getFieldValue('display');
   
