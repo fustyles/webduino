@@ -329,6 +329,43 @@ Blockly.Blocks['fu_oled_setFont'] = {
   }
 };
 
+Blockly.Blocks['fu_oled_setFont_chinese'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("OLED")
+        .appendField("設定中文字體集");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField(new Blockly.FieldDropdown([
+		["u8g2_font_unifont_t_chinese1","u8g2_font_unifont_t_chinese1"],
+		["u8g2_font_unifont_t_chinese2","u8g2_font_unifont_t_chinese2"],
+		["u8g2_font_unifont_t_chinese3","u8g2_font_unifont_t_chinese3"],
+		["u8g2_font_wqy12_t_chinese1","u8g2_font_wqy12_t_chinese1"],
+		["u8g2_font_wqy12_t_chinese2","u8g2_font_wqy12_t_chinese2"],
+		["u8g2_font_wqy12_t_chinese3","u8g2_font_wqy12_t_chinese3"],
+		["u8g2_font_wqy13_t_chinese1","u8g2_font_wqy13_t_chinese1"],
+		["u8g2_font_wqy13_t_chinese2","u8g2_font_wqy13_t_chinese2"],
+		["u8g2_font_wqy13_t_chinese3","u8g2_font_wqy13_t_chinese3"],
+		["u8g2_font_wqy14_t_chinese1","u8g2_font_wqy14_t_chinese1"],
+		["u8g2_font_wqy14_t_chinese2","u8g2_font_wqy14_t_chinese2"],
+		["u8g2_font_wqy14_t_chinese3","u8g2_font_wqy14_t_chinese3"],
+		["u8g2_font_wqy15_t_chinese1","u8g2_font_wqy15_t_chinese1"],
+		["u8g2_font_wqy15_t_chinese2","u8g2_font_wqy15_t_chinese2"],
+		["u8g2_font_wqy15_t_chinese3","u8g2_font_wqy15_t_chinese3"],
+		["u8g2_font_wqy16_t_chinese1","u8g2_font_wqy16_t_chinese1"],
+		["u8g2_font_wqy16_t_chinese2","u8g2_font_wqy16_t_chinese2"],
+		["u8g2_font_wqy16_t_chinese3","u8g2_font_wqy16_t_chinese3"]		
+	]), "font");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(30);
+ this.setTooltip("");
+ this.setHelpUrl("https://github.com/olikraus/u8g2/wiki/fntlistall");
+  }
+};
+
 Blockly.Blocks['fu_oled_setFontDirection'] = {
   init: function() {
     this.appendDummyInput()
