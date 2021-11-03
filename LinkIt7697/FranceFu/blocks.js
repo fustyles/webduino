@@ -635,7 +635,7 @@ Blockly.Blocks['fu_oled_drawXBMP'] = {
         .appendField("高度");
     this.appendDummyInput()
         .appendField("PROGMEM變數")	
-        .appendField(new Blockly.FieldTextInput("logo"), "bitmap");		
+        .appendField(new Blockly.FieldVariable("logo"), "variable");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
