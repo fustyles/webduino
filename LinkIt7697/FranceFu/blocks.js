@@ -252,7 +252,7 @@ Blockly.Blocks['fu_oled_initial'] = {
 	]), "format");		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)	
-        .appendField("顯示方式")
+        .appendField("預設顯示方式")
         .appendField(new Blockly.FieldDropdown([
 		["無旋轉，橫向","U8G2_R0"], 
 		["順時針旋轉90度","U8G2_R1"], 
