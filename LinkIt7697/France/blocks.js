@@ -252,7 +252,7 @@ Blockly.Blocks['fu_oled_initial'] = {
 	]), "format");		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)	
-        .appendField("顯示方式")
+        .appendField("預設顯示方式")
         .appendField(new Blockly.FieldDropdown([
 		["無旋轉，橫向","U8G2_R0"], 
 		["順時針旋轉90度","U8G2_R1"], 
@@ -269,7 +269,7 @@ Blockly.Blocks['fu_oled_initial'] = {
 		["啟用","Y"]			
 	]), "utf8");
     this.appendDummyInput()
-        .appendField("預設字型")	
+        .appendField("預設字體集")	
         .appendField(new Blockly.FieldTextInput("u8g2_font_ncenB08_tr"), "font");
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
@@ -636,7 +636,7 @@ Blockly.Blocks['fu_oled_drawXBMP'] = {
         .appendField("高度");
     this.appendDummyInput()
         .appendField("PROGMEM變數")	
-        .appendField(new Blockly.FieldTextInput("logo"), "bitmap");		
+        .appendField(new Blockly.FieldVariable("logo"), "variable");	
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
