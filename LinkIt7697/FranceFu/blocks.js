@@ -269,7 +269,7 @@ Blockly.Blocks['fu_oled_initial'] = {
 		["啟用","Y"]			
 	]), "utf8");
     this.appendDummyInput()
-        .appendField("預設字型")	
+        .appendField("預設字體集")	
         .appendField(new Blockly.FieldTextInput("u8g2_font_ncenB08_tr"), "font");
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
