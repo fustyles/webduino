@@ -106,7 +106,8 @@
           </block>
 		</value>		  
     </block>
-    <block type="fu_oled_setFont_chinese"></block>			
+    <block type="fu_oled_setFont_chinese"></block>
+    <block type="fu_oled_setFont_all"></block>		
     <block type="fu_oled_setFontDirection"></block>		
     <block type="fu_oled_setDrawColor"></block>	
     <block type="fu_oled_clear"></block>
