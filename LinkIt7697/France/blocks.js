@@ -368,6 +368,100 @@ Blockly.Blocks['fu_oled_setFont_chinese'] = {
   }
 };
 
+Blockly.Blocks['fu_oled_setFont_icon'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("OLED")
+        .appendField("設定圖示字型");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField(new Blockly.FieldDropdown([
+			["u8g2_font_open_iconic_weather_1x_t","u8g2_font_open_iconic_weather_1x_t"],
+			["u8g2_font_open_iconic_weather_2x_t","u8g2_font_open_iconic_weather_2x_t"],
+			["u8g2_font_open_iconic_weather_4x_t","u8g2_font_open_iconic_weather_4x_t"],
+			["u8g2_font_open_iconic_weather_6x_t","u8g2_font_open_iconic_weather_6x_t"],
+			["u8g2_font_open_iconic_weather_8x_t","u8g2_font_open_iconic_weather_8x_t"],		
+			["u8g2_font_open_iconic_all_1x_t","u8g2_font_open_iconic_all_1x_t"],
+			["u8g2_font_open_iconic_all_2x_t","u8g2_font_open_iconic_all_2x_t"],
+			["u8g2_font_open_iconic_all_4x_t","u8g2_font_open_iconic_all_4x_t"],
+			["u8g2_font_open_iconic_all_6x_t","u8g2_font_open_iconic_all_6x_t"],
+			["u8g2_font_open_iconic_all_8x_t","u8g2_font_open_iconic_all_8x_t"],
+			["u8g2_font_open_iconic_app_1x_t","u8g2_font_open_iconic_app_1x_t"],
+			["u8g2_font_open_iconic_app_2x_t","u8g2_font_open_iconic_app_2x_t"],
+			["u8g2_font_open_iconic_app_4x_t","u8g2_font_open_iconic_app_4x_t"],
+			["u8g2_font_open_iconic_app_6x_t","u8g2_font_open_iconic_app_6x_t"],
+			["u8g2_font_open_iconic_app_8x_t","u8g2_font_open_iconic_app_8x_t"],
+			["u8g2_font_open_iconic_arrow_1x_t","u8g2_font_open_iconic_arrow_1x_t"],
+			["u8g2_font_open_iconic_arrow_2x_t","u8g2_font_open_iconic_arrow_2x_t"],
+			["u8g2_font_open_iconic_arrow_4x_t","u8g2_font_open_iconic_arrow_4x_t"],
+			["u8g2_font_open_iconic_arrow_6x_t","u8g2_font_open_iconic_arrow_6x_t"],
+			["u8g2_font_open_iconic_arrow_8x_t","u8g2_font_open_iconic_arrow_8x_t"],
+			["u8g2_font_open_iconic_check_1x_t","u8g2_font_open_iconic_check_1x_t"],
+			["u8g2_font_open_iconic_check_2x_t","u8g2_font_open_iconic_check_2x_t"],
+			["u8g2_font_open_iconic_check_4x_t","u8g2_font_open_iconic_check_4x_t"],
+			["u8g2_font_open_iconic_check_6x_t","u8g2_font_open_iconic_check_6x_t"],
+			["u8g2_font_open_iconic_check_8x_t","u8g2_font_open_iconic_check_8x_t"],
+			["u8g2_font_open_iconic_email_1x_t","u8g2_font_open_iconic_email_1x_t"],
+			["u8g2_font_open_iconic_email_2x_t","u8g2_font_open_iconic_email_2x_t"],
+			["u8g2_font_open_iconic_email_4x_t","u8g2_font_open_iconic_email_4x_t"],
+			["u8g2_font_open_iconic_email_6x_t","u8g2_font_open_iconic_email_6x_t"],
+			["u8g2_font_open_iconic_email_8x_t","u8g2_font_open_iconic_email_8x_t"],
+			["u8g2_font_open_iconic_embedded_1x_t","u8g2_font_open_iconic_embedded_1x_t"],
+			["u8g2_font_open_iconic_embedded_2x_t","u8g2_font_open_iconic_embedded_2x_t"],
+			["u8g2_font_open_iconic_embedded_4x_t","u8g2_font_open_iconic_embedded_4x_t"],
+			["u8g2_font_open_iconic_embedded_6x_t","u8g2_font_open_iconic_embedded_6x_t"],
+			["u8g2_font_open_iconic_embedded_8x_t","u8g2_font_open_iconic_embedded_8x_t"],
+			["u8g2_font_open_iconic_gui_1x_t","u8g2_font_open_iconic_gui_1x_t"],
+			["u8g2_font_open_iconic_gui_2x_t","u8g2_font_open_iconic_gui_2x_t"],
+			["u8g2_font_open_iconic_gui_4x_t","u8g2_font_open_iconic_gui_4x_t"],
+			["u8g2_font_open_iconic_gui_6x_t","u8g2_font_open_iconic_gui_6x_t"],
+			["u8g2_font_open_iconic_gui_8x_t","u8g2_font_open_iconic_gui_8x_t"],
+			["u8g2_font_open_iconic_human_1x_t","u8g2_font_open_iconic_human_1x_t"],
+			["u8g2_font_open_iconic_human_2x_t","u8g2_font_open_iconic_human_2x_t"],
+			["u8g2_font_open_iconic_human_4x_t","u8g2_font_open_iconic_human_4x_t"],
+			["u8g2_font_open_iconic_human_6x_t","u8g2_font_open_iconic_human_6x_t"],
+			["u8g2_font_open_iconic_human_8x_t","u8g2_font_open_iconic_human_8x_t"],
+			["u8g2_font_open_iconic_mime_1x_t","u8g2_font_open_iconic_mime_1x_t"],
+			["u8g2_font_open_iconic_mime_2x_t","u8g2_font_open_iconic_mime_2x_t"],
+			["u8g2_font_open_iconic_mime_4x_t","u8g2_font_open_iconic_mime_4x_t"],
+			["u8g2_font_open_iconic_mime_6x_t","u8g2_font_open_iconic_mime_6x_t"],
+			["u8g2_font_open_iconic_mime_8x_t","u8g2_font_open_iconic_mime_8x_t"],
+			["u8g2_font_open_iconic_other_1x_t","u8g2_font_open_iconic_other_1x_t"],
+			["u8g2_font_open_iconic_other_2x_t","u8g2_font_open_iconic_other_2x_t"],
+			["u8g2_font_open_iconic_other_4x_t","u8g2_font_open_iconic_other_4x_t"],
+			["u8g2_font_open_iconic_other_6x_t","u8g2_font_open_iconic_other_6x_t"],
+			["u8g2_font_open_iconic_other_8x_t","u8g2_font_open_iconic_other_8x_t"],
+			["u8g2_font_open_iconic_play_1x_t","u8g2_font_open_iconic_play_1x_t"],
+			["u8g2_font_open_iconic_play_2x_t","u8g2_font_open_iconic_play_2x_t"],
+			["u8g2_font_open_iconic_play_4x_t","u8g2_font_open_iconic_play_4x_t"],
+			["u8g2_font_open_iconic_play_6x_t","u8g2_font_open_iconic_play_6x_t"],
+			["u8g2_font_open_iconic_play_8x_t","u8g2_font_open_iconic_play_8x_t"],
+			["u8g2_font_open_iconic_text_1x_t","u8g2_font_open_iconic_text_1x_t"],
+			["u8g2_font_open_iconic_text_2x_t","u8g2_font_open_iconic_text_2x_t"],
+			["u8g2_font_open_iconic_text_4x_t","u8g2_font_open_iconic_text_4x_t"],
+			["u8g2_font_open_iconic_text_6x_t","u8g2_font_open_iconic_text_6x_t"],
+			["u8g2_font_open_iconic_text_8x_t","u8g2_font_open_iconic_text_8x_t"],
+			["u8g2_font_open_iconic_thing_1x_t","u8g2_font_open_iconic_thing_1x_t"],
+			["u8g2_font_open_iconic_thing_2x_t","u8g2_font_open_iconic_thing_2x_t"],
+			["u8g2_font_open_iconic_thing_4x_t","u8g2_font_open_iconic_thing_4x_t"],
+			["u8g2_font_open_iconic_thing_6x_t","u8g2_font_open_iconic_thing_6x_t"],
+			["u8g2_font_open_iconic_thing_8x_t","u8g2_font_open_iconic_thing_8x_t"],
+			["u8g2_font_open_iconic_www_1x_t","u8g2_font_open_iconic_www_1x_t"],
+			["u8g2_font_open_iconic_www_2x_t","u8g2_font_open_iconic_www_2x_t"],
+			["u8g2_font_open_iconic_www_4x_t","u8g2_font_open_iconic_www_4x_t"],
+			["u8g2_font_open_iconic_www_6x_t","u8g2_font_open_iconic_www_6x_t"],
+			["u8g2_font_open_iconic_www_8x_t","u8g2_font_open_iconic_www_8x_t"]
+	]), "font");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(30);
+ this.setTooltip("");
+ this.setHelpUrl("https://github.com/olikraus/u8g2/wiki/fntgrpiconic");
+  }
+};
+
 Blockly.Blocks['fu_oled_setFont_all'] = {
   init: function() {
     this.appendDummyInput()
@@ -492,7 +586,7 @@ Blockly.Blocks['fu_oled_sendBuffer'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("開始繪製(使用記憶體)");
+        .appendField("開始繪製(緩衝區)");
     this.appendStatementInput("draw")
         .setCheck(null);
     this.setInputsInline(true);
@@ -588,16 +682,16 @@ Blockly.Blocks['fu_oled_drawGlyph'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製Unicode字元");
+        .appendField("繪製圖示(Unicode字元)");
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField("x");
     this.appendValueInput("y")
         .setCheck("Number")
         .appendField("y");
-    this.appendValueInput("str")
-        .setCheck(null)
-        .appendField("代碼");
+    this.appendValueInput("position")
+        .setCheck("Number")
+        .appendField("位置");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -647,7 +741,7 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
     this.setNextStatement(true, null);
     this.setColour(150);
  this.setTooltip("");
- this.setHelpUrl("");
+ this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
   }
 };
 
@@ -660,8 +754,8 @@ Blockly.Blocks['fu_oled_setBitmapMode'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldDropdown([
-		["啟用","0"], 
-		["停用","1"]		
+		["不透明","0"], 
+		["透明","1"]		
 	]), "mode");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);

@@ -3,7 +3,7 @@
 Blockly.Arduino['fu_oled_initial'] = function(block) {
   var dropdown_format = block.getFieldValue('format');
   var dropdown_display = block.getFieldValue('display');
-  var dropdown_utf8 = (block.getFieldValue('utf8'))?"  u8g2.enableUTF8Print();":"  u8g2.disableUTF8Print();";
+  var dropdown_utf8 = (block.getFieldValue('utf8')==1)?"  u8g2.enableUTF8Print();":"  u8g2.disableUTF8Print();";
   var text_font = block.getFieldValue('font');
   
   Blockly.Arduino.definitions_['u8g2_definition'] = '#include <U8g2lib.h>\n'+
@@ -78,6 +78,13 @@ Blockly.Arduino['fu_oled_setFont_chinese'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['fu_oled_setFont_icon'] = function(block) {
+  var dropdown_font = block.getFieldValue('font');
+
+  var code = 'u8g2.setFont('+dropdown_font+');\n';
+  return code;
+};
+
 Blockly.Arduino['fu_oled_setFont_all'] = function(block) {
   var dropdown_font = block.getFieldValue('font');
 
@@ -119,16 +126,16 @@ Blockly.Arduino['fu_oled_setCursor'] = function(block) {
 Blockly.Arduino['fu_oled_Print'] = function(block) {
   var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
 
-  var code = 'u8g2.Print('+value_str+');\n';
+  var code = 'u8g2.print('+value_str+');\n';
   return code;
 };
 
 Blockly.Arduino['fu_oled_drawGlyph'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
-  var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+  var value_position = Blockly.Arduino.valueToCode(block, 'position', Blockly.Arduino.ORDER_ATOMIC);
 
-  var code = 'u8g2.drawGlyph('+value_x+','+value_y+','+value_str+');\n';
+  var code = 'u8g2.drawGlyph('+value_x+','+value_y+','+value_position+');\n';
   return code;
 };
 

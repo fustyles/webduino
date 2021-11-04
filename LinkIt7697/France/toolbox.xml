@@ -154,6 +154,9 @@
 		</value>		  
     </block>
 	<block type="fu_oled_setFont_chinese"></block>
+	<block type="fu_oled_setFont_icon">
+		<field name="font">u8g2_font_open_iconic_weather_6x_t</field>	
+	</block>	
 	<block type="fu_oled_setFont_all"></block>	
     <block type="fu_oled_setFontDirection"></block>		
     <block type="fu_oled_setDrawColor"></block>	
@@ -167,7 +170,7 @@
 		</value>
 		<value name="y">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="str">		
@@ -203,13 +206,13 @@
 		</value>
 		<value name="y">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
-		<value name="str">		
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
+		<value name="position">		
+		  <shadow type="math_number">
+			<field name="NUM">64</field>
+		  </shadow>
 		</value>		  
     </block>
 	<block type="fu_oled_drawUTF8">
@@ -220,7 +223,7 @@
 		</value>
 		<value name="y">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="str">		
@@ -250,12 +253,12 @@
 		</value>
 		<value name="width">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="height">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>		
     </block>	
@@ -272,12 +275,12 @@
 		</value>
 		<value name="width">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="height">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>		  
     </block>
@@ -294,12 +297,12 @@
 		</value>
 		<value name="width">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="height">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="radius">
@@ -321,12 +324,12 @@
 		</value>
 		<value name="width">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="height">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>		  
     </block>	
@@ -343,12 +346,12 @@
 		</value>
 		<value name="width">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="height">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="radius">
@@ -370,7 +373,7 @@
 		</value>
 		<value name="radius">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>		  
     </block>
@@ -387,7 +390,7 @@
 		</value>
 		<value name="radius">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>		  
     </block>
@@ -404,12 +407,12 @@
 		</value>
 		<value name="rx">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="ry">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>		  
     </block>
@@ -426,12 +429,12 @@
 		</value>
 		<value name="rx">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="ry">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>		  
     </block>
@@ -448,7 +451,7 @@
 		</value>
 		<value name="width">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>	  
     </block>
@@ -465,7 +468,7 @@
 		</value>
 		<value name="height">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>	  
     </block>	
@@ -482,12 +485,12 @@
 		</value>
 		<value name="x1">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="y1">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>		  
     </block>
@@ -504,7 +507,7 @@
 		</value>
 		<value name="x1">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="y1">
@@ -519,19 +522,19 @@
 		</value>
 		<value name="y2">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>		
     </block>	
 	<block type="fu_oled_drawPixel">
 		<value name="x">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="y">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>		  
     </block>
