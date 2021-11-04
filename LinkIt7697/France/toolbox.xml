@@ -132,6 +132,143 @@
 	
 	
 	
+	<category id="france11" name="io">
+	  <block type="esp32_digitalwrite">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">2</field>
+		  </block>
+		</value> 
+	  </block>
+	  <block type="servermodule_pinwrite">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">2</field>
+		  </block>
+		</value> 
+		<value name="val">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value> 		
+	  </block>
+	  <block type="arduino_analogwrite">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">2</field>
+		  </block>
+		</value> 
+		<value name="val">
+		  <block type="math_number">
+			<field name="NUM">255</field>
+		  </block>
+		</value>
+	  </block>	  
+	  <block type="esp32_analogwrite">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">2</field>
+		  </block>
+		</value> 
+		<value name="val">
+		  <block type="math_number">
+			<field name="NUM">255</field>
+		  </block>
+		</value> 
+		<value name="channel">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value> 
+	  </block>
+	  <block type="esp32_pinmode">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">2</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="esp32_pinread">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">7</field>
+		  </block>
+		</value>
+	  </block>
+	</category>
+	<category id="category_fu_serial" name="SERIAL">
+		<block type="fu_serial_begin">
+			<value name="baudrate">
+				<shadow type="math_number">
+					<field name="NUM">9600</field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_begin_config">
+			<field name="config">SERIAL_8N1</field>
+			<value name="baudrate">
+				<shadow type="math_number">
+					<field name="NUM">9600</field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_ready"></block>
+		<block type="fu_serial_end"></block>
+		<block type="fu_serial_print">
+			<value name="data">
+				<shadow type="text">
+					<field name="TEXT"></field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_print_format">
+			<field name="format">BIN</field>
+			<value name="data">
+				<shadow type="math_number">
+					<field name="NUM">0</field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_println">
+			<value name="data">
+				<shadow type="text">
+					<field name="TEXT"></field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_println_format">
+			<field name="format">BIN</field>
+			<value name="data">
+				<shadow type="math_number">
+					<field name="NUM">0</field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_write">
+			<value name="data">
+				<shadow type="math_number">
+					<field name="NUM">0</field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_write_format">
+			<field name="format">BIN</field>
+			<value name="data">
+				<shadow type="math_number">
+					<field name="NUM">0</field>
+				</shadow>
+			</value>
+		</block>	
+	</category>	
+	<sep id="category_sep"></sep>
+	
+	
+	
+	
+	
+	
+	
+	
 	<category id="oled" name="oled">
     <block type="fu_oled_initial">
 		<field name="font">u8g2_font_ncenB08_tr</field>		  
@@ -281,6 +418,33 @@
 		  </shadow>
 		</value>		  
     </block>
+	<block type="fu_oled_drawRBox">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="width">
+		  <shadow type="math_number">
+			<field name="NUM">10</field>
+		  </shadow>
+		</value>
+		<value name="height">
+		  <shadow type="math_number">
+			<field name="NUM">10</field>
+		  </shadow>
+		</value>
+		<value name="radius">
+		  <shadow type="math_number">
+			<field name="NUM">3</field>
+		  </shadow>
+		</value>			
+    </block>	
 	<block type="fu_oled_drawFrame">
 		<value name="x">
 		  <shadow type="math_number">
@@ -302,6 +466,33 @@
 			<field name="NUM">10</field>
 		  </shadow>
 		</value>		  
+    </block>	
+	<block type="fu_oled_drawRFrame">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="width">
+		  <shadow type="math_number">
+			<field name="NUM">10</field>
+		  </shadow>
+		</value>
+		<value name="height">
+		  <shadow type="math_number">
+			<field name="NUM">10</field>
+		  </shadow>
+		</value>
+		<value name="radius">
+		  <shadow type="math_number">
+			<field name="NUM">3</field>
+		  </shadow>
+		</value>		
     </block>	
 	<block type="fu_oled_drawCircle">
 		<value name="x0">
@@ -437,6 +628,38 @@
 		  </shadow>
 		</value>		  
     </block>
+	<block type="fu_oled_drawTriangle">
+		<value name="x0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="x1">
+		  <shadow type="math_number">
+			<field name="NUM">10</field>
+		  </shadow>
+		</value>
+		<value name="y1">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="x2">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y2">
+		  <shadow type="math_number">
+			<field name="NUM">10</field>
+		  </shadow>
+		</value>		
+    </block>	
 	<block type="fu_oled_drawPixel">
 		<value name="x">
 		  <shadow type="math_number">
