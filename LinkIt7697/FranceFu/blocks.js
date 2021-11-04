@@ -366,6 +366,30 @@ Blockly.Blocks['fu_oled_setFont_chinese'] = {
   }
 };
 
+Blockly.Blocks['fu_oled_setFont_weather'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("OLED")
+        .appendField("設定天氣字型");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField(new Blockly.FieldDropdown([
+			["u8g2_font_open_iconic_weather_1x_t","u8g2_font_open_iconic_weather_1x_t"],
+			["u8g2_font_open_iconic_weather_2x_t","u8g2_font_open_iconic_weather_2x_t"],
+			["u8g2_font_open_iconic_weather_4x_t","u8g2_font_open_iconic_weather_4x_t"],
+			["u8g2_font_open_iconic_weather_6x_t","u8g2_font_open_iconic_weather_6x_t"],
+			["u8g2_font_open_iconic_weather_8x_t","u8g2_font_open_iconic_weather_8x_t"]	
+	]), "font");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(30);
+ this.setTooltip("");
+ this.setHelpUrl("https://github.com/olikraus/u8g2/wiki/fntlistall");
+  }
+};
+
 Blockly.Blocks['fu_oled_setFont_all'] = {
   init: function() {
     this.appendDummyInput()
