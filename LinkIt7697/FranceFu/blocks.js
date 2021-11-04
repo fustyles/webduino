@@ -2180,7 +2180,7 @@ Blockly.Blocks['fu_oled_sendBuffer'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("開始描繪(使用記憶體)");
+        .appendField("開始描繪(緩衝區)");
     this.appendStatementInput("draw")
         .setCheck(null);
     this.setInputsInline(true);
