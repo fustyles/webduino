@@ -2370,16 +2370,16 @@ Blockly.Blocks['fu_oled_drawGlyph'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-	.appendField("繪製圖示(Unicode字元)");
+        .appendField("繪製圖示(Unicode字元)");
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField("x");
     this.appendValueInput("y")
         .setCheck("Number")
         .appendField("y");
-    this.appendValueInput("str")
-        .setCheck(null)
-        .appendField("值");
+    this.appendValueInput("position")
+        .setCheck("Number")
+        .appendField("位置");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
