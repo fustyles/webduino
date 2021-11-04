@@ -69,6 +69,13 @@ Blockly.Arduino['fu_oled_setFont'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['fu_oled_setFont_chinese'] = function(block) {
+  var dropdown_font = block.getFieldValue('font');
+
+  var code = 'u8g2.setFont('+dropdown_font+');\n';
+  return code;
+};
+
 Blockly.Arduino['fu_oled_setFont_icon'] = function(block) {
   var dropdown_font = block.getFieldValue('font');
 
@@ -77,13 +84,6 @@ Blockly.Arduino['fu_oled_setFont_icon'] = function(block) {
 };
 
 Blockly.Arduino['fu_oled_setFont_all'] = function(block) {
-  var dropdown_font = block.getFieldValue('font');
-
-  var code = 'u8g2.setFont('+dropdown_font+');\n';
-  return code;
-};
-
-Blockly.Arduino['fu_oled_setFont_chinese'] = function(block) {
   var dropdown_font = block.getFieldValue('font');
 
   var code = 'u8g2.setFont('+dropdown_font+');\n';
@@ -184,6 +184,17 @@ Blockly.Arduino['fu_oled_drawBox'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['fu_oled_drawRBox'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+  var value_radius = Blockly.Arduino.valueToCode(block, 'radius', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = 'u8g2.drawRBox('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+value_radius+');\n';
+  return code;
+};
+
 Blockly.Arduino['fu_oled_drawFrame'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
@@ -191,6 +202,17 @@ Blockly.Arduino['fu_oled_drawFrame'] = function(block) {
   var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
 
   var code = 'u8g2.drawFrame('+value_x+', '+value_y+', '+value_width+', '+value_height+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawRFrame'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+  var value_radius = Blockly.Arduino.valueToCode(block, 'radius', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = 'u8g2.drawRFrame('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+value_radius+');\n';
   return code;
 };
 
@@ -261,6 +283,18 @@ Blockly.Arduino['fu_oled_drawLine'] = function(block) {
   var value_y1 = Blockly.Arduino.valueToCode(block, 'y1', Blockly.Arduino.ORDER_ATOMIC);
 
   var code = 'u8g2.drawLine('+value_x0+', '+value_y0+', '+value_x1+', '+value_y1+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawTriangle'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_x1 = Blockly.Arduino.valueToCode(block, 'x1', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y1 = Blockly.Arduino.valueToCode(block, 'y1', Blockly.Arduino.ORDER_ATOMIC);
+  var value_x2 = Blockly.Arduino.valueToCode(block, 'x2', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y2 = Blockly.Arduino.valueToCode(block, 'y2', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = 'u8g2.drawTriangle('+value_x0+', '+value_y0+', '+value_x1+', '+value_y1+', '+value_x2+', '+value_y2+');\n';
   return code;
 };
 
