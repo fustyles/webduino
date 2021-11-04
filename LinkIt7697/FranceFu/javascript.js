@@ -131,9 +131,9 @@ Blockly.Arduino['fu_oled_Print'] = function(block) {
 Blockly.Arduino['fu_oled_drawGlyph'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
-  var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+  var value_position = Blockly.Arduino.valueToCode(block, 'position', Blockly.Arduino.ORDER_ATOMIC);
 
-  var code = 'u8g2.drawGlyph('+value_x+','+value_y+','+value_str+');\n';
+  var code = 'u8g2.drawGlyph('+value_x+','+value_y+','+value_position+');\n';
   return code;
 };
 
