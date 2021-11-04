@@ -2784,8 +2784,6 @@ var opt = [
 
 
 
-
-
 Blockly.Blocks['customcode_head'] = {
   init: function() {
     this.appendValueInput("text")
