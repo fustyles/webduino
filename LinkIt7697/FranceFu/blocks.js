@@ -265,8 +265,8 @@ Blockly.Blocks['fu_oled_initial'] = {
         .setAlign(Blockly.ALIGN_LEFT)	
         .appendField("UTF8(中文)")
         .appendField(new Blockly.FieldDropdown([
-		["停用","N"], 
-		["啟用","Y"]			
+		["停用","0"], 
+		["啟用","1"]			
 	]), "utf8");
     this.appendDummyInput()
         .appendField("預設字體集")	
