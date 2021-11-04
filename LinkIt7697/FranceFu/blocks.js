@@ -2370,7 +2370,7 @@ Blockly.Blocks['fu_oled_drawGlyph'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("描繪Unicode字符");
+	.appendField("繪製圖示(Unicode字元)");
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField("x");
