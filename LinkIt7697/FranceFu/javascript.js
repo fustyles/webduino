@@ -69,7 +69,7 @@ Blockly.Arduino['fu_oled_setFont'] = function(block) {
   return code;
 };
 
-Blockly.Arduino['fu_oled_setFont_weather'] = function(block) {
+Blockly.Arduino['fu_oled_setFont_icon'] = function(block) {
   var dropdown_font = block.getFieldValue('font');
 
   var code = 'u8g2.setFont('+dropdown_font+');\n';
