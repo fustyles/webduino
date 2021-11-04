@@ -68,7 +68,7 @@
 	
 	
 	
-	<category id="oled" name="oled">
+		<category id="oled" name="oled">
     <block type="fu_oled_initial">
 		<field name="font">u8g2_font_ncenB08_tr</field>		  
     </block>
@@ -474,7 +474,7 @@
 		  </shadow>
 		</value>		  
     </block>
-	</category>	
+	</category>		
 	
 	
 	
