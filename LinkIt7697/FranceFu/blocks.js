@@ -639,6 +639,33 @@ Blockly.Blocks['fu_oled_drawStr'] = {
   }
 };
 
+Blockly.Blocks['fu_oled_drawStr_chinese'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("OLED")
+        .appendField("繪製中文字");
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");
+    this.appendDummyInput()
+        .appendField("指定PROGMEM變數")	
+        .appendField(new Blockly.FieldVariable("chinese"), "variable");		
+    this.appendValueInput("str")
+        .setCheck("String")
+        .appendField("中文內容");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(70);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['fu_oled_setCursor'] = {
   init: function() {
     this.appendDummyInput()
@@ -2868,6 +2895,8 @@ var opt = [
 	["u8g2_font_wqy16_t_gb2312a","u8g2_font_wqy16_t_gb2312a"],
 	["u8g2_font_wqy16_t_gb2312b","u8g2_font_wqy16_t_gb2312b"]
 	];
+
+
 
 
 
