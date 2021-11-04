@@ -142,12 +142,12 @@
 		</value>
 		<value name="y">
 		  <shadow type="math_number">
-			<field name="NUM">10</field>
+			<field name="NUM">16</field>
 		  </shadow>
 		</value>
 		<value name="position">		
 		  <shadow type="math_number">
-			<field name="NUM">0</field>
+			<field name="NUM">64</field>
 		  </shadow>
 		</value>		  
     </block>
