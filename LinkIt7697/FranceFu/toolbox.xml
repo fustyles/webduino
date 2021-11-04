@@ -107,7 +107,7 @@
 		</value>		  
     </block>
     <block type="fu_oled_setFont_chinese"></block>
-    <block type="fu_oled_setFont_weather">
+    <block type="fu_oled_setFont_icon">
 	<field name="font">u8g2_font_open_iconic_weather_6x_t</field>	
     </block>		
     <block type="fu_oled_setFont_all"></block>		
