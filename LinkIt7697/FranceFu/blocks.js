@@ -386,7 +386,7 @@ Blockly.Blocks['fu_oled_setFont_weather'] = {
     this.setNextStatement(true, null);
     this.setColour(30);
  this.setTooltip("");
- this.setHelpUrl("https://github.com/olikraus/u8g2/wiki/fntlistall");
+ this.setHelpUrl("https://github.com/olikraus/u8g2/wiki/fntgrpiconic");
   }
 };
 
