@@ -2348,8 +2348,8 @@ Blockly.Blocks['fu_oled_setBitmapMode'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldDropdown([
-		["啟用","0"], 
-		["停用","1"]		
+		["不透明","0"], 
+		["透明","1"]		
 	]), "mode");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
