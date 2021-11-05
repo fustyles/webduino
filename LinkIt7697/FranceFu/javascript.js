@@ -381,6 +381,7 @@ function toHex(d) {
 Blockly.Arduino['fu_oled_drawFont'] = function(block) {
   var dropdown_font = block.getFieldValue('font');
   var dropdown_size = block.getFieldValue('size');
+  var value_position = Blockly.Arduino.valueToCode(block, 'position', Blockly.Arduino.ORDER_ATOMIC);
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
   var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
@@ -408,7 +409,7 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 	  context.clearRect(0, 0, canvas.width, canvas.height);
 	  context.fillStyle="#000000";
 	  context.textBaseline = "top";
-	  context.fillText(text, 0, 0);
+	  context.fillText(text, 0, value_position);
 
 
 	var pixels = context.getImageData(0, 0, canvas.width, canvas.height);
@@ -480,6 +481,7 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 	  var code ="";
   return code;
 };
+
 Blockly.Arduino['fu_oled_setCursor'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
