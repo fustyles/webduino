@@ -1025,7 +1025,7 @@ Blockly.Blocks['fu_oled_drawFont'] = {
     this.setNextStatement(true, null);
     this.setColour(70);
  this.setTooltip("");
- this.setHelpUrl("");
+ this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
   }
 };
 
