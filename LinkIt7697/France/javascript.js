@@ -380,32 +380,68 @@ function toHex(d) {
   return  ("0"+(Number(d).toString(16))).slice(-2).toUpperCase()
 }  
 	
-Blockly.Arduino['fu_oled_drawStr_chinese'] = function(block) {
+Blockly.Arduino['fu_oled_drawFont'] = function(block) {
+  var dropdown_font = block.getFieldValue('font');
+  var dropdown_size = block.getFieldValue('size');
+  var value_position = Blockly.Arduino.valueToCode(block, 'position', Blockly.Arduino.ORDER_ATOMIC);
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
   var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
   var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
 
   if (value_str!='""') {
+	  var text = value_str.replace(/"/g,"")
+	  var c = document.getElementById("canvas_draw");
+	  if (document.getElementById("canvas_draw")) {
+		  c.parentElement.removeChild(c);
+	  }
+	  
 	  const canvas = document.createElement('canvas');
 	  const context = canvas.getContext('2d');
-	  context.font = "12pt 新細明體";
-	  var text = value_str.replace(/"/g,"");
-	  console.log(text);
+	  canvas.width = 960;
+	  canvas.height = 480;
+	  
+	  context.font = dropdown_size + "px " + dropdown_font;
 	  let metrics = context.measureText(text);
 	  //let fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
 	  //let actualHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
-
 	  var width = Math.floor(metrics.width);
-	  var height = 17; 
-	  context.fillStyle="#ffffff";
-	  context.fillRect(0, 0, width, height);
+	  
+  
+	  context.clearRect(0, 0, canvas.width, canvas.height);
 	  context.fillStyle="#000000";
-	  context.fillText(text, 0, 14);  
+	  context.textBaseline = "top";
+	  context.fillText(text, 0, value_position);
+
+
+	var pixels = context.getImageData(0, 0, canvas.width, canvas.height);
+	var fontTop = null, fontBottom = null;
+	var y;
+	for (var i = 0; i < pixels.data.length; i += 4) {
+		if (pixels.data[i+3] !== 0) {
+			y = ((i / 4) / canvas.width);			
+			if (fontTop === null) {
+				fontTop = y;
+			}
+			if (fontBottom === null) {
+				fontBottom = y;
+			} else if (fontBottom < y) {
+				fontBottom = y;
+			}
+		}
+	}
+
+	var height = Math.floor(fontBottom+1);
+	
+	  context.fillStyle="#ffffff";
+	  context.fillRect(0, 0, canvas.width, canvas.height);
+	  context.fillStyle="#000000";
+	  context.textBaseline = "top";
+	  context.fillText(text, 0, 0);	
 
 	  const imageData = context.getImageData(0, 0, width, height);
 	  const data = imageData.data;
-
+	  
 	  let xbmText = '';
 	  let pixel = 0;
 	  let atualRow = 1;
