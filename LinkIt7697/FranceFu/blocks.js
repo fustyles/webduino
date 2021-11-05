@@ -990,12 +990,15 @@ Blockly.Blocks['fu_oled_drawFont'] = {
 		  ["8px","8"],
 		  ["9px","9"],		  
 		  ["10px","10"],
+		  ["11px","11"],		  
 		  ["12px","12"],
-		  ["16px","16"],
+		  ["14px","14"],		  
+		  ["16px","16"],		  
 		  ["18px","18"],		  
 		  ["20px","20"],
-		  ["24px","24"],
-		  ["32px","32"]			  
+		  ["24px","24"],		  
+		  ["32px","32"],
+		  ["42px","42"]			  
 	  ]), "size");  
     this.appendValueInput("x")
         .setAlign(Blockly.ALIGN_RIGHT)  	
