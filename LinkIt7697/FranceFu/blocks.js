@@ -988,9 +988,11 @@ Blockly.Blocks['fu_oled_drawFont'] = {
       .appendField("大小")
       .appendField(new Blockly.FieldDropdown([
 		  ["8px","8"],
+		  ["9px","9"],		  
 		  ["10px","10"],
 		  ["12px","12"],
 		  ["16px","16"],
+		  ["18px","18"],		  
 		  ["20px","20"],
 		  ["24px","24"],
 		  ["32px","32"]			  
