@@ -646,6 +646,7 @@ Blockly.Blocks['fu_oled_drawFont'] = {
         .appendField("OLED")
         .appendField("繪製本機字型");
   this.appendDummyInput()  
+      .setAlign(Blockly.ALIGN_RIGHT)  
       .appendField("名稱")
       .appendField(new Blockly.FieldDropdown([
 		["Abadi MT","Abadi MT"],
@@ -982,19 +983,35 @@ Blockly.Blocks['fu_oled_drawFont'] = {
 		["Wide Latin","Wide Latin"],
 		["Wingdings","Wingdings"]
 	  ]), "font");
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("大小")
+      .appendField(new Blockly.FieldDropdown([
+		  ["8px","8"],
+		  ["10px","10"],
+		  ["12px","12"],
+		  ["16px","16"],
+		  ["20px","20"],
+		  ["24px","24"],
+		  ["32px","32"]			  
+	  ]), "size");  
     this.appendValueInput("x")
+        .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("Number")
         .appendField("x");
     this.appendValueInput("y")
+        .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("Number")
         .appendField("y");
     this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)  	
         .appendField("指定PROGMEM變數")	
         .appendField(new Blockly.FieldVariable("text"), "variable");		
     this.appendValueInput("str")
+        .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("String")
         .appendField("文字");
-    this.setInputsInline(true);
+    this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(70);
