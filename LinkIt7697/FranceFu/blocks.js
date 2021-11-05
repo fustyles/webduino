@@ -999,7 +999,11 @@ Blockly.Blocks['fu_oled_drawFont'] = {
 		  ["24px","24"],		  
 		  ["32px","32"],
 		  ["42px","42"]			  
-	  ]), "size");  
+	  ]), "size");
+    this.appendValueInput("position")
+        .setAlign(Blockly.ALIGN_RIGHT)  	
+        .setCheck("Number")
+        .appendField("定位值");		  
     this.appendValueInput("x")
         .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("Number")
