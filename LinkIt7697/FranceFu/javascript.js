@@ -395,11 +395,11 @@ Blockly.Arduino['fu_oled_drawStr_chinese'] = function(block) {
 	  //let actualHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
 
 	  var width = Math.floor(metrics.width);
-	  var height = 16; 
+	  var height = 17; 
 	  context.fillStyle="#ffffff";
 	  context.fillRect(0, 0, width, height);
 	  context.fillStyle="#000000";
-	  context.fillText(text, 0, 13);  
+	  context.fillText(text, 0, 14);  
 
 	  const imageData = context.getImageData(0, 0, width, height);
 	  const data = imageData.data;
