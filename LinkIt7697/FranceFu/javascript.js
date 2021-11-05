@@ -378,24 +378,27 @@ function toHex(d) {
   return  ("0"+(Number(d).toString(16))).slice(-2).toUpperCase()
 }  
 	
-Blockly.Arduino['fu_oled_drawStr_chinese'] = function(block) {
+Blockly.Arduino['fu_oled_drawFont'] = function(block) {
+  var dropdown_font = block.getFieldValue('font');
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
   var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
   var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
 
   if (value_str!='""') {
+	  var text = value_str.replace(/"/g,"");
 	  const canvas = document.createElement('canvas');
 	  const context = canvas.getContext('2d');
-	  context.font = "12pt 新細明體";
-	  var text = value_str.replace(/"/g,"");
-	  console.log(text);
+	  context.font = "12pt " + dropdown_font;
+	  
 	  let metrics = context.measureText(text);
 	  //let fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
 	  //let actualHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
 
 	  var width = Math.floor(metrics.width);
-	  var height = 17; 
+	  var height = 17;
+  
+	  console.log(width);
 	  context.fillStyle="#ffffff";
 	  context.fillRect(0, 0, width, height);
 	  context.fillStyle="#000000";
