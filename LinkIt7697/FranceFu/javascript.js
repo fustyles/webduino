@@ -380,33 +380,65 @@ function toHex(d) {
 	
 Blockly.Arduino['fu_oled_drawFont'] = function(block) {
   var dropdown_font = block.getFieldValue('font');
+  var dropdown_size = block.getFieldValue('size');
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
   var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
   var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
 
   if (value_str!='""') {
-	  var text = value_str.replace(/"/g,"");
+	  var text = value_str.replace(/"/g,"")
+	  var c = document.getElementById("canvas_draw");
+	  if (document.getElementById("canvas_draw")) {
+		  c.parentElement.removeChild(c);
+	  }
+	  
 	  const canvas = document.createElement('canvas');
 	  const context = canvas.getContext('2d');
-	  context.font = "12pt " + dropdown_font;
+	  canvas.width = 960;
+	  canvas.height = 480;
 	  
+	  context.font = dropdown_size + "px " + dropdown_font;
 	  let metrics = context.measureText(text);
 	  //let fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
 	  //let actualHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
-
 	  var width = Math.floor(metrics.width);
-	  var height = 17;
+	  
   
-	  console.log(width);
-	  context.fillStyle="#ffffff";
-	  context.fillRect(0, 0, width, height);
+	  context.clearRect(0, 0, canvas.width, canvas.height);
 	  context.fillStyle="#000000";
-	  context.fillText(text, 0, 14);  
+	  context.textBaseline = "top";
+	  context.fillText(text, 0, 0);
+
+
+	var pixels = context.getImageData(0, 0, canvas.width, canvas.height);
+	var fontTop = null, fontBottom = null;
+	var y;
+	for (var i = 0; i < pixels.data.length; i += 4) {
+		if (pixels.data[i+3] !== 0) {
+			y = ((i / 4) / canvas.width);			
+			if (fontTop === null) {
+				fontTop = y;
+			}
+			if (fontBottom === null) {
+				fontBottom = y;
+			} else if (fontBottom < y) {
+				fontBottom = y;
+			}
+		}
+	}
+
+	var height = Math.floor(fontBottom+1);
+	
+	  context.fillStyle="#ffffff";
+	  context.fillRect(0, 0, canvas.width, canvas.height);
+	  context.fillStyle="#000000";
+	  context.textBaseline = "top";
+	  context.fillText(text, 0, 0);	
 
 	  const imageData = context.getImageData(0, 0, width, height);
 	  const data = imageData.data;
-
+	  
 	  let xbmText = '';
 	  let pixel = 0;
 	  let atualRow = 1;
@@ -448,7 +480,6 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 	  var code ="";
   return code;
 };
-
 Blockly.Arduino['fu_oled_setCursor'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
