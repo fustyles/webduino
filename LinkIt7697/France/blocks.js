@@ -1015,15 +1015,17 @@ Blockly.Blocks['fu_oled_drawFont'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)  	
         .appendField("指定PROGMEM變數")	
-        .appendField(new Blockly.FieldVariable("text"), "variable");		
+        .appendField(new Blockly.FieldVariable("text"), "variable");
     this.appendValueInput("str")
-        .setAlign(Blockly.ALIGN_RIGHT)  	
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldCheckbox("FALSE"), "openbmp")		
         .setCheck("String")
         .appendField("文字");
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(70);
+	
  this.setTooltip("");
  this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
   }
@@ -1123,9 +1125,21 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
     this.appendDummyInput()
         .appendField("PROGMEM變數")	
         .appendField(new Blockly.FieldVariable("logo"), "variable");
+	var validator = function(val) {
+	  console.log(this.sourceBlock_.getInput("PROGMEM"));
+      var input = this.sourceBlock_.getInputTargetBlock("PROGMEM");
+	  if (input)
+		  if (input.type="text") {		  
+		  }
+	  return false;
+    };
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField("插入圖檔")	
+		.appendField(new Blockly.FieldCheckbox("FALSE", validator), "openbmp");
     this.appendValueInput("PROGMEM")
         .setCheck("String")
-        .appendField("圖形內容");
+        .appendField("圖形內容");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
