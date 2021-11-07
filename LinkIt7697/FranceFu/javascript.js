@@ -669,7 +669,7 @@ Blockly.Arduino['fu_oled_drawPixel'] = function(block) {
 
   var code = 'u8g2.drawPixel('+value_x+', '+value_y+');\n';
   return code;
-};
+}; 
 
 
 
