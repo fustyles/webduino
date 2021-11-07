@@ -383,7 +383,6 @@ function toHex(d) {
 Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 	var dropdown_font = block.getFieldValue('font');
 	var dropdown_size = block.getFieldValue('size');
-	var value_position = Blockly.Arduino.valueToCode(block, 'position', Blockly.Arduino.ORDER_ATOMIC);
 	var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
 	var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
 	var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
@@ -411,7 +410,7 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 		context.clearRect(0, 0, canvas.width, canvas.height);
 		context.fillStyle="#000000";
 		context.textBaseline = "top";
-		context.fillText(text, 0, value_position);
+		context.fillText(text, 0, 0);
 
 
 		var pixels = context.getImageData(0, 0, canvas.width, canvas.height);
@@ -431,9 +430,9 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 			}
 		}
 
-		var height = Math.floor(fontBottom+1);	
+		var height = Math.floor(fontBottom-fontTop+1);	
 
-		const imageData = context.getImageData(0, 0, width, height);
+		const imageData = context.getImageData(0, fontTop, width, height);
 		const data = imageData.data;
 
 		let xbmText = '';
@@ -469,6 +468,9 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 				atualHex++;	  
 			}
 		}
+		
+		document.body.appendChild(canvas);
+		canvas.parentNode.removeChild(canvas);
 
 		Blockly.Arduino.definitions_['u8g2_progmem_'+variable_variable] = 'static const unsigned char PROGMEM '+variable_variable+'[] = {\n'+ xbmText + '\n};';
 		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+width+', '+height+', '+variable_variable+');\n';
