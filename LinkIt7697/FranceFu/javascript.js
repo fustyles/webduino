@@ -467,6 +467,9 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 				atualHex++;	  
 			}
 		}
+		
+		document.body.appendChild(canvas);
+		canvas.parentNode.removeChild(canvas);
 
 		Blockly.Arduino.definitions_['u8g2_progmem_'+variable_variable] = 'static const unsigned char PROGMEM '+variable_variable+'[] = {\n'+ xbmText + '\n};';
 		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+width+', '+height+', '+variable_variable+');\n';
