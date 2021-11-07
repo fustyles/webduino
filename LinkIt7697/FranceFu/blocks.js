@@ -1375,6 +1375,7 @@ function toHex(d) {
   return  ("0"+(Number(d).toString(16))).slice(-2).toUpperCase()
 } 
 
+Blockly.FieldCheckbox.CHECK_CHAR="\u2615";
 Blockly.Blocks['fu_oled_PROGMEM'] = {
   init: function() {
     this.appendDummyInput()
