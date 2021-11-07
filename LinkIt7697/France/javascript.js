@@ -113,8 +113,8 @@ Blockly.Arduino['fu_oled_drawStr'] = function(block) {
 
   var code = 'u8g2.drawStr('+value_x+','+value_y+',String('+value_str+').c_str());\n';
   return code;
-};
-
+}; 
+	
 Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 	var dropdown_font = block.getFieldValue('font');
 	var dropdown_size = block.getFieldValue('size');
@@ -260,6 +260,16 @@ Blockly.Arduino['fu_oled_PROGMEM'] = function(block) {
 			  '\n};\n';
   return '';
 };
+
+Blockly.Arduino['fu_oled_qrcode_PROGMEM'] = function(block) {
+  var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
+  var value_PROGMEM = Blockly.Arduino.valueToCode(block, 'PROGMEM', Blockly.Arduino.ORDER_ATOMIC);
+
+  Blockly.Arduino.definitions_['u8g2_progmem_'+variable_variable] = 'static const unsigned char PROGMEM '+variable_variable+'[] = {\n'+
+			  value_PROGMEM.replace(/"/g,'').replace(/'/g,"") +
+			  '\n};\n';
+  return '';
+};				
 
 Blockly.Arduino['fu_oled_drawBox'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);

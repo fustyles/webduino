@@ -1204,6 +1204,79 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
   }
 };
 
+Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("OLED");
+    var field = new Blockly.FieldTextInput();
+    field.onFinishEditing_ = this.onFinishEditing;		
+    this.appendDummyInput()
+        .appendField("PROGMEM變數")	
+        .appendField(new Blockly.FieldVariable("qrcode"), "variable");
+    this.appendDummyInput()		
+        .appendField("QR CODE內容")
+		.appendField(field);	
+    this.appendValueInput("PROGMEM")
+        .setCheck("String");	
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(150);
+    this.setTooltip("");
+	this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
+    this.getInput('PROGMEM').setVisible(false);
+  },
+  
+	onFinishEditing: function(val) {
+		var block = this.sourceBlock_;
+		var input = block.getInputTargetBlock("PROGMEM");
+		var img=document.createElement('img');
+		var url = "https://chart.googleapis.com/chart?chs=64x64&cht=qr&chl=" + val + "&choe=UTF-8&chld=M|0";
+		console.log(url);
+		img.src = url;
+		
+		img.onload = function (event) {
+			const canvas = document.createElement('canvas');
+			const context = canvas.getContext('2d');
+			
+			canvas.width=img.width;
+			canvas.height=img.height; 
+			canvas.width = (canvas.width%8>0)?Math.round(canvas.width-canvas.width%8+8):Math.round(canvas.width);
+			
+			context.fillStyle="#FFFFFF";
+			context.fillRect(0, 0, canvas.width, canvas.height);
+			context.drawImage(img,0,0,img.width,img.height);
+
+			const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+			const data = imageData.data;
+
+			let xbmString = "";
+			let pixel = 0;
+			let value = 0;
+			
+			for(let h = 0; h < canvas.height; h++) {
+				for(let w = 0; w < canvas.width / 8; w++) {
+					value = 0;
+					for(let p = 0; p < 8; p++) {
+						const isBlack = !(data[pixel * 4]);
+						if(isBlack)
+							value = value + ((p==0)?1:Math.pow(2, p));
+						pixel++;
+						const isNewRow = pixel/canvas.width === 1;
+						if(isNewRow) break;
+					}
+					xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
+				}
+			}
+			
+			document.body.appendChild(canvas);
+			canvas.parentNode.removeChild(canvas);
+			input.setFieldValue(xbmString, 'TEXT');
+		}
+    }
+};
+
 Blockly.Blocks['fu_oled_setBitmapMode'] = {
   init: function() {
     this.appendDummyInput()
