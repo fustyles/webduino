@@ -1468,7 +1468,7 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
 		.appendField(new Blockly.FieldLabelSerializable("選取BMP圖片"), "size");
     this.appendValueInput("PROGMEM")
         .setCheck("String")
-        .appendField("圖形內容");		
+        .appendField("XBM內容");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
