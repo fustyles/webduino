@@ -1191,7 +1191,7 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldCheckbox("TRUE", validator), "openbmp")
-		.appendField(new Blockly.FieldLabelSerializable("選取BMP圖片"), "size");
+		.appendField(new Blockly.FieldLabelSerializable("選取BMP圖片(白底黑字)"), "size");
     this.appendValueInput("PROGMEM")
         .setCheck("String")
         .appendField("XBM內容");		
