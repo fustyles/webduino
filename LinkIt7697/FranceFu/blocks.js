@@ -1132,10 +1132,13 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
 					const canvas = document.createElement('canvas');
 					const context = canvas.getContext('2d');
 					
-					block.getField("size").setValue(img.width + " * " + img.height,"size");
-					
 					canvas.width=img.width;
 					canvas.height=img.height; 
+					canvas.width = (canvas.width%8>0)?Math.round(canvas.width-canvas.width%8+8):Math.round(canvas.width);
+					block.getField("size").setValue(canvas.width + " * " + canvas.height, "size");
+					
+					context.fillStyle="#FFFFFF";
+					context.fillRect(0, 0, canvas.width, canvas.height);
 					context.drawImage(img,0,0,img.width,img.height);
 
 					const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
