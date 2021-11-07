@@ -381,7 +381,6 @@ function toHex(d) {
 Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 	var dropdown_font = block.getFieldValue('font');
 	var dropdown_size = block.getFieldValue('size');
-	var value_position = Blockly.Arduino.valueToCode(block, 'position', Blockly.Arduino.ORDER_ATOMIC);
 	var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
 	var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
 	var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
