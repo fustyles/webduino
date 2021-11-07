@@ -195,6 +195,13 @@
           </block>
 		</value>		
     </block>
+	<block type="fu_oled_qrcode_PROGMEM">	
+		<value name="PROGMEM">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		
+    </block>				
 	<block type="fu_oled_drawXBMP">
 		<value name="x">
 		  <shadow type="math_number">
