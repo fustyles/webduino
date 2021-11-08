@@ -1120,6 +1120,10 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED");
     this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldCheckbox("TRUE", validator), "openbmp")
+		.appendField(new Blockly.FieldLabelSerializable("選取圖檔(白底黑字)"), "size");		
+    this.appendDummyInput()
         .appendField("PROGMEM變數")	
         .appendField(new Blockly.FieldVariable("logo"), "variable");
 	var validator = function(val) {
@@ -1188,10 +1192,6 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
 		}
 		return true;
     };
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(new Blockly.FieldCheckbox("TRUE", validator), "openbmp")
-		.appendField(new Blockly.FieldLabelSerializable("選取圖檔(白底黑字)"), "size");
     this.appendValueInput("PROGMEM")
         .setCheck("String")
         .appendField("XBM內容");		
@@ -1209,13 +1209,18 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED");
+    this.appendDummyInput()
+        .appendField("QRCODE 大小")	
+        .appendField(new Blockly.FieldDropdown([
+		["64x64","64x64"]		
+	]), "size");			
     var field = new Blockly.FieldTextInput();
     field.onFinishEditing_ = this.onFinishEditing;		
     this.appendDummyInput()
         .appendField("PROGMEM變數")	
-        .appendField(new Blockly.FieldVariable("qrcode"), "variable");
+        .appendField(new Blockly.FieldVariable("qrcode"), "variable");	
     this.appendDummyInput()		
-        .appendField("QR CODE內容")
+        .appendField("文字內容")
 		.appendField(field);	
     this.appendValueInput("PROGMEM")
         .setCheck("String");	
