@@ -179,7 +179,7 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 				for (let p = 0; p < 8; p++) {
 					const isBlack = !(data[pixel * 4+3]);
 					if (!isBlack)
-						value = value + ((p==0)?1:Math.pow(2, p));
+						value += Math.pow(2, p);
 					pixel++;
 
 					const isNewRow = pixel/width === 1;
