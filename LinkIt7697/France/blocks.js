@@ -1011,11 +1011,7 @@ Blockly.Blocks['fu_oled_drawFont'] = {
     this.appendValueInput("str")
         .setAlign(Blockly.ALIGN_RIGHT)	
         .setCheck("String")
-        .appendField("文字");	  
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)  	
-        .appendField("指定給PROGMEM變數")	
-        .appendField(new Blockly.FieldVariable("text"), "variable");
+        .appendField("文字");
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
