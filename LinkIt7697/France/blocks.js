@@ -1118,15 +1118,12 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("OLED");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(new Blockly.FieldCheckbox("TRUE", validator), "openbmp")
-		.appendField(new Blockly.FieldLabelSerializable("選取圖檔(白底黑字)"), "size");		
+        .appendField("OLED");	
     this.appendDummyInput()
         .appendField("PROGMEM變數")	
         .appendField(new Blockly.FieldVariable("logo"), "variable");
-	var validator = function(val) {
+	var imageToXbm = function() {
+		console.log("ok");
 		var block = this.sourceBlock_;
         var input = block.getInputTargetBlock("PROGMEM");
 	    if (input) {
@@ -1194,13 +1191,18 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
     };
     this.appendValueInput("PROGMEM")
         .setCheck("String")
-        .appendField("XBM內容");		
+        .appendField("XBM內容");
+	var field = new Blockly.FieldImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABmJLR0QA/wD/AP+gvaeTAAABwElEQVRYhe3YzysEYRzH8fdYa3/FQStFCimnTUTK0VHtH+AoF24ODuvi4uCwSu4rzo7kIAdyozZam7BJcRO7XOz4scZh8zOzPM+z86DmU9vszDPfeV7zPDPP1oIbtRh2DbF4wipXJ16vJzk1NtRdrusBRWA5EosnrHhi6WlybnFbxlFR1ruyyehg1KgJBXsmZxeSorVagKGgn5HBqFFTHeoURWoBgjxSGxDkkFqBII7UDgQx5K8A4efISh2YiZn5Us0G0GXX6Dhwenz423NK3cCvTfFP8+eBjk/xxS2kLwEDImGoC4jVOz6C6SswC2A+wv6leP2fn2LHgZEw+CuLn0hYvN7xZ7AuAP1N8vXKI5jJwVFW9Sr2URrBTA4y12/77bVv33fPHqgwoKPJq9KFPPAz7uSmuG2vhZ3Te5b38mCB+RCgt7VKL/Az7j3yPFtgI5V/Pbayl6fwZNHX5pMCCj+DdriX3Hs8NDf4X/ctYDVlsnl4J+OTAJbAvaSx3vcBCbB+YLKWNkW7c24d/Aq5dSw+io4u1F8hReP4L4kqUvgtHmiR6KXFB2h6i3XHBarGBarGBaqm5Dr4zT8Cbv5FngFVTsI04FIf1wAAAABJRU5ErkJggg==", 30, 30, { alt: "*", flipRtl: "FALSE" });
+	field.setOnClickHandler(imageToXbm);
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldLabelSerializable(""), "size")
+		.appendField(field);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(150);
- this.setTooltip("");
- this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
+    this.setTooltip("");
+    this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
   }
 };
 
