@@ -118,9 +118,9 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 	var dropdown_size = block.getFieldValue('size');
 	var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
 	var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
-	var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
 	var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
-
+	var variable = "xbm_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
+ 
 	if (value_str!='""') {
 		var text = value_str.replace(/"/g,"")
 		var c = document.getElementById("canvas_draw");
@@ -189,9 +189,11 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 		
 		document.body.appendChild(canvas);
 		canvas.parentNode.removeChild(canvas);
-
-		Blockly.Arduino.definitions_['u8g2_progmem_'+variable_variable] = 'static const unsigned char PROGMEM '+variable_variable+'[] = {\n'+ xbmString.substr(0,xbmString.length-1) + '\n};';
-		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+width+', '+height+', '+variable_variable+');\n';
+  		Blockly.Arduino.definitions_['u8g2_progmem_'+variable] = 'static const unsigned char PROGMEM '+variable+'[] = {\n'+
+			  xbmString.substr(0,xbmString.length-1) +
+			  '\n};\n';
+		
+		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+width+', '+height+', '+variable+');\n';
 	}
 	else
 		var code ="";
