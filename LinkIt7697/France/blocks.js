@@ -1208,19 +1208,19 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("OLED");
+        .appendField("OLED");	
     this.appendDummyInput()
-        .appendField("QRCODE 大小")	
+        .appendField("PROGMEM變數")	
+        .appendField(new Blockly.FieldVariable("qrcode"), "variable");
+	this.appendDummyInput()
+        .appendField("QRCODE")	
         .appendField(new Blockly.FieldDropdown([
 		["64x64","64x64"]		
 	]), "size");			
     var field = new Blockly.FieldTextInput();
-    field.onFinishEditing_ = this.onFinishEditing;		
-    this.appendDummyInput()
-        .appendField("PROGMEM變數")	
-        .appendField(new Blockly.FieldVariable("qrcode"), "variable");	
+    field.onFinishEditing_ = this.onFinishEditing;	
     this.appendDummyInput()		
-        .appendField("文字內容")
+        .appendField("文字")
 		.appendField(field);	
     this.appendValueInput("PROGMEM")
         .setCheck("String");	
