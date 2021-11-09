@@ -1010,7 +1010,7 @@ Blockly.Blocks['fu_oled_drawFont'] = {
         .appendField("y");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)  	
-        .appendField("指定PROGMEM變數")	
+        .appendField("指定給PROGMEM變數")	
         .appendField(new Blockly.FieldVariable("text"), "variable");
     this.appendValueInput("str")
         .setAlign(Blockly.ALIGN_RIGHT)	
@@ -1019,7 +1019,7 @@ Blockly.Blocks['fu_oled_drawFont'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(70);
+    this.setColour(220);
 	this.setTooltip("");
 	this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
   }
@@ -1119,9 +1119,6 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED");	
-    this.appendDummyInput()
-        .appendField("PROGMEM變數")	
-        .appendField(new Blockly.FieldVariable("logo"), "variable");
 	var imageToXbm = function() {
 		var block = this.sourceBlock_;
         var input = block.getInputTargetBlock("PROGMEM");
@@ -1190,17 +1187,23 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
     this.appendValueInput("PROGMEM")
         .setCheck("String")
         .appendField("XBM內容");
+		
 	var field = new Blockly.FieldImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABmJLR0QA/wD/AP+gvaeTAAABwElEQVRYhe3YzysEYRzH8fdYa3/FQStFCimnTUTK0VHtH+AoF24ODuvi4uCwSu4rzo7kIAdyozZam7BJcRO7XOz4scZh8zOzPM+z86DmU9vszDPfeV7zPDPP1oIbtRh2DbF4wipXJ16vJzk1NtRdrusBRWA5EosnrHhi6WlybnFbxlFR1ruyyehg1KgJBXsmZxeSorVagKGgn5HBqFFTHeoURWoBgjxSGxDkkFqBII7UDgQx5K8A4efISh2YiZn5Us0G0GXX6Dhwenz423NK3cCvTfFP8+eBjk/xxS2kLwEDImGoC4jVOz6C6SswC2A+wv6leP2fn2LHgZEw+CuLn0hYvN7xZ7AuAP1N8vXKI5jJwVFW9Sr2URrBTA4y12/77bVv33fPHqgwoKPJq9KFPPAz7uSmuG2vhZ3Te5b38mCB+RCgt7VKL/Az7j3yPFtgI5V/Pbayl6fwZNHX5pMCCj+DdriX3Hs8NDf4X/ctYDVlsnl4J+OTAJbAvaSx3vcBCbB+YLKWNkW7c24d/Aq5dSw+io4u1F8hReP4L4kqUvgtHmiR6KXFB2h6i3XHBarGBarGBaqm5Dr4zT8Cbv5FngFVTsI04FIf1wAAAABJRU5ErkJggg==", 30, 30, { alt: "*", flipRtl: "FALSE" });
 	field.setOnClickHandler(imageToXbm);
+	
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldLabelSerializable("(白底黑字)"), "size")
 		.appendField(field);
+		
+    this.appendDummyInput()
+        .appendField("指定給PROGMEM變數")	
+        .appendField(new Blockly.FieldVariable("logo"), "variable");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(150);
-    this.setTooltip("");
-    this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
+    this.setColour(220);
+ this.setTooltip("");
+ this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
   }
 };
 
@@ -1209,9 +1212,6 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED");	
-    this.appendDummyInput()
-        .appendField("PROGMEM變數")	
-        .appendField(new Blockly.FieldVariable("qrcode"), "variable");
 	this.appendDummyInput()
         .appendField("QRCODE")	
         .appendField(new Blockly.FieldDropdown([
@@ -1223,11 +1223,14 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
         .appendField("文字")
 		.appendField(field);	
     this.appendValueInput("PROGMEM")
-        .setCheck("String");	
+        .setCheck("String");
+    this.appendDummyInput()
+        .appendField("指定給PROGMEM變數")	
+        .appendField(new Blockly.FieldVariable("qrcode"), "variable");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(150);
+    this.setColour(220);
     this.setTooltip("");
 	this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
     this.getInput('PROGMEM').setVisible(false);
@@ -1309,25 +1312,55 @@ Blockly.Blocks['fu_oled_drawXBMP'] = {
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
         .appendField("繪製圖像");
-    this.appendValueInput("x")
-        .setCheck("Number")
-        .appendField("x");
-    this.appendValueInput("y")
-        .setCheck("Number")
-        .appendField("y");
+    this.appendValueInput("PROGMEM")
+        .setCheck("String")
+        .appendField("XBM");	
     this.appendValueInput("width")
         .setCheck("Number")
         .appendField("寬度");
     this.appendValueInput("height")
         .setCheck("Number")
         .appendField("高度");
-    this.appendDummyInput()
-        .appendField("PROGMEM變數")	
-        .appendField(new Blockly.FieldVariable("logo"), "variable");	
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(150);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_oled_drawXBMP_PROGMEM'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("OLED")
+        .appendField("繪製圖像");
+    this.appendDummyInput()
+        .appendField("PROGMEM變數")	
+        .appendField(new Blockly.FieldVariable("logo"), "variable");		
+    this.appendValueInput("width")
+        .setCheck("Number")
+        .appendField("寬度");
+    this.appendValueInput("height")
+        .setCheck("Number")
+        .appendField("高度");
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(220);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -3405,6 +3438,7 @@ var opt = [
 	["u8g2_font_wqy16_t_gb2312a","u8g2_font_wqy16_t_gb2312a"],
 	["u8g2_font_wqy16_t_gb2312b","u8g2_font_wqy16_t_gb2312b"]
 	];
+
 
 
 

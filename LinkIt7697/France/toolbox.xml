@@ -136,7 +136,7 @@
     <block type="fu_oled_initial">
 		<field name="font">u8g2_font_ncenB08_tr</field>		  
     </block>
-    <block type="fu_oled_nextPage"></block>
+    <block type="fu_oled_nextPage"></block>		
     <block type="fu_oled_sendBuffer"></block>
     <block type="fu_oled_setPowerSave"></block>	
 	<block type="fu_oled_setContrast">
@@ -213,15 +213,10 @@
 		</value>		
     </block>	
 	<block type="fu_oled_drawXBMP">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
+		<value name="PROGMEM">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
 		</value>
 		<value name="width">
 		  <shadow type="math_number">
@@ -232,8 +227,40 @@
 		  <shadow type="math_number">
 			<field name="NUM">16</field>
 		  </shadow>
+		</value>
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
 		</value>		
-    </block>			
+    </block>
+	<block type="fu_oled_drawXBMP_PROGMEM">
+		<value name="width">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="height">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>		
+    </block>	
 	<block type="fu_oled_setCursor">
 		<value name="x">
 		  <shadow type="math_number">
