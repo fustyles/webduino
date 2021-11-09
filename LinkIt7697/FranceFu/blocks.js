@@ -1118,7 +1118,11 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("OLED");	
+        .appendField("OLED");
+    this.appendDummyInput()
+        .appendField("PROGMEM變數")	
+        .appendField(new Blockly.FieldVariable("logo"), "variable")
+		.appendField("設定為");	;		
 	var imageToXbm = function() {
 		var block = this.sourceBlock_;
         var input = block.getInputTargetBlock("PROGMEM");
@@ -1195,9 +1199,6 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
 		.appendField(new Blockly.FieldLabelSerializable("(白底黑字)"), "size")
 		.appendField(field);
 		
-    this.appendDummyInput()
-        .appendField("指定給PROGMEM變數")	
-        .appendField(new Blockly.FieldVariable("logo"), "variable");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -1211,7 +1212,11 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("OLED");	
+        .appendField("OLED");
+	this.appendDummyInput()
+        .appendField("PROGMEM變數")	
+        .appendField(new Blockly.FieldVariable("qrcode"), "variable")
+		.appendField("設定為");	
 	this.appendDummyInput()
         .appendField("QRCODE")	
         .appendField(new Blockly.FieldDropdown([
@@ -1223,10 +1228,7 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
         .appendField("文字")
 		.appendField(field);	
     this.appendValueInput("PROGMEM")
-        .setCheck("String");
-    this.appendDummyInput()
-        .appendField("指定給PROGMEM變數")	
-        .appendField(new Blockly.FieldVariable("qrcode"), "variable");		
+        .setCheck("String");	
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
