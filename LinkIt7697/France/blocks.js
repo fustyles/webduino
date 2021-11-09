@@ -1123,7 +1123,6 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
         .appendField("PROGMEM變數")	
         .appendField(new Blockly.FieldVariable("logo"), "variable");
 	var imageToXbm = function() {
-		console.log("ok");
 		var block = this.sourceBlock_;
         var input = block.getInputTargetBlock("PROGMEM");
 	    if (input) {
@@ -1187,7 +1186,6 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
 				file.click();
 		    }
 		}
-		return true;
     };
     this.appendValueInput("PROGMEM")
         .setCheck("String")
