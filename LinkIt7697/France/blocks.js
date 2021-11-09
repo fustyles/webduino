@@ -1314,7 +1314,7 @@ Blockly.Blocks['fu_oled_drawXBMP'] = {
         .appendField("繪製圖像");
     this.appendValueInput("PROGMEM")
         .setCheck("String")
-        .appendField("XBM");	
+        .appendField("XBM內容");	
     this.appendValueInput("width")
         .setCheck("Number")
         .appendField("寬度");
