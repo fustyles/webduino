@@ -1330,7 +1330,7 @@ Blockly.Blocks['fu_oled_drawXBMP'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(150);
+    this.setColour(220);
  this.setTooltip("");
  this.setHelpUrl("");
   }
