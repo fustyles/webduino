@@ -1108,7 +1108,7 @@ Blockly.Blocks['fu_oled_drawUTF8'] = {
 };
 
 //https://www.fileformat.info/info/charset/UTF-16/list.htm
-Blockly.FieldCheckbox.CHECK_CHAR="\u2615";
+//Blockly.FieldCheckbox.CHECK_CHAR="\u2615";
 
 Blockly.Blocks['fu_oled_PROGMEM'] = {
   init: function() {
