@@ -93,6 +93,29 @@
           </block>
 		</value>		  
     </block>
+	<block type="fu_oled_drawCustomFont">
+		<value name="font">
+          <block type="text">
+            <field name="TEXT">Arial</field>
+          </block>
+		</value>
+		<field name="size">12px</field>	
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="str">		
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		  
+    </block>	
 	<block type="fu_oled_PROGMEM">
 		<value name="PROGMEM">
           <block type="text">
@@ -155,7 +178,19 @@
 			<field name="NUM">0</field>
 		  </shadow>
 		</value>		
-    </block>		
+    </block>
+	<block type="fu_oled_drawPixelMap">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>		
+	</block>
     <block type="fu_oled_setPowerSave"></block>	
 	<block type="fu_oled_setContrast">
 		<value name="value">
@@ -527,7 +562,7 @@
 		  </shadow>
 		</value>		  
     </block>
-	</category>				
+	</category>	
 	
 	
 	
