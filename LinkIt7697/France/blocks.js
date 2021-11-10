@@ -1012,7 +1012,54 @@ Blockly.Blocks['fu_oled_drawFont'] = {
         .setAlign(Blockly.ALIGN_RIGHT)	
         .setCheck("String")
         .appendField("文字");
-    this.setInputsInline(false);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(220);
+	this.setTooltip("");
+	this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
+  }
+};
+
+Blockly.Blocks['fu_oled_drawCustomFont'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("OLED")
+        .appendField("繪製本機字型");
+    this.appendValueInput("font")
+        .setAlign(Blockly.ALIGN_RIGHT)  	
+        .setCheck("String");
+	this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("大小")
+      .appendField(new Blockly.FieldDropdown([
+		  ["8px","8"],
+		  ["9px","9"],		  
+		  ["10px","10"],
+		  ["11px","11"],		  
+		  ["12px","12"],
+		  ["14px","14"],		  
+		  ["16px","16"],		  
+		  ["18px","18"],		  
+		  ["20px","20"],
+		  ["24px","24"],		  
+		  ["32px","32"],
+		  ["42px","42"]					  
+	  ]), "size"); 
+    this.appendValueInput("x")
+        .setAlign(Blockly.ALIGN_RIGHT)  	
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setAlign(Blockly.ALIGN_RIGHT)  	
+        .setCheck("Number")
+        .appendField("y");
+    this.appendValueInput("str")
+        .setAlign(Blockly.ALIGN_RIGHT)	
+        .setCheck("String")
+        .appendField("文字");
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(220);
@@ -1361,6 +1408,80 @@ Blockly.Blocks['fu_oled_drawXBMP_PROGMEM'] = {
     this.setColour(220);
  this.setTooltip("");
  this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_oled_drawPixelMap'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("OLED")
+        .appendField("繪製像素圖");
+		
+	var block = this;
+    var validator_width = function(newValue) {
+	    var width = Number(newValue);
+		var height = Number(block.getFieldValue("height"));
+	  	var field;
+		var input;
+		for (var i=0;i<(64*64);i++) {
+			if (block.getField("chk"+i)) {
+				block.getField("chk"+i).dispose();
+			}
+			if (block.getInput("input"+i)) {
+				block.removeInput("input"+i);
+			}			
+		}
+		for (var j=0;j<(width*height);j++) {
+			if (j%width==0) 
+				input = block.appendDummyInput("input"+j);
+			field = new Blockly.FieldCheckbox("FALSE");
+			input.appendField(field, "chk"+j);
+		}
+    };
+    var validator_height = function(newValue) {
+	    var width = Number(block.getFieldValue("width"));
+		var height = Number(newValue);
+	  	var field;
+		var input;
+		for (var i=0;i<(64*64);i++) {
+			if (block.getField("chk"+i)) {
+				block.getField("chk"+i).dispose();
+			}
+			if (block.getInput("input"+i)) {
+				block.removeInput("input"+i);
+			}			
+		}
+		for (var j=0;j<(width*height);j++) {
+			if (j%width==0) 
+				input = block.appendDummyInput("input"+j);
+			field = new Blockly.FieldCheckbox("FALSE");
+			input.appendField(field, "chk"+j);
+		}
+    };	
+	
+	var opt = [];
+	for (var k=8;k<=128;k+=8) {
+		opt.push([k.toString(),k.toString()]);
+	}
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)	
+        .appendField("寬度")
+        .appendField(new Blockly.FieldDropdown(opt, validator_width), "width")
+        .appendField("高度")
+        .appendField(new Blockly.FieldDropdown(opt, validator_height), "height");
+    this.appendValueInput("x")
+        .setAlign(Blockly.ALIGN_RIGHT)		
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setAlign(Blockly.ALIGN_RIGHT)		
+        .setCheck("Number")
+        .appendField("y");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(10);
   }
 };
 

@@ -1,5 +1,6 @@
 //https://github.com/olikraus/u8g2/wiki/u8g2reference
 //https://www.twblogs.net/a/5d207eeabd9eee1e5c83a6bb
+
 Blockly.Arduino['fu_oled_initial'] = function(block) {
   var dropdown_format = block.getFieldValue('format');
   var dropdown_display = block.getFieldValue('display');
@@ -200,6 +201,130 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 	else
 		var code ="";
 	return code;
+};
+
+Blockly.Arduino['fu_oled_drawCustomFont'] = function(block) {
+	var value_font = Blockly.Arduino.valueToCode(block, 'font', Blockly.Arduino.ORDER_ATOMIC);
+	var dropdown_size = block.getFieldValue('size');
+	var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+	var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+	var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+	var variable = "xbm_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
+ 
+	if (value_str!='""') {
+		var text = value_str.replace(/"/g,"")
+		var c = document.getElementById("canvas_draw");
+		if (document.getElementById("canvas_draw")) {
+			c.parentElement.removeChild(c);
+		}
+
+		const canvas = document.createElement('canvas');
+		const context = canvas.getContext('2d');
+		canvas.width = 960;
+		canvas.height = 480;
+
+		context.font = dropdown_size + "px " + value_font;
+		let metrics = context.measureText(text);
+		//let fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
+		//let actualHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+		var width = (metrics.width%8>0)?Math.round(metrics.width-metrics.width%8+8):Math.round(metrics.width);
+
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		context.fillStyle="#000000";
+		context.textBaseline = "top";
+		context.fillText(text, 0, 0);
+
+		var pixels = context.getImageData(0, 0, canvas.width, canvas.height);
+		var fontTop = null, fontBottom = null;
+		var y;
+		for (var i = 0; i < pixels.data.length; i += 4) {
+			if (pixels.data[i+3] !== 0) {
+				y = ((i / 4) / canvas.width);			
+				if (fontTop === null) {
+					fontTop = y;
+				}
+				if (fontBottom === null) {
+					fontBottom = y;
+				} else if (fontBottom < y) {
+					fontBottom = y;
+				}
+			}
+		}
+
+		var height = fontBottom-fontTop+1;	
+		height = (height>Math.floor(height))?(Math.floor(height)+1):Math.floor(height);
+
+		const imageData = context.getImageData(0, fontTop, width, height);
+		const data = imageData.data;
+
+		let xbmString = "";
+		let pixel = 0;
+		let value = 0;
+
+		for(let h = 0; h < height; h++) {
+			for(let w = 0; w < width / 8; w++) {
+				value = 0;
+				for (let p = 0; p < 8; p++) {
+					const isBlack = !(data[pixel * 4+3]);
+					if (!isBlack)
+						value += Math.pow(2, p);
+					pixel++;
+
+					const isNewRow = pixel/width === 1;
+					if(isNewRow) break;
+				}
+				xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
+			}
+		}
+		
+		document.body.appendChild(canvas);
+		canvas.parentNode.removeChild(canvas);
+  		Blockly.Arduino.definitions_['u8g2_progmem_'+variable] = 'static const unsigned char PROGMEM '+variable+'[] = {\n'+
+			  xbmString.substr(0,xbmString.length-1) +
+			  '\n};\n';
+		
+		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+width+', '+height+', '+variable+');\n';
+	}
+	else
+		var code ="";
+	return code;
+};
+
+Blockly.Arduino['fu_oled_drawPixelMap'] = function(block) {
+	var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+	var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+	var dropdown_width = block.getFieldValue('width');
+	var dropdown_height = block.getFieldValue('height');
+	let xbmString = "";
+	let pixel = 0;
+	let value = 0;
+	let width = Number(dropdown_width);	
+	let height = Number(dropdown_height);
+
+	for(let h = 0; h < height; h++) {
+		for(let w = 0; w < width / 8; w++) {
+			value = 0;
+			for (let p = 0; p < 8; p++) {
+				const isBlack = (block.getFieldValue('chk'+pixel)=="TRUE");
+				if (isBlack)
+					value += Math.pow(2, p);
+				pixel++;
+
+				const isNewRow = pixel/width === 1;
+				if(isNewRow) break;
+			}
+			xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
+		}
+	}
+
+  var variable = "xbm_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
+	
+  Blockly.Arduino.definitions_['u8g2_progmem_'+variable] = 'static const unsigned char PROGMEM '+variable+'[] = {\n'+
+			  xbmString.replace(/"/g,'').replace(/'/g,"") +
+			  '\n};\n';
+			  
+  var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+width+', '+height+', '+variable+');\n';
+  return code;  
 };
 
 Blockly.Arduino['fu_oled_setCursor'] = function(block) {
