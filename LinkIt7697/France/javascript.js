@@ -412,7 +412,39 @@ Blockly.Arduino['fu_oled_qrcode_PROGMEM'] = function(block) {
 			  value_PROGMEM.replace(/"/g,'').replace(/'/g,"") +
 			  '\n};\n';
   return '';
-};				
+};
+
+Blockly.Arduino['fu_oled_drawXBMP_PROGMEM_array'] = function(block) {
+  var value_index = Blockly.Arduino.valueToCode(block, 'index', Blockly.Arduino.ORDER_ATOMIC);
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+  var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
+  
+  var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+variable_variable+'['+value_index +']);\n';
+  return code;
+};		
+
+Blockly.Arduino['fu_oled_PROGMEM_array'] = function(block) {
+  var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
+  var value_PROGMEM = Blockly.Arduino.valueToCode(block, 'PROGMEM', Blockly.Arduino.ORDER_ATOMIC);
+  value_PROGMEM = value_PROGMEM.split('",');
+  var PROGMEM = "";
+  var len = "";
+  if (value_PROGMEM.length>0) {
+	  len = (value_PROGMEM[0].replace(/"/g,'').replace(/{/g,'')=="")?"":value_PROGMEM[0].split(",").length;
+	  for (var i=0;i<value_PROGMEM.length;i++) {
+		if (value_PROGMEM[i].replace(/"/g,'').replace(/{/g,'').replace(/}/g,'').trim()=="") break;
+		PROGMEM += "{ "+value_PROGMEM[i].replace(/"/g,'').replace(/{/g,'').replace(/}/g,'').trim() +" },\n";
+	  }
+  }
+
+  Blockly.Arduino.definitions_['u8g2_progmem_'+variable_variable] = 'static const unsigned char PROGMEM '+variable_variable+'[]['+len+'] = {\n'+
+																		PROGMEM +
+																	'\n};\n';
+  return '';
+};		
 
 Blockly.Arduino['fu_oled_drawBox'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
