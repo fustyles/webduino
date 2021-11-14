@@ -2341,6 +2341,9 @@
 		</value>
 	  </block>
     </category>	
+	<category id="france24" name="airquality">
+	  <block type="fu_taiwan_aqi"></block>
+    </category>		
 	<sep id="category_sep"></sep>
 	<category id="france7" name="others">
 	  <block type="esp32_setuploop">
