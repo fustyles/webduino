@@ -134,9 +134,41 @@
         <shadow type="math_number">
           <field name="NUM">500</field>
         </shadow>
-      </value>
+      </value>		  
     </block>
-    <block type="fu_ez_buzzer_notone"></block>
+	<block type="fu_ez_buzzer_tone_duration_array">
+		<value name="frequency">
+		  <block type="array_create_with">
+			<mutation items="2"></mutation>
+			<value name="ADD0">
+			  <block type="text">
+				<field name="TEXT">392</field>
+			  </block>
+			</value>
+			<value name="ADD1">
+			  <block type="text">
+				<field name="TEXT">330</field>
+			  </block>
+			</value>
+		  </block>
+		</value>
+		<value name="duration">
+		  <block type="array_create_with" id="119">
+			<mutation items="2"></mutation>
+			<value name="ADD0">
+			  <block type="text" id="120">
+				<field name="TEXT">1000</field>
+			  </block>
+			</value>
+			<value name="ADD1">
+			  <block type="text" id="121">
+				<field name="TEXT">500</field>
+			  </block>
+			</value>
+		  </block>
+		</value>		
+	</block>	
+    <block type="fu_ez_buzzer_notone"></block>	
     <block type="fu_ez_buzzer_tone_duration_esp_array">
       <value name="frequency">
         <shadow type="math_number">
@@ -803,6 +835,10 @@
 		</value>		  
     </block>
 	</category>	
+	
+	
+	
+	
 	
 	
 	
