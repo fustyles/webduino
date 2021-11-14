@@ -132,6 +132,204 @@
 	
 	
 	
+	
+
+ <category id="ez" name="EZ+">
+    <block type="fu_ez_digitalwrite">
+      <field name="led">0</field>
+      <field name="value">HIGH</field>
+    </block>
+    <block type="fu_ez_digitalwrite_input">
+      <field name="led">0</field>
+      <value name="value">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="fu_ez_digitalwrite_input_relay">
+	  <value name="value">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="fu_ez_analogwrite_input">
+      <field name="led">0</field>
+      <value name="value">
+        <shadow type="math_number">
+          <field name="NUM">255</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="fu_ez_analogwrite_input_esp">
+      <field name="led">0</field>
+      <value name="value">
+        <shadow type="math_number">
+          <field name="NUM">255</field>
+        </shadow>
+      </value>
+      <value name="channel">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="fu_ez_digitalread">
+      <field name="button">0</field>
+    </block>	
+    <block type="fu_ez_digitalread_button">
+      <field name="type">0</field>
+    </block>
+    <block type="fu_ez_analogread_potentiometer"></block>
+    <block type="fu_ez_analogread_photoresistor"></block>
+      <block type="fu_ez_buzzer_tone">
+      <value name="frequency">
+        <shadow type="math_number">
+          <field name="NUM">262</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="fu_ez_buzzer_tone_duration">
+      <value name="frequency">
+        <shadow type="math_number">
+          <field name="NUM">262</field>
+        </shadow>
+      </value>
+      <value name="duration">
+        <shadow type="math_number">
+          <field name="NUM">500</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="fu_ez_buzzer_notone"></block>	
+    <block type="fu_ez_buzzer_tone_duration_esp_array">
+      <value name="frequency">
+        <shadow type="math_number">
+          <field name="NUM">262</field>
+        </shadow>
+      </value>
+      <value name="duration">
+        <shadow type="math_number">
+          <field name="NUM">500</field>
+        </shadow>
+      </value>
+      <value name="channel">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>		  
+    </block>
+	<block type="fu_ez_buzzer_tone_duration_esp_array">
+		<value name="frequency">
+		  <block type="array_create_with">
+			<mutation items="2"></mutation>
+			<value name="ADD0">
+			  <block type="text">
+				<field name="TEXT">392</field>
+			  </block>
+			</value>
+			<value name="ADD1">
+			  <block type="text">
+				<field name="TEXT">330</field>
+			  </block>
+			</value>
+		  </block>
+		</value>
+		<value name="duration">
+		  <block type="array_create_with" id="119">
+			<mutation items="2"></mutation>
+			<value name="ADD0">
+			  <block type="text" id="120">
+				<field name="TEXT">1000</field>
+			  </block>
+			</value>
+			<value name="ADD1">
+			  <block type="text" id="121">
+				<field name="TEXT">500</field>
+			  </block>
+			</value>
+		  </block>
+		</value>
+      <value name="channel">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>			
+	</block>
+	<block type="fu_ez_buzzer_tone1"></block>	
+	<block type="fu_ez_buzzer_tone2"></block>	
+	<block type="fu_ez_buzzer_tone3"></block>		
+    <block type="fu_ez_dht11">
+      <field name="type">dht.readHumidity()</field>
+    </block>
+	<block type="fu_ez_pixel_brightness">
+		<value name="brightness">
+			<block type="math_number">
+				<field name="NUM">100</field>
+			</block>		
+		</value>
+	</block>	
+	<block type="fu_ez_pixel_rgb">
+		<field name="no">0</field>
+		<value name="R">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="G">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="B">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+	</block>
+	<block type="fu_ez_pixel_picker">
+		<field name="no">0</field>
+		<value name="colour">
+			<block type="fu_color">
+			</block>
+		</value>
+	</block>
+	<block type="fu_ez_pixel_color_n">
+		<value name="num">
+			<block type="math_number">
+				<field name="NUM">1</field>
+			</block>
+		</value>
+		<value name="colour">
+			<block type="fu_color">
+			</block>
+		</value>		
+	</block>		
+	<block type="fu_ez_pixel_color">
+		<value name="L1">
+			<block type="fu_color">
+			</block>
+		</value>	
+		<value name="L2">
+			<block type="fu_color">
+			</block>
+		</value>
+		<value name="L3">
+			<block type="fu_color">
+			</block>
+		</value>			
+	</block>	
+	<block type="fu_ez_pixel_clear"></block>
+	<block type="fu_color">
+		<field name="RGB">#ff0000</field>
+	</block>
+	<block type="fu_color_random"></block>  
+    <block type="fu_ez_ir_receive">
+      <field name="value">irValue</field>
+      <field name="type">irType</field>
+    </block>		
+  </category>
 	<category id="oled" name="oled">
     <block type="fu_oled_initial">
 		<field name="font">u8g2_font_ncenB08_tr</field>		  

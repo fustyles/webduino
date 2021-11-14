@@ -1,3 +1,564 @@
+Blockly.Blocks['fu_ez_digitalwrite'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField(new Blockly.FieldDropdown([["紅燈","0"], ["黃燈","1"], ["綠燈","2"]]), "led");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("狀態")
+        .appendField(new Blockly.FieldDropdown([["開","1"], ["關","0"]]), "value");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(20);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_digitalwrite_input'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField(new Blockly.FieldDropdown([["紅燈","0"], ["黃燈","1"], ["綠燈","2"]]), "led");
+    this.appendValueInput("value")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("數位輸出值");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(20);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_digitalwrite_input_relay'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("EZ+")
+        .appendField("繼電器")
+        .appendField("數位輸出值"); 
+   this.appendValueInput("value")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT);     
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(20);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_analogwrite_input'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField(new Blockly.FieldDropdown([["紅燈","0"], ["黃燈","1"], ["綠燈","2"]]), "led");
+    this.appendValueInput("value")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("類比輸出值");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(50);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_analogwrite_input_esp'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField(new Blockly.FieldDropdown([["紅燈","0"], ["黃燈","1"], ["綠燈","2"]]), "led");
+    this.appendValueInput("value")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("類比輸出值");
+    this.appendValueInput("channel")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("通道");
+    this.appendDummyInput()
+        .appendField("(ESP32)");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(65);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_digitalread'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField(new Blockly.FieldDropdown([["按鈕A","0"],["按鈕B","1"]]), "button")
+        .appendField("數位輸入值");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(80);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_digitalread_button'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField(new Blockly.FieldDropdown([["按鈕A","A"],["按鈕B","B"],["按鈕A+B","AB"]]), "type")
+        .appendField("按下");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(80);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_analogread_potentiometer'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField("可變電阻")
+        .appendField("類比輸入值");         
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(110);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_analogread_photoresistor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField("光感測器")
+        .appendField("類比輸入值");         
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(110);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_buzzer_tone'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField("蜂鳴器");
+    this.appendValueInput("frequency")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("頻率");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(140);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_buzzer_tone_duration'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField("蜂鳴器");
+    this.appendValueInput("frequency")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("頻率");
+    this.appendValueInput("duration")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("持續時間(ms)");	
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(140);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_buzzer_notone'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField("蜂鳴器")
+        .appendField("停止");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(140);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_buzzer_tone_duration_esp'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField("蜂鳴器");
+    this.appendValueInput("frequency")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("頻率");
+    this.appendValueInput("duration")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("持續時間(ms)");
+    this.appendValueInput("channel")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("通道");		
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("(ESP32)");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(155);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_buzzer_tone_duration_esp_array'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField("蜂鳴器");
+    this.appendValueInput("frequency")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("頻率");
+    this.appendValueInput("duration")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("持續時間(ms)");
+    this.appendValueInput("channel")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("通道");		
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("(ESP32)");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(155);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_buzzer_tone1']={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(new Blockly.FieldDropdown([
+				["C 3 [131]","131"],
+				["C# 3 [139]","139"],
+				["D 3 [147]","147"],
+				["D# 3 [156]","156"],
+				["E 3 [165]","165"],
+				["F 3 [175]","175"],
+				["F# 3 [185]","185"],
+				["G 3 [196]","196"],
+				["G# 3 [208]","208"],
+				["A 3 [220]","220"],
+				["A# 3 [233]","233"],
+				["B 3 [247]","247"],
+				["C 4 [262]","262"],
+				["C# 4 [277]","277"],
+				["D 4 [294]","294"],
+				["D# 4 [311]","311"],
+				["E 4 [330]","330"],
+				["F 4 [349]","349"],
+				["F# 4 [370]","370"],
+				["G 4 [392]","392"],
+				["G# 4 [415]","415"],
+				["A 4 [440]","440"],
+				["A# 4 [466]","466"],
+				["B 4 [494]","494"]
+			]),"frequency");
+		this.setInputsInline(true);
+		this.setOutput(true);
+		this.setColour(155);			
+	}
+};
+
+Blockly.Blocks['fu_ez_buzzer_tone2']={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(new Blockly.FieldDropdown([
+				["C 5 [523]","523"],
+				["C# 5 [554]","554"],
+				["D 5 [587]","587"],
+				["D# 5 [622]","622"],
+				["E 5 [659]","659"],
+				["F 5 [698]","698"],
+				["F# 5 [740]","740"],
+				["G 5 [784]","784"],
+				["G# 5 [831]","831"],
+				["A 5 [880]","880"],
+				["A# 5 [932]","932"],
+				["B 5 [988]","988"],			
+				["C 6 [1047]","1047"],
+				["C# 6 [1109]","1109"],
+				["D 6 [1175]","1175"],
+				["D# 6 [1245]","1245"],
+				["E 6 [1319]","1319"],
+				["F 6 [1397]","1397"],
+				["F# 6 [1480]","1480"],
+				["G 6 [1568]","1568"],
+				["G# 6 [1661]","1661"],
+				["A 6 [1760]","1760"],
+				["A# 6 [1864]","1864"],
+				["B 6 [1975]","1975"]
+			]),"frequency");
+		this.setInputsInline(true);
+		this.setOutput(true);
+		this.setColour(155);			
+	}
+};
+
+Blockly.Blocks['fu_ez_buzzer_tone3']={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(new Blockly.FieldDropdown([
+				["C 7 [2093]","2093"],
+				["C# 7 [2218]","2218"],
+				["D 7 [2349]","2349"],
+				["D# 7 [2489]","2489"],
+				["E 7 [2637]","2637"],
+				["F 7 [2794]","2794"],
+				["F# 7 [2960]","2960"],
+				["G 7 [3136]","3136"],
+				["G# 7 [3322]","3322"],
+				["A 7 [3520]","3520"],
+				["A# 7 [3729]","3729"],
+				["B 7 [3951]","3951"],
+				["C 8 [4186]","4186"],
+				["C# 8 [4435]","4435"],
+				["D 8 [4699]","4699"],
+				["D# 8 [4978]","4978"],
+				["E 8 [5274]","5274"],
+				["F 8 [5588]","5588"],
+				["F# 8 [5920]","5920"],
+				["G 8 [6272]","6272"],
+				["G# 8 [6645]","6645"],
+				["A 8 [7040]","7040"],
+				["A# 8 [7459]","7459"],
+				["B 8 [7902]","7902"]
+			]),"frequency");			
+		this.setInputsInline(true);
+		this.setOutput(true);
+		this.setColour(155);		
+	}
+};
+
+Blockly.Blocks['fu_ez_dht11'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField("DHT11");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+         ["相對溼度%","dht.readHumidity()"], 
+         ["溫度°C","dht.readTemperature()"]
+         ]), "type");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(170);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_pixel_rgb'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField("全彩LED");
+    this.appendDummyInput()
+        .appendField("燈號")
+        .appendField(new Blockly.FieldDropdown([["第1顆","0"], ["第2顆","1"], ["第3顆","2"]]), "no");
+    this.appendDummyInput()
+        .appendField("顏色");		
+    this.appendValueInput("R")
+        .setCheck("Number")
+        .appendField("R");
+    this.appendValueInput("G")
+        .setCheck("Number")
+        .appendField("G");
+    this.appendValueInput("B")
+        .setCheck("Number")
+        .appendField("B");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(200);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_pixel_picker'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField("全彩LED");
+    this.appendDummyInput()
+        .appendField("燈號")
+        .appendField(new Blockly.FieldDropdown([["第1顆","0"], ["第2顆","1"], ["第3顆","2"]]), "no");
+	this.appendValueInput("colour")
+		.appendField("顏色");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(200);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_pixel_clear'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField("全彩LED")
+        .appendField("清除亮燈");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(200);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_pixel_brightness'] = {
+	init:function(){
+		this.appendDummyInput()
+			.appendField("EZ+ 全彩LED");
+		this.appendValueInput("brightness")
+			.appendField("亮度[0-255]")
+			.setCheck("Number");
+		this.setInputsInline(true);
+		this.setPreviousStatement(true,null);
+		this.setNextStatement(true,null);
+		this.setColour(200);			
+	}
+};
+
+Blockly.Blocks['fu_ez_pixel_color'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("EZ+ 全彩LED");	
+	this.appendValueInput("L1")
+		.setCheck("String")
+        .appendField("第1顆");
+	this.appendValueInput("L2")
+		.setCheck("String")
+        .appendField("第2顆");
+	this.appendValueInput("L3")
+		.setCheck("String")
+        .appendField("第3顆");		
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(200);	
+  }
+};
+
+Blockly.Blocks['fu_ez_pixel_color_n'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("EZ+ 全彩LED");
+	this.appendValueInput("num")
+		.appendField("燈號[1-3]")	
+		.setCheck("Number");	
+	this.appendValueInput("colour")
+		.appendField("顏色");
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(200);	
+  }
+};
+
+Blockly.Blocks['fu_color'] = {
+  init: function() {	
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldColour("#FF0000"),"RGB");
+	this.setInputsInline(true);
+	this.setOutput(true);
+	this.setColour(200);	
+  }
+};
+
+Blockly.Blocks['fu_color_random'] = {
+  init: function() {	
+    this.appendDummyInput()
+        .appendField("隨機顏色");
+	this.setInputsInline(true);
+	this.setOutput(true);
+	this.setColour(200);	
+  }
+};
+
+Blockly.Blocks['fu_ez_ir_receive'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField("紅外線接收器")
+        .appendField("讀取到訊號時執行");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable("irValue"), "value")
+        .appendField("取得訊號編碼(字串)");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable("irType"), "type")
+        .appendField("取得訊號協定(字串)");
+    this.appendStatementInput("execute")
+        .setCheck(null);
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['fu_oled_initial'] = {
   init: function() {
     this.appendDummyInput()
@@ -644,7 +1205,7 @@ Blockly.Blocks['fu_oled_drawFont'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製本機字型");
+        .appendField("繪製使用本機字型");
   this.appendDummyInput()  
       .setAlign(Blockly.ALIGN_RIGHT)  
       .appendField("名稱")
@@ -1026,7 +1587,7 @@ Blockly.Blocks['fu_oled_drawCustomFont'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製本機字型");
+        .appendField("繪製使用本機字型");
     this.appendValueInput("font")
         .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("String");
@@ -1163,7 +1724,6 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED");
     this.appendDummyInput()
-        .appendField("PROGMEM變數")	
         .appendField(new Blockly.FieldVariable("logo"), "variable")
 		.appendField("設定為");		
 	var imageToXbm = function() {
@@ -1257,7 +1817,6 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED");
 	this.appendDummyInput()
-        .appendField("PROGMEM變數")	
         .appendField(new Blockly.FieldVariable("qrcode"), "variable")
 		.appendField("設定為");	
 	this.appendDummyInput()
@@ -1336,11 +1895,11 @@ Blockly.Blocks['fu_oled_PROGMEM_array'] = {
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED");
     this.appendDummyInput()
-        .appendField("PROGMEM陣列變數")	
+        .appendField("陣列")	
         .appendField(new Blockly.FieldVariable("logo"), "variable")	;		
     this.appendValueInput("PROGMEM")
         .setCheck("Array")
-        .appendField("XBM陣列內容");
+        .appendField("XBM值");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -1408,7 +1967,6 @@ Blockly.Blocks['fu_oled_drawXBMP_PROGMEM'] = {
         .appendField("OLED")
         .appendField("繪製圖像");
     this.appendDummyInput()
-        .appendField("PROGMEM變數")	
         .appendField(new Blockly.FieldVariable("logo"), "variable");		
     this.appendValueInput("width")
         .setCheck("Number")
@@ -1438,7 +1996,7 @@ Blockly.Blocks['fu_oled_drawXBMP_PROGMEM_array'] = {
         .appendField("OLED")
         .appendField("繪製圖像");
     this.appendDummyInput()
-        .appendField("PROGMEM陣列變數")	
+        .appendField("陣列")	
         .appendField(new Blockly.FieldVariable("logo"), "variable");
     this.appendValueInput("index")
         .setCheck("Number")
