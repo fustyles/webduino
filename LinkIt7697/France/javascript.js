@@ -35,7 +35,6 @@ Blockly.Arduino['fu_ez_digitalwrite'] = function(block) {
 
   var dropdown_value = block.getFieldValue('value');
 
-  //新增pinMode程式碼於setup區，NAME值須有固定格式綁定pin值。
   Blockly.Arduino.setups_['pinmode_' + pin] = 'pinMode('+ pin +', OUTPUT);';
   
   var code = 'digitalWrite(%1, %2);\n';
