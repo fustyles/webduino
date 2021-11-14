@@ -1,8 +1,9 @@
 Blockly.Blocks['fu_taiwan_aqi'] = {
   init: function() {
     this.appendDummyInput()
+        .appendField("台灣空氣品質 (ESP32)");	  
+    this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("台灣空氣品質 (ESP32)")
         .appendField(new Blockly.FieldDropdown([
           ["基隆市-基隆","基隆"],
           ["新北市-汐止","汐止"],
