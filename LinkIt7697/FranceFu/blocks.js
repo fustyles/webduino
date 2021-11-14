@@ -78,6 +78,7 @@ Blockly.Blocks['fu_ez_analogwrite_input_esp'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
+        .appendField("(ESP32)")		
         .appendField(new Blockly.FieldDropdown([["紅燈","0"], ["黃燈","1"], ["綠燈","2"]]), "led");
     this.appendValueInput("value")
         .setCheck("Number")
@@ -86,9 +87,7 @@ Blockly.Blocks['fu_ez_analogwrite_input_esp'] = {
     this.appendValueInput("channel")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("通道");
-    this.appendDummyInput()
-        .appendField("(ESP32)");		
+        .appendField("通道");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -200,6 +199,29 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration'] = {
   }
 };
 
+Blockly.Blocks['fu_ez_buzzer_tone_duration_array'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField("蜂鳴器");
+    this.appendValueInput("frequency")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("頻率");
+    this.appendValueInput("duration")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("持續時間(ms)");	
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(140);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['fu_ez_buzzer_notone'] = {
   init: function() {
     this.appendDummyInput()
@@ -221,7 +243,7 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration_esp'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField("蜂鳴器");
+        .appendField("蜂鳴器(ESP32)");
     this.appendValueInput("frequency")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -233,10 +255,7 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration_esp'] = {
     this.appendValueInput("channel")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("通道");		
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("(ESP32)");		
+        .appendField("通道");	
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -251,7 +270,7 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration_esp_array'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField("蜂鳴器");
+        .appendField("蜂鳴器(ESP32)");
     this.appendValueInput("frequency")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -264,9 +283,6 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration_esp_array'] = {
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("通道");		
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("(ESP32)");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
