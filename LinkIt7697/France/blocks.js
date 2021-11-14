@@ -559,9 +559,11 @@ Blockly.Blocks['fu_ez_ir_receive'] = {
         .appendField("紅外線接收器")
         .appendField("讀取到訊號時執行");
     this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)	  
         .appendField(new Blockly.FieldVariable("irValue"), "value")
         .appendField("取得訊號編碼(字串)");
     this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)	  
         .appendField(new Blockly.FieldVariable("irType"), "type")
         .appendField("取得訊號協定(字串)");
     this.appendStatementInput("execute")
