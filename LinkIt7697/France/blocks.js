@@ -3,7 +3,7 @@ Blockly.Blocks['fu_taiwan_aqi'] = {
     this.appendDummyInput()
         .appendField("台灣空氣品質 (ESP32)");	  
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .setAlign(Blockly.ALIGN_LEFT)
         .appendField("站名")		
         .appendField(new Blockly.FieldDropdown([
           ["基隆市-基隆","基隆"],
@@ -85,15 +85,15 @@ Blockly.Blocks['fu_taiwan_aqi'] = {
           ["澎湖縣-馬公","馬公"]
 		]), "sitename");
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)	
+        .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldVariable("airAQI"), "AQI")
         .appendField("取得AQI值");
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)	
+        .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldVariable("airPM25"), "PM25")
         .appendField("取得PM2.5值");	
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)	
+        .setAlign(Blockly.ALIGN_LEFT)	
         .appendField(new Blockly.FieldVariable("airSTATUS"), "STATUS")
         .appendField("取得狀態");			
     this.setInputsInline(false);
