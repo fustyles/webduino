@@ -556,6 +556,1205 @@ Blockly.Arduino['fu_oled_drawLine'] = function(block) {
   return code;
 };
 
+function selectBoardType() {
+	var selectBoard = document.getElementById('board-selector');
+	if (selectBoard) {
+		var state = [0,0,0];
+		for (var i=0;i<selectBoard.options.length;i++) {
+			if (selectBoard.options[i].value.indexOf("LinkIt")!=-1)
+				state[0]=1;
+			if (selectBoard.options[i].value.indexOf("esp32")!=-1)
+				state[1]=1;
+			if (selectBoard.options[i].value.indexOf("BBCmicrobitV2")!=-1)
+				state[2]=1;			
+		}
+		if (state[0]==0)
+			selectBoard.options.add(new Option("LinkIt 7697","LinkIt:linkit_rtos:linkit_7697"));
+		if (state[1]==0) 
+			selectBoard.options.add(new Option("ESP32 Wrover Module","esp32:esp32:esp32wrover"));
+		if (state[2]==0) 
+			selectBoard.options.add(new Option("BBC micro:bit V2","sandeepmistry:nRF5:BBCmicrobitV2"));	
+		return selectBoard.value.split(":")[0];
+	}
+	else
+		return "";
+}
+
+Blockly.Arduino['fu_ez_digitalwrite'] = function(block) {
+  var dropdown_led = block.getFieldValue('led');
+  var pinRYG = [[16,12,13],[13,12,11],[13,14,15]];
+  var pin = pinRYG[0][dropdown_led];
+  if (selectBoardType()=="esp32")
+	pin = pinRYG[0][dropdown_led]; 
+  else if (selectBoardType()=="LinkIt")
+	pin = pinRYG[1][dropdown_led];
+  else if (selectBoardType()=="sandeepmistry")
+	pin = pinRYG[2][dropdown_led];
+
+  var dropdown_value = block.getFieldValue('value');
+
+  //新增pinMode程式碼於setup區，NAME值須有固定格式綁定pin值。
+  Blockly.Arduino.setups_['pinmode_' + pin] = 'pinMode('+ pin +', OUTPUT);';
+  
+  var code = 'digitalWrite(%1, %2);\n';
+  code = code.replace("%1", pin );
+  code = code.replace("%2", dropdown_value );
+  return code;
+};
+
+Blockly.Arduino['fu_ez_digitalwrite_input'] = function(block) {
+  var dropdown_led = block.getFieldValue('led');
+  var pinRYG = [[16,12,13],[13,12,11],[13,14,15]];
+  var pin = pinRYG[0][dropdown_led]; 
+  if (selectBoardType()=="esp32")
+	pin = pinRYG[0][dropdown_led]; 
+  else if (selectBoardType()=="LinkIt")
+	pin = pinRYG[1][dropdown_led];
+  else if (selectBoardType()=="sandeepmistry")
+	pin = pinRYG[2][dropdown_led];
+
+  var value_value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC); 
+
+  Blockly.Arduino.setups_['pinmode_'+ pin] = 'pinMode('+ pin +', OUTPUT);';
+  var code = 'digitalWrite('+ pin + ', ' + value_value +');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_ez_digitalwrite_input_relay'] = function(block) {
+  var pin = 25;
+  if (selectBoardType()=="esp32")
+	pin = 25; 
+  else if (selectBoardType()=="LinkIt")
+	pin = 5;
+  else if (selectBoardType()=="sandeepmistry")
+	pin = 9; 
+  
+  var value_value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC); 
+
+  Blockly.Arduino.setups_['pinmode_'+ pin] = 'pinMode('+ pin +', OUTPUT);';
+  
+  var code = 'digitalWrite('+ pin +', '+ value_value +');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_ez_analogwrite_input'] = function(block) {
+  if (selectBoardType()=="esp32") 
+	  var code = "";
+  else {	
+	  var dropdown_led = block.getFieldValue('led');
+	  var pinRYG = [[16,12,13],[13,12,11],[13,14,15]];
+	  var pin = pinRYG[0][dropdown_led]; 
+	  if (selectBoardType()=="esp32")
+		pin = pinRYG[0][dropdown_led]; 
+	  else if (selectBoardType()=="LinkIt")
+		pin = pinRYG[1][dropdown_led];
+	  else if (selectBoardType()=="sandeepmistry")
+		pin = pinRYG[2][dropdown_led];
+
+	  var value_value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC);
+
+	  Blockly.Arduino.setups_['pinmode_'+ pin] = 'pinMode('+ pin +', OUTPUT);';
+	  var code = 'analogWrite('+ pin +', '+ value_value +');\n';
+  }
+  return code;
+};
+
+Blockly.Arduino['fu_ez_analogwrite_input_esp'] = function(block) {
+  if (selectBoardType()!="esp32") 
+	  var code = "";
+  else {	
+	  var dropdown_led = block.getFieldValue('led');
+	  var pinRYG = [[16,12,13],[13,12,11],[13,14,15]];
+	  var pin = pinRYG[0][dropdown_led]; 
+	  if (selectBoardType()=="esp32")
+		pin = pinRYG[0][dropdown_led]; 
+	  else if (selectBoardType()=="LinkIt")
+		pin = pinRYG[1][dropdown_led];
+	  else if (selectBoardType()=="sandeepmistry")
+		pin = pinRYG[2][dropdown_led];
+
+	  var value_value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC);
+	  var value_channel = Blockly.Arduino.valueToCode(block, 'channel', Blockly.Arduino.ORDER_ATOMIC);
+	 
+	  Blockly.Arduino.setups_['ledc_'+ pin] = 'ledcAttachPin('+ pin +','+ value_channel +');\n  '+
+													   'ledcSetup('+ value_channel +',5000,8);';
+	  var code = 'ledcWrite(%1, %2);\n';
+	  code = code.replace("%1", value_channel);
+	  code = code.replace("%2", value_value);
+  }
+  return code;
+};
+
+Blockly.Arduino['fu_ez_digitalread'] = function(block) {
+  var dropdown_button = block.getFieldValue('button');	
+  var pinButton = [[5,36],[0,7],[5,11]];  
+  var pin = pinButton[0][dropdown_button];
+  if (selectBoardType()=="esp32")
+	pin = pinButton[0][dropdown_button];
+  else if (selectBoardType()=="LinkIt")
+	pin = pinButton[1][dropdown_button];
+  else if (selectBoardType()=="sandeepmistry")
+	pin = pinButton[2][dropdown_button];
+  
+  Blockly.Arduino.setups_['pinmode_'+ pin] = 'pinMode('+ pin +', INPUT_PULLUP);';
+  
+  var code = 'digitalRead('+ pin +')' ;
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['fu_ez_digitalread_button'] = function(block) {
+  var dropdown_type = block.getFieldValue('type');	
+  var pinButton = [[5,36],[0,7],[5,11]]; 
+  var pinA = pinButton[0][0];
+  var pinB = pinButton[0][1];  
+  if (selectBoardType()=="esp32") {
+	pinA = pinButton[0][0];
+	pinB = pinButton[0][1];	
+  }
+  else if (selectBoardType()=="LinkIt") {
+	pinA = pinButton[1][0];
+	pinB = pinButton[1][1];
+  }
+  else if (selectBoardType()=="sandeepmistry") {
+	pinA = pinButton[2][0];
+	pinB = pinButton[2][1];
+  }
+  
+  if (dropdown_type == "A") {
+	Blockly.Arduino.setups_['pinmode_'+ pinA] = 'pinMode('+ pinA +', INPUT_PULLUP);';	  
+	var code = 'digitalRead('+ pinA +')==0' ;
+  }
+  else if (dropdown_type == "B") {
+	Blockly.Arduino.setups_['pinmode_'+ pinB] = 'pinMode('+ pinB +', INPUT_PULLUP);';
+	var code = 'digitalRead('+ pinB +')==0' ;
+  }
+  else if (dropdown_type == "AB") {
+	Blockly.Arduino.setups_['pinmode_'+ pinA] = 'pinMode('+ pinA +', INPUT_PULLUP);';
+    Blockly.Arduino.setups_['pinmode_'+ pinB] = 'pinMode('+ pinB +', INPUT_PULLUP);';
+	Blockly.Arduino.definitions_['digitalRead_AB'] = ''+
+	    'int pressButtonAB() {\n'+
+		'  if ((digitalRead('+ pinA +')==0) || (digitalRead('+ pinB +')==0)) {\n' +
+		'    delay(200);\n'+
+		'    return (digitalRead('+ pinA +')==0) && (digitalRead('+ pinB +')==0);\n'+
+		'  }\n'+			
+		'  else \n'+		
+		'    return 0;\n'+
+		'}';
+	var code = 'pressButtonAB()';
+  }
+  
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['fu_ez_analogread_potentiometer'] = function(block) {
+  var pin = 34; 
+  if (selectBoardType()=="esp32")
+	pin = 34; 
+  else if (selectBoardType()=="LinkIt")
+	pin = 16;
+  else if (selectBoardType()=="sandeepmistry")
+	pin = 2; 
+
+  Blockly.Arduino.setups_['pinmode_'+ pin] = 'pinMode('+ pin +', INPUT);';
+	
+  var code = 'analogRead('+ pin +')' ;
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['fu_ez_analogread_photoresistor'] = function(block) {
+  var pin = 39;
+  if (selectBoardType()=="esp32")
+	pin = 39; 
+  else if (selectBoardType()=="LinkIt")
+	pin = 15;
+  else if (selectBoardType()=="sandeepmistry")
+	pin = 1; 
+
+  Blockly.Arduino.setups_['pinmode_'+ pin] = 'pinMode('+ pin +', INPUT);';
+  
+  var code = 'analogRead('+ pin +')' ;
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['fu_ez_buzzer_tone'] = function(block) {
+  if (selectBoardType()=="esp32") 
+	  var code = "";
+  else {
+      var pin = 14;	  
+	  if (selectBoardType()=="esp32")
+		pin = 14; 
+	  else if (selectBoardType()=="LinkIt")
+		pin = 14;
+	  else if (selectBoardType()=="sandeepmistry")
+		pin = 0; 
+
+	  var value_frequency = Blockly.Arduino.valueToCode(block, 'frequency', Blockly.Arduino.ORDER_ATOMIC);
+	 
+	  Blockly.Arduino.setups_['pinmode_'+ pin] = 'pinMode('+ pin +', OUTPUT);';
+	  var code = 'tone('+ pin +', '+ value_frequency +');\n' ;
+  }
+  return code;
+};
+
+Blockly.Arduino['fu_ez_buzzer_tone_duration'] = function(block) {
+  if (selectBoardType()=="esp32") 
+	  var code = "";
+  else {
+	  var pin = 14;
+	  if (selectBoardType()=="esp32")
+		pin = 14; 
+	  else if (selectBoardType()=="LinkIt")
+		pin = 14;
+	  else if (selectBoardType()=="sandeepmistry")
+		pin = 0; 
+
+	  var value_frequency = Blockly.Arduino.valueToCode(block, 'frequency', Blockly.Arduino.ORDER_ATOMIC);
+	  var value_duration = Blockly.Arduino.valueToCode(block, 'duration', Blockly.Arduino.ORDER_ATOMIC);
+
+	  Blockly.Arduino.setups_['pinmode_'+ pin] = 'pinMode('+ pin +', OUTPUT);';
+	  var code = 'tone('+ pin +', '+ value_frequency +', '+ value_duration +');\n' ;
+  }
+  return code;
+};
+
+Blockly.Arduino['fu_ez_buzzer_tone_duration_esp'] = function(block) {
+  if (selectBoardType()!="esp32") 
+	  var code = "";
+  else {	
+	  var pin = 14; 
+	  if (selectBoardType()=="esp32")
+		pin = 14; 
+	  else if (selectBoardType()=="LinkIt")
+		pin = 14;
+	  else if (selectBoardType()=="sandeepmistry")
+		pin = 0; 
+
+	  var value_frequency = Blockly.Arduino.valueToCode(block, 'frequency', Blockly.Arduino.ORDER_ATOMIC);
+	  var value_duration = Blockly.Arduino.valueToCode(block, 'duration', Blockly.Arduino.ORDER_ATOMIC);
+	  var value_channel = Blockly.Arduino.valueToCode(block, 'channel', Blockly.Arduino.ORDER_ATOMIC);
+
+	  Blockly.Arduino.setups_['ledc_'+ pin] = 'ledcSetup('+value_channel+',2000,8);\n'+
+											  '  ledcAttachPin('+pin+','+value_channel+');'; 
+	  Blockly.Arduino.definitions_['tone'] = 'void tone(int channel, int frequency, int delaytime, ) {\n'+
+											 '  ledcWriteTone(channel, frequency);\n'+
+											 '  delay(delaytime);\n'+
+											 '  ledcWriteTone(channel, 0);\n'+
+											 '}';
+
+	  var code = 'tone('+ value_channel +','+ value_frequency +', '+ value_duration +');\n' ;
+  }
+  return code;
+};
+
+Blockly.Arduino['fu_ez_buzzer_tone_duration_esp_array'] = function(block) {
+  if (selectBoardType()!="esp32") 
+	  var code = "";
+  else {
+	  var pin = 14; 
+	  if (selectBoardType()=="esp32")
+		pin = 14; 
+	  else if (selectBoardType()=="LinkIt")
+		pin = 14;
+	  else if (selectBoardType()=="sandeepmistry")
+		pin = 0; 
+
+	  var value_frequency = Blockly.Arduino.valueToCode(block, 'frequency', Blockly.Arduino.ORDER_ATOMIC);
+	  var value_duration = Blockly.Arduino.valueToCode(block, 'duration', Blockly.Arduino.ORDER_ATOMIC);
+	  var value_channel = Blockly.Arduino.valueToCode(block, 'channel', Blockly.Arduino.ORDER_ATOMIC);  
+
+	  Blockly.Arduino.setups_['ledc_'+ pin] = 'ledcSetup('+value_channel+',2000,8);\n'+
+											  '  ledcAttachPin('+pin+','+value_channel+');'; 
+	  Blockly.Arduino.definitions_['toneArray'] = 'void toneArray(String frequency, String delaytime, int channel) {\n'+
+													  '  String f="",d="",split=",";\n'+
+													  '  int s1=0;\n'+
+													  '  frequency+=",";\n'+
+													  '  delaytime+=",";\n'+
+													  '  for (int i=0;i<frequency.length();i++) {\n'+
+													  '    if (frequency[i]==split[0]) {\n'+
+													  '  	   f=frequency.substring(s1,i);\n'+
+													  '  	   s1=i+1;\n'+
+													  '  	   for (int j=0;j<delaytime.length();j++) {\n'+
+													  '  	      if (delaytime[j]==split[0]) {\n'+
+													  '  		    d=delaytime.substring(0,j);\n'+
+													  '  		    ledcWriteTone(channel, f.toInt());\n'+
+													  '  		    delay(d.toInt());\n'+
+													  '  		    delaytime=delaytime.substring(j+1);\n'+
+													  '  		    break;\n'+
+													  '  	      }\n'+
+													  '  	    }\n'+
+													  '    }\n'+
+													  '  }\n'+
+													  '  ledcWriteTone(channel, 0);\n'+
+													  '}';
+
+	  var v = Blockly.getMainWorkspace().getVariablesOfType("");
+	  var f1 = '"', f2 = '"', d1 = '"', d2 = '"'; 
+	  for (var i=0;i<v.length;i++) {
+		if (value_frequency==v[i].name) {
+			f1="String(";
+			f2=")";
+		}
+		if (value_duration==v[i].name) {
+			d1="String(";
+			d2=")";
+		}
+	  }
+	  var code = 'toneArray('+f1+value_frequency.toString().replace(/"|'|{|}| /g,"")+f2+','+d1+ value_duration.toString().replace(/"|'|{|}| /g,"") +d2+','+ value_channel +');\n' ;
+  }
+  return code;
+};
+
+Blockly.Arduino['fu_ez_buzzer_notone'] = function(block) {
+  if (selectBoardType()=="esp32") 
+	  var code = "";
+  else {
+	  var pin = 14;
+	  if (selectBoardType()=="esp32")
+		pin = 14; 
+	  else if (selectBoardType()=="LinkIt")
+		pin = 14;
+	  else if (selectBoardType()=="sandeepmistry")
+		pin = 0; 
+
+	  Blockly.Arduino.setups_['pinmode_'+ pin] = 'pinMode('+ pin +', OUTPUT);';
+	  
+	  var code = 'noTone('+ pin +');\n';
+  }
+  return code;
+};
+
+Blockly.Arduino['fu_ez_buzzer_tone1'] = function(){											
+	var frequency=this.getFieldValue("frequency");
+	return[frequency, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['fu_ez_buzzer_tone2'] = function(){											
+	var frequency=this.getFieldValue("frequency");
+	return[frequency, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['fu_ez_buzzer_tone3'] = function(){											
+	var frequency=this.getFieldValue("frequency");
+	return[frequency, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['fu_ez_dht11'] = function(block) {
+  var pin = 15;
+  if (selectBoardType()=="esp32")
+	pin = 15; 
+  else if (selectBoardType()=="LinkIt")
+	pin = 10;
+  else if (selectBoardType()=="sandeepmistry")
+	pin = 16; 
+
+  var dropdown_type = block.getFieldValue('type');
+
+  Blockly.Arduino.definitions_['dht11_library'] = '#include <DHT.h>';
+  Blockly.Arduino.definitions_['dht11_'+ pin] = 'DHT dht ('+ pin +', DHT11);';
+  Blockly.Arduino.setups_['dht11_begin'] = 'dht.begin();';
+  var code = dropdown_type;
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['fu_ez_pixel_rgb'] = function(block) {
+  var pin = 26;
+  if (selectBoardType()=="esp32")
+	pin = 26; 
+  else if (selectBoardType()=="LinkIt")
+	pin = 4;
+  else if (selectBoardType()=="sandeepmistry")
+	pin = 12;
+
+  var dropdown_no = block.getFieldValue('no');
+  var value_r = Blockly.Arduino.valueToCode(block, 'R', Blockly.Arduino.ORDER_ATOMIC);
+  var value_g = Blockly.Arduino.valueToCode(block, 'G', Blockly.Arduino.ORDER_ATOMIC);
+  var value_b = Blockly.Arduino.valueToCode(block, 'B', Blockly.Arduino.ORDER_ATOMIC);
+
+  Blockly.Arduino.definitions_['pixel_'+ pin] = '#include <Adafruit_NeoPixel.h>\n'+
+												'Adafruit_NeoPixel pixels(3, '+ pin +', NEO_GRB + NEO_KHZ800);';
+  Blockly.Arduino.setups_['pixel_'+ pin] = 'pixels.begin();\n'+
+										   '  pixels.setBrightness(100);\n'+
+										   '  pixels.clear();';
+
+  var code= 'pixels.setPixelColor('+ dropdown_no +', pixels.Color('+value_r+', '+value_g+', '+value_b+'));\n'+
+			'pixels.show();\n';
+  return code;
+};
+
+Blockly.Arduino['fu_ez_pixel_clear'] = function(block) {
+  var code = 'pixels.clear();\n';
+  return code;
+};
+
+Blockly.Arduino['fu_ez_pixel_picker'] = function(block) {
+  var pin = 26;
+  if (selectBoardType()=="esp32")
+	pin = 26; 
+  else if (selectBoardType()=="LinkIt")
+	pin = 4;
+  else if (selectBoardType()=="sandeepmistry")
+	pin = 12; 
+
+  var dropdown_no = block.getFieldValue('no');
+  var value_colour = Blockly.Arduino.valueToCode(this,"colour",Blockly.Arduino.ORDER_ATOMIC).replace(/"/g,'');
+
+  Blockly.Arduino.definitions_['pixel_'+ pin] = '#include <Adafruit_NeoPixel.h>\n'+
+												'Adafruit_NeoPixel pixels(3, '+ pin +', NEO_GRB + NEO_KHZ800);';
+  Blockly.Arduino.setups_['pixel_'+ pin] = 'pixels.begin();\n'+
+										   '  pixels.setBrightness(100);\n'+
+										   '  pixels.clear();';
+
+  var code= 'pixels.setPixelColor('+ dropdown_no +', pixels.Color('+hexToRgb(value_colour).r+', '+hexToRgb(value_colour).g+', '+hexToRgb(value_colour).b+'));\n'+'pixels.show();\n';
+  return code;
+};
+
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+}
+
+Blockly.Arduino['fu_ez_pixel_clear'] = function(block) {
+	Blockly.Arduino.definitions_['define_webbit_matrix_HextoRGB']='\n'+
+											'int HextoRGB(char val) {\n'+
+											'  String hex ="0123456789abcdef";\n'+
+											'  return hex.indexOf(val);\n'+
+											'}\n'; 										   
+											   
+	Blockly.Arduino.definitions_['ez_pixel_color']='\n'+
+											'void ez_pixel_color(String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  int R,G,B;\n'+
+											'  int range;\n'+	
+											'  range = color.length()/6;\n'+								
+											'  for (int i=0;i<range;i++) {\n'+
+    										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]));\n'+
+    										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]));\n'+
+    										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]));\n'+
+    										'    pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+    										'  }\n'+
+    										'  pixels.show();\n'+
+											'}\n';	
+											
+	var code = 'ez_pixel_color("000000000000000000");\n';
+	return code;
+};
+
+Blockly.Arduino['fu_ez_pixel_brightness'] = function(block){
+	var brightness=Blockly.Arduino.valueToCode(this,"brightness",Blockly.Arduino.ORDER_ATOMIC);
+	var code = 'pixels.setBrightness('+ brightness+');\n';
+	return code;
+};
+
+Blockly.Arduino['fu_ez_pixel_color'] = function(block) {
+	var pin = 26;
+	if (selectBoardType()=="esp32")
+		pin = 26; 
+	else if (selectBoardType()=="LinkIt")
+		pin = 4;
+	else if (selectBoardType()=="sandeepmistry")
+		pin = 12; 
+
+	Blockly.Arduino.definitions_['pixel_'+ pin] = '#include <Adafruit_NeoPixel.h>\n'+
+												'Adafruit_NeoPixel pixels(3, '+ pin +', NEO_GRB + NEO_KHZ800);';
+	Blockly.Arduino.setups_['pixel_'+ pin] = 'pixels.begin();\n'+
+										   '  pixels.setBrightness(100);\n'+
+										   '  pixels.clear();';
+										   
+	Blockly.Arduino.definitions_['define_webbit_matrix_HextoRGB']='\n'+
+											'int HextoRGB(char val) {\n'+
+											'  String hex ="0123456789abcdef";\n'+
+											'  return hex.indexOf(val);\n'+
+											'}\n'; 										   
+											   
+	Blockly.Arduino.definitions_['ez_pixel_color']='\n'+
+											'void ez_pixel_color(String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  int R,G,B;\n'+
+											'  int range;\n'+	
+											'  range = color.length()/6;\n'+								
+											'  for (int i=0;i<range;i++) {\n'+
+    										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]));\n'+
+    										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]));\n'+
+    										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]));\n'+
+    										'    pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+    										'  }\n'+
+    										'  pixels.show();\n'+
+											'}\n';	
+
+	var L1 = Blockly.Arduino.valueToCode(this,"L1",Blockly.Arduino.ORDER_ATOMIC);
+	L1 = rgb2number(L1).replace(/""/g,'"');
+	var L2 = Blockly.Arduino.valueToCode(this,"L2",Blockly.Arduino.ORDER_ATOMIC);
+	L2 = rgb2number(L2).replace(/""/g,'"');
+	var L3 = Blockly.Arduino.valueToCode(this,"L3",Blockly.Arduino.ORDER_ATOMIC);
+	L3 = rgb2number(L3).replace(/""/g,'"');
+	var code = 'ez_pixel_color('+L1+'+'+L2+'+'+L3+');\n';
+	return code;
+};
+
+Blockly.Arduino['fu_ez_pixel_color_n'] = function(block) {
+	var pin = 26;
+	if (selectBoardType()=="esp32")
+		pin = 26; 
+	else if (selectBoardType()=="LinkIt")
+		pin = 4;
+	else if (selectBoardType()=="sandeepmistry")
+		pin = 12; 
+
+	Blockly.Arduino.definitions_['pixel_'+ pin] = '#include <Adafruit_NeoPixel.h>\n'+
+												'Adafruit_NeoPixel pixels(3, '+ pin +', NEO_GRB + NEO_KHZ800);';
+	Blockly.Arduino.setups_['pixel_'+ pin] = 'pixels.begin();\n'+
+									   '  pixels.setBrightness(100);\n'+
+									   '  pixels.clear();';
+										   
+	var value_num = Blockly.Arduino.valueToCode(this,"num",Blockly.Arduino.ORDER_ATOMIC);
+	var value_colour = Blockly.Arduino.valueToCode(this,"colour",Blockly.Arduino.ORDER_ATOMIC).replace(/"/g,'');											   
+
+	var code= 'pixels.setPixelColor('+ (Number(value_num)-1) +', pixels.Color('+hexToRgb(value_colour).r+', '+hexToRgb(value_colour).g+', '+hexToRgb(value_colour).b+'));\n'+ 'pixels.show();\n';
+	return code;
+};
+
+Blockly.Arduino['fu_color'] = function(block) {
+	var rgb = '"'+this.getFieldValue("RGB")+'"';
+	return[rgb, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['fu_color_random'] = function(block) {
+	Blockly.Arduino.definitions_['ez_pixel_color_random']='\n'+
+											'String ez_pixel_color_random() {\n'+	
+											'  String s = "0123456789abcdef";\n'+
+											'  String color = "#000000";\n'+												
+											'  int R = random(0, 255);\n'+
+											'  int G = random(0, 255);\n'+
+											'  int B = random(0, 255);\n'+	
+											'  int r1 = (R-R%16)/16;\n'+
+											'  int r2 = R%16;\n'+
+											'  int g1 = (G-G%16)/16;\n'+
+											'  int g2 = G%16;\n'+
+											'  int b1 = (B-B%16)/16;\n'+
+											'  int b2 = B%16;\n'+
+											'  color[1] = s[r1];\n'+
+											'  color[2] = s[r2];\n'+
+											'  color[3] = s[g1];\n'+
+											'  color[4] = s[g2];\n'+
+											'  color[5] = s[b1];\n'+
+											'  color[6] = s[b2];\n'+		
+											'  return color;\n'+
+											'}\n'; 
+	var code = 'ez_pixel_color_random()';
+	return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['fu_ez_ir_receive'] = function(block) {
+  var pin = 33;
+  if (selectBoardType()=="esp32")
+	pin = 33; 
+  else if (selectBoardType()=="LinkIt")
+	pin = 17;
+  else if (selectBoardType()=="sandeepmistry")
+	pin = 8; 
+
+  var variable_value = Blockly.Arduino.nameDB_.getName(block.getFieldValue('value'), Blockly.Variables.NAME_TYPE);
+  var variable_type = Blockly.Arduino.nameDB_.getName(block.getFieldValue('type'), Blockly.Variables.NAME_TYPE);
+  var statements_execute = Blockly.Arduino.statementToCode(block, 'execute');
+  
+  Blockly.Arduino.definitions_['ir_definition'] = '#include <IRremote.h>\nIRrecv irrecv('+pin+');\ndecode_results results;';
+  Blockly.Arduino.setups_['ir_setup'] = 'irrecv.enableIRIn();';
+  Blockly.Arduino.definitions_['ir_getIrType'] = 'String getIrType(int type) {\n' +
+										   '  if (type==1)\n' +
+										   '   return "NEC";\n' +
+										   '  else if (type==2)\n' +
+										   '   return "SONY";\n' +
+										   '  else if (type==3)\n' +
+										   '   return "RC5";\n' +
+										   '  else if (type==4)\n' +
+										   '   return "RC6";\n' +
+										   '  else if (type==5)\n' +
+										   '   return "DISH";\n' +
+										   '  else if (type==6)\n' +
+										   '   return "SHARP";\n' +
+										   '  else if (type==7)\n' +
+										   '   return "PANASONIC";\n' +
+										   '  else if (type==8)\n' +
+										   '   return "JVC";\n' +
+										   '  else if (type==9)\n' +
+										   '   return "SANYO";\n' +
+										   '  else if (type==10)\n' +
+										   '   return "MITSUBISHI";\n' +
+										   '  else\n' +
+										   '   return "UNKNOWN";\n' +										   
+										   '}';										   
+  var code = 'if (irrecv.decode(&results)) {\n'+
+			 '  String '+variable_value+' = String(results.value, HEX);\n'+
+			 '  String '+variable_type+' = getIrType(results.decode_type);\n'+
+			 statements_execute +
+			 '  irrecv.resume();\n'+
+			 '}\n'+
+			 'delay(300);';
+  return code;
+};
+
+//https://github.com/olikraus/u8g2/wiki/u8g2reference
+Blockly.Arduino['fu_oled_initial'] = function(block) {
+  var dropdown_format = block.getFieldValue('format');
+  var dropdown_display = block.getFieldValue('display');
+  var dropdown_utf8 = (block.getFieldValue('utf8')==1)?"  u8g2.enableUTF8Print();":"  u8g2.disableUTF8Print();";
+  var text_font = block.getFieldValue('font');
+  
+  Blockly.Arduino.definitions_['u8g2_definition'] = '#include <U8g2lib.h>\n'+
+												  '#include <Wire.h>\n'+
+												  dropdown_format.replace('U8G2_R0',dropdown_display);												  
+  Blockly.Arduino.setups_['u8g2_setup'] = 'u8g2.begin();\n  '+
+										  'u8g2.setFont('+text_font+');\n'+
+										  dropdown_utf8;
+  
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_setDisplayRotation'] = function(block) {
+  var dropdown_display = block.getFieldValue('display');
+  
+  var code = 'u8g2.setDisplayRotation('+dropdown_display+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_setPowerSave'] = function(block) {
+  var dropdown_power = block.getFieldValue('power');
+
+  var code = 'u8g2.setPowerSave('+dropdown_power+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_sendBuffer'] = function(block) {
+  var statements_draw = Blockly.Arduino.statementToCode(block, 'draw');
+  var code = 'u8g2.clearBuffer();\n'+ 
+			 statements_draw +
+			 'u8g2.sendBuffer();\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_nextPage'] = function(block) {
+  var statements_draw = Blockly.Arduino.statementToCode(block, 'draw');
+  var code = 'u8g2.firstPage();\ndo {\n'+ 
+			 statements_draw +
+			 '} while ( u8g2.nextPage() );\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_clear'] = function(block) {
+  var code = 'u8g2.clear();\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_home'] = function(block) {
+  var code = 'u8g2.home();\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_setContrast'] = function(block) {
+  var value_value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.setContrast('+value_value+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_setFont'] = function(block) {
+  var value_font = Blockly.Arduino.valueToCode(block, 'font', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.setFont('+value_font.replace(/"/g,'').replace(/'/g,"")+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_setFont_chinese'] = function(block) {
+  var dropdown_font = block.getFieldValue('font');
+
+  var code = 'u8g2.setFont('+dropdown_font+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_setFont_icon'] = function(block) {
+  var dropdown_font = block.getFieldValue('font');
+
+  var code = 'u8g2.setFont('+dropdown_font+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_setFont_all'] = function(block) {
+  var dropdown_font = block.getFieldValue('font');
+
+  var code = 'u8g2.setFont('+dropdown_font+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_setFontDirection'] = function(block) {
+  var dropdown_display = block.getFieldValue('display');
+  
+  var code = 'u8g2.setFontDirection('+dropdown_display+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_setDrawColor'] = function(block) {
+  var dropdown_mode = block.getFieldValue('mode');
+  
+  var code = 'u8g2.setDrawColor('+dropdown_mode+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawStr'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawStr('+value_x+','+value_y+',String('+value_str+').c_str());\n';
+  return code;
+}; 
+	
+Blockly.Arduino['fu_oled_drawFont'] = function(block) {
+	var dropdown_font = block.getFieldValue('font');
+	var dropdown_size = block.getFieldValue('size');
+	var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+	var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+	var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+	var variable = "xbm_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
+ 
+	if (value_str!='""') {
+		var text = value_str.replace(/"/g,"")
+		var c = document.getElementById("canvas_draw");
+		if (document.getElementById("canvas_draw")) {
+			c.parentElement.removeChild(c);
+		}
+
+		const canvas = document.createElement('canvas');
+		const context = canvas.getContext('2d');
+		canvas.width = 960;
+		canvas.height = 480;
+
+		context.font = dropdown_size + "px " + dropdown_font;
+		let metrics = context.measureText(text);
+		//let fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
+		//let actualHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+		var width = (metrics.width%8>0)?Math.round(metrics.width-metrics.width%8+8):Math.round(metrics.width);
+
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		context.fillStyle="#000000";
+		context.textBaseline = "top";
+		context.fillText(text, 0, 0);
+
+		var pixels = context.getImageData(0, 0, canvas.width, canvas.height);
+		var fontTop = null, fontBottom = null;
+		var y;
+		for (var i = 0; i < pixels.data.length; i += 4) {
+			if (pixels.data[i+3] !== 0) {
+				y = ((i / 4) / canvas.width);			
+				if (fontTop === null) {
+					fontTop = y;
+				}
+				if (fontBottom === null) {
+					fontBottom = y;
+				} else if (fontBottom < y) {
+					fontBottom = y;
+				}
+			}
+		}
+
+		var height = fontBottom-fontTop+1;	
+		height = (height>Math.floor(height))?(Math.floor(height)+1):Math.floor(height);
+
+		const imageData = context.getImageData(0, fontTop, width, height);
+		const data = imageData.data;
+
+		let xbmString = "";
+		let pixel = 0;
+		let value = 0;
+
+		for(let h = 0; h < height; h++) {
+			for(let w = 0; w < width / 8; w++) {
+				value = 0;
+				for (let p = 0; p < 8; p++) {
+					const isBlack = !(data[pixel * 4+3]);
+					if (!isBlack)
+						value += Math.pow(2, p);
+					pixel++;
+
+					const isNewRow = pixel/width === 1;
+					if(isNewRow) break;
+				}
+				xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
+			}
+		}
+		
+		document.body.appendChild(canvas);
+		canvas.parentNode.removeChild(canvas);
+  		Blockly.Arduino.definitions_['u8g2_progmem_'+variable] = 'static const unsigned char PROGMEM '+variable+'[] = {\n'+
+			  xbmString.substr(0,xbmString.length-1) +
+			  '\n};\n';
+		
+		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+width+', '+height+', '+variable+');\n';
+	}
+	else
+		var code ="";
+	return code;
+};
+
+Blockly.Arduino['fu_oled_drawCustomFont'] = function(block) {
+	var value_font = Blockly.Arduino.valueToCode(block, 'font', Blockly.Arduino.ORDER_ATOMIC);
+	var dropdown_size = block.getFieldValue('size');
+	var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+	var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+	var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+	var variable = "xbm_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
+ 
+	if (value_str!='""') {
+		var text = value_str.replace(/"/g,"")
+		var c = document.getElementById("canvas_draw");
+		if (document.getElementById("canvas_draw")) {
+			c.parentElement.removeChild(c);
+		}
+
+		const canvas = document.createElement('canvas');
+		const context = canvas.getContext('2d');
+		canvas.width = 960;
+		canvas.height = 480;
+
+		context.font = dropdown_size + "px " + value_font;
+		let metrics = context.measureText(text);
+		//let fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
+		//let actualHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+		var width = (metrics.width%8>0)?Math.round(metrics.width-metrics.width%8+8):Math.round(metrics.width);
+
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		context.fillStyle="#000000";
+		context.textBaseline = "top";
+		context.fillText(text, 0, 0);
+
+		var pixels = context.getImageData(0, 0, canvas.width, canvas.height);
+		var fontTop = null, fontBottom = null;
+		var y;
+		for (var i = 0; i < pixels.data.length; i += 4) {
+			if (pixels.data[i+3] !== 0) {
+				y = ((i / 4) / canvas.width);			
+				if (fontTop === null) {
+					fontTop = y;
+				}
+				if (fontBottom === null) {
+					fontBottom = y;
+				} else if (fontBottom < y) {
+					fontBottom = y;
+				}
+			}
+		}
+
+		var height = fontBottom-fontTop+1;	
+		height = (height>Math.floor(height))?(Math.floor(height)+1):Math.floor(height);
+
+		const imageData = context.getImageData(0, fontTop, width, height);
+		const data = imageData.data;
+
+		let xbmString = "";
+		let pixel = 0;
+		let value = 0;
+
+		for(let h = 0; h < height; h++) {
+			for(let w = 0; w < width / 8; w++) {
+				value = 0;
+				for (let p = 0; p < 8; p++) {
+					const isBlack = !(data[pixel * 4+3]);
+					if (!isBlack)
+						value += Math.pow(2, p);
+					pixel++;
+
+					const isNewRow = pixel/width === 1;
+					if(isNewRow) break;
+				}
+				xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
+			}
+		}
+		
+		document.body.appendChild(canvas);
+		canvas.parentNode.removeChild(canvas);
+  		Blockly.Arduino.definitions_['u8g2_progmem_'+variable] = 'static const unsigned char PROGMEM '+variable+'[] = {\n'+
+			  xbmString.substr(0,xbmString.length-1) +
+			  '\n};\n';
+		
+		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+width+', '+height+', '+variable+');\n';
+	}
+	else
+		var code ="";
+	return code;
+};
+
+Blockly.Arduino['fu_oled_drawPixelMap'] = function(block) {
+	var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+	var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+	var dropdown_width = block.getFieldValue('width');
+	var dropdown_height = block.getFieldValue('height');
+	let xbmString = "";
+	let pixel = 0;
+	let value = 0;
+	let width = Number(dropdown_width);	
+	let height = Number(dropdown_height);
+
+	for(let h = 0; h < height; h++) {
+		for(let w = 0; w < width / 8; w++) {
+			value = 0;
+			for (let p = 0; p < 8; p++) {
+				const isBlack = (block.getFieldValue('chk'+pixel)=="TRUE");
+				if (isBlack)
+					value += Math.pow(2, p);
+				pixel++;
+
+				const isNewRow = pixel/width === 1;
+				if(isNewRow) break;
+			}
+			xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
+		}
+	}
+
+  var variable = "xbm_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
+	
+  Blockly.Arduino.definitions_['u8g2_progmem_'+variable] = 'static const unsigned char PROGMEM '+variable+'[] = {\n'+
+			  xbmString.replace(/"/g,'').replace(/'/g,"") +
+			  '\n};\n';
+			  
+  var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+width+', '+height+', '+variable+');\n';
+  return code;  
+};
+
+Blockly.Arduino['fu_oled_setCursor'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.setCursor('+value_x+','+value_y+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_Print'] = function(block) {
+  var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.print('+value_str+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawGlyph'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_position = Blockly.Arduino.valueToCode(block, 'position', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawGlyph('+value_x+','+value_y+','+value_position+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawUTF8'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawUTF8('+value_x+','+value_y+',String('+value_str+').c_str());\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_setBitmapMode'] = function(block) {
+  var dropdown_mode = block.getFieldValue('mode');
+  
+  var code = 'u8g2.setBitmapMode('+dropdown_mode+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawXBMP'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+  var value_PROGMEM = Blockly.Arduino.valueToCode(block, 'PROGMEM', Blockly.Arduino.ORDER_ATOMIC);
+  var variable = "xbm_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
+  
+  Blockly.Arduino.definitions_['u8g2_progmem_'+variable] = 'static const unsigned char PROGMEM '+variable+'[] = {\n'+
+			  value_PROGMEM.replace(/"/g,'').replace(/'/g,"") +
+			  '\n};\n';
+			  
+  var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+variable+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawXBMP_PROGMEM'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+  var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
+  
+  var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+variable_variable+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_PROGMEM'] = function(block) {
+  var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
+  var value_PROGMEM = Blockly.Arduino.valueToCode(block, 'PROGMEM', Blockly.Arduino.ORDER_ATOMIC);
+
+  Blockly.Arduino.definitions_['u8g2_progmem_'+variable_variable] = 'static const unsigned char PROGMEM '+variable_variable+'[] = {\n'+
+			  value_PROGMEM.replace(/"/g,'').replace(/'/g,"") +
+			  '\n};\n';
+  return '';
+};
+
+Blockly.Arduino['fu_oled_qrcode_PROGMEM'] = function(block) {
+  var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
+  var value_PROGMEM = Blockly.Arduino.valueToCode(block, 'PROGMEM', Blockly.Arduino.ORDER_ATOMIC);
+
+  Blockly.Arduino.definitions_['u8g2_progmem_'+variable_variable] = 'static const unsigned char PROGMEM '+variable_variable+'[] = {\n'+
+			  value_PROGMEM.replace(/"/g,'').replace(/'/g,"") +
+			  '\n};\n';
+  return '';
+};
+
+Blockly.Arduino['fu_oled_drawXBMP_PROGMEM_array'] = function(block) {
+  var value_index = Blockly.Arduino.valueToCode(block, 'index', Blockly.Arduino.ORDER_ATOMIC);
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+  var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
+  
+  var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+variable_variable+'['+value_index +']);\n';
+  return code;
+};		
+
+Blockly.Arduino['fu_oled_PROGMEM_array'] = function(block) {
+  var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
+  var value_PROGMEM = Blockly.Arduino.valueToCode(block, 'PROGMEM', Blockly.Arduino.ORDER_ATOMIC);
+  value_PROGMEM = value_PROGMEM.split('",');
+  var PROGMEM = "";
+  var len = "";
+  if (value_PROGMEM.length>0) {
+	  len = (value_PROGMEM[0].replace(/"/g,'').replace(/{/g,'')=="")?"":value_PROGMEM[0].split(",").length;
+	  for (var i=0;i<value_PROGMEM.length;i++) {
+		if (value_PROGMEM[i].replace(/"/g,'').replace(/{/g,'').replace(/}/g,'').trim()=="") break;
+		PROGMEM += "{ "+value_PROGMEM[i].replace(/"/g,'').replace(/{/g,'').replace(/}/g,'').trim() +" },\n";
+	  }
+  }
+
+  Blockly.Arduino.definitions_['u8g2_progmem_'+variable_variable] = 'static const unsigned char PROGMEM '+variable_variable+'[]['+len+'] = {\n'+
+																		PROGMEM +
+																	'\n};\n';
+  return '';
+};		
+
+Blockly.Arduino['fu_oled_drawBox'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawBox('+value_x+', '+value_y+', '+value_width+', '+value_height+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawRBox'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+  var value_radius = Blockly.Arduino.valueToCode(block, 'radius', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = 'u8g2.drawRBox('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+value_radius+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawFrame'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawFrame('+value_x+', '+value_y+', '+value_width+', '+value_height+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawRFrame'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+  var value_radius = Blockly.Arduino.valueToCode(block, 'radius', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = 'u8g2.drawRFrame('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+value_radius+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawCircle'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_radius = Blockly.Arduino.valueToCode(block, 'radius', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_option = block.getFieldValue('option');
+
+  var code = 'u8g2.drawCircle('+value_x0+', '+value_y0+', '+value_radius+', '+dropdown_option+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawDisc'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_radius = Blockly.Arduino.valueToCode(block, 'radius', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_option = block.getFieldValue('option');
+
+  var code = 'u8g2.drawDisc('+value_x0+', '+value_y0+', '+value_radius+', '+dropdown_option+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawEllipse'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);
+  var value_ry = Blockly.Arduino.valueToCode(block, 'ry', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_option = block.getFieldValue('option');
+
+  var code = 'u8g2.drawEllipse('+value_x0+', '+value_y0+', '+value_rx+', '+value_ry+', '+dropdown_option+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawFilledEllipse'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);
+  var value_ry = Blockly.Arduino.valueToCode(block, 'ry', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_option = block.getFieldValue('option');
+
+  var code = 'u8g2.drawFilledEllipse('+value_x0+', '+value_y0+', '+value_rx+', '+value_ry+', '+dropdown_option+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawHLine'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawHLine('+value_x0+', '+value_y0+', '+value_width+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawVLine'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawVLine('+value_x0+', '+value_y0+', '+value_height+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_oled_drawLine'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_x1 = Blockly.Arduino.valueToCode(block, 'x1', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y1 = Blockly.Arduino.valueToCode(block, 'y1', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'u8g2.drawLine('+value_x0+', '+value_y0+', '+value_x1+', '+value_y1+');\n';
+  return code;
+};
+
 Blockly.Arduino['fu_oled_drawTriangle'] = function(block) {
   var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
   var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
