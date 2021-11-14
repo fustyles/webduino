@@ -25,4 +25,5 @@
 <category><name>io</name><replace>I/O</replace></category>
 <category><name>MLX90614</name><replace>MLX90614</replace></category>
 <category><name>oled</name><replace>OLED Screen</replace></category>
+<category><name>EZ+</name><replace>EZ Start Kit+</replace></category>
 </xml>
