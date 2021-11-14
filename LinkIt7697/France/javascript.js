@@ -1,3 +1,97 @@
+Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
+	var dropdown_sitename = block.getFieldValue('sitename');
+	var variable_AQI = Blockly.Arduino.nameDB_.getName(block.getFieldValue('AQI'), Blockly.Variables.NAME_TYPE);
+	var variable_PM25 = Blockly.Arduino.nameDB_.getName(block.getFieldValue('PM25'), Blockly.Variables.NAME_TYPE);
+	var variable_STATUS = Blockly.Arduino.nameDB_.getName(block.getFieldValue('STATUS'), Blockly.Variables.NAME_TYPE);
+	
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
+	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
+	Blockly.Arduino.definitions_['TaiwanAQI'] = 'long '+variable_AQI+' = 0;';	
+	Blockly.Arduino.definitions_['TaiwanPM25'] = 'long '+variable_PM25+' = 0;';
+	Blockly.Arduino.definitions_['TaiwanStatus'] = 'String '+variable_STATUS+' = "";';
+	Blockly.Arduino.definitions_['retrieveAirQuality'] = '\n' +
+			'void retrieveAirQuality(String Site) {\n'+
+			'  WiFiClientSecure client_tcp;\n'+
+			'  String request = "/api/v1/aqx_p_432?format=json&limit=5&api_key=9be7b239-557b-4c10-9775-78cadfc555e9&filters=SiteName,EQ,"+Site;\n'+
+			'  if (client_tcp.connect("data.epa.gov.tw", 443)) {\n'+
+			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
+			'    client_tcp.println("Host: data.epa.gov.tw");\n'+
+			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println();\n'+
+			'    String getResponse="",Feedback="";\n'+
+			'    boolean state = false;\n'+
+			'    boolean cutstate = false;\n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    while ((startTime + waitTime) > millis()) {\n'+
+			'      while (client_tcp.available()) {\n'+
+			'        char c = client_tcp.read();\n'+
+			'        if (state==true) {\n'+
+			'          if (cutstate == false||(cutstate == true&&String(c)!="]")) {\n'+
+			'            Feedback += String(c);\n'+
+			'          }\n'+
+			'          if (cutstate == true&&String(c)=="]")\n'+
+			'            state=false;\n'+
+			'          if (Feedback.indexOf("\\"records\\": [")!=-1) {\n'+
+			'            Feedback="";\n'+
+			'            cutstate = true;\n'+
+			'          }\n'+
+			'        }\n'+
+			"        if (c == '\\n') {\n"+
+			'          if (getResponse.length()==0) state=true;\n'+
+			'          getResponse = "";\n'+
+			'        }\n'+
+			"        else if (c != '\\r')\n"+
+			'          getResponse += String(c);\n'+      
+			'        startTime = millis();\n'+
+			'      }\n'+
+			'      if (Feedback.length()!= 0) break;\n'+
+			'    }\n'+
+			'    client_tcp.stop();\n'+
+			'    JsonObject obj;\n'+
+			'    DynamicJsonDocument doc(1024);\n'+
+			'    deserializeJson(doc, Feedback);\n'+
+			'    obj = doc.as<JsonObject>();\n'+
+			'    '+variable_AQI+' = obj["AQI"].as<String>().toInt();\n'+
+			'    '+variable_PM25+' = obj["PM2.5"].as<String>().toInt();\n'+
+			'    '+variable_STATUS+' = obj["Status"].as<String>();\n'+
+			'  }\n'+
+			'}';
+	Blockly.Arduino.definitions_['urlencode'] = '' +
+			'String urlencode(String str) {\n'+
+			'    String encodedString="";\n'+
+			'    char c;\n'+
+			'    char code0;\n'+
+			'    char code1;\n'+
+			'    for (int i =0; i < str.length(); i++) {\n'+
+			'      c=str.charAt(i);\n'+
+			"      if (c == ' '){\n"+
+			"        encodedString+= '+';\n"+
+			'      } else if (isalnum(c)){\n'+
+			'        encodedString+=c;\n'+
+			'      } else{\n'+
+			"        code1=(c & 0xf)+'0';\n"+
+			'        if ((c & 0xf) >9){\n'+
+			"            code1=(c & 0xf) - 10 + 'A';\n"+
+			'        }\n'+
+			'        c=(c>>4)&0xf;\n'+
+			"        code0=c+'0';\n"+
+			'        if (c > 9){\n'+
+			"            code0=c - 10 + 'A';\n"+
+			'        }\n'+
+			'        encodedString+="%";\n'+
+			'        encodedString+=code0;\n'+
+			'        encodedString+=code1;\n'+
+			'      }\n'+
+			'      yield();\n'+
+			'    }\n'+
+			'    return encodedString;\n'+
+			'}';								   
+	var code = 'retrieveAirQuality(urlencode("'+dropdown_sitename+'"));\n';
+	return code;
+};
+
 function selectBoardType() {
 	var selectBoard = document.getElementById('board-selector');
 	if (selectBoard) {
