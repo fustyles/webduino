@@ -1,3 +1,161 @@
+//https://github.com/opentypejs/opentype.js
+var s = document.createElement("script");
+s.type = "text/javascript";
+s.src = "https://opentype.js.org/dist/opentype.js";
+document.getElementsByTagName('head')[0].append(s);
+
+Blockly.Blocks['fu_oled_PROGMEM_truetype'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField("OLED");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable("logo"), "variable")
+		.appendField("設定為");
+	var ttfToXbm = function() {
+		var block = this.sourceBlock_;
+        var input = block.getInputTargetBlock("PROGMEM");
+	    if (input) {
+		    if (input.type="text") {
+				
+				var file=document.createElement('input');
+				file.type="file";
+				file.onchange = function (event) {
+					var target = event.target || window.event.srcElement;
+					var files = target.files;
+					if (FileReader && files && files.length) {
+						var reader = new FileReader();
+						reader.onload = function (e) {    
+							try {
+								font = opentype.parse(e.target.result);
+								window.font = font;
+								var options = {
+									kerning: true,
+									hinting: false,
+									features: {
+										liga: true,
+										rlig: true
+									}
+								};
+								
+								const canvas = document.createElement('canvas');
+								const context = canvas.getContext('2d');
+								canvas.width = 960;
+								canvas.height = 480;
+								
+								var dropdown_size = Number(block.getFieldValue("fontsize"));
+								var value_str = block.getFieldValue("str");
+
+								context.clearRect(0, 0, canvas.width, canvas.height);
+								context.fillStyle="#000000";
+								context.textBaseline = "top";
+								var textWidth = font.getAdvanceWidth(value_str, dropdown_size, options);
+								var width = (textWidth%8>0)?Math.round(textWidth-textWidth%8+8):Math.round(textWidth);
+								font.draw(context, value_str, 0, 240, dropdown_size, options);
+
+								var pixels = context.getImageData(0, 0, width, canvas.height);
+								var fontTop = null, fontBottom = null;
+								var y;
+								for (var i = 0; i < pixels.data.length; i += 4) {
+									if (pixels.data[i+3] !== 0) {
+										y = ((i / 4) / width);			
+										if (fontTop === null) {
+											fontTop = y;
+										}
+										if (fontBottom === null) {
+											fontBottom = y;
+										} else if (fontBottom < y) {
+											fontBottom = y;
+										}
+									}
+								}
+
+								var height = fontBottom-fontTop+1;	
+								height = (height>Math.floor(height))?(Math.floor(height)+1):Math.floor(height);
+								
+								block.getField("size").setValue("( "+width + " * " + height + " )", "size");
+
+								const imageData = context.getImageData(0, fontTop, width, height);
+								const data = imageData.data;
+
+								let xbmString = "";
+								let pixel = 0;
+								let value = 0;
+								
+								for(let h = 0; h < height; h++) {
+									for(let w = 0; w < width / 8; w++) {
+										value = 0;
+										for(let p = 0; p < 8; p++) {
+											const isBlack = !(data[pixel * 4+3]);
+											if(!isBlack)
+												value += Math.pow(2, p);
+											pixel++;
+											const isNewRow = pixel/width === 1;
+											if(isNewRow) break;
+										}
+										xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
+									}
+								}
+								
+								document.body.appendChild(canvas);
+								canvas.parentNode.removeChild(canvas);
+								input.setFieldValue(xbmString, 'TEXT');								
+								
+							} catch (err) {
+								alert(err.toString());
+							}
+						}
+						reader.onerror = function(err) {
+							alert(err.toString());
+						};
+						reader.readAsArrayBuffer(target.files[0]);
+					}
+				}
+				document.body.appendChild(file);
+				file.click();
+		    }
+		}
+    };
+	var field = new Blockly.FieldImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABmJLR0QA/wD/AP+gvaeTAAABwElEQVRYhe3YzysEYRzH8fdYa3/FQStFCimnTUTK0VHtH+AoF24ODuvi4uCwSu4rzo7kIAdyozZam7BJcRO7XOz4scZh8zOzPM+z86DmU9vszDPfeV7zPDPP1oIbtRh2DbF4wipXJ16vJzk1NtRdrusBRWA5EosnrHhi6WlybnFbxlFR1ruyyehg1KgJBXsmZxeSorVagKGgn5HBqFFTHeoURWoBgjxSGxDkkFqBII7UDgQx5K8A4efISh2YiZn5Us0G0GXX6Dhwenz423NK3cCvTfFP8+eBjk/xxS2kLwEDImGoC4jVOz6C6SswC2A+wv6leP2fn2LHgZEw+CuLn0hYvN7xZ7AuAP1N8vXKI5jJwVFW9Sr2URrBTA4y12/77bVv33fPHqgwoKPJq9KFPPAz7uSmuG2vhZ3Te5b38mCB+RCgt7VKL/Az7j3yPFtgI5V/Pbayl6fwZNHX5pMCCj+DdriX3Hs8NDf4X/ctYDVlsnl4J+OTAJbAvaSx3vcBCbB+YLKWNkW7c24d/Aq5dSw+io4u1F8hReP4L4kqUvgtHmiR6KXFB2h6i3XHBarGBarGBaqm5Dr4zT8Cbv5FngFVTsI04FIf1wAAAABJRU5ErkJggg==", 30, 30, { alt: "*", flipRtl: "FALSE" });
+	field.setOnClickHandler(ttfToXbm);
+	this.appendDummyInput()
+		.appendField("字型")
+		.appendField(field);		
+	this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("大小")
+      .appendField(new Blockly.FieldDropdown([
+		  ["8px","8"],
+		  ["9px","9"],		  
+		  ["10px","10"],
+		  ["11px","11"],		  
+		  ["12px","12"],
+		  ["14px","14"],		  
+		  ["16px","16"],		  
+		  ["18px","18"],		  
+		  ["20px","20"],
+		  ["24px","24"],		  
+		  ["32px","32"],
+		  ["42px","42"]					  
+	  ]), "fontsize");
+    this.appendDummyInput()
+        .appendField("文字")	
+        .appendField(new Blockly.FieldTextInput("hello"), "str");
+    this.appendValueInput("PROGMEM")
+        .setCheck("String")
+        .appendField("XBM值");		
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldLabelSerializable(""), "size");
+		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(220);
+ this.setTooltip("");
+ this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
+  }
+};
+
 Blockly.Blocks['fu_taiwan_aqi'] = {
   init: function() {
     this.appendDummyInput()
