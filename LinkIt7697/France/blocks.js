@@ -2107,7 +2107,7 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
         .appendField(new Blockly.FieldDropdown([
 		["64x64","64x64"]		
 	]), "size");			
-    var field = new Blockly.FieldTextInput();
+    var field = new Blockly.FieldTextInput("hello");
     field.onFinishEditing_ = this.onFinishEditing;	
     this.appendDummyInput()		
         .appendField("文字")
