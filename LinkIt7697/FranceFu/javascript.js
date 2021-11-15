@@ -1,3 +1,13 @@
+Blockly.Arduino['fu_oled_PROGMEM_truetype'] = function(block) {
+  var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
+  var value_PROGMEM = Blockly.Arduino.valueToCode(block, 'PROGMEM', Blockly.Arduino.ORDER_ATOMIC);
+
+  Blockly.Arduino.definitions_['u8g2_progmem_'+variable_variable] = 'static const unsigned char PROGMEM '+variable_variable+'[] = {\n'+
+			  value_PROGMEM.replace(/"/g,'').replace(/'/g,"") +
+			  '\n};\n';
+  return '';
+};
+
 Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	var dropdown_sitename = block.getFieldValue('sitename');
 	var variable_AQI = Blockly.Arduino.nameDB_.getName(block.getFieldValue('AQI'), Blockly.Variables.NAME_TYPE);
