@@ -1464,7 +1464,7 @@ Blockly.Blocks['fu_oled_drawStr'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製文字");
+        .appendField("繪製文字(英數)");
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField("x");
@@ -2107,7 +2107,7 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
         .appendField(new Blockly.FieldDropdown([
 		["64x64","64x64"]		
 	]), "size");			
-    var field = new Blockly.FieldTextInput("hello");
+    var field = new Blockly.FieldTextInput();
     field.onFinishEditing_ = this.onFinishEditing;	
     this.appendDummyInput()		
         .appendField("文字")
