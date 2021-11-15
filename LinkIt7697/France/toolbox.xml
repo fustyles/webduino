@@ -444,6 +444,13 @@
           </block>
 		</value>		
     </block>
+	<block type="fu_oled_PROGMEM_truetype">
+		<value name="PROGMEM">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		
+    </block>			
 	<block type="fu_oled_qrcode_PROGMEM">	
 		<value name="PROGMEM">
           <block type="text">
