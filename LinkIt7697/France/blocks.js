@@ -2179,7 +2179,8 @@ Blockly.Blocks['fu_oled_PROGMEM_array'] = {
         .appendField("OLED");
     this.appendDummyInput()
         .appendField("陣列")	
-        .appendField(new Blockly.FieldVariable("logo"), "variable")	;		
+        .appendField(new Blockly.FieldVariable("logo"), "variable")
+	.appendField("設定為");		
     this.appendValueInput("PROGMEM")
         .setCheck("Array")
         .appendField("XBM值");
