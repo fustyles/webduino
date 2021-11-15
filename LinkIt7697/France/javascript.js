@@ -987,7 +987,7 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+width+', '+height+', '+variable+');\n';
 	}
 	else
-		var code ="";
+		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', , , );\n';
 	return code;
 };
 
@@ -1074,7 +1074,7 @@ Blockly.Arduino['fu_oled_drawCustomFont'] = function(block) {
 		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+width+', '+height+', '+variable+');\n';
 	}
 	else
-		var code ="";
+		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', , , );\n';
 	return code;
 };
 
