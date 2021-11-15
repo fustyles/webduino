@@ -2100,7 +2100,7 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED");
 	this.appendDummyInput()
-        .appendField(new Blockly.FieldVariable("qrcode"), "variable")
+        .appendField(new Blockly.FieldVariable("logo"), "variable")
 		.appendField("設定為");	
 	this.appendDummyInput()
         .appendField("QRCODE")	
