@@ -1464,7 +1464,7 @@ Blockly.Blocks['fu_oled_drawStr'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製文字");
+        .appendField("繪製文字(英數)");
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField("x");
