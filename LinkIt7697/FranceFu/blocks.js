@@ -100,13 +100,15 @@ Blockly.Blocks['fu_oled_PROGMEM_truetype'] = {
 								document.body.appendChild(canvas);
 								canvas.parentNode.removeChild(canvas);
 								input.setFieldValue(xbmString, 'TEXT');								
-								
+								file.parentNode.removeChild(file);
 							} catch (err) {
 								alert(err.toString());
+								file.parentNode.removeChild(file);
 							}
 						}
 						reader.onerror = function(err) {
 							alert(err.toString());
+							file.parentNode.removeChild(file);
 						};
 						reader.readAsArrayBuffer(target.files[0]);
 					}
@@ -2053,6 +2055,7 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
 					document.body.appendChild(canvas);
 					canvas.parentNode.removeChild(canvas);
 					input.setFieldValue(xbmString, 'TEXT');
+					file.parentNode.removeChild(file);
 				}
 				
 				var file=document.createElement('input');
