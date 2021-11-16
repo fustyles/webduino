@@ -152,7 +152,7 @@ Blockly.Blocks['fu_oled_PROGMEM_truetype'] = {
     this.setNextStatement(true, null);
     this.setColour(220);
  this.setTooltip("");
- this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
+ this.setHelpUrl("https://github.com/opentypejs/");
   }
 };
 
