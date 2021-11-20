@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<head>
+  <title>TTF to XBM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="opentype.js"> </script>
+</head>
+<body>
+
+Size :
+<select id="fontSize" onchange="clearData();">
+  <option value="8">8px</option>
+  <option value="9">9px</option>		  
+  <option value="10">10px</option>
+  <option value="11">11px</option>		  
+  <option value="12">12px</option>
+  <option value="14">14px</option>		  
+  <option value="16">16px</option>		  
+  <option value="18">18px</option>		  
+  <option value="20">20px</option>
+  <option value="24">24px</option>		  
+  <option value="32">32px</option>
+  <option value="42">42px</option>
+  <option value="48">48px</option>		  
+  <option value="56">56px</option>
+  <option value="64">64px</option> 
+  <option value="72">72px</option>
+</select>
+Text :<input type="text" id="str" value="Hello, World" size="40" onchange="clearData();"><br><br>
+Use local TTF file : <span id="reset"><input type="file" id="openfile" accept=".ttf"></span><br><br>
+XBM Code:<span id="size"></span><br>
+<textarea id="xbm" cols="80" rows="20"></textarea>
+	<script>
+	var str = document.getElementById("str");
+	var fontSize = document.getElementById("fontSize");
+	var size = document.getElementById("size");
+	var xbm = document.getElementById("xbm");
+	var reset = document.getElementById("reset");
+						
+	initial();
+	function initial() {
+		var file=document.getElementById('openfile');
+		file.onchange = function (event) {
+			var target = event.target || window.event.srcElement;
+			var files = target.files;
+			if (FileReader && files && files.length) {
+				var reader = new FileReader();
+				reader.onload = function (e) {    
+					try {
+						font = opentype.parse(e.target.result);
+						window.font = font;
+						var options = {
+							kerning: true,
+							hinting: false,
+							features: {
+								liga: true,
+								rlig: true
+							}
+						};
+						
+						const canvas = document.createElement('canvas');
+						const context = canvas.getContext('2d');
+						canvas.width = 960;
+						canvas.height = 480;
+						
+						var dropdown_size = Number(fontSize.value);
+						var value_str = str.value;
+
+						context.clearRect(0, 0, canvas.width, canvas.height);
+						context.fillStyle="#000000";
+						context.textBaseline = "top";
+						var textWidth = font.getAdvanceWidth(value_str, dropdown_size, options);
+						var width = (textWidth%8>0)?Math.round(textWidth-textWidth%8+8):Math.round(textWidth);
+						font.draw(context, value_str, 0, 240, dropdown_size, options);
+
+						var pixels = context.getImageData(0, 0, width, canvas.height);
+						var fontTop = null, fontBottom = null;
+						var y;
+						for (var i = 0; i < pixels.data.length; i += 4) {
+							if (pixels.data[i+3] !== 0) {
+								y = ((i / 4) / width);			
+								if (fontTop === null) {
+									fontTop = y;
+								}
+								if (fontBottom === null) {
+									fontBottom = y;
+								} else if (fontBottom < y) {
+									fontBottom = y;
+								}
+							}
+						}
+
+						var height = fontBottom-fontTop+1;	
+						height = (height>Math.floor(height))?(Math.floor(height)+1):Math.floor(height);
+						
+						size.innerText = "( "+width + " * " + height + " )";
+
+						const imageData = context.getImageData(0, fontTop, width, height);
+						const data = imageData.data;
+
+						let xbmString = "";
+						let pixel = 0;
+						let value = 0;
+						
+						for(let h = 0; h < height; h++) {
+							for(let w = 0; w < width / 8; w++) {
+								value = 0;
+								for(let p = 0; p < 8; p++) {
+									const isBlack = !(data[pixel * 4+3]);
+									if(!isBlack)
+										value += Math.pow(2, p);
+									pixel++;
+									const isNewRow = pixel/width === 1;
+									if(isNewRow) break;
+								}
+								xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
+							}
+						}
+						
+						document.body.appendChild(canvas);
+						canvas.parentNode.removeChild(canvas);
+						
+						xbm.innerHTML = "static const unsigned char PROGMEM logo_"+width+"X"+height+"[] = {\n\n" + xbmString + "\n\n};";								
+						file.parentNode.removeChild(file);
+						reset.innerHTML = '<input type="file" id="openfile" accept=".ttf">';
+						initial();
+					} catch (err) {
+						alert(err.toString());
+						file.parentNode.removeChild(file);
+						reset.innerHTML = '<input type="file" id="openfile" accept=".ttf">';
+						initial();
+					}
+				}
+				reader.onerror = function(err) {
+					alert(err.toString());
+					file.parentNode.removeChild(file);
+					reset.innerHTML = '<input type="file" id="openfile" accept=".ttf">';
+					initial();
+				};
+				reader.readAsArrayBuffer(target.files[0]);
+			}
+		}
+	}
+	
+	function clearData() {
+		size.innerHTML = "";
+		xbm.innerHTML = "";
+	}
+	</script>
+</html>
