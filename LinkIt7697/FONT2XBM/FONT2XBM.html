@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<head>
+  <title>FONT to XBM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+Size :
+<select id="fontSize" onchange="clearData();">
+  <option value="8">8px</option>
+  <option value="9">9px</option>		  
+  <option value="10">10px</option>
+  <option value="11">11px</option>		  
+  <option value="12">12px</option>
+  <option value="14">14px</option>		  
+  <option value="16">16px</option>		  
+  <option value="18">18px</option>		  
+  <option value="20">20px</option>
+  <option value="24">24px</option>		  
+  <option value="32">32px</option>
+  <option value="42">42px</option>
+  <option value="48">48px</option>		  
+  <option value="56">56px</option>
+  <option value="64">64px</option> 
+  <option value="72">72px</option>
+</select>
+Text :<input type="text" id="str" value="Hello, World" size="40" onchange="clearData();"><br><br>
+MS Font<select id="msFont" onchange="clearData();">
+  <option value="Abadi MT">Abadi MT</option>
+  <option value="Agency FB">Agency FB</option>
+  <option value="Aharoni Bold">Aharoni Bold</option>
+  <option value="Aldhabi">Aldhabi</option>
+  <option value="Algerian">Algerian</option>
+  <option value="Almanac MT">Almanac MT</option>
+  <option value="American Uncial">American Uncial</option>
+  <option value="Andale Mono">Andale Mono</option>
+  <option value="Andalus">Andalus</option>
+  <option value="Andy">Andy</option>
+  <option value="Angsana New">Angsana New</option>
+  <option value="AngsanaUPC">AngsanaUPC</option>
+  <option value="Aparajita">Aparajita</option>
+  <option value="Arabic Transparent">Arabic Transparent</option>
+  <option value="Arabic Typesetting">Arabic Typesetting</option>
+  <option value="Arial">Arial</option>
+  <option value="Arial Black">Arial Black</option>
+  <option value="Arial Narrow">Arial Narrow</option>
+  <option value="Arial Narrow Special">Arial Narrow Special</option>
+  <option value="Arial Rounded MT">Arial Rounded MT</option>
+  <option value="Arial Special">Arial Special</option>
+  <option value="Arial Unicode MS">Arial Unicode MS</option>
+  <option value="Augsburger Initials">Augsburger Initials</option>
+  <option value="Avenir Next LT Pro">Avenir Next LT Pro</option>
+  <option value="Bahnschrift">Bahnschrift</option>
+  <option value="Baskerville Old Face">Baskerville Old Face</option>
+  <option value="Batang & BatangChe">Batang & BatangChe</option>
+  <option value="Bauhaus 93">Bauhaus 93</option>
+  <option value="Beesknees ITC">Beesknees ITC</option>
+  <option value="Bell MT">Bell MT</option>
+  <option value="Bembo">Bembo</option>
+  <option value="Berlin Sans FB">Berlin Sans FB</option>
+  <option value="Bernard MT Condensed">Bernard MT Condensed</option>
+  <option value="Bickley Script">Bickley Script</option>
+  <option value="Biome">Biome</option>
+  <option value="BIZ UDGothic">BIZ UDGothic</option>
+  <option value="BIZ UDMincho Medium">BIZ UDMincho Medium</option>
+  <option value="Blackadder ITC">Blackadder ITC</option>
+  <option value="Bodoni MT">Bodoni MT</option>
+  <option value="Bodoni MT Condensed">Bodoni MT Condensed</option>
+  <option value="Bon Apetit MT">Bon Apetit MT</option>
+  <option value="Book Antiqua">Book Antiqua</option>
+  <option value="Bookman Old Style">Bookman Old Style</option>
+  <option value="Bookshelf Symbol">Bookshelf Symbol</option>
+  <option value="Bradley Hand ITC">Bradley Hand ITC</option>
+  <option value="Braggadocio">Braggadocio</option>
+  <option value="BriemScript">BriemScript</option>
+  <option value="Britannic Bold">Britannic Bold</option>
+  <option value="Broadway">Broadway</option>
+  <option value="Browallia New">Browallia New</option>
+  <option value="BrowalliaUPC">BrowalliaUPC</option>
+  <option value="Brush Script MT">Brush Script MT</option>
+  <option value="Calibri">Calibri</option>
+  <option value="Californian FB">Californian FB</option>
+  <option value="Calisto MT">Calisto MT</option>
+  <option value="Cambria">Cambria</option>
+  <option value="Cambria Math">Cambria Math</option>
+  <option value="Candara">Candara</option>
+  <option value="Cariadings">Cariadings</option>
+  <option value="Castellar">Castellar</option>
+  <option value="Cavolini">Cavolini</option>
+  <option value="Centaur">Centaur</option>
+  <option value="Century">Century</option>
+  <option value="Century Gothic">Century Gothic</option>
+  <option value="Century Schoolbook">Century Schoolbook</option>
+  <option value="Chiller">Chiller</option>
+  <option value="Colonna MT">Colonna MT</option>
+  <option value="Comic Sans MS">Comic Sans MS</option>
+  <option value="Consolas">Consolas</option>
+  <option value="Constantia">Constantia</option>
+  <option value="Contemporary Brush">Contemporary Brush</option>
+  <option value="Cooper Black">Cooper Black</option>
+  <option value="Copperplate Gothic">Copperplate Gothic</option>
+  <option value="Corbel">Corbel</option>
+  <option value="Cordia New">Cordia New</option>
+  <option value="CordiaUPC">CordiaUPC</option>
+  <option value="Courier New">Courier New</option>
+  <option value="Curlz MT">Curlz MT</option>
+  <option value="Dante">Dante</option>
+  <option value="DaunPenh">DaunPenh</option>
+  <option value="David">David</option>
+  <option value="Daytona">Daytona</option>
+  <option value="Desdemona">Desdemona</option>
+  <option value="DFKai-SB">DFKai-SB</option>
+  <option value="DilleniaUPC">DilleniaUPC</option>
+  <option value="Directions MT">Directions MT</option>
+  <option value="DokChampa">DokChampa</option>
+  <option value="Dotum & DotumChe">Dotum & DotumChe</option>
+  <option value="Ebrima">Ebrima</option>
+  <option value="Eckmann">Eckmann</option>
+  <option value="Edda">Edda</option>
+  <option value="Edwardian Script ITC">Edwardian Script ITC</option>
+  <option value="Elephant">Elephant</option>
+  <option value="Engravers MT">Engravers MT</option>
+  <option value="Enviro">Enviro</option>
+  <option value="Eras ITC">Eras ITC</option>
+  <option value="Estrangelo Edessa">Estrangelo Edessa</option>
+  <option value="EucrosiaUPC">EucrosiaUPC</option>
+  <option value="Euphemia">Euphemia</option>
+  <option value="Eurostile">Eurostile</option>
+  <option value="FangSong">FangSong</option>
+  <option value="Felix Titling">Felix Titling</option>
+  <option value="Fine Hand">Fine Hand</option>
+  <option value="Fixed Miriam Transparent">Fixed Miriam Transparent</option>
+  <option value="Flexure">Flexure</option>
+  <option value="Footlight MT">Footlight MT</option>
+  <option value="Forte">Forte</option>
+  <option value="Franklin Gothic">Franklin Gothic</option>
+  <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+  <option value="FrankRuehl">FrankRuehl</option>
+  <option value="FreesiaUPC">FreesiaUPC</option>
+  <option value="Freestyle Script">Freestyle Script</option>
+  <option value="French Script MT">French Script MT</option>
+  <option value="Futura">Futura</option>
+  <option value="Gabriola">Gabriola</option>
+  <option value="Gadugi">Gadugi</option>
+  <option value="Garamond">Garamond</option>
+  <option value="Garamond MT">Garamond MT</option>
+  <option value="Gautami">Gautami</option>
+  <option value="Georgia">Georgia</option>
+  <option value="Georgia Ref">Georgia Ref</option>
+  <option value="Gigi">Gigi</option>
+  <option value="Gill Sans MT">Gill Sans MT</option>
+  <option value="Gill Sans MT Condensed">Gill Sans MT Condensed</option>
+  <option value="Gisha">Gisha</option>
+  <option value="Gloucester">Gloucester</option>
+  <option value="Goudy Old Style">Goudy Old Style</option>
+  <option value="Goudy Stout">Goudy Stout</option>
+  <option value="Gradl">Gradl</option>
+  <option value="Grotesque">Grotesque</option>
+  <option value="Gulim & GulimChe">Gulim & GulimChe</option>
+  <option value="Gungsuh & GungsuhChe">Gungsuh & GungsuhChe</option>
+  <option value="Hadassah Friedlaender">Hadassah Friedlaender</option>
+  <option value="Haettenschweiler">Haettenschweiler</option>
+  <option value="Harlow Solid Italic">Harlow Solid Italic</option>
+  <option value="Harrington">Harrington</option>
+  <option value="HGGothicE">HGGothicE</option>
+  <option value="HGMinchoE">HGMinchoE</option>
+  <option value="HGSoeiKakugothicUB">HGSoeiKakugothicUB</option>
+  <option value="High Tower Text">High Tower Text</option>
+  <option value="Holidays MT">Holidays MT</option>
+  <option value="HoloLens MDL2 Assets">HoloLens MDL2 Assets</option>
+  <option value="Impact">Impact</option>
+  <option value="Imprint MT Shadow">Imprint MT Shadow</option>
+  <option value="Informal Roman">Informal Roman</option>
+  <option value="IrisUPC">IrisUPC</option>
+  <option value="Iskoola Pota">Iskoola Pota</option>
+  <option value="JasmineUPC">JasmineUPC</option>
+  <option value="Javanese Text">Javanese Text</option>
+  <option value="Jokerman">Jokerman</option>
+  <option value="Juice ITC">Juice ITC</option>
+  <option value="KaiTi">KaiTi</option>
+  <option value="Kalinga">Kalinga</option>
+  <option value="Kartika">Kartika</option>
+  <option value="Keystrokes MT">Keystrokes MT</option>
+  <option value="Khmer UI">Khmer UI</option>
+  <option value="Kino MT">Kino MT</option>
+  <option value="KodchiangUPC">KodchiangUPC</option>
+  <option value="Kokila">Kokila</option>
+  <option value="Kristen ITC">Kristen ITC</option>
+  <option value="Kunstler Script">Kunstler Script</option>
+  <option value="Lao UI">Lao UI</option>
+  <option value="Latha">Latha</option>
+  <option value="LCD">LCD</option>
+  <option value="Leelawadee">Leelawadee</option>
+  <option value="Levenim MT">Levenim MT</option>
+  <option value="LilyUPC">LilyUPC</option>
+  <option value="Lucida Blackletter">Lucida Blackletter</option>
+  <option value="Lucida Bright">Lucida Bright</option>
+  <option value="Lucida Bright Math">Lucida Bright Math</option>
+  <option value="Lucida Calligraphy">Lucida Calligraphy</option>
+  <option value="Lucida Console">Lucida Console</option>
+  <option value="Lucida Fax">Lucida Fax</option>
+  <option value="Lucida Handwriting">Lucida Handwriting</option>
+  <option value="Lucida Sans">Lucida Sans</option>
+  <option value="Lucida Sans Typewriter">Lucida Sans Typewriter</option>
+  <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+  <option value="Magneto">Magneto</option>
+  <option value="Maiandra GD">Maiandra GD</option>
+  <option value="Malgun Gothic">Malgun Gothic</option>
+  <option value="Mangal">Mangal</option>
+  <option value="Map Symbols">Map Symbols</option>
+  <option value="Marlett">Marlett</option>
+  <option value="Matisse ITC">Matisse ITC</option>
+  <option value="Matura MT Script Capitals">Matura MT Script Capitals</option>
+  <option value="McZee">McZee</option>
+  <option value="Mead Bold">Mead Bold</option>
+  <option value="Meiryo">Meiryo</option>
+  <option value="Mercurius Script MT Bold">Mercurius Script MT Bold</option>
+  <option value="Microsoft GothicNeo">Microsoft GothicNeo</option>
+  <option value="Microsoft Himalaya">Microsoft Himalaya</option>
+  <option value="Microsoft JhengHei">Microsoft JhengHei</option>
+  <option value="Microsoft JhengHei UI">Microsoft JhengHei UI</option>
+  <option value="Microsoft New Tai Lue">Microsoft New Tai Lue</option>
+  <option value="Microsoft PhagsPa">Microsoft PhagsPa</option>
+  <option value="Microsoft Sans Serif">Microsoft Sans Serif</option>
+  <option value="Microsoft Tai Le">Microsoft Tai Le</option>
+  <option value="Microsoft Uighur">Microsoft Uighur</option>
+  <option value="Microsoft YaHei">Microsoft YaHei</option>
+  <option value="Microsoft YaHei UI">Microsoft YaHei UI</option>
+  <option value="Microsoft Yi Baiti">Microsoft Yi Baiti</option>
+  <option value="MingLiU">MingLiU</option>
+  <option value="MingLiU_HKSCS">MingLiU_HKSCS</option>
+  <option value="MingLiU_HKSCS-ExtB">MingLiU_HKSCS-ExtB</option>
+  <option value="MingLiU-ExtB">MingLiU-ExtB</option>
+  <option value="Minion Web">Minion Web</option>
+  <option value="Miriam">Miriam</option>
+  <option value="Miriam Fixed">Miriam Fixed</option>
+  <option value="Mistral">Mistral</option>
+  <option value="Modern Love">Modern Love</option>
+  <option value="Modern No. 20">Modern No. 20</option>
+  <option value="Mongolian Baiti">Mongolian Baiti</option>
+  <option value="Monotype Corsiva">Monotype Corsiva</option>
+  <option value="Monotype Sorts">Monotype Sorts</option>
+  <option value="Monotype.com">Monotype.com</option>
+  <option value="MoolBoran">MoolBoran</option>
+  <option value="MS Gothic">MS Gothic</option>
+  <option value="MS LineDraw">MS LineDraw</option>
+  <option value="MS Mincho">MS Mincho</option>
+  <option value="MS Outlook">MS Outlook</option>
+  <option value="MS PGothic">MS PGothic</option>
+  <option value="MS PMincho">MS PMincho</option>
+  <option value="MS Reference">MS Reference</option>
+  <option value="MS UI Gothic">MS UI Gothic</option>
+  <option value="MT Extra">MT Extra</option>
+  <option value="MV Boli">MV Boli</option>
+  <option value="Myanmar Text">Myanmar Text</option>
+  <option value="Narkisim">Narkisim</option>
+  <option value="New Caledonia">New Caledonia</option>
+  <option value="News Gothic MT">News Gothic MT</option>
+  <option value="Niagara">Niagara</option>
+  <option value="Nirmala UI">Nirmala UI</option>
+  <option value="NSimSun">NSimSun</option>
+  <option value="Nyala">Nyala</option>
+  <option value="OCR A Extended">OCR A Extended</option>
+  <option value="OCRB">OCRB</option>
+  <option value="OCR-B-Digits">OCR-B-Digits</option>
+  <option value="Old English Text MT">Old English Text MT</option>
+  <option value="Onyx">Onyx</option>
+  <option value="Palace Script MT">Palace Script MT</option>
+  <option value="Palatino Linotype">Palatino Linotype</option>
+  <option value="Papyrus">Papyrus</option>
+  <option value="Parade">Parade</option>
+  <option value="Parchment">Parchment</option>
+  <option value="Parties MT">Parties MT</option>
+  <option value="Peignot Medium">Peignot Medium</option>
+  <option value="Pepita MT">Pepita MT</option>
+  <option value="Perpetua">Perpetua</option>
+  <option value="Perpetua Titling MT">Perpetua Titling MT</option>
+  <option value="Placard Condensed">Placard Condensed</option>
+  <option value="Plantagenet Cherokee">Plantagenet Cherokee</option>
+  <option value="Playbill">Playbill</option>
+  <option value="PMingLiU">PMingLiU</option>
+  <option value="PMingLiU-ExtB">PMingLiU-ExtB</option>
+  <option value="Poor Richard">Poor Richard</option>
+  <option value="Posterama">Posterama</option>
+  <option value="Pristina">Pristina</option>
+  <option value="Quire Sans">Quire Sans</option>
+  <option value="Raavi">Raavi</option>
+  <option value="Rage Italic">Rage Italic</option>
+  <option value="Ransom">Ransom</option>
+  <option value="Ravie">Ravie</option>
+  <option value="RefSpecialty">RefSpecialty</option>
+  <option value="Rockwell">Rockwell</option>
+  <option value="Rockwell Nova">Rockwell Nova</option>
+  <option value="Rod">Rod</option>
+  <option value="Runic MT Condensed">Runic MT Condensed</option>
+  <option value="Sabon Next LT">Sabon Next LT</option>
+  <option value="Sagona">Sagona</option>
+  <option value="Sakkal Majalla">Sakkal Majalla</option>
+  <option value="Script MT Bold">Script MT Bold</option>
+  <option value="Segoe Chess">Segoe Chess</option>
+  <option value="Segoe Print">Segoe Print</option>
+  <option value="Segoe Script">Segoe Script</option>
+  <option value="Segoe UI">Segoe UI</option>
+  <option value="Segoe UI Symbol">Segoe UI Symbol</option>
+  <option value="Selawik">Selawik</option>
+  <option value="Shonar Bangla">Shonar Bangla</option>
+  <option value="Showcard Gothic">Showcard Gothic</option>
+  <option value="Shruti">Shruti</option>
+  <option value="Signs MT">Signs MT</option>
+  <option value="SimHei">SimHei</option>
+  <option value="Simplified Arabic Fixed">Simplified Arabic Fixed</option>
+  <option value="SimSun">SimSun</option>
+  <option value="SimSun-ExtB">SimSun-ExtB</option>
+  <option value="Sitka">Sitka</option>
+  <option value="Snap ITC">Snap ITC</option>
+  <option value="Sports MT">Sports MT</option>
+  <option value="STCaiyun">STCaiyun</option>
+  <option value="Stencil">Stencil</option>
+  <option value="STFangsong">STFangsong</option>
+  <option value="STHupo">STHupo</option>
+  <option value="STKaiti">STKaiti</option>
+  <option value="Stop">Stop</option>
+  <option value="STXihei">STXihei</option>
+  <option value="STXingkai">STXingkai</option>
+  <option value="STXinwei">STXinwei</option>
+  <option value="STZhongsong">STZhongsong</option>
+  <option value="Sylfaen">Sylfaen</option>
+  <option value="Symbol">Symbol</option>
+  <option value="Tahoma">Tahoma</option>
+  <option value="Temp Installer Font">Temp Installer Font</option>
+  <option value="Tempo Grunge">Tempo Grunge</option>
+  <option value="Tempus Sans ITC">Tempus Sans ITC</option>
+  <option value="The Hand">The Hand</option>
+  <option value="The Serif Hand">The Serif Hand</option>
+  <option value="Times New Roman">Times New Roman</option>
+  <option value="Times New Roman Special">Times New Roman Special</option>
+  <option value="Tisa Offc Serif Pro">Tisa Offc Serif Pro</option>
+  <option value="Traditional Arabic">Traditional Arabic</option>
+  <option value="Transport MT">Transport MT</option>
+  <option value="Trebuchet MS">Trebuchet MS</option>
+  <option value="Tunga">Tunga</option>
+  <option value="Tw Cen MT">Tw Cen MT</option>
+  <option value="Univers">Univers</option>
+  <option value="Urdu Typesetting">Urdu Typesetting</option>
+  <option value="Utsaah">Utsaah</option>
+  <option value="Vacation MT">Vacation MT</option>
+  <option value="Vani">Vani</option>
+  <option value="Verdana">Verdana</option>
+  <option value="Verdana Ref">Verdana Ref</option>
+  <option value="Vijaya">Vijaya</option>
+  <option value="Viner Hand ITC">Viner Hand ITC</option>
+  <option value="Vivaldi">Vivaldi</option>
+  <option value="Vixar ASCI">Vixar ASCI</option>
+  <option value="Vladimir Script">Vladimir Script</option>
+  <option value="Vrinda">Vrinda</option>
+  <option value="Walbaum">Walbaum</option>
+  <option value="Webdings">Webdings</option>
+  <option value="Westminster">Westminster</option>
+  <option value="Wide Latin">Wide Latin</option>
+  <option value="Wingdings">Wingdings</option>
+</select><input type="button" value="Get XBM" onclick="Font2XBM();"><br><br>
+XBM Code:<span id="size"></span><br>
+<textarea id="xbm" cols="80" rows="20"></textarea>
+	<script>
+	var str = document.getElementById("str");
+	var msFont = document.getElementById("msFont");
+	var fontSize = document.getElementById("fontSize");
+	var size = document.getElementById("size");
+	var xbm = document.getElementById("xbm");
+				
+	function Font2XBM() {
+		try {
+			const canvas = document.createElement('canvas');
+			const context = canvas.getContext('2d');
+			canvas.width = 960;
+			canvas.height = 480;
+			
+			var dropdown_size = Number(fontSize.value);
+			var dropdown_font = msFont.value;
+			var text = str.value;
+			
+			console.log(dropdown_size);
+			console.log(dropdown_font);
+			console.log(text);
+			
+			context.font = dropdown_size + "px " + dropdown_font;
+			let metrics = context.measureText(text);
+			var width = (metrics.width%8>0)?Math.round(metrics.width-metrics.width%8+8):Math.round(metrics.width);
+
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			context.fillStyle="#000000";
+			context.textBaseline = "top";
+			context.fillText(text, 0, 0);
+
+			var pixels = context.getImageData(0, 0, canvas.width, canvas.height);
+			var fontTop = null, fontBottom = null;
+			var y;
+			for (var i = 0; i < pixels.data.length; i += 4) {
+				if (pixels.data[i+3] !== 0) {
+					y = ((i / 4) / canvas.width);			
+					if (fontTop === null) {
+						fontTop = y;
+					}
+					if (fontBottom === null) {
+						fontBottom = y;
+					} else if (fontBottom < y) {
+						fontBottom = y;
+					}
+				}
+			}
+
+			var height = fontBottom-fontTop+1;	
+			height = (height>Math.floor(height))?(Math.floor(height)+1):Math.floor(height);
+			
+			size.innerText = "( "+width + " X " + height + " )";
+
+			const imageData = context.getImageData(0, fontTop, width, height);
+			const data = imageData.data;
+
+			let xbmString = "";
+			let pixel = 0;
+			let value = 0;
+
+			for(let h = 0; h < height; h++) {
+				for(let w = 0; w < width / 8; w++) {
+					value = 0;
+					for (let p = 0; p < 8; p++) {
+						const isBlack = !(data[pixel * 4+3]);
+						if (!isBlack)
+							value += Math.pow(2, p);
+						pixel++;
+
+						const isNewRow = pixel/width === 1;
+						if(isNewRow) break;
+					}
+					xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
+				}
+			}
+			
+			document.body.appendChild(canvas);
+			canvas.parentNode.removeChild(canvas);
+			
+			xbm.innerHTML = "static const unsigned char PROGMEM logo_"+width+"X"+height+"[] = {\n\n" + xbmString.substr(0,xbmString.length-1) + "\n\n};";
+		} catch (err) {
+			alert(err.toString());
+		}
+	}
+	
+	function clearData() {
+		size.innerHTML = "";
+		xbm.innerHTML = "";
+	}
+	</script>
+</html>

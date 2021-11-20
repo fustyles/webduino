@@ -93,7 +93,7 @@ XBM Code:<span id="size"></span><br>
 						var height = fontBottom-fontTop+1;	
 						height = (height>Math.floor(height))?(Math.floor(height)+1):Math.floor(height);
 						
-						size.innerText = "( "+width + " * " + height + " )";
+						size.innerText = "( "+width + " X " + height + " )";
 
 						const imageData = context.getImageData(0, fontTop, width, height);
 						const data = imageData.data;
@@ -120,7 +120,7 @@ XBM Code:<span id="size"></span><br>
 						document.body.appendChild(canvas);
 						canvas.parentNode.removeChild(canvas);
 						
-						xbm.innerHTML = "static const unsigned char PROGMEM logo_"+width+"X"+height+"[] = {\n\n" + xbmString + "\n\n};";								
+						xbm.innerHTML = "static const unsigned char PROGMEM logo_"+width+"X"+height+"[] = {\n\n" + xbmString.substr(0,xbmString.length-1) + "\n\n};";								
 						file.parentNode.removeChild(file);
 						reset.innerHTML = '<input type="file" id="openfile" accept=".ttf">';
 						initial();
