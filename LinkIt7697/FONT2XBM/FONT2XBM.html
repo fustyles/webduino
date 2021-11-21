@@ -34,7 +34,7 @@ Size :
   <option value="72">72px</option>
 </select>
 Text :<input type="text" id="str" value="Hello, World" size="40" onchange="clearData();"><br><br>
-Local MS Font<select id="msFont" onchange="clearData();">
+MS Font<select id="msFont" onchange="clearData();">
   <option value="Abadi MT">Abadi MT</option>
   <option value="Agency FB">Agency FB</option>
   <option value="Aharoni Bold">Aharoni Bold</option>
@@ -449,7 +449,7 @@ XBM Code:<span id="size"></span><br>
 			document.body.appendChild(canvas);
 			canvas.parentNode.removeChild(canvas);
 			
-			xbm.innerHTML = "static const unsigned char PROGMEM logo_"+width+"X"+height+"[] = {\n\n" + xbmString.substr(0,xbmString.length-1) + "\n\n};";
+			xbm.value = "static const unsigned char PROGMEM logo_"+width+"X"+height+"[] = {\n\n" + xbmString.substr(0,xbmString.length-1) + "\n\n};";
 		} catch (err) {
 			alert(err.toString());
 		}

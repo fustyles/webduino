@@ -1,0 +1,89 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/11/20 23:00
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/LinkIt7697/IMG2XBM/IMG2XBM.html
+-->
+
+<!DOCTYPE html>
+<head>
+  <title>IMAGE to XBM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+Local image file : <span id="reset"><input type="file" id="openfile"></span><br><br>
+XBM Code:<span id="size"></span><br>
+<textarea id="xbm" cols="80" rows="20"></textarea>
+	<script>
+	var size = document.getElementById("size");
+	var xbm = document.getElementById("xbm");
+	var reset = document.getElementById("reset");
+						
+	initial();
+	function initial() {
+		var file=document.getElementById('openfile');	
+		var img=document.createElement('img');
+		
+		img.onload = function (event) {
+			const canvas = document.createElement('canvas');
+			const context = canvas.getContext('2d');
+			
+			canvas.width=img.width;
+			canvas.height=img.height; 
+			canvas.width = (canvas.width%8>0)?Math.round(canvas.width-canvas.width%8+8):Math.round(canvas.width);
+			size.innerText = "( "+img.width + " X " + img.height + " )";
+			
+			context.fillStyle="#FFFFFF";
+			context.fillRect(0, 0, canvas.width, canvas.height);
+			context.drawImage(img,0,0,img.width,img.height);
+
+			const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+			const data = imageData.data;
+
+			let xbmString = "";
+			let pixel = 0;
+			let value = 0;
+			
+			for(let h = 0; h < canvas.height; h++) {
+				for(let w = 0; w < canvas.width / 8; w++) {
+					value = 0;
+					for(let p = 0; p < 8; p++) {
+						const isBlack = !(data[pixel * 4]);
+						if(isBlack)
+							value += Math.pow(2, p);
+						pixel++;
+						const isNewRow = pixel/canvas.width === 1;
+						if(isNewRow) break;
+					}
+					xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
+				}
+			}
+			
+			xbm.value = "static const unsigned char PROGMEM logo_"+img.width+"X"+img.height+"[] = {\n\n" + xbmString.substr(0,xbmString.length-1) + "\n\n};";
+			
+			document.body.appendChild(canvas);
+			canvas.parentNode.removeChild(canvas);			
+			document.body.appendChild(img);
+			img.parentNode.removeChild(img);
+			file.parentNode.removeChild(file);
+			reset.innerHTML = '<input type="file" id="openfile">';
+			
+			initial();				
+		}
+		
+		file.onchange = function (event) {
+			var target = event.target || window.event.srcElement;
+			var files = target.files;
+			if (FileReader && files && files.length) {
+				var fr = new FileReader();
+				fr.onload = function () {
+					img.src = fr.result;					
+				}
+				fr.readAsDataURL(files[0]);
+			}
+		}
+	}
+	</script>
+</html>

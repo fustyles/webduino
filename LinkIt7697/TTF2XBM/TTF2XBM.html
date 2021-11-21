@@ -35,7 +35,7 @@ Size :
   <option value="72">72px</option>
 </select>
 Text :<input type="text" id="str" value="Hello, World" size="40" onchange="clearData();"><br><br>
-Use local TTF file : <span id="reset"><input type="file" id="openfile" accept=".ttf"></span><br><br>
+Local TTF file : <span id="reset"><input type="file" id="openfile" accept=".ttf"></span><br><br>
 XBM Code:<span id="size"></span><br>
 <textarea id="xbm" cols="80" rows="20"></textarea>
 	<script>
@@ -128,7 +128,7 @@ XBM Code:<span id="size"></span><br>
 						document.body.appendChild(canvas);
 						canvas.parentNode.removeChild(canvas);
 						
-						xbm.innerHTML = "static const unsigned char PROGMEM logo_"+width+"X"+height+"[] = {\n\n" + xbmString.substr(0,xbmString.length-1) + "\n\n};";								
+						xbm.value = "static const unsigned char PROGMEM logo_"+width+"X"+height+"[] = {\n\n" + xbmString.substr(0,xbmString.length-1) + "\n\n};";								
 						file.parentNode.removeChild(file);
 						reset.innerHTML = '<input type="file" id="openfile" accept=".ttf">';
 						initial();
