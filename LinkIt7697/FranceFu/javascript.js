@@ -943,7 +943,7 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 		context.clearRect(0, 0, canvas.width, canvas.height);
 		context.fillStyle="#000000";
 		context.textBaseline = "top";
-		context.fillText(text, 0, 0);
+		context.fillText(text, 0, 1);
 
 		var pixels = context.getImageData(0, 0, canvas.width, canvas.height);
 		var fontTop = null, fontBottom = null;
@@ -1030,7 +1030,7 @@ Blockly.Arduino['fu_oled_drawCustomFont'] = function(block) {
 		context.clearRect(0, 0, canvas.width, canvas.height);
 		context.fillStyle="#000000";
 		context.textBaseline = "top";
-		context.fillText(text, 0, 0);
+		context.fillText(text, 0, 1);
 
 		var pixels = context.getImageData(0, 0, canvas.width, canvas.height);
 		var fontTop = null, fontBottom = null;
