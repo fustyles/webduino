@@ -20,7 +20,7 @@ Size :
   <option value="9">9px</option>		  
   <option value="10">10px</option>
   <option value="11">11px</option>		  
-  <option value="12">12px</option>
+  <option value="12" selected>12px</option>
   <option value="14">14px</option>		  
   <option value="16">16px</option>		  
   <option value="18">18px</option>		  
@@ -369,17 +369,20 @@ MS Font<select id="msFont" onchange="clearData();">
   <option value="Wingdings">Wingdings</option>
 </select><input type="button" value="Get XBM" onclick="Font2XBM();"><br><br>
 XBM Code:<span id="size"></span><br>
-<textarea id="xbm" cols="80" rows="20"></textarea>
+<textarea id="xbm" cols="80" rows="20"></textarea><br><br>
+<canvas id="drawText" style="display:none"></canvas>
+<canvas id="drawResult"></canvas>
 	<script>
 	var str = document.getElementById("str");
 	var msFont = document.getElementById("msFont");
 	var fontSize = document.getElementById("fontSize");
 	var size = document.getElementById("size");
 	var xbm = document.getElementById("xbm");
+	var canvas = document.getElementById("drawText");
+	var canvas1 = document.getElementById("drawResult");
 				
 	function Font2XBM() {
 		try {
-			const canvas = document.createElement('canvas');
 			const context = canvas.getContext('2d');
 			canvas.width = 960;
 			canvas.height = 480;
@@ -388,10 +391,6 @@ XBM Code:<span id="size"></span><br>
 			var dropdown_font = msFont.value;
 			var text = str.value;
 			
-			console.log(dropdown_size);
-			console.log(dropdown_font);
-			console.log(text);
-			
 			context.font = dropdown_size + "px " + dropdown_font;
 			let metrics = context.measureText(text);
 			var width = (metrics.width%8>0)?Math.round(metrics.width-metrics.width%8+8):Math.round(metrics.width);
@@ -399,7 +398,7 @@ XBM Code:<span id="size"></span><br>
 			context.clearRect(0, 0, canvas.width, canvas.height);
 			context.fillStyle="#000000";
 			context.textBaseline = "top";
-			context.fillText(text, 0, 0);
+			context.fillText(text, 0, 5);
 
 			var pixels = context.getImageData(0, 0, canvas.width, canvas.height);
 			var fontTop = null, fontBottom = null;
@@ -423,6 +422,12 @@ XBM Code:<span id="size"></span><br>
 			
 			size.innerText = "( "+width + " X " + height + " )";
 
+			const context1 = canvas1.getContext('2d');
+			canvas1.width = width;
+			canvas1.height = height;
+			context1.clearRect(0, 0, width, height);
+			context1.drawImage(canvas, 0, fontTop, width, height, 0, 0, width, height);
+			
 			const imageData = context.getImageData(0, fontTop, width, height);
 			const data = imageData.data;
 
@@ -445,9 +450,6 @@ XBM Code:<span id="size"></span><br>
 					xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
 				}
 			}
-			
-			document.body.appendChild(canvas);
-			canvas.parentNode.removeChild(canvas);
 			
 			xbm.value = "static const unsigned char PROGMEM logo_"+width+"X"+height+"[] = {\n\n" + xbmString.substr(0,xbmString.length-1) + "\n\n};";
 		} catch (err) {

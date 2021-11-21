@@ -21,7 +21,7 @@ Size :
   <option value="9">9px</option>		  
   <option value="10">10px</option>
   <option value="11">11px</option>		  
-  <option value="12">12px</option>
+  <option value="12" selected>12px</option>
   <option value="14">14px</option>		  
   <option value="16">16px</option>		  
   <option value="18">18px</option>		  
@@ -37,14 +37,18 @@ Size :
 Text :<input type="text" id="str" value="Hello, World" size="40" onchange="clearData();"><br><br>
 Local TTF file : <span id="reset"><input type="file" id="openfile" accept=".ttf"></span><br><br>
 XBM Code:<span id="size"></span><br>
-<textarea id="xbm" cols="80" rows="20"></textarea>
+<textarea id="xbm" cols="80" rows="20"></textarea><br><br>
+<canvas id="drawText" style="display:none"></canvas>
+<canvas id="drawResult"></canvas>
 	<script>
 	var str = document.getElementById("str");
 	var fontSize = document.getElementById("fontSize");
 	var size = document.getElementById("size");
 	var xbm = document.getElementById("xbm");
 	var reset = document.getElementById("reset");
-						
+	var canvas = document.getElementById("drawText");
+	var canvas1 = document.getElementById("drawResult");
+	
 	initial();
 	function initial() {
 		var file=document.getElementById('openfile');
@@ -66,7 +70,7 @@ XBM Code:<span id="size"></span><br>
 							}
 						};
 						
-						const canvas = document.createElement('canvas');
+						//const canvas = document.createElement('canvas');
 						const context = canvas.getContext('2d');
 						canvas.width = 960;
 						canvas.height = 480;
@@ -102,6 +106,12 @@ XBM Code:<span id="size"></span><br>
 						height = (height>Math.floor(height))?(Math.floor(height)+1):Math.floor(height);
 						
 						size.innerText = "( "+width + " X " + height + " )";
+						
+						const context1 = canvas1.getContext('2d');
+						canvas1.width = width;
+						canvas1.height = height;
+						context1.clearRect(0, 0, width, height);
+						context1.drawImage(canvas, 0, fontTop, width, height, 0, 0, width, height);						
 
 						const imageData = context.getImageData(0, fontTop, width, height);
 						const data = imageData.data;
