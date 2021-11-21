@@ -15,19 +15,20 @@ https://fustyles.github.io/webduino/LinkIt7697/IMG2XBM/IMG2XBM.html
 <body>
 Local image file : <span id="reset"><input type="file" id="openfile"></span><br><br>
 XBM Code:<span id="size"></span><br>
-<textarea id="xbm" cols="80" rows="20"></textarea>
+<textarea id="xbm" cols="80" rows="20"></textarea><br><br>
+<canvas id="drawText"></canvas>
 	<script>
 	var size = document.getElementById("size");
 	var xbm = document.getElementById("xbm");
 	var reset = document.getElementById("reset");
-						
+	var canvas = document.getElementById("drawText");
+	
 	initial();
 	function initial() {
 		var file=document.getElementById('openfile');	
 		var img=document.createElement('img');
 		
 		img.onload = function (event) {
-			const canvas = document.createElement('canvas');
 			const context = canvas.getContext('2d');
 			
 			canvas.width=img.width;
@@ -37,7 +38,7 @@ XBM Code:<span id="size"></span><br>
 			
 			context.fillStyle="#FFFFFF";
 			context.fillRect(0, 0, canvas.width, canvas.height);
-			context.drawImage(img,0,0,img.width,img.height);
+			context.drawImage(img,0,0,img.width,img.height);		
 
 			const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 			const data = imageData.data;
@@ -62,9 +63,7 @@ XBM Code:<span id="size"></span><br>
 			}
 			
 			xbm.value = "static const unsigned char PROGMEM logo_"+img.width+"X"+img.height+"[] = {\n\n" + xbmString.substr(0,xbmString.length-1) + "\n\n};";
-			
-			document.body.appendChild(canvas);
-			canvas.parentNode.removeChild(canvas);			
+					
 			document.body.appendChild(img);
 			img.parentNode.removeChild(img);
 			file.parentNode.removeChild(file);
