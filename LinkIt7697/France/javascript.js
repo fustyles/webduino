@@ -1891,6 +1891,68 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   return code; 
 };
 
+Blockly.Arduino['thingspeak_update_noreturn'] = function (block) {
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
+  Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
+											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
+											'  String getAll="", getBody="";\n'+
+											'  WiFiClientSecure client_tcp;\n'+
+											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
+											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
+											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
+											'	client_tcp.println("Host: " + domain);\n'+
+											'	client_tcp.println("Connection: close");\n'+
+											'	client_tcp.println();\n'+
+											'	boolean state = false;\n'+
+											'	long startTime = millis();\n'+
+											'	while ((startTime + waittime) > millis()) {\n'+
+											'	  while (client_tcp.available()) {\n'+
+											'		char c = client_tcp.read();\n'+
+											'		if (c == \'\\n\') {\n'+
+											'		  if (getAll.length()==0) state=true; \n'+
+											'		  getAll = "";\n'+
+											'		} \n'+
+											'		else if (c != \'\\r\')\n'+
+											'		  getAll += String(c);\n'+
+											'		if (state==true) getBody += String(c);\n'+
+											'		startTime = millis();\n'+
+											'	  }\n'+
+											'	  if (getBody.length()!= 0) break;\n'+
+											'	}\n'+
+											'	client_tcp.stop();\n'+
+											'  }\n'+
+											'  else {\n'+
+											'	getBody="Connected to "+domain+" failed.";\n'+
+											'	Serial.println("Connected to "+domain+" failed.");\n'+
+											'  }\n'+
+											'  return getBody;\n'+ 
+											'}\n';
+
+  var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
+  var field1 = Blockly.Arduino.valueToCode(block, 'field1', Blockly.Arduino.ORDER_ATOMIC);
+  var field2 = Blockly.Arduino.valueToCode(block, 'field2', Blockly.Arduino.ORDER_ATOMIC);
+  var field3 = Blockly.Arduino.valueToCode(block, 'field3', Blockly.Arduino.ORDER_ATOMIC);
+  var field4 = Blockly.Arduino.valueToCode(block, 'field4', Blockly.Arduino.ORDER_ATOMIC);
+  var field5 = Blockly.Arduino.valueToCode(block, 'field5', Blockly.Arduino.ORDER_ATOMIC);
+  var field6 = Blockly.Arduino.valueToCode(block, 'field6', Blockly.Arduino.ORDER_ATOMIC);
+  var field7 = Blockly.Arduino.valueToCode(block, 'field7', Blockly.Arduino.ORDER_ATOMIC);
+  var field8 = Blockly.Arduino.valueToCode(block, 'field8', Blockly.Arduino.ORDER_ATOMIC);
+  
+  if (!key) key="";
+  if (!field1) field1="";
+  if (!field2) field2="";
+  if (!field3) field3="";
+  if (!field4) field4="";
+  if (!field5) field5="";
+  if (!field6) field6="";
+  if (!field7) field7="";
+  if (!field8) field8="";
+
+  var request = '"/update?api_key="+String('+key+')+"&field1="+String('+field1+')+"&field2="+String('+field2+')+"&field3="+String('+field3+')+"&field4="+String('+field4+')+"&field5="+String('+field5+')+"&field6="+String('+field6+')+"&field7="+String('+field7+')+"&field8="+String('+field8+')';
+  var code = 'tcp_http_esp32("api.thingspeak.com", '+request+', 443, 3000);\n';
+  return code; 
+};
 
 Blockly.Arduino['thingspeak_update'] = function (block) {
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
