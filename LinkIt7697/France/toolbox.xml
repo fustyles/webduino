@@ -2592,7 +2592,13 @@
 				</value>
 			</block>	
 			<block type="BitMatrixLed_matrix_clear">
-			</block>			
+			</block>
+			<block type="BitMatrixLed_matrix_onecolor">
+				<value name="RGB">
+					<block type="BitMatrixLed_color">
+					</block>
+				</value>
+			</block>				
 			<block type="BitMatrixLed_matrix">
 				<value name="RGB">
 					<block type="BitMatrixLed_color">
