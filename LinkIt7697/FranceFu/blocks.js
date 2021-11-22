@@ -4901,6 +4901,50 @@ Blockly.Blocks['esp32_wifi_wait_until_ready'] = {
   }
 };
 
+Blockly.Blocks['thingspeak_update_noreturn'] = {
+  init: function() {   
+  this.appendValueInput("key")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("ThingSpeak ")
+      .appendField("Write API Key");
+  this.appendValueInput("field1")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field1");
+  this.appendValueInput("field2")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field2");
+  this.appendValueInput("field3")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field3");  
+  this.appendValueInput("field4")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field4");
+  this.appendValueInput("field5")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field5");
+  this.appendValueInput("field6")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field6");  
+  this.appendValueInput("field7")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field7");
+  this.appendValueInput("field8")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Field8");  
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0); 
+	this.setColour(20);
+  }
+};
 
 Blockly.Blocks['thingspeak_update'] = {
   init: function() {   
