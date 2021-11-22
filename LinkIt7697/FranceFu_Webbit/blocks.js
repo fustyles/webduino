@@ -429,6 +429,21 @@ Blockly.Blocks['BitMatrixLed_matrix_clear'] = {
 	}
 };
 
+Blockly.Blocks['BitMatrixLed_matrix_onecolor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_CENTRE)
+        .appendField(Blockly.Msg.ESP32_MATRIX);
+	this.appendValueInput("RGB")
+		.setCheck("String")
+		.appendField(Blockly.Msg.ESP32_MATRIX_CHOICECOLOR);
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(300);	
+  }
+};
+
 Blockly.Blocks['BitMatrixLed_matrix'] = {
   init: function() {
     this.appendDummyInput()
