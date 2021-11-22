@@ -5752,6 +5752,42 @@ Blockly.Arduino.BitMatrixLed_matrix_clear = function(){
 	var code = 'MatrixLed("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");\n';
 	return code;
 };
+
+Blockly.Arduino['BitMatrixLed_matrix_onecolor'] = function() {
+	Blockly.Arduino.definitions_['define_webbit_matrix_leds']='\n'+
+											'void MatrixLed(String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  matrixString = color;\n'+
+											'  int R,G,B;\n'+
+											'  int range;\n'+	
+											'  range = color.length()/6;\n'+								
+											'  for (int i=0;i<range;i++) {\n'+
+    										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]));\n'+
+    										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]));\n'+
+    										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]));\n'+
+    										'    pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+    										'  }\n'+
+    										'  pixels.show();\n'+
+											'}\n';	
+	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
+	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);
+	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);
+	if (rgb.indexOf("#")!=-1)
+		rgb = rgb.toLowerCase().replace(/#/g,"");
+	else {
+		Blockly.Arduino.definitions_['define_webbit_matrix_color_clear_poundsign']='\n'+
+											'String color_clear_poundsign(String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  return color;\n'+											
+											'}\n';		
+		rgb = '"+color_clear_poundsign('+rgb+')+"';
+		
+	}
+	var code = 'MatrixLed("'+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+'");\n';
+	return code;
+};
   
 Blockly.Arduino['BitMatrixLed_matrix'] = function() {
 	Blockly.Arduino.definitions_['define_webbit_matrix_leds']='\n'+
