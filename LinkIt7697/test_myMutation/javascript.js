@@ -10,32 +10,10 @@ Blockly.Arduino['mutation_test'] = function(block) {
   return block.getFieldValue("code");
 };
 
-Blockly.Events.disableOrphans=function(a){
-	if((a.type==Blockly.Events.MOVE||a.type==Blockly.Events.CREATE)&&a.workspaceId){
-		var b=Blockly.Workspace.getById(a.workspaceId),c=b.getBlockById(a.blockId);
-		if(c){
-			a=Blockly.Events.recordUndo;
-			try{
-				Blockly.Events.recordUndo=!1;
-				var d=c.getParent();
-				if(d&&d.isEnabled()){
-					var e=c.getDescendants(!1);
-					b=0;
-					for(var f;f=e[b];b++)
-						f.setEnabled(!0)
-				}
-				else if((c.outputConnection||c.previousConnection)&&!b.isDragging()&&!c.isInMutator){
-					do 
-						c.setEnabled(!1),c=c.getNextBlock();
-					while(c)
-				}
-			}
-			finally{Blockly.Events.recordUndo=a}
-		}
-	}
-};
 
 
+
+//myMutator
 Blockly.myMutator=function(a){Blockly.myMutator.superClass_.constructor.call(this,null);this.quarkNames_=a};
 Blockly.utils.object.inherits(Blockly.myMutator,Blockly.Icon);
 Blockly.myMutator.prototype.workspace_=null;
@@ -77,7 +55,7 @@ Blockly.myMutator.prototype.createEditor_=function(){
 	
 	this.workspace_=new Blockly.WorkspaceSvg(b);
 	this.workspace_.isMutator=!0;
-	this.workspace_.addChangeListener(Blockly.Events.disableOrphans);a=c?this.workspace_.addFlyout(Blockly.utils.Svg.G):null;
+	a=c?this.workspace_.addFlyout(Blockly.utils.Svg.G):null;
 	b=this.workspace_.createDom("blocklyMutatorBackground");
 	a&&b.insertBefore(a,this.workspace_.svgBlockCanvas_);
 	this.svgDialog_.appendChild(b);

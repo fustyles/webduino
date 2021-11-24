@@ -34,6 +34,6 @@ Blockly.Blocks["mutation_test"] = {
 	var xmlDom = Blockly.Xml.workspaceToDom(myWorkspace);
 	var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
 	this.setFieldValue(xmlText,"xml");
-		this.setEnabled(true);
+	this.setEnabled(true);
   }
 };
