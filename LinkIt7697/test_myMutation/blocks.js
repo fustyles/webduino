@@ -10,6 +10,7 @@ Blockly.Blocks["mutation_test"] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(100);   
+	  
     this.setMutator(new Blockly.myMutator(["controls_if","logic_compare","math_number"]));
     this.getField("code").setVisible(false);
     this.getField("xml").setVisible(false);		
