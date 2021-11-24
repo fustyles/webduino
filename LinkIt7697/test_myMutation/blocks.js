@@ -11,7 +11,7 @@ Blockly.Blocks["mutation_test"] = {
     this.setNextStatement(true, null);
     this.setColour(100);  
 	
-    this.setMutator(new Blockly.myMutator(["controls_if","logic_compare","math_number","variables_set2"]));
+    this.setMutator(new Blockly.myMutator(["controls_if","logic_compare","math_number"]));
 	
 	this.getField("code").setVisible(false);
 	this.setFieldValue('if (0 > 0) {\n}\n',"code");
