@@ -11,8 +11,8 @@ Blockly.Blocks["mutation_test"] = {
     this.setNextStatement(true, null);
     this.setColour(100);   
     this.setMutator(new Blockly.myMutator(["controls_if","logic_compare","math_number"]));
-	this.getField("code").setVisible(false);
-	this.getField("xml").setVisible(false);		
+    this.getField("code").setVisible(false);
+    this.getField("xml").setVisible(false);		
   },
   myWorkspaceInitial: function(myWorkspace) {
 	var xmlDoc = "";
@@ -23,8 +23,7 @@ Blockly.Blocks["mutation_test"] = {
 		xmlDoc = Blockly.Xml.textToDom(blocks);
 	}
 	myWorkspace.clear();
-	Blockly.Xml.domToWorkspace(xmlDoc, myWorkspace);	
-	myWorkspace.render();
+	Blockly.Xml.domToWorkspace(xmlDoc, myWorkspace);
   },
   myWorkspaceChanged: function(myWorkspace) {
 	this.setFieldValue(workspaceToCode(myWorkspace),"code");
