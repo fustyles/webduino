@@ -11,6 +11,8 @@ Blockly.Arduino['mutation_test'] = function(block) {
 };
 
 
+//myMutatorWorkspaceToCode
+Blockly.Generator.prototype.myMutatorWorkspaceToCode=function(a){var b=[];Blockly.Arduino.init(a);a=a.getTopBlocks(!0);for(var c=0,d;d=a[c];c++){var e=Blockly.Arduino.blockToCode(d);Array.isArray(e)&&(e=e[0]);e&&(d.outputConnection&&(e=Blockly.Arduino.scrubNakedValue(e),Blockly.Arduino.STATEMENT_PREFIX&&!d.suppressPrefixSuffix&&(e=Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_PREFIX,d)+e),Blockly.Arduino.STATEMENT_SUFFIX&&!d.suppressPrefixSuffix&&(e+=Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX,d))),b.push(e))}b=b.join("\n");b=Blockly.Arduino.finish(b);b=b.replace(/^\s+\n/,"");b=b.replace(/\n\s+$/,"\n");return b=b.replace(/[ \t]+\n/g,"\n")};	
 
 
 //myMutator

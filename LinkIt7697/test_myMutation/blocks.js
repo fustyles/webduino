@@ -9,30 +9,29 @@ Blockly.Blocks["mutation_test"] = {
     this.setInputsInline(true);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(100);   
-	  
-    this.setMutator(new Blockly.myMutator(["controls_if","logic_compare","math_number"]));
-    this.getField("code").setVisible(false);
-    this.getField("xml").setVisible(false);		
+    this.setColour(100);  
+	
+    this.setMutator(new Blockly.myMutator(["controls_if","logic_compare","math_number","variables_set2"]));
+	
+	this.getField("code").setVisible(false);
+	this.setFieldValue('if (0 > 0) {\n}\n',"code");
+	
+	this.getField("xml").setVisible(false);
+	var initBlocks = '<xml xmlns="https://developers.google.com/blockly/xml"><block type="controls_if"><value name="IF0"><block type="logic_compare"><field name="OP">GT</field><value name="B"><block type="math_number"><field name="NUM">0</field></block></value></block></value></block></xml>';
+	this.setFieldValue(initBlocks,"xml");
   },
   myWorkspaceInitial: function(myWorkspace) {
-	var xmlDoc = "";
 	if (this.getFieldValue("xml")) {
-		xmlDoc = Blockly.Xml.textToDom(this.getFieldValue("xml"));
-	} else {
-		var blocks = '<xml xmlns="https://developers.google.com/blockly/xml"><block type="controls_if"><value name="IF0"><block type="logic_compare"><field name="OP">GT</field><value name="B"><block type="math_number"><field name="NUM">0</field></block></value></block></value></block></xml>';
-		xmlDoc = Blockly.Xml.textToDom(blocks);
+		var xmlDoc = Blockly.Xml.textToDom(this.getFieldValue("xml"));
+		myWorkspace.clear();
+		Blockly.Xml.domToWorkspace(xmlDoc, myWorkspace);
 	}
-	myWorkspace.clear();
-	Blockly.Xml.domToWorkspace(xmlDoc, myWorkspace);
   },
   myWorkspaceChanged: function(myWorkspace) {
-	this.setFieldValue(workspaceToCode(myWorkspace),"code");
-	  
+	this.setFieldValue(Blockly.Arduino.myMutatorWorkspaceToCode(myWorkspace),"code");
+	
 	var xmlDom = Blockly.Xml.workspaceToDom(myWorkspace);
 	var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
 	this.setFieldValue(xmlText,"xml");
-	  
-	function workspaceToCode(a){var b=[];Blockly.Arduino.init(a);a=a.getTopBlocks(!0);for(var c=0,d;d=a[c];c++){var e=Blockly.Arduino.blockToCode(d);Array.isArray(e)&&(e=e[0]);e&&(d.outputConnection&&(e=Blockly.Arduino.scrubNakedValue(e),Blockly.Arduino.STATEMENT_PREFIX&&!d.suppressPrefixSuffix&&(e=Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_PREFIX,d)+e),Blockly.Arduino.STATEMENT_SUFFIX&&!d.suppressPrefixSuffix&&(e+=Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX,d))),b.push(e))}b=b.join("\n");b=Blockly.Arduino.finish(b);b=b.replace(/^\s+\n/,"");b=b.replace(/\n\s+$/,"\n");return b=b.replace(/[ \t]+\n/g,"\n")};
   }
 };
