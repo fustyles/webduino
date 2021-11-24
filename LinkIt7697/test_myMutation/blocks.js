@@ -35,11 +35,9 @@ Blockly.Blocks["mutation_test"] = {
     this.setFieldValue('if (0 > 0) {\n}\n',"code");
   },
   myWorkspaceInitial: function(myWorkspace) {
-	if (this.getFieldValue("xml")) {
-		var xmlDoc = Blockly.Xml.textToDom(this.getFieldValue("xml"));
-		myWorkspace.clear();
-		Blockly.Xml.domToWorkspace(xmlDoc, myWorkspace);
-	}
+	var xmlDoc = Blockly.Xml.textToDom(this.getFieldValue("xml"));
+	myWorkspace.clear();
+	Blockly.Xml.domToWorkspace(xmlDoc, myWorkspace);
   },
   myWorkspaceChanged: function(myWorkspace) {
 	var xmlDom = Blockly.Xml.workspaceToDom(myWorkspace);
