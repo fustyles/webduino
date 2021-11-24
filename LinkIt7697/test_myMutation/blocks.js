@@ -25,7 +25,7 @@ Blockly.Blocks["mutation_test"] = {
     this.setNextStatement(true, null);
     this.setColour(100);  
 	
-    this.setMutator(new Blockly.myMutator(["controls_if","logic_compare","math_number"]));
+    this.setMutator(new Blockly.myMutator(["controls_if","logic_compare","math_number","variables_get"]));
 	
     this.getField("xml").setVisible(false);
     var initBlocks = '<xml xmlns="https://developers.google.com/blockly/xml"><block type="controls_if"><value name="IF0"><block type="logic_compare"><field name="OP">GT</field><value name="B"><block type="math_number"><field name="NUM">0</field></block></value></block></value></block></xml>';
