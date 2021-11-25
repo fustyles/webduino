@@ -30,7 +30,8 @@ Blockly.Blocks["mutation_test"] = {
 	var xmlDom = Blockly.Xml.workspaceToDom(myWorkspace);
 	var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
 	this.setFieldValue(xmlText, "xml");
-	  
-	this.setFieldValue(Blockly.Arduino.myMutatorWorkspaceToCode(myWorkspace), "code");
+	
+        var code = Blockly.Arduino.myMutatorWorkspaceToCode(myWorkspace);
+	this.setFieldValue(code, "code");
   }
 };
