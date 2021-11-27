@@ -101,7 +101,7 @@ CustomFields.FieldFilter.prototype.onMouseMove = function(e) {
   var dy = e.clientY - bBox.top;
   
   var highLight = Array.from(CustomFields.FieldFilter.WORDS);
-  note = (Math.round((dy-5)/24.5)<highLight.length)?Math.round((dy-5)/24.5):-1;
+  var note = (Math.round((dy-5)/24.5)<highLight.length)?Math.round((dy-5)/24.5):-1;
   if (note!=-1)
     highLight[note] = "<font color='white'>" + highLight[note] + "</font>";
   this.imageElement_.innerHTML = highLight.join("<br>");
@@ -111,7 +111,7 @@ CustomFields.FieldFilter.prototype.onMouseDown = function(e) {
   var bBox = this.imageElement_.getBoundingClientRect();
   var dy = e.clientY - bBox.top;
   var highLight = Array.from(CustomFields.FieldFilter.WORDS);
-  note = (Math.round((dy-5)/24.5)<highLight.length)?Math.round((dy-5)/24.5):-1;
+  var note = (Math.round((dy-5)/24.5)<highLight.length)?Math.round((dy-5)/24.5):-1;
   this.setEditorValue_(note);
 };
 
