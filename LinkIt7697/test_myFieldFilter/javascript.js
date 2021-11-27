@@ -173,4 +173,4 @@ CustomFields.FieldFilter.prototype.doClassValidation_ = function(opt_newValue) {
   return null;
 };
 
-Blockly.fieldRegistry.register('field_search', CustomFields.FieldFilter);
+Blockly.fieldRegistry.register('field_filter', CustomFields.FieldFilter);
