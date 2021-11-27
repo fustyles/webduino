@@ -1,0 +1,3 @@
+<category id="fieldDropdownSearch" name="fieldDropdownSearch">
+	  <block type="test_fieldDropdownFilter"></block>
+</category>
