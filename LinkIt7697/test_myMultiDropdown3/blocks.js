@@ -79,7 +79,7 @@ Blockly.Blocks["multidropdown_test"] = {
 		var firstValue = sourceBlock.getFieldValue("S1");
 	 }
 	 else {
-	    var sourceBlock = this;
+		var sourceBlock = this;
 		var firstValue = newValue[0];
 		newValue = newValue[1];
 	 }
