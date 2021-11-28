@@ -141,8 +141,9 @@ Blockly.Flydown.prototype.reflow = function() {
     var blockHW = block.getHeightWidth();
     flydownWidth = Math.max(flydownWidth, blockHW.width * scale);
     flydownHeight += blockHW.height * scale;
-
   }
+  flydownHeight += blockHW.height * scale * 2;
+	
   var constantes = this.targetWorkspace_.getRenderer().getConstants();
 
   flydownWidth += 2 * margin + constantes.TAB_WIDTH * scale; // TAB_WIDTH is with of plug
@@ -460,7 +461,7 @@ Blockly.WorkspaceSvg.prototype.getFlydown = function() {
 var workspace = Blockly.getMainWorkspace();
 var flydown = new  Blockly.Flydown(new Blockly.Options({scrollbars:  true }));
 workspace.flydown_ = flydown;
-Blockly.utils.dom.insertAfter(flydown.createDom('g', '#fff'), workspace.svgBubbleCanvas_);
+Blockly.utils.dom.insertAfter(flydown.createDom('g', 'rgba(219, 152, 52, 0.3)'), workspace.svgBubbleCanvas_);
 
 Blockly.Blocks["test_variableFlydown"] = {
 	init:  function() {
