@@ -12,10 +12,10 @@
 
 
 var list = [
-	["a","aaa"],
-	["a","abc"],	
-	["b","bbb"],
-	["b","bcd"]
+	["a","a1"],
+	["a","a2"],	
+	["b","b1"],
+	["b","b2"]
 ];
 
 Blockly.Blocks["multidropdown_test"] = {
@@ -42,6 +42,8 @@ Blockly.Blocks["multidropdown_test"] = {
 		 }
 		 opt.push([list[i][0],list[i][0]]);
 	 }
+	 if (opt.length==0)
+		 opt.push(["",""]);	  
 	 return opt;
   },
   validate: function(newValue) {
@@ -58,6 +60,8 @@ Blockly.Blocks["multidropdown_test"] = {
 			 opt.push([list[i][1],list[i][1]]);
 		 }
 	 }
+	 if (opt.length==0)
+		 opt.push(["",""]);	  
 	 sourceBlock.getInput("second").removeField("S2");
 	 sourceBlock.getInput("second").appendField(new Blockly.FieldDropdown(opt),"S2");
   }  
