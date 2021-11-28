@@ -39,7 +39,7 @@ Blockly.Blocks["multidropdown_test"] = {
     this.setColour(100); 
   },
   getParentOptions: function() {
-     var opt = [];
+	 var opt = [];
 	 for (var i=0;i<list.length;i++) {
 		 for (var j=0;j<opt.length;j++) {
 			if (opt[j][0]==list[i][0]) {
@@ -55,7 +55,7 @@ Blockly.Blocks["multidropdown_test"] = {
   },
   validate1: function(newValue) {
 	 const sourceBlock = this.getSourceBlock();
-     var opt = [];
+	 var opt = [];
 	 for (var i=0;i<list.length;i++) {
 		if (list[i][0]==newValue) {
 			for (var j=0;j<opt.length;j++) {
@@ -83,7 +83,7 @@ Blockly.Blocks["multidropdown_test"] = {
 		var firstValue = newValue[0];
 		newValue = newValue[1];
 	 }
-     var opt = [];
+	 var opt = [];
 	 for (var i=0;i<list.length;i++) {
 		 if (list[i][0]==firstValue&&list[i][1]==newValue) {
 			 for (var j=0;j<opt.length;j++) {
