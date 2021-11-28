@@ -1,3 +1,17 @@
+/**
+ * @license
+ * Copyright 2021 Taiwan (ChungYi Fu)
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/**
+ * @fileoverview my Multi Dropdown.
+ * @author https://www.facebook.com/francefu/
+ * @Update 11/28/2021 14:00 (Taiwan Standard Time)
+ */
+
+
+
 var list = [
 	["a","a1","a11"],
 	["a","a1","a12"],	
