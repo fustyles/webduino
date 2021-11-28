@@ -17,11 +17,6 @@ goog.provide('CustomFields.eventparam');
 goog.provide('AI.Blockly.Flydown');
 
 
-Blockly.WorkspaceSvg.prototype.flydown_ = null;
-Blockly.WorkspaceSvg.prototype.getFlydown = function() {
-  return this.flydown_;
-};
-
 
 Blockly.Flydown = function(workspaceOptions) {
   Blockly.Flydown.superClass_.constructor.call(this, workspaceOptions);
@@ -457,6 +452,10 @@ CustomFields.eventparam.prototype.flydownBlocksXML_ = function () {
 
 
 
+Blockly.WorkspaceSvg.prototype.flydown_ = null;
+Blockly.WorkspaceSvg.prototype.getFlydown = function() {
+  return this.flydown_;
+};
 
 var workspace = Blockly.getMainWorkspace();
 var flydown = new  Blockly.Flydown(new Blockly.Options({scrollbars:  true }));
