@@ -71,7 +71,7 @@ Blockly.Blocks["multidropdown_test"] = {
 		 opt.push(["",""]);
 	 sourceBlock.getInput("second").removeField("S2");
 	 sourceBlock.getInput("second").appendField(new Blockly.FieldDropdown(opt, sourceBlock.validate2),"S2");
-	 sourceBlock.validate2([newValue,sourceBlock.getFieldValue("S2")]);
+	 sourceBlock.validate2([newValue, sourceBlock.getFieldValue("S2")]);
   },
   validate2: function(newValue) {
 	 if (!this.type) {
