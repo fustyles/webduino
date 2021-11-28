@@ -49,6 +49,8 @@ Blockly.Blocks["multidropdown_test"] = {
 		 }
 		 opt.push([list[i][0],list[i][0]]);
 	 }
+	 if (opt.length==0)
+		 opt.push(["",""]);	  
 	 return opt;
   },
   validate1: function(newValue) {
