@@ -1,4 +1,9 @@
-var list = [["a","aaa"],["a","abc"],["b","bbb"],["b","bcd"]];
+var list = [
+	["a","aaa"],
+	["a","abc"],
+	["b","bbb"],
+	["b","bcd"]
+];
 
 Blockly.Blocks["multidropdown_test"] = {
   init: function() {
@@ -6,7 +11,7 @@ Blockly.Blocks["multidropdown_test"] = {
         .appendField("Hello World");
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown(this.getParentOptions, this.validate),"S1");
-    this.appendDummyInput("child")
+    this.appendDummyInput("second")
         .appendField(new Blockly.FieldDropdown([["",""]]),"S2");		
     this.setInputsInline(true);		
     this.setPreviousStatement(true, null);
@@ -33,9 +38,7 @@ Blockly.Blocks["multidropdown_test"] = {
 		 if (list[i][0]==newValue)
 			 opt.push([list[i][1],list[i][1]]);
 	 }
-	 console.log(newValue);
-	 console.log(opt);
-	 sourceBlock.getInput("child").removeField("S2");
-	 sourceBlock.getInput("child").appendField(new Blockly.FieldDropdown(opt),"S2");
+	 sourceBlock.getInput("second").removeField("S2");
+	 sourceBlock.getInput("second").appendField(new Blockly.FieldDropdown(opt),"S2");
   }  
 };
