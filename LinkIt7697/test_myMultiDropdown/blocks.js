@@ -1,6 +1,6 @@
 var list = [
 	["a","aaa"],
-	["a","abc"],
+	["a","abc"],	
 	["b","bbb"],
 	["b","bcd"]
 ];
@@ -35,8 +35,15 @@ Blockly.Blocks["multidropdown_test"] = {
 	 const sourceBlock = this.getSourceBlock();
      var opt = [];
 	 for (var i=0;i<list.length;i++) {
-		 if (list[i][0]==newValue)
+		 if (list[i][0]==newValue) {
+			 for (var j=0;j<opt.length;j++) {
+				if (opt[j][1]==list[i][1]) {
+					opt.splice(j, 1);
+					break;
+				}
+			 }			 
 			 opt.push([list[i][1],list[i][1]]);
+		 }
 	 }
 	 sourceBlock.getInput("second").removeField("S2");
 	 sourceBlock.getInput("second").appendField(new Blockly.FieldDropdown(opt),"S2");
