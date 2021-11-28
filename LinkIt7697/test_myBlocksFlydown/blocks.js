@@ -140,10 +140,8 @@ Blockly.Flydown.prototype.reflow = function() {
     var root = block.getSvgRoot();
     var blockHW = block.getHeightWidth();
     flydownWidth = Math.max(flydownWidth, blockHW.width * scale);
-    flydownHeight += blockHW.height * scale;
+    flydownHeight += blockHW.height * scale * 1.3;
   }
-  flydownHeight += blockHW.height * scale * 2;
-	
   var constantes = this.targetWorkspace_.getRenderer().getConstants();
 
   flydownWidth += 2 * margin + constantes.TAB_WIDTH * scale; // TAB_WIDTH is with of plug
