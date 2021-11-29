@@ -468,7 +468,7 @@ var flydown = new  Blockly.Flydown(new Blockly.Options({scrollbars:  true }));
 workspace.flydown_ = flydown;
 Blockly.utils.dom.insertAfter(flydown.createDom('g', 'rgba(219, 152, 52, 0.3)'), workspace.svgBubbleCanvas_);
 
-Blockly.Blocks["test_variableFlydown"] = {
+Blockly.Blocks["test_blocksFlydown"] = {
 	init:  function() {
 		var workspace = Blockly.getMainWorkspace();
 		this.appendDummyInput()
@@ -482,6 +482,6 @@ Blockly.Blocks["test_variableFlydown"] = {
     }
 }
 
-Blockly.Arduino['test_variableFlydown'] = function(block) {
+Blockly.Arduino['test_blocksFlydown'] = function(block) {
   return '';
 };
