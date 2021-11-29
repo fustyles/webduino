@@ -10,6 +10,13 @@
  * @Update 11/28/2021 18:00 (Taiwan Standard Time)
  */
 
+/*
+Add JS file placed in <head>. 
+https://github.com/pigeonmal/Blockly-Flydown/blob/main/flyout_base.js
+
+I modified the four lines of code.
+Line 150, 313, 461, 462
+*/
 
 'use strict';
 
