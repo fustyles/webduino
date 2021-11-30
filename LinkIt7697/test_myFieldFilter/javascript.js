@@ -10,11 +10,6 @@
  * @Update 11/27/2021 22:00 (Taiwan Standard Time)
  */
  
- 
-Blockly.Arduino['test_fieldDropdownFilter'] = function(block) {
-  return '';
-};
-
 
 
 var CustomFields = CustomFields || {};
