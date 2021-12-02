@@ -7,15 +7,24 @@
 /**
  * @fileoverview my Field Filter.
  * @author https://www.facebook.com/francefu/
- * @Update 11/27/2021 22:00 (Taiwan Standard Time)
+ * @Update 12/2/2021 12:00 (Taiwan Standard Time)
  */
  
+ /*
+ //blocks.js
+var options = ["","aaa","abc","add","bbb","bcd","ccc","def","deg"];	
+this.appendDummyInput()
+    .appendField(new CustomFields.FieldFilter('', options), 'FILTER');
+ */
 
 
 var CustomFields = CustomFields || {};
 
-CustomFields.FieldFilter = function(text) {
+CustomFields.FieldFilter = function(text, options) {
   CustomFields.FieldFilter.superClass_.constructor.call(this, text);
+  
+  CustomFields.FieldFilter.INITWORDS = options;
+  CustomFields.FieldFilter.WORDS = CustomFields.FieldFilter.INITWORDS;
 
   this.setSpellcheck(false);
   this.clickWrapper_ = null;
@@ -24,13 +33,12 @@ CustomFields.FieldFilter = function(text) {
 };
 Blockly.utils.object.inherits(CustomFields.FieldFilter, Blockly.FieldTextInput);
 
+CustomFields.FieldFilter.INITWORDS = [];
+CustomFields.FieldFilter.WORDS = CustomFields.FieldFilter.INITWORDS;
 
 CustomFields.FieldFilter.fromJson = function(options) {
   return new CustomFields.FieldFilter(options['fieldFilter']);
 };
-
-CustomFields.FieldFilter.INITWORDS = ["","aaa","abc","add","bbb","bcd","ccc","def","deg"];
-CustomFields.FieldFilter.WORDS = CustomFields.FieldFilter.INITWORDS;
 
 CustomFields.FieldFilter.prototype.showEditor_ = function() {
   CustomFields.FieldFilter.superClass_.showEditor_.call(this);
