@@ -25,7 +25,7 @@ Blockly.utils.object.inherits(CustomFields.FieldFilter, Blockly.FieldTextInput);
 
 
 CustomFields.FieldFilter.fromJson = function(options) {
-  return new CustomFields.FieldFilter(options['fieldSearch']);
+  return new CustomFields.FieldFilter(options['fieldFilter']);
 };
 
 CustomFields.FieldFilter.INITWORDS = ["","aaa","abc","add","bbb","bcd","ccc","def","deg"];
@@ -61,7 +61,7 @@ CustomFields.FieldFilter.prototype.showEditor_ = function() {
 
 CustomFields.FieldFilter.prototype.dropdownCreate_ = function() {
   this.imageElement_ = document.createElement('div');
-  this.imageElement_.id = 'fieldSearch';
+  this.imageElement_.id = 'fieldFilter';
   CustomFields.FieldFilter.WORDS = CustomFields.FieldFilter.INITWORDS;
   var optionsLength = CustomFields.FieldFilter.WORDS.length;
   var height = 24.4 * optionsLength;
