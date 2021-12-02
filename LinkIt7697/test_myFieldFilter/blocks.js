@@ -1,8 +1,9 @@
 Blockly.Blocks["test_fieldDropdownFilter"] = {
   init: function() {
+	var options = ["","aaa","abc","add","bbb","bcd","ccc","def","deg"];
     this.appendDummyInput()
         .appendField('Filter')
-        .appendField(new CustomFields.FieldFilter(''), 'FILTER');
+        .appendField(new CustomFields.FieldFilter('', options), 'FILTER');
     this.setStyle('loop_blocks');
     this.setInputsInline(true);		
     this.setPreviousStatement(true, null);
