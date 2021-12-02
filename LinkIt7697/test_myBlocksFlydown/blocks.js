@@ -14,7 +14,7 @@
 Add JS file placed in <head> or replace the old functions in "blockly_compressed.js" file. 
 https://github.com/pigeonmal/Blockly-Flydown/blob/main/flyout_base.js
 
-//blocks.js
+//blocks.js (Line 477-501)
 Blockly.Blocks["test"] = {
     init:  function() {
 	var workspace = Blockly.getMainWorkspace();
@@ -471,10 +471,13 @@ Blockly.WorkspaceSvg.prototype.getFlydown = function() {
   return this.flydown_;
 };
 
+
+
+
 var workspace = Blockly.getMainWorkspace();
 var flydown = new  Blockly.Flydown(new Blockly.Options({scrollbars:  true }));
 workspace.flydown_ = flydown;
-Blockly.utils.dom.insertAfter(flydown.createDom('g', 'rgba(219, 152, 52, 0.3)'), workspace.svgBubbleCanvas_);
+Blockly.utils.dom.insertAfter(flydown.createDom('g', 'rgba(192, 192, 192, 0.3)'), workspace.svgBubbleCanvas_);
 
 Blockly.Blocks["test_variableFlydown"] = {
 	init:  function() {
