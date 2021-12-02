@@ -13,7 +13,7 @@
  /*
  //blocks.js
  
-var options = ['','aaa','abc','add','bbb','bcd','ccc','def','deg'];	
+var options = ['','aaa','abc','add','bbb','bcd','ccc','def','deg'];
 this.appendDummyInput()
     .appendField(new CustomFields.FieldFilter('', options), 'FILTER');
  */
