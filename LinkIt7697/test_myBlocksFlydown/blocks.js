@@ -15,12 +15,17 @@ Add JS file placed in <head> or replace the old functions in "blockly_compressed
 https://github.com/pigeonmal/Blockly-Flydown/blob/main/flyout_base.js
 
 //blocks.js
-var workspace = Blockly.getMainWorkspace();
-var blocksXML = '<xml>' +
-		'<block type="controls_if"><value name="IF0"></value></block><block type="logic_compare"><field name="OP">GT</field><value name="B"></value></block><block type="math_number"><field name="NUM">0</field></block><block type="variables_get"><field name="VAR">i</field></block>' +
-		'</xml>';
-this.appendDummyInput()
-    .appendField(new myBlocksFlydown.eventparam('\u2615', '#fff', workspace, blocksXML));	
+Blockly.Blocks["test"] = {
+    init:  function() {
+	var workspace = Blockly.getMainWorkspace();
+	var blocksXML = '<xml>' +
+		        '<block type="controls_if"><value name="IF0"></value></block><block type="logic_compare"><field name="OP">GT</field><value name="B"></value></block><block type="math_number"><field name="NUM">0</field></block><block type="variables_get"><field name="VAR">i</field></block>' +
+		        '</xml>';
+	this.appendDummyInput()
+	    .appendField(new myBlocksFlydown.eventparam('\u2615', '#fff', workspace, blocksXML));
+	etc...
+    }
+}    
 */
 
 
