@@ -20,6 +20,7 @@ CustomFields.FieldFilter = function(text) {
   this.setSpellcheck(false);
   this.clickWrapper_ = null;
   this.moveWrapper_ = null;
+  this.downWrapper_ = null;	
 };
 Blockly.utils.object.inherits(CustomFields.FieldFilter, Blockly.FieldTextInput);
 
