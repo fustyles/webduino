@@ -7,23 +7,21 @@
 /**
  * @fileoverview my Blocks Flydown.
  * @author https://www.facebook.com/francefu/
- * @Update 12/2/2021 19:00 (Taiwan Standard Time)
+ * @Update 12/2/2021 20:00 (Taiwan Standard Time)
  */
 
 /*
 Add JS file placed in <head> or replace the old functions in "blockly_compressed.js" file. 
 https://github.com/pigeonmal/Blockly-Flydown/blob/main/flyout_base.js
 
-//blocks.js (Line 477-501)
+//blocks.js
 Blockly.Blocks["test"] = {
     init:  function() {
-	var workspace = Blockly.getMainWorkspace();
-	var blocksXML = '<xml>' +
-		        '<block type="controls_if"><value name="IF0"></value></block><block type="logic_compare"><field name="OP">GT</field><value name="B"></value></block><block type="math_number"><field name="NUM">0</field></block><block type="variables_get"><field name="VAR">i</field></block>' +
-		        '</xml>';
-	this.appendDummyInput()
-	    .appendField(new myBlocksFlydown.eventparam('\u2615', '#fff', workspace, blocksXML));
-	etc...
+		var workspace = Blockly.getMainWorkspace();
+		var blocksXML = ['<block type="math_number"><field name="NUM">0</field></block>','<block type="variables_get"><field name="VAR">i</field></block>'];
+		this.appendDummyInput()
+			.appendField(new myBlocksFlydown.eventparam('\u2615', '#fff', workspace, blocksXML));
+		etc...
     }
 }    
 */
@@ -285,7 +283,7 @@ myBlocksFlydown.eventparam = function (opt_value, opt_color, opt_workspace, opt_
 };
 Blockly.utils.object.inherits(myBlocksFlydown.eventparam, Blockly.Field);
 
-myBlocksFlydown.eventparam.blocks = "<xml></xml>";
+myBlocksFlydown.eventparam.blocks = [];
 
 myBlocksFlydown.eventparam.prototype.EDITABLE = false;
 myBlocksFlydown.eventparam.timeout = 500;
@@ -459,8 +457,9 @@ myBlocksFlydown.eventparam.prototype.initView = function () {
 
 myBlocksFlydown.eventparam.prototype.flydownBlocksXML_ = function () {
 	    var  name = this.getText();
-	    return myBlocksFlydown.eventparam.blocks;
+	    return '<xml>'+myBlocksFlydown.eventparam.blocks.join("")+'</xml>';
 }
+
 
 
 
@@ -474,17 +473,17 @@ Blockly.WorkspaceSvg.prototype.getFlydown = function() {
 
 
 
+
+
 var workspace = Blockly.getMainWorkspace();
 var flydown = new  Blockly.Flydown(new Blockly.Options({scrollbars:  true }));
 workspace.flydown_ = flydown;
-Blockly.utils.dom.insertAfter(flydown.createDom('g', 'rgba(192, 192, 192, 0.3)'), workspace.svgBubbleCanvas_);
+Blockly.utils.dom.insertAfter(flydown.createDom('g', 'rgba(192, 192, 192, 0.8)'), workspace.svgBubbleCanvas_);
 
-Blockly.Blocks["test_variableFlydown"] = {
+Blockly.Blocks["test_blocksFlydown"] = {
 	init:  function() {
 		var workspace = Blockly.getMainWorkspace();
-		var blocksXML = '<xml>' +
-					'<block type="controls_if"><value name="IF0"></value></block><block type="logic_compare"><field name="OP">GT</field><value name="B"></value></block><block type="math_number"><field name="NUM">0</field></block><block type="variables_get"><field name="VAR">i</field></block>' +
-					'</xml>';
+		var blocksXML = ['<block type="math_number"><field name="NUM">0</field></block>','<block type="variables_get"><field name="VAR">i</field></block>'];
 		this.appendDummyInput()
 			.appendField(new myBlocksFlydown.eventparam('\u2615', '#fff', workspace, blocksXML));		
 		this.appendDummyInput()
@@ -496,6 +495,6 @@ Blockly.Blocks["test_variableFlydown"] = {
     }
 }
 
-Blockly.Arduino['test_variableFlydown'] = function(block) {
+Blockly.Arduino['test_blocksFlydown'] = function(block) {
   return '';
 };
