@@ -7,11 +7,12 @@
 /**
  * @fileoverview my Field Filter.
  * @author https://www.facebook.com/francefu/
- * @Update 12/2/2021 12:00 (Taiwan Standard Time)
+ * @Update 12/2/2021 12:30 (Taiwan Standard Time)
  */
  
  /*
  //blocks.js
+ 
 var options = ["","aaa","abc","add","bbb","bcd","ccc","def","deg"];	
 this.appendDummyInput()
     .appendField(new CustomFields.FieldFilter('', options), 'FILTER');
@@ -174,7 +175,7 @@ CustomFields.FieldFilter.prototype.doClassValidation_ = function(opt_newValue) {
   if (note) {
     return opt_newValue;
   }
-  return null;
+  return "";
 };
 
 Blockly.fieldRegistry.register('field_filter', CustomFields.FieldFilter);
