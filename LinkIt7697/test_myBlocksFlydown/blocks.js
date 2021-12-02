@@ -7,27 +7,33 @@
 /**
  * @fileoverview my Blocks Flydown.
  * @author https://www.facebook.com/francefu/
- * @Update 11/28/2021 18:00 (Taiwan Standard Time)
+ * @Update 12/2/2021 19:00 (Taiwan Standard Time)
  */
 
 /*
 Add JS file placed in <head> or replace the old functions in "blockly_compressed.js" file. 
 https://github.com/pigeonmal/Blockly-Flydown/blob/main/flyout_base.js
 
-I modified the lines of code.
-Line 150, 313, 450, 461 to 464
+
+//blocks.js
+
+var workspace = Blockly.getMainWorkspace();
+var blocksXML = '<xml>' +
+			'<block type="controls_if"><value name="IF0"></value></block><block type="logic_compare"><field name="OP">GT</field><value name="B"></value></block><block type="math_number"><field name="NUM">0</field></block><block type="variables_get"><field name="VAR">i</field></block>' +
+			'</xml>';
+this.appendDummyInput()
+	.appendField(new myBlocksFlydown.eventparam('\u2615', '#fff', workspace, blocksXML));	
 */
+
 
 'use strict';
 
-goog.provide('CustomFields.eventparam');
+goog.provide('myBlocksFlydown.eventparam');
 goog.provide('AI.Blockly.Flydown');
-
 
 
 Blockly.Flydown = function(workspaceOptions) {
   Blockly.Flydown.superClass_.constructor.call(this, workspaceOptions);
-  this.dragAngleRange_ = 360;
 };
 Blockly.utils.object.inherits(Blockly.Flydown, Blockly.VerticalFlyout);
 
@@ -149,6 +155,7 @@ Blockly.Flydown.prototype.reflow = function() {
     flydownWidth = Math.max(flydownWidth, blockHW.width * scale);
     flydownHeight += blockHW.height * scale * 1.3;
   }
+  
   var constantes = this.targetWorkspace_.getRenderer().getConstants();
 
   flydownWidth += 2 * margin + constantes.TAB_WIDTH * scale; // TAB_WIDTH is with of plug
@@ -247,7 +254,7 @@ Blockly.Flydown.prototype.shouldHide = true;
 Blockly.Flydown.prototype.hide = function() {
   if (this.shouldHide) {
     Blockly.VerticalFlyout.prototype.hide.call(this);
-    CustomFields.eventparam.openFieldFlydown_ = null;
+    myBlocksFlydown.eventparam.openFieldFlydown_ = null;
   }
   this.shouldHide = true;
 }
@@ -259,33 +266,37 @@ Blockly.Flydown.prototype.hide = function() {
 
 
 
-CustomFields.eventparam = function (opt_value, opt_color, opt_workspace, opt_validator) {
+myBlocksFlydown.eventparam = function (opt_value, opt_color, opt_workspace, opt_blocksXML, opt_validator) {
     opt_value = this.doClassValidation_(opt_value);
     if (opt_value === null) {
         opt_value = '';
     }  // Else the original value is fine.
 
     this.opt_color_ = opt_color;
-    this.displayLocation = CustomFields.eventparam.DISPLAY_BELOW;
+    this.displayLocation = myBlocksFlydown.eventparam.DISPLAY_BELOW;
     this.opt_workspace = opt_workspace;
-    CustomFields.eventparam.superClass_.constructor.call(
+	myBlocksFlydown.eventparam.blocks = opt_blocksXML;
+	
+    myBlocksFlydown.eventparam.superClass_.constructor.call(
         this, opt_value, opt_validator);
 };
-Blockly.utils.object.inherits(CustomFields.eventparam, Blockly.Field);
+Blockly.utils.object.inherits(myBlocksFlydown.eventparam, Blockly.Field);
 
-CustomFields.eventparam.prototype.EDITABLE = false;
-CustomFields.eventparam.timeout = 500;
-CustomFields.eventparam.isInDrag = false;
-CustomFields.eventparam.openFieldFlydown_ = null;
-CustomFields.eventparam.showPid_ = 0;
-CustomFields.eventparam.DISPLAY_BELOW = "BELOW";
-CustomFields.eventparam.DISPLAY_RIGHT = "RIGHT";
-CustomFields.eventparam.DISPLAY_LOCATION = CustomFields.eventparam.DISPLAY_BELOW;
-CustomFields.eventparam.prototype.fieldCSSClassName = 'blocklyFieldFlydownField';
-CustomFields.eventparam.prototype.flyoutCSSClassName = 'blocklyFieldFlydownFlydown';
+myBlocksFlydown.eventparam.blocks = "<xml></xml>";
 
-CustomFields.eventparam.prototype.init = function (block) {
-    CustomFields.eventparam.superClass_.init.call(this, block);
+myBlocksFlydown.eventparam.prototype.EDITABLE = false;
+myBlocksFlydown.eventparam.timeout = 500;
+myBlocksFlydown.eventparam.isInDrag = false;
+myBlocksFlydown.eventparam.openFieldFlydown_ = null;
+myBlocksFlydown.eventparam.showPid_ = 0;
+myBlocksFlydown.eventparam.DISPLAY_BELOW = "BELOW";
+myBlocksFlydown.eventparam.DISPLAY_RIGHT = "RIGHT";
+myBlocksFlydown.eventparam.DISPLAY_LOCATION = myBlocksFlydown.eventparam.DISPLAY_BELOW;
+myBlocksFlydown.eventparam.prototype.fieldCSSClassName = 'blocklyFieldFlydownField';
+myBlocksFlydown.eventparam.prototype.flyoutCSSClassName = 'blocklyFieldFlydownFlydown';
+
+myBlocksFlydown.eventparam.prototype.init = function (block) {
+    myBlocksFlydown.eventparam.superClass_.init.call(this, block);
 
     // Remove inherited field css classes ...
     Blockly.utils.dom.removeClass(/** @type {!Element} */(this.fieldGroup_),
@@ -310,32 +321,32 @@ CustomFields.eventparam.prototype.init = function (block) {
         Blockly.bindEventWithChecks_(document, 'mouseup', this,
             function (_event) {
                 this.isInDrag = false;
-				CustomFields.eventparam.hide();
+                myBlocksFlydown.eventparam.hide();
             }
         );
 };
 
-CustomFields.eventparam.prototype.onMouseOver_ = function (e) {
+myBlocksFlydown.eventparam.prototype.onMouseOver_ = function (e) {
     if (!this.sourceBlock_.isInFlyout) { // [lyn, 10/22/13] No flydowns in a flyout!
-        CustomFields.eventparam.showPid_ =
-            window.setTimeout(this.showFlydownMaker_(), CustomFields.eventparam.timeout);
+        myBlocksFlydown.eventparam.showPid_ =
+            window.setTimeout(this.showFlydownMaker_(), myBlocksFlydown.eventparam.timeout);
     }
 
     // This event has been handled.  No need to bubble up to the document.
     e.stopPropagation();
 };
 
-CustomFields.eventparam.prototype.onMouseOut_ = function (e) {
+myBlocksFlydown.eventparam.prototype.onMouseOut_ = function (e) {
     // Clear any pending timer event to show flydown
-    window.clearTimeout(CustomFields.eventparam.showPid_);
+    window.clearTimeout(myBlocksFlydown.eventparam.showPid_);
     e.stopPropagation();
 };
 
-CustomFields.eventparam.prototype.showFlydownMaker_ = function () {
+myBlocksFlydown.eventparam.prototype.showFlydownMaker_ = function () {
     var field = this; // Name receiver in variable so can close over this variable in returned thunk
 
     return function () {
-        if (CustomFields.eventparam.showPid_ !== 0 &&
+        if (myBlocksFlydown.eventparam.showPid_ !== 0 &&
             !this.isInDrag &&
             !Blockly.FieldTextInput.htmlInput_) {
             try {
@@ -344,11 +355,11 @@ CustomFields.eventparam.prototype.showFlydownMaker_ = function () {
                 console.error('Failed to show flydown', e);
             }
         }
-        CustomFields.eventparam.showPid_ = 0;
+        myBlocksFlydown.eventparam.showPid_ = 0;
     };
 };
 
-CustomFields.eventparam.prototype.showFlydown_ = function () {
+myBlocksFlydown.eventparam.prototype.showFlydown_ = function () {
     Blockly.hideChaff();
     var flydown = Blockly.getMainWorkspace().getFlydown();
 
@@ -374,19 +385,19 @@ CustomFields.eventparam.prototype.showFlydown_ = function () {
 
     var xy = Blockly.getMainWorkspace().getSvgXY(this.borderRect_);
     var borderBBox = this.borderRect_.getBBox();
-    if (this.displayLocation == CustomFields.eventparam.DISPLAY_BELOW) {
+    if (this.displayLocation == myBlocksFlydown.eventparam.DISPLAY_BELOW) {
         xy.y += borderBBox.height * scale;
     } else { // Display right.
         xy.x += borderBBox.width * scale;
     }
 
     flydown.showAt(blocksXMLList, xy.x, xy.y);
-    CustomFields.eventparam.openFieldFlydown_ = this;
+    myBlocksFlydown.eventparam.openFieldFlydown_ = this;
 };
 
-CustomFields.eventparam.hide = function () {
+myBlocksFlydown.eventparam.hide = function () {
     // Clear any pending timer event to show flydown.
-    window.clearTimeout(CustomFields.eventparam.showPid_);
+    window.clearTimeout(myBlocksFlydown.eventparam.showPid_);
     // Hide any displayed flydown.
     var flydown = Blockly.getMainWorkspace().getFlydown();
     if (flydown) {
@@ -394,7 +405,7 @@ CustomFields.eventparam.hide = function () {
     }
 };
 
-CustomFields.eventparam.prototype.onHtmlInputChange_ = function (e) {
+myBlocksFlydown.eventparam.prototype.onHtmlInputChange_ = function (e) {
     goog.asserts.assertObject(Blockly.FieldTextInput.htmlInput_);
     var htmlInput = Blockly.FieldTextInput.htmlInput_;
     var text = htmlInput.value;
@@ -419,15 +430,15 @@ CustomFields.eventparam.prototype.onHtmlInputChange_ = function (e) {
     Blockly.svgResize(this.sourceBlock_.workspace);
 };
 
-CustomFields.eventparam.prototype.dispose = function () {
-      if (CustomFields.eventparam.openFieldFlydown_ == this) {
-        CustomFields.eventparam.hide();
+myBlocksFlydown.eventparam.prototype.dispose = function () {
+      if (myBlocksFlydown.eventparam.openFieldFlydown_ == this) {
+        myBlocksFlydown.eventparam.hide();
     }
     // Call parent's destructor.
     Blockly.FieldTextInput.prototype.dispose.call(this);
 };
 
-CustomFields.eventparam.prototype.initView = function () {
+myBlocksFlydown.eventparam.prototype.initView = function () {
 
     this.borderRect_ = Blockly.utils.dom.createSvgElement(
         Blockly.utils.Svg.RECT, {
@@ -443,16 +454,10 @@ CustomFields.eventparam.prototype.initView = function () {
     this.createTextElement_();
 }; 
 
-CustomFields.eventparam.prototype.flydownBlocksXML_ = function () {
+myBlocksFlydown.eventparam.prototype.flydownBlocksXML_ = function () {
 	    var  name = this.getText();
-	    var  getterSetterXML =
-	    '<xml>' +
-	    '<block type="controls_if"><value name="IF0"></value></block><block type="logic_compare"><field name="OP">GT</field><value name="B"></value></block><block type="math_number"><field name="NUM">0</field></block><block type="variables_get"><field name="VAR">i</field></block>' +
-	    '</xml>';
-	    
-	    return  getterSetterXML;
+	    return myBlocksFlydown.eventparam.blocks;
 }
-
 
 
 
@@ -468,11 +473,14 @@ var flydown = new  Blockly.Flydown(new Blockly.Options({scrollbars:  true }));
 workspace.flydown_ = flydown;
 Blockly.utils.dom.insertAfter(flydown.createDom('g', 'rgba(219, 152, 52, 0.3)'), workspace.svgBubbleCanvas_);
 
-Blockly.Blocks["test_blocksFlydown"] = {
+Blockly.Blocks["test_variableFlydown"] = {
 	init:  function() {
 		var workspace = Blockly.getMainWorkspace();
+		var blocksXML = '<xml>' +
+					'<block type="controls_if"><value name="IF0"></value></block><block type="logic_compare"><field name="OP">GT</field><value name="B"></value></block><block type="math_number"><field name="NUM">0</field></block><block type="variables_get"><field name="VAR">i</field></block>' +
+					'</xml>';
 		this.appendDummyInput()
-			.appendField(new CustomFields.eventparam('\u2615', '#fff', workspace));		
+			.appendField(new myBlocksFlydown.eventparam('\u2615', '#fff', workspace, blocksXML));		
 		this.appendDummyInput()
 			.appendField("Hello world");
 		this.setInputsInline(true);		
@@ -482,6 +490,6 @@ Blockly.Blocks["test_blocksFlydown"] = {
     }
 }
 
-Blockly.Arduino['test_blocksFlydown'] = function(block) {
+Blockly.Arduino['test_variableFlydown'] = function(block) {
   return '';
 };
