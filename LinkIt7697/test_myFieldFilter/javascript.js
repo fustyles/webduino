@@ -130,15 +130,15 @@ CustomFields.FieldFilter.prototype.noteToValue = function(text) {
   CustomFields.FieldFilter.WORDS = [];
   var words = CustomFields.FieldFilter.WORDS;
   var initwords = CustomFields.FieldFilter.INITWORDS;
-  for (var i=0;i<initwords.length;i++) {
-	if (initwords[i].indexOf(normalizedText)!=-1||normalizedText=="")
-		words.push(initwords[i]);
+  for (var j=0;j<initwords.length;j++) {
+	if (initwords[j].indexOf(normalizedText)!=-1||normalizedText=="")
+		words.push(initwords[j]);
   }
   var optionsLength = CustomFields.FieldFilter.WORDS.length;
   var height = 24.4 * optionsLength;
   this.imageElement_.style = 'border: 1px solid #ccc;height: '+height+'px;width: 150px;;size: 12px;padding: 0px';
   this.imageElement_.innerHTML = CustomFields.FieldFilter.WORDS.join("<br>");
-  return i > -1? i : -1;
+  return i > -1? 0 : -1;
 };
 
 CustomFields.FieldFilter.prototype.getText_ = function() {
