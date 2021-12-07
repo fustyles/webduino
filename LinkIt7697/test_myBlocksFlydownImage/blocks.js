@@ -442,7 +442,7 @@ Blockly.Arduino['test_blocksFlydown1'] = function(block) {
 Blockly.Blocks["test_blocksFlydown2"] = {
 	init:  function() {
 		this.appendDummyInput()
-			.appendField("Hello");
+			.appendField("Hello World");
 			
 		this.appendDummyInput()
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown1), 'imageName1');
