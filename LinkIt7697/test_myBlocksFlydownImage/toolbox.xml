@@ -1,4 +1,4 @@
 <category id="blocksFlydown" name="blocksFlydown">
-	  <block type="test_blocksFlydown1"></block>	  
-	  <block type="test_blocksFlydown2"></block>	 	  
+	  <block type="test_blocksFlydown1"></block>	 	
+	  <block type="test_blocksFlydown2"></block>		  
 </category>
