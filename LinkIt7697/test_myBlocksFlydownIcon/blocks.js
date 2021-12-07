@@ -7,12 +7,34 @@
 /**
  * @fileoverview my Blocks Flydown.
  * @author https://www.facebook.com/francefu/
- * @Update 12/6/2021 22:00 (Taiwan Standard Time)
+ * @Update 12/8/2021 00:00 (Taiwan Standard Time)
  */
 
 /*
 Add JS file placed in <head> or replace the old functions in "blockly_compressed.js" file. 
 https://github.com/pigeonmal/Blockly-Flydown/blob/main/flyout_base.js 
+
+//blocks.js
+Blockly.Blocks["test"] = {
+	init:  function() {
+		this.appendDummyInput()
+			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown));
+		
+		var blocksXML = ['<block type="math_number"><field name="NUM">0</field></block>'];
+		this.appendDummyInput()
+			.appendField(new myBlocksFlydownIcon.eventparam('', '#fff', Blockly.getMainWorkspace(), this.id, blocksXML), "Flydown");
+		this.getField("Flydown").setVisible(false);
+		
+		etc...
+	},
+	myFlydown: function() {
+		if (myBlocksFlydownIcon.eventparam.isFlydown)
+			myBlocksFlydownIcon.eventparam.hide();
+		else 
+		    this.sourceBlock_.getField("Flydown").showFlydown_();
+		myBlocksFlydownIcon.eventparam.isFlydown = !myBlocksFlydownIcon.eventparam.isFlydown;
+	}
+}
 */
 
 
@@ -263,6 +285,7 @@ myBlocksFlydownIcon.eventparam = function (opt_value, opt_color, opt_workspace, 
         opt_value = '';
     }  // Else the original value is fine.
 
+	this.opt_blockID_ = opt_blockID;
     this.opt_color_ = opt_color;
     this.displayLocation = myBlocksFlydownIcon.eventparam.DISPLAY_BELOW;
     this.opt_workspace = opt_workspace;
@@ -384,7 +407,7 @@ myBlocksFlydownIcon.eventparam.prototype.showFlydown_ = function () {
     } else { // Display right.
         xy.x += borderBBox.width * scale;
     }
-    xy.x -= 38 * scale;
+	xy.x -= 38 * scale;
     flydown.showAt(blocksXMLList, xy.x, xy.y);
     myBlocksFlydownIcon.eventparam.openFieldFlydown_ = this;
 };
@@ -449,7 +472,7 @@ myBlocksFlydownIcon.eventparam.prototype.initView = function () {
 }; 
 
 myBlocksFlydownIcon.eventparam.prototype.flydownBlocksXML_ = function () {
-	    return '<xml>'+myBlocksFlydownIcon.eventparam.blocksXML[this.sourceBlock_.id]+'</xml>';
+	    return '<xml>'+myBlocksFlydownIcon.eventparam.blocksXML[this.opt_blockID_]+'</xml>';
 }
 
 
@@ -533,4 +556,3 @@ Blockly.Blocks["test_blocksFlydown2"] = {
 Blockly.Arduino['test_blocksFlydown2'] = function(block) {
   return '';
 };
-
