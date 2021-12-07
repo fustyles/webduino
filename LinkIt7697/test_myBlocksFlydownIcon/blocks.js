@@ -481,7 +481,7 @@ Blockly.Blocks["test_blocksFlydown1"] = {
 		var blocksXML = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>','<block type="variables_get"><field name="VAR">i</field></block>'];
 		
 		this.appendDummyInput()
-			.appendField(new myBlocksFlydownIcon.eventparam('', '#fff', Blockly.getMainWorkspace(), this.id, blocksXML),"Flydown");
+			.appendField(new myBlocksFlydownIcon.eventparam('', '#fff', Blockly.getMainWorkspace(), this.id, blocksXML), "Flydown");
 		this.getField("Flydown").setVisible(false);
 		this.appendDummyInput()
 			.appendField("Hello");
@@ -491,14 +491,11 @@ Blockly.Blocks["test_blocksFlydown1"] = {
 		this.setColour(100);
 	},
 	myFlydown: function() {
-		if (myBlocksFlydownIcon.eventparam.isFlydown) {
-			myBlocksFlydownIcon.eventparam.isFlydown = false;
+		if (myBlocksFlydownIcon.eventparam.isFlydown)
 			myBlocksFlydownIcon.eventparam.hide();
-		}
-		else {
-			myBlocksFlydownIcon.eventparam.isFlydown = true;
+		else 
 		    this.sourceBlock_.getField("Flydown").showFlydown_();
-		}
+		myBlocksFlydownIcon.eventparam.isFlydown = !myBlocksFlydownIcon.eventparam.isFlydown;
 	}
 }
 
@@ -515,7 +512,7 @@ Blockly.Blocks["test_blocksFlydown2"] = {
 		var blocksXML = ['<block type="math_number"><field name="NUM">0</field></block>'];
 		
 		this.appendDummyInput()
-			.appendField(new myBlocksFlydownIcon.eventparam('', '#fff', Blockly.getMainWorkspace(), this.id, blocksXML),"Flydown");
+			.appendField(new myBlocksFlydownIcon.eventparam('', '#fff', Blockly.getMainWorkspace(), this.id, blocksXML), "Flydown");
 		this.getField("Flydown").setVisible(false);
 		this.appendDummyInput()
 			.appendField("World");
@@ -525,14 +522,11 @@ Blockly.Blocks["test_blocksFlydown2"] = {
 		this.setColour(100);
 	},
 	myFlydown: function() {
-		if (myBlocksFlydownIcon.eventparam.isFlydown) {
-			myBlocksFlydownIcon.eventparam.isFlydown = false;
+		if (myBlocksFlydownIcon.eventparam.isFlydown)
 			myBlocksFlydownIcon.eventparam.hide();
-		}
-		else {
-			myBlocksFlydownIcon.eventparam.isFlydown = true;
+		else 
 		    this.sourceBlock_.getField("Flydown").showFlydown_();
-		}
+		myBlocksFlydownIcon.eventparam.isFlydown = !myBlocksFlydownIcon.eventparam.isFlydown;
 	}
 }
 
