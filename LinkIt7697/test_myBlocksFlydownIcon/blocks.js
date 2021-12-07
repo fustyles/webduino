@@ -384,7 +384,8 @@ myBlocksFlydownIcon.eventparam.prototype.showFlydown_ = function () {
     } else { // Display right.
         xy.x += borderBBox.width * scale;
     }
-    flydown.showAt(blocksXMLList, xy.x -(38 * scale), xy.y);
+    xy.x -= 38 * scale;
+    flydown.showAt(blocksXMLList, xy.x, xy.y);
     myBlocksFlydownIcon.eventparam.openFieldFlydown_ = this;
 };
 
