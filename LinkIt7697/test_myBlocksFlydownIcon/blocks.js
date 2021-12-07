@@ -449,7 +449,6 @@ myBlocksFlydownIcon.eventparam.prototype.initView = function () {
 }; 
 
 myBlocksFlydownIcon.eventparam.prototype.flydownBlocksXML_ = function () {
-	    var  name = this.getText();
 	    return '<xml>'+myBlocksFlydownIcon.eventparam.blocksXML[this.sourceBlock_.id]+'</xml>';
 }
 
