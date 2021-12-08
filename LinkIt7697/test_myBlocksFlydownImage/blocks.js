@@ -27,9 +27,9 @@ Blockly.Blocks["test"] = {
 	},
 	myFlydown: function() {
 		if (myBlocksFlydownIcon.eventparam.isFlydown)
-			myBlocksFlydownIcon.eventparam.hide();
+		    myBlocksFlydownIcon.eventparam.hide();
 		else 
-		    this.sourceBlock_.getField("Flydown").showFlydown_();
+		    this.sourceBlock_.field.showFlydown_();
 		myBlocksFlydownIcon.eventparam.isFlydown = !myBlocksFlydownIcon.eventparam.isFlydown;
 	}
 }
