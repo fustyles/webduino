@@ -335,8 +335,6 @@ myBlocksFlydownImage.eventparam.prototype.showFlydown_ = function () {
 };
 
 myBlocksFlydownImage.eventparam.hide = function () {
-    // Clear any pending timer event to show flydown.
-    window.clearTimeout(myBlocksFlydownImage.eventparam.showPid_);
     // Hide any displayed flydown.
     var flydown = Blockly.getMainWorkspace().getFlydown();
     if (flydown) {
