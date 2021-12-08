@@ -445,7 +445,7 @@ Blockly.Blocks["test_blocksFlydown2"] = {
 			.appendField("Hello");
 			
 		this.appendDummyInput()
-			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown1), 'imageName1');
+			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName1');
 		
 		var blocksXML1 = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>'];
 		this.field1 = new myBlocksFlydownImage.eventparam('', '#fff', Blockly.getMainWorkspace(), this.getField('imageName1'), blocksXML1);
@@ -454,7 +454,7 @@ Blockly.Blocks["test_blocksFlydown2"] = {
 			.appendField("World");		
 		
 		this.appendDummyInput()
-			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown2), 'imageName2');
+			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName2');
 		
 		var blocksXML2 = ['<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
 		this.field2 = new myBlocksFlydownImage.eventparam('', '#fff', Blockly.getMainWorkspace(), this.getField('imageName2'), blocksXML2);		
@@ -464,18 +464,15 @@ Blockly.Blocks["test_blocksFlydown2"] = {
 		this.setNextStatement(true, null);
 		this.setColour(100);
 	},
-	myFlydown1: function() {
+	myFlydown: function() {
 		if (myBlocksFlydownImage.eventparam.isFlydown)
 			myBlocksFlydownImage.eventparam.hide();
-		else 
-		    this.sourceBlock_.field1.showFlydown_();
-		myBlocksFlydownImage.eventparam.isFlydown = !myBlocksFlydownImage.eventparam.isFlydown;
-	},
-	myFlydown2: function() {
-		if (myBlocksFlydownImage.eventparam.isFlydown)
-			myBlocksFlydownImage.eventparam.hide();
-		else 
-		    this.sourceBlock_.field2.showFlydown_();
+		else {
+			if (this.name=="imageName1")
+				this.sourceBlock_.field1.showFlydown_();
+			else if (this.name=="imageName2")
+				this.sourceBlock_.field2.showFlydown_();			
+		}
 		myBlocksFlydownImage.eventparam.isFlydown = !myBlocksFlydownImage.eventparam.isFlydown;
 	}
 }
