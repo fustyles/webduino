@@ -355,9 +355,9 @@ myBlocksFlydownImage.eventparam.prototype.showFlydown_ = function () {
     //    .childNodes to make this code work across browsers.
     var blocksXMLList = blocksDom.children;
 
-    var xy = Blockly.getMainWorkspace().getSvgXY(this.opt_image_.sourceBlock_.getSvgRoot());
-	xy.y += this.opt_image_.sourceBlock_.height * scale;
-	flydown.showAt(blocksXMLList, xy.x, xy.y);
+    var xy = Blockly.getMainWorkspace().getSvgXY(this.opt_image_.getSvgRoot());
+    xy.y += this.opt_image_.sourceBlock_.height * scale;
+    flydown.showAt(blocksXMLList, xy.x, xy.y);
 	
     myBlocksFlydownImage.eventparam.openFieldFlydown_ = this;
 };
