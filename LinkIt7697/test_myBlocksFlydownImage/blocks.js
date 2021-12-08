@@ -7,7 +7,7 @@
 /**
  * @fileoverview my Blocks Flydown.
  * @author https://www.facebook.com/francefu/
- * @Update 12/8/2021 02:00 (Taiwan Standard Time)
+ * @Update 12/8/2021 08:00 (Taiwan Standard Time)
  */
 
 /*
@@ -416,7 +416,7 @@ Blockly.Blocks["test_blocksFlydown1"] = {
 		this.appendDummyInput()
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName');
 		
-		var blocksXML = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>','<block type="variables_get"><field name="VAR">i</field></block>'];
+		var blocksXML = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>','<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
 		this.field = new myBlocksFlydownImage.eventparam('', '#fff', Blockly.getMainWorkspace(), this.getField('imageName'), blocksXML);
 		
 		this.appendDummyInput()
@@ -442,7 +442,7 @@ Blockly.Arduino['test_blocksFlydown1'] = function(block) {
 Blockly.Blocks["test_blocksFlydown2"] = {
 	init:  function() {
 		this.appendDummyInput()
-			.appendField("Hello World");
+			.appendField("Hello");
 			
 		this.appendDummyInput()
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown1), 'imageName1');
@@ -456,7 +456,7 @@ Blockly.Blocks["test_blocksFlydown2"] = {
 		this.appendDummyInput()
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown2), 'imageName2');
 		
-		var blocksXML2 = ['<block type="variables_get"><field name="VAR">i</field></block>'];
+		var blocksXML2 = ['<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
 		this.field2 = new myBlocksFlydownImage.eventparam('', '#fff', Blockly.getMainWorkspace(), this.getField('imageName2'), blocksXML2);		
 		
 		this.setInputsInline(true);		
