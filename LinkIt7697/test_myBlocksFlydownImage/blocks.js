@@ -308,23 +308,6 @@ myBlocksFlydownImage.eventparam.prototype.init = function (block) {
     myBlocksFlydownImage.eventparam.superClass_.init.call(this, block);
 };
 
-myBlocksFlydownImage.eventparam.prototype.showFlydownMaker_ = function () {
-    var field = this; // Name receiver in variable so can close over this variable in returned thunk
-
-    return function () {
-        if (myBlocksFlydownImage.eventparam.showPid_ !== 0 &&
-            !this.isInDrag &&
-            !Blockly.FieldTextInput.htmlInput_) {
-            try {
-                field.showFlydown_();
-            } catch (e) {
-                console.error('Failed to show flydown', e);
-            }
-        }
-        myBlocksFlydownImage.eventparam.showPid_ = 0;
-    };
-};
-
 myBlocksFlydownImage.eventparam.prototype.showFlydown_ = function () {
     Blockly.hideChaff();
     var flydown = Blockly.getMainWorkspace().getFlydown();
