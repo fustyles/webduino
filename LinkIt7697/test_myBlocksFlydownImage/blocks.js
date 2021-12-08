@@ -404,7 +404,7 @@ Blockly.Blocks["test_blocksFlydown1"] = {
 		this.field = new myBlocksFlydownImage.eventparam(Blockly.getMainWorkspace(), this.getField('imageName'), blocksXML);
 		
 		this.appendDummyInput()
-			.appendField("Hello");
+			.appendField("Hello World");
 		this.setInputsInline(true);		
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
