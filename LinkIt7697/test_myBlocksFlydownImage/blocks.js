@@ -292,15 +292,10 @@ Blockly.utils.object.inherits(myBlocksFlydownImage.eventparam, Blockly.Field);
 
 myBlocksFlydownImage.eventparam.blocksXML = {};
 
-myBlocksFlydownImage.eventparam.prototype.EDITABLE = false;
-myBlocksFlydownImage.eventparam.timeout = 500;
-myBlocksFlydownImage.eventparam.isInDrag = false;
 myBlocksFlydownImage.eventparam.openFieldFlydown_ = null;
-myBlocksFlydownImage.eventparam.showPid_ = 0;
 myBlocksFlydownImage.eventparam.DISPLAY_BELOW = "BELOW";
 myBlocksFlydownImage.eventparam.DISPLAY_RIGHT = "RIGHT";
 myBlocksFlydownImage.eventparam.DISPLAY_LOCATION = myBlocksFlydownImage.eventparam.DISPLAY_BELOW;
-myBlocksFlydownImage.eventparam.prototype.fieldCSSClassName = 'blocklyFieldFlydownField';
 myBlocksFlydownImage.eventparam.prototype.flyoutCSSClassName = 'blocklyFieldFlydownFlydown';
 myBlocksFlydownImage.eventparam.isFlydown = false;
 
