@@ -7,7 +7,7 @@
 /**
  * @fileoverview my Blocks Flydown.
  * @author https://www.facebook.com/francefu/
- * @Update 12/8/2021 00:00 (Taiwan Standard Time)
+ * @Update 12/9/2021 00:00 (Taiwan Standard Time)
  */
 
 /*
@@ -20,7 +20,7 @@ Blockly.Blocks["test"] = {
 		var workspace = Blockly.getMainWorkspace();
 		var blocksXML = ['<block type="math_number"><field name="NUM">0</field></block>','<block type="variables_get"><field name="VAR">i</field></block>'];
 		this.appendDummyInput()
-			.appendField(new myBlocksFlydown.eventparam('', '#fff', workspace, blocksXML, 'fieldName'));
+			.appendField(new myBlocksFlydown.eventparam('\u2615', '#fff', workspace, blocksXML, 'fieldName'));
 		etc...
     }
 }    
@@ -277,15 +277,13 @@ myBlocksFlydown.eventparam = function (opt_value, opt_color, opt_workspace, opt_
     this.opt_color_ = opt_color;
     this.displayLocation = myBlocksFlydown.eventparam.DISPLAY_BELOW;
     this.opt_workspace = opt_workspace;
-	if (opt_blocksXML);
-		myBlocksFlydown.eventparam.blocksXML[opt_fieldID] = opt_blocksXML.join("");
+    if (opt_blocksXML)
+		this.opt_blocksXML_ = '<xml>'+opt_blocksXML.join("")+'</xml>';
 	
     myBlocksFlydown.eventparam.superClass_.constructor.call(
         this, opt_value, opt_validator);
 };
 Blockly.utils.object.inherits(myBlocksFlydown.eventparam, Blockly.Field);
-
-myBlocksFlydown.eventparam.blocksXML = {};
 
 myBlocksFlydown.eventparam.prototype.EDITABLE = false;
 myBlocksFlydown.eventparam.timeout = 500;
@@ -380,8 +378,7 @@ myBlocksFlydown.eventparam.prototype.showFlydown_ = function () {
 
     flydown.setCSSClass(this.flyoutCSSClassName);
 
-    var blocksXMLText = this.flydownBlocksXML_();
-    var blocksDom = Blockly.Xml.textToDom(blocksXMLText);
+    var blocksDom = Blockly.Xml.textToDom(this.opt_blocksXML_);
     // [lyn, 11/10/13] Use goog.dom.getChildren rather than .children or
     //    .childNodes to make this code work across browsers.
     var blocksXMLList = blocksDom.children;
@@ -456,12 +453,6 @@ myBlocksFlydown.eventparam.prototype.initView = function () {
 
     this.createTextElement_();
 }; 
-
-myBlocksFlydown.eventparam.prototype.flydownBlocksXML_ = function () {
-	    return '<xml>'+myBlocksFlydown.eventparam.blocksXML[this.opt_fieldID_]+'</xml>';
-}
-
-
 
 
 
