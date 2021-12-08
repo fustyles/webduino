@@ -7,13 +7,12 @@
 /**
  * @fileoverview my Blocks Flydown.
  * @author https://www.facebook.com/francefu/
- * @Update 12/8/2021 09:00 (Taiwan Standard Time)
+ * @Update 12/9/2021 00:00 (Taiwan Standard Time)
  */
 
 /*
 Add JS file placed in <head> or replace the old functions in "blockly_compressed.js" file. 
 https://github.com/pigeonmal/Blockly-Flydown/blob/main/flyout_base.js 
-
 //blocks.js
 Blockly.Blocks["test"] = {
 	init:  function() {
@@ -283,14 +282,12 @@ myBlocksFlydownImage.eventparam = function (opt_workspace, opt_image, opt_blocks
     this.displayLocation = myBlocksFlydownImage.eventparam.DISPLAY_BELOW;
     this.opt_workspace = opt_workspace;
     if (opt_blocksXML)
-        myBlocksFlydownImage.eventparam.blocksXML[this.opt_imageName_] = opt_blocksXML.join("");
+		this.opt_blocksXML_ = '<xml>'+opt_blocksXML.join("")+'</xml>';
 	
     myBlocksFlydownImage.eventparam.superClass_.constructor.call(
         this, null, opt_validator);
 };
 Blockly.utils.object.inherits(myBlocksFlydownImage.eventparam, Blockly.Field);
-
-myBlocksFlydownImage.eventparam.blocksXML = {};
 
 myBlocksFlydownImage.eventparam.openFieldFlydown_ = null;
 myBlocksFlydownImage.eventparam.DISPLAY_BELOW = "BELOW";
@@ -320,8 +317,7 @@ myBlocksFlydownImage.eventparam.prototype.showFlydown_ = function () {
     flydown.workspace_.setScale(scale);
     flydown.setCSSClass(this.flyoutCSSClassName);
 
-    var blocksXMLText = '<xml>'+myBlocksFlydownImage.eventparam.blocksXML[this.opt_imageName_]+'</xml>';
-    var blocksDom = Blockly.Xml.textToDom(blocksXMLText);
+    var blocksDom = Blockly.Xml.textToDom(this.opt_blocksXML_);
 
     // [lyn, 11/10/13] Use goog.dom.getChildren rather than .children or
     //    .childNodes to make this code work across browsers.
