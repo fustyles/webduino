@@ -414,10 +414,10 @@ const iconFlydown = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAyCAYAA
 Blockly.Blocks["test_blocksFlydown1"] = {
 	init:  function() {
 		this.appendDummyInput()
-			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName1');
+			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName');
 		
 		var blocksXML = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>','<block type="variables_get"><field name="VAR">i</field></block>'];
-		this.field = new myBlocksFlydownImage.eventparam('', '#fff', Blockly.getMainWorkspace(), this.getField('imageName1'), blocksXML);
+		this.field = new myBlocksFlydownImage.eventparam('', '#fff', Blockly.getMainWorkspace(), this.getField('imageName'), blocksXML);
 		
 		this.appendDummyInput()
 			.appendField("Hello");
