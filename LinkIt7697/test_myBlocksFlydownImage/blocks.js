@@ -20,7 +20,7 @@ Blockly.Blocks["test"] = {
 		this.appendDummyInput()
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName');
 		
-		var blocksXML = ['<block type="controls_if"><value name="IF0"></value></block>'];
+		var blocksXML = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="math_number"><field name="NUM">0</field></block>'];
 		this.field = new myBlocksFlydownImage.eventparam(this.getField('imageName'), blocksXML);
 		
 		etc...
