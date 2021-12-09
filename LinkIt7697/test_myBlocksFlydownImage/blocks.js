@@ -13,6 +13,7 @@
 /*
 Add JS file placed in <head> or replace the old functions in "blockly_compressed.js" file. 
 https://github.com/pigeonmal/Blockly-Flydown/blob/main/flyout_base.js 
+
 //blocks.js
 Blockly.Blocks["test"] = {
 	init:  function() {
