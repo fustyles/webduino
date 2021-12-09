@@ -278,7 +278,6 @@ Blockly.Flydown.prototype.hide = function() {
 
 myBlocksFlydownImage.eventparam = function (opt_workspace, opt_image, opt_blocksXML, opt_validator) {
     this.opt_image_ = opt_image;
-    this.opt_imageName_ = opt_image.name;
     this.displayLocation = myBlocksFlydownImage.eventparam.DISPLAY_BELOW;
     this.opt_workspace = opt_workspace;
     if (opt_blocksXML)
