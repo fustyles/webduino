@@ -7,7 +7,7 @@
 /**
  * @fileoverview my Blocks Flydown.
  * @author https://www.facebook.com/francefu/
- * @Update 12/9/2021 00:00 (Taiwan Standard Time)
+ * @Update 12/9/2021 10:00 (Taiwan Standard Time)
  */
 
 /*
@@ -20,7 +20,7 @@ Blockly.Blocks["test"] = {
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName');
 		
 		var blocksXML = ['<block type="controls_if"><value name="IF0"></value></block>'];
-		this.field = new myBlocksFlydownImage.eventparam(Blockly.getMainWorkspace(), this.getField('imageName'), blocksXML);
+		this.field = new myBlocksFlydownImage.eventparam(this.getField('imageName'), blocksXML);
 		
 		etc...
 	},
@@ -276,10 +276,10 @@ Blockly.Flydown.prototype.hide = function() {
 
 
 
-myBlocksFlydownImage.eventparam = function (opt_workspace, opt_image, opt_blocksXML, opt_validator) {
+myBlocksFlydownImage.eventparam = function (opt_image, opt_blocksXML, opt_validator) {
     this.opt_image_ = opt_image;
     this.displayLocation = myBlocksFlydownImage.eventparam.DISPLAY_BELOW;
-    this.opt_workspace = opt_workspace;
+    this.opt_workspace = opt_image.sourceBlock_.workspace;
     if (opt_blocksXML)
 		this.opt_blocksXML_ = '<xml>'+opt_blocksXML.join("")+'</xml>';
 	
@@ -372,7 +372,7 @@ Blockly.Blocks["test_blocksFlydown1"] = {
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName');
 		
 		var blocksXML = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>','<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
-		this.field = new myBlocksFlydownImage.eventparam(Blockly.getMainWorkspace(), this.getField('imageName'), blocksXML);
+		this.field = new myBlocksFlydownImage.eventparam(this.getField('imageName'), blocksXML);
 		
 		this.appendDummyInput()
 			.appendField("Hello World");
@@ -403,7 +403,7 @@ Blockly.Blocks["test_blocksFlydown2"] = {
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName1');
 		
 		var blocksXML1 = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>'];
-		this.field1 = new myBlocksFlydownImage.eventparam(Blockly.getMainWorkspace(), this.getField('imageName1'), blocksXML1);
+		this.field1 = new myBlocksFlydownImage.eventparam(this.getField('imageName1'), blocksXML1);
 		
 		this.appendDummyInput()
 			.appendField("World");		
@@ -412,7 +412,7 @@ Blockly.Blocks["test_blocksFlydown2"] = {
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName2');
 		
 		var blocksXML2 = ['<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
-		this.field2 = new myBlocksFlydownImage.eventparam(Blockly.getMainWorkspace(), this.getField('imageName2'), blocksXML2);		
+		this.field2 = new myBlocksFlydownImage.eventparam(this.getField('imageName2'), blocksXML2);		
 		
 		this.setInputsInline(true);		
 		this.setPreviousStatement(true, null);
