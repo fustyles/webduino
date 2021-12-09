@@ -7,7 +7,7 @@
 /**
  * @fileoverview my Blocks Flydown.
  * @author https://www.facebook.com/francefu/
- * @Update 12/9/2021 10:00 (Taiwan Standard Time)
+ * @Update 12/9/2021 18:30 (Taiwan Standard Time)
  */
 
 /*
@@ -17,20 +17,28 @@ https://github.com/pigeonmal/Blockly-Flydown/blob/main/flyout_base.js
 //blocks.js
 Blockly.Blocks["test"] = {
 	init:  function() {
-		this.appendDummyInput()
-			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName');
+		this.field = {};
 		
-		var blocksXML = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="math_number"><field name="NUM">0</field></block>'];
-		this.field = new myBlocksFlydownImage.eventparam(this.getField('imageName'), blocksXML);
+		this.appendDummyInput()
+			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName1');
+		
+		var blocksXML1 = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="math_number"><field name="NUM">0</field></block>'];
+		this.field['imageName1'] = new myBlocksFlydownImage.eventparam(this.getField('imageName1'), blocksXML1);
+		
+		this.appendDummyInput()
+			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName2');
+		
+		var blocksXML2 = ['<block type="math_number"><field name="NUM">0</field></block>'];
+		this.field['imageName2'] = new myBlocksFlydownImage.eventparam(this.getField('imageName2'), blocksXML2);		
 		
 		etc...
 	},
 	myFlydown: function() {
-		if (myBlocksFlydownIcon.eventparam.isFlydown)
-		    myBlocksFlydownIcon.eventparam.hide();
+		if (myBlocksFlydownImage.eventparam.isFlydown)
+			myBlocksFlydownImage.eventparam.hide();
 		else 
-		    this.sourceBlock_.field.showFlydown_();
-		myBlocksFlydownIcon.eventparam.isFlydown = !myBlocksFlydownIcon.eventparam.isFlydown;
+		    this.sourceBlock_.field[this.name].showFlydown_();
+		myBlocksFlydownImage.eventparam.isFlydown = !myBlocksFlydownImage.eventparam.isFlydown;
 	}
 }
 */
@@ -369,11 +377,13 @@ const iconFlydown = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAyCAYAA
 
 Blockly.Blocks["test_blocksFlydown1"] = {
 	init:  function() {
+		this.field = {};
+		
 		this.appendDummyInput()
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName');
 		
 		var blocksXML = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>','<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
-		this.field = new myBlocksFlydownImage.eventparam(this.getField('imageName'), blocksXML);
+		this.field['imageName'] = new myBlocksFlydownImage.eventparam(this.getField('imageName'), blocksXML);
 		
 		this.appendDummyInput()
 			.appendField("Hello World");
@@ -386,7 +396,7 @@ Blockly.Blocks["test_blocksFlydown1"] = {
 		if (myBlocksFlydownImage.eventparam.isFlydown)
 			myBlocksFlydownImage.eventparam.hide();
 		else 
-		    this.sourceBlock_.field.showFlydown_();
+		    this.sourceBlock_.field[this.name].showFlydown_();
 		myBlocksFlydownImage.eventparam.isFlydown = !myBlocksFlydownImage.eventparam.isFlydown;
 	}
 }
@@ -397,6 +407,8 @@ Blockly.Arduino['test_blocksFlydown1'] = function(block) {
 
 Blockly.Blocks["test_blocksFlydown2"] = {
 	init:  function() {
+		this.field = {};
+		
 		this.appendDummyInput()
 			.appendField("Hello");
 			
@@ -404,7 +416,7 @@ Blockly.Blocks["test_blocksFlydown2"] = {
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName1');
 		
 		var blocksXML1 = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>'];
-		this.field1 = new myBlocksFlydownImage.eventparam(this.getField('imageName1'), blocksXML1);
+		this.field['imageName1'] = new myBlocksFlydownImage.eventparam(this.getField('imageName1'), blocksXML1);
 		
 		this.appendDummyInput()
 			.appendField("World");		
@@ -413,7 +425,7 @@ Blockly.Blocks["test_blocksFlydown2"] = {
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }, this.myFlydown), 'imageName2');
 		
 		var blocksXML2 = ['<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
-		this.field2 = new myBlocksFlydownImage.eventparam(this.getField('imageName2'), blocksXML2);		
+		this.field['imageName2'] = new myBlocksFlydownImage.eventparam(this.getField('imageName2'), blocksXML2);		
 		
 		this.setInputsInline(true);		
 		this.setPreviousStatement(true, null);
@@ -424,10 +436,7 @@ Blockly.Blocks["test_blocksFlydown2"] = {
 		if (myBlocksFlydownImage.eventparam.isFlydown)
 			myBlocksFlydownImage.eventparam.hide();
 		else {
-			if (this.name=="imageName1")
-				this.sourceBlock_.field1.showFlydown_();
-			else if (this.name=="imageName2")
-				this.sourceBlock_.field2.showFlydown_();			
+			this.sourceBlock_.field[this.name].showFlydown_();			
 		}
 		myBlocksFlydownImage.eventparam.isFlydown = !myBlocksFlydownImage.eventparam.isFlydown;
 	}
