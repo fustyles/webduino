@@ -52,5 +52,5 @@ Blockly.Blocks["test_fieldDropdownFilter1"] = {
 };
 
 Blockly.Arduino['test_fieldDropdownFilter1'] = function(block) {
-  return '';
+  return this.getFieldValue('VALUE');
 };
