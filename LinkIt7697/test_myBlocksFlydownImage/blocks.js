@@ -17,18 +17,21 @@ https://github.com/pigeonmal/Blockly-Flydown/blob/main/flyout_base.js
 //blocks.js
 Blockly.Blocks["test"] = {
 	init:  function() {
-		this.appendDummyInput()
-			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), 'imageName1');
-		this.appendDummyInput()
-			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), 'imageName2');
-			
+	
 		this.field = {};
+		this.blocksXML = {};
 		
-		var blocksXML1 = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>'];
-		this.field['imageName1'] = new myBlocksFlydownImage.eventparam(this.getField('imageName1'), blocksXML1);
+		var fieldImageName = "imageName1";
+		this.appendDummyInput()
+		    .appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
+		this.blocksXML[fieldImageName] = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>'];
+		this.field[fieldImageName] = new myBlocksFlydownImage.eventparam(this.getField(fieldImageName), this.blocksXML[fieldImageName]);
 		
-		var blocksXML2 = ['<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
-		this.field['imageName2'] = new myBlocksFlydownImage.eventparam(this.getField('imageName2'), blocksXML2);		
+		fieldImageName = "imageName2";
+		this.appendDummyInput()
+		    .appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
+		this.blocksXML[fieldImageName] = ['<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
+		this.field[fieldImageName] = new myBlocksFlydownImage.eventparam(this.getField(fieldImageName), this.blocksXML[fieldImageName]);		
 		
 		etc...
 	}
