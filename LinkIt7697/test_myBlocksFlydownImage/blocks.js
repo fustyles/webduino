@@ -378,8 +378,6 @@ const iconFlydown = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAyCAYAA
 
 Blockly.Blocks["test_blocksFlydown1"] = {
 	init:  function() {
-
-		
 		this.appendDummyInput()
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), 'imageName');
 		
