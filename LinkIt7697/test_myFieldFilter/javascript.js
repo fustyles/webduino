@@ -21,8 +21,8 @@ this.appendDummyInput()
 
 var CustomFields = CustomFields || {};
 
-CustomFields.FieldFilter = function(text, options) {
-  CustomFields.FieldFilter.superClass_.constructor.call(this, text);
+CustomFields.FieldFilter = function(text, options, opt_validate) {
+  CustomFields.FieldFilter.superClass_.constructor.call(this, text, opt_validate);
   
   CustomFields.FieldFilter.INITWORDS = options;
   CustomFields.FieldFilter.WORDS = CustomFields.FieldFilter.INITWORDS;
