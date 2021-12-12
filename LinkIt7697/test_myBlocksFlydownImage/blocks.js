@@ -7,7 +7,7 @@
 /**
  * @fileoverview my Blocks Flydown.
  * @author https://www.facebook.com/francefu/
- * @Update 12/12/2021 20:30 (Taiwan Standard Time)
+ * @Update 12/12/2021 21:00 (Taiwan Standard Time)
  */
 
 /*
@@ -256,7 +256,7 @@ Blockly.Flydown.prototype.placeNewBlock_ = function(originBlock) {
 
   // Move the new block to where the old block is.
   block.moveBy(xyOld.x - xyNew.x, xyOld.y - xyNew.y);
-  myBlocksFlydownImage.eventparam.isFlydown = false;
+  myBlocksFlydownImage.eventparam.isFlydownName = '';
   return block;
 };
 
@@ -291,11 +291,14 @@ Blockly.utils.object.inherits(myBlocksFlydownImage.eventparam, Blockly.Field);
 
 myBlocksFlydownImage.eventparam.clickHandler_ = function () {
     const eventparam_ = myBlocksFlydownImage.eventparam;
-    if (eventparam_.isFlydown)
+    if (eventparam_.isFlydownName==this.name) {
         eventparam_.hide();
-    else
+        myBlocksFlydownImage.eventparam.isFlydownName = '';
+    }
+    else {
         this.sourceBlock_.field[this.name].showFlydown_();
-    eventparam_.isFlydown = !eventparam_.isFlydown;
+        myBlocksFlydownImage.eventparam.isFlydownName = this.name;
+    }
 }	
 myBlocksFlydownImage.eventparam.openFieldFlydown_ = null;
 myBlocksFlydownImage.eventparam.DISPLAY_BELOW = "BELOW";
@@ -303,7 +306,7 @@ myBlocksFlydownImage.eventparam.DISPLAY_RIGHT = "RIGHT";
 myBlocksFlydownImage.eventparam.DISPLAY_LOCATION = myBlocksFlydownImage.eventparam.DISPLAY_BELOW;
 myBlocksFlydownImage.eventparam.prototype.fieldCSSClassName = 'blocklyFieldFlydownField';
 myBlocksFlydownImage.eventparam.prototype.flyoutCSSClassName = 'blocklyFieldFlydownFlydown';
-myBlocksFlydownImage.eventparam.isFlydown = false;
+myBlocksFlydownImage.eventparam.isFlydownName = '';
 
 myBlocksFlydownImage.eventparam.prototype.init = function (block) {
     myBlocksFlydownImage.eventparam.superClass_.init.call(this, block);
@@ -333,8 +336,8 @@ myBlocksFlydownImage.eventparam.prototype.showFlydown_ = function () {
     var blocksXMLList = blocksDom.children;
 
     var xy = Blockly.getMainWorkspace().getSvgXY(this.opt_image_.getSvgRoot());
-	xy.y += this.opt_image_.sourceBlock_.height * scale;
-	flydown.showAt(blocksXMLList, xy.x, xy.y);
+    xy.y += this.opt_image_.sourceBlock_.height * scale;
+    flydown.showAt(blocksXMLList, xy.x, xy.y);
 	
     myBlocksFlydownImage.eventparam.openFieldFlydown_ = this;
 };
@@ -379,7 +382,7 @@ const iconFlydown = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAyCAYAA
 Blockly.Blocks["test_blocksFlydown1"] = {
 	init:  function() {
 		this.appendDummyInput()
-			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), 'imageName');
+		    .appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), 'imageName');
 		
 		this.field = {};
 		var blocksXML = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>','<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
