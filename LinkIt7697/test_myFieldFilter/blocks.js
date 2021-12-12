@@ -35,6 +35,7 @@ Blockly.Blocks["test_fieldDropdownFilter1"] = {
 		
     this.appendDummyInput()
         .appendField('', 'VALUE');
+	  
     this.setStyle('loop_blocks');
     this.setInputsInline(true);		
     this.setPreviousStatement(true, null);
@@ -43,10 +44,8 @@ Blockly.Blocks["test_fieldDropdownFilter1"] = {
   validate: function(newValue) {
 	const block = this.sourceBlock_;
 	block.options.forEach(function(element) {
-		if (element[0]==CustomFields.FieldFilter.WORDS[Number(newValue)]) {
-			console.log(element[1]);
+		if (element[0]==CustomFields.FieldFilter.WORDS[Number(newValue)])
 			block.setFieldValue(element[1], 'VALUE');
-		}
 	})
   }
 };
