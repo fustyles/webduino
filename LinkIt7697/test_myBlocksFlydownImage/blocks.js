@@ -279,25 +279,23 @@ Blockly.Flydown.prototype.hide = function() {
 
 myBlocksFlydownImage.eventparam = function (opt_image, opt_blocksXML, opt_validator) {
     this.opt_image_ = opt_image;
-	this.opt_image_.clickHandler_ = myBlocksFlydownImage.eventparam.clickHandler_;
+    this.opt_image_.clickHandler_ = myBlocksFlydownImage.eventparam.clickHandler_;
     this.displayLocation = myBlocksFlydownImage.eventparam.DISPLAY_BELOW;
     this.opt_workspace = opt_image.sourceBlock_.workspace;
     if (opt_blocksXML)
-		this.opt_blocksXML_ = '<xml>'+opt_blocksXML.join("")+'</xml>';
+        this.opt_blocksXML_ = '<xml>'+opt_blocksXML.join("")+'</xml>';
 	
-    myBlocksFlydownImage.eventparam.superClass_.constructor.call(
-        this, '', opt_validator);
+    myBlocksFlydownImage.eventparam.superClass_.constructor.call(this, '', opt_validator);
 };
 Blockly.utils.object.inherits(myBlocksFlydownImage.eventparam, Blockly.Field);
 
 myBlocksFlydownImage.eventparam.clickHandler_ = function () {
-	const eventparam_ = myBlocksFlydownImage.eventparam;
-	if (eventparam_.isFlydown)
-		eventparam_.hide();
-	else {
-		this.sourceBlock_.field[this.name].showFlydown_();
-	}
-	eventparam_.isFlydown = !eventparam_.isFlydown;
+    const eventparam_ = myBlocksFlydownImage.eventparam;
+    if (eventparam_.isFlydown)
+        eventparam_.hide();
+    else
+        this.sourceBlock_.field[this.name].showFlydown_();
+    eventparam_.isFlydown = !eventparam_.isFlydown;
 }	
 myBlocksFlydownImage.eventparam.openFieldFlydown_ = null;
 myBlocksFlydownImage.eventparam.DISPLAY_BELOW = "BELOW";
