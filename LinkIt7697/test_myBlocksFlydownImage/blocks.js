@@ -7,7 +7,7 @@
 /**
  * @fileoverview my Blocks Flydown.
  * @author https://www.facebook.com/francefu/
- * @Update 12/12/2021 23:00 (Taiwan Standard Time)
+ * @Update 12/13/2021 10:00 (Taiwan Standard Time)
  */
 
 /*
@@ -17,21 +17,21 @@ https://github.com/pigeonmal/Blockly-Flydown/blob/main/flyout_base.js
 //blocks.js
 Blockly.Blocks["test"] = {
 	init:  function() {
-	
-		this.field = {};
-		this.blocksXML = {};
 		
-		var fieldImageName = "imageName1";
+		this.field = {};
+		var fieldImageName = "";
+		
+		fieldImageName = "imageName1";
 		this.appendDummyInput()
-		    .appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
-		this.blocksXML[fieldImageName] = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>'];
-		this.field[fieldImageName] = new myBlocksFlydownImage.eventparam(this.getField(fieldImageName), this.blocksXML[fieldImageName]);
+			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
+		var blocksXML1 = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>'];
+		this.field[fieldImageName] = new myBlocksFlydownImage.eventparam(this.getField(fieldImageName), blocksXML1);
 		
 		fieldImageName = "imageName2";
 		this.appendDummyInput()
-		    .appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
-		this.blocksXML[fieldImageName] = ['<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
-		this.field[fieldImageName] = new myBlocksFlydownImage.eventparam(this.getField(fieldImageName), this.blocksXML[fieldImageName]);		
+			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
+		var blocksXML2 = ['<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
+		this.field[fieldImageName] = new myBlocksFlydownImage.eventparam(this.getField(fieldImageName), blocksXML2);	
 		
 		etc...
 	}
@@ -294,14 +294,14 @@ Blockly.utils.object.inherits(myBlocksFlydownImage.eventparam, Blockly.Field);
 
 myBlocksFlydownImage.eventparam.clickHandler_ = function () {
     const eventparam_ = myBlocksFlydownImage.eventparam;
-    if (eventparam_.isFlydownName==this.name) {
-        eventparam_.hide();
-        myBlocksFlydownImage.eventparam.isFlydownName = '';
-    }
+	if (eventparam_.isFlydownName==this.name) {
+		eventparam_.hide();
+		myBlocksFlydownImage.eventparam.isFlydownName = '';
+	}
     else {
-        this.sourceBlock_.field[this.name].showFlydown_();
-        myBlocksFlydownImage.eventparam.isFlydownName = this.name;
-    }
+		this.sourceBlock_.field[this.name].showFlydown_();
+		myBlocksFlydownImage.eventparam.isFlydownName = this.name;
+	}
 }	
 myBlocksFlydownImage.eventparam.openFieldFlydown_ = null;
 myBlocksFlydownImage.eventparam.DISPLAY_BELOW = "BELOW";
@@ -339,8 +339,8 @@ myBlocksFlydownImage.eventparam.prototype.showFlydown_ = function () {
     var blocksXMLList = blocksDom.children;
 
     var xy = Blockly.getMainWorkspace().getSvgXY(this.opt_image_.getSvgRoot());
-    xy.y += this.opt_image_.sourceBlock_.height * scale;
-    flydown.showAt(blocksXMLList, xy.x, xy.y);
+	xy.y += this.opt_image_.sourceBlock_.height * scale;
+	flydown.showAt(blocksXMLList, xy.x, xy.y);
 	
     myBlocksFlydownImage.eventparam.openFieldFlydown_ = this;
 };
@@ -386,13 +386,12 @@ Blockly.Blocks["test_blocksFlydown1"] = {
 	init:  function() {
 		
 		this.field = {};
-		this.blocksXML = {};
-		
 		var fieldImageName = "imageName";
+		
 		this.appendDummyInput()
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
-		this.blocksXML[fieldImageName] = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>','<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
-		this.field[fieldImageName] = new myBlocksFlydownImage.eventparam(this.getField(fieldImageName), this.blocksXML[fieldImageName]);
+		var blocksXML = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>','<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
+		this.field[fieldImageName] = new myBlocksFlydownImage.eventparam(this.getField(fieldImageName), blocksXML);
 		
 		this.setInputsInline(true);		
 		this.setPreviousStatement(true, null);
@@ -408,19 +407,19 @@ Blockly.Arduino['test_blocksFlydown1'] = function(block) {
 Blockly.Blocks["test_blocksFlydown2"] = {
 	init:  function() {
 		this.field = {};
-		this.blocksXML = {};
+		var fieldImageName = "";
 		
-		var fieldImageName = "imageName1";
+		fieldImageName = "imageName1";
 		this.appendDummyInput()
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
-		this.blocksXML[fieldImageName] = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>'];
-		this.field[fieldImageName] = new myBlocksFlydownImage.eventparam(this.getField(fieldImageName), this.blocksXML[fieldImageName]);
+		var blocksXML1 = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>'];
+		this.field[fieldImageName] = new myBlocksFlydownImage.eventparam(this.getField(fieldImageName), blocksXML1);
 		
 		fieldImageName = "imageName2";
 		this.appendDummyInput()
 			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
-		this.blocksXML[fieldImageName] = ['<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
-		this.field[fieldImageName] = new myBlocksFlydownImage.eventparam(this.getField(fieldImageName), this.blocksXML[fieldImageName]);
+		var blocksXML2 = ['<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
+		this.field[fieldImageName] = new myBlocksFlydownImage.eventparam(this.getField(fieldImageName), blocksXML2);
 		
 		this.setInputsInline(true);		
 		this.setPreviousStatement(true, null);
