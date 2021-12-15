@@ -7,7 +7,7 @@
 /**
  * @fileoverview my Field Filter.
  * @author https://www.facebook.com/francefu/
- * @Update 12/12/2021 00:00 (Taiwan Standard Time)
+ * @Update 12/15/2021 21:00 (Taiwan Standard Time)
  */
  
  /*
@@ -23,9 +23,8 @@ var CustomFields = CustomFields || {};
 
 CustomFields.FieldFilter = function(text, options, opt_validate) {
   CustomFields.FieldFilter.superClass_.constructor.call(this, text, opt_validate);
-  
-  CustomFields.FieldFilter.INITWORDS = options;
-  CustomFields.FieldFilter.WORDS = CustomFields.FieldFilter.INITWORDS;
+  this.INITWORDS = options;
+  this.WORDS = this.IINITWORDS;
 
   this.setSpellcheck(false);
   this.clickWrapper_ = null;
@@ -33,9 +32,6 @@ CustomFields.FieldFilter = function(text, options, opt_validate) {
   this.downWrapper_ = null;	
 };
 Blockly.utils.object.inherits(CustomFields.FieldFilter, Blockly.FieldTextInput);
-
-CustomFields.FieldFilter.INITWORDS = [];
-CustomFields.FieldFilter.WORDS = CustomFields.FieldFilter.INITWORDS;
 
 CustomFields.FieldFilter.fromJson = function(options) {
   return new CustomFields.FieldFilter(options['fieldFilter']);
@@ -72,11 +68,11 @@ CustomFields.FieldFilter.prototype.showEditor_ = function() {
 CustomFields.FieldFilter.prototype.dropdownCreate_ = function() {
   this.imageElement_ = document.createElement('div');
   this.imageElement_.id = 'fieldFilter';
-  CustomFields.FieldFilter.WORDS = CustomFields.FieldFilter.INITWORDS;
-  var optionsLength = CustomFields.FieldFilter.WORDS.length;
+  this.WORDS = this.INITWORDS;
+  var optionsLength = this.WORDS.length;
   var height = 24.4 * optionsLength;
   this.imageElement_.style = 'border: 1px solid #ccc;height: '+height+'px;width: 150px;size: 12px;padding: 0px';
-  this.imageElement_.innerHTML = CustomFields.FieldFilter.WORDS.join("<br>");
+  this.imageElement_.innerHTML = this.WORDS.join("<br>");
   return this.imageElement_;
 };
 
@@ -105,7 +101,7 @@ CustomFields.FieldFilter.prototype.onMouseMove = function(e) {
   var bBox = this.imageElement_.getBoundingClientRect();
   var dy = e.clientY - bBox.top;
   
-  var highLight = Array.from(CustomFields.FieldFilter.WORDS);
+  var highLight = Array.from(this.WORDS);
   var note = (Math.round((dy-5)/24.5)<highLight.length)?Math.round((dy-5)/24.5):-1;
   if (note!=-1)
     highLight[note] = "<font color='white'>" + highLight[note] + "</font>";
@@ -115,29 +111,32 @@ CustomFields.FieldFilter.prototype.onMouseMove = function(e) {
 CustomFields.FieldFilter.prototype.onMouseDown = function(e) {
   var bBox = this.imageElement_.getBoundingClientRect();
   var dy = e.clientY - bBox.top;
-  var highLight = Array.from(CustomFields.FieldFilter.WORDS);
+  var highLight = Array.from(this.WORDS);
   var note = (Math.round((dy-5)/24.5)<highLight.length)?Math.round((dy-5)/24.5):-1;
   this.setEditorValue_(note);
 };
 
 CustomFields.FieldFilter.prototype.valueToNote = function(value) {
-  return CustomFields.FieldFilter.WORDS[Number(value)] || "";
+  if (this.WORDS)
+	  return this.WORDS[Number(value)];
+  else
+	  return "";
 };
 
 CustomFields.FieldFilter.prototype.noteToValue = function(text) {
   var normalizedText = text.trim();
-  var i = CustomFields.FieldFilter.WORDS.indexOf(normalizedText);
-  CustomFields.FieldFilter.WORDS = [];
-  var words = CustomFields.FieldFilter.WORDS;
-  var initwords = CustomFields.FieldFilter.INITWORDS;
+  var i = this.WORDS.indexOf(normalizedText);
+  this.WORDS = [];
+  var words = this.WORDS;
+  var initwords = this.INITWORDS;
   for (var j=0;j<initwords.length;j++) {
 	if (initwords[j].indexOf(normalizedText)!=-1||normalizedText=="")
 		words.push(initwords[j]);
   }
-  var optionsLength = CustomFields.FieldFilter.WORDS.length;
+  var optionsLength = this.WORDS.length;
   var height = 24.4 * optionsLength;
   this.imageElement_.style = 'border: 1px solid #ccc;height: '+height+'px;width: 150px;;size: 12px;padding: 0px';
-  this.imageElement_.innerHTML = CustomFields.FieldFilter.WORDS.join("<br>");
+  this.imageElement_.innerHTML = this.WORDS.join("<br>");
   return i > -1? 0 : -1;
 };
 
@@ -171,11 +170,9 @@ CustomFields.FieldFilter.prototype.doClassValidation_ = function(opt_newValue) {
   if (opt_newValue === null || opt_newValue === undefined) {
     return null;
   }
-  var note = this.valueToNote(opt_newValue);
+  var note = this.valueToNote(opt_newValue); 
   if (note) {
     return opt_newValue;
   }
   return "";
 };
-
-Blockly.fieldRegistry.register('field_filter', CustomFields.FieldFilter);

@@ -1,4 +1,4 @@
-Blockly.Blocks["test_fieldDropdownFilter"] = {
+Blockly.Blocks["test_fieldFilter"] = {
   init: function() {
 	var options = ['','aaa','abc','add','bbb','bcd','ccc','def','deg'];
     this.appendDummyInput()
@@ -11,11 +11,11 @@ Blockly.Blocks["test_fieldDropdownFilter"] = {
   }
 };
 
-Blockly.Arduino['test_fieldDropdownFilter'] = function(block) {
+Blockly.Arduino['test_fieldFilter'] = function(block) {
   return '';
 };
 
-Blockly.Blocks["test_fieldDropdownFilter1"] = {
+Blockly.Blocks["test_fieldFilter1"] = {
   init: function() {
 	this.options = [
 		['',''],	
@@ -42,15 +42,30 @@ Blockly.Blocks["test_fieldDropdownFilter1"] = {
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
-	block.options.forEach(function(element) {
-		if (element[0]==CustomFields.FieldFilter.WORDS[Number(newValue)]) {
-			console.log(element[1]);
-			block.setFieldValue(element[1], 'VALUE');
+	if (newValue=="") {
+		if (block.field.WORDS) {
+			if (block.field.WORDS.length>0) {
+				block.options.forEach(function(element) {
+					if (element[0]==block.field.WORDS[0]) {
+						block.setFieldValue(element[1], 'VALUE');
+					}
+				})				
+			}
 		}
-	})
+		else
+			block.setFieldValue('', 'VALUE');
+	}
+	else {
+		var value = "";
+		block.options.forEach(function(element) {
+			if (element[0]==block.field.WORDS[Number(newValue)]) {
+				block.setFieldValue(element[1], 'VALUE');
+			}
+		})
+	}
   }
 };
 
-Blockly.Arduino['test_fieldDropdownFilter1'] = function(block) {
+Blockly.Arduino['test_fieldFilter1'] = function(block) {
   return this.getFieldValue('VALUE');
 };

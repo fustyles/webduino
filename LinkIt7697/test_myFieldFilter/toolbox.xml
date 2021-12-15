@@ -1,4 +1,4 @@
 <category id="fieldDropdownSearch" name="fieldDropdownSearch">
-	  <block type="test_fieldDropdownFilter"></block>
-	  <block type="test_fieldDropdownFilter1"></block>	  
+	  <block type="test_fieldFilter"></block>
+	  <block type="test_fieldFilter1"></block>	  
 </category>
