@@ -13,9 +13,62 @@
  /*
  //blocks.js
  
-var options = ['','aaa','abc','add','bbb','bcd','ccc','def','deg'];
-this.appendDummyInput()
-    .appendField(new CustomFields.FieldFilter('', options), 'FILTER');
+Blockly.Blocks["test_fieldFilter"] = {
+  init: function() {
+	var options = ['','aaa','abc','add','bbb','bcd','ccc','def','deg'];
+    this.appendDummyInput()
+        .appendField('Filter')
+        .appendField(new CustomFields.FieldFilter('', options), 'FILTER');
+    etc...
+  }
+};
+
+
+Blockly.Blocks["test_fieldFilter1"] = {
+  init: function() {
+	this.options = [
+		['',''],	
+		['ap','apple'],
+		['ba','banana'],
+		['ch','cherry']
+	];
+	var options = [];
+	this.options.forEach(
+		element => options.push(element[0])
+	);
+	
+	this.field = new CustomFields.FieldFilter('', options, this.validate);
+    this.appendDummyInput()
+        .appendField('Filter')
+        .appendField(this.field, 'FILTER');
+		
+    etc...
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (newValue=="") {
+		if (block.field.WORDS) {
+			if (block.field.WORDS.length>0) {
+				block.options.forEach(function(element) {
+					if (element[0]==block.field.WORDS[0]) {
+						block.setFieldValue(element[1], 'VALUE');
+					}
+				})				
+			}
+		}
+		else
+			block.setFieldValue('', 'VALUE');
+	}
+	else {
+		var value = "";
+		block.options.forEach(function(element) {
+			if (element[0]==block.field.WORDS[Number(newValue)]) {
+				block.setFieldValue(element[1], 'VALUE');
+			}
+		})
+	}
+  }
+};
  */
 
 
