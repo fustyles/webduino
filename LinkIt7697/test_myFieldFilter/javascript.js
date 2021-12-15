@@ -16,13 +16,12 @@
 Blockly.Blocks["test_fieldFilter"] = {
   init: function() {
 	var options = ['','aaa','abc','add','bbb','bcd','ccc','def','deg'];
-    this.appendDummyInput()
-        .appendField('Filter')
-        .appendField(new CustomFields.FieldFilter('', options), 'FILTER');
-    etc...
+        this.appendDummyInput()
+            .appendField('Filter')
+            .appendField(new CustomFields.FieldFilter('', options), 'FILTER');
+        etc...
   }
 };
-
 
 Blockly.Blocks["test_fieldFilter1"] = {
   init: function() {
@@ -38,11 +37,11 @@ Blockly.Blocks["test_fieldFilter1"] = {
 	);
 	
 	this.field = new CustomFields.FieldFilter('', options, this.validate);
-    this.appendDummyInput()
-        .appendField('Filter')
-        .appendField(this.field, 'FILTER');
+	this.appendDummyInput()
+            .appendField('Filter')
+            .appendField(this.field, 'FILTER');
 		
-    etc...
+        etc...
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
