@@ -1,0 +1,144 @@
+<!--
+Web Serial  2021-12-18 16:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)
+https://www.facebook.com/francefu
+
+https://web.dev/serial/
+-->
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Web Serial</title>
+  <script>
+  </script>
+</head>
+<body>
+Baut Rate
+<select id="baud">
+    <option value="9600">9600</option>
+    <option value="115200">115200</option>
+    <option value="300">300</option>
+    <option value="1200">1200</option>
+    <option value="2400">2400</option>
+    <option value="4800">4800</option>
+    <option value="19200">19200</option>
+    <option value="38400">38400</option>
+    <option value="57600">57600</option>
+    <option value="74880">74880</option>
+    <option value="230400">230400</option>
+    <option value="250000">250000</option>
+    <option value="500000">500000</option>
+    <option value="1000000">1000000</option>	
+    <option value="2000000">2000000</option>		
+</select><br><br>
+<button id="request-port">Select Port</button>
+<button id="close-port">Close Board</button><br><br>
+<input type="text" id="command"><button id="buttonSend">Send</button><br>
+<span id="response"></span>
+<script>
+
+var port;
+var textEncoder;
+var writableStreamClosed;
+var writer;
+var reader;
+var readSting = "";
+
+let baud = document.getElementById('baud');
+let command = document.getElementById('command');
+let response = document.getElementById('response');
+let buttonRequest = document.getElementById('request-port');
+let buttonClose = document.getElementById('close-port');
+let buttonSend = document.getElementById('buttonSend');
+
+buttonRequest.addEventListener('click', async () => {
+	if ("serial" in navigator) {
+		/*
+		const filters = [
+			{ usbVendorId: 0x2341, usbProductId: 0x0043 },
+			{ usbVendorId: 0x2341, usbProductId: 0x0001 }
+		];
+		*/
+		const filters = [];
+		
+		port = await navigator.serial.requestPort({ filters });
+		const { usbProductId, usbVendorId } = port.getInfo();
+		
+		try {
+			var rate =  Number(baud.value);
+			await port.open({ baudRate: rate });
+			response.innerHTML = "Ready!";
+			
+			textEncoder = new TextEncoderStream();
+			writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+			writer = textEncoder.writable.getWriter();		
+			
+			navigator.serial.addEventListener("connect", (event) => {
+			  response.innerHTML = "connect";
+			});
+
+			navigator.serial.addEventListener("disconnect", (event) => {
+			  response.innerHTML = "disconnect";
+			});	
+
+			while (port.readable) {
+			  reader = port.readable.getReader();
+			  try {
+				while (true) {
+				  const { value, done } = await reader.read();
+				  if (done) {
+					reader.releaseLock();
+					break;
+				  }
+				  if (value) {
+					readSting = new TextDecoder().decode(value);
+					//console.log(readSting);
+					response.innerHTML = readSting;
+				  }
+				}
+			  } catch (error) {
+					response.innerHTML = error;
+			  }
+			}	
+		
+		} catch (error) {
+			response.innerHTML = error;
+		}
+	}
+});
+
+buttonClose.addEventListener('click', async () => {
+	isClose = true;
+	try {
+		if (writer) {
+			writer.releaseLock();
+			await writer.close();
+		}
+		if (reader) {
+			reader.releaseLock();
+			await reader.cancel();
+		}
+		if (port) {
+			await port.close();
+			port = null;
+			response.innerHTML = "closed!";
+		}
+	} catch (error) {
+		response.innerHTML = error;
+	}	
+});
+
+buttonSend.addEventListener('click', async () => {
+	if (port&&writer) {
+		try {	
+			await writer.write(command.value);
+		} catch (error) {
+			response.innerHTML = error;
+		}
+	}
+});
+</script>
+</body>
+</html>
