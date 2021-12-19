@@ -56,7 +56,6 @@ Blockly.Blocks["test_fieldFilter1"] = {
 			block.setFieldValue('', 'VALUE');
 	}
 	else {
-		var value = "";
 		block.options.forEach(function(element) {
 			if (element[0]==block.field.WORDS[Number(newValue)]) {
 				block.setFieldValue(element[1], 'VALUE');
