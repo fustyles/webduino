@@ -1,7 +1,8 @@
 <!--
-Web Serial  2021-12-18 16:30
+Web Serial  2021-12-19 15:30
 Author : ChungYi Fu (Kaohsiung, Taiwan)
 https://www.facebook.com/francefu
+
 
 https://web.dev/serial/
 -->
@@ -11,8 +12,8 @@ https://web.dev/serial/
 <head>
   <meta charset="utf-8">
   <title>Web Serial</title>
-  <script>
-  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 Baut Rate
@@ -35,107 +36,130 @@ Baut Rate
 </select><br><br>
 <button id="request-port">Select Port</button>
 <button id="close-port">Close Board</button><br><br>
-<input type="text" id="command"><button id="buttonSend">Send</button><br>
-<span id="response"></span>
+<input type="text" id="command"><button id="send">Send</button><br>
+<span id="status"></span>
 <script>
-
-var port;
-var textEncoder;
-var writableStreamClosed;
-var writer;
-var reader;
-var readSting = "";
+  
+let port = null;
+let textEncoder = {};
+let writableStreamClosed = {};
+let writer = {};
+let reader = null;
+let readSting = "";
+let keepReading = true;
+let selProductId = "";
+let selVendorId = "";
 
 let baud = document.getElementById('baud');
 let command = document.getElementById('command');
-let response = document.getElementById('response');
+let status = document.getElementById('status');
 let buttonRequest = document.getElementById('request-port');
 let buttonClose = document.getElementById('close-port');
-let buttonSend = document.getElementById('buttonSend');
+let send = document.getElementById('send');	
+
+navigator.serial.addEventListener("connect", (event) => {
+  status.innerHTML = "connect";
+});
+
+navigator.serial.addEventListener("disconnect", (event) => {
+  status.innerHTML = "disconnect";
+});	
+			
+async function readUntilClosed() {
+  while (port.readable && keepReading) {
+	reader = port.readable.getReader();
+	try {
+	  while (true) {
+		const { value, done } = await reader.read();
+		if (done) {
+		  // |reader| has been canceled.
+		  break;
+		}
+		if (value) {
+			readSting = new TextDecoder().decode(value);
+			//console.log(readSting);
+			status.innerHTML = readSting;
+		}
+	  }
+	} catch (error) {
+	  // Handle |error|...
+	} finally {
+	  reader.releaseLock();
+	}
+  }
+}
 
 buttonRequest.addEventListener('click', async () => {
+
 	if ("serial" in navigator) {
-		/*
-		const filters = [
-			{ usbVendorId: 0x2341, usbProductId: 0x0043 },
-			{ usbVendorId: 0x2341, usbProductId: 0x0001 }
-		];
-		*/
-		const filters = [];
+		//const filters = [
+		//	{ usbVendorId: 0x2341, usbProductId: 0x0043 },
+		//	{ usbVendorId: 0x2341, usbProductId: 0x0001 }
+		//];	
 		
+		const filters = [];
 		port = await navigator.serial.requestPort({ filters });
 		const { usbProductId, usbVendorId } = port.getInfo();
+		selProductId = usbProductId;
+		selVendorId = usbVendorId;
+		
+		keepReading = true;
 		
 		try {
 			var rate =  Number(baud.value);
 			await port.open({ baudRate: rate });
-			response.innerHTML = "Ready!";
+			status.innerHTML = "VendorId: 0x"+selVendorId.toString(16)+" ProductId: 0x"+selProductId.toString(16)+" Ready!";
 			
-			textEncoder = new TextEncoderStream();
-			writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
-			writer = textEncoder.writable.getWriter();		
+			//await port.setSignals({ dataTerminalReady: false });
+			//await new Promise(resolve => setTimeout(resolve, 200));
+			//await port.setSignals({ dataTerminalReady: true });			
 			
-			navigator.serial.addEventListener("connect", (event) => {
-			  response.innerHTML = "connect";
-			});
+			textEncoder[selProductId] = new TextEncoderStream();
+			writableStreamClosed[selProductId] = textEncoder[selProductId].readable.pipeTo(port.writable);
+			writer[selProductId] = textEncoder[selProductId].writable.getWriter();			
+			
+			const closed = readUntilClosed();
 
-			navigator.serial.addEventListener("disconnect", (event) => {
-			  response.innerHTML = "disconnect";
-			});	
-
-			while (port.readable) {
-			  reader = port.readable.getReader();
-			  try {
-				while (true) {
-				  const { value, done } = await reader.read();
-				  if (done) {
-					reader.releaseLock();
-					break;
-				  }
-				  if (value) {
-					readSting = new TextDecoder().decode(value);
-					//console.log(readSting);
-					response.innerHTML = readSting;
-				  }
-				}
-			  } catch (error) {
-					response.innerHTML = error;
-			  }
-			}	
-		
+			// Sometime later...
+			keepReading = false;
+			reader.cancel();
+			await closed;
+			
 		} catch (error) {
-			response.innerHTML = error;
+			var errorString = error.message;
+			if (errorString.indexOf("already open")!=-1) {
+				status.innerHTML = "VendorId: 0x"+selVendorId.toString(16)+" ProductId: 0x"+selProductId.toString(16)+" Ready!";
+			}
+			else if (errorString.indexOf("Failed to open serial port")!=-1) {
+				setTimeout(function(){buttonRequest.click();},1000);
+			}
+			else {
+				status.innerHTML = errorString;
+			}
 		}
 	}
+		
 });
 
 buttonClose.addEventListener('click', async () => {
-	isClose = true;
 	try {
-		if (writer) {
-			writer.releaseLock();
-			await writer.close();
-		}
-		if (reader) {
-			reader.releaseLock();
-			await reader.cancel();
-		}
 		if (port) {
-			await port.close();
+			reader.cancel();
+			port.close();
 			port = null;
-			response.innerHTML = "closed!";
+			status.innerHTML = "closed";
 		}
 	} catch (error) {
-		response.innerHTML = error;
+			status.innerHTML = error.message;
 	}	
 });
 
-buttonSend.addEventListener('click', async () => {
+send.addEventListener('click', async () => {
 	if (port&&writer) {
 		try {	
-			await writer.write(command.value);
+			await writer[selProductId].write(command.value);
 		} catch (error) {
-			response.innerHTML = error;
+			status.innerHTML = error.message;
 		}
 	}
 });
