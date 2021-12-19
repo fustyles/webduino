@@ -1,5 +1,5 @@
 <!--
-Web Serial  2021-12-19 15:30
+Web Serial  2021-12-19 16:00
 Author : ChungYi Fu (Kaohsiung, Taiwan)
 https://www.facebook.com/francefu
 
@@ -38,7 +38,7 @@ Baut Rate
     <option value="2000000">2000000</option>		
 </select><br><br>
 <button id="request-port">Select Port</button>
-<button id="close-port">Close Port</button><br><br>
+<button id="close-port">Close Board</button><br><br>
 <input type="text" id="command"><button id="send">Send</button><br>
 <span id="status"></span>
 <script>
@@ -80,7 +80,7 @@ async function readUntilClosed() {
 		}
 		if (value) {
 			readSting = new TextDecoder().decode(value);
-			//console.log(readSting);
+			console.log(readSting);
 			status.innerHTML = readSting;
 		}
 	  }
@@ -122,12 +122,6 @@ buttonRequest.addEventListener('click', async () => {
 			writer[selProductId] = textEncoder[selProductId].writable.getWriter();			
 			
 			const closed = readUntilClosed();
-
-			// Sometime later...
-			keepReading = false;
-			reader.cancel();
-			await closed;
-			
 		} catch (error) {
 			var errorString = error.message;
 			if (errorString.indexOf("already open")!=-1) {
@@ -146,8 +140,8 @@ buttonRequest.addEventListener('click', async () => {
 
 buttonClose.addEventListener('click', async () => {
 	try {
-		if (port) {
-			reader.cancel();
+		if (port) {	
+			
 			port.close();
 			port = null;
 			status.innerHTML = "closed";
