@@ -95,12 +95,14 @@ async function readUntilClosed() {
 buttonRequest.addEventListener('click', async () => {
 
 	if ("serial" in navigator) {
-		//const filters = [
-		//	{ usbVendorId: 0x2341, usbProductId: 0x0043 },
-		//	{ usbVendorId: 0x2341, usbProductId: 0x0001 }
-		//];	
-		
+		/*
+		const filters = [
+			{ usbVendorId: 0x2341, usbProductId: 0x0043 },
+			{ usbVendorId: 0x2341, usbProductId: 0x0001 }
+		];
+		*/
 		const filters = [];
+		
 		port = await navigator.serial.requestPort({ filters });
 		const { usbProductId, usbVendorId } = port.getInfo();
 		selProductId = usbProductId;
@@ -141,6 +143,11 @@ buttonRequest.addEventListener('click', async () => {
 buttonClose.addEventListener('click', async () => {
 	try {
 		if (port) {	
+			/*
+			keepReading = false;
+			reader.cancel();
+			await closed;
+			*/
 			
 			port.close();
 			port = null;
