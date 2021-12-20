@@ -184,6 +184,8 @@ CustomFields.FieldFilter.prototype.noteToValue = function(text) {
 	if (initwords[j].toUpperCase().indexOf(normalizedText.toUpperCase())!=-1||normalizedText=="")
 		words.push(initwords[j]);
   }
+  if (this.WORDS.length==0) 
+		words.push([""]);
   var optionsLength = this.WORDS.length;
   var height = 24.4 * optionsLength;
   this.imageElement_.style = 'border: 1px solid #ccc;height: '+height+'px;width: 150px;;size: 12px;padding: 0px';

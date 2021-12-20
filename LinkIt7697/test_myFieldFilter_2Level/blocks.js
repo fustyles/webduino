@@ -41,17 +41,7 @@ Blockly.Blocks["test_fieldFilter"] = {
 				block.options.forEach(function(element1) {
 					if (element1[0]==block.field1.WORDS[0]) {
 						block.setFieldValue(element1[1], 'VALUE1');
-						
-						var options2 = [];
-						block.options.forEach(function(element2) {
-							if (element1[0]==element2[0])
-								options2.push(element2[2])
-						})
-						block.field2 = new CustomFields.FieldFilter('', options2, block.validate2);
-						if (block.getField("FILTER2"))
-							block.getInput("zone").removeField("FILTER2");
-						block.getInput("zone").appendField(block.field2, 'FILTER2');
-						block.setFieldValue('', 'VALUE2');
+						block.zoneOptions(element1);
 					}
 				})				
 			}
@@ -66,17 +56,7 @@ Blockly.Blocks["test_fieldFilter"] = {
 		block.options.forEach(function(element1) {
 			if (element1[0]==block.field1.WORDS[Number(newValue)]) {
 				block.setFieldValue(element1[1], 'VALUE1');
-				
-				var options2 = [];
-				block.options.forEach(function(element2) {
-					if (element1[0]==element2[0])
-						options2.push(element2[2])
-				})
-				block.field2 = new CustomFields.FieldFilter('', options2, block.validate2);
-				if (block.getField("FILTER2"))
-					block.getInput("zone").removeField("FILTER2");
-				block.getInput("zone").appendField(block.field2, 'FILTER2');
-				block.setFieldValue('', 'VALUE2');				
+				block.zoneOptions(element1);
 			}
 		})
 	}
@@ -105,6 +85,18 @@ Blockly.Blocks["test_fieldFilter"] = {
 			}
 		})
 	}
+  },
+  zoneOptions: function(element1) {
+		var options2 = [];
+		this.options.forEach(function(element2) {
+			if (element1[0]==element2[0])
+				options2.push(element2[2])
+		})
+		this.field2 = new CustomFields.FieldFilter('', options2, this.validate2);
+		if (this.getField("FILTER2"))
+			this.getInput("zone").removeField("FILTER2");
+		this.getInput("zone").appendField(this.field2, 'FILTER2');
+		this.setFieldValue('', 'VALUE2');
   }
 };
 
