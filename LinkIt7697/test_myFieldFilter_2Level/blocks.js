@@ -49,7 +49,6 @@ Blockly.Blocks["test_fieldFilter"] = {
 		else {
 			block.setFieldValue('', 'VALUE1');
 			block.setFieldValue('', 'VALUE2');
-			return "";
 		}
 	}
 	else {
@@ -75,7 +74,6 @@ Blockly.Blocks["test_fieldFilter"] = {
 		}
 		else {
 			block.setFieldValue('', 'VALUE2');
-			return "";
 		}
 	}
 	else {
