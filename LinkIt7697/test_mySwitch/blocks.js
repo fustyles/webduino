@@ -9,15 +9,21 @@
  * @author https://www.facebook.com/francefu/
  * @Update 12/22/2021 11:00 (Taiwan Standard Time)
  */
+
+Blockly.Msg["MYSWITCH_TITLE"] = "Switch";
+Blockly.Msg["MYSWITCH_VALUE"] = "Value";
+Blockly.Msg["MYSWITCH_CASE"] = "Case";
+Blockly.Msg["MYSWITCH_STATEMENT"] = "Statement";
+Blockly.Msg["MYSWITCH_DEFAULT"] = "Default";
  
  Blockly.defineBlocksWithJsonArray([
 	{type:"mySwitch"
-	,message0:"Switch"
-	,message1:"Value %1"	
+	,message0:Blockly.Msg["MYSWITCH_TITLE"]
+	,message1:Blockly.Msg["MYSWITCH_VALUE"] + " %1"	
 	,args1:[{type:"input_value",name:"VALUE",check:null,align:"RIGHT"}]
-	,message2:"Case %1"
+	,message2:Blockly.Msg["MYSWITCH_CASE"] + " %1"
 	,args2:[{type:"input_value",name:"CASE0",check:null,align:"RIGHT"}]
-	,message3:"Statement %1"
+	,message3:Blockly.Msg["MYSWITCH_STATEMENT"] + " %1"
 	,args3:[{type:"input_statement",name:"DO0",align:"RIGHT"}]
 	,previousStatement:null
 	,nextStatement:null
@@ -25,20 +31,20 @@
 	,mutator:"mySwitch_mutator"
 	}
 	,{type:"mySwitch_switch"
-	,message0:"Case"
+	,message0:Blockly.Msg["MYSWITCH_CASE"]
 	,nextStatement:null
 	,enableContextMenu:!1
 	,style:"logic_blocks"
 	}
 	,{type:"mySwitch_case"
-	,message0:"Case"
+	,message0:Blockly.Msg["MYSWITCH_CASE"]
 	,previousStatement:null
 	,nextStatement:null
 	,enableContextMenu:!1
 	,style:"logic_blocks"
 	}
 	,{type:"mySwitch_default"
-	,message0:"Default"
+	,message0:Blockly.Msg["MYSWITCH_DEFAULT"]
 	,previousStatement:null
 	,enableContextMenu:!1
 	,style:"logic_blocks"
@@ -129,13 +135,13 @@ Blockly.Constants.Logic.mySwitch_MUTATOR_MIXIN={
 		for(a=1;a<=this.caseCount_;a++)
 			this.appendValueInput("CASE"+a)
 			.setCheck(null)
-			.appendField("Case")
+			.appendField(Blockly.Msg["MYSWITCH_CASE"])
 			.setAlign(Blockly.ALIGN_RIGHT)
 		,this.appendStatementInput("DO"+a)
-			.appendField("Statement")
+			.appendField(Blockly.Msg["MYSWITCH_STATEMENT"])
 			.setAlign(Blockly.ALIGN_RIGHT);
 		this.defaultCount_&&this.appendStatementInput("DEFAULT")
-			.appendField("Default")
+			.appendField(Blockly.Msg["MYSWITCH_DEFAULT"])
 			.setAlign(Blockly.ALIGN_RIGHT)
 	}
 	,reconnectChildBlocks_:function(a,b,c){
