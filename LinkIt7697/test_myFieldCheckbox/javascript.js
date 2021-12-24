@@ -7,7 +7,7 @@
 /**
  * @fileoverview my Field Checkbox.
  * @author https://www.facebook.com/francefu/
- * @Update 12/24/2021 20:00 (Taiwan Standard Time)
+ * @Update 12/24/2021 21:00 (Taiwan Standard Time)
  */
  
  /*
@@ -115,27 +115,19 @@ CustomFields.FieldCheckbox.prototype.onMouseDown = function(e) {
   this.setEditorValue_(result.trim());
 };
 
-CustomFields.FieldCheckbox.prototype.valueToNote = function(value) {
-	return value;
-};
-
-CustomFields.FieldCheckbox.prototype.noteToValue = function(text) {
-  return -1;
-};
-
 CustomFields.FieldCheckbox.prototype.getText_ = function() {
   if (this.isBeingEdited_) {
     return CustomFields.FieldCheckbox.superClass_.getText_.call(this);
   }
-  return this.valueToNote(this.getValue()) || null;
+  return this.getValue() || null;
 };
 
 CustomFields.FieldCheckbox.prototype.getEditorText_ = function(value) {
-  return this.valueToNote(value);
+  return value;
 };
 
 CustomFields.FieldCheckbox.prototype.getValueFromEditorText_ = function(text) {
-  return this.noteToValue(text);
+  return text;
 };
 
 CustomFields.FieldCheckbox.prototype.render_ = function() {
