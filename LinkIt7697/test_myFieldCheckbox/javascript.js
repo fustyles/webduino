@@ -7,7 +7,7 @@
 /**
  * @fileoverview my Field Checkbox.
  * @author https://www.facebook.com/francefu/
- * @Update 12/24/2021 21:00 (Taiwan Standard Time)
+ * @Update 12/24/2021 20:00 (Taiwan Standard Time)
  */
  
  /*
@@ -78,10 +78,8 @@ CustomFields.FieldCheckbox.prototype.dropdownCreate_ = function() {
   this.imageElement_.style = 'border: 1px solid #ccc;height: '+height+'px;width: 150px;size: 12px;padding: 0px';  
   if (!this.listHTML) {
 	  this.listHTML = "";
-	  for (var i=0;i<this.list.length;i++) {
-		  this.listHTML += "<input type='checkbox' name='"+this.id+"' value='"+this.list[i][1]+"' title='"+this.list[i][0]+"'>"+this.list[i][0]+"<br>";
-	  }
-	  console.log(this.listHTML);
+	  for (var i=0;i<this.list.length;i++)
+		  this.listHTML += "<input type='checkbox' name='"+this.id+"' value='"+this.list[i][1]+"' text='"+this.list[i][0]+"'>"+this.list[i][0]+"<br>";
   }
   this.imageElement_.innerHTML = this.listHTML;
   return this.imageElement_;
@@ -110,7 +108,7 @@ CustomFields.FieldCheckbox.prototype.onMouseDown = function(e) {
   this.listHTML = "";
   for (var i=0;i<myCheckbox.length;i++) {
 	result += myCheckbox[i].checked?(myCheckbox[i].value+" "):"";
-	this.listHTML += "<input type='checkbox' name='"+this.id+"' value='"+myCheckbox[i].value+"' title='"+myCheckbox[i].title+"' "+(myCheckbox[i].checked?"checked":"")+">"+myCheckbox[i].title+"<br>";
+	this.listHTML += "<input type='checkbox' name='"+this.id+"' value='"+myCheckbox[i].value+"' text='"+myCheckbox[i].getAttribute("text")+"' "+(myCheckbox[i].checked?"checked":"")+">"+myCheckbox[i].getAttribute("text")+"<br>";
   }
   this.setEditorValue_(result.trim());
 };
