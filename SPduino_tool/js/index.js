@@ -608,7 +608,172 @@ document.addEventListener('DOMContentLoaded', function() {
 		};
 		$("#dialog_toolbox").dialog(opt).dialog("open");
 		event.preventDefault();
-	}	
+	}
+
+	//Web Serial
+	let serial_port = null;
+	let serial_textEncoder = {};
+	let serial_writableStreamClosed = {};
+	let serial_writer = {};
+	let serial_reader = null;
+	let serial_readSting = "";
+	let serial_keepReading = true;
+	let serial_selProductId = "";
+	let serial_selVendorId = "";
+
+	let serial_baud = document.getElementById('serial_baud');
+	let serial_command = document.getElementById('serial_command');
+	let serial_status = document.getElementById('serial_status');
+	let serial_buttonRequest = document.getElementById('serial_request_port');
+	let serial_buttonClose = document.getElementById('serial_close_port');
+	let serial_sendString = document.getElementById('serial_sendString');	
+	let serial_clearStatus = document.getElementById('serial_clearStatus');
+	let serial_end = document.getElementById('serial_end');		
+
+	navigator.serial.addEventListener("connect", (event) => {
+	  serial_message("Device connect","red");
+	});
+
+	navigator.serial.addEventListener("disconnect", (event) => {
+		serial_message("Device disconnect","red");
+	});	
+				
+	async function readUntilClosed() {
+	  while (serial_port.readable && serial_keepReading) {
+		serial_reader = serial_port.readable.getReader();
+		try {
+		  while (true) {
+			const { value, done } = await serial_reader.read();
+			if (done) {
+			  // |reader| has been canceled.
+			  break;
+			}
+			if (value) {
+				serial_readSting = new TextDecoder().decode(value);
+				serial_message(serial_readSting,"green");
+			}
+		  }
+		} catch (error) {
+		  // Handle |error|...
+		} finally {
+		  serial_reader.releaseLock();
+		}
+	  }
+	}
+
+	serial_buttonRequest.addEventListener('click', async () => {
+
+		if ("serial" in navigator) {
+			/*
+			const filters = [
+				{ usbVendorId: 0x2341, usbProductId: 0x0043 },
+				{ usbVendorId: 0x2341, usbProductId: 0x0001 }
+			];
+			*/
+			const filters = [];
+			
+			serial_port = await navigator.serial.requestPort({ filters });
+			const { usbProductId, usbVendorId } = serial_port.getInfo();
+			serial_selProductId = usbProductId;
+			serial_selVendorId = usbVendorId;
+			
+			serial_keepReading = true;
+			
+			try {
+				var rate =  Number(serial_baud.value);
+				await serial_port.open({ baudRate: rate });
+				var msg = "VendorId: 0x"+serial_selVendorId.toString(16)+" ProductId: 0x"+serial_selProductId.toString(16)+" Ready!";
+				serial_message(msg,"blue");
+				
+				//await serial_port.setSignals({ dataTerminalReady: false });
+				//await new Promise(resolve => setTimeout(resolve, 200));
+				//await serial_port.setSignals({ dataTerminalReady: true });			
+				
+				serial_textEncoder[serial_selProductId] = new TextEncoderStream();
+				serial_writableStreamClosed[serial_selProductId] = serial_textEncoder[serial_selProductId].readable.pipeTo(serial_port.writable);
+				serial_writer[serial_selProductId] = serial_textEncoder[serial_selProductId].writable.getWriter();			
+				
+				const closed = readUntilClosed();
+			} catch (error) {
+				var errorString = error.message;
+				if (errorString.indexOf("already open")!=-1) {
+					var msg = "VendorId: 0x"+serial_selVendorId.toString(16)+" ProductId: 0x"+serial_selProductId.toString(16)+" Ready!";
+					serial_message(msg,"blue");
+				}
+				else if (errorString.indexOf("Failed to open serial port")!=-1) {
+					setTimeout(function(){serial_buttonRequest.click();},1000);
+				}
+				else {
+					serial_message(errorString,"red");
+				}
+			}
+		}
+			
+	});
+
+	serial_buttonClose.addEventListener('click', async () => {
+		try {
+			if (serial_port) {	
+				/*
+				serial_keepReading = false;
+				serial_reader.cancel();
+				await closed;
+				*/
+				
+				serial_port.close();
+				serial_port = null;
+				serial_message("Closed","blue");
+			}
+		} catch (error) {
+				serial_message(error.message,"red");
+		}	
+	});
+
+	serial_sendString.addEventListener('click', async () => {
+		if (serial_port&&serial_writer) {
+			try {	
+				var msg = serial_command.value + serial_end.value;
+				serial_message(msg,"orange");
+				await serial_writer[serial_selProductId].write(msg);
+			} catch (error) {
+				serial_message(error.message,"red");
+			}
+		}
+	});
+
+	serial_clearStatus.addEventListener('click', async () => {
+		serial_status.innerHTML = "";
+	});
+
+	function serial_message(msg, colour) {
+		serial_status.innerHTML += "<font color='"+colour+"'>"+msg+"</font><br>";
+		serial_status.scrollTop = serial_status.scrollHeight;
+	}
+	
+	//Web Serial
+	document.getElementById('button_webSerial').onclick = function () {
+		var opt = {
+			draggable: true,			
+			autoOpen: false,
+			resizable: true,
+			modal: false,
+			//show: "blind",
+			//hide: "blind",			
+			width: 570,
+			height: 450,
+			buttons: [
+				{
+					text: Blockly.Msg.BUTTON_CLOSE,
+					click: function() {
+						$(this).dialog("close");
+					}
+				}
+			],
+			title: Blockly.Msg["BUTTON_WEBSERIAL"]
+		};
+		$("#dialog_webSerial").dialog(opt).dialog("open");
+		event.preventDefault();
+	}
 	
 	//工具箱目錄顯示選單內容
 	function toolboxCategory() {
@@ -676,7 +841,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				customBlocksPath+="/";
 			addCustomRemoteBlocks(customBlocksPath);
 		}
-	}
+	}		
 });	
 
 //切換頁籤

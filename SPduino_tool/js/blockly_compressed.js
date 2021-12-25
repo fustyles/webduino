@@ -4910,7 +4910,6 @@ Blockly.ContextMenuItems.registerTest=function(){
 			displayText:function(){return "test"}
 			,preconditionFn:function(a){return "enabled"}
 			,callback:function(a){
-				
 				/*
 				//新增自訂積木
 				var xml = document.getElementById("toolbox");

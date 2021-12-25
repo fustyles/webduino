@@ -1143,6 +1143,7 @@ Blockly.Msg["BUTTON_TOOLBOX"] = "Show/Hide Toolbox category";
 Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"] = "Import remote custom blocks";
 Blockly.Msg["BUTTON_ADDEXTENSIONBLOCKS"] = "Import extension custom blocks";
 Blockly.Msg["BUTTON_TOOL"] = "Open blockly developer tools";
+Blockly.Msg["BUTTON_WEBSERIAL"] = "Open web serial tools";
 Blockly.Msg["LANG-SELECTOR"] = "Select Language";
 Blockly.Msg["BUTTON_COPYCODE"] = "Copy to clipboard";
 Blockly.Msg["TEXT_UPLOADER_STATUS"] = "Arduino Code";
