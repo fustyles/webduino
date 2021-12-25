@@ -22,7 +22,7 @@ https://fustyles.github.io/webduino/WebSerial.html
 <table>
 <tr>
 <td>Baud Rate
-<select id="baud">
+<select id="serial_baud">
     <option value="9600">9600</option>
     <option value="115200">115200</option>
     <option value="300">300</option>
@@ -40,82 +40,82 @@ https://fustyles.github.io/webduino/WebSerial.html
     <option value="2000000">2000000</option>		
 </select>
 </td>
-<td><button id="close-port">Close Port</button><button id="request-port">Select Port</button></td>
+<td><button id="serial_close_port">Close Port</button><button id="serial_request_port">Select Port</button></td>
 </tr>
 <tr>
-<td><input type="text" id="command">
-<select id="end">
+<td><input type="text" id="serial_command">
+<select id="serial_end">
     <option value=""></option>
     <option value="\n">\n</option>
     <option value="\r\n">\r\n</option>		
 </select>
 </td>
-<td><button id="send">Send String</button></td>
+<td><button id="serial_sendString">Send String</button></td>
 </tr>
 <tr>
-<td colspan="2"><div id="status" style="width:400px;height:300px;border:2px black solid;overflow: auto;"></div></td>
+<td colspan="2"><div id="serial_status" style="width:400px;height:300px;border:2px black solid;overflow: auto;"></div></td>
 </tr>
 <tr>
 <td>
 </td>
 <td align="right">
-<button id="clearStatus">Clear Message</button>
+<button id="serial_clearStatus">Clear Message</button>
 </td>
 </tr>
 </table>
 <script>
   
-let port = null;
-let textEncoder = {};
-let writableStreamClosed = {};
-let writer = {};
-let reader = null;
-let readSting = "";
-let keepReading = true;
-let selProductId = "";
-let selVendorId = "";
+let serial_port = null;
+let serial_textEncoder = {};
+let serial_writableStreamClosed = {};
+let serial_writer = {};
+let serial_reader = null;
+let serial_readSting = "";
+let serial_keepReading = true;
+let serial_selProductId = "";
+let serial_selVendorId = "";
 
-let baud = document.getElementById('baud');
-let command = document.getElementById('command');
-let status = document.getElementById('status');
-let buttonRequest = document.getElementById('request-port');
-let buttonClose = document.getElementById('close-port');
-let send = document.getElementById('send');	
-let clearStatus = document.getElementById('clearStatus');
-let end = document.getElementById('end');		
+let serial_baud = document.getElementById('serial_baud');
+let serial_command = document.getElementById('serial_command');
+let serial_status = document.getElementById('serial_status');
+let serial_buttonRequest = document.getElementById('serial_request_port');
+let serial_buttonClose = document.getElementById('serial_close_port');
+let serial_sendString = document.getElementById('serial_sendString');	
+let serial_clearStatus = document.getElementById('serial_clearStatus');
+let serial_end = document.getElementById('serial_end');		
 
 navigator.serial.addEventListener("connect", (event) => {
-  message("Device connect","red");
+  serial_message("Device connect","red");
 });
 
 navigator.serial.addEventListener("disconnect", (event) => {
-	message("Device disconnect","red");
+	serial_message("Device disconnect","red");
 });	
 			
 async function readUntilClosed() {
-  while (port.readable && keepReading) {
-	reader = port.readable.getReader();
+  while (serial_port.readable && serial_keepReading) {
+	serial_reader = serial_port.readable.getReader();
 	try {
 	  while (true) {
-		const { value, done } = await reader.read();
+		const { value, done } = await serial_reader.read();
 		if (done) {
 		  // |reader| has been canceled.
 		  break;
 		}
 		if (value) {
-			readSting = new TextDecoder().decode(value);
-			message(readSting,"green");
+			serial_readSting = new TextDecoder().decode(value);
+			serial_message(serial_readSting,"green");
 		}
 	  }
 	} catch (error) {
 	  // Handle |error|...
 	} finally {
-	  reader.releaseLock();
+	  serial_reader.releaseLock();
 	}
   }
 }
 
-buttonRequest.addEventListener('click', async () => {
+serial_buttonRequest.addEventListener('click', async () => {
 
 	if ("serial" in navigator) {
 		/*
@@ -126,84 +126,83 @@ buttonRequest.addEventListener('click', async () => {
 		*/
 		const filters = [];
 		
-		port = await navigator.serial.requestPort({ filters });
-		const { usbProductId, usbVendorId } = port.getInfo();
-		selProductId = usbProductId;
-		selVendorId = usbVendorId;
+		serial_port = await navigator.serial.requestPort({ filters });
+		const { usbProductId, usbVendorId } = serial_port.getInfo();
+		serial_selProductId = usbProductId;
+		serial_selVendorId = usbVendorId;
 		
-		keepReading = true;
+		serial_keepReading = true;
 		
 		try {
-			var rate =  Number(baud.value);
-			await port.open({ baudRate: rate });
-			var msg = "VendorId: 0x"+selVendorId.toString(16)+" ProductId: 0x"+selProductId.toString(16)+" Ready!";
-			message(msg,"blue");
+			var rate =  Number(serial_baud.value);
+			await serial_port.open({ baudRate: rate });
+			var msg = "VendorId: 0x"+serial_selVendorId.toString(16)+" ProductId: 0x"+serial_selProductId.toString(16)+" Ready!";
+			serial_message(msg,"blue");
 			
-			//await port.setSignals({ dataTerminalReady: false });
+			//await serial_port.setSignals({ dataTerminalReady: false });
 			//await new Promise(resolve => setTimeout(resolve, 200));
-			//await port.setSignals({ dataTerminalReady: true });			
+			//await serial_port.setSignals({ dataTerminalReady: true });			
 			
-			textEncoder[selProductId] = new TextEncoderStream();
-			writableStreamClosed[selProductId] = textEncoder[selProductId].readable.pipeTo(port.writable);
-			writer[selProductId] = textEncoder[selProductId].writable.getWriter();			
+			serial_textEncoder[serial_selProductId] = new TextEncoderStream();
+			serial_writableStreamClosed[serial_selProductId] = serial_textEncoder[serial_selProductId].readable.pipeTo(serial_port.writable);
+			serial_writer[serial_selProductId] = serial_textEncoder[serial_selProductId].writable.getWriter();			
 			
 			const closed = readUntilClosed();
 		} catch (error) {
 			var errorString = error.message;
 			if (errorString.indexOf("already open")!=-1) {
-				var msg = "VendorId: 0x"+selVendorId.toString(16)+" ProductId: 0x"+selProductId.toString(16)+" Ready!";
-				message(msg,"blue");
+				var msg = "VendorId: 0x"+serial_selVendorId.toString(16)+" ProductId: 0x"+serial_selProductId.toString(16)+" Ready!";
+				serial_message(msg,"blue");
 			}
 			else if (errorString.indexOf("Failed to open serial port")!=-1) {
-				setTimeout(function(){buttonRequest.click();},1000);
+				setTimeout(function(){serial_buttonRequest.click();},1000);
 			}
 			else {
-				message(errorString,"red");
+				serial_message(errorString,"red");
 			}
 		}
 	}
 		
 });
 
-buttonClose.addEventListener('click', async () => {
+serial_buttonClose.addEventListener('click', async () => {
 	try {
-		if (port) {	
+		if (serial_port) {	
 			/*
-			keepReading = false;
-			reader.cancel();
+			serial_keepReading = false;
+			serial_reader.cancel();
 			await closed;
 			*/
 			
-			port.close();
-			port = null;
-			message("Closed","blue");
+			serial_port.close();
+			serial_port = null;
+			serial_message("Closed","blue");
 		}
 	} catch (error) {
-			message(error.message,"red");
+			serial_message(error.message,"red");
 	}	
 });
 
-send.addEventListener('click', async () => {
-	if (port&&writer) {
+serial_sendString.addEventListener('click', async () => {
+	if (serial_port&&serial_writer) {
 		try {	
-			var msg = command.value + end.value;
-			message(msg,"orange");
-			await writer[selProductId].write(msg);
+			var msg = serial_command.value + serial_end.value;
+			serial_message(msg,"orange");
+			await serial_writer[serial_selProductId].write(msg);
 		} catch (error) {
-			message(error.message,"red");
+			serial_message(error.message,"red");
 		}
 	}
 });
 
-clearStatus.addEventListener('click', async () => {
-	status.innerHTML = "";
+serial_clearStatus.addEventListener('click', async () => {
+	serial_status.innerHTML = "";
 });
 
-function message(msg, colour) {
-	status.innerHTML += "<font color='"+colour+"'>"+msg+"</font><br>";
-	status.scrollTop = status.scrollHeight;
+function serial_message(msg, colour) {
+	serial_status.innerHTML += "<font color='"+colour+"'>"+msg+"</font><br>";
+	serial_status.scrollTop = serial_status.scrollHeight;
 }
-
 </script>
 </body>
 </html>
