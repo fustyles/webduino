@@ -462,7 +462,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//Web Serial
 	document.getElementById('button_webSerial').onclick = function () {
-		window.open("https://fustyles.github.io/webduino/WebSerial.html")
+		var link = document.createElement('a');
+		link.target="_blank";
+		link.href="https://fustyles.github.io/webduino/WebSerial.html";
+		document.body.appendChild(link);
+		link.click();
+		link.remove();		
 	}		
 	
 	//切換語言
