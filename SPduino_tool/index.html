@@ -266,7 +266,7 @@
 	</div>
 	<div id="xml_content" class="xml_content"></div>
 	<div id="dialog_toolbox" onmousedown="textareaFocus('dialog_toolbox_parent');" ontouchstart="textareaFocus('dialog_toolbox_parent');"></div>
-	<div id="dialog_webSerial" onmousedown="textareaFocus('dialog_webSerial_parent');" ontouchstart="textareaFocus('dialog_webSerial_parent');">
+	<div id="dialog_webSerial" onmousedown="textareaFocus('dialog_webSerial_parent');" ontouchstart="textareaFocus('dialog_webSerial_parent');" style="display:none">
 		<table>
 			<tr>
 				<td>Baud Rate
@@ -285,7 +285,7 @@
 					<option value="250000">250000</option>
 					<option value="500000">500000</option>
 					<option value="1000000">1000000</option>	
-					<option value="2000000">2000000</option>		
+					<option value="2000000">2000000</option>	
 				</select>
 				</td>
 				<td><button id="serial_close_port">Close Port</button><button id="serial_request_port">Select Port</button></td>
@@ -295,7 +295,6 @@
 				<select id="serial_end">
 					<option value=""></option>
 					<option value="\n">\n</option>
-					<option value="\r\n">\r\n</option>		
 				</select>
 				</td>
 				<td><button id="serial_sendString">Send String</button></td>
