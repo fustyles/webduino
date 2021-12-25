@@ -1,6 +1,10 @@
+/*
+ * Copyright 2021 Taiwan
+ * @fileoverview SpBlockly V1
+ * @author https://www.facebook.com/francefu/ (ChungYi Fu)
+*/
 
-  'use strict';
-  
+'use strict';
 
 var $jscomp=$jscomp||{};$jscomp.scope={};var COMPILED=!0,goog=goog||{};goog.global=this||self;goog.isDef=function(a){return void 0!==a};goog.isString=function(a){return"string"==typeof a};goog.isBoolean=function(a){return"boolean"==typeof a};goog.isNumber=function(a){return"number"==typeof a};
 goog.exportPath_=function(a,b,c){a=a.split(".");c=c||goog.global;a[0]in c||"undefined"==typeof c.execScript||c.execScript("var "+a[0]);for(var d;a.length&&(d=a.shift());)!a.length&&goog.isDef(b)?c[d]=b:c=c[d]&&c[d]!==Object.prototype[d]?c[d]:c[d]={}};
@@ -2044,7 +2048,7 @@ Blockly.Theme.defineTheme=function(a,b){var c=new Blockly.Theme(a),d=b.base;d&&(
 
 Blockly.Themes={};
 Blockly.Themes.Classic={};
-Blockly.Themes.Classic.defaultBlockStyles={colour_blocks:{colourPrimary:"20"},list_blocks:{colourPrimary:"20"},logic_blocks:{colourPrimary:"210"},loop_blocks:{colourPrimary:"120"},math_blocks:{colourPrimary:"230"},procedure_blocks:{colourPrimary:"290"},text_blocks:{colourPrimary:"160"},variable_blocks:{colourPrimary:"330"},variable_dynamic_blocks:{colourPrimary:"310"},hat_blocks:{colourPrimary:"330",hat:"cap"},initializes_blocks:{colourPrimary:"30"}};
+Blockly.Themes.Classic.defaultBlockStyles={colour_blocks:{colourPrimary:"20"},list_blocks:{colourPrimary:"20"},logic_blocks:{colourPrimary:"210"},loop_blocks:{colourPrimary:"120"},math_blocks:{colourPrimary:"230"},procedure_blocks:{colourPrimary:"290"},text_blocks:{colourPrimary:"160"},variable_blocks:{colourPrimary:"330"},variable_dynamic_blocks:{colourPrimary:"310"},hat_blocks:{colourPrimary:"330",hat:"cap"},initializes_blocks:{colourPrimary:"20"}};
 Blockly.Themes.Classic.categoryStyles={colour_category:{colour:"20"},list_category:{colour:"260"},logic_category:{colour:"210"},loop_category:{colour:"120"},math_category:{colour:"230"},procedure_category:{colour:"290"},text_category:{colour:"160"},variable_category:{colour:"330"},variable_dynamic_category:{colour:"310"}};Blockly.Themes.Classic=new Blockly.Theme("classic",Blockly.Themes.Classic.defaultBlockStyles,Blockly.Themes.Classic.categoryStyles);
 
 Blockly.utils.IdGenerator={};
@@ -2391,7 +2395,9 @@ Blockly.WidgetDiv.show=function(a,b,c){Blockly.WidgetDiv.hide();Blockly.WidgetDi
 Blockly.WidgetDiv.hide=function(){if(Blockly.WidgetDiv.isVisible()){Blockly.WidgetDiv.owner_=null;var a=Blockly.WidgetDiv.DIV;a.style.display="none";a.style.left="";a.style.top="";Blockly.WidgetDiv.dispose_&&Blockly.WidgetDiv.dispose_();Blockly.WidgetDiv.dispose_=null;a.textContent="";Blockly.WidgetDiv.rendererClassName_&&(Blockly.utils.dom.removeClass(a,Blockly.WidgetDiv.rendererClassName_),Blockly.WidgetDiv.rendererClassName_="");Blockly.WidgetDiv.themeClassName_&&(Blockly.utils.dom.removeClass(a,
 Blockly.WidgetDiv.themeClassName_),Blockly.WidgetDiv.themeClassName_="");Blockly.getMainWorkspace().markFocused()}};Blockly.WidgetDiv.isVisible=function(){return!!Blockly.WidgetDiv.owner_};Blockly.WidgetDiv.hideIfOwner=function(a){Blockly.WidgetDiv.owner_==a&&Blockly.WidgetDiv.hide()};Blockly.WidgetDiv.positionInternal_=function(a,b,c){Blockly.WidgetDiv.DIV.style.left=a+"px";Blockly.WidgetDiv.DIV.style.top=b+"px";Blockly.WidgetDiv.DIV.style.height=c+"px"};
 Blockly.WidgetDiv.positionWithAnchor=function(a,b,c,d){var e=Blockly.WidgetDiv.calculateY_(a,b,c);a=Blockly.WidgetDiv.calculateX_(a,b,c,d);0>e?Blockly.WidgetDiv.positionInternal_(a,0,c.height+e):Blockly.WidgetDiv.positionInternal_(a,e,c.height)};Blockly.WidgetDiv.calculateX_=function(a,b,c,d){if(d)return b=Math.max(b.right-c.width,a.left),Math.min(b,a.right-c.width);b=Math.min(b.left,a.right-c.width);return Math.max(b,a.left)};
-Blockly.WidgetDiv.calculateY_=function(a,b,c){return b.bottom+c.height>=a.bottom?b.top-c.height:b.bottom};Blockly.Field=function(a,b,c){this.value_=this.DEFAULT_VALUE;this.tooltip_=this.validator_=null;this.size_=new Blockly.utils.Size(0,0);this.constants_=this.mouseDownWrapper_=this.textContent_=this.textElement_=this.borderRect_=this.fieldGroup_=this.markerSvg_=this.cursorSvg_=null;c&&this.configure_(c);this.setValue(a);b&&this.setValidator(b)};Blockly.Field.prototype.DEFAULT_VALUE=null;Blockly.Field.prototype.name=void 0;Blockly.Field.prototype.disposed=!1;
+Blockly.WidgetDiv.calculateY_=function(a,b,c){return b.bottom+c.height>=a.bottom?b.top-c.height:b.bottom};
+Blockly.Field=function(a,b,c){this.value_=this.DEFAULT_VALUE;this.tooltip_=this.validator_=null;this.size_=new Blockly.utils.Size(0,0);this.constants_=this.mouseDownWrapper_=this.textContent_=this.textElement_=this.borderRect_=this.fieldGroup_=this.markerSvg_=this.cursorSvg_=null;c&&this.configure_(c);this.setValue(a);b&&this.setValidator(b)};
+Blockly.Field.prototype.DEFAULT_VALUE=null;Blockly.Field.prototype.name=void 0;Blockly.Field.prototype.disposed=!1;
 Blockly.Field.prototype.maxDisplayLength=50;Blockly.Field.prototype.sourceBlock_=null;Blockly.Field.prototype.isDirty_=!0;Blockly.Field.prototype.visible_=!0;Blockly.Field.prototype.clickTarget_=null;Blockly.Field.NBSP="\u00a0";Blockly.Field.prototype.EDITABLE=!0;Blockly.Field.prototype.SERIALIZABLE=!1;Blockly.Field.prototype.configure_=function(a){var b=a.tooltip;"string"==typeof b&&(b=Blockly.utils.replaceMessageReferences(a.tooltip));b&&this.setTooltip(b)};
 Blockly.Field.prototype.setSourceBlock=function(a){if(this.sourceBlock_)throw Error("Field already bound to a block.");this.sourceBlock_=a};Blockly.Field.prototype.getConstants=function(){!this.constants_&&this.sourceBlock_&&this.sourceBlock_.workspace&&this.sourceBlock_.workspace.rendered&&(this.constants_=this.sourceBlock_.workspace.getRenderer().getConstants());return this.constants_};Blockly.Field.prototype.getSourceBlock=function(){return this.sourceBlock_};
 Blockly.Field.prototype.init=function(){this.fieldGroup_||(this.fieldGroup_=Blockly.utils.dom.createSvgElement(Blockly.utils.Svg.G,{},null),this.isVisible()||(this.fieldGroup_.style.display="none"),this.sourceBlock_.getSvgRoot().appendChild(this.fieldGroup_),this.initView(),this.updateEditable(),this.setTooltip(this.tooltip_),this.bindEvents_(),this.initModel())};Blockly.Field.prototype.initView=function(){this.createBorderRect_();this.createTextElement_()};Blockly.Field.prototype.initModel=function(){};
@@ -2843,6 +2849,7 @@ Blockly.Names.prototype.getNameForUserVariable_=function(a){
 };
 Blockly.Names.prototype.populateVariables=function(a){a=Blockly.Variables.allUsedVarModels(a);for(var b=0;b<a.length;b++)this.getName(a[b].getId(),Blockly.VARIABLE_CATEGORY_NAME)};
 Blockly.Names.prototype.populateProcedures=function(a){a=Blockly.Procedures.allProcedures(a);a=a[0].concat(a[1]);for(var b=0;b<a.length;b++)this.getName(a[b][0],Blockly.PROCEDURE_CATEGORY_NAME)};
+//Blockly.Names.prototype.populatemyBackpack=function(a){a=Blockly.myBackpack.allmyBackpack(a);a=a[0].concat(a[1]);for(var b=0;b<a.length;b++)this.getName(a[b][0],Blockly.MYBACKPACK_CATEGORY_NAME)};
 Blockly.Names.prototype.getName=function(a,b){var c=a;b==Blockly.VARIABLE_CATEGORY_NAME&&(a=this.getNameForUserVariable_(a))&&(c=a);a=c.toLowerCase();var d=b==Blockly.VARIABLE_CATEGORY_NAME||b==Blockly.Names.DEVELOPER_VARIABLE_TYPE?this.variablePrefix_:"";b in this.db_||(this.db_[b]=Object.create(null));var e=this.db_[b];if(a in e)return d+e[a];b=this.getDistinctName(c,b);e[a]=b.substr(d.length);return b};
 Blockly.Names.prototype.getUserNames=function(a){return Object.keys(this.db_[a]||{})};
 Blockly.Names.prototype.getDistinctName=function(a,b){a=this.safeName_(a);for(var c="";this.dbReverse_[a+c]||a+c in this.reservedDict_;)c=c?c+1:2;a+=c;this.dbReverse_[a]=!0;return(b==Blockly.VARIABLE_CATEGORY_NAME||b==Blockly.Names.DEVELOPER_VARIABLE_TYPE?this.variablePrefix_:"")+a};
@@ -3163,36 +3170,1080 @@ Blockly.Comment.prototype.createNonEditableBubble_=function(){this.paragraphElem
 Blockly.Comment.prototype.disposeBubble_=function(){this.onMouseUpWrapper_&&(Blockly.browserEvents.unbind(this.onMouseUpWrapper_),this.onMouseUpWrapper_=null);this.onWheelWrapper_&&(Blockly.browserEvents.unbind(this.onWheelWrapper_),this.onWheelWrapper_=null);this.onChangeWrapper_&&(Blockly.browserEvents.unbind(this.onChangeWrapper_),this.onChangeWrapper_=null);this.onInputWrapper_&&(Blockly.browserEvents.unbind(this.onInputWrapper_),this.onInputWrapper_=null);this.bubble_.dispose();this.paragraphElement_=
 this.foreignObject_=this.textarea_=this.bubble_=null};Blockly.Comment.prototype.startEdit_=function(a){this.bubble_.promote()&&this.textarea_.focus();this.cachedText_=this.model_.text};Blockly.Comment.prototype.getBubbleSize=function(){return this.model_.size};Blockly.Comment.prototype.setBubbleSize=function(a,b){this.bubble_?this.bubble_.setBubbleSize(a,b):(this.model_.size.width=a,this.model_.size.height=b)};
 Blockly.Comment.prototype.updateText=function(){this.textarea_?this.textarea_.value=this.model_.text:this.paragraphElement_&&(this.paragraphElement_.firstChild.textContent=this.model_.text)};Blockly.Comment.prototype.dispose=function(){this.block_.comment=null;Blockly.Icon.prototype.dispose.call(this)};Blockly.Css.register(".blocklyCommentTextarea {,background-color: #fef49c;,border: 0;,outline: 0;,margin: 0;,padding: 3px;,resize: none;,display: block;,text-overflow: hidden;,}".split(","));Blockly.IComponent=function(){};Blockly.IDragTarget=function(){};Blockly.DragTarget=function(){};Blockly.DragTarget.prototype.onDragEnter=function(a){};Blockly.DragTarget.prototype.onDragOver=function(a){};Blockly.DragTarget.prototype.onDragExit=function(a){};Blockly.DragTarget.prototype.onDrop=function(a){};Blockly.DragTarget.prototype.shouldPreventMove=function(a){return!1};Blockly.IDeleteArea=function(){};Blockly.DeleteArea=function(){Blockly.DeleteArea.superClass_.constructor.call(this);this.wouldDelete_=!1};Blockly.utils.object.inherits(Blockly.DeleteArea,Blockly.DragTarget);Blockly.DeleteArea.prototype.wouldDelete=function(a,b){a instanceof Blockly.BlockSvg?(a=!a.getParent()&&a.isDeletable(),this.updateWouldDelete_(a&&!b)):this.updateWouldDelete_(a.isDeletable());return this.wouldDelete_};Blockly.DeleteArea.prototype.updateWouldDelete_=function(a){this.wouldDelete_=a};Blockly.IFlyout=function(){};
-Blockly.Flyout=function(a){Blockly.Flyout.superClass_.constructor.call(this);a.setMetrics=this.setMetrics_.bind(this);this.workspace_=new Blockly.WorkspaceSvg(a);this.workspace_.setMetricsManager(new Blockly.FlyoutMetricsManager(this.workspace_,this));this.workspace_.isFlyout=!0;this.workspace_.setVisible(this.isVisible_);this.id=Blockly.utils.genUid();this.RTL=!!a.RTL;this.horizontalLayout=!1;this.toolboxPosition_=a.toolboxPosition;this.eventWrappers_=[];this.mats_=[];this.buttons_=[];this.listeners_=
-[];this.permanentlyDisabled_=[];this.tabWidth_=this.workspace_.getRenderer().getConstants().TAB_WIDTH;this.targetWorkspace=null};Blockly.utils.object.inherits(Blockly.Flyout,Blockly.DeleteArea);Blockly.Flyout.prototype.autoClose=!0;Blockly.Flyout.prototype.isVisible_=!1;Blockly.Flyout.prototype.containerVisible_=!0;Blockly.Flyout.prototype.CORNER_RADIUS=8;Blockly.Flyout.prototype.MARGIN=Blockly.Flyout.prototype.CORNER_RADIUS;Blockly.Flyout.prototype.GAP_X=3*Blockly.Flyout.prototype.MARGIN;
-Blockly.Flyout.prototype.GAP_Y=3*Blockly.Flyout.prototype.MARGIN;Blockly.Flyout.prototype.SCROLLBAR_MARGIN=2.5;Blockly.Flyout.prototype.width_=0;Blockly.Flyout.prototype.height_=0;Blockly.Flyout.prototype.dragAngleRange_=70;
-Blockly.Flyout.prototype.createDom=function(a){this.svgGroup_=Blockly.utils.dom.createSvgElement(a,{"class":"blocklyFlyout",style:"display: none"},null);this.svgBackground_=Blockly.utils.dom.createSvgElement(Blockly.utils.Svg.PATH,{"class":"blocklyFlyoutBackground"},this.svgGroup_);this.svgGroup_.appendChild(this.workspace_.createDom());this.workspace_.getThemeManager().subscribe(this.svgBackground_,"flyoutBackgroundColour","fill");this.workspace_.getThemeManager().subscribe(this.svgBackground_,"flyoutOpacity",
-"fill-opacity");return this.svgGroup_};
-Blockly.Flyout.prototype.init=function(a){this.targetWorkspace=a;this.workspace_.targetWorkspace=a;this.workspace_.scrollbar=new Blockly.ScrollbarPair(this.workspace_,this.horizontalLayout,!this.horizontalLayout,"blocklyFlyoutScrollbar",this.SCROLLBAR_MARGIN);this.hide();Array.prototype.push.apply(this.eventWrappers_,Blockly.browserEvents.conditionalBind(this.svgGroup_,"wheel",this,this.wheel_));this.autoClose||(this.filterWrapper_=this.filterForCapacity_.bind(this),this.targetWorkspace.addChangeListener(this.filterWrapper_));
-Array.prototype.push.apply(this.eventWrappers_,Blockly.browserEvents.conditionalBind(this.svgBackground_,"mousedown",this,this.onMouseDown_));this.workspace_.getGesture=this.targetWorkspace.getGesture.bind(this.targetWorkspace);this.workspace_.setVariableMap(this.targetWorkspace.getVariableMap());this.workspace_.createPotentialVariableMap();a.getComponentManager().addComponent({component:this,weight:1,capabilities:[Blockly.ComponentManager.Capability.DELETE_AREA,Blockly.ComponentManager.Capability.DRAG_TARGET]})};
-Blockly.Flyout.prototype.dispose=function(){this.hide();this.workspace_.getComponentManager().removeComponent(this.id);Blockly.browserEvents.unbind(this.eventWrappers_);this.filterWrapper_&&(this.targetWorkspace.removeChangeListener(this.filterWrapper_),this.filterWrapper_=null);this.workspace_&&(this.workspace_.getThemeManager().unsubscribe(this.svgBackground_),this.workspace_.targetWorkspace=null,this.workspace_.dispose(),this.workspace_=null);this.svgGroup_&&(Blockly.utils.dom.removeNode(this.svgGroup_),
-this.svgGroup_=null);this.targetWorkspace=this.svgBackground_=null};Blockly.Flyout.prototype.getWidth=function(){return this.width_};Blockly.Flyout.prototype.getHeight=function(){return this.height_};Blockly.Flyout.prototype.getFlyoutScale=function(){return this.targetWorkspace.scale};Blockly.Flyout.prototype.getWorkspace=function(){return this.workspace_};Blockly.Flyout.prototype.isVisible=function(){return this.isVisible_};
-Blockly.Flyout.prototype.setVisible=function(a){var b=a!=this.isVisible();this.isVisible_=a;b&&(this.autoClose||this.workspace_.recordDragTargets(),this.updateDisplay_())};Blockly.Flyout.prototype.setContainerVisible=function(a){var b=a!=this.containerVisible_;this.containerVisible_=a;b&&this.updateDisplay_()};Blockly.Flyout.prototype.updateDisplay_=function(){var a=this.containerVisible_?this.isVisible():!1;this.svgGroup_.style.display=a?"block":"none";this.workspace_.scrollbar.setContainerVisible(a)};
-Blockly.Flyout.prototype.positionAt_=function(a,b,c,d){this.svgGroup_.setAttribute("width",a);this.svgGroup_.setAttribute("height",b);this.workspace_.setCachedParentSvgSize(a,b);"svg"==this.svgGroup_.tagName?Blockly.utils.dom.setCssTransform(this.svgGroup_,"translate("+c+"px,"+d+"px)"):this.svgGroup_.setAttribute("transform","translate("+c+","+d+")");if(a=this.workspace_.scrollbar)a.setOrigin(c,d),a.resize(),a.hScroll&&a.hScroll.setPosition(a.hScroll.position.x,a.hScroll.position.y),a.vScroll&&a.vScroll.setPosition(a.vScroll.position.x,
-a.vScroll.position.y)};Blockly.Flyout.prototype.hide=function(){if(this.isVisible()){this.setVisible(!1);for(var a=0,b;b=this.listeners_[a];a++)Blockly.browserEvents.unbind(b);this.listeners_.length=0;this.reflowWrapper_&&(this.workspace_.removeChangeListener(this.reflowWrapper_),this.reflowWrapper_=null)}};
-Blockly.Flyout.prototype.show=function(a){this.workspace_.setResizesEnabled(!1);this.hide();this.clearOldBlocks_();"string"==typeof a&&(a=this.getDynamicCategoryContents_(a));this.setVisible(!0);a=Blockly.utils.toolbox.convertFlyoutDefToJsonArray(a);a=this.createFlyoutInfo_(a);this.layout_(a.contents,a.gaps);this.listeners_.push(Blockly.browserEvents.conditionalBind(this.svgBackground_,"mouseover",this,function(){for(var b=this.workspace_.getTopBlocks(!1),c=0,d;d=b[c];c++)d.removeSelect()}));this.horizontalLayout?
-this.height_=0:this.width_=0;this.workspace_.setResizesEnabled(!0);this.reflow();this.filterForCapacity_();this.position();this.reflowWrapper_=this.reflow.bind(this);this.workspace_.addChangeListener(this.reflowWrapper_)};
-Blockly.Flyout.prototype.createFlyoutInfo_=function(a){var b=[],c=[];this.permanentlyDisabled_.length=0;for(var d=this.horizontalLayout?this.GAP_X:this.GAP_Y,e=0,f;f=a[e];e++)switch(f.custom&&(f=this.getDynamicCategoryContents_(f.custom),f=Blockly.utils.toolbox.convertFlyoutDefToJsonArray(f),a.splice.apply(a,[e,1].concat(f)),f=a[e]),f.kind.toUpperCase()){case "BLOCK":var g=f,h=this.getBlockXml_(g);f=this.createBlock_(h);g=parseInt(g.gap||h.getAttribute("gap"),10);c.push(isNaN(g)?d:g);b.push({type:"block",
-block:f});break;case "SEP":this.addSeparatorGap_(f,c,d);break;case "LABEL":f=this.createButton_(f,!0);b.push({type:"button",button:f});c.push(d);break;case "BUTTON":f=this.createButton_(f,!1),b.push({type:"button",button:f}),c.push(d)}return{contents:b,gaps:c}};
-Blockly.Flyout.prototype.getDynamicCategoryContents_=function(a){a=this.workspace_.targetWorkspace.getToolboxCategoryCallback(a);if("function"!=typeof a)throw TypeError("Couldn't find a callback function when opening a toolbox category.");a=a(this.workspace_.targetWorkspace);if(!Array.isArray(a))throw new TypeError("Result of toolbox category callback must be an array.");return a};
-Blockly.Flyout.prototype.createButton_=function(a,b){if(!Blockly.FlyoutButton)throw Error("Missing require for Blockly.FlyoutButton");return new Blockly.FlyoutButton(this.workspace_,this.targetWorkspace,a,b)};Blockly.Flyout.prototype.createBlock_=function(a){a=Blockly.Xml.domToBlock(a,this.workspace_);a.isEnabled()||this.permanentlyDisabled_.push(a);return a};
-Blockly.Flyout.prototype.getBlockXml_=function(a){var b=null,c=a.blockxml;c&&"string"!=typeof c?b=c:c&&"string"==typeof c?(b=Blockly.Xml.textToDom(c),a.blockxml=b):a.type&&(b=Blockly.utils.xml.createElement("xml"),b.setAttribute("type",a.type),b.setAttribute("disabled",a.disabled),a.blockxml=b);if(!b)throw Error("Error: Invalid block definition. Block definition must have blockxml or type.");return b};
-Blockly.Flyout.prototype.addSeparatorGap_=function(a,b,c){a=parseInt(a.gap,10);!isNaN(a)&&0<b.length?b[b.length-1]=a:b.push(c)};Blockly.Flyout.prototype.clearOldBlocks_=function(){for(var a=this.workspace_.getTopBlocks(!1),b=0,c;c=a[b];b++)c.workspace==this.workspace_&&c.dispose(!1,!1);for(b=0;b<this.mats_.length;b++)if(a=this.mats_[b])Blockly.Tooltip.unbindMouseEvents(a),Blockly.utils.dom.removeNode(a);for(b=this.mats_.length=0;a=this.buttons_[b];b++)a.dispose();this.buttons_.length=0;this.workspace_.getPotentialVariableMap().clear()};
-Blockly.Flyout.prototype.addBlockListeners_=function(a,b,c){this.listeners_.push(Blockly.browserEvents.conditionalBind(a,"mousedown",null,this.blockMouseDown_(b)));this.listeners_.push(Blockly.browserEvents.conditionalBind(c,"mousedown",null,this.blockMouseDown_(b)));this.listeners_.push(Blockly.browserEvents.bind(a,"mouseenter",b,b.addSelect));this.listeners_.push(Blockly.browserEvents.bind(a,"mouseleave",b,b.removeSelect));this.listeners_.push(Blockly.browserEvents.bind(c,"mouseenter",b,b.addSelect));
-this.listeners_.push(Blockly.browserEvents.bind(c,"mouseleave",b,b.removeSelect))};Blockly.Flyout.prototype.blockMouseDown_=function(a){var b=this;return function(c){var d=b.targetWorkspace.getGesture(c);d&&(d.setStartBlock(a),d.handleFlyoutStart(c,b))}};Blockly.Flyout.prototype.onMouseDown_=function(a){var b=this.targetWorkspace.getGesture(a);b&&b.handleFlyoutStart(a,this)};Blockly.Flyout.prototype.isBlockCreatable_=function(a){return a.isEnabled()};
-Blockly.Flyout.prototype.createBlock=function(a){var b=null;Blockly.Events.disable();var c=this.targetWorkspace.getAllVariables();this.targetWorkspace.setResizesEnabled(!1);try{b=this.placeNewBlock_(a)}finally{Blockly.Events.enable()}Blockly.hideChaff();a=Blockly.Variables.getAddedVariables(this.targetWorkspace,c);if(Blockly.Events.isEnabled()){Blockly.Events.setGroup(!0);for(c=0;c<a.length;c++){var d=a[c];Blockly.Events.fire(new (Blockly.Events.get(Blockly.Events.VAR_CREATE))(d))}Blockly.Events.fire(new (Blockly.Events.get(Blockly.Events.BLOCK_CREATE))(b))}this.autoClose?
-this.hide():this.filterForCapacity_();return b};Blockly.Flyout.prototype.initFlyoutButton_=function(a,b,c){var d=a.createDom();a.moveTo(b,c);a.show();this.listeners_.push(Blockly.browserEvents.conditionalBind(d,"mousedown",this,this.onMouseDown_));this.buttons_.push(a)};
-Blockly.Flyout.prototype.createRect_=function(a,b,c,d,e){b=Blockly.utils.dom.createSvgElement(Blockly.utils.Svg.RECT,{"fill-opacity":0,x:b,y:c,height:d.height,width:d.width},null);b.tooltip=a;Blockly.Tooltip.bindMouseEvents(b);this.workspace_.getCanvas().insertBefore(b,a.getSvgRoot());a.flyoutRect_=b;return this.mats_[e]=b};
-Blockly.Flyout.prototype.moveRectToBlock_=function(a,b){var c=b.getHeightWidth();a.setAttribute("width",c.width);a.setAttribute("height",c.height);b=b.getRelativeToSurfaceXY();a.setAttribute("y",b.y);a.setAttribute("x",this.RTL?b.x-c.width:b.x)};
-Blockly.Flyout.prototype.filterForCapacity_=function(){for(var a=this.workspace_.getTopBlocks(!1),b=0,c;c=a[b];b++)if(-1==this.permanentlyDisabled_.indexOf(c))for(var d=this.targetWorkspace.isCapacityAvailable(Blockly.utils.getBlockTypeCounts(c));c;)c.setEnabled(d),c=c.getNextBlock()};Blockly.Flyout.prototype.reflow=function(){this.reflowWrapper_&&this.workspace_.removeChangeListener(this.reflowWrapper_);this.reflowInternal_();this.reflowWrapper_&&this.workspace_.addChangeListener(this.reflowWrapper_)};
-Blockly.Flyout.prototype.isScrollable=function(){return this.workspace_.scrollbar?this.workspace_.scrollbar.isVisible():!1};
-Blockly.Flyout.prototype.placeNewBlock_=function(a){var b=this.targetWorkspace;if(!a.getSvgRoot())throw Error("oldBlock is not rendered.");var c=Blockly.Xml.blockToDom(a,!0);b.setResizesEnabled(!1);c=Blockly.Xml.domToBlock(c,b);if(!c.getSvgRoot())throw Error("block is not rendered.");var d=b.getOriginOffsetInPixels(),e=this.workspace_.getOriginOffsetInPixels();a=a.getRelativeToSurfaceXY();a.scale(this.workspace_.scale);a=Blockly.utils.Coordinate.sum(e,a);d=Blockly.utils.Coordinate.difference(a,d);
-d.scale(1/b.scale);c.moveBy(d.x,d.y);return c};Blockly.HorizontalFlyout=function(a){Blockly.HorizontalFlyout.superClass_.constructor.call(this,a);this.horizontalLayout=!0};Blockly.utils.object.inherits(Blockly.HorizontalFlyout,Blockly.Flyout);
+
+
+
+
+/**
+ * Class for a flyout.
+ * @param {!Blockly.Options} workspaceOptions Dictionary of options for the
+ *     workspace.
+ * @constructor
+ * @abstract
+ * @implements {Blockly.IFlyout}
+ * @extends {Blockly.DeleteArea}
+ */
+Blockly.Flyout = function(workspaceOptions) {
+  Blockly.Flyout.superClass_.constructor.call(this);
+  workspaceOptions.setMetrics = this.setMetrics_.bind(this);
+
+  /**
+   * @type {!Blockly.WorkspaceSvg}
+   * @protected
+   */
+  this.workspace_ = new Blockly.WorkspaceSvg(workspaceOptions);
+  this.workspace_.setMetricsManager(
+      new Blockly.FlyoutMetricsManager(this.workspace_, this));
+
+  this.workspace_.isFlyout = true;
+  // Keep the workspace visibility consistent with the flyout's visibility.
+  this.workspace_.setVisible(this.isVisible_);
+
+  /**
+   * The unique id for this component that is used to register with the
+   * ComponentManager.
+   * @type {string}
+   */
+  this.id = Blockly.utils.genUid();
+
+  /**
+   * Is RTL vs LTR.
+   * @type {boolean}
+   */
+  this.RTL = !!workspaceOptions.RTL;
+
+  /**
+   * Whether the flyout should be laid out horizontally or not.
+   * @type {boolean}
+   * @package
+   */
+  this.horizontalLayout = false;
+
+  /**
+   * Position of the toolbox and flyout relative to the workspace.
+   * @type {number}
+   * @protected
+   */
+  this.toolboxPosition_ = workspaceOptions.toolboxPosition;
+
+  /**
+   * Opaque data that can be passed to Blockly.unbindEvent_.
+   * @type {!Array<!Array>}
+   * @private
+   */
+  this.eventWrappers_ = [];
+
+  /**
+   * List of background mats that lurk behind each block to catch clicks
+   * landing in the blocks' lakes and bays.
+   * @type {!Array<!SVGElement>}
+   * @private
+   */
+  this.mats_ = [];
+
+  /**
+   * List of visible buttons.
+   * @type {!Array<!Blockly.FlyoutButton>}
+   * @protected
+   */
+  this.buttons_ = [];
+
+  /**
+   * List of event listeners.
+   * @type {!Array<!Array>}
+   * @private
+   */
+  this.listeners_ = [];
+
+  /**
+   * List of blocks that should always be disabled.
+   * @type {!Array<!Blockly.Block>}
+   * @private
+   */
+  this.permanentlyDisabled_ = [];
+
+  /**
+   * Width of output tab.
+   * @type {number}
+   * @protected
+   * @const
+   */
+  this.tabWidth_ = this.workspace_.getRenderer().getConstants().TAB_WIDTH;
+
+  /**
+   * The target workspace
+   * @type {?Blockly.WorkspaceSvg}
+   * @package
+   */
+  this.targetWorkspace = null;
+};
+Blockly.utils.object.inherits(Blockly.Flyout, Blockly.DeleteArea);
+
+/**
+ * Does the flyout automatically close when a block is created?
+ * @type {boolean}
+ */
+Blockly.Flyout.prototype.autoClose = true;
+
+/**
+ * Whether the flyout is visible.
+ * @type {boolean}
+ * @private
+ */
+Blockly.Flyout.prototype.isVisible_ = false;
+
+/**
+ * Whether the workspace containing this flyout is visible.
+ * @type {boolean}
+ * @private
+ */
+Blockly.Flyout.prototype.containerVisible_ = true;
+
+/**
+ * Corner radius of the flyout background.
+ * @type {number}
+ * @const
+ */
+Blockly.Flyout.prototype.CORNER_RADIUS = 8;
+
+/**
+ * Margin around the edges of the blocks in the flyout.
+ * @type {number}
+ * @const
+ */
+Blockly.Flyout.prototype.MARGIN = Blockly.Flyout.prototype.CORNER_RADIUS;
+
+// TODO: Move GAP_X and GAP_Y to their appropriate files.
+
+/**
+ * Gap between items in horizontal flyouts. Can be overridden with the "sep"
+ * element.
+ * @const {number}
+ */
+Blockly.Flyout.prototype.GAP_X = Blockly.Flyout.prototype.MARGIN * 3;
+
+/**
+ * Gap between items in vertical flyouts. Can be overridden with the "sep"
+ * element.
+ * @const {number}
+ */
+Blockly.Flyout.prototype.GAP_Y = Blockly.Flyout.prototype.MARGIN * 3;
+
+/**
+ * Top/bottom padding between scrollbar and edge of flyout background.
+ * @type {number}
+ * @const
+ */
+Blockly.Flyout.prototype.SCROLLBAR_MARGIN = 2.5;
+
+/**
+ * Width of flyout.
+ * @type {number}
+ * @protected
+ */
+Blockly.Flyout.prototype.width_ = 0;
+
+/**
+ * Height of flyout.
+ * @type {number}
+ * @protected
+ */
+Blockly.Flyout.prototype.height_ = 0;
+
+/**
+ * Range of a drag angle from a flyout considered "dragging toward workspace".
+ * Drags that are within the bounds of this many degrees from the orthogonal
+ * line to the flyout edge are considered to be "drags toward the workspace".
+ * Example:
+ * Flyout                                                  Edge   Workspace
+ * [block] /  <-within this angle, drags "toward workspace" |
+ * [block] ---- orthogonal to flyout boundary ----          |
+ * [block] \                                                |
+ * The angle is given in degrees from the orthogonal.
+ *
+ * This is used to know when to create a new block and when to scroll the
+ * flyout. Setting it to 360 means that all drags create a new block.
+ * @type {number}
+ * @protected
+*/
+Blockly.Flyout.prototype.dragAngleRange_ = 70;
+
+/**
+ * Creates the flyout's DOM.  Only needs to be called once.  The flyout can
+ * either exist as its own SVG element or be a g element nested inside a
+ * separate SVG element.
+ * @param {string|
+ * !Blockly.utils.Svg<!SVGSVGElement>|
+ * !Blockly.utils.Svg<!SVGGElement>} tagName The type of tag to
+ *     put the flyout in. This should be <svg> or <g>.
+ * @return {!SVGElement} The flyout's SVG group.
+ */
+Blockly.Flyout.prototype.createDom = function(tagName) {
+  /*
+  <svg | g>
+    <path class="blocklyFlyoutBackground"/>
+    <g class="blocklyFlyout"></g>
+  </ svg | g>
+  */
+  // Setting style to display:none to start. The toolbox and flyout
+  // hide/show code will set up proper visibility and size later.
+  this.svgGroup_ = Blockly.utils.dom.createSvgElement(tagName,
+      {'class': 'blocklyFlyout', 'style': 'display: none'}, null);
+  this.svgBackground_ = Blockly.utils.dom.createSvgElement(
+      Blockly.utils.Svg.PATH,
+      {'class': 'blocklyFlyoutBackground'}, this.svgGroup_);
+  this.svgGroup_.appendChild(this.workspace_.createDom());
+  this.workspace_.getThemeManager().subscribe(
+      this.svgBackground_, 'flyoutBackgroundColour', 'fill');
+  this.workspace_.getThemeManager().subscribe(
+      this.svgBackground_, 'flyoutOpacity', 'fill-opacity');
+  return this.svgGroup_;
+};
+
+/**
+ * Initializes the flyout.
+ * @param {!Blockly.WorkspaceSvg} targetWorkspace The workspace in which to
+ *     create new blocks.
+ */
+Blockly.Flyout.prototype.init = function(targetWorkspace) {
+  this.targetWorkspace = targetWorkspace;
+  this.workspace_.targetWorkspace = targetWorkspace;
+
+  this.workspace_.scrollbar = new Blockly.ScrollbarPair(
+      this.workspace_, this.horizontalLayout, !this.horizontalLayout,
+      'blocklyFlyoutScrollbar', this.SCROLLBAR_MARGIN);
+
+  this.hide();
+
+  Array.prototype.push.apply(
+      this.eventWrappers_,
+      Blockly.browserEvents.conditionalBind(
+          this.svgGroup_, 'wheel', this, this.wheel_));
+  if (!this.autoClose) {
+    this.filterWrapper_ = this.filterForCapacity_.bind(this);
+    this.targetWorkspace.addChangeListener(this.filterWrapper_);
+  }
+
+  // Dragging the flyout up and down.
+  Array.prototype.push.apply(
+      this.eventWrappers_,
+      Blockly.browserEvents.conditionalBind(
+          this.svgBackground_, 'mousedown', this, this.onMouseDown_));
+
+  // A flyout connected to a workspace doesn't have its own current gesture.
+  this.workspace_.getGesture =
+      this.targetWorkspace.getGesture.bind(this.targetWorkspace);
+
+  // Get variables from the main workspace rather than the target workspace.
+  this.workspace_.setVariableMap(this.targetWorkspace.getVariableMap());
+
+  this.workspace_.createPotentialVariableMap();
+
+  targetWorkspace.getComponentManager().addComponent({
+    component: this,
+    weight: 1,
+    capabilities: [
+      Blockly.ComponentManager.Capability.DELETE_AREA,
+      Blockly.ComponentManager.Capability.DRAG_TARGET
+    ]
+  });
+};
+
+/**
+ * Dispose of this flyout.
+ * Unlink from all DOM elements to prevent memory leaks.
+ * @suppress {checkTypes}
+ */
+Blockly.Flyout.prototype.dispose = function() {
+  this.hide();
+  this.workspace_.getComponentManager().removeComponent(this.id);
+  Blockly.browserEvents.unbind(this.eventWrappers_);
+  if (this.filterWrapper_) {
+    this.targetWorkspace.removeChangeListener(this.filterWrapper_);
+    this.filterWrapper_ = null;
+  }
+  if (this.workspace_) {
+    this.workspace_.getThemeManager().unsubscribe(this.svgBackground_);
+    this.workspace_.targetWorkspace = null;
+    this.workspace_.dispose();
+    this.workspace_ = null;
+  }
+  if (this.svgGroup_) {
+    Blockly.utils.dom.removeNode(this.svgGroup_);
+    this.svgGroup_ = null;
+  }
+  this.svgBackground_ = null;
+  this.targetWorkspace = null;
+};
+
+/**
+ * Get the width of the flyout.
+ * @return {number} The width of the flyout.
+ */
+Blockly.Flyout.prototype.getWidth = function() {
+  return this.width_;
+};
+
+/**
+ * Get the height of the flyout.
+ * @return {number} The width of the flyout.
+ */
+Blockly.Flyout.prototype.getHeight = function() {
+  return this.height_;
+};
+
+/**
+ * Get the scale (zoom level) of the flyout. By default,
+ * this matches the target workspace scale, but this can be overridden.
+ * @return {number} Flyout workspace scale.
+ */
+Blockly.Flyout.prototype.getFlyoutScale = function() {
+  return this.targetWorkspace.scale;
+};
+
+/**
+ * Get the workspace inside the flyout.
+ * @return {!Blockly.WorkspaceSvg} The workspace inside the flyout.
+ * @package
+ */
+Blockly.Flyout.prototype.getWorkspace = function() {
+  return this.workspace_;
+};
+
+/**
+ * Is the flyout visible?
+ * @return {boolean} True if visible.
+ */
+Blockly.Flyout.prototype.isVisible = function() {
+  return this.isVisible_;
+};
+
+/**
+ * Set whether the flyout is visible. A value of true does not necessarily mean
+ * that the flyout is shown. It could be hidden because its container is hidden.
+ * @param {boolean} visible True if visible.
+ */
+Blockly.Flyout.prototype.setVisible = function(visible) {
+  var visibilityChanged = (visible != this.isVisible());
+
+  this.isVisible_ = visible;
+  if (visibilityChanged) {
+    if (!this.autoClose) {
+      // Auto-close flyouts are ignored as drag targets, so only non auto-close
+      // flyouts need to have their drag target updated.
+      this.workspace_.recordDragTargets();
+    }
+    this.updateDisplay_();
+  }
+};
+
+/**
+ * Set whether this flyout's container is visible.
+ * @param {boolean} visible Whether the container is visible.
+ */
+Blockly.Flyout.prototype.setContainerVisible = function(visible) {
+  var visibilityChanged = (visible != this.containerVisible_);
+  this.containerVisible_ = visible;
+  if (visibilityChanged) {
+    this.updateDisplay_();
+  }
+};
+
+/**
+ * Update the display property of the flyout based whether it thinks it should
+ * be visible and whether its containing workspace is visible.
+ * @private
+ */
+Blockly.Flyout.prototype.updateDisplay_ = function() {
+  var show = true;
+  if (!this.containerVisible_) {
+    show = false;
+  } else {
+    show = this.isVisible();
+  }
+  this.svgGroup_.style.display = show ? 'block' : 'none';
+  // Update the scrollbar's visibility too since it should mimic the
+  // flyout's visibility.
+  if(this.workspace_.scrollbar){
+    this.workspace_.scrollbar.setContainerVisible(show);
+  }
+};
+
+/**
+ * Update the view based on coordinates calculated in position().
+ * @param {number} width The computed width of the flyout's SVG group
+ * @param {number} height The computed height of the flyout's SVG group.
+ * @param {number} x The computed x origin of the flyout's SVG group.
+ * @param {number} y The computed y origin of the flyout's SVG group.
+ * @protected
+ */
+Blockly.Flyout.prototype.positionAt_ = function(width, height, x, y) {
+  this.svgGroup_.setAttribute("width", width);
+  this.svgGroup_.setAttribute("height", height);
+  this.workspace_.setCachedParentSvgSize(width, height);
+
+  if (this.svgGroup_.tagName == 'svg') {
+    var transform = 'translate(' + x + 'px,' + y + 'px)';
+    Blockly.utils.dom.setCssTransform(this.svgGroup_, transform);
+  } else {
+    // IE and Edge don't support CSS transforms on SVG elements so
+    // it's important to set the transform on the SVG element itself
+    var transform = 'translate(' + x + ',' + y + ')';
+    this.svgGroup_.setAttribute("transform", transform);
+  }
+
+  // Update the scrollbar (if one exists).
+  var scrollbar = this.workspace_.scrollbar;
+  if (scrollbar) {
+    // Set the scrollbars origin to be the top left of the flyout.
+    scrollbar.setOrigin(x, y);
+    scrollbar.resize();
+    // If origin changed and metrics haven't changed enough to trigger
+    // reposition in resize, we need to call setPosition. See issue #4692.
+    if (scrollbar.hScroll) {
+      scrollbar.hScroll.setPosition(
+          scrollbar.hScroll.position.x, scrollbar.hScroll.position.y);
+    }
+    if (scrollbar.vScroll) {
+      scrollbar.vScroll.setPosition(
+          scrollbar.vScroll.position.x, scrollbar.vScroll.position.y);
+
+    }
+  }
+};
+
+/**
+ * Hide and empty the flyout.
+ */
+Blockly.Flyout.prototype.hide = function() {
+  if (!this.isVisible()) {
+    return;
+  }
+  this.setVisible(false);
+  // Delete all the event listeners.
+  for (var i = 0, listen; (listen = this.listeners_[i]); i++) {
+    Blockly.browserEvents.unbind(listen);
+  }
+  this.listeners_.length = 0;
+  if (this.reflowWrapper_) {
+    this.workspace_.removeChangeListener(this.reflowWrapper_);
+    this.reflowWrapper_ = null;
+  }
+  // Do NOT delete the blocks here.  Wait until Flyout.show.
+  // https://neil.fraser.name/news/2014/08/09/
+};
+
+/**
+ * Show and populate the flyout.
+ * @param {!Blockly.utils.toolbox.FlyoutDefinition|string} flyoutDef Contents to display
+ *     in the flyout. This is either an array of Nodes, a NodeList, a
+ *     toolbox definition, or a string with the name of the dynamic category.
+ */
+Blockly.Flyout.prototype.show = function(flyoutDef) {
+  this.workspace_.setResizesEnabled(false);
+  this.hide();
+  this.clearOldBlocks_();
+
+  // Handle dynamic categories, represented by a name instead of a list.
+  if (typeof flyoutDef == 'string') {
+    flyoutDef = this.getDynamicCategoryContents_(flyoutDef);
+  }
+  this.setVisible(true);
+
+  // Parse the Array, Node or NodeList into a a list of flyout items.
+  var parsedContent = Blockly.utils.toolbox.convertFlyoutDefToJsonArray(flyoutDef);
+  var flyoutInfo =
+    /** @type {{contents:!Array<!Object>, gaps:!Array<number>}} */ (
+      this.createFlyoutInfo_(parsedContent));
+
+  this.layout_(flyoutInfo.contents, flyoutInfo.gaps);
+
+  // IE 11 is an incompetent browser that fails to fire mouseout events.
+  // When the mouse is over the background, deselect all blocks.
+  var deselectAll = function() {
+    var topBlocks = this.workspace_.getTopBlocks(false);
+    for (var i = 0, block; (block = topBlocks[i]); i++) {
+      block.removeSelect();
+    }
+  };
+
+  this.listeners_.push(Blockly.browserEvents.conditionalBind(
+      this.svgBackground_, 'mouseover', this, deselectAll));
+
+  if (this.horizontalLayout) {
+    this.height_ = 0;
+  } else {
+    this.width_ = 0;
+  }
+  this.workspace_.setResizesEnabled(true);
+  this.reflow();
+
+  this.filterForCapacity_();
+
+  // Correctly position the flyout's scrollbar when it opens.
+  this.position();
+
+  this.reflowWrapper_ = this.reflow.bind(this);
+  this.workspace_.addChangeListener(this.reflowWrapper_);
+};
+
+/**
+ * Create the contents array and gaps array necessary to create the layout for
+ * the flyout.
+ * @param {!Blockly.utils.toolbox.FlyoutItemInfoArray} parsedContent The array
+ *     of objects to show in the flyout.
+ * @return {{contents:Array<Object>, gaps:Array<number>}} The list of contents
+ *     and gaps needed to lay out the flyout.
+ * @private
+ */
+Blockly.Flyout.prototype.createFlyoutInfo_ = function(parsedContent) {
+  var contents = [];
+  var gaps = [];
+  this.permanentlyDisabled_.length = 0;
+  var defaultGap = this.horizontalLayout ? this.GAP_X : this.GAP_Y;
+  for (var i = 0, contentInfo; (contentInfo = parsedContent[i]); i++) {
+
+    if (contentInfo['custom']) {
+      var customInfo = /** @type {!Blockly.utils.toolbox.DynamicCategoryInfo} */ (contentInfo);
+      var categoryName = customInfo['custom'];
+      var flyoutDef = this.getDynamicCategoryContents_(categoryName);
+      var parsedDynamicContent = /** @type {!Blockly.utils.toolbox.FlyoutItemInfoArray} */
+        (Blockly.utils.toolbox.convertFlyoutDefToJsonArray(flyoutDef));
+      parsedContent.splice.apply(parsedContent, [i, 1].concat(parsedDynamicContent));
+      contentInfo = parsedContent[i];
+    }
+
+    switch (contentInfo['kind'].toUpperCase()) {
+      case 'BLOCK':
+        var blockInfo = /** @type {!Blockly.utils.toolbox.BlockInfo} */ (contentInfo);
+        var blockXml = this.getBlockXml_(blockInfo);
+        var block = this.createBlock_(blockXml);
+        // This is a deprecated method for adding gap to a block.
+        // <block type="math_arithmetic" gap="8"></block>
+        var gap = parseInt(blockInfo['gap'] || blockXml.getAttribute('gap'), 10);
+        gaps.push(isNaN(gap) ? defaultGap : gap);
+        contents.push({type: 'block', block: block});
+        break;
+      case 'SEP':
+        var sepInfo = /** @type {!Blockly.utils.toolbox.SeparatorInfo} */ (contentInfo);
+        this.addSeparatorGap_(sepInfo, gaps, defaultGap);
+        break;
+      case 'LABEL':
+        var labelInfo = /** @type {!Blockly.utils.toolbox.LabelInfo} */ (contentInfo);
+        // A label is a button with different styling.
+        var label = this.createButton_(labelInfo, /** isLabel */ true);
+        contents.push({type: 'button', button: label});
+        gaps.push(defaultGap);
+        break;
+      case 'BUTTON':
+        var buttonInfo = /** @type {!Blockly.utils.toolbox.ButtonInfo} */ (contentInfo);
+        var button = this.createButton_(buttonInfo, /** isLabel */ false);
+        contents.push({type: 'button', button: button});
+        gaps.push(defaultGap);
+        break;
+    }
+  }
+  return {contents: contents, gaps: gaps};
+};
+
+/**
+ * Gets the flyout definition for the dynamic category.
+ * @param {string} categoryName The name of the dynamic category.
+ * @return {!Array<!Element>} The array of flyout items.
+ * @private
+ */
+Blockly.Flyout.prototype.getDynamicCategoryContents_ = function(categoryName) {
+  // Look up the correct category generation function and call that to get a
+  // valid XML list.
+  var fnToApply = this.workspace_.targetWorkspace.getToolboxCategoryCallback(
+      categoryName);
+  if (typeof fnToApply != 'function') {
+    throw TypeError('Couldn\'t find a callback function when opening' +
+        ' a toolbox category.');
+  }
+  var flyoutDef = fnToApply(this.workspace_.targetWorkspace);
+  if (!Array.isArray(flyoutDef)) {
+    throw new TypeError('Result of toolbox category callback must be an array.');
+  }
+  return flyoutDef;
+};
+
+/**
+ * Creates a flyout button or a flyout label.
+ * @param {!Blockly.utils.toolbox.ButtonOrLabelInfo} btnInfo
+ *    The object holding information about a button or a label.
+ * @param {boolean} isLabel True if the button is a label, false otherwise.
+ * @return {!Blockly.FlyoutButton} The object used to display the button in the
+ *    flyout.
+ * @private
+ */
+Blockly.Flyout.prototype.createButton_ = function(btnInfo, isLabel) {
+  if (!Blockly.FlyoutButton) {
+    throw Error('Missing require for Blockly.FlyoutButton');
+  }
+  var curButton = new Blockly.FlyoutButton(this.workspace_,
+      /** @type {!Blockly.WorkspaceSvg} */ (this.targetWorkspace), btnInfo,
+      isLabel);
+  return curButton;
+};
+
+/**
+ * Create a block from the xml and permanently disable any blocks that were
+ * defined as disabled.
+ * @param {!Element} blockXml The xml of the block.
+ * @return {!Blockly.BlockSvg} The block created from the blockXml.
+ * @protected
+ */
+Blockly.Flyout.prototype.createBlock_ = function(blockXml) {
+  var curBlock = /** @type {!Blockly.BlockSvg} */ (
+    Blockly.Xml.domToBlock(blockXml, this.workspace_));
+  if (!curBlock.isEnabled()) {
+    // Record blocks that were initially disabled.
+    // Do not enable these blocks as a result of capacity filtering.
+    this.permanentlyDisabled_.push(curBlock);
+  }
+  return curBlock;
+};
+
+/**
+ * Get the xml from the block info object.
+ * @param {!Blockly.utils.toolbox.BlockInfo}  blockInfo The object holding
+ *    information about a block.
+ * @return {!Element} The xml for the block.
+ * @throws {Error} if the xml is not a valid block definition.
+ * @private
+ */
+Blockly.Flyout.prototype.getBlockXml_ = function(blockInfo) {
+  var blockElement = null;
+  var blockXml = blockInfo['blockxml'];
+
+  if (blockXml && typeof blockXml != 'string') {
+    blockElement = blockXml;
+  } else if (blockXml && typeof blockXml == 'string') {
+    blockElement = Blockly.Xml.textToDom(blockXml);
+    blockInfo['blockxml'] = blockElement;
+  } else if (blockInfo['type']) {
+    blockElement = Blockly.utils.xml.createElement('xml');
+    blockElement.setAttribute('type', blockInfo['type']);
+    blockElement.setAttribute('disabled', blockInfo['disabled']);
+    blockInfo['blockxml'] = blockElement;
+  }
+
+  if (!blockElement) {
+    throw Error('Error: Invalid block definition. Block definition must have blockxml or type.');
+  }
+  return blockElement;
+};
+
+/**
+ * Add the necessary gap in the flyout for a separator.
+ * @param {!Blockly.utils.toolbox.SeparatorInfo} sepInfo The object holding
+ *    information about a separator.
+ * @param {!Array<number>} gaps The list gaps between items in the flyout.
+ * @param {number} defaultGap The default gap between the button and next element.
+ * @private
+ */
+Blockly.Flyout.prototype.addSeparatorGap_ = function(sepInfo, gaps, defaultGap) {
+  // Change the gap between two toolbox elements.
+  // <sep gap="36"></sep>
+  // The default gap is 24, can be set larger or smaller.
+  // This overwrites the gap attribute on the previous element.
+  var newGap = parseInt(sepInfo['gap'], 10);
+  // Ignore gaps before the first block.
+  if (!isNaN(newGap) && gaps.length > 0) {
+    gaps[gaps.length - 1] = newGap;
+  } else {
+    gaps.push(defaultGap);
+  }
+};
+
+/**
+ * Delete blocks, mats and buttons from a previous showing of the flyout.
+ * @protected
+ */
+Blockly.Flyout.prototype.clearOldBlocks_ = function() {
+  // Delete any blocks from a previous showing.
+  var oldBlocks = this.workspace_.getTopBlocks(false);
+  for (var i = 0, block; (block = oldBlocks[i]); i++) {
+    if (block.workspace == this.workspace_) {
+      block.dispose(false, false);
+    }
+  }
+  // Delete any mats from a previous showing.
+  for (var j = 0; j < this.mats_.length; j++) {
+    var rect = this.mats_[j];
+    if (rect) {
+      Blockly.Tooltip.unbindMouseEvents(rect);
+      Blockly.utils.dom.removeNode(rect);
+    }
+  }
+  this.mats_.length = 0;
+  // Delete any buttons from a previous showing.
+  for (var i = 0, button; (button = this.buttons_[i]); i++) {
+    button.dispose();
+  }
+  this.buttons_.length = 0;
+
+  // Clear potential variables from the previous showing.
+  if (this.workspace_.getPotentialVariableMap()){
+    this.workspace_.getPotentialVariableMap().clear();
+  }
+};
+
+/**
+ * Add listeners to a block that has been added to the flyout.
+ * @param {!SVGElement} root The root node of the SVG group the block is in.
+ * @param {!Blockly.BlockSvg} block The block to add listeners for.
+ * @param {!SVGElement} rect The invisible rectangle under the block that acts
+ *     as a mat for that block.
+ * @protected
+ */
+Blockly.Flyout.prototype.addBlockListeners_ = function(root, block, rect) {
+  this.listeners_.push(Blockly.browserEvents.conditionalBind(
+      root, 'mousedown', null, this.blockMouseDown_(block)));
+  this.listeners_.push(Blockly.browserEvents.conditionalBind(
+      rect, 'mousedown', null, this.blockMouseDown_(block)));
+  this.listeners_.push(
+      Blockly.browserEvents.bind(root, 'mouseenter', block, block.addSelect));
+  this.listeners_.push(Blockly.browserEvents.bind(
+      root, 'mouseleave', block, block.removeSelect));
+  this.listeners_.push(
+      Blockly.browserEvents.bind(rect, 'mouseenter', block, block.addSelect));
+  this.listeners_.push(Blockly.browserEvents.bind(
+      rect, 'mouseleave', block, block.removeSelect));
+};
+
+/**
+ * Handle a mouse-down on an SVG block in a non-closing flyout.
+ * @param {!Blockly.BlockSvg} block The flyout block to copy.
+ * @return {!Function} Function to call when block is clicked.
+ * @private
+ */
+Blockly.Flyout.prototype.blockMouseDown_ = function(block) {
+  var flyout = this;
+  return function(e) {
+    var gesture = flyout.targetWorkspace.getGesture(e);
+    if (gesture) {
+      gesture.setStartBlock(block);
+      gesture.handleFlyoutStart(e, flyout);
+    }
+  };
+};
+
+/**
+ * Mouse down on the flyout background.  Start a vertical scroll drag.
+ * @param {!Event} e Mouse down event.
+ * @private
+ */
+Blockly.Flyout.prototype.onMouseDown_ = function(e) {
+  var gesture = this.targetWorkspace.getGesture(e);
+  if (gesture) {
+    gesture.handleFlyoutStart(e, this);
+  }
+};
+
+/**
+ * Does this flyout allow you to create a new instance of the given block?
+ * Used for deciding if a block can be "dragged out of" the flyout.
+ * @param {!Blockly.BlockSvg} block The block to copy from the flyout.
+ * @return {boolean} True if you can create a new instance of the block, false
+ *    otherwise.
+ * @package
+ */
+Blockly.Flyout.prototype.isBlockCreatable_ = function(block) {
+  return block.isEnabled();
+};
+
+/**
+ * Create a copy of this block on the workspace.
+ * @param {!Blockly.BlockSvg} originalBlock The block to copy from the flyout.
+ * @return {!Blockly.BlockSvg} The newly created block.
+ * @throws {Error} if something went wrong with deserialization.
+ * @package
+ */
+Blockly.Flyout.prototype.createBlock = function(originalBlock) {
+  var newBlock = null;
+  Blockly.Events.disable();
+  var variablesBeforeCreation = this.targetWorkspace.getAllVariables();
+  this.targetWorkspace.setResizesEnabled(false);
+  try {
+    newBlock = this.placeNewBlock_(originalBlock);
+  } finally {
+    Blockly.Events.enable();
+  }
+
+  // Close the flyout.
+  Blockly.hideChaff();
+
+  var newVariables = Blockly.Variables.getAddedVariables(this.targetWorkspace,
+      variablesBeforeCreation);
+
+  if (Blockly.Events.isEnabled()) {
+    Blockly.Events.setGroup(true);
+    // Fire a VarCreate event for each (if any) new variable created.
+    for (var i = 0; i < newVariables.length; i++) {
+      var thisVariable = newVariables[i];
+      Blockly.Events.fire(
+          new (Blockly.Events.get(Blockly.Events.VAR_CREATE))(thisVariable));
+    }
+
+    // Block events come after var events, in case they refer to newly created
+    // variables.
+    Blockly.Events.fire(
+        new (Blockly.Events.get(Blockly.Events.BLOCK_CREATE))(newBlock));
+  }
+  if (this.autoClose) {
+    this.hide();
+  } else {
+    this.filterForCapacity_();
+  }
+  return newBlock;
+};
+
+/**
+ * Initialize the given button: move it to the correct location,
+ * add listeners, etc.
+ * @param {!Blockly.FlyoutButton} button The button to initialize and place.
+ * @param {number} x The x position of the cursor during this layout pass.
+ * @param {number} y The y position of the cursor during this layout pass.
+ * @protected
+ */
+Blockly.Flyout.prototype.initFlyoutButton_ = function(button, x, y) {
+  var buttonSvg = button.createDom();
+  button.moveTo(x, y);
+  button.show();
+  // Clicking on a flyout button or label is a lot like clicking on the
+  // flyout background.
+  this.listeners_.push(Blockly.browserEvents.conditionalBind(
+      buttonSvg, 'mousedown', this, this.onMouseDown_));
+
+  this.buttons_.push(button);
+};
+
+/**
+ * Create and place a rectangle corresponding to the given block.
+ * @param {!Blockly.BlockSvg} block The block to associate the rect to.
+ * @param {number} x The x position of the cursor during this layout pass.
+ * @param {number} y The y position of the cursor during this layout pass.
+ * @param {!{height: number, width: number}} blockHW The height and width of the
+ *     block.
+ * @param {number} index The index into the mats list where this rect should be
+ *     placed.
+ * @return {!SVGElement} Newly created SVG element for the rectangle behind the
+ *     block.
+ * @protected
+ */
+Blockly.Flyout.prototype.createRect_ = function(block, x, y, blockHW, index) {
+  // Create an invisible rectangle under the block to act as a button.  Just
+  // using the block as a button is poor, since blocks have holes in them.
+  var rect = Blockly.utils.dom.createSvgElement(
+      Blockly.utils.Svg.RECT,
+      {
+        'fill-opacity': 0,
+        'x': x,
+        'y': y,
+        'height': blockHW.height,
+        'width': blockHW.width
+      }, null);
+  rect.tooltip = block;
+  Blockly.Tooltip.bindMouseEvents(rect);
+  // Add the rectangles under the blocks, so that the blocks' tooltips work.
+  this.workspace_.getCanvas().insertBefore(rect, block.getSvgRoot());
+
+  block.flyoutRect_ = rect;
+  this.mats_[index] = rect;
+  return rect;
+};
+
+/**
+ * Move a rectangle to sit exactly behind a block, taking into account tabs,
+ * hats, and any other protrusions we invent.
+ * @param {!SVGElement} rect The rectangle to move directly behind the block.
+ * @param {!Blockly.BlockSvg} block The block the rectangle should be behind.
+ * @protected
+ */
+Blockly.Flyout.prototype.moveRectToBlock_ = function(rect, block) {
+  var blockHW = block.getHeightWidth();
+  rect.setAttribute('width', blockHW.width);
+  rect.setAttribute('height', blockHW.height);
+
+  var blockXY = block.getRelativeToSurfaceXY();
+  rect.setAttribute('y', blockXY.y);
+  rect.setAttribute('x', this.RTL ? blockXY.x - blockHW.width : blockXY.x);
+};
+
+/**
+ * Filter the blocks on the flyout to disable the ones that are above the
+ * capacity limit.  For instance, if the user may only place two more blocks on
+ * the workspace, an "a + b" block that has two shadow blocks would be disabled.
+ * @private
+ */
+Blockly.Flyout.prototype.filterForCapacity_ = function() {
+  var blocks = this.workspace_.getTopBlocks(false);
+  for (var i = 0, block; (block = blocks[i]); i++) {
+    if (this.permanentlyDisabled_.indexOf(block) == -1) {
+      var enable = this.targetWorkspace
+          .isCapacityAvailable(Blockly.utils.getBlockTypeCounts(block));
+      while (block) {
+        block.setEnabled(enable);
+        block = block.getNextBlock();
+      }
+    }
+  }
+};
+
+/**
+ * Reflow blocks and their mats.
+ */
+Blockly.Flyout.prototype.reflow = function() {
+  if (this.reflowWrapper_) {
+    this.workspace_.removeChangeListener(this.reflowWrapper_);
+  }
+  this.reflowInternal_();
+  if (this.reflowWrapper_) {
+    this.workspace_.addChangeListener(this.reflowWrapper_);
+  }
+};
+
+/**
+ * @return {boolean} True if this flyout may be scrolled with a scrollbar or by
+ *     dragging.
+ * @package
+ */
+Blockly.Flyout.prototype.isScrollable = function() {
+  return this.workspace_.scrollbar ?
+      this.workspace_.scrollbar.isVisible() : false;
+};
+
+/**
+ * Copy a block from the flyout to the workspace and position it correctly.
+ * @param {!Blockly.BlockSvg} oldBlock The flyout block to copy.
+ * @return {!Blockly.BlockSvg} The new block in the main workspace.
+ * @private
+ */
+Blockly.Flyout.prototype.placeNewBlock_ = function(oldBlock) {
+  var targetWorkspace = this.targetWorkspace;
+  var svgRootOld = oldBlock.getSvgRoot();
+  if (!svgRootOld) {
+    throw Error('oldBlock is not rendered.');
+  }
+
+  // Create the new block by cloning the block in the flyout (via XML).
+  // This cast assumes that the oldBlock can not be an insertion marker.
+  var xml = /** @type {!Element} */ (Blockly.Xml.blockToDom(oldBlock, true));
+  // The target workspace would normally resize during domToBlock, which will
+  // lead to weird jumps.  Save it for terminateDrag.
+  targetWorkspace.setResizesEnabled(false);
+
+  // Using domToBlock instead of domToWorkspace means that the new block will be
+  // placed at position (0, 0) in main workspace units.
+  var block = /** @type {!Blockly.BlockSvg} */
+      (Blockly.Xml.domToBlock(xml, targetWorkspace));
+  var svgRootNew = block.getSvgRoot();
+  if (!svgRootNew) {
+    throw Error('block is not rendered.');
+  }
+
+  // The offset in pixels between the main workspace's origin and the upper left
+  // corner of the injection div.
+  var mainOffsetPixels = targetWorkspace.getOriginOffsetInPixels();
+
+  // The offset in pixels between the flyout workspace's origin and the upper
+  // left corner of the injection div.
+  var flyoutOffsetPixels = this.workspace_.getOriginOffsetInPixels();
+
+  // The position of the old block in flyout workspace coordinates.
+  var oldBlockPos = oldBlock.getRelativeToSurfaceXY();
+  // The position of the old block in pixels relative to the flyout
+  // workspace's origin.
+  oldBlockPos.scale(this.workspace_.scale);
+
+  // The position of the old block in pixels relative to the upper left corner
+  // of the injection div.
+  var oldBlockOffsetPixels = Blockly.utils.Coordinate.sum(flyoutOffsetPixels,
+      oldBlockPos);
+
+  // The position of the old block in pixels relative to the origin of the
+  // main workspace.
+  var finalOffset = Blockly.utils.Coordinate.difference(oldBlockOffsetPixels,
+      mainOffsetPixels);
+  // The position of the old block in main workspace coordinates.
+  finalOffset.scale(1 / targetWorkspace.scale);
+
+  block.moveBy(finalOffset.x, finalOffset.y);
+  return block;
+};
+
+/**
+ * Returns the bounding rectangle of the drag target area in pixel units
+ * relative to viewport.
+ * @return {Blockly.utils.Rect} The component's bounding box.
+ */
+Blockly.Flyout.prototype.getClientRect;
+
+/**
+ * Position the flyout.
+ * @return {void}
+ */
+Blockly.Flyout.prototype.position;
+
+/**
+ * Determine if a drag delta is toward the workspace, based on the position
+ * and orientation of the flyout. This is used in determineDragIntention_ to
+ * determine if a new block should be created or if the flyout should scroll.
+ * @param {!Blockly.utils.Coordinate} currentDragDeltaXY How far the pointer has
+ *     moved from the position at mouse down, in pixel units.
+ * @return {boolean} True if the drag is toward the workspace.
+ * @package
+ */
+Blockly.Flyout.prototype.isDragTowardWorkspace;
+
+/**
+ * Sets the translation of the flyout to match the scrollbars.
+ * @param {!{x:number,y:number}} xyRatio Contains a y property which is a float
+ *     between 0 and 1 specifying the degree of scrolling and a
+ *     similar x property.
+ * @protected
+ */
+Blockly.Flyout.prototype.setMetrics_;
+
+/**
+ * Lay out the blocks in the flyout.
+ * @param {!Array<!Object>} contents The blocks and buttons to lay out.
+ * @param {!Array<number>} gaps The visible gaps between blocks.
+ * @protected
+ */
+Blockly.Flyout.prototype.layout_;
+
+/**
+ * Scroll the flyout.
+ * @param {!Event} e Mouse wheel scroll event.
+ * @protected
+ */
+Blockly.Flyout.prototype.wheel_;
+
+/**
+ * Compute height of flyout.  Position mat under each block.
+ * For RTL: Lay out the blocks right-aligned.
+ * @return {void}
+ * @protected
+ */
+Blockly.Flyout.prototype.reflowInternal_;
+
+/**
+ * Calculates the x coordinate for the flyout position.
+ * @return {number} X coordinate.
+ */
+Blockly.Flyout.prototype.getX;
+
+/**
+ * Calculates the y coordinate for the flyout position.
+ * @return {number} Y coordinate.
+ */
+Blockly.Flyout.prototype.getY;
+
+
+Blockly.HorizontalFlyout=function(a){Blockly.HorizontalFlyout.superClass_.constructor.call(this,a);this.horizontalLayout=!0};Blockly.utils.object.inherits(Blockly.HorizontalFlyout,Blockly.Flyout);
 Blockly.HorizontalFlyout.prototype.setMetrics_=function(a){if(this.isVisible()){var b=this.workspace_.getMetricsManager(),c=b.getScrollMetrics(),d=b.getViewMetrics();b=b.getAbsoluteMetrics();"number"==typeof a.x&&(this.workspace_.scrollX=-(c.left+(c.width-d.width)*a.x));this.workspace_.translate(this.workspace_.scrollX+b.left,this.workspace_.scrollY+b.top)}};Blockly.HorizontalFlyout.prototype.getX=function(){return 0};
 Blockly.HorizontalFlyout.prototype.getY=function(){if(!this.isVisible())return 0;var a=this.targetWorkspace.getMetricsManager(),b=a.getAbsoluteMetrics(),c=a.getViewMetrics();a=a.getToolboxMetrics();var d=this.toolboxPosition_==Blockly.utils.toolbox.Position.TOP;return this.targetWorkspace.toolboxPosition==this.toolboxPosition_?this.targetWorkspace.getToolbox()?d?a.height:c.height-this.height_:d?0:c.height:d?0:c.height+b.top-this.height_};
 Blockly.HorizontalFlyout.prototype.position=function(){if(this.isVisible()&&this.targetWorkspace.isVisible()){var a=this.targetWorkspace.getMetricsManager().getViewMetrics();this.width_=a.width;this.setBackgroundPath_(a.width-2*this.CORNER_RADIUS,this.height_-this.CORNER_RADIUS);a=this.getX();var b=this.getY();this.positionAt_(this.width_,this.height_,a,b)}};
@@ -3343,7 +4394,7 @@ Blockly.Toolbox.prototype.selectParent_=function(){return this.selectedItem_?thi
 Blockly.Toolbox.prototype.selectChild_=function(){if(!this.selectedItem_||!this.selectedItem_.isCollapsible())return!1;var a=this.selectedItem_;a.isExpanded()?this.selectNext_():a.setExpanded(!0);return!0};Blockly.Toolbox.prototype.selectNext_=function(){if(!this.selectedItem_)return!1;var a=this.contents_.indexOf(this.selectedItem_)+1;if(-1<a&&a<this.contents_.length){for(var b=this.contents_[a];b&&!b.isSelectable();)b=this.contents_[++a];if(b&&b.isSelectable())return this.setSelectedItem(b),!0}return!1};
 Blockly.Toolbox.prototype.selectPrevious_=function(){if(!this.selectedItem_)return!1;var a=this.contents_.indexOf(this.selectedItem_)-1;if(-1<a&&a<this.contents_.length){for(var b=this.contents_[a];b&&!b.isSelectable();)b=this.contents_[--a];if(b&&b.isSelectable())return this.setSelectedItem(b),!0}return!1};
 Blockly.Toolbox.prototype.dispose=function(){this.workspace_.getComponentManager().removeComponent("toolbox");this.flyout_.dispose();for(var a=0;a<this.contents_.length;a++)this.contents_[a].dispose();for(a=0;a<this.boundEvents_.length;a++)Blockly.browserEvents.unbind(this.boundEvents_[a]);this.boundEvents_=[];this.contents_=[];this.workspace_.getThemeManager().unsubscribe(this.HtmlDiv);Blockly.utils.dom.removeNode(this.HtmlDiv)};
-Blockly.Css.register([".blocklyToolboxDelete {",'cursor: url("<<<PATH>>>/handdelete.cur"), auto;',"}",".blocklyToolboxGrab {",'cursor: url("<<<PATH>>>/handclosed.cur"), auto;',"cursor: grabbing;","cursor: -webkit-grabbing;","}",".blocklyToolboxDiv {","background-color: rgba(82, 183, 86, 0.5);","overflow-x: visible;","overflow-y: auto;","padding: 4px 0 4px 0;","position: absolute;","z-index: 70;","-webkit-tap-highlight-color: transparent;","}",".blocklyToolboxContents {","display: flex;","flex-wrap: wrap;","flex-direction: column;",
+Blockly.Css.register([".blocklyToolboxDelete {",'cursor: url("<<<PATH>>>/handdelete.cur"), auto;',"}",".blocklyToolboxGrab {",'cursor: url("<<<PATH>>>/handclosed.cur"), auto;',"cursor: grabbing;","cursor: -webkit-grabbing;","}",".blocklyToolboxDiv {","background-color: #ddd;","overflow-x: visible;","overflow-y: auto;","padding: 4px 0 4px 0;","position: absolute;","z-index: 70;","-webkit-tap-highlight-color: transparent;","}",".blocklyToolboxContents {","display: flex;","flex-wrap: wrap;","flex-direction: column;",
 "}",".blocklyToolboxContents:focus {","outline: none;","}"]);Blockly.registry.register(Blockly.registry.Type.TOOLBOX,Blockly.registry.DEFAULT,Blockly.Toolbox);Blockly.Events.TrashcanOpen=function(a,b){Blockly.Events.TrashcanOpen.superClass_.constructor.call(this,b);this.isOpen=a};Blockly.utils.object.inherits(Blockly.Events.TrashcanOpen,Blockly.Events.UiBase);Blockly.Events.TrashcanOpen.prototype.type=Blockly.Events.TRASHCAN_OPEN;Blockly.Events.TrashcanOpen.prototype.toJson=function(){var a=Blockly.Events.TrashcanOpen.superClass_.toJson.call(this);a.isOpen=this.isOpen;return a};
 Blockly.Events.TrashcanOpen.prototype.fromJson=function(a){Blockly.Events.TrashcanOpen.superClass_.fromJson.call(this,a);this.isOpen=a.isOpen};Blockly.registry.register(Blockly.registry.Type.EVENT,Blockly.Events.TRASHCAN_OPEN,Blockly.Events.TrashcanOpen);Blockly.IPositionable=function(){};
 
@@ -3406,7 +4457,8 @@ Blockly.Trashcan.prototype.init=function(){
 	this.initialized_=!0;this.setLidOpen(!1)
 };
 Blockly.Trashcan.prototype.dispose=function(){this.workspace_.getComponentManager().removeComponent("trashcan");this.svgGroup_&&(Blockly.utils.dom.removeNode(this.svgGroup_),this.svgGroup_=null);this.workspace_=this.svgLid_=null;clearTimeout(this.lidTask_)};Blockly.Trashcan.prototype.hasContents_=function(){return!!this.contents_.length};Blockly.Trashcan.prototype.contentsIsOpen=function(){return this.flyout.isVisible()};
-Blockly.Trashcan.prototype.openFlyout=function(){if(!this.contentsIsOpen()){var a=this.contents_.map(Blockly.Xml.textToDom);this.flyout.show(a);this.fireUiEvent_(!0)}};Blockly.Trashcan.prototype.closeFlyout=function(){this.contentsIsOpen()&&(this.flyout.hide(),this.fireUiEvent_(!1))};Blockly.Trashcan.prototype.autoHide=function(a){!a&&this.flyout&&this.closeFlyout()};Blockly.Trashcan.prototype.emptyContents=function(){this.hasContents_()&&(this.contents_.length=0,this.setMinOpenness_(0),this.closeFlyout())};
+Blockly.Trashcan.prototype.openFlyout=function(){if(!this.contentsIsOpen()){var a=this.contents_.map(Blockly.Xml.textToDom);this.flyout.show(a);this.fireUiEvent_(!0)}};
+Blockly.Trashcan.prototype.closeFlyout=function(){this.contentsIsOpen()&&(this.flyout.hide(),this.fireUiEvent_(!1))};Blockly.Trashcan.prototype.autoHide=function(a){!a&&this.flyout&&this.closeFlyout()};Blockly.Trashcan.prototype.emptyContents=function(){this.hasContents_()&&(this.contents_.length=0,this.setMinOpenness_(0),this.closeFlyout())};
 Blockly.Trashcan.prototype.position=function(a,b){
 	if(this.initialized_){
 		var c=Blockly.uiPosition.getCornerOppositeToolbox(this.workspace_,a);
@@ -3482,7 +4534,7 @@ Blockly.ZoomControls.prototype.dispose=function(){
 	this.onZoomNextWrapper_&&Blockly.browserEvents.unbind(this.onZoomNextWrapper_);
 	this.onZoomShowCategoryWrapper_&&Blockly.browserEvents.unbind(this.onZoomShowCategoryWrapper_);	
 	this.onZoomFitWrapper_&&Blockly.browserEvents.unbind(this.onZoomFitWrapper_);
-	this.onZoomCleanupWrapper_&&Blockly.browserEvents.unbind(this.onZoomCleanupWrapper_);
+	this.onZoomCleanupWrapper_&&Blockly.browserEvents.unbind(this.onZoomCleanupWrapper_);	
 };
 Blockly.ZoomControls.prototype.getBoundingRectangle=function(){var a=this.SMALL_SPACING_+4*this.HEIGHT_;this.zoomResetGroup_&&(a+=this.LARGE_SPACING_+this.HEIGHT_);return new Blockly.utils.Rect(this.top_,this.top_+a,this.left_,this.left_+this.WIDTH_)};
 Blockly.ZoomControls.prototype.position=function(a,b){
@@ -3604,9 +4656,7 @@ Blockly.ZoomControls.prototype.showCategory_=function(a){
 };
 Blockly.ZoomControls.prototype.zoomFit_=function(a){Blockly.mainWorkspace.zoomToFit();};
 Blockly.ZoomControls.prototype.fireZoomEvent_=function(){var a=new (Blockly.Events.get(Blockly.Events.CLICK))(null,this.workspace_.id,"zoom_controls");Blockly.Events.fire(a)};
-Blockly.ZoomControls.prototype.zoomCleanup_=function(a){
-	Blockly.mainWorkspace.cleanUp();
-};
+Blockly.ZoomControls.prototype.zoomCleanup_=function(a){Blockly.mainWorkspace.cleanUp();};
 
 Blockly.Css.register([".blocklyZoom>image, .blocklyZoom>svg>image {","opacity: .4;","}",".blocklyZoom>image:hover, .blocklyZoom>svg>image:hover {","opacity: .6;","}",".blocklyZoom>image:active, .blocklyZoom>svg>image:active {","opacity: .8;","}"]);
 
@@ -3880,6 +4930,38 @@ Blockly.ContextMenuItems.registerTest=function(){
 			,callback:function(a){
 				
 				/*
+				//show/hide category
+				var toolbox = Blockly.getMainWorkspace().toolbox_;
+				var categoryID = "category_logic";
+				var items = toolbox.getToolboxItems();
+				for (let item of items) {
+					if (item.toolboxItemDef_.id==categoryID) {
+						item.hide();
+						setTimeout(function() {
+							item.show();
+						}, 3000);
+						break;
+					}	
+				};
+				*/
+				
+				/*
+					//show/hide flyout
+					var toolbox = Blockly.getMainWorkspace().toolbox_;
+					var categoryID = "category_logic";
+					var items = toolbox.getToolboxItems();
+					for (let item of items) {
+						if (item.toolboxItemDef_.id==categoryID) {
+							toolbox.setSelectedItem(item);
+							setTimeout(function() {
+								toolbox.clearSelection();
+							}, 3000);
+							break;
+						}	
+					};
+				*/
+				
+				/*
 				//新增自訂積木
 				var xml = document.getElementById("toolbox");
 				var xmlDoc = new DOMParser().parseFromString('<category id="category_test1" name="TEST_1" colour="210" custom="CUSTOMBLOCKS"></category>', 'text/xml');
@@ -4010,7 +5092,7 @@ Blockly.ContextMenuItems.registerBlockOptions_=function(){
 	Blockly.ContextMenuItems.registerScrollPlugin();
 	Blockly.ContextMenuItems.registerHighLightPlugin();
 	Blockly.ContextMenuItems.registerBackPackPlugin();	
-	//Blockly.ContextMenuItems.registerLoadLastBlocks();
+	Blockly.ContextMenuItems.registerLoadLastBlocks();
 	//Blockly.ContextMenuItems.registerHideToolbox();
 	//Blockly.ContextMenuItems.registerTest();	//測試	
 };
@@ -4032,7 +5114,10 @@ this.workspace_.addChangeListener(this.workspaceChanged_.bind(this));this.applyC
 Blockly.Mutator.prototype.workspaceChanged_=function(a){if(!(a.isUiEvent||a.type==Blockly.Events.CHANGE&&"disabled"==a.element)){if(!this.workspace_.isDragging()){a=this.workspace_.getTopBlocks(!1);for(var b=0,c;c=a[b];b++){var d=c.getRelativeToSurfaceXY();20>d.y&&c.moveBy(0,20-d.y);if(c.RTL){var e=-20,f=this.workspace_.getFlyout();f&&(e-=f.getWidth());d.x>e&&c.moveBy(e-d.x,0)}else 20>d.x&&c.moveBy(20-d.x,0)}}if(this.rootBlock_.workspace==this.workspace_){Blockly.Events.setGroup(!0);c=this.block_;
 a=(a=c.mutationToDom())&&Blockly.Xml.domToText(a);b=c.rendered;c.rendered=!1;c.compose(this.rootBlock_);c.rendered=b;c.initSvg();c.rendered&&c.render();b=(b=c.mutationToDom())&&Blockly.Xml.domToText(b);if(a!=b){Blockly.Events.fire(new (Blockly.Events.get(Blockly.Events.BLOCK_CHANGE))(c,"mutation",null,a,b));var g=Blockly.Events.getGroup();setTimeout(function(){Blockly.Events.setGroup(g);c.bumpNeighbours();Blockly.Events.setGroup(!1)},Blockly.BUMP_DELAY)}this.workspace_.isDragging()||this.resizeBubble_();
 Blockly.Events.setGroup(!1)}}};Blockly.Mutator.prototype.dispose=function(){this.block_.mutator=null;Blockly.Icon.prototype.dispose.call(this)};Blockly.Mutator.prototype.updateBlockStyle=function(){var a=this.workspace_;if(a&&a.getAllBlocks(!1)){for(var b=a.getAllBlocks(!1),c=0,d;d=b[c];c++)d.setStyle(d.getStyleName());if(c=a.getFlyout())for(a=c.workspace_.getAllBlocks(!1),c=0;d=a[c];c++)d.setStyle(d.getStyleName())}};
-Blockly.Mutator.reconnect=function(a,b,c){if(!a||!a.getSourceBlock().workspace)return!1;c=b.getInput(c).connection;var d=a.targetBlock();return d&&d!=b||c.targetConnection==a?!1:(c.isConnected()&&c.disconnect(),c.connect(a),!0)};Blockly.Mutator.findParentWs=function(a){var b=null;if(a&&a.options){var c=a.options.parentWorkspace;a.isFlyout?c&&c.options&&(b=c.options.parentWorkspace):c&&(b=c)}return b};Blockly.FieldTextInput=function(a,b,c){this.spellcheck_=!0;Blockly.FieldTextInput.superClass_.constructor.call(this,a,b,c);this.onKeyInputWrapper_=this.onKeyDownWrapper_=this.htmlInput_=null;this.fullBlockClickTarget_=!1;this.workspace_=null};Blockly.utils.object.inherits(Blockly.FieldTextInput,Blockly.Field);Blockly.FieldTextInput.prototype.DEFAULT_VALUE="";
+Blockly.Mutator.reconnect=function(a,b,c){if(!a||!a.getSourceBlock().workspace)return!1;c=b.getInput(c).connection;var d=a.targetBlock();return d&&d!=b||c.targetConnection==a?!1:(c.isConnected()&&c.disconnect(),c.connect(a),!0)};Blockly.Mutator.findParentWs=function(a){var b=null;if(a&&a.options){var c=a.options.parentWorkspace;a.isFlyout?c&&c.options&&(b=c.options.parentWorkspace):c&&(b=c)}return b};
+
+
+Blockly.FieldTextInput=function(a,b,c){this.spellcheck_=!0;Blockly.FieldTextInput.superClass_.constructor.call(this,a,b,c);this.onKeyInputWrapper_=this.onKeyDownWrapper_=this.htmlInput_=null;this.fullBlockClickTarget_=!1;this.workspace_=null};Blockly.utils.object.inherits(Blockly.FieldTextInput,Blockly.Field);Blockly.FieldTextInput.prototype.DEFAULT_VALUE="";
 Blockly.FieldTextInput.fromJson=function(a){var b=Blockly.utils.replaceMessageReferences(a.text);return new Blockly.FieldTextInput(b,void 0,a)};Blockly.FieldTextInput.prototype.SERIALIZABLE=!0;Blockly.FieldTextInput.BORDERRADIUS=4;Blockly.FieldTextInput.prototype.CURSOR="text";Blockly.FieldTextInput.prototype.configure_=function(a){Blockly.FieldTextInput.superClass_.configure_.call(this,a);"boolean"==typeof a.spellcheck&&(this.spellcheck_=a.spellcheck)};
 Blockly.FieldTextInput.prototype.initView=function(){if(this.getConstants().FULL_BLOCK_FIELDS){for(var a=0,b=0,c=0,d;d=this.sourceBlock_.inputList[c];c++){for(var e=0;d.fieldRow[e];e++)a++;d.connection&&b++}this.fullBlockClickTarget_=1>=a&&this.sourceBlock_.outputConnection&&!b}else this.fullBlockClickTarget_=!1;this.fullBlockClickTarget_?this.clickTarget_=this.sourceBlock_.getSvgRoot():this.createBorderRect_();this.createTextElement_()};
 Blockly.FieldTextInput.prototype.doClassValidation_=function(a){return null===a||void 0===a?null:String(a)};Blockly.FieldTextInput.prototype.doValueInvalid_=function(a){this.isBeingEdited_&&(this.isTextValid_=!1,a=this.value_,this.value_=this.htmlInput_.untypedDefaultValue_,this.sourceBlock_&&Blockly.Events.isEnabled()&&Blockly.Events.fire(new (Blockly.Events.get(Blockly.Events.BLOCK_CHANGE))(this.sourceBlock_,"field",this.name||null,a,this.value_)))};
@@ -4119,7 +5204,8 @@ Blockly.FieldDropdown.prototype.getText_=function(){if(!this.selectedOption_)ret
 Blockly.FieldDropdown.validateOptions_=function(a){if(!Array.isArray(a))throw TypeError("FieldDropdown options must be an array.");if(!a.length)throw TypeError("FieldDropdown options must not be an empty array.");for(var b=!1,c=0;c<a.length;++c){var d=a[c];Array.isArray(d)?"string"!=typeof d[1]?(b=!0,console.error("Invalid option["+c+"]: Each FieldDropdown option id must be a string. Found "+d[1]+" in: ",d)):d[0]&&"string"!=typeof d[0]&&"string"!=typeof d[0].src&&(b=!0,console.error("Invalid option["+
 c+"]: Each FieldDropdown option must have a string label or image description. Found"+d[0]+" in: ",d)):(b=!0,console.error("Invalid option["+c+"]: Each FieldDropdown option must be an array. Found: ",d))}if(b)throw TypeError("Found invalid FieldDropdown options.");};Blockly.fieldRegistry.register("field_dropdown",Blockly.FieldDropdown);Blockly.FieldLabelSerializable=function(a,b,c){Blockly.FieldLabelSerializable.superClass_.constructor.call(this,a,b,c)};Blockly.utils.object.inherits(Blockly.FieldLabelSerializable,Blockly.FieldLabel);Blockly.FieldLabelSerializable.fromJson=function(a){var b=Blockly.utils.replaceMessageReferences(a.text);return new Blockly.FieldLabelSerializable(b,void 0,a)};Blockly.FieldLabelSerializable.prototype.EDITABLE=!1;Blockly.FieldLabelSerializable.prototype.SERIALIZABLE=!0;
 Blockly.fieldRegistry.register("field_label_serializable",Blockly.FieldLabelSerializable);Blockly.FieldImage=function(a,b,c,d,e,f,g){if(!a)throw Error("Src value of an image field is required");a=Blockly.utils.replaceMessageReferences(a);c=Number(Blockly.utils.replaceMessageReferences(c));b=Number(Blockly.utils.replaceMessageReferences(b));if(isNaN(c)||isNaN(b))throw Error("Height and width values of an image field must cast to numbers.");if(0>=c||0>=b)throw Error("Height and width values of an image field must be greater than 0.");this.flipRtl_=!1;this.altText_="";Blockly.FieldImage.superClass_.constructor.call(this,
-a,null,g);g||(this.flipRtl_=!!f,this.altText_=Blockly.utils.replaceMessageReferences(d)||"");this.size_=new Blockly.utils.Size(b,c+Blockly.FieldImage.Y_PADDING);this.imageHeight_=c;this.clickHandler_=null;"function"==typeof e&&(this.clickHandler_=e);this.imageElement_=null};Blockly.utils.object.inherits(Blockly.FieldImage,Blockly.Field);Blockly.FieldImage.prototype.DEFAULT_VALUE="";Blockly.FieldImage.fromJson=function(a){return new Blockly.FieldImage(a.src,a.width,a.height,void 0,void 0,void 0,a)};
+a,null,g);g||(this.flipRtl_=!!f,this.altText_=Blockly.utils.replaceMessageReferences(d)||"");this.size_=new Blockly.utils.Size(b,c+Blockly.FieldImage.Y_PADDING);this.imageHeight_=c;this.clickHandler_=null;"function"==typeof e&&(this.clickHandler_=e);this.imageElement_=null};
+Blockly.utils.object.inherits(Blockly.FieldImage,Blockly.Field);Blockly.FieldImage.prototype.DEFAULT_VALUE="";Blockly.FieldImage.fromJson=function(a){return new Blockly.FieldImage(a.src,a.width,a.height,void 0,void 0,void 0,a)};
 Blockly.FieldImage.Y_PADDING=1;Blockly.FieldImage.prototype.EDITABLE=!1;Blockly.FieldImage.prototype.isDirty_=!1;Blockly.FieldImage.prototype.configure_=function(a){Blockly.FieldImage.superClass_.configure_.call(this,a);this.flipRtl_=!!a.flipRtl;this.altText_=Blockly.utils.replaceMessageReferences(a.alt)||""};
 Blockly.FieldImage.prototype.initView=function(){this.imageElement_=Blockly.utils.dom.createSvgElement(Blockly.utils.Svg.IMAGE,{height:this.imageHeight_+"px",width:this.size_.width+"px",alt:this.altText_},this.fieldGroup_);this.imageElement_.setAttributeNS(Blockly.utils.dom.XLINK_NS,"xlink:href",this.value_);this.clickHandler_&&(this.imageElement_.style.cursor="pointer")};Blockly.FieldImage.prototype.updateSize_=function(){};
 Blockly.FieldImage.prototype.doClassValidation_=function(a){return"string"!=typeof a?null:a};Blockly.FieldImage.prototype.doValueUpdate_=function(a){this.value_=a;this.imageElement_&&this.imageElement_.setAttributeNS(Blockly.utils.dom.XLINK_NS,"xlink:href",String(this.value_))};Blockly.FieldImage.prototype.getFlipRtl=function(){return this.flipRtl_};Blockly.FieldImage.prototype.setAlt=function(a){a!=this.altText_&&(this.altText_=a||"",this.imageElement_&&this.imageElement_.setAttribute("alt",this.altText_))};
@@ -4615,7 +5701,6 @@ Blockly.Variables.allTypes=function(){
     [Blockly.Msg.VARIABLES_TYPE_ARRAY2, Blockly.Variables.TYPE_ARRAY2]
   ]
 };
-//France
 Blockly.Variables.positionTypes=function(){
   return[
     [Blockly.Msg.VARIABLES_TYPE_POSITION_GLOBAL, "global"],
@@ -4730,5 +5815,3 @@ Blockly.Block.prototype.moveNumberedInputBefore=function(a,b){goog.asserts.asser
 Blockly.Block.prototype.removeInput=function(a,b){for(var c=0,d;d=this.inputList[c];c++)if(d.name==a){d.connection&&d.connection.targetConnection&&d.connection.targetBlock().setParent(null);d.dispose();this.inputList.splice(c,1);this.rendered&&(this.render(),this.bumpNeighbours_());return}b||goog.asserts.fail('Input "%s" not found.',a)};Blockly.Block.prototype.getInput=function(a){for(var b=0,c;c=this.inputList[b];b++)if(c.name==a)return c;return null};
 Blockly.Block.prototype.getInputTargetBlock=function(a){return(a=this.getInput(a))&&a.connection&&a.connection.targetBlock()};Blockly.Block.prototype.getCommentText=function(){return this.comment||""};Blockly.Block.prototype.setCommentText=function(a){this.comment=a};Blockly.Block.prototype.setWarningText=function(a){};Blockly.Block.prototype.setMutator=function(a){};Blockly.Block.prototype.getRelativeToSurfaceXY=function(){return this.xy_};
 Blockly.Block.prototype.moveBy=function(a,b){this.xy_.translate(a,b)};
-
-
