@@ -25,11 +25,6 @@ Blockly.Arduino.init=function(a){
 	this.nameDB_.populateVariables(a);
 	this.nameDB_.populateProcedures(a);
 	
-	this.variableDB_?this.variableDB_.reset():this.variableDB_=new Blockly.Names(this.RESERVED_WORDS_);
-	this.variableDB_.setVariableMap(a.getVariableMap());
-	this.variableDB_.populateVariables(a);
-	this.variableDB_.populateProcedures(a);
-	
 	this.definitions_=Object.create(null);
 	this.setups_=Object.create(null);
 	this.functions_=Object.create(null);
