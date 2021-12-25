@@ -116,6 +116,51 @@
 		</div>	
 	</div>
 	<div id="dialog_toolbox"></div>
+	<div id="dialog_webSerial" onmousedown="textareaFocus('dialog_webSerial_parent');" ontouchstart="textareaFocus('dialog_webSerial_parent');">
+		<table>
+			<tr>
+				<td>Baud Rate
+				<select id="serial_baud">
+					<option value="9600">9600</option>
+					<option value="115200">115200</option>
+					<option value="300">300</option>
+					<option value="1200">1200</option>
+					<option value="2400">2400</option>
+					<option value="4800">4800</option>
+					<option value="19200">19200</option>
+					<option value="38400">38400</option>
+					<option value="57600">57600</option>
+					<option value="74880">74880</option>
+					<option value="230400">230400</option>
+					<option value="250000">250000</option>
+					<option value="500000">500000</option>
+					<option value="1000000">1000000</option>	
+					<option value="2000000">2000000</option>		
+				</select>
+				</td>
+				<td><button id="serial_close_port">Close Port</button><button id="serial_request_port">Select Port</button></td>
+			</tr>
+			<tr>
+				<td><input type="text" id="serial_command">
+				<select id="serial_end">
+					<option value=""></option>
+					<option value="\n">\n</option>	
+				</select>
+				</td>
+				<td><button id="serial_sendString">Send String</button></td>
+			</tr>
+			<tr>
+				<td colspan="2"><div id="serial_status" style="width:500px;height:200px;border:2px black solid;overflow: auto;"></div></td>
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td align="right">
+				<button id="serial_clearStatus">Clear Message</button>
+				</td>
+			</tr>
+		</table>
+	</div>	
 </div>
 </main>
 
