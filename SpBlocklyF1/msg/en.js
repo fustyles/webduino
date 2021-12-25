@@ -2258,6 +2258,7 @@ Blockly.Msg["BUTTON_ADDEXTENSIONBLOCKS"] = "Import extension custom blocks";
 Blockly.Msg["BUTTON_LANG"] = "English / Chinese";
 Blockly.Msg["BUTTON_COPYCODE"] = "Copy to clipboard";
 Blockly.Msg["BUTTON_TOOL"] = "Open block developer tool";
+Blockly.Msg["BUTTON_WEBSERIAL"] = "Open web serial tools";
 Blockly.Msg["INITIAL_SETUP"] = "setup";
 Blockly.Msg["INITIAL_LOOP"] = "loop";
 Blockly.Msg["LANGUAGE_EN"] = "EN";

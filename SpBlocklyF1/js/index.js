@@ -460,6 +460,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		link.remove();
 	}
 	
+	//Web Serial
+	document.getElementById('button_webSerial').onclick = function () {
+		window.open("https://fustyles.github.io/webduino/WebSerial.html")
+	}		
+	
 	//切換語言
 	document.getElementById('lang-selector').onchange = function () {
 		if (this.selectedIndex!=-1) 
@@ -519,6 +524,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
 	}
 	
+	  setInterval(function(){
+			var code = Blockly.Arduino.workspaceToCode();			
+			document.getElementById('terminal-body').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
+	  },500);	
 });	
 
 

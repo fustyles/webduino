@@ -52,9 +52,6 @@ Blockly.Blocks.initializes_loop={
 		  return;
 		}
 		
-		var code = Blockly.Arduino.workspaceToCode();			
-		editor.setValue(code);
-		
 		//if (event.type=="move") {
 			var blocks = this.workspace.getBlocksByType("main");
 			if (blocks.length>1) {
