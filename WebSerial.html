@@ -1,5 +1,5 @@
 <!--
-Web Serial  2021-12-19 16:00
+Web Serial  2021-12-25 12:00
 Author : ChungYi Fu (Kaohsiung, Taiwan)
 https://www.facebook.com/francefu
 
@@ -19,7 +19,9 @@ https://fustyles.github.io/webduino/WebSerial.html
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-Baud Rate
+<table>
+<tr>
+<td>Baud Rate
 <select id="baud">
     <option value="9600">9600</option>
     <option value="115200">115200</option>
@@ -36,11 +38,31 @@ Baud Rate
     <option value="500000">500000</option>
     <option value="1000000">1000000</option>	
     <option value="2000000">2000000</option>		
-</select><br><br>
-<button id="request-port">Select Port</button>
-<button id="close-port">Close Port</button><br><br>
-<input type="text" id="command"><button id="send">Send</button><br>
-<span id="status"></span>
+</select>
+</td>
+<td><button id="close-port">Close Port</button><button id="request-port">Select Port</button></td>
+</tr>
+<tr>
+<td><input type="text" id="command">
+<select id="end">
+    <option value=""></option>
+    <option value="\n">\n</option>
+    <option value="\r\n">\r\n</option>		
+</select>
+</td>
+<td><button id="send">Send String</button></td>
+</tr>
+<tr>
+<td colspan="2"><div id="status" style="width:400px;height:300px;border:2px black solid;overflow: auto;"></div></td>
+</tr>
+<tr>
+<td>
+</td>
+<td align="right">
+<button id="clearStatus">Clear Message</button>
+</td>
+</tr>
+</table>
 <script>
   
 let port = null;
@@ -59,13 +81,15 @@ let status = document.getElementById('status');
 let buttonRequest = document.getElementById('request-port');
 let buttonClose = document.getElementById('close-port');
 let send = document.getElementById('send');	
+let clearStatus = document.getElementById('clearStatus');
+let end = document.getElementById('end');		
 
 navigator.serial.addEventListener("connect", (event) => {
-  status.innerHTML = "connect";
+  message("Device connect","red");
 });
 
 navigator.serial.addEventListener("disconnect", (event) => {
-  status.innerHTML = "disconnect";
+	message("Device disconnect","red");
 });	
 			
 async function readUntilClosed() {
@@ -80,8 +104,7 @@ async function readUntilClosed() {
 		}
 		if (value) {
 			readSting = new TextDecoder().decode(value);
-			console.log(readSting);
-			status.innerHTML = readSting;
+			message(readSting,"green");
 		}
 	  }
 	} catch (error) {
@@ -113,7 +136,8 @@ buttonRequest.addEventListener('click', async () => {
 		try {
 			var rate =  Number(baud.value);
 			await port.open({ baudRate: rate });
-			status.innerHTML = "VendorId: 0x"+selVendorId.toString(16)+" ProductId: 0x"+selProductId.toString(16)+" Ready!";
+			var msg = "VendorId: 0x"+selVendorId.toString(16)+" ProductId: 0x"+selProductId.toString(16)+" Ready!";
+			message(msg,"blue");
 			
 			//await port.setSignals({ dataTerminalReady: false });
 			//await new Promise(resolve => setTimeout(resolve, 200));
@@ -127,13 +151,14 @@ buttonRequest.addEventListener('click', async () => {
 		} catch (error) {
 			var errorString = error.message;
 			if (errorString.indexOf("already open")!=-1) {
-				status.innerHTML = "VendorId: 0x"+selVendorId.toString(16)+" ProductId: 0x"+selProductId.toString(16)+" Ready!";
+				var msg = "VendorId: 0x"+selVendorId.toString(16)+" ProductId: 0x"+selProductId.toString(16)+" Ready!";
+				message(msg,"blue");
 			}
 			else if (errorString.indexOf("Failed to open serial port")!=-1) {
 				setTimeout(function(){buttonRequest.click();},1000);
 			}
 			else {
-				status.innerHTML = errorString;
+				message(errorString,"red");
 			}
 		}
 	}
@@ -151,22 +176,34 @@ buttonClose.addEventListener('click', async () => {
 			
 			port.close();
 			port = null;
-			status.innerHTML = "closed";
+			message("closed","blue");
 		}
 	} catch (error) {
-			status.innerHTML = error.message;
+			message(error.message,"red");
 	}	
 });
 
 send.addEventListener('click', async () => {
 	if (port&&writer) {
 		try {	
-			await writer[selProductId].write(command.value);
+			var msg = command.value + end.value;
+			message(msg,"orange");
+			await writer[selProductId].write(msg);
 		} catch (error) {
-			status.innerHTML = error.message;
+			message(error.message,"red");
 		}
 	}
 });
+
+clearStatus.addEventListener('click', async () => {
+	status.innerHTML = "";
+});
+
+function message(msg, colour) {
+	status.innerHTML += "<font color='"+colour+"'>"+msg+"</font><br>";
+	status.scrollTop = status.scrollHeight;
+}
+
 </script>
 </body>
 </html>
