@@ -612,8 +612,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				modal: false,
 				//show: "blind",
 				//hide: "blind",			
-				width: 570,
-				height: 480,
+				width: 550,
+				height: 450,
 				buttons: [
 					{
 						text: Blockly.Msg.BUTTON_CLOSE,
@@ -644,15 +644,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		*/
 	}
 	
-	//切換語言
-	document.getElementById('lang-selector').onchange = function () {
-		if (this.selectedIndex!=-1) 
-			lang = this.options[this.selectedIndex].value;
-		console.log('store language setting to ' + lang);
-		changeLanguage();
-	}
-	
-	//切換語言
 	function changeLanguage() {
 		addScript(languageList);
 		if (typeof language != "undefined") {
