@@ -21,7 +21,7 @@ Blockly.Blocks["test_FieldCheckbox"] = {
 		['ccc','c']
 	];
 	this.appendDummyInput()
-		.appendField(new CustomFields.FieldCheckbox('', options, this.id), 'myCheckbox');
+            .appendField(new CustomFields.FieldCheckbox('', options, this.id), 'myCheckbox');
 		
 	etc...
   }
