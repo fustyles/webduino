@@ -7,7 +7,7 @@
 /**
  * @fileoverview my Field Checkbox.
  * @author https://www.facebook.com/francefu/
- * @Update 12/24/2021 20:00 (Taiwan Standard Time)
+ * @Update 12/26/2021 12:00 (Taiwan Standard Time)
  */
  
  /*
@@ -103,12 +103,12 @@ CustomFields.FieldCheckbox.prototype.hide_ = function() {
 };
 
 CustomFields.FieldCheckbox.prototype.onMouseDown = function(e) {
-  var myCheckbox = document.getElementsByName(this.id);
+  var myCheckboxs = document.getElementsByName(this.id);
   var result = "";
   this.listHTML = "";
-  for (var i=0;i<myCheckbox.length;i++) {
-	result += myCheckbox[i].checked?(myCheckbox[i].value+" "):"";
-	this.listHTML += "<input type='checkbox' name='"+this.id+"' value='"+myCheckbox[i].value+"' text='"+myCheckbox[i].getAttribute("text")+"' "+(myCheckbox[i].checked?"checked":"")+">"+myCheckbox[i].getAttribute("text")+"<br>";
+  for (var i=0;i<myCheckboxs.length;i++) {
+	result += myCheckboxs[i].checked?(myCheckboxs[i].value+" "):"";
+	this.listHTML += "<input type='checkbox' name='"+this.id+"' value='"+myCheckboxs[i].value+"' text='"+myCheckboxs[i].getAttribute("text")+"' "+(myCheckboxs[i].checked?"checked":"")+">"+myCheckboxs[i].getAttribute("text")+"<br>";
   }
   this.setEditorValue_(result.trim());
 };
