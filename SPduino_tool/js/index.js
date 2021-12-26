@@ -761,8 +761,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				modal: false,
 				//show: "blind",
 				//hide: "blind",			
-				width: 560,
-				height: 460,
+				width: 570,
+				height: 470,
 				buttons: [
 					{
 						text: Blockly.Msg.BUTTON_CLOSE,
