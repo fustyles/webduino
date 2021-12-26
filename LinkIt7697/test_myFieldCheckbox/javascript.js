@@ -31,9 +31,9 @@ Blockly.Blocks["test_FieldCheckbox"] = {
 
 var CustomFields = CustomFields || {};
 
-CustomFields.FieldCheckbox = function(text, options, opt_id, opt_validate) {
+CustomFields.FieldCheckbox = function(text, options, id, opt_validate) {
   CustomFields.FieldCheckbox.superClass_.constructor.call(this, text, opt_validate);
-  this.id = opt_id;
+  this.id = id;
   this.list = options;
 
   this.setSpellcheck(false);
