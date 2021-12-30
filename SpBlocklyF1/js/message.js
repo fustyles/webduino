@@ -14,6 +14,7 @@ var msg = [
 ["button_copycode", "title", Blockly.Msg["BUTTON_COPYCODE"]],
 ["button_tool", "title", Blockly.Msg["BUTTON_TOOL"]],
 ["button_webSerial", "title", Blockly.Msg["BUTTON_WEBSERIAL"]],
+["button_copycode", "title", Blockly.Msg["BUTTON_COPYCODE"]],
 ["title_code", "innerHTML", Blockly.Msg["MSG_CODE"]],
 ["lang-selector", "title", Blockly.Msg["LANG-SELECTOR"]],
 ["board-selector", "title", Blockly.Msg["BOARD-SELECTOR"]],

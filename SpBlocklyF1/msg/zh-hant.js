@@ -2564,6 +2564,7 @@ Blockly.Msg["BUTTON_LANG"] = "英文 / 中文";
 Blockly.Msg["BUTTON_COPYCODE"] = "複製程式碼到剪貼簿";
 Blockly.Msg["BUTTON_TOOL"] = "開啟積木製作工具";
 Blockly.Msg["BUTTON_WEBSERIAL"] = "網頁序列埠工具";
+Blockly.Msg["BUTTON_UPLOADCODE"] = "上傳 HEX 檔至 nano/uno/pro/pro-mini";
 Blockly.Msg["MSG_WEBSERIAL"] = "Web Serial";
 Blockly.Msg["INITIAL_SETUP"] = "設定";
 Blockly.Msg["INITIAL_LOOP"] = "迴圈";

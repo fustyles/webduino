@@ -2259,6 +2259,7 @@ Blockly.Msg["BUTTON_LANG"] = "English / Chinese";
 Blockly.Msg["BUTTON_COPYCODE"] = "Copy to clipboard";
 Blockly.Msg["BUTTON_TOOL"] = "Open block developer tool";
 Blockly.Msg["BUTTON_WEBSERIAL"] = "Open web serial tools";
+Blockly.Msg["BUTTON_UPLOADCODE"] = "Upload HEX file to nano/uno/pro/pro-mini";
 Blockly.Msg["MSG_WEBSERIAL"] = "Web Serial";
 Blockly.Msg["INITIAL_SETUP"] = "setup";
 Blockly.Msg["INITIAL_LOOP"] = "loop";
