@@ -379,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		link.remove();
 	}
 	
-	//選擇語言
+	//切換語言
 	document.getElementById('lang-selector').onchange = function () {
 		if (this.selectedIndex!=-1) 
 			lang = this.options[this.selectedIndex].value;
@@ -607,6 +607,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		};
 		$("#dialog_toolbox").dialog(opt).dialog("open");
 		event.preventDefault();
+	}
+	
+	//上傳韌體
+	document.getElementById('button_uploadCode').onclick = function () {
+		var uploader = document.getElementById('arduino-web-uploader');
+		var result = prompt('HEX File', 'https://fustyles.github.io/webduino/SPduino_tool/hex/test.hex');
+		uploader.setAttribute("hex-href", result);
+		document.getElementById('arduino-web-uploader').click();
 	}
 
 	//Web Serial

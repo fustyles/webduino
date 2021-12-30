@@ -37,6 +37,7 @@
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-ui.js"></script>
 	<script src="js/jquery.ui.touch-punch.min.js"></script>	
+	<script src="js/arduino-web-uploader.js"></script>	
 </head>
 <body class="root">
 <main id="main" class="has-tabs" >
@@ -65,6 +66,8 @@
 					<a href="#" id="button_addRemoteBlocks" title="Import remote custom blocks"><i class="material-icons">note_add</i></a>
 					<a href="#" id="button_webSerial" title="Web Serial"><i class="small material-icons">usb</i></a>
 					<a href="#" id="button_tool" title="Open Blockly Developer Tools"><i class="small material-icons">construction</i></a>
+					<a href="#" id="button_uploadCode" title="Upload code to Arduino"><i class="small material-icons"><span class="material-icons-outlined">file_upload</span></i></a>
+					
 					<i>　</i>
 				    <i class="material-icons">language</i>
 					<i style="text-align: center;line-height: 50px;-align: middle;">
@@ -380,6 +383,12 @@
 
 </div>
 </main>
+
+<div style="display:none">
+<button id="arduino-web-uploader" arduino-uploader hex-href="" board="nano" verify>
+  Upload to nano/uno/pro/pro-mini [<span class="upload-progress"></span>]
+</button>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/bootstrap.min.js" integrity="sha256-u+l2mGjpmGK/mFgUncmMcFKdMijvV+J3odlDJZSNUu8=" crossorigin="anonymous"></script>
 
