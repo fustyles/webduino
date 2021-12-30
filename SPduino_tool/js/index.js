@@ -612,7 +612,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	//上傳韌體
 	document.getElementById('button_uploadCode').onclick = function () {
 		var uploader = document.getElementById('arduino-web-uploader');
-		var result = prompt('HEX File', 'https://fustyles.github.io/webduino/SPduino_tool/hex/test.hex');
+		var result = prompt('Upload hex file to nano/uno/pro/pro-mini', 'https://fustyles.github.io/webduino/SPduino_tool/hex/test.hex');
 		uploader.setAttribute("hex-href", result);
 		document.getElementById('arduino-web-uploader').click();
 	}
