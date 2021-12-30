@@ -1176,6 +1176,7 @@ Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"] = "新增遠端自訂積木";
 Blockly.Msg["BUTTON_ADDEXTENSIONBLOCKS"] = "新增內建擴充自訂積木";
 Blockly.Msg["BUTTON_TOOL"] = "開啟積木開發工具";
 Blockly.Msg["BUTTON_WEBSERIAL"] = "網頁序列埠工具";
+Blockly.Msg["BUTTON_UPLOADCODE"] = "上傳 HEX 檔至 nano/uno/pro/pro-mini";
 Blockly.Msg["MSG_WEBSERIAL"] = "Web Serial";
 Blockly.Msg["LANG-SELECTOR"] = "選擇語言";
 Blockly.Msg["BUTTON_COPYCODE"] = "複製程式碼到剪貼簿";

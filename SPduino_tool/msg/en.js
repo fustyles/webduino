@@ -1144,6 +1144,7 @@ Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"] = "Import remote custom blocks";
 Blockly.Msg["BUTTON_ADDEXTENSIONBLOCKS"] = "Import extension custom blocks";
 Blockly.Msg["BUTTON_TOOL"] = "Open blockly developer tools";
 Blockly.Msg["BUTTON_WEBSERIAL"] = "Open web serial tools";
+Blockly.Msg["BUTTON_UPLOADCODE"] = "Upload HEX file to nano/uno/pro/pro-mini";
 Blockly.Msg["MSG_WEBSERIAL"] = "Web Serial";
 Blockly.Msg["LANG-SELECTOR"] = "Select Language";
 Blockly.Msg["BUTTON_COPYCODE"] = "Copy to clipboard";
