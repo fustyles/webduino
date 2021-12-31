@@ -8,8 +8,79 @@ var lang = "en";
 var customCategory = [['','','']];
 var customCategoryInsertAfter = "category_sep_main";
 var languageList = "msg/language.js";
+var xmlValue = "";
 
 document.addEventListener('DOMContentLoaded', function() {
+	//載入工具箱目錄
+	$.ajax({
+		type: "GET" ,
+		url: "category/category.xml" ,
+		dataType: "xml",
+		timeout: 3000,
+		async: false,
+		success: function(xml, textStatus) {
+			if (xml.firstChild) {
+				var toolbox_ = document.getElementById('toolbox');
+				var Nodes = xml.firstChild.childNodes;
+				for (var i=0;i<Nodes.length;i++){
+					if (Nodes[i].nodeName!="#text") {
+						toolbox_.appendChild(Nodes[i]);
+					}							
+				}
+			}
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.statusText);
+		}
+	});
+	
+	var category = document.getElementById('toolbox');
+	xmlValue='<xml id="toolbox">';
+	if (category.childNodes.length>0) {
+		for (var i=0;i<category.childNodes.length;i++){
+			var node = new XMLSerializer().serializeToString(category.childNodes[i]);
+			xmlValue+=node;
+		}
+	}
+	xmlValue+='</xml>';	
+			
+	//初始化工作區	
+	const workspace = Blockly.inject('root',{
+			media: 'media/'
+			,toolbox: xmlValue
+			,grid:{spacing: 20,length: 3,colour: '#eee',snap: true}
+			,zoom:{controls: true, wheel: false, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2}
+			,trashcan: true
+			,move:{
+				scrollbars: {
+				  horizontal: true,
+				  vertical: true
+				},
+				drag: true,
+				wheel: true
+			}
+			,plugins: {
+				'blockDragger': ScrollBlockDragger,
+				'metricsManager': ScrollMetricsManager,
+			}		
+		}
+	);
+	
+	//新增邊緣捲動插件
+	//const AutoScrollOptionsPlugin = new AutoScroll(workspace);
+	const scrollOptionsPlugin = new ScrollOptions(workspace);
+	scrollOptionsPlugin.init({enableWheelScroll: true, enableEdgeScroll: true});
+	ScrollBlockDragger.edgeScrollEnabled = false;	
+	
+	//新增系統自訂積木
+	if (typeof systemBlocks != "undefined") {
+		for (var i=0;i<systemBlocks.length;i++) {
+			var customBlocksPath = systemBlocks[i][0];  //自訂積木連結
+			var insertAfterCategoryName = systemBlocks[i][1];  //可將自訂積木插入在指定目錄後
+			addSystemBlocks(customBlocksPath, insertAfterCategoryName);
+		}
+	}
+	
 	//載入語言選單
 	if (typeof language != "undefined") {
 		for (var i=0;i<language.length;i++) {
@@ -22,28 +93,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			select.add(new Option(language[i][2], language[i][0]));
 		}	
 		document.getElementById('lang-selector').value = lang;
-	}
-		
-	//載入自訂積木
-	var category = document.getElementById('toolbox');
-	var xmlValue='<xml id="toolbox">';
-	if (category.childNodes.length>0) {
-		for (var i=0;i<category.childNodes.length;i++){
-			var node = new XMLSerializer().serializeToString(category.childNodes[i]);
-			xmlValue+=node;
-		}
-	}
-	xmlValue+='</xml>';	
-	var xmlValue_last = xmlValue;
+	}	
+			
+	changeLanguage();
 	
-	if (typeof systemBlocks != "undefined") {
-		for (var i=0;i<systemBlocks.length;i++) {
-			var customBlocksPath = systemBlocks[i][0];  //自訂積木連結
-			var insertAfterCategoryName = systemBlocks[i][1];  //可將自訂積木插入在指定目錄後
-			addSystemBlocks(customBlocksPath, insertAfterCategoryName);
-		}
-	}
-
+	//載入系統自訂積木
 	function addSystemBlocks(customBlocksPath, insertAfterCategoryName) {
 		var blocks_path = customBlocksPath+"blocks.js";   //載入自訂積木定義檔	
 		var javascript_path = customBlocksPath+"javascript.js";   //載入自訂積木轉出程式碼檔	
@@ -94,33 +148,14 @@ document.addEventListener('DOMContentLoaded', function() {
 					}
 					xmlNewValue+='</xml>';
 					xmlValue = xmlNewValue;
-					try {
-						if (document.getElementById('lang-selector').value=="en") {
-							var xml = $.ajax({url: en_category_path, async: false}).responseXML.firstChild;
-						} else {
-							var xml = $.ajax({url: zhhant_category_path, async: false}).responseXML.firstChild;
-						}
-						xml = new DOMParser().parseFromString(new XMLSerializer().serializeToString(xml).replace(/\n/g, "").replace(/\r/g, "").replace(/\t/g, ""),"text/xml").firstChild;
-						for (var i=0;i<xml.childNodes.length;i++) {
-							if (xml.childNodes[i].nodeName.toLowerCase()=="category") {
-								var ini = xml.childNodes[i].childNodes[0].firstChild.nodeValue;
-								var rep = xml.childNodes[i].childNodes[1].firstChild.nodeValue;
-								xmlValue = xmlValue.replace('name="'+ini+'"','name="'+rep+'"');	
-							}
-						}
-						xmlValue_last = xmlValue;
-						
-					} catch (error) {
-						//console.log(error);
-					}
+					
+					Blockly.getMainWorkspace().updateToolbox(xmlValue);	
 				} catch (error) {
-					//console.log(error);
-					xmlValue = xmlValue_last;
+					console.log(error);
 				}
 			},
 			error: function (jqXHR, textStatus, errorThrown) {
 				console.log(jqXHR.statusText);
-				xmlValue = xmlValue_last;
 			}
 		});	
 	}
@@ -205,36 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 	
-	//初始化工作區	
-	const workspace = Blockly.inject('root',{
-			media: 'media/'
-			,toolbox: xmlValue
-			,grid:{spacing: 20,length: 3,colour: '#eee',snap: true}
-			,zoom:{controls: true, wheel: false, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2}
-			,trashcan: true
-			,move:{
-				scrollbars: {
-				  horizontal: true,
-				  vertical: true
-				},
-				drag: true,
-				wheel: true
-			}
-			,plugins: {
-				'blockDragger': ScrollBlockDragger,
-				'metricsManager': ScrollMetricsManager,
-			}		
-		}
-	);
-	
-	//新增邊緣捲動插件
-	//const AutoScrollOptionsPlugin = new AutoScroll(workspace);
-	const scrollOptionsPlugin = new ScrollOptions(workspace);
-	scrollOptionsPlugin.init({enableWheelScroll: true, enableEdgeScroll: true});
-	ScrollBlockDragger.edgeScrollEnabled = false;	
-	
-	changeLanguage();
-	
 	//程式碼區塊拖曳與調整大小功能	
 	$(function() {
 		$( "#arduino_content" ).draggable();
@@ -249,13 +254,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		$( "#updateMessage_content" ).resizable();			
 	});	
 	
+	//更新首頁語系文字
 	function updateMsg() {
 		if (typeof msg != "undefined") {
 			for (var i=0;i<msg.length;i++) {
 				if (msg[i][1]=="innerHTML")
 					document.getElementById(msg[i][0]).innerHTML=msg[i][2];
 				else if (msg[i][1]=="title")
-					document.getElementById(msg[i][0]).title=msg[i][2];
+					document.getElementById(msg[i][0]).title=msg[i][2];			
 			}
 		}
 	}
@@ -386,6 +392,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		changeLanguage();
 	}	
 	
+	//切換語言
 	function changeLanguage() {
 		addScript(languageList);
 		if (typeof language != "undefined") {
@@ -399,19 +406,35 @@ document.addEventListener('DOMContentLoaded', function() {
 				document.getElementById('lang-selector').options[i].text = language[i][2];
 			}
 		}
-		addScript("js/message.js");
-		updateMsg();
 		
-		var category = JSON.parse(JSON.stringify(customCategory));
-		for (var i=0;i<category.length;i++) {
-			if (category[i][2]) addCustomRemoteBlocks(category[i][2]);
+		if (typeof systemBlocks != "undefined") {
+			for (var i=0;i<systemBlocks.length;i++) {
+				if (document.getElementById('lang-selector').value=="en")
+					addScript(systemBlocks[i][0]+"en.js");
+				else
+					addScript(systemBlocks[i][0]+"zh-hant.js");
+			}
 		}
+		
+		addScript("js/message.js");
+		flashToolbox();
+		updateMsg();
 		updateCategory();
 		
 		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());
 	}
+	
+	function flashToolbox() {
+		var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
+		Blockly.getMainWorkspace().updateToolbox(category);
+		
+		var category = JSON.parse(JSON.stringify(customCategory));
+		for (var i=0;i<category.length;i++) {
+			if (category[i][2]) addCustomRemoteBlocks(category[i][2]);
+		}
+	}	
 	
 	//複製程式碼到剪貼簿
 	document.getElementById('button_copycode').onclick = function () {

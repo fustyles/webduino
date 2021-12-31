@@ -1,0 +1,1835 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_io_write3</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="7|!NEVf[9ys!c/YlC3y=">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_dropdown" id="}(U|4p3fKuYI6jambBkZ">
+            <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+            <field name="FIELDNAME">type</field>
+            <field name="USER0">數位輸出</field>
+            <field name="CPU0">digitalWrite(%1, %2);</field>
+            <field name="USER1">類比輸出</field>
+            <field name="CPU1">analogWrite(%1, %2);</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="]9y-y$SV[?%|tnnaoU(k">
+            <field name="INPUTNAME">pin</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id=";77=a=lI0z)}fwnf_j/!">
+                <field name="TEXT">腳位</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="bZt/=8+HJ%30~3RxOm4Q"></shadow>
+              <block type="type_number" id="kOT+B9a/`Vdwht/?)]4("></block>
+            </value>
+            <next>
+              <block type="input_value" id="#]yxYfJ..3ES=*4hahC-">
+                <field name="INPUTNAME">value</field>
+                <field name="ALIGN">RIGHT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="Ib#@EPeJW,:3Z1kJ`S;%">
+                    <field name="TEXT">值</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null"></shadow>
+                  <block type="type_number" id="qSrR7*+$8:6Ld.)Ewo||"></block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT">I/O</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="hoL]KZ+.g-th#3x}o.Ti"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="K.VYXh4%ZJ[KU1vXyHe~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_io_write2</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="psOT6[w~*3gSPVuN%-5W">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="K%#m;UaLp_25UBozjtn^">
+            <field name="TEXT">數位輸出</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="c-D!]{H`P/02gPSZnc*?">
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id=";77=a=lI0z)}fwnf_j/!">
+                <field name="TEXT">腳位</field>
+                <next>
+                  <block type="field_dropdown" id="-A(X$Cjih:3_hx%t)qqg">
+                    <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+                    <field name="FIELDNAME">pin</field>
+                    <field name="USER0">12</field>
+                    <field name="CPU0">12</field>
+                    <field name="USER1">13</field>
+                    <field name="CPU1">13</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="input_dummy" id="/29`FQ`(5q`4uoci{K=h">
+                <field name="ALIGN">RIGHT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="V=$!j;wK:HwfU.$!1Hy_">
+                    <field name="TEXT">值</field>
+                    <next>
+                      <block type="field_dropdown" id=",/KrP^sVU_p:FY1uB.M/">
+                        <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+                        <field name="FIELDNAME">value</field>
+                        <field name="USER0">高</field>
+                        <field name="CPU0">HIGH</field>
+                        <field name="USER1">低</field>
+                        <field name="CPU1">LOW</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT">I/O</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="hoL]KZ+.g-th#3x}o.Ti"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="K.VYXh4%ZJ[KU1vXyHe~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_io_write1</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="/whp]H._jT|gTeBt}^ES">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="K%#m;UaLp_25UBozjtn^">
+            <field name="TEXT">數位輸出</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="]9y-y$SV[?%|tnnaoU(k">
+            <field name="INPUTNAME">pin</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id=";77=a=lI0z)}fwnf_j/!">
+                <field name="TEXT">腳位</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="bZt/=8+HJ%30~3RxOm4Q"></shadow>
+              <block type="type_number" id="kOT+B9a/`Vdwht/?)]4("></block>
+            </value>
+            <next>
+              <block type="input_dummy" id="/29`FQ`(5q`4uoci{K=h">
+                <field name="ALIGN">RIGHT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="V=$!j;wK:HwfU.$!1Hy_">
+                    <field name="TEXT">值</field>
+                    <next>
+                      <block type="field_dropdown" id=",/KrP^sVU_p:FY1uB.M/">
+                        <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+                        <field name="FIELDNAME">value</field>
+                        <field name="USER0">高</field>
+                        <field name="CPU0">HIGH</field>
+                        <field name="USER1">低</field>
+                        <field name="CPU1">LOW</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT">I/O</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="hoL]KZ+.g-th#3x}o.Ti"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="K.VYXh4%ZJ[KU1vXyHe~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="#8+~thpwLYXL4T#@0LBr" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_io_write</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="H7)u^%K|kS.uW;F7O{3;">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="K%#m;UaLp_25UBozjtn^">
+            <field name="TEXT">數位輸出</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="]9y-y$SV[?%|tnnaoU(k">
+            <field name="INPUTNAME">pin</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id=";77=a=lI0z)}fwnf_j/!">
+                <field name="TEXT">腳位</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="bZt/=8+HJ%30~3RxOm4Q"></shadow>
+              <block type="type_number" id="kOT+B9a/`Vdwht/?)]4("></block>
+            </value>
+            <next>
+              <block type="input_value" id="F+-mjKy-qgk7tS0!s^3$">
+                <field name="INPUTNAME">value</field>
+                <field name="ALIGN">RIGHT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="`F?7i;Yat$oFPm]!P[_}">
+                    <field name="TEXT">值</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null"></shadow>
+                  <block type="type_number" id="RG2j@UnXTj{YvEwQh|}$"></block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT">I/O</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="hoL]KZ+.g-th#3x}o.Ti"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="K.VYXh4%ZJ[KU1vXyHe~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">fu_io_read3</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="7|!NEVf[9ys!c/YlC3y=">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_dropdown" id="}(U|4p3fKuYI6jambBkZ">
+            <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+            <field name="FIELDNAME">type</field>
+            <field name="USER0">數位輸入</field>
+            <field name="CPU0">digitalRead(%1)</field>
+            <field name="USER1">類比輸入</field>
+            <field name="CPU1">analogRead(%1)</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="]9y-y$SV[?%|tnnaoU(k">
+            <field name="INPUTNAME">pin</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id=";77=a=lI0z)}fwnf_j/!">
+                <field name="TEXT">腳位</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="bZt/=8+HJ%30~3RxOm4Q"></shadow>
+              <block type="type_number" id="kOT+B9a/`Vdwht/?)]4("></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT">I/O</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/digital-io/digitalread/</field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="j3?v-[F0O_@BX1Q6A}y|"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="2qzhcE$:6HMe6([MAlwc" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_time_delay</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="hx4i.8k0Y7Bgt8MIO8|8">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="nnkf[Ds}iMg]GQL:`+wl">
+            <field name="TEXT">時間延遲</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="Ga2:/oc6L/`?$y*K]j$~">
+            <field name="INPUTNAME">ms</field>
+            <field name="ALIGN">RIGHT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="mE{f{TdQT|M]9xz|,-Y6"></shadow>
+            </value>
+            <next>
+              <block type="input_dummy" id="*P#~bTPwhig9E$+8jhw/">
+                <field name="ALIGN">RIGHT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="ZW/lHFyInr32h)Fhx#f7">
+                    <field name="TEXT">毫秒</field>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="m,xCFPT5I}KFBG6Ks}P|" deletable="false" movable="false">
+        <field name="TEXT">time</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AfMJ-zY3ZkNkBd#a*|ug" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/time/delay/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="56t75QB4AJP?aQ7-#XqU"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="z3vn]ry/Cn5u|owRlrmL"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$o4c9{UEs|HP.}?Sg^e*">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="2qzhcE$:6HMe6([MAlwc" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_time_delayMicroseconds</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="hx4i.8k0Y7Bgt8MIO8|8">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="nnkf[Ds}iMg]GQL:`+wl">
+            <field name="TEXT">時間延遲</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="Ga2:/oc6L/`?$y*K]j$~">
+            <field name="INPUTNAME">us</field>
+            <field name="ALIGN">RIGHT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="mE{f{TdQT|M]9xz|,-Y6"></shadow>
+            </value>
+            <next>
+              <block type="input_dummy" id="*P#~bTPwhig9E$+8jhw/">
+                <field name="ALIGN">RIGHT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="ZW/lHFyInr32h)Fhx#f7">
+                    <field name="TEXT">微秒</field>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="m,xCFPT5I}KFBG6Ks}P|" deletable="false" movable="false">
+        <field name="TEXT">time</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AfMJ-zY3ZkNkBd#a*|ug" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/time/delay/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="56t75QB4AJP?aQ7-#XqU"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="z3vn]ry/Cn5u|owRlrmL"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$o4c9{UEs|HP.}?Sg^e*">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="2qzhcE$:6HMe6([MAlwc" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">fu_time_micros</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="*P#~bTPwhig9E$+8jhw/">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="ZW/lHFyInr32h)Fhx#f7">
+            <field name="TEXT">運行至今的微秒數</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="m,xCFPT5I}KFBG6Ks}P|" deletable="false" movable="false">
+        <field name="TEXT">time</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AfMJ-zY3ZkNkBd#a*|ug" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/time/micros/</field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="zVZCbPGI_2RR_:zm%@no"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$o4c9{UEs|HP.}?Sg^e*">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="2qzhcE$:6HMe6([MAlwc" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">fu_time_millis</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="*P#~bTPwhig9E$+8jhw/">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="ZW/lHFyInr32h)Fhx#f7">
+            <field name="TEXT">運行至今的毫秒數</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="m,xCFPT5I}KFBG6Ks}P|" deletable="false" movable="false">
+        <field name="TEXT">time</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AfMJ-zY3ZkNkBd#a*|ug" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/time/millis/</field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="zVZCbPGI_2RR_:zm%@no"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$o4c9{UEs|HP.}?Sg^e*">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_io_pinMode</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="Nie|(%#36|pW;iD[Fo7r">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=";77=a=lI0z)}fwnf_j/!">
+            <field name="TEXT">腳位</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="]9y-y$SV[?%|tnnaoU(k">
+            <field name="INPUTNAME">pin</field>
+            <field name="ALIGN">RIGHT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="bZt/=8+HJ%30~3RxOm4Q"></shadow>
+              <block type="type_number" id="kOT+B9a/`Vdwht/?)]4("></block>
+            </value>
+            <next>
+              <block type="input_dummy" id="7|!NEVf[9ys!c/YlC3y=">
+                <field name="ALIGN">RIGHT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="8)H5Aj1X$#)7.B!%V_Kd">
+                    <field name="TEXT">模式</field>
+                    <next>
+                      <block type="field_dropdown" id="}(U|4p3fKuYI6jambBkZ">
+                        <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                        <field name="FIELDNAME">type</field>
+                        <field name="USER0">輸入</field>
+                        <field name="CPU0">INPUT</field>
+                        <field name="USER1">輸出</field>
+                        <field name="CPU1">OUTPUT</field>
+                        <field name="USER2">輸入(上拉電阻)</field>
+                        <field name="CPU2">INPUT_PULLUP</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT">I/O</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="hoL]KZ+.g-th#3x}o.Ti"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="K.VYXh4%ZJ[KU1vXyHe~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="2qzhcE$:6HMe6([MAlwc" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_serial_begin</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="hx4i.8k0Y7Bgt8MIO8|8">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="nnkf[Ds}iMg]GQL:`+wl">
+            <field name="TEXT">序列埠</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="Ga2:/oc6L/`?$y*K]j$~">
+            <field name="INPUTNAME">baudrate</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="hoSXd6V}[D7#tUX6euD?">
+                <field name="TEXT">鮑率</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="mE{f{TdQT|M]9xz|,-Y6"></shadow>
+              <block type="type_number" id="Rpa]7^mT]7=k5Bx}zB|W"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="m,xCFPT5I}KFBG6Ks}P|" deletable="false" movable="false">
+        <field name="TEXT">serial</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AfMJ-zY3ZkNkBd#a*|ug" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/communication/serial/begin/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="56t75QB4AJP?aQ7-#XqU"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="z3vn]ry/Cn5u|owRlrmL"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$o4c9{UEs|HP.}?Sg^e*">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="2qzhcE$:6HMe6([MAlwc" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_serial_begin_config</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="hx4i.8k0Y7Bgt8MIO8|8">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="nnkf[Ds}iMg]GQL:`+wl">
+            <field name="TEXT">序列埠</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="Ga2:/oc6L/`?$y*K]j$~">
+            <field name="INPUTNAME">baudrate</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="hoSXd6V}[D7#tUX6euD?">
+                <field name="TEXT">鮑率</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="mE{f{TdQT|M]9xz|,-Y6"></shadow>
+              <block type="type_number" id="Rpa]7^mT]7=k5Bx}zB|W"></block>
+            </value>
+            <next>
+              <block type="input_dummy" id="f5?L,FQ)Z:}wH]rtodDc">
+                <field name="ALIGN">RIGHT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="?ilU~dAK2}R#0T9h;)Fh">
+                    <field name="TEXT">格式</field>
+                    <next>
+                      <block type="field_dropdown" id="^*kDN:)y/P(*dODE2#N.">
+                        <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+                        <field name="FIELDNAME">config</field>
+                        <field name="USER0">n</field>
+                        <field name="CPU0">v</field>
+                        <field name="USER1">o</field>
+                        <field name="CPU1">v</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="m,xCFPT5I}KFBG6Ks}P|" deletable="false" movable="false">
+        <field name="TEXT">serial</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AfMJ-zY3ZkNkBd#a*|ug" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/communication/serial/begin/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="56t75QB4AJP?aQ7-#XqU"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="z3vn]ry/Cn5u|owRlrmL"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$o4c9{UEs|HP.}?Sg^e*">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="2qzhcE$:6HMe6([MAlwc" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_serial_ready</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="hx4i.8k0Y7Bgt8MIO8|8">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="nnkf[Ds}iMg]GQL:`+wl">
+            <field name="TEXT">序列埠</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="9JXor(g!lm3C)ua2-VoN">
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="DKaqhD1XB(~zNK[}E`?L">
+                <field name="TEXT">等待連線</field>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="m,xCFPT5I}KFBG6Ks}P|" deletable="false" movable="false">
+        <field name="TEXT">serial</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AfMJ-zY3ZkNkBd#a*|ug" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/communication/serial/ifserial/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="56t75QB4AJP?aQ7-#XqU"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="z3vn]ry/Cn5u|owRlrmL"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$o4c9{UEs|HP.}?Sg^e*">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="2qzhcE$:6HMe6([MAlwc" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_serial_end</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="hx4i.8k0Y7Bgt8MIO8|8">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="nnkf[Ds}iMg]GQL:`+wl">
+            <field name="TEXT">序列埠</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="9JXor(g!lm3C)ua2-VoN">
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="DKaqhD1XB(~zNK[}E`?L">
+                <field name="TEXT">通訊停止</field>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="m,xCFPT5I}KFBG6Ks}P|" deletable="false" movable="false">
+        <field name="TEXT">serial</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AfMJ-zY3ZkNkBd#a*|ug" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/communication/serial/end/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="56t75QB4AJP?aQ7-#XqU"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="z3vn]ry/Cn5u|owRlrmL"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$o4c9{UEs|HP.}?Sg^e*">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="2qzhcE$:6HMe6([MAlwc" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_serial_print</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="hx4i.8k0Y7Bgt8MIO8|8">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="nnkf[Ds}iMg]GQL:`+wl">
+            <field name="TEXT">序列埠</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="Ga2:/oc6L/`?$y*K]j$~">
+            <field name="INPUTNAME">data</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="hoSXd6V}[D7#tUX6euD?">
+                <field name="TEXT">印出資料</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="mE{f{TdQT|M]9xz|,-Y6"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="m,xCFPT5I}KFBG6Ks}P|" deletable="false" movable="false">
+        <field name="TEXT">serial</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AfMJ-zY3ZkNkBd#a*|ug" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/communication/serial/print/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="56t75QB4AJP?aQ7-#XqU"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="z3vn]ry/Cn5u|owRlrmL"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$o4c9{UEs|HP.}?Sg^e*">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="2qzhcE$:6HMe6([MAlwc" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_serial_print_format</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="hx4i.8k0Y7Bgt8MIO8|8">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="nnkf[Ds}iMg]GQL:`+wl">
+            <field name="TEXT">序列埠</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="Ga2:/oc6L/`?$y*K]j$~">
+            <field name="INPUTNAME">data</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="hoSXd6V}[D7#tUX6euD?">
+                <field name="TEXT">印出資料</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="mE{f{TdQT|M]9xz|,-Y6"></shadow>
+              <block type="type_number" id="?NtqCUX^C[{M!{W|yun+"></block>
+            </value>
+            <next>
+              <block type="input_dummy" id="FAMB3kQpr?rF7$lnA_mR">
+                <field name="ALIGN">RIGHT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="-9(GG!NQt9f(tv9}z72h">
+                    <field name="TEXT">格式</field>
+                    <next>
+                      <block type="field_dropdown" id="F[pa?uatTRl^.cR,7pAv">
+                        <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                        <field name="FIELDNAME">format</field>
+                        <field name="USER0">BIN</field>
+                        <field name="CPU0">BIN</field>
+                        <field name="USER1">OCT</field>
+                        <field name="CPU1">OCT</field>
+                        <field name="USER2">DEC</field>
+                        <field name="CPU2">DEC</field>
+                        <field name="USER3">HEX</field>
+                        <field name="CPU3">HEX</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="m,xCFPT5I}KFBG6Ks}P|" deletable="false" movable="false">
+        <field name="TEXT">serial</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AfMJ-zY3ZkNkBd#a*|ug" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/communication/serial/print/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="56t75QB4AJP?aQ7-#XqU"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="z3vn]ry/Cn5u|owRlrmL"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$o4c9{UEs|HP.}?Sg^e*">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="2qzhcE$:6HMe6([MAlwc" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_serial_println</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="hx4i.8k0Y7Bgt8MIO8|8">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="nnkf[Ds}iMg]GQL:`+wl">
+            <field name="TEXT">序列埠</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="Ga2:/oc6L/`?$y*K]j$~">
+            <field name="INPUTNAME">data</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="hoSXd6V}[D7#tUX6euD?">
+                <field name="TEXT">印出資料</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="mE{f{TdQT|M]9xz|,-Y6"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="m,xCFPT5I}KFBG6Ks}P|" deletable="false" movable="false">
+        <field name="TEXT">serial</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AfMJ-zY3ZkNkBd#a*|ug" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/communication/serial/println/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="56t75QB4AJP?aQ7-#XqU"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="z3vn]ry/Cn5u|owRlrmL"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$o4c9{UEs|HP.}?Sg^e*">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="2qzhcE$:6HMe6([MAlwc" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_serial_write</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="hx4i.8k0Y7Bgt8MIO8|8">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="nnkf[Ds}iMg]GQL:`+wl">
+            <field name="TEXT">序列埠</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="Ga2:/oc6L/`?$y*K]j$~">
+            <field name="INPUTNAME">data</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="hoSXd6V}[D7#tUX6euD?">
+                <field name="TEXT">印出二進制資料</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="mE{f{TdQT|M]9xz|,-Y6"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="m,xCFPT5I}KFBG6Ks}P|" deletable="false" movable="false">
+        <field name="TEXT">serial</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AfMJ-zY3ZkNkBd#a*|ug" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/communication/serial/write/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="56t75QB4AJP?aQ7-#XqU"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="z3vn]ry/Cn5u|owRlrmL"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$o4c9{UEs|HP.}?Sg^e*">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="2qzhcE$:6HMe6([MAlwc" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_serial_write_format</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="hx4i.8k0Y7Bgt8MIO8|8">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="nnkf[Ds}iMg]GQL:`+wl">
+            <field name="TEXT">序列埠</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="Ga2:/oc6L/`?$y*K]j$~">
+            <field name="INPUTNAME">data</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="hoSXd6V}[D7#tUX6euD?">
+                <field name="TEXT">印出二進制資料</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="mE{f{TdQT|M]9xz|,-Y6"></shadow>
+              <block type="type_number" id="?NtqCUX^C[{M!{W|yun+"></block>
+            </value>
+            <next>
+              <block type="input_dummy" id="FAMB3kQpr?rF7$lnA_mR">
+                <field name="ALIGN">RIGHT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="-9(GG!NQt9f(tv9}z72h">
+                    <field name="TEXT">格式</field>
+                    <next>
+                      <block type="field_dropdown" id="F[pa?uatTRl^.cR,7pAv">
+                        <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                        <field name="FIELDNAME">format</field>
+                        <field name="USER0">BIN</field>
+                        <field name="CPU0">BIN</field>
+                        <field name="USER1">OCT</field>
+                        <field name="CPU1">OCT</field>
+                        <field name="USER2">DEC</field>
+                        <field name="CPU2">DEC</field>
+                        <field name="USER3">HEX</field>
+                        <field name="CPU3">HEX</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="m,xCFPT5I}KFBG6Ks}P|" deletable="false" movable="false">
+        <field name="TEXT">serial</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AfMJ-zY3ZkNkBd#a*|ug" deletable="false" movable="false">
+        <field name="TEXT">https://www.arduino.cc/reference/en/language/functions/communication/serial/write/</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="56t75QB4AJP?aQ7-#XqU"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="z3vn]ry/Cn5u|owRlrmL"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$o4c9{UEs|HP.}?Sg^e*">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="e5lx9s].Aa4yrl__8#p;" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">helloworld</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="6Olup,cy`i6lP?gWd`|*">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="NAqI3G^je7?;%arIe_1%">
+            <field name="TEXT">Hello World</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="0$Fw6SS~eU$/n(;W|ssF" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="{+C__ndcWpKGKsJS}6?y" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="8|5G#O~naOf*)FhlG.]4"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="O?u|GQGeuNNk(;OcDh~L"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="g!*dQH9_(u8!-,~}zF=m">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="e5lx9s].Aa4yrl__8#p;" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">sayhelloworld</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="6Olup,cy`i6lP?gWd`|*">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="NAqI3G^je7?;%arIe_1%">
+            <field name="TEXT">Say</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="k|ML6g.P.YL`ZIo8PKL9">
+            <field name="INPUTNAME">text</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="Bd|Cz=y0g2STY_2R3#*V"></shadow>
+              <block type="type_null" id="wR-xyM2j,OYA)qbh?4(+"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="0$Fw6SS~eU$/n(;W|ssF" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="{+C__ndcWpKGKsJS}6?y" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="8|5G#O~naOf*)FhlG.]4"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="O?u|GQGeuNNk(;OcDh~L"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="g!*dQH9_(u8!-,~}zF=m">
+        <mutation colour="#a55ba5"></mutation>
+        <field name="HUE">300</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_ez_digitalwrite_input</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="/whp]H._jT|gTeBt}^ES">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="qtCc/[K}Yz3I@.D{.U+3">
+            <field name="TEXT">EZ+</field>
+            <next>
+              <block type="field_dropdown" id="3vA7nGxE.3Y[u8-uk0Ij">
+                <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                <field name="FIELDNAME">pin</field>
+                <field name="USER0">紅燈</field>
+                <field name="CPU0">36</field>
+                <field name="USER1">黃燈</field>
+                <field name="CPU1">12</field>
+                <field name="USER2">綠燈</field>
+                <field name="CPU2">13</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="?d}O=f*S~.,@o#;W?`GE">
+            <field name="INPUTNAME">value</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="0/vhdC.t1~(v)?}nuPz6">
+                <field name="TEXT">數位輸出</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="2nsn[J$)+aB^OR_@!*Qm"></shadow>
+              <block type="type_number" id="Dye+$hA7_a_[fbLnKCuP"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="hoL]KZ+.g-th#3x}o.Ti"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="K.VYXh4%ZJ[KU1vXyHe~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_ez_digitalwrite</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="/whp]H._jT|gTeBt}^ES">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="x66dI.7rX@WZ^KN:3.7A">
+            <field name="TEXT">EZ+</field>
+            <next>
+              <block type="field_dropdown" id="3vA7nGxE.3Y[u8-uk0Ij">
+                <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                <field name="FIELDNAME">pin</field>
+                <field name="USER0">紅燈</field>
+                <field name="CPU0">36</field>
+                <field name="USER1">黃燈</field>
+                <field name="CPU1">12</field>
+                <field name="USER2">綠燈</field>
+                <field name="CPU2">13</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="/29`FQ`(5q`4uoci{K=h">
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="V=$!j;wK:HwfU.$!1Hy_">
+                <field name="TEXT">狀態</field>
+                <next>
+                  <block type="field_dropdown" id=",/KrP^sVU_p:FY1uB.M/">
+                    <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+                    <field name="FIELDNAME">value</field>
+                    <field name="USER0">開</field>
+                    <field name="CPU0">HIGH</field>
+                    <field name="USER1">關</field>
+                    <field name="CPU1">LOW</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="hoL]KZ+.g-th#3x}o.Ti"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="K.VYXh4%ZJ[KU1vXyHe~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_ez_analogwrite_input</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="/whp]H._jT|gTeBt}^ES">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="qtCc/[K}Yz3I@.D{.U+3">
+            <field name="TEXT">EZ+</field>
+            <next>
+              <block type="field_dropdown" id="3vA7nGxE.3Y[u8-uk0Ij">
+                <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                <field name="FIELDNAME">pin</field>
+                <field name="USER0">紅燈</field>
+                <field name="CPU0">36</field>
+                <field name="USER1">黃燈</field>
+                <field name="CPU1">12</field>
+                <field name="USER2">綠燈</field>
+                <field name="CPU2">13</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="?d}O=f*S~.,@o#;W?`GE">
+            <field name="INPUTNAME">value</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="0/vhdC.t1~(v)?}nuPz6">
+                <field name="TEXT">類比輸出</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="2nsn[J$)+aB^OR_@!*Qm"></shadow>
+              <block type="type_number" id="Dye+$hA7_a_[fbLnKCuP"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="hoL]KZ+.g-th#3x}o.Ti"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="K.VYXh4%ZJ[KU1vXyHe~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_ez_analogwrite_input_esp</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="/whp]H._jT|gTeBt}^ES">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="qtCc/[K}Yz3I@.D{.U+3">
+            <field name="TEXT">EZ+</field>
+            <next>
+              <block type="field_dropdown" id="3vA7nGxE.3Y[u8-uk0Ij">
+                <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                <field name="FIELDNAME">pin</field>
+                <field name="USER0">紅燈</field>
+                <field name="CPU0">36</field>
+                <field name="USER1">黃燈</field>
+                <field name="CPU1">12</field>
+                <field name="USER2">綠燈</field>
+                <field name="CPU2">13</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="?d}O=f*S~.,@o#;W?`GE">
+            <field name="INPUTNAME">value</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="0/vhdC.t1~(v)?}nuPz6">
+                <field name="TEXT">類比輸出</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="2nsn[J$)+aB^OR_@!*Qm"></shadow>
+              <block type="type_number" id="Dye+$hA7_a_[fbLnKCuP"></block>
+            </value>
+            <next>
+              <block type="input_value" id="MVm:VQ6Jo#nk-5%GL/9s">
+                <field name="INPUTNAME">channel</field>
+                <field name="ALIGN">RIGHT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="@Xk]Xs60Z2zwZsgKPCLr">
+                    <field name="TEXT">通道</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null"></shadow>
+                  <block type="type_number" id="fkL8fl?1TBwm?TD~()Cf"></block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="hoL]KZ+.g-th#3x}o.Ti"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="K.VYXh4%ZJ[KU1vXyHe~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">fu_ez_digitalread</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="/whp]H._jT|gTeBt}^ES">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="x66dI.7rX@WZ^KN:3.7A">
+            <field name="TEXT">EZ+</field>
+            <next>
+              <block type="field_dropdown" id="3vA7nGxE.3Y[u8-uk0Ij">
+                <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+                <field name="FIELDNAME">pin</field>
+                <field name="USER0">按鈕A</field>
+                <field name="CPU0">2</field>
+                <field name="USER1">按鈕B</field>
+                <field name="CPU1">16</field>
+                <next>
+                  <block type="field_static" id="V=$!j;wK:HwfU.$!1Hy_">
+                    <field name="TEXT">數位輸入</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id=";2|%A]Y[Ni|v}qehP{UH"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">fu_ez_analogread_potentiometer</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="/whp]H._jT|gTeBt}^ES">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="x66dI.7rX@WZ^KN:3.7A">
+            <field name="TEXT">EZ+</field>
+            <next>
+              <block type="field_static" id="V=$!j;wK:HwfU.$!1Hy_">
+                <field name="TEXT">可變電阻</field>
+                <next>
+                  <block type="field_static" id="7W5YtY=IH:2^`w8am+-+">
+                    <field name="TEXT">類比輸入</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id=";2|%A]Y[Ni|v}qehP{UH"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">fu_ez_analogread_photoresistor</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="/whp]H._jT|gTeBt}^ES">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="x66dI.7rX@WZ^KN:3.7A">
+            <field name="TEXT">EZ+</field>
+            <next>
+              <block type="field_static" id="V=$!j;wK:HwfU.$!1Hy_">
+                <field name="TEXT">光感測器</field>
+                <next>
+                  <block type="field_static" id="7W5YtY=IH:2^`w8am+-+">
+                    <field name="TEXT">類比輸入</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id=";2|%A]Y[Ni|v}qehP{UH"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_ez_digitalwrite_input_relay</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="VgTKYw9/^[%*[i!QA4L=">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="qtCc/[K}Yz3I@.D{.U+3">
+            <field name="TEXT">EZ+</field>
+            <next>
+              <block type="field_static" id="~Y{o=f}(h*u7TWpY5OZR">
+                <field name="TEXT">繼電器</field>
+                <next>
+                  <block type="field_static" id="0/vhdC.t1~(v)?}nuPz6">
+                    <field name="TEXT">數位輸出</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="hoL]KZ+.g-th#3x}o.Ti"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="K.VYXh4%ZJ[KU1vXyHe~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_ez_buzzer_tone</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="VgTKYw9/^[%*[i!QA4L=">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="qtCc/[K}Yz3I@.D{.U+3">
+            <field name="TEXT">EZ+</field>
+            <next>
+              <block type="field_static" id="~Y{o=f}(h*u7TWpY5OZR">
+                <field name="TEXT">蜂鳴器</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="x3@JOJh[{LVXDeCbc*c|">
+            <field name="INPUTNAME">frequency</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="oe6|zvB5]`OMUql.0,vG">
+                <field name="TEXT">頻率</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="7UA]^Y6y15^1]a[c2Nf#"></shadow>
+              <block type="type_number" id="lcz[;o]QQu7bz**]+%N~"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="hoL]KZ+.g-th#3x}o.Ti"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="K.VYXh4%ZJ[KU1vXyHe~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_ez_buzzer_tone_duration</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="VgTKYw9/^[%*[i!QA4L=">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="qtCc/[K}Yz3I@.D{.U+3">
+            <field name="TEXT">EZ+</field>
+            <next>
+              <block type="field_static" id="~Y{o=f}(h*u7TWpY5OZR">
+                <field name="TEXT">蜂鳴器</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="x3@JOJh[{LVXDeCbc*c|">
+            <field name="INPUTNAME">frequency</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="oe6|zvB5]`OMUql.0,vG">
+                <field name="TEXT">頻率</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="7UA]^Y6y15^1]a[c2Nf#"></shadow>
+              <block type="type_number" id="lcz[;o]QQu7bz**]+%N~"></block>
+            </value>
+            <next>
+              <block type="input_value" id="+;w=Yc%a))hC:9!]VO$~">
+                <field name="INPUTNAME">duration</field>
+                <field name="ALIGN">RIGHT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="`WGH*|:/iw2nn9`*;Ey#">
+                    <field name="TEXT">持續時間</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null"></shadow>
+                  <block type="type_number" id="~Ka0Z__hH6b`R?M{*V(^"></block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="hoL]KZ+.g-th#3x}o.Ti"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="K.VYXh4%ZJ[KU1vXyHe~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="buWQunKneZF{O=W%YT[p" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">fu_ez_buzzer_notone</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="VgTKYw9/^[%*[i!QA4L=">
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="qtCc/[K}Yz3I@.D{.U+3">
+            <field name="TEXT">EZ+</field>
+            <next>
+              <block type="field_static" id="~Y{o=f}(h*u7TWpY5OZR">
+                <field name="TEXT">蜂鳴器</field>
+                <next>
+                  <block type="field_static" id="oe6|zvB5]`OMUql.0,vG">
+                    <field name="TEXT">停止</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!$YTSK|0*zyP4*twwprO" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="iQ+(P~08c;5=7g]l9vO[" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="hoL]KZ+.g-th#3x}o.Ti"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="K.VYXh4%ZJ[KU1vXyHe~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="EA[z8sXOX.oF[j#[Z::J">
+        <mutation colour="#5b93a5"></mutation>
+        <field name="HUE">195</field>
+      </block>
+    </value>
+  </block></xml>

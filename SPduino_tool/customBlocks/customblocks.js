@@ -1,8 +1,5 @@
 var customBlocks = [
-["customBlocks/fu_serial/","category_sep_main"],
-["customBlocks/fu_time/","category_sep_main"],
-["customBlocks/fu_io/","category_sep_main"],
-["customBlocks/myBackPack/","category_sep_main"]
+["https://fustyles.github.io/webduino/LinkIt7697/France/","category_sep_custom"]
 ];
 
 /*

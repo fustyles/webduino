@@ -1,0 +1,12 @@
+Blockly.Msg["FU_IO_HUE"] = "290";
+Blockly.Msg["FU_IO"] = "I/O";
+Blockly.Msg["FU_IO_DIGITALWRITE"] = "digitalWrite";
+Blockly.Msg["FU_IO_ANALOGWRITE"] = "analogWrite";
+Blockly.Msg["FU_IO_DIGITALREAD"] = "digitalRead";
+Blockly.Msg["FU_IO_ANALOGREAD"] = "analogRead";
+Blockly.Msg["FU_IO_PIN"] = "pin";
+Blockly.Msg["FU_IO_VALUE"] = "value";
+Blockly.Msg["FU_IO_MODE"] = "mode";
+Blockly.Msg["FU_IO_INPUT"] = "INPUT";
+Blockly.Msg["FU_IO_OUTPUT"] = "OUTPUT";
+Blockly.Msg["FU_IO_INPUT_PULLUP"] = "INPUT_PULLUP";
