@@ -542,7 +542,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button_updateGenerate').onclick = function () {
 		displayTab('category_content');
 		var code = document.getElementById('arduino_function').value;
-		console.log(code);
 		try {
 			eval(code.replace(/JavaScript/g,"Arduino"));
 			var code = Blockly.Arduino.workspaceToCode();			
