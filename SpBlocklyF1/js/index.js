@@ -240,15 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (child==customCategory[i][2])
 				customCategory.splice(i, 1);
 		}
-	}
-	
-	//新增初始化積木
-	function newFile() {
-		var xmlDoc = Blockly.Xml.textToDom('<xml><block type="main" id="0" x="100" y="50" deletable="false" editable="false"></block></xml>');
-		Blockly.getMainWorkspace().clear();
-		Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
-	}
-	newFile();			
+	}		
 
 	//工具箱目錄顯示選單
 	document.getElementById('button_toolbox').onclick = function () {
@@ -677,6 +669,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
 	}
+	newFile();
 });	
 
 
