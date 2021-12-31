@@ -458,7 +458,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.body.appendChild(link);
 		link.click();
 		link.remove();
-	}	
+	}
 	
 	//Web Serial
 	if (typeof navigator.serial !== "undefined") {
@@ -623,7 +623,7 @@ document.addEventListener('DOMContentLoaded', function() {
 							uploader.setAttribute("hex-href", result);
 							document.getElementById('arduino-web-uploader').click();
 						}
-					},						
+					},					
 					{
 						text: Blockly.Msg.BUTTON_CLOSE,
 						click: function() {
