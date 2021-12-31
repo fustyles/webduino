@@ -1,8 +1,9 @@
 /*
-Arduino Uno + Bluetooth(or ESP8266)...with Uart
-
-Author : ChungYi Fu (Kaohsiung, Taiwan)  2018-08-07 13:00 
+Arduino Uno
+Author : ChungYi Fu (Kaohsiung, Taiwan)  2021-12-31 21:00 
 https://www.facebook.com/francefu
+
+Serial.println(data);
 
 Uart Command Format : 
 ?cmd=str1;str2;str3;str4;str5;str6;str7;str8;str9
@@ -68,8 +69,7 @@ void executecommand()
 
 void setup()
 {
-  Serial.begin(9600);  
-  Serial.setTimeout(10);
+  Serial.begin(9600); 
 }
 
 void loop() 
@@ -84,7 +84,7 @@ void loop()
 
 void SendData(String data)
 {
-  Serial.print(data);
+  Serial.println(data);
 }
 
 void getCommand()
