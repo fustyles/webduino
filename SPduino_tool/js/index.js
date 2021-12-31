@@ -773,6 +773,15 @@ document.addEventListener('DOMContentLoaded', function() {
 				height: 470,
 				buttons: [
 					{
+						text: Blockly.Msg["BUTTON_UPLOADCODE"],
+						click: function() {
+							var uploader = document.getElementById('arduino-web-uploader');
+							var result = prompt('Upload hex file to nano/uno/pro/pro-mini', 'https://fustyles.github.io/webduino/SPduino_tool/hex/test.hex');
+							uploader.setAttribute("hex-href", result);
+							document.getElementById('arduino-web-uploader').click();
+						}
+					},						
+					{
 						text: Blockly.Msg.BUTTON_CLOSE,
 						click: function() {
 							$(this).dialog("close");
