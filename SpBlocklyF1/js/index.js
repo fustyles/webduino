@@ -458,14 +458,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.body.appendChild(link);
 		link.click();
 		link.remove();
-	}
-	
-	//上傳韌體
-	document.getElementById('button_uploadCode').onclick = function () {
-		var uploader = document.getElementById('arduino-web-uploader');
-		var result = prompt('Upload hex file to nano/uno/pro/pro-mini', 'https://fustyles.github.io/webduino/SPduino_tool/hex/test.hex');
-		uploader.setAttribute("hex-href", result);
-		document.getElementById('arduino-web-uploader').click();
 	}	
 	
 	//Web Serial
