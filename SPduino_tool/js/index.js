@@ -772,7 +772,7 @@ document.addEventListener('DOMContentLoaded', function() {
 							uploader.setAttribute("hex-href", result);
 							document.getElementById('arduino-web-uploader').click();
 						}
-					},						
+					},				
 					{
 						text: Blockly.Msg.BUTTON_CLOSE,
 						click: function() {
