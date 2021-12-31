@@ -480,7 +480,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		let serial_sendString = document.getElementById('serial_sendString');	
 		let serial_clearStatus = document.getElementById('serial_clearStatus');
 		let serial_end = document.getElementById('serial_end');		
-
+		let serial_timer;
+		
 		navigator.serial.addEventListener("connect", (event) => {
 		  serial_message("Device connect","red");
 		});
@@ -500,8 +501,18 @@ document.addEventListener('DOMContentLoaded', function() {
 				  break;
 				}
 				if (value) {
-					serial_readSting = new TextDecoder().decode(value);
-					serial_message(serial_readSting,"green");
+					serial_readSting += new TextDecoder().decode(value);
+					if (value.includes(10)) {    //Serial.println(data);
+						clearTimeout(serial_timer);
+						serial_message(serial_readSting,"green");
+						serial_readSting = "";
+					}
+					else {    //Serial.print(data);
+						serial_timer = setTimeout(function() {
+							if (serial_readSting != "") serial_message(serial_readSting,"green");
+							serial_readSting = "";
+						}, 10);
+					}
 				}
 			  }
 			} catch (error) {
