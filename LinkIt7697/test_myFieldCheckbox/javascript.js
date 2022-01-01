@@ -7,7 +7,7 @@
 /**
  * @fileoverview my Field Checkbox.
  * @author https://www.facebook.com/francefu/
- * @Update 12/26/2021 12:00 (Taiwan Standard Time)
+ * @Update 1/1/2022 09:00 (Taiwan Standard Time)
  */
  
  /*
@@ -35,6 +35,7 @@ CustomFields.FieldCheckbox = function(text, options, id, opt_validate) {
   CustomFields.FieldCheckbox.superClass_.constructor.call(this, text, opt_validate);
   this.id = id;
   this.list = options;
+  this.listCheck = [];
 
   this.setSpellcheck(false);
   this.clickWrapper_ = null;
@@ -76,12 +77,9 @@ CustomFields.FieldCheckbox.prototype.dropdownCreate_ = function() {
   this.imageElement_.id = 'FieldCheckbox';
   var height = 24.4 * this.list.length;
   this.imageElement_.style = 'border: 1px solid #ccc;height: '+height+'px;width: 150px;size: 12px;padding: 0px';  
-  if (!this.listHTML) {
-	  this.listHTML = "";
-	  for (var i=0;i<this.list.length;i++)
-		  this.listHTML += "<input type='checkbox' name='"+this.id+"' value='"+this.list[i][1]+"' text='"+this.list[i][0]+"'>"+this.list[i][0]+"<br>";
+  for (var i=0;i<this.list.length;i++) {
+	  this.imageElement_.innerHTML += "<input type='checkbox' name='"+this.id+"' value='"+this.list[i][1]+"' " + (this.listCheck?this.listCheck[i]:"") +">"+this.list[i][0]+"<br>";
   }
-  this.imageElement_.innerHTML = this.listHTML;
   return this.imageElement_;
 };
 
@@ -103,12 +101,12 @@ CustomFields.FieldCheckbox.prototype.hide_ = function() {
 };
 
 CustomFields.FieldCheckbox.prototype.onMouseDown = function(e) {
-  var myCheckboxs = document.getElementsByName(this.id);
   var result = "";
-  this.listHTML = "";
+  this.listCheck = [];
+  var myCheckboxs = document.getElementsByName(this.id);
   for (var i=0;i<myCheckboxs.length;i++) {
 	result += myCheckboxs[i].checked?(myCheckboxs[i].value+" "):"";
-	this.listHTML += "<input type='checkbox' name='"+this.id+"' value='"+myCheckboxs[i].value+"' text='"+myCheckboxs[i].getAttribute("text")+"' "+(myCheckboxs[i].checked?"checked":"")+">"+myCheckboxs[i].getAttribute("text")+"<br>";
+	this.listCheck.push(myCheckboxs[i].checked?" checked":"");
   }
   this.setEditorValue_(result.trim());
 };
