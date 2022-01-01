@@ -2574,4 +2574,4 @@ Blockly.Msg["BAUDRATE_TITLE"] = "序列埠鮑率 : ";
 Blockly.Msg["CLOSEPORT_TITLE"] = "關閉序列埠";
 Blockly.Msg["REQUESTPORT_TITLE"] = "選擇序列埠";
 Blockly.Msg["SENDSTRING_TITLE"] = "送出字串";
-Blockly.Msg["CLEARSTATUS_TITLE"] = "清除狀態";
+Blockly.Msg["CLEARSTATUS_TITLE"] = "清除文字";
