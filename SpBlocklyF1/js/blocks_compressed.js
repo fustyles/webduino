@@ -1287,13 +1287,33 @@ Blockly.Blocks.procedures_callnoreturn={
 			.appendField(Blockly.Msg.PROCEDURES_CALLNORETURN_CALL)
 			.appendField("","NAME");
 		this.appendValueInput("VAR")
-			.setCheck(null);			
+			.setCheck(null);	
+		this.setMutator(new Blockly.myMutator([]));				
 		this.setInputsInline(true);
 		this.setPreviousStatement(!0);
 		this.setNextStatement(!0);
 		this.arguments_=[];
 		this.quarkArguments_=this.quarkConnections_=null
-	}
+	},myWorkspaceInitial: function(myWorkspace) {
+		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+		xml = new XMLSerializer().serializeToString(xml);
+		xml = new DOMParser().parseFromString(xml,"text/xml").firstChild.childNodes;
+		for (var i=0;i<xml.length;i++) {
+			if (xml[i].getAttribute("type")=="procedures_defnoreturn") {
+				if (xml[i].childNodes[0].textContent==this.getFieldValue("NAME")) {
+					if (xml[i].childNodes[2]) {
+						if (xml[i].childNodes[2].childNodes[0]) {
+							xml = Blockly.Xml.domToText(xml[i].childNodes[2].childNodes[0], true);
+							xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml+'</xml>');
+							myWorkspace.clear();
+							Blockly.Xml.domToWorkspace(xml, myWorkspace);							
+							break;
+						}
+					}
+				}
+			}
+		}
+	},myWorkspaceChanged: function(myWorkspace) {}
 	,onchange: function(event) {
 		if (!this.workspace || this.workspace.isFlyout) {
 		  // Block is deleted or is in a flyout.
@@ -1328,11 +1348,31 @@ Blockly.Blocks.procedures_callreturn={
 			.appendField("","NAME");
 		this.appendValueInput("VAR")
 			.setCheck(null);
+		this.setMutator(new Blockly.myMutator([]));				
 		this.setInputsInline(true);
 		this.setOutput(!0);
 		this.arguments_=[];
 		this.quarkArguments_=this.quarkConnections_=null
-	}
+	},myWorkspaceInitial: function(myWorkspace) {
+		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+		xml = new XMLSerializer().serializeToString(xml);
+		xml = new DOMParser().parseFromString(xml,"text/xml").firstChild.childNodes;
+		for (var i=0;i<xml.length;i++) {
+			if (xml[i].getAttribute("type")=="procedures_defreturn") {
+				if (xml[i].childNodes[1].textContent==this.getFieldValue("NAME")) {
+					if (xml[i].childNodes[3]) {
+						if (xml[i].childNodes[3].childNodes[0]) {
+							xml = Blockly.Xml.domToText(xml[i].childNodes[3].childNodes[0], true);
+							xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml+'</xml>');
+							myWorkspace.clear();
+							Blockly.Xml.domToWorkspace(xml, myWorkspace);							
+							break;
+						}
+					}
+				}
+			}
+		}
+	},myWorkspaceChanged: function(myWorkspace) {}	
 	,onchange: function(event) {
 		if (!this.workspace || this.workspace.isFlyout) {
 		  // Block is deleted or is in a flyout.
