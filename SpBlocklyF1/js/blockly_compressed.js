@@ -1,7 +1,11 @@
 /*
- * Copyright 2021 Taiwan
- * @fileoverview SpBlockly V1
- * @author https://www.facebook.com/francefu/ (ChungYi Fu)
+@license
+Copyright 2022 Taiwan (ChungYi Fu)
+SPDX-License-Identifier: Apache-2.0
+
+@fileoverview Blocklyduino F1 (online)
+@author https://www.facebook.com/francefu/
+@Update 1/1/2022 00:00 (Taiwan Standard Time)
 */
 
 'use strict';
@@ -5092,7 +5096,7 @@ Blockly.ContextMenuItems.registerBlockOptions_=function(){
 	Blockly.ContextMenuItems.registerScrollPlugin();
 	Blockly.ContextMenuItems.registerHighLightPlugin();
 	Blockly.ContextMenuItems.registerBackPackPlugin();	
-	Blockly.ContextMenuItems.registerLoadLastBlocks();
+	//Blockly.ContextMenuItems.registerLoadLastBlocks();
 	//Blockly.ContextMenuItems.registerHideToolbox();
 	//Blockly.ContextMenuItems.registerTest();	//測試	
 };

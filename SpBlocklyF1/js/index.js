@@ -1,7 +1,11 @@
 /*
- * Copyright 2021 ChungYi Fu, Taiwan
- * @fileoverview SPduino V1
- * @author https://www.facebook.com/francefu/
+@license
+Copyright 2022 Taiwan (ChungYi Fu)
+SPDX-License-Identifier: Apache-2.0
+
+@fileoverview Blocklyduino F1 (online)
+@author https://www.facebook.com/francefu/
+@Update 1/1/2022 00:00 (Taiwan Standard Time)
 */
 
 var arduino_version = "1.8.16";
@@ -240,8 +244,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (child==customCategory[i][2])
 				customCategory.splice(i, 1);
 		}
-	}		
-
+	}
+	
 	//工具箱目錄顯示選單
 	document.getElementById('button_toolbox').onclick = function () {
 		toolboxCategory();
@@ -649,6 +653,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		addScript("js/message.js");
 		flashToolbox();
 		updateMsg();
+		
 		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());
