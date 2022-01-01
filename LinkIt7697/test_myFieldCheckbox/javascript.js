@@ -106,7 +106,7 @@ CustomFields.FieldCheckbox.prototype.onMouseDown = function(e) {
   var myCheckboxs = document.getElementsByName(this.id);
   for (var i=0;i<myCheckboxs.length;i++) {
 	result += myCheckboxs[i].checked?(myCheckboxs[i].value+" "):"";
-	this.listCheck.push(myCheckboxs[i].checked?" checked":"");
+	this.listCheck.push(myCheckboxs[i].checked?"checked":"");
   }
   this.setEditorValue_(result.trim());
 };
