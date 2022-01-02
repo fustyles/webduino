@@ -637,6 +637,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		*/
 	}
 	
+	//切換語言
 	function changeLanguage() {
 		addScript(languageList);
 		if (typeof language != "undefined") {
@@ -650,6 +651,16 @@ document.addEventListener('DOMContentLoaded', function() {
 				document.getElementById('lang-selector').options[i].text = language[i][2];
 			}
 		}
+		
+		if (typeof systemBlocks != "undefined") {
+			for (var i=0;i<systemBlocks.length;i++) {
+				if (document.getElementById('lang-selector').value=="en")
+					addScript(systemBlocks[i][0]+"en.js");
+				else
+					addScript(systemBlocks[i][0]+"zh-hant.js");
+			}
+		}
+		
 		addScript("js/message.js");
 		flashToolbox();
 		updateMsg();
