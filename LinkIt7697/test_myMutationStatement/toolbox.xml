@@ -1,0 +1,4 @@
+<category id="test_myMutationStatement" name="test_myMutationStatement">
+	  <block type="mutation_statement"></block>
+	  <block type="mutation_preview"></block>	  
+</category>
