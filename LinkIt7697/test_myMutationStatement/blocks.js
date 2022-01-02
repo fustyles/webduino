@@ -41,7 +41,6 @@ Blockly.Blocks["mutation_preview"] = {
 		xml = new DOMParser().parseFromString(xml,"text/xml").firstChild.childNodes;
 		for (var i=0;i<xml.length;i++) {
 			if (xml[i].getAttribute("type")=="mutation_statement") {
-				
 				if (xml[i].childNodes[0].textContent==this.getFieldValue("NAME")) {
 					if (xml[i].childNodes[1]) {
 						if (xml[i].childNodes[1].childNodes[0]) {
