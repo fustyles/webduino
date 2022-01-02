@@ -54,8 +54,8 @@ Blockly.Blocks["mutation_preview"] = {
 				}
 			}
 		}
-	}
-	,myWorkspaceChanged: function(myWorkspace) {}
+  }
+  ,myWorkspaceChanged: function(myWorkspace) {}
 };
 
 Blockly.Arduino['mutation_preview'] = function(block) {
