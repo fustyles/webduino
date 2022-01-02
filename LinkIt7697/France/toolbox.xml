@@ -1581,16 +1581,6 @@
 				  </block>
 				</statement>
 				<statement name="setup">
-				  <block type="linenotify_http" id="34" inline="true">
-					<value name="linenotify_token">
-					  <block type="text" id="35">
-						<field name="TEXT"></field>
-					  </block>
-					</value>
-					<value name="linenotify_msg">
-					  <block type="linkit_wifi_ip_address" id="36"></block>
-					</value>
-				  </block>
 				</statement>
 			  </block>
 		</category>  
@@ -1697,17 +1687,7 @@
 					</next>
 				  </block>
 				</statement>
-				<statement name="setup">
-				  <block type="linenotify_http" id="34" inline="true">
-					<value name="linenotify_token">
-					  <block type="text" id="35">
-						<field name="TEXT"></field>
-					  </block>
-					</value>
-					<value name="linenotify_msg">
-					  <block type="linkit_wifi_ip_address" id="36"></block>
-					</value>
-				  </block>		
+				<statement name="setup">		
 				</statement>
 			  </block>	  
 		</category>	
@@ -1859,17 +1839,7 @@
 					</next>
 				  </block>
 				</statement>
-				<statement name="setup">
-				  <block type="linenotify_http" id="34" inline="true">
-					<value name="linenotify_token">
-					  <block type="text" id="35">
-						<field name="TEXT"></field>
-					  </block>
-					</value>
-					<value name="linenotify_msg">
-					  <block type="linkit_wifi_ip_address" id="36"></block>
-					</value>
-				  </block>		
+				<statement name="setup">		
 				</statement>
 			  </block>
 		</category>	  
