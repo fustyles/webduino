@@ -35,7 +35,7 @@ CustomFields.FieldCheckbox = function(text, options, id, opt_validate) {
   CustomFields.FieldCheckbox.superClass_.constructor.call(this, text, opt_validate);
   this.id = id;
   this.list = options;
-  this.listCheck = [];
+  this.listChecked = [];
 
   this.setSpellcheck(false);
   this.clickWrapper_ = null;
@@ -78,7 +78,7 @@ CustomFields.FieldCheckbox.prototype.dropdownCreate_ = function() {
   var height = 24.4 * this.list.length;
   this.imageElement_.style = 'border: 1px solid #ccc;height: '+height+'px;width: 150px;size: 12px;padding: 0px';  
   for (var i=0;i<this.list.length;i++) {
-	  this.imageElement_.innerHTML += "<input type='checkbox' name='"+this.id+"' value='"+this.list[i][1]+"' " + (this.listCheck?this.listCheck[i]:"") +">"+this.list[i][0]+"<br>";
+	  this.imageElement_.innerHTML += "<input type='checkbox' name='"+this.id+"' value='"+this.list[i][1]+"' " + (this.listChecked?this.listChecked[i]:"") +">"+this.list[i][0]+"<br>";
   }
   return this.imageElement_;
 };
@@ -102,11 +102,11 @@ CustomFields.FieldCheckbox.prototype.hide_ = function() {
 
 CustomFields.FieldCheckbox.prototype.onMouseDown = function(e) {
   var result = "";
-  this.listCheck = [];
+  this.listChecked = [];
   var myCheckboxs = document.getElementsByName(this.id);
   for (var i=0;i<myCheckboxs.length;i++) {
 	result += myCheckboxs[i].checked?(myCheckboxs[i].value+" "):"";
-	this.listCheck.push(myCheckboxs[i].checked?"checked":"");
+	this.listChecked.push(myCheckboxs[i].checked?"checked":"");
   }
   this.setEditorValue_(result.trim());
 };
