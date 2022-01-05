@@ -67,7 +67,6 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/mobilenet_20201012/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/teachablemachine_20201012/blockly.json');
 		    
-                  Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/teachablemachine_20200729/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/Blazeface_20200627/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/Facemesh_20200626/blockly.json');
@@ -102,7 +101,6 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/WebBit_20190225/blockly.json');	    
             }
             else if (this.getFieldValue('func')=='removeAll') {
-                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/teachablemachine_20200729/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/Blazeface_20200627/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/Facemesh_20200626/blockly.json');
@@ -158,7 +156,6 @@ Blockly.Blocks['addMyBlocks'] = {
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/myBackPack_20210914/blockly.json');		    
             }
 	    else if (this.getFieldValue('func')=='addAllNewAI') {
-                  Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/tesseract.js_20200615/blockly.json');
