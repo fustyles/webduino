@@ -151,6 +151,7 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/coco-ssd_20201012/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/mobilenet_20201012/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/teachablemachine_20201012/blockly.json');
+		  Code.customTab.$__add__('https://fustyles.github.io/webduino/barcode_20210216/blockly.json');
 		    
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebUSB_20210813/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/myBackPack_20210914/blockly.json');		    
