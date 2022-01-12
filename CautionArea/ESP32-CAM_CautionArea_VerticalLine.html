@@ -251,8 +251,9 @@ https://mp3cut.net/tw/
 		</div>
 		
         <script>
+		var baseHost = "";
         function start() {
-			var baseHost = 'http://'+document.getElementById("ip").value;  //var baseHost = document.location.origin
+			baseHost = 'http://'+document.getElementById("ip").value;  //var baseHost = document.location.origin
 			var streamUrl = baseHost + ':81';
             const hide = el => {
               el.classList.add('hidden')
