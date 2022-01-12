@@ -52,7 +52,7 @@ https://mp3cut.net/tw/
 const char* apssid = "Classroom01";          //不同台可設不同流水號區別
 const char* appassword = "12345678";         //AP密碼至少要8個字元以上
 
-String LineToken = "";  //傳送區域網路IP至Line通知(用不到可不填)
+String LineToken = "cGv0FDV01aGR9b2W0gH7zmdOnuOv8gusHATO1FGpyOW";  //傳送區域網路IP至Line通知(用不到可不填)
 
 int Buzzer = 2;  //蜂鳴器腳位： IO2
 
@@ -582,8 +582,9 @@ static const char index_HorizontalLine_html[] PROGMEM = R"rawliteral(
         </div>
     
         <script>
+        var baseHost = "";
         function start() {
-            var baseHost = 'http:\/\/'+document.getElementById("ip").value;  //var baseHost = document.location.origin
+            baseHost = 'http:\/\/'+document.getElementById("ip").value;  //var baseHost = document.location.origin
             var streamUrl = baseHost + ':81';
             const hide = el => {
               el.classList.add('hidden')
@@ -1190,6 +1191,7 @@ static const char index_VerticalLine_html[] PROGMEM = R"rawliteral(
         </div>
     
         <script>
+        baseHost = "";
         function start() {
           var baseHost = 'http:\/\/'+document.getElementById("ip").value;  //var baseHost = document.location.origin
           var streamUrl = baseHost + ':81';
@@ -1761,8 +1763,9 @@ static const char index_Rect_html[] PROGMEM = R"rawliteral(
         </div>
     
         <script>
+        var baseHost = "";
         function start() {
-            var baseHost = 'http:\/\/'+document.getElementById("ip").value;  //var baseHost = document.location.origin
+            baseHost = 'http:\/\/'+document.getElementById("ip").value;  //var baseHost = document.location.origin
             var streamUrl = baseHost + ':81';     
             const hide = el => {
               el.classList.add('hidden')
