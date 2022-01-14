@@ -100,7 +100,6 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 			Bluetooth_writeCharacteristic.addEventListener('characteristicvaluechanged', handleCharacteristicValueChanged);
 			Bluetooth_device.addEventListener('gattserverdisconnected', onDisconnected);
 			
-			/*
 			console.log('> Characteristic UUID:  ' + characteristic.uuid);
 			console.log('> Broadcast:            ' + characteristic.properties.broadcast);
 			console.log('> Read:                 ' + characteristic.properties.read);
@@ -111,15 +110,15 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 			console.log('> Signed Write:         ' + characteristic.properties.authenticatedSignedWrites);
 			console.log('> Queued Write:         ' + characteristic.properties.reliableWrite);
 			console.log('> Writable Auxiliaries: ' + characteristic.properties.writableAuxiliaries);
-			*/
 
 			return characteristic.readValue().then(Data => {
-				return Data.getUint8(0);
+				return Data;
 			})
-			.then(location => console.log(location));
+			.then(response => console.log(response));
 		})
 		.then(value => {
-			Bluetooth_message(`Battery percentage is ${value.getUint8(0)}`,"red"); 
+			if (value)
+				Bluetooth_message(value,"red"); 
 		})		
 		.catch(error => {	
 			Bluetooth_message(error,"red"); 
@@ -201,21 +200,24 @@ Bluetooth_sendString.addEventListener('click', async () => {
 
 BLECharacteristic *characteristicTX;
 bool deviceConnected = false;
+uint32_t value = 115;
 
 // See the following for generating UUIDs:
 // https://www.uuidgenerator.net/
 
 #define SERVICE_UUID           "4fafc201-1fb5-459e-8fcc-c5c9c331914b" // UART service UUID
 #define CHARACTERISTIC_UUID_RX "beb5483e-36e1-4688-b7f5-ea07361b26a8"
-#define CHARACTERISTIC_UUID_TX "c0ebb5fc-27e6-4628-a4e5-ec67a65300be"
+#define CHARACTERISTIC_UUID_TX "498c599b-2601-4600-bb7e-3aa295a92842"
 
 class ServerCallbacks: public BLEServerCallbacks {
     void onConnect(BLEServer* pServer) {
       deviceConnected = true;
+      Serial.println("Device connected!");
     };
 
     void onDisconnect(BLEServer* pServer) {
       deviceConnected = false;
+      Serial.println("Device disconnected!");
     }
 };
 
@@ -235,6 +237,9 @@ class CharacteristicCallbacks: public BLECharacteristicCallbacks {
         if (rxValue.find("L1") != -1) { 
           Serial.print("Turning LED ON!");
         }
+   
+        characteristicTX->setValue((uint8_t*)&value, 4);      
+        characteristicTX->notify();
       }
     }
 };
@@ -248,14 +253,20 @@ void setup() {
   BLEService *service = server->createService(SERVICE_UUID);
   characteristicTX = service->createCharacteristic(
                       CHARACTERISTIC_UUID_TX,
-                      BLECharacteristic::PROPERTY_NOTIFY
+                      BLECharacteristic::PROPERTY_READ   |
+                      BLECharacteristic::PROPERTY_WRITE  |
+                      BLECharacteristic::PROPERTY_NOTIFY |
+                      BLECharacteristic::PROPERTY_INDICATE
                     );
                       
   characteristicTX->addDescriptor(new BLE2902());
 
   BLECharacteristic *characteristic = service->createCharacteristic(
                                          CHARACTERISTIC_UUID_RX,
-                                         BLECharacteristic::PROPERTY_WRITE
+                                          BLECharacteristic::PROPERTY_READ   |
+                                          BLECharacteristic::PROPERTY_WRITE  |
+                                          BLECharacteristic::PROPERTY_NOTIFY |
+                                          BLECharacteristic::PROPERTY_INDICATE
                                        );
 
   characteristic->setCallbacks(new CharacteristicCallbacks());
@@ -265,17 +276,16 @@ void setup() {
 }
 
 void loop() {
-    if (deviceConnected) {
-      if (1)
-      {         
-          char txString[8];
-          dtostrf(100, 2, 2, txString);     
-          characteristicTX->setValue(txString);      
-          characteristicTX->notify();
-          delay(3000);
-      }
+  /*
+  if (deviceConnected) {
+    char txString[8];
+    dtostrf(100, 2, 2, txString);     
+    characteristicTX->setValue(txString);      
+    characteristicTX->notify();
+    delay(3000);
   }
   delay(1000);
+  */
 }
 
 -->
