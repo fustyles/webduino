@@ -25,7 +25,7 @@ https://fustyles.github.io/webduino/WebBluetooth.html
 <body>
 <table>
 <tr>
-<td colspan="2" align="right"><button id="Bluetooth_close_device">Disconnect</button><button id="Bluetooth_request_device">Connect to Bluetooth</button></td>
+<td colspan="2" align="center"><button id="Bluetooth_stop_data">Stop data</button><button id="Bluetooth_get_data">Get data</button><button id="Bluetooth_close_device">Disconnect</button><button id="Bluetooth_request_device">Connect to Bluetooth</button></td>
 </tr>
 <tr>
 <td><input type="text" id="Bluetooth_command">
@@ -58,6 +58,8 @@ let Bluetooth_command = document.getElementById('Bluetooth_command');
 let Bluetooth_status = document.getElementById('Bluetooth_status');
 let Bluetooth_buttonRequest = document.getElementById('Bluetooth_request_device');
 let Bluetooth_buttonClose = document.getElementById('Bluetooth_close_device');
+let Bluetooth_buttonGet = document.getElementById('Bluetooth_get_data');
+let Bluetooth_buttonStop = document.getElementById('Bluetooth_stop_data');
 let Bluetooth_sendString = document.getElementById('Bluetooth_sendString');	
 let Bluetooth_clearStatus = document.getElementById('Bluetooth_clearStatus');
 let Bluetooth_end = document.getElementById('Bluetooth_end');
@@ -67,16 +69,15 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 	if (navigator.bluetooth) {
 		let filters = [];
 		//filters.push({services: [0x1234, 0x12345678, '99999999-0000-1000-8000-00805f9b34fb']});
-		//filters.push({name: 'Francois robot'});
-		//filters.push({namePrefix: 'xxx'});
-		
-		let options = {};
-		options.acceptAllDevices = true;
+		//filters.push({name: 'xxx'});
+		//filters.push({namePrefix: 'yyy'});
 		
 		//https://www.uuidgenerator.net/
 		var service_uuid = "4fafc201-1fb5-459e-8fcc-c5c9c331914b".toLowerCase();
 		var characteristic_uuid = "beb5483e-36e1-4688-b7f5-ea07361b26a8".toLowerCase();
 		
+		let options = {};
+		options.acceptAllDevices = true;
 		options.optionalServices = [service_uuid];
 		//options.filters = filters;
 		
@@ -98,7 +99,6 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 			Bluetooth_message("Device connected", "blue");
 			
 			Bluetooth_writeCharacteristic = characteristic;
-			Bluetooth_writeCharacteristic.addEventListener('characteristicvaluechanged', handleCharacteristicValueChanged);
 			Bluetooth_device.addEventListener('gattserverdisconnected', onDisconnected);
 			
 			console.log('> Characteristic UUID:  ' + characteristic.uuid);
@@ -113,13 +113,7 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 			console.log('> Writable Auxiliaries: ' + characteristic.properties.writableAuxiliaries);
 
 			return characteristic.readValue();
-		})
-		.then(value => {
-			if (value) {
-				console.log(value);
-				Bluetooth_message(value,"red");
-			}
-		})		
+		})	
 		.catch(error => {
 			console.log(error);
 			Bluetooth_message(error,"red"); 
@@ -138,8 +132,8 @@ Bluetooth_buttonClose.addEventListener('click', async () => {
 
 function handleCharacteristicValueChanged(event) {
 	const value = event.target.value;
-	var msg = 'Received ' + value;
-	Bluetooth_message(msg,"green");
+	var msg = 'Received ' + JSON.stringify(value);
+	Bluetooth_message(msg, "green");
 }
 
 function onDisconnected(event) {
@@ -167,6 +161,29 @@ function sendCommand(cmd) {
 	return Promise.resolve();
   }
 }
+
+Bluetooth_buttonGet.addEventListener('click', async () => {
+	if (Bluetooth_writeCharacteristic) {
+		Bluetooth_writeCharacteristic.startNotifications().then(_ => {
+             Bluetooth_message('Notifications started', "blue");
+             Bluetooth_writeCharacteristic.addEventListener('characteristicvaluechanged', handleCharacteristicValueChanged);
+        })
+		.catch(error => {
+			console.log(error);
+			Bluetooth_message(error,"red"); 
+		});
+	}
+});
+
+Bluetooth_buttonStop.addEventListener('click', async () => {
+	if (Bluetooth_writeCharacteristic)
+		Bluetooth_writeCharacteristic.stopNotifications().then(_ => {
+             Bluetooth_message('Notifications stop', "blue");
+        }).catch(error => {
+			console.log(error);
+			Bluetooth_message(error,"red"); 
+		});
+});
 
 Bluetooth_clearStatus.addEventListener('click', async () => {
 	Bluetooth_status.innerHTML = "";
