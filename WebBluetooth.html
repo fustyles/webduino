@@ -84,7 +84,7 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 		.then(device => {
 			Bluetooth_device = device;
 			var msg = 'Connect to Name:' + device.name + ' Id:' + device.id;
-			Bluetooth_message(msg,"blue"); 
+			Bluetooth_message(msg, "blue"); 
 			// Attempts to connect to remote GATT Server.
 			return device.gatt.connect();
 		})
@@ -95,6 +95,8 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 			return service.getCharacteristic(characteristic_uuid);
 		})
 		.then(characteristic => {
+			Bluetooth_message("Device connected", "blue");
+			
 			Bluetooth_writeCharacteristic = characteristic;
 			Bluetooth_writeCharacteristic.addEventListener('characteristicvaluechanged', handleCharacteristicValueChanged);
 			Bluetooth_device.addEventListener('gattserverdisconnected', onDisconnected);
@@ -113,10 +115,13 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 			return characteristic.readValue();
 		})
 		.then(value => {
-			if (value)
-				Bluetooth_message(value,"red"); 
+			if (value) {
+				console.log(value);
+				Bluetooth_message(value,"red");
+			}
 		})		
-		.catch(error => {	
+		.catch(error => {
+			console.log(error);
 			Bluetooth_message(error,"red"); 
 		});
 	}
@@ -176,9 +181,10 @@ Bluetooth_sendString.addEventListener('click', async () => {
 	var msg = Bluetooth_command.value + Bluetooth_end.value;
 	var cmd = new TextEncoder().encode(msg);
 	sendCommand(cmd).then(() => {
-		Bluetooth_message(new TextDecoder().decode(cmd),"green");
+		Bluetooth_message(new TextDecoder().decode(cmd), "green");
 	})
-	.catch(error => {	
+	.catch(error => {
+		console.log(error);
 		Bluetooth_message(error,"red"); 
 	});
 });
@@ -196,7 +202,6 @@ Bluetooth_sendString.addEventListener('click', async () => {
 
 BLECharacteristic *characteristicTX;
 bool deviceConnected = false;
-uint32_t value = 115;
 
 // See the following for generating UUIDs:
 // https://www.uuidgenerator.net/
@@ -230,21 +235,22 @@ class CharacteristicCallbacks: public BLECharacteristicCallbacks {
 
         Serial.println();
 
-        if (rxValue.find("L1") != -1) { 
-          Serial.print("Turning LED ON!");
+        if (rxValue.find("on") != -1) { 
+          Serial.println("Turning LED ON!");
         }
-   
-        // Fabricate some arbitrary junk for now...
+        else  if (rxValue.find("off") != -1) { 
+          Serial.println("Turning LED OFF!");
+        }
+
+        /*
         float txValue = 100; // This could be an actual sensor reading!
-        
-        // Let's convert the value to a char array:
         char txString[8]; // make sure this is big enuffz
         dtostrf(txValue, 1, 2, txString); // float_val, min_width, digits_after_decimal, char_buffer
-        
         //characteristicTX->setValue(txValue, 1); // To send the integer value
         //characteristicTX->setValue("Hello!"); // Sending a test message
         characteristicTX->setValue(txString);
         characteristicTX->notify();
+        */
       }
     }
 };
@@ -255,6 +261,7 @@ void setup() {
   BLEDevice::init("ESP32-BLE");
   BLEServer *server = BLEDevice::createServer();
   server->setCallbacks(new ServerCallbacks());
+  
   BLEService *service = server->createService(SERVICE_UUID);
   
   characteristicTX = service->createCharacteristic(
@@ -283,17 +290,18 @@ void setup() {
   Serial.println("Waiting a client connection to notify...");
 }
 
+uint8_t level = 0;
+  
 void loop() {
-  /*
-  if (deviceConnected) {
-    char txString[8];
-    dtostrf(100, 2, 2, txString);     
-    characteristicTX->setValue(txString);      
-    characteristicTX->notify();
-    delay(3000);
-  }
-  delay(1000);
-  */
+  characteristicTX->setValue(&level, 1);
+  characteristicTX->notify();
+  delay(5000);
+
+  level++;
+  Serial.println(int(level));
+
+  if (int(level)==100)
+  level=0;
 }
 
 -->
