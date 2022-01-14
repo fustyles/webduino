@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 
 @fileoverview Web Bluetooth
 @author https://www.facebook.com/francefu/
-@Update 1/14/2022 00:00 (Taiwan Standard Time)
+@Update 1/14/2022 23:00 (Taiwan Standard Time)
  
 Web Bluetooth
 https://web.dev/bluetooth/
@@ -112,8 +112,11 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 			console.log('> Queued Write:         ' + characteristic.properties.reliableWrite);
 			console.log('> Writable Auxiliaries: ' + characteristic.properties.writableAuxiliaries);
 			*/
-			
-			return characteristic.readValue();
+
+			return characteristic.readValue().then(Data => {
+				return Data.getUint8(0);
+			})
+			.then(location => console.log(location));
 		})
 		.then(value => {
 			Bluetooth_message(`Battery percentage is ${value.getUint8(0)}`,"red"); 
@@ -274,6 +277,5 @@ void loop() {
   }
   delay(1000);
 }
-
 
 -->
