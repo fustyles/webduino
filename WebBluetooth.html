@@ -25,7 +25,7 @@ https://fustyles.github.io/webduino/WebBluetooth.html
 <body>
 <table>
 <tr>
-<td colspan="2" align="center"><button id="Bluetooth_stop_data">Stop data</button><button id="Bluetooth_get_data">Get data</button><button id="Bluetooth_close_device">Disconnect</button><button id="Bluetooth_request_device">Connect to Bluetooth</button></td>
+<td colspan="2" align="center"><button id="Bluetooth_stop_data">Stop data</button><button id="Bluetooth_receive_data">Receive data</button><button id="Bluetooth_close_device">Disconnect</button><button id="Bluetooth_request_device">Connect to Bluetooth</button></td>
 </tr>
 <tr>
 <td><input type="text" id="Bluetooth_command">
@@ -58,7 +58,7 @@ let Bluetooth_command = document.getElementById('Bluetooth_command');
 let Bluetooth_status = document.getElementById('Bluetooth_status');
 let Bluetooth_buttonRequest = document.getElementById('Bluetooth_request_device');
 let Bluetooth_buttonClose = document.getElementById('Bluetooth_close_device');
-let Bluetooth_buttonGet = document.getElementById('Bluetooth_get_data');
+let Bluetooth_buttonGet = document.getElementById('Bluetooth_receive_data');
 let Bluetooth_buttonStop = document.getElementById('Bluetooth_stop_data');
 let Bluetooth_sendString = document.getElementById('Bluetooth_sendString');	
 let Bluetooth_clearStatus = document.getElementById('Bluetooth_clearStatus');
@@ -67,11 +67,6 @@ let Bluetooth_end = document.getElementById('Bluetooth_end');
 Bluetooth_buttonRequest.addEventListener('click', async () => {
 
 	if (navigator.bluetooth) {
-		let filters = [];
-		//filters.push({services: [0x1234, 0x12345678, '99999999-0000-1000-8000-00805f9b34fb']});
-		//filters.push({name: 'xxx'});
-		//filters.push({namePrefix: 'yyy'});
-		
 		//https://www.uuidgenerator.net/
 		var service_uuid = "4fafc201-1fb5-459e-8fcc-c5c9c331914b".toLowerCase();
 		var characteristic_uuid = "beb5483e-36e1-4688-b7f5-ea07361b26a8".toLowerCase();
@@ -79,6 +74,11 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 		let options = {};
 		options.acceptAllDevices = true;
 		options.optionalServices = [service_uuid];
+		
+		//let filters = [];
+		//filters.push({services: [0x1234, 0x12345678, '99999999-0000-1000-8000-00805f9b34fb']});
+		//filters.push({name: 'xxx'});
+		//filters.push({namePrefix: 'yyy'});		
 		//options.filters = filters;
 		
 		navigator.bluetooth.requestDevice(options)
