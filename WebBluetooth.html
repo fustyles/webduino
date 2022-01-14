@@ -96,7 +96,6 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 		})
 		.then(characteristic => {
 			Bluetooth_writeCharacteristic = characteristic;
-  
 			Bluetooth_writeCharacteristic.addEventListener('characteristicvaluechanged', handleCharacteristicValueChanged);
 			Bluetooth_device.addEventListener('gattserverdisconnected', onDisconnected);
 			
@@ -111,10 +110,7 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 			console.log('> Queued Write:         ' + characteristic.properties.reliableWrite);
 			console.log('> Writable Auxiliaries: ' + characteristic.properties.writableAuxiliaries);
 
-			return characteristic.readValue().then(Data => {
-				return Data;
-			})
-			.then(response => console.log(response));
+			return characteristic.readValue();
 		})
 		.then(value => {
 			if (value)
@@ -238,7 +234,16 @@ class CharacteristicCallbacks: public BLECharacteristicCallbacks {
           Serial.print("Turning LED ON!");
         }
    
-        characteristicTX->setValue((uint8_t*)&value, 4);      
+        // Fabricate some arbitrary junk for now...
+        float txValue = 100; // This could be an actual sensor reading!
+        
+        // Let's convert the value to a char array:
+        char txString[8]; // make sure this is big enuffz
+        dtostrf(txValue, 1, 2, txString); // float_val, min_width, digits_after_decimal, char_buffer
+        
+        //characteristicTX->setValue(txValue, 1); // To send the integer value
+        //characteristicTX->setValue("Hello!"); // Sending a test message
+        characteristicTX->setValue(txString);
         characteristicTX->notify();
       }
     }
@@ -251,22 +256,25 @@ void setup() {
   BLEServer *server = BLEDevice::createServer();
   server->setCallbacks(new ServerCallbacks());
   BLEService *service = server->createService(SERVICE_UUID);
+  
   characteristicTX = service->createCharacteristic(
                       CHARACTERISTIC_UUID_TX,
                       BLECharacteristic::PROPERTY_READ   |
                       BLECharacteristic::PROPERTY_WRITE  |
                       BLECharacteristic::PROPERTY_NOTIFY |
-                      BLECharacteristic::PROPERTY_INDICATE
+                      BLECharacteristic::PROPERTY_INDICATE |
+                      BLECharacteristic::PROPERTY_BROADCAST 
                     );
                       
   characteristicTX->addDescriptor(new BLE2902());
 
   BLECharacteristic *characteristic = service->createCharacteristic(
-                                         CHARACTERISTIC_UUID_RX,
-                                          BLECharacteristic::PROPERTY_READ   |
-                                          BLECharacteristic::PROPERTY_WRITE  |
-                                          BLECharacteristic::PROPERTY_NOTIFY |
-                                          BLECharacteristic::PROPERTY_INDICATE
+                                        CHARACTERISTIC_UUID_RX,
+                                        BLECharacteristic::PROPERTY_READ   |
+                                        BLECharacteristic::PROPERTY_WRITE  |
+                                        BLECharacteristic::PROPERTY_NOTIFY |
+                                        BLECharacteristic::PROPERTY_INDICATE |
+                                        BLECharacteristic::PROPERTY_BROADCAST                                
                                        );
 
   characteristic->setCallbacks(new CharacteristicCallbacks());
