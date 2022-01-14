@@ -1,0 +1,279 @@
+<!--
+@license
+Copyright 2022 Taiwan (ChungYi Fu)
+SPDX-License-Identifier: Apache-2.0
+
+@fileoverview Web Bluetooth
+@author https://www.facebook.com/francefu/
+@Update 1/14/2022 00:00 (Taiwan Standard Time)
+ 
+Web Bluetooth
+https://web.dev/bluetooth/
+
+Try it
+https://fustyles.github.io/webduino/WebBluetooth.html
+-->
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Web Bluetooth</title>
+  <meta charset="utf-8">
+  <meta name="viewdevice" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<table>
+<tr>
+<td colspan="2" align="right"><button id="Bluetooth_close_device">Disconnect</button><button id="Bluetooth_request_device">Connect to Bluetooth</button></td>
+</tr>
+<tr>
+<td><input type="text" id="Bluetooth_command">
+<select id="Bluetooth_end">
+    <option value=""></option>
+    <option value="\n">\n</option>		
+</select>
+</td>
+<td><button id="Bluetooth_sendString">Send String</button></td>
+</tr>
+<tr>
+<td colspan="2"><div id="Bluetooth_status" style="width:400px;height:300px;border:2px black solid;overflow: auto;"></div></td>
+</tr>
+<tr>
+<td>
+</td>
+<td align="right">
+<button id="Bluetooth_clearStatus">Clear Text</button>
+</td>
+</tr>
+</table>
+<script>
+  
+let Bluetooth_device = null;
+let Bluetooth_writeCharacteristic;
+let busy = false;
+let commandQueue = [];
+
+let Bluetooth_command = document.getElementById('Bluetooth_command');
+let Bluetooth_status = document.getElementById('Bluetooth_status');
+let Bluetooth_buttonRequest = document.getElementById('Bluetooth_request_device');
+let Bluetooth_buttonClose = document.getElementById('Bluetooth_close_device');
+let Bluetooth_sendString = document.getElementById('Bluetooth_sendString');	
+let Bluetooth_clearStatus = document.getElementById('Bluetooth_clearStatus');
+let Bluetooth_end = document.getElementById('Bluetooth_end');
+
+Bluetooth_buttonRequest.addEventListener('click', async () => {
+
+	if (navigator.bluetooth) {
+		let filters = [];
+		//filters.push({services: [0x1234, 0x12345678, '99999999-0000-1000-8000-00805f9b34fb']});
+		//filters.push({name: 'Francois robot'});
+		//filters.push({namePrefix: 'xxx'});
+		
+		let options = {};
+		options.acceptAllDevices = true;
+		
+		//https://www.uuidgenerator.net/
+		var service_uuid = "4fafc201-1fb5-459e-8fcc-c5c9c331914b".toLowerCase();
+		var characteristic_uuid = "beb5483e-36e1-4688-b7f5-ea07361b26a8".toLowerCase();
+		
+		options.optionalServices = [service_uuid];
+		//options.filters = filters;
+		
+		navigator.bluetooth.requestDevice(options)
+		.then(device => {
+			Bluetooth_device = device;
+			var msg = 'Connect to Name:' + device.name + ' Id:' + device.id;
+			Bluetooth_message(msg,"blue"); 
+			// Attempts to connect to remote GATT Server.
+			return device.gatt.connect();
+		})
+		.then(server => {
+			return server.getPrimaryService(service_uuid);
+		})
+		.then(service => {
+			return service.getCharacteristic(characteristic_uuid);
+		})
+		.then(characteristic => {
+			Bluetooth_writeCharacteristic = characteristic;
+  
+			Bluetooth_writeCharacteristic.addEventListener('characteristicvaluechanged', handleCharacteristicValueChanged);
+			Bluetooth_device.addEventListener('gattserverdisconnected', onDisconnected);
+			
+			/*
+			console.log('> Characteristic UUID:  ' + characteristic.uuid);
+			console.log('> Broadcast:            ' + characteristic.properties.broadcast);
+			console.log('> Read:                 ' + characteristic.properties.read);
+			console.log('> Write w/o response:   ' + characteristic.properties.writeWithoutResponse);
+			console.log('> Write:                ' + characteristic.properties.write);
+			console.log('> Notify:               ' + characteristic.properties.notify);
+			console.log('> Indicate:             ' + characteristic.properties.indicate);
+			console.log('> Signed Write:         ' + characteristic.properties.authenticatedSignedWrites);
+			console.log('> Queued Write:         ' + characteristic.properties.reliableWrite);
+			console.log('> Writable Auxiliaries: ' + characteristic.properties.writableAuxiliaries);
+			*/
+			
+			return characteristic.readValue();
+		})
+		.then(value => {
+			Bluetooth_message(`Battery percentage is ${value.getUint8(0)}`,"red"); 
+		})		
+		.catch(error => {	
+			Bluetooth_message(error,"red"); 
+		});
+	}
+		
+});
+
+Bluetooth_buttonClose.addEventListener('click', async () => {
+	if (Bluetooth_device && Bluetooth_device.gatt.connected) {
+		Bluetooth_device.gatt.disconnect();
+		Bluetooth_device = null;
+		Bluetooth_writeCharacteristic = null;
+	}	
+});
+
+function handleCharacteristicValueChanged(event) {
+	const value = event.target.value;
+	var msg = 'Received ' + value;
+	Bluetooth_message(msg,"green");
+}
+
+function onDisconnected(event) {
+	const device = event.target;
+	var msg = `Device ${device.name} is disconnected.`;
+	Bluetooth_message(msg,"blue");
+}
+
+function sendCommand(cmd) {
+  if (Bluetooth_writeCharacteristic) {
+	if (busy) {
+	  commandQueue.push(cmd);
+	  return Promise.resolve();
+	}
+	busy = true;
+
+	return Bluetooth_writeCharacteristic.writeValue(cmd).then(() => {
+	  busy = false;
+	  let nextCommand = commandQueue.shift();
+	  if (nextCommand) {
+		sendCommand(nextCommand);
+	  }
+	});
+  } else {
+	return Promise.resolve();
+  }
+}
+
+Bluetooth_clearStatus.addEventListener('click', async () => {
+	Bluetooth_status.innerHTML = "";
+});
+
+function Bluetooth_message(msg, colour) {
+	Bluetooth_status.innerHTML += "<font color='"+colour+"'>"+msg+"</font><br>";
+	Bluetooth_status.scrollTop = Bluetooth_status.scrollHeight;
+}
+
+Bluetooth_sendString.addEventListener('click', async () => {
+	var msg = Bluetooth_command.value + Bluetooth_end.value;
+	var cmd = new TextEncoder().encode(msg);
+	sendCommand(cmd).then(() => {
+		Bluetooth_message(new TextDecoder().decode(cmd),"green");
+	})
+	.catch(error => {	
+		Bluetooth_message(error,"red"); 
+	});
+});
+</script>
+</body>
+</html>
+
+<!--
+
+//https://www.instructables.com/ESP32-Bluetooth-Low-Energy/
+#include <BLEDevice.h>
+#include <BLEServer.h>
+#include <BLEUtils.h>
+#include <BLE2902.h>
+
+BLECharacteristic *characteristicTX;
+bool deviceConnected = false;
+
+// See the following for generating UUIDs:
+// https://www.uuidgenerator.net/
+
+#define SERVICE_UUID           "4fafc201-1fb5-459e-8fcc-c5c9c331914b" // UART service UUID
+#define CHARACTERISTIC_UUID_RX "beb5483e-36e1-4688-b7f5-ea07361b26a8"
+#define CHARACTERISTIC_UUID_TX "c0ebb5fc-27e6-4628-a4e5-ec67a65300be"
+
+class ServerCallbacks: public BLEServerCallbacks {
+    void onConnect(BLEServer* pServer) {
+      deviceConnected = true;
+    };
+
+    void onDisconnect(BLEServer* pServer) {
+      deviceConnected = false;
+    }
+};
+
+//callback  para envendos das características
+class CharacteristicCallbacks: public BLECharacteristicCallbacks {
+    void onWrite(BLECharacteristic *characteristic) {
+      std::string rxValue = characteristic->getValue(); 
+      if (rxValue.length() > 0) {
+        Serial.print("Received Value: ");
+
+        for (int i = 0; i < rxValue.length(); i++) {
+          Serial.print(rxValue[i]);
+        }
+
+        Serial.println();
+
+        if (rxValue.find("L1") != -1) { 
+          Serial.print("Turning LED ON!");
+        }
+      }
+    }
+};
+
+void setup() {
+  Serial.begin(115200);
+
+  BLEDevice::init("ESP32-BLE");
+  BLEServer *server = BLEDevice::createServer();
+  server->setCallbacks(new ServerCallbacks());
+  BLEService *service = server->createService(SERVICE_UUID);
+  characteristicTX = service->createCharacteristic(
+                      CHARACTERISTIC_UUID_TX,
+                      BLECharacteristic::PROPERTY_NOTIFY
+                    );
+                      
+  characteristicTX->addDescriptor(new BLE2902());
+
+  BLECharacteristic *characteristic = service->createCharacteristic(
+                                         CHARACTERISTIC_UUID_RX,
+                                         BLECharacteristic::PROPERTY_WRITE
+                                       );
+
+  characteristic->setCallbacks(new CharacteristicCallbacks());
+  service->start();
+  server->getAdvertising()->start();
+  Serial.println("Waiting a client connection to notify...");
+}
+
+void loop() {
+    if (deviceConnected) {
+      if (1)
+      {         
+          char txString[8];
+          dtostrf(100, 2, 2, txString);     
+          characteristicTX->setValue(txString);      
+          characteristicTX->notify();
+          delay(3000);
+      }
+  }
+  delay(1000);
+}
+
+
+-->
