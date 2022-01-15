@@ -134,7 +134,7 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 			return Bluetooth_readCharacteristic.readValue();
 		})
 		.then(value => {
-			Bluetooth_message('Received ' + value.getUint8(0), "green");
+			Bluetooth_message('Received ' + value.getUint8(0), "orange");
 		})
 		.catch(error => {
 			console.log(error);
@@ -158,7 +158,7 @@ function handleCharacteristicValueChanged(event) {
 	const value = new TextDecoder().decode(event.target.value);
 	console.log(value);
 	var msg = 'Received ' + value;
-	Bluetooth_message(msg, "green");
+	Bluetooth_message(msg, "orange");
 }
 
 function onDisconnected(event) {
