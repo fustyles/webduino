@@ -104,7 +104,7 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 			Bluetooth_device.addEventListener('gattserverdisconnected', onDisconnected);
 
 			characteristics.forEach(characteristic => {
-			
+				/*
 				console.log('> Characteristic UUID:  ' + characteristic.uuid);
 				console.log('> Broadcast:            ' + characteristic.properties.broadcast);
 				console.log('> Read:                 ' + characteristic.properties.read);
@@ -115,7 +115,8 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 				console.log('> Signed Write:         ' + characteristic.properties.authenticatedSignedWrites);
 				console.log('> Queued Write:         ' + characteristic.properties.reliableWrite);
 				console.log('> Writable Auxiliaries: ' + characteristic.properties.writableAuxiliaries);
-			
+				*/
+				
 				switch (characteristic.uuid) {
 					case characteristic_uuid_rx:
 						Bluetooth_readCharacteristic = characteristic;
