@@ -128,9 +128,9 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 			});
 
 			Bluetooth_readCharacteristic.startNotifications().then(_ => {
-                Bluetooth_message('Notifications started',"blue");
+				Bluetooth_message('Notifications started',"blue");
 				Bluetooth_readCharacteristic.addEventListener('characteristicvaluechanged', handleCharacteristicValueChanged);
-            });
+			});
 			return Bluetooth_readCharacteristic.readValue();
 		})
 		.then(value => {
