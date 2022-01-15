@@ -126,9 +126,6 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 						break;
 				}
 			});
-			
-			console.log(Bluetooth_readCharacteristic);
-			console.log(Bluetooth_writeCharacteristic);
 
 			Bluetooth_readCharacteristic.startNotifications().then(_ => {
                 Bluetooth_message('Notifications started',"blue");
