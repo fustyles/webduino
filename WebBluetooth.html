@@ -218,7 +218,6 @@ Bluetooth_sendString.addEventListener('click', async () => {
 
 <!--
 
-//https://www.instructables.com/ESP32-Bluetooth-Low-Energy/
 #include <BLEDevice.h>
 #include <BLEServer.h>
 #include <BLEUtils.h>
@@ -246,7 +245,6 @@ class ServerCallbacks: public BLEServerCallbacks {
     }
 };
 
-//callback  para envendos das características
 class CharacteristicCallbacks: public BLECharacteristicCallbacks {
     void onWrite(BLECharacteristic *characteristic) {
       std::string rxValue = characteristic->getValue(); 
