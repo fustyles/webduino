@@ -196,11 +196,6 @@ Bluetooth_clearText.addEventListener('click', async () => {
 	Bluetooth_status.innerHTML = "";
 });
 
-function Bluetooth_message(msg, colour) {
-	Bluetooth_status.innerHTML += "<font color='"+colour+"'>"+msg+"</font><br>";
-	Bluetooth_status.scrollTop = Bluetooth_status.scrollHeight;
-}
-
 Bluetooth_sendString.addEventListener('click', async () => {
 	var msg = Bluetooth_command.value + Bluetooth_end.value;
 	var cmd = new TextEncoder().encode(msg);
@@ -212,6 +207,12 @@ Bluetooth_sendString.addEventListener('click', async () => {
 		Bluetooth_message(error,"red"); 
 	});
 });
+		
+function Bluetooth_message(msg, colour) {
+	Bluetooth_status.innerHTML += "<font color='"+colour+"'>"+msg+"</font><br>";
+	Bluetooth_status.scrollTop = Bluetooth_status.scrollHeight;
+}
+	
 </script>
 </body>
 </html>
