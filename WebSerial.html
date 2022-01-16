@@ -103,7 +103,6 @@ async function readUntilClosed() {
 	  while (true) {
 		const { value, done } = await serial_reader.read();
 		if (done) {
-		  // |reader| has been canceled.
 		  break;
 		}
 		if (value) {
