@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 
 @fileoverview Web Bluetooth
 @author https://www.facebook.com/francefu/
-@Update 1/15/2022 15:00 (Taiwan Standard Time)
+@Update 1/16/2022 21:00 (Taiwan Standard Time)
  
 Web Bluetooth
 https://web.dev/bluetooth/
@@ -61,15 +61,15 @@ let commandQueue = [];
 let Bluetooth_command = document.getElementById('Bluetooth_command');
 let Bluetooth_status = document.getElementById('Bluetooth_status');
 let Bluetooth_buttonRequest = document.getElementById('Bluetooth_request_device');
-let Bluetooth_buttonClose = document.getElementById('Bluetooth_close_device');
+let Bluetooth_buttonDisconnect = document.getElementById('Bluetooth_close_device');
 let Bluetooth_sendString = document.getElementById('Bluetooth_sendString');	
 let Bluetooth_clearStatus = document.getElementById('Bluetooth_clearStatus');
 let Bluetooth_end = document.getElementById('Bluetooth_end');
 
 //https://www.uuidgenerator.net/
-var service_uuid = "4fafc201-1fb5-459e-8fcc-c5c9c331914b".toLowerCase();
-var characteristic_uuid_tx = "beb5483e-36e1-4688-b7f5-ea07361b26a8".toLowerCase();
-var characteristic_uuid_rx = "498c599b-2601-4600-bb7e-3aa295a92842".toLowerCase();
+var service_uuid = "4fafc201-1fb5-459e-8fcc-c5c9c331914b";
+var CHARACTERISTIC_TX_UUID = "beb5483e-36e1-4688-b7f5-ea07361b26a8";
+var CHARACTERISTIC_RX_UUID = "498c599b-2601-4600-bb7e-3aa295a92842";
 		
 Bluetooth_buttonRequest.addEventListener('click', async () => {
 	if (navigator.bluetooth) {
@@ -86,9 +86,9 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 		navigator.bluetooth.requestDevice(options)
 		.then(device => {
 			Bluetooth_device = device;
-			var msg = 'Connect to Name:' + device.name + ' Id:' + device.id;
+			var msg = 'Connect to Name:' + device.name;
 			Bluetooth_message(msg, "blue"); 
-			// Attempts to connect to remote GATT Server.
+			
 			return device.gatt.connect();
 		})
 		.then(server => {
@@ -104,6 +104,7 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 			Bluetooth_device.addEventListener('gattserverdisconnected', onDisconnected);
 
 			characteristics.forEach(characteristic => {
+			
 				/*
 				console.log('> Characteristic UUID:  ' + characteristic.uuid);
 				console.log('> Broadcast:            ' + characteristic.properties.broadcast);
@@ -117,24 +118,29 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 				console.log('> Writable Auxiliaries: ' + characteristic.properties.writableAuxiliaries);
 				*/
 				
+				Bluetooth_message(characteristic.uuid, "blue");
+				
 				switch (characteristic.uuid) {
-					case characteristic_uuid_rx:
+					case CHARACTERISTIC_RX_UUID:
 						Bluetooth_readCharacteristic = characteristic;
 						break;
-					case characteristic_uuid_tx:
+					case CHARACTERISTIC_TX_UUID:
 						Bluetooth_writeCharacteristic = characteristic;
 						break;
 				}
 			});
-
+			
 			Bluetooth_readCharacteristic.startNotifications().then(_ => {
-				Bluetooth_message('Notifications started',"blue");
+                Bluetooth_message('Notifications started',"blue");
 				Bluetooth_readCharacteristic.addEventListener('characteristicvaluechanged', handleCharacteristicValueChanged);
-			});
+            });
+			
 			return Bluetooth_readCharacteristic.readValue();
 		})
 		.then(value => {
-			Bluetooth_message('Received ' + value.getUint8(0), "orange");
+			value = new TextDecoder().decode(value);
+			if (value!="")
+				Bluetooth_message('Received ' + value, "orange");
 		})
 		.catch(error => {
 			console.log(error);
@@ -144,13 +150,10 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 		
 });
 
-Bluetooth_buttonClose.addEventListener('click', async () => {
+Bluetooth_buttonDisconnect.addEventListener('click', async () => {
 	if (Bluetooth_device && Bluetooth_device.gatt.connected) {
-		Bluetooth_device.gatt.disconnect();
-		Bluetooth_device = null;
-		Bluetooth_characteristics = null;
-		Bluetooth_readCharacteristic = null;
-		Bluetooth_writeCharacteristic = null;
+		if (Bluetooth_device.gatt.connected)
+			Bluetooth_device.gatt.disconnect();
 	}	
 });
 
@@ -163,8 +166,12 @@ function handleCharacteristicValueChanged(event) {
 
 function onDisconnected(event) {
 	const device = event.target;
-	var msg = `Device ${device.name} is disconnected.`;
+	var msg = "Device " + device.name + " is disconnected.";
 	Bluetooth_message(msg,"blue");
+	Bluetooth_device = null;
+	Bluetooth_characteristics = null;
+	Bluetooth_readCharacteristic = null;
+	Bluetooth_writeCharacteristic = null;	
 }
 
 function sendCommand(cmd) {
@@ -226,8 +233,8 @@ bool deviceConnected = false;
 // https://www.uuidgenerator.net/
 
 #define SERVICE_UUID           "4fafc201-1fb5-459e-8fcc-c5c9c331914b" // UART service UUID
-#define CHARACTERISTIC_UUID_RX "beb5483e-36e1-4688-b7f5-ea07361b26a8"
-#define CHARACTERISTIC_UUID_TX "498c599b-2601-4600-bb7e-3aa295a92842"
+#define CHARACTERISTIC_RX_UUID "beb5483e-36e1-4688-b7f5-ea07361b26a8"
+#define CHARACTERISTIC_TX_UUID "498c599b-2601-4600-bb7e-3aa295a92842"
 
 class ServerCallbacks: public BLEServerCallbacks {
     void onConnect(BLEServer* pServer) {
@@ -266,13 +273,9 @@ class CharacteristicCallbacks: public BLECharacteristicCallbacks {
         }
 
         /*
-        float txValue = 100; // This could be an actual sensor reading!
-        char txString[8]; // make sure this is big enuffz
-        dtostrf(txValue, 1, 2, txString); // float_val, min_width, digits_after_decimal, char_buffer
         //characteristicTX->setValue(txValue, 1); // To send the integer value
         //characteristicTX->setValue("Hello!"); // Sending a test message
-        characteristicTX->setValue(txString);
-        characteristicTX->notify();
+        //characteristicTX->notify();
         */
       }
     }
@@ -288,7 +291,7 @@ void setup() {
   BLEService *service = server->createService(SERVICE_UUID);
   
   characteristicTX = service->createCharacteristic(
-                      CHARACTERISTIC_UUID_TX,
+                      CHARACTERISTIC_TX_UUID,
                       BLECharacteristic::PROPERTY_READ   |
                       BLECharacteristic::PROPERTY_WRITE  |
                       BLECharacteristic::PROPERTY_NOTIFY |
@@ -299,7 +302,7 @@ void setup() {
   characteristicTX->addDescriptor(new BLE2902());
 
   BLECharacteristic *characteristic = service->createCharacteristic(
-                                        CHARACTERISTIC_UUID_RX,
+                                        CHARACTERISTIC_RX_UUID,
                                         BLECharacteristic::PROPERTY_READ   |
                                         BLECharacteristic::PROPERTY_WRITE  |
                                         BLECharacteristic::PROPERTY_NOTIFY |
