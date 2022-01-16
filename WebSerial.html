@@ -156,8 +156,8 @@ serial_buttonRequest.addEventListener('click', async () => {
 		
 		serial_port = await navigator.serial.requestPort({ filters });
 		const { usbProductId, usbVendorId } = serial_port.getInfo();
-		serial_selProductId = usbProductId;
-		serial_selVendorId = usbVendorId;
+		serial_selProductId = (usbProductId)?usbProductId:0;
+		serial_selVendorId = (usbVendorId)?usbVendorId:0;
 		
 		serial_keepReading = true;
 		
