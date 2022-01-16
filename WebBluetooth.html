@@ -55,9 +55,6 @@ let Bluetooth_characteristics = null;
 let Bluetooth_readCharacteristic = null;
 let Bluetooth_writeCharacteristic = null;
 
-let busy = false;
-let commandQueue = [];
-
 let Bluetooth_command = document.getElementById('Bluetooth_command');
 let Bluetooth_status = document.getElementById('Bluetooth_status');
 let Bluetooth_buttonRequest = document.getElementById('Bluetooth_request_device');
@@ -65,6 +62,9 @@ let Bluetooth_buttonDisconnect = document.getElementById('Bluetooth_disconnect_d
 let Bluetooth_sendString = document.getElementById('Bluetooth_sendString');	
 let Bluetooth_clearText = document.getElementById('Bluetooth_clearText');
 let Bluetooth_end = document.getElementById('Bluetooth_end');
+	
+let busy = false;
+let commandQueue = [];
 
 //https://www.uuidgenerator.net/
 var service_uuid = "4fafc201-1fb5-459e-8fcc-c5c9c331914b";
