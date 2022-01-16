@@ -27,8 +27,8 @@ https://fustyles.github.io/webduino/WebSerial.html
 <tr>
 <td>Baud Rate
 <select id="serial_baud">
-    <option value="9600">9600</option>
     <option value="115200">115200</option>
+    <option value="9600">9600</option>
     <option value="300">300</option>
     <option value="1200">1200</option>
     <option value="2400">2400</option>
@@ -47,13 +47,22 @@ https://fustyles.github.io/webduino/WebSerial.html
 <td><button id="serial_close_port">Close Port</button><button id="serial_request_port">Select Port</button></td>
 </tr>
 <tr>
-<td><input type="text" id="serial_command">
-<select id="serial_end">
+<td><input type="text" id="serial_string">
+<select id="serial_newline">
     <option value=""></option>
     <option value="\n">\n</option>		
 </select>
 </td>
 <td><button id="serial_sendString">Send String</button></td>
+</tr>
+<tr>
+<td><input type="text" id="serial_unit">
+<select id="serial_type">
+    <option value="unit8">unit8</option>
+    <option value="unit16">unit16</option>		
+</select>
+</td>
+<td><button id="serial_sendUnit">Send Unit</button></td>
 </tr>
 <tr>
 <td colspan="2"><div id="serial_status" style="width:400px;height:300px;border:2px black solid;overflow: auto;"></div></td>
@@ -67,7 +76,19 @@ https://fustyles.github.io/webduino/WebSerial.html
 </tr>
 </table>
 <script>
-  
+
+let serial_baud = document.getElementById('serial_baud');
+let serial_string = document.getElementById('serial_string');
+let serial_unit = document.getElementById('serial_unit');
+let serial_type = document.getElementById('serial_type');
+let serial_status = document.getElementById('serial_status');
+let serial_buttonRequest = document.getElementById('serial_request_port');
+let serial_buttonClose = document.getElementById('serial_close_port');
+let serial_sendString = document.getElementById('serial_sendString');
+let serial_sendUnit = document.getElementById('serial_sendUnit');
+let serial_clearStatus = document.getElementById('serial_clearStatus');
+let serial_newline = document.getElementById('serial_newline');	
+
 let serial_port = null;
 let serial_textEncoder = {};
 let serial_writableStreamClosed = {};
@@ -77,15 +98,6 @@ let serial_readSting = "";
 let serial_keepReading = true;
 let serial_selProductId = "";
 let serial_selVendorId = "";
-
-let serial_baud = document.getElementById('serial_baud');
-let serial_command = document.getElementById('serial_command');
-let serial_status = document.getElementById('serial_status');
-let serial_buttonRequest = document.getElementById('serial_request_port');
-let serial_buttonClose = document.getElementById('serial_close_port');
-let serial_sendString = document.getElementById('serial_sendString');	
-let serial_clearStatus = document.getElementById('serial_clearStatus');
-let serial_end = document.getElementById('serial_end');		
 let serial_timer;
 	
 navigator.serial.addEventListener("connect", (event) => {
@@ -103,18 +115,21 @@ async function readUntilClosed() {
 	  while (true) {
 		const { value, done } = await serial_reader.read();
 		if (done) {
+		  // |reader| has been canceled.
 		  break;
 		}
 		if (value) {
 			serial_readSting += new TextDecoder().decode(value);
 			if (value.includes(10)) {    //Serial.println(data);
 				clearTimeout(serial_timer);
+				console.log(serial_readSting);
 				serial_message(serial_readSting,"green");
 				serial_readSting = "";
 			}
 			else {    //Serial.print(data);
 				serial_timer = setTimeout(function() {
-					if (serial_readSting != "") serial_message(serial_readSting,"green");
+					if (serial_readSting != "") 
+						serial_message(serial_readSting,"green");
 					serial_readSting = "";
 				}, 10);
 			}
@@ -198,8 +213,27 @@ serial_buttonClose.addEventListener('click', async () => {
 
 serial_sendString.addEventListener('click', async () => {
 	if (serial_port&&serial_writer) {
-		try {	
-			var msg = serial_command.value + serial_end.value;
+		try {
+			var msg = serial_string.value + serial_newline.value;
+			serial_message(msg,"orange");
+			await serial_writer[serial_selProductId].write(msg);
+		} catch (error) {
+			serial_message(error.message,"red");
+		}
+	}
+});
+
+serial_sendUnit.addEventListener('click', async () => {
+	if (serial_port&&serial_writer) {
+		try {
+		console.log(serial_type.value);
+			if (serial_type.value=="unit8")
+				var msg = new Uint8Array(serial_unit.value.split(","));
+			else if (serial_type.value=="unit16")
+				var msg = new Uint16Array(serial_unit.value.split(","));
+			else
+				var msg = serial_unit.value;
+				console.log(msg);
 			serial_message(msg,"orange");
 			await serial_writer[serial_selProductId].write(msg);
 		} catch (error) {
@@ -221,16 +255,12 @@ function serial_message(msg, colour) {
 </html>
 
 <!--
-
 /*
 ESP32 UART
-
 Author : ChungYi Fu (Kaohsiung, Taiwan)  2022-1-16 22:00
 https://www.facebook.com/francefu
-
 Uart Command Format : 
 ?cmd=str1;str2;str3;str4;str5;str6;str7;str8;str9
-
 ?inputpullup=pin
 ?pinmode=pin;value
 ?digitalwrite=pin;value
@@ -239,9 +269,7 @@ Uart Command Format :
 ?touchread=pin
 ?analogread=pin
 */
-
 String ReceiveData="", command="",cmd="",str1="",str2="",str3="",str4="",str5="",str6="",str7="",str8="",str9="";
-
 void executecommand() {
   //Serial.println("");
   //Serial.println("command: "+command);
@@ -284,27 +312,21 @@ void executecommand() {
     SendData("Command is not defined.<br>Command Format :<br>?cmd=str1;str2;str3;str4;str5;str6;str7;str8;str9");
   }   
 }
-
 void setup() {
   Serial.begin(115200);
 }
-
 void loop() {
   getCommand();
-
   if (ReceiveData.indexOf("?")==0) {
     executecommand();
   }
 }
-
 void SendData(String data) {
   Serial.println(data);
 }
-
 void getCommand() {
   ReceiveData="";command="";cmd="";str1="";str2="";str3="";str4="";str5="";str6="";str7="";str8="";str9="";
   byte ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;
-
   if (Serial.available()) {
     while (Serial.available()) {
       char c=Serial.read();
@@ -318,7 +340,6 @@ void getCommand() {
         
         if (c=='=') cmdState=0;
         if (c==';') strState++;
-
         if ((cmdState==1)&&((c!='?')||(questionstate==1))) cmd=cmd+String(c);
         if ((cmdState==0)&&(strState==1)&&((c!='=')||(equalstate==1))) str1=str1+String(c);
         if ((cmdState==0)&&(strState==2)&&(c!=';')) str2=str2+String(c);
@@ -338,5 +359,4 @@ void getCommand() {
     }  
   }
 }
-
 -->
