@@ -50,11 +50,6 @@ https://fustyles.github.io/webduino/WebBluetooth.html
 </table>
 <script>
   
-let Bluetooth_device = null;
-let Bluetooth_characteristics = null;
-let Bluetooth_readCharacteristic = null;
-let Bluetooth_writeCharacteristic = null;
-
 let Bluetooth_command = document.getElementById('Bluetooth_command');
 let Bluetooth_status = document.getElementById('Bluetooth_status');
 let Bluetooth_buttonRequest = document.getElementById('Bluetooth_request_device');
@@ -63,6 +58,10 @@ let Bluetooth_sendString = document.getElementById('Bluetooth_sendString');
 let Bluetooth_clearText = document.getElementById('Bluetooth_clearText');
 let Bluetooth_end = document.getElementById('Bluetooth_end');
 	
+let Bluetooth_device = null;
+let Bluetooth_characteristics = null;
+let Bluetooth_readCharacteristic = null;
+let Bluetooth_writeCharacteristic = null;
 let busy = false;
 let commandQueue = [];
 
