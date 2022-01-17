@@ -228,7 +228,6 @@ serial_sendString.addEventListener('click', async () => {
 serial_sendUnit.addEventListener('click', async () => {
 	if (serial_port&&serial_writer) {
 		try {
-		console.log(serial_type.value);
 			if (serial_type.value=="unit8")
 				var msg = new Uint8Array(serial_unit.value.split(","));
 			else if (serial_type.value=="unit16")
