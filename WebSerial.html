@@ -157,15 +157,15 @@ serial_buttonRequest.addEventListener('click', async () => {
 		
 		serial_port = await navigator.serial.requestPort({ filters });
 		const { usbProductId, usbVendorId } = serial_port.getInfo();
-		serial_selProductId = (usbProductId)?usbProductId:0;
-		serial_selVendorId = (usbVendorId)?usbVendorId:0;
+		serial_selProductId = (usbProductId)?"0x"+usbProductId:"null";
+		serial_selVendorId = (usbVendorId)?"0x"+usbVendorId:"null";
 		
 		serial_keepReading = true;
 		
 		try {
 			var rate =  Number(serial_baud.value);
 			await serial_port.open({ baudRate: rate });
-			var msg = "VendorId: 0x"+serial_selVendorId.toString(16)+" ProductId: 0x"+serial_selProductId.toString(16)+" Ready!";
+			var msg = "VendorId: "+serial_selVendorId.toString(16)+" ProductId: "+serial_selProductId.toString(16)+" Ready!";
 			serial_message(msg,"blue");
 			
 			//await serial_port.setSignals({ dataTerminalReady: false });
