@@ -235,7 +235,6 @@ serial_sendUnit.addEventListener('click', async () => {
 				var msg = new Uint16Array(serial_unit.value.split(","));
 			else
 				var msg = serial_unit.value;
-				console.log(msg);
 			serial_message(msg,"orange");
 			serial_unit.value = "";
 			await serial_writer[serial_selProductId].write(msg);
