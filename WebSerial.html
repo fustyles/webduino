@@ -217,6 +217,7 @@ serial_sendString.addEventListener('click', async () => {
 		try {
 			var msg = serial_string.value + serial_newline.value;
 			serial_message(msg,"orange");
+			serial_string.value = "";
 			await serial_writer[serial_selProductId].write(msg);
 		} catch (error) {
 			serial_message(error.message,"red");
@@ -236,6 +237,7 @@ serial_sendUnit.addEventListener('click', async () => {
 				var msg = serial_unit.value;
 				console.log(msg);
 			serial_message(msg,"orange");
+			serial_unit.value = "";
 			await serial_writer[serial_selProductId].write(msg);
 		} catch (error) {
 			serial_message(error.message,"red");
