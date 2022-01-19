@@ -234,8 +234,11 @@ serial_sendUnit.addEventListener('click', async () => {
 				var msg = new Uint16Array(serial_unit.value.split(","));
 			else
 				var msg = serial_unit.value;
+			
+			msg = new TextDecoder("utf-8").decode(msg);
 			serial_message(msg,"orange");
 			serial_unit.value = "";
+			
 			await serial_writer[serial_selProductId].write(msg);
 		} catch (error) {
 			serial_message(error.message,"red");
