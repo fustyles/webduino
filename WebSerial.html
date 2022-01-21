@@ -59,7 +59,7 @@ https://fustyles.github.io/webduino/WebSerial.html
 <tr>
 <td><input type="text" id="serial_uint8" value="">
 </td>
-<td><button id="serial_sendUnit">Send Uint8Array</button></td>
+<td><button id="serial_sendUint8">Send Uint8Array</button></td>
 </tr>
 <tr>
 <td colspan="2"><div id="serial_status" style="width:400px;height:300px;border:2px black solid;overflow: auto;"></div></td>
@@ -82,7 +82,7 @@ let serial_status = document.getElementById('serial_status');
 let serial_buttonRequest = document.getElementById('serial_request_port');
 let serial_buttonClose = document.getElementById('serial_close_port');
 let serial_sendString = document.getElementById('serial_sendString');
-let serial_sendUnit = document.getElementById('serial_sendUnit');
+let serial_sendUint8 = document.getElementById('serial_sendUint8');
 let serial_clearStatus = document.getElementById('serial_clearStatus');
 let serial_newline = document.getElementById('serial_newline');	
 
@@ -205,6 +205,7 @@ serial_buttonClose.addEventListener('click', async () => {
 });
 
 serial_sendString.addEventListener('click', async () => {
+	serial_sendUint8.disabled = true;
 	if (serial_port&&serial_writer) {
 		try {
 			var msg = serial_string.value + serial_newline.value;
@@ -225,7 +226,8 @@ serial_sendString.addEventListener('click', async () => {
 	}
 });
 
-serial_sendUnit.addEventListener('click', async () => {
+serial_sendUint8.addEventListener('click', async () => {
+	serial_sendString.disabled = true;
 	if (serial_port&&serial_writer) {
 		try {
 			var intArray = serial_uint8.value.split(",");
@@ -258,7 +260,6 @@ function serial_message(msg, colour) {
 </html>
 
 <!--
-
 /*
 ESP32 UART
 Author : ChungYi Fu (Kaohsiung, Taiwan)  2022-1-16 22:00
@@ -365,5 +366,4 @@ void getCommand() {
     }  
   }
 }
-
 -->
