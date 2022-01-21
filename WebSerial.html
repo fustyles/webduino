@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 
 @fileoverview Web Serial
 @author https://www.facebook.com/francefu/
-@Update 1/1/2022 00:00 (Taiwan Standard Time)
+@Update 1/21/2022 21:00 (Taiwan Standard Time)
  
 Web Serial
 https://web.dev/serial/
@@ -17,7 +17,7 @@ https://fustyles.github.io/webduino/WebSerial.html
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Web Serial</title>	
+  <title>Web Serial</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -50,20 +50,16 @@ https://fustyles.github.io/webduino/WebSerial.html
 <select id="serial_newline">
     <option value=""></option>
     <option value="\r">\r</option>	
-    <option value="\n">\n</option>
-    <option value="\r\n">\r\n</option>	
+    <option value="\n">\n</option>	
+    <option value="\r\n">\r\n</option>		
 </select>
 </td>
-<td><button id="serial_sendString">Send String</button></td>
+<td><button id="serial_sendString">Send Text</button></td>
 </tr>
 <tr>
-<td><input type="text" id="serial_unit">
-<select id="serial_type">
-    <option value="unit8">unit8</option>
-    <option value="unit16">unit16</option>		
-</select>
+<td><input type="text" id="serial_uint8" value="">
 </td>
-<td><button id="serial_sendUnit">Send Unit</button></td>
+<td><button id="serial_sendUnit">Send Uint8Array</button></td>
 </tr>
 <tr>
 <td colspan="2"><div id="serial_status" style="width:400px;height:300px;border:2px black solid;overflow: auto;"></div></td>
@@ -80,7 +76,7 @@ https://fustyles.github.io/webduino/WebSerial.html
 
 let serial_baud = document.getElementById('serial_baud');
 let serial_string = document.getElementById('serial_string');
-let serial_unit = document.getElementById('serial_unit');
+let serial_uint8 = document.getElementById('serial_uint8');
 let serial_type = document.getElementById('serial_type');
 let serial_status = document.getElementById('serial_status');
 let serial_buttonRequest = document.getElementById('serial_request_port');
@@ -149,8 +145,8 @@ serial_buttonRequest.addEventListener('click', async () => {
 	if ("serial" in navigator) {
 		/*
 		const filters = [
-			{ usbVendorId: 0x2341, usbProductId: 0x0043 },
-			{ usbVendorId: 0x2341, usbProductId: 0x0001 }
+			{ usbVendorId: 0x2341, usbProductId: 0x43 },
+			{ usbVendorId: 0x2341, usbProductId: 0x01 }
 		];
 		*/
 		const filters = [];
@@ -170,12 +166,8 @@ serial_buttonRequest.addEventListener('click', async () => {
 			
 			//await serial_port.setSignals({ dataTerminalReady: false });
 			//await new Promise(resolve => setTimeout(resolve, 200));
-			//await serial_port.setSignals({ dataTerminalReady: true });			
-			
-			serial_textEncoder[serial_selProductId] = new TextEncoderStream();
-			serial_writableStreamClosed[serial_selProductId] = serial_textEncoder[serial_selProductId].readable.pipeTo(serial_port.writable);
-			serial_writer[serial_selProductId] = serial_textEncoder[serial_selProductId].writable.getWriter();			
-			
+			//await serial_port.setSignals({ dataTerminalReady: true });
+
 			const closed = readUntilClosed();
 		} catch (error) {
 			var errorString = error.message;
@@ -218,7 +210,15 @@ serial_sendString.addEventListener('click', async () => {
 			var msg = serial_string.value + serial_newline.value;
 			serial_message(msg,"orange");
 			serial_string.value = "";
+			
+			if (!serial_textEncoder[serial_selProductId])
+				serial_textEncoder[serial_selProductId] = new TextEncoderStream();
+			if (!serial_writableStreamClosed[serial_selProductId])
+				serial_writableStreamClosed[serial_selProductId] = serial_textEncoder[serial_selProductId].readable.pipeTo(serial_port.writable);
+			serial_writer[serial_selProductId] = serial_textEncoder[serial_selProductId].writable.getWriter();
 			await serial_writer[serial_selProductId].write(msg);
+			
+			serial_writer[serial_selProductId].releaseLock();
 		} catch (error) {
 			serial_message(error.message,"red");
 		}
@@ -228,18 +228,17 @@ serial_sendString.addEventListener('click', async () => {
 serial_sendUnit.addEventListener('click', async () => {
 	if (serial_port&&serial_writer) {
 		try {
-			if (serial_type.value=="unit8")
-				var msg = new Uint8Array(serial_unit.value.split(","));
-			else if (serial_type.value=="unit16")
-				var msg = new Uint16Array(serial_unit.value.split(","));
-			else
-				var msg = serial_unit.value;
-			
-			msg = new TextDecoder("utf-8").decode(msg);
+			var intArray = serial_uint8.value.split(",");
+			msg = String.fromCharCode.apply(null, intArray);
 			serial_message(msg,"orange");
-			serial_unit.value = "";
+			serial_uint8.value = "";
 			
-			await serial_writer[serial_selProductId].write(msg);
+			serial_writer[serial_selProductId] = serial_port.writable.getWriter();
+			const data = new Uint8Array(intArray);
+			await serial_writer[serial_selProductId].write(data);
+			serial_writer[serial_selProductId].releaseLock();
+			
+			//await serial_writer[serial_selProductId].write(msg);
 		} catch (error) {
 			serial_message(error.message,"red");
 		}
