@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 
 @fileoverview Web Bluetooth
 @author https://www.facebook.com/francefu/
-@Update 1/16/2022 22:00 (Taiwan Standard Time)
+@Update 1/22/2022 21:00 (Taiwan Standard Time)
  
 Web Bluetooth
 https://web.dev/bluetooth/
@@ -17,25 +17,33 @@ https://fustyles.github.io/webduino/WebBluetooth.html
 <!DOCTYPE HTML>
 <html>
 <head>
-  <meta charset="utf-8">
   <title>Web Bluetooth</title>
   <meta charset="utf-8">
   <meta name="viewdevice" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Access-Control-Allow-Origin" content="*">
 </head>
 <body>
 <table>
 <tr>
-<td align="right"><button id="Bluetooth_disconnect_device">Disconnect</button></td><td align="right"><button id="Bluetooth_request_device">Connect to Bluetooth</button></td>
+<td colspan="2" align="right"><button id="Bluetooth_disconnect_device">Disconnect</button><button id="Bluetooth_request_device">Connect to Bluetooth</button></td>
 </tr>
 <tr>
-<td><input type="text" id="Bluetooth_command">
+<td>Service UUID</td>
+<td><input type="text" id="Bluetooth_uuid_service" size="38" value="4fafc201-1fb5-459e-8fcc-c5c9c331914b"></td>
+<tr>
+<td>TX UUID</td>
+<td><input type="text" id="Bluetooth_uuid_tx" size="38" value="beb5483e-36e1-4688-b7f5-ea07361b26a8"></td>
+<tr>
+<td>RX UUID</td>
+<td><input type="text" id="Bluetooth_uuid_rx" size="38" value="498c599b-2601-4600-bb7e-3aa295a92842"></td>
+<tr>
+<td colspan="2"><input type="text" id="Bluetooth_command">
 <select id="Bluetooth_end">
     <option value=""></option>
-    <option value="\n">\n</option>		
+    <option value="\r">\r</option>		
+    <option value="\n">\n</option>	
+    <option value="\r\n">\r\n</option>	
 </select>
-</td>
-<td align="right"><button id="Bluetooth_sendString">Send String</button></td>
+<button id="Bluetooth_sendString">Send String</button></td>
 </tr>
 <tr>
 <td colspan="2"><div id="Bluetooth_status" style="width:400px;height:300px;border:2px black solid;overflow: auto;"></div></td>
@@ -57,7 +65,10 @@ let Bluetooth_buttonDisconnect = document.getElementById('Bluetooth_disconnect_d
 let Bluetooth_sendString = document.getElementById('Bluetooth_sendString');	
 let Bluetooth_clearText = document.getElementById('Bluetooth_clearText');
 let Bluetooth_end = document.getElementById('Bluetooth_end');
-	
+let Bluetooth_uuid_service = document.getElementById('Bluetooth_uuid_service');
+let Bluetooth_uuid_tx = document.getElementById('Bluetooth_uuid_tx');
+let Bluetooth_uuid_rx = document.getElementById('Bluetooth_uuid_rx');
+
 let Bluetooth_device = null;
 let Bluetooth_characteristics = null;
 let Bluetooth_readCharacteristic = null;
@@ -66,11 +77,15 @@ let busy = false;
 let commandQueue = [];
 
 // https://www.uuidgenerator.net/
-var service_uuid = "4fafc201-1fb5-459e-8fcc-c5c9c331914b";
-var CHARACTERISTIC_TX_UUID = "beb5483e-36e1-4688-b7f5-ea07361b26a8";
-var CHARACTERISTIC_RX_UUID = "498c599b-2601-4600-bb7e-3aa295a92842";
+var service_uuid = "";
+var CHARACTERISTIC_TX_UUID = "";
+var CHARACTERISTIC_RX_UUID = "";
 		
 Bluetooth_buttonRequest.addEventListener('click', async () => {
+	service_uuid = Bluetooth_uuid_service.value;
+	CHARACTERISTIC_TX_UUID = Bluetooth_uuid_tx.value;
+	CHARACTERISTIC_RX_UUID = Bluetooth_uuid_rx.value;
+
 	if (navigator.bluetooth) {
 		let options = {};
 		options.acceptAllDevices = true;
@@ -136,10 +151,6 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 			
 			return Bluetooth_readCharacteristic.readValue();
 		})
-		.then(value => {
-			value = new TextDecoder().decode(value);
-			Bluetooth_message(value, "orange");
-		})
 		.catch(error => {
 			console.log(error);
 			Bluetooth_message(error,"red"); 
@@ -157,7 +168,7 @@ Bluetooth_buttonDisconnect.addEventListener('click', async () => {
 
 function handleCharacteristicValueChanged(event) {
 	const value = new TextDecoder().decode(event.target.value);
-	console.log(value);
+	//console.log(value);
 	Bluetooth_message(value, "orange");
 }
 
@@ -197,9 +208,10 @@ Bluetooth_clearText.addEventListener('click', async () => {
 
 Bluetooth_sendString.addEventListener('click', async () => {
 	var msg = Bluetooth_command.value + Bluetooth_end.value;
+	Bluetooth_message(msg, "green");
 	var cmd = new TextEncoder().encode(msg);
 	sendCommand(cmd).then(() => {
-		Bluetooth_message(new TextDecoder().decode(cmd), "green");
+		//Bluetooth_message(new TextDecoder().decode(cmd), "green");
 	})
 	.catch(error => {
 		console.log(error);
