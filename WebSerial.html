@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 
 @fileoverview Web Serial
 @author https://www.facebook.com/francefu/
-@Update 1/21/2022 21:00 (Taiwan Standard Time)
+@Update 1/22/2022 19:30 (Taiwan Standard Time)
  
 Web Serial
 https://web.dev/serial/
@@ -46,7 +46,7 @@ https://fustyles.github.io/webduino/WebSerial.html
 <td><button id="serial_close_port">Close Port</button><button id="serial_request_port">Select Port</button></td>
 </tr>
 <tr>
-<td><input type="text" id="serial_string">
+<td><input type="text" id="serial_text">
 <select id="serial_newline">
     <option value=""></option>
     <option value="\r">\r</option>	
@@ -54,7 +54,7 @@ https://fustyles.github.io/webduino/WebSerial.html
     <option value="\r\n">\r\n</option>		
 </select>
 </td>
-<td><button id="serial_sendString">Send Text</button></td>
+<td><button id="serial_sendText">Send Text</button></td>
 </tr>
 <tr>
 <td><input type="text" id="serial_uint8" value="">
@@ -68,23 +68,21 @@ https://fustyles.github.io/webduino/WebSerial.html
 <td>
 </td>
 <td align="right">
-<button id="serial_clearStatus">Clear Text</button>
+<button id="serial_clearText">Clear Text</button>
 </td>
 </tr>
 </table>
 <script>
 
 let serial_baud = document.getElementById('serial_baud');
-let serial_string = document.getElementById('serial_string');
+let serial_text = document.getElementById('serial_text');
 let serial_uint8 = document.getElementById('serial_uint8');
-let serial_type = document.getElementById('serial_type');
 let serial_status = document.getElementById('serial_status');
 let serial_buttonRequest = document.getElementById('serial_request_port');
 let serial_buttonClose = document.getElementById('serial_close_port');
-let serial_sendString = document.getElementById('serial_sendString');
+let serial_sendText = document.getElementById('serial_sendText');
 let serial_sendUint8 = document.getElementById('serial_sendUint8');
-let serial_clearStatus = document.getElementById('serial_clearStatus');
-let serial_newline = document.getElementById('serial_newline');	
+let serial_clearText = document.getElementById('serial_clearText');
 
 let serial_port = null;
 let serial_textEncoder = {};
@@ -204,22 +202,23 @@ serial_buttonClose.addEventListener('click', async () => {
 	}	
 });
 
-serial_sendString.addEventListener('click', async () => {
+serial_sendText.addEventListener('click', async () => {
 	serial_sendUint8.disabled = true;
 	if (serial_port&&serial_writer) {
 		try {
-			var msg = serial_string.value + serial_newline.value;
+			var msg = serial_text.value + serial_newline.value;
 			serial_message(msg,"orange");
-			serial_string.value = "";
+			serial_text.value = "";
 			
 			if (!serial_textEncoder[serial_selProductId])
 				serial_textEncoder[serial_selProductId] = new TextEncoderStream();
 			if (!serial_writableStreamClosed[serial_selProductId])
 				serial_writableStreamClosed[serial_selProductId] = serial_textEncoder[serial_selProductId].readable.pipeTo(serial_port.writable);
+				
 			serial_writer[serial_selProductId] = serial_textEncoder[serial_selProductId].writable.getWriter();
-			await serial_writer[serial_selProductId].write(msg);
-			
-			serial_writer[serial_selProductId].releaseLock();
+			await serial_writer[serial_selProductId].write(msg).then(function() {
+				serial_writer[serial_selProductId].releaseLock();
+			});
 		} catch (error) {
 			serial_message(error.message,"red");
 		}
@@ -227,27 +226,26 @@ serial_sendString.addEventListener('click', async () => {
 });
 
 serial_sendUint8.addEventListener('click', async () => {
-	serial_sendString.disabled = true;
+	serial_sendText.disabled = true;
 	if (serial_port&&serial_writer) {
 		try {
+			serial_message(serial_uint8.value,"orange");
+			serial_uint8.value = "";
 			var intArray = serial_uint8.value.split(",");
 			msg = String.fromCharCode.apply(null, intArray);
-			serial_message(msg,"orange");
-			serial_uint8.value = "";
-			
+						
 			serial_writer[serial_selProductId] = serial_port.writable.getWriter();
 			const data = new Uint8Array(intArray);
-			await serial_writer[serial_selProductId].write(data);
-			serial_writer[serial_selProductId].releaseLock();
-			
-			//await serial_writer[serial_selProductId].write(msg);
+			await serial_writer[serial_selProductId].write(data).then(function() {
+				serial_writer[serial_selProductId].releaseLock();
+			});
 		} catch (error) {
 			serial_message(error.message,"red");
 		}
 	}
 });
 
-serial_clearStatus.addEventListener('click', async () => {
+serial_clearText.addEventListener('click', async () => {
 	serial_status.innerHTML = "";
 });
 
