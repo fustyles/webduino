@@ -622,7 +622,203 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		else
 			alert("Web serial is not supported.");
-	}	
+	}
+
+	//Web Bluetooth
+	if (typeof navigator.bluetooth !== "undefined") {
+		let Bluetooth_command = document.getElementById('Bluetooth_command');
+		let Bluetooth_status = document.getElementById('Bluetooth_status');
+		let Bluetooth_buttonRequest = document.getElementById('Bluetooth_request_device');
+		let Bluetooth_buttonDisconnect = document.getElementById('Bluetooth_disconnect_device');
+		let Bluetooth_sendString = document.getElementById('Bluetooth_sendString');	
+		let Bluetooth_clearText = document.getElementById('Bluetooth_clearText');
+		let Bluetooth_end = document.getElementById('Bluetooth_end');
+		let Bluetooth_uuid_service = document.getElementById('Bluetooth_uuid_service');
+		let Bluetooth_uuid_tx = document.getElementById('Bluetooth_uuid_tx');
+		let Bluetooth_uuid_rx = document.getElementById('Bluetooth_uuid_rx');
+
+		let Bluetooth_device = null;
+		let Bluetooth_characteristics = null;
+		let Bluetooth_readCharacteristic = null;
+		let Bluetooth_writeCharacteristic = null;
+		let busy = false;
+		let commandQueue = [];
+
+		// https://www.uuidgenerator.net/
+		var service_uuid = "";
+		var CHARACTERISTIC_TX_UUID = "";
+		var CHARACTERISTIC_RX_UUID = "";
+				
+		Bluetooth_buttonRequest.addEventListener('click', async () => {
+			service_uuid = Bluetooth_uuid_service.value;
+			CHARACTERISTIC_TX_UUID = Bluetooth_uuid_tx.value;
+			CHARACTERISTIC_RX_UUID = Bluetooth_uuid_rx.value;
+
+			let options = {};
+			options.acceptAllDevices = true;
+			options.optionalServices = [service_uuid];
+			
+			//let filters = [];
+			//filters.push({services: [0x1234, 0x12345678, '99999999-0000-1000-8000-00805f9b34fb']});
+			//filters.push({name: 'xxx'});
+			//filters.push({namePrefix: 'yyy'});		
+			//options.filters = filters;
+			
+			navigator.bluetooth.requestDevice(options)
+			.then(device => {
+				Bluetooth_device = device;
+				var msg = 'Connect to Name:' + device.name;
+				Bluetooth_message(msg, "blue");
+				Bluetooth_message(service_uuid, "blue");
+				
+				return device.gatt.connect();
+			})
+			.then(server => {
+				return server.getPrimaryService(service_uuid);
+			})
+			.then(service => {
+				return service.getCharacteristics();
+			})
+			.then(characteristics => {
+				Bluetooth_message("Device connected", "blue");
+					
+				Bluetooth_characteristics = characteristics;
+				Bluetooth_device.addEventListener('gattserverdisconnected', onDisconnected);
+
+				characteristics.forEach(characteristic => {
+				
+					/*
+					console.log('> Characteristic UUID:  ' + characteristic.uuid);
+					console.log('> Broadcast:            ' + characteristic.properties.broadcast);
+					console.log('> Read:                 ' + characteristic.properties.read);
+					console.log('> Write w/o response:   ' + characteristic.properties.writeWithoutResponse);
+					console.log('> Write:                ' + characteristic.properties.write);
+					console.log('> Notify:               ' + characteristic.properties.notify);
+					console.log('> Indicate:             ' + characteristic.properties.indicate);
+					console.log('> Signed Write:         ' + characteristic.properties.authenticatedSignedWrites);
+					console.log('> Queued Write:         ' + characteristic.properties.reliableWrite);
+					console.log('> Writable Auxiliaries: ' + characteristic.properties.writableAuxiliaries);
+					*/
+					
+					Bluetooth_message(characteristic.uuid, "blue");
+					
+					switch (characteristic.uuid) {
+						case CHARACTERISTIC_RX_UUID:
+							Bluetooth_readCharacteristic = characteristic;
+							break;
+						case CHARACTERISTIC_TX_UUID:
+							Bluetooth_writeCharacteristic = characteristic;
+							break;
+					}
+				});
+				
+				Bluetooth_readCharacteristic.startNotifications().then(_ => {
+					Bluetooth_message('Notifications started',"blue");
+					Bluetooth_readCharacteristic.addEventListener('characteristicvaluechanged', handleCharacteristicValueChanged);
+				});
+				
+				return Bluetooth_readCharacteristic.readValue();
+			})
+			.catch(error => {
+				console.log(error);
+				Bluetooth_message(error,"red"); 
+			});
+		});
+
+		Bluetooth_buttonDisconnect.addEventListener('click', async () => {
+			if (Bluetooth_device && Bluetooth_device.gatt.connected) {
+				if (Bluetooth_device.gatt.connected)
+					Bluetooth_device.gatt.disconnect();
+			}	
+		});
+
+		function handleCharacteristicValueChanged(event) {
+			const value = new TextDecoder().decode(event.target.value);
+			//console.log(value);
+			Bluetooth_message(value, "orange");
+		}
+
+		function onDisconnected(event) {
+			const device = event.target;
+			var msg = "Device " + device.name + " is disconnected.";
+			Bluetooth_message(msg,"blue");
+			Bluetooth_device = null;
+			Bluetooth_characteristics = null;
+			Bluetooth_readCharacteristic = null;
+			Bluetooth_writeCharacteristic = null;	
+		}
+
+		function sendCommand(cmd) {
+		  if (Bluetooth_writeCharacteristic) {
+			if (busy) {
+			  commandQueue.push(cmd);
+			  return Promise.resolve();
+			}
+			busy = true;
+
+			return Bluetooth_writeCharacteristic.writeValue(cmd).then(() => {
+			  busy = false;
+			  let nextCommand = commandQueue.shift();
+			  if (nextCommand) {
+				sendCommand(nextCommand);
+			  }
+			});
+		  } else {
+			return Promise.resolve();
+		  }
+		}
+
+		Bluetooth_clearText.addEventListener('click', async () => {
+			Bluetooth_status.innerHTML = "";
+		});
+
+		Bluetooth_sendString.addEventListener('click', async () => {
+			var msg = Bluetooth_command.value + Bluetooth_end.value;
+			Bluetooth_message(msg, "green");
+			var cmd = new TextEncoder().encode(msg);
+			sendCommand(cmd).then(() => {
+				//Bluetooth_message(new TextDecoder().decode(cmd), "green");
+			})
+			.catch(error => {
+				console.log(error);
+				Bluetooth_message(error,"red"); 
+			});
+		});
+				
+		function Bluetooth_message(msg, colour) {
+			Bluetooth_status.innerHTML += "<font color='"+colour+"'>"+msg+"</font><br>";
+			Bluetooth_status.scrollTop = Bluetooth_status.scrollHeight;
+		}
+	}
+	
+	//Web Bluetooth
+	document.getElementById('button_webBluetooth').onclick = function () {
+		if (typeof navigator.bluetooth !== "undefined") {
+			var opt = {
+				draggable: true,			
+				autoOpen: false,
+				resizable: true,
+				modal: false,
+				//show: "blind",
+				//hide: "blind",			
+				width: 570,
+				height: 470,
+				buttons: [					
+					{
+						text: Blockly.Msg.BUTTON_CLOSE,
+						click: function() {
+							$(this).dialog("close");
+						}
+					}
+				],
+				title: Blockly.Msg["MSG_WEBBLUETOOTH"]
+			};
+			$("#dialog_webBluetooth").dialog(opt).dialog("open");
+			event.preventDefault();
+		}
+		else
+			alert("Web bluetooth is not supported.");
+	}
 	
 	//切換語言
 	document.getElementById('lang-selector').onchange = function () {
