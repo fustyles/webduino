@@ -68,7 +68,9 @@ SPDX-License-Identifier: Apache-2.0
 					<a href="#" id="button_toolbox" title="Show/Hide Category Menu"><i class="small material-icons">playlist_add_check</i></a>
 					<a href="#" id="button_addExtensionBlocks" title="Import extension custom blocks"><i class="material-icons">extension</i></a>
 					<a href="#" id="button_addRemoteBlocks" title="Import remote custom blocks"><i class="material-icons">note_add</i></a>
-					<a href="#" id="button_webSerial" title="Web Serial"><i class="small material-icons">usb</i></a>					
+					<a href="#" id="button_webSerial" title="Web Serial"><i class="small material-icons">usb</i></a>
+					<a href="#" id="button_webBluetooth" title="Web Bluetooth"><i class="small material-icons">bluetooth</i></a>
+					
 					<a href="#" id="button_tool" title="Open Blockly Developer Tools"><i class="small material-icons">construction</i></a>
 					
 					<i>　</i>
@@ -317,6 +319,39 @@ SPDX-License-Identifier: Apache-2.0
 			</tr>
 		</table>
 	</div>
+	<div id="dialog_webBluetooth" style="display:none">
+		<table>
+			<tr>
+				<td colspan="2" align="right"><button id="Bluetooth_disconnect_device">Disconnect</button><button id="Bluetooth_request_device">Connect to Bluetooth</button></td>
+			</tr>
+			<tr>
+				<td><span id="title_uuid_service">Service UUID</span></td><td><input type="text" id="Bluetooth_uuid_service" size="38" value="4fafc201-1fb5-459e-8fcc-c5c9c331914b"></td>
+			<tr>
+				<td><span id="title_uuid_tx">TX UUID</span></td><td><input type="text" id="Bluetooth_uuid_tx" size="38" value="beb5483e-36e1-4688-b7f5-ea07361b26a8"></td>
+			<tr>
+				<td><span id="title_uuid_rx">RX UUID</span></td><td><input type="text" id="Bluetooth_uuid_rx" size="38" value="498c599b-2601-4600-bb7e-3aa295a92842"></td>
+			<tr>
+				<td colspan="2"><input type="text" id="Bluetooth_command">
+					<select id="Bluetooth_end">
+						<option value=""></option>
+						<option value="\r">\r</option>		
+						<option value="\n">\n</option>	
+						<option value="\r\n">\r\n</option>	
+					</select>
+					<button id="Bluetooth_sendString">Send String</button>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><div id="Bluetooth_status" style="width:500px;height:120px;border:2px black solid;overflow: auto;"></div></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td align="right">
+					<button id="Bluetooth_clearText">Clear Text</button>
+				</td>
+			</tr>
+		</table>
+	</div>	
 	
 	<div id="arduino_content" class="ui-widget-content" onmousedown="textareaFocus('arduino_content');" ontouchstart="textareaFocus('arduino_content');">
 		<div id="arduino_title" class="ui-widget-header">
@@ -383,8 +418,8 @@ SPDX-License-Identifier: Apache-2.0
 			<textarea id="message_function" class="textarea_content" spellcheck="false"></textarea>
 		</div>	
 	</div>
-
 </div>
+
 </main>
 
 <div style="display:none">
