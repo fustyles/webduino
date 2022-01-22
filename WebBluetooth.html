@@ -101,7 +101,8 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 		.then(device => {
 			Bluetooth_device = device;
 			var msg = 'Connect to Name:' + device.name;
-			Bluetooth_message(msg, "blue"); 
+			Bluetooth_message(msg, "blue");
+			Bluetooth_message(service_uuid, "blue");
 			
 			return device.gatt.connect();
 		})
