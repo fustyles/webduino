@@ -102,7 +102,7 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 			Bluetooth_device = device;
 			var msg = 'Connect to Name:' + device.name;
 			Bluetooth_message(msg, "blue");
-			Bluetooth_message(service_uuid, "blue");
+			Bluetooth_message(service_uuid, "purple");
 			
 			return device.gatt.connect();
 		})
@@ -133,7 +133,7 @@ Bluetooth_buttonRequest.addEventListener('click', async () => {
 				console.log('> Writable Auxiliaries: ' + characteristic.properties.writableAuxiliaries);
 				*/
 				
-				Bluetooth_message(characteristic.uuid, "blue");
+				Bluetooth_message(characteristic.uuid, "purple");
 				
 				switch (characteristic.uuid) {
 					case CHARACTERISTIC_RX_UUID:
