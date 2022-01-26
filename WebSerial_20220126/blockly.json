@@ -6,8 +6,8 @@
     "blockly/javascript.js"
   ],
   "dependencies": [
-	"webserial_elements.js",
-    "webserial.js"    
+    "WebSerial_elements.js",
+    "WebSerial.js"    
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
