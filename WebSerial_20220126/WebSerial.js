@@ -7,6 +7,7 @@
 	let serial_baud = document.getElementById('serial_baud');
 	let serial_text = document.getElementById('serial_text');
 	let serial_uint8 = document.getElementById('serial_uint8');
+	let serial_data = document.getElementById('serial_data');
 	let serial_status = document.getElementById('serial_status');
 	let serial_buttonRequest = document.getElementById('serial_request_port');
 	let serial_buttonClose = document.getElementById('serial_close_port');
