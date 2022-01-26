@@ -173,9 +173,9 @@ serial_sendUint8.addEventListener('click', async () => {
 	if (serial_port&&serial_writer) {
 		try {
 			//serial_message(serial_uint8.value);
-			serial_uint8.value = "";
 			var intArray = serial_uint8.value.split(",");
 			msg = String.fromCharCode.apply(null, intArray);
+			serial_uint8.value = "";
 						
 			serial_writer[serial_selProductId] = serial_port.writable.getWriter();
 			const data = new Uint8Array(intArray);
