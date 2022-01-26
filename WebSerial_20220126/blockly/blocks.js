@@ -4,8 +4,8 @@ Blockly.Blocks['webserial_button'] = {
         .appendField(Blockly.Msg.WEBSERIAL_ELEMENT_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.WEBSERIAL_CONNECT_SHOW,"serial_request_port"],
-		[Blockly.Msg.WEBSERIAL_CLOSE_SHOW,"serial_close_port"],
+		[Blockly.Msg.WEBSERIAL_CONNECT_SHOW,"gamebutton_webserial_open"],
+		[Blockly.Msg.WEBSERIAL_CLOSE_SHOW,"gamebutton_webserial_close"],
 		[Blockly.Msg.WEBSERIAL_STATUS_SHOW,"serial_status"]
   	]), "id_");	  
     this.appendDummyInput()  
@@ -27,8 +27,8 @@ Blockly.Blocks['webserial_button_position'] = {
         .appendField(Blockly.Msg.WEBSERIAL_ELEMENT_SHOW);	  
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.WEBSERIAL_CONNECT_SHOW,"serial_request_port"],
-		[Blockly.Msg.WEBSERIAL_CLOSE_SHOW,"serial_close_port"],
+		[Blockly.Msg.WEBSERIAL_CONNECT_SHOW,"gamebutton_webserial_open"],
+		[Blockly.Msg.WEBSERIAL_CLOSE_SHOW,"gamebutton_webserial_close"],
 		[Blockly.Msg.WEBSERIAL_STATUS_SHOW,"serial_status"]
   	]), "id_");	  
   this.appendValueInput("left_")
