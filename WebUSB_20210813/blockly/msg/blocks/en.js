@@ -1,4 +1,5 @@
 Blockly.Msg.WEBUSB_ELEMENT_SHOW = "WebUSB connect button";
+Blockly.Msg.WEBUSB_SHOW_SHOW = "Show";
 Blockly.Msg.WEBUSB_STATE_SHOW = "WebUSB connect state";
 Blockly.Msg.WEBUSB_SEND_SHOW = "WebUSB send command";
 Blockly.Msg.WEBUSB_GET_SHOW = "WebUSB get data";
