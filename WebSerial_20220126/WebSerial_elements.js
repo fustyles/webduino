@@ -143,7 +143,7 @@ serial_sendText.addEventListener('click', async () => {
 	if (serial_port&&serial_writer) {
 		try {
 			var msg = serial_text.value + serial_end.value;
-			serial_message(msg);
+			//serial_message(msg);
 			serial_text.value = "";
 			
 			if (!serial_textEncoder[serial_selProductId])
@@ -165,7 +165,7 @@ serial_sendUint8.addEventListener('click', async () => {
 	serial_sendText.disabled = true;
 	if (serial_port&&serial_writer) {
 		try {
-			serial_message(serial_uint8.value);
+			//serial_message(serial_uint8.value);
 			serial_uint8.value = "";
 			var intArray = serial_uint8.value.split(",");
 			msg = String.fromCharCode.apply(null, intArray);
