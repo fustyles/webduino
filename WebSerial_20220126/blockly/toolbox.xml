@@ -34,5 +34,7 @@
   <block type="webserial_clear">   
   </block> 
   <block type="webserial_baudrate">   
-  </block>    
+  </block>  
+  <block type="webserial_getid">   
+  </block>     
  </category>
