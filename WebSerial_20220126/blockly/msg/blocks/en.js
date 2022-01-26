@@ -9,6 +9,6 @@ Blockly.Msg.WEBSERIAL_CLOSE_SHOW = "Close port";
 Blockly.Msg.WEBSERIAL_STATUS_SHOW = "STATUS";
 Blockly.Msg.WEBSERIAL_BUTTON_LEFT_SHOW = "Left"; 
 Blockly.Msg.WEBSERIAL_BUTTON_TOP_SHOW = "Top";
-Blockly.Msg.WEBSERIAL_BAUDRATE_SHOW = "Baud rate";
+Blockly.Msg.WEBSERIAL_BAUDRATE_SHOW = "Web Serial baud rate";
 Blockly.Msg.WEBSERIAL_SENDTEXT_SHOW = "Web Serial send text";
 Blockly.Msg.WEBSERIAL_SENDUINT8_SHOW = "Web Serial send unit8Array";
