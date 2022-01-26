@@ -48,6 +48,6 @@ Blockly.JavaScript['webserial_baudrate'] = function(block) {
 };
 
 Blockly.JavaScript['webserial_getid'] = function(block) {
-  var code = block.getFieldValue('id_');
+  var code = "'"+block.getFieldValue('id_')+"'";
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
