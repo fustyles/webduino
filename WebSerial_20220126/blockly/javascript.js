@@ -31,6 +31,11 @@ Blockly.JavaScript['webserial_get'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['webserial_getstate'] = function(block) {
+  var code = 'webserial_getState()';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['webserial_clear'] = function(block) { 
   var code = 'webserial_clear();\n';
   return code;
