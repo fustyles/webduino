@@ -12,3 +12,4 @@ Blockly.Msg.WEBSERIAL_BUTTON_TOP_SHOW = "靠上距离";
 Blockly.Msg.WEBSERIAL_BAUDRATE_SHOW = "Web Serial 序列埠鲍率";
 Blockly.Msg.WEBSERIAL_SENDTEXT_SHOW = "Web Serial 传送文字";
 Blockly.Msg.WEBSERIAL_SENDUINT8_SHOW = "Web Serial 传送unit8Array";
+Blockly.Msg.WEBSERIAL_GETID_SHOW = "Web Serial 取得按钮ID";
