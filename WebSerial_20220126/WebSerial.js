@@ -37,11 +37,11 @@
 	}	
 
 	function webserial_get() {
-		return serial_status.innerText;
+		return serial_data.innerText;
 	}
 	
 	function webserial_clear() {
-		serial_status.innerText = "";
+		serial_data.innerText = "";
 	}
 
 	function webserial_baudrate(baudrate) {
