@@ -6,12 +6,14 @@ document.write('<input type="text" id="serial_end" style="position:absolute;disp
 document.write('<button id="serial_sendText" style="position:absolute;display:none;z-index:999">Send Text</button>');
 document.write('<input type="text" id="serial_uint8" style="position:absolute;display:none;z-index:999">');
 document.write('<button id="serial_sendUint8" style="position:absolute;display:none;z-index:999">Send Uint8Array</button>');
+document.write('<span id="serial_data" style="position:absolute;display:none" style="position:absolute;display:none;z-index:999"></span>');
 document.write('<span id="serial_status" style="position:absolute;display:none" style="position:absolute;display:none;z-index:999"></span>');
 document.write('<button id="serial_clearText" style="position:absolute;display:none;z-index:999">Clear Text</button>');
 
 let serial_baud = document.getElementById('serial_baud');
 let serial_text = document.getElementById('serial_text');
 let serial_uint8 = document.getElementById('serial_uint8');
+let serial_data = document.getElementById('serial_data');
 let serial_status = document.getElementById('serial_status');
 let serial_buttonRequest = document.getElementById('serial_request_port');
 let serial_buttonClose = document.getElementById('serial_close_port');
@@ -53,14 +55,17 @@ async function readUntilClosed() {
 			serial_readSting += new TextDecoder().decode(value);
 			if (value.includes(10)) {    //Serial.println(data);
 				clearTimeout(serial_timer);
-				console.log(serial_readSting);
+				//console.log(serial_readSting);
+				serial_data.innerText = serial_readSting;
 				serial_message(serial_readSting);
 				serial_readSting = "";
 			}
 			else {    //Serial.print(data);
 				serial_timer = setTimeout(function() {
-					if (serial_readSting != "") 
+					if (serial_readSting != "") { 
+						serial_data.innerText = serial_readSting;
 						serial_message(serial_readSting);
+					}
 					serial_readSting = "";
 				}, 10);
 			}
