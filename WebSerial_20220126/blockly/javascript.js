@@ -46,3 +46,8 @@ Blockly.JavaScript['webserial_baudrate'] = function(block) {
   var code = 'webserial_baudrate('+value_baudrate+');\n';
   return code;
 };
+
+Blockly.JavaScript['webserial_getid'] = function(block) {
+  var code = block.getFieldValue('id_');
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
