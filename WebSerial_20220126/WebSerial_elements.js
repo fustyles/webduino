@@ -1,13 +1,13 @@
-document.write('<input type="text" id="serial_baud" style="position:absolute;display:none">');
-document.write('<button id="serial_close_port" style="display:none">Close Port</button>');
-document.write('<button id="serial_request_port">Select Port</button>');
-document.write('<input type="text" id="serial_text" style="position:absolute;display:none">');
-document.write('<input type="text" id="serial_end" style="position:absolute;display:none">');
-document.write('<button id="serial_sendText" style="position:absolute;display:none">Send Text</button>');
-document.write('<input type="text" id="serial_uint8" style="position:absolute;display:none">');
-document.write('<button id="serial_sendUint8" style="position:absolute;display:none">Send Uint8Array</button>');
-document.write('<span id="serial_status" style="position:absolute;display:none" style="position:absolute;display:none"></span>');
-document.write('<button id="serial_clearText" style="position:absolute;display:none">Clear Text</button>');
+document.write('<input type="text" id="serial_baud" style="position:absolute;display:none;z-index:999">');
+document.write('<button id="serial_close_port" style="display:none;z-index:999">Close Port</button>');
+document.write('<button id="serial_request_port" style="z-index:999">Select Port</button>');
+document.write('<input type="text" id="serial_text" style="position:absolute;display:none;z-index:999">');
+document.write('<input type="text" id="serial_end" style="position:absolute;display:none;z-index:999">');
+document.write('<button id="serial_sendText" style="position:absolute;display:none;z-index:999">Send Text</button>');
+document.write('<input type="text" id="serial_uint8" style="position:absolute;display:none;z-index:999">');
+document.write('<button id="serial_sendUint8" style="position:absolute;display:none;z-index:999">Send Uint8Array</button>');
+document.write('<span id="serial_status" style="position:absolute;display:none" style="position:absolute;display:none;z-index:999"></span>');
+document.write('<button id="serial_clearText" style="position:absolute;display:none;z-index:999">Clear Text</button>');
 
 let serial_baud = document.getElementById('serial_baud');
 let serial_text = document.getElementById('serial_text');
