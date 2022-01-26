@@ -146,3 +146,18 @@ Blockly.Blocks['webserial_baudrate'] = {
     this.setColour(60);
   }  
 };
+
+Blockly.Blocks['webserial_getid'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBSERIAL_GETID_SHOW);	  
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.WEBSERIAL_CONNECT_SHOW,"gamebutton_webserial_open"],
+		[Blockly.Msg.WEBSERIAL_CLOSE_SHOW,"gamebutton_webserial_close"]
+  	]), "id_"); 	  
+    this.setInputsInline(true);	 	  
+    this.setOutput(true, null);  
+    this.setColour(300);
+  }
+};
