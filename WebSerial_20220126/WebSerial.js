@@ -43,7 +43,7 @@
 	}
 	
 	function webserial_getState() {
-		return Number(serial_state.innerText);
+		return (serial_state.innerText=="1")?true:flase;
 	}	
 	
 	function webserial_clear() {
