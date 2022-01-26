@@ -2,6 +2,7 @@ Blockly.Msg.WEBSERIAL_ELEMENT_SHOW = "Web Serial 元素";
 Blockly.Msg.WEBSERIAL_SHOW_SHOW = "顯示";
 Blockly.Msg.WEBSERIAL_STATE_SHOW = "Web Serial 開發板連線狀態";
 Blockly.Msg.WEBSERIAL_GET_SHOW = "Web Serial 取得回傳資料";
+Blockly.Msg.WEBSERIAL_GETSTATE_SHOW = "Web Serial 取得連線狀態";
 Blockly.Msg.WEBSERIAL_CLEAR_SHOW = "Web Serial 清除回傳資料";
 Blockly.Msg.WEBSERIAL_CONNECT_SHOW = "選擇序列埠";
 Blockly.Msg.WEBSERIAL_CLOSE_SHOW = "關閉序列埠";
