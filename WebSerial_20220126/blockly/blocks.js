@@ -153,8 +153,8 @@ Blockly.Blocks['webserial_getid'] = {
         .appendField(Blockly.Msg.WEBSERIAL_GETID_SHOW);	  
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.WEBSERIAL_CONNECT_SHOW,"gamebutton_webserial_open"],
-		[Blockly.Msg.WEBSERIAL_CLOSE_SHOW,"gamebutton_webserial_close"]
+		[Blockly.Msg.WEBSERIAL_CONNECT_SHOW,"webserial_open"],
+		[Blockly.Msg.WEBSERIAL_CLOSE_SHOW,"webserial_close"]
   	]), "id_"); 	  
     this.setInputsInline(true);	 	  
     this.setOutput(true, null);  
