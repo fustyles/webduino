@@ -97,6 +97,16 @@ Blockly.Blocks['webserial_get'] = {
   }  
 };
 
+Blockly.Blocks['webserial_getstate'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBSERIAL_GETSTATE_SHOW);
+    this.setInputsInline(true);	 	  
+    this.setOutput(true, null);  
+    this.setColour(300);
+  }  
+};
+
 Blockly.Blocks['webserial_clear'] = {
   init: function() {
     this.appendDummyInput()
