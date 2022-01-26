@@ -1,0 +1,15 @@
+{
+  "types": ["webserial_button","webserial_button_position","webserial_state","webserial_send","webserial_get","webserial_clear","webserial_baudrate","webserial_end"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+	"webserial_elements.js",
+    "webserial.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}

@@ -1,0 +1,1 @@
+MSG.catwebserial = "Web Serial";
