@@ -9,6 +9,6 @@ Blockly.Msg.WEBSERIAL_CLOSE_SHOW = "关闭序列埠";
 Blockly.Msg.WEBSERIAL_STATUS_SHOW = "状态";
 Blockly.Msg.WEBSERIAL_BUTTON_LEFT_SHOW = "靠左距离"; 
 Blockly.Msg.WEBSERIAL_BUTTON_TOP_SHOW = "靠上距离";
-Blockly.Msg.WEBSERIAL_BAUDRATE_SHOW = "序列埠鲍率";
+Blockly.Msg.WEBSERIAL_BAUDRATE_SHOW = "Web Serial 序列埠鲍率";
 Blockly.Msg.WEBSERIAL_SENDTEXT_SHOW = "Web Serial 传送文字";
 Blockly.Msg.WEBSERIAL_SENDUINT8_SHOW = "Web Serial 传送unit8Array";
