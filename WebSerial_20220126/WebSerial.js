@@ -10,8 +10,8 @@
 	let serial_data = document.getElementById('serial_data');
 	let serial_status = document.getElementById('serial_status');
 	let serial_state = document.getElementById('serial_state');
-	let serial_buttonRequest = document.getElementById('serial_request_port');
-	let serial_buttonClose = document.getElementById('serial_close_port');
+	let serial_buttonRequest = document.getElementById('gamebutton_webserial_open');
+	let serial_buttonClose = document.getElementById('gamebutton_webserial_close');
 	let serial_sendText = document.getElementById('serial_sendText');
 	let serial_sendUint8 = document.getElementById('serial_sendUint8');
 	let serial_clearText = document.getElementById('serial_clearText');	
