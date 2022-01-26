@@ -9,6 +9,7 @@
 	let serial_uint8 = document.getElementById('serial_uint8');
 	let serial_data = document.getElementById('serial_data');
 	let serial_status = document.getElementById('serial_status');
+	let serial_state = document.getElementById('serial_state');
 	let serial_buttonRequest = document.getElementById('serial_request_port');
 	let serial_buttonClose = document.getElementById('serial_close_port');
 	let serial_sendText = document.getElementById('serial_sendText');
@@ -41,6 +42,10 @@
 		return serial_data.innerText;
 	}
 	
+	function webserial_getState() {
+		return Number(serial_state.innerText);
+	}	
+	
 	function webserial_clear() {
 		serial_data.innerText = "";
 	}
@@ -54,6 +59,7 @@
 	window.webserial_sendText = webserial_sendText;
 	window.webserial_sendUint8 = webserial_sendUint8;
 	window.webserial_get = webserial_get;
+	window.webserial_getState = webserial_getState;
 	window.webserial_clear = webserial_clear;
 	window.webserial_baudrate = webserial_baudrate;
 	
