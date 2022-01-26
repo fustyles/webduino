@@ -12,3 +12,4 @@ Blockly.Msg.WEBSERIAL_BUTTON_TOP_SHOW = "Top";
 Blockly.Msg.WEBSERIAL_BAUDRATE_SHOW = "Web Serial baud rate";
 Blockly.Msg.WEBSERIAL_SENDTEXT_SHOW = "Web Serial send text";
 Blockly.Msg.WEBSERIAL_SENDUINT8_SHOW = "Web Serial send unit8Array";
+Blockly.Msg.WEBSERIAL_GETID_SHOW = "Web Serial get button ID";
