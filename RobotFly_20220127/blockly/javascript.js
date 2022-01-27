@@ -11,10 +11,10 @@ Blockly.JavaScript['robotfly_initial'] = function(block) {
 };
 
 Blockly.JavaScript['robotfly_command1'] = function(block) {
-  robotfly_variable["roll_calibration"] = Number(Blockly.JavaScript.valueToCode(block, 'roll_', Blockly.JavaScript.ORDER_ATOMIC));
-  robotfly_variable["pitch_calibration"] = Number(Blockly.JavaScript.valueToCode(block, 'pitch_', Blockly.JavaScript.ORDER_ATOMIC));
-  robotfly_variable["yaw_calibration"] = Number(Blockly.JavaScript.valueToCode(block, 'yaw_', Blockly.JavaScript.ORDER_ATOMIC));
-  robotfly_variable["throttle_calibration"] = Number(Blockly.JavaScript.valueToCode(block, 'throttle_', Blockly.JavaScript.ORDER_ATOMIC)); 
+  robotfly_variable["roll_calibration"] = Math.floor(Number(Blockly.JavaScript.valueToCode(block, 'roll_', Blockly.JavaScript.ORDER_ATOMIC)));
+  robotfly_variable["pitch_calibration"] = Math.floor(Number(Blockly.JavaScript.valueToCode(block, 'pitch_', Blockly.JavaScript.ORDER_ATOMIC)));
+  robotfly_variable["yaw_calibration"] = Math.floor(Number(Blockly.JavaScript.valueToCode(block, 'yaw_', Blockly.JavaScript.ORDER_ATOMIC)));
+  robotfly_variable["throttle_calibration"] = Math.floor(Number(Blockly.JavaScript.valueToCode(block, 'throttle_', Blockly.JavaScript.ORDER_ATOMIC))); 
 
   var code = "";
   return code;
