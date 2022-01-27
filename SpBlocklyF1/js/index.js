@@ -484,7 +484,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						serial_timer = setTimeout(function() {
 							if (serial_readSting != "") serial_message(serial_readSting,"green");
 							serial_readSting = "";
-						}, 10);
+						}, 50);
 					}
 				}
 			  }			  
