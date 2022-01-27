@@ -1,6 +1,6 @@
 var robotfly_variable = {"roll":1500,"pitch":1500,"yaw":1500,"throttle":1500,"roll_calibration":0,"pitch_calibration":0,"yaw_calibration":0,"throttle_calibration":0,"constantheight_calibration":0};
 var robotfly_takeoff = 1800;
-var robotfly_land = 1400;
+var robotfly_land = 1500;
 
 
 Blockly.JavaScript['robotfly_initial'] = function(block) {
