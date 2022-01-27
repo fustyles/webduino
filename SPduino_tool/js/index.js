@@ -711,8 +711,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				
 				serial_port = await navigator.serial.requestPort({ filters });
 				const { usbProductId, usbVendorId } = serial_port.getInfo();
-				serial_selProductId = usbProductId;
-				serial_selVendorId = usbVendorId;
+				serial_selProductId = (usbProductId)?"0x"+usbProductId:"null";
+				serial_selVendorId = (usbVendorId)?"0x"+usbVendorId:"null";
 				
 				serial_keepReading = true;
 				
