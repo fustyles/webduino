@@ -17,3 +17,5 @@ Blockly.Msg.ROBOTFLY_RIGHT_SHOW = "Right";
 Blockly.Msg.ROBOTFLY_UP_SHOW = "Up";
 Blockly.Msg.ROBOTFLY_DOWN_SHOW = "Down";
 Blockly.Msg.ROBOTFLY_STOP_SHOW = "Stop";
+Blockly.Msg.ROBOTFLY_TURNRIGHT_SHOW = "Turn right";
+Blockly.Msg.ROBOTFLY_TURNLEFT_SHOW = "Turn left";
