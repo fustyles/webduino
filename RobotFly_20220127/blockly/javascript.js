@@ -1,7 +1,4 @@
-var robotfly_variable = {"roll":1500,"pitch":1500,"yaw":1500,"throttle":1500,"roll_calibration":0,"pitch_calibration":0,"yaw_calibration":0,"throttle_calibration":0,"constantheight_calibration":0};
-var robotfly_takeoff = 1800;
-var robotfly_land = 1400;
-
+var robotfly_variable = {"roll":1500,"pitch":1500,"yaw":1500,"throttle":1500,"roll_calibration":0,"pitch_calibration":0,"yaw_calibration":0,"throttle_calibration":0,"constantheight_calibration":0,"takeoff":1800,"land":1400};
 
 Blockly.JavaScript['robotfly_initial'] = function(block) {
   robotfly_variable["roll"] = Math.floor(Number(Blockly.JavaScript.valueToCode(block, 'roll_', Blockly.JavaScript.ORDER_ATOMIC))+robotfly_variable["roll_calibration"]);   //左右roll: 1500+-500
@@ -31,9 +28,9 @@ Blockly.JavaScript['robotfly_command2'] = function(block) {
   else if (value_func =="lock")
     code = "'0x24,0x4d,0x3c,0x10,0xc8,0xdc,0x05,0xdc,0x05,0xe8,0x03,0xe8,0x03,0xdc,0x05,0xdc,0x05,0xdc,0x05,0xdc,0x05,0xd8'"
   else if (value_func =="takeoff")
-    code = robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_takeoff);
+    code = robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["takeoff"]);
   else if (value_func =="land")
-    code = robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_land);
+    code = robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["land"]);
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -49,9 +46,9 @@ Blockly.JavaScript['robotfly_command3'] = function(block) {
   else if (value_func =="right")
     code = robotfly_command(robotfly_variable["roll"]-100, robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["throttle"]);
   else if (value_func =="up")
-    code = 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_takeoff);
+    code = 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["takeoff"]);
   else if (value_func =="down")
-    code = 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_land);	
+    code = 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["land"]);	
   else if (value_func =="stop")
     code = 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["throttle"]);			
   return [code, Blockly.JavaScript.ORDER_NONE];
