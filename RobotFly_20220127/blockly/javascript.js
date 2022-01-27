@@ -49,9 +49,9 @@ Blockly.JavaScript['robotfly_command3'] = function(block) {
   else if (value_func =="right")
     code = robotfly_command(robotfly_variable["roll"]-100, robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["throttle"]);
   else if (value_func =="up")
-    code = 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["throttle"]+100);
+    code = 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_takeoff);
   else if (value_func =="down")
-    code = 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["throttle"]-100);	
+    code = 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_land);	
   else if (value_func =="stop")
     code = 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["throttle"]);			
   return [code, Blockly.JavaScript.ORDER_NONE];
