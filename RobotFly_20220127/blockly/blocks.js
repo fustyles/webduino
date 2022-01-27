@@ -89,7 +89,6 @@ Blockly.Blocks['robotfly_command4'] = {
         .appendField(Blockly.Msg.ROBOTFLY_SHOW)	
         .appendField(Blockly.Msg.ROBOTFLY_DISTANCE_SHOW);		  
     this.appendValueInput("distance_")
-        .appendField(Blockly.Msg.ROBOTFLY_DISTANCE_SHOW)
 		.setCheck("Number");
     this.appendDummyInput()
         .appendField("(cm)");		
