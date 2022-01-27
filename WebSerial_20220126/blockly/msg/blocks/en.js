@@ -13,3 +13,7 @@ Blockly.Msg.WEBSERIAL_BAUDRATE_SHOW = "Web Serial baud rate";
 Blockly.Msg.WEBSERIAL_SENDTEXT_SHOW = "Web Serial send text";
 Blockly.Msg.WEBSERIAL_SENDUINT8_SHOW = "Web Serial send unit8Array";
 Blockly.Msg.WEBSERIAL_GETID_SHOW = "Web Serial get button ID";
+Blockly.Msg.WEBSERIAL_ROBOTFLY_ROLL_SHOW = "Roll";
+Blockly.Msg.WEBSERIAL_ROBOTFLY_PITCH_SHOW = "Pitch";
+Blockly.Msg.WEBSERIAL_ROBOTFLY_YAW_SHOW = "Yaw";
+Blockly.Msg.WEBSERIAL_ROBOTFLY_THROTTLE_SHOW = "Throttle";
