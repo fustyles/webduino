@@ -164,21 +164,17 @@ Blockly.Blocks['webserial_getid'] = {
 
 Blockly.Blocks['webserial_robotfly'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendValueInput("roll_")
         .appendField(Blockly.Msg.WEBSERIAL_ROBOTFLY_ROLL_SHOW)
-	.appendValueInput("roll_")
 	.setCheck("Number");
-    this.appendDummyInput()
+    this.appendValueInput("pitch_")
         .appendField(Blockly.Msg.WEBSERIAL_ROBOTFLY_PITCH_SHOW)
-	.appendValueInput("pitch_")
 	.setCheck("Number");
-    this.appendDummyInput()
+    this.appendValueInput("yaw_")
         .appendField(Blockly.Msg.WEBSERIAL_ROBOTFLY_YAW_SHOW)
-	.appendValueInput("yaw_")
 	.setCheck("Number");
-    this.appendDummyInput()
+    this.appendValueInput("throttle_")
         .appendField(Blockly.Msg.WEBSERIAL_ROBOTFLY_THROTTLE_SHOW)
-	.appendValueInput("throttle_")
 	.setCheck("Number");	  
     this.setInputsInline(true);	  
     this.setOutput(true, null);  
