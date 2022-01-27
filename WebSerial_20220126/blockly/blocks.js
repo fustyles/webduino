@@ -185,3 +185,16 @@ Blockly.Blocks['webserial_robotfly'] = {
     this.setColour(300);
   }  
 };
+
+Blockly.Blocks['webserial_robotfly_lock'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.WEBSERIAL_ROBOTFLY_UNLOCK_SHOW,"0"],
+		[Blockly.Msg.WEBSERIAL_ROBOTFLY_LOCK_SHOW,"1"]
+  	]), "lock_");   
+    this.setInputsInline(true);	  
+    this.setOutput(true, null);  
+    this.setColour(300);
+  }  
+};
