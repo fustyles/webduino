@@ -52,7 +52,7 @@ Blockly.JavaScript['webserial_getid'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript[webserial_robotfly'] = function(block) {
+Blockly.JavaScript['webserial_robotfly'] = function(block) {
   var value_roll = Blockly.JavaScript.valueToCode(block, 'roll_', Blockly.JavaScript.ORDER_ATOMIC);   //左右roll: 1500+-500
   var value_pitch = Blockly.JavaScript.valueToCode(block, 'pitch_', Blockly.JavaScript.ORDER_ATOMIC);   //前後pitch: 1500+-500
   var value_yaw = Blockly.JavaScript.valueToCode(block, 'yaw_', Blockly.JavaScript.ORDER_ATOMIC);   //水平旋轉yaw: 1500+-500
@@ -82,5 +82,15 @@ Blockly.JavaScript[webserial_robotfly'] = function(block) {
   crc = "0x"+(crc.toString(16).length==2?"":"0")+crc.toString(16);
 
   var code = "0x24,0x4d,0x3c,0x10,0xc8,"+roll0+","+roll1+","+pitch0+","+pitch1+","+yaw0+","+yaw1+","+throttle0+","+throttle1+",0xdc,0x05,0xdc,0x05,0xdc,0x05,0xdc,0x05,"+crc;
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['webserial_robotfly_lock'] = function(block) {
+  var value_lock = block.getFieldValue('lock_');
+  var code;
+  if (value_lock=="1")
+    code = "0x24,0x4D,0x3C,0x10,0xC8,0xDC,0x05,0xDC,0x05,0xE8,0x03,0xE8,0x03,0xDC,0x05,0xDC,0x05,0xDC,0x05,0xDC,0x05,0xD8";
+  else
+    code = "0x24,0x4D,0x3C,0x10,0xC8,0xDC,0x05,0xDC,0x05,0xD0,0x07,0xE8,0x03,0xDC,0x05,0xDC,0x05,0xDC,0x05,0xDC,0x05,0xE4";
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
