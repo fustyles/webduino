@@ -51,3 +51,36 @@ Blockly.JavaScript['webserial_getid'] = function(block) {
   var code = "'"+block.getFieldValue('id_')+"'";
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript[webserial_robotfly'] = function(block) {
+  var value_roll = Blockly.JavaScript.valueToCode(block, 'roll_', Blockly.JavaScript.ORDER_ATOMIC);   //左右roll: 1500+-500
+  var value_pitch = Blockly.JavaScript.valueToCode(block, 'pitch_', Blockly.JavaScript.ORDER_ATOMIC);   //前後pitch: 1500+-500
+  var value_yaw = Blockly.JavaScript.valueToCode(block, 'yaw_', Blockly.JavaScript.ORDER_ATOMIC);   //水平旋轉yaw: 1500+-500
+  var value_throttle = Blockly.JavaScript.valueToCode(block, 'throttle_', Blockly.JavaScript.ORDER_ATOMIC);   //垂直升降throttle: 1000+-1000
+
+  var roll0=value_roll%256;
+  roll0="0x"+(roll0.toString(16).length==2?"":"0")+roll0.toString(16);
+  var roll1=Math.floor(value_roll/256);
+  roll1="0x"+(roll1.toString(16).length==2?"":"0")+roll1.toString(16);
+
+  var pitch0=value_pitch%256;
+  pitch0="0x"+(pitch0.toString(16).length==2?"":"0")+pitch0.toString(16);
+  var pitch1=Math.floor(value_pitch/256);
+  pitch1="0x"+(pitch1.toString(16).length==2?"":"0")+pitch1.toString(16);
+
+  var yaw0=value_yaw%256;
+  yaw0="0x"+(yaw0.toString(16).length==2?"":"0")+yaw0.toString(16);
+  var yaw1=Math.floor(value_yaw/256);
+  yaw1="0x"+(yaw1.toString(16).length==2?"":"0")+yaw1.toString(16);
+
+  var throttle0=value_throttle%256;
+  throttle0="0x"+(throttle0.toString(16).length==2?"":"0")+throttle0.toString(16);
+  var throttle1=Math.floor(value_throttle/256);
+  throttle1="0x"+(throttle1.toString(16).length==2?"":"0")+throttle1.toString(16);
+
+  var crc = 0x10^0xC8^roll0^roll1^pitch0^pitch1^yaw0^yaw1^throttle0^throttle1^0xDC^0x05^0xDC^0x05^0xDC^0x05^0xDC^0x05;
+  crc = "0x"+(crc.toString(16).length==2?"":"0")+crc.toString(16);
+
+  var code = "0x24,0x4d,0x3c,0x10,0xc8,"+roll0+","+roll1+","+pitch0+","+pitch1+","+yaw0+","+yaw1+","+throttle0+","+throttle1+",0xdc,0x05,0xdc,0x05,0xdc,0x05,0xdc,0x05,"+crc;
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
