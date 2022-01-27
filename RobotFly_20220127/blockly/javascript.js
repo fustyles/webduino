@@ -61,11 +61,6 @@ Blockly.JavaScript['robotfly_command4'] = function(block) {
 };
 
 function robotfly_command(value_roll, value_pitch, value_yaw, value_throttle) {
-  console.log(value_roll);
-  console.log(value_pitch);
-  console.log(value_yaw);
-  console.log(value_throttle);
-  
   var roll0=value_roll%256;
   roll0="0x"+(roll0.toString(16).length==2?"":"0")+roll0.toString(16);
   var roll1=Math.floor(value_roll/256);
