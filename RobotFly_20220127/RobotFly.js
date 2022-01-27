@@ -47,7 +47,7 @@
 	  else if (func =="down")
 		return 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["land"]);
 	  else if (func =="turnright")
-		return 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"]+100, robotfly_variable["land"]);	
+		return 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"]+100, robotfly_variable["throttle"]);	
 	  else if (func =="turnleft")
 		return 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"]-100, robotfly_variable["throttle"]);		
 	  else if (func =="stop")
