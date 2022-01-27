@@ -17,3 +17,5 @@ Blockly.Msg.ROBOTFLY_RIGHT_SHOW = "向右";
 Blockly.Msg.ROBOTFLY_UP_SHOW = "上升";
 Blockly.Msg.ROBOTFLY_DOWN_SHOW = "下降";
 Blockly.Msg.ROBOTFLY_STOP_SHOW = "悬停";
+Blockly.Msg.ROBOTFLY_TURNRIGHT_SHOW = "右转";
+Blockly.Msg.ROBOTFLY_TURNLEFT_SHOW = "左转";
