@@ -36,29 +36,5 @@
     </value>  
   </block>
   <block type="webserial_getid">   
-  </block>
-  <block type="webserial_robotfly">
-    <value name="roll_">
-      <block type="math_number">
-        <field name="NUM">1500</field>
-      </block>
-    </value>
-    <value name="pitch_">
-      <block type="math_number">
-        <field name="NUM">1500</field>
-      </block>
-    </value>
-    <value name="yaw_">
-      <block type="math_number">
-        <field name="NUM">1500</field>
-      </block>
-    </value>
-    <value name="throttle_">
-      <block type="math_number">
-        <field name="NUM">1000</field>
-      </block>
-    </value>    
   </block> 
-  <block type="webserial_robotfly_lock">   
-  </block>  
  </category>
