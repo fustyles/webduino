@@ -161,3 +161,27 @@ Blockly.Blocks['webserial_getid'] = {
     this.setColour(300);
   }
 };
+
+Blockly.Blocks['webserial_robotfly'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBSERIAL_ROBOTFLY_ROLL_SHOW)
+	.appendValueInput("roll_")
+	.setCheck("Number");
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBSERIAL_ROBOTFLY_PITCH_SHOW)
+	.appendValueInput("pitch_")
+	.setCheck("Number");
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBSERIAL_ROBOTFLY_YAW_SHOW)
+	.appendValueInput("yaw_")
+	.setCheck("Number");
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBSERIAL_ROBOTFLY_THROTTLE_SHOW)
+	.appendValueInput("throttle_")
+	.setCheck("Number");	  
+    this.setInputsInline(true);	  
+    this.setOutput(true, null);  
+    this.setColour(300);
+  }  
+};
