@@ -102,10 +102,10 @@
 		
 	
     window.robotfly_initial = robotfly_initial;
-    window.robotfly_command = robotfly_command;
     window.robotfly_calibration = robotfly_calibration;
     window.robotfly_basic = robotfly_basic;
     window.robotfly_move = robotfly_move;
     window.robotfly_set = robotfly_set;
+    window.robotfly_command = robotfly_command;
 	
 }(window, window.document));
