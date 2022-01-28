@@ -114,7 +114,11 @@ Blockly.Blocks['robotfly_command5'] = {
 		[Blockly.Msg.ROBOTFLY_THROTTLE_SHOW,"throttle"],
 		[Blockly.Msg.ROBOTFLY_TAKEOFF_SHOW,"takeoff"],
 		[Blockly.Msg.ROBOTFLY_LAND_SHOW,"land"],
-		[Blockly.Msg.ROBOTFLY_DEGREE_SHOW,"degree"]	    
+		[Blockly.Msg.ROBOTFLY_DEGREE_SHOW,"degree"],
+		[Blockly.Msg.ROBOTFLY_ROLL_SHOW+Blockly.Msg.ROBOTFLY_CALIBRATION_SHOW,"roll_calibration"],
+		[Blockly.Msg.ROBOTFLY_PITCH_SHOW+Blockly.Msg.ROBOTFLY_CALIBRATION_SHOW,"pitch_calibration"],
+		[Blockly.Msg.ROBOTFLY_YAW_SHOW+Blockly.Msg.ROBOTFLY_CALIBRATION_SHOW,"yaw_calibration"],
+		[Blockly.Msg.ROBOTFLY_THROTTLE_SHOW+Blockly.Msg.ROBOTFLY_CALIBRATION_SHOW,"throttle_calibration"]
   	]), "func_");
     this.appendValueInput("val_")
         .setCheck("String");	  
