@@ -33,7 +33,7 @@ Blockly.JavaScript['robotfly_command3'] = function(block) {
 Blockly.JavaScript['robotfly_command4'] = function(block) {
   var value_func = block.getFieldValue('func_');
   var value_distance = Blockly.JavaScript.valueToCode(block, 'distance_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = "await delay(robotfly_distance('"+value_func+"', "+value_distance+")*"+value_distance+"/50), true);\n";
+  var code = "await delay(robotfly_distance('"+value_func+"')*"+value_distance+"/50), true);\n";
   return code;
 };
 
