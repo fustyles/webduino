@@ -19,3 +19,4 @@ Blockly.Msg.ROBOTFLY_DOWN_SHOW = "垂直下降";
 Blockly.Msg.ROBOTFLY_STOP_SHOW = "懸停";
 Blockly.Msg.ROBOTFLY_TURNRIGHT_SHOW = "懸停右轉";
 Blockly.Msg.ROBOTFLY_TURNLEFT_SHOW = "懸停左轉";
+Blockly.Msg.ROBOTFLY_SET_SHOW = "設定";
