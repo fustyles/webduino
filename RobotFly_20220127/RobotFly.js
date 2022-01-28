@@ -92,7 +92,32 @@
 		robotfly_variable["yaw_calibration"] = val;
 	  else if (func=="throttle_calibration")		
 		robotfly_variable["throttle_calibration"] = val;
-	};	
+	};
+	
+	function robotfly_get(func) {
+	  if (func=="roll")
+		return robotfly_variable["roll"];
+	  else if (func=="pitch")
+		return robotfly_variable["pitch"];
+	  else if (func=="yaw")
+		return robotfly_variable["yaw"];
+	  else if (func=="throttle")		
+		return robotfly_variable["throttle"];
+	  else if (func=="takeoff")
+		return robotfly_variable["takeoff"];
+	  else if (func=="land")
+		return robotfly_variable["land"];
+	  else if (func=="degree")		
+		return robotfly_variable["degree"];
+	  else if (func=="roll_calibration")		
+		return robotfly_variable["roll_calibration"];
+	  else if (func=="roll_calibration")
+		return robotfly_variable["roll_calibration"];
+	  else if (func=="yaw_calibration")
+		return robotfly_variable["yaw_calibration"];
+	  else if (func=="throttle_calibration")		
+		return robotfly_variable["throttle_calibration"];
+	};
 
 	function robotfly_command(value_roll, value_pitch, value_yaw, value_throttle) {
 
@@ -134,5 +159,5 @@
 	window.robotfly_distance = robotfly_distance;
 	window.robotfly_set = robotfly_set;
 	window.robotfly_command = robotfly_command;
-	
+	window.robotfly_get = robotfly_get;
 }(window, window.document));
