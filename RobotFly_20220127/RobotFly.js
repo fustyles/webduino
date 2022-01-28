@@ -7,17 +7,17 @@
 	var robotfly_variable = {"roll":1500,"pitch":1500,"yaw":1500,"throttle":1500,"roll_calibration":0,"pitch_calibration":0,"yaw_calibration":0,"throttle_calibration":0,"constantheight_calibration":0,"takeoff":1800,"land":1400,"degree":100};
 	
 	function robotfly_initial(roll,pitch,yaw,throttle) {
-	  robotfly_variable["roll"] = Math.floor(Number(roll))+robotfly_variable["roll_calibration"];   //左右roll: 1500+-500
-	  robotfly_variable["pitch"] = Math.floor(Number(pitch))+robotfly_variable["pitch_calibration"];   //前後pitch: 1500+-500
-	  robotfly_variable["yaw"] = Math.floor(Number(yaw))+robotfly_variable["yaw_calibration"];   //水平旋轉yaw: 1500+-500
-	  robotfly_variable["throttle"] = Math.floor(Number(throttle))+robotfly_variable["throttle_calibration"];   //垂直升降throttle: 1000+-1000
+	  robotfly_variable["roll"] = Math.floor(roll)+robotfly_variable["roll_calibration"];   //左右roll: 1500+-500
+	  robotfly_variable["pitch"] = Math.floor(pitch)+robotfly_variable["pitch_calibration"];   //前後pitch: 1500+-500
+	  robotfly_variable["yaw"] = Math.floor(yaw)+robotfly_variable["yaw_calibration"];   //水平旋轉yaw: 1500+-500
+	  robotfly_variable["throttle"] = Math.floor(throttle)+robotfly_variable["throttle_calibration"];   //垂直升降throttle: 1000+-1000
 	};
 
 	function robotfly_calibration(roll,pitch,yaw,throttle) {
-	  robotfly_variable["roll_calibration"] = Math.floor(Number(roll));
-	  robotfly_variable["pitch_calibration"] = Math.floor(Number(pitch));
-	  robotfly_variable["yaw_calibration"] = Math.floor(Number(yaw));
-	  robotfly_variable["throttle_calibration"] = Math.floor(Number(throttle));
+	  robotfly_variable["roll_calibration"] = Math.floor(roll);
+	  robotfly_variable["pitch_calibration"] = Math.floor(pitch);
+	  robotfly_variable["yaw_calibration"] = Math.floor(yaw);
+	  robotfly_variable["throttle_calibration"] = Math.floor(throttle);
 	};
 
 	function robotfly_basic(func) {
@@ -71,6 +71,14 @@
 	  	robotfly_variable["land"] = Math.floor(val);
 	  else if (func=="degree")		
 	  	robotfly_variable["degree"] = Math.floor(val);
+	  else if (func=="roll_calibration")		
+	  	robotfly_variable["roll_calibration"] = Math.floor(val);
+	  else if (func=="roll_calibration")
+	  	robotfly_variable["roll_calibration"] = Math.floor(val);
+	  else if (func=="yaw_calibration")
+	  	robotfly_variable["yaw_calibration"] = Math.floor(val);
+	  else if (func=="throttle_calibration")		
+	  	robotfly_variable["throttle_calibration"] = Math.floor(val);
 	};	
 
 	function robotfly_command(value_roll, value_pitch, value_yaw, value_throttle) {
