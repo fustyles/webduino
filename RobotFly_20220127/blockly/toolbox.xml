@@ -54,6 +54,11 @@
       </block>
     </value>  
   </block>
-  <block type="robotfly_command5">   
+  <block type="robotfly_command5"> 
+    <value name="val_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>     
   </block>   
  </category>
