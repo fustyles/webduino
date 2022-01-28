@@ -20,4 +20,4 @@ Blockly.Msg.ROBOTFLY_STOP_SHOW = "懸停";
 Blockly.Msg.ROBOTFLY_TURNRIGHT_SHOW = "懸停右轉";
 Blockly.Msg.ROBOTFLY_TURNLEFT_SHOW = "懸停左轉";
 Blockly.Msg.ROBOTFLY_SET_SHOW = "設定";
-Blockly.Msg.ROBOTFLY_DEGREE_SHOW = "偏轉轉速差";
+Blockly.Msg.ROBOTFLY_DEGREE_SHOW = "轉速差";
