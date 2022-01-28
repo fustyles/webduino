@@ -56,8 +56,8 @@
   </block>
   <block type="robotfly_command5"> 
     <value name="val_">
-      <block type="text">
-        <field name="TEXT"></field>
+      <block type="math_number">
+        <field name="NUM">1500</field>
       </block>
     </value>     
   </block>   
