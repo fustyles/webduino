@@ -43,3 +43,9 @@ Blockly.JavaScript['robotfly_command5'] = function(block) {
   var code = "robotfly_set('"+value_func+"',"+value_val+");\n";
   return code;
 };
+
+Blockly.JavaScript['robotfly_command6'] = function(block) {
+  var value_func = block.getFieldValue('func_');
+  var code = "robotfly_get('"+value_func+"')";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
