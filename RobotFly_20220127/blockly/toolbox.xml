@@ -53,5 +53,7 @@
         <field name="NUM">0</field>
       </block>
     </value>  
+  </block>
+  <block type="robotfly_command5">   
   </block>   
  </category>
