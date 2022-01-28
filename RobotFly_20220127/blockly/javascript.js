@@ -39,6 +39,6 @@ Blockly.JavaScript['robotfly_command4'] = function(block) {
 Blockly.JavaScript['robotfly_command5'] = function(block) {
   var value_func = block.getFieldValue('func_');
   var value_val = Blockly.JavaScript.valueToCode(block, 'val_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = "robotfly_command5('"+value_func+"',"+value_val+")";
+  var code = "robotfly_command5('"+value_func+"',"+value_val+");\n";
   return code;
 };
