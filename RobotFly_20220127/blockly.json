@@ -1,5 +1,5 @@
 {
-  "types": ["robotfly_initial","robotfly_command1","robotfly_command2","robotfly_command3","robotfly_command4","robotfly_command5"],
+  "types": ["robotfly_initial","robotfly_command1","robotfly_command2","robotfly_command3","robotfly_command4","robotfly_command5","robotfly_command6"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
