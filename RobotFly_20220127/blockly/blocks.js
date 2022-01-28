@@ -69,15 +69,15 @@ Blockly.Blocks['robotfly_command3'] = {
         .appendField(Blockly.Msg.ROBOTFLY_SHOW);		  
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.ROBOTFLY_UP_SHOW,"up"],
+		[Blockly.Msg.ROBOTFLY_DOWN_SHOW,"down"],	    
 		[Blockly.Msg.ROBOTFLY_FORWARD_SHOW,"forward"],
 		[Blockly.Msg.ROBOTFLY_BACKARD_SHOW,"backward"],
 		[Blockly.Msg.ROBOTFLY_LEFT_SHOW,"left"],
 		[Blockly.Msg.ROBOTFLY_RIGHT_SHOW,"right"],
-		[Blockly.Msg.ROBOTFLY_UP_SHOW,"up"],
-		[Blockly.Msg.ROBOTFLY_DOWN_SHOW,"down"],		
-		[Blockly.Msg.ROBOTFLY_STOP_SHOW,"stop"],
 		[Blockly.Msg.ROBOTFLY_TURNRIGHT_SHOW,"turnright"],		
-		[Blockly.Msg.ROBOTFLY_TURNLEFT_SHOW,"turnleft"]		    
+		[Blockly.Msg.ROBOTFLY_TURNLEFT_SHOW,"turnleft"]	,		
+		[Blockly.Msg.ROBOTFLY_STOP_SHOW,"stop"]	    
   	]), "func_");
     this.setInputsInline(true);	  
     this.setOutput(true, null);  
