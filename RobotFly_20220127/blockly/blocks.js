@@ -100,3 +100,27 @@ Blockly.Blocks['robotfly_command4'] = {
     this.setColour(60);
   }  
 };
+
+Blockly.Blocks['robotfly_command5'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ROBOTFLY_SHOW)
+	.appendField(Blockly.Msg.ROBOTFLY_SET_SHOW);	
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.ROBOTFLY_ROLL_SHOW,"roll"],
+		[Blockly.Msg.ROBOTFLY_PITCH_SHOW,"pitch"],
+		[Blockly.Msg.ROBOTFLY_YAW_SHOW,"yaw"],
+		[Blockly.Msg.ROBOTFLY_THROTTLE_SHOW,"throttle"],
+		[Blockly.Msg.ROBOTFLY_TAKEOFF_SHOW,"takeoff"],
+		[Blockly.Msg.ROBOTFLY_LAND_SHOW,"land"],
+		[Blockly.Msg.ROBOTFLY_DEGREE_SHOW,"degree"]	    
+  	]), "func_");
+    this.appendValueInput("val_")
+        .setCheck("String");	  
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }  
+};
