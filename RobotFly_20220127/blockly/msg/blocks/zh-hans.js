@@ -1,8 +1,8 @@
 Blockly.Msg.ROBOTFLY_SHOW = "Robot Fly";
 Blockly.Msg.ROBOTFLY_ROLL_SHOW = "左右转速";
 Blockly.Msg.ROBOTFLY_PITCH_SHOW = "前后转速";
-Blockly.Msg.ROBOTFLY_YAW_SHOW = "旋转转速";
-Blockly.Msg.ROBOTFLY_THROTTLE_SHOW = "悬转转速";
+Blockly.Msg.ROBOTFLY_YAW_SHOW = "悬转转速";
+Blockly.Msg.ROBOTFLY_THROTTLE_SHOW = "悬停转速";
 Blockly.Msg.ROBOTFLY_UNLOCK_SHOW = "解锁";
 Blockly.Msg.ROBOTFLY_LOCK_SHOW = "上锁";
 Blockly.Msg.ROBOTFLY_CALIBRATION_SHOW = "校准值";
