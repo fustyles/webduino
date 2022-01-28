@@ -60,5 +60,7 @@
         <field name="NUM">1500</field>
       </block>
     </value>     
-  </block>   
+  </block>
+  <block type="robotfly_command6">   
+  </block>    
  </category>
