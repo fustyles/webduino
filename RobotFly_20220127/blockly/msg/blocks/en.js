@@ -21,3 +21,4 @@ Blockly.Msg.ROBOTFLY_TURNRIGHT_SHOW = "Turn right";
 Blockly.Msg.ROBOTFLY_TURNLEFT_SHOW = "Turn left";
 Blockly.Msg.ROBOTFLY_SET_SHOW = "Set";
 Blockly.Msg.ROBOTFLY_DEGREE_SHOW = "Degree";
+Blockly.Msg.ROBOTFLY_GET_SHOW = "Get";
