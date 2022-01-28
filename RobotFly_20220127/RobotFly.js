@@ -57,7 +57,7 @@
 		return "";
 	};
 
-	function robotfly_distance(func, distance) {
+	function robotfly_distance(func) {
 	  if (func =="forward"||func =="backward")
 		return Math.floor(1500/robotfly_variable["pitch"]);
 	  else if (func =="left"||func =="right")
