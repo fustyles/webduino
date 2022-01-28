@@ -40,9 +40,9 @@
 	  else if (func =="backward")
 		return robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"]-degree, robotfly_variable["yaw"], robotfly_variable["throttle"]);
 	  else if (func =="left")
-		return robotfly_command(robotfly_variable["roll"]+degree, robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["throttle"]);
-	  else if (func =="right")
 		return robotfly_command(robotfly_variable["roll"]-degree, robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["throttle"]);
+	  else if (func =="right")
+		return robotfly_command(robotfly_variable["roll"]+degree, robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["throttle"]);
 	  else if (func =="up")
 		return 	robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"], robotfly_variable["yaw"], robotfly_variable["throttle"]+degree);
 	  else if (func =="down")
