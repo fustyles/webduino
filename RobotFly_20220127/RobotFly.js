@@ -4,7 +4,7 @@
 
 	'use strict';
 
-	var robotfly_variable = {"roll":1500,"pitch":1500,"yaw":1500,"throttle":1500,"roll_calibration":0,"pitch_calibration":0,"yaw_calibration":0,"throttle_calibration":0,"constantheight_calibration":0,"takeoff":1800,"land":1500,"degree":50};
+	var robotfly_variable = {"roll":1500,"pitch":1500,"yaw":1500,"throttle":1600,"roll_calibration":0,"pitch_calibration":0,"yaw_calibration":0,"throttle_calibration":0,"constantheight_calibration":0,"takeoff":1800,"land":1500,"degree":50};
 
 	function robotfly_initial(roll,pitch,yaw,throttle) {
 	  robotfly_variable["roll"] = Math.floor(roll);
