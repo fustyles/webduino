@@ -13,14 +13,14 @@
 	  robotfly_variable["throttle"] = Math.floor(Number(throttle))+robotfly_variable["throttle_calibration"];   //垂直升降throttle: 1000+-1000
 	};
 
-	function robotfly_command1(roll,pitch,yaw,throttle) {
+	function robotfly_calibration(roll,pitch,yaw,throttle) {
 	  robotfly_variable["roll_calibration"] = Math.floor(Number(roll));
 	  robotfly_variable["pitch_calibration"] = Math.floor(Number(pitch));
 	  robotfly_variable["yaw_calibration"] = Math.floor(Number(yaw));
 	  robotfly_variable["throttle_calibration"] = Math.floor(Number(throttle));
 	};
 
-	function robotfly_command2(func) {
+	function robotfly_basic(func) {
 	  if (func =="unlock")
 		return "0x24,0x4d,0x3c,0x10,0xc8,0xdc,0x05,0xdc,0x05,0xd0,0x07,0xe8,0x03,0xdc,0x05,0xdc,0x05,0xdc,0x05,0xdc,0x05,0xe4";
 	  else if (func =="lock")
@@ -33,7 +33,7 @@
 		return "";
 	};
 
-	function robotfly_command3(func) {
+	function robotfly_move(func) {
 	  if (func =="forward")
 		return robotfly_command(robotfly_variable["roll"], robotfly_variable["pitch"]+robotfly_variable["degree"], robotfly_variable["yaw"], robotfly_variable["throttle"]);
 	  else if (func =="backward")
@@ -56,7 +56,7 @@
 		return "";
 	};
 	
-	function robotfly_command5(func, val) {
+	function robotfly_set(func, val) {
 	  if (func=="roll")
 	  	robotfly_variable["roll"] = Math.floor(val)+robotfly_variable["roll_calibration"];
 	  else if (func=="pitch")
@@ -103,9 +103,9 @@
 	
     window.robotfly_initial = robotfly_initial;
     window.robotfly_command = robotfly_command;
-    window.robotfly_command1 = robotfly_command1;
-    window.robotfly_command2 = robotfly_command2;
-    window.robotfly_command3 = robotfly_command3;
-    window.robotfly_command5 = robotfly_command5;
+    window.robotfly_calibration = robotfly_calibration;
+    window.robotfly_basic = robotfly_basic;
+    window.robotfly_move = robotfly_move;
+    window.robotfly_set = robotfly_set;
 	
 }(window, window.document));
