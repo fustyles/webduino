@@ -121,7 +121,7 @@ Blockly.Blocks['robotfly_command5'] = {
 		[Blockly.Msg.ROBOTFLY_THROTTLE_SHOW+Blockly.Msg.ROBOTFLY_CALIBRATION_SHOW,"throttle_calibration"]
   	]), "func_");
     this.appendValueInput("val_")
-        .setCheck("String");	  
+        .setCheck("Number");	  
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
