@@ -89,7 +89,16 @@ Blockly.Blocks['robotfly_command4'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ROBOTFLY_SHOW)	
-        .appendField(Blockly.Msg.ROBOTFLY_DISTANCE_SHOW);		  
+        .appendField(Blockly.Msg.ROBOTFLY_DISTANCE_SHOW);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.ROBOTFLY_UP_SHOW,"up"],
+		[Blockly.Msg.ROBOTFLY_DOWN_SHOW,"down"],	    
+		[Blockly.Msg.ROBOTFLY_FORWARD_SHOW,"forward"],
+		[Blockly.Msg.ROBOTFLY_BACKARD_SHOW,"backward"],
+		[Blockly.Msg.ROBOTFLY_LEFT_SHOW,"left"],
+		[Blockly.Msg.ROBOTFLY_RIGHT_SHOW,"right"]   
+  	]), "func_");	  
     this.appendValueInput("distance_")
 		.setCheck("Number");
     this.appendDummyInput()
