@@ -22,3 +22,4 @@ Blockly.Msg.ROBOTFLY_TURNLEFT_SHOW = "懸停左轉";
 Blockly.Msg.ROBOTFLY_SET_SHOW = "設定";
 Blockly.Msg.ROBOTFLY_DEGREE_SHOW = "轉速差";
 Blockly.Msg.ROBOTFLY_GET_SHOW = "取得值";
+Blockly.Msg.ROBOTFLY_VERTICAL_SHOW = "啟動螺旋槳轉速";
