@@ -81,69 +81,76 @@ async function readUntilClosed() {
   }
 }
 
-serial_buttonRequest.addEventListener('click', async () => {
+serial_buttonRequest.addEventListener('click', buttonRequest, false);
 
-	if ("serial" in navigator) {
-		/*
-		const filters = [
-			{ usbVendorId: 0x2341, usbProductId: 0x43 },
-			{ usbVendorId: 0x2341, usbProductId: 0x01 }
-		];
-		*/
-		const filters = [];
-		
-		serial_port = await navigator.serial.requestPort({ filters });
-		const { usbProductId, usbVendorId } = serial_port.getInfo();
-		serial_selProductId = (usbProductId)?"0x"+usbProductId:"null";
-		serial_selVendorId = (usbVendorId)?"0x"+usbVendorId:"null";
-		serial_state.innerText = 1;
-		serial_keepReading = true;
-		
-		try {
-			var rate =  Number(serial_baud.value);
-			await serial_port.open({ baudRate: rate });
-			var msg = "VendorId: "+serial_selVendorId.toString(16)+" ProductId: "+serial_selProductId.toString(16)+" Ready!";
-			serial_message(msg);
-			
-			//await serial_port.setSignals({ dataTerminalReady: false });
-			//await new Promise(resolve => setTimeout(resolve, 200));
-			//await serial_port.setSignals({ dataTerminalReady: true });
+function buttonRequest() {
+	async () => {
 
-			const closed = readUntilClosed();
-		} catch (error) {
-			var errorString = error.message;
-			if (errorString.indexOf("already open")!=-1) {
-				var msg = "VendorId: 0x"+serial_selVendorId.toString(16)+" ProductId: 0x"+serial_selProductId.toString(16)+" Ready!";
+		if ("serial" in navigator) {
+			/*
+			const filters = [
+				{ usbVendorId: 0x2341, usbProductId: 0x43 },
+				{ usbVendorId: 0x2341, usbProductId: 0x01 }
+			];
+			*/
+			const filters = [];
+
+			serial_port = await navigator.serial.requestPort({ filters });
+			const { usbProductId, usbVendorId } = serial_port.getInfo();
+			serial_selProductId = (usbProductId)?"0x"+usbProductId:"null";
+			serial_selVendorId = (usbVendorId)?"0x"+usbVendorId:"null";
+			serial_state.innerText = 1;
+			serial_keepReading = true;
+
+			try {
+				var rate =  Number(serial_baud.value);
+				await serial_port.open({ baudRate: rate });
+				var msg = "VendorId: "+serial_selVendorId.toString(16)+" ProductId: "+serial_selProductId.toString(16)+" Ready!";
 				serial_message(msg);
-			}
-			else if (errorString.indexOf("Failed to open serial port")!=-1) {
-				setTimeout(function(){serial_buttonRequest.click();},1000);
-			}
-			else {
-				serial_message(errorString);
+
+				//await serial_port.setSignals({ dataTerminalReady: false });
+				//await new Promise(resolve => setTimeout(resolve, 200));
+				//await serial_port.setSignals({ dataTerminalReady: true });
+
+				const closed = readUntilClosed();
+			} catch (error) {
+				var errorString = error.message;
+				if (errorString.indexOf("already open")!=-1) {
+					var msg = "VendorId: 0x"+serial_selVendorId.toString(16)+" ProductId: 0x"+serial_selProductId.toString(16)+" Ready!";
+					serial_message(msg);
+				}
+				else if (errorString.indexOf("Failed to open serial port")!=-1) {
+					setTimeout(function(){serial_buttonRequest.click();},1000);
+				}
+				else {
+					serial_message(errorString);
+				}
 			}
 		}
 	}
-		
-});
+}
 
-serial_buttonClose.addEventListener('click', async () => {
-	try {
-		if (serial_port) {	
-			/*
-			serial_keepReading = false;
-			serial_reader.cancel();
-			await closed;
-			*/
-			serial_state.innerText = 0;
-			serial_port.close();
-			serial_port = null;
-			serial_message("Closed");
-		}
-	} catch (error) {
-			serial_message(error.message);
-	}	
-});
+serial_buttonClose.addEventListener('click', buttonClose, false);
+
+function buttonClose() {
+	async () => {
+		try {
+			if (serial_port) {	
+				/*
+				serial_keepReading = false;
+				serial_reader.cancel();
+				await closed;
+				*/
+				serial_state.innerText = 0;
+				serial_port.close();
+				serial_port = null;
+				serial_message("Closed");
+			}
+		} catch (error) {
+				serial_message(error.message);
+		}	
+	}
+}
 
 serial_sendText.addEventListener('click', async () => {
 	serial_sendUint8.disabled = true;
