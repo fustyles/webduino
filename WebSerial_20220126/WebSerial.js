@@ -27,9 +27,13 @@
 		document.getElementById(input_id).style.top = input_top + 'px';		
 	}
 	
-	function webserial_button_onclick(input_id) {
-		if (document.getElementById(input_id))
-			document.getElementById(input_id).addEventListener('click', async () => {buttonRequest();});
+	function webserial_button_onclick(input_button, input_id) {
+		if (document.getElementById(input_id)) {
+			if (input_butto=="open")
+				document.getElementById(input_id).addEventListener('click', async () => {buttonRequest();});
+			else if (input_butto=="close")
+				document.getElementById(input_id).addEventListener('click', async () => {buttonClose();});	
+		}
 	}
 	
 	function webserial_sendText(input_cmd, input_end) {
