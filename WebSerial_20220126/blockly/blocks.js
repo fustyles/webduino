@@ -44,6 +44,19 @@ Blockly.Blocks['webserial_button_position'] = {
   }
 };
 
+Blockly.Blocks['webserial_button_onclick'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBSERIAL_ELEMENT_ONCLICK_SHOW);	  
+  this.appendValueInput("id_")
+      .setCheck("String");    	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['webserial_state'] = {
   init: function() {
     this.appendDummyInput()
