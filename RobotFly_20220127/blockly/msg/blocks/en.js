@@ -22,4 +22,4 @@ Blockly.Msg.ROBOTFLY_TURNLEFT_SHOW = "Turn left";
 Blockly.Msg.ROBOTFLY_SET_SHOW = "Set";
 Blockly.Msg.ROBOTFLY_DEGREE_SHOW = "Degree";
 Blockly.Msg.ROBOTFLY_GET_SHOW = "Get";
-Blockly.Msg.ROBOTFLY_VERTICAL_SHOW = "propeller speed";
+Blockly.Msg.ROBOTFLY_VERTICAL_SHOW = "Propeller speed";
