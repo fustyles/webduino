@@ -47,7 +47,12 @@ Blockly.Blocks['webserial_button_position'] = {
 Blockly.Blocks['webserial_button_onclick'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.WEBSERIAL_ELEMENT_ONCLICK_SHOW);	  
+        .appendField(Blockly.Msg.WEBSERIAL_ELEMENT_ONCLICK_SHOW);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.WEBSERIAL_CONNECT_SHOW,"open"],
+		[Blockly.Msg.WEBSERIAL_CLOSE_SHOW,"close"]
+  	]), "button_");	  
   this.appendValueInput("id_")
       .setCheck("String");    	  
   this.setInputsInline(true);	  
