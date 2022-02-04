@@ -62,5 +62,12 @@
     </value>     
   </block>
   <block type="robotfly_command6">   
-  </block>    
+  </block>
+  <block type="robotfly_command7"> 
+    <value name="val_">
+      <block type="math_number">
+        <field name="NUM">1500</field>
+      </block>
+    </value>     
+  </block>  
  </category>
