@@ -1,5 +1,5 @@
 document.write('<input type="text" id="serial_baud" style="position:absolute;display:none;z-index:999">');
-document.write('<input type="button" id="gamebutton_webserial_open" style="z-index:999" value="Select Port">');
+document.write('<input type="button" id="gamebutton_webserial_open" style="display:none;z-index:999" value="Select Port">');
 document.write('<input type="button" id="gamebutton_webserial_close" style="display:none;z-index:999" value="Close Port">');
 document.write('<input type="text" id="serial_text" style="position:absolute;display:none;z-index:999">');
 document.write('<input type="text" id="serial_end" style="position:absolute;display:none;z-index:999">');
