@@ -31,7 +31,7 @@
 		if (document.getElementById(input_id)) {
 			if (input_button=="open")
 				document.getElementById(input_id).addEventListener('click', async () => {buttonRequest();});
-			else if (input_button=="close")
+			else
 				document.getElementById(input_id).addEventListener('click', async () => {buttonClose();});	
 		}
 	}
