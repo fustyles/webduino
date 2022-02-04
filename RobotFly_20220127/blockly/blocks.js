@@ -162,3 +162,18 @@ Blockly.Blocks['robotfly_command6'] = {
     this.setColour(300);
   }  
 };
+
+Blockly.Blocks['robotfly_command7'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ROBOTFLY_SHOW)
+		.appendField(Blockly.Msg.ROBOTFLY_VERTICAL_SHOW);	  
+    this.appendValueInput("val_")
+        .appendField("[1000±1000]")
+		.setCheck("Number");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }  
+};
