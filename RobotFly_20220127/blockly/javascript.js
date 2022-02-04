@@ -49,3 +49,9 @@ Blockly.JavaScript['robotfly_command6'] = function(block) {
   var code = "robotfly_get('"+value_func+"')";
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['robotfly_command7'] = function(block) {
+  var value_val = Blockly.JavaScript.valueToCode(block, 'val_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = "robotfly_throttle("+value_val+");\n";
+  return code;
+};
