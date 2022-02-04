@@ -13,6 +13,12 @@ Blockly.JavaScript['webserial_button_position'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['webserial_button_onclick'] = function(block) { 
+  var value_id = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'webserial_button_onclick('+value_id+');\n';
+  return code;
+};
+
 Blockly.JavaScript['webserial_sendtext'] = function(block) {
   var value_cmd = Blockly.JavaScript.valueToCode(block, 'cmd_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_end = block.getFieldValue('end_');
