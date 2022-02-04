@@ -171,9 +171,8 @@ Blockly.Blocks['robotfly_command7'] = {
     this.appendValueInput("val_")
         .appendField("[1000±1000]")
 		.setCheck("Number");		
-    this.setInputsInline(true);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(60);
+    this.setInputsInline(true);	  
+    this.setOutput(true, null);  
+    this.setColour(300);
   }  
 };
