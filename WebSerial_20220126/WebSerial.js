@@ -28,7 +28,8 @@
 	}
 	
 	function webserial_button_onclick(input_id) {
-		document.getElementById(input_id).onclick = serial_buttonRequest.onclick;
+		if (document.getElementById(input_id))
+			document.getElementById(input_id).onclick = serial_buttonRequest.onclick;
 	}
 	
 	function webserial_sendText(input_cmd, input_end) {
