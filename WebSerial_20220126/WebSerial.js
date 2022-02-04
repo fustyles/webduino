@@ -29,9 +29,9 @@
 	
 	function webserial_button_onclick(input_button, input_id) {
 		if (document.getElementById(input_id)) {
-			if (input_butto=="open")
+			if (input_button=="open")
 				document.getElementById(input_id).addEventListener('click', async () => {buttonRequest();});
-			else if (input_butto=="close")
+			else if (input_button=="close")
 				document.getElementById(input_id).addEventListener('click', async () => {buttonClose();});	
 		}
 	}
