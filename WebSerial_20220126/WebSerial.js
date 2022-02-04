@@ -27,6 +27,10 @@
 		document.getElementById(input_id).style.top = input_top + 'px';		
 	}
 	
+	function webserial_button_onclick(input_id) {
+		document.getElementById(input_id).onclick = serial_buttonRequest.onclick;
+	}
+	
 	function webserial_sendText(input_cmd, input_end) {
 		serial_text.value = input_cmd;
 		serial_end.value = input_end;
@@ -56,6 +60,7 @@
 
 	window.webserial_button = webserial_button;
 	window.webserial_button_position = webserial_button_position;
+	window.webserial_button_onclick = webserial_button_onclick;
 	window.webserial_sendText = webserial_sendText;
 	window.webserial_sendUint8 = webserial_sendUint8;
 	window.webserial_get = webserial_get;
