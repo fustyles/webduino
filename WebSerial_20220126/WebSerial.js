@@ -29,7 +29,7 @@
 	
 	function webserial_button_onclick(input_id) {
 		if (document.getElementById(input_id))
-			document.getElementById(input_id).onclick = serial_buttonRequest.onclick;
+			document.getElementById(input_id).addEventListener('click', buttonRequest, false);
 	}
 	
 	function webserial_sendText(input_cmd, input_end) {
