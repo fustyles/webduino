@@ -83,7 +83,7 @@ Blockly.Blocks['webserial_sendtext'] = {
 			["",""],
 			["\\r","\\r"],
 			["\\n","\\n"],
-			["\\r\/n","\\r\\n"]
+			["\\r\\n","\\r\\n"]
 		]), "end_"); 		
     this.setInputsInline(true);
     this.setPreviousStatement(true);
