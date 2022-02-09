@@ -136,9 +136,9 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebBit_20190225/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/Telegram_20200809/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/LineBot_20181027/blockly.json');
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json');
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/Tello_20210103/blockly.json');
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/SpreadsheetSQL_20210403/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/Tello_20210103/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/SpreadsheetSQL_20210403/blockly.json');
 		    
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/tesseract.js_20201012/blockly.json');
@@ -153,12 +153,11 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/mobilenet_20201012/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/teachablemachine_20201012/blockly.json');
 				  
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/barcode_20210216/blockly.json');
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/holistic_20201012/blockly.json');
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebUSB_20210813/blockly.json');
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/myBackPack_20210914/blockly.json');
-		    
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebSerial_20220126/blockly.json');			    
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/barcode_20210216/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/holistic_20201012/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebUSB_20210813/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/myBackPack_20210914/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebSerial_20220126/blockly.json');			    
             }
 	    else if (this.getFieldValue('func')=='addAllNewAI') {
 
@@ -188,17 +187,16 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/mobilenet_20201012/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/teachablemachine_20201012/blockly.json');
 				  
-				  Code.customTab.$__add__('https://fustyles.github.io/webduino/barcode_20210216/blockly.json');
-				  Code.customTab.$__add__('https://fustyles.github.io/webduino/holistic_20201012/blockly.json');
-				  Code.customTab.$__add__('https://fustyles.github.io/webduino/GameElements_20190131/blockly.json');
-				  Code.customTab.$__add__('https://fustyles.github.io/webduino/Telegram_20200809/blockly.json');
-				  Code.customTab.$__add__('https://fustyles.github.io/webduino/LineBot_20181027/blockly.json');
-				  Code.customTab.$__add__('https://fustyles.github.io/webduino/Tello_20210103/blockly.json');
-				  Code.customTab.$__add__('https://fustyles.github.io/webduino/SpreadsheetSQL_20210403/blockly.json');
-				  Code.customTab.$__add__('https://fustyles.github.io/webduino/WebUSB_20210813/blockly.json');
-				  Code.customTab.$__add__('https://fustyles.github.io/webduino/myBackPack_20210914/blockly.json');
-		    
-				  Code.customTab.$__add__('https://fustyles.github.io/webduino/WebSerial_20220126/blockly.json');		    
+                  Code.customTab.$__add__('https://fustyles.github.io/webduino/barcode_20210216/blockly.json');
+                  Code.customTab.$__add__('https://fustyles.github.io/webduino/holistic_20201012/blockly.json');
+                  Code.customTab.$__add__('https://fustyles.github.io/webduino/GameElements_20190131/blockly.json');
+                  Code.customTab.$__add__('https://fustyles.github.io/webduino/Telegram_20200809/blockly.json');
+                  Code.customTab.$__add__('https://fustyles.github.io/webduino/LineBot_20181027/blockly.json');
+                  Code.customTab.$__add__('https://fustyles.github.io/webduino/Tello_20210103/blockly.json');
+                  Code.customTab.$__add__('https://fustyles.github.io/webduino/SpreadsheetSQL_20210403/blockly.json');
+                  Code.customTab.$__add__('https://fustyles.github.io/webduino/WebUSB_20210813/blockly.json');
+                  Code.customTab.$__add__('https://fustyles.github.io/webduino/myBackPack_20210914/blockly.json');
+                  Code.customTab.$__add__('https://fustyles.github.io/webduino/WebSerial_20220126/blockly.json');		    
 	    }
 	    else if (this.getFieldValue('func')=='removeAllNewAI') {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json');
@@ -216,14 +214,14 @@ Blockly.Blocks['addMyBlocks'] = {
 				  
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/barcode_20210216/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/holistic_20201012/blockly.json');
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/GameElements_20190131/blockly.json');
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/Telegram_20200809/blockly.json');
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/LineBot_20181027/blockly.json');
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/Tello_20210103/blockly.json');
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/SpreadsheetSQL_20210403/blockly.json');
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebUSB_20210813/blockly.json');
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/myBackPack_20210914/blockly.json');
-		    		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebSerial_20220126/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/GameElements_20190131/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/Telegram_20200809/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/LineBot_20181027/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/Tello_20210103/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/SpreadsheetSQL_20210403/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebUSB_20210813/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/myBackPack_20210914/blockly.json');
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebSerial_20220126/blockly.json');
 				  		    
 	    }
 	    else if (this.getFieldValue('func')=='instascan.js_20201012') {
