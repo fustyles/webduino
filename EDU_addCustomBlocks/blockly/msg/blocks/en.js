@@ -26,3 +26,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_TELLO_SHOW = "[link] Tello";
 Blockly.Msg.ADDCUSTOMBLOCKS_SPREADSHEETSQL_SHOW = "[link] Google Spreadsheet SQL";
 Blockly.Msg.ADDCUSTOMBLOCKS_WEBUSB_SHOW = "[link] WEBUSB";
 Blockly.Msg.ADDCUSTOMBLOCKS_MYBACKPACK_SHOW = "[link] My Backpack(edu)";
+Blockly.Msg.ADDCUSTOMBLOCKS_WEBSERIAL_SHOW = "[link] Web Serial";
