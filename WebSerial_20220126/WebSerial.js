@@ -28,12 +28,17 @@
 	}
 	
 	function webserial_button_onclick(input_button, input_id) {
-		if (document.getElementById(input_id)) {
-			if (input_button=="open")
-				document.getElementById(input_id).addEventListener('click', async () => {buttonRequest();});
-			else
-				document.getElementById(input_id).addEventListener('click', async () => {buttonClose();});	
-		}
+		var element;
+		if (document.getElementsByClassName(input_id))
+			element = document.getElementsByClassName(input_id)[0];
+		else if (document.getElementById(input_id)) 
+			element = document.getElementById(input_id);
+		else
+			return;
+		if (input_button=="open")
+			element.addEventListener('click', async () => {buttonRequest();});
+		else
+			element.addEventListener('click', async () => {buttonClose();});	
 	}
 	
 	function webserial_sendText(input_cmd, input_end) {
