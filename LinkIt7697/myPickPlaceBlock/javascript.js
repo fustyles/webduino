@@ -1,11 +1,17 @@
-/*
-Pick and Place Block
-Last Update Time : 13/2/2022 01:30 (Taiwan Standard Time)
+/**
+ * @license
+ * Copyright 2021 Taiwan (ChungYi Fu)
+ * SPDX-License-Identifier: Apache-2.0
+ */
 
-Author: ChungYi Fu, Taiwan
-https://github.com/fustyles
-https://www.facebook.com/francefu/
-*/
+/**
+ * @fileoverview Pick and Place Block
+ * @author https://www.facebook.com/francefu/
+ * @Update 13/2/2022 01:30 (Taiwan Standard Time)
+ */
+ 
+ /*
+
 
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "Pick source block";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "Place source block [Next]";
