@@ -52,7 +52,7 @@ function registerClickToPlace_next() {
 			return 'hidden';
     },
     callback: function(a) {
-		var sourceBlock = createSourceBlock();
+		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;	
 		console.log(sourceBlock);
 		console.log(targetBlock);		
@@ -61,9 +61,13 @@ function registerClickToPlace_next() {
 				sourceBlock.nextConnection.targetConnection.disconnect();
 			if (sourceBlock.previousConnection.targetConnection)
 				sourceBlock.previousConnection.targetConnection.disconnect();
-			if (targetBlock.nextConnection.targetConnection)
+			if (targetBlock.nextConnection.targetConnection) {
+				var oldBlock = targetBlock.nextConnection.targetConnection.sourceBlock_;
 				targetBlock.nextConnection.targetConnection.disconnect();
+			}
 			targetBlock.nextConnection.connect(sourceBlock.previousConnection);
+			if(oldBlock)
+				sourceBlock.nextConnection.connect(oldBlock.previousConnection);
 		}
 		Blockly.myClickPlaceBlock.Block=null;
 		targetBlock.workspace.render();
@@ -93,7 +97,7 @@ function registerClickToPlace_previous() {
 			return 'hidden';
     },
     callback: function(a) {
-		var sourceBlock = createSourceBlock();
+		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
 		console.log(sourceBlock);
 		console.log(targetBlock);		
@@ -102,9 +106,13 @@ function registerClickToPlace_previous() {
 				sourceBlock.nextConnection.targetConnection.disconnect();
 			if (sourceBlock.previousConnection.targetConnection)
 				sourceBlock.previousConnection.targetConnection.disconnect();
-			if (targetBlock.previousConnection.targetConnection)
+			if (targetBlock.previousConnection.targetConnection) {
+				var oldBlock = targetBlock.previousConnection.targetConnection.sourceBlock_;
 				targetBlock.previousConnection.targetConnection.disconnect();
+			}
 			sourceBlock.nextConnection.connect(targetBlock.previousConnection);
+			if(oldBlock)
+				sourceBlock.previousConnection.connect(oldBlock.nextConnection);			
 		}
 		Blockly.myClickPlaceBlock.Block=null;
 		targetBlock.workspace.render();
@@ -135,7 +143,7 @@ function registerClickToPlace_output0() {
 			return 'hidden';
     },
     callback: function(a) {
-		var sourceBlock = createSourceBlock();
+		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
 		console.log(sourceBlock);
 		console.log(targetBlock);		
@@ -145,6 +153,8 @@ function registerClickToPlace_output0() {
 			sourceBlock.outputConnection.connect(targetBlock.inputList[0].connection);
 		}
 		else if (sourceBlock.previousConnection&&targetBlock.inputList[0].type==3) {
+			if (sourceBlock.nextConnection.targetConnection)
+				sourceBlock.nextConnection.targetConnection.disconnect();
 			if (sourceBlock.previousConnection.targetConnection)
 				sourceBlock.previousConnection.targetConnection.disconnect();
 			sourceBlock.previousConnection.connect(targetBlock.inputList[0].connection);
@@ -177,7 +187,7 @@ function registerClickToPlace_output1() {
 			return 'hidden';
     },
     callback: function(a) {
-		var sourceBlock = createSourceBlock();
+		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
 		console.log(sourceBlock);
 		console.log(targetBlock);		
@@ -187,6 +197,8 @@ function registerClickToPlace_output1() {
 			sourceBlock.outputConnection.connect(targetBlock.inputList[1].connection);
 		}
 		else if (sourceBlock.previousConnection&&targetBlock.inputList[1].type==3) {
+			if (sourceBlock.nextConnection.targetConnection)
+				sourceBlock.nextConnection.targetConnection.disconnect();
 			if (sourceBlock.previousConnection.targetConnection)
 				sourceBlock.previousConnection.targetConnection.disconnect();
 			sourceBlock.previousConnection.connect(targetBlock.inputList[1].connection);
@@ -219,7 +231,7 @@ function registerClickToPlace_output2() {
 			return 'hidden';
     },
     callback: function(a) {
-		var sourceBlock = createSourceBlock();
+		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
 		console.log(sourceBlock);
 		console.log(targetBlock);		
@@ -229,6 +241,8 @@ function registerClickToPlace_output2() {
 			sourceBlock.outputConnection.connect(targetBlock.inputList[2].connection);
 		}
 		else if (sourceBlock.previousConnection&&targetBlock.inputList[2].type==3) {
+			if (sourceBlock.nextConnection.targetConnection)
+				sourceBlock.nextConnection.targetConnection.disconnect();
 			if (sourceBlock.previousConnection.targetConnection)
 				sourceBlock.previousConnection.targetConnection.disconnect();
 			sourceBlock.previousConnection.connect(targetBlock.inputList[2].connection);
@@ -261,7 +275,7 @@ function registerClickToPlace_output3() {
 			return 'hidden';
     },
     callback: function(a) {
-		var sourceBlock = createSourceBlock();
+		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
 		console.log(sourceBlock);
 		console.log(targetBlock);
@@ -271,6 +285,8 @@ function registerClickToPlace_output3() {
 			sourceBlock.outputConnection.connect(targetBlock.inputList[3].connection);
 		}
 		else if (sourceBlock.previousConnection&&targetBlock.inputList[3].type==3) {
+			if (sourceBlock.nextConnection.targetConnection)
+				sourceBlock.nextConnection.targetConnection.disconnect();
 			if (sourceBlock.previousConnection.targetConnection)
 				sourceBlock.previousConnection.targetConnection.disconnect();
 			sourceBlock.previousConnection.connect(targetBlock.inputList[3].connection);
@@ -287,7 +303,7 @@ function registerClickToPlace_output3() {
   
 registerClickToPlace_output3();
 
-function createSourceBlock() {
+function getSourceBlock() {
 	var block = Blockly.myClickPlaceBlock.Block;
 	
 	if (Blockly.myClickPlaceBlock.isFlyout) {
