@@ -9,7 +9,6 @@
  * @author https://www.facebook.com/francefu/
  * @Update 13/2/2022 01:30 (Taiwan Standard Time)
  */
- /*
 
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "Pick source block";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "Place source block [Next]";
