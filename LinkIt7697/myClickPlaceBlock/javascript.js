@@ -1,5 +1,5 @@
 /*
-Place Block
+Place a block without dragging.
 
 Last Update Time : 13/2/2022 00:30 (Taiwan Standard Time)
 
