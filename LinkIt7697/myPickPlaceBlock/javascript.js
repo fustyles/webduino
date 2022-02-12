@@ -5,7 +5,7 @@
  */
 
 /**
- * @fileoverview Pick and Place Block
+ * @fileoverview Pick and place block
  * @author https://www.facebook.com/francefu/
  * @Update 13/2/2022 01:30 (Taiwan Standard Time)
  */
