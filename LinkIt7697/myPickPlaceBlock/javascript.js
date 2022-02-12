@@ -1,11 +1,10 @@
 /*
-Last Update Time : 13/2/2022 00:00 (Taiwan Standard Time)
+Pick and Place Block
+Last Update Time : 13/2/2022 01:30 (Taiwan Standard Time)
 
 Author: ChungYi Fu, Taiwan
 https://github.com/fustyles
 https://www.facebook.com/francefu/
-
-
 */
 
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "Pick source block";
