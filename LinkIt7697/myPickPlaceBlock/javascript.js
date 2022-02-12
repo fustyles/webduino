@@ -18,6 +18,7 @@ Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT0"] = "Place source block [In
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT1"] = "Place source block [Input 1]";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT2"] = "Place source block [Input 2]";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT3"] = "Place source block [Input 3]";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT4"] = "Place source block [Input 4]";
 
 Blockly.myPickPlaceBlock={};
 Blockly.myPickPlaceBlock.Block=null;
@@ -329,6 +330,52 @@ function registerClickToPlace_output3() {
 }
   
 registerClickToPlace_output3();
+
+
+function registerClickToPlace_output4() {
+  if (Blockly.ContextMenuRegistry.registry.getItem('click_to_place_output4')) {
+    return;
+  }
+  const clickToPlace_output4 = {
+    displayText: function(){
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT4"];
+	},
+    preconditionFn: function(a) {
+		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>4)
+			return 'enabled';
+		else
+			return 'hidden';
+    },
+    callback: function(a) {
+		var sourceBlock = getSourceBlock();
+		targetBlock = a.block;
+		//console.log(sourceBlock);
+		//console.log(targetBlock);
+		if (sourceBlock.outputConnection) {
+			if (sourceBlock.outputConnection.targetConnection)
+				sourceBlock.outputConnection.targetConnection.disconnect();
+			sourceBlock.outputConnection.connect(targetBlock.inputList[4].connection);
+		}
+		else if (sourceBlock.previousConnection&&targetBlock.inputList[4].type==3) {
+			if (sourceBlock.nextConnection.targetConnection)
+				sourceBlock.nextConnection.targetConnection.disconnect();
+			if (sourceBlock.previousConnection.targetConnection)
+				sourceBlock.previousConnection.targetConnection.disconnect();
+			sourceBlock.previousConnection.connect(targetBlock.inputList[4].connection);
+		}
+		Blockly.myPickPlaceBlock.Block=null;
+		targetBlock.workspace.render();
+    },
+    scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
+    id: 'click_to_place_output4',
+    weight: 208,
+  };
+  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output4);
+}
+  
+registerClickToPlace_output4();
+
+
 
 function getSourceBlock() {
 	var block = Blockly.myPickPlaceBlock.Block;
