@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2021 Taiwan (ChungYi Fu)
+ * Copyright 2022 Taiwan (ChungYi Fu)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -9,9 +9,7 @@
  * @author https://www.facebook.com/francefu/
  * @Update 13/2/2022 01:30 (Taiwan Standard Time)
  */
- 
  /*
-
 
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "Pick source block";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "Place source block [Next]";
