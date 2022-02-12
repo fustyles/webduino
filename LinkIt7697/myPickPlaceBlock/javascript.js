@@ -7,17 +7,11 @@
 /**
  * @fileoverview Pick and place block
  * @author https://www.facebook.com/francefu/
- * @Update 13/2/2022 01:30 (Taiwan Standard Time)
+ * @Update 13/2/2022 02:00 (Taiwan Standard Time)
  */
 
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "Pick source block";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "Place source block [Next]";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "Place source block [Previous]";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT0"] = "Place source block [Input 0]";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT1"] = "Place source block [Input 1]";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT2"] = "Place source block [Input 2]";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT3"] = "Place source block [Input 3]";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT4"] = "Place source block [Input 4]";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"] = "Place source block [#]";
 
 Blockly.myPickPlaceBlock={};
 Blockly.myPickPlaceBlock.Block=null;
@@ -54,7 +48,7 @@ function registerClickToPlace_next() {
   }
   const clickToPlace_next = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"];
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","next");
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.nextConnection)
@@ -107,7 +101,7 @@ function registerClickToPlace_previous() {
   }
   const clickToPlace_previous = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"];
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","previous");
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.previousConnection)
@@ -161,7 +155,7 @@ function registerClickToPlace_output0() {
   }
   const clickToPlace_output0 = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT0"];
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 0");
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>0)
@@ -205,7 +199,7 @@ function registerClickToPlace_output1() {
   }
   const clickToPlace_output1 = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT1"];
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 1");
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>1)
@@ -249,7 +243,7 @@ function registerClickToPlace_output2() {
   }
   const clickToPlace_output2 = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT2"];
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 2");
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>2)
@@ -293,7 +287,7 @@ function registerClickToPlace_output3() {
   }
   const clickToPlace_output3 = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT3"];
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 3");
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>3)
@@ -337,7 +331,7 @@ function registerClickToPlace_output4() {
   }
   const clickToPlace_output4 = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_OUTPUT4"];
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 4");
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>4)
