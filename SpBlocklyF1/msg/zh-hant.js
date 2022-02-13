@@ -2583,3 +2583,10 @@ Blockly.Msg["BLUETOOTH_CLEARTEXT"] = "清除訊息";
 Blockly.Msg["UUID_SERVICE_TITLE"] = "Service UUID";
 Blockly.Msg["UUID_TX_TITLE"] = "TX UUID";
 Blockly.Msg["UUID_RX_TITLE"] = "RX UUID";
+
+Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "啟用 選取/置放 積木";
+Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "停用 選取/置放 積木";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "選取來源積木";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "置放來源積木 [目標積木之下]";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "置放來源積木 [目標積木之前]";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "置放來源積木 [目標積木子輸入 #]";
