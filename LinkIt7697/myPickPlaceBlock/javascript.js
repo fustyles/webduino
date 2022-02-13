@@ -165,7 +165,6 @@ function registerClickToPlace_previous() {
 						}
 					}
 				}
-				
 			}
 			else if (targetBlock.previousConnection.targetConnection) {
 				var oldPreviousBlock = targetBlock.previousConnection.targetConnection.sourceBlock_;
