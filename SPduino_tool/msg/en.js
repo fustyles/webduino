@@ -1171,3 +1171,10 @@ Blockly.Msg["BLUETOOTH_CLEARTEXT"] = "Clear message";
 Blockly.Msg["UUID_SERVICE_TITLE"] = "Service UUID";
 Blockly.Msg["UUID_TX_TITLE"] = "TX UUID";
 Blockly.Msg["UUID_RX_TITLE"] = "RX UUID";
+
+Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enable pick/place block";
+Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "Disable pick/place block";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "Pick source block";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "Place source block [next]";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "Place source block [previous]";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "Place source block [input #]";
