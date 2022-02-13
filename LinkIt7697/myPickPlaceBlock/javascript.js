@@ -7,7 +7,7 @@
 /**
  * @fileoverview Pick and place block
  * @author https://www.facebook.com/francefu/
- * @Update 13/2/2022 11:30 (Taiwan Standard Time)
+ * @Update 13/2/2022 12:00 (Taiwan Standard Time)
  */
 
 Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enable pick/place block";
@@ -198,16 +198,16 @@ registerClickToPlace_previous();
 
 
 
-function registerClickToPlace_output0() {
-  if (Blockly.ContextMenuRegistry.registry.getItem('click_to_place_output0')) {
+function registerClickToPlace_output(index) {
+  if (Blockly.ContextMenuRegistry.registry.getItem('click_to_place_input'+index)) {
     return;
   }
-  const clickToPlace_output = {
+  const clickToPlace_input = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","0");
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#",index);
 	},
     preconditionFn: function(a) {
-		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>0&&Blockly.myPickPlaceBlock.enabled)
+		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>index&&Blockly.myPickPlaceBlock.enabled)
 			return 'enabled';
 		else
 			return 'hidden';
@@ -220,204 +220,24 @@ function registerClickToPlace_output0() {
 		if (sourceBlock.outputConnection) {
 			if (sourceBlock.outputConnection.targetConnection)
 				sourceBlock.outputConnection.targetConnection.disconnect();
-			sourceBlock.outputConnection.connect(targetBlock.inputList[0].connection);
+			sourceBlock.outputConnection.connect(targetBlock.inputList[index].connection);
 		}
-		else if (sourceBlock.previousConnection&&targetBlock.inputList[0].type==3) {
+		else if (sourceBlock.previousConnection&&targetBlock.inputList[index].type==3) {
 			if (sourceBlock.nextConnection.targetConnection)
 				sourceBlock.nextConnection.targetConnection.disconnect();
 			if (sourceBlock.previousConnection.targetConnection)
 				sourceBlock.previousConnection.targetConnection.disconnect();
-			sourceBlock.previousConnection.connect(targetBlock.inputList[0].connection);
+			sourceBlock.previousConnection.connect(targetBlock.inputList[index].connection);
 		}
 		Blockly.myPickPlaceBlock.Block=null;
 		targetBlock.workspace.render();
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-    id: 'click_to_place_output0',
-    weight: 214,
+    id: 'click_to_place_input'+index,
+    weight: 214+index,
   };
-  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output);
+  Blockly.ContextMenuRegistry.registry.register(clickToPlace_input);
 }
-  
-registerClickToPlace_output0();
-
-
-function registerClickToPlace_output1() {
-  if (Blockly.ContextMenuRegistry.registry.getItem('click_to_place_output1')) {
-    return;
-  }
-  const clickToPlace_output = {
-    displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","1");
-	},
-    preconditionFn: function(a) {
-		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>1&&Blockly.myPickPlaceBlock.enabled)
-			return 'enabled';
-		else
-			return 'hidden';
-    },
-    callback: function(a) {
-		var sourceBlock = getSourceBlock();
-		targetBlock = a.block;
-		//console.log(sourceBlock);
-		//console.log(targetBlock);		
-		if (sourceBlock.outputConnection) {
-			if (sourceBlock.outputConnection.targetConnection)
-				sourceBlock.outputConnection.targetConnection.disconnect();
-			sourceBlock.outputConnection.connect(targetBlock.inputList[1].connection);
-		}
-		else if (sourceBlock.previousConnection&&targetBlock.inputList[1].type==3) {
-			if (sourceBlock.nextConnection.targetConnection)
-				sourceBlock.nextConnection.targetConnection.disconnect();
-			if (sourceBlock.previousConnection.targetConnection)
-				sourceBlock.previousConnection.targetConnection.disconnect();
-			sourceBlock.previousConnection.connect(targetBlock.inputList[1].connection);
-		}
-		Blockly.myPickPlaceBlock.Block=null;
-		targetBlock.workspace.render();
-    },
-    scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-    id: 'click_to_place_output1',
-    weight: 215,
-  };
-  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output);
-}
-  
-registerClickToPlace_output1();
-
-
-function registerClickToPlace_output2() {
-  if (Blockly.ContextMenuRegistry.registry.getItem('click_to_place_output2')) {
-    return;
-  }
-  const clickToPlace_output = {
-    displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","2");
-	},
-    preconditionFn: function(a) {
-		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>2&&Blockly.myPickPlaceBlock.enabled)
-			return 'enabled';
-		else
-			return 'hidden';
-    },
-    callback: function(a) {
-		var sourceBlock = getSourceBlock();
-		targetBlock = a.block;
-		//console.log(sourceBlock);
-		//console.log(targetBlock);		
-		if (sourceBlock.outputConnection) {
-			if (sourceBlock.outputConnection.targetConnection)
-				sourceBlock.outputConnection.targetConnection.disconnect();
-			sourceBlock.outputConnection.connect(targetBlock.inputList[2].connection);
-		}
-		else if (sourceBlock.previousConnection&&targetBlock.inputList[2].type==3) {
-			if (sourceBlock.nextConnection.targetConnection)
-				sourceBlock.nextConnection.targetConnection.disconnect();
-			if (sourceBlock.previousConnection.targetConnection)
-				sourceBlock.previousConnection.targetConnection.disconnect();
-			sourceBlock.previousConnection.connect(targetBlock.inputList[2].connection);
-		}
-		Blockly.myPickPlaceBlock.Block=null;
-		targetBlock.workspace.render();
-    },
-    scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-    id: 'click_to_place_output2',
-    weight: 216,
-  };
-  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output);
-}
-  
-registerClickToPlace_output2();
-
-
-function registerClickToPlace_output3() {
-  if (Blockly.ContextMenuRegistry.registry.getItem('click_to_place_output3')) {
-    return;
-  }
-  const clickToPlace_output = {
-    displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","3");
-	},
-    preconditionFn: function(a) {
-		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>3&&Blockly.myPickPlaceBlock.enabled)
-			return 'enabled';
-		else
-			return 'hidden';
-    },
-    callback: function(a) {
-		var sourceBlock = getSourceBlock();
-		targetBlock = a.block;
-		//console.log(sourceBlock);
-		//console.log(targetBlock);
-		if (sourceBlock.outputConnection) {
-			if (sourceBlock.outputConnection.targetConnection)
-				sourceBlock.outputConnection.targetConnection.disconnect();
-			sourceBlock.outputConnection.connect(targetBlock.inputList[3].connection);
-		}
-		else if (sourceBlock.previousConnection&&targetBlock.inputList[3].type==3) {
-			if (sourceBlock.nextConnection.targetConnection)
-				sourceBlock.nextConnection.targetConnection.disconnect();
-			if (sourceBlock.previousConnection.targetConnection)
-				sourceBlock.previousConnection.targetConnection.disconnect();
-			sourceBlock.previousConnection.connect(targetBlock.inputList[3].connection);
-		}
-		Blockly.myPickPlaceBlock.Block=null;
-		targetBlock.workspace.render();
-    },
-    scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-    id: 'click_to_place_output3',
-    weight: 217,
-  };
-  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output);
-}
-  
-registerClickToPlace_output3();
-
-
-function registerClickToPlace_output4() {
-  if (Blockly.ContextMenuRegistry.registry.getItem('click_to_place_output4')) {
-    return;
-  }
-  const clickToPlace_output = {
-    displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","4");
-	},
-    preconditionFn: function(a) {
-		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>4&&Blockly.myPickPlaceBlock.enabled)
-			return 'enabled';
-		else
-			return 'hidden';
-    },
-    callback: function(a) {
-		var sourceBlock = getSourceBlock();
-		targetBlock = a.block;
-		//console.log(sourceBlock);
-		//console.log(targetBlock);
-		if (sourceBlock.outputConnection) {
-			if (sourceBlock.outputConnection.targetConnection)
-				sourceBlock.outputConnection.targetConnection.disconnect();
-			sourceBlock.outputConnection.connect(targetBlock.inputList[4].connection);
-		}
-		else if (sourceBlock.previousConnection&&targetBlock.inputList[4].type==3) {
-			if (sourceBlock.nextConnection.targetConnection)
-				sourceBlock.nextConnection.targetConnection.disconnect();
-			if (sourceBlock.previousConnection.targetConnection)
-				sourceBlock.previousConnection.targetConnection.disconnect();
-			sourceBlock.previousConnection.connect(targetBlock.inputList[4].connection);
-		}
-		Blockly.myPickPlaceBlock.Block=null;
-		targetBlock.workspace.render();
-    },
-    scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-    id: 'click_to_place_output4',
-    weight: 218,
-  };
-  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output);
-}
-  
-registerClickToPlace_output4();
-
-
 
 function getSourceBlock() {
 	var block = Blockly.myPickPlaceBlock.Block;
@@ -430,4 +250,8 @@ function getSourceBlock() {
 	}
 	else
 		return Blockly.myPickPlaceBlock.Block;
+}
+
+for (var i=0;i<10;i++) {
+	registerClickToPlace_output(i);
 }
