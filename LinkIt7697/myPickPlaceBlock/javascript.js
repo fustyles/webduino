@@ -7,13 +7,15 @@
 /**
  * @fileoverview Pick and place block
  * @author https://www.facebook.com/francefu/
- * @Update 13/2/2022 10:00 (Taiwan Standard Time)
+ * @Update 13/2/2022 10:30 (Taiwan Standard Time)
  */
 
 Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enable pick/place block";
 Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "Disable pick/place block";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "Pick source block";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"] = "Place source block [#]";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "Place source block [next]";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "Place source block [previous]";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "Place source block [input #]";
 
 Blockly.myPickPlaceBlock={};
 Blockly.myPickPlaceBlock.enabled=false;
@@ -82,7 +84,7 @@ function registerClickToPlace_next() {
   }
   const clickToPlace_next = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","next");
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"];
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.nextConnection&&Blockly.myPickPlaceBlock.enabled)
@@ -93,8 +95,8 @@ function registerClickToPlace_next() {
     callback: function(a) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;	
-		//console.log(sourceBlock);
-		//console.log(targetBlock);		
+		console.log(sourceBlock);
+		console.log(targetBlock);		
 		if (targetBlock.nextConnection&&sourceBlock.previousConnection) {
 			if (sourceBlock.nextConnection.targetConnection)
 				sourceBlock.nextConnection.targetConnection.disconnect();
@@ -135,7 +137,7 @@ function registerClickToPlace_previous() {
   }
   const clickToPlace_previous = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","previous");
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"];
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.previousConnection&&Blockly.myPickPlaceBlock.enabled)
@@ -146,8 +148,8 @@ function registerClickToPlace_previous() {
     callback: function(a) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
-		//console.log(sourceBlock);
-		//console.log(targetBlock);		
+		console.log(sourceBlock);
+		console.log(targetBlock);		
 		if (targetBlock.previousConnection&&sourceBlock.nextConnection) {
 			if (sourceBlock.nextConnection.targetConnection)
 				sourceBlock.nextConnection.targetConnection.disconnect();
@@ -189,7 +191,7 @@ function registerClickToPlace_output0() {
   }
   const clickToPlace_output0 = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 0");
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","0");
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>0&&Blockly.myPickPlaceBlock.enabled)
@@ -200,8 +202,8 @@ function registerClickToPlace_output0() {
     callback: function(a) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
-		//console.log(sourceBlock);
-		//console.log(targetBlock);		
+		console.log(sourceBlock);
+		console.log(targetBlock);		
 		if (sourceBlock.outputConnection) {
 			if (sourceBlock.outputConnection.targetConnection)
 				sourceBlock.outputConnection.targetConnection.disconnect();
@@ -233,7 +235,7 @@ function registerClickToPlace_output1() {
   }
   const clickToPlace_output1 = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 1");
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","1");
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>1&&Blockly.myPickPlaceBlock.enabled)
@@ -244,8 +246,8 @@ function registerClickToPlace_output1() {
     callback: function(a) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
-		//console.log(sourceBlock);
-		//console.log(targetBlock);		
+		console.log(sourceBlock);
+		console.log(targetBlock);		
 		if (sourceBlock.outputConnection) {
 			if (sourceBlock.outputConnection.targetConnection)
 				sourceBlock.outputConnection.targetConnection.disconnect();
@@ -277,7 +279,7 @@ function registerClickToPlace_output2() {
   }
   const clickToPlace_output2 = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 2");
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","2");
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>2&&Blockly.myPickPlaceBlock.enabled)
@@ -288,8 +290,8 @@ function registerClickToPlace_output2() {
     callback: function(a) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
-		//console.log(sourceBlock);
-		//console.log(targetBlock);		
+		console.log(sourceBlock);
+		console.log(targetBlock);		
 		if (sourceBlock.outputConnection) {
 			if (sourceBlock.outputConnection.targetConnection)
 				sourceBlock.outputConnection.targetConnection.disconnect();
@@ -321,7 +323,7 @@ function registerClickToPlace_output3() {
   }
   const clickToPlace_output3 = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 3");
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","3");
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>3&&Blockly.myPickPlaceBlock.enabled)
@@ -332,8 +334,8 @@ function registerClickToPlace_output3() {
     callback: function(a) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
-		//console.log(sourceBlock);
-		//console.log(targetBlock);
+		console.log(sourceBlock);
+		console.log(targetBlock);
 		if (sourceBlock.outputConnection) {
 			if (sourceBlock.outputConnection.targetConnection)
 				sourceBlock.outputConnection.targetConnection.disconnect();
@@ -365,7 +367,7 @@ function registerClickToPlace_output4() {
   }
   const clickToPlace_output4 = {
     displayText: function(){
-		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 4");
+		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","4");
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>4&&Blockly.myPickPlaceBlock.enabled)
@@ -376,8 +378,8 @@ function registerClickToPlace_output4() {
     callback: function(a) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
-		//console.log(sourceBlock);
-		//console.log(targetBlock);
+		console.log(sourceBlock);
+		console.log(targetBlock);
 		if (sourceBlock.outputConnection) {
 			if (sourceBlock.outputConnection.targetConnection)
 				sourceBlock.outputConnection.targetConnection.disconnect();
