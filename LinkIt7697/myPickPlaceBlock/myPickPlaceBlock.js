@@ -7,7 +7,7 @@
 /**
  * @fileoverview Pick and place block
  * @author https://www.facebook.com/francefu/
- * @Update 13/2/2022 12:00 (Taiwan Standard Time)
+ * @Update 13/2/2022 12:30 (Taiwan Standard Time)
  */
 
 Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enable pick/place block";
@@ -105,18 +105,12 @@ function registerClickToPlace_next() {
 			if (targetBlock.nextConnection.targetConnection) {
 				var oldNextBlock = targetBlock.nextConnection.targetConnection.sourceBlock_;
 				targetBlock.nextConnection.targetConnection.disconnect();
-			}
-			if (targetBlock.previousConnection.targetConnection) {
-				var oldpreviousBlock = targetBlock.previousConnection.targetConnection.sourceBlock_;
-				targetBlock.previousConnection.targetConnection.disconnect();
-			}			
+			}		
 			
 			targetBlock.nextConnection.connect(sourceBlock.previousConnection);
 			
 			if(oldNextBlock)
-				sourceBlock.nextConnection.connect(oldNextBlock.previousConnection);
-			if(oldpreviousBlock)
-				sourceBlock.previousConnection.connect(oldNextBlock.nextConnection);			
+				sourceBlock.nextConnection.connect(oldNextBlock.previousConnection);			
 		}
 		Blockly.myPickPlaceBlock.Block=null;
 		targetBlock.workspace.render();
@@ -170,19 +164,13 @@ function registerClickToPlace_previous() {
 				var oldPreviousBlock = targetBlock.previousConnection.targetConnection.sourceBlock_;
 				targetBlock.previousConnection.targetConnection.disconnect();
 			}
-			if (targetBlock.nextConnection.targetConnection) {
-				var oldNextBlock = targetBlock.nextConnection.targetConnection.sourceBlock_;
-				targetBlock.nextConnection.targetConnection.disconnect();
-			}
 			
 			sourceBlock.nextConnection.connect(targetBlock.previousConnection);
 			
 			if (oldPreviousBlockInput)
 				sourceBlock.previousConnection.connect(oldPreviousBlockInput.connection);
 			else if(oldPreviousBlock)
-				sourceBlock.previousConnection.connect(oldPreviousBlock.nextConnection);
-			if(oldNextBlock)
-				sourceBlock.nextConnection.connect(oldPreviousBlock.previousConnection);			
+				sourceBlock.previousConnection.connect(oldPreviousBlock.nextConnection);			
 		}
 		Blockly.myPickPlaceBlock.Block=null;
 		targetBlock.workspace.render();
