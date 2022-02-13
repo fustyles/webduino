@@ -7,7 +7,7 @@
 /**
  * @fileoverview Pick and place block
  * @author https://www.facebook.com/francefu/
- * @Update 13/2/2022 12:30 (Taiwan Standard Time)
+ * @Update 13/2/2022 13:30 (Taiwan Standard Time)
  */
 
 Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enable pick/place block";
@@ -98,19 +98,40 @@ function registerClickToPlace_next() {
 		//console.log(sourceBlock);
 		//console.log(targetBlock);		
 		if (targetBlock.nextConnection&&sourceBlock.previousConnection) {
-			if (sourceBlock.nextConnection.targetConnection)
+			if (sourceBlock.nextConnection.targetConnection) {
+				var oldNextBlock_s = sourceBlock.nextConnection.targetConnection.sourceBlock_;
 				sourceBlock.nextConnection.targetConnection.disconnect();
-			if (sourceBlock.previousConnection.targetConnection)
+			}
+			if (sourceBlock.previousConnection.targetConnection) {
+				if (sourceBlock.parentBlock_) {
+					for (var i in sourceBlock.parentBlock_.inputList) {
+						var pBlock = sourceBlock.parentBlock_.getInputTargetBlock(sourceBlock.parentBlock_.inputList[i].name);
+						if (pBlock) {
+							if (sourceBlock.id==pBlock.id) {
+								var oldPreviousBlockInput_s = sourceBlock.parentBlock_.inputList[i];
+								break;
+							}
+						}
+					}
+				}
+				
+				var oldPreviousBlock_s = sourceBlock.previousConnection.targetConnection.sourceBlock_;
 				sourceBlock.previousConnection.targetConnection.disconnect();
+			}
+			if (oldNextBlock_s&&oldPreviousBlockInput_s)
+				oldNextBlock_s.previousConnection.connect(oldPreviousBlockInput_s.connection);
+			else if (oldNextBlock_s&&oldPreviousBlock_s)
+				oldPreviousBlock_s.nextConnection.connect(oldNextBlock_s.previousConnection);
+			
 			if (targetBlock.nextConnection.targetConnection) {
-				var oldNextBlock = targetBlock.nextConnection.targetConnection.sourceBlock_;
+				var oldNextBlock_t = targetBlock.nextConnection.targetConnection.sourceBlock_;
 				targetBlock.nextConnection.targetConnection.disconnect();
 			}		
 			
 			targetBlock.nextConnection.connect(sourceBlock.previousConnection);
 			
-			if(oldNextBlock)
-				sourceBlock.nextConnection.connect(oldNextBlock.previousConnection);			
+			if(oldNextBlock_t)
+				sourceBlock.nextConnection.connect(oldNextBlock_t.previousConnection);			
 		}
 		Blockly.myPickPlaceBlock.Block=null;
 		targetBlock.workspace.render();
@@ -145,10 +166,31 @@ function registerClickToPlace_previous() {
 		//console.log(sourceBlock);
 		//console.log(targetBlock);		
 		if (targetBlock.previousConnection&&sourceBlock.nextConnection) {
-			if (sourceBlock.nextConnection.targetConnection)
+			if (sourceBlock.nextConnection.targetConnection) {
+				var oldNextBlock_s = sourceBlock.nextConnection.targetConnection.sourceBlock_;
 				sourceBlock.nextConnection.targetConnection.disconnect();
-			if (sourceBlock.previousConnection.targetConnection)
+			}
+			if (sourceBlock.previousConnection.targetConnection) {
+				if (sourceBlock.parentBlock_) {
+					for (var i in sourceBlock.parentBlock_.inputList) {
+						var pBlock = sourceBlock.parentBlock_.getInputTargetBlock(sourceBlock.parentBlock_.inputList[i].name);
+						if (pBlock) {
+							if (sourceBlock.id==pBlock.id) {
+								var oldPreviousBlockInput_s = sourceBlock.parentBlock_.inputList[i];
+								break;
+							}
+						}
+					}
+				}
+				
+				var oldPreviousBlock_s = sourceBlock.previousConnection.targetConnection.sourceBlock_;
 				sourceBlock.previousConnection.targetConnection.disconnect();
+			}
+			if (oldNextBlock_s&&oldPreviousBlockInput_s)
+				oldNextBlock_s.previousConnection.connect(oldPreviousBlockInput_s.connection);
+			else if (oldNextBlock_s&&oldPreviousBlock_s)
+				oldPreviousBlock_s.nextConnection.connect(oldNextBlock_s.previousConnection);
+			
 			if (targetBlock.parentBlock_) {
 				for (var i in targetBlock.parentBlock_.inputList) {
 					var pBlock = targetBlock.parentBlock_.getInputTargetBlock(targetBlock.parentBlock_.inputList[i].name);
@@ -204,17 +246,38 @@ function registerClickToPlace_output(index) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
 		//console.log(sourceBlock);
-		//console.log(targetBlock);		
+		//console.log(targetBlock);	
+		if (sourceBlock.nextConnection.targetConnection) {
+			var oldNextBlock_s = sourceBlock.nextConnection.targetConnection.sourceBlock_;
+			sourceBlock.nextConnection.targetConnection.disconnect();
+		}
+		if (sourceBlock.previousConnection.targetConnection) {
+			if (sourceBlock.parentBlock_) {
+				for (var i in sourceBlock.parentBlock_.inputList) {
+					var pBlock = sourceBlock.parentBlock_.getInputTargetBlock(sourceBlock.parentBlock_.inputList[i].name);
+					if (pBlock) {
+						if (sourceBlock.id==pBlock.id) {
+							var oldPreviousBlockInput_s = sourceBlock.parentBlock_.inputList[i];
+							break;
+						}
+					}
+				}
+			}
+			
+			var oldPreviousBlock_s = sourceBlock.previousConnection.targetConnection.sourceBlock_;
+			sourceBlock.previousConnection.targetConnection.disconnect();
+		}
+		if (oldNextBlock_s&&oldPreviousBlockInput_s)
+			oldNextBlock_s.previousConnection.connect(oldPreviousBlockInput_s.connection);
+		else if (oldNextBlock_s&&oldPreviousBlock_s)
+			oldPreviousBlock_s.nextConnection.connect(oldNextBlock_s.previousConnection);
+			
 		if (sourceBlock.outputConnection) {
 			if (sourceBlock.outputConnection.targetConnection)
 				sourceBlock.outputConnection.targetConnection.disconnect();
 			sourceBlock.outputConnection.connect(targetBlock.inputList[index].connection);
 		}
 		else if (sourceBlock.previousConnection&&targetBlock.inputList[index].type==3) {
-			if (sourceBlock.nextConnection.targetConnection)
-				sourceBlock.nextConnection.targetConnection.disconnect();
-			if (sourceBlock.previousConnection.targetConnection)
-				sourceBlock.previousConnection.targetConnection.disconnect();
 			sourceBlock.previousConnection.connect(targetBlock.inputList[index].connection);
 		}
 		Blockly.myPickPlaceBlock.Block=null;
