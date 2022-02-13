@@ -7,7 +7,7 @@
 /**
  * @fileoverview Pick and place block
  * @author https://www.facebook.com/francefu/
- * @Update 13/2/2022 10:30 (Taiwan Standard Time)
+ * @Update 13/2/2022 11:30 (Taiwan Standard Time)
  */
 
 Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enable pick/place block";
@@ -95,8 +95,8 @@ function registerClickToPlace_next() {
     callback: function(a) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;	
-		console.log(sourceBlock);
-		console.log(targetBlock);		
+		//console.log(sourceBlock);
+		//console.log(targetBlock);		
 		if (targetBlock.nextConnection&&sourceBlock.previousConnection) {
 			if (sourceBlock.nextConnection.targetConnection)
 				sourceBlock.nextConnection.targetConnection.disconnect();
@@ -148,14 +148,26 @@ function registerClickToPlace_previous() {
     callback: function(a) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
-		console.log(sourceBlock);
-		console.log(targetBlock);		
+		//console.log(sourceBlock);
+		//console.log(targetBlock);		
 		if (targetBlock.previousConnection&&sourceBlock.nextConnection) {
 			if (sourceBlock.nextConnection.targetConnection)
 				sourceBlock.nextConnection.targetConnection.disconnect();
 			if (sourceBlock.previousConnection.targetConnection)
 				sourceBlock.previousConnection.targetConnection.disconnect();
-			if (targetBlock.previousConnection.targetConnection) {
+			if (targetBlock.parentBlock_) {
+				for (var i in targetBlock.parentBlock_.inputList) {
+					var pBlock = targetBlock.parentBlock_.getInputTargetBlock(targetBlock.parentBlock_.inputList[i].name);
+					if (pBlock) {
+						if (targetBlock.id==pBlock.id) {
+							var oldPreviousBlockInput = targetBlock.parentBlock_.inputList[i];
+							break;
+						}
+					}
+				}
+				
+			}
+			else if (targetBlock.previousConnection.targetConnection) {
 				var oldPreviousBlock = targetBlock.previousConnection.targetConnection.sourceBlock_;
 				targetBlock.previousConnection.targetConnection.disconnect();
 			}
@@ -166,7 +178,9 @@ function registerClickToPlace_previous() {
 			
 			sourceBlock.nextConnection.connect(targetBlock.previousConnection);
 			
-			if(oldPreviousBlock)
+			if (oldPreviousBlockInput)
+				sourceBlock.previousConnection.connect(oldPreviousBlockInput.connection);
+			else if(oldPreviousBlock)
 				sourceBlock.previousConnection.connect(oldPreviousBlock.nextConnection);
 			if(oldNextBlock)
 				sourceBlock.nextConnection.connect(oldPreviousBlock.previousConnection);			
@@ -202,8 +216,8 @@ function registerClickToPlace_output0() {
     callback: function(a) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
-		console.log(sourceBlock);
-		console.log(targetBlock);		
+		//console.log(sourceBlock);
+		//console.log(targetBlock);		
 		if (sourceBlock.outputConnection) {
 			if (sourceBlock.outputConnection.targetConnection)
 				sourceBlock.outputConnection.targetConnection.disconnect();
@@ -246,8 +260,8 @@ function registerClickToPlace_output1() {
     callback: function(a) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
-		console.log(sourceBlock);
-		console.log(targetBlock);		
+		//console.log(sourceBlock);
+		//console.log(targetBlock);		
 		if (sourceBlock.outputConnection) {
 			if (sourceBlock.outputConnection.targetConnection)
 				sourceBlock.outputConnection.targetConnection.disconnect();
@@ -290,8 +304,8 @@ function registerClickToPlace_output2() {
     callback: function(a) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
-		console.log(sourceBlock);
-		console.log(targetBlock);		
+		//console.log(sourceBlock);
+		//console.log(targetBlock);		
 		if (sourceBlock.outputConnection) {
 			if (sourceBlock.outputConnection.targetConnection)
 				sourceBlock.outputConnection.targetConnection.disconnect();
@@ -334,8 +348,8 @@ function registerClickToPlace_output3() {
     callback: function(a) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
-		console.log(sourceBlock);
-		console.log(targetBlock);
+		//console.log(sourceBlock);
+		//console.log(targetBlock);
 		if (sourceBlock.outputConnection) {
 			if (sourceBlock.outputConnection.targetConnection)
 				sourceBlock.outputConnection.targetConnection.disconnect();
@@ -378,8 +392,8 @@ function registerClickToPlace_output4() {
     callback: function(a) {
 		var sourceBlock = getSourceBlock();
 		targetBlock = a.block;
-		console.log(sourceBlock);
-		console.log(targetBlock);
+		//console.log(sourceBlock);
+		//console.log(targetBlock);
 		if (sourceBlock.outputConnection) {
 			if (sourceBlock.outputConnection.targetConnection)
 				sourceBlock.outputConnection.targetConnection.disconnect();
