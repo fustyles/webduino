@@ -7,15 +7,46 @@
 /**
  * @fileoverview Pick and place block
  * @author https://www.facebook.com/francefu/
- * @Update 13/2/2022 02:00 (Taiwan Standard Time)
+ * @Update 13/2/2022 10:00 (Taiwan Standard Time)
  */
 
+Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enable pick/place block";
+Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "Disable pick/place block";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "Pick source block";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"] = "Place source block [#]";
 
 Blockly.myPickPlaceBlock={};
+Blockly.myPickPlaceBlock.enabled=false;
 Blockly.myPickPlaceBlock.Block=null;
 Blockly.myPickPlaceBlock.isFlyout=false;
+
+
+function registerPickPlaceEnabled() {
+  if (Blockly.ContextMenuRegistry.registry.getItem('pick_place_enabled')) {
+    return;
+  }
+  const pickPlaceEnabled = {
+    displayText: function(){
+		if (Blockly.myPickPlaceBlock.enabled)
+			return Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"];
+		else
+			return Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"];
+	},
+    preconditionFn: function(a) {
+		return 'enabled';
+    },
+    callback: function(a) {
+		Blockly.myPickPlaceBlock.enabled=!Blockly.myPickPlaceBlock.enabled;
+    },
+    scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
+    id: 'pick_place_enabled',
+    weight: 210,
+  };
+  Blockly.ContextMenuRegistry.registry.register(pickPlaceEnabled);
+}
+  
+registerPickPlaceEnabled();
+
 
 function registerClickToPick() {
   if (Blockly.ContextMenuRegistry.registry.getItem('click_to_pick')) {
@@ -26,7 +57,10 @@ function registerClickToPick() {
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"];
 	},
     preconditionFn: function(a) {
-		return 'enabled';
+		if (Blockly.myPickPlaceBlock.enabled)
+			return 'enabled';
+		else
+			return 'hidden';
     },
     callback: function(a) {
 		Blockly.myPickPlaceBlock.isFlyout=a.block.isInFlyout;
@@ -34,7 +68,7 @@ function registerClickToPick() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'click_to_pick',
-    weight: 201,
+    weight: 211,
   };
   Blockly.ContextMenuRegistry.registry.register(clickToPick);
 }
@@ -51,7 +85,7 @@ function registerClickToPlace_next() {
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","next");
 	},
     preconditionFn: function(a) {
-		if (Blockly.myPickPlaceBlock.Block&&a.block.nextConnection)
+		if (Blockly.myPickPlaceBlock.Block&&a.block.nextConnection&&Blockly.myPickPlaceBlock.enabled)
 			return 'enabled';
 		else
 			return 'hidden';
@@ -87,7 +121,7 @@ function registerClickToPlace_next() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'click_to_place_next',
-    weight: 202,
+    weight: 212,
   };
   Blockly.ContextMenuRegistry.registry.register(clickToPlace_next);
 }
@@ -104,7 +138,7 @@ function registerClickToPlace_previous() {
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","previous");
 	},
     preconditionFn: function(a) {
-		if (Blockly.myPickPlaceBlock.Block&&a.block.previousConnection)
+		if (Blockly.myPickPlaceBlock.Block&&a.block.previousConnection&&Blockly.myPickPlaceBlock.enabled)
 			return 'enabled';
 		else
 			return 'hidden';
@@ -140,7 +174,7 @@ function registerClickToPlace_previous() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'click_to_place_previous',
-    weight: 203,
+    weight: 213,
   };
   Blockly.ContextMenuRegistry.registry.register(clickToPlace_previous);
 }
@@ -158,7 +192,7 @@ function registerClickToPlace_output0() {
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 0");
 	},
     preconditionFn: function(a) {
-		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>0)
+		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>0&&Blockly.myPickPlaceBlock.enabled)
 			return 'enabled';
 		else
 			return 'hidden';
@@ -185,7 +219,7 @@ function registerClickToPlace_output0() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'click_to_place_output0',
-    weight: 204,
+    weight: 214,
   };
   Blockly.ContextMenuRegistry.registry.register(clickToPlace_output0);
 }
@@ -202,7 +236,7 @@ function registerClickToPlace_output1() {
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 1");
 	},
     preconditionFn: function(a) {
-		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>1)
+		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>1&&Blockly.myPickPlaceBlock.enabled)
 			return 'enabled';
 		else
 			return 'hidden';
@@ -229,7 +263,7 @@ function registerClickToPlace_output1() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'click_to_place_output1',
-    weight: 205,
+    weight: 215,
   };
   Blockly.ContextMenuRegistry.registry.register(clickToPlace_output1);
 }
@@ -246,7 +280,7 @@ function registerClickToPlace_output2() {
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 2");
 	},
     preconditionFn: function(a) {
-		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>2)
+		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>2&&Blockly.myPickPlaceBlock.enabled)
 			return 'enabled';
 		else
 			return 'hidden';
@@ -273,7 +307,7 @@ function registerClickToPlace_output2() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'click_to_place_output2',
-    weight: 206,
+    weight: 216,
   };
   Blockly.ContextMenuRegistry.registry.register(clickToPlace_output2);
 }
@@ -290,7 +324,7 @@ function registerClickToPlace_output3() {
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 3");
 	},
     preconditionFn: function(a) {
-		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>3)
+		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>3&&Blockly.myPickPlaceBlock.enabled)
 			return 'enabled';
 		else
 			return 'hidden';
@@ -317,7 +351,7 @@ function registerClickToPlace_output3() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'click_to_place_output3',
-    weight: 207,
+    weight: 217,
   };
   Blockly.ContextMenuRegistry.registry.register(clickToPlace_output3);
 }
@@ -334,7 +368,7 @@ function registerClickToPlace_output4() {
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE"].replace("#","input 4");
 	},
     preconditionFn: function(a) {
-		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>4)
+		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>4&&Blockly.myPickPlaceBlock.enabled)
 			return 'enabled';
 		else
 			return 'hidden';
@@ -361,7 +395,7 @@ function registerClickToPlace_output4() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'click_to_place_output4',
-    weight: 208,
+    weight: 218,
   };
   Blockly.ContextMenuRegistry.registry.register(clickToPlace_output4);
 }
