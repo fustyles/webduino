@@ -189,7 +189,7 @@ function registerClickToPlace_output0() {
   if (Blockly.ContextMenuRegistry.registry.getItem('click_to_place_output0')) {
     return;
   }
-  const clickToPlace_output0 = {
+  const clickToPlace_output = {
     displayText: function(){
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","0");
 	},
@@ -223,7 +223,7 @@ function registerClickToPlace_output0() {
     id: 'click_to_place_output0',
     weight: 214,
   };
-  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output0);
+  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output);
 }
   
 registerClickToPlace_output0();
@@ -233,7 +233,7 @@ function registerClickToPlace_output1() {
   if (Blockly.ContextMenuRegistry.registry.getItem('click_to_place_output1')) {
     return;
   }
-  const clickToPlace_output1 = {
+  const clickToPlace_output = {
     displayText: function(){
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","1");
 	},
@@ -267,7 +267,7 @@ function registerClickToPlace_output1() {
     id: 'click_to_place_output1',
     weight: 215,
   };
-  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output1);
+  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output);
 }
   
 registerClickToPlace_output1();
@@ -277,7 +277,7 @@ function registerClickToPlace_output2() {
   if (Blockly.ContextMenuRegistry.registry.getItem('click_to_place_output2')) {
     return;
   }
-  const clickToPlace_output2 = {
+  const clickToPlace_output = {
     displayText: function(){
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","2");
 	},
@@ -311,7 +311,7 @@ function registerClickToPlace_output2() {
     id: 'click_to_place_output2',
     weight: 216,
   };
-  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output2);
+  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output);
 }
   
 registerClickToPlace_output2();
@@ -321,7 +321,7 @@ function registerClickToPlace_output3() {
   if (Blockly.ContextMenuRegistry.registry.getItem('click_to_place_output3')) {
     return;
   }
-  const clickToPlace_output3 = {
+  const clickToPlace_output = {
     displayText: function(){
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","3");
 	},
@@ -355,7 +355,7 @@ function registerClickToPlace_output3() {
     id: 'click_to_place_output3',
     weight: 217,
   };
-  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output3);
+  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output);
 }
   
 registerClickToPlace_output3();
@@ -365,7 +365,7 @@ function registerClickToPlace_output4() {
   if (Blockly.ContextMenuRegistry.registry.getItem('click_to_place_output4')) {
     return;
   }
-  const clickToPlace_output4 = {
+  const clickToPlace_output = {
     displayText: function(){
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#","4");
 	},
@@ -399,7 +399,7 @@ function registerClickToPlace_output4() {
     id: 'click_to_place_output4',
     weight: 218,
   };
-  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output4);
+  Blockly.ContextMenuRegistry.registry.register(clickToPlace_output);
 }
   
 registerClickToPlace_output4();
