@@ -228,7 +228,6 @@ function registerClickToPlace_previous() {
 registerClickToPlace_previous();
 
 
-
 function registerClickToPlace_output(index) {
   if (Blockly.ContextMenuRegistry.registry.getItem('click_to_place_input'+index)) {
     return;
