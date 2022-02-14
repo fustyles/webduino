@@ -255,8 +255,6 @@ function registerClickToPlace_output(index) {
 		targetBlock = a.block;
 		//console.log(sourceBlock);
 		//console.log(targetBlock);
-		
-		
 		if (sourceBlock.nextConnection) {
 			if (sourceBlock.nextConnection.targetConnection) {
 				var oldNextBlock_s = sourceBlock.nextConnection.targetConnection.sourceBlock_;
