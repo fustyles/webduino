@@ -7,7 +7,7 @@
 /**
  * @fileoverview Pick and place block
  * @author https://www.facebook.com/francefu/
- * @Update 14/2/2022 01:00 (Taiwan Standard Time)
+ * @Update 14/2/2022 17:00 (Taiwan Standard Time)
  */
 
 Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enable pick/place block";
@@ -287,14 +287,12 @@ function registerClickToPlace_output(index) {
 			oldPreviousBlock_s.nextConnection.connect(oldNextBlock_s.previousConnection);
 		
 		if (targetBlock.parentBlock_) {
-			for (var i in targetBlock.parentBlock_.inputList) {
-				var pBlock = targetBlock.parentBlock_.getInputTargetBlock(targetBlock.parentBlock_.inputList[i].name);
-				if (pBlock) {
-					if (targetBlock.id==pBlock.id) {
-						targetBlock.unplug();
-					}
-				}
-			}
+			if (targetBlock.parentBlock_.id==sourceBlock.id)
+				targetBlock.unplug();
+		}
+		if (sourceBlock.parentBlock_) {
+			if (targetBlock.id==sourceBlock.parentBlock_.id)
+				sourceBlock.unplug();
 		}
 			
 		if (sourceBlock.outputConnection) {
