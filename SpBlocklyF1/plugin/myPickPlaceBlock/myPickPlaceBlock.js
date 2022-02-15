@@ -7,7 +7,7 @@
 /**
  * @fileoverview Pick and place block
  * @author https://www.facebook.com/francefu/
- * @Update 14/2/2022 17:00 (Taiwan Standard Time)
+ * @Update 15/2/2022 10:30 (Taiwan Standard Time)
  */
 
 Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enable pick/place block";
@@ -88,8 +88,12 @@ function registerClickToPlace_next() {
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"];
 	},
     preconditionFn: function(a) {
-		if (Blockly.myPickPlaceBlock.Block&&a.block.nextConnection&&Blockly.myPickPlaceBlock.enabled)
-			return 'enabled';
+		if (Blockly.myPickPlaceBlock.Block&&a.block.nextConnection&&Blockly.myPickPlaceBlock.enabled) {
+			if (Blockly.myPickPlaceBlock.Block.id!=a.block.id)
+				return 'enabled';
+			else
+				return 'hidden';
+		}
 		else
 			return 'hidden';
     },
@@ -157,7 +161,10 @@ function registerClickToPlace_previous() {
 	},
     preconditionFn: function(a) {
 		if (Blockly.myPickPlaceBlock.Block&&a.block.previousConnection&&Blockly.myPickPlaceBlock.enabled)
-			return 'enabled';
+			if (Blockly.myPickPlaceBlock.Block.id!=a.block.id)
+				return 'enabled';
+			else
+				return 'hidden';
 		else
 			return 'hidden';
     },
@@ -238,8 +245,8 @@ function registerClickToPlace_output(index) {
 		return Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"].replace("#",Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT_NAME"][index]);
 	},
     preconditionFn: function(a) {
-		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>index&&Blockly.myPickPlaceBlock.enabled&&a.block.inputList[index].name) {
-			if (a.block.inputList[index].type==1||a.block.inputList[index].type==3) {
+		if (Blockly.myPickPlaceBlock.Block&&a.block.inputList.length>index&&Blockly.myPickPlaceBlock.enabled&&a.block.inputList[index].name) {			
+			if (Blockly.myPickPlaceBlock.Block.id!=a.block.id&&(a.block.inputList[index].type==1||a.block.inputList[index].type==3)) {
 				Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT_NAME"][index]=a.block.inputList[index].name;
 				return 'enabled';
 			}
