@@ -96,7 +96,7 @@ Blockly.Blocks.initializes_loop={
 					p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
 				}
 				if (!p) {
-					if (topChecked) blocks[i].setEnabled(false);
+					if (topCheck) blocks[i].setEnabled(false);
 				}
 				if (blocks[i].getParent()&&blocks[i].getPreviousBlock()) {
 					if (variableBlockList.includes(p.type)&&variableBlockList.includes(blocks[i].getParent().type)) {
