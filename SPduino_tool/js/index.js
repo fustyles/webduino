@@ -13,6 +13,7 @@ var customCategory = [['','','']];
 var customCategoryInsertAfter = "category_sep_main";
 var languageList = "msg/language.js";
 var xmlValue = "";
+var topChecked = true;
 
 document.addEventListener('DOMContentLoaded', function() {
 	//載入工具箱目錄
