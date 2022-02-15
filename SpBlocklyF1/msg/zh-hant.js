@@ -2591,3 +2591,5 @@ Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "置放來源積木 (目�
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "置放來源積木 (目標積木之上)";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "置放來源積木 [子輸入 #]";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT_NAME"] = ["","","","","","","","","",""];
+
+Blockly.Msg["DISABLED_TOPCHECK"] = "停用上層積木檢查";
