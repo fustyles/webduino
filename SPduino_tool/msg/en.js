@@ -1177,5 +1177,5 @@ Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "Disable pick/place block";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "Pick block";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "Place block (next)";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "Place block (previous)";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "Place block [#]";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "Place block [input: #]";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT_NAME"] = ["","","","","","","","","",""];
