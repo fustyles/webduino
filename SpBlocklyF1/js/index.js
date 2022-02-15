@@ -14,7 +14,7 @@ var customCategory = [];
 var customCategoryInsertAfter = "category_sep_main";
 var languageList = "msg/language.js";
 var xmlValue = "";
-var topChecked = true;
+var topCheck = true;
 
 document.addEventListener('DOMContentLoaded', function() {
 
