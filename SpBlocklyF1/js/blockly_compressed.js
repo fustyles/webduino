@@ -4925,6 +4925,25 @@ Blockly.ContextMenuItems.registerLoadLastBlocks=function(){
 		}
 	)
 };
+Blockly.ContextMenuItems.registerTopCheck=function(){
+	Blockly.ContextMenuRegistry.registry.register(
+		{
+			displayText:function(){return Blockly.Msg["DISABLED_TOPCHECK"];}
+			,preconditionFn:function(a){
+				if (topCheck)
+					return "enabled"
+				else
+					return "hidden"
+			}
+			,callback:function(a){
+				if (topCheck) {
+					topCheck=false;
+				} 
+			}
+			,scopeType:Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id:"topCheck",weight:20
+		}
+	)
+};
 //測試
 Blockly.ContextMenuItems.registerTest=function(){
 	Blockly.ContextMenuRegistry.registry.register(
@@ -5098,7 +5117,8 @@ Blockly.ContextMenuItems.registerBlockOptions_=function(){
 	Blockly.ContextMenuItems.registerBackPackPlugin();	
 	//Blockly.ContextMenuItems.registerLoadLastBlocks();
 	//Blockly.ContextMenuItems.registerHideToolbox();
-	//Blockly.ContextMenuItems.registerTest();	//測試	
+	Blockly.ContextMenuItems.registerTopCheck();
+	//Blockly.ContextMenuItems.registerTest();	//測試		
 };
 
 Blockly.ContextMenuItems.registerDefaultOptions=function(){Blockly.ContextMenuItems.registerWorkspaceOptions_();Blockly.ContextMenuItems.registerBlockOptions_()};
