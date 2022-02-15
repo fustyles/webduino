@@ -823,8 +823,13 @@ document.addEventListener('DOMContentLoaded', function() {
 			$("#dialog_webSerial").dialog(opt).dialog("open");
 			event.preventDefault();
 		}
-		else
-			alert("Web serial is not supported.");
+		else {
+			if (typeof nw !== "undefined") {
+				nw.Shell.openExternal("http://127.0.0.1:3000/WebSerial.html")
+			}
+			else
+				window.open("https://fustyles.github.io/webduino/WebSerial.html")
+		}
 	}
 
 	//Web Bluetooth
@@ -1019,8 +1024,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			$("#dialog_webBluetooth").dialog(opt).dialog("open");
 			event.preventDefault();
 		}
-		else
-			alert("Web bluetooth is not supported.");
+		else {
+			if (typeof nw !== "undefined")
+				nw.Shell.openExternal("http://127.0.0.1:3000/WebBluetooth.html")
+			else
+				window.open("https://fustyles.github.io/webduino/WebBluetooth.html")
+		}
 	}	
 	
 	//工具箱目錄顯示選單內容
