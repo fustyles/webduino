@@ -70,7 +70,7 @@ Blockly.Blocks.main={
 			}
 			if (blocks[i].getParent()&&blocks[i].getPreviousBlock()) {
 				if (variableBlockList.includes(p.type)&&variableBlockList.includes(blocks[i].getParent().type)) {
-					if (topCheck) blocks[i].setEnabled(false);
+					if (topCheck) blocks[i].unplug();
 				}
 			}
 		}
