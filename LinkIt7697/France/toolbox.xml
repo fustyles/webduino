@@ -1685,6 +1685,28 @@
 					</next>
 				  </block>
 				</statement>
+			  </block>
+			  <block type="esp32_cam_googledrive" id="99">
+				<value name="scriptid">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="linetoken">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="foldername">
+				  <block type="text">
+					<field name="TEXT">esp32cam</field>
+				  </block>
+				</value>
+				<value name="filename">
+				  <block type="text">
+					<field name="TEXT">esp32cam</field>
+				  </block>
+				</value>				
 			  </block>	  
 		</category>	
 
