@@ -1580,8 +1580,6 @@
 					</next>
 				  </block>
 				</statement>
-				<statement name="setup">
-				</statement>
 			  </block>
 		</category>  
 		  
@@ -1686,8 +1684,6 @@
 					  </block>
 					</next>
 				  </block>
-				</statement>
-				<statement name="setup">		
 				</statement>
 			  </block>	  
 		</category>	
@@ -1839,8 +1835,6 @@
 					</next>
 				  </block>
 				</statement>
-				<statement name="setup">		
-				</statement>
 			  </block>
 		</category>	  
 		<category id="france7" name="bluetoothmodule">
@@ -1944,33 +1938,20 @@
 			</statement>
 		  </block>
 		 
-			<block type="esp32_setuploop">
-				<statement name="setup">
-				  <block type="esp32_bluetooth_initial" id="4" inline="true">
-					<value name="baudrate">
-					  <block type="math_number" id="5">
-						<field name="NUM">9600</field>
-					  </block>
-					</value>
-					<value name="blename">
-					  <block type="text" id="6">
-						<field name="TEXT">ESP32 BLE</field>
-					  </block>
-					</value>
-				  </block>
-				</statement>
-				<statement name="loop">
-				  <block type="esp32_bluetooth_readdata" id="8">
-					<next>
-					  <block type="serial_println" id="9">
-						<value name="CONTENT">
-						  <block type="esp32_bluetooth_getdata" id="10"></block>
-						</value>
-					  </block>
-					</next>
-				  </block>
-				</statement>
-			</block>		  
+		  <block type="esp32_bluetooth_initial" id="4" inline="true">
+			<value name="baudrate">
+			  <block type="math_number" id="5">
+				<field name="NUM">9600</field>
+			  </block>
+			</value>
+			<value name="blename">
+			  <block type="text" id="6">
+				<field name="TEXT">ESP32 BLE</field>
+			  </block>
+			</value>
+		  </block>
+		  <block type="esp32_bluetooth_readdata" id="8"></block> 
+		  <block type="esp32_bluetooth_getdata" id="10"></block>
 		</category> 
 		<category id="france23" name="servercommand">
 			  <block type="servermodule_parameter_get">

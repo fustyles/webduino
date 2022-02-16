@@ -5186,15 +5186,9 @@ Blockly.Blocks['esp32_myfirmata'] = {
         .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
     this.appendStatementInput("ExecuteCommand")
         .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_SETUP_SHOW);
-    this.appendStatementInput("setup")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_LOOP_SHOW);
-    this.appendStatementInput("loop")
-        .setCheck(null);
     this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
     this.setColour(210);
   }
 };
@@ -5242,15 +5236,9 @@ Blockly.Blocks['esp32_cam_myfirmata'] = {
         .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
     this.appendStatementInput("ExecuteCommand")
         .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_SETUP_SHOW);
-    this.appendStatementInput("setup")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_LOOP_SHOW);
-    this.appendStatementInput("loop")
-        .setCheck(null);
     this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
     this.setColour(210);
   }
 };
@@ -5311,15 +5299,9 @@ Blockly.Blocks['esp32_myfirmata_bluetooth'] = {
         .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
     this.appendStatementInput("ExecuteCommand")
         .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_SETUP_SHOW);
-    this.appendStatementInput("setup")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_LOOP_SHOW);
-    this.appendStatementInput("loop")
-        .setCheck(null);
     this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
     this.setColour(210);
   }
 };
@@ -5852,15 +5834,9 @@ Blockly.Blocks['linkit7697_myfirmata'] = {
         .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
     this.appendStatementInput("ExecuteCommand")
         .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_SETUP_SHOW);
-    this.appendStatementInput("setup")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_LOOP_SHOW);
-    this.appendStatementInput("loop")
-        .setCheck(null);
     this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);	
     this.setColour(210);
   }
 };
