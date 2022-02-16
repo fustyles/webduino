@@ -2592,4 +2592,4 @@ Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "置放來源積木 (�
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "置放來源積木 [子輸入 #]";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT_NAME"] = ["","","","","","","","","",""];
 
-Blockly.Msg["DISABLED_TOPCHECK"] = "停用上層積木檢查";
+Blockly.Msg["DISABLED_TOPCHECK"] = "停用置頂積木檢查";
