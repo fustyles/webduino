@@ -49,7 +49,7 @@ Blockly.Blocks.main={
 		for (var i=0;i<blocks.length;i++) {
 			p = blocks[i];
 			if (enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)) {
-				blocks[i].setEnabled(true);
+				if (topCheck) blocks[i].setEnabled(true);
 				if (variableGlobalBlockList.includes(blocks[i].type)&&blocks[i].getField("POSITION")) {
 					if (blocks[i].getFieldValue("POSITION")=="global")
 						continue;
@@ -60,7 +60,7 @@ Blockly.Blocks.main={
 			p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
 			while(p) {
 				if ((enabledBlockList.includes(p.type)||variableBlockList.includes(p.type))&&!p.getParent()) {
-					blocks[i].setEnabled(true);
+					if (topCheck) blocks[i].setEnabled(true);
 					break;
 				}
 				p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
@@ -70,7 +70,7 @@ Blockly.Blocks.main={
 			}
 			if (blocks[i].getParent()&&blocks[i].getPreviousBlock()) {
 				if (variableBlockList.includes(p.type)&&variableBlockList.includes(blocks[i].getParent().type)) {
-					blocks[i].setEnabled(false);
+					if (topCheck) blocks[i].setEnabled(false);
 				}
 			}
 		}

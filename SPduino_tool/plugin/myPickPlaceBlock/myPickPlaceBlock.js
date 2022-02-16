@@ -7,7 +7,7 @@
 /**
  * @fileoverview Pick and place block
  * @author https://www.facebook.com/francefu/
- * @Update 15/2/2022 10:30 (Taiwan Standard Time)
+ * @Update 15/2/2022 11:00 (Taiwan Standard Time)
  */
 
 Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enable pick/place block";
