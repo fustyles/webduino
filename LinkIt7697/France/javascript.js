@@ -2236,8 +2236,6 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);';
   Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",P1="",P2="",P3="",P4="",P5="",P6="",P7="",P8="",P9="";\nbyte ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;';
 
-  var statements_setup = Blockly.Arduino.statementToCode(block, 'setup');
-  var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
 
   Blockly.Arduino.definitions_.define_linkit_ExecuteCommand = '\n'+
@@ -2301,8 +2299,8 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'}\n'+ 
 			'}\n';
 
-	Blockly.Arduino.setups_["setup_serial"]="Serial.begin(115200);\n  delay(10);\n";
-	Blockly.Arduino.setups_.manual_add = '\n'+
+	Blockly.Arduino.setups_.setup_serial="Serial.begin(115200);\n  delay(10);\n";
+	Blockly.Arduino.setups_.setup_wifi='\n'+
 			'  //WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
 			'  WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+ 
 			'  delay(1000);\n'+ 
@@ -2335,8 +2333,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'  Serial.println("");\n'+ 
 			'  Serial.println("STAIP address: ");\n'+ 
 			'  Serial.println(WiFi.localIP());\n'+ 
-			'  server.begin();\n'+ statements_setup +
-			'\n';
+			'  server.begin();\n';
 	
 
 			var getCommand = ''+
@@ -2407,7 +2404,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'    client.stop();\n'+
 			'  }';
 
-  code = '\n  '+getCommand+'\n'+ statements_loop +'\n';
+  code = '\n  '+getCommand+'\n';
   return code;
 };
 
@@ -2448,8 +2445,6 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);\n';
   Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",P1="",P2="",P3="",P4="",P5="",P6="",P7="",P8="",P9="";\nbyte ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;';
 
-  var statements_setup = Blockly.Arduino.statementToCode(block, 'setup');
-  var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
 
   Blockly.Arduino.definitions_.define_linkit_ExecuteCommand = '\n'+
@@ -2560,8 +2555,8 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'}\n'+ 
 			'}\n';
 	
-	Blockly.Arduino.setups_["setup_serial"]="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin(115200);\n  delay(10);";
-	Blockly.Arduino.setups_.manual_add = '\n'+
+	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin(115200);\n  delay(10);";
+	Blockly.Arduino.setups_.setup_wifi='\n'+
 			'  Serial.setDebugOutput(true);\n'+
 			'  Serial.println();\n'+
 			'  camera_config_t config;\n'+
@@ -2648,8 +2643,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'  Serial.println("");\n'+ 
 			'  pinMode(4, OUTPUT);\n'+
 			'  digitalWrite(4, LOW);\n'+  
-			'  server.begin();\n'+ statements_setup +
-			'\n';
+			'  server.begin();\n';
 	
 
 			var getCommand = '\n'+
@@ -2754,7 +2748,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'    client_cam.stop();\n'+
 			'  }';
 			
-    code = '\n  '+getCommand+'\n'+ statements_loop +'\n';
+    code = '\n  '+getCommand+'\n';
     return code;
 };
 
@@ -2769,8 +2763,6 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 	Blockly.Arduino.definitions_.define_esp32_bluetooth_command = 'String ReceiveData="", Command="",cmd="",P1="",P2="",P3="",P4="",P5="",P6="",P7="",P8="",P9="";\n'+
 																  'byte ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;\n';
 
-	var statements_setup = Blockly.Arduino.statementToCode(block, 'setup');
-	var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');
 	var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
 
 	Blockly.Arduino.definitions_.define_esp32_ExecuteCommand = '\n'+
@@ -2813,11 +2805,10 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 			'}\n'+ 
 			'}\n';
 
-	Blockly.Arduino.setups_.manual_add = '\n'+
+	Blockly.Arduino.setups_.setup_serial = '\n'+
 			'  Serial.begin('+baudrate+');\n'+ 
 			'  SerialBT.begin('+blename+');\n'+ 
-			'  delay(10);\n'+ statements_setup +
-			'\n';	
+			'  delay(10);\n';	
 
     Blockly.Arduino.definitions_.define_bluetooth_getCommand = '\n'+
 			'void getCommand() {\n'+
@@ -2855,7 +2846,7 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
   code = '\n  getCommand();\n'+ 
 		 '  if (ReceiveData.indexOf("?")==0) {\n'+
          '    ExecuteCommand();\n'+
-         '  }\n'+ statements_loop +'\n';
+         '  }\n';
   return code;
 };
 
