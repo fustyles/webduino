@@ -79,7 +79,7 @@ function registerWorkspaceInsertBlockFromFile() {
 						block = Blockly.getMainWorkspace().getBlockById(id);
 						block.initSvg();
 						a.workspace.render();
-						block.moveBy(100,100);
+						block.moveBy(100,20);
 					};
 					fr.readAsText(file);
 				}
