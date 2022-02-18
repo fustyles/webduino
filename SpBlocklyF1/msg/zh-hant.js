@@ -2593,3 +2593,6 @@ Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "置放來源積木 [子�
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT_NAME"] = ["","","","","","","","","",""];
 
 Blockly.Msg["DISABLED_TOPCHECK"] = "停用置頂積木檢查";
+
+Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "匯出單一積木至檔案";
+Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "開啟單一積木檔案插入至工作區";
