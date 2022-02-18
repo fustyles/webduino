@@ -8,8 +8,8 @@ https://www.facebook.com/francefu/
 
 */
 
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "Export a block to file";
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "Insert a block into workspace from file";
+Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "Export selected block to local file";
+Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "Insert a block into workspace from local file";
 
 function registerWorkspaceBlockExportFile() {
   if (Blockly.ContextMenuRegistry.registry.getItem('workspace_block_export_file')) {
