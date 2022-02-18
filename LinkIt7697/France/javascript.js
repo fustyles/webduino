@@ -2779,7 +2779,12 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'    }\n'+
 			'  }\n';		
 			
-    code = 'getRequest();\n';
+	if (Blockly.Arduino.loops_) {
+		Blockly.Arduino.loops_["getRequest"] = 'getRequest();';
+		code = '';
+	}
+	else
+		code = 'getRequest();\n';
     return code;
 };
 

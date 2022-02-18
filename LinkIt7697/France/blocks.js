@@ -5267,6 +5267,7 @@ Blockly.Blocks['esp32_cam_googledrive'] = {
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(200);
+	this.setHelpUrl("https://github.com/adamvr/arduino-base64");
   }
 };
 
