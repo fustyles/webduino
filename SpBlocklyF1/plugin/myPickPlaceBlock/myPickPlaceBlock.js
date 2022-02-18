@@ -328,7 +328,8 @@ function getSourceBlock() {
 		block = Blockly.Xml.blockToDom(block, true);
 		block = Blockly.Xml.textToDom('<xml>' + Blockly.Xml.domToText(block).replace(/(?:\r\n|\r|\n|\t)/g, "") + '</xml>');
 		var id = Blockly.Xml.appendDomToWorkspace(block, Blockly.getMainWorkspace());
-		return Blockly.getMainWorkspace().getBlockById(id);
+		block = Blockly.getMainWorkspace().getBlockById(id);
+		return block;
 	}
 	else
 		return Blockly.myPickPlaceBlock.Block;
