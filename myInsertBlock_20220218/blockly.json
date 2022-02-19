@@ -1,9 +1,0 @@
-{
-  "types": [],
-  "scripts": [
-  ],
-  "dependencies": [
-    "myInsertBlock.js"    
-  ],
-  "blocksMsg": "blockly/msg/blocks"
-}
