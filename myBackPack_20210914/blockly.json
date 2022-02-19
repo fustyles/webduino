@@ -3,8 +3,7 @@
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
-    "blockly/javascript.js",
-    "myInsertBlock.js"
+    "blockly/javascript.js"
   ],
   "dependencies": [
   ],
