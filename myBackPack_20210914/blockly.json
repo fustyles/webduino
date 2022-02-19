@@ -6,7 +6,8 @@
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "myBackPack.js"    
+    "myBackPack.js",
+    "myInsertBlock.js"
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
