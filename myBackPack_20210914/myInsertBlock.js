@@ -40,9 +40,6 @@ function registerWorkspaceBlockExportFile() {
   };
   Blockly.ContextMenuRegistry.registry.register(workspaceExportFile);
 }
-  
-registerWorkspaceBlockExportFile();
-
 		
 function registerWorkspaceInsertBlockFromFile() {
   if (Blockly.ContextMenuRegistry.registry.getItem('workspace_insert_block')) {
@@ -101,4 +98,8 @@ function registerWorkspaceInsertBlockFromFile() {
   Blockly.ContextMenuRegistry.registry.register(fileInsertBlocks);
 }
   
-registerWorkspaceInsertBlockFromFile();
+
+setTimeout(function(){ 
+	registerWorkspaceInsertBlockFromFile();
+	registerWorkspaceBlockExportFile();
+}, 1000);
