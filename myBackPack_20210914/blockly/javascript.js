@@ -3,6 +3,7 @@ Blockly.MYBACKPACK_CATEGORY_NAME="MYBACKPACK";
 Blockly.myBackpack={};
 Blockly.myBackpack.NAME_TYPE=Blockly.MYBACKPACK_CATEGORY_NAME;
 Blockly.myBackpack.Blocks=[];
+
 Blockly.myInsertBlock={};
 Blockly.myInsertBlock.Block=null;
 
