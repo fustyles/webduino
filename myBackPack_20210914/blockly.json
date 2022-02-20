@@ -1,6 +1,6 @@
 {
   "types": [],
-  "category": "catPlus",
+  "category": "catBackPack",
   "scripts": [
     "blockly/blocks.js",
     "blockly/javascript.js"
