@@ -3,6 +3,7 @@ Blockly.MYBACKPACK_CATEGORY_NAME="MYBACKPACK";
 Blockly.myBackpack={};
 Blockly.myBackpack.NAME_TYPE=Blockly.MYBACKPACK_CATEGORY_NAME;
 Blockly.myBackpack.Blocks=[];
+
 Blockly.mySelectedBlock={};
 Blockly.mySelectedBlock.Block=null;
 
@@ -29,7 +30,7 @@ function registerMyBackpack(){
 		g[c];e=Blockly.createSvgElement("rect",{"fill-opacity":0},null);this.workspace_.getCanvas().insertBefore(e,d.getSvgRoot());d.flyoutRect_=e;this.buttons_[c]=e;this.autoClose?this.listeners_.push(Blockly.bindEvent_(h,"mousedown",null,this.createBlockFunc_(d))):this.listeners_.push(Blockly.bindEvent_(h,"mousedown",null,this.blockMouseDown_(d)));this.listeners_.push(Blockly.bindEvent_(h,"mouseover",d,d.addSelect));this.listeners_.push(Blockly.bindEvent_(h,"mouseout",d,d.removeSelect));this.listeners_.push(Blockly.bindEvent_(e,
 		"mousedown",null,this.createBlockFunc_(d)));this.listeners_.push(Blockly.bindEvent_(e,"mouseover",d,d.addSelect));this.listeners_.push(Blockly.bindEvent_(e,"mouseout",d,d.removeSelect))}this.listeners_.push(Blockly.bindEvent_(this.svgBackground_,"mouseover",this,function(a){a=this.workspace_.getTopBlocks(!1);for(var b=0,c;c=a[b];b++)c.removeSelect()}));this.width_=0;this.reflow();this.filterForCapacity_();Blockly.fireUiEventNow(window,"resize");this.reflowWrapper_=this.reflow.bind(this);this.workspace_.addChangeListener(this.reflowWrapper_)};
 			
-			
+		//Workspace Context Menu
 		Blockly.WorkspaceSvg.prototype.showContextMenu_=function(a){function b(a){if(a.isDeletable())m=m.concat(a.getDescendants());else{a=a.getChildren();for(var c=0;c<a.length;c++)b(a[c])}}function c(){Blockly.Events.setGroup(f);var a=m.shift();a&&(a.workspace?(a.dispose(!1,!0),setTimeout(c,10)):c());Blockly.Events.setGroup(!1)}if(!this.options.readOnly&&!this.isFlyout){var d=[],e=this.getTopBlocks(!0),f=Blockly.genUid();
 		
 			g={};
@@ -69,11 +70,10 @@ function registerMyBackpack(){
 				var result = confirm(Blockly.Msg.MYBACKPACK_IMPORT_WORKSPACE_TITLE);
 				if (result) {
 					Blockly.myBackpack.Blocks = [];
-					var t = Blockly.getMainWorkspace().getTopBlocks();
-					
-					for (var i=0;i<t.length;i++){
-						var d = Blockly.Xml.blockToDom(t[i]);
-						Blockly.myBackpack.Blocks.push(d);
+					var b = Blockly.getMainWorkspace().getTopBlocks();
+					for (var i=0;i<b.length;i++){
+						var dom = Blockly.Xml.blockToDom(b[i]);
+						Blockly.myBackpack.Blocks.push(dom);
 					}
 				}
 			}
@@ -87,8 +87,8 @@ function registerMyBackpack(){
 				var xml = '<xml xmlns="https://developers.google.com/blockly/xml">';
 				var t = Blockly.getMainWorkspace().getTopBlocks();
 				for (var i=0;i<t.length;i++){
-					var d = Blockly.Xml.blockToDom(t[i]);
-					var b = Blockly.Xml.domToText(d);
+					var dom = Blockly.Xml.blockToDom(t[i]);
+					var b = Blockly.Xml.domToText(dom);
 					xml += b;
 				}
 				xml += '</xml>';
@@ -197,6 +197,7 @@ function registerMyBackpack(){
 		};
 		
 		
+		//Block Context Menu
 		Blockly.BlockSvg.prototype.showContextMenu_=function(a){
 			if(!this.workspace.options.readOnly&&this.contextMenu){
 				Blockly.mySelectedBlock.Block=this;
