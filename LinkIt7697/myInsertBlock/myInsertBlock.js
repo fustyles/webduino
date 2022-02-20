@@ -25,7 +25,6 @@ function registerWorkspaceBlockExportFile() {
 	callback: function(a) {
 		var dom = Blockly.Xml.blockToDom(a.block,true);
 		var xml = Blockly.Xml.domToText(dom).replace(/(?:\r\n|\r|\n|\t)/g, "");
-		console.log(xml);
 		
 		var link = document.createElement('a');
 		link.download="sample.xmlone";
