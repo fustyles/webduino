@@ -6,7 +6,6 @@
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "screenshot.js"
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
