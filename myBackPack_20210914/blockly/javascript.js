@@ -11,6 +11,8 @@ Blockly.MYBACKPACK_CATEGORY_NAME="MYBACKPACK";
 Blockly.myBackpack={};
 Blockly.myBackpack.NAME_TYPE=Blockly.MYBACKPACK_CATEGORY_NAME;
 Blockly.myBackpack.Blocks=[];
+Blockly.myInsertBlock={};
+Blockly.myInsertBlock.Block=null;
 
 Blockly.myBackpack.flyoutCategory=function(a){
 	var c=[];
@@ -37,122 +39,201 @@ function registerMyBackpack(){
 			
 			
 		Blockly.WorkspaceSvg.prototype.showContextMenu_=function(a){function b(a){if(a.isDeletable())m=m.concat(a.getDescendants());else{a=a.getChildren();for(var c=0;c<a.length;c++)b(a[c])}}function c(){Blockly.Events.setGroup(f);var a=m.shift();a&&(a.workspace?(a.dispose(!1,!0),setTimeout(c,10)):c());Blockly.Events.setGroup(!1)}if(!this.options.readOnly&&!this.isFlyout){var d=[],e=this.getTopBlocks(!0),f=Blockly.genUid();
-	
-		g={};
-		g.text=Blockly.Msg.UNDO;
-		g.enabled=0<this.undoStack_.length;
-		g.callback=this.undo.bind(this,
-		!1);
-		d.push(g);	
 		
-		g={};
-		g.text=Blockly.Msg.REDO;
-		g.enabled=0<this.redoStack_.length;
-		g.callback=this.undo.bind(this,!0);
-		d.push(g);
-		
-		this.scrollbar&&(
-		g={},
-		g.text=Blockly.Msg.CLEAN_UP,
-		g.enabled=1<e.length,
-		g.callback=this.cleanUp_.bind(this),
-		d.push(g)
-		);
-		
-		if(this.options.collapse){for(var h=g=!1,k=0;k<e.length;k++)for(var l=e[k];l;)l.isCollapsed()?g=!0:h=!0,l=l.getNextBlock();var q=function(a){for(var b=0,c=0;c<e.length;c++)for(var d=e[c];d;)setTimeout(d.setCollapsed.bind(d,a),b),d=d.getNextBlock(),b+=10},h={enabled:h};
-		h.text=Blockly.Msg.COLLAPSE_ALL;h.callback=function(){q(!0)};d.push(h);g={enabled:g};g.text=Blockly.Msg.EXPAND_ALL;g.callback=function(){q(!1)};d.push(g)}for(var m=[],k=0;k<e.length;k++)b(e[k]);g={text:1==m.length?Blockly.Msg.DELETE_BLOCK:Blockly.Msg.DELETE_X_BLOCKS.replace("%1",String(m.length)),enabled:0<m.length,callback:function(){(2>m.length||window.confirm(Blockly.Msg.DELETE_ALL_BLOCKS.replace("%1",String(m.length))))&&c()}};d.push(g);
-		
-		g={};
-		g.text=MSG.exportImage;
-		g.enabled=1;
-		g.callback=function(){Blockly.downloadScreenshot(Blockly.getMainWorkspace())};
-		d.push(g);
-		
-		g={};
-		g.text=Blockly.Msg.MYBACKPACK_IMPORT_WORKSPACE;
-		g.enabled=1;
-		g.callback=function(a) {
-			var result = confirm(Blockly.Msg.MYBACKPACK_IMPORT_WORKSPACE_TITLE);
-			if (result) {
-				Blockly.myBackpack.Blocks = [];
-				var t = Blockly.getMainWorkspace().getTopBlocks();
-				
-				for (var i=0;i<t.length;i++){
-					var d = Blockly.Xml.blockToDom(t[i]);
-					Blockly.myBackpack.Blocks.push(d);
+			g={};
+			g.text=Blockly.Msg.UNDO;
+			g.enabled=0<this.undoStack_.length;
+			g.callback=this.undo.bind(this,
+			!1);
+			d.push(g);	
+			
+			g={};
+			g.text=Blockly.Msg.REDO;
+			g.enabled=0<this.redoStack_.length;
+			g.callback=this.undo.bind(this,!0);
+			d.push(g);
+			
+			this.scrollbar&&(
+			g={},
+			g.text=Blockly.Msg.CLEAN_UP,
+			g.enabled=1<e.length,
+			g.callback=this.cleanUp_.bind(this),
+			d.push(g)
+			);
+			
+			if(this.options.collapse){for(var h=g=!1,k=0;k<e.length;k++)for(var l=e[k];l;)l.isCollapsed()?g=!0:h=!0,l=l.getNextBlock();var q=function(a){for(var b=0,c=0;c<e.length;c++)for(var d=e[c];d;)setTimeout(d.setCollapsed.bind(d,a),b),d=d.getNextBlock(),b+=10},h={enabled:h};
+			h.text=Blockly.Msg.COLLAPSE_ALL;h.callback=function(){q(!0)};d.push(h);g={enabled:g};g.text=Blockly.Msg.EXPAND_ALL;g.callback=function(){q(!1)};d.push(g)}for(var m=[],k=0;k<e.length;k++)b(e[k]);g={text:1==m.length?Blockly.Msg.DELETE_BLOCK:Blockly.Msg.DELETE_X_BLOCKS.replace("%1",String(m.length)),enabled:0<m.length,callback:function(){(2>m.length||window.confirm(Blockly.Msg.DELETE_ALL_BLOCKS.replace("%1",String(m.length))))&&c()}};d.push(g);
+			
+			g={};
+			g.text=MSG.exportImage;
+			g.enabled=1;
+			g.callback=function(){Blockly.downloadScreenshot(Blockly.getMainWorkspace())};
+			d.push(g);
+			
+			g={};
+			g.text=Blockly.Msg.MYBACKPACK_IMPORT_WORKSPACE;
+			g.enabled=1;
+			g.callback=function(a) {
+				var result = confirm(Blockly.Msg.MYBACKPACK_IMPORT_WORKSPACE_TITLE);
+				if (result) {
+					Blockly.myBackpack.Blocks = [];
+					var t = Blockly.getMainWorkspace().getTopBlocks();
+					
+					for (var i=0;i<t.length;i++){
+						var d = Blockly.Xml.blockToDom(t[i]);
+						Blockly.myBackpack.Blocks.push(d);
+					}
 				}
 			}
-		}
-		d.push(g);	
-		
-		g={};
-		g.text=Blockly.Msg.MYBACKPACK_WORKSPACE_EXPORT_FILE;
-		g.enabled=1;
-		g.callback=function(a) {
-			var xml = '<xml xmlns="https://developers.google.com/blockly/xml">';
-			var t = Blockly.getMainWorkspace().getTopBlocks();
-			for (var i=0;i<t.length;i++){
-				var d = Blockly.Xml.blockToDom(t[i]);
-				var b = Blockly.Xml.domToText(d);
-				xml += b;
-			}
-			xml += '</xml>';
+			d.push(g);	
 			
-			var link = document.createElement('a');
-			link.download="backpack.xmlbp";
-			link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
-			document.body.appendChild(link);
-			link.click();
-			link.remove();	
-		}
-		d.push(g);
-
-		g={};
-		g.text=Blockly.Msg.MYBACKPACK_IMPORT_FILE;
-		g.enabled=1;
-		g.callback=function(a) {
-			var e = document.getElementById("fileImportBlocksToMyBackpack");
-			if (e) {
-				e.click();
-				return;
-			}
-			
-			var input=document.createElement('input');
-			input.type="file";
-			input.id="fileImportBlocksToMyBackpack";
-			input.style.display = "none";
-			input.accept=".xmlbp";
-			input.onchange = function(element) {
-				try {	
-					var file = this.files[0];
-					if (file) {
-						var fr = new FileReader();           
-						fr.onload = function (event) {
-							Blockly.myBackpack.Blocks = [];
-							var blocks = Blockly.Xml.textToDom(event.target.result);
-							var child = blocks.childNodes;
-							Blockly.myBackpack.Blocks=[];
-							for (var i=0;i<child.length;i++){
-								if (child[i].nodeName!="#text") {
-									Blockly.myBackpack.Blocks.push(child[i]);
-								}
-							}
-						};
-						fr.readAsText(file);
-					}
-				} catch (e) {
-					alert(e);
-				}	  
-			}
-
-			document.body.appendChild(input);
-			setTimeout(function(){
-				input.click();
-			},500);	
-		}
-		d.push(g);
+			g={};
+			g.text=Blockly.Msg.MYBACKPACK_WORKSPACE_EXPORT_FILE;
+			g.enabled=1;
+			g.callback=function(a) {
+				var xml = '<xml xmlns="https://developers.google.com/blockly/xml">';
+				var t = Blockly.getMainWorkspace().getTopBlocks();
+				for (var i=0;i<t.length;i++){
+					var d = Blockly.Xml.blockToDom(t[i]);
+					var b = Blockly.Xml.domToText(d);
+					xml += b;
+				}
+				xml += '</xml>';
 				
-		Blockly.ContextMenu.show(a,d,this.RTL)}};
+				var link = document.createElement('a');
+				link.download="backpack.xmlbp";
+				link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
+				document.body.appendChild(link);
+				link.click();
+				link.remove();	
+			}
+			d.push(g);
+
+			g={};
+			g.text=Blockly.Msg.MYBACKPACK_IMPORT_FILE;
+			g.enabled=1;
+			g.callback=function(a) {
+				var e = document.getElementById("fileImportBlocksToMyBackpack");
+				if (e) {
+					e.click();
+					return;
+				}
+				
+				var input=document.createElement('input');
+				input.type="file";
+				input.id="fileImportBlocksToMyBackpack";
+				input.style.display = "none";
+				input.accept=".xmlbp";
+				input.onchange = function(element) {
+					try {	
+						var file = this.files[0];
+						if (file) {
+							var fr = new FileReader();           
+							fr.onload = function (event) {
+								Blockly.myBackpack.Blocks = [];
+								var blocks = Blockly.Xml.textToDom(event.target.result);
+								var child = blocks.childNodes;
+								Blockly.myBackpack.Blocks=[];
+								for (var i=0;i<child.length;i++){
+									if (child[i].nodeName!="#text") {
+										Blockly.myBackpack.Blocks.push(child[i]);
+									}
+								}
+							};
+							fr.readAsText(file);
+						}
+					} catch (e) {
+						alert(e);
+					}	  
+				}
+
+				document.body.appendChild(input);
+				setTimeout(function(){
+					input.click();
+				},500);	
+			}
+			d.push(g);
+			
+			
+			g={};
+			g.text=Blockly.Msg.INSERTBLOCKS_WORKSPACE_BLOCK_INSERT;
+			g.enabled=1;
+			g.callback=function(a) {
+				var e = document.getElementById("workspace_insert_block");
+				if (e) {
+					e.click();
+					return;
+				}
+				
+				var input=document.createElement('input');
+				input.type="file";
+				input.id="fileInsertBlocks";
+				input.style.display = "none";
+				input.accept=".xmlone";
+				input.onchange = function(element) {
+					try {	
+						var file = this.files[0];
+						if (file) {
+							var fr = new FileReader();           
+							fr.onload = function (event) {
+								var block = Blockly.Xml.textToDom('<xml>' + event.target.result.replace(/(?:\r\n|\r|\n|\t)/g, "") + '</xml>');
+								var id = Blockly.Xml.appendDomToWorkspace(block, Blockly.getMainWorkspace());
+								block = Blockly.getMainWorkspace().getBlockById(id);
+								block.initSvg();
+								Blockly.getMainWorkspace().render();
+								block.moveBy(100,30);
+							};
+							fr.readAsText(file);
+						}
+					} catch (e) {
+						alert(e);
+					}	  
+				}
+
+				document.body.appendChild(input);
+				setTimeout(function(){
+					input.click();
+				},500);
+			}
+			d.push(g);	
+			
+			
+			
+			Blockly.ContextMenu.show(a,d,this.RTL)}
+		};
+		
+		
+		Blockly.BlockSvg.prototype.showContextMenu_=function(a){
+			if(!this.workspace.options.readOnly&&this.contextMenu){
+				Blockly.myInsertBlock.Block=this;
+				var b=this,c=[];if(this.isDeletable()&&this.isMovable()&&!b.isInFlyout){var d={text:Blockly.Msg.DUPLICATE_BLOCK,enabled:!0,callback:function(){Blockly.duplicate_(b)}};this.getDescendants().length>this.workspace.remainingCapacity()&&(d.enabled=!1);c.push(d);this.isEditable()&&!this.collapsed_&&this.workspace.options.comments&&(d={enabled:!goog.userAgent.IE},this.comment?(d.text=Blockly.Msg.REMOVE_COMMENT,d.callback=function(){b.setCommentText(null)}):(d.text=Blockly.Msg.ADD_COMMENT,d.callback=function(){b.setCommentText("")}),c.push(d));if(!this.collapsed_)for(d=1;d<this.inputList.length;d++)if(this.inputList[d-1].type!=Blockly.NEXT_STATEMENT&&this.inputList[d].type!=Blockly.NEXT_STATEMENT){var d={enabled:!0},e=this.getInputsInline();d.text=e?Blockly.Msg.EXTERNAL_INPUTS:Blockly.Msg.INLINE_INPUTS;d.callback=function(){b.setInputsInline(!e)};c.push(d);break}this.workspace.options.collapse&&(this.collapsed_?(d={enabled:!0},d.text=Blockly.Msg.EXPAND_BLOCK,d.callback=function(){b.setCollapsed(!1)}):(d={enabled:!0},d.text=Blockly.Msg.COLLAPSE_BLOCK,d.callback=function(){b.setCollapsed(!0)}),c.push(d));this.workspace.options.disable&&(d={text:this.disabled?Blockly.Msg.ENABLE_BLOCK:Blockly.Msg.DISABLE_BLOCK,enabled:!this.getInheritedDisabled(),callback:function(){b.setDisabled(!b.disabled)}},c.push(d));var d=this.getDescendants().length,f=this.getNextBlock();f&&(d-=f.getDescendants().length);d={text:1==d?Blockly.Msg.DELETE_BLOCK:Blockly.Msg.DELETE_X_BLOCKS.replace("%1",String(d)),enabled:!0,callback:function(){Blockly.Events.setGroup(!0);b.dispose(!0,!0);Blockly.Events.setGroup(!1)}};c.push(d)}
+				
+				d={enabled:!(goog.isFunction(this.helpUrl)?!this.helpUrl():!this.helpUrl)};
+				d.text=Blockly.Msg.HELP;
+				d.callback=function(){b.showHelp_()};
+				c.push(d);
+				
+				d={};
+				d.text=Blockly.Msg.INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT;
+				d.enabled=1;
+				d.callback=function(b) {
+					var dom = Blockly.Xml.blockToDom(Blockly.myInsertBlock.Block,true);
+					var xml = Blockly.Xml.domToText(dom).replace(/(?:\r\n|\r|\n|\t)/g, "");
+					
+					var link = document.createElement('a');
+					link.download="sample.xmlone";
+					link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
+					document.body.appendChild(link);
+					link.click();
+					link.remove();	
+				}
+				c.push(d);
+				
+				this.customContextMenu&&!b.isInFlyout&&this.customContextMenu(c);
+				Blockly.ContextMenu.show(a,c,this.RTL);
+				Blockly.ContextMenu.currentBlock=this
+			}
+		};
 	}
 	else
 		setTimeout(function(){ registerMyBackpack(); }, 100);	
@@ -268,4 +349,11 @@ Blockly.downloadScreenshot = function(workspace) {
 	a.click();
 	a.parentNode.removeChild(a);
   });
+};
+
+Blockly.Xml.domToWorkspace=function(a,b){var id=[];if(a instanceof Blockly.Workspace){var c=a;a=b;b=c;console.warn("Deprecated call to Blockly.Xml.domToWorkspace, swap the arguments.")}var d;b.RTL&&(d=b.getWidth());Blockly.Field.startCache();var c=a.childNodes.length,e=Blockly.Events.getGroup();e||Blockly.Events.setGroup(!0);for(var f=0;f<c;f++){var g=a.childNodes[f],h=g.nodeName.toLowerCase();if("block"==h||"shadow"==h){var h=Blockly.Xml.domToBlock(g,b),k=parseInt(g.getAttribute("x"),10),g=parseInt(g.getAttribute("y"),
+10);id.push(h.id);isNaN(k)||isNaN(g)||h.moveBy(b.RTL?d-k:k,g)}}e||Blockly.Events.setGroup(!1);Blockly.Field.stopCache();return id};
+
+Blockly.Xml.appendDomToWorkspace=function(a,b){
+	var c;Object.prototype.hasOwnProperty.call(b,"scale")&&(c=b.getBlocksBoundingBox());a=Blockly.Xml.domToWorkspace(a,b);if(c&&c.top!=c.bottom){var d=c.bottom;var e=b.RTL?c.right:c.left;var f=Infinity,g=-Infinity,h=Infinity;for(c=0;c<a.length;c++){var k=b.getBlockById(a[c]).getRelativeToSurfaceXY();k.y<h&&(h=k.y);k.x<f&&(f=k.x);k.x>g&&(g=k.x)}d=d-h+10;e=b.RTL?e-g:e-f;for(c=0;c<a.length;c++)b.getBlockById(a[c]).moveBy(e,d)}return a
 };
