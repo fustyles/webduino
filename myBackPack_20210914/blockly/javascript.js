@@ -36,8 +36,9 @@ function registerMyBackpack(){
 		"mousedown",null,this.createBlockFunc_(d)));this.listeners_.push(Blockly.bindEvent_(e,"mouseover",d,d.addSelect));this.listeners_.push(Blockly.bindEvent_(e,"mouseout",d,d.removeSelect))}this.listeners_.push(Blockly.bindEvent_(this.svgBackground_,"mouseover",this,function(a){a=this.workspace_.getTopBlocks(!1);for(var b=0,c;c=a[b];b++)c.removeSelect()}));this.width_=0;this.reflow();this.filterForCapacity_();Blockly.fireUiEventNow(window,"resize");this.reflowWrapper_=this.reflow.bind(this);this.workspace_.addChangeListener(this.reflowWrapper_)};
 			
 			
-		Blockly.WorkspaceSvg.prototype.showContextMenu_=function(a){function b(a){if(a.isDeletable())m=m.concat(a.getDescendants());else{a=a.getChildren();for(var c=0;c<a.length;c++)b(a[c])}}function c(){Blockly.Events.setGroup(f);var a=m.shift();a&&(a.workspace?(a.dispose(!1,!0),setTimeout(c,10)):c());Blockly.Events.setGroup(!1)}if(!this.options.readOnly&&!this.isFlyout){var d=[],e=this.getTopBlocks(!0),f=Blockly.genUid()
-		,g={};
+		Blockly.WorkspaceSvg.prototype.showContextMenu_=function(a){function b(a){if(a.isDeletable())m=m.concat(a.getDescendants());else{a=a.getChildren();for(var c=0;c<a.length;c++)b(a[c])}}function c(){Blockly.Events.setGroup(f);var a=m.shift();a&&(a.workspace?(a.dispose(!1,!0),setTimeout(c,10)):c());Blockly.Events.setGroup(!1)}if(!this.options.readOnly&&!this.isFlyout){var d=[],e=this.getTopBlocks(!0),f=Blockly.genUid();
+	
+		g={};
 		g.text=Blockly.Msg.UNDO;
 		g.enabled=0<this.undoStack_.length;
 		g.callback=this.undo.bind(this,
@@ -50,9 +51,22 @@ function registerMyBackpack(){
 		g.callback=this.undo.bind(this,!0);
 		d.push(g);
 		
-		this.scrollbar&&(g={},g.text=Blockly.Msg.CLEAN_UP,g.enabled=1<e.length,g.callback=this.cleanUp_.bind(this),d.push(g));
+		this.scrollbar&&(
+		g={},
+		g.text=Blockly.Msg.CLEAN_UP,
+		g.enabled=1<e.length,
+		g.callback=this.cleanUp_.bind(this),
+		d.push(g)
+		);
+		
 		if(this.options.collapse){for(var h=g=!1,k=0;k<e.length;k++)for(var l=e[k];l;)l.isCollapsed()?g=!0:h=!0,l=l.getNextBlock();var q=function(a){for(var b=0,c=0;c<e.length;c++)for(var d=e[c];d;)setTimeout(d.setCollapsed.bind(d,a),b),d=d.getNextBlock(),b+=10},h={enabled:h};
 		h.text=Blockly.Msg.COLLAPSE_ALL;h.callback=function(){q(!0)};d.push(h);g={enabled:g};g.text=Blockly.Msg.EXPAND_ALL;g.callback=function(){q(!1)};d.push(g)}for(var m=[],k=0;k<e.length;k++)b(e[k]);g={text:1==m.length?Blockly.Msg.DELETE_BLOCK:Blockly.Msg.DELETE_X_BLOCKS.replace("%1",String(m.length)),enabled:0<m.length,callback:function(){(2>m.length||window.confirm(Blockly.Msg.DELETE_ALL_BLOCKS.replace("%1",String(m.length))))&&c()}};d.push(g);
+		
+		g={};
+		g.text=MSG.exportImage;
+		g.enabled=1;
+		g.callback=function(){Blockly.downloadScreenshot(Blockly.getMainWorkspace())};
+		d.push(g);
 		
 		g={};
 		g.text=Blockly.Msg.MYBACKPACK_IMPORT_WORKSPACE;
@@ -143,100 +157,115 @@ function registerMyBackpack(){
 	else
 		setTimeout(function(){ registerMyBackpack(); }, 100);	
 }
+
 setTimeout(function(){ registerMyBackpack(); }, 100);
 
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "Export selected block to local file";
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "Insert a block into workspace from local file";
 
-function registerWorkspaceBlockExportFile() {
-  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_block_export_file')) {
-	return;
-  }
-  const workspaceExportFile = {
-	displayText: function(){
-		return Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"];
-	},
-	preconditionFn: function(a) {
-		return 'enabled';
-	},
-	callback: function(a) {
-		var dom = Blockly.Xml.blockToDom(a.block,true);
-		var xml = Blockly.Xml.domToText(dom).replace(/(?:\r\n|\r|\n|\t)/g, "");
-		console.log(xml);
-		
-		var link = document.createElement('a');
-		link.download="sample.xmlone";
-		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
-		document.body.appendChild(link);
-		link.click();
-		link.remove();		
-	},
-	scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-	id: 'workspace_block_export_file',
-	weight: 209,
-  };
-  Blockly.ContextMenuRegistry.registry.register(workspaceExportFile);
-}
-		
-function registerWorkspaceInsertBlockFromFile() {
-  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_insert_block')) {
-    return;
-  }
-  const fileInsertBlocks = {
-    displayText: function(){
-		return Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"];
-	},
-    preconditionFn: function(a) {
-		return 'enabled';
-    },
-    callback: function(a) {
-		var e = document.getElementById("workspace_insert_block");
-		if (e) {
-			e.click();
-			return;
-		}
-		
-		var input=document.createElement('input');
-		input.type="file";
-		input.id="fileInsertBlocks";
-		input.style.display = "none";
-		input.accept=".xmlone";
-		input.onchange = function(element) {
-			try {	
-				var file = this.files[0];
-				if (file) {
-					var fr = new FileReader();           
-					fr.onload = function (event) {
-						var dom = Blockly.Xml.textToDom(event.target.result);
-						console.log(dom);
-						block = Blockly.Xml.textToDom('<xml>' + Blockly.Xml.domToText(dom).replace(/(?:\r\n|\r|\n|\t)/g, "") + '</xml>');
-						var id = Blockly.Xml.appendDomToWorkspace(block, Blockly.getMainWorkspace());
-						block = Blockly.getMainWorkspace().getBlockById(id);
-						block.initSvg();
-						a.workspace.render();
-						block.moveBy(100,20);
-					};
-					fr.readAsText(file);
-				}
-			} catch (e) {
-				alert(e);
-			}	  
-		}
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */
 
-		document.body.appendChild(input);
-		setTimeout(function(){
-			input.click();
-		},500);
-    },
-    scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
-    id: 'workspace_insert_block',
-    weight: 210,
+/**
+ * @fileoverview Download screenshot.
+ * @author samelh@google.com (Sam El-Husseini)
+ */
+'use strict';
+
+/**
+ * Convert an SVG datauri into a PNG datauri.
+ * @param {string} data SVG datauri.
+ * @param {number} width Image width.
+ * @param {number} height Image height.
+ * @param {!Function} callback Callback.
+ */
+function svgToPng_(data, width, height, callback) {
+  var canvas = document.createElement("canvas");
+  var context = canvas.getContext("2d");
+  var img = new Image();
+
+  var pixelDensity = 2;
+  canvas.width = width * pixelDensity;
+  canvas.height = height * pixelDensity;
+  img.onload = function() {
+    context.drawImage(
+        img, 0, 0, width, height, 0, 0, canvas.width, canvas.height);
+    try {
+      var dataUri = canvas.toDataURL('image/png');
+      callback(dataUri);
+    } catch (err) {
+      console.warn('Error converting the workspace svg to a png');
+      callback('');
+    }
   };
-  Blockly.ContextMenuRegistry.registry.register(fileInsertBlocks);
+  img.src = data;
 }
+
+/**
+ * Create an SVG of the blocks on the workspace.
+ * @param {!Blockly.WorkspaceSvg} workspace The workspace.
+ * @param {!Function} callback Callback.
+ * @param {string=} customCss Custom CSS to append to the SVG.
+ */
+function workspaceToSvg_(workspace, callback, customCss) {
+
+  // Go through all text areas and set their value.
+  var textAreas = document.getElementsByTagName("textarea");
+  for (var i = 0; i < textAreas.length; i++) {
+    textAreas[i].innerHTML = textAreas[i].value;
+  }
+
+  var bBox = workspace.getBlocksBoundingBox();
+  var x = bBox.x || bBox.left;
+  var y = bBox.y || bBox.top;
+  var width = bBox.width || bBox.right - x;
+  var height = bBox.height || bBox.bottom - y;
+
+  var blockCanvas = workspace.getCanvas();
+  var clone = blockCanvas.cloneNode(true);
+  clone.removeAttribute('transform');
   
+  var svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  svg.appendChild(clone);
+  svg.setAttribute('viewBox',
+      x + ' ' + y + ' ' + width + ' ' + height);
 
-setTimeout(function(){ 
-	registerWorkspaceInsertBlockFromFile();
-	registerWorkspaceBlockExportFile();
-}, 1000);
+  svg.setAttribute('class', 'blocklySvg ' +
+    (workspace.options.renderer || 'geras') + '-renderer ' +
+    (workspace.getTheme ? workspace.getTheme().name + '-theme' : ''));
+  svg.setAttribute('width', width);
+  svg.setAttribute('height', height);
+  svg.setAttribute("style", 'background-color: transparent');
+
+  var css = [].slice.call(document.head.querySelectorAll('style'))
+      .filter(function(el) { return /\.blocklySvg/.test(el.innerText) ||
+        (el.id.indexOf('blockly-') === 0); }).map(function(el) {
+        return el.innerText; }).join('\n');
+  var style = document.createElement('style');
+  style.innerHTML = css + '\n' + customCss;
+  svg.insertBefore(style, svg.firstChild);
+
+  var svgAsXML = (new XMLSerializer).serializeToString(svg);
+  svgAsXML = svgAsXML.replace(/&nbsp/g, '&#160');
+  var data = 'data:image/svg+xml,' + encodeURIComponent(svgAsXML);
+
+  svgToPng_(data, width, height, callback);
+}
+
+/**
+ * Download a screenshot of the blocks on a Blockly workspace.
+ * @param {!Blockly.WorkspaceSvg} workspace The Blockly workspace.
+ */
+Blockly.downloadScreenshot = function(workspace) {
+  workspaceToSvg_(workspace, function(datauri) {
+    var a = document.createElement('a');
+    a.download = 'screenshot.png';
+    a.target = '_self';
+    a.href = datauri;
+	document.body.appendChild(a);
+	a.click();
+	a.parentNode.removeChild(a);
+  });
+};
