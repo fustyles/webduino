@@ -1,11 +1,3 @@
-/*
-Last Update Time : 9/14/2021 16:30 (Taiwan Standard Time)
-
-Author: ChungYi Fu, Taiwan
-https://github.com/fustyles
-https://www.facebook.com/francefu/
-*/
-
 Blockly.MYBACKPACK_CATEGORY_NAME="MYBACKPACK";
 
 Blockly.myBackpack={};
