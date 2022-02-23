@@ -479,3 +479,4 @@ Blockly.Msg.LOCATION_PATHNAME_SHOW = "相對於主機路徑(pathname)";
 Blockly.Msg.LOCATION_PORT_SHOW = "埠號(port)";
 Blockly.Msg.LOCATION_PROTOCAL_SHOW = "協議(protocol)";
 Blockly.Msg.LOCATION_SEARCH_SHOW = "?符號後面字串(search)";
+Blockly.Msg.CONSOLE_LOG = "主控台輸出";
