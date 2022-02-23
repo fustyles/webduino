@@ -200,7 +200,9 @@ function registerMyBackpack(){
 		//Block Context Menu
 		Blockly.BlockSvg.prototype.showContextMenu_=function(a){
 			if(!this.workspace.options.readOnly&&this.contextMenu){
+				
 				Blockly.mySelectedBlock.Block=this;
+				
 				var b=this,c=[];if(this.isDeletable()&&this.isMovable()&&!b.isInFlyout){var d={text:Blockly.Msg.DUPLICATE_BLOCK,enabled:!0,callback:function(){Blockly.duplicate_(b)}};this.getDescendants().length>this.workspace.remainingCapacity()&&(d.enabled=!1);c.push(d);this.isEditable()&&!this.collapsed_&&this.workspace.options.comments&&(d={enabled:!goog.userAgent.IE},this.comment?(d.text=Blockly.Msg.REMOVE_COMMENT,d.callback=function(){b.setCommentText(null)}):(d.text=Blockly.Msg.ADD_COMMENT,d.callback=function(){b.setCommentText("")}),c.push(d));if(!this.collapsed_)for(d=1;d<this.inputList.length;d++)if(this.inputList[d-1].type!=Blockly.NEXT_STATEMENT&&this.inputList[d].type!=Blockly.NEXT_STATEMENT){var d={enabled:!0},e=this.getInputsInline();d.text=e?Blockly.Msg.EXTERNAL_INPUTS:Blockly.Msg.INLINE_INPUTS;d.callback=function(){b.setInputsInline(!e)};c.push(d);break}this.workspace.options.collapse&&(this.collapsed_?(d={enabled:!0},d.text=Blockly.Msg.EXPAND_BLOCK,d.callback=function(){b.setCollapsed(!1)}):(d={enabled:!0},d.text=Blockly.Msg.COLLAPSE_BLOCK,d.callback=function(){b.setCollapsed(!0)}),c.push(d));this.workspace.options.disable&&(d={text:this.disabled?Blockly.Msg.ENABLE_BLOCK:Blockly.Msg.DISABLE_BLOCK,enabled:!this.getInheritedDisabled(),callback:function(){b.setDisabled(!b.disabled)}},c.push(d));var d=this.getDescendants().length,f=this.getNextBlock();f&&(d-=f.getDescendants().length);d={text:1==d?Blockly.Msg.DELETE_BLOCK:Blockly.Msg.DELETE_X_BLOCKS.replace("%1",String(d)),enabled:!0,callback:function(){Blockly.Events.setGroup(!0);b.dispose(!0,!0);Blockly.Events.setGroup(!1)}};c.push(d)}
 				
 				d={enabled:!(goog.isFunction(this.helpUrl)?!this.helpUrl():!this.helpUrl)};
