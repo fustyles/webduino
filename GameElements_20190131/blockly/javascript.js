@@ -1949,3 +1949,9 @@ Blockly.JavaScript['location'] = function (block) {
 	var code = 'window.location.' + value_property;
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['console_log'] = function (block) {
+  var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'console.log(' + value_text + ');\n';
+  return code;
+};
