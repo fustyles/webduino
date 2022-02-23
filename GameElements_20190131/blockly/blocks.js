@@ -4735,3 +4735,16 @@ Blockly.Blocks['location'] = {
     this.setHelpUrl("https://developer.mozilla.org/zh-TW/docs/Web/API/Window/location");
   }  
 };
+
+Blockly.Blocks['console_log'] = {
+  init: function() {	
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.CONSOLE_LOG);
+  this.appendValueInput("text_")
+      .setCheck(null);  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(110);  
+  }
+};
