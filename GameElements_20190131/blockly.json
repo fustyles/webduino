@@ -5,7 +5,7 @@
 			"canvas_create","canvas_set","canvas_get","canvas_line","canvas_rect","canvas_arc","canvas_img_url","canvas_img","canvas_text","canvas_quadraticcurve","canvas_beziercurve","canvas_clearrect","canvas_clear","canvas_delete","canvas_onclick_do","canvas_onclick_get","canvas_getcolor","canvas_capturevideo","canvas_getimagedata","canvas_setimagedata",
 			"image_create","image_set","image_get","image_delete","image_collision","image_boundary","image_boundary_collision","image_boundary_collision_do","image_sys_get","image_onclick_listener","image_onclick_do","image_onclick_get","image_move","image_resize","image_onclick_dom","image_onload_dom",
 			"mouse_coordinate_get","document_timer","document_timer_once","document_timer_stop","text_to_number","loop_break","loop_continue","function_return","time_delay","move_to_mouse","move_to_coordinate","rotatez_degrees","rotate_vertical_flip","rotate_horizontal_flip","console_log",
-			"button_create","button_set","button_get","button_delete","button_onclick_do",
+			"button_create","button_set","button_get","button_delete","button_onclick_do","button_ouput_file_text",
 			"colorpicker_create","colorpicker_set","colorpicker_get","colorpicker_delete","colorpicker_onchange_do",
 			"select_create","select_set","select_get","select_delete","select_onchange_do",
 			"range_create","range_set","range_get","range_delete","range_onchange_do",

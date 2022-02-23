@@ -1955,3 +1955,13 @@ Blockly.JavaScript['console_log'] = function (block) {
   var code = 'console.log(' + value_text + ');\n';
   return code;
 };
+
+Blockly.JavaScript['button_ouput_file_text'] = function (block) {
+  var value_id = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  if ((value_id.indexOf("'")==0)&&(value_id.lastIndexOf("'")==value_id.length-1))
+    value_id = value_id.substring(1,value_id.length-1);
+  var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  var code = 'async function gamebutton_'+value_id+'_onclick (event) {\noutputfile_text(' + value_text + ');\n};\ndocument.getElementById("gamebutton_'+value_id+'").addEventListener("click", gamebutton_'+value_id+'_onclick, true);\n';
+  return code;
+};

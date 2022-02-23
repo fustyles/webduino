@@ -3796,6 +3796,20 @@ function HextoRgb(color) {
 	  return '<code>' + input_text + '</code>';
   }
   
+  function outputfile_text(input_text) {
+	var text = input_text.replace(/<br>/g,"\n");
+	text = text.replace(/\\n/g,"\n");
+	text = text.replace(/<br\/>/g,"\n");
+	console.log(text);
+	
+	var link = document.createElement('a');
+	link.download="data.txt";
+	link.href="data:application/octet-stream;utf-8," + encodeURIComponent(text);
+	document.body.appendChild(link);
+	link.click();
+	link.remove();	
+  }
+  
 
   window.table_create = table_create;
   window.table_set = table_set;
@@ -3954,5 +3968,6 @@ function HextoRgb(color) {
   window.fontEm = fontEm;
   window.fontStrong = fontStrong;
   window.fontCode = fontCode;
+  window.outputfile_text = outputfile_text;  
   
 }(window, window.document));

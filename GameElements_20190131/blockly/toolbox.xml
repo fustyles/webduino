@@ -673,7 +673,19 @@
         <field name="TEXT"></field>
       </block>
     </value>         
-  </block>   
+  </block>
+  <block type="button_ouput_file_text"> 
+	<value name="id_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>  
+	<value name="text_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>	
+  </block>     
   
   </category>
   <category id="catGameElements_sub4" colour="120"> 
@@ -2093,6 +2105,13 @@
       </block>
     </value>      
   </block>
+  <block type="canvas_onclick_do">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+  </block>     
   <block type="canvas_onclick_dom">
     <value name="id_">
       <block type="text">

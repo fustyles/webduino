@@ -480,3 +480,4 @@ Blockly.Msg.LOCATION_PORT_SHOW = "port";
 Blockly.Msg.LOCATION_PROTOCAL_SHOW = "protocol";
 Blockly.Msg.LOCATION_SEARCH_SHOW = "search";
 Blockly.Msg.CONSOLE_LOG = "Console log";
+Blockly.Msg.BUTTON_OUTPUT_FILE_TEXT = "output text to file";

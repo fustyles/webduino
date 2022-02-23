@@ -480,3 +480,4 @@ Blockly.Msg.LOCATION_PORT_SHOW = "埠號(port)";
 Blockly.Msg.LOCATION_PROTOCAL_SHOW = "協議(protocol)";
 Blockly.Msg.LOCATION_SEARCH_SHOW = "?符號後面字串(search)";
 Blockly.Msg.CONSOLE_LOG = "主控台輸出";
+Blockly.Msg.BUTTON_OUTPUT_FILE_TEXT = "輸出文字至檔案";

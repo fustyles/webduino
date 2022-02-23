@@ -4748,3 +4748,19 @@ Blockly.Blocks['console_log'] = {
   this.setColour(110);  
   }
 };
+
+Blockly.Blocks['button_ouput_file_text'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.BUTTON_ID);  	  
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.BUTTON_OUTPUT_FILE_TEXT);
+  this.appendValueInput("text_")
+      .setCheck(null);  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(110);  
+  }
+};
