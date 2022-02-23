@@ -5396,17 +5396,6 @@
 		  </block>
 		</value>      
 		</block>
-		<block type="image_onclick_listener" id="_u]I^KFlA[UgTzFj#]rD" x="10" y="22">
-		<statement name="do_">
-		  <block type="canvas_onclick_do" id=":9%fzFFPrN)HQ7gF9WON">
-			<value name="id_">
-			  <block type="text" id="OF;J;$t!QY,awlXqB^V{">
-				<field name="TEXT"></field>
-			  </block>
-			</value>
-		  </block>
-		</statement>
-		</block>
 		<block type="canvas_onclick_dom">
 		<value name="id_">
 		  <block type="text">
