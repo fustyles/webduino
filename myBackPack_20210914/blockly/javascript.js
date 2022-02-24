@@ -65,7 +65,7 @@ function registerMyBackpack(){
 			h.text=Blockly.Msg.COLLAPSE_ALL;h.callback=function(){q(!0)};d.push(h);g={enabled:g};g.text=Blockly.Msg.EXPAND_ALL;g.callback=function(){q(!1)};d.push(g)}for(var m=[],k=0;k<e.length;k++)b(e[k]);g={text:1==m.length?Blockly.Msg.DELETE_BLOCK:Blockly.Msg.DELETE_X_BLOCKS.replace("%1",String(m.length)),enabled:0<m.length,callback:function(){(2>m.length||window.confirm(Blockly.Msg.DELETE_ALL_BLOCKS.replace("%1",String(m.length))))&&c()}};d.push(g);
 			
 			g={};
-			g.text=MSG.exportImage;
+			g.text=Blockly.Msg.EXPORTIMAGE;
 			g.enabled=1;
 			g.callback=function(){Blockly.downloadScreenshot(Blockly.getMainWorkspace())};
 			d.push(g);

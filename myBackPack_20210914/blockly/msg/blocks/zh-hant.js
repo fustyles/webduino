@@ -10,3 +10,4 @@ Blockly.Msg.MYBACKPACK_MYBACKPACK_EXPORT_FILE = "匯出所有暫存積木至暫�
 Blockly.Msg.MYBACKPACK_TITLE = "暫存積木";
 Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "匯出單一積木至檔案";
 Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "開啟單一積木檔案插入至工作區";
+Blockly.Msg.EXPORTIMAGE = "下載圖片";

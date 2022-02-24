@@ -10,3 +10,4 @@ Blockly.Msg.MYBACKPACK_MYBACKPACK_EXPORT_FILE = "Export all blocks to backpack f
 Blockly.Msg.MYBACKPACK_TITLE = "My backpack";
 Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "Export selected block to local file";
 Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "Insert a block into workspace from local file";
+Blockly.MSG.EXPORTIMAGE = "Download Image";
