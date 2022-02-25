@@ -1098,7 +1098,17 @@ document.addEventListener('DOMContentLoaded', function() {
 				customBlocksPath+="/";
 			addCustomRemoteBlocks(customBlocksPath);
 		}
-	}		
+	}
+	
+	//Double Click關閉彈出積木選單
+	var blocklyWorkspace = document.getElementsByClassName("blocklyFlyout");
+	for (var f=0;f<blocklyWorkspace.length;f++) {
+		console.log(blocklyWorkspace[f]);
+		blocklyWorkspace[f].addEventListener('dblclick', function(){ 
+			var toolbox = Blockly.getMainWorkspace().toolbox_;
+			toolbox.clearSelection();
+		});
+	}	
 });	
 
 //切換頁籤
