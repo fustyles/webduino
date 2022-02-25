@@ -1101,13 +1101,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	//Double Click關閉彈出積木選單
-	var blocklyWorkspace = document.getElementsByClassName("blocklyFlyout");
-	for (var f=0;f<blocklyWorkspace.length;f++) {
-		blocklyWorkspace[f].addEventListener('dblclick', function(){ 
-			var toolbox = Blockly.getMainWorkspace().toolbox_;
-			toolbox.clearSelection();
-		});
-	}	
+	setTimeout(function() {
+		var blocklyWorkspace = document.getElementsByClassName("blocklyFlyout");
+		for (var f=0;f<blocklyWorkspace.length;f++) {
+			blocklyWorkspace[f].addEventListener('dblclick', function(){ 
+				var toolbox = Blockly.getMainWorkspace().toolbox_;
+				toolbox.clearSelection();
+			});
+		}
+	}, 3000);
 });	
 
 //切換頁籤
