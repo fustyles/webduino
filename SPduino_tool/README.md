@@ -7,4 +7,4 @@ SPDX-License-Identifier: Apache-2.0<br><br>
 
 https://fustyles.github.io/webduino/SPduino_tool/index.html
 <br><br>
-I will keep updating the source.
+I will keep updating the source and blockly core to the latest version.
