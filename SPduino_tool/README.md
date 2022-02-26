@@ -5,6 +5,8 @@ SPDX-License-Identifier: Apache-2.0<br><br>
 @fileoverview SpBlockly (Developer tool)<br>
 @author https://github.com/fustyles<br>
 
+<br><br>
+Try it<br>
 https://fustyles.github.io/webduino/SPduino_tool/index.html
 <br><br>
 I will keep updating the source and blockly core to the latest version.
