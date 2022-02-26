@@ -825,7 +825,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		else {
 			if (typeof nw !== "undefined") {
-				nw.Shell.openExternal("http://127.0.0.1:3000/WebSerial.html")
+				nw.Shell.openExternal("http://127.0.0.1:3000/WebSerial.html")    // NW.js
 			}
 			else
 				window.open("https://fustyles.github.io/webduino/WebSerial.html")
@@ -1026,7 +1026,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		else {
 			if (typeof nw !== "undefined")
-				nw.Shell.openExternal("http://127.0.0.1:3000/WebBluetooth.html")
+				nw.Shell.openExternal("http://127.0.0.1:3000/WebBluetooth.html")    // NW.js
 			else
 				window.open("https://fustyles.github.io/webduino/WebBluetooth.html")
 		}
@@ -1196,7 +1196,7 @@ function contentZoom(content) {
 
 
 /*
-// nw.js
+// NW.js
 
 var http = require('http');
 var fs = require('fs');
