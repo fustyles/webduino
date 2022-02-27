@@ -11,7 +11,7 @@ Blockly.Blocks['fu_oled_PROGMEM_truetype'] = {
         .appendField("OLED");
     this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("logo"), "variable")
-		.appendField("設定為");
+		.appendField(Blockly.Msg["EZ_SET"]);
 	var ttfToXbm = function() {
 		var block = this.sourceBlock_;
         var input = block.getInputTargetBlock("PROGMEM");
@@ -122,7 +122,7 @@ Blockly.Blocks['fu_oled_PROGMEM_truetype'] = {
 	field.setOnClickHandler(ttfToXbm);		
 	this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)    
-      .appendField("大小")
+      .appendField(Blockly.Msg["EZ_SIZE"])
       .appendField(new Blockly.FieldDropdown([
 		  ["8px","8"],
 		  ["9px","9"],		  
@@ -138,15 +138,15 @@ Blockly.Blocks['fu_oled_PROGMEM_truetype'] = {
 		  ["42px","42"]					  
 	  ]), "fontsize");
     this.appendDummyInput()
-        .appendField("文字")	
+        .appendField(Blockly.Msg["EZ_TEXT"])	
         .appendField(new Blockly.FieldTextInput("hello"), "str");
     this.appendValueInput("PROGMEM")
         .setCheck("String")
-        .appendField("XBM值");		
+        .appendField(Blockly.Msg["OLED_XBM_VALUE"]);		
     this.appendDummyInput()
 	.appendField(new Blockly.FieldLabelSerializable(""), "size");
     this.appendDummyInput()
-	.appendField("開啟本機TTF字型")
+	.appendField(Blockly.Msg["OLED_FONT_TTF"])
 	.appendField(field);	  
 		
     this.setInputsInline(true);
@@ -161,10 +161,10 @@ Blockly.Blocks['fu_oled_PROGMEM_truetype'] = {
 Blockly.Blocks['fu_taiwan_aqi'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("台灣空氣品質 (ESP32)");	  
+        .appendField(Blockly.Msg["AIRQUALITY_ESP32"]);	  
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("站名")		
+        .appendField(Blockly.Msg["AIRQUALITY_SITE"])		
         .appendField(new Blockly.FieldDropdown([
           ["基隆市-基隆","基隆"],
           ["新北市-汐止","汐止"],
@@ -247,15 +247,15 @@ Blockly.Blocks['fu_taiwan_aqi'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldVariable("airAQI"), "AQI")
-        .appendField("取得AQI值");
+        .appendField(Blockly.Msg["AIRQUALITY_AQI"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldVariable("airPM25"), "PM25")
-        .appendField("取得PM2.5值");	
+        .appendField(Blockly.Msg["AIRQUALITY_PM25"]);	
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)	
         .appendField(new Blockly.FieldVariable("airSTATUS"), "STATUS")
-        .appendField("取得狀態");			
+        .appendField(Blockly.Msg["AIRQUALITY_STATE"]);			
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -270,11 +270,12 @@ Blockly.Blocks['fu_ez_digitalwrite'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField(new Blockly.FieldDropdown([["紅燈","0"], ["黃燈","1"], ["綠燈","2"]]), "led");
+		.appendField("Led")
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_RED"],"0"], [Blockly.Msg["EZ_YELLOW"],"1"], [Blockly.Msg["EZ_GREEN"],"2"]]), "Led");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("狀態")
-        .appendField(new Blockly.FieldDropdown([["開","1"], ["關","0"]]), "value");
+        .appendField(Blockly.Msg["EZ_STATE"])
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_OPEN"],"1"], [Blockly.Msg["EZ_CLOSE"],"0"]]), "value");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -289,11 +290,12 @@ Blockly.Blocks['fu_ez_digitalwrite_input'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField(new Blockly.FieldDropdown([["紅燈","0"], ["黃燈","1"], ["綠燈","2"]]), "led");
+		.appendField("Led")
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_RED"],"0"], [Blockly.Msg["EZ_YELLOW"],"1"], [Blockly.Msg["EZ_GREEN"],"2"]]), "Led");
     this.appendValueInput("value")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("數位輸出值");
+        .appendField(Blockly.Msg["EZ_DIGITALWRITE"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -307,8 +309,8 @@ Blockly.Blocks['fu_ez_digitalwrite_input_relay'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("EZ+")
-        .appendField("繼電器")
-        .appendField("數位輸出值"); 
+        .appendField(Blockly.Msg["EZ_RELAY"])
+        .appendField(Blockly.Msg["EZ_DIGITALWRITE"]); 
    this.appendValueInput("value")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT);     
@@ -326,11 +328,12 @@ Blockly.Blocks['fu_ez_analogwrite_input'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField(new Blockly.FieldDropdown([["紅燈","0"], ["黃燈","1"], ["綠燈","2"]]), "led");
+		.appendField("Led")
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_RED"],"0"], [Blockly.Msg["EZ_YELLOW"],"1"], [Blockly.Msg["EZ_GREEN"],"2"]]), "Led");
     this.appendValueInput("value")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("類比輸出值");		
+        .appendField(Blockly.Msg["EZ_ANALOGWRITE"]);		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -345,16 +348,17 @@ Blockly.Blocks['fu_ez_analogwrite_input_esp'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
+		.appendField("Led")
         .appendField("(ESP32)")		
-        .appendField(new Blockly.FieldDropdown([["紅燈","0"], ["黃燈","1"], ["綠燈","2"]]), "led");
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_RED"],"0"], [Blockly.Msg["EZ_YELLOW"],"1"], [Blockly.Msg["EZ_GREEN"],"2"]]), "Led");
     this.appendValueInput("value")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("類比輸出值");
+        .appendField(Blockly.Msg["EZ_ANALOGWRITE"]);
     this.appendValueInput("channel")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("通道");		
+        .appendField(Blockly.Msg["EZ_CHANNEL"]);		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -369,8 +373,9 @@ Blockly.Blocks['fu_ez_digitalread'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField(new Blockly.FieldDropdown([["按鈕A","0"],["按鈕B","1"]]), "button")
-        .appendField("數位輸入值");
+		.appendField(Blockly.Msg["EZ_BUTTON"])
+		.appendField(Blockly.Msg["EZ_DIGITALREAD"])
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_BUTTONA"],"0"],[Blockly.Msg["EZ_BUTTONB"],"1"]]), "button");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(80);
@@ -384,8 +389,9 @@ Blockly.Blocks['fu_ez_digitalread_button'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField(new Blockly.FieldDropdown([["按鈕A","A"],["按鈕B","B"],["按鈕A+B","AB"]]), "type")
-        .appendField("按下");
+		.appendField(Blockly.Msg["EZ_BUTTON"])
+		.appendField(Blockly.Msg["EZ_PRESS"])
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_BUTTONA"],"A"],[Blockly.Msg["EZ_BUTTONB"],"B"],[Blockly.Msg["EZ_BUTTONAB"],"AB"]]), "type");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(80);
@@ -399,8 +405,8 @@ Blockly.Blocks['fu_ez_analogread_potentiometer'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField("可變電阻")
-        .appendField("類比輸入值");         
+        .appendField(Blockly.Msg["EZ_POTENTIOMETER"])
+        .appendField(Blockly.Msg["EZ_ANALOGINREAD"]);         
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(110);
@@ -414,8 +420,8 @@ Blockly.Blocks['fu_ez_analogread_photoresistor'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField("光感測器")
-        .appendField("類比輸入值");         
+        .appendField(Blockly.Msg["EZ_PHOTORESISTER"])
+        .appendField(Blockly.Msg["EZ_ANALOGINREAD"]);         
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(110);
@@ -429,11 +435,11 @@ Blockly.Blocks['fu_ez_buzzer_tone'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField("蜂鳴器");
+        .appendField(Blockly.Msg["EZ_BUZZER"]);
     this.appendValueInput("frequency")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("頻率");		
+        .appendField(Blockly.Msg["EZ_FREQUENCY"]);		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -448,15 +454,15 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField("蜂鳴器");
+        .appendField(Blockly.Msg["EZ_BUZZER"]);
     this.appendValueInput("frequency")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("頻率");
+        .appendField(Blockly.Msg["EZ_FREQUENCY"]);
     this.appendValueInput("duration")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("持續時間(ms)");	
+        .appendField(Blockly.Msg["EZ_DELAY_MS"]);	
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -471,15 +477,15 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration_array'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField("蜂鳴器");
+        .appendField(Blockly.Msg["EZ_BUZZER"]);
     this.appendValueInput("frequency")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("頻率");
+        .appendField(Blockly.Msg["EZ_FREQUENCY"]);
     this.appendValueInput("duration")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("持續時間(ms)");	
+        .appendField(Blockly.Msg["EZ_DELAY_MS"]);	
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -494,8 +500,8 @@ Blockly.Blocks['fu_ez_buzzer_notone'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField("蜂鳴器")
-        .appendField("停止");		
+        .appendField(Blockly.Msg["EZ_BUZZER"])
+        .appendField(Blockly.Msg["EZ_STOP"]);		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -510,19 +516,19 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration_esp'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField("蜂鳴器(ESP32)");
+        .appendField(Blockly.Msg["EZ_BUZZER_ESP32"]);
     this.appendValueInput("frequency")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("頻率");
+        .appendField(Blockly.Msg["EZ_FREQUENCY"]);
     this.appendValueInput("duration")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("持續時間(ms)");
+        .appendField(Blockly.Msg["EZ_DELAY_MS"]);
     this.appendValueInput("channel")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("通道");	
+        .appendField(Blockly.Msg["EZ_CHANNEL"]);	
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -537,19 +543,19 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration_esp_array'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField("蜂鳴器(ESP32)");
+        .appendField(Blockly.Msg["EZ_BUZZER_ESP32"]);
     this.appendValueInput("frequency")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("頻率");
+        .appendField(Blockly.Msg["EZ_FREQUENCY"]);
     this.appendValueInput("duration")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("持續時間(ms)");
+        .appendField(Blockly.Msg["EZ_DELAY_MS"]);
     this.appendValueInput("channel")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("通道");		
+        .appendField(Blockly.Msg["EZ_CHANNEL"]);		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -672,8 +678,8 @@ Blockly.Blocks['fu_ez_dht11'] = {
         .appendField("DHT11");
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
-         ["相對溼度%","dht.readHumidity()"], 
-         ["溫度°C","dht.readTemperature()"]
+         [Blockly.Msg["EZ_HUMIDITY"],"dht.readHumidity()"], 
+         [Blockly.Msg["EZ_TEMPERATURE"],"dht.readTemperature()"]
          ]), "type");
     this.setInputsInline(true);
     this.setOutput(true, null);
@@ -688,12 +694,11 @@ Blockly.Blocks['fu_ez_pixel_rgb'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField("全彩LED");
+        .appendField(Blockly.Msg["EZ_RGB"]);
     this.appendDummyInput()
-        .appendField("燈號")
-        .appendField(new Blockly.FieldDropdown([["第1顆","0"], ["第2顆","1"], ["第3顆","2"]]), "no");
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_RGB1"],"0"], [Blockly.Msg["EZ_RGB2"],"1"], [Blockly.Msg["EZ_RGB3"],"2"]]), "no");
     this.appendDummyInput()
-        .appendField("顏色");		
+        .appendField(Blockly.Msg["EZ_RGB_COLOR"]);		
     this.appendValueInput("R")
         .setCheck("Number")
         .appendField("R");
@@ -717,12 +722,12 @@ Blockly.Blocks['fu_ez_pixel_picker'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField("全彩LED");
+        .appendField(Blockly.Msg["EZ_RGB"]);
     this.appendDummyInput()
-        .appendField("燈號")
-        .appendField(new Blockly.FieldDropdown([["第1顆","0"], ["第2顆","1"], ["第3顆","2"]]), "no");
+        .appendField(Blockly.Msg["EZ_RGB_NUMBER_NO"])
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_RGB1"],"0"], [Blockly.Msg["EZ_RGB2"],"1"], [Blockly.Msg["EZ_RGB3"],"2"]]), "no");
 	this.appendValueInput("colour")
-		.appendField("顏色");
+		.appendField(Blockly.Msg["EZ_RGB_COLOR"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -737,8 +742,8 @@ Blockly.Blocks['fu_ez_pixel_clear'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField("全彩LED")
-        .appendField("清除亮燈");
+        .appendField(Blockly.Msg["EZ_RGB"])
+        .appendField(Blockly.Msg["EZ_RGB_CLEAR"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -751,9 +756,10 @@ Blockly.Blocks['fu_ez_pixel_clear'] = {
 Blockly.Blocks['fu_ez_pixel_brightness'] = {
 	init:function(){
 		this.appendDummyInput()
-			.appendField("EZ+ 全彩LED");
+			.appendField("EZ+")
+			.appendField(Blockly.Msg["EZ_RGB"]);
 		this.appendValueInput("brightness")
-			.appendField("亮度[0-255]")
+			.appendField(Blockly.Msg["EZ_RGB_BRIGHTNESS"])
 			.setCheck("Number");
 		this.setInputsInline(true);
 		this.setPreviousStatement(true,null);
@@ -765,16 +771,17 @@ Blockly.Blocks['fu_ez_pixel_brightness'] = {
 Blockly.Blocks['fu_ez_pixel_color'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("EZ+ 全彩LED");	
+		.appendField("EZ+")
+		.appendField(Blockly.Msg["EZ_RGB"]);	
 	this.appendValueInput("L1")
 		.setCheck("String")
-        .appendField("第1顆");
+        .appendField(Blockly.Msg["EZ_RGB1"]);
 	this.appendValueInput("L2")
 		.setCheck("String")
-        .appendField("第2顆");
+        .appendField(Blockly.Msg["EZ_RGB2"]);
 	this.appendValueInput("L3")
 		.setCheck("String")
-        .appendField("第3顆");		
+        .appendField(Blockly.Msg["EZ_RGB3"]);		
 	this.setInputsInline(true);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -785,12 +792,13 @@ Blockly.Blocks['fu_ez_pixel_color'] = {
 Blockly.Blocks['fu_ez_pixel_color_n'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("EZ+ 全彩LED");
+		.appendField("EZ+")
+		.appendField(Blockly.Msg["EZ_RGB"]);
 	this.appendValueInput("num")
-		.appendField("燈號[1-3]")	
+		.appendField(Blockly.Msg["EZ_RGB_NUMBER"])	
 		.setCheck("Number");	
 	this.appendValueInput("colour")
-		.appendField("顏色");
+		.appendField(Blockly.Msg["EZ_RGB_COLOR"]);
 	this.setInputsInline(true);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -811,7 +819,7 @@ Blockly.Blocks['fu_color'] = {
 Blockly.Blocks['fu_color_random'] = {
   init: function() {	
     this.appendDummyInput()
-        .appendField("隨機顏色");
+        .appendField(Blockly.Msg["EZ_RGB_COLOR_RANDOM"]);
 	this.setInputsInline(true);
 	this.setOutput(true);
 	this.setColour(200);	
@@ -823,16 +831,16 @@ Blockly.Blocks['fu_ez_ir_receive'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
-        .appendField("紅外線接收器")
-        .appendField("讀取到訊號時執行");
+        .appendField(Blockly.Msg["EZ_IR"])
+        .appendField(Blockly.Msg["EZ_IR_GET_EXECUTE"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)	
         .appendField(new Blockly.FieldVariable("irValue"), "value")
-        .appendField("取得訊號編碼(字串)");
+        .appendField(Blockly.Msg["EZ_IR_GET_STRING"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)	
         .appendField(new Blockly.FieldVariable("irType"), "type")
-        .appendField("取得訊號協定(字串)");
+        .appendField(Blockly.Msg["EZ_IR_GET_PROTOCOL"]);
     this.appendStatementInput("execute")
         .setCheck(null);
     this.setInputsInline(false);
@@ -848,10 +856,11 @@ Blockly.Blocks['fu_oled_initial'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("OLED 初始化");
+		.appendField("OLED")
+        .appendField(Blockly.Msg["OLED_INITIAL"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)	
-        .appendField("規格")
+        .appendField(Blockly.Msg["OLED_SPECIFICATION"])
         .appendField(new Blockly.FieldDropdown([
 			["U8G2_SSD1306_128X64_NONAME_F_HW_I2C","U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);"],
 			["U8G2_NULL","U8G2_NULL u8g2(U8G2_R0);"],
@@ -1098,25 +1107,25 @@ Blockly.Blocks['fu_oled_initial'] = {
 	]), "format");		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)	
-        .appendField("預設顯示方式")
+        .appendField(Blockly.Msg["OLED_DISPLAY_MODE_DEFAULT"])
         .appendField(new Blockly.FieldDropdown([
-		["不旋轉，橫向","U8G2_R0"], 
-		["順時針旋轉90度","U8G2_R1"], 
-		["順時針旋轉180度","U8G2_R2"],
-		["順時針旋轉270度","U8G2_R3"], 
-		["不旋轉，水平鏡像","U8G2_MIRROR"], 
-		["不旋轉，重直鏡像","U8G2_MIRROR_VERTICAL"]				
+		[Blockly.Msg["OLED_ROTATE_NO_HORIZONTAL"],"U8G2_R0"], 
+		[Blockly.Msg["OLED_ROTATE_90"],"U8G2_R1"], 
+		[Blockly.Msg["OLED_ROTATE_180"],"U8G2_R2"],
+		[Blockly.Msg["OLED_ROTATE_270"],"U8G2_R3"], 
+		[Blockly.Msg["OLED_ROTATE_NO_HORIZONTAL_MIRROR"],"U8G2_MIRROR"], 
+		[Blockly.Msg["OLED_ROTATE_NO_VERTICAL_MIRROR"],"U8G2_MIRROR_VERTICAL"]				
 	]), "display");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)	
-        .appendField("UTF8(中文)")
+        .appendField(Blockly.Msg["OLED_UTF8_CHINESE"])
         .appendField(new Blockly.FieldDropdown([
-		["停用","0"], 
-		["啟用","1"]			
+		[Blockly.Msg["OLED_DISABLE"],"0"], 
+		[Blockly.Msg["OLED_ENABLE"],"1"]			
 	]), "utf8");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)	
-        .appendField("預設字型")
+        .appendField(Blockly.Msg["OLED_FONT_DEFAULT"])
         .appendField(new Blockly.FieldDropdown(opt), "font");
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
@@ -1133,7 +1142,7 @@ Blockly.Blocks['fu_oled_home'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("游標回到左上角原點");
+        .appendField(Blockly.Msg["OLED_CURSOR_HOME"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -1148,7 +1157,7 @@ Blockly.Blocks['fu_oled_setContrast'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("顯示器對比度(0-255)");
+        .appendField(Blockly.Msg["OLED_CONTRAST"]);
     this.appendValueInput("value")
         .setCheck("Number");
     this.setInputsInline(true);
@@ -1165,7 +1174,7 @@ Blockly.Blocks['fu_oled_setFont'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("設定字型");
+        .appendField(Blockly.Msg["OLED_FONT_SET"]);
     this.appendValueInput("font")
         .setCheck("String");
     this.setInputsInline(true);
@@ -1182,7 +1191,7 @@ Blockly.Blocks['fu_oled_setFont_chinese'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("設定中文字型");
+        .appendField(Blockly.Msg["OLED_FONT_SET_CHINESE"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldDropdown([
@@ -1219,7 +1228,7 @@ Blockly.Blocks['fu_oled_setFont_icon'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("設定圖示字型");
+        .appendField(Blockly.Msg["OLED_FONT_SET_IMAGE"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldDropdown([
@@ -1313,7 +1322,7 @@ Blockly.Blocks['fu_oled_setFont_all'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("設定字型");
+        .appendField(Blockly.Msg["OLED_FONT_SET"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldDropdown(opt), "font");
@@ -1330,14 +1339,15 @@ Blockly.Blocks['fu_oled_setFontDirection'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("OLED 字型繪製方向");		
+		.appendField("OLED")
+        .appendField(Blockly.Msg["OLED_FONT_DRAW_DIRECTION"]);		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldDropdown([
-		["顯示從左到右","0"], 
-		["顯示從上到下","1"], 
-		["顯示右到左","2"],
-		["顯示從下到上","3"]
+		[Blockly.Msg["OLED_DISPLAY_LEFT_RIGHT"],"0"], 
+		[Blockly.Msg["OLED_DISPLAY_TOP_BOTTOM"],"1"], 
+		[Blockly.Msg["OLED_DISPLAY_RIGHT_LEFT"],"2"],
+		[Blockly.Msg["OLED_DISPLAY_BOTTOM_TOP"],"3"]
 	]), "display");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -1352,12 +1362,13 @@ Blockly.Blocks['fu_oled_setDrawColor'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("OLED 繪製顏色");		
+        .appendField("OLED")
+		.appendField(Blockly.Msg["OLED_DRAW_COLOR"]);		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldDropdown([
-		["實顯","1"], 
-		["透顯","0"]			
+		[Blockly.Msg["OLED_DRAW_YANG"],"1"], 
+		[Blockly.Msg["OLED_DRAW_YIN"],"0"]			
 	]), "mode");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -1372,16 +1383,17 @@ Blockly.Blocks['fu_oled_setDisplayRotation'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("OLED 顯示方式");		
+        .appendField("OLED")
+		.appendField(Blockly.Msg["OLED_DISPLAY_MODE"]);		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldDropdown([
-		["不旋轉，橫向","U8G2_R0"], 
-		["順時針旋轉90度","U8G2_R1"], 
-		["順時針旋轉180度","U8G2_R2"],
-		["順時針旋轉270度","U8G2_R3"], 
-		["不旋轉，水平鏡像","U8G2_MIRROR"], 
-		["不旋轉，重直鏡像","U8G2_MIRROR_VERTICAL"]				
+		[Blockly.Msg["OLED_ROTATE_NO_HORIZONTAL"],"U8G2_R0"], 
+		[Blockly.Msg["OLED_ROTATE_90"],"U8G2_R1"], 
+		[Blockly.Msg["OLED_ROTATE_180"],"U8G2_R2"],
+		[Blockly.Msg["OLED_ROTATE_270"],"U8G2_R3"], 
+		[Blockly.Msg["OLED_ROTATE_NO_HORIZONTAL_MIRROR"],"U8G2_MIRROR"], 
+		[Blockly.Msg["OLED_ROTATE_NO_VERTICAL_MIRROR"],"U8G2_MIRROR_VERTICAL"]				
 	]), "display");
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
@@ -1396,12 +1408,13 @@ Blockly.Blocks['fu_oled_setPowerSave'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField("OLED 省電模式");		
+        .appendField("OLED")
+		.appendField(Blockly.Msg["OLED_SAVE_POWER"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldDropdown([
-		["停用","0"], 
-		["啟用","1"]			
+		[Blockly.Msg["OLED_DISABLE"],"0"], 
+		[Blockly.Msg["OLED_ENABLE"],"1"]			
 	]), "power");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -1417,7 +1430,7 @@ Blockly.Blocks['fu_oled_clear'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("清除畫面");
+        .appendField(Blockly.Msg["OLED_CLEAR"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -1432,7 +1445,7 @@ Blockly.Blocks['fu_oled_sendBuffer'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("開始繪製(緩衝區)");
+        .appendField(Blockly.Msg["OLED_SEND_BUFFER"]);
     this.appendStatementInput("draw")
         .setCheck(null);
     this.setInputsInline(true);
@@ -1449,7 +1462,7 @@ Blockly.Blocks['fu_oled_nextPage'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("開始繪製");
+        .appendField(Blockly.Msg["OLED_DRAW"]);
     this.appendStatementInput("draw")
         .setCheck(null);
     this.setInputsInline(true);
@@ -1466,7 +1479,7 @@ Blockly.Blocks['fu_oled_drawStr'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製文字(英數)");
+        .appendField(Blockly.Msg["OLED_DRAW_TEXT_ENGLISH_NUMBER"]);
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField("x");
@@ -1475,7 +1488,7 @@ Blockly.Blocks['fu_oled_drawStr'] = {
         .appendField("y");
     this.appendValueInput("str")
         .setCheck(null)
-        .appendField("文字");
+        .appendField(Blockly.Msg["OLED_TEXT"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -1490,10 +1503,10 @@ Blockly.Blocks['fu_oled_drawFont'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製使用本機字型");
+        .appendField(Blockly.Msg["OLED_DRAW_LOCAL_TTF"]);
   this.appendDummyInput()  
       .setAlign(Blockly.ALIGN_RIGHT)  
-      .appendField("名稱")
+      .appendField(Blockly.Msg["OLED_NAME"])
       .appendField(new Blockly.FieldDropdown([
 		["Abadi MT","Abadi MT"],
 		["Agency FB","Agency FB"],
@@ -1739,7 +1752,7 @@ Blockly.Blocks['fu_oled_drawFont'] = {
 		["Palatino Linotype","Palatino Linotype"],
 		["Papyrus","Papyrus"],
 		["Parade","Parade"],
-		["Parchment","Parchment"],
+		["Pellipsehment","Pellipsehment"],
 		["Parties MT","Parties MT"],
 		["Peignot Medium","Peignot Medium"],
 		["Pepita MT","Pepita MT"],
@@ -1831,7 +1844,7 @@ Blockly.Blocks['fu_oled_drawFont'] = {
 	  ]), "font");
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)    
-      .appendField("大小")
+      .appendField(Blockly.Msg["OLED_SIZE"])
       .appendField(new Blockly.FieldDropdown([
 		  ["8px","8"],
 		  ["9px","9"],		  
@@ -1857,7 +1870,7 @@ Blockly.Blocks['fu_oled_drawFont'] = {
     this.appendValueInput("str")
         .setAlign(Blockly.ALIGN_RIGHT)	
         .setCheck("String")
-        .appendField("文字");
+        .appendField(Blockly.Msg["OLED_TEXT"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -1872,7 +1885,7 @@ Blockly.Blocks['fu_oled_drawCustomFont'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製使用本機字型");
+        .appendField(Blockly.Msg["OLED_DRAW_LOCAL_TTF"]);
     this.appendValueInput("font")
         .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("String");
@@ -1904,7 +1917,7 @@ Blockly.Blocks['fu_oled_drawCustomFont'] = {
     this.appendValueInput("str")
         .setAlign(Blockly.ALIGN_RIGHT)	
         .setCheck("String")
-        .appendField("文字");
+        .appendField(Blockly.Msg["OLED_TEXT"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -1919,7 +1932,7 @@ Blockly.Blocks['fu_oled_setCursor'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("設定游標位置");
+        .appendField(Blockly.Msg["OLED_CURSOR_SET"]);
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField("x");
@@ -1940,7 +1953,7 @@ Blockly.Blocks['fu_oled_Print'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("游標處繪製文字");
+        .appendField(Blockly.Msg["OLED_DRAW_TEXT_CURSOR"]);
     this.appendValueInput("str")
         .setCheck(null)
     this.setInputsInline(true);
@@ -1957,7 +1970,7 @@ Blockly.Blocks['fu_oled_drawGlyph'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製圖示(Unicode字元)");
+        .appendField(Blockly.Msg["OLED_DRAW_IMAGE_UNICODE"]);
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField("x");
@@ -1966,7 +1979,7 @@ Blockly.Blocks['fu_oled_drawGlyph'] = {
         .appendField("y");
     this.appendValueInput("position")
         .setCheck("Number")
-        .appendField("位置");
+        .appendField(Blockly.Msg["OLED_POSITION"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -1981,7 +1994,7 @@ Blockly.Blocks['fu_oled_drawUTF8'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製UTF8編碼字串");
+        .appendField(Blockly.Msg["OLED_DRAW_TEXT_UTF8"]);
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField("x");
@@ -1990,7 +2003,7 @@ Blockly.Blocks['fu_oled_drawUTF8'] = {
         .appendField("y");
     this.appendValueInput("str")
         .setCheck(null)
-        .appendField("字串");
+        .appendField(Blockly.Msg["OLED_STRING"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -2010,7 +2023,7 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
         .appendField("OLED");
     this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("logo"), "variable")
-		.appendField("設定為");		
+		.appendField(Blockly.Msg["OLED_SET"]);		
 	var imageToXbm = function() {
 		var block = this.sourceBlock_;
         var input = block.getInputTargetBlock("PROGMEM");
@@ -2079,13 +2092,13 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
     };
     this.appendValueInput("PROGMEM")
         .setCheck("String")
-        .appendField("XBM值");
+        .appendField(Blockly.Msg["OLED_XBM"]);
 		
 	var field = new Blockly.FieldImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAADyUlEQVRIieXVS0xcVRzH8e85l3nAUBCsaZHUqrDQAsWZdGekj8RXVzR10qUwJERXLtTEREPARle6Nl3AMEljGmnorlZjBNpoWzVAQoFKIRFqB9raymNGZu7ce/8uhiG8hOFRY+JvdW/yP+dz/+feew7836KyKQoGg7k+n++w1vopx3GKtNZ/ish4LBa73NHRMb/jcENDQ7lt281KqRNA3holfwGdjuM0RyKRsR2BQ6HQ+yLyCeDClYvaW4EqfBI8+ZCMITNRZOoGpBIAJvBhOBz+bFtwfX39GaCRHA/6wHEoq0EZ7lV1YpvIaDcyfAmsJMCZcDj8VjawsVanwAfkFaFr3kGVVqN0ukwr8OQoHAEBlDZQu8vQJZXI5ABYiUOBQCDW19d3dVMdh0KhZ0VkmByPWx99L720wO5cRcUTBnvyFEql0btxYfC+zR/zkh48cwe763OwkqbWuqK1tXV0PVgvvXEc52PArQ8cX0TLizTH9ueQsISe2xYXx1L0TFgkLOHY/hzKixamKCxFP/8agFtEmjbqeBEOBoO5SqlaXLlQVrNYUJqvuBa1uR61uRsX5sx0t9ejNteiNvsKljx7+RFweRGRk42NjWv9Bavh/Pz8GsCnSiqXfUg9t20mZp01B0/MOnSNW4v3ynCj91YC5Jmm+WJWMPA0AAtLvNVIQUl6Yq2fyRYuBlBu37Zg5d2VfgCRx7OClVIPAEjGtgWTnMtc3c8KFpFxAJmJbsvNjM/MtyEci8UuA3GZuoHY5tZU20SmhgBiwJWs4IVT5gKpBDLavSVXbn0PqXmAzvb29kRWMIBhGE1AUoYvwcydzaHTv+Pc/BbAXNiI1s2yvbq3t3fa7/cncOxXZHIAvec58BZkhcoPX4AZR0TaI5FIZFMwQH9//49+v78EK3FIJn5CKQVF+xYPimWxTWTkO5xfzmZQWylV5ff7B/r7+39dD17vPH5XRD4F3Li86R2psAQ8uyA5t3AeD2XeqQmEgTcBbyJlpaYTqdNfnz93OuuOM+nr67saCAS+VEoVY1vlMht1y70RZHIAuTcCs5PgWHHgnGEYb7S1tZ0NBAI/z5vWqYmHc+75ZOrowepqbg0P9myq46Wpq6vzAi+R3laLgYfAb8CVlV/vyyeCLXPzZpNIevJin6f5YudXLVuCN5tXTwRbZjbA/3Gpt5Oxm0PdFZVVRtJ2DguQSNlHVi77I4EX8K6KqoOupGXXZPCqF6qjo8ODvbBiA9npfHOh46PCPE+TUgqvy3igE/Hzj9JblddPnnq7trb2sX8V/c/lbwo9q8gJVNowAAAAAElFTkSuQmCC", 30, 30, { alt: "*", flipRtl: "FALSE" });
 	field.setOnClickHandler(imageToXbm);
 	
 	this.appendDummyInput()
-		.appendField(new Blockly.FieldLabelSerializable("(白底黑字)"), "size")
+		.appendField(new Blockly.FieldLabelSerializable(Blockly.Msg["OLED_WHITEBACK_BLACKWORD"]), "size")
 		.appendField(field);
 		
     this.setInputsInline(true);
@@ -2104,7 +2117,7 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
         .appendField("OLED");
 	this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("logo"), "variable")
-		.appendField("設定為");	
+		.appendField(Blockly.Msg["OLED_SET"]);	
 	this.appendDummyInput()
         .appendField("QRCODE")	
         .appendField(new Blockly.FieldDropdown([
@@ -2113,7 +2126,7 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
     var field = new Blockly.FieldTextInput();
     field.onFinishEditing_ = this.onFinishEditing;	
     this.appendDummyInput()		
-        .appendField("文字")
+        .appendField(Blockly.Msg["OLED_TEXT"])
 		.appendField(field);	
     this.appendValueInput("PROGMEM")
         .setCheck("String");	
@@ -2181,12 +2194,12 @@ Blockly.Blocks['fu_oled_PROGMEM_array'] = {
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED");
     this.appendDummyInput()
-        .appendField("陣列")	
+        .appendField(Blockly.Msg["OLED_ARRAY"])	
         .appendField(new Blockly.FieldVariable("logo"), "variable")
-	.appendField("設定為");		
+	.appendField(Blockly.Msg["OLED_SET"]);		
     this.appendValueInput("PROGMEM")
         .setCheck("Array")
-        .appendField("XBM值");
+        .appendField(Blockly.Msg["OLED_XBM"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -2201,12 +2214,12 @@ Blockly.Blocks['fu_oled_setBitmapMode'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製圖像背景顏色");
+        .appendField(Blockly.Msg["OLED_DRAW_BACKGROUND_COLOR"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldDropdown([
-		["不透明","0"], 
-		["透明","1"]		
+		[Blockly.Msg["OLED_TRANSPARENT_NO"],"0"], 
+		[Blockly.Msg["OLED_TRANSPARENT"],"1"]		
 	]), "mode");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -2222,16 +2235,16 @@ Blockly.Blocks['fu_oled_drawXBMP'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製圖像");
+        .appendField(Blockly.Msg["OLED_DRAW_IMAGE"]);
     this.appendValueInput("PROGMEM")
         .setCheck("String")
-        .appendField("XBM值");	
+        .appendField(Blockly.Msg["OLED_XBM"]);	
     this.appendValueInput("width")
         .setCheck("Number")
-        .appendField("寬度");
+        .appendField(Blockly.Msg["OLED_WIDTH"]);
     this.appendValueInput("height")
         .setCheck("Number")
-        .appendField("高度");
+        .appendField(Blockly.Msg["OLED_HEIGHT"]);
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField("x");
@@ -2252,15 +2265,15 @@ Blockly.Blocks['fu_oled_drawXBMP_PROGMEM'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製圖像");
+        .appendField(Blockly.Msg["OLED_DRAW_IMAGE"]);
     this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("logo"), "variable");		
     this.appendValueInput("width")
         .setCheck("Number")
-        .appendField("寬度");
+        .appendField(Blockly.Msg["OLED_WIDTH"]);
     this.appendValueInput("height")
         .setCheck("Number")
-        .appendField("高度");
+        .appendField(Blockly.Msg["OLED_HEIGHT"]);
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField("x");
@@ -2281,19 +2294,19 @@ Blockly.Blocks['fu_oled_drawXBMP_PROGMEM_array'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製圖像");
+        .appendField(Blockly.Msg["OLED_DRAW_IMAGE"]);
     this.appendDummyInput()
-        .appendField("陣列")	
+        .appendField(Blockly.Msg["OLED_ARRAY"])	
         .appendField(new Blockly.FieldVariable("logo"), "variable");
     this.appendValueInput("index")
         .setCheck("Number")
-        .appendField("索引");		
+        .appendField(Blockly.Msg["OLED_INDEX"]);		
     this.appendValueInput("width")
         .setCheck("Number")
-        .appendField("寬度");
+        .appendField(Blockly.Msg["OLED_WIDTH"]);
     this.appendValueInput("height")
         .setCheck("Number")
-        .appendField("高度");
+        .appendField(Blockly.Msg["OLED_HEIGHT"]);
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField("x");
@@ -2314,7 +2327,7 @@ Blockly.Blocks['fu_oled_drawPixelMap'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製像素圖");
+        .appendField(Blockly.Msg["OLED_DRAW_PIXEL_IMAGE"]);
 		
 	var block = this;
     var validator_width = function(newValue) {
@@ -2364,9 +2377,9 @@ Blockly.Blocks['fu_oled_drawPixelMap'] = {
 	}
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)	
-        .appendField("寬度")
+        .appendField(Blockly.Msg["OLED_WIDTH"])
         .appendField(new Blockly.FieldDropdown(opt, validator_width), "width")
-        .appendField("高度")
+        .appendField(Blockly.Msg["OLED_HEIGHT"])
         .appendField(new Blockly.FieldDropdown(opt, validator_height), "height");
     this.appendValueInput("x")
         .setAlign(Blockly.ALIGN_RIGHT)		
@@ -2388,19 +2401,19 @@ Blockly.Blocks['fu_oled_drawBox'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製實心方形");
+        .appendField(Blockly.Msg["OLED_DRAW_SQUARE_SOLID"]);
     this.appendValueInput("x")
         .setCheck("Number")
-        .appendField("中心：x");
+        .appendField(Blockly.Msg["OLED_CENTER_X"]);
     this.appendValueInput("y")
         .setCheck("Number")
         .appendField("y");
     this.appendValueInput("width")
         .setCheck("Number")
-        .appendField("寬度");
+        .appendField(Blockly.Msg["OLED_WIDTH"]);
     this.appendValueInput("height")
         .setCheck("Number")
-        .appendField("高度");
+        .appendField(Blockly.Msg["OLED_HEIGHT"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -2415,22 +2428,22 @@ Blockly.Blocks['fu_oled_drawRBox'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製圓角實心方形");
+        .appendField(Blockly.Msg["OLED_DRAW_SQUARE_SOLID_ROUND"]);
     this.appendValueInput("x")
         .setCheck("Number")
-        .appendField("中心：x");
+        .appendField(Blockly.Msg["OLED_CENTER_X"]);
     this.appendValueInput("y")
         .setCheck("Number")
         .appendField("y");
     this.appendValueInput("width")
         .setCheck("Number")
-        .appendField("寬度");
+        .appendField(Blockly.Msg["OLED_WIDTH"]);
     this.appendValueInput("height")
         .setCheck("Number")
-        .appendField("高度");
+        .appendField(Blockly.Msg["OLED_HEIGHT"]);
     this.appendValueInput("radius")
         .setCheck("Number")
-        .appendField("圓角半徑");		
+        .appendField(Blockly.Msg["OLED_REDIUS_ROUND"]);		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -2445,19 +2458,19 @@ Blockly.Blocks['fu_oled_drawFrame'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製空心方形");
+        .appendField(Blockly.Msg["OLED_DRAW_SQUARE_HOLLOW"]);
     this.appendValueInput("x")
         .setCheck("Number")
-        .appendField("中心：x");
+        .appendField(Blockly.Msg["OLED_CENTER_X"]);
     this.appendValueInput("y")
         .setCheck("Number")
         .appendField("y");
     this.appendValueInput("width")
         .setCheck("Number")
-        .appendField("寬度");
+        .appendField(Blockly.Msg["OLED_WIDTH"]);
     this.appendValueInput("height")
         .setCheck("Number")
-        .appendField("高度");
+        .appendField(Blockly.Msg["OLED_HEIGHT"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -2472,22 +2485,22 @@ Blockly.Blocks['fu_oled_drawRFrame'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製圓角空心方形");
+        .appendField(Blockly.Msg["OLED_DRAW_SQUARE_HOLLOW_ROUND"]);
     this.appendValueInput("x")
         .setCheck("Number")
-        .appendField("中心：x");
+        .appendField(Blockly.Msg["OLED_CENTER_X"]);
     this.appendValueInput("y")
         .setCheck("Number")
         .appendField("y");
     this.appendValueInput("width")
         .setCheck("Number")
-        .appendField("寬度");
+        .appendField(Blockly.Msg["OLED_WIDTH"]);
     this.appendValueInput("height")
         .setCheck("Number")
-        .appendField("高度");
+        .appendField(Blockly.Msg["OLED_HEIGHT"]);
     this.appendValueInput("radius")
         .setCheck("Number")
-        .appendField("圓角半徑");		
+        .appendField(Blockly.Msg["OLED_REDIUS_ROUND"]);		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -2502,24 +2515,24 @@ Blockly.Blocks['fu_oled_drawCircle'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製空心圓");
+        .appendField(Blockly.Msg["OLED_DRAW_CIRCLE_HOLLOW"]);
     this.appendValueInput("x0")
         .setCheck("Number")
-        .appendField("圓心：x");
+        .appendField(Blockly.Msg["OLED_CIRCLE_CENTER_X"]);
     this.appendValueInput("y0")
         .setCheck("Number")
         .appendField("y");
     this.appendValueInput("radius")
         .setCheck("Number")
-        .appendField("半徑");
+        .appendField(Blockly.Msg["OLED_REDIUS"]);
     this.appendDummyInput()
-        .appendField("選項")
+        .appendField(Blockly.Msg["OLED_OPTION"])
         .appendField(new Blockly.FieldDropdown([
-		["完整的圓","U8G_DRAW_ALL"], 
-		["右上圓弧","U8G2_DRAW_UPPER_RIGHT"], 
-		["左上圓弧","U8G2_DRAW_UPPER_LEFT"],
-		["左下圓弧","U8G2_DRAW_LOWER_LEFT"], 
-		["右下圓弧","U8G2_DRAW_LOWER_RIGHT"]			
+		[Blockly.Msg["OLED_CIRCLE"],"U8G_DRAW_ALL"], 
+		[Blockly.Msg["OLED_ARC_RIGHT_TOP"],"U8G2_DRAW_UPPER_RIGHT"], 
+		[Blockly.Msg["OLED_ARC_LEFT_TOP"],"U8G2_DRAW_UPPER_LEFT"],
+		[Blockly.Msg["OLED_ARC_LEFT_BOTTOM"],"U8G2_DRAW_LOWER_LEFT"], 
+		[Blockly.Msg["OLED_ARC_RIGHT_BOTTOM"],"U8G2_DRAW_LOWER_RIGHT"]			
 	]), "option");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -2535,24 +2548,24 @@ Blockly.Blocks['fu_oled_drawDisc'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製實心圓");
+        .appendField(Blockly.Msg["OLED_DRAW_CIRCLE_SOLID"]);
     this.appendValueInput("x0")
         .setCheck("Number")
-        .appendField("圓心：x");
+        .appendField(Blockly.Msg["OLED_CIRCLE_CENTER_X"]);
     this.appendValueInput("y0")
         .setCheck("Number")
         .appendField("y");
     this.appendValueInput("radius")
         .setCheck("Number")
-        .appendField("半徑");
+        .appendField(Blockly.Msg["OLED_REDIUS"]);
     this.appendDummyInput()
-        .appendField("選項")
+        .appendField(Blockly.Msg["OLED_OPTION"])
         .appendField(new Blockly.FieldDropdown([
-		["完整的圓","U8G_DRAW_ALL"], 
-		["右上圓弧","U8G2_DRAW_UPPER_RIGHT"], 
-		["左上圓弧","U8G2_DRAW_UPPER_LEFT"],
-		["左下圓弧","U8G2_DRAW_LOWER_LEFT"], 
-		["右下圓弧","U8G2_DRAW_LOWER_RIGHT"]			
+		[Blockly.Msg["OLED_CIRCLE"],"U8G_DRAW_ALL"], 
+		[Blockly.Msg["OLED_ARC_RIGHT_TOP"],"U8G2_DRAW_UPPER_RIGHT"], 
+		[Blockly.Msg["OLED_ARC_LEFT_TOP"],"U8G2_DRAW_UPPER_LEFT"],
+		[Blockly.Msg["OLED_ARC_LEFT_BOTTOM"],"U8G2_DRAW_LOWER_LEFT"], 
+		[Blockly.Msg["OLED_ARC_RIGHT_BOTTOM"],"U8G2_DRAW_LOWER_RIGHT"]			
 	]), "option");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -2568,27 +2581,27 @@ Blockly.Blocks['fu_oled_drawEllipse'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製空心橢圓");
+        .appendField(Blockly.Msg["OLED_DRAW_OVAL_HOLLOW"]);
     this.appendValueInput("x0")
         .setCheck("Number")
-        .appendField("圓心：x");
+        .appendField(Blockly.Msg["OLED_CIRCLE_CENTER_X"]);
     this.appendValueInput("y0")
         .setCheck("Number")
         .appendField("y");
     this.appendValueInput("rx")
         .setCheck("Number")
-        .appendField("水平向半徑");
+        .appendField(Blockly.Msg["OLED_REDIUS_HORIZONTAL"]);
     this.appendValueInput("ry")
         .setCheck("Number")
-        .appendField("垂直向半徑");
+        .appendField(Blockly.Msg["OLED_REDIUS_VERTICAL"]);
     this.appendDummyInput()
-        .appendField("選項")
+        .appendField(Blockly.Msg["OLED_OPTION"])
         .appendField(new Blockly.FieldDropdown([
-		["完整的圓","U8G_DRAW_ALL"], 
-		["右上圓弧","U8G2_DRAW_UPPER_RIGHT"], 
-		["左上圓弧","U8G2_DRAW_UPPER_LEFT"],
-		["左下圓弧","U8G2_DRAW_LOWER_LEFT"], 
-		["右下圓弧","U8G2_DRAW_LOWER_RIGHT"]			
+		[Blockly.Msg["OLED_CIRCLE"],"U8G_DRAW_ALL"], 
+		[Blockly.Msg["OLED_ARC_RIGHT_TOP"],"U8G2_DRAW_UPPER_RIGHT"], 
+		[Blockly.Msg["OLED_ARC_LEFT_TOP"],"U8G2_DRAW_UPPER_LEFT"],
+		[Blockly.Msg["OLED_ARC_LEFT_BOTTOM"],"U8G2_DRAW_LOWER_LEFT"], 
+		[Blockly.Msg["OLED_ARC_RIGHT_BOTTOM"],"U8G2_DRAW_LOWER_RIGHT"]			
 	]), "option");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -2604,27 +2617,27 @@ Blockly.Blocks['fu_oled_drawFilledEllipse'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製實心橢圓");
+        .appendField(Blockly.Msg["OLED_DRAW_OVAL_SOLID"]);
     this.appendValueInput("x0")
         .setCheck("Number")
-        .appendField("圓心：x");
+        .appendField(Blockly.Msg["OLED_CIRCLE_CENTER_X"]);
     this.appendValueInput("y0")
         .setCheck("Number")
         .appendField("y");
     this.appendValueInput("rx")
         .setCheck("Number")
-        .appendField("水平向半徑");
+        .appendField(Blockly.Msg["OLED_REDIUS_HORIZONTAL"]);
     this.appendValueInput("ry")
         .setCheck("Number")
-        .appendField("垂直向半徑");
+        .appendField(Blockly.Msg["OLED_REDIUS_VERTICAL"]);
     this.appendDummyInput()
-        .appendField("選項")
+        .appendField(Blockly.Msg["OLED_OPTION"])
         .appendField(new Blockly.FieldDropdown([
-		["完整的圓","U8G_DRAW_ALL"], 
-		["右上圓弧","U8G2_DRAW_UPPER_RIGHT"], 
-		["左上圓弧","U8G2_DRAW_UPPER_LEFT"],
-		["左下圓弧","U8G2_DRAW_LOWER_LEFT"], 
-		["右下圓弧","U8G2_DRAW_LOWER_RIGHT"]			
+		[Blockly.Msg["OLED_CIRCLE"],"U8G_DRAW_ALL"], 
+		[Blockly.Msg["OLED_ARC_RIGHT_TOP"],"U8G2_DRAW_UPPER_RIGHT"], 
+		[Blockly.Msg["OLED_ARC_LEFT_TOP"],"U8G2_DRAW_UPPER_LEFT"],
+		[Blockly.Msg["OLED_ARC_LEFT_BOTTOM"],"U8G2_DRAW_LOWER_LEFT"], 
+		[Blockly.Msg["OLED_ARC_RIGHT_BOTTOM"],"U8G2_DRAW_LOWER_RIGHT"]			
 	]), "option");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -2640,16 +2653,16 @@ Blockly.Blocks['fu_oled_drawHLine'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製水平線");
+        .appendField(Blockly.Msg["OLED_DRAW_LINE_HORIZONTAL"]);
     this.appendValueInput("x0")
         .setCheck("Number")
-        .appendField("起點：x");
+        .appendField(Blockly.Msg["OLED_START_X"]);
     this.appendValueInput("y0")
         .setCheck("Number")
         .appendField("y");
     this.appendValueInput("width")
         .setCheck("Number")
-        .appendField("寬度");
+        .appendField(Blockly.Msg["OLED_WIDTH"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -2664,16 +2677,16 @@ Blockly.Blocks['fu_oled_drawVLine'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製垂直線");
+        .appendField(Blockly.Msg["OLED_DRAW_LINE_VERTICAL"]);
     this.appendValueInput("x0")
         .setCheck("Number")
-        .appendField("起點：x");
+        .appendField(Blockly.Msg["OLED_START_X"]);
     this.appendValueInput("y0")
         .setCheck("Number")
         .appendField("y");
     this.appendValueInput("height")
         .setCheck("Number")
-        .appendField("高度");
+        .appendField(Blockly.Msg["OLED_HEIGHT"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -2688,16 +2701,16 @@ Blockly.Blocks['fu_oled_drawLine'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製斜直線");
+        .appendField(Blockly.Msg["OLED_DRAW_LINE_DIP"]);
     this.appendValueInput("x0")
         .setCheck("Number")
-        .appendField("起點：x");
+        .appendField(Blockly.Msg["OLED_START_X"]);
     this.appendValueInput("y0")
         .setCheck("Number")
         .appendField("y");
     this.appendValueInput("x1")
         .setCheck("Number")
-        .appendField("終點：x");
+        .appendField(Blockly.Msg["OLED_END_X"]);
     this.appendValueInput("y1")
         .setCheck("Number")
         .appendField("y");
@@ -2715,22 +2728,22 @@ Blockly.Blocks['fu_oled_drawTriangle'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製三角形");
+        .appendField(Blockly.Msg["OLED_DRAW_TRIANGLE"]);
     this.appendValueInput("x0")
         .setCheck("Number")
-        .appendField("第一點：x");
+        .appendField(Blockly.Msg["OLED_POINT1_X"]);
     this.appendValueInput("y0")
         .setCheck("Number")
         .appendField("y");
     this.appendValueInput("x1")
         .setCheck("Number")
-        .appendField("第二點：x");
+        .appendField(Blockly.Msg["OLED_POINT2_X"]);
     this.appendValueInput("y1")
         .setCheck("Number")
         .appendField("y");
     this.appendValueInput("x2")
         .setCheck("Number")
-        .appendField("第三點：x");
+        .appendField(Blockly.Msg["OLED_POINT3_X"]);
     this.appendValueInput("y2")
         .setCheck("Number")
         .appendField("y");		
@@ -2748,7 +2761,7 @@ Blockly.Blocks['fu_oled_drawPixel'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField("繪製像素點");
+        .appendField(Blockly.Msg["OLED_DRAW_PIXEL_POINT"]);
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField("x");
@@ -6555,7 +6568,7 @@ Blockly.Blocks['canvas_rect'] = {
   }
 };
 
-Blockly.Blocks['canvas_arc'] = {
+Blockly.Blocks['canvas_ellipse'] = {
   init: function() {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.CANVAS_ARC);      
@@ -7923,7 +7936,7 @@ Blockly.Blocks['element_event'] = {
 		["resize","resize"],
 		["reset","reset"],
 		["scroll","scroll"],
-		["search","search"],
+		["seellipseh","seellipseh"],
 		["seeked","seeked"],
 		["seeking","seeking"],
 		["select","select"],
@@ -8029,7 +8042,7 @@ Blockly.Blocks['element_event_stop'] = {
 		["resize","resize"],
 		["reset","reset"],
 		["scroll","scroll"],
-		["search","search"],
+		["seellipseh","seellipseh"],
 		["seeked","seeked"],
 		["seeking","seeking"],
 		["select","select"],
@@ -10638,7 +10651,7 @@ Blockly.Blocks['location'] = {
           [Blockly.Msg.LOCATION_PATHNAME_SHOW,"pathname"],    
           [Blockly.Msg.LOCATION_PORT_SHOW,"port"],
           [Blockly.Msg.LOCATION_PROTOCAL_SHOW,"protocol"],    
-          [Blockly.Msg.LOCATION_SEARCH_SHOW,"search"],
+          [Blockly.Msg.LOCATION_SEARCH_SHOW,"seellipseh"],
           [Blockly.Msg.LOCATION_HASH_SHOW,"hash"]		  
         ]), "value_property");
 	this.setInputsInline(true);
