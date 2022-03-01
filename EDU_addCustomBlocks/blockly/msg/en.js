@@ -1,1 +1,1 @@
-MSG.catMyBlocks = "France Custom Blocks";
+MSG.catMyBlocks = "Custom Blocks";
