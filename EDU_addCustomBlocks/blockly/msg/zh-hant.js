@@ -1,1 +1,1 @@
-MSG.catPlus = "自訂積木管理";
+MSG.catCustomBlocks = "自訂積木管理";
