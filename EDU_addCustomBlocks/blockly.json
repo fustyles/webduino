@@ -1,6 +1,6 @@
 {
   "types": ["addMyBlocks"],
-  "category": "catEduExtension",
+  "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
     "blockly/javascript.js"
