@@ -1,5 +1,4 @@
-<category id="catPlus">
-  <category id="catMyBlocks">
+<category id="catMyBlocks">
     <block type="addMyBlocks">
       <value name="url">
         <block type="text">
@@ -7,5 +6,4 @@
         </block>
       </value>
     </block> 
-  </category>
 </category>
