@@ -1,1 +1,1 @@
-MSG.catPlus = "Custom Blocks";
+MSG.catCustomBlocks = "Custom Blocks";
