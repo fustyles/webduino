@@ -1,4 +1,4 @@
-<category id="catSpeakmodify">
+<category id="catSpeakmodify" name="法蘭斯積木">
   <block type="speak_setting_dropdown">
     <field name="lang_"></field>
     <field name="pitch_">1</field>
