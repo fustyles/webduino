@@ -44,6 +44,7 @@ Blockly.Blocks['linebot_type'] = {
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Parameter4","p4"); 
+    this.setInputsInline(true);	  
     this.setOutput(true, null);  
     this.setColour(300);
     this.setTooltip("");
@@ -197,6 +198,7 @@ Blockly.Blocks['linenotify_type'] = {
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Parameter3","p3");
+    this.setInputsInline(true);	  
     this.setOutput(true, null);  
     this.setColour(300);
     this.setTooltip("");
