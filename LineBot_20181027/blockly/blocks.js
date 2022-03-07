@@ -15,6 +15,7 @@ Blockly.Blocks['linebot_notify'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.LINENOTIFY_KIND_SHOW);
+  this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
@@ -171,6 +172,7 @@ Blockly.Blocks['linenotify'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.LINENOTIFY_KIND_SHOW);
+  this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
@@ -267,7 +269,7 @@ Blockly.Blocks['linenotify_image'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.LINENOTIFY_SCRIPTURL);
-  this.setInputsInline(false);	  
+  this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
