@@ -20,3 +20,5 @@ Blockly.Msg.DEMO_DISPLAY = "DISPLAY";
 Blockly.Msg.DEMO_POSITION = "POSITION"; 
 Blockly.Msg.DEMO_DISABLED = "DISABLED"; 
 Blockly.Msg.DEMO_DRAGGABLE = "DRAGGABLE";
+Blockly.Msg.DEMO_CLASSNAME = "className"; 
+Blockly.Msg.DEMO_INDEX = "index";
