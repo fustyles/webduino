@@ -6,7 +6,7 @@
 
   var obj_demo;
   function createDemoText(input_name,input_index) {
-	if (document.getElementsByClassName(input_id))
+	if (document.getElementsByClassName(input_name))
 		obj_demo = document.getElementsByClassName(input_name)[input_index];
 	else if (document.getElementById(input_name)) 
 		obj_demo = document.getElementById(input_name);
