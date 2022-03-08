@@ -6,20 +6,20 @@
 
   var obj = "";
   function createDemoText(input_id) {
-	obj = document.getElementById("demo-area-01-show");
-	  
 	if (document.getElementsByClassName(input_id))
 		obj = document.getElementsByClassName(input_id)[0];
 	else if (document.getElementById(input_id)) 
 		obj = document.getElementById(input_id);
-	else if (!obj){
+	else {
+	    if (!document.getElementById("demo-area-01-show")) {
 		var div = document.createElement('div');
 		div.id = "demo-area-01-show";
 		div.style.zIndex = 999;   
 		div.style.display = 'block';
 		div.innerHTML = "123";
-		obj = div;
-		document.body.insertBefore(div, document.body.firstChild);		
+		document.body.insertBefore(div, document.body.firstChild);
+	    }
+	    obj = document.getElementById("demo-area-01-show");
 	}
   }
   
