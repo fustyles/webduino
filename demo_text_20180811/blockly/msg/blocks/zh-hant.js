@@ -1,4 +1,4 @@
-Blockly.Msg.DEMO_TEXT_ADD_SHOW = "顯示文字初始化";
+Blockly.Msg.DEMO_TEXT_ADD_SHOW = "網頁互動文字";
 Blockly.Msg.DEMO_TEXT_SHOW = "顯示文字"; 
 Blockly.Msg.DEMO_TEXT_SET_SHOW = "設定";
 Blockly.Msg.DEMO_LEFT = "靠左"; 
