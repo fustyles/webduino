@@ -1,6 +1,6 @@
 <category id="catDemoText">
   <block type="demo_add">
-    <value name="id_">
+    <value name="name_">
       <block type="text">
         <field name="TEXT">demo-area-09-btn btn-num1</field>
       </block>
