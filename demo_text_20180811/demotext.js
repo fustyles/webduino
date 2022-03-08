@@ -6,6 +6,7 @@
 
   var obj = null;
   function createDemoText(input_id) {
+	console.log(input_id);
 	if (document.getElementsByClassName(input_id))
 		obj = document.getElementsByClassName(input_id)[0];
 	else if (document.getElementById(input_id)) 
@@ -21,10 +22,11 @@
 			obj = div;
 		} 
 	}
+	console.log(obj);
   }
   
   function DemoText_set(input_property,input_value) {
-	if (!obj) return;
+    if (!obj) return;
 	  
     if (input_property=="left")
       obj.style.left = input_value + "px";
