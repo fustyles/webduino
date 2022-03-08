@@ -2,10 +2,11 @@ Blockly.Blocks['demo_text_add'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.DEMO_TEXT_ADD_SHOW);
-	this.appendValueInput("id_")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.setCheck("String");   	
+        .appendField(Blockly.Msg.DEMO_TEXT_ADD_SHOW)
+        .appendField("ID");
+    this.appendValueInput("id_")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .setCheck("String");   	
     this.setInputsInline(true);	  
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
