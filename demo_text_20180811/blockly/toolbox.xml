@@ -2,7 +2,7 @@
   <block type="demo_add">
     <value name="id_">
       <block type="text">
-        <field name="TEXT">demo-area-01-show</field>
+        <field name="TEXT">demo-area-09-btn btn-num1</field>
       </block>
     </value> 
   </block>
