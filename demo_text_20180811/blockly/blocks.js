@@ -2,15 +2,15 @@ Blockly.Blocks['demo_add'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.DEMO_TEXT_ADD_SHOW)
-        .appendField(Blockly.Msg.DEMO_CLASSNAME);
+        .appendField(Blockly.Msg.DEMO_TEXT_ADD_SHOW);
     this.appendValueInput("name_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("String")
-        .appendField(Blockly.Msg.DEMO_INDEX);	  
+        .appendField(Blockly.Msg.DEMO_CLASSNAME);
     this.appendValueInput("index_")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck("Number");	  
+        .setCheck("Number")
+        .appendField(Blockly.Msg.DEMO_INDEX);	  
     this.setInputsInline(true);	  
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
