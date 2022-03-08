@@ -4,7 +4,7 @@
 
   'use strict';
 
-  var obj_demo = "";
+  var obj_demo = null;
   function createDemoText(input_id) {
 	if (document.getElementsByClassName(input_id))
 		obj_demo = document.getElementsByClassName(input_id)[0];
