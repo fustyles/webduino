@@ -4,22 +4,28 @@
 
   'use strict';
 
-  function createDemoText() {
-    if (!document.getElementById("demo-area-01-show"))
-    {
-        var div = document.createElement('div');
-        div.id = "demo-area-01-show";
-        div.style.zIndex = 999;   
-        div.style.display = 'block';
-        div.innerHTML = "123";
-        document.body.insertBefore(div, document.body.firstChild);
-    }
+  var obj = null;
+  function createDemoText(input_id) {
+	if (document.getElementsByClassName(input_id))
+		obj = document.getElementsByClassName(input_id)[0];
+	else if (document.getElementById(input_id)) 
+		obj = document.getElementById(input_id);
+	else {
+		if (!document.getElementById("demo-area-01-show")) {
+			var div = document.createElement('div');
+			div.id = "demo-area-01-show";
+			div.style.zIndex = 999;   
+			div.style.display = 'block';
+			div.innerHTML = "123";
+			document.body.insertBefore(div, document.body.firstChild);
+			obj = div;
+		} 
+	}
   }
   
   function DemoText_set(input_property,input_value) {
-    createDemoText();
-    
-    var obj = document.getElementById("demo-area-01-show");
+	if (!obj) return;
+	  
     if (input_property=="left")
       obj.style.left = input_value + "px";
     else if (input_property=="top")
@@ -49,7 +55,9 @@
     else if (input_property=="opacity")
       obj.style.opacity = input_value;    
     else if (input_property=="innerHTML")
-      obj.innerHTML = input_value;      
+      obj.innerHTML = input_value; 
+    else if (input_property=="innerTEXT")
+      obj.innerTEXT = input_value;   
     else if (input_property=="zindex")
       obj.style.zIndex = input_value;
     else if (input_property=="display"){ 

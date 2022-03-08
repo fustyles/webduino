@@ -1,5 +1,6 @@
 Blockly.JavaScript['demo_text_add'] = function(block) {
-  var code = 'createDemoText();\n';
+  var value_id = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);	
+  var code = 'createDemoText('+value_id+');\n';
   return code;
 };
 

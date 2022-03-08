@@ -1,5 +1,10 @@
 <category id="catDemoText">
   <block type="demo_text_add">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT">demo-area-01-show</field>
+      </block>
+    </value> 
   </block>
   <block type="demo_show_text"></block>
   <block type="demo_text_size">
