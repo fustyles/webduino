@@ -12,7 +12,7 @@
 		obj_demo = document.getElementById(input_id);
 	else {
 	    obj_demo = document.getElementById("demo-area-01-show");
-	    if (!obj_demo) {
+	    if (obj_demo=== null||obj_demo!== undefined) {
 		obj_demo = document.createElement('div');
 		obj_demo.id = "demo-area-01-show";
 		obj_demo.style.zIndex = 99999;   
