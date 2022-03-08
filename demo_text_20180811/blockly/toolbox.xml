@@ -4,7 +4,12 @@
       <block type="text">
         <field name="TEXT">demo-area-09-btn btn-num1</field>
       </block>
-    </value> 
+    </value>
+    <value name="index_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>    
   </block>
   <block type="demo_set">  
     <value name="value_">
