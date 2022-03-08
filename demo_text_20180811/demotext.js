@@ -21,8 +21,8 @@
 			div.style.zIndex = 999;   
 			div.style.display = 'block';
 			div.innerHTML = "123";
-			document.body.insertBefore(div, document.body.firstChild);
 			obj = div;
+			document.body.insertBefore(div, document.body.firstChild);
 		} 
 		else
 			obj = document.getElementById("demo-area-01-show");
