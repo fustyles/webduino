@@ -4,7 +4,7 @@
 
   'use strict';
 
-  var obj = null;
+  var obj = "";
   function createDemoText(input_id) {
 	console.log(input_id);
 	obj = "test";
