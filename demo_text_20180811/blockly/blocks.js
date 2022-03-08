@@ -6,7 +6,8 @@ Blockly.Blocks['demo_add'] = {
         .appendField("className");
     this.appendValueInput("name_")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .setCheck("String"); 
+        .setCheck("String")
+        .appendField("index");	  
     this.appendValueInput("index_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number");	  
