@@ -5,9 +5,9 @@
   'use strict';
 
   var obj_demo;
-  function createDemoText(input_id) {
+  function createDemoText(input_id,input_index) {
 	if (document.getElementsByClassName(input_id))
-		obj_demo = document.getElementsByClassName(input_id)[0];
+		obj_demo = document.getElementsByClassName(input_id)[input_index];
 	else if (document.getElementById(input_id)) 
 		obj_demo = document.getElementById(input_id);
 	else {
@@ -18,7 +18,6 @@
 		obj_demo.innerHTML = "123";
 		document.body.insertBefore(div, document.body.firstChild);
 	}
-	console.log(obj_demo);
   }
   
   function DemoText_set(input_property,input_value) {
