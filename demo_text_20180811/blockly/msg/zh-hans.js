@@ -1,1 +1,1 @@
-MSG.catDemoText = "显示文字";
+MSG.catDemoText = "网页互动文字";
