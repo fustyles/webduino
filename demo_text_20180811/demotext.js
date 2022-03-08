@@ -6,8 +6,6 @@
 
   var obj = "";
   function createDemoText(input_id) {
-	console.log(obj);
-	  console.log(window.obj);
 	obj = document.getElementById("demo-area-01-show");
 	  
 	if (document.getElementsByClassName(input_id))
@@ -23,7 +21,6 @@
 		obj = div;
 		document.body.insertBefore(div, document.body.firstChild);		
 	}
-	console.log(obj);
   }
   
   function DemoText_set(input_property,input_value) {
