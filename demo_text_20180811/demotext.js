@@ -5,18 +5,18 @@
   'use strict';
 
   var obj_demo;
-  function createDemoText(input_id,input_index) {
+  function createDemoText(input_name,input_index) {
 	if (document.getElementsByClassName(input_id))
-		obj_demo = document.getElementsByClassName(input_id)[input_index];
-	else if (document.getElementById(input_id)) 
-		obj_demo = document.getElementById(input_id);
+		obj_demo = document.getElementsByClassName(input_name)[input_index];
+	else if (document.getElementById(input_name)) 
+		obj_demo = document.getElementById(input_name);
 	else {
 		obj_demo = document.createElement('div');
-		obj_demo.id = input_id;
+		obj_demo.id = input_name;
 		obj_demo.style.zIndex = 99999;   
 		obj_demo.style.display = 'block';
 		obj_demo.innerHTML = "123";
-		document.body.insertBefore(div, document.body.firstChild);
+		document.body.insertBefore(obj_demo, document.body.firstChild);
 	}
   }
   
