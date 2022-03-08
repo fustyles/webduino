@@ -5,7 +5,8 @@ Blockly.Blocks['demo_text_add'] = {
         .appendField(Blockly.Msg.DEMO_TEXT_ADD_SHOW);
 	this.appendValueInput("id_")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.setCheck("String");   		
+		.setCheck("String");   	
+    this.setInputsInline(true);	  
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(65);
