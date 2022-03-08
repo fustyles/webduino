@@ -21,6 +21,8 @@
 			document.body.insertBefore(div, document.body.firstChild);
 			obj = div;
 		} 
+		else
+			obj = document.getElementById("demo-area-01-show");
 	}
 	console.log(obj);
   }
