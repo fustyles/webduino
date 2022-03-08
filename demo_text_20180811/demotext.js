@@ -11,15 +11,12 @@
 	else if (document.getElementById(input_id)) 
 		obj_demo = document.getElementById(input_id);
 	else {
-	    obj_demo = document.getElementById("demo-area-01-show");
-	    if (obj_demo=== null||obj_demo!== undefined) {
 		obj_demo = document.createElement('div');
-		obj_demo.id = "demo-area-01-show";
+		obj_demo.id = input_id;
 		obj_demo.style.zIndex = 99999;   
 		obj_demo.style.display = 'block';
 		obj_demo.innerHTML = "123";
 		document.body.insertBefore(div, document.body.firstChild);
-	    }
 	}
 	console.log(obj_demo);
   }
