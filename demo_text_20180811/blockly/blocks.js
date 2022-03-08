@@ -3,7 +3,7 @@ Blockly.Blocks['demo_add'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.DEMO_TEXT_ADD_SHOW)
-        .appendField("ID");
+        .appendField("ID&className");
     this.appendValueInput("id_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("String");   	
