@@ -20,3 +20,5 @@ Blockly.Msg.DEMO_DISPLAY = "显示方式";
 Blockly.Msg.DEMO_POSITION = "位置"; 
 Blockly.Msg.DEMO_DISABLED = "停用"; 
 Blockly.Msg.DEMO_DRAGGABLE = "可拖曳";
+Blockly.Msg.DEMO_CLASSNAME = "样式名称"; 
+Blockly.Msg.DEMO_INDEX = "索引";
