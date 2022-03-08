@@ -7,7 +7,9 @@
   var obj = "";
   function createDemoText(input_id) {
 	console.log(input_id);
-	obj = "test";
+	  console.log(document.getElementsByClassName(input_id));
+	  console.log(document.getElementById(input_id));
+	  console.log(document.getElementById("demo-area-01-show"));
 	if (document.getElementsByClassName(input_id))
 		obj = document.getElementsByClassName(input_id)[0];
 	else if (document.getElementById(input_id)) 
