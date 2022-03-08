@@ -11,15 +11,15 @@
 	else if (document.getElementById(input_id)) 
 		obj_demo = document.getElementById(input_id);
 	else {
-	    if (!document.getElementById("demo-area-01-show")) {
-		var div = document.createElement('div');
-		div.id = "demo-area-01-show";
-		div.style.zIndex = 99999;   
-		div.style.display = 'block';
-		div.innerHTML = "123";
+	    obj_demo = document.getElementById("demo-area-01-show");
+	    if (!obj_demo) {
+		obj_demo = document.createElement('div');
+		obj_demo.id = "demo-area-01-show";
+		obj_demo.style.zIndex = 99999;   
+		obj_demo.style.display = 'block';
+		obj_demo.innerHTML = "123";
 		document.body.insertBefore(div, document.body.firstChild);
 	    }
-	    obj_demo = document.getElementById("demo-area-01-show");
 	}
 	console.log(obj_demo);
   }
