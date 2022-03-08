@@ -3,11 +3,11 @@ Blockly.Blocks['demo_add'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.DEMO_TEXT_ADD_SHOW)
-        .appendField("className");
+        .appendField(Blockly.Msg.DEMO_CLASSNAME);
     this.appendValueInput("name_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("String")
-        .appendField("index");	  
+        .appendField(Blockly.Msg.DEMO_INDEX);	  
     this.appendValueInput("index_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number");	  
