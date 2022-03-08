@@ -1,4 +1,4 @@
-Blockly.Blocks['demo_text_add'] = {
+Blockly.Blocks['demo_add'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -14,7 +14,7 @@ Blockly.Blocks['demo_text_add'] = {
   }
 };
 
-Blockly.Blocks['demo_text_set'] = {
+Blockly.Blocks['demo_set'] = {
   init: function() {    
   this.appendDummyInput()  
       .appendField(Blockly.Msg.DEMO_TEXT_SHOW) 
