@@ -7,6 +7,7 @@
   var obj = null;
   function createDemoText(input_id) {
 	console.log(input_id);
+	obj = "test";
 	if (document.getElementsByClassName(input_id))
 		obj = document.getElementsByClassName(input_id)[0];
 	else if (document.getElementById(input_id)) 
