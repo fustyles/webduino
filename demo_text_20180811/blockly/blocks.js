@@ -10,10 +10,7 @@ Blockly.Blocks['demo_add'] = {
     this.appendValueInput("index_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
-        .appendField(Blockly.Msg.DEMO_INDEX);
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.DEMO_TEXT_GET_SHOW);	  
+        .appendField(Blockly.Msg.DEMO_INDEX);  
     this.setInputsInline(true);	  
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
