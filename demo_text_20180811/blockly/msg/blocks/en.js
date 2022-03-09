@@ -1,4 +1,4 @@
-Blockly.Msg.DEMO_TEXT_ADD_SHOW = "Demo Interactions initialize";
+Blockly.Msg.DEMO_TEXT_ADD_SHOW = "Demo Interactions initialize get element";
 Blockly.Msg.DEMO_TEXT_SHOW = "Demo Text"; 
 Blockly.Msg.DEMO_TEXT_SET_SHOW = "Set";
 Blockly.Msg.DEMO_LEFT = "LEFT"; 
@@ -22,4 +22,3 @@ Blockly.Msg.DEMO_DISABLED = "DISABLED";
 Blockly.Msg.DEMO_DRAGGABLE = "DRAGGABLE";
 Blockly.Msg.DEMO_CLASSNAME = "className"; 
 Blockly.Msg.DEMO_INDEX = "index";
-Blockly.Msg.DEMO_TEXT_GET_SHOW = "Get element";
