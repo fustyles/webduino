@@ -1,4 +1,4 @@
-Blockly.Msg.DEMO_TEXT_ADD_SHOW = "網頁互動文字";
+Blockly.Msg.DEMO_TEXT_ADD_SHOW = "網頁互動文字取得元素";
 Blockly.Msg.DEMO_TEXT_SHOW = "網頁互動文字"; 
 Blockly.Msg.DEMO_TEXT_SET_SHOW = "設定";
 Blockly.Msg.DEMO_LEFT = "靠左"; 
@@ -22,4 +22,3 @@ Blockly.Msg.DEMO_DISABLED = "停用";
 Blockly.Msg.DEMO_DRAGGABLE = "可拖曳"; 
 Blockly.Msg.DEMO_CLASSNAME = "樣式名稱"; 
 Blockly.Msg.DEMO_INDEX = "索引"; 
-Blockly.Msg.DEMO_TEXT_GET_SHOW = "取得元素";
