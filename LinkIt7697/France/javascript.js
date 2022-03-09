@@ -436,7 +436,7 @@ Blockly.Arduino['fu_ez_buzzer_tone_duration_esp'] = function(block) {
 
 	  Blockly.Arduino.setups_['ledc_'+ pin] = 'ledcSetup('+value_channel+',2000,8);\n'+
 											  '  ledcAttachPin('+pin+','+value_channel+');'; 
-	  Blockly.Arduino.definitions_['tone'] = 'void tone(int channel, int frequency, int delaytime, ) {\n'+
+	  Blockly.Arduino.definitions_['tone'] = 'void tone(int channel, int frequency, int delaytime) {\n'+
 											 '  ledcWriteTone(channel, frequency);\n'+
 											 '  delay(delaytime);\n'+
 											 '  ledcWriteTone(channel, 0);\n'+
