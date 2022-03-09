@@ -20,5 +20,6 @@ Blockly.Msg.DEMO_DISPLAY = "顯示方式";
 Blockly.Msg.DEMO_POSITION = "位置"; 
 Blockly.Msg.DEMO_DISABLED = "停用"; 
 Blockly.Msg.DEMO_DRAGGABLE = "可拖曳"; 
-Blockly.Msg.DEMO_CLASSNAME = "元素樣式名稱"; 
+Blockly.Msg.DEMO_CLASSNAME = "樣式名稱"; 
 Blockly.Msg.DEMO_INDEX = "索引"; 
+Blockly.Msg.DEMO_TEXT_GET_SHOW = "取得元素";
