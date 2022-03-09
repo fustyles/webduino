@@ -271,7 +271,7 @@ Blockly.Blocks['fu_ez_digitalwrite'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("EZ+")
 		.appendField("Led")
-        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_RED"],"0"], [Blockly.Msg["EZ_YELLOW"],"1"], [Blockly.Msg["EZ_GREEN"],"2"]]), "Led");
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_RED"],"0"], [Blockly.Msg["EZ_YELLOW"],"1"], [Blockly.Msg["EZ_GREEN"],"2"]]), "led");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["EZ_STATE"])
