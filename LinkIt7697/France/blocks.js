@@ -1445,7 +1445,7 @@ Blockly.Blocks['fu_oled_sendBuffer'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField("OLED")
-        .appendField(Blockly.Msg["OLED_SEND_BUFFER"]);
+        .appendField(Blockly.Msg["OLED_DRAW_BUFFER"]);
     this.appendStatementInput("draw")
         .setCheck(null);
     this.setInputsInline(true);
