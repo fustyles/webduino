@@ -140,14 +140,15 @@ Blockly.Blocks['fu_oled_PROGMEM_truetype'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg["EZ_TEXT"])	
         .appendField(new Blockly.FieldTextInput("hello"), "str");
+    this.appendDummyInput()
+	.appendField(Blockly.Msg["OLED_FONT_TTF"])
+	.appendField(field);	  
     this.appendValueInput("PROGMEM")
         .setCheck("String")
         .appendField(Blockly.Msg["OLED_XBM_VALUE"]);		
     this.appendDummyInput()
 	.appendField(new Blockly.FieldLabelSerializable(""), "size");
-    this.appendDummyInput()
-	.appendField(Blockly.Msg["OLED_FONT_TTF"])
-	.appendField(field);	  
+	  
 		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
