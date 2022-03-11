@@ -141,6 +141,7 @@ Blockly.Blocks['cocossd_object'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_OBJECT_SHOW)
       .appendField(new Blockly.FieldDropdown([
+		[" ",""],	  
 		["airplane","airplane"],
 		["apple","apple"],
 		["backpack","backpack"],
