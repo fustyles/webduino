@@ -31,7 +31,7 @@
 		if (result.length>0) {
 			for (var i=0;i<result.length;i++) {
 				var result_detail = result[i].split(",");
-				if (result_detail[0]==input_object) {
+				if (result_detail[0]==input_object||input_object=="") {
 					if (n==input_index&&input_data=="")
 						return result_detail;
 					else if (n==input_index&&input_data=="class")
