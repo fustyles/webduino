@@ -3800,7 +3800,6 @@ function HextoRgb(color) {
 	var text = input_text.replace(/<br>/g,"\n");
 	text = text.replace(/\\n/g,"\n");
 	text = text.replace(/<br\/>/g,"\n");
-	console.log(text);
 	
 	var link = document.createElement('a');
 	link.download="data.txt";
@@ -3809,6 +3808,23 @@ function HextoRgb(color) {
 	link.click();
 	link.remove();	
   }
+  
+  function outputfile_jpg(input_id) {
+	const vedio = document.getElementById("gamevideo_"+input_id);
+	const canvas = document.createElement('canvas')
+	canvas.width = vedio.width;
+	canvas.height = vedio.height;
+	const ctx = canvas.getContext('2d')
+	ctx.drawImage(vedio, 0, 0, vedio.width, vedio.height);
+	const dataURL = canvas.toDataURL('image/jpeg', 1);
+	
+	const link = document.createElement('a');
+	link.download = '1.jpg';
+	link.href = dataURL;
+	link.click();
+	link.remove();
+	canvas.remove();
+  }  
   
 
   window.table_create = table_create;
@@ -3968,6 +3984,7 @@ function HextoRgb(color) {
   window.fontEm = fontEm;
   window.fontStrong = fontStrong;
   window.fontCode = fontCode;
-  window.outputfile_text = outputfile_text;  
+  window.outputfile_text = outputfile_text; 
+  window.outputfile_jpg = outputfile_jpg;
   
 }(window, window.document));

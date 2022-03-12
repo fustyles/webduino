@@ -433,6 +433,7 @@ Blockly.Msg.VIDEO_GET = "取得";
 Blockly.Msg.VIDEO_DELETE = "删除";
 Blockly.Msg.PROPERTY_CAM = "本机摄影机";
 Blockly.Msg.VIDEO_BASE64 = "截图转换Base64字串";
+Blockly.Msg.VEDIO_OUTPUT_JPG = "视讯媒体画面截图另存jpg档";
 Blockly.Msg.CANVAS_CAPTUREVIDEO = "画布 捕捉视讯画面";
 Blockly.Msg.STREAMURL = "串流网址";
 Blockly.Msg.CUSTOM_COMMENT_SHOW = "注解";

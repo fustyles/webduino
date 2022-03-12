@@ -433,6 +433,7 @@ Blockly.Msg.VIDEO_GET = "Get";
 Blockly.Msg.VIDEO_DELETE = "Delete";
 Blockly.Msg.PROPERTY_CAM = "Web Cam";
 Blockly.Msg.VIDEO_BASE64 = "transfer into Base64 string";
+Blockly.Msg.VEDIO_OUTPUT_JPG = "save still to jpg file";
 Blockly.Msg.CANVAS_CAPTUREVIDEO = "Canvas capture video screen";
 Blockly.Msg.STREAMURL = "Stream URL";
 Blockly.Msg.CUSTOM_COMMENT_SHOW = "Comment";

@@ -3344,7 +3344,14 @@
         <field name="TEXT"></field>
       </block>
     </value>     
-  </block>  
+  </block>
+  <block type="video_output_jpg">
+    <value name="id_">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>   
+  </block>    
   
   </category>
   <category id="catGameElements_sub25" colour="120"> 

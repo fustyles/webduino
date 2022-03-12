@@ -4764,3 +4764,17 @@ Blockly.Blocks['button_ouput_file_text'] = {
   this.setColour(110);  
   }
 };
+
+Blockly.Blocks['video_output_jpg'] = {
+  init: function() {
+this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.VIDEO_ID);	  
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.VEDIO_OUTPUT_JPG);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(110);  
+  }
+};

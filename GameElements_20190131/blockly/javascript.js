@@ -1965,3 +1965,9 @@ Blockly.JavaScript['button_ouput_file_text'] = function (block) {
   var code = 'async function gamebutton_'+value_id+'_onclick (event) {\noutputfile_text(' + value_text + ');\n};\ndocument.getElementById("gamebutton_'+value_id+'").addEventListener("click", gamebutton_'+value_id+'_onclick, true);\n';
   return code;
 };
+
+Blockly.JavaScript['video_output_jpg'] = function (block) {
+  var value_id = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'outputfile_jpg('+value_id+')';
+  return code;
+};
