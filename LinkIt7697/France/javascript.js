@@ -626,24 +626,45 @@ Blockly.Arduino['fu_ez_pixel_rgb'] = function(block) {
 };
 
 Blockly.Arduino['fu_ez_pixel_clear'] = function(block) {
-	var pin = 26;
-	if (selectBoardType()=="esp32")
-		pin = 26; 
-	else if (selectBoardType()=="LinkIt")
-		pin = 4;
-	else if (selectBoardType()=="sandeepmistry")
-		pin = 12; 
-	else if (selectBoardType()=="BPI-BIT")
-		pin = 2; 
+  var pin = 26;
+  if (selectBoardType()=="esp32")
+	pin = 26; 
+  else if (selectBoardType()=="LinkIt")
+	pin = 4;
+  else if (selectBoardType()=="sandeepmistry")
+	pin = 12; 
+  else if (selectBoardType()=="BPI-BIT")
+	pin = 2; 
 
-	Blockly.Arduino.definitions_['pixel_'+ pin] = '#include <Adafruit_NeoPixel.h>\n'+
+  Blockly.Arduino.definitions_['pixel_'+ pin] = '#include <Adafruit_NeoPixel.h>\n'+
 												'Adafruit_NeoPixel pixels(3, '+ pin +', NEO_GRB + NEO_KHZ800);';
-	Blockly.Arduino.setups_['pixel_'+ pin] = 'pixels.begin();\n'+
+  Blockly.Arduino.setups_['pixel_'+ pin] = 'pixels.begin();\n'+
 										   '  pixels.setBrightness(100);\n'+
 										   '  pixels.clear();';
-	
-  var code = 'pixels.clear();\n';
-  return code;
+										   
+	Blockly.Arduino.definitions_['define_webbit_matrix_HextoRGB']='\n'+
+											'int HextoRGB(char val) {\n'+
+											'  String hex ="0123456789abcdef";\n'+
+											'  return hex.indexOf(val);\n'+
+											'}\n'; 										   
+											   
+	Blockly.Arduino.definitions_['ez_pixel_color']='\n'+
+											'void ez_pixel_color(String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  int R,G,B;\n'+
+											'  int range;\n'+	
+											'  range = color.length()/6;\n'+								
+											'  for (int i=0;i<range;i++) {\n'+
+    										'    R = (HextoRGB(color[i*6])*16+HextoRGB(color[i*6+1]));\n'+
+    										'    G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]));\n'+
+    										'    B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]));\n'+
+    										'    pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+    										'  }\n'+
+    										'  pixels.show();\n'+
+											'}\n';	
+											
+	var code = 'ez_pixel_color("000000000000000000");\n';
+	return code;
 };
 
 Blockly.Arduino['fu_ez_pixel_picker'] = function(block) {
