@@ -626,6 +626,22 @@ Blockly.Arduino['fu_ez_pixel_rgb'] = function(block) {
 };
 
 Blockly.Arduino['fu_ez_pixel_clear'] = function(block) {
+	var pin = 26;
+	if (selectBoardType()=="esp32")
+		pin = 26; 
+	else if (selectBoardType()=="LinkIt")
+		pin = 4;
+	else if (selectBoardType()=="sandeepmistry")
+		pin = 12; 
+	else if (selectBoardType()=="BPI-BIT")
+		pin = 2; 
+
+	Blockly.Arduino.definitions_['pixel_'+ pin] = '#include <Adafruit_NeoPixel.h>\n'+
+												'Adafruit_NeoPixel pixels(3, '+ pin +', NEO_GRB + NEO_KHZ800);';
+	Blockly.Arduino.setups_['pixel_'+ pin] = 'pixels.begin();\n'+
+										   '  pixels.setBrightness(100);\n'+
+										   '  pixels.clear();';
+	
   var code = 'pixels.clear();\n';
   return code;
 };
@@ -690,6 +706,22 @@ Blockly.Arduino['fu_ez_pixel_clear'] = function(block) {
 };
 
 Blockly.Arduino['fu_ez_pixel_brightness'] = function(block){
+	var pin = 26;
+	if (selectBoardType()=="esp32")
+		pin = 26; 
+	else if (selectBoardType()=="LinkIt")
+		pin = 4;
+	else if (selectBoardType()=="sandeepmistry")
+		pin = 12; 
+	else if (selectBoardType()=="BPI-BIT")
+		pin = 2; 
+	
+	Blockly.Arduino.definitions_['pixel_'+ pin] = '#include <Adafruit_NeoPixel.h>\n'+
+												'Adafruit_NeoPixel pixels(3, '+ pin +', NEO_GRB + NEO_KHZ800);';
+	Blockly.Arduino.setups_['pixel_'+ pin] = 'pixels.begin();\n'+
+										   '  pixels.setBrightness(100);\n'+
+										   '  pixels.clear();';
+	
 	var brightness=Blockly.Arduino.valueToCode(this,"brightness",Blockly.Arduino.ORDER_ATOMIC);
 	var code = 'pixels.setBrightness('+ brightness+');\n';
 	return code;
