@@ -680,6 +680,25 @@ function hexToRgb(hex) {
 }
 
 Blockly.Arduino['fu_ez_pixel_clear'] = function(block) {
+  var pin = 26;
+  if (selectBoardType()=="esp32")
+	pin = 26; 
+  else if (selectBoardType()=="LinkIt")
+	pin = 4;
+  else if (selectBoardType()=="sandeepmistry")
+	pin = 12; 
+  else if (selectBoardType()=="BPI-BIT")
+	pin = 2; 
+
+  var dropdown_no = block.getFieldValue('no');
+  var value_colour = Blockly.Arduino.valueToCode(this,"colour",Blockly.Arduino.ORDER_ATOMIC).replace(/"/g,'');
+
+  Blockly.Arduino.definitions_['pixel_'+ pin] = '#include <Adafruit_NeoPixel.h>\n'+
+												'Adafruit_NeoPixel pixels(3, '+ pin +', NEO_GRB + NEO_KHZ800);';
+  Blockly.Arduino.setups_['pixel_'+ pin] = 'pixels.begin();\n'+
+										   '  pixels.setBrightness(100);\n'+
+										   '  pixels.clear();';
+	
 	Blockly.Arduino.definitions_['define_webbit_matrix_HextoRGB']='\n'+
 											'int HextoRGB(char val) {\n'+
 											'  String hex ="0123456789abcdef";\n'+
