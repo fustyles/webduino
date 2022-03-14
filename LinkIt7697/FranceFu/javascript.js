@@ -2380,38 +2380,47 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 	Blockly.Arduino.setups_.manual_add = '\n'+
 			'  Serial.begin(9600);\n'+ 
 			'  delay(10);\n'+ 
-			'  //WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
-			'  WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+ 
-			'  delay(1000);\n'+ 
+			'  for (int i=0;i<2;i++) {\n'+
+			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+ 
+			'    delay(1000);\n'+
+			'    Serial.println("");\n'+
+			'    Serial.print("Connecting to ");\n'+
+			'    Serial.println(_lwifi_ssid);\n'+
+			'    long int StartTime=millis();\n'+
+			'    while (WiFi.status() != WL_CONNECTED) {\n'+
+			'        delay(500);\n'+
+			'        if ((StartTime+5000) < millis()) break;\n'+
+			'    }\n'+
+			'    if (WiFi.status() == WL_CONNECTED) {\n'+
+			'      WiFi.softAP((WiFi.localIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+
+			'      Serial.println("");\n'+
+			'      Serial.println("STAIP address: ");\n'+
+			'      Serial.println(WiFi.localIP());\n'+
+			'      Serial.println("");\n'+
+			'      for (int i=0;i<5;i++) {\n'+
+			'        ledcWrite(4,10);\n'+
+			'        delay(200);\n'+
+			'        ledcWrite(4,0);\n'+
+			'        delay(200);\n'+    
+			'      }\n'+
+			'      break;\n'+
+			'    }\n'+
+			'  }\n'+
+			'  if (WiFi.status() != WL_CONNECTED) {\n'+
+			'    WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+
+			'    for (int i=0;i<2;i++) {\n'+
+			'      ledcWrite(4,10);\n'+
+			'      delay(1000);\n'+
+			'      ledcWrite(4,0);\n'+
+			'      delay(1000); \n'+   
+			'    }\n'+
+			'  }\n'+ 
+			'  Serial.println("");\n'+
+			'  Serial.println("APIP address: ");\n'+
+			'  Serial.println(WiFi.softAPIP());\n'+  
 			'  Serial.println("");\n'+ 
-			'  Serial.print("Connecting to ");\n'+ 
-			'  Serial.println(_lwifi_ssid);\n'+ 
-			'  long int StartTime=millis();\n'+ 
-			'  while (WiFi.status() != WL_CONNECTED) {\n'+ 
-			'      delay(500);\n'+ 
-			'      if ((StartTime+10000) < millis()) break;\n'+ 
-			'  }\n'+ 
-			'  if (WiFi.status() == WL_CONNECTED) {\n'+ 
-			'    pinMode(2, OUTPUT);\n'+ 
-			'    for (int i=0;i<5;i++) {\n'+ 
-			'      digitalWrite(2, HIGH);\n'+ 
-			'      delay(100);\n'+ 
-			'      digitalWrite(2, LOW);\n'+ 
-			'      delay(100);\n'+ 
-			'    }\n'+ 
-			'  }\n'+ 
-			'  else {\n'+ 
-			'    pinMode(2, OUTPUT);\n'+ 
-			'    for (int i=0;i<3;i++) {\n'+ 
-			'      digitalWrite(2, HIGH);\n'+ 
-			'      delay(500);\n'+ 
-			'      digitalWrite(2, LOW);\n'+ 
-			'      delay(500);\n'+ 
-			'    }\n'+ 
-			'  }\n'+ 
-			'  Serial.println("");\n'+ 
-			'  Serial.println("STAIP address: ");\n'+ 
-			'  Serial.println(WiFi.localIP());\n'+ 
+			'  pinMode(4, OUTPUT);\n'+
+			'  digitalWrite(4, LOW);\n'+  
 			'  server.begin();\n'+ statements_setup +
 			'\n';
 	
