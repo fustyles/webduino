@@ -1432,7 +1432,7 @@
 				  <block type="customcode_comment" id="112" inline="true">
 					<value name="text">
 					  <block type="text" id="113">
-						<field name="TEXT">http://192.168.xxx.xxx/?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9</field>
+						<field name="TEXT">http://192.168.xxx.xxx/?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
 					  </block>
 					</value>
 					<next>
@@ -1451,13 +1451,13 @@
 						  <block type="servermodule_pinwrite" id="119" inline="true">
 							<value name="pin">
 							  <block type="servermodule_parameter_variable" id="120">
-								<field name="parameter">P1</field>
+								<field name="parameter">p1</field>
 								<field name="type">toInt()</field>
 							  </block>
 							</value>
 							<value name="val">
 							  <block type="servermodule_parameter_variable" id="121">
-								<field name="parameter">P2</field>
+								<field name="parameter">p2</field>
 								<field name="type">toInt()</field>
 							  </block>
 							</value>
@@ -1469,7 +1469,7 @@
 									<field name="OP">EQ</field>
 									<value name="A">
 									  <block type="servermodule_parameter_get" id="124">
-										<field name="parameter">P2</field>
+										<field name="parameter">p2</field>
 									  </block>
 									</value>
 									<value name="B">
@@ -1603,7 +1603,7 @@
 				  <block type="customcode_comment" id="112" inline="true">
 					<value name="text">
 					  <block type="text" id="113">
-						<field name="TEXT">http://192.168.xxx.xxx/?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9</field>
+						<field name="TEXT">http://192.168.xxx.xxx/?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
 					  </block>
 					</value>
 					<next>
@@ -1622,13 +1622,13 @@
 						  <block type="servermodule_pinwrite" id="119" inline="true">
 							<value name="pin">
 							  <block type="servermodule_parameter_variable" id="120">
-								<field name="parameter">P1</field>
+								<field name="parameter">p1</field>
 								<field name="type">toInt()</field>
 							  </block>
 							</value>
 							<value name="val">
 							  <block type="servermodule_parameter_variable" id="121">
-								<field name="parameter">P2</field>
+								<field name="parameter">p2</field>
 								<field name="type">toInt()</field>
 							  </block>
 							</value>
@@ -1640,7 +1640,7 @@
 									<field name="OP">EQ</field>
 									<value name="A">
 									  <block type="servermodule_parameter_get" id="124">
-										<field name="parameter">P2</field>
+										<field name="parameter">p2</field>
 									  </block>
 									</value>
 									<value name="B">
@@ -1765,7 +1765,7 @@
 				  <block type="customcode_comment" id="112" inline="true">
 					<value name="text">
 					  <block type="text" id="113">
-						<field name="TEXT">http://192.168.xxx.xxx/?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9</field>
+						<field name="TEXT">http://192.168.xxx.xxx/?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
 					  </block>
 					</value>
 					<next>
@@ -1784,13 +1784,13 @@
 						  <block type="servermodule_pinwrite" id="119" inline="true">
 							<value name="pin">
 							  <block type="servermodule_parameter_variable" id="120">
-								<field name="parameter">P1</field>
+								<field name="parameter">p1</field>
 								<field name="type">toInt()</field>
 							  </block>
 							</value>
 							<value name="val">
 							  <block type="servermodule_parameter_variable" id="121">
-								<field name="parameter">P2</field>
+								<field name="parameter">p2</field>
 								<field name="type">toInt()</field>
 							  </block>
 							</value>
@@ -1802,7 +1802,7 @@
 									<field name="OP">EQ</field>
 									<value name="A">
 									  <block type="servermodule_parameter_get" id="124">
-										<field name="parameter">P2</field>
+										<field name="parameter">p2</field>
 									  </block>
 									</value>
 									<value name="B">
@@ -1870,14 +1870,14 @@
 			</value>
 			<value name="blename">
 			  <block type="text" id="234">
-				<field name="TEXT">ESP32 BLE</field>
+				<field name="TEXT">ESp32 BLE</field>
 			  </block>
 			</value>
 			<statement name="ExecuteCommand">
 			  <block type="customcode_comment" id="235" inline="true">
 				<value name="text">
 				  <block type="text" id="236">
-					<field name="TEXT">?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9</field>
+					<field name="TEXT">?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
 				  </block>
 				</value>
 				<next>
@@ -1896,13 +1896,13 @@
 					  <block type="servermodule_pinwrite" id="242" inline="true">
 						<value name="pin">
 						  <block type="servermodule_parameter_variable" id="243">
-							<field name="parameter">P1</field>
+							<field name="parameter">p1</field>
 							<field name="type">toInt()</field>
 						  </block>
 						</value>
 						<value name="val">
 						  <block type="servermodule_parameter_variable" id="244">
-							<field name="parameter">P2</field>
+							<field name="parameter">p2</field>
 							<field name="type">toInt()</field>
 						  </block>
 						</value>
@@ -1914,7 +1914,7 @@
 								<field name="OP">EQ</field>
 								<value name="A">
 								  <block type="servermodule_parameter_variable" id="247">
-									<field name="parameter">P2</field>
+									<field name="parameter">p2</field>
 									<field name="type">toInt()</field>
 								  </block>
 								</value>
@@ -1972,7 +1972,7 @@
 					</value>
 					<value name="blename">
 					  <block type="text" id="6">
-						<field name="TEXT">ESP32 BLE</field>
+						<field name="TEXT">ESp32 BLE</field>
 					  </block>
 					</value>
 				  </block>
@@ -2047,12 +2047,12 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>
-				<value name="P1">
+				<value name="p1">
 				  <block type="text">
 					<field name="TEXT"></field>
 				  </block>
 				</value>
-				<value name="P2">
+				<value name="p2">
 				  <block type="text">
 					<field name="TEXT"></field>
 				  </block>
@@ -2064,47 +2064,47 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>
-				<value name="P1">
+				<value name="p1">
 				  <block type="text">
 					<field name="TEXT"></field>
 				  </block>
 				</value>
-				<value name="P2">
+				<value name="p2">
 				  <block type="text">
 					<field name="TEXT"></field>
 				  </block>
 				</value>
-				<value name="P3">
+				<value name="p3">
 				  <block type="text">
 					<field name="TEXT"></field>
 				  </block>
 				</value>
-				<value name="P4">
+				<value name="p4">
 				  <block type="text">
 					<field name="TEXT"></field>
 				  </block>
 				</value>
-				<value name="P5">
+				<value name="p5">
 				  <block type="text">
 					<field name="TEXT"></field>
 				  </block>
 				</value>
-				<value name="P6">
+				<value name="p6">
 				  <block type="text">
 					<field name="TEXT"></field>
 				  </block>
 				</value>
-				<value name="P7">
+				<value name="p7">
 				  <block type="text">
 					<field name="TEXT"></field>
 				  </block>
 				</value>
-				<value name="P8">
+				<value name="p8">
 				  <block type="text">
 					<field name="TEXT"></field>
 				  </block>
 				</value>
-				<value name="P9">
+				<value name="p9">
 				  <block type="text">
 					<field name="TEXT"></field>
 				  </block>
