@@ -119,7 +119,7 @@ function selectBoardType() {
 		if (state[0]==0)
 			selectBoard.options.add(new Option("LinkIt 7697","LinkIt:linkit_rtos:linkit_7697"));
 		if (state[1]==0) 
-			selectBoard.options.add(new Option("ESP32 Wrover Module","esp32:esp32:esp32wrover"));
+			selectBoard.options.add(new Option("ESp32 Wrover Module","esp32:esp32:esp32wrover"));
 		if (state[2]==0) 
 			selectBoard.options.add(new Option("BBC micro:bit V2","sandeepmistry:nRF5:BBCmicrobitV2"));	
 		if (state[3]==0) 
@@ -1787,7 +1787,7 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
 											'    client_tcp.println("POST /api/notify HTTP/1.1");\n'+
 											'    client_tcp.println("Connection: close");\n'+
 											'    client_tcp.println("Host: notify-api.line.me");\n'+
-											'    client_tcp.println("User-Agent: ESP8266/1.0");\n'+
+											'    client_tcp.println("User-Agent: ESp8266/1.0");\n'+
 											'    client_tcp.println("Authorization: Bearer " + token);\n'+
 											'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
 											'    client_tcp.println("Content-Length: " + String(request.length()));\n'+
@@ -1853,7 +1853,7 @@ Blockly.Arduino['linenotify_esp32_no'] = function (block) {
 											'    client_tcp.println("POST /api/notify HTTP/1.1");\n'+
 											'    client_tcp.println("Connection: close");\n'+
 											'    client_tcp.println("Host: notify-api.line.me");\n'+
-											'    client_tcp.println("User-Agent: ESP8266/1.0");\n'+
+											'    client_tcp.println("User-Agent: ESp8266/1.0");\n'+
 											'    client_tcp.println("Authorization: Bearer " + token);\n'+
 											'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
 											'    client_tcp.println("Content-Length: " + String(request.length()));\n'+
@@ -2313,7 +2313,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = '+ssid+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = '+pass+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);';
-  Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",P1="",P2="",P3="",P4="",P5="",P6="",P7="",P8="",P9="";\nbyte ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;';
+  Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;';
 
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
 
@@ -2321,7 +2321,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'void ExecuteCommand() {\n'+
 			'  //Serial.println("");\n'+
 			'  //Serial.println("Command: "+Command);\n'+
-			'  //Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
+			'  //Serial.println("cmd= "+cmd+" ,p1= "+p1+" ,p2= "+p2+" ,p3= "+p3+" ,p4= "+p4+" ,p5= "+p5+" ,p6= "+p6+" ,p7= "+p7+" ,p8= "+p8+" ,p9= "+p9);\n'+
 			'  //Serial.println("");\n'+
 			'  if (cmd=="ip") {\n'+
 			'    Feedback=WiFi.localIP().toString();\n'+
@@ -2333,9 +2333,9 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'    ESP.restart();\n'+
 			'  }\n'+
 			'  else if (cmd=="resetwifi") {\n'+
-			'    WiFi.begin(P1.c_str(), P2.c_str());\n'+
+			'    WiFi.begin(p1.c_str(), p2.c_str());\n'+
 			'    Serial.print("Connecting to ");\n'+
-			'    Serial.println(P1);\n'+
+			'    Serial.println(p1);\n'+
 			'    long int StartTime=millis();\n'+
 			'    while (WiFi.status() != WL_CONNECTED) {\n'+
 			'        delay(500);\n'+
@@ -2346,32 +2346,32 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'    Feedback=WiFi.localIP().toString();\n'+
 			'  }\n'+
   			'  else if (cmd=="inputpullup") {\n'+
-  			'    pinMode(P1.toInt(), INPUT_PULLUP);\n'+
+  			'    pinMode(p1.toInt(), INPUT_PULLUP);\n'+
   			'  }\n'+
   			'  else if (cmd=="pinmode") {\n'+
-  			'    if (P2.toInt()==1)\n'+
-  			'      pinMode(P1.toInt(), OUTPUT);\n'+
+  			'    if (p2.toInt()==1)\n'+
+  			'      pinMode(p1.toInt(), OUTPUT);\n'+
   			'    else\n'+
-  			'      pinMode(P1.toInt(), INPUT);\n'+
+  			'      pinMode(p1.toInt(), INPUT);\n'+
   			'  }\n'+
 			'  else if (cmd=="digitalwrite") {\n'+
-			'    ledcDetachPin(P1.toInt());\n'+
-			'    pinMode(P1.toInt(), OUTPUT);\n'+
-			'    digitalWrite(P1.toInt(), P2.toInt());\n'+
+			'    ledcDetachPin(p1.toInt());\n'+
+			'    pinMode(p1.toInt(), OUTPUT);\n'+
+			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
 			'  }\n'+
  			'  else if (cmd=="digitalread") {\n'+
- 			'   Feedback=String(digitalRead(P1.toInt()));\n'+
+ 			'   Feedback=String(digitalRead(p1.toInt()));\n'+
 			'  }\n'+
 			'  else if (cmd=="analogwrite") {\n'+
-			'    ledcAttachPin(P1.toInt(), 1);\n'+
+			'    ledcAttachPin(p1.toInt(), 1);\n'+
 			'    ledcSetup(1, 5000, 8);\n'+
-			'    ledcWrite(1,P2.toInt());\n'+
+			'    ledcWrite(1,p2.toInt());\n'+
 			'  }\n'+
 			'  else if (cmd=="analogread") {\n'+
-			'    Feedback=String(analogRead(P1.toInt()));\n'+
+			'    Feedback=String(analogRead(p1.toInt()));\n'+
 			'  }\n'+
 			'  else if (cmd=="touchread") {\n'+
-			'    Feedback=String(touchRead(P1.toInt()));\n'+
+			'    Feedback=String(touchRead(p1.toInt()));\n'+
 			'  }\n'+
 			'  else {\n  '+ 
 			statements_executecommand.replace(/\n/g,"\n  ")+
@@ -2416,7 +2416,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 	
 
 			var getCommand = ''+
-			'Command="";cmd="";P1="";P2="";P3="";P4="";P5="";P6="";P7="";P8="";P9="";\n'+
+			'Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'+
 			'  ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;\n'+
 			'  WiFiClient client = server.available();\n'+
 			'  if (client) { \n'+
@@ -2431,15 +2431,15 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'          if (c==\'=\') cmdState=0;\n'+
 			'          if (c==\';\') strState++;\n'+
 			'          if ((cmdState==1)&&((c!=\'?\')||(questionstate==1))) cmd=cmd+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==1)&&((c!=\'=\')||(equalstate==1))) P1=P1+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==2)&&(c!=\';\')) P2=P2+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==3)&&(c!=\';\')) P3=P3+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==4)&&(c!=\';\')) P4=P4+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==5)&&(c!=\';\')) P5=P5+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==6)&&(c!=\';\')) P6=P6+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==7)&&(c!=\';\')) P7=P7+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==8)&&(c!=\';\')) P8=P8+String(c);\n'+
-			'          if ((cmdState==0)&&(strState>=9)&&((c!=\';\')||(semicolonstate==1))) P9=P9+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==1)&&((c!=\'=\')||(equalstate==1))) p1=p1+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
+			'          if ((cmdState==0)&&(strState>=9)&&((c!=\';\')||(semicolonstate==1))) p9=p9+String(c);\n'+
 			'          if (c==\'?\') questionstate=1;\n'+
 			'          if (c==\'=\') equalstate=1;\n'+
 			'          if ((strState>=9)&&(c==\';\')) semicolonstate=1;\n'+
@@ -2526,13 +2526,13 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.define_linkit_wifi_apssid='const char* apssid = '+ssid_ap+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_appass='const char* appassword = '+pass_ap+';';  
   Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);\n';
-  Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",P1="",P2="",P3="",P4="",P5="",P6="",P7="",P8="",P9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;';
+  Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;';
 
   Blockly.Arduino.definitions_.define_linkit_ExecuteCommand = '\n'+
 			'void executeCommand() {\n'+
 			'  //Serial.println("");\n'+
 			'  //Serial.println("Command: "+Command);\n'+
-			'  //Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
+			'  //Serial.println("cmd= "+cmd+" ,p1= "+p1+" ,p2= "+p2+" ,p3= "+p3+" ,p4= "+p4+" ,p5= "+p5+" ,p6= "+p6+" ,p7= "+p7+" ,p8= "+p8+" ,p9= "+p9);\n'+
 			'  //Serial.println("");\n'+
 			'  if (cmd=="ip") {\n'+
 			'    Feedback="AP IP: "+WiFi.softAPIP().toString();\n'+
@@ -2543,50 +2543,50 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'  } else if (cmd=="restart") {\n'+
 			'    ESP.restart();\n'+
 			'  } else if (cmd=="digitalwrite") {\n'+
-			'    ledcDetachPin(P1.toInt());\n'+
-			'    pinMode(P1.toInt(), OUTPUT);\n'+
-			'    digitalWrite(P1.toInt(), P2.toInt());\n'+
+			'    ledcDetachPin(p1.toInt());\n'+
+			'    pinMode(p1.toInt(), OUTPUT);\n'+
+			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
 			'  } else if (cmd=="digitalread") {\n'+
-			'    Feedback=String(digitalRead(P1.toInt()));\n'+
+			'    Feedback=String(digitalRead(p1.toInt()));\n'+
 			'  } else if (cmd=="analogwrite") {\n'+
-			'    if (P1=="4") {\n'+
+			'    if (p1=="4") {\n'+
 			'      ledcAttachPin(4, 4);\n'+
 			'      ledcSetup(4, 5000, 8);\n'+
-			'      ledcWrite(4,P2.toInt());\n'+
+			'      ledcWrite(4,p2.toInt());\n'+
 			'    } else {\n'+
-			'      ledcAttachPin(P1.toInt(), 9);\n'+
+			'      ledcAttachPin(p1.toInt(), 9);\n'+
 			'      ledcSetup(9, 5000, 8);\n'+
-			'      ledcWrite(9,P2.toInt());\n'+
+			'      ledcWrite(9,p2.toInt());\n'+
 			'    }\n'+
 			'  }\n'+
 			'  else if (cmd=="analogread") {\n'+
-			'    Feedback=String(analogRead(P1.toInt()));\n'+
+			'    Feedback=String(analogRead(p1.toInt()));\n'+
 			'  } else if (cmd=="touchread") {\n'+
-			'    Feedback=String(touchRead(P1.toInt()));\n'+
+			'    Feedback=String(touchRead(p1.toInt()));\n'+
 			'  } else if (cmd=="restart") {\n'+
 			'    ESP.restart();\n'+
 			'  } else if (cmd=="flash") {\n'+
 			'    ledcAttachPin(4, 4);\n'+
 			'    ledcSetup(4, 5000, 8);\n'+
-			'    int val = P1.toInt();\n'+
+			'    int val = p1.toInt();\n'+
 			'    ledcWrite(4,val);\n'+
 			'  } else if(cmd=="servo") {\n'+
-			'    ledcAttachPin(P1.toInt(), 3);\n'+
+			'    ledcAttachPin(p1.toInt(), 3);\n'+
 			'    ledcSetup(3, 50, 16);\n'+
-			'    int val = 7864-P2.toInt()*34.59;\n'+
+			'    int val = 7864-p2.toInt()*34.59;\n'+
 			'    if (val > 7864)\n'+
 			'       val = 7864;\n'+
 			'    else if (val < 1638)\n'+
 			'      val = 1638;\n'+
 			'    ledcWrite(3, val);\n'+
 			'  } else if (cmd=="relay") {\n'+
-			'    pinMode(P1.toInt(), OUTPUT);\n'+
-			'    digitalWrite(P1.toInt(), P2.toInt());\n'+
+			'    pinMode(p1.toInt(), OUTPUT);\n'+
+			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
 			'  } else if (cmd=="resetwifi") {\n'+
 			'    for (int i=0;i<2;i++) {\n'+
-			'      WiFi.begin(P1.c_str(), P2.c_str());\n'+
+			'      WiFi.begin(p1.c_str(), p2.c_str());\n'+
 			'      Serial.print("Connecting to ");\n'+
-			'      Serial.println(P1);\n'+
+			'      Serial.println(p1);\n'+
 			'      long int StartTime=millis();\n'+
 			'      while (WiFi.status() != WL_CONNECTED) {\n'+
 			'          delay(500);\n'+
@@ -2596,7 +2596,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'      Serial.println("STAIP: "+WiFi.localIP().toString());\n'+
 			'      Feedback="STAIP: "+WiFi.localIP().toString();\n'+
 			'      if (WiFi.status() == WL_CONNECTED) {\n'+
-			'        WiFi.softAP((WiFi.localIP().toString()+"_"+P1).c_str(), P2.c_str());\n'+
+			'        WiFi.softAP((WiFi.localIP().toString()+"_"+p1).c_str(), p2.c_str());\n'+
 			'        for (int i=0;i<2;i++) {\n'+
 			'          ledcWrite(4,10);\n'+
 			'          delay(300);\n'+
@@ -2607,30 +2607,30 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'      }\n'+
 			'    }\n'+
 			'  } else if (cmd=="framesize") {\n'+
-			'    int val = P1.toInt();\n'+
+			'    int val = p1.toInt();\n'+
 			'    sensor_t * s = esp_camera_sensor_get();\n'+
 			'    s->set_framesize(s, (framesize_t)val);\n'+
 			'  } else if (cmd=="quality") {\n'+
 			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_quality(s, P1.toInt());\n'+
+			'    s->set_quality(s, p1.toInt());\n'+
 			'  } else if (cmd=="contrast") {\n'+
 			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_contrast(s, P1.toInt());\n'+
+			'    s->set_contrast(s, p1.toInt());\n'+
 			'  } else if (cmd=="brightness") {\n'+
 			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_brightness(s, P1.toInt());\n'+
+			'    s->set_brightness(s, p1.toInt());\n'+
 			'  } else if (cmd=="saturation") {\n'+
 			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_saturation(s, P1.toInt());\n'+ 
+			'    s->set_saturation(s, p1.toInt());\n'+ 
 			'  } else if (cmd=="special_effect") {\n'+
 			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_special_effect(s, P1.toInt());\n'+
+			'    s->set_special_effect(s, p1.toInt());\n'+
 			'  } else if (cmd=="hmirror") {\n'+
 			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_hmirror(s, P1.toInt());\n'+
+			'    s->set_hmirror(s, p1.toInt());\n'+
 			'  } else if (cmd=="vflip") {\n'+
 			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_vflip(s, P1.toInt());\n'+
+			'    s->set_vflip(s, p1.toInt());\n'+
 			'  } else {\n  '+ 
 			statements_executecommand.replace(/\n/g,"\n  ")+
 			'}\n'+ 
@@ -2740,7 +2740,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 
 	Blockly.Arduino.definitions_.getRequest = ''+
 			'  void getRequest() {\n'+
-			'    Command="";cmd="";P1="";P2="";P3="";P4="";P5="";P6="";P7="";P8="";P9="";\n'+
+			'    Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'+
 			'    receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'+
 			'  	 \n'+
 			'    client = server.available();\n'+
@@ -2841,15 +2841,15 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'      if (c==\';\') pState++;\n'+
 			'      \n'+
 			'      if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) P1=P1+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==2)&&(c!=\';\')) P2=P2+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==3)&&(c!=\';\')) P3=P3+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==4)&&(c!=\';\')) P4=P4+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==5)&&(c!=\';\')) P5=P5+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==6)&&(c!=\';\')) P6=P6+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==7)&&(c!=\';\')) P7=P7+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==8)&&(c!=\';\')) P8=P8+String(c);\n'+
-			'      if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) P9=P9+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
+			'      if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
 			'      \n'+
 			'      if (c==\'?\') questionState=1;\n'+
 			'      if (c==\'=\') equalState=1;\n'+
@@ -3006,7 +3006,7 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 																	'  #error Bluetooth is not enabled! Please run `make menuconfig` to and enable it\n'+
 																	'#endif\n'+
 																	'BluetoothSerial SerialBT;\n';
-	Blockly.Arduino.definitions_.define_esp32_bluetooth_command = 'String ReceiveData="", Command="",cmd="",P1="",P2="",P3="",P4="",P5="",P6="",P7="",P8="",P9="";\n'+
+	Blockly.Arduino.definitions_.define_esp32_bluetooth_command = 'String ReceiveData="", Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\n'+
 																  'byte ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;\n';
 
 	var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
@@ -3014,7 +3014,7 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 	Blockly.Arduino.definitions_.define_esp32_ExecuteCommand = '\n'+
 			'void ExecuteCommand() {\n'+
 			'  Serial.println("");\n'+
-			'  Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
+			'  Serial.println("cmd= "+cmd+" ,p1= "+p1+" ,p2= "+p2+" ,p3= "+p3+" ,p4= "+p4+" ,p5= "+p5+" ,p6= "+p6+" ,p7= "+p7+" ,p8= "+p8+" ,p9= "+p9);\n'+
 			'  Serial.println("");\n'+
 			'  if (cmd=="yourcmd") {\n'+
 			'    //you can do anything\n'+
@@ -3023,29 +3023,29 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 			'    ESP.restart();\n'+
 			'  }\n'+			
 			'  else if (cmd=="inputpullup") {\n'+
-			'    pinMode(P1.toInt(), INPUT_PULLUP);\n'+
+			'    pinMode(p1.toInt(), INPUT_PULLUP);\n'+
 			'  }\n'+
 			'  else if (cmd=="pinmode") {\n'+
-			'    pinMode(P1.toInt(), P2.toInt());\n'+
+			'    pinMode(p1.toInt(), p2.toInt());\n'+
 			'  }\n'+     
 			'  else if (cmd=="digitalwrite") {\n'+
-			'    ledcDetachPin(P1.toInt());\n'+
-			'    pinMode(P1.toInt(), OUTPUT);\n'+
-			'    digitalWrite(P1.toInt(),P2.toInt());\n'+
+			'    ledcDetachPin(p1.toInt());\n'+
+			'    pinMode(p1.toInt(), OUTPUT);\n'+
+			'    digitalWrite(p1.toInt(),p2.toInt());\n'+
 			'  }\n'+  
 			'  else if (cmd=="digitalread") {\n'+
-			'    SerialBT.println(String(digitalRead(P1.toInt())));\n'+
+			'    SerialBT.println(String(digitalRead(p1.toInt())));\n'+
 			'  }\n'+ 
 			'  else if (cmd=="touchread") {\n'+
-			'    SerialBT.println(String(touchRead(P1.toInt())));\n'+
+			'    SerialBT.println(String(touchRead(p1.toInt())));\n'+
 			'  }\n'+
 			'  else if (cmd=="analogwrite") {\n'+
-			'    ledcAttachPin(P1.toInt(), 1);\n'+
+			'    ledcAttachPin(p1.toInt(), 1);\n'+
 			'    ledcSetup(1, 5000, 8);\n'+
-			'    ledcWrite(1,P2.toInt());\n'+
+			'    ledcWrite(1,p2.toInt());\n'+
 			'  }\n'+   
 			'  else if (cmd=="analogread") {\n'+
-			'    SerialBT.println(String(analogRead(P1.toInt())));\n'+
+			'    SerialBT.println(String(analogRead(p1.toInt())));\n'+
 			'  }\n'+
 			'  else {\n  '+statements_executecommand.replace(/\n/g,"\n  ")+
 			'}\n'+ 
@@ -3058,7 +3058,7 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 
     Blockly.Arduino.definitions_.define_bluetooth_getCommand = '\n'+
 			'void getCommand() {\n'+
-			'  ReceiveData="";Command="";cmd="";P1="";P2="";P3="";P4="";P5="";P6="";P7="";P8="";P9="";\n'+
+			'  ReceiveData="";Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'+
 			'  ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;\n'+
   			'  if (SerialBT.available()) {\n'+
   			'    while (SerialBT.available()) {\n'+
@@ -3071,15 +3071,15 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
   			'        if (c==\'=\') cmdState=0;\n'+
   			'        if (c==\';\') strState++;\n'+
   			'        if ((cmdState==1)&&((c!=\'?\')||(questionstate==1))) cmd=cmd+String(c);\n'+
-  			'        if ((cmdState==0)&&(strState==1)&&((c!=\'=\')||(equalstate==1))) P1=P1+String(c);\n'+
-  			'        if ((cmdState==0)&&(strState==2)&&(c!=\';\')) P2=P2+String(c);\n'+
-  			'        if ((cmdState==0)&&(strState==3)&&(c!=\';\')) P3=P3+String(c);\n'+
-  			'        if ((cmdState==0)&&(strState==4)&&(c!=\';\')) P4=P4+String(c);\n'+
- 			'        if ((cmdState==0)&&(strState==5)&&(c!=\';\')) P5=P5+String(c);\n'+
- 			'        if ((cmdState==0)&&(strState==6)&&(c!=\';\')) P6=P6+String(c);\n'+
- 			'        if ((cmdState==0)&&(strState==7)&&(c!=\';\')) P7=P7+String(c);\n'+
- 			'        if ((cmdState==0)&&(strState==8)&&(c!=\';\')) P8=P8+String(c);\n'+
- 			'        if ((cmdState==0)&&(strState>=9)&&((c!=\';\')||(semicolonstate==1))) P9=P9+String(c);\n'+
+  			'        if ((cmdState==0)&&(strState==1)&&((c!=\'=\')||(equalstate==1))) p1=p1+String(c);\n'+
+  			'        if ((cmdState==0)&&(strState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
+  			'        if ((cmdState==0)&&(strState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
+  			'        if ((cmdState==0)&&(strState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
+ 			'        if ((cmdState==0)&&(strState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
+ 			'        if ((cmdState==0)&&(strState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
+ 			'        if ((cmdState==0)&&(strState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
+ 			'        if ((cmdState==0)&&(strState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
+ 			'        if ((cmdState==0)&&(strState>=9)&&((c!=\';\')||(semicolonstate==1))) p9=p9+String(c);\n'+
   			'        if (c==\'?\') questionstate=1;\n'+
   			'        if (c==\'=\') equalstate=1;\n'+
   			'        if ((strState>=9)&&(c==\';\')) semicolonstate=1;\n'+
@@ -3191,24 +3191,24 @@ Blockly.Arduino['servermodule_parameter_set'] = function (block) {
 
 Blockly.Arduino['servermodule_parameter_set_address'] = function (block) {
   var cmd = Blockly.Arduino.valueToCode(block, 'cmd', Blockly.Arduino.ORDER_ATOMIC);
-  var P1 = Blockly.Arduino.valueToCode(block, 'P1', Blockly.Arduino.ORDER_ATOMIC);
-  var P2 = Blockly.Arduino.valueToCode(block, 'P2', Blockly.Arduino.ORDER_ATOMIC);
-  var P3 = Blockly.Arduino.valueToCode(block, 'P3', Blockly.Arduino.ORDER_ATOMIC);
-  var P4 = Blockly.Arduino.valueToCode(block, 'P4', Blockly.Arduino.ORDER_ATOMIC);
-  var P5 = Blockly.Arduino.valueToCode(block, 'P5', Blockly.Arduino.ORDER_ATOMIC);
-  var P6 = Blockly.Arduino.valueToCode(block, 'P6', Blockly.Arduino.ORDER_ATOMIC);
-  var P7 = Blockly.Arduino.valueToCode(block, 'P7', Blockly.Arduino.ORDER_ATOMIC);
-  var P8 = Blockly.Arduino.valueToCode(block, 'P8', Blockly.Arduino.ORDER_ATOMIC);
-  var P9 = Blockly.Arduino.valueToCode(block, 'P9', Blockly.Arduino.ORDER_ATOMIC);  
-  var code = '"?"+String('+cmd+')+"="+String('+P1+')+";"+String('+P2+')+";"+String('+P3+')+";"+String('+P4+')+";"+String('+P5+')+";"+String('+P6+')+";"+String('+P7+')+";"+String('+P8+')+";"+String('+P9+')';
+  var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC);
+  var p2 = Blockly.Arduino.valueToCode(block, 'p2', Blockly.Arduino.ORDER_ATOMIC);
+  var p3 = Blockly.Arduino.valueToCode(block, 'p3', Blockly.Arduino.ORDER_ATOMIC);
+  var p4 = Blockly.Arduino.valueToCode(block, 'p4', Blockly.Arduino.ORDER_ATOMIC);
+  var p5 = Blockly.Arduino.valueToCode(block, 'p5', Blockly.Arduino.ORDER_ATOMIC);
+  var p6 = Blockly.Arduino.valueToCode(block, 'p6', Blockly.Arduino.ORDER_ATOMIC);
+  var p7 = Blockly.Arduino.valueToCode(block, 'p7', Blockly.Arduino.ORDER_ATOMIC);
+  var p8 = Blockly.Arduino.valueToCode(block, 'p8', Blockly.Arduino.ORDER_ATOMIC);
+  var p9 = Blockly.Arduino.valueToCode(block, 'p9', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = '"?"+String('+cmd+')+"="+String('+p1+')+";"+String('+p2+')+";"+String('+p3+')+";"+String('+p4+')+";"+String('+p5+')+";"+String('+p6+')+";"+String('+p7+')+";"+String('+p8+')+";"+String('+p9+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['servermodule_parameter_set_address1'] = function (block) {
   var cmd = Blockly.Arduino.valueToCode(block, 'cmd', Blockly.Arduino.ORDER_ATOMIC);
-  var P1 = Blockly.Arduino.valueToCode(block, 'P1', Blockly.Arduino.ORDER_ATOMIC);
-  var P2 = Blockly.Arduino.valueToCode(block, 'P2', Blockly.Arduino.ORDER_ATOMIC); 
-  var code = '"?"+String('+cmd+')+"="+String('+P1+')+";"+String('+P2+')';
+  var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC);
+  var p2 = Blockly.Arduino.valueToCode(block, 'p2', Blockly.Arduino.ORDER_ATOMIC); 
+  var code = '"?"+String('+cmd+')+"="+String('+p1+')+";"+String('+p2+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -3412,7 +3412,7 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = '+ssid+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = '+pass+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);';
-  Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",P1="",P2="",P3="",P4="",P5="",P6="",P7="",P8="",P9="";\nbyte ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;';
+  Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;';
 
   var statements_setup = Blockly.Arduino.statementToCode(block, 'setup');
   var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');
@@ -3422,15 +3422,15 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'void ExecuteCommand() {\n'+
 			'  Serial.println("");\n'+
 			'  //Serial.println("Command: "+Command);\n'+
-			'  Serial.println("cmd= "+cmd+" ,P1= "+P1+" ,P2= "+P2+" ,P3= "+P3+" ,P4= "+P4+" ,P5= "+P5+" ,P6= "+P6+" ,P7= "+P7+" ,P8= "+P8+" ,P9= "+P9);\n'+
+			'  Serial.println("cmd= "+cmd+" ,p1= "+p1+" ,p2= "+p2+" ,p3= "+p3+" ,p4= "+p4+" ,p5= "+p5+" ,p6= "+p6+" ,p7= "+p7+" ,p8= "+p8+" ,p9= "+p9);\n'+
 			'  Serial.println("");\n'+
 			'  if (cmd=="ip") {\n'+
 			'    Feedback=WiFi.localIP().toString();\n'+
 			'  }\n'+
 			'  else if (cmd=="resetwifi") {\n'+
-			'    WiFi.begin(P1.c_str(), P2.c_str());\n'+
+			'    WiFi.begin(p1.c_str(), p2.c_str());\n'+
 			'    Serial.print("Connecting to ");\n'+
-			'    Serial.println(P1);\n'+
+			'    Serial.println(p1);\n'+
 			'    long int StartTime=millis();\n'+
 			'    while (WiFi.status() != WL_CONNECTED) {\n'+
 			'        delay(500);\n'+
@@ -3441,26 +3441,26 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'    Feedback=WiFi.localIP().toString();\n'+
 			'  }\n'+
   			'  else if (cmd=="inputpullup") {\n'+
-  			'    pinMode(P1.toInt(), INPUT_PULLUP);\n'+
+  			'    pinMode(p1.toInt(), INPUT_PULLUP);\n'+
   			'  }\n'+
   			'  else if (cmd=="pinmode") {\n'+
-  			'    if (P2.toInt()==1)\n'+
-  			'      pinMode(P1.toInt(), OUTPUT);\n'+
+  			'    if (p2.toInt()==1)\n'+
+  			'      pinMode(p1.toInt(), OUTPUT);\n'+
   			'    else\n'+
-  			'      pinMode(P1.toInt(), INPUT);\n'+
+  			'      pinMode(p1.toInt(), INPUT);\n'+
   			'  }\n'+
 			'  else if (cmd=="digitalwrite") {\n'+
-			'    pinMode(P1.toInt(), OUTPUT);\n'+
-			'    digitalWrite(P1.toInt(), P2.toInt());\n'+
+			'    pinMode(p1.toInt(), OUTPUT);\n'+
+			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
 			'  }\n'+
  			'  else if (cmd=="digitalread") {\n'+
- 			'   Feedback=String(digitalRead(P1.toInt()));\n'+
+ 			'   Feedback=String(digitalRead(p1.toInt()));\n'+
 			'  }\n'+
 			'  else if (cmd=="analogwrite") {\n'+
-			'    analogWrite(P1.toInt(), P2.toInt());\n'+
+			'    analogWrite(p1.toInt(), p2.toInt());\n'+
 			'  }\n'+
 			'  else if (cmd=="analogread") {\n'+
-			'    Feedback=String(analogRead(P1.toInt()));\n'+
+			'    Feedback=String(analogRead(p1.toInt()));\n'+
 			'  }\n'+
 			'  else {\n  '+ 
 			statements_executecommand.replace(/\n/g,"\n  ")+
@@ -3508,7 +3508,7 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 
   Blockly.Arduino.definitions_.define_linkit_getCommand = '\n'+
 			'void getCommand() {\n'+
-			'  Command="";cmd="";P1="";P2="";P3="";P4="";P5="";P6="";P7="";P8="";P9="";\n'+
+			'  Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'+
 			'  ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;\n'+
 			'  WiFiClient client = server.available();\n'+
 			'  if (client) { \n'+
@@ -3523,15 +3523,15 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'          if (c==\'=\') cmdState=0;\n'+
 			'          if (c==\';\') strState++;\n'+
 			'          if ((cmdState==1)&&((c!=\'?\')||(questionstate==1))) cmd=cmd+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==1)&&((c!=\'=\')||(equalstate==1))) P1=P1+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==2)&&(c!=\';\')) P2=P2+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==3)&&(c!=\';\')) P3=P3+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==4)&&(c!=\';\')) P4=P4+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==5)&&(c!=\';\')) P5=P5+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==6)&&(c!=\';\')) P6=P6+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==7)&&(c!=\';\')) P7=P7+String(c);\n'+
-			'          if ((cmdState==0)&&(strState==8)&&(c!=\';\')) P8=P8+String(c);\n'+
-			'          if ((cmdState==0)&&(strState>=9)&&((c!=\';\')||(semicolonstate==1))) P9=P9+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==1)&&((c!=\'=\')||(equalstate==1))) p1=p1+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
+			'          if ((cmdState==0)&&(strState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
+			'          if ((cmdState==0)&&(strState>=9)&&((c!=\';\')||(semicolonstate==1))) p9=p9+String(c);\n'+
 			'          if (c==\'?\') questionstate=1;\n'+
 			'          if (c==\'=\') equalstate=1;\n'+
 			'          if ((strState>=9)&&(c==\';\')) semicolonstate=1;\n'+
@@ -7762,10 +7762,10 @@ Blockly.Arduino['esp32_cam_tfjs_cocossd'] = function(block) {
 
 Blockly.Arduino['servermodule_parameter_set_address3'] = function (block) {
   var cmd = this.getFieldValue("cmd");
-  var P1 = Blockly.Arduino.valueToCode(block, 'P1', Blockly.Arduino.ORDER_ATOMIC);
-  var P2 = Blockly.Arduino.valueToCode(block, 'P2', Blockly.Arduino.ORDER_ATOMIC); 
-  var P3 = Blockly.Arduino.valueToCode(block, 'P3', Blockly.Arduino.ORDER_ATOMIC);   
-  var code = '"?"+String('+cmd+')+"="+String('+P1+')+";"+String('+P2+')+";"+String('+P2+')';
+  var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC);
+  var p2 = Blockly.Arduino.valueToCode(block, 'p2', Blockly.Arduino.ORDER_ATOMIC); 
+  var p3 = Blockly.Arduino.valueToCode(block, 'p3', Blockly.Arduino.ORDER_ATOMIC);   
+  var code = '"?"+String('+cmd+')+"="+String('+p1+')+";"+String('+p2+')+";"+String('+p2+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
