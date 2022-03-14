@@ -2400,9 +2400,9 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'      Serial.println(WiFi.localIP());\n'+
 			'      Serial.println("");\n'+
 			'      for (int i=0;i<5;i++) {\n'+
-			'        ledcWrite(4,10);\n'+
+			'        ledcWrite(2,10);\n'+
 			'        delay(200);\n'+
-			'        ledcWrite(4,0);\n'+
+			'        ledcWrite(2,0);\n'+
 			'        delay(200);\n'+    
 			'      }\n'+
 			'      break;\n'+
@@ -2411,18 +2411,16 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'  if (WiFi.status() != WL_CONNECTED) {\n'+
 			'    WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+
 			'    for (int i=0;i<2;i++) {\n'+
-			'      ledcWrite(4,10);\n'+
+			'      ledcWrite(2,10);\n'+
 			'      delay(1000);\n'+
-			'      ledcWrite(4,0);\n'+
+			'      ledcWrite(2,0);\n'+
 			'      delay(1000); \n'+   
 			'    }\n'+
 			'  }\n'+ 
 			'  Serial.println("");\n'+
 			'  Serial.println("APIP address: ");\n'+
 			'  Serial.println(WiFi.softAPIP());\n'+  
-			'  Serial.println("");\n'+ 
-			'  pinMode(4, OUTPUT);\n'+
-			'  digitalWrite(4, LOW);\n'+  
+			'  Serial.println("");\n'+  
 			'  server.begin();\n'+ statements_setup +
 			'\n';
 	
