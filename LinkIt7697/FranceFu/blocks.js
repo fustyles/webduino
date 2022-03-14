@@ -438,7 +438,7 @@ Blockly.Blocks['fu_ez_buzzer_tone'] = {
         .appendField("EZ+")
         .appendField(Blockly.Msg["EZ_BUZZER"]);
     this.appendValueInput("frequency")
-        .setCheck(null)
+        .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["EZ_FREQUENCY"]);		
     this.setInputsInline(true);
@@ -457,11 +457,11 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration'] = {
         .appendField("EZ+")
         .appendField(Blockly.Msg["EZ_BUZZER"]);
     this.appendValueInput("frequency")
-        .setCheck(null)
+        .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["EZ_FREQUENCY"]);
     this.appendValueInput("duration")
-        .setCheck(null)
+        .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["EZ_DELAY_MS"]);	
     this.setInputsInline(true);
@@ -519,11 +519,11 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration_esp'] = {
         .appendField("EZ+")
         .appendField(Blockly.Msg["EZ_BUZZER_ESP32"]);
     this.appendValueInput("frequency")
-        .setCheck(null)
+        .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["EZ_FREQUENCY"]);
     this.appendValueInput("duration")
-        .setCheck(null)
+        .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["EZ_DELAY_MS"]);
     this.appendValueInput("channel")
