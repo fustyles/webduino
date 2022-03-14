@@ -2309,6 +2309,8 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = '+ssid+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = '+pass+';';
+  Blockly.Arduino.definitions_.define_linkit_wifi_apssid='const char* apssid = "esp32_ap";';
+  Blockly.Arduino.definitions_.define_linkit_wifi_appass='const char* appassword = "12345678";';   
   Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);';
   Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;';
 
