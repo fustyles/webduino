@@ -622,7 +622,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			event.preventDefault();
 		}
 		else
-			alert("Web serial is not supported.");
+			if (typeof nw !== "undefined")
+				nw.Shell.openExternal("https://fustyles.github.io/webduino/WebSerial.html")	
 	}
 
 	//Web Bluetooth
