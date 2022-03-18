@@ -419,6 +419,22 @@ Blockly.Blocks['fu_ez_digitalread_button'] = {
   }
 };
 
+Blockly.Blocks['fu_ez_digitalread_button_statement'] = {
+  init: function() {
+    this.appendDummyInput()	  
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+		.appendField(Blockly.Msg["EZ_BUTTON"])
+		.appendField(Blockly.Msg["EZ_PRESS"])
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_BUTTONA"],"A"],[Blockly.Msg["EZ_BUTTONB"],"B"],[Blockly.Msg["EZ_BUTTONAB"],"AB"]]), "type");	  
+    this.appendStatementInput("execute");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(140);
+  }
+};
+
 Blockly.Blocks['fu_ez_analogread_potentiometer'] = {
   init: function() {
     this.appendDummyInput()
