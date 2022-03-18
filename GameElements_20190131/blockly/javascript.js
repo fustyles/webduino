@@ -1971,3 +1971,10 @@ Blockly.JavaScript['video_output_jpg'] = function (block) {
   var code = 'outputfile_jpg('+value_id+');\n';
   return code;
 };
+
+Blockly.JavaScript['window_open'] = function (block) {
+  var value_url = Blockly.JavaScript.valueToCode(block, 'url_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_name = block.getFieldValue('name_');
+  var code = 'window.open('+value_url+',"'+value_name+'");\n';
+  return code;
+};
