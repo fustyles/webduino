@@ -4778,3 +4778,23 @@ this.appendValueInput("id_")
   this.setColour(110);  
   }
 };
+
+Blockly.Blocks['window_open'] = {
+  init: function() {
+  this.appendValueInput("url_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.WINDOW_OPEN);  	  
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.WINDOW_NAME)
+	  .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.WINDOW_NAME_NEW,"_blank"],
+		  [Blockly.Msg.WINDOW_NAME_PARENT,"_parent"],
+		  [Blockly.Msg.WINDOW_NAME_SELF,"_self"],
+		  [Blockly.Msg.WINDOW_NAME_TOP,"_top"]
+	  ]),"name_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(110);  
+  }
+};
