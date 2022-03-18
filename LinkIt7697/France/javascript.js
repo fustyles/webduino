@@ -177,6 +177,25 @@ Blockly.Arduino['fu_ez_digitalwrite_input'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['fu_ez_digitalwrite_relay'] = function(block) {
+  var pin = 25;
+  if (selectBoardType()=="esp32")
+	pin = 25; 
+  else if (selectBoardType()=="LinkIt")
+	pin = 5;
+  else if (selectBoardType()=="sandeepmistry")
+	pin = 9; 
+  else if (selectBoardType()=="BPI-BIT")
+	pin = 17;
+
+  var dropdown_value = block.getFieldValue('value');
+
+  Blockly.Arduino.setups_['pinmode_'+ pin] = 'pinMode('+ pin +', OUTPUT);';
+  
+  var code = 'digitalWrite('+ pin +', '+ dropdown_value +');\n';
+  return code;
+};
+
 Blockly.Arduino['fu_ez_digitalwrite_input_relay'] = function(block) {
   var pin = 25;
   if (selectBoardType()=="esp32")
@@ -313,6 +332,57 @@ Blockly.Arduino['fu_ez_digitalread_button'] = function(block) {
   }
   
   return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['fu_ez_digitalread_button_statement'] = function(block) {
+  var statements = Blockly.Arduino.statementToCode(block, 'execute');
+  var dropdown_type = block.getFieldValue('type');	
+  var pinButton = [[5,36],[0,7],[5,11],[35,27]]; 
+  var pinA = pinButton[0][0];
+  var pinB = pinButton[0][1];  
+  if (selectBoardType()=="esp32") {
+	pinA = pinButton[0][0];
+	pinB = pinButton[0][1];	
+  }
+  else if (selectBoardType()=="LinkIt") {
+	pinA = pinButton[1][0];
+	pinB = pinButton[1][1];
+  }
+  else if (selectBoardType()=="sandeepmistry") {
+	pinA = pinButton[2][0];
+	pinB = pinButton[2][1];
+  }
+  else if (selectBoardType()=="BPI-BIT") {
+	pinA = pinButton[3][0];
+	pinB = pinButton[3][1];
+  }
+  
+  var condition = "";
+  if (dropdown_type == "A") {
+	Blockly.Arduino.setups_['pinmode_'+ pinA] = 'pinMode('+ pinA +', INPUT_PULLUP);';	  
+	condition = 'digitalRead('+ pinA +')==0' ;
+  }
+  else if (dropdown_type == "B") {
+	Blockly.Arduino.setups_['pinmode_'+ pinB] = 'pinMode('+ pinB +', INPUT_PULLUP);';
+	condition = 'digitalRead('+ pinB +')==0' ;
+  }
+  else if (dropdown_type == "AB") {
+	Blockly.Arduino.setups_['pinmode_'+ pinA] = 'pinMode('+ pinA +', INPUT_PULLUP);';
+    Blockly.Arduino.setups_['pinmode_'+ pinB] = 'pinMode('+ pinB +', INPUT_PULLUP);';
+	Blockly.Arduino.definitions_['digitalRead_AB'] = ''+
+	    'int pressButtonAB() {\n'+
+		'  if ((digitalRead('+ pinA +')==0) || (digitalRead('+ pinB +')==0)) {\n' +
+		'    delay(200);\n'+
+		'    return (digitalRead('+ pinA +')==0) && (digitalRead('+ pinB +')==0);\n'+
+		'  }\n'+			
+		'  else \n'+		
+		'    return 0;\n'+
+		'}';
+	condition = 'pressButtonAB()';
+  }
+  
+  var code = 'if ('+condition+') {\n'+statements+'}\n';
+  return code;
 };
 
 Blockly.Arduino['fu_ez_analogread_potentiometer'] = function(block) {

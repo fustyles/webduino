@@ -247,17 +247,17 @@ Blockly.Blocks['fu_taiwan_aqi'] = {
 		]), "sitename");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField(new Blockly.FieldVariable("airAQI"), "AQI")
-        .appendField(Blockly.Msg["AIRQUALITY_AQI"]);
+        .appendField(Blockly.Msg["AIRQUALITY_AQI"])
+		.appendField(new Blockly.FieldVariable("airAQI"), "AQI");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField(new Blockly.FieldVariable("airPM25"), "PM25")
-        .appendField(Blockly.Msg["AIRQUALITY_PM25"]);	
+        .appendField(Blockly.Msg["AIRQUALITY_PM25"])
+		.appendField(new Blockly.FieldVariable("airPM25"), "PM25");	
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)	
-        .appendField(new Blockly.FieldVariable("airSTATUS"), "STATUS")
-        .appendField(Blockly.Msg["AIRQUALITY_STATE"]);			
-    this.setInputsInline(false);
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField(Blockly.Msg["AIRQUALITY_STATE"])
+		.appendField(new Blockly.FieldVariable("airSTATUS"), "STATUS");			
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(60);
@@ -297,6 +297,24 @@ Blockly.Blocks['fu_ez_digitalwrite_input'] = {
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["EZ_DIGITALWRITE"]);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(20);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_digitalwrite_relay'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("EZ+")
+        .appendField(Blockly.Msg["EZ_RELAY"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["EZ_STATE"])
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_OPEN"],"1"], [Blockly.Msg["EZ_CLOSE"],"0"]]), "value");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -398,6 +416,22 @@ Blockly.Blocks['fu_ez_digitalread_button'] = {
     this.setColour(80);
     this.setTooltip("");
     this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_ez_digitalread_button_statement'] = {
+  init: function() {
+    this.appendDummyInput()	  
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+		.appendField(Blockly.Msg["EZ_BUTTON"])
+		.appendField(Blockly.Msg["EZ_PRESS"])
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_BUTTONA"],"A"],[Blockly.Msg["EZ_BUTTONB"],"B"],[Blockly.Msg["EZ_BUTTONAB"],"AB"]]), "type");	  
+    this.appendStatementInput("execute");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(140);
   }
 };
 
@@ -4972,10 +5006,6 @@ Blockly.Blocks['linenotify_all'] = {
 	 }	 
   } 
 };
-
-
-
-
 
 
 
@@ -12584,7 +12614,7 @@ Blockly.Blocks['servermodule_parameter_set_address3'] = {
 	this.appendDummyInput()
       .appendField("cmd")
       .appendField(new Blockly.FieldDropdown([
-		["ip(","ip"],
+		["ip","ip"],
 		["mac","mac"],
 		["restart","restart"],
 		["digitalwrite(pin,value)","digitalwrite"],

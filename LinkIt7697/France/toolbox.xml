@@ -137,7 +137,6 @@
  <category id="ez" name="EZ+">
     <block type="fu_ez_digitalwrite">
       <field name="led">0</field>
-      <field name="value">HIGH</field>
     </block>
     <block type="fu_ez_digitalwrite_input">
       <field name="led">0</field>
@@ -147,6 +146,9 @@
         </shadow>
       </value>
     </block>
+    <block type="fu_ez_digitalwrite_relay">
+      <field name="led">0</field>
+    </block>	
     <block type="fu_ez_digitalwrite_input_relay">
 	  <value name="value">
         <shadow type="math_number">
@@ -181,6 +183,9 @@
     <block type="fu_ez_digitalread_button">
       <field name="type">0</field>
     </block>
+    <block type="fu_ez_digitalread_button_statement">
+      <field name="type">0</field>
+    </block>	
     <block type="fu_ez_analogread_potentiometer"></block>
     <block type="fu_ez_analogread_photoresistor"></block>
       <block type="fu_ez_buzzer_tone">
