@@ -306,6 +306,24 @@ Blockly.Blocks['fu_ez_digitalwrite_input'] = {
   }
 };
 
+Blockly.Blocks['fu_ez_digitalwrite_relay'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("EZ+")
+        .appendField(Blockly.Msg["EZ_RELAY"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["EZ_STATE"])
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_OPEN"],"1"], [Blockly.Msg["EZ_CLOSE"],"0"]]), "value");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(20);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['fu_ez_digitalwrite_input_relay'] = {
   init: function() {
     this.appendDummyInput()
