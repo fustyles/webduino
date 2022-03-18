@@ -2117,89 +2117,37 @@
 
 	 <sep id="category_sep"></sep>	
     <category id="france3" name="line">	
-	  <block type="linenotify_esp32_no">
-		<value name="linenotify_token">
+	  <block type="linenotify_all">
+		<value name="token_">
 		  <block type="text">
 			<field name="TEXT"></field>
 		  </block>		
-		</value>   
-		<value name="linenotify_msg">
-			  <block type="linenotify_text">
-				<value name="value_text">
-				  <block type="text">
-					<field name="TEXT">Hello World</field>
-				  </block>
-				</value>  
-			  </block>		
 		</value>
-	  </block>
-	  <block type="linenotify_esp32_no">
-		<value name="linenotify_token">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>   
-		<value name="linenotify_msg">
-			  <block type="linenotify_sticker">
-				<value name="value_text">
-				  <block type="text">
-					<field name="TEXT">Hello World</field>
-				  </block>
-				</value>  
-				<value name="value_packageId">
-				  <block type="math_number">
-					<field name="NUM">1</field>
-				  </block>
-				</value>  
-				<value name="value_stickerId">
-				  <block type="math_number">
-					<field name="NUM">2</field>
-				  </block>
-				</value>  
-			  </block>			
-		</value>
-	  </block>
-	  <block type="linenotify_esp32_no">
-		<value name="linenotify_token">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>   
-		<value name="linenotify_msg">
-			  <block type="linenotify_image">
-				<value name="value_text">
-				  <block type="text">
-					<field name="TEXT">Hello World</field>
-				  </block>
-				</value>  
-				<value name="value_originalContentUrl">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>  
-				<value name="value_previewImageUrl">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>  
-			  </block> 	
-		</value>
-	  </block>	  
-	  <block type="linenotify_esp32">
-		<value name="linenotify_token">
+		<value name="text_">
 		  <block type="text">
 			<field name="TEXT"></field>
 		  </block>		
-		</value>   
-		<value name="linenotify_msg">
-		  <block type="linenotify_text">
-			<value name="value_text">
-			  <block type="text">
-				<field name="TEXT">Hello World</field>
-			  </block>
-			</value>  
-		  </block>			
-		</value>
+		</value>		
+		<value name="packageId_">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value>  
+		<value name="stickerId_">
+		  <block type="math_number">
+			<field name="NUM">2</field>
+		  </block>
+		</value> 
+		<value name="originalContentUrl_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="previewImageUrl_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
 	  </block>
 	  <block type="linenotify_http">
 		<value name="linenotify_token">

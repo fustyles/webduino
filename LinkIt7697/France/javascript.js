@@ -1639,41 +1639,6 @@ Blockly.Arduino['customcode_instruction6'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE]; 
 };
 
-
-Blockly.Arduino['linenotify_text'] = function(block) {
-  var text = Blockly.Arduino.valueToCode(block, 'value_text', Blockly.Arduino.ORDER_ATOMIC); 
-  if (!text) text='" "';
-
-  var code = '"message="+String(' + text + ')';
-  return [code, Blockly.Arduino.ORDER_NONE];
-};
-
-Blockly.Arduino['linenotify_sticker'] = function(block) {
-  var text = Blockly.Arduino.valueToCode(block, 'value_text', Blockly.Arduino.ORDER_ATOMIC);
-  var packageId = Blockly.Arduino.valueToCode(block, 'value_packageId', Blockly.Arduino.ORDER_ATOMIC);
-  var stickerId = Blockly.Arduino.valueToCode(block, 'value_stickerId', Blockly.Arduino.ORDER_ATOMIC);  
-  
-  if (!text) text='" "';
-  if (!packageId) packageId='""';
-  if (!stickerId) stickerId='""';
-  
-  var code = '"message="+String(' + text + ')+"&stickerPackageId="+String('+packageId+')+"&stickerId="+String('+stickerId+')';
-  return [code, Blockly.Arduino.ORDER_NONE];
-};
-
-Blockly.Arduino['linenotify_image'] = function(block) {
-  var text = Blockly.Arduino.valueToCode(block, 'value_text', Blockly.Arduino.ORDER_ATOMIC);
-  var originalContentUrl = Blockly.Arduino.valueToCode(block, 'value_originalContentUrl', Blockly.Arduino.ORDER_ATOMIC);
-  var previewImageUrl = Blockly.Arduino.valueToCode(block, 'value_previewImageUrl', Blockly.Arduino.ORDER_ATOMIC);  
-  
-  if (!text) text='" "';
-  if (!originalContentUrl) originalContentUrl='""';
-  if (!previewImageUrl) previewImageUrl='""';
-  
-  var code = '"message="+String(' + text + ')+"&imageThumbnail="+String('+previewImageUrl + ')+"&imageFullsize="+String('+originalContentUrl+')';
-  return [code, Blockly.Arduino.ORDER_NONE];
-};
-
 Blockly.Arduino['tcp_https_esp32'] = function(block) { 
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
@@ -1903,6 +1868,130 @@ Blockly.Arduino['linenotify_esp32_br'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['linenotify_text'] = function(block) {
+  var text = Blockly.Arduino.valueToCode(block, 'value_text', Blockly.Arduino.ORDER_ATOMIC); 
+  if (!text) text='" "';
+
+  var code = '"message="+String(' + text + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['linenotify_sticker'] = function(block) {
+  var text = Blockly.Arduino.valueToCode(block, 'value_text', Blockly.Arduino.ORDER_ATOMIC);
+  var packageId = Blockly.Arduino.valueToCode(block, 'value_packageId', Blockly.Arduino.ORDER_ATOMIC);
+  var stickerId = Blockly.Arduino.valueToCode(block, 'value_stickerId', Blockly.Arduino.ORDER_ATOMIC);  
+  
+  if (!text) text='" "';
+  if (!packageId) packageId='""';
+  if (!stickerId) stickerId='""';
+  
+  var code = '"message="+String(' + text + ')+"&stickerPackageId="+String('+packageId+')+"&stickerId="+String('+stickerId+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['linenotify_image'] = function(block) {
+  var text = Blockly.Arduino.valueToCode(block, 'value_text', Blockly.Arduino.ORDER_ATOMIC);
+  var originalContentUrl = Blockly.Arduino.valueToCode(block, 'value_originalContentUrl', Blockly.Arduino.ORDER_ATOMIC);
+  var previewImageUrl = Blockly.Arduino.valueToCode(block, 'value_previewImageUrl', Blockly.Arduino.ORDER_ATOMIC);  
+  
+  if (!text) text='" "';
+  if (!originalContentUrl) originalContentUrl='""';
+  if (!previewImageUrl) previewImageUrl='""';
+  
+  var code = '"message="+String(' + text + ')+"&imageThumbnail="+String('+previewImageUrl + ')+"&imageFullsize="+String('+originalContentUrl+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['linenotify_all'] = function(block) {
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
+  Blockly.Arduino.definitions_['linenotify_esp32'] ='\n'+
+											'String LineNotify_esp32(String token, String request) {\n'+
+											'  String getAll="", getBody="";\n'+
+											'  request.replace("%","%25");\n'+
+											'  request.replace(" ","%20");\n'+
+											'  request.replace("&","%20");\n'+
+											'  request.replace("#","%20");\n'+
+											'  request.replace("\\"","%22");\n'+
+											'  request.replace("\\n","%0D%0A");\n'+
+											'  request.replace("%20stickerPackageId","&stickerPackageId");\n'+
+											'  request.replace("%20stickerId","&stickerId");\n'+
+											'  request.replace("%20imageFullsize","&imageFullsize");\n'+
+											'  request.replace("%20imageThumbnail","&imageThumbnail");\n'+ 
+											'  WiFiClientSecure client_tcp;\n'+
+											'  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
+											'    client_tcp.println("POST /api/notify HTTP/1.1");\n'+
+											'    client_tcp.println("Connection: close");\n'+
+											'    client_tcp.println("Host: notify-api.line.me");\n'+
+											'    client_tcp.println("User-Agent: ESp8266/1.0");\n'+
+											'    client_tcp.println("Authorization: Bearer " + token);\n'+
+											'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
+											'    client_tcp.println("Content-Length: " + String(request.length()));\n'+
+											'    client_tcp.println();\n'+
+											'    client_tcp.println(request);\n'+
+											'    client_tcp.println();\n'+
+											'    boolean state = false;\n'+
+											'    long startTime = millis();\n'+
+											'    while ((startTime + 3000) > millis()) {\n'+
+											'      while (client_tcp.available()) {\n'+
+											'        char c = client_tcp.read();\n'+
+											'        if (c == \'\\n\') {\n'+
+											'          if (getAll.length()==0) state=true;\n'+
+											'           getAll = "";\n'+
+											'        }\n'+ 
+											'        else if (c != \'\\r\')\n'+
+											'          getAll += String(c);\n'+
+											'          if (state==true) getBody += String(c);\n'+
+											'          startTime = millis();\n'+
+											'        }\n'+
+											'        if (getBody.length()!= 0) break;\n'+
+											'      }\n'+
+											'      client_tcp.stop();\n'+
+											'      Serial.println(getBody);\n'+
+											'  }\n'+
+											'  else {\n'+
+											'    getBody="Connected tonotify-api.line.me failed.";\n'+
+											'    Serial.println("Connected to notify-api.line.me failed.");\n'+
+											'  }\n'+
+											'  return getBody;\n'+
+											'}\n';
+
+  var token = Blockly.Arduino.valueToCode(block, 'token_', Blockly.Arduino.ORDER_ATOMIC);
+  var type = block.getFieldValue('type_');
+  var text = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC); 
+  var packageId = Blockly.Arduino.valueToCode(block, 'packageId_', Blockly.Arduino.ORDER_ATOMIC);
+  var stickerId = Blockly.Arduino.valueToCode(block, 'stickerId_', Blockly.Arduino.ORDER_ATOMIC);  
+  var originalContentUrl = Blockly.Arduino.valueToCode(block, 'originalContentUrl_', Blockly.Arduino.ORDER_ATOMIC);
+  var previewImageUrl = Blockly.Arduino.valueToCode(block, 'previewImageUrl_', Blockly.Arduino.ORDER_ATOMIC);    
+  
+  if (!text) text='" "';
+  if (!packageId) packageId='""';
+  if (!stickerId) stickerId='""';
+  if (!originalContentUrl) originalContentUrl='""';
+  if (!previewImageUrl) previewImageUrl='""'; 
+  var message = "";
+
+  if (type=="text")
+	message = '"message="+String(' + text + ')';
+  else if (type=="sticker")
+	message = '"message="+String(' + text + ')+"&stickerPackageId="+String('+packageId+')+"&stickerId="+String('+stickerId+')';
+  else if (type=="image")
+	message = '"message="+String(' + text + ')+"&imageThumbnail="+String('+previewImageUrl + ')+"&imageFullsize="+String('+originalContentUrl+')';
+
+  var code = 'LineNotify_esp32('+token+','+message.replace(/\\\\/g,"\\")+');\n';
+  return code;
+};
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Arduino['linenotify_http'] = function (block) {
   Blockly.Arduino.definitions_['define_httpclient'] ='WiFiClient client;\n';
   Blockly.Arduino.definitions_['linenotify_http'] ='\n'+
@@ -1952,20 +2041,36 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>";
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = "'+ssid+'";';
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = "'+pass+'";';
-  var code = 'pinMode(2, OUTPUT);\n'+
-			 'while (WiFi.begin(_lwifi_ssid, _lwifi_pass) != WL_CONNECTED){\n'+
-			 '  digitalWrite(2, HIGH);\n'+
-			 '  delay(100);\n'+
-			 '  digitalWrite(2, LOW);\n'+
-			 '  delay(900);\n'+
-			 '}\n'+
-			 'pinMode(2, OUTPUT);\n'+
-			 'for (int i=0;i<5;i++) {\n'+
-			 '  digitalWrite(2, HIGH);\n'+
-			 '  delay(100);\n'+
-			 '  digitalWrite(2, LOW);\n'+
-			 '  delay(100);\n'+
-			 '}\n';
+  Blockly.Arduino.setups_.setup_initWiFi='initWiFi();';
+  Blockly.Arduino.definitions_.initWiFi = ''+
+		'void initWiFi() {\n'+
+		'  WiFi.mode(WIFI_AP_STA);\n'+
+		'  \n'+
+		'  for (int i=0;i<2;i++) {\n'+
+		'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
+		'    \n'+
+		'    delay(1000);\n'+
+		'    Serial.println("");\n'+
+		'    Serial.print("Connecting to ");\n'+
+		'    Serial.println(_lwifi_ssid);\n'+
+		'    \n'+
+		'    long int StartTime=millis();\n'+
+		'    while (WiFi.status() != WL_CONNECTED) {\n'+
+		'        delay(500);\n'+
+		'        if ((StartTime+5000) < millis()) break;\n'+
+		'    }\n'+
+		'    \n'+
+		'    if (WiFi.status() == WL_CONNECTED) {\n'+     
+		'      Serial.println("");\n'+
+		'      Serial.println("STAIP address: ");\n'+
+		'      Serial.println(WiFi.localIP());\n'+
+		'      Serial.println("");\n'+
+		'    \n'+
+		'      break;\n'+
+		'    }\n'+
+		'  }\n'+
+		'}\n';  
+  var code = '';
   return code; 
 };
 
