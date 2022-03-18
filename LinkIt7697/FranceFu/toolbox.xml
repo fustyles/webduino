@@ -117,6 +117,9 @@
     <block type="fu_ez_digitalread_button">
       <field name="type">0</field>
     </block>
+    <block type="fu_ez_digitalread_button_statement">
+      <field name="type">0</field>
+    </block>	
     <block type="fu_ez_analogread_potentiometer"></block>
     <block type="fu_ez_analogread_photoresistor"></block>
       <block type="fu_ez_buzzer_tone">
