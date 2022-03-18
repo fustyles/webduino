@@ -5435,7 +5435,8 @@ Blockly.Blocks['esp32_bluetooth_initial'] = {
 Blockly.Blocks['esp32_bluetooth_readdata'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.ESP32_BLUETOOTH_READDATA_SHOW);   
+        .appendField(Blockly.Msg.ESP32_BLUETOOTH_READDATA_SHOW);
+	this.appendStatementInput("execute");		
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
