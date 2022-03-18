@@ -177,6 +177,25 @@ Blockly.Arduino['fu_ez_digitalwrite_input'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['fu_ez_digitalwrite_relay'] = function(block) {
+  var pin = 25;
+  if (selectBoardType()=="esp32")
+	pin = 25; 
+  else if (selectBoardType()=="LinkIt")
+	pin = 5;
+  else if (selectBoardType()=="sandeepmistry")
+	pin = 9; 
+  else if (selectBoardType()=="BPI-BIT")
+	pin = 17;
+
+  var dropdown_value = block.getFieldValue('value');
+
+  Blockly.Arduino.setups_['pinmode_'+ pin] = 'pinMode('+ pin +', OUTPUT);';
+  
+  var code = 'digitalWrite('+ pin +', '+ dropdown_value +');\n';
+  return code;
+};
+
 Blockly.Arduino['fu_ez_digitalwrite_input_relay'] = function(block) {
   var pin = 25;
   if (selectBoardType()=="esp32")
