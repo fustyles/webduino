@@ -247,17 +247,17 @@ Blockly.Blocks['fu_taiwan_aqi'] = {
 		]), "sitename");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField(new Blockly.FieldVariable("airAQI"), "AQI")
-        .appendField(Blockly.Msg["AIRQUALITY_AQI"]);
+        .appendField(Blockly.Msg["AIRQUALITY_AQI"])
+		.appendField(new Blockly.FieldVariable("airAQI"), "AQI");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
-        .appendField(new Blockly.FieldVariable("airPM25"), "PM25")
-        .appendField(Blockly.Msg["AIRQUALITY_PM25"]);	
+        .appendField(Blockly.Msg["AIRQUALITY_PM25"])
+		.appendField(new Blockly.FieldVariable("airPM25"), "PM25");	
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)	
-        .appendField(new Blockly.FieldVariable("airSTATUS"), "STATUS")
-        .appendField(Blockly.Msg["AIRQUALITY_STATE"]);			
-    this.setInputsInline(false);
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField(Blockly.Msg["AIRQUALITY_STATE"])
+		.appendField(new Blockly.FieldVariable("airSTATUS"), "STATUS");			
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(60);
