@@ -1968,6 +1968,6 @@ Blockly.JavaScript['button_ouput_file_text'] = function (block) {
 
 Blockly.JavaScript['video_output_jpg'] = function (block) {
   var value_id = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'outputfile_jpg('+value_id+')';
+  var code = 'outputfile_jpg('+value_id+');\n';
   return code;
 };
