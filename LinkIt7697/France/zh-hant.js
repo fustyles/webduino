@@ -887,3 +887,13 @@ Blockly.Msg["OLED_POINT1_X"] = "第一點：x";
 Blockly.Msg["OLED_POINT2_X"] = "第二點：x";
 Blockly.Msg["OLED_POINT3_X"] = "第三點：x";
 Blockly.Msg["OLED_DRAW_PIXEL_POINT"] = "繪製像素點";
+Blockly.Msg["CONSOLE_LOG"] = "主控台輸出";
+Blockly.Msg["BUTTON_OUTPUT_FILE_TEXT"] = "輸出文字至檔案";
+Blockly.Msg["VEDIO_OUTPUT_JPG"] = "視訊媒體畫面截圖另存jpg檔";
+
+Blockly.Msg["WINDOW_OPEN"] = "開啟連結網址";
+Blockly.Msg["WINDOW_NAME"] = "於";
+Blockly.Msg["WINDOW_NAME_NEW"] = "新視窗";
+Blockly.Msg["WINDOW_NAME_PARENT"] = "原本視窗";
+Blockly.Msg["WINDOW_NAME_SELF"] = "前一開起視窗";
+Blockly.Msg["WINDOW_NAME_TOP"] = "任何可被開啟視窗";

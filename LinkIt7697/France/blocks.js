@@ -10660,6 +10660,72 @@ Blockly.Blocks['location'] = {
 	this.setColour(200); 
   }  
 };
+
+Blockly.Blocks['console_log'] = {
+  init: function() {	
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.CONSOLE_LOG);
+  this.appendValueInput("text_")
+      .setCheck(null);  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(110);  
+  }
+};
+
+Blockly.Blocks['button_ouput_file_text'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.BUTTON_ID);  	  
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.BUTTON_OUTPUT_FILE_TEXT);
+  this.appendValueInput("text_")
+      .setCheck(null);  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(110);  
+  }
+};
+
+Blockly.Blocks['video_output_jpg'] = {
+  init: function() {
+this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.VIDEO_ID);	  
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.VEDIO_OUTPUT_JPG);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(110);  
+  }
+};
+
+Blockly.Blocks['window_open'] = {
+  init: function() {
+  this.appendValueInput("url_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.WINDOW_OPEN);  	  
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.WINDOW_NAME)
+	  .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.WINDOW_NAME_NEW,"_blank"],
+		  [Blockly.Msg.WINDOW_NAME_PARENT,"_parent"],
+		  [Blockly.Msg.WINDOW_NAME_SELF,"_self"],
+		  [Blockly.Msg.WINDOW_NAME_TOP,"_top"]
+	  ]),"name_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(110);  
+  }
+};
+
+
+
 Blockly.Blocks.esp32_button_pin={
 	init:function(){
 		this.appendDummyInput()

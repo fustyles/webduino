@@ -5616,6 +5616,39 @@ Blockly.Arduino['location'] = function (block) {
 	var code = 'window.location.' + value_property;
   return [code, Blockly.Arduino.ORDER_NONE];
 };
+
+Blockly.Arduino['console_log'] = function (block) {
+  var value_text = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'console.log(' + value_text + ');\n';
+  return code;
+};
+
+Blockly.Arduino['button_ouput_file_text'] = function (block) {
+  var value_id = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC); 
+  if ((value_id.indexOf('"')==0)&&(value_id.lastIndexOf('"')==value_id.length-1))
+    value_id = value_id.substring(1,value_id.length-1);
+  var value_text = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = 'async function gamebutton_'+value_id+'_onclick (event) {\n  outputfile_text(' + value_text + ');\n};\ndocument.getElementById("gamebutton_'+value_id+'").addEventListener("click", gamebutton_'+value_id+'_onclick, true);\n';
+  return code;
+};
+
+Blockly.Arduino['video_output_jpg'] = function (block) {
+  var value_id = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'outputfile_jpg('+value_id+');\n';
+  return code;
+};
+
+Blockly.Arduino['window_open'] = function (block) {
+  var value_url = Blockly.Arduino.valueToCode(block, 'url_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_name = block.getFieldValue('name_');
+  var code = 'window.open('+value_url+',"'+value_name+'");\n';
+  return code;
+};
+
+
+
+
 Blockly.Arduino.esp32_button_pin = function(){
 	var A=Blockly.Arduino.valueToCode(this,"PINA",Blockly.Arduino.ORDER_ATOMIC);
 	var B=Blockly.Arduino.valueToCode(this,"PINB",Blockly.Arduino.ORDER_ATOMIC);

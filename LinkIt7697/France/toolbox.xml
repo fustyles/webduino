@@ -3336,6 +3336,20 @@
 			<statement name="js">
 			</statement>
 		</block>
+		<block type="console_log">
+			<value name="text_">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
+		<block type="window_open">
+			<value name="url_">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
 		<block type="choice_color">
 		</block>
 		<block type="text_br">
@@ -3996,7 +4010,19 @@
 			<field name="TEXT"></field>
 		  </block>
 		</value>         
-		</block>   
+		</block> 
+	  <block type="button_ouput_file_text"> 
+		<value name="id_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>	
+	  </block> 		
 
 		</category>
 		<category id="catGameElements_sub4" name="catGameElements_sub4"> 
@@ -6620,7 +6646,14 @@
 		  </block>
 		</value>     
 		</block>  
-
+	  <block type="video_output_jpg">
+		<value name="id_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>   
+	  </block>
+  
 		</category>
 		<category id="catGameElements_sub25" name="catGameElements_sub25"> 
 

@@ -887,3 +887,13 @@ Blockly.Msg["OLED_POINT1_X"] = "point 1：x";
 Blockly.Msg["OLED_POINT2_X"] = "point 2：x";
 Blockly.Msg["OLED_POINT3_X"] = "point 3：x";
 Blockly.Msg["OLED_DRAW_PIXEL_POINT"] = "draw a pixel";
+Blockly.Msg["CONSOLE_LOG"] = "Console log";
+Blockly.Msg["BUTTON_OUTPUT_FILE_TEXT"] = "output text to file";
+Blockly.Msg["VEDIO_OUTPUT_JPG"] = "save still to jpg file";
+
+Blockly.Msg["WINDOW_OPEN"] = "Open url";
+Blockly.Msg["WINDOW_NAME"] = "at";
+Blockly.Msg["WINDOW_NAME_NEW"] = "new_window";
+Blockly.Msg["WINDOW_NAME_PARENT"] = "origin_window";
+Blockly.Msg["WINDOW_NAME_SELF"] = "previous_window";
+Blockly.Msg["WINDOW_NAME_TOP"] = "any_window";
