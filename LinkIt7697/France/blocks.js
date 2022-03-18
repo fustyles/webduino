@@ -256,7 +256,8 @@ Blockly.Blocks['fu_taiwan_aqi'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(Blockly.Msg["AIRQUALITY_STATE"])
-		.appendField(new Blockly.FieldVariable("airSTATUS"), "STATUS");			
+		.appendField(new Blockly.FieldVariable("airSTATUS"), "STATUS");
+    this.appendStatementInput("execute");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

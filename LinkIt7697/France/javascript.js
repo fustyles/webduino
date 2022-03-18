@@ -13,6 +13,7 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	var variable_AQI = Blockly.Arduino.nameDB_.getName(block.getFieldValue('AQI'), Blockly.Variables.NAME_TYPE);
 	var variable_PM25 = Blockly.Arduino.nameDB_.getName(block.getFieldValue('PM25'), Blockly.Variables.NAME_TYPE);
 	var variable_STATUS = Blockly.Arduino.nameDB_.getName(block.getFieldValue('STATUS'), Blockly.Variables.NAME_TYPE);
+	var statements = Blockly.Arduino.statementToCode(block, 'execute');
 	
 	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
@@ -65,7 +66,7 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'    obj = doc.as<JsonObject>();\n'+
 			'    '+variable_AQI+' = obj["AQI"].as<String>().toInt();\n'+
 			'    '+variable_PM25+' = obj["PM2.5"].as<String>().toInt();\n'+
-			'    '+variable_STATUS+' = obj["Status"].as<String>();\n'+
+			'    '+variable_STATUS+' = obj["Status"].as<String>();\n  '+statements+
 			'  }\n'+
 			'}';
 	Blockly.Arduino.definitions_['urlencode'] = '' +
