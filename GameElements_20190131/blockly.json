@@ -29,7 +29,8 @@
 			"color_hextorgb","body_set","gameelements_1","elements_collision_color","mouse_coordinate_get_start","head_add_viewport",
 			"video_create","video_set","video_get","video_delete","video_base64","video_base64_spreadsheet","video_base64_drive","video_base64_email","video_output_jpg",
 			"custom_comment","variable_board","custom_style",
-			"font_text","font_b","font_I","font_u","font_spu","font_sub","font_em","font_strong","font_code"
+			"font_text","font_b","font_I","font_u","font_spu","font_sub","font_em","font_strong","font_code",
+	                "window_open"
 	    ],
   "category": "catPlus",
   "scripts": [
