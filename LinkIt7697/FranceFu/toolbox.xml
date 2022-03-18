@@ -71,7 +71,6 @@
 <category id="ez" name="EZ+">
     <block type="fu_ez_digitalwrite">
       <field name="led">0</field>
-      <field name="value">HIGH</field>
     </block>
     <block type="fu_ez_digitalwrite_input">
       <field name="led">0</field>
@@ -81,6 +80,9 @@
         </shadow>
       </value>
     </block>
+    <block type="fu_ez_digitalwrite_relay">
+      <field name="led">0</field>
+    </block>	
     <block type="fu_ez_digitalwrite_input_relay">
 	  <value name="value">
         <shadow type="math_number">
