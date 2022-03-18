@@ -147,7 +147,6 @@
       </value>
     </block>
     <block type="fu_ez_digitalwrite_relay">
-      <field name="led">0</field>
     </block>	
     <block type="fu_ez_digitalwrite_input_relay">
 	  <value name="value">
