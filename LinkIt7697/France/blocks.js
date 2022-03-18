@@ -4958,7 +4958,7 @@ Blockly.Blocks['linenotify_all'] = {
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ESP32_LINE_PREVIEWIMAGEURL_SHOW,"I2");		
-	this.setInputsInline(false);	  
+	this.setInputsInline(true);	  
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(200);
@@ -4982,7 +4982,8 @@ Blockly.Blocks['linenotify_all'] = {
 		 block.getInput("originalContentUrl_").setVisible(false);
 		 block.getField("I1").setVisible(false);
 		 block.getInput("previewImageUrl_").setVisible(false);
-		 block.getField("I2").setVisible(false);		 
+		 block.getField("I2").setVisible(false);
+		 block.setInputsInline(true);
 	 }
 	 else if (newValue=="sticker") {
 		 block.getInput("packageId_").setVisible(true);
@@ -4993,6 +4994,7 @@ Blockly.Blocks['linenotify_all'] = {
 		 block.getField("I1").setVisible(false);
 		 block.getInput("previewImageUrl_").setVisible(false);
 		 block.getField("I2").setVisible(false); 
+		 block.setInputsInline(false);		 
 	 }
 	 else if (newValue=="image") {
 		 block.getInput("packageId_").setVisible(false);
@@ -5003,6 +5005,7 @@ Blockly.Blocks['linenotify_all'] = {
 		 block.getField("I1").setVisible(true);
 		 block.getInput("previewImageUrl_").setVisible(true);
 		 block.getField("I2").setVisible(true);
+		 block.setInputsInline(false);		 
 	 }	 
   } 
 };
