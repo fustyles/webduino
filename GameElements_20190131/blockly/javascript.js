@@ -1962,7 +1962,7 @@ Blockly.JavaScript['button_ouput_file_text'] = function (block) {
     value_id = value_id.substring(1,value_id.length-1);
   var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
   
-  var code = 'async function gamebutton_'+value_id+'_onclick (event) {\noutputfile_text(' + value_text + ');\n};\ndocument.getElementById("gamebutton_'+value_id+'").addEventListener("click", gamebutton_'+value_id+'_onclick, true);\n';
+  var code = 'async function gamebutton_'+value_id+'_onclick (event) {\n  outputfile_text(' + value_text + ');\n};\ndocument.getElementById("gamebutton_'+value_id+'").addEventListener("click", gamebutton_'+value_id+'_onclick, true);\n';
   return code;
 };
 
