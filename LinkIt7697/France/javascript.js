@@ -8033,3 +8033,97 @@ Blockly.Arduino['fu_serial_write_format'] = function(block) {
   var code = 'Serial.write(%1, %2);\n'.replace("%1", value_data).replace("%2", dropdown_format);
   return code;
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blockly.Arduino['fu_mqtt_setup'] = function(block) {
+  var server = Blockly.Arduino.valueToCode(block, 'server', Blockly.Arduino.ORDER_ATOMIC);
+  var port = Blockly.Arduino.valueToCode(block, 'port', Blockly.Arduino.ORDER_ATOMIC);
+  var user = Blockly.Arduino.valueToCode(block, 'user', Blockly.Arduino.ORDER_ATOMIC);
+  var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
+  var topic_subscribe = Blockly.Arduino.statementToCode(block, 'topic_subscribe');
+  
+  Blockly.Arduino.definitions_.define_mqtt_library ='#include <PubSubClient.h>';
+  Blockly.Arduino.definitions_.define_mqtt_server='const char* mqtt_server = '+server+';';
+  Blockly.Arduino.definitions_.define_mqtt_port='const unsigned int mqtt_port = '+port+';';  
+  Blockly.Arduino.definitions_.define_mqtt_user='#define MQTT_USER '+user;
+  Blockly.Arduino.definitions_.define_mqtt_pass='#define MQTT_PASSWORD '+pass;
+
+  Blockly.Arduino.definitions_.define_mqtt_client = 'WiFiClient espClient;\nPubSubClient mqtt_client(espClient);\nString mqtt_data = "";\n';
+														
+  Blockly.Arduino.definitions_.define_mqtt_sendtext = 'void mqtt_sendText(String topic, String text) {\n'+
+														'    String clientId = "ESP32-"+String(random(0xffff), HEX);\n'+
+														'    if (mqtt_client.connect(clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+
+														'      mqtt_client.publish(topic.c_str(), text.c_str());\n'+
+														'    }\n'+
+														'}\n';
+														
+  Blockly.Arduino.definitions_.define_mqtt_reconnect = 'void reconnect() {\n'+
+														'  while (!mqtt_client.connected()) {\n'+
+														'    String mqtt_clientId = "ESP32-"+String(random(0xffff), HEX);\n'+
+														'    if (mqtt_client.connect(mqtt_clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n    '+topic_subscribe+
+														'    } else {\n'+
+														'      delay(5000);\n'+
+														'    }\n'+
+														'  }\n'+
+														'}\n';											
+				
+	Blockly.Arduino.setups_.setup_mqtt= 'randomSeed(micros());\n  '+
+										'mqtt_client.setServer(mqtt_server,mqtt_port);\n  '+
+										'mqtt_client.setCallback(callback);\n  '+
+										'//mqtt_client.setBufferSize(1024);\n';
+
+  code = '';
+  return code;
+};
+
+Blockly.Arduino['fu_mqtt_loop'] = function(block) {
+  var topic_getdata = Blockly.Arduino.statementToCode(block, 'topic_getdata');
+				
+  Blockly.Arduino.definitions_.define_mqtt_callback = 'void callback(char* topic, byte* payload, unsigned int length) {\n'+
+														'  mqtt_data = "";\n'+
+														'  for (int i = 0; i < length; i++) {\n'+
+														'    char c = payload[i];\n'+
+														'    mqtt_data+=c;\n'+
+														'  }\n'+topic_getdata+
+														'}\n';
+
+  code = 'if (!mqtt_client.connected()) {\n  reconnect();\n}\nmqtt_client.loop();';
+  return code;
+};
+
+Blockly.Arduino['fu_mqtt_subscribe'] = function(block) {
+  var topic = Blockly.Arduino.valueToCode(block, 'topic', Blockly.Arduino.ORDER_ATOMIC);
+
+  code = 'mqtt_client.subscribe('+topic+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_mqtt_gettopic'] = function(block) {
+  var topic = Blockly.Arduino.valueToCode(block, 'topic', Blockly.Arduino.ORDER_ATOMIC);
+  var topic_getdata = Blockly.Arduino.statementToCode(block, 'topic_getdata'); 
+  code = 'if (String(topic)=='+topic+'&&mqtt_data!="[]") {\n'+topic_getdata+'}\n';
+  return code;
+};
+
+Blockly.Arduino['fu_mqtt_senddata'] = function(block) {
+  var topic = Blockly.Arduino.valueToCode(block, 'topic', Blockly.Arduino.ORDER_ATOMIC);
+  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC); 
+  code = 'mqtt_sendText('+topic+', '+text+');\n';
+  return code;
+};
+
+Blockly.Arduino['fu_mqtt_getdata'] = function(block) {
+  code = 'mqtt_data';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};

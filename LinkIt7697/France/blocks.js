@@ -12873,3 +12873,104 @@ Blockly.Blocks['fu_serial_write_format'] = {
  this.setHelpUrl("https://www.arduino.cc/reference/en/language/functions/communication/serial/print/");
   }
 };
+
+
+
+
+
+
+Blockly.Blocks['fu_mqtt_setup'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("MQTT連線");
+    this.appendValueInput("server")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField("主機位址");
+    this.appendValueInput("port")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField("埠號");
+    this.appendValueInput("user")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField("帳號");
+    this.appendValueInput("password")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField("密碼");	
+    this.appendStatementInput("topic_subscribe")
+        .appendField("訂閱主題");			
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['fu_mqtt_loop'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("MQTT")
+		.appendField("當收到訊息時");
+    this.appendStatementInput("topic_getdata");	
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['fu_mqtt_subscribe'] = {
+  init: function() {
+    this.appendValueInput("topic")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField("MQTT 訂閱主題");	
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['fu_mqtt_gettopic'] = {
+  init: function() {
+    this.appendValueInput("topic")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField("MQTT 當取得訊息的主題為");
+    this.appendStatementInput("topic_getdata");		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['fu_mqtt_senddata'] = {
+  init: function() {
+    this.appendValueInput("topic")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField("MQTT 向主題");
+    this.appendValueInput("text")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField("發布訊息文字");	
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};	
+
+Blockly.Blocks['fu_mqtt_getdata'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("MQTT 取得資料");
+	this.setInputsInline(false);
+    this.setOutput(true, null);
+    this.setColour(20)
+  }
+};	
