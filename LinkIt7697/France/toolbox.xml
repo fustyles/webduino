@@ -5810,47 +5810,62 @@
     </category>
 	<category id="france25" name="fu_mqtt">
 	  <block type="fu_mqtt_setup">
-	    <value name="server">
+		<value name="server">
 		  <block type="text">
 			<field name="TEXT">broker.emqx.io</field>
 		  </block>
-		</value> 
+		</value>
 		<value name="port">
 		  <block type="math_number">
 			<field name="NUM">1883</field>
 		  </block>
 		</value>
-	    <value name="user">
+		<value name="user">
 		  <block type="text">
 			<field name="TEXT"></field>
 		  </block>
-		</value> 
-	    <value name="password">
+		</value>
+		<value name="password">
 		  <block type="text">
 			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<statement name="topic_subscribe">
+		  <block type="fu_mqtt_subscribe">
+			<value name="topic">
+			  <block type="text">
+				<field name="TEXT">yourtopic/data</field>
+			  </block>
+			</value>
+		  </block>
+		</statement>
+	  </block>
+	  <block type="fu_mqtt_subscribe">
+	    <value name="topic">
+		  <block type="text">
+			<field name="TEXT">yourtopic/data</field>
 		  </block>
 		</value>		
 	  </block>
 	  <block type="fu_mqtt_loop">		
 	  </block>	  
-	  <block type="fu_mqtt_subscribe">
-	    <value name="topic">
-		  <block type="text">
-			<field name="TEXT">yourtopic/get</field>
+	  <block type="fu_mqtt_loop">
+		<statement name="topic_getdata">
+		  <block type="fu_mqtt_gettopic">
+			<value name="topic">
+			  <block type="text">
+				<field name="TEXT">yourtopic/data</field>
+			  </block>
+			</value>
 		  </block>
-		</value>		
-	  </block>	
-	  <block type="fu_mqtt_gettopic">
-	    <value name="topic">
-		  <block type="text">
-			<field name="TEXT">yourtopic/get</field>
-		  </block>
-		</value>		
+		</statement>
 	  </block>
+	  <block type="fu_mqtt_getdata">		
+	  </block>	  
 	  <block type="fu_mqtt_senddata">
 	    <value name="topic">
 		  <block type="text">
-			<field name="TEXT">yourtopic/send</field>
+			<field name="TEXT">yourtopic/data</field>
 		  </block>
 		</value>
 	    <value name="text">
@@ -5858,9 +5873,7 @@
 			<field name="TEXT">World Peace</field>
 		  </block>
 		</value>		
-	  </block>
-	  <block type="fu_mqtt_getdata">		
-	  </block>	  
+	  </block>	
     </category>	
 	<sep id="category_sep"></sep>
 	<category id="france7" name="others">

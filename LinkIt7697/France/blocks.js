@@ -12882,25 +12882,26 @@ Blockly.Blocks['fu_serial_write_format'] = {
 Blockly.Blocks['fu_mqtt_setup'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("MQTT連線");
+        .appendField("MQTT")
+        .appendField(Blockly.Msg["MQTT_FU_INITIAL"]);
     this.appendValueInput("server")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField("主機位址");
+		.appendField(Blockly.Msg["MQTT_FU_ADDRESS"]);
     this.appendValueInput("port")
         .setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField("埠號");
+		.appendField(Blockly.Msg["MQTT_FU_PORT"]);
     this.appendValueInput("user")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField("帳號");
+		.appendField(Blockly.Msg["MQTT_FU_ID"]);
     this.appendValueInput("password")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField("密碼");	
+		.appendField(Blockly.Msg["MQTT_FU_PASSWORD"]);	
     this.appendStatementInput("topic_subscribe")
-        .appendField("訂閱主題");			
+        .appendField(Blockly.Msg["MQTT_FU_SUBSCRIBE_TOPIC"]);			
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -12912,7 +12913,7 @@ Blockly.Blocks['fu_mqtt_loop'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("MQTT")
-		.appendField("當收到訊息時");
+		.appendField(Blockly.Msg["MQTT_FU_WHEN_GETDATA"]);
     this.appendStatementInput("topic_getdata");	
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
@@ -12926,7 +12927,8 @@ Blockly.Blocks['fu_mqtt_subscribe'] = {
     this.appendValueInput("topic")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField("MQTT 訂閱主題");	
+		.appendField("MQTT")
+		.appendField(Blockly.Msg["MQTT_FU_SUBSCRIBE_TOPIC"]);	
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -12939,7 +12941,8 @@ Blockly.Blocks['fu_mqtt_gettopic'] = {
     this.appendValueInput("topic")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField("MQTT 當取得訊息的主題為");
+		.appendField("MQTT")
+		.appendField(Blockly.Msg["MQTT_FU_GETDATA_TOPIC"]);
     this.appendStatementInput("topic_getdata");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
@@ -12953,11 +12956,12 @@ Blockly.Blocks['fu_mqtt_senddata'] = {
     this.appendValueInput("topic")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField("MQTT 向主題");
+		.appendField("MQTT")
+		.appendField(Blockly.Msg["MQTT_FU_TO_TOPIC"]);
     this.appendValueInput("text")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField("發布訊息文字");	
+		.appendField(Blockly.Msg["MQTT_FU_PUBLISH_TEXT"]);	
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -12968,7 +12972,8 @@ Blockly.Blocks['fu_mqtt_senddata'] = {
 Blockly.Blocks['fu_mqtt_getdata'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("MQTT 取得資料");
+        .appendField("MQTT")
+        .appendField(Blockly.Msg["MQTT_FU_GETDATA"]);
 	this.setInputsInline(false);
     this.setOutput(true, null);
     this.setColour(20)

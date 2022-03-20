@@ -897,3 +897,15 @@ Blockly.Msg["WINDOW_NAME_NEW"] = "新視窗";
 Blockly.Msg["WINDOW_NAME_PARENT"] = "原本視窗";
 Blockly.Msg["WINDOW_NAME_SELF"] = "前一開起視窗";
 Blockly.Msg["WINDOW_NAME_TOP"] = "任何可被開啟視窗";
+
+Blockly.Msg["MQTT_FU_INITIAL"] = "初始化";
+Blockly.Msg["MQTT_FU_ADDRESS"] = "主機位址";
+Blockly.Msg["MQTT_FU_PORT"] = "埠號";
+Blockly.Msg["MQTT_FU_ID"] = "帳號";
+Blockly.Msg["MQTT_FU_PASSWORD"] = "密碼";
+Blockly.Msg["MQTT_FU_SUBSCRIBE_TOPIC"] = "訂閱主題";
+Blockly.Msg["MQTT_FU_WHEN_GETDATA"] = "當收到訊息時";
+Blockly.Msg["MQTT_FU_GETDATA_TOPIC"] = "當取得訊息的主題為";
+Blockly.Msg["MQTT_FU_TO_TOPIC"] = "向主題";
+Blockly.Msg["MQTT_FU_PUBLISH_TEXT"] = "發布訊息文字";
+Blockly.Msg["MQTT_FU_GETDATA"] = "取得資料";

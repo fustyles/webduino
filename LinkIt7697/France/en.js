@@ -897,3 +897,15 @@ Blockly.Msg["WINDOW_NAME_NEW"] = "new_window";
 Blockly.Msg["WINDOW_NAME_PARENT"] = "origin_window";
 Blockly.Msg["WINDOW_NAME_SELF"] = "previous_window";
 Blockly.Msg["WINDOW_NAME_TOP"] = "any_window";
+
+Blockly.Msg["MQTT_FU_INITIAL"] = "Initial";
+Blockly.Msg["MQTT_FU_ADDRESS"] = "address";
+Blockly.Msg["MQTT_FU_PORT"] = "port";
+Blockly.Msg["MQTT_FU_ID"] = "id";
+Blockly.Msg["MQTT_FU_PASSWORD"] = "password";
+Blockly.Msg["MQTT_FU_SUBSCRIBE_TOPIC"] = "subscribe topic";
+Blockly.Msg["MQTT_FU_WHEN_GETDATA"] = "when getting text";
+Blockly.Msg["MQTT_FU_GETDATA_TOPIC"] = "when getting text and the topic is";
+Blockly.Msg["MQTT_FU_TO_TOPIC"] = "to topic";
+Blockly.Msg["MQTT_FU_PUBLISH_TEXT"] = "publish text";
+Blockly.Msg["MQTT_FU_GETDATA"] = "get data";
