@@ -5993,3 +5993,104 @@ Blockly.Blocks['linkit7697_myfirmata'] = {
     this.setColour(210);
   }
 };
+
+Blockly.Blocks['fu_mqtt_setup'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("MQTT")
+        .appendField(Blockly.Msg["MQTT_FU_INITIAL"]);
+    this.appendValueInput("server")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["MQTT_FU_ADDRESS"]);
+    this.appendValueInput("port")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["MQTT_FU_PORT"]);
+    this.appendValueInput("user")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["MQTT_FU_ID"]);
+    this.appendValueInput("password")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["MQTT_FU_PASSWORD"]);	
+    this.appendStatementInput("topic_subscribe")
+        .appendField(Blockly.Msg["MQTT_FU_SUBSCRIBE_TOPIC"]);			
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['fu_mqtt_loop'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("MQTT")
+		.appendField(Blockly.Msg["MQTT_FU_WHEN_GETDATA"]);
+    this.appendStatementInput("topic_getdata");	
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['fu_mqtt_subscribe'] = {
+  init: function() {
+    this.appendValueInput("topic")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField("MQTT")
+		.appendField(Blockly.Msg["MQTT_FU_SUBSCRIBE_TOPIC"]);	
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['fu_mqtt_gettopic'] = {
+  init: function() {
+    this.appendValueInput("topic")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField("MQTT")
+		.appendField(Blockly.Msg["MQTT_FU_GETDATA_TOPIC"]);
+    this.appendStatementInput("topic_getdata");		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['fu_mqtt_senddata'] = {
+  init: function() {
+    this.appendValueInput("topic")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField("MQTT")
+		.appendField(Blockly.Msg["MQTT_FU_TO_TOPIC"]);
+    this.appendValueInput("text")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["MQTT_FU_PUBLISH_TEXT"]);	
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};	
+
+Blockly.Blocks['fu_mqtt_getdata'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("MQTT")
+        .appendField(Blockly.Msg["MQTT_FU_GETDATA"]);
+	this.setInputsInline(false);
+    this.setOutput(true, null);
+    this.setColour(20)
+  }
+};	
