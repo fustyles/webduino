@@ -126,1258 +126,9 @@
 				</shadow>
 			</value>
 		</block>	
-	</category>	
-	<sep id="category_sep"></sep>
-	
-	
-	
-	
-	
+	</category>
 
- <category id="ez" name="EZ+">
-    <block type="fu_ez_digitalwrite">
-      <field name="led">0</field>
-    </block>
-    <block type="fu_ez_digitalwrite_input">
-      <field name="led">0</field>
-      <value name="value">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="fu_ez_digitalwrite_relay">
-    </block>	
-    <block type="fu_ez_digitalwrite_input_relay">
-	  <value name="value">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="fu_ez_analogwrite_input">
-      <field name="led">0</field>
-      <value name="value">
-        <shadow type="math_number">
-          <field name="NUM">255</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="fu_ez_analogwrite_input_esp">
-      <field name="led">0</field>
-      <value name="value">
-        <shadow type="math_number">
-          <field name="NUM">255</field>
-        </shadow>
-      </value>
-      <value name="channel">
-        <shadow type="math_number">
-          <field name="NUM">0</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="fu_ez_digitalread">
-      <field name="button">0</field>
-    </block>	
-    <block type="fu_ez_digitalread_button">
-      <field name="type">0</field>
-    </block>
-    <block type="fu_ez_digitalread_button_statement">
-      <field name="type">0</field>
-    </block>	
-    <block type="fu_ez_analogread_potentiometer"></block>
-    <block type="fu_ez_analogread_photoresistor"></block>
-      <block type="fu_ez_buzzer_tone">
-      <value name="frequency">
-        <shadow type="math_number">
-          <field name="NUM">262</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="fu_ez_buzzer_tone_duration">
-      <value name="frequency">
-        <shadow type="math_number">
-          <field name="NUM">262</field>
-        </shadow>
-      </value>
-      <value name="duration">
-        <shadow type="math_number">
-          <field name="NUM">500</field>
-        </shadow>
-      </value>		  
-    </block>
-	<block type="fu_ez_buzzer_tone_duration_array">
-		<value name="frequency">
-		  <block type="array_create_with">
-			<mutation items="2"></mutation>
-			<value name="ADD0">
-			  <block type="text">
-				<field name="TEXT">392</field>
-			  </block>
-			</value>
-			<value name="ADD1">
-			  <block type="text">
-				<field name="TEXT">330</field>
-			  </block>
-			</value>
-		  </block>
-		</value>
-		<value name="duration">
-		  <block type="array_create_with" id="119">
-			<mutation items="2"></mutation>
-			<value name="ADD0">
-			  <block type="text" id="120">
-				<field name="TEXT">1000</field>
-			  </block>
-			</value>
-			<value name="ADD1">
-			  <block type="text" id="121">
-				<field name="TEXT">500</field>
-			  </block>
-			</value>
-		  </block>
-		</value>		
-	</block>	
-    <block type="fu_ez_buzzer_notone"></block>
-	<block type="fu_ez_buzzer_tone1"></block>	
-	<block type="fu_ez_buzzer_tone2"></block>	
-	<block type="fu_ez_buzzer_tone3"></block>
-    <block type="fu_ez_buzzer_tone_duration_esp">
-      <value name="frequency">
-        <shadow type="math_number">
-          <field name="NUM">262</field>
-        </shadow>
-      </value>
-      <value name="duration">
-        <shadow type="math_number">
-          <field name="NUM">500</field>
-        </shadow>
-      </value>
-      <value name="channel">
-        <shadow type="math_number">
-          <field name="NUM">10</field>
-        </shadow>
-      </value>		  
-    </block>
-	<block type="fu_ez_buzzer_tone_duration_esp_array">
-		<value name="frequency">
-		  <block type="array_create_with">
-			<mutation items="2"></mutation>
-			<value name="ADD0">
-			  <block type="text">
-				<field name="TEXT">392</field>
-			  </block>
-			</value>
-			<value name="ADD1">
-			  <block type="text">
-				<field name="TEXT">330</field>
-			  </block>
-			</value>
-		  </block>
-		</value>
-		<value name="duration">
-		  <block type="array_create_with" id="119">
-			<mutation items="2"></mutation>
-			<value name="ADD0">
-			  <block type="text" id="120">
-				<field name="TEXT">1000</field>
-			  </block>
-			</value>
-			<value name="ADD1">
-			  <block type="text" id="121">
-				<field name="TEXT">500</field>
-			  </block>
-			</value>
-		  </block>
-		</value>
-      <value name="channel">
-        <shadow type="math_number">
-          <field name="NUM">10</field>
-        </shadow>
-      </value>			
-	</block>	
-    <block type="fu_ez_dht11">
-      <field name="type">dht.readHumidity()</field>
-    </block>
-	<block type="fu_ez_pixel_brightness">
-		<value name="brightness">
-			<block type="math_number">
-				<field name="NUM">100</field>
-			</block>		
-		</value>
-	</block>	
-	<block type="fu_ez_pixel_rgb">
-		<field name="no">0</field>
-		<value name="R">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="G">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="B">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-	</block>
-	<block type="fu_ez_pixel_picker">
-		<field name="no">0</field>
-		<value name="colour">
-			<block type="fu_color">
-			</block>
-		</value>
-	</block>
-	<block type="fu_ez_pixel_color_n">
-		<value name="num">
-			<block type="math_number">
-				<field name="NUM">1</field>
-			</block>
-		</value>
-		<value name="colour">
-			<block type="fu_color">
-			</block>
-		</value>		
-	</block>		
-	<block type="fu_ez_pixel_color">
-		<value name="L1">
-			<block type="fu_color">
-			</block>
-		</value>	
-		<value name="L2">
-			<block type="fu_color">
-			</block>
-		</value>
-		<value name="L3">
-			<block type="fu_color">
-			</block>
-		</value>			
-	</block>	
-	<block type="fu_ez_pixel_clear"></block>
-	<block type="fu_color">
-		<field name="RGB">#ff0000</field>
-	</block>
-	<block type="fu_color_random"></block>  
-    <block type="fu_ez_ir_receive">
-      <field name="value">irValue</field>
-      <field name="type">irType</field>
-    </block>		
-  </category>
-	<category id="oled" name="oled">
-    <block type="fu_oled_initial">
-		<field name="font">u8g2_font_ncenB08_tr</field>		  
-    </block>
-    <block type="fu_oled_nextPage"></block>		
-    <block type="fu_oled_sendBuffer"></block>
-	<block type="fu_oled_drawFont">
-		<field name="font">Arial</field>
-		<field name="size">12px</field>	
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="str">		
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawCustomFont">
-		<value name="font">
-          <block type="text">
-            <field name="TEXT">Arial</field>
-          </block>
-		</value>
-		<field name="size">12px</field>	
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="str">		
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawXBMP">
-		<value name="PROGMEM">
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-		</value>
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>		
-    </block>	
-	<block type="fu_oled_PROGMEM">
-		<value name="PROGMEM">
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-		</value>		
-    </block>
-	<block type="fu_oled_PROGMEM_truetype">
-		<value name="PROGMEM">
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-		</value>		
-    </block>			
-	<block type="fu_oled_qrcode_PROGMEM">	
-		<value name="PROGMEM">
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-		</value>		
-    </block>
-	<block type="fu_oled_drawXBMP_PROGMEM">
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>		
-    </block>	
-	<block type="fu_oled_PROGMEM_array">
-		<value name="PROGMEM">
-          <block type="lists_create_with" inline="false">
-            <mutation items="2"></mutation>
-			<value name="ADD0">
-              <block type="text" disabled="true">
-                <field name="TEXT"></field>
-              </block>
-            </value>
-            <value name="ADD1">
-              <block type="text" disabled="true">
-                <field name="TEXT"></field>
-              </block>
-            </value>		
-          </block>
-		</value>		
-    </block>	
-	<block type="fu_oled_drawXBMP_PROGMEM_array">
-		<value name="index">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>	
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>		
-    </block>
-	<block type="fu_oled_drawPixelMap">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>		
-	</block>
-    <block type="fu_oled_setPowerSave"></block>	
-	<block type="fu_oled_setContrast">
-		<value name="value">
-		  <shadow type="math_number">
-			<field name="NUM">255</field>
-		  </shadow>
-		</value>
-	</block>	
-	<block type="fu_oled_setFont">
-		<value name="font">		
-          <block type="text">
-            <field name="TEXT">u8g2_font_ncenB08_tr</field>
-          </block>
-		</value>		  
-    </block>
-	<block type="fu_oled_setFont_chinese"></block>
-	<block type="fu_oled_setFont_icon">
-		<field name="font">u8g2_font_open_iconic_weather_6x_t</field>	
-	</block>	
-	<block type="fu_oled_setFont_all"></block>	
-    <block type="fu_oled_setFontDirection"></block>		
-    <block type="fu_oled_setDrawColor"></block>	
-    <block type="fu_oled_clear"></block>
-    <block type="fu_oled_home"></block>		
-	<block type="fu_oled_drawStr">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="str">		
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-		</value>		  
-    </block>
-	<block type="fu_oled_setCursor">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>		  
-    </block>	
-	<block type="fu_oled_Print">
-		<value name="str">		
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-		</value>		  
-    </block>	
-	<block type="fu_oled_drawGlyph">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="position">		
-		  <shadow type="math_number">
-			<field name="NUM">64</field>
-		  </shadow>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawUTF8">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="str">		
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-		</value>		  
-    </block>
-	<block type="fu_oled_setBitmapMode"></block>	
-	<block type="fu_oled_drawBox">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawRBox">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="radius">
-		  <shadow type="math_number">
-			<field name="NUM">3</field>
-		  </shadow>
-		</value>			
-    </block>	
-	<block type="fu_oled_drawFrame">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>	
-	<block type="fu_oled_drawRFrame">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="radius">
-		  <shadow type="math_number">
-			<field name="NUM">3</field>
-		  </shadow>
-		</value>		
-    </block>	
-	<block type="fu_oled_drawCircle">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="radius">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawDisc">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="radius">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawEllipse">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="rx">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="ry">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawFilledEllipse">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="rx">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="ry">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawHLine">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>	  
-    </block>
-	<block type="fu_oled_drawVLine">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>	  
-    </block>	
-	<block type="fu_oled_drawLine">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="x1">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="y1">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawTriangle">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="x1">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="y1">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="x2">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y2">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		
-    </block>	
-	<block type="fu_oled_drawPixel">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>
-	</category>	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<category id="france9" name="buzzer">
-		<block type="esp32_buzzer">
-			<value name="pin">
-				<block type="math_number">
-					<field name="NUM">25</field>
-				</block>
-			</value>
-			<value name="delaytime">
-			  <block type="text">
-				<field name="TEXT">1000</field>
-			  </block>
-			</value>
-		</block>
-		<block type="esp32_buzzer2">
-			<value name="pin">
-				<block type="math_number">
-					<field name="NUM">25</field>
-				</block>
-			</value>
-			<value name="delaytime">
-			  <block type="text">
-				<field name="TEXT">1000</field>
-			  </block>
-			</value>
-		</block>
-		<block type="esp32_buzzer3">
-			<value name="pin">
-				<block type="math_number">
-					<field name="NUM">25</field>
-				</block>
-			</value>
-			<value name="delaytime">
-			  <block type="text">
-				<field name="TEXT">1000</field>
-			  </block>
-			</value>
-		</block>			
-		<block type="esp32_buzzer1">
-			<value name="pin">
-				<block type="math_number">
-					<field name="NUM">25</field>
-				</block>
-			</value>
-			<value name="frequency">
-			  <block type="text">
-				<field name="TEXT">261</field>
-			  </block>
-			</value>
-			<value name="delaytime">
-			  <block type="text">
-				<field name="TEXT">1000</field>
-			  </block>
-			</value>
-		</block>
-		<block type="esp32_buzzer1">
-			<value name="pin">
-				<block type="math_number">
-					<field name="NUM">25</field>
-				</block>
-			</value>
-			<value name="frequency">
-			  <block type="array_create_with" id="105">
-				<mutation items="2"></mutation>
-				<value name="ADD0">
-				  <block type="text" id="117">
-					<field name="TEXT">392</field>
-				  </block>
-				</value>
-				<value name="ADD1">
-				  <block type="text" id="118">
-					<field name="TEXT">330</field>
-				  </block>
-				</value>
-			  </block>
-			</value>
-			<value name="delaytime">
-			  <block type="array_create_with" id="119">
-				<mutation items="2"></mutation>
-				<value name="ADD0">
-				  <block type="text" id="120">
-					<field name="TEXT">1000</field>
-				  </block>
-				</value>
-				<value name="ADD1">
-				  <block type="text" id="121">
-					<field name="TEXT">500</field>
-				  </block>
-				</value>
-			  </block>
-			</value>
-		</block>
-		<block type="esp32_buzzer_tone1">
-		</block>	
-		<block type="esp32_buzzer_tone2">
-		</block>	
-		<block type="esp32_buzzer_tone3">
-		</block>			
-	</category>
-	<category id="france9" name="DHT11">
-	  <block type="dht11_pin">
-		<value name="pin">
-		  <block type="math_number">
-			<field name="NUM">14</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="dht11_read">
-	  </block>	
-	  <block type="dht11_get">
-	  </block>	 
-	</category>	
-	<category id="france9" name="ws2816">
-		<block type="BitMatrixLed_matrix_pin">
-			<value name="pin">
-				<block type="math_number">
-					<field name="NUM">4</field>
-				</block>		
-			</value>
-			<value name="leds">
-				<block type="math_number">
-					<field name="NUM">25</field>
-				</block>			
-			</value>	
-		</block>	
-		<block type="BitMatrixLed_matrix_brightness">
-			<value name="brightness">
-				<block type="math_number">
-					<field name="NUM">0.5</field>
-				</block>		
-			</value>
-		</block>	
-		<block type="BitMatrixLed_matrix_clear">
-		</block>
-				<block type="BitMatrixLed_matrix_color_one_3">
-			<value name="L21">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>	
-			<value name="L22">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>
-			<value name="L23">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>			
-		</block>
-		<block type="BitMatrixLed_matrix_color_one_8">
-			<value name="L21">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>	
-			<value name="L22">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>
-			<value name="L23">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>
-			<value name="L24">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>	
-			<value name="L25">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>
-			<value name="L16">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>
-			<value name="L17">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>	
-			<value name="L18">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>			
-		</block>
-		<block type="BitMatrixLed_matrix_color_one_12">
-			<value name="L21">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>	
-			<value name="L22">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>
-			<value name="L23">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>
-			<value name="L24">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>	
-			<value name="L25">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>
-			<value name="L16">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>
-			<value name="L17">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>	
-			<value name="L18">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>	
-			<value name="L19">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>
-			<value name="L20">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>
-			<value name="L11">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>	
-			<value name="L12">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>				
-		</block>
-		<block type="BitMatrixLed_matrix_color_one_n">
-			<value name="N">
-				<block type="math_number">
-					<field name="NUM">1</field>
-				</block>
-			</value>
-			<value name="RGB">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>		
-		</block>
-		<block type="BitMatrixLed_matrix_rgb_one_n">
-			<value name="N">
-				<block type="math_number">
-					<field name="NUM">1</field>
-				</block>
-			</value>
-			<value name="R">
-				<block type="math_number">
-					<field name="NUM">0</field>
-				</block>
-			</value>
-			<value name="G">
-				<block type="math_number">
-					<field name="NUM">0</field>
-				</block>
-			</value>
-			<value name="B">
-				<block type="math_number">
-					<field name="NUM">0</field>
-				</block>
-			</value>		
-		</block>
-		<block type="BitMatrixLed_matrix_one_getcolor">
-			<value name="N">
-				<block type="math_number">
-					<field name="NUM">1</field>
-				</block>
-			</value>		
-		</block>			
-		<block type="BitMatrixLed_color">		
-		</block>
-		<block type="BitMatrixLed_color_random">		
-		</block>
-	</category>		
-	<category id="france10" name="LCD1602">
-	  <block type="lcd1602_initial">
-		<value name="sda">
-		  <block type="math_number">
-			<field name="NUM">25</field>
-		  </block>
-		</value>
-		<value name="scl">
-		  <block type="math_number">
-			<field name="NUM">26</field>
-		  </block>
-		</value>		
-	  </block>
-	  <block type="lcd1602_backlight">
-	  </block>	
-	  <block type="lcd1602_clear">
-	  </block>		  
-	  <block type="lcd1602_print">
-		<value name="str">
-		  <block type="text">
-			<field name="TEXT">Hello World</field>
-		  </block>
-		</value> 	  
-	  </block>	 
-    </category>
-	<category id="france12" name="motordriveric">
-		<block type="webbit_mooncar_pin">
-			<value name="R1">
-				<block type="math_number">
-					<field name="NUM">12</field>
-				</block>
-			</value>
-			<value name="R2">
-				<block type="math_number">
-					<field name="NUM">18</field>
-				</block>
-			</value>
-			<value name="L1">
-				<block type="math_number">
-					<field name="NUM">16</field>
-				</block>
-			</value>
-			<value name="L2">
-				<block type="math_number">
-					<field name="NUM">19</field>
-				</block>
-			</value>		
-		</block>
-		<block type="webbit_mooncar_move_car">
-			<value name="RSPEED">
-				<block type="math_number">
-					<field name="NUM">255</field>
-					</block>
-			</value>
-			<value name="LSPEED">
-				<block type="math_number">
-					<field name="NUM">255</field>
-					</block>
-			</value>		
-		</block>
-		<block type="webbit_mooncar_move1_car">
-			<value name="SPEED">
-				<block type="math_number">
-					<field name="NUM">255</field>
-					</block>
-			</value>
-			<value name="RATIO">
-				<block type="math_number">
-					<field name="NUM">0.8</field>
-					</block>
-			</value>		
-		</block>
-		<block type="webbit_mooncar_stop_car">		
-		</block>	
-	</category>
-	<category id="france12" name="ultrasonicsensor">
-		<block type="webbit_mooncar_sonar_pin">
-			<value name="TRIG">
-				<block type="math_number">
-					<field name="NUM">13</field>
-				</block>
-			</value>
-			<value name="ECHO">
-				<block type="math_number">
-					<field name="NUM">17</field>
-				</block>
-			</value>	
-		</block>	
-		<block type="webbit_mooncar_sonar"></block>
-	</category>
-	<category id="france9" name="mpu9250">
-		<block type="esp32_mpu9250_pin">
-			<value name="sda">
-				<block type="math_number">
-					<field name="NUM">21</field>
-				</block>		
-			</value>
-			<value name="scl">
-				<block type="math_number">
-					<field name="NUM">22</field>
-				</block>			
-			</value>	
-		</block>	
-		<block type="esp32_mpu9250"></block>
-	</category>	
-	<category id="france12" name="colorsensor">
-		<block type="webbit_mooncar_tcs_init"></block>
-		<block type="webbit_mooncar_tcs_read"></block>
-		<block type="webbit_mooncar_tcs_set">
-			<value name="R">
-				<block type="math_number">
-					<field name="NUM">0</field>
-				</block>
-			</value>	
-			<value name="G">
-				<block type="math_number">
-					<field name="NUM">0</field>
-				</block>
-			</value>	
-			<value name="B">
-				<block type="math_number">
-					<field name="NUM">0</field>
-				</block>
-			</value>	
-		</block>
-		<block type="webbit_mooncar_tcs_range">
-			<value name="range">
-				<block type="math_number">
-					<field name="NUM">0.1</field>
-				</block>
-			</value>				
-		</block>	
-		<block type="webbit_mooncar_tcs_detect"></block>
-	</category>
-	<category id="france12" name="irread">
-		<block type="webbit_mooncar_ir_remote_read_pin">
-			<value name="pin">
-				<block type="math_number">
-					<field name="NUM">32</field>
-				</block>
-			</value>	
-		</block>
-		<block type="webbit_mooncar_ir_remote_read"></block>
-		<block type="webbit_mooncar_ir_remote_read_value"></block>
-		<block type="webbit_mooncar_ir_remote_read_type"></block>
-	</category>
-	<category id="france12" name="irsend">
-		<block type="webbit_mooncar_ir_remote_send_pin">
-			<value name="pin">
-				<block type="math_number">
-					<field name="NUM">33</field>
-				</block>
-			</value>
-		</block>
-		<block type="webbit_mooncar_ir_remote_send">
-			<value name="IR_SEND">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value> 
-		</block>
-	</category>
-	<category id="france12" name="MLX90614">
-	  <block type="MLX90614">
-		<value name="sda">
-		  <block type="math_number">
-			<field name="NUM">9</field>
-		  </block>
-		</value>
-		<value name="scl">
-		  <block type="math_number">
-			<field name="NUM">8</field>
-		  </block>
-		</value>
-		<value name="compensation">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>			
-	  </block>   
-	</category>
+
 	<sep id="category_sep"></sep>	
 	<category id="france6" name="client">
 	  <block type="esp32_wifi_wait_until_ready">
@@ -2118,7 +869,8 @@
 			  </block>	  
 		</category>	  
     </category>
-
+	
+	
 	<sep id="category_sep"></sep>
 	<category id="catGameElements" name="catGameElements"> 
 		<category id="catGameElements_sub1" name="catGameElements_sub1"> 
@@ -5575,449 +4327,8 @@
 		</category>	
 	</category>
 	
-	 <sep id="category_sep"></sep>	
-    <category id="france3" name="line">	
-	  <block type="linenotify_all">
-		<value name="token_">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>		
-		</value>
-		<value name="text_">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>		
-		</value>		
-		<value name="packageId_">
-		  <block type="math_number">
-			<field name="NUM">1</field>
-		  </block>
-		</value>  
-		<value name="stickerId_">
-		  <block type="math_number">
-			<field name="NUM">2</field>
-		  </block>
-		</value> 
-		<value name="originalContentUrl_">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="previewImageUrl_">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-	  </block>
-	  <block type="linenotify_http">
-		<value name="linenotify_token">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>		
-		</value>   
-		<value name="linenotify_msg">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>		
-		</value>
-	  </block>	  
-	  <block type="linenotify_esp32_br">
-	  </block>	  
-    </category>	
-    <category id="france8" name="thingspeak">
-	  <block type="thingspeak_update_noreturn">  
-		<value name="key">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="field1">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-		<value name="field2">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-		<value name="field3">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-		<value name="field4">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-		<value name="field5">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-		<value name="field6">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-		<value name="field7">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-		<value name="field8">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-	  </block>		    
-	  <block type="thingspeak_update">  
-		<value name="key">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="field1">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-		<value name="field2">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-		<value name="field3">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-		<value name="field4">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-		<value name="field5">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-		<value name="field6">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-		<value name="field7">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-		<value name="field8">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="thingspeak_format">
-		<value name="text">	
-		  <block type="thingspeak_read1">
-			<value name="key">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>
-			<value name="count">
-			  <block type="math_number">
-				<field name="NUM">1</field>
-			  </block>
-			</value>
-			<value name="api_key">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>     
-		  </block>
-		</value>
-	  </block>
-	  <block type="thingspeak_format">
-		<value name="text">			  
-		  <block type="thingspeak_read2">
-			<value name="key">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>
-			<value name="field">
-			  <block type="math_number">
-				<field name="NUM">1</field>
-			  </block>
-			</value>
-			<value name="count">
-			  <block type="math_number">
-				<field name="NUM">1</field>
-			  </block>
-			</value>
-			<value name="api_key">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>     
-		  </block>
-		</value>
-	  </block>
-	  <block type="thingspeak_format">
-		<value name="text">		  
-		  <block type="thingspeak_read3">
-			<value name="key">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>
-			<value name="api_key">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>    
-		  </block> 
-		</value>
-	  </block>
-	  <block type="variables_set">
-		<field name="TYPE">String</field>
-		<field name="VAR">data</field>
-		<value name="VALUE">
-		  <block type="thingspeak_format">
-			<value name="text">
-			</value>   
-		  </block> 
-		</value>
-	  </block>
-	  <block type="thingspeak_field">
-	    <value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-		<value name="recordnumber">
-		  <block type="math_number">
-			<field name="NUM">1</field>
-		  </block>
-		</value>
-	  </block>
-	</category>
-	<category id="france24" name="airquality">
-	  <block type="fu_taiwan_aqi"></block>
-    </category>
-	<category id="france25" name="fu_mqtt">
-	  <block type="fu_mqtt_setup">
-		<value name="server">
-		  <block type="text">
-			<field name="TEXT">broker.emqx.io</field>
-		  </block>
-		</value>
-		<value name="port">
-		  <block type="math_number">
-			<field name="NUM">1883</field>
-		  </block>
-		</value>
-		<value name="user">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="password">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<statement name="topic_subscribe">
-		  <block type="fu_mqtt_subscribe">
-			<value name="topic">
-			  <block type="text">
-				<field name="TEXT">yourtopic/data</field>
-			  </block>
-			</value>
-		  </block>
-		</statement>
-	  </block>
-	  <block type="fu_mqtt_subscribe">
-	    <value name="topic">
-		  <block type="text">
-			<field name="TEXT">yourtopic/data</field>
-		  </block>
-		</value>		
-	  </block>
-	  <block type="fu_mqtt_loop">		
-	  </block>	  
-	  <block type="fu_mqtt_loop">
-		<statement name="topic_getdata">
-		  <block type="fu_mqtt_gettopic">
-			<value name="topic">
-			  <block type="text">
-				<field name="TEXT">yourtopic/data</field>
-			  </block>
-			</value>
-		  </block>
-		</statement>
-	  </block>
-	  <block type="fu_mqtt_getdata">		
-	  </block>	  
-	  <block type="fu_mqtt_senddata">
-	    <value name="topic">
-		  <block type="text">
-			<field name="TEXT">yourtopic/data</field>
-		  </block>
-		</value>
-	    <value name="text">
-		  <block type="text">
-			<field name="TEXT">World Peace</field>
-		  </block>
-		</value>		
-	  </block>	
-    </category>	
-	<sep id="category_sep"></sep>
-	<category id="france7" name="others">
-	  <block type="esp32_setuploop">
-		<statement name="setup">
-		</statement>
-	  </block>		
-	  <block type="close_powerdog">
-	  </block>
-	  <block type="customcode_comment">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">World Peace</field>
-		  </block>
-		</value>  
-	  </block> 
-	  <block type="customcode_comment_block">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">World Peace</field>
-		  </block>
-		</value>  
-	  </block>  
-	</category>	
-	<category id="france1" name="customcode">
-	  <block type="customcode_instruction5">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT">Hello</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_instruction5_get">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT">Hello</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_instruction6">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-	  </block> 
-	  <block type="customcode_head">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">&#35;include &#60;LWiFi.h&#62;</field>
-		  </block>
-		</value>  
-	  </block>   
-	  <block type="customcode_code">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">String Hello;</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_variable">
-		<value name="variable">
-		  <block type="text">
-			<field name="TEXT">String World</field>
-		  </block>
-		</value>
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">123</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="customcode_code_input">
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT">Peace()</field>
-		  </block>
-		</value>
-	  </block>   
-	  <block type="customcode_instruction1">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-	  </block> 
-	  <block type="customcode_instruction2">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text1">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text2">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-	  </block> 
-	  <block type="customcode_instruction3">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text1">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text2">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text3">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 
-	  </block> 
-	  <block type="customcode_instruction4">
-		<value name="instruction">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="text1">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-	  </block>	  
-	</category>	
-	<sep id="category_sep"></sep>
+	
+		<sep id="category_sep"></sep>
 	<category id="catWebbit" name="catWebbit">
 		<category id="catWebbitBoard" name="catWebbitBoard">
 			<block type="BitMatrixLed_matrix_pin">
@@ -6803,6 +5114,1698 @@
 				</value> 
 			</block>	
 		</category>
-		<sep id="category_sep"></sep>
+	</category>	
+	
+	
+	
+	<sep id="category_sep"></sep>
+ <category id="ez" name="EZ+">
+    <block type="fu_ez_digitalwrite">
+      <field name="led">0</field>
+    </block>
+    <block type="fu_ez_digitalwrite_input">
+      <field name="led">0</field>
+      <value name="value">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="fu_ez_digitalwrite_relay">
+    </block>	
+    <block type="fu_ez_digitalwrite_input_relay">
+	  <value name="value">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="fu_ez_analogwrite_input">
+      <field name="led">0</field>
+      <value name="value">
+        <shadow type="math_number">
+          <field name="NUM">255</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="fu_ez_analogwrite_input_esp">
+      <field name="led">0</field>
+      <value name="value">
+        <shadow type="math_number">
+          <field name="NUM">255</field>
+        </shadow>
+      </value>
+      <value name="channel">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="fu_ez_digitalread">
+      <field name="button">0</field>
+    </block>	
+    <block type="fu_ez_digitalread_button">
+      <field name="type">0</field>
+    </block>
+    <block type="fu_ez_digitalread_button_statement">
+      <field name="type">0</field>
+    </block>	
+    <block type="fu_ez_analogread_potentiometer"></block>
+    <block type="fu_ez_analogread_photoresistor"></block>
+      <block type="fu_ez_buzzer_tone">
+      <value name="frequency">
+        <shadow type="math_number">
+          <field name="NUM">262</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="fu_ez_buzzer_tone_duration">
+      <value name="frequency">
+        <shadow type="math_number">
+          <field name="NUM">262</field>
+        </shadow>
+      </value>
+      <value name="duration">
+        <shadow type="math_number">
+          <field name="NUM">500</field>
+        </shadow>
+      </value>		  
+    </block>
+	<block type="fu_ez_buzzer_tone_duration_array">
+		<value name="frequency">
+		  <block type="array_create_with">
+			<mutation items="2"></mutation>
+			<value name="ADD0">
+			  <block type="text">
+				<field name="TEXT">392</field>
+			  </block>
+			</value>
+			<value name="ADD1">
+			  <block type="text">
+				<field name="TEXT">330</field>
+			  </block>
+			</value>
+		  </block>
+		</value>
+		<value name="duration">
+		  <block type="array_create_with" id="119">
+			<mutation items="2"></mutation>
+			<value name="ADD0">
+			  <block type="text" id="120">
+				<field name="TEXT">1000</field>
+			  </block>
+			</value>
+			<value name="ADD1">
+			  <block type="text" id="121">
+				<field name="TEXT">500</field>
+			  </block>
+			</value>
+		  </block>
+		</value>		
+	</block>	
+    <block type="fu_ez_buzzer_notone"></block>
+	<block type="fu_ez_buzzer_tone1"></block>	
+	<block type="fu_ez_buzzer_tone2"></block>	
+	<block type="fu_ez_buzzer_tone3"></block>
+    <block type="fu_ez_buzzer_tone_duration_esp">
+      <value name="frequency">
+        <shadow type="math_number">
+          <field name="NUM">262</field>
+        </shadow>
+      </value>
+      <value name="duration">
+        <shadow type="math_number">
+          <field name="NUM">500</field>
+        </shadow>
+      </value>
+      <value name="channel">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>		  
+    </block>
+	<block type="fu_ez_buzzer_tone_duration_esp_array">
+		<value name="frequency">
+		  <block type="array_create_with">
+			<mutation items="2"></mutation>
+			<value name="ADD0">
+			  <block type="text">
+				<field name="TEXT">392</field>
+			  </block>
+			</value>
+			<value name="ADD1">
+			  <block type="text">
+				<field name="TEXT">330</field>
+			  </block>
+			</value>
+		  </block>
+		</value>
+		<value name="duration">
+		  <block type="array_create_with" id="119">
+			<mutation items="2"></mutation>
+			<value name="ADD0">
+			  <block type="text" id="120">
+				<field name="TEXT">1000</field>
+			  </block>
+			</value>
+			<value name="ADD1">
+			  <block type="text" id="121">
+				<field name="TEXT">500</field>
+			  </block>
+			</value>
+		  </block>
+		</value>
+      <value name="channel">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>			
+	</block>	
+    <block type="fu_ez_dht11">
+      <field name="type">dht.readHumidity()</field>
+    </block>
+	<block type="fu_ez_pixel_brightness">
+		<value name="brightness">
+			<block type="math_number">
+				<field name="NUM">100</field>
+			</block>		
+		</value>
+	</block>	
+	<block type="fu_ez_pixel_rgb">
+		<field name="no">0</field>
+		<value name="R">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="G">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="B">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+	</block>
+	<block type="fu_ez_pixel_picker">
+		<field name="no">0</field>
+		<value name="colour">
+			<block type="fu_color">
+			</block>
+		</value>
+	</block>
+	<block type="fu_ez_pixel_color_n">
+		<value name="num">
+			<block type="math_number">
+				<field name="NUM">1</field>
+			</block>
+		</value>
+		<value name="colour">
+			<block type="fu_color">
+			</block>
+		</value>		
+	</block>		
+	<block type="fu_ez_pixel_color">
+		<value name="L1">
+			<block type="fu_color">
+			</block>
+		</value>	
+		<value name="L2">
+			<block type="fu_color">
+			</block>
+		</value>
+		<value name="L3">
+			<block type="fu_color">
+			</block>
+		</value>			
+	</block>	
+	<block type="fu_ez_pixel_clear"></block>
+	<block type="fu_color">
+		<field name="RGB">#ff0000</field>
+	</block>
+	<block type="fu_color_random"></block>  
+    <block type="fu_ez_ir_receive">
+      <field name="value">irValue</field>
+      <field name="type">irType</field>
+    </block>		
+  </category>
+	<category id="oled" name="oled">
+    <block type="fu_oled_initial">
+		<field name="font">u8g2_font_ncenB08_tr</field>		  
+    </block>
+    <block type="fu_oled_nextPage"></block>		
+    <block type="fu_oled_sendBuffer"></block>
+	<block type="fu_oled_drawFont">
+		<field name="font">Arial</field>
+		<field name="size">12px</field>	
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="str">		
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		  
+    </block>
+	<block type="fu_oled_drawCustomFont">
+		<value name="font">
+          <block type="text">
+            <field name="TEXT">Arial</field>
+          </block>
+		</value>
+		<field name="size">12px</field>	
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="str">		
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		  
+    </block>
+	<block type="fu_oled_drawXBMP">
+		<value name="PROGMEM">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>
+		<value name="width">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="height">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>		
+    </block>	
+	<block type="fu_oled_PROGMEM">
+		<value name="PROGMEM">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		
+    </block>
+	<block type="fu_oled_PROGMEM_truetype">
+		<value name="PROGMEM">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		
+    </block>			
+	<block type="fu_oled_qrcode_PROGMEM">	
+		<value name="PROGMEM">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		
+    </block>
+	<block type="fu_oled_drawXBMP_PROGMEM">
+		<value name="width">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="height">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>		
+    </block>	
+	<block type="fu_oled_PROGMEM_array">
+		<value name="PROGMEM">
+          <block type="lists_create_with" inline="false">
+            <mutation items="2"></mutation>
+			<value name="ADD0">
+              <block type="text" disabled="true">
+                <field name="TEXT"></field>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="text" disabled="true">
+                <field name="TEXT"></field>
+              </block>
+            </value>		
+          </block>
+		</value>		
+    </block>	
+	<block type="fu_oled_drawXBMP_PROGMEM_array">
+		<value name="index">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>	
+		<value name="width">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="height">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>		
+    </block>
+	<block type="fu_oled_drawPixelMap">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>		
+	</block>
+    <block type="fu_oled_setPowerSave"></block>	
+	<block type="fu_oled_setContrast">
+		<value name="value">
+		  <shadow type="math_number">
+			<field name="NUM">255</field>
+		  </shadow>
+		</value>
+	</block>	
+	<block type="fu_oled_setFont">
+		<value name="font">		
+          <block type="text">
+            <field name="TEXT">u8g2_font_ncenB08_tr</field>
+          </block>
+		</value>		  
+    </block>
+	<block type="fu_oled_setFont_chinese"></block>
+	<block type="fu_oled_setFont_icon">
+		<field name="font">u8g2_font_open_iconic_weather_6x_t</field>	
+	</block>	
+	<block type="fu_oled_setFont_all"></block>	
+    <block type="fu_oled_setFontDirection"></block>		
+    <block type="fu_oled_setDrawColor"></block>	
+    <block type="fu_oled_clear"></block>
+    <block type="fu_oled_home"></block>		
+	<block type="fu_oled_drawStr">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="str">		
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		  
+    </block>
+	<block type="fu_oled_setCursor">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>		  
+    </block>	
+	<block type="fu_oled_Print">
+		<value name="str">		
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		  
+    </block>	
+	<block type="fu_oled_drawGlyph">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="position">		
+		  <shadow type="math_number">
+			<field name="NUM">64</field>
+		  </shadow>
+		</value>		  
+    </block>
+	<block type="fu_oled_drawUTF8">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="str">		
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		  
+    </block>
+	<block type="fu_oled_setBitmapMode"></block>	
+	<block type="fu_oled_drawBox">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="width">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="height">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>		  
+    </block>
+	<block type="fu_oled_drawRBox">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="width">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="height">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="radius">
+		  <shadow type="math_number">
+			<field name="NUM">3</field>
+		  </shadow>
+		</value>			
+    </block>	
+	<block type="fu_oled_drawFrame">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="width">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="height">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>		  
+    </block>	
+	<block type="fu_oled_drawRFrame">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="width">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="height">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="radius">
+		  <shadow type="math_number">
+			<field name="NUM">3</field>
+		  </shadow>
+		</value>		
+    </block>	
+	<block type="fu_oled_drawCircle">
+		<value name="x0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="radius">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>		  
+    </block>
+	<block type="fu_oled_drawDisc">
+		<value name="x0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="radius">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>		  
+    </block>
+	<block type="fu_oled_drawEllipse">
+		<value name="x0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="rx">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="ry">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>		  
+    </block>
+	<block type="fu_oled_drawFilledEllipse">
+		<value name="x0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="rx">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="ry">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>		  
+    </block>
+	<block type="fu_oled_drawHLine">
+		<value name="x0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="width">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>	  
+    </block>
+	<block type="fu_oled_drawVLine">
+		<value name="x0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="height">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>	  
+    </block>	
+	<block type="fu_oled_drawLine">
+		<value name="x0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="x1">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="y1">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>		  
+    </block>
+	<block type="fu_oled_drawTriangle">
+		<value name="x0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y0">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="x1">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="y1">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="x2">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y2">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>		
+    </block>	
+	<block type="fu_oled_drawPixel">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>		  
+    </block>
+	</category>	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<category id="france9" name="buzzer">
+		<block type="esp32_buzzer">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">25</field>
+				</block>
+			</value>
+			<value name="delaytime">
+			  <block type="text">
+				<field name="TEXT">1000</field>
+			  </block>
+			</value>
+		</block>
+		<block type="esp32_buzzer2">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">25</field>
+				</block>
+			</value>
+			<value name="delaytime">
+			  <block type="text">
+				<field name="TEXT">1000</field>
+			  </block>
+			</value>
+		</block>
+		<block type="esp32_buzzer3">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">25</field>
+				</block>
+			</value>
+			<value name="delaytime">
+			  <block type="text">
+				<field name="TEXT">1000</field>
+			  </block>
+			</value>
+		</block>			
+		<block type="esp32_buzzer1">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">25</field>
+				</block>
+			</value>
+			<value name="frequency">
+			  <block type="text">
+				<field name="TEXT">261</field>
+			  </block>
+			</value>
+			<value name="delaytime">
+			  <block type="text">
+				<field name="TEXT">1000</field>
+			  </block>
+			</value>
+		</block>
+		<block type="esp32_buzzer1">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">25</field>
+				</block>
+			</value>
+			<value name="frequency">
+			  <block type="array_create_with" id="105">
+				<mutation items="2"></mutation>
+				<value name="ADD0">
+				  <block type="text" id="117">
+					<field name="TEXT">392</field>
+				  </block>
+				</value>
+				<value name="ADD1">
+				  <block type="text" id="118">
+					<field name="TEXT">330</field>
+				  </block>
+				</value>
+			  </block>
+			</value>
+			<value name="delaytime">
+			  <block type="array_create_with" id="119">
+				<mutation items="2"></mutation>
+				<value name="ADD0">
+				  <block type="text" id="120">
+					<field name="TEXT">1000</field>
+				  </block>
+				</value>
+				<value name="ADD1">
+				  <block type="text" id="121">
+					<field name="TEXT">500</field>
+				  </block>
+				</value>
+			  </block>
+			</value>
+		</block>
+		<block type="esp32_buzzer_tone1">
+		</block>	
+		<block type="esp32_buzzer_tone2">
+		</block>	
+		<block type="esp32_buzzer_tone3">
+		</block>			
 	</category>
+	<category id="france9" name="DHT11">
+	  <block type="dht11_pin">
+		<value name="pin">
+		  <block type="math_number">
+			<field name="NUM">14</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="dht11_read">
+	  </block>	
+	  <block type="dht11_get">
+	  </block>	 
+	</category>	
+	<category id="france9" name="ws2816">
+		<block type="BitMatrixLed_matrix_pin">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">4</field>
+				</block>		
+			</value>
+			<value name="leds">
+				<block type="math_number">
+					<field name="NUM">25</field>
+				</block>			
+			</value>	
+		</block>	
+		<block type="BitMatrixLed_matrix_brightness">
+			<value name="brightness">
+				<block type="math_number">
+					<field name="NUM">0.5</field>
+				</block>		
+			</value>
+		</block>	
+		<block type="BitMatrixLed_matrix_clear">
+		</block>
+				<block type="BitMatrixLed_matrix_color_one_3">
+			<value name="L21">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L22">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L23">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>			
+		</block>
+		<block type="BitMatrixLed_matrix_color_one_8">
+			<value name="L21">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L22">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L23">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L24">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L25">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L16">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L17">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L18">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>			
+		</block>
+		<block type="BitMatrixLed_matrix_color_one_12">
+			<value name="L21">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L22">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L23">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L24">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L25">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L16">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L17">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L18">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L19">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L20">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>
+			<value name="L11">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L12">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>				
+		</block>
+		<block type="BitMatrixLed_matrix_color_one_n">
+			<value name="N">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="RGB">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>		
+		</block>
+		<block type="BitMatrixLed_matrix_rgb_one_n">
+			<value name="N">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="R">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="G">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="B">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>		
+		</block>
+		<block type="BitMatrixLed_matrix_one_getcolor">
+			<value name="N">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>		
+		</block>			
+		<block type="BitMatrixLed_color">		
+		</block>
+		<block type="BitMatrixLed_color_random">		
+		</block>
+	</category>		
+	<category id="france10" name="LCD1602">
+	  <block type="lcd1602_initial">
+		<value name="sda">
+		  <block type="math_number">
+			<field name="NUM">25</field>
+		  </block>
+		</value>
+		<value name="scl">
+		  <block type="math_number">
+			<field name="NUM">26</field>
+		  </block>
+		</value>		
+	  </block>
+	  <block type="lcd1602_backlight">
+	  </block>	
+	  <block type="lcd1602_clear">
+	  </block>		  
+	  <block type="lcd1602_print">
+		<value name="str">
+		  <block type="text">
+			<field name="TEXT">Hello World</field>
+		  </block>
+		</value> 	  
+	  </block>	 
+    </category>
+	<category id="france12" name="motordriveric">
+		<block type="webbit_mooncar_pin">
+			<value name="R1">
+				<block type="math_number">
+					<field name="NUM">12</field>
+				</block>
+			</value>
+			<value name="R2">
+				<block type="math_number">
+					<field name="NUM">18</field>
+				</block>
+			</value>
+			<value name="L1">
+				<block type="math_number">
+					<field name="NUM">16</field>
+				</block>
+			</value>
+			<value name="L2">
+				<block type="math_number">
+					<field name="NUM">19</field>
+				</block>
+			</value>		
+		</block>
+		<block type="webbit_mooncar_move_car">
+			<value name="RSPEED">
+				<block type="math_number">
+					<field name="NUM">255</field>
+					</block>
+			</value>
+			<value name="LSPEED">
+				<block type="math_number">
+					<field name="NUM">255</field>
+					</block>
+			</value>		
+		</block>
+		<block type="webbit_mooncar_move1_car">
+			<value name="SPEED">
+				<block type="math_number">
+					<field name="NUM">255</field>
+					</block>
+			</value>
+			<value name="RATIO">
+				<block type="math_number">
+					<field name="NUM">0.8</field>
+					</block>
+			</value>		
+		</block>
+		<block type="webbit_mooncar_stop_car">		
+		</block>	
+	</category>
+	<category id="france12" name="ultrasonicsensor">
+		<block type="webbit_mooncar_sonar_pin">
+			<value name="TRIG">
+				<block type="math_number">
+					<field name="NUM">13</field>
+				</block>
+			</value>
+			<value name="ECHO">
+				<block type="math_number">
+					<field name="NUM">17</field>
+				</block>
+			</value>	
+		</block>	
+		<block type="webbit_mooncar_sonar"></block>
+	</category>
+	<category id="france9" name="mpu9250">
+		<block type="esp32_mpu9250_pin">
+			<value name="sda">
+				<block type="math_number">
+					<field name="NUM">21</field>
+				</block>		
+			</value>
+			<value name="scl">
+				<block type="math_number">
+					<field name="NUM">22</field>
+				</block>			
+			</value>	
+		</block>	
+		<block type="esp32_mpu9250"></block>
+	</category>	
+	<category id="france12" name="colorsensor">
+		<block type="webbit_mooncar_tcs_init"></block>
+		<block type="webbit_mooncar_tcs_read"></block>
+		<block type="webbit_mooncar_tcs_set">
+			<value name="R">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>	
+			<value name="G">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>	
+			<value name="B">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>	
+		</block>
+		<block type="webbit_mooncar_tcs_range">
+			<value name="range">
+				<block type="math_number">
+					<field name="NUM">0.1</field>
+				</block>
+			</value>				
+		</block>	
+		<block type="webbit_mooncar_tcs_detect"></block>
+	</category>
+	<category id="france12" name="irread">
+		<block type="webbit_mooncar_ir_remote_read_pin">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">32</field>
+				</block>
+			</value>	
+		</block>
+		<block type="webbit_mooncar_ir_remote_read"></block>
+		<block type="webbit_mooncar_ir_remote_read_value"></block>
+		<block type="webbit_mooncar_ir_remote_read_type"></block>
+	</category>
+	<category id="france12" name="irsend">
+		<block type="webbit_mooncar_ir_remote_send_pin">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">33</field>
+				</block>
+			</value>
+		</block>
+		<block type="webbit_mooncar_ir_remote_send">
+			<value name="IR_SEND">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value> 
+		</block>
+	</category>
+	<category id="france12" name="MLX90614">
+	  <block type="MLX90614">
+		<value name="sda">
+		  <block type="math_number">
+			<field name="NUM">9</field>
+		  </block>
+		</value>
+		<value name="scl">
+		  <block type="math_number">
+			<field name="NUM">8</field>
+		  </block>
+		</value>
+		<value name="compensation">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>			
+	  </block>   
+	</category>
+
+	
+	 <sep id="category_sep"></sep>	
+    <category id="france3" name="line">	
+	  <block type="linenotify_all">
+		<value name="token_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>		
+		</value>
+		<value name="text_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>		
+		</value>		
+		<value name="packageId_">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value>  
+		<value name="stickerId_">
+		  <block type="math_number">
+			<field name="NUM">2</field>
+		  </block>
+		</value> 
+		<value name="originalContentUrl_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="previewImageUrl_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block>
+	  <block type="linenotify_http">
+		<value name="linenotify_token">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>		
+		</value>   
+		<value name="linenotify_msg">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>		
+		</value>
+	  </block>	  
+	  <block type="linenotify_esp32_br">
+	  </block>	  
+    </category>	
+    <category id="france8" name="thingspeak">
+	  <block type="thingspeak_update_noreturn">  
+		<value name="key">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="field1">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="field2">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="field3">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="field4">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="field5">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="field6">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="field7">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="field8">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+	  </block>		    
+	  <block type="thingspeak_update">  
+		<value name="key">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="field1">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="field2">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="field3">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="field4">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="field5">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="field6">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="field7">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="field8">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="thingspeak_format">
+		<value name="text">	
+		  <block type="thingspeak_read1">
+			<value name="key">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>
+			<value name="count">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+			<value name="api_key">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>     
+		  </block>
+		</value>
+	  </block>
+	  <block type="thingspeak_format">
+		<value name="text">			  
+		  <block type="thingspeak_read2">
+			<value name="key">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>
+			<value name="field">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+			<value name="count">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+			<value name="api_key">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>     
+		  </block>
+		</value>
+	  </block>
+	  <block type="thingspeak_format">
+		<value name="text">		  
+		  <block type="thingspeak_read3">
+			<value name="key">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>
+			<value name="api_key">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>    
+		  </block> 
+		</value>
+	  </block>
+	  <block type="variables_set">
+		<field name="TYPE">String</field>
+		<field name="VAR">data</field>
+		<value name="VALUE">
+		  <block type="thingspeak_format">
+			<value name="text">
+			</value>   
+		  </block> 
+		</value>
+	  </block>
+	  <block type="thingspeak_field">
+	    <value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+		<value name="recordnumber">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value>
+	  </block>
+	</category>
+	<category id="france24" name="airquality">
+	  <block type="fu_taiwan_aqi"></block>
+    </category>
+	<category id="france25" name="fu_mqtt">
+	  <block type="fu_mqtt_setup">
+		<value name="server">
+		  <block type="text">
+			<field name="TEXT">broker.emqx.io</field>
+		  </block>
+		</value>
+		<value name="port">
+		  <block type="math_number">
+			<field name="NUM">1883</field>
+		  </block>
+		</value>
+		<value name="user">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="password">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<statement name="topic_subscribe">
+		  <block type="fu_mqtt_subscribe">
+			<value name="topic">
+			  <block type="text">
+				<field name="TEXT">yourtopic/data</field>
+			  </block>
+			</value>
+		  </block>
+		</statement>
+	  </block>
+	  <block type="fu_mqtt_subscribe">
+	    <value name="topic">
+		  <block type="text">
+			<field name="TEXT">yourtopic/data</field>
+		  </block>
+		</value>		
+	  </block>
+	  <block type="fu_mqtt_loop">		
+	  </block>	  
+	  <block type="fu_mqtt_loop">
+		<statement name="topic_getdata">
+		  <block type="fu_mqtt_gettopic">
+			<value name="topic">
+			  <block type="text">
+				<field name="TEXT">yourtopic/data</field>
+			  </block>
+			</value>
+		  </block>
+		</statement>
+	  </block>
+	  <block type="fu_mqtt_getdata">		
+	  </block>	  
+	  <block type="fu_mqtt_senddata">
+	    <value name="topic">
+		  <block type="text">
+			<field name="TEXT">yourtopic/data</field>
+		  </block>
+		</value>
+	    <value name="text">
+		  <block type="text">
+			<field name="TEXT">World Peace</field>
+		  </block>
+		</value>		
+	  </block>	
+    </category>	
+	<sep id="category_sep"></sep>
+	<category id="france7" name="others">
+	  <block type="esp32_setuploop">
+		<statement name="setup">
+		</statement>
+	  </block>		
+	  <block type="close_powerdog">
+	  </block>
+	  <block type="customcode_comment">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">World Peace</field>
+		  </block>
+		</value>  
+	  </block> 
+	  <block type="customcode_comment_block">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">World Peace</field>
+		  </block>
+		</value>  
+	  </block>  
+	</category>	
+	<category id="france1" name="customcode">
+	  <block type="customcode_instruction5">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT">Hello</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_instruction5_get">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT">Hello</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_instruction6">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 
+	  <block type="customcode_head">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">&#35;include &#60;LWiFi.h&#62;</field>
+		  </block>
+		</value>  
+	  </block>   
+	  <block type="customcode_code">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">String Hello;</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_variable">
+		<value name="variable">
+		  <block type="text">
+			<field name="TEXT">String World</field>
+		  </block>
+		</value>
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">123</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="customcode_code_input">
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT">Peace()</field>
+		  </block>
+		</value>
+	  </block>   
+	  <block type="customcode_instruction1">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 
+	  <block type="customcode_instruction2">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text1">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text2">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 
+	  <block type="customcode_instruction3">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text1">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text2">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text3">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
+	  </block> 
+	  <block type="customcode_instruction4">
+		<value name="instruction">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="text1">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+	  </block>	  
+	</category>	
+
 </category>	
