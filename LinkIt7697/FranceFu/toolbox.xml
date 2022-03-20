@@ -2350,7 +2350,6 @@
 	<category id="france24" name="airquality">
 	  <block type="fu_taiwan_aqi"></block>
     </category>		
-	<sep id="category_sep"></sep>
 	<category id="france25" name="fu_mqtt">
 	  <block type="fu_mqtt_setup">
 		<value name="server">
