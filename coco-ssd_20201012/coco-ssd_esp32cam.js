@@ -11,8 +11,9 @@ window.onload = function () {
 	var cocossdState = document.getElementById('cocossdState');
 	var frame = document.getElementById("frame_cocossd");
 	var result = document.getElementById('gamediv_cocossd'); 
-	var Model;
 	var myTimer;
+	var restartCount=0;
+	var Model;
 	
 	cocoSsd.load().then(cocoSsd_Model => {
 		Model = cocoSsd_Model;
@@ -69,7 +70,6 @@ window.onload = function () {
 		
 	  Model.detect(canvas).then(Predictions => {    
 		var s = (canvas.width>canvas.height)?canvas.width:canvas.height;
-		var count = 0;
 		var res = "";
 		result.innerHTML = "";
 		if (Predictions.length>0) {
