@@ -21,6 +21,8 @@ window.onload = function () {
 	var myTimer;
 	var restartCount=0;
 	
+	start();
+	
 	function start() {
 	  clearInterval(myTimer);  
 	  myTimer = setInterval(function(){error_handle();},5000);
