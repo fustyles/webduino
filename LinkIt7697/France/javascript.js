@@ -7967,7 +7967,7 @@ Blockly.Arduino['servermodule_parameter_set_address3'] = function (block) {
   var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC);
   var p2 = Blockly.Arduino.valueToCode(block, 'p2', Blockly.Arduino.ORDER_ATOMIC); 
   var p3 = Blockly.Arduino.valueToCode(block, 'p3', Blockly.Arduino.ORDER_ATOMIC);   
-  var code = '"?"+String('+cmd+')+"="+String('+p1+')+";"+String('+p2+')+";"+String('+p2+')';
+  var code = '"?"+String("'+cmd+'")+"="+String('+p1+')+";"+String('+p2+')+";"+String('+p2+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
