@@ -884,6 +884,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
 	}
 	newFile();
+	
+	//Double Click關閉彈出積木選單
+	setTimeout(function() {
+		var blocklyWorkspace = document.getElementsByClassName("blocklyFlyout");
+		for (var f=0;f<blocklyWorkspace.length;f++) {
+			blocklyWorkspace[f].addEventListener('dblclick', function(){ 
+				Blockly.hideChaff();
+			});
+		}
+	}, 3000);	
 });	
 
 
