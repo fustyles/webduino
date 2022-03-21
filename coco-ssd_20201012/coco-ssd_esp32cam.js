@@ -1,5 +1,3 @@
-document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>');
-document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"></script>');
 document.write('<div id="region_cocossd" style="z-index:999"><video id="gamevideo_cocossd" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_cocossd" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_cocossd"></canvas><br><select id="frame_cocossd" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage_cocossd" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><br><div id="gamediv_cocossd" style="color:red"></div></div>');
 document.write('<div id="cocossdState" style="position:absolute;display:none;">1</div>');
 
