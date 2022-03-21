@@ -340,8 +340,6 @@
 		  
 		  
 		<category id="france21" name="serveresp32cam">
-			  <block type="esp32_cam_tfjs_cocossd">
-			  </block>
 			  <block type="esp32_cam_myfirmata" id="99">
 				<value name="ssid">
 				  <block type="text" id="100">
@@ -613,7 +611,9 @@
 				  </block>
 				</statement>
 			  </block>
-		</category>	  
+		</category>	
+
+		
 		<category id="france7" name="bluetoothmodule">
 		  <block type="esp32_myfirmata_bluetooth" id="232">
 			<value name="baudrate">
@@ -730,6 +730,7 @@
 		  <block type="esp32_bluetooth_readdata" id="8"></block> 
 		  <block type="esp32_bluetooth_getdata" id="10"></block>
 		</category> 
+		
 		<category id="france23" name="servercommand">
 			  <block type="servermodule_parameter_get">
 			  </block>
@@ -867,7 +868,41 @@
 				  </block>
 				</value>		
 			  </block>	  
-		</category>	  
+		</category>	 
+
+		<category id="france26" name="objectreconginition">
+			  <block type="cocossd_esp32cam">
+			  </block>
+			  <block type="cocossd_video">    
+			  </block>  
+			  <block type="cocossd_list">
+			  </block>  
+			  <block type="cocossd_object">
+				<value name="index_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value> 
+			  </block>
+			  <block type="cocossd_object_number">
+			  </block>
+			  <block type="cocossd_state">
+			  </block> 
+			  <block type="cocossd_video_position">
+				<value name="left_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value> 
+				<value name="top_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>     
+			  </block> 
+			  <block type="cocossd_canvas_get">
+			  </block>   			  
+		</category>			
     </category>
 	
 	
@@ -877,6 +912,13 @@
 		<block type="servermodule_javascript">
 			<statement name="js">
 			</statement>
+		</block>
+		<block type="time_delay">
+			<value name="seconds">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>    
+			</value>   
 		</block>
 		<block type="console_log">
 			<value name="text_">

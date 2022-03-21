@@ -10,7 +10,7 @@
 <category><name>serveresp32cam</name><replace>ESP32-CAM Server</replace></category>
 <category><name>serverlinkit7697</name><replace>LinkIt7697 Server</replace></category>
 <category><name>servercommand</name><replace>Command Parameter</replace></category>
-<category><name>bluetoothmodule</name><replace>Bluetooth Server</replace></category>
+<category><name>bluetoothmodule</name><replace>ESP32 Bluetooth Server</replace></category>
 <category><name>bluetooth</name><replace>Bluetooth Command</replace></category>
 <category><name>mlx90614</name><replace>MLX9061X</replace></category>
 <category><name>DHT11</name><replace>DHT11</replace></category>
@@ -58,4 +58,5 @@
 <category><name>EZ+</name><replace>EZ Start Kit+</replace></category>
 <category><name>airquality</name><replace>Taiwan Air Quality</replace></category>
 <category><name>fu_mqtt</name><replace>MQTT</replace></category>
+<category><name>objectreconginition</name><replace>Object Recognition</replace></category>
 </xml>

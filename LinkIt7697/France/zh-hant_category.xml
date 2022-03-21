@@ -10,7 +10,7 @@
 <category><name>serveresp32cam</name><replace>ESP32-CAM網頁模組</replace></category>
 <category><name>serverlinkit7697</name><replace>LinkIt7697網頁模組</replace></category>
 <category><name>servercommand</name><replace>模組指令參數</replace></category>
-<category><name>bluetoothmodule</name><replace>藍芽模組</replace></category>
+<category><name>bluetoothmodule</name><replace>ESP32藍芽模組</replace></category>
 <category><name>bluetooth</name><replace>藍芽模組指令</replace></category>
 <category><name>mlx90614</name><replace>MLX9061X</replace></category>
 <category><name>DHT11</name><replace>溫溼度感測器</replace></category>
@@ -60,4 +60,5 @@
 <category><name>EZ+</name><replace>EZ Start Kit+</replace></category>
 <category><name>airquality</name><replace>台灣空氣品質</replace></category>
 <category><name>fu_mqtt</name><replace>MQTT</replace></category>
+<category><name>objectreconginition</name><replace>物件辨識</replace></category>
 </xml>

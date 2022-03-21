@@ -2549,6 +2549,29 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'  else if (cmd=="touchread") {\n'+
 			'    Feedback=String(touchRead(p1.toInt()));\n'+
 			'  }\n'+
+			'  else if (cmd=="servo") {\n'+
+			'    ledcAttachPin(p1.toInt(), 3);\n'+
+			'    ledcSetup(3, 50, 16);\n'+
+			'    int val = 7864-p2.toInt()*34.59;\n'+
+			'    if (val > 7864)\n'+
+			'       val = 7864;\n'+
+			'    else if (val < 1638)\n'+
+			'      val = 1638;\n'+
+			'    ledcWrite(3, val);\n'+
+			'  }\n'+
+			'  else if (cmd=="relay") {\n'+
+			'    pinMode(p1.toInt(), OUTPUT);\n'+
+			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
+			'  }\n'+
+			'  else if (cmd=="buzzer") { \n'+
+			'    pinMode(p1.toInt(),OUTPUT);\n'+
+			'    if (p4=="") p4="9";\n'+
+			'    ledcSetup(p4.toInt(), 2000, 8);\n'+
+			'    ledcAttachPin(p1.toInt(), p4.toInt());\n'+
+			'    ledcWriteTone(p4.toInt(), p2.toInt());\n'+
+			'    delay(p3.toInt());\n'+
+			'    ledcWriteTone(p4.toInt(), 0);\n'+			
+			'  }\n'+
 			'  else {\n  '+ 
 			statements_executecommand.replace(/\n/g,"\n  ")+
 			'}\n'+ 
@@ -2661,385 +2684,6 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 
   code = '\n  '+getCommand+'\n';
   return code;
-};
-
-Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
-	
-  var mainpage = Blockly.Arduino.valueToCode(block, 'mainpage', Blockly.Arduino.ORDER_ATOMIC);
-  var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
-  var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
-  var ssid_ap = Blockly.Arduino.valueToCode(block, 'ssid_ap', Blockly.Arduino.ORDER_ATOMIC);
-  var pass_ap = Blockly.Arduino.valueToCode(block, 'password_ap', Blockly.Arduino.ORDER_ATOMIC);  
-  var framesize = block.getFieldValue('framesize');
-  var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');	
-	
-  Blockly.Arduino.definitions_.define_linkit_wifi_include ='#include <WiFi.h>\nWiFiClient client;\n#include <WiFiClientSecure.h>';
-  Blockly.Arduino.definitions_.define_esp_camera_h_include ='#include "esp_camera.h"';
-  Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
-  Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';
-  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
-
-  Blockly.Arduino.definitions_.define_esp32_cam_gpio_include ='\n'+
-																'#define PWDN_GPIO_NUM     32\n'+
-																'#define RESET_GPIO_NUM    -1\n'+
-																'#define XCLK_GPIO_NUM      0\n'+
-																'#define SIOD_GPIO_NUM     26\n'+
-																'#define SIOC_GPIO_NUM     27\n'+
-																'#define Y9_GPIO_NUM       35\n'+
-																'#define Y8_GPIO_NUM       34\n'+
-																'#define Y7_GPIO_NUM       39\n'+
-																'#define Y6_GPIO_NUM       36\n'+
-																'#define Y5_GPIO_NUM       21\n'+
-																'#define Y4_GPIO_NUM       19\n'+
-																'#define Y3_GPIO_NUM       18\n'+
-																'#define Y2_GPIO_NUM        5\n'+
-																'#define VSYNC_GPIO_NUM    25\n'+
-																'#define HREF_GPIO_NUM     23\n'+
-																'#define PCLK_GPIO_NUM     22\n';
-
-  Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = '+ssid+';';
-  Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = '+pass+';';
-  Blockly.Arduino.definitions_.define_linkit_wifi_apssid='const char* apssid = '+ssid_ap+';';
-  Blockly.Arduino.definitions_.define_linkit_wifi_appass='const char* appassword = '+pass_ap+';';  
-  Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);\n';
-  Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;';
-
-  Blockly.Arduino.definitions_.define_linkit_ExecuteCommand = '\n'+
-			'void executeCommand() {\n'+
-			'  //Serial.println("");\n'+
-			'  //Serial.println("Command: "+Command);\n'+
-			'  //Serial.println("cmd= "+cmd+" ,p1= "+p1+" ,p2= "+p2+" ,p3= "+p3+" ,p4= "+p4+" ,p5= "+p5+" ,p6= "+p6+" ,p7= "+p7+" ,p8= "+p8+" ,p9= "+p9);\n'+
-			'  //Serial.println("");\n'+
-			'  if (cmd=="ip") {\n'+
-			'    Feedback="AP IP: "+WiFi.softAPIP().toString();\n'+
-			'    Feedback+="<br>";\n'+
-			'    Feedback+="STA IP: "+WiFi.localIP().toString();\n'+
-			'  } else if (cmd=="mac") {\n'+
-			'    Feedback="STA MAC: "+WiFi.macAddress();\n'+
-			'  } else if (cmd=="restart") {\n'+
-			'    ESP.restart();\n'+
-			'  } else if (cmd=="digitalwrite") {\n'+
-			'    ledcDetachPin(p1.toInt());\n'+
-			'    pinMode(p1.toInt(), OUTPUT);\n'+
-			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
-			'  } else if (cmd=="digitalread") {\n'+
-			'    Feedback=String(digitalRead(p1.toInt()));\n'+
-			'  } else if (cmd=="analogwrite") {\n'+
-			'    if (p1=="4") {\n'+
-			'      ledcAttachPin(4, 4);\n'+
-			'      ledcSetup(4, 5000, 8);\n'+
-			'      ledcWrite(4,p2.toInt());\n'+
-			'    } else {\n'+
-			'      ledcAttachPin(p1.toInt(), 9);\n'+
-			'      ledcSetup(9, 5000, 8);\n'+
-			'      ledcWrite(9,p2.toInt());\n'+
-			'    }\n'+
-			'  }\n'+
-			'  else if (cmd=="analogread") {\n'+
-			'    Feedback=String(analogRead(p1.toInt()));\n'+
-			'  } else if (cmd=="touchread") {\n'+
-			'    Feedback=String(touchRead(p1.toInt()));\n'+
-			'  } else if (cmd=="restart") {\n'+
-			'    ESP.restart();\n'+
-			'  } else if (cmd=="flash") {\n'+
-			'    ledcAttachPin(4, 4);\n'+
-			'    ledcSetup(4, 5000, 8);\n'+
-			'    int val = p1.toInt();\n'+
-			'    ledcWrite(4,val);\n'+
-			'  } else if(cmd=="servo") {\n'+
-			'    ledcAttachPin(p1.toInt(), 3);\n'+
-			'    ledcSetup(3, 50, 16);\n'+
-			'    int val = 7864-p2.toInt()*34.59;\n'+
-			'    if (val > 7864)\n'+
-			'       val = 7864;\n'+
-			'    else if (val < 1638)\n'+
-			'      val = 1638;\n'+
-			'    ledcWrite(3, val);\n'+
-			'  } else if (cmd=="relay") {\n'+
-			'    pinMode(p1.toInt(), OUTPUT);\n'+
-			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
-			'  } else if (cmd=="resetwifi") {\n'+
-			'    for (int i=0;i<2;i++) {\n'+
-			'      WiFi.begin(p1.c_str(), p2.c_str());\n'+
-			'      Serial.print("Connecting to ");\n'+
-			'      Serial.println(p1);\n'+
-			'      long int StartTime=millis();\n'+
-			'      while (WiFi.status() != WL_CONNECTED) {\n'+
-			'          delay(500);\n'+
-			'          if ((StartTime+5000) < millis()) break;\n'+
-			'      }\n'+
-			'      Serial.println("");\n'+
-			'      Serial.println("STAIP: "+WiFi.localIP().toString());\n'+
-			'      Feedback="STAIP: "+WiFi.localIP().toString();\n'+
-			'      if (WiFi.status() == WL_CONNECTED) {\n'+
-			'        WiFi.softAP((WiFi.localIP().toString()+"_"+p1).c_str(), p2.c_str());\n'+
-			'        for (int i=0;i<2;i++) {\n'+
-			'          ledcWrite(4,10);\n'+
-			'          delay(300);\n'+
-			'          ledcWrite(4,0);\n'+
-			'          delay(300);\n'+
-			'        }\n'+
- 			'       break;\n'+
-			'      }\n'+
-			'    }\n'+
-			'  } else if (cmd=="framesize") {\n'+
-			'    int val = p1.toInt();\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_framesize(s, (framesize_t)val);\n'+
-			'  } else if (cmd=="quality") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_quality(s, p1.toInt());\n'+
-			'  } else if (cmd=="contrast") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_contrast(s, p1.toInt());\n'+
-			'  } else if (cmd=="brightness") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_brightness(s, p1.toInt());\n'+
-			'  } else if (cmd=="saturation") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_saturation(s, p1.toInt());\n'+ 
-			'  } else if (cmd=="special_effect") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_special_effect(s, p1.toInt());\n'+
-			'  } else if (cmd=="hmirror") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_hmirror(s, p1.toInt());\n'+
-			'  } else if (cmd=="vflip") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_vflip(s, p1.toInt());\n'+
-			'  } else {\n  '+ 
-			statements_executecommand.replace(/\n/g,"\n  ")+
-			'}\n'+ 
-			'}\n';
-	
-	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin(115200);\n  delay(10);";
-	Blockly.Arduino.setups_.setup_cam_initial=''+
-			'  Serial.setDebugOutput(true);\n'+
-			'  Serial.println();\n'+
-			'  camera_config_t config;\n'+
-			'  config.ledc_channel = LEDC_CHANNEL_0;\n'+
-			'  config.ledc_timer = LEDC_TIMER_0;\n'+
-			'  config.pin_d0 = Y2_GPIO_NUM;\n'+
-			'  config.pin_d1 = Y3_GPIO_NUM;\n'+
-			'  config.pin_d2 = Y4_GPIO_NUM;\n'+
-			'  config.pin_d3 = Y5_GPIO_NUM;\n'+
-			'  config.pin_d4 = Y6_GPIO_NUM;\n'+
-			'  config.pin_d5 = Y7_GPIO_NUM;\n'+
-			'  config.pin_d6 = Y8_GPIO_NUM;\n'+
-			'  config.pin_d7 = Y9_GPIO_NUM;\n'+
-			'  config.pin_xclk = XCLK_GPIO_NUM;\n'+
-			'  config.pin_pclk = PCLK_GPIO_NUM;\n'+
-			'  config.pin_vsync = VSYNC_GPIO_NUM;\n'+
-			'  config.pin_href = HREF_GPIO_NUM;\n'+
-			'  config.pin_sscb_sda = SIOD_GPIO_NUM;\n'+
-			'  config.pin_sscb_scl = SIOC_GPIO_NUM;\n'+
-			'  config.pin_pwdn = PWDN_GPIO_NUM;\n'+
-			'  config.pin_reset = RESET_GPIO_NUM;\n'+
-			'  config.xclk_freq_hz = 20000000;\n'+
-			'  config.pixel_format = PIXFORMAT_JPEG;\n'+
-			'  if(psramFound()){\n'+
-			'    config.frame_size = FRAMESIZE_UXGA;\n'+
-			'    config.jpeg_quality = 10;\n'+
-			'    config.fb_count = 2;\n'+
-			'  } else {\n'+
-			'    config.frame_size = FRAMESIZE_SVGA;\n'+
-			'    config.jpeg_quality = 12;\n'+
-			'    config.fb_count = 1;\n'+
-			'  }\n'+
-			'  esp_err_t err = esp_camera_init(&config);\n'+
-			'  if (err != ESP_OK) {\n'+
-			'    Serial.printf("Camera init failed with error 0x%x", err);\n'+
-			'    delay(1000);\n'+
-			'    ESP.restart();\n'+
-			'  }\n'+
-			'  sensor_t * s = esp_camera_sensor_get();\n'+
-			'  s->set_framesize(s, FRAMESIZE_'+framesize+');\n'+
-			'  Serial.println();\n'+
-			'  ledcAttachPin(4, 4);\n'+
-			'  ledcSetup(4, 5000, 8);\n'+
-			'  Serial.println();\n'+			
-			'  delay(10);\n';
-	Blockly.Arduino.setups_.setup_initWiFi='initWiFi();';	
-	
-	Blockly.Arduino.definitions_.initWiFi = ''+
-			'  void initWiFi() {\n'+
-			'    WiFi.mode(WIFI_AP_STA);\n'+
-			'    \n'+
-			'    for (int i=0;i<2;i++) {\n'+
-			'      WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
-			'      \n'+
-			'      delay(1000);\n'+
-			'      Serial.println("");\n'+
-			'      Serial.print("Connecting to ");\n'+
-			'      Serial.println(_lwifi_ssid);\n'+
-			'      \n'+
-			'      long int StartTime=millis();\n'+
-			'      while (WiFi.status() != WL_CONNECTED) {\n'+
-			'          delay(500);\n'+
-			'          if ((StartTime+5000) < millis()) break;\n'+
-			'      }\n'+
-			'      \n'+
-			'      if (WiFi.status() == WL_CONNECTED) {\n'+
-			'        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+      
-			'        Serial.println("");\n'+
-			'        Serial.println("STAIP address: ");\n'+
-			'        Serial.println(WiFi.localIP());\n'+
-			'        Serial.println("");\n'+
-			'      \n'+
-			'        for (int i=0;i<5;i++) {\n'+
-			'          ledcWrite(4,10);\n'+
-			'          delay(200);\n'+
-			'          ledcWrite(4,0);\n'+
-			'          delay(200);\n'+    
-			'        }\n'+
-			'        break;\n'+
-			'      }\n'+
-			'    }\n'+
-			'    \n'+
-			'    if (WiFi.status() != WL_CONNECTED) {\n'+
-			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+
-			'  	   \n'+
-			'      for (int i=0;i<2;i++) {\n'+
-			'        ledcWrite(4,10);\n'+
-			'        delay(1000);\n'+
-			'        ledcWrite(4,0);\n'+
-			'        delay(1000); \n'+   
-			'      }\n'+
-			'    }\n'+
-			'    \n'+
-			'    Serial.println("");\n'+
-			'    Serial.println("APIP address: ");\n'+
-			'    Serial.println(WiFi.softAPIP());\n'+
-			'    \n'+
-			'    server.begin();\n'+ 
-			'  }\n';
-
-	Blockly.Arduino.definitions_.getRequest = ''+
-			'  void getRequest() {\n'+
-			'    Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'+
-			'    receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'+
-			'  	 \n'+
-			'    client = server.available();\n'+
-			'    \n'+
-			'    if (client) {\n'+
-			'      String currentLine = "";\n'+
-			'  	   \n'+
-			'      while (client.connected()) {\n'+
-			'        if (client.available()) {\n'+
-			'          char c = client.read();\n'+             
-			'          \n'+
-			'          getCommand(c);\n'+
-			'          \n'+
-			'          if (c == \'\\n\') {\n'+
-			'            if (currentLine.length() == 0) {\n'+          
-			'   	        if (cmd=="getstill") {\n'+
-			'     	            camera_fb_t * fb = NULL;\n'+
-			'     	            fb = esp_camera_fb_get();\n'+  
-			'   	            if(!fb) {\n'+
-			'   	                Serial.println("Camera capture failed");\n'+
-			'   	                delay(1000);\n'+
-			'   	                ESP.restart();\n'+
-			'   	            }\n'+
-			'   	            client.println("HTTP/1.1 200 OK");\n'+
-			'   	            client.println("Access-Control-Allow-Origin: *");\n'+            
-			'   	            client.println("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");\n'+
-			'   	            client.println("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");\n'+
-			'   	            client.println("Content-Type: image/jpeg");\n'+
-			'   	            client.println("Content-Disposition: form-data; name=\\\"imageFile\\\"; filename=\\\"picture.jpg\\\"");\n'+ 
-			'   	            client.println("Content-Length: " + String(fb->len));\n'+             
-			'   	            client.println("Connection: close");\n'+
-			'   	            client.println();\n'+
-			'   	            uint8_t *fbBuf = fb->buf;\n'+
-			'   	            size_t fbLen = fb->len;\n'+
-			'   	            for (size_t n=0;n<fbLen;n=n+1024) {\n'+
-			'   	                if (n+1024<fbLen) {\n'+
-			'   	                client.write(fbBuf, 1024);\n'+
-			'   	                fbBuf += 1024;\n'+
-			'   	            }\n'+
-			'   	            else if (fbLen%1024>0) {\n'+
-			'   	                size_t remainder = fbLen%1024;\n'+
-			'   	                client.write(fbBuf, remainder);\n'+
-			'   	              }\n'+
-			'   	            }\n'+
-			'   	            esp_camera_fb_return(fb);\n'+
-			'   	            pinMode(4, OUTPUT);\n'+
-			'   	            digitalWrite(4, LOW);\n'+ 
-			'   	        } else {\n'+
-			'   	        	client.println("HTTP/1.1 200 OK");\n'+
-			'   	        	client.println("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");\n'+
-			'   	        	client.println("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");\n'+
-			'   	        	client.println("Content-Type: text/html; charset=utf-8");\n'+
-			'   	        	client.println("Access-Control-Allow-Origin: *");\n'+
-			'   	        	client.println("X-Content-Type-Options: nosniff");\n'+
-			'   	        	client.println();\n'+
-			'   	        	if (Feedback=="")\n'+
-			'   	        		Feedback='+mainpage+';\n'+
-			'   	        	for (int index = 0; index < Feedback.length(); index = index+1024) {\n'+
-			'   	        	  client.print(Feedback.substring(index, index+1024));\n'+
-			'   	        	}\n'+
-			'   	        }\n'+
-			'   	        Feedback="";\n'+
-			'   	        break;\n'+
-			'            } else {\n'+
-			'              currentLine = "";\n'+
-			'            }\n'+
-			'          }\n'+ 
-			'          else if (c != \'\\r\') {\n'+
-			'            currentLine += c;\n'+
-			'          }\n'+
-			'  		   \n'+
-			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
-			'            if (Command.indexOf("stop")!=-1) {\n'+
-			'              client.println();\n'+
-			'              client.println();\n'+
- 			'             client.stop();\n'+
-			'            }\n'+
-			'            currentLine="";\n'+
-			'            Feedback="";\n'+
-			'            executeCommand();\n'+
-			'          }\n'+
-			'        }\n'+
-			'      }\n'+
-			'      delay(1);\n'+
-			'      client.stop();\n'+
-			'    }\n'+
-			'  }\n';	
-
-	Blockly.Arduino.definitions_.getCommand = ''+
-			'  void getCommand(char c) {\n'+
-			'    if (c==\'?\') receiveState=1;\n'+
-			'    if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
-			'    \n'+
-			'    if (receiveState==1) {\n'+
-			'      Command=Command+String(c);\n'+
-			'      \n'+
-			'      if (c==\'=\') cmdState=0;\n'+
-			'      if (c==\';\') pState++;\n'+
-			'      \n'+
-			'      if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
-			'      if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
-			'      \n'+
-			'      if (c==\'?\') questionState=1;\n'+
-			'      if (c==\'=\') equalState=1;\n'+
-			'      if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
-			'    }\n'+
-			'  }\n';		
-			
-	if (Blockly.Arduino.loops_) {
-		Blockly.Arduino.loops_["getRequest"] = 'getRequest();';
-		code = '';
-	}
-	else
-		code = 'getRequest();\n';
-    return code;
 };
 
 Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
@@ -3223,6 +2867,29 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 			'  else if (cmd=="analogread") {\n'+
 			'    SerialBT.println(String(analogRead(p1.toInt())));\n'+
 			'  }\n'+
+			'  else if (cmd=="servo") {\n'+
+			'    ledcAttachPin(p1.toInt(), 3);\n'+
+			'    ledcSetup(3, 50, 16);\n'+
+			'    int val = 7864-p2.toInt()*34.59;\n'+
+			'    if (val > 7864)\n'+
+			'       val = 7864;\n'+
+			'    else if (val < 1638)\n'+
+			'      val = 1638;\n'+
+			'    ledcWrite(3, val);\n'+
+			'  }\n'+
+			'  else if (cmd=="relay") {\n'+
+			'    pinMode(p1.toInt(), OUTPUT);\n'+
+			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
+			'  }\n'+
+			'  else if (cmd=="buzzer") { \n'+
+			'    pinMode(p1.toInt(),OUTPUT);\n'+
+			'    if (p4=="") p4="9";\n'+
+			'    ledcSetup(p4.toInt(), 2000, 8);\n'+
+			'    ledcAttachPin(p1.toInt(), p4.toInt());\n'+
+			'    ledcWriteTone(p4.toInt(), p2.toInt());\n'+
+			'    delay(p3.toInt());\n'+
+			'    ledcWriteTone(p4.toInt(), 0);\n'+			
+			'  }\n'+			
 			'  else {\n  '+statements_executecommand.replace(/\n/g,"\n  ")+
 			'}\n'+ 
 			'}\n';
@@ -7952,16 +7619,6 @@ Blockly.Arduino.webbit_mooncar_ir_remote_send=function(){
   }
 };
 
-Blockly.Arduino['esp32_cam_tfjs_cocossd'] = function(block) {
-	var object=this.getFieldValue("object");
-	var score=this.getFieldValue("score");
-	var statements_javascript = Blockly.Arduino.statementToCode(block, 'javascript');
-	
-	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js'></script><script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js''></script><script src='https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0','></script><script src='https://fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/LinkIt7697/France/coco-ssd.js'></script></head><body><img id='ShowImage' style='display:none' crossorigin='anonymous'><canvas id='canvas'></canvas><span id='object' style='display:none'>"+object+"</span><span id='score' style='display:none'>"+score+"</span><script>"+statements_javascript.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null")+"</script></body></html>\"";
-
-  return [code,Blockly.Arduino.ORDER_ATOMIC];
-};
-
 Blockly.Arduino['servermodule_parameter_set_address3'] = function (block) {
   var cmd = this.getFieldValue("cmd");
   var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC);
@@ -8126,4 +7783,472 @@ Blockly.Arduino['fu_mqtt_senddata'] = function(block) {
 Blockly.Arduino['fu_mqtt_getdata'] = function(block) {
   code = 'mqtt_data';
   return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
+	
+  var mainpage = Blockly.Arduino.valueToCode(block, 'mainpage', Blockly.Arduino.ORDER_ATOMIC);
+  var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
+  var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
+  var ssid_ap = Blockly.Arduino.valueToCode(block, 'ssid_ap', Blockly.Arduino.ORDER_ATOMIC);
+  var pass_ap = Blockly.Arduino.valueToCode(block, 'password_ap', Blockly.Arduino.ORDER_ATOMIC);  
+  var framesize = block.getFieldValue('framesize');
+  var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');	
+	
+  Blockly.Arduino.definitions_.define_linkit_wifi_include ='#include <WiFi.h>\nWiFiClient client;\n#include <WiFiClientSecure.h>';
+  Blockly.Arduino.definitions_.define_esp_camera_h_include ='#include "esp_camera.h"';
+  Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+  Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';
+  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+
+  Blockly.Arduino.definitions_.define_esp32_cam_gpio_include ='\n'+
+																'#define PWDN_GPIO_NUM     32\n'+
+																'#define RESET_GPIO_NUM    -1\n'+
+																'#define XCLK_GPIO_NUM      0\n'+
+																'#define SIOD_GPIO_NUM     26\n'+
+																'#define SIOC_GPIO_NUM     27\n'+
+																'#define Y9_GPIO_NUM       35\n'+
+																'#define Y8_GPIO_NUM       34\n'+
+																'#define Y7_GPIO_NUM       39\n'+
+																'#define Y6_GPIO_NUM       36\n'+
+																'#define Y5_GPIO_NUM       21\n'+
+																'#define Y4_GPIO_NUM       19\n'+
+																'#define Y3_GPIO_NUM       18\n'+
+																'#define Y2_GPIO_NUM        5\n'+
+																'#define VSYNC_GPIO_NUM    25\n'+
+																'#define HREF_GPIO_NUM     23\n'+
+																'#define PCLK_GPIO_NUM     22\n';
+
+  Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = '+ssid+';';
+  Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = '+pass+';';
+  Blockly.Arduino.definitions_.define_linkit_wifi_apssid='const char* apssid = '+ssid_ap+';';
+  Blockly.Arduino.definitions_.define_linkit_wifi_appass='const char* appassword = '+pass_ap+';';  
+  Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);\n';
+  Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;';
+
+  Blockly.Arduino.definitions_.define_linkit_ExecuteCommand = '\n'+
+			'void executeCommand() {\n'+
+			'  //Serial.println("");\n'+
+			'  //Serial.println("Command: "+Command);\n'+
+			'  //Serial.println("cmd= "+cmd+" ,p1= "+p1+" ,p2= "+p2+" ,p3= "+p3+" ,p4= "+p4+" ,p5= "+p5+" ,p6= "+p6+" ,p7= "+p7+" ,p8= "+p8+" ,p9= "+p9);\n'+
+			'  //Serial.println("");\n'+
+			'  if (cmd=="ip") {\n'+
+			'    Feedback="AP IP: "+WiFi.softAPIP().toString();\n'+
+			'    Feedback+="<br>";\n'+
+			'    Feedback+="STA IP: "+WiFi.localIP().toString();\n'+
+			'  } else if (cmd=="mac") {\n'+
+			'    Feedback="STA MAC: "+WiFi.macAddress();\n'+
+			'  } else if (cmd=="restart") {\n'+
+			'    ESP.restart();\n'+
+			'  } else if (cmd=="digitalwrite") {\n'+
+			'    ledcDetachPin(p1.toInt());\n'+
+			'    pinMode(p1.toInt(), OUTPUT);\n'+
+			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
+			'  } else if (cmd=="digitalread") {\n'+
+			'    Feedback=String(digitalRead(p1.toInt()));\n'+
+			'  } else if (cmd=="analogwrite") {\n'+
+			'    if (p1=="4") {\n'+
+			'      ledcAttachPin(4, 4);\n'+
+			'      ledcSetup(4, 5000, 8);\n'+
+			'      ledcWrite(4,p2.toInt());\n'+
+			'    } else {\n'+
+			'      ledcAttachPin(p1.toInt(), 9);\n'+
+			'      ledcSetup(9, 5000, 8);\n'+
+			'      ledcWrite(9,p2.toInt());\n'+
+			'    }\n'+
+			'  } else if (cmd=="analogread") {\n'+
+			'    Feedback=String(analogRead(p1.toInt()));\n'+
+			'  } else if (cmd=="touchread") {\n'+
+			'    Feedback=String(touchRead(p1.toInt()));\n'+
+			'  } else if (cmd=="restart") {\n'+
+			'    ESP.restart();\n'+
+			'  } else if (cmd=="flash") {\n'+
+			'    ledcAttachPin(4, 4);\n'+
+			'    ledcSetup(4, 5000, 8);\n'+
+			'    int val = p1.toInt();\n'+
+			'    ledcWrite(4,val);\n'+
+			'  } else if(cmd=="servo") {\n'+
+			'    ledcAttachPin(p1.toInt(), 3);\n'+
+			'    ledcSetup(3, 50, 16);\n'+
+			'    int val = 7864-p2.toInt()*34.59;\n'+
+			'    if (val > 7864)\n'+
+			'       val = 7864;\n'+
+			'    else if (val < 1638)\n'+
+			'      val = 1638;\n'+
+			'    ledcWrite(3, val);\n'+
+			'  } else if (cmd=="relay") {\n'+
+			'    pinMode(p1.toInt(), OUTPUT);\n'+
+			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
+			'  } else if (cmd=="buzzer") { \n'+
+			'    pinMode(p1.toInt(),OUTPUT);\n'+
+			'    if (p4=="") p4="9";\n'+
+			'    ledcSetup(p4.toInt(), 2000, 8);\n'+
+			'    ledcAttachPin(p1.toInt(), p4.toInt());\n'+
+			'    ledcWriteTone(p4.toInt(), p2.toInt());\n'+
+			'    delay(p3.toInt());\n'+
+			'    ledcWriteTone(p4.toInt(), 0);\n'+
+			'  } else if (cmd=="resetwifi") {\n'+
+			'    for (int i=0;i<2;i++) {\n'+
+			'      WiFi.begin(p1.c_str(), p2.c_str());\n'+
+			'      Serial.print("Connecting to ");\n'+
+			'      Serial.println(p1);\n'+
+			'      long int StartTime=millis();\n'+
+			'      while (WiFi.status() != WL_CONNECTED) {\n'+
+			'          delay(500);\n'+
+			'          if ((StartTime+5000) < millis()) break;\n'+
+			'      }\n'+
+			'      Serial.println("");\n'+
+			'      Serial.println("STAIP: "+WiFi.localIP().toString());\n'+
+			'      Feedback="STAIP: "+WiFi.localIP().toString();\n'+
+			'      if (WiFi.status() == WL_CONNECTED) {\n'+
+			'        WiFi.softAP((WiFi.localIP().toString()+"_"+p1).c_str(), p2.c_str());\n'+
+			'        for (int i=0;i<2;i++) {\n'+
+			'          ledcWrite(4,10);\n'+
+			'          delay(300);\n'+
+			'          ledcWrite(4,0);\n'+
+			'          delay(300);\n'+
+			'        }\n'+
+ 			'       break;\n'+
+			'      }\n'+
+			'    }\n'+
+			'  } else if (cmd=="framesize") {\n'+
+			'    int val = p1.toInt();\n'+
+			'    sensor_t * s = esp_camera_sensor_get();\n'+
+			'    s->set_framesize(s, (framesize_t)val);\n'+
+			'  } else if (cmd=="quality") {\n'+
+			'    sensor_t * s = esp_camera_sensor_get();\n'+
+			'    s->set_quality(s, p1.toInt());\n'+
+			'  } else if (cmd=="contrast") {\n'+
+			'    sensor_t * s = esp_camera_sensor_get();\n'+
+			'    s->set_contrast(s, p1.toInt());\n'+
+			'  } else if (cmd=="brightness") {\n'+
+			'    sensor_t * s = esp_camera_sensor_get();\n'+
+			'    s->set_brightness(s, p1.toInt());\n'+
+			'  } else if (cmd=="saturation") {\n'+
+			'    sensor_t * s = esp_camera_sensor_get();\n'+
+			'    s->set_saturation(s, p1.toInt());\n'+ 
+			'  } else if (cmd=="special_effect") {\n'+
+			'    sensor_t * s = esp_camera_sensor_get();\n'+
+			'    s->set_special_effect(s, p1.toInt());\n'+
+			'  } else if (cmd=="hmirror") {\n'+
+			'    sensor_t * s = esp_camera_sensor_get();\n'+
+			'    s->set_hmirror(s, p1.toInt());\n'+
+			'  } else if (cmd=="vflip") {\n'+
+			'    sensor_t * s = esp_camera_sensor_get();\n'+
+			'    s->set_vflip(s, p1.toInt());\n'+
+			'  } else {\n  '+ 
+			statements_executecommand.replace(/\n/g,"\n  ")+
+			'}\n'+ 
+			'}\n';
+	
+	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin(115200);\n  delay(10);";
+	Blockly.Arduino.setups_.setup_cam_initial=''+
+			'  Serial.setDebugOutput(true);\n'+
+			'  Serial.println();\n'+
+			'  camera_config_t config;\n'+
+			'  config.ledc_channel = LEDC_CHANNEL_0;\n'+
+			'  config.ledc_timer = LEDC_TIMER_0;\n'+
+			'  config.pin_d0 = Y2_GPIO_NUM;\n'+
+			'  config.pin_d1 = Y3_GPIO_NUM;\n'+
+			'  config.pin_d2 = Y4_GPIO_NUM;\n'+
+			'  config.pin_d3 = Y5_GPIO_NUM;\n'+
+			'  config.pin_d4 = Y6_GPIO_NUM;\n'+
+			'  config.pin_d5 = Y7_GPIO_NUM;\n'+
+			'  config.pin_d6 = Y8_GPIO_NUM;\n'+
+			'  config.pin_d7 = Y9_GPIO_NUM;\n'+
+			'  config.pin_xclk = XCLK_GPIO_NUM;\n'+
+			'  config.pin_pclk = PCLK_GPIO_NUM;\n'+
+			'  config.pin_vsync = VSYNC_GPIO_NUM;\n'+
+			'  config.pin_href = HREF_GPIO_NUM;\n'+
+			'  config.pin_sscb_sda = SIOD_GPIO_NUM;\n'+
+			'  config.pin_sscb_scl = SIOC_GPIO_NUM;\n'+
+			'  config.pin_pwdn = PWDN_GPIO_NUM;\n'+
+			'  config.pin_reset = RESET_GPIO_NUM;\n'+
+			'  config.xclk_freq_hz = 20000000;\n'+
+			'  config.pixel_format = PIXFORMAT_JPEG;\n'+
+			'  if(psramFound()){\n'+
+			'    config.frame_size = FRAMESIZE_UXGA;\n'+
+			'    config.jpeg_quality = 10;\n'+
+			'    config.fb_count = 2;\n'+
+			'  } else {\n'+
+			'    config.frame_size = FRAMESIZE_SVGA;\n'+
+			'    config.jpeg_quality = 12;\n'+
+			'    config.fb_count = 1;\n'+
+			'  }\n'+
+			'  esp_err_t err = esp_camera_init(&config);\n'+
+			'  if (err != ESP_OK) {\n'+
+			'    Serial.printf("Camera init failed with error 0x%x", err);\n'+
+			'    delay(1000);\n'+
+			'    ESP.restart();\n'+
+			'  }\n'+
+			'  sensor_t * s = esp_camera_sensor_get();\n'+
+			'  s->set_framesize(s, FRAMESIZE_'+framesize+');\n'+
+			'  Serial.println();\n'+
+			'  ledcAttachPin(4, 4);\n'+
+			'  ledcSetup(4, 5000, 8);\n'+
+			'  Serial.println();\n'+			
+			'  delay(10);\n\n'+
+			'  initWiFi();\n\n'+
+			'  pinMode(4, OUTPUT);\n'+
+			'  digitalWrite(4, LOW);\n';	
+	
+	Blockly.Arduino.definitions_.initWiFi = ''+
+			'  void initWiFi() {\n'+
+			'    WiFi.mode(WIFI_AP_STA);\n'+
+			'    \n'+
+			'    for (int i=0;i<2;i++) {\n'+
+			'      WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
+			'      \n'+
+			'      delay(1000);\n'+
+			'      Serial.println("");\n'+
+			'      Serial.print("Connecting to ");\n'+
+			'      Serial.println(_lwifi_ssid);\n'+
+			'      \n'+
+			'      long int StartTime=millis();\n'+
+			'      while (WiFi.status() != WL_CONNECTED) {\n'+
+			'          delay(500);\n'+
+			'          if ((StartTime+5000) < millis()) break;\n'+
+			'      }\n'+
+			'      \n'+
+			'      if (WiFi.status() == WL_CONNECTED) {\n'+
+			'        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+      
+			'        Serial.println("");\n'+
+			'        Serial.println("STAIP address: ");\n'+
+			'        Serial.println(WiFi.localIP());\n'+
+			'        Serial.println("");\n'+
+			'      \n'+
+			'        for (int i=0;i<5;i++) {\n'+
+			'          ledcWrite(4,10);\n'+
+			'          delay(200);\n'+
+			'          ledcWrite(4,0);\n'+
+			'          delay(200);\n'+    
+			'        }\n'+
+			'        break;\n'+
+			'      }\n'+
+			'    }\n'+
+			'    \n'+
+			'    if (WiFi.status() != WL_CONNECTED) {\n'+
+			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+
+			'  	   \n'+
+			'      for (int i=0;i<2;i++) {\n'+
+			'        ledcWrite(4,10);\n'+
+			'        delay(1000);\n'+
+			'        ledcWrite(4,0);\n'+
+			'        delay(1000); \n'+   
+			'      }\n'+
+			'    }\n'+
+			'    \n'+
+			'    Serial.println("");\n'+
+			'    Serial.println("APIP address: ");\n'+
+			'    Serial.println(WiFi.softAPIP());\n'+
+			'    \n'+
+			'    server.begin();\n'+ 
+			'  }\n';
+
+	Blockly.Arduino.definitions_.getRequest = ''+
+			'  void getRequest() {\n'+
+			'    Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'+
+			'    receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'+
+			'  	 \n'+
+			'    client = server.available();\n'+
+			'    \n'+
+			'    if (client) {\n'+
+			'      String currentLine = "";\n'+
+			'  	   \n'+
+			'      while (client.connected()) {\n'+
+			'        if (client.available()) {\n'+
+			'          char c = client.read();\n'+             
+			'          \n'+
+			'          getCommand(c);\n'+
+			'          \n'+
+			'          if (c == \'\\n\') {\n'+
+			'            if (currentLine.length() == 0) {\n'+          
+			'   	        if (cmd=="getstill") {\n'+
+			'     	            camera_fb_t * fb = NULL;\n'+
+			'     	            fb = esp_camera_fb_get();\n'+  
+			'   	            if(!fb) {\n'+
+			'   	                Serial.println("Camera capture failed");\n'+
+			'   	                delay(1000);\n'+
+			'   	                ESP.restart();\n'+
+			'   	            }\n'+
+			'   	            client.println("HTTP/1.1 200 OK");\n'+
+			'   	            client.println("Access-Control-Allow-Origin: *");\n'+            
+			'   	            client.println("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");\n'+
+			'   	            client.println("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");\n'+
+			'   	            client.println("Content-Type: image/jpeg");\n'+
+			'   	            client.println("Content-Disposition: form-data; name=\\\"imageFile\\\"; filename=\\\"picture.jpg\\\"");\n'+ 
+			'   	            client.println("Content-Length: " + String(fb->len));\n'+             
+			'   	            client.println("Connection: close");\n'+
+			'   	            client.println();\n'+
+			'   	            uint8_t *fbBuf = fb->buf;\n'+
+			'   	            size_t fbLen = fb->len;\n'+
+			'   	            for (size_t n=0;n<fbLen;n=n+1024) {\n'+
+			'   	                if (n+1024<fbLen) {\n'+
+			'   	                client.write(fbBuf, 1024);\n'+
+			'   	                fbBuf += 1024;\n'+
+			'   	            }\n'+
+			'   	            else if (fbLen%1024>0) {\n'+
+			'   	                size_t remainder = fbLen%1024;\n'+
+			'   	                client.write(fbBuf, remainder);\n'+
+			'   	              }\n'+
+			'   	            }\n'+
+			'   	            esp_camera_fb_return(fb);\n'+
+			'   	            pinMode(4, OUTPUT);\n'+
+			'   	            digitalWrite(4, LOW);\n'+ 
+			'   	        } else {\n'+
+			'   	        	client.println("HTTP/1.1 200 OK");\n'+
+			'   	        	client.println("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");\n'+
+			'   	        	client.println("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");\n'+
+			'   	        	client.println("Content-Type: text/html; charset=utf-8");\n'+
+			'   	        	client.println("Access-Control-Allow-Origin: *");\n'+
+			'   	        	client.println("X-Content-Type-Options: nosniff");\n'+
+			'   	        	client.println();\n'+
+			'   	        	if (Feedback=="")\n'+
+			'   	        		Feedback='+mainpage+';\n'+
+			'   	        	for (int index = 0; index < Feedback.length(); index = index+1024) {\n'+
+			'   	        	  client.print(Feedback.substring(index, index+1024));\n'+
+			'   	        	}\n'+
+			'   	        }\n'+
+			'   	        Feedback="";\n'+
+			'   	        break;\n'+
+			'            } else {\n'+
+			'              currentLine = "";\n'+
+			'            }\n'+
+			'          }\n'+ 
+			'          else if (c != \'\\r\') {\n'+
+			'            currentLine += c;\n'+
+			'          }\n'+
+			'  		   \n'+
+			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
+			'            if (Command.indexOf("stop")!=-1) {\n'+
+			'              client.println();\n'+
+			'              client.println();\n'+
+ 			'             client.stop();\n'+
+			'            }\n'+
+			'            currentLine="";\n'+
+			'            Feedback="";\n'+
+			'            executeCommand();\n'+
+			'          }\n'+
+			'        }\n'+
+			'      }\n'+
+			'      delay(1);\n'+
+			'      client.stop();\n'+
+			'    }\n'+
+			'  }\n';	
+
+	Blockly.Arduino.definitions_.getCommand = ''+
+			'  void getCommand(char c) {\n'+
+			'    if (c==\'?\') receiveState=1;\n'+
+			'    if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
+			'    \n'+
+			'    if (receiveState==1) {\n'+
+			'      Command=Command+String(c);\n'+
+			'      \n'+
+			'      if (c==\'=\') cmdState=0;\n'+
+			'      if (c==\';\') pState++;\n'+
+			'      \n'+
+			'      if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
+			'      if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
+			'      \n'+
+			'      if (c==\'?\') questionState=1;\n'+
+			'      if (c==\'=\') equalState=1;\n'+
+			'      if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
+			'    }\n'+
+			'  }\n';		
+			
+	if (Blockly.Arduino.loops_) {
+		Blockly.Arduino.loops_["getRequest"] = 'getRequest();';
+		code = '';
+	}
+	else
+		code = 'getRequest();\n';
+    return code;
+};
+
+Blockly.Arduino['cocossd_esp32cam'] = function(block) {
+	var object=this.getFieldValue("object");
+	var score=this.getFieldValue("score");
+	var source=this.getFieldValue("source");
+	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
+	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
+		
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/fustyles.github.io/webduino/coco-ssd_20201012/coco-ssd.js'></script><script src='https:\/\/fustyles.github.io/webduino/coco-ssd_20201012/coco-ssd_esp32cam.js'></script></head><body><script>cocossd_video('block','1','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null")+" function recognitionFinish(){const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+javascript_recognition.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null")+"};main();}</script></body></html>\"";
+
+  return [code,Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['cocossd_video'] = function(block) { 
+  var value_result_ = block.getFieldValue('result_');
+  var value_frame_ = block.getFieldValue('frame_');
+  var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
+  var value_opacity_ = block.getFieldValue('opacity_');
+  var code = 'cocossd_video("' + value_result_ + '","' + value_frame_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
+  return code;
+};
+
+Blockly.Arduino['cocossd_list'] = function(block) { 
+  var value_object_ = block.getFieldValue('object_');
+  var code = 'cocossd_list("' + value_object_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['cocossd_object'] = function(block) { 
+  var value_object_ = block.getFieldValue('object_');
+  var value_index_ = Blockly.Arduino.valueToCode(block, 'index_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'cocossd_object("' + value_object_ + '",' + value_index_ + ',"' + value_data_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['cocossd_object_number'] = function(block) { 
+  var value_object_ = block.getFieldValue('object_');
+  var code = 'cocossd_object_number("' + value_object_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['cocossd_state'] = function(block) {
+  var value_state_ = block.getFieldValue('state_');
+  var code = 'cocossd_state(' + value_state_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['cocossd_video_position'] = function(block) { 
+  var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'cocossd_video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['cocossd_startvideo_media'] = function(block) { 
+  var value_width_ = Blockly.Arduino.valueToCode(block, 'width_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height_ = Blockly.Arduino.valueToCode(block, 'height_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_facing_ = block.getFieldValue('facing_');
+  var value_index_ = Blockly.Arduino.valueToCode(block, 'index_', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'cocossd_startvideo_media(' + value_width_ + ',' + value_height_ + ',"' + value_facing_ + '",' + value_index_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['cocossd_startvideo_stream'] = function(block) { 
+  var value_src_ = Blockly.Arduino.valueToCode(block, 'src_', Blockly.Arduino.ORDER_ATOMIC); 
+  var code = 'cocossd_startvideo_stream(' + value_src_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['cocossd_canvas_get'] = function(block) { 
+  var code = '"cocossd"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['time_delay'] = function (block) {
+  var seconds = Blockly.Arduino.valueToCode(block, 'seconds', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'await delay(' + seconds + ');\n';
+  return code;
 };
