@@ -942,3 +942,4 @@ Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_INITIAL_SHOW = "Initial";
 Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_RECOGNITION_SHOW = "After recognizing";
 
 Blockly.Msg.TIME_DELAY_SHOW = "Delay (s)";
+Blockly.Msg.DECLARE_VARIABLE_SHOW = "Declare vaiable (var)";

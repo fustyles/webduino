@@ -13320,3 +13320,16 @@ Blockly.Blocks['time_delay'] = {
     this.setColour(60);
   }
 };
+
+Blockly.Blocks['declare_variable'] = {
+  init: function () {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.DECLARE_VARIABLE_SHOW);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable("i"), "variable")		
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};

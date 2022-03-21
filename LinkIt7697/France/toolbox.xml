@@ -913,6 +913,8 @@
 			<statement name="js">
 			</statement>
 		</block>
+		<block type="declare_variable">  
+		</block>		
 		<block type="time_delay">
 			<value name="seconds">
 				<block type="math_number">
