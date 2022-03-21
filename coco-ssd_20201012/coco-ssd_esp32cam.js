@@ -11,9 +11,9 @@ window.onload = function () {
 	var cocossdState = document.getElementById('cocossdState');
 	var frame = document.getElementById("frame_cocossd");
 	var result = document.getElementById('gamediv_cocossd'); 
-	var Model; 
-	var sourceTimer;  
-  
+	var Model;
+	var myTimer;
+	
 	cocoSsd.load().then(cocoSsd_Model => {
 		Model = cocoSsd_Model;
 		start();
