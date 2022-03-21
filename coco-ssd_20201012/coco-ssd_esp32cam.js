@@ -69,12 +69,9 @@ window.onload = function () {
 	  Model.detect(canvas).then(Predictions => {    
 		var s = (canvas.width>canvas.height)?canvas.width:canvas.height;
 		var count = 0;
-		if (Predictions.length>0) {  
-		    for (var j=0;j<Predictions.length;j++) {
-			    if (Predictions[j].class==object.innerHTML&&Number(Predictions[j].score)>=Number(score.innerHTML)) {
-				count++;    
-			    }
-		    }
+		var res = "";
+		result.innerHTML = "";
+		if (Predictions.length>0) {
 		    for (var i=0;i<Predictions.length;i++) {
 			    const x = Predictions[i].bbox[0];
 			    const y = Predictions[i].bbox[1];
@@ -90,13 +87,11 @@ window.onload = function () {
 			    context.font = Math.round(s/30) + "px Arial";
 			    context.fillText(Predictions[i].class, x, y);
 				
-				result.innerHTML+= predictions[i].class+","+Math.round(predictions[i].score,2)+","+Math.round(x)+","+Math.round(y)+","+Math.round(width)+","+Math.round(height)+"<br>";
+				res+= predictions[i].class+","+Math.round(predictions[i].score,2)+","+Math.round(x)+","+Math.round(y)+","+Math.round(width)+","+Math.round(height)+"<br>";
 		   }
-			if (result.innerHTML!="")
-				result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);		   
-		}
-		else
-			result.innerHTML = "";		
+			if (res!="")
+				result.innerHTML = res.substr(0,result.innerHTML.length-4);		   
+		}	
 		
 		try { 
 		  document.createEvent("TouchEvent");
