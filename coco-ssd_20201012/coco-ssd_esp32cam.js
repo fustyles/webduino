@@ -87,7 +87,7 @@ window.onload = function () {
 					context.font = Math.round(s/30) + "px Arial";
 					context.fillText(Predictions[i].class, x, y);
 				}
-				res+= predictions[i].class+","+Math.round(predictions[i].score,2)+","+Math.round(x)+","+Math.round(y)+","+Math.round(width)+","+Math.round(height)+"<br>";
+				res+= Predictions[i].class+","+Math.round(Predictions[i].score,2)+","+Math.round(x)+","+Math.round(y)+","+Math.round(width)+","+Math.round(height)+"<br>";
 		   }
 			if (res!="")
 				result.innerHTML = res.substr(0,result.innerHTML.length-4);		   
