@@ -41,7 +41,6 @@ window.onload = function () {
 	  clearInterval(myTimer);
 	  restartCount=0;
 
-	  if (Model) {
 		ShowImage.style.width = ShowImage.width + 'px';
 		ShowImage.style.height = ShowImage.height + 'px';		
 		canvas.setAttribute("width", ShowImage.width);
@@ -90,8 +89,7 @@ window.onload = function () {
 				  setTimeout(function(){start();},150);
 				}
 			}, 100)
-		}
-	  }          
+		}   
 	}
 		
 	function onResults(results) {
