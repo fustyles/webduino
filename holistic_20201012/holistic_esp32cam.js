@@ -123,7 +123,9 @@ window.onload = function () {
 		}
 		result_righthand.innerHTML = JSON.stringify(results.rightHandLandmarks);
 		
-		canvasCtx.restore();	
+		canvasCtx.restore();
+		
+		recognitionFinish()
 	}
 	
 	const holistic = new Holistic({locateFile: (file) => {
