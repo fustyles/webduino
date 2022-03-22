@@ -10619,6 +10619,11 @@ Blockly.Blocks['text_br'] = {
   init: function() {	
     this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_BR_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+	  ["<br>","<br>"]
+	  ,["\\n","\\\\n"]
+	  ]), "newline"); 		
   this.setInputsInline(true);
   this.setOutput(true, null);
   this.setColour(110);  

@@ -5337,7 +5337,7 @@ Blockly.Arduino['choice_color'] = function(block) {
 };
 
 Blockly.Arduino['text_br'] = function (block) {
-  var code = '"<br>"';
+  var code = "'"+this.getFieldValue("newline")+"'";
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
