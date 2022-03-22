@@ -59,4 +59,5 @@
 <category><name>airquality</name><replace>Taiwan Air Quality</replace></category>
 <category><name>fu_mqtt</name><replace>MQTT</replace></category>
 <category><name>objectreconginition</name><replace>Object Recognition</replace></category>
+<category><name>holisticreconginition</name><replace>Holistic Recognition</replace></category>
 </xml>

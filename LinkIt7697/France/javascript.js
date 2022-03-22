@@ -8174,9 +8174,6 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 };
 
 Blockly.Arduino['cocossd_esp32cam'] = function(block) {
-	var object=this.getFieldValue("object");
-	var score=this.getFieldValue("score");
-	var source=this.getFieldValue("source");
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
 		
@@ -8257,4 +8254,160 @@ Blockly.Arduino['declare_variable'] = function (block) {
   var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
   var code = 'var ' + variable_variable + ';\n';
   return code;
+};
+
+
+Blockly.Arduino['holistic_esp32cam'] = function(block) {
+	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
+	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
+		
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/holistic_20201012/holistic.js'></script><script src='https:\/\/fustyles.github.io/webduino/holistic_20201012/holistic_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@mediapipe/holistic@0.4/holistic.js' crossorigin='anonymous'></script></head><body><script>holistic_video('block','1','1','1','1','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+" function recognitionFinish(){const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+javascript_recognition.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"};main();}</script></body></html>\"";
+
+  return [code,Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['holistic_video'] = function(block) { 
+  var value_video_ = block.getFieldValue('video_');
+  var value_face_ = block.getFieldValue('face_');
+  var value_pose_ = block.getFieldValue('pose_');
+  var value_lefthand_ = block.getFieldValue('lefthand_');
+  var value_righthand_ = block.getFieldValue('righthand_');	
+  var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
+  var value_opacity_ = block.getFieldValue('opacity_');
+  var code = 'holistic_video("' + value_video_ + '","' + value_face_ + '","' + value_pose_ + '","' + value_lefthand_ + '","' + value_righthand_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
+  return code;
+};
+
+Blockly.Arduino['holistic_face_position'] = function(block) {
+  var value_part_ = Blockly.Arduino.valueToCode(block, 'part_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'holistic_face_position(Number(' + value_part_ + ')-1,"' + value_data_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['holistic_face_lefteye_position'] = function(block) {
+  var value_part_ = block.getFieldValue('part_');
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'holistic_face_position("' + value_part_ + '","' + value_data_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['holistic_face_righteye_position'] = function(block) {
+  var value_part_ = block.getFieldValue('part_');
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'holistic_face_position("' + value_part_ + '","' + value_data_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['holistic_face_nose_position'] = function(block) {
+  var value_part_ = block.getFieldValue('part_');
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'holistic_face_position("' + value_part_ + '","' + value_data_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['holistic_face_mouth_position'] = function(block) {
+  var value_part_ = block.getFieldValue('part_');
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'holistic_face_position("' + value_part_ + '","' + value_data_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['holistic_pose_position'] = function(block) {
+  var value_part_ = block.getFieldValue('part_');
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'holistic_pose_position("' + value_part_ + '","' + value_data_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['holistic_lefthand_position'] = function(block) {
+  var value_part_ = block.getFieldValue('part_');
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'holistic_lefthand_position("' + value_part_ + '","' + value_data_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['holistic_righthand_position'] = function(block) {
+  var value_part_ = block.getFieldValue('part_');
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'holistic_righthand_position("' + value_part_ + '","' + value_data_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['holistic_distance'] = function (block) {
+  var value_x0_ = Blockly.Arduino.valueToCode(block, 'x0_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0_ = Blockly.Arduino.valueToCode(block, 'y0_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_x1_ = Blockly.Arduino.valueToCode(block, 'x1_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y1_ = Blockly.Arduino.valueToCode(block, 'y1_', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'holistic_distance(' + value_x0_ + ',' + value_y0_ + ','+ value_x1_ + ',' + value_y1_ + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['holistic_angle'] = function (block) {
+  var value_x0_ = Blockly.Arduino.valueToCode(block, 'x0_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0_ = Blockly.Arduino.valueToCode(block, 'y0_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_x1_ = Blockly.Arduino.valueToCode(block, 'x1_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y1_ = Blockly.Arduino.valueToCode(block, 'y1_', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'holistic_angle(' + value_x0_ + ',' + value_y0_ + ','+ value_x1_ + ',' + value_y1_ + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['holistic_state'] = function(block) {
+  var value_state_ = block.getFieldValue('state_');
+  var code = 'holistic_state(' + value_state_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['holistic_video_position'] = function(block) { 
+  var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'holistic_video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['holistic_canvas_get'] = function(block) { 
+  var code = '"canvasElement"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['holistic_all_poistion'] = function(block) {
+  var value_part_ = block.getFieldValue('part_'); 
+  var code = 'holistic_all_position("' + value_part_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['holistic_face_angle'] = function (block) {
+  var value_part1 = Blockly.Arduino.valueToCode(block, 'part1_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_part2 = Blockly.Arduino.valueToCode(block, 'part2_', Blockly.Arduino.ORDER_ATOMIC);  
+  var value_axis = block.getFieldValue('axis_');
+  var value_adjust = Blockly.Arduino.valueToCode(block, 'adjust_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'holistic_part_angle("face", Number(' + value_part1 + ')-1, Number(' + value_part2 + ')-1,"' + value_axis + '",' + value_adjust + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['holistic_pose_angle'] = function (block) {
+  var value_part1 = block.getFieldValue('part1_');
+  var value_part2 = block.getFieldValue('part2_');
+  var value_axis = block.getFieldValue('axis_');
+  var value_adjust = Blockly.Arduino.valueToCode(block, 'adjust_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'holistic_part_angle("pose", Number(' + value_part1 + '), Number(' + value_part2 + '),"' + value_axis + '",' + value_adjust + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];  
+};
+
+Blockly.Arduino['holistic_lefthand_angle'] = function (block) {
+  var value_part1 = block.getFieldValue('part1_');
+  var value_part2 = block.getFieldValue('part2_'); 
+  var value_axis = block.getFieldValue('axis_');
+  var value_adjust = Blockly.Arduino.valueToCode(block, 'adjust_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'holistic_part_angle("lefthand", Number(' + value_part1 + '), Number(' + value_part2 + '),"' + value_axis + '",' + value_adjust + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];  
+};
+
+Blockly.Arduino['holistic_righthand_angle'] = function (block) {
+  var value_part1 = block.getFieldValue('part1_');
+  var value_part2 = block.getFieldValue('part2_');  
+  var value_axis = block.getFieldValue('axis_');
+  var value_adjust = Blockly.Arduino.valueToCode(block, 'adjust_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'holistic_part_angle("righthand", Number(' + value_part1 + '), Number(' + value_part2 + '),"' + value_axis + '",' + value_adjust + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];  
 };

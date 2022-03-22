@@ -61,4 +61,5 @@
 <category><name>airquality</name><replace>台灣空氣品質</replace></category>
 <category><name>fu_mqtt</name><replace>MQTT</replace></category>
 <category><name>objectreconginition</name><replace>物件辨識</replace></category>
+<category><name>holisticreconginition</name><replace>全身辨識</replace></category>
 </xml>
