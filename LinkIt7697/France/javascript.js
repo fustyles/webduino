@@ -8321,7 +8321,7 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 			'      base64_encode(output, (input++), 3);\n'+
 			'      if (i%3==0) imageFile += urlencode(String(output));\n'+
 			'    }\n'+
-			'    String Data = myLineNotifyToken+myFoldername+myFilename+myImage;\n'+
+			'    String Data = "myToken="+myLineNotifyToken+myFoldername+myFilename+myImage;\n'+
 			'    \n'+
 			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: " + String(myDomain));\n'+
@@ -8406,7 +8406,7 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 			'  return encodedString;\n'+
 			'}\n';
 			
-  var code = 'SendStillToGoogleDrive("myToken="+'+linetoken+');\n';
+  var code = 'SendStillToGoogleDrive('+linetoken+');\n';
   return code;			
 }
 
