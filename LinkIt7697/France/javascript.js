@@ -2686,138 +2686,6 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
   return code;
 };
 
-Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
-    var scriptid = Blockly.Arduino.valueToCode(block, 'scriptid', Blockly.Arduino.ORDER_ATOMIC);
-    var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC);
-    var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
-    var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
-
-	Blockly.Arduino.definitions_.define_base64 = '#include "Base64.h"';
-	Blockly.Arduino.definitions_.define_myScript_driver = 'String myScript = "/macros/s/'+scriptid.replace(/"/g,'')+'/exec";';
-	Blockly.Arduino.definitions_.define_lineNotify_token = 'String myLineNotifyToken = "myToken='+linetoken.replace(/"/g,'')+'";';
-	Blockly.Arduino.definitions_.define_foldName = 'String myFoldername = "&myFoldername='+foldername.replace(/"/g,'')+'";';
-	Blockly.Arduino.definitions_.define_fileName = 'String myFilename = "&myFilename='+filename.replace(/"/g,'')+'";';
-	Blockly.Arduino.definitions_.define_image = 'String myImage = "&myFile=";';
-
-
-
-	Blockly.Arduino.definitions_.SendCapturedImage = '\n'+
-			'String SendStillToGoogleDrive() {\n'+
-			'  const char* myDomain = "script.google.com";\n'+
-			'  String getAll="", getBody = "";\n'+
-			'  \n'+
-			'  camera_fb_t * fb = NULL;\n'+
-			'  fb = esp_camera_fb_get();\n'+
-			'  if(!fb) {\n'+
-			'    Serial.println("Camera capture failed");\n'+
-			'    delay(1000);\n'+
-			'    ESP.restart();\n'+
-			'    return "Camera capture failed";\n'+
-			'  }\n'+
-			'  \n'+
-			'  Serial.println("Connect to " + String(myDomain));\n'+
-			'  WiFiClientSecure client_tcp;\n'+
-			'  \/\/client_tcp.setInsecure();\n'+
-			'  \n'+
-			'  if (client_tcp.connect(myDomain, 443)) {\n'+
-			'    Serial.println("Connection successful");\n'+
-			'    \n'+
-			'    char *input = (char *)fb->buf;\n'+
-			'    char output[base64_enc_len(3)];\n'+
- 			'    String imageFile = "data:image/jpeg;base64,";\n'+
-			'    for (int i=0;i<fb->len;i++) {\n'+
-			'      base64_encode(output, (input++), 3);\n'+
-			'      if (i%3==0) imageFile += urlencode(String(output));\n'+
-			'    }\n'+
-			'    String Data = myLineNotifyToken+myFoldername+myFilename+myImage;\n'+
-			'    \n'+
-			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
-			'    client_tcp.println("Host: " + String(myDomain));\n'+
-			'    client_tcp.println("Content-Length: " + String(Data.length()+imageFile.length()));\n'+
-			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'    client_tcp.println("Connection: keep-alive");\n'+
-			'    client_tcp.println();\n'+
-			'    \n'+
-			'    client_tcp.print(Data);\n'+
-			'    int Index;\n'+
-			'    for (Index = 0; Index < imageFile.length(); Index = Index+1000) {\n'+
-			'      client_tcp.print(imageFile.substring(Index, Index+1000));\n'+
-			'    }\n'+
-			'    esp_camera_fb_return(fb);\n'+
-			'    \n'+
-			'    int waitTime = 10000;\n'+
-			'    long startTime = millis();\n'+
-			'    boolean state = false;\n'+
-			'    \n'+
-			'    while ((startTime + waitTime) > millis())\n'+
-			'    {\n'+
-			'      Serial.print(".");\n'+
-			'      delay(100);\n'+
-			'      while (client_tcp.available())\n'+
-			'      {\n'+
-			'          char c = client_tcp.read();\n'+
-			'          if (state==true) getBody += String(c);\n'+        
-			'          if (c == \'\\n\')\n'+
-			'          {\n'+
-			'            if (getAll.length()==0) state=true;\n'+
-			'            getAll = "";\n'+
-			'          }\n'+
-			'          else if (c != \'\\r\')\n'+
-			'            getAll += String(c);\n'+
-			'          startTime = millis();\n'+
-			'       }\n'+
-			'       if (getBody.length()>0) break;\n'+
-			'    }\n'+
-			'    client_tcp.stop();\n'+
-			'    Serial.println(getBody);\n'+
-			'  }\n'+
-			'  else {\n'+
-			'    getBody="Connected to " + String(myDomain) + " failed.";\n'+
-			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
-			'  }\n'+
-			'  \n'+
-			'  return getBody;\n'+
-			'}\n';
-
-	Blockly.Arduino.definitions_.urlencode = '\n'+
-			'String urlencode(String str)\n'+
-			'{\n'+
-			'  String encodedString="";\n'+
-			'  char c;\n'+
-			'  char code0;\n'+
-			'  char code1;\n'+
-			'  char code2;\n'+
-			'  for (int i =0; i < str.length(); i++){\n'+
-			'    c=str.charAt(i);\n'+
-			'    if (c == \' \'){\n'+
-			'      encodedString+= \'+\';\n'+
-			'    } else if (isalnum(c)){\n'+
-			'      encodedString+=c;\n'+
-			'    } else{\n'+
-			'      code1=(c & 0xf)+\'0\';\n'+
-			'      if ((c & 0xf) >9){\n'+
-			'          code1=(c & 0xf) - 10 + \'A\';\n'+
-			'      }\n'+
-			'      c=(c>>4)&0xf;\n'+
-			'      code0=c+\'0\';\n'+
-			'      if (c > 9){\n'+
-			'          code0=c - 10 + \'A\';\n'+
-			'      }\n'+
-			'      code2=\'\0\';\n'+
-			'      encodedString+=\'%\';\n'+
-			'      encodedString+=code0;\n'+
-			'      encodedString+=code1;\n'+
-			'      \/\/encodedString+=code2;\n'+
-			'    }\n'+
-			'    yield();\n'+
-			'  }\n'+
-			'  return encodedString;\n'+
-			'}\n';
-			
-  var code = 'SendStillToGoogleDrive();\n';
-  return code;			
-}
-
 Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
     var baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
@@ -8411,3 +8279,221 @@ Blockly.Arduino['holistic_righthand_angle'] = function (block) {
   var code = 'holistic_part_angle("righthand", Number(' + value_part1 + '), Number(' + value_part2 + '),"' + value_axis + '",' + value_adjust + ')';
   return [code, Blockly.Arduino.ORDER_NONE];  
 };
+
+Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
+    var scriptid = Blockly.Arduino.valueToCode(block, 'scriptid', Blockly.Arduino.ORDER_ATOMIC);
+    var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC);
+    var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
+    var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
+
+	Blockly.Arduino.definitions_.define_base64 = '#include "Base64.h"';
+	Blockly.Arduino.definitions_.define_myScript_driver = 'String myScript = "/macros/s/'+scriptid.replace(/"/g,'')+'/exec";';
+	Blockly.Arduino.definitions_.define_foldName = 'String myFoldername = "&myFoldername='+foldername.replace(/"/g,'')+'";';
+	Blockly.Arduino.definitions_.define_fileName = 'String myFilename = "&myFilename='+filename.replace(/"/g,'')+'";';
+	Blockly.Arduino.definitions_.define_image = 'String myImage = "&myFile=";';
+
+
+	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
+			'String SendStillToGoogleDrive(String myLineNotifyToken) {\n'+
+			'  const char* myDomain = "script.google.com";\n'+
+			'  String getAll="", getBody = "";\n'+
+			'  \n'+
+			'  camera_fb_t * fb = NULL;\n'+
+			'  fb = esp_camera_fb_get();\n'+
+			'  if(!fb) {\n'+
+			'    Serial.println("Camera capture failed");\n'+
+			'    delay(1000);\n'+
+			'    ESP.restart();\n'+
+			'    return "Camera capture failed";\n'+
+			'  }\n'+
+			'  \n'+
+			'  Serial.println("Connect to " + String(myDomain));\n'+
+			'  WiFiClientSecure client_tcp;\n'+
+			'  \/\/client_tcp.setInsecure();\n'+
+			'  \n'+
+			'  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'    Serial.println("Connection successful");\n'+
+			'    \n'+
+			'    char *input = (char *)fb->buf;\n'+
+			'    char output[base64_enc_len(3)];\n'+
+ 			'    String imageFile = "data:image/jpeg;base64,";\n'+
+			'    for (int i=0;i<fb->len;i++) {\n'+
+			'      base64_encode(output, (input++), 3);\n'+
+			'      if (i%3==0) imageFile += urlencode(String(output));\n'+
+			'    }\n'+
+			'    String Data = myLineNotifyToken+myFoldername+myFilename+myImage;\n'+
+			'    \n'+
+			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
+			'    client_tcp.println("Host: " + String(myDomain));\n'+
+			'    client_tcp.println("Content-Length: " + String(Data.length()+imageFile.length()));\n'+
+			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'    client_tcp.println("Connection: keep-alive");\n'+
+			'    client_tcp.println();\n'+
+			'    \n'+
+			'    client_tcp.print(Data);\n'+
+			'    int Index;\n'+
+			'    for (Index = 0; Index < imageFile.length(); Index = Index+1000) {\n'+
+			'      client_tcp.print(imageFile.substring(Index, Index+1000));\n'+
+			'    }\n'+
+			'    esp_camera_fb_return(fb);\n'+
+			'    \n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    boolean state = false;\n'+
+			'    \n'+
+			'    while ((startTime + waitTime) > millis())\n'+
+			'    {\n'+
+			'      Serial.print(".");\n'+
+			'      delay(100);\n'+
+			'      while (client_tcp.available())\n'+
+			'      {\n'+
+			'          char c = client_tcp.read();\n'+
+			'          if (state==true) getBody += String(c);\n'+        
+			'          if (c == \'\\n\')\n'+
+			'          {\n'+
+			'            if (getAll.length()==0) state=true;\n'+
+			'            getAll = "";\n'+
+			'          }\n'+
+			'          else if (c != \'\\r\')\n'+
+			'            getAll += String(c);\n'+
+			'          startTime = millis();\n'+
+			'       }\n'+
+			'       if (getBody.length()>0) break;\n'+
+			'    }\n'+
+			'    client_tcp.stop();\n'+
+			'    Serial.println(getBody);\n'+
+			'  }\n'+
+			'  else {\n'+
+			'    getBody="Connected to " + String(myDomain) + " failed.";\n'+
+			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
+			'  }\n'+
+			'  \n'+
+			'  return getBody;\n'+
+			'}\n';
+
+	Blockly.Arduino.definitions_.urlencode = '\n'+
+			'String urlencode(String str)\n'+
+			'{\n'+
+			'  String encodedString="";\n'+
+			'  char c;\n'+
+			'  char code0;\n'+
+			'  char code1;\n'+
+			'  char code2;\n'+
+			'  for (int i =0; i < str.length(); i++){\n'+
+			'    c=str.charAt(i);\n'+
+			'    if (c == \' \'){\n'+
+			'      encodedString+= \'+\';\n'+
+			'    } else if (isalnum(c)){\n'+
+			'      encodedString+=c;\n'+
+			'    } else{\n'+
+			'      code1=(c & 0xf)+\'0\';\n'+
+			'      if ((c & 0xf) >9){\n'+
+			'          code1=(c & 0xf) - 10 + \'A\';\n'+
+			'      }\n'+
+			'      c=(c>>4)&0xf;\n'+
+			'      code0=c+\'0\';\n'+
+			'      if (c > 9){\n'+
+			'          code0=c - 10 + \'A\';\n'+
+			'      }\n'+
+			'      code2=\'\\0\';\n'+
+			'      encodedString+=\'%\';\n'+
+			'      encodedString+=code0;\n'+
+			'      encodedString+=code1;\n'+
+			'      \/\/encodedString+=code2;\n'+
+			'    }\n'+
+			'    yield();\n'+
+			'  }\n'+
+			'  return encodedString;\n'+
+			'}\n';
+			
+  var code = 'SendStillToGoogleDrive("myToken="+'+linetoken+');\n';
+  return code;			
+}
+
+Blockly.Arduino['esp32_cam_linenotify'] = function(block) {
+    var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC);
+    var linemessage = Blockly.Arduino.valueToCode(block, 'linemessage', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_.SendCapturedImageToLineNotify = '\n'+
+			'String SendStillToLineNotify(String token, String message) {\n'+
+			'  camera_fb_t * fb = NULL;\n'+
+			'  fb = esp_camera_fb_get();\n'+
+			'  if(!fb) {\n'+
+			'    Serial.println("Camera capture failed");\n'+
+			'    delay(1000);\n'+
+			'    ESP.restart();\n'+
+			'    return "Camera capture failed";\n'+
+			'  }\n'+
+			'  \n'+
+			'  WiFiClientSecure client_tcp;\n'+
+			'  //client_tcp.setInsecure();   //run version 1.0.5 or above\n'+
+			'  Serial.println("Connect to notify-api.line.me");\n'+
+			'  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
+			'    Serial.println("Connection successful");\n'+
+			'    \n'+
+			'    String message = "ESP32-CAM";\n'+
+			'    String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\\"message\\\"; \\r\\n\\r\\n" + message + "\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\\"imageFile\\\"; filename=\\\"esp32-cam.jpg\\\"\\r\\nContent-Type: image\/jpeg\\r\\n\\r\\n";\n'+
+			'    String tail = "\\r\\n--Taiwan--\\r\\n";\n'+
+			'    \n'+
+ 			'    uint16_t imageLen = fb->len;\n'+
+			'    uint16_t extraLen = head.length() + tail.length();\n'+
+			'    uint16_t totalLen = imageLen + extraLen;\n'+
+			'    \n'+
+			'    client_tcp.println("POST \/api\/notify HTTP\/1.1");\n'+
+			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println("Host: notify-api.line.me");\n'+
+			'    client_tcp.println("Authorization: Bearer " + token);\n'+
+			'    client_tcp.println("Content-Length: " + String(totalLen));\n'+
+			'    client_tcp.println("Content-Type: multipart\/form-data; boundary=Taiwan");\n'+
+			'    client_tcp.println();\n'+
+			'    client_tcp.print(head);\n'+
+			'    \n'+
+			'    uint8_t *fbBuf = fb->buf;\n'+
+			'    size_t fbLen = fb->len;\n'+
+			'    for (size_t n=0;n<fbLen;n=n+1024) {\n'+
+			'      if (n+1024<fbLen) {\n'+
+			'        client_tcp.write(fbBuf, 1024);\n'+
+			'        fbBuf += 1024;\n'+
+			'      }\n'+
+			'      else if (fbLen%1024>0) {\n'+
+			'        size_t remainder = fbLen%1024;\n'+
+			'        client_tcp.write(fbBuf, remainder);\n'+
+			'      }\n'+
+			'    }\n'+
+			'    \n'+
+			'    client_tcp.print(tail);\n'+
+			'    esp_camera_fb_return(fb);\n'+
+			'    \n'+
+			'    String getResponse="",Feedback="";\n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    boolean state = false;\n'+
+			'    \n'+
+			'    while ((startTime + waitTime) > millis()) {\n'+
+			'      Serial.print(".");\n'+
+			'      delay(100);\n'+
+			'      while (client_tcp.available())  {\n'+
+			'          char c = client_tcp.read();\n'+
+			'          if (state==true) Feedback += String(c);\n'+
+			'          if (c == \'\\n\') {\n'+
+			'            if (getResponse.length()==0) state=true;\n'+
+			'            getResponse = "";\n'+
+ 			'         }\n'+
+			'          else if (c != \'\\r\')\n'+
+			'            getResponse += String(c);\n'+
+			'          startTime = millis();\n'+
+			'       }\n'+
+			'       if (Feedback.length()>0) break;\n'+
+			'    }\n'+
+			'    Serial.println();\n'+
+			'    client_tcp.stop();\n'+
+			'    return Feedback;\n'+
+			'  }\n'+
+			'  else {\n'+
+			'    return "Connected to notify-api.line.me failed.";\n'+
+			'  }\n'+
+			'};\n';
+			
+  var code = 'SendStillToLineNotify('+linetoken+', '+linemessage+');\n';
+  return code;			
+}

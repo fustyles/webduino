@@ -439,6 +439,18 @@
 				  </block>
 				</statement>
 			  </block>
+			  <block type="esp32_cam_linenotify" id="99">
+				<value name="linetoken">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="linemessage">
+				  <block type="text">
+					<field name="TEXT">esp32cam</field>
+				  </block>
+				</value>				
+			  </block>			  
 			  <block type="esp32_cam_googledrive" id="99">
 				<value name="scriptid">
 				  <block type="text">

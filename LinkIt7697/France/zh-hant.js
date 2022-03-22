@@ -1040,3 +1040,6 @@ Blockly.Msg.HOLISTIC_LEFTHAND_ANGLE_SHOW = "全身偵測 左手掌轉動角度";
 Blockly.Msg.HOLISTIC_RIGHTHAND_ANGLE_SHOW = "全身偵測 右手掌轉動角度";
 Blockly.Msg.HOLISTIC_AXIS_SHOW  = "軸"; 
 Blockly.Msg.HOLISTIC_ADJUST_SHOW  = "校正角度"; 
+
+Blockly.Msg.ESP32_CAM_LINENOTIFY_SHOW  = "Line通知 傳送影像";
+Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW  = "訊息文字";

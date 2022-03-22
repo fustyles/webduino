@@ -1040,3 +1040,6 @@ Blockly.Msg.HOLISTIC_LEFTHAND_ANGLE_SHOW = "Holistic Detect Left hand Turn Angle
 Blockly.Msg.HOLISTIC_RIGHTHAND_ANGLE_SHOW = "Holistic Detect Right hand Turn Angle";
 Blockly.Msg.HOLISTIC_AXIS_SHOW  = "Axis"; 
 Blockly.Msg.HOLISTIC_ADJUST_SHOW  = "Adjust Angle";
+
+Blockly.Msg.ESP32_CAM_LINENOTIFY_SHOW  = "Line Notify send still";
+Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW  = "Message";
