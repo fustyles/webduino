@@ -9,4 +9,4 @@ Blockly.Msg["MQTT_FU_GETDATA_TOPIC_JS"] = "当取得讯息的主题为";
 Blockly.Msg["MQTT_FU_TO_TOPIC_JS"] = "向主题";
 Blockly.Msg["MQTT_FU_PUBLISH_TEXT_JS"] = "发布讯息文字";
 Blockly.Msg["MQTT_FU_GETDATA_JS"] = "取得资料";
-Blockly.Msg["MQTT_FU_GETDATA_TOPIC_JS"] = "当取得资料";
+Blockly.Msg["MQTT_FU_GETDATA_JS"] = "当取得资料";
