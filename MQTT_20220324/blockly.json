@@ -1,0 +1,14 @@
+{
+  "types": ["fu_mqtt_setup_js","fu_mqtt_loop_js","fu_mqtt_subscribe_js","fu_mqtt_gettopic_js","fu_mqtt_senddata_js","fu_mqtt_getdata_js"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "https://unpkg.com/mqtt/dist/mqtt.min.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
