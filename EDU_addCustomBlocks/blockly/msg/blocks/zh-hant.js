@@ -27,3 +27,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_SPREADSHEETSQL_SHOW = "[取得連結] Google試算�
 Blockly.Msg.ADDCUSTOMBLOCKS_WEBUSB_SHOW = "[取得連結] WEBUSB";
 Blockly.Msg.ADDCUSTOMBLOCKS_MYBACKPACK_SHOW = "[取得連結] 暫存積木(教育版)";
 Blockly.Msg.ADDCUSTOMBLOCKS_WEBSERIAL_SHOW = "[取得連結] Web Serial";
+Blockly.Msg.ADDCUSTOMBLOCKS_MQTT_SHOW = "[取得連結] MQTT";
