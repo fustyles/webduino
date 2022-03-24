@@ -9,4 +9,3 @@ Blockly.Msg["MQTT_FU_GETDATA_TOPIC_JS"] = "when getting text and the topic is";
 Blockly.Msg["MQTT_FU_TO_TOPIC_JS"] = "to topic";
 Blockly.Msg["MQTT_FU_PUBLISH_TEXT_JS"] = "publish text";
 Blockly.Msg["MQTT_FU_GETDATA_JS"] = "get data";
-Blockly.Msg["MQTT_FU_GETDATA_JS"] = "When getting data";

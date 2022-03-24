@@ -18,7 +18,7 @@ Blockly.Blocks['fu_mqtt_setup_js'] = {
     this.appendStatementInput("topic_subscribe")
         .appendField(Blockly.Msg["MQTT_FU_SUBSCRIBE_TOPIC_JS"]);		
     this.appendStatementInput("topic_getdata")
-        .appendField(Blockly.Msg["MQTT_FU_GETDATA_JS"]);			
+        .appendField(Blockly.Msg["MQTT_FU_WHEN_GETDATA_JS"]);			
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
