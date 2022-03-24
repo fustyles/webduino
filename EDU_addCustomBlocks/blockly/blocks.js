@@ -34,7 +34,8 @@ Blockly.Blocks['addMyBlocks'] = {
         [Blockly.Msg.ADDCUSTOMBLOCKS_BARCODE_SHOW,"barcode_20210216"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_WEBUSB_SHOW,"WebUSB_20210813"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_MYBACKPACK_SHOW,"myBackPack_20210914"],
-        [Blockly.Msg.ADDCUSTOMBLOCKS_WEBSERIAL_SHOW,"WebSerial_20220126"]	  
+        [Blockly.Msg.ADDCUSTOMBLOCKS_WEBSERIAL_SHOW,"WebSerial_20220126"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_MQTT_SHOW,"MQTT_20220324"]	  
       ]), "func");
   this.setTooltip('');
   this.setColour(20);
@@ -304,6 +305,9 @@ Blockly.Blocks['addMyBlocks'] = {
 			  }
 	    else if (this.getFieldValue('func')=='WebSerial_20220126') {
 				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/WebSerial_20220126/blockly.json", "TEXT");
+			  }
+	    else if (this.getFieldValue('func')=='MQTT_20220324') {
+				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/MQTT_20220324/blockly.json", "TEXT");
 			  }
 		  
 	    this.getField('func').setValue("");
