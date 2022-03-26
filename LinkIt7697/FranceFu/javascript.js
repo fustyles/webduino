@@ -1,3 +1,11 @@
+setTimeout(function() {
+  if ($("#info_filename")&&Blockly.Msg.INFO_FILENAME)
+      $("#info_filename").html("請更新吉哥積木 "+Blockly.Msg.INFO_FILENAME);
+}, 10000);
+
+
+
+
 Blockly.Arduino['fu_oled_PROGMEM_truetype'] = function(block) {
   var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
   var value_PROGMEM = Blockly.Arduino.valueToCode(block, 'PROGMEM', Blockly.Arduino.ORDER_ATOMIC);
