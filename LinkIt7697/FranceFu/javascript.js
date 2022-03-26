@@ -1,6 +1,6 @@
 setTimeout(function() {
   if ($("#info_filename")&&Blockly.Msg.INFO_FILENAME)
-      $("#info_filename").html("請更新吉哥積木 "+Blockly.Msg.INFO_FILENAME);
+      $("#info_filename").html("<font color='yellow'>請更新吉哥積木</font> "+Blockly.Msg.INFO_FILENAME);
 }, 10000);
 
 
