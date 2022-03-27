@@ -15,17 +15,17 @@ document.addEventListener('DOMContentLoaded', function() {
 		var workspace = Blockly.getMainWorkspace();
 		var script = "<script src='GameElements_20190131/gameelements.js'></script>";
 		
-		if (workspace.getBlocksByType("holistic_video")) {
+		if (workspace.getBlocksByType("holistic_video").length>0) {
 			script += "<script src='holistic_20201012/holistic.js'></script>";
 			script += "<script src='holistic_20201012/holistic_video.js'></script>";
 		}
 		
-		if (workspace.getBlocksByType("webserial_baudrate")) {
+		if (workspace.getBlocksByType("webserial_baudrate").length>0) {
 			script += "<script src='WebSerial_20220126/WebSerial.js'></script>";
 			script += "<script src='WebSerial_20220126/WebSerial_elements.js'></script>";
 		}
 		
-		if (workspace.getBlocksByType("fu_mqtt_setup_js")) {
+		if (workspace.getBlocksByType("fu_mqtt_setup_js").length>0) {
 			script += "<script src='https://unpkg.com/mqtt/dist/mqtt.min.js'></script>";
 		}
 		
@@ -36,22 +36,22 @@ document.addEventListener('DOMContentLoaded', function() {
 		var workspace = Blockly.getMainWorkspace();
 		var script = "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>";
 		
-		if (workspace.getBlocksByType("holistic_video")) {
+		if (workspace.getBlocksByType("holistic_video").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic.js'></script>";
-			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic_video.js'></script>";
 		}
 		
-		if (workspace.getBlocksByType("webserial_baudrate")) {
+		if (workspace.getBlocksByType("webserial_baudrate").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebSerial_20220126/WebSerial_elements.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebSerial_20220126/WebSerial.js'></script>";
-			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebSerial_20220126/WebSerial_elements.js'></script>";
 		}
 		
-		if (workspace.getBlocksByType("fu_mqtt_setup_js")) {
+		if (workspace.getBlocksByType("fu_mqtt_setup_js").length>0) {
 			script += "<script src='https://unpkg.com/mqtt/dist/mqtt.min.js'></script>";
 		}		
 		
 		return script;
-	}		
+	}
 	
 	//載入積木目錄
 	var category = [
