@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		var workspace = Blockly.getMainWorkspace();
 		var script = "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>";
 		
-		if (workspace.getBlockById("holistic_video")) {
+		if (workspace.getBlockByType("holistic_video")) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic.js'></script>";
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic_video.js'></script>";
 		}
