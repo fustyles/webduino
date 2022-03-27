@@ -1,7 +1,7 @@
 var catWebSerial ='<xml>'+
 '<category name="%{BKY_CATSERIAL}" id="catwebserial" colour="250">'+
 '<block type="webserial_baudrate">'+ 
-'<field name="baudrate_">9600</field>'+    
+'<field name="baudrate_">9600</field>'+
 '</block>'+ 
 '<block type="webserial_sendtext">'+
 '<value name="cmd_">'+

@@ -65,6 +65,7 @@
 	}
 
 	function webserial_baudrate(baudrate) {
+		console.log(baudrate);
 		serial_baud.value = baudrate;
 	}
 

@@ -1,0 +1,13 @@
+Blockly.Msg["MYBACKPACK"] = "暫存積木";
+Blockly.Msg.MYBACKPACK_ADD = "新增到暫存積木";
+Blockly.Msg.MYBACKPACK_REMOVE = "移除從暫存積木";
+Blockly.Msg.MYBACKPACK_REMOVE_ALL = "移除所有暫存積木";
+Blockly.Msg.MYBACKPACK_REMOVE_ALL_TITLE = "你確定要移除所有暫存積木？";
+Blockly.Msg.MYBACKPACK_IMPORT_FILE = "暫存積木檔匯入至暫存積木";
+Blockly.Msg.MYBACKPACK_IMPORT_WORKSPACE = "工作區積木匯入至暫存積木";
+Blockly.Msg.MYBACKPACK_IMPORT_WORKSPACE_TITLE = "你確定要從工作區積木匯入暫存積木？";
+Blockly.Msg.MYBACKPACK_WORKSPACE_EXPORT_FILE = "工作區積木匯出至暫存積木檔";
+Blockly.Msg.MYBACKPACK_MYBACKPACK_EXPORT_FILE = "所有暫存積木匯出至暫存積木檔";
+Blockly.Msg.MYBACKPACK_TITLE = "暫存";
+Blockly.Msg["MYBACKPACK_TITLE"] = "暫存";
+Blockly.Msg["MYBACKPACK_HUE"] = "290";

@@ -8,8 +8,8 @@ https://www.facebook.com/francefu/
 
 */
 
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "Export selected block to local file";
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "Insert a block into workspace from local file";
+Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "匯出選擇的積木儲存本機檔案";
+Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "從本機檔案插入積木至工作區";
 
 function registerWorkspaceBlockExportFile() {
   if (Blockly.ContextMenuRegistry.registry.getItem('workspace_block_export_file')) {

@@ -10,12 +10,12 @@
  * @Update 15/2/2022 11:00 (Taiwan Standard Time)
  */
 
-Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enable pick/place block";
-Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "Disable pick/place block";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "Pick block";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "Place block (next)";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "Place block (previous)";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "Place block [input: #]";
+Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "啟用 挑選/置放 積木";
+Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "停用 挑選/置放 積木";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "挑選積木";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "置放積木 (下方)";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "置放積木 (上方)";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "置放積木 [輸入: #]";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT_NAME"] = ["","","","","","","","","",""];
 
 Blockly.myPickPlaceBlock={};
