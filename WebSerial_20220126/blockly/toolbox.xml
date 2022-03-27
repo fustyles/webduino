@@ -1,5 +1,6 @@
 <category id="catwebserial">
-  <block type="webserial_baudrate">    
+  <block type="webserial_baudrate"> 
+    <field name="baudrate_">9600</field>    
   </block>    
   <block type="webserial_sendtext">
     <value name="cmd_">
