@@ -1,4 +1,4 @@
-var catHolistic ='<xml>'+
+var catHolistic = '<xml>'+
 '<category name="%{BKY_CATHOLISTIC}" id="holistic" colour="200">'+
   '<block type="holistic_video">'+    
   '</block>'+

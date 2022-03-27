@@ -3,7 +3,7 @@
 Copyright 2022 Taiwan (ChungYi Fu)
 SPDX-License-Identifier: Apache-2.0
 
-@fileoverview SpBlockly V1 (Developer tool)
+@fileoverview SpBlockly V1 (Javascript tool)
 @author https://www.facebook.com/francefu/
 @Update 1/1/2022 00:00 (Taiwan Standard Time)
 */
@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic.js'></script>";
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic_video.js'></script>";
 		}
+		
+		if (workspace.getBlocksByType("webserial_baudrate")) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebSerial_20220126/WebSerial.js'></script>";
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebSerial_20220126/WebSerial_elements.js'></script>";
+		}
+		
 		return script;
 	}	
 	
@@ -27,7 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		catSystem,
 		"<sep></sep>",
 		catPageElements,
-		catHolistic
+		"<sep></sep>",		
+		catHolistic,
+		"<sep></sep>",		
+		catWebSerial,
+		catMQTT		
 	];
 	
 	var xmlNewValue='<xml id="toolbox">';
