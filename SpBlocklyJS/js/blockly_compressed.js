@@ -1785,7 +1785,248 @@ b||(0,module$exports$Blockly$Events$utils.setGroup)(!0);a.setEnabled(!a.isEnable
 module$exports$Blockly$ContextMenuItems.registerDelete=function(){module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register({displayText:function(a){var b=a.block;a=b.getDescendants(!1).length;(b=b.getNextBlock())&&(a-=b.getDescendants(!1).length);return 1===a?$.module$exports$Blockly$Msg.Msg.DELETE_BLOCK:$.module$exports$Blockly$Msg.Msg.DELETE_X_BLOCKS.replace("%1",String(a))},preconditionFn:function(a){return!a.block.isInFlyout&&a.block.isDeletable()?"enabled":"hidden"},callback:function(a){a.block&&
 a.block.checkAndDelete()},scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.BLOCK,id:"blockDelete",weight:6})};
 module$exports$Blockly$ContextMenuItems.registerHelp=function(){module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register({displayText:function(){return $.module$exports$Blockly$Msg.Msg.HELP},preconditionFn:function(a){a=a.block;return("function"===typeof a.helpUrl?a.helpUrl():a.helpUrl)?"enabled":"hidden"},callback:function(a){a.block.showHelp()},scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.BLOCK,id:"blockHelp",weight:7})};
-var module$contents$Blockly$ContextMenuItems_registerBlockOptions_=function(){(0,module$exports$Blockly$ContextMenuItems.registerDuplicate)();(0,module$exports$Blockly$ContextMenuItems.registerComment)();(0,module$exports$Blockly$ContextMenuItems.registerInline)();(0,module$exports$Blockly$ContextMenuItems.registerCollapseExpandBlock)();(0,module$exports$Blockly$ContextMenuItems.registerDisable)();(0,module$exports$Blockly$ContextMenuItems.registerDelete)();(0,module$exports$Blockly$ContextMenuItems.registerHelp)()};
+
+
+
+module$exports$Blockly$ContextMenuItems.registerDeleteNull=function(){
+	module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register(
+		{
+			displayText:function(){
+				var c=0;
+				var a=Blockly.getMainWorkspace();
+				if (a.blockDB_) {
+					for (var i in a.blockDB_) {
+						var b = a.getBlockById(i);
+						if (!b.parentBlock_&&b.outputConnection) {
+							c++;
+						}
+					}	
+				}				
+				return $.module$exports$Blockly$Msg.Msg.DELETENULL.replace("%1",String(c))
+			}
+			,preconditionFn:function(a){
+				for (var i in a.workspace.blockDB_) {
+					var b = a.workspace.getBlockById(i);
+					if (!b.parentBlock_&&b.outputConnection) {
+						return "enabled"
+					}
+				}
+				return "hidden"
+			}
+			,callback:function(a){
+				Blockly.Events.setGroup(!0);
+				var c=0;
+				if (a.workspace.blockDB_) {
+					for (var i in a.workspace.blockDB_) {
+						var b = a.workspace.getBlockById(i);
+						if (!b.parentBlock_&&b.outputConnection) {
+							c++;
+						}
+					}	
+				}				
+				var result = confirm($.module$exports$Blockly$Msg.Msg.DELETENULL.replace("%1",String(c)));
+				if (result) {
+					for (var i in a.workspace.blockDB_) {
+						var b = a.workspace.getBlockById(i);
+						if (!b.parentBlock_&&b.outputConnection) {
+							Blockly.deleteBlock(b);
+						}
+					}
+				}
+				Blockly.Events.setGroup(!1)
+			}
+			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.WORKSPACE,id:"blockDeleteNull",weight:7
+		}
+	)
+};
+module$exports$Blockly$ContextMenuItems.registerSearchNull=function(){
+	module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register(
+		{
+			displayText:function(){return $.module$exports$Blockly$Msg.Msg.SEARCHNULL}
+			,preconditionFn:function(a){
+				for (var i in a.workspace.blockDB_) {
+					var b = a.workspace.getBlockById(i);
+					if (!b.parentBlock_&&b.outputConnection) {
+						return "enabled"
+					}
+				}
+				return "hidden"
+			}
+			,callback:function(a){
+				Blockly.Events.setGroup(!0);
+				var selected = "";
+				var j=0;
+				for (var i in a.workspace.blockDB_) {
+					j++;
+					var b = a.workspace.getBlockById(i);
+					if (!b.parentBlock_&&b.outputConnection) {
+						if(Blockly.selected==b){
+							selected = j;
+							break;
+						}
+					}
+				}
+				j=0;
+				for (var i in a.workspace.blockDB_) {
+					j++;
+					var b = a.workspace.getBlockById(i);
+					if (!b.parentBlock_&&b.outputConnection) {
+						if(Blockly.selected!=b&&selected<j){
+							b.select();
+							b.bringToFront();
+							a.workspace.getAudioManager().play("click");
+							break;
+						}
+					}
+				}				
+				Blockly.Events.setGroup(!1)
+				a.workspace.render();
+			}
+			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.WORKSPACE,id:"blockSNull",weight:6
+		}
+	)
+};
+module$exports$Blockly$ContextMenuItems.registerDelete=function(){
+	module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register(
+		{
+			displayText:function(a){var b=a.block;a=b.getDescendants(!1).length;(b=b.getNextBlock())&&(a-=b.getDescendants(!1).length);return 1==a?$.module$exports$Blockly$Msg.Msg.DELETE_BLOCK:$.module$exports$Blockly$Msg.Msg.DELETE_X_BLOCKS.replace("%1",String(a))}
+			,preconditionFn:function(a){return!a.block.isInFlyout&&a.block.isDeletable()?"enabled":"hidden"}
+			,callback:function(a){Blockly.Events.setGroup(!0);a.block&&Blockly.deleteBlock(a.block);Blockly.Events.setGroup(!1)}
+			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.BLOCK,id:"blockDelete",weight:8
+		}
+	)
+};
+module$exports$Blockly$ContextMenuItems.registerHelp=function(){
+	module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register(
+		{
+			displayText:function(){return $.module$exports$Blockly$Msg.Msg.HELP}
+			,preconditionFn:function(a){a=a.block;return("function"==typeof a.helpUrl?a.helpUrl():a.helpUrl)?"enabled":"hidden"}
+			,callback:function(a){a.block.showHelp()}
+			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.BLOCK,id:"blockHelp",weight:9
+		}
+	)
+};
+module$exports$Blockly$ContextMenuItems.registerHideToolbox=function(){
+	module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register(
+		{
+			displayText:function(){
+				var toolbox = document.getElementsByClassName("blocklyToolboxDiv blocklyNonSelectable")[0];
+				if (toolbox) {
+					if (toolbox.style.display=="none")
+						return $.module$exports$Blockly$Msg.Msg.TOOLBOX_SHOW;
+					else
+						return $.module$exports$Blockly$Msg.Msg.TOOLBOX_HIDE;
+				}
+				else
+					return "";
+			}
+			,preconditionFn:function(a){return "enabled"}
+			,callback:function(a){
+				var toolbox = document.getElementsByClassName("blocklyToolboxDiv blocklyNonSelectable")[0];
+				if (toolbox) {
+					toolbox.style.display=="none"?toolbox.style.display="block":toolbox.style.display="none";
+					Blockly.getMainWorkspace().resize();
+				}
+			}
+			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.WORKSPACE,id:"blockHideToolbox",weight:10
+		}
+	)
+};
+module$exports$Blockly$ContextMenuItems.registerDownload=function(){
+	module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register(
+		{
+			displayText:function(){return $.module$exports$Blockly$Msg.Msg.DOWNLOAD}
+			,preconditionFn:function(a){return "enabled"}
+			,callback:function(a){Blockly.downloadScreenshot(a.workspace)}
+			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.WORKSPACE,id:"blockDownload",weight:11
+		}
+	)
+};
+module$exports$Blockly$ContextMenuItems.registerBackPackPlugin=function(){
+	module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register(
+		{
+			displayText:function(){return $.module$exports$Blockly$Msg.Msg.BACKPACKPLUGIN;}
+			,preconditionFn:function(a){return "enabled"}
+			,callback:function(a){
+				const BackpackPlugin = new Backpack(a.workspace);
+				BackpackPlugin.init();
+			}
+			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.WORKSPACE,id:"blockBackPackPlugin",weight:12
+		}
+	)
+};
+module$exports$Blockly$ContextMenuItems.registerHighLightPlugin=function(){
+	module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register(
+		{
+			displayText:function(){return $.module$exports$Blockly$Msg.Msg.HIGHLIGHTPLUGIN;}
+			,preconditionFn:function(a){return "enabled"}
+			,callback:function(a){
+				// Initialize plugin.
+				const contentHighlight = new ContentHighlight(a.workspace);
+				contentHighlight.init();
+			}
+			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.WORKSPACE,id:"blockHighLightPlugin",weight:13
+		}
+	)
+};
+module$exports$Blockly$ContextMenuItems.registerScrollPlugin=function(){
+	module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register(
+		{
+			displayText:function(){
+				if (ScrollBlockDragger.edgeScrollEnabled==true) {
+					return $.module$exports$Blockly$Msg.Msg.SCROLLPLUGIN_FALSE;
+				} else {
+					return $.module$exports$Blockly$Msg.Msg.SCROLLPLUGIN_TRUE;
+				}
+			}
+			,preconditionFn:function(a){return "enabled"}
+			,callback:function(a){
+				ScrollBlockDragger.edgeScrollEnabled = !ScrollBlockDragger.edgeScrollEnabled;
+			}
+			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.WORKSPACE,id:"blockScrollPlugin",weight:14
+		}
+	)
+};
+module$exports$Blockly$ContextMenuItems.registerTopCheck=function(){
+	module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register(
+		{
+			displayText:function(){return $.module$exports$Blockly$Msg.Msg["DISABLED_TOPCHECK"];}
+			,preconditionFn:function(a){
+				if (topCheck)
+					return "enabled"
+				else
+					return "hidden"
+			}
+			,callback:function(a){
+				if (topCheck) {
+					topCheck=false;
+				} 
+			}
+			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.WORKSPACE,id:"topCheck",weight:20
+		}
+	)
+};
+
+
+
+var module$contents$Blockly$ContextMenuItems_registerBlockOptions_=function(){
+	(0,module$exports$Blockly$ContextMenuItems.registerDuplicate)();
+	(0,module$exports$Blockly$ContextMenuItems.registerComment)();
+	(0,module$exports$Blockly$ContextMenuItems.registerInline)();
+	(0,module$exports$Blockly$ContextMenuItems.registerCollapseExpandBlock)();
+	(0,module$exports$Blockly$ContextMenuItems.registerDisable)();
+	(0,module$exports$Blockly$ContextMenuItems.registerDelete)();
+	(0,module$exports$Blockly$ContextMenuItems.registerHelp)()
+	;
+	(0,module$exports$Blockly$ContextMenuItems.registerSearchNull)();	
+	(0,module$exports$Blockly$ContextMenuItems.registerDeleteNull)();
+	(0,module$exports$Blockly$ContextMenuItems.registerDownload)();
+	(0,module$exports$Blockly$ContextMenuItems.registerScrollPlugin)();
+	(0,module$exports$Blockly$ContextMenuItems.registerHighLightPlugin)();
+	(0,module$exports$Blockly$ContextMenuItems.registerBackPackPlugin)();	
+	//	(0,module$exports$Blockly$ContextMenuItems.registerHideToolbox)();
+	//(0,module$exports$Blockly$ContextMenuItems.registerTopCheck)();
+};
 module$exports$Blockly$ContextMenuItems.registerDefaultOptions=function(){module$contents$Blockly$ContextMenuItems_registerWorkspaceOptions_();module$contents$Blockly$ContextMenuItems_registerBlockOptions_()};(0,module$exports$Blockly$ContextMenuItems.registerDefaultOptions)();var module$exports$Blockly$Icon={Icon:function(a){this.block_=a;this.iconGroup_=null}};module$exports$Blockly$Icon.Icon.prototype.collapseHidden=!0;module$exports$Blockly$Icon.Icon.prototype.SIZE=17;module$exports$Blockly$Icon.Icon.prototype.bubble_=null;module$exports$Blockly$Icon.Icon.prototype.iconXY_=null;
 module$exports$Blockly$Icon.Icon.prototype.createIcon=function(){this.iconGroup_||(this.iconGroup_=(0,module$exports$Blockly$utils$dom.createSvgElement)(module$exports$Blockly$utils$Svg.Svg.G,{"class":"blocklyIconGroup"},null),this.block_.isInFlyout&&(0,module$exports$Blockly$utils$dom.addClass)(this.iconGroup_,"blocklyIconGroupReadonly"),this.drawIcon_(this.iconGroup_),this.block_.getSvgRoot().appendChild(this.iconGroup_),(0,module$exports$Blockly$browserEvents.conditionalBind)(this.iconGroup_,"mouseup",
 this,this.iconClick_),this.updateEditable())};module$exports$Blockly$Icon.Icon.prototype.dispose=function(){(0,module$exports$Blockly$utils$dom.removeNode)(this.iconGroup_);this.iconGroup_=null;this.setVisible(!1);this.block_=null};module$exports$Blockly$Icon.Icon.prototype.updateEditable=function(){};module$exports$Blockly$Icon.Icon.prototype.isVisible=function(){return!!this.bubble_};
