@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//開啟程式碼執行視窗
 	document.getElementById('button_run').onclick = function () {
-		stopCode()
+		stopCode();
 		var opt = {
 			draggable: true,			
 			autoOpen: false,

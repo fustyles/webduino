@@ -45,7 +45,7 @@ SPDX-License-Identifier: Apache-2.0
 	<script src="GameElements_20190131/javascript.js"></script>
 	<script src="GameElements_20190131/zh-hant.js"></script>
 	<script>
-		var iframe_run_script = ['https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'];
+		var iframe_run_script = ['GameElements_20190131/gameelements.js'];
 	</script>
 </head>
 <body class="root">
@@ -95,14 +95,7 @@ SPDX-License-Identifier: Apache-2.0
 				<block type="logic_null"></block>
 				<block type="logic_ternary"></block>
 			</category>
-			<category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">
-				<block type="time_delay">
-				  <value name="seconds">
-					<block type="math_number">
-					  <field name="NUM">1</field>
-					</block>    
-				  </value>
-				</block>	  
+			<category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">	  
 				<block type="controls_repeat_ext">
 				<value name="TIMES">
 				<block type="math_number">
@@ -414,6 +407,13 @@ SPDX-License-Identifier: Apache-2.0
 			
 	<category name="%{BKY_CATPAGEELEMENTS}" id="catPageElements">
 		<category name="%{BKY_CATPAGEELEMENTS_GENERAL}" id="catPageElements_general" colour="120">
+			<block type="time_delay">
+			  <value name="seconds">
+				<block type="math_number">
+				  <field name="NUM">1</field>
+				</block>    
+			  </value>
+			</block>		
 		  <block type="console_log">
 			<value name="text_">
 			  <block type="text">
