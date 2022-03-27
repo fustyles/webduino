@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		
 		if (workspace.getBlocksByType("fu_mqtt_setup_js")) {
-			script += "https://unpkg.com/mqtt/dist/mqtt.min.js";
+			script += "<script src='https://unpkg.com/mqtt/dist/mqtt.min.js'></script>";
 		}
 		
 		return script;
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		
 		if (workspace.getBlocksByType("fu_mqtt_setup_js")) {
-			script += "https://unpkg.com/mqtt/dist/mqtt.min.js";
+			script += "<script src='https://unpkg.com/mqtt/dist/mqtt.min.js'></script>";
 		}		
 		
 		return script;
