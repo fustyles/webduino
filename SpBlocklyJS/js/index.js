@@ -168,8 +168,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	  document.getElementById("iframe_run").src="";
 	}	
 	
-	//run code
+	//開啟程式碼執行視窗
 	document.getElementById('button_run').onclick = function () {
+		stopCode()
 		var opt = {
 			draggable: true,			
 			autoOpen: false,
