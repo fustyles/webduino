@@ -16,13 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		var script = "<script src='GameElements_20190131/gameelements.js'></script>";
 		
 		if (workspace.getBlocksByType("holistic_video").length>0) {
+			script += "<script src='holistic_20201012/holistic_video.js'></script>";			
 			script += "<script src='holistic_20201012/holistic.js'></script>";
-			script += "<script src='holistic_20201012/holistic_video.js'></script>";
 		}
 		
 		if (workspace.getBlocksByType("webserial_baudrate").length>0) {
+			script += "<script src='WebSerial_20220126/WebSerial_elements.js'></script>";			
 			script += "<script src='WebSerial_20220126/WebSerial.js'></script>";
-			script += "<script src='WebSerial_20220126/WebSerial_elements.js'></script>";
 		}
 		
 		if (workspace.getBlocksByType("fu_mqtt_setup_js").length>0) {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}		
 		
 		return script;
-	}
+	}	
 	
 	//載入積木目錄
 	var category = [
