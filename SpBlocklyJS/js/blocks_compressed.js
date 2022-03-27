@@ -200,6 +200,21 @@ a?(this.outputConnection.setCheck("Array"),this.getInput("INPUT").setCheck("Stri
 message0:"%{BKY_COLOUR_RGB_TITLE} %{BKY_COLOUR_RGB_RED} %1 %{BKY_COLOUR_RGB_GREEN} %2 %{BKY_COLOUR_RGB_BLUE} %3",args0:[{type:"input_value",name:"RED",check:"Number",align:"RIGHT"},{type:"input_value",name:"GREEN",check:"Number",align:"RIGHT"},{type:"input_value",name:"BLUE",check:"Number",align:"RIGHT"}],output:"Colour",helpUrl:"%{BKY_COLOUR_RGB_HELPURL}",style:"colour_blocks",tooltip:"%{BKY_COLOUR_RGB_TOOLTIP}"},{type:"colour_blend",message0:"%{BKY_COLOUR_BLEND_TITLE} %{BKY_COLOUR_BLEND_COLOUR1} %1 %{BKY_COLOUR_BLEND_COLOUR2} %2 %{BKY_COLOUR_BLEND_RATIO} %3",
 args0:[{type:"input_value",name:"COLOUR1",check:"Colour",align:"RIGHT"},{type:"input_value",name:"COLOUR2",check:"Colour",align:"RIGHT"},{type:"input_value",name:"RATIO",check:"Number",align:"RIGHT"}],output:"Colour",helpUrl:"%{BKY_COLOUR_BLEND_HELPURL}",style:"colour_blocks",tooltip:"%{BKY_COLOUR_BLEND_TOOLTIP}"}]);var module$exports$Blockly$blocks$all={};
 
+Blockly.Blocks['text_br'] = {
+  init: function() {	
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["MSG_NEWLINE"]);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+	  ["<br>","<br>"]
+	  ,["\\n","\\\\n"]
+	  ]), "newline"); 		
+  this.setInputsInline(true);
+  this.setOutput(true, null);
+  this.setColour(110);  
+  }
+};
+
 return $.Blockly.Blocks;
 }));
 

@@ -1722,3 +1722,4 @@ Blockly.Msg["MSG_DISPLAY"] = "Display";
 Blockly.Msg["BUTTON_START"] = "Start";
 Blockly.Msg["BUTTON_STOP"] = "Stop";
 
+Blockly.Msg["MSG_NEWLINE"] = "New Line";

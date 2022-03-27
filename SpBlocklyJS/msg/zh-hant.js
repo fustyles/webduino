@@ -1752,3 +1752,5 @@ Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "開啟單一積木檔案�
 Blockly.Msg["MSG_DISPLAY"] = "程式執行視窗";
 Blockly.Msg["BUTTON_START"] = "執行程式";
 Blockly.Msg["BUTTON_STOP"] = "停止程式";
+
+Blockly.Msg["MSG_NEWLINE"] = "換行";
