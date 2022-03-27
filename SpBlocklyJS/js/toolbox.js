@@ -10,8 +10,7 @@ var catSystem = '<xml>'+
 '    <block type="logic_null"></block>'+
 '    <block type="logic_ternary"></block>'+
 '    </category>'+
-'    <category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">'+     
-'    </block>'+ 
+'    <category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">'+
 '    <block type="controls_repeat_ext">'+
 '    <value name="TIMES">'+
 '    <block type="math_number">'+

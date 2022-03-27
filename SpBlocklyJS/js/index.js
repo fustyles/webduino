@@ -11,11 +11,40 @@ SPDX-License-Identifier: Apache-2.0
 var topCheck = true;
 
 document.addEventListener('DOMContentLoaded', function() {
+	function getScriptCode() {
+		var workspace = Blockly.getMainWorkspace();
+		var script = "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>";
+		
+		if (workspace.getBlockById("holistic_video")) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic.js'></script>";
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic_video.js'></script>";
+		}
+		return script;
+	}	
 	
+	//載入積木目錄
+	var category = [
+		catSystem,
+		"<sep></sep>",
+		catPageElements,
+		catHolistic
+	];
+	
+	var xmlNewValue='<xml id="toolbox">';
+	try {
+		for (var i=0;i<category.length;i++){
+			var xml = new DOMParser().parseFromString(category[i],"text/xml");
+			xmlNewValue+=new XMLSerializer().serializeToString(xml.firstChild).replace("<xml>","").replace("</xml>","");
+		}
+	} catch (error) {
+		console.log(error);
+	}		
+	xmlNewValue+='</xml>';
+
 	//初始化工作區	
 	const workspace = Blockly.inject('root',{
 			media: 'media/'
-			,toolbox: document.getElementById('toolbox')
+			,toolbox: xmlNewValue
 			,grid:{spacing: 20,length: 3,colour: '#eee',snap: true}
 			,zoom:{controls: true, wheel: false, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2}
 			,trashcan: true
@@ -32,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				'metricsManager': ScrollMetricsManager,
 			}		
 		}
-	);
+	);	
 	
 	//新增邊緣捲動插件
 	//const AutoScrollOptionsPlugin = new AutoScroll(workspace);
@@ -123,9 +152,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			try {
 				var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
 				var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
-				for (var i=0;i<iframe_run_script.length;i++)  {
-				  iframe_code += "\<script src='"+iframe_run_script[i]+"'\>\<\/script\>";
-				}	  
+				
+				iframe_code += getScriptCode(); 
 				  
 				iframe_code += "\<\/head\>\<body\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
 
@@ -148,9 +176,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	function runCode() {
 	  var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
 	  var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
-	  for (var i=0;i<iframe_run_script.length;i++)  {
-		iframe_code += "\<script src='"+iframe_run_script[i]+"'\>\<\/script\>";
-	  }
+	  
+	  iframe_code += getScriptCode();
 		
 	  iframe_code += "\<\/head\>\<body\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
 	  try {

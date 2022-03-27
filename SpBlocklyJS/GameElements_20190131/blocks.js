@@ -2806,7 +2806,7 @@ Blockly.Blocks['time_delay'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(30);
   }
 };
 
