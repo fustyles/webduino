@@ -11,7 +11,28 @@ SPDX-License-Identifier: Apache-2.0
 var topCheck = true;
 
 document.addEventListener('DOMContentLoaded', function() {
-	function getScriptCode() {
+	function getScript() {
+		var workspace = Blockly.getMainWorkspace();
+		var script = "<script src='GameElements_20190131/gameelements.js'></script>";
+		
+		if (workspace.getBlocksByType("holistic_video")) {
+			script += "<script src='holistic_20201012/holistic.js'></script>";
+			script += "<script src='holistic_20201012/holistic_video.js'></script>";
+		}
+		
+		if (workspace.getBlocksByType("webserial_baudrate")) {
+			script += "<script src='WebSerial_20220126/WebSerial.js'></script>";
+			script += "<script src='WebSerial_20220126/WebSerial_elements.js'></script>";
+		}
+		
+		if (workspace.getBlocksByType("fu_mqtt_setup_js")) {
+			script += "https://unpkg.com/mqtt/dist/mqtt.min.js";
+		}
+		
+		return script;
+	}	
+	
+	function getScriptRemote() {
 		var workspace = Blockly.getMainWorkspace();
 		var script = "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>";
 		
@@ -25,8 +46,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebSerial_20220126/WebSerial_elements.js'></script>";
 		}
 		
+		if (workspace.getBlocksByType("fu_mqtt_setup_js")) {
+			script += "https://unpkg.com/mqtt/dist/mqtt.min.js";
+		}		
+		
 		return script;
-	}	
+	}		
 	
 	//載入積木目錄
 	var category = [
@@ -163,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
 				var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
 				
-				iframe_code += getScriptCode(); 
+				iframe_code += getScriptRemote(); 
 				  
 				iframe_code += "\<\/head\>\<body\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
 
@@ -187,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	  var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
 	  var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>";
 	  
-	  iframe_code += getScriptCode();
+	  iframe_code += getScript();
 		
 	  iframe_code += "\<\/head\>\<body\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
 	  try {
