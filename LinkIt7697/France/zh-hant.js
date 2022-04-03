@@ -749,7 +749,7 @@ Blockly.Msg["FU_SERIAL_PRINT_HEX"] = "十六進制";
 
 Blockly.Msg["ESP32_CAM_GOOGLEDRIVE_SHOW"] = "ESP32-CAM 截圖上傳Google雲端硬碟";
 Blockly.Msg["ESP32_CAM_SCRIPTID_SHOW"] = "Apps Script ID";	
-Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "Line通知權杖";
+Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "權杖";
 Blockly.Msg["ESP32_CAM_FOLDERNAME_SHOW"] = "資料夾名";	
 Blockly.Msg["ESP32_CAM_FILENAME_SHOW"] = "儲存檔案名";
 
@@ -1041,5 +1041,9 @@ Blockly.Msg.HOLISTIC_RIGHTHAND_ANGLE_SHOW = "全身偵測 右手掌轉動角度"
 Blockly.Msg.HOLISTIC_AXIS_SHOW  = "軸"; 
 Blockly.Msg.HOLISTIC_ADJUST_SHOW  = "校正角度"; 
 
-Blockly.Msg.ESP32_CAM_LINENOTIFY_SHOW  = "Line通知 傳送影像";
-Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW  = "訊息文字";
+Blockly.Msg.ESP32_CAM_LINENOTIFY_SHOW = "ESP32-CAM 截圖上傳Line通知";
+Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW = "訊息文字";
+Blockly.Msg.ESP32_CAM_TELEGRAMBOT_SHOW = "ESP32-CAM 截圖上傳Telegram機器人";
+Blockly.Msg.ESP32_CAM_TOKEN_SHOW = "權杖";
+Blockly.Msg.ESP32_CAM_CHATID_SHOW = "聊天室ID";
+Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server模組取得連入請求執行自訂指令";

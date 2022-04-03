@@ -5321,6 +5321,14 @@ Blockly.Blocks['esp32_myfirmata'] = {
         .setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
+    this.appendValueInput("ssid_ap")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_SSID_AP_SHOW);
+    this.appendValueInput("password_ap")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_AP_SHOW);		
     this.appendValueInput("mainpage")
         .setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)		
@@ -14135,7 +14143,37 @@ Blockly.Blocks['esp32_cam_linenotify'] = {
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW);			
-	this.setInputsInline(false);
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['esp32_cam_telegrambot'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_CAM_TELEGRAMBOT_SHOW);	
+    this.appendValueInput("token")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_TOKEN_SHOW);
+    this.appendValueInput("chatid")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_CHATID_SHOW);			
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['server_getrequest'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVER_GETREQUEST_SHOW);			
+	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(200);

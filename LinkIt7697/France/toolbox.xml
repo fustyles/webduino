@@ -201,6 +201,16 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>
+				<value name="ssid_ap">
+				  <block type="text" id="100">
+					<field name="TEXT">esp32_myfirmata</field>
+				  </block>
+				</value>
+				<value name="password_ap">
+				  <block type="text" id="101">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>				
 				<value name="mainpage">
 				  <block type="servermodule_javascript" id="102">
 					<statement name="js">
@@ -336,6 +346,8 @@
 				  </block>
 				</statement>
 			  </block>
+			  <block type="server_getrequest" id="99">				
+			  </block>			  
 		</category>  
 		  
 		  
@@ -439,6 +451,8 @@
 				  </block>
 				</statement>
 			  </block>
+			  <block type="server_getrequest" id="99">				
+			  </block>				  
 			  <block type="esp32_cam_linenotify" id="99">
 				<value name="linetoken">
 				  <block type="text">
@@ -447,7 +461,7 @@
 				</value>
 				<value name="linemessage">
 				  <block type="text">
-					<field name="TEXT">esp32cam</field>
+					<field name="TEXT">World Peace</field>
 				  </block>
 				</value>				
 			  </block>			  
@@ -472,7 +486,19 @@
 					<field name="TEXT">esp32cam</field>
 				  </block>
 				</value>				
-			  </block>	  
+			  </block>
+			  <block type="esp32_cam_telegrambot" id="99">
+				<value name="token">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="chatid">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
+			  </block>			  
 		</category>	
 
 		
@@ -623,6 +649,8 @@
 				  </block>
 				</statement>
 			  </block>
+			  <block type="server_getrequest" id="99">				
+			  </block>			  
 		</category>	
 
 		

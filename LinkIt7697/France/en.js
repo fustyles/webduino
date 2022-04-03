@@ -1041,5 +1041,9 @@ Blockly.Msg.HOLISTIC_RIGHTHAND_ANGLE_SHOW = "Holistic Detect Right hand Turn Ang
 Blockly.Msg.HOLISTIC_AXIS_SHOW  = "Axis"; 
 Blockly.Msg.HOLISTIC_ADJUST_SHOW  = "Adjust Angle";
 
-Blockly.Msg.ESP32_CAM_LINENOTIFY_SHOW  = "Line Notify send still";
-Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW  = "Message";
+Blockly.Msg.ESP32_CAM_LINENOTIFY_SHOW = "ESP32-CAM send still to Line Notify";
+Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW = "Message";
+Blockly.Msg.ESP32_CAM_TELEGRAMBOT_SHOW = "ESP32-CAM send still to Telegram bot";
+Blockly.Msg.ESP32_CAM_TOKEN_SHOW = "Token";
+Blockly.Msg.ESP32_CAM_CHATID_SHOW = "Chat ID";
+Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server module Get request and execute command";
