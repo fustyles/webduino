@@ -147,8 +147,8 @@ function doPost(e) {
   } 
 
   scriptProperties.setProperty('command', userMessage);
-  return HtmlService.createHtmlOutputFromFile('linebot');
-  //return  ContentService.createTextOutput("Return = OK");
+  //return HtmlService.createHtmlOutputFromFile('linebot');
+  return  ContentService.createTextOutput("Return = OK");
 
 }
 
