@@ -36,7 +36,7 @@ Blockly.Blocks['addMyBlocks'] = {
         [Blockly.Msg.ADDCUSTOMBLOCKS_MYBACKPACK_SHOW,"myBackPack_20210914"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_WEBSERIAL_SHOW,"WebSerial_20220126"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_MQTT_SHOW,"MQTT_20220324"],
-        [Blockly.Msg.ADDCUSTOMBLOCKS_MQTT_SHOW,"RobotFly_20220127"]	  
+        [Blockly.Msg.ADDCUSTOMBLOCKS_ROBOTFLY_SHOW,"RobotFly_20220127"]	  
       ]), "func");
   this.setTooltip('');
   this.setColour(20);
