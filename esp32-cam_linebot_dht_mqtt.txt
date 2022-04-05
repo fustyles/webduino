@@ -127,7 +127,7 @@ function doPost(e) {
                         "action": {
                             "type": "uri",
                             "label": "on",
-                            "uri": "https://script.google.com/macros/s/AKfycbwjXH4ahYN8xiVGcU5k4Dbu-Fjx95Q9O4gCvLMU19OghCfD6dd2DEDKGPpqT8pxYjh-/exec?command=on"
+                            "uri": "https://script.google.com/macros/s/AKfycbwjXH4ahYN8xiVGcU5k4Dbu-Fjx95Q9O4gCvLMU19OghCfD6dd2DEDKGPpqT8pxYjh-123/exec?command=on"
                         }
                     },
                     {
@@ -135,7 +135,7 @@ function doPost(e) {
                         "action": {
                             "type": "uri",
                             "label": "off",
-                            "uri": "https://script.google.com/macros/s/AKfycbwjXH4ahYN8xiVGcU5k4Dbu-Fjx95Q9O4gCvLMU19OghCfD6dd2DEDKGPpqT8pxYjh-/exec?command=off"
+                            "uri": "https://script.google.com/macros/s/AKfycbwjXH4ahYN8xiVGcU5k4Dbu-Fjx95Q9O4gCvLMU19OghCfD6dd2DEDKGPpqT8pxYjh-123/exec?command=off"
                         }
                     }
                 ]
