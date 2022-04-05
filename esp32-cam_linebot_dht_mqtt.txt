@@ -3,6 +3,7 @@ function doPost(e) {
   var CHANNEL_ACCESS_TOKEN = 'Nwyfihc0pKey868MefCc9Er028u7E33OPJuRwdLEi/mmyjBSh0jFOJKvS3AMaFvKUKAp1k7JKdj2tpd8nr8/aJVF45aQajMY0anwVABxPkvJk3oPUeGlmdDWBiQt6qKBLzGhYimXU377SkcT03hhBwdB04t89/1O/w1cDnyilFU=123';
   var NOTIFY_ACCESS_TOKEN = 'RXDcVAhLhvVJjX0fxarGLcrbjqyWWIJPKPu0QdpomFE123';
   var SPREADSHEET_ID = '1VVONSSJSNY8Xj2-hO3swD7EEfky6vA99jp5CzZkxDKM123';
+  var APPS_SCRIPT_ID = "AKfycbwjXH4ahYN8xiVGcU5k4Dbu-Fjx95Q9O4gCvLMU19OghCfD6dd2DEDKGPpqT8pxYjh-123";
 
   var scriptProperties = PropertiesService.getScriptProperties();
   var SpreadSheet = SpreadsheetApp.openById(SPREADSHEET_ID);
@@ -127,7 +128,7 @@ function doPost(e) {
                         "action": {
                             "type": "uri",
                             "label": "on",
-                            "uri": "https://script.google.com/macros/s/AKfycbwjXH4ahYN8xiVGcU5k4Dbu-Fjx95Q9O4gCvLMU19OghCfD6dd2DEDKGPpqT8pxYjh-123/exec?command=on"
+                            "uri": "https://script.google.com/macros/s/"+APPS_SCRIPT_ID+"/exec?command=on"
                         }
                     },
                     {
@@ -135,7 +136,7 @@ function doPost(e) {
                         "action": {
                             "type": "uri",
                             "label": "off",
-                            "uri": "https://script.google.com/macros/s/AKfycbwjXH4ahYN8xiVGcU5k4Dbu-Fjx95Q9O4gCvLMU19OghCfD6dd2DEDKGPpqT8pxYjh-123/exec?command=off"
+                            "uri": "https://script.google.com/macros/s/"+APPS_SCRIPT_ID+"/exec?command=off"
                         }
                     }
                 ]
@@ -200,13 +201,16 @@ function getCommand() {
 
   <script>
     var mqtt_command = "";
+    var mqtt_server = "wss://broker.emqx.io:8084/mqtt";
+    var mqtt_username = "";
+    var mqtt_password = "";
     var mqtt_topic_command = "yourtopic/data";
     var mqtt_topic_result = "yourtopic/result";
 
       const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);
       const options = {
-        username: '',
-        password: '',
+        username: mqtt_username,
+        password: mqtt_password,
         keepalive: 60,
         clientId: clientId,
         protocolId: "MQTT",
@@ -216,7 +220,7 @@ function getCommand() {
         connectTimeout: 30 * 1000
       }
 
-      var mqtt_client = mqtt.connect('wss://broker.emqx.io:8084/mqtt', options);
+      var mqtt_client = mqtt.connect(mqtt_server, options);
       mqtt_client.on("connect", () => {
         //console.log("connected");
         mqtt_client.subscribe(mqtt_topic_command);
