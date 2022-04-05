@@ -204,7 +204,7 @@ function getCommand() {
     var mqtt_server = "wss://broker.emqx.io:8084/mqtt";
     var mqtt_username = "";
     var mqtt_password = "";
-    var mqtt_topic_command = "yourtopic/data";
+    var mqtt_topic_command = "yourtopic/command";
     var mqtt_topic_result = "yourtopic/result";
 
       const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);
