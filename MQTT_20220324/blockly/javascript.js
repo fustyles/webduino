@@ -21,7 +21,7 @@ Blockly.JavaScript['fu_mqtt_setup_js'] = function(block) {
   Blockly.JavaScript.definitions_.define_mqtt_connect_js = 'var mqtt_client = mqtt.connect('+server+',options);\n'+				
 															'mqtt_client.on("connect", ()=>{\n'+
 															'	console.log("connected");\n'+topic_subscribe+
-															'	mqtt_client.on("message", function (topic, payload) {\n'+topic_getdata+
+															'	mqtt_client.on("message", async function (topic, payload) {\n'+topic_getdata+
 															'   })\n'+
 															'  }\n'+															
 															')';	
