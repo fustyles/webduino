@@ -3828,7 +3828,6 @@ function HextoRgb(color) {
   
   function binarytobase64(input_array) {
     const content = new Uint8Array(input_array);
-	console.log(content);
 	return btoa(String.fromCharCode.apply(null, content));
   }
 
