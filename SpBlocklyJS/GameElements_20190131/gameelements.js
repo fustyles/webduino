@@ -3826,7 +3826,12 @@ function HextoRgb(color) {
 	canvas.remove();
   }  
   
-
+  function binarytobase64(input_array) {
+    const content = new Uint8Array(input_array);
+	console.log(content);
+	return btoa(String.fromCharCode.apply(null, content));
+  }
+	
   window.table_create = table_create;
   window.table_set = table_set;
   window.table_get = table_get;
@@ -3986,5 +3991,6 @@ function HextoRgb(color) {
   window.fontCode = fontCode;
   window.outputfile_text = outputfile_text; 
   window.outputfile_jpg = outputfile_jpg;
+  window.binarytobase64 = binarytobase64;	
   
 }(window, window.document));
