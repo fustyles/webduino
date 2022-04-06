@@ -515,3 +515,4 @@ Blockly.Msg["CATPAGEELEMENTS_FORM"] = "表單";
 Blockly.Msg["CATPAGEELEMENTS_VIDEO"] = "視訊媒體";
 Blockly.Msg["CATPAGEELEMENTS_FONT"] = "字型";
 Blockly.Msg["CATPAGEELEMENTS_AJAX"] = "AJAX";
+Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "圖檔Uint8Array格式轉換Base64格式";
