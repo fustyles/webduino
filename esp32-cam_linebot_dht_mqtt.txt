@@ -189,7 +189,7 @@ function getCommand() {
 
 
 
-
+<!-- linebot.html -->
 <!DOCTYPE html>
 <html>
   <head>
