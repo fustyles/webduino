@@ -146,17 +146,6 @@ function getCommand() {
           mqtt_command = command;
           document.getElementById("result").innerHTML = "<br>"+"MQTT指令："+command+" 已傳送...";
           mqtt_client.publish(mqtt_topic_command, command);
-          
-          /*
-          setTimeout(function() {
-            window.close();
-            window.open("about:blank","_self").close();   
-            window.open("","_self").close();
-            window.top.close();
-            window.open("about:blank","_top").close();
-            window.open("","_top").close();
-          }, 10000);
-          */
         }
       ).getCommand();
     }
@@ -164,5 +153,3 @@ function getCommand() {
  
   </body>
 </html>
-
-
