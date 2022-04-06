@@ -488,3 +488,4 @@ Blockly.Msg.WINDOW_NAME_NEW = "new_window";
 Blockly.Msg.WINDOW_NAME_PARENT = "origin_window";
 Blockly.Msg.WINDOW_NAME_SELF = "previous_window";
 Blockly.Msg.WINDOW_NAME_TOP = "any_window";
+Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "Image Uint8Array to Base64";

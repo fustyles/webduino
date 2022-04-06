@@ -488,3 +488,4 @@ Blockly.Msg.WINDOW_NAME_NEW = "新視窗";
 Blockly.Msg.WINDOW_NAME_PARENT = "原本視窗";
 Blockly.Msg.WINDOW_NAME_SELF = "前一開起視窗";
 Blockly.Msg.WINDOW_NAME_TOP = "任何可被開啟視窗";
+Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "圖檔Uint8Array格式轉換Base64格式";

@@ -355,6 +355,13 @@
 
   </category>
   <category id="catGameElements_sub2" colour="120"> 
+  <block type="image_binarytobase64"> 
+	<value name="array_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value> 
+  </block> 
 
   <block type="image_create">
     <value name="id_">

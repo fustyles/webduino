@@ -4809,3 +4809,14 @@ Blockly.Blocks['window_open'] = {
   this.setColour(110);  
   }
 };
+
+Blockly.Blocks['image_binarytobase64'] = {
+  init: function() {
+  this.appendValueInput("array_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.IMAGE_BINARY_TO_BASE64);
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);   
+  }
+};
