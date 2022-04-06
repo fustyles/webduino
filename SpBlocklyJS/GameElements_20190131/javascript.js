@@ -1978,3 +1978,9 @@ Blockly.JavaScript['window_open'] = function (block) {
   var code = 'window.open('+value_url+',"'+value_name+'");\n';
   return code;
 };
+
+Blockly.JavaScript['image_binarytobase64'] = function (block) {
+  var value_array = Blockly.JavaScript.valueToCode(block, 'array_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '"data:image/jpeg;base64,"+ binarytobase64('+value_array+')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
