@@ -355,14 +355,6 @@
 
   </category>
   <category id="catGameElements_sub2" colour="120"> 
-  <block type="image_binarytobase64"> 
-	<value name="array_">
-	  <block type="text">
-		<field name="TEXT"></field>
-	  </block>
-	</value> 
-  </block> 
-
   <block type="image_create">
     <value name="id_">
       <block type="text">
@@ -468,11 +460,11 @@
       </block>
     </value> 
   </block>  
-  <block type="image_onclick_listener" id="o(a?Wess1x(SbtJmfsA7" x="46" y="47">
+  <block type="image_onclick_listener">
     <statement name="do_">
-      <block type="image_onclick_do" id="c3b9fdE)Ol$%w-;AVKS$">
+      <block type="image_onclick_do">
         <value name="id_">
-          <block type="text" id="rn4|!k{H3`mt2_[(W)][">
+          <block type="text">
             <field name="TEXT"></field>
           </block>
         </value>
@@ -595,7 +587,13 @@
       </block>
     </value>       
   </block> 
-  
+  <block type="image_binarytobase64"> 
+	<value name="array_">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value> 
+  </block> 
   </category>
   <category id="catGameElements_sub3" colour="120"> 
 
