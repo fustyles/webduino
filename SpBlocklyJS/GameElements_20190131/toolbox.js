@@ -592,6 +592,13 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="image_binarytobase64">'+
+'    <value name="array_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    </category>'+
 '    <category name="%{BKY_CATPAGEELEMENTS_BUTTON}" id="catPageElements_button">'+
 '    <block type="button_create">'+
