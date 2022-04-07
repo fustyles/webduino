@@ -7573,6 +7573,17 @@ Blockly.Blocks['image_resize'] = {
   }
 };
 
+Blockly.Blocks['image_binarytobase64'] = {
+  init: function() {
+  this.appendValueInput("array_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.IMAGE_BINARY_TO_BASE64);
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);   
+  }
+};
+
 Blockly.Blocks['mouse_coordinate_get_start'] = {
   init: function() {
   this.appendDummyInput()
