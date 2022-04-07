@@ -4028,6 +4028,12 @@ Blockly.Arduino['image_resize'] = function (block) {
   return code;
 };
 
+Blockly.Arduino['image_binarytobase64'] = function (block) {
+  var value_array = Blockly.Arduino.valueToCode(block, 'array_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = '"data:image/jpeg;base64,"+ binarytobase64('+value_array+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['mouse_coordinate_get_start'] = function (block) {
   var code = 'mouse_coordinate_get_start();\n';
   return code;
