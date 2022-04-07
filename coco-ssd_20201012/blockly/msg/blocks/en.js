@@ -26,3 +26,4 @@ Blockly.Msg.COCOSSD_DATA_UPPERX_SHOW = "Upper X";
 Blockly.Msg.COCOSSD_DATA_UPPERY_SHOW = "Upper Y";
 Blockly.Msg.COCOSSD_DATA_BOTTOMX_SHOW = "Bottom X";
 Blockly.Msg.COCOSSD_DATA_BOTTOMY_SHOW = "Bottom Y";
+Blockly.Msg.COCOSSD_CLEAR_SHOW = "Object Detection (coco-ssd) clear result";
