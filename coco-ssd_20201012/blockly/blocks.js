@@ -421,3 +421,14 @@ Blockly.Blocks['cocossd_canvas_get'] = {
   this.setColour(65);
   }
 };
+
+Blockly.Blocks['cocossd_clear'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_CLEAR_SHOW); 
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
