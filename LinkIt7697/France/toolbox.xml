@@ -1719,7 +1719,13 @@
 		  </block>
 		</value>       
 		</block> 
-
+		<block type="image_binarytobase64"> 
+			<value name="array_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value> 
+		</block> 
 		</category>
 		<category id="catGameElements_sub3" name="catGameElements_sub3"> 
 
@@ -2611,13 +2617,6 @@
 			</value> 
 		  </block> 
 		</statement> 
-		</block> 
-		<block type="image_binarytobase64"> 
-			<value name="array_">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value> 
 		</block> 
 		</category>
 		<category id="catGameElements_sub9" name="catGameElements_sub9"> 
