@@ -8261,6 +8261,11 @@ Blockly.Arduino['cocossd_canvas_get'] = function(block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['cocossd_clear'] = function(block) { 
+  var code = 'cocossd_clear();\n';
+  return code;
+};
+
 Blockly.Arduino['time_delay'] = function (block) {
   var seconds = Blockly.Arduino.valueToCode(block, 'seconds', Blockly.Arduino.ORDER_ATOMIC);
   var code = 'await delay(' + seconds + ');\n';
