@@ -37,7 +37,9 @@
   <block type="cocossd_object_number">
   </block>
   <block type="cocossd_state">
-  </block> 
+  </block>
+  <block type="cocossd_clear">
+  </block>   
   <block type="cocossd_video_position">
     <value name="left_">
       <block type="math_number">
