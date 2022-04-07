@@ -159,6 +159,9 @@
 		}	
 	}
    
+	function cocossd_clear() {
+		document.getElementById("gamediv_cocossd").innerHTML = "";
+	}
 	
 	window.cocossd_list = cocossd_list;
 	window.cocossd_object = cocossd_object;
@@ -167,6 +170,7 @@
 	window.cocossd_state = cocossd_state;
 	window.cocossd_video_position = cocossd_video_position;
 	window.cocossd_startvideo_media = cocossd_startvideo_media;
-	window.cocossd_startvideo_stream = cocossd_startvideo_stream;	
+	window.cocossd_startvideo_stream = cocossd_startvideo_stream;
+	window.cocossd_clear = cocossd_clear;
 
 }(window, window.document));
