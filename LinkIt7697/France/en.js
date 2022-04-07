@@ -1047,3 +1047,5 @@ Blockly.Msg.ESP32_CAM_TELEGRAMBOT_SHOW = "ESP32-CAM send still to Telegram bot";
 Blockly.Msg.ESP32_CAM_TOKEN_SHOW = "Token";
 Blockly.Msg.ESP32_CAM_CHATID_SHOW = "Chat ID";
 Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server module Get request and execute command";
+
+Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "Image Uint8Array to Base64";
