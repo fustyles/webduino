@@ -228,7 +228,7 @@ function getCommand() {
         mqtt_client.on("message", function(topic, payload) {
           if (topic == mqtt_topic_command&&mqtt_command==payload) {
             mqtt_command = "";
-            document.getElementById("result").innerHTML = "<br>"+"MQTT指令："+payload+" 傳送成功";
+            document.getElementById("result").innerHTML = "<br>"+"MQTT："+payload+" successfully";
           }
           else if (topic == mqtt_topic_result) {
             document.getElementById("result").innerHTML += "<br>"+payload;
@@ -242,7 +242,7 @@ function getCommand() {
       google.script.run.withSuccessHandler(
         function(command){
           mqtt_command = command;
-          document.getElementById("result").innerHTML = "<br>"+"MQTT指令："+command+" 已傳送...";
+          document.getElementById("result").innerHTML = "<br>"+"MQTT："+command+" transmitting...";
           mqtt_client.publish(mqtt_topic_command, command);
         }
       ).getCommand();
