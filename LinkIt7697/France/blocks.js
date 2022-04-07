@@ -13304,6 +13304,17 @@ Blockly.Blocks['cocossd_canvas_get'] = {
   }
 };
 
+Blockly.Blocks['cocossd_clear'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_CLEAR_SHOW); 
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['time_delay'] = {
   init: function () {
     this.appendValueInput("seconds")
