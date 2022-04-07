@@ -1047,3 +1047,5 @@ Blockly.Msg.ESP32_CAM_TELEGRAMBOT_SHOW = "ESP32-CAM 截圖上傳Telegram機器�
 Blockly.Msg.ESP32_CAM_TOKEN_SHOW = "權杖";
 Blockly.Msg.ESP32_CAM_CHATID_SHOW = "聊天室ID";
 Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server模組取得連入請求執行自訂指令";
+
+Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "圖檔Uint8Array格式轉換Base64格式";
