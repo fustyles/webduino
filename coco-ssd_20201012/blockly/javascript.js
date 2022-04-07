@@ -59,3 +59,8 @@ Blockly.JavaScript['cocossd_canvas_get'] = function(block) {
   var code = '"cocossd"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['cocossd_clear'] = function(block) { 
+  var code = 'cocossd_clear();\n';
+  return code;
+};
