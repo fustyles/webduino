@@ -1049,3 +1049,4 @@ Blockly.Msg.ESP32_CAM_CHATID_SHOW = "聊天室ID";
 Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server模組取得連入請求執行自訂指令";
 
 Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "圖檔Uint8Array格式轉換Base64格式";
+Blockly.Msg.COCOSSD_CLEAR_SHOW = "物件偵測(coco-ssd) 清除結果";
