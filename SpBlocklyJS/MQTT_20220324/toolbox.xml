@@ -2,7 +2,7 @@
 	  <block type="fu_mqtt_setup_js">
 		<value name="server">
 		  <block type="text">
-			<field name="TEXT">ws://broker.emqx.io:8083/mqtt</field>
+			<field name="TEXT">wss://broker.emqx.io:8084/mqtt</field>
 		  </block>
 		</value>
 		<value name="user">
