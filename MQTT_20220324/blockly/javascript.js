@@ -6,7 +6,8 @@ Blockly.JavaScript['fu_mqtt_setup_js'] = function(block) {
   var topic_getdata = Blockly.JavaScript.statementToCode(block, 'topic_getdata');
   
 
-  Blockly.JavaScript.definitions_.define_mqtt_js ='const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);\n'+			
+  var code = "";
+  code += 'const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);\n'+			
 											'const options = {\n'+
 											'	username: '+user+',\n'+
 											'	password: '+password+',\n'+
@@ -17,16 +18,15 @@ Blockly.JavaScript['fu_mqtt_setup_js'] = function(block) {
 											'	clean: true,\n'+
 											'	reconnectPeriod: 1000,\n'+
 											'	connectTimeout: 30 * 1000\n'+
-											'}';										
-  Blockly.JavaScript.definitions_.define_mqtt_connect_js = 'var mqtt_client = mqtt.connect('+server+',options);\n'+				
+											'}\n\n';										
+  code += 'var mqtt_client = mqtt.connect('+server+',options);\n'+				
 															'mqtt_client.on("connect", ()=>{\n'+
 															'	console.log("connected");\n'+topic_subscribe+
 															'	mqtt_client.on("message", async function (topic, payload) {\n'+topic_getdata+
 															'   })\n'+
 															'  }\n'+															
-															')';	
+															')\n\n';	
 												
-  code = '';
   return code;
 };
 
