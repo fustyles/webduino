@@ -6,7 +6,7 @@ Blockly.JavaScript['fu_mqtt_setup_js'] = function(block) {
   var topic_getdata = Blockly.JavaScript.statementToCode(block, 'topic_getdata');
   
   var code = "";
-  code += '"mqtt_" + Math.random().toString(16).substr(2, 8);\n'+			
+  code += 'const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);\n'+			
 											'const options = {\n'+
 											'	username: '+user+',\n'+
 											'	password: '+password+',\n'+
