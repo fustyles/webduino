@@ -43,10 +43,14 @@ async function gamebutton_set_onclick (event) {
 		  if (command == '') {
 			clearInterval(myTimerPublish);
 			command = 'getstill';
-			mqtt_client.publish((text_get('publish',"value")), command);
+			if ((checkbox_get('',"checked")) == true) {
+			  mqtt_client.publish((text_get('publish',"value")), command);
+			}
 			myTimerPublish = setInterval(async function(){
 			  if (command != '') {
-				mqtt_client.publish((text_get('publish',"value")), command);
+			    if ((checkbox_get('',"checked")) == true) {
+			      mqtt_client.publish((text_get('publish',"value")), command);
+			    }
 			  }
 			},31000);
 		  }
