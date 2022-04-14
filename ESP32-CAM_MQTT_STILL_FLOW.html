@@ -57,7 +57,7 @@ async function gamebutton_set_onclick (event) {
 		} else {
 		  clearInterval(myTimerPublish);
 		  command = '';
-		  image_set('',"url",'');
+		  //image_set('',"url",'');
 		}
 	  },100);
 		mqtt_client.on("message", async function (topic, payload) {
