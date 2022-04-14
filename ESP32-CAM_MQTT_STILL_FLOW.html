@@ -10,13 +10,13 @@ text_create('server',250,30,100,10,'#ffffff','#000000',14,1,'wss://broker.emqx.i
 div_create('subscribe',80,30,0,40,"none",1,'#000000','#ffffff','#000000',14,1,'Subscribe',999,true);
 text_create('subscribe',250,30,100,40,'#ffffff','#000000',14,1,'yourTopic/sendstill',999,true);
 div_create('publish',80,30,0,70,"none",1,'#000000','#ffffff','#000000',14,1,'Publish',999,true);
-text_create('publish',250,30,100,70,'#ffffff','#000000',14,1,'yourTopic/getstill',999,true);
-button_create('set',100,30,0,110,1,null,'MQTT connect',12,999,true);
-button_create('start',60,30,230,110,1,null,'Get Still',12,999,true);
-a_create('',80,30,300,110,"none",1,'#000000','#ffffff','#000000',12,1,'firmware','https://github.com/fustyles/Arduino/blob/master/ESP32-CAM_MQTT_STILL_FLOW/ESP32-CAM_MQTT_STILL_FLOW.ino',"_blank",999,true);
-div_create('state',100,30,120,110,"none",1,'#000000','#ffffff','#000000',18,1,'',999,true);
-checkbox_create('',0,150,12,'',true,1,999,true);
-div_create('',100,30,30,150,"none",1,'#000000','#ffffff','#000000',14,1,'Master',999,true);
+text_create('publish',250,30,100,70,'#ffffff','#000000',14,1,'yourTopic/getstill',999,true);	
+checkbox_create('',0,110,12,'',true,1,999,true);
+div_create('',100,30,30,110,"none",1,'#000000','#ffffff','#000000',14,1,'Master',999,true);	
+button_create('set',100,30,0,150,1,null,'MQTT connect',12,999,true);
+button_create('start',60,30,230,150,1,null,'Get Still',12,999,true);
+a_create('',80,30,300,150,"none",1,'#000000','#ffffff','#000000',12,1,'firmware','https://github.com/fustyles/Arduino/blob/master/ESP32-CAM_MQTT_STILL_FLOW/ESP32-CAM_MQTT_STILL_FLOW.ino',"_blank",999,true);
+div_create('state',100,30,120,150,"none",1,'#000000','#ffffff','#000000',18,1,'',999,true);
 image_create_stream('','',0,190,999,true);
 
 async function gamebutton_set_onclick (event) {
