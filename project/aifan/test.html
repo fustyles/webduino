@@ -1,0 +1,42 @@
+<!doctype html>
+<!--
+Created using JS Bin
+http://bin.webduino.io
+
+Copyright (c) 2022 by anonymous (http://bin.webduino.io/zuqus/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Webduino Blockly App</title>
+  <script src="https://bit.webduino.io/blockly/components/jquery/dist/jquery.min.js"></script>
+  <script src="https://bit.webduino.io/blockly/dist/lib/webduino-all.min.js"></script>
+  <script src="https://bit.webduino.io/blockly/dist/MessageTransport.min.js"></script>
+  <script src="https://bit.webduino.io/blockly/dist/MessageTransport.min.js"></script>
+  <script src="https://bit.webduino.io/blockly/dist/webduino-blockly.min.js"></script>
+  <script src="https://bit.webduino.io/blockly/dist/lib/firebase.min.js"></script>
+  <script src="https://bit.webduino.io/blockly/dist/lib/runtime.min.js"></script>
+  <script src="https://fustyles.github.io/webduino/GameElements_20190131/gameelements.js"></script>
+</head>
+
+<body>
+  <div></div>
+<script id="jsbin-javascript">
+button_create('1',60,30,0,0,1,null,'顯示',12,999,true);
+button_create('2',60,30,100,0,1,null,'清除',12,999,true);
+function gamebutton_1_onclick (event) {
+  div_create('',300,300,0,100,"none",1,'#000000','#ffffff','#000000',14,1,'World Peace',999,true);
+};
+document.getElementById("gamebutton_1").addEventListener("click", gamebutton_1_onclick, true);
+function gamebutton_2_onclick (event) {
+  div_create('',300,300,0,100,"none",1,'#000000','#ffffff','#000000',14,1,'',999,true);
+};
+document.getElementById("gamebutton_2").addEventListener("click", gamebutton_2_onclick, true);
+
+</script>
+</body>
