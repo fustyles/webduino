@@ -21,10 +21,10 @@ window.onload = function () {
 	const modelURL = URL + "model.json";
 	const metadataURL = URL + "metadata.json";
 	if (project.innerHTML=="image") {
-		Model = await tmImage.load(modelURL, metadataURL);
+		Model = tmImage.load(modelURL, metadataURL);
 	}
 	else if (project.innerHTML=="pose") {
-		Model = await tmPose.load(modelURL, metadataURL);
+		Model = tmPose.load(modelURL, metadataURL);
 	}			
 	maxPredictions = Model.getTotalClasses();
 
