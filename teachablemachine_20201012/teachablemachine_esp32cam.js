@@ -16,7 +16,8 @@ window.onload = function () {
 	var restartCount=0;
 	var Model;
 	
-	setTimeout(async function() {
+	setTimeout(function(){loadModel();}, 5000);
+	async function loadModel() {
 		if (modelPath.value=="") {
 			result.innerHTML = "Please input model path.";
 			return;
@@ -34,7 +35,7 @@ window.onload = function () {
 
 		result.innerHTML = "";
 		start();
-	}, 5000);
+	}
 	
 	function start() {
 	  clearInterval(myTimer);  
