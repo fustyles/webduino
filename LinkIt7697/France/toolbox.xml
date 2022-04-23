@@ -943,7 +943,14 @@
 				</value>     
 			  </block> 
 			  <block type="cocossd_canvas_get">
-			  </block>   			  
+			  </block>
+			  <block type="cocossd_pause">
+				<value name="time_">
+				  <block type="math_number">
+					<field name="NUM">1000</field>
+				  </block>
+				</value> 			  
+			  </block>    			  
 		</category>	
 		<category id="france2˙" name="holisticreconginition">
 			  <block type="holistic_esp32cam">
@@ -1113,7 +1120,14 @@
 					<field name="NUM">0</field>
 				  </block>
 				</value>   
-			  </block>  			  
+			  </block>
+			  <block type="holistic_pause">
+				<value name="time_">
+				  <block type="math_number">
+					<field name="NUM">1000</field>
+				  </block>
+				</value> 			  
+			  </block>    			  
 		</category>	
 
 		<category id="france2˙" name="teachablemachine">
@@ -1160,7 +1174,14 @@
 				<field name="NUM">0</field>
 			  </block>
 			</value>     
-		  </block>   
+		  </block>
+		  <block type="teachablemachine_pause">
+			<value name="time_">
+			  <block type="math_number">
+				<field name="NUM">1000</field>
+			  </block>
+			</value> 			  
+		  </block> 		  
 		</category>
 		
     </category>

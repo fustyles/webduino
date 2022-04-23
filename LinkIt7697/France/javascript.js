@@ -8331,6 +8331,12 @@ Blockly.Arduino['cocossd_clear'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['cocossd_pause'] = function(block) { 
+  var value_time = Blockly.Arduino.valueToCode(block, 'time_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'cocossd_state(0);setTimeout(function(){cocossd_state(1);}, '+value_time+');\n';
+  return code;
+};
+
 Blockly.Arduino['time_delay'] = function (block) {
   var seconds = Blockly.Arduino.valueToCode(block, 'seconds', Blockly.Arduino.ORDER_ATOMIC);
   var code = 'await delay(' + seconds + ');\n';
@@ -8499,6 +8505,12 @@ Blockly.Arduino['holistic_righthand_angle'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE];  
 };
 
+Blockly.Arduino['holistic_pause'] = function(block) { 
+  var value_time = Blockly.Arduino.valueToCode(block, 'time_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'holistic_state(0);setTimeout(function(){holistic_state(1);}, '+value_time+');\n';
+  return code;
+};
+
 Blockly.Arduino['teachablemachine_esp32cam'] = function(block) {
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_teachablemachine = Blockly.Arduino.statementToCode(block, 'javascript_teachablemachine');
@@ -8539,6 +8551,12 @@ Blockly.Arduino['teachablemachine_video_position'] = function(block) {
   var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC);
   var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC);
   var code = 'teachablemachine_video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['teachablemachine_pause'] = function(block) { 
+  var value_time = Blockly.Arduino.valueToCode(block, 'time_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'teachablemachine_state(0);setTimeout(function(){teachablemachine_state(1);}, '+value_time+');\n';
   return code;
 };
 

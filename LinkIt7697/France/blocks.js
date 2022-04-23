@@ -13398,6 +13398,20 @@ Blockly.Blocks['cocossd_clear'] = {
   }
 };
 
+Blockly.Blocks['cocossd_pause'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_PAUSE_SHOW);
+  this.appendValueInput("time_")
+      .setCheck("Number")    
+      .appendField("(ms)"); 	  
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
+
 Blockly.Blocks['time_delay'] = {
   init: function () {
     this.appendValueInput("seconds")
@@ -13934,10 +13948,6 @@ Blockly.Blocks['holistic_all_poistion'] = {
   }
 };
 
-
-
-
-
 Blockly.Blocks['holistic_face_angle'] = {
   init: function() {
   this.appendDummyInput()  
@@ -14208,6 +14218,20 @@ Blockly.Blocks['holistic_righthand_angle'] = {
   }
 };
 
+Blockly.Blocks['holistic_pause'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_PAUSE_SHOW);
+  this.appendValueInput("time_")
+      .setCheck("Number")    
+      .appendField("(ms)"); 	  
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
+
 Blockly.Blocks['teachablemachine_esp32cam'] = {
   init: function() {
     this.appendDummyInput()
@@ -14350,6 +14374,20 @@ Blockly.Blocks['teachablemachine_startvideo_media'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
+  }
+};
+
+Blockly.Blocks['teachablemachine_pause'] = {
+  init: function() {
+  this.appendDummyInput()  
+	  .appendField(Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW);
+  this.appendValueInput("time_")
+	  .setCheck("Number")    
+	  .appendField("(ms)"); 	  
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
   }
 };
 

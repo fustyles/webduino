@@ -951,6 +951,7 @@ Blockly.Msg.COCOSSD_DATA_UPPERX_SHOW = "Upper X";
 Blockly.Msg.COCOSSD_DATA_UPPERY_SHOW = "Upper Y";
 Blockly.Msg.COCOSSD_DATA_BOTTOMX_SHOW = "Bottom X";
 Blockly.Msg.COCOSSD_DATA_BOTTOMY_SHOW = "Bottom Y";
+Blockly.Msg.COCOSSD_PAUSE_SHOW = "Object Detection (coco-ssd) Pause";
 
 Blockly.Msg.ESP32_CAM_HOLISTIC_SHOW = "Holistic Detect (mediapipe)";
 Blockly.Msg.ESP32_CAM_HOLISTIC_INITIAL_SHOW = "Initial";
@@ -1047,6 +1048,7 @@ Blockly.Msg.HOLISTIC_LEFTHAND_ANGLE_SHOW = "Holistic Detect Left hand Turn Angle
 Blockly.Msg.HOLISTIC_RIGHTHAND_ANGLE_SHOW = "Holistic Detect Right hand Turn Angle";
 Blockly.Msg.HOLISTIC_AXIS_SHOW  = "Axis"; 
 Blockly.Msg.HOLISTIC_ADJUST_SHOW  = "Adjust Angle";
+Blockly.Msg.HOLISTIC_PAUSE_SHOW = "Holistic Detect Pause";
 
 Blockly.Msg.ESP32_CAM_LINENOTIFY_SHOW = "ESP32-CAM send still to Line Notify";
 Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW = "Message";
@@ -1080,3 +1082,4 @@ Blockly.Msg.TEACHABLEMACHINE_SRC_SHOW = "Stream URL";
 Blockly.Msg.TEACHABLEMACHINE_PROJECT_SHOW = "Teachable Machine (custom model) Project";
 Blockly.Msg.TEACHABLEMACHINE_MAXCLASS_SHOW = "Max ClassName";
 Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW = "Max Probability";
+Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW = "Teachable Machine (custom model) Pause";

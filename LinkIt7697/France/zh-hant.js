@@ -952,6 +952,7 @@ Blockly.Msg.COCOSSD_DATA_UPPERX_SHOW = "上方X";
 Blockly.Msg.COCOSSD_DATA_UPPERY_SHOW = "上方Y";
 Blockly.Msg.COCOSSD_DATA_BOTTOMX_SHOW = "下方X";
 Blockly.Msg.COCOSSD_DATA_BOTTOMY_SHOW = "下方Y";
+Blockly.Msg.COCOSSD_PAUSE_SHOW = "物件偵測(coco-ssd) 暫停偵測";
 
 Blockly.Msg.ESP32_CAM_HOLISTIC_SHOW = "全身偵測 (mediapipe)";
 Blockly.Msg.ESP32_CAM_HOLISTIC_INITIAL_SHOW = "初始設定";
@@ -1048,6 +1049,7 @@ Blockly.Msg.HOLISTIC_LEFTHAND_ANGLE_SHOW = "全身偵測 左手掌轉動角度";
 Blockly.Msg.HOLISTIC_RIGHTHAND_ANGLE_SHOW = "全身偵測 右手掌轉動角度";
 Blockly.Msg.HOLISTIC_AXIS_SHOW  = "軸"; 
 Blockly.Msg.HOLISTIC_ADJUST_SHOW  = "校正角度"; 
+Blockly.Msg.HOLISTIC_PAUSE_SHOW = "全身偵測 暫停偵測";
 
 Blockly.Msg.ESP32_CAM_LINENOTIFY_SHOW = "ESP32-CAM 截圖上傳Line通知";
 Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW = "訊息文字";
@@ -1081,3 +1083,4 @@ Blockly.Msg.TEACHABLEMACHINE_SRC_SHOW = "串流網址";
 Blockly.Msg.TEACHABLEMACHINE_PROJECT_SHOW = "機器學習(自訂模型) 專案";
 Blockly.Msg.TEACHABLEMACHINE_MAXCLASS_SHOW = "最大可能性分類名稱";
 Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW = "最大可能性";
+Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW = "機器學習(自訂模型) 暫停偵測";
