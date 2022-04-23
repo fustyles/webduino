@@ -85,7 +85,6 @@ window.onload = function () {
 				var { pose, posenetOutput } = await Model.estimatePose(canvas);
 				var prediction = await Model.predict(posenetOutput);
 			}		
-			console.log(prediction);
 			if (maxPredictions>0) {
 				for (let i = 0;i < maxPredictions;i++)
 					data += prediction[i].className + "," + prediction[i].probability.toFixed(2) + "<br>";
