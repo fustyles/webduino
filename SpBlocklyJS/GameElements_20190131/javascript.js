@@ -1984,3 +1984,35 @@ Blockly.JavaScript['image_binarytobase64'] = function (block) {
   var code = '"data:image/jpeg;base64,"+ binarytobase64('+value_array+')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['span_create'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_fontsize_ = Blockly.JavaScript.valueToCode(block, 'fontsize_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_innerHTML_ = Blockly.JavaScript.valueToCode(block, 'innerHTML_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_zindex_ = Blockly.JavaScript.valueToCode(block, 'zindex_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var code = 'span_create(' + value_id_ + ','+ value_left_ + ',' + value_top_ + ','+ value_fontsize_ + ',' + value_innerHTML_ + ',' + value_zindex_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['span_set'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'span_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['span_get'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'span_get(' + value_id_ + ',"' + value_property_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['span_delete'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'span_delete(' + value_id_ + ');\n';
+  return code;
+};
