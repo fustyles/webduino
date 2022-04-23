@@ -5465,6 +5465,38 @@ Blockly.Arduino['font_code'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['span_create'] = function (block) {
+  var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);  
+  var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_fontsize_ = Blockly.Arduino.valueToCode(block, 'fontsize_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_innerHTML_ = Blockly.Arduino.valueToCode(block, 'innerHTML_', Blockly.Arduino.ORDER_ATOMIC);  
+  var value_zindex_ = Blockly.Arduino.valueToCode(block, 'zindex_', Blockly.Arduino.ORDER_ATOMIC); 
+  var code = 'span_create(' + value_id_ + ','+ value_left_ + ',' + value_top_ + ','+ value_fontsize_ + ',' + value_innerHTML_ + ',' + value_zindex_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['span_set'] = function (block) {
+  var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var value_value_ = Blockly.Arduino.valueToCode(block, 'value_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'span_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['span_get'] = function (block) {
+  var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'span_get(' + value_id_ + ',"' + value_property_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['span_delete'] = function (block) {
+  var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'span_delete(' + value_id_ + ');\n';
+  return code;
+};
+
 Blockly.Arduino['location'] = function (block) {
   var value_property = block.getFieldValue('value_property'); 
 
