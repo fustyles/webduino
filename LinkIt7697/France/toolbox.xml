@@ -1487,7 +1487,7 @@
 		</block>    
 
 		</category>
-		  <category id="catGameElements_sub26"> 
+		  <category id="catGameElements_sub26" name="catGameElements_sub26"> 
 
 		  <block type="span_create"> 
 		    <value name="id_">
