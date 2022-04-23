@@ -25,6 +25,9 @@ window.onload = function () {
 		const URL = modelPath.value;
 		const modelURL = URL + "model.json";
 		const metadataURL = URL + "metadata.json";
+		console.log(project.innerHTML);
+		console.log(tmImage);
+		console.log(tmPose);
 		if (project.innerHTML=="image") {
 			Model = await tmImage.load(modelURL, metadataURL);
 		}
@@ -35,7 +38,7 @@ window.onload = function () {
 
 		result.innerHTML = "";
 		start();
-	}
+	}	
 	
 	function start() {
 	  clearInterval(myTimer);  
