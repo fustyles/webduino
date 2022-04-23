@@ -41,7 +41,7 @@ window.onload = function () {
 	function start() {
 	  clearInterval(myTimer);  
 	  myTimer = setInterval(function(){error_handle();},5000);
-	  ShowImage.src = 'http://192.168.0.31/?getstill='+Math.random();
+	  ShowImage.src = document.location.origin+'/?getstill='+Math.random();
 	}
 
 	function error_handle() {
