@@ -89,8 +89,10 @@ window.onload = function () {
 				for (let i = 0;i < maxPredictions;i++)
 					data += prediction[i].className + "," + prediction[i].probability.toFixed(2) + "<br>";
 				result.innerHTML = data;
-				if (result.innerHTML!="")
+				if (result.innerHTML!="") {
 					result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);
+					recognitionFinish();
+				}
 			}
 			else
 				result.innerHTML = "";
