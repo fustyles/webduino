@@ -75,10 +75,10 @@ window.onload = function () {
 		else {
 			var data = "";
 			if (project.innerHTML=="image")
-				var prediction = await Model.predict(canvas);
+				var prediction = Model.predict(canvas);
 			else if (project.innerHTML=="pose") {
-				var { pose, posenetOutput } = await Model.estimatePose(canvas);
-				var prediction = await Model.predict(posenetOutput);
+				var { pose, posenetOutput } = Model.estimatePose(canvas);
+				var prediction = Model.predict(posenetOutput);
 			}			
 			if (maxPredictions>0) {
 				for (let i = 0;i < maxPredictions;i++)
