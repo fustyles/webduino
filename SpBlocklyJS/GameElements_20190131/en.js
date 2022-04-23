@@ -491,6 +491,7 @@ Blockly.Msg.WINDOW_NAME_TOP = "any_window";
 
 Blockly.Msg["CATPAGEELEMENTS"] = "Page Elements";
 Blockly.Msg["CATPAGEELEMENTS_GENERAL"] = "general";
+Blockly.Msg["CATPAGEELEMENTS_SPAN"] = "span";
 Blockly.Msg["CATPAGEELEMENTS_IMAGE"] = "image";
 Blockly.Msg["CATPAGEELEMENTS_BUTTON"] = "button";
 Blockly.Msg["CATPAGEELEMENTS_COLORPICKER"] = "color picker";
