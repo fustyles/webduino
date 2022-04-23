@@ -591,6 +591,14 @@ Blockly.Msg.LOCATION_PATHNAME_SHOW = "相對於主機路徑(pathname)";
 Blockly.Msg.LOCATION_PORT_SHOW = "埠號(port)";
 Blockly.Msg.LOCATION_PROTOCAL_SHOW = "協議(protocol)";
 Blockly.Msg.LOCATION_SEARCH_SHOW = "?符號後面字串(seellipseh)";
+Blockly.Msg.SPAN_ID = "行內容器 代碼";
+Blockly.Msg.SPAN_CREATE = "行內容器 建立";
+Blockly.Msg.SPAN_VALUE = "值";
+Blockly.Msg.SPAN_SET = "設定";
+Blockly.Msg.SPAN_GET = "取得";
+Blockly.Msg.SPAN_DELETE = "刪除";
+
+
 Blockly.Msg.ESP32_BUTTON = "按鈕";
 Blockly.Msg.ESP32_BUTTON_PIN = "按鈕 腳位";
 Blockly.Msg.ESP32_BUTTON_PIN_A = "A";
