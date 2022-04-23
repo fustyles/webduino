@@ -16,23 +16,25 @@ window.onload = function () {
 	var restartCount=0;
 	var Model;
 	
-	if (modelPath.value=="") {
-		result.innerHTML = "Please input model path.";
-		return;
-	}
-	const URL = modelPath.value;
-	const modelURL = URL + "model.json";
-	const metadataURL = URL + "metadata.json";
-	if (project.innerHTML=="image") {
-		Model = tmImage.load(modelURL, metadataURL);
-	}
-	else if (project.innerHTML=="pose") {
-		Model = tmPose.load(modelURL, metadataURL);
-	}			
-	maxPredictions = Model.getTotalClasses();
+	setInterval(function(){
+		if (modelPath.value=="") {
+			result.innerHTML = "Please input model path.";
+			return;
+		}
+		const URL = modelPath.value;
+		const modelURL = URL + "model.json";
+		const metadataURL = URL + "metadata.json";
+		if (project.innerHTML=="image") {
+			Model = tmImage.load(modelURL, metadataURL);
+		}
+		else if (project.innerHTML=="pose") {
+			Model = tmPose.load(modelURL, metadataURL);
+		}			
+		maxPredictions = Model.getTotalClasses();
 
-	result.innerHTML = "";
-	start();
+		result.innerHTML = "";
+		start();
+	},5000);
 	
 	function start() {
 	  clearInterval(myTimer);  
