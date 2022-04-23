@@ -26,9 +26,6 @@ window.onload = function () {
 		const URL = modelPath.value;
 		const modelURL = URL + "model.json";
 		const metadataURL = URL + "metadata.json";
-		console.log(project.innerHTML);
-		console.log(tmImage);
-		console.log(tmPose);
 		if (project.innerHTML=="image") {
 			Model = await tmImage.load(modelURL, metadataURL);
 		}
@@ -64,7 +61,7 @@ window.onload = function () {
 	  }          
 	}
 
-	function DetectImage() {
+	async function DetectImage() {
 	    canvas.setAttribute("width", ShowImage.width);
 	    canvas.setAttribute("height", ShowImage.height);
 		
@@ -83,11 +80,11 @@ window.onload = function () {
 		else {
 			var data = "";
 			if (project.innerHTML=="image")
-				var prediction = Model.predict(canvas);
+				var prediction = await Model.predict(canvas);
 			else if (project.innerHTML=="pose") {
-				var { pose, posenetOutput } = Model.estimatePose(canvas);
-				var prediction = Model.predict(posenetOutput);
-			}			
+				var { pose, posenetOutput } = await Model.estimatePose(canvas);
+				var prediction = await Model.predict(posenetOutput);
+			}		
 			console.log(prediction);
 			if (maxPredictions>0) {
 				for (let i = 0;i < maxPredictions;i++)
