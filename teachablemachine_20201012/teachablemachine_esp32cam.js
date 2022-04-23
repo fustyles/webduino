@@ -8,6 +8,8 @@ window.onload = function () {
 	var context = canvas.getContext('2d');
 	var mirrorimage = document.getElementById("mirrorimage_teachablemachine");
 	var teachablemachineState = document.getElementById('teachablemachineState');
+	var modelPath = document.getElementById('modelPath_teachablemachine');
+	var project = document.getElementById("project_teachablemachine");
 	var frame = document.getElementById("frame_teachablemachine");
 	var result = document.getElementById('gamediv_teachablemachine'); 
 	var myTimer;
