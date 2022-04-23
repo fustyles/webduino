@@ -591,6 +591,13 @@ Blockly.Msg.LOCATION_PATHNAME_SHOW = "pathname";
 Blockly.Msg.LOCATION_PORT_SHOW = "port";
 Blockly.Msg.LOCATION_PROTOCAL_SHOW = "protocol";
 Blockly.Msg.LOCATION_SEARCH_SHOW = "seellipseh";
+Blockly.Msg.SPAN_ID = "Span ID";
+Blockly.Msg.SPAN_CREATE = "Span Create";
+Blockly.Msg.SPAN_VALUE = "Value";
+Blockly.Msg.SPAN_SET = "Set";
+Blockly.Msg.SPAN_GET = "Get";
+Blockly.Msg.SPAN_DELETE = "Delete";
+
 Blockly.Msg.ESP32_BUTTON = "button ";
 Blockly.Msg.ESP32_BUTTON_PIN = "Button Set Pins ";
 Blockly.Msg.ESP32_BUTTON_PIN_A = "A";
