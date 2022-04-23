@@ -24,3 +24,4 @@ MSG.catGameElements_sub22 = "密碼欄位";
 MSG.catGameElements_sub23 = "表單";
 MSG.catGameElements_sub24 = "視訊媒體";
 MSG.catGameElements_sub25 = "字型";
+MSG.catGameElements_sub26 = "行內容器";

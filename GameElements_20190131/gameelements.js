@@ -3831,6 +3831,114 @@ function HextoRgb(color) {
 	return btoa(String.fromCharCode.apply(null, content));
   }
 
+  function span_create(input_id,input_left,input_top,input_fontSize,input_innerHTML,input_zindex) {
+    if (document.getElementById("gamespan_"+input_id)) 
+      document.getElementById("gamespan_"+input_id).parentNode.removeChild(document.getElementById("gamespan_"+input_id));
+    var obj = document.createElement('span');
+    obj.id = "gamespan_"+input_id;
+    obj.style.position = "absolute";
+    obj.style.left = input_left + 'px';
+    obj.style.top = input_top + 'px';
+    obj.style.fontSize = input_fontSize + "px";
+    obj.innerHTML = input_innerHTML;
+    obj.style.zIndex = input_zindex;
+    obj.draggable="true";
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
+    obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
+    document.body.appendChild(obj);
+  }
+
+  function span_set(input_id,input_property,input_value) {
+    if (document.getElementById("gamespan_"+input_id)) {
+	  var obj = document.getElementById("gamespan_"+input_id);
+      if (input_property=="left")
+        obj.style.left = input_value + "px";
+      else if (input_property=="top")
+        obj.style.top = input_value + "px";
+      else if (input_property=="borderstyle")
+        obj.style.borderStyle = input_value;
+      else if (input_property=="borderwidth")
+        obj.style.borderWidth = input_value + "px";
+      else if (input_property=="bordercolor")
+        obj.style.borderColor = input_value; 
+      else if (input_property=="borderradius") {
+	if (input_value.toString().toLowerCase().indexOf("px")==-1)
+          obj.style.borderRadius = input_value + "px";
+	else
+	  obj.style.borderRadius = input_value;
+      }	    
+      else if (input_property=="background")
+        obj.style.background = input_value;
+      else if (input_property=="color")
+        obj.style.color = input_value;
+      else if (input_property=="fontsize")
+        obj.style.fontSize = input_value + "px";	    
+      else if (input_property=="opacity")
+        obj.style.opacity = input_value;    
+      else if (input_property=="innerHTML")
+        obj.innerHTML = input_value;      
+      else if (input_property=="zindex")
+        obj.style.zIndex = input_value;
+      else if (input_property=="display"){ 
+        if (input_value==1)
+          obj.style.display = "block";    
+        else if (input_value==0)
+          obj.style.display = "none";
+      }
+      else if (input_property=="position")
+        obj.style.position = input_value;
+      else if (input_property=="draggable")
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;	    
+    }
+  }
+
+  function span_get(input_id,input_property){
+    if (document.getElementById("gamespan_"+input_id)) {
+	  var obj = document.getElementById("gamespan_"+input_id);
+      if (input_property=="left")
+        return Number(obj.style.left.replace(/px/ig,""));
+      else if (input_property=="top")
+        return Number(obj.style.top.replace(/px/ig,""));
+      else if (input_property=="borderstyle")
+        return obj.style.borderStyle;
+      else if (input_property=="borderwidth")
+        return Number(obj.style.borderWidth.replace(/px/ig,""));
+      else if (input_property=="bordercolor")
+       return obj.style.borderColor;	    
+      else if (input_property=="background")
+        return obj.style.background;
+      else if (input_property=="color")
+        return obj.style.color;
+      else if (input_property=="fontsize")
+        return Number(obj.style.fontSize.replace(/px/ig,""));  	    
+      else if (input_property=="opacity")
+        return Number(obj.style.opacity);
+      else if (input_property=="innerHTML")
+        return obj.innerHTML;
+      else if (input_property=="zindex")
+        return obj.style.zIndex;
+      else if (input_property=="display")
+        return obj.style.display;
+      else if (input_property=="position")
+        return obj.style.position;		    
+      else if (input_property=="draggable")
+        return obj.draggable;
+      else if (input_property=='id')
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
+    }
+    else
+      return "";
+  }
+
+  function span_delete(input_id) {
+    if (document.getElementById("gamespan_"+input_id))
+      document.getElementById("gamespan_"+input_id).parentNode.removeChild(document.getElementById("gamespan_"+input_id));
+  }
+  
   window.table_create = table_create;
   window.table_set = table_set;
   window.table_get = table_get;
@@ -3991,5 +4099,9 @@ function HextoRgb(color) {
   window.outputfile_text = outputfile_text; 
   window.outputfile_jpg = outputfile_jpg;
   window.binarytobase64 = binarytobase64;
+  window.span_create = span_create;
+  window.span_set = span_set;
+  window.span_get = span_get;
+  window.span_delete = span_delete;  
   
 }(window, window.document));
