@@ -97,12 +97,6 @@ window.onload = function () {
 			recognitionFinish();
 		}
 
-		try { 
-		  document.createEvent("TouchEvent");
-		  setTimeout(function(){start();},250);
-		}
-		catch(e) { 
-		  setTimeout(function(){start();},150);
-		} 
+		setTimeout(function(){start();},200);
 	}  
 }
