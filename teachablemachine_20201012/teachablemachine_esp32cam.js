@@ -91,10 +91,10 @@ window.onload = function () {
 				result.innerHTML = data;
 				if (result.innerHTML!="")
 					result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);
-				recognitionFinish();
 			}
 			else
 				result.innerHTML = "";
+			recognitionFinish();
 		}
 		
 		try { 
