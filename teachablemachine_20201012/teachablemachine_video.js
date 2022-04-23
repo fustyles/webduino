@@ -16,6 +16,7 @@ window.onload = function () {
 	var source = document.getElementById("sourceId_teachablemachine");
 	var project = document.getElementById("project_teachablemachine");
 	let Model;
+	var maxPredictions;
 	var sourceTimer;
 	
 	setTimeout(function(){loadModel();}, 5000);
