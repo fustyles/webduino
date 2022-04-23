@@ -15,6 +15,7 @@ window.onload = function () {
 	var myTimer;
 	var restartCount=0;
 	var Model;
+	var maxPredictions;
 	
 	setTimeout(function(){loadModel();}, 5000);
 	async function loadModel() {
@@ -35,7 +36,7 @@ window.onload = function () {
 
 		result.innerHTML = "";
 		start();
-	}
+	}	
 	
 	function start() {
 	  clearInterval(myTimer);  
@@ -60,11 +61,9 @@ window.onload = function () {
 	  }          
 	}
 
-	function DetectImage() {
+	async function DetectImage() {
 	    canvas.setAttribute("width", ShowImage.width);
 	    canvas.setAttribute("height", ShowImage.height);
-		canvas.style.width = ShowImage.width+"px";
-		canvas.style.height = ShowImage.height+"px";
 		
 		if (mirrorimage.value==1) {
 			context.translate((canvas.width + ShowImage.width) / 2, 0);
@@ -81,11 +80,11 @@ window.onload = function () {
 		else {
 			var data = "";
 			if (project.innerHTML=="image")
-				var prediction = Model.predict(canvas);
+				var prediction = await Model.predict(canvas);
 			else if (project.innerHTML=="pose") {
-				var { pose, posenetOutput } = Model.estimatePose(canvas);
-				var prediction = Model.predict(posenetOutput);
-			}			
+				var { pose, posenetOutput } = await Model.estimatePose(canvas);
+				var prediction = await Model.predict(posenetOutput);
+			}		
 			if (maxPredictions>0) {
 				for (let i = 0;i < maxPredictions;i++)
 					data += prediction[i].className + "," + prediction[i].probability.toFixed(2) + "<br>";
@@ -95,6 +94,7 @@ window.onload = function () {
 			}
 			else
 				result.innerHTML = "";
+			recognitionFinish();
 		}
 		
 		try { 
