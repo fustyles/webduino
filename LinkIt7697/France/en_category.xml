@@ -61,4 +61,5 @@
 <category><name>fu_mqtt</name><replace>MQTT</replace></category>
 <category><name>objectreconginition</name><replace>Object Recognition</replace></category>
 <category><name>holisticreconginition</name><replace>Holistic Recognition</replace></category>
+<category><name>teachablemachine</name><replace>Teachable Machine(Google)</replace></category>
 </xml>

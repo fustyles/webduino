@@ -1057,3 +1057,26 @@ Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server module Get request and execute comm
 
 Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "Image Uint8Array to Base64";
 Blockly.Msg.COCOSSD_CLEAR_SHOW = "Object Detection (coco-ssd) clear result";
+
+Blockly.Msg.ESP32_CAM_TEACHABLEMACHINE_SHOW = "Teachable Machine (custom model)";
+Blockly.Msg.ESP32_CAM_TEACHABLEMACHINE_INITIAL_SHOW = "Initial";
+Blockly.Msg.ESP32_CAM_TEACHABLEMACHINE_RECOGNITION_SHOW = "After recognizing";
+
+Blockly.Msg.TEACHABLEMACHINE_SHOW = "Teachable Machine (custom model)";
+Blockly.Msg.TEACHABLEMACHINE_WIDTH_SHOW = "Width";
+Blockly.Msg.TEACHABLEMACHINE_HEIGHT_SHOW = "Height";
+Blockly.Msg.TEACHABLEMACHINE_RESULT_SHOW = "Result";
+Blockly.Msg.TEACHABLEMACHINE_MIRRORIMAGE_SHOW = "MirrorImage";
+Blockly.Msg.TEACHABLEMACHINE_OPACITY_SHOW = "Opacity";
+Blockly.Msg.TEACHABLEMACHINE_MODEL_SHOW = "Model Path";
+Blockly.Msg.TEACHABLEMACHINE_PROPORTION_SHOW = "Teachable Machine (custom model) Get";
+Blockly.Msg.TEACHABLEMACHINE_STATE_SHOW = "Teachable Machine (custom model) Detect State";
+Blockly.Msg.TEACHABLEMACHINE_VIDEO_LEFT_SHOW = "Teachable Machine (custom model) Screen Left";
+Blockly.Msg.TEACHABLEMACHINE_VIDEO_TOP_SHOW = "TOP";
+Blockly.Msg.TEACHABLEMACHINE_FACING_SHOW = "Camera Facing";
+Blockly.Msg.TEACHABLEMACHINE_FACING_FRONT_SHOW = "Front";
+Blockly.Msg.TEACHABLEMACHINE_FACING_BACK_SHOW = "Back";
+Blockly.Msg.TEACHABLEMACHINE_SRC_SHOW = "Stream URL";
+Blockly.Msg.TEACHABLEMACHINE_PROJECT_SHOW = "Teachable Machine (custom model) Project";
+Blockly.Msg.TEACHABLEMACHINE_MAXCLASS_SHOW = "Max ClassName";
+Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW = "Max Probability";

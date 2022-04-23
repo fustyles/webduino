@@ -1054,7 +1054,30 @@ Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW = "訊息文字";
 Blockly.Msg.ESP32_CAM_TELEGRAMBOT_SHOW = "ESP32-CAM 截圖上傳Telegram機器人";
 Blockly.Msg.ESP32_CAM_TOKEN_SHOW = "權杖";
 Blockly.Msg.ESP32_CAM_CHATID_SHOW = "聊天室ID";
-Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server模組取得連入請求執行自訂指令";
+Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server模組取得網址參數指令並執行";
 
 Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "圖檔Uint8Array格式轉換Base64格式";
 Blockly.Msg.COCOSSD_CLEAR_SHOW = "物件偵測(coco-ssd) 清除結果";
+
+Blockly.Msg.ESP32_CAM_TEACHABLEMACHINE_SHOW = "機器學習(自訂模型)";
+Blockly.Msg.ESP32_CAM_TEACHABLEMACHINE_INITIAL_SHOW = "初始設定";
+Blockly.Msg.ESP32_CAM_TEACHABLEMACHINE_RECOGNITION_SHOW = "辨識完成後執行";
+
+Blockly.Msg.TEACHABLEMACHINE_SHOW = "機器學習(自訂模型)";
+Blockly.Msg.TEACHABLEMACHINE_WIDTH_SHOW = "寬度";
+Blockly.Msg.TEACHABLEMACHINE_HEIGHT_SHOW = "高度";
+Blockly.Msg.TEACHABLEMACHINE_RESULT_SHOW = "結果";
+Blockly.Msg.TEACHABLEMACHINE_MIRRORIMAGE_SHOW = "鏡像";
+Blockly.Msg.TEACHABLEMACHINE_OPACITY_SHOW = "透明度";
+Blockly.Msg.TEACHABLEMACHINE_MODEL_SHOW = "模型路徑";
+Blockly.Msg.TEACHABLEMACHINE_PROPORTION_SHOW = "機器學習(自訂模型) 取得";
+Blockly.Msg.TEACHABLEMACHINE_STATE_SHOW = "機器學習(自訂模型) 偵測狀態";
+Blockly.Msg.TEACHABLEMACHINE_VIDEO_LEFT_SHOW = "機器學習(自訂模型) 畫面 靠左距離";
+Blockly.Msg.TEACHABLEMACHINE_VIDEO_TOP_SHOW = "靠上距離";
+Blockly.Msg.TEACHABLEMACHINE_FACING_SHOW = "鏡頭";
+Blockly.Msg.TEACHABLEMACHINE_FACING_FRONT_SHOW = "前置";
+Blockly.Msg.TEACHABLEMACHINE_FACING_BACK_SHOW = "後置";
+Blockly.Msg.TEACHABLEMACHINE_SRC_SHOW = "串流網址";
+Blockly.Msg.TEACHABLEMACHINE_PROJECT_SHOW = "機器學習(自訂模型) 專案";
+Blockly.Msg.TEACHABLEMACHINE_MAXCLASS_SHOW = "最大可能性分類名稱";
+Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW = "最大可能性";

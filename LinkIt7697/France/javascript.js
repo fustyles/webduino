@@ -2583,6 +2583,12 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'    pinMode(p1.toInt(), OUTPUT);\n'+
 			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
 			'  }\n'+
+			'  else if (cmd=="print") {\n'+
+			'    Serial.print(p1);\n'+
+			'  }\n'+
+			'  else if (cmd=="println") {\n'+
+			'    Serial.println(p1);\n'+
+			'  }\n'+			
 			'  else if (cmd=="buzzer") { \n'+
 			'    pinMode(p1.toInt(),OUTPUT);\n'+
 			'    if (p4=="") p4="9";\n'+
@@ -2841,6 +2847,12 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 			'    pinMode(p1.toInt(), OUTPUT);\n'+
 			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
 			'  }\n'+
+			'  else if (cmd=="print") {\n'+
+			'    Serial.print(p1);\n'+
+			'  }\n'+
+			'  else if (cmd=="println") {\n'+
+			'    Serial.println(p1);\n'+
+			'  }\n'+				
 			'  else if (cmd=="buzzer") { \n'+
 			'    pinMode(p1.toInt(),OUTPUT);\n'+
 			'    if (p4=="") p4="9";\n'+
@@ -3258,6 +3270,12 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'  else if (cmd=="analogread") {\n'+
 			'    Feedback=String(analogRead(p1.toInt()));\n'+
 			'  }\n'+
+			'  else if (cmd=="print") {\n'+
+			'    Serial.print(p1);\n'+
+			'  }\n'+
+			'  else if (cmd=="println") {\n'+
+			'    Serial.println(p1);\n'+
+			'  }\n'+				
 			'  else {\n  '+ 
 			statements_executecommand.replace(/\n/g,"\n  ")+
 			'}\n'+ 
@@ -7966,6 +7984,10 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
  			'       break;\n'+
 			'      }\n'+
 			'    }\n'+
+			'  } else if (cmd=="print") {\n'+
+			'    Serial.print(p1);\n'+
+			'  } else if (cmd=="println") {\n'+
+			'    Serial.println(p1);\n'+			
 			'  } else if (cmd=="framesize") {\n'+
 			'    int val = p1.toInt();\n'+
 			'    sensor_t * s = esp_camera_sensor_get();\n'+
@@ -8226,7 +8248,7 @@ Blockly.Arduino['cocossd_esp32cam'] = function(block) {
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
 		
-	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/fustyles.github.io/webduino/coco-ssd_20201012/coco-ssd.js'></script><script src='https:\/\/fustyles.github.io/webduino/coco-ssd_20201012/coco-ssd_esp32cam.js'></script></head><body><script>cocossd_video('block','1','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+" function recognitionFinish(){const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+javascript_recognition.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"};main();}</script></body></html>\"";
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/fustyles.github.io/webduino/coco-ssd_20201012/coco-ssd.js'></script><script src='https:\/\/fustyles.github.io/webduino/coco-ssd_20201012/coco-ssd_esp32cam.js'></script></head><body><script>cocossd_video('block','1','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" recognitionFinish();function recognitionFinish(){const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+javascript_recognition.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"};main();}</script></body></html>\"";
 
   return [code,Blockly.Arduino.ORDER_ATOMIC];
 };
@@ -8315,7 +8337,7 @@ Blockly.Arduino['holistic_esp32cam'] = function(block) {
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
 		
-	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/holistic_20201012/holistic.js'></script><script src='https:\/\/fustyles.github.io/webduino/holistic_20201012/holistic_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@mediapipe/holistic@0.4/holistic.js' crossorigin='anonymous'></script></head><body><script>holistic_video('block','1','1','1','1','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+" function recognitionFinish(){const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+javascript_recognition.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"};main();}</script></body></html>\"";
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/holistic_20201012/holistic.js'></script><script src='https:\/\/fustyles.github.io/webduino/holistic_20201012/holistic_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@mediapipe/holistic@0.4/holistic.js' crossorigin='anonymous'></script></head><body><script>holistic_video('block','1','1','1','1','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" recognitionFinish();function recognitionFinish(){const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+javascript_recognition.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"};main();}</script></body></html>\"";
 
   return [code,Blockly.Arduino.ORDER_ATOMIC];
 };
@@ -8464,6 +8486,49 @@ Blockly.Arduino['holistic_righthand_angle'] = function (block) {
   var value_adjust = Blockly.Arduino.valueToCode(block, 'adjust_', Blockly.Arduino.ORDER_ATOMIC);
   var code = 'holistic_part_angle("righthand", Number(' + value_part1 + '), Number(' + value_part2 + '),"' + value_axis + '",' + value_adjust + ')';
   return [code, Blockly.Arduino.ORDER_NONE];  
+};
+
+Blockly.Arduino['teachablemachine_esp32cam'] = function(block) {
+	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
+	var javascript_teachablemachine = Blockly.Arduino.statementToCode(block, 'javascript_teachablemachine');
+		
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/teachablemachine_20201012/teachablemachine.js'></script><script src='https:\/\/fustyles.github.io/webduino/teachablemachine_20201012/teachablemachine_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js'></script></head><body><script>teachablemachine_video('block','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" recognitionFinish();function recognitionFinish(){const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+javascript_teachablemachine.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"};main();}</script></body></html>\"";
+
+  return [code,Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['teachablemachine_video'] = function(block) { 
+  var value_result_ = block.getFieldValue('result_');
+  var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
+  var value_opacity_ = block.getFieldValue('opacity_');
+  var code = 'teachablemachine_video("' + value_result_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
+  return code;
+};
+
+Blockly.Arduino['teachablemachine_model'] = function(block) {
+  var value_project_ = block.getFieldValue('project_');
+  var value_model_ = Blockly.Arduino.valueToCode(block, 'model_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'teachablemachine_model("' + value_project_ + '",' + value_model_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['teachablemachine_result'] = function(block) { 
+  var value_result_ = block.getFieldValue('result_');
+  var code = 'teachablemachine_result("' + value_result_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['teachablemachine_state'] = function(block) {
+  var value_state_ = block.getFieldValue('state_');
+  var code = 'teachablemachine_state(' + value_state_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['teachablemachine_video_position'] = function(block) { 
+  var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'teachablemachine_video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
 };
 
 Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
