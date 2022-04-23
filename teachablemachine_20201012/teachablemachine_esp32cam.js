@@ -1,6 +1,5 @@
 document.write('<div id="region_teachablemachine" style="z-index:999"><video id="gamevideo_teachablemachine" width="320" height="240"  style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_teachablemachine" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_teachablemachine"></canvas><br><select id="mirrorimage_teachablemachine" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><input type="text" id="modelPath_teachablemachine" value="" style="position:absolute;visibility:hidden;"><br><div id="gamediv_teachablemachine" style="color:red"></div></div>');
 document.write('<div id="teachablemachineState" style="position:absolute;display:none;">1</div>');
-document.write('<div id="sourceId_teachablemachine" style="position:absolute;display:none;"></div>');
 document.write('<div id="project_teachablemachine" style="position:absolute;display:none;"></div>');
 
 window.onload = function () {
