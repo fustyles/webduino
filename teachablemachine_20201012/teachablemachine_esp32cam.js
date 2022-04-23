@@ -34,7 +34,7 @@ window.onload = function () {
 
 		result.innerHTML = "";
 		start();
-	}, 3000);
+	}, 5000);
 	
 	function start() {
 	  clearInterval(myTimer);  
