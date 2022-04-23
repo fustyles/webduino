@@ -54,6 +54,7 @@
 <category><name>catGameElements_sub23</name><replace>Form</replace></category>
 <category><name>catGameElements_sub24</name><replace>Video</replace></category>
 <category><name>catGameElements_sub25</name><replace>Font</replace></category>
+<category><name>catGameElements_sub26</name><replace>Span</replace></category>
 <category><name>oled</name><replace>OLED Screen</replace></category>
 <category><name>EZ+</name><replace>EZ Start Kit+</replace></category>
 <category><name>airquality</name><replace>Taiwan Air Quality</replace></category>
