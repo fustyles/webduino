@@ -16,7 +16,7 @@ window.onload = function () {
 	var restartCount=0;
 	var Model;
 	
-	setInterval(function(){
+	setTimeout(function(){
 		if (modelPath.value=="") {
 			result.innerHTML = "Please input model path.";
 			return;
