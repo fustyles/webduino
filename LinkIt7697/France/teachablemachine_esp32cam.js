@@ -2,7 +2,7 @@ document.write('<div id="region_teachablemachine" style="z-index:999"><video id=
 document.write('<div id="teachablemachineState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="project_teachablemachine" style="position:absolute;display:none;"></div>');
 
-window.onload = function () {
+window.onload = function () {	
 	var ShowImage = document.getElementById('gameimage_teachablemachine');	
 	var canvas = document.getElementById('gamecanvas_teachablemachine'); 
 	var context = canvas.getContext('2d');
@@ -16,7 +16,7 @@ window.onload = function () {
 	var restartCount=0;
 	var Model;
 	var maxPredictions;
-	
+
 	setTimeout(function(){loadModel();}, 5000);
 	async function loadModel() {
 		if (modelPath.value=="") {
@@ -37,7 +37,7 @@ window.onload = function () {
 		result.innerHTML = "";
 		start();
 	}	
-	
+
 	function start() {
 	  clearInterval(myTimer);  
 	  myTimer = setInterval(function(){error_handle();},5000);
@@ -64,7 +64,7 @@ window.onload = function () {
 	async function DetectImage() {
 	    canvas.setAttribute("width", ShowImage.width);
 	    canvas.setAttribute("height", ShowImage.height);
-		
+
 		if (mirrorimage.value==1) {
 			context.translate((canvas.width + ShowImage.width) / 2, 0);
 			context.scale(-1, 1);
@@ -73,7 +73,7 @@ window.onload = function () {
 		}
 		else
 			context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);  
-		
+
 		if (teachablemachineState.innerHTML=="0") {
 			result.innerHTML = "";
 		}
@@ -96,7 +96,7 @@ window.onload = function () {
 				result.innerHTML = "";
 			recognitionFinish();
 		}
-		
+
 		try { 
 		  document.createEvent("TouchEvent");
 		  setTimeout(function(){start();},250);

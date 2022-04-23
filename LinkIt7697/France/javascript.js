@@ -2588,6 +2588,9 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'  }\n'+
 			'  else if (cmd=="println") {\n'+
 			'    Serial.println(p1);\n'+
+			'  }\n'+	
+			'  else if (cmd=="delay") {\n'+
+			'    delay(p1.toInt());\n'+
 			'  }\n'+			
 			'  else if (cmd=="buzzer") { \n'+
 			'    pinMode(p1.toInt(),OUTPUT);\n'+
@@ -2852,7 +2855,10 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 			'  }\n'+
 			'  else if (cmd=="println") {\n'+
 			'    Serial.println(p1);\n'+
-			'  }\n'+				
+			'  }\n'+	
+			'  else if (cmd=="delay") {\n'+
+			'    delay(p1.toInt());\n'+
+			'  }\n'+			
 			'  else if (cmd=="buzzer") { \n'+
 			'    pinMode(p1.toInt(),OUTPUT);\n'+
 			'    if (p4=="") p4="9";\n'+
@@ -3275,7 +3281,10 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'  }\n'+
 			'  else if (cmd=="println") {\n'+
 			'    Serial.println(p1);\n'+
-			'  }\n'+				
+			'  }\n'+
+			'  else if (cmd=="delay") {\n'+
+			'    delay(p1.toInt());\n'+
+			'  }\n'+			
 			'  else {\n  '+ 
 			statements_executecommand.replace(/\n/g,"\n  ")+
 			'}\n'+ 
@@ -7987,7 +7996,9 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'  } else if (cmd=="print") {\n'+
 			'    Serial.print(p1);\n'+
 			'  } else if (cmd=="println") {\n'+
-			'    Serial.println(p1);\n'+			
+			'    Serial.println(p1);\n'+
+			'  } else if (cmd=="delay") {\n'+
+			'    delay(p1.toInt());\n'+				
 			'  } else if (cmd=="framesize") {\n'+
 			'    int val = p1.toInt();\n'+
 			'    sensor_t * s = esp_camera_sensor_get();\n'+

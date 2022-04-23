@@ -12604,7 +12604,8 @@ Blockly.Blocks['servermodule_parameter_set_address3'] = {
 		["hmirror(value)","hmirror"],
 		["vflip(value)","vflip"],
 		["print","print"],
-		["println","println"]		
+		["println","println"],
+		["delay(ms)","delay"]		
 		]), "cmd"); 
     this.appendValueInput("p1")
         .appendField("p1")	
