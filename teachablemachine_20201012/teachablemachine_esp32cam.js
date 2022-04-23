@@ -48,7 +48,7 @@ window.onload = function () {
 	  restartCount++;
 	  clearInterval(myTimer);
 	  if (restartCount<=2) {
-		myTimer = setInterval(function(){start();},5000);
+		myTimer = setInterval(function(){start();},10000);
 	  }
 	}    
 
