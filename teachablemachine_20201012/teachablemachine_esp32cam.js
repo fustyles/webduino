@@ -16,7 +16,7 @@ window.onload = function () {
 	var restartCount=0;
 	var Model;
 	
-	setTimeout(function() {
+	setTimeout(async function() {
 		if (modelPath.value=="") {
 			result.innerHTML = "Please input model path.";
 			return;
@@ -25,10 +25,10 @@ window.onload = function () {
 		const modelURL = URL + "model.json";
 		const metadataURL = URL + "metadata.json";
 		if (project.innerHTML=="image") {
-			Model = tmImage.load(modelURL, metadataURL);
+			Model = await tmImage.load(modelURL, metadataURL);
 		}
 		else if (project.innerHTML=="pose") {
-			Model = tmPose.load(modelURL, metadataURL);
+			Model = await tmPose.load(modelURL, metadataURL);
 		}			
 		maxPredictions = Model.getTotalClasses();
 
