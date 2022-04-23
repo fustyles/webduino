@@ -15,6 +15,7 @@ window.onload = function () {
 	var myTimer;
 	var restartCount=0;
 	var Model;
+	var maxPredictions;
 	
 	setTimeout(function(){loadModel();}, 5000);
 	async function loadModel() {
@@ -43,7 +44,7 @@ window.onload = function () {
 	function start() {
 	  clearInterval(myTimer);  
 	  myTimer = setInterval(function(){error_handle();},5000);
-	  ShowImage.src = document.location.origin+'/?getstill='+Math.random();
+	  ShowImage.src = 'http://192.168.0.31/?getstill='+Math.random();
 	}
 
 	function error_handle() {
@@ -66,8 +67,6 @@ window.onload = function () {
 	function DetectImage() {
 	    canvas.setAttribute("width", ShowImage.width);
 	    canvas.setAttribute("height", ShowImage.height);
-		canvas.style.width = ShowImage.width+"px";
-		canvas.style.height = ShowImage.height+"px";
 		
 		if (mirrorimage.value==1) {
 			context.translate((canvas.width + ShowImage.width) / 2, 0);
@@ -89,6 +88,7 @@ window.onload = function () {
 				var { pose, posenetOutput } = Model.estimatePose(canvas);
 				var prediction = Model.predict(posenetOutput);
 			}			
+			console.log(prediction);
 			if (maxPredictions>0) {
 				for (let i = 0;i < maxPredictions;i++)
 					data += prediction[i].className + "," + prediction[i].probability.toFixed(2) + "<br>";
