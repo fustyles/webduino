@@ -491,6 +491,7 @@ Blockly.Msg.WINDOW_NAME_TOP = "任何可被开启视窗";
 
 Blockly.Msg["CATPAGEELEMENTS"] = "网页元素";
 Blockly.Msg["CATPAGEELEMENTS_GENERAL"] = "一般";
+Blockly.Msg["CATPAGEELEMENTS_SPAN"] = "行内容器";
 Blockly.Msg["CATPAGEELEMENTS_IMAGE"] = "图片";
 Blockly.Msg["CATPAGEELEMENTS_BUTTON"] = "按钮";
 Blockly.Msg["CATPAGEELEMENTS_COLORPICKER"] = "颜色选择器";
