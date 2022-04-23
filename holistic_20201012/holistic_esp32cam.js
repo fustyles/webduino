@@ -63,32 +63,18 @@ window.onload = function () {
 		
 		if (holisticState.innerHTML =="1") {
 			holistic.send({image: canvas}).then(res => {
-				try { 
-				  document.createEvent("TouchEvent");
-				  setTimeout(function(){start();},250);
-				}
-				catch(e) { 
-				  setTimeout(function(){start();},150);
-				}
+				setTimeout(function(){start();},100);
 			});
 		}
 		else {
-			setTimeout(function(){
-				canvasCtx.save();
-				canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-				canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);
-				result_face.innerHTML = "";
-				result_pose.innerHTML = "";
-				result_lefthand.innerHTML = "";
-				result_righthand.innerHTML = "";				
-				try { 
-				  document.createEvent("TouchEvent");
-				  setTimeout(function(){start();},250);
-				}
-				catch(e) { 
-				  setTimeout(function(){start();},150);
-				}
-			}, 100)
+			canvasCtx.save();
+			canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+			canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);
+			result_face.innerHTML = "";
+			result_pose.innerHTML = "";
+			result_lefthand.innerHTML = "";
+			result_righthand.innerHTML = "";				
+			setTimeout(function(){start();},100);
 		}   
 	}
 		
