@@ -79,7 +79,7 @@ window.onload = function () {
 		result.innerHTML ="";
 		resizedDetections.forEach(faceResult => {
 			const { detection,expressions,gender,genderProbability,age } = faceResult
-			result.style.top = (canvas.height+10) + "px";
+			result.style.top = (ShowImage.height+10) + "px";
 			
 			var maxEmotion="neutral";
 			var maxProbability=expressions.neutral;
