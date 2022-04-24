@@ -16,3 +16,4 @@ Blockly.Msg.TEACHABLEMACHINE_SRC_SHOW = "串流網址";
 Blockly.Msg.TEACHABLEMACHINE_PROJECT_SHOW = "機器學習(自訂模型) 專案";
 Blockly.Msg.TEACHABLEMACHINE_MAXCLASS_SHOW = "最大可能性分類名稱";
 Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW = "最大可能性";
+Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW = "機器學習(自訂模型) 暫停偵測";
