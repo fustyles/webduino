@@ -1,5 +1,5 @@
 {
-  "types": ["cocossd_video", "cocossd_list", "cocossd_object", "cocossd_state", "cocossd_object_number", "cocossd_video_position", "cocossd_startvideo_media", "cocossd_startvideo_stream", "cocossd_clear", "cocossd_canvas_get"],
+  "types": ["cocossd_video", "cocossd_list", "cocossd_object", "cocossd_state", "cocossd_object_number", "cocossd_video_position", "cocossd_startvideo_media", "cocossd_startvideo_stream", "cocossd_clear", "cocossd_canvas_get", "cocossd_pause"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
