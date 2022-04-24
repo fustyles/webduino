@@ -51,7 +51,7 @@ window.onload = function () {
 	  }          
 	}
 
-	function DetectImage() {
+	async function DetectImage() {
 		canvas.setAttribute("width", ShowImage.width);
 		canvas.setAttribute("height", ShowImage.height);
 		canvas.style.width = ShowImage.width+"px";
