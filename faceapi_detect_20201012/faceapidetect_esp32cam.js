@@ -68,6 +68,9 @@ window.onload = function () {
 		const detections = await faceapi.detectAllFaces(ShowImage, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(size.innerHTML))
                 
+		console.log(detections);
+		console.log(resizedDetections);
+		
 		if (frame.value==1) {
 			faceapi.draw.drawDetections(canvas, resizedDetections)
 			faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
