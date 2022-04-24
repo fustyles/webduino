@@ -78,10 +78,11 @@ window.onload = function () {
 			 if (legend[data[i]])
 				result.innerHTML+=data[i]+"="+legend[data[i]]+"<br>";
 		 }
-	     result.innerHTML += "height="+height+"<br>";
+	     	 result.innerHTML += "height="+height+"<br>";
 		 result.innerHTML += "width="+width+"<br>";
 		 result.innerHTML += "segmentationMap="+segmentationMap;
-	     displaySegmentationMap(Model, {legend, height, width, segmentationMap});
+	     	 displaySegmentationMap(Model, {legend, height, width, segmentationMap});
+		 if (typeof recognitionFinish === 'function') recognitionFinish();
 	    }
 	  );
     setTimeout(function(){DetectVideo();}, 250);
