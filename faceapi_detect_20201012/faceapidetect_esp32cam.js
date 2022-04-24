@@ -121,11 +121,11 @@ window.onload = function () {
 
 			i++;
 		})
-		if (result.innerHTML.length>0)
+		if (result.innerHTML.length>0) {
 			result.innerHTML = result.innerHTML.substring(0,result.innerHTML.length-4);
+			recognitionFinish();
+		}
 		
-		recognitionFinish();
-
 		setTimeout(function(){start();},150);
 	}  
 }
