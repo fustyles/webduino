@@ -24,7 +24,7 @@ window.onload = function () {
 		var size = document.getElementById("size_faceapidetect");
 		canvas = faceapi.createCanvasFromMedia(ShowImage);
 		document.getElementById('webcam-container').append(canvas);
-		faceapi.matchDimensions(canvas, JSON.parse(size.innerHTML));					
+							
 		start();
 	})	
 	
@@ -45,7 +45,10 @@ window.onload = function () {
 	ShowImage.onload = function (event) {
 	  clearInterval(myTimer);
 	  restartCount=0;
-
+	  if (document.getElementById("size_faceapidetect").innerHTML == "") {
+		  document.getElementById("size_faceapidetect").innerHTML = "{\"width\":"+ShowImage.width+", \"height\": "+ShowImage.height+"}";
+		  faceapi.matchDimensions(canvas, JSON.parse(size.innerHTML));
+	  }
 	  DetectImage();
 	}
 
