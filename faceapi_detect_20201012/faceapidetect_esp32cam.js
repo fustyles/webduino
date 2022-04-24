@@ -22,7 +22,6 @@ window.onload = function () {
 		faceapi.nets.faceExpressionNet.load(modelPath),
 		faceapi.nets.ageGenderNet.load(modelPath)
 	]).then(function(){
-		var size = document.getElementById("size_faceapidetect");
 		canvas = faceapi.createCanvasFromMedia(ShowImage);
 		document.getElementById('webcam-container').append(canvas);
 							
