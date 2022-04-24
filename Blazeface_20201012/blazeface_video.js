@@ -87,8 +87,10 @@ window.onload = function () {
 						}
 					}
 				}
-				if (result.innerHTML!="")
+				if (result.innerHTML!="") {
 					result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);
+					if (typeof recognitionFinish === 'function') recognitionFinish();
+				}
 			}  
 
 			if (frame.value==1) {
