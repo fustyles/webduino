@@ -72,6 +72,7 @@ async function DetectVideo(obj) {
 				res += "<br>";
 		}
 		message.innerHTML = res;
+		if (typeof recognitionFinish === 'function') recognitionFinish();
 	}
 	else
 		message.innerHTML = "";
