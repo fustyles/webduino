@@ -137,3 +137,17 @@ Blockly.Blocks['teachablemachine_startvideo_stream'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['teachablemachine_pause'] = {
+  init: function() {
+  this.appendDummyInput()  
+	  .appendField(Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW);
+  this.appendValueInput("time_")
+	  .setCheck("Number")    
+	  .appendField("(ms)"); 	  
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
