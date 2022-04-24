@@ -16,3 +16,4 @@ Blockly.Msg.TEACHABLEMACHINE_SRC_SHOW = "Stream URL";
 Blockly.Msg.TEACHABLEMACHINE_PROJECT_SHOW = "Teachable Machine (custom model) Project";
 Blockly.Msg.TEACHABLEMACHINE_MAXCLASS_SHOW = "Max ClassName";
 Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW = "Max Probability";
+Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW = "Teachable Machine (custom model) Pause";
