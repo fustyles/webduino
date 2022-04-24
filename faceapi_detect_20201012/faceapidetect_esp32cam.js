@@ -49,8 +49,10 @@ window.onload = function () {
 	  if (document.getElementById("size_faceapidetect").innerHTML == "") {
 		  size.innerHTML = "{\"width\":"+ShowImage.width+", \"height\": "+ShowImage.height+"}";
 		  faceapi.matchDimensions(canvas, JSON.parse(size.innerHTML));
+		  DetectImage();
 	  }
-	  DetectImage();
+	  else
+	  	DetectImage();
 	}
 
 	async function DetectImage() {
