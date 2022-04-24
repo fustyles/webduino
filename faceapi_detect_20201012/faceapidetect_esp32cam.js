@@ -6,6 +6,7 @@ window.onload = function () {
 	var ShowImage = document.getElementById('gameimage_faceapidetect');	
 	var frame = document.getElementById("frame_faceapidetect");
 	var faceapiState = document.getElementById('faceapiState');
+	var size = document.getElementById("size_faceapidetect");
 	var result = document.getElementById('gamediv_faceapidetect');
 	const modelPath = 'https://fustyles.github.io/webduino/faceapi_detect_20201012/';
 	let faceDetection;
@@ -46,7 +47,7 @@ window.onload = function () {
 	  clearInterval(myTimer);
 	  restartCount=0;
 	  if (document.getElementById("size_faceapidetect").innerHTML == "") {
-		  document.getElementById("size_faceapidetect").innerHTML = "{\"width\":"+ShowImage.width+", \"height\": "+ShowImage.height+"}";
+		  size.innerHTML = "{\"width\":"+ShowImage.width+", \"height\": "+ShowImage.height+"}";
 		  faceapi.matchDimensions(canvas, JSON.parse(size.innerHTML));
 	  }
 	  DetectImage();
