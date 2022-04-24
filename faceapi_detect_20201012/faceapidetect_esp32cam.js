@@ -46,9 +46,7 @@ window.onload = function () {
 	  clearInterval(myTimer);
 	  restartCount=0;
 
-	  if (Model) {
-		DetectImage();
-	  }          
+	  DetectImage();
 	}
 
 	async function DetectImage() {
