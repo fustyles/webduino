@@ -164,7 +164,9 @@ window.onload = function () {
 	  result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
 	});
 
-	if (result.innerHTML!="")
-	  result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);
+	if (result.innerHTML!="") {
+	  	result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);
+		if (typeof recognitionFinish === 'function') recognitionFinish();
+	}
   });
 }
