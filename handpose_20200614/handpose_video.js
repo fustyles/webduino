@@ -100,7 +100,9 @@ window.onload = function () {
 		lastValue = -1;
         drawKeypoints(context, res, predictions[0].annotations);
 		lastValue = -1;
-		drawKeypoints(context_point, res, predictions[0].annotations);
+	drawKeypoints(context_point, res, predictions[0].annotations);
+	      
+	if (typeof recognitionFinish === 'function') recognitionFinish();
       } 
       setTimeout(function(){DetectVideo(); }, 100);
     });
