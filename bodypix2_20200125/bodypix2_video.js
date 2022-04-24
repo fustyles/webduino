@@ -134,8 +134,10 @@ window.onload = function () {
 		    }
 		}
 	  }
-	  if (result.innerHTML!="")
-			result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4); 
+	  if (result.innerHTML!="") {
+		result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4); 
+		if (typeof recognitionFinish === 'function') recognitionFinish();
+	  }
 	}
 	else
 	  result.innerHTML = "";
