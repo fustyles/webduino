@@ -51,6 +51,7 @@ window.onload = function () {
 						.then(code => {
 							console.log(code);
 							result.innerHTML = code;
+							if (typeof recognitionFinish === 'function') recognitionFinish();
 						})
 						.catch(err => {
 							console.log(err)
