@@ -160,6 +160,7 @@ window.onload = function () {
 			result.innerHTML = msg;
 			maxclass.innerHTML = classes.options[predict.label].innerText;
 			maxprobability.innerHTML = predict.confidences[predict.label];
+			if (typeof recognitionFinish === 'function') recognitionFinish();
 		} catch (e) {
 		}
 	}
