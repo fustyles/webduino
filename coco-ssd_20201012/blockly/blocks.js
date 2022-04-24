@@ -432,3 +432,17 @@ Blockly.Blocks['cocossd_clear'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['cocossd_pause'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_PAUSE_SHOW);
+  this.appendValueInput("time_")
+      .setCheck("Number")    
+      .appendField("(ms)"); 	  
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
