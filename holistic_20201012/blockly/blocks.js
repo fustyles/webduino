@@ -803,3 +803,17 @@ Blockly.Blocks['holistic_righthand_angle'] = {
   this.setColour(200);
   }
 };
+
+Blockly.Blocks['holistic_pause'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_PAUSE_SHOW);
+  this.appendValueInput("time_")
+      .setCheck("Number")    
+      .appendField("(ms)"); 	  
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
