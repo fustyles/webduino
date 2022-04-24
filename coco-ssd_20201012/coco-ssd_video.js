@@ -75,8 +75,10 @@ window.onload = function () {
 					}
 					result.innerHTML+= predictions[i].class+","+Math.round(predictions[i].score,2)+","+Math.round(x)+","+Math.round(y)+","+Math.round(width)+","+Math.round(height)+"<br>";
 				}
-				if (result.innerHTML!="")
+				if (result.innerHTML!="") {
 					result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4); 
+					if (typeof recognitionFinish === 'function') recognitionFinish();
+				}
 			}
 			else
 				result.innerHTML = "";
