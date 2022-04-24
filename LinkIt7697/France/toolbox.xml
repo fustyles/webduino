@@ -1203,6 +1203,72 @@
 			</value> 			  
 		  </block>		  
 		</category>
+		
+		<category id="france2˙" name="faceapirecognize">
+		  <block type="faceapirecognize_esp32cam">
+		  </block>			
+		  <block type="faceapirecognize_video">
+			<value name="faceimagepath">
+			  <block type="text">
+				<field name="TEXT">https://fustyles.github.io/webduino/faceapi_recognize_20201012/facelist/</field>
+			  </block>    
+			</value> 
+			<value name="facelabel">
+			  <block type="text">
+				<field name="TEXT">France;Evonne</field>
+			  </block>    
+			</value> 
+			<value name="faceimagecount">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>   
+			</value> 	
+			<value name="distancelimit">
+			  <block type="math_number">
+				<field name="NUM">0.4</field>
+			  </block>   
+			</value>
+			<value name="timer">
+			  <block type="math_number">
+				<field name="NUM">3</field>
+			  </block>
+			</value>	
+		  </block>  
+		  <block type="faceapirecognize_detect">
+		  </block>
+		  <block type="faceapirecognize_number"> 
+		  </block>
+		  <block type="faceapirecognize_get">
+			<value name="index">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>   
+			</value> 
+		  </block>
+		  <block type="faceapirecognize_clear">
+		  </block>
+		  <block type="faceapirecognize_video_position">
+			<value name="left_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value> 
+			<value name="top_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>     
+		  </block>
+		  <block type="faceapirecognize_canvas_get">
+		  </block>
+		  <block type="faceapirecognize_pause">
+			<value name="time_">
+			  <block type="math_number">
+				<field name="NUM">1000</field>
+			  </block>
+			</value> 			  
+		  </block>		  
+		</category>		
 
     </category>
 	
@@ -6308,13 +6374,6 @@
 		</value>		  
     </block>
 	</category>	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	<category id="france9" name="buzzer">

@@ -45,7 +45,7 @@ window.onload = function () {
 	ShowImage.onload = function (event) {
 	  clearInterval(myTimer);
 	  restartCount=0;
-	  if (document.getElementById("size_faceapidetect").innerHTML == "") {
+	  if (size.innerHTML == "") {
 		  size.innerHTML = "{\"width\":"+ShowImage.width+", \"height\": "+ShowImage.height+"}";
 		  faceapi.matchDimensions(canvas, JSON.parse(size.innerHTML));
 	  }

@@ -5376,7 +5376,7 @@ Blockly.Arduino['variable_board'] = function (block) {
 Blockly.Arduino['servermodule_javascript'] = function(block) {
   var statements_js = Blockly.Arduino.statementToCode(block, 'js');
 
-  code = '"<!DOCTYPE html><head><meta charset=\'utf-8\'><script src=\'https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js\'></script><script src=\'https://fustyles.github.io/webduino/GameElements_20190131/gameelements.js\'></script></head><body><script>'+ statements_js.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"") +'</script></body></html>"';
+  code = '"<!DOCTYPE html><head><meta charset=\'utf-8\'><meta name=\'viewport\' content=\'width=device-width, initial-scale=1\'><script src=\'https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js\'></script><script src=\'https://fustyles.github.io/webduino/GameElements_20190131/gameelements.js\'></script></head><body><script>'+ statements_js.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"") +'</script></body></html>"';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -8259,7 +8259,7 @@ Blockly.Arduino['cocossd_esp32cam'] = function(block) {
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
 		
-	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/fustyles.github.io/webduino/coco-ssd_20201012/coco-ssd.js'></script><script src='https:\/\/fustyles.github.io/webduino/coco-ssd_20201012/coco-ssd_esp32cam.js'></script></head><body><script>cocossd_video('block','1','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" function recognitionFinish(){"+javascript_recognition.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"}</script></body></html>\"";
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/fustyles.github.io/webduino/coco-ssd_20201012/coco-ssd.js'></script><script src='https:\/\/fustyles.github.io/webduino/coco-ssd_20201012/coco-ssd_esp32cam.js'></script></head><body><script>cocossd_video('block','1','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" function recognitionFinish(){"+javascript_recognition.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"}</script></body></html>\"";
 
   return [code,Blockly.Arduino.ORDER_ATOMIC];
 };
@@ -8354,7 +8354,7 @@ Blockly.Arduino['holistic_esp32cam'] = function(block) {
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
 		
-	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/holistic_20201012/holistic.js'></script><script src='https:\/\/fustyles.github.io/webduino/holistic_20201012/holistic_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@mediapipe/holistic@0.4/holistic.js' crossorigin='anonymous'></script></head><body><script>holistic_video('block','1','1','1','1','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" function recognitionFinish(){"+javascript_recognition.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"}</script></body></html>\"";
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/holistic_20201012/holistic.js'></script><script src='https:\/\/fustyles.github.io/webduino/holistic_20201012/holistic_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@mediapipe/holistic@0.4/holistic.js' crossorigin='anonymous'></script></head><body><script>holistic_video('block','1','1','1','1','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" function recognitionFinish(){"+javascript_recognition.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"}</script></body></html>\"";
 
   return [code,Blockly.Arduino.ORDER_ATOMIC];
 };
@@ -8515,7 +8515,7 @@ Blockly.Arduino['teachablemachine_esp32cam'] = function(block) {
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_teachablemachine = Blockly.Arduino.statementToCode(block, 'javascript_teachablemachine');
 		
-	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/teachablemachine_20201012/teachablemachine.js'></script><script src='https:\/\/fustyles.github.io/webduino/teachablemachine_20201012/teachablemachine_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js'></script></head><body><script>teachablemachine_video('block','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" function recognitionFinish(){"+javascript_teachablemachine.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"}</script></body></html>\"";
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/teachablemachine_20201012/teachablemachine.js'></script><script src='https:\/\/fustyles.github.io/webduino/teachablemachine_20201012/teachablemachine_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js'></script><script src='https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js'></script></head><body><script>teachablemachine_video('block','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" function recognitionFinish(){"+javascript_teachablemachine.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"}</script></body></html>\"";
 
   return [code,Blockly.Arduino.ORDER_ATOMIC];
 };
@@ -8864,7 +8864,7 @@ Blockly.Arduino['faceapidetect_esp32cam'] = function(block) {
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_faceapidetect = Blockly.Arduino.statementToCode(block, 'javascript_faceapidetect');
 		
-	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/faceapi_detect_20201012/faceapidetect.js'></script><script src='https:\/\/fustyles.github.io/webduino/faceapi_detect_20201012/faceapidetect_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/fustyles.github.io/webduino/faceapi_20200124/face-api.min.js'></script></head><body><script>faceapidetect_video('1','block','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" function recognitionFinish(){"+javascript_faceapidetect.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"}</script></body></html>\"";
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/faceapi_detect_20201012/faceapidetect.js'></script><script src='https:\/\/fustyles.github.io/webduino/faceapi_detect_20201012/faceapidetect_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/fustyles.github.io/webduino/faceapi_detect_20201012/face-api.min.js'></script></head><body><script>faceapidetect_video('1','block','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" function recognitionFinish(){"+javascript_faceapidetect.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"}</script></body></html>\"";
 
   return [code,Blockly.Arduino.ORDER_ATOMIC];
 };
@@ -8900,5 +8900,67 @@ Blockly.Arduino['faceapidetect_video_position'] = function(block) {
 Blockly.Arduino['faceapidetect_pause'] = function(block) { 
   var value_time = Blockly.Arduino.valueToCode(block, 'time_', Blockly.Arduino.ORDER_ATOMIC);
   var code = 'faceapidetect_state(0);setTimeout(function(){faceapidetect_state(1);}, '+value_time+');\n';
+  return code;
+};
+
+Blockly.Arduino['faceapirecognize_esp32cam'] = function(block) {
+	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
+	var javascript_faceapirecognize = Blockly.Arduino.statementToCode(block, 'javascript_faceapirecognize');
+		
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/faceapi_recognize_20201012/faceapi-recognition_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/faceapi_recognize_20201012/faceapi-recognition.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/fustyles.github.io/webduino/faceapi_recognize_20201012/face-api.min.js'></script></head><body><script>"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" function recognitionFinish(){"+javascript_faceapirecognize.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"}</script></body></html>\"";
+
+  return [code,Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['faceapirecognize_video'] = function(block) { 
+  var value_result = block.getFieldValue('result_');
+  var value_opacity = block.getFieldValue('opacity_');  
+  var value_timer = Blockly.Arduino.valueToCode(block, 'timer', Blockly.Arduino.ORDER_ATOMIC);
+  var value_faceimagepath = Blockly.Arduino.valueToCode(block, 'faceimagepath', Blockly.Arduino.ORDER_ATOMIC);
+  var value_facelabel = Blockly.Arduino.valueToCode(block, 'facelabel', Blockly.Arduino.ORDER_ATOMIC);
+  var value_faceimagecount = Blockly.Arduino.valueToCode(block, 'faceimagecount', Blockly.Arduino.ORDER_ATOMIC);
+  var value_distancelimit = Blockly.Arduino.valueToCode(block, 'distancelimit', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'faceapirecognize_video("' + value_result + '","' + value_opacity + '",' + value_timer + ',' + value_faceimagepath + ',' + value_facelabel + ',' + value_faceimagecount + ',' + value_distancelimit + ');\n';
+  return code;
+};
+
+Blockly.Arduino['faceapirecognize_detect'] = function(block) { 
+  var code = 'faceapirecognize_detect();\n';
+  return code;
+};
+
+Blockly.Arduino['faceapirecognize_number'] = function(block) { 
+  var code = 'faceapirecognize_number()';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['faceapirecognize_get'] = function(block) {
+  var index = Blockly.Arduino.valueToCode(block, 'index', Blockly.Arduino.ORDER_ATOMIC);	
+  var column = block.getFieldValue('column');
+  var code = 'faceapirecognize_get('+index+',"'+column+'")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['faceapirecognize_clear'] = function(block) { 
+  var code = 'faceapirecognize_clear();\n';
+  return code;
+};
+
+Blockly.Arduino['faceapirecognize_video_position'] = function(block) { 
+  var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'faceapirecognize_video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['faceapirecognize_canvas_get'] = function(block) { 
+  var code = '"faceapirecognize"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['faceapirecognize_pause'] = function(block) { 
+  var value_time = Blockly.Arduino.valueToCode(block, 'time_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'faceapirecognize_state(0);setTimeout(function(){faceapirecognize_state(1);}, '+value_time+');\n';
   return code;
 };

@@ -63,4 +63,5 @@
 <category><name>holisticreconginition</name><replace>Holistic Recognition</replace></category>
 <category><name>teachablemachine</name><replace>Teachable Machine(google)</replace></category>
 <category><name>faceapidetect</name><replace>Face Detection (face-api)</replace></category>
+<category><name>faceapirecognize</name><replace>Face Recognition (face-api)</replace></category>
 </xml>

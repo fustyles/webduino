@@ -14559,11 +14559,171 @@ Blockly.Blocks['faceapidetect_video_position'] = {
   }
 };
 
-
 Blockly.Blocks['faceapidetect_pause'] = {
   init: function() {
   this.appendDummyInput()  
 	  .appendField(Blockly.Msg.FACEAPIDETECT_PAUSE_SHOW);
+  this.appendValueInput("time_")
+	  .setCheck("Number")    
+	  .appendField("(ms)"); 	  
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(65);
+  }
+};
+
+Blockly.Blocks['faceapirecognize_esp32cam'] = {
+  init: function() {
+    this.appendDummyInput()
+		.appendField(Blockly.Msg.SERVERMODULE_JAVASCRIPT_SHOW);
+    this.appendDummyInput()
+      .appendField(Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_SHOW);		
+    this.appendStatementInput("javascript_initial")
+        .setCheck(null)
+		.appendField(Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_INITIAL_SHOW);	
+    this.appendStatementInput("javascript_faceapirecognize")
+        .setCheck(null)
+		.appendField(Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_RECOGNITION_SHOW);		
+	this.setInputsInline(false);
+    this.setOutput(true, null);
+    this.setColour(200)
+	}
+};
+
+Blockly.Blocks['faceapirecognize_video'] = {
+  init: function() {
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_VIDEO_SHOW);	 
+  this.appendValueInput("faceimagepath")
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .setCheck("String")
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGEPATH_SHOW);
+  this.appendValueInput("facelabel")
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .setCheck("String")
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACELABEL_SHOW); 
+  this.appendValueInput("faceimagecount")
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGECOUNT_SHOW); 
+  this.appendValueInput("distancelimit")
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_DISTANCELIMIT_SHOW); 
+  this.appendValueInput("timer")
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_TIMER_SHOW);   
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_RESULT_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["Y","block"],
+		["N","none"]	  
+  ]), "result_");
+  this.appendDummyInput()  
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_OPACITY_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["1","1"],
+		["0.9","0.9"],
+		["0.8","0.8"],
+		["0.7","0.7"],
+		["0.6","0.6"],	  
+		["0.5","0.5"],
+		["0.4","0.4"],
+		["0.3","0.3"],
+		["0.2","0.2"],
+		["0.1","0.1"],	
+		["0","0"]	   
+  ]), "opacity_");  
+  this.setInputsInline(false);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['faceapirecognize_detect'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_DETECT_SHOW); 
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['faceapirecognize_number'] = {
+  init: function() {
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_NUMBER_SHOW); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
+Blockly.Blocks['faceapirecognize_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_GET_SHOW); 
+  this.appendValueInput("index")
+	  .setCheck("Number");  
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.FACEAPIRECOGNIZE_NAME_SHOW,"name"],
+		[Blockly.Msg.FACEAPIRECOGNIZE_DISTANCE_SHOW,"distance"]	  
+  ]), "column"); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
+Blockly.Blocks['faceapirecognize_clear'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_CLEAR_SHOW); 
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['faceapirecognize_video_position'] = {
+  init: function() {
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_VIDEO_LEFT_SHOW);  
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_VIDEO_TOP_SHOW);   	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['faceapirecognize_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
+Blockly.Blocks['faceapirecognize_pause'] = {
+  init: function() {
+  this.appendDummyInput()  
+	  .appendField(Blockly.Msg.FACEAPIRECOGNIZE_PAUSE_SHOW);
   this.appendValueInput("time_")
 	  .setCheck("Number")    
 	  .appendField("(ms)"); 	  
