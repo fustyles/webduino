@@ -46,3 +46,9 @@ Blockly.JavaScript['teachablemachine_startvideo_stream'] = function(block) {
   var code = 'teachablemachine_startvideo_stream(' + value_src_ + ');\n';
   return code;
 };
+
+Blockly.JavaScript['teachablemachine_pause'] = function(block) { 
+  var value_time = Blockly.JavaScript.valueToCode(block, 'time_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'teachablemachine_state(0);setTimeout(function(){teachablemachine_state(1);}, '+value_time+');\n';
+  return code;
+};
