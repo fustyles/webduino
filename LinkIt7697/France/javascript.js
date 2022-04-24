@@ -8859,3 +8859,46 @@ Blockly.Arduino['server_getrequest'] = function(block) {
 	var code = 'getRequest();\n';
 	return code;			
 }	
+
+Blockly.Arduino['faceapidetect_esp32cam'] = function(block) {
+	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
+	var javascript_faceapidetect = Blockly.Arduino.statementToCode(block, 'javascript_faceapidetect');
+		
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/faceapi_detect_20201012/faceapidetect.js'></script><script src='https:\/\/fustyles.github.io/webduino/faceapi_detect_20201012/faceapidetect_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/fustyles.github.io/webduino/faceapi_20200124/face-api.min.js'></script></head><body><script>faceapidetect_video('1','block','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" function recognitionFinish(){"+javascript_faceapidetect.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"")+"}</script></body></html>\"";
+
+  return [code,Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['faceapidetect_face'] = function(block) { 
+  var value_face_ = Blockly.Arduino.valueToCode(block, 'face_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'faceapidetect_face(' + value_face_ + ',"' + value_property_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['faceapidetect_video'] = function(block) { 
+  var value_frame_ = block.getFieldValue('frame_');
+  var value_result_ = block.getFieldValue('result_');
+  var value_opacity_ = block.getFieldValue('opacity_');
+  var code = 'faceapidetect_video("' + value_frame_ + '","' + value_result_ + '","' + value_opacity_ + '");\n';
+  return code;
+};
+
+Blockly.Arduino['faceapidetect_state'] = function(block) {
+  var value_state_ = block.getFieldValue('state_');
+  var code = 'faceapidetect_state(' + value_state_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['faceapidetect_video_position'] = function(block) { 
+  var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'faceapidetect_video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['faceapidetect_pause'] = function(block) { 
+  var value_time = Blockly.Arduino.valueToCode(block, 'time_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'faceapidetect_state(0);setTimeout(function(){faceapidetect_state(1);}, '+value_time+');\n';
+  return code;
+};

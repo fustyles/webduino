@@ -63,5 +63,6 @@
 <category><name>fu_mqtt</name><replace>MQTT</replace></category>
 <category><name>objectreconginition</name><replace>物件辨識</replace></category>
 <category><name>holisticreconginition</name><replace>全身辨識</replace></category>
-<category><name>teachablemachine</name><replace>機器學習(Google)</replace></category>
+<category><name>teachablemachine</name><replace>機器學習(google)</replace></category>
+<category><name>faceapidetect</name><replace>人臉偵測 (face-api)</replace></category>
 </xml>

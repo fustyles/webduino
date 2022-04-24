@@ -909,7 +909,9 @@
 				</value>		
 			  </block>	  
 		</category>	 
-
+		
+		<sep id="category_sep"></sep>
+		
 		<category id="france26" name="objectreconginition">
 			  <block type="cocossd_esp32cam">
 			  </block>
@@ -1141,24 +1143,7 @@
 			</value> 
 		  </block>  
 		  <block type="teachablemachine_video">    
-		  </block> 
-		  <block type="teachablemachine_startvideo_media">
-			<value name="width_">
-			  <block type="math_number">
-				<field name="NUM">320</field>
-			  </block>
-			</value> 
-			<value name="height_">
-			  <block type="math_number">
-				<field name="NUM">240</field>
-			  </block>
-			</value>    
-			<value name="index_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
-			</value> 
-		  </block>   
+		  </block>    
 		  <block type="teachablemachine_result">
 		  </block>
 		  <block type="teachablemachine_state">
@@ -1184,8 +1169,42 @@
 		  </block> 		  
 		</category>
 		
+		<category id="france2˙" name="faceapidetect">
+		  <block type="faceapidetect_esp32cam">
+		  </block>			
+		  <block type="faceapidetect_video">    
+		  </block>  
+		  <block type="faceapidetect_face">
+			<value name="face_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value> 
+		  </block>  
+		  <block type="faceapidetect_state">
+		  </block> 
+		  <block type="faceapidetect_video_position">
+			<value name="left_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value> 
+			<value name="top_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>     
+		  </block>
+		  <block type="faceapidetect_pause">
+			<value name="time_">
+			  <block type="math_number">
+				<field name="NUM">1000</field>
+			  </block>
+			</value> 			  
+		  </block>		  
+		</category>
+
     </category>
-	
 	
 	<sep id="category_sep"></sep>
 	<category id="catGameElements" name="catGameElements"> 

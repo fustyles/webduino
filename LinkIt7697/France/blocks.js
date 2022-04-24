@@ -12960,7 +12960,7 @@ Blockly.Blocks['cocossd_esp32cam'] = {
 		.appendField(Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_RECOGNITION_SHOW);		
 	this.setInputsInline(false);
     this.setOutput(true, null);
-    this.setColour(20)
+    this.setColour(200)
 	}
 };
 
@@ -13097,7 +13097,7 @@ Blockly.Blocks['cocossd_list'] = {
   ]), "object_");     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -13210,7 +13210,7 @@ Blockly.Blocks['cocossd_object'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -13303,7 +13303,7 @@ Blockly.Blocks['cocossd_object_number'] = {
   ]), "object_");     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -13333,7 +13333,7 @@ Blockly.Blocks['cocossd_video_position'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(65);
   }
 };
 
@@ -13359,7 +13359,7 @@ Blockly.Blocks['cocossd_startvideo_media'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(65);
   }
 };
 
@@ -13373,7 +13373,7 @@ Blockly.Blocks['cocossd_startvideo_stream'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(65);
   }
 };
 
@@ -13383,7 +13383,7 @@ Blockly.Blocks['cocossd_canvas_get'] = {
       .appendField(Blockly.Msg.COCOSSD_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -13394,7 +13394,7 @@ Blockly.Blocks['cocossd_clear'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(65);
   }
 };
 
@@ -13408,7 +13408,7 @@ Blockly.Blocks['cocossd_pause'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(65);
   }
 };
 
@@ -13420,7 +13420,7 @@ Blockly.Blocks['time_delay'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(65);
   }
 };
 
@@ -13433,7 +13433,7 @@ Blockly.Blocks['declare_variable'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(65);
   }
 };
 
@@ -13451,7 +13451,7 @@ Blockly.Blocks['holistic_esp32cam'] = {
 		.appendField(Blockly.Msg.ESP32_CAM_HOLISTIC_RECOGNITION_SHOW);		
 	this.setInputsInline(false);
     this.setOutput(true, null);
-    this.setColour(20)
+    this.setColour(200)
 	}
 };
 
@@ -13513,7 +13513,7 @@ Blockly.Blocks['holistic_video'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(65);
   this.setHelpUrl("https://google.github.io/mediapipe/solutions/holistic.html");   
   }
 };
@@ -13534,7 +13534,7 @@ Blockly.Blocks['holistic_face_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");  
   }
 };
@@ -13571,7 +13571,7 @@ Blockly.Blocks['holistic_face_lefteye_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");   
   }
 };
@@ -13608,7 +13608,7 @@ Blockly.Blocks['holistic_face_righteye_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");   
   }
 };
@@ -13638,7 +13638,7 @@ Blockly.Blocks['holistic_face_nose_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");   
   }
 };
@@ -13699,7 +13699,7 @@ Blockly.Blocks['holistic_face_mouth_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");   
   }
 };
@@ -13752,7 +13752,7 @@ Blockly.Blocks['holistic_pose_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/pose_landmarks.png");  
   }
 };
@@ -13793,7 +13793,7 @@ Blockly.Blocks['holistic_lefthand_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/hand_landmarks.png");   
   }
 };
@@ -13834,7 +13834,7 @@ Blockly.Blocks['holistic_righthand_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/hand_landmarks.png");   
   }
 };
@@ -13902,7 +13902,7 @@ Blockly.Blocks['holistic_state'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(65);
   }
 };
 
@@ -13917,7 +13917,7 @@ Blockly.Blocks['holistic_video_position'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(65);
   }
 };
 
@@ -13927,7 +13927,7 @@ Blockly.Blocks['holistic_canvas_get'] = {
       .appendField(Blockly.Msg.HOLISTIC_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -13944,7 +13944,7 @@ Blockly.Blocks['holistic_all_poistion'] = {
   ]), "part_"); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -14228,7 +14228,7 @@ Blockly.Blocks['holistic_pause'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(65);
   }
 };
 
@@ -14246,10 +14246,9 @@ Blockly.Blocks['teachablemachine_esp32cam'] = {
 		.appendField(Blockly.Msg.ESP32_CAM_TEACHABLEMACHINE_RECOGNITION_SHOW);		
 	this.setInputsInline(false);
     this.setOutput(true, null);
-    this.setColour(20)
+    this.setColour(200)
 	}
 };
-
 
 Blockly.Blocks['teachablemachine_video'] = {
   init: function() {
@@ -14285,7 +14284,7 @@ Blockly.Blocks['teachablemachine_video'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(65);
   }
 };
 
@@ -14303,7 +14302,7 @@ Blockly.Blocks['teachablemachine_model'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(65);
   }
 };
 
@@ -14318,7 +14317,7 @@ Blockly.Blocks['teachablemachine_result'] = {
 	  ]), "result_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -14333,7 +14332,7 @@ Blockly.Blocks['teachablemachine_state'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(65);
   }
 };
 
@@ -14348,32 +14347,7 @@ Blockly.Blocks['teachablemachine_video_position'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['teachablemachine_startvideo_media'] = {
-  init: function() { 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.TEACHABLEMACHINE_SHOW); 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.TEACHABLEMACHINE_FACING_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-        [Blockly.Msg.TEACHABLEMACHINE_FACING_FRONT_SHOW,"front"],
-        [Blockly.Msg.TEACHABLEMACHINE_FACING_BACK_SHOW,"back"]
-  ]), "facing_");  
-  this.appendValueInput("index_")
-      .setCheck("Number");  
-  this.appendValueInput("width_")
-      .setCheck("Number")
-      .appendField(Blockly.Msg.TEACHABLEMACHINE_WIDTH_SHOW);  
-  this.appendValueInput("height_")
-      .setCheck("Number")
-      .appendField(Blockly.Msg.TEACHABLEMACHINE_HEIGHT_SHOW);	  
-  this.setInputsInline(true);	  
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(65);
   }
 };
 
@@ -14387,7 +14361,7 @@ Blockly.Blocks['teachablemachine_pause'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(65);
   }
 };
 
@@ -14414,7 +14388,7 @@ Blockly.Blocks['esp32_cam_googledrive'] = {
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(200);
+	this.setColour(65);
 	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToGoogleDriveAndLinenotify_doPost.gs");
   }
 };
@@ -14434,7 +14408,7 @@ Blockly.Blocks['esp32_cam_linenotify'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(200);
+	this.setColour(65);
   }
 };
 
@@ -14453,7 +14427,7 @@ Blockly.Blocks['esp32_cam_telegrambot'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(200);
+	this.setColour(65);
   }
 };
 
@@ -14464,6 +14438,138 @@ Blockly.Blocks['server_getrequest'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(200);
+	this.setColour(65);
+  }
+};
+
+Blockly.Blocks['faceapidetect_esp32cam'] = {
+  init: function() {
+    this.appendDummyInput()
+		.appendField(Blockly.Msg.SERVERMODULE_JAVASCRIPT_SHOW);
+    this.appendDummyInput()
+      .appendField(Blockly.Msg.ESP32_CAM_FACEAPIDETECT_SHOW);		
+    this.appendStatementInput("javascript_initial")
+        .setCheck(null)
+		.appendField(Blockly.Msg.ESP32_CAM_FACEAPIDETECT_INITIAL_SHOW);	
+    this.appendStatementInput("javascript_faceapidetect")
+        .setCheck(null)
+		.appendField(Blockly.Msg.ESP32_CAM_FACEAPIDETECT_RECOGNITION_SHOW);		
+	this.setInputsInline(false);
+    this.setOutput(true, null);
+    this.setColour(200)
+	}
+};
+
+Blockly.Blocks['faceapidetect_video'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_FRAME_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["Y","1"],
+		["N","0"]	  
+  ]), "frame_");    
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_RESULT_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["Y","block"],
+		["N","none"]	  
+  ]), "result_");
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_OPACITY_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["1","1"],
+		["0.9","0.9"],
+		["0.8","0.8"],
+		["0.7","0.7"],
+		["0.6","0.6"],	  
+		["0.5","0.5"],
+		["0.4","0.4"],
+		["0.3","0.3"],
+		["0.2","0.2"],
+		["0.1","0.1"],	
+		["0","0"]	   
+  ]), "opacity_");   
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(65);
+  }
+};
+
+Blockly.Blocks['faceapidetect_face'] = {
+  init: function() {
+  this.appendValueInput("face_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPIDETECT_INDEX_SHOW);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_PROPERTY_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.FACEAPIDETECT_AGE_SHOW,"age"],
+		[Blockly.Msg.FACEAPIDETECT_GENDER_SHOW,"gender"],
+		[Blockly.Msg.FACEAPIDETECT_GENDERPROBABILITY_SHOW,"genderProbability"],
+		[Blockly.Msg.FACEAPIDETECT_EMOTION_SHOW,"emotion"],
+		[Blockly.Msg.FACEAPIDETECT_EMOTIONPROBABILITY_SHOW,"emotionProbability"],	  
+		[Blockly.Msg.FACEAPIDETECT_BOXX_SHOW,"boxX"],
+		[Blockly.Msg.FACEAPIDETECT_BOXY_SHOW,"boxY"],
+		[Blockly.Msg.FACEAPIDETECT_BOXWIDTH_SHOW,"boxWidth"],
+		[Blockly.Msg.FACEAPIDETECT_BOXHEIGHT_SHOW,"boxHeight"],	  
+		[Blockly.Msg.FACEAPIDETECT_NEUTRAL_SHOW,"neutral"],
+		[Blockly.Msg.FACEAPIDETECT_HAPPY_SHOW,"happy"],
+		[Blockly.Msg.FACEAPIDETECT_SAD_SHOW,"sad"],
+		[Blockly.Msg.FACEAPIDETECT_ANGRY_SHOW,"angry"],
+		[Blockly.Msg.FACEAPIDETECT_FEARFUL_SHOW,"fearful"],
+		[Blockly.Msg.FACEAPIDETECT_DISGUSTED_SHOW,"disgusted"],
+		[Blockly.Msg.FACEAPIDETECT_SURPRISED_SHOW,"surprised"]
+  ]), "property_");  	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['faceapidetect_state'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_STATE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+        ["Y","1"],
+        ["N","0"]
+  ]), "state_");   
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(65);
+  }
+};
+
+Blockly.Blocks['faceapidetect_video_position'] = {
+  init: function() {
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPIDETECT_VIDEO_LEFT_SHOW);  
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPIDETECT_VIDEO_TOP_SHOW);   	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(65);
+  }
+};
+
+
+Blockly.Blocks['faceapidetect_pause'] = {
+  init: function() {
+  this.appendDummyInput()  
+	  .appendField(Blockly.Msg.FACEAPIDETECT_PAUSE_SHOW);
+  this.appendValueInput("time_")
+	  .setCheck("Number")    
+	  .appendField("(ms)"); 	  
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(65);
   }
 };
