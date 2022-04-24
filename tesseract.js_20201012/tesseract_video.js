@@ -91,9 +91,9 @@ function DetectVideo() {
 				logger: m => console.log(m) 
 			}
 		).then(({ data: { text } }) => {
-			console.log(text);
 			result.innerHTML = text.replace(/\n/g, "<br>");
 			canvas.style.visibility='hidden';
+			if (typeof recognitionFinish === 'function') recognitionFinish();
 		}) 
 }	
 
