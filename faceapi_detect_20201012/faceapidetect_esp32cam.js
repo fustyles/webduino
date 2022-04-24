@@ -66,7 +66,7 @@ window.onload = function () {
 			return;
 		}
 		
-		const detections = await faceapi.detectAllFaces(canvas, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
+		const detections = await faceapi.detectAllFaces(ShowImage, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(size.innerHTML))
                 
 		if (frame.value==1) {
