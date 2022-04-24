@@ -109,7 +109,9 @@ window.onload = function () {
 		}
 		result_righthand.innerHTML = JSON.stringify(results.rightHandLandmarks);
 		
-		canvasCtx.restore();	
+		canvasCtx.restore();
+		
+		if (typeof recognitionFinish === 'function') recognitionFinish();
 	}
 	
 	const holistic = new Holistic({locateFile: (file) => {
