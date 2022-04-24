@@ -64,3 +64,9 @@ Blockly.JavaScript['cocossd_clear'] = function(block) {
   var code = 'cocossd_clear();\n';
   return code;
 };
+
+Blockly.JavaScript['cocossd_pause'] = function(block) { 
+  var value_time = Blockly.JavaScript.valueToCode(block, 'time_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'cocossd_state(0);setTimeout(function(){cocossd_state(1);}, '+value_time+');\n';
+  return code;
+};
