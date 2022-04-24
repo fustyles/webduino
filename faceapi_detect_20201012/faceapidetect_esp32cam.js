@@ -66,8 +66,8 @@ window.onload = function () {
 			return;
 		}
 		
-		const detections = await faceapi.detectAllFaces(obj, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
-		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(document.getElementById("size_faceapidetect").innerHTML))
+		const detections = await faceapi.detectAllFaces(canvas, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks(true).withFaceExpressions().withAgeAndGender()
+		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(size.innerHTML))
                 
 		if (frame.value==1) {
 			faceapi.draw.drawDetections(canvas, resizedDetections)
@@ -79,7 +79,7 @@ window.onload = function () {
 		result.innerHTML ="";
 		resizedDetections.forEach(faceResult => {
 			const { detection,expressions,gender,genderProbability,age } = faceResult
-			result.style.top = (obj.height+10) + "px";
+			result.style.top = (canvas.height+10) + "px";
 			
 			var maxEmotion="neutral";
 			var maxProbability=expressions.neutral;
