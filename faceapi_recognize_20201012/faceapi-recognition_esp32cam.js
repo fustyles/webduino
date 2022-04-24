@@ -5,7 +5,7 @@ document.write('<div id="size_faceapirecognize" style="position:absolute;display
 
 window.onload = function () {
 	var modelPath = "https://fustyles.github.io/webduino/faceapi_recognize_20201012/";
-
+	var ShowImage = document.getElementById('gameimage_faceapirecognize');
 	var canvas = document.getElementById('gamecanvas_faceapirecognize');
 	var context = canvas.getContext('2d');
 	var region = document.getElementById("region_faceapirecognize");
