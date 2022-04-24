@@ -53,8 +53,9 @@ window.onload = function () {
 					  scanner.start(cameras[Number(document.getElementById("sourceId_video").innerHTML)]);
 
 					  scanner.addListener('scan', function (content) {
-						console.log(utf8to16(content));
+						//console.log(utf8to16(content));
 						result.innerHTML = utf8to16(content);
+						if (typeof recognitionFinish === 'function') recognitionFinish();
 					  });
 					} else {
 					  console.error('No cameras found.');
