@@ -7,7 +7,7 @@ window.onload = function () {
 	var frame = document.getElementById("frame_faceapidetect");
 	var faceapiState = document.getElementById('faceapiState');
 	var size = document.getElementById("size_faceapidetect");
-	var result = document.getElementById('gamediv_faceapidetect');
+	var result = document.getElementById('result_faceapidetect');
 	const modelPath = 'https://fustyles.github.io/webduino/faceapi_detect_20201012/';
 	let faceDetection;
 	let canvas;	
