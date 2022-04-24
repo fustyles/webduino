@@ -130,4 +130,8 @@ window.onload = function () {
 		
 		setTimeout(function(){start();},150);
 	}  
+	
+	function Round(n) {
+		return Math.round(Number(n)*100)/100;
+	}	
 }
