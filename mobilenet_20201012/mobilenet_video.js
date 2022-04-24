@@ -54,6 +54,7 @@ window.onload = function () {
 			if (Predictions.length>0) {
 				for (var i=0;i<Predictions.length;i++)
 					result.innerHTML+= Predictions[i].className+","+Math.round(Predictions[i].probability*100)/100+"<br>";
+				if (typeof recognitionFinish === 'function') recognitionFinish();
 			} else
 				result.innerHTML = "Unrecognizable";
 			setTimeout(function(){DetectVideo(obj);}, 100);
