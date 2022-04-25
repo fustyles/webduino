@@ -6679,7 +6679,7 @@ Blockly.Blocks['canvas_rect'] = {
   }
 };
 
-Blockly.Blocks['canvas_ellipse'] = {
+Blockly.Blocks['canvas_arc'] = {
   init: function() {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.CANVAS_ARC);      
