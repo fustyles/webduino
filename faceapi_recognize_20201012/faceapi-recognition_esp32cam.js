@@ -28,7 +28,8 @@ window.onload = function () {
 	var detect = document.getElementById('detect_faceapirecognize'); 
 	var message = document.getElementById('gamediv_faceapirecognize');
 	var size = document.getElementById("size_faceapirecognize");
-
+	var sourceId = document.getElementById("sourceId_faceapirecognize");
+	
 	var distanceLimit,faceImagesPath,facelabels,faceImagesCount;
 	var Model,video,canvas,context,result; 
 	let labeledFaceDescriptors;
@@ -71,7 +72,7 @@ window.onload = function () {
 	  if (size.innerHTML == "") {
 		  size.innerHTML = "{\"width\":"+ShowImage.width+", \"height\": "+ShowImage.height+"}";
 	  }
-	  setTimeout(function(){start();}, 150);
+	  DetectImage();
 	}
 
 	async function DetectImage() {
@@ -82,6 +83,12 @@ window.onload = function () {
 		canvas.style.height = ShowImage.height+"px";
 		canvas.getContext('2d').drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
 
+		if (sourceId.innerHTML!="") {
+	  		setTimeout(function(){start();}, 150);
+			return;
+		}
+		sourceId.innerHTML="wait";
+		
 		if (!labeledFaceDescriptors) {
 			labeledFaceDescriptors = await loadLabeledImages();
 			faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
@@ -114,6 +121,7 @@ window.onload = function () {
 			drawBox.draw(canvas);
 		})
 		setTimeout(function(){canvas.style.display = "none";}, myTimer*1000);
+		setTimeout(function(){start();}, 150);
 	}  
 	
 	function loadLabeledImages() {
