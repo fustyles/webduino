@@ -113,6 +113,7 @@ window.onload = function () {
 			drawBox.draw(canvas);
 		})
 		setTimeout(function(){canvas.style.display = "none";}, myTimer*1000);
+		setTimeout(function(){start();}, 100);
 	}  
 	
 	function loadLabeledImages() {
