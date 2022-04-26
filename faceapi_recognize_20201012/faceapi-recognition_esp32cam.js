@@ -120,7 +120,8 @@ window.onload = function () {
 				drawBox = new faceapi.draw.DrawBox(box, { label: (Math.round(result.distance*100)/100).toString()})
 			drawBox.draw(canvas);
 		})
-		setTimeout(function(){canvas.style.display = "none";setTimeout(function(){start();}, 150);}, myTimer*1000);
+		setTimeout(function(){canvas.style.display = "none";}, myTimer*1000);
+		setTimeout(function(){start();}, myTimer*1000);
 	}  
 	
 	function loadLabeledImages() {
