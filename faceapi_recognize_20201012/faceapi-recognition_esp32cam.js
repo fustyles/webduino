@@ -125,6 +125,7 @@ window.onload = function () {
 				drawBox = new faceapi.draw.DrawBox(box, { label: (Math.round(result.distance*100)/100).toString()})
 			drawBox.draw(canvas);
 		})
+		console.log(myTimer);
 		setTimeout(function(){canvas.style.display = "none";start();}, myTimer*1000);
 	}  
 	
