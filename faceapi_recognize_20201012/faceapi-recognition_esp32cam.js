@@ -1,5 +1,6 @@
 document.write('<div id="region_faceapirecognize" style="z-index:999;position:absolute"><video id="gamevideo_faceapirecognize" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_faceapirecognize" style="position:absolute;z-index:998;" crossorigin="anonymous"><canvas id="gamecanvas_faceapirecognize" style="z-index:999;"></canvas><br><br><div id="gamediv_faceapirecognize" style="color:red;position:absolute; style="z-index:997;"></div></div>');
 document.write('<div id="faceapirecognizeState" style="position:absolute;display:none;">1</div>');
+document.write('<div id="sourceId_faceapirecognize" style="position:absolute;display:none;"></div>');
 document.write('<div id="size_faceapirecognize" style="position:absolute;display:none;"></div>');
 
 document.write('<div id="timer_faceapirecognize" style="position:absolute;display:none;"></div>');
