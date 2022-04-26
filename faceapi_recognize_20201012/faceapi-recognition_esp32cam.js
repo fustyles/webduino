@@ -34,10 +34,10 @@ window.onload = function () {
 	var Model,video,canvas,context,result; 
 	let labeledFaceDescriptors;
 	let faceMatcher;
-	var myTimer,tiimer;
+	var myTimer,showtime;
 	var restartCount=0;
 	
-	tiimer = Number(document.getElementById('timer_faceapirecognize').innerHTML);
+	showtime = Number(document.getElementById('timer_faceapirecognize').innerHTML);
 	distanceLimit = Number(document.getElementById('distancelimit_faceapirecognize').innerHTML);
 	faceImagesPath = document.getElementById('faceimagepath_faceapirecognize').innerHTML;
 	facelabels = document.getElementById('facelabel_faceapirecognize').innerHTML;
@@ -120,8 +120,8 @@ window.onload = function () {
 				drawBox = new faceapi.draw.DrawBox(box, { label: (Math.round(result.distance*100)/100).toString()})
 			drawBox.draw(canvas);
 		})
-		console.log(tiimer);
-		setTimeout(function(){canvas.style.display = "none";start();}, tiimer*1000);
+		console.log(showtime);
+		setTimeout(function(){canvas.style.display = "none";start();}, showtime*1000);
 	}  
 	
 	function loadLabeledImages() {
