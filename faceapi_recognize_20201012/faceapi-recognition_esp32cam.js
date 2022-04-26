@@ -29,11 +29,6 @@ window.onload = function () {
 	var message = document.getElementById('gamediv_faceapirecognize');
 	var size = document.getElementById("size_faceapirecognize");
 	var sourceId = document.getElementById("sourceId_faceapirecognize");
-	var timer = document.getElementById('timer_faceapirecognize');
-	var distancelimit = document.getElementById('distancelimit_faceapirecognize');
-	var faceimagepath = document.getElementById('faceimagepath_faceapirecognize');
-	var facelabel = document.getElementById('facelabel_faceapirecognize');
-	var faceimagecount = document.getElementById('faceimagecount_faceapirecognize');
 	
 	var distanceLimit,faceImagesPath,facelabels,faceImagesCount;
 	var Model,video,canvas,context,result; 
@@ -42,12 +37,12 @@ window.onload = function () {
 	var myTimer;
 	var restartCount=0;
 	
-	myTimer = Number(timer.innerHTML);
-	distanceLimit = Number(distancelimit.innerHTML);
-	faceImagesPath = faceimagepath.innerHTML;
-	facelabels = facelabel.innerHTML;
+	myTimer = Number(document.getElementById('timer_faceapirecognize').innerHTML);
+	distanceLimit = Number(document.getElementById('distancelimit_faceapirecognize').innerHTML);
+	faceImagesPath = document.getElementById('faceimagepath_faceapirecognize').innerHTML;
+	facelabels = document.getElementById('facelabel_faceapirecognize').innerHTML;
 	facelabels = facelabels.split(";");
-	faceImagesCount = Number(faceimagecount.innerHTML);
+	faceImagesCount = Number(document.getElementById('faceimagecount_faceapirecognize').innerHTML);
 
 	Promise.all([
 		faceapi.nets.faceLandmark68Net.load(modelPath),
