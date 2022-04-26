@@ -18,9 +18,6 @@ function faceapirecognize1_video(input_result, input_opacity, input_timer, input
 	document.getElementById('faceimagecount_faceapirecognize').innerHTML = input_faceimagecount;
 	document.getElementById('distancelimit_faceapirecognize').innerHTML = input_distancelimit;	
 	input_facelabel = input_facelabel.split(";");
-	setTimeout(function(){
-		StartFaceRecognition(input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit);
-	}, 5000);
 }
 
 window.onload = function () {
@@ -44,6 +41,7 @@ window.onload = function () {
 	distanceLimit = Number(document.getElementById('distancelimit_faceapirecognize').innerHTML);
 	faceImagesPath = document.getElementById('faceimagepath_faceapirecognize').innerHTML;
 	facelabels = document.getElementById('facelabel_faceapirecognize').innerHTML;
+	facelabels = facelabels.split(";");
 	faceImagesCount = Number(document.getElementById('faceimagecount_faceapirecognize').innerHTML);
 
 	Promise.all([
