@@ -71,7 +71,7 @@ window.onload = function () {
 	  if (size.innerHTML == "") {
 		  size.innerHTML = "{\"width\":"+ShowImage.width+", \"height\": "+ShowImage.height+"}";
 	  }
-	  DetectImage();
+	  setTimeout(function(){start();}, 150);
 	}
 
 	async function DetectImage() {
@@ -114,7 +114,6 @@ window.onload = function () {
 			drawBox.draw(canvas);
 		})
 		setTimeout(function(){canvas.style.display = "none";}, myTimer*1000);
-		setTimeout(function(){start();}, 100);
 	}  
 	
 	function loadLabeledImages() {
