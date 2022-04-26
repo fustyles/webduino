@@ -6679,7 +6679,7 @@ Blockly.Blocks['canvas_rect'] = {
   }
 };
 
-Blockly.Blocks['canvas_arc'] = {
+Blockly.Blocks['canvas_ellipse'] = {
   init: function() {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.CANVAS_ARC);      
@@ -14717,19 +14717,5 @@ Blockly.Blocks['faceapirecognize_canvas_get'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
-  }
-};
-
-Blockly.Blocks['faceapirecognize_pause'] = {
-  init: function() {
-  this.appendDummyInput()  
-	  .appendField(Blockly.Msg.FACEAPIRECOGNIZE_PAUSE_SHOW);
-  this.appendValueInput("time_")
-	  .setCheck("Number")    
-	  .appendField("(ms)"); 	  
-    this.setInputsInline(true);    
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(65);
   }
 };

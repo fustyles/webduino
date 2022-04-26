@@ -33,7 +33,7 @@ Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW = "Framesize";
 Blockly.Msg.SERVERMODULE_SETUP_SHOW = "setup";
 Blockly.Msg.SERVERMODULE_LOOP_SHOW = "loop";
 Blockly.Msg.ESP32_SERVERMODULE_SHOW = "ESP32 connect to Wi-Fi AP";
-Blockly.Msg.ESP32_CAM_SERVERMODULE_SHOW = "ESP32-CAM connect to Wi-Fi AP";
+Blockly.Msg.ESP32_CAM_SERVERMODULE_SHOW = "ESP32-CAM(Recognition) connect to Wi-Fi AP";
 Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_SHOW = "tfjs coco-ssd Page";
 Blockly.Msg.ESP32_DIGITALWRITE_SHOW = "digitalWrite";
 Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW = "value";
@@ -1145,7 +1145,6 @@ Blockly.Msg.FACEAPIRECOGNIZE_FACING_FRONT_SHOW = "Front";
 Blockly.Msg.FACEAPIRECOGNIZE_FACING_BACK_SHOW = "Back";
 Blockly.Msg.FACEAPIRECOGNIZE_SRC_SHOW = "Stream URL";
 Blockly.Msg.FACEAPIRECOGNIZE_CANVAS_GET_SHOW = "Face Recognition (face-api) Get Video ID";
-Blockly.Msg.FACEAPIRECOGNIZE_PAUSE_SHOW = "Face Recognition (faceapi.js) Pause";
 
 Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_SHOW = "Face Recognition (faceapi.js)";
 Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_INITIAL_SHOW = "Initial";

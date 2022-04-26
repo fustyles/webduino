@@ -33,7 +33,7 @@ Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW = "解析度";
 Blockly.Msg.SERVERMODULE_SETUP_SHOW = "初始化";
 Blockly.Msg.SERVERMODULE_LOOP_SHOW = "重複執行";
 Blockly.Msg.ESP32_SERVERMODULE_SHOW = "ESP32連線到Wi-Fi熱點";
-Blockly.Msg.ESP32_CAM_SERVERMODULE_SHOW = "ESP32-CAM連線到Wi-Fi熱點";
+Blockly.Msg.ESP32_CAM_SERVERMODULE_SHOW = "ESP32-CAM(影像辨識)連線到Wi-Fi熱點";
 Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_SHOW = "TFJS 物件辨識coco-ssd網頁";
 Blockly.Msg.ESP32_DIGITALWRITE_SHOW = "數位輸出";
 Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW = "數值";
@@ -1146,7 +1146,6 @@ Blockly.Msg.FACEAPIRECOGNIZE_FACING_FRONT_SHOW = "前置";
 Blockly.Msg.FACEAPIRECOGNIZE_FACING_BACK_SHOW = "後置";
 Blockly.Msg.FACEAPIRECOGNIZE_SRC_SHOW = "串流網址";
 Blockly.Msg.FACEAPIRECOGNIZE_CANVAS_GET_SHOW = "人臉辨識 (face-api) 取得影像代碼";
-Blockly.Msg.FACEAPIRECOGNIZE_PAUSE_SHOW = "人臉辨識 (face-api) 暫停偵測";
 
 Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_SHOW = "人臉辨識 (face-api)";
 Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_INITIAL_SHOW = "初始設定";

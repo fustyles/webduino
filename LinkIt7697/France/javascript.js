@@ -8921,7 +8921,7 @@ Blockly.Arduino['faceapirecognize_video'] = function(block) {
   var value_faceimagecount = Blockly.Arduino.valueToCode(block, 'faceimagecount', Blockly.Arduino.ORDER_ATOMIC);
   var value_distancelimit = Blockly.Arduino.valueToCode(block, 'distancelimit', Blockly.Arduino.ORDER_ATOMIC);
 
-  var code = 'faceapirecognize_video("' + value_result + '","' + value_opacity + '",' + value_timer + ',' + value_faceimagepath + ',' + value_facelabel + ',' + value_faceimagecount + ',' + value_distancelimit + ');\n';
+  var code = 'faceapirecognize1_video("' + value_result + '","' + value_opacity + '",' + value_timer + ',' + value_faceimagepath + ',' + value_facelabel + ',' + value_faceimagecount + ',' + value_distancelimit + ');\n';
   return code;
 };
 
@@ -8957,10 +8957,4 @@ Blockly.Arduino['faceapirecognize_video_position'] = function(block) {
 Blockly.Arduino['faceapirecognize_canvas_get'] = function(block) { 
   var code = '"faceapirecognize"';
   return [code, Blockly.Arduino.ORDER_NONE];
-};
-
-Blockly.Arduino['faceapirecognize_pause'] = function(block) { 
-  var value_time = Blockly.Arduino.valueToCode(block, 'time_', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'faceapirecognize_state(0);setTimeout(function(){faceapirecognize_state(1);}, '+value_time+');\n';
-  return code;
 };
