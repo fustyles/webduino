@@ -20,6 +20,13 @@ window.onload = function () {
 	var myTimer;
 	var restartCount=0;
 	
+	function faceapirecognize1_video(input_result, input_opacity, input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit) {
+		document.getElementById('gamediv_faceapirecognize').style.display = input_result;
+		document.getElementById('region_faceapirecognize').style.opacity = Number(input_opacity);
+		input_facelabel = input_facelabel.split(";");
+		StartFaceRecognition(input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit);
+	}	
+	
 	function StartFaceRecognition(input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit) {
 		myTimer = input_timer;
 
