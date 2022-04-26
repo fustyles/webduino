@@ -2,9 +2,21 @@ document.write('<div id="region_faceapirecognize" style="z-index:999;position:ab
 document.write('<div id="faceapirecognizeState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="size_faceapirecognize" style="position:absolute;display:none;"></div>');
 
+document.write('<div id="timer_faceapirecognize" style="position:absolute;display:none;"></div>');
+document.write('<div id="faceimagepath_faceapirecognize" style="position:absolute;display:none;"></div>');
+document.write('<div id="facelabel_faceapirecognize" style="position:absolute;display:none;"></div>');
+document.write('<div id="faceimagecount_faceapirecognize" style="position:absolute;display:none;"></div>');
+document.write('<div id="distancelimit_faceapirecognize" style="position:absolute;display:none;"></div>');
+
 function faceapirecognize1_video(input_result, input_opacity, input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit) {
 	document.getElementById('gamediv_faceapirecognize').style.display = input_result;
 	document.getElementById('region_faceapirecognize').style.opacity = Number(input_opacity);
+	
+	document.getElementById('timer_faceapirecognize').innerHTML = input_timer;
+	document.getElementById('faceimagepath_faceapirecognize').innerHTML = input_faceimagepath;
+	document.getElementById('facelabel_faceapirecognize').innerHTML = input_facelabel;
+	document.getElementById('faceimagecount_faceapirecognize').innerHTML = input_faceimagecount;
+	document.getElementById('distancelimit_faceapirecognize').innerHTML = input_distancelimit;	
 	input_facelabel = input_facelabel.split(";");
 	setTimeout(function(){
 		StartFaceRecognition(input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit);
@@ -26,24 +38,21 @@ window.onload = function () {
 	let labeledFaceDescriptors;
 	let faceMatcher;
 	var myTimer;
-	var restartCount=0;	
+	var restartCount=0;
 	
-	function StartFaceRecognition(input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit) {
-		myTimer = input_timer;
+	myTimer = Number(document.getElementById('timer_faceapirecognize').innerHTML);
+	distanceLimit = Number(document.getElementById('distancelimit_faceapirecognize').innerHTML);
+	faceImagesPath = document.getElementById('faceimagepath_faceapirecognize').innerHTML;
+	facelabels = document.getElementById('facelabel_faceapirecognize').innerHTML;
+	faceImagesCount = Number(document.getElementById('faceimagecount_faceapirecognize').innerHTML);
 
-		distanceLimit = input_distancelimit;
-		faceImagesPath = input_faceimagepath;
-		facelabels = input_facelabel;
-		faceImagesCount = input_faceimagecount ;
-
-		Promise.all([
-			faceapi.nets.faceLandmark68Net.load(modelPath),
-			faceapi.nets.faceRecognitionNet.load(modelPath),
-			faceapi.nets.ssdMobilenetv1.load(modelPath)
-		]).then(function(){
-			start();
-		})
-	}
+	Promise.all([
+		faceapi.nets.faceLandmark68Net.load(modelPath),
+		faceapi.nets.faceRecognitionNet.load(modelPath),
+		faceapi.nets.ssdMobilenetv1.load(modelPath)
+	]).then(function(){
+		start();
+	})
 	
 	function start() {
 	  clearInterval(myTimer);  
