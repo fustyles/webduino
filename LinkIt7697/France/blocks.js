@@ -5394,6 +5394,56 @@ Blockly.Blocks['esp32_cam_myfirmata'] = {
   }
 };
 
+Blockly.Blocks['esp32_cam_stream_myfirmata'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_CAM_STREAM_SERVERMODULE_SHOW);
+    this.appendValueInput("ssid")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
+    this.appendValueInput("password")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
+    this.appendValueInput("ssid_ap")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_SSID_AP_SHOW);
+    this.appendValueInput("password_ap")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_AP_SHOW);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["UXGA(1600x1200)","UXGA"],
+			["SXGA(1280x1024)","SXGA"], 
+			["XGA(1024x768)","XGA"],
+			["SVGA(800x600)","SVGA"],
+			["VGA(640x480)","VGA"],
+			["CIF(400x296)","CIF"],
+			["QVGA(320x240)","QVGA"],
+			["HQVGA(240x176)","HQVGA"],
+			["QQVGA(160x120)","QQVGA"],
+			["QXGA(2048x1564)","QXGA"]	
+		]), "framesize");		
+    this.appendValueInput("mainpage")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
+    this.appendStatementInput("ExecuteCommand")
+        .setCheck(null);
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
 Blockly.Blocks['esp32_bluetooth_initial'] = {
   init: function() {
 	this.appendDummyInput()
@@ -5718,6 +5768,18 @@ Blockly.Blocks['servermodule_parameter_set_address2'] = {
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_ADDRESS_SHOW);
     this.appendValueInput("cmd")
         .appendField("cmd")		
+        .setCheck(null);	
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);
+  }
+};
+
+Blockly.Blocks['servermodule_parameter_stream'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_STREAM_SHOW);
+    this.appendValueInput("cmd")
         .setCheck(null);	
 	this.setInputsInline(true);
     this.setOutput(true, null);  
