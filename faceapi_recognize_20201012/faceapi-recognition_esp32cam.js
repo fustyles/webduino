@@ -2,6 +2,14 @@ document.write('<div id="region_faceapirecognize" style="z-index:999;position:ab
 document.write('<div id="faceapirecognizeState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="size_faceapirecognize" style="position:absolute;display:none;"></div>');
 
+function faceapirecognize1_video(input_result, input_opacity, input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit) {
+	document.getElementById('gamediv_faceapirecognize').style.display = input_result;
+	document.getElementById('region_faceapirecognize').style.opacity = Number(input_opacity);
+	input_facelabel = input_facelabel.split(";");
+	setTimeout(function(){
+		StartFaceRecognition(input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit);
+	}, 5000);
+}
 
 window.onload = function () {
 	var modelPath = "https://fustyles.github.io/webduino/faceapi_recognize_20201012/";
@@ -18,14 +26,7 @@ window.onload = function () {
 	let labeledFaceDescriptors;
 	let faceMatcher;
 	var myTimer;
-	var restartCount=0;
-	
-	function faceapirecognize1_video(input_result, input_opacity, input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit) {
-		document.getElementById('gamediv_faceapirecognize').style.display = input_result;
-		document.getElementById('region_faceapirecognize').style.opacity = Number(input_opacity);
-		input_facelabel = input_facelabel.split(";");
-		StartFaceRecognition(input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit);
-	}	
+	var restartCount=0;	
 	
 	function StartFaceRecognition(input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit) {
 		myTimer = input_timer;
