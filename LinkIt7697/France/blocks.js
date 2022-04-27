@@ -5787,6 +5787,16 @@ Blockly.Blocks['servermodule_parameter_stream'] = {
   }
 };
 
+Blockly.Blocks['servermodule_parameter_stream_url'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_STREAM_URL_SHOW);
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);
+  }
+};
+
 Blockly.Blocks['esp32_pinmode'] = {
   init: function() {
 	this.appendDummyInput()

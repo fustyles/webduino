@@ -3045,6 +3045,11 @@ Blockly.Arduino['servermodule_parameter_stream'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['servermodule_parameter_stream_url'] = function (block) {
+  var code = '"http:\/\/"+window.location.hostname+":81/stream"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['esp32_pinmode'] = function (block) {
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
   var mode = block.getFieldValue('mode');

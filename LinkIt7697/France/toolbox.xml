@@ -670,6 +670,8 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>		
+			  </block>	
+			  <block type="servermodule_parameter_stream_url">		
 			  </block>				  
 			  <block type="servermodule_parameter_set_address3">
 				<value name="p1">
@@ -802,24 +804,7 @@
 							  </block>
 							</value>
 							<value name="url_">
-							  <block type="text_join">
-								<mutation items="3"></mutation>
-								<value name="ADD0">
-								  <block type="text">
-									<field name="TEXT">http://</field>
-								  </block>
-								</value>
-								<value name="ADD1">
-								  <block type="location">
-									<field name="value_property">hostname</field>
-								  </block>
-								</value>
-								<value name="ADD2">
-								  <block type="text">
-									<field name="TEXT">:81/stream</field>
-								  </block>
-								</value>
-							  </block>
+								<block type="servermodule_parameter_stream_url"></block>
 							</value>
 							<value name="left_">
 							  <block type="math_number">
