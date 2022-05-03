@@ -1,5 +1,5 @@
 {
-  "types": ["instascan_recognition", "instascan_get", "instascan_video", "instascan_video_position", "instascan_clear", "instascan_startvideo_media", "instascan_startvideo_stream"],
+  "types": ["instascan_recognition", "instascan_get", "instascan_video", "instascan_video_position", "instascan_clear", "instascan_startvideo_media", "instascan_startvideo_stream", "instascan_recognitied"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",

@@ -1,4 +1,5 @@
 document.write('<div id="region_instascan" style="z-index:999;"><video id="gamevideo_instascan" style="visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_instascan" style="visibility:hidden;" crossorigin="anonymous"><br><div id="gamediv_instascan" style="color:red;"></div></div>');
+document.write('<div id="instascanState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_video" style="position:absolute;display:none;">0</div>');
 document.write('<div id="sourceId_instascan" style="position:absolute;display:none;"></div>');
 
@@ -6,6 +7,7 @@ window.onload = function () {
     var video = document.getElementById('gamevideo_instascan');
     var result = document.getElementById('gamediv_instascan');
 	var region = document.getElementById("region_instascan");
+	var instascanState = document.getElementById('instascanState');	
 	var sourceTimer;
 	
 	sourceTimer = setInterval(
@@ -55,7 +57,7 @@ window.onload = function () {
 					  scanner.addListener('scan', function (content) {
 						//console.log(utf8to16(content));
 						result.innerHTML = utf8to16(content);
-						if (typeof recognitionFinish === 'function') recognitionFinish();
+						if (typeof instascan_recognitionFinish === 'function') instascan_recognitionFinish();
 					  });
 					} else {
 					  console.error('No cameras found.');

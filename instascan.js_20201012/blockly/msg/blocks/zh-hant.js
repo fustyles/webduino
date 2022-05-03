@@ -9,3 +9,4 @@ Blockly.Msg.INSTASCAN_OPACITY_SHOW = "透明度";
 Blockly.Msg.INSTASCAN_CLEAR_SHOW = "QRcode辨識 (instascan) 清除結果";
 Blockly.Msg.INSTASCAN_CAMERAID_SHOW = "視訊鏡頭索引";
 Blockly.Msg.INSTASCAN_SRC_SHOW = "串流網址";
+Blockly.Msg.INSTASCAN_RECOGNITIED_SHOW = "QRcode辨識 (instascan) 偵測完成後執行";

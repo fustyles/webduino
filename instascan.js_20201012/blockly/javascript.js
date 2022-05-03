@@ -35,3 +35,9 @@ Blockly.JavaScript['instascan_startvideo_stream'] = function(block) {
   var code = 'instascan_startvideo_stream(' + value_src_ + ');\n';
   return code;
 };
+
+Blockly.JavaScript['instascan_recognitied'] = function(block) { 
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'instascan_recognitionFinish = async function() {\n' + statements_do + '};\n';
+  return code;
+};

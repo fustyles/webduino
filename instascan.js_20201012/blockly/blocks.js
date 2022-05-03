@@ -99,3 +99,15 @@ Blockly.Blocks['instascan_startvideo_stream'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['instascan_recognitied'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.INSTASCAN_RECOGNITIED_SHOW);
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};

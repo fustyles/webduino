@@ -25,6 +25,8 @@
       </block>
     </value> 
   </block>
+  <block type="instascan_recognitied">
+  </block>   
   <block type="instascan_get">
   </block>  
   <block type="instascan_clear">

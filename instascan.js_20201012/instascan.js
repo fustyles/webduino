@@ -52,12 +52,20 @@
 			document.getElementById("sourceId_instascan").innerHTML = "gameimage_instascan";
 		}	
 	}
+	
+	function instascan_state(input_state){
+		document.getElementById('instascanState').innerHTML = input_state;
+	}	
+	
+	function instascan_recognitionFinish() {
+	}	
 
 	window.instascan_get = instascan_get;
 	window.instascan_video = instascan_video;
 	window.instascan_clear = instascan_clear;
 	window.instascan_video_position = instascan_video_position;
 	window.instascan_startvideo_media = instascan_startvideo_media;
-	window.instascan_startvideo_stream = instascan_startvideo_stream;	
-
+	window.instascan_startvideo_stream = instascan_startvideo_stream;
+	window.instascan_recognitionFinish = instascan_recognitionFinish;
+	
 }(window, window.document));
