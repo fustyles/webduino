@@ -163,7 +163,7 @@
 		document.getElementById("gamediv_cocossd").innerHTML = "";
 	}
 	
-	function recognitionFinish() {
+	function cocossd_recognitionFinish() {
 	}
 	
 	window.cocossd_list = cocossd_list;
@@ -175,6 +175,6 @@
 	window.cocossd_startvideo_media = cocossd_startvideo_media;
 	window.cocossd_startvideo_stream = cocossd_startvideo_stream;
 	window.cocossd_clear = cocossd_clear;
-	window.recognitionFinish = recognitionFinish;
+	window.cocossd_recognitionFinish = cocossd_recognitionFinish;
 
 }(window, window.document));

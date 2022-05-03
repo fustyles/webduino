@@ -77,7 +77,7 @@ window.onload = function () {
 				}
 				if (result.innerHTML!="") {
 					result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4); 
-					if (typeof recognitionFinish === 'function') recognitionFinish();
+					if (typeof cocossd_recognitionFinish === 'function') cocossd_recognitionFinish();
 				}
 			}
 			else
