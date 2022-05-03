@@ -28,4 +28,4 @@ Blockly.Msg.COCOSSD_DATA_BOTTOMX_SHOW = "下方X";
 Blockly.Msg.COCOSSD_DATA_BOTTOMY_SHOW = "下方Y";
 Blockly.Msg.COCOSSD_CLEAR_SHOW = "物件侦测(coco-ssd) 清除结果";
 Blockly.Msg.COCOSSD_PAUSE_SHOW = "物件侦测(coco-ssd) 暂停侦测";
-Blockly.Msg.COCOSSD_RECOGNITIED_SHOW = "物件侦测(coco-ssd) 辨识完成后执行";
+Blockly.Msg.COCOSSD_RECOGNITIED_SHOW = "物件侦测(coco-ssd) 侦测完成后执行";
