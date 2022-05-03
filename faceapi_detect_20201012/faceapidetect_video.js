@@ -53,7 +53,8 @@ window.onload = function () {
 		canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
 
 		if (faceapiState.innerHTML=="0") {
-			result.innerHTML = "";
+			//result.innerHTML = "";
+			canvas.getContext('2d').drawImage(obj, 0, 0, obj.width, obj.height);
 			setTimeout(function(){DetectVideo(obj); }, 100);
 			return;
 		}
@@ -115,12 +116,12 @@ window.onload = function () {
 		})
 		if (result.innerHTML.length>0) {
 			result.innerHTML = result.innerHTML.substring(0,result.innerHTML.length-4);
-			if (typeof recognitionFinish === 'function') recognitionFinish();
+			if (typeof faceapidetect_recognitionFinish === 'function') faceapidetect_recognitionFinish();
 		}
 
 		try { 
 			document.createEvent("TouchEvent");
-			setTimeout(function(){DetectVideo(obj);},250);
+			setTimeout(function(){DetectVideo(obj);},200);
 		}
 		catch(e) { 
 			setTimeout(function(){DetectVideo(obj);},150);

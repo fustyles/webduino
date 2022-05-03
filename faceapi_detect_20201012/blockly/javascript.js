@@ -40,3 +40,20 @@ Blockly.JavaScript['faceapidetect_startvideo_stream'] = function(block) {
   var code = 'faceapidetect_startvideo_stream(' + value_src_ + ');\n';
   return code;
 };
+
+Blockly.JavaScript['faceapidetect_clear'] = function(block) { 
+  var code = 'faceapidetect_clear();\n';
+  return code;
+};
+
+Blockly.JavaScript['faceapidetect_pause'] = function(block) { 
+  var value_time = Blockly.JavaScript.valueToCode(block, 'time_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'faceapidetect_state(0);setTimeout(function(){faceapidetect_state(1);}, '+value_time+');\n';
+  return code;
+};
+
+Blockly.JavaScript['faceapidetect_recognitied'] = function(block) { 
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'faceapidetect_recognitionFinish = async function() {\nfaceapidetect_state(0);\n' + statements_do + '\nfaceapidetect_state(1);};\n';
+  return code;
+};

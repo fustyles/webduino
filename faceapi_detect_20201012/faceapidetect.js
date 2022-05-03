@@ -102,11 +102,20 @@
 				
 	}  
 
+	function faceapidetect_clear() {
+		document.getElementById("gamediv_faceapidetect").innerHTML = "";
+	}
+	
+	function faceapidetect_recognitionFinish() {
+	}
+	
 	window.faceapidetect_face = faceapidetect_face;
 	window.faceapidetect_video = faceapidetect_video;
 	window.faceapidetect_video_position = faceapidetect_video_position;
 	window.faceapidetect_state = faceapidetect_state;
 	window.faceapidetect_startvideo_media = faceapidetect_startvideo_media;
 	window.faceapidetect_startvideo_stream = faceapidetect_startvideo_stream;  
-
+	window.faceapidetect_clear = faceapidetect_clear;
+	window.faceapidetect_recognitionFinish = faceapidetect_recognitionFinish;
+	
 }(window, window.document));

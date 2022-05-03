@@ -29,3 +29,6 @@ Blockly.Msg.FACEAPIDETECT_BOXX_SHOW = "boxX";
 Blockly.Msg.FACEAPIDETECT_BOXY_SHOW = "boxY";
 Blockly.Msg.FACEAPIDETECT_BOXWIDTH_SHOW = "boxWidth";
 Blockly.Msg.FACEAPIDETECT_BOXHEIGHT_SHOW = "boxHeight";
+Blockly.Msg.FACEAPIDETECT_CLEAR_SHOW = "Face Detection (faceapi.js) clear result";
+Blockly.Msg.FACEAPIDETECT_PAUSE_SHOW = "Face Detection (faceapi.js) Pause";
+Blockly.Msg.FACEAPIDETECT_RECOGNITIED_SHOW = "Face Detection (faceapi.js) recognitied";

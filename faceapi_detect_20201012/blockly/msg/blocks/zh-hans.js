@@ -29,3 +29,6 @@ Blockly.Msg.FACEAPIDETECT_BOXX_SHOW = "方框靠左距离(Box X)";
 Blockly.Msg.FACEAPIDETECT_BOXY_SHOW = "方框靠上距离(Box Y)";
 Blockly.Msg.FACEAPIDETECT_BOXWIDTH_SHOW = "方框宽度(Box Width)";
 Blockly.Msg.FACEAPIDETECT_BOXHEIGHT_SHOW = "方框高度(Box Height)";
+Blockly.Msg.FACEAPIDETECT_CLEAR_SHOW = "人臉侦测 (face-api) 清除结果";
+Blockly.Msg.FACEAPIDETECT_PAUSE_SHOW = "人臉侦测 (face-api) 暂停侦测";
+Blockly.Msg.FACEAPIDETECT_RECOGNITIED_SHOW = "人臉侦测 (face-api) 辨识完成后执行";
