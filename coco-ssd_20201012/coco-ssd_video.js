@@ -47,7 +47,7 @@ window.onload = function () {
 			context.drawImage(obj, 0, 0, obj.width, obj.height);  
 
 		if (cocossdState.innerHTML=="0") {
-			result.innerHTML = "";
+			//result.innerHTML = "";
 			setTimeout(function(){DetectVideo(obj);}, 100);
 			return;
 		}

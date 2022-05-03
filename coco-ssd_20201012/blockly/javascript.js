@@ -73,6 +73,6 @@ Blockly.JavaScript['cocossd_pause'] = function(block) {
 
 Blockly.JavaScript['cocossd_recognitied'] = function(block) { 
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'cocossd_recognitionFinish = async function() {\n' + statements_do + '};\n';
+  var code = 'cocossd_recognitionFinish = async function() {\ncocossd_state(0);\n' + statements_do + '\ncocossd_state(1);};\n';
   return code;
 };
