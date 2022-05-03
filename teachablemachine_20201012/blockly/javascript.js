@@ -52,3 +52,14 @@ Blockly.JavaScript['teachablemachine_pause'] = function(block) {
   var code = 'teachablemachine_state(0);setTimeout(function(){teachablemachine_state(1);}, '+value_time+');\n';
   return code;
 };
+
+Blockly.JavaScript['teachablemachine_clear'] = function(block) { 
+  var code = 'teachablemachine_clear();\n';
+  return code;
+};
+
+Blockly.JavaScript['teachablemachine_recognitied'] = function(block) { 
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'teachablemachine_recognitionFinish = async function() {\nteachablemachine_state(0);\n' + statements_do + '\nteachablemachine_state(1);};\n';
+  return code;
+};

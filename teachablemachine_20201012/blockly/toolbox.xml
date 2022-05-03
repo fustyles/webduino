@@ -31,11 +31,15 @@
         <field name="TEXT">http://192.168.***.***:81/stream</field>
       </block>
     </value> 
-  </block>   
+  </block>
+  <block type="teachablemachine_recognitied">
+  </block>    
   <block type="teachablemachine_result">
   </block>
   <block type="teachablemachine_state">
-  </block> 
+  </block>
+  <block type="teachablemachine_clear">
+  </block>   
   <block type="teachablemachine_video_position">
     <value name="left_">
       <block type="math_number">

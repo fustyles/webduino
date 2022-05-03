@@ -151,3 +151,26 @@ Blockly.Blocks['teachablemachine_pause'] = {
     this.setColour(60);
   }
 };
+
+Blockly.Blocks['teachablemachine_clear'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_CLEAR_SHOW); 
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['teachablemachine_recognitied'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_RECOGNITIED_SHOW);
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};

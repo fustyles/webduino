@@ -121,7 +121,14 @@
 		img.onload = function() {
 			document.getElementById("sourceId_teachablemachine").innerHTML = "gameimage_teachablemachine";
 		}	
-	}  
+	}
+
+	function teachablemachine_clear() {
+		document.getElementById("gamediv_teachablemachine").innerHTML = "";
+	}
+	
+	function teachablemachine_recognitionFinish() {
+	}
 
 	window.teachablemachine_video = teachablemachine_video;
 	window.teachablemachine_model = teachablemachine_model;
@@ -130,5 +137,7 @@
 	window.teachablemachine_state = teachablemachine_state;
 	window.teachablemachine_startvideo_media = teachablemachine_startvideo_media;
 	window.teachablemachine_startvideo_stream = teachablemachine_startvideo_stream;  
-
+	window.teachablemachine_clear = teachablemachine_clear;
+	window.teachablemachine_recognitionFinish = teachablemachine_recognitionFinish;
+	
 }(window, window.document));

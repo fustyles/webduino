@@ -11,6 +11,7 @@ window.onload = function () {
 	var canvas = document.getElementById('gamecanvas_teachablemachine');
 	var context = canvas.getContext('2d');
 	var mirrorimage = document.getElementById("mirrorimage_teachablemachine");
+	var teachablemachineState = document.getElementById('teachablemachineState');
 	var result = document.getElementById('gamediv_teachablemachine');
 	var modelPath = document.getElementById('modelPath_teachablemachine');
 	var source = document.getElementById("sourceId_teachablemachine");
@@ -64,9 +65,9 @@ window.onload = function () {
 		else
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
 
-		if (document.getElementById('teachablemachineState').innerHTML=="0") {
-			result.innerHTML = "";
-			setTimeout(function(){DetectVideo(obj);}, 250);
+		if (teachablemachineState.innerHTML=="0") {
+			//result.innerHTML = "";
+			setTimeout(function(){DetectVideo(obj);}, 100);
 			return;
 		}
 
@@ -83,12 +84,12 @@ window.onload = function () {
 			result.innerHTML = data;
 			if (result.innerHTML!="") {
 				result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);
-				if (typeof recognitionFinish === 'function') recognitionFinish();
+				if (typeof teachablemachine_recognitionFinish === 'function') teachablemachine_recognitionFinish();
 			}
 		}
 		else
 			result.innerHTML = "";
 
-		setTimeout(function(){DetectVideo(obj);}, 250);
+		setTimeout(function(){DetectVideo(obj);}, 200);
 	}
 }

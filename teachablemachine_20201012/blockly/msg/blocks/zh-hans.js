@@ -17,3 +17,5 @@ Blockly.Msg.TEACHABLEMACHINE_PROJECT_SHOW = "机器学习(自订模型) 专案";
 Blockly.Msg.TEACHABLEMACHINE_MAXCLASS_SHOW = "最大可能性分类名称";
 Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW = "最大可能性";
 Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW = "机器学习(自订模型) 暂停侦测";
+Blockly.Msg.TEACHABLEMACHINE_CLEAR_SHOW = "机器学习(自订模型) 清除结果";
+Blockly.Msg.TEACHABLEMACHINE_RECOGNITIED_SHOW = "机器学习(自订模型) 辨识完成后执行";
