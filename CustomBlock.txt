@@ -18,6 +18,10 @@ Chrome瀏覽器console指令：移除自訂積木
 Code.customTab.$__remove__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
 
+Robot Fly(須搭配Web Serial積木)
+https://fustyles.github.io/webduino/RobotFly_20220127/blockly.json
+
+
 MQTT
 https://fustyles.github.io/webduino/MQTT_20220324/blockly.json
 
