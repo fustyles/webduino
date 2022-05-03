@@ -75,7 +75,7 @@ window.onload = function () {
 			setTimeout(function(){
 				var source = document.getElementById("sourceId_holistic");
 				loadImage(document.getElementById(source.innerHTML));
-			}, 10)
+			}, 100)
 		}
 	}
 
