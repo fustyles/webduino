@@ -25,6 +25,10 @@
 		else
 			return result.length;
 	}
+	
+	function faceapirecognize_state(input_state){
+		document.getElementById('faceapirecognizeState').innerHTML = input_state;
+	}		
 
 	function faceapirecognize_get(input_index, input_column) {
 		var result = document.getElementById("gamediv_faceapirecognize").innerHTML.split("<br>");
@@ -112,15 +116,20 @@
 			document.getElementById("size_faceapirecognize").innerHTML = "{\"width\":"+img.width+", \"height\": "+img.height+"}";
 			obj = "gameimage_faceapirecognize";
 		}
+	}
+
+	function faceapirecognize_recognitionFinish() {
 	}    
 
 	window.faceapirecognize_number = faceapirecognize_number;
 	window.faceapirecognize_get = faceapirecognize_get;
 	window.faceapirecognize_video = faceapirecognize_video;
+	window.faceapirecognize_state = faceapirecognize_state;	
 	window.faceapirecognize_detect = faceapirecognize_detect;
 	window.faceapirecognize_clear = faceapirecognize_clear;
 	window.faceapirecognize_video_position = faceapirecognize_video_position;
 	window.faceapirecognize_startvideo_media = faceapirecognize_startvideo_media;
-	window.faceapirecognize_startvideo_stream = faceapirecognize_startvideo_stream;    
+	window.faceapirecognize_startvideo_stream = faceapirecognize_startvideo_stream;
+	window.faceapirecognize_recognitionFinish = faceapirecognize_recognitionFinish;    
 
 }(window, window.document));

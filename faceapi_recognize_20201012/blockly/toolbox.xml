@@ -7,7 +7,7 @@
     </value> 
     <value name="facelabel">
       <block type="text">
-        <field name="TEXT">France;Terry</field>
+        <field name="TEXT">France;Evonne</field>
       </block>    
     </value> 
     <value name="faceimagecount">
@@ -51,9 +51,13 @@
     </value> 
   </block>
   <block type="faceapirecognize_detect">
-  </block>
+  </block>  
+  <block type="faceapirecognize_recognitied">
+  </block>    
   <block type="faceapirecognize_number"> 
   </block>
+  <block type="faceapirecognize_state">
+  </block>  
   <block type="faceapirecognize_get">
     <value name="index">
       <block type="math_number">

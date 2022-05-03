@@ -22,3 +22,5 @@ Blockly.Msg.FACEAPIRECOGNIZE_FACING_FRONT_SHOW = "前置";
 Blockly.Msg.FACEAPIRECOGNIZE_FACING_BACK_SHOW = "后置";
 Blockly.Msg.FACEAPIRECOGNIZE_SRC_SHOW = "串流网址";
 Blockly.Msg.FACEAPIRECOGNIZE_CANVAS_GET_SHOW = "人脸辨识 (face-api) 取得影像代码";
+Blockly.Msg.FACEAPIRECOGNIZE_STATE_SHOW = "人脸辨识 (face-api) 辨识状态";
+Blockly.Msg.FACEAPIRECOGNIZE_RECOGNITIED_SHOW = "人脸辨识 (face-api) 辨识完成后执行";

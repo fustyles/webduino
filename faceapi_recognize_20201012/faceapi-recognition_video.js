@@ -9,7 +9,8 @@ var video = document.getElementById('gamevideo_faceapirecognize');
 var canvas = document.getElementById('gamecanvas_faceapirecognize');
 var context = canvas.getContext('2d');
 var region = document.getElementById("region_faceapirecognize");
-var detect = document.getElementById('detect_faceapirecognize'); 
+var detect = document.getElementById('detect_faceapirecognize');
+var faceapirecognizeState = document.getElementById('faceapirecognizeState'); 
 var message = document.getElementById('gamediv_faceapirecognize');
 var size = document.getElementById("size_faceapirecognize");
 var sourceTimer; 
@@ -53,7 +54,13 @@ async function DetectVideo(obj) {
 	canvas.setAttribute("height", obj.height);
 	canvas.style.width = obj.width+"px";
 	canvas.style.height = obj.height+"px";
-	canvas.getContext('2d').drawImage(obj,0,0,obj.width,obj.height); 
+	context.drawImage(obj,0,0,obj.width,obj.height);
+
+	if (faceapirecognizeState.innerHTML=="0") {
+		//message.innerHTML = "";
+		setTimeout(function(){DetectVideo(obj); }, 100);
+		return;
+	}	
 
 	if (!labeledFaceDescriptors) {
 		labeledFaceDescriptors = await loadLabeledImages();
@@ -67,12 +74,13 @@ async function DetectVideo(obj) {
 	if (results.length>0) {
 		var res = "";
 		for (var i=0;i<results.length;i++) {
-			res += results[i]._label + "," + results[i]._distance;
-			if (i<results.length-1)
-				res += "<br>";
+			res += results[i]._label + "," + results[i]._distance + "<br>";
 		}
 		message.innerHTML = res;
-		if (typeof recognitionFinish === 'function') recognitionFinish();
+		if (message.innerHTML!="") {
+			message.innerHTML = message.innerHTML.substr(0,message.innerHTML.length-4); 
+			if (typeof faceapirecognize_recognitionFinish === 'function') faceapirecognize_recognitionFinish();
+		}
 	}
 	else
 		message.innerHTML = "";
