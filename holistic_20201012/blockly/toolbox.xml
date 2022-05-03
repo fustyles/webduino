@@ -24,9 +24,13 @@
         <field name="TEXT">http://192.168.1.199:81/stream</field>
       </block>
     </value> 
+  </block> 
+  <block type="holistic_recognitied">
   </block>    
   <block type="holistic_state">
-  </block> 
+  </block>
+  <block type="holistic_clear">
+  </block>   
   <block type="holistic_video_position">
     <value name="left_">
       <block type="math_number">

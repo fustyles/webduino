@@ -57,6 +57,10 @@ window.onload = function () {
 		else
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
 		
+		canvasCtx.save();
+		canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+		canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);		
+		
 		if (holisticState.innerHTML =="1") {
 			holistic.send({image: canvas}).then(res => {
 				var source = document.getElementById("sourceId_holistic");
@@ -64,24 +68,21 @@ window.onload = function () {
 			});
 		}
 		else {
+			//result_face.innerHTML = "";
+			//result_pose.innerHTML = "";
+			//result_lefthand.innerHTML = "";
+			//result_righthand.innerHTML = "";				
 			setTimeout(function(){
-				canvasCtx.save();
-				canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-				canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);
-				result_face.innerHTML = "";
-				result_pose.innerHTML = "";
-				result_lefthand.innerHTML = "";
-				result_righthand.innerHTML = "";				
 				var source = document.getElementById("sourceId_holistic");
 				loadImage(document.getElementById(source.innerHTML));
-			}, 100)
+			}, 10)
 		}
 	}
 
 	function onResults(results) {
-		canvasCtx.save();
-		canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-		canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
+		//canvasCtx.save();
+		//canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+		//canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
 
 		if (face.value==1) {
 			drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION, {color: '#C0C0C070', lineWidth: 1});
@@ -109,9 +110,9 @@ window.onload = function () {
 		}
 		result_righthand.innerHTML = JSON.stringify(results.rightHandLandmarks);
 		
-		canvasCtx.restore();
+		//canvasCtx.restore();
 		
-		if (typeof recognitionFinish === 'function') recognitionFinish();
+		if (typeof holistic_recognitionFinish === 'function') holistic_recognitionFinish();
 	}
 	
 	const holistic = new Holistic({locateFile: (file) => {

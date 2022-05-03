@@ -377,7 +377,17 @@
 		  }
 	  }	  
   } 	
-
+  
+	function holistic_clear() {
+		document.getElementById("gamediv_face_holistic").innerHTML = "";
+		document.getElementById("gamediv_pose_holistic").innerHTML = "";
+		document.getElementById("gamediv_lefthand_holistic").innerHTML = "";
+		document.getElementById("gamediv_righthand_holistic").innerHTML = "";
+	}
+	
+	function holistic_recognitionFinish() {
+	}
+	
 	window.holistic_video = holistic_video;
 	window.holistic_face_position = holistic_face_position;
 	window.holistic_pose_position = holistic_pose_position;
@@ -391,5 +401,7 @@
 	window.holistic_state = holistic_state;
 	window.holistic_startvideo_media = holistic_startvideo_media;
 	window.holistic_startvideo_stream = holistic_startvideo_stream;
+	window.holistic_clear = holistic_clear;
+	window.holistic_recognitionFinish = holistic_recognitionFinish;	
 	
 }(window, window.document));

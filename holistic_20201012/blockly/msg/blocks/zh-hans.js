@@ -90,3 +90,5 @@ Blockly.Msg.HOLISTIC_RIGHTHAND_ANGLE_SHOW = "全身侦测 右手掌转动角度"
 Blockly.Msg.HOLISTIC_AXIS_SHOW  = "轴"; 
 Blockly.Msg.HOLISTIC_ADJUST_SHOW  = "校正角度";
 Blockly.Msg.HOLISTIC_PAUSE_SHOW = "全身侦测 暂停侦测";
+Blockly.Msg.HOLISTIC_CLEAR_SHOW = "全身侦测 清除结果";
+Blockly.Msg.HOLISTIC_RECOGNITIED_SHOW = "全身侦测 辨识完成后执行";

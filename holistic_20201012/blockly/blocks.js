@@ -817,3 +817,26 @@ Blockly.Blocks['holistic_pause'] = {
     this.setColour(60);
   }
 };
+
+Blockly.Blocks['holistic_clear'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_CLEAR_SHOW); 
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['holistic_recognitied'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_RECOGNITIED_SHOW);
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
