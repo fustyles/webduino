@@ -11,6 +11,7 @@ window.onload = function () {
     var canvas = document.getElementById('gamecanvas_trackingcolor');
     var context = canvas.getContext('2d');
     var canvas_custom = document.getElementById('gamecanvas_custom');
+	var trackingcolorState = document.getElementById('trackingcolorState');
     var context_custom = canvas_custom.getContext('2d');
     var result = document.getElementById('gamediv_trackingcolor');
     var mirrorimage = document.getElementById("mirrorimage_trackingcolor");
@@ -48,6 +49,11 @@ window.onload = function () {
 					}
 					else
 					  context.drawImage(obj, 0, 0, obj.width, obj.height);
+				  
+					if (trackingcolorState.innerHTML=="0") {
+						//result.innerHTML = "";
+						return;
+					}				  
 
 					myColor_r_min1 = document.getElementById('myColor_r_min1').value;
 					myColor_r_max1 = document.getElementById('myColor_r_max1').value;
@@ -111,7 +117,7 @@ window.onload = function () {
 
 					if (result.innerHTML!="") {
 						result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);
-						if (typeof recognitionFinish === 'function') recognitionFinish();
+						if (typeof trackingcolor_recognitionFinish === 'function') trackingcolor_recognitionFinish();
 					}
 				});
 				

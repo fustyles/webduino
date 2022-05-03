@@ -188,6 +188,17 @@
 		}	
 	}
 	
+	function trackingcolor_state(input_state){
+		document.getElementById('trackingcolorState').innerHTML = input_state;
+	}
+	
+	function trackingcolor_clear() {
+		document.getElementById("gamediv_trackingcolor").innerHTML = "";
+	}
+	
+	function trackingcolor_recognitionFinish() {
+	}	
+	
 	window.trackingcolor_set = trackingcolor_set;
 	window.trackingcolor_range_set = trackingcolor_range_set;	
 	window.trackingcolor_custom = trackingcolor_custom;
@@ -196,6 +207,9 @@
 	window.trackingcolor_object = trackingcolor_object;
 	window.trackingcolor_get_number = trackingcolor_get_number;
 	window.trackingcolor_startvideo_media = trackingcolor_startvideo_media;
-	window.trackingcolor_startvideo_stream = trackingcolor_startvideo_stream;  
+	window.trackingcolor_startvideo_stream = trackingcolor_startvideo_stream; 
+	window.trackingcolor_state = trackingcolor_state;
+	window.trackingcolor_clear = trackingcolor_clear;
+	window.trackingcolor_recognitionFinish = trackingcolor_recognitionFinish;	
   
 }(window, window.document));

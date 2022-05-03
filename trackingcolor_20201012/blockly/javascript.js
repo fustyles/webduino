@@ -71,3 +71,26 @@ Blockly.JavaScript['trackingcolor_startvideo_stream'] = function(block) {
   var code = 'trackingcolor_startvideo_stream(' + value_src_ + ');\n';
   return code;
 };
+
+Blockly.JavaScript['trackingcolor_state'] = function(block) {
+  var value_state_ = block.getFieldValue('state_');
+  var code = 'trackingcolor_state(' + value_state_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['trackingcolor_clear'] = function(block) { 
+  var code = 'trackingcolor_clear();\n';
+  return code;
+};
+
+Blockly.JavaScript['trackingcolor_pause'] = function(block) { 
+  var value_time = Blockly.JavaScript.valueToCode(block, 'time_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'trackingcolor_state(0);setTimeout(function(){trackingcolor_state(1);}, '+value_time+');\n';
+  return code;
+};
+
+Blockly.JavaScript['trackingcolor_recognitied'] = function(block) { 
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'trackingcolor_recognitionFinish = async function() {\ntrackingcolor_state(0);\n' + statements_do + '\ntrackingcolor_state(1);};\n';
+  return code;
+};

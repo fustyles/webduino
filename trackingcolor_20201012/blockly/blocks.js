@@ -249,3 +249,55 @@ Blockly.Blocks['trackingcolor_object'] = {
   this.setColour(65);
   }
 };
+
+Blockly.Blocks['trackingcolor_state'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TRACKINGCOLOR_STATE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+        ["Y","1"],
+        ["N","0"]
+  ]), "state_");   
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['trackingcolor_clear'] = {
+  init: function() { 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TRACKINGCOLOR_CLEAR_SHOW); 
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['trackingcolor_pause'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW);
+  this.appendValueInput("time_")
+      .setCheck("Number")    
+      .appendField("(ms)"); 	  
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(60);
+  }
+};
+
+Blockly.Blocks['trackingcolor_recognitied'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW);
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};

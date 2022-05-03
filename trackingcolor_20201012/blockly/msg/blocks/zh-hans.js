@@ -37,3 +37,7 @@ Blockly.Msg.TRACKINGCOLOR_RECT_INDEX_SHOW = "索引";
 Blockly.Msg.TRACKINGCOLOR_RECT_DATA_SHOW = "属性";
 Blockly.Msg.TRACKINGCOLOR_MIDDLEX_SHOW = "中心X";
 Blockly.Msg.TRACKINGCOLOR_MIDDLEY_SHOW = "中心Y";
+Blockly.Msg.TRACKINGCOLOR_STATE_SHOW = "颜色追踪 (Tracking) 侦测状态";
+Blockly.Msg.TRACKINGCOLOR_CLEAR_SHOW = "颜色追踪 (Tracking) 清除结果";
+Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW = "颜色追踪 (Tracking) 暂停侦测";
+Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "颜色追踪 (Tracking) 辨识完成后执行";

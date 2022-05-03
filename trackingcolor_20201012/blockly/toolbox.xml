@@ -36,6 +36,8 @@
         <field name="TEXT">http://192.168.***.***:81/stream</field>
       </block>
     </value> 
+  </block>
+  <block type="trackingcolor_recognitied">
   </block>   
   <block type="trackingcolor_custom">
     <value name="rmin_">
@@ -92,4 +94,15 @@
       </block>
     </value> 
   </block>
+  <block type="trackingcolor_state">
+  </block>
+  <block type="trackingcolor_clear">
+  </block>
+  <block type="trackingcolor_pause">
+    <value name="time_">
+      <block type="math_number">
+        <field name="NUM">1000</field>
+      </block>
+    </value> 			  
+  </block>   
 </category>

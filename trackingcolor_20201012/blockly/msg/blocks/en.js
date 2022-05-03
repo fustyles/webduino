@@ -37,3 +37,7 @@ Blockly.Msg.TRACKINGCOLOR_RECT_INDEX_SHOW = "Index";
 Blockly.Msg.TRACKINGCOLOR_RECT_DATA_SHOW = "Data";
 Blockly.Msg.TRACKINGCOLOR_MIDDLEX_SHOW = "Middle X";
 Blockly.Msg.TRACKINGCOLOR_MIDDLEY_SHOW = "Middle Y";
+Blockly.Msg.TRACKINGCOLOR_STATE_SHOW = "TrackColor (Tracking) Detect State";
+Blockly.Msg.TRACKINGCOLOR_CLEAR_SHOW = "TrackColor (Tracking) clear result";
+Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW = "TrackColor (Tracking) Pause";
+Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "TrackColor (Tracking) recognitied";
