@@ -104,6 +104,13 @@
 			document.getElementById("sourceId_blazeface").innerHTML = "gameimage_blazeface";
 		}	
 	}
+	
+	function blazeface_clear() {
+		document.getElementById("gamediv_blazeface").innerHTML = "";
+	}
+	
+	function blazeface_recognitionFinish() {
+	}	
 
 	window.blazeface_video = blazeface_video;
 	window.blazeface_get = blazeface_get;
@@ -111,5 +118,7 @@
 	window.blazeface_state = blazeface_state;
 	window.blazeface_startvideo_media = blazeface_startvideo_media;
 	window.blazeface_startvideo_stream = blazeface_startvideo_stream;
+	window.blazeface_clear = blazeface_clear;
+	window.blazeface_recognitionFinish = blazeface_recognitionFinish;	
 	
 }(window, window.document));

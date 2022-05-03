@@ -48,16 +48,15 @@ window.onload = function () {
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
 
 		if (blazefaceState.innerHTML=="0") {
-			result.innerHTML = "";
+			//result.innerHTML = "";
 			setTimeout(function(){DetectVideo(obj);}, 100);
 			return;
 		}
 
 		const returnTensors = false;
 		await Model.estimateFaces(canvas, returnTensors).then(predictions => {
-			result.innerHTML = "";
+			
 			var scoreLimit = Number(document.getElementById("scorelimit_blazeface").value);
-
 			//console.log(predictions.score);
 			//console.log(predictions.keypoints);
 			result.innerHTML = "";
@@ -89,7 +88,7 @@ window.onload = function () {
 				}
 				if (result.innerHTML!="") {
 					result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);
-					if (typeof recognitionFinish === 'function') recognitionFinish();
+					if (typeof blazeface_recognitionFinish === 'function') blazeface_recognitionFinish();
 				}
 			}  
 

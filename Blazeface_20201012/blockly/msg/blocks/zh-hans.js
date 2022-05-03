@@ -15,3 +15,6 @@ Blockly.Msg.BLAZEFACE_FACING_SHOW = "镜头";
 Blockly.Msg.BLAZEFACE_FACING_FRONT_SHOW = "前置";
 Blockly.Msg.BLAZEFACE_FACING_BACK_SHOW = "后置";
 Blockly.Msg.BLAZEFACE_SRC_SHOW = "串流网址";
+Blockly.Msg.BLAZEFACE_CLEAR_SHOW = "脸部侦测 (blazeface) 清除结果";
+Blockly.Msg.BLAZEFACE_PAUSE_SHOW = "脸部侦测 (blazeface) 暂停侦测";
+Blockly.Msg.BLAZEFACE_RECOGNITIED_SHOW = "脸部侦测 (blazeface) 侦测完成后执行";

@@ -42,3 +42,20 @@ Blockly.JavaScript['blazeface_startvideo_stream'] = function(block) {
   var code = 'blazeface_startvideo_stream(' + value_src_ + ');\n';
   return code;
 };
+
+Blockly.JavaScript['blazeface_clear'] = function(block) { 
+  var code = 'blazeface_clear();\n';
+  return code;
+};
+
+Blockly.JavaScript['blazeface_pause'] = function(block) { 
+  var value_time = Blockly.JavaScript.valueToCode(block, 'time_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'blazeface_state(0);setTimeout(function(){blazeface_state(1);}, '+value_time+');\n';
+  return code;
+};
+
+Blockly.JavaScript['blazeface_recognitied'] = function(block) { 
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'blazeface_recognitionFinish = async function() {\nblazeface_state(0);\n' + statements_do + '\nblazeface_state(1);};\n';
+  return code;
+};

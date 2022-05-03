@@ -15,3 +15,6 @@ Blockly.Msg.BLAZEFACE_FACING_SHOW = "Camera Facing";
 Blockly.Msg.BLAZEFACE_FACING_FRONT_SHOW = "Front";
 Blockly.Msg.BLAZEFACE_FACING_BACK_SHOW = "Back";
 Blockly.Msg.BLAZEFACE_SRC_SHOW = "Stream URL";
+Blockly.Msg.BLAZEFACE_CLEAR_SHOW = "Face Detection (blazeface) clear result";
+Blockly.Msg.BLAZEFACE_PAUSE_SHOW = "Face Detection (blazeface) Pause";
+Blockly.Msg.BLAZEFACE_RECOGNITIED_SHOW = "Face Detection (blazeface) recognitied";
