@@ -70,3 +70,9 @@ Blockly.JavaScript['cocossd_pause'] = function(block) {
   var code = 'cocossd_state(0);setTimeout(function(){cocossd_state(1);}, '+value_time+');\n';
   return code;
 };
+
+Blockly.JavaScript['cocossd_recognitied'] = function(block) { 
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'recognitionFinish = async function() {\n' + statements_do + '};\n';
+  return code;
+};

@@ -28,3 +28,4 @@ Blockly.Msg.COCOSSD_DATA_BOTTOMX_SHOW = "Bottom X";
 Blockly.Msg.COCOSSD_DATA_BOTTOMY_SHOW = "Bottom Y";
 Blockly.Msg.COCOSSD_CLEAR_SHOW = "Object Detection (coco-ssd) clear result";
 Blockly.Msg.COCOSSD_PAUSE_SHOW = "Object Detection (coco-ssd) Pause";
+Blockly.Msg.COCOSSD_RECOGNITIED_SHOW = "Object Detection (coco-ssd) recognitied";

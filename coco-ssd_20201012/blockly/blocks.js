@@ -446,3 +446,15 @@ Blockly.Blocks['cocossd_pause'] = {
     this.setColour(60);
   }
 };
+
+Blockly.Blocks['cocossd_recognitied'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.COCOSSD_RECOGNITIED_SHOW);
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
