@@ -4488,7 +4488,8 @@ Blockly.Blocks['video_base64_spreadsheet'] = {
   this.appendValueInput("spreadsheet_script_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL); 	  
+      .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/WebduinoSpreadsheet.gs");	  
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
