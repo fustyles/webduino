@@ -773,6 +773,7 @@ Blockly.Msg["AIRQUALITY_SITE"] = "get site";
 Blockly.Msg["AIRQUALITY_AQI"] = "AQI";
 Blockly.Msg["AIRQUALITY_PM25"] = "PM2.5";
 Blockly.Msg["AIRQUALITY_STATE"] = "state";
+Blockly.Msg["AIRQUALITY_TIME"] = "update time";
 Blockly.Msg["EZ_RED"] = "red";
 Blockly.Msg["EZ_YELLOW"] = "yellow";
 Blockly.Msg["EZ_GREEN"] = "green";

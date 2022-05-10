@@ -774,6 +774,7 @@ Blockly.Msg["AIRQUALITY_SITE"] = "取得 站名";
 Blockly.Msg["AIRQUALITY_AQI"] = "AQI";
 Blockly.Msg["AIRQUALITY_PM25"] = "PM2.5";
 Blockly.Msg["AIRQUALITY_STATE"] = "狀態";
+Blockly.Msg["AIRQUALITY_TIME"] = "更新時間";
 Blockly.Msg["EZ_RED"] = "紅燈 ";
 Blockly.Msg["EZ_YELLOW"] = "黃燈";
 Blockly.Msg["EZ_GREEN"] = "綠燈";
