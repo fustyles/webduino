@@ -775,6 +775,28 @@ Blockly.Msg["AIRQUALITY_AQI"] = "AQI";
 Blockly.Msg["AIRQUALITY_PM25"] = "PM2.5";
 Blockly.Msg["AIRQUALITY_STATE"] = "狀態";
 Blockly.Msg["AIRQUALITY_TIME"] = "更新時間";
+
+Blockly.Msg["AIRQUALITY_ESP32"] = "台灣空氣品質 (ESP32)";
+Blockly.Msg["AIRQUALITY_SITE"] = "站名";
+Blockly.Msg["AIRQUALITY_AQI"] = "AQI";
+Blockly.Msg["AIRQUALITY_PM25"] = "PM2.5";
+Blockly.Msg["AIRQUALITY_STATE"] = "狀態";
+Blockly.Msg["AIRQUALITY_TIME"] = "更新時間";
+Blockly.Msg["AIRQUALITY_DATA"] = "資料";
+
+Blockly.Msg["WEATHER_ESP32_36HR"] = "台灣天氣預報 (36小時)";
+Blockly.Msg["WEATHER_AUTHORIZATION"] = "授權碼";	  
+Blockly.Msg["WEATHER_LOCATION"] = "地區";
+Blockly.Msg["WEATHER_WX"] = "天氣現象";
+Blockly.Msg["WEATHER_POP"] = "降雨機率";
+Blockly.Msg["WEATHER_MINT"] = "最低氣溫";
+Blockly.Msg["WEATHER_CI"] = "舒適度";
+Blockly.Msg["WEATHER_MAXT"] = "最高氣溫";
+Blockly.Msg["WEATHER_STARTTIME"] = "開始時間";
+Blockly.Msg["WEATHER_ENDTIME"] = "結束時間";	
+Blockly.Msg["WEATHER_PERIOD"] = "時段";
+Blockly.Msg["WEATHER_DATA"] = "資料";
+		
 Blockly.Msg["EZ_RED"] = "紅燈 ";
 Blockly.Msg["EZ_YELLOW"] = "黃燈";
 Blockly.Msg["EZ_GREEN"] = "綠燈";

@@ -1,32 +1,19 @@
-Blockly.Arduino['fu_oled_PROGMEM_truetype'] = function(block) {
-  var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
-  var value_PROGMEM = Blockly.Arduino.valueToCode(block, 'PROGMEM', Blockly.Arduino.ORDER_ATOMIC);
-
-  Blockly.Arduino.definitions_['u8g2_progmem_'+variable_variable] = 'static const unsigned char PROGMEM '+variable_variable+'[] = {\n'+
-			  value_PROGMEM.replace(/"/g,'').replace(/'/g,"") +
-			  '\n};\n';
-  return '';
-};
 
 Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	var dropdown_sitename = block.getFieldValue('sitename');
-	var variable_AQI = Blockly.Arduino.nameDB_.getName(block.getFieldValue('AQI'), Blockly.Variables.NAME_TYPE);
-	var variable_PM25 = Blockly.Arduino.nameDB_.getName(block.getFieldValue('PM25'), Blockly.Variables.NAME_TYPE);
-	var variable_STATUS = Blockly.Arduino.nameDB_.getName(block.getFieldValue('STATUS'), Blockly.Variables.NAME_TYPE);
-	var variable_TIME = Blockly.Arduino.nameDB_.getName(block.getFieldValue('TIME'), Blockly.Variables.NAME_TYPE);
-	var statements = Blockly.Arduino.statementToCode(block, 'execute');
 	
 	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
-	Blockly.Arduino.definitions_['TaiwanAQI'] = 'long '+variable_AQI+' = 0;';	
-	Blockly.Arduino.definitions_['TaiwanPM25'] = 'long '+variable_PM25+' = 0;';
-	Blockly.Arduino.definitions_['TaiwanStatus'] = 'String '+variable_STATUS+' = "";';
-	Blockly.Arduino.definitions_['TaiwanTime'] = 'String '+variable_TIME+' = "";';	
-	Blockly.Arduino.definitions_['retrieveAirQuality'] = '\n' +
-			'void retrieveAirQuality(String Site) {\n'+
+	Blockly.Arduino.definitions_['airSite'] = 'String airSite = "";';	
+	Blockly.Arduino.definitions_['airAQI'] = 'String airAQI = "";';	
+	Blockly.Arduino.definitions_['airPM25'] = 'String airPM25 = "";';
+	Blockly.Arduino.definitions_['airStatus'] = 'String airStatus = "";';
+	Blockly.Arduino.definitions_['airTime'] = 'String airTime = "";';	
+	Blockly.Arduino.definitions_['opendataAirQuality'] = '\n' +
+			'void opendataAirQuality(String Site) {\n'+
 			'  WiFiClientSecure client_tcp;\n'+
-			'  String request = "/api/v1/aqx_p_432?format=json&limit=5&api_key=9be7b239-557b-4c10-9775-78cadfc555e9&filters=SiteName,EQ,"+Site;\n'+
+			'  String request = "/api/v1/aqx_p_432?format=json&limit=5&api_key=9be7b239-557b-4c10-9775-78cadfc555e9&filters=SiteName,EQ,"+urlencode(Site);\n'+
 			'  if (client_tcp.connect("data.epa.gov.tw", 443)) {\n'+
 			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: data.epa.gov.tw");\n'+
@@ -66,12 +53,30 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'    DynamicJsonDocument doc(1024);\n'+
 			'    deserializeJson(doc, Feedback);\n'+
 			'    obj = doc.as<JsonObject>();\n'+
-			'    '+variable_AQI+' = obj["AQI"].as<String>().toInt();\n'+
-			'    '+variable_PM25+' = obj["PM2.5"].as<String>().toInt();\n'+
-			'    '+variable_STATUS+' = obj["Status"].as<String>();\n'+			
-			'    '+variable_TIME+' = obj["PublishTime"].as<String>();\n  '+statements+
+			'    airSite = Site;\n'+
+			'    airAQI = obj["AQI"].as<String>().toInt();\n'+
+			'    airPM25 = obj["PM2.5"].as<String>().toInt();\n'+
+			'    airStatus = obj["Status"].as<String>();\n'+			
+			'    airTime = obj["PublishTime"].as<String>();\n'+
 			'  }\n'+
 			'}';
+			
+	Blockly.Arduino.definitions_['getAQI'] = '' +			
+			'String getAQI(int index) {\n'+
+			'  if (index==0) {\n'+
+			'    return airSite;\n'+
+			'  } else if (index==1) {\n'+
+			'    return airAQI;\n'+
+			'  } else if (index==2) {\n'+
+			'    return airPM25;\n'+
+			'  } else if (index==3) {\n'+
+			'    return airStatus;\n'+
+			'  } else if (index==4) {\n'+
+			'    return airTime;\n'+
+			'  }\n'+			
+			'  return "";\n'+
+			'}';
+						
 	Blockly.Arduino.definitions_['urlencode'] = '' +
 			'String urlencode(String str) {\n'+
 			'    String encodedString="";\n'+
@@ -102,8 +107,183 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'    }\n'+
 			'    return encodedString;\n'+
 			'}';								   
-	var code = 'retrieveAirQuality(urlencode("'+dropdown_sitename+'"));\n';
+	var code = 'opendataAirQuality("'+dropdown_sitename+'");\n';
 	return code;
+};
+
+Blockly.Arduino['fu_taiwan_aqi_get'] = function(block) {
+	var dropdown_data = block.getFieldValue('data');
+	var code = 'getAQI('+ dropdown_data +')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['fu_taiwan_weather'] = function(block) {
+	var dropdown_locationname = block.getFieldValue('locationname');
+	var value_Authorization = Blockly.Arduino.valueToCode(block, 'Authorization', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
+	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
+
+	Blockly.Arduino.definitions_['Weather0012'] = 'String Weather0012[8] = {"","","","","","","",""};';
+	Blockly.Arduino.definitions_['Weather1224'] = 'String Weather1224[8] = {"","","","","","","",""};';
+	Blockly.Arduino.definitions_['Weather2436'] = 'String Weather2436[8] = {"","","","","","","",""};';
+	
+	Blockly.Arduino.definitions_['opendataWeather'] = '\n' +
+			'void opendataWeather(String location, String Authorization) {\n'+
+			'  WiFiClientSecure client_tcp;\n'+
+			'  String request = "/api/v1/rest/datastore/F-C0032-001?Authorization="+Authorization+"&locationName="+urlencode(location);\n'+
+			'  if (client_tcp.connect("opendata.cwb.gov.tw", 443)) {\n'+
+			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
+			'    client_tcp.println("Host: opendata.cwb.gov.tw");\n'+
+			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println();\n'+
+			'    String getResponse="",Feedback="";\n'+
+			'    boolean state = false;\n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    char c;\n'+
+			'    String temp = "";\n'+
+			'    int i = 0;\n'+
+			'    while ((startTime + waitTime) > millis()) {\n'+
+			'      while (client_tcp.available()) {\n'+
+			'        if (state==true) {\n'+
+			'          temp = client_tcp.readStringUntil(\'\\r\');\n'+
+			'          i++;\n'+
+			'          if (i%2==0) {\n'+
+			'            Feedback += temp;\n'+
+			'          }\n'+
+			'        }\n'+
+			'        else\n'+
+			'          c = client_tcp.read();\n'+
+			'        if (c == \'\\n\') {\n'+
+			'          if (getResponse.length()==0) state=true;\n'+
+			'          getResponse = "";\n'+
+			'        }\n'+
+			'        else if (c != \'\\r\')\n'+
+			'          getResponse += String(c);\n'+
+			'        startTime = millis();\n'+
+			'      }\n'+
+			'      if (Feedback.length()!= 0) break;\n'+
+			'    }\n'+
+			'    client_tcp.stop();\n'+
+			'    temp = "";\n'+
+			'    for (i=0;i<Feedback.length();i++) {\n'+
+			'      c = Feedback[i];\n'+
+			'      if (c!=\'\\r\'&&c!=\'\\n\')\n'+
+			'      temp += Feedback[i];\n'+
+			'    }\n'+
+			'    Feedback = temp;\n'+
+			'    Weather0012[0] = location;\n'+
+			'    Weather1224[0] = location;\n'+
+			'    Weather2436[0] = location;\n'+
+			'    JsonObject obj;\n'+
+			'    DynamicJsonDocument doc(1024);\n'+
+			'    Feedback = Feedback.substring(Feedback.indexOf("\\"weatherElement\\":[")+18,Feedback.length()-5);\n'+
+			'    temp = Feedback.substring(Feedback.indexOf("\\"Wx\\",")+5,Feedback.indexOf("}}]}")+3);\n'+
+			'    deserializeJson(doc, "{"+temp+"}");\n'+
+			'    obj = doc.as<JsonObject>();\n'+
+			'    Weather0012[1] = obj["time"][0]["startTime"].as<String>();\n'+
+			'    Weather0012[2] = obj["time"][0]["endTime"].as<String>();\n'+
+			'    Weather1224[1] = obj["time"][1]["startTime"].as<String>();\n'+
+			'    Weather1224[2] = obj["time"][1]["endTime"].as<String>();\n'+
+			'    Weather2436[1] = obj["time"][2]["startTime"].as<String>();\n'+
+			'    Weather2436[2] = obj["time"][2]["endTime"].as<String>();\n'+
+			'    Weather0012[3] = obj["time"][0]["parameter"]["parameterName"].as<String>();\n'+
+			'    Weather1224[3] = obj["time"][1]["parameter"]["parameterName"].as<String>();\n'+
+			'    Weather2436[3] = obj["time"][2]["parameter"]["parameterName"].as<String>();\n'+
+			'    Feedback.replace(temp,"");\n'+
+			'    temp = Feedback.substring(Feedback.indexOf("\\"PoP\\",")+6,Feedback.indexOf("}}]}")+3);\n'+
+			'    deserializeJson(doc, "{"+temp+"}");\n'+
+			'    obj = doc.as<JsonObject>();\n'+
+			'    Weather0012[4] = obj["time"][0]["parameter"]["parameterName"].as<String>();\n'+
+			'    Weather1224[4] = obj["time"][1]["parameter"]["parameterName"].as<String>();\n'+
+			'    Weather2436[4] = obj["time"][2]["parameter"]["parameterName"].as<String>();\n'+
+			'    Feedback.replace(temp,"");\n'+
+			'    temp = Feedback.substring(Feedback.indexOf("\\"MinT\\",")+7,Feedback.indexOf("}}]}")+3);\n'+
+			'    deserializeJson(doc, "{"+temp+"}");\n'+
+			'    obj = doc.as<JsonObject>();\n'+
+			'    Weather0012[5] = obj["time"][0]["parameter"]["parameterName"].as<String>();\n'+
+			'    Weather1224[5] = obj["time"][1]["parameter"]["parameterName"].as<String>();\n'+
+			'    Weather2436[5] = obj["time"][2]["parameter"]["parameterName"].as<String>();\n'+
+			'    Feedback.replace(temp,"");\n'+
+			'    temp = Feedback.substring(Feedback.indexOf("\\"CI\\",")+5,Feedback.indexOf("}}]}")+3);\n'+
+			'    deserializeJson(doc, "{"+temp+"}");\n'+
+			'    obj = doc.as<JsonObject>();\n'+
+			'    Weather0012[6] = obj["time"][0]["parameter"]["parameterName"].as<String>();\n'+
+			'    Weather1224[6] = obj["time"][1]["parameter"]["parameterName"].as<String>();\n'+
+			'    Weather2436[6] = obj["time"][2]["parameter"]["parameterName"].as<String>();\n'+
+			'    Feedback.replace(temp,"");\n'+
+			'    temp = Feedback.substring(Feedback.indexOf("\\"MaxT\\",")+7,Feedback.indexOf("}}]}")+3);\n'+
+			'    deserializeJson(doc, "{"+temp+"}");\n'+
+			'    obj = doc.as<JsonObject>();\n'+
+			'    Weather0012[7] = obj["time"][0]["parameter"]["parameterName"].as<String>();\n'+
+			'    Weather1224[7] = obj["time"][1]["parameter"]["parameterName"].as<String>();\n'+
+			'    Weather2436[7] = obj["time"][2]["parameter"]["parameterName"].as<String>();\n'+
+			'  }\n'+
+			'}';
+
+	Blockly.Arduino.definitions_['getWeather'] = '' +			
+			'String getWeather(int period,int index) {\n'+
+			'  if (period==0) {\n'+
+			'    return Weather0012[index];\n'+
+			'  } else if (period==1) {\n'+
+			'    return Weather1224[index];\n'+
+			'  } else if (period==2) {\n'+
+			'    return Weather2436[index];\n'+
+			'  }\n'+			
+			'  return "";\n'+
+			'}';
+			
+	Blockly.Arduino.definitions_['urlencode'] = '' +
+			'String urlencode(String str) {\n'+
+			'    String encodedString="";\n'+
+			'    char c;\n'+
+			'    char code0;\n'+
+			'    char code1;\n'+
+			'    for (int i =0; i < str.length(); i++) {\n'+
+			'      c=str.charAt(i);\n'+
+			"      if (c == ' '){\n"+
+			"        encodedString+= '+';\n"+
+			'      } else if (isalnum(c)){\n'+
+			'        encodedString+=c;\n'+
+			'      } else{\n'+
+			"        code1=(c & 0xf)+'0';\n"+
+			'        if ((c & 0xf) >9){\n'+
+			"            code1=(c & 0xf) - 10 + 'A';\n"+
+			'        }\n'+
+			'        c=(c>>4)&0xf;\n'+
+			"        code0=c+'0';\n"+
+			'        if (c > 9){\n'+
+			"            code0=c - 10 + 'A';\n"+
+			'        }\n'+
+			'        encodedString+="%";\n'+
+			'        encodedString+=code0;\n'+
+			'        encodedString+=code1;\n'+
+			'      }\n'+
+			'      yield();\n'+
+			'    }\n'+
+			'    return encodedString;\n'+
+			'}';								   
+	var code = 'opendataWeather("'+dropdown_locationname+'",'+value_Authorization+');\n';
+	return code;
+};
+
+Blockly.Arduino['fu_taiwan_weather_get'] = function(block) {
+	var dropdown_period = block.getFieldValue('period');
+	var dropdown_data = block.getFieldValue('data');
+	var code = 'getWeather('+ dropdown_period +','+ dropdown_data +')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['fu_oled_PROGMEM_truetype'] = function(block) {
+  var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
+  var value_PROGMEM = Blockly.Arduino.valueToCode(block, 'PROGMEM', Blockly.Arduino.ORDER_ATOMIC);
+
+  Blockly.Arduino.definitions_['u8g2_progmem_'+variable_variable] = 'static const unsigned char PROGMEM '+variable_variable+'[] = {\n'+
+			  value_PROGMEM.replace(/"/g,'').replace(/'/g,"") +
+			  '\n};\n';
+  return '';
 };
 
 function selectBoardType() {

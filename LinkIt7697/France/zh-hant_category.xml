@@ -66,4 +66,5 @@
 <category><name>teachablemachine</name><replace>機器學習(google)</replace></category>
 <category><name>faceapidetect</name><replace>人臉偵測 (face-api)</replace></category>
 <category><name>faceapirecognize</name><replace>人臉辨識 (face-api)</replace></category>
+<category><name>weather</name><replace>台灣天氣預報 (36小時)</replace></category>
 </xml>

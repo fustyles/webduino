@@ -769,11 +769,26 @@ Blockly.Msg["EZ_TEXT"] = "text";
 Blockly.Msg["OLED_XBM_VALUE"] = "XBM value";
 Blockly.Msg["OLED_FONT_TTF"] = "TTF font";
 Blockly.Msg["AIRQUALITY_ESP32"] = "Taiwan air quality(ESP32)";
-Blockly.Msg["AIRQUALITY_SITE"] = "get site";
+Blockly.Msg["AIRQUALITY_SITE"] = "Site";
 Blockly.Msg["AIRQUALITY_AQI"] = "AQI";
 Blockly.Msg["AIRQUALITY_PM25"] = "PM2.5";
 Blockly.Msg["AIRQUALITY_STATE"] = "state";
 Blockly.Msg["AIRQUALITY_TIME"] = "update time";
+Blockly.Msg["AIRQUALITY_DATA"] = "Data";
+
+Blockly.Msg["WEATHER_ESP32_36HR"] = "Weather prediction of Taiwan (36hr)";
+Blockly.Msg["WEATHER_AUTHORIZATION"] = "Authorization";		  
+Blockly.Msg["WEATHER_LOCATION"] = "Location name";
+Blockly.Msg["WEATHER_WX"] = "Weather";
+Blockly.Msg["WEATHER_POP"] = "Probability of Precipitation(%)";
+Blockly.Msg["WEATHER_MINT"] = "Minimumtemperature";
+Blockly.Msg["WEATHER_CI"] = "Comfort index";
+Blockly.Msg["WEATHER_MAXT"] = "Maximum temperature";
+Blockly.Msg["WEATHER_STARTTIME"] = "Start time";
+Blockly.Msg["WEATHER_ENDTIME"] = "End time";
+Blockly.Msg["WEATHER_PERIOD"] = "Period";
+Blockly.Msg["WEATHER_DATA"] = "Data";
+
 Blockly.Msg["EZ_RED"] = "red";
 Blockly.Msg["EZ_YELLOW"] = "yellow";
 Blockly.Msg["EZ_GREEN"] = "green";

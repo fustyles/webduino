@@ -1,3 +1,197 @@
+
+Blockly.Blocks['fu_taiwan_aqi'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AIRQUALITY_ESP32"]);	  
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField(Blockly.Msg["AIRQUALITY_SITE"])		
+        .appendField(new Blockly.FieldDropdown([
+          ["基隆市-基隆","基隆"],
+          ["新北市-汐止","汐止"],
+          ["新北市-萬里","萬里"],
+          ["新北市-新店","新店"],
+          ["新北市-土城","土城"],
+          ["新北市-板橋","板橋"],
+          ["新北市-新莊","新莊"],
+          ["新北市-菜寮","菜寮"],
+          ["新北市-林口","林口"],
+          ["新北市-淡水","淡水"],
+          ["新北市-永和","永和"],  
+          ["新北市-三重","三重"],
+          ["新北市-富貴角","富貴角"],
+          ["臺北市-士林","士林"],
+          ["臺北市-中山","中山"],
+          ["臺北市-萬華","萬華"],
+          ["臺北市-古亭","古亭"],
+          ["臺北市-松山","松山"],
+          ["臺北市-大同","大同"],
+          ["臺北市-陽明","陽明"],  
+          ["桃園市-桃園","桃園"],
+          ["桃園市-大園","大園"],
+          ["桃園市-觀音","觀音"],
+          ["桃園市-平鎮","平鎮"],
+          ["桃園市-龍潭","龍潭"],
+          ["桃園市-中壢","中壢"],
+          ["新竹縣-湖口","湖口"],
+          ["新竹縣-竹東","竹東"],
+          ["新竹市-新竹","新竹"],
+          ["苗栗縣-頭份","頭份"],
+          ["苗栗縣-苗栗","苗栗"],
+          ["苗栗縣-三義","三義"],
+          ["臺中市-豐原","豐原"],
+          ["臺中市-沙鹿","沙鹿"],
+          ["臺中市-大里","大里"],
+          ["臺中市-忠明","忠明"],
+          ["臺中市-西屯","西屯"],
+          ["彰化縣-彰化","彰化"],
+          ["彰化縣-線西","線西"],
+          ["彰化縣-二林","二林"],
+          ["南投縣-南投","南投"],
+          ["南投縣-竹山","竹山"], 
+          ["南投縣-埔里","埔里"],  
+          ["雲林縣-斗六","斗六"],
+          ["雲林縣-崙背","崙背"],
+          ["雲林縣-臺西","臺西"],
+          ["雲林縣-麥寮","麥寮"],
+          ["嘉義縣-新港","新港"],
+          ["嘉義縣-朴子","朴子"],
+          ["嘉義市-嘉義","嘉義"],
+          ["臺南市-新營","新營"],
+          ["臺南市-善化","善化"],
+          ["臺南市-安南","安南"],
+          ["臺南市-臺南","臺南"],
+          ["高雄市-美濃","美濃"],
+          ["高雄市-橋頭","橋頭"],
+          ["高雄市-仁武","仁武"],
+          ["高雄市-鳳山","鳳山"],
+          ["高雄市-大寮","大寮"],
+          ["高雄市-林園","林園"],
+          ["高雄市-楠梓","楠梓"],
+          ["高雄市-左營","左營"],
+          ["高雄市-前金","前金"],
+          ["高雄市-前鎮","前鎮"],
+          ["高雄市-小港","小港"],
+          ["高雄市-復興","復興"],  
+          ["屏東縣-屏東","屏東"],
+          ["屏東縣-潮州","潮州"],
+          ["屏東縣-恆春","恆春"],
+          ["臺東縣-臺東","臺東"],
+          ["臺東縣-關山","關山"],  
+          ["花蓮縣-花蓮","花蓮"],
+          ["宜蘭縣-宜蘭","宜蘭"],
+          ["宜蘭縣-冬山","冬山"],
+          ["連江縣-馬祖","馬祖"],
+          ["金門縣-金門","金門"],
+          ["澎湖縣-馬公","馬公"]
+		]), "sitename");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(60);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_taiwan_aqi_get'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AIRQUALITY_ESP32"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField(Blockly.Msg["AIRQUALITY_DATA"])		
+        .appendField(new Blockly.FieldDropdown([
+          [Blockly.Msg["AIRQUALITY_SITE"],"0"],
+          [Blockly.Msg["AIRQUALITY_AQI"],"1"],
+          [Blockly.Msg["AIRQUALITY_PM25"],"2"],	  
+          [Blockly.Msg["AIRQUALITY_STATE"],"3"],
+          [Blockly.Msg["AIRQUALITY_TIME"],"4"]	  
+		]), "data");	
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(80);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_taiwan_weather'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["WEATHER_ESP32_36HR"]);	  
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField(Blockly.Msg["WEATHER_LOCATION"])		
+        .appendField(new Blockly.FieldDropdown([
+          ["宜蘭縣","宜蘭縣"],
+          ["花蓮縣","花蓮縣"],
+          ["臺東縣","臺東縣"],
+          ["澎湖縣","澎湖縣"],
+          ["金門縣","金門縣"],
+          ["連江縣","連江縣"],
+          ["臺北市","臺北市"],
+          ["新北市","新北市"],
+          ["桃園市","桃園市"],
+          ["臺中市","臺中市"],
+          ["臺南市","臺南市"],
+          ["高雄市","高雄市"],
+          ["基隆市","基隆市"],
+          ["新竹縣","新竹縣"],
+          ["新竹市","新竹市"],
+          ["苗栗縣","苗栗縣"],
+          ["彰化縣","彰化縣"],
+          ["南投縣","南投縣"],
+          ["雲林縣","雲林縣"],
+          ["嘉義縣","嘉義縣"],
+          ["嘉義市","嘉義市"],
+          ["屏東縣","屏東縣"]
+		]), "locationname");
+    this.appendValueInput("Authorization")
+        .setCheck("String")
+        .appendField(Blockly.Msg["WEATHER_AUTHORIZATION"]);		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(60);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['fu_taiwan_weather_get'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["WEATHER_ESP32_36HR"]);	  
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField(Blockly.Msg["WEATHER_PERIOD"])		
+        .appendField(new Blockly.FieldDropdown([
+          ["前12小時","0"],
+          ["中12小時","1"],
+          ["後12小時","2"]
+		]), "period");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_LEFT)
+        .appendField(Blockly.Msg["WEATHER_DATA"])		
+        .appendField(new Blockly.FieldDropdown([
+          [Blockly.Msg["WEATHER_LOCATION"],"0"],
+          [Blockly.Msg["WEATHER_STARTTIME"],"1"],
+          [Blockly.Msg["WEATHER_ENDTIME"],"2"],	  
+          [Blockly.Msg["WEATHER_WX"],"3"],
+          [Blockly.Msg["WEATHER_POP"],"4"],
+          [Blockly.Msg["WEATHER_MINT"],"5"],
+          [Blockly.Msg["WEATHER_CI"],"6"],
+          [Blockly.Msg["WEATHER_MAXT"],"7"]		  
+		]), "data");	
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(80);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
 //https://github.com/opentypejs/opentype.js
 var s = document.createElement("script");
 s.type = "text/javascript";
@@ -156,118 +350,6 @@ Blockly.Blocks['fu_oled_PROGMEM_truetype'] = {
     this.setColour(220);
  this.setTooltip("");
  this.setHelpUrl("https://github.com/opentypejs/");
-  }
-};
-
-Blockly.Blocks['fu_taiwan_aqi'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["AIRQUALITY_ESP32"]);	  
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
-        .appendField(Blockly.Msg["AIRQUALITY_SITE"])		
-        .appendField(new Blockly.FieldDropdown([
-          ["基隆市-基隆","基隆"],
-          ["新北市-汐止","汐止"],
-          ["新北市-萬里","萬里"],
-          ["新北市-新店","新店"],
-          ["新北市-土城","土城"],
-          ["新北市-板橋","板橋"],
-          ["新北市-新莊","新莊"],
-          ["新北市-菜寮","菜寮"],
-          ["新北市-林口","林口"],
-          ["新北市-淡水","淡水"],
-          ["新北市-永和","永和"],  
-          ["新北市-三重","三重"],
-          ["新北市-富貴角","富貴角"],
-          ["臺北市-士林","士林"],
-          ["臺北市-中山","中山"],
-          ["臺北市-萬華","萬華"],
-          ["臺北市-古亭","古亭"],
-          ["臺北市-松山","松山"],
-          ["臺北市-大同","大同"],
-          ["臺北市-陽明","陽明"],  
-          ["桃園市-桃園","桃園"],
-          ["桃園市-大園","大園"],
-          ["桃園市-觀音","觀音"],
-          ["桃園市-平鎮","平鎮"],
-          ["桃園市-龍潭","龍潭"],
-          ["桃園市-中壢","中壢"],
-          ["新竹縣-湖口","湖口"],
-          ["新竹縣-竹東","竹東"],
-          ["新竹市-新竹","新竹"],
-          ["苗栗縣-頭份","頭份"],
-          ["苗栗縣-苗栗","苗栗"],
-          ["苗栗縣-三義","三義"],
-          ["臺中市-豐原","豐原"],
-          ["臺中市-沙鹿","沙鹿"],
-          ["臺中市-大里","大里"],
-          ["臺中市-忠明","忠明"],
-          ["臺中市-西屯","西屯"],
-          ["彰化縣-彰化","彰化"],
-          ["彰化縣-線西","線西"],
-          ["彰化縣-二林","二林"],
-          ["南投縣-南投","南投"],
-          ["南投縣-竹山","竹山"], 
-          ["南投縣-埔里","埔里"],  
-          ["雲林縣-斗六","斗六"],
-          ["雲林縣-崙背","崙背"],
-          ["雲林縣-臺西","臺西"],
-          ["雲林縣-麥寮","麥寮"],
-          ["嘉義縣-新港","新港"],
-          ["嘉義縣-朴子","朴子"],
-          ["嘉義市-嘉義","嘉義"],
-          ["臺南市-新營","新營"],
-          ["臺南市-善化","善化"],
-          ["臺南市-安南","安南"],
-          ["臺南市-臺南","臺南"],
-          ["高雄市-美濃","美濃"],
-          ["高雄市-橋頭","橋頭"],
-          ["高雄市-仁武","仁武"],
-          ["高雄市-鳳山","鳳山"],
-          ["高雄市-大寮","大寮"],
-          ["高雄市-林園","林園"],
-          ["高雄市-楠梓","楠梓"],
-          ["高雄市-左營","左營"],
-          ["高雄市-前金","前金"],
-          ["高雄市-前鎮","前鎮"],
-          ["高雄市-小港","小港"],
-          ["高雄市-復興","復興"],  
-          ["屏東縣-屏東","屏東"],
-          ["屏東縣-潮州","潮州"],
-          ["屏東縣-恆春","恆春"],
-          ["臺東縣-臺東","臺東"],
-          ["臺東縣-關山","關山"],  
-          ["花蓮縣-花蓮","花蓮"],
-          ["宜蘭縣-宜蘭","宜蘭"],
-          ["宜蘭縣-冬山","冬山"],
-          ["連江縣-馬祖","馬祖"],
-          ["金門縣-金門","金門"],
-          ["澎湖縣-馬公","馬公"]
-		]), "sitename");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
-        .appendField(Blockly.Msg["AIRQUALITY_AQI"])
-		.appendField(new Blockly.FieldVariable("airAQI"), "AQI");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
-        .appendField(Blockly.Msg["AIRQUALITY_PM25"])
-		.appendField(new Blockly.FieldVariable("airPM25"), "PM25");	
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
-        .appendField(Blockly.Msg["AIRQUALITY_STATE"])
-		.appendField(new Blockly.FieldVariable("airSTATUS"), "STATUS");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
-        .appendField(Blockly.Msg["AIRQUALITY_TIME"])
-		.appendField(new Blockly.FieldVariable("airTIME"), "TIME");		
-    this.appendStatementInput("execute");		
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(60);
-    this.setTooltip("");
-    this.setHelpUrl("");
   }
 };
 
@@ -1272,81 +1354,264 @@ Blockly.Blocks['fu_oled_setFont_icon'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_LEFT)
         .appendField(new Blockly.FieldDropdown([
-			["u8g2_font_open_iconic_weather_1x_t","u8g2_font_open_iconic_weather_1x_t"],
-			["u8g2_font_open_iconic_weather_2x_t","u8g2_font_open_iconic_weather_2x_t"],
-			["u8g2_font_open_iconic_weather_4x_t","u8g2_font_open_iconic_weather_4x_t"],
-			["u8g2_font_open_iconic_weather_6x_t","u8g2_font_open_iconic_weather_6x_t"],
-			["u8g2_font_open_iconic_weather_8x_t","u8g2_font_open_iconic_weather_8x_t"],		
+			["u8g2_font_6x12_t_symbols","u8g2_font_6x12_t_symbols"],
+			["u8g2_font_7x13_t_symbols","u8g2_font_7x13_t_symbols"],
+			["u8g2_font_8x13_t_symbols","u8g2_font_8x13_t_symbols"],
+			["u8g2_font_9x15_t_symbols","u8g2_font_9x15_t_symbols"],
+			["u8g2_font_battery19_tn","u8g2_font_battery19_tn"],
+			["u8g2_font_cu12_h_symbols","u8g2_font_cu12_h_symbols"],
+			["u8g2_font_cu12_t_symbols","u8g2_font_cu12_t_symbols"],
+			["u8g2_font_emoticons21_tr","u8g2_font_emoticons21_tr"],
+			["u8g2_font_iconquadpix_m_all","u8g2_font_iconquadpix_m_all"],
+			["u8g2_font_m2icon_5_tf","u8g2_font_m2icon_5_tf"],
+			["u8g2_font_m2icon_7_tf","u8g2_font_m2icon_7_tf"],
+			["u8g2_font_m2icon_9_tf","u8g2_font_m2icon_9_tf"],
+			["u8g2_font_open_iconic_all_1x","u8g2_font_open_iconic_all_1x"],
 			["u8g2_font_open_iconic_all_1x_t","u8g2_font_open_iconic_all_1x_t"],
+			["u8g2_font_open_iconic_all_2x","u8g2_font_open_iconic_all_2x"],
 			["u8g2_font_open_iconic_all_2x_t","u8g2_font_open_iconic_all_2x_t"],
+			["u8g2_font_open_iconic_all_4x","u8g2_font_open_iconic_all_4x"],
 			["u8g2_font_open_iconic_all_4x_t","u8g2_font_open_iconic_all_4x_t"],
+			["u8g2_font_open_iconic_all_6x","u8g2_font_open_iconic_all_6x"],
 			["u8g2_font_open_iconic_all_6x_t","u8g2_font_open_iconic_all_6x_t"],
+			["u8g2_font_open_iconic_all_8x","u8g2_font_open_iconic_all_8x"],
 			["u8g2_font_open_iconic_all_8x_t","u8g2_font_open_iconic_all_8x_t"],
+			["u8g2_font_open_iconic_app_1x","u8g2_font_open_iconic_app_1x"],
 			["u8g2_font_open_iconic_app_1x_t","u8g2_font_open_iconic_app_1x_t"],
+			["u8g2_font_open_iconic_app_2x","u8g2_font_open_iconic_app_2x"],
 			["u8g2_font_open_iconic_app_2x_t","u8g2_font_open_iconic_app_2x_t"],
+			["u8g2_font_open_iconic_app_4x","u8g2_font_open_iconic_app_4x"],
 			["u8g2_font_open_iconic_app_4x_t","u8g2_font_open_iconic_app_4x_t"],
+			["u8g2_font_open_iconic_app_6x","u8g2_font_open_iconic_app_6x"],
 			["u8g2_font_open_iconic_app_6x_t","u8g2_font_open_iconic_app_6x_t"],
+			["u8g2_font_open_iconic_app_8x","u8g2_font_open_iconic_app_8x"],
 			["u8g2_font_open_iconic_app_8x_t","u8g2_font_open_iconic_app_8x_t"],
+			["u8g2_font_open_iconic_arrow_1x","u8g2_font_open_iconic_arrow_1x"],
 			["u8g2_font_open_iconic_arrow_1x_t","u8g2_font_open_iconic_arrow_1x_t"],
+			["u8g2_font_open_iconic_arrow_1x1","u8g2_font_open_iconic_arrow_1x1"],
+			["u8g2_font_open_iconic_arrow_2x","u8g2_font_open_iconic_arrow_2x"],
 			["u8g2_font_open_iconic_arrow_2x_t","u8g2_font_open_iconic_arrow_2x_t"],
+			["u8g2_font_open_iconic_arrow_2x2","u8g2_font_open_iconic_arrow_2x2"],
+			["u8g2_font_open_iconic_arrow_4x","u8g2_font_open_iconic_arrow_4x"],
 			["u8g2_font_open_iconic_arrow_4x_t","u8g2_font_open_iconic_arrow_4x_t"],
+			["u8g2_font_open_iconic_arrow_4x4","u8g2_font_open_iconic_arrow_4x4"],
+			["u8g2_font_open_iconic_arrow_6x","u8g2_font_open_iconic_arrow_6x"],
 			["u8g2_font_open_iconic_arrow_6x_t","u8g2_font_open_iconic_arrow_6x_t"],
+			["u8g2_font_open_iconic_arrow_8x","u8g2_font_open_iconic_arrow_8x"],
 			["u8g2_font_open_iconic_arrow_8x_t","u8g2_font_open_iconic_arrow_8x_t"],
+			["u8g2_font_open_iconic_arrow_8x8","u8g2_font_open_iconic_arrow_8x8"],
+			["u8g2_font_open_iconic_check_1x","u8g2_font_open_iconic_check_1x"],
 			["u8g2_font_open_iconic_check_1x_t","u8g2_font_open_iconic_check_1x_t"],
+			["u8g2_font_open_iconic_check_1x1","u8g2_font_open_iconic_check_1x1"],
+			["u8g2_font_open_iconic_check_2x","u8g2_font_open_iconic_check_2x"],
 			["u8g2_font_open_iconic_check_2x_t","u8g2_font_open_iconic_check_2x_t"],
+			["u8g2_font_open_iconic_check_2x2","u8g2_font_open_iconic_check_2x2"],
+			["u8g2_font_open_iconic_check_4x","u8g2_font_open_iconic_check_4x"],
 			["u8g2_font_open_iconic_check_4x_t","u8g2_font_open_iconic_check_4x_t"],
+			["u8g2_font_open_iconic_check_4x4","u8g2_font_open_iconic_check_4x4"],
+			["u8g2_font_open_iconic_check_6x","u8g2_font_open_iconic_check_6x"],
 			["u8g2_font_open_iconic_check_6x_t","u8g2_font_open_iconic_check_6x_t"],
+			["u8g2_font_open_iconic_check_8x","u8g2_font_open_iconic_check_8x"],
 			["u8g2_font_open_iconic_check_8x_t","u8g2_font_open_iconic_check_8x_t"],
+			["u8g2_font_open_iconic_check_8x8","u8g2_font_open_iconic_check_8x8"],
+			["u8g2_font_open_iconic_email_1x","u8g2_font_open_iconic_email_1x"],
 			["u8g2_font_open_iconic_email_1x_t","u8g2_font_open_iconic_email_1x_t"],
+			["u8g2_font_open_iconic_email_2x","u8g2_font_open_iconic_email_2x"],
 			["u8g2_font_open_iconic_email_2x_t","u8g2_font_open_iconic_email_2x_t"],
+			["u8g2_font_open_iconic_email_4x","u8g2_font_open_iconic_email_4x"],
 			["u8g2_font_open_iconic_email_4x_t","u8g2_font_open_iconic_email_4x_t"],
+			["u8g2_font_open_iconic_email_6x","u8g2_font_open_iconic_email_6x"],
 			["u8g2_font_open_iconic_email_6x_t","u8g2_font_open_iconic_email_6x_t"],
+			["u8g2_font_open_iconic_email_8x","u8g2_font_open_iconic_email_8x"],
 			["u8g2_font_open_iconic_email_8x_t","u8g2_font_open_iconic_email_8x_t"],
+			["u8g2_font_open_iconic_embedded_1x","u8g2_font_open_iconic_embedded_1x"],
 			["u8g2_font_open_iconic_embedded_1x_t","u8g2_font_open_iconic_embedded_1x_t"],
+			["u8g2_font_open_iconic_embedded_1x1","u8g2_font_open_iconic_embedded_1x1"],
+			["u8g2_font_open_iconic_embedded_2x","u8g2_font_open_iconic_embedded_2x"],
 			["u8g2_font_open_iconic_embedded_2x_t","u8g2_font_open_iconic_embedded_2x_t"],
+			["u8g2_font_open_iconic_embedded_2x2","u8g2_font_open_iconic_embedded_2x2"],
+			["u8g2_font_open_iconic_embedded_4x","u8g2_font_open_iconic_embedded_4x"],
 			["u8g2_font_open_iconic_embedded_4x_t","u8g2_font_open_iconic_embedded_4x_t"],
+			["u8g2_font_open_iconic_embedded_4x4","u8g2_font_open_iconic_embedded_4x4"],
+			["u8g2_font_open_iconic_embedded_6x","u8g2_font_open_iconic_embedded_6x"],
 			["u8g2_font_open_iconic_embedded_6x_t","u8g2_font_open_iconic_embedded_6x_t"],
+			["u8g2_font_open_iconic_embedded_8x","u8g2_font_open_iconic_embedded_8x"],
 			["u8g2_font_open_iconic_embedded_8x_t","u8g2_font_open_iconic_embedded_8x_t"],
+			["u8g2_font_open_iconic_embedded_8x8","u8g2_font_open_iconic_embedded_8x8"],
+			["u8g2_font_open_iconic_gui_1x","u8g2_font_open_iconic_gui_1x"],
 			["u8g2_font_open_iconic_gui_1x_t","u8g2_font_open_iconic_gui_1x_t"],
+			["u8g2_font_open_iconic_gui_2x","u8g2_font_open_iconic_gui_2x"],
 			["u8g2_font_open_iconic_gui_2x_t","u8g2_font_open_iconic_gui_2x_t"],
+			["u8g2_font_open_iconic_gui_4x","u8g2_font_open_iconic_gui_4x"],
 			["u8g2_font_open_iconic_gui_4x_t","u8g2_font_open_iconic_gui_4x_t"],
+			["u8g2_font_open_iconic_gui_6x","u8g2_font_open_iconic_gui_6x"],
 			["u8g2_font_open_iconic_gui_6x_t","u8g2_font_open_iconic_gui_6x_t"],
+			["u8g2_font_open_iconic_gui_8x","u8g2_font_open_iconic_gui_8x"],
 			["u8g2_font_open_iconic_gui_8x_t","u8g2_font_open_iconic_gui_8x_t"],
+			["u8g2_font_open_iconic_human_1x","u8g2_font_open_iconic_human_1x"],
 			["u8g2_font_open_iconic_human_1x_t","u8g2_font_open_iconic_human_1x_t"],
+			["u8g2_font_open_iconic_human_2x","u8g2_font_open_iconic_human_2x"],
 			["u8g2_font_open_iconic_human_2x_t","u8g2_font_open_iconic_human_2x_t"],
+			["u8g2_font_open_iconic_human_4x","u8g2_font_open_iconic_human_4x"],
 			["u8g2_font_open_iconic_human_4x_t","u8g2_font_open_iconic_human_4x_t"],
+			["u8g2_font_open_iconic_human_6x","u8g2_font_open_iconic_human_6x"],
 			["u8g2_font_open_iconic_human_6x_t","u8g2_font_open_iconic_human_6x_t"],
+			["u8g2_font_open_iconic_human_8x","u8g2_font_open_iconic_human_8x"],
 			["u8g2_font_open_iconic_human_8x_t","u8g2_font_open_iconic_human_8x_t"],
+			["u8g2_font_open_iconic_mime_1x","u8g2_font_open_iconic_mime_1x"],
 			["u8g2_font_open_iconic_mime_1x_t","u8g2_font_open_iconic_mime_1x_t"],
+			["u8g2_font_open_iconic_mime_2x","u8g2_font_open_iconic_mime_2x"],
 			["u8g2_font_open_iconic_mime_2x_t","u8g2_font_open_iconic_mime_2x_t"],
+			["u8g2_font_open_iconic_mime_4x","u8g2_font_open_iconic_mime_4x"],
 			["u8g2_font_open_iconic_mime_4x_t","u8g2_font_open_iconic_mime_4x_t"],
+			["u8g2_font_open_iconic_mime_6x","u8g2_font_open_iconic_mime_6x"],
 			["u8g2_font_open_iconic_mime_6x_t","u8g2_font_open_iconic_mime_6x_t"],
+			["u8g2_font_open_iconic_mime_8x","u8g2_font_open_iconic_mime_8x"],
 			["u8g2_font_open_iconic_mime_8x_t","u8g2_font_open_iconic_mime_8x_t"],
+			["u8g2_font_open_iconic_other_1x","u8g2_font_open_iconic_other_1x"],
 			["u8g2_font_open_iconic_other_1x_t","u8g2_font_open_iconic_other_1x_t"],
+			["u8g2_font_open_iconic_other_2x","u8g2_font_open_iconic_other_2x"],
 			["u8g2_font_open_iconic_other_2x_t","u8g2_font_open_iconic_other_2x_t"],
+			["u8g2_font_open_iconic_other_4x","u8g2_font_open_iconic_other_4x"],
 			["u8g2_font_open_iconic_other_4x_t","u8g2_font_open_iconic_other_4x_t"],
+			["u8g2_font_open_iconic_other_6x","u8g2_font_open_iconic_other_6x"],
 			["u8g2_font_open_iconic_other_6x_t","u8g2_font_open_iconic_other_6x_t"],
+			["u8g2_font_open_iconic_other_8x","u8g2_font_open_iconic_other_8x"],
 			["u8g2_font_open_iconic_other_8x_t","u8g2_font_open_iconic_other_8x_t"],
+			["u8g2_font_open_iconic_play_1x","u8g2_font_open_iconic_play_1x"],
 			["u8g2_font_open_iconic_play_1x_t","u8g2_font_open_iconic_play_1x_t"],
+			["u8g2_font_open_iconic_play_1x1","u8g2_font_open_iconic_play_1x1"],
+			["u8g2_font_open_iconic_play_2x","u8g2_font_open_iconic_play_2x"],
 			["u8g2_font_open_iconic_play_2x_t","u8g2_font_open_iconic_play_2x_t"],
+			["u8g2_font_open_iconic_play_2x2","u8g2_font_open_iconic_play_2x2"],
+			["u8g2_font_open_iconic_play_4x","u8g2_font_open_iconic_play_4x"],
 			["u8g2_font_open_iconic_play_4x_t","u8g2_font_open_iconic_play_4x_t"],
+			["u8g2_font_open_iconic_play_4x4","u8g2_font_open_iconic_play_4x4"],
+			["u8g2_font_open_iconic_play_6x","u8g2_font_open_iconic_play_6x"],
 			["u8g2_font_open_iconic_play_6x_t","u8g2_font_open_iconic_play_6x_t"],
+			["u8g2_font_open_iconic_play_8x","u8g2_font_open_iconic_play_8x"],
 			["u8g2_font_open_iconic_play_8x_t","u8g2_font_open_iconic_play_8x_t"],
+			["u8g2_font_open_iconic_play_8x8","u8g2_font_open_iconic_play_8x8"],
+			["u8g2_font_open_iconic_text_1x","u8g2_font_open_iconic_text_1x"],
 			["u8g2_font_open_iconic_text_1x_t","u8g2_font_open_iconic_text_1x_t"],
+			["u8g2_font_open_iconic_text_2x","u8g2_font_open_iconic_text_2x"],
 			["u8g2_font_open_iconic_text_2x_t","u8g2_font_open_iconic_text_2x_t"],
+			["u8g2_font_open_iconic_text_4x","u8g2_font_open_iconic_text_4x"],
 			["u8g2_font_open_iconic_text_4x_t","u8g2_font_open_iconic_text_4x_t"],
+			["u8g2_font_open_iconic_text_6x","u8g2_font_open_iconic_text_6x"],
 			["u8g2_font_open_iconic_text_6x_t","u8g2_font_open_iconic_text_6x_t"],
+			["u8g2_font_open_iconic_text_8x","u8g2_font_open_iconic_text_8x"],
 			["u8g2_font_open_iconic_text_8x_t","u8g2_font_open_iconic_text_8x_t"],
+			["u8g2_font_open_iconic_thing_1x","u8g2_font_open_iconic_thing_1x"],
 			["u8g2_font_open_iconic_thing_1x_t","u8g2_font_open_iconic_thing_1x_t"],
+			["u8g2_font_open_iconic_thing_1x1","u8g2_font_open_iconic_thing_1x1"],
+			["u8g2_font_open_iconic_thing_2x","u8g2_font_open_iconic_thing_2x"],
 			["u8g2_font_open_iconic_thing_2x_t","u8g2_font_open_iconic_thing_2x_t"],
+			["u8g2_font_open_iconic_thing_2x2","u8g2_font_open_iconic_thing_2x2"],
+			["u8g2_font_open_iconic_thing_4x","u8g2_font_open_iconic_thing_4x"],
 			["u8g2_font_open_iconic_thing_4x_t","u8g2_font_open_iconic_thing_4x_t"],
+			["u8g2_font_open_iconic_thing_4x4","u8g2_font_open_iconic_thing_4x4"],
+			["u8g2_font_open_iconic_thing_6x","u8g2_font_open_iconic_thing_6x"],
 			["u8g2_font_open_iconic_thing_6x_t","u8g2_font_open_iconic_thing_6x_t"],
+			["u8g2_font_open_iconic_thing_8x","u8g2_font_open_iconic_thing_8x"],
 			["u8g2_font_open_iconic_thing_8x_t","u8g2_font_open_iconic_thing_8x_t"],
+			["u8g2_font_open_iconic_thing_8x8","u8g2_font_open_iconic_thing_8x8"],
+			["u8g2_font_open_iconic_weather_1x","u8g2_font_open_iconic_weather_1x"],
+			["u8g2_font_open_iconic_weather_1x_t","u8g2_font_open_iconic_weather_1x_t"],
+			["u8g2_font_open_iconic_weather_1x1","u8g2_font_open_iconic_weather_1x1"],
+			["u8g2_font_open_iconic_weather_2x","u8g2_font_open_iconic_weather_2x"],
+			["u8g2_font_open_iconic_weather_2x_t","u8g2_font_open_iconic_weather_2x_t"],
+			["u8g2_font_open_iconic_weather_2x2","u8g2_font_open_iconic_weather_2x2"],
+			["u8g2_font_open_iconic_weather_4x","u8g2_font_open_iconic_weather_4x"],
+			["u8g2_font_open_iconic_weather_4x_t","u8g2_font_open_iconic_weather_4x_t"],
+			["u8g2_font_open_iconic_weather_4x4","u8g2_font_open_iconic_weather_4x4"],
+			["u8g2_font_open_iconic_weather_6x","u8g2_font_open_iconic_weather_6x"],
+			["u8g2_font_open_iconic_weather_6x_t","u8g2_font_open_iconic_weather_6x_t"],
+			["u8g2_font_open_iconic_weather_8x","u8g2_font_open_iconic_weather_8x"],
+			["u8g2_font_open_iconic_weather_8x_t","u8g2_font_open_iconic_weather_8x_t"],
+			["u8g2_font_open_iconic_weather_8x8","u8g2_font_open_iconic_weather_8x8"],
+			["u8g2_font_open_iconic_www_1x","u8g2_font_open_iconic_www_1x"],
 			["u8g2_font_open_iconic_www_1x_t","u8g2_font_open_iconic_www_1x_t"],
+			["u8g2_font_open_iconic_www_2x","u8g2_font_open_iconic_www_2x"],
 			["u8g2_font_open_iconic_www_2x_t","u8g2_font_open_iconic_www_2x_t"],
+			["u8g2_font_open_iconic_www_4x","u8g2_font_open_iconic_www_4x"],
 			["u8g2_font_open_iconic_www_4x_t","u8g2_font_open_iconic_www_4x_t"],
+			["u8g2_font_open_iconic_www_6x","u8g2_font_open_iconic_www_6x"],
 			["u8g2_font_open_iconic_www_6x_t","u8g2_font_open_iconic_www_6x_t"],
-			["u8g2_font_open_iconic_www_8x_t","u8g2_font_open_iconic_www_8x_t"]
+			["u8g2_font_open_iconic_www_8x","u8g2_font_open_iconic_www_8x"],
+			["u8g2_font_open_iconic_www_8x_t","u8g2_font_open_iconic_www_8x_t"],
+			["u8g2_font_siji_t_6x10","u8g2_font_siji_t_6x10"],
+			["u8g2_font_streamline_all","u8g2_font_streamline_all"],
+			["u8g2_font_streamline_building_real_estate","u8g2_font_streamline_building_real_estate"],
+			["u8g2_font_streamline_business","u8g2_font_streamline_business"],
+			["u8g2_font_streamline_coding_apps_websites","u8g2_font_streamline_coding_apps_websites"],
+			["u8g2_font_streamline_computers_devices_electronics","u8g2_font_streamline_computers_devices_electronics"],
+			["u8g2_font_streamline_content_files","u8g2_font_streamline_content_files"],
+			["u8g2_font_streamline_design","u8g2_font_streamline_design"],
+			["u8g2_font_streamline_ecology","u8g2_font_streamline_ecology"],
+			["u8g2_font_streamline_email","u8g2_font_streamline_email"],
+			["u8g2_font_streamline_entertainment_events_hobbies","u8g2_font_streamline_entertainment_events_hobbies"],
+			["u8g2_font_streamline_food_drink","u8g2_font_streamline_food_drink"],
+			["u8g2_font_streamline_hand_signs","u8g2_font_streamline_hand_signs"],
+			["u8g2_font_streamline_health_beauty","u8g2_font_streamline_health_beauty"],
+			["u8g2_font_streamline_interface_essential_action","u8g2_font_streamline_interface_essential_action"],
+			["u8g2_font_streamline_interface_essential_alert","u8g2_font_streamline_interface_essential_alert"],
+			["u8g2_font_streamline_interface_essential_audio","u8g2_font_streamline_interface_essential_audio"],
+			["u8g2_font_streamline_interface_essential_calendar","u8g2_font_streamline_interface_essential_calendar"],
+			["u8g2_font_streamline_interface_essential_chart","u8g2_font_streamline_interface_essential_chart"],
+			["u8g2_font_streamline_interface_essential_circle_triangle","u8g2_font_streamline_interface_essential_circle_triangle"],
+			["u8g2_font_streamline_interface_essential_cog","u8g2_font_streamline_interface_essential_cog"],
+			["u8g2_font_streamline_interface_essential_cursor","u8g2_font_streamline_interface_essential_cursor"],
+			["u8g2_font_streamline_interface_essential_dial_pad","u8g2_font_streamline_interface_essential_dial_pad"],
+			["u8g2_font_streamline_interface_essential_edit","u8g2_font_streamline_interface_essential_edit"],
+			["u8g2_font_streamline_interface_essential_expand_shrink","u8g2_font_streamline_interface_essential_expand_shrink"],
+			["u8g2_font_streamline_interface_essential_eye","u8g2_font_streamline_interface_essential_eye"],
+			["u8g2_font_streamline_interface_essential_file","u8g2_font_streamline_interface_essential_file"],
+			["u8g2_font_streamline_interface_essential_help","u8g2_font_streamline_interface_essential_help"],
+			["u8g2_font_streamline_interface_essential_hierarchy","u8g2_font_streamline_interface_essential_hierarchy"],
+			["u8g2_font_streamline_interface_essential_home_menu","u8g2_font_streamline_interface_essential_home_menu"],
+			["u8g2_font_streamline_interface_essential_id","u8g2_font_streamline_interface_essential_id"],
+			["u8g2_font_streamline_interface_essential_key_lock","u8g2_font_streamline_interface_essential_key_lock"],
+			["u8g2_font_streamline_interface_essential_link","u8g2_font_streamline_interface_essential_link"],
+			["u8g2_font_streamline_interface_essential_loading","u8g2_font_streamline_interface_essential_loading"],
+			["u8g2_font_streamline_interface_essential_login","u8g2_font_streamline_interface_essential_login"],
+			["u8g2_font_streamline_interface_essential_other","u8g2_font_streamline_interface_essential_other"],
+			["u8g2_font_streamline_interface_essential_paginate","u8g2_font_streamline_interface_essential_paginate"],
+			["u8g2_font_streamline_interface_essential_search","u8g2_font_streamline_interface_essential_search"],
+			["u8g2_font_streamline_interface_essential_setting","u8g2_font_streamline_interface_essential_setting"],
+			["u8g2_font_streamline_interface_essential_share","u8g2_font_streamline_interface_essential_share"],
+			["u8g2_font_streamline_interface_essential_text","u8g2_font_streamline_interface_essential_text"],
+			["u8g2_font_streamline_interface_essential_wifi","u8g2_font_streamline_interface_essential_wifi"],
+			["u8g2_font_streamline_interface_essential_zoom","u8g2_font_streamline_interface_essential_zoom"],
+			["u8g2_font_streamline_internet_network","u8g2_font_streamline_internet_network"],
+			["u8g2_font_streamline_logo","u8g2_font_streamline_logo"],
+			["u8g2_font_streamline_map_navigation","u8g2_font_streamline_map_navigation"],
+			["u8g2_font_streamline_money_payments","u8g2_font_streamline_money_payments"],
+			["u8g2_font_streamline_music_audio","u8g2_font_streamline_music_audio"],
+			["u8g2_font_streamline_pet_animals","u8g2_font_streamline_pet_animals"],
+			["u8g2_font_streamline_phone","u8g2_font_streamline_phone"],
+			["u8g2_font_streamline_photography","u8g2_font_streamline_photography"],
+			["u8g2_font_streamline_romance","u8g2_font_streamline_romance"],
+			["u8g2_font_streamline_school_science","u8g2_font_streamline_school_science"],
+			["u8g2_font_streamline_shopping_shipping","u8g2_font_streamline_shopping_shipping"],
+			["u8g2_font_streamline_social_rewards","u8g2_font_streamline_social_rewards"],
+			["u8g2_font_streamline_technology","u8g2_font_streamline_technology"],
+			["u8g2_font_streamline_transportation","u8g2_font_streamline_transportation"],
+			["u8g2_font_streamline_travel_wayfinding","u8g2_font_streamline_travel_wayfinding"],
+			["u8g2_font_streamline_users","u8g2_font_streamline_users"],
+			["u8g2_font_streamline_video_movies","u8g2_font_streamline_video_movies"],
+			["u8g2_font_streamline_weather","u8g2_font_streamline_weather"],
+			["u8g2_font_twelvedings_t_all","u8g2_font_twelvedings_t_all"],
+			["u8g2_font_unifont_t_75","u8g2_font_unifont_t_75"],
+			["u8g2_font_unifont_t_76","u8g2_font_unifont_t_76"],
+			["u8g2_font_unifont_t_77","u8g2_font_unifont_t_77"],
+			["u8g2_font_unifont_t_78_79","u8g2_font_unifont_t_78_79"],
+			["u8g2_font_unifont_t_animals","u8g2_font_unifont_t_animals"],
+			["u8g2_font_unifont_t_cards","u8g2_font_unifont_t_cards"],
+			["u8g2_font_unifont_t_domino","u8g2_font_unifont_t_domino"],
+			["u8g2_font_unifont_t_emoticons","u8g2_font_unifont_t_emoticons"],
+			["u8g2_font_unifont_t_symbols","u8g2_font_unifont_t_symbols"],
+			["u8g2_font_unifont_t_weather","u8g2_font_unifont_t_weather"]
 	]), "font");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
