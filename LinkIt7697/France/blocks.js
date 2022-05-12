@@ -84,7 +84,10 @@ Blockly.Blocks['fu_taiwan_aqi'] = {
           ["連江縣-馬祖","馬祖"],
           ["金門縣-金門","金門"],
           ["澎湖縣-馬公","馬公"]
-		]), "sitename");		
+		]), "sitename");
+    this.appendValueInput("Authorization")
+        .setCheck("String")
+        .appendField(Blockly.Msg["AIRQUALITY_AUTHORIZATION"]);			
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

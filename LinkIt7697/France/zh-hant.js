@@ -777,6 +777,7 @@ Blockly.Msg["AIRQUALITY_STATE"] = "狀態";
 Blockly.Msg["AIRQUALITY_TIME"] = "更新時間";
 
 Blockly.Msg["AIRQUALITY_ESP32"] = "台灣空氣品質 (ESP32)";
+Blockly.Msg["AIRQUALITY_AUTHORIZATION"] = "授權碼";	  
 Blockly.Msg["AIRQUALITY_SITE"] = "站名";
 Blockly.Msg["AIRQUALITY_AQI"] = "AQI";
 Blockly.Msg["AIRQUALITY_PM25"] = "PM2.5";

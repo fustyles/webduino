@@ -7161,8 +7161,15 @@
 	  </block>
 	</category>
 	<category id="france24" name="airquality">
-	  <block type="fu_taiwan_aqi"></block>
-	  <block type="fu_taiwan_aqi_get"></block>	  
+	  <block type="fu_taiwan_aqi">
+		<value name="Authorization">
+		  <block type="text">
+			<field name="TEXT">9be7b239-557b-4c10-9775-78cadfc555e9</field>
+		  </block>
+		</value>	  
+	  </block>
+	  <block type="fu_taiwan_aqi_get">
+	  </block>	  
     </category>
 	<category id="france24" name="weather">
 	  <block type="fu_taiwan_weather">

@@ -1,6 +1,7 @@
 
 Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	var dropdown_sitename = block.getFieldValue('sitename');
+	var value_Authorization = Blockly.Arduino.valueToCode(block, 'Authorization', Blockly.Arduino.ORDER_ATOMIC);
 	
 	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
@@ -11,9 +12,9 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	Blockly.Arduino.definitions_['airStatus'] = 'String airStatus = "";';
 	Blockly.Arduino.definitions_['airTime'] = 'String airTime = "";';	
 	Blockly.Arduino.definitions_['opendataAirQuality'] = '\n' +
-			'void opendataAirQuality(String Site) {\n'+
+			'void opendataAirQuality(String Site, String Authorization) {\n'+
 			'  WiFiClientSecure client_tcp;\n'+
-			'  String request = "/api/v1/aqx_p_432?format=json&limit=5&api_key=9be7b239-557b-4c10-9775-78cadfc555e9&filters=SiteName,EQ,"+urlencode(Site);\n'+
+			'  String request = "/api/v1/aqx_p_432?format=json&limit=5&api_key="+Authorization+"&filters=SiteName,EQ,"+urlencode(Site);\n'+
 			'  if (client_tcp.connect("data.epa.gov.tw", 443)) {\n'+
 			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: data.epa.gov.tw");\n'+
@@ -107,7 +108,7 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'    }\n'+
 			'    return encodedString;\n'+
 			'}';								   
-	var code = 'opendataAirQuality("'+dropdown_sitename+'");\n';
+	var code = 'opendataAirQuality("'+dropdown_sitename+'",'+value_Authorization+');\n';
 	return code;
 };
 
