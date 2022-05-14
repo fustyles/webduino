@@ -8076,7 +8076,10 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.define_esp_camera_h_include ='#include "esp_camera.h"';
   Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
   Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';
-  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+  if (selectBoardType()=="esp32")
+	Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
+  else
+	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 
   Blockly.Arduino.definitions_.define_esp32_cam_gpio_include ='\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
@@ -8468,7 +8471,11 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.define_esp_http_server_h_include ='#include "esp_http_server.h"';
   Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
   Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';
-  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+  console.log(selectBoardType());
+  if (selectBoardType()=="esp32")
+	Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
+  else
+	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 
   Blockly.Arduino.definitions_.define_esp32_cam_gpio_include ='\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
@@ -9439,7 +9446,10 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
     var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
     var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 
-	Blockly.Arduino.definitions_.define_base64 = '#include "Base64.h"';
+	if (selectBoardType()=="esp32")
+	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
+	else
+	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 	Blockly.Arduino.definitions_.define_myScript_driver = 'String myScript = "/macros/s/'+scriptid.replace(/"/g,'')+'/exec";';
 	Blockly.Arduino.definitions_.define_foldName = 'String myFoldername = "&myFoldername='+foldername.replace(/"/g,'')+'";';
 	Blockly.Arduino.definitions_.define_fileName = 'String myFilename = "&myFilename='+filename.replace(/"/g,'')+'";';

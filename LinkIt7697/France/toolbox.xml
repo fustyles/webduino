@@ -5929,6 +5929,101 @@
     </block>
     <block type="fu_oled_nextPage"></block>		
     <block type="fu_oled_sendBuffer"></block>
+    <block type="fu_oled_setPowerSave"></block>	
+	<block type="fu_oled_setContrast">
+		<value name="value">
+		  <shadow type="math_number">
+			<field name="NUM">255</field>
+		  </shadow>
+		</value>
+	</block>	
+	<block type="fu_oled_setFont">
+		<value name="font">		
+          <block type="text">
+            <field name="TEXT">u8g2_font_ncenB08_tr</field>
+          </block>
+		</value>		  
+    </block>
+	<block type="fu_oled_setFont_chinese"></block>
+	<block type="fu_oled_setFont_icon">
+		<field name="font">u8g2_font_open_iconic_weather_6x_t</field>	
+	</block>	
+	<block type="fu_oled_setFont_all"></block>	
+    <block type="fu_oled_setFontDirection"></block>		
+    <block type="fu_oled_setDrawColor"></block>	
+    <block type="fu_oled_clear"></block>
+    <block type="fu_oled_home"></block>		
+	<block type="fu_oled_drawStr">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="str">		
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		  
+    </block>
+	<block type="fu_oled_setCursor">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>		  
+    </block>	
+	<block type="fu_oled_Print">
+		<value name="str">		
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		  
+    </block>	
+	<block type="fu_oled_drawGlyph">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="position">		
+		  <shadow type="math_number">
+			<field name="NUM">64</field>
+		  </shadow>
+		</value>		  
+    </block>
+	<block type="fu_oled_drawUTF8">
+		<value name="x">
+		  <shadow type="math_number">
+			<field name="NUM">0</field>
+		  </shadow>
+		</value>
+		<value name="y">
+		  <shadow type="math_number">
+			<field name="NUM">16</field>
+		  </shadow>
+		</value>
+		<value name="str">		
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		  
+    </block>
+	<block type="fu_oled_setBitmapMode"></block>
 	<block type="fu_oled_drawFont">
 		<field name="font">Arial</field>
 		<field name="size">12px</field>	
@@ -6096,102 +6191,7 @@
 			<field name="NUM">0</field>
 		  </shadow>
 		</value>		
-	</block>
-    <block type="fu_oled_setPowerSave"></block>	
-	<block type="fu_oled_setContrast">
-		<value name="value">
-		  <shadow type="math_number">
-			<field name="NUM">255</field>
-		  </shadow>
-		</value>
 	</block>	
-	<block type="fu_oled_setFont">
-		<value name="font">		
-          <block type="text">
-            <field name="TEXT">u8g2_font_ncenB08_tr</field>
-          </block>
-		</value>		  
-    </block>
-	<block type="fu_oled_setFont_chinese"></block>
-	<block type="fu_oled_setFont_icon">
-		<field name="font">u8g2_font_open_iconic_weather_6x_t</field>	
-	</block>	
-	<block type="fu_oled_setFont_all"></block>	
-    <block type="fu_oled_setFontDirection"></block>		
-    <block type="fu_oled_setDrawColor"></block>	
-    <block type="fu_oled_clear"></block>
-    <block type="fu_oled_home"></block>		
-	<block type="fu_oled_drawStr">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="str">		
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-		</value>		  
-    </block>
-	<block type="fu_oled_setCursor">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>		  
-    </block>	
-	<block type="fu_oled_Print">
-		<value name="str">		
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-		</value>		  
-    </block>	
-	<block type="fu_oled_drawGlyph">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="position">		
-		  <shadow type="math_number">
-			<field name="NUM">64</field>
-		  </shadow>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawUTF8">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="str">		
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-		</value>		  
-    </block>
-	<block type="fu_oled_setBitmapMode"></block>	
 	<block type="fu_oled_drawBox">
 		<value name="x">
 		  <shadow type="math_number">
