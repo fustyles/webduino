@@ -535,7 +535,7 @@ Blockly.Arduino.text_getSubstring=function(a){
 	if(e.match(/^'?\w+'?$/)||d){
 		switch(b){
 			case "FROM_START":
-				d=Blockly.Arduino.valueToCode(a,"AT1",Blockly.Arduino.ORDER_NONE)-1;
+				d=Blockly.Arduino.valueToCode(a,"AT1",Blockly.Arduino.ORDER_NONE) + "-1";
 				break;
 			case "FROM_END":
 				d=Blockly.Arduino.valueToCode(a,"AT1",Blockly.Arduino.ORDER_NONE);
