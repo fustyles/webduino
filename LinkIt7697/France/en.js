@@ -1169,3 +1169,8 @@ Blockly.Msg.FACEAPIRECOGNIZE_CANVAS_GET_SHOW = "Face Recognition (face-api) Get 
 Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_SHOW = "Face Recognition (faceapi.js)";
 Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_INITIAL_SHOW = "Initial";
 Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_RECOGNITION_SHOW = "After recognizing";
+
+Blockly.Msg["FU_SERVO_ESP32"] = "Servo (ESP32)";
+Blockly.Msg["FU_SERVO_PIN"] = "pin";
+Blockly.Msg["FU_SERVO_ANGLE"] = "angle";
+Blockly.Msg["FU_SERVO_CHANNEL"] = "channel";

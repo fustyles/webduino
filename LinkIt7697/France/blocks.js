@@ -1,3 +1,29 @@
+Blockly.Blocks['fu_servo_esp'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("EZ+")
+        .appendField(Blockly.Msg["FU_SERVO_ESP32"]);
+    this.appendValueInput("pin")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["FU_SERVO_PIN"]);
+    this.appendValueInput("angle")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["FU_SERVO_ANGLE"]);
+    this.appendValueInput("channel")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["FU_SERVO_CHANNEL"]);	
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(155);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
 
 Blockly.Blocks['fu_taiwan_aqi'] = {
   init: function() {

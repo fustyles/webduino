@@ -1,3 +1,23 @@
+Blockly.Arduino['fu_servo_esp'] = function(block) {	
+  var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
+  var value_angle = Blockly.Arduino.valueToCode(block, 'angle', Blockly.Arduino.ORDER_ATOMIC);
+  var value_channel = Blockly.Arduino.valueToCode(block, 'channel', Blockly.Arduino.ORDER_ATOMIC);
+
+  Blockly.Arduino.setups_['ledc_'+ value_pin] = 'ledcSetup('+value_channel+', 50, 16);\n'+
+										  '  ledcAttachPin('+value_pin+', '+value_channel+');'; 
+  Blockly.Arduino.definitions_['servo_rotate_esp'] = ''+
+			'  void servo_rotate_esp(int channel, int angle) {\n'+
+			'      int val = 7864-angle*34.59;\n'+ 
+			'      if (val > 7864)\n'+
+			'         val = 7864;\n'+
+			'      else if (val < 1638)\n'+
+			'        val = 1638;\n'+
+			'      ledcWrite(channel, val);\n'+
+			'  }\n';
+
+  var code = 'servo_rotate_esp('+ value_channel +','+ value_angle +');\n' ;
+  return code;
+};
 
 Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	var dropdown_sitename = block.getFieldValue('sitename');

@@ -67,4 +67,5 @@
 <category><name>faceapidetect</name><replace>人臉偵測 (face-api)</replace></category>
 <category><name>faceapirecognize</name><replace>人臉辨識 (face-api)</replace></category>
 <category><name>weather</name><replace>台灣天氣預報 (36小時)</replace></category>
+<category><name>servoesp</name><replace>伺服馬達</replace></category>
 </xml>

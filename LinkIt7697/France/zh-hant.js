@@ -1177,3 +1177,8 @@ Blockly.Msg.FACEAPIRECOGNIZE_CANVAS_GET_SHOW = "人臉辨識 (face-api) 取得�
 Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_SHOW = "人臉辨識 (face-api)";
 Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_INITIAL_SHOW = "初始設定";
 Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_RECOGNITION_SHOW = "辨識完成後執行";
+
+Blockly.Msg["FU_SERVO_ESP32"] = "伺服馬達 (ESP32)";
+Blockly.Msg["FU_SERVO_PIN"] = "腳位";
+Blockly.Msg["FU_SERVO_ANGLE"] = "角度";
+Blockly.Msg["FU_SERVO_CHANNEL"] = "頻道";
