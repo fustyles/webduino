@@ -8471,7 +8471,6 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.define_esp_http_server_h_include ='#include "esp_http_server.h"';
   Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
   Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';
-  console.log(selectBoardType());
   if (selectBoardType()=="esp32")
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
   else
