@@ -560,7 +560,7 @@ Blockly.Arduino.text_getSubstring=function(a){
 		}
 		switch(c){
 			case "FROM_START":
-				a=Number(Blockly.Arduino.valueToCode(a,"AT2",Blockly.Arduino.ORDER_NONE));
+				a=Blockly.Arduino.valueToCode(a,"AT2",Blockly.Arduino.ORDER_NONE);
 				break;
 			case "FROM_END":
 				a=Blockly.Arduino.valueToCode(a,"AT2",Blockly.Arduino.ORDER_NONE);
