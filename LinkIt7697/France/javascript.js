@@ -6,14 +6,14 @@ Blockly.Arduino['fu_servo_esp'] = function(block) {
   Blockly.Arduino.setups_['ledc_'+ value_pin] = 'ledcSetup('+value_channel+', 50, 16);\n'+
 										  '  ledcAttachPin('+value_pin+', '+value_channel+');'; 
   Blockly.Arduino.definitions_['servo_rotate_esp'] = ''+
-			'  void servo_rotate_esp(int channel, int angle) {\n'+
-			'      int val = 7864-angle*34.59;\n'+ 
-			'      if (val > 7864)\n'+
-			'         val = 7864;\n'+
-			'      else if (val < 1638)\n'+
-			'        val = 1638;\n'+
-			'      ledcWrite(channel, val);\n'+
-			'  }\n';
+			'void servo_rotate_esp(int channel, int angle) {\n'+
+			'  int val = 7864-angle*34.59;\n'+ 
+			'  if (val > 7864)\n'+
+			'    val = 7864;\n'+
+			'  else if (val < 1638)\n'+
+			'    val = 1638;\n'+
+			'  ledcWrite(channel, val);\n'+
+			'}\n';
 
   var code = 'servo_rotate_esp('+ value_channel +','+ value_angle +');\n' ;
   return code;
@@ -2662,11 +2662,14 @@ Blockly.Arduino['thingspeak_field'] = function(block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
-Blockly.Arduino['esp32_analogwrite'] = function(block) { 
-  var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
-  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
-  var channel = Blockly.Arduino.valueToCode(block, 'channel', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'ledcAttachPin('+pin+', '+channel+');\nledcSetup('+channel+', 5000, 8);\nledcWrite('+channel+','+val+');\n';
+Blockly.Arduino['esp32_analogwrite'] = function(block) {
+  var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
+  var value_val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  var value_channel = Blockly.Arduino.valueToCode(block, 'channel', Blockly.Arduino.ORDER_ATOMIC);	
+  Blockly.Arduino.setups_['ledc_'+ value_pin] = 'ledcSetup('+value_channel+', 5000, 8);\n'+
+										  '  ledcAttachPin('+value_pin+', '+value_channel+');'; 
+
+  var code = 'ledcWrite('+value_channel+', '+value_val+');\n';
   return code;
 };
 
