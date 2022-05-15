@@ -2,7 +2,6 @@ Blockly.Blocks['fu_servo_esp'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
         .appendField(Blockly.Msg["FU_SERVO_ESP32"]);
     this.appendValueInput("pin")
         .setCheck("Number")
