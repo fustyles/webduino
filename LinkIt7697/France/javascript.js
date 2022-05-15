@@ -3274,7 +3274,7 @@ Blockly.Arduino['servermodule_pinwrite'] = function (block) {
 Blockly.Arduino['esp32_pinread'] = function (block) {
   var type = block.getFieldValue('type');
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.setups_["pinRead_"+pin] = 'pinMode(' + pin + ', INPUT);';
+  Blockly.Arduino.setups_["pinRead_"+pin] = 'pinMode(' + pin + ', INPUT_PULLUP);';
   var code = type + '(' + pin + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
