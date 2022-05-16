@@ -99,10 +99,10 @@ async function DetectVideo(obj) {
 
 function loadLabeledImages() {
 	return Promise.all(
-		facelabels.map(async label => {
+		facelabels.map(async function(label, index) {
 			const descriptions = []
 			if (faceImagesCount==0) { 
-				const img = await faceapi.fetchImage(faceImagesPath+label+'.jpg')
+				const img = await faceapi.fetchImage(faceImagesPath[index])
 				const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
 				descriptions.push(detections.descriptor)
 			}

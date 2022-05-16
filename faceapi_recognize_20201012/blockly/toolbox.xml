@@ -1,15 +1,15 @@
 <category id="faceapirecognize">
   <block type="faceapirecognize_video">
-    <value name="faceimagepath">
-      <block type="text">
-        <field name="TEXT">https://fustyles.github.io/webduino/faceapi_recognize_20201012/facelist/</field>
-      </block>    
-    </value> 
     <value name="facelabel">
       <block type="text">
         <field name="TEXT">France;Evonne</field>
       </block>    
     </value> 
+    <value name="faceimagepath">
+      <block type="text">
+        <field name="TEXT">https://fustyles.github.io/webduino/faceapi_recognize_20201012/facelist/</field>
+      </block>    
+    </value> 	
     <value name="faceimagecount">
       <block type="math_number">
         <field name="NUM">1</field>
@@ -25,7 +25,34 @@
         <field name="NUM">3</field>
       </block>
     </value>	
-  </block>  
+  </block>
+  <block type="faceapirecognize_video">
+    <value name="facelabel">
+      <block type="text">
+        <field name="TEXT">France;Evonne</field>
+      </block>    
+    </value> 
+    <value name="faceimagepath">
+      <block type="text">
+        <field name="TEXT">https://aaa/bbb.jpg;https://ccc/ddd.jpg</field>
+      </block>    
+    </value> 	
+    <value name="faceimagecount">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>   
+    </value> 	
+    <value name="distancelimit">
+      <block type="math_number">
+        <field name="NUM">0.4</field>
+      </block>   
+    </value>
+    <value name="timer">
+      <block type="math_number">
+        <field name="NUM">3</field>
+      </block>
+    </value>	
+  </block>    
   <block type="faceapirecognize_startvideo_media">
     <value name="width_">
       <block type="math_number">
