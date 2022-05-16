@@ -127,10 +127,17 @@ window.onload = function () {
 		return Promise.all(
 			facelabels.map(async label => {
 				const descriptions = []
-				for (let i=1;i<=faceImagesCount;i++) {
-					const img = await faceapi.fetchImage(faceImagesPath+label+'/'+i+'.jpg')
+				if (faceImagesCount==0) { 
+					const img = await faceapi.fetchImage(faceImagesPath+label+'.jpg')
 					const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
 					descriptions.push(detections.descriptor)
+				}
+				else {				
+					for (let i=1;i<=faceImagesCount;i++) {
+						const img = await faceapi.fetchImage(faceImagesPath+label+'/'+i+'.jpg')
+						const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
+						descriptions.push(detections.descriptor)
+					}
 				}
 				return new faceapi.LabeledFaceDescriptors(label, descriptions)
 			})
