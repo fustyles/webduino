@@ -128,7 +128,7 @@ window.onload = function () {
 			facelabels.map(async label => {
 				const descriptions = []
 				if (faceImagesCount==0) { 
-					const img = await faceapi.fetchImage(faceImagesPath+label+'.jpg')
+					const img = await faceapi.fetchImage(faceImagesPath+label)
 					const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
 					descriptions.push(detections.descriptor)
 				}
