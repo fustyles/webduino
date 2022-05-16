@@ -1310,16 +1310,16 @@
 		  <block type="faceapirecognize_esp32cam">
 		  </block>			
 		  <block type="faceapirecognize_video">
-			<value name="faceimagepath">
-			  <block type="text">
-				<field name="TEXT">https://fustyles.github.io/webduino/faceapi_recognize_20201012/facelist/</field>
-			  </block>    
-			</value> 
 			<value name="facelabel">
 			  <block type="text">
 				<field name="TEXT">France;Evonne</field>
 			  </block>    
 			</value> 
+			<value name="faceimagepath">
+			  <block type="text">
+				<field name="TEXT">https://fustyles.github.io/webduino/faceapi_recognize_20201012/facelist/</field>
+			  </block>    
+			</value> 			
 			<value name="faceimagecount">
 			  <block type="math_number">
 				<field name="NUM">1</field>
@@ -1335,7 +1335,34 @@
 				<field name="NUM">3</field>
 			  </block>
 			</value>	
-		  </block>  
+		  </block>
+		  <block type="faceapirecognize_video">
+			<value name="facelabel">
+			  <block type="text">
+				<field name="TEXT">France;Evonne</field>
+			  </block>    
+			</value> 
+			<value name="faceimagepath">
+			  <block type="text">
+				<field name="TEXT">https://aaa/bbb.jpg;https://ccc/ddd.jpg</field>
+			  </block>    
+			</value> 			
+			<value name="faceimagecount">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>   
+			</value> 	
+			<value name="distancelimit">
+			  <block type="math_number">
+				<field name="NUM">0.4</field>
+			  </block>   
+			</value>
+			<value name="timer">
+			  <block type="math_number">
+				<field name="NUM">3</field>
+			  </block>
+			</value>	
+		  </block>  		  
 		  <block type="faceapirecognize_detect">
 		  </block>
 		  <block type="faceapirecognize_number"> 
@@ -5961,7 +5988,7 @@
 		</value>
 		<value name="y">
 		  <shadow type="math_number">
-			<field name="NUM">16</field>
+			<field name="NUM">14</field>
 		  </shadow>
 		</value>
 		<value name="str">		
@@ -5997,7 +6024,7 @@
 		</value>
 		<value name="y">
 		  <shadow type="math_number">
-			<field name="NUM">16</field>
+			<field name="NUM">14</field>
 		  </shadow>
 		</value>
 		<value name="position">		
@@ -6014,7 +6041,7 @@
 		</value>
 		<value name="y">
 		  <shadow type="math_number">
-			<field name="NUM">16</field>
+			<field name="NUM">14</field>
 		  </shadow>
 		</value>
 		<value name="str">		
@@ -6596,7 +6623,7 @@
 			</value>
 			<value name="channel">
 			  <shadow type="math_number">
-			  <field name="NUM">10</field>
+			  <field name="NUM">9</field>
 			</shadow>
 		  </value>			
 		</block>

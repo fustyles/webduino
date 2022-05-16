@@ -14869,14 +14869,14 @@ Blockly.Blocks['faceapirecognize_video'] = {
   this.appendDummyInput() 
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.FACEAPIRECOGNIZE_VIDEO_SHOW);	 
-  this.appendValueInput("faceimagepath")
-      .setAlign(Blockly.ALIGN_RIGHT)  
-      .setCheck("String")
-      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGEPATH_SHOW);
   this.appendValueInput("facelabel")
       .setAlign(Blockly.ALIGN_RIGHT)  
       .setCheck("String")
       .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACELABEL_SHOW); 
+  this.appendValueInput("faceimagepath")
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .setCheck("String")
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGEPATH_SHOW);	  
   this.appendValueInput("faceimagecount")
       .setAlign(Blockly.ALIGN_RIGHT)  
       .setCheck("Number")
