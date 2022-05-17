@@ -4239,6 +4239,8 @@ Blockly.Arduino['image_onload_dom'] = function (block) {
   var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.Arduino.statementToCode(block, 'do_');
   var code = 'async function gameimage_'+value_id_+'_onload (event) {\n' + statements_do_ + '};\ndocument.getElementById("gameimage_'+value_id_+'").addEventListener("load", gameimage_'+value_id_+'_onload, true);\n';
   return code;
@@ -4478,16 +4480,20 @@ Blockly.Arduino['async_function'] = function (block) {
   var value_name_ = Blockly.Arduino.valueToCode(block, 'name_', Blockly.Arduino.ORDER_ATOMIC); 
   if ((value_name_.indexOf("'")==0)&&(value_name_.lastIndexOf("'")==value_name_.length-1))
     value_name_ = value_name_.substring(1,value_name_.length-1);
+  if ((value_name_.indexOf('"')==0)&&(value_name_.lastIndexOf('"')==value_name_.length-1))
+    value_name_ = value_name_.substring(1,value_name_.length-1);
   if ((value_name_.indexOf("(")==0)&&(value_name_.lastIndexOf(")")==value_name_.length-1))
     value_name_ = value_name_.substring(1,value_name_.length-1);
   
   var value_parameter_ = Blockly.Arduino.valueToCode(block, 'parameter_', Blockly.Arduino.ORDER_ATOMIC); 
   if ((value_parameter_.indexOf("'")==0)&&(value_parameter_.lastIndexOf("'")==value_parameter_.length-1))
     value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);
+  if ((value_parameter_.indexOf('"')==0)&&(value_parameter_.lastIndexOf('"')==value_parameter_.length-1))
+    value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);
   if ((value_parameter_.indexOf("(")==0)&&(value_parameter_.lastIndexOf(")")==value_parameter_.length-1))
     value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);
   var statements_do_ = Blockly.Arduino.statementToCode(block, 'do_');
-  var code = 'async function '+value_name_+'('+value_parameter_+'){\n' + statements_do_ + '};\n';
+  var code = 'async function '+value_name_+'('+value_parameter_+') {\n' + statements_do_ + '};\n';
   return code;
 };
 
@@ -4495,10 +4501,14 @@ Blockly.Arduino['call_async_function'] = function (block) {
   var value_name_ = Blockly.Arduino.valueToCode(block, 'name_', Blockly.Arduino.ORDER_ATOMIC);   
   if ((value_name_.indexOf("'")==0)&&(value_name_.lastIndexOf("'")==value_name_.length-1))
     value_name_ = value_name_.substring(1,value_name_.length-1);
+  if ((value_name_.indexOf('"')==0)&&(value_name_.lastIndexOf('"')==value_name_.length-1))
+    value_name_ = value_name_.substring(1,value_name_.length-1);
   if ((value_name_.indexOf("(")==0)&&(value_name_.lastIndexOf(")")==value_name_.length-1))
     value_name_ = value_name_.substring(1,value_name_.length-1);
   var value_parameter_ = Blockly.Arduino.valueToCode(block, 'parameter_', Blockly.Arduino.ORDER_ATOMIC); 
   if ((value_parameter_.indexOf("'")==0)&&(value_parameter_.lastIndexOf("'")==value_parameter_.length-1))
+    value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);
+  if ((value_parameter_.indexOf('"')==0)&&(value_parameter_.lastIndexOf('"')==value_parameter_.length-1))
     value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);
   if ((value_parameter_.indexOf("(")==0)&&(value_parameter_.lastIndexOf(")")==value_parameter_.length-1))
     value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);  
@@ -4527,7 +4537,9 @@ Blockly.Arduino['element_event'] = function (block) {
 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
- 
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+
   var code = 'async function '+element+'_'+value_id_+'_'+event+'(event) {\n' + statement + '};\n'+obj+'.addEventListener("'+event+'", '+element+'_'+value_id_+'_'+event+', true);\n';
   return code;
 };
@@ -4544,6 +4556,8 @@ Blockly.Arduino['element_event_stop'] = function (block) {
     var obj="document.getElementById('game"+element+"_'+"+value_id_+")";
 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
 
   var code = obj+'.removeEventListener("'+event+'", '+element+'_'+value_id_+'_'+event+', true);\n';
@@ -5480,6 +5494,8 @@ Blockly.Arduino['video_base64'] = function (block) {
   var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var source_id;
   if (value_source_=="video")
 	source_id = 'gamevideo_'+value_id_;
@@ -5579,6 +5595,8 @@ Blockly.Arduino['video_base64_email'] = function (block) {
 Blockly.Arduino['custom_comment'] = function (block) {
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
   if ((text.indexOf("'")==0)&&(text.lastIndexOf("'")==text.length-1))
+    text = text.substring(1,text.length-1);
+  if ((text.indexOf('"')==0)&&(text.lastIndexOf('"')==text.length-1))
     text = text.substring(1,text.length-1);
   if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))
     text = text.substring(1,text.length-1);
@@ -5761,6 +5779,8 @@ Blockly.Arduino['console_log'] = function (block) {
 Blockly.Arduino['button_ouput_file_text'] = function (block) {
   var value_id = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC); 
   if ((value_id.indexOf('"')==0)&&(value_id.lastIndexOf('"')==value_id.length-1))
+    value_id = value_id.substring(1,value_id.length-1);
+  if ((value_id.indexOf("'")==0)&&(value_id.lastIndexOf("'")==value_id.length-1))
     value_id = value_id.substring(1,value_id.length-1);
   var value_text = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC);
   
@@ -6441,6 +6461,8 @@ Blockly.Arduino['BitMatrixLed_matrix_rgb_one_n'] = function(block) {
 
 function rgb2number(rgb) {
 	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);
+	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
 	if (rgb.indexOf("#")!=-1)
 		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
