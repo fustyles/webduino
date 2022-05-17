@@ -1,0 +1,159 @@
+const char* ssid     = "*****";   //your network SSID
+const char* password = "*****";   //your network password
+String token = "*****:*****";   // Create your bot and get the token -> https://telegram.me/fatherbot
+String chat_id = "*****";   // Get chat_id -> https://telegram.me/userinfobot
+boolean sendHelp = false;   
+
+#include <ArduinoJson.h>
+#include <WiFi.h>
+#include <WiFiClientSecure.h>
+#include "soc/soc.h"
+#include "soc/rtc_cntl_reg.h"
+
+WiFiClientSecure client_tcp;
+
+
+long message_id_last = 0;
+
+void executeCommand(String text) {
+  if (!text||text=="") return;
+
+  if (text=="help"||text=="/help"||text=="/start") {
+    String command = "/help Command list\n/on Turn on the led\n/off Turn off the led\n/restart Restart the board";
+    String keyboard = "{\"keyboard\":[[{\"text\":\"/on\"},{\"text\":\"/off\"},{\"text\":\"/restart\"}]],\"one_time_keyboard\":false}";
+    sendMessage2Telegram(command, keyboard);
+  }
+  else if (text=="/restart") {
+    sendMessage2Telegram("Restart the board", "");
+    ESP.restart();
+  } 
+  else if (text=="null") {   //Server sends this response unexpectedly. Don't delete the code.
+    client_tcp.stop();
+    getTelegramMessage();
+  }
+  else
+    sendMessage2Telegram("Command is not defined", "");
+}
+
+void setup()
+{
+........
+  getTelegramMessage();  
+}
+
+void loop()
+{
+}
+
+void getTelegramMessage() {
+  const char* myDomain = "api.telegram.org";
+  String getAll="", getBody = ""; 
+  JsonObject obj;
+  DynamicJsonDocument doc(1024);
+  String result;
+  long update_id;
+  String message;
+  long message_id;
+  String text;  
+  
+  client_tcp.setInsecure();   //run version 1.0.5 or above
+  
+  if (message_id_last == 0) Serial.println("Connect to " + String(myDomain));
+  if (client_tcp.connect(myDomain, 443)) {
+    if (message_id_last == 0) Serial.println("Connection successful");
+    while (client_tcp.connected()) {            
+      getAll = "";
+      getBody = "";
+      String request = "limit=1&offset=-1&allowed_updates=message";
+      client_tcp.println("POST /bot"+token+"/getUpdates HTTP/1.1");
+      client_tcp.println("Host: " + String(myDomain));
+      client_tcp.println("Content-Length: " + String(request.length()));
+      client_tcp.println("Content-Type: application/x-www-form-urlencoded");
+      client_tcp.println("Connection: keep-alive");
+      client_tcp.println();
+      client_tcp.print(request);
+      int waitTime = 5000;
+      long startTime = millis();
+      boolean state = false;
+      while ((startTime + waitTime) > millis()){
+        delay(100);      
+        while (client_tcp.available()){
+            char c = client_tcp.read();
+            if (c == '\n') {
+              if (getAll.length()==0) state=true; 
+              getAll = "";
+            } 
+            else if (c != '\r')
+              getAll += String(c);
+            if (state==true) getBody += String(c);
+            startTime = millis();
+         }
+         if (getBody.length()>0) break;
+      }
+      deserializeJson(doc, getBody);
+      obj = doc.as<JsonObject>();
+      message_id = obj["result"][0]["message"]["message_id"].as<String>().toInt();
+      text = obj["result"][0]["message"]["text"].as<String>();
+      if (message_id!=message_id_last&&message_id) {
+        int id_last = message_id_last;
+        message_id_last = message_id;
+        if (id_last==0) {
+          message_id = 0;
+          if (sendHelp == true)
+            text = "/help";
+          else
+            text = "";
+        }
+        if (text!="") {
+          executeCommand(text);
+        }
+      }
+      delay(1000);
+    }
+  }
+  
+  if (WiFi.status() != WL_CONNECTED) {
+    WiFi.begin(ssid, password);  
+    long int StartTime=millis();
+    while (WiFi.status() != WL_CONNECTED)  {
+      delay(500);
+      if ((StartTime+10000) < millis()) break;
+    } 
+    if (WiFi.status() != WL_CONNECTED) {
+      ESP.restart();
+    }
+  }
+  getTelegramMessage();
+}
+
+void sendMessage2Telegram(String text, String keyboard) {
+  const char* myDomain = "api.telegram.org";
+  String getAll="", getBody = "";
+  String request = "parse_mode=HTML&chat_id="+chat_id+"&text="+text;
+  if (keyboard!="") request += "&reply_markup="+keyboard;
+  client_tcp.println("POST /bot"+token+"/sendMessage HTTP/1.1");
+  client_tcp.println("Host: " + String(myDomain));
+  client_tcp.println("Content-Length: " + String(request.length()));
+  client_tcp.println("Content-Type: application/x-www-form-urlencoded");
+  client_tcp.println("Connection: keep-alive");
+  client_tcp.println();
+  client_tcp.print(request);
+  int waitTime = 5000;   // timeout 5 seconds
+  long startTime = millis();
+  boolean state = false;
+  while ((startTime + waitTime) > millis()) {
+    delay(100);      
+    while (client_tcp.available())  {
+        char c = client_tcp.read();
+        if (state==true) getBody += String(c);      
+        if (c == '\n')  {
+          if (getAll.length()==0) state=true; 
+          getAll = "";
+        } 
+        else if (c != '\r')
+          getAll += String(c);
+        startTime = millis();
+     }
+     if (getBody.length()>0) break;
+  }
+}

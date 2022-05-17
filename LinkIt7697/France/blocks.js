@@ -1,3 +1,55 @@
+Blockly.Blocks['esp32_telegrambot'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_SHOW);
+    this.appendValueInput("ssid")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_SSID_SHOW);
+    this.appendValueInput("password")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_PASSWORD_SHOW);
+    this.appendValueInput("token")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_TOKEN_SHOW);
+    this.appendValueInput("chat_id")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_CHATID_SHOW);	
+    this.appendValueInput("command")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_COMMAND_SHOW);	
+    this.appendValueInput("keyboard")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_KEYBOARD_SHOW);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_EXECUTE_SHOW);
+    this.appendStatementInput("ExecuteCommand")
+        .setCheck(null);
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['esp32_telegrambot_sendmessage'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_SENDMESSAGE_SHOW);
+    this.appendValueInput("message")
+        .setCheck("String");
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
 Blockly.Blocks['fu_servo_esp'] = {
   init: function() {
     this.appendDummyInput()

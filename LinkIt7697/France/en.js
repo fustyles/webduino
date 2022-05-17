@@ -1174,3 +1174,14 @@ Blockly.Msg["FU_SERVO_ESP32"] = "Servo (ESP32)";
 Blockly.Msg["FU_SERVO_PIN"] = "pin";
 Blockly.Msg["FU_SERVO_ANGLE"] = "angle";
 Blockly.Msg["FU_SERVO_CHANNEL"] = "channel";
+
+Blockly.Msg.ESP32_TELEGRAMBOT_SHOW = "Telegram Bot Connect to Wi-Fi AP";
+Blockly.Msg.ESP32_TELEGRAMBOT_SSID_SHOW = "SSID";
+Blockly.Msg.ESP32_TELEGRAMBOT_PASSWORD_SHOW = "Password";
+Blockly.Msg.ESP32_TELEGRAMBOT_TOKEN_SHOW = "Token";
+Blockly.Msg.ESP32_TELEGRAMBOT_CHATID_SHOW = "Chat ID";	
+Blockly.Msg.ESP32_TELEGRAMBOT_COMMAND_SHOW = "Command List";	
+Blockly.Msg.ESP32_TELEGRAMBOT_KEYBOARD_SHOW = "Keyboard";		
+Blockly.Msg.ESP32_TELEGRAMBOT_MAINPAGE_SHOW = "Main Page";
+Blockly.Msg.ESP32_TELEGRAMBOT_EXECUTE_SHOW = "Custom Command Region";
+Blockly.Msg.ESP32_TELEGRAMBOT_SENDMESSAGE_SHOW = "Telegram Bot send message";

@@ -620,6 +620,50 @@
 		  <block type="esp32_bluetooth_getdata" id="10"></block>
 		</category> 
 		
+		<category id="france20" name="telegrambot"> 
+			  <block type="esp32_telegrambot" id="99">
+				<value name="ssid">
+				  <block type="text" id="100">
+					<field name="TEXT">teacher</field>
+				  </block>
+				</value>
+				<value name="password">
+				  <block type="text" id="101">
+					<field name="TEXT">87654321</field>
+				  </block>
+				</value>
+				<value name="token">
+				  <block type="text" id="100">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="chat_id">
+				  <block type="text" id="101">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="command">
+				  <block type="text" id="100">
+					<field name="TEXT">/restart Restart the board</field>
+				  </block>
+				</value>
+				<value name="keyboard">
+				  <block type="text" id="101">
+					<field name="TEXT">{"keyboard":[[{"text":"/restart"}]],"one_time_keyboard":false}</field>
+				  </block>
+				</value>
+				<statement name="ExecuteCommand">
+				</statement>
+			  </block>
+			  <block type="esp32_telegrambot_sendmessage" id="99">
+				<value name="message">
+				  <block type="text" id="100">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			  </block>			  
+		</category> 
+
 		<category id="france23" name="servercommand">
 			  <block type="servermodule_parameter_get">
 			  </block>
