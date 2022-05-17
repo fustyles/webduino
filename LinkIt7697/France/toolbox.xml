@@ -3323,7 +3323,7 @@
 		  </block>
 		</value>      
 		</block>  
-		<block type="canvas_arc">  
+		<block type="canvas_ellipse">  
 		<value name="id_">
 		  <block type="text">
 			<field name="TEXT"></field>
