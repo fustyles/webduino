@@ -56,4 +56,54 @@ async function gamebutton_set_onclick (event) {
   document.getElementById("gamebutton_publish").addEventListener("click", gamebutton_publish_onclick, true);
 };
 document.getElementById("gamebutton_set").addEventListener("click", gamebutton_set_onclick, true);
-};main();</script></body></html>
+};main();</script>
+<div style="position:absolute;top:400px">
+<table>
+<tr>
+<td style="valign:top;padding:10px 10px 10px 10px">
+HiveMQ<br>
+Server: broker.hivemq.com<br>
+TCP Port: 1883<br>
+WebsocketPort: 8000<br><br>
+
+ESP32<br>
+test.mosquitto.org<br>
+1883  (http)<br><br>
+
+MQTT.js 網頁<br>
+ws://test.mosquitto.org:8000/mqtt
+</td>
+<td style="valign:top;padding:10px 10px 10px 10px">
+Mosquitto<br>
+Server: test.mosquitto.org<br>
+TCP Port: 1883 / 8883(TLS)<br>
+WebsocketPort: 8080 / 8081(TLS)<br><br>
+
+ESP32<br>
+test.mosquitto.org<br>
+1883  (http)<br>
+8883  (https)<br><br>
+
+MQTT.js 網頁<br>
+ws://test.mosquitto.org:8080/mqtt<br>
+wss://test.mosquitto.org:8081/mqtt
+</td>
+<td style="valign:top;padding:10px 10px 10px 10px">
+EMQX<br>
+Server: broker.emqx.io<br>
+TCP Port: 1883 / 8883(TLS)<br>
+WebsocketPort: 8083 / 8084(TLS)<br><br>
+
+ESP32<br>
+broker.emqx.io<br>
+1883  (http)<br>
+8883  (https)<br><br>
+
+MQTT.js 網頁<br>
+ws://broker.emqx.io:8083/mqtt<br>
+wss://broker.emqx.io:8084/mqtt
+</td>
+</tr>
+</table>
+</div>
+</body></html>
