@@ -386,6 +386,8 @@ Blockly.JavaScript['canvas_onclick_dom'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gamecanvas_'+value_id_+'_onclick (event) {\n' + statements_do_ + '};\ndocument.getElementById("gamecanvas_'+value_id_+'").addEventListener("click", gamecanvas_'+value_id_+'_onclick, true);\n';
   return code;
@@ -533,7 +535,7 @@ Blockly.JavaScript['image_sys_get'] = function (block) {
 
 Blockly.JavaScript['image_onclick_listener'] = function (block) {
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'setInterval(async function(){\n' + statements_do_ + '},10);\n';
+  var code = 'setInterval(async function() {\n' + statements_do_ + '},10);\n';
   return code;
 };
 
@@ -548,6 +550,8 @@ Blockly.JavaScript['image_onclick_dom'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gameimage_'+value_id_+'_onclick (event) {\n' + statements_do_ + '};\ndocument.getElementById("gameimage_'+value_id_+'").addEventListener("click", gameimage_'+value_id_+'_onclick, true);\n';
   return code;
@@ -556,6 +560,8 @@ Blockly.JavaScript['image_onclick_dom'] = function (block) {
 Blockly.JavaScript['image_onload_dom'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gameimage_'+value_id_+'_onload (event) {\n' + statements_do_ + '};\ndocument.getElementById("gameimage_'+value_id_+'").addEventListener("load", gameimage_'+value_id_+'_onload, true);\n';
@@ -605,14 +611,14 @@ Blockly.JavaScript['mouse_coordinate_get'] = function (block) {
 Blockly.JavaScript['document_timer_novar'] = function (block) {
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var value_intervals_ = Blockly.JavaScript.valueToCode(block, 'intervals_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'setInterval(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
+  var code = 'setInterval(async function() {\n' + statements_do_ + '},' + value_intervals_ + ');\n';
   return code;
 };
 
 Blockly.JavaScript['document_timer_once_novar'] = function (block) {
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var value_intervals_ = Blockly.JavaScript.valueToCode(block, 'intervals_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'setTimeout(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
+  var code = 'setTimeout(async function() {\n' + statements_do_ + '},' + value_intervals_ + ');\n';
   return code;
 };
 
@@ -620,7 +626,7 @@ Blockly.JavaScript['document_timer'] = function (block) {
   var variable_myTimer_ = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('myTimer_'), Blockly.Variables.NAME_TYPE);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var value_intervals_ = Blockly.JavaScript.valueToCode(block, 'intervals_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = variable_myTimer_+' = setInterval(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
+  var code = variable_myTimer_+' = setInterval(async function() {\n' + statements_do_ + '},' + value_intervals_ + ');\n';
   return code;
 };
 
@@ -628,7 +634,7 @@ Blockly.JavaScript['document_timer_once'] = function (block) {
   var variable_myTimerOnce_ = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('myTimerOnce_'), Blockly.Variables.NAME_TYPE);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var value_intervals_ = Blockly.JavaScript.valueToCode(block, 'intervals_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = variable_myTimerOnce_+' = setTimeout(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
+  var code = variable_myTimerOnce_+' = setTimeout(async function() {\n' + statements_do_ + '},' + value_intervals_ + ');\n';
   return code;
 };
 
@@ -758,6 +764,8 @@ Blockly.JavaScript['button_onclick_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gamebutton_'+value_id_+'_onclick (event) {\n' + statements_do_ + '};\ndocument.getElementById("gamebutton_'+value_id_+'").addEventListener("click", gamebutton_'+value_id_+'_onclick, true);\n';
   return code;
@@ -767,11 +775,15 @@ Blockly.JavaScript['async_function'] = function (block) {
   var value_name_ = Blockly.JavaScript.valueToCode(block, 'name_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_name_.indexOf("'")==0)&&(value_name_.lastIndexOf("'")==value_name_.length-1))
     value_name_ = value_name_.substring(1,value_name_.length-1);
+  if ((value_name_.indexOf('"')==0)&&(value_name_.lastIndexOf('"')==value_name_.length-1))
+    value_name_ = value_name_.substring(1,value_name_.length-1);
   if ((value_name_.indexOf("(")==0)&&(value_name_.lastIndexOf(")")==value_name_.length-1))
     value_name_ = value_name_.substring(1,value_name_.length-1);
   
   var value_parameter_ = Blockly.JavaScript.valueToCode(block, 'parameter_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_parameter_.indexOf("'")==0)&&(value_parameter_.lastIndexOf("'")==value_parameter_.length-1))
+    value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);
+  if ((value_parameter_.indexOf('"')==0)&&(value_parameter_.lastIndexOf('"')==value_parameter_.length-1))
     value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);
   if ((value_parameter_.indexOf("(")==0)&&(value_parameter_.lastIndexOf(")")==value_parameter_.length-1))
     value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);
@@ -784,10 +796,14 @@ Blockly.JavaScript['call_async_function'] = function (block) {
   var value_name_ = Blockly.JavaScript.valueToCode(block, 'name_', Blockly.JavaScript.ORDER_ATOMIC);   
   if ((value_name_.indexOf("'")==0)&&(value_name_.lastIndexOf("'")==value_name_.length-1))
     value_name_ = value_name_.substring(1,value_name_.length-1);
+  if ((value_name_.indexOf('"')==0)&&(value_name_.lastIndexOf('"')==value_name_.length-1))
+    value_name_ = value_name_.substring(1,value_name_.length-1);
   if ((value_name_.indexOf("(")==0)&&(value_name_.lastIndexOf(")")==value_name_.length-1))
     value_name_ = value_name_.substring(1,value_name_.length-1);
   var value_parameter_ = Blockly.JavaScript.valueToCode(block, 'parameter_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_parameter_.indexOf("'")==0)&&(value_parameter_.lastIndexOf("'")==value_parameter_.length-1))
+    value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);
+  if ((value_parameter_.indexOf('"')==0)&&(value_parameter_.lastIndexOf('"')==value_parameter_.length-1))
     value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);
   if ((value_parameter_.indexOf("(")==0)&&(value_parameter_.lastIndexOf(")")==value_parameter_.length-1))
     value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);  
@@ -816,6 +832,8 @@ Blockly.JavaScript['element_event'] = function (block) {
 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
  
   var code = 'async function '+element+'_'+value_id_+'_'+event+'(event) {\n' + statement + '};\n'+obj+'.addEventListener("'+event+'", '+element+'_'+value_id_+'_'+event+', true);\n';
   return code;
@@ -833,6 +851,8 @@ Blockly.JavaScript['element_event_stop'] = function (block) {
     var obj="document.getElementById('game"+element+"_'+"+value_id_+")";
 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
 
   var code = obj+'.removeEventListener("'+event+'", '+element+'_'+value_id_+'_'+event+', true);\n';
@@ -877,6 +897,8 @@ Blockly.JavaScript['colorpicker_delete'] = function (block) {
 Blockly.JavaScript['colorpicker_onchange_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gamecolor_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\ndocument.getElementById("gamecolor_'+value_id_+'").addEventListener("change", gamecolor_'+value_id_+'_onchange, true);\n';
@@ -926,6 +948,8 @@ Blockly.JavaScript['select_onchange_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gameselect_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\ndocument.getElementById("gameselect_'+value_id_+'").addEventListener("change", gameselect_'+value_id_+'_onchange, true);\n';
   return code;
@@ -973,6 +997,8 @@ Blockly.JavaScript['range_onchange_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gamerange_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\ndocument.getElementById("gamerange_'+value_id_+'").addEventListener("change", gamerange_'+value_id_+'_onchange, true);\n';
   return code;
@@ -1019,6 +1045,8 @@ Blockly.JavaScript['text_delete'] = function (block) {
 Blockly.JavaScript['text_onchange_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gametext_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\ndocument.getElementById("gametext_'+value_id_+'").addEventListener("change", gametext_'+value_id_+'_onchange, true);\n';
@@ -1282,6 +1310,8 @@ Blockly.JavaScript['radio_onclick_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gameradio_'+value_id_+'_onclick (event) {\n' + statements_do_ + '};\ndocument.getElementById("gameradio_'+value_id_+'").addEventListener("click", gameradio_'+value_id_+'_onclick, true);\n';
   return code;
@@ -1326,6 +1356,8 @@ Blockly.JavaScript['checkbox_onclick_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gamecheckbox_'+value_id_+'_onclick (event) {\n' + statements_do_ + '};\ndocument.getElementById("gamecheckbox_'+value_id_+'").addEventListener("click", gamecheckbox_'+value_id_+'_onclick, true);\n';
   return code;
@@ -1369,6 +1401,8 @@ Blockly.JavaScript['textarea_delete'] = function (block) {
 Blockly.JavaScript['textarea_onchange_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gametextarea_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\ndocument.getElementById("gametextarea_'+value_id_+'").addEventListener("change", gametextarea_'+value_id_+'_onchange, true);\n';
@@ -1418,6 +1452,8 @@ Blockly.JavaScript['number_onchange_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gamenumber_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\ndocument.getElementById("gamenumber_'+value_id_+'").addEventListener("change", gamenumber_'+value_id_+'_onchange, true);\n';
   return code;
@@ -1463,6 +1499,8 @@ Blockly.JavaScript['date_onchange_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gamedate_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\ndocument.getElementById("gamedate_'+value_id_+'").addEventListener("change", gamedate_'+value_id_+'_onchange, true);\n';
   return code;
@@ -1505,6 +1543,8 @@ Blockly.JavaScript['time_onchange_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gametime_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\ndocument.getElementById("gametime_'+value_id_+'").addEventListener("change", gametime_'+value_id_+'_onchange, true);\n';
   return code;
@@ -1546,6 +1586,8 @@ Blockly.JavaScript['datetime_delete'] = function (block) {
 Blockly.JavaScript['datetime_onchange_do'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function gamedatetime_'+value_id_+'_onchange (event) {\n' + statements_do_ + '};\ndocument.getElementById("gamedatetime_'+value_id_+'").addEventListener("change", gamedatetime_'+value_id_+'_onchange, true);\n';
@@ -1727,6 +1769,8 @@ Blockly.JavaScript['video_base64'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
   var source_id;
   if (value_source_=="video")
 	source_id = 'gamevideo_'+value_id_;
@@ -1826,6 +1870,8 @@ Blockly.JavaScript['video_base64_email'] = function (block) {
 Blockly.JavaScript['custom_comment'] = function (block) {
   var text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
   if ((text.indexOf("'")==0)&&(text.lastIndexOf("'")==text.length-1))
+    text = text.substring(1,text.length-1);
+  if ((text.indexOf('"')==0)&&(text.lastIndexOf('"')==text.length-1))
     text = text.substring(1,text.length-1);
   if ((text.indexOf("(")==0)&&(text.lastIndexOf(")")==text.length-1))
     text = text.substring(1,text.length-1);
@@ -1959,6 +2005,8 @@ Blockly.JavaScript['console_log'] = function (block) {
 Blockly.JavaScript['button_ouput_file_text'] = function (block) {
   var value_id = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
   if ((value_id.indexOf("'")==0)&&(value_id.lastIndexOf("'")==value_id.length-1))
+    value_id = value_id.substring(1,value_id.length-1);
+  if ((value_id.indexOf('"')==0)&&(value_id.lastIndexOf('"')==value_id.length-1))
     value_id = value_id.substring(1,value_id.length-1);
   var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
   
