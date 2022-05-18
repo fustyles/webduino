@@ -20,9 +20,9 @@ Blockly.Arduino['fu_ntpserver_initial'] = function(block) {
 			'  currentTimeValue[3] = timeinfo.tm_hour;\n'+
 			'  currentTimeValue[4] = timeinfo.tm_min;\n'+
 			'  currentTimeValue[5] = timeinfo.tm_sec;\n'+
-			'  currentTime[0] = String(timeinfo.tm_year+1900)+"/"+ String(timeinfo.tm_mon+1)+"/"+ String(timeinfo.tm_mday);\n'+
-			'  currentTime[1] = String(timeinfo.tm_hour)+":"+ String(timeinfo.tm_min)+":"+ String(timeinfo.tm_sec);\n'+
-			'  currentTime[2] = String(timeinfo.tm_year+1900)+"/"+ String(timeinfo.tm_mon+1)+"/"+ String(timeinfo.tm_mday) + " "+ String(timeinfo.tm_hour)+":"+ String(timeinfo.tm_min)+":"+ String(timeinfo.tm_sec);\n'+
+			'  currentTime[0] = String(timeinfo.tm_year+1900)+"/"+ ((timeinfo.tm_mon+1)<10?"0":"") + String(timeinfo.tm_mon+1)+"/"+(timeinfo.tm_mday<10?"0":"")+String(timeinfo.tm_mday);\n'+
+			'  currentTime[1] = (timeinfo.tm_mday<10?"0":"")+String(timeinfo.tm_hour)+":"+(timeinfo.tm_min<10?"0":"")+String(timeinfo.tm_min)+":"+(timeinfo.tm_sec<10?"0":"")+String(timeinfo.tm_sec);\n'+
+			'  currentTime[2] = currentTime[0] + " "+ currentTime[1];\n'+
 			'}\n';
   var code = '';
   return code;
