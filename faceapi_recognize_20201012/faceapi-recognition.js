@@ -120,7 +120,7 @@
 		}
 	}
 
-	async function faceapirecognize_recognitionFinish() {
+	function faceapirecognize_recognitionFinish() {
 	}    
 
 	window.faceapirecognize_number = faceapirecognize_number;
