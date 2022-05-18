@@ -68,5 +68,5 @@
 <category><name>faceapirecognize</name><replace>人臉辨識 (face-api)</replace></category>
 <category><name>weather</name><replace>台灣天氣預報 (36小時)</replace></category>
 <category><name>servoesp</name><replace>伺服馬達</replace></category>
-<category><name>telegrambot</name><replace>Telegram Bot</replace></category>
+<category><name>telegrambot</name><replace>Telegram Bot模組</replace></category>
 </xml>
