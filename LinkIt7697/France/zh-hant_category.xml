@@ -69,4 +69,5 @@
 <category><name>weather</name><replace>台灣天氣預報 (36小時)</replace></category>
 <category><name>servoesp</name><replace>伺服馬達</replace></category>
 <category><name>telegrambot</name><replace>Telegram Bot模組</replace></category>
+<category><name>ntpserver</name><replace>網路時間</replace></category>
 </xml>

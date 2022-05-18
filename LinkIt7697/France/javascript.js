@@ -1,3 +1,63 @@
+Blockly.Arduino['fu_ntpserver_initial'] = function(block) {
+  var gmtOffset = Blockly.Arduino.valueToCode(block, 'gmtOffset', Blockly.Arduino.ORDER_ATOMIC);  
+
+  Blockly.Arduino.definitions_.define_time_h='#include "time.h"';
+  Blockly.Arduino.definitions_.define_ntpserver='const char* ntpServer = "pool.ntp.org";\n'+
+												  'const long  gmtOffset_sec = ' + Number(gmtOffset)*3600 + ';\n'+
+												  'const int   daylightOffset_sec = 0;\n'+
+												  'struct tm timeinfo;\n'+
+												  'int currentTimeValue[6] = {0,0,0,0,0,0};\n'+
+												  'String currentTime[3] = {"","",""};';
+  Blockly.Arduino.setups_.configTime="configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);\n";
+  Blockly.Arduino.definitions_.define_getLocalTime = '\n'+
+			'void getLocalTime() {\n'+
+			'  if(!getLocalTime(&timeinfo)){\n'+
+			'    return;\n'+
+			'  }\n'+
+			'  currentTimeValue[0] = timeinfo.tm_year+1900;\n'+
+			'  currentTimeValue[1] = timeinfo.tm_mon+1;\n'+
+			'  currentTimeValue[2] = timeinfo.tm_mday;\n'+
+			'  currentTimeValue[3] = timeinfo.tm_hour;\n'+
+			'  currentTimeValue[4] = timeinfo.tm_min;\n'+
+			'  currentTimeValue[5] = timeinfo.tm_sec;\n'+
+			'  currentTime[0] = String(timeinfo.tm_year+1900)+"/"+ String(timeinfo.tm_mon+1)+"/"+ String(timeinfo.tm_mday);\n'+
+			'  currentTime[1] = String(timeinfo.tm_hour)+":"+ String(timeinfo.tm_min)+":"+ String(timeinfo.tm_sec);\n'+
+			'  currentTime[2] = String(timeinfo.tm_year+1900)+"/"+ String(timeinfo.tm_mon+1)+"/"+ String(timeinfo.tm_mday) + " "+ String(timeinfo.tm_hour)+":"+ String(timeinfo.tm_min)+":"+ String(timeinfo.tm_sec);\n'+
+			'}\n';
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino['fu_ntpserver_getlocaltime'] = function(block) {
+  var gmtOffset = Blockly.Arduino.valueToCode(block, 'gmtOffset', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'getLocalTime();\n';
+  return code;
+};
+
+Blockly.Arduino['fu_ntpserver_get'] = function(block) {
+  var option = block.getFieldValue('option');
+  var code ="";
+  if (option=="year")
+	code = 'currentTimeValue[0]';
+  else if (option=="month")
+	code = 'currentTimeValue[1]';
+  else if (option=="day")
+	code = 'currentTimeValue[2]';
+  else if (option=="hour")
+	code = 'currentTimeValue[3]';
+  else if (option=="minute")
+	code = 'currentTimeValue[4]';
+  else if (option=="second")
+	code = 'currentTimeValue[5]';
+  else if (option=="date")
+	code = 'currentTime[0]';
+  else if (option=="time")
+	code = 'currentTime[1]';
+  else if (option=="full")
+	code = 'currentTime[2]';
+  return code;
+};
+
 Blockly.Arduino['esp32_telegrambot'] = function(block) {
   var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
@@ -202,7 +262,7 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			
 	Blockly.Arduino.setups_.getTelegramMessage="getTelegramMessage();\n";
 
-  code = '';
+  var code = '';
   return code;
 };
 

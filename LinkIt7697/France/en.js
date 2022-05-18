@@ -1185,3 +1185,17 @@ Blockly.Msg.ESP32_TELEGRAMBOT_KEYBOARD_SHOW = "Keyboard";
 Blockly.Msg.ESP32_TELEGRAMBOT_MAINPAGE_SHOW = "Main Page";
 Blockly.Msg.ESP32_TELEGRAMBOT_EXECUTE_SHOW = "Custom Command Region";
 Blockly.Msg.ESP32_TELEGRAMBOT_SENDMESSAGE_SHOW = "Telegram Bot send message";
+
+Blockly.Msg.NTPSERVER_INITIAL_SHOW = "NTP Server initial";
+Blockly.Msg.NTPSERVER_GMTOFFSET_SHOW = "GMT offset(h)";
+Blockly.Msg.NTPSERVER_GETLOCALTIME_SHOW = "NTP Server get local time";
+Blockly.Msg.NTPSERVER_GET_SHOW = "NTP Server get";
+Blockly.Msg.NTPSERVER_GET_YEAR_SHOW = "Year";
+Blockly.Msg.NTPSERVER_GET_MONTH_SHOW = "Month";
+Blockly.Msg.NTPSERVER_GET_DAY_SHOW = "Day";
+Blockly.Msg.NTPSERVER_GET_HOUR_SHOW = "Hour";
+Blockly.Msg.NTPSERVER_GET_MINUTE_SHOW = "Minute";
+Blockly.Msg.NTPSERVER_GET_SECOND_SHOW = "Second";
+Blockly.Msg.NTPSERVER_GET_DATE_SHOW = "Date";
+Blockly.Msg.NTPSERVER_GET_TIME_SHOW = "Time";
+Blockly.Msg.NTPSERVER_GET_FULL_SHOW = "Date and Time";

@@ -1,3 +1,55 @@
+Blockly.Blocks['fu_ntpserver_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.NTPSERVER_INITIAL_SHOW);
+    this.appendValueInput("gmtOffset")
+        .setCheck("Number")
+		.appendField(Blockly.Msg.NTPSERVER_GMTOFFSET_SHOW);
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['fu_ntpserver_getlocaltime'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.NTPSERVER_GETLOCALTIME_SHOW);
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['fu_ntpserver_get'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.NTPSERVER_GET_SHOW);
+	this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.NTPSERVER_GET_YEAR_SHOW,"year"],
+		  [Blockly.Msg.NTPSERVER_GET_MONTH_SHOW,"month"],		  
+		  [Blockly.Msg.NTPSERVER_GET_DAY_SHOW,"day"],
+		  [Blockly.Msg.NTPSERVER_GET_HOUR_SHOW,"hour"],		  
+		  [Blockly.Msg.NTPSERVER_GET_MINUTE_SHOW,"minute"],
+		  [Blockly.Msg.NTPSERVER_GET_SECOND_SHOW,"second"],		  
+		  [Blockly.Msg.NTPSERVER_GET_DATE_SHOW,"date"],		  
+		  [Blockly.Msg.NTPSERVER_GET_TIME_SHOW,"time"],		  
+		  [Blockly.Msg.NTPSERVER_GET_FULL_SHOW,"full"]				  
+	  ]), "option"); 
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(80);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+
+
 Blockly.Blocks['esp32_telegrambot'] = {
   init: function() {
     this.appendDummyInput()

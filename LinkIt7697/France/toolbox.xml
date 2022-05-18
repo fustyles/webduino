@@ -7298,28 +7298,6 @@
 		</value>
 	  </block>
 	</category>
-	<category id="france24" name="airquality">
-	  <block type="fu_taiwan_aqi">
-		<value name="Authorization">
-		  <block type="text">
-			<field name="TEXT">9be7b239-557b-4c10-9775-78cadfc555e9</field>
-		  </block>
-		</value>	  
-	  </block>
-	  <block type="fu_taiwan_aqi_get">
-	  </block>	  
-    </category>
-	<category id="france24" name="weather">
-	  <block type="fu_taiwan_weather">
-		<value name="Authorization">
-		  <block type="text">
-			<field name="TEXT">rdec-key-123-45678-011121314</field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="fu_taiwan_weather_get">
-	  </block>	  
-    </category>	
 	<category id="france25" name="fu_mqtt">
 	  <block type="fu_mqtt_setup">
 		<value name="server">
@@ -7386,7 +7364,42 @@
 		  </block>
 		</value>		
 	  </block>	
-    </category>	
+    </category>
+	<category id="france11" name="ntpserver">
+	  <block type="fu_ntpserver_initial">
+		<value name="gmtOffset">
+		  <block type="math_number">
+			<field name="NUM">8</field>
+		  </block>
+		</value> 
+	  </block>
+	  <block type="fu_ntpserver_getlocaltime">		
+	  </block>
+	  <block type="fu_ntpserver_get">
+	  </block>
+	</category>
+	<category id="france24" name="airquality">
+	  <block type="fu_taiwan_aqi">
+		<value name="Authorization">
+		  <block type="text">
+			<field name="TEXT">9be7b239-557b-4c10-9775-78cadfc555e9</field>
+		  </block>
+		</value>	  
+	  </block>
+	  <block type="fu_taiwan_aqi_get">
+	  </block>	  
+    </category>
+	<category id="france24" name="weather">
+	  <block type="fu_taiwan_weather">
+		<value name="Authorization">
+		  <block type="text">
+			<field name="TEXT">rdec-key-123-45678-011121314</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="fu_taiwan_weather_get">
+	  </block>	  
+    </category>		
 	<sep id="category_sep"></sep>
 	<category id="france7" name="others">
 	  <block type="esp32_setuploop">

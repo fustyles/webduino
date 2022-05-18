@@ -1193,3 +1193,17 @@ Blockly.Msg.ESP32_TELEGRAMBOT_KEYBOARD_SHOW = "鍵盤";
 Blockly.Msg.ESP32_TELEGRAMBOT_MAINPAGE_SHOW = "首頁網頁";
 Blockly.Msg.ESP32_TELEGRAMBOT_EXECUTE_SHOW = "自訂指令區";
 Blockly.Msg.ESP32_TELEGRAMBOT_SENDMESSAGE_SHOW = "Telegram Bot 傳送文字";
+
+Blockly.Msg.NTPSERVER_INITIAL_SHOW = "網路時間(NTP Server)初始化";
+Blockly.Msg.NTPSERVER_GMTOFFSET_SHOW = "GMT時差(h)";
+Blockly.Msg.NTPSERVER_GETLOCALTIME_SHOW = "網路時間(NTP Server) 取得目前時間";
+Blockly.Msg.NTPSERVER_GET_SHOW = "網路時間(NTP Server) 取得";
+Blockly.Msg.NTPSERVER_GET_YEAR_SHOW = "年";
+Blockly.Msg.NTPSERVER_GET_MONTH_SHOW = "月";
+Blockly.Msg.NTPSERVER_GET_DAY_SHOW = "日";
+Blockly.Msg.NTPSERVER_GET_HOUR_SHOW = "時";
+Blockly.Msg.NTPSERVER_GET_MINUTE_SHOW = "分";
+Blockly.Msg.NTPSERVER_GET_SECOND_SHOW = "秒";
+Blockly.Msg.NTPSERVER_GET_DATE_SHOW = "日期";
+Blockly.Msg.NTPSERVER_GET_TIME_SHOW = "時間";
+Blockly.Msg.NTPSERVER_GET_FULL_SHOW = "完整時間";
