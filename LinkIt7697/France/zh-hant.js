@@ -1183,7 +1183,7 @@ Blockly.Msg["FU_SERVO_PIN"] = "腳位";
 Blockly.Msg["FU_SERVO_ANGLE"] = "角度";
 Blockly.Msg["FU_SERVO_CHANNEL"] = "頻道";
 
-Blockly.Msg.ESP32_TELEGRAMBOT_SHOW = "Telegram Bot 連線到Wi-Fi熱點";
+Blockly.Msg.ESP32_TELEGRAMBOT_SHOW = "Telegram Bot(ESP32) 連線到Wi-Fi熱點";
 Blockly.Msg.ESP32_TELEGRAMBOT_SSID_SHOW = "無線網路名稱";
 Blockly.Msg.ESP32_TELEGRAMBOT_PASSWORD_SHOW = "無線網路密碼";
 Blockly.Msg.ESP32_TELEGRAMBOT_TOKEN_SHOW = "權杖";
