@@ -39,10 +39,13 @@ window.onload = function () {
 	
 	showtime = Number(document.getElementById('timer_faceapirecognize').innerHTML);
 	distanceLimit = Number(document.getElementById('distancelimit_faceapirecognize').innerHTML);
+	faceImagesCount = Number(document.getElementById('faceimagecount_faceapirecognize').innerHTML);
 	faceImagesPath = document.getElementById('faceimagepath_faceapirecognize').innerHTML;
+	if (faceImagesCount==0)
+		faceImagesPath = faceImagesPath.split(";");
 	facelabels = document.getElementById('facelabel_faceapirecognize').innerHTML;
 	facelabels = facelabels.split(";");
-	faceImagesCount = Number(document.getElementById('faceimagecount_faceapirecognize').innerHTML);
+	
 
 	Promise.all([
 		faceapi.nets.faceLandmark68Net.load(modelPath),
