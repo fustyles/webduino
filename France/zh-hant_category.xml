@@ -1,0 +1,73 @@
+<xml>
+<category><name>FRANCEFU</name><replace>法蘭斯積木</replace></category>
+<category><name>customcode</name><replace>自訂程式碼</replace></category>
+<category><name>line</name><replace>Line通知</replace></category>
+<category><name>client</name><replace>Client模組</replace></category>
+<category><name>thingspeak</name><replace>Thingspeak</replace></category>
+<category><name>others</name><replace>其他</replace></category>
+<category><name>servermodule</name><replace>Server模組</replace></category>
+<category><name>serveresp32</name><replace>ESP32網頁模組</replace></category>
+<category><name>serveresp32cam</name><replace>ESP32-CAM網頁模組</replace></category>
+<category><name>serverlinkit7697</name><replace>LinkIt7697網頁模組</replace></category>
+<category><name>servercommand</name><replace>模組指令參數</replace></category>
+<category><name>bluetoothmodule</name><replace>ESP32藍芽模組</replace></category>
+<category><name>bluetooth</name><replace>藍芽模組指令</replace></category>
+<category><name>mlx90614</name><replace>MLX9061X</replace></category>
+<category><name>DHT11</name><replace>溫溼度感測器</replace></category>
+<category><name>buzzer</name><replace>蜂鳴器</replace></category>
+<category><name>mpu9250</name><replace>MPU9250九軸傳感器</replace></category>
+<category><name>ws2816</name><replace>WS2812燈條</replace></category>
+<category><name>motordriveric</name><replace>馬達驅動板</replace></category>
+<category><name>ultrasonicsensor</name><replace>超音波感測器</replace></category>
+<category><name>colorsensor</name><replace>顏色感測器</replace></category>
+<category><name>irread</name><replace>紅外線接收器</replace></category>
+<category><name>irsend</name><replace>紅外線發送器</replace></category>
+<category><name>io</name><replace>I/O 引腳</replace></category>
+<category><name>SERIAL</name><replace>序列埠</replace></category>
+<category><name>MLX90614</name><replace>MLX90614</replace></category>
+<category><name>catWebbit</name><replace>Webbit</replace></category>
+<category><name>catWebbitBoard</name><replace>Web:bit</replace></category>
+<category><name>catWebbitMoonCar</name><replace>登月小車</replace></category>
+<category><name>catGameElements</name><replace>網頁元素</replace></category>
+<category><name>catGameElements_sub1</name><replace>一般功能</replace></category>
+<category><name>catGameElements_sub2</name><replace>圖片</replace></category>
+<category><name>catGameElements_sub3</name><replace>按鈕</replace></category>
+<category><name>catGameElements_sub4</name><replace>色彩工具</replace></category>
+<category><name>catGameElements_sub5</name><replace>下拉選單</replace></category>
+<category><name>catGameElements_sub6</name><replace>範圍</replace></category>
+<category><name>catGameElements_sub7</name><replace>文字欄位</replace></category>
+<category><name>catGameElements_sub8</name><replace>表格</replace></category>
+<category><name>catGameElements_sub9</name><replace>畫布</replace></category>
+<category><name>catGameElements_sub10</name><replace>區塊標籤</replace></category>
+<category><name>catGameElements_sub11</name><replace>內嵌框架</replace></category>
+<category><name>catGameElements_sub12</name><replace>連結</replace></category>
+<category><name>catGameElements_sub13</name><replace>選項按鈕</replace></category>
+<category><name>catGameElements_sub14</name><replace>核取方塊</replace></category>
+<category><name>catGameElements_sub15</name><replace>區塊文字欄位</replace></category>
+<category><name>catGameElements_sub16</name><replace>AJAX</replace></category>
+<category><name>catGameElements_sub13</name><replace>選項按鈕</replace></category>
+<category><name>catGameElements_sub14</name><replace>核取方塊</replace></category>
+<category><name>catGameElements_sub17</name><replace>數字欄位</replace></category>
+<category><name>catGameElements_sub18</name><replace>日期欄位</replace></category>
+<category><name>catGameElements_sub19</name><replace>時間欄位</replace></category>
+<category><name>catGameElements_sub20</name><replace>日期時間欄位</replace></category>
+<category><name>catGameElements_sub21</name><replace>進度</replace></category>
+<category><name>catGameElements_sub22</name><replace>密碼欄位</replace></category>
+<category><name>catGameElements_sub23</name><replace>表單</replace></category>
+<category><name>catGameElements_sub24</name><replace>視訊媒體</replace></category>
+<category><name>catGameElements_sub25</name><replace>字型</replace></category>
+<category><name>catGameElements_sub26</name><replace>行內容器</replace></category>
+<category><name>oled</name><replace>OLED顯示器</replace></category>
+<category><name>EZ+</name><replace>EZ Start Kit+</replace></category>
+<category><name>airquality</name><replace>台灣空氣品質</replace></category>
+<category><name>fu_mqtt</name><replace>MQTT</replace></category>
+<category><name>objectreconginition</name><replace>物件辨識</replace></category>
+<category><name>holisticreconginition</name><replace>全身辨識</replace></category>
+<category><name>teachablemachine</name><replace>機器學習(google)</replace></category>
+<category><name>faceapidetect</name><replace>人臉偵測 (face-api)</replace></category>
+<category><name>faceapirecognize</name><replace>人臉辨識 (face-api)</replace></category>
+<category><name>weather</name><replace>台灣天氣預報 (36小時)</replace></category>
+<category><name>servoesp</name><replace>伺服馬達</replace></category>
+<category><name>telegrambot</name><replace>Telegram Bot模組</replace></category>
+<category><name>ntpserver</name><replace>網路時間</replace></category>
+</xml>
