@@ -66,5 +66,5 @@
 <category><name>faceapirecognize</name><replace>Face Recognition (face-api)</replace></category>
 <category><name>weather</name><replace>Weather prediction of Taiwan (36hr)</replace></category>
 <category><name>servoesp</name><replace>Servo</replace></category>
-<category><name>telegrambot</name><replace>Telegram Bot</replace></category>
+<category><name>telegrambot</name><replace>Telegram Bot Module</replace></category>
 </xml>
