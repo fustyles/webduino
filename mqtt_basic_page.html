@@ -1,6 +1,6 @@
 <html><head><meta charset='utf-8'><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://unpkg.com/mqtt/dist/mqtt.min.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{var publicTopic, subscribeTopic, server, id, password;
 
-
+head_add_viewport(0.5,1,2,"yes");
 span_create('server',0,10,24,'主機：',999);
 text_create('server',300,30,120,10,'#ffffff','#000000',14,1,'wss://broker.emqx.io:8084/mqtt',999,true);
 span_create('id',0,60,24,'帳號：',999);
@@ -73,6 +73,8 @@ broker.hivemq.com<br>
 MQTT.js 網頁<br>
 ws://broker.hivemq.com:8000/mqtt
 </td>
+</tr>
+<tr>
 <td style="valign:top;padding:10px 10px 10px 10px">
 Mosquitto<br>
 Server: test.mosquitto.org<br>
@@ -88,6 +90,8 @@ MQTT.js 網頁<br>
 ws://test.mosquitto.org:8080/mqtt<br>
 wss://test.mosquitto.org:8081/mqtt
 </td>
+</tr>
+<tr>
 <td style="valign:top;padding:10px 10px 10px 10px">
 EMQX<br>
 Server: broker.emqx.io<br>
