@@ -1199,3 +1199,13 @@ Blockly.Msg.NTPSERVER_GET_SECOND_SHOW = "Second";
 Blockly.Msg.NTPSERVER_GET_DATE_SHOW = "Date";
 Blockly.Msg.NTPSERVER_GET_TIME_SHOW = "Time";
 Blockly.Msg.NTPSERVER_GET_FULL_SHOW = "Date and Time";
+
+Blockly.Msg.LINENOTIFY_IMAGE_SHOW = "Image";
+Blockly.Msg.LINENOTIFY_GETID_SHOW = "Get Element ID";
+Blockly.Msg.LINENOTIFY_ID = "ID";
+Blockly.Msg.LINENOTIFY_SCRIPTURL = "Script URL";
+Blockly.Msg.LINENOTIFY_VIDEO = "Video";
+Blockly.Msg.LINENOTIFY_CANVAS = "Canvas";
+Blockly.Msg.LINENOTIFY_IMAGE = "Image";
+Blockly.Msg.LINENOTIFY_TOKEN_SHOW = "Token";
+Blockly.Msg.LINENOTIFY_NOTIFY_SHOW = "Notify";
