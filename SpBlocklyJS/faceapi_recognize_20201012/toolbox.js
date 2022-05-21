@@ -1,5 +1,5 @@
 var catFaceRecognize = '<xml>'+
-'<category name="%{BKY_CATFACEAPIRECOGNIZE}" id="faceapirecognize">'+
+'<category name="%{BKY_CATFACEAPIRECOGNIZE}" id="faceapirecognize" colour="200">'+
 '  <block type="faceapirecognize_video">'+
 '    <value name="facelabel">'+
 '      <block type="text">'+
