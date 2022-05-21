@@ -40,6 +40,7 @@ async function gamebutton_set_onclick (event) {
   var mqtt_client = mqtt.connect(server,options);
   mqtt_client.on("connect", ()=>{
   	console.log("connected");
+    span_set('response',"innerHTML","connected");
     mqtt_client.subscribe(subscribeTopic);
   	mqtt_client.on("message", async function (topic, payload) {
     if (topic==subscribeTopic) {
