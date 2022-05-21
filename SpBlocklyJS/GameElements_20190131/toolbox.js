@@ -359,7 +359,7 @@ var catPageElements ='<xml>'+
 '    <block type="music_delete">'+
 '    </block>'+
 '    </category>'+
-'  <category  name="%{BKY_CATPAGEELEMENTS_SPAN}" id="catGameElements_sub26" colour="120">'+
+'  <category  name="%{BKY_CATPAGEELEMENTS_SPAN}" id="catGameElements_sub26">'+
 '  <block type="span_create">'+
 '    <value name="id_">'+
 '      <block type="text">'+

@@ -20,9 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='holistic_20201012/holistic.js'></script>";
 		}
 		
-		if (workspace.getBlocksByType("faceapi_recognize_video").length>0) {
-			script += "<script src='faceapi_recognize_20201012/faceapi-recognize_video.js'></script>";			
-			script += "<script src='faceapi_recognize_20201012/faceapi-recognize.js'></script>";
+		if (workspace.getBlocksByType("faceapirecognize_video").length>0) {
+			script += "<script src='faceapi_recognize_20201012/faceapi-recognition_video.js'></script>";			
+			script += "<script src='faceapi_recognize_20201012/faceapi-recognition.js'></script>";
+			script += "<script src='faceapi_recognize_20201012/face-api.min.js'></script>";
 		}		
 		
 		if (workspace.getBlocksByType("teachablemachine_video").length>0) {
@@ -50,6 +51,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic.js'></script>";
 		}
+		
+		if (workspace.getBlocksByType("faceapirecognize_video").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_recognize_20201012/faceapi-recognition_video.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_recognize_20201012/faceapi-recognition.js'></script>";
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_recognize_20201012/face-api.min.js'></script>";
+		}		
 		
 		if (workspace.getBlocksByType("teachablemachine_video").length>0) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/teachablemachine_20201012/teachablemachine_video.js'></script>";			
