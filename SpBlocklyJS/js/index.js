@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 	  iframe_code += "\<\/head\>\<body\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
 	  
-	  console.log(iframe_code);
+	  //console.log(iframe_code);
 	  try {
 		var iframe = document.getElementById("iframe_run");
 		iframe.contentWindow.document.open();
