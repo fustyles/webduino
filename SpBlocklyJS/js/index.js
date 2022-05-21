@@ -20,6 +20,16 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='holistic_20201012/holistic.js'></script>";
 		}
 		
+		if (workspace.getBlocksByType("faceapi_recognize_video").length>0) {
+			script += "<script src='faceapi_recognize_20201012/faceapi-recognize_video.js'></script>";			
+			script += "<script src='faceapi_recognize_20201012/faceapi-recognize.js'></script>";
+		}		
+		
+		if (workspace.getBlocksByType("teachablemachine_video").length>0) {
+			script += "<script src='teachablemachine_20201012/teachablemachine_video.js'></script>";			
+			script += "<script src='teachablemachine_20201012/teachablemachine.js'></script>";
+		}		
+		
 		if (workspace.getBlocksByType("webserial_baudrate").length>0) {
 			script += "<script src='WebSerial_20220126/WebSerial_elements.js'></script>";			
 			script += "<script src='WebSerial_20220126/WebSerial.js'></script>";
@@ -41,6 +51,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic.js'></script>";
 		}
 		
+		if (workspace.getBlocksByType("teachablemachine_video").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/teachablemachine_20201012/teachablemachine_video.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/teachablemachine_20201012/teachablemachine.js'></script>";
+		}		
+		
 		if (workspace.getBlocksByType("webserial_baudrate").length>0) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebSerial_20220126/WebSerial_elements.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebSerial_20220126/WebSerial.js'></script>";
@@ -61,6 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		catPageElements,
 		"<sep></sep>",		
 		catHolistic,
+		catFaceRecognize,		
+		catTeachablemachine,
 		"<sep></sep>",		
 		catWebSerial,
 		catMQTT		

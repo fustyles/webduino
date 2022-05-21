@@ -359,66 +359,66 @@ var catPageElements ='<xml>'+
 '    <block type="music_delete">'+
 '    </block>'+
 '    </category>'+
-'    <category name="%{BKY_CATPAGEELEMENTS_SPAN}" id="catPageElements_span">'+
-'    <block type="span_create">'+
+'  <category  name="%{BKY_CATPAGEELEMENTS_SPAN}" id="catGameElements_sub26" colour="120">'+
+'  <block type="span_create">'+
 '    <value name="id_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+  
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
 '    <value name="left_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
 '    </value>'+
 '    <value name="top_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
-'    </block>'+
+'      <block type="math_number">'+
+'        <field name="NUM">100</field>'+
+'      </block>'+
 '    </value>'+
 '    <value name="fontsize_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">14</field>'+
-'    </block>'+
+'      <block type="math_number">'+
+'        <field name="NUM">14</field>'+
+'      </block>'+
 '    </value>'+
 '    <value name="innerHTML_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+     
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
 '    <value name="zindex_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">999</field>'+
-'    </block>'+
-'    </value>'+   
-'    </block>'+
-'    <block type="span_set">'+
+'      <block type="math_number">'+
+'        <field name="NUM">999</field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
+'  <block type="span_set">'+
 '    <value name="id_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+   
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
 '    <value name="value_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+  
-'    </block>'+
-'    <block type="span_get">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
+'  <block type="span_get">'+
 '    <value name="id_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+    
-'    </block>'+   
-'    <block type="span_delete">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
+'  <block type="span_delete">'+
 '    <value name="id_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+    
-'    </block>'+
-'    </category>'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
+'  </category>'+
 '    <category name="%{BKY_CATPAGEELEMENTS_IMAGE}" id="catPageElements_image">'+
 '    <block type="image_create">'+
 '    <value name="id_">'+
@@ -647,13 +647,6 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    <block type="rotate_horizontal_flip">'+
 '    <value name="id_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
-'    <block type="image_binarytobase64">'+
-'    <value name="array_">'+
 '    <block type="text">'+
 '    <field name="TEXT"></field>'+
 '    </block>'+

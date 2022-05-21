@@ -4488,8 +4488,7 @@ Blockly.Blocks['video_base64_spreadsheet'] = {
   this.appendValueInput("spreadsheet_script_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
-  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/WebduinoSpreadsheet.gs");	  
+      .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL); 	  
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -4808,17 +4807,6 @@ Blockly.Blocks['window_open'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(110);  
-  }
-};
-
-Blockly.Blocks['image_binarytobase64'] = {
-  init: function() {
-  this.appendValueInput("array_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.IMAGE_BINARY_TO_BASE64);
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(200);   
   }
 };
 

@@ -516,7 +516,6 @@ Blockly.Msg["CATPAGEELEMENTS_FORM"] = "form";
 Blockly.Msg["CATPAGEELEMENTS_VIDEO"] = "video";
 Blockly.Msg["CATPAGEELEMENTS_FONT"] = "font";
 Blockly.Msg["CATPAGEELEMENTS_AJAX"] = "ajax";
-Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "Image Uint8Array to Base64";
 Blockly.Msg.SPAN_ID = "Span ID";
 Blockly.Msg.SPAN_CREATE = "Span Create";
 Blockly.Msg.SPAN_VALUE = "Value";

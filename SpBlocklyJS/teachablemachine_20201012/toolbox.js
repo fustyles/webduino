@@ -1,5 +1,5 @@
 var catTeachablemachine ='<xml>'+
-'    <category name="%{BKY_CATTEACHABLEMACHINE}" id="teachablemachine">'+
+'    <category name="%{BKY_CATTEACHABLEMACHINE}" id="teachablemachine" colour="200">'+
 '      <block type="teachablemachine_model">'+
 '        <value name="model_">'+
 '          <block type="text">'+
