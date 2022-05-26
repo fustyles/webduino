@@ -803,3 +803,15 @@ Blockly.Blocks['holistic_righthand_angle'] = {
   this.setColour(200);
   }
 };
+
+Blockly.Blocks['holistic_recognitied'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_RECOGNITIED_SHOW);
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};

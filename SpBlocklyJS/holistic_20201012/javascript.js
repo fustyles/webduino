@@ -158,3 +158,9 @@ Blockly.JavaScript['holistic_righthand_angle'] = function (block) {
   var code = 'holistic_part_angle("righthand", Number(' + value_part1 + '), Number(' + value_part2 + '),"' + value_axis + '",' + value_adjust + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];  
 };
+
+Blockly.JavaScript['holistic_recognitied'] = function(block) { 
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'holistic_recognitionFinish = async function() {\nholistic_state(0);\n' + statements_do + '\nholistic_state(1);};\n';
+  return code;
+};
