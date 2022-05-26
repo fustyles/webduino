@@ -377,6 +377,9 @@
 		  }
 	  }	  
   } 	
+  
+	function holistic_recognitionFinish() {
+	}  
 
 	window.holistic_video = holistic_video;
 	window.holistic_face_position = holistic_face_position;
@@ -391,5 +394,6 @@
 	window.holistic_state = holistic_state;
 	window.holistic_startvideo_media = holistic_startvideo_media;
 	window.holistic_startvideo_stream = holistic_startvideo_stream;
+	window.holistic_recognitionFinish = holistic_recognitionFinish;	
 	
 }(window, window.document));
