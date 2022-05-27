@@ -758,10 +758,18 @@ Blockly.Msg["FU_SERIAL_PRINT_DEC"] = "DEC";
 Blockly.Msg["FU_SERIAL_PRINT_HEX"] = "HEX";
 
 Blockly.Msg["ESP32_CAM_GOOGLEDRIVE_SHOW"] = "ESP32-CAM Upload Still to Google drive";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_SHOW"] = "ESP32-CAM Upload Still to Google spreadsheet";
 Blockly.Msg["ESP32_CAM_SCRIPTID_SHOW"] = "Apps Script ID";	
 Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "Line Notify token";
 Blockly.Msg["ESP32_CAM_FOLDERNAME_SHOW"] = "Folder Name";	
 Blockly.Msg["ESP32_CAM_FILENAME_SHOW"] = "File Name";
+
+Blockly.Msg["ESP32_CAM_SPREADSHEET_ROW_SHOW"] = "row";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW"] = "Custom row";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_FIRSTROW_SHOW"] = "First row";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW"] = "Insert before first row";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_LASTROW_SHOW"] = "Last row";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTLASTROW_SHOW"] = "Insert after last row";
 
 Blockly.Msg["EZ_SET"] = "set";
 Blockly.Msg["EZ_SIZE"] = "size";

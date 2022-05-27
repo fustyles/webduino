@@ -759,10 +759,18 @@ Blockly.Msg["FU_SERIAL_PRINT_DEC"] = "十二進制";
 Blockly.Msg["FU_SERIAL_PRINT_HEX"] = "十六進制";
 
 Blockly.Msg["ESP32_CAM_GOOGLEDRIVE_SHOW"] = "ESP32-CAM 截圖上傳Google雲端硬碟";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_SHOW"] = "ESP32-CAM 截圖上傳Google試算表";
 Blockly.Msg["ESP32_CAM_SCRIPTID_SHOW"] = "Apps Script ID";	
 Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "權杖";
 Blockly.Msg["ESP32_CAM_FOLDERNAME_SHOW"] = "資料夾名";	
 Blockly.Msg["ESP32_CAM_FILENAME_SHOW"] = "儲存檔案名";
+
+Blockly.Msg["ESP32_CAM_SPREADSHEET_ROW_SHOW"] = "行數";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW"] = "自訂列數";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_FIRSTROW_SHOW"] = "第一列";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW"] = "新增第一列";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_LASTROW_SHOW"] = "最後一列";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTLASTROW_SHOW"] = "新增最後一列";
 
 Blockly.Msg["EZ_SET"] = "設定為";
 Blockly.Msg["EZ_SIZE"] = "大小";

@@ -1109,6 +1109,33 @@
 				  </block>
 				</value>				
 			  </block>
+			<block type="esp32_cam_spreadsheet"> 
+				<value name="spreadsheeturl">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value> 
+				<value name="spreadsheetname">
+				  <block type="text">
+					<field name="TEXT">工作表1</field>
+				  </block>
+				</value> 
+				<value name="column">
+				  <block type="math_number">
+					<field name="NUM">1</field>
+				  </block>
+				</value> 
+				<value name="row">
+				  <block type="math_number">
+					<field name="NUM">1</field>
+				  </block>
+				</value>	  
+				<value name="spreadsheet_script">
+				  <block type="text">
+					<field name="TEXT">https://script.google.com/macros/s/AKfycbysXORTz1fwTtjKKDakgjo1NKztyRam2B2NNvx72iq2FWWdGssa3ihhxGk1ZkQmy4ao-A/exec</field>
+				  </block>
+				</value> 
+			</block>
 			  <block type="esp32_cam_telegrambot" id="99">
 				<value name="token">
 				  <block type="text">
