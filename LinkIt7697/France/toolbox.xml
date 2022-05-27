@@ -764,7 +764,28 @@
 				</value>		
 			  </block>	
 			  <block type="servermodule_parameter_stream_url">		
-			  </block>				  
+			  </block>
+			  <block type="servermodule_parameter_set_address3_0">				
+			  </block>	
+			  <block type="servermodule_parameter_set_address3_1">
+				<value name="p1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
+			  </block>	
+			  <block type="servermodule_parameter_set_address3_2">
+				<value name="p1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p2">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
+			  </block>
 			  <block type="servermodule_parameter_set_address3">
 				<value name="p1">
 				  <block type="text">

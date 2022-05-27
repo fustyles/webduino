@@ -5869,6 +5869,7 @@ Blockly.Blocks['servermodule_parameter'] = {
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_SHOW);
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
+		["cmd","cmd"],	  
 		["p1","p1"],
 		["p2","p2"],
 		["p3","p3"],	
@@ -5905,6 +5906,7 @@ Blockly.Blocks['servermodule_parameter_variable'] = {
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_GET_SHOW);
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
+		["cmd","cmd"],	  
 		["p1","p1"],
 		["p2","p2"],
 		["p3","p3"],	
@@ -5940,6 +5942,7 @@ Blockly.Blocks['servermodule_parameter_variable_urldecode'] = {
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_GET_SHOW);
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
+		["cmd","cmd"],	  
 		["p1","p1"],
 		["p2","p2"],
 		["p3","p3"],	
@@ -5964,6 +5967,7 @@ Blockly.Blocks['servermodule_parameter_get'] = {
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_GET_SHOW);
 	this.appendDummyInput()    
 		  .appendField(new Blockly.FieldDropdown([
+			["cmd","cmd"],		  
 			["p1","p1"],
 			["p2","p2"],
 			["p3","p3"],	
@@ -5986,6 +5990,7 @@ Blockly.Blocks['servermodule_parameter_set'] = {
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_SHOW);
 	this.appendDummyInput()    
 		  .appendField(new Blockly.FieldDropdown([
+			["cmd","cmd"],		  
 			["p1","p1"],
 			["p2","p2"],
 			["p3","p3"],	
@@ -6041,7 +6046,7 @@ Blockly.Blocks['servermodule_parameter_set_address'] = {
     this.appendValueInput("p9")
         .appendField("p9")	
         .setCheck(null);  		
-	this.setInputsInline(true);
+	this.setInputsInline(false);
     this.setOutput(true, null);  
     this.setColour(20);
   }
@@ -12952,7 +12957,7 @@ Blockly.Blocks.webbit_mooncar_ir_remote_send={init:function(){
 
 
 
-Blockly.Blocks['servermodule_parameter_set_address3'] = {
+Blockly.Blocks['servermodule_parameter_set_address3_0'] = {
   init: function() {
 	this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_ADDRESS_SHOW);
@@ -12961,16 +12966,26 @@ Blockly.Blocks['servermodule_parameter_set_address3'] = {
       .appendField(new Blockly.FieldDropdown([
 		["ip","ip"],
 		["mac","mac"],
-		["restart","restart"],
-		["digitalwrite(pin,value)","digitalwrite"],
+		["restart","restart"],	
+		["getstill","getstill"]	
+		]), "cmd");	
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);
+	this.setHelpUrl("https://github.com/fustyles/Arduino/blob/master/ESP32-CAM_CameraWebServer_FakeStream/ESP32-CAM_CameraWebServer_FakeStream.ino");	
+  }
+};
+
+Blockly.Blocks['servermodule_parameter_set_address3_1'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_ADDRESS_SHOW);
+	this.appendDummyInput()
+      .appendField("cmd")
+      .appendField(new Blockly.FieldDropdown([
 		["digitalread(pin)","digitalread"],
-		["analogwrite(pin,value)","analogwrite"],
 		["analogread(pin)","analogread"],
-		["touchread(pin)","touchread"],
-		["servo(pin,angle)","servo"],		
-		["relay(pin,value)","relay"],
-		["buzzer(pin,frequency,duration)","buzzer"],		
-		["getstill","getstill"],		
+		["touchread(pin)","touchread"],		
 		["flash(value)","flash"],		
 		["framesize(value)","framesize"],
 		["quality(value)","quality"],
@@ -12982,7 +12997,51 @@ Blockly.Blocks['servermodule_parameter_set_address3'] = {
 		["vflip(value)","vflip"],
 		["print(string)","print"],
 		["println(string)","println"],
-		["delay(ms value)","delay"]		
+		["delay(value_ms)","delay"]		
+		]), "cmd"); 
+    this.appendValueInput("p1")
+        .appendField("p1")	
+        .setCheck(null);	
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);
+	this.setHelpUrl("https://github.com/fustyles/Arduino/blob/master/ESP32-CAM_CameraWebServer_FakeStream/ESP32-CAM_CameraWebServer_FakeStream.ino");	
+  }
+};
+
+Blockly.Blocks['servermodule_parameter_set_address3_2'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_ADDRESS_SHOW);
+	this.appendDummyInput()
+      .appendField("cmd")
+      .appendField(new Blockly.FieldDropdown([
+		["digitalwrite(pin, value)","digitalwrite"],
+		["analogwrite(pin, value)","analogwrite"],
+		["servo(pin, angle)","servo"],		
+		["relay(pin, value)","relay"]	
+		]), "cmd"); 
+    this.appendValueInput("p1")
+        .appendField("p1")	
+        .setCheck(null); 
+    this.appendValueInput("p2")
+        .appendField("p2")	
+        .setCheck(null);		
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);
+	this.setHelpUrl("https://github.com/fustyles/Arduino/blob/master/ESP32-CAM_CameraWebServer_FakeStream/ESP32-CAM_CameraWebServer_FakeStream.ino");	
+  }
+};
+
+Blockly.Blocks['servermodule_parameter_set_address3'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_ADDRESS_SHOW);
+	this.appendDummyInput()
+      .appendField("cmd")
+      .appendField(new Blockly.FieldDropdown([
+		["buzzer(pin, frequency, duration)","buzzer"]	
 		]), "cmd"); 
     this.appendValueInput("p1")
         .appendField("p1")	
@@ -12999,6 +13058,7 @@ Blockly.Blocks['servermodule_parameter_set_address3'] = {
 	this.setHelpUrl("https://github.com/fustyles/Arduino/blob/master/ESP32-CAM_CameraWebServer_FakeStream/ESP32-CAM_CameraWebServer_FakeStream.ino");	
   }
 };
+
 
 //SERIAL
 Blockly.Blocks['fu_serial_begin'] = {
