@@ -2964,10 +2964,6 @@ Blockly.Arduino['esp32_digitalwrite'] = function(block) {
 
 Blockly.Arduino['esp32_myfirmata'] = function(block) {
   var mainpage = Blockly.Arduino.valueToCode(block, 'mainpage', Blockly.Arduino.ORDER_ATOMIC);
-  if ((mainpage.indexOf("(")==0)&&(mainpage.lastIndexOf(")")==mainpage.length-1))
-    mainpage = mainpage.substring(1,mainpage.length-1);
-  if ((mainpage.indexOf('"')==0)&&(mainpage.lastIndexOf('"')==mainpage.length-1))
-    mainpage = mainpage.substring(1,mainpage.length-1); 
   var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
   var ssid_ap = Blockly.Arduino.valueToCode(block, 'ssid_ap', Blockly.Arduino.ORDER_ATOMIC);
@@ -3717,10 +3713,6 @@ Blockly.Arduino['esp32_bluetooth_getdata'] = function(block) {
 
 Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
   var mainpage = Blockly.Arduino.valueToCode(block, 'mainpage', Blockly.Arduino.ORDER_ATOMIC);
-  if ((mainpage.indexOf("(")==0)&&(mainpage.lastIndexOf(")")==mainpage.length-1))
-    mainpage = mainpage.substring(1,mainpage.length-1);
-  if ((mainpage.indexOf('"')==0)&&(mainpage.lastIndexOf('"')==mainpage.length-1))
-    mainpage = mainpage.substring(1,mainpage.length-1);
   var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand'); 
@@ -4903,11 +4895,13 @@ Blockly.Arduino['select_create'] = function (block) {
   var value_color_ = Blockly.Arduino.valueToCode(block, 'color_', Blockly.Arduino.ORDER_ATOMIC);
   var value_fontsize_ = Blockly.Arduino.valueToCode(block, 'fontsize_', Blockly.Arduino.ORDER_ATOMIC);  
   var value_opacity_ = Blockly.Arduino.valueToCode(block, 'opacity_', Blockly.Arduino.ORDER_ATOMIC);
-  var value_option_ = Blockly.Arduino.valueToCode(block, 'option_', Blockly.Arduino.ORDER_ATOMIC);  
+  var value_option_ = Blockly.Arduino.valueToCode(block, 'option_', Blockly.Arduino.ORDER_ATOMIC); 
+  value_option_ = value_option_.replace(/{/g,"[").replace(/}/g,"]");
   var value_value_ = Blockly.Arduino.valueToCode(block, 'value_', Blockly.Arduino.ORDER_ATOMIC);
   var value_zindex_ = Blockly.Arduino.valueToCode(block, 'zindex_', Blockly.Arduino.ORDER_ATOMIC);    
   var value_display_ = Blockly.Arduino.valueToCode(block, 'display_', Blockly.Arduino.ORDER_ATOMIC);  
   var code = 'select_create(' + value_id_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ',' + value_background_ + ',' + value_color_ + ',' + value_fontsize_ + ',' + value_opacity_ + ',' + value_option_ + ',' + value_value_ + ',' + value_zindex_ + ',' + value_display_ + ');\n';
+  console.log(value_option_);
   return code;
 };
 
@@ -5894,7 +5888,6 @@ Blockly.Arduino['variable_board'] = function (block) {
 
 Blockly.Arduino['servermodule_javascript'] = function(block) {
   var statements_js = Blockly.Arduino.statementToCode(block, 'js');
-
   code = '"<!DOCTYPE html><head><meta charset=\'utf-8\'><meta name=\'viewport\' content=\'width=device-width, initial-scale=1\'><script src=\'https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js\'></script><script src=\'https://fustyles.github.io/webduino/GameElements_20190131/gameelements.js\'></script></head><body><script>'+ statements_js.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"var ") +'</script></body></html>"';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
@@ -8392,10 +8385,6 @@ Blockly.Arduino['fu_mqtt_getdata'] = function(block) {
 Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 	
   var mainpage = Blockly.Arduino.valueToCode(block, 'mainpage', Blockly.Arduino.ORDER_ATOMIC);
-  if ((mainpage.indexOf("(")==0)&&(mainpage.lastIndexOf(")")==mainpage.length-1))
-    mainpage = mainpage.substring(1,mainpage.length-1);
-  if ((mainpage.indexOf('"')==0)&&(mainpage.lastIndexOf('"')==mainpage.length-1))
-    mainpage = mainpage.substring(1,mainpage.length-1);
   var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
   var ssid_ap = Blockly.Arduino.valueToCode(block, 'ssid_ap', Blockly.Arduino.ORDER_ATOMIC);
