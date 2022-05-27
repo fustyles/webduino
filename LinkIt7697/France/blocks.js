@@ -12972,7 +12972,6 @@ Blockly.Blocks['servermodule_parameter_set_address3_0'] = {
 	this.setInputsInline(true);
     this.setOutput(true, null);  
     this.setColour(20);
-	this.setHelpUrl("https://github.com/fustyles/Arduino/blob/master/ESP32-CAM_CameraWebServer_FakeStream/ESP32-CAM_CameraWebServer_FakeStream.ino");	
   }
 };
 
@@ -13005,7 +13004,6 @@ Blockly.Blocks['servermodule_parameter_set_address3_1'] = {
 	this.setInputsInline(true);
     this.setOutput(true, null);  
     this.setColour(20);
-	this.setHelpUrl("https://github.com/fustyles/Arduino/blob/master/ESP32-CAM_CameraWebServer_FakeStream/ESP32-CAM_CameraWebServer_FakeStream.ino");	
   }
 };
 
@@ -13030,7 +13028,6 @@ Blockly.Blocks['servermodule_parameter_set_address3_2'] = {
 	this.setInputsInline(true);
     this.setOutput(true, null);  
     this.setColour(20);
-	this.setHelpUrl("https://github.com/fustyles/Arduino/blob/master/ESP32-CAM_CameraWebServer_FakeStream/ESP32-CAM_CameraWebServer_FakeStream.ino");	
   }
 };
 
@@ -13054,8 +13051,7 @@ Blockly.Blocks['servermodule_parameter_set_address3'] = {
         .setCheck(null);		
 	this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(20);
-	this.setHelpUrl("https://github.com/fustyles/Arduino/blob/master/ESP32-CAM_CameraWebServer_FakeStream/ESP32-CAM_CameraWebServer_FakeStream.ino");	
+    this.setColour(20);	
   }
 };
 

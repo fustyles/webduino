@@ -9798,14 +9798,10 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
 	else
 	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
-	Blockly.Arduino.definitions_.define_myScript_driver = 'String myScript = "/macros/s/'+scriptid.replace(/"/g,'')+'/exec";';
-	Blockly.Arduino.definitions_.define_foldName = 'String myFoldername = "&myFoldername='+foldername.replace(/"/g,'')+'";';
-	Blockly.Arduino.definitions_.define_fileName = 'String myFilename = "&myFilename='+filename.replace(/"/g,'')+'";';
-	Blockly.Arduino.definitions_.define_image = 'String myImage = "&myFile=";';
 
 
 	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
-			'String SendStillToGoogleDrive(String myLineNotifyToken) {\n'+
+			'String SendStillToGoogleDrive(String myScript, String myFoldername, String myFilename, String myImage, String myLineNotifyToken) {\n'+
 			'  const char* myDomain = "script.google.com";\n'+
 			'  String getAll="", getBody = "";\n'+
 			'  \n'+
@@ -9917,7 +9913,7 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 			'  return encodedString;\n'+
 			'}\n';
 			
-  var code = 'SendStillToGoogleDrive('+linetoken+');\n';
+  var code = 'SendStillToGoogleDrive("/macros/s/'+scriptid.replace(/"/g,'')+'/exec","&myFoldername='+foldername.replace(/"/g,'')+'","&myFilename='+filename.replace(/"/g,'')+'","&myFile=",'+linetoken+');\n';
   return code;			
 }
 

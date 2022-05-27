@@ -1010,12 +1010,8 @@
 							  </block>
 							</value>
 							<value name="url_">
-							  <block type="servermodule_parameter_set_address2">
-								<value name="cmd">
-								  <block type="text">
-									<field name="TEXT">getstill</field>
-								  </block>
-								</value>
+							  <block type="servermodule_parameter_set_address3_0" id="p.u$q|1WvG%l/=$z.6Dy">
+								<field name="cmd">getstill</field>
 							  </block>
 							</value>
 							<value name="left_">
