@@ -8219,7 +8219,7 @@ Blockly.Arduino.webbit_mooncar_ir_remote_send=function(){
 Blockly.Arduino['servermodule_parameter_set_address3_0'] = function (block) {
   var cmd = this.getFieldValue("cmd");
   if (cmd=="getstill")
-	var code = '"?"+String("'+cmd+'")+"="+String(new Date().getTime())';
+	var code = '"?"+"'+cmd+'"+"="+(new Date().getTime())';
   else
 	 var code = '"?"+String("'+cmd+'")';
   return [code, Blockly.Arduino.ORDER_NONE];
@@ -8228,7 +8228,7 @@ Blockly.Arduino['servermodule_parameter_set_address3_0'] = function (block) {
 Blockly.Arduino['servermodule_parameter_set_address3_1'] = function (block) {
   var cmd = this.getFieldValue("cmd");
   var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC);  
-  var code = '"?"+String("'+cmd+'")+"="+String('+p1+')';
+  var code = '"?"+"'+cmd+'"+"="+'+p1;
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -8236,7 +8236,7 @@ Blockly.Arduino['servermodule_parameter_set_address3_2'] = function (block) {
   var cmd = this.getFieldValue("cmd");
   var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC);
   var p2 = Blockly.Arduino.valueToCode(block, 'p2', Blockly.Arduino.ORDER_ATOMIC);   
-  var code = '"?"+String("'+cmd+'")+"="+String('+p1+')+";"+String('+p2+')';
+  var code = '"?"+"'+cmd+'"+"="+'+p1+'+";"+'+p2;
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -8245,7 +8245,7 @@ Blockly.Arduino['servermodule_parameter_set_address3'] = function (block) {
   var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC);
   var p2 = Blockly.Arduino.valueToCode(block, 'p2', Blockly.Arduino.ORDER_ATOMIC); 
   var p3 = Blockly.Arduino.valueToCode(block, 'p3', Blockly.Arduino.ORDER_ATOMIC);   
-  var code = '"?"+String("'+cmd+'")+"="+String('+p1+')+";"+String('+p2+')+";"+String('+p3+')';
+  var code = '"?"+"'+cmd+'"+"="+'+p1+'+";"+'+p2+'+";"+'+p3;
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
