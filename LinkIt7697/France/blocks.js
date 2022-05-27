@@ -13380,6 +13380,22 @@ Blockly.Blocks['fu_mqtt_getdata'] = {
   }
 };	
 
+Blockly.Blocks['fu_mqtt_sendimage'] = {
+  init: function() {
+    this.appendValueInput("topic")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField("MQTT")
+		.appendField(Blockly.Msg["MQTT_FU_TO_TOPIC"]);
+    this.appendDummyInput()	
+		.appendField(Blockly.Msg["MQTT_FU_PUBLISH_IMAGE"]);	
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
 Blockly.Blocks['cocossd_esp32cam'] = {
   init: function() {
     this.appendDummyInput()

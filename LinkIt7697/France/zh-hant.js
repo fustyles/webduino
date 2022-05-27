@@ -952,6 +952,7 @@ Blockly.Msg["MQTT_FU_GETDATA_TOPIC"] = "當取得訊息的主題為";
 Blockly.Msg["MQTT_FU_TO_TOPIC"] = "向主題";
 Blockly.Msg["MQTT_FU_PUBLISH_TEXT"] = "發布訊息文字";
 Blockly.Msg["MQTT_FU_GETDATA"] = "取得資料";
+Blockly.Msg["MQTT_FU_PUBLISH_IMAGE"] = "發布影像 (ESP32-CAM)";
 
 Blockly.Msg.TIME_DELAY_SHOW = "等待 (秒)";
 Blockly.Msg.DECLARE_VARIABLE_SHOW = "宣告變數 (var)";

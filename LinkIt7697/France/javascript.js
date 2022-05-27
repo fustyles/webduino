@@ -8376,7 +8376,7 @@ Blockly.Arduino['fu_mqtt_loop'] = function(block) {
 														'  }\n'+topic_getdata+
 														'}\n';
 
-  code = 'if (!mqtt_client.connected()) {\n  reconnect();\n}\nmqtt_client.loop();';
+  code = 'if (!mqtt_client.connected()) {\n  reconnect();\n}\nmqtt_client.loop();\n';
   return code;
 };
 
@@ -8404,6 +8404,35 @@ Blockly.Arduino['fu_mqtt_senddata'] = function(block) {
 Blockly.Arduino['fu_mqtt_getdata'] = function(block) {
   code = 'mqtt_data';
   return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['fu_mqtt_sendimage'] = function(block) {
+  var topic = Blockly.Arduino.valueToCode(block, 'topic', Blockly.Arduino.ORDER_ATOMIC);
+  
+  Blockly.Arduino.definitions_.define_mqtt_sendimage = 'void mqtt_sendImage(String topic) {\n'+
+														'  camera_fb_t * fb = NULL;\n'+
+														'  fb = esp_camera_fb_get();\n'+
+														'  if (!fb) {\n'+
+														'    Serial.println("Camera capture failed, Reset");\n'+
+														'    return;\n'+
+														'  }\n'+
+														'  int imgSize = fb->len;\n'+
+														'  int ps = MQTT_MAX_PACKET_SIZE;\n'+
+														'  mqtt_client.beginPublish(topic.c_str(), imgSize, false);\n'+
+														'  for (int i = 0; i < imgSize; i += ps) {\n'+
+														'    int s = (imgSize - i < s) ? (imgSize - i) : ps;\n'+
+														'    mqtt_client.write((uint8_t *)(fb->buf) + i, s);\n'+
+														'  }\n'+
+														'  boolean isPublished = mqtt_client.endPublish();\n'+
+														'  if (isPublished)\n'+
+														'    Serial.println("Publishing Photo to MQTT Successfully");\n'+
+														'  else\n'+
+														'    Serial.println("Publishing Photo to MQTT Failed");\n'+														
+														'  esp_camera_fb_return(fb);\n'+
+														'}\n';
+														
+  code = 'mqtt_sendImage('+topic+');\n';
+  return code;
 };
 
 Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {

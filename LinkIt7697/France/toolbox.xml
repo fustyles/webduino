@@ -7407,7 +7407,14 @@
 			<field name="TEXT">World Peace</field>
 		  </block>
 		</value>		
-	  </block>	
+	  </block>
+	  <block type="fu_mqtt_sendimage">
+	    <value name="topic">
+		  <block type="text">
+			<field name="TEXT">yourtopic/data</field>
+		  </block>
+		</value>		
+	  </block>		  
     </category>
 	<category id="france11" name="ntpserver">
 	  <block type="fu_ntpserver_initial">
