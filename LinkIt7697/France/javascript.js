@@ -3052,14 +3052,14 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'    Feedback=String(touchRead(p1.toInt()));\n'+
 			'  }\n'+
 			'  else if (cmd=="servo") {\n'+
-			'    ledcAttachPin(p1.toInt(), 3);\n'+
-			'    ledcSetup(3, 50, 16);\n'+
+			'    ledcAttachPin(p1.toInt(), p3.toInt());\n'+
+			'    ledcSetup(p3.toInt(), 50, 16);\n'+
 			'    int val = 7864-p2.toInt()*34.59;\n'+
 			'    if (val > 7864)\n'+
 			'       val = 7864;\n'+
 			'    else if (val < 1638)\n'+
 			'      val = 1638;\n'+
-			'    ledcWrite(3, val);\n'+
+			'    ledcWrite(p3.toInt(), val);\n'+
 			'  }\n'+
 			'  else if (cmd=="relay") {\n'+
 			'    pinMode(p1.toInt(), OUTPUT);\n'+
@@ -3319,14 +3319,14 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 			'    SerialBT.println(String(analogRead(p1.toInt())));\n'+
 			'  }\n'+
 			'  else if (cmd=="servo") {\n'+
-			'    ledcAttachPin(p1.toInt(), 3);\n'+
-			'    ledcSetup(3, 50, 16);\n'+
+			'    ledcAttachPin(p1.toInt(), p3.toInt());\n'+
+			'    ledcSetup(p3.toInt(), 50, 16);\n'+
 			'    int val = 7864-p2.toInt()*34.59;\n'+
 			'    if (val > 7864)\n'+
 			'       val = 7864;\n'+
 			'    else if (val < 1638)\n'+
 			'      val = 1638;\n'+
-			'    ledcWrite(3, val);\n'+
+			'    ledcWrite(p3.toInt(), val);\n'+
 			'  }\n'+
 			'  else if (cmd=="relay") {\n'+
 			'    pinMode(p1.toInt(), OUTPUT);\n'+
@@ -8493,14 +8493,14 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'    int val = p1.toInt();\n'+
 			'    ledcWrite(4,val);\n'+
 			'  } else if(cmd=="servo") {\n'+
-			'    ledcAttachPin(p1.toInt(), 3);\n'+
-			'    ledcSetup(3, 50, 16);\n'+
+			'    ledcAttachPin(p1.toInt(), p3.toInt());\n'+
+			'    ledcSetup(p3.toInt(), 50, 16);\n'+
 			'    int val = 7864-p2.toInt()*34.59;\n'+
 			'    if (val > 7864)\n'+
 			'       val = 7864;\n'+
 			'    else if (val < 1638)\n'+
 			'      val = 1638;\n'+
-			'    ledcWrite(3, val);\n'+
+			'    ledcWrite(p3.toInt(), val);\n'+
 			'  } else if (cmd=="relay") {\n'+
 			'    pinMode(p1.toInt(), OUTPUT);\n'+
 			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
@@ -8890,14 +8890,14 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
 			'    int val = p1.toInt();\n'+
 			'    ledcWrite(4,val);\n'+
 			'  } else if(cmd=="servo") {\n'+
-			'    ledcAttachPin(p1.toInt(), 3);\n'+
-			'    ledcSetup(3, 50, 16);\n'+
+			'    ledcAttachPin(p1.toInt(), p3.toInt());\n'+
+			'    ledcSetup(p3.toInt(), 50, 16);\n'+
 			'    int val = 7864-p2.toInt()*34.59;\n'+
 			'    if (val > 7864)\n'+
 			'       val = 7864;\n'+
 			'    else if (val < 1638)\n'+
 			'      val = 1638;\n'+
-			'    ledcWrite(3, val);\n'+
+			'    ledcWrite(p3.toInt(), val);\n'+
 			'  } else if (cmd=="relay") {\n'+
 			'    pinMode(p1.toInt(), OUTPUT);\n'+
 			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
@@ -9415,12 +9415,9 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
 			'            decelerate = p1.toFloat();\n'+
 			'          }\n'+
 			'          else if (cmd=="servo") {\n'+
-			'            int channel = p3.toInt();\n'+
-			'            int pin = p1.toInt();\n'+
-			'            int angle = p2.toInt();\n'+
-			'            ledcAttachPin(pin, channel);\n'+
-			'            ledcSetup(channel, 50, 16);\n'+
-			'            servo_rotate(channel, angle);\n'+
+			'            ledcAttachPin(p1.toInt(), p3.toInt());\n'+
+			'            ledcSetup(p3.toInt(), 50, 16);\n'+
+			'            servo_rotate(p3.toInt(), p2.toInt());\n'+
 			'            delay(100);\n'+
 		    ' 		   } else {\n  '+ 
 						 statements_executecommand.replace(/\n/g,"\n  ")+

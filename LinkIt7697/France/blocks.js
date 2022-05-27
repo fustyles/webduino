@@ -13038,7 +13038,8 @@ Blockly.Blocks['servermodule_parameter_set_address3'] = {
 	this.appendDummyInput()
       .appendField("cmd")
       .appendField(new Blockly.FieldDropdown([
-		["buzzer(pin, frequency, duration)","buzzer"]	
+		["buzzer(pin, frequency, duration)","buzzer"],
+		["servo(pin, angle, channel)","servo"],		
 		]), "cmd"); 
     this.appendValueInput("p1")
         .appendField("p1")	
