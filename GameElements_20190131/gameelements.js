@@ -532,7 +532,15 @@
           obj.style.display = "block";
       }
       else if (input_property=="position")
-        obj.style.position = input_value;		    
+        obj.style.position = input_value;
+      else if (input_property=='rotate')
+        obj.style.transform = "rotate("+input_value+"deg)";
+      else if (input_property=='rotateX')
+        obj.style.transform = "rotateX("+input_value+"deg)";
+      else if (input_property=='rotateY')
+        obj.style.transform = "rotateY("+input_value+"deg)";
+      else if (input_property=='rotateZ')
+        obj.style.transform = "rotateZ("+input_value+"deg)";	    
       else if (input_property=='moveX')
         obj.style.left = (Number(obj.style.left.replace(/px/ig,""))+Number(input_value))+"px";
       else if (input_property=='moveY')
@@ -580,6 +588,26 @@
       }
       else if (input_property=="position")
         return obj.style.position;
+      else if (input_property=='rotate')
+        return obj.style.transform;
+      else if (input_property=='rotateX') {
+        if (obj.style.transform.indexOf("rotateX")==0)
+          return Number(obj.style.transform.replace(/[^0-9]/ig,""));
+        else
+          return "";
+      }
+      else if (input_property=='rotateY') {
+        if (obj.style.transform.indexOf("rotateY")==0)
+          return Number(obj.style.transform.replace(/[^0-9]/ig,""));
+        else
+          return "";
+      }
+      else if (input_property=='rotateZ') {
+        if (obj.style.transform.indexOf("rotateZ")==0)
+          return Number(obj.style.transform.replace(/[^0-9]/ig,""));
+        else
+          return "";
+      }	    
       else if (input_property=="draggable")
         return obj.draggable;	 
       else if (input_property=="border")
