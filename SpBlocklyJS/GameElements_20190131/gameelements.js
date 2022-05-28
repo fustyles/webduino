@@ -3824,7 +3824,12 @@ function HextoRgb(color) {
 	link.click();
 	link.remove();
 	canvas.remove();
-  }  
+  } 
+	
+  function binarytobase64(input_array) {
+    const content = new Uint8Array(input_array);
+	return btoa(String.fromCharCode.apply(null, content));
+  }	
   
   function span_create(input_id,input_left,input_top,input_fontSize,input_innerHTML,input_zindex) {
     if (document.getElementById("gamespan_"+input_id)) 
@@ -4094,6 +4099,7 @@ function HextoRgb(color) {
   window.fontCode = fontCode;
   window.outputfile_text = outputfile_text; 
   window.outputfile_jpg = outputfile_jpg;
+  window.binarytobase64 = binarytobase64;
   window.span_create = span_create;
   window.span_set = span_set;
   window.span_get = span_get;
