@@ -9416,6 +9416,22 @@ Blockly.Blocks['ajax_get'] = {
   }
 };
 
+Blockly.Blocks['ajax_get_board'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.AJAX_BOARD);
+  this.appendValueInput("url_")
+      .setCheck(null); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AJAX_ASYNC)
+      .appendField(new Blockly.FieldDropdown([["false","false"], ["true","true"]]), "async_"); 
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['ajax_getdata'] = {
   init: function () {
   this.appendDummyInput()   

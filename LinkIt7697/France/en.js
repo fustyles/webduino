@@ -307,6 +307,7 @@ Blockly.Msg.IFRAME_SET = "Set";
 Blockly.Msg.IFRAME_GET = "Get";
 Blockly.Msg.IFRAME_DELETE = "Delete";
 Blockly.Msg.AJAX = "Ajax";
+Blockly.Msg.AJAX_BOARD = "Send url parameters";
 Blockly.Msg.AJAX_ID = "Task ID";
 Blockly.Msg.AJAX_URL = "URL";
 Blockly.Msg.AJAX_ASYNC = "Async";

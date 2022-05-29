@@ -5180,6 +5180,16 @@ Blockly.Arduino['ajax_get'] = function (block) {
   return code;
 };
 
+Blockly.Arduino['ajax_get_board'] = function (block) {
+  var value_url_ = Blockly.Arduino.valueToCode(block, 'url_', Blockly.Arduino.ORDER_ATOMIC); 
+  var value_type_ = "GET";
+  var value_datatype_ = "text";
+  var value_async_ = block.getFieldValue('async_');
+	
+  var code = '$.ajax({type: "'+value_type_+'", url: '+value_url_+', dataType: "'+value_datatype_+'", timeout: 5000, async: '+value_async_+'});\n';
+  return code;
+};
+
 Blockly.Arduino['ajax_getdata'] = function (block) {
   var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);
   var value_format_ = block.getFieldValue('format_');
