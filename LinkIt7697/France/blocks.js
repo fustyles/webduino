@@ -2210,14 +2210,23 @@ Blockly.Blocks['fu_oled_drawFont'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["OLED_TEXT"])
 		.appendField(new Blockly.FieldTextInput(""), "str");
-    this.appendValueInput("str");		
+    this.appendValueInput("str");
+	this.getInput("str").setVisible(false);	
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(220);
 	this.setTooltip("");
 	this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
-  }
+  },onchange: function(event) {
+		var str = Blockly.Arduino.blockToCode(this.getInputTargetBlock("str"))[0];
+		if ((str.indexOf('"')==0)&&(str.lastIndexOf('"')==str.length-1))
+		str = str.substring(1,str.length-1);
+		if (str!="") {
+			this.getField("str").setValue(str);
+			this.getField("str").isDirty_=true;
+		}
+	} 
 };
 
 Blockly.Blocks['fu_oled_drawCustomFont'] = {
@@ -2257,7 +2266,8 @@ Blockly.Blocks['fu_oled_drawCustomFont'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["OLED_TEXT"])
 		.appendField(new Blockly.FieldTextInput(""), "str");
-    this.appendValueInput("str");		
+    this.appendValueInput("str");
+	this.getInput("str").setVisible(false);			
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -2265,14 +2275,14 @@ Blockly.Blocks['fu_oled_drawCustomFont'] = {
 	this.setTooltip("");
 	this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
   },onchange: function(event) {
-	  console.log(this.getInput("str"));
-	  console.log(this.getField("str"));
-		if (this.getInput("str").value!="") {
-			this.getField("str").setValue(this.getInput("str").value);
+		var str = Blockly.Arduino.blockToCode(this.getInputTargetBlock("str"))[0];
+		if ((str.indexOf('"')==0)&&(str.lastIndexOf('"')==str.length-1))
+		str = str.substring(1,str.length-1);
+		if (str!="") {
+			this.getField("str").setValue(str);
 			this.getField("str").isDirty_=true;
-			this.getInput("str").value!="";
 		}
-	} 
+	}  
 };
 
 Blockly.Blocks['fu_oled_setCursor'] = {
