@@ -2209,7 +2209,8 @@ Blockly.Blocks['fu_oled_drawFont'] = {
         .appendField("y");
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["OLED_TEXT"])
-		.appendField(new Blockly.FieldTextInput("hello"), "str");
+		.appendField(new Blockly.FieldTextInput(""), "str");
+    this.appendValueInput("str");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -2255,14 +2256,23 @@ Blockly.Blocks['fu_oled_drawCustomFont'] = {
         .appendField("y");
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["OLED_TEXT"])
-		.appendField(new Blockly.FieldTextInput("hello"), "str");
+		.appendField(new Blockly.FieldTextInput(""), "str");
+    this.appendValueInput("str");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(220);
 	this.setTooltip("");
 	this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
-  }
+  },onchange: function(event) {
+	  console.log(this.getInput("str"));
+	  console.log(this.getField("str"));
+		if (this.getInput("str").value!="") {
+			this.getField("str").setValue(this.getInput("str").value);
+			this.getField("str").isDirty_=true;
+			this.getInput("str").value!="";
+		}
+	} 
 };
 
 Blockly.Blocks['fu_oled_setCursor'] = {

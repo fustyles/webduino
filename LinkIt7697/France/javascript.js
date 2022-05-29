@@ -1548,9 +1548,11 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 	var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
 	var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
 	var value_str = block.getFieldValue('str');
+	var temp_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);	
 	var variable = "xbm_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
  
-	if (value_str!='') {
+	if (temp_str!='""') value_str=temp_str;
+	if (value_str!=''&&value_str!='""') {
 		var text = value_str;
 		var c = document.getElementById("canvas_draw");
 		if (document.getElementById("canvas_draw")) {
@@ -1625,7 +1627,7 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+width+', '+height+', '+variable+');\n';
 	}
 	else
-		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', , , );\n';
+		var code = '';
 	return code;
 };
 
@@ -1635,9 +1637,11 @@ Blockly.Arduino['fu_oled_drawCustomFont'] = function(block) {
 	var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
 	var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
 	var value_str = block.getFieldValue('str');
+	var temp_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);		
 	var variable = "xbm_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
  
-	if (value_str!='') {
+	if (temp_str!='""') value_str=temp_str;
+	if (value_str!=''&&value_str!='""') {
 		var text = value_str;
 		var c = document.getElementById("canvas_draw");
 		if (document.getElementById("canvas_draw")) {
@@ -1712,7 +1716,7 @@ Blockly.Arduino['fu_oled_drawCustomFont'] = function(block) {
 		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', '+width+', '+height+', '+variable+');\n';
 	}
 	else
-		var code = 'u8g2.drawXBMP('+value_x+', '+value_y+', , , );\n';
+		var code = '';
 	return code;
 };
 

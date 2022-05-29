@@ -6199,7 +6199,12 @@
 		  <shadow type="math_number">
 			<field name="NUM">0</field>
 		  </shadow>
-		</value>		  
+		</value>
+		<value name="str">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		
     </block>
 	<block type="fu_oled_drawCustomFont">
 		<value name="font">
@@ -6217,7 +6222,12 @@
 		  <shadow type="math_number">
 			<field name="NUM">0</field>
 		  </shadow>
-		</value>		  
+		</value>
+		<value name="str">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+		</value>		
     </block>
 	<block type="fu_oled_drawXBMP">
 		<value name="PROGMEM">
