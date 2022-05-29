@@ -2224,6 +2224,8 @@ Blockly.Blocks['fu_oled_drawFont'] = {
 		str = str.substring(1,str.length-1);
 		if (str!="") {
 			this.getField("str").setValue(str);
+			if (this.getInputTargetBlock("str").getField("TEXT"))
+				this.getInputTargetBlock("str").getField("TEXT").setValue("");			
 			this.getField("str").isDirty_=true;
 		}
 	} 
@@ -2280,6 +2282,8 @@ Blockly.Blocks['fu_oled_drawCustomFont'] = {
 		str = str.substring(1,str.length-1);
 		if (str!="") {
 			this.getField("str").setValue(str);
+			if (this.getInputTargetBlock("str").getField("TEXT"))
+				this.getInputTargetBlock("str").getField("TEXT").setValue("");
 			this.getField("str").isDirty_=true;
 		}
 	}  
