@@ -2207,10 +2207,9 @@ Blockly.Blocks['fu_oled_drawFont'] = {
         .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("Number")
         .appendField("y");
-    this.appendValueInput("str")
-        .setAlign(Blockly.ALIGN_RIGHT)	
-        .setCheck("String")
-        .appendField(Blockly.Msg["OLED_TEXT"]);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["OLED_TEXT"])
+		.appendField(new Blockly.FieldTextInput("hello"), "str");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -2254,10 +2253,9 @@ Blockly.Blocks['fu_oled_drawCustomFont'] = {
         .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("Number")
         .appendField("y");
-    this.appendValueInput("str")
-        .setAlign(Blockly.ALIGN_RIGHT)	
-        .setCheck("String")
-        .appendField(Blockly.Msg["OLED_TEXT"]);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["OLED_TEXT"])
+		.appendField(new Blockly.FieldTextInput("hello"), "str");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -13313,9 +13311,11 @@ Blockly.Blocks['fu_mqtt_loop'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("MQTT")
+		.appendField(Blockly.Msg["MQTT_FU_LOOP"]);	  
+    this.appendDummyInput()
 		.appendField(Blockly.Msg["MQTT_FU_WHEN_GETDATA"]);
     this.appendStatementInput("topic_getdata");	
-    this.setInputsInline(true);
+    this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(210);

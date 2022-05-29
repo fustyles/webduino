@@ -1547,11 +1547,11 @@ Blockly.Arduino['fu_oled_drawFont'] = function(block) {
 	var dropdown_size = block.getFieldValue('size');
 	var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
 	var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
-	var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+	var value_str = block.getFieldValue('str');
 	var variable = "xbm_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
  
-	if (value_str!='""') {
-		var text = value_str.replace(/"/g,"")
+	if (value_str!='') {
+		var text = value_str;
 		var c = document.getElementById("canvas_draw");
 		if (document.getElementById("canvas_draw")) {
 			c.parentElement.removeChild(c);
@@ -1634,11 +1634,11 @@ Blockly.Arduino['fu_oled_drawCustomFont'] = function(block) {
 	var dropdown_size = block.getFieldValue('size');
 	var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
 	var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
-	var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+	var value_str = block.getFieldValue('str');
 	var variable = "xbm_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
  
-	if (value_str!='""') {
-		var text = value_str.replace(/"/g,"")
+	if (value_str!='') {
+		var text = value_str;
 		var c = document.getElementById("canvas_draw");
 		if (document.getElementById("canvas_draw")) {
 			c.parentElement.removeChild(c);
