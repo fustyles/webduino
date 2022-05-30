@@ -100,7 +100,7 @@ Blockly.Msg.ESP32_BLUETOOTH_FEEDBACK_SHOW = "藍芽回傳字串";
 Blockly.Msg.ESP32_BLUETOOTH_FEEDBACK_NEWLINE_SHOW = "藍芽回傳字串(換行)";
 Blockly.Msg.ESP32_BLUETOOTH_GETDATA_SHOW = "藍芽取得字串";
 Blockly.Msg.ESP32_BLUETOOTH_INITIAL_SHOW = "藍芽(ESP32)初始設定";
-Blockly.Msg.ESP32_BLUETOOTH_READDATA_SHOW = "藍芽監聽讀取資料(loop)";
+Blockly.Msg.ESP32_BLUETOOTH_READDATA_SHOW = "藍芽監聽讀取資料";
 Blockly.Msg.LINKIT7697_SERVERMODULE_SHOW = "LinkIt7697連線到Wi-Fi熱點";
 Blockly.Msg.SERVERMODULE_TOINT_SHOW = "轉換為整數(int)";
 Blockly.Msg.SERVERMODULE_TODOUBLE_SHOW = "轉換為倍精度浮點數(double)";
@@ -954,7 +954,7 @@ Blockly.Msg["MQTT_FU_TO_TOPIC"] = "向主題";
 Blockly.Msg["MQTT_FU_PUBLISH_TEXT"] = "發布訊息文字";
 Blockly.Msg["MQTT_FU_GETDATA"] = "取得資料";
 Blockly.Msg["MQTT_FU_PUBLISH_IMAGE"] = "發布影像 (ESP32-CAM)";
-Blockly.Msg["MQTT_FU_LOOP"] = "監聽連線(loop)";
+Blockly.Msg["MQTT_FU_LOOP"] = "監聽連線";
 
 Blockly.Msg.TIME_DELAY_SHOW = "等待 (秒)";
 Blockly.Msg.DECLARE_VARIABLE_SHOW = "宣告變數 (var)";
@@ -1094,7 +1094,7 @@ Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW = "訊息文字";
 Blockly.Msg.ESP32_CAM_TELEGRAMBOT_SHOW = "ESP32-CAM 截圖上傳Telegram機器人";
 Blockly.Msg.ESP32_CAM_TOKEN_SHOW = "權杖";
 Blockly.Msg.ESP32_CAM_CHATID_SHOW = "聊天室ID";
-Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server模組取得網址參數指令並執行自訂指令區(loop)";
+Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server模組取得網址參數指令並執行自訂指令區";
 
 Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "圖檔Uint8Array格式轉換Base64格式";
 Blockly.Msg.COCOSSD_CLEAR_SHOW = "物件偵測(coco-ssd) 清除結果";
