@@ -13008,10 +13008,10 @@ Blockly.Blocks['servermodule_parameter_set_address3_0'] = {
 	this.appendDummyInput()
       .appendField("cmd")
       .appendField(new Blockly.FieldDropdown([
-		["ip","ip"],
-		["mac","mac"],
-		["restart","restart"],	
-		["getstill","getstill"]	
+		[Blockly.Msg["PARAMETER_IP"],"ip"],
+		[Blockly.Msg["PARAMETER_MAC"],"mac"],
+		[Blockly.Msg["PARAMETER_RESTART"],"restart"],	
+		[Blockly.Msg["PARAMETER_GETSTILL"],"getstill"]	
 		]), "cmd");	
 	this.setInputsInline(true);
     this.setOutput(true, null);  
@@ -13026,21 +13026,23 @@ Blockly.Blocks['servermodule_parameter_set_address3_1'] = {
 	this.appendDummyInput()
       .appendField("cmd")
       .appendField(new Blockly.FieldDropdown([
-		["digitalread(pin)","digitalread"],
-		["analogread(pin)","analogread"],
-		["touchread(pin)","touchread"],		
-		["flash(value)","flash"],		
-		["framesize(value)","framesize"],
-		["quality(value)","quality"],
-		["contrast(value)","contrast"],
-		["brightness(value)","brightness"],
-		["saturation(value)","saturation"],
-		["special_effect(value)","special_effect"],
-		["hmirror(value)","hmirror"],
-		["vflip(value)","vflip"],
-		["print(string)","print"],
-		["println(string)","println"],
-		["delay(value_ms)","delay"]		
+		[Blockly.Msg["PARAMETER_INPUTPULLUP"],"inputpullup"],
+		[Blockly.Msg["PARAMETER_PINMODE"],"pinmode"],	  
+		[Blockly.Msg["PARAMETER_DIGITALREAD"],"digitalread"],
+		[Blockly.Msg["PARAMETER_ANALOGREAD"],"analogread"],
+		[Blockly.Msg["PARAMETER_TOUCHREAD"],"touchread"],		
+		[Blockly.Msg["PARAMETER_FLASH"],"flash"],		
+		[Blockly.Msg["PARAMETER_FRAMESIZE"],"framesize"],
+		[Blockly.Msg["PARAMETER_QUALITY"],"quality"],
+		[Blockly.Msg["PARAMETER_CONTRAST"],"contrast"],
+		[Blockly.Msg["PARAMETER_BRIGHTNESS"],"brightness"],
+		[Blockly.Msg["PARAMETER_SATURATION"],"saturation"],
+		[Blockly.Msg["PARAMETER_SPECIAL_EFFECT"],"special_effect"],
+		[Blockly.Msg["PARAMETER_HMIRROR"],"hmirror"],
+		[Blockly.Msg["PARAMETER_VFLIP"],"vflip"],
+		[Blockly.Msg["PARAMETER_PRINT"],"print"],
+		[Blockly.Msg["PARAMETER_PRINTLN"],"println"],
+		[Blockly.Msg["PARAMETER_DELAY"],"delay"]		
 		]), "cmd"); 
     this.appendValueInput("p1")
         .appendField("p1")	
@@ -13058,10 +13060,11 @@ Blockly.Blocks['servermodule_parameter_set_address3_2'] = {
 	this.appendDummyInput()
       .appendField("cmd")
       .appendField(new Blockly.FieldDropdown([
-		["digitalwrite(pin, value)","digitalwrite"],
-		["analogwrite(pin, value)","analogwrite"],
-		["servo(pin, angle)","servo"],		
-		["relay(pin, value)","relay"]	
+		[Blockly.Msg["PARAMETER_RESETWIFI"],"resetwifi"],	  
+		[Blockly.Msg["PARAMETER_DIGITALWRITE"],"digitalwrite"],
+		[Blockly.Msg["PARAMETER_ANALOGWRITE"],"analogwrite"],
+		[Blockly.Msg["PARAMETER_SERVO"],"servo"],		
+		[Blockly.Msg["PARAMETER_RELAY"],"relay"]	
 		]), "cmd"); 
     this.appendValueInput("p1")
         .appendField("p1")	
@@ -13082,8 +13085,8 @@ Blockly.Blocks['servermodule_parameter_set_address3'] = {
 	this.appendDummyInput()
       .appendField("cmd")
       .appendField(new Blockly.FieldDropdown([
-		["buzzer(pin, frequency, duration)","buzzer"],
-		["servo(pin, angle, channel)","servo"],		
+		[Blockly.Msg["PARAMETER_BUZZER"],"buzzer"],
+		[Blockly.Msg["PARAMETER_SERVO_ESP"],"servo"],		
 		]), "cmd"); 
     this.appendValueInput("p1")
         .appendField("p1")	
@@ -13093,6 +13096,33 @@ Blockly.Blocks['servermodule_parameter_set_address3'] = {
         .setCheck(null);
     this.appendValueInput("p3")
         .appendField("p3")	
+        .setCheck(null);		
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);	
+  }
+};
+
+Blockly.Blocks['servermodule_parameter_set_address4'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_ADDRESS_SHOW);
+	this.appendDummyInput()
+      .appendField("cmd")
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["PARAMETER_BUZZER_ESP"],"buzzer"]		
+		]), "cmd"); 
+    this.appendValueInput("p1")
+        .appendField("p1")	
+        .setCheck(null); 
+    this.appendValueInput("p2")
+        .appendField("p2")	
+        .setCheck(null);
+    this.appendValueInput("p3")
+        .appendField("p3")	
+        .setCheck(null);
+    this.appendValueInput("p4")
+        .appendField("p4")	
         .setCheck(null);		
 	this.setInputsInline(true);
     this.setOutput(true, null);  

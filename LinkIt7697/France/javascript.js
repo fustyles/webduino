@@ -8235,14 +8235,14 @@ Blockly.Arduino['servermodule_parameter_set_address3_0'] = function (block) {
   if (cmd=="getstill")
 	var code = '"?"+"'+cmd+'"+"="+(new Date().getTime())';
   else
-	 var code = '"?"+String("'+cmd+'")';
+	 var code = '"?"+"'+cmd+'"';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['servermodule_parameter_set_address3_1'] = function (block) {
   var cmd = this.getFieldValue("cmd");
   var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC);  
-  var code = '"?"+"'+cmd+'"+"="+'+p1;
+  var code = '"?"+"'+cmd+'"+"="+String('+p1+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -8250,7 +8250,7 @@ Blockly.Arduino['servermodule_parameter_set_address3_2'] = function (block) {
   var cmd = this.getFieldValue("cmd");
   var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC);
   var p2 = Blockly.Arduino.valueToCode(block, 'p2', Blockly.Arduino.ORDER_ATOMIC);   
-  var code = '"?"+"'+cmd+'"+"="+'+p1+'+";"+'+p2;
+  var code = '"?"+"'+cmd+'"+"="+String('+p1+')+";"+String('+p2+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -8259,7 +8259,17 @@ Blockly.Arduino['servermodule_parameter_set_address3'] = function (block) {
   var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC);
   var p2 = Blockly.Arduino.valueToCode(block, 'p2', Blockly.Arduino.ORDER_ATOMIC); 
   var p3 = Blockly.Arduino.valueToCode(block, 'p3', Blockly.Arduino.ORDER_ATOMIC);   
-  var code = '"?"+"'+cmd+'"+"="+'+p1+'+";"+'+p2+'+";"+'+p3;
+  var code = '"?"+"'+cmd+'"+"="+String('+p1+')+";"+String('+p2+')+";"+String('+p3+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['servermodule_parameter_set_address4'] = function (block) {
+  var cmd = this.getFieldValue("cmd");
+  var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC);
+  var p2 = Blockly.Arduino.valueToCode(block, 'p2', Blockly.Arduino.ORDER_ATOMIC); 
+  var p3 = Blockly.Arduino.valueToCode(block, 'p3', Blockly.Arduino.ORDER_ATOMIC);  
+  var p4 = Blockly.Arduino.valueToCode(block, 'p4', Blockly.Arduino.ORDER_ATOMIC);    
+  var code = '"?"+"'+cmd+'"+"="+String('+p1+')+";"+String('+p2+')+";"+String('+p3+')+";"+String('+p4+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 

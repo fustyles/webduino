@@ -766,7 +766,7 @@
 				<block type="ajax_get_board" id="B:.k*BL(nNVgzET7xJ31">
 					<field name="async_">false</field>
 					<value name="url_">
-					  <block type="servermodule_parameter_stream" id="Ch.BSIe48U,R*?TcNVnn">
+					  <block type="servermodule_parameter_stream">
 						<value name="cmd">
 						  <block type="servermodule_parameter_set_address3_0">
 							<field name="cmd">restart</field>
@@ -812,7 +812,29 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>				
-			  </block>			  
+			  </block>
+			  <block type="servermodule_parameter_set_address4">
+				<value name="p1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p2">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p3">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p4">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
+			  </block>				  
 			  <block type="servermodule_parameter_set_address2">
 				<value name="cmd">
 				  <block type="text">
@@ -1027,7 +1049,7 @@
 							  </block>
 							</value>
 							<value name="url_">
-							  <block type="servermodule_parameter_set_address3_0" id="p.u$q|1WvG%l/=$z.6Dy">
+							  <block type="servermodule_parameter_set_address3_0">
 								<field name="cmd">getstill</field>
 							  </block>
 							</value>
