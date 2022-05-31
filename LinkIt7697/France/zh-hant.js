@@ -762,7 +762,7 @@ Blockly.Msg["FU_SERIAL_PRINT_HEX"] = "十六進制";
 Blockly.Msg["ESP32_CAM_GOOGLEDRIVE_SHOW"] = "ESP32-CAM 截圖上傳Google雲端硬碟";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_SHOW"] = "ESP32-CAM 截圖上傳Google試算表";
 Blockly.Msg["ESP32_CAM_SCRIPTID_SHOW"] = "Apps Script ID";	
-Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "權杖";
+Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "Line通知權杖";
 Blockly.Msg["ESP32_CAM_FOLDERNAME_SHOW"] = "資料夾名";	
 Blockly.Msg["ESP32_CAM_FILENAME_SHOW"] = "儲存檔案名";
 
