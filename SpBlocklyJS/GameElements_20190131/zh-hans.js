@@ -522,3 +522,4 @@ Blockly.Msg.SPAN_VALUE = "值";
 Blockly.Msg.SPAN_SET = "设定";
 Blockly.Msg.SPAN_GET = "取得";
 Blockly.Msg.SPAN_DELETE = "删除";
+Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "图档Uint8Array格式转换Base64格式";
