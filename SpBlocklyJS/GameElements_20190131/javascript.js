@@ -2012,8 +2012,8 @@ Blockly.JavaScript['span_delete'] = function (block) {
   return code;
 };
 
-Blockly.Arduino['image_binarytobase64'] = function (block) {
-  var value_array = Blockly.Arduino.valueToCode(block, 'array_', Blockly.Arduino.ORDER_ATOMIC);
+BlocklyJavaScript['image_binarytobase64'] = function (block) {
+  var value_array = Blockly.JavaScript.valueToCode(block, 'array_', Blockly.JavaScript.ORDER_ATOMIC);
   var code = '"data:image/jpeg;base64,"+ binarytobase64('+value_array+')';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
