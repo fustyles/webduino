@@ -522,3 +522,4 @@ Blockly.Msg.SPAN_VALUE = "Value";
 Blockly.Msg.SPAN_SET = "Set";
 Blockly.Msg.SPAN_GET = "Get";
 Blockly.Msg.SPAN_DELETE = "Delete";
+Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "Image Uint8Array to Base64";
