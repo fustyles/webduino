@@ -4345,7 +4345,7 @@ Blockly.Blocks['video_create'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.PROPERTY_CAM)
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"true"], [Blockly.Msg.PROPERTY_NO,"false"]], this.validate), "cam_");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"true"], [Blockly.Msg.PROPERTY_NO,"false"]]), "cam_");
   this.appendValueInput("src_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -4386,26 +4386,7 @@ Blockly.Blocks['video_create'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
-  },
-  validate: function(newValue) {
-	 const block = this.sourceBlock_;
-	 if (newValue=="true") {
-		 block.getInput("src_").setVisible(false);
-		 block.getInput("v1").setVisible(false);
-		 block.getInput("v2").setVisible(false);
-		 block.getInput("v3").setVisible(false);
-		 block.getInput("v4").setVisible(false);
-		 block.getInput("v5").setVisible(false);
-	 }
-	 else {
-		 block.getInput("src_").setVisible(true);
-		 block.getInput("v1").setVisible(true);
-		 block.getInput("v2").setVisible(true);
-		 block.getInput("v3").setVisible(true);
-		 block.getInput("v4").setVisible(true);
-		 block.getInput("v5").setVisible(true);		 
-	 }	 
-  } 
+  }
 };
 
 Blockly.Blocks['video_set'] = {
