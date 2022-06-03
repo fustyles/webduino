@@ -4391,19 +4391,19 @@ Blockly.Blocks['video_create'] = {
 	 const block = this.sourceBlock_;
 	 if (newValue=="true") {
 		 block.getInput("src_").setVisible(false);
-		 block.getField("v1").setVisible(false);
-		 block.getField("v2").setVisible(false);
-		 block.getField("v3").setVisible(false);
-		 block.getField("v4").setVisible(false);
-		 block.getField("v5").setVisible(false);
+		 block.getInput("v1").setVisible(false);
+		 block.getInput("v2").setVisible(false);
+		 block.getInput("v3").setVisible(false);
+		 block.getInput("v4").setVisible(false);
+		 block.getInput("v5").setVisible(false);
 	 }
 	 else {
 		 block.getInput("src_").setVisible(true);
-		 block.getField("v1").setVisible(true);
-		 block.getField("v2").setVisible(true);
-		 block.getField("v3").setVisible(true);
-		 block.getField("v4").setVisible(true);
-		 block.getField("v5").setVisible(true);		 
+		 block.getInput("v1").setVisible(true);
+		 block.getInput("v2").setVisible(true);
+		 block.getInput("v3").setVisible(true);
+		 block.getInput("v4").setVisible(true);
+		 block.getInput("v5").setVisible(true);		 
 	 }	 
   } 
 };
