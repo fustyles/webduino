@@ -4405,7 +4405,7 @@ Blockly.Blocks['video_create'] = {
 		 block.getInput("v4").setVisible(true);
 		 block.getInput("v5").setVisible(true);		 
 	 }	 
-  }  
+  } 
 };
 
 Blockly.Blocks['video_set'] = {
