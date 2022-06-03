@@ -4325,11 +4325,7 @@ Blockly.Blocks['video_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);
-  this.appendValueInput("src_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.PROPERTY_SRC); 	  
+      .appendField(Blockly.Msg.ID);	  
   this.appendValueInput("width_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -4349,24 +4345,28 @@ Blockly.Blocks['video_create'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.PROPERTY_CAM)
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"true"], [Blockly.Msg.PROPERTY_NO,"false"]]), "cam_");  
-  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"true"], [Blockly.Msg.PROPERTY_NO,"false"]], this.validate), "cam_");
+  this.appendValueInput("src_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.PROPERTY_SRC); 	  
+  this.appendDummyInput("v1")  
       .appendField(Blockly.Msg.PROPERTY_AUTOPLAY)
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_NO,"false"], [Blockly.Msg.PROPERTY_YES,"true"]]), "autoplay_");
-  this.appendDummyInput()  
+  this.appendDummyInput("v2")  
       .appendField(Blockly.Msg.PROPERTY_LOOP)
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_NO,"false"], [Blockly.Msg.PROPERTY_YES,"true"]]), "loop_");
-  this.appendDummyInput()  
+  this.appendDummyInput("v3")  
       .appendField(Blockly.Msg.PROPERTY_MUTED)
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_NO,"false"], [Blockly.Msg.PROPERTY_YES,"true"]]), "muted_");
-  this.appendDummyInput()  
+  this.appendDummyInput("v4")  
       .appendField(Blockly.Msg.PROPERTY_CONTROLS)
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"true"], [Blockly.Msg.PROPERTY_NO,"false"]]), "controls_");
-  this.appendDummyInput()  
+  this.appendDummyInput("v5")  
       .appendField(Blockly.Msg.PROPERTY_PRELOAD)
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"true"], [Blockly.Msg.PROPERTY_NO,"false"]]), "preload_");
@@ -4386,7 +4386,26 @@ Blockly.Blocks['video_create'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
-  }
+  },
+  validate: function(newValue) {
+	 const block = this.sourceBlock_;
+	 if (newValue=="true") {
+		 block.getInput("src_").setVisible(false);
+		 block.getField("v1").setVisible(false);
+		 block.getField("v2").setVisible(false);
+		 block.getField("v3").setVisible(false);
+		 block.getField("v4").setVisible(false);
+		 block.getField("v5").setVisible(false);
+	 }
+	 else {
+		 block.getInput("src_").setVisible(true);
+		 block.getField("v1").setVisible(true);
+		 block.getField("v2").setVisible(true);
+		 block.getField("v3").setVisible(true);
+		 block.getField("v4").setVisible(true);
+		 block.getField("v5").setVisible(true);		 
+	 }	 
+  } 
 };
 
 Blockly.Blocks['video_set'] = {
