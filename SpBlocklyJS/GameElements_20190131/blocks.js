@@ -5,7 +5,23 @@ Blockly.Blocks['table_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_ID);     
+      .appendField(Blockly.Msg.TABLE_ID);
+  this.appendValueInput("trcount_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TRCOUNT);    
+  this.appendValueInput("tdcount_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TDCOUNT);   
+  this.appendValueInput("width_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_WIDTH);
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_HEIGHT); 	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -24,23 +40,7 @@ Blockly.Blocks['table_create'] = {
   this.appendValueInput("bordercolor_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_BORDERCOLOR);       
-  this.appendValueInput("trcount_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TRCOUNT);    
-  this.appendValueInput("tdcount_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TDCOUNT);   
-  this.appendValueInput("width_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_WIDTH);
-  this.appendValueInput("height_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_HEIGHT);    
+      .appendField(Blockly.Msg.TABLE_BORDERCOLOR);          
   this.appendValueInput("bgcolor_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -1820,7 +1820,15 @@ Blockly.Blocks['button_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);    
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("value_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.VALUE); 
+  this.appendValueInput("fontsize_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FONTSIZE); 	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -1845,14 +1853,6 @@ Blockly.Blocks['button_create'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.BACKCOLOR);     
-  this.appendValueInput("value_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VALUE); 
-  this.appendValueInput("fontsize_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.FONTSIZE); 
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -2196,7 +2196,11 @@ Blockly.Blocks['colorpicker_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);    
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("value_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.COLORPICKER_COLOR); 	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -2217,10 +2221,6 @@ Blockly.Blocks['colorpicker_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPACITY);   
-  this.appendValueInput("value_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.COLORPICKER_COLOR); 
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -2304,7 +2304,19 @@ Blockly.Blocks['select_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);    
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("value_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.SELECT_VALUE);  
+  this.appendValueInput("option_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.SELECT_OPTION); 
+  this.appendValueInput("fontsize_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FONTSIZE);
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -2328,23 +2340,11 @@ Blockly.Blocks['select_create'] = {
   this.appendValueInput("color_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null)
-      .appendField(Blockly.Msg.FONTCOLOR);
-  this.appendValueInput("fontsize_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck("Number")
-      .appendField(Blockly.Msg.FONTSIZE);    
+      .appendField(Blockly.Msg.FONTCOLOR);    
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.OPACITY);   
-  this.appendValueInput("option_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.SELECT_OPTION); 
-  this.appendValueInput("value_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.SELECT_VALUE);     
+      .appendField(Blockly.Msg.OPACITY);     
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -2428,7 +2428,23 @@ Blockly.Blocks['range_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);    
+      .appendField(Blockly.Msg.ID); 
+  this.appendValueInput("value_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.VALUE);
+  this.appendValueInput("min_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.MIN); 
+  this.appendValueInput("max_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.MAX); 
+  this.appendValueInput("step_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.STEP); 	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -2445,22 +2461,6 @@ Blockly.Blocks['range_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.HEIGHT);
-  this.appendValueInput("min_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.MIN); 
-  this.appendValueInput("max_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.MAX); 
-  this.appendValueInput("step_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.STEP); 
-  this.appendValueInput("value_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VALUE); 
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -2548,7 +2548,15 @@ Blockly.Blocks['text_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID); 
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("value_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TEXT_VALUE);
+  this.appendValueInput("fontsize_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FONTSIZE); 	  
   this.appendValueInput("width_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -2573,18 +2581,10 @@ Blockly.Blocks['text_create'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null)
       .appendField(Blockly.Msg.FONTCOLOR);
-  this.appendValueInput("fontsize_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck("Number")
-      .appendField(Blockly.Msg.FONTSIZE);
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPACITY);
-  this.appendValueInput("value_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TEXT_VALUE); 
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -2676,7 +2676,19 @@ Blockly.Blocks['div_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);    
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("innerHTML_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.DIV_VALUE); 
+  this.appendValueInput("fontsize_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FONTSIZE);
+  this.appendValueInput("color_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null)
+      .appendField(Blockly.Msg.FONTCOLOR);	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -2708,22 +2720,10 @@ Blockly.Blocks['div_create'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null)
       .appendField(Blockly.Msg.BACKCOLOR);
-  this.appendValueInput("color_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck(null)
-      .appendField(Blockly.Msg.FONTCOLOR);
-  this.appendValueInput("fontsize_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck("Number")
-      .appendField(Blockly.Msg.FONTSIZE);
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPACITY);
-  this.appendValueInput("innerHTML_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.DIV_VALUE); 
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -2886,7 +2886,15 @@ Blockly.Blocks['iframe_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);    
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("src_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.IFRAME_SRC); 
+  this.appendValueInput("srcdoc_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.IFRAME_SRCDOC); 	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -2909,14 +2917,6 @@ Blockly.Blocks['iframe_create'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.IFRAME_SCROLLING)
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"yes"], [Blockly.Msg.PROPERTY_NO,"no"], [Blockly.Msg.PROPERTY_AUTO,"auto"]]), "scrolling_");     
-  this.appendValueInput("src_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.IFRAME_SRC); 
-  this.appendValueInput("srcdoc_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.IFRAME_SRCDOC); 
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3084,7 +3084,19 @@ Blockly.Blocks['a_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);    
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("innerHTML_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.DIV_VALUE); 
+  this.appendValueInput("href_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.A_HREF);
+  this.appendValueInput("fontsize_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FONTSIZE); 	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3101,6 +3113,14 @@ Blockly.Blocks['a_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.HEIGHT);
+  this.appendValueInput("background_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null)
+      .appendField(Blockly.Msg.BACKCOLOR);
+  this.appendValueInput("color_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null)
+      .appendField(Blockly.Msg.FONTCOLOR);	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_SOLID,"solid"], [Blockly.Msg.PROPERTY_DASHED,"dashed"], [Blockly.Msg.PROPERTY_DOUBLE,"double"], [Blockly.Msg.PROPERTY_DOTTED,"dotted"], [Blockly.Msg.PROPERTY_GROOVE,"groove"], [Blockly.Msg.PROPERTY_RIDGE,"ridge"], [Blockly.Msg.PROPERTY_INSET,"inset"], [Blockly.Msg.PROPERTY_OUTSET,"outset"],  [Blockly.Msg.PROPERTY_NONE,"none"], [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]]), "borderstyle_");  
@@ -3112,30 +3132,10 @@ Blockly.Blocks['a_create'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_BORDERCOLOR);         
-  this.appendValueInput("background_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck(null)
-      .appendField(Blockly.Msg.BACKCOLOR);
-  this.appendValueInput("color_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck(null)
-      .appendField(Blockly.Msg.FONTCOLOR);
-  this.appendValueInput("fontsize_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck("Number")
-      .appendField(Blockly.Msg.FONTSIZE);
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPACITY);
-  this.appendValueInput("innerHTML_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.DIV_VALUE); 
-  this.appendValueInput("href_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.A_HREF); 
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.A_TARGET)
@@ -3212,19 +3212,7 @@ Blockly.Blocks['radio_create'] = {
   this.appendValueInput("name_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.PROPERTY_NAME);  
-  this.appendValueInput("left_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.LEFT);    
-  this.appendValueInput("top_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TOP);
-  this.appendValueInput("size_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.SIZE);
+      .appendField(Blockly.Msg.PROPERTY_NAME);
   this.appendValueInput("value_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3233,6 +3221,18 @@ Blockly.Blocks['radio_create'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.PROPERTY_CHECKED);
+  this.appendValueInput("size_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.SIZE);	  
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LEFT);    
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TOP);
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3338,18 +3338,6 @@ Blockly.Blocks['checkbox_create'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.ID);
-  this.appendValueInput("left_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.LEFT);    
-  this.appendValueInput("top_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TOP);
-  this.appendValueInput("size_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.SIZE);
   this.appendValueInput("value_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3358,6 +3346,18 @@ Blockly.Blocks['checkbox_create'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.PROPERTY_CHECKED);
+  this.appendValueInput("size_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.SIZE);	  
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LEFT);    
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TOP);
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3446,14 +3446,10 @@ Blockly.Blocks['textarea_create'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.ID);
-  this.appendValueInput("left_")
-      .setCheck("Number")
+  this.appendValueInput("value_")
+      .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.LEFT);    
-  this.appendValueInput("top_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TOP);
+      .appendField(Blockly.Msg.PROPERTY_VALUE);		  
   this.appendValueInput("cols_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3462,10 +3458,14 @@ Blockly.Blocks['textarea_create'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.PROPERTY_ROWS);
-  this.appendValueInput("value_")
-      .setCheck(null)
+  this.appendValueInput("left_")
+      .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.PROPERTY_VALUE);
+      .appendField(Blockly.Msg.LEFT);    
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TOP);
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3553,7 +3553,23 @@ Blockly.Blocks['number_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);    
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("value_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.VALUE);
+  this.appendValueInput("min_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.MIN); 
+  this.appendValueInput("max_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.MAX); 
+  this.appendValueInput("step_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.STEP); 	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3574,22 +3590,6 @@ Blockly.Blocks['number_create'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck("Number")
       .appendField(Blockly.Msg.FONTSIZE);
-  this.appendValueInput("min_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.MIN); 
-  this.appendValueInput("max_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.MAX); 
-  this.appendValueInput("step_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.STEP); 
-  this.appendValueInput("value_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VALUE);   
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3677,7 +3677,19 @@ Blockly.Blocks['date_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);    
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("value_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.VALUE+"(YYYY-MM-DD)");
+  this.appendValueInput("min_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.MIN+"(YYYY-MM-DD)"); 
+  this.appendValueInput("max_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.MAX+"(YYYY-MM-DD)"); 	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3686,18 +3698,6 @@ Blockly.Blocks['date_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TOP);
-  this.appendValueInput("min_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.MIN+"(YYYY-MM-DD)"); 
-  this.appendValueInput("max_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.MAX+"(YYYY-MM-DD)");
-  this.appendValueInput("value_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VALUE+"(YYYY-MM-DD)");   
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3785,7 +3785,11 @@ Blockly.Blocks['time_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);    
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("value_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.VALUE+"(HH:mm:ss)"); 	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3794,10 +3798,6 @@ Blockly.Blocks['time_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TOP);
-  this.appendValueInput("value_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VALUE+"(HH:mm:ss)");   
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3885,7 +3885,11 @@ Blockly.Blocks['datetime_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);    
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("value_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.VALUE+"(yyyy-mm-dd HH:mm)");  	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3894,10 +3898,6 @@ Blockly.Blocks['datetime_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TOP);
-  this.appendValueInput("value_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VALUE+"(yyyy-mm-dd HH:mm)");   
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3985,7 +3985,15 @@ Blockly.Blocks['progress_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);    
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("value_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.VALUE);
+  this.appendValueInput("max_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.MAX);  	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3994,14 +4002,6 @@ Blockly.Blocks['progress_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TOP);
-  this.appendValueInput("max_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.MAX); 
-  this.appendValueInput("value_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VALUE);   
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -4074,7 +4074,19 @@ Blockly.Blocks['password_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID); 
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("value_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.VALUE); 
+  this.appendValueInput("maxlength_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.MAXLENGTH);
+  this.appendValueInput("fontsize_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FONTSIZE);	  
   this.appendValueInput("width_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -4091,14 +4103,6 @@ Blockly.Blocks['password_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TOP);   
-  this.appendValueInput("maxlength_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.MAXLENGTH);
-  this.appendValueInput("value_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VALUE); 
   this.appendValueInput("background_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null)
@@ -4107,10 +4111,6 @@ Blockly.Blocks['password_create'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null)
       .appendField(Blockly.Msg.FONTCOLOR);
-  this.appendValueInput("fontsize_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck("Number")
-      .appendField(Blockly.Msg.FONTSIZE);
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -4325,7 +4325,11 @@ Blockly.Blocks['video_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);    
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("src_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.PROPERTY_SRC); 	  
   this.appendValueInput("width_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -4346,10 +4350,6 @@ Blockly.Blocks['video_create'] = {
       .appendField(Blockly.Msg.PROPERTY_CAM)
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"true"], [Blockly.Msg.PROPERTY_NO,"false"]]), "cam_");  
-  this.appendValueInput("src_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.PROPERTY_SRC); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.PROPERTY_AUTOPLAY)
       .setAlign(Blockly.ALIGN_RIGHT)	  
@@ -4821,7 +4821,11 @@ Blockly.Blocks['span_create'] = {
   this.appendValueInput("innerHTML_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.SPAN_VALUE); 
+      .appendField(Blockly.Msg.SPAN_VALUE);
+  this.appendValueInput("fontsize_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FONTSIZE);	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -4830,10 +4834,6 @@ Blockly.Blocks['span_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TOP);
-  this.appendValueInput("fontsize_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck("Number")
-      .appendField(Blockly.Msg.FONTSIZE);
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
