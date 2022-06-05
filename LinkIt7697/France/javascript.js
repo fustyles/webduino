@@ -61,6 +61,7 @@ Blockly.Arduino['fu_ntpserver_get'] = function(block) {
 Blockly.Arduino['esp32_telegrambot'] = function(block) {
   var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
+  var baudrate = block.getFieldValue('baudrate');
   var token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);
   var chat_id = Blockly.Arduino.valueToCode(block, 'chat_id', Blockly.Arduino.ORDER_ATOMIC);   
   var command = Blockly.Arduino.valueToCode(block, 'command', Blockly.Arduino.ORDER_ATOMIC); 
@@ -106,7 +107,7 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'  }\n'+ 
 			'}\n';
 
-	Blockly.Arduino.setups_.setup_serial='WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin(115200);\n  delay(10);\n';
+	Blockly.Arduino.setups_.setup_serial='WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin('+baudrate+');\n  delay(10);\n';
 	Blockly.Arduino.setups_.setup_wifi='initWiFi();\n';
 
 	Blockly.Arduino.definitions_.initWiFi = ''+
@@ -2971,7 +2972,8 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
   var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
   var ssid_ap = Blockly.Arduino.valueToCode(block, 'ssid_ap', Blockly.Arduino.ORDER_ATOMIC);
-  var pass_ap = Blockly.Arduino.valueToCode(block, 'password_ap', Blockly.Arduino.ORDER_ATOMIC);    
+  var pass_ap = Blockly.Arduino.valueToCode(block, 'password_ap', Blockly.Arduino.ORDER_ATOMIC);
+  var baudrate = block.getFieldValue('baudrate');  
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
   
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
@@ -3092,7 +3094,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'}\n'+ 
 			'}\n';
 
-	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin(115200);\n  delay(10);\n";
+	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);\n";
 	Blockly.Arduino.setups_.setup_wifi=''+
 			'  //WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
 			'  WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+ 
@@ -3274,7 +3276,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 };
 
 Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
-    var baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
+    var baudrate = block.getFieldValue('baudrate');
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
 	Blockly.Arduino.definitions_.define_esp32_bluetooth_include = '#include "BluetoothSerial.h"\n'+
 																	'#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)\n'+
@@ -3407,6 +3409,13 @@ Blockly.Arduino['servermodule_cmd'] = function (block) {
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
   var code = 'cmd == String(' + text + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['servermodule_cmd_if'] = function (block) {
+  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
+  var statement = Blockly.Arduino.statementToCode(block, 'statement');
+  var code = 'if (cmd == String(' + text + ')) {\n'+statement+'}\n';
+  return code;
 };
 
 Blockly.Arduino['servermodule_feedback'] = function (block) {
@@ -3679,7 +3688,7 @@ Blockly.Arduino['esp32_setuploop'] = function(block) {
 };
 
 Blockly.Arduino['esp32_bluetooth_initial'] = function(block) {
-    var baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
+    var baudrate = block.getFieldValue('baudrate');
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
 	var statements_setup = Blockly.Arduino.statementToCode(block, 'setup');
 
@@ -3719,6 +3728,7 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
   var mainpage = Blockly.Arduino.valueToCode(block, 'mainpage', Blockly.Arduino.ORDER_ATOMIC);
   var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
+  var baudrate = block.getFieldValue('baudrate');
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand'); 
   
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <LWiFi.h>';  
@@ -3787,7 +3797,7 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'}\n'+ 
 			'}\n';
 
-	Blockly.Arduino.setups_.setup_serial="Serial.begin(9600);\n  delay(10);\n";
+	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
 	Blockly.Arduino.setups_.setup_wifi=''+
 			'  //WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
 			'  WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+ 
@@ -8465,7 +8475,8 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
   var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
   var ssid_ap = Blockly.Arduino.valueToCode(block, 'ssid_ap', Blockly.Arduino.ORDER_ATOMIC);
-  var pass_ap = Blockly.Arduino.valueToCode(block, 'password_ap', Blockly.Arduino.ORDER_ATOMIC);  
+  var pass_ap = Blockly.Arduino.valueToCode(block, 'password_ap', Blockly.Arduino.ORDER_ATOMIC);
+  var baudrate = block.getFieldValue('baudrate');  
   var framesize = block.getFieldValue('framesize');
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');	
 	
@@ -8625,7 +8636,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'}\n'+ 
 			'}\n';
 	
-	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin(115200);\n  delay(10);";
+	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_cam_initial=''+
 			'  Serial.setDebugOutput(true);\n'+
 			'  Serial.println();\n'+
@@ -8861,7 +8872,8 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
   var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
   var ssid_ap = Blockly.Arduino.valueToCode(block, 'ssid_ap', Blockly.Arduino.ORDER_ATOMIC);
-  var pass_ap = Blockly.Arduino.valueToCode(block, 'password_ap', Blockly.Arduino.ORDER_ATOMIC);  
+  var pass_ap = Blockly.Arduino.valueToCode(block, 'password_ap', Blockly.Arduino.ORDER_ATOMIC);
+  var baudrate = block.getFieldValue('baudrate');  
   var framesize = block.getFieldValue('framesize');
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');	
 	
@@ -9022,7 +9034,7 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
 			'}\n'+ 
 			'}\n';
 	
-	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin(115200);\n  delay(10);";
+	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_cam_initial=''+
 			'  Serial.setDebugOutput(true);\n'+
 			'  Serial.println();\n'+

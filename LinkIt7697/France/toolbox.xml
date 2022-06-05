@@ -210,7 +210,8 @@
 				  <block type="text" id="101">
 					<field name="TEXT">12345678</field>
 				  </block>
-				</value>				
+				</value>
+				<field name="baudrate">115200</field>				
 				<value name="mainpage">
 				  <block type="servermodule_javascript" id="102">
 					<statement name="js">
@@ -363,6 +364,7 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>
+				<field name="baudrate">115200</field>				
 				<value name="mainpage">
 				  <block type="servermodule_javascript" id="102">
 					<statement name="js">
@@ -505,11 +507,7 @@
 		
 		<category id="france7" name="bluetoothmodule">
 		  <block type="esp32_myfirmata_bluetooth" id="232">
-			<value name="baudrate">
-			  <block type="math_number" id="233">
-				<field name="NUM">9600</field>
-			  </block>
-			</value>
+			<field name="baudrate">9600</field>
 			<value name="blename">
 			  <block type="text" id="234">
 				<field name="TEXT">ESp32 BLE</field>
@@ -605,11 +603,7 @@
 		  </block>
 		 
 		  <block type="esp32_bluetooth_initial" id="4" inline="true">
-			<value name="baudrate">
-			  <block type="math_number" id="5">
-				<field name="NUM">9600</field>
-			  </block>
-			</value>
+			<field name="baudrate">9600</field>
 			<value name="blename">
 			  <block type="text" id="6">
 				<field name="TEXT">ESp32 BLE</field>
@@ -632,6 +626,7 @@
 					<field name="TEXT">87654321</field>
 				  </block>
 				</value>
+				<field name="baudrate">115200</field>				
 				<value name="token">
 				  <block type="text">
 					<field name="TEXT"></field>
@@ -722,6 +717,13 @@
 				  </block>
 				</value>
 			  </block>
+			  <block type="servermodule_cmd_if">
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			  </block>			  
 			  <block type="servermodule_parameter_set">
 				<value name="text">
 				  <block type="text">
@@ -945,6 +947,7 @@
 					<field name="TEXT">12345678</field>
 				  </block>
 				</value>
+				<field name="baudrate">115200</field>				
 				<field name="framesize">QVGA</field>				
 				<value name="mainpage">
 				  <block type="servermodule_javascript" id="102">
@@ -1038,6 +1041,7 @@
 					<field name="TEXT">12345678</field>
 				  </block>
 				</value>
+				<field name="baudrate">115200</field>				
 				<field name="framesize">QVGA</field>				
 				<value name="mainpage">
 				  <block type="servermodule_javascript" id="102">

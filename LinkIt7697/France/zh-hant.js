@@ -41,6 +41,7 @@ Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW = "數值";
 Blockly.Msg.ESP32_DIGITALWRITE_HIGH_SHOW = "高電位";
 Blockly.Msg.ESP32_DIGITALWRITE_LOW_SHOW = "低電位";
 Blockly.Msg.SERVERMODULE_CMD_SHOW = "參數cmd為";
+Blockly.Msg.SERVERMODULE_CMD_IF_SHOW = "如果參數cmd為";
 Blockly.Msg.SERVERMODULE_FEEDBACK_SHOW = "回傳瀏覽器內容";
 Blockly.Msg.SERVERMODULE_EXECUTE_SHOW = "自訂指令區";
 Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW = "首頁網頁";
@@ -746,7 +747,7 @@ Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_SCORE_SHOW = "信心分數";
 //SERIAL
 Blockly.Msg["FU_SERIAL_HUE"] = "60";
 Blockly.Msg["FU_SERIAL"] = "序列埠";
-Blockly.Msg["FU_SERIAL_BAUDRATE"] = "通訊起始鮑率";
+Blockly.Msg["FU_SERIAL_BAUDRATE"] = "通訊鮑率";
 Blockly.Msg["FU_SERIAL_CONFIG"] = "格式";
 Blockly.Msg["FU_SERIAL_READY"] = "等待連線";
 Blockly.Msg["FU_SERIAL_END"] = "通訊停止";
