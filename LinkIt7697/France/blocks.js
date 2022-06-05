@@ -8,7 +8,7 @@ Blockly.Blocks['fu_ntpserver_initial'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
   }
 };
 
@@ -19,7 +19,7 @@ Blockly.Blocks['fu_ntpserver_getlocaltime'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
   }
 };
 
@@ -105,20 +105,137 @@ Blockly.Blocks['esp32_telegrambot'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
+  }
+};
+
+Blockly.Blocks['esp32cam_telegrambot'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32CAM_TELEGRAMBOT_SHOW);
+    this.appendValueInput("ssid")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_SSID_SHOW);
+    this.appendValueInput("password")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_PASSWORD_SHOW);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["FU_SERIAL_BAUDRATE"])	
+		.appendField(new Blockly.FieldDropdown([
+			["300","300"],
+			["1200","1200"],
+			["2400","2400"],
+			["4800","4800"],
+			["9600","9600"],	    
+			["19200","19200"],
+			["38400","38400"],
+			["57600","57600"],
+			["74880","74880"],
+			["115200","115200"],	
+			["230400","230400"],
+			["250000","250000"],
+			["500000","500000"],
+			["1000000","1000000"],	
+			["2000000","2000000"]
+		]), "baudrate");
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["UXGA(1600x1200)","UXGA"],
+			["SXGA(1280x1024)","SXGA"], 
+			["XGA(1024x768)","XGA"],
+			["SVGA(800x600)","SVGA"],
+			["VGA(640x480)","VGA"],
+			["CIF(400x296)","CIF"],
+			["QVGA(320x240)","QVGA"],
+			["HQVGA(240x176)","HQVGA"],
+			["QQVGA(160x120)","QQVGA"],
+			["QXGA(2048x1564)","QXGA"]	
+		]), "framesize");		
+    this.appendValueInput("token")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_TOKEN_SHOW);
+    this.appendValueInput("chat_id")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_CHATID_SHOW);	
+    this.appendValueInput("command")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_COMMAND_SHOW);	
+    this.appendValueInput("keyboard")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_KEYBOARD_SHOW);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_EXECUTE_SHOW);
+    this.appendStatementInput("ExecuteCommand")
+        .setCheck(null);
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(190);
   }
 };
 
 Blockly.Blocks['esp32_telegrambot_sendmessage'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_SENDMESSAGE_SHOW);
+        .appendField("Telegram Bot")	
+        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_SENDMESSAGE_SHOW);		
     this.appendValueInput("message")
         .setCheck("String");
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
+  }
+};
+
+Blockly.Blocks['esp32_telegrambot_sendmessage_custom'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Telegram Bot");
+    this.appendValueInput("token")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_TOKEN_SHOW);
+    this.appendValueInput("chat_id")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_CHATID_SHOW);
+    this.appendValueInput("message")
+        .setCheck("String")
+        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_SENDMESSAGE_SHOW);			
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(190);
+  }
+};
+
+Blockly.Blocks['esp32_telegrambot_get_token'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_GET_TOKEN_SHOW);
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(80);
+  }
+};
+
+Blockly.Blocks['esp32_telegrambot_get_chatid'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_GET_CHATID_SHOW);
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(80);
   }
 };
 
@@ -2988,7 +3105,7 @@ Blockly.Blocks['fu_oled_drawEllipse'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(210);
+    this.setColour(190);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -5706,7 +5823,7 @@ Blockly.Blocks['esp32_myfirmata'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
   }
 };
 
@@ -5776,7 +5893,7 @@ Blockly.Blocks['esp32_cam_myfirmata'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
   }
 };
 
@@ -5846,7 +5963,7 @@ Blockly.Blocks['esp32_cam_stream_myfirmata'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
   }
 };
 
@@ -5942,7 +6059,7 @@ Blockly.Blocks['esp32_myfirmata_bluetooth'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
   }
 };
 
@@ -5969,7 +6086,7 @@ Blockly.Blocks['servermodule_cmd_if'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
   }
 };
 
@@ -6539,7 +6656,7 @@ Blockly.Blocks['linkit7697_myfirmata'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);	
-    this.setColour(210);
+    this.setColour(190);
   }
 };
 Blockly.Blocks['table_create'] = {
@@ -12987,7 +13104,7 @@ Blockly.Blocks['webbit_mooncar_ws2812_pin'] = {
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0,null);
 		this.setNextStatement(!0,null);
-		this.setColour(210);			
+		this.setColour(190);			
 	}
 };
 
@@ -13000,7 +13117,7 @@ Blockly.Blocks['webbit_mooncar_ws2812_brightness'] = {
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0,null);
 		this.setNextStatement(!0,null);
-		this.setColour(210);			
+		this.setColour(190);			
 	}
 };
 
@@ -13011,7 +13128,7 @@ Blockly.Blocks['webbit_mooncar_ws2812_clear'] = {
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0,null);
 		this.setNextStatement(!0,null);
-		this.setColour(210);			
+		this.setColour(190);			
 	}
 };
 
@@ -13052,7 +13169,7 @@ Blockly.Blocks['webbit_mooncar_ws2812_color'] = {
         .appendField('   ');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(210);	
+    this.setColour(190);	
   }
 };
 
@@ -13070,7 +13187,7 @@ Blockly.Blocks['webbit_mooncar_ws2812_color_one_n'] = {
 	this.setInputsInline(!0);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(210);	
+    this.setColour(190);	
   }
 };
 
@@ -13095,7 +13212,7 @@ Blockly.Blocks['webbit_mooncar_ws2812_rgb_one_n'] = {
 	this.setInputsInline(!0);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(210);	
+    this.setColour(190);	
   }
 };
 
@@ -13544,7 +13661,7 @@ Blockly.Blocks['fu_mqtt_setup'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
   }
 };
 
@@ -13559,7 +13676,7 @@ Blockly.Blocks['fu_mqtt_loop'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
   }
 };
 
@@ -13573,7 +13690,7 @@ Blockly.Blocks['fu_mqtt_subscribe'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
   }
 };
 
@@ -13588,7 +13705,7 @@ Blockly.Blocks['fu_mqtt_gettopic'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
   }
 };
 
@@ -13606,7 +13723,7 @@ Blockly.Blocks['fu_mqtt_senddata'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
   }
 };	
 
@@ -13633,7 +13750,7 @@ Blockly.Blocks['fu_mqtt_sendimage'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(190);
   }
 };
 
@@ -15168,7 +15285,7 @@ Blockly.Blocks['esp32_cam_telegrambot'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(65);
+	this.setColour(190);
   }
 };
 
