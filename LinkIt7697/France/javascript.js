@@ -25,7 +25,8 @@ Blockly.Arduino['uart_initial'] = function(block) {
 				'  uartData = "";\n'+
 				'  while ('+serial+'.available()) {\n'+
 				'    char c='+serial+'.read();\n'+
-				'    uartData+=String(c);\n'+
+				'    if (c!=\'\\n\')\n'+				
+				'      uartData+=String(c);\n'+
 				'    delay(1);\n'+
 				'  }\n'+statement+		
 				'}\n';
