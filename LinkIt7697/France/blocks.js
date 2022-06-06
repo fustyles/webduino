@@ -1,3 +1,82 @@
+Blockly.Blocks['uart_initial'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.UART_SHOW);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial","Serial"],
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		], this.validate), "serial");
+    this.appendValueInput("rx","rx")
+        .setCheck("Number")
+		.appendField("RX");
+    this.appendValueInput("tx","tx")
+        .setCheck("Number")
+		.appendField("TX");			
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.UART_BAUDRATE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["300","300"],
+			["1200","1200"],
+			["2400","2400"],
+			["4800","4800"],
+			["9600","9600"],	    
+			["19200","19200"],
+			["38400","38400"],
+			["57600","57600"],
+			["74880","74880"],
+			["115200","115200"],	
+			["230400","230400"],
+			["250000","250000"],
+			["500000","500000"],
+			["1000000","1000000"],	
+			["2000000","2000000"]
+		]), "baudrate");
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["UART_READ_ALL_SHOW"],"all"],
+			[Blockly.Msg["UART_READ_STRING_SHOW"],"string"],			
+			[Blockly.Msg["UART_READ_ROW_SHOW"],"row"],
+			[Blockly.Msg["UART_READ_CHAR_SHOW"],"char"]
+		]), "read");
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.UART_AFTER_READ_SHOW);			
+    this.appendStatementInput("statement")
+        .setCheck(null);
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  },
+  validate: function(newValue) {
+	 const block = this.sourceBlock_;
+	 if (newValue=="Serial") {
+		 block.getInput("rx").setVisible(false);
+		 block.getInput("tx").setVisible(false);		 
+	 }
+	 else {
+		 block.getInput("rx").setVisible(true);
+		 block.getInput("tx").setVisible(true);		 
+	 } 
+  }
+};
+
+Blockly.Blocks['uart_getdata'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.UART_GETDATA_SHOW);   
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);
+  }
+};
+
+
+
 Blockly.Blocks['fu_ntpserver_initial'] = {
   init: function() {
     this.appendDummyInput()
@@ -5496,7 +5575,7 @@ Blockly.Blocks['close_powerdog'] = {
 
 Blockly.Blocks['esp32_wifi_wait_until_ready'] = {
   init:function(){
-	this.appendDummyInput().appendField(Blockly.Msg.ESP32_SET_WIFI_UNTIL_READY_TITLE);
+	this.appendDummyInput().appendField(Blockly.Msg.SET_WIFI_UNTIL_READY_TITLE);
 	this.appendValueInput("SSID")
 		.setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)

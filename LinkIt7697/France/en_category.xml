@@ -68,4 +68,5 @@
 <category><name>servoesp</name><replace>Servo</replace></category>
 <category><name>telegrambot</name><replace>Telegram Bot Module</replace></category>
 <category><name>ntpserver</name><replace>NTP Server</replace></category>
+<category><name>uartmodule</name><replace>UART Module</replace></category>
 </xml>

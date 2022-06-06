@@ -1,3 +1,74 @@
+Blockly.Arduino['uart_initial'] = function(block) {
+	var serial = block.getFieldValue('serial');
+	var rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);  	
+	var tx = Blockly.Arduino.valueToCode(block, 'tx', Blockly.Arduino.ORDER_ATOMIC); 	
+    var baudrate = block.getFieldValue('baudrate');
+	var read = block.getFieldValue('read');
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	
+	Blockly.Arduino.definitions_["define_HardwareSerial_uartData"] = 'String uartData = "";';
+	if (serial=="Serial") {
+		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+');\n  delay(10);\n';
+	}
+	else if (serial=="mySerial1") {
+		Blockly.Arduino.definitions_["define_HardwareSerial"+serial] = 'HardwareSerial mySerial1(1);';
+		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
+	}
+	else if  (serial=="mySerial2") {
+		Blockly.Arduino.definitions_["define_HardwareSerial"+serial] = 'HardwareSerial mySerial2(2);';		
+		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
+	}
+	
+	var code;
+	if (read=="all") {
+		code =	'if ('+serial+'.available()) {\n'+
+				'  uartData = "";\n'+
+				'  while ('+serial+'.available()) {\n'+
+				'    char c='+serial+'.read();\n'+
+				'    uartData+=String(c);\n'+
+				'    delay(1);\n'+
+				'  }\n'+statement+		
+				'}\n';
+	}
+	else if (read=="string") {
+		code =	'if ('+serial+'.available()) {\n'+
+				'  uartData = "";\n'+
+				'  while ('+serial+'.available()) {\n'+
+				'    uartData='+serial+'.readString();\n  '+statement+
+				'    delay(1);\n'+
+				'  }\n'+	
+				'}\n';
+	}	
+	else if (read=="row") {
+		code =	'if ('+serial+'.available()) {\n'+
+				'  uartData = "";\n'+
+				'  while ('+serial+'.available()) {\n'+
+				'    uartData='+serial+'.readStringUntil(\'\\n\');\n  '+statement+
+				'    delay(1);\n'+
+				'  }\n'+	
+				'}\n';
+	}
+	else if  (read=="char") {
+		code =	'if ('+serial+'.available()) {\n'+
+				'  uartData = "";\n'+
+				'  while ('+serial+'.available()) {\n'+
+				'    char c='+serial+'.read();\n'+
+				'    uartData=String(c);\n  '+statement+
+				'    delay(1);\n'+
+				'  }\n'+	
+				'}\n';
+	}
+	
+  return code;
+};
+
+Blockly.Arduino['uart_getdata'] = function(block) {
+  code = 'uartData';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
 Blockly.Arduino['fu_ntpserver_initial'] = function(block) {
   var gmtOffset = Blockly.Arduino.valueToCode(block, 'gmtOffset', Blockly.Arduino.ORDER_ATOMIC);  
 
