@@ -128,7 +128,24 @@
 		</block>	
 	</category>
 
-
+	<category id="france20" name="uartmodule"> 
+	  <block type="uart_initial">
+		<value name="rx">
+		  <block type="math_number">
+			<field name="NUM">16</field>
+		  </block>
+		</value>
+		<value name="tx">
+		  <block type="math_number">
+			<field name="NUM">17</field>
+		  </block>
+		</value> 		  
+		<field name="baudrate">9600</field>
+		<statement name="statement"></statement>
+	  </block>
+	  <block type="uart_getdata"></block>
+	</category> 
+		
 	<sep id="category_sep"></sep>	
 	<category id="france6" name="client">
 	  <block type="esp32_wifi_wait_until_ready">
@@ -613,26 +630,7 @@
 		  <block type="esp32_bluetooth_readdata" id="8"></block> 
 		  <block type="esp32_bluetooth_getdata" id="10"></block>
 		</category> 
-		
-		
-		<category id="france20" name="uartmodule"> 
-		  <block type="uart_initial">
-			<value name="rx">
-			  <block type="math_number">
-				<field name="NUM">16</field>
-			  </block>
-			</value>
-			<value name="tx">
-			  <block type="math_number">
-				<field name="NUM">17</field>
-			  </block>
-			</value> 		  
-			<field name="baudrate">9600</field>
-			<statement name="statement"></statement>
-		  </block>
-		  <block type="uart_getdata"></block>
-		</category> 		
-		
+
 		<category id="france20" name="telegrambot"> 
 		  <block type="esp32_telegrambot" id=":25@@FE6iA8FfSA8:XB-" x="250" y="30">
 			<field name="baudrate">115200</field>
