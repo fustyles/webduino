@@ -70,5 +70,5 @@
 <category><name>servoesp</name><replace>伺服馬達</replace></category>
 <category><name>telegrambot</name><replace>Telegram Bot模組</replace></category>
 <category><name>ntpserver</name><replace>網路時間</replace></category>
-<category><name>uartmodule</name><replace>UART模組</replace></category>
+<category><name>uartmodule</name><replace>UART</replace></category>
 </xml>
