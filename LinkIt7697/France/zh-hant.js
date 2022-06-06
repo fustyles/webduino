@@ -1263,10 +1263,10 @@ Blockly.Msg["PARAMETER_BUZZER"] = "蜂鳴器(腳位, 頻率, 持續時間)";
 Blockly.Msg["PARAMETER_BUZZER_ESP"] = "蜂鳴器ESP32(腳位, 頻率, 持續時間, 通道)";
 Blockly.Msg["PARAMETER_SERVO_ESP"] = "伺服馬達ESP32(腳位, 角度, 通道)";
 
-Blockly.Msg["UART_SHOW"] = "UART模組";
+Blockly.Msg["UART_SHOW"] = "UART";
 Blockly.Msg["UART_AFTER_READ_SHOW"] = "取得資料後執行";
 Blockly.Msg["UART_BAUDRATE_SHOW"] = "通訊鮑率";	
-Blockly.Msg["UART_GETDATA_SHOW"] = "UART模組 取得字串";
+Blockly.Msg["UART_GETDATA_SHOW"] = "UART 取得字串";
 Blockly.Msg["UART_READ_ALL_SHOW"] = "讀取所有資料";
 Blockly.Msg["UART_READ_STRING_SHOW"] = "讀取字串";
 Blockly.Msg["UART_READ_ROW_SHOW"] = "讀取直到換行";

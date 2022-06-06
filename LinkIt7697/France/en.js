@@ -1254,7 +1254,7 @@ Blockly.Msg["PARAMETER_RELAY"] = "relay(pin, 0~1)";
 Blockly.Msg["PARAMETER_BUZZER"] = "buzzer(pin, frequency, duration)";
 Blockly.Msg["PARAMETER_SERVO_ESP"] = "servo(pin, angle, channel)";
 
-Blockly.Msg["UART_SHOW"] = "UART Module";
+Blockly.Msg["UART_SHOW"] = "UART";
 Blockly.Msg["UART_AFTER_READ_SHOW"] = "After getting data";
 Blockly.Msg["UART_BAUDRATE_SHOW"] = "Baud Rate";	
 Blockly.Msg["UART_GETDATA_SHOW"] = "UART get data";
