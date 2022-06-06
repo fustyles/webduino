@@ -2914,13 +2914,17 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   var pass = Blockly.Arduino.valueToCode(block,"PASSWORD",Blockly.Arduino.ORDER_ATOMIC)||"";
   ssid = ssid.replace(/"/g,"");
   pass = pass.replace(/"/g,"");
-  Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>";
+  
+  if (selectBoardType()=="LinkIt")
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <LWiFi.h>";
+  else 
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>";
+
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = "'+ssid+'";';
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = "'+pass+'";';
   Blockly.Arduino.setups_.setup_initWiFi='initWiFi();';
   Blockly.Arduino.definitions_.initWiFi = ''+
 		'void initWiFi() {\n'+
-		'  WiFi.mode(WIFI_AP_STA);\n'+
 		'  \n'+
 		'  for (int i=0;i<2;i++) {\n'+
 		'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
