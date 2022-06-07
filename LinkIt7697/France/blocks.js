@@ -14,7 +14,9 @@ Blockly.Blocks['uart_initial'] = {
 		.appendField("RX");
     this.appendValueInput("tx","tx")
         .setCheck("Number")
-		.appendField("TX");			
+		.appendField("TX");
+    this.getInput("rx").setVisible(false);
+    this.getInput("tx").setVisible(false);		  
     this.appendDummyInput()	 
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg.UART_BAUDRATE_SHOW)	
