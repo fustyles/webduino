@@ -1255,10 +1255,10 @@ Blockly.Msg["PARAMETER_BUZZER"] = "buzzer(pin, frequency, duration)";
 Blockly.Msg["PARAMETER_SERVO_ESP"] = "servo(pin, angle, channel)";
 
 Blockly.Msg["UART_SHOW"] = "UART";
-Blockly.Msg["UART_AFTER_READ_SHOW"] = "After getting data";
+Blockly.Msg["UART_AFTER_READ_SHOW"] = "After getting string";
 Blockly.Msg["UART_BAUDRATE_SHOW"] = "Baud Rate";	
-Blockly.Msg["UART_GETDATA_SHOW"] = "UART get data";
-Blockly.Msg["UART_READ_ALL_SHOW"] = "Read complete data";
+Blockly.Msg["UART_GETDATA_SHOW"] = "UART get string";
+Blockly.Msg["UART_READ_ALL_SHOW"] = "Read complete string";
 Blockly.Msg["UART_READ_STRING_SHOW"] = "Read string";
-Blockly.Msg["UART_READ_ROW_SHOW"] = "Read data until newline";
+Blockly.Msg["UART_READ_ROW_SHOW"] = "Read string until newline";
 Blockly.Msg["UART_READ_CHAR_SHOW"] = "Read a Character";
