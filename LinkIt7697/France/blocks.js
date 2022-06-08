@@ -1,3 +1,180 @@
+Blockly.Blocks['fu_dfplayer_initial'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["DFPLAYER_INITIAL_SHOW"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial","Serial"],
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		], this.validate), "serial");
+    this.appendValueInput("rx","rx")
+        .setCheck("Number")
+		.appendField("RX");
+    this.appendValueInput("tx","tx")
+        .setCheck("Number")
+		.appendField("TX");
+	this.getInput("rx").setVisible(false);
+	this.getInput("tx").setVisible(false);		
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+	this.setHelpUrl("https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299");	
+  },
+  validate: function(newValue) {
+	 const block = this.sourceBlock_;
+	 if (newValue=="Serial") {
+		 block.getInput("rx").setVisible(false);
+		 block.getInput("tx").setVisible(false);		 
+	 }
+	 else {
+		 block.getInput("rx").setVisible(true);
+		 block.getInput("tx").setVisible(true);		 
+	 } 
+  }
+};
+
+Blockly.Blocks['fu_dfplayer_command0'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["DFPLAYER_COMMAND_SHOW"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["DFPLAYER_COMMAND_PLAY_SHOW"]+" (1~255)","play"],
+			[Blockly.Msg["DFPLAYER_COMMAND_LOOP_SHOW"]+" (1~255)","loop"],
+			[Blockly.Msg["DFPLAYER_COMMAND_VOLUME_SHOW"]+" (0~30)","volume"],
+			[Blockly.Msg["DFPLAYER_COMMAND_PLAYMP3FOLDER_SHOW"]+" (1~255)","playMp3Folder"],
+			[Blockly.Msg["DFPLAYER_COMMAND_ADVERTISE_SHOW"]+" (1~255)","advertise"],
+			[Blockly.Msg["DFPLAYER_COMMAND_LOOPFOLDER_SHOW"]+" (n)","loopFolder"]			
+		], this.validate), "cmd");
+    this.appendValueInput("p1")
+        .setCheck("Number")
+		.appendField(Blockly.Msg.VALUE);			
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+	this.setHelpUrl("https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299");		
+  } 
+};
+
+Blockly.Blocks['fu_dfplayer_command1'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["DFPLAYER_COMMAND_SHOW"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["DFPLAYER_COMMAND_PLAYFOLDER_SHOW"]+" (1~99, 1~255)","playFolder"],
+			[Blockly.Msg["DFPLAYER_COMMAND_PLAYLARGEFOLDER_SHOW"]+" (1~10, 1~1000)","playLargeFolder"],
+			[Blockly.Msg["DFPLAYER_COMMAND_OUTPUTSETTING_SHOW"]+" (boolean, n)","outputSetting"]		
+		], this.validate), "cmd");
+    this.appendValueInput("p1")
+        .setCheck(null)
+		.appendField(Blockly.Msg.VALUE+" 1");
+    this.appendValueInput("p2")
+        .setCheck(null)
+		.appendField(Blockly.Msg.VALUE+" 2");		
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+	this.setHelpUrl("https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299");		
+  } 
+};
+
+Blockly.Blocks['fu_dfplayer_command2'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["DFPLAYER_COMMAND_SHOW"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["DFPLAYER_COMMAND_NEXT_SHOW"],"next"],
+			[Blockly.Msg["DFPLAYER_COMMAND_PREVIOUS_SHOW"],"previous"],
+			[Blockly.Msg["DFPLAYER_COMMAND_RANDOMALL_SHOW"],"randomAll"],			
+			[Blockly.Msg["DFPLAYER_COMMAND_PAUSE_SHOW"],"pause"],
+			[Blockly.Msg["DFPLAYER_COMMAND_START_SHOW"],"start"],		
+			[Blockly.Msg["DFPLAYER_COMMAND_ENABLELOOPALL_SHOW"],"enableLoopAll"],
+			[Blockly.Msg["DFPLAYER_COMMAND_DISABLELOOPALL_SHOW"],"disableLoopAll"],
+			[Blockly.Msg["DFPLAYER_COMMAND_ENABLELOOP_SHOW"],"enableLoop"],
+			[Blockly.Msg["DFPLAYER_COMMAND_DISABLELOOP_SHOW"],"disableLoop"],
+			[Blockly.Msg["DFPLAYER_COMMAND_STOPADVERTISE_SHOW"],"stopAdvertise"],
+			[Blockly.Msg["DFPLAYER_COMMAND_ENABLEDAC_SHOW"],"enableDAC"],
+			[Blockly.Msg["DFPLAYER_COMMAND_DISABLEDAC_SHOW"],"disableDAC"],
+			[Blockly.Msg["DFPLAYER_COMMAND_RESET_SHOW"],"reset"],			
+			[Blockly.Msg["DFPLAYER_COMMAND_SLEEP_SHOW"],"sleep"]			
+		]), "cmd");	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+	this.setHelpUrl("https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299");		
+  }
+};
+
+	
+	
+Blockly.Blocks['fu_dfplayer_command3'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["DFPLAYER_COMMAND_SHOW"]);
+	this.optionsEQ = [
+		[Blockly.Msg["DFPLAYER_COMMAND_NORMAL_SHOW"],'NORMAL'],
+		[Blockly.Msg["DFPLAYER_COMMAND_POP_SHOW"],'POP'],
+		[Blockly.Msg["DFPLAYER_COMMAND_ROCK_SHOW"],'ROCK'],		
+		[Blockly.Msg["DFPLAYER_COMMAND_JAZZ_SHOW"],'JAZZ'],
+		[Blockly.Msg["DFPLAYER_COMMAND_CLASSIC_SHOW"],'CLASSIC'],		
+		[Blockly.Msg["DFPLAYER_COMMAND_BASS_SHOW"],'BASS']
+	];
+	this.optionsDEVICE = [
+		[Blockly.Msg["DFPLAYER_COMMAND_U_DISK_SHOW"],'U_DISK'],
+		[Blockly.Msg["DFPLAYER_COMMAND_SD_SHOW"],'SD'],		
+		[Blockly.Msg["DFPLAYER_COMMAND_AUX_SHOW"],'AUX'],
+		[Blockly.Msg["DFPLAYER_COMMAND_SLEEP_SHOW"],'SLEEP'],		
+		[Blockly.Msg["DFPLAYER_COMMAND_FLASH_SHOW"],'FLASH']
+	];
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["DFPLAYER_COMMAND_EQ_SHOW"],"EQ"],
+			[Blockly.Msg["DFPLAYER_COMMAND_DEVICE_SHOW"],"DEVICE"]	
+		], this.validate), "cmd");
+    this.appendDummyInput("opt")	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["DFPLAYER_COMMAND_NORMAL_SHOW"],'NORMAL'],
+			[Blockly.Msg["DFPLAYER_COMMAND_POP_SHOW"],'POP'],
+			[Blockly.Msg["DFPLAYER_COMMAND_ROCK_SHOW"],'ROCK'],		
+			[Blockly.Msg["DFPLAYER_COMMAND_JAZZ_SHOW"],'JAZZ'],
+			[Blockly.Msg["DFPLAYER_COMMAND_CLASSIC_SHOW"],'CLASSIC'],		
+			[Blockly.Msg["DFPLAYER_COMMAND_BASS_SHOW"],'BASS']
+		]), "value");			
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+	this.setHelpUrl("https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299");		
+  },
+  validate: function(newValue) {
+	 const sourceBlock = this.sourceBlock_;
+	 sourceBlock.getInput("opt").removeField("value");
+	 if (newValue=="EQ") {
+		 sourceBlock.getInput("opt").appendField(new Blockly.FieldDropdown(sourceBlock.optionsEQ),"value");		 
+	 }
+	 else if (newValue=="DEVICE") {
+		 sourceBlock.getInput("opt").appendField(new Blockly.FieldDropdown(sourceBlock.optionsDEVICE),"value"); 
+	 }	 
+  }
+};
+
+
+
+
+
 Blockly.Blocks['uart_initial'] = {
   init: function() {
 	this.appendDummyInput()
@@ -15,8 +192,8 @@ Blockly.Blocks['uart_initial'] = {
     this.appendValueInput("tx","tx")
         .setCheck("Number")
 		.appendField("TX");
-    this.getInput("rx").setVisible(false);
-    this.getInput("tx").setVisible(false);		  
+	this.getInput("rx").setVisible(false);
+	this.getInput("tx").setVisible(false);		
     this.appendDummyInput()	 
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg.UART_BAUDRATE_SHOW)	

@@ -71,4 +71,5 @@
 <category><name>telegrambot</name><replace>Telegram Bot模組</replace></category>
 <category><name>ntpserver</name><replace>網路時間</replace></category>
 <category><name>uartmodule</name><replace>UART</replace></category>
+<category><name>fudfplayer</name><replace>DFPlayer mini</replace></category>
 </xml>

@@ -7267,6 +7267,43 @@
 		</block>	
 		<block type="webbit_mooncar_sonar"></block>
 	</category>
+	<category id="france12" name="fudfplayer">
+	  <block type="fu_dfplayer_initial">
+		<value name="rx">
+		  <block type="math_number">
+			<field name="NUM">16</field>
+		  </block>
+		</value>
+		<value name="tx">
+		  <block type="math_number">
+			<field name="NUM">17</field>
+		  </block>
+		</value>			
+	  </block>
+	  <block type="fu_dfplayer_command0">
+		<value name="p1">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value>	  
+	  </block>
+	  <block type="fu_dfplayer_command1">
+		<value name="p1">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value>	  
+		<value name="p2">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value>	  
+	  </block>		  
+	  <block type="fu_dfplayer_command2">			
+	  </block>
+	  <block type="fu_dfplayer_command3">			
+	  </block>
+	</category>	
 	<category id="france9" name="mpu9250">
 		<block type="esp32_mpu9250_pin">
 			<value name="sda">
@@ -7358,7 +7395,6 @@
 		</value>			
 	  </block>   
 	</category>
-
 	
 	 <sep id="category_sep"></sep>	
     <category id="france3" name="line">	

@@ -1,3 +1,164 @@
+Blockly.Arduino['fu_dfplayer_initial'] = function(block) {
+	var serial = block.getFieldValue('serial');
+	var rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);  	
+	var tx = Blockly.Arduino.valueToCode(block, 'tx', Blockly.Arduino.ORDER_ATOMIC);
+
+	if (serial=="Serial") {
+		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin(9600);\n  delay(10);\n';
+	}
+	else if (serial=="mySerial1") {
+		Blockly.Arduino.definitions_["define_HardwareSerial"+serial] = 'HardwareSerial mySerial1(1);';
+		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin(9600, SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
+	}
+	else if  (serial=="mySerial2") {
+		Blockly.Arduino.definitions_["define_HardwareSerial"+serial] = 'HardwareSerial mySerial2(2);';		
+		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin(9600, SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
+	}
+	
+	Blockly.Arduino.definitions_["define_DFRobotDFPlayerMini"] = '#include "DFRobotDFPlayerMini.h"\nDFRobotDFPlayerMini myDFPlayer;';	
+	
+	Blockly.Arduino.setups_["define_DFRobotDFPlayerMini"] = ''+
+															'if (!myDFPlayer.begin('+serial+')) {\n'+
+															'    Serial.println(F("Unable to begin:"));\n'+
+															'    Serial.println(F("1.Please recheck the connection!"));\n'+
+															'    Serial.println(F("2.Please insert the SD card!"));\n'+
+															'  }\n'+
+															'  else {\n'+
+															'    delay(3000);\n'+															
+															'    myDFPlayer.volume(10);\n'+
+															'  }\n';
+															
+	Blockly.Arduino.definitions_["define_DFRobotDFPlayerMini_command"] = ''+
+															'void DFPlayermini(String cmd, String p1, String p2) {\n'+
+															' if (cmd=="volume") {\n'+
+															'    myDFPlayer.pause();\n'+
+															'    delay(300);\n'+
+															'    if (p1.toInt()>30)\n'+
+															'      p1="30";\n'+
+															'    else if (p1.toInt()<0)\n'+
+															'      p1="0";\n'+
+															'    myDFPlayer.volume(p1.toInt());\n'+
+															'    delay(300);\n'+
+															'    myDFPlayer.start();\n'+
+															'  } else if (cmd=="volumeUp") {\n'+
+															'    myDFPlayer.pause();\n'+
+															'    delay(300);\n'+
+															'    myDFPlayer.volumeUp();\n'+
+															'    delay(300);\n'+
+															'    myDFPlayer.start();\n'+
+															'  } else if (cmd=="volumeDown") {\n'+
+															'    myDFPlayer.pause();\n'+
+															'    delay(300);\n'+
+															'    myDFPlayer.volumeDown();\n'+
+															'    delay(300);\n'+
+															'    myDFPlayer.start();\n'+
+															'  } else if (cmd=="EQ") {\n'+
+															'    if (p1=="NORMAL")\n'+
+															'      myDFPlayer.EQ(DFPLAYER_EQ_NORMAL);\n'+
+															'    else if  (p1=="POP")\n'+
+															'      myDFPlayer.EQ(DFPLAYER_EQ_POP);\n'+
+															'    else if  (p1=="ROCK")\n'+
+															'      myDFPlayer.EQ(DFPLAYER_EQ_ROCK);\n'+
+															'    else if  (p1=="JAZZ")\n'+
+															'      myDFPlayer.EQ(DFPLAYER_EQ_JAZZ);\n'+
+															'    else if  (p1=="CLASSIC")\n'+
+															'      myDFPlayer.EQ(DFPLAYER_EQ_CLASSIC);\n'+
+															'    else if  (p1=="BASS")\n'+
+															'      myDFPlayer.EQ(DFPLAYER_EQ_BASS);\n'+
+															'  } else if (cmd=="DEVICE") {\n'+
+															'    if (p1=="U_DISK")\n'+
+															'      myDFPlayer.outputDevice(DFPLAYER_DEVICE_U_DISK);\n'+
+															'    else if  (p1=="SD")\n'+
+															'      myDFPlayer.outputDevice(DFPLAYER_DEVICE_SD);\n'+
+															'    else if  (p1=="AUX")\n'+
+															'      myDFPlayer.outputDevice(DFPLAYER_DEVICE_AUX);\n'+
+															'    else if  (p1=="SLEEP")\n'+
+															'      myDFPlayer.outputDevice(DFPLAYER_DEVICE_SLEEP);\n'+
+															'    else if  (p1=="FLASH")\n'+
+															'      myDFPlayer.outputDevice(DFPLAYER_DEVICE_FLASH);\n'+
+															'  } else if (cmd=="sleep") {\n'+
+															'    myDFPlayer.sleep();\n'+
+															'  } else if (cmd=="reset") {\n'+
+															'    myDFPlayer.reset();\n'+
+															'  } else if (cmd=="enableDAC") {\n'+
+															'    myDFPlayer.enableDAC();\n'+
+															'  } else if (cmd=="disableDAC") {\n'+
+															'    myDFPlayer.disableDAC();\n'+
+															'  } else if (cmd=="outputSetting") {\n'+
+															'    myDFPlayer.outputSetting(p1.toInt(), p2.toInt());\n'+
+															'  } else if (cmd=="next") {\n'+
+															'    myDFPlayer.next();\n'+
+															'  } else if (cmd=="previous") {\n'+
+															'    myDFPlayer.previous();\n'+
+															'  } else if (cmd=="play") {\n'+
+															'    myDFPlayer.play(p1.toInt());\n'+
+															'  } else if (cmd=="loop") {\n'+
+															'    myDFPlayer.loop(p1.toInt());\n'+
+															'  } else if (cmd=="pause") {\n'+
+															'    myDFPlayer.pause();\n'+
+															'  } else if (cmd=="start") {\n'+
+															'    myDFPlayer.start();\n'+
+															'  }  else if (cmd=="playFolder") {\n'+
+															'    myDFPlayer.playFolder(p1.toInt(), p2.toInt());\n'+
+															'  }  else if (cmd=="enableLoopAll") {\n'+
+															'    myDFPlayer.enableLoopAll();\n'+
+															'  }  else if (cmd=="disableLoopAll") {\n'+
+															'    myDFPlayer.disableLoopAll();\n'+
+															'  }  else if (cmd=="playMp3Folder") {\n'+
+															'    myDFPlayer.playMp3Folder(p1.toInt());\n'+
+															'  }  else if (cmd=="advertise") {\n'+
+															'    myDFPlayer.advertise(p1.toInt());\n'+
+															'  }  else if (cmd=="stopAdvertise") {\n'+
+															'    myDFPlayer.stopAdvertise();\n'+
+															'  }  else if (cmd=="playLargeFolder") {\n'+
+															'    myDFPlayer.playLargeFolder(p1.toInt(), p2.toInt());\n'+
+															'  } else if (cmd=="loopFolder") {\n'+
+															'    myDFPlayer.loopFolder(p1.toInt());\n'+
+															'  }  else if (cmd=="randomAll") {\n'+
+															'    myDFPlayer.randomAll();\n'+
+															'  } else if (cmd=="enableLoop") {\n'+
+															'    myDFPlayer.enableLoop();\n'+
+															'  }  else if (cmd=="disableLoop") {\n'+
+															'    myDFPlayer.disableLoop();\n'+
+															'  }\n'+
+															'}\n';
+	
+	return "";
+};
+
+Blockly.Arduino['fu_dfplayer_command0'] = function(block) {
+	var cmd = block.getFieldValue('cmd'); 	
+	var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC); 		
+	var code = 'DFPlayermini("'+cmd+'", String('+p1+'), "");\n';
+	return code;
+};
+
+Blockly.Arduino['fu_dfplayer_command1'] = function(block) {
+	var cmd = block.getFieldValue('cmd'); 	
+	var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC); 	
+	var p2 = Blockly.Arduino.valueToCode(block, 'p2', Blockly.Arduino.ORDER_ATOMIC); 	
+	var code = 'DFPlayermini("'+cmd+'", String('+p1+'), String('+p2+'));\n';
+	return code;
+};
+
+Blockly.Arduino['fu_dfplayer_command2'] = function(block) {
+	var cmd = block.getFieldValue('cmd'); 	
+	var code = 'DFPlayermini("'+cmd+'", "", "");\n';
+	return code;
+};
+
+Blockly.Arduino['fu_dfplayer_command3'] = function(block) {
+	var cmd = block.getFieldValue('cmd'); 	
+	var value = block.getFieldValue('value'); 		
+	var code = 'DFPlayermini("'+cmd+'", "'+value+'", "");\n';
+	return code;
+};
+
+
+
+
+
+
 Blockly.Arduino['uart_initial'] = function(block) {
 	var serial = block.getFieldValue('serial');
 	var rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);  	
@@ -2989,6 +3150,8 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   
   if (selectBoardType()=="LinkIt")
 	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <LWiFi.h>";
+  else if (selectBoardType()=="esp8266")
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <ESP8266WiFi.h>";
   else 
 	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>";
 
