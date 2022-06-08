@@ -22,7 +22,7 @@ Blockly.Arduino['fu_dfplayer_initial'] = function(block) {
 															'    Serial.println(F("Unable to begin:"));\n'+
 															'    Serial.println(F("1.Please recheck the connection!"));\n'+
 															'    Serial.println(F("2.Please insert the SD card!"));\n'+
-															'  }\n  delay(3000);\n';
+															'  }\n  delay(3000);\n  DFPlayermini("volume", String(20), "");\n';
 															
 	Blockly.Arduino.definitions_["define_DFRobotDFPlayerMini_command"] = ''+
 															'void DFPlayermini(String cmd, String p1, String p2) {\n'+
