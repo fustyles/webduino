@@ -70,4 +70,5 @@
 <category><name>ntpserver</name><replace>NTP Server</replace></category>
 <category><name>uartmodule</name><replace>UART</replace></category>
 <category><name>fudfplayer</name><replace>DFPlayer mini</replace></category>
+<category><name>pixelbit</name><replace>Pixel:Bit Server</replace></category>
 </xml>

@@ -1,3 +1,85 @@
+Blockly.Blocks['esp32_pixelbit_myfirmata'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_PIXELBIT_SERVERMODULE_SHOW"]);
+    this.appendValueInput("ssid")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
+    this.appendValueInput("password")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
+    this.appendValueInput("ssid_ap")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_SSID_AP_SHOW);
+    this.appendValueInput("password_ap")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_AP_SHOW);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["FU_SERIAL_BAUDRATE"])	
+		.appendField(new Blockly.FieldDropdown([
+			["300","300"],
+			["1200","1200"],
+			["2400","2400"],
+			["4800","4800"],
+			["9600","9600"],	    
+			["19200","19200"],
+			["38400","38400"],
+			["57600","57600"],
+			["74880","74880"],
+			["115200","115200"],	
+			["230400","230400"],
+			["250000","250000"],
+			["500000","500000"],
+			["1000000","1000000"],	
+			["2000000","2000000"]
+		]), "baudrate");	
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["96X96(96x96)","96X96"],
+			["QQVGA(160x120))","QQVGA"],
+			["QCIF,(176x144))","QCIF"],
+			["HQVGA(240x176))","HQVGA"],
+			["240X240(240x240))","240X240"],
+			["QVGA(320x240))","QVGA"],
+			["CIF(400x296))","CIF"],
+			["HVGA(480x320))","HVGA"],
+			["VGA(640x480))","VGA"],
+			["SVGA(800x600))","SVGA"],
+			["XGA(1024x768))","XGA"],
+			["HD(1280x720))","HD"],
+			["SXGA(1280x1024))","SXGA"],
+			["UXGA(1600x1200))","UXGA"],
+			["FHD(1920x1080))","FHD"],
+			["P_HD( 720x1280))","P_HD"],
+			["P_3MP( 864x1536))","P_3MP"],
+			["QXGA(2048x1536))","QXGA"],
+			["QHD(2560x1440))","QHD"],
+			["WQXGA(2560x1600))","WQXGA"],
+			["P_FHD(1080x1920))","P_FHD"],
+			["QSXGA(2560x1920))","QSXGA"]
+		]), "framesize");		
+    this.appendValueInput("mainpage")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
+    this.appendStatementInput("ExecuteCommand")
+        .setCheck(null);
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(190);
+  }
+};
+
 Blockly.Blocks['fu_dfplayer_initial'] = {
   init: function() {
 	this.appendDummyInput()
