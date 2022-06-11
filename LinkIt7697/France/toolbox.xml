@@ -1387,6 +1387,100 @@
 		</category>	
 		
 		<category id="france26" name="pixelbit">
+			  <block type="esp32_pixelbit_stream_myfirmata" id="99">
+				<value name="ssid">
+				  <block type="text" id="100">
+					<field name="TEXT">teacher</field>
+				  </block>
+				</value>
+				<value name="password">
+				  <block type="text" id="101">
+					<field name="TEXT">87654321</field>
+				  </block>
+				</value>
+				<value name="ssid_ap">
+				  <block type="text" id="100">
+					<field name="TEXT">esp32-cam</field>
+				  </block>
+				</value>
+				<value name="password_ap">
+				  <block type="text" id="101">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>
+				<field name="baudrate">115200</field>				
+				<field name="framesize">QVGA</field>				
+				<value name="mainpage">
+				  <block type="servermodule_javascript" id="102">
+					<statement name="js">
+						<block type="image_create_stream">
+							<value name="id_">
+							  <block type="text">
+								<field name="TEXT"></field>
+							  </block>
+							</value>
+							<value name="url_">
+								<block type="servermodule_parameter_stream_url"></block>
+							</value>
+							<value name="left_">
+							  <block type="math_number">
+								<field name="NUM">0</field>
+							  </block>
+							</value>
+							<value name="top_">
+							  <block type="math_number">
+								<field name="NUM">0</field>
+							  </block>
+							</value>
+							<value name="zindex_">
+							  <block type="math_number">
+								<field name="NUM">999</field>
+							  </block>
+							</value>
+							<value name="display_">
+							  <block type="logic_boolean">
+								<field name="BOOL">TRUE</field>
+							  </block>
+							</value>
+						</block>
+					</statement>
+				  </block>
+				</value>
+				<statement name="ExecuteCommand">
+				  <block type="customcode_comment" id="112" inline="true">
+					<value name="text">
+					  <block type="text" id="113">
+						<field name="TEXT">http://192.168.xxx.xxx/?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
+					  </block>
+					</value>
+					<next>
+					  <block type="controls_if" id="114">
+						<mutation else="1"></mutation>
+						<value name="IF0">
+						  <block type="servermodule_cmd" id="115" inline="true">
+							<value name="text">
+							  <block type="text" id="116">
+								<field name="TEXT">yourcmd</field>
+							  </block>
+							</value>
+						  </block>
+						</value>
+						<statement name="DO0">
+						</statement>
+						<statement name="ELSE">
+						  <block type="servermodule_feedback" id="130" inline="true">
+							<value name="text">
+							  <block type="text" id="131">
+								<field name="TEXT">Command is not defined.</field>
+							  </block>
+							</value>
+						  </block>
+						</statement>
+					  </block>
+					</next>
+				  </block>
+				</statement>
+			  </block>		
 			  <block type="server_getrequest" id="99">				
 			  </block>		
 			  <block type="esp32_pixelbit_myfirmata" id="99">
