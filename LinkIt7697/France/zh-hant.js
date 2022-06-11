@@ -1194,6 +1194,7 @@ Blockly.Msg["FU_SERVO_ESP32"] = "伺服馬達 (ESP32)";
 Blockly.Msg["FU_SERVO_PIN"] = "腳位";
 Blockly.Msg["FU_SERVO_ANGLE"] = "角度";
 Blockly.Msg["FU_SERVO_CHANNEL"] = "頻道";
+Blockly.Msg["FU_SERVO"] = "伺服馬達";
 
 Blockly.Msg.ESP32_TELEGRAMBOT_SHOW = "Telegram Bot(ESP32) 連線到Wi-Fi熱點";
 Blockly.Msg.ESP32CAM_TELEGRAMBOT_SHOW = "Telegram Bot(ESP32-CAM) 連線到Wi-Fi熱點";
@@ -1266,7 +1267,7 @@ Blockly.Msg["PARAMETER_SERVO_ESP"] = "伺服馬達ESP32(腳位, 角度, 通道)"
 Blockly.Msg["UART_SHOW"] = "UART";
 Blockly.Msg["UART_AFTER_READ_SHOW"] = "取得字串後執行";
 Blockly.Msg["UART_BAUDRATE_SHOW"] = "通訊鮑率";	
-Blockly.Msg["UART_GETDATA_SHOW"] = "UART 取得字串";
+Blockly.Msg["UART_GETDATA_SHOW"] = "取得字串";
 Blockly.Msg["UART_READ_ALL_SHOW"] = "讀取完整字串";
 Blockly.Msg["UART_READ_STRING_SHOW"] = "讀取字串";
 Blockly.Msg["UART_READ_ROW_SHOW"] = "讀取字串直到換行";

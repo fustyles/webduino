@@ -1,3 +1,25 @@
+Blockly.Blocks['fu_servo'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["FU_SERVO"]);
+    this.appendValueInput("pin")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["FU_SERVO_PIN"]);
+    this.appendValueInput("angle")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["FU_SERVO_ANGLE"]);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(155);
+    
+    
+  }
+};
+
 Blockly.Blocks['esp32_pixelbit_myfirmata'] = {
   init: function() {
     this.appendDummyInput()
@@ -260,7 +282,7 @@ Blockly.Blocks['fu_dfplayer_command3'] = {
 Blockly.Blocks['uart_initial'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.UART_SHOW);
+        .appendField(Blockly.Msg["FU_SERIAL"]);
     this.appendDummyInput()	 
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.appendField(new Blockly.FieldDropdown([
@@ -311,7 +333,7 @@ Blockly.Blocks['uart_initial'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(200);
+	this.setColour(Blockly.Msg["FU_SERIAL_HUE"]);
   },
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
@@ -329,7 +351,9 @@ Blockly.Blocks['uart_initial'] = {
 Blockly.Blocks['uart_getdata'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.UART_GETDATA_SHOW);   
+        .appendField(Blockly.Msg["FU_SERIAL"]);	  
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["UART_GETDATA_SHOW"]);   
 	this.setInputsInline(true);
     this.setOutput(true, null);  
     this.setColour(20);
@@ -383,8 +407,8 @@ Blockly.Blocks['fu_ntpserver_get'] = {
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(80);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -600,8 +624,8 @@ Blockly.Blocks['fu_servo_esp'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(155);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -698,8 +722,8 @@ Blockly.Blocks['fu_taiwan_aqi'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(60);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -720,8 +744,8 @@ Blockly.Blocks['fu_taiwan_aqi_get'] = {
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(80);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -763,8 +787,8 @@ Blockly.Blocks['fu_taiwan_weather'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(60);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -796,8 +820,8 @@ Blockly.Blocks['fu_taiwan_weather_get'] = {
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(80);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -957,7 +981,7 @@ Blockly.Blocks['fu_oled_PROGMEM_truetype'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(220);
- this.setTooltip("");
+ 
  this.setHelpUrl("https://github.com/opentypejs/");
   }
 };
@@ -977,8 +1001,8 @@ Blockly.Blocks['fu_ez_digitalwrite'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(20);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -997,8 +1021,8 @@ Blockly.Blocks['fu_ez_digitalwrite_input'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(20);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -1015,8 +1039,8 @@ Blockly.Blocks['fu_ez_digitalwrite_relay'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(20);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -1033,8 +1057,8 @@ Blockly.Blocks['fu_ez_digitalwrite_input_relay'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(20);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -1053,8 +1077,8 @@ Blockly.Blocks['fu_ez_analogwrite_input'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(50);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -1078,8 +1102,8 @@ Blockly.Blocks['fu_ez_analogwrite_input_esp'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(65);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -1094,8 +1118,8 @@ Blockly.Blocks['fu_ez_digitalread'] = {
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(80);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -1110,8 +1134,8 @@ Blockly.Blocks['fu_ez_digitalread_button'] = {
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(80);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -1141,8 +1165,8 @@ Blockly.Blocks['fu_ez_analogread_potentiometer'] = {
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(110);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -1156,8 +1180,8 @@ Blockly.Blocks['fu_ez_analogread_photoresistor'] = {
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(110);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -1175,8 +1199,8 @@ Blockly.Blocks['fu_ez_buzzer_tone'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(140);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -1198,8 +1222,8 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(140);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -1221,8 +1245,8 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration_array'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(140);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -1237,8 +1261,8 @@ Blockly.Blocks['fu_ez_buzzer_notone'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(140);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -1264,8 +1288,8 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration_esp'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(155);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -1291,8 +1315,8 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration_esp_array'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(155);
-    this.setTooltip("");
-    this.setHelpUrl("");
+    
+    
   }
 };
 
@@ -1415,8 +1439,8 @@ Blockly.Blocks['fu_ez_dht11'] = {
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(170);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -1443,8 +1467,8 @@ Blockly.Blocks['fu_ez_pixel_rgb'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(200);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -1463,8 +1487,8 @@ Blockly.Blocks['fu_ez_pixel_picker'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(200);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -1479,8 +1503,8 @@ Blockly.Blocks['fu_ez_pixel_clear'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(200);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -1578,8 +1602,8 @@ Blockly.Blocks['fu_ez_ir_receive'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -1862,8 +1886,8 @@ Blockly.Blocks['fu_oled_initial'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(10);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -1878,8 +1902,8 @@ Blockly.Blocks['fu_oled_home'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(30);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -1895,8 +1919,8 @@ Blockly.Blocks['fu_oled_setContrast'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(30);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -1912,7 +1936,7 @@ Blockly.Blocks['fu_oled_setFont'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(30);
- this.setTooltip("");
+ 
  this.setHelpUrl("https://github.com/olikraus/u8g2/wiki/fntlistall");
   }
 };
@@ -1949,7 +1973,7 @@ Blockly.Blocks['fu_oled_setFont_chinese'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(30);
- this.setTooltip("");
+ 
  this.setHelpUrl("https://github.com/olikraus/u8g2/wiki/fntlistall");
   }
 };
@@ -2129,7 +2153,7 @@ Blockly.Blocks['fu_oled_setFont_icon'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(30);
- this.setTooltip("");
+ 
  this.setHelpUrl("https://github.com/olikraus/u8g2/wiki/fntgrpiconic");
   }
 };
@@ -2147,7 +2171,7 @@ Blockly.Blocks['fu_oled_setFont_all'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(30);
- this.setTooltip("");
+ 
  this.setHelpUrl("https://github.com/olikraus/u8g2/wiki/fntlistall");
   }
 };
@@ -2170,8 +2194,8 @@ Blockly.Blocks['fu_oled_setFontDirection'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(30);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -2191,8 +2215,8 @@ Blockly.Blocks['fu_oled_setDrawColor'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(30);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -2216,8 +2240,8 @@ Blockly.Blocks['fu_oled_setDisplayRotation'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(30);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -2237,8 +2261,8 @@ Blockly.Blocks['fu_oled_setPowerSave'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(30);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -2252,8 +2276,8 @@ Blockly.Blocks['fu_oled_clear'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(30);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -2269,8 +2293,8 @@ Blockly.Blocks['fu_oled_sendBuffer'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(50);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -2286,8 +2310,8 @@ Blockly.Blocks['fu_oled_nextPage'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(50);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -2310,8 +2334,8 @@ Blockly.Blocks['fu_oled_drawStr'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(70);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -2693,7 +2717,7 @@ Blockly.Blocks['fu_oled_drawFont'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(220);
-	this.setTooltip("");
+	
 	this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
   },onchange: function(event) {
 		var str = Blockly.Arduino.blockToCode(this.getInputTargetBlock("str"))[0];
@@ -2751,7 +2775,7 @@ Blockly.Blocks['fu_oled_drawCustomFont'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(220);
-	this.setTooltip("");
+	
 	this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
   },onchange: function(event) {
 		var str = Blockly.Arduino.blockToCode(this.getInputTargetBlock("str"))[0];
@@ -2782,8 +2806,8 @@ Blockly.Blocks['fu_oled_setCursor'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(90);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -2799,8 +2823,8 @@ Blockly.Blocks['fu_oled_Print'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(90);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -2823,8 +2847,8 @@ Blockly.Blocks['fu_oled_drawGlyph'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(110);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -2847,8 +2871,8 @@ Blockly.Blocks['fu_oled_drawUTF8'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(130);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -2944,7 +2968,7 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(220);
- this.setTooltip("");
+ 
  this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
   }
 };
@@ -2973,7 +2997,7 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(220);
-    this.setTooltip("");
+    
 	this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
     this.getInput('PROGMEM').setVisible(false);
   },
@@ -3043,7 +3067,7 @@ Blockly.Blocks['fu_oled_PROGMEM_array'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(220);
- this.setTooltip("");
+ 
  this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
   }
 };
@@ -3064,8 +3088,8 @@ Blockly.Blocks['fu_oled_setBitmapMode'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(150);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3094,8 +3118,8 @@ Blockly.Blocks['fu_oled_drawXBMP'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(220);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3123,8 +3147,8 @@ Blockly.Blocks['fu_oled_drawXBMP_PROGMEM'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(220);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3156,8 +3180,8 @@ Blockly.Blocks['fu_oled_drawXBMP_PROGMEM_array'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(220);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3257,8 +3281,8 @@ Blockly.Blocks['fu_oled_drawBox'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(170);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3287,8 +3311,8 @@ Blockly.Blocks['fu_oled_drawRBox'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(170);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3314,8 +3338,8 @@ Blockly.Blocks['fu_oled_drawFrame'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(180);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3344,8 +3368,8 @@ Blockly.Blocks['fu_oled_drawRFrame'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(180);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3377,8 +3401,8 @@ Blockly.Blocks['fu_oled_drawCircle'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(190);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3410,8 +3434,8 @@ Blockly.Blocks['fu_oled_drawDisc'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(200);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3446,8 +3470,8 @@ Blockly.Blocks['fu_oled_drawEllipse'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(190);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3482,8 +3506,8 @@ Blockly.Blocks['fu_oled_drawFilledEllipse'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(220);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3506,8 +3530,8 @@ Blockly.Blocks['fu_oled_drawHLine'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3530,8 +3554,8 @@ Blockly.Blocks['fu_oled_drawVLine'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3557,8 +3581,8 @@ Blockly.Blocks['fu_oled_drawLine'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(250);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3590,8 +3614,8 @@ Blockly.Blocks['fu_oled_drawTriangle'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(250);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -3611,8 +3635,8 @@ Blockly.Blocks['fu_oled_drawPixel'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(260);
- this.setTooltip("");
- this.setHelpUrl("");
+ 
+ 
   }
 };
 
@@ -13758,6 +13782,13 @@ Blockly.Blocks['fu_serial_begin'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["FU_SERIAL"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial","Serial"],
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		]), "serial");		
     this.appendValueInput("baudrate")
         .setCheck("Number")
         .appendField(Blockly.Msg["FU_SERIAL_BAUDRATE"]);
@@ -13775,6 +13806,13 @@ Blockly.Blocks['fu_serial_begin_config'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["FU_SERIAL"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial","Serial"],
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		]), "serial");		
     this.appendValueInput("baudrate")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -13820,6 +13858,13 @@ Blockly.Blocks['fu_serial_ready'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["FU_SERIAL"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial","Serial"],
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		]), "serial");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["FU_SERIAL_READY"]);
     this.setInputsInline(true);
@@ -13836,6 +13881,13 @@ Blockly.Blocks['fu_serial_end'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["FU_SERIAL"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial","Serial"],
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		]), "serial");		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["FU_SERIAL_END"]);
@@ -13852,6 +13904,13 @@ Blockly.Blocks['fu_serial_print'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["FU_SERIAL"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial","Serial"],
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		]), "serial");		
     this.appendValueInput("data")
         .setCheck(null)
         .appendField(Blockly.Msg["FU_SERIAL_PRINT"]);
@@ -13868,6 +13927,13 @@ Blockly.Blocks['fu_serial_print_format'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["FU_SERIAL"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial","Serial"],
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		]), "serial");		
     this.appendValueInput("data")
         .setCheck("Number")
         .appendField(Blockly.Msg["FU_SERIAL_PRINT"]);
@@ -13892,6 +13958,13 @@ Blockly.Blocks['fu_serial_println'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["FU_SERIAL"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial","Serial"],
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		]), "serial");		
     this.appendValueInput("data")
         .setCheck(null)
         .appendField(Blockly.Msg["FU_SERIAL_PRINTLN"]);
@@ -13908,6 +13981,13 @@ Blockly.Blocks['fu_serial_println_format'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["FU_SERIAL"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial","Serial"],
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		]), "serial");		
     this.appendValueInput("data")
         .setCheck("Number")
         .appendField(Blockly.Msg["FU_SERIAL_PRINTLN"]);
@@ -13933,6 +14013,13 @@ Blockly.Blocks['fu_serial_write'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["FU_SERIAL"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial","Serial"],
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		]), "serial");		
     this.appendValueInput("data")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -13950,6 +14037,13 @@ Blockly.Blocks['fu_serial_write_format'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["FU_SERIAL"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial","Serial"],
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		]), "serial");		
     this.appendValueInput("data")
         .setCheck("Number")
         .appendField(Blockly.Msg["FU_SERIAL_WRITE"]);

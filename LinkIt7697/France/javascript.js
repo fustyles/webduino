@@ -1,3 +1,14 @@
+Blockly.Arduino['fu_servo'] = function(block) {	
+  var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
+  var value_angle = Blockly.Arduino.valueToCode(block, 'angle', Blockly.Arduino.ORDER_ATOMIC);
+
+  Blockly.Arduino.definitions_['define_servo'] = 'include <Servo.h>\nServo myServo;';
+  Blockly.Arduino.setups_['setup_servo_'+ value_pin] = 'myServo.attach('+value_pin+');'; 
+
+  var code = 'myServo.write('+ value_angle +');\n' ;
+  return code;
+};
+
 Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 	
   var mainpage = Blockly.Arduino.valueToCode(block, 'mainpage', Blockly.Arduino.ORDER_ATOMIC);
@@ -7666,6 +7677,7 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_n'] = function(block) {
 											'}\n';
 	var N=Blockly.Arduino.valueToCode(this,"N",Blockly.Arduino.ORDER_ATOMIC);
 	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
+
 	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
@@ -7981,7 +7993,8 @@ Blockly.Arduino['BitMatrixLed_matrix_one_getcolor'] = function(block) {
 											'}\n'; 
 											
 	var N=Blockly.Arduino.valueToCode(this,"N",Blockly.Arduino.ORDER_ATOMIC);
-	
+	//console.log(typeof N);
+
 	var code = '("#"+MatrixLedGetColor('+N+'-1))';
 	return[code, Blockly.Arduino.ORDER_ATOMIC];
 };
@@ -9239,76 +9252,76 @@ Blockly.Arduino['servermodule_parameter_set_address4'] = function (block) {
 
 //SERIAL
 Blockly.Arduino['fu_serial_begin'] = function(block) {
+  var serial = block.getFieldValue('serial'); 
   var value_baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.setups_['Serial.begin'] = 'Serial.begin(%1);'.replace("%1", value_baudrate);
+  Blockly.Arduino.setups_['Serial.begin'] = serial+'.begin(%1);'.replace("%1", value_baudrate);
   return '';
 };
 
 Blockly.Arduino['fu_serial_begin_config'] = function(block) {
   var value_baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
+  var serial = block.getFieldValue('serial'); 
   var dropdown_config = block.getFieldValue('config');
-  Blockly.Arduino.setups_['Serial.begin'] = 'Serial.begin(%1, %2);'.replace("%1", value_baudrate).replace("%2", dropdown_config);
+  Blockly.Arduino.setups_['Serial.begin'] = serial+'.begin(%1, %2);'.replace("%1", value_baudrate).replace("%2", dropdown_config);
   return '';
 };
 
 Blockly.Arduino['fu_serial_ready'] = function(block) {
-  var code = 'while (!Serial) {}\n';
+  var serial = block.getFieldValue('serial'); 
+  var code = 'while (!'+serial+') {}\n';
   return code;
 };
 
 Blockly.Arduino['fu_serial_end'] = function(block) {
-  var code = 'Serial.end();\n';
+  var serial = block.getFieldValue('serial'); 
+  var code = serial+'.end();\n';
   return code;
 };
 
 Blockly.Arduino['fu_serial_print'] = function(block) {
+  var serial = block.getFieldValue('serial'); 
   var value_data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'Serial.print(%1);\n'.replace("%1", value_data);
+  var code = serial+'.print(%1);\n'.replace("%1", value_data);
   return code;
 };
 
 Blockly.Arduino['fu_serial_print_format'] = function(block) {
+  var serial = block.getFieldValue('serial'); 
   var value_data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC);
   var dropdown_format = block.getFieldValue('format');
-  var code = 'Serial.print(%1, %2);\n'.replace("%1", value_data).replace("%2", dropdown_format);
+  var code = serial+'.print(%1, %2);\n'.replace("%1", value_data).replace("%2", dropdown_format);
   return code;
 };
 
 Blockly.Arduino['fu_serial_println'] = function(block) {
+  var serial = block.getFieldValue('serial'); 
   var value_data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'Serial.println(%1);\n'.replace("%1", value_data);
+  var code = serial+'.println(%1);\n'.replace("%1", value_data);
   return code;
 };
 
 Blockly.Arduino['fu_serial_println_format'] = function(block) {
+  var serial = block.getFieldValue('serial'); 
   var value_data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC);
   var dropdown_format = block.getFieldValue('format');
-  var code = 'Serial.println(%1, %2);\n'.replace("%1", value_data).replace("%2", dropdown_format);
+  var code = serial+'.println(%1, %2);\n'.replace("%1", value_data).replace("%2", dropdown_format);
   return code;
 };
 
 Blockly.Arduino['fu_serial_write'] = function(block) {
+  var serial = block.getFieldValue('serial'); 
   var value_data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'Serial.write(%1);\n'.replace("%1", value_data);
+  var code = serial+'.write(%1);\n'.replace("%1", value_data);
   return code;
 };
 
 Blockly.Arduino['fu_serial_write_format'] = function(block) {
+  var serial = block.getFieldValue('serial'); 
   var value_data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC);
   var dropdown_format = block.getFieldValue('format');
-  var code = 'Serial.write(%1, %2);\n'.replace("%1", value_data).replace("%2", dropdown_format);
+  var code = serial+'.write(%1, %2);\n'.replace("%1", value_data).replace("%2", dropdown_format);
   return code;
 };
-
-
-
-
-
-
-
-
-
-
 
 
 

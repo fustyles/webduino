@@ -1186,6 +1186,7 @@ Blockly.Msg["FU_SERVO_ESP32"] = "Servo (ESP32)";
 Blockly.Msg["FU_SERVO_PIN"] = "pin";
 Blockly.Msg["FU_SERVO_ANGLE"] = "angle";
 Blockly.Msg["FU_SERVO_CHANNEL"] = "channel";
+Blockly.Msg["FU_SERVO"] = "Servo";
 
 Blockly.Msg.ESP32_TELEGRAMBOT_SHOW = "Telegram Bot(ESP32) Connect to Wi-Fi AP";
 Blockly.Msg.ESP32CAM_TELEGRAMBOT_SHOW = "Telegram Bot(ESP32-CAM) Connect to Wi-Fi AP";
@@ -1257,7 +1258,7 @@ Blockly.Msg["PARAMETER_SERVO_ESP"] = "servo(pin, angle, channel)";
 Blockly.Msg["UART_SHOW"] = "UART";
 Blockly.Msg["UART_AFTER_READ_SHOW"] = "After getting string";
 Blockly.Msg["UART_BAUDRATE_SHOW"] = "Baud Rate";	
-Blockly.Msg["UART_GETDATA_SHOW"] = "UART get string";
+Blockly.Msg["UART_GETDATA_SHOW"] = "get string";
 Blockly.Msg["UART_READ_ALL_SHOW"] = "Read complete string";
 Blockly.Msg["UART_READ_STRING_SHOW"] = "Read string";
 Blockly.Msg["UART_READ_ROW_SHOW"] = "Read string until newline";

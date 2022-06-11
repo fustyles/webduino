@@ -144,6 +144,20 @@
 		<statement name="statement"></statement>
 	  </block>
 	  <block type="uart_getdata"></block>
+		<block type="fu_serial_print">
+			<value name="data">
+				<shadow type="text">
+					<field name="TEXT"></field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_println">
+			<value name="data">
+				<shadow type="text">
+					<field name="TEXT"></field>
+				</shadow>
+			</value>
+		</block>	  
 	</category> 
 		
 	<sep id="category_sep"></sep>	
@@ -7095,6 +7109,18 @@
 	  </block>	 
 	</category>	
 	<category id="france9" name="servoesp">
+		<block type="fu_servo">
+			<value name="pin">
+			  <block type="math_number">
+				<field name="NUM">2</field>
+			  </block>
+			</value>
+			<value name="angle">
+			  <block type="math_number">
+				<field name="NUM">90</field>
+			  </block>
+			</value>		
+		</block>	
 		<block type="fu_servo_esp">
 			<value name="pin">
 			  <block type="math_number">
