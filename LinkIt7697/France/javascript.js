@@ -8,8 +8,6 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
   var baudrate = block.getFieldValue('baudrate');  
   var framesize = block.getFieldValue('framesize');
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');	
-  
-  Blockly.Arduino.definitions_['define_new_wifi'] ='#define NEW_WIFI\n';
 																
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\n#include "esp_camera.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nWiFiServer server(80);\n\nString Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'+
 																'#define PWDN_GPIO_NUM     -1\n'+
@@ -788,9 +786,10 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'  String message;\n'+
 			'  long message_id;\n'+
 			'  String text;\n'+
-			'  if (message_id_last == 0) Serial.println("Connect to " + String(myDomain));\n'+
-			'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+
-			'  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'  if (message_id_last == 0) Serial.println("Connect to " + String(myDomain));\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_.getTelegramMessage += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_.getTelegramMessage += '  if (client_tcp.connect(myDomain, 443)) {\n'+
 			'    if (message_id_last == 0) Serial.println("Connection successful");\n'+
 			'    while (client_tcp.connected()) {\n'+
 			'      getAll = "";\n'+
@@ -1036,9 +1035,10 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 			'  String message;\n'+
 			'  long message_id;\n'+
 			'  String text;\n'+
-			'  if (message_id_last == 0) Serial.println("Connect to " + String(myDomain));\n'+
-			'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+			
-			'  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'  if (message_id_last == 0) Serial.println("Connect to " + String(myDomain));\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_.getTelegramMessage += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_.getTelegramMessage +='  if (client_tcp.connect(myDomain, 443)) {\n'+
 			'    if (message_id_last == 0) Serial.println("Connection successful");\n'+
 			'    while (client_tcp.connected()) {\n'+
 			'      getAll = "";\n'+
@@ -1238,9 +1238,10 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	Blockly.Arduino.definitions_['opendataAirQuality'] = '\n' +
 			'void opendataAirQuality(String Site, String Authorization) {\n'+
 			'  WiFiClientSecure client_tcp;\n'+
-			'  String request = "/api/v1/aqx_p_432?format=json&limit=5&api_key="+Authorization+"&filters=SiteName,EQ,"+urlencode(Site);\n'+
-			'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+
-			'  if (client_tcp.connect("data.epa.gov.tw", 443)) {\n'+
+			'  String request = "/api/v1/aqx_p_432?format=json&limit=5&api_key="+Authorization+"&filters=SiteName,EQ,"+urlencode(Site);\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_['opendataAirQuality'] += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_['opendataAirQuality'] +='  if (client_tcp.connect("data.epa.gov.tw", 443)) {\n'+
 			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: data.epa.gov.tw");\n'+
 			'    client_tcp.println("Connection: close");\n'+
@@ -1358,9 +1359,10 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 	Blockly.Arduino.definitions_['opendataWeather'] = '\n' +
 			'void opendataWeather(String location, String Authorization) {\n'+
 			'  WiFiClientSecure client_tcp;\n'+
-			'  String request = "/api/v1/rest/datastore/F-C0032-001?Authorization="+Authorization+"&locationName="+urlencode(location);\n'+
-			'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+
-			'  if (client_tcp.connect("opendata.cwb.gov.tw", 443)) {\n'+
+			'  String request = "/api/v1/rest/datastore/F-C0032-001?Authorization="+Authorization+"&locationName="+urlencode(location);\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_['opendataWeather'] += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_['opendataWeather'] +='  if (client_tcp.connect("opendata.cwb.gov.tw", 443)) {\n'+
 			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: opendata.cwb.gov.tw");\n'+
 			'    client_tcp.println("Connection: close");\n'+
@@ -3130,9 +3132,10 @@ Blockly.Arduino['tcp_https_esp32'] = function(block) {
   Blockly.Arduino.definitions_['tcp_https_esp32'] ='\n'+
 											'String tcp_https_esp32(String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
-											'  WiFiClientSecure client_tcp;\n'+
-											'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+											
-											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
+											'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_['tcp_https_esp32'] += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_['tcp_https_esp32'] +='  if (client_tcp.connect(domain.c_str(), port)) {\n'+
 											'    //Serial.println("Connected to "+domain+" successfully.");\n'+
 											'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 											'    client_tcp.println("Host: " + domain);\n'+
@@ -3233,9 +3236,10 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
 											'  request.replace("%20stickerId","&stickerId");\n'+
 											'  request.replace("%20imageFullsize","&imageFullsize");\n'+
 											'  request.replace("%20imageThumbnail","&imageThumbnail");\n'+ 
-											'  WiFiClientSecure client_tcp;\n'+
-											'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+											
-											'  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
+											'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_['linenotify_esp32'] += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_['linenotify_esp32'] +='  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
 											'    client_tcp.println("POST /api/notify HTTP/1.1");\n'+
 											'    client_tcp.println("Connection: close");\n'+
 											'    client_tcp.println("Host: notify-api.line.me");\n'+
@@ -3300,9 +3304,10 @@ Blockly.Arduino['linenotify_esp32_no'] = function (block) {
 											'  request.replace("%20stickerId","&stickerId");\n'+
 											'  request.replace("%20imageFullsize","&imageFullsize");\n'+
 											'  request.replace("%20imageThumbnail","&imageThumbnail");\n'+ 
-											'  WiFiClientSecure client_tcp;\n'+
-											'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+											
-											'  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
+											'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_['linenotify_esp32'] += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_['linenotify_esp32'] +='  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
 											'    client_tcp.println("POST /api/notify HTTP/1.1");\n'+
 											'    client_tcp.println("Connection: close");\n'+
 											'    client_tcp.println("Host: notify-api.line.me");\n'+
@@ -3406,9 +3411,10 @@ Blockly.Arduino['linenotify_all'] = function(block) {
 											'  request.replace("%20stickerId","&stickerId");\n'+
 											'  request.replace("%20imageFullsize","&imageFullsize");\n'+
 											'  request.replace("%20imageThumbnail","&imageThumbnail");\n'+ 
-											'  WiFiClientSecure client_tcp;\n'+
-											'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+											
-											'  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
+											'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_['linenotify_esp32'] += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_['linenotify_esp32'] +='  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
 											'    client_tcp.println("POST /api/notify HTTP/1.1");\n'+
 											'    client_tcp.println("Connection: close");\n'+
 											'    client_tcp.println("Host: notify-api.line.me");\n'+
@@ -3575,9 +3581,10 @@ Blockly.Arduino['thingspeak_update_noreturn'] = function (block) {
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
-											'  WiFiClientSecure client_tcp;\n'+
-											'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+											
-											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
+											'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_['tcp_http_esp32'] += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_['tcp_http_esp32'] +='  if (client_tcp.connect(domain.c_str(), port)) {\n'+
 											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
 											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 											'	client_tcp.println("Host: " + domain);\n'+
@@ -3639,9 +3646,10 @@ Blockly.Arduino['thingspeak_update'] = function (block) {
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
-											'  WiFiClientSecure client_tcp;\n'+
-											'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+											
-											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
+											'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_['tcp_http_esp32'] += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_['tcp_http_esp32'] +='  if (client_tcp.connect(domain.c_str(), port)) {\n'+
 											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
 											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 											'	client_tcp.println("Host: " + domain);\n'+
@@ -3703,9 +3711,10 @@ Blockly.Arduino['thingspeak_read1'] = function (block) {
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
-											'  WiFiClientSecure client_tcp;\n'+
-											'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+											
-											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
+											'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_['tcp_http_esp32'] += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_['tcp_http_esp32'] +='  if (client_tcp.connect(domain.c_str(), port)) {\n'+
 											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
 											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 											'	client_tcp.println("Host: " + domain);\n'+
@@ -3797,9 +3806,10 @@ Blockly.Arduino['thingspeak_read3'] = function (block) {
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
-											'  WiFiClientSecure client_tcp;\n'+
-											'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+											
-											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
+											'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_['tcp_http_esp32'] += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_['tcp_http_esp32'] +='  if (client_tcp.connect(domain.c_str(), port)) {\n'+
 											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
 											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 											'	client_tcp.println("Host: " + domain);\n'+
@@ -10676,9 +10686,10 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 			'  }\n'+
 			'  \n'+
 			'  Serial.println("Connect to " + String(myDomain));\n'+
-			'  WiFiClientSecure client_tcp;\n'+
-			'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+
-			'  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive +='  if (client_tcp.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    \n'+
 			'    char *input = (char *)fb->buf;\n'+
@@ -10806,9 +10817,10 @@ Blockly.Arduino['esp32_cam_spreadsheet'] = function(block) {
 			'  }\n'+
 			'  \n'+
 			'  Serial.println("Connect to " + String(myDomain));\n'+
-			'  WiFiClientSecure client_tcp;\n'+
-			'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+
-			'  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_.SendStillToSpreadsheet += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_.SendStillToSpreadsheet +='  if (client_tcp.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    \n'+
 			'    char *input = (char *)fb->buf;\n'+
@@ -10920,10 +10932,10 @@ Blockly.Arduino['esp32_cam_linenotify'] = function(block) {
 			'    return "Camera capture failed";\n'+
 			'  }\n'+
 			'  \n'+
-			'  WiFiClientSecure client_tcp;\n'+
-			'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+
-			'  Serial.println("Connect to notify-api.line.me");\n'+
-			'  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
+			'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_.SendCapturedImageToLineNotify += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_.SendCapturedImageToLineNotify +='  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    \n'+
 			'    if (message=="") message = "ESP32-CAM";\n'+
@@ -11009,9 +11021,10 @@ Blockly.Arduino['esp32_cam_telegrambot'] = function(block) {
 	'    return "Camera capture failed";\n'+
 	'  }\n'+  
 	'  Serial.println("Connect to " + String(myDomain));\n'+
-	'  WiFiClientSecure client_tcp;\n'+
-	'  #if defined(NEW_WIFI)\n    client_tcp.setInsecure();\n  #endif\n'+
-	'  if (client_tcp.connect(myDomain, 443)) {\n'+
+	'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_.sendCapturedImage2Telegram += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_.sendCapturedImage2Telegram +='  if (client_tcp.connect(myDomain, 443)) {\n'+
 	'    Serial.println("Connection successful");\n'+
 	'    String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"chat_id\\"; \\r\\n\\r\\n" + chat_id + "\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"photo\\"; filename=\\"esp32-cam.jpg\\"\\r\\nContent-Type: image/jpeg\\r\\n\\r\\n";\n'+
 	'    String tail = "\\r\\n--Taiwan--\\r\\n";\n'+

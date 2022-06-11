@@ -15,7 +15,7 @@ Blockly.Msg.FRANCE2_SECOND_SHOW = "(ms)";
 Blockly.Msg.FRANCE3_HEAD_LINE_SHOW = "Line Notify";
 Blockly.Msg.FRANCE4_HEAD_HTTPS_SHOW = "TCP HTTPS (ESP32)";
 Blockly.Msg.FRANCE4_HEAD_HTTP_SHOW = "TCP HTTP (ESP32)";
-Blockly.Msg.FRANCE5_HEAD_LINE_SHOW = "Line Notify (ESP32)";
+Blockly.Msg.FRANCE5_HEAD_LINE_SHOW = "Line Notify (https)";
 Blockly.Msg.FRANCE5_LINE_HTTP_SHOW = "Line Notify (http)";
 Blockly.Msg.FRANCE6_CLOSE_POWERDOG_SHOW = "ESP32 Close Power Dog";
 Blockly.Msg.SET_WIFI_UNTIL_READY_TITLE = "Connect to Wi-Fi AP";
@@ -1302,4 +1302,4 @@ Blockly.Msg["DFPLAYER_COMMAND_PLAYFOLDER_SHOW"] = "PLAY FOLDER";
 Blockly.Msg["DFPLAYER_COMMAND_PLAYLARGEFOLDER_SHOW"] = "PLAY LARGE FOLDER";
 Blockly.Msg["DFPLAYER_COMMAND_OUTPUTSETTING_SHOW"] = "OUTPUT SETTING";
 
-Blockly.Msg["ESP32_PIXELBIT_SERVERMODULE_SHOW"] = "PIXEL:BIT(Update to version 1.0.6) connect to Wi-Fi AP";
+Blockly.Msg["ESP32_PIXELBIT_SERVERMODULE_SHOW"] = "PIXEL:BIT(Blocklyduino F2) connect to Wi-Fi AP";

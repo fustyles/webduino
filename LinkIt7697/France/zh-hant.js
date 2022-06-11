@@ -15,7 +15,7 @@ Blockly.Msg.FRANCE2_SECOND_SHOW = "(毫秒)";
 Blockly.Msg.FRANCE3_HEAD_LINE_SHOW = "Line 通知";
 Blockly.Msg.FRANCE4_HEAD_HTTPS_SHOW = "TCP HTTPS (ESP32)";
 Blockly.Msg.FRANCE4_HEAD_HTTP_SHOW = "TCP HTTP (ESP32)";
-Blockly.Msg.FRANCE5_HEAD_LINE_SHOW = "Line 通知 (ESP32)";
+Blockly.Msg.FRANCE5_HEAD_LINE_SHOW = "Line 通知 (https)";
 Blockly.Msg.FRANCE5_LINE_HTTP_SHOW = "Line 通知 (http)";
 Blockly.Msg.FRANCE6_CLOSE_POWERDOG_SHOW = "ESP32 關閉電壓不穩重啟";
 Blockly.Msg.SET_WIFI_UNTIL_READY_TITLE = "連線到Wi-Fi熱點";
@@ -1311,4 +1311,4 @@ Blockly.Msg["DFPLAYER_COMMAND_PLAYFOLDER_SHOW"] = "資料夾單曲播放";
 Blockly.Msg["DFPLAYER_COMMAND_PLAYLARGEFOLDER_SHOW"] = "大型資料夾單曲播放";
 Blockly.Msg["DFPLAYER_COMMAND_OUTPUTSETTING_SHOW"] = "輸出設定";
 
-Blockly.Msg["ESP32_PIXELBIT_SERVERMODULE_SHOW"] = "PIXEL:BIT(核心須升級至1.0.6) 連線到Wi-Fi熱點";
+Blockly.Msg["ESP32_PIXELBIT_SERVERMODULE_SHOW"] = "PIXEL:BIT(Blocklyduino F2) 連線到Wi-Fi熱點";
