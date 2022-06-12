@@ -1098,8 +1098,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				customBlocksPath+="/";
 			addCustomRemoteBlocks(customBlocksPath);
 		}
-	}
-	
+	}	
+
 	//Double Click關閉彈出積木選單
 	setTimeout(function() {
 		var blocklyWorkspace = document.getElementsByClassName("blocklyFlyout");
@@ -1108,7 +1108,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				Blockly.hideChaff();
 			});
 		}
-	}, 3000);
+	}, 2000);
+	
 });	
 
 //切換頁籤
@@ -1165,6 +1166,7 @@ function textareaFocus(id) {
 
 //縮放視窗
 function contentZoom(content) {
+	const div_title = document.getElementById(content+"_title");
 	const div_content = document.getElementById(content+"_content");
 	const div_code = document.getElementById(content+"_code");
 	if (div_content.style.height!= "40px") {
@@ -1185,7 +1187,7 @@ function contentZoom(content) {
 	else {
 		div_content.style.width = div_content.w;
 		div_content.style.height = div_content.h;
-		div_code.style.display = "block";	
+		div_code.style.display = "block";
 		
 		if (content=="arduino") {
 			div_content.style.left = div_content.l;	
@@ -1193,7 +1195,6 @@ function contentZoom(content) {
 		}			
 	}
 }
-
 
 /*
 // NW.js

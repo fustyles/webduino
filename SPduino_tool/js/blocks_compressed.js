@@ -41,14 +41,15 @@ Blockly.Blocks.main={
 				blocks[i].dispose();
 			}
 		}
-		var enabledBlockList = ["main","procedures_defnoreturn","procedures_defreturn"];
+		var enabledBlockList = ["main"];
 		var variableBlockList = ["variables_set","variables_set1","variables_set7"];
 		var variableGlobalBlockList = ["variables_set","variables_set1"];
 		blocks = this.workspace.getAllBlocks();
 		var p;
 		for (var i=0;i<blocks.length;i++) {
 			p = blocks[i];
-			if (enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)) {
+			if (enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection
+==null)) {
 				if (topCheck) blocks[i].setEnabled(true);
 				if (variableGlobalBlockList.includes(blocks[i].type)&&blocks[i].getField("POSITION")) {
 					if (blocks[i].getFieldValue("POSITION")=="global")
@@ -59,7 +60,8 @@ Blockly.Blocks.main={
 			}
 			p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
 			while(p) {
-				if ((enabledBlockList.includes(p.type)||variableBlockList.includes(p.type))&&!p.getParent()) {
+				if ((enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection
+==null))&&!p.getParent()) {
 					if (topCheck) blocks[i].setEnabled(true);
 					break;
 				}

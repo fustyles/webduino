@@ -3658,7 +3658,6 @@ Blockly.Flyout.prototype.show = function(flyoutDef) {
   var flyoutInfo =
     /** @type {{contents:!Array<!Object>, gaps:!Array<number>}} */ (
       this.createFlyoutInfo_(parsedContent));
-
   this.layout_(flyoutInfo.contents, flyoutInfo.gaps);
 
   // IE 11 is an incompetent browser that fails to fire mouseout events.
@@ -4255,8 +4254,32 @@ Blockly.HorizontalFlyout.prototype.position=function(){if(this.isVisible()&&this
 Blockly.HorizontalFlyout.prototype.setBackgroundPath_=function(a,b){var c=this.toolboxPosition_==Blockly.utils.toolbox.Position.TOP,d=["M 0,"+(c?0:this.CORNER_RADIUS)];c?(d.push("h",a+2*this.CORNER_RADIUS),d.push("v",b),d.push("a",this.CORNER_RADIUS,this.CORNER_RADIUS,0,0,1,-this.CORNER_RADIUS,this.CORNER_RADIUS),d.push("h",-a),d.push("a",this.CORNER_RADIUS,this.CORNER_RADIUS,0,0,1,-this.CORNER_RADIUS,-this.CORNER_RADIUS)):(d.push("a",this.CORNER_RADIUS,this.CORNER_RADIUS,0,0,1,this.CORNER_RADIUS,
 -this.CORNER_RADIUS),d.push("h",a),d.push("a",this.CORNER_RADIUS,this.CORNER_RADIUS,0,0,1,this.CORNER_RADIUS,this.CORNER_RADIUS),d.push("v",b),d.push("h",-a-2*this.CORNER_RADIUS));d.push("z");this.svgBackground_.setAttribute("d",d.join(" "))};Blockly.HorizontalFlyout.prototype.scrollToStart=function(){this.workspace_.scrollbar.setX(this.RTL?Infinity:0)};
 Blockly.HorizontalFlyout.prototype.wheel_=function(a){var b=Blockly.utils.getScrollDeltaPixels(a);if(b=b.x||b.y){var c=this.workspace_.getMetricsManager(),d=c.getScrollMetrics();b=c.getViewMetrics().left-d.left+b;this.workspace_.scrollbar.setX(b);Blockly.WidgetDiv.hide();Blockly.DropDownDiv.hideWithoutAnimation()}a.preventDefault();a.stopPropagation()};
-Blockly.HorizontalFlyout.prototype.layout_=function(a,b){this.workspace_.scale=this.targetWorkspace.scale;var c=this.MARGIN,d=c+this.tabWidth_;this.RTL&&(a=a.reverse());for(var e=0,f;f=a[e];e++)if("block"==f.type){f=f.block;for(var g=f.getDescendants(!1),h=0,k;k=g[h];h++)k.isInFlyout=!0;f.render();g=f.getSvgRoot();h=f.getHeightWidth();k=f.outputConnection?this.tabWidth_:0;k=this.RTL?d+h.width:d-k;f.moveBy(k,c);k=this.createRect_(f,k,c,h,e);d+=h.width+b[e];this.addBlockListeners_(g,f,k)}else"button"==
-f.type&&(this.initFlyoutButton_(f.button,d,c),d+=f.button.width+b[e])};Blockly.HorizontalFlyout.prototype.isDragTowardWorkspace=function(a){a=Math.atan2(a.y,a.x)/Math.PI*180;var b=this.dragAngleRange_;return a<90+b&&a>90-b||a>-90-b&&a<-90+b?!0:!1};
+
+
+Blockly.HorizontalFlyout.prototype.layout_=function(a,b){
+	this.workspace_.scale=this.targetWorkspace.scale;
+	var c=this.MARGIN,d=c+this.tabWidth_;
+	this.RTL&&(a=a.reverse());
+	for(var e=0,f;f=a[e];e++)
+		if("block"==f.type){
+			f=f.block;
+			for(var g=f.getDescendants(!1),h=0,k;k=g[h];h++)
+				k.isInFlyout=!0;
+			f.render();
+			g=f.getSvgRoot();
+			h=f.getHeightWidth();
+			k=f.outputConnection?this.tabWidth_:0;
+			k=this.RTL?d+h.width:d-k;
+			f.moveBy(k,c);
+			k=this.createRect_(f,k,c,h,e);
+			d+=h.width+b[e];
+			this.addBlockListeners_(g,f,k)
+		}
+		else
+			"button"==f.type&&(this.initFlyoutButton_(f.button,d,c),d+=f.button.width+b[e])
+};
+
+Blockly.HorizontalFlyout.prototype.isDragTowardWorkspace=function(a){a=Math.atan2(a.y,a.x)/Math.PI*180;var b=this.dragAngleRange_;return a<90+b&&a>90-b||a>-90-b&&a<-90+b?!0:!1};
 Blockly.HorizontalFlyout.prototype.getClientRect=function(){if(!this.svgGroup_||this.autoClose||!this.isVisible())return null;var a=this.svgGroup_.getBoundingClientRect(),b=a.top;return this.toolboxPosition_==Blockly.utils.toolbox.Position.TOP?new Blockly.utils.Rect(-1E9,b+a.height,-1E9,1E9):new Blockly.utils.Rect(b,1E9,-1E9,1E9)};
 Blockly.HorizontalFlyout.prototype.reflowInternal_=function(){this.workspace_.scale=this.getFlyoutScale();for(var a=0,b=this.workspace_.getTopBlocks(!1),c=0,d;d=b[c];c++)a=Math.max(a,d.getHeightWidth().height);a+=1.5*this.MARGIN;a*=this.workspace_.scale;a+=Blockly.Scrollbar.scrollbarThickness;if(this.height_!=a){for(c=0;d=b[c];c++)d.flyoutRect_&&this.moveRectToBlock_(d.flyoutRect_,d);this.targetWorkspace.toolboxPosition!=this.toolboxPosition_||this.toolboxPosition_!=Blockly.utils.toolbox.Position.TOP||
 this.targetWorkspace.getToolbox()||this.targetWorkspace.translate(this.targetWorkspace.scrollX,this.targetWorkspace.scrollY+a);this.height_=a;this.position();this.targetWorkspace.recordDragTargets()}};Blockly.registry.register(Blockly.registry.Type.FLYOUTS_HORIZONTAL_TOOLBOX,Blockly.registry.DEFAULT,Blockly.HorizontalFlyout);Blockly.VerticalFlyout=function(a){Blockly.VerticalFlyout.superClass_.constructor.call(this,a)};Blockly.utils.object.inherits(Blockly.VerticalFlyout,Blockly.Flyout);Blockly.VerticalFlyout.registryName="verticalFlyout";
@@ -4907,20 +4930,22 @@ Blockly.ContextMenuItems.registerScrollPlugin=function(){
 		}
 	)
 };
+var topCheck = true;
 Blockly.ContextMenuItems.registerTopCheck=function(){
 	Blockly.ContextMenuRegistry.registry.register(
 		{
-			displayText:function(){return Blockly.Msg["DISABLED_TOPCHECK"];}
+			displayText:function(){
+				if (topCheck) {
+					return Blockly.Msg["DISABLED_TOPCHECK"];
+				} else {
+					return Blockly.Msg["ENABLED_TOPCHECK"];
+				}
+			}
 			,preconditionFn:function(a){
-				if (topCheck)
-					return "enabled"
-				else
-					return "hidden"
+				return "enabled"
 			}
 			,callback:function(a){
-				if (topCheck) {
-					topCheck=false;
-				} 
+				topCheck=!topCheck;
 			}
 			,scopeType:Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id:"topCheck",weight:20
 		}
