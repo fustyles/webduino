@@ -234,7 +234,7 @@ Blockly.Blocks['fu_dfplayer_command0'] = {
 			[Blockly.Msg["DFPLAYER_COMMAND_VOLUME_SHOW"]+" (0~30)","volume"],
 			[Blockly.Msg["DFPLAYER_COMMAND_PLAYMP3FOLDER_SHOW"]+" (1~255)","playMp3Folder"],
 			[Blockly.Msg["DFPLAYER_COMMAND_ADVERTISE_SHOW"]+" (1~255)","advertise"],
-			[Blockly.Msg["DFPLAYER_COMMAND_LOOPFOLDER_SHOW"]+" (n)","loopFolder"]			
+			[Blockly.Msg["DFPLAYER_COMMAND_LOOPFOLDER_SHOW"]+" (1~99)","loopFolder"]			
 		], this.validate), "cmd");
     this.appendValueInput("p1")
         .setCheck("Number")
@@ -256,7 +256,7 @@ Blockly.Blocks['fu_dfplayer_command1'] = {
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["DFPLAYER_COMMAND_PLAYFOLDER_SHOW"]+" (1~99, 1~255)","playFolder"],
 			[Blockly.Msg["DFPLAYER_COMMAND_PLAYLARGEFOLDER_SHOW"]+" (1~10, 1~1000)","playLargeFolder"],
-			[Blockly.Msg["DFPLAYER_COMMAND_OUTPUTSETTING_SHOW"]+" (boolean, n)","outputSetting"]		
+			[Blockly.Msg["DFPLAYER_COMMAND_OUTPUTSETTING_SHOW"]+" (boolean, value)","outputSetting"]		
 		], this.validate), "cmd");
     this.appendValueInput("p1")
         .setCheck(null)
