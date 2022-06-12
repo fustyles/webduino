@@ -8136,8 +8136,8 @@ Blockly.Arduino['BitMatrixLed_matrix_reverse'] = function(block) {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);
-	//if (rgb.indexOf("#")!=-1)
-	//	rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
+	if (rgb.indexOf("#")==0)
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
 	
 	var code = 'MatrixLedReverse('+rgb+');\n';
 	return code;
@@ -8212,8 +8212,8 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one'] = function(block) {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
-	//if (rgb.indexOf("#")!=-1)
-	//	rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
+	if (rgb.indexOf("#")==0)
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
 	
 	var code = 'MatrixLedOne((5-'+X+')*5 + ('+Y+'-1),'+rgb+');\n';
 	return code;
@@ -8243,8 +8243,8 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_n'] = function(block) {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
-	//if (rgb.indexOf("#")!=-1)
-	//	rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
+	if (rgb.indexOf("#")==0)
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
 	
 	var code = 'MatrixLedOne(('+N+'-1),'+rgb+');\n';
 	return code;
@@ -8291,7 +8291,7 @@ function rgb2number(rgb) {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
-	if (rgb.indexOf("#")!=-1)
+	if (rgb.indexOf("#")==0)
 		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
 	return 'String('+rgb+')';
 }
@@ -8587,8 +8587,8 @@ Blockly.Arduino['BitMatrixLed_sample1'] = function(block) {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
-	//if (rgb.indexOf("#")!=-1)
-	//	rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';	
+	if (rgb.indexOf("#")==0)
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
 	var leds = this.getFieldValue('value_sample_');
 
 	var code = 'MatrixLed_sample("'+leds+'",'+rgb+');\n';
@@ -8623,8 +8623,8 @@ Blockly.Arduino['BitMatrixLed_sample2'] = function(block) {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
-	//if (rgb.indexOf("#")!=-1)
-	//	rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';	
+	if (rgb.indexOf("#")==0)
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';	
 	var leds = this.getFieldValue('value_sample_');
 
 	var code = 'MatrixLed_sample("'+leds+'",'+rgb+');\n';
@@ -8659,8 +8659,8 @@ Blockly.Arduino['BitMatrixLed_sample3'] = function(block) {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
-	//if (rgb.indexOf("#")!=-1)
-	//	rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';	
+	if (rgb.indexOf("#")==0)
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';	
 	var leds = this.getFieldValue('value_sample_');
 
 	var code = 'MatrixLed_sample("'+leds+'",'+rgb+');\n';
@@ -8695,8 +8695,8 @@ Blockly.Arduino['BitMatrixLed_sample4'] = function(block) {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
-	//if (rgb.indexOf("#")!=-1)
-	//	rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';	
+	if (rgb.indexOf("#")==0)
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';	
 	var leds = this.getFieldValue('value_sample_');
 
 	var code = 'MatrixLed_sample("'+leds+'",'+rgb+');\n';
@@ -8830,8 +8830,8 @@ Blockly.Arduino['BitMatrixLed_sample5'] = function(block) {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
-	//if (rgb.indexOf("#")!=-1)
-	//	rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';	
+	if (rgb.indexOf("#")==0)
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';	
 	var sample = Blockly.Arduino.valueToCode(this,"sample",Blockly.Arduino.ORDER_ATOMIC);
 	if ((sample.indexOf("'")==0)&&(sample.lastIndexOf("'")==sample.length-1))
 		sample = '"'+sample.substring(1,sample.length-1)+'"';
@@ -9082,8 +9082,8 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee'] = function(block) {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
-	//if (rgb.indexOf("#")!=-1)
-	//	rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';												
+	if (rgb.indexOf("#")==0)
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';											
 	var value_marquee_ = Blockly.Arduino.valueToCode(block, 'value_marquee_', Blockly.Arduino.ORDER_ATOMIC);
 	var code = 'MatrixLed_marquee('+ value_marquee_ +','+rgb+');\n';
 	return code;
@@ -9151,8 +9151,8 @@ Blockly.Arduino['BitMatrixLed_matrix_marquee_times'] = function(block) {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
-	//if (rgb.indexOf("#")!=-1)
-	//	rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';		
+	if (rgb.indexOf("#")==0)
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';		
 	var value_marquee_ = Blockly.Arduino.valueToCode(block, 'value_marquee_', Blockly.Arduino.ORDER_ATOMIC);
 	var value_times_ = Blockly.Arduino.valueToCode(block, 'value_times_', Blockly.Arduino.ORDER_ATOMIC);
 	var code = 'MatrixLed_marquee_times('+ value_marquee_ +','+value_times_+','+rgb+');\n';
@@ -9679,8 +9679,8 @@ Blockly.Arduino['webbit_mooncar_ws2812_color_one_n'] = function(block) {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);	
-	//if (rgb.indexOf("#")!=-1)
-	//	rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
+	if (rgb.indexOf("#")==0)
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
 	
 	var code = 'MatrixLedOne(('+N+'-1),'+rgb+');\n';
 	return code;
