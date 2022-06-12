@@ -4925,20 +4925,22 @@ Blockly.ContextMenuItems.registerLoadLastBlocks=function(){
 		}
 	)
 };
+var topCheck = true;
 Blockly.ContextMenuItems.registerTopCheck=function(){
 	Blockly.ContextMenuRegistry.registry.register(
 		{
-			displayText:function(){return Blockly.Msg["DISABLED_TOPCHECK"];}
+			displayText:function(){
+				if (topCheck) {
+					return Blockly.Msg["DISABLED_TOPCHECK"];
+				} else {
+					return Blockly.Msg["ENABLED_TOPCHECK"];
+				}
+			}
 			,preconditionFn:function(a){
-				if (topCheck)
-					return "enabled"
-				else
-					return "hidden"
+				return "enabled"
 			}
 			,callback:function(a){
-				if (topCheck) {
-					topCheck=false;
-				} 
+				topCheck=!topCheck;
 			}
 			,scopeType:Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id:"topCheck",weight:20
 		}

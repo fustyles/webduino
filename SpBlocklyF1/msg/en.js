@@ -2289,6 +2289,7 @@ Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "Place block [input: #]";
 Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT_NAME"] = ["","","","","","","","","",""];
 
 Blockly.Msg["DISABLED_TOPCHECK"] = "Disable the check of top blocks";
+Blockly.Msg["ENABLED_TOPCHECK"] = "Enable the check of top blocks";
 
 Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "Export selected block to local file";
 Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "Insert a block into workspace from local file";

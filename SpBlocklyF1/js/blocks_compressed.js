@@ -78,7 +78,7 @@ Blockly.Blocks.initializes_loop={
 			var p;
 			for (var i=0;i<blocks.length;i++) {
 				p = blocks[i];
-				if (enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)) {
+				if (enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null)) {
 					if (topCheck) blocks[i].setEnabled(true);
 					if (variableGlobalBlockList.includes(blocks[i].type)&&blocks[i].getField("POSITION")) {
 						if (blocks[i].getFieldValue("POSITION")=="global")
@@ -89,7 +89,7 @@ Blockly.Blocks.initializes_loop={
 				}
 				p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
 				while(p) {
-					if ((enabledBlockList.includes(p.type)||variableBlockList.includes(p.type))&&!p.getParent()) {
+					if ((enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null))&&!p.getParent()) {
 						if (topCheck) blocks[i].setEnabled(true);
 						break;
 					}

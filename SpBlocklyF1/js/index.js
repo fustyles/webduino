@@ -893,7 +893,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				Blockly.hideChaff();
 			});
 		}
-	}, 3000);	
+	}, 2000);
+		
 });	
 
 
