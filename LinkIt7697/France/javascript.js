@@ -8543,7 +8543,7 @@ Blockly.Arduino['BitMatrixLed_matrix_getcolor'] = function(block) {
 	var X=Blockly.Arduino.valueToCode(this,"X",Blockly.Arduino.ORDER_ATOMIC);
 	var Y=Blockly.Arduino.valueToCode(this,"Y",Blockly.Arduino.ORDER_ATOMIC);
 	
-	var code = '("#"+MatrixLedGetColor((5-'+X+')*5 + ('+Y+'-1)))';
+	var code = '"#"+MatrixLedGetColor((5-'+X+')*5 + ('+Y+'-1))';
 	return[code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
