@@ -1166,6 +1166,24 @@ Blockly.Arduino['uart_initial'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['uart_initial_esp32'] = function(block) {
+	var serial = block.getFieldValue('serial');
+	var rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);  	
+	var tx = Blockly.Arduino.valueToCode(block, 'tx', Blockly.Arduino.ORDER_ATOMIC); 	
+    var baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
+	
+	if (serial=="mySerial1") {
+		Blockly.Arduino.definitions_["define_HardwareSerial"+serial] = 'HardwareSerial mySerial1(1);';
+		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
+	}
+	else if  (serial=="mySerial2") {
+		Blockly.Arduino.definitions_["define_HardwareSerial"+serial] = 'HardwareSerial mySerial2(2);';		
+		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
+	}
+	
+  return '';
+};
+
 Blockly.Arduino['uart_getdata'] = function(block) {
   code = 'uartData';
   return [code, Blockly.Arduino.ORDER_NONE];
@@ -8025,18 +8043,15 @@ Blockly.Arduino['BitMatrixLed_matrix_onecolor'] = function() {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);
-	if (rgb.indexOf("#")!=-1)
+	if (rgb.indexOf("#")==0) {
 		rgb = rgb.toLowerCase().replace(/#/g,"");
-	else {
-		Blockly.Arduino.definitions_['define_webbit_matrix_color_clear_poundsign']='\n'+
-											'String color_clear_poundsign(String color) {\n'+
-											'  color.replace("#","");\n'+
-											'  return color;\n'+											
-											'}\n';		
-		rgb = '"+color_clear_poundsign('+rgb+')+"';
-		
+		var code = 'MatrixLed("'+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+'");\n';	
 	}
-	var code = 'MatrixLed("'+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+rgb+'");\n';
+	else {
+		rgb = rgb.replace(/"#"\+/g,"");
+		var code = 'MatrixLed('+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+"+"+rgb+');\n';
+	}
+	
 	return code;
 };
   
@@ -8061,17 +8076,14 @@ Blockly.Arduino['BitMatrixLed_matrix'] = function() {
 		rgb = rgb.substring(1,rgb.length-1);
 	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);
-	if (rgb.indexOf("#")!=-1)
+	if (rgb.indexOf("#")==0) {
 		rgb = rgb.toLowerCase().replace(/#/g,"");
-	else {
-		Blockly.Arduino.definitions_['define_webbit_matrix_color_clear_poundsign']='\n'+
-											'String color_clear_poundsign(String color) {\n'+
-											'  color.replace("#","");\n'+
-											'  return color;\n'+											
-											'}\n';		
-		rgb = '"+color_clear_poundsign('+rgb+')+"';
-		
 	}
+	else {
+		rgb = '"+'+rgb.replace(/"#"\+/g,"")+'+"';
+	}
+	
+	
 	var L01 = (this.getFieldValue('L01') == 'TRUE')?rgb:"000000";
 	var L02 = (this.getFieldValue('L02') == 'TRUE')?rgb:"000000";
 	var L03 = (this.getFieldValue('L03') == 'TRUE')?rgb:"000000";

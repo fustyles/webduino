@@ -79,6 +79,23 @@
 				</shadow>
 			</value>
 		</block>
+	  <block type="uart_initial_esp32">
+		<value name="baudrate">
+		  <shadow type="math_number">
+			<field name="NUM">115200</field>
+		  </shadow>
+		</value> 	  
+		<value name="rx">
+		  <block type="math_number">
+			<field name="NUM">16</field>
+		  </block>
+		</value>
+		<value name="tx">
+		  <block type="math_number">
+			<field name="NUM">17</field>
+		  </block>
+		</value> 		  
+	  </block>		
 		<block type="fu_serial_ready"></block>
 		<block type="fu_serial_end"></block>
 		<block type="fu_serial_print">
@@ -125,7 +142,7 @@
 					<field name="NUM">0</field>
 				</shadow>
 			</value>
-		</block>	
+		</block>		
 	</category>
 
 	<category id="france20" name="uartmodule"> 

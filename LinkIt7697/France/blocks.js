@@ -430,6 +430,32 @@ Blockly.Blocks['uart_initial'] = {
   }
 };
 
+Blockly.Blocks['uart_initial_esp32'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["FU_SERIAL"]+" (ESP32)");
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		], this.validate), "serial");
+    this.appendValueInput("baudrate")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.UART_BAUDRATE_SHOW);		
+    this.appendValueInput("rx","rx")
+        .setCheck("Number")
+		.appendField("RX");
+    this.appendValueInput("tx","tx")
+        .setCheck("Number")
+		.appendField("TX");	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["FU_SERIAL_HUE"]);
+  }
+};
+
 Blockly.Blocks['uart_getdata'] = {
   init: function() {
 	this.appendDummyInput()
@@ -13891,9 +13917,7 @@ Blockly.Blocks['fu_serial_begin_config'] = {
     this.appendDummyInput()	 
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.appendField(new Blockly.FieldDropdown([
-			["Serial","Serial"],
-			["Serial1","mySerial1"],
-			["Serial2","mySerial2"]			
+			["Serial","Serial"]			
 		]), "serial");		
     this.appendValueInput("baudrate")
         .setCheck("Number")
