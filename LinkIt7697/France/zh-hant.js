@@ -1269,7 +1269,7 @@ Blockly.Msg["UART_AFTER_READ_SHOW"] = "取得字串後執行";
 Blockly.Msg["UART_BAUDRATE_SHOW"] = "通訊鮑率";	
 Blockly.Msg["UART_GETDATA_SHOW"] = "取得字串";
 Blockly.Msg["UART_READ_ALL_SHOW"] = "讀取完整字串";
-Blockly.Msg["UART_READ_STRING_SHOW"] = "讀取字串";
+Blockly.Msg["UART_READ_STRING_SHOW"] = "讀取片段字串";
 Blockly.Msg["UART_READ_ROW_SHOW"] = "讀取字串直到換行";
 Blockly.Msg["UART_READ_CHAR_SHOW"] = "讀取一個字元";
 
