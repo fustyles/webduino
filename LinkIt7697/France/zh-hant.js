@@ -1092,7 +1092,7 @@ Blockly.Msg.HOLISTIC_PAUSE_SHOW = "全身偵測 暫停偵測";
 
 Blockly.Msg.ESP32_CAM_LINENOTIFY_SHOW = "ESP32-CAM 截圖上傳Line通知";
 Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW = "訊息文字";
-Blockly.Msg.ESP32_CAM_TELEGRAMBOT_SHOW = "ESP32-CAM 截圖上傳Telegram Bot";
+Blockly.Msg.ESP32_CAM_TELEGRAMBOT_SHOW = " ESP32-CAM 截圖上傳Telegram Bot";
 Blockly.Msg.ESP32_CAM_TOKEN_SHOW = "權杖";
 Blockly.Msg.ESP32_CAM_CHATID_SHOW = "聊天室ID";
 Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server模組取得網址參數指令並執行自訂指令區";
