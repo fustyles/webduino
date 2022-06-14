@@ -29,3 +29,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_MYBACKPACK_SHOW = "[取得连结] 暂存积木(教�
 Blockly.Msg.ADDCUSTOMBLOCKS_WEBSERIAL_SHOW = "[取得连结] Web Serial";
 Blockly.Msg.ADDCUSTOMBLOCKS_MQTT_SHOW = "[取得连结] MQTT";
 Blockly.Msg.ADDCUSTOMBLOCKS_ROBOTFLY_SHOW = "[取得连结] ROBOT FLY";
+Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW = "[取得连结] 手势辨识(Mediapipe Holistic)";
