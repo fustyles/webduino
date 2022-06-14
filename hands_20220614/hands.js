@@ -105,7 +105,6 @@
 		if (json!=""&&json!="undefined") {
 			var result = JSON.parse('{"data":'+json+'}');
 			var canvasElement = document.getElementById('gamecanvas_canvasElement');
-			console.log(result["data"]);
 			if (result["data"].length>0) {
 				if (input_data=="x")
 					return Number(result["data"][input_hand][input_index].x)*Number(canvasElement.width);
