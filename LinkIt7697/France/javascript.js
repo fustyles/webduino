@@ -10319,9 +10319,13 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'   	                client.write(fbBuf, remainder);\n'+
 			'   	              }\n'+
 			'   	            }\n'+
-			'   	            esp_camera_fb_return(fb);\n'+
+			'   	            esp_camera_fb_return(fb);\n';
+						if (flash=="Y") {
+		Blockly.Arduino.definitions_.getRequest += ''+
 			'   	            pinMode(4, OUTPUT);\n'+
-			'   	            digitalWrite(4, LOW);\n'+ 
+			'   	            digitalWrite(4, LOW);\n';
+						}
+		Blockly.Arduino.definitions_.getRequest += ''+
 			'   	        } else {\n'+
 			'   	        	client.println("HTTP/1.1 200 OK");\n'+
 			'   	        	client.println("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");\n'+
@@ -10600,11 +10604,6 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
 			'    s->set_saturation(s, -2);\n'+
 			'  }\n'+			
 			'  s->set_framesize(s, FRAMESIZE_'+framesize+');\n'+
-			'  Serial.println();\n'+
-			'  ledcAttachPin(4, 4);\n'+
-			'  ledcSetup(4, 5000, 8);\n'+
-			'  Serial.println();\n'+			
-			'  delay(10);\n\n'+
 			'  WiFi.mode(WIFI_AP_STA);\n'+
 			'  \n'+
 			'  for (int i=0;i<2;i++) {\n'+
