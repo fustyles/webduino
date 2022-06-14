@@ -9,7 +9,7 @@ Blockly.Blocks['hands_video'] = {
 		["N","none"]	  
   ]), "video_");	
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.HANDS_SHOW)
+      .appendField(Blockly.Msg.HANDS_HAND_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		["Y","1"],
 		["N","0"]	
