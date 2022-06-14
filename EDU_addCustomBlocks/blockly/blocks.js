@@ -15,7 +15,7 @@ Blockly.Blocks['addMyBlocks'] = {
         [Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEALL_SHOW,"removeAll"],	  
         [Blockly.Msg.ADDCUSTOMBLOCKS_GAMEELEMENTS_SHOW,"GameElements_20190131"],		
         [Blockly.Msg.ADDCUSTOMBLOCKS_HOLISTIC_SHOW,"holistic_20201012"],
-        [Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW,"hands_20220614"]	  
+        [Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW,"hands_20220614"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_COCO_SSD_SHOW,"coco_ssd_20201012"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_TRACKINGCOLOR_SHOW,"trackingcolor_20201012"], 
         [Blockly.Msg.ADDCUSTOMBLOCKS_FACEAPI_RECOGNIZE_SHOW,"faceapi_recognize_20201012"], 
