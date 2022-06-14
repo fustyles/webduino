@@ -35,6 +35,7 @@ Blockly.Msg.SERVERMODULE_LOOP_SHOW = "loop";
 Blockly.Msg.ESP32_SERVERMODULE_SHOW = "ESP32 connect to Wi-Fi AP";
 Blockly.Msg.ESP32_CAM_SERVERMODULE_SHOW = "ESP32-CAM(still) connect to Wi-Fi AP";
 Blockly.Msg.ESP32_CAM_STREAM_SERVERMODULE_SHOW = "ESP32-CAM(Stream) connect to Wi-Fi AP";
+Blockly.Msg.ESP32_SERVERMODULE_FLASH_SHOW = "Flash";
 Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_SHOW = "tfjs coco-ssd Page";
 Blockly.Msg.ESP32_DIGITALWRITE_SHOW = "digitalWrite";
 Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW = "value";

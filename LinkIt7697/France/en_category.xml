@@ -26,7 +26,7 @@
 <category><name>SERIAL</name><replace>Serial</replace></category>
 <category><name>MLX90614</name><replace>MLX90614</replace></category>
 <category><name>catWebbit</name><replace>Webbit</replace></category>
-<category><name>catWebbitBoard</name><replace>Web:bit</replace></category>
+<category><name>catWebbitBoard</name><replace>Web:bit(Bpi:bit)</replace></category>
 <category><name>catWebbitMoonCar</name><replace>Moon Car</replace></category>
 <category><name>catGameElements</name><replace>Page Elements</replace></category>
 <category><name>catGameElements_sub1</name><replace>General</replace></category>

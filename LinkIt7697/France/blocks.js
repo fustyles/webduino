@@ -6353,7 +6353,14 @@ Blockly.Blocks['esp32_cam_myfirmata'] = {
 			["HQVGA(240x176)","HQVGA"],
 			["QQVGA(160x120)","QQVGA"],
 			["QXGA(2048x1564)","QXGA"]	
-		]), "framesize");		
+		]), "framesize");
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.ESP32_SERVERMODULE_FLASH_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["Y","Y"],
+			["N","N"]	
+		]), "flash");		
     this.appendValueInput("mainpage")
         .setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)		
@@ -6423,7 +6430,14 @@ Blockly.Blocks['esp32_cam_stream_myfirmata'] = {
 			["HQVGA(240x176)","HQVGA"],
 			["QQVGA(160x120)","QQVGA"],
 			["QXGA(2048x1564)","QXGA"]	
-		]), "framesize");		
+		]), "framesize");
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.ESP32_SERVERMODULE_FLASH_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["Y","Y"],
+			["N","N"]	
+		]), "flash");		
     this.appendValueInput("mainpage")
         .setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)		

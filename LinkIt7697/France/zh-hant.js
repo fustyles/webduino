@@ -34,6 +34,7 @@ Blockly.Msg.SERVERMODULE_SETUP_SHOW = "初始化";
 Blockly.Msg.SERVERMODULE_LOOP_SHOW = "重複執行";
 Blockly.Msg.ESP32_SERVERMODULE_SHOW = "ESP32連線到Wi-Fi熱點";
 Blockly.Msg.ESP32_CAM_SERVERMODULE_SHOW = "ESP32-CAM(張流)連線到Wi-Fi熱點";
+Blockly.Msg.ESP32_SERVERMODULE_FLASH_SHOW = "閃光燈";
 Blockly.Msg.ESP32_CAM_STREAM_SERVERMODULE_SHOW = "ESP32-CAM(串流)連線到Wi-Fi熱點";
 Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_SHOW = "TFJS 物件辨識coco-ssd網頁";
 Blockly.Msg.ESP32_DIGITALWRITE_SHOW = "數位輸出";
