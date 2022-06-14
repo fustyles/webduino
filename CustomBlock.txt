@@ -17,6 +17,9 @@ Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks
 Chrome瀏覽器console指令：移除自訂積木
 Code.customTab.$__remove__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
+(新版) 手勢辨識 (MediaPipe Holistic)
+https://fustyles.github.io/webduino/hands_20220614/blockly.json
+
 
 Robot Fly(須搭配Web Serial積木)
 https://fustyles.github.io/webduino/RobotFly_20220127/blockly.json
