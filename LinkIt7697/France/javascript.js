@@ -1,3 +1,99 @@
+Blockly.Arduino['hands_esp32cam'] = function(block) {
+	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
+	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
+		
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/hands_20220614/hands.js'></script><script src='https:\/\/fustyles.github.io/webduino/hands_20220614/hands_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js' crossorigin='anonymous'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{hands_video('block', '1', '1', '1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" recognitionFinish = async function() {"+javascript_recognition.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"var ")+"}};main();</script></body></html>\"";
+
+  return [code,Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['hands_video'] = function(block) { 
+  var value_video_ = block.getFieldValue('video_');
+  var value_hand_ = block.getFieldValue('hand_');
+  var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
+  var value_opacity_ = block.getFieldValue('opacity_');
+  var code = 'hands_video("' + value_video_ + '","' + value_hand_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
+  return code;
+};
+
+Blockly.Arduino['hands_position'] = function(block) {
+  var value_hand_ = Blockly.Arduino.valueToCode(block, 'hand_', Blockly.Arduino.ORDER_ATOMIC);	
+  var value_part_ = block.getFieldValue('part_');
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'hands_position(' + value_hand_ + ',"' + value_part_ + '","' + value_data_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['hands_distance'] = function (block) {
+  var value_x0_ = Blockly.Arduino.valueToCode(block, 'x0_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0_ = Blockly.Arduino.valueToCode(block, 'y0_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_x1_ = Blockly.Arduino.valueToCode(block, 'x1_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y1_ = Blockly.Arduino.valueToCode(block, 'y1_', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'hands_distance(' + value_x0_ + ',' + value_y0_ + ','+ value_x1_ + ',' + value_y1_ + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['hands_angle'] = function (block) {
+  var value_x0_ = Blockly.Arduino.valueToCode(block, 'x0_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0_ = Blockly.Arduino.valueToCode(block, 'y0_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_x1_ = Blockly.Arduino.valueToCode(block, 'x1_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y1_ = Blockly.Arduino.valueToCode(block, 'y1_', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'hands_angle(' + value_x0_ + ',' + value_y0_ + ','+ value_x1_ + ',' + value_y1_ + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['hands_state'] = function(block) {
+  var value_state_ = block.getFieldValue('state_');
+  var code = 'hands_state(' + value_state_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['hands_video_position'] = function(block) { 
+  var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'hands_video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['hands_canvas_get'] = function(block) { 
+  var code = '"canvasElement"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['hands_number'] = function(block) {
+  var code = 'hands_number()';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['hands_part_angle'] = function (block) {
+  var value_hand = Blockly.Arduino.valueToCode(block, 'hand_', Blockly.Arduino.ORDER_ATOMIC);	
+  var value_part1 = block.getFieldValue('part1_');
+  var value_part2 = block.getFieldValue('part2_'); 
+  var value_axis = block.getFieldValue('axis_');
+  var value_adjust = Blockly.Arduino.valueToCode(block, 'adjust_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'hands_part_angle('+ value_hand + ', Number(' + value_part1 + '), Number(' + value_part2 + '),"' + value_axis + '",' + value_adjust + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];  
+};
+
+Blockly.Arduino['hands_pause'] = function(block) { 
+  var value_time = Blockly.Arduino.valueToCode(block, 'time_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'hands_state(0);setTimeout(function(){hands_state(1);}, '+value_time+');\n';
+  return code;
+};
+
+Blockly.Arduino['hands_clear'] = function(block) { 
+  var code = 'hands_clear();\n';
+  return code;
+};
+
+Blockly.Arduino['hands_recognitied'] = function(block) { 
+  var statements_do = Blockly.Arduino.statementToCode(block, 'do_');
+  var code = 'hands_recognitionFinish = async function() {\nhands_state(0);\n' + statements_do + '\nhands_state(1);};\n';
+  return code;
+};
+
+
+
 Blockly.Arduino['fu_servo'] = function(block) {	
   var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
   var value_angle = Blockly.Arduino.valueToCode(block, 'angle', Blockly.Arduino.ORDER_ATOMIC);
