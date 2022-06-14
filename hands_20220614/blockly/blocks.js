@@ -9,17 +9,11 @@ Blockly.Blocks['hands_video'] = {
 		["N","none"]	  
   ]), "video_");	
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.HANDS_LEFTHAND_SHOW)
+      .appendField(Blockly.Msg.HANDS_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		["Y","1"],
 		["N","0"]	
-  ]), "lefthand_");
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HANDS_RIGHTHAND_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["Y","1"],
-		["N","0"]	
-  ]), "righthand_");  	  
+  ]), "hand_");	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HANDS_MIRRORIMAGE_SHOW)
       .appendField(new Blockly.FieldDropdown([

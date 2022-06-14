@@ -1,10 +1,9 @@
 Blockly.JavaScript['hands_video'] = function(block) { 
   var value_video_ = block.getFieldValue('video_');
-  var value_lefthand_ = block.getFieldValue('lefthand_');
-  var value_righthand_ = block.getFieldValue('righthand_');	
+  var value_hand_ = block.getFieldValue('hand_');
   var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
   var value_opacity_ = block.getFieldValue('opacity_');
-  var code = 'hands_video("' + value_video_ + '","' + value_lefthand_ + '","' + value_righthand_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
+  var code = 'hands_video("' + value_video_ + '","' + value_hand_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
   return code;
 };
 
