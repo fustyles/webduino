@@ -29,3 +29,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_MYBACKPACK_SHOW = "[取得連結] 暫存積木(教�
 Blockly.Msg.ADDCUSTOMBLOCKS_WEBSERIAL_SHOW = "[取得連結] Web Serial";
 Blockly.Msg.ADDCUSTOMBLOCKS_MQTT_SHOW = "[取得連結] MQTT";
 Blockly.Msg.ADDCUSTOMBLOCKS_ROBOTFLY_SHOW = "[取得連結] ROBOT FLY";
+Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW = "[取得連結] 手勢辨識(Mediapipe Holistic)";
