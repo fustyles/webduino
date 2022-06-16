@@ -1385,3 +1385,6 @@ Blockly.Msg["SPREADSHEET_INSERTLASTROW_SHOW"] = "append last";
 Blockly.Msg["SPREADSHEET_SPREADSHEETURL_SHOW"] = "Spreadsheet URL";
 Blockly.Msg["SPREADSHEET_SPREADSHEETNAME_SHOW"] = "Spreadsheet name";
 Blockly.Msg["SPREADSHEET_COLUMN_SHOW"] = "Column ";
+Blockly.Msg["SPREADSHEET_CLEAR_CELL_SHOW"] = "Clear cell";
+Blockly.Msg["SPREADSHEET_UPDATE_CELL_SHOW"] = "Update cell";
+Blockly.Msg["SPREADSHEET_CLEAR_ALL_SHOW"] = "Clear ALL cells";

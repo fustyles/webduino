@@ -1394,3 +1394,6 @@ Blockly.Msg["SPREADSHEET_INSERTLASTROW_SHOW"] = "新增至最後一列";
 Blockly.Msg["SPREADSHEET_SPREADSHEETURL_SHOW"] = "試算表網址";
 Blockly.Msg["SPREADSHEET_SPREADSHEETNAME_SHOW"] = "工作表名稱";
 Blockly.Msg["SPREADSHEET_COLUMN_SHOW"] = "欄位 ";
+Blockly.Msg["SPREADSHEET_CLEAR_CELL_SHOW"] = "清除欄位";
+Blockly.Msg["SPREADSHEET_UPDATE_CELL_SHOW"] = "更新欄位";
+Blockly.Msg["SPREADSHEET_CLEAR_ALL_SHOW"] = "清空欄位";

@@ -64,6 +64,9 @@
 	  </block>
 	</category>
 	<category id="category_fu_serial" name="SERIAL">
+		<block type="fu_serial_begin_select">
+			<field name="baudrate">9600</field>
+		</block>	
 		<block type="fu_serial_begin">
 			<value name="baudrate">
 				<shadow type="math_number">

@@ -10052,6 +10052,13 @@ Blockly.Arduino['fu_serial_begin'] = function(block) {
   return '';
 };
 
+Blockly.Arduino['fu_serial_begin_select'] = function(block) {
+  var serial = block.getFieldValue('serial'); 
+  var value_baudrate = block.getFieldValue('baudrate');
+  Blockly.Arduino.setups_['Serial.begin'] = serial+'.begin(%1);'.replace("%1", value_baudrate);
+  return '';
+};
+
 Blockly.Arduino['fu_serial_begin_config'] = function(block) {
   var value_baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
   var serial = block.getFieldValue('serial'); 

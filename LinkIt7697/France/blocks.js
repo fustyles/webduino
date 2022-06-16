@@ -14384,6 +14384,46 @@ Blockly.Blocks['fu_serial_begin'] = {
   }
 };
 
+Blockly.Blocks['fu_serial_begin_select'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["FU_SERIAL"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial","Serial"],
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		]), "serial");		
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["FU_SERIAL_BAUDRATE"])	
+		.appendField(new Blockly.FieldDropdown([
+			["300","300"],
+			["1200","1200"],
+			["2400","2400"],
+			["4800","4800"],
+			["9600","9600"],	    
+			["19200","19200"],
+			["38400","38400"],
+			["57600","57600"],
+			["74880","74880"],
+			["115200","115200"],	
+			["230400","230400"],
+			["250000","250000"],
+			["500000","500000"],
+			["1000000","1000000"],	
+			["2000000","2000000"]
+		]), "baudrate");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["FU_SERIAL_HUE"]);
+ this.setTooltip("serial");
+ this.setHelpUrl("https://www.arduino.cc/reference/en/language/functions/communication/serial/begin/");
+  }
+};
+
 Blockly.Blocks['fu_serial_begin_config'] = {
   init: function() {
     this.appendDummyInput()
