@@ -1384,3 +1384,4 @@ Blockly.Msg["SPREADSHEET_ROW2_SHOW"] = "insert after the first row";
 Blockly.Msg["SPREADSHEET_INSERTLASTROW_SHOW"] = "append last";	
 Blockly.Msg["SPREADSHEET_SPREADSHEETURL_SHOW"] = "Spreadsheet URL";
 Blockly.Msg["SPREADSHEET_SPREADSHEETNAME_SHOW"] = "Spreadsheet name";
+Blockly.Msg["SPREADSHEET_COLUMN_SHOW"] = "Column ";

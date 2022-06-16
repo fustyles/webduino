@@ -7,7 +7,7 @@ Blockly.defineBlocksWithJsonArray([
 	,args2:[{type:"input_value",name:"spreadsheetname",check:null,align:"RIGHT"}]		
 	,message3:"%1"
 	,args3:[{type:"field_dropdown",name:"position",options:[["%{BKY_SPREADSHEET_INSERTFIRSTROW_SHOW}","insertfirst"],["%{BKY_SPREADSHEET_ROW2_SHOW}","insertrow2"],["%{BKY_SPREADSHEET_INSERTLASTROW_SHOW}","insertlast"]],align:"RIGHT"}]		
-	,message4:"A %1"	
+	,message4:"%{BKY_SPREADSHEET_COLUMN_SHOW}A %1"	
 	,args4:[{type:"input_value",name:"VALUE",check:null,align:"RIGHT"}]	
 	,previousStatement:null
 	,nextStatement:null
@@ -16,13 +16,13 @@ Blockly.defineBlocksWithJsonArray([
 	,mutator:"controls_spreadsheet_mutator"
 	}
 	,{type:"controls_spreadsheet_main"
-	,message0:"%{BKY_CONTROLS_SPREADSHEET_VALUE}"
+	,message0:"%{BKY_SPREADSHEET_COLUMN_SHOW}"
 	,nextStatement:null
 	,enableContextMenu:!1
 	,style:"logic_blocks"
 	}	
 	,{type:"controls_spreadsheet_value"
-	,message0:"%{BKY_CONTROLS_SPREADSHEET_VALUE}"
+	,message0:"%{BKY_SPREADSHEET_COLUMN_SHOW}"
 	,previousStatement:null
 	,nextStatement:null
 	,enableContextMenu:!1
@@ -96,7 +96,7 @@ Blockly.Constants.Logic.CONTROLS_SPREADSHEET_MUTATOR_MIXIN={
 		for(a=1;a<=this.allCount_;a++)
 			this.appendValueInput(String.fromCharCode(a+65))
 			.setCheck(null)
-			.appendField(String.fromCharCode(a+65))
+			.appendField(Blockly.Msg["SPREADSHEET_COLUMN_SHOW"]+String.fromCharCode(a+65))
 			.setAlign(Blockly.ALIGN_RIGHT)
 	}
 	,reconnectChildBlocks_:function(a,b){	

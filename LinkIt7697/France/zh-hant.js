@@ -1393,3 +1393,4 @@ Blockly.Msg["SPREADSHEET_ROW2_SHOW"] = "新增至第二列";
 Blockly.Msg["SPREADSHEET_INSERTLASTROW_SHOW"] = "新增至最後一列";
 Blockly.Msg["SPREADSHEET_SPREADSHEETURL_SHOW"] = "試算表網址";
 Blockly.Msg["SPREADSHEET_SPREADSHEETNAME_SHOW"] = "工作表名稱";
+Blockly.Msg["SPREADSHEET_COLUMN_SHOW"] = "欄位 ";
