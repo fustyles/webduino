@@ -3,19 +3,19 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 	var spreadsheetname = Blockly.Arduino.valueToCode(block,"spreadsheetname",Blockly.Arduino.ORDER_NONE)||"";	
 	var position = block.getFieldValue('position');
 	var data = Blockly.Arduino.valueToCode(block,"VALUE",Blockly.Arduino.ORDER_NONE)||"";
-	data = 'String('+data+')+";;;"';
+	data = 'String('+data+')+"|"';
 	for (var i=0;i<26;i++) {
 		var text = Blockly.Arduino.valueToCode(block,String.fromCharCode(i+65),Blockly.Arduino.ORDER_NONE);
 		if (block.getInput(String.fromCharCode(i+65)))
-			data += '+String('+text+')+";;;"';
+			data += '+String('+text+')+"|"';
 	}
-	data = data.substring(0, data.length-6);
+	data = data.substring(0, data.length-4);
 	
 	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 
 	Blockly.Arduino.definitions_.Spreadsheet_insert = '\n'+
-			'String Spreadsheet_insert(String position, String data, String mySpreadsheeturl, String mySpreadsheetname, String myScript) {\n'+
+			'String Spreadsheet_insert(String position, String data, String row, String col, String text, String mySpreadsheeturl, String mySpreadsheetname, String myScript) {\n'+
 			'  const char* myDomain = "script.google.com";\n'+
 			'  String getAll="", getBody = "";\n'+
 			'  Serial.println("Connect to " + String(myDomain));\n'+
@@ -25,6 +25,7 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 	Blockly.Arduino.definitions_.Spreadsheet_insert +='  if (client_tcp.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    String Data = "&position="+position+"&data="+data+"&spreadsheeturl="+mySpreadsheeturl+"&spreadsheetname="+mySpreadsheetname;\n'+
+			'    Data += "&row="+row+"&col="+col+"&text="+text;\n'+			
 			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: " + String(myDomain));\n'+
 			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
@@ -104,7 +105,7 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 			'  return encodedString;\n'+
 			'}\n';			
 			
-	var code = 'Spreadsheet_insert("' + position + '", ' + data + ', urlencode(' + spreadsheeturl + '), urlencode(' + spreadsheetname + '), ' +  '"/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
+	var code = 'Spreadsheet_insert("' + position + '", ' + data + ', "", "", "", urlencode(' + spreadsheeturl + '), urlencode(' + spreadsheetname + '), ' +  '"/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
 	return code;
 };
 
