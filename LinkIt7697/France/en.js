@@ -1369,3 +1369,18 @@ Blockly.Msg.HANDS_ADJUST_SHOW  = "Adjust Angle";
 Blockly.Msg.HANDS_PAUSE_SHOW = "Hands Detect Pause";
 Blockly.Msg.HANDS_CLEAR_SHOW = "Hands Detect clear result";
 Blockly.Msg.HANDS_RECOGNITIED_SHOW = "Hands Detect recognitied";
+
+Blockly.Msg.ESP32_CAM_HANDS_SHOW = "Hand Recognition (mediapipe)";
+Blockly.Msg.ESP32_CAM_HANDS_INITIAL_SHOW = "Initial";
+Blockly.Msg.ESP32_CAM_HANDS_RECOGNITION_SHOW = "After recognizing";
+
+Blockly.Msg["CONTROLS_SPREADSHEET"] = "Google spreadsheet";
+Blockly.Msg["CONTROLS_SPREADSHEET_VALUE"] = "Value";
+Blockly.Msg["CONTROLS_SPREADSHEET_DATETIME"] = "Datetime";
+Blockly.Msg["CONTROLS_SPREADSHEET_DATE"] = "Date";
+Blockly.Msg["CONTROLS_SPREADSHEET_TIME"] = "Time";
+Blockly.Msg["SPREADSHEET_INSERTFIRSTROW_SHOW"] = "insert first";
+Blockly.Msg["SPREADSHEET_ROW2_SHOW"] = "insert after the first row";
+Blockly.Msg["SPREADSHEET_INSERTLASTROW_SHOW"] = "append last";	
+Blockly.Msg["SPREADSHEET_SPREADSHEETURL_SHOW"] = "Spreadsheet URL";
+Blockly.Msg["SPREADSHEET_SPREADSHEETNAME_SHOW"] = "Spreadsheet name";

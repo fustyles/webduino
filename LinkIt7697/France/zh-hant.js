@@ -1382,3 +1382,14 @@ Blockly.Msg.HANDS_RECOGNITIED_SHOW = "手勢偵測 辨識完成後執行";
 Blockly.Msg.ESP32_CAM_HANDS_SHOW = "手勢偵測 (mediapipe)";
 Blockly.Msg.ESP32_CAM_HANDS_INITIAL_SHOW = "初始設定";
 Blockly.Msg.ESP32_CAM_HANDS_RECOGNITION_SHOW = "辨識完成後執行";
+
+Blockly.Msg["CONTROLS_SPREADSHEET"] = "Google試算表";
+Blockly.Msg["CONTROLS_SPREADSHEET_VALUE"] = "值";
+Blockly.Msg["CONTROLS_SPREADSHEET_DATETIME"] = "完整時間";
+Blockly.Msg["CONTROLS_SPREADSHEET_DATE"] = "日期";
+Blockly.Msg["CONTROLS_SPREADSHEET_TIME"] = "時間";
+Blockly.Msg["SPREADSHEET_INSERTFIRSTROW_SHOW"] = "新增至第一列";
+Blockly.Msg["SPREADSHEET_ROW2_SHOW"] = "新增至第二列";
+Blockly.Msg["SPREADSHEET_INSERTLASTROW_SHOW"] = "新增至最後一列";
+Blockly.Msg["SPREADSHEET_SPREADSHEETURL_SHOW"] = "試算表網址";
+Blockly.Msg["SPREADSHEET_SPREADSHEETNAME_SHOW"] = "工作表名稱";

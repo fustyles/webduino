@@ -1,3 +1,137 @@
+Blockly.defineBlocksWithJsonArray([
+	{type:"controls_spreadsheet"
+	,message0:"%{BKY_CONTROLS_SPREADSHEET}"
+	,message1:"%{BKY_SPREADSHEET_SPREADSHEETURL_SHOW} %1"	
+	,args1:[{type:"input_value",name:"spreadsheeturl",check:null,align:"RIGHT"}]	
+	,message2:"%{BKY_SPREADSHEET_SPREADSHEETNAME_SHOW} %1"	
+	,args2:[{type:"input_value",name:"spreadsheetname",check:null,align:"RIGHT"}]		
+	,message3:"%1"
+	,args3:[{type:"field_dropdown",name:"position",options:[["%{BKY_SPREADSHEET_INSERTFIRSTROW_SHOW}","insertfirst"],["%{BKY_SPREADSHEET_ROW2_SHOW}","insertrow2"],["%{BKY_SPREADSHEET_INSERTLASTROW_SHOW}","insertlast"]],align:"RIGHT"}]		
+	,message4:"A %1"	
+	,args4:[{type:"input_value",name:"VALUE",check:null,align:"RIGHT"}]	
+	,previousStatement:null
+	,nextStatement:null
+	,style:"logic_blocks"
+	,inputsInline:0
+	,mutator:"controls_spreadsheet_mutator"
+	}
+	,{type:"controls_spreadsheet_main"
+	,message0:"%{BKY_CONTROLS_SPREADSHEET_VALUE}"
+	,nextStatement:null
+	,enableContextMenu:!1
+	,style:"logic_blocks"
+	}	
+	,{type:"controls_spreadsheet_value"
+	,message0:"%{BKY_CONTROLS_SPREADSHEET_VALUE}"
+	,previousStatement:null
+	,nextStatement:null
+	,enableContextMenu:!1
+	,style:"logic_blocks"
+	}
+]);
+
+Blockly.Constants.Logic.CONTROLS_SPREADSHEET_MUTATOR_MIXIN={
+	allCount_:0
+	,suppressPrefixSuffix:!0
+	,mutationToDom:function(){		
+		if(!this.allCount_)return null;
+		var a=Blockly.utils.xml.createElement("mutation");
+		this.allCount_&&a.setAttribute("all",this.allCount_);
+		return a
+	}
+	,domToMutation:function(a){		
+		this.allCount_=parseInt(a.getAttribute("all"),10)||0;
+		this.rebuildShape_()
+	}
+	,decompose:function(a){
+		var b=a.newBlock("controls_spreadsheet_main");
+		b.initSvg();
+		
+		for(var c=b.nextConnection,d=1;d<=this.allCount_;d++){
+			var e=a.newBlock("controls_spreadsheet_value");
+			e.initSvg();
+			c.connect(e.previousConnection);
+			c=e.nextConnection
+		}
+		return b
+	}
+	,compose:function(a){
+		a=a.nextConnection.targetBlock();
+		this.allCount_=0;
+		for(var b=[null];a&&!a.isInsertionMarker();){
+			this.allCount_++;
+			b.push(a.valueConnection_);
+			a=a.nextConnection&&a.nextConnection.targetBlock()
+		}
+		this.updateShape_();
+		this.reconnectChildBlocks_(b)
+	}
+	,saveConnections:function(a){	
+		a=a.nextConnection.targetBlock();
+		for(var b=1;a;){
+			console.log(a.type);
+			switch(a.type){
+				case "controls_spreadsheet_value":
+					var c=this.getInput(String.fromCharCode(b+65));
+					a.valueConnection_=c&&c.connection.targetConnection;
+					b++;
+					break;				
+				default:throw TypeError("Unknown block type: "+a.type);
+			}
+			a=a.nextConnection&&a.nextConnection.targetBlock()
+		}
+	}
+	,rebuildShape_:function(){	
+		var a=[null];
+		for(var d=1;this.getInput(String.fromCharCode(d+65));){
+			var e=this.getInput(String.fromCharCode(d+65));
+			a.push(e.connection.targetConnection);d++
+		}
+		this.updateShape_();
+		this.reconnectChildBlocks_(a)
+	}
+	,updateShape_:function(){	
+		for(var a=1;this.getInput(String.fromCharCode(a+65));)
+			this.removeInput(String.fromCharCode(a+65)),a++;
+		for(a=1;a<=this.allCount_;a++)
+			this.appendValueInput(String.fromCharCode(a+65))
+			.setCheck(null)
+			.appendField(String.fromCharCode(a+65))
+			.setAlign(Blockly.ALIGN_RIGHT)
+	}
+	,reconnectChildBlocks_:function(a,b){	
+		for(var d=1;d<=this.allCount_;d++)
+			Blockly.Mutator.reconnect(a[d],this,String.fromCharCode(d+65));
+	}
+};
+
+Blockly.Extensions.registerMutator("controls_spreadsheet_mutator",Blockly.Constants.Logic.CONTROLS_SPREADSHEET_MUTATOR_MIXIN,null,["controls_spreadsheet_value"]);
+
+Blockly.defineBlocksWithJsonArray([
+	{type:"controls_spreadsheet_datetime"
+	,message0:"%{BKY_CONTROLS_SPREADSHEET_DATETIME}"
+	,output:null
+	,style:"logic_blocks"
+	}
+]);
+
+Blockly.defineBlocksWithJsonArray([
+	{type:"controls_spreadsheet_date"
+	,message0:"%{BKY_CONTROLS_SPREADSHEET_DATE}"
+	,output:null
+	,style:"logic_blocks"
+	}
+]);
+
+Blockly.defineBlocksWithJsonArray([
+	{type:"controls_spreadsheet_time"
+	,message0:"%{BKY_CONTROLS_SPREADSHEET_TIME}"
+	,output:null
+	,style:"logic_blocks"
+	}
+]);
+
+
 Blockly.Blocks['hands_esp32cam'] = {
   init: function() {
     this.appendDummyInput()

@@ -74,4 +74,5 @@
 <category><name>fudfplayer</name><replace>DFPlayer mini</replace></category>
 <category><name>pixelbit</name><replace>Pixel:Bit網頁模組</replace></category>
 <category><name>hands</name><replace>手勢辨識</replace></category>
+<category><name>spreadsheet</name><replace>Google試算表</replace></category>
 </xml>
