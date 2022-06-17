@@ -130,7 +130,9 @@ Blockly.Blocks['controls_spreadsheet_function'] = {
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["SPREADSHEET_SET_CELL_SHOW"],"setcell"],
-		[Blockly.Msg["SPREADSHEET_CLEAR_CELL_SHOW"],"clearcell"],		
+		[Blockly.Msg["SPREADSHEET_CLEAR_CELL_SHOW"],"clearcell"],
+		[Blockly.Msg["SPREADSHEET_CLEAR_ROW_SHOW"],"clearrow"],
+		[Blockly.Msg["SPREADSHEET_CLEAR_COL_SHOW"],"clearcol"],		
 		[Blockly.Msg["SPREADSHEET_CLEAR_AFTERROW2_SHOW"],"clearafterrow2"],		
 		[Blockly.Msg["SPREADSHEET_CLEAR_SHEET_SHOW"],"clearsheet"]	  
 		],this.validate), "func");	  
@@ -164,6 +166,16 @@ Blockly.Blocks['controls_spreadsheet_function'] = {
 		block.getInput("col").setVisible(true);
 		block.getInput("text").setVisible(false);
 	}
+	else if (newValue=="clearrow") {
+		block.getInput("row").setVisible(true);
+		block.getInput("col").setVisible(false);
+		block.getInput("text").setVisible(false);
+	}
+	else if (newValue=="clearcol") {
+		block.getInput("row").setVisible(false);
+		block.getInput("col").setVisible(true);
+		block.getInput("text").setVisible(false);
+	}	
 	else if (newValue=="clearafterrow2") {
 		block.getInput("row").setVisible(false);
 		block.getInput("col").setVisible(false);
