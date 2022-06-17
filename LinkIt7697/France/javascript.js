@@ -15,7 +15,11 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 
 	Blockly.Arduino.definitions_.Spreadsheet_insert = '\n'+
-			'String Spreadsheet_insert(String func, String data, String row, String col, String text, String mySpreadsheeturl, String mySpreadsheetname, String myScript) {\n'+
+			'String Spreadsheet_insert(String func, String data, int row, int col, String text, String mySpreadsheeturl, String mySpreadsheetname, String myScript) {\n'+
+			'  data = urlencode(data);\n'+
+			'  text = urlencode(text);\n'+
+			'  mySpreadsheeturl = urlencode(mySpreadsheeturl);\n'+
+			'  mySpreadsheetname = urlencode(mySpreadsheetname);\n'+
 			'  const char* myDomain = "script.google.com";\n'+
 			'  String getAll="", getBody = "";\n'+
 			'  Serial.println("Connect to " + String(myDomain));\n'+
@@ -25,7 +29,7 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 	Blockly.Arduino.definitions_.Spreadsheet_insert +='  if (client_tcp.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    String Data = "&func="+func+"&data="+data+"&spreadsheeturl="+mySpreadsheeturl+"&spreadsheetname="+mySpreadsheetname;\n'+
-			'    Data += "&row="+row+"&col="+col+"&text="+text;\n'+			
+			'    Data += "&row="+String(row)+"&col="+String(col)+"&text="+text;\n'+			
 			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: " + String(myDomain));\n'+
 			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
@@ -105,7 +109,7 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 			'  return encodedString;\n'+
 			'}\n';			
 			
-	var code = 'Spreadsheet_insert("' + func + '", ' + data + ', "", "", "", urlencode(' + spreadsheeturl + '), urlencode(' + spreadsheetname + '), ' +  '"/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
+	var code = 'Spreadsheet_insert("' + func + '", ' + data + ', 0, 0, "", String(' + spreadsheeturl + '), String(' + spreadsheetname + '), ' +  '"/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
 	return code;
 };
 
@@ -127,7 +131,11 @@ Blockly.Arduino['controls_spreadsheet_function'] = function(block){
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 
 	Blockly.Arduino.definitions_.Spreadsheet_insert = '\n'+
-			'String Spreadsheet_insert(String func, String data, String row, String col, String text, String mySpreadsheeturl, String mySpreadsheetname, String myScript) {\n'+
+			'String Spreadsheet_insert(String func, String data, int row, int col, String text, String mySpreadsheeturl, String mySpreadsheetname, String myScript) {\n'+
+			'  data = urlencode(data);\n'+
+			'  text = urlencode(text);\n'+
+			'  mySpreadsheeturl = urlencode(mySpreadsheeturl);\n'+
+			'  mySpreadsheetname = urlencode(mySpreadsheetname);\n'+			
 			'  const char* myDomain = "script.google.com";\n'+
 			'  String getAll="", getBody = "";\n'+
 			'  Serial.println("Connect to " + String(myDomain));\n'+
@@ -137,7 +145,7 @@ Blockly.Arduino['controls_spreadsheet_function'] = function(block){
 	Blockly.Arduino.definitions_.Spreadsheet_insert +='  if (client_tcp.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    String Data = "&func="+func+"&data="+data+"&spreadsheeturl="+mySpreadsheeturl+"&spreadsheetname="+mySpreadsheetname;\n'+
-			'    Data += "&row="+row+"&col="+col+"&text="+text;\n'+			
+			'    Data += "&row="+String(row)+"&col="+String(col)+"&text="+text;\n'+			
 			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: " + String(myDomain));\n'+
 			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
@@ -217,7 +225,7 @@ Blockly.Arduino['controls_spreadsheet_function'] = function(block){
 			'  return encodedString;\n'+
 			'}\n';			
 			
-	var code = 'Spreadsheet_insert("' + func + '", "", String(' + row + '), String(' + col + '), urlencode(' + text + '), urlencode(' + spreadsheeturl + '), urlencode(' + spreadsheetname + '), ' +  '"/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
+	var code = 'Spreadsheet_insert("' + func + '", "", ' + row + ', ' + col + ', String(' + text + '), String(' + spreadsheeturl + '), String(' + spreadsheetname + '), ' +  '"/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
 	return code;
 };
 
