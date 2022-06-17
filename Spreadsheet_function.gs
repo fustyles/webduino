@@ -38,6 +38,14 @@ function doPost(e) {
     sheet.getRange(myRow, myCol).setValue(myText);  
   } else if (myFunction=="clearcell") {
     sheet.getRange(myRow, myCol).setValue("");
+  } else if (myFunction=="clearrow") {
+    var range = sheet.getRange(myRow, 1, 1, sheet.getMaxColumns()).getA1Notation();
+    sheet.getRange(range).activate();
+    spreadsheet.getActiveRangeList().clear({contentsOnly: true, commentsOnly: true, skipFilteredRows: true});
+  } else if (myFunction=="clearcol") {
+    var range = sheet.getRange(1, myCol, sheet.getMaxRows(), 1).getA1Notation();
+    sheet.getRange(range).activate();
+    spreadsheet.getActiveRangeList().clear({contentsOnly: true, commentsOnly: true, skipFilteredRows: true});        
   } else if (myFunction=="clearafterrow2") {
     sheet.getRange(2, 1, sheet.getMaxRows(), sheet.getMaxColumns()).activate();
     spreadsheet.getActiveRangeList().clear({contentsOnly: true, commentsOnly: true, skipFilteredRows: true});
