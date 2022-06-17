@@ -13,6 +13,7 @@ Blockly.defineBlocksWithJsonArray([
 	,nextStatement:null
 	,style:"logic_blocks"
 	,inputsInline:0
+	,helpUrl:"https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs"
 	,mutator:"controls_spreadsheet_mutator"
 	}
 	,{type:"controls_spreadsheet_main"
@@ -103,15 +104,17 @@ Blockly.Constants.Logic.CONTROLS_SPREADSHEET_MUTATOR_MIXIN={
 			Blockly.Mutator.reconnect(a[d],this,String.fromCharCode(d+65));
 	}
 };
-
 Blockly.Extensions.registerMutator("controls_spreadsheet_mutator",Blockly.Constants.Logic.CONTROLS_SPREADSHEET_MUTATOR_MIXIN,null,["controls_spreadsheet_value"]);
 
 Blockly.defineBlocksWithJsonArray([
 	{type:"controls_spreadsheet_datetime"
-	,message0:"%1"
-	,args0:[{type:"field_dropdown",name:"datetime",options:[["%{BKY_CONTROLS_SPREADSHEET_DATETIME}","gmt_datetime"],["%{BKY_CONTROLS_SPREADSHEET_DATE}","gmt_date"],["%{BKY_CONTROLS_SPREADSHEET_TIME}","gmt_time"]],align:"RIGHT"}]		
+	,message0:"%{BKY_SPREADSHEET_SPREADSHEET_TEXT_SHOW}"	
+	,message1:"%1"
+	,args1:[{type:"field_dropdown",name:"datetime",options:[["%{BKY_CONTROLS_SPREADSHEET_DATETIME}","gmt_datetime"],["%{BKY_CONTROLS_SPREADSHEET_DATE}","gmt_date"],["%{BKY_CONTROLS_SPREADSHEET_TIME}","gmt_time"]],align:"RIGHT"}]		
 	,output:null
+	,inputsInline:!0
 	,style:"logic_blocks"
+	,helpUrl:"https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs"
 	}
 ]);
 
@@ -148,7 +151,7 @@ Blockly.Blocks['controls_spreadsheet_function'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_TEXT_SHOW"]);
-  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_insert.gs");	  
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");	  
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
