@@ -1,36 +1,49 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/6/16 22:00
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/6/17 00:00
   https://www.facebook.com/francefu
 */
 
 function doPost(e) {
-  var mySpreadsheeturl = e.parameter.spreadsheeturl;
-  var mySpreadsheetname = e.parameter.spreadsheetname;
-  var myPosition = e.parameter.position;
-  var myData = e.parameter.data;
+  var mySpreadsheeturl = decodeURIComponent(e.parameter.spreadsheeturl);
+  var mySpreadsheetname = decodeURIComponent(e.parameter.spreadsheetname);
+  var myFunction = e.parameter.func;
+  var myData = decodeURIComponent(e.parameter.data);
+  var myRow = e.parameter.row;
+  var myCol = e.parameter.col;
+  var myText = decodeURIComponent(e.parameter.text);
   myData = myData.replace(/gmt_datetime/g, Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss"));
   myData = myData.replace(/gmt_date/g, Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd"));
   myData = myData.replace(/gmt_time/g, Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss"));
-  myData = myData.split(";;;");
+  myData = myData.split("|");
   
-  var ss = SpreadsheetApp.openByUrl(mySpreadsheeturl)
-  var sheet = ss.getSheetByName(mySpreadsheetname);
+  var spreadsheet = SpreadsheetApp.openByUrl(mySpreadsheeturl)
+  var sheet = spreadsheet.getSheetByName(mySpreadsheetname);
   var lastRow = sheet.getLastRow();
 
-  if (myPosition=="insertfirst") {
+  if (myFunction=="insertfirst") {
     sheet.insertRowsBefore(1, 1);
     for (var i=0;i<myData.length;i++) {
       sheet.getRange(1, i+1).setValue(myData[i]);
     }
-  } else if (myPosition=="insertrow2") {
+  } else if (myFunction=="insertrow2") {
     sheet.insertRowsBefore(2, 1);
     for (var i=0;i<myData.length;i++) {
       sheet.getRange(2, i+1).setValue(myData[i]);
     }
-  } else if (myPosition=="insertlast") {
+  } else if (myFunction=="insertlast") {
     for (var i=0;i<myData.length;i++) {
       sheet.getRange(lastRow+1, i+1).setValue(myData[i]);
-    }    
-  }
+    }
+  } else if (myFunction=="setcell") {
+    sheet.getRange(myRow, myCol).setValue(myText);  
+  } else if (myFunction=="clearcell") {
+    sheet.getRange(myRow, myCol).setValue("");
+  } else if (myFunction=="clearafterrow2") {
+    sheet.getRange(2, 1, sheet.getMaxRows(), sheet.getMaxColumns()).activate();
+    spreadsheet.getActiveRangeList().clear({contentsOnly: true, commentsOnly: true, skipFilteredRows: true});
+  } else if (myFunction=="clearsheet") {
+    sheet.getRange(1, 1, sheet.getMaxRows(), sheet.getMaxColumns()).activate();
+    spreadsheet.getActiveRangeList().clear({contentsOnly: true, skipFilteredRows: true});
+  }      
   return  ContentService.createTextOutput("ok");
 }
