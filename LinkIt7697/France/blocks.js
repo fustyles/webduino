@@ -1,12 +1,12 @@
 Blockly.defineBlocksWithJsonArray([
 	{type:"controls_spreadsheet"
 	,message0:"%{BKY_CONTROLS_SPREADSHEET}"
-	,message1:"%{BKY_SPREADSHEET_SPREADSHEETURL_SHOW} %1"	
+	,message1:"%{BKY_SPREADSHEET_SPREADSHEET_URL_SHOW} %1"	
 	,args1:[{type:"input_value",name:"spreadsheeturl",check:null,align:"RIGHT"}]	
-	,message2:"%{BKY_SPREADSHEET_SPREADSHEETNAME_SHOW} %1"	
+	,message2:"%{BKY_SPREADSHEET_SPREADSHEET_NAME_SHOW} %1"	
 	,args2:[{type:"input_value",name:"spreadsheetname",check:null,align:"RIGHT"}]		
 	,message3:"%1"
-	,args3:[{type:"field_dropdown",name:"position",options:[["%{BKY_SPREADSHEET_INSERTFIRSTROW_SHOW}","insertfirst"],["%{BKY_SPREADSHEET_ROW2_SHOW}","insertrow2"],["%{BKY_SPREADSHEET_INSERTLASTROW_SHOW}","insertlast"]],align:"RIGHT"}]		
+	,args3:[{type:"field_dropdown",name:"func",options:[["%{BKY_SPREADSHEET_INSERTFIRSTROW_SHOW}","insertfirst"],["%{BKY_SPREADSHEET_ROW2_SHOW}","insertrow2"],["%{BKY_SPREADSHEET_INSERTLASTROW_SHOW}","insertlast"]],align:"RIGHT"}]		
 	,message4:"%{BKY_SPREADSHEET_COLUMN_SHOW}A %1"	
 	,args4:[{type:"input_value",name:"VALUE",check:null,align:"RIGHT"}]	
 	,previousStatement:null
@@ -69,7 +69,6 @@ Blockly.Constants.Logic.CONTROLS_SPREADSHEET_MUTATOR_MIXIN={
 	,saveConnections:function(a){	
 		a=a.nextConnection.targetBlock();
 		for(var b=1;a;){
-			console.log(a.type);
 			switch(a.type){
 				case "controls_spreadsheet_value":
 					var c=this.getInput(String.fromCharCode(b+65));
@@ -109,27 +108,74 @@ Blockly.Extensions.registerMutator("controls_spreadsheet_mutator",Blockly.Consta
 
 Blockly.defineBlocksWithJsonArray([
 	{type:"controls_spreadsheet_datetime"
-	,message0:"%{BKY_CONTROLS_SPREADSHEET_DATETIME}"
+	,message0:"%1"
+	,args0:[{type:"field_dropdown",name:"datetime",options:[["%{BKY_CONTROLS_SPREADSHEET_DATETIME}","gmt_datetime"],["%{BKY_CONTROLS_SPREADSHEET_DATE}","gmt_date"],["%{BKY_CONTROLS_SPREADSHEET_TIME}","gmt_time"]],align:"RIGHT"}]		
 	,output:null
 	,style:"logic_blocks"
 	}
 ]);
 
-Blockly.defineBlocksWithJsonArray([
-	{type:"controls_spreadsheet_date"
-	,message0:"%{BKY_CONTROLS_SPREADSHEET_DATE}"
-	,output:null
-	,style:"logic_blocks"
+Blockly.Blocks['controls_spreadsheet_function'] = {
+  init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"]);
+  this.appendValueInput("spreadsheeturl")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_URL_SHOW"]);
+  this.appendValueInput("spreadsheetname")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_NAME_SHOW"]);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["SPREADSHEET_SET_CELL_SHOW"],"setcell"],
+		[Blockly.Msg["SPREADSHEET_CLEAR_CELL_SHOW"],"clearcell"],		
+		[Blockly.Msg["SPREADSHEET_CLEAR_AFTERROW2_SHOW"],"clearafterrow2"],		
+		[Blockly.Msg["SPREADSHEET_CLEAR_SHEET_SHOW"],"clearsheet"]	  
+		],this.validate), "func");	  
+  this.appendValueInput("row")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);
+  this.appendValueInput("col")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"]);
+  this.appendValueInput("text")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_TEXT_SHOW"]);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_insert.gs");	  
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (newValue=="setcell") {
+		block.getInput("row").setVisible(true);
+		block.getInput("col").setVisible(true);
+		block.getInput("text").setVisible(true);
 	}
-]);
-
-Blockly.defineBlocksWithJsonArray([
-	{type:"controls_spreadsheet_time"
-	,message0:"%{BKY_CONTROLS_SPREADSHEET_TIME}"
-	,output:null
-	,style:"logic_blocks"
+	else if (newValue=="clearcell") {
+		block.getInput("row").setVisible(true);
+		block.getInput("col").setVisible(true);
+		block.getInput("text").setVisible(false);
 	}
-]);
+	else if (newValue=="clearafterrow2") {
+		block.getInput("row").setVisible(false);
+		block.getInput("col").setVisible(false);
+		block.getInput("text").setVisible(false);
+	}
+	else if (newValue=="clearsheet") {
+		block.getInput("row").setVisible(false);
+		block.getInput("col").setVisible(false);
+		block.getInput("text").setVisible(false);
+	}	
+  }
+};
 
 
 Blockly.Blocks['hands_esp32cam'] = {
@@ -3576,7 +3622,6 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
 		var input = block.getInputTargetBlock("PROGMEM");
 		var img=document.createElement('img');
 		var url = "https://chart.googleapis.com/chart?chs=64x64&cht=qr&chl=" + val + "&choe=UTF-8&chld=M|0";
-		console.log(url);
 		img.src = url;
 		
 		img.onload = function (event) {

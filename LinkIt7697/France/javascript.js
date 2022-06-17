@@ -1,7 +1,7 @@
 Blockly.Arduino['controls_spreadsheet'] = function(block){
 	var spreadsheeturl = Blockly.Arduino.valueToCode(block,"spreadsheeturl",Blockly.Arduino.ORDER_NONE)||"";
 	var spreadsheetname = Blockly.Arduino.valueToCode(block,"spreadsheetname",Blockly.Arduino.ORDER_NONE)||"";	
-	var position = block.getFieldValue('position');
+	var func = block.getFieldValue('func');
 	var data = Blockly.Arduino.valueToCode(block,"VALUE",Blockly.Arduino.ORDER_NONE)||"";
 	data = 'String('+data+')+"|"';
 	for (var i=0;i<26;i++) {
@@ -15,7 +15,7 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 
 	Blockly.Arduino.definitions_.Spreadsheet_insert = '\n'+
-			'String Spreadsheet_insert(String position, String data, String row, String col, String text, String mySpreadsheeturl, String mySpreadsheetname, String myScript) {\n'+
+			'String Spreadsheet_insert(String func, String data, String row, String col, String text, String mySpreadsheeturl, String mySpreadsheetname, String myScript) {\n'+
 			'  const char* myDomain = "script.google.com";\n'+
 			'  String getAll="", getBody = "";\n'+
 			'  Serial.println("Connect to " + String(myDomain));\n'+
@@ -24,7 +24,7 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 		Blockly.Arduino.definitions_.Spreadsheet_insert += '  client_tcp.setInsecure();\n';
 	Blockly.Arduino.definitions_.Spreadsheet_insert +='  if (client_tcp.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
-			'    String Data = "&position="+position+"&data="+data+"&spreadsheeturl="+mySpreadsheeturl+"&spreadsheetname="+mySpreadsheetname;\n'+
+			'    String Data = "&func="+func+"&data="+data+"&spreadsheeturl="+mySpreadsheeturl+"&spreadsheetname="+mySpreadsheetname;\n'+
 			'    Data += "&row="+row+"&col="+col+"&text="+text;\n'+			
 			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: " + String(myDomain));\n'+
@@ -105,23 +105,120 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 			'  return encodedString;\n'+
 			'}\n';			
 			
-	var code = 'Spreadsheet_insert("' + position + '", ' + data + ', "", "", "", urlencode(' + spreadsheeturl + '), urlencode(' + spreadsheetname + '), ' +  '"/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
+	var code = 'Spreadsheet_insert("' + func + '", ' + data + ', "", "", "", urlencode(' + spreadsheeturl + '), urlencode(' + spreadsheetname + '), ' +  '"/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
 	return code;
 };
 
 Blockly.Arduino['controls_spreadsheet_datetime'] = function(block){
-	var code = '"gmt_datetime"';
+	var datetime = block.getFieldValue('datetime');	
+	var code = '"'+datetime+'"';
 	return [code,Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino['controls_spreadsheet_date'] = function(block){
-	var code = '"gmt_date"';
-	return [code,Blockly.Arduino.ORDER_ATOMIC];
-};
+Blockly.Arduino['controls_spreadsheet_function'] = function(block){
+	var spreadsheeturl = Blockly.Arduino.valueToCode(block,"spreadsheeturl",Blockly.Arduino.ORDER_NONE)||"";
+	var spreadsheetname = Blockly.Arduino.valueToCode(block,"spreadsheetname",Blockly.Arduino.ORDER_NONE)||"";
+	var func = block.getFieldValue('func');
+	var row = Blockly.Arduino.valueToCode(block,"row",Blockly.Arduino.ORDER_NONE)||"";
+	var col = Blockly.Arduino.valueToCode(block,"col",Blockly.Arduino.ORDER_NONE)||"";
+	var text = Blockly.Arduino.valueToCode(block,"text",Blockly.Arduino.ORDER_NONE)||"";
+	
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 
-Blockly.Arduino['controls_spreadsheet_time'] = function(block){
-	var code = '"gmt_time"';
-	return [code,Blockly.Arduino.ORDER_ATOMIC];
+	Blockly.Arduino.definitions_.Spreadsheet_insert = '\n'+
+			'String Spreadsheet_insert(String func, String data, String row, String col, String text, String mySpreadsheeturl, String mySpreadsheetname, String myScript) {\n'+
+			'  const char* myDomain = "script.google.com";\n'+
+			'  String getAll="", getBody = "";\n'+
+			'  Serial.println("Connect to " + String(myDomain));\n'+
+			'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_.Spreadsheet_insert += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_.Spreadsheet_insert +='  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'    Serial.println("Connection successful");\n'+
+			'    String Data = "&func="+func+"&data="+data+"&spreadsheeturl="+mySpreadsheeturl+"&spreadsheetname="+mySpreadsheetname;\n'+
+			'    Data += "&row="+row+"&col="+col+"&text="+text;\n'+			
+			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
+			'    client_tcp.println("Host: " + String(myDomain));\n'+
+			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
+			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'    client_tcp.println("Connection: keep-alive");\n'+
+			'    client_tcp.println();\n'+
+			'    int Index;\n'+
+			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
+			'      client_tcp.print(Data.substring(Index, Index+1024));\n'+
+			'    }\n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    boolean state = false;\n'+
+			'    \n'+
+			'    while ((startTime + waitTime) > millis())\n'+
+			'    {\n'+
+			'      Serial.print(".");\n'+
+			'      delay(100);\n'+
+			'      while (client_tcp.available())\n'+
+			'      {\n'+
+			'          char c = client_tcp.read();\n'+
+			'          if (state==true) getBody += String(c);\n'+        
+			'          if (c == \'\\n\')\n'+
+			'          {\n'+
+			'            if (getAll.length()==0) state=true;\n'+
+			'            getAll = "";\n'+
+			'          }\n'+
+			'          else if (c != \'\\r\')\n'+
+			'            getAll += String(c);\n'+
+			'          startTime = millis();\n'+
+			'       }\n'+
+			'       if (getBody.length()>0) break;\n'+
+			'    }\n'+
+			'    client_tcp.stop();\n'+
+			'    Serial.println(getBody);\n'+
+			'  }\n'+
+			'  else {\n'+
+			'    getBody="Connected to " + String(myDomain) + " failed.";\n'+
+			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
+			'  }\n'+
+			'  \n'+
+			'  return getBody;\n'+
+			'}\n';
+			
+	Blockly.Arduino.definitions_.urlencode = '\n'+
+			'String urlencode(String str)\n'+
+			'{\n'+
+			'  String encodedString="";\n'+
+			'  char c;\n'+
+			'  char code0;\n'+
+			'  char code1;\n'+
+			'  char code2;\n'+
+			'  for (int i =0; i < str.length(); i++){\n'+
+			'    c=str.charAt(i);\n'+
+			'    if (c == \' \'){\n'+
+			'      encodedString+= \'+\';\n'+
+			'    } else if (isalnum(c)){\n'+
+			'      encodedString+=c;\n'+
+			'    } else{\n'+
+			'      code1=(c & 0xf)+\'0\';\n'+
+			'      if ((c & 0xf) >9){\n'+
+			'          code1=(c & 0xf) - 10 + \'A\';\n'+
+			'      }\n'+
+			'      c=(c>>4)&0xf;\n'+
+			'      code0=c+\'0\';\n'+
+			'      if (c > 9){\n'+
+			'          code0=c - 10 + \'A\';\n'+
+			'      }\n'+
+			'      code2=\'\\0\';\n'+
+			'      encodedString+=\'%\';\n'+
+			'      encodedString+=code0;\n'+
+			'      encodedString+=code1;\n'+
+			'      \/\/encodedString+=code2;\n'+
+			'    }\n'+
+			'    yield();\n'+
+			'  }\n'+
+			'  return encodedString;\n'+
+			'}\n';			
+			
+	var code = 'Spreadsheet_insert("' + func + '", "", String(' + row + '), String(' + col + '), urlencode(' + text + '), urlencode(' + spreadsheeturl + '), urlencode(' + spreadsheetname + '), ' +  '"/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
+	return code;
 };
 
 Blockly.Arduino['hands_esp32cam'] = function(block) {
