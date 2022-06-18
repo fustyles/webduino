@@ -1394,3 +1394,6 @@ Blockly.Msg["SPREADSHEET_CLEAR_COL_SHOW"] = "Clear col";
 Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"] = "Row";
 Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"] = "Col";
 Blockly.Msg["SPREADSHEET_SPREADSHEET_TEXT_SHOW"] = "Text";
+Blockly.Msg["SPREADSHEET_SPREADSHEET_ID_SHOW"] = "spreadsheet ID";
+Blockly.Msg["SPREADSHEET_SPREADSHEET_CELL_SHOW"] = "cell range";
+Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"] = "get cell data";

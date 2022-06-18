@@ -192,6 +192,42 @@ Blockly.Blocks['controls_spreadsheet_function'] = {
   }
 };
 
+Blockly.Blocks['controls_spreadsheet_get'] = {
+  init: function () {
+	  this.appendDummyInput()  
+		  .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"]);
+	  this.appendValueInput("spreadsheetid")
+		  .setCheck("String")
+		  .setAlign(Blockly.ALIGN_RIGHT)	  
+		  .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ID_SHOW"]);
+	  this.appendValueInput("spreadsheetname")
+		  .setCheck("String")
+		  .setAlign(Blockly.ALIGN_RIGHT)	  
+		  .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_NAME_SHOW"]);
+	  this.appendDummyInput()
+		  .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"],"getcell"]  
+			],this.validate), "func");	  
+	  this.appendValueInput("cell")
+		  .setCheck("String")
+		  .setAlign(Blockly.ALIGN_RIGHT)	  
+		  .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_CELL_SHOW"]);
+	  this.appendValueInput("apikey")
+		  .setCheck("String")
+		  .setAlign(Blockly.ALIGN_RIGHT)	  
+		  .appendField("API_KEY");		  
+	  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");	  
+	  this.setInputsInline(false);
+	this.setInputsInline(false);
+    this.setOutput(true, null);
+    this.setColour(200)
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (newValue=="getcell") {
+	}	
+  }
+};
 
 Blockly.Blocks['hands_esp32cam'] = {
   init: function() {

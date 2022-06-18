@@ -7779,6 +7779,28 @@
 				<field name="TEXT">World Peace</field>
 			  </block>		
 			</value>			
+		</block>
+		<block type="controls_spreadsheet_get">
+			<value name="spreadsheetid">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>		
+			</value>
+			<value name="spreadsheetname">
+			  <block type="text">
+				<field name="TEXT">工作表1</field>
+			  </block>		
+			</value>	
+			<value name="cell">
+			  <block type="text">
+				<field name="TEXT">A1</field>
+			  </block>		
+			</value>
+			<value name="apikey">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>		
+			</value>				
 		</block>		
 	</category>
     <category id="france3" name="line">	

@@ -12,7 +12,7 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 	data = data.substring(0, data.length-4);
 	
 	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
 
 	Blockly.Arduino.definitions_.Spreadsheet_insert = '\n'+
 			'String Spreadsheet_insert(String func, String data, int row, int col, String text, String mySpreadsheeturl, String mySpreadsheetname, String myScript) {\n'+
@@ -227,6 +227,83 @@ Blockly.Arduino['controls_spreadsheet_function'] = function(block){
 			
 	var code = 'Spreadsheet_insert("' + func + '", "", ' + row + ', ' + col + ', String(' + text + '), String(' + spreadsheeturl + '), String(' + spreadsheetname + '), ' +  '"/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
 	return code;
+};
+
+Blockly.Arduino['controls_spreadsheet_get'] = function(block){
+	var spreadsheetid = Blockly.Arduino.valueToCode(block,"spreadsheetid",Blockly.Arduino.ORDER_NONE);
+	var spreadsheetname = Blockly.Arduino.valueToCode(block,"spreadsheetname",Blockly.Arduino.ORDER_NONE);
+	var func = block.getFieldValue('func');
+	var cell = Blockly.Arduino.valueToCode(block,"cell",Blockly.Arduino.ORDER_NONE);
+	var apikey = Blockly.Arduino.valueToCode(block,"apikey",Blockly.Arduino.ORDER_NONE);
+	
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
+	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';	
+
+	Blockly.Arduino.definitions_.Spreadsheet_get = '\n'+
+			'String Spreadsheet_get(String cell, String mySpreadsheetid, String mySpreadsheetname, String apikey) {\n'+			
+			'  const char* myDomain = "sheets.googleapis.com";\n'+
+			'  String getAll="", getBody = "";\n'+
+			'  Serial.println("Connect to " + String(myDomain));\n'+
+			'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_.Spreadsheet_get += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_.Spreadsheet_get +='  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'    Serial.println("Connection successful");\n'+
+			'    if (apikey=="") apikey="AIzaSyBDp5oSNkjqJYTJkdL1veFEyLPtSm7Bbm4";\n'+
+			'    client_tcp.println("GET https://sheets.googleapis.com/v4/spreadsheets/"+mySpreadsheetid+"/values/"+mySpreadsheetname+"!"+String(cell)+"?alt=json&key="+apikey+" HTTP/1.1");\n'+
+			'    client_tcp.println("Host: " + String(myDomain));\n'+
+			'    client_tcp.println("Content-Type: application/json");\n'+
+			'    client_tcp.println();\n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    boolean state = false;\n'+
+			'    boolean start = false;\n'+			
+			'    \n'+
+			'    while ((startTime + waitTime) > millis())\n'+
+			'    {\n'+
+			'      Serial.print(".");\n'+
+			'      delay(100);\n'+
+			'      while (client_tcp.available())\n'+
+			'      {\n'+
+			'          char c = client_tcp.read();\n'+
+			'          if (String(c)=="{") start = true;\n'+
+			'          if (state==true&&start==true) getBody += String(c);\n'+       
+			'          if (c == \'\\n\')\n'+
+			'          {\n'+
+			'            if (getAll.length()==0) state=true;\n'+
+			'            getAll = "";\n'+
+			'          }\n'+
+			'          else if (c != \'\\r\')\n'+
+			'            getAll += String(c);\n'+
+			'          startTime = millis();\n'+
+			'       }\n'+
+			'       if (getBody.length()>0) break;\n'+
+			'    }\n'+
+			'    client_tcp.stop();\n'+
+			'    JsonObject obj;\n'+
+			'    DynamicJsonDocument doc(1024);\n'+
+			'    deserializeJson(doc, getBody);\n'+
+			'    obj = doc.as<JsonObject>();\n'+
+			'    String data = "";\n'+
+			'    for (int i=0;i<obj["values"].size();i++) {\n'+
+			'      for (int j=0;j<obj["values"][i].size();j++) {\n'+
+			'        data += obj["values"][i][j].as<String>() + "|";\n'+
+			'      }\n'+
+			'    }\n'+
+			'    if (data!="")\n'+
+			'      data = data.substring(1, data.length()-1);\n'+
+			'    return data;\n'+
+			'  }\n'+
+			'  else {\n'+
+			'    getBody="Connected to " + String(myDomain) + " failed.";\n'+
+			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
+			'    return "";\n'+
+			'  }\n'+
+			'}\n';
+			
+	var code = 'Spreadsheet_get(String(' + cell + '), String(' + spreadsheetid + '), String(' + spreadsheetname + '), String(' + apikey + '))';
+  return [code,Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['hands_esp32cam'] = function(block) {
