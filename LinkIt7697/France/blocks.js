@@ -213,7 +213,7 @@ Blockly.Blocks['controls_spreadsheet_get'] = {
 		  .setCheck("String")
 		  .setAlign(Blockly.ALIGN_RIGHT)	  
 		  .appendField("API_KEY");		  
-	  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");	  
+	  this.setHelpUrl("https://console.cloud.google.com/apis/library/sheets.googleapis.com?project=webduinoocr");	  
 	  this.setInputsInline(false);
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
@@ -230,7 +230,7 @@ Blockly.Blocks['controls_spreadsheet_getcell'] = {
       .setCheck("Number");
   this.appendValueInput("col")
       .setCheck("Number");
-  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");	  
+  this.setHelpUrl("https://console.cloud.google.com/apis/library/sheets.googleapis.com?project=webduinoocr");	  
   this.setInputsInline(true);
   this.setOutput(true, null);
   this.setColour(120);
