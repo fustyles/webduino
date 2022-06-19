@@ -240,6 +240,22 @@ Blockly.Blocks['controls_spreadsheet_getcell'] = {
   }
 };
 
+Blockly.Blocks['controls_spreadsheet_getcell_number'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_NUMBER_SHOW"]); 
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"],"row"],  
+		[Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"],"col"]  
+  ]), "record");		  
+  this.setHelpUrl("https://console.cloud.google.com/apis/library/sheets.googleapis.com");	  
+  this.setInputsInline(true);
+  this.setOutput(true, null);
+  this.setColour(120);
+  }
+};
+
 Blockly.Blocks['controls_spreadsheet_query'] = {
   init: function() {
   this.appendDummyInput()  
@@ -285,16 +301,14 @@ Blockly.Blocks['controls_spreadsheet_getcell_query'] = {
   }
 };
 
-Blockly.Blocks['controls_spreadsheet_getcell_number'] = {
+Blockly.Blocks['controls_spreadsheet_getcell_query_number'] = {
   init: function () {
   this.appendDummyInput()
-	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_NUMBER_SHOW"]); 
+	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_NUMBER_SHOW"] + " (SQL)"); 
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"],"row"],  
-		[Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"],"col"],
-		[Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]+" (SQL)","row_sql"],  
-		[Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"]+" (SQL)","col_sql"]	  
+		[Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"],"col"]  
   ]), "record");		  
   this.setHelpUrl("https://console.cloud.google.com/apis/library/sheets.googleapis.com");	  
   this.setInputsInline(true);

@@ -7814,6 +7814,8 @@
 			  </block>
 			</value>			
 		</block>
+		<block type="controls_spreadsheet_getcell_number">			
+		</block>		
 		<block type="controls_spreadsheet_query">
 			<value name="spreadsheetid">
 			  <block type="text">
@@ -7843,7 +7845,7 @@
 			  </block>
 			</value>			
 		</block>
-		<block type="controls_spreadsheet_getcell_number">			
+		<block type="controls_spreadsheet_getcell_query_number">			
 		</block>		
 	</category>
     <category id="france3" name="line">	
