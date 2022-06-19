@@ -223,8 +223,7 @@ Blockly.Blocks['controls_spreadsheet_get'] = {
 
 Blockly.Blocks['controls_spreadsheet_getcell'] = {
   init: function () {
-  this.appendDummyInput()  
-	  .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"])
+  this.appendDummyInput()
 	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"]); 
   this.appendValueInput("row")
       .setCheck("Number")
