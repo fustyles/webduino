@@ -7842,6 +7842,8 @@
 				<field name="NUM">1</field>
 			  </block>
 			</value>			
+		</block>
+		<block type="controls_spreadsheet_getcell_number">			
 		</block>		
 	</category>
     <category id="france3" name="line">	

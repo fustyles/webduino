@@ -1398,3 +1398,4 @@ Blockly.Msg["SPREADSHEET_SPREADSHEET_ID_SHOW"] = "spreadsheet ID";
 Blockly.Msg["SPREADSHEET_SPREADSHEET_CELL_SHOW"] = "cell range";
 Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"] = "get cell data";
 Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"] = "get cell data";
+Blockly.Msg["SPREADSHEET_GET_CELL_NUMBER_SHOW"] = "get cell number";

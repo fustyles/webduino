@@ -1407,3 +1407,4 @@ Blockly.Msg["SPREADSHEET_SPREADSHEET_ID_SHOW"] = "試算表ID";
 Blockly.Msg["SPREADSHEET_SPREADSHEET_CELL_SHOW"] = "儲存格範圍";
 Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"] = "取得欄位資料";
 Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"] = "取得欄位區塊資料";
+Blockly.Msg["SPREADSHEET_GET_CELL_NUMBER_SHOW"] = "取得欄位區塊資料數";
