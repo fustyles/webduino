@@ -240,6 +240,51 @@ Blockly.Blocks['controls_spreadsheet_getcell'] = {
   }
 };
 
+Blockly.Blocks['controls_spreadsheet_query'] = {
+  init: function() {
+  this.appendDummyInput()  
+	  .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"] + " (SQL)")
+	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"]);	  
+  this.appendValueInput("spreadsheetid")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ID_SHOW"]);    
+  this.appendValueInput("spreadsheetname")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_NAME_SHOW"]);
+  this.appendValueInput("sql")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField("SQL");	  
+  this.setInputsInline(false);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setTooltip('');
+  this.setColour(80);
+  this.setHelpUrl("https://developers.google.com/chart/interactive/docs/querylanguage");
+  }
+};
+
+Blockly.Blocks['controls_spreadsheet_getcell_query'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"] + " (SQL)"); 
+  this.appendValueInput("row")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);	  
+  this.appendValueInput("col")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"]);	  
+  this.setHelpUrl("https://console.cloud.google.com/apis/library/sheets.googleapis.com");	  
+  this.setInputsInline(true);
+  this.setOutput(true, null);
+  this.setColour(80);
+  }
+};
+
 Blockly.Blocks['hands_esp32cam'] = {
   init: function() {
     this.appendDummyInput()
