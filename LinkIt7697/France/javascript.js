@@ -278,12 +278,14 @@ Blockly.Arduino['controls_spreadsheet_get'] = function(block){
 			'       }\n'+
 			'       if (getBody.length()>0) break;\n'+
 			'    }\n'+	
-			'    Serial.println("");\n'+				
+			'    Serial.println("");\n'+
+			'    if (getBody.indexOf("error")!=-1)\n'+
+			'    	return "{\\"values\\":[]}";\n'+
 			'    return getBody;\n'+
 			'  }\n'+
 			'  else {\n'+
 			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
-			'    return "";\n'+
+			'    return "{\\"values\\":[]}";\n'+
 			'  }\n'+
 			'}\n';
 			
@@ -302,6 +304,10 @@ Blockly.Arduino['controls_spreadsheet_getcell'] = function(block){
 			'    	DynamicJsonDocument doc(1024);\n'+
 			'    	deserializeJson(doc, spreadsheetData);\n'+
 			'    	obj = doc.as<JsonObject>();\n'+
+			'		if (obj["values"].size()<row+1)\n'+
+			'			return "";\n'+
+			'		if (obj["values"][0].size()<col+1)\n'+ 
+			'			return "";\n'+			
 			'    	return obj["values"][row][col].as<String>();\n'+
 			'    }\n'+ 
 			'    else\n'+
@@ -366,13 +372,15 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 			'       }\n'+
 			'       if (getBody.length()>0) break;\n'+
 			'    }\n'+
-			'    Serial.println("");\n'+				
+			'    Serial.println("");\n'+	
+			'    if (getBody.indexOf("error")!=-1)\n'+
+			'    	return "{\\"values\\":[]}";\n'+			
 			'    getData = "{\\"values\\":[" + getData.substring(0, getData.length()-2) + "]}";\n'+			
 			'    return getData;\n'+
 			'  }\n'+
 			'  else {\n'+
 			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
-			'    return "";\n'+
+			'    return "{\\"values\\":[]}";\n'+
 			'  }\n'+
 			'}\n';
 			
@@ -426,6 +434,10 @@ Blockly.Arduino['controls_spreadsheet_getcell_query'] = function(block){
 			'    	DynamicJsonDocument doc(1024);\n'+
 			'    	deserializeJson(doc, spreadsheetQueryData);\n'+
 			'    	obj = doc.as<JsonObject>();\n'+
+			'		if (obj["values"].size()<row+1)\n'+
+			'			return "";\n'+
+			'		if (obj["values"][0]["c"].size()<col+1)\n'+ 
+			'			return "";\n'+			
 			'    	return obj["values"][row]["c"][col]["v"].as<String>();\n'+
 			'    }\n'+ 
 			'    else\n'+
