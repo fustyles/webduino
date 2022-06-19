@@ -195,7 +195,8 @@ Blockly.Blocks['controls_spreadsheet_function'] = {
 Blockly.Blocks['controls_spreadsheet_get'] = {
   init: function () {
 	  this.appendDummyInput()  
-		  .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"]);
+		  .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"])
+		  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"]);
 	  this.appendValueInput("spreadsheetid")
 		  .setCheck("String")
 		  .setAlign(Blockly.ALIGN_RIGHT)	  
@@ -203,11 +204,7 @@ Blockly.Blocks['controls_spreadsheet_get'] = {
 	  this.appendValueInput("spreadsheetname")
 		  .setCheck("String")
 		  .setAlign(Blockly.ALIGN_RIGHT)	  
-		  .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_NAME_SHOW"]);
-	  this.appendDummyInput()
-		  .appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"],"getcell"]  
-			],this.validate), "func");	  
+		  .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_NAME_SHOW"]);	  
 	  this.appendValueInput("cell")
 		  .setCheck("String")
 		  .setAlign(Blockly.ALIGN_RIGHT)	  
@@ -218,14 +215,25 @@ Blockly.Blocks['controls_spreadsheet_get'] = {
 		  .appendField("API_KEY");		  
 	  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");	  
 	  this.setInputsInline(false);
-	this.setInputsInline(false);
-    this.setOutput(true, null);
-    this.setColour(200)
-  },
-  validate: function(newValue) {
-	const block = this.sourceBlock_;
-	if (newValue=="getcell") {
-	}	
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+    this.setColour(120)
+  }
+};
+
+Blockly.Blocks['controls_spreadsheet_getcell'] = {
+  init: function () {
+  this.appendDummyInput()  
+	  .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"])
+	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"]); 
+  this.appendValueInput("row")
+      .setCheck("Number");
+  this.appendValueInput("col")
+      .setCheck("Number");
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");	  
+  this.setInputsInline(true);
+  this.setOutput(true, null);
+  this.setColour(120);
   }
 };
 
