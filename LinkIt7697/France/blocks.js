@@ -138,15 +138,15 @@ Blockly.Blocks['controls_spreadsheet_function'] = {
 		[Blockly.Msg["SPREADSHEET_CLEAR_COL_SHOW"],"clearcol"],		
 		[Blockly.Msg["SPREADSHEET_CLEAR_AFTERROW2_SHOW"],"clearafterrow2"],		
 		[Blockly.Msg["SPREADSHEET_CLEAR_SHEET_SHOW"],"clearsheet"]	  
-		],this.validate), "func");	  
+		],this.validate), "func");
+  this.appendValueInput("col")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"]);		
   this.appendValueInput("row")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);
-  this.appendValueInput("col")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"]);
   this.appendValueInput("text")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
@@ -195,8 +195,9 @@ Blockly.Blocks['controls_spreadsheet_function'] = {
 Blockly.Blocks['controls_spreadsheet_get'] = {
   init: function () {
 	  this.appendDummyInput()  
-		  .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"])
-		  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"]);
+		  .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"]);
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"]);		  
 	  this.appendValueInput("spreadsheetid")
 		  .setCheck("String")
 		  .setAlign(Blockly.ALIGN_RIGHT)	  
@@ -224,15 +225,15 @@ Blockly.Blocks['controls_spreadsheet_get'] = {
 Blockly.Blocks['controls_spreadsheet_getcell'] = {
   init: function () {
   this.appendDummyInput()
-	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"]); 
-  this.appendValueInput("row")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);	  
+	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"]);
   this.appendValueInput("col")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"]);	  
+  this.appendValueInput("row")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);	  
   this.setHelpUrl("https://console.cloud.google.com/apis/library/sheets.googleapis.com");	  
   this.setInputsInline(true);
   this.setOutput(true, null);
@@ -246,8 +247,8 @@ Blockly.Blocks['controls_spreadsheet_getcell_number'] = {
 	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_NUMBER_SHOW"]); 
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"],"row"],  
-		[Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"],"col"]  
+		[Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"],"col"],	  
+		[Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"],"row"]
   ]), "record");		  
   this.setHelpUrl("https://console.cloud.google.com/apis/library/sheets.googleapis.com");	  
   this.setInputsInline(true);
@@ -259,8 +260,9 @@ Blockly.Blocks['controls_spreadsheet_getcell_number'] = {
 Blockly.Blocks['controls_spreadsheet_query'] = {
   init: function() {
   this.appendDummyInput()  
-	  .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"] + " (SQL)")
-	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"]);	  
+	  .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"] + " (SQL)");  
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"]);	  	  
   this.appendValueInput("spreadsheetid")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -269,16 +271,58 @@ Blockly.Blocks['controls_spreadsheet_query'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_NAME_SHOW"]);
-  this.appendValueInput("sql")
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT) 
+      .appendField(new Blockly.FieldDropdown([
+			["SQL查詢","sql"],  
+			["儲存格範圍","range"]  
+		], this.validate), "option");	  
+  this.appendValueInput("sql","sql")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField("SQL");	  
+  this.appendValueInput("cols","cols")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COLS_SHOW"]);
+  this.appendValueInput("rows","rows")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROWS_SHOW"]);		  
+  this.appendValueInput("cole","cole")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COLE_SHOW"]);
+  this.appendValueInput("rowe","rowe")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROWE_SHOW"]);	  
+  this.getInput("rows").setVisible(false);
+  this.getInput("cols").setVisible(false);
+  this.getInput("rowe").setVisible(false);
+  this.getInput("cole").setVisible(false);		  
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setTooltip('');
-  this.setColour(80);
+  this.setColour(130);
   this.setHelpUrl("https://developers.google.com/chart/interactive/docs/querylanguage");
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (newValue=="sql") {
+		block.getInput("sql").setVisible(true);
+		block.getInput("cols").setVisible(false);
+		block.getInput("rows").setVisible(false);		
+		block.getInput("cole").setVisible(false);
+		block.getInput("rowe").setVisible(false);		
+	}
+	else if (newValue=="range") {
+		block.getInput("sql").setVisible(false);
+		block.getInput("cols").setVisible(true);
+		block.getInput("rows").setVisible(true);
+		block.getInput("cole").setVisible(true);
+		block.getInput("rowe").setVisible(true);
+	}	
   }
 };
 
@@ -286,18 +330,18 @@ Blockly.Blocks['controls_spreadsheet_getcell_query'] = {
   init: function () {
   this.appendDummyInput()
 	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"] + " (SQL)"); 
-  this.appendValueInput("row")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);	  
   this.appendValueInput("col")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"]);	  
+  this.appendValueInput("row")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);	  	  
   this.setHelpUrl("https://console.cloud.google.com/apis/library/sheets.googleapis.com");	  
   this.setInputsInline(true);
   this.setOutput(true, null);
-  this.setColour(80);
+  this.setColour(130);
   }
 };
 
@@ -307,13 +351,13 @@ Blockly.Blocks['controls_spreadsheet_getcell_query_number'] = {
 	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_NUMBER_SHOW"] + " (SQL)"); 
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"],"row"],  
-		[Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"],"col"]  
+		[Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"],"col"],	  
+		[Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"],"row"]  
   ]), "record");		  
   this.setHelpUrl("https://console.cloud.google.com/apis/library/sheets.googleapis.com");	  
   this.setInputsInline(true);
   this.setOutput(true, null);
-  this.setColour(80);
+  this.setColour(130);
   }
 };
 

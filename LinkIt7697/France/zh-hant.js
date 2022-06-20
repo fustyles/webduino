@@ -1408,3 +1408,7 @@ Blockly.Msg["SPREADSHEET_SPREADSHEET_CELL_SHOW"] = "儲存格範圍";
 Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"] = "取得儲存格資料";
 Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"] = "取得儲存格區塊資料";
 Blockly.Msg["SPREADSHEET_GET_CELL_NUMBER_SHOW"] = "取得儲存格區塊資料數";
+Blockly.Msg["SPREADSHEET_SPREADSHEET_ROWS_SHOW"] = "橫列始";		  
+Blockly.Msg["SPREADSHEET_SPREADSHEET_COLS_SHOW"] = "縱行始";
+Blockly.Msg["SPREADSHEET_SPREADSHEET_ROWE_SHOW"] = "橫列末";  
+Blockly.Msg["SPREADSHEET_SPREADSHEET_COLE_SHOW"] = "縱行末";

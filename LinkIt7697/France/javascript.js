@@ -341,7 +341,14 @@ Blockly.Arduino['controls_spreadsheet_getcell_number'] = function(block){
 Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 	var spreadsheetid = Blockly.Arduino.valueToCode(block,"spreadsheetid",Blockly.Arduino.ORDER_NONE);
 	var spreadsheetname = Blockly.Arduino.valueToCode(block,"spreadsheetname",Blockly.Arduino.ORDER_NONE);
+	
+	var option = block.getFieldValue('option');		
 	var sql = Blockly.Arduino.valueToCode(block,"sql",Blockly.Arduino.ORDER_NONE);
+	
+	var cols = Blockly.Arduino.valueToCode(block,"cols",Blockly.Arduino.ORDER_NONE).replace(/"/g,"").toUpperCase().charCodeAt();
+	var rows = Number(Blockly.Arduino.valueToCode(block,"rows",Blockly.Arduino.ORDER_NONE));
+	var cole = Blockly.Arduino.valueToCode(block,"cole",Blockly.Arduino.ORDER_NONE).replace(/"/g,"").toUpperCase().charCodeAt();
+	var rowe = Number(Blockly.Arduino.valueToCode(block,"rowe",Blockly.Arduino.ORDER_NONE));
 	
 	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
@@ -439,7 +446,17 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 			'  return encodedString;\n'+
 			'}\n';			
 			
-	var code = 'spreadsheetQueryData = Spreadsheet_query(String(' + sql + '), String(' + spreadsheetid + '), String(' + spreadsheetname + '));\n';
+	if (option=="sql")
+		var code = 'spreadsheetQueryData = Spreadsheet_query(String(' + sql + '), String(' + spreadsheetid + '), String(' + spreadsheetname + '));\n';
+	else if (option=="range") {
+		sql = '"select ';
+		for (var i=cols;i<=cole;i++) {
+			sql += String.fromCharCode(i)+',';
+		}
+		sql = sql.substring(0,sql.length-1);
+		sql += ' limit '+(rowe-rows+1)+' offset '+(rows-1)+'"';
+		var code = 'spreadsheetQueryData = Spreadsheet_query(String(' + sql + '), String(' + spreadsheetid + '), String(' + spreadsheetname + '));\n';
+	}
 	return code;
 };
 
@@ -7045,7 +7062,6 @@ Blockly.Arduino['select_create'] = function (block) {
   var value_zindex_ = Blockly.Arduino.valueToCode(block, 'zindex_', Blockly.Arduino.ORDER_ATOMIC);    
   var value_display_ = Blockly.Arduino.valueToCode(block, 'display_', Blockly.Arduino.ORDER_ATOMIC);  
   var code = 'select_create(' + value_id_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ',' + value_background_ + ',' + value_color_ + ',' + value_fontsize_ + ',' + value_opacity_ + ',' + value_option_ + ',' + value_value_ + ',' + value_zindex_ + ',' + value_display_ + ');\n';
-  console.log(value_option_);
   return code;
 };
 
@@ -7270,7 +7286,6 @@ Blockly.Arduino['iframe_create'] = function (block) {
   var value_opacity_ = Blockly.Arduino.valueToCode(block, 'opacity_', Blockly.Arduino.ORDER_ATOMIC);  
   var value_zindex_ = Blockly.Arduino.valueToCode(block, 'zindex_', Blockly.Arduino.ORDER_ATOMIC);    
   var value_display_ = Blockly.Arduino.valueToCode(block, 'display_', Blockly.Arduino.ORDER_ATOMIC); 
-  console.log(value_src_);
   if (value_src_.replace(/"/g,"")!=""&&value_src_.toLowerCase().indexOf("http")==-1) {
 	  value_src_ = "document.location.origin + '/' + " + value_src_;
   }

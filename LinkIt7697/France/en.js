@@ -1399,3 +1399,7 @@ Blockly.Msg["SPREADSHEET_SPREADSHEET_CELL_SHOW"] = "cell range";
 Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"] = "get cell data";
 Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"] = "get cell data";
 Blockly.Msg["SPREADSHEET_GET_CELL_NUMBER_SHOW"] = "get cell number";
+Blockly.Msg["SPREADSHEET_SPREADSHEET_ROWS_SHOW"] = "Row start";		  
+Blockly.Msg["SPREADSHEET_SPREADSHEET_COLS_SHOW"] = "Col start";
+Blockly.Msg["SPREADSHEET_SPREADSHEET_ROWE_SHOW"] = "Row end";  
+Blockly.Msg["SPREADSHEET_SPREADSHEET_COLE_SHOW"] = "Col end";

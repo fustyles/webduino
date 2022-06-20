@@ -7831,6 +7831,26 @@
 			  <block type="text">
 				<field name="TEXT">select *</field>
 			  </block>		
+			</value>
+			<value name="cols">
+			  <block type="text">
+				<field name="TEXT">A</field>
+			  </block>	
+			</value>
+			<value name="rows">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+			<value name="cole">
+			  <block type="text">
+				<field name="TEXT">A</field>
+			  </block>
+			</value>			
+			<value name="rowe">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
 			</value>			
 		</block>
 		<block type="controls_spreadsheet_getcell_query">
