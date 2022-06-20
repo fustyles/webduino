@@ -279,7 +279,7 @@ Blockly.Arduino['controls_spreadsheet_get'] = function(block){
 			'       if (getBody.length()>0) break;\n'+
 			'    }\n'+	
 			'    Serial.println("");\n'+
-			'    if (getBody.indexOf("error")!=-1)\n'+
+			'    if (getBody.indexOf("error")!=-1||getBody=="")\n'+
 			'    	return "{\\"values\\":[]}";\n'+
 			'    return getBody;\n'+
 			'  }\n'+
@@ -304,9 +304,7 @@ Blockly.Arduino['controls_spreadsheet_getcell'] = function(block){
 			'    	DynamicJsonDocument doc(1024);\n'+
 			'    	deserializeJson(doc, spreadsheetData);\n'+
 			'    	obj = doc.as<JsonObject>();\n'+
-			'		if (obj["values"].size()<row+1)\n'+
-			'			return "";\n'+
-			'		if (obj["values"][0].size()<col+1)\n'+ 
+			'		if ((obj["values"].size()<row+1)||(obj["values"][0].size()<col+1))\n'+ 
 			'			return "";\n'+			
 			'    	return obj["values"][row][col].as<String>();\n'+
 			'    }\n'+ 
@@ -322,15 +320,15 @@ Blockly.Arduino['controls_spreadsheet_getcell_number'] = function(block){
 	var record = block.getFieldValue('record');	
 	
 	Blockly.Arduino.definitions_.Spreadsheet_getcell_number = '\n'+
-			'int Spreadsheet_getcell_number(String record) {\n'+
+			'int Spreadsheet_getcell_number(String option) {\n'+
 			'    if (spreadsheetData!="") {\n'+
 			'    	JsonObject obj;\n'+
 			'    	DynamicJsonDocument doc(1024);\n'+
 			'    	deserializeJson(doc, spreadsheetData);\n'+
 			'    	obj = doc.as<JsonObject>();\n'+
-			'		if (record=="row")\n'+
+			'		if (option=="row")\n'+
 			'			return obj["values"].size();\n'+
-			'		if (record=="col")\n'+ 
+			'		else if (option=="col")\n'+ 
 			'			return obj["values"][0].size();\n'+			
 			'    }\n'+ 			
 			'    return 0;\n'+			
@@ -395,7 +393,7 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 			'       if (getBody.length()>0) break;\n'+
 			'    }\n'+
 			'    Serial.println("");\n'+	
-			'    if (getBody.indexOf("error")!=-1)\n'+
+			'    if (getBody.indexOf("error")!=-1||getData=="")\n'+
 			'    	return "{\\"values\\":[]}";\n'+			
 			'    getData = "{\\"values\\":[" + getData.substring(0, getData.length()-2) + "]}";\n'+			
 			'    return getData;\n'+
@@ -456,9 +454,7 @@ Blockly.Arduino['controls_spreadsheet_getcell_query'] = function(block){
 			'    	DynamicJsonDocument doc(1024);\n'+
 			'    	deserializeJson(doc, spreadsheetQueryData);\n'+
 			'    	obj = doc.as<JsonObject>();\n'+
-			'		if (obj["values"].size()<row+1)\n'+
-			'			return "";\n'+
-			'		if (obj["values"][0]["c"].size()<col+1)\n'+ 
+			'		if ((obj["values"].size()<row+1)||(obj["values"][0]["c"].size()<col+1))\n'+ 
 			'			return "";\n'+			
 			'    	return obj["values"][row]["c"][col]["v"].as<String>();\n'+
 			'    }\n'+ 
@@ -474,15 +470,15 @@ Blockly.Arduino['controls_spreadsheet_getcell_query_number'] = function(block){
 	var record = block.getFieldValue('record');		
 
 	Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number = '\n'+
-			'int Spreadsheet_getcell_query_number(String record) {\n'+
+			'int Spreadsheet_getcell_query_number(String option) {\n'+
 			'    if (spreadsheetQueryData!="") {\n'+
 			'    	JsonObject obj;\n'+
 			'    	DynamicJsonDocument doc(1024);\n'+
 			'    	deserializeJson(doc, spreadsheetQueryData);\n'+
 			'    	obj = doc.as<JsonObject>();\n'+
-			'		if (record=="row")\n'+
+			'		if (option=="row")\n'+
 			'			return obj["values"].size();\n'+
-			'		if (record=="col")\n'+ 
+			'		else if (option=="col")\n'+ 
 			'			return obj["values"][0]["c"].size();\n'+
 			'    }\n'+
 			'    return 0;\n'+			
