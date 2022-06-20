@@ -1,14 +1,15 @@
 Blockly.defineBlocksWithJsonArray([
 	{type:"controls_spreadsheet"
 	,message0:"%{BKY_CONTROLS_SPREADSHEET}"
-	,message1:"%{BKY_SPREADSHEET_SPREADSHEET_URL_SHOW} %1"	
-	,args1:[{type:"input_value",name:"spreadsheeturl",check:null,align:"RIGHT"}]	
-	,message2:"%{BKY_SPREADSHEET_SPREADSHEET_NAME_SHOW} %1"	
-	,args2:[{type:"input_value",name:"spreadsheetname",check:null,align:"RIGHT"}]		
-	,message3:"%1"
-	,args3:[{type:"field_dropdown",name:"func",options:[["%{BKY_SPREADSHEET_INSERTFIRSTROW_SHOW}","insertfirst"],["%{BKY_SPREADSHEET_ROW2_SHOW}","insertrow2"],["%{BKY_SPREADSHEET_INSERTLASTROW_SHOW}","insertlast"]],align:"RIGHT"}]		
-	,message4:"%{BKY_SPREADSHEET_COLUMN_SHOW}A %1"	
-	,args4:[{type:"input_value",name:"VALUE",check:null,align:"RIGHT"}]	
+	,message1:"%{BKY_SPREADSHEET_INSERT_SHOW}"
+	,message2:"%{BKY_SPREADSHEET_SPREADSHEET_URL_SHOW} %1"	
+	,args2:[{type:"input_value",name:"spreadsheeturl",check:null,align:"RIGHT"}]	
+	,message3:"%{BKY_SPREADSHEET_SPREADSHEET_NAME_SHOW} %1"	
+	,args3:[{type:"input_value",name:"spreadsheetname",check:null,align:"RIGHT"}]		
+	,message4:"%1"
+	,args4:[{type:"field_dropdown",name:"func",options:[["%{BKY_SPREADSHEET_INSERTFIRSTROW_SHOW}","insertfirst"],["%{BKY_SPREADSHEET_ROW2_SHOW}","insertrow2"],["%{BKY_SPREADSHEET_INSERTLASTROW_SHOW}","insertlast"]],align:"RIGHT"}]		
+	,message5:"%{BKY_SPREADSHEET_COLUMN_SHOW}A %1"	
+	,args5:[{type:"input_value",name:"VALUE",check:null,align:"RIGHT"}]	
 	,previousStatement:null
 	,nextStatement:null
 	,style:"logic_blocks"
@@ -195,7 +196,7 @@ Blockly.Blocks['controls_spreadsheet_function'] = {
 Blockly.Blocks['controls_spreadsheet_get'] = {
   init: function () {
 	  this.appendDummyInput()  
-		  .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"]);
+		  .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"] + " (API)");
 	  this.appendDummyInput()
 		  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"]);		  
 	  this.appendValueInput("spreadsheetid")
@@ -225,7 +226,7 @@ Blockly.Blocks['controls_spreadsheet_get'] = {
 Blockly.Blocks['controls_spreadsheet_getcell'] = {
   init: function () {
   this.appendDummyInput()
-	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"]);
+	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"] + " (API)");
   this.appendValueInput("col")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
@@ -244,7 +245,7 @@ Blockly.Blocks['controls_spreadsheet_getcell'] = {
 Blockly.Blocks['controls_spreadsheet_getcell_number'] = {
   init: function () {
   this.appendDummyInput()
-	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_NUMBER_SHOW"]); 
+	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_NUMBER_SHOW"] + " (API)"); 
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"],"col"],	  
@@ -260,7 +261,7 @@ Blockly.Blocks['controls_spreadsheet_getcell_number'] = {
 Blockly.Blocks['controls_spreadsheet_query'] = {
   init: function() {
   this.appendDummyInput()  
-	  .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"] + " (SQL)");  
+	  .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"]);  
   this.appendDummyInput()
 	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_SHOW"]);	  	  
   this.appendValueInput("spreadsheetid")
@@ -274,7 +275,7 @@ Blockly.Blocks['controls_spreadsheet_query'] = {
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT) 
       .appendField(new Blockly.FieldDropdown([
-			["SQL查詢","sql"],  
+			[Blockly.Msg["SPREADSHEET_SPREADSHEET_SQL_SHOW"],"sql"],  
 			["儲存格範圍","range"]  
 		], this.validate), "option");	  
   this.appendValueInput("sql","sql")
@@ -282,7 +283,7 @@ Blockly.Blocks['controls_spreadsheet_query'] = {
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField("SQL");	  
   this.appendValueInput("cols","cols")
-      .setCheck("String")
+      .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COLS_SHOW"]);
   this.appendValueInput("rows","rows")
@@ -290,7 +291,7 @@ Blockly.Blocks['controls_spreadsheet_query'] = {
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROWS_SHOW"]);		  
   this.appendValueInput("cole","cole")
-      .setCheck("String")
+      .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COLE_SHOW"]);
   this.appendValueInput("rowe","rowe")
@@ -304,7 +305,7 @@ Blockly.Blocks['controls_spreadsheet_query'] = {
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(130);
+  this.setColour(250);
   this.setHelpUrl("https://developers.google.com/chart/interactive/docs/querylanguage");
   },
   validate: function(newValue) {
@@ -329,7 +330,7 @@ Blockly.Blocks['controls_spreadsheet_query'] = {
 Blockly.Blocks['controls_spreadsheet_getcell_query'] = {
   init: function () {
   this.appendDummyInput()
-	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"] + " (SQL)"); 
+	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"]); 
   this.appendValueInput("col")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
@@ -341,14 +342,14 @@ Blockly.Blocks['controls_spreadsheet_getcell_query'] = {
   this.setHelpUrl("https://console.cloud.google.com/apis/library/sheets.googleapis.com");	  
   this.setInputsInline(true);
   this.setOutput(true, null);
-  this.setColour(130);
+  this.setColour(250);
   }
 };
 
 Blockly.Blocks['controls_spreadsheet_getcell_query_number'] = {
   init: function () {
   this.appendDummyInput()
-	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_NUMBER_SHOW"] + " (SQL)"); 
+	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_NUMBER_SHOW"]); 
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"],"col"],	  
@@ -357,7 +358,7 @@ Blockly.Blocks['controls_spreadsheet_getcell_query_number'] = {
   this.setHelpUrl("https://console.cloud.google.com/apis/library/sheets.googleapis.com");	  
   this.setInputsInline(true);
   this.setOutput(true, null);
-  this.setColour(130);
+  this.setColour(250);
   }
 };
 

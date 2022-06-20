@@ -345,10 +345,10 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 	var option = block.getFieldValue('option');		
 	var sql = Blockly.Arduino.valueToCode(block,"sql",Blockly.Arduino.ORDER_NONE);
 	
-	var cols = Blockly.Arduino.valueToCode(block,"cols",Blockly.Arduino.ORDER_NONE).replace(/"/g,"").toUpperCase().charCodeAt();
-	var rows = Number(Blockly.Arduino.valueToCode(block,"rows",Blockly.Arduino.ORDER_NONE));
-	var cole = Blockly.Arduino.valueToCode(block,"cole",Blockly.Arduino.ORDER_NONE).replace(/"/g,"").toUpperCase().charCodeAt();
-	var rowe = Number(Blockly.Arduino.valueToCode(block,"rowe",Blockly.Arduino.ORDER_NONE));
+	var cols = Blockly.Arduino.valueToCode(block,"cols",Blockly.Arduino.ORDER_NONE);
+	var rows = Blockly.Arduino.valueToCode(block,"rows",Blockly.Arduino.ORDER_NONE);
+	var cole = Blockly.Arduino.valueToCode(block,"cole",Blockly.Arduino.ORDER_NONE);
+	var rowe = Blockly.Arduino.valueToCode(block,"rowe",Blockly.Arduino.ORDER_NONE);
 	
 	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
@@ -449,13 +449,18 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 	if (option=="sql")
 		var code = 'spreadsheetQueryData = Spreadsheet_query(String(' + sql + '), String(' + spreadsheetid + '), String(' + spreadsheetname + '));\n';
 	else if (option=="range") {
-		sql = '"select ';
-		for (var i=cols;i<=cole;i++) {
-			sql += String.fromCharCode(i)+',';
-		}
-		sql = sql.substring(0,sql.length-1);
-		sql += ' limit '+(rowe-rows+1)+' offset '+(rows-1)+'"';
-		var code = 'spreadsheetQueryData = Spreadsheet_query(String(' + sql + '), String(' + spreadsheetid + '), String(' + spreadsheetname + '));\n';
+		Blockly.Arduino.definitions_.colsToList = '\n'+
+				'String colsToList(int cols, int cole)\n'+
+				'{\n'+
+				'  String colList = "";\n'+
+				'  for (int i=cols;i<=cole;i++){\n'+
+				'    colList += String(char(i-1+65))+",";\n'+
+				'  }\n'+
+				'  colList = colList.substring(0, colList.length()-1);\n'+
+				'  return colList;\n'+
+				'}\n';
+			
+		var code = 'spreadsheetQueryData = Spreadsheet_query("select " + colsToList(' + cols + ', ' + cole + ') + " limit " + String(' + rowe + '-' + rows + '+1)+ " offset "+ String('+rows+'-1), String(' + spreadsheetid + '), String(' + spreadsheetname + '));\n';
 	}
 	return code;
 };
