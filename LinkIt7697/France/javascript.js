@@ -4594,8 +4594,6 @@ Blockly.Arduino['linenotify_image'] = function(block) {
 };
 
 Blockly.Arduino['linenotify_all'] = function(block) {
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
-  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['linenotify_esp32'] ='\n'+
 											'String LineNotify_esp32(String token, String request) {\n'+
 											'  String getAll="", getBody="";\n'+
