@@ -16514,10 +16514,11 @@ Blockly.Blocks['esp32_cam_spreadsheet'] = {
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)	  
 		.appendField(Blockly.Msg.VIDEO_BASE64_COLUMN);		
-	this.appendValueInput("spreadsheet_script")
+	this.appendValueInput("spreadsheet_script","spreadsheet_script")
 		.setCheck("String")	  
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);		
+		.appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
+	this.getInput("spreadsheet_script").setVisible(false);
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
