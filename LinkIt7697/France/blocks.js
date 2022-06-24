@@ -1265,6 +1265,10 @@ Blockly.Blocks['esp32_telegrambot'] = {
         .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_EXECUTE_SHOW);
     this.appendStatementInput("ExecuteCommand")
         .setCheck(null);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_LOOP_SHOW);		
+    this.appendStatementInput("loop")
+        .setCheck(null);		
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -1339,6 +1343,10 @@ Blockly.Blocks['esp32cam_telegrambot'] = {
         .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_EXECUTE_SHOW);
     this.appendStatementInput("ExecuteCommand")
         .setCheck(null);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_LOOP_SHOW);		
+    this.appendStatementInput("loop")
+        .setCheck(null);
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -1375,6 +1383,42 @@ Blockly.Blocks['esp32_telegrambot_sendmessage_custom'] = {
     this.appendValueInput("message")
         .setCheck("String")
         .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_SENDMESSAGE_SHOW);			
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(190);
+  }
+};
+
+Blockly.Blocks['esp32_telegrambot_sendlink'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Telegram Bot")	
+        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_SENDLINK_SHOW);		
+    this.appendValueInput("link")
+        .setCheck("String");
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(190);
+  }
+};
+
+Blockly.Blocks['esp32_telegrambot_sendlink_custom'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Telegram Bot");
+    this.appendValueInput("token")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_TOKEN_SHOW);
+    this.appendValueInput("chat_id")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_CHATID_SHOW);			
+    this.appendValueInput("link")
+        .setCheck("String")
+        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_SENDLINK_SHOW);			
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -12497,7 +12541,8 @@ Blockly.Blocks['text_br'] = {
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
 	  ["<br>","<br>"]
-	  ,["\\n","\\\\n"]
+	  ,["\\n","\\n"]
+	  ,["\\\\n","\\\\n"]	  
 	  ]), "newline"); 		
   this.setInputsInline(true);
   this.setOutput(true, null);
@@ -16514,11 +16559,10 @@ Blockly.Blocks['esp32_cam_spreadsheet'] = {
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)	  
 		.appendField(Blockly.Msg.VIDEO_BASE64_COLUMN);		
-	this.appendValueInput("spreadsheet_script","spreadsheet_script")
+	this.appendValueInput("spreadsheet_script")
 		.setCheck("String")	  
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
-	this.getInput("spreadsheet_script").setVisible(false);
+		.appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);		
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);

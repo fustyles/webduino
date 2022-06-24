@@ -1872,6 +1872,7 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
   if ((keyboard.indexOf('"')==0)&&(keyboard.lastIndexOf('"')==keyboard.length-1))
     keyboard = keyboard.substring(1,keyboard.length-1);
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
+  var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');  
 
   Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>\n#include <WiFi.h>\n#include <WiFiClientSecure.h>\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nWiFiClientSecure client_tcp;\nlong message_id_last = 0;\nboolean sendHelp = false;';
 
@@ -2035,8 +2036,8 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'        if (text!="") {\n'+
 			'          ExecuteCommand(text);\n'+
 			'        }\n'+
-			'      }\n'+
-			'      delay(1000);\n'+
+			'      }\n    '+ statements_loop.replace(/\n/g,"\n  ")+
+			'  delay(1000);\n'+
 			'    }\n'+
 			'  }\n'+
 			'  if (WiFi.status() != WL_CONNECTED) {\n'+
@@ -2051,7 +2052,7 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'    }\n'+
 			'  }\n'+
 			'  getTelegramMessage();\n'+
-			'}\n';
+			'}\n';	
 			
 	Blockly.Arduino.setups_.getTelegramMessage="getTelegramMessage();\n";
 
@@ -2073,7 +2074,8 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
   if ((keyboard.indexOf('"')==0)&&(keyboard.lastIndexOf('"')==keyboard.length-1))
     keyboard = keyboard.substring(1,keyboard.length-1);
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
-
+  var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');
+  
   Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>\n#include <WiFi.h>\n#include <WiFiClientSecure.h>\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n#include "Base64_tool.h"\n#include "Base64.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nWiFiClientSecure client_tcp;\nlong message_id_last = 0;\nboolean sendHelp = false;\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
@@ -2284,8 +2286,8 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 			'        if (text!="") {\n'+
 			'          ExecuteCommand(text);\n'+
 			'        }\n'+
-			'      }\n'+
-			'      delay(1000);\n'+
+			'      }\n    '+ statements_loop.replace(/\n/g,"\n  ")+
+			'  delay(1000);\n'+
 			'    }\n'+
 			'  }\n'+
 			'  if (WiFi.status() != WL_CONNECTED) {\n'+
@@ -2300,7 +2302,7 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 			'    }\n'+
 			'  }\n'+
 			'  getTelegramMessage();\n'+
-			'}\n';
+			'}\n';	
 			
 	Blockly.Arduino.setups_.getTelegramMessage="getTelegramMessage();\n";
 
@@ -2387,6 +2389,88 @@ Blockly.Arduino['esp32_telegrambot_sendmessage_custom'] = function(block) {
 		'}\n';  
   
   var code = 'sendMessageToTelegram('+ value_token +','+ value_chatid+','+ value_message +',"");\n' ;
+  return code;
+};
+
+Blockly.Arduino['esp32_telegrambot_sendlink'] = function(block) {	
+	var value_link = Blockly.Arduino.valueToCode(block, 'link', Blockly.Arduino.ORDER_ATOMIC); 
+  
+	Blockly.Arduino.definitions_.sendLinkToTelegram = ''+
+		'void sendLinkToTelegram(String token, String chatid, String link, String keyboard) {\n'+
+		'  const char* myDomain = "api.telegram.org";\n'+
+		'  String getAll="", getBody = "";\n'+
+		'  String request = "chat_id="+chatid+"&photo="+link;\n'+
+		'  if (keyboard!="") request += "&reply_markup="+keyboard;\n'+
+		'  client_tcp.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
+		'  client_tcp.println("Host: " + String(myDomain));\n'+
+		'  client_tcp.println("Content-Length: " + String(request.length()));\n'+
+		'  client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
+		'  client_tcp.println("Connection: keep-alive");\n'+
+		'  client_tcp.println();\n'+
+		'  client_tcp.print(request);\n'+
+		'  int waitTime = 5000;\n'+
+		'  long startTime = millis();\n'+
+		'  boolean state = false;\n'+
+		'  while ((startTime + waitTime) > millis()) {\n'+
+		'    delay(100);\n'+
+		'    while (client_tcp.available())  {\n'+
+		'        char c = client_tcp.read();\n'+
+		'        if (state==true) getBody += String(c);\n'+ 
+		'        if (c == \'\\n\')  {\n'+
+		'          if (getAll.length()==0) state=true;\n'+
+		'          getAll = "";\n'+
+		'        }\n'+
+		'        else if (c != \'\\r\')\n'+
+		'          getAll += String(c);\n'+
+		'        startTime = millis();\n'+
+		'     }\n'+
+		'     if (getBody.length()>0) break;\n'+
+		'  }\n'+
+		'}\n';  
+		
+  var code = 'sendLinkToTelegram(token, chat_id,'+ value_link +',"");\n' ;
+  return code;
+};
+
+Blockly.Arduino['esp32_telegrambot_sendlink_custom'] = function(block) {
+	var value_link = Blockly.Arduino.valueToCode(block, 'link', Blockly.Arduino.ORDER_ATOMIC);
+	var value_token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);
+	var value_chatid = Blockly.Arduino.valueToCode(block, 'chat_id', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_.sendLinkToTelegram_custom = ''+
+		'void sendLinkToTelegram_custom(String token, String chatid, String link, String keyboard) {\n'+
+		'  const char* myDomain = "api.telegram.org";\n'+
+		'  String getAll="", getBody = "";\n'+
+		'  String request = "chat_id="+chatid+"&photo="+link;\n'+
+		'  if (keyboard!="") request += "&reply_markup="+keyboard;\n'+
+		'  client_tcp.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
+		'  client_tcp.println("Host: " + String(myDomain));\n'+
+		'  client_tcp.println("Content-Length: " + String(request.length()));\n'+
+		'  client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
+		'  client_tcp.println("Connection: keep-alive");\n'+
+		'  client_tcp.println();\n'+
+		'  client_tcp.print(request);\n'+
+		'  int waitTime = 5000;\n'+
+		'  long startTime = millis();\n'+
+		'  boolean state = false;\n'+
+		'  while ((startTime + waitTime) > millis()) {\n'+
+		'    delay(100);\n'+
+		'    while (client_tcp.available())  {\n'+
+		'        char c = client_tcp.read();\n'+
+		'        if (state==true) getBody += String(c);\n'+ 
+		'        if (c == \'\\n\')  {\n'+
+		'          if (getAll.length()==0) state=true;\n'+
+		'          getAll = "";\n'+
+		'        }\n'+
+		'        else if (c != \'\\r\')\n'+
+		'          getAll += String(c);\n'+
+		'        startTime = millis();\n'+
+		'     }\n'+
+		'     if (getBody.length()>0) break;\n'+
+		'  }\n'+
+		'}\n';  
+  
+  var code = 'sendLinkToTelegram_custom('+ value_token +','+ value_chatid+','+ value_link +',"");\n' ;
   return code;
 };
 
@@ -4594,6 +4678,8 @@ Blockly.Arduino['linenotify_image'] = function(block) {
 };
 
 Blockly.Arduino['linenotify_all'] = function(block) {
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['linenotify_esp32'] ='\n'+
 											'String LineNotify_esp32(String token, String request) {\n'+
 											'  String getAll="", getBody="";\n'+

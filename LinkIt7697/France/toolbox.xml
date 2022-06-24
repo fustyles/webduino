@@ -888,19 +888,43 @@
 			  </block>
 			</statement>
 		  </block>
-		  <block type="esp32_telegrambot_sendmessage" id="99">
+			  <block type="esp32_telegrambot_sendmessage" id="99">
 				<value name="message">
 				  <block type="text" id="100">
 					<field name="TEXT"></field>
 				  </block>
 				</value>				
-			  </block>		  
+			  </block>
+			  <block type="esp32_telegrambot_sendlink" id="99">
+				<value name="link">
+				  <block type="text" id="100">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
+			  </block>				  
 			  <block type="esp32_telegrambot_get_token" id="99">			
 			  </block>
 			  <block type="esp32_telegrambot_get_chatid" id="99">			
 			  </block>				  
 			  <block type="esp32_telegrambot_sendmessage_custom" id="99">
 				<value name="message">
+				  <block type="text" id="100">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="token">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="chat_id">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
+			  </block>	
+			  <block type="esp32_telegrambot_sendlink_custom" id="99">			  
+				<value name="link">
 				  <block type="text" id="100">
 					<field name="TEXT"></field>
 				  </block>
@@ -927,7 +951,7 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>				
-			  </block>			  
+			  </block>				  
 		</category> 
 
 		<category id="france23" name="servercommand">
