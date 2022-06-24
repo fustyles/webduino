@@ -8101,7 +8101,7 @@
 	  <block type="fu_mqtt_setup">
 		<value name="server">
 		  <block type="text">
-			<field name="TEXT">broker.emqx.io</field>
+			<field name="TEXT">mqttgo.io</field>
 		  </block>
 		</value>
 		<value name="port">
