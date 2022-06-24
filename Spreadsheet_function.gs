@@ -1,5 +1,5 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/6/17 00:00
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/6/24 00:00
   https://www.facebook.com/francefu
 */
 
@@ -15,6 +15,9 @@ function doPost(e) {
   myData = myData.replace(/gmt_date/g, Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd"));
   myData = myData.replace(/gmt_time/g, Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss"));
   myData = myData.split("|");
+  myText = myText.replace(/gmt_datetime/g, Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss"));
+  myText = myText.replace(/gmt_date/g, Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd"));
+  myText = myText.replace(/gmt_time/g, Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss"));
   
   var spreadsheet = SpreadsheetApp.openByUrl(mySpreadsheeturl)
   var sheet = spreadsheet.getSheetByName(mySpreadsheetname);
