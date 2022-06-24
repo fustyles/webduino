@@ -951,7 +951,39 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>				
-			  </block>				  
+			  </block>
+			<block type="esp32_telegrambot_spreadsheet_sendcell">
+				<value name="token">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="chat_id">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>			
+				<value name="spreadsheeturl">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>		
+				</value>
+				<value name="spreadsheetname">
+				  <block type="text">
+					<field name="TEXT">工作表1</field>
+				  </block>		
+				</value>
+				<value name="row">
+				  <block type="math_number">
+					<field name="NUM">1</field>
+				  </block>
+				</value> 
+				<value name="col">
+				  <block type="math_number">
+					<field name="NUM">1</field>
+				  </block>
+				</value>			
+			</block>			  
 		</category> 
 
 		<category id="france23" name="servercommand">

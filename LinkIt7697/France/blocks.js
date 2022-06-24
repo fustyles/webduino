@@ -1,3 +1,50 @@
+Blockly.Blocks['esp32_telegrambot_spreadsheet_sendcell'] = {
+  init: function () {
+    this.appendDummyInput()
+        .appendField("Telegram Bot")
+        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_SEND_SHOW);		
+    this.appendValueInput("token")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_TOKEN_SHOW);
+    this.appendValueInput("chat_id")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_TELEGRAMBOT_CHATID_SHOW);
+	  this.appendValueInput("spreadsheeturl")
+		  .setCheck("String")
+		  .setAlign(Blockly.ALIGN_RIGHT)	  
+		  .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_URL_SHOW"]);
+	  this.appendValueInput("spreadsheetname")
+		  .setCheck("String")
+		  .setAlign(Blockly.ALIGN_RIGHT)	  
+		  .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_NAME_SHOW"]);
+	  this.appendValueInput("col")
+		  .setCheck("Number")
+		  .setAlign(Blockly.ALIGN_RIGHT)	  
+		  .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"]);		
+	  this.appendValueInput("row")
+		  .setCheck("Number")
+		  .setAlign(Blockly.ALIGN_RIGHT)	  
+		  .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]); 
+	  this.appendDummyInput()
+		  .setAlign(Blockly.ALIGN_RIGHT)		  
+		  .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_FORMAT_SHOW)	  
+		  .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.ESP32_TELEGRAMBOT_TEXT_SHOW,"text"],
+			[Blockly.Msg.ESP32_TELEGRAMBOT_IMAGEURL_SHOW,"imageurl"],
+			[Blockly.Msg.ESP32_TELEGRAMBOT_IMAGEBASE64_SHOW,"imagebase64"]
+			]), "type");	  
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/telegrambot_spreadsheet_sendcell.gs");
+  }
+};
+
+
+
 Blockly.defineBlocksWithJsonArray([
 	{type:"controls_spreadsheet"
 	,message0:"%{BKY_CONTROLS_SPREADSHEET}"
