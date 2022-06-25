@@ -1268,7 +1268,7 @@
 				  <block type="customcode_comment" id="112" inline="true">
 					<value name="text">
 					  <block type="text" id="113">
-						<field name="TEXT">http://192.168.xxx.xxx/?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
+						<field name="TEXT">http://192.168.xxx.xxx/control?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
 					  </block>
 					</value>
 					<next>
@@ -1526,7 +1526,7 @@
 				  <block type="customcode_comment" id="112" inline="true">
 					<value name="text">
 					  <block type="text" id="113">
-						<field name="TEXT">http://192.168.xxx.xxx/?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
+						<field name="TEXT">http://192.168.xxx.xxx/control?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
 					  </block>
 					</value>
 					<next>
