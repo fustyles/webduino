@@ -1,5 +1,5 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/4/1 22:00
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/6/27 06:00
   https://www.facebook.com/francefu
 */
 
@@ -22,6 +22,7 @@ function doPost(e) {
   var ss = SpreadsheetApp.openByUrl(mySpreadsheet)
   ss.getActiveSheet().setHiddenGridlines(true);
   var sheet = ss.getSheetByName(mySpreadsheetName);
+  sheet.insertRowsBefore(myCellRow, 1);
   if (myFileFormat=="string")
     sheet.getRange(myCellRow, myCellCol).setValue(myFile);
   else {
