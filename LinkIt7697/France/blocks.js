@@ -1,5 +1,3 @@
-if (topCheck !== undefined) topCheck = false;
-
 Blockly.Blocks['esp32_telegrambot_spreadsheet_sendcell'] = {
   init: function () {
     this.appendDummyInput()
