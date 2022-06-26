@@ -3615,7 +3615,7 @@ function HextoRgb(color) {
 		var base64 = "";
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
-			base64 = canvas.toDataURL();
+			base64 = encodeURIComponent(canvas.toDataURL());
 		}
 		catch(e) {
 			//console.log(e);
@@ -3638,7 +3638,7 @@ function HextoRgb(color) {
 		var context = canvas.getContext("2d");
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
-			var myFile = canvas.toDataURL();
+			var myFile = encodeURIComponent(canvas.toDataURL());
 
 			$.ajax({
 				"type": "POST",
