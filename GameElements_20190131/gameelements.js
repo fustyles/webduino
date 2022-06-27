@@ -3616,14 +3616,10 @@ function HextoRgb(color) {
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
 			base64 = canvas.toDataURL('image/jpeg');
-			console.log(base64);
 			var head = base64.substring(0, base64.indexOf(",")+1);
 			var data = base64.substring(base64.indexOf(",")+1);
 			data = encodeURIComponent(data);
 			base64 = head+data;
-			console.log(head);
-			console.log(data);
-			console.log(base64);
 		}
 		catch(e) {
 			//console.log(e);
@@ -3647,14 +3643,10 @@ function HextoRgb(color) {
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
 			var myFile = canvas.toDataURL('image/jpeg');
-			console.log(myFile);
 			var head = myFile.substring(0, myFile.indexOf(",")+1);
 			var data = myFile.substring(myFile.indexOf(",")+1);
 			data = encodeURIComponent(data);
 			myFile = head+data;
-			console.log(head);
-			console.log(data);
-			console.log(myFile);
 
 			$.ajax({
 				"type": "POST",
@@ -3703,6 +3695,10 @@ function HextoRgb(color) {
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
 			var myFile = canvas.toDataURL('image/jpeg');
+			var head = myFile.substring(0, myFile.indexOf(",")+1);
+			var data = myFile.substring(myFile.indexOf(",")+1);
+			data = encodeURIComponent(data);
+			myFile = head+data;		
 
 			$.ajax({
 				"type": "POST",
@@ -3747,6 +3743,10 @@ function HextoRgb(color) {
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
 			var myFile = canvas.toDataURL('image/jpeg');
+			var head = myFile.substring(0, myFile.indexOf(",")+1);
+			var data = myFile.substring(myFile.indexOf(",")+1);
+			data = encodeURIComponent(data);
+			myFile = head+data;
 
 			$.ajax({
 				"type": "POST",
