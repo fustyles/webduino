@@ -8,8 +8,6 @@ function doPost(e) {
   var myFile = e.parameter.myFile;
   var myFileFormat = e.parameter.myFileFormat;
   var myFilename = Utilities.formatDate(new Date(), "GMT+8", "yyyyMMddHHmmss");
-  var myDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd");
-  var myTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
   var mySpreadsheet = e.parameter.mySpreadsheet;
   var mySpreadsheetName = e.parameter.mySpreadsheetName;
   var myCellRow = e.parameter.myCellRow;
@@ -31,8 +29,6 @@ function doPost(e) {
     sheet.setRowHeight(myCellRow, myCellColHeight);
     sheet.insertImage(blob, myCellCol, myCellRow);
   }
-  sheet.getRange(myCellRow, myCellCol+1).setValue(myDate);
-  sheet.getRange(myCellRow, myCellCol+2).setValue(myTime);
 
   return  ContentService.createTextOutput("ok");
 }
