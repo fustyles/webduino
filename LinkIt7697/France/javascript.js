@@ -121,9 +121,6 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 			data += '+String('+text+')+"|"';
 	}
 	data = data.substring(0, data.length-4);
-	
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
 
 	Blockly.Arduino.definitions_.Spreadsheet_insert = '\n'+
 			'String Spreadsheet_insert(String func, String data, int row, int col, String text, String mySpreadsheeturl, String mySpreadsheetname, String myScript) {\n'+

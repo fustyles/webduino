@@ -12424,7 +12424,7 @@ Blockly.Blocks['video_base64'] = {
       .appendField(Blockly.Msg.VIDEO_BASE64);
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(280);
   }
 };
 
@@ -12447,6 +12447,10 @@ Blockly.Blocks['video_base64_spreadsheet'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEETNAME);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.VIDEO_BASE64_FORMAT)
+	  .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(new Blockly.FieldDropdown([["image","image"], ["base64","string"]],this.validate), "format_");	  
   this.appendValueInput("column_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
@@ -12458,20 +12462,25 @@ Blockly.Blocks['video_base64_spreadsheet'] = {
   this.appendValueInput("height_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg.TABLE_TD_HEIGHT);	  
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.VIDEO_BASE64_FORMAT)
-	  .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(new Blockly.FieldDropdown([["image","image"], ["base64","string"]]), "format_");	  
+      .appendField(Blockly.Msg.TABLE_TD_HEIGHT);	  	  
   this.appendValueInput("spreadsheet_script_")
       .setCheck("String")	  
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
+  this.getInput("spreadsheet_script_").setVisible(false);	  
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/WebduinoSpreadsheet.gs");	  
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(280);
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (newValue=="image") {
+		block.getInput("height_").setVisible(true);
+	}
+	else
+		block.getInput("height_").setVisible(false);
   }
 };
 
@@ -12486,6 +12495,11 @@ Blockly.Blocks['video_base64_drive'] = {
       .appendField(Blockly.Msg.ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.VIDEO_BASE64_DRIVE);
+  this.appendValueInput("drive_script_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);	  
   this.appendValueInput("foldername_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
@@ -12494,16 +12508,11 @@ Blockly.Blocks['video_base64_drive'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg.VIDEO_BASE64_FILENAME);	  	  
-  this.appendValueInput("drive_script_")
-      .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/WebduinoDrive.gs");
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(280);
   }
 };
 
@@ -12529,12 +12538,13 @@ Blockly.Blocks['video_base64_email'] = {
   this.appendValueInput("email_script_")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	
-      .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL); 
+      .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
+  this.getInput("email_script_").setVisible(false);	  
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageByGmail_doPost.gs");
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(280);
   }
 };
 
