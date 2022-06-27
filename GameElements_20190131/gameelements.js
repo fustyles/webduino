@@ -3616,7 +3616,7 @@ function HextoRgb(color) {
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
 			base64 = canvas.toDataURL();
-			var head = base64.substring(1, base64.indexOf(","));
+			var head = base64.substring(0, base64.indexOf(",")+1);
 			var data = base64.substring(base64.indexOf(",")+1);
 			data = encodeURIComponent(data);
 			base64 = head+data;
@@ -3646,7 +3646,7 @@ function HextoRgb(color) {
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
 			var myFile = canvas.toDataURL();
-			var head = myFile.substring(1, myFile.indexOf(","));
+			var head = myFile.substring(0, myFile.indexOf(",")+1);
 			var data = myFile.substring(myFile.indexOf(",")+1);
 			data = encodeURIComponent(data);
 			myFile = head+data;
