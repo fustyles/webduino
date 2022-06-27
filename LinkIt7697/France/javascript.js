@@ -29,7 +29,7 @@ Blockly.Arduino['esp32_telegrambot_spreadsheet_sendcell'] = function(block){
 			'    client_tcp.println("Host: " + String(myDomain));\n'+
 			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
 			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println("Connection: keep-alive");\n'+
 			'    client_tcp.println();\n'+
 			'    int Index;\n'+
 			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
@@ -142,7 +142,7 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 			'    client_tcp.println("Host: " + String(myDomain));\n'+
 			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
 			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println("Connection: keep-alive");\n'+
 			'    client_tcp.println();\n'+
 			'    int Index;\n'+
 			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
@@ -256,7 +256,7 @@ Blockly.Arduino['controls_spreadsheet_function'] = function(block){
 			'    client_tcp.println("Host: " + String(myDomain));\n'+
 			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
 			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println("Connection: keep-alive");\n'+
 			'    client_tcp.println();\n'+
 			'    int Index;\n'+
 			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
@@ -2431,7 +2431,7 @@ Blockly.Arduino['esp32_telegrambot_sendmessage'] = function(block) {
 		'  client_tcp.println("Host: " + String(myDomain));\n'+
 		'  client_tcp.println("Content-Length: " + String(request.length()));\n'+
 		'  client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-		'  client_tcp.println("Connection: close");\n'+
+		'  client_tcp.println("Connection: keep-alive");\n'+
 		'  client_tcp.println();\n'+
 		'  client_tcp.print(request);\n'+
 		'  int waitTime = 5000;\n'+
@@ -2478,7 +2478,7 @@ Blockly.Arduino['esp32_telegrambot_sendmessage_custom'] = function(block) {
 		'    client_tcp.println("Host: " + String(myDomain));\n'+
 		'    client_tcp.println("Content-Length: " + String(request.length()));\n'+
 		'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-		'    client_tcp.println("Connection: close");\n'+
+		'    client_tcp.println("Connection: keep-alive");\n'+
 		'    client_tcp.println();\n'+
 		'    client_tcp.print(request);\n'+
 		'    int waitTime = 5000;\n'+
@@ -2519,7 +2519,7 @@ Blockly.Arduino['esp32_telegrambot_sendlink'] = function(block) {
 		'  client_tcp.println("Host: " + String(myDomain));\n'+
 		'  client_tcp.println("Content-Length: " + String(request.length()));\n'+
 		'  client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-		'  client_tcp.println("Connection: close");\n'+
+		'  client_tcp.println("Connection: keep-alive");\n'+
 		'  client_tcp.println();\n'+
 		'  client_tcp.print(request);\n'+
 		'  int waitTime = 5000;\n'+
@@ -2566,7 +2566,7 @@ Blockly.Arduino['esp32_telegrambot_sendlink_custom'] = function(block) {
 		'    client_tcp.println("Host: " + String(myDomain));\n'+
 		'    client_tcp.println("Content-Length: " + String(request.length()));\n'+
 		'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-		'    client_tcp.println("Connection: close");\n'+
+		'    client_tcp.println("Connection: keep-alive");\n'+
 		'    client_tcp.println();\n'+
 		'    client_tcp.print(request);\n'+
 		'    int waitTime = 5000;\n'+
@@ -2646,7 +2646,7 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	Blockly.Arduino.definitions_['opendataAirQuality'] +='  if (client_tcp.connect("data.epa.gov.tw", 443)) {\n'+
 			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: data.epa.gov.tw");\n'+
-			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println("Connection: keep-alive");\n'+
 			'    client_tcp.println();\n'+
 			'    String getResponse="",Feedback="";\n'+
 			'    boolean state = false;\n'+
@@ -2767,7 +2767,7 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 	Blockly.Arduino.definitions_['opendataWeather'] +='  if (client_tcp.connect("opendata.cwb.gov.tw", 443)) {\n'+
 			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: opendata.cwb.gov.tw");\n'+
-			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println("Connection: keep-alive");\n'+
 			'    client_tcp.println();\n'+
 			'    String getResponse="",Feedback="";\n'+
 			'    boolean state = false;\n'+
@@ -12136,7 +12136,7 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 			'    client_tcp.println("Host: " + String(myDomain));\n'+
 			'    client_tcp.println("Content-Length: " + String(Data.length()+imageFile.length()));\n'+
 			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println("Connection: keep-alive");\n'+
 			'    client_tcp.println();\n'+
 			'    \n'+
 			'    client_tcp.print(Data);\n'+
@@ -12265,7 +12265,7 @@ Blockly.Arduino['esp32_cam_spreadsheet'] = function(block) {
 			'    client_tcp.println("Host: " + String(myDomain));\n'+
 			'    client_tcp.println("Content-Length: " + String(Data.length()+imageFile.length()));\n'+
 			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println("Connection: keep-alive");\n'+
 			'    client_tcp.println();\n'+
 			'    \n'+
 			'    client_tcp.print(Data);\n'+
