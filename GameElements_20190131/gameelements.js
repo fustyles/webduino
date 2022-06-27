@@ -3615,7 +3615,7 @@ function HextoRgb(color) {
 		var base64 = "";
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
-			base64 = canvas.toDataURL();
+			base64 = canvas.toDataURL('image/jpeg');
 			console.log(base64);
 			var head = base64.substring(0, base64.indexOf(",")+1);
 			var data = base64.substring(base64.indexOf(",")+1);
@@ -3646,7 +3646,7 @@ function HextoRgb(color) {
 		var context = canvas.getContext("2d");
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
-			var myFile = canvas.toDataURL();
+			var myFile = canvas.toDataURL('image/jpeg');
 			console.log(myFile);
 			var head = myFile.substring(0, myFile.indexOf(",")+1);
 			var data = myFile.substring(myFile.indexOf(",")+1);
@@ -3702,7 +3702,7 @@ function HextoRgb(color) {
 		var context = canvas.getContext("2d");
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
-			var myFile = canvas.toDataURL();
+			var myFile = canvas.toDataURL('image/jpeg');
 
 			$.ajax({
 				"type": "POST",
@@ -3746,7 +3746,7 @@ function HextoRgb(color) {
 		var context = canvas.getContext("2d");
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
-			var myFile = canvas.toDataURL();
+			var myFile = canvas.toDataURL('image/jpeg');
 
 			$.ajax({
 				"type": "POST",
