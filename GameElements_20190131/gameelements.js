@@ -3615,7 +3615,13 @@ function HextoRgb(color) {
 		var base64 = "";
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
-			base64 = encodeURIComponent(canvas.toDataURL());
+			base64 = canvas.toDataURL();
+			var head = base64.substring(1, base64.indexOf(","));
+			var data = base64.substring(base64.indexOf(",")+1);
+			data = encodeURIComponent(data);
+			base64 = head+data;
+			console.log(head);
+			console.log(data);
 			console.log(base64);
 		}
 		catch(e) {
@@ -3639,7 +3645,13 @@ function HextoRgb(color) {
 		var context = canvas.getContext("2d");
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
-			var myFile = encodeURIComponent(canvas.toDataURL());
+			var myFile = canvas.toDataURL();
+			var head = myFile.substring(1, myFile.indexOf(","));
+			var data = myFile.substring(myFile.indexOf(",")+1);
+			data = encodeURIComponent(data);
+			myFile = head+data;
+			console.log(head);
+			console.log(data);
 			console.log(myFile);
 
 			$.ajax({
