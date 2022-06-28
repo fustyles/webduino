@@ -1,3 +1,71 @@
+Blockly.Arduino['esp32_telegrambot_getupdates'] = function(block) {
+	var token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC); 
+
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';			
+	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
+	Blockly.Arduino.definitions_.message_id = 'long messageid_last = 0;';
+	
+	Blockly.Arduino.definitions_.telegrambot_getUpdates = ''+		
+			'String telegrambot_getUpdates(String token) {\n'+
+			'  const char* myDomain = "api.telegram.org";\n'+
+			'  String getAll="", getBody = "";\n'+
+			'  JsonObject obj;\n'+
+			'  DynamicJsonDocument doc(1024);\n'+
+			'  String result;\n'+
+			'  long update_id;\n'+
+			'  String message;\n'+
+			'  long message_id;\n'+
+			'  String text;\n'+
+			'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_.telegrambot_getUpdates += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_.telegrambot_getUpdates += '  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'    while (client_tcp.connected()) {\n'+
+			'      getAll = "";\n'+
+			'      getBody = "";\n'+
+			'      String request = "limit=1&offset=-1&allowed_updates=message";\n'+
+			'      client_tcp.println("POST /bot"+token+"/getUpdates HTTP/1.1");\n'+
+			'      client_tcp.println("Host: " + String(myDomain));\n'+
+			'      client_tcp.println("Content-Length: " + String(request.length()));\n'+
+			'      client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'      client_tcp.println("Connection: keep-alive");\n'+
+			'      client_tcp.println();\n'+
+			'      client_tcp.print(request);\n'+
+			'      int waitTime = 5000;\n'+
+			'      long startTime = millis();\n'+
+			'      boolean state = false;\n'+
+			'      while ((startTime + waitTime) > millis()){\n'+
+			'        delay(100);\n'+
+			'        while (client_tcp.available()){\n'+
+			'            char c = client_tcp.read();\n'+
+			'            if (c == \'\\n\') {\n'+
+			'              if (getAll.length()==0) state=true;\n'+
+			'              getAll = "";\n'+
+			'            }\n'+
+			'            else if (c != \'\\r\')\n'+
+			'              getAll += String(c);\n'+
+			'            if (state==true) getBody += String(c);\n'+
+			'            startTime = millis();\n'+
+			'         }\n'+
+			'         if (getBody.length()>0) break;\n'+
+			'      }\n'+
+			'      deserializeJson(doc, getBody);\n'+
+			'      obj = doc.as<JsonObject>();\n'+
+			'      message_id = obj["result"][0]["message"]["message_id"].as<String>().toInt();\n'+
+			'      if (message_id!=messageid_last) {\n'+
+			'      	 messageid_last = message_id;\n'+
+			'      	 text = obj["result"][0]["message"]["text"].as<String>();\n'+
+			'      }\n'+
+			'      return text;\n' +
+			'    }\n'+
+			'    return "";\n' +
+			'  }\n'+			
+			'}\n';
+
+	var code = 'telegrambot_getUpdates('+token+')';
+	return [code,Blockly.Arduino.ORDER_ATOMIC];
+};
+
 Blockly.Arduino['esp32_telegrambot_spreadsheet_sendcell'] = function(block){
     var token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);
     var chat_id = Blockly.Arduino.valueToCode(block, 'chat_id', Blockly.Arduino.ORDER_ATOMIC); 	

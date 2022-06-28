@@ -983,7 +983,14 @@
 					<field name="NUM">1</field>
 				  </block>
 				</value>			
-			</block>			  
+			</block>
+			  <block type="esp32_telegrambot_getupdates" id="99">
+				<value name="token">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
+			  </block>			
 		</category> 
 
 		<category id="france23" name="servercommand">
@@ -8180,7 +8187,7 @@
 	  <block type="fu_mqtt_setup">
 		<value name="server">
 		  <block type="text">
-			<field name="TEXT">mqttgo.io</field>
+			<field name="TEXT">broker.emqx.io</field>
 		  </block>
 		</value>
 		<value name="port">

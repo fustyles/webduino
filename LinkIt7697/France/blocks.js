@@ -1,3 +1,17 @@
+Blockly.Blocks['esp32_telegrambot_getupdates'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_GETUPDATES_SHOW);
+  this.appendValueInput("token")
+	  .setCheck("String")
+	  .setAlign(Blockly.ALIGN_RIGHT)		
+	  .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_TOKEN_SHOW);	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
 Blockly.Blocks['esp32_telegrambot_spreadsheet_sendcell'] = {
   init: function () {
     this.appendDummyInput()

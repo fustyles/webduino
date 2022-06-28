@@ -1209,6 +1209,7 @@ Blockly.Msg.ESP32_TELEGRAMBOT_FORMAT_SHOW = "Format";
 Blockly.Msg.ESP32_TELEGRAMBOT_TEXT_SHOW = "text";
 Blockly.Msg.ESP32_TELEGRAMBOT_IMAGEURL_SHOW = "image url";
 Blockly.Msg.ESP32_TELEGRAMBOT_IMAGEBASE64_SHOW = "image (Base64)";
+Blockly.Msg.ESP32_TELEGRAMBOT_GETUPDATES_SHOW = "Telegram Bot(ESP32) get message";
 
 Blockly.Msg.NTPSERVER_INITIAL_SHOW = "NTP Server initial";
 Blockly.Msg.NTPSERVER_GMTOFFSET_SHOW = "GMT offset(h)";

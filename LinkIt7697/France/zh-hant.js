@@ -1096,7 +1096,7 @@ Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW = "訊息文字";
 Blockly.Msg.ESP32_CAM_TELEGRAMBOT_SHOW = " ESP32-CAM 截圖上傳Telegram Bot";
 Blockly.Msg.ESP32_CAM_TOKEN_SHOW = "權杖";
 Blockly.Msg.ESP32_CAM_CHATID_SHOW = "聊天室ID";
-Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server模組取得網址參數指令並執行自訂指令區";
+Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server模組(非串流)取得一次網址參數指令並執行自訂指令區";
 
 Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "圖檔Uint8Array格式轉換Base64格式";
 Blockly.Msg.COCOSSD_CLEAR_SHOW = "物件偵測(coco-ssd) 清除結果";
@@ -1217,6 +1217,7 @@ Blockly.Msg.ESP32_TELEGRAMBOT_FORMAT_SHOW = "格式";
 Blockly.Msg.ESP32_TELEGRAMBOT_TEXT_SHOW = "文字";
 Blockly.Msg.ESP32_TELEGRAMBOT_IMAGEURL_SHOW = "圖片網址";
 Blockly.Msg.ESP32_TELEGRAMBOT_IMAGEBASE64_SHOW = "圖片(Base64)";
+Blockly.Msg.ESP32_TELEGRAMBOT_GETUPDATES_SHOW = "Telegram Bot(ESP32) 取得最新訊息";
 
 Blockly.Msg.NTPSERVER_INITIAL_SHOW = "網路時間(NTP Server)初始化";
 Blockly.Msg.NTPSERVER_GMTOFFSET_SHOW = "GMT時差(h)";
