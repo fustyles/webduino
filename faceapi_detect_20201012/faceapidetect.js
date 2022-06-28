@@ -11,7 +11,7 @@
 			for (var i=0;i<result.length;i++) {
 				var result_detail = result[i].split(",");
 				if (result_detail[0]==input_index) {
-					for (var j=0;j<result_detail.length;j++) {
+					for (var j=0;j<result_detail.length;j=j+2) {
 						if (result_detail[j]==input_property) 
 							return result_detail[j+1];
 					}
