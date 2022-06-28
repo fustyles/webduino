@@ -6,6 +6,7 @@
 
 	function faceapidetect_face(input_index, input_property){
 		var result = document.getElementById("result_faceapidetect").innerHTML.split("<br>");
+		console.log(result);
 		if (result.length>0) {
 			for (var i=0;i<result.length;i++) {
 				var result_detail = result[i].split(",");
