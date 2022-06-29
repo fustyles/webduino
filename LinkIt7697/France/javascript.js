@@ -53,8 +53,9 @@ Blockly.Arduino['esp32_telegrambot_getupdates'] = function(block) {
 			'      obj = doc.as<JsonObject>();\n'+
 			'      message_id = obj["result"][0]["message"]["message_id"].as<String>().toInt();\n'+
 			'      if (message_id!=messageid_last) {\n'+
-			'      	 messageid_last = message_id;\n'+
-			'      	 text = obj["result"][0]["message"]["text"].as<String>();\n'+
+			'      	 if (messageid_last!=0)\n'+
+			'      	 	text = obj["result"][0]["message"]["text"].as<String>();\n'+
+			'      	 messageid_last = message_id;\n'+			
 			'      }\n'+
 			'      return text;\n' +
 			'    }\n'+
