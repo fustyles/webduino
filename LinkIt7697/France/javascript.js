@@ -1,6 +1,6 @@
 Blockly.Arduino['loop_asynchronous'] = function(block) {
 	var id = "count_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
-	Blockly.Arduino.definitions_[id] = 'int ' +id+" = 0;";
+	Blockly.Arduino.definitions_[id] = 'long ' +id+" = 0;";
 	
 	var count = Blockly.Arduino.valueToCode(block, 'count', Blockly.Arduino.ORDER_ATOMIC);
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');	
