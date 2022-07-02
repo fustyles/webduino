@@ -1423,3 +1423,7 @@ Blockly.Msg["SPREADSHEET_SPREADSHEET_ROWE_SHOW"] = "橫列";
 Blockly.Msg["SPREADSHEET_SPREADSHEET_COLE_SHOW"] = "至縱行";
 Blockly.Msg["SPREADSHEET_SPREADSHEET_SQL_SHOW"] = "SQL查詢";
 Blockly.Msg["SPREADSHEET_SPREADSHEET_RANGE_SHOW"] = "儲存格範圍";
+
+Blockly.Msg["LOOP_ASYNCHRONOUS_SHOW"] = "非同步";		
+Blockly.Msg["LOOP_COUNT_SHOW"] = "計數累計達";
+Blockly.Msg["LOOP_EXECUTE_SHOW"] = "次後重新計數並執行";

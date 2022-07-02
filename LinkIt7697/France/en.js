@@ -1414,3 +1414,7 @@ Blockly.Msg["SPREADSHEET_SPREADSHEET_ROWE_SHOW"] = "Row end";
 Blockly.Msg["SPREADSHEET_SPREADSHEET_COLE_SHOW"] = "Col end";
 Blockly.Msg["SPREADSHEET_SPREADSHEET_SQL_SHOW"] = "SQL";
 Blockly.Msg["SPREADSHEET_SPREADSHEET_RANGE_SHOW"] = "Range";
+
+Blockly.Msg["LOOP_ASYNCHRONOUS_SHOW"] = "Asynchronous";		
+Blockly.Msg["LOOP_COUNT_SHOW"] = "accumulative total";
+Blockly.Msg["LOOP_EXECUTE_SHOW"] = "times then execute";

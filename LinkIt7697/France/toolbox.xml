@@ -8294,6 +8294,13 @@
     </category>		
 	<sep id="category_sep"></sep>
 	<category id="france7" name="others">
+	  <block type="loop_asynchronous">
+		<value name="count">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value> 
+	  </block> 	
 	  <block type="esp32_setuploop">
 		<statement name="setup">
 		</statement>

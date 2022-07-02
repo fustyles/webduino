@@ -1,3 +1,13 @@
+Blockly.Arduino['loop_asynchronous'] = function(block) {
+	var id = "count_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
+	Blockly.Arduino.definitions_[id] = 'int ' +id+" = 0;";
+	
+	var count = Blockly.Arduino.valueToCode(block, 'count', Blockly.Arduino.ORDER_ATOMIC);
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');	
+	var code = id +'++;\nif ('+id+'%'+count+'==0) {\n'+id+'=0;\n'+statement+'\n}';
+	return code;
+};
+
 Blockly.Arduino['esp32_telegrambot_getupdates'] = function(block) {
 	var token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC); 
 

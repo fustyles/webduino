@@ -1,3 +1,22 @@
+Blockly.Blocks['loop_asynchronous'] = {
+  init: function() {
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["LOOP_ASYNCHRONOUS_SHOW"]);		
+	this.appendValueInput("count")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)	  
+		.appendField(Blockly.Msg["LOOP_COUNT_SHOW"]);
+    this.appendDummyInput()		
+		.appendField(Blockly.Msg["LOOP_EXECUTE_SHOW"]);
+    this.appendStatementInput("statement")
+        .setCheck(null); 		
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(60);
+	}
+};
+
 Blockly.Blocks['esp32_telegrambot_getupdates'] = {
   init: function() {
   this.appendDummyInput()
