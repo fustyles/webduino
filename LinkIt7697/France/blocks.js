@@ -1,7 +1,5 @@
 Blockly.Blocks['loop_asynchronous'] = {
-  init: function() {
-    this.appendDummyInput()
-		.appendField(Blockly.Msg["LOOP_ASYNCHRONOUS_SHOW"]);		
+  init: function() {	
 	this.appendValueInput("count")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)	  
