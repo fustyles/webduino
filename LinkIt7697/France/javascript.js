@@ -312,7 +312,6 @@ Blockly.Arduino['controls_spreadsheet_function'] = function(block){
 	var col = Blockly.Arduino.valueToCode(block,"col",Blockly.Arduino.ORDER_NONE)||"";
 	var text = Blockly.Arduino.valueToCode(block,"text",Blockly.Arduino.ORDER_NONE)||"";
 	
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 
 	Blockly.Arduino.definitions_.Spreadsheet_insert = '\n'+
@@ -419,7 +418,6 @@ Blockly.Arduino['controls_spreadsheet_get'] = function(block){
 	var cell = Blockly.Arduino.valueToCode(block,"cell",Blockly.Arduino.ORDER_NONE);
 	var apikey = Blockly.Arduino.valueToCode(block,"apikey",Blockly.Arduino.ORDER_NONE);
 	
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
 	Blockly.Arduino.definitions_['spreadsheetData'] = 'String spreadsheetData = "{\\"values\\":[]}";';
@@ -537,7 +535,6 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 	var cole = Blockly.Arduino.valueToCode(block,"cole",Blockly.Arduino.ORDER_NONE);
 	var rowe = Blockly.Arduino.valueToCode(block,"rowe",Blockly.Arduino.ORDER_NONE);
 	
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
 	Blockly.Arduino.definitions_['spreadsheetQueryData'] = 'String spreadsheetQueryData = "{\\"values\\":[]}";';		
