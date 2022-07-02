@@ -86,7 +86,6 @@ Blockly.Arduino['esp32_telegrambot_spreadsheet_sendcell'] = function(block){
 	var col = Blockly.Arduino.valueToCode(block,"col",Blockly.Arduino.ORDER_NONE)||"";
 	var type = block.getFieldValue('type');
 	
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 
 	Blockly.Arduino.definitions_.telegram_Spreadsheet_send = '\n'+
@@ -2705,7 +2704,6 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	var dropdown_sitename = block.getFieldValue('sitename');
 	var value_Authorization = Blockly.Arduino.valueToCode(block, 'Authorization', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
 	Blockly.Arduino.definitions_['airSite'] = 'String airSite = "";';	
@@ -2826,7 +2824,6 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 	var dropdown_locationname = block.getFieldValue('locationname');
 	var value_Authorization = Blockly.Arduino.valueToCode(block, 'Authorization', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
 
@@ -4605,7 +4602,6 @@ Blockly.Arduino['customcode_instruction6'] = function (block) {
 };
 
 Blockly.Arduino['tcp_https_esp32'] = function(block) { 
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['tcp_https_esp32'] ='\n'+
 											'String tcp_https_esp32(String domain,String request,int port,int waittime) {\n'+
@@ -4653,7 +4649,6 @@ Blockly.Arduino['tcp_https_esp32'] = function(block) {
 };
 
 Blockly.Arduino['tcp_http_esp32'] = function(block) {
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
@@ -4699,7 +4694,6 @@ Blockly.Arduino['tcp_http_esp32'] = function(block) {
 };
 
 Blockly.Arduino['linenotify_esp32'] = function (block) {
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['linenotify_esp32'] ='\n'+
 											'String LineNotify_esp32(String token, String request) {\n'+
@@ -4767,7 +4761,6 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
 };
 
 Blockly.Arduino['linenotify_esp32_no'] = function (block) {
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['linenotify_esp32'] ='\n'+
 											'String LineNotify_esp32(String token, String request) {\n'+
@@ -4997,8 +4990,6 @@ Blockly.Arduino['linenotify_http'] = function (block) {
 };
 
 Blockly.Arduino['close_powerdog'] = function(block) { 
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
-  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['close_powerdog'] ='#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"';
   var code = 'WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n';
   return code; 
@@ -5052,7 +5043,6 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
 };
 
 Blockly.Arduino['thingspeak_update_noreturn'] = function (block) {
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
@@ -5117,7 +5107,6 @@ Blockly.Arduino['thingspeak_update_noreturn'] = function (block) {
 };
 
 Blockly.Arduino['thingspeak_update'] = function (block) {
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
@@ -5182,7 +5171,6 @@ Blockly.Arduino['thingspeak_update'] = function (block) {
 };
 
 Blockly.Arduino['thingspeak_read1'] = function (block) {
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
@@ -5230,7 +5218,6 @@ Blockly.Arduino['thingspeak_read1'] = function (block) {
 };
 
 Blockly.Arduino['thingspeak_read2'] = function (block) {
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
@@ -5277,7 +5264,6 @@ Blockly.Arduino['thingspeak_read2'] = function (block) {
 };
 
 Blockly.Arduino['thingspeak_read3'] = function (block) {
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
