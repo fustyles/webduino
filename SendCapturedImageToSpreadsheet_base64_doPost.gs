@@ -19,6 +19,8 @@ function doPost(e) {
     sheet.getRange(myRow, myColumn).setValue(myFile);
   } else if (myPosition=="first") {
     sheet.getRange(1, myColumn).setValue(myFile);
+  } else if (myPosition=="second") {
+    sheet.getRange(2, myColumn).setValue(myFile);    
   } else if (myPosition=="insertfirst") {
     sheet.insertRowsBefore(1, 1);
     sheet.getRange(1, myColumn).setValue(myFile);
