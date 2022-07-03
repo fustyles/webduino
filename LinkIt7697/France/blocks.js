@@ -16644,6 +16644,14 @@ Blockly.Blocks['esp32_cam_spreadsheet'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)	  
 		.appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEETNAME);
 	this.appendDummyInput()  
+		.appendField(Blockly.Msg["CONTROLS_SPREADSHEET_INSERT"])
+		.appendField(new Blockly.FieldDropdown([
+			["　",""],		
+			["A("+Blockly.Msg["CONTROLS_SPREADSHEET_DATE"]+"),B("+Blockly.Msg["CONTROLS_SPREADSHEET_TIME"]+")","gmt_datetime"],
+			["A("+Blockly.Msg["CONTROLS_SPREADSHEET_DATE"]+")","gmt_date"],
+			["A("+Blockly.Msg["CONTROLS_SPREADSHEET_TIME"]+")","gmt_time"]	
+		]), "datetime");
+	this.appendDummyInput()  
 		.appendField(Blockly.Msg.ESP32_CAM_SPREADSHEET_ROW_SHOW)
 		.appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg.ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW,"custom"],

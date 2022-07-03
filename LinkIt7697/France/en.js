@@ -1385,6 +1385,7 @@ Blockly.Msg.ESP32_CAM_HANDS_RECOGNITION_SHOW = "After recognizing";
 
 Blockly.Msg["CONTROLS_SPREADSHEET"] = "Google spreadsheet";
 Blockly.Msg["CONTROLS_SPREADSHEET_VALUE"] = "Value";
+Blockly.Msg["CONTROLS_SPREADSHEET_INSERT"] = "Insert";
 Blockly.Msg["CONTROLS_SPREADSHEET_DATETIME"] = "Datetime";
 Blockly.Msg["CONTROLS_SPREADSHEET_DATE"] = "Date";
 Blockly.Msg["CONTROLS_SPREADSHEET_TIME"] = "Time";

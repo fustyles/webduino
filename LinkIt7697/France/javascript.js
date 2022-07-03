@@ -12328,6 +12328,7 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 Blockly.Arduino['esp32_cam_spreadsheet'] = function(block) {
   var value_spreadsheeturl = Blockly.Arduino.valueToCode(block, 'spreadsheeturl', Blockly.Arduino.ORDER_ATOMIC);
   var value_spreadsheetname = Blockly.Arduino.valueToCode(block, 'spreadsheetname', Blockly.Arduino.ORDER_ATOMIC);
+  var value_datetime = block.getFieldValue('datetime');    
   var value_position = block.getFieldValue('position');  
   var value_column = Blockly.Arduino.valueToCode(block, 'column', Blockly.Arduino.ORDER_ATOMIC);
   var value_row = Blockly.Arduino.valueToCode(block, 'row', Blockly.Arduino.ORDER_ATOMIC);
@@ -12450,7 +12451,7 @@ Blockly.Arduino['esp32_cam_spreadsheet'] = function(block) {
 			'  return encodedString;\n'+
 			'}\n';
 			
-	var code = 'SendStillToSpreadsheet("&spreadsheeturl="+String('+value_spreadsheeturl+')+"&spreadsheetname="+String(urlencode('+value_spreadsheetname+'))+"&position='+value_position+'&column="+String('+value_column+')+"&row="+String('+value_row+')+"&file=",'+value_spreadsheet_script+');\n';
+	var code = 'SendStillToSpreadsheet("&spreadsheeturl="+String('+value_spreadsheeturl+')+"&spreadsheetname="+String(urlencode('+value_spreadsheetname+'))+"&datetime='+value_datetime+'&position='+value_position+'&column="+String('+value_column+')+"&row="+String('+value_row+')+"&file=",'+value_spreadsheet_script+');\n';
   	return code;		
 }
 

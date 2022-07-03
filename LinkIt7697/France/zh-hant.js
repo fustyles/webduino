@@ -1394,6 +1394,7 @@ Blockly.Msg.ESP32_CAM_HANDS_RECOGNITION_SHOW = "辨識完成後執行";
 
 Blockly.Msg["CONTROLS_SPREADSHEET"] = "Google試算表";
 Blockly.Msg["CONTROLS_SPREADSHEET_VALUE"] = "值";
+Blockly.Msg["CONTROLS_SPREADSHEET_INSERT"] = "插入";
 Blockly.Msg["CONTROLS_SPREADSHEET_DATETIME"] = "完整時間";
 Blockly.Msg["CONTROLS_SPREADSHEET_DATE"] = "日期";
 Blockly.Msg["CONTROLS_SPREADSHEET_TIME"] = "時間";
