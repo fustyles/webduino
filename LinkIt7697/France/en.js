@@ -770,6 +770,7 @@ Blockly.Msg["ESP32_CAM_FILENAME_SHOW"] = "File Name";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_ROW_SHOW"] = "row";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW"] = "Custom row";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_FIRSTROW_SHOW"] = "First row";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_SECONDROW_SHOW"] = "Second row";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW"] = "Insert before first row";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_LASTROW_SHOW"] = "Last row";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTLASTROW_SHOW"] = "Insert after last row";

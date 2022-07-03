@@ -1,3 +1,47 @@
+
+Blockly.Arduino['variable_urldecode'] = function (block) {
+  Blockly.Arduino.definitions_['urldecode'] ="\n"+
+											"String urldecode(String str) {\n"+
+											"  String encodedString;\n"+
+											"  char c;\n"+
+											"  char code0;\n"+
+											"  char code1;\n"+
+											"  for (int i =0; i < str.length(); i++){\n"+
+											"    c=str.charAt(i);\n"+
+											"    if (c == '+'){\n"+
+											"      encodedString+=' ';\n"+ 
+											"    } else if (c == '%') {\n"+
+											"      i++;\n"+
+											"      code0=str.charAt(i);\n"+
+											"      i++;\n"+
+											"      code1=str.charAt(i);\n"+
+											"      c = (h2int(code0) << 4) | h2int(code1);\n"+
+											"      encodedString+=c;\n"+
+											"    } else {\n"+
+											"      encodedString+=c;\n"+  
+											"    }\n"+
+											"    yield();\n"+
+											"  }\n"+							
+											"  return encodedString;\n"+
+											"}\n"+
+											"unsigned char h2int(char c) {\n"+
+											"  if (c >= '0' && c <='9'){\n"+
+											"    return((unsigned char)c - '0');\n"+
+											"  }\n"+
+											"  if (c >= 'a' && c <='f'){\n"+
+											"    return((unsigned char)c - 'a' + 10);\n"+
+											"  }\n"+
+											"  if (c >= 'A' && c <='F'){\n"+
+											"    return((unsigned char)c - 'A' + 10);\n"+
+											"  }\n"+
+											"  return(0);\n"+
+											"}\n";
+  var url = Blockly.Arduino.valueToCode(block, 'url', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'urldecode('+url+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
 Blockly.Arduino['loop_asynchronous'] = function(block) {
 	var id = "count_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
 	Blockly.Arduino.definitions_[id] = 'long ' +id+" = 0;";

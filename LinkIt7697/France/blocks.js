@@ -1,3 +1,16 @@
+Blockly.Blocks['variable_urldecode'] = {
+  init: function() {
+    this.appendValueInput("url")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT);
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_URLDECODE_SHOW);    
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);
+  }
+};
+
 Blockly.Blocks['loop_asynchronous'] = {
   init: function() {	
 	this.appendValueInput("count")
@@ -16634,7 +16647,8 @@ Blockly.Blocks['esp32_cam_spreadsheet'] = {
 		.appendField(Blockly.Msg.ESP32_CAM_SPREADSHEET_ROW_SHOW)
 		.appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg.ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW,"custom"],
-		[Blockly.Msg.ESP32_CAM_SPREADSHEET_FIRSTROW_SHOW,"first"],		
+		[Blockly.Msg.ESP32_CAM_SPREADSHEET_FIRSTROW_SHOW,"first"],
+		[Blockly.Msg.ESP32_CAM_SPREADSHEET_SECONDROW_SHOW,"second"],
 		[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW,"insertfirst"],
 		[Blockly.Msg.ESP32_CAM_SPREADSHEET_LASTROW_SHOW,"last"],
 		[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTLASTROW_SHOW,"insertlast"]	

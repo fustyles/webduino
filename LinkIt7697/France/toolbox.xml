@@ -1023,6 +1023,13 @@
 			  </block>
 			  <block type="servermodule_parameter_variable_urldecode">
 			  </block>
+			  <block type="variable_urldecode">
+				<value name="url">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>			  
+			  </block>			  
 			  <block type="servermodule_feedback">
 				<value name="text">
 				  <block type="text">
