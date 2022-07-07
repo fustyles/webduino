@@ -1,3 +1,35 @@
+Blockly.Arduino['taskhandle_initial'] = function(block){
+	var stack = Blockly.Arduino.valueToCode(block,"stack",Blockly.Arduino.ORDER_NONE);
+	var priority = block.getFieldValue('priority');
+	var core = block.getFieldValue('core');
+	
+	Blockly.Arduino.definitions_['TaskHandle_task'+core] ='TaskHandle_t Task'+core+';\n';		
+	
+	var code = 'xTaskCreatePinnedToCore(\n  codeForTask'+core+',\n  "Task'+core+'",\n  '+stack+',\n  NULL,\n  '+priority+',\n  &Task'+core+',\n  '+core+'\n);\nvTaskDelay(100);\n';
+	return code;
+};
+
+Blockly.Arduino['taskhandle_statement'] = function(block){
+	var core = block.getFieldValue('core');			
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	Blockly.Arduino.definitions_['TaskHandle_codeForTask'+core] = 'void codeForTask'+core+'( void * parameter ) {\n'+statement+'\n}\n';
+	
+	var code = ''; 
+	return code;
+};
+
+Blockly.Arduino['taskhandle_delay'] = function(block){
+	var delay = Blockly.Arduino.valueToCode(block,"delay",Blockly.Arduino.ORDER_NONE);
+	
+	var code = 'vTaskDelay('+delay+');\n'; 
+	return code;
+};
+
+Blockly.Arduino['taskhandle_getcore'] = function(block){
+	var code = 'xPortGetCoreID()'; 
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['page_spreadsheet_function'] = function(block){
 	var spreadsheeturl = Blockly.Arduino.valueToCode(block,"spreadsheeturl",Blockly.Arduino.ORDER_NONE)||"";
 	var spreadsheetname = Blockly.Arduino.valueToCode(block,"spreadsheetname",Blockly.Arduino.ORDER_NONE)||"";

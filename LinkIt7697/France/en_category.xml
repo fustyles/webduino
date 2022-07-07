@@ -73,4 +73,5 @@
 <category><name>pixelbit</name><replace>Pixel:Bit Server</replace></category>
 <category><name>hands</name><replace>Hand Recognition</replace></category>
 <category><name>spreadsheet</name><replace>Google spreadsheet</replace></category>
+<category><name>taskhandle</name><replace>Multi-core task</replace></category>
 </xml>

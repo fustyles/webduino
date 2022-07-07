@@ -1420,3 +1420,13 @@ Blockly.Msg["SPREADSHEET_SPREADSHEET_RANGE_SHOW"] = "Range";
 Blockly.Msg["LOOP_ASYNCHRONOUS_SHOW"] = "Asynchronous";		
 Blockly.Msg["LOOP_COUNT_SHOW"] = "accumulative total";
 Blockly.Msg["LOOP_EXECUTE_SHOW"] = "times then execute";
+
+Blockly.Msg["TASKHANDLE_SHOW"] = "Task handle";
+Blockly.Msg["TASKHANDLE_INITIAL_SHOW"] = "initial";
+Blockly.Msg["TASKHANDLE_PRIORITY_SHOW"] = "priority";
+Blockly.Msg["TASKHANDLE_STACK_SHOW"] = "stack size";
+Blockly.Msg["TASKHANDLE_CORE_SHOW"] = "core";
+Blockly.Msg["TASKHANDLE_EXECUTE_SHOW"] = "execute";
+Blockly.Msg["TASKHANDLE_DELAY_SHOW"] = "wait";
+Blockly.Msg["TASKHANDLE_MS_SHOW"] = "(ms)";
+Blockly.Msg["TASKHANDLE_GETCORE_SHOW"] = "Get core";

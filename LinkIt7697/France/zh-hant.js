@@ -1429,3 +1429,13 @@ Blockly.Msg["SPREADSHEET_SPREADSHEET_RANGE_SHOW"] = "儲存格範圍";
 Blockly.Msg["LOOP_ASYNCHRONOUS_SHOW"] = "非同步";		
 Blockly.Msg["LOOP_COUNT_SHOW"] = "計數累計達";
 Blockly.Msg["LOOP_EXECUTE_SHOW"] = "次後重新計數並執行";
+
+Blockly.Msg["TASKHANDLE_SHOW"] = "多核心任務";
+Blockly.Msg["TASKHANDLE_INITIAL_SHOW"] = "初始化";
+Blockly.Msg["TASKHANDLE_PRIORITY_SHOW"] = "優先權";
+Blockly.Msg["TASKHANDLE_STACK_SHOW"] = "堆疊大小";
+Blockly.Msg["TASKHANDLE_CORE_SHOW"] = "核心";
+Blockly.Msg["TASKHANDLE_STATEMENT_SHOW"] = "初始化後執行";
+Blockly.Msg["TASKHANDLE_DELAY_SHOW"] = "等待";
+Blockly.Msg["TASKHANDLE_MS_SHOW"] = "毫秒";
+Blockly.Msg["TASKHANDLE_GETCORE_SHOW"] = "取得函式的核心編號";
