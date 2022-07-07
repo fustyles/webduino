@@ -3729,7 +3729,7 @@ function HextoRgb(color) {
 	}
   }	
 	
-  function spreadsheet_function(spreadsheeturl, spreadsheetname, func, data, row, col, myScriptUrl) {
+  function spreadsheet_function(spreadsheeturl, spreadsheetname, func, text, row, col, myScriptUrl) {
 	$.ajax({
 		"type": "POST",
 		"dataType": "json",
@@ -3741,7 +3741,7 @@ function HextoRgb(color) {
 					"spreadsheeturl":spreadsheeturl,
 					"spreadsheetname":spreadsheetname,
 					"func":func,    
-					"data":data,  
+					"data":text,  
 					"row":row,
 					"col":col
 				},
