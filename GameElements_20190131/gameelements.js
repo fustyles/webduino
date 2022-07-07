@@ -3729,7 +3729,7 @@ function HextoRgb(color) {
 	}
   }	
 	
-  function video_spreadsheet_function(spreadsheeturl, spreadsheetname, func, data, row, col, myScriptUrl) {
+  function spreadsheet_function(spreadsheeturl, spreadsheetname, func, data, row, col, myScriptUrl) {
 	$.ajax({
 		"type": "POST",
 		"dataType": "json",
@@ -4205,7 +4205,7 @@ function HextoRgb(color) {
   window.ajax_getdata_json_count = ajax_getdata_json_count;
   window.video_base64_spreadsheet = video_base64_spreadsheet;
   window.video_base64_spreadsheet_new = video_base64_spreadsheet_new;	
-  window.video_spreadsheet_function = video_spreadsheet_function;
+  window.spreadsheet_function = spreadsheet_function;
   window.video_base64_drive = video_base64_drive;
   window.video_base64_email = video_base64_email;
   window.fontText = fontText;
