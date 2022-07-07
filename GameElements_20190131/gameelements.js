@@ -3714,7 +3714,7 @@ function HextoRgb(color) {
 							"position":position,  
 							"column":column,
 							"row":row,
-							"file":file
+							"file":myFile
 						},
 				success: function(jsonp)
 				{
