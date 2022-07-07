@@ -2254,14 +2254,78 @@
 		</value>    
 		</block>
 		<block type="location">  
-		</block> 		
+		</block>	
 		<block type="video_base64">
 		<value name="id_">
 		  <block type="text">
 			<field name="TEXT"></field>
 		  </block>
 		</value>   
+		</block>
+		<block type="page_spreadsheet_function">
+			<value name="spreadsheeturl">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>		
+			</value>
+			<value name="spreadsheetname">
+			  <block type="text">
+				<field name="TEXT">工作表1</field>
+			  </block>		
+			</value>
+			<value name="row">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value> 
+			<value name="col">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value> 
+			<value name="text">
+			  <block type="text">
+				<field name="TEXT">World Peace</field>
+			  </block>		
+			</value>	
+			<value name="spreadsheet_script">
+			  <block type="text">
+				<field name="TEXT">https://script.google.com/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec</field>
+			  </block>
+			</value> 			
 		</block>		
+		<block type="video_base64_spreadsheet_new"> 
+			<value name="id">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>  		
+			<value name="spreadsheeturl">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value> 
+			<value name="spreadsheetname">
+			  <block type="text">
+				<field name="TEXT">工作表1</field>
+			  </block>
+			</value> 
+			<value name="column">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value> 
+			<value name="row">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+			<value name="spreadsheet_script">
+			  <block type="text">
+				<field name="TEXT">https://script.google.com/macros/s/AKfycbysXORTz1fwTtjKKDakgjo1NKztyRam2B2NNvx72iq2FWWdGssa3ihhxGk1ZkQmy4ao-A/exec</field>
+			  </block>
+			</value> 			
+		</block> 			
 		<block type="video_base64_spreadsheet">
 		<value name="id_">
 		  <block type="text">
@@ -2298,7 +2362,7 @@
 			<field name="TEXT">https://script.google.com/macros/s/AKfycbzQh5b7ug63Db4PkKIlIZkAvDRav5Yv6LDS0yNUY6EzLoujIac/exec</field>
 		  </block>
 		</value> 
-		</block> 
+		</block>		
 		<block type="video_base64_drive">
 		<value name="id_">
 		  <block type="text">

@@ -1,3 +1,151 @@
+Blockly.Blocks['page_spreadsheet_function'] = {
+  init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"]);	  
+  this.appendValueInput("spreadsheeturl")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_URL_SHOW"]);
+  this.appendValueInput("spreadsheetname")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_NAME_SHOW"]);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["SPREADSHEET_SET_CELL_SHOW"],"setcell"],
+		[Blockly.Msg["SPREADSHEET_CLEAR_CELL_SHOW"],"clearcell"],
+		[Blockly.Msg["SPREADSHEET_CLEAR_ROW_SHOW"],"clearrow"],
+		[Blockly.Msg["SPREADSHEET_CLEAR_COL_SHOW"],"clearcol"],		
+		[Blockly.Msg["SPREADSHEET_CLEAR_AFTERROW2_SHOW"],"clearafterrow2"],		
+		[Blockly.Msg["SPREADSHEET_CLEAR_SHEET_SHOW"],"clearsheet"]	  
+		],this.validate), "func");
+  this.appendValueInput("col")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"]);		
+  this.appendValueInput("row")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);
+  this.appendValueInput("text")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_TEXT_SHOW"]);
+  this.appendValueInput("spreadsheet_script")
+	.setCheck("String")	  
+	.setAlign(Blockly.ALIGN_RIGHT)
+	.appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
+  this.getInput("spreadsheet_script").setVisible(false);	  
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");	  
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(20);
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (newValue=="setcell") {
+		block.getInput("row").setVisible(true);
+		block.getInput("col").setVisible(true);
+		block.getInput("text").setVisible(true);
+	}
+	else if (newValue=="clearcell") {
+		block.getInput("row").setVisible(true);
+		block.getInput("col").setVisible(true);
+		block.getInput("text").setVisible(false);
+	}
+	else if (newValue=="clearrow") {
+		block.getInput("row").setVisible(true);
+		block.getInput("col").setVisible(false);
+		block.getInput("text").setVisible(false);
+	}
+	else if (newValue=="clearcol") {
+		block.getInput("row").setVisible(false);
+		block.getInput("col").setVisible(true);
+		block.getInput("text").setVisible(false);
+	}	
+	else if (newValue=="clearafterrow2") {
+		block.getInput("row").setVisible(false);
+		block.getInput("col").setVisible(false);
+		block.getInput("text").setVisible(false);
+	}
+	else if (newValue=="clearsheet") {
+		block.getInput("row").setVisible(false);
+		block.getInput("col").setVisible(false);
+		block.getInput("text").setVisible(false);
+	}	
+  }
+};
+
+Blockly.Blocks['video_base64_spreadsheet_new'] = {
+  init: function() {
+	  this.appendDummyInput()
+		  .setAlign(Blockly.ALIGN_RIGHT)		  
+		  .appendField(new Blockly.FieldDropdown([[Blockly.Msg.VIDEO,"video"], [Blockly.Msg.CANVAS,"canvas"], [Blockly.Msg.IMAGE,"image"]]), "source");
+	  this.appendValueInput("id")
+		  .setCheck(null)
+		  .setAlign(Blockly.ALIGN_RIGHT)	  
+		  .appendField(Blockly.Msg.ID);  
+	  this.appendDummyInput()  
+		  .appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEET);
+	this.appendValueInput("spreadsheeturl")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)	  
+		.appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEETURL);
+	this.appendValueInput("spreadsheetname")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)	  
+		.appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEETNAME);
+	this.appendDummyInput()  
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["CONTROLS_SPREADSHEET_INSERT"])
+		.appendField(new Blockly.FieldDropdown([
+			["　",""],		
+			["A("+Blockly.Msg["CONTROLS_SPREADSHEET_DATE"]+"),B("+Blockly.Msg["CONTROLS_SPREADSHEET_TIME"]+")","gmt_datetime"],
+			["A("+Blockly.Msg["CONTROLS_SPREADSHEET_DATE"]+")","gmt_date"],
+			["A("+Blockly.Msg["CONTROLS_SPREADSHEET_TIME"]+")","gmt_time"]	
+		]), "datetime");
+	this.appendDummyInput()  
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_CAM_SPREADSHEET_ROW_SHOW)
+		.appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW,"custom"],
+		[Blockly.Msg.ESP32_CAM_SPREADSHEET_FIRSTROW_SHOW,"first"],
+		[Blockly.Msg.ESP32_CAM_SPREADSHEET_SECONDROW_SHOW,"second"],
+		[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW,"insertfirst"],
+		[Blockly.Msg.ESP32_CAM_SPREADSHEET_LASTROW_SHOW,"last"],
+		[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTLASTROW_SHOW,"insertlast"]	
+	], this.validate), "position");		
+	this.appendValueInput("row")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)	  
+		.appendField(Blockly.Msg.VIDEO_BASE64_ROW);		
+	this.appendValueInput("column")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)	  
+		.appendField(Blockly.Msg.VIDEO_BASE64_COLUMN);	
+	this.appendValueInput("spreadsheet_script")
+		.setCheck("String")	  
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
+	this.getInput("spreadsheet_script").setVisible(false);
+	this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(20);
+	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToSpreadsheet_base64_doPost.gs");	
+  },
+  validate: function(newValue) {
+	 const block = this.sourceBlock_;
+	 if (newValue=="custom") {
+		 block.getInput("row").setVisible(true);
+	 }
+	 else {
+		 block.getInput("row").setVisible(false);	 
+	 }	 
+  }
+};
+
 Blockly.Blocks['variable_urldecode'] = {
   init: function() {
     this.appendValueInput("url")
@@ -367,7 +515,7 @@ Blockly.Blocks['controls_spreadsheet_query'] = {
       .setAlign(Blockly.ALIGN_RIGHT) 
       .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["SPREADSHEET_SPREADSHEET_SQL_SHOW"],"sql"],  
-			["儲存格範圍","range"]  
+			[Blockly.Msg["SPREADSHEET_SPREADSHEET_RANGE_SHOW"],"range"]  
 		], this.validate), "option");	  
   this.appendValueInput("sql","sql")
       .setCheck("String")
@@ -16644,6 +16792,7 @@ Blockly.Blocks['esp32_cam_spreadsheet'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)	  
 		.appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEETNAME);
 	this.appendDummyInput()  
+		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg["CONTROLS_SPREADSHEET_INSERT"])
 		.appendField(new Blockly.FieldDropdown([
 			["　",""],		
@@ -16651,7 +16800,8 @@ Blockly.Blocks['esp32_cam_spreadsheet'] = {
 			["A("+Blockly.Msg["CONTROLS_SPREADSHEET_DATE"]+")","gmt_date"],
 			["A("+Blockly.Msg["CONTROLS_SPREADSHEET_TIME"]+")","gmt_time"]	
 		]), "datetime");
-	this.appendDummyInput()  
+	this.appendDummyInput() 
+		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg.ESP32_CAM_SPREADSHEET_ROW_SHOW)
 		.appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg.ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW,"custom"],
@@ -16672,7 +16822,8 @@ Blockly.Blocks['esp32_cam_spreadsheet'] = {
 	this.appendValueInput("spreadsheet_script")
 		.setCheck("String")	  
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);		
+		.appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
+	this.getInput("spreadsheet_script").setVisible(false);		
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);

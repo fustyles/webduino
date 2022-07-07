@@ -1,3 +1,44 @@
+Blockly.Arduino['page_spreadsheet_function'] = function(block){
+	var spreadsheeturl = Blockly.Arduino.valueToCode(block,"spreadsheeturl",Blockly.Arduino.ORDER_NONE)||"";
+	var spreadsheetname = Blockly.Arduino.valueToCode(block,"spreadsheetname",Blockly.Arduino.ORDER_NONE)||"";
+	var func = block.getFieldValue('func');
+	var row = Blockly.Arduino.valueToCode(block,"row",Blockly.Arduino.ORDER_NONE)||"";
+	var col = Blockly.Arduino.valueToCode(block,"col",Blockly.Arduino.ORDER_NONE)||"";
+	var text = Blockly.Arduino.valueToCode(block,"text",Blockly.Arduino.ORDER_NONE)||"";
+	var value_spreadsheet_script = Blockly.Arduino.valueToCode(block, 'spreadsheet_script', Blockly.Arduino.ORDER_ATOMIC);
+			
+	var code = 'spreadsheet_function(' + spreadsheeturl + ', ' + spreadsheetname + ',"' + func + '", ' + text + ', ' + row + ', ' + col + ', ' + value_spreadsheet_script + ');\n';
+	return code;
+};
+
+Blockly.Arduino['video_base64_spreadsheet_new'] = function(block) {
+  var value_source = block.getFieldValue('source');
+  var value_id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);	
+  var value_spreadsheeturl = Blockly.Arduino.valueToCode(block, 'spreadsheeturl', Blockly.Arduino.ORDER_ATOMIC);
+  var value_spreadsheetname = Blockly.Arduino.valueToCode(block, 'spreadsheetname', Blockly.Arduino.ORDER_ATOMIC);
+  var value_datetime = block.getFieldValue('datetime');    
+  var value_position = block.getFieldValue('position');  
+  var value_column = Blockly.Arduino.valueToCode(block, 'column', Blockly.Arduino.ORDER_ATOMIC);
+  var value_row = Blockly.Arduino.valueToCode(block, 'row', Blockly.Arduino.ORDER_ATOMIC);
+  var value_spreadsheet_script = Blockly.Arduino.valueToCode(block, 'spreadsheet_script', Blockly.Arduino.ORDER_ATOMIC);
+	
+  if ((value_id.indexOf("(")==0)&&(value_id.lastIndexOf(")")==value_id.length-1))
+    value_id = value_id.substring(1,value_id.length-1);	
+  if ((value_id.indexOf("'")==0)&&(value_id.lastIndexOf("'")==value_id.length-1))
+    value_id = value_id.substring(1,value_id.length-1);
+  if ((value_id.indexOf('"')==0)&&(value_id.lastIndexOf('"')==value_id.length-1))
+    value_id = value_id.substring(1,value_id.length-1);	
+	
+  if (value_source=="video")
+	value_source = 'gamevideo_'+value_id;
+  else if (value_source=="canvas")
+	value_source = 'gamecanvas_'+value_id;
+  else if (value_source=="image")
+	value_source = 'gameimage_'+value_id;
+  
+  var code = 'video_base64_spreadsheet_new("' + value_source + '",'+value_spreadsheeturl+','+value_spreadsheetname+',"'+value_datetime+'","'+value_position+'",'+value_column+','+value_row+','+value_spreadsheet_script+');\n';
+  return code;		
+}
 
 Blockly.Arduino['variable_urldecode'] = function (block) {
   Blockly.Arduino.definitions_['urldecode'] ="\n"+
