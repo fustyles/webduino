@@ -3695,10 +3695,10 @@ function HextoRgb(color) {
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
 			var myFile = canvas.toDataURL('image/jpeg');
-			var head = myFile.substring(0, myFile.indexOf(",")+1);
-			var data = myFile.substring(myFile.indexOf(",")+1);
-			data = encodeURIComponent(data);
-			myFile = head+data;
+			//var head = myFile.substring(0, myFile.indexOf(",")+1);
+			//var data = myFile.substring(myFile.indexOf(",")+1);
+			//data = encodeURIComponent(data);
+			//myFile = head+data;
 
 			$.ajax({
 				"type": "POST",
