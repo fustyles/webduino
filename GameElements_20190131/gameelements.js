@@ -3680,6 +3680,58 @@ function HextoRgb(color) {
 		document.getElementById("tmp").parentNode.removeChild(document.getElementById("tmp"));
 	}
   }
+	
+  function video_base64_spreadsheet_new(input_id, spreadsheeturl, spreadsheetname, datetime, position, column, row, myScriptUrl) {
+    if (document.getElementById(input_id)) {	
+		var obj = document.getElementById(input_id);
+		var canvas = document.createElement('canvas');
+		canvas.id = 'tmp';
+		canvas.style.position = "absolute";
+		canvas.style.display = "none";
+		document.body.appendChild(canvas);
+		canvas.setAttribute("width", obj.width);
+		canvas.setAttribute("height", obj.height);
+		var context = canvas.getContext("2d");
+		try {
+			context.drawImage(obj,0,0,obj.width,obj.height);
+			var myFile = canvas.toDataURL('image/jpeg');
+			var head = myFile.substring(0, myFile.indexOf(",")+1);
+			var data = myFile.substring(myFile.indexOf(",")+1);
+			data = encodeURIComponent(data);
+			myFile = head+data;
+
+			$.ajax({
+				"type": "POST",
+				"dataType": "json",
+				"headers": { 
+				  "Content-Type": "application/x-www-form-urlencoded"
+				},				
+				"url": myScriptUrl,
+				"data": {
+							"spreadsheeturl":spreadsheeturl,
+							"spreadsheetname":spreadsheetname,
+							"datetime":datetime,    
+							"position":position,  
+							"column":column,
+							"row":row,
+							"file":file
+						},
+				success: function(jsonp)
+				{
+				  console.log(jsonp);
+				},
+				error: function(jqXHR, textStatus, errorThrown)
+				{
+				  //console.log(errorThrown);
+				}
+			 });
+		}
+		catch(e) {
+			console.log(e);
+		}
+		document.getElementById("tmp").parentNode.removeChild(document.getElementById("tmp"));
+	}
+  }	
   
   function video_base64_drive(input_id, myFoldername, myFilename, myScriptUrl) {
     if (document.getElementById(input_id)) {	
@@ -4129,6 +4181,7 @@ function HextoRgb(color) {
   window.ajax_getdata_json = ajax_getdata_json;
   window.ajax_getdata_json_count = ajax_getdata_json_count;
   window.video_base64_spreadsheet = video_base64_spreadsheet;
+  window.video_base64_spreadsheet_new = video_base64_spreadsheet_new;	
   window.video_base64_drive = video_base64_drive;
   window.video_base64_email = video_base64_email;
   window.fontText = fontText;
@@ -4146,6 +4199,6 @@ function HextoRgb(color) {
   window.span_create = span_create;
   window.span_set = span_set;
   window.span_get = span_get;
-  window.span_delete = span_delete;  
+  window.span_delete = span_delete;
   
 }(window, window.document));
