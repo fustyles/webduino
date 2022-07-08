@@ -1033,7 +1033,7 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>
-			  </block>			  
+			  </block>	
 			  <block type="servermodule_parameter_set">
 				<value name="text">
 				  <block type="text">
@@ -1102,7 +1102,7 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>				
-			  </block>	
+			  </block>
 			  <block type="servermodule_parameter_set_address3_2">
 				<value name="p1">
 				  <block type="text">
@@ -1236,7 +1236,8 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>		
-			  </block>			  
+			  </block>	
+			  
 		</category>		
 		
 		<sep id="category_sep"></sep>

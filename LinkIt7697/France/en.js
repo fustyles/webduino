@@ -1263,6 +1263,7 @@ Blockly.Msg["PARAMETER_DELAY"] = "delay(ms)";
 Blockly.Msg["PARAMETER_SERVO"] = "servo(pin, angle)";	
 Blockly.Msg["PARAMETER_RELAY"] = "relay(pin, 0~1)";
 Blockly.Msg["PARAMETER_BUZZER"] = "buzzer(pin, frequency, duration)";
+Blockly.Msg["PARAMETER_BUZZER_ESP"] = "buzzer ESP32(pin, frequency, duration, channel)";
 Blockly.Msg["PARAMETER_SERVO_ESP"] = "servo(pin, angle, channel)";
 
 Blockly.Msg["UART_SHOW"] = "UART";
