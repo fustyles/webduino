@@ -1190,7 +1190,7 @@ Blockly.Msg["FU_SERVO_ANGLE"] = "angle";
 Blockly.Msg["FU_SERVO_CHANNEL"] = "channel";
 Blockly.Msg["FU_SERVO"] = "Servo";
 
-Blockly.Msg.ESP32_TELEGRAMBOT_SHOW = "Telegram Bot(ESP32) Connect to Wi-Fi AP";
+Blockly.Msg.ESP32_TELEGRAMBOT_SHOW = "Telegram Bot Connect to Wi-Fi AP";
 Blockly.Msg.ESP32CAM_TELEGRAMBOT_SHOW = "Telegram Bot(ESP32-CAM) Connect to Wi-Fi AP";
 Blockly.Msg.ESP32_TELEGRAMBOT_SSID_SHOW = "SSID";
 Blockly.Msg.ESP32_TELEGRAMBOT_PASSWORD_SHOW = "Password";
@@ -1210,7 +1210,10 @@ Blockly.Msg.ESP32_TELEGRAMBOT_FORMAT_SHOW = "Format";
 Blockly.Msg.ESP32_TELEGRAMBOT_TEXT_SHOW = "text";
 Blockly.Msg.ESP32_TELEGRAMBOT_IMAGEURL_SHOW = "image url";
 Blockly.Msg.ESP32_TELEGRAMBOT_IMAGEBASE64_SHOW = "image (Base64)";
-Blockly.Msg.ESP32_TELEGRAMBOT_GETUPDATES_SHOW = "Telegram Bot(ESP32) get message";
+Blockly.Msg.ESP32_TELEGRAMBOT_GETUPDATES_SHOW = "Telegram Bot get message";
+Blockly.Msg.ESP32_TELEGRAMBOT_REPLYKEYBOARD_SHOW = "Telegram Bot send keyboard";
+Blockly.Msg.ESP32_TELEGRAMBOT_KEYBOARD_SHOW = "Keyboard";
+Blockly.Msg.ESP32_TELEGRAMBOT_ONTIME_SHOW = "hide after clicking";
 
 Blockly.Msg.NTPSERVER_INITIAL_SHOW = "NTP Server initial";
 Blockly.Msg.NTPSERVER_GMTOFFSET_SHOW = "GMT offset(h)";

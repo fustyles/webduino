@@ -1,3 +1,37 @@
+Blockly.Blocks['esp32_telegrambot_reply_markup'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_REPLYKEYBOARD_SHOW);
+  this.appendValueInput("telegram_token")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_TOKEN_SHOW);  
+  this.appendValueInput("telegram_chatid")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_CHATID_SHOW); 
+  this.appendValueInput("telegram_msg")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_TEXT_SHOW);
+  this.appendValueInput("telegram_keyboard")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_KEYBOARD_SHOW);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_ONTIME_SHOW)  
+      .appendField(new Blockly.FieldDropdown([
+		["false","false"],	  
+		["true","true"]
+  ]), "telegram_ontime");
+  this.setInputsInline(false);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setTooltip('');
+  this.setColour(65);  
+  }
+};
+
 Blockly.Blocks['taskhandle_initial'] = {
   init: function() {
 	this.appendDummyInput()

@@ -184,7 +184,7 @@
 	  <block type="taskhandle_initial">
 		<value name="stack">
 		  <block type="math_number">
-			<field name="NUM">10000</field>
+			<field name="NUM">1000</field>
 		  </block>
 		</value>
 		<field name="priority">1</field>
@@ -963,7 +963,7 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>				
-			  </block>
+			  </block>   			  
 			  <block type="esp32_cam_telegrambot" id="99">
 				<value name="token">
 				  <block type="text">

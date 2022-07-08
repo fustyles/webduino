@@ -1198,7 +1198,7 @@ Blockly.Msg["FU_SERVO_ANGLE"] = "角度";
 Blockly.Msg["FU_SERVO_CHANNEL"] = "頻道";
 Blockly.Msg["FU_SERVO"] = "伺服馬達";
 
-Blockly.Msg.ESP32_TELEGRAMBOT_SHOW = "Telegram Bot(ESP32) 連線到Wi-Fi熱點";
+Blockly.Msg.ESP32_TELEGRAMBOT_SHOW = "Telegram Bot 連線到Wi-Fi熱點";
 Blockly.Msg.ESP32CAM_TELEGRAMBOT_SHOW = "Telegram Bot(ESP32-CAM) 連線到Wi-Fi熱點";
 Blockly.Msg.ESP32_TELEGRAMBOT_SSID_SHOW = "無線網路名稱";
 Blockly.Msg.ESP32_TELEGRAMBOT_PASSWORD_SHOW = "無線網路密碼";
@@ -1218,7 +1218,10 @@ Blockly.Msg.ESP32_TELEGRAMBOT_FORMAT_SHOW = "格式";
 Blockly.Msg.ESP32_TELEGRAMBOT_TEXT_SHOW = "文字";
 Blockly.Msg.ESP32_TELEGRAMBOT_IMAGEURL_SHOW = "圖片網址";
 Blockly.Msg.ESP32_TELEGRAMBOT_IMAGEBASE64_SHOW = "圖片(Base64)";
-Blockly.Msg.ESP32_TELEGRAMBOT_GETUPDATES_SHOW = "Telegram Bot(ESP32) 取得最新訊息";
+Blockly.Msg.ESP32_TELEGRAMBOT_GETUPDATES_SHOW = "Telegram Bot 取得最新訊息";
+Blockly.Msg.ESP32_TELEGRAMBOT_REPLYKEYBOARD_SHOW = "Telegram Bot 傳送鍵盤指令";
+Blockly.Msg.ESP32_TELEGRAMBOT_KEYBOARD_SHOW = "鍵盤";
+Blockly.Msg.ESP32_TELEGRAMBOT_ONTIME_SHOW = "點擊後隱藏";
 
 Blockly.Msg.NTPSERVER_INITIAL_SHOW = "網路時間(NTP Server)初始化";
 Blockly.Msg.NTPSERVER_GMTOFFSET_SHOW = "GMT時差(h)";

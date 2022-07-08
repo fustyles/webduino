@@ -1,3 +1,14 @@
+Blockly.Arduino['esp32_telegrambot_reply_markup'] = function (block) {
+  var telegram_token = Blockly.Arduino.valueToCode(block, 'telegram_token', Blockly.Arduino.ORDER_ATOMIC); 
+  var telegram_chatid = Blockly.Arduino.valueToCode(block, 'telegram_chatid', Blockly.Arduino.ORDER_ATOMIC);
+  var telegram_msg = Blockly.Arduino.valueToCode(block, 'telegram_msg', Blockly.Arduino.ORDER_ATOMIC);
+  var telegram_keyboard = Blockly.Arduino.valueToCode(block, 'telegram_keyboard', Blockly.Arduino.ORDER_ATOMIC); 
+  var telegram_ontime = block.getFieldValue('telegram_ontime');
+  
+  var code = 'telegram_reply_markup('+telegram_token+','+telegram_chatid+','+telegram_msg+','+telegram_keyboard+','+telegram_ontime+');\n';
+  return code;
+};
+
 Blockly.Arduino['taskhandle_initial'] = function(block){
 	var stack = Blockly.Arduino.valueToCode(block,"stack",Blockly.Arduino.ORDER_NONE);
 	var priority = block.getFieldValue('priority');
@@ -8443,7 +8454,7 @@ Blockly.Arduino['variable_board'] = function (block) {
 
 Blockly.Arduino['servermodule_javascript'] = function(block) {
   var statements_js = Blockly.Arduino.statementToCode(block, 'js');
-  code = '"<!DOCTYPE html><head><meta charset=\'utf-8\'><meta name=\'viewport\' content=\'width=device-width, initial-scale=1\'><script src=\'https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js\'></script><script src=\'https://fustyles.github.io/webduino/GameElements_20190131/gameelements.js\'></script></head><body><script>'+ statements_js.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"var ") +'</script></body></html>"';
+  code = '"<!DOCTYPE html><head><meta charset=\'utf-8\'><meta name=\'viewport\' content=\'width=device-width, initial-scale=1\'><script src=\'https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js\'></script><script src=\'https://fustyles.github.io/webduino/GameElements_20190131/gameelements.js\'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{'+ statements_js.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"var ") +'};main();</script></body></html>"';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
