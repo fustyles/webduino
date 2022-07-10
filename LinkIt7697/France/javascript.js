@@ -16,7 +16,7 @@ Blockly.Arduino['taskhandle_initial'] = function(block){
 	
 	Blockly.Arduino.definitions_['TaskHandle_task'+core] ='TaskHandle_t Task'+core+';\n';		
 	
-	var code = 'xTaskCreatePinnedToCore(\n  codeForTask'+core+',\n  "Task'+core+'",\n  '+stack+',\n  NULL,\n  '+priority+',\n  &Task'+core+',\n  '+core+'\n);\nvTaskDelay(100);\n';
+	var code = 'xTaskCreatePinnedToCore(\n  codeForTask'+core+',\n  "Task '+core+'",\n  '+stack+',\n  NULL,\n  '+priority+',\n  &Task'+core+',\n  '+core+'\n);\nvTaskDelay(100);\n';
 	return code;
 };
 
@@ -39,6 +39,53 @@ Blockly.Arduino['taskhandle_delay'] = function(block){
 Blockly.Arduino['taskhandle_getcore'] = function(block){
 	var code = 'xPortGetCoreID()'; 
 	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['taskhandle_yield'] = function(block){
+	var code = 'yield();\n'; 
+	return code;
+};
+
+Blockly.Arduino['taskhandle_delete'] = function(block){
+	var core = block.getFieldValue('core');		
+	var code = 'vTaskDelete(Task'+core+');\n'; 
+	return code;
+};
+
+Blockly.Arduino['taskhandle_suspend'] = function(block){
+	var core = block.getFieldValue('core');		
+	var code = 'vTaskSuspend(Task'+core+');\n';
+	return code;
+};
+
+Blockly.Arduino['taskhandle_resume'] = function(block){
+	var core = block.getFieldValue('core');		
+	var code = 'vTaskResume(Task'+core+');\n';
+	return code;
+};
+
+Blockly.Arduino['taskhandle_getpriority'] = function(block){
+	var core = block.getFieldValue('core');	
+	var code = 'vTaskPriorityGet(Task'+core+')'; 
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['taskhandle_setpriority'] = function(block){
+	var core = block.getFieldValue('core');	
+	var priority = block.getFieldValue('priority');
+	var code = 'vTaskPrioritySet(Task'+core+', '+priority+');\n'; 
+	return code;
+};
+
+Blockly.Arduino['taskhandle_resetdog'] = function(block){
+	var code = 'esp_task_wdt_reset();\n'; 
+	return code;
+};
+
+Blockly.Arduino['taskhandle_disabledog'] = function(block){
+	var core = block.getFieldValue('core');	
+	var code = 'disableCore'+core+'WDT();\n'; 
+	return code;
 };
 
 Blockly.Arduino['page_spreadsheet_function'] = function(block){

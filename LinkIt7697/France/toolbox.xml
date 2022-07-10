@@ -184,7 +184,7 @@
 	  <block type="taskhandle_initial">
 		<value name="stack">
 		  <block type="math_number">
-			<field name="NUM">1000</field>
+			<field name="NUM">8192</field>
 		  </block>
 		</value>
 		<field name="priority">1</field>
@@ -201,6 +201,22 @@
 		</value>	
 	  </block>
 	  <block type="taskhandle_getcore">	
+	  </block>	
+	  <block type="taskhandle_yield">	
+	  </block>
+	  <block type="taskhandle_getpriority">	
+	  </block>
+	  <block type="taskhandle_setpriority">	
+	  </block>	  
+	  <block type="taskhandle_delete">	
+	  </block>	
+	  <block type="taskhandle_suspend">	
+	  </block>	
+	  <block type="taskhandle_resume">	
+	  </block>		  
+	  <block type="taskhandle_resetdog">	
+	  </block>	
+	  <block type="taskhandle_disabledog">	
 	  </block>		  
 	</category> 	
 		
