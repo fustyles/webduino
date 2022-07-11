@@ -21,8 +21,8 @@ Blockly.Blocks['esp32_telegrambot_reply_markup'] = {
   this.appendDummyInput()
       .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_ONTIME_SHOW)  
       .appendField(new Blockly.FieldDropdown([
-		["false","false"],	  
-		["true","true"]
+		[Blockly.Msg.PROPERTY_FALSE,"false"],	  
+		[Blockly.Msg.PROPERTY_TRUE,"true"]
   ]), "telegram_ontime");
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
@@ -11449,7 +11449,7 @@ Blockly.Blocks['ajax_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_TEXT_SHOW,"text"],["html","html"], ["xml","xml"], ["script","script"], ["json","json"], ["jsonp","jsonp"]]), "datatype_"); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AJAX_ASYNC)
-      .appendField(new Blockly.FieldDropdown([["false","false"], ["true","true"]]), "async_"); 
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_FALSE,"false"], [Blockly.Msg.PROPERTY_TRUE,"true"]]), "async_"); 
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -11465,7 +11465,7 @@ Blockly.Blocks['ajax_get_board'] = {
       .setCheck(null); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AJAX_ASYNC)
-      .appendField(new Blockly.FieldDropdown([["false","false"], ["true","true"]]), "async_"); 
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_FALSE,"false"], [Blockly.Msg.PROPERTY_TRUE,"true"]]), "async_"); 
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -11484,7 +11484,7 @@ Blockly.Blocks['ajax_getdata'] = {
       .appendField(Blockly.Msg.AJAX_GETDATA);
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AJAX_FORMAT)
-      .appendField(new Blockly.FieldDropdown([["　",""], ["JSON to String","JSON to String"], ["XML to String","XML to String"]]), "format_"); 
+      .appendField(new Blockly.FieldDropdown([["　",""], [Blockly.Msg.AJAX_JSONTOSTRING,"JSON to String"], [Blockly.Msg.AJAX_XMLTOSTRING,"XML to String"]]), "format_"); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);

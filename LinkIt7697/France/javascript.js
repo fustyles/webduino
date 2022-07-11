@@ -3165,37 +3165,6 @@ Blockly.Arduino['fu_oled_PROGMEM_truetype'] = function(block) {
   return '';
 };
 
-function selectBoardType() {
-	var selectBoard = document.getElementById('board-selector');
-	if (selectBoard) {
-		var state = [0,0,0,0];
-		for (var i=0;i<selectBoard.options.length;i++) {
-			if (selectBoard.options[i].value.indexOf("LinkIt")!=-1)
-				state[0]=1;
-			if (selectBoard.options[i].value.indexOf("esp32")!=-1)
-				state[1]=1;
-			if (selectBoard.options[i].value.indexOf("BBCmicrobitV2")!=-1)
-				state[2]=1;	
-			if (selectBoard.options[i].value.indexOf("BPI-BIT")!=-1)
-				state[3]=1;				
-		}
-		if (state[0]==0)
-			selectBoard.options.add(new Option("LinkIt 7697","LinkIt:linkit_rtos:linkit_7697"));
-		if (state[1]==0) 
-			selectBoard.options.add(new Option("ESp32 Wrover Module","esp32:esp32:esp32wrover"));
-		if (state[2]==0) 
-			selectBoard.options.add(new Option("BBC micro:bit V2","sandeepmistry:nRF5:BBCmicrobitV2"));	
-		if (state[3]==0) 
-			selectBoard.options.add(new Option("BPI-BIT","esp32:esp32:bpi-bit"));
-		if (selectBoard.value.split(":")[2]=="bpi-bit")
-			return "BPI-BIT";
-		else
-			return selectBoard.value.split(":")[0];
-	}
-	else
-		return "";
-}
-
 Blockly.Arduino['fu_ez_digitalwrite'] = function(block) {
   var dropdown_led = block.getFieldValue('led');
   var pinRYG = [[16,12,13],[13,12,11],[13,14,15],[18,19,23]];
@@ -12855,3 +12824,38 @@ Blockly.Arduino['faceapirecognize_canvas_get'] = function(block) {
   var code = '"faceapirecognize"';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
+
+function selectBoardType() {
+	var selectBoard = document.getElementById('board-selector');
+	if (selectBoard) {
+		var state = [0,0,0,0,0];
+		for (var i=0;i<selectBoard.options.length;i++) {
+			if (selectBoard.options[i].value.indexOf("LinkIt")!=-1)
+				state[0]=1;
+			if (selectBoard.options[i].value.indexOf("esp32")!=-1)
+				state[1]=1;
+			if (selectBoard.options[i].value.indexOf("BBCmicrobitV2")!=-1)
+				state[2]=1;	
+			if (selectBoard.options[i].value.indexOf("BPI-BIT")!=-1)
+				state[3]=1;
+			if (selectBoard.options[i].value.indexOf("Arduino Pro or Pro Mini")!=-1)
+				state[4]=1;				
+		}
+		if (state[0]==0)
+			selectBoard.options.add(new Option("LinkIt 7697","LinkIt:linkit_rtos:linkit_7697"));
+		if (state[1]==0) 
+			selectBoard.options.add(new Option("ESp32 Wrover Module","esp32:esp32:esp32wrover"));
+		if (state[2]==0) 
+			selectBoard.options.add(new Option("BBC micro:bit V2","sandeepmistry:nRF5:BBCmicrobitV2"));	
+		if (state[3]==0) 
+			selectBoard.options.add(new Option("BPI-BIT","esp32:esp32:bpi-bit"));
+		if (state[4]==0) 
+			selectBoard.options.add(new Option("Arduino Pro or Pro Mini","arduino:avr:pro"));		
+		if (selectBoard.value.split(":")[2]=="bpi-bit")
+			return "BPI-BIT";
+		else
+			return selectBoard.value.split(":")[0];
+	}
+	else
+		return "";
+}
