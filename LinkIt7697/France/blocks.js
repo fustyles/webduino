@@ -2820,8 +2820,8 @@ Blockly.Blocks['fu_ez_dht11'] = {
         .appendField("DHT11");
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
-         [Blockly.Msg["EZ_HUMIDITY"],"dht.readHumidity()"], 
-         [Blockly.Msg["EZ_TEMPERATURE"],"dht.readTemperature()"]
+         [Blockly.Msg["EZ_HUMIDITY"],"humidity"], 
+         [Blockly.Msg["EZ_TEMPERATURE"],"temperature"]
          ]), "type");
     this.setInputsInline(true);
     this.setOutput(true, null);
