@@ -1435,7 +1435,7 @@ Blockly.Msg["LOOP_EXECUTE_SHOW"] = "次後重新計數並執行";
 
 Blockly.Msg["TASKHANDLE_SHOW"] = "多核心任務";
 Blockly.Msg["TASKHANDLE_INITIAL_SHOW"] = "初始化";
-Blockly.Msg["TASKHANDLE_PRIORITY_SHOW"] = "優先權";
+Blockly.Msg["TASKHANDLE_PRIORITY_SHOW"] = "優先權順序";
 Blockly.Msg["TASKHANDLE_STACK_SHOW"] = "堆疊大小";
 Blockly.Msg["TASKHANDLE_CORE_SHOW"] = "核心編號";
 Blockly.Msg["TASKHANDLE_STATEMENT_SHOW"] = "初始化後執行";
@@ -1448,3 +1448,5 @@ Blockly.Msg["TASKHANDLE_DISABLEDOG_SHOW"] = "取消看門狗";
 Blockly.Msg["TASKHANDLE_DELETE_SHOW"] = "刪除任務";
 Blockly.Msg["TASKHANDLE_SUSPEND_SHOW"] = "暫停任務";
 Blockly.Msg["TASKHANDLE_RESUME_SHOW"] = "重啟任務";
+Blockly.Msg["TASKHANDLE_GETPRIORITY_SHOW"] = "取得優先權順序";
+Blockly.Msg["TASKHANDLE_SETPRIORITY_SHOW"] = "設定優先權";

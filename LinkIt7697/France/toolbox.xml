@@ -192,11 +192,21 @@
 	  </block>
 	  <block type="taskhandle_statement">
 		<field name="core">0</field>
-	  </block> 
+		<statement name="statement">
+		  <block type="controls_whileUntil">
+			<field name="MODE">WHILE</field>
+			<value name="BOOL">
+			  <block type="logic_boolean">
+				<field name="BOOL">TRUE</field>
+			  </block>
+			</value>
+		  </block>
+		</statement>
+	  </block>
 	  <block type="taskhandle_delay">
 		<value name="delay">
 		  <block type="math_number">
-			<field name="NUM">1000</field>
+			<field name="NUM">10</field>
 		  </block>
 		</value>	
 	  </block>
