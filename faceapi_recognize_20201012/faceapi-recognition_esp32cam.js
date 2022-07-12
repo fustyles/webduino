@@ -75,10 +75,7 @@ window.onload = function () {
 	  if (size.innerHTML == "") {
 		  size.innerHTML = "{\"width\":"+ShowImage.width+", \"height\": "+ShowImage.height+"}";
 	  }
-	  if (!labeledFaceDescriptors) {
-		labeledFaceDescriptors = loadLabeledImages();
-		faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
-	  }		
+		
 	  DetectImage();
 	}
 
@@ -95,6 +92,11 @@ window.onload = function () {
 			return;
 		}
 		sourceId.innerHTML="wait";
+		
+		if (!labeledFaceDescriptors) {
+			labeledFaceDescriptors = await loadLabeledImages();
+			faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
+		}
 		
 		const detections = await faceapi.detectAllFaces(canvas).withFaceLandmarks().withFaceDescriptors();
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(size.innerHTML));
