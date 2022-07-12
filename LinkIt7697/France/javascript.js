@@ -3734,7 +3734,10 @@ Blockly.Arduino['fu_ez_dht11'] = function(block) {
 
   var dropdown_type = block.getFieldValue('type');
 
-  Blockly.Arduino.definitions_['dht11_library'] = '#include <DHT.h>';
+  if (selectBoardType()=="Arduino Pro or Pro Mini")
+	  Blockly.Arduino.definitions_['dht11_library'] = '#include <DHT_mini.h>';
+  else
+	  Blockly.Arduino.definitions_['dht11_library'] = '#include <DHT.h>';
   Blockly.Arduino.definitions_['dht11_'+ pin] = 'DHT dht ('+ pin +', DHT11);';
   Blockly.Arduino.setups_['dht11_begin'] = 'dht.begin();';
   if (dropdown_type=="humidity")		 
