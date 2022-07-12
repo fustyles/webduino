@@ -76,7 +76,7 @@ window.onload = function () {
 		  size.innerHTML = "{\"width\":"+ShowImage.width+", \"height\": "+ShowImage.height+"}";
 	  }
 	  if (!labeledFaceDescriptors) {
-		labeledFaceDescriptors = await loadLabeledImages();
+		labeledFaceDescriptors = loadLabeledImages();
 		faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
 	  }		
 	  DetectImage();
