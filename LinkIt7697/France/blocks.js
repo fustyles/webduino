@@ -8241,6 +8241,7 @@ Blockly.Blocks['MLX90614'] = {
 	this.setInputsInline(true);
     this.setOutput(true, null);  
     this.setColour(20);
+	this.setHelpUrl("https://github.com/fustyles/Arduino/blob/master/ESP32_MLX90615.ino");
   }
 };
 
@@ -15522,11 +15523,6 @@ Blockly.Blocks['fu_serial_write_format'] = {
  this.setHelpUrl("https://www.arduino.cc/reference/en/language/functions/communication/serial/print/");
   }
 };
-
-
-
-
-
 
 Blockly.Blocks['fu_mqtt_setup'] = {
   init: function() {
