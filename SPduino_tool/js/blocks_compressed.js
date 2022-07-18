@@ -1294,11 +1294,24 @@ Blockly.Blocks.procedures_callnoreturn={
 		xml = new DOMParser().parseFromString(xml,"text/xml").firstChild.childNodes;
 		for (var i=0;i<xml.length;i++) {
 			if (xml[i].getAttribute("type")=="procedures_defnoreturn") {
+				/*
 				if (xml[i].childNodes[0].textContent==this.getFieldValue("NAME")) {
 					if (xml[i].childNodes[2]) {
 						if (xml[i].childNodes[2].childNodes[0]) {
 							xml = Blockly.Xml.domToText(xml[i].childNodes[2].childNodes[0], true);
 							xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml+'</xml>');
+							myWorkspace.clear();
+							Blockly.Xml.domToWorkspace(xml, myWorkspace);							
+							break;
+						}
+					}
+				}
+				*/				
+				if (xml[i].childNodes[0].textContent==this.getFieldValue("NAME")) {
+					if (xml[i].childNodes[2]) {
+						if (xml[i].childNodes[2].childNodes[0]) {
+							xml = Blockly.Xml.domToPrettyText(xml[i]);
+							xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
 							myWorkspace.clear();
 							Blockly.Xml.domToWorkspace(xml, myWorkspace);							
 							break;
@@ -1353,11 +1366,24 @@ Blockly.Blocks.procedures_callreturn={
 		xml = new DOMParser().parseFromString(xml,"text/xml").firstChild.childNodes;
 		for (var i=0;i<xml.length;i++) {
 			if (xml[i].getAttribute("type")=="procedures_defreturn") {
+				/*
 				if (xml[i].childNodes[1].textContent==this.getFieldValue("NAME")) {
 					if (xml[i].childNodes[3]) {
 						if (xml[i].childNodes[3].childNodes[0]) {
 							xml = Blockly.Xml.domToText(xml[i].childNodes[3].childNodes[0], true);
 							xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml+'</xml>');
+							myWorkspace.clear();
+							Blockly.Xml.domToWorkspace(xml, myWorkspace);							
+							break;
+						}
+					}
+				}
+				*/				
+				if (xml[i].childNodes[1].textContent==this.getFieldValue("NAME")) {
+					if (xml[i].childNodes[3]) {
+						if (xml[i].childNodes[3].childNodes[0]) {
+							xml = Blockly.Xml.domToPrettyText(xml[i]);
+							xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
 							myWorkspace.clear();
 							Blockly.Xml.domToWorkspace(xml, myWorkspace);							
 							break;
