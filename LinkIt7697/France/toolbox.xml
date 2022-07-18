@@ -2298,7 +2298,14 @@
 			<field name="NUM">2</field>
 		  </block>
 		</value>
-		</block> 
+		</block>
+		<block type="include_file">
+			<value name="value">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>
+		</block>		
 		<block type="body_set"> 
 		<value name="value_">
 		  <block type="logic_null"></block>

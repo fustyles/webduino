@@ -1446,3 +1446,12 @@ Blockly.Msg["TASKHANDLE_SUSPEND_SHOW"] = "suspend task";
 Blockly.Msg["TASKHANDLE_RESUME_SHOW"] = "resume task";
 Blockly.Msg["TASKHANDLE_GETPRIORITY_SHOW"] = "get priority";
 Blockly.Msg["TASKHANDLE_SETPRIORITY_SHOW"] = "set priority";
+
+Blockly.Msg["INCLUDE"] = "Import remote file";
+Blockly.Msg["INCLUDE_TYPE"] = "Type";
+Blockly.Msg["INCLUDE_JS"] = ".js";
+Blockly.Msg["INCLUDE_CSS"] = ".css";
+Blockly.Msg["INCLUDE_POSITION"] = "position";
+Blockly.Msg["INCLUDE_HEADER"] = "header";
+Blockly.Msg["INCLUDE_HERE"] = "here";
+Blockly.Msg["INCLUDE_URL"] = "url";

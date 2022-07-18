@@ -1,3 +1,20 @@
+Blockly.Arduino['include_file'] = function (block) {
+  var type = block.getFieldValue('type');
+  var position = block.getFieldValue('position');
+  var value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC); 
+  if (type=="css") position = "";
+  
+  var code = 'include_file("'+type+'", "'+position+'", '+value+');\n';
+  return code;
+};
+
+
+
+
+
+
+
+
 Blockly.Arduino['esp32_telegrambot_reply_markup'] = function (block) {
   var telegram_token = Blockly.Arduino.valueToCode(block, 'telegram_token', Blockly.Arduino.ORDER_ATOMIC); 
   var telegram_chatid = Blockly.Arduino.valueToCode(block, 'telegram_chatid', Blockly.Arduino.ORDER_ATOMIC);
