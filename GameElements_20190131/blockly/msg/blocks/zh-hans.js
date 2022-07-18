@@ -495,3 +495,12 @@ Blockly.Msg.SPAN_VALUE = "值";
 Blockly.Msg.SPAN_SET = "设定";
 Blockly.Msg.SPAN_GET = "取得";
 Blockly.Msg.SPAN_DELETE = "删除";
+
+Blockly.Msg.INCLUDE = "汇入远端档案";
+Blockly.Msg.INCLUDE_TYPE = "类型";
+Blockly.Msg.INCLUDE_JS = ".js";
+Blockly.Msg.INCLUDE_CSS = ".css";
+Blockly.Msg.INCLUDE_POSITION = "位置";
+Blockly.Msg.INCLUDE_HEADER = "标题区块";
+Blockly.Msg.INCLUDE_HERE = "目前位置";
+Blockly.Msg.INCLUDE_URL = "网址";

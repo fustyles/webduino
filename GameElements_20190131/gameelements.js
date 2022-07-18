@@ -4058,6 +4058,30 @@ function HextoRgb(color) {
       document.getElementById("gamespan_"+input_id).parentNode.removeChild(document.getElementById("gamespan_"+input_id));
   }
   
+  function include_file(type, position, url) {
+	  if (type=="js") {
+		  if (position=="here") {
+			var s = document.createElement("script");
+			s.type = "text/javascript";
+			s.src = url;
+			document.body.append(s);
+		  } if (position=="header") {
+			var s = document.createElement("script");
+			s.type = "text/javascript";
+			s.src = url;
+			document.getElementsByTagName('head')[0].append(s);
+		  }
+	  }
+	  else if (type=="css") {
+		var link  = document.createElement('link');
+		link.rel  = 'stylesheet';
+		link.type = 'text/css';
+		link.href = url;
+		link.media = 'all';
+		document.getElementsByTagName('head')[0].appendChild(link); 
+	  }
+  }
+  
   window.table_create = table_create;
   window.table_set = table_set;
   window.table_get = table_get;
@@ -4224,5 +4248,6 @@ function HextoRgb(color) {
   window.span_set = span_set;
   window.span_get = span_get;
   window.span_delete = span_delete;
+  window.include_file = include_file;
   
 }(window, window.document));
