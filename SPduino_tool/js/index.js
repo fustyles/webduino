@@ -14,6 +14,7 @@ var customCategoryInsertAfter = "category_sep_main";
 var languageList = "msg/language.js";
 var xmlValue = "";
 var topCheck = true;
+var showCode = true;
 
 document.addEventListener('DOMContentLoaded', function() {
 	//載入工具箱目錄
@@ -1182,6 +1183,7 @@ function contentZoom(content) {
 		if (content=="arduino") {
 			div_content.style.left = "calc(98% - 20vw)";
 			div_content.style.top = "64px";
+			showCode = false;
 		}
 	}
 	else {
@@ -1192,7 +1194,11 @@ function contentZoom(content) {
 		if (content=="arduino") {
 			div_content.style.left = div_content.l;	
 			div_content.style.top = div_content.t;	
-		}			
+			
+			var code = Blockly.Arduino.workspaceToCode();			
+			editor.setValue(code);
+			showCode = true;			
+		}	
 	}
 }
 
