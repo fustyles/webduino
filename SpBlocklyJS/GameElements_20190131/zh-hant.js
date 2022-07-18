@@ -523,3 +523,12 @@ Blockly.Msg.SPAN_SET = "設定";
 Blockly.Msg.SPAN_GET = "取得";
 Blockly.Msg.SPAN_DELETE = "刪除";
 Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "圖檔Uint8Array格式轉換Base64格式";
+
+Blockly.Msg.INCLUDE = "匯入遠端檔案";
+Blockly.Msg.INCLUDE_TYPE = "類型";
+Blockly.Msg.INCLUDE_JS = ".js";
+Blockly.Msg.INCLUDE_CSS = ".css";
+Blockly.Msg.INCLUDE_POSITION = "位置";
+Blockly.Msg.INCLUDE_HEADER = "標題區塊";
+Blockly.Msg.INCLUDE_HERE = "目前位置";
+Blockly.Msg.INCLUDE_URL = "網址";

@@ -1,3 +1,13 @@
+Blockly.JavaScript['include_file'] = function (block) {
+  var type = block.getFieldValue('type');
+  var position = block.getFieldValue('position');
+  var value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC); 
+  if (type=="css") position = "";
+  
+  var code = 'include_file("'+type+'", "'+position+'", '+value+');\n';
+  return code;
+};
+
 Blockly.JavaScript['table_create'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);

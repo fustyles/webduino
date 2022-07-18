@@ -523,3 +523,12 @@ Blockly.Msg.SPAN_SET = "Set";
 Blockly.Msg.SPAN_GET = "Get";
 Blockly.Msg.SPAN_DELETE = "Delete";
 Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "Image Uint8Array to Base64";
+
+Blockly.Msg.INCLUDE = "Import remote file";
+Blockly.Msg.INCLUDE_TYPE = "Type";
+Blockly.Msg.INCLUDE_JS = ".js";
+Blockly.Msg.INCLUDE_CSS = ".css";
+Blockly.Msg.INCLUDE_POSITION = "position";
+Blockly.Msg.INCLUDE_HEADER = "header";
+Blockly.Msg.INCLUDE_HERE = "here";
+Blockly.Msg.INCLUDE_URL = "url";

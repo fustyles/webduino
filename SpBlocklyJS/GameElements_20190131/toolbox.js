@@ -79,6 +79,13 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="include_file">'+
+'    	<value name="value">'+
+'    	  <block type="text">'+
+'    		<field name="TEXT"></field>'+
+'    	  </block>'+
+'    	</value>'+
+'    </block> '+
 '    <block type="video_base64_spreadsheet">'+
 '    <value name="id_">'+
 '    <block type="text">'+
