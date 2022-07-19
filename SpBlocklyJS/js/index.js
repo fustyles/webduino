@@ -40,6 +40,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://unpkg.com/mqtt/dist/mqtt.min.js'></script>";
 		}
 		
+		if (workspace.getBlocksByType("cocossd_video").length>0) {
+			script += "<script src='coco-ssd_20201012/coco-ssd_video.js'></script>";			
+			script += "<script src='coco-ssd_20201012/coco-ssd.js'></script>";
+		}		
+		
 		return script;
 	}	
 	
@@ -70,6 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		if (workspace.getBlocksByType("fu_mqtt_setup_js").length>0) {
 			script += "<script src='https://unpkg.com/mqtt/dist/mqtt.min.js'></script>";
+		}	
+
+		if (workspace.getBlocksByType("holistic_video").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/coco-ssd_20201012/coco-ssd_video.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/coco-ssd_20201012/coco-ssd.js'></script>";
 		}		
 		
 		return script;
@@ -85,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catHolistic,
 		catFaceRecognize,		
 		catTeachablemachine,
+		catCocossd,		
 		"<sep></sep>",		
 		catWebSerial,
 		catMQTT		
