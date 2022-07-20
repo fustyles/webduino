@@ -42,46 +42,15 @@ SPDX-License-Identifier: Apache-2.0
 	<script src="js/jquery-ui.js"></script>
 	<script src="js/jquery.ui.touch-punch.min.js"></script>
 	<script src="js/toolbox.js"></script>
-	<script src="GameElements_20190131/blocks.js"></script>
-	<script src="GameElements_20190131/javascript.js"></script>
-	<script src="GameElements_20190131/toolbox.js"></script>
-	<script src="GameElements_20190131/zh-hant.js"></script>
-	<script src="holistic_20201012/blocks.js"></script>
-	<script src="holistic_20201012/javascript.js"></script>
-	<script src="holistic_20201012/toolbox.js"></script>
-	<script src="holistic_20201012/zh-hant.js"></script>	
-	<script src="faceapi_recognize_20201012/blocks.js"></script>
-	<script src="faceapi_recognize_20201012/javascript.js"></script>
-	<script src="faceapi_recognize_20201012/toolbox.js"></script>
-	<script src="faceapi_recognize_20201012/zh-hant.js"></script>
-	<script src="teachablemachine_20201012/blocks.js"></script>
-	<script src="teachablemachine_20201012/javascript.js"></script>
-	<script src="teachablemachine_20201012/toolbox.js"></script>
-	<script src="teachablemachine_20201012/zh-hant.js"></script>	
-	<script src="MQTT_20220324/blocks.js"></script>
-	<script src="MQTT_20220324/javascript.js"></script>
-	<script src="MQTT_20220324/toolbox.js"></script>
-	<script src="MQTT_20220324/zh-hant.js"></script>
-	<script src="WebSerial_20220126/blocks.js"></script>
-	<script src="WebSerial_20220126/javascript.js"></script>
-	<script src="WebSerial_20220126/toolbox.js"></script>
-	<script src="WebSerial_20220126/zh-hant.js"></script>	
-	<script src="myBackPack/blocks.js"></script>
-	<script src="myBackPack/javascript.js"></script>
-	<script src="myBackPack/toolbox.js"></script>
-	<script src="myBackPack/zh-hant.js"></script>
-	<script src="coco-ssd_20201012/blocks.js"></script>
-	<script src="coco-ssd_20201012/javascript.js"></script>
-	<script src="coco-ssd_20201012/toolbox.js"></script>
-	<script src="coco-ssd_20201012/zh-hant.js"></script>
-	<script src="faceapi_detect_20201012/blocks.js"></script>
-	<script src="faceapi_detect_20201012/javascript.js"></script>
-	<script src="faceapi_detect_20201012/toolbox.js"></script>
-	<script src="faceapi_detect_20201012/zh-hant.js"></script>	
-	<script src="hands_20220614/blocks.js"></script>
-	<script src="hands_20220614/javascript.js"></script>
-	<script src="hands_20220614/toolbox.js"></script>
-	<script src="hands_20220614/zh-hant.js"></script>		
+	<script>
+	var block_script = ["GameElements_20190131","holistic_20201012","faceapi_recognize_20201012","teachablemachine_20201012","MQTT_20220324","WebSerial_20220126","myBackPack","coco-ssd_20201012","faceapi_detect_20201012","hands_20220614"];
+	for (var i=0;i<block_script.length;i++) {
+	  document.write("\<script src='"+block_script[i]+"/blocks.js'\>\<\/script>");
+	  document.write("\<script src='"+block_script[i]+"/javascript.js'\>\<\/script>");
+	  document.write("\<script src='"+block_script[i]+"/toolbox.js'\>\<\/script>");
+	  document.write("\<script src='"+block_script[i]+"/zh-hant.js'\>\<\/script>");
+	}
+	</script>
 </head>
 <body class="root">
 <main id="main" class="has-tabs" >
