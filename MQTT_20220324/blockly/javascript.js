@@ -46,7 +46,7 @@ Blockly.JavaScript['fu_mqtt_gettopic_js'] = function(block) {
 Blockly.JavaScript['fu_mqtt_senddata_js'] = function(block) {
   var topic = Blockly.JavaScript.valueToCode(block, 'topic', Blockly.JavaScript.ORDER_ATOMIC);
   var text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC); 
-  code = 'mqtt_client.publish('+topic+', '+text+');\n';
+  code = 'mqtt_client.publish('+topic+', String('+text+'));\n';
   return code;
 };
 
