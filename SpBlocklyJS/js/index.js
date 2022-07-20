@@ -49,7 +49,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='faceapi_detect_20201012/faceapidetect_video.js'></script>";			
 			script += "<script src='faceapi_detect_20201012/faceapidetect.js'></script>";
 			script += "<script src='faceapi_recognize_20201012/face-api.min.js'></script>";
-		}			
+		}	
+
+		if (workspace.getBlocksByType("hands_video").length>0) {
+			script += "<script src='hands_20220614/hands_video.js'></script>";			
+			script += "<script src='hands_20220614/hands.js'></script>";
+		}		
 		
 		return script;
 	}	
@@ -92,6 +97,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_detect_20201012/faceapidetect_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_detect_20201012/faceapidetect.js'></script>";
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_recognize_20201012/face-api.min.js'></script>";
+		}	
+
+		if (workspace.getBlocksByType("hands_video").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/hands_20220614/hands_video.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/hands_20220614/hands.js'></script>";
 		}		
 		
 		return script;
@@ -106,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		"<sep></sep>",
 		catCocossd,			
 		catHolistic,
+		catHands,
 		catTeachablemachine,
 		catFaceDetect,
 		catFaceRecognize,
@@ -152,13 +163,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	const scrollOptionsPlugin = new ScrollOptions(workspace);
 	scrollOptionsPlugin.init({enableWheelScroll: true, enableEdgeScroll: true});
 	ScrollBlockDragger.edgeScrollEnabled = false;	
-		
 
 	function addScript(url) {
 		var s = document.createElement("script");
 		s.type = "text/javascript";
 		s.src = location.href.substr(0, location.href.lastIndexOf("/"))+"/"+url;
-			console.log(s.src);
 		$("body").append(s);
 	}
 
