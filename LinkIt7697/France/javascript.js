@@ -47,7 +47,7 @@ Blockly.Arduino['page_mqtt_gettopic_js'] = function(block) {
 Blockly.Arduino['page_mqtt_senddata_js'] = function(block) {
   var topic = Blockly.Arduino.valueToCode(block, 'topic', Blockly.Arduino.ORDER_ATOMIC);
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC); 
-  code = 'mqtt_client.publish('+topic+', '+text+');\n';
+  code = 'mqtt_client.publish('+topic+', String('+text+'));\n';
   return code;
 };
 
