@@ -82,7 +82,6 @@ window.onload = function () {
 		}
 
 		result.innerHTML = JSON.stringify(results.multiHandLandmarks);
-		console.log(result.innerHTML);
 		//canvasCtx.restore();
 		
 		if (typeof hands_recognitionFinish === 'function') hands_recognitionFinish();
