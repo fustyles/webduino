@@ -1,3 +1,92 @@
+Blockly.Blocks['page_mqtt_setup_js'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["PAGE_MQTT"])
+        .appendField(Blockly.Msg["PAGE_MQTT_INITIAL_JS"]);
+    this.appendValueInput("server")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["PAGE_MQTT_ADDRESS_JS"]);
+    this.appendValueInput("user")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["PAGE_MQTT_ID_JS"]);
+    this.appendValueInput("password")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["PAGE_MQTT_PASSWORD_JS"]);	
+    this.appendStatementInput("topic_subscribe")
+        .appendField(Blockly.Msg["PAGE_MQTT_SUBSCRIBE_TOPIC_JS"]);		
+    this.appendStatementInput("topic_getdata")
+        .appendField(Blockly.Msg["PAGE_MQTT_WHEN_GETDATA_JS"]);			
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['page_mqtt_subscribe_js'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["PAGE_MQTT"]);	  
+    this.appendValueInput("topic")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg["PAGE_MQTT_SUBSCRIBE_TOPIC_JS"]);	
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['page_mqtt_gettopic_js'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["PAGE_MQTT"]);	  
+    this.appendValueInput("topic")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg["PAGE_MQTT_GETDATA_TOPIC_JS"]);
+    this.appendStatementInput("topic_getdata");		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['page_mqtt_senddata_js'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["PAGE_MQTT"]);	  
+    this.appendValueInput("topic")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg["PAGE_MQTT_TO_TOPIC_JS"]);
+    this.appendValueInput("text")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["PAGE_MQTT_PUBLISH_TEXT_JS"]);	
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};	
+
+Blockly.Blocks['page_mqtt_getdata_js'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["PAGE_MQTT"])
+        .appendField(Blockly.Msg["PAGE_MQTT_GETDATA_JS"]);
+	this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(20)
+  }
+};	
+
 Blockly.Blocks['include_file'] = {
   init: function() {
   this.appendDummyInput() 

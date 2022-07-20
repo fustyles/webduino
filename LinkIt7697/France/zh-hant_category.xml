@@ -76,4 +76,5 @@
 <category><name>hands</name><replace>手勢辨識</replace></category>
 <category><name>spreadsheet</name><replace>Google試算表</replace></category>
 <category><name>taskhandle</name><replace>多核心任務</replace></category>
+<category><name>catpagemqtt</name><replace>網頁MQTT</replace></category>
 </xml>

@@ -1,3 +1,61 @@
+Blockly.Arduino['page_mqtt_setup_js'] = function(block) {
+  var server = Blockly.Arduino.valueToCode(block, 'server', Blockly.Arduino.ORDER_ATOMIC);
+  var user = Blockly.Arduino.valueToCode(block, 'user', Blockly.Arduino.ORDER_ATOMIC);
+  var password = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
+  var topic_subscribe = Blockly.Arduino.statementToCode(block, 'topic_subscribe');
+  var topic_getdata = Blockly.Arduino.statementToCode(block, 'topic_getdata');
+  
+
+  var code = "";
+  code += 'include_file("js", "header", "https://unpkg.com/mqtt/dist/mqtt.min.js");\nawait delay(3);\n';
+  code += 'const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);\n'+			
+											'const options = {\n'+
+											'	username: '+user+',\n'+
+											'	password: '+password+',\n'+
+											'	keepalive: 60,\n'+
+											'	clientId: clientId,\n'+
+											'	protocolId: "MQTT",\n'+
+											'	protocolVersion: 4,\n'+
+											'	clean: true,\n'+
+											'	reconnectPeriod: 1000,\n'+
+											'	connectTimeout: 30 * 1000\n'+
+											'};\n\n';										
+  code += 'var mqtt_client = mqtt.connect('+server+',options);\n'+				
+															'mqtt_client.on("connect", ()=>{\n'+
+															'	console.log("connected");\n'+topic_subscribe+
+															'	mqtt_client.on("message", async function (topic, payload) {\n'+topic_getdata+
+															'   });\n'+
+															'  }\n'+															
+															');\n\n';	
+												
+  return code;
+};
+
+Blockly.Arduino['page_mqtt_subscribe_js'] = function(block) {
+  var topic = Blockly.Arduino.valueToCode(block, 'topic', Blockly.Arduino.ORDER_ATOMIC);
+  code = 'mqtt_client.subscribe('+topic+');\n';
+  return code;
+};
+
+Blockly.Arduino['page_mqtt_gettopic_js'] = function(block) {
+  var topic = Blockly.Arduino.valueToCode(block, 'topic', Blockly.Arduino.ORDER_ATOMIC);
+  var topic_getdata = Blockly.Arduino.statementToCode(block, 'topic_getdata'); 
+  code = 'if (topic=='+topic+') {\n'+topic_getdata+'};\n';
+  return code;
+};
+
+Blockly.Arduino['page_mqtt_senddata_js'] = function(block) {
+  var topic = Blockly.Arduino.valueToCode(block, 'topic', Blockly.Arduino.ORDER_ATOMIC);
+  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC); 
+  code = 'mqtt_client.publish('+topic+', '+text+');\n';
+  return code;
+};
+
+Blockly.Arduino['page_mqtt_getdata_js'] = function(block) {
+  code = 'payload';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['include_file'] = function (block) {
   var type = block.getFieldValue('type');
   var position = block.getFieldValue('position');
@@ -7,13 +65,6 @@ Blockly.Arduino['include_file'] = function (block) {
   var code = 'include_file("'+type+'", "'+position+'", '+value+');\n';
   return code;
 };
-
-
-
-
-
-
-
 
 Blockly.Arduino['esp32_telegrambot_reply_markup'] = function (block) {
   var telegram_token = Blockly.Arduino.valueToCode(block, 'telegram_token', Blockly.Arduino.ORDER_ATOMIC); 

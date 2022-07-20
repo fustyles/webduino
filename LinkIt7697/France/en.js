@@ -1455,3 +1455,16 @@ Blockly.Msg["INCLUDE_POSITION"] = "position";
 Blockly.Msg["INCLUDE_HEADER"] = "header";
 Blockly.Msg["INCLUDE_HERE"] = "here";
 Blockly.Msg["INCLUDE_URL"] = "url";
+
+Blockly.Msg["PAGE_MQTT"] = "Page MQTT";
+Blockly.Msg["PAGE_MQTT_INITIAL_JS"] = "Initial";
+Blockly.Msg["PAGE_MQTT_ADDRESS_JS"] = "address";
+Blockly.Msg["PAGE_MQTT_PORT_JS"] = "port";
+Blockly.Msg["PAGE_MQTT_ID_JS"] = "id";
+Blockly.Msg["PAGE_MQTT_PASSWORD_JS"] = "password";
+Blockly.Msg["PAGE_MQTT_SUBSCRIBE_TOPIC_JS"] = "subscribe topic";
+Blockly.Msg["PAGE_MQTT_WHEN_GETDATA_JS"] = "when getting text";
+Blockly.Msg["PAGE_MQTT_GETDATA_TOPIC_JS"] = "when getting text and the topic is";
+Blockly.Msg["PAGE_MQTT_TO_TOPIC_JS"] = "to topic";
+Blockly.Msg["PAGE_MQTT_PUBLISH_TEXT_JS"] = "publish text";
+Blockly.Msg["PAGE_MQTT_GETDATA_JS"] = "get data";

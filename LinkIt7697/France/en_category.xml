@@ -74,4 +74,5 @@
 <category><name>hands</name><replace>Hand Recognition</replace></category>
 <category><name>spreadsheet</name><replace>Google spreadsheet</replace></category>
 <category><name>taskhandle</name><replace>Multi-core task</replace></category>
+<category><name>catpagemqtt</name><replace>Page MQTT</replace></category>
 </xml>
