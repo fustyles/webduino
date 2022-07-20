@@ -1,16 +1,16 @@
-Blockly.JavaScript['faceapidetect_face'] = function(block) { 
-  var value_face_ = Blockly.JavaScript.valueToCode(block, 'face_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_property_ = block.getFieldValue('property_');
-  var code = 'faceapidetect_face(' + value_face_ + ',"' + value_property_ + '")';
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
 Blockly.JavaScript['faceapidetect_video'] = function(block) { 
   var value_frame_ = block.getFieldValue('frame_');
   var value_result_ = block.getFieldValue('result_');
   var value_opacity_ = block.getFieldValue('opacity_');
   var code = 'faceapidetect_video("' + value_frame_ + '","' + value_result_ + '","' + value_opacity_ + '");\n';
   return code;
+};
+
+Blockly.JavaScript['faceapidetect_face'] = function(block) { 
+  var value_face_ = Blockly.JavaScript.valueToCode(block, 'face_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'faceapidetect_face(' + value_face_ + ',"' + value_property_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['faceapidetect_state'] = function(block) {

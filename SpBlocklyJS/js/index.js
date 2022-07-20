@@ -43,7 +43,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (workspace.getBlocksByType("cocossd_video").length>0) {
 			script += "<script src='coco-ssd_20201012/coco-ssd_video.js'></script>";			
 			script += "<script src='coco-ssd_20201012/coco-ssd.js'></script>";
-		}		
+		}	
+
+		if (workspace.getBlocksByType("faceapidetect_video").length>0) {
+			script += "<script src='faceapi_detect_20201012/faceapidetect_video.js'></script>";			
+			script += "<script src='faceapi_detect_20201012/faceapidetect.js'></script>";
+			script += "<script src='faceapi_recognize_20201012/face-api.min.js'></script>";
+		}			
 		
 		return script;
 	}	
@@ -80,6 +86,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (workspace.getBlocksByType("holistic_video").length>0) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/coco-ssd_20201012/coco-ssd_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/coco-ssd_20201012/coco-ssd.js'></script>";
+		}	
+
+		if (workspace.getBlocksByType("faceapidetect_video").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_detect_20201012/faceapidetect_video.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_detect_20201012/faceapidetect.js'></script>";
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_recognize_20201012/face-api.min.js'></script>";
 		}		
 		
 		return script;
@@ -91,11 +103,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		catMyBackPack,
 		"<sep></sep>",
 		catPageElements,
-		"<sep></sep>",		
+		"<sep></sep>",
+		catCocossd,			
 		catHolistic,
-		catFaceRecognize,		
 		catTeachablemachine,
-		catCocossd,		
+		catFaceDetect,
+		catFaceRecognize,
 		"<sep></sep>",		
 		catWebSerial,
 		catMQTT		
