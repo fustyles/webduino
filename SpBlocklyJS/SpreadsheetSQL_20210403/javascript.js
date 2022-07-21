@@ -31,3 +31,9 @@ Blockly.JavaScript['spreadsheetsql_clearData'] = function (block) {
   var code = 'spreadsheetsql_clearData();\n';
   return code; 
 };
+
+Blockly.JavaScript['spreadsheetsql_getdatafinish'] = function(block) { 
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'spreadsheetsql_getDataFinish = function() {\n' + statements_do + '\n};\n';
+  return code;
+};

@@ -19,6 +19,8 @@ var catSpreadsheetsql = '<xml>'+
 '          </block>'+
 '        </value>'+
 '      </block>'+
+'  	   <block type="spreadsheetsql_getdatafinish">'+
+'  	   </block>'+
 '      <block type="spreadsheetsql_getData">'+
 '      </block>'+
 '      <block type="spreadsheetsql_getDataCount">'+
