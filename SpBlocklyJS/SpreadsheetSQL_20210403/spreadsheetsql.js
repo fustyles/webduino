@@ -43,7 +43,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 			  spreadsheetsql_response.push(arr);
 			  arr = [];
 		  }
-		  spreadsheetsql_getDataFinish();
+		  if (typeof spreadsheetsql_getDataFinish === 'function') spreadsheetsql_getDataFinish();
 	  }
 	  //console.log(spreadsheetsql_response);
   }
@@ -70,11 +70,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   
   function spreadsheetsql_clearData() {
 	  spreadsheetsql_response = [];
-  }
-  
-  function spreadsheetsql_getDataFinish() {
-	  console.log("finish");
-  }    
+  }   
   
   window.spreadsheetsql_settings = spreadsheetsql_settings;
   window.spreadsheetsql_executeSql = spreadsheetsql_executeSql;
@@ -82,6 +78,5 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   window.spreadsheetsql_getData = spreadsheetsql_getData;
   window.spreadsheetsql_getDataCount = spreadsheetsql_getDataCount;
   window.spreadsheetsql_clearData = spreadsheetsql_clearData;
-  window.spreadsheetsql_getDataFinish = spreadsheetsql_getDataFinish;
   
 }(window, window.document));
