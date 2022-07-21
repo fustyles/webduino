@@ -149,7 +149,7 @@ Blockly.Blocks['esp32_telegrambot_reply_markup'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
-  this.setColour(65);  
+  this.setColour(Blockly.Msg["HUE_11"]);  
   }
 };
 
@@ -612,7 +612,7 @@ Blockly.Blocks['esp32_telegrambot_getupdates'] = {
 	  .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_TOKEN_SHOW);	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_11"]);
   }
 };
 
@@ -656,7 +656,7 @@ Blockly.Blocks['esp32_telegrambot_spreadsheet_sendcell'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_11"]);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/telegrambot_spreadsheet_sendcell.gs");
   }
 };
@@ -1934,7 +1934,7 @@ Blockly.Blocks['esp32_telegrambot'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(190);
+    this.setColour(Blockly.Msg["HUE_11"]);
   }
 };
 
@@ -2012,7 +2012,7 @@ Blockly.Blocks['esp32cam_telegrambot'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(190);
+    this.setColour(Blockly.Msg["HUE_11"]);
   }
 };
 
@@ -2026,7 +2026,7 @@ Blockly.Blocks['esp32_telegrambot_sendmessage'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(190);
+    this.setColour(Blockly.Msg["HUE_11"]);
   }
 };
 
@@ -2048,7 +2048,7 @@ Blockly.Blocks['esp32_telegrambot_sendmessage_custom'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(190);
+    this.setColour(Blockly.Msg["HUE_11"]);
   }
 };
 
@@ -2062,7 +2062,7 @@ Blockly.Blocks['esp32_telegrambot_sendlink'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(190);
+    this.setColour(Blockly.Msg["HUE_11"]);
   }
 };
 
@@ -2084,7 +2084,7 @@ Blockly.Blocks['esp32_telegrambot_sendlink_custom'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(190);
+    this.setColour(Blockly.Msg["HUE_11"]);
   }
 };
 
@@ -2094,7 +2094,7 @@ Blockly.Blocks['esp32_telegrambot_get_token'] = {
         .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_GET_TOKEN_SHOW);
     this.setInputsInline(true);
     this.setOutput(true, null);
-    this.setColour(80);
+    this.setColour(Blockly.Msg["HUE_11"]);
   }
 };
 
@@ -2104,7 +2104,7 @@ Blockly.Blocks['esp32_telegrambot_get_chatid'] = {
         .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_GET_CHATID_SHOW);
     this.setInputsInline(true);
     this.setOutput(true, null);
-    this.setColour(80);
+    this.setColour(Blockly.Msg["HUE_11"]);
   }
 };
 
