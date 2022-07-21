@@ -66,6 +66,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='instascan.js_20201012/instascan_video.js'></script>";			
 			script += "<script src='instascan.js_20201012/instascan.js'></script>";
 			script += "<script src='instascan.js_20201012/instascan.min.js'></script>";
+		}
+
+		if (workspace.getBlocksByType("tesseract_video").length>0) {
+			script += "<script src='tesseract.js_20201012/tesseract_video.js'></script>";			
+			script += "<script src='tesseract.js_20201012/tesseract.js'></script>";
+			script += "<script src='tesseract.js_20201012/tesseract.min.js'></script>";
 		}		
 		
 		return script;
@@ -126,6 +132,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/instascan.js_20201012/instascan_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/instascan.js_20201012/instascan.js'></script>";
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/instascan.js_20201012/instascan.min.js'></script>";
+		}
+
+		if (workspace.getBlocksByType("tesseract_video").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/tesseract.js_20201012/tesseract_video.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/tesseract.js_20201012/tesseract.js'></script>";
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/tesseract.js_20201012/tesseract.min.js'></script>";
 		}				
 		
 		return script;
@@ -145,7 +157,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		catFaceDetect,
 		catFaceRecognize,
 		catTrackingColor,
-		catInstascan,		
+		catInstascan,
+		catTesseract,
 		"<sep></sep>",		
 		catWebSerial,
 		catMQTT		
