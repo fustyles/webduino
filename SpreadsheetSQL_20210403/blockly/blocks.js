@@ -68,3 +68,15 @@ Blockly.Blocks['spreadsheetsql_clearData'] = {
   this.setColour(65);
   }
 };
+
+Blockly.Blocks['spreadsheetsql_getdatafinish'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.SPREADSHEETSQL_GETDATAFINISH_SHOW);
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
