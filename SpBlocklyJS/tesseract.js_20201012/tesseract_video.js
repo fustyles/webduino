@@ -88,7 +88,7 @@ function DetectVideo() {
 			canvas,
 			lang.value,
 			{ 
-				logger: m => console.log(m) 
+				//logger: m => console.log(m) 
 			}
 		).then(({ data: { text } }) => {
 			result.innerHTML = text.replace(/\n/g, "<br>");
