@@ -17,7 +17,9 @@
         <field name="TEXT"></field>
       </block>	
     </value>
-  </block>  
+  </block>
+  <block type="spreadsheetsql_getdatafinish">
+  </block>
   <block type="spreadsheetsql_getData">
   </block> 
   <block type="spreadsheetsql_getDataCount">
