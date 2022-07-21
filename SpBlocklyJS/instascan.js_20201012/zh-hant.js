@@ -1,0 +1,13 @@
+Blockly.Msg["CATINSTASCAN"] = "QRcode辨識 (instascan)";
+Blockly.Msg.INSTASCAN_SHOW = "QRcode辨識 (instascan)";
+Blockly.Msg.INSTASCAN_WIDTH_SHOW = "寬度";
+Blockly.Msg.INSTASCAN_HEIGHT_SHOW = "高度";
+Blockly.Msg.INSTASCAN_VIDEO_LEFT_SHOW = "QRcode辨識 (instascan) 靠左距離";
+Blockly.Msg.INSTASCAN_VIDEO_TOP_SHOW = "靠上距離";
+Blockly.Msg.INSTASCAN_GET_SHOW = "QRcode辨識 (instascan) 取得結果";
+Blockly.Msg.INSTASCAN_RESULT_SHOW = "結果";
+Blockly.Msg.INSTASCAN_OPACITY_SHOW = "透明度";
+Blockly.Msg.INSTASCAN_CLEAR_SHOW = "QRcode辨識 (instascan) 清除結果";
+Blockly.Msg.INSTASCAN_CAMERAID_SHOW = "視訊鏡頭索引";
+Blockly.Msg.INSTASCAN_SRC_SHOW = "串流網址";
+Blockly.Msg.INSTASCAN_RECOGNITIED_SHOW = "QRcode辨識 (instascan) 偵測完成後執行";

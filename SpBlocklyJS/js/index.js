@@ -60,6 +60,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='trackingcolor_20201012/trackingcolor_video.js'></script>";			
 			script += "<script src='trackingcolor_20201012/trackingcolor.js'></script>";
 			script += "<script src='trackingcolor_20201012/tracking-min.js'></script>";
+		}	
+
+		if (workspace.getBlocksByType("instascan_video").length>0) {
+			script += "<script src='instascan.js_20201012/instascan_video.js'></script>";			
+			script += "<script src='instascan.js_20201012/instascan.js'></script>";
+			script += "<script src='instascan.js_20201012/instascan.min.js'></script>";
 		}		
 		
 		return script;
@@ -116,6 +122,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/trackingcolor_20201012/tracking-min.js'></script>";
 		}
 		
+		if (workspace.getBlocksByType("instascan_video").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/instascan.js_20201012/instascan_video.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/instascan.js_20201012/instascan.js'></script>";
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/instascan.js_20201012/instascan.min.js'></script>";
+		}				
+		
 		return script;
 	}		
 	
@@ -132,7 +144,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		catTeachablemachine,
 		catFaceDetect,
 		catFaceRecognize,
-		catTrackingColor,		
+		catTrackingColor,
+		catInstascan,		
 		"<sep></sep>",		
 		catWebSerial,
 		catMQTT		
