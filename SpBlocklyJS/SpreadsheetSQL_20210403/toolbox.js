@@ -8,7 +8,7 @@ var catSpreadsheetsql = '<xml>'+
 '        </value>'+
 '        <value name="spreadsheet_name">'+
 '          <block type="text">'+
-'            <field name="TEXT"></field>'+
+'            <field name="TEXT">工作表1</field>'+
 '          </block>'+
 '        </value>'+
 '      </block>'+
