@@ -54,6 +54,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (workspace.getBlocksByType("hands_video").length>0) {
 			script += "<script src='hands_20220614/hands_video.js'></script>";			
 			script += "<script src='hands_20220614/hands.js'></script>";
+		}
+
+		if (workspace.getBlocksByType("trackingcolor_set").length>0) {
+			script += "<script src='trackingcolor_20201012/trackingcolor_video.js'></script>";			
+			script += "<script src='trackingcolor_20201012/trackingcolor.js'></script>";
+			script += "<script src='trackingcolor_20201012/tracking-min.js'></script>";
 		}		
 		
 		return script;
@@ -102,7 +108,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (workspace.getBlocksByType("hands_video").length>0) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/hands_20220614/hands_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/hands_20220614/hands.js'></script>";
-		}		
+		}	
+
+		if (workspace.getBlocksByType("trackingcolor_set").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/trackingcolor_20201012/trackingcolor_video.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/trackingcolor_20201012/trackingcolor.js'></script>";
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/trackingcolor_20201012/tracking-min.js'></script>";
+		}
 		
 		return script;
 	}		
@@ -120,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catTeachablemachine,
 		catFaceDetect,
 		catFaceRecognize,
+		catTrackingColor,		
 		"<sep></sep>",		
 		catWebSerial,
 		catMQTT		
@@ -332,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button_tool').onclick = function () {
 		var link = document.createElement('a');
 		link.target="_blank";
-		link.href="https://blockly-demo.appspot.com/static/demos/blockfactory/index.html";
+		link.href="https://fustyles.github.io/webduino/SPduino_tool/index.html";
 		document.body.appendChild(link);
 		link.click();
 		link.remove();
