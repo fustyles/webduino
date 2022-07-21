@@ -12196,12 +12196,6 @@ Blockly.Arduino['cocossd_pause'] = function(block) {
   return code;
 };
 
-Blockly.Arduino['time_delay'] = function (block) {
-  var seconds = Blockly.Arduino.valueToCode(block, 'seconds', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'await delay(' + seconds + ');\n';
-  return code;
-};
-
 Blockly.Arduino['declare_variable'] = function (block) {
   var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
   var code = 'var ' + variable_variable + ';\n';

@@ -11373,18 +11373,6 @@ Blockly.Blocks['color_hextorgb'] = {
   }
 };
 
-Blockly.Blocks['time_delay'] = {
-  init: function () {
-    this.appendValueInput("seconds")
-        .setCheck("Number")
-        .appendField(Blockly.Msg.TIME_DELAY);   
-    this.setInputsInline(true);    
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(60);
-  }
-};
-
 Blockly.Blocks['body_set'] = {
   init: function() {    
   this.appendDummyInput()  
@@ -16239,7 +16227,7 @@ Blockly.Blocks['time_delay'] = {
   init: function () {
     this.appendValueInput("seconds")
         .setCheck("Number")
-        .appendField(Blockly.Msg.TIME_DELAY_SHOW);   
+        .appendField(Blockly.Msg.TIME_DELAY);   
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);

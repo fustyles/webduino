@@ -291,7 +291,7 @@ Blockly.Msg.DIV_GET = "取得";
 Blockly.Msg.DIV_DELETE = "刪除";
 Blockly.Msg.SETWINDOW = "視窗設定";
 Blockly.Msg.CANVAS_GETCOLOR = "取得色碼值";
-Blockly.Msg.TIME_DELAY = "等待 (秒)";
+Blockly.Msg.TIME_DELAY = "網頁 等待 (秒)";
 Blockly.Msg.LOAD_JS = "遊戲元素初始化(此積木已廢除)";
 Blockly.Msg.POSITION_DISTANCE = "計算兩點距離";
 Blockly.Msg.POSITION_ANGLE = "計算兩點角度";
@@ -964,7 +964,6 @@ Blockly.Msg["MQTT_FU_GETDATA"] = "取得資料";
 Blockly.Msg["MQTT_FU_PUBLISH_IMAGE"] = "發布影像 (ESP32-CAM)";
 Blockly.Msg["MQTT_FU_LOOP"] = "監聽連線";
 
-Blockly.Msg.TIME_DELAY_SHOW = "等待 (秒)";
 Blockly.Msg.DECLARE_VARIABLE_SHOW = "宣告變數 (var)";
 
 Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_INITIAL_SHOW = "初始設定";

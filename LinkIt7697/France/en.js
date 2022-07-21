@@ -955,7 +955,6 @@ Blockly.Msg["MQTT_FU_GETDATA"] = "get data";
 Blockly.Msg["MQTT_FU_PUBLISH_IMAGE"] = "publish image (ESP32-CAM)";
 Blockly.Msg["MQTT_FU_LOOP"] = "monitor connection";
 
-Blockly.Msg.TIME_DELAY_SHOW = "Delay (s)";
 Blockly.Msg.DECLARE_VARIABLE_SHOW = "Declare vaiable (var)";
 
 Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_INITIAL_SHOW = "Initial";
