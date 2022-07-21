@@ -22,7 +22,7 @@ Blockly.Blocks['page_mqtt_setup_js'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(Blockly.Msg["HUE_29"]);
   }
 };
 
@@ -37,7 +37,7 @@ Blockly.Blocks['page_mqtt_subscribe_js'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(Blockly.Msg["HUE_29"]);
   }
 };
 
@@ -53,7 +53,7 @@ Blockly.Blocks['page_mqtt_gettopic_js'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(Blockly.Msg["HUE_29"]);
   }
 };
 
@@ -72,7 +72,7 @@ Blockly.Blocks['page_mqtt_senddata_js'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(Blockly.Msg["HUE_29"]);
   }
 };	
 
@@ -83,7 +83,7 @@ Blockly.Blocks['page_mqtt_getdata_js'] = {
         .appendField(Blockly.Msg["PAGE_MQTT_GETDATA_JS"]);
 	this.setInputsInline(true);
     this.setOutput(true, null);
-    this.setColour(20)
+    this.setColour(Blockly.Msg["HUE_29"])
   }
 };	
 
@@ -106,7 +106,7 @@ Blockly.Blocks['include_file'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_1"]);
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
@@ -118,11 +118,6 @@ Blockly.Blocks['include_file'] = {
 	}
   }
 };
-
-
-
-
-
 
 Blockly.Blocks['esp32_telegrambot_reply_markup'] = {
   init: function() {
@@ -471,7 +466,7 @@ Blockly.Blocks['page_spreadsheet_function'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(20);
+  this.setColour(Blockly.Msg["HUE_1"]);
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
@@ -563,7 +558,7 @@ Blockly.Blocks['video_base64_spreadsheet_new'] = {
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(20);
+	this.setColour(Blockly.Msg["HUE_1"]);
 	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToSpreadsheet_base64_doPost.gs");	
   },
   validate: function(newValue) {
@@ -586,7 +581,7 @@ Blockly.Blocks['variable_urldecode'] = {
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_URLDECODE_SHOW);    
 	this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(20);
+    this.setColour(Blockly.Msg["HUE_21"]);
   }
 };
 
@@ -1046,7 +1041,7 @@ Blockly.Blocks['hands_esp32cam'] = {
 		.appendField(Blockly.Msg.ESP32_CAM_HANDS_RECOGNITION_SHOW);		
 	this.setInputsInline(false);
     this.setOutput(true, null);
-    this.setColour(200)
+    this.setColour(Blockly.Msg["HUE_10"])
 	}
 };
 
@@ -1090,7 +1085,7 @@ Blockly.Blocks['hands_video'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   this.setHelpUrl("https://google.github.io/mediapipe/solutions/hands.html");   
   }
 };
@@ -1136,7 +1131,7 @@ Blockly.Blocks['hands_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_10"]);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/hands_20201012/hand_landmarks.png");   
   }
 };
@@ -1163,7 +1158,7 @@ Blockly.Blocks['hands_distance'] = {
       .appendField("Y1");     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -1189,7 +1184,7 @@ Blockly.Blocks['hands_angle'] = {
       .appendField("Y1");     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -1204,7 +1199,7 @@ Blockly.Blocks['hands_state'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -1219,7 +1214,7 @@ Blockly.Blocks['hands_video_position'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -1229,7 +1224,7 @@ Blockly.Blocks['hands_canvas_get'] = {
       .appendField(Blockly.Msg.HANDS_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -1239,7 +1234,7 @@ Blockly.Blocks['hands_number'] = {
       .appendField(Blockly.Msg.HANDS_NUMBER_SHOW);	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -1315,7 +1310,7 @@ Blockly.Blocks['hands_part_angle'] = {
       .appendField(Blockly.Msg.HANDS_ADJUST_SHOW);	 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -1329,7 +1324,7 @@ Blockly.Blocks['hands_pause'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -1340,7 +1335,7 @@ Blockly.Blocks['hands_clear'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -1352,12 +1347,9 @@ Blockly.Blocks['hands_recognitied'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
-
-
-
 
 Blockly.Blocks['fu_servo'] = {
   init: function() {
@@ -1459,7 +1451,7 @@ Blockly.Blocks['esp32_pixelbit_stream_myfirmata'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(190);
+    this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -1541,7 +1533,7 @@ Blockly.Blocks['esp32_pixelbit_myfirmata'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(190);
+    this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -7776,7 +7768,7 @@ Blockly.Blocks['esp32_cam_myfirmata'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(190);
+    this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -7853,7 +7845,7 @@ Blockly.Blocks['esp32_cam_stream_myfirmata'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(190);
+    this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -7961,7 +7953,7 @@ Blockly.Blocks['servermodule_cmd'] = {
         .setCheck(null);   
     this.setInputsInline(true);
     this.setOutput(true, null); 
-    this.setColour(20);
+    this.setColour(Blockly.Msg["HUE_21"]);
   }
 };
 
@@ -7976,7 +7968,7 @@ Blockly.Blocks['servermodule_cmd_if'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(190);
+    this.setColour(Blockly.Msg["HUE_21"]);
   }
 };
 
@@ -7989,7 +7981,7 @@ Blockly.Blocks['servermodule_feedback'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(200);
+	this.setColour(Blockly.Msg["HUE_22"]);
   }
 };
 
@@ -8002,7 +7994,7 @@ Blockly.Blocks['servermodule_bluetooth_feedback'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(200);
+	this.setColour(Blockly.Msg["HUE_22"]);
   }
 };
 
@@ -8015,7 +8007,7 @@ Blockly.Blocks['servermodule_bluetooth_feedback_newline'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(200);
+	this.setColour(Blockly.Msg["HUE_22"]);
   }
 };
 
@@ -8052,7 +8044,7 @@ Blockly.Blocks['servermodule_parameter'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(200);
+	this.setColour(Blockly.Msg["HUE_21"]);
   }
 };
 
@@ -8088,7 +8080,7 @@ Blockly.Blocks['servermodule_parameter_variable'] = {
 	]), "type");     
 	this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(20);
+    this.setColour(Blockly.Msg["HUE_21"]);
   }
 };
 
@@ -8113,7 +8105,7 @@ Blockly.Blocks['servermodule_parameter_variable_urldecode'] = {
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_URLDECODE_SHOW);    
 	this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(20);
+    this.setColour(Blockly.Msg["HUE_21"]);
   }
 };
 
@@ -8136,7 +8128,7 @@ Blockly.Blocks['servermodule_parameter_get'] = {
 	  ]), "parameter");   
 	this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(20);
+    this.setColour(Blockly.Msg["HUE_21"]);
   }
 };
 
@@ -8164,7 +8156,7 @@ Blockly.Blocks['servermodule_parameter_set'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(200);
+	this.setColour(Blockly.Msg["HUE_21"]);
   }
 };
 
@@ -8268,7 +8260,7 @@ Blockly.Blocks['servermodule_parameter_stream_url'] = {
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_STREAM_URL_SHOW);
 	this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(20);
+    this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -8618,7 +8610,7 @@ Blockly.Blocks['table_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -8637,7 +8629,7 @@ Blockly.Blocks['table_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -8652,7 +8644,7 @@ Blockly.Blocks['table_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_ONCLICK_COLUMN_ROW,"onclick[Column,Row]"], [Blockly.Msg.PROPERTY_ONCLICKIMAGE,"onclickImage"], [Blockly.Msg.PROPERTY_COLUMNS,"columns"], [Blockly.Msg.PROPERTY_ROWS,"rows"], [Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_BACKGROUNDIMAGE,"backgroundimage"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.ID,"id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -8667,7 +8659,7 @@ Blockly.Blocks['table_clear'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -8693,7 +8685,7 @@ Blockly.Blocks['table_change_colsrows'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -8720,7 +8712,7 @@ Blockly.Blocks['table_td_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -8745,7 +8737,7 @@ Blockly.Blocks['table_border_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -8780,7 +8772,7 @@ Blockly.Blocks['table_td_border_set'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -8804,7 +8796,7 @@ Blockly.Blocks['table_td_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_TEXT_SHOW,"text"], [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], [Blockly.Msg.PROPERTY_IMAGE,"image"], [Blockly.Msg.PROPERTY_CHILDLENGTH,"childlength"], [Blockly.Msg.PROPERTY_CHILDID,"childid"], [Blockly.Msg.PROPERTY_TDID,"tdid"]]), "property_");  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -8826,7 +8818,7 @@ Blockly.Blocks['table_td_onclick_do'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -8870,7 +8862,7 @@ Blockly.Blocks['table_td_insert_img'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -8896,7 +8888,7 @@ Blockly.Blocks['table_td_img_move'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -8922,7 +8914,7 @@ Blockly.Blocks['table_td_canvas_move'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -8957,7 +8949,7 @@ this.appendDummyInput()
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -8972,7 +8964,7 @@ Blockly.Blocks['table_td_img_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_COLUMN,"column"], [Blockly.Msg.PROPERTY_ROW,"row"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_NATURALWIDTH,"naturalwidth"], [Blockly.Msg.PROPERTY_NATURALHEIGHT,"naturalheight"], [Blockly.Msg.PROPERTY_IMAGEID,"imageid"]]), "property_");  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -9012,7 +9004,7 @@ Blockly.Blocks['table_td_insert_text'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -9034,7 +9026,7 @@ Blockly.Blocks['table_td_clear'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -9048,7 +9040,7 @@ Blockly.Blocks['table_delete'] = {
       .appendField(Blockly.Msg.TABLE_DELETE);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_9"]);
   }
 };
 
@@ -9070,7 +9062,7 @@ Blockly.Blocks['music_create'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -9080,7 +9072,7 @@ Blockly.Blocks['music_delete'] = {
         .appendField(Blockly.Msg.MUSIC_DELETE);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -9114,7 +9106,7 @@ Blockly.Blocks['canvas_create'] = {
       .appendField(Blockly.Msg.ZINDEX);   
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9133,7 +9125,7 @@ Blockly.Blocks['canvas_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9147,7 +9139,7 @@ Blockly.Blocks['canvas_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_EXIST,"exist"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_ROTATE,"rotate"], [Blockly.Msg.PROPERTY_ROTATEX,"rotateX"], [Blockly.Msg.PROPERTY_ROTATEY,"rotateY"], [Blockly.Msg.PROPERTY_ROTATEZ,"rotateZ"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_BORDER,"border"], [Blockly.Msg.PROPERTY_BACKGROUNDCOLOR,"backgroundColor"], [Blockly.Msg.ID,"id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9193,7 +9185,7 @@ Blockly.Blocks['canvas_line'] = {
       .appendField(Blockly.Msg.OPACITY);      
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9243,7 +9235,7 @@ Blockly.Blocks['canvas_rect'] = {
       .appendField(Blockly.Msg.OPACITY);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9301,7 +9293,7 @@ Blockly.Blocks['canvas_ellipse'] = {
       .appendField(Blockly.Msg.OPACITY);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9317,7 +9309,7 @@ Blockly.Blocks['canvas_img_url'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9371,7 +9363,7 @@ Blockly.Blocks['canvas_img'] = {
       .appendField(Blockly.Msg.OPACITY);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9429,7 +9421,7 @@ Blockly.Blocks['canvas_capturevideo'] = {
       .appendField(Blockly.Msg.OPACITY);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9483,7 +9475,7 @@ Blockly.Blocks['canvas_text'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9541,7 +9533,7 @@ Blockly.Blocks['canvas_quadraticcurve'] = {
       .appendField(Blockly.Msg.OPACITY);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9607,7 +9599,7 @@ Blockly.Blocks['canvas_beziercurve'] = {
       .appendField(Blockly.Msg.OPACITY);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9638,7 +9630,7 @@ Blockly.Blocks['canvas_clearrect'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9653,7 +9645,7 @@ Blockly.Blocks['canvas_clear'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9668,7 +9660,7 @@ Blockly.Blocks['canvas_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9683,7 +9675,7 @@ Blockly.Blocks['canvas_onclick_do'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9698,7 +9690,7 @@ Blockly.Blocks['canvas_onclick_dom'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9711,7 +9703,7 @@ Blockly.Blocks['canvas_onclick_get'] = {
       .appendField(Blockly.Msg.ONCLICK);    
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9733,7 +9725,7 @@ Blockly.Blocks['canvas_getcolor'] = {
       .appendField(Blockly.Msg.TOP);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9763,7 +9755,7 @@ Blockly.Blocks['canvas_getimagedata'] = {
       .appendField(Blockly.Msg.HEIGHT);	   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9788,7 +9780,7 @@ Blockly.Blocks['canvas_setimagedata'] = {
       .appendField(Blockly.Msg.CANVAS_Y0);  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -9830,7 +9822,7 @@ Blockly.Blocks['image_create'] = {
       .appendField(Blockly.Msg.DISPLAY);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -9864,7 +9856,7 @@ Blockly.Blocks['image_create_stream'] = {
       .appendField(Blockly.Msg.DISPLAY);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -9883,7 +9875,7 @@ Blockly.Blocks['image_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -9897,7 +9889,7 @@ Blockly.Blocks['image_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_EXIST,"exist"], [Blockly.Msg.URL,"url"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_NATURALWIDTH,"naturalwidth"], [Blockly.Msg.PROPERTY_NATURALHEIGHT,"naturalheight"], [Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ROTATE,"rotate"], [Blockly.Msg.PROPERTY_ROTATEX,"rotateX"], [Blockly.Msg.PROPERTY_ROTATEY,"rotateY"], [Blockly.Msg.PROPERTY_ROTATEZ,"rotateZ"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -9911,7 +9903,7 @@ Blockly.Blocks['image_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true, null);
   this.setNextStatement(true, null);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -9933,7 +9925,7 @@ Blockly.Blocks['elements_collision'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_ANY,"any"], [Blockly.Msg.PROPERTY_UP,"up"], [Blockly.Msg.PROPERTY_DOWN,"down"], [Blockly.Msg.PROPERTY_LEFT,"left"], [Blockly.Msg.PROPERTY_RIGHT,"right"]]), "position_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -9955,7 +9947,7 @@ Blockly.Blocks['elements_collision_color'] = {
       .appendField(Blockly.Msg.COLOR);
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -9974,7 +9966,7 @@ Blockly.Blocks['image_collision'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_ANY,"any"], [Blockly.Msg.PROPERTY_UP,"up"], [Blockly.Msg.PROPERTY_DOWN,"down"], [Blockly.Msg.PROPERTY_LEFT,"left"], [Blockly.Msg.PROPERTY_RIGHT,"right"]]), "position_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -9992,7 +9984,7 @@ Blockly.Blocks['image_boundary'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -10006,7 +9998,7 @@ Blockly.Blocks['image_boundary_collision'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_ANY,"any"], [Blockly.Msg.PROPERTY_UP,"up"], [Blockly.Msg.PROPERTY_DOWN,"down"], [Blockly.Msg.PROPERTY_LEFT,"left"], [Blockly.Msg.PROPERTY_RIGHT,"right"]]), "property_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -10022,7 +10014,7 @@ Blockly.Blocks['image_boundary_collision_do'] = {
   this.setInputsInline(true);    
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -10033,7 +10025,7 @@ Blockly.Blocks['image_sys_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.WIDTH,"screen_width"], [Blockly.Msg.HEIGHT,"screen_height"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -10044,7 +10036,7 @@ Blockly.Blocks['image_onclick_listener'] = {
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -10059,7 +10051,7 @@ Blockly.Blocks['image_onclick_do'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -10074,7 +10066,7 @@ Blockly.Blocks['image_onclick_dom'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -10089,7 +10081,7 @@ Blockly.Blocks['image_onload_dom'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -10102,7 +10094,7 @@ Blockly.Blocks['image_onclick_get'] = {
       .appendField(Blockly.Msg.ONCLICK);    
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -10120,7 +10112,7 @@ Blockly.Blocks['image_move'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -10137,7 +10129,7 @@ Blockly.Blocks['image_resize'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -10148,7 +10140,7 @@ Blockly.Blocks['image_binarytobase64'] = {
       .appendField(Blockly.Msg.IMAGE_BINARY_TO_BASE64);
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);   
+  this.setColour(Blockly.Msg["HUE_3"]);   
   }
 };
 
@@ -10158,7 +10150,7 @@ Blockly.Blocks['mouse_coordinate_get_start'] = {
       .appendField(Blockly.Msg.MOUSE_COORDINATE_GET_START);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -10169,7 +10161,7 @@ Blockly.Blocks['mouse_coordinate_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_PAGEX,"pageX"], [Blockly.Msg.PROPERTY_PAGEY,"pageY"], [Blockly.Msg.PROPERTY_OFFSETX,"offsetX"], [Blockly.Msg.PROPERTY_OFFSETY,"offsetY"], [Blockly.Msg.PROPERTY_CLIENTX,"clientX"], [Blockly.Msg.PROPERTY_CLIENTY,"clientY"], [Blockly.Msg.PROPERTY_SCREENX,"screenX"], [Blockly.Msg.PROPERTY_SCREENY,"screenY"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_1"]);
   this.setHelpUrl("https://www.w3schools.com/jsref/obj_mouseevent.asp");
   }
 };
@@ -10184,7 +10176,7 @@ Blockly.Blocks['document_timer_novar'] = {
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -10198,7 +10190,7 @@ Blockly.Blocks['document_timer_once_novar'] = {
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -10215,7 +10207,7 @@ Blockly.Blocks['document_timer'] = {
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -10232,7 +10224,7 @@ Blockly.Blocks['document_timer_once'] = {
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -10246,7 +10238,7 @@ Blockly.Blocks['document_timer_stop'] = {
     this.setInputsInline(true);  	  
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -10256,7 +10248,7 @@ Blockly.Blocks['text_to_number'] = {
         .setCheck(null)
         .appendField(Blockly.Msg.TEXT_TO_NUMBER);
     this.setOutput(true);  
-    this.setColour(300);
+    this.setColour(Blockly.Msg["HUE_1"]);
   }  
 };
 
@@ -10266,7 +10258,7 @@ Blockly.Blocks['loop_break'] = {
       .appendField(Blockly.Msg.LOOP_BREAK);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -10276,7 +10268,7 @@ Blockly.Blocks['loop_continue'] = {
       .appendField(Blockly.Msg.LOOP_CONTINUE);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -10288,7 +10280,7 @@ Blockly.Blocks['function_return'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -10315,7 +10307,7 @@ Blockly.Blocks['move_to_mouse'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -10337,7 +10329,7 @@ Blockly.Blocks['move_to_coordinate'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -10353,7 +10345,7 @@ Blockly.Blocks['rotatez_degrees'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -10367,7 +10359,7 @@ Blockly.Blocks['rotate_vertical_flip'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -10381,7 +10373,7 @@ Blockly.Blocks['rotate_horizontal_flip'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_3"]);
   }
 };
 
@@ -10436,7 +10428,7 @@ Blockly.Blocks['button_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_4"]);
   }
 };
 
@@ -10454,7 +10446,7 @@ Blockly.Blocks['button_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_4"]);
   }
 };
 
@@ -10468,7 +10460,7 @@ Blockly.Blocks['button_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.FONTCOLOR,"color"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_4"]);
   }
 };
 
@@ -10482,7 +10474,7 @@ Blockly.Blocks['button_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_4"]);
   }
 };
 
@@ -10497,7 +10489,7 @@ Blockly.Blocks['button_onclick_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Msg["HUE_4"]);
   }
 };
 
@@ -10516,7 +10508,7 @@ Blockly.Blocks['async_function'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -10534,7 +10526,7 @@ Blockly.Blocks['call_async_function'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -10545,10 +10537,9 @@ Blockly.Blocks['transform_async_function'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
-
 
 Blockly.Blocks['element_event'] = {
   init: function () {
@@ -10651,7 +10642,7 @@ Blockly.Blocks['element_event'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_1"]);
   this.setHelpUrl("https://fustyles.github.io/webduino/GameElements_20190131/HTML%20DOM%20EVENTS.txt");
   }
 };
@@ -10756,7 +10747,7 @@ Blockly.Blocks['element_event_stop'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_1"]);
   this.setHelpUrl("https://fustyles.github.io/webduino/GameElements_20190131/HTML%20DOM%20EVENTS.txt");
   }
 };
@@ -10804,7 +10795,7 @@ Blockly.Blocks['colorpicker_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -10822,7 +10813,7 @@ Blockly.Blocks['colorpicker_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -10836,7 +10827,7 @@ Blockly.Blocks['colorpicker_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -10850,7 +10841,7 @@ Blockly.Blocks['colorpicker_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -10865,7 +10856,7 @@ Blockly.Blocks['colorpicker_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -10916,8 +10907,7 @@ Blockly.Blocks['select_create'] = {
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.OPACITY);   
-    
+      .appendField(Blockly.Msg.OPACITY); 
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -10929,7 +10919,7 @@ Blockly.Blocks['select_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_6"]);
   }
 };
 
@@ -10947,7 +10937,7 @@ Blockly.Blocks['select_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_6"]);
   }
 };
 
@@ -10961,7 +10951,7 @@ Blockly.Blocks['select_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_SELECTEDVALUE,"selectedValue"], [Blockly.Msg.PROPERTY_SELECTEDTEXT,"selectedText"], [Blockly.Msg.PROPERTY_SELECTEDINDEX,"selectedIndex"], [Blockly.Msg.PROPERTY_LENGTH,"length"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_6"]);
   }
 };
 
@@ -10975,7 +10965,7 @@ Blockly.Blocks['select_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_6"]);
   }
 };
 
@@ -10990,7 +10980,7 @@ Blockly.Blocks['select_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Msg["HUE_6"]);
   }
 };
 
@@ -11049,7 +11039,7 @@ Blockly.Blocks['range_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -11067,7 +11057,7 @@ Blockly.Blocks['range_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -11081,7 +11071,7 @@ Blockly.Blocks['range_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_MAX,"max"], [Blockly.Msg.PROPERTY_MIN,"min"], [Blockly.Msg.PROPERTY_STEP,"step"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -11095,7 +11085,7 @@ Blockly.Blocks['range_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -11110,7 +11100,7 @@ Blockly.Blocks['range_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -11158,7 +11148,6 @@ Blockly.Blocks['text_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPACITY);
-
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -11170,7 +11159,7 @@ Blockly.Blocks['text_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_8"]);
   }
 };
 
@@ -11190,7 +11179,7 @@ Blockly.Blocks['text_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_8"]);
   }
 };
 
@@ -11206,7 +11195,7 @@ Blockly.Blocks['text_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_8"]);
   }
 };
 
@@ -11222,7 +11211,7 @@ Blockly.Blocks['text_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_8"]);
   }
 };
 
@@ -11239,7 +11228,7 @@ Blockly.Blocks['text_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Msg["HUE_8"]);
   }
 };
 
@@ -11298,7 +11287,6 @@ Blockly.Blocks['div_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPACITY);
-
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -11310,7 +11298,7 @@ Blockly.Blocks['div_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_11"]);
   }
 };
 
@@ -11328,7 +11316,7 @@ Blockly.Blocks['div_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_11"]);
   }
 };
 
@@ -11342,7 +11330,7 @@ Blockly.Blocks['div_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_11"]);
   }
 };
 
@@ -11356,7 +11344,7 @@ Blockly.Blocks['div_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_11"]);
   }
 };
 
@@ -11369,7 +11357,7 @@ Blockly.Blocks['color_hextorgb'] = {
       .setCheck(null); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -11384,7 +11372,7 @@ Blockly.Blocks['body_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };  
 
@@ -11411,7 +11399,7 @@ Blockly.Blocks['position_distance'] = {
       .appendField(Blockly.Msg.Y1);     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -11438,7 +11426,7 @@ Blockly.Blocks['position_angle'] = {
       .appendField(Blockly.Msg.Y1);     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -11495,7 +11483,7 @@ Blockly.Blocks['iframe_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -11513,7 +11501,7 @@ Blockly.Blocks['iframe_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -11527,7 +11515,7 @@ Blockly.Blocks['iframe_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_FRAMEBORDER,"frameborder"], [Blockly.Msg.PROPERTY_SCROLLING,"scrolling"], [Blockly.Msg.PROPERTY_SRC,"src"], [Blockly.Msg.PROPERTY_SRCDOC,"srcdoc"], [Blockly.Msg.PROPERTY_SANDBOX,"sandbox"], [Blockly.Msg.PROPERTY_ALLOW,"allow"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -11541,7 +11529,7 @@ Blockly.Blocks['iframe_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -11568,7 +11556,7 @@ Blockly.Blocks['ajax_get'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_26"]);
   }
 };
 
@@ -11584,7 +11572,7 @@ Blockly.Blocks['ajax_get_board'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_26"]);
   }
 };
 
@@ -11602,7 +11590,7 @@ Blockly.Blocks['ajax_getdata'] = {
       .appendField(new Blockly.FieldDropdown([["　",""], [Blockly.Msg.AJAX_JSONTOSTRING,"JSON to String"], [Blockly.Msg.AJAX_XMLTOSTRING,"XML to String"]]), "format_"); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_26"]);
   }
 };
 
@@ -11621,7 +11609,7 @@ Blockly.Blocks['ajax_getdata_json'] = {
       .appendField(Blockly.Msg.AJAX_FIELDNAME);
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_26"]);
   }
 };
 
@@ -11636,7 +11624,7 @@ Blockly.Blocks['ajax_getdata_json_count'] = {
       .appendField(Blockly.Msg.AJAX_DATA_COUNT);	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_26"]);
   }
 };
 
@@ -11652,7 +11640,7 @@ Blockly.Blocks['ajax_cleardata'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_26"]);
   }
 };
 
@@ -11711,12 +11699,10 @@ Blockly.Blocks['a_create'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null)
       .appendField(Blockly.Msg.BACKCOLOR);
-
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPACITY);
-
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.A_TARGET)
@@ -11732,7 +11718,7 @@ Blockly.Blocks['a_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_13"]);
   }
 };
 
@@ -11750,7 +11736,7 @@ Blockly.Blocks['a_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_13"]);
   }
 };
 
@@ -11764,7 +11750,7 @@ Blockly.Blocks['a_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_HREF,"href"], [Blockly.Msg.PROPERTY_TARGET,"target"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_13"]);
   }
 };
 
@@ -11778,7 +11764,7 @@ Blockly.Blocks['a_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_13"]);
   }
 };
 
@@ -11829,7 +11815,7 @@ Blockly.Blocks['radio_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_14"]);
   }
 };
 
@@ -11847,7 +11833,7 @@ Blockly.Blocks['radio_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_14"]);
   }
 };
 
@@ -11861,7 +11847,7 @@ Blockly.Blocks['radio_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.SIZE,"size"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_CHECKED,"checked"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_14"]);
   }
 };
 
@@ -11876,7 +11862,7 @@ Blockly.Blocks['radio_name_get'] = {
       .appendField(Blockly.Msg.VALUE); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_14"]);
   }
 };
 
@@ -11891,7 +11877,7 @@ Blockly.Blocks['radio_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_14"]);
   }
 };
 
@@ -11906,7 +11892,7 @@ Blockly.Blocks['radio_onclick_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Msg["HUE_14"]);
   }
 };
 
@@ -11954,7 +11940,7 @@ Blockly.Blocks['checkbox_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_15"]);
   }
 };
 
@@ -11972,7 +11958,7 @@ Blockly.Blocks['checkbox_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_15"]);
   }
 };
 
@@ -11986,7 +11972,7 @@ Blockly.Blocks['checkbox_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.SIZE,"size"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_CHECKED,"checked"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_15"]);
   }
 };
 
@@ -12000,7 +11986,7 @@ Blockly.Blocks['checkbox_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_15"]);
   }
 };
 
@@ -12015,7 +12001,7 @@ Blockly.Blocks['checkbox_onclick_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Msg["HUE_15"]);
   }
 };
 
@@ -12062,7 +12048,7 @@ Blockly.Blocks['textarea_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Ms);
   }
 };
 
@@ -12080,7 +12066,7 @@ Blockly.Blocks['textarea_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Ms);
   }
 };
 
@@ -12094,7 +12080,7 @@ Blockly.Blocks['textarea_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_COLUMNS,"cols"], [Blockly.Msg.PROPERTY_ROWS,"rows"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_READONLY,"readonly"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Ms);
   }
 };
 
@@ -12108,7 +12094,7 @@ Blockly.Blocks['textarea_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Ms);
   }
 };
 
@@ -12123,7 +12109,7 @@ Blockly.Blocks['textarea_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Ms);
   }
 };
 
@@ -12186,7 +12172,7 @@ Blockly.Blocks['number_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_17"]);
   }
 };
 
@@ -12204,7 +12190,7 @@ Blockly.Blocks['number_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_17"]);
   }
 };
 
@@ -12218,7 +12204,7 @@ Blockly.Blocks['number_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.PROPERTY_MAX,"max"], [Blockly.Msg.PROPERTY_MIN,"min"], [Blockly.Msg.PROPERTY_STEP,"step"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_17"]);
   }
 };
 
@@ -12232,7 +12218,7 @@ Blockly.Blocks['number_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_17"]);
   }
 };
 
@@ -12247,7 +12233,7 @@ Blockly.Blocks['number_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Msg["HUE_17"]);
   }
 };
 
@@ -12294,7 +12280,7 @@ Blockly.Blocks['date_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
 
@@ -12312,7 +12298,7 @@ Blockly.Blocks['date_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
 
@@ -12326,7 +12312,7 @@ Blockly.Blocks['date_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_MAX,"max"], [Blockly.Msg.PROPERTY_MIN,"min"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
 
@@ -12340,7 +12326,7 @@ Blockly.Blocks['date_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
 
@@ -12355,7 +12341,7 @@ Blockly.Blocks['date_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
 
@@ -12394,7 +12380,7 @@ Blockly.Blocks['time_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_19"]);
   }
 };
 
@@ -12412,7 +12398,7 @@ Blockly.Blocks['time_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_19"]);
   }
 };
 
@@ -12426,7 +12412,7 @@ Blockly.Blocks['time_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_19"]);
   }
 };
 
@@ -12440,7 +12426,7 @@ Blockly.Blocks['time_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_19"]);
   }
 };
 
@@ -12455,7 +12441,7 @@ Blockly.Blocks['time_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Msg["HUE_19"]);
   }
 };
 
@@ -12494,7 +12480,7 @@ Blockly.Blocks['datetime_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_20"]);
   }
 };
 
@@ -12512,7 +12498,7 @@ Blockly.Blocks['datetime_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_20"]);
   }
 };
 
@@ -12526,7 +12512,7 @@ Blockly.Blocks['datetime_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_20"]);
   }
 };
 
@@ -12540,7 +12526,7 @@ Blockly.Blocks['datetime_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_20"]);
   }
 };
 
@@ -12555,7 +12541,7 @@ Blockly.Blocks['datetime_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(220);
+  this.setColour(Blockly.Msg["HUE_20"]);
   }
 };
 
@@ -12598,7 +12584,7 @@ Blockly.Blocks['progress_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_21"]);
   }
 };
 
@@ -12616,7 +12602,7 @@ Blockly.Blocks['progress_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_21"]);
   }
 };
 
@@ -12630,7 +12616,7 @@ Blockly.Blocks['progress_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_MAX,"max"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_21"]);
   }
 };
 
@@ -12644,7 +12630,7 @@ Blockly.Blocks['progress_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_21"]);
   }
 };
 
@@ -12707,7 +12693,7 @@ Blockly.Blocks['password_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_22"]);
   }
 };
 
@@ -12727,7 +12713,7 @@ Blockly.Blocks['password_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_22"]);
   }
 };
 
@@ -12743,7 +12729,7 @@ Blockly.Blocks['password_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.MAXLENGTH,"maxlength"], [Blockly.Msg.VALUE,"value"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_22"]);
   }
 };
 
@@ -12759,7 +12745,7 @@ Blockly.Blocks['password_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_22"]);
   }
 };
 
@@ -12791,7 +12777,7 @@ Blockly.Blocks['form_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_23"]);
   }
 };
 
@@ -12809,7 +12795,7 @@ Blockly.Blocks['form_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_23"]);
   }
 };
 
@@ -12823,7 +12809,7 @@ Blockly.Blocks['form_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FORM_ACTION,"action"], [Blockly.Msg.FORM_TARGET,"target"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_23"]);
   }
 };
 
@@ -12837,7 +12823,7 @@ Blockly.Blocks['form_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_23"]);
   }
 };
 
@@ -12857,7 +12843,7 @@ Blockly.Blocks['form_insert'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_23"]);
   }
 };
 
@@ -12871,7 +12857,7 @@ Blockly.Blocks['form_submit'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_23"]);
   }
 };
 
@@ -12895,7 +12881,7 @@ Blockly.Blocks['head_add_viewport'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -12966,7 +12952,7 @@ Blockly.Blocks['video_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_24"]);
   },
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
@@ -13003,7 +12989,7 @@ Blockly.Blocks['video_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_24"]);
   }
 };
 
@@ -13017,7 +13003,7 @@ Blockly.Blocks['video_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_SRC,"src"], [Blockly.Msg.PROPERTY_AUTOPLAY,"autoplay"], [Blockly.Msg.PROPERTY_LOOP,"loop"], [Blockly.Msg.PROPERTY_MUTED,"muted"], [Blockly.Msg.PROPERTY_CONTROLS,"controls"], [Blockly.Msg.PROPERTY_PRELOAD,"preload"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.ID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_24"]);
   }
 };
 
@@ -13031,7 +13017,7 @@ Blockly.Blocks['video_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_24"]);
   }
 };
 
@@ -13046,7 +13032,7 @@ Blockly.Blocks['video_base64'] = {
       .appendField(Blockly.Msg.VIDEO_BASE64);
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(280);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -13094,7 +13080,7 @@ Blockly.Blocks['video_base64_spreadsheet'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(280);
+  this.setColour(Blockly.Msg["HUE_1"]);
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
@@ -13134,7 +13120,7 @@ Blockly.Blocks['video_base64_drive'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(280);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -13166,7 +13152,7 @@ Blockly.Blocks['video_base64_email'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(280);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -13199,7 +13185,7 @@ Blockly.Blocks['servermodule_javascript'] = {
         .setCheck(null);
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -13209,7 +13195,7 @@ Blockly.Blocks['choice_color'] = {
 		.appendField(new Blockly.FieldColour("#FF0000"),"RGB");
   this.setInputsInline(true);
   this.setOutput(true, null);
-  this.setColour(110);  
+  this.setColour(Blockly.Msg["HUE_1"]);  
   }
 };
 
@@ -13225,7 +13211,7 @@ Blockly.Blocks['text_br'] = {
 	  ]), "newline"); 		
   this.setInputsInline(true);
   this.setOutput(true, null);
-  this.setColour(110);  
+  this.setColour(Blockly.Msg["HUE_1"]);  
   }
 };
 
@@ -13251,7 +13237,7 @@ Blockly.Blocks['custom_style'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(110);   
+  this.setColour(Blockly.Msg["HUE_1"]);   
   }
 };
 
@@ -13274,7 +13260,7 @@ Blockly.Blocks['font_text'] = {
 	  .appendField(Blockly.Msg.PROPERTY_TEXT_SHOW);	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200); 
+  this.setColour(Blockly.Msg["HUE_25"]); 
   }
 };
 
@@ -13286,7 +13272,7 @@ Blockly.Blocks['font_b'] = {
       .setCheck(null);	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);  
+  this.setColour(Blockly.Msg["HUE_25"]);  
   }
 };
 
@@ -13298,7 +13284,7 @@ Blockly.Blocks['font_i'] = {
       .setCheck(null); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200); 
+  this.setColour(Blockly.Msg["HUE_25"]); 
   }
 };
 
@@ -13310,7 +13296,7 @@ Blockly.Blocks['font_u'] = {
       .setCheck(null); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_25"]);
   }
 };
 
@@ -13322,7 +13308,7 @@ Blockly.Blocks['font_sup'] = {
       .setCheck(null);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200); 
+  this.setColour(Blockly.Msg["HUE_25"]); 
   }
 };
 
@@ -13334,7 +13320,7 @@ Blockly.Blocks['font_sub'] = {
       .setCheck(null);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);  
+  this.setColour(Blockly.Msg["HUE_25"]);  
   }
 };
 
@@ -13346,7 +13332,7 @@ Blockly.Blocks['font_em'] = {
       .setCheck(null);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);  
+  this.setColour(Blockly.Msg["HUE_25"]);  
   }
 };
 
@@ -13358,7 +13344,7 @@ Blockly.Blocks['font_strong'] = {
       .setCheck(null);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);  
+  this.setColour(Blockly.Msg["HUE_25"]);  
   }
 };
 
@@ -13370,7 +13356,7 @@ Blockly.Blocks['font_code'] = {
       .setCheck(null);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200); 
+  this.setColour(Blockly.Msg["HUE_25"]); 
   }
 };
 
@@ -13405,7 +13391,7 @@ Blockly.Blocks['span_create'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_2"]);
   }
 };
 
@@ -13423,7 +13409,7 @@ Blockly.Blocks['span_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_2"]);
   }
 };
 
@@ -13437,7 +13423,7 @@ Blockly.Blocks['span_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ID,"id"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_2"]);
   }
 };
 
@@ -13451,7 +13437,7 @@ Blockly.Blocks['span_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_2"]);
   }
 };
 
@@ -13472,7 +13458,7 @@ Blockly.Blocks['location'] = {
         ]), "value_property");
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
-	this.setColour(200); 
+	this.setColour(Blockly.Msg["HUE_1"]); 
   }  
 };
 
@@ -13485,7 +13471,7 @@ Blockly.Blocks['console_log'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(110);  
+  this.setColour(Blockly.Msg["HUE_1"]);  
   }
 };
 
@@ -13501,7 +13487,7 @@ Blockly.Blocks['button_ouput_file_text'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(110);  
+  this.setColour(Blockly.Msg["HUE_4"]);  
   }
 };
 
@@ -13515,7 +13501,7 @@ this.appendValueInput("id_")
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(110);  
+  this.setColour(Blockly.Msg["HUE_24"]);  
   }
 };
 
@@ -13535,7 +13521,7 @@ Blockly.Blocks['window_open'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(110);  
+  this.setColour(Blockly.Msg["HUE_1"]);  
   }
 };
 
@@ -15771,7 +15757,7 @@ Blockly.Blocks['cocossd_esp32cam'] = {
 		.appendField(Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_RECOGNITION_SHOW);		
 	this.setInputsInline(false);
     this.setOutput(true, null);
-    this.setColour(200)
+    this.setColour(Blockly.Msg["HUE_5"])
 	}
 };
 
@@ -15815,7 +15801,7 @@ Blockly.Blocks['cocossd_video'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -15908,7 +15894,7 @@ Blockly.Blocks['cocossd_list'] = {
   ]), "object_");     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -16021,7 +16007,7 @@ Blockly.Blocks['cocossd_object'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -16114,7 +16100,7 @@ Blockly.Blocks['cocossd_object_number'] = {
   ]), "object_");     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -16129,7 +16115,7 @@ Blockly.Blocks['cocossd_state'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -16144,7 +16130,7 @@ Blockly.Blocks['cocossd_video_position'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -16170,7 +16156,7 @@ Blockly.Blocks['cocossd_startvideo_media'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -16184,7 +16170,7 @@ Blockly.Blocks['cocossd_startvideo_stream'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -16194,7 +16180,7 @@ Blockly.Blocks['cocossd_canvas_get'] = {
       .appendField(Blockly.Msg.COCOSSD_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -16205,7 +16191,7 @@ Blockly.Blocks['cocossd_clear'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -16219,7 +16205,7 @@ Blockly.Blocks['cocossd_pause'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(65);
+    this.setColour(Blockly.Msg["HUE_5"]);
   }
 };
 
@@ -16231,7 +16217,7 @@ Blockly.Blocks['time_delay'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(65);
+    this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -16244,7 +16230,7 @@ Blockly.Blocks['declare_variable'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(65);
+    this.setColour(Blockly.Msg["HUE_1"]);
   }
 };
 
@@ -16262,7 +16248,7 @@ Blockly.Blocks['holistic_esp32cam'] = {
 		.appendField(Blockly.Msg.ESP32_CAM_HOLISTIC_RECOGNITION_SHOW);		
 	this.setInputsInline(false);
     this.setOutput(true, null);
-    this.setColour(200)
+    this.setColour(Blockly.Msg["HUE_7"])
 	}
 };
 
@@ -16324,7 +16310,7 @@ Blockly.Blocks['holistic_video'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_7"]);
   this.setHelpUrl("https://google.github.io/mediapipe/solutions/holistic.html");   
   }
 };
@@ -16345,7 +16331,7 @@ Blockly.Blocks['holistic_face_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");  
   }
 };
@@ -16382,7 +16368,7 @@ Blockly.Blocks['holistic_face_lefteye_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");   
   }
 };
@@ -16419,7 +16405,7 @@ Blockly.Blocks['holistic_face_righteye_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");   
   }
 };
@@ -16449,7 +16435,7 @@ Blockly.Blocks['holistic_face_nose_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");   
   }
 };
@@ -16510,7 +16496,7 @@ Blockly.Blocks['holistic_face_mouth_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/face_landmarks.xlsx");   
   }
 };
@@ -16563,7 +16549,7 @@ Blockly.Blocks['holistic_pose_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/pose_landmarks.png");  
   }
 };
@@ -16604,7 +16590,7 @@ Blockly.Blocks['holistic_lefthand_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/hand_landmarks.png");   
   }
 };
@@ -16645,7 +16631,7 @@ Blockly.Blocks['holistic_righthand_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/holistic_20201012/hand_landmarks.png");   
   }
 };
@@ -16672,7 +16658,7 @@ Blockly.Blocks['holistic_distance'] = {
       .appendField("Y1");     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -16698,7 +16684,7 @@ Blockly.Blocks['holistic_angle'] = {
       .appendField("Y1");     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -16713,7 +16699,7 @@ Blockly.Blocks['holistic_state'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -16728,7 +16714,7 @@ Blockly.Blocks['holistic_video_position'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -16738,7 +16724,7 @@ Blockly.Blocks['holistic_canvas_get'] = {
       .appendField(Blockly.Msg.HOLISTIC_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -16755,7 +16741,7 @@ Blockly.Blocks['holistic_all_poistion'] = {
   ]), "part_"); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -16785,7 +16771,7 @@ Blockly.Blocks['holistic_face_angle'] = {
       .appendField(Blockly.Msg.HOLISTIC_ADJUST_SHOW);	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -16881,7 +16867,7 @@ Blockly.Blocks['holistic_pose_angle'] = {
       .appendField(Blockly.Msg.HOLISTIC_ADJUST_SHOW);		  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -16953,7 +16939,7 @@ Blockly.Blocks['holistic_lefthand_angle'] = {
       .appendField(Blockly.Msg.HOLISTIC_ADJUST_SHOW);	 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -17025,7 +17011,7 @@ Blockly.Blocks['holistic_righthand_angle'] = {
       .appendField(Blockly.Msg.HOLISTIC_ADJUST_SHOW);	 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -17039,7 +17025,7 @@ Blockly.Blocks['holistic_pause'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(65);
+    this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 
@@ -17057,7 +17043,7 @@ Blockly.Blocks['teachablemachine_esp32cam'] = {
 		.appendField(Blockly.Msg.ESP32_CAM_TEACHABLEMACHINE_RECOGNITION_SHOW);		
 	this.setInputsInline(false);
     this.setOutput(true, null);
-    this.setColour(200)
+    this.setColour(Blockly.Msg["HUE_12"])
 	}
 };
 
@@ -17095,7 +17081,7 @@ Blockly.Blocks['teachablemachine_video'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -17113,7 +17099,7 @@ Blockly.Blocks['teachablemachine_model'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -17128,7 +17114,7 @@ Blockly.Blocks['teachablemachine_result'] = {
 	  ]), "result_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -17143,7 +17129,7 @@ Blockly.Blocks['teachablemachine_state'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -17158,7 +17144,7 @@ Blockly.Blocks['teachablemachine_video_position'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -17172,7 +17158,7 @@ Blockly.Blocks['teachablemachine_pause'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(65);
+    this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -17199,7 +17185,7 @@ Blockly.Blocks['esp32_cam_googledrive'] = {
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(65);
+	this.setColour(Blockly.Msg["HUE_12"]);
 	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToGoogleDriveAndLinenotify_doPost.gs");
   }
 };
@@ -17252,7 +17238,7 @@ Blockly.Blocks['esp32_cam_spreadsheet'] = {
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(65);
+	this.setColour(Blockly.Msg["HUE_12"]);
 	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToSpreadsheet_base64_doPost.gs");
   },
   validate: function(newValue) {
@@ -17281,7 +17267,7 @@ Blockly.Blocks['esp32_cam_linenotify'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(65);
+	this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -17300,7 +17286,7 @@ Blockly.Blocks['esp32_cam_telegrambot'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(190);
+	this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
@@ -17329,7 +17315,7 @@ Blockly.Blocks['faceapidetect_esp32cam'] = {
 		.appendField(Blockly.Msg.ESP32_CAM_FACEAPIDETECT_RECOGNITION_SHOW);		
 	this.setInputsInline(false);
     this.setOutput(true, null);
-    this.setColour(200)
+    this.setColour(Blockly.Msg["HUE_14"])
 	}
 };
 
@@ -17367,7 +17353,7 @@ Blockly.Blocks['faceapidetect_video'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_14"]);
   }
 };
 
@@ -17398,7 +17384,7 @@ Blockly.Blocks['faceapidetect_face'] = {
   ]), "property_");  	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_14"]);
   }
 };
 
@@ -17413,7 +17399,7 @@ Blockly.Blocks['faceapidetect_state'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_14"]);
   }
 };
 
@@ -17428,7 +17414,7 @@ Blockly.Blocks['faceapidetect_video_position'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_14"]);
   }
 };
 
@@ -17442,7 +17428,7 @@ Blockly.Blocks['faceapidetect_pause'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(65);
+    this.setColour(Blockly.Msg["HUE_14"]);
   }
 };
 
@@ -17460,7 +17446,7 @@ Blockly.Blocks['faceapirecognize_esp32cam'] = {
 		.appendField(Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_RECOGNITION_SHOW);		
 	this.setInputsInline(false);
     this.setOutput(true, null);
-    this.setColour(200)
+    this.setColour(Blockly.Msg["HUE_18"])
 	}
 };
 
@@ -17515,7 +17501,7 @@ Blockly.Blocks['faceapirecognize_video'] = {
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
 
@@ -17526,7 +17512,7 @@ Blockly.Blocks['faceapirecognize_detect'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
 
@@ -17536,7 +17522,7 @@ Blockly.Blocks['faceapirecognize_number'] = {
       .appendField(Blockly.Msg.FACEAPIRECOGNIZE_NUMBER_SHOW); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
 
@@ -17553,7 +17539,7 @@ Blockly.Blocks['faceapirecognize_get'] = {
   ]), "column"); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
 
@@ -17564,7 +17550,7 @@ Blockly.Blocks['faceapirecognize_clear'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
 
@@ -17579,7 +17565,7 @@ Blockly.Blocks['faceapirecognize_video_position'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
 
@@ -17589,6 +17575,6 @@ Blockly.Blocks['faceapirecognize_canvas_get'] = {
       .appendField(Blockly.Msg.FACEAPIRECOGNIZE_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
