@@ -1,0 +1,11 @@
+Blockly.Msg["CATSPREADSHEETSQL"] = "Google試算表";
+Blockly.Msg.SPREADSHEETSQL_SHOW = "Google試算表 設定";
+Blockly.Msg.SPREADSHEETSQL_EXECUTESQL_SHOW = "Google試算表SQL查詢";
+Blockly.Msg.SPREADSHEETSQL_ID_SHOW = "試算表ID";
+Blockly.Msg.SPREADSHEETSQL_NAME_SHOW = "工作表名稱";
+Blockly.Msg.SPREADSHEETSQL_SQL_SHOW = "SQL語法";
+Blockly.Msg.SPREADSHEETSQL_GETDATA_SHOW = "Google試算表 取得SQL查詢結果陣列";
+Blockly.Msg.SPREADSHEETSQL_GETDATACOUNT_SHOW = "Google試算表 取得SQL查詢結果";
+Blockly.Msg.SPREADSHEETSQL_CLEARDATA_SHOW = "Google試算表 清除SQL查詢結果";
+Blockly.Msg.SPREADSHEETSQL_GETDATACOUNTCOLS_SHOW = "縱行數";   
+Blockly.Msg.SPREADSHEETSQL_GETDATACOUNTROWS_SHOW = "橫列數";
