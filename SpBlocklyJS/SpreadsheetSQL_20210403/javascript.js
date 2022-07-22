@@ -53,7 +53,7 @@ Blockly.JavaScript['controls_spreadsheet'] = function(block){
 	data = data.substring(0, data.length-4);
 
 	Blockly.JavaScript.definitions_.Spreadsheet_insert = '\n'+
-			'function Spreadsheet_insert(func, data, row, col, text, mySpreadsheeturl, mySpreadsheetname, myScript) {\n'+
+			'function Spreadsheet_insert(func, myData, row, col, text, mySpreadsheeturl, mySpreadsheetname, myScript) {\n'+
 			'    $.ajax({\n'+
 			'    	"headers": {\'Access-Control-Allow-Origin\': \'*\' },\n'+			
 			'    	"type": "POST",\n'+
@@ -61,7 +61,7 @@ Blockly.JavaScript['controls_spreadsheet'] = function(block){
 			'    	"dataType": "json",\n'+
 			'    	"data": {\n'+
 			'    		"func":func,\n'+
-			'    		"data":data,\n'+
+			'    		"data":myData,\n'+
 			'    		"spreadsheeturl":mySpreadsheeturl,\n'+
 			'    		"spreadsheetname":mySpreadsheetname,\n'+
 			'    		"row":row,\n'+
