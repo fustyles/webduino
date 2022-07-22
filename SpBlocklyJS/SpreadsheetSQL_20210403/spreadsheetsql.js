@@ -89,6 +89,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
       	type: "POST",
       	url: myScript,
       	dataType: "jsonp",
+	jsonp: "callback",	      
       	contentType: "application/json; charset=utf-8",
       	data: JSON.stringify(postData),
       	success: function (response) {
