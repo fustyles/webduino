@@ -75,7 +75,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   function Spreadsheet_insert(func, myData, myRow, myCol, myText, mySpreadsheeturl, mySpreadsheetname, myScript) {
       $.ajax({
       	"headers": {'Access-Control-Allow-Origin': '*'},			
-      	"type": "post",
+      	"type": "POST",
       	"url": myScript,
       	"dataType": "json",
       	"contentType": "application/json; charset=utf-8",
