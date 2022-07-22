@@ -59,6 +59,7 @@ Blockly.JavaScript['controls_spreadsheet'] = function(block){
 			'    	"type": "POST",\n'+
 			'    	"url": myScript,\n'+
 			'    	"dataType": "json",\n'+
+			'    	"contentType": "application/json; charset=utf-8",\n'+
 			'    	"data": {\n'+
 			'    		"func":func,\n'+
 			'    		"data":myData,\n'+
