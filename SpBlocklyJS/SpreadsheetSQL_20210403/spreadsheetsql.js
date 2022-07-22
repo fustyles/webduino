@@ -72,7 +72,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 	  spreadsheetsql_response = [];
   }   
   
-  function Spreadsheet_insert(func, myData, myRow, myCol, myText, mySpreadsheeturl, mySpreadsheetname, myScript) {
+  function spreadsheet_insert(func, myData, myRow, myCol, myText, mySpreadsheeturl, mySpreadsheetname, myScript) {
       $.ajax({
       	"headers": {'Access-Control-Allow-Origin': '*'},			
       	"type": "POST",
@@ -103,6 +103,6 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   window.spreadsheetsql_getData = spreadsheetsql_getData;
   window.spreadsheetsql_getDataCount = spreadsheetsql_getDataCount;
   window.spreadsheetsql_clearData = spreadsheetsql_clearData;
-  window.Spreadsheet_insert = Spreadsheet_insert;
+  window.spreadsheet_insert = spreadsheet_insert;
   
 }(window, window.document));
