@@ -64,6 +64,7 @@ Blockly.JavaScript['controls_spreadsheet'] = function(block){
 			'    	text:text\n'+
 			'    }\n\n'+
 			'    $.ajax({\n'+
+			'    	headers: {\'Access-Control-Allow-Origin\': * },\n'+
 			'    	type: "POST",\n'+
 			'    	url: myScript,\n'+
 			'    	dataType: "json",\n'+
