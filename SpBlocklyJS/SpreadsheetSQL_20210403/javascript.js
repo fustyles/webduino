@@ -54,21 +54,20 @@ Blockly.JavaScript['controls_spreadsheet'] = function(block){
 
 	Blockly.JavaScript.definitions_.Spreadsheet_insert = '\n'+
 			'function Spreadsheet_insert(func, data, row, col, text, mySpreadsheeturl, mySpreadsheetname, myScript) {\n'+
-			'    var postData = {\n'+
-			'    	func:func,\n'+
-			'    	data:data,\n'+
-			'    	spreadsheeturl:mySpreadsheeturl,\n'+
-			'    	spreadsheetname:mySpreadsheetname,\n'+
-			'    	row:row,\n'+
-			'    	col:col,\n'+
-			'    	text:text\n'+
-			'    }\n\n'+
 			'    $.ajax({\n'+
-			'    	headers: {\'Access-Control-Allow-Origin\': \'*\' },\n'+
-			'    	type: "POST",\n'+
-			'    	url: myScript,\n'+
-			'    	dataType: "json",\n'+
-			'    	data: JSON.stringify(postData),\n'+
+			'    	"headers": {\'Access-Control-Allow-Origin\': \'*\' },\n'+			
+			'    	"type": "POST",\n'+
+			'    	"url": myScript,\n'+
+			'    	"dataType": "json",\n'+
+			'    	"data": {\n'+
+			'    		"func":func,\n'+
+			'    		"data":data,\n'+
+			'    		"spreadsheeturl":mySpreadsheeturl,\n'+
+			'    		"spreadsheetname":mySpreadsheetname,\n'+
+			'    		"row":row,\n'+
+			'    		"col":col,\n'+
+			'    		"text":text\n'+				
+			'    	},\n'+
 			'    	success: function (response) {\n'+
 			'    		//console.log(response.data);\n'+			
 			'    	},\n'+
@@ -76,7 +75,7 @@ Blockly.JavaScript['controls_spreadsheet'] = function(block){
 			'    		console.log(thrownError);\n'+
 			'    	}\n'+
 			'    });\n'+
-			'}\n';			
+			'}\n';
 			
 	var code = 'Spreadsheet_insert("' + func + '", ' + data + ', 0, 0, "", String(' + spreadsheeturl + '), String(' + spreadsheetname + '), ' +  '"https://script.google.com/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
 	return code;
