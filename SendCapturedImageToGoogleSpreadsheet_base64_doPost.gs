@@ -1,12 +1,12 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/7/3 20:00
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/7/22 20:00
   https://www.facebook.com/francefu
 */
 
 function doPost(e) {
   var myFile = e.parameter.file;
-  var mySpreadsheeturl = e.parameter.spreadsheeturl;
-  var mySpreadsheetname = e.parameter.spreadsheetname;
+  var mySpreadsheeturl = decodeURIComponent(e.parameter.spreadsheeturl);
+  var mySpreadsheetname = decodeURIComponent(e.parameter.spreadsheetname);
   var myDatetime = e.parameter.datetime;  
   var myPosition = e.parameter.position;  
   var myColumn = e.parameter.column;
