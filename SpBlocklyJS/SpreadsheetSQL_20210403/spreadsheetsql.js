@@ -73,24 +73,15 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   }   
   
   function spreadsheet_insert(func, myData, myRow, myCol, myText, mySpreadsheeturl, mySpreadsheetname, myScript) {
-	  var postData = {
-      		"func":func,
-      		"data":myData,
-      		"spreadsheeturl":mySpreadsheeturl,
-      		"spreadsheetname":mySpreadsheetname,
-      		"row":myRow,
-      		"col":myCol,
-      		"text":myText	 
-	  }
-	  console.log(JSON.stringify(postData));
-
+	  myScript += "?func="+func+"&data="+myData+"&spreadsheeturl="+mySpreadsheeturl+"&spreadsheetname="+mySpreadsheetname+"&row="+myRow+"&col="+myCol+"&text="+myText;
+	  console.log(myScript);
+	  
       $.ajax({
       	headers: {'Access-Control-Allow-Origin': '*'},			
       	type: "POST",
       	url: myScript,
       	dataType: "jsonp",
       	contentType: "application/json; charset=utf-8",
-      	data: JSON.stringify(postData),
       	success: function (response) {
       		//console.log(response.data);			
       	},
@@ -98,7 +89,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
       		console.log(thrownError);
       	}
       });
-  }	 	 	  
+  }	  
   
   window.spreadsheetsql_settings = spreadsheetsql_settings;
   window.spreadsheetsql_executeSql = spreadsheetsql_executeSql;

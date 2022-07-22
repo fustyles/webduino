@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			
 			try {
 				var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
-				var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>\<meta http-equiv='Access-Control-Allow-Origin' content='*'\>\<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'\>\<\/script\>";
+				var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>\<meta http-equiv='Access-Control-Allow-Origin' content='*'\>\<meta http-equiv='Access-Control-Allow-Credentials' content='true'\>\<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'\>\<\/script\>";
 				
 				iframe_code += getScriptRemote(); 
 				  
@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	//執行程式碼
 	function runCode() {
 	  var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
-	  var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>\<meta http-equiv='Access-Control-Allow-Origin' content='*'\>\<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'\>\<\/script\>";
+	  var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>\<meta http-equiv='Access-Control-Allow-Origin' content='*'\>\<meta http-equiv='Access-Control-Allow-Credentials' content='true'\>\<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'\>\<\/script\>";
 	  
 	  iframe_code += getScript();
 		
