@@ -79,7 +79,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
       	url: myScript,
       	dataType: "json",
       	contentType: "application/json; charset=utf-8",
-      	payload: JSON.stringify({
+      	data: JSON.stringify({
       		"func":func,
       		"data":myData,
       		"spreadsheeturl":mySpreadsheeturl,
