@@ -70,7 +70,7 @@ Blockly.JavaScript['controls_spreadsheet'] = function(block){
 			'    	dataType: "json",\n'+
 			'    	data: JSON.stringify(postData),\n'+
 			'    	success: function (response) {\n'+
-			'    		console.log(response);\n'+			
+			'    		//console.log(response.data);\n'+			
 			'    	},\n'+
 			'    	error: function (thrownError) {\n'+
 			'    		console.log(thrownError);\n'+
