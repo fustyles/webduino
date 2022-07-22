@@ -80,13 +80,13 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
       	"dataType": "json",
       	"contentType": "application/json; charset=utf-8",
       	"data": {
-      		"func":func,
-      		"data":myData,
-      		"spreadsheeturl":mySpreadsheeturl,
-      		"spreadsheetname":mySpreadsheetname,
-      		"row":myRow,
-      		"col":myCol,
-      		"text":myText				
+      		func:func,
+      		data:myData,
+      		spreadsheeturl:mySpreadsheeturl,
+      		spreadsheetname:mySpreadsheetname,
+      		row:myRow,
+      		col:myCol,
+      		text:myText				
       	},
       	success: function (response) {
       		//console.log(response.data);			
@@ -95,7 +95,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
       		console.log(thrownError);
       	}
       });
-  }  
+  }
   
   window.spreadsheetsql_settings = spreadsheetsql_settings;
   window.spreadsheetsql_executeSql = spreadsheetsql_executeSql;
