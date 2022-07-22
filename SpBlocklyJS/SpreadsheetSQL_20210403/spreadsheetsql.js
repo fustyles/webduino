@@ -74,7 +74,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   
   function Spreadsheet_insert(func, myData, myRow, myCol, myText, mySpreadsheeturl, mySpreadsheetname, myScript) {
       $.ajax({
-      	"headers": {'Access-Control-Allow-Origin': '*' },			
+      	"headers": {'Access-Control-Allow-Origin': '*'},			
       	"type": "post",
       	"url": myScript,
       	"dataType": "json",
@@ -95,7 +95,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
       		console.log(thrownError);
       	}
       });
-  };	  
+  }  
   
   window.spreadsheetsql_settings = spreadsheetsql_settings;
   window.spreadsheetsql_executeSql = spreadsheetsql_executeSql;
