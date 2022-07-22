@@ -76,12 +76,12 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 	  myScript += "?func="+func+"&data="+myData+"&spreadsheeturl="+mySpreadsheeturl+"&spreadsheetname="+mySpreadsheetname+"&row="+myRow+"&col="+myCol+"&text="+myText;
 	  console.log(myScript);
 	  
-      $.ajax({		
-      	type: "POST",
+      $.ajax({			
+      	type: "GET",
       	url: myScript,
-      	dataType: "json",
-	crossOrigin: true,
-      	contentType: "application/json; charset=utf-8",
+      	dataType: "text",
+		crossOrigin: true,
+      	contentType: "application/x-www-form-urlencoded; charset=utf-8",
       	success: function (response) {
       		//console.log(response.data);			
       	},
