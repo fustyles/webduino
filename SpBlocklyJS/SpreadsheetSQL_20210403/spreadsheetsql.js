@@ -77,7 +77,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
       		"func":func,
       		"data":encodeURIComponent(myData),
       		"spreadsheeturl":mySpreadsheeturl,
-      		"spreadsheetname":mySpreadsheetname,
+      		"spreadsheetname":encodeURIComponent(mySpreadsheetname),
       		"row":myRow,
       		"col":myCol,
       		"text":encodeURIComponent(myText)	 
