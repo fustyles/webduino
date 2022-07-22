@@ -37,3 +37,52 @@ Blockly.JavaScript['spreadsheetsql_getdatafinish'] = function(block) {
   var code = 'spreadsheetsql_getDataFinish = function() {\n' + statements_do + '\n};\n';
   return code;
 };
+
+
+Blockly.JavaScript['controls_spreadsheet'] = function(block){
+	var spreadsheeturl = Blockly.JavaScript.valueToCode(block,"spreadsheeturl",Blockly.JavaScript.ORDER_NONE)||"";
+	var spreadsheetname = Blockly.JavaScript.valueToCode(block,"spreadsheetname",Blockly.JavaScript.ORDER_NONE)||"";	
+	var func = block.getFieldValue('func');
+	var data = Blockly.JavaScript.valueToCode(block,"VALUE",Blockly.JavaScript.ORDER_NONE)||"";
+	data = 'String('+data+')+"|"';
+	for (var i=0;i<26;i++) {
+		var text = Blockly.JavaScript.valueToCode(block,String.fromCharCode(i+65),Blockly.JavaScript.ORDER_NONE);
+		if (block.getInput(String.fromCharCode(i+65)))
+			data += '+String('+text+')+"|"';
+	}
+	data = data.substring(0, data.length-4);
+
+	Blockly.JavaScript.definitions_.Spreadsheet_insert = '\n'+
+			'function Spreadsheet_insert(func, data, row, col, text, mySpreadsheeturl, mySpreadsheetname, myScript) {\n'+
+			'    var postData = {\n'+
+			'    	func:func,\n'+
+			'    	data:data,\n'+
+			'    	spreadsheeturl:mySpreadsheeturl,\n'+
+			'    	spreadsheetname:mySpreadsheetname,\n'+
+			'    	row:row,\n'+
+			'    	col:col,\n'+
+			'    	text:text\n'+
+			'    }\n\n'+
+			'    $.ajax({\n'+
+			'    	type: "POST",\n'+
+			'    	url: myScript,\n'+
+			'    	dataType: "json",\n'+
+			'    	data: JSON.stringify(postData),\n'+
+			'    	success: function (response) {\n'+
+			'    		console.log(response);\n'+			
+			'    	},\n'+
+			'    	error: function (thrownError) {\n'+
+			'    		console.log(thrownError);\n'+
+			'    	}\n'+
+			'    });\n'+
+			'}\n';			
+			
+	var code = 'Spreadsheet_insert("' + func + '", ' + data + ', 0, 0, "", String(' + spreadsheeturl + '), String(' + spreadsheetname + '), ' +  '"https://script.google.com/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
+	return code;
+};
+
+Blockly.JavaScript['controls_spreadsheet_datetime'] = function(block){
+	var datetime = block.getFieldValue('datetime');	
+	var code = '"'+datetime+'"';
+	return [code,Blockly.JavaScript.ORDER_ATOMIC];
+};

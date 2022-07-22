@@ -26,6 +26,20 @@ var catSpreadsheetsql = '<xml>'+
 '      <block type="spreadsheetsql_getDataCount">'+
 '      </block>'+
 '      <block type="spreadsheetsql_clearData">'+
-'      </block>'+ 
+'      </block>'+
+'      <block type="controls_spreadsheet">'+
+'      	<value name="spreadsheeturl">'+
+'      	  <block type="text">'+
+'      		<field name="TEXT"></field>'+
+'      	  </block>'+
+'      	</value>'+
+'      	<value name="spreadsheetname">'+
+'      	  <block type="text">'+
+'      		<field name="TEXT">工作表1</field>'+
+'      	  </block>'+
+'      	</value>'+
+'      </block>'+
+'      <block type="controls_spreadsheet_datetime">'+
+'      </block>'+
 '    </category>'+
 '</xml>';
