@@ -53,7 +53,7 @@ Blockly.JavaScript['controls_spreadsheet'] = function(block){
 	data = data.substring(0, data.length-4);
 
 	Blockly.JavaScript.definitions_.Spreadsheet_insert = '\n'+
-			'function Spreadsheet_insert(func, myData, row, col, text, mySpreadsheeturl, mySpreadsheetname, myScript) {\n'+
+			'function Spreadsheet_insert(func, myData, myRow, myCol, myText, mySpreadsheeturl, mySpreadsheetname, myScript) {\n'+
 			'    $.ajax({\n'+
 			'    	"headers": {\'Access-Control-Allow-Origin\': \'*\' },\n'+			
 			'    	"type": "POST",\n'+
@@ -64,9 +64,9 @@ Blockly.JavaScript['controls_spreadsheet'] = function(block){
 			'    		"data":myData,\n'+
 			'    		"spreadsheeturl":mySpreadsheeturl,\n'+
 			'    		"spreadsheetname":mySpreadsheetname,\n'+
-			'    		"row":row,\n'+
-			'    		"col":col,\n'+
-			'    		"text":text\n'+				
+			'    		"row":myRow,\n'+
+			'    		"col":myCol,\n'+
+			'    		"text":myText\n'+				
 			'    	},\n'+
 			'    	success: function (response) {\n'+
 			'    		//console.log(response.data);\n'+			
@@ -75,7 +75,7 @@ Blockly.JavaScript['controls_spreadsheet'] = function(block){
 			'    		console.log(thrownError);\n'+
 			'    	}\n'+
 			'    });\n'+
-			'}\n';
+			'}\n';	
 			
 	var code = 'Spreadsheet_insert("' + func + '", ' + data + ', 0, 0, "", String(' + spreadsheeturl + '), String(' + spreadsheetname + '), ' +  '"https://script.google.com/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
 	return code;
