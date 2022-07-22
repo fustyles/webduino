@@ -80,7 +80,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
       	type: "POST",
       	url: myScript,
       	dataType: "json",
-	crossDomain: true,
+	crossOrigin: true,
       	contentType: "application/json; charset=utf-8",
       	success: function (response) {
       		//console.log(response.data);			
