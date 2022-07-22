@@ -52,7 +52,7 @@ Blockly.JavaScript['controls_spreadsheet'] = function(block){
 	}
 	data = data.substring(0, data.length-4);
 			
-	var code = 'Spreadsheet_insert("' + func + '", ' + data + ', 0, 0, "", ' + spreadsheeturl + ', ' + spreadsheetname + ', ' +  '"https://script.google.com/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
+	var code = 'spreadsheet_insert("' + func + '", ' + data + ', 0, 0, "", ' + spreadsheeturl + ', ' + spreadsheetname + ', ' +  '"https://script.google.com/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
 	return code;
 };
 
