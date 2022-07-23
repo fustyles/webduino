@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="jquery.min.js"></script>
+	<script src="pretty-doughtnut.js"></script>
+	<script src="Chart.min.js"></script>
+	<style>
+	.labelPercentage {
+	  font-size: 12;
+	}
+	 
+	.labelText {
+	  font-size: 12;
+	  color: #000000;
+	}
+	 
+	.labelContainer {
+	  display: block;
+	  text-align: center;
+	  width: 100px;
+	  font-family: Helvetica;
+	}
+	</style>	
+</head>
+<body>
+<canvas id="myChart" style="display:none"></canvas>
+<table>
+<tr>
+<td><div id="container"></div></td>
+<td><div id="container1"></div></td>
+</tr>
+<tr>
+<td><div id="container2"></div></td>
+<td></td>
+</tr>
+</table>
+<script>
+	$(window).load(function() {
+		doughnutWidget.options = {
+			container: $('#container2'),
+			width: 150,
+			height: 150,
+			//class: 'myClass',
+			cutout: 50
+		};
+		doughnutWidget.render(data(0));
+		
+		doughnutWidget.options = {
+			container: $('#container1'),
+			width: 150,
+			height: 150,
+			//class: 'myClass',
+			cutout: 50
+		};
+		doughnutWidget.render(data1(0));
+		
+		doughnutWidget.options = {
+			container: $('#container'),
+			width: 150,
+			height: 150,
+			//class: 'myClass',
+			cutout: 50
+		};		
+		doughnutWidget.render(data2(0));
+		
+		setInterval(function() {
+			doughnutWidget.render(data(Math.floor(Math.random()*100)));	
+			doughnutWidget.render(data1(Math.floor(Math.random()*1024)));			
+			doughnutWidget.render(data2(Math.floor(Math.random()*100)));
+		}, 3000);
+	});
+
+	function data(val) {
+		var data = {
+			"濕度": {
+				val: val,
+				min: 0,
+				max: 100,
+				color: '#57B4F2',
+				unit: ' %',
+				//click: function(e) {
+				//	console.log('hi');
+				//}
+			}
+		};
+
+	  return data;
+	}
+	
+	function data1(val) {
+		var data = {
+			"光敏": {
+				val: val,
+				min: 0,
+				max: 1023,
+				unit: '',
+				color: '#6DED5C'
+			}
+		};
+
+	  return data;
+	}
+	
+	function data2(val) {
+		var data = {
+			"溫度": {
+				val: val,
+				min: 0,
+				max: 100,
+				color: '#E63329',
+				unit: ' °C',
+				//link: 'http://www.google.com'
+			}
+		};
+
+	  return data;
+	}	
+</script>
+</body>
+</html>
