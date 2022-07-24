@@ -52,7 +52,8 @@ var doughnutWidget = {
 	render: function(o) {
 		for (var value in o) {
 			var range = o[value].max - o[value].min;
-			var data1 = Math.floor(100*(o[value].val-o[value].min)/range);
+			var data1 = Math.round(100*(o[value].val-o[value].min)/range);
+			o[value].val = Math.round(Math.pow(10, o[value].decimal)*o[value].val)/Math.pow(10, o[value].decimal);
 			var data2 = 100 - data1;
 				
 			if (!doughnutWidget.charts[value + 'Chart']) {
@@ -74,18 +75,25 @@ var doughnutWidget = {
 				
 				doughnutWidget.charts[value + 'Chart'] = new Chart($('#' + value).get(0).getContext('2d'), {
 					type: 'doughnut',
-					data: myData
+					data: myData,
+					options: {
+					  plugins: {
+						tooltip: {
+						  enabled: false
+						},
+					  }
+					}
 				});
 
 				// create the labels
 				if (o[value].link)
-					var perc = $('<div id="'+value+'Value" class="labelPercentage"><a href="' + (o[value].link ? o[value].link : '#') + '" class="labelLink">' + o[value].val + o[value].unit + '</a></div>');
+					var perc = $('<div id="'+value+'Value" style="font-size:'+o[value].valuesize+'px;"><a href="' + (o[value].link ? o[value].link : '#') + '>' + o[value].val + o[value].unit + '</a></div>');
 				else
-					var perc = $('<div id="'+value+'Value" class="labelPercentage">' + o[value].val + o[value].unit + '</div>');
+					var perc = $('<div id="'+value+'Value" style="font-size:'+o[value].valuesize+'px;">' + o[value].val + o[value].unit + '</div>');
 					
-				var label = $('<span id="' + value + 'Label" class="labelContainer"></span>');
+				var label = $('<span id="' + value + 'Label" style="display: block;text-align: center;width: 100px;font-family: Helvetica;"></span>');
 				label.append(perc);
-				label.append('<div class="labelText" style="color:'+o[value].color+'">' + value + '</div>');
+				label.append('<div style="font-size:'+o[value].labelsize+'px;color:'+o[value].color+'">' + value + '</div>');
 
 				$( (doughnutWidget.options && doughnutWidget.options.container ? doughnutWidget.options.container : o[value].container) ).append(label);
 
@@ -101,7 +109,7 @@ var doughnutWidget = {
 
 				var perc = $('#' + value + 'Value');
 				if (o[value].link)
-					perc.html('<a href="' + (o[value].link ? o[value].link : '#') + '" class="labelLink">' + o[value].val + o[value].unit + '</a>');
+					perc.html('<a href="' + (o[value].link ? o[value].link : '#') + '>' + o[value].val + o[value].unit + '</a>');
 				else
 					perc.html(o[value].val + o[value].unit);
 			}

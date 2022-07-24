@@ -6,29 +6,13 @@
 	<script src="jquery.min.js"></script>
 	<script src="pretty-doughtnut.js"></script>
 	<script src="Chart.min.js"></script>
-	<style>
-	.labelPercentage {
-	  font-size: 12;
-	}
-	 
-	.labelText {
-	  font-size: 12;
-	  color: #000000;
-	}
-	 
-	.labelContainer {
-	  display: block;
-	  text-align: center;
-	  width: 100px;
-	  font-family: Helvetica;
-	}
-	</style>	
+	<script src="gameelements.js"></script>		
 </head>
 <body>
 <canvas id="myChart" style="display:none"></canvas>
 <table>
 <tr>
-<td><div id="container"></div></td>
+<td></td>
 <td><div id="container1"></div></td>
 </tr>
 <tr>
@@ -38,6 +22,13 @@
 </table>
 <script>
 	$(window).load(function() {
+		var obj = document.createElement('div');
+		obj.id = "container";
+		obj.style.position = "absolute";
+		obj.style.left = '300px';
+		obj.style.top = '300px';
+		document.body.appendChild(obj);
+		
 		doughnutWidget.options = {
 			container: $('#container2'),
 			width: 150,
@@ -50,7 +41,7 @@
 		doughnutWidget.options = {
 			container: $('#container1'),
 			width: 150,
-			height: 150,
+			height: 150,		
 			//class: 'myClass',
 			cutout: 50
 		};
@@ -66,9 +57,9 @@
 		doughnutWidget.render(data2(0));
 		
 		setInterval(function() {
-			doughnutWidget.render(data(Math.floor(Math.random()*100)));	
-			doughnutWidget.render(data1(Math.floor(Math.random()*1024)));			
-			doughnutWidget.render(data2(Math.floor(Math.random()*100)));
+			doughnutWidget.render(data(Math.floor(Math.random()*100000)/1000));	
+			doughnutWidget.render(data1(0));			
+			doughnutWidget.render(data2(100));
 		}, 3000);
 	});
 
@@ -80,6 +71,10 @@
 				max: 100,
 				color: '#57B4F2',
 				unit: ' %',
+				decimal: 0,				
+				labelsize: 14,
+				valuesize: 8,
+				//link: 'http://www.google.com',
 				//click: function(e) {
 				//	console.log('hi');
 				//}
@@ -96,6 +91,9 @@
 				min: 0,
 				max: 1023,
 				unit: '',
+				decimal: 1,					
+				labelsize: 14,
+				valuesize: 10,
 				color: '#6DED5C'
 			}
 		};
@@ -111,7 +109,9 @@
 				max: 100,
 				color: '#E63329',
 				unit: ' °C',
-				//link: 'http://www.google.com'
+				decimal: 2,					
+				labelsize: 14,
+				valuesize: 12,
 			}
 		};
 
