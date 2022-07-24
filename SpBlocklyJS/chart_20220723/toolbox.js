@@ -1,4 +1,4 @@
-var catChartDoughnut = '<xml>'+
+var catChart = '<xml>'+
 '<category name="%{BKY_CATCHART}" id="catChart" colour="350">'+	  
 	  '<block type="chart_doughnut_create">'+
 	    '<value name="name">'+
@@ -79,11 +79,6 @@ var catChartDoughnut = '<xml>'+
 '          </block>'+
 '        </value>'+	
 	  '</block>'+  
-	  
-	  
-	  
-	  
-	  
 	  '<block type="chart_gauge_create">'+
 	    '<value name="id">'+
 		  '<block type="text">'+

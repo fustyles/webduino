@@ -79,7 +79,7 @@ Blockly.JavaScript['chart_gauge_create'] = function(block) {
 			'	decimal: '+decimal+',\n'+	
 			'	showLabel: true,\n'+	
 			'	labelSize: '+labelsize+',\n'+
-			'};\n';
+			'});\n';
 												
   return code;
 };

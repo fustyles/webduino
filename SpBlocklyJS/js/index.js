@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catMQTT,
 		"<sep></sep>",		
 		catPageElements,
-		catChartDoughnut,
+		catChart,
 		"<sep></sep>",
 		catSpreadsheetsql,
 		"<sep></sep>",		
