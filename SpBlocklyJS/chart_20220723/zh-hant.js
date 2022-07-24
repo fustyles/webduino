@@ -1,0 +1,17 @@
+Blockly.Msg["CATCHART"] = "圖表";
+Blockly.Msg["CATCHARTDOUGHNUT"] = "甜甜圈圖";
+Blockly.Msg["CHART_DOUGHNUT_CREATE"] = "甜甜圈圖 建立";
+Blockly.Msg["CHART_DOUGHNUT_NAME"] = "名稱";
+Blockly.Msg["CHART_DOUGHNUT_WIDTH"] = "寬度"; 
+Blockly.Msg["CHART_DOUGHNUT_HEIGHT"] = "高度";	
+Blockly.Msg["CHART_DOUGHNUT_LEFT"] = "靠左距離"; 
+Blockly.Msg["CHART_DOUGHNUT_TOP"] = "靠上距離";
+Blockly.Msg["CHART_DOUGHNUT_VAL"] = "預設值"; 
+Blockly.Msg["CHART_DOUGHNUT_MIN"] = "最小值";
+Blockly.Msg["CHART_DOUGHNUT_MAX"] = "最大值"; 
+Blockly.Msg["CHART_DOUGHNUT_DECIMAL"] = "小數位數";
+Blockly.Msg["CHART_DOUGHNUT_LABELSIZE"] = "標籤字型大小";
+Blockly.Msg["CHART_DOUGHNUT_VALUESIZE"] = "數值字型大小";
+Blockly.Msg["CHART_DOUGHNUT_UNIT"] = "單位";
+Blockly.Msg["CHART_DOUGHNUT_COLOR"] = "顏色";
+Blockly.Msg["CHART_DOUGHNUT_SET"] = "甜甜圈圖 設定數值";

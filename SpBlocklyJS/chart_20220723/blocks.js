@@ -1,0 +1,66 @@
+Blockly.Blocks['chart_doughnut_create'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_CREATE"]);
+	this.appendValueInput("name")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_NAME"]);
+	this.appendValueInput("width")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_WIDTH"]);  
+	this.appendValueInput("height")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_HEIGHT"]);	
+	this.appendValueInput("left")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_LEFT"]);  
+	this.appendValueInput("top")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_TOP"]);
+	this.appendValueInput("val")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_VAL"]);  
+	this.appendValueInput("min")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_MIN"]);	
+	this.appendValueInput("max")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_MAX"]);  
+	this.appendValueInput("decimal")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_DECIMAL"]);  
+	this.appendValueInput("labelsize")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_LABELSIZE"]);	
+	this.appendValueInput("valuesize")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_VALUESIZE"]); 
+	this.appendValueInput("unit")
+		.setCheck("String")	
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_UNIT"]);
+	this.appendValueInput("color")
+		.setCheck(null)	
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_COLOR"]);			
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['chart_doughnut_set'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_SET"]);	  
+	this.appendValueInput("name")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_NAME"]);
+	this.appendValueInput("val")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_DOUGHNUT_VAL"]); 
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(210);
+  }
+};	

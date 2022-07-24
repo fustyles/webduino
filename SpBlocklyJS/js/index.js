@@ -77,6 +77,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (workspace.getBlocksByType("spreadsheetsql_queryData").length>0||workspace.getBlocksByType("controls_spreadsheet").length>0) {
 			script += "<script src='SpreadsheetSQL_20210403/spreadsheetsql.js'></script>";			
 			script += "<script src='SpreadsheetSQL_20210403/loader.js'></script>";
+		}	
+
+		if (workspace.getBlocksByType("chart_doughnut_create").length>0||workspace.getBlocksByType("controls_spreadsheet").length>0) {
+			script += "<script src='chart_20220723/Chart.min.js'></script>";			
+			script += "<script src='chart_20220723/pretty-doughtnut.js'></script>";
 		}		
 		
 		return script;
@@ -148,7 +153,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (workspace.getBlocksByType("spreadsheetsql_queryData").length>0||workspace.getBlocksByType("controls_spreadsheet").length>0) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/spreadsheetsql.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/loader.js'></script>";
-		}			
+		}
+
+		if (workspace.getBlocksByType("chart_doughnut_create").length>0||workspace.getBlocksByType("controls_spreadsheet").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/pretty-doughtnut.js'></script>";
+		}		
 		
 		return script;
 	}		
@@ -159,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catMyBackPack,
 		"<sep></sep>",
 		catPageElements,
+		catChartDoughnut,
 		"<sep></sep>",
 		catCocossd,			
 		catHolistic,

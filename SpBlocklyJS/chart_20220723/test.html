@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="jquery.min.js"></script>
+	<script src="pretty-doughtnut.js"></script>
+	<script src="Chart.min.js"></script>
+	<script src="gameelements.js"></script>		
+</head>
+<body>
+<script>
+	$(window).load(function() {
+
+		
+		doughnutWidget.chartname["濕度"] = {
+			container: 'container1',
+			width: 150,
+			height: 150,
+			left: 0,
+			top: 0,
+			//class: 'myClass',
+			cutout: 50,
+			data: {
+				val: 0,
+				min: 0,
+				max: 100,
+				color: '#57B4F2',
+				unit: ' %',
+				decimal: 0,				
+				labelsize: 14,
+				valuesize: 8,
+				//link: 'http://www.google.com',
+				//click: function(e) {
+				//	console.log('hi');
+				//}
+			}
+		};
+		doughnutWidget.createChart("濕度");
+		
+		doughnutWidget.chartname["光敏"] = {
+			container: 'container2',
+			width: 150,
+			height: 150,
+			left: 160,
+			top: 0,			
+			//class: 'myClass',
+			cutout: 50,
+			data: {
+				val: 0,
+				min: 0,
+				max: 1023,
+				unit: '',
+				decimal: 1,					
+				labelsize: 14,
+				valuesize: 10,
+				color: '#6DED5C'
+			}
+		};
+		doughnutWidget.createChart("光敏");
+		
+		doughnutWidget.chartname["溫度"] = {
+			container: 'container3',
+			width: 150,
+			height: 150,
+			left: 320,
+			top: 0,			
+			//class: 'myClass',
+			cutout: 50,
+			data: {
+				val: 0,
+				min: 0,
+				max: 100,
+				color: '#E63329',
+				unit: ' °C',
+				decimal: 2,					
+				labelsize: 14,
+				valuesize: 12
+			}
+		};		
+		doughnutWidget.createChart("溫度");
+		
+		setInterval(function() {
+			doughnutWidget.updateData('濕度', Math.floor(Math.random()*100000)/1000);	
+			doughnutWidget.updateData('光敏', Math.floor(Math.random()*1023000)/1000);			
+			doughnutWidget.updateData('溫度', Math.floor(Math.random()*100000)/1000);
+		}, 3000);
+		
+	});
+
+</script>
+</body>
+</html>

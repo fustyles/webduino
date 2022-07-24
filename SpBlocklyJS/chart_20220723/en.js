@@ -1,0 +1,17 @@
+Blockly.Msg["CATCHART"] = "Chart";
+Blockly.Msg["CATCHARTDOUGHNUT"] = "Doughnut chart";
+Blockly.Msg["CHART_DOUGHNUT_CREATE"] = "Doughnut chart create";
+Blockly.Msg["CHART_DOUGHNUT_NAME"] = "Name";
+Blockly.Msg["CHART_DOUGHNUT_WIDTH"] = "Width"; 
+Blockly.Msg["CHART_DOUGHNUT_HEIGHT"] = "Height";	
+Blockly.Msg["CHART_DOUGHNUT_LEFT"] = "Left"; 
+Blockly.Msg["CHART_DOUGHNUT_TOP"] = "Top";
+Blockly.Msg["CHART_DOUGHNUT_VAL"] = "Value"; 
+Blockly.Msg["CHART_DOUGHNUT_MIN"] = "Min";
+Blockly.Msg["CHART_DOUGHNUT_MAX"] = "Max"; 
+Blockly.Msg["CHART_DOUGHNUT_DECIMAL"] = "Decimal";
+Blockly.Msg["CHART_DOUGHNUT_LABELSIZE"] = "Label size";
+Blockly.Msg["CHART_DOUGHNUT_VALUESIZE"] = "Value size";
+Blockly.Msg["CHART_DOUGHNUT_UNIT"] = "Unit";
+Blockly.Msg["CHART_DOUGHNUT_COLOR"] = "Color";
+Blockly.Msg["CHART_DOUGHNUT_SET"] = "Doughnut chart set value";
