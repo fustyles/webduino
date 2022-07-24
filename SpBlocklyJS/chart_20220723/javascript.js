@@ -1,5 +1,5 @@
 Blockly.JavaScript['chart_doughnut_create'] = function(block) {
-  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
+  var id = "chart_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
   var name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
   var width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC);
   var height = Blockly.JavaScript.valueToCode(block, 'height', Blockly.JavaScript.ORDER_ATOMIC);
@@ -50,7 +50,7 @@ Blockly.JavaScript['chart_doughnut_set'] = function(block) {
 };
 
 Blockly.JavaScript['chart_gauge_create'] = function(block) {
-  var id = "chart_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
   var name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
   var width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC);
   var left = Blockly.JavaScript.valueToCode(block, 'left', Blockly.JavaScript.ORDER_ATOMIC);
