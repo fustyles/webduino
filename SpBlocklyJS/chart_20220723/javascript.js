@@ -66,7 +66,7 @@ Blockly.JavaScript['chart_gauge_create'] = function(block) {
   var code = "";
   code +=  'temperatureGauge({\n'+
 			'	id: '+id+',\n'+
-			'	name: "'+name+'",\n'+			
+			'	name: '+name+',\n'+			
 			'	width: '+width+',\n'+
 			'	left: '+left+',\n'+
 			'	top: '+top+',\n'+
