@@ -1,6 +1,8 @@
 Blockly.Msg["CATCHART"] = "圖表";
-Blockly.Msg["CHART_DOUGHNUT_CREATE"] = "甜甜圈圖 建立";
-Blockly.Msg["CHART_DOUGHNUT_SET"] = "甜甜圈圖 設定數值";
+Blockly.Msg["CATCHARTDOUGHNUT"] = "甜甜圈";
+Blockly.Msg["CATCHARTGAUGE"] = "溫度計";
+Blockly.Msg["CHART_DOUGHNUT_CREATE"] = "甜甜圈 建立";
+Blockly.Msg["CHART_DOUGHNUT_SET"] = "甜甜圈 設定數值";
 Blockly.Msg["CHART_GAUGE_CREATE"] = "溫度計 建立";
 Blockly.Msg["CHART_GAUGE_SET"] = "溫度計 設定數值";
 Blockly.Msg["CHART_ID"] = "ID";

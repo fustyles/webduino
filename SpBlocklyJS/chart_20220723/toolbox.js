@@ -1,5 +1,6 @@
 var catChart = '<xml>'+
 '<category name="%{BKY_CATCHART}" id="catChart" colour="350">'+	  
+	'<category name="%{BKY_CATCHARTDOUGHNUT}" id="CATCHARTDOUGHNUT">'+	
 	  '<block type="chart_doughnut_create">'+
 	    '<value name="name">'+
 		  '<block type="text">'+
@@ -79,6 +80,8 @@ var catChart = '<xml>'+
 '          </block>'+
 '        </value>'+	
 	  '</block>'+  
+	  '</category>'+	
+	  '<category name="%{BKY_CATCHARTGAUGE}" id="CATCHARTGAUGE">'+	
 	  '<block type="chart_gauge_create">'+
 	    '<value name="id">'+
 		  '<block type="text">'+
@@ -152,6 +155,7 @@ var catChart = '<xml>'+
 '            <field name="NUM">28</field>'+
 '          </block>'+
 '        </value>'+	
-	  '</block>'+  	  
+	  '</block>'+  
+	'</category>'+		  
 '</category>'+	
 '</xml>';	

@@ -1,4 +1,6 @@
 Blockly.Msg["CATCHART"] = "Chart";
+Blockly.Msg["CATCHARTDOUGHNUT"] = "Doughnut chart";
+Blockly.Msg["CATCHARTGAUGE"] = "Doughnut chart";
 Blockly.Msg["CHART_DOUGHNUT_CREATE"] = "Doughnut chart create";
 Blockly.Msg["CHART_DOUGHNUT_SET"] = "Doughnut chart set value";
 Blockly.Msg["CHART_GAUGE_CREATE"] = "Gauge chart create";
