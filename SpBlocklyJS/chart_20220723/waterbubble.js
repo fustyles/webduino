@@ -140,7 +140,7 @@ var waterbubble = function(options) {
 			var size = font ? font.replace( /\D+/g, '') : 0.4*radius;
 			ctx.font = font ? font : 'bold ' + size + 'px Microsoft Yahei';
 
-			val = val.length ? val : val + ' ' + unit
+			val = val.length ? val : val + unit
 
 			var sy = y + size/2;
 			var sx = x - ctx.measureText(val).width/2
