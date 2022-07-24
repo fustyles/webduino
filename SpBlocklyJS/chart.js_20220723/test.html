@@ -9,64 +9,20 @@
 	<script src="gameelements.js"></script>		
 </head>
 <body>
-<canvas id="myChart" style="display:none"></canvas>
-<table>
-<tr>
-<td></td>
-<td><div id="container1"></div></td>
-</tr>
-<tr>
-<td><div id="container2"></div></td>
-<td></td>
-</tr>
-</table>
 <script>
 	$(window).load(function() {
-		var obj = document.createElement('div');
-		obj.id = "container";
-		obj.style.position = "absolute";
-		obj.style.left = '300px';
-		obj.style.top = '300px';
-		document.body.appendChild(obj);
-		
-		doughnutWidget.options = {
-			container: $('#container2'),
-			width: 150,
-			height: 150,
-			//class: 'myClass',
-			cutout: 50
-		};
-		doughnutWidget.render(data(0));
-		
-		doughnutWidget.options = {
-			container: $('#container1'),
-			width: 150,
-			height: 150,		
-			//class: 'myClass',
-			cutout: 50
-		};
-		doughnutWidget.render(data1(0));
-		
-		doughnutWidget.options = {
-			container: $('#container'),
-			width: 150,
-			height: 150,
-			//class: 'myClass',
-			cutout: 50
-		};		
-		doughnutWidget.render(data2(0));
-		
-		setInterval(function() {
-			doughnutWidget.render(data(Math.floor(Math.random()*100000)/1000));	
-			doughnutWidget.render(data1(0));			
-			doughnutWidget.render(data2(100));
-		}, 3000);
-	});
 
-	function data(val) {
-		var data = {
-			"濕度": {
-				val: val,
+		
+		doughnutWidget.chartname["濕度"] = {
+			container: 'container1',
+			width: 150,
+			height: 150,
+			left: 0,
+			top: 0,
+			//class: 'myClass',
+			cutout: 50,
+			data: {
+				val: 0,
 				min: 0,
 				max: 100,
 				color: '#57B4F2',
@@ -80,14 +36,18 @@
 				//}
 			}
 		};
-
-	  return data;
-	}
-	
-	function data1(val) {
-		var data = {
-			"光敏": {
-				val: val,
+		doughnutWidget.createChart("濕度");
+		
+		doughnutWidget.chartname["光敏"] = {
+			container: 'container2',
+			width: 150,
+			height: 150,
+			left: 160,
+			top: 0,			
+			//class: 'myClass',
+			cutout: 50,
+			data: {
+				val: 0,
 				min: 0,
 				max: 1023,
 				unit: '',
@@ -97,26 +57,37 @@
 				color: '#6DED5C'
 			}
 		};
-
-	  return data;
-	}
-	
-	function data2(val) {
-		var data = {
-			"溫度": {
-				val: val,
+		doughnutWidget.createChart("光敏");
+		
+		doughnutWidget.chartname["溫度"] = {
+			container: 'container3',
+			width: 150,
+			height: 150,
+			left: 320,
+			top: 0,			
+			//class: 'myClass',
+			cutout: 50,
+			data: {
+				val: 0,
 				min: 0,
 				max: 100,
 				color: '#E63329',
 				unit: ' °C',
 				decimal: 2,					
 				labelsize: 14,
-				valuesize: 12,
+				valuesize: 12
 			}
-		};
+		};		
+		doughnutWidget.createChart("溫度");
+		
+		setInterval(function() {
+			doughnutWidget.updateData('濕度', Math.floor(Math.random()*100000)/1000);	
+			doughnutWidget.updateData('光敏', Math.floor(Math.random()*1023000)/1000);			
+			doughnutWidget.updateData('溫度', Math.floor(Math.random()*100000)/1000);
+		}, 3000);
+		
+	});
 
-	  return data;
-	}	
 </script>
 </body>
 </html>
