@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="jquery.min.js"></script>
+	<script src="waterbubble.js"></script>		
+</head>
+<body>
+<script>
+
+waterbubble({
+  id: '',
+  name: '水庫',  
+  left: 50,
+  top: 50,   
+  radius: 200,
+  lineWidth: 4,
+  val: 60,
+  waterColor: 'blue',
+  textColor: 'red',
+  unit: "%",
+  decimal: 0, 
+  wave: true,  
+  animation: true
+});
+
+setInterval(function(){ 
+waterbubble({
+  id: '',
+  val: Math.floor(Math.random()*100000)/1000
+});	
+}, 3000);
+</script>
+</body>
+</html>

@@ -157,5 +157,83 @@ var catChart = '<xml>'+
 '        </value>'+	
 	  '</block>'+  
 	'</category>'+		  
+	
+	
+	  '<category name="%{BKY_CATCHARTWATERBUBBLE}" id="CATCHARTWATERBUBBLE">'+	
+	  '<block type="chart_waterbubble_create">'+
+	    '<value name="id">'+
+		  '<block type="text">'+
+			'<field name="TEXT"></field>'+
+		  '</block>'+
+		'</value>'+		  
+	    '<value name="name">'+
+		  '<block type="text">'+
+			'<field name="TEXT">水位</field>'+
+		  '</block>'+
+		'</value>'+	
+'        <value name="radius">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">100</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="left">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="top">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="val">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="min">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="max">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">100</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="decimal">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+	    '<value name="unit">'+
+		  '<block type="text">'+
+			'<field name="TEXT">%</field>'+
+		  '</block>'+
+		'</value>'+	
+	    '<value name="watercolor">'+
+'    		<block type="colour_picker">'+
+'    			<field name="COLOUR">#0000ff</field>'+
+'    		</block>'+
+		'</value>'+	
+	    '<value name="textcolor">'+
+'    		<block type="colour_picker">'+
+'    			<field name="COLOUR">#000000</field>'+
+'    		</block>'+
+		'</value>'+			
+	  '</block>'+	
+	  '<block type="chart_waterbubble_set">'+
+	    '<value name="id">'+
+		  '<block type="text">'+
+			'<field name="TEXT"></field>'+
+		  '</block>'+
+		'</value>'+	
+'        <value name="val">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">60</field>'+
+'          </block>'+
+'        </value>'+	
+	  '</block>'+  
+	'</category>'+		  	
 '</category>'+	
 '</xml>';	

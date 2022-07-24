@@ -128,3 +128,67 @@ Blockly.Blocks['chart_gauge_set'] = {
     this.setColour(130);
   }
 };
+
+Blockly.Blocks['chart_waterbubble_create'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["CHART_WATERBUBBLE_CREATE"]);
+	this.appendValueInput("id")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_ID"]);		
+	this.appendValueInput("name")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_NAME"]);
+	this.appendValueInput("radius")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_RADIUS"]);
+	this.appendValueInput("left")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_LEFT"]);  
+	this.appendValueInput("top")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_TOP"]);
+	this.appendValueInput("val")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_VAL"]);  
+	this.appendValueInput("min")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_MIN"]);	
+	this.appendValueInput("max")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_MAX"]);  
+	this.appendValueInput("decimal")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_DECIMAL"]);
+	this.appendValueInput("unit")
+		.setCheck("String")	
+		.appendField(Blockly.Msg["CHART_UNIT"]);
+	this.appendValueInput("watercolor")
+		.setCheck(null)	
+		.appendField(Blockly.Msg["CHART_WATERCOLOR"]);	
+	this.appendValueInput("textcolor")
+		.setCheck(null)	
+		.appendField(Blockly.Msg["CHART_TEXTCOLOR"]);		
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(170);
+  }
+};
+
+Blockly.Blocks['chart_waterbubble_set'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["CHART_WATERBUBBLE_SET"]);	  
+	this.appendValueInput("id")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_ID"]);
+	this.appendValueInput("val")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_VAL"]); 
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(170);
+  }
+};

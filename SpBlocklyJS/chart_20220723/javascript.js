@@ -90,3 +90,47 @@ Blockly.JavaScript['chart_gauge_set'] = function(block) {
   code = 'temperatureGauge({id: '+id+',val: '+val+'});\n';
   return code;
 };
+
+Blockly.JavaScript['chart_waterbubble_create'] = function(block) {
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
+  var name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+  var radius = Blockly.JavaScript.valueToCode(block, 'radius', Blockly.JavaScript.ORDER_ATOMIC);
+  var left = Blockly.JavaScript.valueToCode(block, 'left', Blockly.JavaScript.ORDER_ATOMIC);
+  var top = Blockly.JavaScript.valueToCode(block, 'top', Blockly.JavaScript.ORDER_ATOMIC);
+  var val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC);
+  var min = Blockly.JavaScript.valueToCode(block, 'min', Blockly.JavaScript.ORDER_ATOMIC);
+  var max = Blockly.JavaScript.valueToCode(block, 'max', Blockly.JavaScript.ORDER_ATOMIC);
+  var decimal = Blockly.JavaScript.valueToCode(block, 'decimal', Blockly.JavaScript.ORDER_ATOMIC);
+  var unit = Blockly.JavaScript.valueToCode(block, 'unit', Blockly.JavaScript.ORDER_ATOMIC);
+  var watercolor = Blockly.JavaScript.valueToCode(block, 'watercolor', Blockly.JavaScript.ORDER_ATOMIC);
+  var textcolor = Blockly.JavaScript.valueToCode(block, 'textcolor', Blockly.JavaScript.ORDER_ATOMIC);  
+  
+  var code = "";
+  code +=  'waterbubble({\n'+
+			'	id: '+id+',\n'+
+			'	name: '+name+',\n'+			
+			'	radius: '+radius+',\n'+
+			'	left: '+left+',\n'+
+			'	top: '+top+',\n'+
+			'	val: '+val+',\n'+
+			'	min: '+min+',\n'+
+			'	max: '+max+',\n'+
+			'	unit: " "+'+unit+',\n'+
+			'	decimal: '+decimal+',\n'+
+			'	waterColor: '+watercolor+',\n'+
+			'	textColor: '+textcolor+',\n'+			
+			'	lineWidth: 4,\n'+
+			'	wave: true,\n'+
+			'	animation: true\n'+		
+			'});\n';
+												
+  return code;
+};
+
+Blockly.JavaScript['chart_waterbubble_set'] = function(block) {
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
+  var val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC);
+  code = 'waterbubble({id: '+id+',val: '+val+'});\n';
+  return code;
+};
+

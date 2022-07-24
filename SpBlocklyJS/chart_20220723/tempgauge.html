@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="jquery.min.js"></script>
+	<script src="jquery.tempgauge.js"></script>		
+</head>
+<body>
+
+<script>
+temperatureGauge({
+  id: "aaa",
+  name: "溫度",
+  color: "black",
+  borderWidth: 4,
+  val: 0,
+  fillColor: "red",
+  showLabel:true,
+  labelSize: 12,
+  max: 100,
+  min: 0,
+  width: 100,
+  left: 50,
+  top: 50,  
+  decimal: 1,
+  unit: "°C"
+});
+
+temperatureGauge({
+  id: "aaaa",
+  name: "濕度",
+  color: "black",
+  borderWidth: 4,
+  val: 0,
+  fillColor: "blue",
+  showLabel:true,
+  labelSize: 12,
+  max: 100,
+  min: 0,
+  width: 100,
+  left: 350,
+  top: 50,  
+  decimal: 2,
+  unit: "°C"
+});
+
+setInterval(function(){ 
+	temperatureGauge({id: "aaa",val: Math.floor(Math.random()*100000)/1000});
+	temperatureGauge({id: "aaaa",val: Math.floor(Math.random()*100000)/1000});		
+}, 3000);
+</script>
+</body>
+</html>
