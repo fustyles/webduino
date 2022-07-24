@@ -166,11 +166,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	//載入積木目錄
 	var category = [
 		catSystem,
-		catMyBackPack,
+		catMyBackPack,		
 		"<sep></sep>",
+		catWebSerial,
+		catMQTT,
+		"<sep></sep>",		
 		catPageElements,
 		catChartDoughnut,
 		"<sep></sep>",
+		catSpreadsheetsql,
+		"<sep></sep>",		
 		catCocossd,			
 		catHolistic,
 		catHands,
@@ -179,12 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catFaceRecognize,
 		catTrackingColor,
 		catInstascan,
-		catTesseract,
-		"<sep></sep>",
-		catSpreadsheetsql,
-		"<sep></sep>",		
-		catWebSerial,
-		catMQTT		
+		catTesseract		
 	];
 	
 	var xmlNewValue='<xml id="toolbox">';
