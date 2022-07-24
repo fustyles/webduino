@@ -5,16 +5,14 @@ var temperatureGauge = function(options) {
 	var opts = options,
 	padding = 10;	
 
-	
-	
-	if (!opts.hasOwnProperty('color')) {
+	if (typeof GaugeOptions[opts.id]==="undefined") {
+		opts.val = Math.round(Math.pow(10, opts.decimal)*opts.val)/Math.pow(10, opts.decimal);
+		GaugeOptions[opts.id] = options;
+	}
+	else if (!opts.hasOwnProperty('color')) {
 		opts.val = Math.round(Math.pow(10, GaugeOptions[opts.id].decimal)*opts.val)/Math.pow(10, GaugeOptions[opts.id].decimal);
 		GaugeOptions[opts.id].val = opts.val;
 		opts = GaugeOptions[opts.id];
-	}
-	else {
-		opts.val = Math.round(Math.pow(10, opts.decimal)*opts.val)/Math.pow(10, opts.decimal);
-		GaugeOptions[opts.id] = options;
 	}
 	
 	createTempGauge();
