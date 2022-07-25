@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="jquery.min.js"></script>
+	<script src="jquery.simplegauge.js"></script>
+	<link href="jquery.simplegauge.css" type="text/css" rel="stylesheet">
+	
+</head>
+<body>
+
+<script>
+	simpleGauge({
+		id:  "aaa",
+        min:    0,
+        max:    100,
+        value:  4,		
+		decimal: 0,
+		width: 300,
+		height: 300,
+		left: 0,
+		top: 0,
+        template: [
+            '<div class="simpleGauge_container">',
+            '<div class="simpleGauge">',
+            '<div class="simpleGauge_title"></div>',
+            '<svg class="simpleGauge_bars simpleGauge_block" version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>',
+            '<div class="simpleGauge_labels simpleGauge_block"></div>',
+            '<div class="simpleGauge_ticks simpleGauge_block"></div>',
+            '<svg class="simpleGauge_pointers simpleGauge_block" version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>',
+            '<div class="simpleGauge_digital"></div>',
+            '</div>',
+            '</div>'
+        ].join(''),
+        type:   'analog digital',
+        container: {
+            scale: 100,
+            style: {}
+        },
+        title: {
+            text: '',
+            style: {}
+        },
+        digital: {
+            text: '{value.1}',
+            style: {
+                color: 'auto'
+            }
+        },
+        analog: {
+            minAngle:   -120,
+            maxAngle:   120
+        },
+        labels: {
+            text:   '{value}',
+            count:  10,
+            scale:  95,
+            style:  ''
+        },
+        ticks: {
+            count:  10,
+            scale1: 77,
+            scale2: 83,
+            style:  ''
+        },
+        subTicks: {
+            count:  0,
+            scale1: 80,
+            scale2: 83,
+            style:  ''
+        },
+        bars: {
+            scale1: 75,
+            scale2: 80,
+            style:  '',
+            colors: [
+                [ 0,  '#666666', 0, 0 ],
+                [ 50, '#ffa500', 0, 0 ],
+                [ 90, '#dd2222', 0, 0 ]
+            ]
+        },
+        pointer: {
+            scale: 85,
+            shape: [
+                '-2,-10',
+                '2,-10',
+                '2.1,-5.3',
+                '4,-4',
+                '5.3,-2.1',
+                '5.7,0',
+                '5.3,2.1',
+                '4,4',
+                '2.1,5.3',
+                '2,50',
+                '1.5,96',
+                '0,100',
+                '-1,96',
+                '-2,50',
+                '-2.1,5.3',
+                '-4,4',
+                '-5.3,2.1',
+                '-5.7,0',
+                '-5.3,-2.1',
+                '-4,-4',
+                '-2.1,-5.3',
+                '-2,-10'
+            ].join(' '),
+            style: {
+                color:       '#778',
+                borderWidth: 0,
+                borderColor: '#778'
+            }
+        }
+	});
+
+  setTimeout(function() {
+    simpleGauge({id:"aaa", value: 20});
+  }, 3000);
+</script>
+</body>
+</html>
