@@ -358,7 +358,7 @@ var catChart = '<xml>'+
 	  '          </block>'+
 	  '        </value>'+
 	  '        <value name="dataset">'+
-	  '          <block type="lists_create_with">'+
+	  '      	 <block type="lists_create_with">'+
 	  '            <mutation items="2"></mutation>'+
 	  '            <value name="ADD0">'+
 	  '              <block type="math_number">'+
@@ -373,6 +373,13 @@ var catChart = '<xml>'+
 	  '          </block>'+
 	  '        </value>'+
 	  '      </block>'+
+	  '      <block type="chart_line_clear">'+
+	  '        <value name="id">'+
+	  '          <block type="text">'+
+	  '            <field name="TEXT"></field>'+
+	  '          </block>'+
+	  '        </value>'+	  
+	  '      </block>'+	  
 	'</category>'+		
 '</category>'+	
 '</xml>';	

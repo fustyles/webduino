@@ -41,3 +41,4 @@ Blockly.Msg["CHART_LABEL"] = "標籤";
 Blockly.Msg["CHART_DATA"] = "數值(,)";
 Blockly.Msg["CHART_BORDERCOLOR"] = "邊框顏色";
 Blockly.Msg["CHART_BACKGROUNDCOLOR"] = "背景顏色";
+Blockly.Msg["CHART_LINE_CLEAR"] = "折線圖 清除資料集";
