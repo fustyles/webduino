@@ -41,3 +41,4 @@ Blockly.Msg.CHART_LABEL = "label";
 Blockly.Msg.CHART_DATA = "data(,)";
 Blockly.Msg.CHART_BORDERCOLOR = "bordercolor";
 Blockly.Msg.CHART_BACKGROUNDCOLOR = "backgroundcolor";
+Blockly.Msg["CHART_LINE_CLEAR"] = "Line chart clear dataset";
