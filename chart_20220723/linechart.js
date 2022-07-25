@@ -16,7 +16,7 @@ var linechart = function(config) {
 		canvas.style.position = "absolute";
 		$(document.body).append(canvas);
 		var ctx = canvas.getContext('2d');
-			
+		
 		stackedLine[config.id] = new Chart(ctx, config);
 		stackedLine[config.id].canvas.parentNode.style.height = config.height+"px";
 		stackedLine[config.id].canvas.parentNode.style.width = config.width+"px";

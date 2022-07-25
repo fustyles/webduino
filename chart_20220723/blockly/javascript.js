@@ -162,7 +162,7 @@ Blockly.JavaScript['chart_line_create'] = function(block) {
 '	  },\n'+
 '	  options: {\n'+
 '		responsive: true,\n'+
-'		maintainAspectRatio: false,\n'+	  
+'		maintainAspectRatio: false,\n'+
 '		plugins: {\n'+
 '		  legend: {\n'+
 '			position: "top",\n'+
