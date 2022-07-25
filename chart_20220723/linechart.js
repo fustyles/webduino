@@ -27,6 +27,7 @@ var linechart = function(config) {
 		for (var i =0;i<stackedLine[config.id].config.data.datasets.length;i++) {
 			stackedLine[config.id].config.data.datasets[i].data = [];
 		}
+		stackedLine[config.id].update();
 	}
 	else {
 		if (stackedLine[config.id].config.data.labels.length==linechartOptions[config.id].count) {
