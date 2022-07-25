@@ -35,6 +35,7 @@ var simpleGauge = function(options) {
 		div.style.left = options.left+"px";
 		div.style.top = options.top+"px";
 		div.style.position = "absolute";
+		div.style.zIndex = 9999;
 		$(document.body).append(div);
 		$element = $(div);
 		
@@ -209,6 +210,7 @@ var simpleGauge = function(options) {
 		if(typeof labelTemplate != 'string') {
 			labelTemplate = options.labels.text;
 		}
+			
 		for(let val = options.min; val <= options.max; val += step) {
 			let angle = getAngleFromValue(val);
 			let coord = getPointFromAngle(width, height, angle);
@@ -219,10 +221,12 @@ var simpleGauge = function(options) {
 					labelVal = Math.round(labelVal * factor) / factor;
 				}
 				labelVal = Math.round(Math.pow(10, options.decimal)*labelVal)/Math.pow(10, options.decimal);
+				
 				return labelVal.toString();
 			});
 			let $label = $('<div>').addClass('simpleGauge_label').html(html);
 			$labels.append($label);
+			
 			let css = styleToCss(options.labels.style, {
 				left: coord[0] - $label.width()*0.03,
 				top: coord[1] - $label.height()*0.03

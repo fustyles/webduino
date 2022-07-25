@@ -24,7 +24,7 @@ Blockly.JavaScript['chart_analoggauge_create'] = function(block) {
 	'	document.getElementsByTagName("head")[0].appendChild(link);\n'+
 	'}\n';
   
-  var code = 'include_css("https://fustyles.github.io/webduino/chart_20220723/jquery.simplegauge.css");\nawait delay(2, true);\n';
+  var code = 'include_css("http://localhost:20975/chart_20220723/jquery.simplegauge.css");\nawait delay(2, true);\n';
   code +=  'simpleGauge({\n'+
 	'	id:  '+id+',\n'+
     '   value: '+val+',\n'+	
@@ -70,13 +70,13 @@ Blockly.JavaScript['chart_analoggauge_create'] = function(block) {
     '    labels: {\n'+
     '        text:   "{value}",\n'+
     '        count:  '+count+',\n'+
-    '        scale:  95,\n'+
+    '        scale:  90,\n'+
     '        style:  ""\n'+
     '    },\n'+
     '    ticks: {\n'+
     '        count:  '+count+',\n'+
-    '        scale1: 77,\n'+
-    '        scale2: 83,\n'+
+    '        scale1: 72,\n'+
+    '        scale2: 78,\n'+
     '        style:  ""\n'+
     '    },\n'+
     '    subTicks: {\n'+
@@ -86,8 +86,8 @@ Blockly.JavaScript['chart_analoggauge_create'] = function(block) {
     '        style:  ""\n'+
     '    },\n'+
     '    bars: {\n'+
-    '        scale1: 75,\n'+
-    '        scale2: 80,\n'+
+    '        scale1: 72,\n'+
+    '        scale2: 78,\n'+
     '        style:  "",\n'+
     '        colors: \n'+
     '            '+color+
