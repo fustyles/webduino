@@ -41,4 +41,4 @@ Blockly.Msg.CHART_LABEL = "标签";
 Blockly.Msg.CHART_DATA = "数值(,)";
 Blockly.Msg.CHART_BORDERCOLOR = "边框颜色";
 Blockly.Msg.CHART_BACKGROUNDCOLOR = "背景颜色";
-Blockly.Msg["CHART_LINE_CLEAR"] = "折线图 清除资料集";
+Blockly.Msg.CHART_LINE_CLEAR = "折线图 清除资料集";
