@@ -346,23 +346,33 @@ var catChart = '<xml>'+
 	  '          </block>'+
 	  '        </value>'+
 	  '      </block>'+	  
-	  '<block type="chart_line_set">'+
-	    '<value name="id">'+
-		  '<block type="text">'+
-			'<field name="TEXT"></field>'+
-		  '</block>'+
-		'</value>'+	
-	    '<value name="datax">'+
-		  '<block type="text">'+
-			'<field name="TEXT"></field>'+
-		  '</block>'+
-		'</value>'+
-	    '<value name="dataset">'+
-		  '<block type="text">'+
-			'<field name="TEXT"></field>'+
-		  '</block>'+
-		'</value>'+		
-	  '</block>'+  
+	  '      <block type="chart_line_set" inline="false">'+
+	  '        <value name="id">'+
+	  '          <block type="text">'+
+	  '            <field name="TEXT"></field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="datax">'+
+	  '          <block type="system_datetime_get">'+
+	  '            <field name="type">time</field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="dataset">'+
+	  '          <block type="lists_create_with">'+
+	  '            <mutation items="2"></mutation>'+
+	  '            <value name="ADD0">'+
+	  '              <block type="math_number">'+
+	  '                <field name="NUM">1</field>'+
+	  '              </block>'+
+	  '            </value>'+
+	  '            <value name="ADD1">'+
+	  '              <block type="math_number">'+
+	  '                <field name="NUM">2</field>'+
+	  '              </block>'+
+	  '            </value>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '      </block>'+
 	'</category>'+		
 '</category>'+	
 '</xml>';	

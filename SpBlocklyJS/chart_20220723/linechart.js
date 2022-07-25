@@ -25,13 +25,15 @@ var linechart = function(config) {
 	else {
 		if (stackedLine[config.id].config.data.labels.length==linechartOptions[config.id].count) {
 			stackedLine[config.id].config.data.labels.splice(0, 1);
-			stackedLine[config.id].config.data.datasets[0].data.splice(0, 1);
-			stackedLine[config.id].config.data.datasets[1].data.splice(0, 1);
+			for (var i =0;i<stackedLine[config.id].config.data.datasets.length;i++) {
+				stackedLine[config.id].config.data.datasets[i].data.splice(0, 1);
+			}
 		}
 		
 		stackedLine[config.id].config.data.labels.push(config.data[0]);
-		stackedLine[config.id].config.data.datasets[0].data.push(config.data[1]);
-		stackedLine[config.id].config.data.datasets[1].data.push(config.data[2]);
+		for (var i =0;i<stackedLine[config.id].config.data.datasets.length;i++) {
+			stackedLine[config.id].config.data.datasets[i].data.push(config.data[i+1]);
+		}
 		stackedLine[config.id].update();
 	}
 }
