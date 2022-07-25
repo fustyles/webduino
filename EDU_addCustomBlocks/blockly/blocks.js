@@ -37,7 +37,8 @@ Blockly.Blocks['addMyBlocks'] = {
         [Blockly.Msg.ADDCUSTOMBLOCKS_MYBACKPACK_SHOW,"myBackPack_20210914"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_WEBSERIAL_SHOW,"WebSerial_20220126"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_MQTT_SHOW,"MQTT_20220324"],
-        [Blockly.Msg.ADDCUSTOMBLOCKS_ROBOTFLY_SHOW,"RobotFly_20220127"]	  
+        [Blockly.Msg.ADDCUSTOMBLOCKS_ROBOTFLY_SHOW,"RobotFly_20220127"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_CHART_SHOW,"chart_20220723"]	  
       ]), "func");
   this.setTooltip('');
   this.setColour(20);
@@ -165,6 +166,8 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/MQTT_20220324/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/RobotFly_20220127/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/hands_20220614/blockly.json');
+		    
+		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/chart_20220723/blockly.json');
             }
 	    else if (this.getFieldValue('func')=='addAllNewAI') {
 
@@ -207,6 +210,8 @@ Blockly.Blocks['addMyBlocks'] = {
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/MQTT_20220324/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/RobotFly_20220127/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/hands_20220614/blockly.json');
+		    
+		  Code.customTab.$__add__('https://fustyles.github.io/webduino/chart_20220723/blockly.json');
 	    }
 	    else if (this.getFieldValue('func')=='removeAllNewAI') {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json');
@@ -234,7 +239,9 @@ Blockly.Blocks['addMyBlocks'] = {
 		    
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/MQTT_20220324/blockly.json');
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/RobotFly_20220127/blockly.json');
-                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/hands_20220614/blockly.json');		    
+                  Code.customTab.$__remove__('https://fustyles.github.io/webduino/hands_20220614/blockly.json');
+		    
+		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/chart_20220723/blockly.json');
 	    }
 	    else if (this.getFieldValue('func')=='instascan.js_20201012') {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json');
@@ -323,6 +330,9 @@ Blockly.Blocks['addMyBlocks'] = {
 	    else if (this.getFieldValue('func')=='hands_20220614') {
 				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/hands_20220614/blockly.json", "TEXT");
 			  }		  
+	    else if (this.getFieldValue('func')=='chart_20220723') {
+				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/chart_20220723/blockly.json", "TEXT");
+			  }
 		  
 	    this.getField('func').setValue("");
 	}
