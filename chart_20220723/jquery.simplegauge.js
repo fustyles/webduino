@@ -224,8 +224,8 @@ var simpleGauge = function(options) {
 			let $label = $('<div>').addClass('simpleGauge_label').html(html);
 			$labels.append($label);
 			let css = styleToCss(options.labels.style, {
-				left: coord[0] - $label.width() / 2,
-				top: coord[1] - $label.height() / 2
+				left: coord[0] - $label.width()*0.03,
+				top: coord[1] - $label.height()*0.03
 			});
 			$label.css(css);
 		}
