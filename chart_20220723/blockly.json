@@ -1,0 +1,20 @@
+{
+  "types": ["chart_doughnut_create", "chart_doughnut_set", "chart_gauge_create", "chart_gauge_set",  "chart_waterbubble_create", "chart_waterbubble_set", "chart_line_create", "chart_line_dataset", "chart_line_set"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "Chart.min.js",
+    "jquery.tempgauge.js",
+    "linechart.js",
+    "pretty-doughtnut.js",
+    "waterbubble.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
+
+
