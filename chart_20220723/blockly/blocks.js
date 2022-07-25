@@ -272,3 +272,17 @@ Blockly.Blocks['chart_line_set'] = {
     this.setColour(330);
   }
 };
+
+Blockly.Blocks['chart_line_clear'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["CHART_LINE_CLEAR"]);
+	this.appendValueInput("id")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_ID"]);		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(330);
+  }
+};
