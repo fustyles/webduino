@@ -63,6 +63,8 @@ var doughnutWidget = {
 			obj.style.position = "absolute";
 			obj.style.left = o.left+'px';
 			obj.style.top = o.top+'px';
+			obj.style.width = o.width+'px';
+			obj.style.height = o.height+'px';				
 			document.body.appendChild(obj);
 		}
 		o.container = $('#'+o.container);
