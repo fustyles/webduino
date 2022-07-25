@@ -1,5 +1,5 @@
 {
-  "types": ["chart_doughnut_create", "chart_doughnut_set", "chart_gauge_create", "chart_gauge_set",  "chart_waterbubble_create", "chart_waterbubble_set", "chart_line_create", "chart_line_dataset", "chart_line_set"],
+  "types": ["chart_doughnut_create", "chart_doughnut_set", "chart_gauge_create", "chart_gauge_set",  "chart_waterbubble_create", "chart_waterbubble_set", "chart_line_create", "chart_line_dataset", "chart_line_set", "chart_line_clear"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
