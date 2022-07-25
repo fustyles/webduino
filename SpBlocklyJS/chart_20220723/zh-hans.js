@@ -2,6 +2,7 @@ Blockly.Msg["CATCHART"] = "图表";
 Blockly.Msg["CATCHARTDOUGHNUT"] = "甜甜圈";
 Blockly.Msg["CATCHARTGAUGE"] = "温度计";
 Blockly.Msg["CATCHARTWATERBUBBLE"] = "水位计";
+
 Blockly.Msg["CHART_DOUGHNUT_CREATE"] = "甜甜圈 建立";
 Blockly.Msg["CHART_DOUGHNUT_SET"] = "甜甜圈 设定数值";
 Blockly.Msg["CHART_GAUGE_CREATE"] = "温度计 建立";
@@ -27,8 +28,8 @@ Blockly.Msg["CHART_WATERCOLOR"] = "水的颜色";
 Blockly.Msg["CHART_TEXTCOLOR"] = "文字颜色";
 
 Blockly.Msg["CATLINECHART"] = "折线图";
-Blockly.Msg["CHART_LINE_CREATE"] = "折线图";
-Blockly.Msg["CHART_LINE_SET"] = "折线图 设定数值";
+Blockly.Msg["CHART_LINE_CREATE"] = "折线图 建立";
+Blockly.Msg["CHART_LINE_SET"] = "折线图 新增一笔资料";
 Blockly.Msg["CHART_TITLE"] = "图表标签";
 Blockly.Msg["CHART_TITLE_X"] = "X轴标签";
 Blockly.Msg["CHART_TITLE_Y"] = "Y轴标签";

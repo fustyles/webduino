@@ -28,8 +28,8 @@ Blockly.Msg["CHART_WATERCOLOR"] = "水的顏色";
 Blockly.Msg["CHART_TEXTCOLOR"] = "文字顏色";
 
 Blockly.Msg["CATLINECHART"] = "折線圖";
-Blockly.Msg["CHART_LINE_CREATE"] = "折線圖";
-Blockly.Msg["CHART_LINE_SET"] = "折線圖 設定一筆數值";
+Blockly.Msg["CHART_LINE_CREATE"] = "折線圖 建立";
+Blockly.Msg["CHART_LINE_SET"] = "折線圖 新增一筆資料";
 Blockly.Msg["CHART_TITLE"] = "圖表標籤";
 Blockly.Msg["CHART_TITLE_X"] = "X軸標籤";
 Blockly.Msg["CHART_TITLE_Y"] = "Y軸標籤";
