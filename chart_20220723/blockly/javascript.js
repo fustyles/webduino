@@ -226,3 +226,9 @@ Blockly.JavaScript['chart_line_set'] = function(block) {
   code = 'linechart({id: '+id+', data: ['+dataset+']});\n';
   return code;
 };
+
+Blockly.JavaScript['chart_line_clear'] = function(block) {
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);	
+  var code = 'linechart({id: '+id+', clear: ""});\n';
+  return code;
+};
