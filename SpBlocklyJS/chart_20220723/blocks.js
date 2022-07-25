@@ -47,7 +47,7 @@ Blockly.Blocks['chart_analoggauge_create'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(280);
   }
 };
 
@@ -63,7 +63,7 @@ Blockly.Blocks['chart_analoggauge_colorset'] = {
 		.appendField(Blockly.Msg["CHART_ANALOGGAUGE_COLOR"]); 		
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(330);
+  this.setColour(280);
   }
 };
 
@@ -80,22 +80,9 @@ Blockly.Blocks['chart_analoggauge_set'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(280);
   }
 };	
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Blockly.Blocks['chart_doughnut_create'] = {
   init: function() {
@@ -423,7 +410,7 @@ Blockly.Blocks['chart_bar_create'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(330);
+    this.setColour(20);
   }
 };
 
@@ -442,7 +429,7 @@ Blockly.Blocks['chart_bar_dataset'] = {
 		.appendField(Blockly.Msg["CHART_BACKGROUNDCOLOR"]);			
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(330);
+  this.setColour(20);
   }
 };
 
@@ -462,7 +449,7 @@ Blockly.Blocks['chart_bar_set'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(330);
+    this.setColour(20);
   }
 };
 
@@ -476,6 +463,6 @@ Blockly.Blocks['chart_bar_clear'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(330);
+    this.setColour(20);
   }
 };
