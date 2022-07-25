@@ -532,3 +532,15 @@ Blockly.Msg.INCLUDE_POSITION = "position";
 Blockly.Msg.INCLUDE_HEADER = "header";
 Blockly.Msg.INCLUDE_HERE = "here";
 Blockly.Msg.INCLUDE_URL = "url";
+
+Blockly.Msg["SYSTEM_DATETIME"] = "System Time";
+Blockly.Msg["SYSTEM_DATETIME_DATETIME"] = "DATETIME";
+Blockly.Msg["SYSTEM_DATETIME_DATE"] = "DATE";
+Blockly.Msg["SYSTEM_DATETIME_TIME"] = "TIME";
+Blockly.Msg["SYSTEM_DATETIME_YEAR"] = "YEAR";
+Blockly.Msg["SYSTEM_DATETIME_MONTH"] = "MONTH";
+Blockly.Msg["SYSTEM_DATETIME_DAY"] = "DAY";
+Blockly.Msg["SYSTEM_DATETIME_WEEK"] = "WEEK";
+Blockly.Msg["SYSTEM_DATETIME_HOUR"] = "HOUR";
+Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "MINUTE";
+Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "SECOND";

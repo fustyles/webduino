@@ -532,3 +532,15 @@ Blockly.Msg.INCLUDE_POSITION = "位置";
 Blockly.Msg.INCLUDE_HEADER = "标题区块";
 Blockly.Msg.INCLUDE_HERE = "目前位置";
 Blockly.Msg.INCLUDE_URL = "网址";
+
+Blockly.Msg["SYSTEM_DATETIME"] = "系统时间";
+Blockly.Msg["SYSTEM_DATETIME_DATETIME"] = "完整时间";
+Blockly.Msg["SYSTEM_DATETIME_DATE"] = "日期";
+Blockly.Msg["SYSTEM_DATETIME_TIME"] = "时间";
+Blockly.Msg["SYSTEM_DATETIME_YEAR"] = "年";
+Blockly.Msg["SYSTEM_DATETIME_MONTH"] = "月";
+Blockly.Msg["SYSTEM_DATETIME_DAY"] = "日";
+Blockly.Msg["SYSTEM_DATETIME_WEEK"] = "星期";
+Blockly.Msg["SYSTEM_DATETIME_HOUR"] = "时";
+Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "分";
+Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "秒";

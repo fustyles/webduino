@@ -58,6 +58,8 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    <block type="location">'+
 '    </block>'+
+'    <block type="system_datetime_get">'+
+'    </block>'+
 '    <block type="console_log">'+
 '    <value name="text_">'+
 '    <block type="text">'+

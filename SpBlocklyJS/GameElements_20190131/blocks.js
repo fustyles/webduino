@@ -1,3 +1,26 @@
+Blockly.Blocks['system_datetime_get'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg["SYSTEM_DATETIME"]); 
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["SYSTEM_DATETIME_DATETIME"],"datetime"],
+		[Blockly.Msg["SYSTEM_DATETIME_DATE"],"date"],
+		[Blockly.Msg["SYSTEM_DATETIME_TIME"],"time"],
+		[Blockly.Msg["SYSTEM_DATETIME_YEAR"],"year"],
+		[Blockly.Msg["SYSTEM_DATETIME_MONTH"],"month"],
+		[Blockly.Msg["SYSTEM_DATETIME_DAY"],"day"],
+		[Blockly.Msg["SYSTEM_DATETIME_WEEK"],"week"],
+		[Blockly.Msg["SYSTEM_DATETIME_HOUR"],"hour"],
+		[Blockly.Msg["SYSTEM_DATETIME_MINUTE"],"minute"],
+		[Blockly.Msg["SYSTEM_DATETIME_SECOND"],"second"]
+	  ]), "type");
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(90);
+  }
+};
+
 Blockly.Blocks['include_file'] = {
   init: function() {
   this.appendDummyInput() 

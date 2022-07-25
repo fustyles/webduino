@@ -1,3 +1,9 @@
+Blockly.JavaScript['system_datetime_get'] = function (block) {
+  var type = block.getFieldValue('type');
+  var code = 'getDatetime("' + type + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['include_file'] = function (block) {
   var type = block.getFieldValue('type');
   var position = block.getFieldValue('position');

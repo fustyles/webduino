@@ -90,6 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		if (workspace.getBlocksByType("chart_waterbubble_create").length>0) {
 			script += "<script src='chart_20220723/waterbubble.js'></script>";
+		}
+
+		if (workspace.getBlocksByType("chart_line_create").length>0) {
+			script += "<script src='chart_20220723/Chart.min.js'></script>";			
+			script += "<script src='chart_20220723/linechart.js'></script>";
 		}		
 		
 		return script;
@@ -174,7 +179,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		if (workspace.getBlocksByType("chart_waterbubble_create").length>0) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/waterbubble.js'></script>";
-		}			
+		}	
+
+		if (workspace.getBlocksByType("chart_line_create").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/linechart.js'></script>";
+		}		
 		
 		return script;
 	}		

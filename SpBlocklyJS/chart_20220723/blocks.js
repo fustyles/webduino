@@ -192,3 +192,83 @@ Blockly.Blocks['chart_waterbubble_set'] = {
     this.setColour(170);
   }
 };
+
+Blockly.Blocks['chart_line_create'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["CHART_LINE_CREATE"]);
+	this.appendValueInput("id")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_ID"]);			
+	this.appendValueInput("width")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_WIDTH"]);  
+	this.appendValueInput("height")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_HEIGHT"]);	
+	this.appendValueInput("left")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_LEFT"]);  
+	this.appendValueInput("top")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_TOP"]);
+	this.appendValueInput("count")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_COUNT"]);
+	this.appendValueInput("title")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_TITLE"]);
+	this.appendValueInput("titlex")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_TITLE_X"]);
+	this.appendValueInput("titley")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_TITLE_Y"]);
+	this.appendValueInput("dataset")
+		.setCheck(null)
+		.appendField(Blockly.Msg["CHART_DATASET"]); 		
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(330);
+  }
+};
+
+Blockly.Blocks['chart_line_dataset'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["CHART_LINE_DATASET"]);
+	this.appendValueInput("label")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_LABEL"]);
+	this.appendValueInput("borderColor")
+		.setCheck(null)	
+		.appendField(Blockly.Msg["CHART_BORDERCOLOR"]);	
+	this.appendValueInput("backgroundColor")
+		.setCheck(null)	
+		.appendField(Blockly.Msg["CHART_BACKGROUNDCOLOR"]);			
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(330);
+  }
+};
+
+Blockly.Blocks['chart_line_set'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["CHART_LINE_SET"]);	  
+	this.appendValueInput("id")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_ID"]);
+	this.appendValueInput("datax")
+		.setCheck(null)
+		.appendField(Blockly.Msg["CHART_DATA_X"]); 		
+	this.appendValueInput("dataset")
+		.setCheck(null)
+		.appendField(Blockly.Msg["CHART_DATASET"]); 
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(330);
+  }
+};
