@@ -24,7 +24,7 @@ Blockly.JavaScript['chart_analoggauge_create'] = function(block) {
 	'	document.getElementsByTagName("head")[0].appendChild(link);\n'+
 	'}\n';
   
-  var code = 'include_css("jquery.simplegauge.css");\nawait delay(2, true);\n';
+  var code = 'include_css("https://fustyles.github.io/webduino/chart_20220723/jquery.simplegauge.css");\nawait delay(2, true);\n';
   code +=  'simpleGauge({\n'+
 	'	id:  '+id+',\n'+
     '   value: '+val+',\n'+	
