@@ -38,7 +38,12 @@ Blockly.Msg.CHART_DATA_X = "X轴数值";
 Blockly.Msg.CHART_DATASET = "资料集阵列";
 Blockly.Msg.CHART_LINE_DATASET = "折线图 资料集";
 Blockly.Msg.CHART_LABEL = "标签";
-Blockly.Msg.CHART_DATA = "数值(,)";
 Blockly.Msg.CHART_BORDERCOLOR = "边框颜色";
 Blockly.Msg.CHART_BACKGROUNDCOLOR = "背景颜色";
 Blockly.Msg.CHART_LINE_CLEAR = "折线图 清除资料集";
+
+Blockly.Msg.CATBARCHART = "长条图";
+Blockly.Msg.CHART_BAR_CREATE = "长条图 建立";
+Blockly.Msg.CHART_BAR_SET = "长条图 新增一笔资料";
+Blockly.Msg.CHART_BAR_DATASET = "长条图 资料集";
+Blockly.Msg.CHART_BAR_CLEAR = "长条图 清除资料集";

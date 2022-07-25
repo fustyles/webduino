@@ -38,7 +38,12 @@ Blockly.Msg.CHART_DATA_X = "X value";
 Blockly.Msg.CHART_DATASET = "dataset";
 Blockly.Msg.CHART_LINE_DATASET = "Line chart dataset";
 Blockly.Msg.CHART_LABEL = "label";
-Blockly.Msg.CHART_DATA = "data(,)";
 Blockly.Msg.CHART_BORDERCOLOR = "bordercolor";
 Blockly.Msg.CHART_BACKGROUNDCOLOR = "backgroundcolor";
 Blockly.Msg.CHART_LINE_CLEAR = "Line chart clear dataset";
+
+Blockly.Msg.CATBARCHART = "Bar chart";
+Blockly.Msg.CHART_BAR_CREATE = "Bar chart";
+Blockly.Msg.CHART_BAR_SET = "Bar chart set value";
+Blockly.Msg.CHART_BAR_DATASET = "Bar chart dataset";
+Blockly.Msg.CHART_BAR_CLEAR = "Bar chart clear dataset";

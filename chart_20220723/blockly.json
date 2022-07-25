@@ -1,5 +1,5 @@
 {
-  "types": ["chart_doughnut_create", "chart_doughnut_set", "chart_gauge_create", "chart_gauge_set",  "chart_waterbubble_create", "chart_waterbubble_set", "chart_line_create", "chart_line_dataset", "chart_line_set", "chart_line_clear"],
+  "types": ["chart_doughnut_create", "chart_doughnut_set", "chart_gauge_create", "chart_gauge_set",  "chart_waterbubble_create", "chart_waterbubble_set", "chart_line_create", "chart_line_dataset", "chart_line_set", "chart_line_clear", "chart_bar_create", "chart_bar_dataset", "chart_bar_set", "chart_bar_clear"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
@@ -10,7 +10,8 @@
     "jquery.tempgauge.js",
     "linechart.js",
     "pretty-doughtnut.js",
-    "waterbubble.js"
+    "waterbubble.js",
+    "barchart.js"
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",

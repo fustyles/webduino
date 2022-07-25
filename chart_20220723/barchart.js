@@ -1,10 +1,10 @@
-var linechartOptions = {};
+var barchartOptions = {};
 var stackedLine = {};
 
-var linechart = function(config) {
+var barchart = function(config) {
 	
-	if (typeof linechartOptions[config.id]==="undefined") {
-		linechartOptions[config.id] = config;
+	if (typeof barchartOptions[config.id]==="undefined") {
+		barchartOptions[config.id] = config;
 		
 		if ($("#gamecanvas_"+config.id).length)
 			$("#gamecanvas_"+config.id).remove();
@@ -27,10 +27,9 @@ var linechart = function(config) {
 		for (var i =0;i<stackedLine[config.id].config.data.datasets.length;i++) {
 			stackedLine[config.id].config.data.datasets[i].data = [];
 		}
-		stackedLine[config.id].update();
 	}
 	else {
-		if (stackedLine[config.id].config.data.labels.length==linechartOptions[config.id].count) {
+		if (stackedLine[config.id].config.data.labels.length==barchartOptions[config.id].count) {
 			stackedLine[config.id].config.data.labels.splice(0, 1);
 			for (var i =0;i<stackedLine[config.id].config.data.datasets.length;i++) {
 				stackedLine[config.id].config.data.datasets[i].data.splice(0, 1);
