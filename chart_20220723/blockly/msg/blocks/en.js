@@ -29,7 +29,7 @@ Blockly.Msg.CHART_TEXTCOLOR = "text color";
 
 Blockly.Msg.CATLINECHART = "Line chart";
 Blockly.Msg.CHART_LINE_CREATE = "Line chart";
-Blockly.Msg.CHART_LINE_SET = "Line chart set value";
+Blockly.Msg.CHART_LINE_SET = "Line chart add value";
 Blockly.Msg.CHART_TITLE = "chart label";
 Blockly.Msg.CHART_TITLE_X = "label X";
 Blockly.Msg.CHART_TITLE_Y = "label Y";
