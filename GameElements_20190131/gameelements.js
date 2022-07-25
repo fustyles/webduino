@@ -4081,6 +4081,30 @@ function HextoRgb(color) {
 		document.getElementsByTagName('head')[0].appendChild(link); 
 	  }
   }
+	
+  function getDatetime(type) {
+	  var now = new Date();
+	  if (type=="datetime")
+		  return now.getFullYear()+"/"+now.getMonth()+"/"+now.getDate()+" "+("0" + now.getHours()).slice(-2)+":"+("0" + now.getMinutes()).slice(-2)+":"+("0" + now.getSeconds()).slice(-2);
+	  else if (type=="date")
+		  return now.getFullYear()+"/"+now.getMonth()+"/"+now.getDate();
+	  else if (type=="time")
+		  return ("0" + now.getHours()).slice(-2)+":"+("0" + now.getMinutes()).slice(-2)+":"+("0" + now.getSeconds()).slice(-2);
+	  else if (type=="year")
+		  return now.getFullYear();
+	  else if (type=="month")
+		  return now.getMonth();
+	  else if (type=="day")
+		  return now.getDate();
+	  else if (type=="week")
+		  return now.getDay()		  
+	  else if (type=="hour")
+		  return now.getHours();
+	  else if (type=="minute")
+		  return now.getMinutes();
+	  else if (type=="second")
+		  return now.getSeconds();
+  }	
   
   window.table_create = table_create;
   window.table_set = table_set;
@@ -4249,5 +4273,6 @@ function HextoRgb(color) {
   window.span_get = span_get;
   window.span_delete = span_delete;
   window.include_file = include_file;
+  window.getDatetime = getDatetime; 	
   
 }(window, window.document));
