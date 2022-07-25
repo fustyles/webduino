@@ -18,6 +18,10 @@ Chrome瀏覽器console指令：移除自訂積木
 Code.customTab.$__remove__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
 
+(新版) 圖表
+https://fustyles.github.io/webduino/chart_20220723/blockly.json
+
+
 (新版) 手勢辨識 (MediaPipe Holistic)
 https://fustyles.github.io/webduino/hands_20220614/blockly.json
 
