@@ -1,3 +1,149 @@
+Blockly.JavaScript['chart_analoggauge_create'] = function(block) {
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
+  var name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+  var width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC);
+  var height = Blockly.JavaScript.valueToCode(block, 'height', Blockly.JavaScript.ORDER_ATOMIC);
+  var left = Blockly.JavaScript.valueToCode(block, 'left', Blockly.JavaScript.ORDER_ATOMIC);
+  var top = Blockly.JavaScript.valueToCode(block, 'top', Blockly.JavaScript.ORDER_ATOMIC);
+  var val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC);
+  var min = Blockly.JavaScript.valueToCode(block, 'min', Blockly.JavaScript.ORDER_ATOMIC);
+  var max = Blockly.JavaScript.valueToCode(block, 'max', Blockly.JavaScript.ORDER_ATOMIC);
+  var decimal = Blockly.JavaScript.valueToCode(block, 'decimal', Blockly.JavaScript.ORDER_ATOMIC);
+  var unit = Blockly.JavaScript.valueToCode(block, 'unit', Blockly.JavaScript.ORDER_ATOMIC);
+  var count = Blockly.JavaScript.valueToCode(block, 'count', Blockly.JavaScript.ORDER_ATOMIC);
+  var angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
+  var color = Blockly.JavaScript.valueToCode(block, 'color', Blockly.JavaScript.ORDER_ATOMIC);
+
+  Blockly.JavaScript.definitions_['include_css'] = ''+
+    'function include_css(url) {\n'+
+	'	var link  = document.createElement("link");\n'+
+	'	link.rel  = "stylesheet";\n'+
+	'	link.type = "text/css";\n'+
+	'	link.href = url;\n'+
+	'	link.media = "all";\n'+
+	'	document.getElementsByTagName("head")[0].appendChild(link);\n'+
+	'}\n';
+  
+  var code = 'include_css("jquery.simplegauge.css");\nawait delay(2, true);\n';
+  code +=  'simpleGauge({\n'+
+	'	id:  '+id+',\n'+
+    '   value: '+val+',\n'+	
+    '   min: '+min+',\n'+
+    '   max: '+max+',\n'+
+	'	width: '+width+',\n'+
+	'	height: '+height+',\n'+
+	'	left: '+left+',\n'+
+	'	top: '+top+',\n'+
+	'	decimal: '+decimal+',\n'+
+	'	unit: '+unit+',\n'+
+    '    template: [\n'+
+    '        "<div class=\'simpleGauge_container\'>",\n'+
+    '        "<div class=\'simpleGauge\'>",\n'+
+    '        "<div class=\'simpleGauge_title\'></div>",\n'+
+    '        "<svg class=\'simpleGauge_bars simpleGauge_block\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\'></svg>",\n'+
+    '        "<div class=\'simpleGauge_labels simpleGauge_block\'></div>",\n'+
+    '        "<div class=\'simpleGauge_ticks simpleGauge_block\'></div>",\n'+
+    '        "<svg class=\'simpleGauge_pointers simpleGauge_block\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\'></svg>",\n'+
+    '        "<div class=\'simpleGauge_digital\'></div>",\n'+
+    '        "</div>",\n'+
+    '        "</div>"\n'+
+    '    ].join(""),\n'+
+    '    type:   "analog digital",\n'+
+    '    container: {\n'+
+    '        scale: 90,\n'+
+    '        style: {}\n'+
+    '    },\n'+
+    '    title: {\n'+
+    '        text: '+name+',\n'+
+    '        style: {}\n'+
+    '    },\n'+
+    '    digital: {\n'+
+    '        text: "{value.1}",\n'+
+    '        style: {\n'+
+    '            color: "auto"\n'+
+    '        }\n'+
+    '    },\n'+
+    '    analog: {\n'+
+    '        minAngle: -'+angle+',\n'+
+    '        maxAngle: '+angle+'\n'+
+    '    },\n'+
+    '    labels: {\n'+
+    '        text:   "{value}",\n'+
+    '        count:  '+count+',\n'+
+    '        scale:  95,\n'+
+    '        style:  ""\n'+
+    '    },\n'+
+    '    ticks: {\n'+
+    '        count:  '+count+',\n'+
+    '        scale1: 77,\n'+
+    '        scale2: 83,\n'+
+    '        style:  ""\n'+
+    '    },\n'+
+    '    subTicks: {\n'+
+    '        count:  0,\n'+
+    '        scale1: 80,\n'+
+    '        scale2: 83,\n'+
+    '        style:  ""\n'+
+    '    },\n'+
+    '    bars: {\n'+
+    '        scale1: 75,\n'+
+    '        scale2: 80,\n'+
+    '        style:  "",\n'+
+    '        colors: \n'+
+    '            '+color+
+    '        \n'+
+    '    },\n'+
+    '    pointer: {\n'+
+    '        scale: 85,\n'+
+    '        shape: [\n'+
+    '            "-2,-10",\n'+
+    '            "2,-10",\n'+
+    '            "2.1,-5.3",\n'+
+    '            "4,-4",\n'+
+    '            "5.3,-2.1",\n'+
+    '            "5.7,0",\n'+
+    '            "5.3,2.1",\n'+
+    '            "4,4",\n'+
+    '            "2.1,5.3",\n'+
+    '            "2,50",\n'+
+    '            "1.5,96",\n'+
+    '            "0,100",\n'+
+    '            "-1,96",\n'+
+    '            "-2,50",\n'+
+    '            "-2.1,5.3",\n'+
+    '            "-4,4",\n'+
+    '            "-5.3,2.1",\n'+
+    '            "-5.7,0",\n'+
+    '            "-5.3,-2.1",\n'+
+    '            "-4,-4",\n'+
+    '            "-2.1,-5.3",\n'+
+    '            "-2,-10"\n'+
+    '        ].join(" "),\n'+
+    '        style: {\n'+
+    '            color: "#8778",\n'+
+    '            borderWidth: 0,\n'+
+    '            borderColor: "#8778"\n'+
+    '        }\n'+
+    '    }\n'+
+	'});';
+												
+  return code;
+};
+
+Blockly.JavaScript['chart_analoggauge_colorset'] = function(block) {
+  var val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC);
+  var color = Blockly.JavaScript.valueToCode(block, 'color', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '[ '+val+', '+color+', 0, 0 ]';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['chart_analoggauge_set'] = function(block) {
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
+  var val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC);
+  code = 'simpleGauge({id:'+id+', value: '+val+'});\n';
+  return code;
+};
+
 Blockly.JavaScript['chart_doughnut_create'] = function(block) {
   var id = "chart_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
   var name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);

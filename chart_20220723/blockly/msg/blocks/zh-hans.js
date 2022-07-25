@@ -47,3 +47,10 @@ Blockly.Msg.CHART_BAR_CREATE = "长条图 建立";
 Blockly.Msg.CHART_BAR_SET = "长条图 新增一笔资料";
 Blockly.Msg.CHART_BAR_DATASET = "长条图 资料集";
 Blockly.Msg.CHART_BAR_CLEAR = "长条图 清除资料集";
+
+Blockly.Msg.CATCANALOGGAUGE = "类比计";
+Blockly.Msg.CHART_ANALOGGAUGE_CREATE = "类比计 建立";
+Blockly.Msg.CHART_ANALOGGAUGE_SET = "类比计 设定数值";
+Blockly.Msg.CHART_ANALOGGAUGE_COUNT = "格数";
+Blockly.Msg.CHART_ANALOGGAUGE_COLOR = "颜色区间";
+Blockly.Msg.CHART_ANALOGGAUGE_ANGLE = "角度范围";
