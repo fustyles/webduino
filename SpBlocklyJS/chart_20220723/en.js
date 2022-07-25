@@ -47,3 +47,10 @@ Blockly.Msg["CHART_BAR_CREATE"] = "Bar chart";
 Blockly.Msg["CHART_BAR_SET"] = "Bar chart set value";
 Blockly.Msg["CHART_BAR_DATASET"] = "Bar chart dataset";
 Blockly.Msg["CHART_BAR_CLEAR"] = "Bar chart clear dataset";
+
+Blockly.Msg["CATCANALOGGAUGE"] = "Analog chart";
+Blockly.Msg["CHART_ANALOGGAUGE_CREATE"] = "Analog chart set";
+Blockly.Msg["CHART_ANALOGGAUGE_SET"] = "Analog chart set value";
+Blockly.Msg["CHART_ANALOGGAUGE_COUNT"] = "intervals";
+Blockly.Msg["CHART_ANALOGGAUGE_COLOR"] = "color split";
+Blockly.Msg["CHART_ANALOGGAUGE_ANGLE"] = "angle range";

@@ -13,11 +13,9 @@ var simpleGaugeOptions = {};
 var simpleGauge = function(options) {
 	
 	if (typeof simpleGaugeOptions[options.id]==="undefined") {
-		options.value = Math.round(Math.pow(10, options.decimal)*options.value)/Math.pow(10, options.decimal);
 		simpleGaugeOptions[options.id] = options;	
 	}
 	else if (!options.hasOwnProperty('template')) {
-		options.value = Math.round(Math.pow(10, simpleGaugeOptions[options.id].decimal)*options.value)/Math.pow(10, simpleGaugeOptions[options.id].decimal);
 		simpleGaugeOptions[options.id].value = options.value;
 		options = simpleGaugeOptions[options.id];
 	}
@@ -220,6 +218,7 @@ var simpleGauge = function(options) {
 					let factor = 10 ** parseInt(c1);
 					labelVal = Math.round(labelVal * factor) / factor;
 				}
+				labelVal = Math.round(Math.pow(10, options.decimal)*labelVal)/Math.pow(10, options.decimal);
 				return labelVal.toString();
 			});
 			let $label = $('<div>').addClass('simpleGauge_label').html(html);
@@ -348,7 +347,7 @@ var simpleGauge = function(options) {
 				}
 				return value.toString();
 			});
-			$digital.html('<span>' + html + '</span>');
+			$digital.html('<span>' + html + options.unit + '</span>');
 			let style = options.digital.style;
 			let css = styleToCss(style, options.digital.style);
 			if(css.top) {

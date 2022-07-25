@@ -95,7 +95,18 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (workspace.getBlocksByType("chart_line_create").length>0) {
 			script += "<script src='chart_20220723/Chart.min.js'></script>";			
 			script += "<script src='chart_20220723/linechart.js'></script>";
+		}	
+
+		if (workspace.getBlocksByType("chart_bar_create").length>0) {
+			script += "<script src='chart_20220723/Chart.min.js'></script>";			
+			script += "<script src='chart_20220723/barchart.js'></script>";
 		}		
+		
+		if (workspace.getBlocksByType("chart_analoggauge_create").length>0) {
+			script += "<script src='chart_20220723/Chart.min.js'></script>";			
+			script += "<script src='chart_20220723/jquery.simplegauge.js'></script>";
+			script += "<link href='chart_20220723/jquery.simplegauge.css' type='text/css' rel='stylesheet'></script>";
+		}
 		
 		return script;
 	}	
@@ -184,7 +195,18 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (workspace.getBlocksByType("chart_line_create").length>0) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/linechart.js'></script>";
-		}		
+		}	
+
+		if (workspace.getBlocksByType("chart_bar_create").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/barchart.js'></script>";
+		}
+
+		if (workspace.getBlocksByType("chart_analoggauge_create").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simplegauge.js'></script>";
+			script += "<link href='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simplegauge.css' type='text/css' rel='stylesheet'></script>";			
+		}
 		
 		return script;
 	}		
@@ -209,8 +231,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		catFaceDetect,
 		catFaceRecognize,
 		catTrackingColor,
-		catInstascan,
-		catTesseract		
+		catTesseract,
+		catInstascan		
 	];
 	
 	var xmlNewValue='<xml id="toolbox">';

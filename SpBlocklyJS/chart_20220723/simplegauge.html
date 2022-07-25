@@ -12,40 +12,41 @@
 
 <script>
 	simpleGauge({
-		id:  "aaa",
-        min:    0,
-        max:    100,
+		id:  "aaaa",
         value:  4,		
-		decimal: 0,
+        min:    0,
+        max:    10,
 		width: 300,
 		height: 300,
-		left: 0,
+		left: 400,
 		top: 0,
+		decimal: 2,
+		unit: '%',
         template: [
-            '<div class="simpleGauge_container">',
-            '<div class="simpleGauge">',
-            '<div class="simpleGauge_title"></div>',
-            '<svg class="simpleGauge_bars simpleGauge_block" version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>',
-            '<div class="simpleGauge_labels simpleGauge_block"></div>',
-            '<div class="simpleGauge_ticks simpleGauge_block"></div>',
-            '<svg class="simpleGauge_pointers simpleGauge_block" version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>',
-            '<div class="simpleGauge_digital"></div>',
-            '</div>',
-            '</div>'
-        ].join(''),
-        type:   'analog digital',
+            "<div class=\'simpleGauge_container\'>",
+            "<div class=\'simpleGauge\'>",
+            "<div class=\'simpleGauge_title\'></div>",
+            "<svg class=\'simpleGauge_bars simpleGauge_block\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\'></svg>",
+            "<div class=\'simpleGauge_labels simpleGauge_block\'></div>",
+            "<div class=\'simpleGauge_ticks simpleGauge_block\'></div>",
+            "<svg class=\'simpleGauge_pointers simpleGauge_block\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\'></svg>",
+            "<div class=\'simpleGauge_digital\'></div>",
+            "</div>",
+            "</div>"
+        ].join(""),
+        type:   "analog digital",
         container: {
-            scale: 100,
+            scale: 90,
             style: {}
         },
         title: {
-            text: '',
+            text: "World",
             style: {}
         },
         digital: {
-            text: '{value.1}',
+            text: "{value.1}",
             style: {
-                color: 'auto'
+                color: "auto"
             }
         },
         analog: {
@@ -53,69 +54,69 @@
             maxAngle:   120
         },
         labels: {
-            text:   '{value}',
+            text:   "{value}",
             count:  10,
             scale:  95,
-            style:  ''
+            style:  ""
         },
         ticks: {
             count:  10,
             scale1: 77,
             scale2: 83,
-            style:  ''
+            style:  ""
         },
         subTicks: {
             count:  0,
             scale1: 80,
             scale2: 83,
-            style:  ''
+            style:  ""
         },
         bars: {
             scale1: 75,
             scale2: 80,
-            style:  '',
+            style:  "",
             colors: [
-                [ 0,  '#666666', 0, 0 ],
-                [ 50, '#ffa500', 0, 0 ],
-                [ 90, '#dd2222', 0, 0 ]
+                [ 0,  "#666666", 0, 0 ],
+                [ 3, "#ffa500", 0, 0 ],
+                [ 4, "#dd2222", 0, 0 ]
             ]
         },
         pointer: {
             scale: 85,
             shape: [
-                '-2,-10',
-                '2,-10',
-                '2.1,-5.3',
-                '4,-4',
-                '5.3,-2.1',
-                '5.7,0',
-                '5.3,2.1',
-                '4,4',
-                '2.1,5.3',
-                '2,50',
-                '1.5,96',
-                '0,100',
-                '-1,96',
-                '-2,50',
-                '-2.1,5.3',
-                '-4,4',
-                '-5.3,2.1',
-                '-5.7,0',
-                '-5.3,-2.1',
-                '-4,-4',
-                '-2.1,-5.3',
-                '-2,-10'
-            ].join(' '),
+                "-2,-10",
+                "2,-10",
+                "2.1,-5.3",
+                "4,-4",
+                "5.3,-2.1",
+                "5.7,0",
+                "5.3,2.1",
+                "4,4",
+                "2.1,5.3",
+                "2,50",
+                "1.5,96",
+                "0,100",
+                "-1,96",
+                "-2,50",
+                "-2.1,5.3",
+                "-4,4",
+                "-5.3,2.1",
+                "-5.7,0",
+                "-5.3,-2.1",
+                "-4,-4",
+                "-2.1,-5.3",
+                "-2,-10"
+            ].join(" "),
             style: {
-                color:       '#778',
+                color:       "#8778",
                 borderWidth: 0,
-                borderColor: '#778'
+                borderColor: "#8778"
             }
         }
-	});
+	});	
 
   setTimeout(function() {
-    simpleGauge({id:"aaa", value: 20});
+    simpleGauge({id:"aaaa", value: 1});	
   }, 3000);
 </script>
 </body>

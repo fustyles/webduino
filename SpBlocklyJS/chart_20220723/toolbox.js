@@ -1,5 +1,117 @@
 var catChart = '<xml>'+
-'<category name="%{BKY_CATCHART}" id="catChart" colour="350">'+	  
+'<category name="%{BKY_CATCHART}" id="catChart" colour="160">'+	  
+	'<category name="%{BKY_CATCANALOGGAUGE}" id="CATCANALOGGAUGE">'+	
+	  '<block type="chart_analoggauge_create">'+
+	    '<value name="id">'+
+		  '<block type="text">'+
+			'<field name="TEXT"></field>'+
+		  '</block>'+
+		'</value>'+		  
+	    '<value name="name">'+
+		  '<block type="text">'+
+			'<field name="TEXT">溫度</field>'+
+		  '</block>'+
+		'</value>'+	
+'        <value name="width">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">300</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="height">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">300</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="left">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="top">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="val">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="min">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="max">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">100</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="decimal">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+	    '<value name="unit">'+
+		  '<block type="text">'+
+			'<field name="TEXT">°C</field>'+
+		  '</block>'+
+		'</value>'+	
+	    '<value name="count">'+
+'          <block type="math_number">'+
+'            <field name="NUM">10</field>'+
+'          </block>'+
+		'</value>'+	
+	    '<value name="angle">'+
+'          <block type="math_number">'+
+'            <field name="NUM">120</field>'+
+'          </block>'+
+		'</value>'+		
+	    '<value name="color">'+
+'		  <block type="lists_create_with">'+
+'			<mutation items="1"></mutation>'+
+'			<value name="ADD0">'+
+'			  <block type="chart_analoggauge_colorset">'+
+'				<value name="val">'+
+'				  <block type="math_number">'+
+'					<field name="NUM">0</field>'+
+'				  </block>'+
+'				</value>'+
+'				<value name="color">'+
+'				  <block type="colour_picker">'+
+'					<field name="COLOUR">#33ff33</field>'+
+'				  </block>'+
+'				</value>'+
+'			  </block>'+
+'			</value>'+
+'		  </block>'+
+'		</value>'+			
+'	  </block>'+
+	  '<block type="chart_analoggauge_colorset">'+
+'        <value name="val">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+	
+	    '<value name="color">'+
+'    		<block type="colour_picker">'+
+'    			<field name="COLOUR">#ff0000</field>'+
+'    		</block>'+
+		'</value>'+	
+	  '</block>'+ 	  
+	  '<block type="chart_analoggauge_set">'+
+	    '<value name="id">'+
+		  '<block type="text">'+
+			'<field name="TEXT"></field>'+
+		  '</block>'+
+		'</value>'+	
+'        <value name="val">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+	
+	  '</block>'+  
+	  '</category>'+
 	'<category name="%{BKY_CATCHARTDOUGHNUT}" id="CATCHARTDOUGHNUT">'+	
 	  '<block type="chart_doughnut_create">'+
 	    '<value name="name">'+
