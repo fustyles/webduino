@@ -1,3 +1,9 @@
+Blockly.Arduino['system_datetime_get'] = function (block) {
+  var type = block.getFieldValue('type');
+  var code = 'getDatetime("' + type + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['page_mqtt_setup_js'] = function(block) {
   var server = Blockly.Arduino.valueToCode(block, 'server', Blockly.Arduino.ORDER_ATOMIC);
   var user = Blockly.Arduino.valueToCode(block, 'user', Blockly.Arduino.ORDER_ATOMIC);

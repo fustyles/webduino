@@ -1507,3 +1507,15 @@ Blockly.Msg["PAGE_MQTT_GETDATA_TOPIC_JS"] = "當收得訊息的主題為";
 Blockly.Msg["PAGE_MQTT_TO_TOPIC_JS"] = "向主題";
 Blockly.Msg["PAGE_MQTT_PUBLISH_TEXT_JS"] = "發布訊息文字";
 Blockly.Msg["PAGE_MQTT_GETDATA_JS"] = "取得資料";
+
+Blockly.Msg["SYSTEM_DATETIME"] = "系統時間";
+Blockly.Msg["SYSTEM_DATETIME_DATETIME"] = "完整時間";
+Blockly.Msg["SYSTEM_DATETIME_DATE"] = "日期";
+Blockly.Msg["SYSTEM_DATETIME_TIME"] = "時間";
+Blockly.Msg["SYSTEM_DATETIME_YEAR"] = "年";
+Blockly.Msg["SYSTEM_DATETIME_MONTH"] = "月";
+Blockly.Msg["SYSTEM_DATETIME_DAY"] = "日";
+Blockly.Msg["SYSTEM_DATETIME_WEEK"] = "星期";
+Blockly.Msg["SYSTEM_DATETIME_HOUR"] = "時";
+Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "分";
+Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "秒";

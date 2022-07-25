@@ -1498,3 +1498,15 @@ Blockly.Msg["PAGE_MQTT_GETDATA_TOPIC_JS"] = "when getting text and the topic is"
 Blockly.Msg["PAGE_MQTT_TO_TOPIC_JS"] = "to topic";
 Blockly.Msg["PAGE_MQTT_PUBLISH_TEXT_JS"] = "publish text";
 Blockly.Msg["PAGE_MQTT_GETDATA_JS"] = "get data";
+
+Blockly.Msg["SYSTEM_DATETIME"] = "System Time";
+Blockly.Msg["SYSTEM_DATETIME_DATETIME"] = "DATETIME";
+Blockly.Msg["SYSTEM_DATETIME_DATE"] = "DATE";
+Blockly.Msg["SYSTEM_DATETIME_TIME"] = "TIME";
+Blockly.Msg["SYSTEM_DATETIME_YEAR"] = "YEAR";
+Blockly.Msg["SYSTEM_DATETIME_MONTH"] = "MONTH";
+Blockly.Msg["SYSTEM_DATETIME_DAY"] = "DAY";
+Blockly.Msg["SYSTEM_DATETIME_WEEK"] = "WEEK";
+Blockly.Msg["SYSTEM_DATETIME_HOUR"] = "HOUR";
+Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "MINUTE";
+Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "SECOND";

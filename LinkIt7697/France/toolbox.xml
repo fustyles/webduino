@@ -2264,6 +2264,8 @@
 		</block>
 		<block type="location">  
 		</block>
+		<block type="system_datetime_get">
+		</block>		
 		<block type="window_open">
 			<value name="url_">
 				<block type="text">
