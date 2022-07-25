@@ -16,11 +16,17 @@ var linechart = function(config) {
 		canvas.style.position = "absolute";
 		$(document.body).append(canvas);
 		var ctx = canvas.getContext('2d');
-		
+			
 		stackedLine[config.id] = new Chart(ctx, config);
 		stackedLine[config.id].canvas.parentNode.style.height = config.height+"px";
 		stackedLine[config.id].canvas.parentNode.style.width = config.width+"px";
 		stackedLine[config.id].resize();
+	}
+	else if (config.hasOwnProperty("clear")) {
+		stackedLine[config.id].config.data.labels = [];
+		for (var i =0;i<stackedLine[config.id].config.data.datasets.length;i++) {
+			stackedLine[config.id].config.data.datasets[i].data = [];
+		}
 	}
 	else {
 		if (stackedLine[config.id].config.data.labels.length==linechartOptions[config.id].count) {
