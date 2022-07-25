@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="jquery.min.js"></script>
+	<script src="Chart.min.js"></script>	
+	<script src="barchart.js"></script>	
+</head>
+<body>
+<script>
+var config = {
+  id: 'aaa',
+  type: 'bar',
+  data: {
+		  labels: [],
+		  datasets: [
+			{
+			  label: '溫度',
+			  data: [],
+			  borderColor: 'red',
+			  backgroundColor: 'red',
+			},
+			{
+			  label: '濕度',
+			  data: [],
+			  borderColor: 'blue',
+			  backgroundColor: 'blue',
+			}
+		  ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: '溫溼度'
+      }
+    },    
+	scales: {
+            yAxes: {
+                title: {
+                    display: true,
+                    text: "數值",
+                    //font: {
+                    //    size: 15
+                    //}
+                },
+                ticks: {
+                    precision: 0
+                }
+            },
+            xAxes: {
+                title: {
+                    display: true,
+                    text: "時間",
+                    //font: {
+                    //    size: 15
+                    //}
+                }
+            }
+        }
+  },
+  width: 600,
+  height: 400,
+  left: 100,
+  top: 100,
+  count: 5
+};
+
+barchart(config);
+	
+
+setInterval(function(){
+	var now = new Date(); 
+	barchart({id: 'aaa', data: [now.getHours()+":"+now.getMinutes()+":"+now.getSeconds(),Math.floor(Math.random()*100),Math.floor(Math.random()*100)]});
+}, 3000);
+
+</script>
+</body>
+</html>

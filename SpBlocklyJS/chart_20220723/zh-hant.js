@@ -42,3 +42,9 @@ Blockly.Msg["CHART_DATA"] = "數值(,)";
 Blockly.Msg["CHART_BORDERCOLOR"] = "邊框顏色";
 Blockly.Msg["CHART_BACKGROUNDCOLOR"] = "背景顏色";
 Blockly.Msg["CHART_LINE_CLEAR"] = "折線圖 清除資料集";
+
+Blockly.Msg["CATBARCHART"] = "長條圖";
+Blockly.Msg["CHART_BAR_CREATE"] = "長條圖 建立";
+Blockly.Msg["CHART_BAR_SET"] = "長條圖 新增一筆資料";
+Blockly.Msg["CHART_BAR_DATASET"] = "長條圖 資料集";
+Blockly.Msg["CHART_BAR_CLEAR"] = "長條圖 清除資料集";

@@ -232,3 +232,102 @@ Blockly.JavaScript['chart_line_clear'] = function(block) {
   var code = 'linechart({id: '+id+', clear: ""});\n';
   return code;
 };
+
+Blockly.JavaScript['chart_bar_create'] = function(block) {
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
+  var width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC);
+  var height = Blockly.JavaScript.valueToCode(block, 'height', Blockly.JavaScript.ORDER_ATOMIC);
+  var left = Blockly.JavaScript.valueToCode(block, 'left', Blockly.JavaScript.ORDER_ATOMIC);
+  var top = Blockly.JavaScript.valueToCode(block, 'top', Blockly.JavaScript.ORDER_ATOMIC);
+  var count = Blockly.JavaScript.valueToCode(block, 'count', Blockly.JavaScript.ORDER_ATOMIC);
+  var title = Blockly.JavaScript.valueToCode(block, 'title', Blockly.JavaScript.ORDER_ATOMIC);
+  var titlex = Blockly.JavaScript.valueToCode(block, 'titlex', Blockly.JavaScript.ORDER_ATOMIC);
+  var titley = Blockly.JavaScript.valueToCode(block, 'titley', Blockly.JavaScript.ORDER_ATOMIC); 
+  var dataset = Blockly.JavaScript.valueToCode(block, 'dataset', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((dataset.indexOf("[")==0)&&(dataset.lastIndexOf("]")==dataset.length-1))
+    dataset = dataset.substring(1,dataset.length-1);
+  else
+	dataset = "{}";
+  
+  var code = "";
+  code += 'var config = {\n'+
+'	  id: '+id+',\n'+
+'	  type: "bar",\n'+
+'	  data: {\n'+
+'			  labels: [],\n'+
+'			  datasets: [\n'+
+'				'+dataset+'\n'+
+'			  ]\n'+
+'	  },\n'+
+'	  options: {\n'+
+'		responsive: true,\n'+
+'		maintainAspectRatio: false,\n'+
+'		plugins: {\n'+
+'		  legend: {\n'+
+'			position: "top",\n'+
+'		  },\n'+
+'		  title: {\n'+
+'			display: true,\n'+
+'			text: '+title+'\n'+
+'		  }\n'+
+'		},\n'+
+'		scales: {\n'+
+'				yAxes: {\n'+
+'					title: {\n'+
+'						display: true,\n'+
+'						text: '+titley+',\n'+
+'					},\n'+
+'					ticks: {\n'+
+'						precision: 0\n'+
+'					}\n'+
+'				},\n'+
+'				xAxes: {\n'+
+'					title: {\n'+
+'						display: true,\n'+
+'						text: '+titlex+',\n'+
+'					}\n'+
+'				}\n'+
+'			}\n'+
+'	  },\n'+
+'	  width: '+width+',\n'+
+'	  height: '+height+',\n'+
+'	  left: '+left+',\n'+
+'	  top: '+top+',\n'+
+'	  count: '+count+'\n'+
+'	};\n'+
+'	barchart(config);\n';
+												
+  return code;
+};
+
+Blockly.JavaScript['chart_bar_dataset'] = function(block) {
+  var label = Blockly.JavaScript.valueToCode(block, 'label', Blockly.JavaScript.ORDER_ATOMIC);
+  var borderColor = Blockly.JavaScript.valueToCode(block, 'borderColor', Blockly.JavaScript.ORDER_ATOMIC);
+  var backgroundColor = Blockly.JavaScript.valueToCode(block, 'backgroundColor', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '{'+
+			'  label: '+label+','+
+			'  data: [],\n'+
+			'  borderColor: '+borderColor+','+
+			'  backgroundColor: '+backgroundColor+
+			'}';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['chart_bar_set'] = function(block) {
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
+  var datax = Blockly.JavaScript.valueToCode(block, 'datax', Blockly.JavaScript.ORDER_ATOMIC);
+  var dataset = Blockly.JavaScript.valueToCode(block, 'dataset', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((dataset.indexOf("[")==0)&&(dataset.lastIndexOf("]")==dataset.length-1))
+      dataset = datax+', ' + dataset.substring(1,dataset.length-1);
+  else
+	  dataset = "";
+
+  var code = 'barchart({id: '+id+', data: ['+dataset+']});\n';
+  return code;
+};
+
+Blockly.JavaScript['chart_bar_clear'] = function(block) {
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);	
+  var code = 'barchart({id: '+id+', clear: ""});\n';
+  return code;
+};

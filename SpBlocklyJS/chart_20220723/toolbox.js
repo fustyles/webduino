@@ -381,5 +381,149 @@ var catChart = '<xml>'+
 	  '        </value>'+	  
 	  '      </block>'+	  
 	'</category>'+		
+	
+	  '<category name="%{BKY_CATBARCHART}" id="CATBARCHART">'+	
+	  '    <block type="chart_bar_create">'+
+	  '        <value name="id">'+
+	  '          <block type="text">'+
+	  '            <field name="TEXT"></field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="width">'+
+	  '          <block type="math_number">'+
+	  '            <field name="NUM">600</field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="height">'+
+	  '          <block type="math_number">'+
+	  '            <field name="NUM">400</field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="left">'+
+	  '          <block type="math_number">'+
+	  '            <field name="NUM">0</field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="top">'+
+	  '          <block type="math_number">'+
+	  '            <field name="NUM">0</field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="count">'+
+	  '          <block type="math_number">'+
+	  '            <field name="NUM">10</field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="title">'+
+	  '          <block type="text">'+
+	  '            <field name="TEXT">溫溼度圖表</field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="titlex">'+
+	  '          <block type="text">'+
+	  '            <field name="TEXT">時間</field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="titley">'+
+	  '          <block type="text">'+
+	  '            <field name="TEXT">數值</field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="dataset">'+
+	  '          <block type="lists_create_with">'+
+	  '            <mutation items="2"></mutation>'+
+	  '            <value name="ADD0">'+
+	  '              <block type="chart_bar_dataset" inline="false">'+
+	  '                <value name="label">'+
+	  '                  <block type="text">'+
+	  '                    <field name="TEXT">溫度</field>'+
+	  '                  </block>'+
+	  '                </value>'+
+	  '                <value name="borderColor">'+
+	  '                  <block type="colour_picker">'+
+	  '                    <field name="COLOUR">#ff0000</field>'+
+	  '                  </block>'+
+	  '                </value>'+
+	  '                <value name="backgroundColor">'+
+	  '                  <block type="colour_picker">'+
+	  '                    <field name="COLOUR">#ff0000</field>'+
+	  '                  </block>'+
+	  '                </value>'+
+	  '              </block>'+
+	  '            </value>'+
+	  '            <value name="ADD1">'+
+	  '              <block type="chart_bar_dataset" inline="false">'+
+	  '                <value name="label">'+
+	  '                  <block type="text">'+
+	  '                    <field name="TEXT">濕度</field>'+
+	  '                  </block>'+
+	  '                </value>'+
+	  '                <value name="borderColor">'+
+	  '                  <block type="colour_picker">'+
+	  '                    <field name="COLOUR">#0000ff</field>'+
+	  '                  </block>'+
+	  '                </value>'+
+	  '                <value name="backgroundColor">'+
+	  '                  <block type="colour_picker">'+
+	  '                    <field name="COLOUR">#0000ff</field>'+
+	  '                  </block>'+
+	  '                </value>'+
+	  '              </block>'+
+	  '            </value>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '      </block>'+
+	  '      <block type="chart_bar_dataset" inline="false">'+
+	  '        <value name="label">'+
+	  '          <block type="text">'+
+	  '            <field name="TEXT">溫度</field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="borderColor">'+
+	  '          <block type="colour_picker">'+
+	  '            <field name="COLOUR">#ff0000</field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="backgroundColor">'+
+	  '          <block type="colour_picker">'+
+	  '            <field name="COLOUR">#ff0000</field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '      </block>'+	  
+	  '      <block type="chart_bar_set" inline="false">'+
+	  '        <value name="id">'+
+	  '          <block type="text">'+
+	  '            <field name="TEXT"></field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="datax">'+
+	  '          <block type="system_datetime_get">'+
+	  '            <field name="type">time</field>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '        <value name="dataset">'+
+	  '      	 <block type="lists_create_with">'+
+	  '            <mutation items="2"></mutation>'+
+	  '            <value name="ADD0">'+
+	  '              <block type="math_number">'+
+	  '                <field name="NUM">1</field>'+
+	  '              </block>'+
+	  '            </value>'+
+	  '            <value name="ADD1">'+
+	  '              <block type="math_number">'+
+	  '                <field name="NUM">2</field>'+
+	  '              </block>'+
+	  '            </value>'+
+	  '          </block>'+
+	  '        </value>'+
+	  '      </block>'+
+	  '      <block type="chart_bar_clear">'+
+	  '        <value name="id">'+
+	  '          <block type="text">'+
+	  '            <field name="TEXT"></field>'+
+	  '          </block>'+
+	  '        </value>'+	  
+	  '      </block>'+	  
+	'</category>'+		
 '</category>'+	
 '</xml>';	
