@@ -13,7 +13,7 @@ Blockly.JavaScript['chart_analoggauge_create'] = function(block) {
   var count = Blockly.JavaScript.valueToCode(block, 'count', Blockly.JavaScript.ORDER_ATOMIC);
   var angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
   var color = Blockly.JavaScript.valueToCode(block, 'color', Blockly.JavaScript.ORDER_ATOMIC);
-  console.log(color);
+ 
   var code = "";
   code +=  'simpleGauge({\n'+
 	'	id:  '+id+',\n'+
