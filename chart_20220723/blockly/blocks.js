@@ -60,7 +60,7 @@ Blockly.Blocks['chart_analoggauge_colorset'] = {
 		.appendField(Blockly.Msg["CHART_VAL"]); 		
 	this.appendValueInput("color")
 		.setCheck(null)
-		.appendField(Blockly.Msg["CHART_ANALOGGAUGE_COLOR"]); 		
+		.appendField(Blockly.Msg["CHART_COLOR"]); 		
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(280);
