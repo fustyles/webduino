@@ -340,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	//匯出工作區積木與原始檔
-	document.getElementById('button_save_html').onclick = function () {
+	document.getElementById('button_save_xml').onclick = function () {
 		try {
 			var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
 			var xmlText = Blockly.Xml.domToText(xml);
@@ -350,8 +350,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xmlText);
 			document.body.appendChild(link);
 			link.click();
-			link.remove();
-			
+			link.remove();				
+		} catch (e) {
+			alert(e);
+		}
+	}
+	
+	document.getElementById('button_save_html').onclick = function () {
+		try {
 			try {
 				var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
 				var iframe_code="\<html\>\<head\>\<meta charset='utf-8'\>\<meta http-equiv='Access-Control-Allow-Origin' content='*'\>\<meta http-equiv='Access-Control-Allow-Credentials' content='true'\>\<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'\>\<\/script\>";
@@ -451,6 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	//更新首頁語系文字
 	function updateMsg() {
 		if (typeof msg != "undefined") {
+			console.log(msg);
 			for (var i=0;i<msg.length;i++) {
 				if (msg[i][1]=="innerHTML") {
 					if (document.getElementById(msg[i][0]))
