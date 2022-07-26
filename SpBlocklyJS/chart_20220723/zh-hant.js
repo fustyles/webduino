@@ -1,4 +1,4 @@
-Blockly.Msg["CATCHART"] = "圖表";
+Blockly.Msg["CATCHART"] = "儀表板";
 Blockly.Msg["CATCHARTDOUGHNUT"] = "甜甜圈";
 Blockly.Msg["CATCHARTGAUGE"] = "溫度計";
 Blockly.Msg["CATCHARTWATERBUBBLE"] = "水位計";
