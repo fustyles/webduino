@@ -1,4 +1,4 @@
-Blockly.Msg["CATCHART"] = "Chart";
+Blockly.Msg["CATCHART"] = "Dashboard";
 Blockly.Msg["CATCHARTDOUGHNUT"] = "Doughnut chart";
 Blockly.Msg["CATCHARTGAUGE"] = "Gauge chart";
 Blockly.Msg["CATCHARTWATERBUBBLE"] = "Water Bubble chart";
