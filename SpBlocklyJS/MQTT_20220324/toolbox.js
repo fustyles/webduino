@@ -25,20 +25,15 @@ var catMQTT = '<xml>'+
 			'</value>'+
 		  '</block>'+
 		'</statement>'+
-	  '</block>'+
-	  '<block type="fu_mqtt_subscribe_js">'+
-	    '<value name="topic">'+
-		  '<block type="text">'+
-			'<field name="TEXT">yourtopic/data</field>'+
-		  '</block>'+
-		'</value>'+		
-	  '</block>'+  
-	  '<block type="fu_mqtt_gettopic_js">'+
-		'<value name="topic">'+
-		  '<block type="text">'+
-			'<field name="TEXT">yourtopic/data</field>'+
-		  '</block>'+
-		'</value>'+
+    		'<statement name="topic_getdata">'+
+    		'  <block type="fu_mqtt_gettopic_js">'+
+    		'    <value name="topic">'+
+    		'      <block type="text">'+
+    		'        <field name="TEXT">yourtopic/data</field>'+
+    		'      </block>'+
+    		'    </value>'+
+    		'  </block>'+
+    		'</statement>'+		
 	  '</block>'+
 	  '<block type="fu_mqtt_getdata_js">'+		
 	  '</block>'+	  
