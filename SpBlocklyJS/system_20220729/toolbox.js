@@ -118,25 +118,9 @@ var catWindow ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
-'    <block type="async_function">'+
-'    <value name="name_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
+'    <block type="mouse_coordinate_get_start">'+
 '    </block>'+
-'    </value>'+
-'    <value name="parameter_">'+
-'    </value>'+
-'    </block>'+
-'    <block type="call_async_function">'+
-'    <value name="name_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="parameter_">'+
-'    </value>'+
-'    </block>'+
-'    <block type="transform_async_function">'+
+'    <block type="mouse_coordinate_get">'+
 '    </block>'+
 '    <block type="function_return">'+
 '    <value name="value_">'+
@@ -144,10 +128,6 @@ var catWindow ='<xml>'+
 '    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
-'    </block>'+
-'    <block type="mouse_coordinate_get_start">'+
-'    </block>'+
-'    <block type="mouse_coordinate_get">'+
 '    </block>'+
 '    </category>'+
 '</xml>';
