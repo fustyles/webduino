@@ -116,7 +116,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		if (workspace.getBlocksByType("SpeechRecognition_run").length>0) {
 			script += "<script src='SpeechRecognition_20220729/speechrecognition.js'></script>";
-		}		
+		}	
+
+		if (workspace.getBlocksByType("linenotify").length>0||workspace.getBlocksByType("linebot").length>0) {
+			script += "<script src='line_20220729/line.js'></script>";
+		}			
 		
 		return script;
 	}	
@@ -224,7 +228,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		if (workspace.getBlocksByType("SpeechRecognition_run").length>0) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpeechRecognition_20220729/speechrecognition.js'></script>";
-		}			
+		}
+
+		if (workspace.getBlocksByType("linenotify").length>0||workspace.getBlocksByType("linebot").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/line_20220729/line.js'></script>";
+		}		
 		
 		return script;
 	}		
@@ -241,6 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		"<sep></sep>",		
 		catWebSerial,
 		catMQTT,
+		catLineNotify,
 		"<sep></sep>",		
 		catPageElements,
 		catChart,

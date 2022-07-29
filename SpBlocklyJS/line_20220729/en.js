@@ -1,0 +1,13 @@
+Blockly.Msg["CATLINENOTIFY"] = "Line Notify";
+Blockly.Msg.LINENOTIFY_SHOW = "Line Notify"
+Blockly.Msg.LINENOTIFY_TEXT_SHOW = "Text";
+Blockly.Msg.LINENOTIFY_STICKER_SHOW = "Sticker";
+Blockly.Msg.LINENOTIFY_IMAGE_SHOW = "Image";
+Blockly.Msg.LINENOTIFY_BR_SHOW = "New Line";
+Blockly.Msg.LINENOTIFY_MESSAGE_SHOW = "Message";
+Blockly.Msg.LINENOTIFY_PACKAGEID_SHOW = "Packageid";
+Blockly.Msg.LINENOTIFY_STICKERID_SHOW = "Stickerid";
+Blockly.Msg.LINENOTIFY_ORIGINALCONTENTURL_SHOW = "OriginalContentUrl";
+Blockly.Msg.LINENOTIFY_PREVIEWIMAGEURL_SHOW = "PreviewImageUrl";
+Blockly.Msg.LINENOTIFY_TOKEN_SHOW = "Token";
+Blockly.Msg.LINENOTIFY_NOTIFY_SHOW = "Notify";

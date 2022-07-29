@@ -1,0 +1,13 @@
+Blockly.Msg["CATLINENOTIFY"] = "Line通知";
+Blockly.Msg.LINENOTIFY_SHOW = "Line通知"
+Blockly.Msg.LINENOTIFY_TEXT_SHOW = "文字";
+Blockly.Msg.LINENOTIFY_STICKER_SHOW = "贴图";
+Blockly.Msg.LINENOTIFY_IMAGE_SHOW = "网路图片";
+Blockly.Msg.LINENOTIFY_BR_SHOW = "换行";
+Blockly.Msg.LINENOTIFY_MESSAGE_SHOW = "讯息文字";
+Blockly.Msg.LINENOTIFY_PACKAGEID_SHOW = "表情包代码";
+Blockly.Msg.LINENOTIFY_STICKERID_SHOW = "表情包贴图代码";
+Blockly.Msg.LINENOTIFY_ORIGINALCONTENTURL_SHOW = "原始图档网址";
+Blockly.Msg.LINENOTIFY_PREVIEWIMAGEURL_SHOW = "预览图档网址";
+Blockly.Msg.LINENOTIFY_TOKEN_SHOW = "权杖";
+Blockly.Msg.LINENOTIFY_NOTIFY_SHOW = "讯息文字";

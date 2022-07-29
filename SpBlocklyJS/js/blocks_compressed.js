@@ -207,11 +207,12 @@ Blockly.Blocks['text_br'] = {
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
 	  ["<br>","<br>"]
-	  ,["\\n","\\\\n"]
+	  ,["\\n","\\n"]
+	  ,["\\\\n","\\\\n"]
 	  ]), "newline"); 		
   this.setInputsInline(true);
   this.setOutput(true, null);
-  this.setColour(110);  
+  this.setColour(160);  
   }
 };
 
