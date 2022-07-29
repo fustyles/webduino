@@ -145,40 +145,9 @@ var catWindow ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
-'    <block type="image_boundary">'+
-'    <value name="left_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">500</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="top_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">500</field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
 '    <block type="mouse_coordinate_get_start">'+
 '    </block>'+
 '    <block type="mouse_coordinate_get">'+
-'    </block>'+
-'    <block type="music_create">'+
-'    <value name="url_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="length_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">20000</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="loop_">'+
-'    <block type="logic_boolean">'+
-'    <field name="BOOL">TRUE</field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
-'    <block type="music_delete">'+
 '    </block>'+
 '    </category>'+
 '</xml>';
