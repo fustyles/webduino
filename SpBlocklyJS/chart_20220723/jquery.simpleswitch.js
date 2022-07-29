@@ -50,7 +50,7 @@ var simpleSwitch = function(options) {
 	html = "";
 	html += '<label id="gamelabel_'+options.id+'" class="simple-switch-outter" style="left:'+options.left+'px; top:'+options.top+'px; width:'+options.width+'px; height:'+options.height+'px">';
 	html += outerHTML;
-	html += '<span id="gamespan_'+options.id+'" class="simple-switch-circle" style="width:'+options.height+'px; height:'+options.height+'px"></span></label>';
+	html += '<span id="gamespan_'+options.id+'" class="simple-switch-circle" style="width:'+options.height+'px; height:'+options.height+'px"></span><span style="font-weight:bold; font-size:12pt; font-family:arial; position:relative; left: '+(options.width/2-getTextWidth(options.text,"bold 12pt arial")/2)+'px; top:'+(options.top+options.height+5)+'px;">'+options.text+'</span></label>';
 	This.replaceWith(html);
 	
 	$("#gamelabel_"+options.id).css("border-radius", options.height+"px");
@@ -103,6 +103,14 @@ var simpleSwitch = function(options) {
 			$("#gamelabel_"+options.id).css("border-color", "#dfdfdf");
 			$("#gamelabel_"+options.id).css("box-shadow", "#dfdfdf 0px 0px 0px 0px inset");  
 		}
+	}
+	
+	function getTextWidth(text, font) {
+	  const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+	  const context = canvas.getContext("2d");
+	  context.font = font;
+	  const metrics = context.measureText(text);
+	  return metrics.width;
 	}
 }
 
