@@ -1,0 +1,12 @@
+Blockly.Msg["CATSPEECHRECOGNITION"] = "Speech Recognition";
+Blockly.Msg["SPEECHRECOGNITION_SHOW"] = "Speech Recognition";
+Blockly.Msg["SPEECHRECOGNITION_LANGUAGE_SHOW"] = "Set language";
+Blockly.Msg["SPEECHRECOGNITION_GET_SHOW"] = "Get Speech Recognition Text";
+Blockly.Msg["SPEECHRECOGNITION_LISTENER_SHOW"] = "Speech Recognition after recognizing";
+Blockly.Msg["SPEECHRECOGNITION_KEYWORD_SHOW"] = "contains Keyword";
+Blockly.Msg["SPEECHRECOGNITION_INTERIM"] = "Speech Recognition display process text";
+Blockly.Msg["SPEECHRECOGNITION_LEFT"] = "Left";   
+Blockly.Msg["SPEECHRECOGNITION_TOP"] = "Top";	  
+Blockly.Msg["SPEECHRECOGNITION_FONTSIZE"] = "Font size";
+Blockly.Msg["SPEECHRECOGNITION_ZINDEX"] = "z-Index";
+Blockly.Msg["SPEECHRECOGNITION_DISPLAY"] = "Display";

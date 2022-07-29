@@ -1,0 +1,1 @@
+Blockly.Msg["CATWINDOW"] = "系統功能";

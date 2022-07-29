@@ -1188,7 +1188,11 @@ Blockly.Msg["DISABLED_TOPCHECK"] = "Disable the check of top blocks";
 Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "Export selected block to local file";
 Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "Insert a block into workspace from local file";
 
+Blockly.Msg["MSG_DISPLAY"] = "Display";
+Blockly.Msg["BUTTON_START"] = "Start";
+Blockly.Msg["BUTTON_STOP"] = "Stop";
 
+Blockly.Msg["MSG_NEWLINE"] = "New Line";
 
 
 //20220327
@@ -1628,100 +1632,3 @@ Blockly.Msg["PROCEDURES_DEFRETURN_PROCEDURE"] = Blockly.Msg["PROCEDURES_DEFNORET
 Blockly.Msg["PROCEDURES_DEFRETURN_TITLE"] = Blockly.Msg["PROCEDURES_DEFNORETURN_TITLE"];
 Blockly.Msg["TEXT_APPEND_VARIABLE"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
 Blockly.Msg["TEXT_CREATE_JOIN_ITEM_TITLE_ITEM"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
-
-
-
-
-Blockly.Msg.TOOLBOX_DISPLAY = "Toolbox Category";
-Blockly.Msg.TOOLBOX_SHOW = "Show Toolbox";
-Blockly.Msg.TOOLBOX_HIDE = "Hide Toolbox";
-Blockly.Msg.LOADLASTBLOCKS = "Import Backup Blocks";
-Blockly.Msg.WINDOW_CLOSE_MESSAGE = "Are you sure whether you have saved the file or not?";
-
-Blockly.Msg.VARIABLES_TO_STRING_BIN = "Binary string";
-Blockly.Msg.VARIABLES_TO_STRING_OCT = "Octal string";
-Blockly.Msg.VARIABLES_TO_STRING_DEC = "Decimal string";
-Blockly.Msg.VARIABLES_TO_STRING_HEX = "Hexadecimal string";
-Blockly.Msg.VARIABLES_TO_REPLACE = "Replace";
-
-Blockly.Msg.RELOAD_TITLE = "Do you want to restart the APP?";
-Blockly.Msg.COM_TITLE = "Please select com port.";
-Blockly.Msg.BUTTON_OPEN = "OPEN";
-Blockly.Msg.BUTTON_CLOSE = "CLOSE";
-Blockly.Msg.BUTTON_SURE = "SURE";
-Blockly.Msg.BUTTON_RESET = "Are you sure to reset the workspace?";
-Blockly.Msg.BUTTON_SERIAL_OPEN = "Open PUTTY";
-Blockly.Msg.BUTTON_SERIAL_TITLE = "SERIAL PORT MONITER";
-Blockly.Msg.BUTTON_UPLOAD_TITLE = "UPLOAD CODE";
-Blockly.Msg.BUTTON_UPLOAD_STATE = "UPLOAD STATE";
-Blockly.Msg.BUTTON_UPLOAD_START = "Uploading...";
-Blockly.Msg.BUTTON_UPLOAD_CODE = "Reload Code";
-Blockly.Msg.BUTTON_CLEARAREAS_TITLE = "Are you sure to clear all blocks contents?";
-Blockly.Msg.BUTTON_CUSTOMBLOCKS = "Add Custom Blocks";
-
-Blockly.Msg["VARIABLES_DEFINE"] = "Define";
-Blockly.Msg["BUTTON_CUSTOMBLOCKS"] = "Add Custom Blocks";
-Blockly.Msg["CUSTOMBLOCKS_TITLE"] = "Please input remote custom blocks url.\nIncluding files: blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js\n\nAnother way, You can add the url to \\package.nw\\customBlocks\\customblocks.js";
-Blockly.Msg["BUTTON_COPYCODE_SUCCESS"] = "Copy to clipboard successful";
-Blockly.Msg["MYBACKPACK_TITLE"] = "BACKPACK";
-Blockly.Msg["MSG_TOOLBOX"] = "Toolbox";
-Blockly.Msg["MSG_XML"] = "XML";
-Blockly.Msg["MSG_CODE"] = "Arduino Code";
-Blockly.Msg["BUTTON_ADDBLOCKS"] = "Import your blocks";
-Blockly.Msg["BUTTON_CODE"] = "Show/Hide Arduino Code";
-Blockly.Msg["BUTTON_DEVELOPERTOOL"] = "Show/Hide Custom blocks content";
-Blockly.Msg["BUTTON_RESET"] = "Reset workspace";
-Blockly.Msg["BUTTON_EXPORT_BLOCKS"] = "Export your blocks content";
-Blockly.Msg["BUTTON_OPEN_XML"] = "Import blocks to workspace";
-Blockly.Msg["BUTTON_SAVE_INO"] = "Export to xml and ino files";
-Blockly.Msg["BUTTON_TOOLBOX"] = "Show/Hide Toolbox category";
-Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"] = "Import remote custom blocks";
-Blockly.Msg["BUTTON_ADDEXTENSIONBLOCKS"] = "Import extension custom blocks";
-Blockly.Msg["BUTTON_TOOL"] = "Open blockly developer tools";
-Blockly.Msg["BUTTON_WEBSERIAL"] = "Open web serial monitor";
-Blockly.Msg["BUTTON_UPLOADCODE"] = "Upload HEX file to nano/uno/pro/pro-mini";
-Blockly.Msg["MSG_WEBSERIAL"] = "Web Serial Monitor";
-Blockly.Msg["LANG-SELECTOR"] = "Select Language";
-Blockly.Msg["BUTTON_COPYCODE"] = "Copy to clipboard";
-Blockly.Msg["TEXT_UPLOADER_STATUS"] = "Arduino Code";
-Blockly.Msg["TEXT_UPDATEDEFINITION"] = "Block Definition";
-Blockly.Msg["TEXT_UPDATEGENERATE"] = "Generator stub";
-Blockly.Msg["TEXT_UPDATECATEGORY"] = "Category";
-Blockly.Msg["TEXT_UPDATEMESSAGE"] = "Message";
-Blockly.Msg["INITIAL_SETUP"] = "setup";
-Blockly.Msg["INITIAL_LOOP"] = "loop";
-Blockly.Msg["LANGUAGE_EN"] = "EN";
-Blockly.Msg["LANGUAGE_CHT"] = "CHT";
-Blockly.Msg["BAUDRATE_TITLE"] = "Baud Rate : ";
-Blockly.Msg["CLOSEPORT_TITLE"] = "Close port";
-Blockly.Msg["REQUESTPORT_TITLE"] = "Select port";
-Blockly.Msg["SENDSTRING_TITLE"] = "Send text";
-Blockly.Msg["CLEARSTATUS_TITLE"] = "Clear message";
-Blockly.Msg["MSG_WEBBLUETOOTH"] = "Web Bluetooth Monitor";
-Blockly.Msg["BUTTON_WEBBLUETOOTH"] = "Web Bluetooth Monitor";
-Blockly.Msg["BLUETOOTH_DISCONNECT_DEVICE"] = "Disconnect device";
-Blockly.Msg["BLUETOOTH_REQUEST_DEVICE"] = "Request device";
-Blockly.Msg["BLUETOOTH_SENDSTRING"] = "Send text";
-Blockly.Msg["BLUETOOTH_CLEARTEXT"] = "Clear message";
-Blockly.Msg["UUID_SERVICE_TITLE"] = "Service UUID";
-Blockly.Msg["UUID_TX_TITLE"] = "TX UUID";
-Blockly.Msg["UUID_RX_TITLE"] = "RX UUID";
-
-Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enable pick/place block";
-Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "Disable pick/place block";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "Pick block";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "Place block (next)";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "Place block (previous)";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "Place block [input: #]";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT_NAME"] = ["","","","","","","","","",""];
-
-Blockly.Msg["DISABLED_TOPCHECK"] = "Disable the check of top blocks";
-
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "Export selected block to local file";
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "Insert a block into workspace from local file";
-
-Blockly.Msg["MSG_DISPLAY"] = "Display";
-Blockly.Msg["BUTTON_START"] = "Start";
-Blockly.Msg["BUTTON_STOP"] = "Stop";
-
-Blockly.Msg["MSG_NEWLINE"] = "New Line";

@@ -11,6 +11,8 @@ SPDX-License-Identifier: Apache-2.0
 var topCheck = true;
 
 document.addEventListener('DOMContentLoaded', function() {
+	
+	
 	function getScript() {
 		var workspace = Blockly.getMainWorkspace();
 		var script = "<script src='GameElements_20190131/gameelements.js'></script>";
@@ -107,6 +109,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='chart_20220723/jquery.simplegauge.js'></script>";
 			script += "<link href='chart_20220723/jquery.simplegauge.css' type='text/css' rel='stylesheet'></script>";
 		}
+
+		if (workspace.getBlocksByType("TextToSpeech_run").length>0) {
+			script += "<script src='TextToSpeech_20220729/texttospeech.js'></script>";
+		}	
+
+		if (workspace.getBlocksByType("SpeechRecognition_run").length>0) {
+			script += "<script src='SpeechRecognition_20220729/speechrecognition.js'></script>";
+		}		
 		
 		return script;
 	}	
@@ -208,6 +218,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<link href='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simplegauge.css' type='text/css' rel='stylesheet'></script>";			
 		}
 		
+		if (workspace.getBlocksByType("TextToSpeech_run").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/TextToSpeech_20220729/texttospeech.js'></script>";
+		}	
+
+		if (workspace.getBlocksByType("SpeechRecognition_run").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpeechRecognition_20220729/speechrecognition.js'></script>";
+		}			
+		
 		return script;
 	}		
 	
@@ -216,6 +234,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		catSystem,
 		catMyBackPack,		
 		"<sep></sep>",
+		catWindow,
+		catKeyboard,
+		catTextToSpeech,
+		catSpeechRecognition,
+		"<sep></sep>",		
 		catWebSerial,
 		catMQTT,
 		"<sep></sep>",		
@@ -457,7 +480,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	//更新首頁語系文字
 	function updateMsg() {
 		if (typeof msg != "undefined") {
-			console.log(msg);
 			for (var i=0;i<msg.length;i++) {
 				if (msg[i][1]=="innerHTML") {
 					if (document.getElementById(msg[i][0]))
@@ -550,6 +572,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			});
 		}
 	}, 2000);
+	
+	//切換語言
+	document.getElementById('lang-selector').onchange = function () {
+		if (this.selectedIndex>0) 
+			location.href = "?lang=" + this.options[this.selectedIndex].value;
+	}
 
 	//隱藏顯示程式碼區塊
 	setTimeout(function() {

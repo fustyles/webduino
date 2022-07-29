@@ -1162,7 +1162,7 @@ Blockly.Msg["CUSTOMBLOCKS_TITLE"] = "請輸入自訂積木連結網址。\n目�
 Blockly.Msg["BUTTON_COPYCODE_SUCCESS"] = "複製程式碼到剪貼簿成功！";
 Blockly.Msg["MYBACKPACK_TITLE"] = "暫存積木";
 Blockly.Msg["MSG_TOOLBOX"] = "工具箱";
-Blockly.Msg["MSG_XML"] = "XML";
+Blockly.Msg["MSG_XML"] = "積木結構";
 Blockly.Msg["MSG_CODE"] = "程式碼";
 Blockly.Msg["BUTTON_RUN"] = "執行程式";
 Blockly.Msg["BUTTON_ADDBLOCKS"] = "匯入你的自訂積木";
@@ -1220,7 +1220,11 @@ Blockly.Msg["DISABLED_TOPCHECK"] = "停用置頂積木檢查";
 Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "匯出單一積木至檔案";
 Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "開啟單一積木檔案插入至工作區";
 
+Blockly.Msg["MSG_DISPLAY"] = "程式執行視窗";
+Blockly.Msg["BUTTON_START"] = "執行程式";
+Blockly.Msg["BUTTON_STOP"] = "停止程式";
 
+Blockly.Msg["MSG_NEWLINE"] = "換行";
 
 
 //20220327
@@ -1660,99 +1664,3 @@ Blockly.Msg["PROCEDURES_DEFRETURN_PROCEDURE"] = Blockly.Msg["PROCEDURES_DEFNORET
 Blockly.Msg["PROCEDURES_DEFRETURN_TITLE"] = Blockly.Msg["PROCEDURES_DEFNORETURN_TITLE"];
 Blockly.Msg["TEXT_APPEND_VARIABLE"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
 Blockly.Msg["TEXT_CREATE_JOIN_ITEM_TITLE_ITEM"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
-
-
-
-
-Blockly.Msg.TOOLBOX_DISPLAY = "工具箱目錄";
-Blockly.Msg.TOOLBOX_SHOW = "顯示工具箱";
-Blockly.Msg.TOOLBOX_HIDE = "隱藏工具箱";
-Blockly.Msg.LOADLASTBLOCKS = "還原備份積木";
-Blockly.Msg.WINDOW_CLOSE_MESSAGE = "請確認已儲存積木檔後再離開？";
-
-Blockly.Msg.VARIABLES_TO_STRING_BIN = "字串(二進制)";
-Blockly.Msg.VARIABLES_TO_STRING_OCT = "字串(八進制)";
-Blockly.Msg.VARIABLES_TO_STRING_DEC = "字串(十進制)";
-Blockly.Msg.VARIABLES_TO_STRING_HEX = "字串(十六進制)";
-Blockly.Msg.VARIABLES_TO_REPLACE = "取代";
-
-Blockly.Msg.RELOAD_TITLE = "你要重啟視窗載入新設定嗎？";
-Blockly.Msg.COM_TITLE = "請先選擇序列埠！";
-Blockly.Msg.BUTTON_OPEN = "開啟";
-Blockly.Msg.BUTTON_CLOSE = "關閉";
-Blockly.Msg.BUTTON_SURE = "確認";
-Blockly.Msg.BUTTON_RESET = "你確定要重設工作區？";
-Blockly.Msg.BUTTON_SERIAL_OPEN = "開啟PUTTY";
-Blockly.Msg.BUTTON_SERIAL_TITLE = "序列埠監看視窗";
-Blockly.Msg.BUTTON_UPLOAD_TITLE = "燒錄韌體";
-Blockly.Msg.BUTTON_UPLOAD_STATE = "燒錄狀態";
-Blockly.Msg.BUTTON_UPLOAD_START = "正在上傳韌體...";
-Blockly.Msg.BUTTON_UPLOAD_CODE = "程式碼";
-Blockly.Msg.BUTTON_CLEARAREAS_TITLE = "你確定要清除自訂積木區內容？";
-
-Blockly.Msg["VARIABLES_DEFINE"] = "宣告常數";
-Blockly.Msg["BUTTON_CUSTOMBLOCKS"] = "新增自訂積木";
-Blockly.Msg["CUSTOMBLOCKS_TITLE"] = "請輸入自訂積木連結網址。\n目錄中包含檔案 blocks.js, javascript.js, toolbox.xml, en.js, zh-hant.js\n\n若要永久加入自訂積木連結，可開啟檔案\\package.nw\\customBlocks\\customblocks.js將連結手動加入清單";
-Blockly.Msg["BUTTON_COPYCODE_SUCCESS"] = "複製程式碼到剪貼簿成功！";
-Blockly.Msg["MYBACKPACK_TITLE"] = "暫存積木";
-Blockly.Msg["MSG_TOOLBOX"] = "工具箱";
-Blockly.Msg["MSG_XML"] = "XML";
-Blockly.Msg["MSG_CODE"] = "程式碼";
-Blockly.Msg["BUTTON_ADDBLOCKS"] = "匯入你的自訂積木";
-Blockly.Msg["BUTTON_CODE"] = "顯示/隱藏 程式碼區塊";
-Blockly.Msg["BUTTON_DEVELOPERTOOL"] = "顯示/隱藏 自訂積木區塊";
-Blockly.Msg["BUTTON_RESET"] = "重設工作區";
-Blockly.Msg["BUTTON_EXPORT_BLOCKS"] = "匯出你的自訂積木檔案";
-Blockly.Msg["BUTTON_OPEN_XML"] = "開啟積木檔匯入工作區";
-Blockly.Msg["BUTTON_SAVE_INO"] = "匯出XML與INO檔";
-Blockly.Msg["BUTTON_TOOLBOX"] = "顯示/隱藏 工具箱目錄";
-Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"] = "新增遠端自訂積木";
-Blockly.Msg["BUTTON_ADDEXTENSIONBLOCKS"] = "新增內建擴充自訂積木";
-Blockly.Msg["BUTTON_TOOL"] = "開啟積木開發工具";
-Blockly.Msg["BUTTON_WEBSERIAL"] = "網頁序列埠監看視窗";
-Blockly.Msg["BUTTON_UPLOADCODE"] = "上傳 HEX 檔至 nano/uno/pro/pro-mini";
-Blockly.Msg["MSG_WEBSERIAL"] = "網頁序列埠監看視窗";
-Blockly.Msg["LANG-SELECTOR"] = "選擇語言";
-Blockly.Msg["BUTTON_COPYCODE"] = "複製程式碼到剪貼簿";
-Blockly.Msg["TEXT_UPLOADER_STATUS"] = "程式碼&nbsp;&nbsp;";
-Blockly.Msg["TEXT_UPDATEDEFINITION"] = "積木定義&nbsp;&nbsp;";
-Blockly.Msg["TEXT_UPDATEGENERATE"] = "程式碼產出&nbsp;&nbsp;";
-Blockly.Msg["TEXT_UPDATECATEGORY"] = "積木目錄&nbsp;&nbsp;";
-Blockly.Msg["TEXT_UPDATEMESSAGE"] = "語系變數&nbsp;&nbsp;";
-Blockly.Msg["INITIAL_SETUP"] = "初始化";
-Blockly.Msg["INITIAL_LOOP"] = "迴圈";
-Blockly.Msg["LANGUAGE_EN"] = "英文";
-Blockly.Msg["LANGUAGE_CHT"] = "中文";
-Blockly.Msg["BAUDRATE_TITLE"] = "序列埠鮑率 : ";
-Blockly.Msg["CLOSEPORT_TITLE"] = "關閉序列埠";
-Blockly.Msg["REQUESTPORT_TITLE"] = "選擇序列埠";
-Blockly.Msg["SENDSTRING_TITLE"] = "傳送文字";
-Blockly.Msg["CLEARSTATUS_TITLE"] = "清除訊息";
-Blockly.Msg["MSG_WEBBLUETOOTH"] = "網頁藍芽監看視窗";
-Blockly.Msg["BUTTON_WEBBLUETOOTH"] = "網頁藍芽監看視窗";
-Blockly.Msg["BLUETOOTH_DISCONNECT_DEVICE"] = "中斷藍芽設備";
-Blockly.Msg["BLUETOOTH_REQUEST_DEVICE"] = "選擇藍芽設備";
-Blockly.Msg["BLUETOOTH_SENDSTRING"] = "傳送文字";
-Blockly.Msg["BLUETOOTH_CLEARTEXT"] = "清除訊息";
-Blockly.Msg["UUID_SERVICE_TITLE"] = "Service UUID";
-Blockly.Msg["UUID_TX_TITLE"] = "TX UUID";
-Blockly.Msg["UUID_RX_TITLE"] = "RX UUID";
-
-Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "啟用 選取/置放 積木";
-Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "停用 選取/置放 積木";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "選取來源積木";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "置放來源積木 (目標積木之下)";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "置放來源積木 (目標積木之上)";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "置放來源積木 [子輸入 #]";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT_NAME"] = ["","","","","","","","","",""];
-
-Blockly.Msg["DISABLED_TOPCHECK"] = "停用置頂積木檢查";
-
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "匯出單一積木至檔案";
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "開啟單一積木檔案插入至工作區";
-
-Blockly.Msg["MSG_DISPLAY"] = "程式執行視窗";
-Blockly.Msg["BUTTON_START"] = "執行程式";
-Blockly.Msg["BUTTON_STOP"] = "停止程式";
-
-Blockly.Msg["MSG_NEWLINE"] = "換行";
