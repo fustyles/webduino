@@ -3,24 +3,7 @@ Blockly.JavaScript['TextToSpeech_initial'] = function (block) {
   var value_rate_ = Blockly.JavaScript.valueToCode(block, 'rate_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_pitch_ = Blockly.JavaScript.valueToCode(block, 'pitch_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_lang_ = block.getFieldValue('lang_');
-  Blockly.JavaScript.definitions_["tts_variable"] ='var synth = window.speechSynthesis;\nvar tts = new SpeechSynthesisUtterance();';
-  Blockly.JavaScript.functions_["tts_variable"] = ''+
-  'async function ttsSetVoice(voice) {'+
-  '    var voices = synth.getVoices();\n'+
-  '    if (voices.length==0) {\n'+
-  '      while (voices.length==0) {\n'+
-  '        await delay(0.1);\n'+        
-  '        var voices = synth.getVoices();\n'+     
-  '      }\n'+
-  '    }\n'+
-  '    if (voices.length>0) {\n'+ 
-  '      for(i = 0; i < voices.length ; i++) {\n'+
-  '        if(voices[i].name === voice) {\n'+
-  '          tts.voice = voices[i];\n'+
-  '        }\n'+
-  '      }\n'+
-  '    }\n'+
-  '}\n';
+
   var code = 'tts.volume='+value_volume_+';\n'+
       'tts.rate='+value_rate_+';\n'+
       'tts.pitch='+value_pitch_+';\n'+
