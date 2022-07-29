@@ -17,3 +17,10 @@ async function ttsSetVoice(voice) {
       }
     }
 }
+
+function ttsSetProperty(volume, rate, pitch, lang) {
+    tts.volume = volume;
+    tts.rate = rate;
+    tts.pitch = pitch;
+    tts.lang = lang;
+}

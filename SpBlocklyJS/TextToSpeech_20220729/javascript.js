@@ -4,10 +4,7 @@ Blockly.JavaScript['TextToSpeech_initial'] = function (block) {
   var value_pitch_ = Blockly.JavaScript.valueToCode(block, 'pitch_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_lang_ = block.getFieldValue('lang_');
 
-  var code = 'tts.volume='+value_volume_+';\n'+
-      'tts.rate='+value_rate_+';\n'+
-      'tts.pitch='+value_pitch_+';\n'+
-      'tts.lang="'+value_lang_+'";\n';
+  var code = 'ttsSetProperty('+value_volume_+', '+value_rate_+', '+value_pitch_+', "'+value_lang_+'");\n';
   return code;
 };
 
