@@ -10568,10 +10568,34 @@ Blockly.Blocks['element_event'] = {
   init: function () {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_WINDOW,"window"],[Blockly.Msg.ELEMENT_DOCUMENT,"document"],[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"],[Blockly.Msg.ELEMENT_RADIO,"radio"],[Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],[Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],[Blockly.Msg.ELEMENT_NUMBER,"number"],[Blockly.Msg.ELEMENT_DATE,"date"],[Blockly.Msg.ELEMENT_TIME,"time"],[Blockly.Msg.ELEMENT_DATETIME,"datetime"],[Blockly.Msg.ELEMENT_PROGRESS,"progress"],[Blockly.Msg.ELEMENT_PASSWORD,"password"]]), "element");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.ELEMENT_WINDOW,"window"],
+	  [Blockly.Msg.ELEMENT_DOCUMENT,"document"],
+	  [Blockly.Msg.ELEMENT_TABLE,"table"],
+	  [Blockly.Msg.ELEMENT_IMAGE,"image"],
+	  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
+	  [Blockly.Msg.ELEMENT_BUTTON,"button"],
+	  [Blockly.Msg.ELEMENT_COLOR,"color"],
+	  [Blockly.Msg.ELEMENT_SELECT,"select"],
+	  [Blockly.Msg.ELEMENT_RANGE,"range"],
+	  [Blockly.Msg.ELEMENT_TEXT,"text"],[
+	  Blockly.Msg.ELEMENT_DIV,"div"],
+	  [Blockly.Msg.ELEMENT_IFRAME,"iframe"],
+	  [Blockly.Msg.ELEMENT_A,"a"],
+	  [Blockly.Msg.ELEMENT_RADIO,"radio"],
+	  [Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],
+	  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],
+	  [Blockly.Msg.ELEMENT_NUMBER,"number"],
+	  [Blockly.Msg.ELEMENT_DATE,"date"],
+	  [Blockly.Msg.ELEMENT_TIME,"time"],
+	  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
+	  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
+	  [Blockly.Msg.ELEMENT_PASSWORD,"password"]
+	  ],this.validate), "element");
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID); 
+  this.getInput("id_").setVisible(false);
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT_EVENT)
       .appendField(new Blockly.FieldDropdown([
@@ -10667,6 +10691,15 @@ Blockly.Blocks['element_event'] = {
   this.setNextStatement(true);
   this.setColour(Blockly.Msg["HUE_1"]);
   this.setHelpUrl("https://fustyles.github.io/webduino/GameElements_20190131/HTML%20DOM%20EVENTS.txt");
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (newValue=="window"||newValue=="document") {
+		block.getInput("id_").setVisible(false);
+	}
+	else {
+		block.getInput("id_").setVisible(true);
+	}
   }
 };
 
@@ -10674,10 +10707,34 @@ Blockly.Blocks['element_event_stop'] = {
   init: function () {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_WINDOW,"window"],[Blockly.Msg.ELEMENT_DOCUMENT,"document"],[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"],[Blockly.Msg.ELEMENT_RADIO,"radio"],[Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],[Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],[Blockly.Msg.ELEMENT_NUMBER,"number"],[Blockly.Msg.ELEMENT_DATE,"date"],[Blockly.Msg.ELEMENT_TIME,"time"],[Blockly.Msg.ELEMENT_DATETIME,"datetime"],[Blockly.Msg.ELEMENT_PROGRESS,"progress"],[Blockly.Msg.ELEMENT_PASSWORD,"password"]]), "element");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.ELEMENT_WINDOW,"window"],
+	  [Blockly.Msg.ELEMENT_DOCUMENT,"document"],
+	  [Blockly.Msg.ELEMENT_TABLE,"table"],
+	  [Blockly.Msg.ELEMENT_IMAGE,"image"],
+	  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
+	  [Blockly.Msg.ELEMENT_BUTTON,"button"],
+	  [Blockly.Msg.ELEMENT_COLOR,"color"],
+	  [Blockly.Msg.ELEMENT_SELECT,"select"],
+	  [Blockly.Msg.ELEMENT_RANGE,"range"],
+	  [Blockly.Msg.ELEMENT_TEXT,"text"],
+	  [Blockly.Msg.ELEMENT_DIV,"div"],
+	  [Blockly.Msg.ELEMENT_IFRAME,"iframe"],
+	  [Blockly.Msg.ELEMENT_A,"a"],
+	  [Blockly.Msg.ELEMENT_RADIO,"radio"],
+	  [Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],
+	  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],
+	  [Blockly.Msg.ELEMENT_NUMBER,"number"],
+	  [Blockly.Msg.ELEMENT_DATE,"date"],
+	  [Blockly.Msg.ELEMENT_TIME,"time"],
+	  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
+	  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
+	  [Blockly.Msg.ELEMENT_PASSWORD,"password"]
+	  ],this.validate), "element");
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.ID);    
+      .appendField(Blockly.Msg.ID); 
+  this.getInput("id_").setVisible(false);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT_EVENT_STOP)
       .appendField(new Blockly.FieldDropdown([
@@ -10772,6 +10829,15 @@ Blockly.Blocks['element_event_stop'] = {
   this.setNextStatement(true);
   this.setColour(Blockly.Msg["HUE_1"]);
   this.setHelpUrl("https://fustyles.github.io/webduino/GameElements_20190131/HTML%20DOM%20EVENTS.txt");
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (newValue=="window"||newValue=="document") {
+		block.getInput("id_").setVisible(false);
+	}
+	else {
+		block.getInput("id_").setVisible(true);
+	}
   }
 };
 
