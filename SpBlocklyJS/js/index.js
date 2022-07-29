@@ -110,10 +110,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<link href='chart_20220723/jquery.simplegauge.css' type='text/css' rel='stylesheet'></script>";
 		}
 
-		if (workspace.getBlocksByType("TextToSpeech_run").length>0) {
-			script += "<script src='TextToSpeech_20220729/texttospeech.js'></script>";
-		}	
-
 		if (workspace.getBlocksByType("SpeechRecognition_run").length>0) {
 			script += "<script src='SpeechRecognition_20220729/speechrecognition.js'></script>";
 		}		
@@ -217,10 +213,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simplegauge.js'></script>";
 			script += "<link href='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simplegauge.css' type='text/css' rel='stylesheet'></script>";			
 		}
-		
-		if (workspace.getBlocksByType("TextToSpeech_run").length>0) {
-			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/TextToSpeech_20220729/texttospeech.js'></script>";
-		}	
 
 		if (workspace.getBlocksByType("SpeechRecognition_run").length>0) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpeechRecognition_20220729/speechrecognition.js'></script>";
