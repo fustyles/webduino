@@ -1,0 +1,11 @@
+Blockly.Msg["CATTHINGSPEAK"] = "ThingSpeak";
+Blockly.Msg.THINGSPEAK_SHOW = "ThingSpeak";	  	  
+Blockly.Msg.THINGSPEAK_KEY_SHOW = "Key";
+Blockly.Msg.THINGSPEAK_VALUE1_SHOW = "field 1";
+Blockly.Msg.THINGSPEAK_VALUE2_SHOW = "field 2";
+Blockly.Msg.THINGSPEAK_VALUE3_SHOW = "field 3";
+Blockly.Msg.THINGSPEAK_VALUE4_SHOW = "field 4";
+Blockly.Msg.THINGSPEAK_VALUE5_SHOW = "field 5";
+Blockly.Msg.THINGSPEAK_VALUE6_SHOW = "field 6";
+Blockly.Msg.THINGSPEAK_VALUE7_SHOW = "field 7";
+Blockly.Msg.THINGSPEAK_VALUE8_SHOW = "field 8";

@@ -1,0 +1,46 @@
+Blockly.Blocks['thingspeak'] = {
+  init: function() {
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg.THINGSPEAK_SHOW);	  	  
+    this.appendValueInput("key")
+        .setCheck("String")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_KEY_SHOW);
+    this.appendValueInput("field1")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE1_SHOW);
+    this.appendValueInput("field2")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE2_SHOW);
+    this.appendValueInput("field3")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE3_SHOW);
+    this.appendValueInput("field4")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE4_SHOW);
+    this.appendValueInput("field5")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE5_SHOW);
+    this.appendValueInput("field6")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE6_SHOW);
+	this.appendValueInput("field7")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE7_SHOW);
+    this.appendValueInput("field8")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE8_SHOW);
+	this.setInputsInline(false);	  
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(290);
+  } 
+};

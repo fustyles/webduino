@@ -131,6 +131,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='ifttt_20220730/ifttt.js'></script>";			
 		}			
 		
+		if (workspace.getBlocksByType("thingspeak").length>0) {
+			script += "<script src='thingspeak_20220730/thingspeak.js'></script>";			
+		}			
+				
 		return script;
 	}	
 	
@@ -252,6 +256,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/ifttt_20220730/ifttt.js'></script>";			
 		}		
 		
+		if (workspace.getBlocksByType("thingspeak").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/thingspeak_20220730/thingspeak.js'></script>";			
+		}
+		
 		return script;
 	}		
 	
@@ -272,6 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catChart,
 		"<sep></sep>",
 		catSpreadsheetsql,
+		catTHINGSPEAK,
 		catIFTTT,
 		catLineNotify,
 		"<sep></sep>",		
