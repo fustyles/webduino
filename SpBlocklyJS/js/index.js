@@ -125,7 +125,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (workspace.getBlocksByType("chart_switch_create").length>0) {
 			script += "<script src='chart_20220723/jquery.simpleswitch.js'></script>";
 			script += "<link href='chart_20220723/simpleswitch.css' type='text/css' rel='stylesheet'></script>";			
-		}		
+		}	
+
+		if (workspace.getBlocksByType("ifttt").length>0) {
+			script += "<script src='ifttt_20220730/ifttt.js'></script>";			
+		}			
 		
 		return script;
 	}	
@@ -242,7 +246,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (workspace.getBlocksByType("chart_switch_create").length>0) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simpleswitch.js'></script>";
 			script += "<link href='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/simpleswitch.css' type='text/css' rel='stylesheet'></script>";				
-		}			
+		}	
+
+		if (workspace.getBlocksByType("ifttt").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/ifttt_20220730/ifttt.js'></script>";			
+		}		
 		
 		return script;
 	}		
@@ -259,12 +267,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		"<sep></sep>",		
 		catWebSerial,
 		catMQTT,
-		catLineNotify,
 		"<sep></sep>",		
 		catPageElements,
 		catChart,
 		"<sep></sep>",
 		catSpreadsheetsql,
+		catIFTTT,
+		catLineNotify,
 		"<sep></sep>",		
 		catCocossd,			
 		catHolistic,
