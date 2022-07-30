@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		var workspace = Blockly.getMainWorkspace();
 		var script = "<script src='GameElements_20190131/gameelements.js'></script>";
 		
+		var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace, true);
+		xml = Blockly.Xml.domToPrettyText(xml);
+		
 		if (workspace.getBlocksByType("holistic_video").length>0) {
 			script += "<script src='holistic_20201012/holistic_video.js'></script>";			
 			script += "<script src='holistic_20201012/holistic.js'></script>";
@@ -133,6 +136,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		if (workspace.getBlocksByType("thingspeak").length>0) {
 			script += "<script src='thingspeak_20220730/thingspeak.js'></script>";			
+		}		
+
+		if (xml.indexOf("telegram_")!=-1) {
+			script += "<script src='Telegram_20200809/telegram.js'></script>";			
 		}			
 				
 		return script;
@@ -141,6 +148,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	function getScriptRemote() {
 		var workspace = Blockly.getMainWorkspace();
 		var script = "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>";
+		
+		var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace, true);
+		xml = Blockly.Xml.domToPrettyText(xml);
 		
 		if (workspace.getBlocksByType("holistic_video").length>0) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic_video.js'></script>";			
@@ -260,6 +270,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/thingspeak_20220730/thingspeak.js'></script>";			
 		}
 		
+		if (xml.indexOf("telegram_")!=-1) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/Telegram_20200809/telegram.js'></script>";			
+		}		
+		
 		return script;
 	}		
 	
@@ -283,6 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catTHINGSPEAK,
 		catIFTTT,
 		catLineNotify,
+		catTelegram,
 		"<sep></sep>",		
 		catCocossd,			
 		catHolistic,
