@@ -42,7 +42,6 @@ var simpleSwitch = function(options) {
 	chk.id = "gamecheckbox_"+options.id;
 	chk.value = options.val;
 	chk.className = "mybox";
-	$(document.body).append(chk);
 		
 	var This = $(chk);
 	This.addClass("simple-switch");
@@ -52,6 +51,15 @@ var simpleSwitch = function(options) {
 	html += outerHTML;
 	html += '<span id="gamespan_'+options.id+'" class="simple-switch-circle" style="width:'+options.height+'px; height:'+options.height+'px"></span><span style="font-weight:bold; font-size:'+options.size+'pt; font-family:arial; position:relative; color: '+options.color+'; left: '+(options.width/2-getTextWidth(options.text,"bold "+options.size+"pt arial")/2)+'px; top:'+(options.height+5)+'px;">'+options.text+'</span></label>';
 	This.replaceWith(html);
+	
+	var div = document.createElement("div");
+	div.id = "gamediv_"+options.id;	
+	div.style.left = options.left+"px";
+	div.style.top = options.top+"px";
+	div.style.position = "absolute";
+	div.style.zIndex = 9999;
+	div.innerHTML = html;
+	$(document.body).append(div);	
 	
 	$("#gamelabel_"+options.id).css("border-radius", options.height+"px");
 	This = $("#gamecheckbox_"+options.id);
