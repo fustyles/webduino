@@ -5,6 +5,9 @@ Blockly.Blocks['chart_switch_create'] = {
 	this.appendValueInput("id")
 		.setCheck("String")		
 		.appendField(Blockly.Msg["CHART_ID"]);
+	this.appendValueInput("text")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_NAME"]);	  
 	this.appendValueInput("width")
 		.setCheck("Number")
 		.appendField(Blockly.Msg["CHART_WIDTH"]);  
@@ -16,10 +19,7 @@ Blockly.Blocks['chart_switch_create'] = {
 		.appendField(Blockly.Msg["CHART_LEFT"]);  
 	this.appendValueInput("top")
 		.setCheck("Number")
-		.appendField(Blockly.Msg["CHART_TOP"]);
-	this.appendValueInput("text")
-		.setCheck("String")		
-		.appendField(Blockly.Msg["CHART_TEXT"]);		
+		.appendField(Blockly.Msg["CHART_TOP"]);		
 	this.appendDummyInput()  
 		.appendField(Blockly.Msg["CHART_VAL"])
 		.appendField(new Blockly.FieldDropdown([
