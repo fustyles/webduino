@@ -54,3 +54,10 @@ Blockly.Msg.CHART_ANALOGGAUGE_SET = "Analog chart set value";
 Blockly.Msg.CHART_ANALOGGAUGE_COUNT = "intervals";
 Blockly.Msg.CHART_ANALOGGAUGE_COLOR = "color split";
 Blockly.Msg.CHART_ANALOGGAUGE_ANGLE = "angle range";
+
+Blockly.Msg.CHART_SWITCH_CREATE = "Slide switch";
+Blockly.Msg.CHART_SWITCH_SET = "Slide switch set";
+Blockly.Msg.CHART_SWITCH_DO = "After switching";
+Blockly.Msg.CHART_ON = "ON";
+Blockly.Msg.CHART_OFF = "OFF";
+Blockly.Msg.CHART_SWITCH_GET = "Slide switch value";

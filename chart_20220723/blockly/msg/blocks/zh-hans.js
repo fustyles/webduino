@@ -54,3 +54,10 @@ Blockly.Msg.CHART_ANALOGGAUGE_SET = "类比计 设定数值";
 Blockly.Msg.CHART_ANALOGGAUGE_COUNT = "格数";
 Blockly.Msg.CHART_ANALOGGAUGE_COLOR = "颜色区间";
 Blockly.Msg.CHART_ANALOGGAUGE_ANGLE = "角度范围";
+
+Blockly.Msg.CHART_SWITCH_CREATE = "滑动开关";
+Blockly.Msg.CHART_SWITCH_SET = "滑动开关 设定";
+Blockly.Msg.CHART_SWITCH_DO = "切换开关后执行";
+Blockly.Msg.CHART_ON = "开";
+Blockly.Msg.CHART_OFF = "关";
+Blockly.Msg.CHART_SWITCH_GET = "滑动开关 开关状态值";

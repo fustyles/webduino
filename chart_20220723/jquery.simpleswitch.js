@@ -40,18 +40,21 @@ var simpleSwitch = function(options) {
 	var chk = document.createElement("input");
 	chk.setAttribute("type", "checkbox");
 	chk.id = "gamecheckbox_"+options.id;
-	chk.value = options.value;
+	chk.value = options.val;
+	chk.style.zIndex = 9999;
 	chk.className = "mybox";
 	$(document.body).append(chk);
 		
 	var This = $(chk);
 	This.addClass("simple-switch");
+	console.log(This.prop("outerHTML"));
 	var outerHTML = This.prop("outerHTML"),
 	html = "";
-	html += '<label id="gamelabel_'+options.id+'" class="simple-switch-outter" style="left:'+options.left+'px; top:'+options.top+'px; width:'+options.width+'px; height:'+options.height+'px">';
+	html += '<label id="gamelabel_'+options.id+'" class="simple-switch-outter" style="display: block; z-index: 9999; left:'+options.left+'px; top:'+options.top+'px; width:'+options.width+'px; height:'+options.height+'px">';
 	html += outerHTML;
-	html += '<span id="gamespan_'+options.id+'" class="simple-switch-circle" style="width:'+options.height+'px; height:'+options.height+'px"></span><span style="font-weight:bold; font-size:'+options.size+'pt; font-family:arial; position:relative; color: '+options.color+'; left: '+(options.width/2-getTextWidth(options.text,"bold "+options.size+"pt arial")/2)+'px; top:'+(options.height+5)+'px;">'+options.text+'</span></label>';
+	html += '<span id="gamespan_'+options.id+'" class="simple-switch-circle" style="z-index: 9999; width:'+options.height+'px; height:'+options.height+'px"></span><span style="font-weight:bold; font-size:'+options.size+'pt; font-family:arial; position:relative; color: '+options.color+'; left: '+(options.width/2-getTextWidth(options.text,"bold "+options.size+"pt arial")/2)+'px; top:'+(options.height+5)+'px;">'+options.text+'</span></label>';
 	This.replaceWith(html);
+	console.log(html);
 	
 	$("#gamelabel_"+options.id).css("border-radius", options.height+"px");
 	This = $("#gamecheckbox_"+options.id);
@@ -67,6 +70,7 @@ var simpleSwitch = function(options) {
 	This.change(function () {
 		_switch($(this));
 	});
+	
 	
 	//bind swipe events
 	var startPos = { x: 0, y: 0 },

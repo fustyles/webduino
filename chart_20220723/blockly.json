@@ -5,7 +5,8 @@
   "chart_gauge_create", "chart_gauge_set",  
   "chart_waterbubble_create", "chart_waterbubble_set", 
   "chart_line_create", "chart_line_dataset", "chart_line_set", "chart_line_clear", 
-  "chart_bar_create", "chart_bar_dataset", "chart_bar_set", "chart_bar_clear"
+  "chart_bar_create", "chart_bar_dataset", "chart_bar_set", "chart_bar_clear",
+  "chart_switch_create", "chart_switch_set", "chart_switch_get"
   ],
   "category": "catPlus",
   "scripts": [
@@ -19,7 +20,8 @@
     "pretty-doughtnut.js",
     "waterbubble.js",
     "barchart.js",
-    "jquery.simplegauge.js"	
+    "jquery.simplegauge.js",
+	"jquery.simpleswitch.js"
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
