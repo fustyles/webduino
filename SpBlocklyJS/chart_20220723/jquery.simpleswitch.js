@@ -40,7 +40,7 @@ var simpleSwitch = function(options) {
 	var chk = document.createElement("input");
 	chk.setAttribute("type", "checkbox");
 	chk.id = "gamecheckbox_"+options.id;
-	chk.value = options.value;
+	chk.value = options.val;
 	chk.className = "mybox";
 	$(document.body).append(chk);
 		
