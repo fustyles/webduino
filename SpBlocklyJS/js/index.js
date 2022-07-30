@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='SpeechRecognition_20220729/speechrecognition.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("linenotify").length>0||workspace.getBlocksByType("linebot").length>0) {
+		if (workspace.getBlocksByType("linenotify").length>0||workspace.getBlocksByType("linenotify_image").length>0) {
 			script += "<script src='line_20220729/line.js'></script>";
 		}	
 
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpeechRecognition_20220729/speechrecognition.js'></script>";
 		}
 
-		if (workspace.getBlocksByType("linenotify").length>0||workspace.getBlocksByType("linebot").length>0) {
+		if (workspace.getBlocksByType("linenotify").length>0||workspace.getBlocksByType("linenotify_image").length>0) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/line_20220729/line.js'></script>";
 		}
 
