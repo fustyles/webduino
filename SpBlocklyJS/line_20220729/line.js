@@ -53,84 +53,58 @@ function linenotify_push_message(notify_token, notify_msg) {
 
 function linenotify_push_image(notify_token, notify_id, notify_msg) {
 	var img = document.getElementById(notify_id);
+	
+	if (document.getElementById("myForm"))
+		document.getElementById("myForm").parentNode.removeChild(document.getElementById("myForm"));
+		
+	var myForm = document.createElement("form");
+	myForm.id = "myForm";
+	myForm.name = "myForm";
+	myForm.method = "POST";
+	myForm.target = "myIframe";
+	myForm.action = "https://script.google.com/macros/s/AKfycbyp1xvWg-UCSrLsL8zt-ba_0n96uNTpAFyRry9ifCnRbtK-vgg/exec";
+	document.body.appendChild(myForm);
 
-	if (!document.getElementById("myCanvas")) {
-		var myCanvas = document.createElement('canvas');
-		myCanvas.id = "myCanvas";
-		myCanvas.style.display = "none";
-		document.body.appendChild(myCanvas);
-	}
-	else {
-		var myCanvas = document.getElementById("myCanvas");
-	}
+	var myCanvas = document.createElement('canvas');
+	myCanvas.id = "myCanvas";
+	myCanvas.style.display = "none";
+	myForm.appendChild(myCanvas);
 
-	if (!document.getElementById("myIframe")) {
-		var myIframe = document.createElement('iframe');
-		myIframe.id = "myIframe";
-		myIframe.name = "myIframe";
-		myIframe.style.display = "none";
-		document.body.appendChild(myIframe);
-	}
-	else {
-		var myIframe = document.getElementById("myIframe");
-	}
+	var myIframe = document.createElement('iframe');
+	myIframe.id = "myIframe";
+	myIframe.name = "myIframe";
+	myIframe.style.display = "none";
+	myForm.appendChild(myIframe);
 
 	var myContext = myCanvas.getContext('2d');
 	myCanvas.setAttribute("width", img.width);
-    myCanvas.setAttribute("height", img.height);
+	myCanvas.setAttribute("height", img.height);
 	myContext.drawImage(img, 0, 0, img.width, img.height);
 
-	if (!document.getElementById("myForm")) {
-		var myForm = document.createElement("form");
-		myForm.id = "myForm";
-		myForm.name = "myForm";
-		myForm.method = "POST";
-		myForm.target = "myIframe";
-		myForm.action = "https://script.google.com/macros/s/AKfycbyp1xvWg-UCSrLsL8zt-ba_0n96uNTpAFyRry9ifCnRbtK-vgg/exec";
-		document.body.appendChild(myForm);
-	} 
-	else {
-		var myForm = document.getElementById("myForm");
-	}
-
-	if (!document.getElementById("myToken")) {
-		var myToken = document.createElement("input");
-		myToken.type = "hidden";
-		myToken.id = "myToken";
-		myToken.name = "myToken";
-		myForm.appendChild(myToken);
-	}
-	else {
-		var myToken = document.getElementById("myToken");
-	}
+	var myToken = document.createElement("input");
+	myToken.type = "hidden";
+	myToken.id = "myToken";
+	myToken.name = "myToken";
 	myToken.value = notify_token;
+	myForm.appendChild(myToken);
 
-	if (!document.getElementById("myFilename")) {
-		var myFilename = document.createElement("input");
-		myFilename.type = "hidden";
-		myFilename.id = "myFilename";
-		myFilename.name = "myFilename";
-		myForm.appendChild(myFilename);
-	}
-	else {
-		var myFilename = document.getElementById("myFilename");
-	}
+	var myFilename = document.createElement("input");
+	myFilename.type = "hidden";
+	myFilename.id = "myFilename";
+	myFilename.name = "myFilename";
 	var date = new Date();
 	myFilename.value = date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate()+" "+("0"+date.getHours()).substr(-2,2)+":"+("0"+date.getMinutes()).substr(-2,2)+":"+("0"+date.getSeconds()).substr(-2,2);	
+	myForm.appendChild(myFilename);
 
-	if (!document.getElementById("myFile")) {
-		var myFile = document.createElement("textarea");
-		myFile.id = "myFile";
-		myFile.name = "myFile";
-		myFile.style.display = "none";
-		myForm.appendChild(myFile);
-	}
-	else {
-		var myFile = document.getElementById("myFile");
-	}
+	var myFile = document.createElement("textarea");
+	myFile.id = "myFile";
+	myFile.name = "myFile";
+	myFile.style.display = "none";
 	myFile.value = myCanvas.toDataURL();
+	myForm.appendChild(myFile);
 
-    myForm.submit();	
+	myForm.submit();	
+	
 	/*
 	var img = document.getElementById(notify_id);
 
