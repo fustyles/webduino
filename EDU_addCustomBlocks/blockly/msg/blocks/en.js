@@ -30,4 +30,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_WEBSERIAL_SHOW = "[link] Web Serial";
 Blockly.Msg.ADDCUSTOMBLOCKS_MQTT_SHOW = "[link] MQTT";
 Blockly.Msg.ADDCUSTOMBLOCKS_ROBOTFLY_SHOW = "[link] ROBOT FLY";
 Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW = "[link] hands (Mediapipe Holistic)";
-Blockly.Msg.ADDCUSTOMBLOCKS_CHART_SHOW = "[link] Chart";
+Blockly.Msg.ADDCUSTOMBLOCKS_CHART_SHOW = "[link] Dashboard";
