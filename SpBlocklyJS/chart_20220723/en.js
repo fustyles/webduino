@@ -57,6 +57,7 @@ Blockly.Msg["CHART_ANALOGGAUGE_ANGLE"] = "angle range";
 
 Blockly.Msg["CATCHARTSWITCH"] = "Slide switch";
 Blockly.Msg["CHART_SWITCH_CREATE"] = "Slide switch";
+Blockly.Msg["CHART_SWITCH_SET"] = "Slide switch set";
 Blockly.Msg["CHART_SWITCH_DO"] = "After switching";
 Blockly.Msg["CHART_ON"] = "ON";
 Blockly.Msg["CHART_OFF"] = "OFF";

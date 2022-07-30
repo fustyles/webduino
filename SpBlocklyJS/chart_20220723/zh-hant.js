@@ -57,6 +57,7 @@ Blockly.Msg["CHART_ANALOGGAUGE_ANGLE"] = "角度範圍";
 
 Blockly.Msg["CATCHARTSWITCH"] = "滑動開關";
 Blockly.Msg["CHART_SWITCH_CREATE"] = "滑動開關 建立";
+Blockly.Msg["CHART_SWITCH_SET"] = "滑動開關 設定";
 Blockly.Msg["CHART_SWITCH_DO"] = "切換開關後執行";
 Blockly.Msg["CHART_ON"] = "開";
 Blockly.Msg["CHART_OFF"] = "關";
