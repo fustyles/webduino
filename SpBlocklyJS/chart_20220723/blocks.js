@@ -3,33 +3,42 @@ Blockly.Blocks['chart_switch_create'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["CHART_SWITCH_CREATE"]);
 	this.appendValueInput("id")
-		.setCheck("String")		
+		.setCheck("String")	
+      .setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg["CHART_ID"]);
 	this.appendValueInput("text")
-		.setCheck("String")		
-		.appendField(Blockly.Msg["CHART_NAME"]);	  
+		.setCheck("String")	
+      .setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["CHART_NAME"]);		
 	this.appendValueInput("width")
 		.setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg["CHART_WIDTH"]);  
 	this.appendValueInput("height")
 		.setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg["CHART_HEIGHT"]);	
 	this.appendValueInput("left")
 		.setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg["CHART_LEFT"]);  
 	this.appendValueInput("top")
 		.setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg["CHART_TOP"]);		
-	this.appendDummyInput()  
+	this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)	
 		.appendField(Blockly.Msg["CHART_VAL"])
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["CHART_ON"],"1"],
 			[Blockly.Msg["CHART_OFF"],"0"]	  
 		]), "val"); 
 	this.appendValueInput("size")
+        .setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("Number")
 		.appendField(Blockly.Msg["CHART_LABELSIZE"]);
 	this.appendValueInput("color")
+        .setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck(null)	
 		.appendField(Blockly.Msg["CHART_COLOR"]);
     this.appendStatementInput("do")
