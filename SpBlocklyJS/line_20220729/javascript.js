@@ -27,3 +27,29 @@ Blockly.JavaScript['linenotify'] = function(block) {
   var code = 'linenotify_push_message('+token+','+message+');\n';
   return code;
 };
+
+Blockly.JavaScript['linenotify_image'] = function (block) {
+  var notify_token = Blockly.JavaScript.valueToCode(block, 'notify_token', Blockly.JavaScript.ORDER_ATOMIC);  
+  var notify_source = block.getFieldValue('notify_source');
+  var notify_id = Blockly.JavaScript.valueToCode(block, 'notify_id', Blockly.JavaScript.ORDER_ATOMIC);
+  var notify_message = Blockly.JavaScript.valueToCode(block, 'notify_message', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  if (!notify_token) notify_token='""';
+
+  if ((notify_id.indexOf("(")==0)&&(notify_id.lastIndexOf(")")==notify_id.length-1))
+    notify_id = notify_id.substring(1,notify_id.length-1);	
+  if ((notify_id.indexOf("'")==0)&&(notify_id.lastIndexOf("'")==notify_id.length-1))
+    notify_id = notify_id.substring(1,notify_id.length-1);
+  if ((notify_id.indexOf('"')==0)&&(notify_id.lastIndexOf('"')==notify_id.length-1))
+    notify_id = notify_id.substring(1,notify_id.length-1);	
+
+  var source_id;
+  if (notify_source=="video")
+	source_id = 'gamevideo_'+notify_id;
+  else if (notify_source=="canvas")
+	source_id = 'gamecanvas_'+notify_id;
+  else if (notify_source=="image")
+	source_id = 'gameimage_'+notify_id;
+  var code = 'linenotify_push_image('+notify_token+',"'+source_id+'",'+notify_message+');\n';
+  return code; 
+};

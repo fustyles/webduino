@@ -84,3 +84,35 @@ Blockly.Blocks['linenotify'] = {
 	 }	 
   } 
 };
+
+Blockly.Blocks['linenotify_image'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.LINENOTIFY_SHOW)	  
+      .appendField(Blockly.Msg.LINENOTIFY_IMAGE_SHOW);
+  this.appendValueInput("notify_token")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LINENOTIFY_TOKEN_SHOW);  
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.LINENOTIFY_VIDEO_SHOW,"video"], 
+		  [Blockly.Msg.LINENOTIFY_CANVAS_SHOW,"canvas"], 
+		  [Blockly.Msg.LINENOTIFY_IMAGE_SHOW,"image"]
+	  ]), "notify_source");
+  this.appendValueInput("notify_id")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LINENOTIFY_ID_SHOW);
+  this.appendValueInput("notify_message")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LINENOTIFY_MESSAGE_SHOW);	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setTooltip('');
+  this.setColour(65);
+  }
+};

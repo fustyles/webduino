@@ -51,8 +51,8 @@ function linenotify_push_message(notify_token, notify_msg) {
      });
 }  
 
-function linenotify_push_image(notify_script, notify_token, notify_videoid) {
-	var myVideo = document.getElementById(notify_videoid);
+function linenotify_push_image(token, id, message) {
+	var img = document.getElementById(id);
 
 	if (!document.getElementById("myCanvas")) {
 		var myCanvas = document.createElement('canvas');
@@ -64,71 +64,45 @@ function linenotify_push_image(notify_script, notify_token, notify_videoid) {
 		var myCanvas = document.getElementById("myCanvas");
 	}
 
-	if (!document.getElementById("myIframe")) {
-		var myIframe = document.createElement('iframe');
-		myIframe.id = "myIframe";
-		myIframe.name = "myIframe";
-		myIframe.style.display = "none";
-		document.body.appendChild(myIframe);
+	myCanvas.setAttribute("width", img.width);
+	myCanvas.setAttribute("height", img.height);
+	var myContext = myCanvas.getContext("2d");
+	myContext.drawImage(img, 0, 0, img.width, img.height);
+	var imageData = myCanvas.toDataURL('image/jpeg');
+	
+	var boundary = "------------------------------";
+	var imageData_s = "--" + boundary + "\r\n"
+	  + "Content-Disposition: form-data; name=\"message\"; \r\n\r\n" + message + "\r\n"
+	  + "--" + boundary + "\r\n"
+	  + "Content-Disposition: form-data; name=\"imageFile\"; filename=\"" + "SpBlockly.jpg" + "\"\r\n"
+	  + "Content-Type: " + 'image/jpeg' +"\r\n\r\n";
+	  
+	var imageData_e = "\r\n--" + boundary + "--\r\n";
+	
+	function _base64ToArrayBuffer(base64) {
+		var binary_string = base64;
+		var len = binary_string.length;
+		var bytes = new Uint8Array(len);
+		for (var i = 0; i < len; i++) {
+			bytes[i] = binary_string.charCodeAt(i);
+		}
+		return bytes.buffer;
 	}
-	else {
-		var myIframe = document.getElementById("myIframe");
-	}
+	const data = _base64ToArrayBuffer(imageData_s+imageData+imageData_e);
 
-	var myContext = myCanvas.getContext('2d');
-	myCanvas.setAttribute("width", myVideo.width);
-    myCanvas.setAttribute("height", myVideo.height);
-	myContext.drawImage(myVideo, 0, 0, myVideo.width, myVideo.height);
-
-	if (!document.getElementById("myForm")) {
-		var myForm = document.createElement("form");
-		myForm.id = "myForm";
-		myForm.name = "myForm";
-		myForm.method = "POST";
-		myForm.target = "myIframe";
-		myForm.action = notify_script;
-		document.body.appendChild(myForm);
-	} 
-	else {
-		var myForm = document.getElementById("myForm");
-	}
-
-	if (!document.getElementById("myToken")) {
-		var myToken = document.createElement("input");
-		myToken.type = "hidden";
-		myToken.id = "myToken";
-		myToken.name = "myToken";
-		myForm.appendChild(myToken);
-	}
-	else {
-		var myToken = document.getElementById("myToken");
-	}
-	myToken.value = notify_token;
-
-	if (!document.getElementById("myFilename")) {
-		var myFilename = document.createElement("input");
-		myFilename.type = "hidden";
-		myFilename.id = "myFilename";
-		myFilename.name = "myFilename";
-		myForm.appendChild(myFilename);
-	}
-	else {
-		var myFilename = document.getElementById("myFilename");
-	}
-	var date = new Date();
-	myFilename.value = date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate()+" "+("0"+date.getHours()).substr(-2,2)+":"+("0"+date.getMinutes()).substr(-2,2)+":"+("0"+date.getSeconds()).substr(-2,2);	
-
-	if (!document.getElementById("myFile")) {
-		var myFile = document.createElement("textarea");
-		myFile.id = "myFile";
-		myFile.name = "myFile";
-		myFile.style.display = "none";
-		myForm.appendChild(myFile);
-	}
-	else {
-		var myFile = document.getElementById("myFile");
-	}
-	myFile.value = myCanvas.toDataURL();
-
-    myForm.submit();
+    $.ajax({
+        "url": "https://notify-api.line.me/api/notify",
+		"method" : "post",
+		"contentType" : "multipart/form-data; boundary=" + boundary,
+		"payload" : data,    
+		"headers" : {"Authorization" : "Bearer " + token},
+        success: function(jsonp)
+        {
+          console.log(jsonp);
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+          //console.log(errorThrown);
+        }
+     });
 } 

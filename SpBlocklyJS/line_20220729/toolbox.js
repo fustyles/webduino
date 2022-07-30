@@ -32,5 +32,22 @@ var catLineNotify ='<xml>'+
 '		  </block>'+
 '		</value>'+
 '	  </block>'+
+'	  <block type="linenotify_image">'+
+'	    <value name="notify_token">'+
+'	      <block type="text">'+
+'	        <field name="TEXT"></field>'+
+'	      </block>'+
+'	    </value>'+
+'	    <value name="notify_id">'+
+'	      <block type="text">'+
+'	        <field name="TEXT"></field>'+
+'	      </block>'+
+'	    </value>'+
+'		<value name="notify_message">'+
+'		  <block type="text">'+
+'			<field name="TEXT">Hello</field>'+
+'		  </block>'+
+'		</value>'+
+'	  </block>'+
 '    </category>'+
 '</xml>';
