@@ -15,7 +15,7 @@ var catSpreadsheetsql = '<xml>'+
 '      <block type="spreadsheetsql_executeSql">'+
 '        <value name="spreadsheet_sql">'+
 '          <block type="text">'+
-'            <field name="TEXT"></field>'+
+'            <field name="TEXT">select A limit 1 offset 0</field>'+
 '          </block>'+
 '        </value>'+
 '      </block>'+
