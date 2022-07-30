@@ -120,7 +120,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		if (workspace.getBlocksByType("linenotify").length>0||workspace.getBlocksByType("linebot").length>0) {
 			script += "<script src='line_20220729/line.js'></script>";
-		}			
+		}	
+
+		if (workspace.getBlocksByType("chart_switch_create").length>0) {
+			script += "<script src='chart_20220723/jquery.simpleswitch.js'></script>";
+			script += "<link href='chart_20220723/simpleswitch.css' type='text/css' rel='stylesheet'></script>";			
+		}		
 		
 		return script;
 	}	
@@ -232,7 +237,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		if (workspace.getBlocksByType("linenotify").length>0||workspace.getBlocksByType("linebot").length>0) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/line_20220729/line.js'></script>";
-		}		
+		}
+
+		if (workspace.getBlocksByType("chart_switch_create").length>0) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simpleswitch.js'></script>";
+			script += "<link href='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/simpleswitch.css' type='text/css' rel='stylesheet'></script>";				
+		}			
 		
 		return script;
 	}		

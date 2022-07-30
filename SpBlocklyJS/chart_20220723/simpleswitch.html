@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Simple Switch</title>
-    <link href="simple-switch.css" rel="stylesheet" />
+    <link href="simpleswitch.css" rel="stylesheet" />
 	<script src="jquery.min.js"></script>	
 	<script src="jquery.simpleswitch.js"></script>	
     <style>
@@ -11,8 +11,14 @@
 </head>
 <body>
     <script>
-        simpleSwitch({id:'123',left:100, top:0, width:120, height:50, text: '你好嗎', color: '#abcdef', value: 0});
-		simpleSwitch({id:'1234',left:200, top:0, width:120, height:50, text: '我很好', color: '#773456', value: 1});
+	    function test1() {
+			console.log("ok1");
+		}
+	    function test2() {
+			console.log("ok2");
+		}		
+        simpleSwitch({id:'123',left:100, top:0, width:120, height:50, text: '你好嗎', size: 16, color: '#abcdef', val: 0, func: test1});
+		simpleSwitch({id:'1234',left:200, top:0, width:120, height:50, text: '我很好', size: 20, color: '#773456', val: 1, func: test2});
     </script>
 </body>
 </html>

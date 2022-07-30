@@ -30,7 +30,7 @@ var simpleSwitch = function(options) {
 		simpleSwitchOptions[options.id] = options;	
 	}
 	else if (!options.hasOwnProperty('color')) {
-		simpleSwitchOptions[options.id].value = options.value;
+		simpleSwitchOptions[options.id].val = options.val;
 		options = simpleSwitchOptions[options.id];
 	}
 
@@ -50,21 +50,24 @@ var simpleSwitch = function(options) {
 	html = "";
 	html += '<label id="gamelabel_'+options.id+'" class="simple-switch-outter" style="left:'+options.left+'px; top:'+options.top+'px; width:'+options.width+'px; height:'+options.height+'px">';
 	html += outerHTML;
-	html += '<span id="gamespan_'+options.id+'" class="simple-switch-circle" style="width:'+options.height+'px; height:'+options.height+'px"></span><span style="font-weight:bold; font-size:12pt; font-family:arial; position:relative; left: '+(options.width/2-getTextWidth(options.text,"bold 12pt arial")/2)+'px; top:'+(options.top+options.height+5)+'px;">'+options.text+'</span></label>';
+	html += '<span id="gamespan_'+options.id+'" class="simple-switch-circle" style="width:'+options.height+'px; height:'+options.height+'px"></span><span style="font-weight:bold; font-size:'+options.size+'pt; font-family:arial; position:relative; color: '+options.color+'; left: '+(options.width/2-getTextWidth(options.text,"bold "+options.size+"pt arial")/2)+'px; top:'+(options.height+5)+'px;">'+options.text+'</span></label>';
 	This.replaceWith(html);
 	
 	$("#gamelabel_"+options.id).css("border-radius", options.height+"px");
 	This = $("#gamecheckbox_"+options.id);
-	if (options.value==1)
+	if (options.val==1)
 	  This.prop("checked", true);
 	else
 	  This.prop("checked", false);
   
 	_switch(This);
+	
 	//bind click event
-	This.click(function () {
+	This.click(options.func);
+	This.change(function () {
 		_switch($(this));
 	});
+	
 	//bind swipe events
 	var startPos = { x: 0, y: 0 },
 		currentPos = { x: 0, y: 0 };

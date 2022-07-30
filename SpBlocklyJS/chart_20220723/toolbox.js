@@ -347,9 +347,64 @@ var catChart = '<xml>'+
 '        </value>'+	
 	  '</block>'+  
 	'</category>'+	
-
-
-
+	'<category name="%{BKY_CATCHARTSWITCH}" id="CATCHARTSWITCH">'+	
+	  '<block type="chart_switch_create">'+
+	    '<value name="id">'+
+		  '<block type="text">'+
+			'<field name="TEXT"></field>'+
+		  '</block>'+
+		'</value>'+	
+'        <value name="width">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">50</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="height">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">20</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="left">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="top">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+	    '<value name="text">'+
+		  '<block type="text">'+
+			'<field name="TEXT">開關</field>'+
+		  '</block>'+
+		'</value>'+	
+'        <value name="size">'+	  
+'          <block type="math_number">'+
+'            <field name="NUM">14</field>'+
+'          </block>'+
+'        </value>'+
+	    '<value name="color">'+
+'    		<block type="colour_picker">'+
+'    			<field name="COLOUR">#ff0000</field>'+
+'    		</block>'+
+		'</value>'+			
+	  '</block>'+	
+	  '<block type="chart_switch_set">'+
+	    '<value name="id">'+
+		  '<block type="text">'+
+			'<field name="TEXT"></field>'+
+		  '</block>'+
+		'</value>'+
+	  '</block>'+  
+	  '<block type="chart_switch_get">'+
+	    '<value name="id">'+
+		  '<block type="text">'+
+			'<field name="TEXT"></field>'+
+		  '</block>'+
+		'</value>'+
+	  '</block>'+  	  
+	  '</category>'+	
 	  '<category name="%{BKY_CATLINECHART}" id="CATLINECHART">'+	
 	  '    <block type="chart_line_create">'+
 	  '        <value name="id">'+

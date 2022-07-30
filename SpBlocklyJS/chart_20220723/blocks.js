@@ -1,3 +1,79 @@
+Blockly.Blocks['chart_switch_create'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["CHART_SWITCH_CREATE"]);
+	this.appendValueInput("id")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_ID"]);
+	this.appendValueInput("width")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_WIDTH"]);  
+	this.appendValueInput("height")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_HEIGHT"]);	
+	this.appendValueInput("left")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_LEFT"]);  
+	this.appendValueInput("top")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_TOP"]);
+	this.appendValueInput("text")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_TEXT"]);		
+	this.appendDummyInput()  
+		.appendField(Blockly.Msg["CHART_VAL"])
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["CHART_ON"],"1"],
+			[Blockly.Msg["CHART_OFF"],"0"]	  
+		]), "val"); 
+	this.appendValueInput("size")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["CHART_LABELSIZE"]);
+	this.appendValueInput("color")
+		.setCheck(null)	
+		.appendField(Blockly.Msg["CHART_COLOR"]);
+    this.appendStatementInput("do")
+        .appendField(Blockly.Msg["CHART_SWITCH_DO"]);		
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(150);
+  }
+};
+
+Blockly.Blocks['chart_switch_set'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["CHART_SWITCH_SET"]);	  
+	this.appendValueInput("id")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_ID"]);
+	this.appendDummyInput()  
+		.appendField(Blockly.Msg["CHART_VAL"])
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["CHART_ON"],"1"],
+			[Blockly.Msg["CHART_OFF"],"0"]	  
+		]), "val");
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(150);
+  }
+};
+
+Blockly.Blocks['chart_switch_get'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["CHART_SWITCH_GET"]);	  
+	this.appendValueInput("id")
+		.setCheck("String")		
+		.appendField(Blockly.Msg["CHART_ID"]);
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(150);
+  }
+};
+
 Blockly.Blocks['chart_analoggauge_create'] = {
   init: function() {
 	this.appendDummyInput()

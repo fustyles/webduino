@@ -1,3 +1,48 @@
+Blockly.JavaScript['chart_switch_create'] = function(block) {
+  var func = "switch_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
+  var left = Blockly.JavaScript.valueToCode(block, 'left', Blockly.JavaScript.ORDER_ATOMIC);
+  var top = Blockly.JavaScript.valueToCode(block, 'top', Blockly.JavaScript.ORDER_ATOMIC);
+  var width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC);
+  var height = Blockly.JavaScript.valueToCode(block, 'height', Blockly.JavaScript.ORDER_ATOMIC);  
+  var val = block.getFieldValue('val');
+  var text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+  var size = Blockly.JavaScript.valueToCode(block, 'size', Blockly.JavaScript.ORDER_ATOMIC);
+  var color = Blockly.JavaScript.valueToCode(block, 'color', Blockly.JavaScript.ORDER_ATOMIC);
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do');
+  
+  Blockly.JavaScript.functions_[func] = "function "+func+"() {\n  "+statements_do+"\n}";
+  
+  var code = "";
+  code +=  'simpleSwitch({\n'+
+			'	id: '+id+',\n'+
+			'	width: '+width+',\n'+
+			'	height: '+height+',\n'+
+			'	left: '+left+',\n'+
+			'	top: '+top+',\n'+
+			'	text: '+text+',\n'+	
+			'	size: '+size+',\n'+			
+			'	color: '+color+',\n'+
+			'	val: '+val+',\n'+			
+			'	func: '+func+'\n'+			
+			'});\n';
+												
+  return code;
+};
+
+Blockly.JavaScript['chart_switch_set'] = function(block) {
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
+  var val = block.getFieldValue('val');
+  code = 'simpleSwitch({id: '+id+',val: '+val+'});\n';
+  return code;
+};
+
+Blockly.JavaScript['chart_switch_get'] = function(block) {
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '$("#gamecheckbox_"+'+id+').is(":checked")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['chart_analoggauge_create'] = function(block) {
   var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
   var name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
@@ -133,18 +178,6 @@ Blockly.JavaScript['chart_analoggauge_set'] = function(block) {
   code = 'simpleGauge({id:'+id+', value: '+val+'});\n';
   return code;
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 Blockly.JavaScript['chart_doughnut_create'] = function(block) {
   var id = "chart_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
