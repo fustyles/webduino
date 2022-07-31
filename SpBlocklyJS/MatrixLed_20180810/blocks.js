@@ -69,7 +69,7 @@ Blockly.Blocks['matrix_led_showstate'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.MATRIXLED_SHOWSTATE_SHOW)
-        .appendField(new Blockly.FieldDropdown([["on","1"], ["off","0"]]), "value_showstate_");     
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg.MATRIXLED_ON_SHOW,"1"], [Blockly.Msg.MATRIXLED_OFF_SHOW,"0"]]), "value_showstate_");     
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(300);
@@ -469,6 +469,7 @@ Blockly.Blocks['matrix_led_clear'] = {
 Blockly.Blocks['matrix_led_on'] = {
   init: function() {
     this.appendDummyInput()
+        .appendField(Blockly.Msg.MATRIXLED_MATRIX_SHOW)
         .appendField(Blockly.Msg.MATRIXLED_ON_SHOW);
     this.appendValueInput("value_x_on_")
         .setCheck("Number")
@@ -510,6 +511,7 @@ Blockly.Blocks['matrix_led_color_on'] = {
 Blockly.Blocks['matrix_led_off'] = {
   init: function() {
     this.appendDummyInput()
+        .appendField(Blockly.Msg.MATRIXLED_MATRIX_SHOW)	
         .appendField(Blockly.Msg.MATRIXLED_OFF_SHOW);
     this.appendValueInput("value_x_off_")
         .setCheck("Number")
