@@ -55,96 +55,64 @@ https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToTelegram.gs
 	 });
   }   
   
-  function telegram_push_image(input_token,input_chatid,input_videoid) {
-	var myVideo = document.getElementById(input_videoid);
+  function telegram_push_image(input_token,input_chatid,input_id) {
+	var img = document.getElementById(input_id);
+	
+	if (document.getElementById("myForm"))
+		document.getElementById("myForm").parentNode.removeChild(document.getElementById("myForm"));
 
-	if (!document.getElementById("myCanvas")) {
-		var myCanvas = document.createElement('canvas');
-		myCanvas.id = "myCanvas";
-		myCanvas.style.display = "none";
-		document.body.appendChild(myCanvas);
-	}
-	else {
-		var myCanvas = document.getElementById("myCanvas");
-	}
+	var myForm = document.createElement("form");
+	myForm.id = "myForm";
+	myForm.name = "myForm";
+	myForm.method = "POST";
+	myForm.target = "myIframe";
+	myForm.action = "https://script.google.com/macros/s/AKfycbz2xF0_DBg2UwMU0qGrnORCUptzBXXn7GZxl7Onm0UNhGTGJat1Bz2SjNGCzDl0vUU2/exec";
+	document.body.appendChild(myForm);
 
-	if (!document.getElementById("myIframe")) {
-		var myIframe = document.createElement('iframe');
-		myIframe.id = "myIframe";
-		myIframe.name = "myIframe";
-		myIframe.style.display = "none";
-		document.body.appendChild(myIframe);
-	}
-	else {
-		var myIframe = document.getElementById("myIframe");
-	}
+	var myCanvas = document.createElement('canvas');
+	myCanvas.id = "myCanvas";
+	myCanvas.style.display = "none";
+	myForm.appendChild(myCanvas);
+
+	var myIframe = document.createElement('iframe');
+	myIframe.id = "myIframe";
+	myIframe.name = "myIframe";
+	myIframe.style.display = "none";
+	myForm.appendChild(myIframe);
 
 	var myContext = myCanvas.getContext('2d');
-	myCanvas.setAttribute("width", myVideo.width);
-    myCanvas.setAttribute("height", myVideo.height);
-	myContext.drawImage(myVideo, 0, 0, myVideo.width, myVideo.height);
+	myCanvas.setAttribute("width", img.width);
+	myCanvas.setAttribute("height", img.height);
+	myContext.drawImage(img, 0, 0, img.width, img.height);
 
-	if (!document.getElementById("myForm")) {
-		var myForm = document.createElement("form");
-		myForm.id = "myForm";
-		myForm.name = "myForm";
-		myForm.method = "POST";
-		myForm.target = "myIframe";
-		myForm.action = "https://script.google.com/macros/s/AKfycbzksC7Fu7vdLuJAmlEvBap-FYGbNvVygOjWYenS/exec";
-		document.body.appendChild(myForm);
-	} 
-	else {
-		var myForm = document.getElementById("myForm");
-	}
-
-	if (!document.getElementById("myToken")) {
-		var myToken = document.createElement("input");
-		myToken.type = "hidden";
-		myToken.id = "myToken";
-		myToken.name = "myToken";
-		myForm.appendChild(myToken);
-	}
-	else {
-		var myToken = document.getElementById("myToken");
-	}
+	var myToken = document.createElement("input");
+	myToken.type = "hidden";
+	myToken.id = "myToken";
+	myToken.name = "myToken";
 	myToken.value = input_token;
+	myForm.appendChild(myToken);
 
-	if (!document.getElementById("myChatID")) {
-		var myChatID = document.createElement("input");
-		myChatID.type = "hidden";
-		myChatID.id = "myChatID";
-		myChatID.name = "myChatID";
-		myForm.appendChild(myChatID);
-	}
-	else {
-		var myChatID = document.getElementById("myChatID");
-	}
+	var myChatID = document.createElement("input");
+	myChatID.type = "hidden";
+	myChatID.id = "myChatID";
+	myChatID.name = "myChatID";
 	myChatID.value = input_chatid;
+	myForm.appendChild(myChatID);
 
-	if (!document.getElementById("myFilename")) {
-		var myFilename = document.createElement("input");
-		myFilename.type = "hidden";
-		myFilename.id = "myFilename";
-		myFilename.name = "myFilename";
-		myForm.appendChild(myFilename);
-	}
-	else {
-		var myFilename = document.getElementById("myFilename");
-	}
+	var myFilename = document.createElement("input");
+	myFilename.type = "hidden";
+	myFilename.id = "myFilename";
+	myFilename.name = "myFilename";
 	var date = new Date();
 	myFilename.value = date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate()+" "+("0"+date.getHours()).substr(-2,2)+":"+("0"+date.getMinutes()).substr(-2,2)+":"+("0"+date.getSeconds()).substr(-2,2);	
+	myForm.appendChild(myFilename);
 
-	if (!document.getElementById("myFile")) {
-		var myFile = document.createElement("textarea");
-		myFile.id = "myFile";
-		myFile.name = "myFile";
-		myFile.style.display = "none";
-		myForm.appendChild(myFile);
-	}
-	else {
-		var myFile = document.getElementById("myFile");
-	}
+	var myFile = document.createElement("textarea");
+	myFile.id = "myFile";
+	myFile.name = "myFile";
+	myFile.style.display = "none";
 	myFile.value = myCanvas.toDataURL();
+	myForm.appendChild(myFile);
 
     myForm.submit();
   } 

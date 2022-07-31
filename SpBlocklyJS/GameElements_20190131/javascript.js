@@ -633,7 +633,7 @@ Blockly.JavaScript['document_timer_once_novar'] = function (block) {
 };
 
 Blockly.JavaScript['document_timer'] = function (block) {
-  var variable_myTimer_ = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('myTimer_'), Blockly.Variables.NAME_TYPE);
+  var variable_myTimer_ = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('myTimer_'), Blockly.VARIABLE_CATEGORY_NAME);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var value_intervals_ = Blockly.JavaScript.valueToCode(block, 'intervals_', Blockly.JavaScript.ORDER_ATOMIC);
   var code = variable_myTimer_+' = setInterval(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
@@ -641,7 +641,7 @@ Blockly.JavaScript['document_timer'] = function (block) {
 };
 
 Blockly.JavaScript['document_timer_once'] = function (block) {
-  var variable_myTimerOnce_ = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('myTimerOnce_'), Blockly.Variables.NAME_TYPE);
+  var variable_myTimerOnce_ = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('myTimerOnce_'), Blockly.VARIABLE_CATEGORY_NAME);
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var value_intervals_ = Blockly.JavaScript.valueToCode(block, 'intervals_', Blockly.JavaScript.ORDER_ATOMIC);
   var code = variable_myTimerOnce_+' = setTimeout(async function(){\n' + statements_do_ + '},' + value_intervals_ + ');\n';
@@ -649,7 +649,7 @@ Blockly.JavaScript['document_timer_once'] = function (block) {
 };
 
 Blockly.JavaScript['document_timer_stop'] = function (block) {
-  var variable_myTimer_ = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('myTimer_'), Blockly.Variables.NAME_TYPE);
+  var variable_myTimer_ = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('myTimer_'), Blockly.VARIABLE_CATEGORY_NAME);
   var code = 'clearInterval(' + variable_myTimer_ + ');\n';
   return code;
 };

@@ -2,7 +2,6 @@ Blockly.Msg["CATTELEGRAM"] = "Telegram機器人";
 Blockly.Msg.TELEGRAM_SENDMESSAGE_SHOW = "Telegram機器人 傳送訊息";
 Blockly.Msg.TELEGRAM_SENDPHOTO_SHOW = "Telegram機器人 傳送圖片";
 Blockly.Msg.TELEGRAM_SENDVIDEO_SHOW = "Telegram機器人 傳送畫面";
-Blockly.Msg.TELEGRAM_GETID_SHOW = "取得影像元素 ID";
 Blockly.Msg.TELEGRAM_ID_SHOW = "代碼";
 Blockly.Msg.TELEGRAM_VIDEO_SHOW = "視訊媒體";
 Blockly.Msg.TELEGRAM_CANVAS_SHOW = "畫布";

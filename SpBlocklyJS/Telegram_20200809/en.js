@@ -2,7 +2,6 @@ Blockly.Msg["CATTELEGRAM"] = "Telegram Bot";
 Blockly.Msg.TELEGRAM_SENDMESSAGE_SHOW = "Telegram Bot Message";
 Blockly.Msg.TELEGRAM_SENDPHOTO_SHOW = "Telegram Bot Photo";
 Blockly.Msg.TELEGRAM_SENDVIDEO_SHOW = "Telegram Bot Video Still";
-Blockly.Msg.TELEGRAM_GETID_SHOW = "Get Element ID";
 Blockly.Msg.TELEGRAM_ID_SHOW = "ID";
 Blockly.Msg.TELEGRAM_VIDEO_SHOW = "Video";
 Blockly.Msg.TELEGRAM_CANVAS_SHOW = "Canvas";
