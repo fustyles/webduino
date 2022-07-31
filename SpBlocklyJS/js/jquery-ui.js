@@ -12390,8 +12390,6 @@ $.widget( "ui.dialog", {
 			click: function( event ) {
 				event.preventDefault();
 				//this.close( event );
-				console.log($('.ui-dialog').position().top);
-				console.log($(window).height() - 80);
 				if ($('.ui-dialog').position().top<$(window).height() - 80) {
 					$('.ui-dialog').animate({
 						top: $(window).height() - 80
