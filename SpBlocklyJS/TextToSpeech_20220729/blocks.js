@@ -196,6 +196,6 @@ Blockly.Blocks['TextToSpeech_voice'] = {
       .appendField(new Blockly.FieldDropdown(voiceOptions), "voice_");
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
-	this.setColour(130);
+	this.setColour(230);
   }
 };
