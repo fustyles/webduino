@@ -513,14 +513,18 @@ document.addEventListener('DOMContentLoaded', function() {
 					click: function() {
 						document.getElementById("iframe_run").requestFullscreen();
 						stopCode();
-						runCode();
+						setTimeout(function(){
+							runCode();
+						}, 100);
 					}
 				},
 				{
 					text: Blockly.Msg["BUTTON_START"],
 					click: function() {
 						stopCode();
-						runCode();
+						setTimeout(function(){
+							runCode();
+						}, 100);
 					}
 				}				
 			],
