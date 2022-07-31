@@ -494,7 +494,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			//hide: "blind",			
 			width: 800,
 			height: 600,
-			buttons: [					
+			buttons: [
 				{
 					text: Blockly.Msg.BUTTON_CLOSE,
 					click: function() {
@@ -506,6 +506,14 @@ document.addEventListener('DOMContentLoaded', function() {
 					text: Blockly.Msg["BUTTON_STOP"],
 					click: function() {
 						stopCode();
+					}
+				},				
+				{
+					text: Blockly.Msg.BUTTON_FULLSCREEN,
+					click: function() {
+						document.getElementById("iframe_run").requestFullscreen();
+						stopCode();
+						runCode();
 					}
 				},
 				{
