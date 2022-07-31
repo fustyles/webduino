@@ -140,6 +140,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		if (xml.indexOf("telegram_")!=-1) {
 			script += "<script src='Telegram_20200809/telegram.js'></script>";			
+		}	
+
+		if (xml.indexOf("matrix_")!=-1) {
+			script += "<script src='MatrixLed_20180810/matrixled.js'></script>";			
 		}			
 				
 		return script;
@@ -272,6 +276,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		if (xml.indexOf("telegram_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/Telegram_20200809/telegram.js'></script>";			
+		}	
+
+		if (xml.indexOf("matrix_")!=-1) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/MatrixLed_20180810/matrixled.js'></script>";			
 		}		
 		
 		return script;
@@ -286,7 +294,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		catKeyboard,
 		catTextToSpeech,
 		catSpeechRecognition,
-		"<sep></sep>",		
+		"<sep></sep>",
+		catMatrixLed,
+		"<sep></sep>",
 		catWebSerial,
 		catMQTT,
 		"<sep></sep>",		
