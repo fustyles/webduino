@@ -534,6 +534,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		$("#dialog_run").dialog(opt).dialog("open");
 		event.preventDefault();
 		
+		$('.ui-dialog').animate({
+			top: 100
+		}, 200); 		
+		
 		if (document.getElementById("ui-id-1")) {
 			document.getElementById("ui-id-1").ondblclick = function () {
 				$(this).parents('.ui-dialog').animate({
