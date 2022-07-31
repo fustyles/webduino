@@ -51,7 +51,7 @@
     </value>
     <value name="telegram_script">
       <block type="text">
-        <field name="TEXT">https://script.google.com/macros/s/AKfycbzksC7Fu7vdLuJAmlEvBap-FYGbNvVygOjWYenS/exec</field>
+        <field name="TEXT">https://script.google.com/macros/s/AKfycbz2xF0_DBg2UwMU0qGrnORCUptzBXXn7GZxl7Onm0UNhGTGJat1Bz2SjNGCzDl0vUU2/exec</field>
       </block>
     </value> 	  
   </block> 
