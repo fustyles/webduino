@@ -1,3 +1,10 @@
+/*
+https://www.jqueryscript.net/chart-graph/Canvas-Based-Temperature-Gauge-Plugin-For-jQuery-TempGauge.html
+
+ChungYi Fu (Kaohsiung, Taiwan)
+https://www.facebook.com/francefu
+*/
+
 GaugeOptions = {};
 
 var temperatureGauge = function(options) {
