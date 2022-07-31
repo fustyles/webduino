@@ -497,6 +497,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				{
 					text: Blockly.Msg.BUTTON_CLOSE,
 					click: function() {
+						stopCode();
 						$(this).dialog("close");
 					}
 				},
