@@ -1,3 +1,10 @@
+/*
+https://www.jqueryscript.net/chart-graph/Create-Pretty-Animated-Donut-Charts-with-jQuery-Chart-js.html
+
+ChungYi Fu (Kaohsiung, Taiwan)
+https://www.facebook.com/francefu
+*/
+
 var doughnutWidget = {
 	chartname: {},
 	charts: {},
