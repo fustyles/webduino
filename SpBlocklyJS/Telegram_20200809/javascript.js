@@ -26,7 +26,6 @@ Blockly.JavaScript['telegram_image'] = function (block) {
   var telegram_source = block.getFieldValue('telegram_source');	
   var telegram_videoid = Blockly.JavaScript.valueToCode(block, 'telegram_videoid', Blockly.JavaScript.ORDER_ATOMIC);
 
-  if (!telegram_script) telegram_script='""';
   if (!telegram_token) telegram_token='""';
   if (!telegram_chatid) telegram_chatid='""';
 
