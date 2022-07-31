@@ -93,7 +93,7 @@ var catTelegram = '<xml>'+
 '    </value>'+	
 '  </block>'+
 '  <block type="telegram_getmessage">'+
-'    <field id="D~s:.T0JlLY@#L%wFeda" name="telegram_request">telegram_response</field>'+
+'    <field id="D~s:.T0JlLY@#L%wFeda" name="telegram_response">telegram_response</field>'+
 '  </block>'+
 '</category>'+
 '</xml>';
