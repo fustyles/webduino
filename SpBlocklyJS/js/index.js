@@ -546,7 +546,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		$('.ui-dialog').animate({
 			top: 100
-		}, 200); 		
+		}, 200); 
+
+		if ($('.ui-dialog-titlebar-close'))	
+			$('.ui-dialog-titlebar-close').attr('title', Blockly.Msg["BUTTON_BOTTOM"]);
 		
 		if (document.getElementById("ui-id-1")) {
 			document.getElementById("ui-id-1").ondblclick = function () {

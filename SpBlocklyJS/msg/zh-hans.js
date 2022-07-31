@@ -1227,7 +1227,7 @@ Blockly.Msg["BUTTON_STOP"] = "停止程序";
 Blockly.Msg["MSG_NEWLINE"] = "换行";
 
 Blockly.Msg["BUTTON_FULLSCREEN"] = "全萤幕执行程序";
-Blockly.Msg["BUTTON_BOTTOM"] = "置底/双击还原";
+Blockly.Msg["BUTTON_BOTTOM"] = "视窗 置底/还原";
 
 //20220327
 Blockly.Msg["CATVARIABLES"] = "变数";

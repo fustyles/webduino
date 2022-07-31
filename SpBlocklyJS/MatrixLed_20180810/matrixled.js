@@ -99,10 +99,10 @@
   
   var MatrixLedcolor = "#ff0000";
   var MatrixLedbackcolor = "#000000";
-  var L = [];
+  var MatrixLed = [];
   for (var i=0;i<25;i++)
-	  L.push(MatrixLedbackcolor);
-  //var L = new Array("","","","","","","","","","","","","","","","","","","","","","","","","");
+	  MatrixLed.push(MatrixLedbackcolor);
+  //var MatrixLed = new Array("","","","","","","","","","","","","","","","","","","","","","","","","");
   var MatrixLedLeft = 0;
   var MatrixLedTop = 0;  
   var MatrixLedwidth = 250;
@@ -121,9 +121,9 @@
 	  MatrixLedLeft = left;
 	  MatrixLedTop = top;  
 	  MatrixLedbackcolor = color;
-	  L = [];	  
+	  MatrixLed = [];	  
 	  for (var i=0;i<25;i++)
-		  L.push(MatrixLedbackcolor);
+		  MatrixLed.push(MatrixLedbackcolor);
 	  
 	  MatrixLed_show();
   }
@@ -487,7 +487,7 @@
   function MatrixLed_clear() {
     for (var i=0;i<25;i++)
     {
-      L[i]=MatrixLedbackcolor;
+      MatrixLed[i]=MatrixLedbackcolor;
     }
     MatrixLed_show();
   }
@@ -496,11 +496,11 @@
     for (var i=0;i<25;i++)
     {
       if (i==(input_x_*5+input_y_))
-        L[i]=MatrixLedcolor;
+        MatrixLed[i]=MatrixLedcolor;
       else
       {
-        if (L[i]=="")
-          L[i]=MatrixLedbackcolor;
+        if (MatrixLed[i]=="")
+          MatrixLed[i]=MatrixLedbackcolor;
       }
     }
     MatrixLed_show();
@@ -510,11 +510,11 @@
     for (var i=0;i<25;i++)
     {
       if (i==(input_x_*5+input_y_))
-        L[i]=input_color_;
+        MatrixLed[i]=input_color_;
       else
       {
-        if (L[i]=="")
-          L[i]=MatrixLedbackcolor;
+        if (MatrixLed[i]=="")
+          MatrixLed[i]=MatrixLedbackcolor;
       }
     }
     MatrixLed_show();
@@ -524,26 +524,26 @@
     for (var i=0;i<25;i++)
     {
       if (i==(input_x_*5+input_y_))
-        L[i]=MatrixLedbackcolor;
+        MatrixLed[i]=MatrixLedbackcolor;
       else
       {
-        if (L[i]=="")
-          L[i]=MatrixLedbackcolor;
+        if (MatrixLed[i]=="")
+          MatrixLed[i]=MatrixLedbackcolor;
       }
     }
     MatrixLed_show();
   }
   
   function MatrixLed_reverse(input_x_,input_y_) {
-    if ((L[input_x_*5+input_y_]=="")||(L[input_x_*5+input_y_]==MatrixLedbackcolor))
-      L[input_x_*5+input_y_]=MatrixLedcolor;
+    if ((MatrixLed[input_x_*5+input_y_]=="")||(MatrixLed[input_x_*5+input_y_]==MatrixLedbackcolor))
+      MatrixLed[input_x_*5+input_y_]=MatrixLedcolor;
     else
-      L[input_x_*5+input_y_]=MatrixLedbackcolor;
+      MatrixLed[input_x_*5+input_y_]=MatrixLedbackcolor;
     MatrixLed_show();
   }
 
   function MatrixLed_state(input_x_,input_y_) {
-    if ((L[input_x_*5+input_y_]=="")||(L[input_x_*5+input_y_]==MatrixLedbackcolor))
+    if ((MatrixLed[input_x_*5+input_y_]=="")||(MatrixLed[input_x_*5+input_y_]==MatrixLedbackcolor))
       return 0;
     else
       return 1;
@@ -554,23 +554,23 @@
     for (var i=0;i<25;i++)
     {
       if (input_value_.substr(i,1)=="1")
-        L[i]=MatrixLedcolor;
+        MatrixLed[i]=MatrixLedcolor;
       else
-        L[i]=MatrixLedbackcolor;
+        MatrixLed[i]=MatrixLedbackcolor;
     }
     MatrixLed_show();
   }
   
   function MatrixLed_matrix_codetocolor(code) {
     for (var i=0;i<25;i++)
-      L[i]=code.substr(i*7,7);
+      MatrixLed[i]=code.substr(i*7,7);
     
     MatrixLed_show();
   }
   
   function MatrixLed_matrix_color(color) {
     for (var i=0;i<25;i++)
-      L[i]=color[i];
+      MatrixLed[i]=color[i];
     
     MatrixLed_show();
   }  
@@ -677,9 +677,9 @@
       for (var j=0;j<=4;j++)
       {
         if (j==(5-input_value[i]))
-          L[k]=MatrixLedcolor;
+          MatrixLed[k]=MatrixLedcolor;
         else
-          L[k]=MatrixLedbackcolor;
+          MatrixLed[k]=MatrixLedbackcolor;
         k++;
       }
     }
@@ -694,9 +694,9 @@
       for (var j=0;j<=4;j++)
       {
         if (j>=(5-input_value[i]))
-          L[k]=MatrixLedcolor;
+          MatrixLed[k]=MatrixLedcolor;
         else
-          L[k]=MatrixLedbackcolor;
+          MatrixLed[k]=MatrixLedbackcolor;
         k++;
       }
     }
@@ -708,14 +708,14 @@
     var n;
     for (n=0;n<25;n++)
     {
-      Tmp[n]=L[n];
+      Tmp[n]=MatrixLed[n];
     }
     n=0;
     for (var i=4;i>=0;i--)
     {    
       for (var j=0;j<=4;j++)
       {
-        L[n]=Tmp[i+5*j];
+        MatrixLed[n]=Tmp[i+5*j];
         n++;
       }
     }
@@ -727,14 +727,14 @@
     var n;
     for (n=0;n<25;n++)
     {
-      Tmp[n]=L[n];
+      Tmp[n]=MatrixLed[n];
     }
     n=0;
     for (var i=0;i<=4;i++)
     {    
       for (var j=4;j>=0;j--)
       {
-        L[n]=Tmp[i+5*j];
+        MatrixLed[n]=Tmp[i+5*j];
         n++;
       }
     }
@@ -746,14 +746,14 @@
     var n;
     for (n=0;n<25;n++)
     {
-      Tmp[n]=L[n];
+      Tmp[n]=MatrixLed[n];
     }
     n=0;
     for (var i=0;i<=4;i++)
     {    
       for (var j=4;j>=0;j--)
       {
-        L[n]=Tmp[j+5*i];
+        MatrixLed[n]=Tmp[j+5*i];
         n++;
       }
     }
@@ -765,14 +765,14 @@
     var n;
     for (n=0;n<25;n++)
     {
-      Tmp[n]=L[n];
+      Tmp[n]=MatrixLed[n];
     }
     n=0;
     for (var i=4;i>=0;i--)
     {    
       for (var j=0;j<=4;j++)
       {
-        L[n]=Tmp[j+i*5];
+        MatrixLed[n]=Tmp[j+i*5];
         n++;
       }
     }
@@ -782,16 +782,16 @@
   function Matrixled_invert(){
     for (var i=0;i<25;i++)
     {
-      if ((L[i]=="")||(L[i]==MatrixLedbackcolor))
-        L[i]=MatrixLedcolor;
+      if ((MatrixLed[i]=="")||(MatrixLed[i]==MatrixLedbackcolor))
+        MatrixLed[i]=MatrixLedcolor;
       else
-        L[i]=MatrixLedbackcolor;
+        MatrixLed[i]=MatrixLedbackcolor;
     }
     MatrixLed_show();
   }
   
   function MatrixLed_getcolor(input_x_,input_y_) {
-    return L[input_x_*5+input_y_];
+    return MatrixLed[input_x_*5+input_y_];
   } 
   
   function MatrixLed_backcolor(input_color_) {
@@ -801,11 +801,11 @@
   function MatrixLed_show() {
     if (MatrixLedshowstate==1)
       var ledtable ="<table id='gametable_matrixled' style='border-spacing:"+tableBorderSpacing+"px;position:absolute;left:"+MatrixLedLeft+";top:"+MatrixLedTop+";width:"+MatrixLedwidth+"px;height:"+MatrixLedheight+"px;border:white;'>"
-                  + "<tr><td bgcolor='"+L[0]+"'></td><td bgcolor='"+L[5]+"'></td><td bgcolor='"+L[10]+"'></td><td bgcolor='"+L[15]+"'></td><td bgcolor='"+L[20]+"'></td></tr>"
-                  + "<tr><td bgcolor='"+L[1]+"'></td><td bgcolor='"+L[6]+"'></td><td bgcolor='"+L[11]+"'></td><td bgcolor='"+L[16]+"'></td><td bgcolor='"+L[21]+"'></td></tr>"
-                  + "<tr><td bgcolor='"+L[2]+"'></td><td bgcolor='"+L[7]+"'></td><td bgcolor='"+L[12]+"'></td><td bgcolor='"+L[17]+"'></td><td bgcolor='"+L[22]+"'></td></tr>"
-                  + "<tr><td bgcolor='"+L[3]+"'></td><td bgcolor='"+L[8]+"'></td><td bgcolor='"+L[13]+"'></td><td bgcolor='"+L[18]+"'></td><td bgcolor='"+L[23]+"'></td></tr>"
-                  + "<tr><td bgcolor='"+L[4]+"'></td><td bgcolor='"+L[9]+"'></td><td bgcolor='"+L[14]+"'></td><td bgcolor='"+L[19]+"'></td><td bgcolor='"+L[24]+"'></td></tr>"
+                  + "<tr><td bgcolor='"+MatrixLed[0]+"'></td><td bgcolor='"+MatrixLed[5]+"'></td><td bgcolor='"+MatrixLed[10]+"'></td><td bgcolor='"+MatrixLed[15]+"'></td><td bgcolor='"+MatrixLed[20]+"'></td></tr>"
+                  + "<tr><td bgcolor='"+MatrixLed[1]+"'></td><td bgcolor='"+MatrixLed[6]+"'></td><td bgcolor='"+MatrixLed[11]+"'></td><td bgcolor='"+MatrixLed[16]+"'></td><td bgcolor='"+MatrixLed[21]+"'></td></tr>"
+                  + "<tr><td bgcolor='"+MatrixLed[2]+"'></td><td bgcolor='"+MatrixLed[7]+"'></td><td bgcolor='"+MatrixLed[12]+"'></td><td bgcolor='"+MatrixLed[17]+"'></td><td bgcolor='"+MatrixLed[22]+"'></td></tr>"
+                  + "<tr><td bgcolor='"+MatrixLed[3]+"'></td><td bgcolor='"+MatrixLed[8]+"'></td><td bgcolor='"+MatrixLed[13]+"'></td><td bgcolor='"+MatrixLed[18]+"'></td><td bgcolor='"+MatrixLed[23]+"'></td></tr>"
+                  + "<tr><td bgcolor='"+MatrixLed[4]+"'></td><td bgcolor='"+MatrixLed[9]+"'></td><td bgcolor='"+MatrixLed[14]+"'></td><td bgcolor='"+MatrixLed[19]+"'></td><td bgcolor='"+MatrixLed[24]+"'></td></tr>"
                   + "</table>";
     else
       var ledtable ="<table id='gametable_matrixled' style='position:absolute;left:"+MatrixLedLeft+";top:"+MatrixLedTop+";width:"+MatrixLedwidth+"px;height:"+MatrixLedheight+"px;border:white;'>"
