@@ -1,14 +1,14 @@
 Blockly.Msg["CATCHART"] = "儀表板";
-Blockly.Msg["CATCHARTDOUGHNUT"] = "甜甜圈";
-Blockly.Msg["CATCHARTGAUGE"] = "溫度計";
-Blockly.Msg["CATCHARTWATERBUBBLE"] = "水位計";
+Blockly.Msg["CATCHARTDOUGHNUT"] = "甜甜圈圖";
+Blockly.Msg["CATCHARTGAUGE"] = "溫度圖";
+Blockly.Msg["CATCHARTWATERBUBBLE"] = "水位圖";
 
 Blockly.Msg["CHART_DOUGHNUT_CREATE"] = "甜甜圈 建立";
 Blockly.Msg["CHART_DOUGHNUT_SET"] = "甜甜圈 設定數值";
-Blockly.Msg["CHART_GAUGE_CREATE"] = "溫度計 建立";
-Blockly.Msg["CHART_GAUGE_SET"] = "溫度計 設定數值";
-Blockly.Msg["CHART_WATERBUBBLE_CREATE"] = "水位計 建立";
-Blockly.Msg["CHART_WATERBUBBLE_SET"] = "水位計 設定數值";
+Blockly.Msg["CHART_GAUGE_CREATE"] = "溫度圖 建立";
+Blockly.Msg["CHART_GAUGE_SET"] = "溫度圖 設定數值";
+Blockly.Msg["CHART_WATERBUBBLE_CREATE"] = "水位圖 建立";
+Blockly.Msg["CHART_WATERBUBBLE_SET"] = "水位圖 設定數值";
 Blockly.Msg["CHART_ID"] = "ID";
 Blockly.Msg["CHART_NAME"] = "名稱";
 Blockly.Msg["CHART_WIDTH"] = "寬度"; 
@@ -48,9 +48,9 @@ Blockly.Msg["CHART_BAR_SET"] = "長條圖 新增一筆資料";
 Blockly.Msg["CHART_BAR_DATASET"] = "長條圖 資料集";
 Blockly.Msg["CHART_BAR_CLEAR"] = "長條圖 清除資料集";
 
-Blockly.Msg["CATCANALOGGAUGE"] = "類比計";
-Blockly.Msg["CHART_ANALOGGAUGE_CREATE"] = "類比計 建立";
-Blockly.Msg["CHART_ANALOGGAUGE_SET"] = "類比計 設定數值";
+Blockly.Msg["CATCANALOGGAUGE"] = "類比圖";
+Blockly.Msg["CHART_ANALOGGAUGE_CREATE"] = "類比圖 建立";
+Blockly.Msg["CHART_ANALOGGAUGE_SET"] = "類比圖 設定數值";
 Blockly.Msg["CHART_ANALOGGAUGE_COUNT"] = "格數";
 Blockly.Msg["CHART_ANALOGGAUGE_COLOR"] = "顏色區間";
 Blockly.Msg["CHART_ANALOGGAUGE_ANGLE"] = "角度範圍";
