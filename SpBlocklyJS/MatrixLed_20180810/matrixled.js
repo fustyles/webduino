@@ -120,8 +120,11 @@
 	  MatrixLedheight = height;	  
 	  MatrixLedLeft = left;
 	  MatrixLedTop = top;  
-	  MatrixLedbackcolor = color;  
-
+	  MatrixLedbackcolor = color;
+	  L = [];	  
+	  for (var i=0;i<25;i++)
+		  L.push(MatrixLedbackcolor);
+	  
 	  MatrixLed_show();
   }
   
