@@ -150,8 +150,7 @@ Blockly.Blocks['TextToSpeech_run'] = {
       .appendField(Blockly.Msg.TEXTTOSPEECH_RUN_SHOW);
   this.appendValueInput("voice_")
       .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TEXTTOSPEECH_VOICE_SHOW); 	  
+      .setAlign(Blockly.ALIGN_RIGHT); 	  
   this.appendValueInput("text_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -179,33 +178,22 @@ Blockly.Blocks['TextToSpeech_control'] = {
   }
 };
 
+var voiceOptions = [];
+window.speechSynthesis.onvoiceschanged = function() {
+	var voices = this.getVoices();
+	if (voices.length>0) { 
+	  for(i = 0; i < voices.length ; i++) {
+		  voiceOptions.push([voices[i].name, voices[i].name]);
+	  }
+	}
+};
+
+
 Blockly.Blocks['TextToSpeech_voice'] = {
   init: function () {    
   this.appendDummyInput()
-      .appendField(new Blockly.FieldDropdown([
-        ["Microsoft Hanhan - Chinese (Traditional, Taiwan)", "Microsoft Hanhan - Chinese (Traditional, Taiwan)"],
-        ["Microsoft Yating - Chinese (Traditional, Taiwan)", "Microsoft Yating - Chinese (Traditional, Taiwan)"],
-        ["Microsoft Zhiwei - Chinese (Traditional, Taiwan)", "Microsoft Zhiwei - Chinese (Traditional, Taiwan)"],
-        ["Google Deutsch", "Google Deutsch"],
-        ["Google US English", "Google US English"],
-        ["Google UK English Female", "Google UK English Female"],
-        ["Google UK English Male", "Google UK English Male"],
-        ["Google español", "Google español"],
-        ["Google español de Estados Unidos", "Google español de Estados Unidos"],
-        ["Google français", "Google français"],
-        ["Google हिन्दी", "Google हिन्दी"],
-        ["Google Bahasa Indonesia", "Google Bahasa Indonesia"],
-        ["Google italiano", "Google italiano"],
-        ["Google 日本語", "Google 日本語"],
-        ["Google 한국의", "Google 한국의"],
-        ["Google Nederlands", "Google Nederlands"],
-        ["Google polski", "Google polski"],
-        ["Google português do Brasil", "Google português do Brasil"],
-        ["Google русский", "Google русский"],
-        ["Google 普通话（中国大陆）", "Google 普通话（中国大陆）"],
-        ["Google 粤語（香港）", "Google 粤語（香港）"],
-        ["Google 國語（臺灣）", "Google 國語（臺灣）"]
-      ]), "voice_");
+      .appendField(Blockly.Msg.TEXTTOSPEECH_VOICE_SHOW)
+      .appendField(new Blockly.FieldDropdown(voiceOptions), "voice_");
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(130);
