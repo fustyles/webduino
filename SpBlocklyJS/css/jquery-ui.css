@@ -1320,3 +1320,5 @@ html .ui-icon-blank { background-image: none; }
 	-webkit-box-shadow: -5px -5px 5px #000000;
 	box-shadow: -5px -5px 5px #000000;
 }
+
+.dlg-no-close .ui-dialog-titlebar-close {display: none;}

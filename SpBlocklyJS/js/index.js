@@ -485,6 +485,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button_run').onclick = function () {
 		stopCode();
 		var opt = {
+			dialogClass: "dlg-no-close",
 			draggable: true,			
 			autoOpen: false,
 			resizable: true,
@@ -796,6 +797,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button_webSerial').onclick = function () {
 		if (typeof navigator.serial !== "undefined") {
 			var opt = {
+				dialogClass: "dlg-no-close",
 				draggable: true,			
 				autoOpen: false,
 				resizable: true,
@@ -1006,6 +1008,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button_webBluetooth').onclick = function () {
 		if (typeof navigator.bluetooth !== "undefined") {
 			var opt = {
+				dialogClass: "dlg-no-close",
 				draggable: true,			
 				autoOpen: false,
 				resizable: true,
