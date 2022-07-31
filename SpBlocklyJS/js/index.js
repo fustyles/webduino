@@ -509,6 +509,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				{
 					text: Blockly.Msg["BUTTON_START"],
 					click: function() {
+						stopCode();
 						runCode();
 					}
 				}				
