@@ -800,7 +800,7 @@
  
   function MatrixLed_show() {
     if (MatrixLedshowstate==1)
-      var ledtable ="<table id='gametable_matrixled' style='border-spacing:"+tableBorderSpacing+"px;position:absolute;left:"+MatrixLedLeft+";top:"+MatrixLedTop+";width:"+MatrixLedwidth+"px;height:"+MatrixLedheight+"px;border:white;'>"
+      var ledtable ="<table id='gametable_matrixled' style='border-spacing:"+tableBorderSpacing+"px;width:"+MatrixLedwidth+"px;height:"+MatrixLedheight+"px;border:white;'>"
                   + "<tr><td bgcolor='"+MatrixLed[0]+"'></td><td bgcolor='"+MatrixLed[5]+"'></td><td bgcolor='"+MatrixLed[10]+"'></td><td bgcolor='"+MatrixLed[15]+"'></td><td bgcolor='"+MatrixLed[20]+"'></td></tr>"
                   + "<tr><td bgcolor='"+MatrixLed[1]+"'></td><td bgcolor='"+MatrixLed[6]+"'></td><td bgcolor='"+MatrixLed[11]+"'></td><td bgcolor='"+MatrixLed[16]+"'></td><td bgcolor='"+MatrixLed[21]+"'></td></tr>"
                   + "<tr><td bgcolor='"+MatrixLed[2]+"'></td><td bgcolor='"+MatrixLed[7]+"'></td><td bgcolor='"+MatrixLed[12]+"'></td><td bgcolor='"+MatrixLed[17]+"'></td><td bgcolor='"+MatrixLed[22]+"'></td></tr>"
@@ -808,7 +808,7 @@
                   + "<tr><td bgcolor='"+MatrixLed[4]+"'></td><td bgcolor='"+MatrixLed[9]+"'></td><td bgcolor='"+MatrixLed[14]+"'></td><td bgcolor='"+MatrixLed[19]+"'></td><td bgcolor='"+MatrixLed[24]+"'></td></tr>"
                   + "</table>";
     else
-      var ledtable ="<table id='gametable_matrixled' style='position:absolute;left:"+MatrixLedLeft+";top:"+MatrixLedTop+";width:"+MatrixLedwidth+"px;height:"+MatrixLedheight+"px;border:white;'>"
+      var ledtable ="<table id='gametable_matrixled' style='border-spacing:"+tableBorderSpacing+"px;width:"+MatrixLedwidth+"px;height:"+MatrixLedheight+"px;border:white;'>"
                   + "<tr><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td></tr>"
                   + "<tr><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td></tr>"
                   + "<tr><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td></tr>"
@@ -816,18 +816,16 @@
                   + "<tr><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td><td bgcolor='"+MatrixLedbackcolor+"'></td></tr>"
                   + "</table>";
     
-    if (document.getElementById("fustyles_matrixled"))
-    {
-          document.getElementById("fustyles_matrixled").innerHTML = ledtable;
-    }
-    else
-    {
-        var div = document.createElement('div');
-        div.id = "fustyles_matrixled";
-        div.style.position="absolute";
-        div.innerHTML = ledtable;
-        document.body.appendChild(div);
-    }    
+    if (document.getElementById("matrixled"))
+		document.getElementById("matrixled").parentNode.removeChild(document.getElementById("matrixled"));
+
+	var div = document.createElement('div');
+	div.id = "matrixled";
+	div.style.position="absolute";
+	div.style.left = MatrixLedLeft + "px";
+	div.style.top = MatrixLedTop + "px";
+	div.innerHTML = ledtable;
+	document.body.appendChild(div);  
   }
   
   window.MatrixLed_initial = MatrixLed_initial;
