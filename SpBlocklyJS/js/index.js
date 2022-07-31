@@ -478,7 +478,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 		
 	function stopCode() {
-	  document.getElementById("iframe_run").src="";
+	  document.getElementById("iframe_run").src = "about:blank";
 	}	
 	
 	//開啟程式碼執行視窗
