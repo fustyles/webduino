@@ -1,6 +1,11 @@
-/**
+/*
+* https://www.jqueryscript.net/chart-graph/Customizable-Liquid-Bubble-Chart-With-jQuery-Canvas.html
+
 * wataerbubble
 * @author fiona23 (fiona_fanmy@163.com)
+
+ChungYi Fu (Kaohsiung, Taiwan)
+https://www.facebook.com/francefu
 */
 
 waterbubbleOptions = {};
