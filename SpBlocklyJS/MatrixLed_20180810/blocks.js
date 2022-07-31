@@ -31,6 +31,7 @@ Blockly.Blocks['matrix_led_char'] = {
   init: function() {
     this.appendValueInput("value_char_")
         .setCheck(null)   
+        .appendField(Blockly.Msg.MATRIXLED_MATRIX_SHOW)			
         .appendField(Blockly.Msg.MATRIXLED_CHAR_SHOW);    
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -216,6 +217,7 @@ Blockly.Blocks['matrix_led_marquee_time'] = {
 Blockly.Blocks['matrix_led_sample'] = {
   init: function() {
     this.appendDummyInput()
+        .appendField(Blockly.Msg.MATRIXLED_MATRIX_SHOW)		
         .appendField(Blockly.Msg.MATRIXLED_SAMPLE_SHOW)
         .appendField(new Blockly.FieldDropdown([["♥","♥"], ["♡","♡"], ["↑","↑"], ["↓","↓"], ["←","←"], ["→","→"], ["↖","↖"], ["↙","↙"], ["↗","↗"], ["↘","↘"], ["▲","▲"], ["▼","▼"], ["◄","◄"], ["►","►"], ["O","O"], ["X","X"], ["V","V"]]), "value_sample_");     
     this.setPreviousStatement(true, null);
@@ -230,6 +232,7 @@ Blockly.Blocks['matrix_led_code'] = {
   init: function() {
     this.appendValueInput("value_code_")
         .setCheck("String")   
+        .appendField(Blockly.Msg.MATRIXLED_MATRIX_SHOW)			
         .appendField(Blockly.Msg.MATRIXLED_CODE_SHOW)
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

@@ -409,18 +409,6 @@ var catMatrixLed = '<xml>'+
       '</block>'+
     '</value>'+
   '</block>'+
-  '<block type="matrix_led_reverse">'+
-    '<value name="value_x_reverse_">'+
-      '<block type="math_number">'+
-        '<field name="NUM">0</field>'+
-      '</block>'+
-    '</value>'+
-    '<value name="value_y_reverse_">'+
-      '<block type="math_number">'+
-        '<field name="NUM">0</field>'+
-      '</block>'+
-    '</value>'+
-  '</block>'+
   '<block type="matrix_led_marquee">'+
     '<value name="value_marquee_">'+
         '<block type="matrix_led_indentcode">'+
@@ -461,6 +449,18 @@ var catMatrixLed = '<xml>'+
     '<value name="value_marquee_degree_">'+
       '<block type="math_number">'+
         '<field name="NUM">1</field>'+
+      '</block>'+
+    '</value>'+
+  '</block>'+
+  '<block type="matrix_led_reverse">'+
+    '<value name="value_x_reverse_">'+
+      '<block type="math_number">'+
+        '<field name="NUM">0</field>'+
+      '</block>'+
+    '</value>'+
+    '<value name="value_y_reverse_">'+
+      '<block type="math_number">'+
+        '<field name="NUM">0</field>'+
       '</block>'+
     '</value>'+
   '</block>'+  
