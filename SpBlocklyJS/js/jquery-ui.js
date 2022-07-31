@@ -12389,7 +12389,19 @@ $.widget( "ui.dialog", {
 		this._on( this.uiDialogTitlebarClose, {
 			click: function( event ) {
 				event.preventDefault();
-				this.close( event );
+				//this.close( event );
+				console.log($('.ui-dialog').position().top);
+				console.log($(window).height() - 80);
+				if ($('.ui-dialog').position().top<$(window).height() - 80) {
+					$('.ui-dialog').animate({
+						top: $(window).height() - 80
+					}, 200); 
+				}
+				else {
+					$('.ui-dialog').animate({
+						top: 100
+					}, 200); 
+				}
 			}
 		} );
 

@@ -483,9 +483,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//開啟程式碼執行視窗
 	document.getElementById('button_run').onclick = function () {
+
 		stopCode();
 		var opt = {
-			dialogClass: "dlg-no-close",
+			//dialogClass: "dlg-no-close",
 			draggable: true,			
 			autoOpen: false,
 			resizable: true,
@@ -494,7 +495,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			//hide: "blind",			
 			width: 800,
 			height: 600,
-			buttons: [
+			buttons: [			
 				{
 					text: Blockly.Msg.BUTTON_CLOSE,
 					click: function() {
@@ -532,6 +533,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		};
 		$("#dialog_run").dialog(opt).dialog("open");
 		event.preventDefault();
+		
+		if (document.getElementById("ui-id-1")) {
+			document.getElementById("ui-id-1").ondblclick = function () {
+				$(this).parents('.ui-dialog').animate({
+					top: 100			
+				}, 200);
+			}	
+		}		
 	}	
 	
 	//開啟Blockly Developer Tools

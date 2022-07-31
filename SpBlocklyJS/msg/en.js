@@ -1195,6 +1195,7 @@ Blockly.Msg["BUTTON_STOP"] = "Stop";
 Blockly.Msg["MSG_NEWLINE"] = "New Line";
 
 Blockly.Msg["BUTTON_FULLSCREEN"] = "Full srceen Start";
+Blockly.Msg["BUTTON_BOTTOM"] = "Bottom/Double click return";
 
 //20220327
 Blockly.Msg["CATVARIABLES"] = "VARIABLES";
