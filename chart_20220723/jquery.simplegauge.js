@@ -1,4 +1,6 @@
-/**
+/*
+ * https://www.jqueryscript.net/chart-graph/analog-digital-gauge.html
+ 
  * simple analog and digital gauge plugin for jQuery to build dashboards
  * @version    1.1.0
  * @release    2021-09-05
@@ -6,6 +8,9 @@
  * @author     Peter Thoeny, https://twiki.org/ & https://github.com/peterthoeny
  * @copyright  2021 Peter Thoeny, https://github.com/peterthoeny
  * @license    MIT, https://opensource.org/licenses/mit-license
+ 
+ ChungYi Fu (Kaohsiung, Taiwan)
+ https://www.facebook.com/francefu
  */
 
 var simpleGaugeOptions = {};
