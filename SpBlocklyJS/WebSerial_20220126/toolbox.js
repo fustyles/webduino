@@ -17,6 +17,8 @@ var catWebSerial ='<xml>'+
 '<block type="webserial_baudrate">'+ 
 '<field name="baudrate_">9600</field>'+
 '</block>'+ 
+'<block type="webserial_getstate">'+ 
+'</block>'+ 
 '<block type="webserial_sendtext">'+
 '<value name="cmd_">'+
 '<block type="text">'+
@@ -35,8 +37,6 @@ var catWebSerial ='<xml>'+
 '</block>'+
 '<block type="webserial_get">'+ 
 '</block>'+
-'<block type="webserial_getstate">'+ 
-'</block>'+ 
 '<block type="webserial_button_onclick">'+
 '<value name="id_">'+
 '<block type="text">'+
