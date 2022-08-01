@@ -7,22 +7,22 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   'use strict';
   
   var spreadsheetsql_response = [];
-  var spreadsheet_id = "";
-  var spreadsheet_name = "";
+  var spreadsheetsql_head_response = [];
+  var spreadsheetsql_id = "";
+  var spreadsheetsql_name = "";
   
   function spreadsheetsql_settings(spreadsheetid, spreadsheetname) {
-    spreadsheet_id = spreadsheetid;
-    spreadsheet_name = spreadsheetname;
+    spreadsheetsql_id = spreadsheetid;
+    spreadsheetsql_name = spreadsheetname;
   }
   
   function spreadsheetsql_executeSql(spreadsheet_sql) {
-	spreadsheetsql_response = [];
 	//google.load("visualization", "1", {packages:["corechart"]});
-    //var input_url="https://docs.google.com/spreadsheets/d/"+spreadsheet_id+"/gviz/tq?tqx=out:json&sheet="+spreadsheet_name+"&tq="+spreadsheet_sql;
+    //var input_url="https://docs.google.com/spreadsheets/d/"+spreadsheetsql_id+"/gviz/tq?tqx=out:json&sheet="+spreadsheetsql_name+"&tq="+spreadsheet_sql;
     google.load('visualization', '1', {
 	  packages: ['corechart'],
 	  callback: function () {
-		var query = new google.visualization.Query("https://docs.google.com/spreadsheets/d/"+spreadsheet_id+"/gviz/tq?tqx=out:json&sheet="+spreadsheet_name);
+		var query = new google.visualization.Query("https://docs.google.com/spreadsheets/d/"+spreadsheetsql_id+"/gviz/tq?tqx=out:json&sheet="+spreadsheetsql_name);
 		//console.log(query);
 		query.setQuery(spreadsheet_sql);
 		query.send(spreadsheetsql_QueryResponse);
@@ -34,6 +34,8 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 	  //console.log(res.qb.fg);
 	  //console.log(res.qb.fg.length);
 	  //console.log(res);
+	  spreadsheetsql_response = [];
+	  spreadsheetsql_head_response = [];
 	  var arr = [];
 	  if (res.qb.If.length>0) {
 		  for (var i=0;i<res.qb.If.length;i++) {
@@ -42,7 +44,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 			  else
 				arr.push("<font color='#AE0000'>Column_"+(i+1)+"</font>");
 		  }
-		  spreadsheetsql_response.push(arr);
+		  spreadsheetsql_head_response.push(arr);
 		  arr = [];
 	  }	  
 	  if (res.qb.fg.length>0) {
@@ -81,14 +83,21 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 		
 		var innerData = "";
 	  
-		for (var i=0;i<spreadsheetsql_response.length;i++) {
-			if (i>=input_column) {
+		if (input_column) {
+			for (var i=0;i<spreadsheetsql_head_response.length;i++) {
 				innerData += "<tr style='border:1px solid black;border-collapse: collapse;'>";
-				for (var j=0;j<spreadsheetsql_response[i].length;j++) {
-					innerData += "<td style='border:1px solid black;border-collapse: collapse;'>"+spreadsheetsql_response[i][j]+"</td>";
+				for (var j=0;j<spreadsheetsql_head_response[i].length;j++) {
+					innerData += "<td style='border:1px solid black;border-collapse: collapse;'>"+spreadsheetsql_head_response[i][j]+"</td>";
 				}
 				innerData += "</tr>";
 			}
+		}
+		for (var i=0;i<spreadsheetsql_response.length;i++) {
+			innerData += "<tr style='border:1px solid black;border-collapse: collapse;'>";
+			for (var j=0;j<spreadsheetsql_response[i].length;j++) {
+				innerData += "<td style='border:1px solid black;border-collapse: collapse;'>"+spreadsheetsql_response[i][j]+"</td>";
+			}
+			innerData += "</tr>";
 		}
 		obj.innerHTML = innerData;
 		document.body.appendChild(obj);  

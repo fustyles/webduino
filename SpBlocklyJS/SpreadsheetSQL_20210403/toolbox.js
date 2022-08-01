@@ -19,6 +19,13 @@ var catSpreadsheetsql = '<xml>'+
 '          </block>'+
 '        </value>'+
 '      </block>'+
+'      <block type="spreadsheetsql_getCellSQL">'+
+'		 <value name="row">'+
+'		   <block type="math_number">'+
+'			 <field name="NUM">1</field>'+
+'		   </block>'+
+'		 </value>'+
+'      </block>'+
 '  	   <block type="spreadsheetsql_getdatafinish">'+
 '  	   </block>'+
 '      <block type="spreadsheetsql_getData">'+

@@ -16,6 +16,14 @@ Blockly.JavaScript['spreadsheetsql_executeSql'] = function (block) {
   return code; 
 };
 
+Blockly.JavaScript['spreadsheetsql_getCellSQL'] = function (block) {
+  var col = block.getFieldValue('col'); 
+  var row = Blockly.JavaScript.valueToCode(block, 'row', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  var code = '"select '+col+' limit 1 offset "+'+(row-1);
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['spreadsheetsql_getData'] = function (block) {
   var code = 'spreadsheetsql_getData()';
   return [code, Blockly.JavaScript.ORDER_NONE];

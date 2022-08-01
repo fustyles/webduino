@@ -33,6 +33,50 @@ Blockly.Blocks['spreadsheetsql_executeSql'] = {
   }
 };
 
+Blockly.Blocks['spreadsheetsql_getCellSQL'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.SPREADSHEETSQL_COLUMN_SHOW)
+		.appendField(new Blockly.FieldDropdown([
+          ["A","A"],		
+          ["B","B"],
+          ["C","C"],		
+          ["D","D"],		  
+          ["E","E"],		
+          ["F","F"],
+          ["G","G"],		
+          ["H","H"],
+          ["I","I"],		
+          ["J","J"],		  
+          ["K","K"],		
+          ["L","L"],	
+          ["M","M"],		
+          ["N","N"],
+          ["O","O"],		
+          ["P","P"],		  
+          ["Q","Q"],		
+          ["R","R"],
+          ["S","S"],		
+          ["T","T"],
+          ["U","U"],		
+          ["V","V"],		  
+          ["W","W"],		
+          ["X","X"],
+          ["Y","Y"],		
+          ["Z","Z"]		  
+		]), "col"); 
+    this.appendValueInput("row")
+		.setAlign(Blockly.ALIGN_RIGHT)
+        .setCheck("Number")  
+        .appendField(Blockly.Msg.SPREADSHEETSQL_ROW_SHOW);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.SPREADSHEETSQL_GETCELL_SHOW);		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(65);
+  }
+};
+
 Blockly.Blocks['spreadsheetsql_getData'] = {
   init: function() {
   this.appendDummyInput()
@@ -75,8 +119,8 @@ Blockly.Blocks['spreadsheetsql_getDataTable'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg.SPREADSHEETSQL_COLUMNNAME_SHOW)
 		.appendField(new Blockly.FieldDropdown([
-			["Y","0"],
-			["N","1"]	  
+			["Y","1"],
+			["N","0"]	  
 	]), "column"); 		
 	this.setInputsInline(false);	  
 	this.setPreviousStatement(true);
