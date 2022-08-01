@@ -33,7 +33,18 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   function spreadsheetsql_QueryResponse(res) {
 	  //console.log(res.qb.fg);
 	  //console.log(res.qb.fg.length);
+	  console.log(res);
 	  var arr = [];
+	  if (res.qb.If.length>0) {
+		  for (var i=0;i<res.qb.If.length;i++) {
+			  if (res.qb.If[i].label)
+				arr.push("<font color='#AE0000'>"+res.qb.If[i].label+"</font>");
+			  else
+				arr.push("<font color='#AE0000'>Column_"+(i+1)+"</font>");
+		  }
+		  spreadsheetsql_response.push(arr);
+		  arr = [];
+	  }	  
 	  if (res.qb.fg.length>0) {
 		  for (var i=0;i<res.qb.fg.length;i++) {
 			  for (var j=0;j<res.qb.fg[i].c.length;j++) {
