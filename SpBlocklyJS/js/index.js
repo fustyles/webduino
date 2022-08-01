@@ -20,121 +20,121 @@ document.addEventListener('DOMContentLoaded', function() {
 		var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace, true);
 		xml = Blockly.Xml.domToPrettyText(xml);
 		
-		if (workspace.getBlocksByType("holistic_video").length>0) {
+		if (xml.indexOf("holistic_")!=-1) {
 			script += "<script src='holistic_20201012/holistic_video.js'></script>";			
 			script += "<script src='holistic_20201012/holistic.js'></script>";
 		}
 		
-		if (workspace.getBlocksByType("faceapirecognize_video").length>0) {
+		if (xml.indexOf("faceapirecognize_")!=-1) {
 			script += "<script src='faceapi_recognize_20201012/faceapi-recognition_video.js'></script>";			
 			script += "<script src='faceapi_recognize_20201012/faceapi-recognition.js'></script>";
 			script += "<script src='faceapi_recognize_20201012/face-api.min.js'></script>";
 		}		
 		
-		if (workspace.getBlocksByType("teachablemachine_video").length>0) {
+		if (xml.indexOf("teachablemachine_")!=-1) {
 			script += "<script src='teachablemachine_20201012/teachablemachine_video.js'></script>";			
 			script += "<script src='teachablemachine_20201012/teachablemachine.js'></script>";
 		}		
 		
-		if (workspace.getBlocksByType("webserial_baudrate").length>0) {
+		if (xml.indexOf("webserial_")!=-1) {
 			script += "<script src='WebSerial_20220126/WebSerial_elements.js'></script>";			
 			script += "<script src='WebSerial_20220126/WebSerial.js'></script>";
 		}
 		
-		if (workspace.getBlocksByType("fu_mqtt_setup_js").length>0) {
+		if (xml.indexOf("fu_mqtt_")!=-1) {
 			script += "<script src='https://unpkg.com/mqtt/dist/mqtt.min.js'></script>";
 		}
 		
-		if (workspace.getBlocksByType("cocossd_video").length>0) {
+		if (xml.indexOf("cocossd_")!=-1) {
 			script += "<script src='coco-ssd_20201012/coco-ssd_video.js'></script>";			
 			script += "<script src='coco-ssd_20201012/coco-ssd.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("faceapidetect_video").length>0) {
+		if (xml.indexOf("faceapidetect_")!=-1) {
 			script += "<script src='faceapi_detect_20201012/faceapidetect_video.js'></script>";			
 			script += "<script src='faceapi_detect_20201012/faceapidetect.js'></script>";
 			script += "<script src='faceapi_recognize_20201012/face-api.min.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("hands_video").length>0) {
+		if (xml.indexOf("hands_")!=-1) {
 			script += "<script src='hands_20220614/hands_video.js'></script>";			
 			script += "<script src='hands_20220614/hands.js'></script>";
 		}
 
-		if (workspace.getBlocksByType("trackingcolor_set").length>0) {
+		if (xml.indexOf("trackingcolor_")!=-1) {
 			script += "<script src='trackingcolor_20201012/trackingcolor_video.js'></script>";			
 			script += "<script src='trackingcolor_20201012/trackingcolor.js'></script>";
 			script += "<script src='trackingcolor_20201012/tracking-min.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("instascan_video").length>0) {
+		if (xml.indexOf("instascan_")!=-1) {
 			script += "<script src='instascan.js_20201012/instascan_video.js'></script>";			
 			script += "<script src='instascan.js_20201012/instascan.js'></script>";
 			script += "<script src='instascan.js_20201012/instascan.min.js'></script>";
 		}
 
-		if (workspace.getBlocksByType("tesseract_video").length>0) {
+		if (xml.indexOf("tesseract_")!=-1) {
 			script += "<script src='tesseract.js_20201012/tesseract_video.js'></script>";			
 			script += "<script src='tesseract.js_20201012/tesseract.js'></script>";
 			script += "<script src='tesseract.js_20201012/tesseract.min.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("spreadsheetsql_queryData").length>0||workspace.getBlocksByType("controls_spreadsheet").length>0) {
+		if (xml.indexOf("spreadsheet")!=-1) {
 			script += "<script src='SpreadsheetSQL_20210403/spreadsheetsql.js'></script>";			
 			script += "<script src='SpreadsheetSQL_20210403/loader.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("chart_doughnut_create").length>0) {
+		if (xml.indexOf("chart_doughnut_")!=-1) {
 			script += "<script src='chart_20220723/Chart.min.js'></script>";			
 			script += "<script src='chart_20220723/pretty-doughtnut.js'></script>";
 		}
 
-		if (workspace.getBlocksByType("chart_gauge_create").length>0) {
+		if (xml.indexOf("chart_gauge_")!=-1) {
 			script += "<script src='chart_20220723/jquery.tempgauge.js'></script>";
 		}
 		
-		if (workspace.getBlocksByType("chart_waterbubble_create").length>0) {
+		if (xml.indexOf("chart_waterbubble_")!=-1) {
 			script += "<script src='chart_20220723/waterbubble.js'></script>";
 		}
 
-		if (workspace.getBlocksByType("chart_line_create").length>0) {
+		if (xml.indexOf("chart_line_")!=-1) {
 			script += "<script src='chart_20220723/Chart.min.js'></script>";			
 			script += "<script src='chart_20220723/linechart.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("chart_bar_create").length>0) {
+		if (xml.indexOf("chart_bar_")!=-1) {
 			script += "<script src='chart_20220723/Chart.min.js'></script>";			
 			script += "<script src='chart_20220723/barchart.js'></script>";
 		}		
 		
-		if (workspace.getBlocksByType("chart_analoggauge_create").length>0) {
+		if (xml.indexOf("chart_analoggauge_")!=-1) {
 			script += "<script src='chart_20220723/Chart.min.js'></script>";			
 			script += "<script src='chart_20220723/jquery.simplegauge.js'></script>";
 			script += "<link href='chart_20220723/jquery.simplegauge.css' type='text/css' rel='stylesheet'></script>";
 		}
 
-		if (workspace.getBlocksByType("TextToSpeech_run").length>0) {
+		if (xml.indexOf("TextToSpeech_")!=-1) {
 			script += "<script src='TextToSpeech_20220729/texttospeech.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("SpeechRecognition_run").length>0) {
+		if (xml.indexOf("SpeechRecognition_")!=-1) {
 			script += "<script src='SpeechRecognition_20220729/speechrecognition.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("linenotify").length>0||workspace.getBlocksByType("linenotify_image").length>0) {
+		if (xml.indexOf("linenotify")!=-1) {
 			script += "<script src='line_20220729/line.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("chart_switch_create").length>0) {
+		if (xml.indexOf("chart_switch_")!=-1) {
 			script += "<script src='chart_20220723/jquery.simpleswitch.js'></script>";
 			script += "<link href='chart_20220723/simpleswitch.css' type='text/css' rel='stylesheet'></script>";			
 		}	
 
-		if (workspace.getBlocksByType("ifttt").length>0) {
+		if (xml.indexOf("ifttt")!=-1) {
 			script += "<script src='ifttt_20220730/ifttt.js'></script>";			
 		}			
 		
-		if (workspace.getBlocksByType("thingspeak").length>0) {
+		if (xml.indexOf("thingspeak")!=-1) {
 			script += "<script src='thingspeak_20220730/thingspeak.js'></script>";			
 		}		
 
@@ -156,131 +156,131 @@ document.addEventListener('DOMContentLoaded', function() {
 		var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace, true);
 		xml = Blockly.Xml.domToPrettyText(xml);
 		
-		if (workspace.getBlocksByType("holistic_video").length>0) {
+		if (xml.indexOf("holistic_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic.js'></script>";
 		}
 		
-		if (workspace.getBlocksByType("faceapirecognize_video").length>0) {
+		if (xml.indexOf("faceapirecognize_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_recognize_20201012/faceapi-recognition_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_recognize_20201012/faceapi-recognition.js'></script>";
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_recognize_20201012/face-api.min.js'></script>";
 		}		
 		
-		if (workspace.getBlocksByType("teachablemachine_video").length>0) {
+		if (xml.indexOf("teachablemachine_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/teachablemachine_20201012/teachablemachine_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/teachablemachine_20201012/teachablemachine.js'></script>";
 		}		
 		
-		if (workspace.getBlocksByType("webserial_baudrate").length>0) {
+		if (xml.indexOf("webserial_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebSerial_20220126/WebSerial_elements.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebSerial_20220126/WebSerial.js'></script>";
 		}
 		
-		if (workspace.getBlocksByType("fu_mqtt_setup_js").length>0) {
-			script += "<script src='https://unpkg.com/mqtt/dist/mqtt.min.js'></script>";
-		}	
-
-		if (workspace.getBlocksByType("holistic_video").length>0) {
+		if (xml.indexOf("fu_mqtt_")!=-1) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/https://unpkg.com/mqtt/dist/mqtt.min.js'></script>";
+		}
+		
+		if (xml.indexOf("cocossd_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/coco-ssd_20201012/coco-ssd_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/coco-ssd_20201012/coco-ssd.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("faceapidetect_video").length>0) {
+		if (xml.indexOf("faceapidetect_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_detect_20201012/faceapidetect_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_detect_20201012/faceapidetect.js'></script>";
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/faceapi_recognize_20201012/face-api.min.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("hands_video").length>0) {
+		if (xml.indexOf("hands_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/hands_20220614/hands_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/hands_20220614/hands.js'></script>";
-		}	
+		}
 
-		if (workspace.getBlocksByType("trackingcolor_set").length>0) {
+		if (xml.indexOf("trackingcolor_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/trackingcolor_20201012/trackingcolor_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/trackingcolor_20201012/trackingcolor.js'></script>";
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/trackingcolor_20201012/tracking-min.js'></script>";
-		}
-		
-		if (workspace.getBlocksByType("instascan_video").length>0) {
+		}	
+
+		if (xml.indexOf("instascan_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/instascan.js_20201012/instascan_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/instascan.js_20201012/instascan.js'></script>";
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/instascan.js_20201012/instascan.min.js'></script>";
 		}
 
-		if (workspace.getBlocksByType("tesseract_video").length>0) {
+		if (xml.indexOf("tesseract_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/tesseract.js_20201012/tesseract_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/tesseract.js_20201012/tesseract.js'></script>";
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/tesseract.js_20201012/tesseract.min.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("spreadsheetsql_queryData").length>0||workspace.getBlocksByType("controls_spreadsheet").length>0) {
+		if (xml.indexOf("spreadsheet")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/spreadsheetsql.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/loader.js'></script>";
-		}
+		}	
 
-		if (workspace.getBlocksByType("chart_doughnut_create").length>0) {
+		if (xml.indexOf("chart_doughnut_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/pretty-doughtnut.js'></script>";
-		}	
-
-		if (workspace.getBlocksByType("chart_gauge_create").length>0) {
-			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.tempgauge.js'></script>";
 		}
 
-		if (workspace.getBlocksByType("chart_waterbubble_create").length>0) {
+		if (xml.indexOf("chart_gauge_")!=-1) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.tempgauge.js'></script>";
+		}
+		
+		if (xml.indexOf("chart_waterbubble_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/waterbubble.js'></script>";
-		}	
+		}
 
-		if (workspace.getBlocksByType("chart_line_create").length>0) {
+		if (xml.indexOf("chart_line_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/linechart.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("chart_bar_create").length>0) {
+		if (xml.indexOf("chart_bar_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/barchart.js'></script>";
-		}
-
-		if (workspace.getBlocksByType("chart_analoggauge_create").length>0) {
+		}		
+		
+		if (xml.indexOf("chart_analoggauge_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simplegauge.js'></script>";
-			script += "<link href='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simplegauge.css' type='text/css' rel='stylesheet'></script>";			
+			script += "<link href='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simplegauge.css' type='text/css' rel='stylesheet'></script>";
 		}
-		
-		if (workspace.getBlocksByType("TextToSpeech_run").length>0) {
+
+		if (xml.indexOf("TextToSpeech_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/TextToSpeech_20220729/texttospeech.js'></script>";
 		}	
 
-		if (workspace.getBlocksByType("SpeechRecognition_run").length>0) {
+		if (xml.indexOf("SpeechRecognition_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpeechRecognition_20220729/speechrecognition.js'></script>";
-		}
-
-		if (workspace.getBlocksByType("linenotify").length>0||workspace.getBlocksByType("linenotify_image").length>0) {
-			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/line_20220729/line.js'></script>";
-		}
-
-		if (workspace.getBlocksByType("chart_switch_create").length>0) {
-			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simpleswitch.js'></script>";
-			script += "<link href='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/simpleswitch.css' type='text/css' rel='stylesheet'></script>";				
 		}	
 
-		if (workspace.getBlocksByType("ifttt").length>0) {
+		if (xml.indexOf("linenotify")!=-1) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/line_20220729/line.js'></script>";
+		}	
+
+		if (xml.indexOf("chart_switch_")!=-1) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simpleswitch.js'></script>";
+			script += "<link href='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/simpleswitch.css' type='text/css' rel='stylesheet'></script>";			
+		}	
+
+		if (xml.indexOf("ifttt")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/ifttt_20220730/ifttt.js'></script>";			
-		}		
+		}			
 		
-		if (workspace.getBlocksByType("thingspeak").length>0) {
+		if (xml.indexOf("thingspeak")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/thingspeak_20220730/thingspeak.js'></script>";			
-		}
-		
+		}		
+
 		if (xml.indexOf("telegram_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/Telegram_20200809/telegram.js'></script>";			
 		}	
 
 		if (xml.indexOf("matrix_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/MatrixLed_20180810/matrixled.js'></script>";			
-		}		
+		}
 		
 		return script;
 	}		
