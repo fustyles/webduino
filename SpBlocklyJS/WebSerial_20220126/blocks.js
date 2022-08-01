@@ -79,13 +79,14 @@ Blockly.Blocks['webserial_sendtext'] = {
         .appendField(Blockly.Msg.WEBSERIAL_SENDTEXT_SHOW);
 	this.appendValueInput("cmd_")
 		.setCheck("String");
-    this.appendDummyInput()	  
+    this.appendDummyInput("newline")	  
 		.appendField(new Blockly.FieldDropdown([
 			["　",""],
 			["\\r","\\r"],
 			["\\n","\\n"],
 			["\\r\\n","\\r\\n"]
-		]), "end_"); 		
+		]), "end_");
+	this.getInput("newline").setVisible(false);
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
