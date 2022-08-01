@@ -21,7 +21,7 @@ Blockly.Blocks['matrix_led_initial'] = {
 	this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -35,7 +35,7 @@ Blockly.Blocks['matrix_led_char'] = {
         .appendField(Blockly.Msg.MATRIXLED_CHAR_SHOW);    
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -48,7 +48,7 @@ Blockly.Blocks['matrix_led_texttocode'] = {
         .setCheck("String")
         .appendField(Blockly.Msg.MATRIXLED_TEXTTOCODE_SHOW);
     this.setOutput(true, null);  
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip("");
     this.setHelpUrl("");
   }  
@@ -60,7 +60,7 @@ Blockly.Blocks['matrix_led_indentcode'] = {
         .setCheck("String")
         .appendField(Blockly.Msg.MATRIXLED_INDENTCODE_SHOW);
     this.setOutput(true, null);  
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip("");
     this.setHelpUrl("");
   }  
@@ -73,7 +73,7 @@ Blockly.Blocks['matrix_led_showstate'] = {
         .appendField(new Blockly.FieldDropdown([[Blockly.Msg.MATRIXLED_ON_SHOW,"1"], [Blockly.Msg.MATRIXLED_OFF_SHOW,"0"]]), "value_showstate_");     
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip("");
     this.setHelpUrl("");
   }  
@@ -86,7 +86,7 @@ Blockly.Blocks['matrix_led_marquee'] = {
         .appendField(Blockly.Msg.MATRIXLED_MARQUEE_SHOW); 
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -103,7 +103,7 @@ Blockly.Blocks['matrix_led_marquee_once'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -116,7 +116,7 @@ Blockly.Blocks['matrix_led_marquee_color'] = {
         .appendField(Blockly.Msg.MATRIXLED_MARQUEE_COLOR_SHOW); 
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -129,7 +129,7 @@ Blockly.Blocks['matrix_led_marquee_color_once'] = {
         .appendField(Blockly.Msg.MATRIXLED_MARQUEE_COLOR_ONCE_SHOW); 
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -144,7 +144,7 @@ Blockly.Blocks['matrix_led_marquee_degree'] = {
         .appendField(Blockly.Msg.MATRIXLED_MARQUEE_DEGREE_SHOW);      
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip("");
     this.setHelpUrl("");
   }  
@@ -159,7 +159,7 @@ Blockly.Blocks['matrix_led_marquee_color_degree'] = {
         .appendField(Blockly.Msg.MATRIXLED_MARQUEE_DEGREE_SHOW);      
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip("");
     this.setHelpUrl("");
   }  
@@ -171,7 +171,7 @@ Blockly.Blocks['matrix_led_marquee_stop'] = {
         .appendField(Blockly.Msg.MATRIXLED_MARQUEE_STOP_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -183,7 +183,7 @@ Blockly.Blocks['matrix_led_marquee_resume'] = {
         .appendField(Blockly.Msg.MATRIXLED_MARQUEE_RESUME_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -195,7 +195,7 @@ Blockly.Blocks['matrix_led_marquee_reverse'] = {
         .appendField(Blockly.Msg.MATRIXLED_MARQUEE_REVERSE_SHOW);    
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -208,7 +208,7 @@ Blockly.Blocks['matrix_led_marquee_time'] = {
         .appendField(Blockly.Msg.MATRIXLED_MARQUEE_TIME_SHOW);  
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -223,7 +223,7 @@ Blockly.Blocks['matrix_led_sample'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip('');
-    this.setColour(300);
+    this.setColour(130);
     this.setHelpUrl("");
   }
 };
@@ -236,7 +236,7 @@ Blockly.Blocks['matrix_led_code'] = {
         .appendField(Blockly.Msg.MATRIXLED_CODE_SHOW)
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -249,7 +249,7 @@ Blockly.Blocks['matrix_led_color'] = {
         .appendField(Blockly.Msg.MATRIXLED_COLOR_SHOW);    
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -292,7 +292,7 @@ Blockly.Blocks['matrix_led_matrix'] = {
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L25");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -335,7 +335,7 @@ Blockly.Blocks['matrix_led_matrix_color'] = {
         .appendField(new Blockly.FieldColour("#000000"), 'L25')
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip('');
     this.setHelpUrl('');
   }
@@ -377,7 +377,7 @@ Blockly.Blocks['matrix_led_matrixcode'] = {
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L20")
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L25");
     this.setOutput(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -395,7 +395,7 @@ Blockly.Blocks['matrix_led_matrixcode_line'] = {
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L04")
         .appendField(new Blockly.FieldCheckbox("FALSE"), "L05");
     this.setOutput(true, null);
-    this.setColour(300);  
+    this.setColour(130);  
   }
 };
 
@@ -435,7 +435,7 @@ Blockly.Blocks['matrix_led_matrixcode_color'] = {
         .appendField(new Blockly.FieldColour("#000000"), 'L20')
         .appendField(new Blockly.FieldColour("#000000"), 'L25')
     this.setOutput(true, null);
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip('');
     this.setHelpUrl('');
   }
@@ -453,7 +453,7 @@ Blockly.Blocks['matrix_led_matrixcode_line_color'] = {
         .appendField(new Blockly.FieldColour("#000000"), 'L04')
         .appendField(new Blockly.FieldColour("#000000"), 'L05');
     this.setOutput(true, null);
-    this.setColour(300);
+    this.setColour(130);
   }
 };
 
@@ -463,7 +463,7 @@ Blockly.Blocks['matrix_led_clear'] = {
         .appendField(Blockly.Msg.MATRIXLED_CLEAR_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -483,7 +483,7 @@ Blockly.Blocks['matrix_led_on'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -505,7 +505,7 @@ Blockly.Blocks['matrix_led_color_on'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -525,7 +525,7 @@ Blockly.Blocks['matrix_led_off'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -544,7 +544,7 @@ Blockly.Blocks['matrix_led_reverse'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -562,7 +562,7 @@ Blockly.Blocks['matrix_led_state'] = {
         .appendField("y");
     this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip("");
     this.setHelpUrl("");
   }  
@@ -593,7 +593,7 @@ Blockly.Blocks['matrix_led_linechart'] = {
         .appendField(Blockly.Msg.MATRIXLED_VALUE5_SHOW);    
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip("");
     this.setHelpUrl("");
   }  
@@ -624,7 +624,7 @@ Blockly.Blocks['matrix_led_barchart'] = {
         .appendField(Blockly.Msg.MATRIXLED_VALUE5_SHOW);    
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip("");
     this.setHelpUrl("");
   }  
@@ -636,7 +636,7 @@ Blockly.Blocks['matrix_led_clockwise'] = {
         .appendField(Blockly.Msg.MATRIXLED_CLOCKWISE_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -648,7 +648,7 @@ Blockly.Blocks['matrix_led_counterclockwise'] = {
         .appendField(Blockly.Msg.MATRIXLED_COUNTERCLOCKWISE_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -660,7 +660,7 @@ Blockly.Blocks['matrix_led_verticalflip'] = {
         .appendField(Blockly.Msg.MATRIXLED_VERTICALFLIP_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -672,7 +672,7 @@ Blockly.Blocks['matrix_led_horizontalflip'] = {
         .appendField(Blockly.Msg.MATRIXLED_HORIZONTALFLIP_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -684,7 +684,7 @@ Blockly.Blocks['matrix_led_invert'] = {
         .appendField(Blockly.Msg.MATRIXLED_INVERT_SHOW);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
@@ -702,7 +702,7 @@ Blockly.Blocks['matrix_led_getcolor'] = {
         .appendField("y");
     this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(300);
+    this.setColour(130);
     this.setTooltip("");
     this.setHelpUrl("");
   }  
@@ -715,7 +715,7 @@ Blockly.Blocks['matrix_led_backcolor'] = {
         .appendField(Blockly.Msg.MATRIXLED_BACKCOLOR_SHOW);    
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);    
+    this.setColour(130);    
     this.setTooltip("");
     this.setHelpUrl("");    
   }
