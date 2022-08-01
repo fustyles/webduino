@@ -17,7 +17,7 @@ Blockly.Blocks['webserial_button'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(180);
   }  
 };
 
@@ -40,7 +40,7 @@ Blockly.Blocks['webserial_button_position'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(180);
   }
 };
 
@@ -58,7 +58,7 @@ Blockly.Blocks['webserial_button_onclick'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(180);
   }
 };
 
@@ -68,7 +68,7 @@ Blockly.Blocks['webserial_state'] = {
         .appendField(Blockly.Msg.WEBSERIAL_STATE_SHOW);
     this.setInputsInline(true);	  
     this.setOutput(true, null);  
-    this.setColour(300);
+    this.setColour(180);
   }  
 };
 
@@ -88,7 +88,7 @@ Blockly.Blocks['webserial_sendtext'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(180);
   }  
 };
 
@@ -101,7 +101,7 @@ Blockly.Blocks['webserial_senduint8'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(180);
   }  
 };
 
@@ -111,7 +111,7 @@ Blockly.Blocks['webserial_get'] = {
         .appendField(Blockly.Msg.WEBSERIAL_GET_SHOW);
     this.setInputsInline(true);	 	  
     this.setOutput(true, null);  
-    this.setColour(300);
+    this.setColour(180);
   }  
 };
 
@@ -121,7 +121,7 @@ Blockly.Blocks['webserial_getstate'] = {
         .appendField(Blockly.Msg.WEBSERIAL_GETSTATE_SHOW);
     this.setInputsInline(true);	 	  
     this.setOutput(true, null);  
-    this.setColour(300);
+    this.setColour(180);
   }  
 };
 
@@ -132,7 +132,7 @@ Blockly.Blocks['webserial_clear'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(180);
   }  
 };
 
@@ -161,7 +161,7 @@ Blockly.Blocks['webserial_baudrate'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(180);
   }  
 };
 
@@ -176,6 +176,6 @@ Blockly.Blocks['webserial_getid'] = {
   	]), "id_"); 	  
     this.setInputsInline(true);	 	  
     this.setOutput(true, null);  
-    this.setColour(300);
+    this.setColour(180);
   }
 };

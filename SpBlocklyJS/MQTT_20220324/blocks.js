@@ -22,7 +22,7 @@ Blockly.Blocks['fu_mqtt_setup_js'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(360);
   }
 };
 
@@ -36,7 +36,7 @@ Blockly.Blocks['fu_mqtt_subscribe_js'] = {
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(360);
   }
 };
 
@@ -51,7 +51,7 @@ Blockly.Blocks['fu_mqtt_gettopic_js'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(360);
   }
 };
 
@@ -69,7 +69,7 @@ Blockly.Blocks['fu_mqtt_senddata_js'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(210);
+    this.setColour(360);
   }
 };	
 
@@ -80,6 +80,6 @@ Blockly.Blocks['fu_mqtt_getdata_js'] = {
         .appendField(Blockly.Msg["MQTT_FU_GETDATA_JS"]);
 	this.setInputsInline(false);
     this.setOutput(true, null);
-    this.setColour(20)
+    this.setColour(360)
   }
 };	
