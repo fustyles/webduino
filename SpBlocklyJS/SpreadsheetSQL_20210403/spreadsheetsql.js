@@ -33,7 +33,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   function spreadsheetsql_QueryResponse(res) {
 	  //console.log(res.qb.fg);
 	  //console.log(res.qb.fg.length);
-	  console.log(res);
+	  //console.log(res);
 	  var arr = [];
 	  if (res.qb.If.length>0) {
 		  for (var i=0;i<res.qb.If.length;i++) {
