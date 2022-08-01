@@ -29,12 +29,13 @@
 	
 	function webserial_button_onclick(input_button, input_id) {
 		var element;
-		if (document.getElementsByClassName(input_id))
+		if (document.getElementsByClassName(input_id).length>0)
 			element = document.getElementsByClassName(input_id)[0];
 		else if (document.getElementById(input_id)) 
 			element = document.getElementById(input_id);
 		else
 			return;
+		
 		if (input_button=="open")
 			element.addEventListener('click', async () => {buttonRequest();});
 		else

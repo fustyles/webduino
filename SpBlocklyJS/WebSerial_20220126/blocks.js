@@ -54,6 +54,7 @@ Blockly.Blocks['webserial_button_onclick'] = {
 		[Blockly.Msg.WEBSERIAL_CLOSE_SHOW,"close"]
   	]), "button_");	  
   this.appendValueInput("id_")
+	  .appendField(Blockly.Msg.WEBSERIAL_ELEMENT_ID_SHOW)
       .setCheck("String");    	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
