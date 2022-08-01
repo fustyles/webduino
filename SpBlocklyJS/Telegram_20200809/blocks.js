@@ -17,7 +17,7 @@ Blockly.Blocks['telegram_message'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
-  this.setColour(50);
+  this.setColour(350);
   }
 };
 
@@ -41,7 +41,7 @@ Blockly.Blocks['telegram_photo'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
-  this.setColour(50);
+  this.setColour(350);
   }
 };
 
@@ -68,7 +68,7 @@ Blockly.Blocks['telegram_image'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
-  this.setColour(50);
+  this.setColour(350);
   }
 };
 
@@ -84,7 +84,7 @@ Blockly.Blocks['telegram_getupdates'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
-  this.setColour(50);
+  this.setColour(350);
   }
 };
 
@@ -95,7 +95,7 @@ Blockly.Blocks['telegram_getmessage'] = {
 	  .appendField(Blockly.Msg.TELEGRAM_GETMESSAGE_SHOW);
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
-	this.setColour(50);
+	this.setColour(350);
   }
 };
 
@@ -105,7 +105,7 @@ Blockly.Blocks['telegram_br'] = {
 	  .appendField(Blockly.Msg.TELEGRAM_BR_SHOW);
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(50);	  
+  this.setColour(350);	  
   }
 };
 
@@ -139,6 +139,6 @@ Blockly.Blocks['telegram_reply_markup'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
-  this.setColour(50);  
+  this.setColour(350);  
   }
 };

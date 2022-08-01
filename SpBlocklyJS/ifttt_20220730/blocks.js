@@ -25,6 +25,6 @@ Blockly.Blocks['ifttt'] = {
 	this.setInputsInline(false);	  
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(290);
+	this.setColour(110);
   } 
 };

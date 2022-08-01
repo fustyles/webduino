@@ -36,7 +36,7 @@ Blockly.Blocks['linenotify'] = {
 	this.setInputsInline(true);	  
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(200);
+	this.setColour(250);
 	this.getInput("packageId_").setVisible(false);
 	this.getField("S1").setVisible(false);
 	this.getInput("stickerId_").setVisible(false);
@@ -113,6 +113,6 @@ Blockly.Blocks['linenotify_image'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setTooltip('');
-  this.setColour(65);
+  this.setColour(250);
   }
 };
