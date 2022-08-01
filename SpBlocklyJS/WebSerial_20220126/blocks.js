@@ -81,7 +81,7 @@ Blockly.Blocks['webserial_sendtext'] = {
 		.setCheck("String");
     this.appendDummyInput()	  
 		.appendField(new Blockly.FieldDropdown([
-			["",""],
+			["　",""],
 			["\\r","\\r"],
 			["\\n","\\n"],
 			["\\r\\n","\\r\\n"]
