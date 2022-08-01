@@ -44,7 +44,5 @@ var catWebSerial ='<xml>'+
 '</block>'+
 '</value>'+
 '</block>'+ 
-'<block type="webserial_getid">'+ 
-'</block>'+ 
 '</category>'+
 '</xml>';	
