@@ -70,7 +70,7 @@ Blockly.Blocks['spreadsheetsql_getCellSQL'] = {
         .setCheck("Number")  
         .appendField(Blockly.Msg.SPREADSHEETSQL_ROW_SHOW);
 	this.appendDummyInput()
-		.appendField(Blockly.Msg.SPREADSHEETSQL_GETCELL_SHOW);		
+		.appendField(Blockly.Msg.SPREADSHEETSQL_SQL_SHOW);		
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(65);
@@ -85,6 +85,25 @@ Blockly.Blocks['spreadsheetsql_getData'] = {
   this.setOutput(true, null); 
   this.setColour(65);
   this.setHelpUrl("https://developers.google.com/chart/interactive/docs/querylanguage");  
+  }
+};
+
+Blockly.Blocks['spreadsheetsql_getCell'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.SPREADSHEETSQL_GETCELL_SHOW);
+	this.appendValueInput("row")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.setCheck("Number")  
+		.appendField(Blockly.Msg.SPREADSHEETSQL_ROW_SHOW);			
+	this.appendValueInput("col")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.setCheck("Number")  
+		.appendField(Blockly.Msg.SPREADSHEETSQL_COL_SHOW);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(65);
+	this.setHelpUrl("https://developers.google.com/chart/interactive/docs/querylanguage");  
   }
 };
 
@@ -149,7 +168,7 @@ Blockly.Blocks['spreadsheetsql_clearDataTable'] = {
 Blockly.Blocks['spreadsheetsql_getDataCount'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField(Blockly.Msg.SPREADSHEETSQL_GETDATACOUNT_SHOW);
+      .appendField(Blockly.Msg.SPREADSHEETSQL_GETDATA_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
           [Blockly.Msg.SPREADSHEETSQL_GETDATACOUNTROWS_SHOW,"ROWS"],		

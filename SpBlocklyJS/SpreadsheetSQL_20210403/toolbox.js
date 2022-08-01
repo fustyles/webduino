@@ -28,7 +28,17 @@ var catSpreadsheetsql = '<xml>'+
 '      </block>'+
 '  	   <block type="spreadsheetsql_getdatafinish">'+
 '  	   </block>'+
-'      <block type="spreadsheetsql_getData">'+
+'      <block type="spreadsheetsql_getCell">'+
+'		 <value name="row">'+
+'		   <block type="math_number">'+
+'			 <field name="NUM">1</field>'+
+'		   </block>'+
+'		 </value>'+
+'		 <value name="col">'+
+'		   <block type="math_number">'+
+'			 <field name="NUM">1</field>'+
+'		   </block>'+
+'		 </value>'+
 '      </block>'+
 '      <block type="spreadsheetsql_getDataTable">'+
 '        <value name="id">'+
@@ -63,6 +73,8 @@ var catSpreadsheetsql = '<xml>'+
 '            <field name="TEXT"></field>'+
 '          </block>'+
 '        </value>'+
+'      </block>'+
+'      <block type="spreadsheetsql_getData">'+
 '      </block>'+
 '      <block type="spreadsheetsql_getDataCount">'+
 '      </block>'+

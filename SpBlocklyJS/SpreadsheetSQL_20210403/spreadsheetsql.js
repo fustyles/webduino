@@ -65,6 +65,15 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 	  return spreadsheetsql_response;
   }
   
+  function spreadsheetsql_getCell(col, row) {
+	  if (row<=spreadsheetsql_response.length) {
+		  if (col<=spreadsheetsql_response[0].length) {
+			return spreadsheetsql_response[row-1][col-1];
+		  }
+	  }
+	  return "";
+  }  
+  
   function spreadsheetsql_getDataTable(input_id, input_width, input_fontsize, input_left, input_top, input_column) {
 	if (document.getElementById("gametable_"+input_id))
 		document.getElementById("gametable_"+input_id).parentNode.removeChild(document.getElementById("gametable_"+input_id));
@@ -108,10 +117,6 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 	if (document.getElementById("gametable_"+input_id))
 		document.getElementById("gametable_"+input_id).parentNode.removeChild(document.getElementById("gametable_"+input_id));
   }    
-  
-  function spreadsheetsql_getDataCount() {
-	  return spreadsheetsql_response.length;
-  }
 
   function spreadsheetsql_getDataCount(count) {
 	if (count=="ROWS")
@@ -152,6 +157,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   window.spreadsheetsql_executeSql = spreadsheetsql_executeSql;
   window.spreadsheetsql_QueryResponse = spreadsheetsql_QueryResponse;
   window.spreadsheetsql_getData = spreadsheetsql_getData;
+  window.spreadsheetsql_getCell = spreadsheetsql_getCell;
   window.spreadsheetsql_getDataTable = spreadsheetsql_getDataTable;
   window.spreadsheetsql_clearDataTable = spreadsheetsql_clearDataTable;  
   window.spreadsheetsql_getDataCount = spreadsheetsql_getDataCount;
