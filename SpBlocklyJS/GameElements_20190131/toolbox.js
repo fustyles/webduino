@@ -81,6 +81,13 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="function_return">'+
+'    <value name="value_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    <block type="color_hextorgb">'+
 '    <value name="color_">'+
 '    <block type="colour_picker">'+
@@ -136,6 +143,10 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="mouse_coordinate_get_start">'+
+'    </block>'+
+'    <block type="mouse_coordinate_get">'+
+'    </block>'+
 '    <block type="async_function">'+
 '    <value name="name_">'+
 '    <block type="text">'+
@@ -155,13 +166,6 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    </block>'+
 '    <block type="transform_async_function">'+
-'    </block>'+
-'    <block type="function_return">'+
-'    <value name="value_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
 '    </block>'+
 '    <block type="image_boundary">'+
 '    <value name="left_">'+
@@ -218,10 +222,6 @@ var catPageElements ='<xml>'+
 '    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
-'    </block>'+
-'    <block type="mouse_coordinate_get_start">'+
-'    </block>'+
-'    <block type="mouse_coordinate_get">'+
 '    </block>'+
 '    <block type="image_sys_get">'+
 '    </block>'+

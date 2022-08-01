@@ -17,7 +17,7 @@ Blockly.Blocks['system_datetime_get'] = {
 	  ]), "type");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(90);
+  this.setColour(50);
   }
 };
 
@@ -40,7 +40,7 @@ Blockly.Blocks['include_file'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(50);
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
@@ -563,7 +563,7 @@ Blockly.Blocks['music_create'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(350);
   }
 };
 
@@ -573,7 +573,7 @@ Blockly.Blocks['music_delete'] = {
         .appendField(Blockly.Msg.MUSIC_DELETE);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(350);
   }
 };
 
@@ -1426,7 +1426,7 @@ Blockly.Blocks['elements_collision'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_ANY,"any"], [Blockly.Msg.PROPERTY_UP,"up"], [Blockly.Msg.PROPERTY_DOWN,"down"], [Blockly.Msg.PROPERTY_LEFT,"left"], [Blockly.Msg.PROPERTY_RIGHT,"right"]]), "position_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(350);
   }
 };
 
@@ -1448,7 +1448,7 @@ Blockly.Blocks['elements_collision_color'] = {
       .appendField(Blockly.Msg.COLOR);
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(350);
   }
 };
 
@@ -1485,7 +1485,7 @@ Blockly.Blocks['image_boundary'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(350);
   }
 };
 
@@ -1526,7 +1526,7 @@ Blockly.Blocks['image_sys_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.WIDTH,"screen_width"], [Blockly.Msg.HEIGHT,"screen_height"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(60);
+  this.setColour(350);
   }
 };
 
@@ -1649,7 +1649,7 @@ Blockly.Blocks['mouse_coordinate_get_start'] = {
       .appendField(Blockly.Msg.MOUSE_COORDINATE_GET_START);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(290);
   }
 };
 
@@ -1660,7 +1660,7 @@ Blockly.Blocks['mouse_coordinate_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_PAGEX,"pageX"], [Blockly.Msg.PROPERTY_PAGEY,"pageY"], [Blockly.Msg.PROPERTY_OFFSETX,"offsetX"], [Blockly.Msg.PROPERTY_OFFSETY,"offsetY"], [Blockly.Msg.PROPERTY_CLIENTX,"clientX"], [Blockly.Msg.PROPERTY_CLIENTY,"clientY"], [Blockly.Msg.PROPERTY_SCREENX,"screenX"], [Blockly.Msg.PROPERTY_SCREENY,"screenY"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(290);
   this.setHelpUrl("https://www.w3schools.com/jsref/obj_mouseevent.asp");
   }
 };
@@ -1675,7 +1675,7 @@ Blockly.Blocks['document_timer_novar'] = {
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(110);
   }
 };
 
@@ -1689,7 +1689,7 @@ Blockly.Blocks['document_timer_once_novar'] = {
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(110);
   }
 };
 
@@ -1704,7 +1704,7 @@ Blockly.Blocks['document_timer'] = {
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(110);
   }
 };
 
@@ -1719,7 +1719,7 @@ Blockly.Blocks['document_timer_once'] = {
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(110);
   }
 };
 
@@ -1730,7 +1730,7 @@ Blockly.Blocks['document_timer_stop'] = {
       .appendField(new Blockly.FieldVariable('myTimer'), 'myTimer_');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(110);
   }
 };
 
@@ -1740,7 +1740,7 @@ Blockly.Blocks['text_to_number'] = {
         .setCheck(null)
         .appendField(Blockly.Msg.TEXT_TO_NUMBER);
     this.setOutput(true);  
-    this.setColour(300);
+    this.setColour(Blockly.Msg["TEXTS_HUE"]);
   }  
 };
 
@@ -1772,7 +1772,7 @@ Blockly.Blocks['function_return'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(60);
+    this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
   }
 };
 
@@ -1999,7 +1999,7 @@ Blockly.Blocks['async_function'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(230);
   }
 };
 
@@ -2017,7 +2017,7 @@ Blockly.Blocks['call_async_function'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(230);
   }
 };
 
@@ -2028,7 +2028,7 @@ Blockly.Blocks['transform_async_function'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(230);
   }
 };
 
@@ -2158,7 +2158,7 @@ Blockly.Blocks['element_event'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(170);
   this.setHelpUrl("https://fustyles.github.io/webduino/GameElements_20190131/HTML%20DOM%20EVENTS.txt");
   },
   validate: function(newValue) {
@@ -2296,7 +2296,7 @@ Blockly.Blocks['element_event_stop'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(170);
   this.setHelpUrl("https://fustyles.github.io/webduino/GameElements_20190131/HTML%20DOM%20EVENTS.txt");
   },
   validate: function(newValue) {
@@ -2942,7 +2942,7 @@ Blockly.Blocks['body_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(50);
   }
 };  
 
@@ -2969,7 +2969,7 @@ Blockly.Blocks['position_distance'] = {
       .appendField(Blockly.Msg.Y1);     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(350);
   }
 };
 
@@ -2996,7 +2996,7 @@ Blockly.Blocks['position_angle'] = {
       .appendField(Blockly.Msg.Y1);     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(350);
   }
 };
 
@@ -4435,7 +4435,7 @@ Blockly.Blocks['head_add_viewport'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(50);
   }
 };
 
@@ -4705,8 +4705,7 @@ Blockly.Blocks['custom_comment'] = {
       .appendField(Blockly.Msg.CUSTOM_COMMENT_SHOW); 
   this.setInputsInline(true);
   this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(0);  
+  this.setNextStatement(true); 
   }
 };
 
@@ -4742,7 +4741,7 @@ Blockly.Blocks['custom_style'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(110);   
+  this.setColour(50);   
   }
 };
 
@@ -4882,7 +4881,7 @@ Blockly.Blocks['location'] = {
         ]), "value_property");
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
-	this.setColour(200); 
+	this.setColour(50); 
     this.setHelpUrl("https://developer.mozilla.org/zh-TW/docs/Web/API/Window/location");
   }  
 };
@@ -4896,7 +4895,7 @@ Blockly.Blocks['console_log'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(110);  
+  this.setColour(50);  
   }
 };
 
@@ -4946,7 +4945,7 @@ Blockly.Blocks['window_open'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(110);  
+  this.setColour(50);  
   }
 };
 
