@@ -1,5 +1,5 @@
 Blockly.Msg["CATSPREADSHEETSQL"] = "Google试算表";
-Blockly.Msg.SPREADSHEETSQL_SHOW = "Google试算表SQL查询 设定";
+Blockly.Msg.SPREADSHEETSQL_SHOW = "Google试算表SQL查询SQL查询 设定";
 Blockly.Msg.SPREADSHEETSQL_EXECUTESQL_SHOW = "Google试算表SQL查询";
 Blockly.Msg.SPREADSHEETSQL_ID_SHOW = "试算表ID";
 Blockly.Msg.SPREADSHEETSQL_NAME_SHOW = "工作表名称";
