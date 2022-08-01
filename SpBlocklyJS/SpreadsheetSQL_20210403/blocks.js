@@ -47,22 +47,37 @@ Blockly.Blocks['spreadsheetsql_getData'] = {
 Blockly.Blocks['spreadsheetsql_getDataTable'] = {
   init: function() {
     this.appendDummyInput()
+        .appendField(Blockly.Msg.SPREADSHEETSQL_EXECUTESQL_SHOW);	  
+    this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
         .appendField(Blockly.Msg.SPREADSHEETSQL_GETDATATABLE_SHOW);
 	this.appendValueInput("id")
+		.setAlign(Blockly.ALIGN_RIGHT)	
 		.appendField(Blockly.Msg.SPREADSHEETSQL_TABLEID_SHOW)
 		.setCheck("String");		
     this.appendValueInput("width")
+		.setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")  
         .appendField(Blockly.Msg.SPREADSHEETSQL_WIDTH_SHOW);
     this.appendValueInput("fontsize")
+		.setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")  
         .appendField(Blockly.Msg.SPREADSHEETSQL_FONTSIZE_SHOW);			
     this.appendValueInput("left")
+		.setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")  
         .appendField(Blockly.Msg.SPREADSHEETSQL_LEFT_SHOW);
     this.appendValueInput("top")
+		.setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")  
         .appendField(Blockly.Msg.SPREADSHEETSQL_TOP_SHOW);
+	this.appendDummyInput()  
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.SPREADSHEETSQL_COLUMNNAME_SHOW)
+		.appendField(new Blockly.FieldDropdown([
+			["Y","0"],
+			["N","1"]	  
+	]), "column"); 		
 	this.setInputsInline(false);	  
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
