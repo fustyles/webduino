@@ -61,6 +61,7 @@ Blockly.Msg.CANVAS_DELETE = "Canvas Delete";
 Blockly.Msg.IMAGE = "Image";
 Blockly.Msg.IMAGE_CREATE = "Image Create";
 Blockly.Msg.ID = "ID";
+Blockly.Msg.ELEMENTID = "Element ID";
 Blockly.Msg.IMAGE_ID = "Image ID";
 Blockly.Msg.CANVAS_ID = "Canvas ID";
 Blockly.Msg.URL = "Url";
