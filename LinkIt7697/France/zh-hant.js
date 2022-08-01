@@ -206,6 +206,7 @@ Blockly.Msg.CANVAS_DELETE = "畫布刪除";
 Blockly.Msg.IMAGE = "圖片";
 Blockly.Msg.IMAGE_CREATE = "圖片 建立";
 Blockly.Msg.ID = "代碼";
+Blockly.Msg.ELEMENTID = "原始代碼";
 Blockly.Msg.IMAGE_ID = "圖片 代碼";
 Blockly.Msg.CANVAS_ID = "畫布 代碼";
 Blockly.Msg.URL = "網址";
