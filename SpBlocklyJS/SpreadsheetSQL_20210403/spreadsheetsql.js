@@ -52,6 +52,41 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 	  return spreadsheetsql_response;
   }
   
+  function spreadsheetsql_getDataTable(input_id, input_width, input_fontsize, input_left, input_top) {
+	if (document.getElementById("gametable_"+input_id))
+		document.getElementById("gametable_"+input_id).parentNode.removeChild(document.getElementById("gametable_"+input_id));
+		
+	if (spreadsheetsql_response.length>0) {
+		var obj = document.createElement('table');
+		obj.id = "gametable_"+input_id;
+		obj.style.position = "absolute";
+		obj.style.width = input_width + 'px';
+		obj.style.left = input_left + 'px';
+		obj.style.top = input_top + 'px';
+		obj.style.fontSize = input_fontsize + "px";
+		obj.style.border = "1px solid black";
+		obj.style.borderCollapse = "collapse";
+		obj.style.zIndex = 9999;
+		
+		var innerData = "";
+	  
+		for (var i=0;i<spreadsheetsql_response.length;i++) {
+			innerData += "<tr style='border:1px solid black;border-collapse: collapse;'>";
+			for (var j=0;j<spreadsheetsql_response[i].length;j++) {
+				innerData += "<td style='border:1px solid black;border-collapse: collapse;'>"+spreadsheetsql_response[i][j]+"</td>";
+			}
+			innerData += "</tr>";
+		}
+		obj.innerHTML = innerData;
+		document.body.appendChild(obj);  
+	}
+  }  
+  
+  function spreadsheetsql_clearDataTable(input_id) {
+	if (document.getElementById("gametable_"+input_id))
+		document.getElementById("gametable_"+input_id).parentNode.removeChild(document.getElementById("gametable_"+input_id));
+  }    
+  
   function spreadsheetsql_getDataCount() {
 	  return spreadsheetsql_response.length;
   }
@@ -95,6 +130,8 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   window.spreadsheetsql_executeSql = spreadsheetsql_executeSql;
   window.spreadsheetsql_QueryResponse = spreadsheetsql_QueryResponse;
   window.spreadsheetsql_getData = spreadsheetsql_getData;
+  window.spreadsheetsql_getDataTable = spreadsheetsql_getDataTable;
+  window.spreadsheetsql_clearDataTable = spreadsheetsql_clearDataTable;  
   window.spreadsheetsql_getDataCount = spreadsheetsql_getDataCount;
   window.spreadsheetsql_clearData = spreadsheetsql_clearData;
   window.spreadsheet_insert = spreadsheet_insert;

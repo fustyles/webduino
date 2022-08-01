@@ -21,6 +21,24 @@ Blockly.JavaScript['spreadsheetsql_getData'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['spreadsheetsql_getDataTable'] = function (block) {
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);  
+  var width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC); 
+  var fontsize = Blockly.JavaScript.valueToCode(block, 'fontsize', Blockly.JavaScript.ORDER_ATOMIC);
+  var left = Blockly.JavaScript.valueToCode(block, 'left', Blockly.JavaScript.ORDER_ATOMIC);
+  var top = Blockly.JavaScript.valueToCode(block, 'top', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  var code = 'spreadsheetsql_getDataTable('+id+','+width+','+fontsize+','+left+','+top+');\n';
+  return code; 
+};
+
+Blockly.JavaScript['spreadsheetsql_clearDataTable'] = function (block) {
+  var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);  
+  
+  var code = 'spreadsheetsql_clearDataTable('+id+');\n';
+  return code; 
+};
+
 Blockly.JavaScript['spreadsheetsql_getDataCount'] = function (block) {
   var value_count = block.getFieldValue('count'); 
   var code = 'spreadsheetsql_getDataCount("'+value_count+'")';

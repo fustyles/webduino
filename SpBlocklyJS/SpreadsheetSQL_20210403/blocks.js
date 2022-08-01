@@ -40,6 +40,50 @@ Blockly.Blocks['spreadsheetsql_getData'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
+  this.setHelpUrl("https://developers.google.com/chart/interactive/docs/querylanguage");  
+  }
+};
+
+Blockly.Blocks['spreadsheetsql_getDataTable'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SPREADSHEETSQL_GETDATATABLE_SHOW);
+	this.appendValueInput("id")
+		.appendField(Blockly.Msg.SPREADSHEETSQL_TABLEID_SHOW)
+		.setCheck("String");		
+    this.appendValueInput("width")
+        .setCheck("Number")  
+        .appendField(Blockly.Msg.SPREADSHEETSQL_WIDTH_SHOW);
+    this.appendValueInput("fontsize")
+        .setCheck("Number")  
+        .appendField(Blockly.Msg.SPREADSHEETSQL_FONTSIZE_SHOW);			
+    this.appendValueInput("left")
+        .setCheck("Number")  
+        .appendField(Blockly.Msg.SPREADSHEETSQL_LEFT_SHOW);
+    this.appendValueInput("top")
+        .setCheck("Number")  
+        .appendField(Blockly.Msg.SPREADSHEETSQL_TOP_SHOW);
+	this.setInputsInline(false);	  
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setTooltip('');
+	this.setColour(65);
+	this.setHelpUrl("https://developers.google.com/chart/interactive/docs/querylanguage");   
+  }
+};
+
+Blockly.Blocks['spreadsheetsql_clearDataTable'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SPREADSHEETSQL_CLEARDATATABLE_SHOW);
+	this.appendValueInput("id")
+		.appendField(Blockly.Msg.SPREADSHEETSQL_TABLEID_SHOW)
+		.setCheck("String");  
+	this.setInputsInline(true);	  
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setTooltip('');
+	this.setColour(65);		
   }
 };
 
