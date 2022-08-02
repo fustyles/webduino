@@ -793,6 +793,7 @@ Blockly.Constants.Logic.CONTROLS_SPREADSHEET_MUTATOR_MIXIN={
 			Blockly.Mutator.reconnect(a[d],this,String.fromCharCode(d+65));
 	}
 };
+Blockly.Extensions.unregister("controls_spreadsheet_mutator");
 Blockly.Extensions.registerMutator("controls_spreadsheet_mutator",Blockly.Constants.Logic.CONTROLS_SPREADSHEET_MUTATOR_MIXIN,null,["controls_spreadsheet_value"]);
 
 Blockly.defineBlocksWithJsonArray([
