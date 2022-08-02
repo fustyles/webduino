@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	function checkCategoryExist(child) {
-		for (var i=1;i<customCategory.length;i++) {
+		for (var i=0;i<customCategory.length;i++) {
 			if (child==customCategory[i][2])
 				customCategory.splice(i, 1);
 		}
