@@ -11617,8 +11617,8 @@ Blockly.Arduino['fu_mqtt_loop'] = function(block) {
 				
   Blockly.Arduino.definitions_.define_mqtt_callback = 'void callback(char* topic, byte* payload, unsigned int length) {\n'+
 														'  mqtt_data = "";\n'+
-														'  for (int i = 0; i < length; i++) {\n'+
-														'    char c = payload[i];\n'+
+														'  for (int ci = 0; ci < length; ci++) {\n'+
+														'    char c = payload[ci];\n'+
 														'    mqtt_data+=c;\n'+
 														'  }\n'+topic_getdata+
 														'}\n';
