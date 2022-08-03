@@ -75,4 +75,12 @@
 <category><name>spreadsheet</name><replace>Google spreadsheet</replace></category>
 <category><name>taskhandle</name><replace>Multi-core task</replace></category>
 <category><name>catpagemqtt</name><replace>Page MQTT</replace></category>
+<category><name>catdashboard</name><replace>Page Dashboard</replace></category>
+<category><name>catchartdoughnut</name><replace>Doughnut chart</replace></category>
+<category><name>catchartgauge</name><replace>Gauge chart</replace></category>
+<category><name>catchartwaterbubble</name><replace>Water Bubble chart</replace></category>
+<category><name>catlinechart</name><replace>Line chart</replace></category>
+<category><name>catbarchart</name><replace>Bar chart</replace></category>
+<category><name>catcanaloggauge</name><replace>Analog chart</replace></category>
+<category><name>catchartswitch</name><replace>Slide switch</replace></category>
 </xml>

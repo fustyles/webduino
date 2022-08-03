@@ -1,3 +1,512 @@
+Blockly.Arduino['chart_switch_create'] = function(block) {
+  var func = "switch_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var left = Blockly.Arduino.valueToCode(block, 'left', Blockly.Arduino.ORDER_ATOMIC);
+  var top = Blockly.Arduino.valueToCode(block, 'top', Blockly.Arduino.ORDER_ATOMIC);
+  var width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);  
+  var val = block.getFieldValue('val');
+  var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
+  var size = Blockly.Arduino.valueToCode(block, 'size', Blockly.Arduino.ORDER_ATOMIC);
+  var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
+  var statements_do = Blockly.Arduino.statementToCode(block, 'do');
+  
+  var code = 'function '+func+'() {\n  '+statements_do+'\n}\n';
+  code +=  'simpleSwitch({\n'+
+			'	id: '+id+',\n'+
+			'	width: '+width+',\n'+
+			'	height: '+height+',\n'+
+			'	left: '+left+',\n'+
+			'	top: '+top+',\n'+
+			'	text: '+text+',\n'+	
+			'	size: '+size+',\n'+			
+			'	color: '+color+',\n'+
+			'	val: '+val+',\n'+			
+			'	func: '+func+'\n'+			
+			'});\n';
+												
+  return code;
+};
+
+Blockly.Arduino['chart_switch_set'] = function(block) {
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var val = block.getFieldValue('val');
+  code = 'simpleSwitch({id: '+id+',val: '+val+'});\n';
+  return code;
+};
+
+Blockly.Arduino['chart_switch_get'] = function(block) {
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var code = '$("#gamecheckbox_"+'+id+').is(":checked")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['chart_analoggauge_create'] = function(block) {
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var name = Blockly.Arduino.valueToCode(block, 'name', Blockly.Arduino.ORDER_ATOMIC);
+  var width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+  var left = Blockly.Arduino.valueToCode(block, 'left', Blockly.Arduino.ORDER_ATOMIC);
+  var top = Blockly.Arduino.valueToCode(block, 'top', Blockly.Arduino.ORDER_ATOMIC);
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  var min = Blockly.Arduino.valueToCode(block, 'min', Blockly.Arduino.ORDER_ATOMIC);
+  var max = Blockly.Arduino.valueToCode(block, 'max', Blockly.Arduino.ORDER_ATOMIC);
+  var decimal = Blockly.Arduino.valueToCode(block, 'decimal', Blockly.Arduino.ORDER_ATOMIC);
+  var unit = Blockly.Arduino.valueToCode(block, 'unit', Blockly.Arduino.ORDER_ATOMIC);
+  var count = Blockly.Arduino.valueToCode(block, 'count', Blockly.Arduino.ORDER_ATOMIC);
+  var angle = Blockly.Arduino.valueToCode(block, 'angle', Blockly.Arduino.ORDER_ATOMIC);
+  var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
+  color = color.replace("{","[").replace("}","]");
+ 
+  var code = "";
+  code +=  'simpleGauge({\n'+
+	'	id:  '+id+',\n'+
+    '   value: '+val+',\n'+	
+    '   min: '+min+',\n'+
+    '   max: '+max+',\n'+
+	'	width: '+width+',\n'+
+	'	height: '+height+',\n'+
+	'	left: '+left+',\n'+
+	'	top: '+top+',\n'+
+	'	decimal: '+decimal+',\n'+
+	'	unit: '+unit+',\n'+
+    '    template: ["<div class=\\\\\'simpleGauge_container\\\\\'>","<div class=\\\\\'simpleGauge\\\\\'>","<div class=\\\\\'simpleGauge_title\\\\\'></div>","<svg class=\\\\\'simpleGauge_bars simpleGauge_block\\\\\' version=\\\\\'1.1\\\\\' xmlns=\\\\\'http://www.w3.org/2000/svg\\\\\'></svg>","<div class=\\\\\'simpleGauge_labels simpleGauge_block\\\\\'></div>","<div class=\\\\\'simpleGauge_ticks simpleGauge_block\\\\\'></div>","<svg class=\\\\\'simpleGauge_pointers simpleGauge_block\\\\\' version=\\\\\'1.1\\\\\' xmlns=\\\\\'http://www.w3.org/2000/svg\\\\\'></svg>","<div class=\\\\\'simpleGauge_digital\\\\\'></div>","</div></div>"'+
+    '    ].join(""),\n'+
+    '    type:   "analog digital",\n'+
+    '    container: {\n'+
+    '        scale: 90,\n'+
+    '        style: {}\n'+
+    '    },\n'+
+    '    title: {\n'+
+    '        text: '+name+',\n'+
+    '        style: {}\n'+
+    '    },\n'+
+    '    digital: {\n'+
+    '        text: "{value.1}",\n'+
+    '        style: {\n'+
+    '            color: "auto"\n'+
+    '        }\n'+
+    '    },\n'+
+    '    analog: {\n'+
+    '        minAngle: -'+angle+',\n'+
+    '        maxAngle: '+angle+'\n'+
+    '    },\n'+
+    '    labels: {\n'+
+    '        text:   "{value}",\n'+
+    '        count:  '+count+',\n'+
+    '        scale:  95,\n'+
+    '        style:  ""\n'+
+    '    },\n'+
+    '    ticks: {\n'+
+    '        count:  '+count+',\n'+
+    '        scale1: 77,\n'+
+    '        scale2: 83,\n'+
+    '        style:  ""\n'+
+    '    },\n'+
+    '    subTicks: {\n'+
+    '        count:  0,\n'+
+    '        scale1: 80,\n'+
+    '        scale2: 83,\n'+
+    '        style:  ""\n'+
+    '    },\n'+
+    '    bars: {\n'+
+    '        scale1: 75,\n'+
+    '        scale2: 80,\n'+
+    '        style:  "",\n'+
+    '        colors: \n'+
+    '            '+color+
+    '        \n'+
+    '    },\n'+
+    '    pointer: {\n'+
+    '        scale: 85,\n'+
+    '        shape: [\n'+
+    '            "-2,-10",\n'+
+    '            "2,-10",\n'+
+    '            "2.1,-5.3",\n'+
+    '            "4,-4",\n'+
+    '            "5.3,-2.1",\n'+
+    '            "5.7,0",\n'+
+    '            "5.3,2.1",\n'+
+    '            "4,4",\n'+
+    '            "2.1,5.3",\n'+
+    '            "2,50",\n'+
+    '            "1.5,96",\n'+
+    '            "0,100",\n'+
+    '            "-1,96",\n'+
+    '            "-2,50",\n'+
+    '            "-2.1,5.3",\n'+
+    '            "-4,4",\n'+
+    '            "-5.3,2.1",\n'+
+    '            "-5.7,0",\n'+
+    '            "-5.3,-2.1",\n'+
+    '            "-4,-4",\n'+
+    '            "-2.1,-5.3",\n'+
+    '            "-2,-10"\n'+
+    '        ].join(" "),\n'+
+    '        style: {\n'+
+    '            color: "#8778",\n'+
+    '            borderWidth: 0,\n'+
+    '            borderColor: "#8778"\n'+
+    '        }\n'+
+    '    }\n'+
+	'});';
+												
+  return code;
+};
+
+Blockly.Arduino['chart_analoggauge_colorset'] = function(block) {
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
+  var code = '[ '+val+', '+color+', 0, 0 ]';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['chart_analoggauge_set'] = function(block) {
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  code = 'simpleGauge({id:'+id+', value: '+val+'});\n';
+  return code;
+};
+
+Blockly.Arduino['chart_doughnut_create'] = function(block) {
+  var id = "chart_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
+  var name = Blockly.Arduino.valueToCode(block, 'name', Blockly.Arduino.ORDER_ATOMIC);
+  var width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+  var left = Blockly.Arduino.valueToCode(block, 'left', Blockly.Arduino.ORDER_ATOMIC);
+  var top = Blockly.Arduino.valueToCode(block, 'top', Blockly.Arduino.ORDER_ATOMIC);
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  var min = Blockly.Arduino.valueToCode(block, 'min', Blockly.Arduino.ORDER_ATOMIC);
+  var max = Blockly.Arduino.valueToCode(block, 'max', Blockly.Arduino.ORDER_ATOMIC);
+  var decimal = Blockly.Arduino.valueToCode(block, 'decimal', Blockly.Arduino.ORDER_ATOMIC);
+  var labelsize = Blockly.Arduino.valueToCode(block, 'labelsize', Blockly.Arduino.ORDER_ATOMIC);
+  var valuesize = Blockly.Arduino.valueToCode(block, 'valuesize', Blockly.Arduino.ORDER_ATOMIC);
+  var unit = Blockly.Arduino.valueToCode(block, 'unit', Blockly.Arduino.ORDER_ATOMIC);
+  var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = "";
+  code +=  'doughnutWidget.chartname['+name+'] = {\n'+
+			'	container: "'+id+'",\n'+
+			'	width: '+width+',\n'+
+			'	height: '+height+',\n'+
+			'	left: '+left+',\n'+
+			'	top: '+top+',\n'+
+			'	cutout: 50,\n'+
+			'	data: {\n'+
+			'		val: '+val+',\n'+
+			'		min: '+min+',\n'+
+			'		max: '+max+',\n'+
+			'		color: '+color+',\n'+
+			'		unit: " "+'+unit+',\n'+
+			'		decimal: '+decimal+',\n'+	
+			'		labelsize: '+labelsize+',\n'+
+			'		valuesize: '+valuesize+',\n'+
+			'	}\n'+
+			'};\n'+
+			'doughnutWidget.createChart('+name+');\n';
+												
+  return code;
+};
+
+Blockly.Arduino['chart_doughnut_set'] = function(block) {
+  var name = Blockly.Arduino.valueToCode(block, 'name', Blockly.Arduino.ORDER_ATOMIC);
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  code = 'doughnutWidget.updateData('+name+', '+val+');\n';
+  return code;
+};
+
+Blockly.Arduino['chart_gauge_create'] = function(block) {
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var name = Blockly.Arduino.valueToCode(block, 'name', Blockly.Arduino.ORDER_ATOMIC);
+  var width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var left = Blockly.Arduino.valueToCode(block, 'left', Blockly.Arduino.ORDER_ATOMIC);
+  var top = Blockly.Arduino.valueToCode(block, 'top', Blockly.Arduino.ORDER_ATOMIC);
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  var min = Blockly.Arduino.valueToCode(block, 'min', Blockly.Arduino.ORDER_ATOMIC);
+  var max = Blockly.Arduino.valueToCode(block, 'max', Blockly.Arduino.ORDER_ATOMIC);
+  var decimal = Blockly.Arduino.valueToCode(block, 'decimal', Blockly.Arduino.ORDER_ATOMIC);
+  var labelsize = Blockly.Arduino.valueToCode(block, 'labelsize', Blockly.Arduino.ORDER_ATOMIC);
+  var unit = Blockly.Arduino.valueToCode(block, 'unit', Blockly.Arduino.ORDER_ATOMIC);
+  var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = "";
+  code +=  'temperatureGauge({\n'+
+			'	id: '+id+',\n'+
+			'	name: '+name+',\n'+			
+			'	width: '+width+',\n'+
+			'	left: '+left+',\n'+
+			'	top: '+top+',\n'+
+			'	val: '+val+',\n'+
+			'	min: '+min+',\n'+
+			'	max: '+max+',\n'+
+			'	fillColor: '+color+',\n'+
+			'	borderWidth: 4,\n'+		
+			'	unit: " "+'+unit+',\n'+
+			'	decimal: '+decimal+',\n'+	
+			'	showLabel: true,\n'+	
+			'	labelSize: '+labelsize+',\n'+
+			'});\n';
+												
+  return code;
+};
+
+Blockly.Arduino['chart_gauge_set'] = function(block) {
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  code = 'temperatureGauge({id: '+id+',val: '+val+'});\n';
+  return code;
+};
+
+Blockly.Arduino['chart_waterbubble_create'] = function(block) {
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var name = Blockly.Arduino.valueToCode(block, 'name', Blockly.Arduino.ORDER_ATOMIC);
+  var radius = Blockly.Arduino.valueToCode(block, 'radius', Blockly.Arduino.ORDER_ATOMIC);
+  var left = Blockly.Arduino.valueToCode(block, 'left', Blockly.Arduino.ORDER_ATOMIC);
+  var top = Blockly.Arduino.valueToCode(block, 'top', Blockly.Arduino.ORDER_ATOMIC);
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  var min = Blockly.Arduino.valueToCode(block, 'min', Blockly.Arduino.ORDER_ATOMIC);
+  var max = Blockly.Arduino.valueToCode(block, 'max', Blockly.Arduino.ORDER_ATOMIC);
+  var decimal = Blockly.Arduino.valueToCode(block, 'decimal', Blockly.Arduino.ORDER_ATOMIC);
+  var unit = Blockly.Arduino.valueToCode(block, 'unit', Blockly.Arduino.ORDER_ATOMIC);
+  var watercolor = Blockly.Arduino.valueToCode(block, 'watercolor', Blockly.Arduino.ORDER_ATOMIC);
+  var textcolor = Blockly.Arduino.valueToCode(block, 'textcolor', Blockly.Arduino.ORDER_ATOMIC);  
+  
+  var code = "";
+  code +=  'waterbubble({\n'+
+			'	id: '+id+',\n'+
+			'	name: '+name+',\n'+			
+			'	radius: '+radius+',\n'+
+			'	left: '+left+',\n'+
+			'	top: '+top+',\n'+
+			'	val: '+val+',\n'+
+			'	min: '+min+',\n'+
+			'	max: '+max+',\n'+
+			'	unit: " "+'+unit+',\n'+
+			'	decimal: '+decimal+',\n'+
+			'	waterColor: '+watercolor+',\n'+
+			'	textColor: '+textcolor+',\n'+			
+			'	lineWidth: 4,\n'+
+			'	wave: true,\n'+
+			'	animation: true\n'+		
+			'});\n';
+												
+  return code;
+};
+
+Blockly.Arduino['chart_waterbubble_set'] = function(block) {
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  code = 'waterbubble({id: '+id+',val: '+val+'});\n';
+  return code;
+};
+
+Blockly.Arduino['chart_line_create'] = function(block) {
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+  var left = Blockly.Arduino.valueToCode(block, 'left', Blockly.Arduino.ORDER_ATOMIC);
+  var top = Blockly.Arduino.valueToCode(block, 'top', Blockly.Arduino.ORDER_ATOMIC);
+  var count = Blockly.Arduino.valueToCode(block, 'count', Blockly.Arduino.ORDER_ATOMIC);
+  var title = Blockly.Arduino.valueToCode(block, 'title', Blockly.Arduino.ORDER_ATOMIC);
+  var titlex = Blockly.Arduino.valueToCode(block, 'titlex', Blockly.Arduino.ORDER_ATOMIC);
+  var titley = Blockly.Arduino.valueToCode(block, 'titley', Blockly.Arduino.ORDER_ATOMIC); 
+  var dataset = Blockly.Arduino.valueToCode(block, 'dataset', Blockly.Arduino.ORDER_ATOMIC);
+  if ((dataset.indexOf("[")==0)&&(dataset.lastIndexOf("]")==dataset.length-1))
+    dataset = dataset.substring(1,dataset.length-1);
+  else if ((dataset.indexOf("{")==0)&&(dataset.lastIndexOf("}")==dataset.length-1))
+    dataset = dataset.substring(1,dataset.length-1);
+  else
+	dataset = "{}";
+  
+  var code = "";
+  code += 'var config = {\n'+
+'	  id: '+id+',\n'+
+'	  type: "line",\n'+
+'	  data: {\n'+
+'			  labels: [],\n'+
+'			  datasets: [\n'+
+'				'+dataset+'\n'+
+'			  ]\n'+
+'	  },\n'+
+'	  options: {\n'+
+'		responsive: true,\n'+
+'		maintainAspectRatio: false,\n'+
+'		plugins: {\n'+
+'		  legend: {\n'+
+'			position: "top",\n'+
+'		  },\n'+
+'		  title: {\n'+
+'			display: true,\n'+
+'			text: '+title+'\n'+
+'		  }\n'+
+'		},\n'+
+'		scales: {\n'+
+'				yAxes: {\n'+
+'					title: {\n'+
+'						display: true,\n'+
+'						text: '+titley+',\n'+
+'					},\n'+
+'					ticks: {\n'+
+'						precision: 0\n'+
+'					}\n'+
+'				},\n'+
+'				xAxes: {\n'+
+'					title: {\n'+
+'						display: true,\n'+
+'						text: '+titlex+',\n'+
+'					}\n'+
+'				}\n'+
+'			}\n'+
+'	  },\n'+
+'	  width: '+width+',\n'+
+'	  height: '+height+',\n'+
+'	  left: '+left+',\n'+
+'	  top: '+top+',\n'+
+'	  count: '+count+'\n'+
+'	};\n'+
+'	linechart(config);\n';
+												
+  return code;
+};
+
+Blockly.Arduino['chart_line_dataset'] = function(block) {
+  var label = Blockly.Arduino.valueToCode(block, 'label', Blockly.Arduino.ORDER_ATOMIC);
+  var borderColor = Blockly.Arduino.valueToCode(block, 'borderColor', Blockly.Arduino.ORDER_ATOMIC);
+  var backgroundColor = Blockly.Arduino.valueToCode(block, 'backgroundColor', Blockly.Arduino.ORDER_ATOMIC);
+  var code = '{'+
+			'  label: '+label+','+
+			'  data: [],\n'+
+			'  borderColor: '+borderColor+','+
+			'  backgroundColor: '+backgroundColor+
+			'}';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['chart_line_set'] = function(block) {
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var datax = Blockly.Arduino.valueToCode(block, 'datax', Blockly.Arduino.ORDER_ATOMIC);
+  var dataset = Blockly.Arduino.valueToCode(block, 'dataset', Blockly.Arduino.ORDER_ATOMIC);
+  if ((dataset.indexOf("[")==0)&&(dataset.lastIndexOf("]")==dataset.length-1))
+      dataset = datax+', ' + dataset.substring(1,dataset.length-1);
+  else if ((dataset.indexOf("{")==0)&&(dataset.lastIndexOf("}")==dataset.length-1))
+      dataset = datax+', ' + dataset.substring(1,dataset.length-1);  
+  else
+	  dataset = "";
+
+  var code = 'linechart({id: '+id+', data: ['+dataset+']});\n';
+  return code;
+};
+
+Blockly.Arduino['chart_line_clear'] = function(block) {
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);	
+  var code = 'linechart({id: '+id+', clear: ""});\n';
+  return code;
+};
+
+Blockly.Arduino['chart_bar_create'] = function(block) {
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
+  var height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+  var left = Blockly.Arduino.valueToCode(block, 'left', Blockly.Arduino.ORDER_ATOMIC);
+  var top = Blockly.Arduino.valueToCode(block, 'top', Blockly.Arduino.ORDER_ATOMIC);
+  var count = Blockly.Arduino.valueToCode(block, 'count', Blockly.Arduino.ORDER_ATOMIC);
+  var title = Blockly.Arduino.valueToCode(block, 'title', Blockly.Arduino.ORDER_ATOMIC);
+  var titlex = Blockly.Arduino.valueToCode(block, 'titlex', Blockly.Arduino.ORDER_ATOMIC);
+  var titley = Blockly.Arduino.valueToCode(block, 'titley', Blockly.Arduino.ORDER_ATOMIC); 
+  var dataset = Blockly.Arduino.valueToCode(block, 'dataset', Blockly.Arduino.ORDER_ATOMIC);
+  if ((dataset.indexOf("[")==0)&&(dataset.lastIndexOf("]")==dataset.length-1))
+    dataset = dataset.substring(1,dataset.length-1);
+  else if ((dataset.indexOf("{")==0)&&(dataset.lastIndexOf("}")==dataset.length-1))
+    dataset = dataset.substring(1,dataset.length-1);
+  else
+	dataset = "{}";
+  
+  var code = "";
+  code += 'var config = {\n'+
+'	  id: '+id+',\n'+
+'	  type: "bar",\n'+
+'	  data: {\n'+
+'			  labels: [],\n'+
+'			  datasets: [\n'+
+'				'+dataset+'\n'+
+'			  ]\n'+
+'	  },\n'+
+'	  options: {\n'+
+'		responsive: true,\n'+
+'		maintainAspectRatio: false,\n'+
+'		plugins: {\n'+
+'		  legend: {\n'+
+'			position: "top",\n'+
+'		  },\n'+
+'		  title: {\n'+
+'			display: true,\n'+
+'			text: '+title+'\n'+
+'		  }\n'+
+'		},\n'+
+'		scales: {\n'+
+'				yAxes: {\n'+
+'					title: {\n'+
+'						display: true,\n'+
+'						text: '+titley+',\n'+
+'					},\n'+
+'					ticks: {\n'+
+'						precision: 0\n'+
+'					}\n'+
+'				},\n'+
+'				xAxes: {\n'+
+'					title: {\n'+
+'						display: true,\n'+
+'						text: '+titlex+',\n'+
+'					}\n'+
+'				}\n'+
+'			}\n'+
+'	  },\n'+
+'	  width: '+width+',\n'+
+'	  height: '+height+',\n'+
+'	  left: '+left+',\n'+
+'	  top: '+top+',\n'+
+'	  count: '+count+'\n'+
+'	};\n'+
+'	barchart(config);\n';
+												
+  return code;
+};
+
+Blockly.Arduino['chart_bar_dataset'] = function(block) {
+  var label = Blockly.Arduino.valueToCode(block, 'label', Blockly.Arduino.ORDER_ATOMIC);
+  var borderColor = Blockly.Arduino.valueToCode(block, 'borderColor', Blockly.Arduino.ORDER_ATOMIC);
+  var backgroundColor = Blockly.Arduino.valueToCode(block, 'backgroundColor', Blockly.Arduino.ORDER_ATOMIC);
+  var code = '{'+
+			'  label: '+label+','+
+			'  data: [],\n'+
+			'  borderColor: '+borderColor+','+
+			'  backgroundColor: '+backgroundColor+
+			'}';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['chart_bar_set'] = function(block) {
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var datax = Blockly.Arduino.valueToCode(block, 'datax', Blockly.Arduino.ORDER_ATOMIC);
+  var dataset = Blockly.Arduino.valueToCode(block, 'dataset', Blockly.Arduino.ORDER_ATOMIC);
+  if ((dataset.indexOf("[")==0)&&(dataset.lastIndexOf("]")==dataset.length-1))
+      dataset = datax+', ' + dataset.substring(1,dataset.length-1);
+  else if ((dataset.indexOf("{")==0)&&(dataset.lastIndexOf("}")==dataset.length-1))
+      dataset = datax+', ' + dataset.substring(1,dataset.length-1);  
+  else
+	  dataset = "";
+
+  var code = 'barchart({id: '+id+', data: ['+dataset+']});\n';
+  return code;
+};
+
+Blockly.Arduino['chart_bar_clear'] = function(block) {
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);	
+  var code = 'barchart({id: '+id+', clear: ""});\n';
+  return code;
+};
+
+
 Blockly.Arduino['system_datetime_get'] = function (block) {
   var type = block.getFieldValue('type');
   var code = 'getDatetime("' + type + '")';
@@ -5785,38 +6294,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 
 	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);\n";
 	Blockly.Arduino.setups_.setup_wifi=''+
-			'  //WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
-			'  WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+ 
-			'  delay(1000);\n'+ 
-			'  Serial.println("");\n'+ 
-			'  Serial.print("Connecting to ");\n'+ 
-			'  Serial.println(_lwifi_ssid);\n'+ 
-			'  long int StartTime=millis();\n'+ 
-			'  while (WiFi.status() != WL_CONNECTED) {\n'+ 
-			'      delay(500);\n'+ 
-			'      if ((StartTime+10000) < millis()) break;\n'+ 
-			'  }\n'+ 
-			'  if (WiFi.status() == WL_CONNECTED) {\n'+ 
-			'    pinMode(2, OUTPUT);\n'+ 
-			'    for (int i=0;i<5;i++) {\n'+ 
-			'      digitalWrite(2, HIGH);\n'+ 
-			'      delay(100);\n'+ 
-			'      digitalWrite(2, LOW);\n'+ 
-			'      delay(100);\n'+ 
-			'    }\n'+ 
-			'  }\n'+ 
-			'  else {\n'+ 
-			'    pinMode(2, OUTPUT);\n'+ 
-			'    for (int i=0;i<3;i++) {\n'+ 
-			'      digitalWrite(2, HIGH);\n'+ 
-			'      delay(500);\n'+ 
-			'      digitalWrite(2, LOW);\n'+ 
-			'      delay(500);\n'+ 
-			'    }\n'+ 
-			'  }\n'+ 
-			'  Serial.println("");\n'+ 
-			'  Serial.println("STAIP address: ");\n'+ 
-			'  Serial.println(WiFi.localIP());\n'+ 
+			'//WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
 			'  initWiFi();\n\n';
 
 	Blockly.Arduino.definitions_.initWiFi = ''+
@@ -8599,13 +9077,52 @@ Blockly.Arduino['variable_board'] = function (block) {
 
 Blockly.Arduino['servermodule_javascript'] = function(block) {
   var statements_js = Blockly.Arduino.statementToCode(block, 'js');
-  code = '"<!DOCTYPE html><head><meta charset=\'utf-8\'><meta name=\'viewport\' content=\'width=device-width, initial-scale=1\'><script src=\'https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js\'></script><script src=\'https://fustyles.github.io/webduino/GameElements_20190131/gameelements.js\'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{'+ statements_js.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"var ") +'};main();</script></body></html>"';
+  code = '"<!DOCTYPE html><head><meta charset=\'utf-8\'><meta name=\'viewport\' content=\'width=device-width, initial-scale=1\'><script src=\'https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js\'></script><script src=\'https://fustyles.github.io/webduino/GameElements_20190131/gameelements.js\'></script>';
+	
+	var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace, true);
+	xml = Blockly.Xml.domToPrettyText(xml);
+
+	if (xml.indexOf("chart_doughnut_")!=-1) {
+		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js\'></script>';			
+		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/pretty-doughtnut.js\'></script>';
+	}
+
+	if (xml.indexOf("chart_gauge_")!=-1) {
+		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.tempgauge.js\'></script>';
+	}
+
+	if (xml.indexOf("chart_waterbubble_")!=-1) {
+		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/waterbubble.js\'></script>';
+	}
+
+	if (xml.indexOf("chart_line_")!=-1) {
+		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js\'></script>';			
+		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/linechart.js\'></script>';
+	}	
+
+	if (xml.indexOf("chart_bar_")!=-1) {
+		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js\'></script>';			
+		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/barchart.js\'></script>';
+	}		
+
+	if (xml.indexOf("chart_analoggauge_")!=-1) {
+		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js\'></script>';			
+		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simplegauge.js\'></script>';
+		code += '<link href=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simplegauge.css\' type=\'text/css\' rel=\'stylesheet\'></script>';
+	}
+
+	if (xml.indexOf("chart_switch_")!=-1) {
+		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simpleswitch.js\'></script>';
+		code += '<link href=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/simpleswitch.css\' type=\'text/css\' rel=\'stylesheet\'></script>';			
+	}	
+		
+  code += '</head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{'+ statements_js.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"var ") +'};main();</script></body></html>"';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
-Blockly.Arduino['choice_color'] = function(block) {
-	var rgb = "'"+this.getFieldValue("RGB")+"'";
-	return[rgb, Blockly.Arduino.ORDER_ATOMIC];
+Blockly.Arduino['colour_picker'] = function(block) {
+	var COLOUR = "'"+this.getFieldValue("COLOUR")+"'";
+	return[COLOUR, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['text_br'] = function (block) {

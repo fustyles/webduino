@@ -77,4 +77,12 @@
 <category><name>spreadsheet</name><replace>Google試算表</replace></category>
 <category><name>taskhandle</name><replace>多核心任務</replace></category>
 <category><name>catpagemqtt</name><replace>網頁MQTT</replace></category>
+<category><name>catdashboard</name><replace>網頁儀表板</replace></category>
+<category><name>catchartdoughnut</name><replace>甜甜圈圖</replace></category>
+<category><name>catchartgauge</name><replace>溫度圖</replace></category>
+<category><name>catchartwaterbubble</name><replace>水位圖</replace></category>
+<category><name>catlinechart</name><replace>折線圖</replace></category>
+<category><name>catbarchart</name><replace>長條圖</replace></category>
+<category><name>catcanaloggauge</name><replace>類比圖</replace></category>
+<category><name>catchartswitch</name><replace>滑動開關</replace></category>
 </xml>
