@@ -987,6 +987,7 @@ Blockly.Msg["MQTT_FU_ADDRESS"] = "主機位址";
 Blockly.Msg["MQTT_FU_PORT"] = "埠號";
 Blockly.Msg["MQTT_FU_ID"] = "帳號";
 Blockly.Msg["MQTT_FU_PASSWORD"] = "密碼";
+Blockly.Msg["MQTT_FU_CLIENTID"] = "客戶端ID";
 Blockly.Msg["MQTT_FU_SUBSCRIBE_TOPIC"] = "訂閱主題";
 Blockly.Msg["MQTT_FU_WHEN_GETDATA"] = "當收到訊息時";
 Blockly.Msg["MQTT_FU_GETDATA_TOPIC"] = "當取得訊息的主題為";

@@ -978,6 +978,7 @@ Blockly.Msg["MQTT_FU_ADDRESS"] = "address";
 Blockly.Msg["MQTT_FU_PORT"] = "port";
 Blockly.Msg["MQTT_FU_ID"] = "id";
 Blockly.Msg["MQTT_FU_PASSWORD"] = "password";
+Blockly.Msg["MQTT_FU_CLIENTID"] = "Client ID";
 Blockly.Msg["MQTT_FU_SUBSCRIBE_TOPIC"] = "subscribe topic";
 Blockly.Msg["MQTT_FU_WHEN_GETDATA"] = "when getting text";
 Blockly.Msg["MQTT_FU_GETDATA_TOPIC"] = "when getting text and the topic is";

@@ -9081,6 +9081,11 @@
 			<field name="TEXT"></field>
 		  </block>
 		</value>
+		<value name="clientid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>		
 		<statement name="topic_subscribe">
 		  <block type="fu_mqtt_subscribe">
 			<value name="topic">

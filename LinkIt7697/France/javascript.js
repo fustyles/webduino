@@ -11569,6 +11569,7 @@ Blockly.Arduino['fu_mqtt_setup'] = function(block) {
   var port = Blockly.Arduino.valueToCode(block, 'port', Blockly.Arduino.ORDER_ATOMIC);
   var user = Blockly.Arduino.valueToCode(block, 'user', Blockly.Arduino.ORDER_ATOMIC);
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
+  var clientid = Blockly.Arduino.valueToCode(block, 'clientid', Blockly.Arduino.ORDER_ATOMIC)||"";  
   var topic_subscribe = Blockly.Arduino.statementToCode(block, 'topic_subscribe');
   
   Blockly.Arduino.definitions_.define_mqtt_library ='#include <PubSubClient.h>';
@@ -11579,17 +11580,23 @@ Blockly.Arduino['fu_mqtt_setup'] = function(block) {
 
   Blockly.Arduino.definitions_.define_mqtt_client = 'WiFiClient espClient;\nPubSubClient mqtt_client(espClient);\nString mqtt_data = "";\n';
 														
-  Blockly.Arduino.definitions_.define_mqtt_sendtext = 'void mqtt_sendText(String topic, String text) {\n'+
-														'    String clientId = "ESP32-"+String(random(0xffff), HEX);\n'+
-														'    if (mqtt_client.connect(clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+
+  Blockly.Arduino.definitions_.define_mqtt_sendtext = 'void mqtt_sendText(String topic, String text) {\n';
+  if (clientid!="")
+	    Blockly.Arduino.definitions_.define_mqtt_sendtext += '    String clientId = '+clientid+';\n';
+  else
+	    Blockly.Arduino.definitions_.define_mqtt_sendtext += '    String clientId = "ESP32-"+String(random(0xffff), HEX);\n';
+  Blockly.Arduino.definitions_.define_mqtt_sendtext += '    if (mqtt_client.connect(clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+
 														'      mqtt_client.publish(topic.c_str(), text.c_str());\n'+
 														'    }\n'+
 														'}\n';
 														
   Blockly.Arduino.definitions_.define_mqtt_reconnect = 'void reconnect() {\n'+
-														'  while (!mqtt_client.connected()) {\n'+
-														'    String mqtt_clientId = "ESP32-"+String(random(0xffff), HEX);\n'+
-														'    if (mqtt_client.connect(mqtt_clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n    '+topic_subscribe+
+														'  while (!mqtt_client.connected()) {\n';
+  if (clientid!="")
+	    Blockly.Arduino.definitions_.define_mqtt_reconnect += '    String mqtt_clientId = '+clientid+';\n';
+  else
+	    Blockly.Arduino.definitions_.define_mqtt_reconnect += '    String mqtt_clientId = "ESP32-"+String(random(0xffff), HEX);\n';
+  Blockly.Arduino.definitions_.define_mqtt_reconnect += '    if (mqtt_client.connect(mqtt_clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n    '+topic_subscribe+
 														'    } else {\n'+
 														'      delay(5000);\n'+
 														'    }\n'+
