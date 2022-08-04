@@ -71,8 +71,8 @@ function doPost(e) {
       }]
       Sheet.getRange(1,1).setValue("");
       Sheet.getRange(1,2).setValue("");
-
-      sendMessageToLineBot(BOT_ACCESS_TOKEN, e.parameter.token, reply_message);
+      if (e.parameter.response!="")
+      	sendMessageToLineBot(BOT_ACCESS_TOKEN, e.parameter.token, reply_message);
     }   
 
   }
