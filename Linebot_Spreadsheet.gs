@@ -65,15 +65,17 @@ function doPost(e) {
   else if (e.parameter.response) {
 
     if (e.parameter.token == userProperties.getProperty('replyToken')) {
-      reply_message = [{
-        "type":"text",
-        "text": e.parameter.response
-      }]
       Sheet.getRange(1,1).setValue("");
       Sheet.getRange(1,2).setValue("");
-      if (e.parameter.response!="")
-      	sendMessageToLineBot(BOT_ACCESS_TOKEN, e.parameter.token, reply_message);
-    }   
+
+      if (e.parameter.response!="") {
+        reply_message = [{
+          "type":"text",
+          "text": e.parameter.response
+        }]
+        sendMessageToLineBot(BOT_ACCESS_TOKEN, e.parameter.token, reply_message);
+      }
+    }  
 
   }
 
