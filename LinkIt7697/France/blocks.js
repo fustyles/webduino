@@ -7668,24 +7668,30 @@ Blockly.Blocks['customcode_instruction6'] = {
 Blockly.Blocks['tcp_https_esp32'] = {
   init: function() {
 	this.appendDummyInput() 
-	.appendField(Blockly.Msg.FRANCE4_HEAD_HTTPS_SHOW);
+		.appendField(Blockly.Msg.FRANCE4_HEAD_HTTPS_SHOW);
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg.FRANCE2_REQUEST_TYPE_SHOW)
+		.appendField(new Blockly.FieldDropdown([
+			["GET","GET"],
+			["POST","POST"]  
+			]), "type");		
     this.appendValueInput("domain")
         .setCheck("String")
-	.setAlign(Blockly.ALIGN_RIGHT)		
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_DOMAIN_SHOW);
     this.appendValueInput("request")
         .setCheck("String")
-	.setAlign(Blockly.ALIGN_RIGHT)		
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_REQUEST_SHOW); 	  
     this.appendValueInput("port")
         .setCheck("Number")
-	.setAlign(Blockly.ALIGN_RIGHT)		
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_PORT_SHOW); 
     this.appendValueInput("timeout")
         .setCheck("Number")
-	.setAlign(Blockly.ALIGN_RIGHT)		
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW)
-	.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
+		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
 	this.setInputsInline(false);
 	this.setOutput(true, null);
 	this.setColour(20);   
@@ -7695,24 +7701,30 @@ Blockly.Blocks['tcp_https_esp32'] = {
 Blockly.Blocks['tcp_http_esp32'] = {
   init: function() {
 	this.appendDummyInput() 
-	.appendField(Blockly.Msg.FRANCE4_HEAD_HTTP_SHOW);
+		.appendField(Blockly.Msg.FRANCE4_HEAD_HTTP_SHOW);
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg.FRANCE2_REQUEST_TYPE_SHOW)
+		.appendField(new Blockly.FieldDropdown([
+			["GET","GET"],
+			["POST","POST"]  
+			]), "type");		
     this.appendValueInput("domain")
         .setCheck("String")
-	.setAlign(Blockly.ALIGN_RIGHT)		
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_DOMAIN_SHOW); 
     this.appendValueInput("request")
         .setCheck("String")
-	.setAlign(Blockly.ALIGN_RIGHT)		
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_REQUEST_SHOW); 	  
     this.appendValueInput("port")
         .setCheck("Number")
-	.setAlign(Blockly.ALIGN_RIGHT)		
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_PORT_SHOW); 
     this.appendValueInput("timeout")
         .setCheck("Number")
-	.setAlign(Blockly.ALIGN_RIGHT)		
+		.setAlign(Blockly.ALIGN_RIGHT)		
         .appendField(Blockly.Msg.FRANCE2_TIMEOUT_SHOW)
-	.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
+		.appendField(Blockly.Msg.FRANCE2_SECOND_SHOW);	
 	this.setInputsInline(false);
 	this.setOutput(true, null);
 	this.setColour(20);   

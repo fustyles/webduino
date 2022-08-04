@@ -5384,18 +5384,20 @@ Blockly.Arduino['customcode_instruction6'] = function (block) {
 };
 
 Blockly.Arduino['tcp_https_esp32'] = function(block) { 
+  var type = block.getFieldValue('type');
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['tcp_https_esp32'] ='\n'+
-											'String tcp_https_esp32(String domain,String request,int port,int waittime) {\n'+
+											'String tcp_https_esp32(String type,String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
 											'  WiFiClientSecure client_tcp;\n';
 	if (arduinoCore_ESP32)
 		Blockly.Arduino.definitions_['tcp_https_esp32'] += '  client_tcp.setInsecure();\n';
 	Blockly.Arduino.definitions_['tcp_https_esp32'] +='  if (client_tcp.connect(domain.c_str(), port)) {\n'+
 											'    //Serial.println("Connected to "+domain+" successfully.");\n'+
-											'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
+											'    client_tcp.println(type + " " + request + " HTTP/1.1");\n'+
 											'    client_tcp.println("Host: " + domain);\n'+
 											'    client_tcp.println("Connection: close");\n'+
+											'    client_tcp.println("Content-Length: 0");\n'+
 											'    client_tcp.println();\n'+
 											'    boolean state = false;\n'+
 											'    long startTime = millis();\n'+
@@ -5426,11 +5428,12 @@ Blockly.Arduino['tcp_https_esp32'] = function(block) {
   var port = Blockly.Arduino.valueToCode(block, 'port', Blockly.Arduino.ORDER_ATOMIC);
   var request = Blockly.Arduino.valueToCode(block, 'request', Blockly.Arduino.ORDER_ATOMIC);
   var timeout = Blockly.Arduino.valueToCode(block, 'timeout', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'tcp_https_esp32('+domain+', '+request+', '+port+', '+timeout+')';
+  var code = 'tcp_https_esp32("'+type+'", '+domain+', '+request+', '+port+', '+timeout+')';
   return [code, Blockly.Arduino.ORDER_NONE]; 
 };
 
 Blockly.Arduino['tcp_http_esp32'] = function(block) {
+  var type = block.getFieldValue('type');
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
@@ -5438,9 +5441,10 @@ Blockly.Arduino['tcp_http_esp32'] = function(block) {
 											'  WiFiClient client_tcp;\n'+
 											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
 											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
-											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
+											'	client_tcp.println(type + " " + request + " HTTP/1.1");\n'+
 											'	client_tcp.println("Host: " + domain);\n'+
 											'	client_tcp.println("Connection: close");\n'+
+											'   client_tcp.println("Content-Length: 0");\n'+
 											'	client_tcp.println();\n'+
 											'	boolean state = false;\n'+
 											'	long startTime = millis();\n'+
@@ -5471,7 +5475,7 @@ Blockly.Arduino['tcp_http_esp32'] = function(block) {
   var port = Blockly.Arduino.valueToCode(block, 'port', Blockly.Arduino.ORDER_ATOMIC);
   var request = Blockly.Arduino.valueToCode(block, 'request', Blockly.Arduino.ORDER_ATOMIC);
   var timeout = Blockly.Arduino.valueToCode(block, 'timeout', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'tcp_http_esp32('+domain+', '+request+', '+port+', '+timeout+')';
+  var code = 'tcp_http_esp32("'+type+'", '+domain+', '+request+', '+port+', '+timeout+')';
   return [code, Blockly.Arduino.ORDER_NONE]; 
 };
 
