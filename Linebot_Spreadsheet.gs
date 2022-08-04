@@ -1,5 +1,10 @@
-var BOT_ACCESS_TOKEN = 'W8WL0WxDz5Mq5A7LozjDe2v79SFLPZzpAi9nHwcyIPxMI7MQ459u2/OXdAZVmOWetbnLOXx+SJVIZfRjAKlfNqvKIQ47XxK/y1YLkSum7EYgjjiS+NsGh5LMhT7u3HL1JwdB04t89/1O/w1cDnyilFU=';
-var SPREADSHEET_ID = 'ZMyQ7HplFp0cHc0dKpiomZLDDfu8nJuStz_hFIs';
+/*
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/8/4 12:20
+https://www.facebook.com/francefu
+*/
+
+var BOT_ACCESS_TOKEN = '*****';
+var SPREADSHEET_ID = '*****';
 var userProperties = PropertiesService.getUserProperties();
   
 function doPost(e) {
