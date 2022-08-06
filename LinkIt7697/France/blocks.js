@@ -13856,6 +13856,16 @@ Blockly.Blocks['colour_picker'] = {
   }
 };
 
+Blockly.Blocks['fu_color'] = {
+  init: function() {	
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldColour("#FF0000"),"RGB");
+	this.setInputsInline(true);
+	this.setOutput(true);
+	this.setColour(200);	
+  }
+};
+
 Blockly.Blocks['text_br'] = {
   init: function() {	
     this.appendDummyInput()

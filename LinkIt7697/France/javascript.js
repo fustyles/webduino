@@ -9129,6 +9129,11 @@ Blockly.Arduino['colour_picker'] = function(block) {
 	return[COLOUR, Blockly.Arduino.ORDER_ATOMIC];
 };
 
+Blockly.Arduino['fu_color'] = function(block) {
+	var rgb = '"'+this.getFieldValue("RGB")+'"';
+	return[rgb, Blockly.Arduino.ORDER_ATOMIC];
+};
+
 Blockly.Arduino['text_br'] = function (block) {
   var code = "'"+this.getFieldValue("newline")+"'";
   return [code, Blockly.Arduino.ORDER_NONE];
