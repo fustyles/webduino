@@ -545,3 +545,5 @@ Blockly.Msg["SYSTEM_DATETIME_WEEK"] = "星期";
 Blockly.Msg["SYSTEM_DATETIME_HOUR"] = "时";
 Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "分";
 Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "秒";
+
+Blockly.Msg.POINT_IN_ELEMENT = "点位于元素区域范围";

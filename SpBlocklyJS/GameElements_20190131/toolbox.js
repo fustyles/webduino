@@ -254,6 +254,23 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="point_in_element">'+
+'    <value name="x_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="y_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="id_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    <block type="music_create">'+
 '    <value name="url_">'+
 '    <block type="text">'+
