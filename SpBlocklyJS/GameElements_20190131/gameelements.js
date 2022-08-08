@@ -1156,12 +1156,8 @@
   function point_in_element(x, y, element) {
     if (x&&y&&document.getElementById(element)) {
       var obj1 = document.getElementById(element);
-	  console.log(element);
-console.log(obj1);
       var x1 = Number(obj1.style.left.replace(/px/ig,""));
 	  var y1 = Number(obj1.style.top.replace(/px/ig,""));
-	  	  	  console.log(x1);
-	  	  console.log(y1);
 	  if (obj1.parentElement.id.indexOf("region_")!=-1) {
 		  x1 += obj1.parentElement.style.left.replace(/px/ig,"");
 		  y1 += obj1.parentElement.style.top.replace(/px/ig,"");
