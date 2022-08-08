@@ -1181,6 +1181,25 @@ function elements_collision_color(element1,input_id1,input_id2,input_color) {
       return 0;
   }
 	
+  function point_in_element(x, y, element) {
+    if (x&&y&&document.getElementById(element)) {
+      var obj1 = document.getElementById(element);
+      var x1 = Number(obj1.style.left.replace(/px/ig,""));
+	  var y1 = Number(obj1.style.top.replace(/px/ig,""));
+	  if (obj1.parentElement.id.indexOf("region_")!=-1) {
+		  x1 += obj1.parentElement.style.left.replace(/px/ig,"");
+		  y1 += obj1.parentElement.style.top.replace(/px/ig,"");
+	  } 
+      var x1_w = Number(obj1.style.left.replace(/px/ig,"")) + Number(obj1.style.width.replace(/px/ig,""));
+      var y1_h = Number(obj1.style.top.replace(/px/ig,"")) + Number(obj1.style.height.replace(/px/ig,""));
+      if ((x>=x1)&&(x<=x1_w)&&(y>=y1)&&(y<=y1_h))
+        return 1;
+      else
+        return 0; 
+	}
+	return 0; 
+  } 	
+	
   function image_collision(input_id1,input_id2,input_position) {
     if ((document.getElementById("gameimage_"+input_id1))&&(document.getElementById("gameimage_"+input_id2)))
     {
@@ -4168,6 +4187,7 @@ function HextoRgb(color) {
   window.image_delete = image_delete;
   window.elements_collision = elements_collision;
   window.elements_collision_color = elements_collision_color;
+  window.point_in_element = point_in_element;
   window.image_collision = image_collision;
   window.image_boundary = image_boundary;
   window.image_boundary_collision = image_boundary_collision;
