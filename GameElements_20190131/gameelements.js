@@ -1097,63 +1097,72 @@
       return 0;   
   } 
 
-  function elements_collision_color(element1,input_id1,input_id2,input_color) {
+function elements_collision_color(element1,input_id1,input_id2,input_color) {
     if ((document.getElementById(element1+input_id1))&&(document.getElementById("gamecanvas_"+input_id2))) {	    
-      var obj1 = document.getElementById(element1+input_id1).style;
-      var obj2 = document.getElementById("gamecanvas_"+input_id2).style;
-      var x1 = Number(obj1.left.replace(/px/ig,""));
-      var x1_w = Number(obj1.left.replace(/px/ig,"")) + Number(obj1.width.replace(/px/ig,""));
-      var y1 = Number(obj1.top.replace(/px/ig,""));
-      var y1_h = Number(obj1.top.replace(/px/ig,"")) + Number(obj1.height.replace(/px/ig,""));
-      var x2 = Number(obj2.left.replace(/px/ig,""));
-      var x2_w = Number(obj2.left.replace(/px/ig,"")) + Number(obj2.width.replace(/px/ig,""));
-      var y2 = Number(obj2.top.replace(/px/ig,""));
-      var y2_h = Number(obj2.top.replace(/px/ig,"")) + Number(obj2.height.replace(/px/ig,""));
+      var obj1 = document.getElementById(element1+input_id1);
+      var x1 = Number(obj1.style.left.replace(/px/ig,""));
+	  var y1 = Number(obj1.style.top.replace(/px/ig,""));
+	  if (obj1.parentElement.id.indexOf("region_")!=-1) {
+		  x1 += obj1.parentElement.style.left.replace(/px/ig,"");
+		  y1 += obj1.parentElement.style.top.replace(/px/ig,"");
+	  } 
+      var x1_w = Number(obj1.style.left.replace(/px/ig,"")) + Number(obj1.style.width.replace(/px/ig,""));
+      var y1_h = Number(obj1.style.top.replace(/px/ig,"")) + Number(obj1.style.height.replace(/px/ig,""));
+	  
+	  var obj2 = document.getElementById("gamecanvas_"+input_id2);
+      var x2 = Number(obj2.style.left.replace(/px/ig,""));
+	  var y2 = Number(obj2.style.top.replace(/px/ig,""));
+	  if (obj2.parentElement.id.indexOf("region_")!=-1) {
+		  x2 += obj2.parentElement.style.left.replace(/px/ig,"");
+		  y2 += obj2.parentElement.style.top.replace(/px/ig,"");
+	  } 
+      var x2_w = Number(obj2.style.left.replace(/px/ig,"")) + Number(obj2.style.width.replace(/px/ig,""));
+      var y2_h = Number(obj2.style.top.replace(/px/ig,"")) + Number(obj2.style.height.replace(/px/ig,""));
 	    
       if (elements_collision(element1,input_id1,"gamecanvas_",input_id2,"any")==1) {
-	if (x1<=x2&&x1_w>=x2&&x1_w<=x2_w) {
-	  var left = 0;
-	  var width = x1_w-x2;
-   	}
-	else if (x1<=x2&&x1_w>=x2_w) {
-	  var left = 0;
-	  var width = x2_w-x2;	
-	}
-	else if (x1>=x2&&x1_w>=x1&&x1_w<=x2_w) {
-	  var left = x1-x2;
-	  var width = x1_w-x1;	
-	}
-	else if (x1>=x2&&x1_w>=x2_w) {
-	  var left = x1-x2;
-	  var width = x2_w-x1;	
-	}	      
-		
-	if (y1<=y2&&y1_h>=y2&&y1_h<=y2_h) {
-	  var top = 0;
-	  var height = y1_h-y2;
-   	}
-	else if (y1<=y2&&y1_h>=y2_h) {
-	  var top = 0;
-	  var height = y2_h-y2;	
-	}
-	else if (y1>=y2&&y1_h>=y1&&y1_h<=y2_h) {
-	  var top = y1-y2;
-	  var height = y1_h-y1;	
-	}
-	else if (y1>=y2&&y1_h>=y2_h) {
-	  var top = y1-y2;
-	  var height = y2_h-y1;	
-	}
-	var context = document.getElementById("gamecanvas_"+input_id2).getContext("2d");
-	if (width>0&&height>0) {
-          var hexcolor = context.getImageData(left, top, width, height).data;	      
-	  for (var i=0;i<hexcolor.length;i+=4) {
-            var r = Number(hexcolor[i]).toString(16).length==1?"0"+Number(hexcolor[i]).toString(16):Number(hexcolor[i]).toString(16);
-            var g = Number(hexcolor[i+1]).toString(16).length==1?"0"+Number(hexcolor[i+1]).toString(16):Number(hexcolor[i+1]).toString(16);
-            var b = Number(hexcolor[i+2]).toString(16).length==1?"0"+Number(hexcolor[i+2]).toString(16):Number(hexcolor[i+2]).toString(16);
-            if (input_color=="#"+r+g+b) return 1;
-	  }
-	}
+		if (x1<=x2&&x1_w>=x2&&x1_w<=x2_w) {
+		  var left = 0;
+		  var width = x1_w-x2;
+		}
+		else if (x1<=x2&&x1_w>=x2_w) {
+		  var left = 0;
+		  var width = x2_w-x2;	
+		}
+		else if (x1>=x2&&x1_w>=x1&&x1_w<=x2_w) {
+		  var left = x1-x2;
+		  var width = x1_w-x1;	
+		}
+		else if (x1>=x2&&x1_w>=x2_w) {
+		  var left = x1-x2;
+		  var width = x2_w-x1;	
+		}	      
+			
+		if (y1<=y2&&y1_h>=y2&&y1_h<=y2_h) {
+		  var top = 0;
+		  var height = y1_h-y2;
+		}
+		else if (y1<=y2&&y1_h>=y2_h) {
+		  var top = 0;
+		  var height = y2_h-y2;	
+		}
+		else if (y1>=y2&&y1_h>=y1&&y1_h<=y2_h) {
+		  var top = y1-y2;
+		  var height = y1_h-y1;	
+		}
+		else if (y1>=y2&&y1_h>=y2_h) {
+		  var top = y1-y2;
+		  var height = y2_h-y1;	
+		}
+		var context = document.getElementById("gamecanvas_"+input_id2).getContext("2d");
+		if (width>0&&height>0) {
+			  var hexcolor = context.getImageData(left, top, width, height).data;	      
+		  for (var i=0;i<hexcolor.length;i+=4) {
+				var r = Number(hexcolor[i]).toString(16).length==1?"0"+Number(hexcolor[i]).toString(16):Number(hexcolor[i]).toString(16);
+				var g = Number(hexcolor[i+1]).toString(16).length==1?"0"+Number(hexcolor[i+1]).toString(16):Number(hexcolor[i+1]).toString(16);
+				var b = Number(hexcolor[i+2]).toString(16).length==1?"0"+Number(hexcolor[i+2]).toString(16):Number(hexcolor[i+2]).toString(16);
+				if (input_color=="#"+r+g+b) return 1;
+		  }
+		}
         return 0;	      
       }
       else
