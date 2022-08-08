@@ -505,3 +505,5 @@ Blockly.Msg.INCLUDE_POSITION = "position";
 Blockly.Msg.INCLUDE_HEADER = "header";
 Blockly.Msg.INCLUDE_HERE = "here";
 Blockly.Msg.INCLUDE_URL = "url";
+
+Blockly.Msg.POINT_IN_ELEMENT = "point inside the element";
