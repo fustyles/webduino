@@ -1429,6 +1429,49 @@ Blockly.Blocks['elements_collision_color'] = {
   }
 };
 
+Blockly.Blocks['point_in_element'] = {
+  init: function() {
+  this.appendValueInput("x_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck("Number")
+      .appendField("X");
+  this.appendValueInput("y_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck("Number")
+      .appendField("Y");
+  this.appendDummyInput()  
+	  .appendField(Blockly.Msg.POINT_IN_ELEMENT)
+      .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.ELEMENT_TABLE,"table"],
+		  [Blockly.Msg.ELEMENT_IMAGE,"image"],
+		  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
+		  [Blockly.Msg.ELEMENT_BUTTON,"button"],
+		  [Blockly.Msg.ELEMENT_COLOR,"color"],
+		  [Blockly.Msg.ELEMENT_SELECT,"select"],
+		  [Blockly.Msg.ELEMENT_RANGE,"range"],
+		  [Blockly.Msg.ELEMENT_TEXT,"text"],[
+		  Blockly.Msg.ELEMENT_DIV,"div"],
+		  [Blockly.Msg.ELEMENT_IFRAME,"iframe"],
+		  [Blockly.Msg.ELEMENT_A,"a"],
+		  [Blockly.Msg.ELEMENT_RADIO,"radio"],
+		  [Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],
+		  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],
+		  [Blockly.Msg.ELEMENT_NUMBER,"number"],
+		  [Blockly.Msg.ELEMENT_DATE,"date"],
+		  [Blockly.Msg.ELEMENT_TIME,"time"],
+		  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
+		  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
+		  [Blockly.Msg.ELEMENT_PASSWORD,"password"]
+	  ]), "element_");    
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.ID); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(350);
+  }
+};
+
 Blockly.Blocks['image_collision'] = {
   init: function() {
   this.appendValueInput("id1_")
