@@ -9,6 +9,8 @@ SPDX-License-Identifier: Apache-2.0
 */
 
 var topCheck = true;
+var showCode = false;
+var timer;
 
 document.addEventListener('DOMContentLoaded', function() {
 	
@@ -372,7 +374,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}	
 	
-	
 	//程式碼區塊拖曳與調整大小功能	
 	$(function() {
 		$( "#javascript_content" ).draggable();
@@ -380,11 +381,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		$( "#run_content" ).draggable();
 		$( "#run_content" ).resizable();		
 	});	
-	
-	setInterval(function(){
-		var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());			
-		editor.setValue(code);
-	}, 1000);
 	
 	//新增初始化積木
 	function newFile() {
@@ -397,10 +393,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	//程式碼區塊顯示
 	document.getElementById('button_code').onclick = function () {
 		var div = document.getElementById('javascript_content');
-		if (div.style.display == "none")
+		if (div.style.display == "none") {
 			div.style.display = "block";
-		else
+			showCode = true;
+			onBlocksChange();
+		}
+		else {
 			div.style.display = "none";
+			showCode = false;
+		}
 	}
 	
 	//重設工作區
@@ -488,7 +489,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 	function stopCode() {
 	  document.getElementById("iframe_run").src = "about:blank";
-	}	
+	}		
 	
 	//開啟程式碼執行視窗
 	document.getElementById('button_run').onclick = function () {
@@ -675,6 +676,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	setTimeout(function() {
 		document.getElementById('javascript_content').style.display = "none";
 		document.getElementById('javascript_content').style.visibility = "visible";
+		showCode = false;
 	}, 1000);
 
 	//Web Serial
@@ -1075,6 +1077,19 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
+	//當工作區更動更新原始碼
+	function onBlocksChange(event) {
+		clearTimeout(timer);
+		timer = setTimeout(function(){
+			if (showCode) {
+				var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());			
+				editor.setValue(code);
+			}
+		}, 1000);
+		//workspace.removeChangeListener(onBlocksChange);
+	}
+	workspace.addChangeListener(onBlocksChange);
+
 });	
 
 //切換頁籤
@@ -1130,6 +1145,7 @@ function contentZoom(content) {
 		if (content=="javascript") {
 			div_content.style.left = "calc(98% - 20vw)";
 			div_content.style.top = "64px";
+			showCode = false;
 		}
 	}
 	else {
@@ -1139,7 +1155,8 @@ function contentZoom(content) {
 		
 		if (content=="javascript") {
 			div_content.style.left = div_content.l;	
-			div_content.style.top = div_content.t;	
+			div_content.style.top = div_content.t;
+			showCode = true;
 		}			
 	}
 }
