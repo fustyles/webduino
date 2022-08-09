@@ -36,6 +36,8 @@ Blockly.Blocks['spreadsheetsql_executeSql'] = {
 Blockly.Blocks['spreadsheetsql_getCellSQL'] = {
   init: function() {
 	this.appendDummyInput()
+		.appendField(Blockly.Msg.SPREADSHEETSQL_SQL_SHOW);		  
+	this.appendDummyInput()
 		.appendField(Blockly.Msg.SPREADSHEETSQL_COLUMN_SHOW)
 		.appendField(new Blockly.FieldDropdown([
           ["A","A"],		
@@ -68,9 +70,7 @@ Blockly.Blocks['spreadsheetsql_getCellSQL'] = {
     this.appendValueInput("row")
 		.setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")  
-        .appendField(Blockly.Msg.SPREADSHEETSQL_ROW_SHOW);
-	this.appendDummyInput()
-		.appendField(Blockly.Msg.SPREADSHEETSQL_SQL_SHOW);		
+        .appendField(Blockly.Msg.SPREADSHEETSQL_ROW_SHOW);	
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(65);
