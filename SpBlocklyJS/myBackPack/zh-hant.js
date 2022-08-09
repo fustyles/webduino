@@ -1,4 +1,4 @@
-Blockly.Msg["MYBACKPACK"] = "暫存積木";
+Blockly.Msg["MYBACKPACK"] = "暫存";
 Blockly.Msg.MYBACKPACK_ADD = "新增到暫存積木";
 Blockly.Msg.MYBACKPACK_REMOVE = "移除從暫存積木";
 Blockly.Msg.MYBACKPACK_REMOVE_ALL = "移除所有暫存積木";
