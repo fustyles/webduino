@@ -1,5 +1,32 @@
 var catSpreadsheetsql = '<xml>'+
 '    <category name="%{BKY_CATSPREADSHEETSQL}" id="catSpreadsheetsql" colour="360">'+
+'		<block type="controls_spreadsheet_function">'+
+'			<value name="spreadsheeturl">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+
+'			<value name="spreadsheetname">'+
+'			  <block type="text">'+
+'				<field name="TEXT">工作表1</field>'+
+'			  </block>'+
+'			</value>'+
+'			<value name="row">'+
+'			  <block type="math_number">'+
+'				<field name="NUM">1</field>'+
+'			  </block>'+
+'			</value>'+
+'			<value name="col">'+
+'			  <block type="math_number">'+
+'				<field name="NUM">1</field>'+
+'			  </block>'+
+'			</value>'+
+'			<value name="text">'+
+'			  <block type="text">'+
+'				<field name="TEXT">World Peace</field>'+
+'			  </block>'+
+'			</value>'+			
+'		</block>'+
 '      <block type="spreadsheetsql_queryData">'+
 '        <value name="spreadsheet_id">'+
 '          <block type="text">'+

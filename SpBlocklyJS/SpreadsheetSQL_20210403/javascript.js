@@ -1,7 +1,18 @@
+Blockly.JavaScript['controls_spreadsheet_function'] = function(block){
+	var spreadsheeturl = Blockly.JavaScript.valueToCode(block,"spreadsheeturl",Blockly.JavaScript.ORDER_NONE)||"";
+	var spreadsheetname = Blockly.JavaScript.valueToCode(block,"spreadsheetname",Blockly.JavaScript.ORDER_NONE)||"";
+	var func = block.getFieldValue('func');
+	var row = Blockly.JavaScript.valueToCode(block,"row",Blockly.JavaScript.ORDER_NONE)||"";
+	var col = Blockly.JavaScript.valueToCode(block,"col",Blockly.JavaScript.ORDER_NONE)||"";
+	var text = Blockly.JavaScript.valueToCode(block,"text",Blockly.JavaScript.ORDER_NONE)||"";
+	
+	var code = 'spreadsheet_insert("' + func + '", "", ' + row + ', ' + col + ', String(' + text + '), ' + spreadsheeturl + ', ' + spreadsheetname + ', ' +  '"https://script.google.com/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
+	return code;
+};
+
 Blockly.JavaScript['spreadsheetsql_queryData'] = function (block) {
   var spreadsheet_id = Blockly.JavaScript.valueToCode(block, 'spreadsheet_id', Blockly.JavaScript.ORDER_ATOMIC);  
   var spreadsheet_name = Blockly.JavaScript.valueToCode(block, 'spreadsheet_name', Blockly.JavaScript.ORDER_ATOMIC);
-  var spreadsheet_sql = Blockly.JavaScript.valueToCode(block, 'spreadsheet_sql', Blockly.JavaScript.ORDER_ATOMIC);
   
   var code = 'spreadsheetsql_settings('+spreadsheet_id+','+spreadsheet_name+');\n';
   return code; 

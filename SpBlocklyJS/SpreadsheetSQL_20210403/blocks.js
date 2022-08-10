@@ -1,3 +1,77 @@
+Blockly.Blocks['controls_spreadsheet_function'] = {
+  init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"]);
+  this.appendValueInput("spreadsheeturl")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_URL_SHOW"]);
+  this.appendValueInput("spreadsheetname")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_NAME_SHOW"]);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["SPREADSHEET_SET_CELL_SHOW"],"setcell"],
+		[Blockly.Msg["SPREADSHEET_CLEAR_CELL_SHOW"],"clearcell"],
+		[Blockly.Msg["SPREADSHEET_CLEAR_ROW_SHOW"],"clearrow"],
+		[Blockly.Msg["SPREADSHEET_CLEAR_COL_SHOW"],"clearcol"],		
+		[Blockly.Msg["SPREADSHEET_CLEAR_AFTERROW2_SHOW"],"clearafterrow2"],		
+		[Blockly.Msg["SPREADSHEET_CLEAR_SHEET_SHOW"],"clearsheet"]	  
+		],this.validate), "func");
+  this.appendValueInput("col")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"]);		
+  this.appendValueInput("row")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);
+  this.appendValueInput("text")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_TEXT_SHOW"]);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");	  
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(90);
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (newValue=="setcell") {
+		block.getInput("row").setVisible(true);
+		block.getInput("col").setVisible(true);
+		block.getInput("text").setVisible(true);
+	}
+	else if (newValue=="clearcell") {
+		block.getInput("row").setVisible(true);
+		block.getInput("col").setVisible(true);
+		block.getInput("text").setVisible(false);
+	}
+	else if (newValue=="clearrow") {
+		block.getInput("row").setVisible(true);
+		block.getInput("col").setVisible(false);
+		block.getInput("text").setVisible(false);
+	}
+	else if (newValue=="clearcol") {
+		block.getInput("row").setVisible(false);
+		block.getInput("col").setVisible(true);
+		block.getInput("text").setVisible(false);
+	}	
+	else if (newValue=="clearafterrow2") {
+		block.getInput("row").setVisible(false);
+		block.getInput("col").setVisible(false);
+		block.getInput("text").setVisible(false);
+	}
+	else if (newValue=="clearsheet") {
+		block.getInput("row").setVisible(false);
+		block.getInput("col").setVisible(false);
+		block.getInput("text").setVisible(false);
+	}	
+  }
+};
+
 Blockly.Blocks['spreadsheetsql_queryData'] = {
   init: function() {
   this.appendDummyInput()
