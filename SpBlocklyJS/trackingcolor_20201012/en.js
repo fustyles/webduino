@@ -1,4 +1,4 @@
-Blockly.Msg["CATTRACKINGCOLOR"] = "TrackColor";
+Blockly.Msg["CATTRACKINGCOLOR"] = "Track Color";
 Blockly.Msg.TRACKINGCOLOR_SHOW = "TrackColor";
 Blockly.Msg.TRACKINGCOLOR_SET_SHOW = "TrackColor Window Set";
 Blockly.Msg.TRACKINGCOLOR_RANGE_SET_SHOW = "TrackColor Custom Range Show";
