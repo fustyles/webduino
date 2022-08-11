@@ -1634,3 +1634,13 @@ Blockly.Msg["PROCEDURES_DEFRETURN_PROCEDURE"] = Blockly.Msg["PROCEDURES_DEFNORET
 Blockly.Msg["PROCEDURES_DEFRETURN_TITLE"] = Blockly.Msg["PROCEDURES_DEFNORETURN_TITLE"];
 Blockly.Msg["TEXT_APPEND_VARIABLE"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
 Blockly.Msg["TEXT_CREATE_JOIN_ITEM_TITLE_ITEM"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
+
+Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "Export selected blocks to a local file";
+Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "Import blocks to workspacee from a local file";
+
+Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enabled Pick/Place blocks";
+Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "Disabled Pick/Place blocks";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "Pick blocks";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "Place blocks (bottom)";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "Place blocks (above)";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "Place blocks [input: #]";
