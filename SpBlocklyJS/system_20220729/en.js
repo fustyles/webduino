@@ -1,1 +1,1 @@
-Blockly.Msg["CATWINDOW"] = "System function";
+Blockly.Msg["CATWINDOW"] = "System Function";
