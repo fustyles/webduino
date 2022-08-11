@@ -1,4 +1,4 @@
-Blockly.Msg["CATMATRIXLED"] = "Matrix Led simulation";
+Blockly.Msg["CATMATRIXLED"] = "Matrix Led Simulation";
 Blockly.Msg.MATRIXLED_INITIAL_SHOW = "Matrix Led initial";
 Blockly.Msg.MATRIXLED_LEFT_SHOW = "Left";
 Blockly.Msg.MATRIXLED_TOP_SHOW = "Top";
