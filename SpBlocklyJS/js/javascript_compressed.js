@@ -121,6 +121,12 @@ Blockly.JavaScript['text_br'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['procedures_return'] = function (block) {
+  var value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'return ' + value_ + ';\n';
+  return code;
+};
+
 return $.Blockly.JavaScript;
 }));
 

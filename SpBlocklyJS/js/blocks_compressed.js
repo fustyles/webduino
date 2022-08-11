@@ -77,16 +77,21 @@ d.text=$.module$exports$Blockly$Msg.Msg.VARIABLES_SET_CREATE_GET.replace("%1",c.
 $.module$exports$Blockly$blocks.Blocks.procedures_defnoreturn=Object.assign(
 {}
 ,module$contents$Blockly$blocks$procedures_PROCEDURE_DEF_COMMON,{
-	init:function(){
-		var a=(0,$.module$exports$Blockly$Procedures.findLegalName)("",this);
-		a=new $.module$exports$Blockly$FieldTextInput.FieldTextInput(a,$.module$exports$Blockly$Procedures.rename);
-		a.setSpellcheck(!1);
-		this.appendDummyInput().appendField($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFNORETURN_TITLE).appendField(a,"NAME").appendField("","PARAMS");
-		this.setMutator(new $.module$exports$Blockly$Mutator.Mutator(["procedures_mutatorarg"]));(this.workspace.options.comments||this.workspace.options.parentWorkspace&&this.workspace.options.parentWorkspace.options.comments)&&$.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFNORETURN_COMMENT&&this.setCommentText($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFNORETURN_COMMENT);this.setStyle("procedure_blocks");this.setTooltip($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFNORETURN_TOOLTIP);this.setHelpUrl($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFNORETURN_HELPURL);
-		this.arguments_=[];
-		this.argumentVarModels_=[];
-		this.setStatements_(!0);
-		this.statementConnection_=null}
+		init:function(){
+			var a=(0,$.module$exports$Blockly$Procedures.findLegalName)("",this);
+			a=new $.module$exports$Blockly$FieldTextInput.FieldTextInput(a,$.module$exports$Blockly$Procedures.rename);
+			a.setSpellcheck(!1);
+			this.appendDummyInput().appendField($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFNORETURN_TITLE).appendField(a,"NAME").appendField("","PARAMS");
+			this.setMutator(new $.module$exports$Blockly$Mutator.Mutator(["procedures_mutatorarg"]));
+			(this.workspace.options.comments||this.workspace.options.parentWorkspace&&this.workspace.options.parentWorkspace.options.comments)&&$.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFNORETURN_COMMENT&&this.setCommentText($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFNORETURN_COMMENT);
+			this.setStyle("procedure_blocks");
+			this.setTooltip($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFNORETURN_TOOLTIP);
+			this.setHelpUrl($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFNORETURN_HELPURL);
+			this.arguments_=[];
+			this.argumentVarModels_=[];
+			this.setStatements_(!0);
+			this.statementConnection_=null
+		}
 		,getProcedureDef:function(){
 			return[this.getFieldValue("NAME"),this.arguments_,!1]
 		}
@@ -95,16 +100,21 @@ $.module$exports$Blockly$blocks.Blocks.procedures_defnoreturn=Object.assign(
 $.module$exports$Blockly$blocks.Blocks.procedures_defreturn=Object.assign(
 {}
 ,module$contents$Blockly$blocks$procedures_PROCEDURE_DEF_COMMON,{
-	init:function(){
-		var a=(0,$.module$exports$Blockly$Procedures.findLegalName)("",this);
-		a=new $.module$exports$Blockly$FieldTextInput.FieldTextInput(a,$.module$exports$Blockly$Procedures.rename);
-		a.setSpellcheck(!1);
-		this.appendDummyInput().appendField($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFRETURN_TITLE).appendField(a,"NAME").appendField("","PARAMS");this.appendValueInput("RETURN").setAlign($.module$exports$Blockly$Input.Align.RIGHT).appendField($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFRETURN_RETURN);
-		this.setMutator(new $.module$exports$Blockly$Mutator.Mutator(["procedures_mutatorarg"]));(this.workspace.options.comments||this.workspace.options.parentWorkspace&&this.workspace.options.parentWorkspace.options.comments)&&$.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFRETURN_COMMENT&&this.setCommentText($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFRETURN_COMMENT);this.setStyle("procedure_blocks");this.setTooltip($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFRETURN_TOOLTIP);this.setHelpUrl($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFRETURN_HELPURL);
-		this.arguments_=[];
-		this.argumentVarModels_=[];
-		this.setStatements_(!0);
-		this.statementConnection_=null}
+		init:function(){
+			var a=(0,$.module$exports$Blockly$Procedures.findLegalName)("",this);
+			a=new $.module$exports$Blockly$FieldTextInput.FieldTextInput(a,$.module$exports$Blockly$Procedures.rename);
+			a.setSpellcheck(!1);
+			this.appendDummyInput().appendField($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFRETURN_TITLE).appendField(a,"NAME").appendField("","PARAMS");
+			this.appendValueInput("RETURN").setAlign($.module$exports$Blockly$Input.Align.RIGHT).appendField($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFRETURN_RETURN);
+			this.setMutator(new $.module$exports$Blockly$Mutator.Mutator(["procedures_mutatorarg"]));
+			(this.workspace.options.comments||this.workspace.options.parentWorkspace&&this.workspace.options.parentWorkspace.options.comments)&&$.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFRETURN_COMMENT&&this.setCommentText($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFRETURN_COMMENT);
+			this.setStyle("procedure_blocks");
+			this.setTooltip($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFRETURN_TOOLTIP);this.setHelpUrl($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFRETURN_HELPURL);
+			this.arguments_=[];
+			this.argumentVarModels_=[];
+			this.setStatements_(!0);
+			this.statementConnection_=null
+		}
 		,getProcedureDef:function(){
 			return[this.getFieldValue("NAME"),this.arguments_,!0]
 		}
@@ -320,6 +330,18 @@ Blockly.Blocks['text_br'] = {
   this.setInputsInline(true);
   this.setOutput(true, null);
   this.setColour(160);  
+  }
+};
+
+Blockly.Blocks['procedures_return'] = {
+  init: function () {
+    this.appendValueInput("value_")
+        .setCheck(null)
+        .appendField($.module$exports$Blockly$Msg.Msg.PROCEDURES_DEFRETURN_RETURN);   
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
   }
 };
 
