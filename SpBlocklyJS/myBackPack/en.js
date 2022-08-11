@@ -1,4 +1,4 @@
-Blockly.Msg["MYBACKPACK"] = "my backpack";
+Blockly.Msg["MYBACKPACK"] = "MY BACKPACK";
 Blockly.Msg.MYBACKPACK_ADD = "Copy block to my backpack";
 Blockly.Msg.MYBACKPACK_REMOVE = "Remove block from my backpack";
 Blockly.Msg.MYBACKPACK_REMOVE_ALL = "Remove all blocks from my backpack";
