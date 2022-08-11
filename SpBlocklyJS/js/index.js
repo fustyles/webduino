@@ -503,7 +503,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			//show: "blind",
 			//hide: "blind",			
 			width: 800,
-			height: 600,
+			height: 500,
 			buttons: [			
 				{
 					text: Blockly.Msg.BUTTON_CLOSE,
