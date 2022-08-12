@@ -6,7 +6,6 @@ SPDX-License-Identifier: Apache-2.0
 @author https://www.facebook.com/francefu/
 @Update 1/1/2022 00:00 (Taiwan Standard Time)
 */
-
 var topCheck = true;
 var showCode = false;
 var timer;
@@ -1080,16 +1079,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	function onBlocksChange(event) {
 		clearTimeout(timer);
 		
-		if (event.blockId) {
+		if (event.blockId&&topCheck) {
 			var block = Blockly.getMainWorkspace().getBlockById(event.blockId);
 			
 			if (block.previousConnection==null&&block.outputConnection&&!block.getParent())
 				block.setEnabled(false);
 			else
 				block.setEnabled(true);
-					
-			console.log(block.outputConnection);
-			console.log(block.getParent());
 		}
 		
 		timer = setTimeout(function(){

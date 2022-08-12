@@ -1997,20 +1997,22 @@ module$exports$Blockly$ContextMenuItems.registerScrollPlugin=function(){
 		}
 	)
 };
+
 module$exports$Blockly$ContextMenuItems.registerTopCheck=function(){
 	module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register(
 		{
-			displayText:function(){return $.module$exports$Blockly$Msg.Msg["DISABLED_TOPCHECK"];}
+			displayText:function(){
+				if (topCheck) {
+					return $.module$exports$Blockly$Msg.Msg.DISABLED_TOPCHECK;
+				} else {
+					return $.module$exports$Blockly$Msg.Msg.ENABLED_TOPCHECK;
+				}				
+			}
 			,preconditionFn:function(a){
-				if (topCheck)
-					return "enabled"
-				else
-					return "hidden"
+				return "enabled"
 			}
 			,callback:function(a){
-				if (topCheck) {
-					topCheck=false;
-				} 
+				topCheck=!topCheck;
 			}
 			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.WORKSPACE,id:"topCheck",weight:20
 		}
@@ -2035,7 +2037,7 @@ var module$contents$Blockly$ContextMenuItems_registerBlockOptions_=function(){
 	(0,module$exports$Blockly$ContextMenuItems.registerHighLightPlugin)();
 	(0,module$exports$Blockly$ContextMenuItems.registerBackPackPlugin)();	
 	//	(0,module$exports$Blockly$ContextMenuItems.registerHideToolbox)();
-	//(0,module$exports$Blockly$ContextMenuItems.registerTopCheck)();
+	(0,module$exports$Blockly$ContextMenuItems.registerTopCheck)();
 };
 
 module$exports$Blockly$ContextMenuItems.registerDefaultOptions=function(){module$contents$Blockly$ContextMenuItems_registerWorkspaceOptions_();module$contents$Blockly$ContextMenuItems_registerBlockOptions_()};(0,module$exports$Blockly$ContextMenuItems.registerDefaultOptions)();var module$exports$Blockly$Icon={Icon:function(a){this.block_=a;this.iconGroup_=null;this.collapseHidden=!0;this.SIZE=17;this.iconXY_=this.bubble_=null}};
