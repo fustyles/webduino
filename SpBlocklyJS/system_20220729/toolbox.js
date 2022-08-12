@@ -122,12 +122,5 @@ var catWindow ='<xml>'+
 '    </block>'+
 '    <block type="mouse_coordinate_get">'+
 '    </block>'+
-'    <block type="function_return">'+
-'    <value name="value_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
 '    </category>'+
 '</xml>';
