@@ -1204,7 +1204,7 @@ Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "Place blocks [input: #]"
 Blockly.Msg["VARIABLES_GLOBAL"] = "Global";
 Blockly.Msg["VARIABLES_LOCAL"] = "Local";
 
-Blockly.Msg["BUTTON_COLLABORATION"] = "MQTT COLLABORATION";
+Blockly.Msg["BUTTON_COLLABORATION"] = "MQTT Collaboration";
 Blockly.Msg["COLLABORATION_BROKER_TITLE"] = "BROKER";
 Blockly.Msg["COLLABORATION_TOPIC_TITLE"] = "TOPIC";
 Blockly.Msg["COLLABORATION_USERID_TITLE"] = "USER ID";
