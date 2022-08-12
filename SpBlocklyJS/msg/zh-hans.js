@@ -1235,3 +1235,11 @@ Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "置放积木 [输入: #]
 
 Blockly.Msg["VARIABLES_GLOBAL"] = "全域";
 Blockly.Msg["VARIABLES_LOCAL"] = "区域";
+
+Blockly.Msg["BUTTON_COLLABORATION"] = "MQTT协同编辑";
+Blockly.Msg["COLLABORATION_BROKER_TITLE"] = "代理伺服器";
+Blockly.Msg["COLLABORATION_TOPIC_TITLE"] = "主题";
+Blockly.Msg["COLLABORATION_USERID_TITLE"] = "使用者帐号";
+Blockly.Msg["COLLABORATION_PASSWORD_TITLE"] = "密码";
+Blockly.Msg.BUTTON_LINK = "连线";
+Blockly.Msg["MSG_COLLABORATION"] = "MQTT协同编辑";

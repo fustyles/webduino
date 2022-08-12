@@ -1234,3 +1234,11 @@ Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "置放積木 [輸入: #]
 
 Blockly.Msg["VARIABLES_GLOBAL"] = "全域";
 Blockly.Msg["VARIABLES_LOCAL"] = "區域";
+
+Blockly.Msg["BUTTON_COLLABORATION"] = "MQTT協同編輯";
+Blockly.Msg["COLLABORATION_BROKER_TITLE"] = "代理伺服器";
+Blockly.Msg["COLLABORATION_TOPIC_TITLE"] = "主題";
+Blockly.Msg["COLLABORATION_USERID_TITLE"] = "使用者帳號";
+Blockly.Msg["COLLABORATION_PASSWORD_TITLE"] = "密碼";
+Blockly.Msg.BUTTON_LINK = "連線";
+Blockly.Msg["MSG_COLLABORATION"] = "MQTT協同編輯";

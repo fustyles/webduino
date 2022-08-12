@@ -52,6 +52,7 @@ SPDX-License-Identifier: Apache-2.0
 	<script src="js/jquery-ui.js"></script>
 	<script src="js/jquery.ui.touch-punch.min.js"></script>
 	<script src="js/toolbox.js"></script>
+	<script src='MQTT_20220324/mqtt.min.js'></script>
 	<script>
 	var block_script = ["GameElements_20190131","holistic_20201012","faceapi_recognize_20201012","teachablemachine_20201012","MQTT_20220324","WebSerial_20220126","myBackPack","coco-ssd_20201012","faceapi_detect_20201012","hands_20220614","trackingcolor_20201012","instascan.js_20201012","tesseract.js_20201012","SpreadsheetSQL_20210403","chart_20220723","Keyboard_20220729","TextToSpeech_20220729","SpeechRecognition_20220729","system_20220729","line_20220729","ifttt_20220730","thingspeak_20220730","Telegram_20200809","MatrixLed_20180810"];
 	for (var i=0;i<block_script.length;i++) {
@@ -84,7 +85,8 @@ SPDX-License-Identifier: Apache-2.0
 					<a href="#" id="button_save_xml" title="Save xml"><i class="small material-icons">save</i></a>
 					<a href="#" id="button_save_html" title="Save html"><i class="small material-icons">download_for_offline</i></a>
 					<a href="#" id="button_webSerial" title="Web Serial"><i class="small material-icons">usb</i></a>
-					<a href="#" id="button_webBluetooth" title="Web Bluetooth"><i class="small material-icons">bluetooth</i></a>					
+					<a href="#" id="button_webBluetooth" title="Web Bluetooth"><i class="small material-icons">bluetooth</i></a>
+					<a href="#" id="button_collaboration" title="MQTT Collaboration"><i class="small material-icons">accessibility</i></a>					
 					<a href="#" id="button_tool" title="Open Blockly Developer Tools"><i class="small material-icons">construction</i></a>
 					
 					<i>　</i>
@@ -193,10 +195,13 @@ SPDX-License-Identifier: Apache-2.0
 			</tr>
 			<tr>
 				<td><span id="title_uuid_service">Service UUID</span></td><td><input type="text" id="Bluetooth_uuid_service" size="38" value="4fafc201-1fb5-459e-8fcc-c5c9c331914b"></td>
+			</tr>
 			<tr>
 				<td><span id="title_uuid_tx">TX UUID</span></td><td><input type="text" id="Bluetooth_uuid_tx" size="38" value="beb5483e-36e1-4688-b7f5-ea07361b26a8"></td>
+			</tr>
 			<tr>
 				<td><span id="title_uuid_rx">RX UUID</span></td><td><input type="text" id="Bluetooth_uuid_rx" size="38" value="498c599b-2601-4600-bb7e-3aa295a92842"></td>
+			</tr>
 			<tr>
 				<td colspan="2"><input type="text" id="Bluetooth_command">
 					<select id="Bluetooth_end">
@@ -222,7 +227,14 @@ SPDX-License-Identifier: Apache-2.0
 	<div id="dialog_run" style="display:none;padding:0px;">
 		<iframe id="iframe_run" style="width:100%;height:100%;background-color: white;padding:0px;" frameborder="0" src="" scrolling="auto" allowpaymentrequest allow="autoplay; fullscreen; geolocation; microphone; camera ; usb" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation"></iframe>
 	</div>	
-
+	<div id="dialog_collaboration" style="display:none">
+		<table>
+			<tr><td><span id="title_collaboration_broker">Broker</span></td><td><input type="text" id="collaboration_broker" size="38" value="ws://mqttgo.io:8000/mqtt"></td></tr>
+			<tr><td><span id="title_collaboration_topic">Topic</span></td><td><input type="text" id="collaboration_topic" size="38" value="yourTopic/collaboration"></td></tr>
+			<tr><td><span id="title_collaboration_userid">User ID</span></td><td><input type="text" id="collaboration_userid" size="38" value=""></td></tr>
+			<tr><td><span id="title_collaboration_password">Password</span></td><td><input type="text" id="collaboration_password" size="38" value=""></td></tr>
+		</table>
+	</div>
 </main>
 
 

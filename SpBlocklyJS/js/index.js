@@ -8,7 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 */
 var topCheck = true;
 var showCode = false;
-var timer;
+var myTimer;
 
 document.addEventListener('DOMContentLoaded', function() {
 	
@@ -1074,14 +1074,108 @@ document.addEventListener('DOMContentLoaded', function() {
 				window.open("https://fustyles.github.io/webduino/WebBluetooth.html")
 		}
 	}
-
-	//當工作區更動更新原始碼
-	function onBlocksChange(event) {
-		clearTimeout(timer);
+	
+	//MQTT協同編輯設定
+	document.getElementById('button_collaboration').onclick = function () {
+		var opt = {
+			dialogClass: "dlg-no-close",
+			draggable: true,			
+			autoOpen: false,
+			resizable: true,
+			modal: false,
+			//show: "blind",
+			//hide: "blind",			
+			width: 500,
+			height: 280,
+			buttons: [					
+				{
+					text: Blockly.Msg.BUTTON_LINK,
+					click: function() {
+						var broker = document.getElementById('collaboration_broker').value;
+						var topic = document.getElementById('collaboration_topic').value;
+						var userid = document.getElementById('collaboration_userid').value;
+						var password = document.getElementById('collaboration_password').value;
+						
+						collaboration(broker, topic, userid, password);
+					}
+				},				
+				{
+					text: Blockly.Msg.BUTTON_CLOSE,
+					click: function() {
+						$(this).dialog("close");
+					}
+				}
+			],
+			title: Blockly.Msg["MSG_COLLABORATION"]
+		};
+		$("#dialog_collaboration").dialog(opt).dialog("open");
+		event.preventDefault();
+	}
+	
+	//MQTT協同編輯
+	var collaborationID = "SpBlocklyJS_"+Math.random().toString(16).substr(2, 8);
+	var mqttState = false;
+	var mqttLock = false;
+	var mqttBroker = "ws://mqttgo.io:8000/mqtt";
+	var mqttTopic = "blockly/mqtt";
+	var mqttUserID = "";
+	var mqttPassword = "";
+	var mqtt_client;
+	
+	function collaboration(mqtt_broker, mqtt_topic, mqtt_userid, mqtt_password) {
+		mqttBroker = mqtt_broker;
+		mqttTopic = mqtt_topic;
+		mqttUserID = mqtt_userid;
+		mqttPassword = mqtt_password;
 		
-		if (event.blockId&&topCheck) {
-			var block = Blockly.getMainWorkspace().getBlockById(event.blockId);
-			if (block) {
+		const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);
+		const options = {
+			username: mqttUserID,
+			password: mqttPassword,
+			keepalive: 60,
+			clientId: clientId,
+			protocolId: "MQTT",
+			protocolVersion: 4,
+			clean: true,
+			reconnectPeriod: 1000,
+			connectTimeout: 30 * 1000
+		}
+			
+		mqtt_client = mqtt.connect(mqttBroker,options);
+		mqtt_client.on("connect", ()=>{
+			console.log("connected");
+			mqtt_client.subscribe(mqttTopic);
+			mqtt_client.on("message", async function (topic, payload) {
+				var enc = new TextDecoder("utf-8");
+				payload = enc.decode(payload).split("|||");
+				//console.log(payload);
+				  if (topic==mqttTopic&&payload[0]!=collaborationID) {
+					mqttLock = true;
+					var xmlDoc = Blockly.Xml.textToDom(payload[1]);
+					Blockly.getMainWorkspace().clear();
+					Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
+				  }
+			})
+		})	
+	}
+
+	//當工作區變動
+	function onBlocksChange(event) {
+		clearTimeout(myTimer);
+		
+		if (event) {
+			//console.log(event.type);
+			if (event.type == "create"||event.type == "move"||event.type == "change"||event.type == "click"||event.type == "drag") 	
+				mqttState = true;
+			else if (event.type == "finished_loading") {
+				mqttState = false;
+				mqttLock = false;
+			}		
+		}
+		
+		if (event&&topCheck) {
+			if (event.blockId) {
+				var block = Blockly.getMainWorkspace().getBlockById(event.blockId);
 				if (block.previousConnection==null&&block.outputConnection&&!block.getParent())
 					block.setEnabled(false);
 				else
@@ -1089,11 +1183,19 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		}
 		
-		timer = setTimeout(function(){
+		myTimer = setTimeout(function(){
 			if (showCode) {
 				var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());			
 				editor.setValue(code);
 			}
+			
+			if (mqttState ==true&&mqttLock==false&&mqtt_client) {
+				mqttState = false;
+				var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+				var xmlText = Blockly.Xml.domToText(xml);
+				mqtt_client.publish(mqttTopic, collaborationID+"|||"+xmlText);
+			}		
+			mqttLock = false;			
 		}, 1000);
 		//workspace.removeChangeListener(onBlocksChange);
 	}
@@ -1176,7 +1278,7 @@ if (typeof require !== "undefined") {
 	var path = require('path');
 
 	http.createServer(function (request, response) {
-		console.log('request ', request.url.split("?")[0]);
+		//console.log('request ', request.url.split("?")[0]);
 
 		var filePath = './package.nw' + request.url.split("?")[0];
 		if (filePath == './package.nw/') {
