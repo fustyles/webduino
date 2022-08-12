@@ -314,7 +314,6 @@ Blockly.defineBlocksWithJsonArray([
 
 var module$contents$Blockly$blocks$CONTROLS_SPREADSHEET_MUTATOR_MIXIN={
 	allCount_:0
-	,suppressPrefixSuffix:!0
 	,mutationToDom:function(){		
 		if(!this.allCount_)return null;
 		var a=Blockly.utils.xml.createElement("mutation");
@@ -386,6 +385,7 @@ var module$contents$Blockly$blocks$CONTROLS_SPREADSHEET_MUTATOR_MIXIN={
 	}
 };
 Blockly.Extensions.registerMutator("controls_spreadsheet_mutator",module$contents$Blockly$blocks$CONTROLS_SPREADSHEET_MUTATOR_MIXIN,null,["controls_spreadsheet_value"]);
+
 
 Blockly.defineBlocksWithJsonArray([
 	{type:"controls_spreadsheet_datetime"

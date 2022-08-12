@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		
 		if (xml.indexOf("fu_mqtt_")!=-1) {
-			script += "<script src='https://unpkg.com/mqtt/dist/mqtt.min.js'></script>";
+			script += "<script src='MQTT_20220324/mqtt.min.js'></script>";
 		}
 		
 		if (xml.indexOf("cocossd_")!=-1) {
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		
 		if (xml.indexOf("fu_mqtt_")!=-1) {
-			script += "<script src='https://unpkg.com/mqtt/dist/mqtt.min.js'></script>";
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/MQTT_20220324/mqtt.min.js'></script>";
 		}
 		
 		if (xml.indexOf("cocossd_")!=-1) {
