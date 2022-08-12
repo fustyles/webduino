@@ -358,6 +358,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	const scrollOptionsPlugin = new ScrollOptions(workspace);
 	scrollOptionsPlugin.init({enableWheelScroll: true, enableEdgeScroll: true});
 	ScrollBlockDragger.edgeScrollEnabled = false;	
+	
+	//新增置頂積木停用
+	workspace.addChangeListener(Blockly.Events.disableOrphans);
+	const disableTopBlocksPlugin = new DisableTopBlocks();
+	disableTopBlocksPlugin.init();
 
 	function addScript(url) {
 		var s = document.createElement("script");
