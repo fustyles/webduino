@@ -1176,10 +1176,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (event&&topCheck) {
 			if (event.blockId) {
 				var block = Blockly.getMainWorkspace().getBlockById(event.blockId);
-				if (block.previousConnection==null&&block.outputConnection&&!block.getParent())
-					block.setEnabled(false);
-				else
-					block.setEnabled(true);
+				if (block) {
+					if (block.previousConnection==null&&block.outputConnection&&!block.getParent())
+						block.setEnabled(false);
+					else
+						block.setEnabled(true);
+				}
 			}
 		}
 		
