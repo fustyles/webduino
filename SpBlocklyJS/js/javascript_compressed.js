@@ -37,6 +37,10 @@ $.Blockly.JavaScript.variables_set=function(a){
 	else
 		return "var "+$.Blockly.JavaScript.nameDB_.getName(a.getFieldValue("VAR"),$.module$exports$Blockly$Names.NameType.VARIABLE)+" = "+b+";\n"
 };
+$.Blockly.JavaScript.variables_set_local=function(a){
+	var b=$.Blockly.JavaScript.valueToCode(a,"VALUE",$.Blockly.JavaScript.ORDER_ASSIGNMENT)||"0";
+	return $.Blockly.JavaScript.nameDB_.getName(a.getFieldValue("VAR"),$.module$exports$Blockly$Names.NameType.VARIABLE)+" = "+b+";\n";
+};
 var module$exports$Blockly$JavaScript$variablesDynamic={};$.Blockly.JavaScript.variables_get_dynamic=$.Blockly.JavaScript.variables_get;$.Blockly.JavaScript.variables_set_dynamic=$.Blockly.JavaScript.variables_set;var module$exports$Blockly$JavaScript$texts={},module$contents$Blockly$JavaScript$texts_strRegExp=/^\s*'([^']|\\')*'\s*$/,module$contents$Blockly$JavaScript$texts_forceString=function(a){return module$contents$Blockly$JavaScript$texts_strRegExp.test(a)?[a,$.Blockly.JavaScript.ORDER_ATOMIC]:["String("+a+")",$.Blockly.JavaScript.ORDER_FUNCTION_CALL]},module$contents$Blockly$JavaScript$texts_getSubstringIndex=function(a,b,c){return"FIRST"===b?"0":"FROM_END"===b?a+".length - 1 - "+c:"LAST"===b?a+".length - 1":
 c};$.Blockly.JavaScript.text=function(a){return[$.Blockly.JavaScript.quote_(a.getFieldValue("TEXT")),$.Blockly.JavaScript.ORDER_ATOMIC]};$.Blockly.JavaScript.text_multiline=function(a){a=$.Blockly.JavaScript.multiline_quote_(a.getFieldValue("TEXT"));var b=-1!==a.indexOf("+")?$.Blockly.JavaScript.ORDER_ADDITION:$.Blockly.JavaScript.ORDER_ATOMIC;return[a,b]};
 $.Blockly.JavaScript.text_join=function(a){switch(a.itemCount_){case 0:return["''",$.Blockly.JavaScript.ORDER_ATOMIC];case 1:return a=$.Blockly.JavaScript.valueToCode(a,"ADD0",$.Blockly.JavaScript.ORDER_NONE)||"''",module$contents$Blockly$JavaScript$texts_forceString(a);case 2:var b=$.Blockly.JavaScript.valueToCode(a,"ADD0",$.Blockly.JavaScript.ORDER_NONE)||"''";a=$.Blockly.JavaScript.valueToCode(a,"ADD1",$.Blockly.JavaScript.ORDER_NONE)||"''";return[module$contents$Blockly$JavaScript$texts_forceString(b)[0]+

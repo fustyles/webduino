@@ -480,9 +480,40 @@ module$exports$Blockly$Events$VarCreate.VarCreate.prototype.run=function(a){var 
 module$exports$Blockly$VariableModel.VariableModel.compareByName=function(a,b){return a.name.localeCompare(b.name,void 0,{sensitivity:"base"})};var module$contents$Blockly$Variables_ALL_DEVELOPER_VARS_WARNINGS_BY_BLOCK_TYPE;$.module$exports$Blockly$Variables={CATEGORY_NAME:"VARIABLE",allUsedVarModels:function(a){var b=a.getAllBlocks(!1);a=Object.create(null);for(var c=0;c<b.length;c++){var d=b[c].getVarModels();if(d)for(var e=0;e<d.length;e++){var f=d[e],g=f.getId();g&&(a[g]=f)}}b=[];for(var h in a)b.push(a[h]);return b}};module$contents$Blockly$Variables_ALL_DEVELOPER_VARS_WARNINGS_BY_BLOCK_TYPE={};
 $.module$exports$Blockly$Variables.allDeveloperVariables=function(a){a=a.getAllBlocks(!1);for(var b=Object.create(null),c=0,d;d=a[c];c++){var e=d.getDeveloperVariables;!e&&d.getDeveloperVars&&(e=d.getDeveloperVars,module$contents$Blockly$Variables_ALL_DEVELOPER_VARS_WARNINGS_BY_BLOCK_TYPE[d.type]||(console.warn("Function getDeveloperVars() deprecated. Use getDeveloperVariables() (block type '"+d.type+"')"),module$contents$Blockly$Variables_ALL_DEVELOPER_VARS_WARNINGS_BY_BLOCK_TYPE[d.type]=!0));if(e)for(d=
 e(),e=0;e<d.length;e++)b[d[e]]=!0}return Object.keys(b)};$.module$exports$Blockly$Variables.flyoutCategory=function(a){var b=[],c=document.createElement("button");c.setAttribute("text","%{BKY_NEW_VARIABLE}");c.setAttribute("callbackKey","CREATE_VARIABLE");a.registerButtonCallback("CREATE_VARIABLE",function(d){(0,$.module$exports$Blockly$Variables.createVariableButtonHandler)(d.getTargetWorkspace())});b.push(c);a=(0,$.module$exports$Blockly$Variables.flyoutCategoryBlocks)(a);return b=b.concat(a)};
-$.module$exports$Blockly$Variables.flyoutCategoryBlocks=function(a){a=a.getVariablesOfType("");var b=[];if(0<a.length){var c=a[a.length-1];if(module$exports$Blockly$blocks.Blocks.variables_set){var d=(0,$.module$exports$Blockly$utils$xml.createElement)("block");d.setAttribute("type","variables_set");d.setAttribute("gap",module$exports$Blockly$blocks.Blocks.math_change?8:24);d.appendChild((0,$.module$exports$Blockly$Variables.generateVariableFieldDom)(c));b.push(d)}module$exports$Blockly$blocks.Blocks.math_change&&
-(d=(0,$.module$exports$Blockly$utils$xml.createElement)("block"),d.setAttribute("type","math_change"),d.setAttribute("gap",module$exports$Blockly$blocks.Blocks.variables_get?20:8),d.appendChild((0,$.module$exports$Blockly$Variables.generateVariableFieldDom)(c)),c=(0,$.module$exports$Blockly$Xml.textToDom)('<value name="DELTA"><shadow type="math_number"><field name="NUM">1</field></shadow></value>'),d.appendChild(c),b.push(d));if(module$exports$Blockly$blocks.Blocks.variables_get)for(a.sort(module$exports$Blockly$VariableModel.VariableModel.compareByName),
-c=0;d=a[c];c++){var e=(0,$.module$exports$Blockly$utils$xml.createElement)("block");e.setAttribute("type","variables_get");e.setAttribute("gap",8);e.appendChild((0,$.module$exports$Blockly$Variables.generateVariableFieldDom)(d));b.push(e)}}return b};$.module$exports$Blockly$Variables.VAR_LETTER_OPTIONS="ijkmnopqrstuvwxyzabcdefgh";
+$.module$exports$Blockly$Variables.flyoutCategoryBlocks=function(a){
+	a=a.getVariablesOfType("");
+	var b=[];
+	if(0<a.length){
+		var c=a[a.length-1];
+		if(module$exports$Blockly$blocks.Blocks.variables_set){
+			var d=(0,$.module$exports$Blockly$utils$xml.createElement)("block");
+			d.setAttribute("type","variables_set");
+			d.setAttribute("gap",module$exports$Blockly$blocks.Blocks.math_change?8:24);
+			d.appendChild((0,$.module$exports$Blockly$Variables.generateVariableFieldDom)(c));
+			b.push(d)
+		}
+		if(module$exports$Blockly$blocks.Blocks.variables_set_local){
+			var d=(0,$.module$exports$Blockly$utils$xml.createElement)("block");
+			d.setAttribute("type","variables_set_local");
+			d.setAttribute("gap",module$exports$Blockly$blocks.Blocks.math_change?8:24);
+			d.appendChild((0,$.module$exports$Blockly$Variables.generateVariableFieldDom)(c));
+			b.push(d)
+		}		
+		
+		module$exports$Blockly$blocks.Blocks.math_change&&(d=(0,$.module$exports$Blockly$utils$xml.createElement)("block"),d.setAttribute("type","math_change"),d.setAttribute("gap",module$exports$Blockly$blocks.Blocks.variables_get?20:8),d.appendChild((0,$.module$exports$Blockly$Variables.generateVariableFieldDom)(c)),c=(0,$.module$exports$Blockly$Xml.textToDom)('<value name="DELTA"><shadow type="math_number"><field name="NUM">1</field></shadow></value>'),d.appendChild(c),b.push(d));
+		
+		if(module$exports$Blockly$blocks.Blocks.variables_get)
+			for(a.sort(module$exports$Blockly$VariableModel.VariableModel.compareByName),c=0;d=a[c];c++){
+				var e=(0,$.module$exports$Blockly$utils$xml.createElement)("block");
+				e.setAttribute("type","variables_get");
+				e.setAttribute("gap",8);
+				e.appendChild((0,$.module$exports$Blockly$Variables.generateVariableFieldDom)(d));
+				b.push(e)
+			}
+	}
+	return b
+};
+$.module$exports$Blockly$Variables.VAR_LETTER_OPTIONS="ijkmnopqrstuvwxyzabcdefgh";
 $.module$exports$Blockly$Variables.generateUniqueName=function(a){return(0,$.module$exports$Blockly$Variables.generateUniqueNameFromOptions)($.module$exports$Blockly$Variables.VAR_LETTER_OPTIONS.charAt(0),a.getAllVariableNames())};
 $.module$exports$Blockly$Variables.generateUniqueNameFromOptions=function(a,b){if(!b.length)return a;for(var c=$.module$exports$Blockly$Variables.VAR_LETTER_OPTIONS,d="",e=c.indexOf(a);;){for(var f=!1,g=0;g<b.length;g++)if(b[g].toLowerCase()===a){f=!0;break}if(!f)return a;e++;e===c.length&&(e=0,d=Number(d)+1);a=c.charAt(e)+d}};
 $.module$exports$Blockly$Variables.createVariableButtonHandler=function(a,b,c){var d=c||"",e=function(f){(0,$.module$exports$Blockly$Variables.promptName)($.module$exports$Blockly$Msg.Msg.NEW_VARIABLE_TITLE,f,function(g){if(g){var h=(0,$.module$exports$Blockly$Variables.nameUsedWithAnyType)(g,a);if(h){if(h.type===d)var k=$.module$exports$Blockly$Msg.Msg.VARIABLE_ALREADY_EXISTS.replace("%1",h.name);else k=$.module$exports$Blockly$Msg.Msg.VARIABLE_ALREADY_EXISTS_FOR_ANOTHER_TYPE,k=k.replace("%1",h.name).replace("%2",
