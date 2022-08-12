@@ -1,6 +1,4 @@
 var catSystem = '<xml>'+
-'    <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>'+
-'    <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>'+
 '    <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">'+
 '    <block type="controls_if"></block>'+
 '    <block type="logic_compare"></block>'+
@@ -317,4 +315,6 @@ var catSystem = '<xml>'+
 '    </value>'+
 '    </block>'+
 '    </category>'+
+'    <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>'+
+'    <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>'+
 '</xml>';
