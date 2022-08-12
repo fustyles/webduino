@@ -20,6 +20,7 @@ var msg = [
 ["title_collaboration_topic", "innerHTML", Blockly.Msg["COLLABORATION_TOPIC_TITLE"]],
 ["title_collaboration_userid", "innerHTML", Blockly.Msg["COLLABORATION_USERID_TITLE"]],
 ["title_collaboration_password", "innerHTML", Blockly.Msg["COLLABORATION_PASSWORD_TITLE"]],
+["title_collaboration_tip", "innerHTML", Blockly.Msg["COLLABORATION_TIP_TITLE"]],
 ["button_webSerial", "title", Blockly.Msg["BUTTON_WEBSERIAL"]],
 ["serial_close_port", "innerHTML", Blockly.Msg["CLOSEPORT_TITLE"]],
 ["serial_request_port", "innerHTML", Blockly.Msg["REQUESTPORT_TITLE"]],

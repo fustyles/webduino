@@ -1211,3 +1211,4 @@ Blockly.Msg["COLLABORATION_USERID_TITLE"] = "USER ID";
 Blockly.Msg["COLLABORATION_PASSWORD_TITLE"] = "PASSWORD";
 Blockly.Msg.BUTTON_LINK = "LINK";
 Blockly.Msg["MSG_COLLABORATION"] = "MQTT COLLABORATION";
+Blockly.Msg["COLLABORATION_TIP_TITLE"] = "You need to allow insecure content in Chrome.";
