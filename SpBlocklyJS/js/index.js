@@ -1081,11 +1081,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		if (event.blockId&&topCheck) {
 			var block = Blockly.getMainWorkspace().getBlockById(event.blockId);
-			
-			if (block.previousConnection==null&&block.outputConnection&&!block.getParent())
-				block.setEnabled(false);
-			else
-				block.setEnabled(true);
+			if (block) {
+				if (block.previousConnection==null&&block.outputConnection&&!block.getParent())
+					block.setEnabled(false);
+				else
+					block.setEnabled(true);
+			}
 		}
 		
 		timer = setTimeout(function(){
