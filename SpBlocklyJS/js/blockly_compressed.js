@@ -1839,7 +1839,7 @@ module$exports$Blockly$ContextMenuItems.registerDeleteNull=function(){
 					for (var i in a.workspace.blockDB_) {
 						var b = a.workspace.getBlockById(i);
 						if (!b.parentBlock_&&b.outputConnection) {
-							Blockly.deleteBlock(b);
+							b.dispose();
 						}
 					}
 				}
@@ -1901,7 +1901,7 @@ module$exports$Blockly$ContextMenuItems.registerDelete=function(){
 		{
 			displayText:function(a){var b=a.block;a=b.getDescendants(!1).length;(b=b.getNextBlock())&&(a-=b.getDescendants(!1).length);return 1==a?$.module$exports$Blockly$Msg.Msg.DELETE_BLOCK:$.module$exports$Blockly$Msg.Msg.DELETE_X_BLOCKS.replace("%1",String(a))}
 			,preconditionFn:function(a){return!a.block.isInFlyout&&a.block.isDeletable()?"enabled":"hidden"}
-			,callback:function(a){Blockly.Events.setGroup(!0);a.block&&Blockly.deleteBlock(a.block);Blockly.Events.setGroup(!1)}
+			,callback:function(a){Blockly.Events.setGroup(!0);a.block&&a.block.dispose();Blockly.Events.setGroup(!1)}
 			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.BLOCK,id:"blockDelete",weight:8
 		}
 	)
