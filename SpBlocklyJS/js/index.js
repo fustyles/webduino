@@ -358,11 +358,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	const scrollOptionsPlugin = new ScrollOptions(workspace);
 	scrollOptionsPlugin.init({enableWheelScroll: true, enableEdgeScroll: true});
 	ScrollBlockDragger.edgeScrollEnabled = false;	
-	
-	//新增置頂積木停用
-	//workspace.addChangeListener(Blockly.Events.disableOrphans);
-	//const disableTopBlocksPlugin = new DisableTopBlocks();
-	//disableTopBlocksPlugin.init();
 
 	function addScript(url) {
 		var s = document.createElement("script");
@@ -1084,6 +1079,19 @@ document.addEventListener('DOMContentLoaded', function() {
 	//當工作區更動更新原始碼
 	function onBlocksChange(event) {
 		clearTimeout(timer);
+		
+		if (event.blockId) {
+			var block = Blockly.getMainWorkspace().getBlockById(event.blockId);
+			
+			if (block.previousConnection==null&&block.outputConnection&&!block.getParent())
+				block.setEnabled(false);
+			else
+				block.setEnabled(true);
+					
+			console.log(block.outputConnection);
+			console.log(block.getParent());
+		}
+		
 		timer = setTimeout(function(){
 			if (showCode) {
 				var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());			
