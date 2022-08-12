@@ -1164,7 +1164,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		clearTimeout(myTimer);
 		
 		if (event) {
-			console.log(event.type);
+			//console.log(event.type);
 			if (event.type == "create"||event.type == "move"||event.type == "change"||event.type == "click"||event.type == "drag"||event.type == "delete") 	
 				mqttState = true;
 			else if (event.type == "finished_loading") {
