@@ -463,6 +463,9 @@ module$exports$Blockly$blockAnimations.disconnectUiEffect=function(a){a.workspac
 var module$contents$Blockly$blockAnimations_disconnectUiStep=function(a,b,c){var d=(new Date-c)/200;1<d?a.skew_="":(a.skew_="skewX("+Math.round(Math.sin(d*Math.PI*3)*(1-d)*b)+")",module$contents$Blockly$blockAnimations_disconnectGroup=a,module$contents$Blockly$blockAnimations_disconnectPid=setTimeout(module$contents$Blockly$blockAnimations_disconnectUiStep,10,a,b,c));a.setAttribute("transform",a.translate_+a.skew_)};
 module$exports$Blockly$blockAnimations.disconnectUiStop=function(){if(module$contents$Blockly$blockAnimations_disconnectGroup){clearTimeout(module$contents$Blockly$blockAnimations_disconnectPid);var a=module$contents$Blockly$blockAnimations_disconnectGroup;a.skew_="";a.setAttribute("transform",a.translate_);module$contents$Blockly$blockAnimations_disconnectGroup=null}};var module$exports$Blockly$internalConstants={COLLAPSE_CHARS:30,DRAG_STACK:!0,OPPOSITE_TYPE:[]};module$exports$Blockly$internalConstants.OPPOSITE_TYPE[$.module$exports$Blockly$ConnectionType.ConnectionType.INPUT_VALUE]=$.module$exports$Blockly$ConnectionType.ConnectionType.OUTPUT_VALUE;module$exports$Blockly$internalConstants.OPPOSITE_TYPE[$.module$exports$Blockly$ConnectionType.ConnectionType.OUTPUT_VALUE]=$.module$exports$Blockly$ConnectionType.ConnectionType.INPUT_VALUE;
 module$exports$Blockly$internalConstants.OPPOSITE_TYPE[$.module$exports$Blockly$ConnectionType.ConnectionType.NEXT_STATEMENT]=$.module$exports$Blockly$ConnectionType.ConnectionType.PREVIOUS_STATEMENT;module$exports$Blockly$internalConstants.OPPOSITE_TYPE[$.module$exports$Blockly$ConnectionType.ConnectionType.PREVIOUS_STATEMENT]=$.module$exports$Blockly$ConnectionType.ConnectionType.NEXT_STATEMENT;module$exports$Blockly$internalConstants.RENAME_VARIABLE_ID="RENAME_VARIABLE_ID";
+
+module$exports$Blockly$internalConstants.ADD_VARIABLE_ID="ADD_VARIABLE_ID";
+
 module$exports$Blockly$internalConstants.DELETE_VARIABLE_ID="DELETE_VARIABLE_ID";var module$exports$Blockly$ComponentManager={ComponentManager:function(){this.componentData_=Object.create(null);this.capabilityToComponentIds_=Object.create(null)}};
 module$exports$Blockly$ComponentManager.ComponentManager.prototype.addComponent=function(a,b){var c=a.component.id;if(!b&&this.componentData_[c])throw Error('Plugin "'+c+'" with capabilities "'+this.componentData_[c].capabilities+'" already added.');this.componentData_[c]=a;b=[];for(var d=0;d<a.capabilities.length;d++){var e=String(a.capabilities[d]).toLowerCase();b.push(e);void 0===this.capabilityToComponentIds_[e]?this.capabilityToComponentIds_[e]=[c]:this.capabilityToComponentIds_[e].push(c)}this.componentData_[c].capabilities=
 b};module$exports$Blockly$ComponentManager.ComponentManager.prototype.removeComponent=function(a){var b=this.componentData_[a];if(b){for(var c=0;c<b.capabilities.length;c++){var d=String(b.capabilities[c]).toLowerCase();(0,module$exports$Blockly$utils$array.removeElem)(this.capabilityToComponentIds_[d],a)}delete this.componentData_[a]}};
@@ -479,7 +482,18 @@ module$exports$Blockly$Events$VarCreate.VarCreate.prototype.toJson=function(){va
 module$exports$Blockly$Events$VarCreate.VarCreate.prototype.run=function(a){var b=this.getEventWorkspace_();a?b.createVariable(this.varName,this.varType,this.varId):b.deleteVariableById(this.varId)};(0,module$exports$Blockly$registry.register)(module$exports$Blockly$registry.Type.EVENT,module$exports$Blockly$Events$utils.VAR_CREATE,module$exports$Blockly$Events$VarCreate.VarCreate);var module$exports$Blockly$VariableModel={VariableModel:function(a,b,c,d){this.workspace=a;this.name=b;this.type=c||"";this.id_=d||(0,module$exports$Blockly$utils$idGenerator.genUid)();(0,module$exports$Blockly$Events$utils.fire)(new ((0,module$exports$Blockly$Events$utils.get)(module$exports$Blockly$Events$utils.VAR_CREATE))(this))}};module$exports$Blockly$VariableModel.VariableModel.prototype.getId=function(){return this.id_};
 module$exports$Blockly$VariableModel.VariableModel.compareByName=function(a,b){return a.name.localeCompare(b.name,void 0,{sensitivity:"base"})};var module$contents$Blockly$Variables_ALL_DEVELOPER_VARS_WARNINGS_BY_BLOCK_TYPE;$.module$exports$Blockly$Variables={CATEGORY_NAME:"VARIABLE",allUsedVarModels:function(a){var b=a.getAllBlocks(!1);a=Object.create(null);for(var c=0;c<b.length;c++){var d=b[c].getVarModels();if(d)for(var e=0;e<d.length;e++){var f=d[e],g=f.getId();g&&(a[g]=f)}}b=[];for(var h in a)b.push(a[h]);return b}};module$contents$Blockly$Variables_ALL_DEVELOPER_VARS_WARNINGS_BY_BLOCK_TYPE={};
 $.module$exports$Blockly$Variables.allDeveloperVariables=function(a){a=a.getAllBlocks(!1);for(var b=Object.create(null),c=0,d;d=a[c];c++){var e=d.getDeveloperVariables;!e&&d.getDeveloperVars&&(e=d.getDeveloperVars,module$contents$Blockly$Variables_ALL_DEVELOPER_VARS_WARNINGS_BY_BLOCK_TYPE[d.type]||(console.warn("Function getDeveloperVars() deprecated. Use getDeveloperVariables() (block type '"+d.type+"')"),module$contents$Blockly$Variables_ALL_DEVELOPER_VARS_WARNINGS_BY_BLOCK_TYPE[d.type]=!0));if(e)for(d=
-e(),e=0;e<d.length;e++)b[d[e]]=!0}return Object.keys(b)};$.module$exports$Blockly$Variables.flyoutCategory=function(a){var b=[],c=document.createElement("button");c.setAttribute("text","%{BKY_NEW_VARIABLE}");c.setAttribute("callbackKey","CREATE_VARIABLE");a.registerButtonCallback("CREATE_VARIABLE",function(d){(0,$.module$exports$Blockly$Variables.createVariableButtonHandler)(d.getTargetWorkspace())});b.push(c);a=(0,$.module$exports$Blockly$Variables.flyoutCategoryBlocks)(a);return b=b.concat(a)};
+e(),e=0;e<d.length;e++)b[d[e]]=!0}return Object.keys(b)};
+$.module$exports$Blockly$Variables.flyoutCategory=function(a){
+	var b=[],c=document.createElement("button");
+	c.setAttribute("text","%{BKY_NEW_VARIABLE}");
+	c.setAttribute("callbackKey","CREATE_VARIABLE");
+	a.registerButtonCallback("CREATE_VARIABLE",function(d){
+		(0,$.module$exports$Blockly$Variables.createVariableButtonHandler)(d.getTargetWorkspace())
+	});
+	b.push(c);
+	a=(0,$.module$exports$Blockly$Variables.flyoutCategoryBlocks)(a);
+	return b=b.concat(a)
+};
 $.module$exports$Blockly$Variables.flyoutCategoryBlocks=function(a){
 	a=a.getVariablesOfType("");
 	var b=[];
@@ -1475,10 +1489,49 @@ module$exports$Blockly$FieldVariable.FieldVariable.prototype.doClassValidation_=
 module$exports$Blockly$FieldVariable.FieldVariable.prototype.doValueUpdate_=function(a){this.variable_=(0,$.module$exports$Blockly$Variables.getVariable)(this.sourceBlock_.workspace,a);$.module$exports$Blockly$FieldDropdown.FieldDropdown.prototype.doValueUpdate_.call(this,a)};module$exports$Blockly$FieldVariable.FieldVariable.prototype.typeIsAllowed_=function(a){var b=this.getVariableTypes_();if(!b)return!0;for(var c=0;c<b.length;c++)if(a===b[c])return!0;return!1};
 module$exports$Blockly$FieldVariable.FieldVariable.prototype.getVariableTypes_=function(){var a=this.variableTypes;if(null===a&&this.sourceBlock_&&this.sourceBlock_.workspace)return this.sourceBlock_.workspace.getVariableTypes();a=a||[""];if(0===a.length)throw a=this.getText(),Error("'variableTypes' of field variable "+a+" was an empty list");return a};
 module$exports$Blockly$FieldVariable.FieldVariable.prototype.setTypes_=function(a,b){b=b||"";if(null===a||void 0===a)a=null;else if(Array.isArray(a)){for(var c=!1,d=0;d<a.length;d++)a[d]===b&&(c=!0);if(!c)throw Error("Invalid default type '"+b+"' in the definition of a FieldVariable");}else throw Error("'variableTypes' was not an array in the definition of a FieldVariable");this.defaultType_=b;this.variableTypes=a};module$exports$Blockly$FieldVariable.FieldVariable.prototype.refreshVariableName=function(){this.forceRerender()};
-module$exports$Blockly$FieldVariable.FieldVariable.prototype.onItemSelected_=function(a,b){a=b.getValue();if(this.sourceBlock_&&this.sourceBlock_.workspace){if(a===module$exports$Blockly$internalConstants.RENAME_VARIABLE_ID){(0,$.module$exports$Blockly$Variables.renameVariable)(this.sourceBlock_.workspace,this.variable_);return}if(a===module$exports$Blockly$internalConstants.DELETE_VARIABLE_ID){this.sourceBlock_.workspace.deleteVariableById(this.variable_.getId());return}}this.setValue(a)};
+module$exports$Blockly$FieldVariable.FieldVariable.prototype.onItemSelected_=function(a,b){
+	a=b.getValue();
+	if(this.sourceBlock_&&this.sourceBlock_.workspace){
+		if(a===module$exports$Blockly$internalConstants.RENAME_VARIABLE_ID){
+			(0,$.module$exports$Blockly$Variables.renameVariable)(this.sourceBlock_.workspace,this.variable_);
+			return
+		}
+		if(a===module$exports$Blockly$internalConstants.DELETE_VARIABLE_ID){
+			this.sourceBlock_.workspace.deleteVariableById(this.variable_.getId());
+			return
+		}
+		if(a===module$exports$Blockly$internalConstants.ADD_VARIABLE_ID){
+			(0,$.module$exports$Blockly$Variables.createVariableButtonHandler)(this.sourceBlock_.workspace);
+			var v=this.sourceBlock_.workspace.getVariablesOfType("");
+			v.sort(Blockly.VariableModel.compareByName);
+			if(v.length>0)
+				this.setValue(v[v.length-1].id_);
+			return
+		}
+	}
+	this.setValue(a)
+};
 module$exports$Blockly$FieldVariable.FieldVariable.prototype.referencesVariables=function(){return!0};module$exports$Blockly$FieldVariable.FieldVariable.fromJson=function(a){return new this((0,module$exports$Blockly$utils$parsing.replaceMessageReferences)(a.variable),void 0,void 0,void 0,a)};
-module$exports$Blockly$FieldVariable.FieldVariable.dropdownCreate=function(){if(!this.variable_)throw Error("Tried to call dropdownCreate on a variable field with no variable selected.");var a=this.getText(),b=[];if(this.sourceBlock_&&this.sourceBlock_.workspace)for(var c=this.getVariableTypes_(),d=0;d<c.length;d++){var e=this.sourceBlock_.workspace.getVariablesOfType(c[d]);b=b.concat(e)}b.sort(module$exports$Blockly$VariableModel.VariableModel.compareByName);c=[];for(d=0;d<b.length;d++)c[d]=[b[d].name,
-b[d].getId()];c.push([$.module$exports$Blockly$Msg.Msg.RENAME_VARIABLE,module$exports$Blockly$internalConstants.RENAME_VARIABLE_ID]);$.module$exports$Blockly$Msg.Msg.DELETE_VARIABLE&&c.push([$.module$exports$Blockly$Msg.Msg.DELETE_VARIABLE.replace("%1",a),module$exports$Blockly$internalConstants.DELETE_VARIABLE_ID]);return c};(0,module$exports$Blockly$fieldRegistry.register)("field_variable",module$exports$Blockly$FieldVariable.FieldVariable);$.module$exports$Blockly$FieldTextInput={FieldTextInput:function(a,b,c){module$exports$Blockly$Field.Field.call(this,module$exports$Blockly$Field.Field.SKIP_SETUP);this.spellcheck_=!0;this.htmlInput_=null;this.isTextValid_=this.isBeingEdited_=!1;this.onKeyInputWrapper_=this.onKeyDownWrapper_=null;this.fullBlockClickTarget_=!1;this.workspace_=null;this.SERIALIZABLE=!0;this.CURSOR="text";a!==module$exports$Blockly$Field.Field.SKIP_SETUP&&(c&&this.configure_(c),this.setValue(a),b&&this.setValidator(b))}};
+module$exports$Blockly$FieldVariable.FieldVariable.dropdownCreate=function(){
+	if(!this.variable_)throw Error("Tried to call dropdownCreate on a variable field with no variable selected.");
+	var a=this.getText(),b=[];
+	if(this.sourceBlock_&&this.sourceBlock_.workspace)
+		for(var c=this.getVariableTypes_(),d=0;d<c.length;d++){
+			var e=this.sourceBlock_.workspace.getVariablesOfType(c[d]);
+			b=b.concat(e)
+		}
+	b.sort(module$exports$Blockly$VariableModel.VariableModel.compareByName);
+	c=[];
+	for(d=0;d<b.length;d++)
+		c[d]=[b[d].name,b[d].getId()];
+	c.push([$.module$exports$Blockly$Msg.Msg.RENAME_VARIABLE,module$exports$Blockly$internalConstants.RENAME_VARIABLE_ID]);
+	$.module$exports$Blockly$Msg.Msg.DELETE_VARIABLE&&c.push([$.module$exports$Blockly$Msg.Msg.DELETE_VARIABLE.replace("%1",a),
+	module$exports$Blockly$internalConstants.DELETE_VARIABLE_ID]);
+	
+	c.push([$.module$exports$Blockly$Msg.Msg.NEW_VARIABLE,module$exports$Blockly$internalConstants.ADD_VARIABLE_ID]);
+	return c
+};
+(0,module$exports$Blockly$fieldRegistry.register)("field_variable",module$exports$Blockly$FieldVariable.FieldVariable);$.module$exports$Blockly$FieldTextInput={FieldTextInput:function(a,b,c){module$exports$Blockly$Field.Field.call(this,module$exports$Blockly$Field.Field.SKIP_SETUP);this.spellcheck_=!0;this.htmlInput_=null;this.isTextValid_=this.isBeingEdited_=!1;this.onKeyInputWrapper_=this.onKeyDownWrapper_=null;this.fullBlockClickTarget_=!1;this.workspace_=null;this.SERIALIZABLE=!0;this.CURSOR="text";a!==module$exports$Blockly$Field.Field.SKIP_SETUP&&(c&&this.configure_(c),this.setValue(a),b&&this.setValidator(b))}};
 $.$jscomp.inherits($.module$exports$Blockly$FieldTextInput.FieldTextInput,module$exports$Blockly$Field.Field);$.module$exports$Blockly$FieldTextInput.FieldTextInput.prototype.configure_=function(a){module$exports$Blockly$Field.Field.prototype.configure_.call(this,a);"boolean"===typeof a.spellcheck&&(this.spellcheck_=a.spellcheck)};
 $.module$exports$Blockly$FieldTextInput.FieldTextInput.prototype.initView=function(){if(this.getConstants().FULL_BLOCK_FIELDS){for(var a=0,b=0,c=0,d;d=this.sourceBlock_.inputList[c];c++){for(var e=0;d.fieldRow[e];e++)a++;d.connection&&b++}this.fullBlockClickTarget_=1>=a&&this.sourceBlock_.outputConnection&&!b}else this.fullBlockClickTarget_=!1;this.fullBlockClickTarget_?this.clickTarget_=this.sourceBlock_.getSvgRoot():this.createBorderRect_();this.createTextElement_()};
 $.module$exports$Blockly$FieldTextInput.FieldTextInput.prototype.doClassValidation_=function(a){return null===a||void 0===a?null:String(a)};
@@ -2428,7 +2481,11 @@ $.Blockly.duplicate=module$contents$Blockly_duplicate;var module$contents$Blockl
 var module$contents$Blockly_hueToHex=function(a){(0,module$exports$Blockly$utils$deprecation.warn)("Blockly.hueToHex","December 2021","December 2022","Blockly.utils.colour.hueToHex");return(0,module$exports$Blockly$utils$colour.hueToHex)(a)};$.Blockly.hueToHex=module$contents$Blockly_hueToHex;
 var module$contents$Blockly_bindEvent_=function(a,b,c,d){(0,module$exports$Blockly$utils$deprecation.warn)("Blockly.bindEvent_","December 2021","December 2022","Blockly.browserEvents.bind");return(0,module$exports$Blockly$browserEvents.bind)(a,b,c,d)};$.Blockly.bindEvent_=module$contents$Blockly_bindEvent_;var module$contents$Blockly_unbindEvent_=function(a){(0,module$exports$Blockly$utils$deprecation.warn)("Blockly.unbindEvent_","December 2021","December 2022","Blockly.browserEvents.unbind");return(0,module$exports$Blockly$browserEvents.unbind)(a)};
 $.Blockly.unbindEvent_=module$contents$Blockly_unbindEvent_;var module$contents$Blockly_bindEventWithChecks_=function(a,b,c,d,e,f){(0,module$exports$Blockly$utils$deprecation.warn)("Blockly.bindEventWithChecks_","December 2021","December 2022","Blockly.browserEvents.conditionalBind");return(0,module$exports$Blockly$browserEvents.conditionalBind)(a,b,c,d,e,f)};$.Blockly.bindEventWithChecks_=module$contents$Blockly_bindEventWithChecks_;$.Blockly.COLLAPSE_CHARS=module$exports$Blockly$internalConstants.COLLAPSE_CHARS;
-$.Blockly.DRAG_STACK=module$exports$Blockly$internalConstants.DRAG_STACK;$.Blockly.OPPOSITE_TYPE=module$exports$Blockly$internalConstants.OPPOSITE_TYPE;$.Blockly.RENAME_VARIABLE_ID=module$exports$Blockly$internalConstants.RENAME_VARIABLE_ID;$.Blockly.DELETE_VARIABLE_ID=module$exports$Blockly$internalConstants.DELETE_VARIABLE_ID;$.Blockly.COLLAPSED_INPUT_NAME=module$exports$Blockly$constants.COLLAPSED_INPUT_NAME;$.Blockly.COLLAPSED_FIELD_NAME=module$exports$Blockly$constants.COLLAPSED_FIELD_NAME;
+$.Blockly.DRAG_STACK=module$exports$Blockly$internalConstants.DRAG_STACK;$.Blockly.OPPOSITE_TYPE=module$exports$Blockly$internalConstants.OPPOSITE_TYPE;$.Blockly.RENAME_VARIABLE_ID=module$exports$Blockly$internalConstants.RENAME_VARIABLE_ID;$.Blockly.DELETE_VARIABLE_ID=module$exports$Blockly$internalConstants.DELETE_VARIABLE_ID;
+
+$.Blockly.ADD_VARIABLE_ID=module$exports$Blockly$internalConstants.ADD_VARIABLE_ID;
+
+$.Blockly.COLLAPSED_INPUT_NAME=module$exports$Blockly$constants.COLLAPSED_INPUT_NAME;$.Blockly.COLLAPSED_FIELD_NAME=module$exports$Blockly$constants.COLLAPSED_FIELD_NAME;
 $.Blockly.VARIABLE_CATEGORY_NAME=$.module$exports$Blockly$Variables.CATEGORY_NAME;$.Blockly.VARIABLE_DYNAMIC_CATEGORY_NAME=module$exports$Blockly$VariablesDynamic.CATEGORY_NAME;$.Blockly.PROCEDURE_CATEGORY_NAME=$.module$exports$Blockly$Procedures.CATEGORY_NAME;$.Blockly.ASTNode=module$exports$Blockly$ASTNode.ASTNode;$.Blockly.BasicCursor=module$exports$Blockly$BasicCursor.BasicCursor;$.Blockly.Block=module$exports$Blockly$Block.Block;$.Blockly.BlocklyOptions=module$exports$Blockly$BlocklyOptions.BlocklyOptions;
 $.Blockly.BlockDragger=module$exports$Blockly$BlockDragger.BlockDragger;$.Blockly.BlockDragSurfaceSvg=module$exports$Blockly$BlockDragSurfaceSvg.BlockDragSurfaceSvg;$.Blockly.BlockSvg=module$exports$Blockly$BlockSvg.BlockSvg;$.Blockly.Blocks=module$exports$Blockly$blocks.Blocks;$.Blockly.Bubble=module$exports$Blockly$Bubble.Bubble;$.Blockly.BubbleDragger=module$exports$Blockly$BubbleDragger.BubbleDragger;$.Blockly.CollapsibleToolboxCategory=module$exports$Blockly$CollapsibleToolboxCategory.CollapsibleToolboxCategory;
 $.Blockly.Comment=module$exports$Blockly$Comment.Comment;$.Blockly.ComponentManager=module$exports$Blockly$ComponentManager.ComponentManager;$.Blockly.Connection=module$exports$Blockly$Connection.Connection;$.Blockly.ConnectionType=$.module$exports$Blockly$ConnectionType.ConnectionType;$.Blockly.ConnectionChecker=module$exports$Blockly$ConnectionChecker.ConnectionChecker;$.Blockly.ConnectionDB=module$exports$Blockly$ConnectionDB.ConnectionDB;$.Blockly.ContextMenu=$.module$exports$Blockly$ContextMenu;
