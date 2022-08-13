@@ -15822,7 +15822,24 @@ Blockly.Blocks.webbit_mooncar_ir_remote_send_pin = {
 Blockly.Blocks.webbit_mooncar_ir_remote_send={init:function(){
   this.appendDummyInput()
       .appendField(Blockly.Msg.FRANCEFU_IR_REMOTE_TYPE)
-      .appendField(new Blockly.FieldDropdown([["NEC","NEC"],["Sony","SONY"],["RC5","RC5"],["RC6","RC6"]]),"IR_TYPE");
+      .appendField(new Blockly.FieldDropdown([
+		  ["NEC","NEC"],
+		  ["NEC_8bits","NEC_8bits"], 
+		  ["NEC_16bits","NEC_16bits"], 
+		  ["Onkyo","Onkyo"], 
+		  ["Apple","Apple"], 
+		  ["Panasonic","Panasonic"], 
+		  ["Kaseikyo","Kaseikyo"], 
+		  ["Kaseikyo_Denon","Kaseikyo_Denon"], 
+		  ["Denon","Denon"], 
+		  ["Sharp","Sharp"], 
+		  ["Sony_5bits","Sony_5bits"], 
+		  ["Sony_8bits","Sony_8bits"], 
+		  ["Sony_13bits","Sony_13bits"], 
+		  ["RC5","RC5"], 
+		  ["RC5X","RC5X"], 
+		  ["RC6","RC6"]
+	  ]),"IR_TYPE");
   this.appendDummyInput()
       .appendField(Blockly.Msg.FRANCEFU_IR_REMOTE_SEND);
   this.appendValueInput("IR_SEND")

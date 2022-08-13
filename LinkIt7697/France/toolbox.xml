@@ -7382,7 +7382,7 @@
 			<block type="webbit_mooncar_ir_remote_send">
 				<value name="IR_SEND">
 				  <block type="text">
-					<field name="TEXT"></field>
+					<field name="TEXT">0xFF00FF00</field>
 				  </block>
 				</value> 
 			</block>	

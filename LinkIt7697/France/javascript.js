@@ -4590,7 +4590,7 @@ Blockly.Arduino['fu_ez_ir_receive'] = function(block) {
   var statements_execute = Blockly.Arduino.statementToCode(block, 'execute');
   
   Blockly.Arduino.definitions_['ir_definition'] = '#include "PinDefinitionsAndMore.h"\n#include <IRremote.h>\n';
-  Blockly.Arduino.setups_['ir_setup'] = 'IrReceiver.begin('+pin+', DISABLE_LED_FEEDBACK);';
+  Blockly.Arduino.setups_['irreceiver_setup'] = 'IrReceiver.begin('+pin+', DISABLE_LED_FEEDBACK);';
 									   
   var code = 'if (IrReceiver.decode()) {\n'+
 			 '  String '+variable_value+' = String(IrReceiver.decodedIRData.decodedRawData, HEX);\n'+
@@ -4598,7 +4598,7 @@ Blockly.Arduino['fu_ez_ir_receive'] = function(block) {
 			 statements_execute +
 			 '  IrReceiver.resume();\n'+
 			 '}\n'+
-			 'delay(300);';
+			 'delay(300);\n';
   return code;
 };
 
@@ -11383,7 +11383,7 @@ Blockly.Arduino['webbit_mooncar_ws2812_rgb_one_n'] = function(block) {
 Blockly.Arduino.webbit_mooncar_ir_remote_read_pin=function(){
   var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
   Blockly.Arduino.definitions_['ir_definition'] = '#include "PinDefinitionsAndMore.h"\n#include <IRremote.h>\n';
-  Blockly.Arduino.setups_['ir_setup'] = 'IrReceiver.begin('+pin+', DISABLE_LED_FEEDBACK);';
+  Blockly.Arduino.setups_['irreceiver_setup'] = 'IrReceiver.begin('+pin+', DISABLE_LED_FEEDBACK);';
   var code = '';
   return code;
 };
@@ -11402,24 +11402,59 @@ Blockly.Arduino.webbit_mooncar_ir_remote_read_type=function(){
 };
 Blockly.Arduino.webbit_mooncar_ir_remote_send_pin=function(){
   var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.definitions_.define_irremote="#include <IRremote.h>";
-  Blockly.Arduino.definitions_.define_irremote_init1="IRsend irsend("+pin+");";
-  Blockly.Arduino.definitions_.define_ir_type="int x2i(char *s)\n{\n  int x = 0;\n  for(;;) {\n    char c = *s;\n    if (c >= '0' && c <= '9') {\n      x *= 16;\n      x += c - '0';\n    }    else if (c >= 'a' && c <= 'f') {\n      x *= 16;\n      x += (c - 'a') + 10;\n    }\n    else break;\n    s++;\n  }\n  return x;\n}";
+  Blockly.Arduino.definitions_['ir_definition'] = '#include "PinDefinitionsAndMore.h"\n#include <IRremote.h>\n';
+  Blockly.Arduino.definitions_['irsender_definition'] = 'uint8_t sCommand = 0x34;\nuint8_t sRepeats = 0;\n';
+  Blockly.Arduino.setups_['irsender_setup'] = 'IrSender.begin('+pin+', DISABLE_LED_FEEDBACK);';
+
   var code = "";
   return code;
 };
+
 Blockly.Arduino.webbit_mooncar_ir_remote_send=function(){
-  var a=this.getFieldValue("IR_TYPE"),
-  b=Blockly.Arduino.valueToCode(this,"IR_SEND",Blockly.Arduino.ORDER_ATOMIC)||"0";
-  if (a == "NEC") {
-    return"irsend.sendNEC(x2i("+b+"), 32);\n"
-  } else if (a == "SONY"){
-    return"irsend.sendSony(x2i("+b+"), 12);\n"
-  } else if (a == "RC5") {
-    return"irsend.sendRC5(x2i("+b+"), 12);\n"
-  } else {
-    return"irsend.sendRC6(x2i("+b+"), 20);\n"
-  }
+  var type=this.getFieldValue("IR_TYPE");
+  var sAddress=Blockly.Arduino.valueToCode(this,"IR_SEND",Blockly.Arduino.ORDER_ATOMIC)||"0";
+  
+  if ((sAddress.indexOf('"')==0)&&(sAddress.lastIndexOf('"')==sAddress.length-1))
+    sAddress = sAddress.substring(1,sAddress.length-1);	
+  if ((sAddress.indexOf("'")==0)&&(sAddress.lastIndexOf("'")==sAddress.length-1))
+    sAddress = sAddress.substring(1,sAddress.length-1);	
+  if ((sAddress.indexOf("(")==0)&&(sAddress.lastIndexOf(")")==sAddress.length-1))
+    sAddress = sAddress.substring(1,sAddress.length-1);  
+
+  if (type == "NEC") 
+    return "IrSender.sendNECMSB("+sAddress+", 32, false);\n";
+  else if (type == "NEC_8bits") 
+    return "IrSender.sendNEC("+sAddress+" & 0xFF, sCommand, sRepeats);\n";
+  else if (type == "NEC_16bits") 
+    return "IrSender.sendNEC("+sAddress+", sCommand, sRepeats);\n";
+  else if (type == "Onkyo") 
+    return "IrSender.sendOnkyo("+sAddress+", sCommand << 8 | sCommand, sRepeats);\n";
+  else if (type == "Apple") 
+    return "IrSender.sendApple("+sAddress+" & 0xFF, sCommand, sRepeats);\n";
+  else if (type == "Panasonic") 
+    return "IrSender.sendPanasonic("+sAddress+" & 0xFFF, sCommand, sRepeats);\n";
+  else if (type == "Kaseikyo") 
+    return "IrSender.sendKaseikyo("+sAddress+" & 0xFFF, sCommand, sRepeats, 0x4711);\n";
+  else if (type == "Kaseikyo_Denon") 
+    return "IrSender.sendKaseikyo_Denon("+sAddress+" & 0xFFF, sCommand, sRepeats);\n";
+  else if (type == "Denon") 
+    return "IrSender.sendDenon("+sAddress+" & 0x1F, sCommand, sRepeats);\n";
+  else if (type == "Sharp") 
+    return "IrSender.sendSharp("+sAddress+" & 0x1F, sCommand, sRepeats);\n";
+  else if (type == "Sony_5bits") 
+    return "IrSender.sendSony("+sAddress+" & 0x1F, sCommand & 0x7F, sRepeats);\n";
+  else if (type == "Sony_8bits") 
+    return "IrSender.sendSony("+sAddress+" & 0xFF, sCommand, sRepeats, SIRCS_15_PROTOCOL);\n";
+  else if (type == "Sony_13bits") 
+    return "IrSender.sendSony("+sAddress+" & 0x1FFF, sCommand & 0x7F, sRepeats, SIRCS_20_PROTOCOL);\n";
+  else if (type == "RC5") 
+    return "IrSender.sendRC5("+sAddress+" & 0x1F, sCommand & 0x3F, sRepeats, true);\n";
+  else if (type == "RC5X") 
+    return "IrSender.sendRC5("+sAddress+" & 0x1F, (sCommand & 0x3F) + 0x40, sRepeats, true);\n";
+  else if (type == "RC6") 
+    return "IrSender.sendRC6("+sAddress+", sCommand, sRepeats, true);\n";
+  else
+	return "";
 };
 
 Blockly.Arduino['servermodule_parameter_set_address3_0'] = function (block) {
