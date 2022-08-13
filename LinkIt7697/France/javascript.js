@@ -4589,37 +4589,14 @@ Blockly.Arduino['fu_ez_ir_receive'] = function(block) {
   var variable_type = Blockly.Arduino.nameDB_.getName(block.getFieldValue('type'), Blockly.VARIABLE_CATEGORY_NAME);
   var statements_execute = Blockly.Arduino.statementToCode(block, 'execute');
   
-  Blockly.Arduino.definitions_['ir_definition'] = '#include <IRremote.h>\nIRrecv irrecv('+pin+');\ndecode_results results;';
-  Blockly.Arduino.setups_['ir_setup'] = 'irrecv.enableIRIn();';
-  Blockly.Arduino.definitions_['ir_getIrType'] = 'String getIrType(int type) {\n' +
-										   '  if (type==1)\n' +
-										   '   return "NEC";\n' +
-										   '  else if (type==2)\n' +
-										   '   return "SONY";\n' +
-										   '  else if (type==3)\n' +
-										   '   return "RC5";\n' +
-										   '  else if (type==4)\n' +
-										   '   return "RC6";\n' +
-										   '  else if (type==5)\n' +
-										   '   return "DISH";\n' +
-										   '  else if (type==6)\n' +
-										   '   return "SHARP";\n' +
-										   '  else if (type==7)\n' +
-										   '   return "PANASONIC";\n' +
-										   '  else if (type==8)\n' +
-										   '   return "JVC";\n' +
-										   '  else if (type==9)\n' +
-										   '   return "SANYO";\n' +
-										   '  else if (type==10)\n' +
-										   '   return "MITSUBISHI";\n' +
-										   '  else\n' +
-										   '   return "UNKNOWN";\n' +										   
-										   '}';										   
-  var code = 'if (irrecv.decode(&results)) {\n'+
-			 '  String '+variable_value+' = String(results.value, HEX);\n'+
-			 '  String '+variable_type+' = getIrType(results.decode_type);\n'+
+  Blockly.Arduino.definitions_['ir_definition'] = '#include "PinDefinitionsAndMore.h"\n#include <IRremote.h>\n';
+  Blockly.Arduino.setups_['ir_setup'] = 'IrReceiver.begin('+pin+');';
+									   
+  var code = 'if (IrReceiver.decode()) {\n'+
+			 '  String '+variable_value+' = String(IrReceiver.decodedIRData.decodedRawData, HEX);\n'+
+			 '  String '+variable_type+' = getProtocolString(IrReceiver.decodedIRData.protocol);\n'+
 			 statements_execute +
-			 '  irrecv.resume();\n'+
+			 '  IrReceiver.resume();\n'+
 			 '}\n'+
 			 'delay(300);';
   return code;
@@ -11405,25 +11382,22 @@ Blockly.Arduino['webbit_mooncar_ws2812_rgb_one_n'] = function(block) {
 
 Blockly.Arduino.webbit_mooncar_ir_remote_read_pin=function(){
   var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.definitions_.define_irremote="#include <IRremote.h>";
-  Blockly.Arduino.definitions_.define_irremote_init="IRrecv irrecv("+pin+");";
-  Blockly.Arduino.definitions_.define_irremote_decode="decode_results results;";
-  Blockly.Arduino.setups_.define_irremote_init = "irrecv.enableIRIn();";
+  Blockly.Arduino.definitions_['ir_definition'] = '#include "PinDefinitionsAndMore.h"\n#include <IRremote.h>\n';
+  Blockly.Arduino.setups_['ir_setup'] = 'IrReceiver.begin('+pin+');';
   var code = '';
   return code;
 };
 Blockly.Arduino.webbit_mooncar_ir_remote_read=function(){
   var statement = Blockly.Arduino.statementToCode(this,"IR_READ");
-  var code = "if (irrecv.decode(&results)) {\n  "+ statement +"\n  irrecv.resume();\n}\n";
+  var code = "if (IrReceiver.decode()) {\n  "+ statement +"\n  IrReceiver.resume();\n}\n";
   return code;
 };
 Blockly.Arduino.webbit_mooncar_ir_remote_read_value=function(){
-  var code = "String(results.value, HEX)";
+  var code = "String(IrReceiver.decodedIRData.decodedRawData, HEX)";
   return [code,Blockly.Arduino.ORDER_ATOMIC];
 };
 Blockly.Arduino.webbit_mooncar_ir_remote_read_type=function(){
-  Blockly.Arduino.definitions_.define_ir_type="String ir_type(int tip)\n{\n  if (tip == 1) {\n    return\"RC5\";\n  } else if (tip == 2){\n    return\"RC6\";\n  } else if (tip == 3){\n    return\"NEC\";\n  } else {\n    return\"Sony\";\n  }\n}\n";
-  var code = "ir_type(results.decode_type)";
+  var code = "getProtocolString(IrReceiver.decodedIRData.protocol)";
   return [code,Blockly.Arduino.ORDER_ATOMIC];
 };
 Blockly.Arduino.webbit_mooncar_ir_remote_send_pin=function(){
