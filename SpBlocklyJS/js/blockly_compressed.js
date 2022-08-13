@@ -1980,26 +1980,6 @@ module$exports$Blockly$ContextMenuItems.registerSearchNull=function(){
 		}
 	)
 };
-module$exports$Blockly$ContextMenuItems.registerDelete=function(){
-	module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register(
-		{
-			displayText:function(a){var b=a.block;a=b.getDescendants(!1).length;(b=b.getNextBlock())&&(a-=b.getDescendants(!1).length);return 1==a?$.module$exports$Blockly$Msg.Msg.DELETE_BLOCK:$.module$exports$Blockly$Msg.Msg.DELETE_X_BLOCKS.replace("%1",String(a))}
-			,preconditionFn:function(a){return!a.block.isInFlyout&&a.block.isDeletable()?"enabled":"hidden"}
-			,callback:function(a){Blockly.Events.setGroup(!0);a.block&&a.block.dispose();Blockly.Events.setGroup(!1)}
-			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.BLOCK,id:"blockDelete",weight:8
-		}
-	)
-};
-module$exports$Blockly$ContextMenuItems.registerHelp=function(){
-	module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register(
-		{
-			displayText:function(){return $.module$exports$Blockly$Msg.Msg.HELP}
-			,preconditionFn:function(a){a=a.block;return("function"==typeof a.helpUrl?a.helpUrl():a.helpUrl)?"enabled":"hidden"}
-			,callback:function(a){a.block.showHelp()}
-			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.BLOCK,id:"blockHelp",weight:9
-		}
-	)
-};
 module$exports$Blockly$ContextMenuItems.registerHideToolbox=function(){
 	module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.registry.register(
 		{
