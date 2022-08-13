@@ -4590,7 +4590,7 @@ Blockly.Arduino['fu_ez_ir_receive'] = function(block) {
   var statements_execute = Blockly.Arduino.statementToCode(block, 'execute');
   
   Blockly.Arduino.definitions_['ir_definition'] = '#include "PinDefinitionsAndMore.h"\n#include <IRremote.h>\n';
-  Blockly.Arduino.setups_['ir_setup'] = 'IrReceiver.begin('+pin+');';
+  Blockly.Arduino.setups_['ir_setup'] = 'IrReceiver.begin('+pin+', DISABLE_LED_FEEDBACK);';
 									   
   var code = 'if (IrReceiver.decode()) {\n'+
 			 '  String '+variable_value+' = String(IrReceiver.decodedIRData.decodedRawData, HEX);\n'+
@@ -11383,7 +11383,7 @@ Blockly.Arduino['webbit_mooncar_ws2812_rgb_one_n'] = function(block) {
 Blockly.Arduino.webbit_mooncar_ir_remote_read_pin=function(){
   var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
   Blockly.Arduino.definitions_['ir_definition'] = '#include "PinDefinitionsAndMore.h"\n#include <IRremote.h>\n';
-  Blockly.Arduino.setups_['ir_setup'] = 'IrReceiver.begin('+pin+');';
+  Blockly.Arduino.setups_['ir_setup'] = 'IrReceiver.begin('+pin+', DISABLE_LED_FEEDBACK);';
   var code = '';
   return code;
 };
