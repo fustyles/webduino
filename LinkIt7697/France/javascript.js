@@ -11403,7 +11403,6 @@ Blockly.Arduino.webbit_mooncar_ir_remote_read_type=function(){
 Blockly.Arduino.webbit_mooncar_ir_remote_send_pin=function(){
   var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
   Blockly.Arduino.definitions_['ir_definition'] = '#include "PinDefinitionsAndMore.h"\n#include <IRremote.h>\n';
-  Blockly.Arduino.definitions_['irsender_definition'] = 'uint8_t sCommand = 0x34;\nuint8_t sRepeats = 0;\n';
   Blockly.Arduino.setups_['irsender_setup'] = 'IrSender.begin('+pin+', DISABLE_LED_FEEDBACK);';
 
   var code = "";
@@ -11411,6 +11410,15 @@ Blockly.Arduino.webbit_mooncar_ir_remote_send_pin=function(){
 };
 
 Blockly.Arduino.webbit_mooncar_ir_remote_send=function(){
+  Blockly.Arduino.definitions_['irsender_constant'] = 'uint8_t sCommand = 0x34;\nuint8_t sRepeats = 0;\n';
+  Blockly.Arduino.definitions_['irsender_reversebits'] = 'uint32_t reverseBits(uint32_t val) {\n'+
+														'	uint32_t ret = 0;\n'+
+														'	for (uint8_t i = 0; i < 32; i++) {\n'+
+														'		ret = (ret << 1) | ((val >> i) & 1);\n'+
+														'	}\n'+
+														'	return ret;\n'+
+														'}';
+	
   var type=this.getFieldValue("IR_TYPE");
   var sAddress=Blockly.Arduino.valueToCode(this,"IR_SEND",Blockly.Arduino.ORDER_ATOMIC)||"0";
   
@@ -11422,37 +11430,37 @@ Blockly.Arduino.webbit_mooncar_ir_remote_send=function(){
     sAddress = sAddress.substring(1,sAddress.length-1);  
 
   if (type == "NEC") 
-    return "IrSender.sendNECMSB("+sAddress+", 32, false);\n";
+    return "IrSender.sendNECMSB(reverseBits("+sAddress+"), 32, false);\n";
   else if (type == "NEC_8bits") 
-    return "IrSender.sendNEC("+sAddress+" & 0xFF, sCommand, sRepeats);\n";
+    return "IrSender.sendNEC(reverseBits("+sAddress+") & 0xFF, sCommand, sRepeats);\n";
   else if (type == "NEC_16bits") 
-    return "IrSender.sendNEC("+sAddress+", sCommand, sRepeats);\n";
+    return "IrSender.sendNEC(reverseBits("+sAddress+"), sCommand, sRepeats);\n";
   else if (type == "Onkyo") 
-    return "IrSender.sendOnkyo("+sAddress+", sCommand << 8 | sCommand, sRepeats);\n";
+    return "IrSender.sendOnkyo(reverseBits("+sAddress+"), sCommand << 8 | sCommand, sRepeats);\n";
   else if (type == "Apple") 
-    return "IrSender.sendApple("+sAddress+" & 0xFF, sCommand, sRepeats);\n";
+    return "IrSender.sendApple(reverseBits("+sAddress+") & 0xFF, sCommand, sRepeats);\n";
   else if (type == "Panasonic") 
-    return "IrSender.sendPanasonic("+sAddress+" & 0xFFF, sCommand, sRepeats);\n";
+    return "IrSender.sendPanasonic(reverseBits("+sAddress+") & 0xFFF, sCommand, sRepeats);\n";
   else if (type == "Kaseikyo") 
-    return "IrSender.sendKaseikyo("+sAddress+" & 0xFFF, sCommand, sRepeats, 0x4711);\n";
+    return "IrSender.sendKaseikyo(reverseBits("+sAddress+") & 0xFFF, sCommand, sRepeats, 0x4711);\n";
   else if (type == "Kaseikyo_Denon") 
-    return "IrSender.sendKaseikyo_Denon("+sAddress+" & 0xFFF, sCommand, sRepeats);\n";
+    return "IrSender.sendKaseikyo_Denon(reverseBits("+sAddress+") & 0xFFF, sCommand, sRepeats);\n";
   else if (type == "Denon") 
-    return "IrSender.sendDenon("+sAddress+" & 0x1F, sCommand, sRepeats);\n";
+    return "IrSender.sendDenon(reverseBits("+sAddress+") & 0x1F, sCommand, sRepeats);\n";
   else if (type == "Sharp") 
-    return "IrSender.sendSharp("+sAddress+" & 0x1F, sCommand, sRepeats);\n";
+    return "IrSender.sendSharp(reverseBits("+sAddress+") & 0x1F, sCommand, sRepeats);\n";
   else if (type == "Sony_5bits") 
-    return "IrSender.sendSony("+sAddress+" & 0x1F, sCommand & 0x7F, sRepeats);\n";
+    return "IrSender.sendSony(reverseBits("+sAddress+") & 0x1F, sCommand & 0x7F, sRepeats);\n";
   else if (type == "Sony_8bits") 
-    return "IrSender.sendSony("+sAddress+" & 0xFF, sCommand, sRepeats, SIRCS_15_PROTOCOL);\n";
+    return "IrSender.sendSony(reverseBits("+sAddress+") & 0xFF, sCommand, sRepeats, SIRCS_15_PROTOCOL);\n";
   else if (type == "Sony_13bits") 
-    return "IrSender.sendSony("+sAddress+" & 0x1FFF, sCommand & 0x7F, sRepeats, SIRCS_20_PROTOCOL);\n";
+    return "IrSender.sendSony(reverseBits("+sAddress+") & 0x1FFF, sCommand & 0x7F, sRepeats, SIRCS_20_PROTOCOL);\n";
   else if (type == "RC5") 
-    return "IrSender.sendRC5("+sAddress+" & 0x1F, sCommand & 0x3F, sRepeats, true);\n";
+    return "IrSender.sendRC5(reverseBits("+sAddress+") & 0x1F, sCommand & 0x3F, sRepeats, true);\n";
   else if (type == "RC5X") 
-    return "IrSender.sendRC5("+sAddress+" & 0x1F, (sCommand & 0x3F) + 0x40, sRepeats, true);\n";
+    return "IrSender.sendRC5(reverseBits("+sAddress+") & 0x1F, (sCommand & 0x3F) + 0x40, sRepeats, true);\n";
   else if (type == "RC6") 
-    return "IrSender.sendRC6("+sAddress+", sCommand, sRepeats, true);\n";
+    return "IrSender.sendRC6(reverseBits("+sAddress+"), sCommand, sRepeats, true);\n";
   else
 	return "";
 };
