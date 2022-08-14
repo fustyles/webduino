@@ -1192,10 +1192,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 			
 			if (mqttState ==true&&mqttLock==false&&mqtt_client) {
-				mqttState = false;
 				var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
 				var xmlText = Blockly.Xml.domToText(xml);
 				mqtt_client.publish(mqttTopic, collaborationID+"|||"+xmlText);
+				mqttState = false;
 			}		
 			mqttLock = false;			
 		}, 1000);
