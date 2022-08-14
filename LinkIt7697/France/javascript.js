@@ -11401,9 +11401,12 @@ Blockly.Arduino.webbit_mooncar_ir_remote_read_type=function(){
   return [code,Blockly.Arduino.ORDER_ATOMIC];
 };
 Blockly.Arduino.webbit_mooncar_ir_remote_send_pin=function(){
-  var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
+  var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC)||"";
   Blockly.Arduino.definitions_['ir_definition'] = '#include "PinDefinitionsAndMore.h"\n#include <IRremote.h>\n';
-  Blockly.Arduino.setups_['irsender_setup'] = 'IrSender.begin('+pin+', DISABLE_LED_FEEDBACK);';
+  if (pin)
+	Blockly.Arduino.setups_['irsender_setup'] = 'IrSender.begin('+pin+', DISABLE_LED_FEEDBACK);';
+  else
+	Blockly.Arduino.setups_['irsender_setup'] = 'IrSender.begin();';
 
   var code = "";
   return code;

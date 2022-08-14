@@ -7373,16 +7373,11 @@
 			<block type="webbit_mooncar_ir_remote_read_value"></block>
 			<block type="webbit_mooncar_ir_remote_read_type"></block>
 			<block type="webbit_mooncar_ir_remote_send_pin">
-				<value name="pin">
-					<block type="math_number">
-						<field name="NUM">33</field>
-					</block>
-				</value>
 			</block>
 			<block type="webbit_mooncar_ir_remote_send">
 				<value name="IR_SEND">
 				  <block type="text">
-					<field name="TEXT">0xFF00FF00</field>
+					<field name="TEXT">0xff00ff00</field>
 				  </block>
 				</value> 
 			</block>	
@@ -8664,16 +8659,11 @@
 	</category>
 	<category id="france12" name="irsend">
 		<block type="webbit_mooncar_ir_remote_send_pin">
-			<value name="pin">
-				<block type="math_number">
-					<field name="NUM">33</field>
-				</block>
-			</value>
 		</block>
 		<block type="webbit_mooncar_ir_remote_send">
 			<value name="IR_SEND">
 			  <block type="text">
-				<field name="TEXT"></field>
+				<field name="TEXT">0xff00ff00</field>
 			  </block>
 			</value> 
 		</block>
