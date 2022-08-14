@@ -983,8 +983,22 @@ var module$contents$Blockly$FieldDropdown_validateOptions=function(a){if(!Array.
 c+"]: Each FieldDropdown option must have a string label or image description. Found"+d[0]+" in: ",d)):(b=!0,console.error("Invalid option["+c+"]: Each FieldDropdown option must be an array. Found: ",d))}if(b)throw TypeError("Found invalid FieldDropdown options.");};(0,module$exports$Blockly$fieldRegistry.register)("field_dropdown",$.module$exports$Blockly$FieldDropdown.FieldDropdown);var module$contents$Blockly$Extensions_allExtensions;$.module$exports$Blockly$Extensions={};module$contents$Blockly$Extensions_allExtensions=Object.create(null);$.module$exports$Blockly$Extensions.TEST_ONLY={allExtensions:module$contents$Blockly$Extensions_allExtensions};
 $.module$exports$Blockly$Extensions.register=function(a,b){if("string"!==typeof a||""===a.trim())throw Error('Error: Invalid extension name "'+a+'"');if(module$contents$Blockly$Extensions_allExtensions[a])throw Error('Error: Extension "'+a+'" is already registered.');if("function"!==typeof b)throw Error('Error: Extension "'+a+'" must be a function');module$contents$Blockly$Extensions_allExtensions[a]=b};
 $.module$exports$Blockly$Extensions.registerMixin=function(a,b){if(!b||"object"!==typeof b)throw Error('Error: Mixin "'+a+'" must be a object');(0,$.module$exports$Blockly$Extensions.register)(a,function(){this.mixin(b)})};
-$.module$exports$Blockly$Extensions.registerMutator=function(a,b,c,d){var e='Error when registering mutator "'+a+'": ';module$contents$Blockly$Extensions_checkHasMutatorProperties(e,b);var f=module$contents$Blockly$Extensions_checkMutatorDialog(b,e);if(c&&"function"!==typeof c)throw Error(e+'Extension "'+a+'" is not a function');(0,$.module$exports$Blockly$Extensions.register)(a,function(){if(f){var g=$.module$exports$Blockly$Mutator.Mutator;if(!g)throw Error(e+"Missing require for Blockly.Mutator");
-this.setMutator(new g(d||[]))}this.mixin(b);c&&c.apply(this)})};$.module$exports$Blockly$Extensions.unregister=function(a){(0,$.module$exports$Blockly$Extensions.isRegistered)(a)?delete module$contents$Blockly$Extensions_allExtensions[a]:console.warn('No extension mapping for name "'+a+'" found to unregister')};$.module$exports$Blockly$Extensions.isRegistered=function(a){return!!module$contents$Blockly$Extensions_allExtensions[a]};
+$.module$exports$Blockly$Extensions.registerMutator=function(a,b,c,d){
+	var e='Error when registering mutator "'+a+'": ';
+	module$contents$Blockly$Extensions_checkHasMutatorProperties(e,b);
+	var f=module$contents$Blockly$Extensions_checkMutatorDialog(b,e);
+	if(c&&"function"!==typeof c)throw Error(e+'Extension "'+a+'" is not a function');
+	(0,$.module$exports$Blockly$Extensions.register)(a,function(){
+		if(f){
+			var g=$.module$exports$Blockly$Mutator.Mutator;
+			if(!g)throw Error(e+"Missing require for Blockly.Mutator");
+			this.setMutator(new g(d||[]))
+		}
+		this.mixin(b);
+		c&&c.apply(this)
+	})
+}
+;$.module$exports$Blockly$Extensions.unregister=function(a){(0,$.module$exports$Blockly$Extensions.isRegistered)(a)?delete module$contents$Blockly$Extensions_allExtensions[a]:console.warn('No extension mapping for name "'+a+'" found to unregister')};$.module$exports$Blockly$Extensions.isRegistered=function(a){return!!module$contents$Blockly$Extensions_allExtensions[a]};
 $.module$exports$Blockly$Extensions.apply=function(a,b,c){var d=module$contents$Blockly$Extensions_allExtensions[a];if("function"!==typeof d)throw Error('Error: Extension "'+a+'" not found.');var e;c?module$contents$Blockly$Extensions_checkNoMutatorProperties(a,b):e=module$contents$Blockly$Extensions_getMutatorProperties(b);d.apply(b);if(c)module$contents$Blockly$Extensions_checkHasMutatorProperties('Error after applying mutator "'+a+'": ',b);else if(!module$contents$Blockly$Extensions_mutatorPropertiesMatch(e,
 b))throw Error('Error when applying extension "'+a+'": mutation properties changed when applying a non-mutator extension.');};
 var module$contents$Blockly$Extensions_checkNoMutatorProperties=function(a,b){if(module$contents$Blockly$Extensions_getMutatorProperties(b).length)throw Error('Error: tried to apply mutation "'+a+'" to a block that already has mutator functions.  Block id: '+b.id);},module$contents$Blockly$Extensions_checkXmlHooks=function(a,b){return module$contents$Blockly$Extensions_checkHasFunctionPair(a.mutationToDom,a.domToMutation,b+" mutationToDom/domToMutation")},module$contents$Blockly$Extensions_checkJsonHooks=
@@ -2494,11 +2508,15 @@ Blockly.myMutator.prototype.workspaceWidth_=0;
 Blockly.myMutator.prototype.workspaceHeight_=0;
 Blockly.myMutator.prototype.setBlock=function(a){this.block_=a};
 Blockly.myMutator.prototype.getWorkspace=function(){return this.workspace_};
+
 Blockly.myMutator.prototype.drawIcon_=function(a){
+/*
 Blockly.utils.dom.createSvgElement(Blockly.utils.Svg.RECT,{"class":"blocklyIconShape",rx:"4",ry:"4",height:"16",width:"16"},a);
-Blockly.utils.dom.createSvgElement(Blockly.utils.Svg.PATH,{"class":"blocklyIconSymbol",d:"m4.203,7.296 0,1.368 -0.92,0.677 -0.11,0.41 0.9,1.559 0.41,0.11 1.043,-0.457 1.187,0.683 0.127,1.134 0.3,0.3 1.8,0 0.3,-0.299 0.127,-1.138 1.185,-0.682 1.046,0.458 0.409,-0.11 0.9,-1.559 -0.11,-0.41 -0.92,-0.677 0,-1.366 0.92,-0.677 0.11,-0.41 -0.9,-1.559 -0.409,-0.109 -1.046,0.458 -1.185,-0.682 -0.127,-1.138 -0.3,-0.299 -1.8,0 -0.3,0.3 -0.126,1.135 -1.187,0.682 -1.043,-0.457 -0.41,0.11 -0.899,1.559 0.108,0.409z"},
-a);
-Blockly.utils.dom.createSvgElement(Blockly.utils.Svg.CIRCLE,{"class":"blocklyIconShape",r:"2.7",cx:"8",cy:"8"},a)
+Blockly.utils.dom.createSvgElement(Blockly.utils.Svg.PATH,{"class":"blocklyIconSymbol",d:"m4.203,7.296 0,1.368 -0.92,0.677 -0.11,0.41 0.9,1.559 0.41,0.11 1.043,-0.457 1.187,0.683 0.127,1.134 0.3,0.3 1.8,0 0.3,-0.299 0.127,-1.138 1.185,-0.682 1.046,0.458 0.409,-0.11 0.9,-1.559 -0.11,-0.41 -0.92,-0.677 0,-1.366 0.92,-0.677 0.11,-0.41 -0.9,-1.559 -0.409,-0.109 -1.046,0.458 -1.185,-0.682 -0.127,-1.138 -0.3,-0.299 -1.8,0 -0.3,0.3 -0.126,1.135 -1.187,0.682 -1.043,-0.457 -0.41,0.11 -0.899,1.559 0.108,0.409z"},a);
+Blockly.utils.dom.createSvgElement(Blockly.utils.Svg.CIRCLE,{"class":"blocklyIconShape",r:"2.7",cx:"8",cy:"8"},a);
+*/
+
+a.innerHTML = '<image height="20px" width="20px" alt="[object Object]" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAADyUlEQVRIieXVS0xcVRzH8e85l3nAUBCsaZHUqrDQAsWZdGekj8RXVzR10qUwJERXLtTEREPARle6Nl3AMEljGmnorlZjBNpoWzVAQoFKIRFqB9raymNGZu7ce/8uhiG8hOFRY+JvdW/yP+dz/+feew7836KyKQoGg7k+n++w1vopx3GKtNZ/ish4LBa73NHRMb/jcENDQ7lt281KqRNA3holfwGdjuM0RyKRsR2BQ6HQ+yLyCeDClYvaW4EqfBI8+ZCMITNRZOoGpBIAJvBhOBz+bFtwfX39GaCRHA/6wHEoq0EZ7lV1YpvIaDcyfAmsJMCZcDj8VjawsVanwAfkFaFr3kGVVqN0ukwr8OQoHAEBlDZQu8vQJZXI5ABYiUOBQCDW19d3dVMdh0KhZ0VkmByPWx99L720wO5cRcUTBnvyFEql0btxYfC+zR/zkh48cwe763OwkqbWuqK1tXV0PVgvvXEc52PArQ8cX0TLizTH9ueQsISe2xYXx1L0TFgkLOHY/hzKixamKCxFP/8agFtEmjbqeBEOBoO5SqlaXLlQVrNYUJqvuBa1uR61uRsX5sx0t9ejNteiNvsKljx7+RFweRGRk42NjWv9Bavh/Pz8GsCnSiqXfUg9t20mZp01B0/MOnSNW4v3ynCj91YC5Jmm+WJWMPA0AAtLvNVIQUl6Yq2fyRYuBlBu37Zg5d2VfgCRx7OClVIPAEjGtgWTnMtc3c8KFpFxAJmJbsvNjM/MtyEci8UuA3GZuoHY5tZU20SmhgBiwJWs4IVT5gKpBDLavSVXbn0PqXmAzvb29kRWMIBhGE1AUoYvwcydzaHTv+Pc/BbAXNiI1s2yvbq3t3fa7/cncOxXZHIAvec58BZkhcoPX4AZR0TaI5FIZFMwQH9//49+v78EK3FIJn5CKQVF+xYPimWxTWTkO5xfzmZQWylV5ff7B/r7+39dD17vPH5XRD4F3Li86R2psAQ8uyA5t3AeD2XeqQmEgTcBbyJlpaYTqdNfnz93OuuOM+nr67saCAS+VEoVY1vlMht1y70RZHIAuTcCs5PgWHHgnGEYb7S1tZ0NBAI/z5vWqYmHc+75ZOrowepqbg0p9myq46Wpq6vzAi+R3laLgYfAb8CVlV/vyyeCLXPzZpNIevJin6f5YudXLVuCN5tXTwRbZjbA/3Gpt5Oxm0PdFZVVRtJ2DguQSNlHVi77I4EX8K6KqoOupGXXZPCqF6qjo8ODvbBiA9npfHOh46PCPE+TUgqvy3igE/Hzj9JblddPnnq7trb2sX8V/c/lbwo9q8gJVNowAAAAAElFTkSuQmCC" style="cursor: pointer;"></image>';
 };
 Blockly.myMutator.prototype.iconClick_=function(a){this.block_.isEditable()&&Blockly.Icon.prototype.iconClick_.call(this,a)};
 Blockly.myMutator.prototype.createEditor_=function(){
