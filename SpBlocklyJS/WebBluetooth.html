@@ -1,0 +1,331 @@
+<!--
+@license
+Copyright 2022 Taiwan (ChungYi Fu)
+SPDX-License-Identifier: Apache-2.0
+
+@fileoverview Web Bluetooth
+@author https://www.facebook.com/francefu/
+@Update 1/22/2022 21:00 (Taiwan Standard Time)
+ 
+Web Bluetooth
+https://web.dev/bluetooth/
+
+Try it
+https://fustyles.github.io/webduino/WebBluetooth.html
+-->
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Web Bluetooth</title>
+  <meta charset="utf-8">
+  <meta name="viewdevice" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<table>
+<tr>
+<td colspan="2" align="right"><button id="Bluetooth_disconnect_device">Disconnect</button><button id="Bluetooth_request_device">Connect to Bluetooth</button></td>
+</tr>
+<tr>
+<td>Service UUID</td>
+<td><input type="text" id="Bluetooth_uuid_service" size="38" value="4fafc201-1fb5-459e-8fcc-c5c9c331914b"></td>
+<tr>
+<td>TX UUID</td>
+<td><input type="text" id="Bluetooth_uuid_tx" size="38" value="beb5483e-36e1-4688-b7f5-ea07361b26a8"></td>
+<tr>
+<td>RX UUID</td>
+<td><input type="text" id="Bluetooth_uuid_rx" size="38" value="498c599b-2601-4600-bb7e-3aa295a92842"></td>
+<tr>
+<td colspan="2"><input type="text" id="Bluetooth_command">
+<select id="Bluetooth_end">
+    <option value=""></option>
+    <option value="\r">\r</option>		
+    <option value="\n">\n</option>	
+    <option value="\r\n">\r\n</option>	
+</select>
+<button id="Bluetooth_sendString">Send String</button></td>
+</tr>
+<tr>
+<td colspan="2"><div id="Bluetooth_status" style="width:400px;height:300px;border:2px black solid;overflow: auto;"></div></td>
+</tr>
+<tr>
+<td>
+</td>
+<td align="right">
+<button id="Bluetooth_clearText">Clear Text</button>
+</td>
+</tr>
+</table>
+<script>
+  
+let Bluetooth_command = document.getElementById('Bluetooth_command');
+let Bluetooth_status = document.getElementById('Bluetooth_status');
+let Bluetooth_buttonRequest = document.getElementById('Bluetooth_request_device');
+let Bluetooth_buttonDisconnect = document.getElementById('Bluetooth_disconnect_device');
+let Bluetooth_sendString = document.getElementById('Bluetooth_sendString');	
+let Bluetooth_clearText = document.getElementById('Bluetooth_clearText');
+let Bluetooth_end = document.getElementById('Bluetooth_end');
+let Bluetooth_uuid_service = document.getElementById('Bluetooth_uuid_service');
+let Bluetooth_uuid_tx = document.getElementById('Bluetooth_uuid_tx');
+let Bluetooth_uuid_rx = document.getElementById('Bluetooth_uuid_rx');
+
+let Bluetooth_device = null;
+let Bluetooth_characteristics = null;
+let Bluetooth_readCharacteristic = null;
+let Bluetooth_writeCharacteristic = null;
+let busy = false;
+let commandQueue = [];
+
+// https://www.uuidgenerator.net/
+var service_uuid = "";
+var CHARACTERISTIC_TX_UUID = "";
+var CHARACTERISTIC_RX_UUID = "";
+		
+Bluetooth_buttonRequest.addEventListener('click', async () => {
+	service_uuid = Bluetooth_uuid_service.value;
+	CHARACTERISTIC_TX_UUID = Bluetooth_uuid_tx.value;
+	CHARACTERISTIC_RX_UUID = Bluetooth_uuid_rx.value;
+
+	if (navigator.bluetooth) {
+		let options = {};
+		options.acceptAllDevices = true;
+		options.optionalServices = [service_uuid];
+		
+		//let filters = [];
+		//filters.push({services: [0x1234, 0x12345678, '99999999-0000-1000-8000-00805f9b34fb']});
+		//filters.push({name: 'xxx'});
+		//filters.push({namePrefix: 'yyy'});		
+		//options.filters = filters;
+		
+		navigator.bluetooth.requestDevice(options)
+		.then(device => {
+			Bluetooth_device = device;
+			var msg = 'Connect to Name:' + device.name;
+			Bluetooth_message(msg, "blue");
+			Bluetooth_message(service_uuid, "purple");
+			
+			return device.gatt.connect();
+		})
+		.then(server => {
+			return server.getPrimaryService(service_uuid);
+		})
+		.then(service => {
+			return service.getCharacteristics();
+		})
+		.then(characteristics => {
+			Bluetooth_message("Device connected", "blue");
+				
+			Bluetooth_characteristics = characteristics;
+			Bluetooth_device.addEventListener('gattserverdisconnected', onDisconnected);
+
+			characteristics.forEach(characteristic => {
+			
+				/*
+				console.log('> Characteristic UUID:  ' + characteristic.uuid);
+				console.log('> Broadcast:            ' + characteristic.properties.broadcast);
+				console.log('> Read:                 ' + characteristic.properties.read);
+				console.log('> Write w/o response:   ' + characteristic.properties.writeWithoutResponse);
+				console.log('> Write:                ' + characteristic.properties.write);
+				console.log('> Notify:               ' + characteristic.properties.notify);
+				console.log('> Indicate:             ' + characteristic.properties.indicate);
+				console.log('> Signed Write:         ' + characteristic.properties.authenticatedSignedWrites);
+				console.log('> Queued Write:         ' + characteristic.properties.reliableWrite);
+				console.log('> Writable Auxiliaries: ' + characteristic.properties.writableAuxiliaries);
+				*/
+				
+				Bluetooth_message(characteristic.uuid, "purple");
+				
+				switch (characteristic.uuid) {
+					case CHARACTERISTIC_RX_UUID:
+						Bluetooth_readCharacteristic = characteristic;
+						break;
+					case CHARACTERISTIC_TX_UUID:
+						Bluetooth_writeCharacteristic = characteristic;
+						break;
+				}
+			});
+			
+			Bluetooth_readCharacteristic.startNotifications().then(_ => {
+                Bluetooth_message('Notifications started',"blue");
+				Bluetooth_readCharacteristic.addEventListener('characteristicvaluechanged', handleCharacteristicValueChanged);
+            });
+			
+			return Bluetooth_readCharacteristic.readValue();
+		})
+		.catch(error => {
+			console.log(error);
+			Bluetooth_message(error,"red"); 
+		});
+	}
+		
+});
+
+Bluetooth_buttonDisconnect.addEventListener('click', async () => {
+	if (Bluetooth_device && Bluetooth_device.gatt.connected) {
+		if (Bluetooth_device.gatt.connected)
+			Bluetooth_device.gatt.disconnect();
+	}	
+});
+
+function handleCharacteristicValueChanged(event) {
+	const value = new TextDecoder().decode(event.target.value);
+	//console.log(value);
+	Bluetooth_message(value, "orange");
+}
+
+function onDisconnected(event) {
+	const device = event.target;
+	var msg = "Device " + device.name + " is disconnected.";
+	Bluetooth_message(msg,"blue");
+	Bluetooth_device = null;
+	Bluetooth_characteristics = null;
+	Bluetooth_readCharacteristic = null;
+	Bluetooth_writeCharacteristic = null;	
+}
+
+function sendCommand(cmd) {
+  if (Bluetooth_writeCharacteristic) {
+	if (busy) {
+	  commandQueue.push(cmd);
+	  return Promise.resolve();
+	}
+	busy = true;
+
+	return Bluetooth_writeCharacteristic.writeValue(cmd).then(() => {
+	  busy = false;
+	  let nextCommand = commandQueue.shift();
+	  if (nextCommand) {
+		sendCommand(nextCommand);
+	  }
+	});
+  } else {
+	return Promise.resolve();
+  }
+}
+
+Bluetooth_clearText.addEventListener('click', async () => {
+	Bluetooth_status.innerHTML = "";
+});
+
+Bluetooth_sendString.addEventListener('click', async () => {
+	var msg = Bluetooth_command.value + Bluetooth_end.value;
+	Bluetooth_message(msg, "green");
+	var cmd = new TextEncoder().encode(msg);
+	sendCommand(cmd).then(() => {
+		//Bluetooth_message(new TextDecoder().decode(cmd), "green");
+	})
+	.catch(error => {
+		console.log(error);
+		Bluetooth_message(error,"red"); 
+	});
+});
+		
+function Bluetooth_message(msg, colour) {
+	Bluetooth_status.innerHTML += "<font color='"+colour+"'>"+msg+"</font><br>";
+	Bluetooth_status.scrollTop = Bluetooth_status.scrollHeight;
+}
+	
+</script>
+</body>
+</html>
+
+<!--
+
+#include <BLEDevice.h>
+#include <BLEServer.h>
+#include <BLEUtils.h>
+#include <BLE2902.h>
+
+BLECharacteristic *characteristicTX;
+bool deviceConnected = false;
+
+// See the following for generating UUIDs:
+// https://www.uuidgenerator.net/
+
+#define SERVICE_UUID           "4fafc201-1fb5-459e-8fcc-c5c9c331914b" // UART service UUID
+#define CHARACTERISTIC_RX_UUID "beb5483e-36e1-4688-b7f5-ea07361b26a8"
+#define CHARACTERISTIC_TX_UUID "498c599b-2601-4600-bb7e-3aa295a92842"
+
+class ServerCallbacks: public BLEServerCallbacks {
+    void onConnect(BLEServer* pServer) {
+      deviceConnected = true;
+      Serial.println("Device connected!");
+    };
+
+    void onDisconnect(BLEServer* pServer) {
+      deviceConnected = false;
+      Serial.println("Device disconnected!");
+    }
+};
+
+class CharacteristicCallbacks: public BLECharacteristicCallbacks {
+    void onWrite(BLECharacteristic *characteristic) {
+      std::string rxValue = characteristic->getValue(); 
+      if (rxValue.length() > 0) {
+        Serial.print("Received Value: ");
+
+        for (int i = 0; i < rxValue.length(); i++) {
+          Serial.print(rxValue[i]);
+        }
+
+        Serial.println();
+
+        if (rxValue.find("on") != -1) { 
+          Serial.println("Turning LED ON!");
+          characteristicTX->setValue("LED ON");
+          characteristicTX->notify();          
+        }
+        else  if (rxValue.find("off") != -1) { 
+          Serial.println("Turning LED OFF!");
+          characteristicTX->setValue("LED OFF");
+          characteristicTX->notify();          
+        }
+
+        /*
+        //characteristicTX->setValue(100, 1); // To send the integer value
+        //characteristicTX->setValue("Hello!"); // Sending a test message
+        //characteristicTX->notify();
+        */
+      }
+    }
+};
+
+void setup() {
+  Serial.begin(115200);
+
+  BLEDevice::init("ESP32-BLE");
+  BLEServer *server = BLEDevice::createServer();
+  server->setCallbacks(new ServerCallbacks());
+  
+  BLEService *service = server->createService(SERVICE_UUID);
+  
+  characteristicTX = service->createCharacteristic(
+                      CHARACTERISTIC_TX_UUID,
+                      BLECharacteristic::PROPERTY_READ   |
+                      BLECharacteristic::PROPERTY_WRITE  |
+                      BLECharacteristic::PROPERTY_NOTIFY |
+                      BLECharacteristic::PROPERTY_INDICATE |
+                      BLECharacteristic::PROPERTY_BROADCAST 
+                    );
+                      
+  characteristicTX->addDescriptor(new BLE2902());
+
+  BLECharacteristic *characteristic = service->createCharacteristic(
+                                        CHARACTERISTIC_RX_UUID,
+                                        BLECharacteristic::PROPERTY_READ   |
+                                        BLECharacteristic::PROPERTY_WRITE  |
+                                        BLECharacteristic::PROPERTY_NOTIFY |
+                                        BLECharacteristic::PROPERTY_INDICATE |
+                                        BLECharacteristic::PROPERTY_BROADCAST                              
+                                       );
+
+  characteristic->setCallbacks(new CharacteristicCallbacks());
+  service->start();
+  server->getAdvertising()->start();
+  Serial.println("Waiting a client connection to notify...");
+}
+
+void loop() {
+}
+
+-->

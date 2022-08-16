@@ -1,0 +1,359 @@
+<!--
+@license
+Copyright 2022 Taiwan (ChungYi Fu)
+SPDX-License-Identifier: Apache-2.0
+
+@fileoverview Web Serial
+@author https://www.facebook.com/francefu/
+@Update 1/26/2022 21:30 (Taiwan Standard Time)
+ 
+Web Serial
+https://web.dev/serial/
+
+Try it
+https://fustyles.github.io/webduino/WebSerial.html
+-->
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Web Serial</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<table>
+<tr>
+<td>Baud Rate
+<select id="serial_baud">
+    <option value="115200">115200</option>
+    <option value="9600">9600</option>
+    <option value="300">300</option>
+    <option value="1200">1200</option>
+    <option value="2400">2400</option>
+    <option value="4800">4800</option>
+    <option value="19200">19200</option>
+    <option value="38400">38400</option>
+    <option value="57600">57600</option>
+    <option value="74880">74880</option>
+    <option value="230400">230400</option>
+    <option value="250000">250000</option>
+    <option value="500000">500000</option>
+    <option value="1000000">1000000</option>	
+    <option value="2000000">2000000</option>		
+</select>
+</td>
+<td><button id="serial_close_port">Close Port</button><button id="serial_request_port">Select Port</button></td>
+</tr>
+<tr>
+<td><input type="text" id="serial_text">
+</td>
+<td><button id="serial_sendText">Send Text</button></td>
+</tr>
+<tr>
+<td><input type="text" id="serial_uint8" value="">
+</td>
+<td><button id="serial_sendUint8">Send Uint8Array</button></td>
+</tr>
+<tr>
+<td colspan="2"><div id="serial_status" style="width:400px;height:300px;border:2px black solid;overflow: auto;"></div></td>
+</tr>
+<tr>
+<td>
+</td>
+<td align="right">
+<button id="serial_clearText">Clear Text</button>
+</td>
+</tr>
+</table>
+<script>
+
+let serial_baud = document.getElementById('serial_baud');
+let serial_text = document.getElementById('serial_text');
+let serial_uint8 = document.getElementById('serial_uint8');
+let serial_status = document.getElementById('serial_status');
+let serial_buttonRequest = document.getElementById('serial_request_port');
+let serial_buttonClose = document.getElementById('serial_close_port');
+let serial_sendText = document.getElementById('serial_sendText');
+let serial_sendUint8 = document.getElementById('serial_sendUint8');
+let serial_clearText = document.getElementById('serial_clearText');
+
+let serial_port = null;
+let serial_textEncoder = {};
+let serial_writableStreamClosed = {};
+let serial_writer = {};
+let serial_reader = null;
+let serial_readSting = "";
+let serial_keepReading = true;
+let serial_selProductId = "";
+let serial_selVendorId = "";
+let serial_timer;
+	
+navigator.serial.addEventListener("connect", (event) => {
+  serial_message("Device connect","red");
+});
+
+navigator.serial.addEventListener("disconnect", (event) => {
+	serial_message("Device disconnect","red");
+});	
+			
+async function readUntilClosed() {
+  while (serial_port.readable && serial_keepReading) {
+	serial_reader = serial_port.readable.getReader();
+	try {
+	  while (true) {
+		const { value, done } = await serial_reader.read();
+		if (done) {
+		  // |reader| has been canceled.
+		  break;
+		}
+		if (value) {
+			serial_readSting += new TextDecoder().decode(value);
+			if (value.includes(10)) {    //Serial.println(data);
+				clearTimeout(serial_timer);
+				serial_message(serial_readSting,"green");
+				serial_readSting = "";
+			}
+			else {    //Serial.print(data);
+				serial_timer = setTimeout(function() {
+					if (serial_readSting != "") 
+						serial_message(serial_readSting,"green");
+					serial_readSting = "";
+				}, 100);
+			}
+		}
+	  }
+	} catch (error) {
+	  // Handle |error|...
+	} finally {
+	  serial_reader.releaseLock();
+	}
+  }
+}
+
+serial_buttonRequest.addEventListener('click', async () => {
+	if ("serial" in navigator) {
+		/*
+		const filters = [
+			{ usbVendorId: 0x2341, usbProductId: 0x43 },
+			{ usbVendorId: 0x2341, usbProductId: 0x01 }
+		];
+		*/
+		const filters = [];
+		
+		serial_port = await navigator.serial.requestPort({ filters });
+		const { usbProductId, usbVendorId } = serial_port.getInfo();
+		serial_selProductId = (usbProductId)?"0x"+usbProductId:"null";
+		serial_selVendorId = (usbVendorId)?"0x"+usbVendorId:"null";
+		
+		serial_keepReading = true;
+		
+		try {
+			var rate =  Number(serial_baud.value);
+			await serial_port.open({ baudRate: rate });
+			var msg = "VendorId: "+serial_selVendorId.toString(16)+" ProductId: "+serial_selProductId.toString(16)+" Ready!";
+			serial_message(msg,"blue");
+			
+			//await serial_port.setSignals({ dataTerminalReady: false });
+			//await new Promise(resolve => setTimeout(resolve, 200));
+			//await serial_port.setSignals({ dataTerminalReady: true });
+
+			const closed = readUntilClosed();
+		} catch (error) {
+			var errorString = error.message;
+			if (errorString.indexOf("already open")!=-1) {
+				var msg = "VendorId: 0x"+serial_selVendorId.toString(16)+" ProductId: 0x"+serial_selProductId.toString(16)+" Ready!";
+				serial_message(msg,"blue");
+			}
+			else if (errorString.indexOf("Failed to open serial port")!=-1) {
+				setTimeout(function(){serial_buttonRequest.click();},1000);
+			}
+			else {
+				serial_message(errorString,"red");
+			}
+		}
+	}
+		
+});
+
+serial_buttonClose.addEventListener('click', async () => {
+	try {
+		if (serial_port) {	
+			/*
+			serial_keepReading = false;
+			serial_reader.cancel();
+			await closed;
+			*/
+			
+			serial_port.close();
+			serial_port = null;
+			serial_message("Closed","blue");
+		}
+	} catch (error) {
+			serial_message(error.message,"red");
+	}	
+});
+
+serial_sendText.addEventListener('click', async () => {
+	serial_sendUint8.disabled = true;
+	if (serial_port&&serial_writer) {
+		try {
+			var msg = serial_text.value;
+			serial_message(msg,"orange");
+			serial_text.value = "";
+			
+			if (!serial_textEncoder[serial_selProductId])
+				serial_textEncoder[serial_selProductId] = new TextEncoderStream();
+			if (!serial_writableStreamClosed[serial_selProductId])
+				serial_writableStreamClosed[serial_selProductId] = serial_textEncoder[serial_selProductId].readable.pipeTo(serial_port.writable);
+				
+			serial_writer[serial_selProductId] = serial_textEncoder[serial_selProductId].writable.getWriter();
+			await serial_writer[serial_selProductId].write(msg).then(function() {
+				serial_writer[serial_selProductId].releaseLock();
+			});
+		} catch (error) {
+			serial_message(error.message,"red");
+		}
+	}
+});
+
+serial_sendUint8.addEventListener('click', async () => {
+	serial_sendText.disabled = true;
+	if (serial_port&&serial_writer) {
+		try {
+			serial_message(serial_uint8.value,"orange");
+			var intArray = serial_uint8.value.split(",");
+			msg = String.fromCharCode.apply(null, intArray);
+			serial_uint8.value = "";
+						
+			serial_writer[serial_selProductId] = serial_port.writable.getWriter();
+			const data = new Uint8Array(intArray);
+			await serial_writer[serial_selProductId].write(data).then(function() {
+				serial_writer[serial_selProductId].releaseLock();
+			});
+		} catch (error) {
+			serial_message(error.message,"red");
+		}
+	}
+});
+
+serial_clearText.addEventListener('click', async () => {
+	serial_status.innerHTML = "";
+});
+
+function serial_message(msg, colour) {
+	serial_status.innerHTML += "<font color='"+colour+"'>"+msg+"</font><br>";
+	serial_status.scrollTop = serial_status.scrollHeight;
+}
+</script>
+</body>
+</html>
+
+<!--
+/*
+ESP32 UART
+Author : ChungYi Fu (Kaohsiung, Taiwan)  2022-1-16 22:00
+https://www.facebook.com/francefu
+
+Uart Command Format : 
+?cmd=str1;str2;str3;str4;str5;str6;str7;str8;str9
+?inputpullup=pin
+?pinmode=pin;value
+?digitalwrite=pin;value
+?analogwrite=pin;value
+?digitalread=pin
+?touchread=pin
+?analogread=pin
+*/
+
+String ReceiveData="", command="",cmd="",str1="",str2="",str3="",str4="",str5="",str6="",str7="",str8="",str9="";
+void executecommand() {
+  //Serial.println("");
+  //Serial.println("command: "+command);
+  //Serial.println("cmd= "+cmd+" ,str1= "+str1+" ,str2= "+str2+" ,str3= "+str3+" ,str4= "+str4+" ,str5= "+str5+" ,str6= "+str6+" ,str7= "+str7+" ,str8= "+str8+" ,str9= "+str9);
+  
+  if (cmd=="yourcmd") {
+    //you can do anything
+    //SendData(cmd+"="+str1+";"+str2);
+  } 
+  else if (cmd=="inputpullup") {
+    pinMode(str1.toInt(), INPUT_PULLUP);
+    SendData(command);
+  }  
+  else if (cmd=="pinmode") {
+    pinMode(str1.toInt(), str2.toInt());
+    SendData(command);
+  }        
+  else if (cmd=="digitalwrite") {
+    ledcDetachPin(str1.toInt());
+    pinMode(str1.toInt(), OUTPUT);
+    digitalWrite(str1.toInt(),str2.toInt());
+    SendData(command);
+  }   
+  else if (cmd=="digitalread") {
+    SendData(String(digitalRead(str1.toInt())));
+  }   
+  else if (cmd=="touchread") {
+    SendData(String(touchRead(str1.toInt())));
+  }  
+  else if (cmd=="analogwrite") {
+    ledcAttachPin(str1.toInt(), 1);
+    ledcSetup(1, 5000, 8);
+    ledcWrite(1,str2.toInt());
+    SendData(command);
+  }       
+  else if (cmd=="analogread") {
+    SendData(String(analogRead(str1.toInt())));
+  }  
+  else {
+    SendData("Command is not defined.<br>Command Format :<br>?cmd=str1;str2;str3;str4;str5;str6;str7;str8;str9");
+  }   
+}
+void setup() {
+  Serial.begin(115200);
+}
+void loop() {
+  getCommand();
+  if (ReceiveData.indexOf("?")==0) {
+    executecommand();
+  }
+}
+void SendData(String data) {
+  Serial.println(data);
+}
+void getCommand() {
+  ReceiveData="";command="";cmd="";str1="";str2="";str3="";str4="";str5="";str6="";str7="";str8="";str9="";
+  byte ReceiveState=0,cmdState=1,strState=1,questionstate=0,equalstate=0,semicolonstate=0;
+  if (Serial.available()) {
+    while (Serial.available()) {
+      char c=Serial.read();
+      ReceiveData=ReceiveData+String(c);
+      
+      if (c=='?') ReceiveState=1;
+      if ((c==' ')||(c=='\r')||(c=='\n')) ReceiveState=0;
+      
+      if (ReceiveState==1) {
+        command=command+String(c);
+        
+        if (c=='=') cmdState=0;
+        if (c==';') strState++;
+        if ((cmdState==1)&&((c!='?')||(questionstate==1))) cmd=cmd+String(c);
+        if ((cmdState==0)&&(strState==1)&&((c!='=')||(equalstate==1))) str1=str1+String(c);
+        if ((cmdState==0)&&(strState==2)&&(c!=';')) str2=str2+String(c);
+        if ((cmdState==0)&&(strState==3)&&(c!=';')) str3=str3+String(c);
+        if ((cmdState==0)&&(strState==4)&&(c!=';')) str4=str4+String(c);
+        if ((cmdState==0)&&(strState==5)&&(c!=';')) str5=str5+String(c);
+        if ((cmdState==0)&&(strState==6)&&(c!=';')) str6=str6+String(c);
+        if ((cmdState==0)&&(strState==7)&&(c!=';')) str7=str7+String(c);
+        if ((cmdState==0)&&(strState==8)&&(c!=';')) str8=str8+String(c);
+        if ((cmdState==0)&&(strState>=9)&&((c!=';')||(semicolonstate==1))) str9=str9+String(c);
+        
+        if (c=='?') questionstate=1;
+        if (c=='=') equalstate=1;
+        if ((strState>=9)&&(c==';')) semicolonstate=1;
+      }
+      delay(1);
+    }  
+  }
+}
+-->
