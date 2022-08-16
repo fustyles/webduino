@@ -12,13 +12,13 @@
 
 Blockly.Blocks['test'] = {
   init: function() {
-	this.appendValueInput("input_if").appendField("if");
+	this.appendValueInput("value_if").appendField("if");
 	this.appendStatementInput("do_if").appendField("do");  		
-	this.appendValueInput("input_elseIf").appendField("else if");
+	this.appendValueInput("value_elseIf").appendField("else if");
 	this.appendStatementInput("do_elseif").appendField("do");
-	this.getInput("input_elseIf").setVisible(false);
-	this.getInput("do_elseif").setVisible(false);			
 	this.appendStatementInput("do_else").appendField("esle");
+	this.getInput("value_elseIf").setVisible(false);
+	this.getInput("do_elseif").setVisible(false);	
 	this.getInput("do_else").setVisible(false);
 	
 	var myMutator = new Blockly.myMutator([]);
@@ -42,17 +42,17 @@ Blockly.Blocks['test'] = {
 				var parentBlock = myWorkspace.options.parentWorkspace.getBlockById(myWorkspace.block_.mutator.parentBlockId_);
 				if (block) {
 					if (block.type=="test1") {
-						parentBlock.getInput("input_elseIf").setVisible(false);
+						parentBlock.getInput("value_elseIf").setVisible(false);
 						parentBlock.getInput("do_elseif").setVisible(false);
 						parentBlock.getInput("do_else").setVisible(false);		
 					}
 					else if (block.type=="test2") {
-						parentBlock.getInput("input_elseIf").setVisible(false);
+						parentBlock.getInput("value_elseIf").setVisible(false);
 						parentBlock.getInput("do_elseif").setVisible(false);
 						parentBlock.getInput("do_else").setVisible(true);	
 					}
 					if (block.type=="test3") {
-						parentBlock.getInput("input_elseIf").setVisible(true);
+						parentBlock.getInput("value_elseIf").setVisible(true);
 						parentBlock.getInput("do_elseif").setVisible(true);
 						parentBlock.getInput("do_else").setVisible(true);	
 					}	
@@ -61,22 +61,23 @@ Blockly.Blocks['test'] = {
 			}
 		}
 		myWorkspace.addChangeListener(onMyMutatorBlocksChange);
-	  
+
 	}
 	,myWorkspaceChanged: function(myWorkspace) {
 	}
 };
 
 Blockly.JavaScript['test'] = function(block) {
-  var input_if = Blockly.JavaScript.valueToCode(block, 'input_if', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  var value_if = Blockly.JavaScript.valueToCode(block, 'value_if', Blockly.JavaScript.ORDER_ATOMIC);
   var do_if = Blockly.JavaScript.statementToCode(block, 'do_if');
-  var input_elseif = Blockly.JavaScript.valueToCode(block, 'input_elseif', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_elseIf = Blockly.JavaScript.valueToCode(block, 'value_elseIf', Blockly.JavaScript.ORDER_ATOMIC);
   var do_elseif = Blockly.JavaScript.statementToCode(block, 'do_elseif');
   var do_else = Blockly.JavaScript.statementToCode(block, 'do_else');  
-	
-  var code = "if (" + input_if + ") {\n" + do_if + "\n}\n";
+  
+  var code = "if (" + value_if + ") {\n" + do_if + "\n}\n";
   if (block.getInput("do_elseif").isVisible())
-	  code += "else if (" + input_elseif + ") {\n" + do_elseif + "\n}\n";
+	  code += "else if (" + value_elseIf + ") {\n" + do_elseif + "\n}\n";
   if (block.getInput("do_else").isVisible())
 	  code += "else {\n" + do_else + "\n}\n";  
   return code;
@@ -84,7 +85,7 @@ Blockly.JavaScript['test'] = function(block) {
 
 Blockly.Blocks['test1'] = {
   init: function() {
-	this.appendValueInput("input_if").appendField("if");
+	this.appendValueInput("value_if").appendField("if");
 	this.appendStatementInput("do_if").appendField("do");
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -94,7 +95,7 @@ Blockly.Blocks['test1'] = {
 
 Blockly.Blocks['test2'] = {
   init: function() {
-	this.appendValueInput("input_if").appendField("if");
+	this.appendValueInput("value_if").appendField("if");
 	this.appendStatementInput("do_if").appendField("do");
 	this.appendValueInput("input_else").appendField("else");		
 	this.appendStatementInput("do_else").appendField("do");
@@ -106,9 +107,9 @@ Blockly.Blocks['test2'] = {
 
 Blockly.Blocks['test3'] = {
   init: function() {
-	this.appendValueInput("input_if").appendField("if");
+	this.appendValueInput("value_if").appendField("if");
 	this.appendStatementInput("do_if").appendField("do");  		
-	this.appendValueInput("input_elseIf").appendField("else if");
+	this.appendValueInput("value_elseIf").appendField("else if");
 	this.appendStatementInput("do_elseif").appendField("do");	
 	this.appendStatementInput("do_else").appendField("esle");
 	this.setPreviousStatement(!0);
