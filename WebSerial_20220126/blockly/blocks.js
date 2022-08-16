@@ -180,3 +180,14 @@ Blockly.Blocks['webserial_getid'] = {
     this.setColour(300);
   }
 };
+
+Blockly.Blocks['webserial_wait'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBSERIAL_WAIT_SHOW);   
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(180);
+  }  
+};
