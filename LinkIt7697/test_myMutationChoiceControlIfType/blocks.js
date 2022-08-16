@@ -61,13 +61,13 @@ Blockly.Blocks['test'] = {
 			}
 		}
 		myWorkspace.addChangeListener(onMyMutatorBlocksChange);
+	  
 	}
 	,myWorkspaceChanged: function(myWorkspace) {
 	}
 };
 
 Blockly.JavaScript['test'] = function(block) {
-  
   var input_if = Blockly.JavaScript.valueToCode(block, 'input_if', Blockly.JavaScript.ORDER_ATOMIC);
   var do_if = Blockly.JavaScript.statementToCode(block, 'do_if');
   var input_elseif = Blockly.JavaScript.valueToCode(block, 'input_elseif', Blockly.JavaScript.ORDER_ATOMIC);
