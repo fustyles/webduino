@@ -73,8 +73,7 @@ Blockly.JavaScript['test'] = function(block) {
   var input_elseif = Blockly.JavaScript.valueToCode(block, 'input_elseif', Blockly.JavaScript.ORDER_ATOMIC);
   var do_elseif = Blockly.JavaScript.statementToCode(block, 'do_elseif');
   var do_else = Blockly.JavaScript.statementToCode(block, 'do_else');  
-  console.log(block.getInput("do_elseif").isVisible());
-  console.log(block.getInput("do_else").isVisible());
+	
   var code = "if (" + input_if + ") {\n" + do_if + "\n}\n";
   if (block.getInput("do_elseif").isVisible())
 	  code += "else if (" + input_elseif + ") {\n" + do_elseif + "\n}\n";
