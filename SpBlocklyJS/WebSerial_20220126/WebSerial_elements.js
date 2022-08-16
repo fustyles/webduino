@@ -109,6 +109,12 @@ async function buttonRequest() {
 			//await serial_port.setSignals({ dataTerminalReady: false });
 			//await new Promise(resolve => setTimeout(resolve, 200));
 			//await serial_port.setSignals({ dataTerminalReady: true });
+			
+			if (!serial_textEncoder[serial_selProductId])
+				serial_textEncoder[serial_selProductId] = new TextEncoderStream();
+			if (!serial_writableStreamClosed[serial_selProductId])
+				serial_writableStreamClosed[serial_selProductId] = serial_textEncoder[serial_selProductId].readable.pipeTo(serial_port.writable);
+							
 
 			const closed = readUntilClosed();
 		} catch (error) {
@@ -155,11 +161,13 @@ serial_sendText.addEventListener('click', async () => {
 			//serial_message(msg);
 			serial_text.value = "";
 			
+			/*
 			if (!serial_textEncoder[serial_selProductId])
 				serial_textEncoder[serial_selProductId] = new TextEncoderStream();
 			if (!serial_writableStreamClosed[serial_selProductId])
 				serial_writableStreamClosed[serial_selProductId] = serial_textEncoder[serial_selProductId].readable.pipeTo(serial_port.writable);
-				
+			*/			
+			
 			serial_writer[serial_selProductId] = serial_textEncoder[serial_selProductId].writable.getWriter();
 			await serial_writer[serial_selProductId].write(msg).then(function() {
 				serial_writer[serial_selProductId].releaseLock();
