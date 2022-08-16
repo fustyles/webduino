@@ -17,10 +17,8 @@ Blockly.Blocks['test'] = {
 	this.appendValueInput("input_elseIf").appendField("else if");
 	this.appendStatementInput("do_elseif").appendField("do");
 	this.getInput("input_elseIf").setVisible(false);
-	this.getInput("do_elseif").setVisible(false);	
-	this.appendValueInput("input_else").appendField("else");		
-	this.appendStatementInput("do_else").appendField("do");
-	this.getInput("input_else").setVisible(false);
+	this.getInput("do_elseif").setVisible(false);			
+	this.appendStatementInput("do_else").appendField("esle");
 	this.getInput("do_else").setVisible(false);
 	
 	var myMutator = new Blockly.myMutator([]);
@@ -46,19 +44,16 @@ Blockly.Blocks['test'] = {
 					if (block.type=="test1") {
 						parentBlock.getInput("input_elseIf").setVisible(false);
 						parentBlock.getInput("do_elseif").setVisible(false);
-						parentBlock.getInput("input_else").setVisible(false);
 						parentBlock.getInput("do_else").setVisible(false);		
 					}
 					else if (block.type=="test2") {
 						parentBlock.getInput("input_elseIf").setVisible(false);
 						parentBlock.getInput("do_elseif").setVisible(false);
-						parentBlock.getInput("input_else").setVisible(true);
 						parentBlock.getInput("do_else").setVisible(true);	
 					}
 					if (block.type=="test3") {
 						parentBlock.getInput("input_elseIf").setVisible(true);
 						parentBlock.getInput("do_elseif").setVisible(true);
-						parentBlock.getInput("input_else").setVisible(true);
 						parentBlock.getInput("do_else").setVisible(true);	
 					}	
 				}
@@ -78,7 +73,8 @@ Blockly.JavaScript['test'] = function(block) {
   var input_elseif = Blockly.JavaScript.valueToCode(block, 'input_elseif', Blockly.JavaScript.ORDER_ATOMIC);
   var do_elseif = Blockly.JavaScript.statementToCode(block, 'do_elseif');
   var do_else = Blockly.JavaScript.statementToCode(block, 'do_else');  
-  
+  console.log(block.getInput("do_elseif").isVisible());
+  console.log(block.getInput("do_else").isVisible());
   var code = "if (" + input_if + ") {\n" + do_if + "\n}\n";
   if (block.getInput("do_elseif").isVisible())
 	  code += "else if (" + input_elseif + ") {\n" + do_elseif + "\n}\n";
@@ -114,9 +110,8 @@ Blockly.Blocks['test3'] = {
 	this.appendValueInput("input_if").appendField("if");
 	this.appendStatementInput("do_if").appendField("do");  		
 	this.appendValueInput("input_elseIf").appendField("else if");
-	this.appendStatementInput("do_elseif").appendField("do");
-	this.appendValueInput("input_else").appendField("else");		
-	this.appendStatementInput("do_else").appendField("do");
+	this.appendStatementInput("do_elseif").appendField("do");	
+	this.appendStatementInput("do_else").appendField("esle");
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(110);
