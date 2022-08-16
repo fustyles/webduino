@@ -112,6 +112,7 @@ async function buttonRequest() {
 
 			const closed = readUntilClosed();
 		} catch (error) {
+			console.log(error);
 			var errorString = error.message;
 			if (errorString.indexOf("already open")!=-1) {
 				var msg = "VendorId: 0x"+serial_selVendorId.toString(16)+" ProductId: 0x"+serial_selProductId.toString(16)+" Ready!";

@@ -17,6 +17,8 @@ var catWebSerial ='<xml>'+
 '<block type="webserial_baudrate">'+ 
 '<field name="baudrate_">9600</field>'+
 '</block>'+ 
+'<block type="webserial_wait">'+ 
+'</block>'+ 
 '<block type="webserial_getstate">'+ 
 '</block>'+ 
 '<block type="webserial_sendtext">'+
