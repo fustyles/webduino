@@ -16,7 +16,7 @@ Blockly.Blocks['test'] = {
 	this.appendStatementInput("do_if").appendField("do");  		
 	this.appendValueInput("value_elseIf").appendField("else if");
 	this.appendStatementInput("do_elseif").appendField("do");
-	this.appendStatementInput("do_else").appendField("esle");
+	this.appendStatementInput("do_else").appendField("else");
 	this.getInput("value_elseIf").setVisible(false);
 	this.getInput("do_elseif").setVisible(false);	
 	this.getInput("do_else").setVisible(false);
