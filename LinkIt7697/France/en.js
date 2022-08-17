@@ -1501,6 +1501,8 @@ Blockly.Msg["PAGE_MQTT_GETDATA_TOPIC_JS"] = "when getting text and the topic is"
 Blockly.Msg["PAGE_MQTT_TO_TOPIC_JS"] = "to topic";
 Blockly.Msg["PAGE_MQTT_PUBLISH_TEXT_JS"] = "publish text";
 Blockly.Msg["PAGE_MQTT_GETDATA_JS"] = "get data";
+Blockly.Msg["PAGE_MQTT_GETDATA_TEXT_JS"] = "String format";
+Blockly.Msg["PAGE_MQTT_GETDATA_NUMBER_JS"] = "Number format";
 
 Blockly.Msg["SYSTEM_DATETIME"] = "System Time";
 Blockly.Msg["SYSTEM_DATETIME_DATETIME"] = "DATETIME";

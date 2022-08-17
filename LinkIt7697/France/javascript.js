@@ -548,27 +548,31 @@ Blockly.Arduino['page_mqtt_setup_js'] = function(block) {
 
 Blockly.Arduino['page_mqtt_subscribe_js'] = function(block) {
   var topic = Blockly.Arduino.valueToCode(block, 'topic', Blockly.Arduino.ORDER_ATOMIC);
-  code = 'mqtt_client.subscribe('+topic+');\n';
+  var code = 'mqtt_client.subscribe('+topic+');\n';
   return code;
 };
 
 Blockly.Arduino['page_mqtt_gettopic_js'] = function(block) {
   var topic = Blockly.Arduino.valueToCode(block, 'topic', Blockly.Arduino.ORDER_ATOMIC);
   var topic_getdata = Blockly.Arduino.statementToCode(block, 'topic_getdata'); 
-  code = 'if (topic=='+topic+') {\n'+topic_getdata+'};\n';
+  var code = 'if (topic=='+topic+') {\n'+topic_getdata+'};\n';
   return code;
 };
 
 Blockly.Arduino['page_mqtt_senddata_js'] = function(block) {
   var topic = Blockly.Arduino.valueToCode(block, 'topic', Blockly.Arduino.ORDER_ATOMIC);
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC); 
-  code = 'mqtt_client.publish('+topic+', String('+text+'));\n';
+  var code = 'mqtt_client.publish('+topic+', String('+text+'));\n';
   return code;
 };
 
 Blockly.Arduino['page_mqtt_getdata_js'] = function(block) {
-  code = 'payload';
-  return [code, Blockly.Arduino.ORDER_NONE];
+	var format = block.getFieldValue('format');
+	if (format=="number")
+	  var code = 'Number(payload)';
+	else
+	  var code = 'payload';
+	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['include_file'] = function (block) {

@@ -1510,6 +1510,8 @@ Blockly.Msg["PAGE_MQTT_GETDATA_TOPIC_JS"] = "當收得訊息的主題為";
 Blockly.Msg["PAGE_MQTT_TO_TOPIC_JS"] = "向主題";
 Blockly.Msg["PAGE_MQTT_PUBLISH_TEXT_JS"] = "發布訊息文字";
 Blockly.Msg["PAGE_MQTT_GETDATA_JS"] = "取得資料";
+Blockly.Msg["PAGE_MQTT_GETDATA_TEXT_JS"] = "轉換為字串";
+Blockly.Msg["PAGE_MQTT_GETDATA_NUMBER_JS"] = "轉換為數值";
 
 Blockly.Msg["SYSTEM_DATETIME"] = "系統時間";
 Blockly.Msg["SYSTEM_DATETIME_DATETIME"] = "完整時間";

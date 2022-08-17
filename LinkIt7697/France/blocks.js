@@ -659,6 +659,11 @@ Blockly.Blocks['page_mqtt_getdata_js'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg["PAGE_MQTT"])
         .appendField(Blockly.Msg["PAGE_MQTT_GETDATA_JS"]);
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["PAGE_MQTT_GETDATA_TEXT_JS"],"text"],
+			[Blockly.Msg["PAGE_MQTT_GETDATA_NUMBER_JS"],"number"]
+		]),"format");				
 	this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(Blockly.Msg["HUE_29"])
