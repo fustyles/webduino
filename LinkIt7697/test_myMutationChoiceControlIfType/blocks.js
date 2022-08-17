@@ -88,9 +88,7 @@ Blockly.Blocks['test1'] = {
   init: function() {
 	this.appendValueInput("value_if").appendField("if");
 	this.appendStatementInput("do_if").appendField("do");
-	this.setPreviousStatement(!0);
-	this.setNextStatement(!0);
-	this.setColour(110);
+	this.setColour(200);
   }
 };
 
@@ -100,9 +98,7 @@ Blockly.Blocks['test2'] = {
 	this.appendStatementInput("do_if").appendField("do");
 	this.appendValueInput("input_else").appendField("else");		
 	this.appendStatementInput("do_else").appendField("do");
-	this.setPreviousStatement(!0);
-	this.setNextStatement(!0);
-	this.setColour(110);
+	this.setColour(200);
   }
 };
 
@@ -113,9 +109,7 @@ Blockly.Blocks['test3'] = {
 	this.appendValueInput("value_elseIf").appendField("else if");
 	this.appendStatementInput("do_elseif").appendField("do");	
 	this.appendStatementInput("do_else").appendField("esle");
-	this.setPreviousStatement(!0);
-	this.setNextStatement(!0);
-	this.setColour(110);
+	this.setColour(200);
   }
 };
 
