@@ -28,7 +28,8 @@ Blockly.Blocks['test'] = {
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(110);
-  },myWorkspaceInitial: function(myWorkspace) {
+  }
+  ,myWorkspaceInitial: function(myWorkspace) {
 		myWorkspace.block_=this;
 		
 		var xml = '<block type="test1" x="0" y="0"></block><block type="test2" x="140" y="0"></block><block type="test3" x="260" y="0"></block>';
