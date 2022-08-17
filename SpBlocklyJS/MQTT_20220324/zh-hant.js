@@ -10,3 +10,5 @@ Blockly.Msg["MQTT_FU_GETDATA_TOPIC_JS"] = "當收得訊息的主題為";
 Blockly.Msg["MQTT_FU_TO_TOPIC_JS"] = "向主題";
 Blockly.Msg["MQTT_FU_PUBLISH_TEXT_JS"] = "發布訊息文字";
 Blockly.Msg["MQTT_FU_GETDATA_JS"] = "取得資料";
+Blockly.Msg["MQTT_FU_GETDATA_TEXT_JS"] = "轉換為字串";
+Blockly.Msg["MQTT_FU_GETDATA_NUMBER_JS"] = "轉換為數值";
