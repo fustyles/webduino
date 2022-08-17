@@ -1243,3 +1243,5 @@ Blockly.Msg["COLLABORATION_PASSWORD_TITLE"] = "密碼";
 Blockly.Msg.BUTTON_LINK = "連線";
 Blockly.Msg["MSG_COLLABORATION"] = "MQTT協同編輯";
 Blockly.Msg["COLLABORATION_TIP_TITLE"] = "Chrome瀏覽器須設定允許不安全內容執行WS通訊協定";
+
+Blockly.Msg["BUTTON_WEBMQTT"] = "網頁MQTT";

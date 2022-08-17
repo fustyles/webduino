@@ -41,6 +41,8 @@ Blockly.Msg.CONTROLS_FLOW_STATEMENTS_WARNING = "Warning: This block may only be 
 Blockly.Msg.CONTROLS_FOREACH_HELPURL = "https://github.com/google/blockly/wiki/Loops#for-each for each block";
 Blockly.Msg.CONTROLS_FOREACH_INPUT_INLIST = "in list";
 Blockly.Msg.CONTROLS_FOREACH_INPUT_INLIST_TAIL = "";
+
+Blockly.Msg["BUTTON_WEBMQTT"] = "Web MQTT";
 Blockly.Msg.CONTROLS_FOREACH_INPUT_ITEM = "for each item";
 Blockly.Msg.CONTROLS_FOREACH_TOOLTIP = "For each item in a list, set the variable '%1' to the item, and then do some statements.";
 Blockly.Msg.CONTROLS_FOREACH_TOOLTIP1 = "For each item in a list, set the variable '";

@@ -145,13 +145,11 @@ module$contents$Blockly$libraryBlocks$procedures_PROCEDURE_CALL_COMMON,{
 			if (xml[i].getAttribute("type")=="procedures_defnoreturn") {	
 				for (var j=0;j<xml[i].childNodes.length;j++) {			
 					if (xml[i].childNodes[j].textContent==this.getFieldValue("NAME")) {
-						if (xml[i]) {
-							xml = Blockly.Xml.domToPrettyText(xml[i]);
-							xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
-							myWorkspace.clear();
-							Blockly.Xml.domToWorkspace(xml, myWorkspace);							
-							break;
-						}
+						xml = Blockly.Xml.domToPrettyText(xml[i]);
+						xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
+						myWorkspace.clear();
+						Blockly.Xml.domToWorkspace(xml, myWorkspace);							
+						break;
 					}
 				}
 			}
@@ -181,13 +179,11 @@ module$contents$Blockly$libraryBlocks$procedures_PROCEDURE_CALL_COMMON,{
 			if (xml[i].getAttribute("type")=="procedures_defreturn") {	
 				for (var j=0;j<xml[i].childNodes.length;j++) {
 					if (xml[i].childNodes[j].textContent==this.getFieldValue("NAME")) {
-						if (xml[i]) {
-							xml = Blockly.Xml.domToPrettyText(xml[i]);
-							xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
-							myWorkspace.clear();
-							Blockly.Xml.domToWorkspace(xml, myWorkspace);							
-							break;
-						}
+						xml = Blockly.Xml.domToPrettyText(xml[i]);
+						xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
+						myWorkspace.clear();
+						Blockly.Xml.domToWorkspace(xml, myWorkspace);							
+						break;
 					}
 				}
 			}

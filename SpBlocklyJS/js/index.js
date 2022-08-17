@@ -1112,6 +1112,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		event.preventDefault();
 	}
 	
+	//Web MQTT
+	document.getElementById('button_webMQTT').addEventListener("click", function(evt) {
+		if (typeof nw !== "undefined")
+			nw.Shell.openExternal("http://127.0.0.1:3000/WebMQTT.html")
+		else
+			window.open("https://fustyles.github.io/webduino/mqtt_basic_page.html")
+	});   	
+	
 	//MQTT協同編輯
 	var collaborationID = "SpBlocklyJS_"+Math.random().toString(16).substr(2, 8);
 	var mqttState = false;

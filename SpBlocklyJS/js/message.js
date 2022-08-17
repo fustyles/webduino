@@ -14,6 +14,7 @@ var msg = [
 ["button_toolbox", "title", Blockly.Msg["BUTTON_TOOLBOX"]],
 ["button_addRemoteBlocks", "title", Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"]],
 ["button_addExtensionBlocks", "title", Blockly.Msg["BUTTON_ADDEXTENSIONBLOCKS"]],
+["button_webMQTT", "title", Blockly.Msg["BUTTON_WEBMQTT"]],
 ["button_tool", "title", Blockly.Msg["BUTTON_TOOL"]],
 ["button_collaboration", "title", Blockly.Msg["BUTTON_COLLABORATION"]],
 ["title_collaboration_broker", "innerHTML", Blockly.Msg["COLLABORATION_BROKER_TITLE"]],
