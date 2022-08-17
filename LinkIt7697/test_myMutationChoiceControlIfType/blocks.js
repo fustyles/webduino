@@ -7,7 +7,7 @@
 /**
  * @fileoverview my Mutator.
  * @author https://www.facebook.com/francefu/
- * @Update 8/7/2022 01:30 (Taiwan Standard Time)
+ * @Update 8/18/2022 05:30 (Taiwan Standard Time)
  */
 
 Blockly.Blocks['test'] = {
@@ -25,22 +25,27 @@ Blockly.Blocks['test'] = {
 	myMutator.parentBlockId_ = this.id;
 	this.setMutator(myMutator);
 	
+	//this.setMutator(new Blockly.myMutator([]));
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(110);
-  }
-  ,myWorkspaceInitial: function(myWorkspace) {
-		myWorkspace.block_=this;
+	
+  },myWorkspaceInitial: function(myWorkspace) {
+		myWorkspace.parentBlock_=this;
 		
-		var xml = '<block type="test1" x="0" y="0"></block><block type="test2" x="140" y="0"></block><block type="test3" x="260" y="0"></block>';
+		var xml = '<block type="test1" x="0" y="0"></block>';
+		xml += '<block type="test2" x="140" y="0"></block>';
+		xml += '<block type="test3" x="260" y="0"></block>';
 		xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml+'</xml>');
 		myWorkspace.clear();
 		Blockly.Xml.domToWorkspace(xml, myWorkspace);
-		
+	
 		function onMyMutatorBlocksChange(event) {
 			if (event.type=="click") {
 				var block = myWorkspace.getBlockById(event.blockId);
-				var parentBlock = myWorkspace.options.parentWorkspace.getBlockById(myWorkspace.block_.mutator.parentBlockId_);
+				var parentBlock = myWorkspace.options.parentWorkspace.getBlockById(myWorkspace.parentBlock_.mutator.parentBlockId_);
+				//var parentBlock = myWorkspace.options.parentWorkspace.getBlockById(myWorkspace.parentBlock_.id);
+				
 				if (block) {
 					if (block.type=="test1") {
 						parentBlock.getInput("value_elseIf").setVisible(false);
@@ -57,8 +62,8 @@ Blockly.Blocks['test'] = {
 						parentBlock.getInput("do_elseif").setVisible(true);
 						parentBlock.getInput("do_else").setVisible(true);	
 					}	
+					parentBlock.render();
 				}
-				parentBlock.render();
 			}
 		}
 		myWorkspace.addChangeListener(onMyMutatorBlocksChange);
@@ -112,7 +117,6 @@ Blockly.Blocks['test3'] = {
 	this.setColour(200);
   }
 };
-
 
 
 //myMutatorWorkspaceToCode
