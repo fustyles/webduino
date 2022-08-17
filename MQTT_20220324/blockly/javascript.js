@@ -32,25 +32,29 @@ Blockly.JavaScript['fu_mqtt_setup_js'] = function(block) {
 
 Blockly.JavaScript['fu_mqtt_subscribe_js'] = function(block) {
   var topic = Blockly.JavaScript.valueToCode(block, 'topic', Blockly.JavaScript.ORDER_ATOMIC);
-  code = 'mqtt_client.subscribe('+topic+');\n';
+  var code = 'mqtt_client.subscribe('+topic+');\n';
   return code;
 };
 
 Blockly.JavaScript['fu_mqtt_gettopic_js'] = function(block) {
   var topic = Blockly.JavaScript.valueToCode(block, 'topic', Blockly.JavaScript.ORDER_ATOMIC);
   var topic_getdata = Blockly.JavaScript.statementToCode(block, 'topic_getdata'); 
-  code = 'if (topic=='+topic+') {\n'+topic_getdata+'}\n';
+  var code = 'if (topic=='+topic+') {\n'+topic_getdata+'}\n';
   return code;
 };
 
 Blockly.JavaScript['fu_mqtt_senddata_js'] = function(block) {
   var topic = Blockly.JavaScript.valueToCode(block, 'topic', Blockly.JavaScript.ORDER_ATOMIC);
   var text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC); 
-  code = 'mqtt_client.publish('+topic+', String('+text+'));\n';
+  var code = 'mqtt_client.publish('+topic+', String('+text+'));\n';
   return code;
 };
 
 Blockly.JavaScript['fu_mqtt_getdata_js'] = function(block) {
-  code = 'payload';
-  return [code, Blockly.JavaScript.ORDER_NONE];
+	var format = block.getFieldValue('format');
+	if (format=="number")
+	  var code = 'Number(payload)';
+	else
+	  var code = 'payload';
+  	return [code, Blockly.JavaScript.ORDER_NONE];
 };
