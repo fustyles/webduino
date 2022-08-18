@@ -286,7 +286,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//載入積木目錄
 	var category = [
-		catTEST,
 		catSystem,
 		catMyBackPack,		
 		"<sep></sep>",
