@@ -1336,7 +1336,7 @@ function setIP() {
 
 document.addEventListener('DOMContentLoaded', function() {
 	var ip = location.href.split("?");
-	if (ip[1]!="") {
+	if (ip[1]) {
 		document.getElementById('ip').value = ip;
 		setIP();
 	}
