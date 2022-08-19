@@ -899,8 +899,8 @@
         </section>
         <script>
 
-  var baseHost = document.location.origin
-  var streamUrl = baseHost + ':81'
+  var baseHost = "";
+  var streamUrl = "";
 
   function fetchUrl(url, cb){
     fetch(url)
@@ -1334,6 +1334,13 @@ function setIP() {
 	})	  
 } 
 
+document.addEventListener('DOMContentLoaded', function() {
+	var ip = location.search;
+	if (ip.length>0) {
+		document.getElementById('ip').value = ip;
+		setIP();
+	}
+}
         </script>
     </body>
 </html>
