@@ -2025,10 +2025,6 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 			'          res = s->set_wb_mode(s, val);\n'+
 			'      else if (!strcmp(variable, "ae_level"))\n'+
 			'          res = s->set_ae_level(s, val);\n'+
-			'      else if (!strcmp(variable, "print"))\n'+
-			'          Serial.print(val);\n'+
-			'      else if (!strcmp(variable, "println"))\n'+
-			'          Serial.println(val);\n'+
 			'      else {\n'+
 			'          res = -1;\n'+
 			'      }\n'+
@@ -2364,6 +2360,7 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'  //Serial.println("Command: "+Command);\n'+
 			'  //Serial.println("cmd= "+cmd+" ,p1= "+p1+" ,p2= "+p2+" ,p3= "+p3+" ,p4= "+p4+" ,p5= "+p5+" ,p6= "+p6+" ,p7= "+p7+" ,p8= "+p8+" ,p9= "+p9);\n'+
 			'  //Serial.println("");\n'+
+			'  sensor_t *s = esp_camera_sensor_get();\n'+			
 			'  if (cmd=="ip") {\n'+
 			'    Feedback="AP IP: "+WiFi.softAPIP().toString();\n'+
 			'    Feedback+="<br>";\n'+
@@ -2372,53 +2369,6 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'    Feedback="STA MAC: "+WiFi.macAddress();\n'+
 			'  } else if (cmd=="restart") {\n'+
 			'    ESP.restart();\n'+
-			'  } else if (cmd=="digitalwrite") {\n'+
-			'    ledcDetachPin(p1.toInt());\n'+
-			'    pinMode(p1.toInt(), OUTPUT);\n'+
-			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
-			'  } else if (cmd=="digitalread") {\n'+
-			'    Feedback=String(digitalRead(p1.toInt()));\n'+
-			'  } else if (cmd=="analogwrite") {\n'+
-			'    if (p1=="4") {\n'+
-			'      ledcAttachPin(4, 4);\n'+
-			'      ledcSetup(4, 5000, 8);\n'+
-			'      ledcWrite(4,p2.toInt());\n'+
-			'    } else {\n'+
-			'      ledcAttachPin(p1.toInt(), 9);\n'+
-			'      ledcSetup(9, 5000, 8);\n'+
-			'      ledcWrite(9,p2.toInt());\n'+
-			'    }\n'+
-			'  } else if (cmd=="analogread") {\n'+
-			'    Feedback=String(analogRead(p1.toInt()));\n'+
-			'  } else if (cmd=="touchread") {\n'+
-			'    Feedback=String(touchRead(p1.toInt()));\n'+
-			'  } else if (cmd=="restart") {\n'+
-			'    ESP.restart();\n'+
-			'  } else if (cmd=="flash") {\n'+
-			'    ledcAttachPin(4, 4);\n'+
-			'    ledcSetup(4, 5000, 8);\n'+
-			'    int val = p1.toInt();\n'+
-			'    ledcWrite(4,val);\n'+
-			'  } else if(cmd=="servo") {\n'+
-			'    ledcAttachPin(p1.toInt(), p3.toInt());\n'+
-			'    ledcSetup(p3.toInt(), 50, 16);\n'+
-			'    int val = 7864-p2.toInt()*34.59;\n'+
-			'    if (val > 7864)\n'+
-			'       val = 7864;\n'+
-			'    else if (val < 1638)\n'+
-			'      val = 1638;\n'+
-			'    ledcWrite(p3.toInt(), val);\n'+
-			'  } else if (cmd=="relay") {\n'+
-			'    pinMode(p1.toInt(), OUTPUT);\n'+
-			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
-			'  } else if (cmd=="buzzer") { \n'+
-			'    pinMode(p1.toInt(),OUTPUT);\n'+
-			'    if (p4=="") p4="9";\n'+
-			'    ledcSetup(p4.toInt(), 2000, 8);\n'+
-			'    ledcAttachPin(p1.toInt(), p4.toInt());\n'+
-			'    ledcWriteTone(p4.toInt(), p2.toInt());\n'+
-			'    delay(p3.toInt());\n'+
-			'    ledcWriteTone(p4.toInt(), 0);\n'+
 			'  } else if (cmd=="resetwifi") {\n'+
 			'    for (int i=0;i<2;i++) {\n'+
 			'      WiFi.begin(p1.c_str(), p2.c_str());\n'+
@@ -2444,33 +2394,59 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'  } else if (cmd=="delay") {\n'+
 			'    delay(p1.toInt());\n'+				
 			'  } else if (cmd=="framesize") {\n'+
-			'    int val = p1.toInt();\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_framesize(s, (framesize_t)val);\n'+
-			'  } else if (cmd=="quality") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_quality(s, p1.toInt());\n'+
-			'  } else if (cmd=="contrast") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_contrast(s, p1.toInt());\n'+
-			'  } else if (cmd=="brightness") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_brightness(s, p1.toInt());\n'+
-			'  } else if (cmd=="saturation") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_saturation(s, p1.toInt());\n'+ 
-			'  } else if (cmd=="special_effect") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_special_effect(s, p1.toInt());\n'+
-			'  } else if (cmd=="hmirror") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_hmirror(s, p1.toInt());\n'+
-			'  } else if (cmd=="vflip") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_vflip(s, p1.toInt());\n'+
-			'  } else {\n  '+ 
+			'    if (s->pixformat == PIXFORMAT_JPEG) {\n'+
+			'        s->set_framesize(s, (framesize_t)p1.toInt());\n'+
+			'    }\n'+
+			'  } \n'+
+			'  else if (cmd=="quality")\n'+
+			'      s->set_quality(s, p1.toInt());\n'+
+			'  else if (cmd=="contrast")\n'+
+			'      s->set_contrast(s, p1.toInt());\n'+
+			'  else if (cmd=="brightness")\n'+
+			'      s->set_brightness(s, p1.toInt());\n'+
+			'  else if (cmd=="saturation")\n'+
+			'      s->set_saturation(s, p1.toInt());\n'+
+			'  else if (cmd=="gainceiling")\n'+
+			'      s->set_gainceiling(s, (gainceiling_t)p1.toInt());\n'+
+			'  else if (cmd=="colorbar")\n'+
+			'      s->set_colorbar(s, p1.toInt());\n'+
+			'  else if (cmd=="awb")\n'+
+			'      s->set_whitebal(s, p1.toInt());\n'+
+			'  else if (cmd=="agc")\n'+
+			'      s->set_gain_ctrl(s, p1.toInt());\n'+
+			'  else if (cmd=="aec")\n'+
+			'      s->set_exposure_ctrl(s, p1.toInt());\n'+
+			'  else if (cmd=="hmirror")\n'+
+			'      s->set_hmirror(s, p1.toInt());\n'+
+			'  else if (cmd=="vflip")\n'+
+			'      s->set_vflip(s, p1.toInt());\n'+
+			'  else if (cmd=="awb_gain")\n'+
+			'      s->set_awb_gain(s, p1.toInt());\n'+
+			'  else if (cmd=="agc_gain")\n'+
+			'      s->set_agc_gain(s, p1.toInt());\n'+
+			'  else if (cmd=="aec_p1.toInt()ue")\n'+
+			'      s->set_aec_value(s, p1.toInt());\n'+
+			'  else if (cmd=="aec2")\n'+
+			'      s->set_aec2(s, p1.toInt());\n'+
+			'  else if (cmd=="dcw")\n'+
+			'      s->set_dcw(s, p1.toInt());\n'+
+			'  else if (cmd=="bpc")\n'+
+			'      s->set_bpc(s, p1.toInt());\n'+
+			'  else if (cmd=="wpc")\n'+
+			'      s->set_wpc(s, p1.toInt());\n'+
+			'  else if (cmd=="raw_gma")\n'+
+			'      s->set_raw_gma(s, p1.toInt());\n'+
+			'  else if (cmd=="lenc")\n'+
+			'      s->set_lenc(s, p1.toInt());\n'+
+			'  else if (cmd=="special_effect")\n'+
+			'      s->set_special_effect(s, p1.toInt());\n'+
+			'  else if (cmd=="wb_mode")\n'+
+			'      s->set_wb_mode(s, p1.toInt());\n'+
+			'  else if (cmd=="ae_level")\n'+
+			'      s->set_ae_level(s, p1.toInt());\n'+
+			'  else {\n    '+ 
 			statements_executecommand.replace(/\n/g,"\n  ")+
-			'}\n'+ 
+			'  }\n'+ 
 			'}\n';
 	
 	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);";
@@ -2526,11 +2502,6 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'    ESP.restart();\n'+
 			'  }\n'+
 			'  sensor_t * s = esp_camera_sensor_get();\n'+
-			'  if (s->id.PID == OV3660_PID) {\n'+
-			'    s->set_vflip(s, 1);\n'+
-			'    s->set_brightness(s, 1);\n'+
-			'    s->set_saturation(s, -2);\n'+
-			'  }\n'+
 			'  s->set_framesize(s, FRAMESIZE_'+framesize+');\n'+
 			'  initWiFi();\n\n';	
 	
@@ -2606,7 +2577,7 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'   	            client.println("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");\n'+
 			'   	            client.println("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");\n'+
 			'   	            client.println("Content-Type: image/jpeg");\n'+
-			'   	            client.println("Content-Disposition: form-data; name=\\\"imageFile\\\"; filename=\\\"picture.jpg\\\"");\n'+ 
+			'   	            client.println("Content-Disposition: \\\"inline; filename=capture.jpg\\\"");\n'+ 
 			'   	            client.println("Content-Length: " + String(fb->len));\n'+             
 			'   	            client.println("Connection: close");\n'+
 			'   	            client.println();\n'+
