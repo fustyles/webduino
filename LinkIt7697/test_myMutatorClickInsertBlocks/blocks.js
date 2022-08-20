@@ -33,9 +33,11 @@ Blockly.Blocks['test'] = {
         function onMyMutatorBlocksChange(event) {
             if (event.type=="click") {
                 var block = myWorkspace.getBlockById(event.blockId);
-                block = Blockly.Xml.blockToDom(block, true);
-                block = Blockly.Xml.textToDom('<xml>' + Blockly.Xml.domToText(block).replace(/(?:\r\n|\r|\n|\t)/g, "") + '</xml>');
-                Blockly.Xml.appendDomToWorkspace(block, myWorkspace.options.parentWorkspace);
+		if (block) {
+			block = Blockly.Xml.blockToDom(block, true);
+			block = Blockly.Xml.textToDom('<xml>' + Blockly.Xml.domToText(block).replace(/(?:\r\n|\r|\n|\t)/g, "") + '</xml>');
+			Blockly.Xml.appendDomToWorkspace(block, myWorkspace.options.parentWorkspace);
+		}
             }
         }
         myWorkspace.addChangeListener(onMyMutatorBlocksChange);
