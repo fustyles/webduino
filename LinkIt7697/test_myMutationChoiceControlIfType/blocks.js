@@ -39,6 +39,10 @@ Blockly.Blocks['test'] = {
 		xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml+'</xml>');
 		myWorkspace.clear();
 		Blockly.Xml.domToWorkspace(xml, myWorkspace);
+	  
+		var blocks = myWorkspace.getAllBlocks();
+		for (var i =0;i<blocks.length;i++)
+			blocks[i].setMovable(false);	  
 	
 		function onMyMutatorBlocksChange(event) {
 			if (event.type=="click") {
