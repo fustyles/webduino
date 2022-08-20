@@ -2314,6 +2314,7 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 			'      config.server_port += 1;\n'+
 			'      config.ctrl_port += 1;\n'+
 			'      Serial.printf("Starting stream server on port: \'%d\'", config.server_port);\n'+
+			'      Serial.println("");\n'+			
 			'      if (httpd_start(&stream_httpd, &config) == ESP_OK) {\n'+
 			'          httpd_register_uri_handler(stream_httpd, &stream_uri);\n'+
 			'      }\n'+
