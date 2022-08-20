@@ -110,6 +110,6 @@ Blockly.Blocks["test_fieldFilter"] = {
   }
 };
 
-Blockly.Arduino['test_fieldFilter'] = function(block) {
+Blockly.JavaScript['test_fieldFilter'] = function(block) {
   return this.getFieldValue('VALUE1')+","+this.getFieldValue('VALUE2');
 };
