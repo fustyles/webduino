@@ -1,4 +1,4 @@
 
-Blockly.Arduino['multidropdown_test'] = function(block) {
+Blockly.JavaScript['multidropdown_test'] = function(block) {
   return '';
 };
