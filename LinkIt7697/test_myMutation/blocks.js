@@ -158,6 +158,6 @@ Blockly.Blocks["mutation_test"] = {
   }
 };
 
-Blockly.Arduino['mutation_test'] = function(block) {
+Blockly.JavaScript['mutation_test'] = function(block) {
   return block.getFieldValue("code");
 };
