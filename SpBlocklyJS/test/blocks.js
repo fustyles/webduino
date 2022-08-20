@@ -215,6 +215,7 @@ Blockly.Flydown.prototype.placeNewBlock_ = function(originBlock) {
 
   // Move the new block to where the old block is.
   block.moveBy(xyOld.x - xyNew.x, xyOld.y - xyNew.y);
+  myBlocksFlydownImage.eventparam.isFlydownName = '';
   return block;
 };
 
@@ -223,7 +224,7 @@ Blockly.Flydown.prototype.shouldHide = true;
 Blockly.Flydown.prototype.hide = function() {
   if (this.shouldHide) {
     Blockly.VerticalFlyout.prototype.hide.call(this);
-    myBlocksFlydown.eventparam.openFieldFlydown_ = null;
+    myBlocksFlydownImage.eventparam.openFieldFlydown_ = null;
   }
   this.shouldHide = true;
 }
@@ -233,112 +234,44 @@ Blockly.Flydown.prototype.hide = function() {
 
 
 
+Blockly.myBlocksFlydownImage = {};
 
-
-
-
-
-
-
-
-
-
-Blockly.myBlocksFlydown = {};
-
-Blockly.myBlocksFlydown.eventparam = function (opt_value, opt_color, opt_workspace, opt_blocksXML, opt_fieldID, opt_validator) {
-    opt_value = this.doClassValidation_(opt_value);
-    if (opt_value === null) {
-        opt_value = '';
-    }  // Else the original value is fine.
-
-	this.opt_fieldID_ = opt_fieldID;
-    this.opt_color_ = opt_color;
-    this.displayLocation = Blockly.myBlocksFlydown.eventparam.DISPLAY_BELOW;
-    this.opt_workspace = opt_workspace;
+Blockly.myBlocksFlydownImage.eventparam = function (opt_image, opt_blocksXML, opt_validator) {
+    this.opt_image_ = opt_image;
+    this.opt_image_.setOnClickHandler(Blockly.myBlocksFlydownImage.eventparam.clickHandler_);
+    this.displayLocation = Blockly.myBlocksFlydownImage.eventparam.DISPLAY_BELOW;
+    this.opt_workspace = opt_image.sourceBlock_.workspace;
     if (opt_blocksXML)
-		this.opt_blocksXML_ = '<xml>'+opt_blocksXML.join("")+'</xml>';
+        this.opt_blocksXML_ = '<xml>'+opt_blocksXML.join("")+'</xml>';
 	
-    Blockly.myBlocksFlydown.eventparam.superClass_.constructor.call(
-        this, opt_value, opt_validator);
+    Blockly.myBlocksFlydownImage.eventparam.superClass_.constructor.call(this, '', opt_validator);
 };
-Blockly.utils.object.inherits(Blockly.myBlocksFlydown.eventparam, Blockly.Field);
+Blockly.utils.object.inherits(Blockly.myBlocksFlydownImage.eventparam, Blockly.Field);
 
-Blockly.myBlocksFlydown.eventparam.prototype.EDITABLE = false;
-Blockly.myBlocksFlydown.eventparam.timeout = 500;
-Blockly.myBlocksFlydown.eventparam.isInDrag = false;
-Blockly.myBlocksFlydown.eventparam.openFieldFlydown_ = null;
-Blockly.myBlocksFlydown.eventparam.showPid_ = 0;
-Blockly.myBlocksFlydown.eventparam.DISPLAY_BELOW = "BELOW";
-Blockly.myBlocksFlydown.eventparam.DISPLAY_RIGHT = "RIGHT";
-Blockly.myBlocksFlydown.eventparam.DISPLAY_LOCATION = Blockly.myBlocksFlydown.eventparam.DISPLAY_BELOW;
-Blockly.myBlocksFlydown.eventparam.prototype.fieldCSSClassName = 'blocklyFieldFlydownField';
-Blockly.myBlocksFlydown.eventparam.prototype.flyoutCSSClassName = 'blocklyFieldFlydownFlydown';
+Blockly.myBlocksFlydownImage.eventparam.clickHandler_ = function () {
+    const eventparam_ = Blockly.myBlocksFlydownImage.eventparam;
+	if (eventparam_.isFlydownName==this.name) {
+		eventparam_.hide();
+		Blockly.myBlocksFlydownImage.eventparam.isFlydownName = '';
+	}
+    else {
+		this.sourceBlock_.field[this.name].showFlydown_();
+		Blockly.myBlocksFlydownImage.eventparam.isFlydownName = this.name;
+	}
+}	
+Blockly.myBlocksFlydownImage.eventparam.openFieldFlydown_ = null;
+Blockly.myBlocksFlydownImage.eventparam.DISPLAY_BELOW = "BELOW";
+Blockly.myBlocksFlydownImage.eventparam.DISPLAY_RIGHT = "RIGHT";
+Blockly.myBlocksFlydownImage.eventparam.DISPLAY_LOCATION = Blockly.myBlocksFlydownImage.eventparam.DISPLAY_BELOW;
+Blockly.myBlocksFlydownImage.eventparam.prototype.fieldCSSClassName = 'blocklyFieldFlydownField';
+Blockly.myBlocksFlydownImage.eventparam.prototype.flyoutCSSClassName = 'blocklyFieldFlydownFlydown';
+Blockly.myBlocksFlydownImage.eventparam.isFlydownName = '';
 
-Blockly.myBlocksFlydown.eventparam.prototype.init = function (block) {
-    Blockly.myBlocksFlydown.eventparam.superClass_.init.call(this, block);
-
-    // Remove inherited field css classes ...
-    Blockly.utils.dom.removeClass(/** @type {!Element} */(this.fieldGroup_),
-        'blocklyEditableText');
-    Blockly.utils.dom.removeClass(/** @type {!Element} */(this.fieldGroup_),
-        'blocklyNoNEditableText');
-    // ... and add new ones, so that look and feel of flyout fields can be customized
-    Blockly.utils.dom.addClass(/** @type {!Element} */(this.fieldGroup_),
-        this.fieldCSSClassName);
-
-    this.mouseOverWrapper_ =
-        Blockly.bindEvent_(this.fieldGroup_, 'mouseover', this, this.onMouseOver_);
-    this.mouseOutWrapper_ =
-        Blockly.bindEvent_(this.fieldGroup_, 'mouseout', this, this.onMouseOut_);
-    this.mouseDownWrapper_ =
-        Blockly.bindEventWithChecks_(this.fieldGroup_, 'mousedown', this,
-            function (_event) {
-                this.isInDrag = true;
-            }
-        );
-    this.mouseUpWrapper_ =
-        Blockly.bindEventWithChecks_(document, 'mouseup', this,
-            function (_event) {
-                this.isInDrag = false;
-                Blockly.myBlocksFlydown.eventparam.hide();
-            }
-        );
+Blockly.myBlocksFlydownImage.eventparam.prototype.init = function (block) {
+    Blockly.myBlocksFlydownImage.eventparam.superClass_.init.call(this, block);
 };
 
-Blockly.myBlocksFlydown.eventparam.prototype.onMouseOver_ = function (e) {
-    if (!this.sourceBlock_.isInFlyout) { // [lyn, 10/22/13] No flydowns in a flyout!
-        Blockly.myBlocksFlydown.eventparam.showPid_ =
-            window.setTimeout(this.showFlydownMaker_(), Blockly.myBlocksFlydown.eventparam.timeout);
-    }
-
-    // This event has been handled.  No need to bubble up to the document.
-    e.stopPropagation();
-};
-
-Blockly.myBlocksFlydown.eventparam.prototype.onMouseOut_ = function (e) {
-    // Clear any pending timer event to show flydown
-    window.clearTimeout(Blockly.myBlocksFlydown.eventparam.showPid_);
-    e.stopPropagation();
-};
-
-Blockly.myBlocksFlydown.eventparam.prototype.showFlydownMaker_ = function () {
-    var field = this; // Name receiver in variable so can close over this variable in returned thunk
-
-    return function () {
-        if (Blockly.myBlocksFlydown.eventparam.showPid_ !== 0 &&
-            !this.isInDrag &&
-            !Blockly.FieldTextInput.htmlInput_) {
-            try {
-                field.showFlydown_();
-            } catch (e) {
-                console.error('Failed to show flydown', e);
-            }
-        }
-        Blockly.myBlocksFlydown.eventparam.showPid_ = 0;
-    };
-};
-
-Blockly.myBlocksFlydown.eventparam.prototype.showFlydown_ = function () {
+Blockly.myBlocksFlydownImage.eventparam.prototype.showFlydown_ = function () {
     Blockly.hideChaff();
     var flydown = Blockly.getMainWorkspace().getFlydown();
 
@@ -353,29 +286,22 @@ Blockly.myBlocksFlydown.eventparam.prototype.showFlydown_ = function () {
     // Adjust scale for current zoom level
     var scale = flydown.targetWorkspace_.scale;
     flydown.workspace_.setScale(scale);
-
     flydown.setCSSClass(this.flyoutCSSClassName);
 
     var blocksDom = Blockly.Xml.textToDom(this.opt_blocksXML_);
+
     // [lyn, 11/10/13] Use goog.dom.getChildren rather than .children or
     //    .childNodes to make this code work across browsers.
     var blocksXMLList = blocksDom.children;
 
-    var xy = Blockly.getMainWorkspace().getSvgXY(this.borderRect_);
-    var borderBBox = this.borderRect_.getBBox();
-    if (this.displayLocation == Blockly.myBlocksFlydown.eventparam.DISPLAY_BELOW) {
-        xy.y += borderBBox.height * scale;
-    } else { // Display right.
-        xy.x += borderBBox.width * scale;
-    }
-
-    flydown.showAt(blocksXMLList, xy.x, xy.y);
-    Blockly.myBlocksFlydown.eventparam.openFieldFlydown_ = this;
+    var xy = Blockly.getMainWorkspace().getSvgXY(this.opt_image_.getSvgRoot());
+	xy.y += this.opt_image_.sourceBlock_.height * scale;
+	flydown.showAt(blocksXMLList, xy.x, xy.y);
+	
+    Blockly.myBlocksFlydownImage.eventparam.openFieldFlydown_ = this;
 };
 
-Blockly.myBlocksFlydown.eventparam.hide = function () {
-    // Clear any pending timer event to show flydown.
-    window.clearTimeout(Blockly.myBlocksFlydown.eventparam.showPid_);
+Blockly.myBlocksFlydownImage.eventparam.hide = function () {
     // Hide any displayed flydown.
     var flydown = Blockly.getMainWorkspace().getFlydown();
     if (flydown) {
@@ -383,58 +309,13 @@ Blockly.myBlocksFlydown.eventparam.hide = function () {
     }
 };
 
-Blockly.myBlocksFlydown.eventparam.prototype.onHtmlInputChange_ = function (e) {
-    goog.asserts.assertObject(Blockly.FieldTextInput.htmlInput_);
-    var htmlInput = Blockly.FieldTextInput.htmlInput_;
-    var text = htmlInput.value;
-    if (text !== htmlInput.oldValue_) {
-        htmlInput.oldValue_ = text;
-        var valid = true;
-        if (this.sourceBlock_) {
-            valid = this.callValidator(htmlInput.value);
-        }
-        if (valid === null) {
-            Blockly.utils.dom.addClass(htmlInput, 'blocklyInvalidInput');
-        } else {
-            Blockly.utils.dom.removeClass(htmlInput, 'blocklyInvalidInput');
-            this.setText(valid);
-        }
-    } else if (goog.userAgent.WEBKIT) {
-        // Cursor key.  Render the source block to show the caret moving.
-        // Chrome only (version 26, OS X).
-        this.sourceBlock_.render();
-    }
-    this.resizeEditor_();
-    Blockly.svgResize(this.sourceBlock_.workspace);
-};
-
-Blockly.myBlocksFlydown.eventparam.prototype.dispose = function () {
-      if (Blockly.myBlocksFlydown.eventparam.openFieldFlydown_ == this) {
-        Blockly.myBlocksFlydown.eventparam.hide();
+Blockly.myBlocksFlydownImage.eventparam.prototype.dispose = function () {
+      if (Blockly.myBlocksFlydownImage.eventparam.openFieldFlydown_ == this) {
+        Blockly.myBlocksFlydownImage.eventparam.hide();
     }
     // Call parent's destructor.
     Blockly.FieldTextInput.prototype.dispose.call(this);
 };
-
-Blockly.myBlocksFlydown.eventparam.prototype.initView = function () {
-
-    this.borderRect_ = Blockly.utils.dom.createSvgElement(
-        Blockly.utils.Svg.RECT, {
-        'x': 0,
-        'y': 0,
-        'height': this.size_.height,
-        'width': this.size_.width,
-        'stroke': this.opt_color_,
-        'fill': this.opt_color_,
-
-    }, this.fieldGroup_);
-
-    this.createTextElement_();
-}; 
-
-
-
-
 
 
 
@@ -450,38 +331,59 @@ Blockly.WorkspaceSvg.prototype.getFlydown = function() {
 
 
 
-
-
-
 var workspace = Blockly.getMainWorkspace();
 var flydown = new  Blockly.Flydown(new Blockly.Options({scrollbars:  true }));
 workspace.flydown_ = flydown;
-Blockly.utils.dom.insertAfter(flydown.createDom('g', 'rgba(192, 192, 192, 0.8)'), workspace.svgBubbleCanvas_);
+Blockly.utils.dom.insertAfter(flydown.createDom('g', 'rgba(0, 0, 0, 1)'), workspace.svgBubbleCanvas_);
 
-Blockly.Blocks["test_blocksFlydown"] = {
+const iconFlydown = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAyCAYAAADx/eOPAAAAAXNSR0IArs4c6QAAA09JREFUaEPtmj1MFEEUgD+ggsJGiRYQbRBNIDQ2IIVwJiTkLlQeWFDTUCjaeIKF4NkoWtBQUwhnRY6QkHhggdDYEEgUaTRQaNCGAirADJu9ndufm2VvV7iJW5HjzXvve2/em5mdrcDHk/u8dexDLFKR2K2GCpWBogLnAcIOUAzKFcYN4sd32N6BvT04OvKIUZD8eYSzshIuXID6Orh6zWnPDcqhSgY5PISFBfi0DL//qJIc3f8vXYTb7dDVBVVVlh07UAGMDLK+DtPvzhbCHh4B1XcfmpvdgfIwMsjyMkxNRRfpUjX390N7uxPIASMyMjFRqrnoxw8OWhkyp9sJjJkVUSPPRs7X1PIKi5hyz0etGhJABTDz8zA7G31Uw7LQ0wPd3Ya2Exi5Vp6mwstKY6Pl8vExGGEzns3NcHBEdl6kLV15GLGOpF+GY6S3Fzo7vXUtLsLMTDi2Uk+sdSgPE2YHe/wIGq57O7v1DV69DgdG7mx5mDDrZXJS7ejAgFrGj4RcN3mYuTnIZv0MV8v8S5hEAuJxw6dAMDU1UFPtbBaiIJO90NKiBl5bg8yMu479A9jfV+sQEiXBiC41NGQYEg7lcrC9DbGYFSF/bhhSYkYIHfX1hg4zEOPj/rpeSTAjI1BXdxp3g8nu7MDoqHpsYJi7MbiXVBsIS+J9Bj7kimsLBCPqJJ2G6mp/ru7uwsYG/PppyV++Ak1NUFvrT8fBAaRSxevHHSYL2TlvI6qFUB4pjg5LH711ddwxtvJ+HtUCm4hDPGHvZgoYOQLFnHj7Br58Vbt58wY8eKiWUy0ZgWDENEsmobXV2wFVRuwjVRlaXYVMRjHNgmTGdKStzYCy146okeFhdaTtEmNjzhoStSIgVlbU+gJlRlbrtvdaWoLpabVxu0RfH3R0FP56mr1bJDCnnWKm+25T7T9Mwd5M0c20nGZaNACtWrNWi2Z5bWcUJ83y2mj6ODZrcwQwW7M2hzMBpNWxWQBp80LDz1byzF81afUSUKvXs1q9OBe1ENWVhr3OIrvSEIbMO5ow68ZPoyhVxnHZJMNocQ0oA5X9Ba0MI/4Os7OVOpXcxiuvzu1AZf1RgxkBbT43cQMyfyvLD4HkOarFJ1r2ojsPUH4+nvsLSHVosUCTiPwAAAAASUVORK5CYII=";
+
+Blockly.Blocks["test_blocksFlydown1"] = {
 	init:  function() {
-		var workspace = Blockly.getMainWorkspace();
+		
+		this.field = {};
+		var fieldImageName = "imageName";
+		
 		this.appendDummyInput()
-			.appendField("Flydown1");	
-			
-		var blocksXML1 = ['<block type="math_number"><field name="NUM">0</field></block>','<block type="variables_get"><field name="VAR">i</field></block>'];
-		this.appendDummyInput()
-			.appendField(new Blockly.myBlocksFlydown.eventparam('\u2615', '#fff', workspace, blocksXML1, 'field1'));	
-			
-		this.appendDummyInput()
-			.appendField("Flydown2");	
-			
-		var blocksXML2 = ['<block type="math_number"><field name="NUM">0</field></block>'];
-		this.appendDummyInput()
-			.appendField(new Blockly.myBlocksFlydown.eventparam('\u2614', '#fff', workspace, blocksXML2, 'field2'));	
-			
+			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
+		var blocksXML = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>','<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
+		this.field[fieldImageName] = new Blockly.myBlocksFlydownImage.eventparam(this.getField(fieldImageName), blocksXML);
+		
 		this.setInputsInline(true);		
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
-		this.setColour(100); 			
-    }
+		this.setColour(100);
+	}
 }
 
-Blockly.JavaScript['test_blocksFlydown'] = function(block) {
+Blockly.JavaScript['test_blocksFlydown1'] = function(block) {
+  return '';
+};
+
+Blockly.Blocks["test_blocksFlydown2"] = {
+	init:  function() {
+		this.field = {};
+		var fieldImageName = "";
+		
+		fieldImageName = "imageName1";
+		this.appendDummyInput()
+			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
+		var blocksXML1 = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>'];
+		this.field[fieldImageName] = new Blockly.myBlocksFlydownImage.eventparam(this.getField(fieldImageName), blocksXML1);
+		
+		fieldImageName = "imageName2";
+		this.appendDummyInput()
+			.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
+		var blocksXML2 = ['<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
+		this.field[fieldImageName] = new Blockly.myBlocksFlydownImage.eventparam(this.getField(fieldImageName), blocksXML2);
+		
+		this.setInputsInline(true);		
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setColour(100);
+	}
+}
+
+Blockly.JavaScript['test_blocksFlydown2'] = function(block) {
   return '';
 };
