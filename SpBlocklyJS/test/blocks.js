@@ -386,10 +386,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		init:  function() {
 			this.field = {};
 			var fieldImageName = "imageName";
-			const iconFlydown = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAyCAYAAADx/eOPAAAAAXNSR0IArs4c6QAAA09JREFUaEPtmj1MFEEUgD+ggsJGiRYQbRBNIDQ2IIVwJiTkLlQeWFDTUCjaeIKF4NkoWtBQUwhnRY6QkHhggdDYEEgUaTRQaNCGAirADJu9ndufm2VvV7iJW5HjzXvve2/em5mdrcDHk/u8dexDLFKR2K2GCpWBogLnAcIOUAzKFcYN4sd32N6BvT04OvKIUZD8eYSzshIuXID6Orh6zWnPDcqhSgY5PISFBfi0DL//qJIc3f8vXYTb7dDVBVVVlh07UAGMDLK+DtPvzhbCHh4B1XcfmpvdgfIwMsjyMkxNRRfpUjX390N7uxPIASMyMjFRqrnoxw8OWhkyp9sJjJkVUSPPRs7X1PIKi5hyz0etGhJABTDz8zA7G31Uw7LQ0wPd3Ya2Exi5Vp6mwstKY6Pl8vExGGEzns3NcHBEdl6kLV15GLGOpF+GY6S3Fzo7vXUtLsLMTDi2Uk+sdSgPE2YHe/wIGq57O7v1DV69DgdG7mx5mDDrZXJS7ejAgFrGj4RcN3mYuTnIZv0MV8v8S5hEAuJxw6dAMDU1UFPtbBaiIJO90NKiBl5bg8yMu479A9jfV+sQEiXBiC41NGQYEg7lcrC9DbGYFSF/bhhSYkYIHfX1hg4zEOPj/rpeSTAjI1BXdxp3g8nu7MDoqHpsYJi7MbiXVBsIS+J9Bj7kimsLBCPqJJ2G6mp/ru7uwsYG/PppyV++Ak1NUFvrT8fBAaRSxevHHSYL2TlvI6qFUB4pjg5LH711ddwxtvJ+HtUCm4hDPGHvZgoYOQLFnHj7Br58Vbt58wY8eKiWUy0ZgWDENEsmobXV2wFVRuwjVRlaXYVMRjHNgmTGdKStzYCy146okeFhdaTtEmNjzhoStSIgVlbU+gJlRlbrtvdaWoLpabVxu0RfH3R0FP56mr1bJDCnnWKm+25T7T9Mwd5M0c20nGZaNACtWrNWi2Z5bWcUJ83y2mj6ODZrcwQwW7M2hzMBpNWxWQBp80LDz1byzF81afUSUKvXs1q9OBe1ENWVhr3OIrvSEIbMO5ow68ZPoyhVxnHZJMNocQ0oA5X9Ba0MI/4Os7OVOpXcxiuvzu1AZf1RgxkBbT43cQMyfyvLD4HkOarFJ1r2ojsPUH4+nvsLSHVosUCTiPwAAAAASUVORK5CYII=";
+			const icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAyCAYAAADx/eOPAAAAAXNSR0IArs4c6QAAA09JREFUaEPtmj1MFEEUgD+ggsJGiRYQbRBNIDQ2IIVwJiTkLlQeWFDTUCjaeIKF4NkoWtBQUwhnRY6QkHhggdDYEEgUaTRQaNCGAirADJu9ndufm2VvV7iJW5HjzXvve2/em5mdrcDHk/u8dexDLFKR2K2GCpWBogLnAcIOUAzKFcYN4sd32N6BvT04OvKIUZD8eYSzshIuXID6Orh6zWnPDcqhSgY5PISFBfi0DL//qJIc3f8vXYTb7dDVBVVVlh07UAGMDLK+DtPvzhbCHh4B1XcfmpvdgfIwMsjyMkxNRRfpUjX390N7uxPIASMyMjFRqrnoxw8OWhkyp9sJjJkVUSPPRs7X1PIKi5hyz0etGhJABTDz8zA7G31Uw7LQ0wPd3Ya2Exi5Vp6mwstKY6Pl8vExGGEzns3NcHBEdl6kLV15GLGOpF+GY6S3Fzo7vXUtLsLMTDi2Uk+sdSgPE2YHe/wIGq57O7v1DV69DgdG7mx5mDDrZXJS7ejAgFrGj4RcN3mYuTnIZv0MV8v8S5hEAuJxw6dAMDU1UFPtbBaiIJO90NKiBl5bg8yMu479A9jfV+sQEiXBiC41NGQYEg7lcrC9DbGYFSF/bhhSYkYIHfX1hg4zEOPj/rpeSTAjI1BXdxp3g8nu7MDoqHpsYJi7MbiXVBsIS+J9Bj7kimsLBCPqJJ2G6mp/ru7uwsYG/PppyV++Ak1NUFvrT8fBAaRSxevHHSYL2TlvI6qFUB4pjg5LH711ddwxtvJ+HtUCm4hDPGHvZgoYOQLFnHj7Br58Vbt58wY8eKiWUy0ZgWDENEsmobXV2wFVRuwjVRlaXYVMRjHNgmTGdKStzYCy146okeFhdaTtEmNjzhoStSIgVlbU+gJlRlbrtvdaWoLpabVxu0RfH3R0FP56mr1bJDCnnWKm+25T7T9Mwd5M0c20nGZaNACtWrNWi2Z5bWcUJ83y2mj6ODZrcwQwW7M2hzMBpNWxWQBp80LDz1byzF81afUSUKvXs1q9OBe1ENWVhr3OIrvSEIbMO5ow68ZPoyhVxnHZJMNocQ0oA5X9Ba0MI/4Os7OVOpXcxiuvzu1AZf1RgxkBbT43cQMyfyvLD4HkOarFJ1r2ojsPUH4+nvsLSHVosUCTiPwAAAAASUVORK5CYII=";
 
 			this.appendDummyInput()
-				.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
+				.appendField(new Blockly.FieldImage(icon, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
 			var blocksXML = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>','<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
 			this.field[fieldImageName] = new Blockly.myBlocksFlydownImage.eventparam(this.getField(fieldImageName), blocksXML);
 			
@@ -403,20 +403,23 @@ document.addEventListener('DOMContentLoaded', function() {
 	Blockly.Blocks["test_blocksFlydown2"] = {
 		init:  function() {
 			this.field = {};
-			var fieldImageName = "";
-			const iconFlydown = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAyCAYAAADx/eOPAAAAAXNSR0IArs4c6QAAA09JREFUaEPtmj1MFEEUgD+ggsJGiRYQbRBNIDQ2IIVwJiTkLlQeWFDTUCjaeIKF4NkoWtBQUwhnRY6QkHhggdDYEEgUaTRQaNCGAirADJu9ndufm2VvV7iJW5HjzXvve2/em5mdrcDHk/u8dexDLFKR2K2GCpWBogLnAcIOUAzKFcYN4sd32N6BvT04OvKIUZD8eYSzshIuXID6Orh6zWnPDcqhSgY5PISFBfi0DL//qJIc3f8vXYTb7dDVBVVVlh07UAGMDLK+DtPvzhbCHh4B1XcfmpvdgfIwMsjyMkxNRRfpUjX390N7uxPIASMyMjFRqrnoxw8OWhkyp9sJjJkVUSPPRs7X1PIKi5hyz0etGhJABTDz8zA7G31Uw7LQ0wPd3Ya2Exi5Vp6mwstKY6Pl8vExGGEzns3NcHBEdl6kLV15GLGOpF+GY6S3Fzo7vXUtLsLMTDi2Uk+sdSgPE2YHe/wIGq57O7v1DV69DgdG7mx5mDDrZXJS7ejAgFrGj4RcN3mYuTnIZv0MV8v8S5hEAuJxw6dAMDU1UFPtbBaiIJO90NKiBl5bg8yMu479A9jfV+sQEiXBiC41NGQYEg7lcrC9DbGYFSF/bhhSYkYIHfX1hg4zEOPj/rpeSTAjI1BXdxp3g8nu7MDoqHpsYJi7MbiXVBsIS+J9Bj7kimsLBCPqJJ2G6mp/ru7uwsYG/PppyV++Ak1NUFvrT8fBAaRSxevHHSYL2TlvI6qFUB4pjg5LH711ddwxtvJ+HtUCm4hDPGHvZgoYOQLFnHj7Br58Vbt58wY8eKiWUy0ZgWDENEsmobXV2wFVRuwjVRlaXYVMRjHNgmTGdKStzYCy146okeFhdaTtEmNjzhoStSIgVlbU+gJlRlbrtvdaWoLpabVxu0RfH3R0FP56mr1bJDCnnWKm+25T7T9Mwd5M0c20nGZaNACtWrNWi2Z5bWcUJ83y2mj6ODZrcwQwW7M2hzMBpNWxWQBp80LDz1byzF81afUSUKvXs1q9OBe1ENWVhr3OIrvSEIbMO5ow68ZPoyhVxnHZJMNocQ0oA5X9Ba0MI/4Os7OVOpXcxiuvzu1AZf1RgxkBbT43cQMyfyvLD4HkOarFJ1r2ojsPUH4+nvsLSHVosUCTiPwAAAAASUVORK5CYII=";
 
-			fieldImageName = "imageName1";
-			this.appendDummyInput()
-				.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
+			var fieldImageName1 = "imageName1";
+			const icon1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAyCAYAAADx/eOPAAAAAXNSR0IArs4c6QAAA09JREFUaEPtmj1MFEEUgD+ggsJGiRYQbRBNIDQ2IIVwJiTkLlQeWFDTUCjaeIKF4NkoWtBQUwhnRY6QkHhggdDYEEgUaTRQaNCGAirADJu9ndufm2VvV7iJW5HjzXvve2/em5mdrcDHk/u8dexDLFKR2K2GCpWBogLnAcIOUAzKFcYN4sd32N6BvT04OvKIUZD8eYSzshIuXID6Orh6zWnPDcqhSgY5PISFBfi0DL//qJIc3f8vXYTb7dDVBVVVlh07UAGMDLK+DtPvzhbCHh4B1XcfmpvdgfIwMsjyMkxNRRfpUjX390N7uxPIASMyMjFRqrnoxw8OWhkyp9sJjJkVUSPPRs7X1PIKi5hyz0etGhJABTDz8zA7G31Uw7LQ0wPd3Ya2Exi5Vp6mwstKY6Pl8vExGGEzns3NcHBEdl6kLV15GLGOpF+GY6S3Fzo7vXUtLsLMTDi2Uk+sdSgPE2YHe/wIGq57O7v1DV69DgdG7mx5mDDrZXJS7ejAgFrGj4RcN3mYuTnIZv0MV8v8S5hEAuJxw6dAMDU1UFPtbBaiIJO90NKiBl5bg8yMu479A9jfV+sQEiXBiC41NGQYEg7lcrC9DbGYFSF/bhhSYkYIHfX1hg4zEOPj/rpeSTAjI1BXdxp3g8nu7MDoqHpsYJi7MbiXVBsIS+J9Bj7kimsLBCPqJJ2G6mp/ru7uwsYG/PppyV++Ak1NUFvrT8fBAaRSxevHHSYL2TlvI6qFUB4pjg5LH711ddwxtvJ+HtUCm4hDPGHvZgoYOQLFnHj7Br58Vbt58wY8eKiWUy0ZgWDENEsmobXV2wFVRuwjVRlaXYVMRjHNgmTGdKStzYCy146okeFhdaTtEmNjzhoStSIgVlbU+gJlRlbrtvdaWoLpabVxu0RfH3R0FP56mr1bJDCnnWKm+25T7T9Mwd5M0c20nGZaNACtWrNWi2Z5bWcUJ83y2mj6ODZrcwQwW7M2hzMBpNWxWQBp80LDz1byzF81afUSUKvXs1q9OBe1ENWVhr3OIrvSEIbMO5ow68ZPoyhVxnHZJMNocQ0oA5X9Ba0MI/4Os7OVOpXcxiuvzu1AZf1RgxkBbT43cQMyfyvLD4HkOarFJ1r2ojsPUH4+nvsLSHVosUCTiPwAAAAASUVORK5CYII=";
 			var blocksXML1 = ['<block type="controls_if"><value name="IF0"></value></block>','<block type="logic_compare"><field name="OP">EQ</field></block>'];
-			this.field[fieldImageName] = new Blockly.myBlocksFlydownImage.eventparam(this.getField(fieldImageName), blocksXML1);
 			
-			fieldImageName = "imageName2";
 			this.appendDummyInput()
-				.appendField(new Blockly.FieldImage(iconFlydown, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName);
+				.appendField(new Blockly.FieldImage(icon1, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName1);
+			this.field[fieldImageName1] = new Blockly.myBlocksFlydownImage.eventparam(this.getField(fieldImageName1), blocksXML1);
+			
+
+			var fieldImageName2 = "imageName2";
+			const icon2 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAADyUlEQVRIieXVS0xcVRzH8e85l3nAUBCsaZHUqrDQAsWZdGekj8RXVzR10qUwJERXLtTEREPARle6Nl3AMEljGmnorlZjBNpoWzVAQoFKIRFqB9raymNGZu7ce/8uhiG8hOFRY+JvdW/yP+dz/+feew7836KyKQoGg7k+n++w1vopx3GKtNZ/ish4LBa73NHRMb/jcENDQ7lt281KqRNA3holfwGdjuM0RyKRsR2BQ6HQ+yLyCeDClYvaW4EqfBI8+ZCMITNRZOoGpBIAJvBhOBz+bFtwfX39GaCRHA/6wHEoq0EZ7lV1YpvIaDcyfAmsJMCZcDj8VjawsVanwAfkFaFr3kGVVqN0ukwr8OQoHAEBlDZQu8vQJZXI5ABYiUOBQCDW19d3dVMdh0KhZ0VkmByPWx99L720wO5cRcUTBnvyFEql0btxYfC+zR/zkh48cwe763OwkqbWuqK1tXV0PVgvvXEc52PArQ8cX0TLizTH9ueQsISe2xYXx1L0TFgkLOHY/hzKixamKCxFP/8agFtEmjbqeBEOBoO5SqlaXLlQVrNYUJqvuBa1uR61uRsX5sx0t9ejNteiNvsKljx7+RFweRGRk42NjWv9Bavh/Pz8GsCnSiqXfUg9t20mZp01B0/MOnSNW4v3ynCj91YC5Jmm+WJWMPA0AAtLvNVIQUl6Yq2fyRYuBlBu37Zg5d2VfgCRx7OClVIPAEjGtgWTnMtc3c8KFpFxAJmJbsvNjM/MtyEci8UuA3GZuoHY5tZU20SmhgBiwJWs4IVT5gKpBDLavSVXbn0PqXmAzvb29kRWMIBhGE1AUoYvwcydzaHTv+Pc/BbAXNiI1s2yvbq3t3fa7/cncOxXZHIAvec58BZkhcoPX4AZR0TaI5FIZFMwQH9//49+v78EK3FIJn5CKQVF+xYPimWxTWTkO5xfzmZQWylV5ff7B/r7+39dD17vPH5XRD4F3Li86R2psAQ8uyA5t3AeD2XeqQmEgTcBbyJlpaYTqdNfnz93OuuOM+nr67saCAS+VEoVY1vlMht1y70RZHIAuTcCs5PgWHHgnGEYb7S1tZ0NBAI/z5vWqYmHc+75ZOrowepqbg0p9myq46Wpq6vzAi+R3laLgYfAb8CVlV/vyyeCLXPzZpNIevJin6f5YudXLVuCN5tXTwRbZjbA/3Gpt5Oxm0PdFZVVRtJ2DguQSNlHVi77I4EX8K6KqoOupGXXZPCqF6qjo8ODvbBiA9npfHOh46PCPE+TUgqvy3igE/Hzj9JblddPnnq7trb2sX8V/c/lbwo9q8gJVNowAAAAAElFTkSuQmCC";
 			var blocksXML2 = ['<block type="variables_get"><field name="VAR">i</field></block>','<block type="math_number"><field name="NUM">0</field></block>'];
-			this.field[fieldImageName] = new Blockly.myBlocksFlydownImage.eventparam(this.getField(fieldImageName), blocksXML2);
+			
+			this.appendDummyInput()
+				.appendField(new Blockly.FieldImage(icon2, 18, 18, { alt: "*", flipRtl: "FALSE" }), fieldImageName2);
+			this.field[fieldImageName2] = new Blockly.myBlocksFlydownImage.eventparam(this.getField(fieldImageName2), blocksXML2);
 			
 			this.setInputsInline(true);		
 			this.setPreviousStatement(true, null);
