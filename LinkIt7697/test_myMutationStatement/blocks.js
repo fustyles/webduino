@@ -58,10 +58,10 @@ Blockly.Blocks["mutation_preview"] = {
   ,myWorkspaceChanged: function(myWorkspace) {}
 };
 
-Blockly.Arduino['mutation_preview'] = function(block) {
+Blockly.JavaScript['mutation_preview'] = function(block) {
   return "";
 };
 
-Blockly.Arduino['mutation_statement'] = function(block) {
+Blockly.JavaScript['mutation_statement'] = function(block) {
   return "";
 };
