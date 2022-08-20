@@ -7,7 +7,7 @@
 /**
  * @fileoverview my Mutator.
  * @author https://www.facebook.com/francefu/
- * @Update 8/6/2022 11:30 (Taiwan Standard Time)
+ * @Update 8/20/2022 14:30 (Taiwan Standard Time)
  */
 
 Blockly.Blocks['test'] = {
@@ -24,7 +24,11 @@ Blockly.Blocks['test'] = {
         var xml = '<block type="controls_if" x="30" y="0"><value name="IF0"><block type="logic_operation"><field name="OP">AND</field></block></value></block><block type="logic_compare" disabled="true" x="250" y="0"><field name="OP">EQ</field></block><block type="controls_repeat_ext" x="400" y="0"><value name="TIMES"><block type="math_number"><field name="NUM">10</field></block></value></block>';
         xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml+'</xml>');
         myWorkspace.clear();
-        Blockly.Xml.domToWorkspace(xml, myWorkspace);        
+        Blockly.Xml.domToWorkspace(xml, myWorkspace); 
+
+		var blocks = myWorkspace.getAllBlocks();
+		for (var i =0;i<blocks.length;i++)
+			blocks[i].setMovable(false);			
        
         function onMyMutatorBlocksChange(event) {
             if (event.type=="click") {
@@ -42,8 +46,8 @@ Blockly.Blocks['test'] = {
 };
 
 Blockly.JavaScript['test'] = function(block) {
-  var do = Blockly.JavaScript.statementToCode(block, 'do'); 
-  return do;
+  var code = Blockly.JavaScript.statementToCode(block, 'do'); 
+  return code;
 };
 
 
