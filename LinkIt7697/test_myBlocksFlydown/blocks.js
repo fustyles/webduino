@@ -496,6 +496,6 @@ Blockly.Blocks["test_blocksFlydown"] = {
     }
 }
 
-Blockly.Arduino['test_blocksFlydown'] = function(block) {
+Blockly.JavaScript['test_blocksFlydown'] = function(block) {
   return '';
 };
