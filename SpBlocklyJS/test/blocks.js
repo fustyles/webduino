@@ -215,7 +215,7 @@ Blockly.Flydown.prototype.placeNewBlock_ = function(originBlock) {
 
   // Move the new block to where the old block is.
   block.moveBy(xyOld.x - xyNew.x, xyOld.y - xyNew.y);
-  myBlocksFlydownImage.eventparam.isFlydownName = '';
+  Blockly.myBlocksFlydownImage..eventparam.isFlydownName = '';
   return block;
 };
 
@@ -224,7 +224,7 @@ Blockly.Flydown.prototype.shouldHide = true;
 Blockly.Flydown.prototype.hide = function() {
   if (this.shouldHide) {
     Blockly.VerticalFlyout.prototype.hide.call(this);
-    myBlocksFlydownImage.eventparam.openFieldFlydown_ = null;
+    Blockly.myBlocksFlydownImage..eventparam.openFieldFlydown_ = null;
   }
   this.shouldHide = true;
 }
