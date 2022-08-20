@@ -375,12 +375,11 @@ Blockly.WorkspaceSvg.prototype.getFlydown = function() {
 
 
 
-
-
 var workspace = Blockly.getMainWorkspace();
 var flydown = new  Blockly.Flydown(new Blockly.Options({scrollbars:  true }));
 workspace.flydown_ = flydown;
 Blockly.utils.dom.insertAfter(flydown.createDom('g', 'rgba(0, 0, 0, 1)'), workspace.svgBubbleCanvas_);
+
 
 
 
