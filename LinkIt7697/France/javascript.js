@@ -1574,7 +1574,7 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
 	
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n';
-  Blockly.Arduino.definitions_.define_esp_http_server_h_include ='#include <esp32-hal-ledc.h>\n#include "img_converters.h"\n#include "esp_camera.h"\n#include "esp_http_server.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nString Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
+  Blockly.Arduino.definitions_.define_esp_http_server_h_include ='#include "esp_camera.h"\n#include "esp_http_server.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nString Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
   
   if (selectBoardType()=="esp32")
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
@@ -1582,135 +1582,22 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 
   Blockly.Arduino.definitions_.define_esp32_cam_gpio_include ='\n'+
-																'#define PWDN_GPIO_NUM     -1\n'+
-																'#define RESET_GPIO_NUM    -1\n'+
-																'#define XCLK_GPIO_NUM      0\n'+
-																'#define SIOD_GPIO_NUM     22\n'+
-																'#define SIOC_GPIO_NUM     19\n'+
-																'#define Y9_GPIO_NUM       25\n'+
-																'#define Y8_GPIO_NUM       33\n'+
-																'#define Y7_GPIO_NUM       32\n'+
-																'#define Y6_GPIO_NUM       34\n'+
-																'#define Y5_GPIO_NUM       38\n'+
-																'#define Y4_GPIO_NUM       36\n'+
-																'#define Y3_GPIO_NUM       37\n'+
-																'#define Y2_GPIO_NUM       39\n'+
-																'#define VSYNC_GPIO_NUM    27\n'+
-																'#define HREF_GPIO_NUM     26\n'+
-																'#define PCLK_GPIO_NUM     35\n';
-
-
-
-  Blockly.Arduino.definitions_.define_linkit_ExecuteCommand = '\n'+
-			'void executeCommand() {\n'+
-			'  if (cmd=="ip") {\n'+
-			'    Feedback="AP IP: "+WiFi.softAPIP().toString();\n'+
-			'    Feedback+="<br>";\n'+
-			'    Feedback+="STA IP: "+WiFi.localIP().toString();\n'+
-			'  } else if (cmd=="mac") {\n'+
-			'    Feedback="STA MAC: "+WiFi.macAddress();\n'+
-			'  } else if (cmd=="restart") {\n'+
-			'    ESP.restart();\n'+
-			'  } else if (cmd=="digitalwrite") {\n'+
-			'    ledcDetachPin(p1.toInt());\n'+
-			'    pinMode(p1.toInt(), OUTPUT);\n'+
-			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
-			'  } else if (cmd=="digitalread") {\n'+
-			'    Feedback=String(digitalRead(p1.toInt()));\n'+
-			'  } else if (cmd=="analogwrite") {\n'+
-			'    if (p1=="4") {\n'+
-			'      ledcAttachPin(4, 4);\n'+
-			'      ledcSetup(4, 5000, 8);\n'+
-			'      ledcWrite(4,p2.toInt());\n'+
-			'    } else {\n'+
-			'      ledcAttachPin(p1.toInt(), 9);\n'+
-			'      ledcSetup(9, 5000, 8);\n'+
-			'      ledcWrite(9,p2.toInt());\n'+
-			'    }\n'+
-			'  } else if (cmd=="analogread") {\n'+
-			'    Feedback=String(analogRead(p1.toInt()));\n'+
-			'  } else if (cmd=="touchread") {\n'+
-			'    Feedback=String(touchRead(p1.toInt()));\n'+
-			'  } else if (cmd=="restart") {\n'+
-			'    ESP.restart();\n'+
-			'  } else if (cmd=="flash") {\n'+
-			'    ledcAttachPin(4, 4);\n'+
-			'    ledcSetup(4, 5000, 8);\n'+
-			'    int val = p1.toInt();\n'+
-			'    ledcWrite(4,val);\n'+
-			'  } else if(cmd=="servo") {\n'+
-			'    ledcAttachPin(p1.toInt(), p3.toInt());\n'+
-			'    ledcSetup(p3.toInt(), 50, 16);\n'+
-			'    int val = 7864-p2.toInt()*34.59;\n'+
-			'    if (val > 7864)\n'+
-			'       val = 7864;\n'+
-			'    else if (val < 1638)\n'+
-			'      val = 1638;\n'+
-			'    ledcWrite(p3.toInt(), val);\n'+
-			'  } else if (cmd=="relay") {\n'+
-			'    pinMode(p1.toInt(), OUTPUT);\n'+
-			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
-			'  } else if (cmd=="buzzer") { \n'+
-			'    pinMode(p1.toInt(),OUTPUT);\n'+
-			'    if (p4=="") p4="9";\n'+
-			'    ledcSetup(p4.toInt(), 2000, 8);\n'+
-			'    ledcAttachPin(p1.toInt(), p4.toInt());\n'+
-			'    ledcWriteTone(p4.toInt(), p2.toInt());\n'+
-			'    delay(p3.toInt());\n'+
-			'    ledcWriteTone(p4.toInt(), 0);\n'+
-			'  } else if (cmd=="resetwifi") {\n'+
-			'    for (int i=0;i<2;i++) {\n'+
-			'      WiFi.begin(p1.c_str(), p2.c_str());\n'+
-			'      Serial.print("Connecting to ");\n'+
-			'      Serial.println(p1);\n'+
-			'      long int StartTime=millis();\n'+
-			'      while (WiFi.status() != WL_CONNECTED) {\n'+
-			'          delay(500);\n'+
-			'          if ((StartTime+5000) < millis()) break;\n'+
-			'      }\n'+
-			'      Serial.println("");\n'+
-			'      Serial.println("STAIP: "+WiFi.localIP().toString());\n'+
-			'      Feedback="STAIP: "+WiFi.localIP().toString();\n'+
-			'      if (WiFi.status() == WL_CONNECTED) {\n'+
-			'        WiFi.softAP((WiFi.localIP().toString()+"_"+p1).c_str(), p2.c_str());\n'+
- 			'        break;\n'+
-			'      }\n'+
-			'    }\n'+
-			'  } else if (cmd=="print") {\n'+
-			'    Serial.print(p1);\n'+
-			'  } else if (cmd=="println") {\n'+
-			'    Serial.println(p1);\n'+
-			'  } else if (cmd=="delay") {\n'+
-			'    delay(p1.toInt());\n'+				
-			'  } else if (cmd=="framesize") {\n'+
-			'    int val = p1.toInt();\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_framesize(s, (framesize_t)val);\n'+
-			'  } else if (cmd=="quality") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_quality(s, p1.toInt());\n'+
-			'  } else if (cmd=="contrast") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_contrast(s, p1.toInt());\n'+
-			'  } else if (cmd=="brightness") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_brightness(s, p1.toInt());\n'+
-			'  } else if (cmd=="saturation") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_saturation(s, p1.toInt());\n'+ 
-			'  } else if (cmd=="special_effect") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_special_effect(s, p1.toInt());\n'+
-			'  } else if (cmd=="hmirror") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_hmirror(s, p1.toInt());\n'+
-			'  } else if (cmd=="vflip") {\n'+
-			'    sensor_t * s = esp_camera_sensor_get();\n'+
-			'    s->set_vflip(s, p1.toInt());\n'+
-			'  } else {\n  '+ 
-			statements_executecommand.replace(/\n/g,"\n  ")+
-			'}\n'+ 
-			'}\n';
+								'#define PWDN_GPIO_NUM     -1\n'+
+								'#define RESET_GPIO_NUM    -1\n'+
+								'#define XCLK_GPIO_NUM      0\n'+
+								'#define SIOD_GPIO_NUM     22\n'+
+								'#define SIOC_GPIO_NUM     19\n'+
+								'#define Y9_GPIO_NUM       25\n'+
+								'#define Y8_GPIO_NUM       33\n'+
+								'#define Y7_GPIO_NUM       32\n'+
+								'#define Y6_GPIO_NUM       34\n'+
+								'#define Y5_GPIO_NUM       38\n'+
+								'#define Y4_GPIO_NUM       36\n'+
+								'#define Y3_GPIO_NUM       37\n'+
+								'#define Y2_GPIO_NUM       39\n'+
+								'#define VSYNC_GPIO_NUM    27\n'+
+								'#define HREF_GPIO_NUM     26\n'+
+								'#define PCLK_GPIO_NUM     35\n';
 	
 	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_cam_initial=''+
@@ -1764,12 +1651,7 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 			'    delay(1000);\n'+
 			'    ESP.restart();\n'+
 			'  }\n'+
-			'  sensor_t * s = esp_camera_sensor_get();\n'+
-			'  if (s->id.PID == OV3660_PID) {\n'+
-			'    s->set_vflip(s, 1);\n'+
-			'    s->set_brightness(s, 1);\n'+
-			'    s->set_saturation(s, -2);\n'+
-			'  }\n'+			
+			'  sensor_t * s = esp_camera_sensor_get();\n'+			
 			'  s->set_framesize(s, FRAMESIZE_'+framesize+');\n'+
 			'  WiFi.mode(WIFI_AP_STA);\n'+
 			'  \n'+
@@ -1836,13 +1718,32 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 			'    }\n'+
 			'  }\n';
 	Blockly.Arduino.definitions_.stream_function = ''+
-			'  void servo_rotate(int channel, int angle) {\n'+
-			'      int val = 7864-angle*34.59;\n'+ 
-			'      if (val > 7864)\n'+
-			'         val = 7864;\n'+
-			'      else if (val < 1638)\n'+
-			'        val = 1638;\n'+
-			'      ledcWrite(channel, val);\n'+
+			'  static esp_err_t bmp_handler(httpd_req_t *req) {\n'+
+			'      camera_fb_t *fb = NULL;\n'+
+			'      esp_err_t res = ESP_OK;\n'+
+			'      uint64_t fr_start = esp_timer_get_time();\n'+
+			'      fb = esp_camera_fb_get();\n'+
+			'      if (!fb) {\n'+
+			'          httpd_resp_send_500(req);\n'+
+			'          return ESP_FAIL;\n'+
+			'      }\n'+
+			'      httpd_resp_set_type(req, "image/x-windows-bmp");\n'+
+			'      httpd_resp_set_hdr(req, "Content-Disposition", "inline; filename=capture.bmp");\n'+
+			'      httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");\n'+
+			'      char ts[32];\n'+
+			'      snprintf(ts, 32, "%ld.%06ld", fb->timestamp.tv_sec, fb->timestamp.tv_usec);\n'+
+			'      httpd_resp_set_hdr(req, "X-Timestamp", (const char *)ts);\n'+
+			'      uint8_t * buf = NULL;\n'+
+			'      size_t buf_len = 0;\n'+
+			'      bool converted = frame2bmp(fb, &buf, &buf_len);\n'+
+			'      esp_camera_fb_return(fb);\n'+
+			'      if(!converted) {\n'+
+			'          httpd_resp_send_500(req);\n'+
+			'          return ESP_FAIL;\n'+
+			'      }\n'+
+			'      res = httpd_resp_send(req, (const char *)buf, buf_len);\n'+
+			'      free(buf);\n'+
+			'      return res;\n'+
 			'  }\n'+
 			'  static size_t jpg_encode_stream(void * arg, size_t index, const void* data, size_t len){\n'+
 			'      jpg_chunking_t *j = (jpg_chunking_t *)arg;\n'+
@@ -1855,12 +1756,11 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 			'      j->len += len;\n'+
 			'      return len;\n'+
 			'  }\n'+
-			'  static esp_err_t capture_handler(httpd_req_t *req){\n'+
-			'      camera_fb_t * fb = NULL;\n'+
+			'  static esp_err_t capture_handler(httpd_req_t *req) {\n'+
+			'      camera_fb_t *fb = NULL;\n'+
 			'      esp_err_t res = ESP_OK;\n'+
 			'      fb = esp_camera_fb_get();\n'+
 			'      if (!fb) {\n'+
-			'          Serial.println("Camera capture failed");\n'+
 			'          httpd_resp_send_500(req);\n'+
 			'          return ESP_FAIL;\n'+
 			'      }\n'+
@@ -1868,257 +1768,556 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 			'      httpd_resp_set_hdr(req, "Content-Disposition", "inline; filename=capture.jpg");\n'+
 			'      httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");\n'+
 			'      size_t fb_len = 0;\n'+
-			'      if(fb->format == PIXFORMAT_JPEG){\n'+
-			'          fb_len = fb->len;\n'+
-			'          res = httpd_resp_send(req, (const char *)fb->buf, fb->len);\n'+
+			'      if (fb->format == PIXFORMAT_JPEG) {\n'+
+			'  	  fb_len = fb->len;\n'+
+			'  	  res = httpd_resp_send(req, (const char *)fb->buf, fb->len);\n'+
 			'      } else {\n'+
-			'          jpg_chunking_t jchunk = {req, 0};\n'+
-			'          res = frame2jpg_cb(fb, 80, jpg_encode_stream, &jchunk)?ESP_OK:ESP_FAIL;\n'+
-			'          httpd_resp_send_chunk(req, NULL, 0);\n'+
-			'          fb_len = jchunk.len;\n'+
+			'  	  	jpg_chunking_t jchunk = {req, 0};\n'+
+			'  	  	res = frame2jpg_cb(fb, 80, jpg_encode_stream, &jchunk) ? ESP_OK : ESP_FAIL;\n'+
+			'  	  	httpd_resp_send_chunk(req, NULL, 0);\n'+
+			'  	  	fb_len = jchunk.len;\n'+
 			'      }\n'+
 			'      esp_camera_fb_return(fb);\n'+
 			'      return res;\n'+
 			'  }\n'+
-			'  static esp_err_t stream_handler(httpd_req_t *req){\n'+
-			'      camera_fb_t * fb = NULL;\n'+
+			'  static esp_err_t stream_handler(httpd_req_t *req) {\n'+
+			'      camera_fb_t *fb = NULL;\n'+
+			'      struct timeval _timestamp;\n'+
 			'      esp_err_t res = ESP_OK;\n'+
 			'      size_t _jpg_buf_len = 0;\n'+
-			'      uint8_t * _jpg_buf = NULL;\n'+
-			'      char * part_buf[128];\n'+
+			'      uint8_t *_jpg_buf = NULL;\n'+
+			'      char *part_buf[128];\n'+
 			'      res = httpd_resp_set_type(req, _STREAM_CONTENT_TYPE);\n'+
-			'      if(res != ESP_OK){\n'+
+			'      if (res != ESP_OK) {\n'+
 			'          return res;\n'+
 			'      }\n'+
 			'      httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");\n'+
 			'      httpd_resp_set_hdr(req, "X-Framerate", "60");\n'+
-			'      while(true){\n'+
+			'      while (true) {\n'+
 			'          fb = esp_camera_fb_get();\n'+
 			'          if (!fb) {\n'+
-			'              Serial.println("Camera capture failed");\n'+
 			'              res = ESP_FAIL;\n'+
 			'          } else {\n'+
-			'            if(fb->format != PIXFORMAT_JPEG){\n'+
-			'                bool jpeg_converted = frame2jpg(fb, 80, &_jpg_buf, &_jpg_buf_len);\n'+
-			'                esp_camera_fb_return(fb);\n'+
-			'                fb = NULL;\n'+
-			'                if(!jpeg_converted){\n'+
-			'                    Serial.println("JPEG compression failed");\n'+
-			'                    res = ESP_FAIL;\n'+
-			'                }\n'+
-			'            } else {\n'+
-			'                _jpg_buf_len = fb->len;\n'+
-			'                _jpg_buf = fb->buf;\n'+
-			'            }\n'+
-			'          }\n'+
-			'          if(res == ESP_OK){\n'+
-			'              res = httpd_resp_send_chunk(req, (const char *)_jpg_buf, _jpg_buf_len);\n'+
-			'          }\n'+
-			'          if(res == ESP_OK){\n'+
+			'              if (fb->format != PIXFORMAT_JPEG) {\n'+
+			'                  bool jpeg_converted = frame2jpg(fb, 80, &_jpg_buf, &_jpg_buf_len);\n'+
+			'                  esp_camera_fb_return(fb);\n'+
+			'                  fb = NULL;\n'+
+			'                  if (!jpeg_converted) {\n'+
+			'                      res = ESP_FAIL;\n'+
+			'                  }\n'+
+			'              } else {\n'+
+			'                  _jpg_buf_len = fb->len;\n'+
+			'                  _jpg_buf = fb->buf;\n'+
+ 			'             }\n'+
+ 			'         }\n'+
+			'          if (res == ESP_OK) {\n'+
 			'              res = httpd_resp_send_chunk(req, _STREAM_BOUNDARY, strlen(_STREAM_BOUNDARY));\n'+
 			'          }\n'+
-			'          if(res == ESP_OK){\n'+
-			'              size_t hlen = snprintf((char *)part_buf, 128, _STREAM_PART, _jpg_buf_len);\n'+
+			'          if (res == ESP_OK) {\n'+
+			'              size_t hlen = snprintf((char *)part_buf, 128, _STREAM_PART, _jpg_buf_len, _timestamp.tv_sec, _timestamp.tv_usec);\n'+
 			'              res = httpd_resp_send_chunk(req, (const char *)part_buf, hlen);\n'+
 			'          }\n'+
-			'          if(fb){\n'+
+			'          if (res == ESP_OK) {\n'+
+			'              res = httpd_resp_send_chunk(req, (const char *)_jpg_buf, _jpg_buf_len);\n'+
+			'          }\n'+
+			'          if (fb) {\n'+
 			'              esp_camera_fb_return(fb);\n'+
 			'              fb = NULL;\n'+
 			'              _jpg_buf = NULL;\n'+
-			'          } else if(_jpg_buf){\n'+
+			'          }\n'+
+			'          else if (_jpg_buf) {\n'+
 			'              free(_jpg_buf);\n'+
 			'              _jpg_buf = NULL;\n'+
 			'          }\n'+
-			'          if(res != ESP_OK){\n'+
+			'          if (res != ESP_OK) {\n'+
 			'              break;\n'+
 			'          }\n'+
 			'      }\n'+
 			'      return res;\n'+
 			'  }\n'+
-			'  static esp_err_t cmd_handler(httpd_req_t *req){\n'+
-			'      char*  buf;\n'+
-			'      size_t buf_len;\n'+
-			'      char variable[128] = {0,};\n'+
-			'      char value[128] = {0,};\n'+
-			'      String myCmd = "";\n'+
+			'  static esp_err_t parse_get(httpd_req_t *req, char **obuf) {\n'+
+			'      char *buf = NULL;\n'+
+			'      size_t buf_len = 0;\n'+
 			'      buf_len = httpd_req_get_url_query_len(req) + 1;\n'+
 			'      if (buf_len > 1) {\n'+
-			'          buf = (char*)malloc(buf_len);\n'+
-			'          if(!buf){\n'+
+			'          buf = (char *)malloc(buf_len);\n'+
+			'          if (!buf) {\n'+
 			'              httpd_resp_send_500(req);\n'+
 			'              return ESP_FAIL;\n'+
 			'          }\n'+
 			'          if (httpd_req_get_url_query_str(req, buf, buf_len) == ESP_OK) {\n'+
-			'            if (httpd_query_key_value(buf, "var", variable, sizeof(variable)) == ESP_OK&&httpd_query_key_value(buf, "val", value, sizeof(value)) == ESP_OK) {\n'+
-			'            } \n'+
-			'            else {\n'+
-			'              myCmd = String(buf);\n'+
-			'            }\n'+
+			'              *obuf = buf;\n'+
+			'              return ESP_OK;\n'+
 			'          }\n'+
-			'      } else {\n'+
+			'          free(buf);\n'+
+			'      }\n'+
+			'      httpd_resp_send_404(req);\n'+
+			'      return ESP_FAIL;\n'+
+			'  }\n'+
+			'  static esp_err_t cmd_handler(httpd_req_t *req) {\n'+
+			'      char *buf = NULL;\n'+
+			'      char variable[128];\n'+
+			'      char value[128];\n'+
+			'      String myCmd = "";\n'+
+			'      if (parse_get(req, &buf) != ESP_OK) {\n'+
+			'          return ESP_FAIL;\n'+
+			'      }\n'+
+			'      if (httpd_query_key_value(buf, "var", variable, sizeof(variable)) != ESP_OK || httpd_query_key_value(buf, "val", value, sizeof(value)) != ESP_OK) {\n'+
+			'          myCmd = String(buf);\n'+
+			'          free(buf);\n'+
+			'          if (myCmd!="") {\n'+
+			'            Feedback="";Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'+
+			'            receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'+
+			'            sensor_t * s = esp_camera_sensor_get();\n'+
+			'            myCmd = "?"+myCmd;\n'+
+			'            for (int i=0;i<myCmd.length();i++) {\n'+
+			'              getCommand(char(myCmd.charAt(i)));\n'+
+			'            }\n'+
+			'            if (cmd=="ip") {\n'+
+			'              Feedback="AP IP: "+WiFi.softAPIP().toString();\n'+
+			'              Feedback+="<br>";\n'+
+			'              Feedback+="STA IP: "+WiFi.localIP().toString();\n'+
+			'            }\n'+
+			'            else if (cmd=="mac")\n'+
+			'              Feedback="STA MAC: "+WiFi.macAddress();\n'+
+			'            else if (cmd=="restart")\n'+
+			'              ESP.restart();\n'+
+			'            else if (cmd=="resetwifi") {\n'+
+			'              for (int i=0;i<2;i++) {\n'+
+			'                WiFi.begin(p1.c_str(), p2.c_str());\n'+
+			'                Serial.print("Connecting to ");\n'+
+			'                Serial.println(p1);\n'+
+			'                long int StartTime=millis();\n'+
+			'                while (WiFi.status() != WL_CONNECTED) {\n'+
+			'                    delay(500);\n'+
+			'                    if ((StartTime+5000) < millis()) break;\n'+
+			'                }\n'+
+			'                Serial.println("");\n'+
+			'                Serial.println("STAIP: "+WiFi.localIP().toString());\n'+
+			'                Feedback=WiFi.localIP().toString();\n'+
+			'                if (WiFi.status() == WL_CONNECTED) {\n'+
+			'                  WiFi.softAP((WiFi.localIP().toString()+"_"+p1).c_str(), p2.c_str());\n'+
+			'                  break;\n'+
+			'                }\n'+
+			'              }\n'+
+			'            }\n'+
+			'            else if (cmd=="print")\n'+
+			'              Serial.print(p1);\n'+
+			'            else if (cmd=="println")\n'+
+			'              Serial.println(p1);\n'+
+			'            else if (cmd=="delay")\n'+
+			'              delay(p1.toInt());\n'+
+			'            else if (cmd=="framesize") {\n'+
+			'                if (s->pixformat == PIXFORMAT_JPEG) {\n'+
+			'                    s->set_framesize(s, (framesize_t)p1.toInt());\n'+
+			'                }\n'+
+			'            } \n'+
+			'            else if (cmd=="quality")\n'+
+			'                s->set_quality(s, p1.toInt());\n'+
+			'            else if (cmd=="contrast")\n'+
+			'                s->set_contrast(s, p1.toInt());\n'+
+			'            else if (cmd=="brightness")\n'+
+			'                s->set_brightness(s, p1.toInt());\n'+
+			'            else if (cmd=="saturation")\n'+
+			'                s->set_saturation(s, p1.toInt());\n'+
+			'            else if (cmd=="gainceiling")\n'+
+			'                s->set_gainceiling(s, (gainceiling_t)p1.toInt());\n'+
+			'            else if (cmd=="colorbar")\n'+
+			'                s->set_colorbar(s, p1.toInt());\n'+
+			'            else if (cmd=="awb")\n'+
+			'                s->set_whitebal(s, p1.toInt());\n'+
+			'            else if (cmd=="agc")\n'+
+			'                s->set_gain_ctrl(s, p1.toInt());\n'+
+			'            else if (cmd=="aec")\n'+
+			'                s->set_exposure_ctrl(s, p1.toInt());\n'+
+			'            else if (cmd=="hmirror")\n'+
+			'                s->set_hmirror(s, p1.toInt());\n'+
+			'            else if (cmd=="vflip")\n'+
+			'                s->set_vflip(s, p1.toInt());\n'+
+			'            else if (cmd=="awb_gain")\n'+
+			'                s->set_awb_gain(s, p1.toInt());\n'+
+			'            else if (cmd=="agc_gain")\n'+
+			'                s->set_agc_gain(s, p1.toInt());\n'+
+			'            else if (cmd=="aec_p1.toInt()ue")\n'+
+			'                s->set_aec_value(s, p1.toInt());\n'+
+			'            else if (cmd=="aec2")\n'+
+			'                s->set_aec2(s, p1.toInt());\n'+
+			'            else if (cmd=="dcw")\n'+
+			'                s->set_dcw(s, p1.toInt());\n'+
+			'            else if (cmd=="bpc")\n'+
+			'                s->set_bpc(s, p1.toInt());\n'+
+			'            else if (cmd=="wpc")\n'+
+			'                s->set_wpc(s, p1.toInt());\n'+
+			'            else if (cmd=="raw_gma")\n'+
+			'                s->set_raw_gma(s, p1.toInt());\n'+
+			'            else if (cmd=="lenc")\n'+
+			'                s->set_lenc(s, p1.toInt());\n'+
+			'            else if (cmd=="special_effect")\n'+
+			'                s->set_special_effect(s, p1.toInt());\n'+
+			'            else if (cmd=="wb_mode")\n'+
+			'                s->set_wb_mode(s, p1.toInt());\n'+
+			'            else if (cmd=="ae_level")\n'+
+			'                s->set_ae_level(s, p1.toInt());\n'+
+			'            else {\n    '+ 
+							statements_executecommand.replace(/\n/g,"\n  ")+
+			'            }\n'+
+			'            const char *resp = Feedback.c_str();\n'+
+			'            httpd_resp_set_type(req, "text/html");\n'+
+			'            httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");\n'+
+			'            return httpd_resp_send(req, resp, strlen(resp));\n'+
+			'          } else {\n'+
+			'            httpd_resp_send_404(req);\n'+
+			'            return ESP_FAIL;\n'+
+			'          }\n'+
+			'      }\n'+
+			'      free(buf);\n'+
+			'      int val = atoi(value);\n'+
+			'      sensor_t *s = esp_camera_sensor_get();\n'+
+			'      int res = 0;\n'+
+			'      if (!strcmp(variable, "framesize")) {\n'+
+			'          if (s->pixformat == PIXFORMAT_JPEG) {\n'+
+			'              res = s->set_framesize(s, (framesize_t)val);\n'+
+			'          }\n'+
+			'      }\n'+
+			'      else if (!strcmp(variable, "quality"))\n'+
+			'          res = s->set_quality(s, val);\n'+
+			'      else if (!strcmp(variable, "contrast"))\n'+
+			'          res = s->set_contrast(s, val);\n'+
+			'      else if (!strcmp(variable, "brightness"))\n'+
+			'          res = s->set_brightness(s, val);\n'+
+			'      else if (!strcmp(variable, "saturation"))\n'+
+			'          res = s->set_saturation(s, val);\n'+
+			'      else if (!strcmp(variable, "gainceiling"))\n'+
+			'          res = s->set_gainceiling(s, (gainceiling_t)val);\n'+
+			'      else if (!strcmp(variable, "colorbar"))\n'+
+			'          res = s->set_colorbar(s, val);\n'+
+			'      else if (!strcmp(variable, "awb"))\n'+
+			'          res = s->set_whitebal(s, val);\n'+
+			'      else if (!strcmp(variable, "agc"))\n'+
+			'          res = s->set_gain_ctrl(s, val);\n'+
+			'      else if (!strcmp(variable, "aec"))\n'+
+			'          res = s->set_exposure_ctrl(s, val);\n'+
+			'      else if (!strcmp(variable, "hmirror"))\n'+
+			'          res = s->set_hmirror(s, val);\n'+
+			'      else if (!strcmp(variable, "vflip"))\n'+
+			'          res = s->set_vflip(s, val);\n'+
+			'      else if (!strcmp(variable, "awb_gain"))\n'+
+			'          res = s->set_awb_gain(s, val);\n'+
+			'      else if (!strcmp(variable, "agc_gain"))\n'+
+			'          res = s->set_agc_gain(s, val);\n'+
+			'      else if (!strcmp(variable, "aec_value"))\n'+
+			'          res = s->set_aec_value(s, val);\n'+
+			'      else if (!strcmp(variable, "aec2"))\n'+
+			'          res = s->set_aec2(s, val);\n'+
+			'      else if (!strcmp(variable, "dcw"))\n'+
+			'          res = s->set_dcw(s, val);\n'+
+			'      else if (!strcmp(variable, "bpc"))\n'+
+			'          res = s->set_bpc(s, val);\n'+
+			'      else if (!strcmp(variable, "wpc"))\n'+
+			'          res = s->set_wpc(s, val);\n'+
+			'      else if (!strcmp(variable, "raw_gma"))\n'+
+			'          res = s->set_raw_gma(s, val);\n'+
+			'      else if (!strcmp(variable, "lenc"))\n'+
+			'          res = s->set_lenc(s, val);\n'+
+			'      else if (!strcmp(variable, "special_effect"))\n'+
+			'          res = s->set_special_effect(s, val);\n'+
+			'      else if (!strcmp(variable, "wb_mode"))\n'+
+			'          res = s->set_wb_mode(s, val);\n'+
+			'      else if (!strcmp(variable, "ae_level"))\n'+
+			'          res = s->set_ae_level(s, val);\n'+
+			'      else if (!strcmp(variable, "print"))\n'+
+			'          Serial.print(val);\n'+
+			'      else if (!strcmp(variable, "println"))\n'+
+			'          Serial.println(val);\n'+
+			'      else {\n'+
+			'          res = -1;\n'+
+			'      }\n'+
+			'      if (res < 0) {\n'+
+			'          return httpd_resp_send_500(req);\n'+
+			'      }\n'+
+			'      httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");\n'+
+			'      return httpd_resp_send(req, NULL, 0);\n'+
+			'  }\n'+
+			'  static int print_reg(char * p, sensor_t * s, uint16_t reg, uint32_t mask) {\n'+
+			'      return sprintf(p, "\\"0x%x\\":%u,", reg, s->get_reg(s, reg, mask));\n'+
+			'  }\n'+
+			'  static esp_err_t status_handler(httpd_req_t *req) {\n'+
+			'      static char json_response[1024];\n'+
+			'      sensor_t *s = esp_camera_sensor_get();\n'+
+			'      char *p = json_response;\n'+
+			'      *p++ = \'{\';\n'+
+			'      if(s->id.PID == OV5640_PID || s->id.PID == OV3660_PID){\n'+
+			'          for(int reg = 0x3400; reg < 0x3406; reg+=2){\n'+
+			'              p+=print_reg(p, s, reg, 0xFFF);\n'+
+			'          }\n'+
+			'          p+=print_reg(p, s, 0x3406, 0xFF);\n'+
+			'          p+=print_reg(p, s, 0x3500, 0xFFFF0);\n'+
+			'          p+=print_reg(p, s, 0x3503, 0xFF);\n'+
+			'          p+=print_reg(p, s, 0x350a, 0x3FF);\n'+
+			'          p+=print_reg(p, s, 0x350c, 0xFFFF);\n'+
+			'          for(int reg = 0x5480; reg <= 0x5490; reg++){\n'+
+			'              p+=print_reg(p, s, reg, 0xFF);\n'+
+			'          }\n'+
+			'          for(int reg = 0x5380; reg <= 0x538b; reg++){\n'+
+			'              p+=print_reg(p, s, reg, 0xFF);\n'+
+			'          }\n'+
+			'          for(int reg = 0x5580; reg < 0x558a; reg++){\n'+
+			'              p+=print_reg(p, s, reg, 0xFF);\n'+
+			'          }\n'+
+			'          p+=print_reg(p, s, 0x558a, 0x1FF);//9 bit\n'+
+			'      } else if (s->id.PID == OV2640_PID) {\n'+
+			'          p+=print_reg(p, s, 0xd3, 0xFF);\n'+
+			'          p+=print_reg(p, s, 0x111, 0xFF);\n'+
+			'          p+=print_reg(p, s, 0x132, 0xFF);\n'+
+			'      }\n'+
+			'      p += sprintf(p, "\\"xclk\\":%u,", s->xclk_freq_hz / 1000000);\n'+
+			'      p += sprintf(p, "\\"pixformat\\":%u,", s->pixformat);\n'+
+			'      p += sprintf(p, "\\"framesize\\":%u,", s->status.framesize);\n'+
+			'      p += sprintf(p, "\\"quality\\":%u,", s->status.quality);\n'+
+			'      p += sprintf(p, "\\"brightness\\":%d,", s->status.brightness);\n'+
+			'      p += sprintf(p, "\\"contrast\\":%d,", s->status.contrast);\n'+
+			'      p += sprintf(p, "\\"saturation\\":%d,", s->status.saturation);\n'+
+			'      p += sprintf(p, "\\"sharpness\\":%d,", s->status.sharpness);\n'+
+			'      p += sprintf(p, "\\"special_effect\\":%u,", s->status.special_effect);\n'+
+			'      p += sprintf(p, "\\"wb_mode\\":%u,", s->status.wb_mode);\n'+
+			'      p += sprintf(p, "\\"awb\\":%u,", s->status.awb);\n'+
+			'      p += sprintf(p, "\\"awb_gain\\":%u,", s->status.awb_gain);\n'+
+			'      p += sprintf(p, "\\"aec\\":%u,", s->status.aec);\n'+
+			'      p += sprintf(p, "\\"aec2\\":%u,", s->status.aec2);\n'+
+			'      p += sprintf(p, "\\"ae_level\\":%d,", s->status.ae_level);\n'+
+			'      p += sprintf(p, "\\"aec_value\\":%u,", s->status.aec_value);\n'+
+			'      p += sprintf(p, "\\"agc\\":%u,", s->status.agc);\n'+
+			'      p += sprintf(p, "\\"agc_gain\\":%u,", s->status.agc_gain);\n'+
+			'      p += sprintf(p, "\\"gainceiling\\":%u,", s->status.gainceiling);\n'+
+			'      p += sprintf(p, "\\"bpc\\":%u,", s->status.bpc);\n'+
+			'      p += sprintf(p, "\\"wpc\\":%u,", s->status.wpc);\n'+
+			'      p += sprintf(p, "\\"raw_gma\\":%u,", s->status.raw_gma);\n'+
+			'      p += sprintf(p, "\\"lenc\\":%u,", s->status.lenc);\n'+
+			'      p += sprintf(p, "\\"hmirror\\":%u,", s->status.hmirror);\n'+
+			'      p += sprintf(p, "\\"dcw\\":%u,", s->status.dcw);\n'+
+			'      p += sprintf(p, "\\"colorbar\\":%u", s->status.colorbar);\n'+
+			'      *p++ = \'}\';\n'+
+			'      *p++ = 0;\n'+
+			'      httpd_resp_set_type(req, "application/json");\n'+
+			'      httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");\n'+
+			'      return httpd_resp_send(req, json_response, strlen(json_response));\n'+
+			'  }\n'+
+			'  static esp_err_t xclk_handler(httpd_req_t *req) {\n'+
+			'      char *buf = NULL;\n'+
+			'      char _xclk[32];\n'+
+			'      if (parse_get(req, &buf) != ESP_OK) {\n'+
+			'          return ESP_FAIL;\n'+
+			'      }\n'+
+			'      if (httpd_query_key_value(buf, "xclk", _xclk, sizeof(_xclk)) != ESP_OK) {\n'+
+			'          free(buf);\n'+
 			'          httpd_resp_send_404(req);\n'+
 			'          return ESP_FAIL;\n'+
-			'      }\n'+			
-			'      Feedback="";Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'+
-			'      receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'+
-			'      if (myCmd.length()>0) {\n'+
-			'        myCmd = "?"+myCmd;\n'+
-			'        for (int i=0;i<myCmd.length();i++) {\n'+
-			'          getCommand(char(myCmd.charAt(i)));\n'+
-			'        }\n'+
 			'      }\n'+
-			'      if (cmd.length()>0) {\n'+
-			'        if (cmd=="ip") {\n'+
-			'          Feedback="AP IP: "+WiFi.softAPIP().toString();\n'+
-			'          Feedback+="<br>";\n'+
-			'          Feedback+="STA IP: "+WiFi.localIP().toString();\n'+
-			'        }\n'+
-			'        else if (cmd=="mac") {\n'+
-			'          Feedback="STA MAC: "+WiFi.macAddress();\n'+
-			'        }\n'+
-			'        else if (cmd=="restart") {\n'+
-			'          ESP.restart();\n'+
-			'        }\n'+
-			'        else if (cmd=="digitalwrite") {\n'+
-			'          ledcDetachPin(p1.toInt());\n'+
-			'          pinMode(p1.toInt(), OUTPUT);\n'+
-			'          digitalWrite(p1.toInt(), p2.toInt());\n'+
-			'        }\n'+
-			'        else if (cmd=="digitalread") {\n'+
-			'          Feedback=String(digitalRead(p1.toInt()));\n'+
-			'        }\n'+
-			'        else if (cmd=="analogwrite") {\n'+
-			'          if (p1=="4") {\n'+
-			'            ledcAttachPin(4, 4);\n'+
-			'            ledcSetup(4, 5000, 8);\n'+
-			'            ledcWrite(4,p2.toInt());\n'+
-			'          }\n'+
-			'          else {\n'+
-			'            ledcAttachPin(p1.toInt(), 9);\n'+
-			'            ledcSetup(9, 5000, 8);\n'+
-			'            ledcWrite(9,p2.toInt());\n'+
-			'          }\n'+
-			'        }\n'+
-			'        else if (cmd=="analogread") {\n'+
-			'          Feedback=String(analogRead(p1.toInt()));\n'+
-			'        }\n'+
-			'        else if (cmd=="touchread") {\n'+
-			'          Feedback=String(touchRead(p1.toInt()));\n'+
-			'        }\n'+
-			'        else if (cmd=="resetwifi") {\n'+
-			'          for (int i=0;i<2;i++) {\n'+
-			'            WiFi.begin(p1.c_str(), p2.c_str());\n'+
-			'            Serial.print("Connecting to ");\n'+
-			'            Serial.println(p1);\n'+
-			'            long int StartTime=millis();\n'+
-			'            while (WiFi.status() != WL_CONNECTED) {\n'+
-			'                delay(500);\n'+
-			'                if ((StartTime+5000) < millis()) break;\n'+
-			'            }\n'+
-			'            Serial.println("");\n'+
-			'            Serial.println("STAIP: "+WiFi.localIP().toString());\n'+
-			'            Feedback=WiFi.localIP().toString();\n'+
-			'            if (WiFi.status() == WL_CONNECTED) {\n'+
-			'              WiFi.softAP((WiFi.localIP().toString()+"_"+p1).c_str(), p2.c_str());\n'+
-			'              break;\n'+
-			'            }\n'+
-			'          }\n'+
-			'        }\n'+
-			'        else if (cmd=="flash") {\n'+
-			'          ledcAttachPin(4, 4);\n'+
-			'          ledcSetup(4, 5000, 8);\n'+  
-			'          int val = p1.toInt();\n'+
-			'          ledcWrite(4,val);\n'+
-			' 		 } else if (cmd=="print") {\n'+
-			' 		   Serial.print(p1);\n'+
-			' 		 } else if (cmd=="println") {\n'+
-			' 		   Serial.println(p1);\n'+
-			' 		 } else if (cmd=="delay") {\n'+
-			' 		   delay(p1.toInt());\n'+				
-			' 		 } else if (cmd=="framesize") {\n'+
-			' 	 	   int val = p1.toInt();\n'+
-			' 		   sensor_t * s = esp_camera_sensor_get();\n'+
-			' 	       s->set_framesize(s, (framesize_t)val);\n'+
-			' 	   	 } else if (cmd=="quality") {\n'+
-			' 	 	   sensor_t * s = esp_camera_sensor_get();\n'+
-			' 	 	   s->set_quality(s, p1.toInt());\n'+
-			' 		 } else if (cmd=="contrast") {\n'+
-			' 		   sensor_t * s = esp_camera_sensor_get();\n'+
-			' 	 	   s->set_contrast(s, p1.toInt());\n'+
-			' 		 } else if (cmd=="brightness") {\n'+
-			' 		   sensor_t * s = esp_camera_sensor_get();\n'+
-			' 		   s->set_brightness(s, p1.toInt());\n'+
-			' 		 } else if (cmd=="saturation") {\n'+
-			' 		   sensor_t * s = esp_camera_sensor_get();\n'+
-			'		   s->set_saturation(s, p1.toInt());\n'+ 
-			'		 } else if (cmd=="special_effect") {\n'+
-			' 		   sensor_t * s = esp_camera_sensor_get();\n'+
-			' 		   s->set_special_effect(s, p1.toInt());\n'+
-			' 		 } else if (cmd=="hmirror") {\n'+
-			' 		   sensor_t * s = esp_camera_sensor_get();\n'+
-			'  		   s->set_hmirror(s, p1.toInt());\n'+
-			' 		 } else if (cmd=="vflip") {\n'+
-			' 		   sensor_t * s = esp_camera_sensor_get();\n'+
-			' 		   s->set_vflip(s, p1.toInt());\n'+
-			'        } else if (cmd=="servo") {\n'+
-			'            ledcAttachPin(p1.toInt(), p3.toInt());\n'+
-			'            ledcSetup(p3.toInt(), 50, 16);\n'+
-			'            servo_rotate(p3.toInt(), p2.toInt());\n'+
-			'            delay(100);\n'+
-		    ' 		   } else {\n  '+ 
-						 statements_executecommand.replace(/\n/g,"\n  ")+
-		    '		   }\n'+ 
-			'          const char *resp = Feedback.c_str();\n'+
-			'          httpd_resp_set_type(req, "text/html");\n'+
-			'          httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");\n'+
-			'          return httpd_resp_send(req, resp, strlen(resp));\n'+
-			'        }\n'+
-			'    }\n'+
-			'    static const char PROGMEM INDEX_HTML[] = R"rawliteral(\n'+mainpage+
-			'    \n)rawliteral";\n'+
-			'    static esp_err_t index_handler(httpd_req_t *req){\n'+
-			'        httpd_resp_set_type(req, "text/html");\n'+
-			'        return httpd_resp_send(req, (const char *)INDEX_HTML, strlen(INDEX_HTML));\n'+
-			'    }\n'+
-			'    void startCameraServer(){\n'+
+			'      free(buf);\n'+
+			'      int xclk = atoi(_xclk);\n'+
+			'      sensor_t *s = esp_camera_sensor_get();\n'+
+			'      int res = s->set_xclk(s, LEDC_TIMER_0, xclk);\n'+
+			'      if (res) {\n'+
+			'          return httpd_resp_send_500(req);\n'+
+			'      }\n'+
+			'      httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");\n'+
+			'      return httpd_resp_send(req, NULL, 0);\n'+
+			'  }\n'+
+			'  static esp_err_t reg_handler(httpd_req_t *req) {\n'+
+			'      char *buf = NULL;\n'+
+			'      char _reg[32];\n'+
+			'      char _mask[32];\n'+
+			'      char _val[32];\n'+
+			'      if (parse_get(req, &buf) != ESP_OK) {\n'+
+			'          return ESP_FAIL;\n'+
+			'      }\n'+
+			'      if (httpd_query_key_value(buf, "reg", _reg, sizeof(_reg)) != ESP_OK || httpd_query_key_value(buf, "mask", _mask, sizeof(_mask)) != ESP_OK || httpd_query_key_value(buf, "val", _val, sizeof(_val)) != ESP_OK) {\n'+
+			'          free(buf);\n'+
+			'          httpd_resp_send_404(req);\n'+
+			'          return ESP_FAIL;\n'+
+			'      }\n'+
+			'      free(buf);\n'+
+			'      int reg = atoi(_reg);\n'+
+			'      int mask = atoi(_mask);\n'+
+			'      int val = atoi(_val);\n'+
+			'      sensor_t *s = esp_camera_sensor_get();\n'+
+			'      int res = s->set_reg(s, reg, mask, val);\n'+
+			'      if (res) {\n'+
+			'          return httpd_resp_send_500(req);\n'+
+			'      }\n'+
+			'      httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");\n'+
+			'      return httpd_resp_send(req, NULL, 0);\n'+
+			'  }\n'+
+			'  static esp_err_t greg_handler(httpd_req_t *req) {\n'+
+			'      char *buf = NULL;\n'+
+			'      char _reg[32];\n'+
+			'      char _mask[32];\n'+
+			'      if (parse_get(req, &buf) != ESP_OK) {\n'+
+			'          return ESP_FAIL;\n'+
+			'      }\n'+
+			'      if (httpd_query_key_value(buf, "reg", _reg, sizeof(_reg)) != ESP_OK || httpd_query_key_value(buf, "mask", _mask, sizeof(_mask)) != ESP_OK) {\n'+
+			'          free(buf);\n'+
+			'          httpd_resp_send_404(req);\n'+
+			'          return ESP_FAIL;\n'+
+			'      }\n'+
+			'      free(buf);\n'+
+			'      int reg = atoi(_reg);\n'+
+ 			'      int mask = atoi(_mask);\n'+
+			'      sensor_t *s = esp_camera_sensor_get();\n'+
+			'      int res = s->get_reg(s, reg, mask);\n'+
+			'      if (res < 0) {\n'+
+			'          return httpd_resp_send_500(req);\n'+
+			'      }\n'+
+			'      char buffer[20];\n'+
+			'      const char * val = itoa(res, buffer, 10);\n'+
+			'      httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");\n'+
+			'      return httpd_resp_send(req, val, strlen(val));\n'+
+			'  }\n'+
+			'  static int parse_get_var(char *buf, const char * key, int def) {\n'+
+			'      char _int[16];\n'+
+			'      if(httpd_query_key_value(buf, key, _int, sizeof(_int)) != ESP_OK){\n'+
+			'          return def;\n'+
+			'      }\n'+
+			'      return atoi(_int);\n'+
+			'  }\n'+
+			'  static esp_err_t pll_handler(httpd_req_t *req) {\n'+
+			'      char *buf = NULL;\n'+
+			'      if (parse_get(req, &buf) != ESP_OK) {\n'+
+			'          return ESP_FAIL;\n'+
+			'      }\n'+
+			'      int bypass = parse_get_var(buf, "bypass", 0);\n'+
+			'      int mul = parse_get_var(buf, "mul", 0);\n'+
+			'      int sys = parse_get_var(buf, "sys", 0);\n'+
+			'      int root = parse_get_var(buf, "root", 0);\n'+
+			'      int pre = parse_get_var(buf, "pre", 0);\n'+
+			'      int seld5 = parse_get_var(buf, "seld5", 0);\n'+
+			'      int pclken = parse_get_var(buf, "pclken", 0);\n'+
+			'      int pclk = parse_get_var(buf, "pclk", 0);\n'+
+			'      free(buf);\n'+
+			'      sensor_t *s = esp_camera_sensor_get();\n'+
+			'      int res = s->set_pll(s, bypass, mul, sys, root, pre, seld5, pclken, pclk);\n'+
+			'      if (res) {\n'+
+			'          return httpd_resp_send_500(req);\n'+
+			'      }\n'+
+			'      httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");\n'+
+			'      return httpd_resp_send(req, NULL, 0);\n'+
+			'  }\n'+
+			'  static esp_err_t win_handler(httpd_req_t *req) {\n'+
+			'      char *buf = NULL;\n'+
+			'      if (parse_get(req, &buf) != ESP_OK) {\n'+
+			'          return ESP_FAIL;\n'+
+			'      }\n'+
+			'      int startX = parse_get_var(buf, "sx", 0);\n'+
+			'      int startY = parse_get_var(buf, "sy", 0);\n'+
+			'      int endX = parse_get_var(buf, "ex", 0);\n'+
+			'      int endY = parse_get_var(buf, "ey", 0);\n'+
+			'      int offsetX = parse_get_var(buf, "offx", 0);\n'+
+			'      int offsetY = parse_get_var(buf, "offy", 0);\n'+
+			'      int totalX = parse_get_var(buf, "tx", 0);\n'+
+			'      int totalY = parse_get_var(buf, "ty", 0);\n'+
+ 			'      int outputX = parse_get_var(buf, "ox", 0);\n'+
+			'      int outputY = parse_get_var(buf, "oy", 0);\n'+
+			'      bool scale = parse_get_var(buf, "scale", 0) == 1;\n'+
+			'      bool binning = parse_get_var(buf, "binning", 0) == 1;\n'+
+			'      free(buf);\n'+
+			'      sensor_t *s = esp_camera_sensor_get();\n'+
+			'      int res = s->set_res_raw(s, startX, startY, endX, endY, offsetX, offsetY, totalX, totalY, outputX, outputY, scale, binning);\n'+
+			'      if (res) {\n'+
+			'          return httpd_resp_send_500(req);\n'+
+			'      }\n'+
+			'      httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");\n'+
+			'      return httpd_resp_send(req, NULL, 0);\n'+
+			'  }\n'+
+			'  static const char PROGMEM INDEX_HTML[] = R"rawliteral(\n'+mainpage+'\n)rawliteral";\n'+
+			'  static esp_err_t index_handler(httpd_req_t *req) {\n'+
+			'      httpd_resp_set_type(req, "text/html");\n'+
+			'      httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");\n'+
+			'      sensor_t *s = esp_camera_sensor_get();\n'+
+			'      if (s != NULL) {\n'+
+			'          return httpd_resp_send(req, (const char *)INDEX_HTML, strlen(INDEX_HTML));\n'+
+			'      } else {\n'+
+			'          return httpd_resp_send_500(req);\n'+
+			'      }\n'+
+			'  }\n'+
+			'  void startCameraServer() {\n'+
 			'      httpd_config_t config = HTTPD_DEFAULT_CONFIG();\n'+
+			'      config.max_uri_handlers = 16;\n'+
 			'      httpd_uri_t index_uri = {\n'+
-			'          .uri       = "/",\n'+
-			'          .method    = HTTP_GET,\n'+
-			'          .handler   = index_handler,\n'+
-			'          .user_ctx  = NULL\n'+
-			'      };\n'+
+			'          .uri = "/",\n'+
+			'          .method = HTTP_GET,\n'+
+			'          .handler = index_handler,\n'+
+			'          .user_ctx = NULL};\n'+
 			'      httpd_uri_t cmd_uri = {\n'+
-			'          .uri       = "/control",\n'+
-			'          .method    = HTTP_GET,\n'+
-			'          .handler   = cmd_handler,\n'+
-			'          .user_ctx  = NULL\n'+
-			'      };\n'+
+			'          .uri = "/control",\n'+
+			'          .method = HTTP_GET,\n'+
+			'          .handler = cmd_handler,\n'+
+			'          .user_ctx = NULL};\n'+
+			'      httpd_uri_t status_uri = {\n'+
+			'          .uri = "/status",\n'+
+			'          .method = HTTP_GET,\n'+
+			'          .handler = status_handler,\n'+
+			'          .user_ctx = NULL};\n'+
 			'      httpd_uri_t capture_uri = {\n'+
-			'          .uri       = "/capture",\n'+
-			'          .method    = HTTP_GET,\n'+
-			'          .handler   = capture_handler,\n'+
-			'          .user_ctx  = NULL\n'+
-			'      };\n'+
+			'          .uri = "/capture",\n'+
+			'          .method = HTTP_GET,\n'+
+			'          .handler = capture_handler,\n'+
+			'          .user_ctx = NULL};\n'+
 			'      httpd_uri_t stream_uri = {\n'+
-			'          .uri       = "/stream",\n'+
-			'          .method    = HTTP_GET,\n'+
-			'          .handler   = stream_handler,\n'+
-			'          .user_ctx  = NULL\n'+
-			'      };\n'+
-			'      Serial.printf("Starting web server on port: \'%d\'\\n", config.server_port);\n'+
+			'          .uri = "/stream",\n'+
+			'          .method = HTTP_GET,\n'+
+			'          .handler = stream_handler,\n'+
+			'          .user_ctx = NULL};\n'+
+			'      httpd_uri_t bmp_uri = {\n'+
+			'          .uri = "/bmp",\n'+
+			'          .method = HTTP_GET,\n'+
+			'          .handler = bmp_handler,\n'+
+			'          .user_ctx = NULL};\n'+
+			'      httpd_uri_t xclk_uri = {\n'+
+			'          .uri = "/xclk",\n'+
+			'          .method = HTTP_GET,\n'+
+			'          .handler = xclk_handler,\n'+
+			'          .user_ctx = NULL};\n'+
+			'      httpd_uri_t reg_uri = {\n'+
+			'          .uri = "/reg",\n'+
+			'          .method = HTTP_GET,\n'+
+			'          .handler = reg_handler,\n'+
+			'          .user_ctx = NULL};\n'+
+			'      httpd_uri_t greg_uri = {\n'+
+			'          .uri = "/greg",\n'+
+			'          .method = HTTP_GET,\n'+
+			'          .handler = greg_handler,\n'+
+			'          .user_ctx = NULL};\n'+
+			'      httpd_uri_t pll_uri = {\n'+
+			'          .uri = "/pll",\n'+
+			'          .method = HTTP_GET,\n'+
+			'          .handler = pll_handler,\n'+
+			'          .user_ctx = NULL};\n'+
+			'      httpd_uri_t win_uri = {\n'+
+			'          .uri = "/resolution",\n'+
+			'          .method = HTTP_GET,\n'+
+			'          .handler = win_handler,\n'+
+			'          .user_ctx = NULL};\n'+
+			'      Serial.printf("Starting web server on port: \'%d\'", config.server_port);\n'+
+			'      Serial.println("");\n'+
 			'      if (httpd_start(&camera_httpd, &config) == ESP_OK) {\n'+
 			'          httpd_register_uri_handler(camera_httpd, &index_uri);\n'+
 			'          httpd_register_uri_handler(camera_httpd, &cmd_uri);\n'+
+			'          httpd_register_uri_handler(camera_httpd, &status_uri);\n'+
 			'          httpd_register_uri_handler(camera_httpd, &capture_uri);\n'+
+			'          httpd_register_uri_handler(camera_httpd, &bmp_uri);\n'+
+			'          httpd_register_uri_handler(camera_httpd, &xclk_uri);\n'+
+			'          httpd_register_uri_handler(camera_httpd, &reg_uri);\n'+
+			'          httpd_register_uri_handler(camera_httpd, &greg_uri);\n'+
+			'          httpd_register_uri_handler(camera_httpd, &pll_uri);\n'+
+			'          httpd_register_uri_handler(camera_httpd, &win_uri);\n'+   
 			'      }\n'+
 			'      config.server_port += 1;\n'+
 			'      config.ctrl_port += 1;\n'+
-			'      Serial.printf("Starting stream server on port: \'%d\'\\n", config.server_port);\n'+
+			'      Serial.printf("Starting stream server on port: \'%d\'", config.server_port);\n'+
 			'      if (httpd_start(&stream_httpd, &config) == ESP_OK) {\n'+
 			'          httpd_register_uri_handler(stream_httpd, &stream_uri);\n'+
 			'      }\n'+
-			'    }\n';			
+			'  }\n';
 			
     return '';
 };
