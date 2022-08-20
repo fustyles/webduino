@@ -25,6 +25,6 @@ Blockly.Blocks["test_fieldCheckbox"] = {
   }
 };
 
-Blockly.Arduino['test_fieldCheckbox'] = function(block) {
+Blockly.JavaScript['test_fieldCheckbox'] = function(block) {
   return '';
 };
