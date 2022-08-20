@@ -78,7 +78,6 @@ Blockly.Blocks['test'] = {
 };
 
 Blockly.JavaScript['test'] = function(block) {
-  
   var value_if = Blockly.JavaScript.valueToCode(block, 'value_if', Blockly.JavaScript.ORDER_ATOMIC);
   var do_if = Blockly.JavaScript.statementToCode(block, 'do_if');
   var value_elseIf = Blockly.JavaScript.valueToCode(block, 'value_elseIf', Blockly.JavaScript.ORDER_ATOMIC);
