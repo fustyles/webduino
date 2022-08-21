@@ -1572,7 +1572,7 @@
 					<field name="TEXT">12345678</field>
 				  </block>
 				</value>
-				<field name="baudrate">115200</field>				
+				<field name="baudrate">9600</field>				
 				<field name="framesize">QVGA</field>				
 				<value name="mainpage">
 				  <block type="servermodule_javascript" id="102">
@@ -1668,7 +1668,7 @@
 					<field name="TEXT">12345678</field>
 				  </block>
 				</value>
-				<field name="baudrate">115200</field>				
+				<field name="baudrate">9600</field>				
 				<field name="framesize">QVGA</field>				
 				<value name="mainpage">
 				  <block type="servermodule_javascript" id="102">
