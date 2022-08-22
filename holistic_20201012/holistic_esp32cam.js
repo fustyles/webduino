@@ -61,6 +61,10 @@ window.onload = function () {
 		else
 			context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
 		
+		canvasCtx.save();
+		canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+		canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);		
+		
 		if (holisticState.innerHTML =="1") {
 			holistic.send({image: canvas}).then(res => {
 				setTimeout(function(){start();},100);
@@ -79,9 +83,9 @@ window.onload = function () {
 	}
 		
 	function onResults(results) {
-		canvasCtx.save();
-		canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-		canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
+		//canvasCtx.save();
+		//canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+		//canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
 
 		if (face.value==1) {
 			drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION, {color: '#C0C0C070', lineWidth: 1});
