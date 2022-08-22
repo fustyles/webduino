@@ -63,7 +63,7 @@ window.onload = function () {
 		
 		canvasCtx.save();
 		canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-		canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);		
+		canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);		
 		
 		if (holisticState.innerHTML =="1") {
 			holistic.send({image: canvas}).then(res => {
