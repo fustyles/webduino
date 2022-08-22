@@ -1196,6 +1196,7 @@ Blockly.Msg.FACEAPIDETECT_BOXY_SHOW = "方框靠上距離(Box Y)";
 Blockly.Msg.FACEAPIDETECT_BOXWIDTH_SHOW = "方框寬度(Box Width)";
 Blockly.Msg.FACEAPIDETECT_BOXHEIGHT_SHOW = "方框高度(Box Height)";
 Blockly.Msg.FACEAPIDETECT_PAUSE_SHOW = "人臉偵測 (face-api) 暫停偵測";
+Blockly.Msg.FACEAPIDETECT_NUMBER_SHOW = "人臉偵測 (face-api) 取得人臉總數";
 
 Blockly.Msg.ESP32_CAM_FACEAPIDETECT_SHOW = "人臉偵測 (face-api)";
 Blockly.Msg.ESP32_CAM_FACEAPIDETECT_INITIAL_SHOW = "初始設定";

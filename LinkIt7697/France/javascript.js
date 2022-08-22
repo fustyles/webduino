@@ -13599,6 +13599,11 @@ Blockly.Arduino['faceapidetect_face'] = function(block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['faceapidetect_number'] = function(block) { 
+  var code = 'faceapidetect_number()';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['faceapidetect_video'] = function(block) { 
   var value_frame_ = block.getFieldValue('frame_');
   var value_result_ = block.getFieldValue('result_');

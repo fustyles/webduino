@@ -2106,13 +2106,15 @@
 		  </block>			
 		  <block type="faceapidetect_video">    
 		  </block>  
+		  <block type="faceapidetect_number">
+		  </block>  		  
 		  <block type="faceapidetect_face">
 			<value name="face_">
 			  <block type="math_number">
 				<field name="NUM">0</field>
 			  </block>
 			</value> 
-		  </block>  
+		  </block>  		  
 		  <block type="faceapidetect_state">
 		  </block> 
 		  <block type="faceapidetect_video_position">

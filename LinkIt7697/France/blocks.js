@@ -8622,7 +8622,8 @@ Blockly.Blocks['servermodule_parameter'] = {
 		["p6","p6"],
 		["p7","p7"],	
 		["p8","p8"],
-		["p9","p9"],	  
+		["p9","p9"],
+		["Command","Command"]  
 	]), "parameter"); 
 	this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_FORMAT_SHOW);
@@ -8659,7 +8660,8 @@ Blockly.Blocks['servermodule_parameter_variable'] = {
 		["p6","p6"],
 		["p7","p7"],	
 		["p8","p8"],
-		["p9","p9"],	  
+		["p9","p9"],
+		["Command","Command"]
 	]), "parameter"); 
 	this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_FORMAT_SHOW);
@@ -8695,7 +8697,8 @@ Blockly.Blocks['servermodule_parameter_variable_urldecode'] = {
 		["p6","p6"],
 		["p7","p7"],	
 		["p8","p8"],
-		["p9","p9"],	  
+		["p9","p9"],
+		["Command","Command"]
 	]), "parameter"); 
 	this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_URLDECODE_SHOW);    
@@ -8720,7 +8723,8 @@ Blockly.Blocks['servermodule_parameter_get'] = {
 			["p6","p6"],
 			["p7","p7"],	
 			["p8","p8"],
-			["p9","p9"],	  
+			["p9","p9"],
+			["Command","Command"]
 	  ]), "parameter");   
 	this.setInputsInline(true);
     this.setOutput(true, null);  
@@ -8743,7 +8747,8 @@ Blockly.Blocks['servermodule_parameter_set'] = {
 			["p6","p6"],
 			["p7","p7"],	
 			["p8","p8"],
-			["p9","p9"],	  
+			["p9","p9"],
+			["Command","Command"] 
 	  ]), "parameter"); 
 	this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_EQUAL_SHOW);
@@ -18075,6 +18080,16 @@ Blockly.Blocks['faceapidetect_face'] = {
 		[Blockly.Msg.FACEAPIDETECT_DISGUSTED_SHOW,"disgusted"],
 		[Blockly.Msg.FACEAPIDETECT_SURPRISED_SHOW,"surprised"]
   ]), "property_");  	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(Blockly.Msg["HUE_14"]);
+  }
+};
+
+Blockly.Blocks['faceapidetect_number'] = {
+  init: function() {
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.FACEAPIDETECT_NUMBER_SHOW); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(Blockly.Msg["HUE_14"]);
