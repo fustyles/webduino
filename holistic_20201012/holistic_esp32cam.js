@@ -71,10 +71,10 @@ window.onload = function () {
 			});
 		}
 		else {
-			result_face.innerHTML = "";
-			result_pose.innerHTML = "";
-			result_lefthand.innerHTML = "";
-			result_righthand.innerHTML = "";				
+			//result_face.innerHTML = "";
+			//result_pose.innerHTML = "";
+			//result_lefthand.innerHTML = "";
+			//result_righthand.innerHTML = "";				
 			setTimeout(function(){start();},100);
 		}   
 	}
