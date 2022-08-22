@@ -67,6 +67,16 @@ Blockly.Blocks['faceapidetect_face'] = {
   }
 };
 
+Blockly.Blocks['faceapirecognize_number'] = {
+  init: function() {
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.FACEAPIDETECT_NUMBER_SHOW); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
 Blockly.Blocks['faceapidetect_state'] = {
   init: function() { 
   this.appendDummyInput()  
