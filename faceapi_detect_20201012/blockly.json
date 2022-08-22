@@ -1,5 +1,5 @@
 {
-  "types": ["faceapidetect_face","faceapidetect_video", "faceapidetect_state", "faceapidetect_video_position","faceapidetect_startvideo_media","faceapidetect_startvideo_stream", "faceapidetect_clear", "faceapidetect_canvas_get", "faceapidetect_pause", "faceapidetect_recognitied"],
+  "types": ["faceapidetect_face","faceapidetect_number","faceapidetect_video", "faceapidetect_state", "faceapidetect_video_position","faceapidetect_startvideo_media","faceapidetect_startvideo_stream", "faceapidetect_clear", "faceapidetect_canvas_get", "faceapidetect_pause", "faceapidetect_recognitied"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
