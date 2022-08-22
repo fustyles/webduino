@@ -71,9 +71,6 @@ window.onload = function () {
 			});
 		}
 		else {
-			canvasCtx.save();
-			canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-			canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);
 			result_face.innerHTML = "";
 			result_pose.innerHTML = "";
 			result_lefthand.innerHTML = "";
