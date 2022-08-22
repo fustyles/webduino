@@ -13631,6 +13631,11 @@ Blockly.Arduino['faceapidetect_pause'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['faceapidetect_canvas_get'] = function(block) { 
+  var code = '"faceapidetect"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['faceapirecognize_esp32cam'] = function(block) {
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_faceapirecognize = Blockly.Arduino.statementToCode(block, 'javascript_faceapirecognize');

@@ -2135,6 +2135,8 @@
 				<field name="NUM">1000</field>
 			  </block>
 			</value> 			  
+		  </block>
+		  <block type="faceapidetect_canvas_get">			  
 		  </block>		  
 		</category>
 		

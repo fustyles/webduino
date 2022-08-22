@@ -1188,6 +1188,7 @@ Blockly.Msg.FACEAPIDETECT_BOXWIDTH_SHOW = "boxWidth";
 Blockly.Msg.FACEAPIDETECT_BOXHEIGHT_SHOW = "boxHeight";
 Blockly.Msg.FACEAPIDETECT_PAUSE_SHOW = "Face Detection (faceapi.js) Pause";
 Blockly.Msg.FACEAPIDETECT_NUMBER_SHOW = "Face Detection (faceapi.js) get faces number";
+Blockly.Msg.FACEAPIDETECT_CANVAS_GET_SHOW = "Face Detection (faceapi.js) Get Video ID";
 
 Blockly.Msg.ESP32_CAM_FACEAPIDETECT_SHOW = "Face Detection (faceapi.js)";
 Blockly.Msg.ESP32_CAM_FACEAPIDETECT_INITIAL_SHOW = "Initial";

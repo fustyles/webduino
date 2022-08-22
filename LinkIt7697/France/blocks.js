@@ -18140,6 +18140,16 @@ Blockly.Blocks['faceapidetect_pause'] = {
   }
 };
 
+Blockly.Blocks['faceapidetect_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(Blockly.Msg["HUE_14"]);
+  }
+};
+
 Blockly.Blocks['faceapirecognize_esp32cam'] = {
   init: function() {
     this.appendDummyInput()
