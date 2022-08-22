@@ -62,3 +62,8 @@ Blockly.JavaScript['faceapidetect_recognitied'] = function(block) {
   var code = 'faceapidetect_recognitionFinish = async function() {\nfaceapidetect_state(0);\n' + statements_do + '\nfaceapidetect_state(1);};\n';
   return code;
 };
+
+Blockly.JavaScript['faceapidetect_canvas_get'] = function(block) { 
+  var code = '"faceapidetect"';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
