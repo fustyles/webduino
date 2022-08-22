@@ -67,7 +67,7 @@ Blockly.Blocks['faceapidetect_face'] = {
   }
 };
 
-Blockly.Blocks['faceapirecognize_number'] = {
+Blockly.Blocks['faceapidetect_number'] = {
   init: function() {
   this.appendDummyInput() 
       .appendField(Blockly.Msg.FACEAPIDETECT_NUMBER_SHOW); 	  
