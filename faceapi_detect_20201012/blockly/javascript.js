@@ -5,6 +5,11 @@ Blockly.JavaScript['faceapidetect_face'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['faceapidetect_number'] = function(block) { 
+  var code = 'faceapidetect_number()';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['faceapidetect_video'] = function(block) { 
   var value_frame_ = block.getFieldValue('frame_');
   var value_result_ = block.getFieldValue('result_');
