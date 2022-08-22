@@ -33,3 +33,4 @@ Blockly.Msg.FACEAPIDETECT_CLEAR_SHOW = "人臉偵測 (face-api) 清除結果";
 Blockly.Msg.FACEAPIDETECT_PAUSE_SHOW = "人臉偵測 (face-api) 暫停偵測";
 Blockly.Msg.FACEAPIDETECT_RECOGNITIED_SHOW = "人臉偵測 (face-api) 辨識完成後執行";
 Blockly.Msg.FACEAPIDETECT_NUMBER_SHOW = "人臉偵測 (face-api) 取得人臉總數";
+Blockly.Msg.FACEAPIDETECT_CANVAS_GET_SHOW = "人臉偵測 (face-api) 取得影像代碼";
