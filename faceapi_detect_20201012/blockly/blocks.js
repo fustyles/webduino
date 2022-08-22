@@ -183,3 +183,13 @@ Blockly.Blocks['faceapidetect_recognitied'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['faceapidetect_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
