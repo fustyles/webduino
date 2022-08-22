@@ -26,14 +26,14 @@
   } 
   
   function holistic_state(input_state){
-    document.getElementById('holisticState').innerHTML = input_state;
+    	document.getElementById('holisticState').innerHTML = input_state;
   }	
 
   function holistic_video_position(input_left, input_top) {
 	var region = document.getElementById("region_holistic");
-    region.style.position = "absolute";
-    region.style.left = input_left + "px";
-    region.style.top = input_top + "px";
+    	region.style.position = "absolute";
+    	region.style.left = input_left + "px";
+    	region.style.top = input_top + "px";
   }
   
   	function holistic_startvideo_media(input_width, input_height, input_facing, input_videoInputIndex) {
