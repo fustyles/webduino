@@ -71,9 +71,3 @@ Blockly.JavaScript['faceapirecognize_recognitied'] = function(block) {
   var code = 'faceapirecognize_recognitionFinish = async function() {\nfaceapirecognize_state(0);\n' + statements_do + '\nfaceapirecognize_state(1);};\n';
   return code;
 };
-
-Blockly.JavaScript['faceapirecognize_recognitied'] = function(block) { 
-  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'faceapirecognize_recognitionFinish = async function() {\nfaceapirecognize_state(0);\n' + statements_do + '\nfaceapirecognize_state(1);};\n';
-  return code;
-};
