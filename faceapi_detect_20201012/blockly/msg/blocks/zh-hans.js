@@ -32,3 +32,4 @@ Blockly.Msg.FACEAPIDETECT_BOXHEIGHT_SHOW = "方框高度(Box Height)";
 Blockly.Msg.FACEAPIDETECT_CLEAR_SHOW = "人臉侦测 (face-api) 清除结果";
 Blockly.Msg.FACEAPIDETECT_PAUSE_SHOW = "人臉侦测 (face-api) 暂停侦测";
 Blockly.Msg.FACEAPIDETECT_RECOGNITIED_SHOW = "人臉侦测 (face-api) 辨识完成后执行";
+Blockly.Msg.FACEAPIDETECT_NUMBER_SHOW = "人脸侦测 (face-api) 取得人脸总数";
