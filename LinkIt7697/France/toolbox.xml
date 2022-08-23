@@ -7127,9 +7127,9 @@
 					</block>
 				</value>
 				<value name="delaytime">
-				  <block type="text">
-					<field name="TEXT">1000</field>
-				  </block>
+					<block type="math_number">
+						<field name="NUM">500</field>
+					</block>
 				</value>
 			</block>
 			<block type="esp32_buzzer2">
@@ -7139,9 +7139,9 @@
 					</block>
 				</value>
 				<value name="delaytime">
-				  <block type="text">
-					<field name="TEXT">1000</field>
-				  </block>
+					<block type="math_number">
+						<field name="NUM">500</field>
+					</block>
 				</value>
 			</block>
 			<block type="esp32_buzzer3">
@@ -7151,9 +7151,9 @@
 					</block>
 				</value>
 				<value name="delaytime">
-				  <block type="text">
-					<field name="TEXT">1000</field>
-				  </block>
+					<block type="math_number">
+						<field name="NUM">500</field>
+					</block>
 				</value>
 			</block>			
 			<block type="esp32_buzzer1">
@@ -7163,14 +7163,14 @@
 					</block>
 				</value>
 				<value name="frequency">
-				  <block type="text">
-					<field name="TEXT">261</field>
-				  </block>
+					<block type="math_number">
+						<field name="NUM">261</field>
+					</block>
 				</value>
 				<value name="delaytime">
-				  <block type="text">
-					<field name="TEXT">1000</field>
-				  </block>
+					<block type="math_number">
+						<field name="NUM">500</field>
+					</block>
 				</value>
 			</block>
 			<block type="esp32_buzzer1">
@@ -8220,9 +8220,9 @@
 				</block>
 			</value>
 			<value name="delaytime">
-			  <block type="text">
-				<field name="TEXT">1000</field>
-			  </block>
+					<block type="math_number">
+						<field name="NUM">500</field>
+					</block>
 			</value>
 		</block>
 		<block type="esp32_buzzer2">
@@ -8232,9 +8232,9 @@
 				</block>
 			</value>
 			<value name="delaytime">
-			  <block type="text">
-				<field name="TEXT">1000</field>
-			  </block>
+					<block type="math_number">
+						<field name="NUM">500</field>
+					</block>
 			</value>
 		</block>
 		<block type="esp32_buzzer3">
@@ -8244,9 +8244,9 @@
 				</block>
 			</value>
 			<value name="delaytime">
-			  <block type="text">
-				<field name="TEXT">1000</field>
-			  </block>
+					<block type="math_number">
+						<field name="NUM">500</field>
+					</block>
 			</value>
 		</block>			
 		<block type="esp32_buzzer1">
@@ -8256,14 +8256,14 @@
 				</block>
 			</value>
 			<value name="frequency">
-			  <block type="text">
-				<field name="TEXT">261</field>
-			  </block>
+					<block type="math_number">
+						<field name="NUM">261</field>
+					</block>
 			</value>
 			<value name="delaytime">
-			  <block type="text">
-				<field name="TEXT">1000</field>
-			  </block>
+					<block type="math_number">
+						<field name="NUM">500</field>
+					</block>
 			</value>
 		</block>
 		<block type="esp32_buzzer1">

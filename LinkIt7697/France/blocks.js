@@ -14369,7 +14369,7 @@ Blockly.Blocks.esp32_buzzer={
 				["B 4 [494]","494"]
 			]),"frequency");
 		this.appendValueInput("delaytime")
-			.setCheck("String")
+			.setCheck(null)
 			.appendField(Blockly.Msg.ESP32_BUZZER_DELAYTIME);			
 		this.setInputsInline(true);
 		this.setPreviousStatement(true,null);
@@ -14413,7 +14413,7 @@ Blockly.Blocks.esp32_buzzer2={
 				["B 6 [1975]","1975"]
 			]),"frequency");
 		this.appendValueInput("delaytime")
-			.setCheck("String")
+			.setCheck(null)
 			.appendField(Blockly.Msg.ESP32_BUZZER_DELAYTIME);			
 		this.setInputsInline(true);
 		this.setPreviousStatement(true,null);
@@ -14457,7 +14457,7 @@ Blockly.Blocks.esp32_buzzer3={
 				["B 8 [7902]","7902"]
 			]),"frequency");
 		this.appendValueInput("delaytime")
-			.setCheck("String")
+			.setCheck(null)
 			.appendField(Blockly.Msg.ESP32_BUZZER_DELAYTIME);			
 		this.setInputsInline(true);
 		this.setPreviousStatement(true,null);
