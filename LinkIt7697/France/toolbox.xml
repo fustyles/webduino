@@ -8370,13 +8370,56 @@
 		<block type="BitMatrixLed_matrix_brightness">
 			<value name="brightness">
 				<block type="math_number">
-					<field name="NUM">0.5</field>
+					<field name="NUM">10</field>
 				</block>		
 			</value>
 		</block>	
 		<block type="BitMatrixLed_matrix_clear">
 		</block>
-				<block type="BitMatrixLed_matrix_color_one_3">
+		<block type="BitMatrixLed_matrix_color_one_n">
+			<value name="N">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="RGB">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>		
+		</block>
+		<block type="BitMatrixLed_matrix_rgb_one_n">
+			<value name="N">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="R">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="G">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="B">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>		
+		</block>		
+		<block type="BitMatrixLed_matrix_color_one_2">
+			<value name="L21">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>	
+			<value name="L22">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>			
+		</block>		
+		<block type="BitMatrixLed_matrix_color_one_3">
 			<value name="L21">
 				<block type="BitMatrixLed_color">
 				</block>
@@ -8473,39 +8516,6 @@
 				<block type="BitMatrixLed_color">
 				</block>
 			</value>				
-		</block>
-		<block type="BitMatrixLed_matrix_color_one_n">
-			<value name="N">
-				<block type="math_number">
-					<field name="NUM">1</field>
-				</block>
-			</value>
-			<value name="RGB">
-				<block type="BitMatrixLed_color">
-				</block>
-			</value>		
-		</block>
-		<block type="BitMatrixLed_matrix_rgb_one_n">
-			<value name="N">
-				<block type="math_number">
-					<field name="NUM">1</field>
-				</block>
-			</value>
-			<value name="R">
-				<block type="math_number">
-					<field name="NUM">0</field>
-				</block>
-			</value>
-			<value name="G">
-				<block type="math_number">
-					<field name="NUM">0</field>
-				</block>
-			</value>
-			<value name="B">
-				<block type="math_number">
-					<field name="NUM">0</field>
-				</block>
-			</value>		
 		</block>
 		<block type="BitMatrixLed_matrix_one_getcolor">
 			<value name="N">
