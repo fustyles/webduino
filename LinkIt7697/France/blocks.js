@@ -1,3 +1,64 @@
+Blockly.Blocks['uart_server_initial'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["UART_SERVER"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			["Serial","Serial"],
+			["Serial1","mySerial1"],
+			["Serial2","mySerial2"]			
+		], this.validate), "serial");
+    this.appendValueInput("rx","rx")
+        .setCheck("Number")
+		.appendField("RX");
+    this.appendValueInput("tx","tx")
+        .setCheck("Number")
+		.appendField("TX");
+	this.getInput("rx").setVisible(false);
+	this.getInput("tx").setVisible(false);		
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.UART_BAUDRATE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["300","300"],
+			["1200","1200"],
+			["2400","2400"],
+			["4800","4800"],
+			["9600","9600"],	    
+			["19200","19200"],
+			["38400","38400"],
+			["57600","57600"],
+			["74880","74880"],
+			["115200","115200"],	
+			["230400","230400"],
+			["250000","250000"],
+			["500000","500000"],
+			["1000000","1000000"],	
+			["2000000","2000000"]
+		]), "baudrate");
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["UART_SERVER_AFTER_READ_SHOW"]);			
+    this.appendStatementInput("statement")
+        .setCheck(null);
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(150);
+  },
+  validate: function(newValue) {
+	 const block = this.sourceBlock_;
+	 if (newValue=="Serial") {
+		 block.getInput("rx").setVisible(false);
+		 block.getInput("tx").setVisible(false);		 
+	 }
+	 else {
+		 block.getInput("rx").setVisible(true);
+		 block.getInput("tx").setVisible(true);		 
+	 } 
+  }
+};
+
 Blockly.Blocks['chart_switch_create'] = {
   init: function() {
 	this.appendDummyInput()
@@ -1917,18 +1978,6 @@ Blockly.Blocks['hands_clear'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HANDS_CLEAR_SHOW); 
   this.setInputsInline(true);	  
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(Blockly.Msg["HUE_10"]);
-  }
-};
-
-Blockly.Blocks['hands_recognitied'] = {
-  init: function () {
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.HANDS_RECOGNITIED_SHOW);
-  this.appendStatementInput("do_");
-  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(Blockly.Msg["HUE_10"]);

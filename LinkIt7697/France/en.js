@@ -1582,3 +1582,6 @@ Blockly.Msg["CHART_SWITCH_DO"] = "After switching";
 Blockly.Msg["CHART_ON"] = "ON";
 Blockly.Msg["CHART_OFF"] = "OFF";
 Blockly.Msg["CHART_SWITCH_GET"] = "Slide switch value";
+
+Blockly.Msg["UART_SERVER"] = "UART Server";
+Blockly.Msg["UART_SERVER_AFTER_READ_SHOW"] = "After getting module string";

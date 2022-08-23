@@ -1318,7 +1318,7 @@ Blockly.Msg["PARAMETER_BUZZER_ESP"] = "蜂鳴器ESP32(腳位, 頻率, 持續時�
 Blockly.Msg["PARAMETER_SERVO_ESP"] = "伺服馬達ESP32(腳位, 角度, 通道)";
 
 Blockly.Msg["UART_SHOW"] = "UART";
-Blockly.Msg["UART_AFTER_READ_SHOW"] = "取得字串後執行";
+Blockly.Msg["UART_AFTER_READ_SHOW"] = "取得一次字串後執行";
 Blockly.Msg["UART_BAUDRATE_SHOW"] = "通訊鮑率";	
 Blockly.Msg["UART_GETDATA_SHOW"] = "取得字串";
 Blockly.Msg["UART_READ_ALL_SHOW"] = "讀取完整字串";
@@ -1591,3 +1591,6 @@ Blockly.Msg["CHART_SWITCH_DO"] = "切換開關後執行";
 Blockly.Msg["CHART_ON"] = "開";
 Blockly.Msg["CHART_OFF"] = "關";
 Blockly.Msg["CHART_SWITCH_GET"] = "滑動開關 開關狀態值";
+
+Blockly.Msg["UART_SERVER"] = "序列埠模組";
+Blockly.Msg["UART_SERVER_AFTER_READ_SHOW"] = "取得一次模組字串後執行";

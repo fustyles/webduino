@@ -83,4 +83,5 @@
 <category><name>catbarchart</name><replace>Bar chart</replace></category>
 <category><name>catcanaloggauge</name><replace>Analog chart</replace></category>
 <category><name>catchartswitch</name><replace>Slide switch</replace></category>
+<category><name>serverUart</name><replace>Server UART</replace></category>
 </xml>

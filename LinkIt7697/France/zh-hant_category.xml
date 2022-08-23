@@ -85,4 +85,5 @@
 <category><name>catbarchart</name><replace>長條圖</replace></category>
 <category><name>catcanaloggauge</name><replace>類比圖</replace></category>
 <category><name>catchartswitch</name><replace>滑動開關</replace></category>
+<category><name>serverUart</name><replace>UART模組</replace></category>
 </xml>
