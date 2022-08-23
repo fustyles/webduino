@@ -2764,7 +2764,11 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'      if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
 			'    }\n'+
 			'  }\n';
-			
+	
+	if (Blockly.Arduino.loops_) {
+		Blockly.Arduino.loops_.server_getrequest = "getRequest();";
+	}
+	
     return '';
 };
 
@@ -12536,7 +12540,11 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'      if (c==\'=\') equalState=1;\n'+
 			'      if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
 			'    }\n'+
-			'  }\n';		
+			'  }\n';	
+
+	if (Blockly.Arduino.loops_) {
+		Blockly.Arduino.loops_.server_getrequest = "getRequest();";
+	}			
 			
     return '';
 };
@@ -13840,7 +13848,12 @@ Blockly.Arduino['esp32_cam_telegrambot'] = function(block) {
 }
 
 Blockly.Arduino['server_getrequest'] = function(block) {
-	var code = 'getRequest();\n';
+	if (Blockly.Arduino.loops_) {
+		Blockly.Arduino.loops_.server_getrequest = "getRequest();";
+		var code = '';
+	}
+	else
+		var code = 'getRequest();\n';
 	return code;			
 }	
 
