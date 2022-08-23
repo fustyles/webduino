@@ -1593,4 +1593,4 @@ Blockly.Msg["CHART_OFF"] = "關";
 Blockly.Msg["CHART_SWITCH_GET"] = "滑動開關 開關狀態值";
 
 Blockly.Msg["UART_SERVER"] = "序列埠模組";
-Blockly.Msg["UART_SERVER_AFTER_READ_SHOW"] = "取得一次模組字串後執行";
+Blockly.Msg["UART_SERVER_AFTER_READ_SHOW"] = "取得一次模組指令後執行";

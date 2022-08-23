@@ -516,20 +516,29 @@
 
 		
 		<category id="france20" name="serverUart"> 
-		  <block type="uart_server_initial">
-			<value name="rx">
-			  <block type="math_number">
-				<field name="NUM">16</field>
+			<block type="uart_server_initial" id="akthi4tt`9v$+(L%siBm">
+				<field name="serial">Serial</field>
+				<field name="baudrate">9600</field>
+				<value name="rx">
+				  <block type="math_number" id="eA5)f:7.KA~#V6FKyvp0">
+					<field name="NUM">16</field>
+				  </block>
+				</value>
+				<value name="tx">
+				  <block type="math_number" id="O!A(*I{{qcNE?-YuBgJ6">
+					<field name="NUM">17</field>
+				  </block>
+				</value>
+				<statement name="statement">
+				  <block type="customcode_comment" id="dtq%w3Porm+$ieNc]eWk">
+					<value name="text">
+					  <block type="text" id="^Svb:Xgdt{j*|C9c^ebY">
+						<field name="TEXT">?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
+					  </block>
+					</value>
+				  </block>
+				</statement>
 			  </block>
-			</value>
-			<value name="tx">
-			  <block type="math_number">
-				<field name="NUM">17</field>
-			  </block>
-			</value> 		  
-			<field name="baudrate">9600</field>
-			<statement name="statement"></statement>
-		  </block> 
 			<block type="fu_serial_print">
 				<value name="data">
 					<shadow type="text">
