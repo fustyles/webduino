@@ -1688,8 +1688,6 @@
 				  </block>
 				</statement>
 			  </block>		
-			  <block type="server_getrequest" id="99">				
-			  </block>		
 			  <block type="esp32_pixelbit_myfirmata" id="99">
 				<value name="ssid">
 				  <block type="text" id="100">
@@ -1747,6 +1745,30 @@
 								<field name="BOOL">TRUE</field>
 							  </block>
 							</value>
+							<next>
+							  <block type="image_onload_dom" id="vDIadT0PzhCQ754uZpQ)">
+								<value name="id_">
+								  <block type="text" id="!ya-{;?^`cjz7[wEJm@g">
+									<field name="TEXT"></field>
+								  </block>
+								</value>
+								<statement name="do_">
+								  <block type="image_set" id="4G%Lor.P!KO(!`;BqVd%">
+									<field name="property_">url</field>
+									<value name="id_">
+									  <block type="text" id="SK|CNNP|]5}l1AyjYsHb">
+										<field name="TEXT"></field>
+									  </block>
+									</value>
+									<value name="value_">
+									  <block type="servermodule_parameter_set_address3_0" id="B4PX5mVd*0c]~2R!C?Lc">
+										<field name="cmd">getstill</field>
+									  </block>
+									</value>
+								  </block>
+								</statement>
+							  </block>
+							</next>							
 						</block>
 					</statement>
 				  </block>
@@ -1786,6 +1808,71 @@
 				  </block>
 				</statement>
 			  </block>
+			  <block type="server_getrequest" id="99">				
+			  </block>		
+			  <block type="esp32_cam_linenotify" id="99">
+				<value name="linetoken">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="linemessage">
+				  <block type="text">
+					<field name="TEXT">World Peace</field>
+				  </block>
+				</value>				
+			  </block>			  
+			  <block type="esp32_cam_googledrive" id="99">
+				<value name="scriptid">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="linetoken">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="foldername">
+				  <block type="text">
+					<field name="TEXT">esp32cam</field>
+				  </block>
+				</value>
+				<value name="filename">
+				  <block type="text">
+					<field name="TEXT">esp32cam</field>
+				  </block>
+				</value>				
+			  </block>
+				<block type="esp32_cam_spreadsheet"> 
+					<value name="spreadsheeturl">
+					  <block type="text">
+						<field name="TEXT"></field>
+					  </block>
+					</value> 
+					<value name="spreadsheetname">
+					  <block type="text">
+						<field name="TEXT">工作表1</field>
+					  </block>
+					</value> 
+					<value name="column">
+					  <block type="math_number">
+						<field name="NUM">1</field>
+					  </block>
+					</value> 
+					<value name="row">
+					  <block type="math_number">
+						<field name="NUM">1</field>
+					  </block>
+					</value>	  
+					<value name="spreadsheet_script">
+					  <block type="text">
+						<field name="TEXT">https://script.google.com/macros/s/AKfycbysXORTz1fwTtjKKDakgjo1NKztyRam2B2NNvx72iq2FWWdGssa3ihhxGk1ZkQmy4ao-A/exec</field>
+					  </block>
+					</value> 
+				</block>
+			  <block type="servermodule_parameter_stream_url">		
+			  </block>				  
 		</category>				  
 		
 		<category id="france26" name="objectreconginition">
