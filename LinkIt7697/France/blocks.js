@@ -1221,8 +1221,11 @@ Blockly.Blocks['variable_urldecode'] = {
     this.appendValueInput("url")
 		.setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT);
-	this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_URLDECODE_SHOW);    
+	this.appendDummyInput()    
+	  .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.SERVERMODULE_PARAMETER_URLDECODE_SHOW,"decode"],	  
+		[Blockly.Msg.SERVERMODULE_PARAMETER_URLENCODE_SHOW,"encode"]
+	]), "func");   
 	this.setInputsInline(true);
     this.setOutput(true, null);  
     this.setColour(Blockly.Msg["HUE_21"]);
@@ -8749,8 +8752,11 @@ Blockly.Blocks['servermodule_parameter_variable_urldecode'] = {
 		["p9","p9"],
 		["Command","Command"]
 	]), "parameter"); 
-	this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_URLDECODE_SHOW);    
+	this.appendDummyInput()    
+	  .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.SERVERMODULE_PARAMETER_URLDECODE_SHOW,"decode"],	  
+		[Blockly.Msg.SERVERMODULE_PARAMETER_URLENCODE_SHOW,"encode"]
+	]), "func");   
 	this.setInputsInline(true);
     this.setOutput(true, null);  
     this.setColour(Blockly.Msg["HUE_21"]);

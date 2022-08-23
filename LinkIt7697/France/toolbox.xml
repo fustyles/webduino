@@ -6664,7 +6664,7 @@
 			<block type="BitMatrixLed_matrix_brightness">
 				<value name="brightness">
 					<block type="math_number">
-						<field name="NUM">10</field>
+						<field name="NUM">100</field>
 					</block>		
 				</value>
 			</block>	
@@ -7354,7 +7354,7 @@
 			<block type="BitMatrixLed_matrix_brightness">
 				<value name="brightness">
 					<block type="math_number">
-						<field name="NUM">10</field>
+						<field name="NUM">100</field>
 					</block>		
 				</value>
 			</block>	
@@ -8370,7 +8370,7 @@
 		<block type="BitMatrixLed_matrix_brightness">
 			<value name="brightness">
 				<block type="math_number">
-					<field name="NUM">10</field>
+					<field name="NUM">100</field>
 				</block>		
 			</value>
 		</block>	
