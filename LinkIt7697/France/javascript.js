@@ -3759,7 +3759,7 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	Blockly.Arduino.definitions_['opendataAirQuality'] = '\n' +
 			'void opendataAirQuality(String Site, String Authorization) {\n'+
 			'  WiFiClientSecure client_tcp;\n'+
-			'  String request = "/api/v1/aqx_p_432?format=json&limit=5&api_key="+Authorization+"&filters=SiteName,EQ,"+urlencode(Site);\n';
+			'  String request = "/api/v2/aqx_p_432?format=json&limit=5&api_key="+Authorization+"&filters=SiteName,EQ,"+urlencode(Site);\n';
 	if (arduinoCore_ESP32)
 		Blockly.Arduino.definitions_['opendataAirQuality'] += '  client_tcp.setInsecure();\n';
 	Blockly.Arduino.definitions_['opendataAirQuality'] +='  if (client_tcp.connect("data.epa.gov.tw", 443)) {\n'+
@@ -3802,10 +3802,10 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'    deserializeJson(doc, Feedback);\n'+
 			'    obj = doc.as<JsonObject>();\n'+
 			'    airSite = Site;\n'+
-			'    airAQI = obj["AQI"].as<String>().toInt();\n'+
-			'    airPM25 = obj["PM2.5"].as<String>().toInt();\n'+
-			'    airStatus = obj["Status"].as<String>();\n'+			
-			'    airTime = obj["PublishTime"].as<String>();\n'+
+			'    airAQI = obj["aqi"].as<String>().toInt();\n'+
+			'    airPM25 = obj["pm2.5"].as<String>().toInt();\n'+
+			'    airStatus = obj["status"].as<String>();\n'+			
+			'    airTime = obj["publishtime"].as<String>();\n'+
 			'  }\n'+
 			'}';
 			

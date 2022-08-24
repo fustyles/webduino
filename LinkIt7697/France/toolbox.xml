@@ -235,12 +235,12 @@
 	  <block type="esp32_wifi_wait_until_ready">
 		<value name="SSID">
 		  <block type="text">
-			<field name="TEXT"></field>
+			<field name="TEXT">teacher</field>
 		  </block>
 		</value>
 		<value name="PASSWORD">
 		  <block type="text">
-			<field name="TEXT"></field>
+			<field name="TEXT">87654321</field>
 		  </block>
 		</value> 		
 	  </block>	
@@ -1546,6 +1546,18 @@
 					<field name="TEXT">World Peace</field>
 				  </block>
 				</value>				
+			  </block>
+			  <block type="esp32_cam_telegrambot" id="99">
+				<value name="token">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="chatid">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
 			  </block>			  
 			  <block type="esp32_cam_googledrive" id="99">
 				<value name="scriptid">
@@ -1833,6 +1845,18 @@
 				<value name="linemessage">
 				  <block type="text">
 					<field name="TEXT">World Peace</field>
+				  </block>
+				</value>				
+			  </block>
+			  <block type="esp32_cam_telegrambot" id="99">
+				<value name="token">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="chatid">
+				  <block type="text">
+					<field name="TEXT"></field>
 				  </block>
 				</value>				
 			  </block>			  
@@ -9301,7 +9325,7 @@
 	  <block type="fu_taiwan_aqi">
 		<value name="Authorization">
 		  <block type="text">
-			<field name="TEXT">9be7b239-557b-4c10-9775-78cadfc555e9</field>
+			<field name="TEXT">e8dd42e6-9b8b-43f8-991e-b3dee723a52d</field>
 		  </block>
 		</value>	  
 	  </block>

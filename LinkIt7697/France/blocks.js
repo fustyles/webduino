@@ -2910,8 +2910,7 @@ Blockly.Blocks['fu_taiwan_aqi'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(60);
-    
-    
+    this.setHelpUrl("https://data.gov.tw/dataset/40448");
   }
 };
 
@@ -2932,8 +2931,7 @@ Blockly.Blocks['fu_taiwan_aqi_get'] = {
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(80);
-    
-    
+    this.setHelpUrl("https://data.gov.tw/dataset/40448");
   }
 };
 
@@ -4963,7 +4961,6 @@ Blockly.Blocks['fu_oled_drawCustomFont'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(220);
-	
 	this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
   },onchange: function(event) {
 		var str = Blockly.Arduino.blockToCode(this.getInputTargetBlock("str"))[0];
