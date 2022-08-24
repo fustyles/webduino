@@ -8643,7 +8643,7 @@ Blockly.Blocks['esp32_myfirmata_bluetooth'] = {
 Blockly.Blocks['servermodule_cmd'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_SHOW);
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SHOW);
 	this.appendDummyInput()    
 		  .appendField(new Blockly.FieldDropdown([
 			["cmd","cmd"],		  
@@ -8673,7 +8673,7 @@ Blockly.Blocks['servermodule_cmd_if'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_CMD_IF_SHOW);
 	this.appendDummyInput()
-			.appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_SHOW);
+			.appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SHOW);
 		this.appendDummyInput()    
 		  .appendField(new Blockly.FieldDropdown([
 			["cmd","cmd"],		  
@@ -8743,7 +8743,7 @@ Blockly.Blocks['servermodule_bluetooth_feedback_newline'] = {
 Blockly.Blocks['servermodule_parameter'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_SHOW);
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SHOW);
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
 		["cmd","cmd"],	  
@@ -8781,7 +8781,7 @@ Blockly.Blocks['servermodule_parameter'] = {
 Blockly.Blocks['servermodule_parameter_variable'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_GET_SHOW);
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SHOW);
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
 		["cmd","cmd"],	  
@@ -8818,7 +8818,7 @@ Blockly.Blocks['servermodule_parameter_variable'] = {
 Blockly.Blocks['servermodule_parameter_variable_urldecode'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_GET_SHOW);
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SHOW);
 	this.appendDummyInput()    
 	  .appendField(new Blockly.FieldDropdown([
 		["cmd","cmd"],	  
@@ -8847,7 +8847,7 @@ Blockly.Blocks['servermodule_parameter_variable_urldecode'] = {
 Blockly.Blocks['servermodule_parameter_get'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_GET_SHOW);
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SHOW);
 	this.appendDummyInput()    
 		  .appendField(new Blockly.FieldDropdown([
 			["cmd","cmd"],		  
@@ -8871,7 +8871,7 @@ Blockly.Blocks['servermodule_parameter_get'] = {
 Blockly.Blocks['servermodule_parameter_set'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_SHOW);
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SHOW);
 	this.appendDummyInput()    
 		  .appendField(new Blockly.FieldDropdown([
 			["cmd","cmd"],		  
@@ -8887,7 +8887,7 @@ Blockly.Blocks['servermodule_parameter_set'] = {
 			["Command","Command"] 
 	  ]), "parameter"); 
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_EQUAL_SHOW);
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_SHOW);
     this.appendValueInput("text")
         .setCheck(null);   
 	this.setInputsInline(true);
