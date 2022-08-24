@@ -8642,8 +8642,24 @@ Blockly.Blocks['esp32_myfirmata_bluetooth'] = {
 
 Blockly.Blocks['servermodule_cmd'] = {
   init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_CMD_SHOW);
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_SHOW);
+	this.appendDummyInput()    
+		  .appendField(new Blockly.FieldDropdown([
+			["cmd","cmd"],		  
+			["p1","p1"],
+			["p2","p2"],
+			["p3","p3"],	
+			["p4","p4"],
+			["p5","p5"],
+			["p6","p6"],
+			["p7","p7"],	
+			["p8","p8"],
+			["p9","p9"],
+			["Command","Command"] 
+	  ]), "parameter"); 
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_EQUAL_SHOW);
     this.appendValueInput("text")
         .setCheck(null);   
     this.setInputsInline(true);
@@ -8656,6 +8672,24 @@ Blockly.Blocks['servermodule_cmd_if'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_CMD_IF_SHOW);
+	this.appendDummyInput()
+			.appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_SHOW);
+		this.appendDummyInput()    
+		  .appendField(new Blockly.FieldDropdown([
+			["cmd","cmd"],		  
+			["p1","p1"],
+			["p2","p2"],
+			["p3","p3"],	
+			["p4","p4"],
+			["p5","p5"],
+			["p6","p6"],
+			["p7","p7"],	
+			["p8","p8"],
+			["p9","p9"],
+			["Command","Command"] 
+	  ]), "parameter"); 
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_EQUAL_SHOW);		
     this.appendValueInput("text")
         .setCheck(null);
     this.appendStatementInput("statement")

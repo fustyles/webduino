@@ -6840,15 +6840,17 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 };
 
 Blockly.Arduino['servermodule_cmd'] = function (block) {
+  var parameter = block.getFieldValue('parameter');
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'cmd == String(' + text + ')';
+  var code = parameter+' == String(' + text + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['servermodule_cmd_if'] = function (block) {
+  var parameter = block.getFieldValue('parameter');
   var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC);
   var statement = Blockly.Arduino.statementToCode(block, 'statement');
-  var code = 'if (cmd == String(' + text + ')) {\n'+statement+'}\n';
+  var code = 'if ('+parameter+' == String(' + text + ')) {\n'+statement+'}\n';
   return code;
 };
 

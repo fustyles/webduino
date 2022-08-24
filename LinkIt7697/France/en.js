@@ -74,7 +74,7 @@ Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW = "value";
 Blockly.Msg.ESP32_DIGITALWRITE_HIGH_SHOW = "HIGH";
 Blockly.Msg.ESP32_DIGITALWRITE_LOW_SHOW = "LOW";
 Blockly.Msg.SERVERMODULE_CMD_SHOW = "cmd equal to";
-Blockly.Msg.SERVERMODULE_CMD_IF_SHOW = "If cmd equal to";
+Blockly.Msg.SERVERMODULE_CMD_IF_SHOW = "If";
 Blockly.Msg.SERVERMODULE_FEEDBACK_SHOW = "Feedback =";
 Blockly.Msg.SERVERMODULE_EXECUTE_SHOW = "Custom Command Region";
 Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW = "Main Page";
