@@ -1406,8 +1406,6 @@
 					</next>
 				  </block>
 				</statement>
-			  </block>
-			  <block type="server_getrequest" id="99">				
 			  </block>				  
 			  <block type="esp32_cam_myfirmata" id="A[bp9I0t/P#E/hwmf1g-" x="50" y="50">
 				<field name="baudrate">115200</field>
@@ -1527,7 +1525,16 @@
 					</next>
 				  </block>
 				</statement>
+			  </block>
+			  <block type="server_getrequest" id="99">				
 			  </block>			  
+				<block type="esp32_cam_camera_property">
+					<value name="value">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+				</block>			  
 			  <block type="esp32_cam_linenotify" id="99">
 				<value name="linetoken">
 				  <block type="text">
@@ -1615,7 +1622,7 @@
 					<field name="TEXT">12345678</field>
 				  </block>
 				</value>
-				<field name="baudrate">9600</field>				
+				<field name="baudrate">57600</field>				
 				<field name="framesize">QVGA</field>				
 				<value name="mainpage">
 				  <block type="servermodule_javascript" id="102">
@@ -1709,7 +1716,7 @@
 					<field name="TEXT">12345678</field>
 				  </block>
 				</value>
-				<field name="baudrate">9600</field>				
+				<field name="baudrate">57600</field>				
 				<field name="framesize">QVGA</field>				
 				<value name="mainpage">
 				  <block type="servermodule_javascript" id="102">
@@ -1809,7 +1816,14 @@
 				</statement>
 			  </block>
 			  <block type="server_getrequest" id="99">				
-			  </block>		
+			  </block>
+				<block type="esp32_cam_camera_property">
+					<value name="value">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+				</block>							
 			  <block type="esp32_cam_linenotify" id="99">
 				<value name="linetoken">
 				  <block type="text">

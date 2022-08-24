@@ -1,3 +1,50 @@
+Blockly.Blocks['esp32_cam_camera_property'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_SHOW);	
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_FRAMESIZE_SHOW,"framesize"],      		//解析度 value = 21->QSXGA(2560x1920), 20->P FHD(1080x1920), 19->WQXGA(2560x1600), 18->QHD(2560x1440), 17->QXGA(2048x1564), 16->P 3MP(864x1564), 15->P HD(720x1280), 14->FHD(1920x1080), 13->UXGA(1600x1200), 12->SXGA(1280x1024), 11->HD(1280x720), 10->XGA(1024x768), 9->SVGA(800x600), 8->VGA(640x480), 7->HVGA(480x320), 6->CIF(400x296), 5->QVGA(320x240), 4->240x240, 3->HQVGA(240x176), 2->QCIF(176x144), 1->QQVGA(160x120), 0->96x96
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_QUALITY_SHOW,"quality"],        			//畫質 value = 4 ~ 63
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_BRIGHTNESS_SHOW,"brightness"],     		//亮度 value = -3 ~ 3
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_CONTRAST_SHOW,"contrast"],       		//對比 value = -3 ~ 3
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_SATURATION_SHOW,"saturation"],     		//飽和度 value = -4 ~ 4
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_SHARPNESS_SHOW,"sharpness"],      		//清晰度 value = -3 ~ 3
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_DENOISE_SHOW,"denoise"],        			//降噪 0 ~ 8
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AE_LEVEL_SHOW,"ae_level"],       		//自動曝光層級 value = -5 ~ 5 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_GAINCEILING_SHOW,"gainceiling"],    		//自動增益上限(開啟時) value = 0 ~ 511
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_SPECIAL_EFFECT_SHOW,"special_effect"], 	//特效 value = 0 ~ 6
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AWB_SHOW,"awb"],            				//白平衡 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_DCW_SHOW,"dcw"],            				//使用自訂影像尺寸 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AWB_GAIN_SHOW,"awb_gain"],       		//自動白平衡增益 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_WB_MODE_SHOW,"wb_mode"],        			//白平衡模式 value = 0自動，1晴天，2陰天，3日光燈，4鎢絲燈
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AEC_SHOW,"aec"],            				//自動曝光感測器 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AEC_value_SHOW,"aec_value"],      		//曝光值 value = 0 ~ 1920
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AEC2_SHOW,"aec2"],           			//自動曝光控制 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AGC_SHOW,"agc"],            				//自動增益控制 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AGC_GAIN_SHOW,"agc_gain"],       		//自動增益(關閉時) value = 0 ~ 30
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_RAW_GMA_SHOW,"raw_gma"],        			//原始伽瑪 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_LENC_SHOW,"lenc"],           			//鏡頭校正 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_HMIRROR_SHOW,"hmirror"],        			//水平鏡像 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_VFLIP_SHOW,"vflip"],          			//垂直翻轉 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_BPC_SHOW,"bpc"],            				//黑色像素校正 value = 0 or 1
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_WPC_SHOW,"wpc"],            				//白色像素校正 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_COLORBAR_SHOW,"colorbar"]        		//顏色條畫面 value = 0 or 1
+		]), "property");	
+    this.appendValueInput("value")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_VALUE_SHOW);
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_12"]);
+	this.setHelpUrl("https://github.com/fustyles/Arduino/blob/master/ESP32-CAM_CameraWebServer_NoFaceDetection_NEW/ESP32-CAM_CameraWebServer_NoFaceDetection_NEW.ino");  	
+  }
+};
+
+
 Blockly.Blocks['uart_server_initial'] = {
   init: function() {
 	this.appendDummyInput()

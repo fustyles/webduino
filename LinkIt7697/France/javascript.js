@@ -1,3 +1,18 @@
+Blockly.Arduino['esp32_cam_camera_property'] = function(block) {
+	var property = block.getFieldValue('property');
+	var value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC);  	
+
+	//Blockly.Arduino.definitions_.sensor_t = 'sensor_t * ss = esp_camera_sensor_get();';
+	
+	if (property=="framesize") 
+		var code =	'esp_camera_sensor_get()->set_'+property+'(esp_camera_sensor_get(), (framesize_t)'+value+');\n';
+	else if (property=="gainceiling")
+        var code =	'esp_camera_sensor_get()->set_'+property+'(esp_camera_sensor_get(), (gainceiling_t)'+value+');\n';
+	else
+		var code =	'esp_camera_sensor_get()->set_'+property+'(esp_camera_sensor_get(), '+value+');\n';
+	return code;
+};
+
 Blockly.Arduino['uart_server_initial'] = function(block) {
 	var serial = block.getFieldValue('serial');
 	var rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);  	
