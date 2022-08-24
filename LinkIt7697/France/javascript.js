@@ -1,3 +1,72 @@
+Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
+	Blockly.Arduino.definitions_.tftshowcamera = ''+
+												'#include <TFT_eSPI_PIXELBIT.h>\n'+
+												'#include <U8g2_for_TFT_eSPI.h>\n'+
+												'TFT_eSPI tft = TFT_eSPI();\n'+
+												'U8g2_for_TFT_eSPI u8g2;\n'+
+												'uint32_t tft_color=TFT_WHITE;\n'+
+												'uint32_t tft_bg_color=TFT_BLACK;\n'+
+												'uint32_t tft_fg_color=TFT_WHITE;\n'+
+												'byte tftTextSize=1;\n'+
+												'byte tftTextFont=1;\n'+
+												'int pinCS=SS;\n'+
+												'#include <TJpg_Decoder.h>\n'+
+												'uint16_t dmaBuffer1[16 * 16];\n'+
+												'uint16_t dmaBuffer2[16 * 16];\n'+
+												'uint16_t *dmaBufferPtr = dmaBuffer1;\n'+
+												'bool dmaBufferSel = 0;\n'+
+												'bool cameraToTft(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t *bitmap) {\n'+
+												'  if (y >= tft.height())\n'+
+												'	return false;\n'+
+												'  if (dmaBufferSel)\n'+
+												'	dmaBufferPtr = dmaBuffer2;\n'+
+												'  else\n'+
+												'	dmaBufferPtr = dmaBuffer1;\n'+
+												'  dmaBufferSel = !dmaBufferSel;\n'+
+												'  tft.dmaWait();\n'+
+												'  tft.pushImageDMA(x, y, w, h, bitmap, dmaBufferPtr);\n'+
+												'  return true;\n'+
+												'}\n'+
+												'void TFTShowCamera() {\n'+
+												'  camera_fb_t *fb = NULL;\n'+
+												'  fb = esp_camera_fb_get();\n'+
+												'  if (!fb) {\n'+
+												'	Serial.println("Camera capture failed");\n'+
+												'	esp_camera_fb_return(fb);\n'+
+												'	return;\n'+
+												'  }\n'+
+												'  if (fb->format != PIXFORMAT_JPEG) {\n'+
+												'	Serial.println("Non-JPEG data not implemented");\n'+
+												'	return;\n'+
+												'  }\n'+
+												'  TJpgDec.setJpgScale(1);\n'+
+												'  tft.startWrite();\n'+
+												'  TJpgDec.drawJpg(0,0, fb->buf, fb->len);\n'+
+												'  tft.endWrite();\n'+
+												'  esp_camera_fb_return(fb);\n'+
+												'}\n';
+			
+	Blockly.Arduino.setups_.tftshowcamera=''+
+										  'tft.begin();\n'+
+										  'tft.setRotation(3);\n'+
+										  'tft.fillScreen(TFT_BLACK);\n'+
+										  'u8g2.begin(tft);\n'+
+										  'tft.setTextColor(tft_color);\n'+
+										  'u8g2.setForegroundColor(tft_color);\n'+
+										  'esp_camera_sensor_get()->set_brightness(esp_camera_sensor_get(), -1);\n'+
+										  'esp_camera_sensor_get()->set_contrast(esp_camera_sensor_get(), 1);\n'+
+										  'esp_camera_sensor_get()->set_saturation(esp_camera_sensor_get(), 1);\n'+
+										  'tft.initDMA(true);\n'+
+										  'tft.setSwapBytes(true);\n'+
+										  'TJpgDec.setCallback(cameraToTft);\n';
+
+	var code = 'TFTShowCamera();\n';
+    return code;
+};
+
+
+
+
 Blockly.Arduino['esp32_cam_camera_property'] = function(block) {
 	var property = block.getFieldValue('property');
 	var value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC);  	
@@ -2781,7 +2850,7 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'  }\n';
 	
 	if (Blockly.Arduino.loops_) {
-		Blockly.Arduino.loops_.server_getrequest = "getRequest();";
+		Blockly.Arduino.loops_.server_getrequest = "getRequest();\n";
 	}
 	
     return '';
@@ -12560,7 +12629,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'  }\n';	
 
 	if (Blockly.Arduino.loops_) {
-		Blockly.Arduino.loops_.server_getrequest = "getRequest();";
+		Blockly.Arduino.loops_.server_getrequest = "getRequest();\n";
 	}			
 			
     return '';
@@ -13865,12 +13934,7 @@ Blockly.Arduino['esp32_cam_telegrambot'] = function(block) {
 }
 
 Blockly.Arduino['server_getrequest'] = function(block) {
-	if (Blockly.Arduino.loops_) {
-		Blockly.Arduino.loops_.server_getrequest = "getRequest();";
-		var code = '';
-	}
-	else
-		var code = 'getRequest();\n';
+	var code = 'getRequest();\n';
 	return code;			
 }	
 

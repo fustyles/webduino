@@ -1835,7 +1835,9 @@
 						<field name="NUM">0</field>
 					  </block>
 					</value>
-				</block>							
+				</block>
+			  <block type="esp32_pixelbit_tftshowcamera" id="99">				
+			  </block>				
 			  <block type="esp32_cam_linenotify" id="99">
 				<value name="linetoken">
 				  <block type="text">
