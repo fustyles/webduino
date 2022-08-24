@@ -13934,6 +13934,9 @@ Blockly.Arduino['esp32_cam_telegrambot'] = function(block) {
 }
 
 Blockly.Arduino['server_getrequest'] = function(block) {
+	if (Blockly.Arduino.loops_) {
+		Blockly.Arduino.loops_.server_getrequest = "";
+	}
 	var code = 'getRequest();\n';
 	return code;			
 }	

@@ -1,7 +1,7 @@
 Blockly.Blocks['esp32_pixelbit_tftshowcamera'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("TFT彩色螢幕 初始化後顯示PIXEL:BIT視訊畫面");
+        .appendField("TFT彩色螢幕  初始化後顯示PIXEL:BIT視訊畫面");
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
