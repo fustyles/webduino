@@ -7,7 +7,7 @@ function doGet(e) {
   var myFoldername = e.parameter.myFoldername;
   var myFile = e.parameter.myFile;
   //var myFilename = e.parameter.myFilename;
-  var myFilename = Utilities.formatDate(new Date(), "GMT+8", "yyyyMMddHHmmss")+"-"+e.parameter.myFilename;
+  var myFilename = Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss")+"-"+e.parameter.myFilename;
   var myToken = e.parameter.myToken;
   
   var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
