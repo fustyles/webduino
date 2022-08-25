@@ -1,7 +1,7 @@
 Blockly.Blocks['esp32_pixelbit_tftshowcamera'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("TFT彩色螢幕  初始化後顯示PIXEL:BIT視訊畫面");
+        .appendField(Blockly.Msg["ESP32_PIXELBIT_TFTSHOWCAMERA"]);
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -2138,7 +2138,7 @@ Blockly.Blocks['esp32_pixelbit_stream_myfirmata'] = {
     this.appendValueInput("mainpage")
         .setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW);
+		.appendField(Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW);	
     this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
     this.appendStatementInput("ExecuteCommand")
@@ -2221,6 +2221,10 @@ Blockly.Blocks['esp32_pixelbit_myfirmata'] = {
         .setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW);
+    this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.SERVERMODULE_REQUEST_SHOW)	
+        .appendField(new Blockly.FieldCheckbox("TRUE"), "request");			
     this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
     this.appendStatementInput("ExecuteCommand")

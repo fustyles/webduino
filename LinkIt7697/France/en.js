@@ -64,6 +64,7 @@ Blockly.Msg.SERVERMODULE_PASSWORD_AP_SHOW = "AP PASSWORD";
 Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW = "Framesize";
 Blockly.Msg.SERVERMODULE_SETUP_SHOW = "setup";
 Blockly.Msg.SERVERMODULE_LOOP_SHOW = "loop";
+Blockly.Msg.SERVERMODULE_REQUEST_SHOW = "monitor HTTP request";
 Blockly.Msg.ESP32_SERVERMODULE_SHOW = "ESP32 connect to Wi-Fi AP";
 Blockly.Msg.ESP32_CAM_SERVERMODULE_SHOW = "ESP32-CAM(still) connect to Wi-Fi AP";
 Blockly.Msg.ESP32_CAM_STREAM_SERVERMODULE_SHOW = "ESP32-CAM(Stream) connect to Wi-Fi AP";
@@ -1615,3 +1616,5 @@ Blockly.Msg["ESP32_CAM_CAMERA_PROPERTY_VFLIP_SHOW"] = "vflip (0, 1)";
 Blockly.Msg["ESP32_CAM_CAMERA_PROPERTY_BPC_SHOW"] = "bpc (0, 1)";
 Blockly.Msg["ESP32_CAM_CAMERA_PROPERTY_WPC_SHOW"] = "wpc (0, 1)";
 Blockly.Msg["ESP32_CAM_CAMERA_PROPERTY_COLORBAR_SHOW"] = "colorbar (0, 1)";
+
+Blockly.Msg["ESP32_PIXELBIT_TFTSHOWCAMERA"] = "TFT Display  initial then show PIXEL:BIT camera";
