@@ -15,6 +15,10 @@ var customCategoryInsertAfter = "category_sep_main";
 var languageList = "msg/language.js";
 var xmlValue = "";
 var topCheck = true;
+var myTimer;
+var showCode = true;
+var showCodeMessage = false;
+var showCodeDelay = 6000;
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -870,7 +874,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	function flashToolbox() {
 		var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
-		Blockly.getMainWorkspace().updateToolbox(category);			
+		Blockly.getMainWorkspace().updateToolbox(category);	
 		var category = JSON.parse(JSON.stringify(customCategory));
 		for (var i=0;i<category.length;i++) {
 			if (category[i][2]) addCustomRemoteBlocks(category[i][2]);
@@ -895,6 +899,52 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}, 2000);
 		
+	//當工作區變動
+	function onBlocksChange(event) {
+		clearTimeout(myTimer);
+		myTimer = setTimeout(function(){
+			var enabledBlockList = ["initializes_loop"];
+			var variableBlockList = ["variables_set","variables_set1","variables_set7"];
+			var variableGlobalBlockList = ["variables_set","variables_set1"];
+			var blocks = Blockly.mainWorkspace.getAllBlocks();
+			var p;
+			for (var i=0;i<blocks.length;i++) {
+				p = blocks[i];
+				if (enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection==null)) {
+					if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
+					if (variableGlobalBlockList.includes(blocks[i].type)&&blocks[i].getField("POSITION")) {
+						if (blocks[i].getFieldValue("POSITION")=="global")
+							continue;
+					}
+					else
+						continue;
+				}
+				p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
+				while(p) {
+					if ((enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection==null))&&!p.getParent()) {
+						if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
+						break;
+					}
+					p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
+				}
+				if (!blocks[i].getParent()&&(blocks[i].previousConnection==null||blocks[i].outputConnection==null)) {
+					if (topCheck&&blocks[i].isEnabled()) blocks[i].setEnabled(false);
+				}
+				if (blocks[i].getParent()&&blocks[i].getPreviousBlock()) {
+					if (variableBlockList.includes(p.type)&&variableBlockList.includes(blocks[i].getParent().type)) {
+						if (topCheck) blocks[i].unplug();
+					}
+				}
+			}
+
+			if (showCode) {
+				var code = Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
+				//document.getElementById('terminal-body').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");				
+				editor.setValue(code);
+			}			
+		}, 200);
+	}
+	Blockly.mainWorkspace.addChangeListener(onBlocksChange);	
 });	
 
 
@@ -949,11 +999,12 @@ function contentZoom(content) {
 		div_content.style.width = "calc(20vw)";
 		div_content.style.height = "40px";
 		div_code.style.display = "none";
-
+		
 		if (content=="arduino") {
 			div_content.style.left = "calc(98% - 20vw)";
 			div_content.style.top = "112px";
 		}
+		showCode = false;
 	}
 	else {
 		div_content.style.width = div_content.w;
@@ -963,6 +1014,7 @@ function contentZoom(content) {
 		if (content=="arduino") {
 			div_content.style.left = div_content.l;	
 			div_content.style.top = div_content.t;	
-		}			
+		}	
+		showCode = true;
 	}
 }
