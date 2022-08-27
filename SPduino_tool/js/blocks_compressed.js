@@ -52,7 +52,7 @@ Blockly.Blocks.main={
 			p = blocks[i];
 			if (enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection
 ==null)) {
-				if (topCheck) blocks[i].setEnabled(true);
+				if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
 				if (variableGlobalBlockList.includes(blocks[i].type)&&blocks[i].getField("POSITION")) {
 					if (blocks[i].getFieldValue("POSITION")=="global")
 						continue;
@@ -64,13 +64,13 @@ Blockly.Blocks.main={
 			while(p) {
 				if ((enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection
 ==null))&&!p.getParent()) {
-					if (topCheck) blocks[i].setEnabled(true);
+					if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
 					break;
 				}
 				p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
 			}
-			if (!p) {
-				if (topCheck) blocks[i].setEnabled(false);
+			if (!blocks[i].getParent()&&(blocks[i].previousConnection==null||blocks[i].outputConnection==null)) {
+				if (topCheck&&blocks[i].isEnabled()) blocks[i].setEnabled(false);
 			}
 			if (blocks[i].getParent()&&blocks[i].getPreviousBlock()) {
 				if (variableBlockList.includes(p.type)&&variableBlockList.includes(blocks[i].getParent().type)) {
