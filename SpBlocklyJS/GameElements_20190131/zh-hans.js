@@ -204,6 +204,7 @@ Blockly.Msg.AJAX_DATATYPE = "资料类型";
 Blockly.Msg.AJAX_GETDATA = "取得资料";
 Blockly.Msg.AJAX_FORMAT = "转换格式";
 Blockly.Msg.AJAX_CLEARDATA = "清除资料";
+Blockly.Msg.AJAX_RESPONSE = "取得回应后执行";
 Blockly.Msg.A_ID = "連結 代码";
 Blockly.Msg.A_CREATE = "连结 建立";
 Blockly.Msg.A_HREF = "网址";
