@@ -19,91 +19,150 @@ var myTimer;
 var myTimer1;
 
 document.addEventListener('DOMContentLoaded', function() {
-	//載入工具箱目錄
-	$.ajax({
-		type: "GET" ,
-		url: "category/category.xml" ,
-		dataType: "xml",
-		timeout: 3000,
-		async: false,
-		success: function(xml, textStatus) {
-			if (xml.firstChild) {
-				var toolbox_ = document.getElementById('toolbox');
-				var Nodes = xml.firstChild.childNodes;
-				for (var i=0;i<Nodes.length;i++){
-					if (Nodes[i].nodeName!="#text") {
-						toolbox_.appendChild(Nodes[i]);
-					}							
+	
+	setTimeout(function(){
+		
+		//載入工具箱目錄
+		$.ajax({
+			type: "GET" ,
+			url: "category/category.xml" ,
+			dataType: "xml",
+			timeout: 3000,
+			async: false,
+			success: function(xml, textStatus) {
+				if (xml.firstChild) {
+					var toolbox_ = document.getElementById('toolbox');
+					var Nodes = xml.firstChild.childNodes;
+					for (var i=0;i<Nodes.length;i++){
+						if (Nodes[i].nodeName!="#text") {
+							toolbox_.appendChild(Nodes[i]);
+						}							
+					}
 				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				//console.log(jqXHR.statusText);
 			}
-		},
-		error: function (jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR.statusText);
+		});
+		
+		var category = document.getElementById('toolbox');
+		xmlValue='<xml id="toolbox">';
+		if (category.childNodes.length>0) {
+			for (var i=0;i<category.childNodes.length;i++){
+				var node = new XMLSerializer().serializeToString(category.childNodes[i]);
+				xmlValue+=node;
+			}
 		}
-	});
-	
-	var category = document.getElementById('toolbox');
-	xmlValue='<xml id="toolbox">';
-	if (category.childNodes.length>0) {
-		for (var i=0;i<category.childNodes.length;i++){
-			var node = new XMLSerializer().serializeToString(category.childNodes[i]);
-			xmlValue+=node;
-		}
-	}
-	xmlValue+='</xml>';	
+		xmlValue+='</xml>';	
 			
-	//初始化工作區	
-	const workspace = Blockly.inject('root',{
-			media: 'media/'
-			,toolbox: xmlValue
-			,grid:{spacing: 20,length: 3,colour: '#eee',snap: true}
-			,zoom:{controls: true, wheel: false, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2}
-			,trashcan: true
-			,move:{
-				scrollbars: {
-				  horizontal: true,
-				  vertical: true
-				},
-				drag: true,
-				wheel: true
+		//初始化工作區	
+		const workspace = Blockly.inject('root',{
+				media: 'media/'
+				,toolbox: xmlValue
+				,grid:{spacing: 20,length: 3,colour: '#eee',snap: true}
+				,zoom:{controls: true, wheel: false, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2}
+				,trashcan: true
+				,move:{
+					scrollbars: {
+					  horizontal: true,
+					  vertical: true
+					},
+					drag: true,
+					wheel: true
+				}
+				,plugins: {
+					'blockDragger': ScrollBlockDragger,
+					'metricsManager': ScrollMetricsManager,
+				}		
 			}
-			,plugins: {
-				'blockDragger': ScrollBlockDragger,
-				'metricsManager': ScrollMetricsManager,
-			}		
+		);
+		
+		//新增邊緣捲動插件
+		//const AutoScrollOptionsPlugin = new AutoScroll(workspace);
+		const scrollOptionsPlugin = new ScrollOptions(workspace);
+		scrollOptionsPlugin.init({enableWheelScroll: true, enableEdgeScroll: true});
+		ScrollBlockDragger.edgeScrollEnabled = false;	
+		
+		//當工作區變動
+		function onBlocksChange(event) {
+			clearTimeout(myTimer);
+			clearTimeout(myTimer1);
+			myTimer = setTimeout(function(){
+				Blockly.Events.setGroup(!0);
+				var enabledBlockList = ["initializes_loop"];
+				var variableBlockList = ["variables_set","variables_set1","variables_set7"];
+				var variableGlobalBlockList = ["variables_set","variables_set1"];
+				var blocks = Blockly.mainWorkspace.getAllBlocks();
+				var p;
+				for (var i=0;i<blocks.length;i++) {
+					p = blocks[i];
+					if (enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection==null)) {
+						if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
+						if (variableGlobalBlockList.includes(blocks[i].type)&&blocks[i].getField("POSITION")) {
+							if (blocks[i].getFieldValue("POSITION")=="global")
+								continue;
+						}
+						else
+							continue;
+					}
+					p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
+					while(p) {
+						if ((enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection==null))&&!p.getParent()) {
+							if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
+							break;
+						}
+						p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
+					}
+					if ((!blocks[i].getParent()||!blocks[i].getParent().isEnabled())&&blocks[i].outputConnection==null) {
+						if (topCheck&&blocks[i].isEnabled()) blocks[i].setEnabled(false);
+					}
+					if (blocks[i].getParent()&&blocks[i].getPreviousBlock()) {
+						if (variableBlockList.includes(p.type)&&variableBlockList.includes(blocks[i].getParent().type)) {
+							if (topCheck) blocks[i].unplug();
+						}
+					}
+				}
+				Blockly.Events.setGroup(0);
+			}, 200);
+			myTimer1 = setTimeout(function(){
+				if (showCode) {
+					var code = Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
+					//document.getElementById('terminal-body').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");				
+					editor.setValue(code);
+				}
+			}, 2000);
 		}
-	);
-	
-	//新增邊緣捲動插件
-	//const AutoScrollOptionsPlugin = new AutoScroll(workspace);
-	const scrollOptionsPlugin = new ScrollOptions(workspace);
-	scrollOptionsPlugin.init({enableWheelScroll: true, enableEdgeScroll: true});
-	ScrollBlockDragger.edgeScrollEnabled = false;	
-	
-	//新增系統自訂積木
-	if (typeof systemBlocks != "undefined") {
-		for (var i=0;i<systemBlocks.length;i++) {
-			var customBlocksPath = systemBlocks[i][0];  //自訂積木連結
-			var insertAfterCategoryName = systemBlocks[i][1];  //可將自訂積木插入在指定目錄後
-			addSystemBlocks(customBlocksPath, insertAfterCategoryName);
+		workspace.addChangeListener(onBlocksChange);
+		
+		
+		//新增系統自訂積木
+		if (typeof systemBlocks != "undefined") {
+			for (var i=0;i<systemBlocks.length;i++) {
+				var customBlocksPath = systemBlocks[i][0];  //自訂積木連結
+				var insertAfterCategoryName = systemBlocks[i][1];  //可將自訂積木插入在指定目錄後
+				addSystemBlocks(customBlocksPath, insertAfterCategoryName);
+			}
 		}
-	}
-	
-	//載入語言選單
-	if (typeof language != "undefined") {
-		for (var i=0;i<language.length;i++) {
-			if (language[i][0]==lang)
-				addScript(language[i][1]);
-		}
-		addScript(languageList);
-		var select = document.getElementById('lang-selector');
-		for (var i=0;i<language.length;i++) {
-			select.add(new Option(language[i][2], language[i][0]));
+		
+		//載入語言選單
+		if (typeof language != "undefined") {
+			for (var i=0;i<language.length;i++) {
+				if (language[i][0]==lang)
+					addScript(language[i][1]);
+			}
+			addScript(languageList);
+			var select = document.getElementById('lang-selector');
+			for (var i=0;i<language.length;i++) {
+				select.add(new Option(language[i][2], language[i][0]));
+			}	
+			document.getElementById('lang-selector').value = lang;
 		}	
-		document.getElementById('lang-selector').value = lang;
-	}	
-			
-	changeLanguage();
+				
+		changeLanguage();
+		
+		newFile();
+		
+	}, 1000);			
 	
 	//載入系統自訂積木
 	function addSystemBlocks(customBlocksPath, insertAfterCategoryName) {
@@ -288,7 +347,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
 	}
-	newFile();
 	
 	//程式碼區塊顯示
 	document.getElementById('button_code').onclick = function () {
@@ -1111,59 +1169,6 @@ document.addEventListener('DOMContentLoaded', function() {
 				Blockly.hideChaff();
 			});
 		}
-	}, 3000);
-	
-	//當工作區變動
-	function onBlocksChange(event) {
-		clearTimeout(myTimer);
-		clearTimeout(myTimer1);
-		myTimer = setTimeout(function(){
-			Blockly.Events.setGroup(!0);
-			var enabledBlockList = ["initializes_loop"];
-			var variableBlockList = ["variables_set","variables_set1","variables_set7"];
-			var variableGlobalBlockList = ["variables_set","variables_set1"];
-			var blocks = Blockly.mainWorkspace.getAllBlocks();
-			var p;
-			for (var i=0;i<blocks.length;i++) {
-				p = blocks[i];
-				if (enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection==null)) {
-					if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
-					if (variableGlobalBlockList.includes(blocks[i].type)&&blocks[i].getField("POSITION")) {
-						if (blocks[i].getFieldValue("POSITION")=="global")
-							continue;
-					}
-					else
-						continue;
-				}
-				p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
-				while(p) {
-					if ((enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection==null))&&!p.getParent()) {
-						if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
-						break;
-					}
-					p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
-				}
-				if ((!blocks[i].getParent()||!blocks[i].getParent().isEnabled())&&blocks[i].outputConnection==null) {
-					if (topCheck&&blocks[i].isEnabled()) blocks[i].setEnabled(false);
-				}
-				if (blocks[i].getParent()&&blocks[i].getPreviousBlock()) {
-					if (variableBlockList.includes(p.type)&&variableBlockList.includes(blocks[i].getParent().type)) {
-						if (topCheck) blocks[i].unplug();
-					}
-				}
-			}
-			Blockly.Events.setGroup(0);
-		}, 200);
-		myTimer1 = setTimeout(function(){
-			if (showCode) {
-				var code = Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
-				//document.getElementById('terminal-body').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");				
-				editor.setValue(code);
-			}
-		}, 2000);
-	}
-	setTimeout(function() {
-		Blockly.mainWorkspace.addChangeListener(onBlocksChange);
 	}, 3000);
 	
 });	
