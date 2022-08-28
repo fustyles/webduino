@@ -204,6 +204,7 @@ Blockly.Msg.AJAX_DATATYPE = "資料類型";
 Blockly.Msg.AJAX_GETDATA = "取得資料";
 Blockly.Msg.AJAX_FORMAT = "轉換格式";
 Blockly.Msg.AJAX_CLEARDATA = "清除資料";
+Blockly.Msg.AJAX_RESPONSE = "取得回應後執行";
 Blockly.Msg.A_ID = "連結 代碼";
 Blockly.Msg.A_CREATE = "連結 建立";
 Blockly.Msg.A_HREF = "網址";
