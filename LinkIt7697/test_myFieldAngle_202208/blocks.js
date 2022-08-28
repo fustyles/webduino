@@ -338,11 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		  }
 		  this.optionsElement_.style = 'background-color: white;left: '+(myFieldAngle.HALF*2+10)+'px;top: 0px;height: '+(myFieldAngle.HALF*2)+'px;width: 85px;size: 12px;padding: 0px;position: absolute;';
 		  this.optionsElement_.innerHTML = "<div style='height:"+myFieldAngle.HALF*2+"px;overflow: auto;'>"+this.optionsShow_.join("<br>")+"</div>";
-		  /*
-		  for (var i=0;i<this.options.length;i++) {
-			this.optionsElement_.innerHTML += '<span style="width:'+(myFieldAngle.HALF * 1 - 10)+'px">' + this.options[i] + '</span><br>';
-		  }
-		  */		  
+		  
 		  this.clickOptionsWrapper_ = Blockly.browserEvents.conditionalBind(
 			this.optionsElement_, 'click', this, this.hide_);
 		  this.moveOptionsWrapper_ = Blockly.browserEvents.conditionalBind(
