@@ -9,6 +9,7 @@ SPDX-License-Identifier: Apache-2.0
 var topCheck = true;
 var showCode = false;
 var myTimer;
+var myTimer1;
 
 document.addEventListener('DOMContentLoaded', function() {
 	
@@ -319,44 +320,116 @@ document.addEventListener('DOMContentLoaded', function() {
 		catInstascan		
 	];
 	
-	var xmlNewValue='<xml id="toolbox">';
-	try {
-		for (var i=0;i<category.length;i++){
-			var xml = new DOMParser().parseFromString(category[i],"text/xml");
-			xmlNewValue+=new XMLSerializer().serializeToString(xml.firstChild).replace("<xml>","").replace("</xml>","");
-		}
-	} catch (error) {
-		console.log(error);
-	}		
-	xmlNewValue+='</xml>';
-
-	//初始化工作區	
-	const workspace = Blockly.inject('root',{
-			media: 'media/'
-			,toolbox: xmlNewValue
-			,grid:{spacing: 20,length: 3,colour: '#eee',snap: true}
-			,zoom:{controls: true, wheel: false, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2}
-			,trashcan: true
-			,move:{
-				scrollbars: {
-				  horizontal: true,
-				  vertical: true
-				},
-				drag: true,
-				wheel: true
-			}
-			,plugins: {
-				'blockDragger': ScrollBlockDragger,
-				'metricsManager': ScrollMetricsManager,
-			}			
-		}
-	);	
 	
-	//新增邊緣捲動插件
-	//const AutoScrollOptionsPlugin = new AutoScroll(workspace);
-	const scrollOptionsPlugin = new ScrollOptions(workspace);
-	scrollOptionsPlugin.init({enableWheelScroll: true, enableEdgeScroll: true});
-	ScrollBlockDragger.edgeScrollEnabled = false;	
+	setTimeout(function(){
+		
+		var xmlNewValue='<xml id="toolbox">';
+		try {
+			for (var i=0;i<category.length;i++){
+				var xml = new DOMParser().parseFromString(category[i],"text/xml");
+				xmlNewValue+=new XMLSerializer().serializeToString(xml.firstChild).replace("<xml>","").replace("</xml>","");
+			}
+		} catch (error) {
+			console.log(error);
+		}		
+		xmlNewValue+='</xml>';
+
+		//初始化工作區	
+		const workspace = Blockly.inject('root',{
+				media: 'media/'
+				,toolbox: xmlNewValue
+				,grid:{spacing: 20,length: 3,colour: '#eee',snap: true}
+				,zoom:{controls: true, wheel: false, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2}
+				,trashcan: true
+				,move:{
+					scrollbars: {
+					  horizontal: true,
+					  vertical: true
+					},
+					drag: true,
+					wheel: true
+				}
+				,plugins: {
+					'blockDragger': ScrollBlockDragger,
+					'metricsManager': ScrollMetricsManager,
+				}			
+			}
+		);	
+		
+		//新增邊緣捲動插件
+		//const AutoScrollOptionsPlugin = new AutoScroll(workspace);
+		const scrollOptionsPlugin = new ScrollOptions(workspace);
+		scrollOptionsPlugin.init({enableWheelScroll: true, enableEdgeScroll: true});
+		ScrollBlockDragger.edgeScrollEnabled = false;	
+		
+		updateMsg();
+		newFile();
+		
+		//Double Click關閉彈出積木選單
+		var blocklyWorkspace = document.getElementsByClassName("blocklyFlyout");
+		for (var f=0;f<blocklyWorkspace.length;f++) {
+			blocklyWorkspace[f].addEventListener('dblclick', function(){ 
+				Blockly.hideChaff();
+			});
+		}
+		
+		//當工作區變動
+		function onBlocksChange(event) {
+			clearTimeout(myTimer);
+			clearTimeout(myTimer1);
+			
+			if (event) {
+				//console.log(event.type);
+				if (event.type == "create"||event.type == "move"||event.type == "change"||event.type == "click"||event.type == "drag"||event.type == "delete") 	
+					mqttState = true;
+				else if (event.type == "finished_loading") {
+					mqttState = false;
+					mqttLock = false;
+				}		
+			}
+			
+			if (event&&topCheck) {
+				if (event.blockId) {
+					var block = Blockly.getMainWorkspace().getBlockById(event.blockId);
+					if (block) {
+						Blockly.Events.setGroup(!0);
+						if ((block.previousConnection==null&&block.outputConnection)&&!block.getParent()) {
+							if (block.isEnabled()) block.setEnabled(false);
+						}
+						else {
+							if (!block.isEnabled()) block.setEnabled(true);
+						}
+						Blockly.Events.setGroup(0);
+					}
+				}
+			}
+			
+			myTimer = setTimeout(function(){
+				if (showCode) {
+					var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());			
+					editor.setValue(code);
+				}
+				
+				if (mqttState ==true&&mqttLock==false&&mqtt_client) {
+					var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+					var xmlText = Blockly.Xml.domToText(xml);
+					mqtt_client.publish(mqttTopic, collaborationID+"|||"+xmlText);
+					mqttState = false;
+				}		
+				mqttLock = false;			
+			}, 200);
+			
+			myTimer1 = setTimeout(function(){
+				if (showCode) {
+					var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());			
+					editor.setValue(code);
+				}		
+			}, 2000);		
+			//workspace.removeChangeListener(onBlocksChange);
+		}
+		workspace.addChangeListener(onBlocksChange);
+	
+	}, 1000);	
 
 	function addScript(url) {
 		var s = document.createElement("script");
@@ -386,7 +459,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
 	}
-	newFile();
+	
 	
 	//程式碼區塊顯示
 	document.getElementById('button_code').onclick = function () {
@@ -583,7 +656,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		}
 	}
-	updateMsg();	
+		
 	
 	function flashToolbox() {
 		var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
@@ -653,16 +726,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			input.click();
 		},500);
 	}	
-
-	//Double Click關閉彈出積木選單
-	setTimeout(function() {
-		var blocklyWorkspace = document.getElementsByClassName("blocklyFlyout");
-		for (var f=0;f<blocklyWorkspace.length;f++) {
-			blocklyWorkspace[f].addEventListener('dblclick', function(){ 
-				Blockly.hideChaff();
-			});
-		}
-	}, 2000);
 	
 	//切換語言
 	document.getElementById('lang-selector').onchange = function () {
@@ -1167,52 +1230,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		})	
 	}
 
-	//當工作區變動
-	function onBlocksChange(event) {
-		clearTimeout(myTimer);
-		
-		if (event) {
-			//console.log(event.type);
-			if (event.type == "create"||event.type == "move"||event.type == "change"||event.type == "click"||event.type == "drag"||event.type == "delete") 	
-				mqttState = true;
-			else if (event.type == "finished_loading") {
-				mqttState = false;
-				mqttLock = false;
-			}		
-		}
-		
-		if (event&&topCheck) {
-			if (event.blockId) {
-				var block = Blockly.getMainWorkspace().getBlockById(event.blockId);
-				if (block) {
-					if ((block.previousConnection==null&&block.outputConnection)&&!block.getParent()) {
-						if (block.isEnabled()) block.setEnabled(false);
-					}
-					else {
-						if (!block.isEnabled()) block.setEnabled(true);
-					}
-				}
-			}
-		}
-		
-		myTimer = setTimeout(function(){
-			if (showCode) {
-				var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());			
-				editor.setValue(code);
-			}
-			
-			if (mqttState ==true&&mqttLock==false&&mqtt_client) {
-				var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
-				var xmlText = Blockly.Xml.domToText(xml);
-				mqtt_client.publish(mqttTopic, collaborationID+"|||"+xmlText);
-				mqttState = false;
-			}		
-			mqttLock = false;			
-		}, 1000);
-		//workspace.removeChangeListener(onBlocksChange);
-	}
-	workspace.addChangeListener(onBlocksChange);
-
 });	
 
 //切換頁籤
@@ -1279,6 +1296,9 @@ function contentZoom(content) {
 		if (content=="javascript") {
 			div_content.style.left = div_content.l;	
 			div_content.style.top = div_content.t;
+			
+			var code = Blockly.Arduino.workspaceToCode();			
+			editor.setValue(code);			
 			showCode = true;
 		}			
 	}
