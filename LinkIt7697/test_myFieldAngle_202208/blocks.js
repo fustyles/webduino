@@ -427,8 +427,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		  var dy = e.clientY - bBox.top + scrolltop;
 		  var highLight = Array.from(this.options);
 		  var note = (Math.round((dy-5)/24.5)<highLight.length)?Math.round((dy-5)/24.5):-1;
-		  if (note>=0) {
-			  console.log(this.options);
+		  if (note>=0&&note<this.optionsShow_.length) {
 			for (var i=0;i<this.optionsShow_.length;i++) {
 			  this.optionsShow_[i] = ((i==note)?"Ｖ　":"　　") + this.options[i];
 		    }
@@ -658,7 +657,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		init:  function() {
 		
 			var field = new myFieldAngle(30);
-			field.options = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360];
+			field.options = [0, 30, 60];
 			
 			this.appendDummyInput()
 				.appendField(field, "test");
