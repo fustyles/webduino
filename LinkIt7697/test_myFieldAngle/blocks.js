@@ -10,14 +10,14 @@
  
  /**
  * @license
- * Copyright 2022 Taiwan (ChungYi Fu)
+ * Copyright 2021 Taiwan (ChungYi Fu)
  * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
  * @fileoverview Angle input field.
  * @author https://www.facebook.com/francefu/
- * @Update 8/28/2022 21:00 (Taiwan Standard Time)
+ * @Update 8/28/2022 22:00 (Taiwan Standard Time)
  */
 
 /*
@@ -103,7 +103,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		 */
 		this.editor_ = null;
 		this.optionsElement_ = null;
-
+		this.optionsShow_ = null;
+		
 		/**
 		 * The angle picker's gauge path depending on the value.
 		 * @type {?SVGElement}
@@ -272,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			  'xmlns:xlink': Blockly.utils.dom.XLINK_NS,
 			  'version': '1.1',
 			  'height': (myFieldAngle.HALF * 2) + 'px',
-			  'width': (myFieldAngle.HALF * 3.5) + 'px',
+			  'width': (myFieldAngle.HALF * 4) + 'px',
 			  'style': 'touch-action: none',
 			},
 			null);
@@ -331,8 +332,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		  this.optionsElement_.id = 'fieldFilter';
 		  var len = this.options.length;
 		  var height = 24.4 * len;
-		  this.optionsElement_.style = 'background-color: white;left: '+(myFieldAngle.HALF*2+10)+'px;top: 0px;height: '+(myFieldAngle.HALF*2)+'px;width: 60px;size: 12px;padding: 0px;position: absolute;';
-		  this.optionsElement_.innerHTML = "<div style='height:"+myFieldAngle.HALF*2+"px;overflow: auto;'>"+this.options.join("<br>")+"</div>";
+		  this.optionsShow_ = Array.from(this.options);
+		  for (var i=0;i<this.optionsShow_.length;i++) {
+			  this.optionsShow_[i] = "　　" +this.options[i];
+		  }
+		  this.optionsElement_.style = 'background-color: white;left: '+(myFieldAngle.HALF*2+10)+'px;top: 0px;height: '+(myFieldAngle.HALF*2)+'px;width: 85px;size: 12px;padding: 0px;position: absolute;';
+		  this.optionsElement_.innerHTML = "<div style='height:"+myFieldAngle.HALF*2+"px;overflow: auto;'>"+this.optionsShow_.join("<br>")+"</div>";
 		  /*
 		  for (var i=0;i<this.options.length;i++) {
 			this.optionsElement_.innerHTML += '<span style="width:'+(myFieldAngle.HALF * 1 - 10)+'px">' + this.options[i] + '</span><br>';
@@ -418,11 +423,19 @@ document.addEventListener('DOMContentLoaded', function() {
 	  
 	  onOptionsMouseMove_(e) {
 		  var bBox = this.optionsElement_.getBoundingClientRect();
-		  var dy = e.clientY - bBox.top + this.optionsElement_.firstChild.scrollTop;
+		  var scrolltop = this.optionsElement_.firstChild.scrollTop;
+		  var dy = e.clientY - bBox.top + scrolltop;
 		  var highLight = Array.from(this.options);
 		  var note = (Math.round((dy-5)/24.5)<highLight.length)?Math.round((dy-5)/24.5):-1;
-		  if (note>=0)
+		  if (note>=0) {
+			  console.log(this.options);
+			for (var i=0;i<this.optionsShow_.length;i++) {
+			  this.optionsShow_[i] = ((i==note)?"Ｖ　":"　　") + this.options[i];
+		    }
+			this.optionsElement_.innerHTML = "<div style='height:"+myFieldAngle.HALF*2+"px;overflow: auto;'>"+this.optionsShow_.join("<br>")+"</div>";
+			this.optionsElement_.firstChild.scrollTo(0, scrolltop);
 			this.setEditorValue_(this.options[note]);
+		  }
 	  }	    
 
 	  /**
