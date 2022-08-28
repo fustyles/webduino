@@ -19,6 +19,23 @@
  * @author https://www.facebook.com/francefu/
  * @Update 8/28/2022 21:00 (Taiwan Standard Time)
  */
+
+/*
+Blockly.Blocks["test"] = {
+	init:  function() {
+
+		var field = new myFieldAngle(30);
+		field.options = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360];
+
+		this.appendDummyInput()
+			.appendField(field, "test");
+		this.setInputsInline(true);		
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setColour(100);
+	}
+}
+*/
  
 'use strict';
 
@@ -638,6 +655,10 @@ document.addEventListener('DOMContentLoaded', function() {
 				this.setNextStatement(true, null);
 				this.setColour(100);
 			}
+		}
+	
+		Blockly.JavaScript['test'] = function(block) {	
+			return '';
 		}
 
 })
