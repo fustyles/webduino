@@ -3077,6 +3077,8 @@ Blockly.Blocks['ajax_get'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AJAX_ASYNC)
       .appendField(new Blockly.FieldDropdown([["false","false"], ["true","true"]]), "async_"); 
+  this.appendStatementInput("do")
+      .appendField(Blockly.Msg.AJAX_RESPONSE);		  
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
