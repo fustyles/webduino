@@ -1202,7 +1202,7 @@ Blockly.JavaScript['ajax_get'] = function (block) {
     value_id_ = value_id_.substring(1,value_id_.length-1);
   if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);		
-  var statements_do = Blockly.Arduino.statementToCode(block, 'do');	
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do');	
 
   Blockly.JavaScript.definitions_['ajaxData_'+value_id_.replace(/'/g,"")] = 'var ajaxData_'+value_id_.replace(/'/g,"")+';';
 
