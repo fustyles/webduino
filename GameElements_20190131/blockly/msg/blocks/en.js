@@ -204,6 +204,7 @@ Blockly.Msg.AJAX_DATATYPE = "Data Format";
 Blockly.Msg.AJAX_GETDATA = "Get Data";
 Blockly.Msg.AJAX_FORMAT = "Format";
 Blockly.Msg.AJAX_CLEARDATA = "Clear Data";
+Blockly.Msg.AJAX_RESPONSE = "after responsing";
 Blockly.Msg.A_ID = "A ID";
 Blockly.Msg.A_CREATE = "A Create";
 Blockly.Msg.A_HREF = "Link";
