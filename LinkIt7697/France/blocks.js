@@ -5,7 +5,7 @@ Blockly.Blocks['esp32_pixelbit_tftshowcamera'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(Blockly.Msg["HUE_11"]);
+    this.setColour(Blockly.Msg["HUE_15"]);
   }
 };
 
@@ -12368,7 +12368,9 @@ Blockly.Blocks['ajax_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_TEXT_SHOW,"text"],["html","html"], ["xml","xml"], ["script","script"], ["json","json"], ["jsonp","jsonp"]]), "datatype_"); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AJAX_ASYNC)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_FALSE,"false"], [Blockly.Msg.PROPERTY_TRUE,"true"]]), "async_"); 
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_FALSE,"false"], [Blockly.Msg.PROPERTY_TRUE,"true"]]), "async_");
+  this.appendStatementInput("do")
+      .appendField(Blockly.Msg.AJAX_RESPONSE);	  
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);

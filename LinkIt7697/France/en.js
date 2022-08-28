@@ -354,6 +354,7 @@ Blockly.Msg.AJAX_DATATYPE = "Data Format";
 Blockly.Msg.AJAX_GETDATA = "Get Data";
 Blockly.Msg.AJAX_FORMAT = "Format";
 Blockly.Msg.AJAX_CLEARDATA = "Clear Data";
+Blockly.Msg.AJAX_RESPONSE = "after responsing";
 Blockly.Msg.A_ID = "A ID";
 Blockly.Msg.A_CREATE = "A Create";
 Blockly.Msg.A_HREF = "Link";
@@ -1617,4 +1618,6 @@ Blockly.Msg["ESP32_CAM_CAMERA_PROPERTY_BPC_SHOW"] = "bpc (0, 1)";
 Blockly.Msg["ESP32_CAM_CAMERA_PROPERTY_WPC_SHOW"] = "wpc (0, 1)";
 Blockly.Msg["ESP32_CAM_CAMERA_PROPERTY_COLORBAR_SHOW"] = "colorbar (0, 1)";
 
-Blockly.Msg["ESP32_PIXELBIT_TFTSHOWCAMERA"] = "TFT Display  initial then show PIXEL:BIT camera";
+Blockly.Msg["ESP32_PIXELBIT_TFTSHOWCAMERA"] = "TFT Display  show PIXEL:BIT camera";
+Blockly.Msg["ESP32_PIXELBIT_TFTSHOWCAMERA_DEFAULT"] = "Default";
+Blockly.Msg["ESP32_PIXELBIT_TFTSHOWCAMERA_MIRROR"] = "Mirror";

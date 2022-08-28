@@ -1783,6 +1783,46 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 	
 	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);";
+	
+	Blockly.Arduino.definitions_.initWiFi = ''+
+			'  void initWiFi() {\n'+
+			'    WiFi.mode(WIFI_AP_STA);\n'+
+			'    \n'+
+			'    for (int i=0;i<2;i++) {\n'+
+			'      WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
+			'      \n'+
+			'      delay(1000);\n'+
+			'      Serial.println("");\n'+
+			'      Serial.print("Connecting to ");\n'+
+			'      Serial.println(_lwifi_ssid);\n'+
+			'      \n'+
+			'      long int StartTime=millis();\n'+
+			'      while (WiFi.status() != WL_CONNECTED) {\n'+
+			'          delay(500);\n'+
+			'          if ((StartTime+5000) < millis()) break;\n'+
+			'      }\n'+
+			'      \n'+
+			'      if (WiFi.status() == WL_CONNECTED) {\n'+
+			'        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+      
+			'        Serial.println("");\n'+
+			'        Serial.println("STAIP address: ");\n'+
+			'        Serial.println(WiFi.localIP());\n'+
+			'        Serial.println("");\n'+
+			'      \n'+
+			'        break;\n'+
+			'      }\n'+
+			'    }\n'+
+			'    \n'+
+			'    if (WiFi.status() != WL_CONNECTED) {\n'+
+			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+
+			'  	   \n'+
+			'    }\n'+
+			'    \n'+
+			'    Serial.println("");\n'+
+			'    Serial.println("APIP address: ");\n'+
+			'    Serial.println(WiFi.softAPIP());\n'+
+			'  }\n';
+			
 	Blockly.Arduino.setups_.setup_cam_initial=''+
 			'  tca5405.init(21);\n'+
 			'  tca5405.set_gpo(PIXELBIT_CAMERA_POWER, 0);\n'+
@@ -1836,39 +1876,8 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 			'  }\n'+
 			'  sensor_t * s = esp_camera_sensor_get();\n'+			
 			'  s->set_framesize(s, FRAMESIZE_'+framesize+');\n'+
-			'  WiFi.mode(WIFI_AP_STA);\n'+
-			'  \n'+
-			'  for (int i=0;i<2;i++) {\n'+
-			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
-			'    \n'+
-			'    delay(1000);\n'+
-			'    Serial.println("");\n'+
-			'    Serial.print("Connecting to ");\n'+
-			'    Serial.println(_lwifi_ssid);\n'+
-			'    \n'+
-			'    long int StartTime=millis();\n'+
-			'    while (WiFi.status() != WL_CONNECTED) {\n'+
-			'        delay(500);\n'+
-			'        if ((StartTime+5000) < millis()) break;\n'+
-			'    }\n'+
-			'    \n'+
-			'    if (WiFi.status() == WL_CONNECTED) {\n'+
-			'      WiFi.softAP((WiFi.localIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+      
-			'      Serial.println("");\n'+
-			'      Serial.println("STAIP address: ");\n'+
-			'      Serial.println(WiFi.localIP());\n'+
-			'      Serial.println("");\n'+
-			'      break;\n'+
-			'    }\n'+
-			'  }\n'+
-			'  \n'+
-			'  if (WiFi.status() != WL_CONNECTED) {\n'+
-			'    WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+
-			'  }\n'+
-			'  \n'+
-			'  Serial.println("");\n'+
-			'  Serial.println("APIP address: ");\n'+
-			'  Serial.println(WiFi.softAPIP());\n'+
+			'  //s->set_hmirror(s, 1);\n'+
+			'  initWiFi();\n'+
 			'  \n'+
 			'  startCameraServer();\n';	
 	
@@ -2688,6 +2697,7 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'  }\n'+
 			'  sensor_t * s = esp_camera_sensor_get();\n'+
 			'  s->set_framesize(s, FRAMESIZE_'+framesize+');\n'+
+			'  //s->set_hmirror(s, 1);\n'+
 			'  initWiFi();\n\n';	
 	
 	Blockly.Arduino.definitions_.initWiFi = ''+
@@ -8728,8 +8738,9 @@ Blockly.Arduino['ajax_get'] = function (block) {
     value_id_ = value_id_.substring(1,value_id_.length-1);
   if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);	
-	
-  var code = 'var ajaxData_'+value_id_+';$.ajax({ \n  type: "'+value_type_+'" , \n  url: '+value_url_+' , \n  dataType: "'+value_datatype_+'", \n  timeout: 5000, \n  async: '+value_async_+', \n  success: function(data, textStatus) {\n    ajaxData_'+value_id_.replace(/'/g,"")+'=data;\n  },\nerror: function (jqXHR, textStatus, errorThrown) {\nconsole.log(jqXHR.statusText);}\n});\n';
+  var statements_do = Blockly.Arduino.statementToCode(block, 'do');
+  
+  var code = 'var ajaxData_'+value_id_+';$.ajax({ \n  type: "'+value_type_+'" , \n  url: '+value_url_+' , \n  dataType: "'+value_datatype_+'", \n  timeout: 5000, \n  async: '+value_async_+', \n  success: function(data, textStatus) {\n    ajaxData_'+value_id_.replace(/'/g,"")+'=data;\n'+ statements_do +'\n},\nerror: function (jqXHR, textStatus, errorThrown) {\nconsole.log(jqXHR.statusText);}\n});\n';
   return code;
 };
 

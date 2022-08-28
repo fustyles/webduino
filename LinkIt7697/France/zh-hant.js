@@ -354,6 +354,7 @@ Blockly.Msg.AJAX_DATATYPE = "資料類型";
 Blockly.Msg.AJAX_GETDATA = "取得資料";
 Blockly.Msg.AJAX_FORMAT = "轉換格式";
 Blockly.Msg.AJAX_CLEARDATA = "清除資料";
+Blockly.Msg.AJAX_RESPONSE = "取得回應後執行";
 Blockly.Msg.A_ID = "連結 代碼";
 Blockly.Msg.A_CREATE = "連結 建立";
 Blockly.Msg.A_HREF = "網址";
@@ -1626,4 +1627,6 @@ Blockly.Msg["ESP32_CAM_CAMERA_PROPERTY_BPC_SHOW"] = "黑色像素校正 (0, 1)";
 Blockly.Msg["ESP32_CAM_CAMERA_PROPERTY_WPC_SHOW"] = "白色像素校正 (0, 1)";
 Blockly.Msg["ESP32_CAM_CAMERA_PROPERTY_COLORBAR_SHOW"] = "顏色條畫面 (0, 1)";
 
-Blockly.Msg["ESP32_PIXELBIT_TFTSHOWCAMERA"] = "TFT彩色螢幕  初始化後顯示PIXEL:BIT視訊畫面";
+Blockly.Msg["ESP32_PIXELBIT_TFTSHOWCAMERA"] = "TFT彩色螢幕  顯示PIXEL:BIT視訊畫面";
+Blockly.Msg["ESP32_PIXELBIT_TFTSHOWCAMERA_DEFAULT"] = "預設";
+Blockly.Msg["ESP32_PIXELBIT_TFTSHOWCAMERA_MIRROR"] = "水平翻轉";
