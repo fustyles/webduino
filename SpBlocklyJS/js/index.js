@@ -467,7 +467,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (div.style.display == "none") {
 			div.style.display = "block";
 			showCode = true;
-			onBlocksChange();
 		}
 		else {
 			div.style.display = "none";
