@@ -1297,7 +1297,7 @@ function contentZoom(content) {
 			div_content.style.left = div_content.l;	
 			div_content.style.top = div_content.t;
 			
-			var code = Blockly.Arduino.workspaceToCode();			
+			var code = Blockly.JavaScript.workspaceToCode();			
 			editor.setValue(code);			
 			showCode = true;
 		}			
