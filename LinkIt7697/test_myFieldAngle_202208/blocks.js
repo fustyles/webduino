@@ -17,7 +17,7 @@
 /**
  * @fileoverview Angle input field.
  * @author https://www.facebook.com/francefu/
- * @Update 8/28/2022 22:00 (Taiwan Standard Time)
+ * @Update 8/29/2022 08:00 (Taiwan Standard Time)
  */
 
 /*
@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		  var height = 24.4 * len;
 		  this.optionsShow_ = Array.from(this.options);
 		  for (var i=0;i<this.optionsShow_.length;i++) {
-			  this.optionsShow_[i] = "　　" +this.options[i];
+			  this.optionsShow_[i] = ((this.options[i]==this.value_)?"Ｖ　":"　　") +this.options[i];
 		  }
 		  this.optionsElement_.style = 'background-color: white;left: '+(myFieldAngle.HALF*2+10)+'px;top: 0px;height: '+(myFieldAngle.HALF*2)+'px;width: 85px;size: 12px;padding: 0px;position: absolute;';
 		  this.optionsElement_.innerHTML = "<div style='height:"+myFieldAngle.HALF*2+"px;overflow: auto;'>"+this.optionsShow_.join("<br>")+"</div>";
@@ -421,15 +421,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		  var bBox = this.optionsElement_.getBoundingClientRect();
 		  var scrolltop = this.optionsElement_.firstChild.scrollTop;
 		  var dy = e.clientY - bBox.top + scrolltop;
-		  var highLight = Array.from(this.options);
-		  var note = (Math.round((dy-5)/24.5)<highLight.length)?Math.round((dy-5)/24.5):-1;
-		  if (note>=0&&note<this.optionsShow_.length) {
+		  var index = (Math.round((dy-5)/24.5)<this.options.length)?Math.round((dy-5)/24.5):-1;
+		  if (index>=0&&index<this.optionsShow_.length) {
 			for (var i=0;i<this.optionsShow_.length;i++) {
-			  this.optionsShow_[i] = ((i==note)?"Ｖ　":"　　") + this.options[i];
+			  this.optionsShow_[i] = ((i==index)?"Ｖ　":"　　") + this.options[i];
 		    }
 			this.optionsElement_.innerHTML = "<div style='height:"+myFieldAngle.HALF*2+"px;overflow: auto;'>"+this.optionsShow_.join("<br>")+"</div>";
 			this.optionsElement_.firstChild.scrollTo(0, scrolltop);
-			this.setEditorValue_(this.options[note]);
+			this.setEditorValue_(this.options[index]);
 		  }
 	  }	    
 
@@ -653,7 +652,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		init:  function() {
 		
 			var field = new myFieldAngle(30);
-			field.options = [0, 30, 60];
+			field.options = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360];
 			
 			this.appendDummyInput()
 				.appendField(field, "test");
