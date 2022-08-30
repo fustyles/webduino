@@ -103,9 +103,8 @@ Blockly.Blocks['test1'] = {
 Blockly.Blocks['test2'] = {
   init: function() {
 	this.appendValueInput("value_if").appendField("if");
-	this.appendStatementInput("do_if").appendField("do");
-	this.appendValueInput("input_else").appendField("else");		
-	this.appendStatementInput("do_else").appendField("do");
+	this.appendStatementInput("do_if").appendField("do");		
+	this.appendStatementInput("do_else").appendField("else");
 	this.setColour(200);
   }
 };
