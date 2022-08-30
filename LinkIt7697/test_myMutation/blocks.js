@@ -154,7 +154,7 @@ Blockly.Blocks["mutation_test"] = {
 	var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
 	this.setFieldValue(xmlText, "xml");
 	  
-	this.setFieldValue(Blockly.Arduino.myMutatorWorkspaceToCode(myWorkspace), "code");
+	this.setFieldValue(Blockly.JavaScript.myMutatorWorkspaceToCode(myWorkspace), "code");
   }
 };
 
