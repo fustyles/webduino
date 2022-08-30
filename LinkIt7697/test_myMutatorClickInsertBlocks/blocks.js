@@ -21,7 +21,7 @@ Blockly.Blocks['test'] = {
     this.setColour(110);
   }
   ,myWorkspaceInitial: function(myWorkspace) {
-        var xml = '<block type="controls_if" x="30" y="0"><value name="IF0"><block type="logic_operation"><field name="OP">AND</field></block></value></block><block type="logic_compare" disabled="true" x="250" y="0"><field name="OP">EQ</field></block><block type="controls_repeat_ext" x="400" y="0"><value name="TIMES"><block type="math_number"><field name="NUM">10</field></block></value></block>';
+        var xml = '<block type="controls_if" x="30" y="0"><value name="IF0"><block type="logic_operation"><field name="OP">AND</field></block></value></block><block type="logic_compare" x="250" y="0"><field name="OP">EQ</field></block><block type="controls_repeat_ext" x="400" y="0"><value name="TIMES"><block type="math_number"><field name="NUM">10</field></block></value></block>';
         xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml+'</xml>');
         myWorkspace.clear();
         Blockly.Xml.domToWorkspace(xml, myWorkspace); 
