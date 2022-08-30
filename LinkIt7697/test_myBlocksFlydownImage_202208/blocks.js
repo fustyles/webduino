@@ -56,31 +56,31 @@ Blockly.Blocks["test"] = {
 document.addEventListener('DOMContentLoaded', function() {
 	
 
-	Blockly.fuFlydown = function(workspaceOptions) {
-	  Blockly.fuFlydown.superClass_.constructor.call(this, workspaceOptions);
+	Blockly.fuImageFieldFlydown = function(workspaceOptions) {
+	  Blockly.fuImageFieldFlydown.superClass_.constructor.call(this, workspaceOptions);
 	};
-	Blockly.utils.object.inherits(Blockly.fuFlydown, Blockly.VerticalFlyout);
+	Blockly.utils.object.inherits(Blockly.fuImageFieldFlydown, Blockly.VerticalFlyout);
 
 	/**
 	 * Previous CSS class for this flydown
 	 * @type {number}
 	 * @const
 	 */
-	Blockly.fuFlydown.prototype.previousCSSClassName_ = '';
+	Blockly.fuImageFieldFlydown.prototype.previousCSSClassName_ = '';
 
 	/**
 	 * Override flyout factor to be smaller for flydowns
 	 * @type {number}
 	 * @const
 	 */
-	Blockly.fuFlydown.prototype.VERTICAL_SEPARATION_FACTOR = 1;
+	Blockly.fuImageFieldFlydown.prototype.VERTICAL_SEPARATION_FACTOR = 1;
 
 	/**
 	 * Creates the flydown's DOM.  Only needs to be called once.  Overrides the flyout createDom method.
 	 * @param {!String} cssClassName The name of the CSS class for this flydown. 
 	 * @return {!Element} The flydown's SVG group.
 	 */
-	Blockly.fuFlydown.prototype.createDom = function(cssClassName, backgroundCOLOR) {
+	Blockly.fuImageFieldFlydown.prototype.createDom = function(cssClassName, backgroundCOLOR) {
 	  /*
 	  <g>
 		<path class={cssClassName}/>
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	 * Set the CSS class of the flydown SVG group. Need to remove previous class if there is one.
 	 * @param {!String} newCSSClassName The name of the new CSS class replacing the old one
 	 */
-	Blockly.fuFlydown.prototype.setCSSClass = function(newCSSClassName) {
+	Blockly.fuImageFieldFlydown.prototype.setCSSClass = function(newCSSClassName) {
 	  if (newCSSClassName !== this.previousCSSClassName_) {
 		Blockly.utils.dom.removeClass(this.svgGroup_, this.previousCSSClassName_);
 		Blockly.utils.dom.addClass(this.svgGroup_, newCSSClassName);
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	 * @param {!Blockly.Workspace} workspace The workspace in which to create new
 	 *     blocks.
 	 */
-	Blockly.fuFlydown.prototype.init = function(workspace) {
+	Blockly.fuImageFieldFlydown.prototype.init = function(workspace) {
 	  Blockly.VerticalFlyout.prototype.init.call(this, workspace, false); // Flydowns have no scrollbar
 	}
 
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	 * Override the flyout position method to do nothing instead
 	 * @private
 	 */
-	Blockly.fuFlydown.prototype.position = function() {
+	Blockly.fuImageFieldFlydown.prototype.position = function() {
 	  return;
 	}
 
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	 * @param {!num} x x-position of upper-left corner of flydown
 	 * @param {!num} y y-position of upper-left corner of flydown
 	 */
-	Blockly.fuFlydown.prototype.showAt = function(xmlList,x,y) {
+	Blockly.fuImageFieldFlydown.prototype.showAt = function(xmlList,x,y) {
 	  Blockly.Events.disable();
 	  try {
 		this.show(xmlList); // invoke flyout method, which adds blocks to flydown and calculates width and height.
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	 * Overrides the reflow method of flyout
 	 * For RTL: Lay out the blocks right-aligned.
 	 */
-	Blockly.fuFlydown.prototype.reflow = function() {
+	Blockly.fuImageFieldFlydown.prototype.reflow = function() {
 	  this.workspace_.scale = this.targetWorkspace_.scale;
 	  var scale = this.workspace_.scale;
 	  var flydownWidth = 0;
@@ -211,12 +211,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	  }
 	};
 
-	Blockly.fuFlydown.prototype.onMouseMove_ = function(e) {
+	Blockly.fuImageFieldFlydown.prototype.onMouseMove_ = function(e) {
 	  // override Blockly's flyout behavior for moving the flyout.
 	  return;
 	};
 
-	Blockly.fuFlydown.prototype.getX = function () {
+	Blockly.fuImageFieldFlydown.prototype.getX = function () {
 	  return 0;
 	};
 
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	 * @return {!Blockly.Block} The new block in the main workspace.
 	 * @private
 	 */
-	Blockly.fuFlydown.prototype.placeNewBlock_ = function(originBlock) {
+	Blockly.fuImageFieldFlydown.prototype.placeNewBlock_ = function(originBlock) {
 	  var targetWorkspace = this.targetWorkspace_;
 	  var svgRootOld = originBlock.getSvgRoot();
 	  if (!svgRootOld) {
@@ -274,9 +274,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	  return block;
 	};
 
-	Blockly.fuFlydown.prototype.shouldHide = true;
+	Blockly.fuImageFieldFlydown.prototype.shouldHide = true;
 
-	Blockly.fuFlydown.prototype.hide = function() {
+	Blockly.fuImageFieldFlydown.prototype.hide = function() {
 	  if (this.shouldHide) {
 		Blockly.VerticalFlyout.prototype.hide.call(this);
 		Blockly.myBlocksFlydownImage.eventparam.openFieldFlydown_ = null;
@@ -377,23 +377,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-	Blockly.WorkspaceSvg.prototype.fuFlydown_ = null;
+	Blockly.WorkspaceSvg.prototype.fuImageFieldFlydown_ = null;
 	Blockly.WorkspaceSvg.prototype.getFlydown = function() {
-	  return this.fuFlydown_;
+	  return this.fuImageFieldFlydown_;
 	};
 
 
 	
-	var fuFlydownTimer = setInterval(function() {
+	var fuImageFieldFlydownTimer = setInterval(function() {
 
 		var workspace = Blockly.getMainWorkspace();
 		if (!workspace) 
 			return;
 		else
-			clearInterval(fuFlydownTimer);
+			clearInterval(fuImageFieldFlydownTimer);
 		
-		var flydown = new  Blockly.fuFlydown(new Blockly.Options({scrollbars:  true }));
-		workspace.fuFlydown_ = flydown;
+		var flydown = new  Blockly.fuImageFieldFlydown(new Blockly.Options({scrollbars:  true }));
+		workspace.fuImageFieldFlydown_ = flydown;
 		Blockly.utils.dom.insertAfter(flydown.createDom('g', 'rgba(0, 0, 0, 1)'), workspace.svgBubbleCanvas_);
 
 		Blockly.Blocks["test"] = {
