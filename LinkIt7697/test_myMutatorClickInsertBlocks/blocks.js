@@ -25,22 +25,25 @@ Blockly.Blocks['test'] = {
         xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml+'</xml>');
         myWorkspace.clear();
         Blockly.Xml.domToWorkspace(xml, myWorkspace); 
-/*
-		var blocks = myWorkspace.getAllBlocks();
-		for (var i =0;i<blocks.length;i++)
-			blocks[i].setMovable(false);			
-*/
-        function onMyMutatorBlocksChange(event) {
-            if (event.type=="click") {
-                var block = myWorkspace.getBlockById(event.blockId);
-		if (block) {
-			block = Blockly.Xml.blockToDom(block, true);
-			block = Blockly.Xml.textToDom('<xml>' + Blockly.Xml.domToText(block).replace(/(?:\r\n|\r|\n|\t)/g, "") + '</xml>');
-			Blockly.Xml.appendDomToWorkspace(block, myWorkspace.options.parentWorkspace);
+	  
+	var blocks = myWorkspace.getAllBlocks();
+	for (var i =0;i<blocks.length;i++) {
+		if (!blocks[i].parentBlock_)
+			blocks[i].setMovable(false);
+	}				
+
+	function onMyMutatorBlocksChange(event) {
+		if (event.type=="click") {
+			var block = myWorkspace.getBlockById(event.blockId);
+			if (block) {
+				block = Blockly.Xml.blockToDom(block, true);
+				block = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">' + Blockly.Xml.domToText(block) + '</xml>');
+				var id = Blockly.Xml.appendDomToWorkspace(block, myWorkspace.options.parentWorkspace);
+				myWorkspace.options.parentWorkspace.getBlockById(id).setMovable(true);
+			}
 		}
-            }
-        }
-        myWorkspace.addChangeListener(onMyMutatorBlocksChange);
+	}
+	myWorkspace.addChangeListener(onMyMutatorBlocksChange);
        
     }
     ,myWorkspaceChanged: function(myWorkspace) {
