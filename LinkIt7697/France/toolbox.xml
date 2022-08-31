@@ -8338,6 +8338,79 @@
     </block>
 	</category>	
 	
+	<category id="tft" name="tft">
+		<block type="tft_initial">
+		</block>
+		<block type="tft_clear">
+		</block>
+		<block type="tft_fillScreen">
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>			
+		</block>			
+		<block type="tft_color">
+			<field name="color">#0000ff</field>		
+		</block>
+
+		<block type="tft_setFreeFont">		  
+		</block>
+		<!--		
+		<block type="tft_setFontMode">		  
+		</block>
+		<block type="tft_setFontDirection">		  
+		</block>
+		-->		
+		<block type="tft_setTextColor">	
+			<value name="color_font">
+			  <block type="tft_color">
+				<field name="color">#0000ff</field>
+			  </block>
+			</value>
+			<value name="color_back">
+			  <block type="tft_color">
+				<field name="color">#000000</field>
+			  </block>
+			</value>				
+		</block>
+		<block type="tft_setTextSize">	
+			<value name="size">
+				<block type="math_number">
+					<field name="NUM">5</field>
+				</block>
+			</value>		
+		</block>		
+		<block type="tft_drawString">	
+			<value name="x">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="y">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="str">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>	
+		</block>
+		<block type="tft_setCursor">
+			<value name="x">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+			</value>
+			<value name="y">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+			</value>		
+		</block>	
+	</category>
 	
 	<category id="france9" name="buzzer">
 		<block type="esp32_buzzer">

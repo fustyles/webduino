@@ -1,3 +1,287 @@
+Blockly.Blocks['tft_drawString'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);	  
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT_DRAWSTRING"]);
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");
+    this.appendValueInput("str")
+        .setCheck(null)
+        .appendField(Blockly.Msg["TFT_TEXT"]);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_setCursor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);	  
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT_SETCURSOR"]);
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_setTextSize'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);
+    this.appendValueInput("size")
+        .setCheck("Number")
+        .appendField(Blockly.Msg["PROPERTY_FONTSIZE"]);	
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_setTextColor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);
+	this.appendValueInput("color_font")
+	    .appendField(Blockly.Msg["FONTCOLOR"]);
+	this.appendValueInput("color_back")
+	    .appendField(Blockly.Msg["BACKCOLOR"]);		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_setFontDirection'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);	  
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["TFT_SETFONTDIRECTION"]);	
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["TFT_LEFT_RIGHT"],"0"], 
+		[Blockly.Msg["TFT_TOP_BOTTOM"],"1"], 
+		[Blockly.Msg["TFT_RIGHT_LEFT"],"2"],
+		[Blockly.Msg["TFT_BOTTOM_TOP"],"3"]
+	]), "display");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_setFontMode'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);	  
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["TFT_SETFONTMODE"]);		
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["TFT_SETFONTMODE_YANG"],"1"], 
+		[Blockly.Msg["TFT_SETFONTMODE_YIN"],"0"]			
+	]), "mode");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+
+
+// Use the following when calling setFont()
+//
+// Reserved for GLCD font  // FF0
+//
+
+var tft_font = [
+	["TT1", "&TomThumb"],
+	["FM9", "&FreeMono9pt7b"],
+	["FM12", "&FreeMono12pt7b"],
+	["FM18", "&FreeMono18pt7b"],
+	["FM24", "&FreeMono24pt7b"],
+	["FMB9", "&FreeMonoBold9pt7b"],
+	["FMB12", "&FreeMonoBold12pt7b"],
+	["FMB18", "&FreeMonoBold18pt7b"],
+	["FMB24", "&FreeMonoBold24pt7b"],
+	["FMO9", "&FreeMonoOblique9pt7b"],
+	["FMO12", "&FreeMonoOblique12pt7b"],
+	["FMO18", "&FreeMonoOblique18pt7b"],
+	["FMO24", "&FreeMonoOblique24pt7b"],
+	["FMBO9", "&FreeMonoBoldOblique9pt7b"],
+	["FMBO12", "&FreeMonoBoldOblique12pt7b"],
+	["FMBO18", "&FreeMonoBoldOblique18pt7b"],
+	["FMBO24", "&FreeMonoBoldOblique24pt7b"],
+	["FSS9", "&FreeSans9pt7b"],
+	["FSS12", "&FreeSans12pt7b"],
+	["FSS18", "&FreeSans18pt7b"],
+	["FSS24", "&FreeSans24pt7b"],
+	["FSSB9", "&FreeSansBold9pt7b"],
+	["FSSB12", "&FreeSansBold12pt7b"],
+	["FSSB18", "&FreeSansBold18pt7b"],
+	["FSSB24", "&FreeSansBold24pt7b"],
+	["FSSO9", "&FreeSansOblique9pt7b"],
+	["FSSO12", "&FreeSansOblique12pt7b"],
+	["FSSO18", "&FreeSansOblique18pt7b"],
+	["FSSO24", "&FreeSansOblique24pt7b"],
+	["FSSBO9", "&FreeSansBoldOblique9pt7b"],
+	["FSSBO12", "&FreeSansBoldOblique12pt7b"],
+	["FSSBO18", "&FreeSansBoldOblique18pt7b"],
+	["FSSBO24", "&FreeSansBoldOblique24pt7b"],
+	["FS9", "&FreeSerif9pt7b"],
+	["FS12", "&FreeSerif12pt7b"],
+	["FS18", "&FreeSerif18pt7b"],
+	["FS24", "&FreeSerif24pt7b"],
+	["FSI9", "&FreeSerifItalic9pt7b"],
+	["FSI12", "&FreeSerifItalic12pt7b"],
+	["FSI19", "&FreeSerifItalic18pt7b"],
+	["FSI24", "&FreeSerifItalic24pt7b"],
+	["FSB9", "&FreeSerifBold9pt7b"],
+	["FSB12", "&FreeSerifBold12pt7b"],
+	["FSB18", "&FreeSerifBold18pt7b"],
+	["FSB24", "&FreeSerifBold24pt7b"],
+	["FSBI9", "&FreeSerifBoldItalic9pt7b"],
+	["FSBI12", "&FreeSerifBoldItalic12pt7b"],
+	["FSBI18", "&FreeSerifBoldItalic18pt7b"],
+	["FSBI24", "&FreeSerifBoldItalic24pt7b"],
+	["FF1", "&FreeMono9pt7b"],
+	["FF2", "&FreeMono12pt7b"],
+	["FF3", "&FreeMono18pt7b"],
+	["FF4", "&FreeMono24pt7b"],
+	["FF5", "&FreeMonoBold9pt7b"],
+	["FF6", "&FreeMonoBold12pt7b"],
+	["FF7", "&FreeMonoBold18pt7b"],
+	["FF8", "&FreeMonoBold24pt7b"],
+	["FF9", "&FreeMonoOblique9pt7b"],
+	["FF10", "&FreeMonoOblique12pt7b"],
+	["FF11", "&FreeMonoOblique18pt7b"],
+	["FF12", "&FreeMonoOblique24pt7b"],
+	["FF13", "&FreeMonoBoldOblique9pt7b"],
+	["FF14", "&FreeMonoBoldOblique12pt7b"],
+	["FF15", "&FreeMonoBoldOblique18pt7b"],
+	["FF16", "&FreeMonoBoldOblique24pt7b"],
+	["FF17", "&FreeSans9pt7b"],
+	["FF18", "&FreeSans12pt7b"],
+	["FF19", "&FreeSans18pt7b"],
+	["FF20", "&FreeSans24pt7b"],
+	["FF21", "&FreeSansBold9pt7b"],
+	["FF22", "&FreeSansBold12pt7b"],
+	["FF23", "&FreeSansBold18pt7b"],
+	["FF24", "&FreeSansBold24pt7b"],
+	["FF25", "&FreeSansOblique9pt7b"],
+	["FF26", "&FreeSansOblique12pt7b"],
+	["FF27", "&FreeSansOblique18pt7b"],
+	["FF28", "&FreeSansOblique24pt7b"],
+	["FF29", "&FreeSansBoldOblique9pt7b"],
+	["FF30", "&FreeSansBoldOblique12pt7b"],
+	["FF31", "&FreeSansBoldOblique18pt7b"],
+	["FF32", "&FreeSansBoldOblique24pt7b"],
+	["FF33", "&FreeSerif9pt7b"],
+	["FF34", "&FreeSerif12pt7b"],
+	["FF35", "&FreeSerif18pt7b"],
+	["FF36", "&FreeSerif24pt7b"],
+	["FF37", "&FreeSerifItalic9pt7b"],
+	["FF38", "&FreeSerifItalic12pt7b"],
+	["FF39", "&FreeSerifItalic18pt7b"],
+	["FF40", "&FreeSerifItalic24pt7b"],
+	["FF41", "&FreeSerifBold9pt7b"],
+	["FF42", "&FreeSerifBold12pt7b"],
+	["FF43", "&FreeSerifBold18pt7b"],
+	["FF44", "&FreeSerifBold24pt7b"],
+	["FF45", "&FreeSerifBoldItalic9pt7b"],
+	["FF46", "&FreeSerifBoldItalic12pt7b"],
+	["FF47", "&FreeSerifBoldItalic18pt7b"],
+	["FF48", "&FreeSerifBoldItalic24pt7b"]
+];
+
+Blockly.Blocks['tft_setFreeFont'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["TFT_SETFONT"])
+        .appendField(new Blockly.FieldDropdown(tft_font), "font");	
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_fillScreen'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);
+	this.appendValueInput("color")
+	    .appendField(Blockly.Msg["TFT_FILLSCREEN"]);
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_color'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT_COLOR"])	
+		.appendField(new Blockly.FieldColour("#0000ff"), "color");		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_clear'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"])
+        .appendField(Blockly.Msg["TFT_CLEAR"]);		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"])
+        .appendField(Blockly.Msg["TFT_INITIAL"]);		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
 Blockly.Blocks['esp32_pixelbit_tftshowcamera'] = {
   init: function() {
     this.appendDummyInput()
@@ -2838,7 +3122,7 @@ Blockly.Blocks['fu_taiwan_aqi'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg["AIRQUALITY_ESP32"]);	  
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["AIRQUALITY_SITE"])		
         .appendField(new Blockly.FieldDropdown([
           ["基隆市-基隆","基隆"],
@@ -2935,7 +3219,7 @@ Blockly.Blocks['fu_taiwan_aqi_get'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg["AIRQUALITY_ESP32"]);
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["AIRQUALITY_DATA"])		
         .appendField(new Blockly.FieldDropdown([
           [Blockly.Msg["AIRQUALITY_SITE"],"0"],
@@ -2956,7 +3240,7 @@ Blockly.Blocks['fu_taiwan_weather'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg["WEATHER_ESP32_36HR"]);	  
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["WEATHER_LOCATION"])		
         .appendField(new Blockly.FieldDropdown([
           ["宜蘭縣","宜蘭縣"],
@@ -2999,7 +3283,7 @@ Blockly.Blocks['fu_taiwan_weather_get'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg["WEATHER_ESP32_36HR"]);	  
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["WEATHER_PERIOD"])		
         .appendField(new Blockly.FieldDropdown([
           ["前12小時","0"],
@@ -3007,7 +3291,7 @@ Blockly.Blocks['fu_taiwan_weather_get'] = {
           ["後12小時","2"]
 		]), "period");
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["WEATHER_DATA"])		
         .appendField(new Blockly.FieldDropdown([
           [Blockly.Msg["WEATHER_LOCATION"],"0"],
@@ -3036,7 +3320,7 @@ document.getElementsByTagName('head')[0].append(s);
 Blockly.Blocks['fu_oled_PROGMEM_truetype'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED");
     this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("logo"), "variable")
@@ -3812,11 +4096,11 @@ Blockly.Blocks['fu_ez_ir_receive'] = {
 Blockly.Blocks['fu_oled_initial'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
 		.appendField("OLED")
         .appendField(Blockly.Msg["OLED_INITIAL"]);
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)	
+        .setAlign(Blockly.ALIGN_RIGHT)	
         .appendField(Blockly.Msg["OLED_SPECIFICATION"])
         .appendField(new Blockly.FieldDropdown([
 			["U8G2_SSD1306_128X64_NONAME_F_HW_I2C","U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);"],
@@ -4063,7 +4347,7 @@ Blockly.Blocks['fu_oled_initial'] = {
 			["U8G2_S1D15721_240X64_F_4W_HW_SPI","U8G2_S1D15721_240X64_F_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);"]	
 	]), "format");		
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)	
+        .setAlign(Blockly.ALIGN_RIGHT)	
         .appendField(Blockly.Msg["OLED_DISPLAY_MODE_DEFAULT"])
         .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["OLED_ROTATE_NO_HORIZONTAL"],"U8G2_R0"], 
@@ -4074,16 +4358,16 @@ Blockly.Blocks['fu_oled_initial'] = {
 		[Blockly.Msg["OLED_ROTATE_NO_VERTICAL_MIRROR"],"U8G2_MIRROR_VERTICAL"]				
 	]), "display");
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)	
+        .setAlign(Blockly.ALIGN_RIGHT)	
         .appendField(Blockly.Msg["OLED_UTF8_CHINESE"])
         .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["OLED_DISABLE"],"0"], 
 		[Blockly.Msg["OLED_ENABLE"],"1"]			
 	]), "utf8");
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)	
+        .setAlign(Blockly.ALIGN_RIGHT)	
         .appendField(Blockly.Msg["OLED_FONT_DEFAULT"])
-        .appendField(new Blockly.FieldDropdown(opt), "font");
+        .appendField(new Blockly.FieldDropdown(opt_font), "font");
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -4097,7 +4381,7 @@ Blockly.Blocks['fu_oled_initial'] = {
 Blockly.Blocks['fu_oled_home'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_CURSOR_HOME"]);
     this.setInputsInline(true);
@@ -4112,7 +4396,7 @@ Blockly.Blocks['fu_oled_home'] = {
 Blockly.Blocks['fu_oled_setContrast'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_CONTRAST"]);
     this.appendValueInput("value")
@@ -4129,7 +4413,7 @@ Blockly.Blocks['fu_oled_setContrast'] = {
 Blockly.Blocks['fu_oled_setFont'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_FONT_SET"]);
     this.appendValueInput("font")
@@ -4146,11 +4430,11 @@ Blockly.Blocks['fu_oled_setFont'] = {
 Blockly.Blocks['fu_oled_setFont_chinese'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_FONT_SET_CHINESE"]);
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([
 		["u8g2_font_unifont_t_chinese1","u8g2_font_unifont_t_chinese1"],
 		["u8g2_font_unifont_t_chinese2","u8g2_font_unifont_t_chinese2"],
@@ -4183,11 +4467,11 @@ Blockly.Blocks['fu_oled_setFont_chinese'] = {
 Blockly.Blocks['fu_oled_setFont_icon'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_FONT_SET_IMAGE"]);
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([
 			["u8g2_font_6x12_t_symbols","u8g2_font_6x12_t_symbols"],
 			["u8g2_font_7x13_t_symbols","u8g2_font_7x13_t_symbols"],
@@ -4363,12 +4647,12 @@ Blockly.Blocks['fu_oled_setFont_icon'] = {
 Blockly.Blocks['fu_oled_setFont_all'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_FONT_SET"]);
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
-        .appendField(new Blockly.FieldDropdown(opt), "font");
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown(opt_font), "font");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -4381,11 +4665,11 @@ Blockly.Blocks['fu_oled_setFont_all'] = {
 Blockly.Blocks['fu_oled_setFontDirection'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
 		.appendField("OLED")
         .appendField(Blockly.Msg["OLED_FONT_DRAW_DIRECTION"]);		
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["OLED_DISPLAY_LEFT_RIGHT"],"0"], 
 		[Blockly.Msg["OLED_DISPLAY_TOP_BOTTOM"],"1"], 
@@ -4396,19 +4680,17 @@ Blockly.Blocks['fu_oled_setFontDirection'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(30);
- 
- 
   }
 };
 
 Blockly.Blocks['fu_oled_setDrawColor'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
 		.appendField(Blockly.Msg["OLED_DRAW_COLOR"]);		
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["OLED_DRAW_YANG"],"1"], 
 		[Blockly.Msg["OLED_DRAW_YIN"],"0"]			
@@ -4417,19 +4699,17 @@ Blockly.Blocks['fu_oled_setDrawColor'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(30);
- 
- 
   }
 };
 
 Blockly.Blocks['fu_oled_setDisplayRotation'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
 		.appendField(Blockly.Msg["OLED_DISPLAY_MODE"]);		
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["OLED_ROTATE_NO_HORIZONTAL"],"U8G2_R0"], 
 		[Blockly.Msg["OLED_ROTATE_90"],"U8G2_R1"], 
@@ -4450,11 +4730,11 @@ Blockly.Blocks['fu_oled_setDisplayRotation'] = {
 Blockly.Blocks['fu_oled_setPowerSave'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
 		.appendField(Blockly.Msg["OLED_SAVE_POWER"]);
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["OLED_DISABLE"],"0"], 
 		[Blockly.Msg["OLED_ENABLE"],"1"]			
@@ -4471,7 +4751,7 @@ Blockly.Blocks['fu_oled_setPowerSave'] = {
 Blockly.Blocks['fu_oled_clear'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_CLEAR"]);
     this.setInputsInline(true);
@@ -4486,7 +4766,7 @@ Blockly.Blocks['fu_oled_clear'] = {
 Blockly.Blocks['fu_oled_sendBuffer'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_BUFFER"]);
     this.appendStatementInput("draw")
@@ -4503,7 +4783,7 @@ Blockly.Blocks['fu_oled_sendBuffer'] = {
 Blockly.Blocks['fu_oled_nextPage'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW"]);
     this.appendStatementInput("draw")
@@ -4520,7 +4800,7 @@ Blockly.Blocks['fu_oled_nextPage'] = {
 Blockly.Blocks['fu_oled_drawStr'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_TEXT_ENGLISH_NUMBER"]);
     this.appendValueInput("x")
@@ -4544,7 +4824,7 @@ Blockly.Blocks['fu_oled_drawStr'] = {
 Blockly.Blocks['fu_oled_drawFont'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_LOCAL_TTF"]);
   this.appendDummyInput()  
@@ -4937,7 +5217,7 @@ Blockly.Blocks['fu_oled_drawFont'] = {
 Blockly.Blocks['fu_oled_drawCustomFont'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_LOCAL_TTF"]);
     this.appendValueInput("font")
@@ -4994,7 +5274,7 @@ Blockly.Blocks['fu_oled_drawCustomFont'] = {
 Blockly.Blocks['fu_oled_setCursor'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_CURSOR_SET"]);
     this.appendValueInput("x")
@@ -5015,7 +5295,7 @@ Blockly.Blocks['fu_oled_setCursor'] = {
 Blockly.Blocks['fu_oled_Print'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_TEXT_CURSOR"]);
     this.appendValueInput("str")
@@ -5032,7 +5312,7 @@ Blockly.Blocks['fu_oled_Print'] = {
 Blockly.Blocks['fu_oled_drawGlyph'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_IMAGE_UNICODE"]);
     this.appendValueInput("x")
@@ -5056,7 +5336,7 @@ Blockly.Blocks['fu_oled_drawGlyph'] = {
 Blockly.Blocks['fu_oled_drawUTF8'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_TEXT_UTF8"]);
     this.appendValueInput("x")
@@ -5083,7 +5363,7 @@ Blockly.Blocks['fu_oled_drawUTF8'] = {
 Blockly.Blocks['fu_oled_PROGMEM'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED");
     this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("logo"), "variable")
@@ -5177,7 +5457,7 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
 Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED");
 	this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("logo"), "variable")
@@ -5254,7 +5534,7 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
 Blockly.Blocks['fu_oled_PROGMEM_array'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED");
     this.appendDummyInput()
         .appendField(Blockly.Msg["OLED_ARRAY"])	
@@ -5275,11 +5555,11 @@ Blockly.Blocks['fu_oled_PROGMEM_array'] = {
 Blockly.Blocks['fu_oled_setBitmapMode'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_BACKGROUND_COLOR"]);
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["OLED_TRANSPARENT_NO"],"0"], 
 		[Blockly.Msg["OLED_TRANSPARENT"],"1"]		
@@ -5296,7 +5576,7 @@ Blockly.Blocks['fu_oled_setBitmapMode'] = {
 Blockly.Blocks['fu_oled_drawXBMP'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_IMAGE"]);
     this.appendValueInput("PROGMEM")
@@ -5326,7 +5606,7 @@ Blockly.Blocks['fu_oled_drawXBMP'] = {
 Blockly.Blocks['fu_oled_drawXBMP_PROGMEM'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_IMAGE"]);
     this.appendDummyInput()
@@ -5355,7 +5635,7 @@ Blockly.Blocks['fu_oled_drawXBMP_PROGMEM'] = {
 Blockly.Blocks['fu_oled_drawXBMP_PROGMEM_array'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_IMAGE"]);
     this.appendDummyInput()
@@ -5388,7 +5668,7 @@ Blockly.Blocks['fu_oled_drawXBMP_PROGMEM_array'] = {
 Blockly.Blocks['fu_oled_drawPixelMap'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_PIXEL_IMAGE"]);
 		
@@ -5462,7 +5742,7 @@ Blockly.Blocks['fu_oled_drawPixelMap'] = {
 Blockly.Blocks['fu_oled_drawBox'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_SQUARE_SOLID"]);
     this.appendValueInput("x")
@@ -5489,7 +5769,7 @@ Blockly.Blocks['fu_oled_drawBox'] = {
 Blockly.Blocks['fu_oled_drawRBox'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_SQUARE_SOLID_ROUND"]);
     this.appendValueInput("x")
@@ -5519,7 +5799,7 @@ Blockly.Blocks['fu_oled_drawRBox'] = {
 Blockly.Blocks['fu_oled_drawFrame'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_SQUARE_HOLLOW"]);
     this.appendValueInput("x")
@@ -5546,7 +5826,7 @@ Blockly.Blocks['fu_oled_drawFrame'] = {
 Blockly.Blocks['fu_oled_drawRFrame'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_SQUARE_HOLLOW_ROUND"]);
     this.appendValueInput("x")
@@ -5576,7 +5856,7 @@ Blockly.Blocks['fu_oled_drawRFrame'] = {
 Blockly.Blocks['fu_oled_drawCircle'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_CIRCLE_HOLLOW"]);
     this.appendValueInput("x0")
@@ -5609,7 +5889,7 @@ Blockly.Blocks['fu_oled_drawCircle'] = {
 Blockly.Blocks['fu_oled_drawDisc'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_CIRCLE_SOLID"]);
     this.appendValueInput("x0")
@@ -5642,7 +5922,7 @@ Blockly.Blocks['fu_oled_drawDisc'] = {
 Blockly.Blocks['fu_oled_drawEllipse'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_OVAL_HOLLOW"]);
     this.appendValueInput("x0")
@@ -5678,7 +5958,7 @@ Blockly.Blocks['fu_oled_drawEllipse'] = {
 Blockly.Blocks['fu_oled_drawFilledEllipse'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_OVAL_SOLID"]);
     this.appendValueInput("x0")
@@ -5714,7 +5994,7 @@ Blockly.Blocks['fu_oled_drawFilledEllipse'] = {
 Blockly.Blocks['fu_oled_drawHLine'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_LINE_HORIZONTAL"]);
     this.appendValueInput("x0")
@@ -5738,7 +6018,7 @@ Blockly.Blocks['fu_oled_drawHLine'] = {
 Blockly.Blocks['fu_oled_drawVLine'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_LINE_VERTICAL"]);
     this.appendValueInput("x0")
@@ -5762,7 +6042,7 @@ Blockly.Blocks['fu_oled_drawVLine'] = {
 Blockly.Blocks['fu_oled_drawLine'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_LINE_DIP"]);
     this.appendValueInput("x0")
@@ -5789,7 +6069,7 @@ Blockly.Blocks['fu_oled_drawLine'] = {
 Blockly.Blocks['fu_oled_drawTriangle'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_TRIANGLE"]);
     this.appendValueInput("x0")
@@ -5822,7 +6102,7 @@ Blockly.Blocks['fu_oled_drawTriangle'] = {
 Blockly.Blocks['fu_oled_drawPixel'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_LEFT)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("OLED")
         .appendField(Blockly.Msg["OLED_DRAW_PIXEL_POINT"]);
     this.appendValueInput("x")
@@ -5840,7 +6120,7 @@ Blockly.Blocks['fu_oled_drawPixel'] = {
   }
 };
 
-var opt = [
+var opt_font = [
 	["u8g2_font_10x20_me","u8g2_font_10x20_me"],
 	["u8g2_font_10x20_mf","u8g2_font_10x20_mf"],
 	["u8g2_font_10x20_mn","u8g2_font_10x20_mn"],

@@ -1,12 +1,98 @@
-Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
-	Blockly.Arduino.definitions_.tftshowcamera = ''+
-												'#include <TFT_eSPI_PIXELBIT.h>\n'+
+Blockly.Arduino['tft_drawString'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'tft.drawString(String('+value_str+').c_str(), '+value_x+', '+value_y+');\n';
+  return code;
+}; 
+
+Blockly.Arduino['tft_setCursor'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'tft.setCursor('+value_x+','+value_y+');\n';
+  return code;
+};
+
+Blockly.Arduino['tft_setTextSize'] = function(block) {
+	var size = Blockly.Arduino.valueToCode(block, 'size', Blockly.Arduino.ORDER_ATOMIC);
+	var code = 'tft.setTextSize('+size+');\n';
+    return code;
+};
+
+Blockly.Arduino['tft_setTextColor'] = function(block) {
+	var color_font = Blockly.Arduino.valueToCode(block, 'color_font', Blockly.Arduino.ORDER_ATOMIC);
+	var color_back = Blockly.Arduino.valueToCode(block, 'color_back', Blockly.Arduino.ORDER_ATOMIC);
+	var code = 'tft.setTextColor('+color_font+' ,'+color_back+');\n';
+    return code;
+};
+
+Blockly.Arduino['tft_setFontDirection'] = function(block) {
+  var display = block.getFieldValue('display');
+  
+  var code = 'u8g2.setFontDirection('+display+');\n';
+  return code;
+};
+
+Blockly.Arduino['tft_setFontMode'] = function(block) {
+  var mode = block.getFieldValue('mode');
+  
+  var code = 'u8g2.setFontMode('+mode+');\n';
+  return code;
+};
+
+Blockly.Arduino['tft_setFreeFont'] = function(block) {
+	var font = block.getFieldValue('font');
+	var code = 'tft.setFreeFont('+font+');\n';
+    return code;
+};
+
+Blockly.Arduino['tft_fillScreen'] = function(block) {
+	var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
+	var code = 'tft.fillScreen('+color+');\n';
+    return code;
+};
+
+Blockly.Arduino['tft_color'] = function(block) {
+	var color = block.getFieldValue('color');
+    color = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+	var code = 'tft.color565('+parseInt(color[1], 16)+", "+parseInt(color[2], 16)+", "+parseInt(color[3], 16)+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['tft_clear'] = function(block) {
+	/*
+	TFT_BLACK       0x0000
+	TFT_NAVY        0x000F
+	TFT_DARKGREEN   0x03E0
+	TFT_DARKCYAN    0x03EF
+	TFT_MAROON      0x7800
+	TFT_PURPLE      0x780F
+	TFT_OLIVE       0x7BE0
+	TFT_LIGHTGREY   0xC618
+	TFT_DARKGREY    0x7BEF
+	TFT_BLUE        0x001F
+	TFT_GREEN       0x07E0
+	TFT_CYAN        0x07FF
+	TFT_RED         0xF800
+	TFT_MAGENTA     0xF81F
+	TFT_YELLOW      0xFFE0
+	TFT_WHITE       0xFFFF
+	TFT_ORANGE      0xFDA0
+	TFT_GREENYELLOW 0xB7E0
+	TFT_PINK        0xFC9F
+	*/	
+	var code = 'tft.fillScreen(TFT_BLACK);\n';
+    return code;
+};
+
+Blockly.Arduino['tft_initial'] = function(block) {
+	Blockly.Arduino.definitions_.tftinitial = ''+
+												'#include <TFT_eSPI.h>\n'+
 												'#include <U8g2_for_TFT_eSPI.h>\n'+
 												'TFT_eSPI tft = TFT_eSPI();\n'+
 												'U8g2_for_TFT_eSPI u8g2;\n'+
-												'uint32_t tft_color=TFT_WHITE;\n'+
-												'uint32_t tft_bg_color=TFT_BLACK;\n'+
-												'uint32_t tft_fg_color=TFT_WHITE;\n'+
 												'byte tftTextSize=1;\n'+
 												'byte tftTextFont=1;\n'+
 												'int pinCS=SS;\n'+
@@ -15,7 +101,7 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 												'uint16_t dmaBuffer2[16 * 16];\n'+
 												'uint16_t *dmaBufferPtr = dmaBuffer1;\n'+
 												'bool dmaBufferSel = 0;\n'+
-												'bool cameraToTft(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t *bitmap) {\n'+
+												'bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t *bitmap) {\n'+
 												'  if (y >= tft.height())\n'+
 												'	return false;\n'+
 												'  if (dmaBufferSel)\n'+
@@ -23,10 +109,71 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 												'  else\n'+
 												'	dmaBufferPtr = dmaBuffer1;\n'+
 												'  dmaBufferSel = !dmaBufferSel;\n'+
-												'  tft.dmaWait();\n'+
 												'  tft.pushImageDMA(x, y, w, h, bitmap, dmaBufferPtr);\n'+
-												'  return true;\n'+
-												'}\n'+
+												'  return 1;\n'+
+												'}\n';
+												
+	Blockly.Arduino.setups_.tftsetup=''+
+									  'tft.begin();\n'+
+									  'tft.setTextColor(TFT_WHITE, TFT_BLACK);\n'+
+									  'tft.fillScreen(TFT_BLACK);\n'+
+									  'tft.setTextColor(TFT_ORANGE, TFT_BLACK);\n'+					  
+									  'tft.initDMA();\n'+
+									  'TJpgDec.setJpgScale(1);\n'+
+									  'tft.setSwapBytes(true);\n'+
+									  'TJpgDec.setCallback(tft_output);\n';
+									  'u8g2.begin(tft);\n'+	
+									  'u8g2.setForegroundColor(TFT_WHITE);\n';
+	
+	var code = '';
+    return code;
+};
+
+
+Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
+	Blockly.Arduino.definitions_.tftinitial = ''+
+												'#include <TFT_eSPI_PIXELBIT.h>\n'+
+												'#include <U8g2_for_TFT_eSPI.h>\n'+
+												'TFT_eSPI tft = TFT_eSPI();\n'+
+												'U8g2_for_TFT_eSPI u8g2;\n'+
+												'byte tftTextSize=1;\n'+
+												'byte tftTextFont=1;\n'+
+												'int pinCS=SS;\n'+
+												'#include <TJpg_Decoder.h>\n'+
+												'uint16_t dmaBuffer1[16 * 16];\n'+
+												'uint16_t dmaBuffer2[16 * 16];\n'+
+												'uint16_t *dmaBufferPtr = dmaBuffer1;\n'+
+												'bool dmaBufferSel = 0;\n'+
+												'bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t *bitmap) {\n'+
+												'  if (y >= tft.height())\n'+
+												'	return false;\n'+
+												'  if (dmaBufferSel)\n'+
+												'	dmaBufferPtr = dmaBuffer2;\n'+
+												'  else\n'+
+												'	dmaBufferPtr = dmaBuffer1;\n'+
+												'  dmaBufferSel = !dmaBufferSel;\n'+
+												'  tft.pushImageDMA(x, y, w, h, bitmap, dmaBufferPtr);\n'+
+												'  return 1;\n'+
+												'}\n';
+												
+	Blockly.Arduino.setups_.tftsetup=''+
+									  'sensor_t *sg = esp_camera_sensor_get();\n'+
+									  'sg->set_brightness(sg, -1);\n'+
+									  'sg->set_contrast(sg, 1);\n'+
+									  'sg->set_saturation(sg, 1);\n'+	
+									  'tft.begin();\n'+
+									  'tft.setTextColor(TFT_WHITE, TFT_BLACK);\n'+
+									  'tft.fillScreen(TFT_BLACK);\n'+
+									  'tft.setTextColor(TFT_ORANGE, TFT_BLACK);\n'+
+									  'tft.setRotation(3);\n'+										  
+									  'tft.initDMA();\n'+
+									  'TJpgDec.setJpgScale(1);\n'+
+									  'tft.setSwapBytes(true);\n'+
+									  'TJpgDec.setCallback(tft_output);\n';
+									  'u8g2.begin(tft);\n'+	
+									  'u8g2.setForegroundColor(TFT_WHITE);\n';
+										  
+	Blockly.Arduino.definitions_.tftshowcamera = ''+												
 												'void TFTShowCamera() {\n'+
 												'  camera_fb_t *fb = NULL;\n'+
 												'  fb = esp_camera_fb_get();\n'+
@@ -45,20 +192,6 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 												'  tft.endWrite();\n'+
 												'  esp_camera_fb_return(fb);\n'+
 												'}\n';
-			
-	Blockly.Arduino.setups_.tftshowcamera=''+
-										  'tft.begin();\n'+
-										  'tft.setRotation(3);\n'+
-										  'tft.fillScreen(TFT_BLACK);\n'+
-										  'u8g2.begin(tft);\n'+
-										  'tft.setTextColor(tft_color);\n'+
-										  'u8g2.setForegroundColor(tft_color);\n'+
-										  'esp_camera_sensor_get()->set_brightness(esp_camera_sensor_get(), -1);\n'+
-										  'esp_camera_sensor_get()->set_contrast(esp_camera_sensor_get(), 1);\n'+
-										  'esp_camera_sensor_get()->set_saturation(esp_camera_sensor_get(), 1);\n'+
-										  'tft.initDMA(true);\n'+
-										  'tft.setSwapBytes(true);\n'+
-										  'TJpgDec.setCallback(cameraToTft);\n';
 
 	var code = 'TFTShowCamera();\n';
     return code;

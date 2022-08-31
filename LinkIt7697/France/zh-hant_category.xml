@@ -86,4 +86,5 @@
 <category><name>catcanaloggauge</name><replace>類比圖</replace></category>
 <category><name>catchartswitch</name><replace>滑動開關</replace></category>
 <category><name>serverUart</name><replace>UART模組</replace></category>
+<category><name>tft</name><replace>TFT全彩螢幕</replace></category>
 </xml>
