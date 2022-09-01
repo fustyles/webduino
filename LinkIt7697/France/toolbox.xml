@@ -1616,12 +1616,12 @@
 			  <block type="esp32_pixelbit_stream_myfirmata" id="99">
 				<value name="ssid">
 				  <block type="text" id="100">
-					<field name="TEXT">teacher</field>
+					<field name="TEXT"></field>
 				  </block>
 				</value>
 				<value name="password">
 				  <block type="text" id="101">
-					<field name="TEXT">87654321</field>
+					<field name="TEXT"></field>
 				  </block>
 				</value>
 				<value name="ssid_ap">
@@ -1710,12 +1710,12 @@
 			  <block type="esp32_pixelbit_myfirmata" id="99">
 				<value name="ssid">
 				  <block type="text" id="100">
-					<field name="TEXT">teacher</field>
+					<field name="TEXT"></field>
 				  </block>
 				</value>
 				<value name="password">
 				  <block type="text" id="101">
-					<field name="TEXT">87654321</field>
+					<field name="TEXT"></field>
 				  </block>
 				</value>
 				<value name="ssid_ap">
@@ -1836,6 +1836,8 @@
 					  </block>
 					</value>
 				</block>
+			  <block type="esp32_pixelbit_initial" id="99">				
+			  </block>					
 			  <block type="esp32_pixelbit_tftshowcamera" id="99">				
 			  </block>				
 			  <block type="esp32_cam_linenotify" id="99">
@@ -8341,6 +8343,8 @@
 	<category id="tft" name="tft">
 		<block type="tft_initial">
 		</block>
+		<block type="tft_setRotation">	
+		</block>		
 		<block type="tft_clear">
 		</block>
 		<block type="tft_fillScreen">
@@ -8352,9 +8356,6 @@
 		</block>			
 		<block type="tft_color">
 			<field name="color">#0000ff</field>		
-		</block>
-
-		<block type="tft_setFreeFont">		  
 		</block>
 		<!--		
 		<block type="tft_setFontMode">		  
@@ -8398,6 +8399,8 @@
 				</block>
 			</value>	
 		</block>
+		<block type="tft_setFreeFont">		  
+		</block>		
 		<block type="tft_setCursor">
 			<value name="x">
 					<block type="math_number">
@@ -8409,7 +8412,14 @@
 						<field name="NUM">0</field>
 					</block>
 			</value>		
-		</block>	
+		</block>
+		<block type="tft_drawStringCursor">
+			<value name="str">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>	
+		</block>		
 	</category>
 	
 	<category id="france9" name="buzzer">

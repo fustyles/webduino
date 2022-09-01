@@ -1,3 +1,18 @@
+Blockly.Arduino['tft_setRotation'] = function(block) {
+  var mode = block.getFieldValue('mode');
+
+  var code = 'tft.setRotation('+mode+');\n';
+  return code;
+};
+
+Blockly.Arduino['tft_drawStringCursor'] = function(block) {
+  var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+  var newline = block.getFieldValue('newline');
+
+  var code = 'tft.'+newline+'(String('+value_str+').c_str());\n';
+  return code;
+};
+
 Blockly.Arduino['tft_drawString'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
@@ -31,18 +46,27 @@ Blockly.Arduino['tft_setTextColor'] = function(block) {
 Blockly.Arduino['tft_setFontDirection'] = function(block) {
   var display = block.getFieldValue('display');
   
-  var code = 'u8g2.setFontDirection('+display+');\n';
+  var code = 'tft.setFontDirection('+display+');\n';
   return code;
 };
 
 Blockly.Arduino['tft_setFontMode'] = function(block) {
   var mode = block.getFieldValue('mode');
   
-  var code = 'u8g2.setFontMode('+mode+');\n';
+  var code = 'tft.setFontMode('+mode+');\n';
   return code;
 };
 
 Blockly.Arduino['tft_setFreeFont'] = function(block) {
+	Blockly.Arduino.definitions_.setFreeFont = ''+	
+												'#define GFXFF 1\n'+
+												'#define GLCD  0\n'+
+												'#define FONT2 2\n'+
+												'#define FONT4 4\n'+
+												'#define FONT6 6\n'+
+												'#define FONT7 7\n'+
+												'#define FONT8 8\n';
+	
 	var font = block.getFieldValue('font');
 	var code = 'tft.setFreeFont('+font+');\n';
     return code;
@@ -198,7 +222,52 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 };
 
 
+Blockly.Arduino['esp32_pixelbit_initial'] = function(block) {
+	Blockly.Arduino.definitions_.tftinitial = ''+
+												'#include <TFT_eSPI_PIXELBIT.h>\n'+
+												'#include <U8g2_for_TFT_eSPI.h>\n'+
+												'TFT_eSPI tft = TFT_eSPI();\n'+
+												'U8g2_for_TFT_eSPI u8g2;\n'+
+												'byte tftTextSize=1;\n'+
+												'byte tftTextFont=1;\n'+
+												'int pinCS=SS;\n'+
+												'#include <TJpg_Decoder.h>\n'+
+												'uint16_t dmaBuffer1[16 * 16];\n'+
+												'uint16_t dmaBuffer2[16 * 16];\n'+
+												'uint16_t *dmaBufferPtr = dmaBuffer1;\n'+
+												'bool dmaBufferSel = 0;\n'+
+												'bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t *bitmap) {\n'+
+												'  if (y >= tft.height())\n'+
+												'	return false;\n'+
+												'  if (dmaBufferSel)\n'+
+												'	dmaBufferPtr = dmaBuffer2;\n'+
+												'  else\n'+
+												'	dmaBufferPtr = dmaBuffer1;\n'+
+												'  dmaBufferSel = !dmaBufferSel;\n'+
+												'  tft.pushImageDMA(x, y, w, h, bitmap, dmaBufferPtr);\n'+
+												'  return 1;\n'+
+												'}\n';
+												
+	Blockly.Arduino.setups_.tftsetup=''+
+									  'sensor_t *sg = esp_camera_sensor_get();\n'+
+									  'sg->set_brightness(sg, -1);\n'+
+									  'sg->set_contrast(sg, 1);\n'+
+									  'sg->set_saturation(sg, 1);\n'+	
+									  'tft.begin();\n'+
+									  'tft.setTextColor(TFT_WHITE, TFT_BLACK);\n'+
+									  'tft.fillScreen(TFT_BLACK);\n'+
+									  'tft.setTextColor(TFT_ORANGE, TFT_BLACK);\n'+
+									  'tft.setRotation(3);\n'+										  
+									  'tft.initDMA();\n'+
+									  'TJpgDec.setJpgScale(1);\n'+
+									  'tft.setSwapBytes(true);\n'+
+									  'TJpgDec.setCallback(tft_output);\n';
+									  'u8g2.begin(tft);\n'+	
+									  'u8g2.setForegroundColor(TFT_WHITE);\n';
 
+	var code = '';
+    return code;
+};
 
 Blockly.Arduino['esp32_cam_camera_property'] = function(block) {
 	var property = block.getFieldValue('property');
@@ -1918,10 +1987,11 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);";
 	
 	Blockly.Arduino.definitions_.initWiFi = ''+
-			'  void initWiFi() {\n'+
+			'  void initWiFi() {\n'+	
 			'    WiFi.mode(WIFI_AP_STA);\n'+
 			'    \n'+
 			'    for (int i=0;i<2;i++) {\n'+
+			'      if (String(_lwifi_ssid)=="") break;\n'+			
 			'      WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
 			'      \n'+
 			'      delay(1000);\n'+
@@ -2838,6 +2908,7 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'    WiFi.mode(WIFI_AP_STA);\n'+
 			'    \n'+
 			'    for (int i=0;i<2;i++) {\n'+
+			'      if (String(_lwifi_ssid)=="") break;\n'+
 			'      WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
 			'      \n'+
 			'      delay(1000);\n'+

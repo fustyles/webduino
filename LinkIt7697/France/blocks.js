@@ -1,3 +1,51 @@
+Blockly.Blocks['tft_setRotation'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);	  
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT_SETROTATION"]);	
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["TFT_ROTATE_NO_HORIZONTAL"],"0"], 
+		[Blockly.Msg["TFT_ROTATE_90"],"1"], 
+		[Blockly.Msg["TFT_ROTATE_180"],"2"],
+		[Blockly.Msg["TFT_ROTATE_270"],"3"], 
+		[Blockly.Msg["TFT_ROTATE_NO_HORIZONTAL_MIRROR"],"4"], 
+		[Blockly.Msg["TFT_ROTATE_NO_VERTICAL_MIRROR"],"5"]				
+	]), "mode");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_drawStringCursor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);	  
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT_DRAWSTRINGCURSOR"]);
+    this.appendValueInput("str")
+        .setCheck(null)
+        .appendField(Blockly.Msg["TFT_TEXT"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["TFT_NEWLINE"])
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["PROPERTY_NO"],"print"], 
+		[Blockly.Msg["PROPERTY_YES"],"println"]			
+	]), "newline");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
 Blockly.Blocks['tft_drawString'] = {
   init: function() {
     this.appendDummyInput()
@@ -13,7 +61,7 @@ Blockly.Blocks['tft_drawString'] = {
         .appendField("y");
     this.appendValueInput("str")
         .setCheck(null)
-        .appendField(Blockly.Msg["TFT_TEXT"]);
+        .appendField(Blockly.Msg["TFT_TEXT"]);		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -47,7 +95,9 @@ Blockly.Blocks['tft_setTextSize'] = {
         .appendField(Blockly.Msg["TFT"]);
     this.appendValueInput("size")
         .setCheck("Number")
-        .appendField(Blockly.Msg["PROPERTY_FONTSIZE"]);	
+        .appendField(Blockly.Msg["PROPERTY_FONTSIZE"]);
+    this.appendDummyInput()
+        .appendField("* 10px");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -120,103 +170,54 @@ Blockly.Blocks['tft_setFontMode'] = {
 //
 
 var tft_font = [
-	["TT1", "&TomThumb"],
-	["FM9", "&FreeMono9pt7b"],
-	["FM12", "&FreeMono12pt7b"],
-	["FM18", "&FreeMono18pt7b"],
-	["FM24", "&FreeMono24pt7b"],
-	["FMB9", "&FreeMonoBold9pt7b"],
-	["FMB12", "&FreeMonoBold12pt7b"],
-	["FMB18", "&FreeMonoBold18pt7b"],
-	["FMB24", "&FreeMonoBold24pt7b"],
-	["FMO9", "&FreeMonoOblique9pt7b"],
-	["FMO12", "&FreeMonoOblique12pt7b"],
-	["FMO18", "&FreeMonoOblique18pt7b"],
-	["FMO24", "&FreeMonoOblique24pt7b"],
-	["FMBO9", "&FreeMonoBoldOblique9pt7b"],
-	["FMBO12", "&FreeMonoBoldOblique12pt7b"],
-	["FMBO18", "&FreeMonoBoldOblique18pt7b"],
-	["FMBO24", "&FreeMonoBoldOblique24pt7b"],
-	["FSS9", "&FreeSans9pt7b"],
-	["FSS12", "&FreeSans12pt7b"],
-	["FSS18", "&FreeSans18pt7b"],
-	["FSS24", "&FreeSans24pt7b"],
-	["FSSB9", "&FreeSansBold9pt7b"],
-	["FSSB12", "&FreeSansBold12pt7b"],
-	["FSSB18", "&FreeSansBold18pt7b"],
-	["FSSB24", "&FreeSansBold24pt7b"],
-	["FSSO9", "&FreeSansOblique9pt7b"],
-	["FSSO12", "&FreeSansOblique12pt7b"],
-	["FSSO18", "&FreeSansOblique18pt7b"],
-	["FSSO24", "&FreeSansOblique24pt7b"],
-	["FSSBO9", "&FreeSansBoldOblique9pt7b"],
-	["FSSBO12", "&FreeSansBoldOblique12pt7b"],
-	["FSSBO18", "&FreeSansBoldOblique18pt7b"],
-	["FSSBO24", "&FreeSansBoldOblique24pt7b"],
-	["FS9", "&FreeSerif9pt7b"],
-	["FS12", "&FreeSerif12pt7b"],
-	["FS18", "&FreeSerif18pt7b"],
-	["FS24", "&FreeSerif24pt7b"],
-	["FSI9", "&FreeSerifItalic9pt7b"],
-	["FSI12", "&FreeSerifItalic12pt7b"],
-	["FSI19", "&FreeSerifItalic18pt7b"],
-	["FSI24", "&FreeSerifItalic24pt7b"],
-	["FSB9", "&FreeSerifBold9pt7b"],
-	["FSB12", "&FreeSerifBold12pt7b"],
-	["FSB18", "&FreeSerifBold18pt7b"],
-	["FSB24", "&FreeSerifBold24pt7b"],
-	["FSBI9", "&FreeSerifBoldItalic9pt7b"],
-	["FSBI12", "&FreeSerifBoldItalic12pt7b"],
-	["FSBI18", "&FreeSerifBoldItalic18pt7b"],
-	["FSBI24", "&FreeSerifBoldItalic24pt7b"],
-	["FF1", "&FreeMono9pt7b"],
-	["FF2", "&FreeMono12pt7b"],
-	["FF3", "&FreeMono18pt7b"],
-	["FF4", "&FreeMono24pt7b"],
-	["FF5", "&FreeMonoBold9pt7b"],
-	["FF6", "&FreeMonoBold12pt7b"],
-	["FF7", "&FreeMonoBold18pt7b"],
-	["FF8", "&FreeMonoBold24pt7b"],
-	["FF9", "&FreeMonoOblique9pt7b"],
-	["FF10", "&FreeMonoOblique12pt7b"],
-	["FF11", "&FreeMonoOblique18pt7b"],
-	["FF12", "&FreeMonoOblique24pt7b"],
-	["FF13", "&FreeMonoBoldOblique9pt7b"],
-	["FF14", "&FreeMonoBoldOblique12pt7b"],
-	["FF15", "&FreeMonoBoldOblique18pt7b"],
-	["FF16", "&FreeMonoBoldOblique24pt7b"],
-	["FF17", "&FreeSans9pt7b"],
-	["FF18", "&FreeSans12pt7b"],
-	["FF19", "&FreeSans18pt7b"],
-	["FF20", "&FreeSans24pt7b"],
-	["FF21", "&FreeSansBold9pt7b"],
-	["FF22", "&FreeSansBold12pt7b"],
-	["FF23", "&FreeSansBold18pt7b"],
-	["FF24", "&FreeSansBold24pt7b"],
-	["FF25", "&FreeSansOblique9pt7b"],
-	["FF26", "&FreeSansOblique12pt7b"],
-	["FF27", "&FreeSansOblique18pt7b"],
-	["FF28", "&FreeSansOblique24pt7b"],
-	["FF29", "&FreeSansBoldOblique9pt7b"],
-	["FF30", "&FreeSansBoldOblique12pt7b"],
-	["FF31", "&FreeSansBoldOblique18pt7b"],
-	["FF32", "&FreeSansBoldOblique24pt7b"],
-	["FF33", "&FreeSerif9pt7b"],
-	["FF34", "&FreeSerif12pt7b"],
-	["FF35", "&FreeSerif18pt7b"],
-	["FF36", "&FreeSerif24pt7b"],
-	["FF37", "&FreeSerifItalic9pt7b"],
-	["FF38", "&FreeSerifItalic12pt7b"],
-	["FF39", "&FreeSerifItalic18pt7b"],
-	["FF40", "&FreeSerifItalic24pt7b"],
-	["FF41", "&FreeSerifBold9pt7b"],
-	["FF42", "&FreeSerifBold12pt7b"],
-	["FF43", "&FreeSerifBold18pt7b"],
-	["FF44", "&FreeSerifBold24pt7b"],
-	["FF45", "&FreeSerifBoldItalic9pt7b"],
-	["FF46", "&FreeSerifBoldItalic12pt7b"],
-	["FF47", "&FreeSerifBoldItalic18pt7b"],
-	["FF48", "&FreeSerifBoldItalic24pt7b"]
+	["Mono9pt7b", "&FreeMono9pt7b"],
+	["Mono12pt7b", "&FreeMono12pt7b"],
+	["Mono18pt7b", "&FreeMono18pt7b"],
+	["Mono24pt7b", "&FreeMono24pt7b"],
+	["MonoBold9pt7b", "&FreeMonoBold9pt7b"],
+	["MonoBold12pt7b", "&FreeMonoBold12pt7b"],
+	["MonoBold18pt7b", "&FreeMonoBold18pt7b"],
+	["MonoBold24pt7b", "&FreeMonoBold24pt7b"],
+	["MonoOblique9pt7b", "&FreeMonoOblique9pt7b"],
+	["MonoOblique12pt7b", "&FreeMonoOblique12pt7b"],
+	["MonoOblique18pt7b", "&FreeMonoOblique18pt7b"],
+	["MonoOblique24pt7b", "&FreeMonoOblique24pt7b"],
+	["MonoBoldOblique9pt7b", "&FreeMonoBoldOblique9pt7b"],
+	["MonoBoldOblique12pt7b", "&FreeMonoBoldOblique12pt7b"],
+	["MonoBoldOblique18pt7b", "&FreeMonoBoldOblique18pt7b"],
+	["MonoBoldOblique24pt7b", "&FreeMonoBoldOblique24pt7b"],
+	["Sans9pt7b", "&FreeSans9pt7b"],
+	["Sans12pt7b", "&FreeSans12pt7b"],
+	["Sans18pt7b", "&FreeSans18pt7b"],
+	["Sans24pt7b", "&FreeSans24pt7b"],
+	["SansBold9pt7b", "&FreeSansBold9pt7b"],
+	["SansBold12pt7b", "&FreeSansBold12pt7b"],
+	["SansBold18pt7b", "&FreeSansBold18pt7b"],
+	["SansBold24pt7b", "&FreeSansBold24pt7b"],
+	["SansOblique9pt7b", "&FreeSansOblique9pt7b"],
+	["SansOblique12pt7b", "&FreeSansOblique12pt7b"],
+	["SansOblique18pt7b", "&FreeSansOblique18pt7b"],
+	["SansOblique24pt7b", "&FreeSansOblique24pt7b"],
+	["SansBoldOblique9pt7b", "&FreeSansBoldOblique9pt7b"],
+	["SansBoldOblique12pt7b", "&FreeSansBoldOblique12pt7b"],
+	["SansBoldOblique18pt7b", "&FreeSansBoldOblique18pt7b"],
+	["SansBoldOblique24pt7b", "&FreeSansBoldOblique24pt7b"],
+	["Serif9pt7b", "&FreeSerif9pt7b"],
+	["Serif12pt7b", "&FreeSerif12pt7b"],
+	["Serif18pt7b", "&FreeSerif18pt7b"],
+	["Serif24pt7b", "&FreeSerif24pt7b"],
+	["SerifItalic9pt7b", "&FreeSerifItalic9pt7b"],
+	["SerifItalic12pt7b", "&FreeSerifItalic12pt7b"],
+	["SerifItalic18pt7b", "&FreeSerifItalic18pt7b"],
+	["SerifItalic24pt7b", "&FreeSerifItalic24pt7b"],
+	["SerifBold9pt7b", "&FreeSerifBold9pt7b"],
+	["SerifBold12pt7b", "&FreeSerifBold12pt7b"],
+	["SerifBold18pt7b", "&FreeSerifBold18pt7b"],
+	["SerifBold24pt7b", "&FreeSerifBold24pt7b"],
+	["SerifBoldItalic9pt7b", "&FreeSerifBoldItalic9pt7b"],
+	["SerifBoldItalic12pt7b", "&FreeSerifBoldItalic12pt7b"],
+	["SerifBoldItalic18pt7b", "&FreeSerifBoldItalic18pt7b"],
+	["SerifBoldItalic24pt7b", "&FreeSerifBoldItalic24pt7b"]
 ];
 
 Blockly.Blocks['tft_setFreeFont'] = {
@@ -225,7 +226,7 @@ Blockly.Blocks['tft_setFreeFont'] = {
         .appendField(Blockly.Msg["TFT"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["TFT_SETFONT"])
+		.appendField(Blockly.Msg["TFT_SETFREEFONT"])
         .appendField(new Blockly.FieldDropdown(tft_font), "font");	
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
@@ -293,6 +294,16 @@ Blockly.Blocks['esp32_pixelbit_tftshowcamera'] = {
   }
 };
 
+Blockly.Blocks['esp32_pixelbit_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_PIXELBIT_INITIAL"]);
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
 
 Blockly.Blocks['esp32_cam_camera_property'] = {
   init: function() {
