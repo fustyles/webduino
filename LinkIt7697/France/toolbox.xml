@@ -8419,7 +8419,314 @@
 					<field name="TEXT"></field>
 				</block>
 			</value>	
-		</block>		
+		</block>
+		<block type="tft_drawLine">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="x1">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="y1">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>			
+		</block>
+		<block type="tft_drawFastVLine">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>		
+		</block>
+		<block type="tft_drawFastHLine">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>		
+		</block>
+		<block type="tft_drawRect">
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>			
+		</block>
+		<block type="tft_fillRect">
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>			
+		</block>
+		<block type="tft_drawCircle">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="radius">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>		
+		</block>
+		<block type="tft_fillCircle">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="radius">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>		
+		</block>
+		<block type="tft_drawTriangle">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="x1">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="y1">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="x2">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y2">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>		
+		</block>
+		<block type="tft_fillTriangle">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="x1">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="y1">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="x2">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y2">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>		
+		</block>	
+		<block type="tft_drawRoundRect">
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="radius">
+			  <shadow type="math_number">
+				<field name="NUM">3</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>				
+		</block>
+		<block type="tft_fillRoundRect">
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="radius">
+			  <shadow type="math_number">
+				<field name="NUM">3</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>				
+		</block>					
 	</category>
 	
 	<category id="france9" name="buzzer">
