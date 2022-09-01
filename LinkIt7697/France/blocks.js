@@ -14,7 +14,7 @@ Blockly.Blocks['tft_drawStringFont'] = {
     this.appendValueInput("font")
         .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("Number") 
-        .appendField(Blockly.Msg["FONT_FACE_SHOW"]);		
+        .appendField(Blockly.Msg["FONT_FACE_SHOW"]);
     this.appendValueInput("str")
         .setCheck(null)
         .appendField(Blockly.Msg["TFT_TEXT"]);		
