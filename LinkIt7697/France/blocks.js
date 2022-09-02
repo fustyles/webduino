@@ -257,8 +257,8 @@ Blockly.Blocks['tft_PROGMEM_truetype'] = {
         .appendField(Blockly.Msg["EZ_TEXT"])	
         .appendField(new Blockly.FieldTextInput("hello"), "str");
     this.appendDummyInput()
-	.appendField(Blockly.Msg["TFT_FONT_TTF"])
-	.appendField(field);		  
+		.appendField(Blockly.Msg["TFT_FONT_TTF"])
+		.appendField(field);		  
     this.appendValueInput("PROGMEM")
         .setCheck("String")
         .appendField(Blockly.Msg["TFT_XBM_VALUE"]);		
@@ -309,7 +309,8 @@ Blockly.Blocks['tft_qrcode_PROGMEM'] = {
 		var block = this.sourceBlock_;
 		var input = block.getInputTargetBlock("PROGMEM");
 		var img=document.createElement('img');
-		var url = "https://chart.googleapis.com/chart?chs=64x64&cht=qr&chl=" + val + "&choe=UTF-8&chld=M|0";
+		var url = "https://chart.googleapis.com/chart?chs="+block.getFieldValue("size")+"&cht=qr&chl=" + val + "&choe=UTF-8&chld=M|0";
+		console.log(url);
 		img.src = url;
 		
 		img.onload = function (event) {

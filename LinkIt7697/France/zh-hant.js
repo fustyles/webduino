@@ -1776,3 +1776,4 @@ Blockly.Msg["TFT_VIEWWIDTH"] = "視窗寬度";
 Blockly.Msg["TFT_VIEWHEIGHT"] = "視窗高度";
 Blockly.Msg["TFT_CURSORX"] = "游標x";
 Blockly.Msg["TFT_CURSORY"] = "游標y";
+Blockly.Msg["TFT_FONT_TTF"] = "開啟本機TTF字型";
