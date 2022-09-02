@@ -706,7 +706,7 @@ Blockly.Blocks['tft_setForegroundColor'] = {
     this.appendDummyInput()
         .appendField("U8g2")
 		.appendField(Blockly.Msg["TFT_SETTEXTCOLOR"])
-        .appendField(Blockly.Msg["FONTCOLOR"]);
+        .appendField(Blockly.Msg["TFT_FORECOLOR"]);
 	this.appendValueInput("color");			
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
