@@ -37,7 +37,10 @@ Blockly.Blocks['tft_drawCustomFont'] = {
     this.appendValueInput("size")
         .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("Number") 
-        .appendField(Blockly.Msg["TFT_SIZE"]); 
+        .appendField(Blockly.Msg["TFT_SIZE"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("px");		
     this.appendValueInput("x")
         .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("Number")
@@ -514,34 +517,13 @@ Blockly.Blocks['tft_drawRect'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["TFT"])
-        .appendField(Blockly.Msg["TFT_DRAW_SQUARE_HOLLOW"]);
-    this.appendValueInput("x")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["TFT_CENTER_X"]);
-    this.appendValueInput("y")
-        .setCheck("Number")
-        .appendField("y");
-    this.appendValueInput("width")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["TFT_WIDTH"]);
-    this.appendValueInput("height")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["TFT_HEIGHT"]);
-	this.appendValueInput("color")
-	    .appendField(Blockly.Msg["COLOR"]);			
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_15"]);
-  }
-};
-
-Blockly.Blocks['tft_fillRect'] = {
-  init: function() {
+        .appendField(Blockly.Msg["TFT_DRAW_SQUARE"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg["TFT"])
-        .appendField(Blockly.Msg["TFT_DRAW_SQUARE_SOLID"]);
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["TFT_HOLLOW"],"hollow"], 
+		[Blockly.Msg["TFT_SOLID"],"solid"]			
+	]), "type");		
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField(Blockly.Msg["TFT_CENTER_X"]);
@@ -568,31 +550,13 @@ Blockly.Blocks['tft_drawCircle'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["TFT"])
-        .appendField(Blockly.Msg["TFT_DRAW_CIRCLE_HOLLOW"]);
-    this.appendValueInput("x0")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["TFT_CIRCLE_CENTER_X"]);
-    this.appendValueInput("y0")
-        .setCheck("Number")
-        .appendField("y");
-    this.appendValueInput("radius")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["TFT_REDIUS"]);
-	this.appendValueInput("color")
-	    .appendField(Blockly.Msg["COLOR"]);			
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_15"]);
-  }
-};
-
-Blockly.Blocks['tft_fillCircle'] = {
-  init: function() {
+        .appendField(Blockly.Msg["TFT_DRAW_CIRCLE"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg["TFT"])
-        .appendField(Blockly.Msg["TFT_DRAW_CIRCLE_SOLID"]);
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["TFT_HOLLOW"],"hollow"], 
+		[Blockly.Msg["TFT_SOLID"],"solid"]			
+	]), "type");		
     this.appendValueInput("x0")
         .setCheck("Number")
         .appendField(Blockly.Msg["TFT_CIRCLE_CENTER_X"]);
@@ -617,39 +581,12 @@ Blockly.Blocks['tft_drawTriangle'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["TFT"])
         .appendField(Blockly.Msg["TFT_DRAW_TRIANGLE"]);
-    this.appendValueInput("x0")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["TFT_POINT1_X"]);
-    this.appendValueInput("y0")
-        .setCheck("Number")
-        .appendField("y");
-    this.appendValueInput("x1")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["TFT_POINT2_X"]);
-    this.appendValueInput("y1")
-        .setCheck("Number")
-        .appendField("y");
-    this.appendValueInput("x2")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["TFT_POINT3_X"]);
-    this.appendValueInput("y2")
-        .setCheck("Number")
-        .appendField("y");	
-	this.appendValueInput("color")
-	    .appendField(Blockly.Msg["COLOR"]);			
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_15"]);
-  }
-};
-
-Blockly.Blocks['tft_fillTriangle'] = {
-  init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg["TFT"])
-        .appendField(Blockly.Msg["TFT_DRAW_FILLTRIANGLE"]);
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["TFT_HOLLOW"],"hollow"], 
+		[Blockly.Msg["TFT_SOLID"],"solid"]			
+	]), "type");		
     this.appendValueInput("x0")
         .setCheck("Number")
         .appendField(Blockly.Msg["TFT_POINT1_X"]);
@@ -667,7 +604,7 @@ Blockly.Blocks['tft_fillTriangle'] = {
         .appendField(Blockly.Msg["TFT_POINT3_X"]);
     this.appendValueInput("y2")
         .setCheck("Number")
-        .appendField("y");	
+        .appendField("y");
 	this.appendValueInput("color")
 	    .appendField(Blockly.Msg["COLOR"]);			
     this.setInputsInline(true);
@@ -681,38 +618,14 @@ Blockly.Blocks['tft_drawRoundRect'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
-        .appendField(Blockly.Msg["OLED_DRAW_SQUARE_HOLLOW_ROUND"]);
-    this.appendValueInput("x")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["OLED_CENTER_X"]);
-    this.appendValueInput("y")
-        .setCheck("Number")
-        .appendField("y");
-    this.appendValueInput("width")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["OLED_WIDTH"]);
-    this.appendValueInput("height")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["OLED_HEIGHT"]);
-    this.appendValueInput("radius")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["OLED_REDIUS_ROUND"]);	
-	this.appendValueInput("color")
-	    .appendField(Blockly.Msg["COLOR"]);			
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_15"]);
-  }
-};
-
-Blockly.Blocks['tft_fillRoundRect'] = {
-  init: function() {
+        .appendField(Blockly.Msg["TFT"])
+        .appendField(Blockly.Msg["TFT_DRAW_SQUARE_ROUND"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
-        .appendField(Blockly.Msg["OLED_DRAW_SQUARE_SOLID_ROUND"]);
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["TFT_HOLLOW"],"hollow"], 
+		[Blockly.Msg["TFT_SOLID"],"solid"]			
+	]), "type");		
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField(Blockly.Msg["OLED_CENTER_X"]);
@@ -727,7 +640,7 @@ Blockly.Blocks['tft_fillRoundRect'] = {
         .appendField(Blockly.Msg["OLED_HEIGHT"]);
     this.appendValueInput("radius")
         .setCheck("Number")
-        .appendField(Blockly.Msg["OLED_REDIUS_ROUND"]);	
+        .appendField(Blockly.Msg["OLED_REDIUS_ROUND"]);		
 	this.appendValueInput("color")
 	    .appendField(Blockly.Msg["COLOR"]);			
     this.setInputsInline(true);

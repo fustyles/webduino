@@ -223,19 +223,11 @@ Blockly.Arduino['tft_drawRect'] = function(block) {
   var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
   var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
   var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
-
-  var code = 'tft.drawRect('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+color+');\n';
-  return code;
-};
-
-Blockly.Arduino['tft_fillRect'] = function(block) {
-  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
-  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
-  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
-  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
-  var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
-
-  var code = 'tft.fillRect('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+color+');\n';
+  var type = block.getFieldValue('type');
+  if (type=="hollow")
+	var code = 'tft.drawRect('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+color+');\n';
+  else
+	var code = 'tft.fillRect('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+color+');\n';  
   return code;
 };
 
@@ -244,18 +236,11 @@ Blockly.Arduino['tft_drawCircle'] = function(block) {
   var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
   var value_radius = Blockly.Arduino.valueToCode(block, 'radius', Blockly.Arduino.ORDER_ATOMIC);
   var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
-
-  var code = 'tft.drawCircle('+value_x0+', '+value_y0+', '+value_radius+', '+color+');\n';
-  return code;
-};
-
-Blockly.Arduino['tft_fillCircle'] = function(block) {
-  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
-  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
-  var value_radius = Blockly.Arduino.valueToCode(block, 'radius', Blockly.Arduino.ORDER_ATOMIC);
-  var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
-
-  var code = 'tft.fillCircle('+value_x0+', '+value_y0+', '+value_radius+', '+color+');\n';
+  var type = block.getFieldValue('type');
+  if (type=="hollow")
+	  var code = 'tft.drawCircle('+value_x0+', '+value_y0+', '+value_radius+', '+color+');\n';
+  else
+	var code = 'tft.fillCircle('+value_x0+', '+value_y0+', '+value_radius+', '+color+');\n';
   return code;
 };
 
@@ -267,21 +252,11 @@ Blockly.Arduino['tft_drawTriangle'] = function(block) {
   var value_x2 = Blockly.Arduino.valueToCode(block, 'x2', Blockly.Arduino.ORDER_ATOMIC);
   var value_y2 = Blockly.Arduino.valueToCode(block, 'y2', Blockly.Arduino.ORDER_ATOMIC);
   var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
-  
-  var code = 'tft.drawTriangle('+value_x0+', '+value_y0+', '+value_x1+', '+value_y1+', '+value_x2+', '+value_y2+', '+color+');\n';
-  return code;
-};
-
-Blockly.Arduino['tft_fillTriangle'] = function(block) {
-  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
-  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
-  var value_x1 = Blockly.Arduino.valueToCode(block, 'x1', Blockly.Arduino.ORDER_ATOMIC);
-  var value_y1 = Blockly.Arduino.valueToCode(block, 'y1', Blockly.Arduino.ORDER_ATOMIC);
-  var value_x2 = Blockly.Arduino.valueToCode(block, 'x2', Blockly.Arduino.ORDER_ATOMIC);
-  var value_y2 = Blockly.Arduino.valueToCode(block, 'y2', Blockly.Arduino.ORDER_ATOMIC);
-  var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
-  
-  var code = 'tft.fillTriangle('+value_x0+', '+value_y0+', '+value_x1+', '+value_y1+', '+value_x2+', '+value_y2+', '+color+');\n';
+  var type = block.getFieldValue('type');
+  if (type=="hollow")
+	var code = 'tft.drawTriangle('+value_x0+', '+value_y0+', '+value_x1+', '+value_y1+', '+value_x2+', '+value_y2+', '+color+');\n';
+  else
+	var code = 'tft.fillTriangle('+value_x0+', '+value_y0+', '+value_x1+', '+value_y1+', '+value_x2+', '+value_y2+', '+color+');\n';
   return code;
 };
 
@@ -292,20 +267,11 @@ Blockly.Arduino['tft_drawRoundRect'] = function(block) {
   var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
   var value_radius = Blockly.Arduino.valueToCode(block, 'radius', Blockly.Arduino.ORDER_ATOMIC);
   var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
-  
-  var code = 'tft.drawRoundRect('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+value_radius+', '+color+');\n';
-  return code;
-};
-
-Blockly.Arduino['tft_fillRoundRect'] = function(block) {
-  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
-  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
-  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
-  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
-  var value_radius = Blockly.Arduino.valueToCode(block, 'radius', Blockly.Arduino.ORDER_ATOMIC);
-  var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
-  
-  var code = 'tft.fillRoundRect('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+value_radius+', '+color+');\n';
+  var type = block.getFieldValue('type');
+  if (type=="hollow")
+	var code = 'tft.drawRoundRect('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+value_radius+', '+color+');\n';
+  else
+	var code = 'tft.fillRoundRect('+value_x+', '+value_y+', '+value_width+', '+value_height+', '+value_radius+', '+color+');\n';
   return code;
 };
 
