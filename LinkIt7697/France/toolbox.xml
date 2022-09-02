@@ -8358,6 +8358,13 @@
 			<field name="colour">#0000ff</field>		
 		</block>
 		<block type="tft_randomcolor">		
+		</block>
+		<block type="tft_setTextFontColor">	
+			<value name="color_font">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>				
 		</block>		
 		<block type="tft_setTextColor">	
 			<value name="color_font">

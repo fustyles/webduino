@@ -1758,3 +1758,6 @@ Blockly.Msg["TFT_Left_character_baseline"] = "Left character baseline";
 Blockly.Msg["TFT_Centre_character_baseline"] = "Centre character baseline";
 Blockly.Msg["TFT_Right_character_baseline"] = "Right character baseline";
 Blockly.Msg["TFT_SETTEXTFONT"] = "set font";
+Blockly.Msg["TFT_FORECOLOR"] = "foreground color";
+Blockly.Msg["TFT_BACKCOLOR"] = "background color";
+Blockly.Msg["TFT_BACKTRANSPARENT"] = "background transparent";

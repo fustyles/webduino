@@ -1766,3 +1766,6 @@ Blockly.Msg["TFT_Left_character_baseline"] = "左 基線";
 Blockly.Msg["TFT_Centre_character_baseline"] = "中 基線";
 Blockly.Msg["TFT_Right_character_baseline"] = "右 基線";
 Blockly.Msg["TFT_SETTEXTFONT"] = "設定字型";
+Blockly.Msg["TFT_FORECOLOR"] = "前景顏色";
+Blockly.Msg["TFT_BACKCOLOR"] = "背景顏色";
+Blockly.Msg["TFT_BACKTRANSPARENT"] = "背景透明";

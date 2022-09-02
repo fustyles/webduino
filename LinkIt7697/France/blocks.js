@@ -206,7 +206,7 @@ Blockly.Blocks['tft_drawCustomFont'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_15"]);
+    this.setColour(Blockly.Msg["HUE_12"]);
 	this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
   } 
 };
@@ -581,7 +581,7 @@ Blockly.Blocks['tft_drawFont'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_15"]);
+    this.setColour(Blockly.Msg["HUE_12"]);
 	this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
   }
 };
@@ -841,7 +841,7 @@ Blockly.Blocks['tft_drawStringCursor'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_15"]);
+    this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -884,7 +884,7 @@ Blockly.Blocks['tft_setCursor'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_15"]);
+    this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -904,14 +904,34 @@ Blockly.Blocks['tft_setTextSize'] = {
   }
 };
 
+Blockly.Blocks['tft_setTextFontColor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);
+	this.appendValueInput("color_font")
+	    .appendField(Blockly.Msg["TFT_FORECOLOR"]);	
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
 Blockly.Blocks['tft_setTextColor'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["TFT"]);
 	this.appendValueInput("color_font")
-	    .appendField(Blockly.Msg["FONTCOLOR"]);
+	    .appendField(Blockly.Msg["TFT_FORECOLOR"]);
 	this.appendValueInput("color_back")
-	    .appendField(Blockly.Msg["BACKCOLOR"]);		
+	    .appendField(Blockly.Msg["TFT_BACKCOLOR"]);	
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["TFT_BACKTRANSPARENT"])
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["PROPERTY_YES"],"0"], 
+			[Blockly.Msg["PROPERTY_NO"],"1"]			
+		]), "fill");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -987,7 +1007,7 @@ Blockly.Blocks['tft_setFreeFont'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(Blockly.Msg["HUE_15"]);
+    this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 

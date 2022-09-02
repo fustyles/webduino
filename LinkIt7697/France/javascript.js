@@ -380,7 +380,16 @@ Blockly.Arduino['tft_setTextSize'] = function(block) {
 Blockly.Arduino['tft_setTextColor'] = function(block) {
 	var color_font = Blockly.Arduino.valueToCode(block, 'color_font', Blockly.Arduino.ORDER_ATOMIC);
 	var color_back = Blockly.Arduino.valueToCode(block, 'color_back', Blockly.Arduino.ORDER_ATOMIC);
-	var code = 'tft.setTextColor('+color_font+' ,'+color_back+');\n';
+	var fill = block.getFieldValue('fill');
+	
+	var code = 'tft.setTextColor('+color_font+' ,'+color_back+' ,'+fill+');\n';
+    return code;
+};
+
+Blockly.Arduino['tft_setTextFontColor'] = function(block) {
+	var color_font = Blockly.Arduino.valueToCode(block, 'color_font', Blockly.Arduino.ORDER_ATOMIC);
+	
+	var code = 'tft.setTextColor('+color_font+');\n';
     return code;
 };
 
