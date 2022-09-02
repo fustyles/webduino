@@ -1,3 +1,32 @@
+Blockly.Arduino['tft_randomcolor'] = function(block) {
+	Blockly.Arduino.definitions_['tft_randomcolor']='\n'+
+											'uint16_t color565_random() {\n'+												
+											'  int R = random(0, 255);\n'+
+											'  int G = random(0, 255);\n'+
+											'  int B = random(0, 255);\n'+	
+											'  return tft.color565(R, G, B);\n'+
+											'}\n'; 
+											
+	var code = 'color565_random()';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['tft_drawPixel'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = 'tft.drawPixel('+value_x+', '+value_y+', '+color+');\n';  
+  return code;
+};
+
+Blockly.Arduino['tft_setTextDatum'] = function(block) {
+  var type = Blockly.Arduino.valueToCode(block, 'type', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = 'tft.setTextDatum('+type+');\n';  
+  return code;
+};
+
 Blockly.Arduino['tft_setForegroundColor'] = function(block) {
   var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
   
@@ -29,7 +58,7 @@ Blockly.Arduino['tft_drawEllipse'] = function(block) {
 Blockly.Arduino['tft_drawStringFont'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
-  var value_font = Blockly.Arduino.valueToCode(block, 'font', Blockly.Arduino.ORDER_ATOMIC);
+  var value_font = block.getFieldValue('font');
   var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
 
   var code = 'tft.drawString(String('+value_str+').c_str(), '+value_x+', '+value_y+', '+value_font+');\n';
@@ -432,7 +461,7 @@ Blockly.Arduino['tft_initial'] = function(block) {
 									  'tft.begin();\n'+
 									  'tft.setTextColor(TFT_WHITE, TFT_BLACK);\n'+
 									  'tft.fillScreen(TFT_BLACK);\n'+
-									  'tft.setTextColor(TFT_ORANGE, TFT_BLACK);\n'+					  
+									  'tft.setRotation(1);\n'+
 									  'tft.initDMA();\n'+
 									  'TJpgDec.setJpgScale(1);\n'+
 									  'tft.setSwapBytes(true);\n'+

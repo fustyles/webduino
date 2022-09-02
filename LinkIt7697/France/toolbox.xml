@@ -8357,6 +8357,8 @@
 		<block type="tft_color">
 			<field name="colour">#0000ff</field>		
 		</block>
+		<block type="tft_randomcolor">		
+		</block>		
 		<block type="tft_setTextColor">	
 			<value name="color_font">
 			  <block type="tft_color">
@@ -8375,6 +8377,8 @@
 					<field name="NUM">5</field>
 				</block>
 			</value>		
+		</block>
+		<block type="tft_setTextDatum">
 		</block>		
 		<block type="tft_drawString">	
 			<value name="x">
@@ -8402,11 +8406,6 @@
 			<value name="y">
 				<block type="math_number">
 					<field name="NUM">0</field>
-				</block>
-			</value>
-			<value name="font">
-				<block type="math_number">
-					<field name="NUM">4</field>
 				</block>
 			</value>			
 			<value name="str">
@@ -8778,6 +8777,23 @@
 				<field name="colour">#0000ff</field>
 			  </block>
 			</value>							
+		</block>
+		<block type="tft_drawPixel">
+			<value name="x">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+			</value>
+			<value name="y">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>			
 		</block>		
 	</category>
 	
