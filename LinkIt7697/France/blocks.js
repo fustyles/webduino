@@ -49,7 +49,7 @@ Blockly.Blocks['tft_PROGMEM'] = {
 					canvas.width=img.width;
 					canvas.height=img.height; 
 					canvas.width = (canvas.width%8>0)?Math.round(canvas.width-canvas.width%8+8):Math.round(canvas.width);
-					block.getField("size").setValue("( "+canvas.width + " * " + canvas.height + " )", "size");
+					block.getField("size").setValue("( "+canvas.width + " * " + canvas.height + " ) "+Blockly.Msg["TFT_WHITEBACK_BLACKWORD"], "size");
 					
 					context.fillStyle="#FFFFFF";
 					context.fillRect(0, 0, canvas.width, canvas.height);
@@ -6782,7 +6782,7 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
 					canvas.width=img.width;
 					canvas.height=img.height; 
 					canvas.width = (canvas.width%8>0)?Math.round(canvas.width-canvas.width%8+8):Math.round(canvas.width);
-					block.getField("size").setValue("( "+canvas.width + " * " + canvas.height + " )", "size");
+					block.getField("size").setValue("( "+canvas.width + " * " + canvas.height + " ) "+Blockly.Msg["OLED_WHITEBACK_BLACKWORD"], "size");
 					
 					context.fillStyle="#FFFFFF";
 					context.fillRect(0, 0, canvas.width, canvas.height);
