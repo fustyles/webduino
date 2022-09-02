@@ -1,3 +1,17 @@
+Blockly.Arduino['tft_setForegroundColor'] = function(block) {
+  var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = 'u8g2.setForegroundColor('+color+');\n';  
+  return code;
+};
+
+Blockly.Arduino['tft_setBackgroundColor'] = function(block) {
+  var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = 'u8g2.setBackgroundColor('+color+');\n';  
+  return code;
+};
+
 Blockly.Arduino['tft_drawEllipse'] = function(block) {
   var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
   var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);

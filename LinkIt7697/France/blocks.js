@@ -1,3 +1,31 @@
+Blockly.Blocks['tft_setForegroundColor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("U8g2")
+		.appendField(Blockly.Msg["TFT_SETTEXTCOLOR"])
+        .appendField(Blockly.Msg["FONTCOLOR"]);
+	this.appendValueInput("color");			
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(30);
+  }
+};
+
+Blockly.Blocks['tft_setBackgroundColor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("U8g2")
+		.appendField(Blockly.Msg["TFT_SETTEXTCOLOR"])
+        .appendField(Blockly.Msg["BACKCOLOR"]);
+	this.appendValueInput("color");			
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(30);
+  }
+};
+
 Blockly.Blocks['tft_drawEllipse'] = {
   init: function() {
     this.appendDummyInput()
@@ -656,19 +684,19 @@ Blockly.Blocks['tft_drawRoundRect'] = {
 	]), "type");		
     this.appendValueInput("x")
         .setCheck("Number")
-        .appendField(Blockly.Msg["OLED_CENTER_X"]);
+        .appendField(Blockly.Msg["TFT_CENTER_X"]);
     this.appendValueInput("y")
         .setCheck("Number")
         .appendField("y");
     this.appendValueInput("width")
         .setCheck("Number")
-        .appendField(Blockly.Msg["OLED_WIDTH"]);
+        .appendField(Blockly.Msg["TFT_WIDTH"]);
     this.appendValueInput("height")
         .setCheck("Number")
-        .appendField(Blockly.Msg["OLED_HEIGHT"]);
+        .appendField(Blockly.Msg["TFT_HEIGHT"]);
     this.appendValueInput("radius")
         .setCheck("Number")
-        .appendField(Blockly.Msg["OLED_REDIUS_ROUND"]);		
+        .appendField(Blockly.Msg["TFT_REDIUS_ROUND"]);		
 	this.appendValueInput("color")
 	    .appendField(Blockly.Msg["COLOR"]);			
     this.setInputsInline(true);
@@ -3967,7 +3995,7 @@ Blockly.Blocks['fu_oled_PROGMEM_truetype'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED");
+        .appendField("U8g2");
     this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("logo"), "variable")
 		.appendField(Blockly.Msg["EZ_SET"]);
@@ -4742,8 +4770,7 @@ Blockly.Blocks['fu_ez_ir_receive'] = {
 Blockly.Blocks['fu_oled_initial'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-		.appendField("OLED")
+		.appendField("U8g2")
         .appendField(Blockly.Msg["OLED_INITIAL"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)	
@@ -5028,7 +5055,7 @@ Blockly.Blocks['fu_oled_home'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_CURSOR_HOME"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -5043,7 +5070,7 @@ Blockly.Blocks['fu_oled_setContrast'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_CONTRAST"]);
     this.appendValueInput("value")
         .setCheck("Number");
@@ -5060,7 +5087,7 @@ Blockly.Blocks['fu_oled_setFont'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_FONT_SET"]);
     this.appendValueInput("font")
         .setCheck("String");
@@ -5077,7 +5104,7 @@ Blockly.Blocks['fu_oled_setFont_chinese'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_FONT_SET_CHINESE"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -5114,7 +5141,7 @@ Blockly.Blocks['fu_oled_setFont_icon'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_FONT_SET_IMAGE"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -5294,7 +5321,7 @@ Blockly.Blocks['fu_oled_setFont_all'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_FONT_SET"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -5312,7 +5339,7 @@ Blockly.Blocks['fu_oled_setFontDirection'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-		.appendField("OLED")
+		.appendField("U8g2")
         .appendField(Blockly.Msg["OLED_FONT_DRAW_DIRECTION"]);		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -5333,7 +5360,7 @@ Blockly.Blocks['fu_oled_setDrawColor'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
 		.appendField(Blockly.Msg["OLED_DRAW_COLOR"]);		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -5352,7 +5379,7 @@ Blockly.Blocks['fu_oled_setDisplayRotation'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
 		.appendField(Blockly.Msg["OLED_DISPLAY_MODE"]);		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -5377,7 +5404,7 @@ Blockly.Blocks['fu_oled_setPowerSave'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
 		.appendField(Blockly.Msg["OLED_SAVE_POWER"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -5398,7 +5425,7 @@ Blockly.Blocks['fu_oled_clear'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_CLEAR"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -5413,7 +5440,7 @@ Blockly.Blocks['fu_oled_sendBuffer'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_BUFFER"]);
     this.appendStatementInput("draw")
         .setCheck(null);
@@ -5430,7 +5457,7 @@ Blockly.Blocks['fu_oled_nextPage'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW"]);
     this.appendStatementInput("draw")
         .setCheck(null);
@@ -5447,7 +5474,7 @@ Blockly.Blocks['fu_oled_drawStr'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_TEXT_ENGLISH_NUMBER"]);
     this.appendValueInput("x")
         .setCheck("Number")
@@ -5471,7 +5498,7 @@ Blockly.Blocks['fu_oled_drawFont'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_LOCAL_TTF"]);
   this.appendDummyInput()  
       .setAlign(Blockly.ALIGN_RIGHT)  
@@ -5864,7 +5891,7 @@ Blockly.Blocks['fu_oled_drawCustomFont'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_LOCAL_TTF"]);
     this.appendValueInput("font")
         .setAlign(Blockly.ALIGN_RIGHT)  	
@@ -5921,7 +5948,7 @@ Blockly.Blocks['fu_oled_setCursor'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_CURSOR_SET"]);
     this.appendValueInput("x")
         .setCheck("Number")
@@ -5942,7 +5969,7 @@ Blockly.Blocks['fu_oled_Print'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_TEXT_CURSOR"]);
     this.appendValueInput("str")
         .setCheck(null)
@@ -5959,7 +5986,7 @@ Blockly.Blocks['fu_oled_drawGlyph'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_IMAGE_UNICODE"]);
     this.appendValueInput("x")
         .setCheck("Number")
@@ -5983,7 +6010,7 @@ Blockly.Blocks['fu_oled_drawUTF8'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_TEXT_UTF8"]);
     this.appendValueInput("x")
         .setCheck("Number")
@@ -6010,7 +6037,7 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED");
+        .appendField("U8g2");
     this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("logo"), "variable")
 		.appendField(Blockly.Msg["OLED_SET"]);		
@@ -6104,7 +6131,7 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED");
+        .appendField("U8g2");
 	this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("logo"), "variable")
 		.appendField(Blockly.Msg["OLED_SET"]);	
@@ -6181,7 +6208,7 @@ Blockly.Blocks['fu_oled_PROGMEM_array'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED");
+        .appendField("U8g2");
     this.appendDummyInput()
         .appendField(Blockly.Msg["OLED_ARRAY"])	
         .appendField(new Blockly.FieldVariable("logo"), "variable")
@@ -6202,7 +6229,7 @@ Blockly.Blocks['fu_oled_setBitmapMode'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_BACKGROUND_COLOR"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -6223,7 +6250,7 @@ Blockly.Blocks['fu_oled_drawXBMP'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_IMAGE"]);
     this.appendValueInput("PROGMEM")
         .setCheck("String")
@@ -6253,7 +6280,7 @@ Blockly.Blocks['fu_oled_drawXBMP_PROGMEM'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_IMAGE"]);
     this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("logo"), "variable");		
@@ -6282,7 +6309,7 @@ Blockly.Blocks['fu_oled_drawXBMP_PROGMEM_array'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_IMAGE"]);
     this.appendDummyInput()
         .appendField(Blockly.Msg["OLED_ARRAY"])	
@@ -6314,8 +6341,7 @@ Blockly.Blocks['fu_oled_drawXBMP_PROGMEM_array'] = {
 Blockly.Blocks['fu_oled_drawPixelMap'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_PIXEL_IMAGE"]);
 		
 	var block = this;
@@ -6389,7 +6415,7 @@ Blockly.Blocks['fu_oled_drawBox'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_SQUARE_SOLID"]);
     this.appendValueInput("x")
         .setCheck("Number")
@@ -6416,7 +6442,7 @@ Blockly.Blocks['fu_oled_drawRBox'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_SQUARE_SOLID_ROUND"]);
     this.appendValueInput("x")
         .setCheck("Number")
@@ -6446,7 +6472,7 @@ Blockly.Blocks['fu_oled_drawFrame'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_SQUARE_HOLLOW"]);
     this.appendValueInput("x")
         .setCheck("Number")
@@ -6473,7 +6499,7 @@ Blockly.Blocks['fu_oled_drawRFrame'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_SQUARE_HOLLOW_ROUND"]);
     this.appendValueInput("x")
         .setCheck("Number")
@@ -6503,7 +6529,7 @@ Blockly.Blocks['fu_oled_drawCircle'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_CIRCLE_HOLLOW"]);
     this.appendValueInput("x0")
         .setCheck("Number")
@@ -6536,7 +6562,7 @@ Blockly.Blocks['fu_oled_drawDisc'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_CIRCLE_SOLID"]);
     this.appendValueInput("x0")
         .setCheck("Number")
@@ -6569,7 +6595,7 @@ Blockly.Blocks['fu_oled_drawEllipse'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_OVAL_HOLLOW"]);
     this.appendValueInput("x0")
         .setCheck("Number")
@@ -6603,7 +6629,7 @@ Blockly.Blocks['fu_oled_drawFilledEllipse'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_OVAL_SOLID"]);
     this.appendValueInput("x0")
         .setCheck("Number")
@@ -6639,7 +6665,7 @@ Blockly.Blocks['fu_oled_drawHLine'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_LINE_HORIZONTAL"]);
     this.appendValueInput("x0")
         .setCheck("Number")
@@ -6663,7 +6689,7 @@ Blockly.Blocks['fu_oled_drawVLine'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_LINE_VERTICAL"]);
     this.appendValueInput("x0")
         .setCheck("Number")
@@ -6687,7 +6713,7 @@ Blockly.Blocks['fu_oled_drawLine'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_LINE_DIP"]);
     this.appendValueInput("x0")
         .setCheck("Number")
@@ -6714,7 +6740,7 @@ Blockly.Blocks['fu_oled_drawTriangle'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_TRIANGLE"]);
     this.appendValueInput("x0")
         .setCheck("Number")
@@ -6747,7 +6773,7 @@ Blockly.Blocks['fu_oled_drawPixel'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("OLED")
+        .appendField("U8g2")
         .appendField(Blockly.Msg["OLED_DRAW_PIXEL_POINT"]);
     this.appendValueInput("x")
         .setCheck("Number")
