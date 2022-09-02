@@ -8437,6 +8437,7 @@
 			</value>	
 		</block>
 		<block type="tft_drawFont">
+			<field name="str">hello</field>			
 			<field name="font">Arial</field>
 			<field name="size">24px</field>	
 			<value name="x">
@@ -8456,6 +8457,7 @@
 			</value>
 		</block>
 		<block type="tft_drawCustomFont">
+			<field name="str">hello</field>
 			<value name="font">
 				<block type="text">
 					<field name="TEXT">Arial</field>
