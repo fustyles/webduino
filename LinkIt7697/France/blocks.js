@@ -921,8 +921,7 @@ Blockly.Blocks['tft_drawStringCursor'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["TFT_DRAWSTRINGCURSOR"]);
     this.appendValueInput("str")
-        .setCheck(null)
-        .appendField(Blockly.Msg["TFT_TEXT"]);
+        .setCheck(null);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["TFT_NEWLINE"])
@@ -945,8 +944,7 @@ Blockly.Blocks['tft_drawString'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["TFT_DRAWSTRING"]);
     this.appendValueInput("str")
-        .setCheck(null)
-        .appendField(Blockly.Msg["TFT_TEXT"]);		
+        .setCheck(null);		
     this.appendValueInput("x")
         .setCheck("Number")
         .appendField("x");
