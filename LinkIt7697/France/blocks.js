@@ -284,7 +284,12 @@ Blockly.Blocks['tft_qrcode_PROGMEM'] = {
 	this.appendDummyInput()
         .appendField("QRCODE")	
         .appendField(new Blockly.FieldDropdown([
-		["64x64","64x64"]		
+		["64x64","64x64"],	
+		["96x96","96x96"],	
+		["128x128","128x128"],	
+		["160x160","160x160"],	
+		["192x192","192x192"],
+		["224x224","224x224"]
 	]), "size");			
     var field = new Blockly.FieldTextInput();
     field.onFinishEditing_ = this.onFinishEditing;	
