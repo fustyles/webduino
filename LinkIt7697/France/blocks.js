@@ -26,7 +26,7 @@ Blockly.Blocks['tft_drawEllipse'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(190);
+    this.setColour(Blockly.Msg["HUE_15"]);
   }
 };
 
