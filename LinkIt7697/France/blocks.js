@@ -1,3 +1,28 @@
+Blockly.Blocks['tft_setTextFont'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT"])
+        .appendField(Blockly.Msg["TFT_SETTEXTFONT"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+			["1","1"],		
+			["2","2"],
+			["4","4"],
+			["6","6"],
+			["7","7"],
+			["8","8"],
+			["9","9"],
+			["15","15"]
+		]), "font");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
 Blockly.Blocks['tft_randomcolor'] = {
   init: function() {
     this.appendDummyInput()
@@ -133,13 +158,16 @@ Blockly.Blocks['tft_drawStringFont'] = {
         .appendField("y");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT) 
-		.appendField("GLCD"+Blockly.Msg["FONT_FACE_SHOW"])
+		.appendField(Blockly.Msg["FONT_FACE_SHOW"])
         .appendField(new Blockly.FieldDropdown([
+			["1","1"],		
 			["2","2"],
 			["4","4"],
 			["6","6"],
 			["7","7"],
-			["8","8"]
+			["8","8"],
+			["9","9"],
+			["15","15"]
 		]), "font");		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);

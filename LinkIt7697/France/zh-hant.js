@@ -1765,3 +1765,4 @@ Blockly.Msg["TFT_Bottom_right"] = "下 右";
 Blockly.Msg["TFT_Left_character_baseline"] = "左 基線";
 Blockly.Msg["TFT_Centre_character_baseline"] = "中 基線";
 Blockly.Msg["TFT_Right_character_baseline"] = "右 基線";
+Blockly.Msg["TFT_SETTEXTFONT"] = "設定字型";

@@ -8378,6 +8378,9 @@
 				</block>
 			</value>		
 		</block>
+		<block type="tft_setTextFont">
+			<field name="font">2</field>
+		</block>		
 		<block type="tft_setTextDatum">
 		</block>		
 		<block type="tft_drawString">	

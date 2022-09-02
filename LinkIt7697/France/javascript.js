@@ -1,3 +1,10 @@
+Blockly.Arduino['tft_setTextFont'] = function(block) {
+  var value_font = block.getFieldValue('font');
+  
+  var code = 'tft.setTextFont('+value_font+');\n';
+  return code;
+};
+
 Blockly.Arduino['tft_randomcolor'] = function(block) {
 	Blockly.Arduino.definitions_['tft_randomcolor']='\n'+
 											'uint16_t color565_random() {\n'+												
