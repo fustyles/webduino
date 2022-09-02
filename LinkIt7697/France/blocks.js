@@ -663,9 +663,7 @@ Blockly.Blocks['tft_setRotation'] = {
 		[Blockly.Msg["TFT_ROTATE_NO_HORIZONTAL"],"0"], 
 		[Blockly.Msg["TFT_ROTATE_90"],"1"], 
 		[Blockly.Msg["TFT_ROTATE_180"],"2"],
-		[Blockly.Msg["TFT_ROTATE_270"],"3"], 
-		[Blockly.Msg["TFT_ROTATE_NO_HORIZONTAL_MIRROR"],"4"], 
-		[Blockly.Msg["TFT_ROTATE_NO_VERTICAL_MIRROR"],"5"]				
+		[Blockly.Msg["TFT_ROTATE_270"],"3"]				
 	]), "mode");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -904,7 +902,7 @@ Blockly.Blocks['tft_color'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["TFT_COLOR"])	
-		.appendField(new Blockly.FieldColour("#0000ff"), "color");		
+		.appendField(new Blockly.FieldColour("#0000ff"), "colour");		
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
     this.setColour(Blockly.Msg["HUE_15"]);

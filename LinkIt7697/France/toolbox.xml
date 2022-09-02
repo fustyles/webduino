@@ -8357,12 +8357,10 @@
 		<block type="tft_color">
 			<field name="colour">#0000ff</field>		
 		</block>
-		<!--		
 		<block type="tft_setFontMode">		  
 		</block>
 		<block type="tft_setFontDirection">		  
 		</block>
-		-->		
 		<block type="tft_setTextColor">	
 			<value name="color_font">
 			  <block type="tft_color">

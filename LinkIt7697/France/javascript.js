@@ -323,14 +323,14 @@ Blockly.Arduino['tft_setTextColor'] = function(block) {
 Blockly.Arduino['tft_setFontDirection'] = function(block) {
   var display = block.getFieldValue('display');
   
-  var code = 'tft.setFontDirection('+display+');\n';
+  var code = 'u8g2.setFontDirection('+display+');\n';
   return code;
 };
 
 Blockly.Arduino['tft_setFontMode'] = function(block) {
   var mode = block.getFieldValue('mode');
   
-  var code = 'tft.setFontMode('+mode+');\n';
+  var code = 'u8g2.setFontMode('+mode+');\n';
   return code;
 };
 
@@ -356,7 +356,7 @@ Blockly.Arduino['tft_fillScreen'] = function(block) {
 };
 
 Blockly.Arduino['tft_color'] = function(block) {
-	var color = block.getFieldValue('color');
+	var color = block.getFieldValue('colour');
     color = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
 	var code = 'tft.color565('+parseInt(color[1], 16)+", "+parseInt(color[2], 16)+", "+parseInt(color[3], 16)+')';
 	return [code, Blockly.Arduino.ORDER_NONE];
