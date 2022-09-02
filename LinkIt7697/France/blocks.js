@@ -1,3 +1,490 @@
+Blockly.Blocks['tft_drawXBMP'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT"])
+        .appendField(Blockly.Msg["TFT_DRAW_IMAGE"]);
+    this.appendValueInput("PROGMEM")
+        .setCheck("String")
+        .appendField(Blockly.Msg["TFT_XBM"]);	
+    this.appendValueInput("width")
+        .setCheck("Number")
+        .appendField(Blockly.Msg["TFT_WIDTH"]);
+    this.appendValueInput("height")
+        .setCheck("Number")
+        .appendField(Blockly.Msg["TFT_HEIGHT"]);
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");
+	this.appendValueInput("color")
+	    .appendField(Blockly.Msg["COLOR"]);		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
+Blockly.Blocks['tft_PROGMEM'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT"]);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable("logo"), "variable")
+		.appendField(Blockly.Msg["TFT_SET"]);		
+	var imageToXbm = function() {
+		var block = this.sourceBlock_;
+        var input = block.getInputTargetBlock("PROGMEM");
+	    if (input) {
+		    if (input.type="text") {
+				var img=document.createElement('img');
+				img.onload = function (event) {
+					const canvas = document.createElement('canvas');
+					const context = canvas.getContext('2d');
+					
+					canvas.width=img.width;
+					canvas.height=img.height; 
+					canvas.width = (canvas.width%8>0)?Math.round(canvas.width-canvas.width%8+8):Math.round(canvas.width);
+					block.getField("size").setValue("( "+canvas.width + " * " + canvas.height + " )", "size");
+					
+					context.fillStyle="#FFFFFF";
+					context.fillRect(0, 0, canvas.width, canvas.height);
+					context.drawImage(img,0,0,img.width,img.height);
+
+					const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+					const data = imageData.data;
+
+					let xbmString = "";
+					let pixel = 0;
+					let value = 0;
+					
+					for(let h = 0; h < canvas.height; h++) {
+						for(let w = 0; w < canvas.width / 8; w++) {
+							value = 0;
+							for(let p = 0; p < 8; p++) {
+								const isBlack = !(data[pixel * 4]);
+								if(isBlack)
+									value += Math.pow(2, p);
+								pixel++;
+								const isNewRow = pixel/canvas.width === 1;
+								if(isNewRow) break;
+							}
+							xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
+						}
+					}
+					
+					document.body.appendChild(canvas);
+					canvas.parentNode.removeChild(canvas);
+					input.setFieldValue(xbmString, 'TEXT');
+					file.parentNode.removeChild(file);
+				}
+				
+				var file=document.createElement('input');
+				file.type="file";
+				file.onchange = function (event) {
+					var target = event.target || window.event.srcElement;
+					var files = target.files;
+					if (FileReader && files && files.length) {
+						var fr = new FileReader();
+							fr.onload = function () {    
+							img.src = fr.result;
+						}
+						fr.readAsDataURL(files[0]);
+						file.parentNode.removeChild(file);
+					}
+				}
+				document.body.appendChild(file);
+				file.click();
+		    }
+		}
+    };
+    this.appendValueInput("PROGMEM")
+        .setCheck("String")
+        .appendField(Blockly.Msg["TFT_XBM"]);
+		
+	var field = new Blockly.FieldImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAADyUlEQVRIieXVS0xcVRzH8e85l3nAUBCsaZHUqrDQAsWZdGekj8RXVzR10qUwJERXLtTEREPARle6Nl3AMEljGmnorlZjBNpoWzVAQoFKIRFqB9raymNGZu7ce/8uhiG8hOFRY+JvdW/yP+dz/+feew7836KyKQoGg7k+n++w1vopx3GKtNZ/ish4LBa73NHRMb/jcENDQ7lt281KqRNA3holfwGdjuM0RyKRsR2BQ6HQ+yLyCeDClYvaW4EqfBI8+ZCMITNRZOoGpBIAJvBhOBz+bFtwfX39GaCRHA/6wHEoq0EZ7lV1YpvIaDcyfAmsJMCZcDj8VjawsVanwAfkFaFr3kGVVqN0ukwr8OQoHAEBlDZQu8vQJZXI5ABYiUOBQCDW19d3dVMdh0KhZ0VkmByPWx99L720wO5cRcUTBnvyFEql0btxYfC+zR/zkh48cwe763OwkqbWuqK1tXV0PVgvvXEc52PArQ8cX0TLizTH9ueQsISe2xYXx1L0TFgkLOHY/hzKixamKCxFP/8agFtEmjbqeBEOBoO5SqlaXLlQVrNYUJqvuBa1uR61uRsX5sx0t9ejNteiNvsKljx7+RFweRGRk42NjWv9Bavh/Pz8GsCnSiqXfUg9t20mZp01B0/MOnSNW4v3ynCj91YC5Jmm+WJWMPA0AAtLvNVIQUl6Yq2fyRYuBlBu37Zg5d2VfgCRx7OClVIPAEjGtgWTnMtc3c8KFpFxAJmJbsvNjM/MtyEci8UuA3GZuoHY5tZU20SmhgBiwJWs4IVT5gKpBDLavSVXbn0PqXmAzvb29kRWMIBhGE1AUoYvwcydzaHTv+Pc/BbAXNiI1s2yvbq3t3fa7/cncOxXZHIAvec58BZkhcoPX4AZR0TaI5FIZFMwQH9//49+v78EK3FIJn5CKQVF+xYPimWxTWTkO5xfzmZQWylV5ff7B/r7+39dD17vPH5XRD4F3Li86R2psAQ8uyA5t3AeD2XeqQmEgTcBbyJlpaYTqdNfnz93OuuOM+nr67saCAS+VEoVY1vlMht1y70RZHIAuTcCs5PgWHHgnGEYb7S1tZ0NBAI/z5vWqYmHc+75ZOrowepqbg0p9myq46Wpq6vzAi+R3laLgYfAb8CVlV/vyyeCLXPzZpNIevJin6f5YudXLVuCN5tXTwRbZjbA/3Gpt5Oxm0PdFZVVRtJ2DguQSNlHVi77I4EX8K6KqoOupGXXZPCqF6qjo8ODvbBiA9npfHOh46PCPE+TUgqvy3igE/Hzj9JblddPnnq7trb2sX8V/c/lbwo9q8gJVNowAAAAAElFTkSuQmCC", 30, 30, { alt: "*", flipRtl: "FALSE" });
+	field.setOnClickHandler(imageToXbm);
+	
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldLabelSerializable(Blockly.Msg["TFT_WHITEBACK_BLACKWORD"]), "size")
+		.appendField(field);
+		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_12"]);
+	this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
+  }
+};
+
+//https://github.com/opentypejs/opentype.js
+var s = document.createElement("script");
+s.type = "text/javascript";
+s.src = "https://opentype.js.org/dist/opentype.js";
+document.getElementsByTagName('head')[0].append(s);
+
+Blockly.Blocks['tft_PROGMEM_truetype'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT"]);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable("logo"), "variable")
+		.appendField(Blockly.Msg["EZ_SET"]);
+	var ttfToXbm = function() {
+		var block = this.sourceBlock_;
+        var input = block.getInputTargetBlock("PROGMEM");
+	    if (input) {
+		    if (input.type="text") {
+				
+				var file=document.createElement('input');
+				file.type="file";
+				file.onchange = function (event) {
+					var target = event.target || window.event.srcElement;
+					var files = target.files;
+					if (FileReader && files && files.length) {
+						var reader = new FileReader();
+						reader.onload = function (e) {    
+							try {
+								font = opentype.parse(e.target.result);
+								window.font = font;
+								var options = {
+									kerning: true,
+									hinting: false,
+									features: {
+										liga: true,
+										rlig: true
+									}
+								};
+								
+								const canvas = document.createElement('canvas');
+								const context = canvas.getContext('2d');
+								canvas.width = 960;
+								canvas.height = 480;
+								
+								var dropdown_size = Number(block.getFieldValue("fontsize"));
+								var value_str = block.getFieldValue("str");
+
+								context.clearRect(0, 0, canvas.width, canvas.height);
+								context.fillStyle="#000000";
+								context.textBaseline = "top";
+								var textWidth = font.getAdvanceWidth(value_str, dropdown_size, options);
+								var width = (textWidth%8>0)?Math.round(textWidth-textWidth%8+8):Math.round(textWidth);
+								font.draw(context, value_str, 0, 240, dropdown_size, options);
+
+								var pixels = context.getImageData(0, 0, width, canvas.height);
+								var fontTop = null, fontBottom = null;
+								var y;
+								for (var i = 0; i < pixels.data.length; i += 4) {
+									if (pixels.data[i+3] !== 0) {
+										y = ((i / 4) / width);			
+										if (fontTop === null) {
+											fontTop = y;
+										}
+										if (fontBottom === null) {
+											fontBottom = y;
+										} else if (fontBottom < y) {
+											fontBottom = y;
+										}
+									}
+								}
+
+								var height = fontBottom-fontTop+1;	
+								height = (height>Math.floor(height))?(Math.floor(height)+1):Math.floor(height);
+								
+								block.getField("size").setValue("( "+width + " * " + height + " )", "size");
+
+								const imageData = context.getImageData(0, fontTop, width, height);
+								const data = imageData.data;
+
+								let xbmString = "";
+								let pixel = 0;
+								let value = 0;
+								
+								for(let h = 0; h < height; h++) {
+									for(let w = 0; w < width / 8; w++) {
+										value = 0;
+										for(let p = 0; p < 8; p++) {
+											const isBlack = !(data[pixel * 4+3]);
+											if(!isBlack)
+												value += Math.pow(2, p);
+											pixel++;
+											const isNewRow = pixel/width === 1;
+											if(isNewRow) break;
+										}
+										xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
+									}
+								}
+								
+								document.body.appendChild(canvas);
+								canvas.parentNode.removeChild(canvas);
+								input.setFieldValue(xbmString, 'TEXT');								
+								file.parentNode.removeChild(file);
+							} catch (err) {
+								alert(err.toString());
+								file.parentNode.removeChild(file);
+							}
+						}
+						reader.onerror = function(err) {
+							alert(err.toString());
+							file.parentNode.removeChild(file);
+						};
+						reader.readAsArrayBuffer(target.files[0]);
+					}
+				}
+				document.body.appendChild(file);
+				file.click();
+		    }
+		}
+    };
+	var field = new Blockly.FieldImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAADyUlEQVRIieXVS0xcVRzH8e85l3nAUBCsaZHUqrDQAsWZdGekj8RXVzR10qUwJERXLtTEREPARle6Nl3AMEljGmnorlZjBNpoWzVAQoFKIRFqB9raymNGZu7ce/8uhiG8hOFRY+JvdW/yP+dz/+feew7836KyKQoGg7k+n++w1vopx3GKtNZ/ish4LBa73NHRMb/jcENDQ7lt281KqRNA3holfwGdjuM0RyKRsR2BQ6HQ+yLyCeDClYvaW4EqfBI8+ZCMITNRZOoGpBIAJvBhOBz+bFtwfX39GaCRHA/6wHEoq0EZ7lV1YpvIaDcyfAmsJMCZcDj8VjawsVanwAfkFaFr3kGVVqN0ukwr8OQoHAEBlDZQu8vQJZXI5ABYiUOBQCDW19d3dVMdh0KhZ0VkmByPWx99L720wO5cRcUTBnvyFEql0btxYfC+zR/zkh48cwe763OwkqbWuqK1tXV0PVgvvXEc52PArQ8cX0TLizTH9ueQsISe2xYXx1L0TFgkLOHY/hzKixamKCxFP/8agFtEmjbqeBEOBoO5SqlaXLlQVrNYUJqvuBa1uR61uRsX5sx0t9ejNteiNvsKljx7+RFweRGRk42NjWv9Bavh/Pz8GsCnSiqXfUg9t20mZp01B0/MOnSNW4v3ynCj91YC5Jmm+WJWMPA0AAtLvNVIQUl6Yq2fyRYuBlBu37Zg5d2VfgCRx7OClVIPAEjGtgWTnMtc3c8KFpFxAJmJbsvNjM/MtyEci8UuA3GZuoHY5tZU20SmhgBiwJWs4IVT5gKpBDLavSVXbn0PqXmAzvb29kRWMIBhGE1AUoYvwcydzaHTv+Pc/BbAXNiI1s2yvbq3t3fa7/cncOxXZHIAvec58BZkhcoPX4AZR0TaI5FIZFMwQH9//49+v78EK3FIJn5CKQVF+xYPimWxTWTkO5xfzmZQWylV5ff7B/r7+39dD17vPH5XRD4F3Li86R2psAQ8uyA5t3AeD2XeqQmEgTcBbyJlpaYTqdNfnz93OuuOM+nr67saCAS+VEoVY1vlMht1y70RZHIAuTcCs5PgWHHgnGEYb7S1tZ0NBAI/z5vWqYmHc+75ZOrowepqbg0p9myq46Wpq6vzAi+R3laLgYfAb8CVlV/vyyeCLXPzZpNIevJin6f5YudXLVuCN5tXTwRbZjbA/3Gpt5Oxm0PdFZVVRtJ2DguQSNlHVi77I4EX8K6KqoOupGXXZPCqF6qjo8ODvbBiA9npfHOh46PCPE+TUgqvy3igE/Hzj9JblddPnnq7trb2sX8V/c/lbwo9q8gJVNowAAAAAElFTkSuQmCC", 30, 30, { alt: "*", flipRtl: "FALSE" });
+	field.setOnClickHandler(ttfToXbm);
+
+	var opt = [];
+	for (var i=8;i<=240;i++) {
+	  opt.push([i+"px",String(i)]);
+	}
+	
+	this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(Blockly.Msg["EZ_SIZE"])
+      .appendField(new Blockly.FieldDropdown(opt), "fontsize");
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["EZ_TEXT"])	
+        .appendField(new Blockly.FieldTextInput("hello"), "str");
+    this.appendDummyInput()
+	.appendField(Blockly.Msg["TFT_FONT_TTF"])
+	.appendField(field);		  
+    this.appendValueInput("PROGMEM")
+        .setCheck("String")
+        .appendField(Blockly.Msg["TFT_XBM_VALUE"]);		
+    this.appendDummyInput()
+	.appendField(new Blockly.FieldLabelSerializable(""), "size");
+		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_12"]);
+	this.setHelpUrl("https://github.com/opentypejs/");
+  }
+};
+
+Blockly.Blocks['tft_qrcode_PROGMEM'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT"]);
+	this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable("logo"), "variable")
+		.appendField(Blockly.Msg["TFT_SET"]);	
+	this.appendDummyInput()
+        .appendField("QRCODE")	
+        .appendField(new Blockly.FieldDropdown([
+		["64x64","64x64"]		
+	]), "size");			
+    var field = new Blockly.FieldTextInput();
+    field.onFinishEditing_ = this.onFinishEditing;	
+    this.appendDummyInput()		
+        .appendField(Blockly.Msg["TFT_TEXT"])
+		.appendField(field);	
+    this.appendValueInput("PROGMEM")
+        .setCheck("String");	
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_12"]);
+	this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
+    this.getInput('PROGMEM').setVisible(false);
+  },
+	onFinishEditing: function(val) {
+		var block = this.sourceBlock_;
+		var input = block.getInputTargetBlock("PROGMEM");
+		var img=document.createElement('img');
+		var url = "https://chart.googleapis.com/chart?chs=64x64&cht=qr&chl=" + val + "&choe=UTF-8&chld=M|0";
+		img.src = url;
+		
+		img.onload = function (event) {
+			const canvas = document.createElement('canvas');
+			const context = canvas.getContext('2d');
+			
+			canvas.width=img.width;
+			canvas.height=img.height; 
+			canvas.width = (canvas.width%8>0)?Math.round(canvas.width-canvas.width%8+8):Math.round(canvas.width);
+			
+			context.fillStyle="#FFFFFF";
+			context.fillRect(0, 0, canvas.width, canvas.height);
+			context.drawImage(img,0,0,img.width,img.height);
+
+			const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+			const data = imageData.data;
+
+			let xbmString = "";
+			let pixel = 0;
+			let value = 0;
+			
+			for(let h = 0; h < canvas.height; h++) {
+				for(let w = 0; w < canvas.width / 8; w++) {
+					value = 0;
+					for(let p = 0; p < 8; p++) {
+						const isBlack = !(data[pixel * 4]);
+						if(isBlack)
+							value += Math.pow(2, p);
+						pixel++;
+						const isNewRow = pixel/canvas.width === 1;
+						if(isNewRow) break;
+					}
+					xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
+				}
+			}
+			
+			document.body.appendChild(canvas);
+			canvas.parentNode.removeChild(canvas);
+			input.setFieldValue(xbmString, 'TEXT');
+		}
+    }
+};
+
+Blockly.Blocks['tft_drawXBMP_PROGMEM'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT"])
+        .appendField(Blockly.Msg["TFT_DRAW_IMAGE"]);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable("logo"), "variable");		
+    this.appendValueInput("width")
+        .setCheck("Number")
+        .appendField(Blockly.Msg["TFT_WIDTH"]);
+    this.appendValueInput("height")
+        .setCheck("Number")
+        .appendField(Blockly.Msg["TFT_HEIGHT"]);
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");
+	this.appendValueInput("color")
+	    .appendField(Blockly.Msg["COLOR"]);		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
+Blockly.Blocks['tft_drawXBMP_PROGMEM_array'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT"])
+        .appendField(Blockly.Msg["TFT_DRAW_IMAGE"]);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT_ARRAY"])	
+        .appendField(new Blockly.FieldVariable("logo"), "variable");
+    this.appendValueInput("index")
+        .setCheck("Number")
+        .appendField(Blockly.Msg["TFT_INDEX"]);		
+    this.appendValueInput("width")
+        .setCheck("Number")
+        .appendField(Blockly.Msg["TFT_WIDTH"]);
+    this.appendValueInput("height")
+        .setCheck("Number")
+        .appendField(Blockly.Msg["TFT_HEIGHT"]);
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");
+	this.appendValueInput("color")
+	    .appendField(Blockly.Msg["COLOR"]);		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
+Blockly.Blocks['tft_drawPixelMap'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"])
+        .appendField(Blockly.Msg["TFT_DRAW_PIXEL_IMAGE"]);
+		
+	var block = this;
+    var validator_width = function(newValue) {
+	    var width = Number(newValue);
+		var height = Number(block.getFieldValue("height"));
+	  	var field;
+		var input;
+		for (var i=0;i<(64*64);i++) {
+			if (block.getField("chk"+i)) {
+				block.getField("chk"+i).dispose();
+			}
+			if (block.getInput("input"+i)) {
+				block.removeInput("input"+i);
+			}			
+		}
+		for (var j=0;j<(width*height);j++) {
+			if (j%width==0) 
+				input = block.appendDummyInput("input"+j);
+			field = new Blockly.FieldCheckbox("FALSE");
+			input.appendField(field, "chk"+j);
+		}
+    };
+    var validator_height = function(newValue) {
+	    var width = Number(block.getFieldValue("width"));
+		var height = Number(newValue);
+	  	var field;
+		var input;
+		for (var i=0;i<(64*64);i++) {
+			if (block.getField("chk"+i)) {
+				block.getField("chk"+i).dispose();
+			}
+			if (block.getInput("input"+i)) {
+				block.removeInput("input"+i);
+			}			
+		}
+		for (var j=0;j<(width*height);j++) {
+			if (j%width==0) 
+				input = block.appendDummyInput("input"+j);
+			field = new Blockly.FieldCheckbox("FALSE");
+			input.appendField(field, "chk"+j);
+		}
+    };	
+	
+	var opt = [];
+	for (var k=8;k<=128;k+=8) {
+		opt.push([k.toString(),k.toString()]);
+	}
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)	
+        .appendField(Blockly.Msg["TFT_WIDTH"])
+        .appendField(new Blockly.FieldDropdown(opt, validator_width), "width")
+        .appendField(Blockly.Msg["TFT_HEIGHT"])
+        .appendField(new Blockly.FieldDropdown(opt, validator_height), "height");
+    this.appendValueInput("x")
+        .setAlign(Blockly.ALIGN_RIGHT)		
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setAlign(Blockly.ALIGN_RIGHT)		
+        .setCheck("Number")
+        .appendField("y");
+	this.appendValueInput("color")
+	    .appendField(Blockly.Msg["COLOR"]);		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
 Blockly.Blocks['tft_getView'] = {
   init: function() {
     this.appendDummyInput()

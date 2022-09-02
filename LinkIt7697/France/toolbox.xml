@@ -8577,6 +8577,135 @@
 				<field name="colour">#0000ff</field>
 			  </block>
 			</value>
+		</block>
+		<block type="tft_drawXBMP">
+			<value name="PROGMEM">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>			
+		</block>
+		<block type="tft_PROGMEM">
+			<value name="PROGMEM">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>		
+		</block>
+		<block type="tft_PROGMEM_truetype">
+			<value name="PROGMEM">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>		
+		</block>
+		<block type="tft_qrcode_PROGMEM">	
+			<value name="PROGMEM">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>		
+		</block>
+		<block type="tft_drawXBMP_PROGMEM">
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>		
+		</block>
+		<block type="tft_drawXBMP_PROGMEM_array">
+			<value name="index">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>	
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>		
+		</block>
+		<block type="tft_drawPixelMap">
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>		
 		</block>		
 		<block type="tft_drawLine">
 			<value name="x0">
