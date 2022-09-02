@@ -6086,6 +6086,25 @@ Blockly.Blocks['fu_oled_setFontDirection'] = {
   }
 };
 
+Blockly.Blocks['fu_oled_setFontMode'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField("U8g2")
+        .appendField(Blockly.Msg["OLED_FONT_MODE"]);		
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["PROPERTY_YES"],"1"],		
+		[Blockly.Msg["PROPERTY_NO"],"0"]
+	]), "drawback");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(30);
+  }
+};
+
 Blockly.Blocks['fu_oled_setDrawColor'] = {
   init: function() {
     this.appendDummyInput()

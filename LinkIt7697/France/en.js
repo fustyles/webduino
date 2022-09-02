@@ -1769,3 +1769,4 @@ Blockly.Msg["TFT_VIEWHEIGHT"] = "view height";
 Blockly.Msg["TFT_CURSORX"] = "cursor x";
 Blockly.Msg["TFT_CURSORY"] = "cursor y";
 Blockly.Msg["TFT_FONT_TTF"] = "TTF font";
+Blockly.Msg["OLED_FONT_MODE"] = "background transparent";

@@ -1837,7 +1837,7 @@
 					</value>
 				</block>
 			  <block type="esp32_pixelbit_initial" id="99">				
-			  </block>					
+			  </block>
 			  <block type="esp32_pixelbit_tftshowcamera" id="99">				
 			  </block>				
 			  <block type="esp32_cam_linenotify" id="99">
@@ -7799,7 +7799,8 @@
     </block>
     <block type="fu_oled_nextPage"></block>		
     <block type="fu_oled_sendBuffer"></block>
-    <block type="fu_oled_setPowerSave"></block>	
+    <block type="fu_oled_setPowerSave"></block>
+	<block type="fu_oled_setFontMode"></block>	
 	<block type="fu_oled_setContrast">
 		<value name="value">
 		  <shadow type="math_number">
@@ -8348,7 +8349,8 @@
 		<block type="tft_clear">
 		</block>
 		<block type="tft_getView">
-		</block>		
+		</block>	
+		
 		<block type="tft_fillScreen">
 			<value name="color">
 			  <block type="tft_color">
@@ -8450,8 +8452,9 @@
 					<field name="TEXT"></field>
 				</block>
 			</value>	
-		</block>		
+		</block>
 		<block type="fu_oled_setFontDirection"></block>
+		<block type="fu_oled_setFontMode"></block>			
 		<block type="tft_setForegroundColor">
 			<value name="color">
 			  <block type="tft_color">
@@ -8477,8 +8480,7 @@
 		<block type="fu_oled_setFont_icon">
 			<field name="font">u8g2_font_open_iconic_weather_6x_t</field>	
 		</block>	
-		<block type="fu_oled_setFont_all"></block>	
-		<block type="fu_oled_setFontDirection"></block>			
+		<block type="fu_oled_setFont_all"></block>			
 		<block type="fu_oled_drawGlyph">
 			<value name="x">
 			  <shadow type="math_number">

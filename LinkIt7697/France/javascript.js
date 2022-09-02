@@ -1,3 +1,11 @@
+Blockly.Arduino['fu_oled_setFontMode'] = function(block) {
+  var drawback = block.getFieldValue('drawback');
+
+  var code = "u8g2.setFontMode("+drawback+");\n";
+  return code;
+};
+
+
 Blockly.Arduino['tft_drawXBMP'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
@@ -751,10 +759,6 @@ Blockly.Arduino['esp32_pixelbit_initial'] = function(block) {
 												'}\n';
 												
 	Blockly.Arduino.setups_.tftsetup=''+
-									  'sensor_t *sg = esp_camera_sensor_get();\n'+
-									  'sg->set_brightness(sg, -1);\n'+
-									  'sg->set_contrast(sg, 1);\n'+
-									  'sg->set_saturation(sg, 1);\n'+	
 									  'tft.begin();\n'+
 									  'tft.setTextColor(TFT_WHITE, TFT_BLACK);\n'+
 									  'tft.fillScreen(TFT_BLACK);\n'+
