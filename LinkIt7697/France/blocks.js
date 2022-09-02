@@ -1,3 +1,35 @@
+Blockly.Blocks['tft_getView'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["TFT_VIEWWIDTH"],"getViewportWidth"],
+			[Blockly.Msg["TFT_VIEWHEIGHT"],"getViewportHeight"]
+		]), "property");		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_getCursor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["TFT_CURSORX"],"getCursorX"],		
+			[Blockly.Msg["TFT_CURSORY"],"getCursorY"]
+		]), "property");		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
 Blockly.Blocks['tft_drawChar'] = {
   init: function() {
     this.appendDummyInput()
@@ -932,7 +964,7 @@ Blockly.Blocks['tft_drawStringCursor'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_10"]);
+    this.setColour(Blockly.Msg["HUE_15"]);
   }
 };
 
@@ -974,7 +1006,7 @@ Blockly.Blocks['tft_setCursor'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_10"]);
+    this.setColour(Blockly.Msg["HUE_15"]);
   }
 };
 
@@ -1097,7 +1129,7 @@ Blockly.Blocks['tft_setFreeFont'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(Blockly.Msg["HUE_10"]);
+    this.setColour(Blockly.Msg["HUE_15"]);
   }
 };
 

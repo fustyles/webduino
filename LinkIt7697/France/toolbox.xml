@@ -8347,6 +8347,8 @@
 		</block>		
 		<block type="tft_clear">
 		</block>
+		<block type="tft_getView">
+		</block>		
 		<block type="tft_fillScreen">
 			<value name="color">
 			  <block type="tft_color">
@@ -8406,6 +8408,8 @@
 					</block>
 			</value>		
 		</block>
+		<block type="tft_getCursor">
+		</block>		
 		<block type="tft_drawStringCursor">
 			<value name="str">
 				<block type="text">

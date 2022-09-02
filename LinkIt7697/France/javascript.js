@@ -1,3 +1,17 @@
+Blockly.Arduino['tft_getView'] = function(block) {
+  var property = block.getFieldValue('property');
+
+  var code = 'tft.'+property+'()';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['tft_getCursor'] = function(block) {
+  var property = block.getFieldValue('property');
+
+  var code = 'tft.'+property+'()';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['tft_drawChar'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);

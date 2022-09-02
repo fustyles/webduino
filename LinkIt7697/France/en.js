@@ -1764,3 +1764,7 @@ Blockly.Msg["TFT_BACKTRANSPARENT"] = "background transparent";
 Blockly.Msg["TFT_READ_PIXEL_POINT"] = "pixel point RGB565 color";
 Blockly.Msg["TFT_INVERTDISPLAY"] = "invert display";
 Blockly.Msg["TFT_DRAWCHAR"] = "draw unicode char";
+Blockly.Msg["TFT_VIEWWIDTH"] = "view width";
+Blockly.Msg["TFT_VIEWHEIGHT"] = "view height";
+Blockly.Msg["TFT_CURSORX"] = "cursor x";
+Blockly.Msg["TFT_CURSORY"] = "cursor y";
