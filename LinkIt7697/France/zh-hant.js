@@ -1769,3 +1769,6 @@ Blockly.Msg["TFT_SETTEXTFONT"] = "設定字型";
 Blockly.Msg["TFT_FORECOLOR"] = "前景顏色";
 Blockly.Msg["TFT_BACKCOLOR"] = "背景顏色";
 Blockly.Msg["TFT_BACKTRANSPARENT"] = "背景透明";
+Blockly.Msg["TFT_READ_PIXEL_POINT"] = "像素點RGB565顏色";
+Blockly.Msg["TFT_INVERTDISPLAY"] = "反轉顯示顏色";
+Blockly.Msg["TFT_DRAWCHAR"] = "繪製UNICODE字元";

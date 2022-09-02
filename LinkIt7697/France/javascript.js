@@ -1,3 +1,37 @@
+Blockly.Arduino['tft_drawChar'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+  if ((value_str.indexOf("'")==0)&&(value_str.lastIndexOf("'")==value_str.length-1))
+    value_str = value_str.substring(1,value_str.length-1);
+  if ((value_str.indexOf('"')==0)&&(value_str.lastIndexOf('"')==value_str.length-1))
+    value_str = value_str.substring(1,value_str.length-1);
+
+  var code = 'tft.tft_drawChar('+value_str+', '+value_x+', '+value_y+');\n';
+  return code;
+}; 
+
+Blockly.Arduino['tft_drawCharFont'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+  var value_font = block.getFieldValue('font');
+  var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+  if ((value_str.indexOf("'")==0)&&(value_str.lastIndexOf("'")==value_str.length-1))
+    value_str = value_str.substring(1,value_str.length-1);
+  if ((value_str.indexOf('"')==0)&&(value_str.lastIndexOf('"')==value_str.length-1))
+    value_str = value_str.substring(1,value_str.length-1);
+
+  var code = 'tft.tft_drawChar('+value_str+', '+value_x+', '+value_y+', '+value_font+');\n';
+  return code;
+};
+
+Blockly.Arduino['tft_invertDisplay'] = function(block) {
+  var invert = block.getFieldValue('invert');
+
+  var code = 'tft.invertDisplay('+invert+');\n';
+  return code;
+};
+
 Blockly.Arduino['tft_setTextFont'] = function(block) {
   var value_font = block.getFieldValue('font');
   
@@ -16,6 +50,14 @@ Blockly.Arduino['tft_randomcolor'] = function(block) {
 											
 	var code = 'color565_random()';
 	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['tft_readPixel'] = function(block) {
+  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'tft.readPixel('+value_x+', '+value_y+')';  
+  return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['tft_drawPixel'] = function(block) {

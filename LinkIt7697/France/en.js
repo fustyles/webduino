@@ -1761,3 +1761,6 @@ Blockly.Msg["TFT_SETTEXTFONT"] = "set font";
 Blockly.Msg["TFT_FORECOLOR"] = "foreground color";
 Blockly.Msg["TFT_BACKCOLOR"] = "background color";
 Blockly.Msg["TFT_BACKTRANSPARENT"] = "background transparent";
+Blockly.Msg["TFT_READ_PIXEL_POINT"] = "pixel point RGB565 color";
+Blockly.Msg["TFT_INVERTDISPLAY"] = "invert display";
+Blockly.Msg["TFT_DRAWCHAR"] = "draw unicode char";

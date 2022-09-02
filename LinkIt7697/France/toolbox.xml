@@ -8389,7 +8389,30 @@
 			<field name="font">2</field>
 		</block>		
 		<block type="tft_setTextDatum">
+		</block>
+		<block type="tft_invertDisplay">
+		</block>				
+		<block type="tft_setFreeFont">		  
 		</block>		
+		<block type="tft_setCursor">
+			<value name="x">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+			</value>
+			<value name="y">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+			</value>		
+		</block>
+		<block type="tft_drawStringCursor">
+			<value name="str">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>	
+		</block>
 		<block type="tft_drawString">	
 			<value name="x">
 				<block type="math_number">
@@ -8424,28 +8447,42 @@
 				</block>
 			</value>
 			<field name="font">2</field>
-		</block>		
-		<block type="tft_setFreeFont">		  
-		</block>		
-		<block type="tft_setCursor">
+		</block>
+		<block type="tft_drawChar">	
 			<value name="x">
-					<block type="math_number">
-						<field name="NUM">0</field>
-					</block>
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
 			</value>
 			<value name="y">
-					<block type="math_number">
-						<field name="NUM">0</field>
-					</block>
-			</value>		
-		</block>
-		<block type="tft_drawStringCursor">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
 			<value name="str">
 				<block type="text">
 					<field name="TEXT"></field>
 				</block>
 			</value>	
 		</block>
+		<block type="tft_drawCharFont">	
+			<value name="x">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="y">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>			
+			<value name="str">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+			<field name="font">2</field>
+		</block>		
 		<block type="fu_oled_setFontDirection"></block>
 		<block type="tft_setForegroundColor">
 			<value name="color">
@@ -8804,6 +8841,18 @@
 			  <block type="tft_color">
 				<field name="colour">#0000ff</field>
 			  </block>
+			</value>			
+		</block>
+		<block type="tft_readPixel">
+			<value name="x">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+			</value>
+			<value name="y">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
 			</value>			
 		</block>		
 	</category>

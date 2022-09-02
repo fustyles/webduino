@@ -1,3 +1,77 @@
+Blockly.Blocks['tft_drawChar'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);	  
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT_DRAWCHAR"]);
+    this.appendValueInput("str")
+        .setCheck(null)		
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_drawCharFont'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"])
+        .appendField(Blockly.Msg["TFT_DRAWCHAR"]);
+    this.appendValueInput("str")
+        .setCheck(null)		
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+		.appendField(Blockly.Msg["FONT_FACE_SHOW"])
+        .appendField(new Blockly.FieldDropdown([
+			["1","1"],		
+			["2","2"],
+			["4","4"],
+			["6","6"],
+			["7","7"],
+			["8","8"],
+			["9","9"],
+			["15","15"]
+		]), "font");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_invertDisplay'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"]);	  
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT_INVERTDISPLAY"]);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["PROPERTY_YES"],"1"], 
+		[Blockly.Msg["PROPERTY_NO"],"0"]			
+	]), "invert");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
 Blockly.Blocks['tft_setTextFont'] = {
   init: function() {
     this.appendDummyInput()
@@ -27,6 +101,24 @@ Blockly.Blocks['tft_randomcolor'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["TFT_COLOR_RANDOM"]);		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_readPixel'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT"])
+        .appendField(Blockly.Msg["TFT_READ_PIXEL_POINT"]);
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");	
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
     this.setColour(Blockly.Msg["HUE_15"]);
@@ -894,7 +986,7 @@ Blockly.Blocks['tft_setTextSize'] = {
         .appendField(Blockly.Msg["TFT"]);
     this.appendValueInput("size")
         .setCheck("Number")
-        .appendField(Blockly.Msg["PROPERTY_FONTSIZE"]);	
+        .appendField(Blockly.Msg["PROPERTY_FONTSIZE"]+"(1~7)");	
     this.appendDummyInput()
         .appendField("* 10px");			
     this.setInputsInline(true);
