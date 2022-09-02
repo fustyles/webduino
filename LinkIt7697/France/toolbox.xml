@@ -8374,7 +8374,7 @@
 		<block type="tft_setTextSize">	
 			<value name="size">
 				<block type="math_number">
-					<field name="NUM">5</field>
+					<field name="NUM">4</field>
 				</block>
 			</value>		
 		</block>
@@ -8415,7 +8415,8 @@
 				<block type="text">
 					<field name="TEXT"></field>
 				</block>
-			</value>	
+			</value>
+			<field name="font">2</field>
 		</block>		
 		<block type="tft_setFreeFont">		  
 		</block>		
