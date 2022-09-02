@@ -8430,24 +8430,6 @@
 				</block>
 			</value>	
 		</block>
-		<block type="tft_drawStringFont">	
-			<value name="x">
-				<block type="math_number">
-					<field name="NUM">0</field>
-				</block>
-			</value>
-			<value name="y">
-				<block type="math_number">
-					<field name="NUM">0</field>
-				</block>
-			</value>			
-			<value name="str">
-				<block type="text">
-					<field name="TEXT"></field>
-				</block>
-			</value>
-			<field name="font">2</field>
-		</block>
 		<block type="tft_drawChar">	
 			<value name="x">
 				<block type="math_number">
@@ -8464,24 +8446,6 @@
 					<field name="TEXT"></field>
 				</block>
 			</value>	
-		</block>
-		<block type="tft_drawCharFont">	
-			<value name="x">
-				<block type="math_number">
-					<field name="NUM">0</field>
-				</block>
-			</value>
-			<value name="y">
-				<block type="math_number">
-					<field name="NUM">0</field>
-				</block>
-			</value>			
-			<value name="str">
-				<block type="text">
-					<field name="TEXT"></field>
-				</block>
-			</value>
-			<field name="font">2</field>
 		</block>		
 		<block type="fu_oled_setFontDirection"></block>
 		<block type="tft_setForegroundColor">
