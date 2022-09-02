@@ -1,3 +1,17 @@
+Blockly.Arduino['tft_drawEllipse'] = function(block) {
+  var value_x0 = Blockly.Arduino.valueToCode(block, 'x0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0 = Blockly.Arduino.valueToCode(block, 'y0', Blockly.Arduino.ORDER_ATOMIC);
+  var value_rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);
+  var value_ry = Blockly.Arduino.valueToCode(block, 'ry', Blockly.Arduino.ORDER_ATOMIC);
+  var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
+  var type = block.getFieldValue('type');
+  if (type=="hollow")
+	var code = 'tft.drawEllipse('+value_x0+', '+value_y0+', '+value_rx+', '+value_ry+', '+color+');\n';
+  else
+	var code = 'tft.fillEllipse('+value_x0+', '+value_y0+', '+value_rx+', '+value_ry+', '+color+');\n';  
+  return code;
+};
+
 Blockly.Arduino['tft_drawStringFont'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
@@ -318,20 +332,6 @@ Blockly.Arduino['tft_setTextColor'] = function(block) {
 	var color_back = Blockly.Arduino.valueToCode(block, 'color_back', Blockly.Arduino.ORDER_ATOMIC);
 	var code = 'tft.setTextColor('+color_font+' ,'+color_back+');\n';
     return code;
-};
-
-Blockly.Arduino['tft_setFontDirection'] = function(block) {
-  var display = block.getFieldValue('display');
-  
-  var code = 'u8g2.setFontDirection('+display+');\n';
-  return code;
-};
-
-Blockly.Arduino['tft_setFontMode'] = function(block) {
-  var mode = block.getFieldValue('mode');
-  
-  var code = 'u8g2.setFontMode('+mode+');\n';
-  return code;
 };
 
 Blockly.Arduino['tft_setFreeFont'] = function(block) {

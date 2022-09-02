@@ -1750,3 +1750,4 @@ Blockly.Msg["TFT_DRAW_SQUARE"] = "繪製方形";
 Blockly.Msg["TFT_DRAW_CIRCLE"] = "繪製圓";
 Blockly.Msg["TFT_DRAW_TRIANGLE"] = "繪製三角形";
 Blockly.Msg["TFT_DRAW_SQUARE_ROUND"] = "繪製圓角方形";
+Blockly.Msg["TFT_DRAW_OVAL"] = "繪製橢圓";

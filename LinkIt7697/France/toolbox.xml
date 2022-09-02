@@ -8357,10 +8357,6 @@
 		<block type="tft_color">
 			<field name="colour">#0000ff</field>		
 		</block>
-		<block type="tft_setFontMode">		  
-		</block>
-		<block type="tft_setFontDirection">		  
-		</block>
 		<block type="tft_setTextColor">	
 			<value name="color_font">
 			  <block type="tft_color">
@@ -8674,7 +8670,34 @@
 				<field name="colour">#0000ff</field>
 			  </block>
 			</value>				
-		</block>					
+		</block>
+		<block type="tft_drawEllipse">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">100</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">100</field>
+			  </shadow>
+			</value>
+			<value name="rx">
+			  <shadow type="math_number">
+				<field name="NUM">40</field>
+			  </shadow>
+			</value>
+			<value name="ry">
+			  <shadow type="math_number">
+				<field name="NUM">20</field>
+			  </shadow>
+			</value>
+			<value name="color">
+			  <block type="tft_color">
+				<field name="colour">#0000ff</field>
+			  </block>
+			</value>							
+		</block>		
 	</category>
 	
 	<category id="france9" name="buzzer">

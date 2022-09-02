@@ -1,9 +1,39 @@
+Blockly.Blocks['tft_drawEllipse'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT"])
+        .appendField(Blockly.Msg["TFT_DRAW_OVAL"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["TFT_HOLLOW"],"hollow"], 
+		[Blockly.Msg["TFT_SOLID"],"solid"]			
+	]), "type");		
+    this.appendValueInput("x0")
+        .setCheck("Number")
+        .appendField(Blockly.Msg["TFT_CIRCLE_CENTER_X"]);
+    this.appendValueInput("y0")
+        .setCheck("Number")
+        .appendField("y");
+    this.appendValueInput("rx")
+        .setCheck("Number")
+        .appendField(Blockly.Msg["TFT_REDIUS_HORIZONTAL"]);
+    this.appendValueInput("ry")
+        .setCheck("Number")
+        .appendField(Blockly.Msg["TFT_REDIUS_VERTICAL"]);
+	this.appendValueInput("color")
+	    .appendField(Blockly.Msg["COLOR"]);			
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(190);
+  }
+};
+
 Blockly.Blocks['tft_drawStringFont'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg["TFT"]);	  
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT"])
         .appendField(Blockly.Msg["TFT_DRAWSTRING"]);
     this.appendValueInput("x")
         .setCheck("Number")
@@ -14,7 +44,7 @@ Blockly.Blocks['tft_drawStringFont'] = {
     this.appendValueInput("font")
         .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("Number") 
-        .appendField(Blockly.Msg["FONT_FACE_SHOW"]);
+        .appendField("GLCD"+Blockly.Msg["FONT_FACE_SHOW"]);
     this.appendValueInput("str")
         .setCheck(null)
         .appendField(Blockly.Msg["TFT_TEXT"]);		
@@ -769,49 +799,6 @@ Blockly.Blocks['tft_setTextColor'] = {
     this.setColour(Blockly.Msg["HUE_15"]);
   }
 };
-
-Blockly.Blocks['tft_setFontDirection'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["TFT"]);	  
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["TFT_SETFONTDIRECTION"]);	
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg["TFT_LEFT_RIGHT"],"0"], 
-		[Blockly.Msg["TFT_TOP_BOTTOM"],"1"], 
-		[Blockly.Msg["TFT_RIGHT_LEFT"],"2"],
-		[Blockly.Msg["TFT_BOTTOM_TOP"],"3"]
-	]), "display");		
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_15"]);
-  }
-};
-
-Blockly.Blocks['tft_setFontMode'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["TFT"]);	  
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["TFT_SETFONTMODE"]);		
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg["TFT_SETFONTMODE_YANG"],"1"], 
-		[Blockly.Msg["TFT_SETFONTMODE_YIN"],"0"]			
-	]), "mode");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_15"]);
-  }
-};
-
 
 
 // Use the following when calling setFont()
@@ -6611,8 +6598,6 @@ Blockly.Blocks['fu_oled_drawEllipse'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(190);
- 
- 
   }
 };
 

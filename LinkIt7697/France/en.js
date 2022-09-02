@@ -1741,3 +1741,4 @@ Blockly.Msg["TFT_DRAW_SQUARE"] = "draw a frame";
 Blockly.Msg["TFT_DRAW_CIRCLE"] = "draw a circle";
 Blockly.Msg["TFT_DRAW_TRIANGLE"] = "draw a triangle";
 Blockly.Msg["TFT_DRAW_SQUARE_ROUND"] = "draw a box with round edges";
+Blockly.Msg["TFT_DRAW_OVAL"] = "draw an ellipse";
