@@ -7,6 +7,7 @@ Blockly.Blocks['tft_PROGMEM_resize'] = {
         .appendField(new Blockly.FieldVariable("logo"), "variable")
 		.appendField(Blockly.Msg["TFT_SET"]);
 	this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT_RESIZE"])	
         .appendField(Blockly.Msg["TFT_WIDTH"])	
         .appendField(new Blockly.FieldTextInput("40"), "width");
     this.appendDummyInput()
