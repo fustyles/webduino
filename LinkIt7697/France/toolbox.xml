@@ -8619,6 +8619,15 @@
 			  </block>
 			</value>		
 		</block>
+		<block type="tft_PROGMEM_resize">
+			<field name="width">40</field>
+			<field name="height">40</field>
+			<value name="PROGMEM">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>		
+		</block>		
 		<block type="tft_PROGMEM_truetype">
 			<value name="PROGMEM">
 			  <block type="text">
