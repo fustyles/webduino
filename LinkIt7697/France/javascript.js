@@ -4913,7 +4913,7 @@ Blockly.Arduino['fu_ez_digitalwrite_relay'] = function(block) {
   else if (selectBoardType()=="Arduino Pro or Pro Mini")
 	pin = 8;
   else if (selectBoardType()=="esp32s2")
-	pin = 16;
+	pin = 9;
 
   var dropdown_value = block.getFieldValue('value');
 
@@ -4936,7 +4936,7 @@ Blockly.Arduino['fu_ez_digitalwrite_input_relay'] = function(block) {
   else if (selectBoardType()=="Arduino Pro or Pro Mini")
 	pin = 8;
   else if (selectBoardType()=="esp32s2")
-	pin = 16;
+	pin = 9;
 
   var value_value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC); 
 
@@ -5008,7 +5008,7 @@ Blockly.Arduino['fu_ez_analogwrite_input_esp'] = function(block) {
 
 Blockly.Arduino['fu_ez_digitalread'] = function(block) {
   var dropdown_button = block.getFieldValue('button');	
-  var pinButton = [[5,36],[0,7],[5,11],[35,27],[4,5],[21,9]];  
+  var pinButton = [[5,36],[0,7],[5,11],[35,27],[4,5],[5,11]];  
   var pin = pinButton[0][dropdown_button];
   if (selectBoardType()=="esp32")
 	pin = pinButton[0][dropdown_button];
@@ -5031,7 +5031,7 @@ Blockly.Arduino['fu_ez_digitalread'] = function(block) {
 
 Blockly.Arduino['fu_ez_digitalread_button'] = function(block) {
   var dropdown_type = block.getFieldValue('type');	
-  var pinButton = [[5,36],[0,7],[5,11],[35,27],[4,5],[21,9]]; 
+  var pinButton = [[5,36],[0,7],[5,11],[35,27],[4,5],[5,11]]; 
   var pinA = pinButton[0][0];
   var pinB = pinButton[0][1];  
   if (selectBoardType()=="esp32") {
@@ -5086,9 +5086,10 @@ Blockly.Arduino['fu_ez_digitalread_button'] = function(block) {
 };
 
 Blockly.Arduino['fu_ez_digitalread_button_statement'] = function(block) {
-  var statements = Blockly.Arduino.statementToCode(block, 'execute');
-  var dropdown_type = block.getFieldValue('type');	
-  var pinButton = [[5,36],[0,7],[5,11],[35,27],[4,5],[21,9]]; 
+  var statementAB = Blockly.Arduino.statementToCode(block, 'execute');
+  var statementA = Blockly.Arduino.statementToCode(block, 'executeA');
+  var statementB = Blockly.Arduino.statementToCode(block, 'executeB');
+  var pinButton = [[5,36],[0,7],[5,11],[35,27],[4,5],[5,11]]; 
   var pinA = pinButton[0][0];
   var pinB = pinButton[0][1];  
   if (selectBoardType()=="esp32") {
@@ -5116,31 +5117,21 @@ Blockly.Arduino['fu_ez_digitalread_button_statement'] = function(block) {
 	pinB = pinButton[5][1];
   }  
   
-  var condition = "";
-  if (dropdown_type == "A") {
-	Blockly.Arduino.setups_['pinmode_'+ pinA] = 'pinMode('+ pinA +', INPUT_PULLUP);';	  
-	condition = 'digitalRead('+ pinA +')==0' ;
-  }
-  else if (dropdown_type == "B") {
-	Blockly.Arduino.setups_['pinmode_'+ pinB] = 'pinMode('+ pinB +', INPUT_PULLUP);';
-	condition = 'digitalRead('+ pinB +')==0' ;
-  }
-  else if (dropdown_type == "AB") {
-	Blockly.Arduino.setups_['pinmode_'+ pinA] = 'pinMode('+ pinA +', INPUT_PULLUP);';
-    Blockly.Arduino.setups_['pinmode_'+ pinB] = 'pinMode('+ pinB +', INPUT_PULLUP);';
-	Blockly.Arduino.definitions_['digitalRead_AB'] = ''+
-	    'int pressButtonAB() {\n'+
-		'  if ((digitalRead('+ pinA +')==0) || (digitalRead('+ pinB +')==0)) {\n' +
-		'    delay(200);\n'+
-		'    return (digitalRead('+ pinA +')==0) && (digitalRead('+ pinB +')==0);\n'+
-		'  }\n'+			
-		'  else \n'+		
-		'    return 0;\n'+
-		'}';
-	condition = 'pressButtonAB()';
-  }
+  Blockly.Arduino.setups_['pinmode_'+ pinA] = 'pinMode('+ pinA +', INPUT_PULLUP);';
+  Blockly.Arduino.setups_['pinmode_'+ pinB] = 'pinMode('+ pinB +', INPUT_PULLUP);';
   
-  var code = 'if ('+condition+') {\n'+statements+'}\n';
+  var code = 'if ((digitalRead('+pinA+')==0) || (digitalRead('+pinB+')==0)) {\n'+
+             '  delay(50);\n'+
+             '  if ((digitalRead('+pinA+')==0) && (digitalRead('+pinB+')==0)) {\n'+
+             '    ledcWrite(5, 0);\n'+
+             '    ledcWrite(6, 0);\n'+
+             '  } else if (digitalRead('+pinA+')==0) {\n'+
+             '    ledcWrite(5, 255);\n'+
+             '  } else if (digitalRead('+pinB+')==0) {\n'+
+             '    ledcWrite(6, 255);\n'+
+             '  }\n'+
+             '}\n';
+			 
   return code;
 };
 
@@ -5178,7 +5169,7 @@ Blockly.Arduino['fu_ez_analogread_photoresistor'] = function(block) {
   else if (selectBoardType()=="Arduino Pro or Pro Mini")
 	pin = 14; 
   else if (selectBoardType()=="esp32s2")
-	pin = 17; 
+	pin = 2; 
 
   Blockly.Arduino.setups_['pinmode_'+ pin] = 'pinMode('+ pin +', INPUT);';
   
@@ -5202,7 +5193,7 @@ Blockly.Arduino['fu_ez_buzzer_tone'] = function(block) {
 	  else if (selectBoardType()=="Arduino Pro or Pro Mini")
 		pin = 3;	
 	  else if (selectBoardType()=="esp32s2")
-		pin = 6;
+		pin = 17;
 	
 	  var value_frequency = Blockly.Arduino.valueToCode(block, 'frequency', Blockly.Arduino.ORDER_ATOMIC);
 	 
@@ -5228,7 +5219,7 @@ Blockly.Arduino['fu_ez_buzzer_tone_duration'] = function(block) {
 	  else if (selectBoardType()=="Arduino Pro or Pro Mini")
 		pin = 3;	
 	  else if (selectBoardType()=="esp32s2")
-		pin = 6;
+		pin = 17;
 	
 	  var value_frequency = Blockly.Arduino.valueToCode(block, 'frequency', Blockly.Arduino.ORDER_ATOMIC);
 	  var value_duration = Blockly.Arduino.valueToCode(block, 'duration', Blockly.Arduino.ORDER_ATOMIC);
@@ -5255,7 +5246,7 @@ Blockly.Arduino['fu_ez_buzzer_tone_duration_array'] = function(block) {
 	  else if (selectBoardType()=="Arduino Pro or Pro Mini")
 		pin = 3;	
 	  else if (selectBoardType()=="esp32s2")
-		pin = 6;
+		pin = 17;
 	
 	  var value_frequency = Blockly.Arduino.valueToCode(block, 'frequency', Blockly.Arduino.ORDER_ATOMIC);
 	  var value_duration = Blockly.Arduino.valueToCode(block, 'duration', Blockly.Arduino.ORDER_ATOMIC); 
@@ -5316,7 +5307,7 @@ Blockly.Arduino['fu_ez_buzzer_tone_duration_esp'] = function(block) {
 	  else if (selectBoardType()=="Arduino Pro or Pro Mini")
 		pin = 3;	
 	  else if (selectBoardType()=="esp32s2")
-		pin = 6;
+		pin = 17;
 	
 	  var value_frequency = Blockly.Arduino.valueToCode(block, 'frequency', Blockly.Arduino.ORDER_ATOMIC);
 	  var value_duration = Blockly.Arduino.valueToCode(block, 'duration', Blockly.Arduino.ORDER_ATOMIC);
@@ -5351,7 +5342,7 @@ Blockly.Arduino['fu_ez_buzzer_tone_duration_esp_array'] = function(block) {
 	  else if (selectBoardType()=="Arduino Pro or Pro Mini")
 		pin = 3;	
 	  else if (selectBoardType()=="esp32s2")
-		pin = 6;
+		pin = 17;
 	
 	  var value_frequency = Blockly.Arduino.valueToCode(block, 'frequency', Blockly.Arduino.ORDER_ATOMIC);
 	  var value_duration = Blockly.Arduino.valueToCode(block, 'duration', Blockly.Arduino.ORDER_ATOMIC);
@@ -5415,7 +5406,7 @@ Blockly.Arduino['fu_ez_buzzer_notone'] = function(block) {
 	  else if (selectBoardType()=="Arduino Pro or Pro Mini")
 		pin = 3;	
 	  else if (selectBoardType()=="esp32s2")
-		pin = 6;	
+		pin = 17;	
 	
 	  Blockly.Arduino.setups_['pinmode_'+ pin] = 'pinMode('+ pin +', OUTPUT);';
 	  
@@ -5485,7 +5476,7 @@ Blockly.Arduino['fu_ez_pixel_rgb'] = function(block) {
   else if (selectBoardType()=="Arduino Pro or Pro Mini")
 	pin = 9;
   else if (selectBoardType()=="esp32s2")
-	pin = 15;
+	pin = 21;
 
   var dropdown_no = block.getFieldValue('no');
   var value_r = Blockly.Arduino.valueToCode(block, 'R', Blockly.Arduino.ORDER_ATOMIC);
@@ -5516,7 +5507,7 @@ Blockly.Arduino['fu_ez_pixel_clear'] = function(block) {
   else if (selectBoardType()=="Arduino Pro or Pro Mini")
 	pin = 9;
   else if (selectBoardType()=="esp32s2")
-	pin = 15;
+	pin = 21;
 
   Blockly.Arduino.definitions_['pixel_'+ pin] = '#include <Adafruit_NeoPixel.h>\n'+
 												'Adafruit_NeoPixel pixels(3, '+ pin +', NEO_GRB + NEO_KHZ800);';
@@ -5562,7 +5553,7 @@ Blockly.Arduino['fu_ez_pixel_picker'] = function(block) {
   else if (selectBoardType()=="Arduino Pro or Pro Mini")
 	pin = 9;
   else if (selectBoardType()=="esp32s2")
-	pin = 15;
+	pin = 21;
 
   var dropdown_no = block.getFieldValue('no');
   var value_colour = Blockly.Arduino.valueToCode(this,"colour",Blockly.Arduino.ORDER_ATOMIC).replace(/"/g,'');
@@ -5599,7 +5590,7 @@ Blockly.Arduino['fu_ez_pixel_brightness'] = function(block){
 	else if (selectBoardType()=="Arduino Pro or Pro Mini")
 		pin = 9;	
 	else if (selectBoardType()=="esp32s2")
-		pin = 15;
+		pin = 21;
 
 	Blockly.Arduino.definitions_['pixel_'+ pin] = '#include <Adafruit_NeoPixel.h>\n'+
 												'Adafruit_NeoPixel pixels(3, '+ pin +', NEO_GRB + NEO_KHZ800);';
@@ -5624,8 +5615,8 @@ Blockly.Arduino['fu_ez_pixel_color'] = function(block) {
 		pin = 2; 
 	else if (selectBoardType()=="Arduino Pro or Pro Mini")
 		pin = 9;	
-  else if (selectBoardType()=="esp32s2")
-	pin = 15;
+	else if (selectBoardType()=="esp32s2")
+		pin = 21;
 
 	Blockly.Arduino.definitions_['pixel_'+ pin] = '#include <Adafruit_NeoPixel.h>\n'+
 												'Adafruit_NeoPixel pixels(3, '+ pin +', NEO_GRB + NEO_KHZ800);';
@@ -5677,7 +5668,7 @@ Blockly.Arduino['fu_ez_pixel_color_n'] = function(block) {
 	else if (selectBoardType()=="Arduino Pro or Pro Mini")
 		pin = 9;	
 	else if (selectBoardType()=="esp32s2")
-		pin = 15;
+		pin = 21;
 
 	Blockly.Arduino.definitions_['pixel_'+ pin] = '#include <Adafruit_NeoPixel.h>\n'+
 												'Adafruit_NeoPixel pixels(3, '+ pin +', NEO_GRB + NEO_KHZ800);';

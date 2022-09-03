@@ -1769,15 +1769,7 @@ Blockly.Blocks['tft_initial'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg["TFT"]);	
     this.appendDummyInput()
-        .appendField(Blockly.Msg["TFT_INITIAL"]);
-    this.appendDummyInput()	 
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["TFT_BOARD"])
-		.appendField(new Blockly.FieldDropdown([
-			["　","　"],
-			["Pixel:Bit","Pixel:Bit"],
-			["TTGO T-Display","TTGO T-Display"]			
-		]), "board");		
+        .appendField(Blockly.Msg["TFT_INITIAL"]);		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -5140,13 +5132,15 @@ Blockly.Blocks['fu_ez_digitalread_button'] = {
 
 Blockly.Blocks['fu_ez_digitalread_button_statement'] = {
   init: function() {
-    this.appendDummyInput()	  
-        .setAlign(Blockly.ALIGN_RIGHT)
+    this.appendDummyInput()
         .appendField("EZ+")
-		.appendField(Blockly.Msg["EZ_BUTTON"])
-		.appendField(Blockly.Msg["EZ_PRESS"])
-        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_BUTTONA"],"A"],[Blockly.Msg["EZ_BUTTONB"],"B"],[Blockly.Msg["EZ_BUTTONAB"],"AB"]]), "type");	  
-    this.appendStatementInput("execute");
+		.appendField(Blockly.Msg["EZ_BUTTON"]);	  
+    this.appendStatementInput("execute")
+		.appendField(Blockly.Msg["EZ_PRESS"]+Blockly.Msg["EZ_BUTTONAB"]);
+	this.appendStatementInput("executeA")
+		.appendField(Blockly.Msg["EZ_PRESS"]+Blockly.Msg["EZ_BUTTONA"]);
+	this.appendStatementInput("executeB")
+		.appendField(Blockly.Msg["EZ_PRESS"]+Blockly.Msg["EZ_BUTTONB"]);
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
