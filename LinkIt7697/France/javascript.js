@@ -258,7 +258,7 @@ Blockly.Arduino['tft_drawStringFont'] = function(block) {
 
 Blockly.Arduino['tft_drawCustomFont'] = function(block) {
 	var value_font = Blockly.Arduino.valueToCode(block, 'font', Blockly.Arduino.ORDER_ATOMIC);
-	var value_size = Blockly.Arduino.valueToCode(block, 'size', Blockly.Arduino.ORDER_ATOMIC);
+	var value_size = block.getFieldValue('size');	
 	var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
 	var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
 	var value_str = block.getFieldValue('str');	

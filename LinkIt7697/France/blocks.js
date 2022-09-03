@@ -908,10 +908,9 @@ Blockly.Blocks['tft_drawCustomFont'] = {
         .setAlign(Blockly.ALIGN_RIGHT) 
 		.appendField(Blockly.Msg["FONTNAME"])
         .setCheck("String");
-    this.appendValueInput("size")
-        .setAlign(Blockly.ALIGN_RIGHT)  	
-        .setCheck("Number") 
-        .appendField(Blockly.Msg["TFT_SIZE"]+"px");
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT_SIZE"])
+		.appendField(new Blockly.FieldTextInput("40"), "width");
     this.appendValueInput("x")
         .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("Number")
