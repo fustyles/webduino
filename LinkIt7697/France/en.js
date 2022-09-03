@@ -1770,3 +1770,4 @@ Blockly.Msg["TFT_CURSORY"] = "cursor y";
 Blockly.Msg["TFT_FONT_TTF"] = "TTF font";
 Blockly.Msg["OLED_FONT_MODE"] = "background transparent";
 Blockly.Msg["TFT_RESIZE"] = "Resize";
+Blockly.Msg["TFT_BOARD"] = "Board";

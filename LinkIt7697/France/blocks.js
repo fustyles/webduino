@@ -1767,8 +1767,17 @@ Blockly.Blocks['tft_clear'] = {
 Blockly.Blocks['tft_initial'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg["TFT"])
-        .appendField(Blockly.Msg["TFT_INITIAL"]);		
+        .appendField(Blockly.Msg["TFT"]);	
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT_INITIAL"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["TFT_BOARD"])
+		.appendField(new Blockly.FieldDropdown([
+			["　","　"],
+			["Pixel:Bit","Pixel:Bit"],
+			["TTGO T-Display","TTGO T-Display"]			
+		]), "board");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
