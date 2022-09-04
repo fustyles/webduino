@@ -8531,40 +8531,22 @@
 		<block type="tft_drawFont">
 			<field name="font">Arial</field>
 			<field name="size">24</field>
-			<field name="str">hello</field>	
-			<value name="x">
-			  <shadow type="math_number">
-				<field name="NUM">0</field>
-			  </shadow>
-			</value>
-			<value name="y">
-			  <shadow type="math_number">
-				<field name="NUM">0</field>
-			  </shadow>
-			</value>
-			<value name="color">
-			  <block type="tft_color">
-				<field name="colour">#0000ff</field>
+			<field name="str">hello</field>
+			<value name="PROGMEM">
+			  <block type="text">
+				<field name="TEXT"></field>
 			  </block>
-			</value>
+			</value>			
 		</block>
 		<block type="tft_drawCustomFont">
+			<field name="font">Arial</field>
+			<field name="size">24</field>		
 			<field name="str">hello</field>
-			<value name="x">
-			  <shadow type="math_number">
-				<field name="NUM">0</field>
-			  </shadow>
-			</value>
-			<value name="y">
-			  <shadow type="math_number">
-				<field name="NUM">0</field>
-			  </shadow>
-			</value>
-			<value name="color">
-			  <block type="tft_color">
-				<field name="colour">#0000ff</field>
+			<value name="PROGMEM">
+			  <block type="text">
+				<field name="TEXT"></field>
 			  </block>
-			</value>
+			</value>			
 		</block>
 		<block type="tft_drawXBMP">	
 			<value name="PROGMEM">
