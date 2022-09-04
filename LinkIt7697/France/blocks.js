@@ -114,7 +114,13 @@ Blockly.Blocks['tft_drawXBMP'] = {
         .appendField(Blockly.Msg["TFT"]);
 	this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("logo"), "variable")
-		.appendField(Blockly.Msg["TFT_SET"]);			
+		.appendField(Blockly.Msg["TFT_SET"]);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT_WIDTH"])
+		.appendField(new Blockly.FieldTextInput('0'), "width");
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT_HEIGHT"])
+		.appendField(new Blockly.FieldTextInput('0'), "height");		
     this.appendValueInput("PROGMEM")
         .setCheck("String")
         .appendField(Blockly.Msg["TFT_XBM"]);	
@@ -200,9 +206,6 @@ Blockly.Blocks['tft_PROGMEM'] = {
 		    }
 		}
     };
-    this.appendValueInput("PROGMEM")
-        .setCheck("String")
-        .appendField(Blockly.Msg["TFT_XBM"]);
 		
 	var field = new Blockly.FieldImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAADyUlEQVRIieXVS0xcVRzH8e85l3nAUBCsaZHUqrDQAsWZdGekj8RXVzR10qUwJERXLtTEREPARle6Nl3AMEljGmnorlZjBNpoWzVAQoFKIRFqB9raymNGZu7ce/8uhiG8hOFRY+JvdW/yP+dz/+feew7836KyKQoGg7k+n++w1vopx3GKtNZ/ish4LBa73NHRMb/jcENDQ7lt281KqRNA3holfwGdjuM0RyKRsR2BQ6HQ+yLyCeDClYvaW4EqfBI8+ZCMITNRZOoGpBIAJvBhOBz+bFtwfX39GaCRHA/6wHEoq0EZ7lV1YpvIaDcyfAmsJMCZcDj8VjawsVanwAfkFaFr3kGVVqN0ukwr8OQoHAEBlDZQu8vQJZXI5ABYiUOBQCDW19d3dVMdh0KhZ0VkmByPWx99L720wO5cRcUTBnvyFEql0btxYfC+zR/zkh48cwe763OwkqbWuqK1tXV0PVgvvXEc52PArQ8cX0TLizTH9ueQsISe2xYXx1L0TFgkLOHY/hzKixamKCxFP/8agFtEmjbqeBEOBoO5SqlaXLlQVrNYUJqvuBa1uR61uRsX5sx0t9ejNteiNvsKljx7+RFweRGRk42NjWv9Bavh/Pz8GsCnSiqXfUg9t20mZp01B0/MOnSNW4v3ynCj91YC5Jmm+WJWMPA0AAtLvNVIQUl6Yq2fyRYuBlBu37Zg5d2VfgCRx7OClVIPAEjGtgWTnMtc3c8KFpFxAJmJbsvNjM/MtyEci8UuA3GZuoHY5tZU20SmhgBiwJWs4IVT5gKpBDLavSVXbn0PqXmAzvb29kRWMIBhGE1AUoYvwcydzaHTv+Pc/BbAXNiI1s2yvbq3t3fa7/cncOxXZHIAvec58BZkhcoPX4AZR0TaI5FIZFMwQH9//49+v78EK3FIJn5CKQVF+xYPimWxTWTkO5xfzmZQWylV5ff7B/r7+39dD17vPH5XRD4F3Li86R2psAQ8uyA5t3AeD2XeqQmEgTcBbyJlpaYTqdNfnz93OuuOM+nr67saCAS+VEoVY1vlMht1y70RZHIAuTcCs5PgWHHgnGEYb7S1tZ0NBAI/z5vWqYmHc+75ZOrowepqbg0p9myq46Wpq6vzAi+R3laLgYfAb8CVlV/vyyeCLXPzZpNIevJin6f5YudXLVuCN5tXTwRbZjbA/3Gpt5Oxm0PdFZVVRtJ2DguQSNlHVi77I4EX8K6KqoOupGXXZPCqF6qjo8ODvbBiA9npfHOh46PCPE+TUgqvy3igE/Hzj9JblddPnnq7trb2sX8V/c/lbwo9q8gJVNowAAAAAElFTkSuQmCC", 30, 30, { alt: "*", flipRtl: "FALSE" });
 	field.setOnClickHandler(imageToXbm);
@@ -210,7 +213,9 @@ Blockly.Blocks['tft_PROGMEM'] = {
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldLabelSerializable(Blockly.Msg["TFT_WHITEBACK_BLACKWORD"]), "size")
 		.appendField(field);
-		
+    this.appendValueInput("PROGMEM")
+        .setCheck("String")
+        .appendField(Blockly.Msg["TFT_XBM"]);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -410,7 +415,7 @@ Blockly.Blocks['tft_qrcode_PROGMEM'] = {
     this.setNextStatement(true, null);
     this.setColour(Blockly.Msg["HUE_12"]);
 	this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
-    //this.getInput('PROGMEM').setVisible(false);
+    this.getInput('PROGMEM').setVisible(false);
   },
 	onFinishEditing: function(val) {
 		var block = this.sourceBlock_;
@@ -502,6 +507,26 @@ Blockly.Blocks['tft_drawXBMP_PROGMEM'] = {
   }
 };
 
+Blockly.Blocks['tft_PROGMEM_array'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["TFT"]);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT_ARRAY"])	
+        .appendField(new Blockly.FieldVariable("logo"), "variable")
+		.appendField(Blockly.Msg["TFT_SET"]);		
+    this.appendValueInput("PROGMEM")
+        .setCheck("Array")
+        .appendField(Blockly.Msg["TFT_XBM"]);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_12"]);
+	this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
+  }
+};
+
 Blockly.Blocks['tft_drawXBMP_PROGMEM_array'] = {
   init: function() {
     this.appendDummyInput()
@@ -524,81 +549,6 @@ Blockly.Blocks['tft_drawXBMP_PROGMEM_array'] = {
         .setCheck("Number")
         .appendField("x");
     this.appendValueInput("y")
-        .setCheck("Number")
-        .appendField("y");
-	this.appendValueInput("color")
-	    .appendField(Blockly.Msg["COLOR"]);		
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_12"]);
-  }
-};
-
-Blockly.Blocks['tft_drawPixelMap'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["TFT"])
-        .appendField(Blockly.Msg["TFT_DRAW_PIXEL_IMAGE"]);
-		
-	var block = this;
-    var validator_width = function(newValue) {
-	    var width = Number(newValue);
-		var height = Number(block.getFieldValue("height"));
-	  	var field;
-		var input;
-		for (var i=0;i<(64*64);i++) {
-			if (block.getField("chk"+i)) {
-				block.getField("chk"+i).dispose();
-			}
-			if (block.getInput("input"+i)) {
-				block.removeInput("input"+i);
-			}			
-		}
-		for (var j=0;j<(width*height);j++) {
-			if (j%width==0) 
-				input = block.appendDummyInput("input"+j);
-			field = new Blockly.FieldCheckbox("FALSE");
-			input.appendField(field, "chk"+j);
-		}
-    };
-    var validator_height = function(newValue) {
-	    var width = Number(block.getFieldValue("width"));
-		var height = Number(newValue);
-	  	var field;
-		var input;
-		for (var i=0;i<(64*64);i++) {
-			if (block.getField("chk"+i)) {
-				block.getField("chk"+i).dispose();
-			}
-			if (block.getInput("input"+i)) {
-				block.removeInput("input"+i);
-			}			
-		}
-		for (var j=0;j<(width*height);j++) {
-			if (j%width==0) 
-				input = block.appendDummyInput("input"+j);
-			field = new Blockly.FieldCheckbox("FALSE");
-			input.appendField(field, "chk"+j);
-		}
-    };	
-	
-	var opt = [];
-	for (var k=8;k<=128;k+=8) {
-		opt.push([k.toString(),k.toString()]);
-	}
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)	
-        .appendField(Blockly.Msg["TFT_WIDTH"])
-        .appendField(new Blockly.FieldDropdown(opt, validator_width), "width")
-        .appendField(Blockly.Msg["TFT_HEIGHT"])
-        .appendField(new Blockly.FieldDropdown(opt, validator_height), "height");
-    this.appendValueInput("x")
-        .setAlign(Blockly.ALIGN_RIGHT)		
-        .setCheck("Number")
-        .appendField("x");
-    this.appendValueInput("y")
-        .setAlign(Blockly.ALIGN_RIGHT)		
         .setCheck("Number")
         .appendField("y");
 	this.appendValueInput("color")
@@ -917,17 +867,17 @@ Blockly.Blocks['tft_drawCustomFont'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["TFT"])
-        .appendField(Blockly.Msg["TFT_DRAW_LOCAL_TTF"]);
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["TFT_TEXT"])
-		.appendField(new Blockly.FieldTextInput(""), "str");			
+        .appendField(Blockly.Msg["TFT_DRAW_LOCAL_TTF"]);		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT) 
 		.appendField(Blockly.Msg["FONTNAME"])
-		.appendField(new Blockly.FieldTextInput("Arial"), "font");
+		.appendField(new Blockly.FieldTextInput("Arial", this.validate), "font");
     this.appendDummyInput()
         .appendField(Blockly.Msg["TFT_SIZE"])
-		.appendField(new Blockly.FieldTextInput("40"), "width");
+		.appendField(new Blockly.FieldTextInput("40", this.validate), "width");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["TFT_TEXT"])
+		.appendField(new Blockly.FieldTextInput(""), "str");			
     this.appendValueInput("x")
         .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("Number")
@@ -943,7 +893,13 @@ Blockly.Blocks['tft_drawCustomFont'] = {
     this.setNextStatement(true, null);
     this.setColour(Blockly.Msg["HUE_12"]);
 	this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
-  } 
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (block.getField("str")) {
+			block.getField("str").setValue("");
+		}			
+	} 
 };
 
 Blockly.Blocks['tft_drawFont'] = {
@@ -951,11 +907,8 @@ Blockly.Blocks['tft_drawFont'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg["TFT"])
-        .appendField(Blockly.Msg["TFT_DRAW_LOCAL_TTF"]);
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["TFT_TEXT"])
-		.appendField(new Blockly.FieldTextInput(""), "str");		
-  this.appendDummyInput()  
+        .appendField(Blockly.Msg["TFT_DRAW_LOCAL_TTF"]);	
+    this.appendDummyInput()  
       .setAlign(Blockly.ALIGN_RIGHT)  
       .appendField(Blockly.Msg["FONTNAME"])
       .appendField(new Blockly.FieldDropdown([
@@ -1292,7 +1245,7 @@ Blockly.Blocks['tft_drawFont'] = {
 		["Westminster","Westminster"],
 		["Wide Latin","Wide Latin"],
 		["Wingdings","Wingdings"]
-	  ]), "font");
+	  ], this.validate), "font");
 	  
 	var opt = [];
 	for (var i=8;i<=240;i++) {
@@ -1302,7 +1255,10 @@ Blockly.Blocks['tft_drawFont'] = {
 	this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)    
       .appendField(Blockly.Msg["TFT_SIZE"])
-      .appendField(new Blockly.FieldDropdown(opt), "size"); 
+      .appendField(new Blockly.FieldDropdown(opt, this.validate), "size");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["TFT_TEXT"])
+		.appendField(new Blockly.FieldTextInput(""), "str");		  
     this.appendValueInput("x")
         .setAlign(Blockly.ALIGN_RIGHT)  	
         .setCheck("Number")
@@ -1318,7 +1274,13 @@ Blockly.Blocks['tft_drawFont'] = {
     this.setNextStatement(true, null);
     this.setColour(Blockly.Msg["HUE_12"]);
 	this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
-  }
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (block.getField("str")) {
+			block.getField("str").setValue("");
+		}			
+	}
 };
 
 Blockly.Blocks['tft_drawLine'] = {

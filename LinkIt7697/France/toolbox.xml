@@ -8565,7 +8565,7 @@
 			  </block>
 			</value>
 		</block>
-		<block type="tft_drawXBMP">
+		<block type="tft_drawXBMP">	
 			<value name="PROGMEM">
 			  <block type="text">
 				<field name="TEXT"></field>
@@ -8629,6 +8629,23 @@
 			  </block>
 			</value>		
 		</block>
+		<block type="tft_PROGMEM_array">
+			<value name="PROGMEM">
+			  <block type="lists_create_with" inline="false">
+				<mutation items="2"></mutation>
+				<value name="ADD0">
+				  <block type="text" disabled="true">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="ADD1">
+				  <block type="text" disabled="true">
+					<field name="TEXT"></field>
+				  </block>
+				</value>		
+			  </block>
+			</value>		
+		</block>			
 		<block type="tft_drawXBMP_PROGMEM_array">
 			<value name="index">
 			  <shadow type="math_number">
@@ -8645,23 +8662,6 @@
 				<field name="NUM">16</field>
 			  </shadow>
 			</value>
-			<value name="x">
-			  <shadow type="math_number">
-				<field name="NUM">0</field>
-			  </shadow>
-			</value>
-			<value name="y">
-			  <shadow type="math_number">
-				<field name="NUM">0</field>
-			  </shadow>
-			</value>
-			<value name="color">
-			  <block type="tft_color">
-				<field name="colour">#0000ff</field>
-			  </block>
-			</value>		
-		</block>
-		<block type="tft_drawPixelMap">
 			<value name="x">
 			  <shadow type="math_number">
 				<field name="NUM">0</field>
