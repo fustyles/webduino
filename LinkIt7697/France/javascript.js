@@ -675,7 +675,7 @@ Blockly.Arduino['tft_initial'] = function(block) {
 	
 	Blockly.Arduino.setups_.tftsetup +=  'tft.setTextFont(1);\n'+
 										 'tft.setTextSize(1);\n'+
-										 'tft.setTextColor((tft.color565(255, 255, 255)) ,(tft.color565(0, 0, 0)) ,0);\n'+
+										 'tft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n'+
 										 'u8g2.begin(tft);\n'+	
 										 'u8g2.setForegroundColor(TFT_WHITE);\n';
 	
@@ -724,7 +724,7 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 									  'tft.setRotation(3);\n'+
 									  'tft.setTextFont(1);\n'+
 									  'tft.setTextSize(1);\n'+
-									  'tft.setTextColor((tft.color565(255, 255, 255)) ,(tft.color565(0, 0, 0)) ,0);\n'+
+									  'tft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n'+
 									  'u8g2.begin(tft);\n'+	
 									  'u8g2.setForegroundColor(TFT_WHITE);\n';
 										  
@@ -789,7 +789,7 @@ Blockly.Arduino['esp32_pixelbit_initial'] = function(block) {
 									  'tft.setRotation(3);\n'+
 									  'tft.setTextFont(1);\n'+
 									  'tft.setTextSize(1);\n'+
-									  'tft.setTextColor((tft.color565(255, 255, 255)) ,(tft.color565(0, 0, 0)) ,0);\n'+
+									  'tft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n'+
 									  'u8g2.begin(tft);\n'+	
 									  'u8g2.setForegroundColor(TFT_WHITE);\n';
 
@@ -5122,13 +5122,9 @@ Blockly.Arduino['fu_ez_digitalread_button_statement'] = function(block) {
   
   var code = 'if ((digitalRead('+pinA+')==0) || (digitalRead('+pinB+')==0)) {\n'+
              '  delay(50);\n'+
-             '  if ((digitalRead('+pinA+')==0) && (digitalRead('+pinB+')==0)) {\n'+
-             '    ledcWrite(5, 0);\n'+
-             '    ledcWrite(6, 0);\n'+
-             '  } else if (digitalRead('+pinA+')==0) {\n'+
-             '    ledcWrite(5, 255);\n'+
-             '  } else if (digitalRead('+pinB+')==0) {\n'+
-             '    ledcWrite(6, 255);\n'+
+             '  if ((digitalRead('+pinA+')==0) && (digitalRead('+pinB+')==0)) {\n  '+statementAB+
+             '  } else if (digitalRead('+pinA+')==0) {\n  '+statementA+
+             '  } else if (digitalRead('+pinB+')==0) {\n  '+statementB+
              '  }\n'+
              '}\n';
 			 
@@ -5426,6 +5422,11 @@ Blockly.Arduino['fu_ez_buzzer_tone2'] = function(){
 };
 
 Blockly.Arduino['fu_ez_buzzer_tone3'] = function(){											
+	var frequency=this.getFieldValue("frequency");
+	return[frequency, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['fu_ez_buzzer_tone4'] = function(){											
 	var frequency=this.getFieldValue("frequency");
 	return[frequency, Blockly.Arduino.ORDER_ATOMIC];
 };

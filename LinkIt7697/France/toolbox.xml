@@ -1827,7 +1827,9 @@
 				  </block>
 				</statement>
 			  </block>
-			  <block type="server_getrequest" id="99">				
+			  <block type="server_getrequest" id="99">
+			  <block type="esp32_pixelbit_tftshowcamera" id="99">				
+			  </block>				  
 			  </block>
 				<block type="esp32_cam_camera_property">
 					<value name="value">
@@ -1835,11 +1837,7 @@
 						<field name="NUM">0</field>
 					  </block>
 					</value>
-				</block>
-			  <block type="esp32_pixelbit_initial" id="99">				
-			  </block>
-			  <block type="esp32_pixelbit_tftshowcamera" id="99">				
-			  </block>				
+				</block>			
 			  <block type="esp32_cam_linenotify" id="99">
 				<value name="linetoken">
 				  <block type="text">
@@ -7610,7 +7608,6 @@
       <field name="type">0</field>
     </block>
     <block type="fu_ez_digitalread_button_statement">
-      <field name="type">0</field>
     </block>	
     <block type="fu_ez_analogread_potentiometer"></block>
     <block type="fu_ez_analogread_photoresistor"></block>
@@ -7666,9 +7663,7 @@
 		</value>		
 	</block>	
     <block type="fu_ez_buzzer_notone"></block>
-	<block type="fu_ez_buzzer_tone1"></block>	
-	<block type="fu_ez_buzzer_tone2"></block>	
-	<block type="fu_ez_buzzer_tone3"></block>
+	<block type="fu_ez_buzzer_tone4"></block>	
     <block type="fu_ez_buzzer_tone_duration_esp">
       <value name="frequency">
         <shadow type="math_number">
