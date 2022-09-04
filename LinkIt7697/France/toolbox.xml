@@ -74,6 +74,20 @@
 				</shadow>
 			</value>
 		</block>
+		<block type="fu_serial_print">
+			<value name="data">
+				<shadow type="text">
+					<field name="TEXT"></field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_println">
+			<value name="data">
+				<shadow type="text">
+					<field name="TEXT"></field>
+				</shadow>
+			</value>
+		</block>		
 		<block type="fu_serial_begin_config">
 			<field name="config">SERIAL_8N1</field>
 			<value name="baudrate">
@@ -101,25 +115,12 @@
 	  </block>		
 		<block type="fu_serial_ready"></block>
 		<block type="fu_serial_end"></block>
-		<block type="fu_serial_print">
-			<value name="data">
-				<shadow type="text">
-					<field name="TEXT"></field>
-				</shadow>
-			</value>
-		</block>
+
 		<block type="fu_serial_print_format">
 			<field name="format">BIN</field>
 			<value name="data">
 				<shadow type="math_number">
 					<field name="NUM">0</field>
-				</shadow>
-			</value>
-		</block>
-		<block type="fu_serial_println">
-			<value name="data">
-				<shadow type="text">
-					<field name="TEXT"></field>
 				</shadow>
 			</value>
 		</block>
