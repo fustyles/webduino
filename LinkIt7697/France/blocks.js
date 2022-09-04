@@ -7275,9 +7275,6 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
 Blockly.Blocks['fu_oled_PROGMEM_array'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("U8g2");
-    this.appendDummyInput()
         .appendField(Blockly.Msg["OLED_ARRAY"])	
         .appendField(new Blockly.FieldVariable("logo"), "variable")
 		.appendField(Blockly.Msg["OLED_SET"]);		
@@ -7287,7 +7284,7 @@ Blockly.Blocks['fu_oled_PROGMEM_array'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(220);
+    this.setColour(Blockly.Msg["HUE_12"]);
  
  this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
   }
