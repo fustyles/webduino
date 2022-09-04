@@ -3,8 +3,7 @@ Blockly.Blocks['tft_PROGMEM_resize'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("logo"), "variable")
 		.appendField(Blockly.Msg["TFT_SET"])
-		.appendField(Blockly.Msg["TFT_XBM"])
-		.appendField(new Blockly.FieldLabelSerializable(""), "size");
+		.appendField(Blockly.Msg["TFT_XBM"]);
     this.appendValueInput("PROGMEM")
         .setCheck("String");	
 	this.appendDummyInput()
@@ -14,10 +13,19 @@ Blockly.Blocks['tft_PROGMEM_resize'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg["TFT_HEIGHT"])	
         .appendField(new Blockly.FieldTextInput("40",this.validate), "height");
+    this.appendDummyInput()
+		.appendField(new Blockly.FieldLabelSerializable(""), "base64image");
+	this.getField("base64image").setVisible(false);
+	this.getField("base64image").setValidator(this.previewChanged)
+	
+	this.appendDummyInput("preview")
+		.appendField(new Blockly.FieldLabelSerializable(""), "realsize");
+	
 	var imageToXbm = function() {
 		var block = this.sourceBlock_;
         var input = block.getInputTargetBlock("PROGMEM");
 		input.setFieldValue('', 'TEXT');
+		block.setFieldValue('', "realsize");
 		var width_resize = block.getFieldValue("width");
 		var height_resize = block.getFieldValue("height");
 	    if (input) {
@@ -29,7 +37,7 @@ Blockly.Blocks['tft_PROGMEM_resize'] = {
 					canvas.width=width_resize;
 					canvas.height=height_resize; 
 					canvas.width = (canvas.width%8>0)?Math.round(canvas.width-canvas.width%8+8):Math.round(canvas.width);
-					block.getField("size").setValue("( "+canvas.width + " * " + canvas.height + " ) ", "size");
+					block.getField("realsize").setValue("( "+canvas.width + " * " + canvas.height + " ) ");
 					
 					context.fillStyle="#FFFFFF";
 					context.fillRect(0, 0, canvas.width, canvas.height);
@@ -57,10 +65,21 @@ Blockly.Blocks['tft_PROGMEM_resize'] = {
 						}
 					}
 					
+					
+					
+					canvas.width = (img.width>img.height)?30:(30*img.width/img.height);
+					canvas.height = (img.width>img.height)?(30*img.height/img.width):30;
+					context.fillStyle = "#FFFFFF";
+					context.fillRect(0, 0, canvas.width, canvas.height);
+					context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
+					var dataURL = canvas.toDataURL();
+					block.getField("base64image").setValue(dataURL);
+					
+					
+
 					document.body.appendChild(canvas);
 					canvas.parentNode.removeChild(canvas);
 					input.setFieldValue(xbmString, 'TEXT');
-					file.parentNode.removeChild(file);
 				}
 				
 				var file=document.createElement('input');
@@ -89,7 +108,7 @@ Blockly.Blocks['tft_PROGMEM_resize'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["TFT_WHITEBACK_BLACKWORD"])
 		.appendField(field);
-
+		
 	this.getInput('PROGMEM').setVisible(false);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -101,10 +120,21 @@ Blockly.Blocks['tft_PROGMEM_resize'] = {
 		const block = this.sourceBlock_;
 		if (block.getInputTargetBlock("PROGMEM"))
 			block.getInputTargetBlock("PROGMEM").setFieldValue('', 'TEXT');
-		if (block.getField("size"))
-			block.getField("size").setValue("");
-		if (block.getField("str"))
-			block.getField("str").setValue("");
+		if (block.getField("realsize"))
+		 	block.getField("realsize").setValue("");		
+		if (block.getField("tmp"))
+			block.getInput("preview").removeField("tmp");	
+		if (block.getField("base64image"))
+			block.getField("base64image").setValue("");		
+  },
+	previewChanged: function(newValue) {
+		const block = this.sourceBlock_;
+		if (newValue!="") {
+			var previeFieldImage = new Blockly.FieldImage(newValue, 30, 30, { alt: "*", flipRtl: "FALSE" });
+			if (block.getField("tmp"))
+				block.getInput("preview").removeField("tmp");
+			block.getInput("preview").appendField(previeFieldImage, "tmp");
+		}	
 	}
 };
 
@@ -134,15 +164,27 @@ Blockly.Blocks['tft_PROGMEM'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("logo"), "variable")
 		.appendField(Blockly.Msg["TFT_SET"])
-		.appendField(Blockly.Msg["TFT_XBM"])
-		.appendField(new Blockly.FieldLabelSerializable(""), "size");
+		.appendField(Blockly.Msg["TFT_XBM"]);
+		
+    this.appendDummyInput()
+		.appendField(new Blockly.FieldLabelSerializable(""), "base64image");
+	this.getField("base64image").setVisible(false);
+	this.getField("base64image").setValidator(this.previewChanged)
+	
+	this.appendDummyInput("preview")
+		.appendField(new Blockly.FieldLabelSerializable(""), "realsize");
+		
+		
     this.appendValueInput("PROGMEM")
         .setCheck("String");		
 	var imageToXbm = function() {
 		var block = this.sourceBlock_;
         var input = block.getInputTargetBlock("PROGMEM");
 		input.setFieldValue('', 'TEXT');
-		block.setFieldValue('', "size");
+		block.setFieldValue('', "realsize");
+		
+		if (block.getField("base64image"))
+			block.getField("base64image").setValue("");		
   
 	    if (input) {
 		    if (input.type="text") {
@@ -154,7 +196,7 @@ Blockly.Blocks['tft_PROGMEM'] = {
 					canvas.width=img.width;
 					canvas.height=img.height; 
 					canvas.width = (canvas.width%8>0)?Math.round(canvas.width-canvas.width%8+8):Math.round(canvas.width);
-					block.getField("size").setValue("( "+canvas.width + " * " + canvas.height + " ) "+Blockly.Msg["TFT_WHITEBACK_BLACKWORD"], "size");
+					block.getField("realsize").setValue("( "+canvas.width + " * " + canvas.height + " )");
 					
 					context.fillStyle="#FFFFFF";
 					context.fillRect(0, 0, canvas.width, canvas.height);
@@ -182,10 +224,19 @@ Blockly.Blocks['tft_PROGMEM'] = {
 						}
 					}
 					
+					
+					canvas.width = (img.width>img.height)?30:(30*img.width/img.height);
+					canvas.height = (img.width>img.height)?(30*img.height/img.width):30;
+					context.fillStyle = "#FFFFFF";
+					context.fillRect(0, 0, canvas.width, canvas.height);
+					context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
+					var dataURL = canvas.toDataURL();
+					block.getField("base64image").setValue(dataURL);
+					
+					
 					document.body.appendChild(canvas);
 					canvas.parentNode.removeChild(canvas);
 					input.setFieldValue(xbmString, 'TEXT');
-					file.parentNode.removeChild(file);
 				}
 				
 				var file=document.createElement('input');
@@ -221,7 +272,27 @@ Blockly.Blocks['tft_PROGMEM'] = {
     this.setNextStatement(true, null);
     this.setColour(Blockly.Msg["HUE_12"]);
 	this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
-  }
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (block.getInputTargetBlock("PROGMEM"))
+			block.getInputTargetBlock("PROGMEM").setFieldValue('', 'TEXT');
+		if (block.getField("realsize"))
+		 	block.getField("realsize").setValue("");		
+		if (block.getField("tmp"))
+			block.getInput("preview").removeField("tmp");	
+		if (block.getField("base64image"))
+			block.getField("base64image").setValue("");		
+  },
+	previewChanged: function(newValue) {
+		const block = this.sourceBlock_;
+		if (newValue!="") {
+			var previeFieldImage = new Blockly.FieldImage(newValue, 30, 30, { alt: "*", flipRtl: "FALSE" });
+			if (block.getField("tmp"))
+				block.getInput("preview").removeField("tmp");
+			block.getInput("preview").appendField(previeFieldImage, "tmp");
+		}	
+	}
 };
 
 //https://github.com/opentypejs/opentype.js
@@ -901,7 +972,6 @@ Blockly.Blocks['tft_drawCustomFont'] = {
 			canvas.height = 800;
 
 			context.font = size + "px " + font;
-			console.log(context.font);
 			let metrics = context.measureText(text);
 			//let fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
 			//let actualHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
@@ -1361,7 +1431,6 @@ Blockly.Blocks['tft_drawFont'] = {
 			canvas.height = 800;
 
 			context.font = dropdown_size + "px " + dropdown_font;
-			console.log(context.font);
 			let metrics = context.measureText(text);
 			//let fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
 			//let actualHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
@@ -7153,7 +7222,6 @@ Blockly.Blocks['fu_oled_PROGMEM'] = {
 					document.body.appendChild(canvas);
 					canvas.parentNode.removeChild(canvas);
 					input.setFieldValue(xbmString, 'TEXT');
-					file.parentNode.removeChild(file);
 				}
 				
 				var file=document.createElement('input');
