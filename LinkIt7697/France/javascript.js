@@ -627,7 +627,7 @@ Blockly.Arduino['tft_clear'] = function(block) {
 	TFT_GREENYELLOW 0xB7E0
 	TFT_PINK        0xFC9F
 	*/	
-	var code = 'tft.fillScreen(TFT_BLACK);\n';
+	var code = 'tft.fillScreen(TFT_BLACK);\ntft.setTextFont(1);\ntft.setTextSize(4);\ntft.setTextColor((tft.color565(255, 255, 255)) ,(tft.color565(0, 0, 0)) ,0);\n';
     return code;
 };
 
@@ -670,7 +670,7 @@ Blockly.Arduino['tft_initial'] = function(block) {
 									  'TJpgDec.setJpgScale(1);\n'+
 									  'tft.setSwapBytes(true);\n'+
 									  'TJpgDec.setCallback(tft_output);\n';
-	if (selectBoardType()=="Pixel:Bit")
+	if (board=="Pixel:Bit")
 		Blockly.Arduino.setups_.tftsetup += 'tft.setRotation(3);\n';
 	
 	Blockly.Arduino.setups_.tftsetup +=  'tft.setTextFont(1);\n'+
@@ -5727,7 +5727,7 @@ Blockly.Arduino['fu_ez_ir_receive'] = function(block) {
   else if (selectBoardType()=="Arduino Pro or Pro Mini")
 	pin = 2; 
   else if (selectBoardType()=="esp32s2")
-	pin = 3;
+	pin = 8;
 
   var variable_value = Blockly.Arduino.nameDB_.getName(block.getFieldValue('value'), Blockly.VARIABLE_CATEGORY_NAME);
   var variable_type = Blockly.Arduino.nameDB_.getName(block.getFieldValue('type'), Blockly.VARIABLE_CATEGORY_NAME);
