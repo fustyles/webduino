@@ -504,9 +504,6 @@ Blockly.Blocks['tft_drawXBMP_PROGMEM'] = {
 Blockly.Blocks['tft_PROGMEM_array'] = {
   init: function() {
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg["TFT"]);
-    this.appendDummyInput()
         .appendField(Blockly.Msg["TFT_ARRAY"])	
         .appendField(new Blockly.FieldVariable("logo"), "variable")
 		.appendField(Blockly.Msg["TFT_SET"]);		
