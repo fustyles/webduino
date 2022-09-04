@@ -9,10 +9,10 @@ Blockly.Blocks['tft_PROGMEM_resize'] = {
 	this.appendDummyInput()
         .appendField(Blockly.Msg["TFT_RESIZE"])	
         .appendField(Blockly.Msg["TFT_WIDTH"])	
-        .appendField(new Blockly.FieldTextInput("40"), "width");
+        .appendField(new Blockly.FieldTextInput("40",this.validate), "width");
     this.appendDummyInput()
         .appendField(Blockly.Msg["TFT_HEIGHT"])	
-        .appendField(new Blockly.FieldTextInput("40"), "height");
+        .appendField(new Blockly.FieldTextInput("40",this.validate), "height");
 	var imageToXbm = function() {
 		var block = this.sourceBlock_;
         var input = block.getInputTargetBlock("PROGMEM");
@@ -98,6 +98,12 @@ Blockly.Blocks['tft_PROGMEM_resize'] = {
     this.setNextStatement(true, null);
     this.setColour(Blockly.Msg["HUE_12"]);
 	this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
+  },
+  validate: function(newValue) {
+	 const block = this.sourceBlock_;
+     var input = block.getInputTargetBlock("PROGMEM");
+	 if (input)
+		input.setFieldValue('', 'TEXT');
   }
 };
 
@@ -105,25 +111,13 @@ Blockly.Blocks['tft_drawXBMP'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg["TFT"])
-        .appendField(Blockly.Msg["TFT_DRAW_IMAGE"]);
+        .appendField(Blockly.Msg["TFT"]);
+	this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable("logo"), "variable")
+		.appendField(Blockly.Msg["TFT_SET"]);			
     this.appendValueInput("PROGMEM")
         .setCheck("String")
         .appendField(Blockly.Msg["TFT_XBM"]);	
-    this.appendValueInput("width")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["TFT_WIDTH"]);
-    this.appendValueInput("height")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["TFT_HEIGHT"]);
-    this.appendValueInput("x")
-        .setCheck("Number")
-        .appendField("x");
-    this.appendValueInput("y")
-        .setCheck("Number")
-        .appendField("y");
-	this.appendValueInput("color")
-	    .appendField(Blockly.Msg["COLOR"]);		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -357,10 +351,10 @@ Blockly.Blocks['tft_PROGMEM_truetype'] = {
 	this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)    
       .appendField(Blockly.Msg["EZ_SIZE"])
-      .appendField(new Blockly.FieldDropdown(opt), "fontsize");
+      .appendField(new Blockly.FieldDropdown(opt, this.validate), "fontsize");
     this.appendDummyInput()
         .appendField(Blockly.Msg["EZ_TEXT"])	
-        .appendField(new Blockly.FieldTextInput("hello"), "str");
+        .appendField(new Blockly.FieldTextInput("hello", this.validate), "str");
     this.appendDummyInput()
 		.appendField(Blockly.Msg["TFT_FONT_TTF"])
 		.appendField(field);		  
@@ -374,6 +368,12 @@ Blockly.Blocks['tft_PROGMEM_truetype'] = {
     this.setNextStatement(true, null);
     this.setColour(Blockly.Msg["HUE_12"]);
 	this.setHelpUrl("https://github.com/opentypejs/");
+  },
+  validate: function(newValue) {
+	 const block = this.sourceBlock_;
+     var input = block.getInputTargetBlock("PROGMEM");
+	 if (input)
+		input.setFieldValue('', 'TEXT');
   }
 };
 
@@ -396,29 +396,30 @@ Blockly.Blocks['tft_qrcode_PROGMEM'] = {
 		["600x600","600x600"],		
 		["640x640","640x640"],
 		["800x800","800x800"]		
-	]), "size");			
+	], this.validate), "size");			
     var field = new Blockly.FieldTextInput();
     field.onFinishEditing_ = this.onFinishEditing;	
     this.appendDummyInput()		
         .appendField(Blockly.Msg["TFT_TEXT"])
-		.appendField(field);	
+		.appendField(field, "str");	
     this.appendValueInput("PROGMEM")
+		.appendField(new Blockly.FieldLabelSerializable(""), "resize")
         .setCheck("String");	
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(Blockly.Msg["HUE_12"]);
 	this.setHelpUrl("https://windows87.github.io/xbm-viewer-converter/");
-    this.getInput('PROGMEM').setVisible(false);
+    //this.getInput('PROGMEM').setVisible(false);
   },
 	onFinishEditing: function(val) {
 		var block = this.sourceBlock_;
 		var input = block.getInputTargetBlock("PROGMEM");
+		input.setFieldValue('', 'TEXT');
 		var img=document.createElement('img');
 		var url = "https://chart.googleapis.com/chart?chs="+block.getFieldValue("size")+"&cht=qr&chl=" + val + "&choe=UTF-8&chld=M|0";
-		console.log(url);
 		img.src = url;
-		
+	
 		img.onload = function (event) {
 			const canvas = document.createElement('canvas');
 			const context = canvas.getContext('2d');
@@ -426,7 +427,9 @@ Blockly.Blocks['tft_qrcode_PROGMEM'] = {
 			canvas.width=img.width;
 			canvas.height=img.height; 
 			canvas.width = (canvas.width%8>0)?Math.round(canvas.width-canvas.width%8+8):Math.round(canvas.width);
-			
+			block.getField("resize").setValue("( "+canvas.width + " * " + canvas.height + " ) ", "resize");
+					
+					
 			context.fillStyle="#FFFFFF";
 			context.fillRect(0, 0, canvas.width, canvas.height);
 			context.drawImage(img,0,0,img.width,img.height);
@@ -457,7 +460,17 @@ Blockly.Blocks['tft_qrcode_PROGMEM'] = {
 			canvas.parentNode.removeChild(canvas);
 			input.setFieldValue(xbmString, 'TEXT');
 		}
-    }
+    },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (block.getInputTargetBlock("PROGMEM"))
+			block.getInputTargetBlock("PROGMEM").setFieldValue('', 'TEXT');
+		if (block.getField("resize"))
+			block.getField("resize").setValue("");
+		if (block.getField("str")) {
+			block.getField("str").setValue("");
+		}			
+	}
 };
 
 Blockly.Blocks['tft_drawXBMP_PROGMEM'] = {

@@ -17,19 +17,14 @@ Blockly.Arduino['fu_oled_setFontMode'] = function(block) {
 
 
 Blockly.Arduino['tft_drawXBMP'] = function(block) {
-  var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
-  var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
-  var value_width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC);
-  var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
+  var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.VARIABLE_CATEGORY_NAME);
   var value_PROGMEM = Blockly.Arduino.valueToCode(block, 'PROGMEM', Blockly.Arduino.ORDER_ATOMIC);
-  var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
-  var variable = "xbm_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
-  
-  Blockly.Arduino.definitions_['u8g2_progmem_'+variable] = 'static const unsigned char PROGMEM '+variable+'[] = {\n'+
+
+  Blockly.Arduino.definitions_['u8g2_progmem_'+variable_variable] = 'static const unsigned char PROGMEM '+variable_variable+'[] = {\n'+
 			  value_PROGMEM.replace(/"/g,'').replace(/'/g,"") +
 			  '\n};\n';
 			  
-  var code = 'tft.drawXBitmap('+value_x+', '+value_y+', '+variable+', '+value_width+', '+value_height+', '+color+');\n';
+  var code = '';
   return code;
 };
 
