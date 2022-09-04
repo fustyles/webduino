@@ -8549,11 +8549,6 @@
 		</block>
 		<block type="tft_drawCustomFont">
 			<field name="str">hello</field>
-			<value name="font">
-				<block type="text">
-					<field name="TEXT">Arial</field>
-				</block>
-			</value>
 			<value name="x">
 			  <shadow type="math_number">
 				<field name="NUM">0</field>
