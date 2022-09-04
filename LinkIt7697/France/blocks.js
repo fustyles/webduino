@@ -1611,9 +1611,7 @@ Blockly.Blocks['tft_setTextSize'] = {
         .appendField(Blockly.Msg["TFT"]);
     this.appendValueInput("size")
         .setCheck("Number")
-        .appendField(Blockly.Msg["PROPERTY_FONTSIZE"]+"(1~7)");	
-    this.appendDummyInput()
-        .appendField("* 10px");			
+        .appendField(Blockly.Msg["PROPERTY_FONTSIZE"]+"(1~7)");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);

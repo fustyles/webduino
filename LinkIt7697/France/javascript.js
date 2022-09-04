@@ -627,7 +627,7 @@ Blockly.Arduino['tft_clear'] = function(block) {
 	TFT_GREENYELLOW 0xB7E0
 	TFT_PINK        0xFC9F
 	*/	
-	var code = 'tft.fillScreen(TFT_BLACK);\ntft.setTextFont(1);\ntft.setTextSize(4);\ntft.setTextColor((tft.color565(255, 255, 255)) ,(tft.color565(0, 0, 0)) ,0);\n';
+	var code = 'tft.fillScreen(TFT_BLACK);\ntft.setTextFont(1);\ntft.setTextSize(1);\ntft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n';
     return code;
 };
 
@@ -674,7 +674,7 @@ Blockly.Arduino['tft_initial'] = function(block) {
 		Blockly.Arduino.setups_.tftsetup += 'tft.setRotation(3);\n';
 	
 	Blockly.Arduino.setups_.tftsetup +=  'tft.setTextFont(1);\n'+
-										 'tft.setTextSize(4);\n'+
+										 'tft.setTextSize(1);\n'+
 										 'tft.setTextColor((tft.color565(255, 255, 255)) ,(tft.color565(0, 0, 0)) ,0);\n'+
 										 'u8g2.begin(tft);\n'+	
 										 'u8g2.setForegroundColor(TFT_WHITE);\n';
@@ -723,7 +723,7 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 									  'TJpgDec.setCallback(tft_output);\n'+
 									  'tft.setRotation(3);\n'+
 									  'tft.setTextFont(1);\n'+
-									  'tft.setTextSize(4);\n'+
+									  'tft.setTextSize(1);\n'+
 									  'tft.setTextColor((tft.color565(255, 255, 255)) ,(tft.color565(0, 0, 0)) ,0);\n'+
 									  'u8g2.begin(tft);\n'+	
 									  'u8g2.setForegroundColor(TFT_WHITE);\n';
@@ -788,7 +788,7 @@ Blockly.Arduino['esp32_pixelbit_initial'] = function(block) {
 									  'TJpgDec.setCallback(tft_output);\n'+
 									  'tft.setRotation(3);\n'+
 									  'tft.setTextFont(1);\n'+
-									  'tft.setTextSize(4);\n'+
+									  'tft.setTextSize(1);\n'+
 									  'tft.setTextColor((tft.color565(255, 255, 255)) ,(tft.color565(0, 0, 0)) ,0);\n'+
 									  'u8g2.begin(tft);\n'+	
 									  'u8g2.setForegroundColor(TFT_WHITE);\n';
