@@ -65,19 +65,16 @@ Blockly.Blocks['tft_PROGMEM_resize'] = {
 						}
 					}
 					
-					
 					context.putImageData(imageData,0,0);
 					const canvas1 = document.createElement('canvas');
 					const context1 = canvas1.getContext('2d');
 					canvas1.width = canvas.width*30/canvas.height;
 					canvas1.height = 30;
 					context1.drawImage(canvas,0,0,canvas.width,canvas.height,0,0,canvas1.width,canvas1.height);
-					var dataURL = canvas1.toDataURL();
-					block.getField("base64image").setValue(dataURL);
+					block.getField("base64image").setValue(canvas1.toDataURL()+" "+canvas1.width+" "+canvas1.height);
+					
 					document.body.appendChild(canvas1);
 					canvas1.parentNode.removeChild(canvas1);
-					
-
 					document.body.appendChild(canvas);
 					canvas.parentNode.removeChild(canvas);
 					input.setFieldValue(xbmString, 'TEXT');
@@ -131,21 +128,11 @@ Blockly.Blocks['tft_PROGMEM_resize'] = {
 	previewChanged: function(newValue) {
 		const block = this.sourceBlock_;
 		if (newValue!="") {
-			var image = new Image();
-			image.src = newValue;
-			var canvas = document.createElement('canvas');
-			var context = canvas.getContext("2d");
-			context.drawImage(image, 0, 0);
-			canvas.width = image.width;
-			canvas.height = image.height;
-			var previewFieldImage = new Blockly.FieldImage(newValue, canvas.width||30, canvas.height||30, { alt: "*", flipRtl: "FALSE" });
+			var image = newValue.split(" ");
+			var previewFieldImage = new Blockly.FieldImage(image[0], image[1]||30, image[2]||30, { alt: "*", flipRtl: "FALSE" });
 			if (block.getField("tmp"))
 				block.getInput("preview").removeField("tmp");
 			block.getInput("preview").appendField(previewFieldImage, "tmp");
-			document.body.appendChild(image);
-			image.parentNode.removeChild(image);
-			document.body.appendChild(canvas);
-			canvas.parentNode.removeChild(canvas);	
 		}	
 	}
 };
@@ -236,18 +223,16 @@ Blockly.Blocks['tft_PROGMEM'] = {
 						}
 					}
 					
-					
 					context.putImageData(imageData,0,0);
 					const canvas1 = document.createElement('canvas');
 					const context1 = canvas1.getContext('2d');
 					canvas1.width = canvas.width*30/canvas.height;
 					canvas1.height = 30;
 					context1.drawImage(canvas,0,0,canvas.width,canvas.height,0,0,canvas1.width,canvas1.height);
-					var dataURL = canvas1.toDataURL();
-					block.getField("base64image").setValue(dataURL);
+					block.getField("base64image").setValue(canvas1.toDataURL()+" "+canvas1.width+" "+canvas1.height);
+					
 					document.body.appendChild(canvas1);
 					canvas1.parentNode.removeChild(canvas1);
-					
 					document.body.appendChild(canvas);
 					canvas.parentNode.removeChild(canvas);
 					input.setFieldValue(xbmString, 'TEXT');
@@ -301,21 +286,11 @@ Blockly.Blocks['tft_PROGMEM'] = {
 	previewChanged: function(newValue) {
 		const block = this.sourceBlock_;
 		if (newValue!="") {
-			var image = new Image();
-			image.src = newValue;
-			var canvas = document.createElement('canvas');
-			var context = canvas.getContext("2d");
-			context.drawImage(image, 0, 0);
-			canvas.width = image.width;
-			canvas.height = image.height;
-			var previewFieldImage = new Blockly.FieldImage(newValue, canvas.width||30, canvas.height||30, { alt: "*", flipRtl: "FALSE" });
+			var image = newValue.split(" ");
+			var previewFieldImage = new Blockly.FieldImage(image[0], image[1]||30, image[2]||30, { alt: "*", flipRtl: "FALSE" });
 			if (block.getField("tmp"))
 				block.getInput("preview").removeField("tmp");
 			block.getInput("preview").appendField(previewFieldImage, "tmp");
-			document.body.appendChild(image);
-			image.parentNode.removeChild(image);
-			document.body.appendChild(canvas);
-			canvas.parentNode.removeChild(canvas);	
 		}	
 	}
 };
@@ -442,7 +417,6 @@ Blockly.Blocks['tft_PROGMEM_truetype'] = {
 									}
 								}
 								
-					
 								canvas.width = width;
 								canvas.height = height;
 								context.putImageData(imageData,0,0);
@@ -451,12 +425,10 @@ Blockly.Blocks['tft_PROGMEM_truetype'] = {
 								canvas1.width = width*30/height;
 								canvas1.height = 30;
 								context1.drawImage(canvas,0,0,canvas.width,canvas.height,0,0,canvas1.width,canvas1.height);
-								var dataURL = canvas1.toDataURL();
-								block.getField("base64image").setValue(dataURL);
+								block.getField("base64image").setValue(canvas1.toDataURL()+" "+canvas1.width+" "+canvas1.height);
+								
 								document.body.appendChild(canvas1);
 								canvas1.parentNode.removeChild(canvas1);
-													
-								
 								document.body.appendChild(canvas);
 								canvas.parentNode.removeChild(canvas);
 								input.setFieldValue(xbmString, 'TEXT');								
@@ -505,21 +477,11 @@ Blockly.Blocks['tft_PROGMEM_truetype'] = {
 	previewChanged: function(newValue) {
 		const block = this.sourceBlock_;
 		if (newValue!="") {
-			var image = new Image();
-			image.src = newValue;
-			var canvas = document.createElement('canvas');
-			var context = canvas.getContext("2d");
-			context.drawImage(image, 0, 0);
-			canvas.width = image.width;
-			canvas.height = image.height;
-			var previewFieldImage = new Blockly.FieldImage(newValue, canvas.width||30, canvas.height||30, { alt: "*", flipRtl: "FALSE" });
+			var image = newValue.split(" ");
+			var previewFieldImage = new Blockly.FieldImage(image[0], image[1]||30, image[2]||30, { alt: "*", flipRtl: "FALSE" });
 			if (block.getField("tmp"))
 				block.getInput("preview").removeField("tmp");
 			block.getInput("preview").appendField(previewFieldImage, "tmp");
-			document.body.appendChild(image);
-			image.parentNode.removeChild(image);
-			document.body.appendChild(canvas);
-			canvas.parentNode.removeChild(canvas);	
 		}	
 	}
 };
@@ -618,10 +580,10 @@ Blockly.Blocks['tft_qrcode_PROGMEM'] = {
 			canvas1.height = 30;
 			context1.drawImage(canvas,0,0,canvas.width,canvas.height,0,0,canvas1.width,canvas1.height);
 			var dataURL = canvas1.toDataURL();
-			block.getField("base64image").setValue(dataURL);
-			document.body.appendChild(canvas1);
-			canvas1.parentNode.removeChild(canvas1);			
+			block.getField("base64image").setValue(dataURL+" "+canvas1.width+" "+canvas1.height);
 			
+			document.body.appendChild(canvas1);
+			canvas1.parentNode.removeChild(canvas1);
 			document.body.appendChild(canvas);
 			canvas.parentNode.removeChild(canvas);
 			input.setFieldValue(xbmString, 'TEXT');
@@ -641,24 +603,13 @@ Blockly.Blocks['tft_qrcode_PROGMEM'] = {
 			block.getField("base64image").setValue("");		
   },
 	previewChanged: function(newValue) {
-		console.log(newValue);
 		const block = this.sourceBlock_;
 		if (newValue!="") {
-			var image = new Image();
-			image.src = newValue;
-			var canvas = document.createElement('canvas');
-			var context = canvas.getContext("2d");
-			context.drawImage(image, 0, 0);
-			canvas.width = image.width;
-			canvas.height = image.height;
-			var previewFieldImage = new Blockly.FieldImage(newValue, canvas.width||30, canvas.height||30, { alt: "*", flipRtl: "FALSE" });
+			var image = newValue.split(" ");
+			var previewFieldImage = new Blockly.FieldImage(image[0], image[1]||30, image[2]||30, { alt: "*", flipRtl: "FALSE" });
 			if (block.getField("tmp"))
 				block.getInput("preview").removeField("tmp");
 			block.getInput("preview").appendField(previewFieldImage, "tmp");
-			document.body.appendChild(image);
-			image.parentNode.removeChild(image);
-			document.body.appendChild(canvas);
-			canvas.parentNode.removeChild(canvas);	
 		}	
 	}
 };
@@ -1163,11 +1114,10 @@ Blockly.Blocks['tft_drawCustomFont'] = {
 			canvas1.width = width*30/height;
 			canvas1.height = 30;
 			context1.drawImage(canvas,0,0,canvas.width,canvas.height,0,0,canvas1.width,canvas1.height);
-			var dataURL = canvas1.toDataURL();
-			block.getField("base64image").setValue(dataURL);
-			document.body.appendChild(canvas1);
-			canvas1.parentNode.removeChild(canvas1);			
+			block.getField("base64image").setValue(canvas1.toDataURL()+" "+canvas1.width+" "+canvas1.height);
 			
+			document.body.appendChild(canvas1);
+			canvas1.parentNode.removeChild(canvas1);
 			document.body.appendChild(canvas);
 			canvas.parentNode.removeChild(canvas);
 			input.setFieldValue(xbmString, 'TEXT');
@@ -1189,21 +1139,11 @@ Blockly.Blocks['tft_drawCustomFont'] = {
 	previewChanged: function(newValue) {
 		const block = this.sourceBlock_;
 		if (newValue!="") {
-			var image = new Image();
-			image.src = newValue;
-			var canvas = document.createElement('canvas');
-			var context = canvas.getContext("2d");
-			context.drawImage(image, 0, 0);
-			canvas.width = image.width;
-			canvas.height = image.height;
-			var previewFieldImage = new Blockly.FieldImage(newValue, canvas.width||30, canvas.height||30, { alt: "*", flipRtl: "FALSE" });
+			var image = newValue.split(" ");
+			var previewFieldImage = new Blockly.FieldImage(image[0], image[1]||30, image[2]||30, { alt: "*", flipRtl: "FALSE" });
 			if (block.getField("tmp"))
 				block.getInput("preview").removeField("tmp");
 			block.getInput("preview").appendField(previewFieldImage, "tmp");
-			document.body.appendChild(image);
-			image.parentNode.removeChild(image);
-			document.body.appendChild(canvas);
-			canvas.parentNode.removeChild(canvas);	
 		}	
 	}
 };
@@ -1670,11 +1610,10 @@ Blockly.Blocks['tft_drawFont'] = {
 			canvas1.width = canvas.width*30/canvas.height;
 			canvas1.height = 30;
 			context1.drawImage(canvas,0,0,canvas.width,canvas.height,0,0,canvas1.width,canvas1.height);
-			var dataURL = canvas1.toDataURL();
-			block.getField("base64image").setValue(dataURL);
-			document.body.appendChild(canvas1);
-			canvas1.parentNode.removeChild(canvas1);			
+			block.getField("base64image").setValue(canvas1.toDataURL()+" "+canvas1.width+" "+canvas1.height);
 			
+			document.body.appendChild(canvas1);
+			canvas1.parentNode.removeChild(canvas1);
 			document.body.appendChild(canvas);
 			canvas.parentNode.removeChild(canvas);
 			input.setFieldValue(xbmString, 'TEXT');			
@@ -1696,21 +1635,11 @@ Blockly.Blocks['tft_drawFont'] = {
 	previewChanged: function(newValue) {
 		const block = this.sourceBlock_;
 		if (newValue!="") {
-			var image = new Image();
-			image.src = newValue;
-			var canvas = document.createElement('canvas');
-			var context = canvas.getContext("2d");
-			context.drawImage(image, 0, 0);
-			canvas.width = image.width;
-			canvas.height = image.height;
-			var previewFieldImage = new Blockly.FieldImage(newValue, canvas.width||30, canvas.height||30, { alt: "*", flipRtl: "FALSE" });
+			var image = newValue.split(" ");
+			var previewFieldImage = new Blockly.FieldImage(image[0], image[1]||30, image[2]||30, { alt: "*", flipRtl: "FALSE" });
 			if (block.getField("tmp"))
 				block.getInput("preview").removeField("tmp");
 			block.getInput("preview").appendField(previewFieldImage, "tmp");
-			document.body.appendChild(image);
-			image.parentNode.removeChild(image);
-			document.body.appendChild(canvas);
-			canvas.parentNode.removeChild(canvas);	
 		}	
 	}
 };
