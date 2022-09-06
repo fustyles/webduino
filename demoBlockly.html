@@ -413,17 +413,17 @@ var demoWorkspace = Blockly.inject(
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
 
 function initial() {
-  if (document.documentElement.clientWidth)
-    var workspaceWidth = document.documentElement.clientWidth;
-  else
-    var workspaceWidth = document.body.clientWidth;
-  if (document.documentElement.clientHeight)
-    var workspaceHeight = document.documentElement.clientHeight-1;
-  else
-    var workspaceHeight = document.body.clientHeight-1;
-  document.getElementById('blocklyDiv').style.width = workspaceWidth +"px";
-  document.getElementById('blocklyDiv').style.height = workspaceHeight +"px";
-  Blockly.svgResize(demoWorkspace);
+	if (document.documentElement.clientWidth)
+		var workspaceWidth = document.documentElement.clientWidth;
+	else
+		var workspaceWidth = document.body.clientWidth;
+	if (document.documentElement.clientHeight)
+		var workspaceHeight = document.documentElement.clientHeight-1;
+	else
+		var workspaceHeight = document.body.clientHeight-1;
+	document.getElementById('blocklyDiv').style.width = workspaceWidth +"px";
+	document.getElementById('blocklyDiv').style.height = workspaceHeight +"px";
+	Blockly.svgResize(demoWorkspace);
 }
 
 function showCode() {
