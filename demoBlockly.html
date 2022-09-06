@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/6 17:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/6 20:30
 https://www.facebook.com/francefu
 
 Try it!
@@ -20,7 +20,7 @@ https://fustyles.github.io/webduino/demoBlockly.html
 		var media = 'https://blockly-demo.appspot.com/static/media/';
 		
 		var toolbox_standard = ''+
-		+ '<category name="Logic" colour="%{BKY_LOGIC_HUE}">'
+		+ '<category name="%{BKY_LOGIC_NAME}" colour="%{BKY_LOGIC_HUE}">'
 		+   '<block type="controls_if"></block>'
 		+   '<block type="logic_compare"></block>'
 		+   '<block type="logic_operation"></block>'
@@ -29,7 +29,7 @@ https://fustyles.github.io/webduino/demoBlockly.html
 		+   '<block type="logic_null" disabled="true"></block>'
 		+   '<block type="logic_ternary"></block>'
 		+ '</category>'
-		+ '<category name="Loops" colour="%{BKY_LOOPS_HUE}">'
+		+ '<category name="%{BKY_LOOPS_NAME}" colour="%{BKY_LOOPS_HUE}">'
 		+   '<block type="controls_repeat_ext">'
 		+     '<value name="TIMES">'
 		+       '<shadow type="math_number">'
@@ -58,7 +58,7 @@ https://fustyles.github.io/webduino/demoBlockly.html
 		+   '<block type="controls_forEach"></block>'
 		+   '<block type="controls_flow_statements"></block>'
 		+ '</category>'
-		+ '<category name="Math" colour="%{BKY_MATH_HUE}">'
+		+ '<category name="%{BKY_MATH_NAME}" colour="%{BKY_MATH_HUE}">'
 		+   '<block type="math_number" gap="32">'
 		+     '<field name="NUM">123</field>'
 		+   '</block>'
@@ -147,7 +147,7 @@ https://fustyles.github.io/webduino/demoBlockly.html
 		+   '</block>'
 		+   '<block type="math_random_float"></block>'
 		+ '</category>'
-		+ '<category name="Text" colour="%{BKY_TEXTS_HUE}">'
+		+ '<category name="%{BKY_TEXTS_NAME}" colour="%{BKY_TEXTS_HUE}">'
 		+   '<block type="text"></block>'
 		+   '<block type="text_join"></block>'
 		+   '<block type="text_append">'
@@ -249,7 +249,7 @@ https://fustyles.github.io/webduino/demoBlockly.html
 		+     '</value>'
 		+   '</block>'
 		+ '</category>'
-		+ '<category name="Lists" colour="%{BKY_LISTS_HUE}">'
+		+ '<category name="%{BKY_LISTS_NAME}" colour="%{BKY_LISTS_HUE}">'
 		+   '<block type="lists_create_with">'
 		+     '<mutation items="0"></mutation>'
 		+   '</block>'
@@ -301,7 +301,7 @@ https://fustyles.github.io/webduino/demoBlockly.html
 		+   '<block type="lists_sort"></block>'
 		+   '<block type="lists_reverse"></block>'
 		+ '</category>'
-		+ '<category name="Colour" colour="%{BKY_COLOUR_HUE}">'
+		+ '<category name="%{BKY_COLOUR_NAME}" colour="%{BKY_COLOUR_HUE}">'
 		+   '<block type="colour_picker"></block>'
 		+   '<block type="colour_random"></block>'
 		+   '<block type="colour_rgb">'
@@ -340,17 +340,28 @@ https://fustyles.github.io/webduino/demoBlockly.html
 		+   '</block>'
 		+ '</category>'
 		+ '<sep></sep>'
-		+ '<category name="Variables" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>'
-		+ '<category name="Functions" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>';
+		+ '<category name="%{BKY_VARIABLES_NAME}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>'
+		+ '<category name="%{BKY_PROCEDURES_NAME}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>';
 	</script>
 </head>
 <body>
 <div id="blocklyDiv" style="position: absolute; left: 0px; top: 0px; height: 600px; width: 600px;">
 
 <script>
+	<!-- 工具箱系統目錄語系(zh-hant.js) -->
+	
+	Blockly.Msg["LOGIC_NAME"] = "邏輯";
+	Blockly.Msg["LOOPS_NAME"] = "迴圈";
+	Blockly.Msg["MATH_NAME"] = "數學";
+	Blockly.Msg["TEXTS_NAME"] = "字串";
+	Blockly.Msg["LISTS_NAME"] = "陣列";
+	Blockly.Msg["COLOUR_NAME"] = "顏色";
+	Blockly.Msg["VARIABLES_NAME"] = "變數";
+	Blockly.Msg["PROCEDURES_NAME"] = "函式";
+
 	<!-- 工具箱自訂積木語系(zh-hant.js) -->
 	
-	Blockly.Msg["HELLOWORLD_NAME"] = "TEST";
+	Blockly.Msg["HELLOWORLD_NAME"] = "自訂積木";
 	Blockly.Msg["HELLOWORLD_MSG"] = "Hello World";
 	Blockly.Msg["HELLOWORLD_HUE"] = "100";
 </script>
@@ -420,7 +431,7 @@ var demoWorkspace = Blockly.inject(
 );
 
 //初始積木匯入工作區
-Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
+//Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
 
 //工作區範圍最大化
 function workspaceResize() {
