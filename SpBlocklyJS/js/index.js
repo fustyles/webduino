@@ -299,6 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		"<sep></sep>",
 		catWebSerial,
 		catMQTT,
+		catCommand,		
 		"<sep></sep>",		
 		catPageElements,
 		catChart,
