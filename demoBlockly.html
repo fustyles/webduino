@@ -433,6 +433,10 @@ function initial() {
 	document.getElementById('blocklyDiv').style.height = workspaceHeight +"px";
 	Blockly.svgResize(demoWorkspace);
 }
+	
+window.onresize = function(){
+	initial();
+}
 
 //輸出工作區程式碼
 function showCode() {
