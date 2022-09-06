@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/6 20:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/7 00:00
 https://www.facebook.com/francefu
 
 Try it!
@@ -19,14 +19,33 @@ https://fustyles.github.io/webduino/demoBlockly.html
 	<script>
 		var media = 'https://blockly-demo.appspot.com/static/media/';
 		
-		var toolbox_standard = ''+
+		<!-- 工具箱系統目錄語系(zh-hant.js) -->
+	
+		Blockly.Msg["LOGIC_NAME"] = "邏輯";
+		Blockly.Msg["LOGIC_HUE"] = "210";
+		Blockly.Msg["LOOPS_NAME"] = "迴圈";
+		Blockly.Msg["LOOPS_HUE"] = "120";
+		Blockly.Msg["MATH_NAME"] = "數學";
+		Blockly.Msg["MATH_HUE"] = "230";
+		Blockly.Msg["TEXTS_NAME"] = "字串";
+		Blockly.Msg["TEXTS_HUE"] = "160";
+		Blockly.Msg["LISTS_NAME"] = "陣列";
+		Blockly.Msg["LISTS_HUE"] = "260";
+		Blockly.Msg["COLOUR_NAME"] = "顏色";
+		Blockly.Msg["COLOUR_HUE"] = "20";
+		Blockly.Msg["VARIABLES_NAME"] = "變數";
+		Blockly.Msg["VARIABLES_HUE"] = "330";
+		Blockly.Msg["PROCEDURES_NAME"] = "函式";
+		Blockly.Msg["PROCEDURES_HUE"] = "290";
+				
+		var toolbox_standard = ''
 		+ '<category name="%{BKY_LOGIC_NAME}" colour="%{BKY_LOGIC_HUE}">'
 		+   '<block type="controls_if"></block>'
 		+   '<block type="logic_compare"></block>'
 		+   '<block type="logic_operation"></block>'
 		+   '<block type="logic_negate"></block>'
 		+   '<block type="logic_boolean"></block>'
-		+   '<block type="logic_null" disabled="true"></block>'
+		+   '<block type="logic_null"></block>'
 		+   '<block type="logic_ternary"></block>'
 		+ '</category>'
 		+ '<category name="%{BKY_LOOPS_NAME}" colour="%{BKY_LOOPS_HUE}">'
@@ -348,25 +367,17 @@ https://fustyles.github.io/webduino/demoBlockly.html
 <div id="blocklyDiv" style="position: absolute; left: 0px; top: 0px; height: 600px; width: 600px;">
 
 <script>
-	<!-- 工具箱系統目錄語系(zh-hant.js) -->
 	
-	Blockly.Msg["LOGIC_NAME"] = "邏輯";
-	Blockly.Msg["LOOPS_NAME"] = "迴圈";
-	Blockly.Msg["MATH_NAME"] = "數學";
-	Blockly.Msg["TEXTS_NAME"] = "字串";
-	Blockly.Msg["LISTS_NAME"] = "陣列";
-	Blockly.Msg["COLOUR_NAME"] = "顏色";
-	Blockly.Msg["VARIABLES_NAME"] = "變數";
-	Blockly.Msg["PROCEDURES_NAME"] = "函式";
-
 	<!-- 工具箱自訂積木語系(zh-hant.js) -->
 	
 	Blockly.Msg["HELLOWORLD_NAME"] = "自訂積木";
 	Blockly.Msg["HELLOWORLD_MSG"] = "Hello World";
 	Blockly.Msg["HELLOWORLD_HUE"] = "100";
+	
 </script>
 
 <script>
+	
 	<!-- 自訂積木定義內容(block.js) -->
 	
 	Blockly.Blocks['test'] = {
@@ -378,15 +389,18 @@ https://fustyles.github.io/webduino/demoBlockly.html
 		this.setColour(Blockly.Msg["HELLOWORLD_HUE"]);
 	  }
 	};
+	
 </script>
 
 <script>
+	
 	<!-- 工具箱自訂積木產出程式碼內容(javascript.js) -->
 
 	Blockly.JavaScript['test'] = function(block) {
 		var code = 'alert("Hello World");\n';
 		return code;
 	};
+	
 </script>
 
 <xml id="toolbox" style="display: none">
@@ -455,11 +469,13 @@ window.addEventListener("resize", function(){
 	workspaceResize();
 })
 
-//輸出工作區程式碼
-function showCode() {
+//監聽工作區改變輸出程式碼
+function onWorkspaceChanged(event) {
 	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+	console.clear();
 	console.log(code);
 }
+demoWorkspace.addChangeListener(onWorkspaceChanged);
 
 //執行工作區程式碼
 function runCode() {
