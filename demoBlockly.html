@@ -395,6 +395,8 @@ https://fustyles.github.io/webduino/demoBlockly.html
 
 
 <script>	
+
+//工作區初始化
 var demoWorkspace = Blockly.inject(
 	'blocklyDiv'
 	,{
@@ -412,8 +414,10 @@ var demoWorkspace = Blockly.inject(
 	}
 );
 
+//初始積木匯入工作區
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
 
+//工作區範圍最大化
 function initial() {
 	if (document.documentElement.clientWidth)
 		var workspaceWidth = document.documentElement.clientWidth;
@@ -428,11 +432,13 @@ function initial() {
 	Blockly.svgResize(demoWorkspace);
 }
 
+//輸出工作區程式碼
 function showCode() {
 	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
 	alert(code);
 }
 
+//執行工作區程式碼
 function runCode() {
 	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
 	try {
