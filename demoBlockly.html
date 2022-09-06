@@ -423,7 +423,7 @@ var demoWorkspace = Blockly.inject(
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
 
 //工作區範圍最大化
-function initial() {
+function workspaceResize() {
 	if (document.documentElement.clientWidth)
 		var workspaceWidth = document.documentElement.clientWidth;
 	else
@@ -438,11 +438,11 @@ function initial() {
 }
 	
 document.addEventListener("DOMContentLoaded", function(event) {
-	initial();
+	workspaceResize();
 })
 	
 window.addEventListener("resize", function(){
-	initial();
+	workspaceResize();
 })
 
 //輸出工作區程式碼
