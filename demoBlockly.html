@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/7 01:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/7 02:00
 https://www.facebook.com/francefu
 
 Try it!
@@ -372,7 +372,7 @@ https://fustyles.github.io/webduino/demoBlockly.html
 	<!-- 工具箱自訂積木語系(zh-hant.js) -->
 	
 	Blockly.Msg["HELLOWORLD_NAME"] = "自訂積木";
-	Blockly.Msg["HELLOWORLD_MSG"] = "Hello World";
+	Blockly.Msg["HELLOWORLD_MSG"] = "對話視窗顯示";
 	Blockly.Msg["HELLOWORLD_HUE"] = "100";
 	
 </script>
@@ -385,6 +385,9 @@ https://fustyles.github.io/webduino/demoBlockly.html
 	  init: function() {
 		this.appendDummyInput()
 		    .appendField(Blockly.Msg["HELLOWORLD_MSG"]);
+		this.appendValueInput("result")
+			.setCheck(null);
+		this.setInputsInline(!0);
 		this.setPreviousStatement(!0);
 		this.setNextStatement(!0);		  
 		this.setColour(Blockly.Msg["HELLOWORLD_HUE"]);
@@ -398,7 +401,8 @@ https://fustyles.github.io/webduino/demoBlockly.html
 	<!-- 工具箱自訂積木產出程式碼內容(javascript.js) -->
 
 	Blockly.JavaScript['test'] = function(block) {
-		var code = 'alert("Hello World");\n';
+		var result = Blockly.JavaScript.valueToCode(block, 'result', Blockly.JavaScript.ORDER_ATOMIC);
+		var code = 'alert(' + result + ');\n';
 		return code;
 	};
 	
@@ -413,7 +417,13 @@ https://fustyles.github.io/webduino/demoBlockly.html
 	<!-- 工具箱自訂積木XML結構內容(toolbox.xml) -->
 	
 	<category name="%{BKY_HELLOWORLD_NAME}" colour="%{BKY_HELLOWORLD_HUE}">
-		<block type="test"></block>
+		<block type="test">
+			<value name="result">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value> 		
+		</block>
 	</category>
 </xml>
 	
