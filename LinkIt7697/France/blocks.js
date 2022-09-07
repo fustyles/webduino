@@ -2208,7 +2208,7 @@ Blockly.Blocks['tft_initial'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["TFT_BOARD"])
         .appendField(new Blockly.FieldDropdown([
-			["　",""],
+			[Blockly.Msg["TFT_GENERAL"],""],
 			["Pixel:Bit","Pixel:Bit"], 
 			["TTGO T-Display","TTGO T-Display"]			
 		]), "board");

@@ -1780,3 +1780,4 @@ Blockly.Msg["OLED_FONT_MODE"] = "繪製字串背景透明";
 Blockly.Msg["TFT_RESIZE"] = "縮放至";
 Blockly.Msg["TFT_BOARD"] = "開發板";
 Blockly.Msg["TFT_ICON"] = "圖示";
+Blockly.Msg["TFT_GENERAL"] = "一般";
