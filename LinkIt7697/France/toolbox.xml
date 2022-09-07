@@ -7891,6 +7891,13 @@
 		</value>		  
     </block>
 	<block type="fu_oled_setBitmapMode"></block>
+		<block type="tft_drawXBMP">	
+			<value name="PROGMEM">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>			
+		</block>	
 		<block type="tft_drawFont">
 			<field name="font">Arial</field>
 			<field name="size">24</field>
@@ -7905,13 +7912,6 @@
 			<field name="font">Arial</field>
 			<field name="size">24</field>		
 			<field name="str"></field>
-			<value name="PROGMEM">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>			
-		</block>
-		<block type="tft_drawXBMP">	
 			<value name="PROGMEM">
 			  <block type="text">
 				<field name="TEXT"></field>
@@ -8504,6 +8504,13 @@
 				<field name="TEXT"></field>
 			  </block>
 			</value>		  
+		</block>
+		<block type="tft_drawXBMP">	
+			<value name="PROGMEM">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>			
 		</block>		
 		<block type="tft_drawFont">
 			<field name="font">Arial</field>
@@ -8519,13 +8526,6 @@
 			<field name="font">Arial</field>
 			<field name="size">24</field>		
 			<field name="str"></field>
-			<value name="PROGMEM">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>			
-		</block>
-		<block type="tft_drawXBMP">	
 			<value name="PROGMEM">
 			  <block type="text">
 				<field name="TEXT"></field>
