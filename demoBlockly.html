@@ -458,6 +458,11 @@ var demoWorkspace = Blockly.inject(
 		trashcan: true
 	}
 );
+	
+//初始積木匯入工作區
+function startBlocks() {
+	Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
+}
 
 //監聽工作區改變輸出程式碼
 function onWorkspaceChanged(event) {
@@ -530,9 +535,6 @@ function fileImportToWorkspace() {
 		input.click();
 	},500);	
 }
-
-//初始積木匯入工作區
-//Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
 
 //新增工作區功能選單匯出積木結構XML檔
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_MSG"] = "工作區匯出積木結構XML檔案";
